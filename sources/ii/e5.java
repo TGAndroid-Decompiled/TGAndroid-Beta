@@ -10,7 +10,7 @@ import java.util.List;
 import org.telegram.messenger.CodeHighlighting;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.fj0;
-import org.telegram.ui.Components.n11;
+import org.telegram.ui.Components.o11;
 public abstract class e5 {
     public static Object a(Spanned spanned, int i10, int i11, Class cls) {
         Object[] spans;
@@ -128,7 +128,7 @@ public abstract class e5 {
                     TL_iv.pageBlockBlockquote pageblockblockquote = new TL_iv.pageBlockBlockquote();
                     pageblockblockquote.text = h6.f(subSequence2);
                     pageblockblockquote.caption = new TL_iv.textEmpty();
-                    if (fj0Var != null && fj0Var.f26473e) {
+                    if (fj0Var != null && fj0Var.f26480e) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -543,8 +543,8 @@ public abstract class e5 {
         }
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(spannableStringBuilder);
         ?? obj = new Object();
-        obj.f28502a = i10;
-        spannableStringBuilder2.setSpan(new n11(obj, 0), 0, spannableStringBuilder2.length(), 33);
+        obj.f28925a = i10;
+        spannableStringBuilder2.setSpan(new o11(obj, 0), 0, spannableStringBuilder2.length(), 33);
         return spannableStringBuilder2;
     }
 }

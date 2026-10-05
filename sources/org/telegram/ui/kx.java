@@ -20,7 +20,7 @@ public final class kx extends org.telegram.ui.Components.ja {
     }
 
     @Override
-    public final int y1() {
+    public final int x1() {
         return AndroidUtilities.dp(48.0f);
     }
 

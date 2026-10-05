@@ -10,12 +10,12 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stories;
 public final class vc extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
-    public final cp0 f41700a;
-    public final uc f41701b;
-    public final org.telegram.ui.ActionBar.i5 f41702c;
+    public final cp0 f41706a;
+    public final uc f41707b;
+    public final org.telegram.ui.ActionBar.i5 f41708c;
     public final TextView d;
-    public final TextView f41703e;
-    public final LinearLayout f41704f;
+    public final TextView f41709e;
+    public final LinearLayout f41710f;
     public final cd h;
 
     public vc(cd cdVar, Activity activity) {
@@ -31,16 +31,16 @@ public final class vc extends FrameLayout implements org.telegram.ui.ActionBar.y
         Context context = getContext();
         d6Var = ((org.telegram.ui.ActionBar.n2) cdVar).resourceProvider;
         cp0 cp0Var = new cp0(context, d6Var);
-        this.f41700a = cp0Var;
+        this.f41706a = cp0Var;
         cp0Var.setProgressToGradient(1.0f);
         cp0Var.F = true;
         addView(cp0Var, w7.z5.e(-1, -1, 119));
         Context context2 = getContext();
         i10 = ((org.telegram.ui.ActionBar.n2) cdVar).currentAccount;
-        long j3 = cdVar.f35414a;
+        long j3 = cdVar.f35398a;
         d6Var2 = ((org.telegram.ui.ActionBar.n2) cdVar).resourceProvider;
         uc ucVar = new uc(this, context2, i10, j3, d6Var2);
-        this.f41701b = ucVar;
+        this.f41707b = ucVar;
         boolean z10 = cdVar.d;
         if (z10) {
             f7 = 230.0f;
@@ -55,7 +55,7 @@ public final class vc extends FrameLayout implements org.telegram.ui.ActionBar.y
         addView(ucVar, w7.z5.d(-1, f7, 80, 0.0f, 0.0f, 0.0f, f10));
         if (cdVar instanceof r60) {
             org.telegram.ui.ActionBar.i5 i5Var = new org.telegram.ui.ActionBar.i5(getContext());
-            this.f41702c = i5Var;
+            this.f41708c = i5Var;
             i5Var.setGravity(19);
             int i13 = org.telegram.ui.ActionBar.i6.A8;
             i5Var.setTextColor(cdVar.getThemedColor(i13));
@@ -65,7 +65,7 @@ public final class vc extends FrameLayout implements org.telegram.ui.ActionBar.y
             a();
             addView(i5Var, w7.z5.d(-1, -2.0f, 80, 72.0f, 0.0f, 0.0f, 16.0f));
             LinearLayout linearLayout = new LinearLayout(activity);
-            this.f41704f = linearLayout;
+            this.f41710f = linearLayout;
             linearLayout.setOrientation(0);
             linearLayout.setBackground(org.telegram.ui.ActionBar.i6.g0(org.telegram.ui.ActionBar.i6.l1(0.065f, -16777216), -16777216));
             linearLayout.setGravity(17);
@@ -75,15 +75,15 @@ public final class vc extends FrameLayout implements org.telegram.ui.ActionBar.y
             textView.setTextSize(1, 12.0f);
             textView.setTextColor(ucVar.h.getTextColor());
             TextView textView2 = new TextView(activity);
-            this.f41703e = textView2;
+            this.f41709e = textView2;
             textView2.setTextSize(1, 12.0f);
-            if (cdVar.d && cdVar.f35438s == -1) {
+            if (cdVar.d && cdVar.f35422s == -1) {
                 i11 = cdVar.getThemedColor(i13);
             } else {
                 i11 = -1;
             }
             textView2.setTextColor(i11);
-            TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = cdVar.f35418c;
+            TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = cdVar.f35402c;
             if (tL_premium_boostsStatus != null) {
                 i12 = tL_premium_boostsStatus.boosts;
             } else {
@@ -112,7 +112,7 @@ public final class vc extends FrameLayout implements org.telegram.ui.ActionBar.y
         } else {
             i10 = 20;
         }
-        org.telegram.ui.ActionBar.i5 i5Var = this.f41702c;
+        org.telegram.ui.ActionBar.i5 i5Var = this.f41708c;
         i5Var.setTextSize(i10);
         if (AndroidUtilities.isTablet()) {
             f7 = -2.0f;
@@ -128,20 +128,20 @@ public final class vc extends FrameLayout implements org.telegram.ui.ActionBar.y
     @Override
     public final void e() {
         int themedColor;
-        org.telegram.ui.ActionBar.i5 i5Var = this.f41702c;
+        org.telegram.ui.ActionBar.i5 i5Var = this.f41708c;
         if (i5Var != null) {
             cd cdVar = this.h;
             int i10 = -1;
-            if (cdVar.d && cdVar.f35438s != -1) {
+            if (cdVar.d && cdVar.f35422s != -1) {
                 themedColor = -1;
             } else {
                 themedColor = cdVar.getThemedColor(org.telegram.ui.ActionBar.i6.A8);
             }
             i5Var.setTextColor(themedColor);
-            if (cdVar.d && cdVar.f35438s == -1) {
+            if (cdVar.d && cdVar.f35422s == -1) {
                 i10 = cdVar.getThemedColor(org.telegram.ui.ActionBar.i6.A8);
             }
-            this.f41703e.setTextColor(i10);
+            this.f41709e.setTextColor(i10);
         }
     }
 

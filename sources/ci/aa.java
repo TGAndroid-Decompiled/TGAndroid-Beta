@@ -62,7 +62,7 @@ public final class aa extends ViewGroup {
     public void b(boolean z10) {
         xg.i iVar = (xg.i) this.f4714n;
         iVar.G = true;
-        ArrayList arrayList = iVar.f49862e;
+        ArrayList arrayList = iVar.f49869e;
         ArrayList arrayList2 = new ArrayList(arrayList);
         ArrayList arrayList3 = this.h;
         arrayList3.clear();
@@ -96,7 +96,7 @@ public final class aa extends ViewGroup {
             arrayList3.clear();
             this.f4710b = null;
             this.f4711c = false;
-            iVar.f49860b.setAllowDrawCursor(true);
+            iVar.f49867b.setAllowDrawCursor(true);
         }
         requestLayout();
     }

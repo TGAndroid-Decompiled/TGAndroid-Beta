@@ -5,29 +5,29 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.IMapsProvider;
 public final class rc0 implements Runnable {
-    public final int f40020a;
-    public final gd0 f40021b;
-    public final IMapsProvider.IMapView f40022c;
+    public final int f40066a;
+    public final gd0 f40067b;
+    public final IMapsProvider.IMapView f40068c;
 
     public rc0(gd0 gd0Var, IMapsProvider.IMapView iMapView, int i10) {
-        this.f40020a = i10;
-        this.f40021b = gd0Var;
-        this.f40022c = iMapView;
+        this.f40066a = i10;
+        this.f40067b = gd0Var;
+        this.f40068c = iMapView;
     }
 
     @Override
     public final void run() {
-        switch (this.f40020a) {
+        switch (this.f40066a) {
             case 0:
-                gd0 gd0Var = this.f40021b;
-                IMapsProvider.IMapView iMapView = this.f40022c;
+                gd0 gd0Var = this.f40067b;
+                IMapsProvider.IMapView iMapView = this.f40068c;
                 if (gd0Var.K != null && gd0Var.getParentActivity() != null) {
                     try {
                         iMapView.onCreate(null);
                         ApplicationLoader.getMapsProvider().initializeMaps(ApplicationLoader.applicationContext);
                         gd0Var.K.getMapAsync(new sc0(gd0Var, 0));
-                        gd0Var.f36594u0 = true;
-                        if (gd0Var.f36595v0) {
+                        gd0Var.f36628u0 = true;
+                        if (gd0Var.f36629v0) {
                             gd0Var.K.onResume();
                             return;
                         }
@@ -39,8 +39,8 @@ public final class rc0 implements Runnable {
                 }
                 return;
             default:
-                gd0 gd0Var2 = this.f40021b;
-                IMapsProvider.IMapView iMapView2 = this.f40022c;
+                gd0 gd0Var2 = this.f40067b;
+                IMapsProvider.IMapView iMapView2 = this.f40068c;
                 try {
                     iMapView2.onCreate(null);
                 } catch (Exception unused) {

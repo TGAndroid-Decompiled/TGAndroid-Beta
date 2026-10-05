@@ -10,17 +10,17 @@ import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class mb extends Dialog {
-    public final lb f28571a;
-    public final WindowManager.LayoutParams f28572b;
+    public final lb f28650a;
+    public final WindowManager.LayoutParams f28651b;
 
     public mb(Context context, ci.z8 z8Var) {
         super(context);
         AndroidUtilities.enableEdgeToEdge(getWindow());
         lb lbVar = new lb(this, context);
-        this.f28571a = lbVar;
+        this.f28650a = lbVar;
         setContentView(lbVar, new ViewGroup.LayoutParams(-1, -1));
         s sVar = new s(this, 15);
-        WeakHashMap weakHashMap = r0.i0.f45603a;
+        WeakHashMap weakHashMap = r0.i0.f45610a;
         r0.a0.j(lbVar, sVar);
         int i10 = Build.VERSION.SDK_INT;
         if (i10 >= 30) {
@@ -34,7 +34,7 @@ public final class mb extends Dialog {
             window.setWindowAnimations(R.style.DialogNoAnimation);
             window.setBackgroundDrawable(null);
             WindowManager.LayoutParams attributes = window.getAttributes();
-            this.f28572b = attributes;
+            this.f28651b = attributes;
             attributes.width = -1;
             attributes.height = -1;
             attributes.gravity = 51;
@@ -46,7 +46,7 @@ public final class mb extends Dialog {
                 attributes.layoutInDisplayCutoutMode = 1;
             }
             window.setAttributes(attributes);
-            if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20766a7, false)) <= 0.721f) {
+            if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20771a7, false)) <= 0.721f) {
                 z10 = false;
             }
             AndroidUtilities.setLightNavigationBar(this, z10);
@@ -55,7 +55,7 @@ public final class mb extends Dialog {
     }
 
     public static lb a(Context context) {
-        return new mb(context, null).f28571a;
+        return new mb(context, null).f28650a;
     }
 
     @Override

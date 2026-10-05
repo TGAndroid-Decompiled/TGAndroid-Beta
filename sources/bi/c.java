@@ -36,7 +36,7 @@ public final class c implements vi {
         z zVar = this.f3846c;
         long j11 = zVar.d;
         xi xiVar = this.f3844a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = xiVar.f32831j0;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = xiVar.f32922j0;
         if (!chatAttachAlertPhotoLayout.getSelectedPhotos().isEmpty()) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
             chatAttachAlertPhotoLayout.getSelectedPhotosOrder();

@@ -12,10 +12,10 @@ public final class o extends s {
 
     @Override
     public final Object a(Class cls) {
-        String t10 = of.b.t(cls);
-        if (t10 == null) {
+        String u10 = of.b.u(cls);
+        if (u10 == null) {
             return this.f9830b.invoke(this.f9831c, cls);
         }
-        throw new AssertionError("UnsafeAllocator is used for non-instantiable type: ".concat(t10));
+        throw new AssertionError("UnsafeAllocator is used for non-instantiable type: ".concat(u10));
     }
 }

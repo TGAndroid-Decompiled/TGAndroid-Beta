@@ -25,8 +25,8 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.b2;
-import org.telegram.ui.Components.pv0;
-import z3.o;
+import org.telegram.ui.Components.qv0;
+import z3.n;
 public final class d implements m, x0, z0, RequestDelegateTimestamp, a2, MessagesStorage.StringCallback, e2.h {
     public final int f13649a;
     public final int f13650b;
@@ -43,32 +43,32 @@ public final class d implements m, x0, z0, RequestDelegateTimestamp, a2, Message
     @Override
     public void accept(Object obj) {
         boolean z10;
-        o oVar = (o) this.d;
+        n nVar = (n) this.d;
         z3.a aVar = (z3.a) obj;
-        e2.d.h(oVar.h);
-        byte[] C2 = ob.a.C2(aVar.f52359a, aVar.f52361c);
-        v vVar = oVar.f52386c;
+        e2.d.h(nVar.h);
+        byte[] C2 = ob.a.C2(aVar.f52382a, aVar.f52384c);
+        v vVar = nVar.f52407c;
         vVar.getClass();
         vVar.H(C2.length, C2);
-        oVar.f52384a.d(C2.length, vVar);
-        long j3 = aVar.f52360b;
+        nVar.f52405a.d(C2.length, vVar);
+        long j3 = aVar.f52383b;
         long j10 = this.f13651c;
         if (j3 == -9223372036854775807L) {
-            if (oVar.h.f3568w == Long.MAX_VALUE) {
+            if (nVar.h.f3568w == Long.MAX_VALUE) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             e2.d.g(z10);
         } else {
-            long j11 = oVar.h.f3568w;
+            long j11 = nVar.h.f3568w;
             if (j11 == Long.MAX_VALUE) {
                 j10 += j3;
             } else {
                 j10 = j3 + j11;
             }
         }
-        oVar.f52384a.c(j10, this.f13650b | 1, C2.length, 0, null);
+        nVar.f52405a.c(j10, this.f13650b | 1, C2.length, 0, null);
     }
 
     @Override
@@ -164,12 +164,12 @@ public final class d implements m, x0, z0, RequestDelegateTimestamp, a2, Message
         List list = (List) this.d;
         int i12 = this.f13650b;
         if (i12 == -1) {
-            i11 = a0Var.f16057t.l0();
+            i11 = a0Var.f16062t.l0();
         } else {
             i11 = i12;
         }
         if (i12 == -1) {
-            j3 = a0Var.f16057t.J0();
+            j3 = a0Var.f16062t.J0();
         } else {
             j3 = this.f13651c;
         }
@@ -184,7 +184,7 @@ public final class d implements m, x0, z0, RequestDelegateTimestamp, a2, Message
 
     @Override
     public void run(String str) {
-        pv0.i((pv0) this.d, this.f13651c, this.f13650b, str);
+        qv0.i((qv0) this.d, this.f13651c, this.f13650b, str);
     }
 
     public d(a aVar, int i10, long j3, long j10) {

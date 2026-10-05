@@ -26,7 +26,7 @@ public final class b extends FrameLayout {
             zqVar.setReverse(this.d);
             addView(this.f12184c, z5.e(-1, 28, 48));
         }
-        this.f12184c.f33601a.c(i10, z10);
+        this.f12184c.f33626a.c(i10, z10);
     }
 
     public final void b(boolean z10, boolean z11) {
@@ -42,7 +42,7 @@ public final class b extends FrameLayout {
             }
             wp wpVar = new wp(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(1.7f), -9079435);
             aVar.f12179e = wpVar;
-            wpVar.f32600f = 90.0f;
+            wpVar.f32684f = 90.0f;
             ImageView imageView = new ImageView(aVar.getContext());
             aVar.d = imageView;
             imageView.setBackground(aVar.f12179e);
@@ -51,7 +51,7 @@ public final class b extends FrameLayout {
         }
         le.b bVar = aVar.f12176a;
         if (!bVar.f15437f && bVar.f15436e == 0.0f) {
-            aVar.f12179e.f32598c = -1L;
+            aVar.f12179e.f32682c = -1L;
         }
         bVar.a(z10, z11);
     }

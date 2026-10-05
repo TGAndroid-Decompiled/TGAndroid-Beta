@@ -21,22 +21,22 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.Cells.u1;
 import org.telegram.ui.Components.h9;
 public final class d implements ValueAnimator.AnimatorUpdateListener {
-    public final h f47693a;
-    public final u1 f47694b;
-    public final ImageReceiver f47695c;
+    public final h f47700a;
+    public final u1 f47701b;
+    public final ImageReceiver f47702c;
     public final long d;
-    public b f47696e;
-    public b f47697f;
-    public Paint f47698g;
+    public b f47703e;
+    public b f47704f;
+    public Paint f47705g;
     public final StaticLayout h;
-    public float f47699i;
-    public float f47700j;
-    public ValueAnimator f47701k;
-    public float f47702l;
-    public boolean f47703m;
-    public ValueAnimator f47704n;
-    public float f47705o;
-    public boolean f47706p;
+    public float f47706i;
+    public float f47707j;
+    public ValueAnimator f47708k;
+    public float f47709l;
+    public boolean f47710m;
+    public ValueAnimator f47711n;
+    public float f47712o;
+    public boolean f47713p;
 
     public d(h hVar, long j3) {
         ImageReceiver imageReceiver;
@@ -46,27 +46,27 @@ public final class d implements ValueAnimator.AnimatorUpdateListener {
         CharSequence ellipsize;
         h9 h9Var = new h9((d6) null);
         int i10 = UserConfig.selectedAccount;
-        this.f47702l = 1.0f;
-        this.f47703m = true;
-        this.f47705o = 0.0f;
-        this.f47706p = false;
-        ImageReceiver imageReceiver2 = new ImageReceiver(hVar.f47735a);
-        this.f47695c = imageReceiver2;
-        this.f47693a = hVar;
-        u1 u1Var = hVar.f47746y;
-        this.f47694b = u1Var;
+        this.f47709l = 1.0f;
+        this.f47710m = true;
+        this.f47712o = 0.0f;
+        this.f47713p = false;
+        ImageReceiver imageReceiver2 = new ImageReceiver(hVar.f47742a);
+        this.f47702c = imageReceiver2;
+        this.f47700a = hVar;
+        u1 u1Var = hVar.f47753y;
+        this.f47701b = u1Var;
         this.d = j3;
-        h9Var.f27062p = 1.0f;
+        h9Var.f27154p = 1.0f;
         if (DialogObject.isUserDialog(j3)) {
             TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(j3));
             h9Var.m(i10, user);
             if (UserObject.isUserSelf(user)) {
                 str2 = LocaleController.getString(R.string.SavedMessages);
                 h9Var.g(1);
-                h9Var.f27062p = 0.75f;
+                h9Var.f27154p = 0.75f;
                 imageReceiver = imageReceiver2;
                 imageReceiver.setImage(null, null, null, null, h9Var, 0L, null, user, 0);
-                imageReceiver.setRoundRadius(AndroidUtilities.dp(g.f47728a / 2.0f));
+                imageReceiver.setRoundRadius(AndroidUtilities.dp(g.f47735a / 2.0f));
                 imageReceiver.setImageCoords(0.0f, 0.0f, AndroidUtilities.dp(f7), AndroidUtilities.dp(f7));
                 Paint M2 = u1Var.M2("paintChatActionText");
                 if (str2 == null && M2 != null) {
@@ -87,7 +87,7 @@ public final class d implements ValueAnimator.AnimatorUpdateListener {
             imageReceiver.setForUserOrChat(chat, h9Var);
         }
         str2 = str;
-        imageReceiver.setRoundRadius(AndroidUtilities.dp(g.f47728a / 2.0f));
+        imageReceiver.setRoundRadius(AndroidUtilities.dp(g.f47735a / 2.0f));
         imageReceiver.setImageCoords(0.0f, 0.0f, AndroidUtilities.dp(f7), AndroidUtilities.dp(f7));
         Paint M22 = u1Var.M2("paintChatActionText");
         if (str2 == null) {
@@ -122,22 +122,22 @@ public final class d implements ValueAnimator.AnimatorUpdateListener {
     public final void a(Canvas canvas, float f7, float f10, float f11, float f12) {
         canvas.save();
         canvas.translate(f7 - f11, f10 - f11);
-        int i10 = g.f47728a;
+        int i10 = g.f47735a;
         float f13 = 21;
         canvas.scale(f11 / AndroidUtilities.dp(f13), f11 / AndroidUtilities.dp(f13));
-        ImageReceiver imageReceiver = this.f47695c;
-        imageReceiver.setAlpha(((this.f47702l * 0.25f) + 0.75f) * f12);
+        ImageReceiver imageReceiver = this.f47702c;
+        imageReceiver.setAlpha(((this.f47709l * 0.25f) + 0.75f) * f12);
         imageReceiver.draw(canvas);
         canvas.restore();
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        if (valueAnimator == this.f47704n) {
-            this.f47705o = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        } else if (valueAnimator == this.f47701k) {
-            this.f47702l = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        if (valueAnimator == this.f47711n) {
+            this.f47712o = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        } else if (valueAnimator == this.f47708k) {
+            this.f47709l = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         }
-        this.f47693a.invalidateSelf();
+        this.f47700a.invalidateSelf();
     }
 }

@@ -1,27 +1,27 @@
 package org.telegram.ui;
 public final class cq implements Runnable {
-    public final int f35535a;
-    public final mq f35536b;
-    public final long f35537c;
+    public final int f35527a;
+    public final mq f35528b;
+    public final long f35529c;
 
     public cq(mq mqVar, long j3, int i10) {
-        this.f35535a = i10;
-        this.f35536b = mqVar;
-        this.f35537c = j3;
+        this.f35527a = i10;
+        this.f35528b = mqVar;
+        this.f35529c = j3;
     }
 
     @Override
     public final void run() {
-        switch (this.f35535a) {
+        switch (this.f35527a) {
             case 0:
-                long j3 = this.f35537c;
-                mq mqVar = this.f35536b;
-                mqVar.f38730n = j3;
-                mqVar.f38735r = true;
+                long j3 = this.f35529c;
+                mq mqVar = this.f35528b;
+                mqVar.f38716n = j3;
+                mqVar.f38721r = true;
                 mqVar.n0();
                 return;
             default:
-                mq.Y(this.f35536b, this.f35537c);
+                mq.Y(this.f35528b, this.f35529c);
                 return;
         }
     }

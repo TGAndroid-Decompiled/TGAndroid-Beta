@@ -9,20 +9,20 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class p60 extends org.telegram.ui.Components.zl0 {
-    public final int f39357e3;
-    public final Object f39358f3;
+    public final int f39364e3;
+    public final Object f39365f3;
 
     public p60(Object obj, Context context, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
         super(context, d6Var);
-        this.f39357e3 = i10;
-        this.f39358f3 = obj;
+        this.f39364e3 = i10;
+        this.f39365f3 = obj;
     }
 
     @Override
     public boolean I0(View view, float f7, float f10) {
-        switch (this.f39357e3) {
+        switch (this.f39364e3) {
             case 3:
-                ((yh.s0) this.f39358f3).getClass();
+                ((yh.t0) this.f39365f3).getClass();
                 return true;
             default:
                 return super.I0(view, f7, f10);
@@ -30,18 +30,18 @@ public final class p60 extends org.telegram.ui.Components.zl0 {
     }
 
     @Override
-    public Integer X0(int i10) {
+    public Integer W0(int i10) {
         int i11;
-        switch (this.f39357e3) {
+        switch (this.f39364e3) {
             case 2:
-                i11 = ((SessionsActivity) this.f39358f3).terminateAllSessionsRow;
-                org.telegram.ui.ActionBar.d6 d6Var = this.f33552p2;
+                i11 = ((SessionsActivity) this.f39365f3).terminateAllSessionsRow;
+                org.telegram.ui.ActionBar.d6 d6Var = this.f33560p2;
                 if (i10 == i11) {
-                    return Integer.valueOf(org.telegram.ui.ActionBar.i6.l1(0.1f, org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21044p7, d6Var)));
+                    return Integer.valueOf(org.telegram.ui.ActionBar.i6.l1(0.1f, org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21049p7, d6Var)));
                 }
-                return Integer.valueOf(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20913i6, d6Var));
+                return Integer.valueOf(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20918i6, d6Var));
             default:
-                return super.X0(i10);
+                return super.W0(i10);
         }
     }
 
@@ -50,29 +50,29 @@ public final class p60 extends org.telegram.ui.Components.zl0 {
         org.telegram.ui.ActionBar.k kVar;
         ArrayList arrayList;
         View view;
-        switch (this.f39357e3) {
+        switch (this.f39364e3) {
             case 0:
                 super.dispatchDraw(canvas);
-                r60 r60Var = (r60) this.f39358f3;
-                if (r60Var.f39931z0 != null && r60Var.A0 >= 1.0f) {
+                r60 r60Var = (r60) this.f39365f3;
+                if (r60Var.f39994z0 != null && r60Var.A0 >= 1.0f) {
                     canvas.save();
-                    int measuredHeight = r60Var.f39931z0.getMeasuredHeight();
+                    int measuredHeight = r60Var.f39994z0.getMeasuredHeight();
                     kVar = ((org.telegram.ui.ActionBar.n2) r60Var).actionBar;
                     canvas.translate(0.0f, -(measuredHeight - kVar.getMeasuredHeight()));
-                    r60Var.f39931z0.draw(canvas);
+                    r60Var.f39994z0.draw(canvas);
                     canvas.restore();
                     return;
                 }
                 return;
             case 1:
-                vp0 vp0Var = (vp0) this.f39358f3;
-                Paint paint = vp0Var.f41805w;
-                RectF rectF = vp0Var.f41804s;
-                RectF rectF2 = vp0Var.f41803r;
-                RectF rectF3 = vp0Var.f41802n;
-                s4.c0 c0Var = vp0Var.f41798b;
-                if (!vp0Var.f41801f.isEmpty()) {
-                    float d = vp0Var.f41800e.d(vp0Var.d, false);
+                vp0 vp0Var = (vp0) this.f39365f3;
+                Paint paint = vp0Var.f41803w;
+                RectF rectF = vp0Var.f41802s;
+                RectF rectF2 = vp0Var.f41801r;
+                RectF rectF3 = vp0Var.f41800n;
+                s4.c0 c0Var = vp0Var.f41796b;
+                if (!vp0Var.f41799f.isEmpty()) {
+                    float d = vp0Var.f41798e.d(vp0Var.d, false);
                     double d10 = d;
                     int clamp = Utilities.clamp((int) Math.floor(d10), arrayList.size() - 1, 0);
                     int clamp2 = Utilities.clamp((int) Math.ceil(d10), arrayList.size() - 1, 0);
@@ -90,7 +90,7 @@ public final class p60 extends org.telegram.ui.Components.zl0 {
                         }
                         rectF2.set(m10.getLeft(), m10.getTop(), m10.getRight(), m10.getBottom());
                         AndroidUtilities.lerp(rectF3, rectF2, d - clamp, rectF);
-                        paint.setColor(vp0Var.f41806x);
+                        paint.setColor(vp0Var.f41804x);
                         float height = rectF.height() / 2.0f;
                         canvas.drawRoundRect(rectF, height, height, paint);
                         super.dispatchDraw(canvas);
@@ -107,10 +107,10 @@ public final class p60 extends org.telegram.ui.Components.zl0 {
 
     @Override
     public void invalidate() {
-        switch (this.f39357e3) {
+        switch (this.f39364e3) {
             case 1:
                 super.invalidate();
-                gp0 gp0Var = ((vp0) this.f39358f3).F;
+                gp0 gp0Var = ((vp0) this.f39365f3).F;
                 if (gp0Var != null) {
                     gp0Var.run();
                     return;
@@ -124,9 +124,9 @@ public final class p60 extends org.telegram.ui.Components.zl0 {
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f39357e3) {
+        switch (this.f39364e3) {
             case 3:
-                ((yh.s0) this.f39358f3).s();
+                ((yh.t0) this.f39365f3).s();
                 super.onLayout(z10, i10, i11, i12, i13);
                 return;
             default:
@@ -137,7 +137,7 @@ public final class p60 extends org.telegram.ui.Components.zl0 {
 
     public p60(SessionsActivity sessionsActivity, Context context) {
         super(context, null);
-        this.f39357e3 = 2;
-        this.f39358f3 = sessionsActivity;
+        this.f39364e3 = 2;
+        this.f39365f3 = sessionsActivity;
     }
 }

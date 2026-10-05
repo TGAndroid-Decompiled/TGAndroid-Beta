@@ -12,20 +12,20 @@ import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.nj0;
 import org.telegram.ui.oy;
 import org.telegram.ui.uy;
-import org.telegram.ui.yf1;
+import org.telegram.ui.wf1;
 public final class c0 implements nj0, oy {
-    public final c1 f42122a;
-    public final boolean[] f42123b;
-    public final String f42124c;
+    public final c1 f42134a;
+    public final boolean[] f42135b;
+    public final String f42136c;
     public final TL_keyboard.TL_buttonTypeRequestPeer d;
-    public final da f42125e;
+    public final da f42137e;
 
     public c0(c1 c1Var, boolean[] zArr, String str, TL_keyboard.TL_buttonTypeRequestPeer tL_buttonTypeRequestPeer, da daVar) {
-        this.f42122a = c1Var;
-        this.f42123b = zArr;
-        this.f42124c = str;
+        this.f42134a = c1Var;
+        this.f42135b = zArr;
+        this.f42136c = str;
         this.d = tL_buttonTypeRequestPeer;
-        this.f42125e = daVar;
+        this.f42137e = daVar;
     }
 
     @Override
@@ -42,12 +42,12 @@ public final class c0 implements nj0, oy {
     public void a(ArrayList arrayList) {
         if (!arrayList.isEmpty()) {
             int i10 = 0;
-            this.f42123b[0] = true;
+            this.f42135b[0] = true;
             TLRPC.TL_messages_sendBotRequestedPeer tL_messages_sendBotRequestedPeer = new TLRPC.TL_messages_sendBotRequestedPeer();
-            c1 c1Var = this.f42122a;
+            c1 c1Var = this.f42134a;
             MessagesController.getInstance(c1Var.M);
             tL_messages_sendBotRequestedPeer.peer = MessagesController.getInputPeer(c1Var.U);
-            String str = this.f42124c;
+            String str = this.f42136c;
             tL_messages_sendBotRequestedPeer.webapp_req_id = str;
             tL_messages_sendBotRequestedPeer.button_id = this.d.button_id;
             int size = arrayList.size();
@@ -56,20 +56,20 @@ public final class c0 implements nj0, oy {
                 i10++;
                 tL_messages_sendBotRequestedPeer.requested_peers.add(MessagesController.getInstance(c1Var.M).getInputPeer(((Long) obj).longValue()));
             }
-            ConnectionsManager.getInstance(c1Var.M).sendRequestTyped(tL_messages_sendBotRequestedPeer, new Object(), new u(c1Var, this.f42125e, str, 2));
+            ConnectionsManager.getInstance(c1Var.M).sendRequestTyped(tL_messages_sendBotRequestedPeer, new Object(), new u(c1Var, this.f42137e, str, 2));
         }
     }
 
     @Override
-    public boolean u(uy uyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, yf1 yf1Var) {
+    public boolean u(uy uyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, wf1 wf1Var) {
         if (!arrayList.isEmpty()) {
             int i12 = 0;
-            this.f42123b[0] = true;
+            this.f42135b[0] = true;
             TLRPC.TL_messages_sendBotRequestedPeer tL_messages_sendBotRequestedPeer = new TLRPC.TL_messages_sendBotRequestedPeer();
-            c1 c1Var = this.f42122a;
+            c1 c1Var = this.f42134a;
             MessagesController.getInstance(c1Var.M);
             tL_messages_sendBotRequestedPeer.peer = MessagesController.getInputPeer(c1Var.U);
-            String str = this.f42124c;
+            String str = this.f42136c;
             tL_messages_sendBotRequestedPeer.webapp_req_id = str;
             tL_messages_sendBotRequestedPeer.button_id = this.d.button_id;
             HashSet hashSet = new HashSet();
@@ -83,7 +83,7 @@ public final class c0 implements nj0, oy {
             while (it.hasNext()) {
                 tL_messages_sendBotRequestedPeer.requested_peers.add(MessagesController.getInstance(c1Var.M).getInputPeer(((Long) it.next()).longValue()));
             }
-            ConnectionsManager.getInstance(c1Var.M).sendRequestTyped(tL_messages_sendBotRequestedPeer, new Object(), new u(c1Var, this.f42125e, str, 1));
+            ConnectionsManager.getInstance(c1Var.M).sendRequestTyped(tL_messages_sendBotRequestedPeer, new Object(), new u(c1Var, this.f42137e, str, 1));
         }
         uyVar.finishFragment();
         return true;

@@ -31,40 +31,40 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Cells.c6;
-import org.telegram.ui.Components.fs0;
-import org.telegram.ui.Components.g61;
+import org.telegram.ui.Components.gs0;
+import org.telegram.ui.Components.h61;
 import org.telegram.ui.Components.nl0;
 import org.telegram.ui.Components.rc;
 import org.telegram.ui.Components.yc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.c61;
+import org.telegram.ui.a61;
 import org.telegram.ui.ep0;
-import org.telegram.ui.og1;
+import org.telegram.ui.mg1;
 import org.telegram.ui.oy;
 import org.telegram.ui.ro0;
 import org.telegram.ui.uy;
-import org.telegram.ui.yf1;
+import org.telegram.ui.wf1;
 import xh.g4;
 import xh.h4;
 import xh.o2;
 import xh.r2;
-import yh.j2;
-import yh.x3;
-public final class x implements org.telegram.ui.ActionBar.a2, s5.e, ro0, oy, c3.r, e2.h, androidx.car.app.utils.b, q9.d, j2, Utilities.Callback5, nl0, og1, c61 {
-    public final int f46356a;
-    public final Object f46357b;
-    public final Object f46358c;
+import yh.k2;
+import yh.y3;
+public final class x implements org.telegram.ui.ActionBar.a2, s5.e, ro0, oy, c3.r, e2.h, androidx.car.app.utils.b, q9.d, k2, Utilities.Callback5, nl0, mg1, a61 {
+    public final int f46363a;
+    public final Object f46364b;
+    public final Object f46365c;
 
     public x(int i10, Object obj, Object obj2) {
-        this.f46356a = i10;
-        this.f46357b = obj;
-        this.f46358c = obj2;
+        this.f46363a = i10;
+        this.f46364b = obj;
+        this.f46365c = obj2;
     }
 
     @Override
     public boolean A() {
-        switch (this.f46356a) {
+        switch (this.f46363a) {
             case 6:
                 return false;
             default:
@@ -75,9 +75,9 @@ public final class x implements org.telegram.ui.ActionBar.a2, s5.e, ro0, oy, c3.
     @Override
     public Object E(cf.c cVar) {
         String valueOf;
-        String str = (String) this.f46357b;
+        String str = (String) this.f46364b;
         Context context = (Context) cVar.a(Context.class);
-        switch (((j2.e) this.f46358c).f13652a) {
+        switch (((j2.e) this.f46365c).f13652a) {
             case 13:
                 ApplicationInfo applicationInfo = context.getApplicationInfo();
                 if (applicationInfo != null) {
@@ -123,7 +123,7 @@ public final class x implements org.telegram.ui.ActionBar.a2, s5.e, ro0, oy, c3.
 
     @Override
     public boolean H(uy uyVar) {
-        switch (this.f46356a) {
+        switch (this.f46363a) {
             case 6:
                 return false;
             default:
@@ -133,10 +133,10 @@ public final class x implements org.telegram.ui.ActionBar.a2, s5.e, ro0, oy, c3.
 
     @Override
     public void a(int i10) {
-        switch (this.f46356a) {
+        switch (this.f46363a) {
             case 4:
-                tg.v vVar = (tg.v) this.f46357b;
-                tg.v vVar2 = (tg.v) this.f46358c;
+                tg.v vVar = (tg.v) this.f46364b;
+                tg.v vVar2 = (tg.v) this.f46365c;
                 if (i10 == 1) {
                     vVar.run(null);
                     return;
@@ -147,8 +147,8 @@ public final class x implements org.telegram.ui.ActionBar.a2, s5.e, ro0, oy, c3.
                     return;
                 }
             default:
-                Utilities.Callback callback = (Utilities.Callback) this.f46357b;
-                Utilities.Callback callback2 = (Utilities.Callback) this.f46358c;
+                Utilities.Callback callback = (Utilities.Callback) this.f46364b;
+                Utilities.Callback callback2 = (Utilities.Callback) this.f46365c;
                 if (i10 == 1) {
                     callback.run(null);
                     return;
@@ -163,21 +163,21 @@ public final class x implements org.telegram.ui.ActionBar.a2, s5.e, ro0, oy, c3.
 
     @Override
     public void accept(Object obj) {
-        a5.a aVar = (a5.a) this.f46357b;
-        ((u2.k0) obj).d(aVar.f299b, (u2.f0) aVar.f300c, (u2.b0) this.f46358c);
+        a5.a aVar = (a5.a) this.f46364b;
+        ((u2.k0) obj).d(aVar.f299b, (u2.f0) aVar.f300c, (u2.b0) this.f46365c);
     }
 
     @Override
     public Object apply(Object obj) {
         i5.d[] values;
-        s5.g gVar = (s5.g) this.f46357b;
-        l5.i iVar = (l5.i) this.f46358c;
+        s5.g gVar = (s5.g) this.f46364b;
+        l5.i iVar = (l5.i) this.f46365c;
         SQLiteDatabase sQLiteDatabase = (SQLiteDatabase) obj;
         s5.a aVar = gVar.d;
-        ArrayList d = gVar.d(sQLiteDatabase, iVar, aVar.f46722b);
+        ArrayList d = gVar.d(sQLiteDatabase, iVar, aVar.f46729b);
         for (i5.d dVar : i5.d.values()) {
             if (dVar != iVar.f15349c) {
-                int size = aVar.f46722b - d.size();
+                int size = aVar.f46729b - d.size();
                 if (size <= 0) {
                     break;
                 }
@@ -187,7 +187,7 @@ public final class x implements org.telegram.ui.ActionBar.a2, s5.e, ro0, oy, c3.
         HashMap hashMap = new HashMap();
         StringBuilder sb2 = new StringBuilder("event_id IN (");
         for (int i10 = 0; i10 < d.size(); i10++) {
-            sb2.append(((s5.b) d.get(i10)).f46725a);
+            sb2.append(((s5.b) d.get(i10)).f46732a);
             if (i10 < d.size() - 1) {
                 sb2.append(',');
             }
@@ -212,13 +212,13 @@ public final class x implements org.telegram.ui.ActionBar.a2, s5.e, ro0, oy, c3.
         ListIterator listIterator = d.listIterator();
         while (listIterator.hasNext()) {
             s5.b bVar = (s5.b) listIterator.next();
-            long j10 = bVar.f46725a;
+            long j10 = bVar.f46732a;
             if (hashMap.containsKey(Long.valueOf(j10))) {
-                com.google.firebase.messaging.n c10 = bVar.f46727c.c();
+                com.google.firebase.messaging.n c10 = bVar.f46734c.c();
                 for (s5.f fVar : (Set) hashMap.get(Long.valueOf(j10))) {
-                    c10.c(fVar.f46728a, fVar.f46729b);
+                    c10.c(fVar.f46735a, fVar.f46736b);
                 }
-                listIterator.set(new s5.b(j10, bVar.f46726b, c10.g()));
+                listIterator.set(new s5.b(j10, bVar.f46733b, c10.g()));
             }
         }
         return d;
@@ -226,13 +226,13 @@ public final class x implements org.telegram.ui.ActionBar.a2, s5.e, ro0, oy, c3.
 
     @Override
     public void b(TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, boolean z10) {
-        o2 o2Var = (o2) this.f46357b;
-        fs0 fs0Var = o2Var.f50152a;
-        o2Var.f50155e.f51533l.remove((TL_stars.SavedStarGift) this.f46358c);
+        o2 o2Var = (o2) this.f46364b;
+        gs0 gs0Var = o2Var.f50159a;
+        o2Var.f50162e.f51590l.remove((TL_stars.SavedStarGift) this.f46365c);
         o2Var.f(true);
-        int i10 = o2Var.f50153b;
+        int i10 = o2Var.f50160b;
         if (j3 == UserConfig.getInstance(i10).getClientUserId()) {
-            yc a02 = yc.a0(fs0Var.f50225a);
+            yc a02 = yc.a0(gs0Var.f50232a);
             TLRPC.Document document = tL_starGiftUnique.getDocument();
             String string = LocaleController.getString(R.string.BoughtResoldGiftTitle);
             int i11 = R.string.BoughtResoldGiftText;
@@ -240,37 +240,37 @@ public final class x implements org.telegram.ui.ActionBar.a2, s5.e, ro0, oy, c3.
             sb2.append(tL_starGiftUnique.title);
             sb2.append(" #");
             rc O = a02.O(document, string, LocaleController.formatString(i11, org.telegram.messenger.q.h(tL_starGiftUnique.num, ',', sb2)));
-            O.f30353r = false;
+            O.f30435r = false;
             O.j();
         } else {
-            rc O2 = yc.a0(fs0Var.f50225a).O(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(i10, j3)));
-            O2.f30353r = false;
+            rc O2 = yc.a0(gs0Var.f50232a).O(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(i10, j3)));
+            O2.f30435r = false;
             O2.j();
         }
         LaunchActivity launchActivity = LaunchActivity.G1;
         if (launchActivity != null) {
-            launchActivity.f33818x0.c(true);
+            launchActivity.f33831x0.c(true);
         }
     }
 
     @Override
     public void c(float f7, float f10, int i10, View view) {
-        h4.O((h4) this.f46357b, (g4) this.f46358c, i10);
+        h4.O((h4) this.f46364b, (g4) this.f46365c, i10);
     }
 
     @Override
     public void call() {
         int i10 = CarAppNotificationBroadcastReceiver.f2319a;
-        ((IStartCarApp) this.f46357b).startCarApp((Intent) this.f46358c);
+        ((IStartCarApp) this.f46364b).startCarApp((Intent) this.f46365c);
     }
 
     @Override
     public c3.o[] d(Uri uri, Map map) {
         c3.o aVar;
-        u2.p pVar = (u2.p) this.f46357b;
-        b2.s sVar = (b2.s) this.f46358c;
-        if (pVar.f47364c.V(sVar)) {
-            aVar = new z3.i(pVar.f47364c.v(sVar), null);
+        u2.p pVar = (u2.p) this.f46364b;
+        b2.s sVar = (b2.s) this.f46365c;
+        if (pVar.f47371c.V(sVar)) {
+            aVar = new z3.h(pVar.f47371c.v(sVar), null);
         } else {
             aVar = new k3.a(sVar);
         }
@@ -284,24 +284,24 @@ public final class x implements org.telegram.ui.ActionBar.a2, s5.e, ro0, oy, c3.
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f46356a) {
+        switch (this.f46363a) {
             case 0:
-                k0.O((k0) this.f46357b, (ArrayList) this.f46358c);
+                k0.O((k0) this.f46364b, (ArrayList) this.f46365c);
                 return;
             case 2:
-                ((AtomicBoolean) this.f46357b).set(true);
-                ((tg.t0) this.f46358c).run();
+                ((AtomicBoolean) this.f46364b).set(true);
+                ((tg.t0) this.f46365c).run();
                 return;
             case 3:
-                ((tg.v) this.f46357b).run((TLRPC.TL_premiumGiftCodeOption) this.f46358c);
+                ((tg.v) this.f46364b).run((TLRPC.TL_premiumGiftCodeOption) this.f46365c);
                 return;
             case 12:
-                xh.m mVar = (xh.m) this.f46357b;
-                c6 c6Var = (c6) this.f46358c;
+                xh.m mVar = (xh.m) this.f46364b;
+                c6 c6Var = (c6) this.f46365c;
                 try {
                     int parseInt = Integer.parseInt(c6Var.getText().toString().trim());
                     mVar.W(parseInt);
-                    mVar.f50086c0.setValue(parseInt);
+                    mVar.f50093c0.setValue(parseInt);
                     b2Var.dismiss();
                     return;
                 } catch (Throwable th2) {
@@ -310,8 +310,8 @@ public final class x implements org.telegram.ui.ActionBar.a2, s5.e, ro0, oy, c3.
                     return;
                 }
             case 13:
-                xh.a2 a2Var = (xh.a2) this.f46357b;
-                Utilities.Callback callback = (Utilities.Callback) this.f46358c;
+                xh.a2 a2Var = (xh.a2) this.f46364b;
+                Utilities.Callback callback = (Utilities.Callback) this.f46365c;
                 String obj = a2Var.getText().toString();
                 if (obj.length() > 0 && obj.length() <= 12) {
                     callback.run(obj);
@@ -321,27 +321,27 @@ public final class x implements org.telegram.ui.ActionBar.a2, s5.e, ro0, oy, c3.
                 AndroidUtilities.shakeView(a2Var);
                 return;
             default:
-                x3 x3Var = (x3) this.f46357b;
+                y3 y3Var = (y3) this.f46364b;
                 nf.e g10 = b2Var.g(i10, true, true);
                 TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
-                x xVar = new x(19, x3Var, twoStepVerificationActivity);
+                x xVar = new x(19, y3Var, twoStepVerificationActivity);
                 twoStepVerificationActivity.Z = 2;
-                twoStepVerificationActivity.f34570b0 = xVar;
-                twoStepVerificationActivity.f34568a0 = x3Var.C1();
+                twoStepVerificationActivity.f34583b0 = xVar;
+                twoStepVerificationActivity.f34581a0 = y3Var.C1();
                 g10.d();
-                twoStepVerificationActivity.s0(new tg.q(x3Var, (tg.m1[]) this.f46358c, g10, twoStepVerificationActivity));
+                twoStepVerificationActivity.s0(new tg.q(y3Var, (tg.m1[]) this.f46365c, g10, twoStepVerificationActivity));
                 return;
         }
     }
 
     @Override
     public void j(TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP) {
-        switch (this.f46356a) {
+        switch (this.f46363a) {
             case 17:
-                ((yh.g) this.f46357b).h0(false, 0L, tL_inputCheckPasswordSRP, (TwoStepVerificationActivity) this.f46358c);
+                ((yh.h) this.f46364b).p0(false, 0L, tL_inputCheckPasswordSRP, (TwoStepVerificationActivity) this.f46365c);
                 return;
             default:
-                ((x3) this.f46357b).M1(tL_inputCheckPasswordSRP, (TwoStepVerificationActivity) this.f46358c);
+                ((y3) this.f46364b).M1(tL_inputCheckPasswordSRP, (TwoStepVerificationActivity) this.f46365c);
                 return;
         }
     }
@@ -350,20 +350,20 @@ public final class x implements org.telegram.ui.ActionBar.a2, s5.e, ro0, oy, c3.
     public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
         boolean z10;
         boolean z11;
-        r2 r2Var = (r2) this.f46357b;
-        ci.d dVar = (ci.d) this.f46358c;
+        r2 r2Var = (r2) this.f46364b;
+        ci.d dVar = (ci.d) this.f46365c;
         View view = (View) obj2;
         Integer num = (Integer) obj3;
         Float f7 = (Float) obj4;
         Float f10 = (Float) obj5;
         r2Var.getClass();
-        long j3 = ((TL_stars.SavedStarGift) ((g61) obj).G).gift.f20269id;
-        if (r2Var.f50215b == j3) {
-            r2Var.f50215b = 0L;
+        long j3 = ((TL_stars.SavedStarGift) ((h61) obj).G).gift.f20274id;
+        if (r2Var.f50222b == j3) {
+            r2Var.f50222b = 0L;
         } else {
-            r2Var.f50215b = j3;
+            r2Var.f50222b = j3;
         }
-        if (r2Var.f50215b != 0) {
+        if (r2Var.f50222b != 0) {
             z10 = true;
         } else {
             z10 = false;
@@ -375,7 +375,7 @@ public final class x implements org.telegram.ui.ActionBar.a2, s5.e, ro0, oy, c3.
                 View childAt = viewGroup.getChildAt(i10);
                 if (childAt instanceof ep0) {
                     ep0 ep0Var = (ep0) childAt;
-                    if (r2Var.f50215b == ep0Var.getGiftId()) {
+                    if (r2Var.f50222b == ep0Var.getGiftId()) {
                         z11 = true;
                     } else {
                         z11 = false;
@@ -387,27 +387,27 @@ public final class x implements org.telegram.ui.ActionBar.a2, s5.e, ro0, oy, c3.
     }
 
     @Override
-    public boolean u(uy uyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, yf1 yf1Var) {
-        switch (this.f46356a) {
+    public boolean u(uy uyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, wf1 wf1Var) {
+        switch (this.f46363a) {
             case 6:
-                tg.g0 g0Var = (tg.g0) this.f46357b;
-                String str = (String) this.f46358c;
+                tg.g0 g0Var = (tg.g0) this.f46364b;
+                String str = (String) this.f46365c;
                 long j3 = 0;
                 for (int i12 = 0; i12 < arrayList.size(); i12++) {
                     j3 = ((MessagesStorage.TopicKey) arrayList.get(i12)).dialogId;
-                    g0Var.f25309n.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(str, j3, null, null, null, true, null, null, null, true, 0, 0, null, false));
+                    g0Var.f25357n.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(str, j3, null, null, null, true, null, null, null, true, 0, 0, null, false));
                 }
                 uyVar.finishFragment();
                 tg.i.h(j3);
                 return true;
             default:
-                ug.e eVar = (ug.e) this.f46357b;
-                String str2 = (String) this.f46358c;
+                ug.e eVar = (ug.e) this.f46364b;
+                String str2 = (String) this.f46365c;
                 long j10 = 0;
                 int i13 = 0;
                 while (i13 < arrayList.size()) {
                     j10 = ((MessagesStorage.TopicKey) arrayList.get(i13)).dialogId;
-                    eVar.f47658e.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(str2, j10, null, null, null, true, null, null, null, true, 0, 0, null, false));
+                    eVar.f47665e.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(str2, j10, null, null, null, true, null, null, null, true, 0, 0, null, false));
                     i13++;
                     eVar = eVar;
                 }

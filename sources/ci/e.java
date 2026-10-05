@@ -73,7 +73,7 @@ public final class e implements Runnable {
                     }
                     mVar.f5530q0.addListener(new ai.n(7, mVar, z10));
                     if (z10) {
-                        mVar.f5530q0.setInterpolator(org.telegram.ui.ActionBar.p1.f21448w);
+                        mVar.f5530q0.setInterpolator(org.telegram.ui.ActionBar.p1.f21452w);
                         mVar.f5530q0.setDuration(250L);
                     } else {
                         mVar.f5530q0.setInterpolator(new u1.a());
@@ -88,7 +88,7 @@ public final class e implements Runnable {
                         }
                         int scrollY = editText.getScrollY();
                         if (z10) {
-                            i10 = gVar.f28710a.length();
+                            i10 = gVar.f28793a.length();
                         } else {
                             i10 = 0;
                         }

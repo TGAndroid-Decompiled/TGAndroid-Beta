@@ -11,7 +11,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.fw0;
+import org.telegram.ui.Components.gw0;
 import org.telegram.ui.ProfileActivity;
 public final class ya implements Utilities.Callback2 {
     public final int f6350a;
@@ -28,7 +28,7 @@ public final class ya implements Utilities.Callback2 {
     public final void run(Object obj, Object obj2) {
         boolean z10;
         float f7;
-        fw0 fw0Var;
+        gw0 gw0Var;
         TLRPC.PhotoSize closestPhotoSizeWithSize;
         switch (this.f6350a) {
             case 0:
@@ -50,18 +50,18 @@ public final class ya implements Utilities.Callback2 {
                                 mbVar2.f5767l2 = true;
                                 j6 j6Var = mbVar2.R0;
                                 if ((tLObject instanceof TLRPC.Photo) && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(((TLRPC.Photo) tLObject).sizes, 1000)) != null) {
-                                    f7 = closestPhotoSizeWithSize.f20067w / closestPhotoSizeWithSize.h;
+                                    f7 = closestPhotoSizeWithSize.f20072w / closestPhotoSizeWithSize.h;
                                 } else {
                                     f7 = 1.0f;
                                 }
                                 if (f7 > 1.0f) {
                                     float floor = (float) Math.floor(Math.max(mbVar2.R1, j6Var.getMeasuredWidth()) * 0.5d);
-                                    fw0Var = new fw0(floor, floor / f7);
+                                    gw0Var = new gw0(floor, floor / f7);
                                 } else {
                                     float floor2 = (float) Math.floor(Math.max(mbVar2.S1, j6Var.getMeasuredHeight()) * 0.5d);
-                                    fw0Var = new fw0(f7 * floor2, floor2);
+                                    gw0Var = new gw0(f7 * floor2, floor2);
                                 }
-                                qg.x1 x1Var = new qg.x1(mbVar2.getContext(), mbVar2.e0(), fw0Var, tLObject);
+                                qg.x1 x1Var = new qg.x1(mbVar2.getContext(), mbVar2.e0(), gw0Var, tLObject);
                                 x1Var.setDelegate(mbVar2);
                                 j6Var.addView(x1Var);
                                 mbVar2.g0();
@@ -158,7 +158,7 @@ public final class ya implements Utilities.Callback2 {
                         if (intValue == 1) {
                             org.telegram.ui.Components.yc.l(null, profileActivity, z12).j();
                         } else if (num.intValue() == 2) {
-                            org.telegram.ui.Components.yc.l(DialogObject.getShortName(profileActivity.f34240e1), profileActivity, z12).j();
+                            org.telegram.ui.Components.yc.l(DialogObject.getShortName(profileActivity.f34253e1), profileActivity, z12).j();
                         } else if (tL_error != null) {
                             org.telegram.ui.Components.yc.b0(tL_error);
                         }

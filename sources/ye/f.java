@@ -4,21 +4,21 @@ import bf.p;
 import java.io.Serializable;
 import java.util.ArrayList;
 public final class f extends df.a {
-    public final int f50891a;
-    public final bf.a f50892b;
-    public final Serializable f50893c;
+    public final int f50898a;
+    public final bf.a f50899b;
+    public final Serializable f50900c;
 
     public f() {
-        this.f50891a = 1;
-        this.f50892b = new p();
-        this.f50893c = new ArrayList();
+        this.f50898a = 1;
+        this.f50899b = new p();
+        this.f50900c = new ArrayList();
     }
 
     @Override
     public void a(CharSequence charSequence) {
-        switch (this.f50891a) {
+        switch (this.f50898a) {
             case 1:
-                ((ArrayList) this.f50893c).add(charSequence);
+                ((ArrayList) this.f50900c).add(charSequence);
                 return;
             default:
                 return;
@@ -29,9 +29,9 @@ public final class f extends df.a {
     public void d() {
         int i10;
         boolean z10;
-        switch (this.f50891a) {
+        switch (this.f50898a) {
             case 1:
-                ArrayList arrayList = (ArrayList) this.f50893c;
+                ArrayList arrayList = (ArrayList) this.f50900c;
                 int size = arrayList.size() - 1;
                 while (true) {
                     if (size >= 0) {
@@ -65,7 +65,7 @@ public final class f extends df.a {
                     sb2.append((CharSequence) arrayList.get(i10));
                     sb2.append('\n');
                 }
-                ((bf.l) this.f50892b).f3827g = sb2.toString();
+                ((bf.l) this.f50899b).f3827g = sb2.toString();
                 return;
             default:
                 return;
@@ -74,19 +74,19 @@ public final class f extends df.a {
 
     @Override
     public final bf.a e() {
-        switch (this.f50891a) {
+        switch (this.f50898a) {
             case 0:
-                return (bf.i) this.f50892b;
+                return (bf.i) this.f50899b;
             default:
-                return (bf.l) this.f50892b;
+                return (bf.l) this.f50899b;
         }
     }
 
     @Override
     public void g(cf.a aVar) {
-        switch (this.f50891a) {
+        switch (this.f50898a) {
             case 0:
-                aVar.a((String) this.f50893c, (bf.i) this.f50892b);
+                aVar.a((String) this.f50900c, (bf.i) this.f50899b);
                 return;
             default:
                 return;
@@ -95,25 +95,25 @@ public final class f extends df.a {
 
     @Override
     public final q3.h h(d dVar) {
-        switch (this.f50891a) {
+        switch (this.f50898a) {
             case 0:
                 return null;
             default:
-                if (dVar.f50880g >= 4) {
-                    return new q3.h(-1, dVar.f50877c + 4, false);
+                if (dVar.f50887g >= 4) {
+                    return new q3.h(-1, dVar.f50884c + 4, false);
                 }
                 if (dVar.h) {
-                    return q3.h.a(dVar.f50878e);
+                    return q3.h.a(dVar.f50885e);
                 }
                 return null;
         }
     }
 
     public f(int i10, String str) {
-        this.f50891a = 0;
+        this.f50898a = 0;
         ?? pVar = new p();
-        this.f50892b = pVar;
+        this.f50899b = pVar;
         pVar.f3823g = i10;
-        this.f50893c = str;
+        this.f50900c = str;
     }
 }

@@ -2,5 +2,5 @@ package vf;
 
 import android.os.Binder;
 public abstract class d extends Binder implements e {
-    public static final int f48272a = 0;
+    public static final int f48279a = 0;
 }

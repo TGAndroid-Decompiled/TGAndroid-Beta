@@ -8,17 +8,17 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class hy implements org.telegram.ui.Components.x40 {
-    public final uy f37194a;
+    public final uy f37195a;
 
     public hy(uy uyVar) {
-        this.f37194a = uyVar;
+        this.f37195a = uyVar;
     }
 
     @Override
     public final void B(float f7) {
-        org.telegram.ui.Components.rc rcVar = this.f37194a.f41398d4;
+        org.telegram.ui.Components.rc rcVar = this.f37195a.f41433d4;
         if (rcVar != null) {
-            ((org.telegram.ui.Components.ic) rcVar.f30341e).setProgress(f7 * 0.9f);
+            ((org.telegram.ui.Components.ic) rcVar.f30423e).setProgress(f7 * 0.9f);
         }
     }
 
@@ -27,21 +27,21 @@ public final class hy implements org.telegram.ui.Components.x40 {
         org.telegram.ui.ActionBar.d6 d6Var;
         org.telegram.ui.ActionBar.d6 d6Var2;
         int i10;
-        uy uyVar = this.f37194a;
-        org.telegram.ui.Components.rc rcVar = uyVar.f41398d4;
+        uy uyVar = this.f37195a;
+        org.telegram.ui.Components.rc rcVar = uyVar.f41433d4;
         if (rcVar != null) {
             rcVar.b();
-            uyVar.f41398d4 = null;
+            uyVar.f41433d4 = null;
         }
         Activity parentActivity = uyVar.getParentActivity();
         d6Var = ((org.telegram.ui.ActionBar.n2) uyVar).resourceProvider;
         ?? obVar = new org.telegram.ui.Components.ob(parentActivity, d6Var);
         org.telegram.ui.Components.hc hcVar = new org.telegram.ui.Components.hc(obVar, parentActivity);
-        obVar.f27358b = hcVar;
+        obVar.f27453b = hcVar;
         hcVar.setWillNotDraw(false);
         obVar.addView(hcVar, w7.z5.i(32.0f, 32.0f, 8388627, 12.0f, 8.0f, 12.0f, 8.0f));
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(parentActivity);
-        obVar.f27359c = w9Var;
+        obVar.f27454c = w9Var;
         w9Var.setRoundRadius(AndroidUtilities.dp(14.0f));
         hcVar.addView(w9Var, w7.z5.e(28, 28, 17));
         org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(parentActivity, false, false, false);
@@ -53,7 +53,7 @@ public final class hy implements org.telegram.ui.Components.x40 {
         obVar.setTextColor(obVar.getThemedColor(org.telegram.ui.ActionBar.i6.Hi));
         obVar.setBackground(obVar.getThemedColor(org.telegram.ui.ActionBar.i6.Fi));
         if (z10) {
-            w9Var.setImageBitmap(uyVar.f41381a4.f33054r);
+            w9Var.setImageBitmap(uyVar.f41416a4.f33176r);
         } else {
             w9Var.setImageBitmap(PhotoViewer.t1().C4.getBitmap());
         }
@@ -61,7 +61,7 @@ public final class hy implements org.telegram.ui.Components.x40 {
         d6Var2 = ((org.telegram.ui.ActionBar.n2) uyVar).resourceProvider;
         org.telegram.ui.Components.pc pcVar = new org.telegram.ui.Components.pc(parentActivity2, d6Var2, true);
         pcVar.e(LocaleController.getString(R.string.ViewAction));
-        pcVar.f29600a = new bj(this, 23);
+        pcVar.f29693a = new bj(this, 23);
         obVar.setButton(pcVar);
         obVar.getButton().setVisibility(8);
         if (z11) {
@@ -71,11 +71,11 @@ public final class hy implements org.telegram.ui.Components.x40 {
         }
         p6Var.c(LocaleController.getString(i10), true, true);
         org.telegram.ui.Components.rc b10 = org.telegram.ui.Components.yc.a0(uyVar).b(obVar, -1);
-        uyVar.f41398d4 = b10;
-        b10.f30353r = false;
+        uyVar.f41433d4 = b10;
+        b10.f30435r = false;
         b10.i(false);
-        org.telegram.ui.Components.rc rcVar2 = uyVar.f41398d4;
-        rcVar2.f30354s = true;
+        org.telegram.ui.Components.rc rcVar2 = uyVar.f41433d4;
+        rcVar2.f30436s = true;
         rcVar2.j();
     }
 
@@ -86,14 +86,14 @@ public final class hy implements org.telegram.ui.Components.x40 {
             public final void run() {
                 org.telegram.ui.ActionBar.k kVar;
                 hy hyVar = hy.this;
-                uy uyVar = hyVar.f37194a;
+                uy uyVar = hyVar.f37195a;
                 TLRPC.InputFile inputFile3 = inputFile;
                 TLRPC.InputFile inputFile4 = inputFile2;
                 TLRPC.VideoSize videoSize2 = videoSize;
                 if (inputFile3 == null && inputFile4 == null && videoSize2 == null) {
-                    uyVar.f41387b4 = photoSize2.location;
-                    uyVar.f41393c4 = photoSize.location;
-                } else if (uyVar.f41387b4 == null) {
+                    uyVar.f41422b4 = photoSize2.location;
+                    uyVar.f41428c4 = photoSize.location;
+                } else if (uyVar.f41422b4 == null) {
                     return;
                 } else {
                     TLRPC.TL_photos_uploadProfilePhoto tL_photos_uploadProfilePhoto = new TLRPC.TL_photos_uploadProfilePhoto();
@@ -126,24 +126,24 @@ public final class hy implements org.telegram.ui.Components.x40 {
 
     @Override
     public final yu0 getCloseIntoObject() {
-        uy uyVar = this.f37194a;
-        org.telegram.ui.Components.rc rcVar = uyVar.f41398d4;
+        uy uyVar = this.f37195a;
+        org.telegram.ui.Components.rc rcVar = uyVar.f41433d4;
         if (rcVar != null) {
-            org.telegram.ui.Components.ic icVar = (org.telegram.ui.Components.ic) rcVar.f30341e;
+            org.telegram.ui.Components.ic icVar = (org.telegram.ui.Components.ic) rcVar.f30423e;
             yu0 yu0Var = new yu0();
             int[] iArr = new int[2];
-            org.telegram.ui.Components.w9 w9Var = icVar.f27359c;
-            org.telegram.ui.Components.w9 w9Var2 = icVar.f27359c;
+            org.telegram.ui.Components.w9 w9Var = icVar.f27454c;
+            org.telegram.ui.Components.w9 w9Var2 = icVar.f27454c;
             w9Var.getLocationInWindow(iArr);
-            yu0Var.f43628b = iArr[0];
-            yu0Var.f43629c = iArr[1];
+            yu0Var.f43621b = iArr[0];
+            yu0Var.f43622c = iArr[1];
             yu0Var.d = uyVar.fragmentView;
             ImageReceiver imageReceiver = w9Var2.getImageReceiver();
-            yu0Var.f43627a = imageReceiver;
-            yu0Var.f43630e = imageReceiver.getBitmapSafe();
-            yu0Var.f43633i = 0;
-            yu0Var.h = yu0Var.f43627a.getRoundRadius();
-            yu0Var.f43635k = w9Var2.getScaleX();
+            yu0Var.f43620a = imageReceiver;
+            yu0Var.f43623e = imageReceiver.getBitmapSafe();
+            yu0Var.f43626i = 0;
+            yu0Var.h = yu0Var.f43620a.getRoundRadius();
+            yu0Var.f43628k = w9Var2.getScaleX();
             return yu0Var;
         }
         return null;

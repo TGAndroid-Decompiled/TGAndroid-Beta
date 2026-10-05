@@ -90,7 +90,6 @@ import org.telegram.ui.Components.yc;
 import org.telegram.ui.web.c1;
 import v7.l8;
 import w7.z5;
-import zg.q0;
 public final class k0 implements Runnable {
     public final int f152a;
     public final Object f153b;
@@ -133,7 +132,7 @@ public final class k0 implements Runnable {
             case 0:
                 b2.s sVar = (b2.s) this.f154c;
                 String str = e2.d0.f8538a;
-                i2.f0 f0Var = ((i2.c0) ((l0) ((of.b) this.f153b).f17163c)).f11570a;
+                i2.f0 f0Var = ((i2.c0) ((l0) ((of.b) this.f153b).f17168c)).f11570a;
                 f0Var.Q = sVar;
                 j2.f fVar = f0Var.f11633s;
                 j2.a p5 = fVar.p();
@@ -141,7 +140,7 @@ public final class k0 implements Runnable {
                 return;
             case 1:
                 z4 z4Var = (z4) this.f153b;
-                zg.o0 o0Var = (zg.o0) this.f154c;
+                zg.m0 m0Var = (zg.m0) this.f154c;
                 View view = (View) this.d;
                 e6 e6Var = z4Var.f1933a;
                 e6Var.f900u3 = true;
@@ -169,19 +168,19 @@ public final class k0 implements Runnable {
                     e6Var.f876m3 = dVar;
                 }
                 e6Var.f885p3 = false;
-                if (o0Var.f53486g != 0) {
+                if (m0Var.f53472g != 0) {
                     e6Var.f885p3 = true;
-                    q5 q5Var3 = new q5(2, e6Var.C2, o0Var.f53486g);
+                    q5 q5Var3 = new q5(2, e6Var.C2, m0Var.f53472g);
                     e6Var.f882o3 = q5Var3;
                     q5Var3.a(e6Var);
-                } else if (o0Var.f53485f != null && (tL_availableReaction = MediaDataController.getInstance(e6Var.C2).getReactionsMap().get(o0Var.f53485f)) != null) {
+                } else if (m0Var.f53471f != null && (tL_availableReaction = MediaDataController.getInstance(e6Var.C2).getReactionsMap().get(m0Var.f53471f)) != null) {
                     e6Var.f879n3.setImage(null, null, ImageLocation.getForDocument(tL_availableReaction.select_animation), "60_60", null, null, null, 0L, null, null, 0);
-                    imageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.around_animation), zg.k0.a(), null, null, null, 0);
+                    imageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.around_animation), zg.i0.a(), null, null, null, 0);
                     if (imageReceiver.getLottieAnimation() != null) {
                         imageReceiver.getLottieAnimation().N(0, false, true);
                     }
                 }
-                e6Var.E0.setReaction(o0Var);
+                e6Var.E0.setReaction(m0Var);
                 if (e6Var.D1) {
                     TL_stories.StoryItem storyItem3 = c6Var.f696a;
                     if (storyItem3.sent_reaction == null) {
@@ -191,16 +190,16 @@ public final class k0 implements Runnable {
                         TL_stories.StoryItem storyItem4 = c6Var.f696a;
                         TL_stories.StoryViews storyViews = storyItem4.views;
                         storyViews.reactions_count++;
-                        q0.b(null, storyItem4.sent_reaction, storyViews);
+                        zg.o0.b(null, storyItem4.sent_reaction, storyViews);
                         e6Var.k1(true);
                     }
                 }
-                if (o0Var.f53486g != 0 && (q5Var = e6Var.E0.f1562f) != null) {
+                if (m0Var.f53472g != 0 && (q5Var = e6Var.E0.f1562f) != null) {
                     zg.d a2 = zg.d.a(q5Var, false, true);
                     e6Var.f876m3 = a2;
                     a2.f(e6Var);
                 }
-                e6Var.S1.g0(e6Var.B1, c6Var.f696a, o0Var);
+                e6Var.S1.g0(e6Var.B1, c6Var.f696a, m0Var);
                 int[] iArr3 = new int[2];
                 view.getLocationInWindow(iArr3);
                 int[] iArr4 = new int[2];
@@ -214,7 +213,7 @@ public final class k0 implements Runnable {
                 q9 q9Var3 = e6Var.E0;
                 q9Var3.setAllowDrawReaction(false);
                 ImageReceiver imageReceiver2 = q9Var3.f1561e;
-                if (o0Var.f53486g == 0 && (tL_availableReaction2 = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(o0Var.f53485f)) != null) {
+                if (m0Var.f53472g == 0 && (tL_availableReaction2 = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(m0Var.f53471f)) != null) {
                     imageReceiver2.setImage(ImageLocation.getForDocument(tL_availableReaction2.center_icon), "40_40_nolimit", null, "tgs", tL_availableReaction2, 1);
                     imageReceiver2.setAutoRepeat(0);
                 }
@@ -241,7 +240,7 @@ public final class k0 implements Runnable {
                 Utilities.Callback callback = (Utilities.Callback) this.d;
                 while (i12 < u8Var.f789i.size()) {
                     MessageObject messageObject2 = (MessageObject) u8Var.f789i.get(i12);
-                    if (messageObject2 != null && (storyItem = messageObject2.storyItem) != null && (messageMedia = storyItem.media) != null && (document = storyItem5.media.document) != null && (document2 = messageMedia.document) != null && document2.f20048id == document.f20048id) {
+                    if (messageObject2 != null && (storyItem = messageObject2.storyItem) != null && (messageMedia = storyItem.media) != null && (document = storyItem5.media.document) != null && (document2 = messageMedia.document) != null && document2.f20053id == document.f20053id) {
                         callback.run(document2);
                         return;
                     }
@@ -280,13 +279,13 @@ public final class k0 implements Runnable {
                             TLRPC.Document document4 = messageMedia2.document;
                             if (document4 == null) {
                                 continue;
-                            } else if (document4.f20048id == document3.f20048id) {
+                            } else if (document4.f20053id == document3.f20053id) {
                                 g2Var.run((t8) storyItem2);
                                 return;
                             }
                         }
                         TLRPC.Photo photo2 = messageMedia3.photo;
-                        if (photo2 != null && (photo = messageMedia2.photo) != null && photo.f20066id == photo2.f20066id) {
+                        if (photo2 != null && (photo = messageMedia2.photo) != null && photo.f20071id == photo2.f20071id) {
                             g2Var.run((t8) storyItem2);
                             return;
                         }
@@ -356,8 +355,8 @@ public final class k0 implements Runnable {
                     } else {
                         id2 = messageObject.getId();
                     }
-                    message.f20063id = id2;
-                    storyItem6.f20279id = id2;
+                    message.f20068id = id2;
+                    storyItem6.f20284id = id2;
                     messageObject4.parentStoriesList = u8Var2;
                     messageObject4.generateThumbs(false);
                     if (arrayList4.isEmpty()) {
@@ -388,7 +387,7 @@ public final class k0 implements Runnable {
                 if (tLObject3 != null) {
                     TL_stories.TL_stories_storyViews tL_stories_storyViews = (TL_stories.TL_stories_storyViews) tLObject3;
                     MessagesController.getInstance(i17).putUsers(tL_stories_storyViews.users, false);
-                    if (!scVar.d(tL_stories_getStoriesViews.f20287id, tL_stories_storyViews)) {
+                    if (!scVar.d(tL_stories_getStoriesViews.f20292id, tL_stories_storyViews)) {
                         scVar.d = 0;
                         scVar.f1673e = false;
                         return;
@@ -477,7 +476,7 @@ public final class k0 implements Runnable {
                     }
                     d2Var.I = d2Var.H;
                     d2Var.l();
-                    p1.y1(e2Var.f4974b, 0, 0);
+                    p1.x1(e2Var.f4974b, 0, 0);
                     e2Var.f4977f.c(false);
                     e2Var.f4976e.n(false);
                     return;
@@ -610,7 +609,7 @@ public final class k0 implements Runnable {
                     ArrayList h12 = eaVar.h1();
                     for (int i20 = 0; i20 < h12.size(); i20++) {
                         TLRPC.User user = (TLRPC.User) h12.get(i20);
-                        if (user != null && (contains = x9Var.f6305c.contains(Long.valueOf(user.f20189id))) != user.close_friend) {
+                        if (user != null && (contains = x9Var.f6305c.contains(Long.valueOf(user.f20194id))) != user.close_friend) {
                             user.close_friend = contains;
                             if (contains) {
                                 i11 = user.flags2 | 4;
@@ -634,7 +633,7 @@ public final class k0 implements Runnable {
                 ((k8) this.f154c).O0 = (File) this.d;
                 bb bbVar = ((kc) this.f153b).f5386d1;
                 if (bbVar != null) {
-                    bbVar.f5964b.f25250f3.N(false);
+                    bbVar.f5964b.f26034f3.N(false);
                     return;
                 }
                 return;
@@ -726,7 +725,7 @@ public final class k0 implements Runnable {
                 ArrayList arrayList12 = new ArrayList();
                 for (int i21 = 0; i21 < arrayList11.size(); i21++) {
                     TLRPC.User user2 = (TLRPC.User) arrayList11.get(i21);
-                    Boolean bool = (Boolean) hashMap2.get(Long.valueOf(user2.f20189id));
+                    Boolean bool = (Boolean) hashMap2.get(Long.valueOf(user2.f20194id));
                     if (bool != null && bool.booleanValue()) {
                         z10 = false;
                     } else {

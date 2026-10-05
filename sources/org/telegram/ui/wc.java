@@ -4,33 +4,33 @@ import android.view.View;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class wc implements Utilities.Callback {
-    public final int f42060a;
-    public final ad f42061b;
+    public final int f42076a;
+    public final ad f42077b;
 
     public wc(ad adVar, int i10) {
-        this.f42060a = i10;
-        this.f42061b = adVar;
+        this.f42076a = i10;
+        this.f42077b = adVar;
     }
 
     @Override
     public final void run(Object obj) {
         TLRPC.WallPaper wallPaper;
         View view = (View) obj;
-        switch (this.f42060a) {
+        switch (this.f42076a) {
             case 0:
-                ad adVar = this.f42061b;
+                ad adVar = this.f42077b;
                 adVar.getClass();
-                ((org.telegram.ui.Components.s21) view).setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20912i5, adVar.f34785b));
+                ((org.telegram.ui.Components.t21) view).setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20917i5, adVar.f34841b));
                 return;
             default:
-                if (view instanceof org.telegram.ui.Components.s21) {
-                    org.telegram.ui.Components.s21 s21Var = (org.telegram.ui.Components.s21) view;
-                    if (s21Var.G.f29428a.f20505b) {
+                if (view instanceof org.telegram.ui.Components.t21) {
+                    org.telegram.ui.Components.t21 t21Var = (org.telegram.ui.Components.t21) view;
+                    if (t21Var.G.f29528a.f20510b) {
                         wallPaper = null;
                     } else {
-                        wallPaper = this.f42061b.v;
+                        wallPaper = this.f42077b.v;
                     }
-                    s21Var.setFallbackWallpaper(wallPaper);
+                    t21Var.setFallbackWallpaper(wallPaper);
                     return;
                 }
                 return;

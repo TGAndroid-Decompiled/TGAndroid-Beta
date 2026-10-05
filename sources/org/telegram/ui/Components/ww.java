@@ -19,7 +19,7 @@ public final class ww extends s4.s {
             nzVar.X();
         }
         if (nzVar.T0 == null) {
-            gg.g1 g1Var = new gg.g1(nzVar, nzVar.f29097c1, nzVar.f29151t1.a(), nzVar.f29151t1.f(), 1);
+            gg.g1 g1Var = new gg.g1(nzVar, nzVar.f29194c1, nzVar.f29248t1.a(), nzVar.f29248t1.f(), 1);
             nzVar.T0 = g1Var;
             g1Var.a();
         }
@@ -31,7 +31,7 @@ public final class ww extends s4.s {
     public final void v0(RecyclerView recyclerView, s4.z0 z0Var, int i10) {
         try {
             ji.o oVar = new ji.o(recyclerView.getContext(), 2);
-            oVar.f46699a = i10;
+            oVar.f46706a = i10;
             w0(oVar);
         } catch (Exception e7) {
             FileLog.e(e7);

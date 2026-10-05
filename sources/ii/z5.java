@@ -11,7 +11,7 @@ import java.util.HashMap;
 import org.telegram.messenger.FileLog;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Cells.q9;
-import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.w61;
 public final class z5 implements h1 {
     public final f6 f12836a;
 
@@ -68,12 +68,12 @@ public final class z5 implements h1 {
     }
 
     @Override
-    public final boolean G(boolean z10) {
+    public final boolean C(boolean z10) {
         a aVar;
         f6 f6Var = this.f12836a;
         c6 c6Var = f6Var.f12378y;
         if (c6Var != null && (aVar = f6Var.f12377x) != null) {
-            return ((f3) c6Var).f12362a.Y3(aVar, z10);
+            return ((f3) c6Var).f12362a.X3(aVar, z10);
         }
         return false;
     }
@@ -83,7 +83,7 @@ public final class z5 implements h1 {
         c6 c6Var = this.f12836a.f12378y;
         if (c6Var != null) {
             x3 x3Var = ((f3) c6Var).f12362a;
-            x3.O1(x3Var, i1Var);
+            x3.N1(x3Var, i1Var);
             x3Var.f12770o3.P(i1Var, true);
         }
     }
@@ -93,7 +93,7 @@ public final class z5 implements h1 {
         f6 f6Var = this.f12836a;
         c6 c6Var = f6Var.f12378y;
         if (c6Var != null && f6Var.f12377x != null) {
-            return ((f3) c6Var).f12362a.U4();
+            return ((f3) c6Var).f12362a.T4();
         }
         return false;
     }
@@ -143,7 +143,7 @@ public final class z5 implements h1 {
                 a aVar = f6Var.f12377x;
                 x3 x3Var = ((f3) c6Var).f12362a;
                 ArrayList arrayList = x3Var.f12787w4;
-                u61 u61Var = x3Var.f25250f3;
+                w61 w61Var = x3Var.f26034f3;
                 ArrayList arrayList2 = x3Var.f12778s3;
                 int indexOf = arrayList2.indexOf(aVar);
                 if (indexOf >= 0) {
@@ -151,10 +151,10 @@ public final class z5 implements h1 {
                     if (i2Var != null) {
                         i2Var.d();
                     }
-                    View B1 = x3Var.B1(aVar);
-                    boolean z11 = B1 instanceof f6;
+                    View A1 = x3Var.A1(aVar);
+                    boolean z11 = A1 instanceof f6;
                     if (z11) {
-                        i1 editText2 = ((f6) B1).getEditText();
+                        i1 editText2 = ((f6) A1).getEditText();
                         Editable text2 = editText2.getText();
                         length = editText2.getSelectionEnd();
                         spannableStringBuilder = text2;
@@ -170,8 +170,8 @@ public final class z5 implements h1 {
                         if (!aVar.f12194k.isEmpty()) {
                             ArrayList arrayList3 = aVar.f12194k;
                             arrayList3.remove(arrayList3.size() - 1);
-                            x3Var.u4();
-                            u61Var.N(false);
+                            x3Var.t4();
+                            w61Var.N(false);
                             i2 i2Var2 = x3Var.Q3;
                             if (i2Var2 != null) {
                                 i2Var2.h();
@@ -179,9 +179,9 @@ public final class z5 implements h1 {
                             x3Var.post(new p2(x3Var, aVar, 27));
                             return;
                         } else if (aVar.f12188c > 0) {
-                            x3Var.v2(indexOf);
-                            x3Var.u4();
-                            u61Var.N(false);
+                            x3Var.u2(indexOf);
+                            x3Var.t4();
+                            w61Var.N(false);
                             i2 i2Var3 = x3Var.Q3;
                             if (i2Var3 != null) {
                                 i2Var3.h();
@@ -218,9 +218,9 @@ public final class z5 implements h1 {
                     aVar2.f12194k.addAll(arrayList4);
                     int i12 = indexOf + 1;
                     arrayList2.add(i12, aVar2);
-                    x3Var.u4();
+                    x3Var.t4();
                     if (z10) {
-                        u61Var.N(false);
+                        w61Var.N(false);
                         i2 i2Var4 = x3Var.Q3;
                         if (i2Var4 != null) {
                             i2Var4.h();
@@ -228,22 +228,22 @@ public final class z5 implements h1 {
                         x3Var.post(new p2(x3Var, aVar2, 29));
                         return;
                     }
-                    if (z11 && (text = (editText = ((f6) B1).getEditText()).getText()) != null && length >= 0 && length < text.length()) {
+                    if (z11 && (text = (editText = ((f6) A1).getEditText()).getText()) != null && length >= 0 && length < text.length()) {
                         editText.h = true;
                         text.delete(length, text.length());
                         editText.h = false;
                     }
-                    u61Var.S();
-                    x3Var.r4(i12);
+                    w61Var.S();
+                    x3Var.q4(i12);
                     int indexOf2 = arrayList.indexOf(aVar2);
                     if (indexOf2 < 0) {
-                        u61Var.l();
+                        w61Var.l();
                     } else {
                         s4.m0 itemAnimator = x3Var.getItemAnimator();
                         x3Var.setItemAnimator(null);
-                        u61Var.o(indexOf2);
+                        w61Var.o(indexOf2);
                         if (aVar.d > 0 && (i10 = indexOf2 + 1) < arrayList.size()) {
-                            u61Var.q(i10, (arrayList.size() - indexOf2) - 1);
+                            w61Var.q(i10, (arrayList.size() - indexOf2) - 1);
                         }
                         x3Var.post(new z2(x3Var, itemAnimator, 0));
                     }
@@ -273,14 +273,14 @@ public final class z5 implements h1 {
                     if (!TextUtils.isEmpty(htmlText)) {
                         HashMap hashMap = new HashMap();
                         try {
-                            ArrayList y42 = x3Var.y4(e4.z(htmlText, hashMap));
-                            if (!y42.isEmpty() && ((y42.size() != 1 || !x3.H3((a) y42.get(0))) && (indexOf = x3Var.f12778s3.indexOf(aVar)) >= 0)) {
+                            ArrayList x42 = x3Var.x4(e4.z(htmlText, hashMap));
+                            if (!x42.isEmpty() && ((x42.size() != 1 || !x3.G3((a) x42.get(0))) && (indexOf = x3Var.f12778s3.indexOf(aVar)) >= 0)) {
                                 int max = Math.max(0, Math.min(i1Var.getSelectionStart(), i1Var.getSelectionEnd()));
-                                boolean K4 = x3Var.K4(indexOf, indexOf, max, Math.max(max, Math.max(i1Var.getSelectionStart(), i1Var.getSelectionEnd())), y42);
-                                if (K4 && !hashMap.isEmpty()) {
+                                boolean J4 = x3Var.J4(indexOf, indexOf, max, Math.max(max, Math.max(i1Var.getSelectionStart(), i1Var.getSelectionEnd())), x42);
+                                if (J4 && !hashMap.isEmpty()) {
                                     x3Var.f12780t3.putAll(hashMap);
                                 }
-                                return K4;
+                                return J4;
                             }
                         } catch (Exception e7) {
                             FileLog.e(e7);
@@ -301,7 +301,7 @@ public final class z5 implements h1 {
         if (c6Var == null || (aVar = f6Var.f12377x) == null) {
             return false;
         }
-        return x3.S1(((f3) c6Var).f12362a, aVar, false);
+        return x3.R1(((f3) c6Var).f12362a, aVar, false);
     }
 
     @Override
@@ -310,7 +310,7 @@ public final class z5 implements h1 {
         f6 f6Var = this.f12836a;
         c6 c6Var = f6Var.f12378y;
         if (c6Var != null && (aVar = f6Var.f12377x) != null) {
-            x3.S1(((f3) c6Var).f12362a, aVar, true);
+            x3.R1(((f3) c6Var).f12362a, aVar, true);
         }
     }
 
@@ -325,12 +325,12 @@ public final class z5 implements h1 {
     }
 
     @Override
-    public final void x(CharSequence charSequence) {
+    public final void w(CharSequence charSequence) {
         c6 c6Var = this.f12836a.f12378y;
         if (c6Var != null) {
             f3 f3Var = (f3) c6Var;
             if (charSequence != null && charSequence.length() > 0) {
-                f3Var.f12362a.v4(charSequence.toString());
+                f3Var.f12362a.u4(charSequence.toString());
             }
         }
     }

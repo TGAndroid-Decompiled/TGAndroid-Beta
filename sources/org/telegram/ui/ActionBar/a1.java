@@ -4,17 +4,17 @@ import org.telegram.messenger.R;
 import org.telegram.ui.Components.fd;
 import org.telegram.ui.Components.x00;
 public final class a1 extends x00 {
-    public final b1 f20377e;
+    public final b1 f20382e;
 
     public a1(b1 b1Var) {
         super(false);
-        this.f20377e = b1Var;
+        this.f20382e = b1Var;
     }
 
     @Override
     public final CharSequence d() {
         StringBuilder sb2 = new StringBuilder();
-        sb2.append(fd.a(this.f20377e.getSpeed()));
+        sb2.append(fd.a(this.f20382e.getSpeed()));
         sb2.append("x  ");
         return org.telegram.messenger.q.g(R.string.AccDescrSpeedSlider, sb2);
     }
@@ -36,11 +36,11 @@ public final class a1 extends x00 {
 
     @Override
     public final float k() {
-        return this.f20377e.getSpeed();
+        return this.f20382e.getSpeed();
     }
 
     @Override
     public final void l(float f7) {
-        this.f20377e.d(f7, true);
+        this.f20382e.d(f7, true);
     }
 }

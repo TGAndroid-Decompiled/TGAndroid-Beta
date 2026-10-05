@@ -78,15 +78,15 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Cells.p9;
 import org.telegram.ui.Cells.q9;
-import org.telegram.ui.Components.a81;
-import org.telegram.ui.Components.d81;
+import org.telegram.ui.Components.b81;
+import org.telegram.ui.Components.e81;
 import org.telegram.ui.Components.ih;
 import org.telegram.ui.Components.vi;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.gv0;
 import qg.b2;
 import v7.m8;
-public final class m implements gv0, a0, androidx.activity.result.b, WebMessageListenerBoundaryInterface, s, o, a81, OnSuccessListener, n, i1, vi, k0, h1, k2.o {
+public final class m implements gv0, a0, androidx.activity.result.b, WebMessageListenerBoundaryInterface, s, o, b81, OnSuccessListener, n, i1, vi, k0, h1, k2.o {
     public final int f329a;
     public Object f330b;
 
@@ -97,8 +97,8 @@ public final class m implements gv0, a0, androidx.activity.result.b, WebMessageL
 
     public static int M(int i10, String str) {
         int V = V(i10);
-        int y3 = y(str);
-        return X(y3) + y3 + V;
+        int z10 = z(str);
+        return X(z10) + z10 + V;
     }
 
     public static void P(CharSequence charSequence, ByteBuffer byteBuffer) {
@@ -277,7 +277,7 @@ public final class m implements gv0, a0, androidx.activity.result.b, WebMessageL
         return 5;
     }
 
-    public static int y(CharSequence charSequence) {
+    public static int z(CharSequence charSequence) {
         int length = charSequence.length();
         int i10 = 0;
         int i11 = 0;
@@ -327,8 +327,12 @@ public final class m implements gv0, a0, androidx.activity.result.b, WebMessageL
     }
 
     @Override
-    public void A() {
-        ((i0) this.f330b).f14452h1 = true;
+    public void A(k2.l lVar) {
+        y yVar = ((i0) this.f330b).Y0;
+        Handler handler = (Handler) yVar.f16649b;
+        if (handler != null) {
+            handler.post(new k2.i(yVar, lVar, 0));
+        }
     }
 
     @Override
@@ -337,15 +341,65 @@ public final class m implements gv0, a0, androidx.activity.result.b, WebMessageL
     }
 
     @Override
-    public void C(k2.l lVar) {
-        y yVar = ((i0) this.f330b).Y0;
-        Handler handler = (Handler) yVar.f16644b;
-        if (handler != null) {
-            handler.post(new k2.i(yVar, lVar, 0));
+    public boolean C(boolean z10) {
+        return false;
+    }
+
+    @Override
+    public void D() {
+        j0 j0Var = ((i0) this.f330b).W;
+        if (j0Var != null) {
+            j0Var.a();
         }
     }
 
-    public void D(int i10, byte[] bArr) {
+    @Override
+    public void E(k2.l lVar) {
+        y yVar = ((i0) this.f330b).Y0;
+        Handler handler = (Handler) yVar.f16649b;
+        if (handler != null) {
+            handler.post(new k2.i(yVar, lVar, 1));
+        }
+    }
+
+    @Override
+    public void F() {
+        ((m0) this.f330b).f5548e.invalidate();
+    }
+
+    public void G(int i10, String str) {
+        ByteBuffer byteBuffer = (ByteBuffer) this.f330b;
+        O(i10, 2);
+        try {
+            int X = X(str.length());
+            if (X == X(str.length() * 3)) {
+                int position = byteBuffer.position();
+                if (byteBuffer.remaining() >= X) {
+                    byteBuffer.position(position + X);
+                    P(str, byteBuffer);
+                    int position2 = byteBuffer.position();
+                    byteBuffer.position(position);
+                    L((position2 - position) - X);
+                    byteBuffer.position(position2);
+                    return;
+                }
+                throw new b5(position + X, byteBuffer.limit());
+            }
+            L(z(str));
+            P(str, byteBuffer);
+        } catch (BufferOverflowException e7) {
+            b5 b5Var = new b5(byteBuffer.position(), byteBuffer.limit());
+            b5Var.initCause(e7);
+            throw b5Var;
+        }
+    }
+
+    @Override
+    public void G0(MessageObject messageObject) {
+        ((ac) ((e6) this.f330b).Q1).f(true);
+    }
+
+    public void H(int i10, byte[] bArr) {
         O(i10, 2);
         L(bArr.length);
         int length = bArr.length;
@@ -355,39 +409,6 @@ public final class m implements gv0, a0, androidx.activity.result.b, WebMessageL
             return;
         }
         throw new b5(byteBuffer.position(), byteBuffer.limit());
-    }
-
-    public void E(int i10) {
-        byte b10 = (byte) i10;
-        ByteBuffer byteBuffer = (ByteBuffer) this.f330b;
-        if (byteBuffer.hasRemaining()) {
-            byteBuffer.put(b10);
-            return;
-        }
-        throw new b5(byteBuffer.position(), byteBuffer.limit());
-    }
-
-    @Override
-    public void F() {
-        ((m0) this.f330b).f5548e.invalidate();
-    }
-
-    @Override
-    public boolean G(boolean z10) {
-        return false;
-    }
-
-    @Override
-    public void G0(MessageObject messageObject) {
-        ((ac) ((e6) this.f330b).Q1).f(true);
-    }
-
-    @Override
-    public void H() {
-        j0 j0Var = ((i0) this.f330b).W;
-        if (j0Var != null) {
-            j0Var.a();
-        }
     }
 
     @Override
@@ -404,21 +425,22 @@ public final class m implements gv0, a0, androidx.activity.result.b, WebMessageL
         return s3Var.f12631a.getTextSelectionHelper();
     }
 
-    @Override
-    public void K(k2.l lVar) {
-        y yVar = ((i0) this.f330b).Y0;
-        Handler handler = (Handler) yVar.f16644b;
-        if (handler != null) {
-            handler.post(new k2.i(yVar, lVar, 1));
+    public void K(int i10) {
+        byte b10 = (byte) i10;
+        ByteBuffer byteBuffer = (ByteBuffer) this.f330b;
+        if (byteBuffer.hasRemaining()) {
+            byteBuffer.put(b10);
+            return;
         }
+        throw new b5(byteBuffer.position(), byteBuffer.limit());
     }
 
     public void L(int i10) {
         while ((i10 & (-128)) != 0) {
-            E((i10 & 127) | 128);
+            K((i10 & 127) | 128);
             i10 >>>= 7;
         }
-        E(i10);
+        K(i10);
     }
 
     @Override
@@ -427,7 +449,7 @@ public final class m implements gv0, a0, androidx.activity.result.b, WebMessageL
         if (s3Var != null) {
             s3Var.getClass();
             if (charSequence != null && charSequence.length() > 0) {
-                s3Var.f12631a.v4(charSequence.toString());
+                s3Var.f12631a.u4(charSequence.toString());
             }
         }
     }
@@ -438,10 +460,10 @@ public final class m implements gv0, a0, androidx.activity.result.b, WebMessageL
 
     public void Q(long j3) {
         while (((-128) & j3) != 0) {
-            E((((int) j3) & 127) | 128);
+            K((((int) j3) & 127) | 128);
             j3 >>>= 7;
         }
-        E((int) j3);
+        K((int) j3);
     }
 
     @Override
@@ -465,7 +487,7 @@ public final class m implements gv0, a0, androidx.activity.result.b, WebMessageL
         s3 s3Var = a1Var.S;
         if (s3Var != null) {
             ii.a aVar = a1Var.f12204a;
-            if (s3Var.f12631a.U4()) {
+            if (s3Var.f12631a.T4()) {
                 return true;
             }
             return false;
@@ -572,7 +594,7 @@ public final class m implements gv0, a0, androidx.activity.result.b, WebMessageL
                 com.google.android.gms.common.api.g gVar = new com.google.android.gms.common.api.g(new com.google.android.gms.common.api.h(-1, -1, 0, true));
                 Parcel obtain = Parcel.obtain();
                 obtain.writeInterfaceToken("com.google.android.gms.identitycredentials.internal.IIdentityCredentialService");
-                int i10 = q7.a.f44837a;
+                int i10 = q7.a.f44844a;
                 obtain.writeStrongBinder(fVar3);
                 q7.a.b(obtain, (GetCredentialRequest) this.f330b);
                 q7.a.b(obtain, gVar);
@@ -588,7 +610,7 @@ public final class m implements gv0, a0, androidx.activity.result.b, WebMessageL
                 s3 s3Var = ((a1) this.f330b).S;
                 if (s3Var != null) {
                     x3 x3Var = s3Var.f12631a;
-                    x3.O1(x3Var, i1Var);
+                    x3.N1(x3Var, i1Var);
                     x3Var.f12770o3.P(i1Var, true);
                     return;
                 }
@@ -597,7 +619,7 @@ public final class m implements gv0, a0, androidx.activity.result.b, WebMessageL
                 g5 g5Var = ((i5) this.f330b).f12450s;
                 if (g5Var != null) {
                     x3 x3Var2 = ((c3) g5Var).f12263a;
-                    x3.O1(x3Var2, i1Var);
+                    x3.N1(x3Var2, i1Var);
                     x3Var2.f12770o3.P(i1Var, true);
                     return;
                 }
@@ -622,7 +644,7 @@ public final class m implements gv0, a0, androidx.activity.result.b, WebMessageL
     @Override
     public void d(long j3) {
         y yVar = ((i0) this.f330b).Y0;
-        Handler handler = (Handler) yVar.f16644b;
+        Handler handler = (Handler) yVar.f16649b;
         if (handler != null) {
             handler.post(new ai.j(yVar, j3, 12));
         }
@@ -638,7 +660,7 @@ public final class m implements gv0, a0, androidx.activity.result.b, WebMessageL
         a1 a1Var = (a1) this.f330b;
         s3 s3Var = a1Var.S;
         if (s3Var != null) {
-            x3.R1(s3Var.f12631a, a1Var.f12204a);
+            x3.Q1(s3Var.f12631a, a1Var.f12204a);
         }
     }
 
@@ -828,8 +850,8 @@ public final class m implements gv0, a0, androidx.activity.result.b, WebMessageL
                         a4.a.y(1, arrayList3);
                     }
                     arrayList.add(i10 + 1, aVar2);
-                    x3Var.u4();
-                    x3Var.f25250f3.N(false);
+                    x3Var.t4();
+                    x3Var.f26034f3.N(false);
                     i2 i2Var2 = x3Var.Q3;
                     if (i2Var2 != null) {
                         i2Var2.h();
@@ -866,7 +888,7 @@ public final class m implements gv0, a0, androidx.activity.result.b, WebMessageL
             jVar.d(i10);
         }
         y yVar = i0Var.Y0;
-        Handler handler = (Handler) yVar.f16644b;
+        Handler handler = (Handler) yVar.f16649b;
         if (handler != null) {
             handler.post(new o8(yVar, i10, 11));
         }
@@ -884,7 +906,7 @@ public final class m implements gv0, a0, androidx.activity.result.b, WebMessageL
     @Override
     public void onSkipSilenceEnabledChanged(boolean z10) {
         y yVar = ((i0) this.f330b).Y0;
-        Handler handler = (Handler) yVar.f16644b;
+        Handler handler = (Handler) yVar.f16649b;
         if (handler != null) {
             handler.post(new bi.f(7, yVar, z10));
         }
@@ -894,11 +916,11 @@ public final class m implements gv0, a0, androidx.activity.result.b, WebMessageL
     public void onStateChanged(boolean z10, int i10) {
         b7 b7Var = (b7) this.f330b;
         z6 z6Var = b7Var.M;
-        d81 d81Var = b7Var.f4769x;
-        if (d81Var == null) {
+        e81 e81Var = b7Var.f4769x;
+        if (e81Var == null) {
             return;
         }
-        if (d81Var.y()) {
+        if (e81Var.y()) {
             AndroidUtilities.runOnUIThread(z6Var);
         } else {
             AndroidUtilities.cancelRunOnUIThread(z6Var);
@@ -1035,8 +1057,8 @@ public final class m implements gv0, a0, androidx.activity.result.b, WebMessageL
         b2 b2Var = ((b7) this.f330b).f4767w;
         if (b2Var != null) {
             float f10 = i10 / i11;
-            if (Math.abs(b2Var.f44992y0 - f10) >= 1.0E-4f) {
-                b2Var.f44992y0 = f10;
+            if (Math.abs(b2Var.f44999y0 - f10) >= 1.0E-4f) {
+                b2Var.f44999y0 = f10;
                 b2Var.requestLayout();
             }
         }
@@ -1151,7 +1173,7 @@ public final class m implements gv0, a0, androidx.activity.result.b, WebMessageL
     @Override
     public void s(int i10, long j3, long j10) {
         y yVar = ((i0) this.f330b).Y0;
-        Handler handler = (Handler) yVar.f16644b;
+        Handler handler = (Handler) yVar.f16649b;
         if (handler != null) {
             handler.post(new k2.j(yVar, i10, j3, j10, 0));
         }
@@ -1222,17 +1244,7 @@ public final class m implements gv0, a0, androidx.activity.result.b, WebMessageL
         s3 s3Var = a1Var.S;
         if (s3Var != null) {
             ii.a aVar = a1Var.f12204a;
-            x3.Q1(s3Var.f12631a);
-        }
-    }
-
-    @Override
-    public void w(Exception exc) {
-        e2.a.f("MediaCodecAudioRenderer", "Audio sink error", exc);
-        y yVar = ((i0) this.f330b).Y0;
-        Handler handler = (Handler) yVar.f16644b;
-        if (handler != null) {
-            handler.post(new k2.g(yVar, exc, 1));
+            x3.P1(s3Var.f12631a);
         }
     }
 
@@ -1275,35 +1287,23 @@ public final class m implements gv0, a0, androidx.activity.result.b, WebMessageL
     }
 
     @Override
+    public void x(Exception exc) {
+        e2.a.f("MediaCodecAudioRenderer", "Audio sink error", exc);
+        y yVar = ((i0) this.f330b).Y0;
+        Handler handler = (Handler) yVar.f16649b;
+        if (handler != null) {
+            handler.post(new k2.g(yVar, exc, 1));
+        }
+    }
+
+    @Override
     public void x0(ih ihVar) {
         NotificationCenter.getInstance(hg.n.Z((hg.n) this.f330b)).doOnIdle(ihVar);
     }
 
-    public void z(int i10, String str) {
-        ByteBuffer byteBuffer = (ByteBuffer) this.f330b;
-        O(i10, 2);
-        try {
-            int X = X(str.length());
-            if (X == X(str.length() * 3)) {
-                int position = byteBuffer.position();
-                if (byteBuffer.remaining() >= X) {
-                    byteBuffer.position(position + X);
-                    P(str, byteBuffer);
-                    int position2 = byteBuffer.position();
-                    byteBuffer.position(position);
-                    L((position2 - position) - X);
-                    byteBuffer.position(position2);
-                    return;
-                }
-                throw new b5(position + X, byteBuffer.limit());
-            }
-            L(y(str));
-            P(str, byteBuffer);
-        } catch (BufferOverflowException e7) {
-            b5 b5Var = new b5(byteBuffer.position(), byteBuffer.limit());
-            b5Var.initCause(e7);
-            throw b5Var;
-        }
+    @Override
+    public void y() {
+        ((i0) this.f330b).f14452h1 = true;
     }
 
     public m(Object obj, int i10) {
@@ -1406,7 +1406,7 @@ public final class m implements gv0, a0, androidx.activity.result.b, WebMessageL
     }
 
     @Override
-    public void x(CharSequence charSequence) {
+    public void w(CharSequence charSequence) {
     }
 
     @Override
@@ -1414,7 +1414,7 @@ public final class m implements gv0, a0, androidx.activity.result.b, WebMessageL
     }
 
     @Override
-    public void onError(d81 d81Var, Exception exc) {
+    public void onError(e81 e81Var, Exception exc) {
     }
 
     @Override

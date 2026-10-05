@@ -4,21 +4,21 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.Components.UndoView;
 public final class jw implements Runnable {
-    public final int f37784a;
-    public final uy f37785b;
+    public final int f37792a;
+    public final uy f37793b;
 
     public jw(uy uyVar, int i10) {
-        this.f37784a = i10;
-        this.f37785b = uyVar;
+        this.f37792a = i10;
+        this.f37793b = uyVar;
     }
 
     @Override
     public final void run() {
-        yf1 yf1Var;
-        switch (this.f37784a) {
+        wf1 wf1Var;
+        switch (this.f37792a) {
             case 0:
-                uy uyVar = this.f37785b;
-                hh.g gVar = uyVar.f41501y1;
+                uy uyVar = this.f37793b;
+                hh.g gVar = uyVar.f41536y1;
                 if (gVar != null) {
                     gVar.d();
                 }
@@ -31,36 +31,36 @@ public final class jw implements Runnable {
                 }
                 return;
             case 1:
-                this.f37785b.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.forceImportContactsStart, new Object[0]);
+                this.f37793b.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.forceImportContactsStart, new Object[0]);
                 return;
             case 2:
-                this.f37785b.V3();
+                this.f37793b.V3();
                 return;
             case 3:
-                this.f37785b.d5();
+                this.f37793b.d5();
                 return;
             case 4:
-                MessagesController.getInstance(this.f37785b.currentAccount).getMainSettings().edit().putBoolean("storyhint", false).commit();
+                MessagesController.getInstance(this.f37793b.currentAccount).getMainSettings().edit().putBoolean("storyhint", false).commit();
                 return;
             case 5:
-                uy.G0(this.f37785b);
+                uy.G0(this.f37793b);
                 return;
             case 6:
-                this.f37785b.getMessagesController().removeSuggestion(0L, "SETUP_LOGIN_EMAIL");
+                this.f37793b.getMessagesController().removeSuggestion(0L, "SETUP_LOGIN_EMAIL");
                 return;
             case 7:
-                uy uyVar2 = this.f37785b;
-                ci.e4 e4Var = uyVar2.f41458q0;
+                uy uyVar2 = this.f37793b;
+                ci.e4 e4Var = uyVar2.f41493q0;
                 if (e4Var != null) {
                     e4Var.e(true);
                 }
                 uyVar2.presentFragment(new PremiumPreviewFragment(0, "stories"));
                 return;
             case 8:
-                this.f37785b.f41400e0[0].d.l();
+                this.f37793b.f41435e0[0].d.l();
                 return;
             case 9:
-                uy uyVar3 = this.f37785b;
+                uy uyVar3 = this.f37793b;
                 UndoView h42 = uyVar3.h4();
                 if (h42 != null) {
                     h42.l(0L, 15, null, new pv(uyVar3, 24));
@@ -68,16 +68,16 @@ public final class jw implements Runnable {
                 }
                 return;
             case 10:
-                uy uyVar4 = this.f37785b;
-                uyVar4.f41400e0[0].f40990a.requestLayout();
+                uy uyVar4 = this.f37793b;
+                uyVar4.f41435e0[0].f41046a.requestLayout();
                 mx mxVar = uyVar4.F3;
-                if (mxVar != null && (mxVar.getFragment() instanceof yf1)) {
-                    yf1Var = (yf1) uyVar4.F3.getFragment();
+                if (mxVar != null && (mxVar.getFragment() instanceof wf1)) {
+                    wf1Var = (wf1) uyVar4.F3.getFragment();
                 } else {
-                    yf1Var = null;
+                    wf1Var = null;
                 }
-                if (yf1Var != null) {
-                    yf1Var.B0();
+                if (wf1Var != null) {
+                    wf1Var.B0();
                 }
                 uyVar4.P3(false);
                 uyVar4.b5();
@@ -88,7 +88,7 @@ public final class jw implements Runnable {
                 }
                 return;
             default:
-                this.f37785b.j5();
+                this.f37793b.j5();
                 return;
         }
     }

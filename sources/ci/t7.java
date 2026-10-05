@@ -20,7 +20,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.e11;
+import org.telegram.ui.Components.f11;
 import org.telegram.ui.Components.rq;
 import org.telegram.ui.Components.tr;
 public final class t7 extends View {
@@ -40,8 +40,8 @@ public final class t7 extends View {
     public final RectF f5991f;
     public final ImageReceiver h;
     public boolean f5992n;
-    public e11 f5993r;
-    public e11 f5994s;
+    public f11 f5993r;
+    public f11 f5994s;
     public final Path v;
     public final Paint f5995w;
     public final org.telegram.ui.Components.zc f5996x;
@@ -67,7 +67,7 @@ public final class t7 extends View {
         if (s7Var == null) {
             return;
         }
-        this.f5993r = new e11(s7Var.b(), 16.0f, AndroidUtilities.bold());
+        this.f5993r = new f11(s7Var.b(), 16.0f, AndroidUtilities.bold());
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.E.a());
         if (spannableStringBuilder.toString().contains(">")) {
             spannableStringBuilder.clear();
@@ -79,7 +79,7 @@ public final class t7 extends View {
             rqVar.setScale(1.25f, 1.25f);
             spannableStringBuilder.setSpan(rqVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
         }
-        this.f5994s = new e11(spannableStringBuilder, 14.0f, null);
+        this.f5994s = new f11(spannableStringBuilder, 14.0f, null);
         this.E.d(this.h);
         this.f5992n = true;
     }
@@ -95,10 +95,10 @@ public final class t7 extends View {
         int[] iArr;
         int[] iArr2;
         float e7 = this.d.e(this.f5997y);
-        e11 e11Var = this.f5993r;
-        if (e11Var != null && this.f5994s != null && e7 > 0.0f) {
-            e11Var.f25895p = getWidth() * 0.7f;
-            this.f5994s.f25895p = getWidth() * 0.7f;
+        f11 f11Var = this.f5993r;
+        if (f11Var != null && this.f5994s != null && e7 > 0.0f) {
+            f11Var.f26277p = getWidth() * 0.7f;
+            this.f5994s.f26277p = getWidth() * 0.7f;
             float dp = AndroidUtilities.dp(5.0f);
             float dp2 = AndroidUtilities.dp(10.0f);
             float dp3 = AndroidUtilities.dp(32.0f);
@@ -110,7 +110,7 @@ public final class t7 extends View {
             } else {
                 f7 = 0.0f;
             }
-            float max = Math.max(min, Math.max(this.f5993r.f25884c, this.f5994s.f25884c) + f7 + dp + AndroidUtilities.dp(15.0f) + dp);
+            float max = Math.max(min, Math.max(this.f5993r.f26266c, this.f5994s.f26266c) + f7 + dp + AndroidUtilities.dp(15.0f) + dp);
             if (this.f5992n) {
                 f10 = dp3;
             } else {
@@ -164,20 +164,20 @@ public final class t7 extends View {
                 imageReceiver.draw(canvas);
             }
             float centerY = rectF.centerY() - ((this.f5994s.j() + (this.f5993r.j() + dp4)) / f12);
-            e11 e11Var2 = this.f5993r;
+            f11 f11Var2 = this.f5993r;
             float f16 = rectF.left;
             if (this.f5992n) {
                 f13 = dp5 + dp3 + dp5;
             } else {
                 f13 = 0.0f;
             }
-            e11Var2.c(f16 + f13 + f11, (e11Var2.j() / f12) + centerY, e7, -1, canvas);
-            e11 e11Var3 = this.f5994s;
+            f11Var2.c(f16 + f13 + f11, (f11Var2.j() / f12) + centerY, e7, -1, canvas);
+            f11 f11Var3 = this.f5994s;
             float f17 = rectF.left;
             if (this.f5992n) {
                 f14 = dp3 + dp5 + dp5;
             }
-            e11Var3.c(f17 + f14 + f11, this.f5993r.j() + centerY + dp4 + (this.f5994s.j() / f12), e7, org.telegram.ui.ActionBar.i6.v(-16777216, -1610612737), canvas);
+            f11Var3.c(f17 + f14 + f11, this.f5993r.j() + centerY + dp4 + (this.f5994s.j() / f12), e7, org.telegram.ui.ActionBar.i6.v(-16777216, -1610612737), canvas);
             canvas.restore();
         }
     }

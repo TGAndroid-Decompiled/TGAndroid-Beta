@@ -1,78 +1,102 @@
 package zg;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.sk0;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.voip.r0;
+import org.telegram.ui.Components.xb0;
 import org.telegram.ui.yn;
-import w7.z5;
-public final class r implements Runnable {
-    public final int f53526a;
-    public final t f53527b;
+public final class r extends FrameLayout {
+    public final yn f53515a;
+    public q f53516b;
+    public List f53517c;
+    public boolean d;
+    public MessageObject f53518e;
+    public final int f53519f;
+    public final int h;
+    public float f53520n;
+    public float f53521r;
+    public float f53522s;
+    public long v;
+    public boolean f53523w;
+    public boolean f53524x;
+    public final int[] f53525y;
 
-    public r(t tVar, int i10) {
-        this.f53526a = i10;
-        this.f53527b = tVar;
+    public r(yn ynVar, Context context) {
+        super(context);
+        this.f53517c = Collections.EMPTY_LIST;
+        this.f53519f = 22;
+        this.h = 24;
+        this.f53525y = new int[2];
+        setVisibility(8);
+        this.f53515a = ynVar;
+        setClipToPadding(false);
+        setClipChildren(false);
+        ynVar.f43526v0.j(new xb0(this, 24));
     }
 
-    @Override
-    public final void run() {
-        boolean z10;
-        int i10;
-        int i11;
-        switch (this.f53526a) {
-            case 0:
-                this.f53527b.c(true);
-                return;
-            default:
-                t tVar = this.f53527b;
-                tVar.f53533e = tVar.b();
-                int i12 = tVar.f53534f;
-                int i13 = tVar.h;
-                yn ynVar = tVar.f53530a;
-                if (tVar.f53531b == null) {
-                    if (ynVar.getUserConfig().getClientUserId() == ynVar.a()) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    if (z10) {
-                        i10 = 3;
-                    } else {
-                        i10 = 0;
-                    }
-                    yn ynVar2 = tVar.f53530a;
-                    ?? sk0Var = new sk0(i10, ynVar.getCurrentAccount(), tVar.getContext(), ynVar2, ynVar.getResourceProvider());
-                    sk0Var.l1 = 1.0f;
-                    sk0Var.setWillNotDraw(false);
-                    tVar.f53531b = sk0Var;
-                    int dp = AndroidUtilities.dp(4.0f);
-                    if (LocaleController.isRTL) {
-                        i11 = 0;
-                    } else {
-                        i11 = i13;
-                    }
-                    int i14 = dp + i11;
-                    int dp2 = AndroidUtilities.dp(4.0f);
-                    int dp3 = AndroidUtilities.dp(4.0f);
-                    if (!LocaleController.isRTL) {
-                        i13 = 0;
-                    }
-                    sk0Var.setPadding(i14, dp2, dp3 + i13, AndroidUtilities.dp(i12));
-                    tVar.f53531b.setDelegate(new w9.k(tVar));
-                    tVar.f53531b.setClipChildren(false);
-                    tVar.f53531b.setClipToPadding(false);
-                    tVar.addView(tVar.f53531b, z5.e(-2, i12 + 70, 5));
-                }
-                tVar.c(false);
-                if (tVar.f53531b.isEnabled()) {
-                    tVar.f53539x = true;
-                    tVar.f53531b.p(tVar.f53533e, ynVar.X7, true);
-                    tVar.f53531b.r(false);
-                    return;
-                }
-                tVar.f53539x = false;
-                tVar.f53531b.setTransitionProgress(1.0f);
-                return;
+    public final void a(boolean z10) {
+        if (z10) {
+            setVisibility(0);
+            post(new p(this, 1));
+            return;
         }
+        this.f53524x = false;
+        ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(150L);
+        duration.addUpdateListener(new r0(this, 27));
+        duration.addListener(new pg.d0(this, 14));
+        duration.start();
+    }
+
+    public final MessageObject b() {
+        MessageObject.GroupedMessages z82;
+        ArrayList<MessageObject> arrayList;
+        TLRPC.TL_messageReactions tL_messageReactions;
+        ArrayList<TLRPC.ReactionCount> arrayList2;
+        if (this.d && !this.f53517c.isEmpty()) {
+            int i10 = 0;
+            MessageObject messageObject = (MessageObject) this.f53517c.get(0);
+            if (messageObject.getGroupId() != 0 && (z82 = this.f53515a.z8(messageObject.getGroupId())) != null && (arrayList = z82.messages) != null) {
+                int size = arrayList.size();
+                while (i10 < size) {
+                    MessageObject messageObject2 = arrayList.get(i10);
+                    i10++;
+                    MessageObject messageObject3 = messageObject2;
+                    TLRPC.Message message = messageObject3.messageOwner;
+                    if (message != null && (tL_messageReactions = message.reactions) != null && (arrayList2 = tL_messageReactions.results) != null && !arrayList2.isEmpty()) {
+                        return messageObject3;
+                    }
+                }
+            }
+            return messageObject;
+        }
+        return null;
+    }
+
+    public final void c(boolean r15) {
+        throw new UnsupportedOperationException("Method not decompiled: zg.r.c(boolean):void");
+    }
+
+    public final boolean d() {
+        if (this.d && !this.f53523w) {
+            return true;
+        }
+        return false;
+    }
+
+    public void setHiddenByScroll(boolean z10) {
+        this.f53523w = z10;
+        if (z10) {
+            a(false);
+        }
+    }
+
+    public void setSelectedMessages(java.util.List<org.telegram.messenger.MessageObject> r11) {
+        throw new UnsupportedOperationException("Method not decompiled: zg.r.setSelectedMessages(java.util.List):void");
     }
 }

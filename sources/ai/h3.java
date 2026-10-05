@@ -68,7 +68,7 @@ public final class h3 implements Runnable {
                 final boolean z11 = this.f1017b;
                 storiesController.i0(j10, z11, false);
                 o0.a aVar = new o0.a(3, (byte) 0);
-                aVar.f16932b = new Runnable() {
+                aVar.f16937b = new Runnable() {
                     @Override
                     public final void run() {
                         switch (r5) {
@@ -81,7 +81,7 @@ public final class h3 implements Runnable {
                         }
                     }
                 };
-                aVar.f16933c = new Runnable() {
+                aVar.f16938c = new Runnable() {
                     @Override
                     public final void run() {
                         switch (r5) {
@@ -100,7 +100,7 @@ public final class h3 implements Runnable {
                     replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StoriesMovedToContacts, ContactsController.formatName(str, null, 10)));
                 }
                 org.telegram.ui.Components.rc V = new yc(e6Var.f848d1, e6Var.B0).V(Arrays.asList(tLObject), replaceTags, null, aVar);
-                V.f30338a = 2;
+                V.f30420a = 2;
                 V.k(true);
                 return;
             case 1:
@@ -124,7 +124,7 @@ public final class h3 implements Runnable {
                         if (z10 && R != null) {
                             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(R.getContext(), 0, d6Var);
                             String string = LocaleController.getString(R.string.LiveStoryAlreadyStreamingTitle);
-                            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20372a;
+                            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20377a;
                             b2Var.R = string;
                             b2Var.T = LocaleController.getString(R.string.LiveStoryAlreadyStreaming);
                             org.telegram.messenger.q.o(R.string.OK, alertDialog$Builder, null);
@@ -153,7 +153,7 @@ public final class h3 implements Runnable {
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) obj3;
                 String str2 = (String) obj;
                 TLRPC.Document document = (TLRPC.Document) obj2;
-                ChatActivityEnterView chatActivityEnterView = ((ig) obj4).f27406a;
+                ChatActivityEnterView chatActivityEnterView = ((ig) obj4).f27501a;
                 if (editTextBoldCursor != null) {
                     int selectionEnd = editTextBoldCursor.getSelectionEnd();
                     if (selectionEnd < 0) {
@@ -194,20 +194,20 @@ public final class h3 implements Runnable {
                 return;
             case 4:
                 a01 a01Var = (a01) obj4;
-                ProfileActivity profileActivity = a01Var.f34629b;
-                mq mqVar = new mq(profileActivity.f34240e1, -j3, (TLRPC.TL_chatAdminRights) obj3, null, null, (String) obj, 2, true, !z10, null);
+                ProfileActivity profileActivity = a01Var.f34642b;
+                mq mqVar = new mq(profileActivity.f34253e1, -j3, (TLRPC.TL_chatAdminRights) obj3, null, null, (String) obj, 2, true, !z10, null);
                 mqVar.X0 = new zz0(a01Var, (uy) obj2);
                 profileActivity.presentFragment(mqVar);
                 return;
             default:
-                yh.g gVar = (yh.g) obj4;
+                yh.h hVar = (yh.h) obj4;
                 TLObject tLObject2 = (TLObject) obj2;
                 TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) obj;
                 if (((TLRPC.TL_error) obj3) == null) {
                     TL_account.Password password = (TL_account.Password) tLObject2;
                     twoStepVerificationActivity.I = password;
                     TwoStepVerificationActivity.m0(password);
-                    gVar.h0(this.f1017b, this.f1018c, twoStepVerificationActivity.l0(), twoStepVerificationActivity);
+                    hVar.p0(this.f1017b, this.f1018c, twoStepVerificationActivity.l0(), twoStepVerificationActivity);
                     return;
                 }
                 return;
@@ -250,8 +250,8 @@ public final class h3 implements Runnable {
         this.h = uyVar;
     }
 
-    public h3(yh.g gVar, TLRPC.TL_error tL_error, TLObject tLObject, TwoStepVerificationActivity twoStepVerificationActivity, boolean z10, long j3) {
-        this.d = gVar;
+    public h3(yh.h hVar, TLRPC.TL_error tL_error, TLObject tLObject, TwoStepVerificationActivity twoStepVerificationActivity, boolean z10, long j3) {
+        this.d = hVar;
         this.f1019e = tL_error;
         this.h = tLObject;
         this.f1020f = twoStepVerificationActivity;

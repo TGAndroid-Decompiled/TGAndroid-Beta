@@ -5,9 +5,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.ui.ActionBar.c5;
-import org.telegram.ui.Components.lw0;
+import org.telegram.ui.Components.mw0;
 import org.telegram.ui.Components.nz;
-public final class q1 extends lw0 {
+public final class q1 extends mw0 {
     public final int f11305w0;
 
     public q1(Context context, c5 c5Var, int i10) {

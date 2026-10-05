@@ -1,79 +1,26 @@
 package yh;
 
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.Utilities;
+import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class x1 implements Utilities.Callback {
-    public final int f52186a;
-    public final x3 f52187b;
+public final class x1 implements Runnable {
+    public final int f52213a;
+    public final y3 f52214b;
+    public final TLRPC.TL_payments_paymentResult f52215c;
 
-    public x1(x3 x3Var, int i10) {
-        this.f52186a = i10;
-        this.f52187b = x3Var;
+    public x1(y3 y3Var, TLRPC.TL_payments_paymentResult tL_payments_paymentResult, int i10) {
+        this.f52213a = i10;
+        this.f52214b = y3Var;
+        this.f52215c = tL_payments_paymentResult;
     }
 
     @Override
-    public final void run(Object obj) {
-        TLRPC.Message message;
-        switch (this.f52186a) {
+    public final void run() {
+        switch (this.f52213a) {
             case 0:
-                x3 x3Var = this.f52187b;
-                x3Var.getClass();
-                if (((Boolean) obj).booleanValue()) {
-                    x3Var.skipDismissAnimation();
-                }
-                x3Var.dismiss();
-                return;
-            case 1:
-                TL_stars.starGiftUpgradePreview stargiftupgradepreview = (TL_stars.starGiftUpgradePreview) obj;
-                x3 x3Var2 = this.f52187b;
-                x3Var2.getClass();
-                if (stargiftupgradepreview != null) {
-                    x3Var2.f52227h1 = stargiftupgradepreview.sample_attributes;
-                    x3Var2.f52229i1 = stargiftupgradepreview.prices;
-                    x3Var2.f52231j1 = stargiftupgradepreview.next_prices;
-                    x3Var2.b2();
-                    return;
-                }
-                return;
-            case 2:
-                this.f52187b.dismiss(((Boolean) obj).booleanValue());
+                MessagesController.getInstance(this.f52214b.currentAccount).processUpdates(this.f52215c.updates, false);
                 return;
             default:
-                TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
-                x3 x3Var3 = this.f52187b;
-                x3Var3.K0 = false;
-                x3Var3.L0 = true;
-                if (savedStarGift != null) {
-                    x3Var3.f52223f1 = Boolean.valueOf(savedStarGift.unsaved);
-                    MessageObject messageObject = x3Var3.E0;
-                    if (messageObject != null && (message = messageObject.messageOwner) != null) {
-                        TLRPC.MessageAction messageAction = message.action;
-                        if (messageAction instanceof TLRPC.TL_messageActionStarGiftUnique) {
-                            TLRPC.TL_messageActionStarGiftUnique tL_messageActionStarGiftUnique = (TLRPC.TL_messageActionStarGiftUnique) messageAction;
-                            boolean z10 = tL_messageActionStarGiftUnique.saved;
-                            boolean z11 = !savedStarGift.unsaved;
-                            if (z10 != z11) {
-                                tL_messageActionStarGiftUnique.saved = z11;
-                            } else {
-                                return;
-                            }
-                        } else if (messageAction instanceof TLRPC.TL_messageActionStarGift) {
-                            TLRPC.TL_messageActionStarGift tL_messageActionStarGift = (TLRPC.TL_messageActionStarGift) messageAction;
-                            boolean z12 = tL_messageActionStarGift.saved;
-                            boolean z13 = !savedStarGift.unsaved;
-                            if (z12 != z13) {
-                                tL_messageActionStarGift.saved = z13;
-                            } else {
-                                return;
-                            }
-                        }
-                        x3Var3.i2(messageObject, null);
-                        return;
-                    }
-                    return;
-                }
+                MessagesController.getInstance(this.f52214b.currentAccount).processUpdates(this.f52215c.updates, false);
                 return;
         }
     }

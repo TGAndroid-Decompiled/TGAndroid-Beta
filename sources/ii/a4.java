@@ -35,18 +35,18 @@ public final class a4 implements View.OnClickListener {
         boolean z19;
         boolean z20;
         boolean z21;
-        q5 T2;
+        q5 S2;
         t5 o9;
         String str;
         switch (this.f12226a) {
             case 0:
-                this.f12227b.f12264a.f12516a.f12603r.a4(this.f12228c);
+                this.f12227b.f12264a.f12516a.f12603r.Z3(this.f12228c);
                 return;
             default:
                 final r rVar = this.f12227b.f12264a.f12516a;
-                org.telegram.ui.ActionBar.d6 d6Var = rVar.f29647a;
+                org.telegram.ui.ActionBar.d6 d6Var = rVar.f29740a;
                 x3 x3Var = rVar.f12603r;
-                a S2 = x3Var.S2();
+                a R2 = x3Var.R2();
                 int i10 = this.f12228c;
                 if (i10 != 1) {
                     if (i10 != 2) {
@@ -57,13 +57,13 @@ public final class a4 implements View.OnClickListener {
                         if (i10 != 4) {
                             if (i10 != 7) {
                                 if (i10 == 9) {
-                                    x3Var.v3();
+                                    x3Var.u3();
                                     return;
                                 }
                                 return;
                             }
-                            if (S2 != null) {
-                                TL_iv.PageBlock pageBlock = S2.f12187b;
+                            if (R2 != null) {
+                                TL_iv.PageBlock pageBlock = R2.f12187b;
                                 if (pageBlock instanceof TL_iv.pageBlockMath) {
                                     pageblockmath = (TL_iv.pageBlockMath) pageBlock;
                                 }
@@ -78,25 +78,25 @@ public final class a4 implements View.OnClickListener {
                             return;
                         }
                         q5 q5Var = x3Var.f12773p4;
-                        if (q5Var == null && (T2 = x3Var.T2()) != null && T2.getModel() != null) {
+                        if (q5Var == null && (S2 = x3Var.S2()) != null && S2.getModel() != null) {
                             View findFocus = x3Var.findFocus();
-                            if ((findFocus instanceof i1) && (o9 = T2.o((i1) findFocus)) != null) {
+                            if ((findFocus instanceof i1) && (o9 = S2.o((i1) findFocus)) != null) {
                                 pagetablecell = o9.f12662b;
                             }
                             if (pagetablecell != null) {
-                                x3Var.i2(T2);
-                                if (T2.H.add(pagetablecell)) {
-                                    T2.v.invalidate();
-                                    T2.t();
+                                x3Var.h2(S2);
+                                if (S2.H.add(pagetablecell)) {
+                                    S2.v.invalidate();
+                                    S2.t();
                                 }
-                                q5Var = T2;
+                                q5Var = S2;
                             }
                         }
                         if (q5Var != null && q5Var.getModel() != null && !q5Var.H.isEmpty()) {
-                            x3Var.H4(q5Var);
+                            x3Var.G4(q5Var);
                             return;
                         } else {
-                            x3Var.T1(f6.u(2, 2));
+                            x3Var.S1(f6.u(2, 2));
                             return;
                         }
                     }
@@ -106,68 +106,68 @@ public final class a4 implements View.OnClickListener {
                     }
                     final b80 F = b80.F(rVar, d6Var, view);
                     F.Q = true;
-                    if (S2 != null && S2.b()) {
+                    if (R2 != null && R2.b()) {
                         z17 = false;
                     } else {
                         z17 = true;
                     }
-                    F.j(z17, R.drawable.field_carret_empty, null, LocaleController.getString(R.string.ArticleNone), new f(rVar, S2, 1));
-                    if (S2 != null && S2.b() && !S2.a() && !S2.c()) {
+                    F.j(z17, R.drawable.field_carret_empty, null, LocaleController.getString(R.string.ArticleNone), new f(rVar, R2, 1));
+                    if (R2 != null && R2.b() && !R2.a() && !R2.c()) {
                         z18 = true;
                     } else {
                         z18 = false;
                     }
-                    F.j(z18, R.drawable.iv_list, null, LocaleController.getString(R.string.ArticleListBulleted), new f(rVar, S2, 2));
-                    if (S2 != null && S2.b() && !S2.a() && S2.c()) {
+                    F.j(z18, R.drawable.iv_list, null, LocaleController.getString(R.string.ArticleListBulleted), new f(rVar, R2, 2));
+                    if (R2 != null && R2.b() && !R2.a() && R2.c()) {
                         z19 = true;
                     } else {
                         z19 = false;
                     }
-                    F.j(z19, R.drawable.iv_ordered_list, null, LocaleController.getString(R.string.ArticleListNumbered), new f(rVar, S2, 3));
-                    if (S2 != null && S2.b() && S2.a() && !S2.c()) {
+                    F.j(z19, R.drawable.iv_ordered_list, null, LocaleController.getString(R.string.ArticleListNumbered), new f(rVar, R2, 3));
+                    if (R2 != null && R2.b() && R2.a() && !R2.c()) {
                         z20 = true;
                     } else {
                         z20 = false;
                     }
-                    F.j(z20, R.drawable.iv_todo, null, LocaleController.getString(R.string.ArticleListTodo), new f(rVar, S2, 4));
-                    if (S2 != null && (S2.f12187b instanceof TL_iv.pageBlockDetails)) {
+                    F.j(z20, R.drawable.iv_todo, null, LocaleController.getString(R.string.ArticleListTodo), new f(rVar, R2, 4));
+                    if (R2 != null && (R2.f12187b instanceof TL_iv.pageBlockDetails)) {
                         z21 = true;
                     } else {
                         z21 = false;
                     }
                     F.j(z21, R.drawable.iv_details, null, LocaleController.getString(R.string.ArticleToggleBlock), new b(x3Var, 1));
-                    boolean o22 = x3Var.o2();
-                    boolean r22 = x3Var.r2();
-                    if (o22 || r22) {
+                    boolean n22 = x3Var.n2();
+                    boolean q22 = x3Var.q2();
+                    if (n22 || q22) {
                         F.k();
-                        if (o22) {
+                        if (n22) {
                             F.c(R.drawable.iv_list_tab, LocaleController.getString(R.string.ArticleIndent), new Runnable() {
                                 @Override
                                 public final void run() {
                                     switch (r3) {
                                         case 0:
-                                            rVar.f12603r.t3(false);
+                                            rVar.f12603r.s3(false);
                                             F.u();
                                             return;
                                         default:
-                                            rVar.f12603r.t3(true);
+                                            rVar.f12603r.s3(true);
                                             F.u();
                                             return;
                                     }
                                 }
                             }, false);
                         }
-                        if (r22) {
+                        if (q22) {
                             F.c(R.drawable.iv_list_untab, LocaleController.getString(R.string.ArticleOutdent), new Runnable() {
                                 @Override
                                 public final void run() {
                                     switch (r3) {
                                         case 0:
-                                            rVar.f12603r.t3(false);
+                                            rVar.f12603r.s3(false);
                                             F.u();
                                             return;
                                         default:
-                                            rVar.f12603r.t3(true);
+                                            rVar.f12603r.s3(true);
                                             F.u();
                                             return;
                                     }
@@ -195,13 +195,13 @@ public final class a4 implements View.OnClickListener {
                 }
                 J.c(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new h(G, 0), false);
                 J.k();
-                rVar.N(J, S2, new TL_iv.pageBlockHeading1(), R.drawable.iv_h1, LocaleController.getString(R.string.ArticleHeading1), SharedConfig.fontSize + 2, G);
-                rVar.N(J, S2, new TL_iv.pageBlockHeading2(), R.drawable.iv_h2, LocaleController.getString(R.string.ArticleHeading2), SharedConfig.fontSize + 1, G);
-                rVar.N(J, S2, new TL_iv.pageBlockHeading3(), R.drawable.iv_h3, LocaleController.getString(R.string.ArticleHeading3), SharedConfig.fontSize, G);
-                rVar.N(J, S2, new TL_iv.pageBlockHeading4(), R.drawable.iv_h4, LocaleController.getString(R.string.ArticleHeading4), SharedConfig.fontSize - 1, G);
-                rVar.N(J, S2, new TL_iv.pageBlockHeading5(), R.drawable.iv_h5, LocaleController.getString(R.string.ArticleHeading5), SharedConfig.fontSize - 2, G);
-                rVar.N(J, S2, new TL_iv.pageBlockHeading6(), R.drawable.iv_h6, LocaleController.getString(R.string.ArticleHeading6), SharedConfig.fontSize - 3, G);
-                if (S2 != null && x3.E3(S2.f12187b)) {
+                rVar.N(J, R2, new TL_iv.pageBlockHeading1(), R.drawable.iv_h1, LocaleController.getString(R.string.ArticleHeading1), SharedConfig.fontSize + 2, G);
+                rVar.N(J, R2, new TL_iv.pageBlockHeading2(), R.drawable.iv_h2, LocaleController.getString(R.string.ArticleHeading2), SharedConfig.fontSize + 1, G);
+                rVar.N(J, R2, new TL_iv.pageBlockHeading3(), R.drawable.iv_h3, LocaleController.getString(R.string.ArticleHeading3), SharedConfig.fontSize, G);
+                rVar.N(J, R2, new TL_iv.pageBlockHeading4(), R.drawable.iv_h4, LocaleController.getString(R.string.ArticleHeading4), SharedConfig.fontSize - 1, G);
+                rVar.N(J, R2, new TL_iv.pageBlockHeading5(), R.drawable.iv_h5, LocaleController.getString(R.string.ArticleHeading5), SharedConfig.fontSize - 2, G);
+                rVar.N(J, R2, new TL_iv.pageBlockHeading6(), R.drawable.iv_h6, LocaleController.getString(R.string.ArticleHeading6), SharedConfig.fontSize - 3, G);
+                if (R2 != null && x3.D3(R2.f12187b)) {
                     z11 = true;
                 } else {
                     z11 = false;
@@ -209,40 +209,40 @@ public final class a4 implements View.OnClickListener {
                 c2 c2Var = new c2(rVar.getContext(), R.drawable.iv_h1);
                 c2Var.a(z10);
                 G.j(z11, 0, c2Var, LocaleController.getString(R.string.ArticleHeading), new ei.n2(G, J, 1));
-                if (S2 != null && (S2.f12187b instanceof TL_iv.pageBlockParagraph)) {
+                if (R2 != null && (R2.f12187b instanceof TL_iv.pageBlockParagraph)) {
                     z12 = true;
                 } else {
                     z12 = false;
                 }
-                G.j(z12, R.drawable.iv_text, null, LocaleController.getString(R.string.ArticleText), new f(rVar, S2, 5));
-                if (S2 != null && (S2.f12187b instanceof TL_iv.pageBlockBlockquote)) {
+                G.j(z12, R.drawable.iv_text, null, LocaleController.getString(R.string.ArticleText), new f(rVar, R2, 5));
+                if (R2 != null && (R2.f12187b instanceof TL_iv.pageBlockBlockquote)) {
                     z13 = true;
                 } else {
                     z13 = false;
                 }
-                G.j(z13, R.drawable.iv_quote, null, LocaleController.getString(R.string.ArticleQuote), new f(rVar, S2, 6));
-                if (S2 != null && (S2.f12187b instanceof TL_iv.pageBlockPullquote)) {
+                G.j(z13, R.drawable.iv_quote, null, LocaleController.getString(R.string.ArticleQuote), new f(rVar, R2, 6));
+                if (R2 != null && (R2.f12187b instanceof TL_iv.pageBlockPullquote)) {
                     z14 = true;
                 } else {
                     z14 = false;
                 }
                 c2 c2Var2 = new c2(rVar.getContext(), R.drawable.iv_pullquote);
                 c2Var2.a(z10);
-                G.j(z14, 0, c2Var2, LocaleController.getString(R.string.ArticlePullquote), new f(rVar, S2, 7));
-                if (S2 != null && (S2.f12187b instanceof TL_iv.pageBlockPreformatted)) {
+                G.j(z14, 0, c2Var2, LocaleController.getString(R.string.ArticlePullquote), new f(rVar, R2, 7));
+                if (R2 != null && (R2.f12187b instanceof TL_iv.pageBlockPreformatted)) {
                     z15 = true;
                 } else {
                     z15 = false;
                 }
-                G.j(z15, R.drawable.iv_code, null, LocaleController.getString(R.string.ArticleCode), new f(rVar, S2, 8));
-                if (S2 != null && (S2.f12187b instanceof TL_iv.pageBlockFooter)) {
+                G.j(z15, R.drawable.iv_code, null, LocaleController.getString(R.string.ArticleCode), new f(rVar, R2, 8));
+                if (R2 != null && (R2.f12187b instanceof TL_iv.pageBlockFooter)) {
                     z16 = true;
                 } else {
                     z16 = false;
                 }
                 c2 c2Var3 = new c2(rVar.getContext(), R.drawable.iv_footer);
                 c2Var3.a(z10);
-                G.j(z16, 0, c2Var3, LocaleController.getString(R.string.ArticleFooter), new f(rVar, S2, 9));
+                G.j(z16, 0, c2Var3, LocaleController.getString(R.string.ArticleFooter), new f(rVar, R2, 9));
                 G.Z();
                 rVar.H = G;
                 return;

@@ -11,30 +11,30 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.ActionBar.z;
 import org.telegram.ui.Components.cb;
-import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.w61;
 import org.telegram.ui.Components.yl0;
 import org.telegram.ui.Components.zl0;
-import org.telegram.ui.ha1;
+import org.telegram.ui.fa1;
 import org.telegram.ui.qc;
-import org.telegram.ui.va1;
+import org.telegram.ui.ta1;
 public final class g extends cb {
-    public u61 X;
-    public final ha1 Y;
+    public w61 X;
+    public final fa1 Y;
 
     public g(Activity activity, d6 d6Var, TL_stats.TL_statsPollStats tL_statsPollStats) {
         super(activity, null, true, false, 2, d6Var);
-        setBackgroundColor(i6.v0(i6.f20766a7, d6Var));
+        setBackgroundColor(i6.v0(i6.f20771a7, d6Var));
         this.occupyNavigationBar = true;
         this.drawNavigationBar = false;
         this.L = false;
         this.K = AndroidUtilities.dp(12.0f);
-        this.Y = va1.d0(tL_statsPollStats.votes_graph, LocaleController.getString(R.string.PollV2StatsVoteTimeline), 2, false);
+        this.Y = ta1.d0(tL_statsPollStats.votes_graph, LocaleController.getString(R.string.PollV2StatsVoteTimeline), 2, false);
         zl0 zl0Var = this.d;
         int i10 = this.backgroundPaddingLeft;
         zl0Var.setPadding(i10, 0, i10, AndroidUtilities.navigationBarHeight);
         this.d.setClipToPadding(false);
         this.d.setSections(true);
-        z n10 = this.f25307e.n();
+        z n10 = this.f25355e.n();
         n10.a(-1, R.drawable.ic_close_white);
         n10.setTranslationX(-AndroidUtilities.dp(5.0f));
         this.X.N(false);
@@ -49,10 +49,10 @@ public final class g extends cb {
 
     @Override
     public final yl0 v(zl0 zl0Var) {
-        u61 u61Var = new u61(zl0Var, getContext(), this.currentAccount, 0, true, new hi.a(this, 9), this.resourcesProvider);
-        this.X = u61Var;
-        u61Var.f31313r = false;
-        return u61Var;
+        w61 w61Var = new w61(zl0Var, getContext(), this.currentAccount, 0, true, new hi.a(this, 9), this.resourcesProvider);
+        this.X = w61Var;
+        w61Var.f32531r = false;
+        return w61Var;
     }
 
     @Override

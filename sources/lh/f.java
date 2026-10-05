@@ -11,8 +11,8 @@ import org.telegram.ui.g40;
 import org.telegram.ui.h60;
 import s4.c1;
 import s4.j;
-import zg.k0;
-import zg.o0;
+import zg.i0;
+import zg.m0;
 public final class f extends j {
     public final h F;
 
@@ -27,7 +27,7 @@ public final class f extends j {
 
     @Override
     public final void w(c1 c1Var) {
-        o0 o0Var;
+        m0 m0Var;
         g gVar;
         int i10;
         h hVar = this.F;
@@ -38,19 +38,19 @@ public final class f extends j {
         if (list != null && b10 >= 0 && b10 < list.size()) {
             groupCallMessage = (GroupCallMessage) eVar.f15598c.get(b10);
         }
-        if (groupCallMessage != null && (o0Var = groupCallMessage.visibleReaction) != null) {
-            View view = c1Var.f46531a;
+        if (groupCallMessage != null && (m0Var = groupCallMessage.visibleReaction) != null) {
+            View view = c1Var.f46538a;
             if ((view instanceof c) && (gVar = hVar.Z0) != null) {
-                h60 h60Var = ((g40) gVar).f36500a;
+                h60 h60Var = ((g40) gVar).f36507a;
                 Context context = h60Var.getContext();
                 sk0 sk0Var = h60Var.K;
                 i10 = ((f3) h60Var).currentAccount;
-                k0 k0Var = new k0(context, null, sk0Var, (c) view, null, 0.0f, 0.0f, o0Var, i10, 1, false);
-                k0.B = k0Var;
-                k0Var.f53428i.setTag(R.id.parent_tag, 1);
-                h60Var.container.addView(k0Var.f53428i);
-                k0Var.f53438s = true;
-                k0Var.f53443y = System.currentTimeMillis();
+                i0 i0Var = new i0(context, null, sk0Var, (c) view, null, 0.0f, 0.0f, m0Var, i10, 1, false);
+                i0.B = i0Var;
+                i0Var.f53413i.setTag(R.id.parent_tag, 1);
+                h60Var.container.addView(i0Var.f53413i);
+                i0Var.f53423s = true;
+                i0Var.f53428y = System.currentTimeMillis();
             }
         }
     }

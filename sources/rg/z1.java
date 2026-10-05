@@ -7,11 +7,11 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.l4;
 public final class z1 extends l4 {
     public final Path h;
-    public final b2 f46410n;
+    public final b2 f46417n;
 
     public z1(b2 b2Var, Context context) {
         super(context);
-        this.f46410n = b2Var;
+        this.f46417n = b2Var;
         this.h = new Path();
     }
 
@@ -28,7 +28,7 @@ public final class z1 extends l4 {
         super.onMeasure(i10, i11);
         Path path = this.h;
         path.reset();
-        b2 b2Var = this.f46410n;
+        b2 b2Var = this.f46417n;
         if (b2Var.d) {
             AndroidUtilities.rectTmp.set(0.0f, -b2Var.M, getMeasuredWidth(), getMeasuredHeight());
         } else {

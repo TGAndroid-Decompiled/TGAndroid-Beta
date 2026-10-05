@@ -46,9 +46,9 @@ public final class y3 extends org.telegram.ui.ActionBar.n2 {
             case 3:
                 return ((ci.q6) this.f1897b).getContext();
             case 4:
-                return ((ku) this.f1897b).f28204a.getContext();
+                return ((ku) this.f1897b).f28291a.getContext();
             case 12:
-                return ((yh.x3) this.f1897b).getContext();
+                return ((yh.y3) this.f1897b).getContext();
             default:
                 return super.getContext();
         }
@@ -73,7 +73,7 @@ public final class y3 extends org.telegram.ui.ActionBar.n2 {
             case 5:
                 return this.currentAccount;
             case 6:
-                return ((fy) this.f1897b).E.f29097c1;
+                return ((fy) this.f1897b).E.f29194c1;
             case 9:
                 return this.currentAccount;
             case 12:
@@ -87,10 +87,10 @@ public final class y3 extends org.telegram.ui.ActionBar.n2 {
         ViewGroup viewGroup2;
         switch (this.f1896a) {
             case 5:
-                viewGroup = ((org.telegram.ui.ActionBar.f3) ((rv) this.f1897b).f30521x).containerView;
+                viewGroup = ((org.telegram.ui.ActionBar.f3) ((rv) this.f1897b).f30595x).containerView;
                 return viewGroup;
             case 6:
-                return ((fy) this.f1897b).E.f29142r;
+                return ((fy) this.f1897b).E.f29239r;
             case 7:
             case 8:
             default:
@@ -106,10 +106,10 @@ public final class y3 extends org.telegram.ui.ActionBar.n2 {
         ViewGroup viewGroup;
         switch (this.f1896a) {
             case 5:
-                viewGroup = ((org.telegram.ui.ActionBar.f3) ((rv) this.f1897b).f30521x).containerView;
+                viewGroup = ((org.telegram.ui.ActionBar.f3) ((rv) this.f1897b).f30595x).containerView;
                 return (FrameLayout) viewGroup;
             case 6:
-                return ((fy) this.f1897b).E.f29142r;
+                return ((fy) this.f1897b).E.f29239r;
             case 7:
             case 8:
             default:
@@ -148,7 +148,7 @@ public final class y3 extends org.telegram.ui.ActionBar.n2 {
             case 8:
                 return ((org.telegram.ui.web.c1) this.f1897b).W;
             case 9:
-                org.telegram.ui.ActionBar.n2 n2Var = ((rg.m1) this.f1897b).f46211t0;
+                org.telegram.ui.ActionBar.n2 n2Var = ((rg.m1) this.f1897b).f46218t0;
                 if (n2Var == null) {
                     return null;
                 }
@@ -166,7 +166,7 @@ public final class y3 extends org.telegram.ui.ActionBar.n2 {
                 }
                 return ownerActivity;
             case 12:
-                for (Context context2 = ((yh.x3) this.f1897b).getContext(); context2 instanceof ContextWrapper; context2 = ((ContextWrapper) context2).getBaseContext()) {
+                for (Context context2 = ((yh.y3) this.f1897b).getContext(); context2 instanceof ContextWrapper; context2 = ((ContextWrapper) context2).getBaseContext()) {
                     if (context2 instanceof Activity) {
                         return (Activity) context2;
                     }
@@ -196,12 +196,12 @@ public final class y3 extends org.telegram.ui.ActionBar.n2 {
             default:
                 return super.getResourceProvider();
             case 5:
-                d6Var2 = ((org.telegram.ui.ActionBar.f3) ((rv) this.f1897b).f30521x).resourcesProvider;
+                d6Var2 = ((org.telegram.ui.ActionBar.f3) ((rv) this.f1897b).f30595x).resourcesProvider;
                 return d6Var2;
             case 6:
                 return ((fy) this.f1897b).E.Z1;
             case 8:
-                return new x3(9, ((org.telegram.ui.web.c1) this.f1897b).f42133e);
+                return new x3(9, ((org.telegram.ui.web.c1) this.f1897b).f42145e);
             case 10:
                 return new o0.a(new d());
             case 11:
@@ -214,7 +214,7 @@ public final class y3 extends org.telegram.ui.ActionBar.n2 {
     public Dialog getVisibleDialog() {
         switch (this.f1896a) {
             case 4:
-                return new ju(this, ((ku) this.f1897b).f28204a.getContext());
+                return new ju(this, ((ku) this.f1897b).f28291a.getContext());
             default:
                 return super.getVisibleDialog();
         }
@@ -267,7 +267,7 @@ public final class y3 extends org.telegram.ui.ActionBar.n2 {
                     return false;
                 }
                 ?? obj = new Object();
-                obj.f21354a = true;
+                obj.f21358a = true;
                 R.showAsSheet(n2Var, obj);
                 return true;
             case 10:

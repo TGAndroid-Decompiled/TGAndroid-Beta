@@ -30,7 +30,7 @@ import org.telegram.ui.Components.tr;
 import org.telegram.ui.Components.voip.r0;
 import org.telegram.ui.Components.voip.x;
 import rg.y1;
-import yh.y7;
+import yh.a8;
 public class e extends TextureView implements TextureView.SurfaceTextureListener {
     public boolean E;
     public boolean F;
@@ -44,103 +44,103 @@ public class e extends TextureView implements TextureView.SurfaceTextureListener
     public y1 N;
     public final int O;
     public volatile boolean P;
-    public volatile y7 Q;
+    public volatile a8 Q;
     public final GestureDetector R;
     public ValueAnimator S;
     public AnimatorSet T;
     public final c U;
     public final b V;
     public final b W;
-    public boolean f46818a;
-    public final b f46819a0;
-    public a f46820b;
-    public SurfaceTexture f46821c;
+    public boolean f46825a;
+    public final b f46826a0;
+    public a f46827b;
+    public SurfaceTexture f46828c;
     public EGLDisplay d;
-    public EGLSurface f46822e;
-    public EGLContext f46823f;
+    public EGLSurface f46829e;
+    public EGLContext f46830f;
     public EGL10 h;
-    public EGLConfig f46824n;
-    public GL10 f46825r;
-    public int f46826s;
+    public EGLConfig f46831n;
+    public GL10 f46832r;
+    public int f46833s;
     public int v;
-    public int f46827w;
-    public boolean f46828x;
-    public boolean f46829y;
+    public int f46834w;
+    public boolean f46835x;
+    public boolean f46836y;
 
     public e(Context context, int i10, int i11) {
         super(context);
         int i12;
         long j3;
         int i13 = 0;
-        this.f46828x = false;
-        this.f46829y = true;
+        this.f46835x = false;
+        this.f46836y = true;
         this.E = false;
         this.F = false;
         this.L = new ArrayList();
         this.T = new AnimatorSet();
         this.U = new c(this, 0);
         this.V = new ValueAnimator.AnimatorUpdateListener(this) {
-            public final e f46813b;
+            public final e f46820b;
 
             {
-                this.f46813b = this;
+                this.f46820b = this;
             }
 
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                 switch (r2) {
                     case 0:
-                        this.f46813b.f46820b.f46792e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                        this.f46820b.f46827b.f46799e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                         return;
                     case 1:
-                        this.f46813b.f46820b.d = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                        this.f46820b.f46827b.d = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                         return;
                     default:
-                        this.f46813b.f46820b.f46794g = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                        this.f46820b.f46827b.f46801g = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                         return;
                 }
             }
         };
         this.W = new ValueAnimator.AnimatorUpdateListener(this) {
-            public final e f46813b;
+            public final e f46820b;
 
             {
-                this.f46813b = this;
+                this.f46820b = this;
             }
 
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                 switch (r2) {
                     case 0:
-                        this.f46813b.f46820b.f46792e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                        this.f46820b.f46827b.f46799e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                         return;
                     case 1:
-                        this.f46813b.f46820b.d = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                        this.f46820b.f46827b.d = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                         return;
                     default:
-                        this.f46813b.f46820b.f46794g = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                        this.f46820b.f46827b.f46801g = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                         return;
                 }
             }
         };
-        this.f46819a0 = new ValueAnimator.AnimatorUpdateListener(this) {
-            public final e f46813b;
+        this.f46826a0 = new ValueAnimator.AnimatorUpdateListener(this) {
+            public final e f46820b;
 
             {
-                this.f46813b = this;
+                this.f46820b = this;
             }
 
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                 switch (r2) {
                     case 0:
-                        this.f46813b.f46820b.f46792e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                        this.f46820b.f46827b.f46799e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                         return;
                     case 1:
-                        this.f46813b.f46820b.d = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                        this.f46820b.f46827b.d = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                         return;
                     default:
-                        this.f46813b.f46820b.f46794g = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                        this.f46820b.f46827b.f46801g = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                         return;
                 }
             }
@@ -186,22 +186,22 @@ public class e extends TextureView implements TextureView.SurfaceTextureListener
                 } else {
                     iArr = new int[]{12352, 4, 12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 16, 12326, 0, 12338, 1, 12344};
                 }
-                eVar.f46824n = null;
+                eVar.f46831n = null;
                 if (eVar.h.eglChooseConfig(eVar.d, iArr, eGLConfigArr, 1, iArr2)) {
                     if (iArr2[0] > 0) {
-                        eVar.f46824n = eGLConfigArr[0];
+                        eVar.f46831n = eGLConfigArr[0];
                     }
-                    EGLConfig eGLConfig = eVar.f46824n;
+                    EGLConfig eGLConfig = eVar.f46831n;
                     if (eGLConfig != null) {
-                        eVar.f46823f = eVar.h.eglCreateContext(eVar.d, eGLConfig, EGL10.EGL_NO_CONTEXT, new int[]{12440, 2, 12344});
+                        eVar.f46830f = eVar.h.eglCreateContext(eVar.d, eGLConfig, EGL10.EGL_NO_CONTEXT, new int[]{12440, 2, 12344});
                         eVar.f();
-                        eVar.f46822e = eVar.h.eglCreateWindowSurface(eVar.d, eVar.f46824n, eVar.f46821c, null);
+                        eVar.f46829e = eVar.h.eglCreateWindowSurface(eVar.d, eVar.f46831n, eVar.f46828c, null);
                         eVar.f();
-                        EGLSurface eGLSurface = eVar.f46822e;
+                        EGLSurface eGLSurface = eVar.f46829e;
                         if (eGLSurface != null && eGLSurface != EGL10.EGL_NO_SURFACE) {
-                            if (eVar.h.eglMakeCurrent(eVar.d, eGLSurface, eGLSurface, eVar.f46823f)) {
+                            if (eVar.h.eglMakeCurrent(eVar.d, eGLSurface, eGLSurface, eVar.f46830f)) {
                                 eVar.f();
-                                eVar.f46825r = (GL10) eVar.f46823f.getGL();
+                                eVar.f46832r = (GL10) eVar.f46830f.getGL();
                                 eVar.f();
                                 return;
                             }
@@ -226,9 +226,9 @@ public class e extends TextureView implements TextureView.SurfaceTextureListener
     public static boolean b(e eVar) {
         boolean z10;
         synchronized (eVar) {
-            z10 = eVar.f46829y;
+            z10 = eVar.f46836y;
         }
-        if (!z10 && eVar.f46820b != null) {
+        if (!z10 && eVar.f46827b != null) {
             return false;
         }
         return true;
@@ -238,16 +238,16 @@ public class e extends TextureView implements TextureView.SurfaceTextureListener
         synchronized (eVar) {
             try {
                 eVar.e();
-                a aVar = eVar.f46820b;
+                a aVar = eVar.f46827b;
                 if (aVar != null) {
                     aVar.D = f7;
-                    aVar.onDrawFrame(eVar.f46825r);
+                    aVar.onDrawFrame(eVar.f46832r);
                 }
-                int glGetError = eVar.f46825r.glGetError();
+                int glGetError = eVar.f46832r.glGetError();
                 if (glGetError != 0) {
                     FileLog.e("GL error = 0x" + Integer.toHexString(glGetError));
                 }
-                eVar.h.eglSwapBuffers(eVar.d, eVar.f46822e);
+                eVar.h.eglSwapBuffers(eVar.d, eVar.f46829e);
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -270,14 +270,14 @@ public class e extends TextureView implements TextureView.SurfaceTextureListener
     }
 
     public final void e() {
-        if (this.f46823f.equals(this.h.eglGetCurrentContext()) && this.f46822e.equals(this.h.eglGetCurrentSurface(12377))) {
+        if (this.f46830f.equals(this.h.eglGetCurrentContext()) && this.f46829e.equals(this.h.eglGetCurrentSurface(12377))) {
             return;
         }
         f();
         EGL10 egl10 = this.h;
         EGLDisplay eGLDisplay = this.d;
-        EGLSurface eGLSurface = this.f46822e;
-        if (egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.f46823f)) {
+        EGLSurface eGLSurface = this.f46829e;
+        if (egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.f46830f)) {
             f();
             return;
         }
@@ -302,10 +302,10 @@ public class e extends TextureView implements TextureView.SurfaceTextureListener
     public final void i() {
         float f7;
         d();
-        a aVar = this.f46820b;
+        a aVar = this.f46827b;
         float f10 = aVar.d;
-        float f11 = aVar.f46794g;
-        float f12 = aVar.f46792e;
+        float f11 = aVar.f46801g;
+        float f12 = aVar.f46799e;
         float f13 = f10 + f11;
         ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, 0.0f);
         this.S = ofFloat;
@@ -338,7 +338,7 @@ public class e extends TextureView implements TextureView.SurfaceTextureListener
     }
 
     public final void j(long j3) {
-        a aVar = this.f46820b;
+        a aVar = this.f46827b;
         if (aVar != null) {
             aVar.d = -180.0f;
             AndroidUtilities.runOnUIThread(new c(this, 1), j3);
@@ -359,14 +359,14 @@ public class e extends TextureView implements TextureView.SurfaceTextureListener
             Collections.shuffle(arrayList);
             this.K = 0;
         }
-        b bVar = this.f46819a0;
+        b bVar = this.f46826a0;
         b bVar2 = this.W;
         if (intValue == 0) {
             int abs = Math.abs(Utilities.random.nextInt() % 4);
             this.T = new AnimatorSet();
             int i13 = this.O;
             if (i13 == 4) {
-                float f7 = this.f46820b.d;
+                float f7 = this.f46827b.d;
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, 360.0f + f7);
                 ofFloat.addUpdateListener(bVar2);
                 ofFloat.setDuration(12000L);
@@ -374,7 +374,7 @@ public class e extends TextureView implements TextureView.SurfaceTextureListener
                 this.T.playTogether(ofFloat);
             } else if (abs == 0 && i13 != 1 && i13 != 3) {
                 float f10 = 48;
-                ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.f46820b.f46794g, f10);
+                ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.f46827b.f46801g, f10);
                 ofFloat2.addUpdateListener(bVar);
                 ofFloat2.setDuration(2300L);
                 ofFloat2.setInterpolator(tr.h);
@@ -394,7 +394,7 @@ public class e extends TextureView implements TextureView.SurfaceTextureListener
                     i10 = -i10;
                 }
                 float f11 = i10;
-                ValueAnimator ofFloat4 = ValueAnimator.ofFloat(this.f46820b.f46794g, f11);
+                ValueAnimator ofFloat4 = ValueAnimator.ofFloat(this.f46827b.f46801g, f11);
                 ofFloat4.addUpdateListener(bVar2);
                 ofFloat4.setDuration(3000L);
                 ofFloat4.setInterpolator(tr.h);
@@ -409,21 +409,21 @@ public class e extends TextureView implements TextureView.SurfaceTextureListener
             this.T.start();
         } else if (intValue == 1) {
             this.T = new AnimatorSet();
-            ValueAnimator ofFloat6 = ValueAnimator.ofFloat(this.f46820b.d, 360.0f);
+            ValueAnimator ofFloat6 = ValueAnimator.ofFloat(this.f46827b.d, 360.0f);
             ofFloat6.addUpdateListener(bVar2);
             ofFloat6.setDuration(8000L);
-            ofFloat6.setInterpolator(tr.f31147f);
+            ofFloat6.setInterpolator(tr.f31215f);
             this.T.playTogether(ofFloat6);
             this.T.addListener(new d(this, 0));
             this.T.start();
         } else if (intValue == 2) {
             this.T = new AnimatorSet();
-            ValueAnimator ofFloat7 = ValueAnimator.ofFloat(this.f46820b.d, 184.0f);
+            ValueAnimator ofFloat7 = ValueAnimator.ofFloat(this.f46827b.d, 184.0f);
             ofFloat7.addUpdateListener(bVar2);
             ofFloat7.setDuration(600L);
-            tr trVar = tr.f31148g;
+            tr trVar = tr.f31216g;
             ofFloat7.setInterpolator(trVar);
-            ValueAnimator ofFloat8 = ValueAnimator.ofFloat(this.f46820b.f46794g, 50.0f);
+            ValueAnimator ofFloat8 = ValueAnimator.ofFloat(this.f46827b.f46801g, 50.0f);
             ofFloat8.addUpdateListener(bVar);
             ofFloat8.setDuration(600L);
             ofFloat8.setInterpolator(trVar);
@@ -446,10 +446,10 @@ public class e extends TextureView implements TextureView.SurfaceTextureListener
             this.T.start();
         } else {
             this.T = new AnimatorSet();
-            ValueAnimator ofFloat12 = ValueAnimator.ofFloat(this.f46820b.d, 180.0f);
+            ValueAnimator ofFloat12 = ValueAnimator.ofFloat(this.f46827b.d, 180.0f);
             ofFloat12.addUpdateListener(bVar2);
             ofFloat12.setDuration(600L);
-            tr trVar2 = tr.f31147f;
+            tr trVar2 = tr.f31215f;
             ofFloat12.setInterpolator(trVar2);
             ValueAnimator ofFloat13 = ValueAnimator.ofFloat(180.0f, 360.0f);
             ofFloat13.addUpdateListener(bVar2);
@@ -474,11 +474,11 @@ public class e extends TextureView implements TextureView.SurfaceTextureListener
     public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         d();
-        a aVar = this.f46820b;
+        a aVar = this.f46827b;
         if (aVar != null) {
             aVar.d = 0.0f;
-            aVar.f46794g = 0.0f;
-            aVar.f46792e = 0.0f;
+            aVar.f46801g = 0.0f;
+            aVar.f46799e = 0.0f;
         }
         this.M = false;
     }
@@ -486,10 +486,10 @@ public class e extends TextureView implements TextureView.SurfaceTextureListener
     @Override
     public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
         this.G = new k(this);
-        this.f46821c = surfaceTexture;
-        this.f46827w = i10;
+        this.f46828c = surfaceTexture;
+        this.f46834w = i10;
         this.v = i11;
-        this.f46826s = Math.max(0, ((int) ((1.0f / this.H) * 1000.0f)) - 1);
+        this.f46833s = Math.max(0, ((int) ((1.0f / this.H) * 1000.0f)) - 1);
         this.G.start();
     }
 
@@ -497,7 +497,7 @@ public class e extends TextureView implements TextureView.SurfaceTextureListener
     public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
         this.P = false;
         if (this.G != null) {
-            this.f46828x = false;
+            this.f46835x = false;
             this.G = null;
         }
         return false;
@@ -505,11 +505,11 @@ public class e extends TextureView implements TextureView.SurfaceTextureListener
 
     @Override
     public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
-        this.f46827w = i10;
+        this.f46834w = i10;
         this.v = i11;
-        a aVar = this.f46820b;
+        a aVar = this.f46827b;
         if (aVar != null) {
-            aVar.onSurfaceChanged(this.f46825r, i10, i11);
+            aVar.onSurfaceChanged(this.f46832r, i10, i11);
         }
     }
 
@@ -518,7 +518,7 @@ public class e extends TextureView implements TextureView.SurfaceTextureListener
         if (motionEvent.getAction() == 0) {
             getParent().requestDisallowInterceptTouchEvent(true);
         } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
-            this.f46818a = false;
+            this.f46825a = false;
             i();
             getParent().requestDisallowInterceptTouchEvent(false);
         }
@@ -526,12 +526,12 @@ public class e extends TextureView implements TextureView.SurfaceTextureListener
     }
 
     public void setBackgroundBitmap(Bitmap bitmap) {
-        a aVar = this.f46820b;
-        f fVar = aVar.f46791c;
+        a aVar = this.f46827b;
+        f fVar = aVar.f46798c;
         if (fVar != null) {
             fVar.V = bitmap;
         }
-        aVar.f46801o = bitmap;
+        aVar.f46808o = bitmap;
     }
 
     public void setDialogVisible(boolean z10) {
@@ -545,11 +545,11 @@ public class e extends TextureView implements TextureView.SurfaceTextureListener
     }
 
     public synchronized void setPaused(boolean z10) {
-        this.f46829y = z10;
+        this.f46836y = z10;
     }
 
     public synchronized void setRenderer(a aVar) {
-        this.f46820b = aVar;
+        this.f46827b = aVar;
         this.E = true;
     }
 

@@ -25,43 +25,43 @@ public final class n1 implements Runnable {
                 ArrayList arrayList = x3.f12754z4;
                 TL_iv.pageBlockPullquote pageblockpullquote = new TL_iv.pageBlockPullquote();
                 pageblockpullquote.caption = new TL_iv.textEmpty();
-                x3Var.W4(this.f12536c, pageblockpullquote, 0, 0, false, false);
+                x3Var.V4(this.f12536c, pageblockpullquote, 0, 0, false, false);
                 return;
             case 1:
-                e2Var.P.X4(aVar, new TL_iv.pageBlockPreformatted());
+                e2Var.P.W4(aVar, new TL_iv.pageBlockPreformatted());
                 return;
             case 2:
-                e2Var.P.X4(aVar, new TL_iv.pageBlockFooter());
+                e2Var.P.W4(aVar, new TL_iv.pageBlockFooter());
                 return;
             case 3:
-                e2Var.P.X4(aVar, new TL_iv.pageBlockParagraph());
+                e2Var.P.W4(aVar, new TL_iv.pageBlockParagraph());
                 return;
             case 4:
                 x3 x3Var2 = e2Var.P;
                 ArrayList arrayList2 = x3.f12754z4;
                 TL_iv.pageBlockBlockquote pageblockblockquote = new TL_iv.pageBlockBlockquote();
                 pageblockblockquote.caption = new TL_iv.textEmpty();
-                x3Var2.W4(this.f12536c, pageblockblockquote, 0, 0, false, false);
+                x3Var2.V4(this.f12536c, pageblockblockquote, 0, 0, false, false);
                 return;
             case 5:
-                e2Var.P.Y4(aVar, 0);
+                e2Var.P.X4(aVar, 0);
                 return;
             case 6:
-                e2Var.P.Y4(aVar, 1);
+                e2Var.P.X4(aVar, 1);
                 return;
             case 7:
-                e2Var.P.Y4(aVar, 2);
+                e2Var.P.X4(aVar, 2);
                 return;
             case 8:
-                e2Var.P.Y4(aVar, 3);
+                e2Var.P.X4(aVar, 3);
                 return;
             default:
-                View B1 = e2Var.P.B1(aVar);
-                if (B1 instanceof q4) {
-                    ((q4) B1).h(aVar, e2Var.P.getMapDelegate());
+                View A1 = e2Var.P.A1(aVar);
+                if (A1 instanceof q4) {
+                    ((q4) A1).h(aVar, e2Var.P.getMapDelegate());
                     return;
                 } else {
-                    e2Var.P.f25250f3.N(false);
+                    e2Var.P.f26034f3.N(false);
                     return;
                 }
         }

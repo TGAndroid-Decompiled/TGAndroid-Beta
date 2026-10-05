@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.a91;
-import org.telegram.ui.Components.xo0;
+import org.telegram.ui.Components.b91;
+import org.telegram.ui.Components.yo0;
 import org.telegram.ui.hu;
-public final class c5 implements xo0 {
-    public final hu f21879a;
+public final class c5 implements yo0 {
+    public final hu f21883a;
 
     public c5(hu huVar) {
-        this.f21879a = huVar;
+        this.f21883a = huVar;
     }
 
     @Override
@@ -35,17 +35,17 @@ public final class c5 implements xo0 {
             }
         }
         int i11 = (int) e7;
-        hu huVar = this.f21879a;
+        hu huVar = this.f21883a;
         long j3 = i11;
         boolean z11 = true;
-        huVar.f21921b.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j3)));
+        huVar.f21925b.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j3)));
         huVar.d = j3;
         w8[] w8VarArr = huVar.h;
-        AnimatorSet[] animatorSetArr = huVar.f37178n;
-        int i12 = huVar.f37176e;
-        i10 = huVar.f37179r.videosRow;
+        AnimatorSet[] animatorSetArr = huVar.f37179n;
+        int i12 = huVar.f37177e;
+        i10 = huVar.f37180r.videosRow;
         if (i12 == i10) {
-            huVar.f37177f.setText(LocaleController.formatString("AutoDownloadPreloadVideoInfo", R.string.AutoDownloadPreloadVideoInfo, AndroidUtilities.formatFileSize(j3)));
+            huVar.f37178f.setText(LocaleController.formatString("AutoDownloadPreloadVideoInfo", R.string.AutoDownloadPreloadVideoInfo, AndroidUtilities.formatFileSize(j3)));
             if (i11 <= 2097152) {
                 z11 = false;
             }
@@ -60,7 +60,7 @@ public final class c5 implements xo0 {
                 AnimatorSet animatorSet2 = new AnimatorSet();
                 animatorSetArr[0] = animatorSet2;
                 animatorSet2.playTogether(arrayList);
-                animatorSetArr[0].addListener(new a91(huVar, 15));
+                animatorSetArr[0].addListener(new b91(huVar, 15));
                 animatorSetArr[0].setDuration(150L);
                 animatorSetArr[0].start();
             }
@@ -70,10 +70,10 @@ public final class c5 implements xo0 {
     @Override
     public final CharSequence getContentDescription() {
         StringBuilder sb2 = new StringBuilder();
-        hu huVar = this.f21879a;
-        sb2.append((Object) huVar.f21920a.getText());
+        hu huVar = this.f21883a;
+        sb2.append((Object) huVar.f21924a.getText());
         sb2.append(" ");
-        sb2.append((Object) huVar.f21921b.getText());
+        sb2.append((Object) huVar.f21925b.getText());
         return sb2.toString();
     }
 

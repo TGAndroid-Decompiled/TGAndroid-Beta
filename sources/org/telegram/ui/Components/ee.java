@@ -4,18 +4,18 @@ import android.graphics.Canvas;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_iv;
 public final class ee implements Utilities.Callback {
-    public final int f26054a;
-    public final ChatActivityEnterView f26055b;
+    public final int f26123a;
+    public final ChatActivityEnterView f26124b;
 
     public ee(ChatActivityEnterView chatActivityEnterView, int i10) {
-        this.f26054a = i10;
-        this.f26055b = chatActivityEnterView;
+        this.f26123a = i10;
+        this.f26124b = chatActivityEnterView;
     }
 
     @Override
     public final void run(Object obj) {
-        int i10 = this.f26054a;
-        ChatActivityEnterView chatActivityEnterView = this.f26055b;
+        int i10 = this.f26123a;
+        ChatActivityEnterView chatActivityEnterView = this.f26124b;
         switch (i10) {
             case 0:
                 chatActivityEnterView.Q0((TL_iv.RichMessage) obj);
@@ -26,7 +26,7 @@ public final class ee implements Utilities.Callback {
                 chatActivityEnterView.E0.setSelection(charSequence.length(), charSequence.length());
                 return;
             default:
-                int i11 = ChatActivityEnterView.f23851n5;
+                int i11 = ChatActivityEnterView.f23854n5;
                 chatActivityEnterView.e0((Canvas) obj, false);
                 return;
         }

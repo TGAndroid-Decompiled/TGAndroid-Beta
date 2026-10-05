@@ -7,27 +7,27 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 public final class m10 extends s4.s0 {
-    public final x10 f38391a;
+    public final x10 f38445a;
 
     public m10(x10 x10Var) {
-        this.f38391a = x10Var;
+        this.f38445a = x10Var;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, int i10) {
         if (i10 == 1) {
-            AndroidUtilities.hideKeyboard(this.f38391a.K.getCurrentFocus());
+            AndroidUtilities.hideKeyboard(this.f38445a.K.getCurrentFocus());
         }
     }
 
     @Override
     public final void b(RecyclerView recyclerView, int i10, int i11) {
         MessageObject messageObject;
-        x10 x10Var = this.f38391a;
+        x10 x10Var = this.f38445a;
         ai.n4 n4Var = x10Var.m0;
-        s4.c0 c0Var = x10Var.f42702j0;
-        le.b bVar = x10Var.f42688a;
-        g10 g10Var = x10Var.f42706n0;
+        s4.c0 c0Var = x10Var.f42769j0;
+        le.b bVar = x10Var.f42755a;
+        g10 g10Var = x10Var.f42773n0;
         if (recyclerView.getAdapter() != null && x10Var.d != null) {
             int L0 = c0Var.L0();
             int N0 = c0Var.N0();
@@ -37,20 +37,20 @@ public final class m10 extends s4.s0 {
                 AndroidUtilities.runOnUIThread(new g10(this, 1));
             }
             if (x10Var.d == x10Var.U) {
-                if (i11 != 0 && !x10Var.f42697f.isEmpty() && TextUtils.isEmpty(x10Var.Q)) {
+                if (i11 != 0 && !x10Var.f42764f.isEmpty() && TextUtils.isEmpty(x10Var.Q)) {
                     AndroidUtilities.cancelRunOnUIThread(g10Var);
                     AndroidUtilities.runOnUIThread(g10Var, 1650L);
                     bVar.a(true, true);
                 }
                 s4.c1 K = recyclerView.K(L0);
-                if (K != null && K.f46535f == 0) {
-                    View view = K.f46531a;
+                if (K != null && K.f46542f == 0) {
+                    View view = K.f46538a;
                     if (view instanceof org.telegram.ui.Cells.u7) {
                         org.telegram.ui.Cells.u7 u7Var = (org.telegram.ui.Cells.u7) view;
-                        if (u7Var.f23530e <= 0) {
+                        if (u7Var.f23533e <= 0) {
                             messageObject = null;
                         } else {
-                            messageObject = u7Var.f23528b[0];
+                            messageObject = u7Var.f23531b[0];
                         }
                         if (messageObject != null) {
                             int i12 = messageObject.messageOwner.date;
@@ -69,7 +69,7 @@ public final class m10 extends s4.s0 {
                 }
                 return;
             }
-            View pinnedHeader = x10Var.f42690b.getPinnedHeader();
+            View pinnedHeader = x10Var.f42757b.getPinnedHeader();
             if (pinnedHeader instanceof org.telegram.ui.Cells.v3) {
                 org.telegram.ui.Cells.v3 v3Var = (org.telegram.ui.Cells.v3) pinnedHeader;
                 CharSequence text = v3Var.getText();

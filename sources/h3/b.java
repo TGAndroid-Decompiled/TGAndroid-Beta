@@ -261,7 +261,7 @@ public final class b implements o {
                             this.f11007i.getClass();
                             u uVar5 = this.f11007i;
                             of.b bVar = uVar5.f4113k;
-                            if (bVar != null && ((long[]) bVar.f17162b).length > 0) {
+                            if (bVar != null && ((long[]) bVar.f17167b).length > 0) {
                                 tVar = new t(uVar5, position, 0);
                                 i10 = 0;
                             } else if (length2 != -1 && uVar5.f4112j > 0) {

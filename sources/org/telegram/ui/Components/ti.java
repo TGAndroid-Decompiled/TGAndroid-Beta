@@ -17,7 +17,7 @@ public final class ti extends f20 {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        this.J.s1(this.f26252r, true);
+        this.J.s1(this.f26295r, true);
         return super.onInterceptTouchEvent(motionEvent);
     }
 }

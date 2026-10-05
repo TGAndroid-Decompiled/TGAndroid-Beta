@@ -9,41 +9,41 @@ import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public abstract class pn0 extends FrameLayout {
-    public final View f29674a;
-    public final ImageView f29675b;
-    public final ImageView f29676c;
+    public final View f29767a;
+    public final ImageView f29768b;
+    public final ImageView f29769c;
     public final ci.j2 d;
-    public final ci.h2 f29677e;
-    public final org.telegram.ui.ActionBar.d6 f29678f;
+    public final ci.h2 f29770e;
+    public final org.telegram.ui.ActionBar.d6 f29771f;
 
     public pn0(Context context, float f7, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f29678f = d6Var;
+        this.f29771f = d6Var;
         View view = new View(context);
-        this.f29674a = view;
+        this.f29767a = view;
         view.setBackgroundDrawable(org.telegram.ui.ActionBar.i6.b0(AndroidUtilities.dp(18.0f), org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.O5, d6Var)));
         addView(view, w7.z5.i(-1.0f, 36.0f, 8388659, f7, 11.0f, f7, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f29675b = imageView;
+        this.f29768b = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         imageView.setImageResource(R.drawable.smiles_inputsearch);
         imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Q5, d6Var), PorterDuff.Mode.MULTIPLY));
         addView(imageView, w7.z5.i(36.0f, 36.0f, 8388659, f7 + 2.0f, 11.0f, 0.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
-        this.f29676c = imageView2;
+        this.f29769c = imageView2;
         imageView2.setScaleType(scaleType);
         ci.j2 j2Var = new ci.j2(3, this);
         this.d = j2Var;
         imageView2.setImageDrawable(j2Var);
-        j2Var.f27464f = AndroidUtilities.dp(7.0f);
+        j2Var.f27562f = AndroidUtilities.dp(7.0f);
         imageView2.setScaleX(0.1f);
         imageView2.setScaleY(0.1f);
         imageView2.setAlpha(0.0f);
         addView(imageView2, w7.z5.i(36.0f, 36.0f, 8388661, f7, 11.0f, f7, 0.0f));
         imageView2.setOnClickListener(new l80(this, 12));
         ci.h2 h2Var = new ci.h2(this, context, 6);
-        this.f29677e = h2Var;
+        this.f29770e = h2Var;
         h2Var.setTextSize(1, 16.0f);
         h2Var.setHintTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.P5, d6Var));
         h2Var.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.R5, d6Var));
@@ -70,14 +70,14 @@ public abstract class pn0 extends FrameLayout {
     }
 
     public View getSearchBackground() {
-        return this.f29674a;
+        return this.f29767a;
     }
 
     public EditTextBoldCursor getSearchEditText() {
-        return this.f29677e;
+        return this.f29770e;
     }
 
     public void setHint(String str) {
-        this.f29677e.setHint(str);
+        this.f29770e.setHint(str);
     }
 }

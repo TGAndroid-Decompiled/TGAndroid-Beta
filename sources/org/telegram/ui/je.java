@@ -2,21 +2,21 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.tl.TL_stars;
 public final class je {
-    public String f37663b;
-    public CharSequence f37664c;
+    public String f37670b;
+    public CharSequence f37671c;
     public long d;
-    public long f37665e;
-    public String f37666f;
-    public boolean f37667g;
+    public long f37672e;
+    public String f37673f;
+    public boolean f37674g;
     public String h;
-    public long f37669j;
-    public boolean f37662a = true;
-    public TL_stars.StarsAmount f37668i = TL_stars.StarsAmount.ofStars(0);
+    public long f37676j;
+    public boolean f37669a = true;
+    public TL_stars.StarsAmount f37675i = TL_stars.StarsAmount.ofStars(0);
 
     public static je a(String str, String str2) {
         je jeVar = new je();
-        jeVar.f37663b = str;
-        jeVar.f37664c = str2;
+        jeVar.f37670b = str;
+        jeVar.f37671c = str2;
         return jeVar;
     }
 }

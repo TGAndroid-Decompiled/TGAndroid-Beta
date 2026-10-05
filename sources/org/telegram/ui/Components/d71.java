@@ -1,43 +1,42 @@
 package org.telegram.ui.Components;
+public final class d71 extends s4.j {
+    public final e71 F;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-public final class d71 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f25620a;
-    public final View f25621b;
-
-    public d71(int i10, View view) {
-        this.f25620a = i10;
-        this.f25621b = view;
+    public d71(e71 e71Var) {
+        this.F = e71Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f25620a) {
-            case 0:
-                e71 e71Var = (e71) this.f25621b;
-                e71Var.getClass();
-                e71Var.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                e71Var.invalidate();
-                return;
-            case 1:
-                l71 l71Var = (l71) this.f25621b;
-                l71Var.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                l71Var.f28304b = floatValue;
-                l71Var.setTranslationY(floatValue);
-                return;
-            default:
-                f91 f91Var = (f91) this.f25621b;
-                f91Var.getClass();
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                f91Var.setAnimationIdicatorProgress(floatValue2);
-                e91 e91Var = f91Var.f26425y;
-                if (e91Var != null) {
-                    ((n2.c) e91Var).k(floatValue2);
-                    return;
-                }
-                return;
+    public final void M() {
+        e71 e71Var = this.F;
+        if (e71Var.b1()) {
+            e71Var.invalidate();
         }
+        e71Var.D1();
+    }
+
+    @Override
+    public final void O() {
+        e71 e71Var = this.F;
+        if (e71Var.b1()) {
+            e71Var.invalidate();
+        }
+        e71Var.D1();
+    }
+
+    @Override
+    public final void P(s4.c1 c1Var) {
+        e71 e71Var = this.F;
+        e71Var.invalidate();
+        e71Var.D1();
+    }
+
+    @Override
+    public final void Q() {
+        e71 e71Var = this.F;
+        if (e71Var.b1()) {
+            e71Var.invalidate();
+        }
+        e71Var.D1();
     }
 }

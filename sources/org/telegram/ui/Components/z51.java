@@ -1,38 +1,42 @@
 package org.telegram.ui.Components;
 
-import android.view.MotionEvent;
-import org.telegram.tgnet.TLRPC;
-public abstract class z51 {
-    public String[] f33396a = new String[0];
+import android.animation.ValueAnimator;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+public final class z51 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f33432a;
+    public int f33433b;
+    public final int f33434c;
+    public final Object d;
 
-    public boolean a() {
-        return false;
+    public z51(org.telegram.ui.dv dvVar, int i10, int i11) {
+        this.f33432a = 1;
+        this.d = dvVar;
+        this.f33433b = i10;
+        this.f33434c = i11;
     }
 
-    public String[] b() {
-        return this.f33396a;
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f33432a) {
+            case 0:
+                int floatValue = (int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * this.f33434c);
+                d61 d61Var = (d61) this.d;
+                d61Var.N = true;
+                d61Var.f25688n.scrollBy(0, floatValue - this.f33433b);
+                d61Var.N = false;
+                this.f33433b = floatValue;
+                return;
+            default:
+                ((org.telegram.ui.dv) this.d).f35886c.d.setColorFilter(new PorterDuffColorFilter(i0.a.d(((Float) valueAnimator.getAnimatedValue()).floatValue(), this.f33433b, this.f33434c), PorterDuff.Mode.SRC_IN));
+                return;
+        }
     }
 
-    public boolean c() {
-        return false;
-    }
-
-    public boolean d(s51 s51Var, MotionEvent motionEvent) {
-        return false;
-    }
-
-    public boolean e(s51 s51Var, j jVar, MotionEvent motionEvent) {
-        return false;
-    }
-
-    public abstract void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10);
-
-    public abstract void h(TLRPC.StickerSetCovered stickerSetCovered);
-
-    public void i(String[] strArr) {
-        this.f33396a = strArr;
-    }
-
-    public void f(TLRPC.Document document, Object obj, boolean z10, int i10) {
+    public z51(d61 d61Var, int i10) {
+        this.f33432a = 0;
+        this.d = d61Var;
+        this.f33434c = i10;
+        this.f33433b = 0;
     }
 }

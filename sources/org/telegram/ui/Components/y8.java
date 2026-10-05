@@ -5,22 +5,22 @@ import android.view.View;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-public final class y8 extends org.telegram.ui.c71 {
-    public boolean f33108d2;
-    public final e9 f33109e2;
+public final class y8 extends org.telegram.ui.a71 {
+    public boolean f33229d2;
+    public final e9 f33230e2;
 
     public y8(e9 e9Var, e9 e9Var2, Activity activity, int i10) {
         super(e9Var2, activity, false, null, 4, true, null, 16, i10);
-        this.f33109e2 = e9Var;
-        this.f33108d2 = true;
+        this.f33230e2 = e9Var;
+        this.f33229d2 = true;
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        if (this.f33108d2) {
-            this.f33108d2 = false;
-            this.f33109e2.f26010b.s(null);
+        if (this.f33229d2) {
+            this.f33229d2 = false;
+            this.f33230e2.f26072b.s(null);
         }
     }
 
@@ -32,7 +32,7 @@ public final class y8 extends org.telegram.ui.c71 {
         long j3;
         int i11;
         boolean z11 = this.R;
-        e9 e9Var = this.f33109e2;
+        e9 e9Var = this.f33230e2;
         if (z11) {
             i11 = ((org.telegram.ui.ActionBar.n2) e9Var).currentAccount;
             tL_emojiList = MediaDataController.getInstance(i11).profileAvatarConstructorDefault;
@@ -43,7 +43,7 @@ public final class y8 extends org.telegram.ui.c71 {
         long j10 = 0;
         if (tL_emojiList != null) {
             if (document != null) {
-                j3 = document.f20048id;
+                j3 = document.f20053id;
             } else if (l4 != null) {
                 j3 = l4.longValue();
             } else {

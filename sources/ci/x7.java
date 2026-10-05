@@ -5,7 +5,7 @@ import android.graphics.RectF;
 import android.view.View;
 import android.view.ViewGroup;
 import j$.util.Objects;
-import org.telegram.ui.Components.c71;
+import org.telegram.ui.Components.e71;
 import org.telegram.ui.Components.zl0;
 public final class x7 implements bh.a {
     public final int f6298a;
@@ -41,13 +41,13 @@ public final class x7 implements bh.a {
                     if (view instanceof xh.o2) {
                         xh.o2 o2Var = (xh.o2) view;
                         if (o2Var.h == null) {
-                            final xh.j2 j2Var = o2Var.f50156f;
+                            final xh.j2 j2Var = o2Var.f50163f;
                             ViewGroup viewGroup = s2Var.S;
                             Objects.requireNonNull(j2Var);
                             o2Var.h = new ah.n(j2Var, viewGroup, new ah.m() {
                                 @Override
                                 public final boolean a(Canvas canvas2, View view2, long j3) {
-                                    return c71.this.drawChild(canvas2, view2, j3);
+                                    return e71.this.drawChild(canvas2, view2, j3);
                                 }
                             });
                         }

@@ -1,8 +1,28 @@
 package org.telegram.ui;
-public interface r31 {
-    void a();
 
-    void b();
+import android.content.Context;
+import android.text.Editable;
+import android.text.TextUtils;
+public final class r31 extends org.telegram.ui.Cells.j3 {
+    public final s31 f39967x;
 
-    void c();
+    public r31(s31 s31Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, "", true, false, 1024, d6Var);
+        this.f39967x = s31Var;
+    }
+
+    @Override
+    public final void b(Editable editable) {
+        boolean z10;
+        s31 s31Var = this.f39967x;
+        ci.d dVar = s31Var.f40332s;
+        if (dVar != null) {
+            if (!s31Var.d.optional && TextUtils.isEmpty(s31Var.f40330n.getText())) {
+                z10 = false;
+            } else {
+                z10 = true;
+            }
+            dVar.setEnabled(z10);
+        }
+    }
 }

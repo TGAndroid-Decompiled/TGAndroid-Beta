@@ -22,7 +22,7 @@ public final class nz0 extends kv0 {
         if (f7 > 0.0f) {
             RectF rectF = AndroidUtilities.rectTmp;
             ProfileActivity profileActivity = this.T;
-            rectF.set(0.0f, 0.0f, profileActivity.f34300n0.getMeasuredWidth(), AndroidUtilities.dp(30.0f) + profileActivity.f34300n0.getMeasuredHeight());
+            rectF.set(0.0f, 0.0f, profileActivity.f34313n0.getMeasuredWidth(), AndroidUtilities.dp(30.0f) + profileActivity.f34313n0.getMeasuredHeight());
             canvas.saveLayerAlpha(rectF, (int) (255.0f * f7), 31);
             profileActivity.Z.draw(canvas);
             canvas.save();
@@ -51,8 +51,8 @@ public final class nz0 extends kv0 {
         super.e();
         ProfileActivity profileActivity = this.T;
         profileActivity.fragmentView.invalidate();
-        for (int i10 = 0; i10 < profileActivity.f34300n0.getChildCount(); i10++) {
-            profileActivity.f34300n0.getChildAt(i10).invalidate();
+        for (int i10 = 0; i10 < profileActivity.f34313n0.getChildCount(); i10++) {
+            profileActivity.f34313n0.getChildAt(i10).invalidate();
         }
         org.telegram.ui.Components.nj0 nj0Var = profileActivity.v;
         if (nj0Var != null) {
@@ -62,7 +62,7 @@ public final class nz0 extends kv0 {
 
     @Override
     public final boolean j(View view, ImageReceiver imageReceiver) {
-        if (super.j(view, imageReceiver) && this.T.f34208a.getScrollState() != 1) {
+        if (super.j(view, imageReceiver) && this.T.f34221a.getScrollState() != 1) {
             return true;
         }
         return false;

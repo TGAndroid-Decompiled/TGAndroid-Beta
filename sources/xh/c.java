@@ -15,17 +15,17 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.Components.cb;
 import org.telegram.ui.Components.m7;
-import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.w61;
 import org.telegram.ui.Components.yl0;
 import org.telegram.ui.Components.zl0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import w7.z5;
 public final class c extends cb {
-    public static final int f49905a0 = 0;
+    public static final int f49912a0 = 0;
     public final List X;
     public final GiftAuctionController.Auction Y;
-    public u61 Z;
+    public w61 Z;
 
     public c(Context context, d6 d6Var, GiftAuctionController.Auction auction, List list) {
         super(context, null, false, false, 2, d6Var);
@@ -34,7 +34,7 @@ public final class c extends cb {
         this.v = 0.2f;
         this.L = false;
         this.K = AndroidUtilities.dp(12.0f);
-        this.f25307e.setTitle(y());
+        this.f25355e.setTitle(y());
         fixNavigationBar();
         this.d.setPadding(this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f), this.backgroundPaddingLeft, AndroidUtilities.dp(64.0f));
         this.d.setOnItemClickListener(new m7(3));
@@ -72,10 +72,10 @@ public final class c extends cb {
 
     @Override
     public final yl0 v(zl0 zl0Var) {
-        u61 u61Var = new u61(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 11), this.resourcesProvider);
-        this.Z = u61Var;
-        u61Var.f31313r = false;
-        return u61Var;
+        w61 w61Var = new w61(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 11), this.resourcesProvider);
+        this.Z = w61Var;
+        w61Var.f32531r = false;
+        return w61Var;
     }
 
     @Override

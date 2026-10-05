@@ -7,7 +7,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-public final class e90 extends zq0 {
+public final class e90 extends br0 {
     public final j90 X0;
 
     public e90(j90 j90Var, Context context, String str, String str2, org.telegram.ui.ActionBar.d6 d6Var) {
@@ -22,7 +22,7 @@ public final class e90 extends zq0 {
             return;
         }
         if (iVar != null && iVar.m() == 1) {
-            long j3 = ((TLRPC.Dialog) iVar.n(0)).f20046id;
+            long j3 = ((TLRPC.Dialog) iVar.n(0)).f20051id;
             if (j3 != 0 && j3 != UserConfig.getInstance(this.currentAccount).getClientUserId()) {
                 formatString = LocaleController.formatString(R.string.InvLinkToUser, MessagesController.getInstance(this.currentAccount).getPeerName(j3, true));
             } else {

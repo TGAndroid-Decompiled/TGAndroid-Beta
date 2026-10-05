@@ -14,7 +14,7 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-public final class ee0 extends org.telegram.ui.Components.qw0 {
+public final class ee0 extends org.telegram.ui.Components.rw0 {
     public boolean E;
     public GoogleSignInAccount F;
     public int G;
@@ -34,20 +34,20 @@ public final class ee0 extends org.telegram.ui.Components.qw0 {
     public final xd0 U;
     public boolean V;
     public final ug0 W;
-    public final be0 f36001a;
-    public final TextView f36002b;
-    public final vh.n f36003c;
+    public final be0 f36013a;
+    public final TextView f36014b;
+    public final vh.n f36015c;
     public final TextView d;
-    public final FrameLayout f36004e;
-    public final TextView f36005f;
+    public final FrameLayout f36016e;
+    public final TextView f36017f;
     public final FrameLayout h;
-    public final ai.p4 f36006n;
-    public final ai.p4 f36007r;
-    public final TextView f36008s;
+    public final ai.p4 f36018n;
+    public final ai.p4 f36019r;
+    public final TextView f36020s;
     public final org.telegram.ui.Components.x90 v;
-    public final org.telegram.ui.Components.nj0 f36009w;
-    public boolean f36010x;
-    public Bundle f36011y;
+    public final org.telegram.ui.Components.nj0 f36021w;
+    public boolean f36022x;
+    public Bundle f36023y;
 
     public ee0(org.telegram.ui.ug0 r30, android.content.Context r31, boolean r32) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ee0.<init>(org.telegram.ui.ug0, android.content.Context, boolean):void");
@@ -71,9 +71,9 @@ public final class ee0 extends org.telegram.ui.Components.qw0 {
         int i10;
         if (!this.E) {
             AndroidUtilities.cancelRunOnUIThread(this.T);
-            be0 be0Var = this.f36001a;
-            be0Var.f35548e = true;
-            es[] esVarArr = be0Var.f35549f;
+            be0 be0Var = this.f36013a;
+            be0Var.f35540e = true;
+            es[] esVarArr = be0Var.f35541f;
             if (esVarArr != null) {
                 for (es esVar : esVarArr) {
                     esVar.j(0.0f);
@@ -90,10 +90,10 @@ public final class ee0 extends org.telegram.ui.Components.qw0 {
                     be0Var.performHapticFeedback(3, 2);
                 } catch (Exception unused) {
                 }
-                for (es esVar2 : be0Var.f35549f) {
+                for (es esVar2 : be0Var.f35541f) {
                     esVar2.i(1.0f);
                 }
-                be0Var.f35549f[0].requestFocus();
+                be0Var.f35541f[0].requestFocus();
                 AndroidUtilities.shakeViewSpring(be0Var, new xd0(this, 1));
                 return;
             }
@@ -132,8 +132,8 @@ public final class ee0 extends org.telegram.ui.Components.qw0 {
                 tL_auth_signIn2.flags = 2 | tL_auth_signIn2.flags;
                 tL_auth_signIn = tL_auth_signIn2;
             }
-            be0Var.f35548e = true;
-            es[] esVarArr2 = be0Var.f35549f;
+            be0Var.f35540e = true;
+            es[] esVarArr2 = be0Var.f35541f;
             if (esVarArr2 != null) {
                 for (es esVar3 : esVarArr2) {
                     esVar3.j(0.0f);
@@ -146,33 +146,33 @@ public final class ee0 extends org.telegram.ui.Components.qw0 {
 
     @Override
     public final void j() {
-        if (this.f36010x) {
-            this.f36010x = false;
+        if (this.f36022x) {
+            this.f36022x = false;
         } else {
-            AndroidUtilities.runOnUIThread(new xd0(this, 8), ug0.f41199t0);
+            AndroidUtilities.runOnUIThread(new xd0(this, 8), ug0.f41235t0);
         }
     }
 
     @Override
     public final void k(Bundle bundle) {
         Bundle bundle2 = bundle.getBundle("emailcode_params");
-        this.f36011y = bundle2;
+        this.f36023y = bundle2;
         if (bundle2 != null) {
             m(bundle2, true);
         }
         String string = bundle.getString("emailcode_code");
         if (string != null) {
-            this.f36001a.setText(string);
+            this.f36013a.setText(string);
         }
     }
 
     @Override
     public final void l(Bundle bundle) {
-        String code = this.f36001a.getCode();
+        String code = this.f36013a.getCode();
         if (code != null && code.length() != 0) {
             bundle.putString("emailcode_code", code);
         }
-        Bundle bundle2 = this.f36011y;
+        Bundle bundle2 = this.f36023y;
         if (bundle2 != null) {
             bundle.putBundle("emailcode_params", bundle2);
         }
@@ -184,21 +184,21 @@ public final class ee0 extends org.telegram.ui.Components.qw0 {
         int i11;
         es[] esVarArr;
         if (bundle != null) {
-            this.f36011y = bundle;
+            this.f36023y = bundle;
             this.L = bundle.getString("phoneFormated");
-            this.M = this.f36011y.getString("phoneHash");
-            this.I = this.f36011y.getString("phone");
-            this.J = this.f36011y.getString("ephone");
-            this.N = this.f36011y.getBoolean("setup");
-            this.O = this.f36011y.getInt("length");
-            this.K = this.f36011y.getString("email");
-            this.G = this.f36011y.getInt("resetAvailablePeriod");
-            this.H = this.f36011y.getInt("resetPendingDate");
+            this.M = this.f36023y.getString("phoneHash");
+            this.I = this.f36023y.getString("phone");
+            this.J = this.f36023y.getString("ephone");
+            this.N = this.f36023y.getBoolean("setup");
+            this.O = this.f36023y.getInt("length");
+            this.K = this.f36023y.getString("email");
+            this.G = this.f36023y.getInt("resetAvailablePeriod");
+            this.H = this.f36023y.getInt("resetPendingDate");
             ug0 ug0Var = this.W;
             int i12 = ug0Var.F;
             int i13 = 8;
             FrameLayout frameLayout = this.h;
-            vh.n nVar = this.f36003c;
+            vh.n nVar = this.f36015c;
             if (i12 == 3) {
                 nVar.setText(LocaleController.formatString(R.string.CheckYourNewEmailSubtitle, this.K));
                 AndroidUtilities.updateViewVisibilityAnimated(frameLayout, false, 1.0f, false);
@@ -212,38 +212,38 @@ public final class ee0 extends org.telegram.ui.Components.qw0 {
                 } else {
                     i10 = 8;
                 }
-                this.f36006n.setVisibility(i10);
+                this.f36018n.setVisibility(i10);
                 if (this.H != 0) {
                     i11 = 0;
                 } else {
                     i11 = 8;
                 }
-                this.f36007r.setVisibility(i11);
+                this.f36019r.setVisibility(i11);
                 if (this.H != 0) {
                     r();
                 }
             }
             int i14 = this.O;
-            be0 be0Var = this.f36001a;
+            be0 be0Var = this.f36013a;
             be0Var.b(i14, 1);
-            for (es esVar : be0Var.f35549f) {
+            for (es esVar : be0Var.f35541f) {
                 esVar.setShowSoftInputOnFocusCompat(AndroidUtilities.isAccessibilityTouchExplorationEnabled());
                 esVar.addTextChangedListener(new m0(this, 7));
                 esVar.setOnFocusChangeListener(new rd(this, 2));
             }
             be0Var.setText("");
             if (!this.N && ug0Var.F != 3) {
-                String string = this.f36011y.getString("emailPattern");
+                String string = this.f36023y.getString("emailPattern");
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
                 int indexOf = string.indexOf(42);
                 int lastIndexOf = string.lastIndexOf(42);
                 if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
                     ?? obj = new Object();
-                    obj.f28502a |= 256;
-                    obj.f28503b = indexOf;
+                    obj.f28925a |= 256;
+                    obj.f28926b = indexOf;
                     int i15 = lastIndexOf + 1;
-                    obj.f28504c = i15;
-                    spannableStringBuilder.setSpan(new org.telegram.ui.Components.n11(obj, 0), indexOf, i15, 0);
+                    obj.f28927c = i15;
+                    spannableStringBuilder.setSpan(new org.telegram.ui.Components.o11(obj, 0), indexOf, i15, 0);
                 }
                 nVar.setText(AndroidUtilities.formatSpannable(LocaleController.getString(R.string.CheckYourEmailSubtitle), spannableStringBuilder));
             }
@@ -252,7 +252,7 @@ public final class ee0 extends org.telegram.ui.Components.qw0 {
             }
             this.v.setVisibility(i13);
             this.d.setVisibility(i13);
-            ug0.T0(ug0Var, be0Var.f35549f[0]);
+            ug0.T0(ug0Var, be0Var.f35541f[0]);
             be0Var.requestFocus();
             if (!z10 && bundle.containsKey("nextType")) {
                 AndroidUtilities.runOnUIThread(this.T, bundle.getInt("timeout"));
@@ -265,17 +265,17 @@ public final class ee0 extends org.telegram.ui.Components.qw0 {
 
     @Override
     public final void n() {
-        this.f36002b.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.G6, false));
+        this.f36014b.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.G6, false));
         int i10 = org.telegram.ui.ActionBar.i6.D6;
-        this.f36003c.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i10, false));
+        this.f36015c.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i10, false));
         int i11 = org.telegram.ui.ActionBar.i6.q6;
         this.d.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i11, false));
         this.v.a();
-        this.f36005f.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i11, false));
-        this.f36006n.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i11, false));
-        this.f36007r.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i10, false));
-        this.f36008s.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21063q7, false));
-        this.f36001a.invalidate();
+        this.f36017f.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i11, false));
+        this.f36018n.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i11, false));
+        this.f36019r.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i10, false));
+        this.f36020s.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21068q7, false));
+        this.f36013a.invalidate();
     }
 
     public final void o(Runnable runnable) {
@@ -285,8 +285,8 @@ public final class ee0 extends org.telegram.ui.Components.qw0 {
         }
         int i10 = 0;
         while (true) {
-            be0 be0Var = this.f36001a;
-            es[] esVarArr = be0Var.f35549f;
+            be0 be0Var = this.f36013a;
+            es[] esVarArr = be0Var.f35541f;
             if (i10 < esVarArr.length) {
                 be0Var.postDelayed(new org.telegram.ui.Components.ld(this, i10, 17), i10 * 75);
                 i10++;
@@ -322,7 +322,7 @@ public final class ee0 extends org.telegram.ui.Components.qw0 {
     public final void q(boolean z10) {
         boolean z11;
         float f7;
-        AndroidUtilities.updateViewVisibilityAnimated(this.f36005f, z10);
+        AndroidUtilities.updateViewVisibilityAnimated(this.f36017f, z10);
         if (!z10 && this.W.F != 3 && !this.P) {
             z11 = true;
         } else {
@@ -346,7 +346,7 @@ public final class ee0 extends org.telegram.ui.Components.qw0 {
         String formatString;
         int currentTimeMillis = (int) (this.H - (System.currentTimeMillis() / 1000));
         int i10 = this.H;
-        ai.p4 p4Var = this.f36007r;
+        ai.p4 p4Var = this.f36019r;
         if (i10 > 0 && currentTimeMillis > 0) {
             int i11 = R.string.LoginEmailResetInTime;
             int i12 = currentTimeMillis / 86400;

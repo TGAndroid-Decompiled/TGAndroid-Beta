@@ -1,12 +1,10 @@
 package k2;
 public interface o {
-    void A();
+    void A(l lVar);
 
-    void C(l lVar);
+    void D();
 
-    void H();
-
-    void K(l lVar);
+    void E(l lVar);
 
     void d(long j3);
 
@@ -22,5 +20,7 @@ public interface o {
 
     void u();
 
-    void w(Exception exc);
+    void x(Exception exc);
+
+    void y();
 }

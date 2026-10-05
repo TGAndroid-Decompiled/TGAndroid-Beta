@@ -2,24 +2,24 @@ package org.telegram.messenger.camera;
 
 import org.telegram.messenger.camera.CameraView;
 public final class n implements Runnable {
-    public final int f17549a;
-    public final CameraView f17550b;
-    public final CameraView.CameraGLThread f17551c;
+    public final int f17554a;
+    public final CameraView f17555b;
+    public final CameraView.CameraGLThread f17556c;
 
     public n(CameraView cameraView, CameraView.CameraGLThread cameraGLThread, int i10) {
-        this.f17549a = i10;
-        this.f17550b = cameraView;
-        this.f17551c = cameraGLThread;
+        this.f17554a = i10;
+        this.f17555b = cameraView;
+        this.f17556c = cameraGLThread;
     }
 
     @Override
     public final void run() {
-        switch (this.f17549a) {
+        switch (this.f17554a) {
             case 0:
-                this.f17550b.lambda$createCamera$10(this.f17551c);
+                this.f17555b.lambda$createCamera$10(this.f17556c);
                 return;
             default:
-                this.f17550b.lambda$createCamera$8(this.f17551c);
+                this.f17555b.lambda$createCamera$8(this.f17556c);
                 return;
         }
     }

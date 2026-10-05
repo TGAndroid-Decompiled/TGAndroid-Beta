@@ -104,7 +104,7 @@ public final class v0 implements View.OnClickListener {
                 ((yf) this.f1735b).run();
                 return;
             case 15:
-                ChatActivityEnterView.h(((ce) ((ei.q0) this.f1735b).d).f25358a, (TL_keyboard.KeyboardButton) view.getTag());
+                ChatActivityEnterView.h(((ce) ((ei.q0) this.f1735b).d).f25406a, (TL_keyboard.KeyboardButton) view.getTag());
                 return;
             case 16:
                 ((h5) this.f1735b).run();
@@ -113,7 +113,7 @@ public final class v0 implements View.OnClickListener {
                 fi.p pVar = (fi.p) this.f1735b;
                 TLRPC.Chat chat = pVar.H;
                 if (chat != null && !chat.title.equals(((fi.o) pVar.f9951n.f935b).getText().toString())) {
-                    pVar.getMessagesController().changeChatTitle(pVar.H.f20042id, ((fi.o) pVar.f9951n.f935b).getText().toString(), new fi.h(pVar, 1));
+                    pVar.getMessagesController().changeChatTitle(pVar.H.f20047id, ((fi.o) pVar.f9951n.f935b).getText().toString(), new fi.h(pVar, 1));
                 }
                 TLRPC.Chat chat2 = pVar.H;
                 if (chat2 != null && pVar.h != pVar.f9950f) {
@@ -148,10 +148,10 @@ public final class v0 implements View.OnClickListener {
                 LongSparseArray longSparseArray = g2Var.f10595n;
                 org.telegram.ui.Cells.s3 s3Var = (org.telegram.ui.Cells.s3) view.getParent();
                 TLRPC.StickerSetCovered stickerSet = s3Var.getStickerSet();
-                if (stickerSet != null && g2Var.h.indexOfKey(stickerSet.set.f20069id) < 0 && longSparseArray.indexOfKey(stickerSet.set.f20069id) < 0) {
-                    if (s3Var.f22911r) {
-                        longSparseArray.put(stickerSet.set.f20069id, stickerSet);
-                        g2Var.f10593e.f29931a.h(s3Var.getStickerSet());
+                if (stickerSet != null && g2Var.h.indexOfKey(stickerSet.set.f20074id) < 0 && longSparseArray.indexOfKey(stickerSet.set.f20074id) < 0) {
+                    if (s3Var.f22914r) {
+                        longSparseArray.put(stickerSet.set.f20074id, stickerSet);
+                        g2Var.f10593e.f30357a.h(s3Var.getStickerSet());
                         return;
                     }
                     g2Var.F(stickerSet, s3Var);
@@ -216,14 +216,14 @@ public final class v0 implements View.OnClickListener {
                 if (e3Var != null && (aVar = u0Var.f12679f) != null) {
                     ii.x3 x3Var = e3Var.f12349a;
                     x3Var.getClass();
-                    if (ii.x3.z3(aVar)) {
+                    if (ii.x3.y3(aVar)) {
                         TL_iv.pageBlockDetails pageblockdetails = (TL_iv.pageBlockDetails) aVar.f12187b;
                         ii.i2 i2Var = x3Var.Q3;
                         if (i2Var != null) {
                             i2Var.d();
                         }
                         pageblockdetails.open = !pageblockdetails.open;
-                        x3Var.f25250f3.N(true);
+                        x3Var.f26034f3.N(true);
                         ii.i2 i2Var2 = x3Var.Q3;
                         if (i2Var2 != null) {
                             i2Var2.h();

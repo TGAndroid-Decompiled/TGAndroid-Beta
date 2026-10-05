@@ -6,23 +6,23 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class fy0 implements MessagesStorage.BooleanCallback, ps {
-    public final ProfileActivity f36434a;
-    public final TLRPC.User f36435b;
+    public final ProfileActivity f36442a;
+    public final TLRPC.User f36443b;
 
     public fy0(ProfileActivity profileActivity, TLRPC.User user) {
-        this.f36434a = profileActivity;
-        this.f36435b = user;
+        this.f36442a = profileActivity;
+        this.f36443b = user;
     }
 
     @Override
     public void a() {
-        ProfileActivity.j0(this.f36434a, this.f36435b);
+        ProfileActivity.j0(this.f36442a, this.f36443b);
     }
 
     @Override
     public void run(boolean z10) {
         org.telegram.ui.ActionBar.n2 n2Var;
-        ProfileActivity profileActivity = this.f36434a;
+        ProfileActivity profileActivity = this.f36442a;
         if (profileActivity.getParentLayout() != null) {
             List fragmentStack = profileActivity.getParentLayout().getFragmentStack();
             if (fragmentStack != null && fragmentStack.size() >= 2) {
@@ -36,6 +36,6 @@ public final class fy0 implements MessagesStorage.BooleanCallback, ps {
         }
         profileActivity.N1 = true;
         profileActivity.finishFragment();
-        profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(profileActivity.f34269i1), this.f36435b, profileActivity.E2, Boolean.valueOf(z10));
+        profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(profileActivity.f34282i1), this.f36443b, profileActivity.E2, Boolean.valueOf(z10));
     }
 }

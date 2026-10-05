@@ -9,13 +9,13 @@ import org.telegram.messenger.R;
 import org.telegram.ui.Components.b80;
 public final class z3 extends ClickableSpan {
     public final int f9512a;
-    public final yh.m f9513b;
+    public final yh.n f9513b;
     public final f4 f9514c;
 
-    public z3(f4 f4Var, int i10, yh.m mVar) {
+    public z3(f4 f4Var, int i10, yh.n nVar) {
         this.f9514c = f4Var;
         this.f9512a = i10;
-        this.f9513b = mVar;
+        this.f9513b = nVar;
     }
 
     @Override
@@ -31,50 +31,50 @@ public final class z3 extends ClickableSpan {
             z10 = false;
         }
         String string = LocaleController.getString(R.string.ChannelAffiliateProgramProgramsSortDate);
-        final yh.m mVar = this.f9513b;
+        final yh.n nVar = this.f9513b;
         H.i(new Runnable() {
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        yh.m mVar2 = mVar;
-                        if (mVar2.f51605g != 3) {
-                            mVar2.f51605g = 3;
-                            mVar2.f51602c = 0;
-                            mVar2.d = false;
-                            mVar2.f51606i = false;
-                            mVar2.f51604f = 0L;
-                            mVar2.f51607j = null;
-                            mVar2.h = false;
-                            mVar2.a();
+                        yh.n nVar2 = nVar;
+                        if (nVar2.f51671g != 3) {
+                            nVar2.f51671g = 3;
+                            nVar2.f51668c = 0;
+                            nVar2.d = false;
+                            nVar2.f51672i = false;
+                            nVar2.f51670f = 0L;
+                            nVar2.f51673j = null;
+                            nVar2.h = false;
+                            nVar2.a();
                             return;
                         }
                         return;
                     case 1:
-                        yh.m mVar3 = mVar;
-                        if (mVar3.f51605g != 2) {
-                            mVar3.f51605g = 2;
-                            mVar3.f51602c = 0;
-                            mVar3.d = false;
-                            mVar3.f51606i = false;
-                            mVar3.f51604f = 0L;
-                            mVar3.f51607j = null;
-                            mVar3.h = false;
-                            mVar3.a();
+                        yh.n nVar3 = nVar;
+                        if (nVar3.f51671g != 2) {
+                            nVar3.f51671g = 2;
+                            nVar3.f51668c = 0;
+                            nVar3.d = false;
+                            nVar3.f51672i = false;
+                            nVar3.f51670f = 0L;
+                            nVar3.f51673j = null;
+                            nVar3.h = false;
+                            nVar3.a();
                             return;
                         }
                         return;
                     default:
-                        yh.m mVar4 = mVar;
-                        if (mVar4.f51605g != 1) {
-                            mVar4.f51605g = 1;
-                            mVar4.f51602c = 0;
-                            mVar4.d = false;
-                            mVar4.f51606i = false;
-                            mVar4.f51604f = 0L;
-                            mVar4.f51607j = null;
-                            mVar4.h = false;
-                            mVar4.a();
+                        yh.n nVar4 = nVar;
+                        if (nVar4.f51671g != 1) {
+                            nVar4.f51671g = 1;
+                            nVar4.f51668c = 0;
+                            nVar4.d = false;
+                            nVar4.f51672i = false;
+                            nVar4.f51670f = 0L;
+                            nVar4.f51673j = null;
+                            nVar4.h = false;
+                            nVar4.a();
                             return;
                         }
                         return;
@@ -91,44 +91,44 @@ public final class z3 extends ClickableSpan {
             public final void run() {
                 switch (r2) {
                     case 0:
-                        yh.m mVar2 = mVar;
-                        if (mVar2.f51605g != 3) {
-                            mVar2.f51605g = 3;
-                            mVar2.f51602c = 0;
-                            mVar2.d = false;
-                            mVar2.f51606i = false;
-                            mVar2.f51604f = 0L;
-                            mVar2.f51607j = null;
-                            mVar2.h = false;
-                            mVar2.a();
+                        yh.n nVar2 = nVar;
+                        if (nVar2.f51671g != 3) {
+                            nVar2.f51671g = 3;
+                            nVar2.f51668c = 0;
+                            nVar2.d = false;
+                            nVar2.f51672i = false;
+                            nVar2.f51670f = 0L;
+                            nVar2.f51673j = null;
+                            nVar2.h = false;
+                            nVar2.a();
                             return;
                         }
                         return;
                     case 1:
-                        yh.m mVar3 = mVar;
-                        if (mVar3.f51605g != 2) {
-                            mVar3.f51605g = 2;
-                            mVar3.f51602c = 0;
-                            mVar3.d = false;
-                            mVar3.f51606i = false;
-                            mVar3.f51604f = 0L;
-                            mVar3.f51607j = null;
-                            mVar3.h = false;
-                            mVar3.a();
+                        yh.n nVar3 = nVar;
+                        if (nVar3.f51671g != 2) {
+                            nVar3.f51671g = 2;
+                            nVar3.f51668c = 0;
+                            nVar3.d = false;
+                            nVar3.f51672i = false;
+                            nVar3.f51670f = 0L;
+                            nVar3.f51673j = null;
+                            nVar3.h = false;
+                            nVar3.a();
                             return;
                         }
                         return;
                     default:
-                        yh.m mVar4 = mVar;
-                        if (mVar4.f51605g != 1) {
-                            mVar4.f51605g = 1;
-                            mVar4.f51602c = 0;
-                            mVar4.d = false;
-                            mVar4.f51606i = false;
-                            mVar4.f51604f = 0L;
-                            mVar4.f51607j = null;
-                            mVar4.h = false;
-                            mVar4.a();
+                        yh.n nVar4 = nVar;
+                        if (nVar4.f51671g != 1) {
+                            nVar4.f51671g = 1;
+                            nVar4.f51668c = 0;
+                            nVar4.d = false;
+                            nVar4.f51672i = false;
+                            nVar4.f51670f = 0L;
+                            nVar4.f51673j = null;
+                            nVar4.h = false;
+                            nVar4.a();
                             return;
                         }
                         return;
@@ -143,44 +143,44 @@ public final class z3 extends ClickableSpan {
             public final void run() {
                 switch (r2) {
                     case 0:
-                        yh.m mVar2 = mVar;
-                        if (mVar2.f51605g != 3) {
-                            mVar2.f51605g = 3;
-                            mVar2.f51602c = 0;
-                            mVar2.d = false;
-                            mVar2.f51606i = false;
-                            mVar2.f51604f = 0L;
-                            mVar2.f51607j = null;
-                            mVar2.h = false;
-                            mVar2.a();
+                        yh.n nVar2 = nVar;
+                        if (nVar2.f51671g != 3) {
+                            nVar2.f51671g = 3;
+                            nVar2.f51668c = 0;
+                            nVar2.d = false;
+                            nVar2.f51672i = false;
+                            nVar2.f51670f = 0L;
+                            nVar2.f51673j = null;
+                            nVar2.h = false;
+                            nVar2.a();
                             return;
                         }
                         return;
                     case 1:
-                        yh.m mVar3 = mVar;
-                        if (mVar3.f51605g != 2) {
-                            mVar3.f51605g = 2;
-                            mVar3.f51602c = 0;
-                            mVar3.d = false;
-                            mVar3.f51606i = false;
-                            mVar3.f51604f = 0L;
-                            mVar3.f51607j = null;
-                            mVar3.h = false;
-                            mVar3.a();
+                        yh.n nVar3 = nVar;
+                        if (nVar3.f51671g != 2) {
+                            nVar3.f51671g = 2;
+                            nVar3.f51668c = 0;
+                            nVar3.d = false;
+                            nVar3.f51672i = false;
+                            nVar3.f51670f = 0L;
+                            nVar3.f51673j = null;
+                            nVar3.h = false;
+                            nVar3.a();
                             return;
                         }
                         return;
                     default:
-                        yh.m mVar4 = mVar;
-                        if (mVar4.f51605g != 1) {
-                            mVar4.f51605g = 1;
-                            mVar4.f51602c = 0;
-                            mVar4.d = false;
-                            mVar4.f51606i = false;
-                            mVar4.f51604f = 0L;
-                            mVar4.f51607j = null;
-                            mVar4.h = false;
-                            mVar4.a();
+                        yh.n nVar4 = nVar;
+                        if (nVar4.f51671g != 1) {
+                            nVar4.f51671g = 1;
+                            nVar4.f51668c = 0;
+                            nVar4.d = false;
+                            nVar4.f51672i = false;
+                            nVar4.f51670f = 0L;
+                            nVar4.f51673j = null;
+                            nVar4.h = false;
+                            nVar4.a();
                             return;
                         }
                         return;
@@ -188,8 +188,8 @@ public final class z3 extends ClickableSpan {
             }
         }, LocaleController.getString(R.string.ChannelAffiliateProgramProgramsSortProfitability), z12);
         H.V(5);
-        H.f24850t = false;
-        H.f24849s = 0;
+        H.f24886t = false;
+        H.f24885s = 0;
         H.a0(AndroidUtilities.dp(24.0f), -AndroidUtilities.dp(24.0f));
         H.Z();
     }

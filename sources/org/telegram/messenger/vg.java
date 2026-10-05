@@ -14,66 +14,66 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class vg implements Runnable {
-    public final int f19427a;
-    public final Object f19428b;
-    public final Object f19429c;
+    public final int f19432a;
+    public final Object f19433b;
+    public final Object f19434c;
 
     public vg(int i10, Object obj, Object obj2) {
-        this.f19427a = i10;
-        this.f19428b = obj;
-        this.f19429c = obj2;
+        this.f19432a = i10;
+        this.f19433b = obj;
+        this.f19434c = obj2;
     }
 
     @Override
     public final void run() {
-        switch (this.f19427a) {
+        switch (this.f19432a) {
             case 0:
-                ((NotificationBadge.ZukHomeBadger) this.f19428b).lambda$executeBadge$0((Bundle) this.f19429c);
+                ((NotificationBadge.ZukHomeBadger) this.f19433b).lambda$executeBadge$0((Bundle) this.f19434c);
                 return;
             case 1:
-                NotificationsController.lambda$showExtraNotifications$45((Uri) this.f19428b, (File) this.f19429c);
+                NotificationsController.lambda$showExtraNotifications$45((Uri) this.f19433b, (File) this.f19434c);
                 return;
             case 2:
-                NotificationsController.lambda$loadTopicsNotificationsExceptions$53((Consumer) this.f19428b, (HashSet) this.f19429c);
+                NotificationsController.lambda$loadTopicsNotificationsExceptions$53((Consumer) this.f19433b, (HashSet) this.f19434c);
                 return;
             case 3:
-                ((NotificationsController) this.f19428b).lambda$didReceivedNotification$38((String) this.f19429c);
+                ((NotificationsController) this.f19433b).lambda$didReceivedNotification$38((String) this.f19434c);
                 return;
             case 4:
-                ((NotificationsController) this.f19428b).lambda$processEditedMessages$22((a0.i) this.f19429c);
+                ((NotificationsController) this.f19433b).lambda$processEditedMessages$22((a0.i) this.f19434c);
                 return;
             case 5:
-                PasskeysController.lambda$create$2((Utilities.Callback2) this.f19428b, (Throwable) this.f19429c);
+                PasskeysController.lambda$create$2((Utilities.Callback2) this.f19433b, (Throwable) this.f19434c);
                 return;
             case 6:
-                ((SavedMessagesController) this.f19428b).lambda$deleteCache$13((MessagesStorage) this.f19429c);
+                ((SavedMessagesController) this.f19433b).lambda$deleteCache$13((MessagesStorage) this.f19434c);
                 return;
             case 7:
-                ((SecretChatHelper) this.f19428b).lambda$performSendEncryptedRequest$6((TLRPC.Message) this.f19429c);
+                ((SecretChatHelper) this.f19433b).lambda$performSendEncryptedRequest$6((TLRPC.Message) this.f19434c);
                 return;
             case 8:
-                ((SendMessagesHelper) this.f19428b).lambda$performSendMessageRequest$90((TLRPC.TL_updateShortSentMessage) this.f19429c);
+                ((SendMessagesHelper) this.f19433b).lambda$performSendMessageRequest$90((TLRPC.TL_updateShortSentMessage) this.f19434c);
                 return;
             case 9:
-                ((SendMessagesHelper) this.f19428b).lambda$sendMessage$16((ArrayList) this.f19429c);
+                ((SendMessagesHelper) this.f19433b).lambda$sendMessage$16((ArrayList) this.f19434c);
                 return;
             case 10:
-                ((SendMessagesHelper.ImportingStickers) this.f19428b).lambda$onMediaImport$0((String) this.f19429c);
+                ((SendMessagesHelper.ImportingStickers) this.f19433b).lambda$onMediaImport$0((String) this.f19434c);
                 return;
             case 11:
-                ((TopicsController) this.f19428b).lambda$processUpdate$22((List) this.f19429c);
+                ((TopicsController) this.f19433b).lambda$processUpdate$22((List) this.f19434c);
                 return;
             case 12:
-                ((TopicsController) this.f19428b).lambda$pinTopic$19((org.telegram.ui.ActionBar.n2) this.f19429c);
+                ((TopicsController) this.f19433b).lambda$pinTopic$19((org.telegram.ui.ActionBar.n2) this.f19434c);
                 return;
             case 13:
-                ((TopicsController) this.f19428b).lambda$onTopicsDeletedServerSide$23((ArrayList) this.f19429c);
+                ((TopicsController) this.f19433b).lambda$onTopicsDeletedServerSide$23((ArrayList) this.f19434c);
                 return;
             case 14:
-                ((TopicsController) this.f19428b).lambda$updateReadOutbox$26((HashMap) this.f19429c);
+                ((TopicsController) this.f19433b).lambda$updateReadOutbox$26((HashMap) this.f19434c);
                 return;
             default:
-                ((UserConfig) this.f19428b).lambda$loadGlobalTTl$3((TLObject) this.f19429c);
+                ((UserConfig) this.f19433b).lambda$loadGlobalTTl$3((TLObject) this.f19434c);
                 return;
         }
     }

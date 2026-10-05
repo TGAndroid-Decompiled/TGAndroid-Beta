@@ -2,41 +2,41 @@ package org.telegram.ui.ActionBar;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class v implements Runnable {
-    public final boolean f21569a;
-    public final n2 f21570b;
-    public final n2 f21571c;
+    public final boolean f21573a;
+    public final n2 f21574b;
+    public final n2 f21575c;
     public final boolean d;
-    public final ActionBarLayout f21572e;
+    public final ActionBarLayout f21576e;
 
     public v(ActionBarLayout actionBarLayout, boolean z10, n2 n2Var, n2 n2Var2, boolean z11) {
-        this.f21572e = actionBarLayout;
-        this.f21569a = z10;
-        this.f21570b = n2Var;
-        this.f21571c = n2Var2;
+        this.f21576e = actionBarLayout;
+        this.f21573a = z10;
+        this.f21574b = n2Var;
+        this.f21575c = n2Var2;
         this.d = z11;
     }
 
     @Override
     public final void run() {
-        ActionBarLayout actionBarLayout = this.f21572e;
+        ActionBarLayout actionBarLayout = this.f21576e;
         if (actionBarLayout.d == this) {
             actionBarLayout.d = null;
-            if (this.f21569a) {
-                n2 n2Var = this.f21570b;
+            if (this.f21573a) {
+                n2 n2Var = this.f21574b;
                 if (n2Var != null) {
                     n2Var.onTransitionAnimationStart(false, false);
                 }
-                this.f21571c.onTransitionAnimationStart(true, false);
+                this.f21575c.onTransitionAnimationStart(true, false);
                 actionBarLayout.d0(true, true, this.d);
                 return;
             }
-            Runnable runnable = actionBarLayout.f20322e;
+            Runnable runnable = actionBarLayout.f20327e;
             if (runnable != null) {
                 AndroidUtilities.cancelRunOnUIThread(runnable);
                 if (actionBarLayout.R0) {
-                    actionBarLayout.f20322e.run();
+                    actionBarLayout.f20327e.run();
                 } else {
-                    AndroidUtilities.runOnUIThread(actionBarLayout.f20322e, 200L);
+                    AndroidUtilities.runOnUIThread(actionBarLayout.f20327e, 200L);
                 }
             }
         }

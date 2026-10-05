@@ -3,7 +3,7 @@ package ci;
 import android.text.TextUtils;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.tx0;
+import org.telegram.ui.Components.ux0;
 public final class l3 extends v3 {
     public final w3 f5488x;
 
@@ -24,14 +24,14 @@ public final class l3 extends v3 {
 
     @Override
     public final void l() {
-        tx0 tx0Var = this.f5488x.f6224s;
+        ux0 ux0Var = this.f5488x.f6224s;
         super.l();
         if (TextUtils.isEmpty(this.f6108f)) {
-            tx0Var.setStickerType(11);
-            tx0Var.d.setText(LocaleController.getString(R.string.SearchImagesType));
+            ux0Var.setStickerType(11);
+            ux0Var.d.setText(LocaleController.getString(R.string.SearchImagesType));
             return;
         }
-        tx0Var.setStickerType(1);
-        tx0Var.d.setText(LocaleController.formatString(R.string.NoResultFoundFor, this.f6108f));
+        ux0Var.setStickerType(1);
+        ux0Var.d.setText(LocaleController.formatString(R.string.NoResultFoundFor, this.f6108f));
     }
 }

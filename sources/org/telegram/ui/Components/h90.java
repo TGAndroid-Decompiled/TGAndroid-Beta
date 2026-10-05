@@ -4,17 +4,17 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class h90 extends k9 {
-    public final ai.w7 f27072e;
+    public final ai.w7 f27164e;
 
     public h90(ai.w7 w7Var, Context context) {
         super(context, false);
-        this.f27072e = w7Var;
+        this.f27164e = w7Var;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         int f7;
-        int min = Math.min(3, ((j90) this.f27072e.d).f27697w);
+        int min = Math.min(3, ((j90) this.f27164e.d).f27770w);
         if (min == 0) {
             f7 = 0;
         } else {

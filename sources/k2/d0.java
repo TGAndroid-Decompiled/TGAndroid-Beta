@@ -13,7 +13,7 @@ public final class d0 extends AudioTrack.StreamEventCallback {
         f0 f0Var;
         o oVar;
         if (audioTrack.equals(this.f14387a.f14392c.f14432x) && (oVar = (f0Var = this.f14387a.f14392c).f14429t) != null && f0Var.X) {
-            oVar.H();
+            oVar.D();
         }
     }
 
@@ -30,7 +30,7 @@ public final class d0 extends AudioTrack.StreamEventCallback {
         f0 f0Var;
         o oVar;
         if (audioTrack.equals(this.f14387a.f14392c.f14432x) && (oVar = (f0Var = this.f14387a.f14392c).f14429t) != null && f0Var.X) {
-            oVar.H();
+            oVar.D();
         }
     }
 }

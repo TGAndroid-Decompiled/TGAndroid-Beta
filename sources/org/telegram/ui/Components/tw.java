@@ -6,28 +6,28 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class tw extends FrameLayout {
-    public final boolean f31186a;
-    public final nz f31187b;
+    public final boolean f31247a;
+    public final nz f31248b;
 
     public tw(nz nzVar, Context context, boolean z10) {
         super(context);
-        this.f31187b = nzVar;
-        this.f31186a = z10;
+        this.f31248b = nzVar;
+        this.f31247a = z10;
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        nz nzVar = this.f31187b;
+        nz nzVar = this.f31248b;
         ax axVar = nzVar.B0;
         vw vwVar = nzVar.D0;
         zw zwVar = nzVar.G0;
-        if (!this.f31186a && (view == vwVar || view == zwVar)) {
+        if (!this.f31247a && (view == vwVar || view == zwVar)) {
             canvas.save();
             float y3 = axVar.getY() + axVar.getMeasuredHeight() + 1.0f;
             if (view == vwVar) {
                 y3 = Math.max(y3, zwVar.getY() + zwVar.getMeasuredHeight() + 1.0f);
             }
-            canvas.clipRect(0.0f, y3 - (AndroidUtilities.dp(16.0f) * nzVar.f29088a.f15436e), getMeasuredWidth(), getMeasuredHeight());
+            canvas.clipRect(0.0f, y3 - (AndroidUtilities.dp(16.0f) * nzVar.f29185a.f15436e), getMeasuredWidth(), getMeasuredHeight());
             boolean drawChild = super.drawChild(canvas, view, j3);
             canvas.restore();
             return drawChild;
@@ -38,7 +38,7 @@ public final class tw extends FrameLayout {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        nz nzVar = this.f31187b;
+        nz nzVar = this.f31248b;
         nzVar.K0 = true;
         nzVar.X();
         gg.g1 g1Var = nzVar.T0;
@@ -50,7 +50,7 @@ public final class tw extends FrameLayout {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        nz nzVar = this.f31187b;
+        nz nzVar = this.f31248b;
         nzVar.K0 = false;
         nzVar.X();
         gg.g1 g1Var = nzVar.T0;

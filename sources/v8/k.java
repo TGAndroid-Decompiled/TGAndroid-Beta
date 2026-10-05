@@ -5,16 +5,16 @@ import android.os.Parcelable;
 import w7.g0;
 public final class k extends o6.a {
     public static final Parcelable.Creator<k> CREATOR = new r(0);
-    public int f48218a;
-    public String f48219b;
+    public int f48225a;
+    public String f48226b;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = g0.q(parcel, 20293);
-        int i11 = this.f48218a;
+        int i11 = this.f48225a;
         g0.s(parcel, 2, 4);
         parcel.writeInt(i11);
-        g0.l(parcel, 3, this.f48219b);
+        g0.l(parcel, 3, this.f48226b);
         g0.r(parcel, q6);
     }
 }

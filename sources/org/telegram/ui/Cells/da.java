@@ -54,87 +54,87 @@ public abstract class da {
     public y9 X;
     public ActionMode Y;
     public boolean Z;
-    public int f21947a;
-    public final t9 f21948a0;
-    public int f21949b;
-    public int f21950b0;
-    public int f21951c;
-    public final OvershootInterpolator f21952c0;
+    public int f21951a;
+    public final t9 f21952a0;
+    public int f21953b;
+    public int f21954b0;
+    public int f21955c;
+    public final OvershootInterpolator f21956c0;
     public int d;
-    public boolean f21953d0;
-    public boolean f21954e;
-    public int f21955e0;
-    public float f21956f;
-    public final t6 f21957f0;
-    public float f21958g;
-    public final k9 f21959g0;
+    public boolean f21957d0;
+    public boolean f21958e;
+    public int f21959e0;
+    public float f21960f;
+    public final t6 f21961f0;
+    public float f21962g;
+    public final k9 f21963g0;
     public final int[] h = new int[2];
-    public org.telegram.ui.ActionBar.d6 f21960h0;
-    public boolean f21961i;
-    public boolean f21962i0;
-    public boolean f21963j;
-    public boolean f21964j0;
-    public boolean f21965k;
-    public boolean f21966k0;
-    public final int f21967l;
-    public org.telegram.ui.u f21968l0;
-    public final int f21969m;
+    public org.telegram.ui.ActionBar.d6 f21964h0;
+    public boolean f21965i;
+    public boolean f21966i0;
+    public boolean f21967j;
+    public boolean f21968j0;
+    public boolean f21969k;
+    public boolean f21970k0;
+    public final int f21971l;
+    public org.telegram.ui.u f21972l0;
+    public final int f21973m;
     public ValueAnimator m0;
-    public final float f21970n;
-    public org.telegram.ui.ActionBar.n1 f21971n0;
-    public final Paint f21972o;
-    public ActionBarPopupWindow$ActionBarPopupWindowLayout f21973o0;
-    public final Paint f21974p;
-    public TextView f21975p0;
-    public final xq f21976q;
-    public Rect f21977q0;
-    public final Path f21978r;
-    public final g f21979r0;
-    public int f21980s;
-    public final l9 f21981s0;
-    public int f21982t;
-    public final x9 f21983t0;
-    public int f21984u;
+    public final float f21974n;
+    public org.telegram.ui.ActionBar.n1 f21975n0;
+    public final Paint f21976o;
+    public ActionBarPopupWindow$ActionBarPopupWindowLayout f21977o0;
+    public final Paint f21978p;
+    public TextView f21979p0;
+    public final xq f21980q;
+    public Rect f21981q0;
+    public final Path f21982r;
+    public final g f21983r0;
+    public int f21984s;
+    public final l9 f21985s0;
+    public int f21986t;
+    public final x9 f21987t0;
+    public int f21988u;
     public int v;
-    public int f21985w;
-    public int f21986x;
-    public boolean f21987y;
-    public boolean f21988z;
+    public int f21989w;
+    public int f21990x;
+    public boolean f21991y;
+    public boolean f21992z;
 
     public da() {
-        new Path().f23582a = 0.0f;
+        new Path().f23585a = 0.0f;
         Paint paint = new Paint(1);
-        this.f21972o = paint;
-        this.f21974p = new Paint(1);
+        this.f21976o = paint;
+        this.f21978p = new Paint(1);
         xq xqVar = new xq();
-        this.f21976q = xqVar;
-        this.f21978r = new Path();
-        new Path().f23538a = xqVar;
-        this.f21984u = -1;
+        this.f21980q = xqVar;
+        this.f21982r = new Path();
+        new Path().f23541a = xqVar;
+        this.f21988u = -1;
         this.v = -1;
         n9 n9Var = new n9(this);
         this.A = Build.VERSION.SDK_INT >= 23 ? new o9(this, n9Var) : n9Var;
         this.B = new Rect();
         this.S = new RectF();
         this.T = new RectF();
-        this.f21948a0 = new Object();
-        this.f21952c0 = new OvershootInterpolator();
-        this.f21953d0 = false;
-        this.f21957f0 = new t6(this, 3);
-        this.f21959g0 = new k9(this);
-        this.f21962i0 = true;
-        this.f21968l0 = null;
-        this.f21979r0 = new g(this, 7);
-        this.f21981s0 = new l9(this);
+        this.f21952a0 = new Object();
+        this.f21956c0 = new OvershootInterpolator();
+        this.f21957d0 = false;
+        this.f21961f0 = new t6(this, 3);
+        this.f21963g0 = new k9(this);
+        this.f21966i0 = true;
+        this.f21972l0 = null;
+        this.f21983r0 = new g(this, 7);
+        this.f21985s0 = new l9(this);
         ?? path = new Path();
-        path.f23741a = 0.0f;
-        path.f23742b = new ArrayList(1);
-        path.f23743c = 0;
-        this.f21983t0 = path;
-        this.f21967l = ViewConfiguration.getLongPressTimeout();
-        this.f21969m = ViewConfiguration.get(ApplicationLoader.applicationContext).getScaledTouchSlop();
+        path.f23744a = 0.0f;
+        path.f23745b = new ArrayList(1);
+        path.f23746c = 0;
+        this.f21987t0 = path;
+        this.f21971l = ViewConfiguration.getLongPressTimeout();
+        this.f21973m = ViewConfiguration.get(ApplicationLoader.applicationContext).getScaledTouchSlop();
         float dp = AndroidUtilities.dp(6.0f);
-        this.f21970n = dp;
+        this.f21974n = dp;
         paint.setPathEffect(new CornerPathEffect(dp));
         xqVar.d = 1.0f;
     }
@@ -143,27 +143,27 @@ public abstract class da {
         int i11;
         int lineRight;
         int lineLeft;
-        t9 t9Var = daVar.f21948a0;
-        if (Build.VERSION.SDK_INT >= 28 && daVar.W != null && !daVar.f21965k && daVar.f21961i && daVar.C != null) {
-            if (daVar.f21963j) {
-                i11 = daVar.f21984u;
+        t9 t9Var = daVar.f21952a0;
+        if (Build.VERSION.SDK_INT >= 28 && daVar.W != null && !daVar.f21969k && daVar.f21965i && daVar.C != null) {
+            if (daVar.f21967j) {
+                i11 = daVar.f21988u;
             } else {
                 i11 = daVar.v;
             }
             daVar.j(i11, t9Var, false);
-            Layout layout = t9Var.f23110b;
+            Layout layout = t9Var.f23113b;
             if (layout != null) {
-                int lineForOffset = layout.getLineForOffset(Utilities.clamp(i11 - t9Var.f23109a, layout.getText().length(), 0));
+                int lineForOffset = layout.getLineForOffset(Utilities.clamp(i11 - t9Var.f23112a, layout.getText().length(), 0));
                 int lineBottom = layout.getLineBottom(lineForOffset) - layout.getLineTop(lineForOffset);
                 int[] m10 = daVar.m();
-                int lineTop = (int) (((((layout.getLineTop(lineForOffset) + daVar.f21949b) + m10[1]) - lineBottom) - AndroidUtilities.dp(8.0f)) + t9Var.f23111c);
+                int lineTop = (int) (((((layout.getLineTop(lineForOffset) + daVar.f21953b) + m10[1]) - lineBottom) - AndroidUtilities.dp(8.0f)) + t9Var.f23114c);
                 y9 y9Var = daVar.W;
                 if (y9Var instanceof org.telegram.ui.u2) {
                     lineLeft = m10[0];
                     lineRight = ((View) y9Var).getMeasuredWidth() + lineLeft;
                 } else {
-                    float f7 = m10[0] + daVar.f21947a + t9Var.d;
-                    lineRight = (int) (layout.getLineRight(lineForOffset) + m10[0] + daVar.f21947a + t9Var.d);
+                    float f7 = m10[0] + daVar.f21951a + t9Var.d;
+                    lineRight = (int) (layout.getLineRight(lineForOffset) + m10[0] + daVar.f21951a + t9Var.d);
                     lineLeft = (int) (layout.getLineLeft(lineForOffset) + f7);
                 }
                 if (i10 < lineLeft) {
@@ -222,7 +222,7 @@ public abstract class da {
     }
 
     public boolean A(MessageObject messageObject) {
-        if (messageObject == null || this.f21985w != messageObject.getId()) {
+        if (messageObject == null || this.f21989w != messageObject.getId()) {
             return false;
         }
         return true;
@@ -231,37 +231,37 @@ public abstract class da {
     public void B(int i10, int i11, boolean z10, float f7, float f10, y9 y9Var) {
         int i12;
         int i13;
-        if (this.f21963j) {
-            this.f21984u = i11;
+        if (this.f21967j) {
+            this.f21988u = i11;
             if (!z10 && i11 > (i13 = this.v)) {
                 this.v = i11;
-                this.f21984u = i13;
-                this.f21963j = false;
+                this.f21988u = i13;
+                this.f21967j = false;
             }
-            this.f21987y = true;
+            this.f21991y = true;
             return;
         }
         this.v = i11;
-        if (!z10 && (i12 = this.f21984u) > i11) {
+        if (!z10 && (i12 = this.f21988u) > i11) {
             this.v = i12;
-            this.f21984u = i11;
-            this.f21963j = true;
+            this.f21988u = i11;
+            this.f21967j = true;
         }
-        this.f21987y = true;
+        this.f21991y = true;
     }
 
     public final int[] C(int i10) {
-        t9 t9Var = this.f21948a0;
+        t9 t9Var = this.f21952a0;
         j(i10, t9Var, false);
-        Layout layout = t9Var.f23110b;
-        int i11 = i10 - t9Var.f23109a;
+        Layout layout = t9Var.f23113b;
+        int i11 = i10 - t9Var.f23112a;
         int[] iArr = this.h;
         if (layout != null && i11 >= 0 && i11 <= layout.getText().length()) {
             int lineForOffset = layout.getLineForOffset(i11);
             iArr[0] = (int) (layout.getPrimaryHorizontal(i11) + t9Var.d);
             int lineBottom = layout.getLineBottom(lineForOffset);
             iArr[1] = lineBottom;
-            iArr[1] = (int) (lineBottom + t9Var.f23111c);
+            iArr[1] = (int) (lineBottom + t9Var.f23114c);
         }
         return iArr;
     }
@@ -288,7 +288,7 @@ public abstract class da {
     public final boolean N(MotionEvent motionEvent) {
         da daVar;
         int action = motionEvent.getAction();
-        k9 k9Var = this.f21959g0;
+        k9 k9Var = this.f21963g0;
         if (action != 0) {
             if (action != 1) {
                 if (action != 2) {
@@ -296,30 +296,30 @@ public abstract class da {
                         return false;
                     }
                 } else {
-                    int y3 = this.f21982t - ((int) motionEvent.getY());
-                    int x10 = this.f21980s - ((int) motionEvent.getX());
+                    int y3 = this.f21986t - ((int) motionEvent.getY());
+                    int x10 = this.f21984s - ((int) motionEvent.getX());
                     int i10 = (x10 * x10) + (y3 * y3);
-                    int i11 = this.f21969m;
+                    int i11 = this.f21973m;
                     if (i10 > i11 * i11) {
                         AndroidUtilities.cancelRunOnUIThread(k9Var);
-                        this.f21988z = false;
+                        this.f21992z = false;
                     }
-                    return this.f21988z;
+                    return this.f21992z;
                 }
             }
             AndroidUtilities.cancelRunOnUIThread(k9Var);
-            this.f21988z = false;
+            this.f21992z = false;
             return false;
         }
-        this.f21980s = (int) motionEvent.getX();
-        this.f21982t = (int) motionEvent.getY();
-        this.f21988z = false;
+        this.f21984s = (int) motionEvent.getX();
+        this.f21986t = (int) motionEvent.getY();
+        this.f21992z = false;
         Rect rect = this.B;
         rect.inset(-AndroidUtilities.dp(8.0f), -AndroidUtilities.dp(8.0f));
-        if (rect.contains(this.f21980s, this.f21982t) && this.X != null) {
+        if (rect.contains(this.f21984s, this.f21986t) && this.X != null) {
             rect.inset(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-            int i12 = this.f21980s;
-            int i13 = this.f21982t;
+            int i12 = this.f21984s;
+            int i13 = this.f21986t;
             int i14 = rect.right;
             if (i12 > i14) {
                 i12 = i14 - 1;
@@ -338,31 +338,31 @@ public abstract class da {
                 i13 = i18 - 1;
             }
             daVar = this;
-            int l4 = daVar.l(i16, i13, this.f21951c, this.d, this.X, true);
+            int l4 = daVar.l(i16, i13, this.f21955c, this.d, this.X, true);
             CharSequence t10 = t(daVar.X, true);
             if (l4 >= t10.length()) {
-                t9 t9Var = daVar.f21948a0;
+                t9 t9Var = daVar.f21952a0;
                 j(l4, t9Var, true);
-                Layout layout = t9Var.f23110b;
+                Layout layout = t9Var.f23113b;
                 if (layout == null) {
-                    daVar.f21988z = false;
+                    daVar.f21992z = false;
                     return false;
                 }
                 int lineCount = layout.getLineCount() - 1;
-                float f7 = i16 - daVar.f21951c;
-                if (f7 < t9Var.f23110b.getLineRight(lineCount) + AndroidUtilities.dp(4.0f) && f7 > t9Var.f23110b.getLineLeft(lineCount)) {
+                float f7 = i16 - daVar.f21955c;
+                if (f7 < t9Var.f23113b.getLineRight(lineCount) + AndroidUtilities.dp(4.0f) && f7 > t9Var.f23113b.getLineLeft(lineCount)) {
                     l4 = t10.length() - 1;
                 }
             }
             if (l4 >= 0 && l4 < t10.length() && t10.charAt(l4) != '\n') {
                 AndroidUtilities.cancelRunOnUIThread(k9Var);
-                AndroidUtilities.runOnUIThread(k9Var, daVar.f21967l);
-                daVar.f21988z = true;
+                AndroidUtilities.runOnUIThread(k9Var, daVar.f21971l);
+                daVar.f21992z = true;
             }
         } else {
             daVar = this;
         }
-        return daVar.f21988z;
+        return daVar.f21992z;
     }
 
     public boolean Q(int i10, int i11) {
@@ -374,7 +374,7 @@ public abstract class da {
     }
 
     public final void S() {
-        this.f21964j0 = true;
+        this.f21968j0 = true;
     }
 
     public final void T(ViewGroup viewGroup) {
@@ -405,7 +405,7 @@ public abstract class da {
     public final void W() {
         this.Q = false;
         this.C.invalidate();
-        g gVar = this.f21979r0;
+        g gVar = this.f21983r0;
         AndroidUtilities.cancelRunOnUIThread(gVar);
         AndroidUtilities.runOnUIThread(gVar);
     }
@@ -415,7 +415,7 @@ public abstract class da {
     }
 
     public boolean c(int i10) {
-        if (i10 != this.f21984u && i10 != this.v) {
+        if (i10 != this.f21988u && i10 != this.v) {
             return true;
         }
         return false;
@@ -434,15 +434,15 @@ public abstract class da {
 
     public void f(boolean z10) {
         F(z10);
-        this.f21984u = -1;
+        this.f21988u = -1;
         this.v = -1;
         w();
         v();
         x();
         this.W = null;
-        this.f21985w = 0;
-        AndroidUtilities.cancelRunOnUIThread(this.f21959g0);
-        this.f21988z = false;
+        this.f21989w = 0;
+        AndroidUtilities.cancelRunOnUIThread(this.f21963g0);
+        this.f21992z = false;
         ca caVar = this.C;
         if (caVar != null) {
             caVar.setVisibility(8);
@@ -453,13 +453,13 @@ public abstract class da {
         if (j0Var != null) {
             j0Var.a(false);
         }
-        this.f21980s = -1;
-        this.f21982t = -1;
-        this.f21951c = -1;
+        this.f21984s = -1;
+        this.f21986t = -1;
+        this.f21955c = -1;
         this.d = -1;
-        this.f21956f = 0.0f;
-        this.f21958g = 0.0f;
-        this.f21961i = false;
+        this.f21960f = 0.0f;
+        this.f21962g = 0.0f;
+        this.f21965i = false;
     }
 
     public final void g() {
@@ -490,25 +490,25 @@ public abstract class da {
         float f13;
         float f14;
         int lineTop;
-        x9 x9Var = this.f21983t0;
+        x9 x9Var = this.f21987t0;
         x9Var.reset();
         layout.getSelectionPath(i11, i12, x9Var);
-        if (x9Var.f23741a < layout.getLineBottom(i10)) {
+        if (x9Var.f23744a < layout.getLineBottom(i10)) {
             f11 = layout.getLineTop(i10);
-            f10 = (layout.getLineBottom(i10) - lineTop) / (x9Var.f23741a - f11);
+            f10 = (layout.getLineBottom(i10) - lineTop) / (x9Var.f23744a - f11);
         } else {
             f10 = 1.0f;
             f11 = 0.0f;
         }
         int i14 = 0;
         while (true) {
-            i13 = x9Var.f23743c;
-            xqVar = this.f21976q;
-            f12 = this.f21970n;
+            i13 = x9Var.f23746c;
+            xqVar = this.f21980q;
+            f12 = this.f21974n;
             if (i14 >= i13) {
                 break;
             }
-            RectF rectF = (RectF) x9Var.f23742b.get(i14);
+            RectF rectF = (RectF) x9Var.f23745b.get(i14);
             float max = Math.max(f7, rectF.left);
             if (z10) {
                 f13 = f12 / 2.0f;
@@ -593,13 +593,13 @@ public abstract class da {
     }
 
     public org.telegram.ui.ActionBar.d6 r() {
-        return this.f21960h0;
+        return this.f21964h0;
     }
 
     public CharSequence s() {
         CharSequence t10 = t(this.W, false);
         if (t10 != null) {
-            return t10.subSequence(this.f21984u, this.v);
+            return t10.subSequence(this.f21988u, this.v);
         }
         return null;
     }
@@ -607,7 +607,7 @@ public abstract class da {
     public abstract CharSequence t(y9 y9Var, boolean z10);
 
     public int u(int i10) {
-        return org.telegram.ui.ActionBar.i6.v0(i10, this.f21960h0);
+        return org.telegram.ui.ActionBar.i6.v0(i10, this.f21964h0);
     }
 
     public final void v() {
@@ -615,7 +615,7 @@ public abstract class da {
         if (Build.VERSION.SDK_INT >= 23) {
             if (this.Y != null && this.P) {
                 this.P = false;
-                this.f21981s0.run();
+                this.f21985s0.run();
             }
             this.P = false;
         }
@@ -623,7 +623,7 @@ public abstract class da {
             actionMode.finish();
             this.Y = null;
         }
-        org.telegram.ui.ActionBar.n1 n1Var = this.f21971n0;
+        org.telegram.ui.ActionBar.n1 n1Var = this.f21975n0;
         if (n1Var != null) {
             n1Var.d(true);
         }
@@ -649,7 +649,7 @@ public abstract class da {
     }
 
     public final boolean y() {
-        if (this.f21984u >= 0 && this.v >= 0) {
+        if (this.f21988u >= 0 && this.v >= 0) {
             return true;
         }
         return false;

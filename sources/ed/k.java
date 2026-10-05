@@ -21,7 +21,7 @@ public final class k implements ef.a {
     @Override
     public final int b(ye.b bVar, ye.b bVar2) {
         ef.a aVar;
-        int i10 = bVar.f50870g;
+        int i10 = bVar.f50877g;
         LinkedList linkedList = this.f8860c;
         Iterator it = linkedList.iterator();
         while (true) {

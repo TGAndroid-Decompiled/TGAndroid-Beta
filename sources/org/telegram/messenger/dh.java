@@ -2,15 +2,15 @@ package org.telegram.messenger;
 
 import android.media.SoundPool;
 public final class dh implements SoundPool.OnLoadCompleteListener {
-    public final int f17684a;
+    public final int f17689a;
 
     public dh(int i10) {
-        this.f17684a = i10;
+        this.f17689a = i10;
     }
 
     @Override
     public final void onLoadComplete(SoundPool soundPool, int i10, int i11) {
-        switch (this.f17684a) {
+        switch (this.f17689a) {
             case 0:
                 NotificationsController.lambda$playOutChatSound$48(soundPool, i10, i11);
                 return;

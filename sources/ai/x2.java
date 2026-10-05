@@ -21,7 +21,7 @@ public final class x2 extends View {
     public final w2 f1830a;
     public final RectF f1831b;
     public final Path f1832c;
-    public final yh.j8 d;
+    public final yh.l8 d;
     public final org.telegram.ui.Components.e6 f1833e;
     public final org.telegram.ui.Components.e6 f1834f;
     public final org.telegram.ui.Components.o6 h;
@@ -63,7 +63,7 @@ public final class x2 extends View {
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
         new rq(R.drawable.star, 0).setScale(1.8f, 1.8f);
         setCount(0);
-        this.d = new yh.j8(1, 50);
+        this.d = new yh.l8(1, 50);
     }
 
     @Override
@@ -97,11 +97,11 @@ public final class x2 extends View {
         path.addRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, Path.Direction.CW);
         canvas.clipPath(path);
         float lerp = AndroidUtilities.lerp(5.0f, 15.0f, e7);
-        yh.j8 j8Var = this.d;
-        j8Var.h = lerp;
-        j8Var.g(rectF);
-        j8Var.d();
-        j8Var.b(canvas, -1, AndroidUtilities.lerp(0.5f, 1.0f, e7));
+        yh.l8 l8Var = this.d;
+        l8Var.h = lerp;
+        l8Var.g(rectF);
+        l8Var.d();
+        l8Var.b(canvas, -1, AndroidUtilities.lerp(0.5f, 1.0f, e7));
         invalidate();
         canvas.restore();
         if (e10 > 0.0f) {

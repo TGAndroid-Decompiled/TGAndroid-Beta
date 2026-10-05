@@ -4,16 +4,16 @@ import android.content.Context;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class l extends TextView implements oe.a {
-    public final m f21351a;
+    public final m f21355a;
 
     public l(m mVar, Context context) {
         super(context);
-        this.f21351a = mVar;
+        this.f21355a = mVar;
     }
 
     @Override
     public final void a() {
         AndroidUtilities.removeFromParent(this);
-        this.f21351a.f21368b.s(this);
+        this.f21355a.f21372b.s(this);
     }
 }

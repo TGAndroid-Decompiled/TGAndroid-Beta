@@ -14,50 +14,50 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class xr extends Drawable {
-    public final org.telegram.ui.ActionBar.d6 f42933a;
-    public final Paint f42934b = new Paint(1);
-    public final Paint f42935c;
+    public final org.telegram.ui.ActionBar.d6 f42995a;
+    public final Paint f42996b = new Paint(1);
+    public final Paint f42997c;
     public final Drawable d;
-    public final RectF f42936e;
-    public final org.telegram.ui.Components.o6 f42937f;
-    public final org.telegram.ui.Components.o6 f42938g;
+    public final RectF f42998e;
+    public final org.telegram.ui.Components.o6 f42999f;
+    public final org.telegram.ui.Components.o6 f43000g;
     public final Paint h;
-    public final Path f42939i;
-    public final Drawable f42940j;
-    public int f42941k;
-    public boolean f42942l;
-    public final org.telegram.ui.Components.e6 f42943m;
+    public final Path f43001i;
+    public final Drawable f43002j;
+    public int f43003k;
+    public boolean f43004l;
+    public final org.telegram.ui.Components.e6 f43005m;
 
     public xr(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
         Paint paint = new Paint(1);
-        this.f42935c = paint;
-        this.f42936e = new RectF();
+        this.f42997c = paint;
+        this.f42998e = new RectF();
         org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(false, false, false, false);
-        this.f42937f = o6Var;
+        this.f42999f = o6Var;
         org.telegram.ui.Components.o6 o6Var2 = new org.telegram.ui.Components.o6(false, false, false, false);
-        this.f42938g = o6Var2;
+        this.f43000g = o6Var2;
         Paint paint2 = new Paint(1);
         this.h = paint2;
         Path path = new Path();
-        this.f42939i = path;
-        this.f42943m = new org.telegram.ui.Components.e6(new bj(this, 12), 320L, org.telegram.ui.Components.tr.h, 0);
+        this.f43001i = path;
+        this.f43005m = new org.telegram.ui.Components.e6(new bj(this, 12), 320L, org.telegram.ui.Components.tr.h, 0);
         wr wrVar = new wr(0, this);
-        this.f42933a = d6Var;
+        this.f42995a = d6Var;
         this.d = context.getResources().getDrawable(i10).mutate();
-        this.f42940j = context.getResources().getDrawable(R.drawable.mini_casting_fill).mutate();
+        this.f43002j = context.getResources().getDrawable(R.drawable.mini_casting_fill).mutate();
         paint.setColor(-1);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         o6Var.u(AndroidUtilities.getTypeface("fonts/num.otf"));
         o6Var.r(-16777216);
         o6Var.t(AndroidUtilities.dp(7.0f));
         o6Var.setCallback(wrVar);
-        o6Var.f29245b = 17;
+        o6Var.f29354b = 17;
         o6Var.G = AndroidUtilities.displaySize.x;
         o6Var2.u(AndroidUtilities.getTypeface("fonts/num.otf"));
         o6Var2.r(-16777216);
         o6Var2.t(AndroidUtilities.dp(7.0f));
         o6Var2.setCallback(wrVar);
-        o6Var2.f29245b = 17;
+        o6Var2.f29354b = 17;
         o6Var2.G = AndroidUtilities.displaySize.x;
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(AndroidUtilities.dp(0.66f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.33f));
@@ -66,10 +66,10 @@ public final class xr extends Drawable {
     }
 
     public final void a(boolean z10) {
-        if (this.f42942l == z10) {
+        if (this.f43004l == z10) {
             return;
         }
-        this.f42942l = z10;
+        this.f43004l = z10;
         invalidateSelf();
     }
 
@@ -81,10 +81,10 @@ public final class xr extends Drawable {
         float f11;
         int i10;
         float f12;
-        float e7 = this.f42943m.e(this.f42942l);
-        org.telegram.ui.Components.o6 o6Var = this.f42937f;
+        float e7 = this.f43005m.e(this.f43004l);
+        org.telegram.ui.Components.o6 o6Var = this.f42999f;
         float d = o6Var.d() + (o6Var.g() * AndroidUtilities.dp(5.0f));
-        org.telegram.ui.Components.o6 o6Var2 = this.f42938g;
+        org.telegram.ui.Components.o6 o6Var2 = this.f43000g;
         float d10 = o6Var2.d() + (o6Var2.g() * AndroidUtilities.dp(5.0f));
         int saveCount = canvas.getSaveCount();
         Rect bounds = getBounds();
@@ -104,14 +104,14 @@ public final class xr extends Drawable {
         canvas2.rotate(-0.0f, bounds.centerX(), bounds.centerY());
         drawable.draw(canvas2);
         canvas2.restore();
-        Paint paint = this.f42934b;
+        Paint paint = this.f42996b;
         paint.setColor(-1);
         float width = (bounds.width() * 0.98f) + bounds.left;
         float height = (bounds.height() * 0.18f) + bounds.top;
         float height2 = (bounds.height() * 0.78f) + bounds.top;
         float dp = AndroidUtilities.dp(10.0f);
-        Paint paint2 = this.f42935c;
-        RectF rectF = this.f42936e;
+        Paint paint2 = this.f42997c;
+        RectF rectF = this.f42998e;
         if (i11 > 0) {
             f7 = dp;
             float f13 = f7 / 2.0f;
@@ -136,7 +136,7 @@ public final class xr extends Drawable {
         float f15 = 1.0f - e7;
         if (d * f15 > 0.0f) {
             paint.setAlpha((int) (o6Var.g() * 255.0f * f15));
-            o6Var.f29263w = (int) (o6Var.g() * 255.0f * f15);
+            o6Var.f29372w = (int) (o6Var.g() * 255.0f * f15);
             float f16 = f7 / 2.0f;
             rectF.set(width - d, f10 - f16, width, f10 + f16);
             rectF.inset(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
@@ -147,11 +147,11 @@ public final class xr extends Drawable {
         }
         if (e7 > 0.0f) {
             canvas2.save();
-            int v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Oh, this.f42933a);
-            int i13 = this.f42941k;
-            Drawable drawable2 = this.f42940j;
+            int v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Oh, this.f42995a);
+            int i13 = this.f43003k;
+            Drawable drawable2 = this.f43002j;
             if (i13 != v02) {
-                this.f42941k = v02;
+                this.f43003k = v02;
                 drawable2.setColorFilter(new PorterDuffColorFilter(v02, PorterDuff.Mode.SRC_IN));
             }
             f12 = 255.0f;
@@ -162,7 +162,7 @@ public final class xr extends Drawable {
             if (e7 > 0.5f) {
                 canvas2.save();
                 canvas2.translate(drawable2.getBounds().left, drawable2.getBounds().top);
-                canvas2.drawPath(this.f42939i, this.h);
+                canvas2.drawPath(this.f43001i, this.h);
                 canvas2.restore();
             }
             drawable2.draw(canvas2);
@@ -172,7 +172,7 @@ public final class xr extends Drawable {
         }
         if (i10 > 0) {
             paint.setAlpha((int) (o6Var2.g() * f12));
-            o6Var2.f29263w = (int) (o6Var2.g() * f12);
+            o6Var2.f29372w = (int) (o6Var2.g() * f12);
             float f17 = f7 / 2.0f;
             rectF.set(width - d10, f11 - f17, width, f11 + f17);
             rectF.inset(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));

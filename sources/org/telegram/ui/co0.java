@@ -13,33 +13,33 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class co0 extends WebViewClient {
-    public final Context f35519a;
-    public final so0 f35520b;
+    public final Context f35511a;
+    public final so0 f35512b;
 
     public co0(so0 so0Var, Context context) {
-        this.f35520b = so0Var;
-        this.f35519a = context;
+        this.f35512b = so0Var;
+        this.f35511a = context;
     }
 
     @Override
     public final void onPageFinished(WebView webView, String str) {
         super.onPageFinished(webView, str);
-        so0 so0Var = this.f35520b;
-        so0Var.f40587z0 = false;
+        so0 so0Var = this.f35512b;
+        so0Var.f40599z0 = false;
         so0Var.H0(true, false);
         so0Var.K0();
     }
 
     @Override
     public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-        so0 so0Var = this.f35520b;
+        so0 so0Var = this.f35512b;
         try {
             if (!AndroidUtilities.isSafeToShow(so0Var.getParentActivity())) {
                 return true;
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(so0Var.getParentActivity(), 0, so0Var.Y0);
-            alertDialog$Builder.f20372a.R = LocaleController.getString(R.string.ChromeCrashTitle);
-            alertDialog$Builder.f20372a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new nl0(this, 7));
+            alertDialog$Builder.f20377a.R = LocaleController.getString(R.string.ChromeCrashTitle);
+            alertDialog$Builder.f20377a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new nl0(this, 7));
             alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
             alertDialog$Builder.o();
             return true;
@@ -58,15 +58,15 @@ public final class co0 extends WebViewClient {
         try {
             parse = Uri.parse(str);
             equals = "t.me".equals(parse.getHost());
-            so0Var = this.f35520b;
+            so0Var = this.f35512b;
         } catch (Exception unused) {
         }
         if (equals) {
             so0Var.t0();
             return true;
         }
-        if (!so0.f40545h1.contains(parse.getScheme())) {
-            if (!so0.f40544g1.contains(parse.getScheme())) {
+        if (!so0.f40557h1.contains(parse.getScheme())) {
+            if (!so0.f40556g1.contains(parse.getScheme())) {
                 try {
                     if (so0Var.getParentActivity() != null) {
                         z10 = true;
@@ -78,9 +78,9 @@ public final class co0 extends WebViewClient {
                         return true;
                     }
                 } catch (ActivityNotFoundException unused2) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f35519a);
-                    alertDialog$Builder.f20372a.R = so0Var.f40572p0;
-                    alertDialog$Builder.f20372a.T = LocaleController.getString(R.string.PaymentAppNotFoundForDeeplink);
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f35511a);
+                    alertDialog$Builder.f20377a.R = so0Var.f40584p0;
+                    alertDialog$Builder.f20377a.T = LocaleController.getString(R.string.PaymentAppNotFoundForDeeplink);
                     alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
                     alertDialog$Builder.o();
                 }

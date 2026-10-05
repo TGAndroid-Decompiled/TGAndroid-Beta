@@ -337,7 +337,7 @@ public final class d extends ResultReceiver {
                                 if (i16 >= 34) {
                                     a2 = g1.a.a(intent3);
                                 } else {
-                                    int i18 = w0.d.f48459a;
+                                    int i18 = w0.d.f48466a;
                                     Bundle bundleExtra2 = intent3.getBundleExtra("android.service.credentials.extra.CREATE_CREDENTIAL_EXCEPTION");
                                     if (bundleExtra2 == null) {
                                         a2 = null;
@@ -441,7 +441,7 @@ public final class d extends ResultReceiver {
                                         if (i20 >= 34) {
                                             iVar = g1.a.c(intent4);
                                         } else {
-                                            int i22 = i.f48460a;
+                                            int i22 = i.f48467a;
                                             Bundle bundleExtra4 = intent4.getBundleExtra("android.service.credentials.extra.GET_CREDENTIAL_EXCEPTION");
                                             if (bundleExtra4 != null) {
                                                 String string4 = bundleExtra4.getString("androidx.credentials.provider.extra.CREATE_CREDENTIAL_EXCEPTION_TYPE");
@@ -474,22 +474,22 @@ public final class d extends ResultReceiver {
             default:
                 n4.j jVar = (n4.j) ((WeakReference) this.f3939b).get();
                 if (jVar != null && resultData != null) {
-                    synchronized (jVar.f16604b) {
-                        x xVar = jVar.f16606e;
+                    synchronized (jVar.f16609b) {
+                        x xVar = jVar.f16611e;
                         IBinder binder = resultData.getBinder("android.support.v4.media.session.EXTRA_BINDER");
-                        int i23 = q.f16622b;
+                        int i23 = q.f16627b;
                         if (binder != null) {
                             IInterface queryLocalInterface = binder.queryLocalInterface("android.support.v4.media.session.IMediaSession");
                             if (queryLocalInterface != null && (queryLocalInterface instanceof h)) {
                                 hVar = (h) queryLocalInterface;
                             } else {
                                 ?? obj4 = new Object();
-                                obj4.f16585a = binder;
+                                obj4.f16590a = binder;
                                 hVar = obj4;
                             }
                         }
                         xVar.b(hVar);
-                        jVar.f16606e.c(y4.a.a(resultData));
+                        jVar.f16611e.c(y4.a.a(resultData));
                         jVar.a();
                     }
                     return;

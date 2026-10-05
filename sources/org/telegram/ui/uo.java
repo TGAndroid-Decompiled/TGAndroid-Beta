@@ -7,25 +7,25 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class uo implements RequestDelegate {
-    public final int f41271a;
-    public final hp f41272b;
+    public final int f41306a;
+    public final hp f41307b;
 
     public uo(hp hpVar, int i10) {
-        this.f41271a = i10;
-        this.f41272b = hpVar;
+        this.f41306a = i10;
+        this.f41307b = hpVar;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f41271a) {
+        switch (this.f41306a) {
             case 0:
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    AndroidUtilities.runOnUIThread(new wo(this.f41272b, 3));
+                    AndroidUtilities.runOnUIThread(new wo(this.f41307b, 3));
                     return;
                 }
                 return;
             case 1:
-                final hp hpVar = this.f41272b;
+                final hp hpVar = this.f41307b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -34,24 +34,24 @@ public final class uo implements RequestDelegate {
                                 boolean z10 = tLObject instanceof TLRPC.TL_boolTrue;
                                 hp hpVar2 = hpVar;
                                 if (z10) {
-                                    for (int i10 = 0; i10 < hpVar2.X.usernames.size(); i10++) {
-                                        TLRPC.TL_username tL_username = hpVar2.X.usernames.get(i10);
+                                    for (int i10 = 0; i10 < hpVar2.Y.usernames.size(); i10++) {
+                                        TLRPC.TL_username tL_username = hpVar2.Y.usernames.get(i10);
                                         if (tL_username != null && tL_username.active && !tL_username.editable) {
                                             tL_username.active = false;
                                         }
                                     }
                                 }
-                                hpVar2.f37156t0 = false;
+                                hpVar2.f37157u0 = false;
                                 AndroidUtilities.runOnUIThread(new wo(hpVar2, 4));
                                 return;
                             default:
                                 hp hpVar3 = hpVar;
-                                ArrayList arrayList = hpVar3.f37140f0;
-                                hpVar3.f37136d0 = false;
+                                ArrayList arrayList = hpVar3.f37141g0;
+                                hpVar3.f37138e0 = false;
                                 TLObject tLObject2 = tLObject;
                                 if (tLObject2 != null && hpVar3.getParentActivity() != null) {
                                     for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                                        hpVar3.h.removeView((View) arrayList.get(i11));
+                                        hpVar3.f37147n.removeView((View) arrayList.get(i11));
                                     }
                                     arrayList.clear();
                                     TLRPC.TL_messages_chats tL_messages_chats = (TLRPC.TL_messages_chats) tLObject2;
@@ -64,7 +64,7 @@ public final class uo implements RequestDelegate {
                                         }
                                         nVar.a(chat, z11);
                                         arrayList.add(nVar);
-                                        hpVar3.f37158x.addView(nVar, w7.z5.n(-1, 72));
+                                        hpVar3.f37160y.addView(nVar, w7.z5.n(-1, 72));
                                     }
                                     hpVar3.b0();
                                     return;
@@ -75,7 +75,7 @@ public final class uo implements RequestDelegate {
                 });
                 return;
             case 2:
-                final hp hpVar2 = this.f41272b;
+                final hp hpVar2 = this.f41307b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -84,24 +84,24 @@ public final class uo implements RequestDelegate {
                                 boolean z10 = tLObject instanceof TLRPC.TL_boolTrue;
                                 hp hpVar22 = hpVar2;
                                 if (z10) {
-                                    for (int i10 = 0; i10 < hpVar22.X.usernames.size(); i10++) {
-                                        TLRPC.TL_username tL_username = hpVar22.X.usernames.get(i10);
+                                    for (int i10 = 0; i10 < hpVar22.Y.usernames.size(); i10++) {
+                                        TLRPC.TL_username tL_username = hpVar22.Y.usernames.get(i10);
                                         if (tL_username != null && tL_username.active && !tL_username.editable) {
                                             tL_username.active = false;
                                         }
                                     }
                                 }
-                                hpVar22.f37156t0 = false;
+                                hpVar22.f37157u0 = false;
                                 AndroidUtilities.runOnUIThread(new wo(hpVar22, 4));
                                 return;
                             default:
                                 hp hpVar3 = hpVar2;
-                                ArrayList arrayList = hpVar3.f37140f0;
-                                hpVar3.f37136d0 = false;
+                                ArrayList arrayList = hpVar3.f37141g0;
+                                hpVar3.f37138e0 = false;
                                 TLObject tLObject2 = tLObject;
                                 if (tLObject2 != null && hpVar3.getParentActivity() != null) {
                                     for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                                        hpVar3.h.removeView((View) arrayList.get(i11));
+                                        hpVar3.f37147n.removeView((View) arrayList.get(i11));
                                     }
                                     arrayList.clear();
                                     TLRPC.TL_messages_chats tL_messages_chats = (TLRPC.TL_messages_chats) tLObject2;
@@ -114,7 +114,7 @@ public final class uo implements RequestDelegate {
                                         }
                                         nVar.a(chat, z11);
                                         arrayList.add(nVar);
-                                        hpVar3.f37158x.addView(nVar, w7.z5.n(-1, 72));
+                                        hpVar3.f37160y.addView(nVar, w7.z5.n(-1, 72));
                                     }
                                     hpVar3.b0();
                                     return;
@@ -125,7 +125,7 @@ public final class uo implements RequestDelegate {
                 });
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new oh(14, this.f41272b, tL_error));
+                AndroidUtilities.runOnUIThread(new oh(14, this.f41307b, tL_error));
                 return;
         }
     }

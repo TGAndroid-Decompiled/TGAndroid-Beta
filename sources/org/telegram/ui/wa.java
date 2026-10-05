@@ -3,27 +3,27 @@ package org.telegram.ui;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 public final class wa implements MessagesStorage.IntCallback {
-    public final int f42015a;
-    public final Object f42016b;
+    public final int f42029a;
+    public final Object f42030b;
 
     public wa(Object obj, int i10) {
-        this.f42015a = i10;
-        this.f42016b = obj;
+        this.f42029a = i10;
+        this.f42030b = obj;
     }
 
     @Override
     public final void run(int i10) {
         qu0 qu0Var;
-        int i11 = this.f42015a;
-        Object obj = this.f42016b;
+        int i11 = this.f42029a;
+        Object obj = this.f42030b;
         switch (i11) {
             case 0:
                 ((wb) obj).U0(true);
                 return;
             case 1:
-                yn ynVar = ((kn) obj).f38008a;
+                yn ynVar = ((kn) obj).f38076a;
                 if (i10 > 0 && ynVar.getParentActivity() != null && ynVar.fragmentView != null) {
-                    org.telegram.ui.Components.yc.a0(ynVar).m(org.telegram.ui.Components.xc.I, i10, 0, 0, ynVar.f43307ca).j();
+                    org.telegram.ui.Components.yc.a0(ynVar).m(org.telegram.ui.Components.xc.I, i10, 0, 0, ynVar.f43300ca).j();
                     return;
                 }
                 return;
@@ -32,7 +32,7 @@ public final class wa implements MessagesStorage.IntCallback {
                 return;
             case 3:
                 PhotoViewer photoViewer = (PhotoViewer) obj;
-                if (photoViewer.f34079y != null && (qu0Var = photoViewer.f33901e0) != null && i10 > 0) {
+                if (photoViewer.f34092y != null && (qu0Var = photoViewer.f33914e0) != null && i10 > 0) {
                     org.telegram.ui.Components.yc.F(qu0Var, true).j();
                     return;
                 }
@@ -48,15 +48,15 @@ public final class wa implements MessagesStorage.IntCallback {
                     profileActivity.finishFragment();
                     return;
                 }
-                profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.peerSettingsDidLoad, Long.valueOf(profileActivity.f34240e1));
+                profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.peerSettingsDidLoad, Long.valueOf(profileActivity.f34253e1));
                 return;
             default:
-                yf1 yf1Var = ((df1) obj).f35765a;
+                wf1 wf1Var = ((bf1) obj).f35132a;
                 if (i10 == 0) {
-                    yf1Var.O0(false);
+                    wf1Var.O0(false);
                     return;
                 } else {
-                    yf1Var.finishFragment();
+                    wf1Var.finishFragment();
                     return;
                 }
         }

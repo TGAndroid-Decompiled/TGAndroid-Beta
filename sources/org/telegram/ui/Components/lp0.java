@@ -1,34 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class lp0 extends FrameLayout {
-    public final gf f28408a;
+import android.view.ViewPropertyAnimator;
+import androidx.recyclerview.widget.RecyclerView;
+public final class lp0 extends s4.s0 {
+    public final gf f28511a;
 
-    public lp0(gf gfVar, Context context) {
-        super(context);
-        this.f28408a = gfVar;
+    public lp0(gf gfVar) {
+        this.f28511a = gfVar;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        gf gfVar = this.f28408a;
-        View contentView = gfVar.getContentView();
-        contentView.getLocationInWindow(r3);
-        int[] iArr = {iArr[0] + gfVar.E, iArr[1] + gfVar.F};
-        int[] iArr2 = new int[2];
-        getLocationInWindow(iArr2);
-        if ((motionEvent.getAction() != 0 || motionEvent.getX() > iArr[0]) && motionEvent.getX() < contentView.getWidth() + iArr[0] && motionEvent.getY() > iArr[1] && motionEvent.getY() < contentView.getHeight() + iArr[1]) {
-            motionEvent.offsetLocation(iArr2[0] - iArr[0], (AndroidUtilities.statusBarHeight + iArr2[1]) - iArr[1]);
-            return contentView.dispatchTouchEvent(motionEvent);
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        boolean z10;
+        float f7;
+        gf gfVar = this.f28511a;
+        View view = gfVar.f29804u;
+        if (gfVar.f29805w.I0() != 0) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        if (!gfVar.A && !gfVar.D) {
-            gfVar.D = true;
-            gfVar.l(new o1.k[0]);
+        Boolean bool = gfVar.f29806x;
+        if (bool != null && z10 == bool.booleanValue()) {
+            return;
         }
-        return true;
+        view.animate().cancel();
+        ViewPropertyAnimator animate = view.animate();
+        if (z10) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
+        }
+        animate.alpha(f7).setDuration(150L).start();
+        gfVar.f29806x = Boolean.valueOf(z10);
     }
 }

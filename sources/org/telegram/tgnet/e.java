@@ -21,25 +21,25 @@ import org.telegram.ui.Components.ad;
 import org.telegram.ui.Components.bd;
 import org.telegram.ui.Components.e0;
 import org.telegram.ui.Components.y;
-import org.telegram.ui.g91;
+import org.telegram.ui.e91;
 import org.telegram.ui.web.BotWebViewContainer$BotWebViewProxy;
 import org.telegram.ui.web.c1;
 import org.telegram.ui.web.h0;
 import w7.z5;
 import xh.h4;
-import yh.a0;
-import yh.w0;
-import yh.x3;
+import yh.b0;
+import yh.x0;
+import yh.y3;
 public final class e implements Utilities.Callback2 {
-    public final int f20214a;
-    public final Object f20215b;
-    public final Object f20216c;
+    public final int f20219a;
+    public final Object f20220b;
+    public final Object f20221c;
     public final Object d;
 
     public e(Object obj, Object obj2, Object obj3, int i10) {
-        this.f20214a = i10;
-        this.f20215b = obj;
-        this.f20216c = obj2;
+        this.f20219a = i10;
+        this.f20220b = obj;
+        this.f20221c = obj2;
         this.d = obj3;
     }
 
@@ -47,44 +47,44 @@ public final class e implements Utilities.Callback2 {
     public final void run(Object obj, Object obj2) {
         bd bdVar;
         bd bdVar2;
-        switch (this.f20214a) {
+        switch (this.f20219a) {
             case 0:
-                ((ConnectionsManager) this.f20215b).lambda$sendRequestTypedAndProcessUpdates$5((Executor) this.f20216c, (Utilities.Callback2) this.d, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                ((ConnectionsManager) this.f20220b).lambda$sendRequestTypedAndProcessUpdates$5((Executor) this.f20221c, (Utilities.Callback2) this.d, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
                 return;
             case 1:
                 TLRPC.Bool bool = (TLRPC.Bool) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                e0.U((e0) this.f20215b, (nf.e) this.f20216c, (TL_aicompose.TL_aiComposeTone) this.d);
+                e0.U((e0) this.f20220b, (nf.e) this.f20221c, (TL_aicompose.TL_aiComposeTone) this.d);
                 return;
             case 2:
                 TLRPC.Bool bool2 = (TLRPC.Bool) obj;
-                org.telegram.ui.Components.q.Q((org.telegram.ui.Components.q) this.f20215b, (d6) this.f20216c, (TL_aicompose.AiComposeTone) this.d, (TLRPC.TL_error) obj2);
+                org.telegram.ui.Components.q.Q((org.telegram.ui.Components.q) this.f20220b, (d6) this.f20221c, (TL_aicompose.AiComposeTone) this.d, (TLRPC.TL_error) obj2);
                 return;
             case 3:
                 TLRPC.Bool bool3 = (TLRPC.Bool) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                y.N((y) this.f20215b, (nf.e) this.f20216c, (b2) this.d);
+                y.N((y) this.f20220b, (nf.e) this.f20221c, (b2) this.d);
                 return;
             case 4:
-                c1 c1Var = (c1) this.f20215b;
-                da daVar = (da) this.f20216c;
+                c1 c1Var = (c1) this.f20220b;
+                da daVar = (da) this.f20221c;
                 BotWebViewContainer$BotWebViewProxy botWebViewContainer$BotWebViewProxy = (BotWebViewContainer$BotWebViewProxy) this.d;
                 String str = (String) obj;
                 ArrayList arrayList = (ArrayList) obj2;
                 if (TextUtils.isEmpty(str)) {
                     c1Var.y(daVar, "prepared_message_sent", null);
-                    h0 h0Var = c1Var.f42130c;
+                    h0 h0Var = c1Var.f42142c;
                     if (h0Var != null) {
                         h0Var.c();
                     }
-                    AndroidUtilities.runOnUIThread(new g91(25, botWebViewContainer$BotWebViewProxy, arrayList), 500L);
+                    AndroidUtilities.runOnUIThread(new e91(25, botWebViewContainer$BotWebViewProxy, arrayList), 500L);
                     return;
                 }
                 c1Var.y(daVar, "prepared_message_failed", c1.B(str, "error"));
                 return;
             case 5:
-                xh.v vVar = (xh.v) this.f20215b;
-                e4[] e4VarArr = (e4[]) this.f20216c;
+                xh.v vVar = (xh.v) this.f20220b;
+                e4[] e4VarArr = (e4[]) this.f20221c;
                 FrameLayout frameLayout = (FrameLayout) this.d;
                 View view = (View) obj;
                 CharSequence charSequence = (CharSequence) obj2;
@@ -123,25 +123,25 @@ public final class e implements Utilities.Callback2 {
                 e4Var2.u();
                 return;
             case 6:
-                h4 h4Var = (h4) this.f20215b;
+                h4 h4Var = (h4) this.f20220b;
                 TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) this.d;
                 String str2 = (String) obj2;
-                ((nf.e) this.f20216c).b();
+                ((nf.e) this.f20221c).b();
                 if (((Boolean) obj).booleanValue()) {
-                    w0 w0Var = h4Var.f49987f0;
-                    if (w0Var != null) {
-                        w0Var.run(tL_starGiftUnique);
+                    x0 x0Var = h4Var.f49994f0;
+                    if (x0Var != null) {
+                        x0Var.run(tL_starGiftUnique);
                     }
                     h4Var.dismiss();
                     return;
                 }
                 return;
             case 7:
-                a0.P((a0) this.f20215b, (nf.e) this.f20216c, (b2) this.d, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                b0.P((b0) this.f20220b, (nf.e) this.f20221c, (b2) this.d, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
                 return;
             default:
-                x3 x3Var = (x3) this.f20215b;
-                e4[] e4VarArr2 = (e4[]) this.f20216c;
+                y3 y3Var = (y3) this.f20220b;
+                e4[] e4VarArr2 = (e4[]) this.f20221c;
                 FrameLayout frameLayout2 = (FrameLayout) this.d;
                 View view2 = (View) obj;
                 CharSequence charSequence2 = (CharSequence) obj2;
@@ -165,7 +165,7 @@ public final class e implements Utilities.Callback2 {
                         }
                     }
                 }
-                e4 e4Var4 = new e4(x3Var.getContext(), 3);
+                e4 e4Var4 = new e4(y3Var.getContext(), 3);
                 e4VarArr2[0] = e4Var4;
                 e4Var4.p(true);
                 e4Var4.k(11.0f, 8.0f, 11.0f, 7.0f);

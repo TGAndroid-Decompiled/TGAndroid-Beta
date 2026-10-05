@@ -4,14 +4,14 @@ import bf.p;
 import c5.b0;
 import java.util.regex.Pattern;
 public final class g extends df.a {
-    public static final Pattern[][] f50894e = {new Pattern[]{null, null}, new Pattern[]{Pattern.compile("^<(?:script|pre|style)(?:\\s|>|$)", 2), Pattern.compile("</(?:script|pre|style)>", 2)}, new Pattern[]{Pattern.compile("^<!--"), Pattern.compile("-->")}, new Pattern[]{Pattern.compile("^<[?]"), Pattern.compile("\\?>")}, new Pattern[]{Pattern.compile("^<![A-Z]"), Pattern.compile(">")}, new Pattern[]{Pattern.compile("^<!\\[CDATA\\["), Pattern.compile("\\]\\]>")}, new Pattern[]{Pattern.compile("^</?(?:address|article|aside|base|basefont|blockquote|body|caption|center|col|colgroup|dd|details|dialog|dir|div|dl|dt|fieldset|figcaption|figure|footer|form|frame|frameset|h1|h2|h3|h4|h5|h6|head|header|hr|html|iframe|legend|li|link|main|menu|menuitem|nav|noframes|ol|optgroup|option|p|param|section|source|summary|table|tbody|td|tfoot|th|thead|title|tr|track|ul)(?:\\s|[/]?[>]|$)", 2), null}, new Pattern[]{Pattern.compile("^(?:<[A-Za-z][A-Za-z0-9-]*(?:\\s+[a-zA-Z_:][a-zA-Z0-9:._-]*(?:\\s*=\\s*(?:[^\"'=<>`\\x00-\\x20]+|'[^']*'|\"[^\"]*\"))?)*\\s*/?>|</[A-Za-z][A-Za-z0-9-]*\\s*[>])\\s*$", 2), null}};
-    public final Pattern f50896b;
-    public final bf.j f50895a = new p();
-    public boolean f50897c = false;
+    public static final Pattern[][] f50901e = {new Pattern[]{null, null}, new Pattern[]{Pattern.compile("^<(?:script|pre|style)(?:\\s|>|$)", 2), Pattern.compile("</(?:script|pre|style)>", 2)}, new Pattern[]{Pattern.compile("^<!--"), Pattern.compile("-->")}, new Pattern[]{Pattern.compile("^<[?]"), Pattern.compile("\\?>")}, new Pattern[]{Pattern.compile("^<![A-Z]"), Pattern.compile(">")}, new Pattern[]{Pattern.compile("^<!\\[CDATA\\["), Pattern.compile("\\]\\]>")}, new Pattern[]{Pattern.compile("^</?(?:address|article|aside|base|basefont|blockquote|body|caption|center|col|colgroup|dd|details|dialog|dir|div|dl|dt|fieldset|figcaption|figure|footer|form|frame|frameset|h1|h2|h3|h4|h5|h6|head|header|hr|html|iframe|legend|li|link|main|menu|menuitem|nav|noframes|ol|optgroup|option|p|param|section|source|summary|table|tbody|td|tfoot|th|thead|title|tr|track|ul)(?:\\s|[/]?[>]|$)", 2), null}, new Pattern[]{Pattern.compile("^(?:<[A-Za-z][A-Za-z0-9-]*(?:\\s+[a-zA-Z_:][a-zA-Z0-9:._-]*(?:\\s*=\\s*(?:[^\"'=<>`\\x00-\\x20]+|'[^']*'|\"[^\"]*\"))?)*\\s*/?>|</[A-Za-z][A-Za-z0-9-]*\\s*[>])\\s*$", 2), null}};
+    public final Pattern f50903b;
+    public final bf.j f50902a = new p();
+    public boolean f50904c = false;
     public b0 d = new b0(12, (byte) 0);
 
     public g(Pattern pattern) {
-        this.f50896b = pattern;
+        this.f50903b = pattern;
     }
 
     @Override
@@ -23,30 +23,30 @@ public final class g extends df.a {
         }
         sb2.append(charSequence);
         b0Var.f4153b++;
-        Pattern pattern = this.f50896b;
+        Pattern pattern = this.f50903b;
         if (pattern != null && pattern.matcher(charSequence).find()) {
-            this.f50897c = true;
+            this.f50904c = true;
         }
     }
 
     @Override
     public final void d() {
-        this.f50895a.f3824g = ((StringBuilder) this.d.f4154c).toString();
+        this.f50902a.f3824g = ((StringBuilder) this.d.f4154c).toString();
         this.d = null;
     }
 
     @Override
     public final bf.a e() {
-        return this.f50895a;
+        return this.f50902a;
     }
 
     @Override
     public final q3.h h(d dVar) {
-        if (!this.f50897c) {
-            if (dVar.h && this.f50896b == null) {
+        if (!this.f50904c) {
+            if (dVar.h && this.f50903b == null) {
                 return null;
             }
-            return q3.h.a(dVar.f50876b);
+            return q3.h.a(dVar.f50883b);
         }
         return null;
     }

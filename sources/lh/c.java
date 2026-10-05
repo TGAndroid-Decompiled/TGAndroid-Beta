@@ -35,13 +35,13 @@ import org.telegram.messenger.voip.GroupCallMessage;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.d61;
+import org.telegram.ui.Components.e61;
 import org.telegram.ui.Components.h9;
 import org.telegram.ui.Components.q5;
 import org.telegram.ui.Components.tr;
 import org.telegram.ui.h40;
 import vh.n;
-import zg.o0;
+import zg.m0;
 public final class c extends ViewGroup implements me.a, NotificationCenter.NotificationCenterDelegate, le.d {
     public static final Rect L = new Rect();
     public RenderNode E;
@@ -60,7 +60,7 @@ public final class c extends ViewGroup implements me.a, NotificationCenter.Notif
     public final org.telegram.ui.Components.voip.h h;
     public final ImageReceiver f15592n;
     public q5 f15593r;
-    public o0 f15594s;
+    public m0 f15594s;
     public final n v;
     public i0 f15595w;
     public boolean f15596x;
@@ -95,7 +95,7 @@ public final class c extends ViewGroup implements me.a, NotificationCenter.Notif
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.d = imageReceiver;
         imageReceiver.setRoundRadius(AndroidUtilities.dp(11.0f));
-        hVar.f31879c.setStrokeWidth(AndroidUtilities.dp(1.0f));
+        hVar.f31946c.setStrokeWidth(AndroidUtilities.dp(1.0f));
         this.f15592n = new ImageReceiver(this);
         setWillNotDraw(false);
     }
@@ -126,8 +126,8 @@ public final class c extends ViewGroup implements me.a, NotificationCenter.Notif
         this.f15591f.setAlpha(Math.round(this.f15588b.f15436e * 100.0f));
         int round = Math.round(this.f15587a.f15436e * 220.0f);
         org.telegram.ui.Components.voip.h hVar = this.h;
-        hVar.f31877a.setAlpha(round);
-        hVar.f31879c.setAlpha(round);
+        hVar.f31944a.setAlpha(round);
+        hVar.f31946c.setAlpha(round);
         invalidate();
     }
 
@@ -298,13 +298,13 @@ public final class c extends ViewGroup implements me.a, NotificationCenter.Notif
         if (i0Var == null || this.f15596x || i0Var.f3258a != size) {
             int paddingLeft = getPaddingLeft();
             int paddingRight = getPaddingRight();
-            o0 o0Var = this.f15594s;
+            m0 m0Var = this.f15594s;
             int c10 = bi.c(44.0f, (size - paddingLeft) - paddingRight, Integer.MIN_VALUE);
             int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
             n nVar = this.v;
             nVar.measure(c10, makeMeasureSpec);
             float measuredWidth = nVar.getMeasuredWidth();
-            if (o0Var == null) {
+            if (m0Var == null) {
                 ceil = (int) Math.ceil(measuredWidth);
                 dp = AndroidUtilities.dp(44.0f);
             } else {
@@ -366,7 +366,7 @@ public final class c extends ViewGroup implements me.a, NotificationCenter.Notif
             }
         }
         setMeasuredDimension(size, this.f15595w.f3259b);
-        this.h.f31881f = Math.round(((RectF) this.f15595w.f3260c).width() + AndroidUtilities.dp(48.0f));
+        this.h.f31948f = Math.round(((RectF) this.f15595w.f3260c).width() + AndroidUtilities.dp(48.0f));
     }
 
     @Override
@@ -404,11 +404,11 @@ public final class c extends ViewGroup implements me.a, NotificationCenter.Notif
         }
         this.f15593r = null;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(name);
-        spannableStringBuilder.setSpan(new d61(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.setSpan(new e61(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
         spannableStringBuilder.setSpan(this.J, 0, spannableStringBuilder.length(), 33);
-        o0 o0Var = groupCallMessage.visibleReaction;
+        m0 m0Var = groupCallMessage.visibleReaction;
         n nVar = this.v;
-        if (o0Var == null) {
+        if (m0Var == null) {
             CharSequence formatTextWithEntities = MessageObject.formatTextWithEntities(groupCallMessage.message, false, true, nVar.getPaint());
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
             boolean b10 = b(spannableStringBuilder);
@@ -428,13 +428,13 @@ public final class c extends ViewGroup implements me.a, NotificationCenter.Notif
             spannableStringBuilder2.append((CharSequence) "  ");
             spannableStringBuilder2.append(formatTextWithEntities);
             spannableStringBuilder = spannableStringBuilder2;
-        } else if (o0Var.f53485f != null) {
-            TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(groupCallMessage.currentAccount).getReactionsMap().get(groupCallMessage.visibleReaction.f53485f);
+        } else if (m0Var.f53471f != null) {
+            TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(groupCallMessage.currentAccount).getReactionsMap().get(groupCallMessage.visibleReaction.f53471f);
             if (tL_availableReaction != null) {
                 imageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.select_animation), "28_28", null, null, null, 0);
             }
-        } else if (o0Var.f53486g != 0) {
-            q5 q5Var = new q5(0, groupCallMessage.currentAccount, groupCallMessage.visibleReaction.f53486g);
+        } else if (m0Var.f53472g != 0) {
+            q5 q5Var = new q5(0, groupCallMessage.currentAccount, groupCallMessage.visibleReaction.f53472g);
             this.f15593r = q5Var;
             q5Var.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
             if (isAttachedToWindow()) {

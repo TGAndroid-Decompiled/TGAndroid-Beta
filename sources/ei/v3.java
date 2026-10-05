@@ -57,15 +57,15 @@ public final class v3 implements View.OnClickListener {
             default:
                 LinearLayout linearLayout = (LinearLayout) this.f9397n;
                 int i11 = this.f9393b;
-                yh.o g10 = yh.o.g(i11);
+                yh.p g10 = yh.p.g(i11);
                 g10.n();
                 g10.o();
                 ArrayList arrayList = new ArrayList();
-                ArrayList arrayList2 = g10.f51723j;
+                ArrayList arrayList2 = g10.f51775j;
                 if (arrayList2 != null) {
                     arrayList.addAll(arrayList2);
                 }
-                ArrayList arrayList3 = g10.f51725l;
+                ArrayList arrayList3 = g10.f51777l;
                 if (arrayList3 != null) {
                     arrayList.addAll(arrayList3);
                 }
@@ -80,12 +80,12 @@ public final class v3 implements View.OnClickListener {
                     int i13 = i12 + 1;
                     TLObject tLObject = (TLObject) arrayList.get(i12);
                     if (tLObject instanceof TLRPC.User) {
-                        j3 = ((TLRPC.User) tLObject).f20189id;
+                        j3 = ((TLRPC.User) tLObject).f20194id;
                     } else {
                         if (tLObject instanceof TLRPC.Chat) {
                             TLRPC.Chat chat = (TLRPC.Chat) tLObject;
                             if (ChatObject.isChannelAndNotMegaGroup(chat)) {
-                                j3 = -chat.f20042id;
+                                j3 = -chat.f20047id;
                             }
                         }
                         i12 = i13;
@@ -98,8 +98,8 @@ public final class v3 implements View.OnClickListener {
                     F.g(tLObject, z10, new q3(i11, j3, this.f9396f, this.h, f3Var, d6Var));
                     i12 = i13;
                 }
-                F.f24850t = false;
-                F.f24849s = 0;
+                F.f24886t = false;
+                F.f24885s = 0;
                 F.V(5);
                 F.a0(AndroidUtilities.dp(24.0f), 0.0f);
                 F.Z();

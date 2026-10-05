@@ -18,7 +18,7 @@ public final class b extends u1 {
         switch (this.f15133s) {
             case 0:
                 c cVar = ((ActionMenuItemView) this.v).f2116x;
-                if (cVar != null && (dVar = ((m.e) cVar).f15728a.J) != null) {
+                if (cVar != null && (dVar = ((m.e) cVar).f15733a.J) != null) {
                     return dVar.a();
                 }
                 return null;

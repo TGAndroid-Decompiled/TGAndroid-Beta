@@ -12,29 +12,29 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.e11;
+import org.telegram.ui.Components.f11;
 import org.telegram.ui.Components.uq;
-import yh.j8;
+import yh.l8;
 public final class l1 extends uq {
-    public e11 f50076b;
-    public final Path f50077c;
+    public f11 f50083b;
+    public final Path f50084c;
     public final Paint d;
-    public final float f50078e;
-    public j8 f50079f;
-    public boolean f50080g;
+    public final float f50085e;
+    public l8 f50086f;
+    public boolean f50087g;
     public int h;
 
     public l1(View view) {
         super(view);
         Path path = new Path();
-        this.f50077c = path;
+        this.f50084c = path;
         Paint paint = new Paint(1);
         this.d = paint;
         this.h = -1;
-        this.f50078e = 1.0f;
+        this.f50085e = 1.0f;
         c(path, 1.0f, false);
-        this.f31426a.setColor(-698031);
-        this.f31426a.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(2.33f)));
+        this.f31500a.setColor(-698031);
+        this.f31500a.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(2.33f)));
         paint.setColor(0);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeJoin(Paint.Join.ROUND);
@@ -77,12 +77,12 @@ public final class l1 extends uq {
         float f10;
         float f11;
         float f12;
-        Paint paint = this.f31426a;
+        Paint paint = this.f31500a;
         if (stargiftattributebackdrop == null) {
             paint.setShader(null);
             return;
         }
-        if (this.f50080g) {
+        if (this.f50087g) {
             z12 = !z10;
         } else {
             z12 = z10;
@@ -144,29 +144,29 @@ public final class l1 extends uq {
         canvas.translate(getBounds().right - AndroidUtilities.dp(48.0f), getBounds().top);
         Paint paint = this.d;
         int alpha = paint.getAlpha();
-        Path path = this.f50077c;
+        Path path = this.f50084c;
         if (alpha > 0) {
             paint.setStrokeWidth(AndroidUtilities.dp(1.33f) * 2);
             canvas.drawPath(path, paint);
         }
-        canvas.drawPath(path, this.f31426a);
-        if (this.f50079f != null) {
+        canvas.drawPath(path, this.f31500a);
+        if (this.f50086f != null) {
             canvas.clipPath(path);
-            this.f50079f.f(0, 0, AndroidUtilities.dp(48.0f), AndroidUtilities.dp(48.0f));
-            this.f50079f.d();
-            this.f50079f.a(canvas, -1);
+            this.f50086f.f(0, 0, AndroidUtilities.dp(48.0f), AndroidUtilities.dp(48.0f));
+            this.f50086f.d();
+            this.f50086f.a(canvas, -1);
             invalidateSelf();
         }
-        if (this.f50076b != null) {
+        if (this.f50083b != null) {
             canvas.save();
-            if (this.f50080g) {
+            if (this.f50087g) {
                 f7 = -45.0f;
             } else {
                 f7 = 45.0f;
             }
             float width = getBounds().width() / 2.0f;
             float f14 = -7.0f;
-            if (this.f50080g) {
+            if (this.f50087g) {
                 f10 = -7.0f;
             } else {
                 f10 = 6.0f;
@@ -174,39 +174,39 @@ public final class l1 extends uq {
             float dp = width + AndroidUtilities.dp(f10);
             float height = getBounds().height() / 2.0f;
             float f15 = 5.0f;
-            if (this.f50080g) {
+            if (this.f50087g) {
                 f11 = 5.0f;
             } else {
                 f11 = 6.0f;
             }
             canvas.rotate(f7, dp, height - AndroidUtilities.dp(f11));
-            float min = Math.min(1.0f, AndroidUtilities.dp(40.0f) / this.f50076b.f25884c);
+            float min = Math.min(1.0f, AndroidUtilities.dp(40.0f) / this.f50083b.f26266c);
             float width2 = getBounds().width() / 2.0f;
-            if (this.f50080g) {
+            if (this.f50087g) {
                 f12 = -7.0f;
             } else {
                 f12 = 6.0f;
             }
             float dp2 = width2 + AndroidUtilities.dp(f12);
             float height2 = getBounds().height() / 2.0f;
-            if (this.f50080g) {
+            if (this.f50087g) {
                 f13 = 5.0f;
             } else {
                 f13 = 6.0f;
             }
             canvas.scale(min, min, dp2, height2 - AndroidUtilities.dp(f13));
-            e11 e11Var = this.f50076b;
+            f11 f11Var = this.f50083b;
             float width3 = getBounds().width() / 2.0f;
-            if (!this.f50080g) {
+            if (!this.f50087g) {
                 f14 = 6.0f;
             }
-            float dp3 = (width3 + AndroidUtilities.dp(f14)) - (this.f50076b.l() / 2.0f);
+            float dp3 = (width3 + AndroidUtilities.dp(f14)) - (this.f50083b.l() / 2.0f);
             float height3 = getBounds().height() / 2.0f;
-            if (this.f50080g) {
+            if (this.f50087g) {
                 f15 = 4.0f;
             }
             canvas2 = canvas;
-            e11Var.c(dp3, height3 - AndroidUtilities.dp(f15), 1.0f, this.h, canvas2);
+            f11Var.c(dp3, height3 - AndroidUtilities.dp(f15), 1.0f, this.h, canvas2);
             canvas2.restore();
         } else {
             canvas2 = canvas;
@@ -222,6 +222,6 @@ public final class l1 extends uq {
         } else {
             typeface = null;
         }
-        this.f50076b = new e11(charSequence, f7, typeface);
+        this.f50083b = new f11(charSequence, f7, typeface);
     }
 }

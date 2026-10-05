@@ -3,8 +3,8 @@ package ye;
 import bf.p;
 import bf.r;
 public final class m extends df.a {
-    public final r f50931a = new p();
-    public final i f50932b = new i();
+    public final r f50938a = new p();
+    public final i f50939b = new i();
 
     @Override
     public final void a(java.lang.CharSequence r12) {
@@ -18,28 +18,28 @@ public final class m extends df.a {
 
     @Override
     public final void d() {
-        if (this.f50932b.f50917b.length() == 0) {
-            this.f50931a.g();
+        if (this.f50939b.f50924b.length() == 0) {
+            this.f50938a.g();
         }
     }
 
     @Override
     public final bf.a e() {
-        return this.f50931a;
+        return this.f50938a;
     }
 
     @Override
     public final void g(cf.a aVar) {
-        StringBuilder sb2 = this.f50932b.f50917b;
+        StringBuilder sb2 = this.f50939b.f50924b;
         if (sb2.length() > 0) {
-            aVar.a(sb2.toString(), this.f50931a);
+            aVar.a(sb2.toString(), this.f50938a);
         }
     }
 
     @Override
     public final q3.h h(d dVar) {
         if (!dVar.h) {
-            return q3.h.a(dVar.f50876b);
+            return q3.h.a(dVar.f50883b);
         }
         return null;
     }

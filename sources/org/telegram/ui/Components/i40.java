@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.ConnectionsManager;
-public abstract class i40 extends u61 {
+public abstract class i40 extends w61 {
     public final int N;
     public final ArrayList O;
     public boolean P;
@@ -19,16 +19,16 @@ public abstract class i40 extends u61 {
     public String X;
     public String Y;
     public int Z;
-    public zm f27311a0;
-    public final boolean[] f27312b0;
+    public zm f27399a0;
+    public final boolean[] f27400b0;
 
     public i40(zl0 zl0Var, Context context, int i10) {
         super(zl0Var, context, i10, 0, false, null, null);
         this.O = new ArrayList();
         this.T = 0;
         this.U = -1;
-        this.f27312b0 = new boolean[1];
-        this.f31314s = new d(this, 16);
+        this.f27400b0 = new boolean[1];
+        this.f32532s = new d(this, 16);
         this.N = i10;
     }
 
@@ -69,7 +69,7 @@ public abstract class i40 extends u61 {
             ConnectionsManager.getInstance(this.N).cancelRequest(this.U, true);
             this.U = -1;
         }
-        AndroidUtilities.cancelRunOnUIThread(this.f27311a0);
+        AndroidUtilities.cancelRunOnUIThread(this.f27399a0);
         this.T++;
         this.S = false;
     }
@@ -88,7 +88,7 @@ public abstract class i40 extends u61 {
 
     public final void Y(String str) {
         this.X = str;
-        String X = X(str, this.f27312b0);
+        String X = X(str, this.f27400b0);
         if (!TextUtils.equals(this.Y, X)) {
             this.O.clear();
             this.V = false;
@@ -105,7 +105,7 @@ public abstract class i40 extends u61 {
         this.S = true;
         N(true);
         zm zmVar = new zm(this, i10, X, 5);
-        this.f27311a0 = zmVar;
+        this.f27399a0 = zmVar;
         AndroidUtilities.runOnUIThread(zmVar, 300L);
     }
 }

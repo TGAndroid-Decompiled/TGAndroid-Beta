@@ -8,18 +8,18 @@ import org.telegram.messenger.AndroidUtilities;
 public final class u10 extends d8 {
     public final Context E;
     public final FragmentContextView F;
-    public final int f31244y;
+    public final int f31288y;
 
     public u10(FragmentContextView fragmentContextView, Context context, Context context2, int i10) {
         super(context);
-        this.f31244y = i10;
+        this.f31288y = i10;
         this.F = fragmentContextView;
         this.E = context2;
     }
 
     @Override
     public final TextView a() {
-        switch (this.f31244y) {
+        switch (this.f31288y) {
             case 0:
                 TextView textView = new TextView(this.E);
                 textView.setMaxLines(1);
@@ -33,12 +33,12 @@ public final class u10 extends d8 {
                 if (i10 != 0 && i10 != 2) {
                     if (i10 == 4) {
                         textView.setGravity(51);
-                        textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21122t7, fragmentContextView.f24183p0));
+                        textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21127t7, fragmentContextView.f24186p0));
                         textView.setTypeface(AndroidUtilities.bold());
                         textView.setTextSize(1, 15.0f);
                     } else if (i10 == 1 || i10 == 3) {
                         textView.setGravity(19);
-                        textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.A7, fragmentContextView.f24183p0));
+                        textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.A7, fragmentContextView.f24186p0));
                         textView.setTypeface(AndroidUtilities.bold());
                         textView.setTextSize(1, 14.0f);
                     }
@@ -56,7 +56,7 @@ public final class u10 extends d8 {
                 textView2.setEllipsize(TextUtils.TruncateAt.END);
                 textView2.setGravity(3);
                 textView2.setTextSize(1, 13.0f);
-                textView2.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21193x7, this.F.f24183p0));
+                textView2.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21198x7, this.F.f24186p0));
                 return textView2;
         }
     }

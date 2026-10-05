@@ -4,23 +4,23 @@ import b2.r0;
 import java.util.ArrayList;
 import v7.y7;
 public final class c {
-    public static final int[] f17005c = {8, 13, 11, 2, 0, 1, 7};
-    public qb.b f17006a;
-    public boolean f17007b;
+    public static final int[] f17010c = {8, 13, 11, 2, 0, 1, 7};
+    public qb.b f17011a;
+    public boolean f17012b;
 
     public static void a(int i10, ArrayList arrayList) {
-        if (y7.d(i10, 0, 7, f17005c) != -1 && !arrayList.contains(Integer.valueOf(i10))) {
+        if (y7.d(i10, 0, 7, f17010c) != -1 && !arrayList.contains(Integer.valueOf(i10))) {
             arrayList.add(Integer.valueOf(i10));
         }
     }
 
     public final b2.s b(b2.s sVar) {
         String str;
-        if (this.f17007b && this.f17006a.V(sVar)) {
+        if (this.f17012b && this.f17011a.V(sVar)) {
             b2.r a2 = sVar.a();
             String str2 = sVar.f3557k;
             a2.f3506q = r0.n("application/x-media3-cues");
-            a2.O = this.f17006a.H(sVar);
+            a2.O = this.f17011a.D(sVar);
             StringBuilder sb2 = new StringBuilder();
             sb2.append(sVar.f3564r);
             if (str2 != null) {

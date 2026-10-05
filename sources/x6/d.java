@@ -4,17 +4,17 @@ import android.os.RemoteException;
 import h8.j;
 import i8.g;
 public final class d implements e {
-    public final int f49407a;
-    public final j f49408b;
+    public final int f49414a;
+    public final j f49415b;
 
     public d(j jVar, int i10) {
-        this.f49407a = i10;
-        this.f49408b = jVar;
+        this.f49414a = i10;
+        this.f49415b = jVar;
     }
 
     @Override
     public final int a() {
-        switch (this.f49407a) {
+        switch (this.f49414a) {
             case 0:
                 return 4;
             default:
@@ -24,9 +24,9 @@ public final class d implements e {
 
     @Override
     public final void b() {
-        switch (this.f49407a) {
+        switch (this.f49414a) {
             case 0:
-                aa.a aVar = this.f49408b.f11038a;
+                aa.a aVar = this.f49415b.f11038a;
                 aVar.getClass();
                 try {
                     g gVar = (g) aVar.f387c;
@@ -36,7 +36,7 @@ public final class d implements e {
                     throw new RuntimeException(e7);
                 }
             default:
-                aa.a aVar2 = this.f49408b.f11038a;
+                aa.a aVar2 = this.f49415b.f11038a;
                 aVar2.getClass();
                 try {
                     g gVar2 = (g) aVar2.f387c;

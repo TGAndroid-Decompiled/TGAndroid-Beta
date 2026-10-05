@@ -3,12 +3,12 @@ package v0;
 import java.util.Collection;
 import java.util.List;
 public final class o {
-    public final List f47759a;
-    public final boolean f47760b;
+    public final List f47766a;
+    public final boolean f47767b;
 
     public o(List list, boolean z10) {
-        this.f47759a = list;
-        this.f47760b = z10;
+        this.f47766a = list;
+        this.f47767b = z10;
         if (!list.isEmpty()) {
             if (list.size() > 1) {
                 List<q> list2 = list;
@@ -16,7 +16,7 @@ public final class o {
                     for (q qVar : list2) {
                     }
                 }
-                for (q qVar2 : this.f47759a) {
+                for (q qVar2 : this.f47766a) {
                 }
                 return;
             }

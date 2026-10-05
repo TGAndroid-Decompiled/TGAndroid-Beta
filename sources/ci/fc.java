@@ -23,7 +23,7 @@ public abstract class fc {
         int[] iArr = new int[2];
         imageView.getLocationOnScreen(iArr);
         dcVar.f5093c.set(iArr[0], iArr[1], imageView.getWidth() + i10, imageView.getHeight() + iArr[1]);
-        dcVar.d = new org.telegram.ui.Cells.f7(imageView.getContext(), null, false, g7Var.f22172y);
+        dcVar.d = new org.telegram.ui.Cells.f7(imageView.getContext(), null, false, g7Var.f22176y);
         dcVar.f5092b = Math.max(dcVar.f5093c.width(), dcVar.f5093c.height()) / 2.0f;
         return dcVar;
     }

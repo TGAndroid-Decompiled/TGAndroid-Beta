@@ -50,10 +50,10 @@ public final class l {
         l lVar = obj;
         while (i15 < lVar.f15297i.length) {
             m2.m mVar3 = (m2.m) a2.get(rVar.h(i15));
-            m2.b k10 = sVar.k(mVar3.f16018b);
+            m2.b k10 = sVar.k(mVar3.f16023b);
             j[] jVarArr2 = lVar.f15297i;
-            m2.b bVar = k10 == null ? (m2.b) mVar3.f16018b.get(i14) : k10;
-            b2.s sVar3 = mVar3.f16017a;
+            m2.b bVar = k10 == null ? (m2.b) mVar3.f16023b.get(i14) : k10;
+            b2.s sVar3 = mVar3.f16022a;
             pVar.getClass();
             String str = sVar3.f3563q;
             if (r0.l(str)) {
@@ -71,7 +71,7 @@ public final class l {
                     d = j10;
                     i14 = 0;
                 } else {
-                    hVar2 = new z3.i(((qb.b) pVar.f3427c).v(sVar3), sVar3);
+                    hVar2 = new z3.h(((qb.b) pVar.f3427c).v(sVar3), sVar3);
                 }
             } else {
                 if (str != null && (str.startsWith("video/webm") || str.startsWith("audio/webm") || str.startsWith("application/webm") || str.startsWith("video/x-matroska") || str.startsWith("audio/x-matroska") || str.startsWith("application/x-matroska"))) {
@@ -123,10 +123,10 @@ public final class l {
     }
 
     public final ArrayList a() {
-        List list = this.f15299k.b(this.f15300l).f16006c;
+        List list = this.f15299k.b(this.f15300l).f16011c;
         ArrayList arrayList = new ArrayList();
         for (int i10 : this.f15293c) {
-            arrayList.addAll(((m2.a) list.get(i10)).f15970c);
+            arrayList.addAll(((m2.a) list.get(i10)).f15975c);
         }
         return arrayList;
     }
@@ -134,7 +134,7 @@ public final class l {
     public final j b(int i10) {
         j[] jVarArr = this.f15297i;
         j jVar = jVarArr[i10];
-        m2.b k10 = this.f15292b.k(jVar.f15287b.f16018b);
+        m2.b k10 = this.f15292b.k(jVar.f15287b.f16023b);
         if (k10 != null && !k10.equals(jVar.f15288c)) {
             j jVar2 = new j(jVar.f15289e, jVar.f15287b, k10, jVar.f15286a, jVar.f15290f, jVar.d);
             jVarArr[i10] = jVar2;

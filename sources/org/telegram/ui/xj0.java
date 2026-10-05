@@ -4,22 +4,22 @@ import android.content.Context;
 import android.widget.TextView;
 import org.telegram.messenger.NotificationCenter;
 public final class xj0 extends TextView {
-    public final st f42904a;
+    public final st f42966a;
 
     public xj0(Context context) {
         super(context);
-        this.f42904a = new st(1, this);
+        this.f42966a = new st(1, this);
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        NotificationCenter.getGlobalInstance().addObserver(this.f42904a, NotificationCenter.emojiLoaded);
+        NotificationCenter.getGlobalInstance().addObserver(this.f42966a, NotificationCenter.emojiLoaded);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        NotificationCenter.getGlobalInstance().removeObserver(this.f42904a, NotificationCenter.emojiLoaded);
+        NotificationCenter.getGlobalInstance().removeObserver(this.f42966a, NotificationCenter.emojiLoaded);
     }
 }

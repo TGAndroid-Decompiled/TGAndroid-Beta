@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.Components.eh;
-import org.telegram.ui.Components.mw0;
+import org.telegram.ui.Components.nw0;
 import org.telegram.ui.hu0;
 import org.telegram.ui.yn;
 public final class x5 extends AnimatorListenerAdapter {
@@ -17,9 +17,9 @@ public final class x5 extends AnimatorListenerAdapter {
     public final Object d;
     public final Object f6292e;
 
-    public x5(mw0 mw0Var, ViewGroup viewGroup, ViewGroup viewGroup2, int i10, int i11) {
+    public x5(nw0 nw0Var, ViewGroup viewGroup, ViewGroup viewGroup2, int i10, int i11) {
         this.f6289a = i11;
-        this.f6292e = mw0Var;
+        this.f6292e = nw0Var;
         this.f6291c = viewGroup;
         this.d = viewGroup2;
         this.f6290b = i10;
@@ -55,7 +55,7 @@ public final class x5 extends AnimatorListenerAdapter {
                 yn ynVar2 = (yn) this.f6291c;
                 ynVar2.S9 = 0.0f;
                 ynVar2.fragmentView.invalidate();
-                ynVar2.f43533v0.invalidate();
+                ynVar2.f43526v0.invalidate();
                 ynVar2.R9 = null;
                 ynVar.fragmentView.setAlpha(1.0f);
                 ((Runnable) this.d).run();
@@ -76,15 +76,15 @@ public final class x5 extends AnimatorListenerAdapter {
                 return;
             default:
                 qg.m0 m0Var = (qg.m0) this.f6292e;
-                m0Var.f45174g1 = m0Var.f45176h1;
-                m0Var.f45176h1 = -1;
-                m0Var.f45172f1.invalidate();
+                m0Var.f45181g1 = m0Var.f45183h1;
+                m0Var.f45183h1 = -1;
+                m0Var.f45179f1.invalidate();
                 View view2 = (View) this.f6291c;
                 if (view2 != null && ((View) this.d) != null) {
                     view2.setVisibility(8);
                 }
-                if (animator == m0Var.f45180j1) {
-                    m0Var.f45180j1 = null;
+                if (animator == m0Var.f45187j1) {
+                    m0Var.f45187j1 = null;
                     return;
                 }
                 return;

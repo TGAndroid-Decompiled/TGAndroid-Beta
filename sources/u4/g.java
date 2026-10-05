@@ -18,52 +18,52 @@ import w9.n;
 import w9.p;
 import w9.s;
 public final class g implements Callable {
-    public final int f47544a;
-    public final Object f47545b;
-    public final Object f47546c;
+    public final int f47551a;
+    public final Object f47552b;
+    public final Object f47553c;
 
     public g(int i10, Object obj, Object obj2) {
-        this.f47544a = i10;
-        this.f47546c = obj;
-        this.f47545b = obj2;
+        this.f47551a = i10;
+        this.f47553c = obj;
+        this.f47552b = obj2;
     }
 
     @Override
     public final Object call() {
         ha haVar;
-        int i10 = this.f47544a;
-        Object obj = this.f47546c;
-        Object obj2 = this.f47545b;
+        int i10 = this.f47551a;
+        Object obj = this.f47553c;
+        Object obj2 = this.f47552b;
         switch (i10) {
             case 0:
                 return (h) ((ShortcutInfoCompatSaverImpl) obj).f3098b.get((String) obj2);
             case 1:
                 o0.a aVar = (o0.a) obj;
-                n nVar = (n) aVar.f16933c;
+                n nVar = (n) aVar.f16938c;
                 Boolean bool = (Boolean) obj2;
                 if (!bool.booleanValue()) {
                     if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                         Log.v("FirebaseCrashlytics", "Deleting cached crash reports...", null);
                     }
-                    for (File file : ba.c.e(nVar.f48962g.f3721b.listFiles(n.f48956r))) {
+                    for (File file : ba.c.e(nVar.f48969g.f3721b.listFiles(n.f48963r))) {
                         file.delete();
                     }
-                    ba.c cVar = ((ba.b) nVar.f48967m.f7906b).f3718b;
+                    ba.c cVar = ((ba.b) nVar.f48974m.f7906b).f3718b;
                     ba.b.a(ba.c.e(cVar.d.listFiles()));
                     ba.b.a(ba.c.e(cVar.f3723e.listFiles()));
                     ba.b.a(ba.c.e(cVar.f3724f.listFiles()));
-                    nVar.f48971q.trySetResult(null);
+                    nVar.f48978q.trySetResult(null);
                     return Tasks.forResult(null);
                 }
                 if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                     Log.d("FirebaseCrashlytics", "Sending cached crash reports...", null);
                 }
                 boolean booleanValue = bool.booleanValue();
-                s sVar = nVar.f48958b;
+                s sVar = nVar.f48965b;
                 if (booleanValue) {
                     sVar.h.trySetResult(null);
-                    Executor executor = (Executor) nVar.f48960e.f7922b;
-                    return ((Task) aVar.f16932b).onSuccessTask(executor, new z0(this, executor, false, 23));
+                    Executor executor = (Executor) nVar.f48967e.f7922b;
+                    return ((Task) aVar.f16937b).onSuccessTask(executor, new z0(this, executor, false, 23));
                 }
                 sVar.getClass();
                 throw new IllegalStateException("An invalid data collection token was used.");
@@ -75,14 +75,14 @@ public final class g implements Callable {
             default:
                 MobileVisionBase mobileVisionBase = (MobileVisionBase) obj2;
                 vb.a aVar2 = (vb.a) obj;
-                HashMap hashMap = ha.f48718f;
+                HashMap hashMap = ha.f48725f;
                 pa.b();
-                int i11 = oa.f48805a;
+                int i11 = oa.f48812a;
                 pa.b();
                 if (!Boolean.parseBoolean("")) {
                     haVar = ga.h;
                 } else {
-                    HashMap hashMap2 = ha.f48718f;
+                    HashMap hashMap2 = ha.f48725f;
                     if (hashMap2.get("detectorTaskWithResource#run") == null) {
                         hashMap2.put("detectorTaskWithResource#run", new ha("detectorTaskWithResource#run"));
                     }
@@ -108,8 +108,8 @@ public final class g implements Callable {
     }
 
     public g(MobileVisionBase mobileVisionBase, vb.a aVar) {
-        this.f47544a = 4;
-        this.f47545b = mobileVisionBase;
-        this.f47546c = aVar;
+        this.f47551a = 4;
+        this.f47552b = mobileVisionBase;
+        this.f47553c = aVar;
     }
 }

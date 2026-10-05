@@ -3,14 +3,14 @@ package ye;
 import bf.p;
 import t7.s;
 public final class e extends df.a {
-    public final bf.h f50888a;
-    public String f50889b;
-    public final StringBuilder f50890c;
+    public final bf.h f50895a;
+    public String f50896b;
+    public final StringBuilder f50897c;
 
     public e(char c10, int i10, int i11) {
         ?? pVar = new p();
-        this.f50888a = pVar;
-        this.f50890c = new StringBuilder();
+        this.f50895a = pVar;
+        this.f50897c = new StringBuilder();
         pVar.f3819g = c10;
         pVar.h = i10;
         pVar.f3820i = i11;
@@ -18,35 +18,35 @@ public final class e extends df.a {
 
     @Override
     public final void a(CharSequence charSequence) {
-        if (this.f50889b == null) {
-            this.f50889b = charSequence.toString();
+        if (this.f50896b == null) {
+            this.f50896b = charSequence.toString();
             return;
         }
-        StringBuilder sb2 = this.f50890c;
+        StringBuilder sb2 = this.f50897c;
         sb2.append(charSequence);
         sb2.append('\n');
     }
 
     @Override
     public final void d() {
-        String a2 = af.a.a(this.f50889b.trim());
-        bf.h hVar = this.f50888a;
+        String a2 = af.a.a(this.f50896b.trim());
+        bf.h hVar = this.f50895a;
         hVar.f3821j = a2;
-        hVar.f3822k = this.f50890c.toString();
+        hVar.f3822k = this.f50897c.toString();
     }
 
     @Override
     public final bf.a e() {
-        return this.f50888a;
+        return this.f50895a;
     }
 
     @Override
     public final q3.h h(d dVar) {
-        int i10 = dVar.f50878e;
-        int i11 = dVar.f50876b;
-        CharSequence charSequence = dVar.f50875a;
-        int i12 = dVar.f50880g;
-        bf.h hVar = this.f50888a;
+        int i10 = dVar.f50885e;
+        int i11 = dVar.f50883b;
+        CharSequence charSequence = dVar.f50882a;
+        int i12 = dVar.f50887g;
+        bf.h hVar = this.f50895a;
         if (i12 < 4) {
             char c10 = hVar.f3819g;
             int i13 = hVar.h;

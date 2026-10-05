@@ -6,41 +6,41 @@ import android.view.ViewGroup;
 import java.lang.reflect.Method;
 import org.telegram.messenger.FileLog;
 public final class yt0 extends AnimatorListenerAdapter {
-    public final int f43624a;
-    public final org.telegram.ui.Components.wm0 f43625b;
+    public final int f43617a;
+    public final org.telegram.ui.Components.wm0 f43618b;
 
     public yt0(org.telegram.ui.Components.wm0 wm0Var, int i10) {
-        this.f43624a = i10;
-        this.f43625b = wm0Var;
+        this.f43617a = i10;
+        this.f43618b = wm0Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f43624a) {
+        switch (this.f43617a) {
             case 0:
-                PhotoViewer photoViewer = (PhotoViewer) this.f43625b.f32589b;
+                PhotoViewer photoViewer = (PhotoViewer) this.f43618b.f32671b;
                 photoViewer.Q1.getNextView().setText((CharSequence) null);
                 wt0 wt0Var = photoViewer.T1;
-                wt0Var.f37770l0 = false;
+                wt0Var.f37778l0 = false;
                 if (wt0Var.m0 >= 0) {
-                    ((ViewGroup.MarginLayoutParams) wt0Var.f37772o0.getLayoutParams()).topMargin = wt0Var.m0;
+                    ((ViewGroup.MarginLayoutParams) wt0Var.f37780o0.getLayoutParams()).topMargin = wt0Var.m0;
                     wt0Var.m0 = -1;
                     wt0Var.requestLayout();
                     return;
                 }
                 return;
             default:
-                ((PhotoViewer) this.f43625b.f32589b).Q1.setTranslationY(0.0f);
+                ((PhotoViewer) this.f43618b.f32671b).Q1.setTranslationY(0.0f);
                 return;
         }
     }
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f43624a) {
+        switch (this.f43617a) {
             case 0:
-                wt0 wt0Var = ((PhotoViewer) this.f43625b.f32589b).T1;
-                Method method = wt0Var.f37764f0;
+                wt0 wt0Var = ((PhotoViewer) this.f43618b.f32671b).T1;
+                Method method = wt0Var.f37772f0;
                 if (method != null) {
                     try {
                         method.invoke(wt0Var, null);

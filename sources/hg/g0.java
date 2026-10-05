@@ -85,8 +85,8 @@ public final class g0 extends ul0 {
 
     @Override
     public final void W(int i10, int i11, s4.c1 c1Var) {
-        if (c1Var.f46535f == 0) {
-            x1 x1Var = (x1) c1Var.f46531a;
+        if (c1Var.f46542f == 0) {
+            x1 x1Var = (x1) c1Var.f46538a;
             Object O = O(i10, i11);
             boolean z10 = true;
             if (i10 == 1 && i11 == M(i10) - 1) {
@@ -123,7 +123,7 @@ public final class g0 extends ul0 {
                 x1Var.setTag(-33024);
             }
         } else {
-            x1Var = new x1(context, this.f11197w.f29647a, false);
+            x1Var = new x1(context, this.f11197w.f29740a, false);
         }
         return new s4.c1(x1Var);
     }

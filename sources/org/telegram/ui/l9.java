@@ -7,9 +7,9 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class l9 extends FrameLayout {
-    public final org.telegram.ui.Cells.i6 f38204a;
-    public final org.telegram.ui.Components.ki0 f38205b;
-    public TLRPC.Chat f38206c;
+    public final org.telegram.ui.Cells.i6 f38255a;
+    public final org.telegram.ui.Components.ki0 f38256b;
+    public TLRPC.Chat f38257c;
 
     public l9(Context context) {
         super(context);
@@ -17,10 +17,10 @@ public final class l9 extends FrameLayout {
         int dp;
         String string = LocaleController.getString(R.string.VoipChatJoin);
         org.telegram.ui.Components.ki0 ki0Var = new org.telegram.ui.Components.ki0(context);
-        this.f38205b = ki0Var;
+        this.f38256b = ki0Var;
         int ceil = (int) Math.ceil(ki0Var.getPaint().measureText(string));
         org.telegram.ui.Cells.i6 i6Var = new org.telegram.ui.Cells.i6(context, null);
-        this.f38204a = i6Var;
+        this.f38255a = i6Var;
         i6Var.M0 = true;
         i6Var.E0 = true;
         if (LocaleController.isRTL) {
@@ -34,8 +34,8 @@ public final class l9 extends FrameLayout {
             dp = AndroidUtilities.dp(44.0f) + ceil;
         }
         i6Var.setPadding(i10, 0, dp, 0);
-        i6Var.f22249b0 = 0;
-        i6Var.f22250c0 = -AndroidUtilities.dp(4.0f);
+        i6Var.f22253b0 = 0;
+        i6Var.f22254c0 = -AndroidUtilities.dp(4.0f);
         addView(i6Var, w7.z5.c(-1.0f, -1));
         ki0Var.setText(string);
         ki0Var.setTextSize(1, 14.0f);

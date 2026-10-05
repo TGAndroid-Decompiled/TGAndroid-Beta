@@ -9,54 +9,54 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.bu;
 public final class o9 extends ActionMode.Callback2 {
-    public final int f22619a = 0;
-    public final ActionMode.Callback f22620b;
-    public final Object f22621c;
+    public final int f22622a = 0;
+    public final ActionMode.Callback f22623b;
+    public final Object f22624c;
 
     public o9(EditTextBoldCursor editTextBoldCursor, ActionMode.Callback callback) {
-        this.f22621c = editTextBoldCursor;
-        this.f22620b = callback;
+        this.f22624c = editTextBoldCursor;
+        this.f22623b = callback;
     }
 
     @Override
     public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-        switch (this.f22619a) {
+        switch (this.f22622a) {
             case 0:
-                ((n9) this.f22620b).onActionItemClicked(actionMode, menuItem);
+                ((n9) this.f22623b).onActionItemClicked(actionMode, menuItem);
                 return true;
             case 1:
-                return this.f22620b.onActionItemClicked(actionMode, menuItem);
+                return this.f22623b.onActionItemClicked(actionMode, menuItem);
             default:
-                return ((bu) this.f22620b).onActionItemClicked(actionMode, menuItem);
+                return ((bu) this.f22623b).onActionItemClicked(actionMode, menuItem);
         }
     }
 
     @Override
     public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-        switch (this.f22619a) {
+        switch (this.f22622a) {
             case 0:
-                ((n9) this.f22620b).onCreateActionMode(actionMode, menu);
+                ((n9) this.f22623b).onCreateActionMode(actionMode, menu);
                 return true;
             case 1:
-                return this.f22620b.onCreateActionMode(actionMode, menu);
+                return this.f22623b.onCreateActionMode(actionMode, menu);
             default:
-                return ((bu) this.f22620b).onCreateActionMode(actionMode, menu);
+                return ((bu) this.f22623b).onCreateActionMode(actionMode, menu);
         }
     }
 
     @Override
     public final void onDestroyActionMode(ActionMode actionMode) {
-        switch (this.f22619a) {
+        switch (this.f22622a) {
             case 0:
-                ((n9) this.f22620b).onDestroyActionMode(actionMode);
+                ((n9) this.f22623b).onDestroyActionMode(actionMode);
                 return;
             case 1:
-                this.f22620b.onDestroyActionMode(actionMode);
-                ((EditTextBoldCursor) this.f22621c).f();
-                ((EditTextBoldCursor) this.f22621c).floatingActionMode = null;
+                this.f22623b.onDestroyActionMode(actionMode);
+                ((EditTextBoldCursor) this.f22624c).f();
+                ((EditTextBoldCursor) this.f22624c).floatingActionMode = null;
                 return;
             default:
-                ((bu) this.f22620b).onDestroyActionMode(actionMode);
+                ((bu) this.f22623b).onDestroyActionMode(actionMode);
                 return;
         }
     }
@@ -64,38 +64,38 @@ public final class o9 extends ActionMode.Callback2 {
     @Override
     public final void onGetContentRect(ActionMode actionMode, View view, Rect rect) {
         int i10;
-        switch (this.f22619a) {
+        switch (this.f22622a) {
             case 0:
-                if (((da) this.f22621c).y()) {
-                    ((da) this.f22621c).P();
-                    int[] m10 = ((da) this.f22621c).m();
-                    da daVar = (da) this.f22621c;
+                if (((da) this.f22624c).y()) {
+                    ((da) this.f22624c).P();
+                    int[] m10 = ((da) this.f22624c).m();
+                    da daVar = (da) this.f22624c;
                     int i11 = 1;
                     if (daVar.W != null) {
-                        da daVar2 = (da) this.f22621c;
-                        int[] C = daVar2.C(daVar2.f21984u);
+                        da daVar2 = (da) this.f22624c;
+                        int[] C = daVar2.C(daVar2.f21988u);
                         int i12 = C[0];
-                        da daVar3 = (da) this.f22621c;
-                        i10 = i12 + daVar3.f21947a;
-                        int dp = (((-daVar.n()) / 2) + ((C[1] + daVar3.f21949b) + m10[1])) - AndroidUtilities.dp(4.0f);
+                        da daVar3 = (da) this.f22624c;
+                        i10 = i12 + daVar3.f21951a;
+                        int dp = (((-daVar.n()) / 2) + ((C[1] + daVar3.f21953b) + m10[1])) - AndroidUtilities.dp(4.0f);
                         if (dp >= 1) {
                             i11 = dp;
                         }
                     } else {
                         i10 = 0;
                     }
-                    int width = ((da) this.f22621c).F.getWidth();
-                    ((da) this.f22621c).O();
-                    da daVar4 = (da) this.f22621c;
+                    int width = ((da) this.f22624c).F.getWidth();
+                    ((da) this.f22624c).O();
+                    da daVar4 = (da) this.f22624c;
                     if (daVar4.W != null) {
-                        width = daVar4.C(daVar4.v)[0] + ((da) this.f22621c).f21947a;
+                        width = daVar4.C(daVar4.v)[0] + ((da) this.f22624c).f21951a;
                     }
                     rect.set(Math.min(i10, width), i11, Math.max(i10, width), i11 + 1);
                     return;
                 }
                 return;
             case 1:
-                ActionMode.Callback callback = this.f22620b;
+                ActionMode.Callback callback = this.f22623b;
                 if (org.telegram.ui.Components.w1.a(callback)) {
                     org.telegram.ui.m4.c(callback).onGetContentRect(actionMode, view, rect);
                     return;
@@ -104,7 +104,7 @@ public final class o9 extends ActionMode.Callback2 {
                     return;
                 }
             default:
-                ActionMode.Callback callback2 = (ActionMode.Callback) this.f22621c;
+                ActionMode.Callback callback2 = (ActionMode.Callback) this.f22624c;
                 if (org.telegram.ui.Components.w1.a(callback2)) {
                     org.telegram.ui.m4.c(callback2).onGetContentRect(actionMode, view, rect);
                     return;
@@ -117,24 +117,24 @@ public final class o9 extends ActionMode.Callback2 {
 
     @Override
     public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-        switch (this.f22619a) {
+        switch (this.f22622a) {
             case 0:
-                ((n9) this.f22620b).onPrepareActionMode(actionMode, menu);
+                ((n9) this.f22623b).onPrepareActionMode(actionMode, menu);
                 return true;
             case 1:
-                return this.f22620b.onPrepareActionMode(actionMode, menu);
+                return this.f22623b.onPrepareActionMode(actionMode, menu);
             default:
-                return ((bu) this.f22620b).f25061a.onPrepareActionMode(actionMode, menu);
+                return ((bu) this.f22623b).f25095a.onPrepareActionMode(actionMode, menu);
         }
     }
 
     public o9(bu buVar, ActionMode.Callback callback) {
-        this.f22620b = buVar;
-        this.f22621c = callback;
+        this.f22623b = buVar;
+        this.f22624c = callback;
     }
 
     public o9(da daVar, n9 n9Var) {
-        this.f22621c = daVar;
-        this.f22620b = n9Var;
+        this.f22624c = daVar;
+        this.f22623b = n9Var;
     }
 }

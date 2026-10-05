@@ -125,14 +125,14 @@ public final class s5 extends ViewGroup {
     }
 
     public final void b() {
-        int i10 = org.telegram.ui.ActionBar.i6.f21073qh;
+        int i10 = org.telegram.ui.ActionBar.i6.f21078qh;
         org.telegram.ui.ActionBar.d6 d6Var = this.f12639b;
         this.f12643n.setColor(org.telegram.ui.ActionBar.i6.v0(i10, d6Var));
         int v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.M6, d6Var);
         int red = Color.red(v02);
         int green = Color.green(v02);
         int blue = Color.blue(v02);
-        this.f12644r.setColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21054ph, d6Var));
+        this.f12644r.setColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21059ph, d6Var));
         this.f12645s.setColor(Color.argb(20, red, green, blue));
         this.H = 255;
         int i11 = org.telegram.ui.ActionBar.i6.Oh;

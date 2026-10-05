@@ -1,39 +1,33 @@
 package zg;
 
-import android.animation.ValueAnimator;
+import android.graphics.Outline;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.view.View;
-import java.util.ArrayList;
-import yh.q8;
-import yh.r8;
-public final class w implements ValueAnimator.AnimatorUpdateListener {
-    public final int f53545a;
-    public final Object f53546b;
-    public final Object f53547c;
+import android.view.ViewOutlineProvider;
+import org.telegram.messenger.AndroidUtilities;
+public final class w extends ViewOutlineProvider {
+    public final Rect f53536a = new Rect();
+    public final RectF f53537b = new RectF();
+    public final RectF f53538c = new RectF();
+    public final z d;
 
-    public w(int i10, Object obj, Object obj2) {
-        this.f53545a = i10;
-        this.f53546b = obj;
-        this.f53547c = obj2;
+    public w(z zVar) {
+        this.d = zVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f53545a) {
-            case 0:
-                b0 b0Var = (b0) this.f53546b;
-                ArrayList arrayList = (ArrayList) this.f53547c;
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                    b0.g((View) arrayList.get(i10), floatValue);
-                }
-                b0Var.f53332m.f35326k0.invalidate();
-                return;
-            default:
-                r8 r8Var = (r8) this.f53546b;
-                r8Var.getClass();
-                ((q8) this.f53547c).d = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                r8Var.a1();
-                return;
-        }
+    public final void getOutline(View view, Outline outline) {
+        z zVar = this.d;
+        float lerp = AndroidUtilities.lerp(zVar.f53553e, AndroidUtilities.dp(8.0f), zVar.f53557j);
+        RectF rectF = this.f53537b;
+        rectF.set(0.0f, 0.0f, view.getMeasuredWidth(), view.getMeasuredHeight());
+        RectF rectF2 = zVar.f53554f;
+        float f7 = zVar.f53557j;
+        RectF rectF3 = this.f53538c;
+        AndroidUtilities.lerp(rectF2, rectF, f7, rectF3);
+        Rect rect = this.f53536a;
+        rectF3.round(rect);
+        outline.setRoundRect(rect, lerp);
     }
 }

@@ -104,7 +104,7 @@ public final class b {
             JSONArray jSONArray = new JSONArray();
             List list = googleSignInAccount.f6403s;
             Scope[] scopeArr = (Scope[]) list.toArray(new Scope[list.size()]);
-            Arrays.sort(scopeArr, z5.c.f52445b);
+            Arrays.sort(scopeArr, z5.c.f52466b);
             int i10 = 0;
             for (Scope scope : scopeArr) {
                 jSONArray.put(scope.f6468b);

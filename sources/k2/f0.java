@@ -418,7 +418,7 @@ public final class f0 implements q {
                 p pVar = new p(write, this.v.f14540a, z12);
                 o oVar2 = this.f14429t;
                 if (oVar2 != null) {
-                    oVar2.w(pVar);
+                    oVar2.x(pVar);
                 }
                 if (pVar.f14497b && this.f14399a != null) {
                     b bVar = b.f14374c;
@@ -643,8 +643,8 @@ public final class f0 implements q {
         eVar.getClass();
         int i11 = Build.VERSION.SDK_INT;
         if (i11 >= 29 && i10 != -1) {
-            Context context = (Context) bVar.f17162b;
-            Boolean bool = (Boolean) bVar.f17163c;
+            Context context = (Context) bVar.f17167b;
+            Boolean bool = (Boolean) bVar.f17168c;
             if (bool != null) {
                 booleanValue = bool.booleanValue();
             } else {
@@ -655,11 +655,11 @@ public final class f0 implements q {
                     } else {
                         z10 = false;
                     }
-                    bVar.f17163c = Boolean.valueOf(z10);
+                    bVar.f17168c = Boolean.valueOf(z10);
                 } else {
-                    bVar.f17163c = Boolean.FALSE;
+                    bVar.f17168c = Boolean.FALSE;
                 }
-                booleanValue = ((Boolean) bVar.f17163c).booleanValue();
+                booleanValue = ((Boolean) bVar.f17168c).booleanValue();
             }
             String str = sVar.f3564r;
             str.getClass();

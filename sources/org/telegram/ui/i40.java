@@ -30,8 +30,8 @@ public final class i40 extends org.telegram.ui.Components.mu {
         super.f();
         org.telegram.ui.Components.nz emojiView = getEmojiView();
         if (emojiView != null) {
-            emojiView.f29160w0 = false;
-            emojiView.f29162w2 = false;
+            emojiView.f29257w0 = false;
+            emojiView.f29259w2 = false;
             emojiView.setShouldDrawBackground(false);
             viewGroup = ((org.telegram.ui.ActionBar.f3) this.V).containerView;
             emojiView.setBottomInset(viewGroup.getPaddingBottom());
@@ -53,7 +53,7 @@ public final class i40 extends org.telegram.ui.Components.mu {
     public final void p() {
         int i10;
         ph.i iVar = this.V.C1;
-        if (this.f28713e) {
+        if (this.f28796e) {
             i10 = Math.max(0, getEmojiPadding());
         } else if (this.N) {
             i10 = Math.max(0, getKeyboardHeight());

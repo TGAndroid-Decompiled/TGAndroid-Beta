@@ -8,40 +8,40 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class b90 implements RequestDelegate {
-    public final int f35036a;
-    public final LaunchActivity f35037b;
-    public final int f35038c;
+    public final int f35089a;
+    public final LaunchActivity f35090b;
+    public final int f35091c;
     public final h90 d;
-    public final Object f35039e;
-    public final Object f35040f;
-    public final Object f35041g;
+    public final Object f35092e;
+    public final Object f35093f;
+    public final Object f35094g;
     public final Object h;
-    public final Object f35042i;
+    public final Object f35095i;
 
     public b90(LaunchActivity launchActivity, h90 h90Var, int i10, TL_account.authorizationForm authorizationform, TL_account.getAuthorizationForm getauthorizationform, String str, String str2, String str3) {
-        this.f35036a = 0;
-        this.f35037b = launchActivity;
+        this.f35089a = 0;
+        this.f35090b = launchActivity;
         this.d = h90Var;
-        this.f35038c = i10;
-        this.f35042i = authorizationform;
-        this.f35039e = getauthorizationform;
-        this.f35040f = str;
-        this.f35041g = str2;
+        this.f35091c = i10;
+        this.f35095i = authorizationform;
+        this.f35092e = getauthorizationform;
+        this.f35093f = str;
+        this.f35094g = str2;
         this.h = str3;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f35036a;
+        int i10 = this.f35089a;
         Object obj = this.h;
-        Object obj2 = this.f35041g;
-        Object obj3 = this.f35040f;
-        Object obj4 = this.f35039e;
-        Object obj5 = this.f35042i;
+        Object obj2 = this.f35094g;
+        Object obj3 = this.f35093f;
+        Object obj4 = this.f35092e;
+        Object obj5 = this.f35095i;
         switch (i10) {
             case 0:
                 Pattern pattern = LaunchActivity.B1;
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.jb(this.f35037b, this.d, tLObject, this.f35038c, (TL_account.authorizationForm) obj5, (TL_account.getAuthorizationForm) obj4, (String) obj3, (String) obj2, (String) obj, 1));
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.jb(this.f35090b, this.d, tLObject, this.f35091c, (TL_account.authorizationForm) obj5, (TL_account.getAuthorizationForm) obj4, (String) obj3, (String) obj2, (String) obj, 1));
                 return;
             case 1:
                 int[] iArr = (int[]) obj5;
@@ -51,11 +51,11 @@ public final class b90 implements RequestDelegate {
                 String str3 = (String) obj;
                 Pattern pattern2 = LaunchActivity.B1;
                 TL_account.authorizationForm authorizationform = (TL_account.authorizationForm) tLObject;
-                LaunchActivity launchActivity = this.f35037b;
+                LaunchActivity launchActivity = this.f35090b;
                 h90 h90Var = this.d;
                 if (authorizationform != null) {
                     TL_account.getPassword getpassword = new TL_account.getPassword();
-                    int i11 = this.f35038c;
+                    int i11 = this.f35091c;
                     iArr[0] = ConnectionsManager.getInstance(i11).sendRequest(getpassword, new b90(launchActivity, h90Var, i11, authorizationform, getauthorizationform, str, str2, str3));
                     return;
                 }
@@ -63,20 +63,20 @@ public final class b90 implements RequestDelegate {
                 return;
             default:
                 Pattern pattern3 = LaunchActivity.B1;
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.jb(this.f35037b, tLObject, (int[]) obj5, this.f35038c, this.d, (Integer) obj4, (Integer) obj3, (Long) obj2, (Integer) obj, 2));
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.jb(this.f35090b, tLObject, (int[]) obj5, this.f35091c, this.d, (Integer) obj4, (Integer) obj3, (Long) obj2, (Integer) obj, 2));
                 return;
         }
     }
 
     public b90(LaunchActivity launchActivity, int[] iArr, int i10, h90 h90Var, Object obj, Object obj2, Object obj3, Object obj4, int i11) {
-        this.f35036a = i11;
-        this.f35037b = launchActivity;
-        this.f35042i = iArr;
-        this.f35038c = i10;
+        this.f35089a = i11;
+        this.f35090b = launchActivity;
+        this.f35095i = iArr;
+        this.f35091c = i10;
         this.d = h90Var;
-        this.f35039e = obj;
-        this.f35040f = obj2;
-        this.f35041g = obj3;
+        this.f35092e = obj;
+        this.f35093f = obj2;
+        this.f35094g = obj3;
         this.h = obj4;
     }
 }

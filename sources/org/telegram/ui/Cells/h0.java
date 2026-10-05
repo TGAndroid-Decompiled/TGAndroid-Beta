@@ -20,33 +20,33 @@ public abstract class h0 extends View {
     public boolean I;
     public final z J;
     public int K;
-    public StaticLayout f22186a;
-    public String f22187b;
-    public String f22188c;
+    public StaticLayout f22190a;
+    public String f22191b;
+    public String f22192c;
     public String d;
-    public int f22189e;
-    public int f22190f;
+    public int f22193e;
+    public int f22194f;
     public int h;
-    public int f22191n;
-    public r90 f22192r;
-    public final n90 f22193s;
+    public int f22195n;
+    public r90 f22196r;
+    public final n90 f22197s;
     public f0 v;
-    public final int f22194w;
-    public final org.telegram.ui.ActionBar.d6 f22195x;
-    public int f22196y;
+    public final int f22198w;
+    public final org.telegram.ui.ActionBar.d6 f22199x;
+    public int f22200y;
 
     public h0(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f22193s = new n90(this);
+        this.f22197s = new n90(this);
         this.H = AndroidUtilities.dp(4.0f);
-        this.f22194w = i10;
-        this.f22195x = d6Var;
+        this.f22198w = i10;
+        this.f22199x = d6Var;
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.E = imageReceiver;
         imageReceiver.setInvalidateAll(true);
         imageReceiver.setCrossfadeWithOldImage(true);
         imageReceiver.setCrossfadeDuration(300);
-        int v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20913i6, d6Var);
+        int v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20918i6, d6Var);
         int i11 = SharedConfig.bubbleRadius;
         this.K = i11;
         z Y = org.telegram.ui.ActionBar.i6.Y(v02, i11, i11);
@@ -55,10 +55,10 @@ public abstract class h0 extends View {
     }
 
     public final void a() {
-        if (this.f22192r != null) {
-            this.f22192r = null;
+        if (this.f22196r != null) {
+            this.f22196r = null;
         }
-        this.f22193s.d(true);
+        this.f22197s.d(true);
         invalidate();
     }
 
@@ -71,7 +71,7 @@ public abstract class h0 extends View {
     }
 
     public CharSequence getText() {
-        StaticLayout staticLayout = this.f22186a;
+        StaticLayout staticLayout = this.f22190a;
         if (staticLayout == null) {
             return null;
         }
@@ -96,11 +96,11 @@ public abstract class h0 extends View {
         float f7;
         canvas.save();
         canvas.translate(getSideMenuWidth() / 2.0f, 0.0f);
-        int width = (getWidth() - this.f22189e) / 2;
-        int dp = AndroidUtilities.dp(2.0f) + this.f22196y;
-        Drawable j3 = org.telegram.ui.ActionBar.i6.f21060q3.j();
+        int width = (getWidth() - this.f22193e) / 2;
+        int dp = AndroidUtilities.dp(2.0f) + this.f22200y;
+        Drawable j3 = org.telegram.ui.ActionBar.i6.f21065q3.j();
         if (j3 != null) {
-            j3.setBounds(width, dp, this.f22189e + width, this.f22190f + dp);
+            j3.setBounds(width, dp, this.f22193e + width, this.f22194f + dp);
             j3.draw(canvas);
         }
         Point point = AndroidUtilities.displaySize;
@@ -111,7 +111,7 @@ public abstract class h0 extends View {
             i10 = view.getMeasuredWidth();
             i11 = view.getMeasuredHeight();
         }
-        org.telegram.ui.ActionBar.d6 d6Var = this.f22195x;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f22199x;
         if (d6Var != null) {
             drawable = d6Var.getDrawable("drawableMsgInMedia");
         } else {
@@ -122,7 +122,7 @@ public abstract class h0 extends View {
         }
         org.telegram.ui.ActionBar.e5 e5Var = (org.telegram.ui.ActionBar.e5) drawable;
         e5Var.n((int) getY(), i10, i11);
-        e5Var.setBounds(width, 0, this.f22189e + width, this.f22190f);
+        e5Var.setBounds(width, 0, this.f22193e + width, this.f22194f);
         e5Var.draw(canvas);
         z zVar = this.J;
         if (zVar != null) {
@@ -132,16 +132,16 @@ public abstract class h0 extends View {
                 this.K = i13;
                 org.telegram.ui.ActionBar.i6.A1(zVar, i13, i13);
             }
-            zVar.setBounds(AndroidUtilities.dp(2.0f) + width, AndroidUtilities.dp(2.0f), (this.f22189e + width) - AndroidUtilities.dp(2.0f), this.f22190f - AndroidUtilities.dp(2.0f));
+            zVar.setBounds(AndroidUtilities.dp(2.0f) + width, AndroidUtilities.dp(2.0f), (this.f22193e + width) - AndroidUtilities.dp(2.0f), this.f22194f - AndroidUtilities.dp(2.0f));
             zVar.draw(canvas);
         }
         int i14 = this.H;
-        float f10 = this.f22196y - i14;
+        float f10 = this.f22200y - i14;
         ImageReceiver imageReceiver = this.E;
-        imageReceiver.setImageCoords(width + i14, i14, this.f22189e - (i14 * 2), f10);
+        imageReceiver.setImageCoords(width + i14, i14, this.f22193e - (i14 * 2), f10);
         imageReceiver.draw(canvas);
-        org.telegram.ui.ActionBar.i6.f21021o2.setColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.ec, d6Var));
-        org.telegram.ui.ActionBar.i6.f21021o2.linkColor = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.gc, d6Var);
+        org.telegram.ui.ActionBar.i6.f21026o2.setColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.ec, d6Var));
+        org.telegram.ui.ActionBar.i6.f21026o2.linkColor = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.gc, d6Var);
         canvas.save();
         if (this.F) {
             f7 = 14.0f;
@@ -152,12 +152,12 @@ public abstract class h0 extends View {
         this.h = dp2;
         float f11 = dp2;
         int dp3 = AndroidUtilities.dp(11.0f) + dp;
-        this.f22191n = dp3;
+        this.f22195n = dp3;
         canvas.translate(f11, dp3);
-        if (this.f22193s.f(canvas)) {
+        if (this.f22197s.f(canvas)) {
             invalidate();
         }
-        StaticLayout staticLayout = this.f22186a;
+        StaticLayout staticLayout = this.f22190a;
         if (staticLayout != null) {
             staticLayout.draw(canvas);
         }
@@ -168,7 +168,7 @@ public abstract class h0 extends View {
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        StaticLayout staticLayout = this.f22186a;
+        StaticLayout staticLayout = this.f22190a;
         if (staticLayout != null) {
             accessibilityNodeInfo.setText(staticLayout.getText());
         }
@@ -176,7 +176,7 @@ public abstract class h0 extends View {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), AndroidUtilities.dp(8.0f) + this.f22190f);
+        setMeasuredDimension(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), AndroidUtilities.dp(8.0f) + this.f22194f);
     }
 
     @Override

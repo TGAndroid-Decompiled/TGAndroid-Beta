@@ -12,35 +12,35 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_phone;
 public final class w8 implements RequestDelegate {
-    public final int f41955a;
-    public final int f41956b;
-    public final Object f41957c;
+    public final int f41971a;
+    public final int f41972b;
+    public final Object f41973c;
     public final Object d;
-    public final Object f41958e;
-    public final Object f41959f;
-    public final Object f41960g;
+    public final Object f41974e;
+    public final Object f41975f;
+    public final Object f41976g;
     public final Object h;
 
     public w8(int i10, TLRPC.InputGroupCall inputGroupCall, String[] strArr, FrameLayout frameLayout, org.telegram.ui.Components.q90 q90Var, org.telegram.ui.ActionBar.f3 f3Var, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.f41955a = 0;
-        this.f41956b = i10;
-        this.f41957c = inputGroupCall;
+        this.f41971a = 0;
+        this.f41972b = i10;
+        this.f41973c = inputGroupCall;
         this.d = strArr;
-        this.f41958e = frameLayout;
-        this.f41959f = q90Var;
-        this.f41960g = f3Var;
+        this.f41974e = frameLayout;
+        this.f41975f = q90Var;
+        this.f41976g = f3Var;
         this.h = d6Var;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f41955a;
+        int i10 = this.f41971a;
         Object obj = this.h;
-        Object obj2 = this.f41960g;
-        Object obj3 = this.f41959f;
-        Object obj4 = this.f41958e;
+        Object obj2 = this.f41976g;
+        Object obj3 = this.f41975f;
+        Object obj4 = this.f41974e;
         Object obj5 = this.d;
-        Object obj6 = this.f41957c;
+        Object obj6 = this.f41973c;
         switch (i10) {
             case 0:
                 TLRPC.InputGroupCall inputGroupCall = (TLRPC.InputGroupCall) obj6;
@@ -50,7 +50,7 @@ public final class w8 implements RequestDelegate {
                 org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) obj2;
                 org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) obj;
                 boolean z10 = tLObject instanceof TLRPC.Updates;
-                int i11 = this.f41956b;
+                int i11 = this.f41972b;
                 if (z10) {
                     MessagesController.getInstance(i11).processUpdates((TLRPC.Updates) tLObject, false);
                 }
@@ -65,34 +65,34 @@ public final class w8 implements RequestDelegate {
                 TL_account.getAuthorizationForm getauthorizationform = (TL_account.getAuthorizationForm) obj3;
                 String str = (String) obj2;
                 String str2 = (String) obj;
-                ArrayList arrayList = ExternalActionActivity.f33746x;
+                ArrayList arrayList = ExternalActionActivity.f33759x;
                 TL_account.authorizationForm authorizationform = (TL_account.authorizationForm) tLObject;
                 if (authorizationform != null) {
                     TL_account.getPassword getpassword = new TL_account.getPassword();
-                    int i12 = this.f41956b;
+                    int i12 = this.f41972b;
                     iArr[0] = ConnectionsManager.getInstance(i12).sendRequest(getpassword, new w8(externalActionActivity, b2Var, i12, authorizationform, getauthorizationform, str, str2, 2));
                     return;
                 }
                 AndroidUtilities.runOnUIThread(new uq(externalActionActivity, b2Var, tL_error, 5));
                 return;
             case 2:
-                ArrayList arrayList2 = ExternalActionActivity.f33746x;
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.y5((ExternalActionActivity) obj6, (org.telegram.ui.ActionBar.b2) obj5, tLObject, this.f41956b, (TL_account.authorizationForm) obj4, (TL_account.getAuthorizationForm) obj3, (String) obj2, (String) obj));
+                ArrayList arrayList2 = ExternalActionActivity.f33759x;
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.y5((ExternalActionActivity) obj6, (org.telegram.ui.ActionBar.b2) obj5, tLObject, this.f41972b, (TL_account.authorizationForm) obj4, (TL_account.getAuthorizationForm) obj3, (String) obj2, (String) obj));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.jb((dg0) obj6, tLObject, tL_error, (c5.k) obj5, this.f41956b, (c5.o) obj4, (TLRPC.TL_inputStorePaymentAuthCode) obj3, (String) obj2, (TLRPC.TL_payments_canPurchaseStore) obj));
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.jb((dg0) obj6, tLObject, tL_error, (c5.k) obj5, this.f41972b, (c5.o) obj4, (TLRPC.TL_inputStorePaymentAuthCode) obj3, (String) obj2, (TLRPC.TL_payments_canPurchaseStore) obj));
                 return;
         }
     }
 
     public w8(KeyEvent.Callback callback, Object obj, int i10, Object obj2, TLObject tLObject, String str, Object obj3, int i11) {
-        this.f41955a = i11;
-        this.f41957c = callback;
+        this.f41971a = i11;
+        this.f41973c = callback;
         this.d = obj;
-        this.f41956b = i10;
-        this.f41958e = obj2;
-        this.f41959f = tLObject;
-        this.f41960g = str;
+        this.f41972b = i10;
+        this.f41974e = obj2;
+        this.f41975f = tLObject;
+        this.f41976g = str;
         this.h = obj3;
     }
 }

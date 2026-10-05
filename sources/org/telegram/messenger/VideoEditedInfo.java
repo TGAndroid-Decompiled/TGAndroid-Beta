@@ -174,19 +174,19 @@ public class VideoEditedInfo {
                 serializedData.writeFloat(this.filterState.blurAngle);
                 for (int i11 = 0; i11 < 4; i11++) {
                     if (i11 == 0) {
-                        sf0Var = this.filterState.curvesToolValue.f30374a;
+                        sf0Var = this.filterState.curvesToolValue.f30456a;
                     } else if (i11 == 1) {
-                        sf0Var = this.filterState.curvesToolValue.f30375b;
+                        sf0Var = this.filterState.curvesToolValue.f30457b;
                     } else if (i11 == 2) {
-                        sf0Var = this.filterState.curvesToolValue.f30376c;
+                        sf0Var = this.filterState.curvesToolValue.f30458c;
                     } else {
                         sf0Var = this.filterState.curvesToolValue.d;
                     }
-                    serializedData.writeFloat(sf0Var.f30710a);
-                    serializedData.writeFloat(sf0Var.f30711b);
-                    serializedData.writeFloat(sf0Var.f30712c);
+                    serializedData.writeFloat(sf0Var.f30766a);
+                    serializedData.writeFloat(sf0Var.f30767b);
+                    serializedData.writeFloat(sf0Var.f30768c);
                     serializedData.writeFloat(sf0Var.d);
-                    serializedData.writeFloat(sf0Var.f30713e);
+                    serializedData.writeFloat(sf0Var.f30769e);
                 }
             } else {
                 serializedData.writeByte(0);
@@ -369,19 +369,19 @@ public class VideoEditedInfo {
                             this.filterState.blurAngle = serializedData.readFloat(false);
                             for (int i11 = 0; i11 < 4; i11++) {
                                 if (i11 == 0) {
-                                    sf0Var = this.filterState.curvesToolValue.f30374a;
+                                    sf0Var = this.filterState.curvesToolValue.f30456a;
                                 } else if (i11 == 1) {
-                                    sf0Var = this.filterState.curvesToolValue.f30375b;
+                                    sf0Var = this.filterState.curvesToolValue.f30457b;
                                 } else if (i11 == 2) {
-                                    sf0Var = this.filterState.curvesToolValue.f30376c;
+                                    sf0Var = this.filterState.curvesToolValue.f30458c;
                                 } else {
                                     sf0Var = this.filterState.curvesToolValue.d;
                                 }
-                                sf0Var.f30710a = serializedData.readFloat(false);
-                                sf0Var.f30711b = serializedData.readFloat(false);
-                                sf0Var.f30712c = serializedData.readFloat(false);
+                                sf0Var.f30766a = serializedData.readFloat(false);
+                                sf0Var.f30767b = serializedData.readFloat(false);
+                                sf0Var.f30768c = serializedData.readFloat(false);
                                 sf0Var.d = serializedData.readFloat(false);
-                                sf0Var.f30713e = serializedData.readFloat(false);
+                                sf0Var.f30769e = serializedData.readFloat(false);
                             }
                         }
                         if (serializedData.readByte(false) != 0) {
@@ -675,11 +675,11 @@ public class VideoEditedInfo {
         public View view;
         public int viewHeight;
         public int viewWidth;
-        public zg.o0 visibleReaction;
+        public zg.m0 visibleReaction;
         public ci.jd weather;
         public float width;
-        public float f17284x;
-        public float f17285y;
+        public float f17289x;
+        public float f17290y;
 
         public MediaEntity() {
             this.text = "";
@@ -692,8 +692,8 @@ public class VideoEditedInfo {
             MediaEntity mediaEntity = new MediaEntity();
             mediaEntity.type = this.type;
             mediaEntity.subType = this.subType;
-            mediaEntity.f17284x = this.f17284x;
-            mediaEntity.f17285y = this.f17285y;
+            mediaEntity.f17289x = this.f17289x;
+            mediaEntity.f17290y = this.f17290y;
             mediaEntity.rotation = this.rotation;
             mediaEntity.width = this.width;
             mediaEntity.height = this.height;
@@ -746,8 +746,8 @@ public class VideoEditedInfo {
             String str;
             abstractSerializedData.writeByte(this.type);
             abstractSerializedData.writeByte(this.subType);
-            abstractSerializedData.writeFloat(this.f17284x);
-            abstractSerializedData.writeFloat(this.f17285y);
+            abstractSerializedData.writeFloat(this.f17289x);
+            abstractSerializedData.writeFloat(this.f17290y);
             abstractSerializedData.writeFloat(this.rotation);
             abstractSerializedData.writeFloat(this.width);
             abstractSerializedData.writeFloat(this.height);
@@ -768,7 +768,7 @@ public class VideoEditedInfo {
                     str = "";
                 }
             } else {
-                str = k0Var.f44521a;
+                str = k0Var.f44528a;
             }
             abstractSerializedData.writeString(str);
             abstractSerializedData.writeFloat(this.scale);
@@ -847,8 +847,8 @@ public class VideoEditedInfo {
             this.scale = 1.0f;
             this.type = abstractSerializedData.readByte(z11);
             this.subType = abstractSerializedData.readByte(z11);
-            this.f17284x = abstractSerializedData.readFloat(z11);
-            this.f17285y = abstractSerializedData.readFloat(z11);
+            this.f17289x = abstractSerializedData.readFloat(z11);
+            this.f17290y = abstractSerializedData.readFloat(z11);
             this.rotation = abstractSerializedData.readFloat(z11);
             this.width = abstractSerializedData.readFloat(z11);
             this.height = abstractSerializedData.readFloat(z11);
@@ -867,13 +867,13 @@ public class VideoEditedInfo {
             this.textAlign = abstractSerializedData.readInt32(z11);
             String readString = abstractSerializedData.readString(z11);
             this.textTypefaceKey = readString;
-            pg.k0 k0Var2 = pg.k0.f44517e;
+            pg.k0 k0Var2 = pg.k0.f44524e;
             qg.n0 n0Var = null;
             if (readString != null && !TextUtils.isEmpty(readString)) {
                 List c10 = pg.k0.c();
                 for (int i11 = 0; i11 < c10.size(); i11++) {
                     k0Var = (pg.k0) c10.get(i11);
-                    if (k0Var != null && TextUtils.equals(readString, k0Var.f44521a)) {
+                    if (k0Var != null && TextUtils.equals(readString, k0Var.f44528a)) {
                         break;
                     }
                 }
@@ -911,7 +911,7 @@ public class VideoEditedInfo {
                 this.mediaArea = TL_stories.MediaArea.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z11), z11);
                 int readInt323 = abstractSerializedData.readInt32(z11);
                 if (-625858389 != readInt323) {
-                    int i12 = qg.n0.f45207j;
+                    int i12 = qg.n0.f45214j;
                 } else {
                     n0Var = new qg.n0();
                 }

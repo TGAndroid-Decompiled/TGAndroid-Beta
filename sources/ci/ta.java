@@ -31,8 +31,8 @@ public final class ta implements Runnable {
         throw new UnsupportedOperationException("Method not decompiled: ci.ta.run():void");
     }
 
-    public ta(yh.t5 t5Var, boolean[] zArr, TL_stars.StarGift starGift, boolean z10, boolean z11, long j3, TLRPC.TL_textWithEntities tL_textWithEntities, xh.n4 n4Var) {
-        this.f6018e = t5Var;
+    public ta(yh.u5 u5Var, boolean[] zArr, TL_stars.StarGift starGift, boolean z10, boolean z11, long j3, TLRPC.TL_textWithEntities tL_textWithEntities, xh.n4 n4Var) {
+        this.f6018e = u5Var;
         this.f6019f = zArr;
         this.h = starGift;
         this.f6016b = z10;

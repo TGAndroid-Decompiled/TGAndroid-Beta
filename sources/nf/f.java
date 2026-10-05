@@ -28,12 +28,12 @@ import org.telegram.ui.hz;
 import org.telegram.ui.i4;
 import org.telegram.ui.z2;
 public abstract class f {
-    public static z0 f16883a;
-    public static o0.a f16884b;
-    public static a9.d f16885c;
+    public static z0 f16888a;
+    public static o0.a f16889b;
+    public static a9.d f16890c;
     public static String d;
-    public static WeakReference f16886e;
-    public static Pattern f16887f;
+    public static WeakReference f16891e;
+    public static Pattern f16892f;
 
     public static java.lang.String a(java.lang.String r3) {
         throw new UnsupportedOperationException("Method not decompiled: nf.f.a(java.lang.String):java.lang.String");
@@ -62,24 +62,24 @@ public abstract class f {
     }
 
     public static z0 c() {
-        o0.a aVar = f16884b;
+        o0.a aVar = f16889b;
         z0 z0Var = null;
         if (aVar == null) {
-            f16883a = null;
-        } else if (f16883a == null) {
+            f16888a = null;
+        } else if (f16888a == null) {
             ?? obj = new Object();
-            vf.e eVar = (vf.e) aVar.f16932b;
+            vf.e eVar = (vf.e) aVar.f16937b;
             vf.b bVar = new vf.b(obj);
             try {
                 if (((vf.c) eVar).G0(bVar)) {
-                    z0Var = new z0(20, bVar, (ComponentName) aVar.f16933c);
+                    z0Var = new z0(20, bVar, (ComponentName) aVar.f16938c);
                 }
             } catch (RemoteException unused) {
             }
-            f16883a = z0Var;
+            f16888a = z0Var;
             new WeakReference(z0Var);
         }
-        return f16883a;
+        return f16888a;
     }
 
     public static boolean d(android.content.Context r8, java.lang.String r9) {
@@ -227,16 +227,16 @@ public abstract class f {
 
     public static boolean j(String str) {
         boolean matches;
-        if (f16887f == null) {
-            f16887f = Pattern.compile("^[a-zA-Z0-9\\-\\_\\.]+\\.[a-zA-Z0-9\\-\\_]+$");
+        if (f16892f == null) {
+            f16892f = Pattern.compile("^[a-zA-Z0-9\\-\\_\\.]+\\.[a-zA-Z0-9\\-\\_]+$");
         }
         String hostAuthority = AndroidUtilities.getHostAuthority(str, true);
         if (hostAuthority != null && (hostAuthority.endsWith(".ton") || hostAuthority.endsWith(".adnl"))) {
-            matches = f16887f.matcher(hostAuthority).matches();
+            matches = f16892f.matcher(hostAuthority).matches();
         } else {
             Uri parse = Uri.parse(str);
             if (parse.getScheme() != null && parse.getScheme().equalsIgnoreCase("tonsite")) {
-                matches = f16887f.matcher(parse.getScheme()).matches();
+                matches = f16892f.matcher(parse.getScheme()).matches();
             } else {
                 return false;
             }
@@ -320,11 +320,11 @@ public abstract class f {
                 for (int i10 = 0; i10 < tabs.size(); i10++) {
                     m3Var = tabs.get(i10);
                     i4 i4Var = m3Var.J;
-                    if (i4Var != null && !i4Var.f37264d0.isEmpty()) {
-                        Object g10 = hg.c.g(1, m3Var.J.f37264d0);
+                    if (i4Var != null && !i4Var.f37267d0.isEmpty()) {
+                        Object g10 = hg.c.g(1, m3Var.J.f37267d0);
                         if (g10 instanceof z2) {
-                            org.telegram.ui.web.z0 z0Var = ((z2) g10).f21374b;
-                            if (z0Var == null && (m3VarArr = m3Var.J.f37280u0) != null && (m3Var2 = m3VarArr[0]) != null) {
+                            org.telegram.ui.web.z0 z0Var = ((z2) g10).f21378b;
+                            if (z0Var == null && (m3VarArr = m3Var.J.f37283u0) != null && (m3Var2 = m3VarArr[0]) != null) {
                                 z0Var = m3Var2.getWebView();
                             }
                             if (z0Var != null) {
@@ -452,24 +452,24 @@ public abstract class f {
 
     public static void x(Activity activity) {
         Activity activity2;
-        if (f16885c == null) {
+        if (f16890c == null) {
             return;
         }
-        WeakReference weakReference = f16886e;
+        WeakReference weakReference = f16891e;
         if (weakReference == null) {
             activity2 = null;
         } else {
             activity2 = (Activity) weakReference.get();
         }
         if (activity2 == activity) {
-            f16886e.clear();
+            f16891e.clear();
         }
         try {
-            activity.unbindService(f16885c);
+            activity.unbindService(f16890c);
         } catch (Exception unused) {
         }
-        f16884b = null;
-        f16883a = null;
+        f16889b = null;
+        f16888a = null;
     }
 
     public static boolean y(String str) {

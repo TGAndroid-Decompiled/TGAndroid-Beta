@@ -7,7 +7,7 @@ import ci.qc;
 import java.util.ArrayList;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Components.c71;
+import org.telegram.ui.Components.e71;
 import org.telegram.ui.Components.zl0;
 import w7.z5;
 public final class i1 extends n2 {
@@ -18,7 +18,7 @@ public final class i1 extends n2 {
     public final int f11218e;
     public qc f11219f;
     public gg.x1 h;
-    public c71 f11220n;
+    public e71 f11220n;
     public boolean f11221r;
 
     public i1(CharSequence charSequence, ArrayList arrayList, int i10, int i11, int i12) {
@@ -58,9 +58,9 @@ public final class i1 extends n2 {
         this.actionBar.setTitle(this.f11215a);
         this.actionBar.setActionBarMenuOnItemClick(new ei.u(this, 15));
         FrameLayout frameLayout = new FrameLayout(context);
-        c71 c71Var = new c71(this, new bi.v(this, 28), new ei.f(this, 5), null);
-        this.f11220n = c71Var;
-        c71Var.s1();
+        e71 e71Var = new e71(this, new bi.v(this, 28), new ei.f(this, 5), null);
+        this.f11220n = e71Var;
+        e71Var.r1();
         this.f11220n.setSectionsDrawBackground(true);
         frameLayout.addView(this.f11220n, z5.c(-1.0f, -1));
         this.fragmentView = frameLayout;

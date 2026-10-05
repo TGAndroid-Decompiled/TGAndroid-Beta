@@ -30,14 +30,14 @@ public final class k5 implements q0.a {
             case 1:
                 org.telegram.ui.d5 d5Var = (org.telegram.ui.d5) this.f5305b;
                 org.telegram.ui.y4 y4Var = (org.telegram.ui.y4) this.f5306c;
-                org.telegram.ui.e5[] e5VarArr = y4Var.f43057i;
-                org.telegram.ui.a5 a5Var = y4Var.f43058j;
+                org.telegram.ui.e5[] e5VarArr = y4Var.f43113i;
+                org.telegram.ui.a5 a5Var = y4Var.f43114j;
                 if (!d5Var.E) {
                     if (obj instanceof TLRPC.UserFull) {
-                        d5Var.a(org.telegram.ui.y4.c((TLRPC.User) a5Var.f34672c, (TLRPC.UserFull) obj, e5VarArr));
+                        d5Var.a(org.telegram.ui.y4.c((TLRPC.User) a5Var.f34682c, (TLRPC.UserFull) obj, e5VarArr));
                         return;
                     } else if (obj instanceof TLRPC.ChatFull) {
-                        d5Var.a(org.telegram.ui.y4.a((TLRPC.Chat) a5Var.f34672c, (TLRPC.ChatFull) obj, e5VarArr));
+                        d5Var.a(org.telegram.ui.y4.a((TLRPC.Chat) a5Var.f34682c, (TLRPC.ChatFull) obj, e5VarArr));
                         return;
                     } else {
                         return;

@@ -7,80 +7,80 @@ import android.os.HandlerThread;
 import i2.j0;
 import java.util.ArrayDeque;
 public final class f extends MediaCodec.Callback {
-    public final HandlerThread f45716b;
-    public Handler f45717c;
+    public final HandlerThread f45723b;
+    public Handler f45724c;
     public MediaFormat h;
-    public MediaFormat f45721i;
-    public MediaCodec.CodecException f45722j;
-    public MediaCodec.CryptoException f45723k;
-    public long f45724l;
-    public boolean f45725m;
-    public IllegalStateException f45726n;
-    public n2.c f45727o;
-    public final Object f45715a = new Object();
+    public MediaFormat f45728i;
+    public MediaCodec.CodecException f45729j;
+    public MediaCodec.CryptoException f45730k;
+    public long f45731l;
+    public boolean f45732m;
+    public IllegalStateException f45733n;
+    public n2.c f45734o;
+    public final Object f45722a = new Object();
     public final a0.h d = new a0.h();
-    public final a0.h f45718e = new a0.h();
-    public final ArrayDeque f45719f = new ArrayDeque();
-    public final ArrayDeque f45720g = new ArrayDeque();
+    public final a0.h f45725e = new a0.h();
+    public final ArrayDeque f45726f = new ArrayDeque();
+    public final ArrayDeque f45727g = new ArrayDeque();
 
     public f(HandlerThread handlerThread) {
-        this.f45716b = handlerThread;
+        this.f45723b = handlerThread;
     }
 
     public final void a() {
-        ArrayDeque arrayDeque = this.f45720g;
+        ArrayDeque arrayDeque = this.f45727g;
         if (!arrayDeque.isEmpty()) {
-            this.f45721i = (MediaFormat) arrayDeque.getLast();
+            this.f45728i = (MediaFormat) arrayDeque.getLast();
         }
         a0.h hVar = this.d;
         hVar.f17b = hVar.f16a;
-        a0.h hVar2 = this.f45718e;
+        a0.h hVar2 = this.f45725e;
         hVar2.f17b = hVar2.f16a;
-        this.f45719f.clear();
+        this.f45726f.clear();
         arrayDeque.clear();
     }
 
     public final void b(MediaCodec mediaCodec) {
         boolean z10;
-        if (this.f45717c == null) {
+        if (this.f45724c == null) {
             z10 = true;
         } else {
             z10 = false;
         }
         e2.d.g(z10);
-        HandlerThread handlerThread = this.f45716b;
+        HandlerThread handlerThread = this.f45723b;
         handlerThread.start();
         Handler handler = new Handler(handlerThread.getLooper());
         mediaCodec.setCallback(this, handler);
-        this.f45717c = handler;
+        this.f45724c = handler;
     }
 
     public final void c(IllegalStateException illegalStateException) {
-        synchronized (this.f45715a) {
-            this.f45726n = illegalStateException;
+        synchronized (this.f45722a) {
+            this.f45733n = illegalStateException;
         }
     }
 
     public final void onCryptoError(MediaCodec mediaCodec, MediaCodec.CryptoException cryptoException) {
-        synchronized (this.f45715a) {
-            this.f45723k = cryptoException;
+        synchronized (this.f45722a) {
+            this.f45730k = cryptoException;
         }
     }
 
     @Override
     public final void onError(MediaCodec mediaCodec, MediaCodec.CodecException codecException) {
-        synchronized (this.f45715a) {
-            this.f45722j = codecException;
+        synchronized (this.f45722a) {
+            this.f45729j = codecException;
         }
     }
 
     @Override
     public final void onInputBufferAvailable(MediaCodec mediaCodec, int i10) {
         j0 j0Var;
-        synchronized (this.f45715a) {
+        synchronized (this.f45722a) {
             this.d.a(i10);
-            n2.c cVar = this.f45727o;
-            if (cVar != null && (j0Var = ((r) cVar.f16527b).W) != null) {
+            n2.c cVar = this.f45734o;
+            if (cVar != null && (j0Var = ((r) cVar.f16532b).W) != null) {
                 j0Var.a();
             }
         }
@@ -89,18 +89,18 @@ public final class f extends MediaCodec.Callback {
     @Override
     public final void onOutputBufferAvailable(MediaCodec mediaCodec, int i10, MediaCodec.BufferInfo bufferInfo) {
         j0 j0Var;
-        synchronized (this.f45715a) {
+        synchronized (this.f45722a) {
             try {
-                MediaFormat mediaFormat = this.f45721i;
+                MediaFormat mediaFormat = this.f45728i;
                 if (mediaFormat != null) {
-                    this.f45718e.a(-2);
-                    this.f45720g.add(mediaFormat);
-                    this.f45721i = null;
+                    this.f45725e.a(-2);
+                    this.f45727g.add(mediaFormat);
+                    this.f45728i = null;
                 }
-                this.f45718e.a(i10);
-                this.f45719f.add(bufferInfo);
-                n2.c cVar = this.f45727o;
-                if (cVar != null && (j0Var = ((r) cVar.f16527b).W) != null) {
+                this.f45725e.a(i10);
+                this.f45726f.add(bufferInfo);
+                n2.c cVar = this.f45734o;
+                if (cVar != null && (j0Var = ((r) cVar.f16532b).W) != null) {
                     j0Var.a();
                 }
             } catch (Throwable th2) {
@@ -111,10 +111,10 @@ public final class f extends MediaCodec.Callback {
 
     @Override
     public final void onOutputFormatChanged(MediaCodec mediaCodec, MediaFormat mediaFormat) {
-        synchronized (this.f45715a) {
-            this.f45718e.a(-2);
-            this.f45720g.add(mediaFormat);
-            this.f45721i = null;
+        synchronized (this.f45722a) {
+            this.f45725e.a(-2);
+            this.f45727g.add(mediaFormat);
+            this.f45728i = null;
         }
     }
 }

@@ -1,29 +1,29 @@
 package rg;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.ui.cg0;
-import yh.i2;
-import yh.x3;
-import yh.x7;
+import yh.j2;
+import yh.y3;
+import yh.z7;
 public final class j1 extends FrameLayout {
-    public final int f46143a;
-    public final Object f46144b;
+    public final int f46150a;
+    public final Object f46151b;
 
     public j1(Object obj, Context context, int i10) {
         super(context);
-        this.f46143a = i10;
-        this.f46144b = obj;
+        this.f46150a = i10;
+        this.f46151b = obj;
     }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f46143a) {
+        switch (this.f46150a) {
             case 3:
-                if (((x7) this.f46144b).f52280r0) {
+                if (((z7) this.f46151b).f52373r0) {
                     return false;
                 }
                 return super.dispatchTouchEvent(motionEvent);
@@ -33,17 +33,30 @@ public final class j1 extends FrameLayout {
     }
 
     @Override
+    public void onDraw(Canvas canvas) {
+        switch (this.f46150a) {
+            case 4:
+                super.onDraw(canvas);
+                zg.o oVar = (zg.o) this.f46151b;
+                if (oVar.f53509x > 0) {
+                    canvas.drawRect(0.0f, getHeight() - oVar.f53509x, getWidth(), getHeight(), oVar.f53510y);
+                    return;
+                }
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
+        }
+    }
+
+    @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f46143a) {
+        switch (this.f46150a) {
             case 4:
                 super.onLayout(z10, i10, i11, i12, i13);
-                zg.q qVar = (zg.q) this.f46144b;
-                if (qVar.K && z10) {
-                    qVar.f53523w.setTranslationY(-qVar.f53517c.getMeasuredHeight());
-                    int measuredHeight = qVar.f53517c.getMeasuredHeight();
-                    ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) qVar.f53525y.getLayoutParams();
-                    marginLayoutParams.bottomMargin = measuredHeight;
-                    qVar.f53525y.setLayoutParams(marginLayoutParams);
+                zg.o oVar = (zg.o) this.f46151b;
+                if (oVar.N && z10) {
+                    oVar.e0(oVar.P.f15436e);
                     return;
                 }
                 return;
@@ -59,14 +72,14 @@ public final class j1 extends FrameLayout {
         float top;
         int measuredHeight;
         ei.g gVar;
-        switch (this.f46143a) {
+        switch (this.f46150a) {
             case 0:
                 super.onMeasure(i10, i11);
-                m1 m1Var = ((l1) this.f46144b).f46191c;
-                cg0 cg0Var = m1Var.f46209r0;
+                m1 m1Var = ((l1) this.f46151b).f46198c;
+                cg0 cg0Var = m1Var.f46216r0;
                 if (cg0Var != null) {
                     top = cg0Var.getTop();
-                    measuredHeight = m1Var.f46209r0.getMeasuredHeight();
+                    measuredHeight = m1Var.f46216r0.getMeasuredHeight();
                 } else {
                     View view = m1Var.B0;
                     if (view != null) {
@@ -74,16 +87,16 @@ public final class j1 extends FrameLayout {
                         measuredHeight = m1Var.B0.getMeasuredHeight();
                     } else {
                         f7 = 0.0f;
-                        m1Var.f46208q0.setTranslationY(f7 - (gVar.getMeasuredHeight() / 2.0f));
+                        m1Var.f46215q0.setTranslationY(f7 - (gVar.getMeasuredHeight() / 2.0f));
                         return;
                     }
                 }
                 f7 = (measuredHeight / 2.0f) + top;
-                m1Var.f46208q0.setTranslationY(f7 - (gVar.getMeasuredHeight() / 2.0f));
+                m1Var.f46215q0.setTranslationY(f7 - (gVar.getMeasuredHeight() / 2.0f));
                 return;
             case 1:
                 super.onMeasure(i10, i11);
-                ((xh.i1) this.f46144b).K.measure(View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
+                ((xh.i1) this.f46151b).K.measure(View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
                 return;
             default:
                 super.onMeasure(i10, i11);
@@ -93,13 +106,13 @@ public final class j1 extends FrameLayout {
 
     @Override
     public void setTranslationY(float f7) {
-        switch (this.f46143a) {
+        switch (this.f46150a) {
             case 2:
                 super.setTranslationY(f7);
-                x3 x3Var = (x3) this.f46144b;
-                i2 i2Var = x3Var.f52218d0;
-                if (i2Var != null && i2Var.getVisibility() == 0) {
-                    x3Var.f52218d0.invalidate();
+                y3 y3Var = (y3) this.f46151b;
+                j2 j2Var = y3Var.f52286d0;
+                if (j2Var != null && j2Var.getVisibility() == 0) {
+                    y3Var.f52286d0.invalidate();
                     return;
                 }
                 return;
@@ -107,5 +120,12 @@ public final class j1 extends FrameLayout {
                 super.setTranslationY(f7);
                 return;
         }
+    }
+
+    public j1(zg.o oVar, Context context) {
+        super(context);
+        this.f46150a = 4;
+        this.f46151b = oVar;
+        setWillNotDraw(false);
     }
 }

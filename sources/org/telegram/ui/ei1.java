@@ -1,83 +1,24 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.KeyEvent;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.AnimationNotificationsLocker;
-import org.telegram.messenger.voip.VoIPService;
-import org.telegram.messenger.voip.VoIPServiceState;
-import org.webrtc.OrientationHelper;
-public final class ei1 extends org.telegram.ui.Components.voip.x2 {
-    public final Path f36039s;
-    public final RectF v;
-    public final mi1 f36040w;
+import org.webrtc.RendererCommon;
+public final class ei1 implements RendererCommon.RendererEvents {
+    public final ki1 f36063a;
 
-    public ei1(Activity activity, boolean z10, mi1 mi1Var) {
-        super(activity);
-        this.f36040w = mi1Var;
-        this.f32298c = new AnimationNotificationsLocker();
-        this.f32296a = activity;
-        setSystemUiVisibility(1792);
-        AndroidUtilities.lockOrientation(activity, 1);
-        OrientationHelper.cameraRotationDisabled = true;
-        if (!z10) {
-            this.f32299e = true;
-        }
-        this.f36039s = new Path();
-        this.v = new RectF();
+    public ei1(ki1 ki1Var) {
+        this.f36063a = ki1Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        mi1 mi1Var = this.f36040w;
-        if (mi1Var.E0 && getAlpha() != 0.0f) {
-            float scaleX = mi1Var.f38616c0.getScaleX() * mi1Var.f38616c0.getWidth();
-            float scaleY = mi1Var.f38616c0.getScaleY() * mi1Var.f38616c0.getHeight();
-            float x10 = mi1Var.f38616c0.getX() + ((mi1Var.f38616c0.getWidth() - scaleX) / 2.0f);
-            float y3 = mi1Var.f38616c0.getY() + ((mi1Var.f38616c0.getHeight() - scaleY) / 2.0f);
-            canvas.save();
-            Path path = this.f36039s;
-            path.rewind();
-            RectF rectF = this.v;
-            rectF.set(x10, y3, scaleX + x10, scaleY + y3);
-            float dp = AndroidUtilities.dp(4.0f);
-            path.addRoundRect(rectF, dp, dp, Path.Direction.CW);
-            path.close();
-            canvas.clipPath(path);
-            super.dispatchDraw(canvas);
-            canvas.restore();
-            return;
+    public final void onFirstFrameRendered() {
+        ki1 ki1Var = this.f36063a;
+        com.google.android.gms.internal.cast.p pVar = ki1Var.l1;
+        if (pVar != null) {
+            pVar.run();
+            ki1Var.l1 = null;
         }
-        super.dispatchDraw(canvas);
     }
 
     @Override
-    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        VoIPServiceState sharedState;
-        mi1 mi1Var = this.f36040w;
-        if (!mi1Var.G0 && !mi1Var.E0) {
-            int keyCode = keyEvent.getKeyCode();
-            if (keyCode == 4 && keyEvent.getAction() == 1) {
-                mi1Var.p();
-                return true;
-            } else if ((keyCode == 25 || keyCode == 24) && mi1Var.f38641p0 == 15 && (sharedState = VoIPService.getSharedState()) != null) {
-                sharedState.stopRinging();
-                return true;
-            } else {
-                return super.dispatchKeyEvent(keyEvent);
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        if (this.f36040w.f38637m1) {
-            return;
-        }
-        super.draw(canvas);
+    public final void onFrameResolutionChanged(int i10, int i11, int i12) {
     }
 }

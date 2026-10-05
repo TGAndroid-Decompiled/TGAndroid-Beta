@@ -2,7 +2,7 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
-public final class b40 implements bu0 {
+public final class b40 implements cu0 {
     @Override
     public final boolean R() {
         return false;

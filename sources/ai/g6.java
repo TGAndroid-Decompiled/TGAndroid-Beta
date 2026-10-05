@@ -25,8 +25,8 @@ import org.telegram.ui.Components.ed0;
 import org.telegram.ui.Components.gd0;
 import org.telegram.ui.Components.r80;
 import org.telegram.ui.Stories.ProfileStoriesView;
+import org.telegram.ui.a71;
 import org.telegram.ui.bf;
-import org.telegram.ui.c71;
 import org.telegram.ui.dg0;
 import org.telegram.ui.lz0;
 public final class g6 implements dc, OnFailureListener, org.telegram.ui.ActionBar.a2, ed0, c5.p, MediaDataController.KeywordResultCallback, BillingController.ProductDetailsResponseListenerLegacy {
@@ -65,7 +65,7 @@ public final class g6 implements dc, OnFailureListener, org.telegram.ui.ActionBa
             rectF5.set(centerX - width2, centerY - height, centerX + width2, centerY + height);
         } catch (Exception unused) {
         }
-        int i10 = ProfileStoriesView.f34494s0;
+        int i10 = ProfileStoriesView.f34507s0;
         ((lz0) iVar.f326b).a(canvas, h6Var, h6Var2);
         rectF4.set(rectF2);
         rectF5.set(rectF3);
@@ -80,7 +80,7 @@ public final class g6 implements dc, OnFailureListener, org.telegram.ui.ActionBa
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
         org.telegram.ui.ActionBar.n3 n3Var = (org.telegram.ui.ActionBar.n3) this.f971a;
         ((boolean[]) this.f972b)[0] = true;
-        n3Var.h(n3Var.f21426w, (org.telegram.ui.ActionBar.m3) this.f973c, true);
+        n3Var.h(n3Var.f21430w, (org.telegram.ui.ActionBar.m3) this.f973c, true);
         ((Utilities.Callback) this.d).run(Boolean.TRUE);
         ((org.telegram.ui.ActionBar.b2[]) this.f974e)[0].dismiss();
     }
@@ -95,7 +95,7 @@ public final class g6 implements dc, OnFailureListener, org.telegram.ui.ActionBa
         kotlin.jvm.internal.i.e(e7, "e");
         CredentialProviderPlayServicesImpl.Companion.getClass();
         kotlin.jvm.internal.i.e(request, "request");
-        for (v0.q qVar : request.f47759a) {
+        for (v0.q qVar : request.f47766a) {
         }
         Log.w("GetCredentialController", "Pre-u credman get flow failed; retrying with gis flow");
         new c1.e(aVar.f9544e).g(request, cancellationSignal, executor, iVar);
@@ -103,7 +103,7 @@ public final class g6 implements dc, OnFailureListener, org.telegram.ui.ActionBa
 
     @Override
     public void onProductDetailsResponse(c5.h hVar, List list) {
-        AndroidUtilities.runOnUIThread(new bf((yh.t5) this.f971a, list, (r80) this.f972b, (TLRPC.TL_inputStorePaymentStarsGift) this.f973c, (TL_stars.TL_starsGiftOption) this.d, hVar, (Activity) this.f974e, 12));
+        AndroidUtilities.runOnUIThread(new bf((yh.u5) this.f971a, list, (r80) this.f972b, (TLRPC.TL_inputStorePaymentStarsGift) this.f973c, (TL_stars.TL_starsGiftOption) this.d, hVar, (Activity) this.f974e, 12));
     }
 
     @Override
@@ -114,20 +114,20 @@ public final class g6 implements dc, OnFailureListener, org.telegram.ui.ActionBa
     @Override
     public void run(ArrayList arrayList, String str) {
         TLRPC.TL_availableReaction tL_availableReaction;
-        c71 c71Var = (c71) this.f971a;
+        a71 a71Var = (a71) this.f971a;
         LinkedHashSet linkedHashSet = (LinkedHashSet) this.f972b;
         HashMap hashMap = (HashMap) this.f973c;
         ArrayList arrayList2 = (ArrayList) this.d;
         Runnable runnable = (Runnable) this.f974e;
-        c71Var.getClass();
+        a71Var.getClass();
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
             try {
                 if (((MediaDataController.KeywordResult) arrayList.get(i10)).emoji.startsWith("animated_")) {
                     linkedHashSet.add(Long.valueOf(Long.parseLong(((MediaDataController.KeywordResult) arrayList.get(i10)).emoji.substring(9))));
                 } else {
-                    int i11 = c71Var.W;
+                    int i11 = a71Var.W;
                     if ((i11 == 1 || i11 == 11 || i11 == 2) && (tL_availableReaction = (TLRPC.TL_availableReaction) hashMap.get(((MediaDataController.KeywordResult) arrayList.get(i10)).emoji)) != null) {
-                        arrayList2.add(zg.o0.c(tL_availableReaction));
+                        arrayList2.add(zg.m0.c(tL_availableReaction));
                     }
                 }
             } catch (Exception unused) {

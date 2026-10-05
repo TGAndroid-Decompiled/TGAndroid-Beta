@@ -1,41 +1,38 @@
 package yh;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.BillingController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.rc;
-import org.telegram.ui.Components.yc;
-import org.telegram.ui.yn;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.ad;
 public final class s1 implements Runnable {
-    public final int f51958a;
-    public final x3 f51959b;
-    public final yn f51960c;
-    public final long d;
+    public final int f51955a;
+    public final org.telegram.tgnet.e f51956b;
+    public final ad[] f51957c;
+    public final TL_stars.UniqueStarGiftValueInfo d;
+    public final String f51958e;
 
-    public s1(x3 x3Var, yn ynVar, long j3, int i10) {
-        this.f51958a = i10;
-        this.f51959b = x3Var;
-        this.f51960c = ynVar;
-        this.d = j3;
+    public s1(org.telegram.tgnet.e eVar, ad[] adVarArr, TL_stars.UniqueStarGiftValueInfo uniqueStarGiftValueInfo, String str, int i10) {
+        this.f51955a = i10;
+        this.f51956b = eVar;
+        this.f51957c = adVarArr;
+        this.d = uniqueStarGiftValueInfo;
+        this.f51958e = str;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f51958a;
-        long j3 = this.d;
-        yn ynVar = this.f51960c;
-        x3 x3Var = this.f51959b;
+        int i10 = this.f51955a;
+        String str = this.f51958e;
+        TL_stars.UniqueStarGiftValueInfo uniqueStarGiftValueInfo = this.d;
+        ad[] adVarArr = this.f51957c;
+        org.telegram.tgnet.e eVar = this.f51956b;
         switch (i10) {
             case 0:
-                rc M = yc.a0(ynVar).M(LocaleController.getString(R.string.Gift2TransferredTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2TransferredText, x3Var.C1(), DialogObject.getShortName(j3))), R.raw.forward);
-                M.f30355t = true;
-                M.j();
+                eVar.run(adVarArr[0], LocaleController.formatString(R.string.GiftValueMinPriceInfo, BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.floor_price, uniqueStarGiftValueInfo.currency), str));
                 return;
             default:
-                rc M2 = yc.a0(ynVar).M(LocaleController.getString(R.string.Gift2TransferredTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2TransferredText, x3Var.C1(), DialogObject.getShortName(j3))), R.raw.forward);
-                M2.f30355t = true;
-                M2.j();
+                eVar.run(adVarArr[0], LocaleController.formatString(R.string.GiftValueAveragePriceInfo, BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.average_price, uniqueStarGiftValueInfo.currency), str));
                 return;
         }
     }

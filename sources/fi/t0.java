@@ -21,9 +21,9 @@ import org.telegram.tgnet.tl.TL_communities;
 import org.telegram.ui.ActionBar.b2;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.c71;
 import org.telegram.ui.Components.e5;
-import org.telegram.ui.Components.g61;
+import org.telegram.ui.Components.e71;
+import org.telegram.ui.Components.h61;
 import org.telegram.ui.Components.k9;
 import org.telegram.ui.Components.pc;
 import org.telegram.ui.Components.q90;
@@ -76,8 +76,8 @@ public final class t0 implements gi.e {
         }
     }
 
-    public final void b(c71 c71Var) {
-        if (!this.f9985m && !this.f9986n && c71Var.f25249e3.N0() + 10 > c71Var.f25250f3.f31316x.size()) {
+    public final void b(e71 e71Var) {
+        if (!this.f9985m && !this.f9986n && e71Var.f26033e3.N0() + 10 > e71Var.f26034f3.f32534x.size()) {
             d();
         }
     }
@@ -102,16 +102,16 @@ public final class t0 implements gi.e {
                             z10 = false;
                         }
                         int i11 = gi.g.f10905a;
-                        g61 J = g61.J(gi.g.class);
-                        J.G = new gi.f(peerDialogId, user, z11);
-                        J.H = this;
-                        J.f26672j = !z10;
-                        arrayList.add(J);
+                        h61 K = h61.K(gi.g.class);
+                        K.G = new gi.f(peerDialogId, user, z11);
+                        K.H = this;
+                        K.f27091j = !z10;
+                        arrayList.add(K);
                     }
                 }
             }
             if (!this.f9986n) {
-                arrayList.add(g61.o(29));
+                arrayList.add(h61.p(29));
             }
         }
     }
@@ -158,7 +158,7 @@ public final class t0 implements gi.e {
                 b2 P = e5.P(this.f9975a, this.f9976b, string, replaceTags, LocaleController.getString(i11), new bi.f(6, this, z10));
                 P.show();
                 if (!z10 && (textView = (TextView) P.d(-1)) != null) {
-                    textView.setTextColor(i6.w0(null, i6.f21063q7, false));
+                    textView.setTextColor(i6.w0(null, i6.f21068q7, false));
                     return;
                 }
                 return;
@@ -202,7 +202,7 @@ public final class t0 implements gi.e {
         d6 d6Var = this.f9976b;
         qc qcVar = new qc(context, d6Var, false);
         TLObject userOrChat = MessagesController.getInstance(i12).getUserOrChat(j3);
-        k9 k9Var = qcVar.f29997a;
+        k9 k9Var = qcVar.f30019a;
         if (userOrChat != null) {
             k9Var.setCount(1);
             k9Var.b(0, userOrChat, UserConfig.selectedAccount);
@@ -214,7 +214,7 @@ public final class t0 implements gi.e {
         k9Var.setScaleX(1.333f);
         k9Var.setScaleY(1.333f);
         k9Var.a(false);
-        q90 q90Var = qcVar.f29998b;
+        q90 q90Var = qcVar.f30020b;
         q90Var.setSingleLine(false);
         q90Var.setMaxLines(2);
         q90Var.setTextSize(1, 14.0f);
@@ -232,8 +232,8 @@ public final class t0 implements gi.e {
         }
         pc pcVar = new pc(context, d6Var, true, true);
         pcVar.e(LocaleController.getString(R.string.UndoNoCaps));
-        pcVar.f29600a = new ai.j(this, j3, 9);
-        pcVar.f29601b = this.f9981i;
+        pcVar.f29693a = new ai.j(this, j3, 9);
+        pcVar.f29694b = this.f9981i;
         qcVar.setButton(pcVar);
         this.f9977c.b(qcVar, 5000).j();
     }

@@ -26,7 +26,7 @@ public final class o extends sq {
         jx jxVar = this.G;
         int i12 = jxVar.f595b;
         if (i12 == 0) {
-            i10 = org.telegram.ui.ActionBar.i6.f21104s8;
+            i10 = org.telegram.ui.ActionBar.i6.f21109s8;
         } else {
             i10 = org.telegram.ui.ActionBar.i6.M8;
         }

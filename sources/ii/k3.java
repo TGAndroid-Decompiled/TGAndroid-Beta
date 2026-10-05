@@ -16,7 +16,7 @@ public final class k3 extends q9 {
         x3 x3Var = this.L0;
         CharSequence s10 = x3Var.f12782u3.s();
         if (s10 != null && s10.length() != 0) {
-            x3Var.d5(s10);
+            x3Var.c5(s10);
             return true;
         }
         return true;
@@ -27,20 +27,20 @@ public final class k3 extends q9 {
         x3 x3Var = this.L0;
         CharSequence s10 = x3Var.f12782u3.s();
         if (s10 != null && s10.length() > 0) {
-            x3Var.d5(s10);
+            x3Var.c5(s10);
         }
-        x3Var.G2();
+        x3Var.F2();
     }
 
     @Override
     public final void G() {
         super.G();
-        this.K0.w();
+        this.K0.t();
     }
 
     @Override
     public final void I() {
-        this.L0.e4();
+        this.L0.d4();
     }
 
     @Override
@@ -48,7 +48,7 @@ public final class k3 extends q9 {
         if (b0()) {
             return true;
         }
-        return this.L0.U4();
+        return this.L0.T4();
     }
 
     @Override
@@ -68,7 +68,7 @@ public final class k3 extends q9 {
         x3 x3Var = this.L0;
         k3 k3Var = x3Var.f12782u3;
         ArrayList arrayList = x3Var.f12778s3;
-        if (!arrayList.isEmpty() && k3Var.y() && k3Var.f22699u0 == 0 && k3Var.f22700v0 == 0 && k3Var.f22701w0 <= 0 && k3Var.f22702x0 == (size = arrayList.size() - 1)) {
+        if (!arrayList.isEmpty() && k3Var.y() && k3Var.f22702u0 == 0 && k3Var.f22703v0 == 0 && k3Var.f22704w0 <= 0 && k3Var.f22705x0 == (size = arrayList.size() - 1)) {
             a aVar = (a) arrayList.get(size);
             if (f6.p(aVar.f12187b)) {
                 str = h6.l(f6.k(aVar.f12187b));
@@ -76,13 +76,13 @@ public final class k3 extends q9 {
                 str = "";
             }
             int i10 = !str.isEmpty();
-            if (k3Var.f22703y0 == i10) {
+            if (k3Var.f22706y0 == i10) {
                 if (i10 == 1) {
                     length = str.length();
                 } else {
                     length = f6.z(aVar.f12187b).length();
                 }
-                if (k3Var.f22704z0 >= length) {
+                if (k3Var.f22707z0 >= length) {
                     z10 = true;
                     return !z10;
                 }

@@ -1,79 +1,43 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.UserObject;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class ui1 implements RequestDelegate {
-    public final int f41247a;
-    public final Object f41248b;
-    public final Object f41249c;
+import android.widget.EditText;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class ui1 extends org.telegram.ui.ActionBar.f5 {
+    public final WallpapersListActivity f41284f;
 
-    public ui1(int i10, Object obj, Object obj2) {
-        this.f41247a = i10;
-        this.f41248b = obj;
-        this.f41249c = obj2;
+    public ui1(WallpapersListActivity wallpapersListActivity) {
+        this.f41284f = wallpapersListActivity;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f41247a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new g91(20, (vi1) this.f41248b, (int[]) this.f41249c));
-                return;
-            case 1:
-                AndroidUtilities.runOnUIThread(new zr0((qg.n2) this.f41248b, tLObject, (qg.l2) this.f41249c, tL_error, 24));
-                return;
-            case 2:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.in0(tLObject, (MessagesController) this.f41248b, (tg.x0) this.f41249c, 29));
-                return;
-            case 3:
-                MessagesController messagesController = (MessagesController) this.f41248b;
-                ft ftVar = (ft) this.f41249c;
-                if (tLObject instanceof TLRPC.TL_contacts_found) {
-                    TLRPC.TL_contacts_found tL_contacts_found = (TLRPC.TL_contacts_found) tLObject;
-                    messagesController.putUsers(tL_contacts_found.users, false);
-                    ArrayList arrayList = new ArrayList();
-                    for (int i10 = 0; i10 < tL_contacts_found.users.size(); i10++) {
-                        TLRPC.User user = tL_contacts_found.users.get(i10);
-                        if (!user.self && !UserObject.isDeleted(user) && !UserObject.isService(user.f20189id)) {
-                            arrayList.add(user);
-                        }
-                    }
-                    AndroidUtilities.runOnUIThread(new org.telegram.ui.web.x1(25, ftVar, arrayList));
-                    return;
-                }
-                return;
-            case 4:
-                AndroidUtilities.runOnUIThread(new tg.q((org.telegram.ui.Components.fs0) this.f41248b, tL_error, (org.telegram.ui.ActionBar.n2) this.f41249c));
-                return;
-            case 5:
-                AndroidUtilities.runOnUIThread(new tg.q((xh.v3) this.f41248b, tLObject, (TL_stars.getResaleStarGifts) this.f41249c, 8));
-                return;
-            case 6:
-                AndroidUtilities.runOnUIThread(new tg.q((yh.g) this.f41248b, tLObject, (Context) this.f41249c, 9));
-                return;
-            case 7:
-                AndroidUtilities.runOnUIThread(new yh.j1((yh.x3) this.f41248b, tLObject, (tg.q) this.f41249c, tL_error, 0));
-                return;
-            case 8:
-                yh.x3.f1(tLObject, tL_error, (TL_stars.InputSavedStarGift) this.f41249c, (yh.x3) this.f41248b);
-                return;
-            case 9:
-                yh.x3.V0((yh.x3) this.f41248b, (org.telegram.ui.ActionBar.b2) this.f41249c, tLObject, tL_error);
-                return;
-            case 10:
-                AndroidUtilities.runOnUIThread(new tg.q((yh.t5) this.f41248b, tLObject, tL_error, (Utilities.Callback) this.f41249c));
-                return;
-            default:
-                AndroidUtilities.runOnUIThread(new tg.q((yh.t5) this.f41248b, tLObject, (Runnable) this.f41249c, 19));
-                return;
-        }
+    public final void k() {
+        WallpapersListActivity wallpapersListActivity = this.f41284f;
+        zi1 zi1Var = wallpapersListActivity.H;
+        zi1Var.f43841n = null;
+        zi1Var.E(null, true);
+        wallpapersListActivity.J.setSearchFieldHint(LocaleController.getString(R.string.SearchBackgrounds));
+    }
+
+    @Override
+    public final void m() {
+        WallpapersListActivity wallpapersListActivity = this.f41284f;
+        wallpapersListActivity.F.setAdapter(wallpapersListActivity.G);
+        wallpapersListActivity.F.invalidate();
+        wallpapersListActivity.H.E(null, true);
+        wallpapersListActivity.J.setSearchFieldCaption(null);
+        k();
+    }
+
+    @Override
+    public final void n() {
+        WallpapersListActivity wallpapersListActivity = this.f41284f;
+        wallpapersListActivity.F.setAdapter(wallpapersListActivity.H);
+        wallpapersListActivity.F.invalidate();
+    }
+
+    @Override
+    public final void q(EditText editText) {
+        this.f41284f.H.E(editText.getText().toString(), false);
     }
 }

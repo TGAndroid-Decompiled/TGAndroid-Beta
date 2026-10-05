@@ -80,7 +80,7 @@ public final class k implements Runnable {
                         ImageView imageView2 = imageView;
                         org.telegram.ui.ActionBar.d6 d6Var2 = d6Var;
                         if (booleanValue) {
-                            imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21063q7, d6Var2), PorterDuff.Mode.SRC_IN));
+                            imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21068q7, d6Var2), PorterDuff.Mode.SRC_IN));
                             if (!z10) {
                                 int[] iArr2 = iArr;
                                 int i11 = -iArr2[0];
@@ -171,7 +171,7 @@ public final class k implements Runnable {
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) this.f12484r;
                 if (tLObject3 instanceof TLRPC.TL_boolTrue) {
                     BillingController.getInstance().addResultListener(oVar.f4229c, new ci.k5(5, hVar3, m0Var));
-                    BillingController.getInstance().setOnCanceled(new yh.j4(m0Var, 2));
+                    BillingController.getInstance().setOnCanceled(new yh.k4(m0Var, 2));
                     BillingController billingController3 = BillingController.getInstance();
                     AccountInstance accountInstance3 = AccountInstance.getInstance(UserConfig.selectedAccount);
                     of.b bVar3 = new of.b(7, false);
@@ -202,7 +202,7 @@ public final class k implements Runnable {
                 TLRPC.TL_error tL_error4 = (TLRPC.TL_error) this.f12484r;
                 if (tLObject4 instanceof TLRPC.TL_boolTrue) {
                     BillingController.getInstance().addResultListener(oVar2.f4229c, new ci.k5(4, hVar4, r80Var));
-                    BillingController.getInstance().setOnCanceled(new yh.l4(r80Var, 0));
+                    BillingController.getInstance().setOnCanceled(new yh.m4(r80Var, 0));
                     BillingController billingController4 = BillingController.getInstance();
                     AccountInstance accountInstance4 = AccountInstance.getInstance(UserConfig.selectedAccount);
                     of.b bVar4 = new of.b(7, false);

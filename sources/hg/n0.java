@@ -18,7 +18,7 @@ public final class n0 implements Runnable {
                 u0 u0Var = this.f11276b;
                 TL_account.TL_businessBotRights tL_businessBotRights = u0Var.J;
                 tL_businessBotRights.manage_stories = !tL_businessBotRights.manage_stories;
-                u0Var.f11350c.f25250f3.N(true);
+                u0Var.f11350c.f26034f3.N(true);
                 u0Var.X(true);
                 return;
             case 1:
@@ -29,7 +29,7 @@ public final class n0 implements Runnable {
                 tL_businessBotRights2.change_gift_settings = true;
                 tL_businessBotRights2.sell_gifts = true;
                 tL_businessBotRights2.view_gifts = true;
-                u0Var2.f11350c.f25250f3.N(true);
+                u0Var2.f11350c.f26034f3.N(true);
                 u0Var2.X(true);
                 return;
             case 2:
@@ -39,12 +39,12 @@ public final class n0 implements Runnable {
                 tL_businessBotRights3.edit_profile_photo = true;
                 tL_businessBotRights3.edit_bio = true;
                 tL_businessBotRights3.edit_name = true;
-                u0Var3.f11350c.f25250f3.N(true);
+                u0Var3.f11350c.f26034f3.N(true);
                 u0Var3.X(true);
                 return;
             case 3:
                 u0 u0Var4 = this.f11276b;
-                u0Var4.f11350c.f25250f3.N(true);
+                u0Var4.f11350c.f26034f3.N(true);
                 u0Var4.X(true);
                 return;
             default:
@@ -56,7 +56,7 @@ public final class n0 implements Runnable {
                     if (TextUtils.isEmpty(obj)) {
                         u0Var5.f11358y = null;
                         u0Var5.d.b();
-                        u0Var5.f11350c.f25250f3.N(true);
+                        u0Var5.f11350c.f26034f3.N(true);
                         return;
                     }
                     gg.c2 c2Var = u0Var5.d;

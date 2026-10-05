@@ -6,22 +6,22 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class k9 extends org.telegram.ui.Components.f61 {
-    public static final int f37896a = 0;
+public final class k9 extends org.telegram.ui.Components.g61 {
+    public static final int f37920a = 0;
 
     static {
-        org.telegram.ui.Components.f61.setup(new org.telegram.ui.Components.f61());
+        org.telegram.ui.Components.g61.setup(new org.telegram.ui.Components.g61());
     }
 
     @Override
-    public final void bindView(View view, org.telegram.ui.Components.g61 g61Var, boolean z10, org.telegram.ui.Components.u61 u61Var, org.telegram.ui.Components.c71 c71Var) {
+    public final void bindView(View view, org.telegram.ui.Components.h61 h61Var, boolean z10, org.telegram.ui.Components.w61 w61Var, org.telegram.ui.Components.e71 e71Var) {
         String lowerCase;
         l9 l9Var = (l9) view;
-        TLRPC.Chat chat = (TLRPC.Chat) g61Var.G;
-        View.OnClickListener onClickListener = g61Var.D;
-        l9Var.f38206c = chat;
-        org.telegram.ui.Components.ki0 ki0Var = l9Var.f38205b;
-        ki0Var.setTag(Long.valueOf(chat.f20042id));
+        TLRPC.Chat chat = (TLRPC.Chat) h61Var.G;
+        View.OnClickListener onClickListener = h61Var.D;
+        l9Var.f38257c = chat;
+        org.telegram.ui.Components.ki0 ki0Var = l9Var.f38256b;
+        ki0Var.setTag(Long.valueOf(chat.f20047id));
         if (ChatObject.isChannel(chat) && !chat.megagroup) {
             if (!ChatObject.isPublic(chat)) {
                 lowerCase = LocaleController.getString(R.string.ChannelPrivate).toLowerCase();
@@ -35,7 +35,7 @@ public final class k9 extends org.telegram.ui.Components.f61 {
         } else {
             lowerCase = LocaleController.getString(R.string.MegaPublic).toLowerCase();
         }
-        l9Var.f38204a.t(chat, null, null, lowerCase, false, false);
+        l9Var.f38255a.t(chat, null, null, lowerCase, false, false);
         ki0Var.setOnClickListener(onClickListener);
     }
 

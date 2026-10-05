@@ -1,41 +1,35 @@
 package yh;
 
-import android.content.DialogInterface;
-import org.telegram.messenger.Utilities;
-public final class t4 implements DialogInterface.OnDismissListener {
-    public final int f52013a;
-    public final Utilities.Callback2 f52014b;
-    public final boolean[] f52015c;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+public final class t4 implements Runnable {
+    public final int f52018a;
+    public final u5 f52019b;
+    public final TLRPC.TL_payments_paymentResult f52020c;
 
-    public t4(Utilities.Callback2 callback2, boolean[] zArr, int i10) {
-        this.f52013a = i10;
-        this.f52014b = callback2;
-        this.f52015c = zArr;
+    public t4(u5 u5Var, TLRPC.TL_payments_paymentResult tL_payments_paymentResult, int i10) {
+        this.f52018a = i10;
+        this.f52019b = u5Var;
+        this.f52020c = tL_payments_paymentResult;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f52013a) {
+    public final void run() {
+        switch (this.f52018a) {
             case 0:
-                Utilities.Callback2 callback2 = this.f52014b;
-                if (callback2 != null && !this.f52015c[0]) {
-                    callback2.run(0L, Boolean.FALSE);
-                    return;
-                }
+                MessagesController.getInstance(this.f52019b.f52085a).processUpdates(this.f52020c.updates, false);
                 return;
             case 1:
-                Utilities.Callback2 callback22 = this.f52014b;
-                if (callback22 != null && !this.f52015c[0]) {
-                    callback22.run(Boolean.FALSE, null);
-                    return;
-                }
+                MessagesController.getInstance(this.f52019b.f52085a).processUpdates(this.f52020c.updates, false);
+                return;
+            case 2:
+                MessagesController.getInstance(this.f52019b.f52085a).processUpdates(this.f52020c.updates, false);
+                return;
+            case 3:
+                MessagesController.getInstance(this.f52019b.f52085a).processUpdates(this.f52020c.updates, false);
                 return;
             default:
-                Utilities.Callback2 callback23 = this.f52014b;
-                if (callback23 != null && !this.f52015c[0]) {
-                    callback23.run(Boolean.FALSE, null);
-                    return;
-                }
+                MessagesController.getInstance(this.f52019b.f52085a).processUpdates(this.f52020c.updates, false);
                 return;
         }
     }

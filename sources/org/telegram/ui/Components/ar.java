@@ -16,47 +16,47 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
 public final class ar implements Runnable {
-    public final String[] f24638a;
-    public final org.telegram.messenger.fe f24639b;
-    public final org.telegram.ui.Cells.j3 f24640c;
+    public final String[] f24705a;
+    public final org.telegram.messenger.fe f24706b;
+    public final org.telegram.ui.Cells.j3 f24707c;
     public final int[] d;
-    public final ci.d f24641e;
-    public final boolean f24642f;
+    public final ci.d f24708e;
+    public final boolean f24709f;
     public final int h;
-    public final TLRPC.User f24643n;
-    public final int[] f24644r;
-    public final boolean[] f24645s;
+    public final TLRPC.User f24710n;
+    public final int[] f24711r;
+    public final boolean[] f24712s;
     public final Utilities.Callback v;
-    public final org.telegram.ui.ActionBar.f3 f24646w;
-    public final org.telegram.ui.ActionBar.d6 f24647x;
-    public final Context f24648y;
+    public final org.telegram.ui.ActionBar.f3 f24713w;
+    public final org.telegram.ui.ActionBar.d6 f24714x;
+    public final Context f24715y;
 
     public ar(String[] strArr, org.telegram.messenger.fe feVar, org.telegram.ui.Cells.j3 j3Var, int[] iArr, ci.d dVar, boolean z10, int i10, TLRPC.User user, int[] iArr2, boolean[] zArr, Utilities.Callback callback, org.telegram.ui.ActionBar.f3 f3Var, org.telegram.ui.ActionBar.d6 d6Var, Context context) {
-        this.f24638a = strArr;
-        this.f24639b = feVar;
-        this.f24640c = j3Var;
+        this.f24705a = strArr;
+        this.f24706b = feVar;
+        this.f24707c = j3Var;
         this.d = iArr;
-        this.f24641e = dVar;
-        this.f24642f = z10;
+        this.f24708e = dVar;
+        this.f24709f = z10;
         this.h = i10;
-        this.f24643n = user;
-        this.f24644r = iArr2;
-        this.f24645s = zArr;
+        this.f24710n = user;
+        this.f24711r = iArr2;
+        this.f24712s = zArr;
         this.v = callback;
-        this.f24646w = f3Var;
-        this.f24647x = d6Var;
-        this.f24648y = context;
+        this.f24713w = f3Var;
+        this.f24714x = d6Var;
+        this.f24715y = context;
     }
 
     @Override
     public final void run() {
-        String[] strArr = this.f24638a;
+        String[] strArr = this.f24705a;
         if (strArr[0] == null) {
-            this.f24639b.run();
+            this.f24706b.run();
             return;
         }
-        org.telegram.ui.Cells.j3 j3Var = this.f24640c;
-        String trim = j3Var.f22311b.getText().toString().trim();
+        org.telegram.ui.Cells.j3 j3Var = this.f24707c;
+        String trim = j3Var.f22315b.getText().toString().trim();
         if (TextUtils.isEmpty(trim)) {
             int[] iArr = this.d;
             int i10 = -iArr[0];
@@ -64,24 +64,24 @@ public final class ar implements Runnable {
             AndroidUtilities.shakeViewSpring(j3Var, i10);
             return;
         }
-        final ci.d dVar = this.f24641e;
+        final ci.d dVar = this.f24708e;
         dVar.setLoading(true);
         TL_bots.createBot createbot = new TL_bots.createBot();
-        createbot.via_deeplink = this.f24642f;
+        createbot.via_deeplink = this.f24709f;
         createbot.username = strArr[0];
         createbot.name = trim;
         final int i11 = this.h;
         MessagesController messagesController = MessagesController.getInstance(i11);
-        final TLRPC.User user = this.f24643n;
+        final TLRPC.User user = this.f24710n;
         createbot.manager_id = messagesController.getInputUser(user);
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i11);
         ?? obj = new Object();
-        final int[] iArr2 = this.f24644r;
-        final boolean[] zArr = this.f24645s;
+        final int[] iArr2 = this.f24711r;
+        final boolean[] zArr = this.f24712s;
         final Utilities.Callback callback = this.v;
-        final org.telegram.ui.ActionBar.f3 f3Var = this.f24646w;
-        final org.telegram.ui.ActionBar.d6 d6Var = this.f24647x;
-        final Context context = this.f24648y;
+        final org.telegram.ui.ActionBar.f3 f3Var = this.f24713w;
+        final org.telegram.ui.ActionBar.d6 d6Var = this.f24714x;
+        final Context context = this.f24715y;
         iArr2[0] = connectionsManager.sendRequestTyped(createbot, obj, new Utilities.Callback2() {
             @Override
             public final void run(Object obj2, Object obj3) {
@@ -125,7 +125,7 @@ public final class ar implements Runnable {
                             replaceSingleLink.setSpan(new org.telegram.ui.Cells.i(d6Var2, beVar, 6), charSequenceIndexOf, charSequenceIndexOf + 10, 33);
                         }
                         rc M = ycVar.M(string, replaceSingleLink, i13);
-                        M.f30345j = 8000;
+                        M.f30427j = 8000;
                         M.j();
                     } else {
                         String str = tL_error.text;

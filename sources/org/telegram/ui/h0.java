@@ -2,17 +2,17 @@ package org.telegram.ui;
 
 import org.telegram.messenger.NotificationCenter;
 public final class h0 extends org.telegram.ui.ActionBar.f5 {
-    public final int f36807f;
+    public final int f36831f;
     public final NotificationCenter.NotificationCenterDelegate h;
 
     public h0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f36807f = i10;
+        this.f36831f = i10;
         this.h = notificationCenterDelegate;
     }
 
     @Override
     public boolean g() {
-        switch (this.f36807f) {
+        switch (this.f36831f) {
             case 0:
                 i4 i4Var = (i4) this.h;
                 org.telegram.ui.Cells.q9 q9Var = i4Var.P0;
@@ -28,9 +28,9 @@ public final class h0 extends org.telegram.ui.ActionBar.f5 {
 
     @Override
     public void onOpenAnimationEnd() {
-        switch (this.f36807f) {
+        switch (this.f36831f) {
             case 1:
-                ((org.telegram.ui.Components.zq0) this.h).Y = true;
+                ((org.telegram.ui.Components.br0) this.h).Y = true;
                 return;
             default:
                 return;

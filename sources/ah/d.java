@@ -3,12 +3,12 @@ package ah;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import ii.u0;
-import org.telegram.ui.Components.b41;
-import org.telegram.ui.Components.dp0;
+import org.telegram.ui.Components.c41;
+import org.telegram.ui.Components.ep0;
 import org.telegram.ui.Components.fd;
 import org.telegram.ui.Components.hq;
-import yh.l3;
-import zg.m0;
+import yh.m3;
+import zg.k0;
 public final class d implements Drawable.Callback {
     public final int f462a;
     public Object f463b;
@@ -28,33 +28,33 @@ public final class d implements Drawable.Callback {
                 ((hq) this.f463b).invalidateSelf();
                 return;
             case 4:
-                ((dp0) this.f463b).f25784b.run();
+                ((ep0) this.f463b).f26177b.run();
                 return;
             case 5:
                 ((fd) this.f463b).invalidateSelf();
                 return;
             case 6:
-                ((b41) this.f463b).invalidateSelf();
+                ((c41) this.f463b).invalidateSelf();
                 return;
             case 7:
-                ((wg.a) this.f463b).f49051c.invalidate();
+                ((wg.a) this.f463b).f49058c.invalidate();
                 return;
             case 8:
-                ((wg.c) this.f463b).f49077c.invalidate();
+                ((wg.c) this.f463b).f49084c.invalidate();
                 return;
             case 9:
                 ((x4.d) this.f463b).invalidateSelf();
                 return;
             case 10:
-                ((l3) this.f463b).f51569f.invalidate();
+                ((m3) this.f463b).f51636f.invalidate();
                 return;
             default:
-                m0 m0Var = (m0) this.f463b;
-                View view = m0Var.W;
+                k0 k0Var = (k0) this.f463b;
+                View view = k0Var.W;
                 if (view != null) {
                     view.invalidate();
-                    if (m0Var.R && m0Var.W.getParent() != null && (m0Var.W.getParent().getParent() instanceof View)) {
-                        ((View) m0Var.W.getParent().getParent()).invalidate();
+                    if (k0Var.R && k0Var.W.getParent() != null && (k0Var.W.getParent().getParent() instanceof View)) {
+                        ((View) k0Var.W.getParent().getParent()).invalidate();
                         return;
                     }
                     return;
@@ -89,10 +89,10 @@ public final class d implements Drawable.Callback {
             case 6:
                 return;
             case 7:
-                ((wg.a) this.f463b).f49051c.invalidate();
+                ((wg.a) this.f463b).f49058c.invalidate();
                 return;
             case 8:
-                ((wg.c) this.f463b).f49077c.invalidate();
+                ((wg.c) this.f463b).f49084c.invalidate();
                 return;
             case 9:
                 ((x4.d) this.f463b).scheduleSelf(runnable, j3);
@@ -100,7 +100,7 @@ public final class d implements Drawable.Callback {
             case 10:
                 return;
             default:
-                View view = ((m0) this.f463b).W;
+                View view = ((k0) this.f463b).W;
                 if (view != null) {
                     view.scheduleDrawable(drawable, runnable, j3);
                     return;
@@ -135,10 +135,10 @@ public final class d implements Drawable.Callback {
             case 6:
                 return;
             case 7:
-                ((wg.a) this.f463b).f49051c.invalidate();
+                ((wg.a) this.f463b).f49058c.invalidate();
                 return;
             case 8:
-                ((wg.c) this.f463b).f49077c.invalidate();
+                ((wg.c) this.f463b).f49084c.invalidate();
                 return;
             case 9:
                 ((x4.d) this.f463b).unscheduleSelf(runnable);
@@ -146,7 +146,7 @@ public final class d implements Drawable.Callback {
             case 10:
                 return;
             default:
-                View view = ((m0) this.f463b).W;
+                View view = ((k0) this.f463b).W;
                 if (view != null) {
                     view.unscheduleDrawable(drawable, runnable);
                     return;

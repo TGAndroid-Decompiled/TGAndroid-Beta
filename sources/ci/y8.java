@@ -2,8 +2,8 @@ package ci;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.Components.x81;
-public final class y8 extends x81 {
+import org.telegram.ui.Components.y81;
+public final class y8 extends y81 {
     public final int f6346a;
     public final Context f6347b;
     public final ea f6348c;

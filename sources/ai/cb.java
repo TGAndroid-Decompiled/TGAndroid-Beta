@@ -41,7 +41,7 @@ import org.telegram.ui.fs0;
 import org.telegram.ui.ft;
 import org.telegram.ui.fx0;
 import org.telegram.ui.gl0;
-import org.telegram.ui.m71;
+import org.telegram.ui.k71;
 import org.telegram.ui.oi0;
 import org.telegram.ui.qs;
 import org.telegram.ui.t60;
@@ -87,8 +87,8 @@ public final class cb implements Runnable {
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) this.d;
                 TLObject tLObject = (TLObject) this.f737c;
                 org.telegram.ui.d1 d1Var = (org.telegram.ui.d1) this.h;
-                t70Var.f40714r = false;
-                if (!((org.telegram.ui.g4) this.f739f).f36492e.isEmpty()) {
+                t70Var.f40733r = false;
+                if (!((org.telegram.ui.g4) this.f739f).f36499e.isEmpty()) {
                     if (tL_error == null) {
                         TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject;
                         if (!tL_contacts_resolvedPeer.chats.isEmpty()) {
@@ -97,7 +97,7 @@ public final class cb implements Runnable {
                             MessagesController.getInstance(i11).putChats(tL_contacts_resolvedPeer.chats, false);
                             MessagesStorage.getInstance(i11).putUsersAndChats(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, false, true);
                             TLRPC.Chat chat = tL_contacts_resolvedPeer.chats.get(0);
-                            t70Var.f40713n = chat;
+                            t70Var.f40732n = chat;
                             if (chat.left && !chat.kicked) {
                                 d1Var.a(0, false);
                                 return;
@@ -137,7 +137,7 @@ public final class cb implements Runnable {
                     b2Var.dismiss();
                     if (groupCall != null) {
                         TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
-                        tL_inputGroupCall.f20059id = groupCall.f20052id;
+                        tL_inputGroupCall.f20064id = groupCall.f20057id;
                         tL_inputGroupCall.access_hash = groupCall.access_hash;
                         org.telegram.ui.m9.i0(context, i12, tL_inputGroupCall, groupCall.invite_link, d6Var, true, true);
                         AndroidUtilities.runOnUIThread(t60Var);
@@ -152,7 +152,7 @@ public final class cb implements Runnable {
                     TLRPC.TL_inputGroupCall tL_inputGroupCall2 = new TLRPC.TL_inputGroupCall();
                     exportgroupcallinvite.call = tL_inputGroupCall2;
                     TLRPC.GroupCall groupCall2 = groupcall.call;
-                    tL_inputGroupCall2.f20059id = groupCall2.f20052id;
+                    tL_inputGroupCall2.f20064id = groupCall2.f20057id;
                     tL_inputGroupCall2.access_hash = groupCall2.access_hash;
                     ConnectionsManager.getInstance(i12).sendRequest(exportgroupcallinvite, new ii(b2Var, context, i12, exportgroupcallinvite, d6Var, t60Var));
                     return;
@@ -162,7 +162,7 @@ public final class cb implements Runnable {
                     return;
                 }
             case 6:
-                new m71((Context) this.f738e, (TLRPC.Chat) this.f737c, (TLRPC.User) this.f739f, new o8(this.f736b, (MessagesStorage.BooleanCallback) this.d, 27), (org.telegram.ui.ActionBar.d6) this.h).show();
+                new k71((Context) this.f738e, (TLRPC.Chat) this.f737c, (TLRPC.User) this.f739f, new o8(this.f736b, (MessagesStorage.BooleanCallback) this.d, 27), (org.telegram.ui.ActionBar.d6) this.h).show();
                 return;
             case 7:
                 org.telegram.ui.Components.v9.a((org.telegram.ui.Components.v9) this.f738e, (Runnable[]) this.f737c, (Bitmap) this.f739f, (m60) this.d, this.f736b, (w7.w5[]) this.h);
@@ -245,11 +245,11 @@ public final class cb implements Runnable {
                 } else {
                     String[] strArr2 = {"cancelled"};
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(c1Var.getContext());
-                    alertDialog$Builder.f20372a.R = LocaleController.getString(R.string.BotWebViewRequestWriteTitle);
-                    alertDialog$Builder.f20372a.T = LocaleController.getString(R.string.BotWebViewRequestWriteMessage);
+                    alertDialog$Builder.f20377a.R = LocaleController.getString(R.string.BotWebViewRequestWriteTitle);
+                    alertDialog$Builder.f20377a.T = LocaleController.getString(R.string.BotWebViewRequestWriteMessage);
                     alertDialog$Builder.k(LocaleController.getString(R.string.BotWebViewRequestAllow), new fs0(24, c1Var, strArr2));
                     alertDialog$Builder.h(LocaleController.getString(R.string.BotWebViewRequestDontAllow), new org.telegram.ui.web.w(1));
-                    c1Var.Y(3, alertDialog$Builder.f20372a, new org.telegram.ui.web.x(strArr2, i15, z0Var, daVar, 1));
+                    c1Var.Y(3, alertDialog$Builder.f20377a, new org.telegram.ui.web.x(strArr2, i15, z0Var, daVar, 1));
                     return;
                 }
             case 13:
@@ -309,7 +309,7 @@ public final class cb implements Runnable {
                     }
                     final long j3 = tL_starsSubscriptionPricing.amount;
                     final int i17 = this.f736b;
-                    yh.t5.y(i17, false).j0(tL_messages_checkChatInvite.hash, chatInvite, new Utilities.Callback2() {
+                    yh.u5.y(i17, false).j0(tL_messages_checkChatInvite.hash, chatInvite, new Utilities.Callback2() {
                         @Override
                         public final void run(Object obj2, Object obj3) {
                             Long l4 = (Long) obj3;

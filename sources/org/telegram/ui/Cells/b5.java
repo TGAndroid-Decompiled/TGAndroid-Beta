@@ -27,20 +27,20 @@ public final class b5 extends FrameLayout {
     public a5 L;
     public final int M;
     public final ai.ca N;
-    public final z4 f21829a;
-    public final org.telegram.ui.ActionBar.i5 f21830b;
-    public final org.telegram.ui.ActionBar.i5 f21831c;
+    public final z4 f21833a;
+    public final org.telegram.ui.ActionBar.i5 f21834b;
+    public final org.telegram.ui.ActionBar.i5 f21835c;
     public final org.telegram.ui.ActionBar.d6 d;
-    public final org.telegram.ui.Components.h9 f21832e;
-    public final ImageView f21833f;
+    public final org.telegram.ui.Components.h9 f21836e;
+    public final ImageView f21837f;
     public ImageView h;
-    public Object f21834n;
-    public TL_stories.StoryItem f21835r;
-    public CharSequence f21836s;
+    public Object f21838n;
+    public TL_stories.StoryItem f21839r;
+    public CharSequence f21840s;
     public CharSequence v;
-    public String f21837w;
-    public int f21838x;
-    public TLRPC.FileLocation f21839y;
+    public String f21841w;
+    public int f21842x;
+    public TLRPC.FileLocation f21843y;
 
     public b5(int i10, int i11, Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
         super(context);
@@ -59,12 +59,12 @@ public final class b5 extends FrameLayout {
         this.M = UserConfig.selectedAccount;
         this.N = new ai.ca(null, false);
         this.d = d6Var;
-        this.H = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21209y6, d6Var);
-        this.I = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21008n6, d6Var);
+        this.H = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21214y6, d6Var);
+        this.I = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21013n6, d6Var);
         this.J = i11;
-        this.f21832e = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
+        this.f21836e = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
         z4 z4Var = new z4(this, context, d6Var);
-        this.f21829a = z4Var;
+        this.f21833a = z4Var;
         z4Var.setRoundRadius(AndroidUtilities.dp(23.0f));
         boolean z11 = LocaleController.isRTL;
         if (z11) {
@@ -85,7 +85,7 @@ public final class b5 extends FrameLayout {
         }
         addView(z4Var, w7.z5.d(46, 46.0f, i17, f7, 8.0f, f10, 0.0f));
         org.telegram.ui.ActionBar.i5 i5Var = new org.telegram.ui.ActionBar.i5(context);
-        this.f21830b = i5Var;
+        this.f21834b = i5Var;
         i5Var.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.G6, d6Var));
         i5Var.setTextSize(17);
         i5Var.setTypeface(AndroidUtilities.bold());
@@ -115,7 +115,7 @@ public final class b5 extends FrameLayout {
         addView(i5Var, w7.z5.d(-1, 20.0f, i18, f11, 11.5f, f12, 0.0f));
         NotificationCenter.listenEmojiLoading(i5Var);
         org.telegram.ui.ActionBar.i5 i5Var2 = new org.telegram.ui.ActionBar.i5(context);
-        this.f21831c = i5Var2;
+        this.f21835c = i5Var2;
         i5Var2.setTextSize(14);
         if (LocaleController.isRTL) {
             i15 = 5;
@@ -143,7 +143,7 @@ public final class b5 extends FrameLayout {
         addView(i5Var2, w7.z5.d(-1, 20.0f, i19, f13, 34.5f, f14, 0.0f));
         if (z10) {
             ImageView imageView = new ImageView(context);
-            this.f21833f = imageView;
+            this.f21837f = imageView;
             imageView.setFocusable(false);
             imageView.setBackgroundDrawable(org.telegram.ui.ActionBar.i6.f0(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Vh, d6Var), 1, -1));
             imageView.setImageResource(R.drawable.ic_ab_other);
@@ -156,7 +156,7 @@ public final class b5 extends FrameLayout {
     }
 
     public final void a() {
-        this.f21829a.getImageReceiver().cancelLoadImage();
+        this.f21833a.getImageReceiver().cancelLoadImage();
     }
 
     public final void b(TLObject tLObject, CharSequence charSequence, CharSequence charSequence2, boolean z10) {
@@ -174,21 +174,21 @@ public final class b5 extends FrameLayout {
         int i17;
         int i18;
         float f12;
-        org.telegram.ui.ActionBar.i5 i5Var = this.f21831c;
-        org.telegram.ui.ActionBar.i5 i5Var2 = this.f21830b;
+        org.telegram.ui.ActionBar.i5 i5Var = this.f21835c;
+        org.telegram.ui.ActionBar.i5 i5Var2 = this.f21834b;
         if (tLObject == null) {
             this.v = null;
-            this.f21836s = null;
-            this.f21834n = null;
+            this.f21840s = null;
+            this.f21838n = null;
             i5Var2.l("", false);
             i5Var.l("", false);
-            this.f21829a.setImageDrawable(null);
+            this.f21833a.setImageDrawable(null);
             return;
         }
         this.v = charSequence2;
-        this.f21836s = charSequence;
-        this.f21834n = tLObject;
-        ImageView imageView = this.f21833f;
+        this.f21840s = charSequence;
+        this.f21838n = tLObject;
+        ImageView imageView = this.f21837f;
         int i19 = 3;
         int i20 = this.J;
         int i21 = 28;
@@ -328,11 +328,11 @@ public final class b5 extends FrameLayout {
     }
 
     public org.telegram.ui.Components.w9 getAvatarImageView() {
-        return this.f21829a;
+        return this.f21833a;
     }
 
     public Object getCurrentObject() {
-        return this.f21834n;
+        return this.f21838n;
     }
 
     public ai.ca getStoryAvatarParams() {
@@ -340,13 +340,13 @@ public final class b5 extends FrameLayout {
     }
 
     public TL_stories.StoryItem getStoryItem() {
-        return this.f21835r;
+        return this.f21839r;
     }
 
     public long getUserId() {
-        Object obj = this.f21834n;
+        Object obj = this.f21838n;
         if (obj instanceof TLRPC.User) {
-            return ((TLRPC.User) obj).f20189id;
+            return ((TLRPC.User) obj).f20194id;
         }
         return 0L;
     }
@@ -364,7 +364,7 @@ public final class b5 extends FrameLayout {
         if (this.F) {
             int i11 = this.K;
             if (i11 >= 0) {
-                org.telegram.ui.ActionBar.i6.f20965l0.setColor(org.telegram.ui.ActionBar.i6.v0(i11, this.d));
+                org.telegram.ui.ActionBar.i6.f20970l0.setColor(org.telegram.ui.ActionBar.i6.v0(i11, this.d));
             }
             if (LocaleController.isRTL) {
                 dp = 0.0f;
@@ -381,9 +381,9 @@ public final class b5 extends FrameLayout {
             float f7 = measuredWidth - i10;
             float measuredHeight2 = getMeasuredHeight() - 1;
             if (this.K >= 0) {
-                paint = org.telegram.ui.ActionBar.i6.f20965l0;
+                paint = org.telegram.ui.ActionBar.i6.f20970l0;
             } else {
-                paint = org.telegram.ui.ActionBar.i6.f20945k0;
+                paint = org.telegram.ui.ActionBar.i6.f20950k0;
             }
             canvas.drawLine(dp, measuredHeight, f7, measuredHeight2, paint);
         }
@@ -414,7 +414,7 @@ public final class b5 extends FrameLayout {
         this.h = imageView;
         imageView.setImageResource(i10);
         this.h.setScaleType(ImageView.ScaleType.CENTER);
-        this.h.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20998mg, this.d), PorterDuff.Mode.MULTIPLY));
+        this.h.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21003mg, this.d), PorterDuff.Mode.MULTIPLY));
         ImageView imageView2 = this.h;
         if (LocaleController.isRTL) {
             i11 = 3;
@@ -437,6 +437,6 @@ public final class b5 extends FrameLayout {
     }
 
     public void setNameColor(int i10) {
-        this.f21830b.setTextColor(i10);
+        this.f21834b.setTextColor(i10);
     }
 }

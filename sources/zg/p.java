@@ -1,73 +1,78 @@
 package zg;
 
-import android.app.Activity;
-import android.text.SpannableString;
-import android.view.View;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import org.telegram.messenger.FileLog;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.q5;
-import org.telegram.ui.Components.yc;
-import org.telegram.ui.Components.z5;
-import org.telegram.ui.c71;
-import yh.r5;
-public final class p extends c71 {
-    public boolean f53487d2;
-    public final q f53488e2;
+import org.telegram.ui.Components.sk0;
+import org.telegram.ui.yn;
+import w7.z5;
+public final class p implements Runnable {
+    public final int f53511a;
+    public final r f53512b;
 
-    public p(q qVar, q qVar2, Activity activity, d6 d6Var, int i10) {
-        super(qVar2, activity, false, null, 6, false, d6Var, 16, i10);
-        this.f53488e2 = qVar;
-        this.f53487d2 = true;
-        setDrawBackground(false);
+    public p(r rVar, int i10) {
+        this.f53511a = i10;
+        this.f53512b = rVar;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        if (this.f53487d2) {
-            this.f53487d2 = false;
-            this.f53488e2.f53516b.s(null);
-        }
-    }
-
-    @Override
-    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
-        q qVar = this.f53488e2;
-        int i10 = qVar.J;
-        ArrayList arrayList = qVar.F;
-        LinkedHashMap linkedHashMap = qVar.E;
-        if (linkedHashMap.containsKey(l4)) {
-            arrayList.remove(l4);
-            z5 z5Var = (z5) linkedHashMap.remove(l4);
-            z5Var.setRemoved(new r5(5, this, z5Var));
-            qVar.U(z5Var);
-            qVar.f53516b.x(l4, true);
-            qVar.X(false);
-        } else if (linkedHashMap.size() - (linkedHashMap.containsKey(-1L) ? 1 : 0) >= i10) {
-            yc.a0(qVar).t(LocaleController.formatPluralString("ReactionMaxCountError", i10, new Object[0]), null).j();
-        } else {
-            try {
-                int editTextSelectionEnd = qVar.f53520n.getEditTextSelectionEnd();
-                SpannableString spannableString = new SpannableString("b");
-                z5 e7 = q0.e(document, l4, qVar.f53520n.getFontMetricsInt());
-                e7.cacheType = q5.g();
-                e7.setAdded();
-                arrayList.add(w7.q.b(editTextSelectionEnd, 0, arrayList.size()), l4);
-                linkedHashMap.put(l4, e7);
-                spannableString.setSpan(e7, 0, spannableString.length(), 33);
-                qVar.f53520n.getText().insert(editTextSelectionEnd, spannableString);
-                qVar.f53520n.setSelection(editTextSelectionEnd + spannableString.length());
-                qVar.f53516b.x(l4, true);
-                qVar.X(true);
-                qVar.U(e7);
-            } catch (Exception e10) {
-                FileLog.e(e10);
-            }
+    public final void run() {
+        boolean z10;
+        int i10;
+        int i11;
+        switch (this.f53511a) {
+            case 0:
+                this.f53512b.c(true);
+                return;
+            default:
+                r rVar = this.f53512b;
+                rVar.f53518e = rVar.b();
+                int i12 = rVar.f53519f;
+                int i13 = rVar.h;
+                yn ynVar = rVar.f53515a;
+                if (rVar.f53516b == null) {
+                    if (ynVar.getUserConfig().getClientUserId() == ynVar.a()) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    if (z10) {
+                        i10 = 3;
+                    } else {
+                        i10 = 0;
+                    }
+                    yn ynVar2 = rVar.f53515a;
+                    ?? sk0Var = new sk0(i10, ynVar.getCurrentAccount(), rVar.getContext(), ynVar2, ynVar.getResourceProvider());
+                    sk0Var.l1 = 1.0f;
+                    sk0Var.setWillNotDraw(false);
+                    rVar.f53516b = sk0Var;
+                    int dp = AndroidUtilities.dp(4.0f);
+                    if (LocaleController.isRTL) {
+                        i11 = 0;
+                    } else {
+                        i11 = i13;
+                    }
+                    int i14 = dp + i11;
+                    int dp2 = AndroidUtilities.dp(4.0f);
+                    int dp3 = AndroidUtilities.dp(4.0f);
+                    if (!LocaleController.isRTL) {
+                        i13 = 0;
+                    }
+                    sk0Var.setPadding(i14, dp2, dp3 + i13, AndroidUtilities.dp(i12));
+                    rVar.f53516b.setDelegate(new l2.g(rVar, 25));
+                    rVar.f53516b.setClipChildren(false);
+                    rVar.f53516b.setClipToPadding(false);
+                    rVar.addView(rVar.f53516b, z5.e(-2, i12 + 70, 5));
+                }
+                rVar.c(false);
+                if (rVar.f53516b.isEnabled()) {
+                    rVar.f53524x = true;
+                    rVar.f53516b.p(rVar.f53518e, ynVar.X7, true);
+                    rVar.f53516b.r(false);
+                    return;
+                }
+                rVar.f53524x = false;
+                rVar.f53516b.setTransitionProgress(1.0f);
+                return;
         }
     }
 }

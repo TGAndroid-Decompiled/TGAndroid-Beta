@@ -1,38 +1,36 @@
 package yh;
 
-import android.text.TextWatcher;
-import android.widget.TextView;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.ld0;
-public final class a7 implements TextWatcher {
-    public boolean f51104a;
-    public int f51105b = 2;
-    public final EditTextBoldCursor f51106c;
-    public final ld0 d;
-    public final long f51107e;
-    public final boolean f51108f;
-    public final ci.d h;
-    public final TextView f51109n;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.text.style.ReplacementSpan;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.f11;
+public final class a7 extends ReplacementSpan {
+    public final Paint f51111a;
+    public final f11 f51112b;
+    public final int f51113c;
 
-    public a7(EditTextBoldCursor editTextBoldCursor, ld0 ld0Var, long j3, boolean z10, ci.d dVar, TextView textView) {
-        this.f51106c = editTextBoldCursor;
-        this.d = ld0Var;
-        this.f51107e = j3;
-        this.f51108f = z10;
-        this.h = dVar;
-        this.f51109n = textView;
+    public a7(int i10, String str) {
+        this.f51113c = i10;
+        Paint paint = new Paint(1);
+        this.f51111a = paint;
+        paint.setColor(org.telegram.ui.ActionBar.i6.l1(0.1f, i10));
+        this.f51112b = new f11(str, 13.0f, AndroidUtilities.bold());
     }
 
     @Override
-    public final void afterTextChanged(android.text.Editable r11) {
-        throw new UnsupportedOperationException("Method not decompiled: yh.a7.afterTextChanged(android.text.Editable):void");
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        RectF rectF = AndroidUtilities.rectTmp;
+        int i15 = i12 + i14;
+        rectF.set(f7, (i15 - AndroidUtilities.dp(20.0f)) / 2.0f, AndroidUtilities.dp(12.0f) + f7 + this.f51112b.f26266c, (AndroidUtilities.dp(20.0f) + i15) / 2.0f);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.f51111a);
+        int i16 = this.f51113c;
+        this.f51112b.c(f7 + AndroidUtilities.dp(6.0f), i15 / 2.0f, 1.0f, i16, canvas);
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        return (int) (AndroidUtilities.dp(12.0f) + this.f51112b.f26266c);
     }
 }

@@ -7,12 +7,12 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class mz extends org.telegram.ui.ActionBar.n2 {
-    public long f38786a;
-    public TLRPC.Chat f38787b;
-    public boolean f38788c;
+    public long f38772a;
+    public TLRPC.Chat f38773b;
+    public boolean f38774c;
     public boolean d;
-    public jz f38789e;
-    public ai.m0 f38790f;
+    public jz f38775e;
+    public ai.m0 f38776f;
 
     public final void S() {
         if (this.d && getParentLayout() != null) {
@@ -29,24 +29,34 @@ public final class mz extends org.telegram.ui.ActionBar.n2 {
 
     @Override
     public final View createView(Context context) {
+        setHasOwnBackground(true);
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setActionBarMenuOnItemClick(new qo(this, 21));
         this.actionBar.setTitle(LocaleController.getString(R.string.TopicsTitle));
         FrameLayout frameLayout = new FrameLayout(context);
-        ?? c71Var = new org.telegram.ui.Components.c71(this, new c5(this, 13), new bu(this, 8), null);
-        this.f38789e = c71Var;
-        c71Var.s1();
-        this.f38789e.setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20766a7, this.resourceProvider));
-        frameLayout.addView(this.f38789e, w7.z5.e(-1, -1, 119));
-        this.actionBar.setAdaptiveBackground(this.f38789e);
+        ?? e71Var = new org.telegram.ui.Components.e71(this, new c5(this, 13), new bu(this, 8), null);
+        this.f38775e = e71Var;
+        e71Var.r1();
+        this.f38775e.setSectionsDrawBackground(true);
+        frameLayout.addView(this.f38775e, w7.z5.e(-1, -1, 119));
         this.fragmentView = frameLayout;
         return frameLayout;
     }
 
     @Override
+    public final org.telegram.ui.Components.zl0 getListViewForSimpleGlass() {
+        return this.f38775e;
+    }
+
+    @Override
+    public final boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
+    @Override
     public final boolean onFragmentCreate() {
-        this.f38787b = getMessagesController().getChat(Long.valueOf(-this.f38786a));
+        this.f38773b = getMessagesController().getChat(Long.valueOf(-this.f38772a));
         return super.onFragmentCreate();
     }
 }

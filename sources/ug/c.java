@@ -5,29 +5,29 @@ import org.telegram.ui.uy;
 import rg.x;
 import tg.b0;
 public final class c implements Runnable {
-    public final int f47652a;
-    public final e f47653b;
+    public final int f47659a;
+    public final e f47660b;
 
     public c(e eVar, int i10) {
-        this.f47652a = i10;
-        this.f47653b = eVar;
+        this.f47659a = i10;
+        this.f47660b = eVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f47652a) {
+        switch (this.f47659a) {
             case 0:
-                this.f47653b.E();
+                this.f47660b.E();
                 return;
             default:
                 StringBuilder sb2 = new StringBuilder("https://t.me/giftcode/");
-                e eVar = this.f47653b;
+                e eVar = this.f47660b;
                 sb2.append(eVar.h);
                 String sb3 = sb2.toString();
                 uy uyVar = new uy(bi.d(3, "onlySelect", "dialogsType", true));
                 uyVar.C2 = new x(9, eVar, sb3);
-                eVar.f47658e.presentFragment(uyVar);
-                ((b0) eVar).f46988r.dismiss();
+                eVar.f47665e.presentFragment(uyVar);
+                ((b0) eVar).f46995r.dismiss();
                 return;
         }
     }

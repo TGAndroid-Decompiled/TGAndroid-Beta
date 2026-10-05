@@ -8,7 +8,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.xi;
-import org.telegram.ui.g91;
+import org.telegram.ui.e91;
 public final class y7 implements Utilities.CallbackReturn {
     public final int f6344a;
     public final KeyEvent.Callback f6345b;
@@ -29,7 +29,7 @@ public final class y7 implements Utilities.CallbackReturn {
                 di.g gVar = (di.g) this.f6345b;
                 return gVar.f8372n[((Integer) obj).intValue() % gVar.f8372n.length];
             case 2:
-                return new g91(29, (org.telegram.ui.l0) this.f6345b, (Integer) obj);
+                return new e91(29, (org.telegram.ui.l0) this.f6345b, (Integer) obj);
             case 3:
                 qg.m0 m0Var = (qg.m0) this.f6345b;
                 if (((Integer) obj).intValue() == 2) {
@@ -41,7 +41,7 @@ public final class y7 implements Utilities.CallbackReturn {
                     xiVar.I1(1, false);
                     xiVar.q1();
                     MediaController.forceBroadcastNewPhotos = true;
-                    xiVar.f32831j0.f0();
+                    xiVar.f32922j0.f0();
                     xiVar.show();
                 }
                 return Boolean.TRUE;
@@ -49,8 +49,8 @@ public final class y7 implements Utilities.CallbackReturn {
                 Paint[] paintArr = ((vg.r) this.f6345b).h;
                 return paintArr[((Integer) obj).intValue() % paintArr.length];
             default:
-                yh.b7 b7Var = (yh.b7) this.f6345b;
-                return b7Var.f51142n[((Integer) obj).intValue() % b7Var.f51142n.length];
+                yh.c7 c7Var = (yh.c7) this.f6345b;
+                return c7Var.f51200n[((Integer) obj).intValue() % c7Var.f51200n.length];
         }
     }
 }

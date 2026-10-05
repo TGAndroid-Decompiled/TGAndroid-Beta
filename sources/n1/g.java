@@ -17,7 +17,7 @@ import m1.h;
 import m1.j;
 import m1.k;
 public final class g {
-    public static final g f16501a = new Object();
+    public static final g f16506a = new Object();
 
     public final b a(FileInputStream fileInputStream) {
         int i10;
@@ -26,7 +26,7 @@ public final class g {
             b bVar = new b(false);
             e[] pairs = (e[]) Arrays.copyOf(new e[0], 0);
             i.e(pairs, "pairs");
-            if (!bVar.f16495b.get()) {
+            if (!bVar.f16500b.get()) {
                 if (pairs.length <= 0) {
                     Map j3 = l4.j();
                     i.d(j3, "preferencesProto.preferencesMap");
@@ -39,7 +39,7 @@ public final class g {
                         if (x10 == 0) {
                             i10 = -1;
                         } else {
-                            i10 = f.f16500a[j.c(x10)];
+                            i10 = f.f16505a[j.c(x10)];
                         }
                         switch (i10) {
                             case -1:
@@ -78,7 +78,7 @@ public final class g {
                                 throw new IOException("Value not set.", null);
                         }
                     }
-                    Map unmodifiableMap = DesugarCollections.unmodifiableMap(bVar.f16494a);
+                    Map unmodifiableMap = DesugarCollections.unmodifiableMap(bVar.f16499a);
                     i.d(unmodifiableMap, "unmodifiableMap(preferencesMap)");
                     return new b(new LinkedHashMap(unmodifiableMap), true);
                 }
@@ -93,12 +93,12 @@ public final class g {
 
     public final void b(Object obj, l lVar) {
         w a2;
-        Map unmodifiableMap = DesugarCollections.unmodifiableMap(((b) obj).f16494a);
+        Map unmodifiableMap = DesugarCollections.unmodifiableMap(((b) obj).f16499a);
         i.d(unmodifiableMap, "unmodifiableMap(preferencesMap)");
         m1.d k10 = m1.f.k();
         for (Map.Entry entry : unmodifiableMap.entrySet()) {
             Object value = entry.getValue();
-            String str = ((d) entry.getKey()).f16499a;
+            String str = ((d) entry.getKey()).f16504a;
             if (value instanceof Boolean) {
                 m1.i y3 = k.y();
                 boolean booleanValue = ((Boolean) value).booleanValue();

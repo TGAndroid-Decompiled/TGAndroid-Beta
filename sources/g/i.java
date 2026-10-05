@@ -36,7 +36,7 @@ public final class i implements Runnable {
                     l0Var.b();
                 }
                 if (sVar.I && (viewGroup = sVar.J) != null) {
-                    WeakHashMap weakHashMap = i0.f45603a;
+                    WeakHashMap weakHashMap = i0.f45610a;
                     if (viewGroup.isLaidOut()) {
                         sVar.f10119y.setAlpha(0.0f);
                         l0 a2 = i0.a(sVar.f10119y);

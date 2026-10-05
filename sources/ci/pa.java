@@ -23,14 +23,14 @@ import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.aa1;
 import org.telegram.ui.Components.ba1;
+import org.telegram.ui.Components.ca1;
 import org.telegram.ui.Components.pe0;
-import org.telegram.ui.Components.s71;
+import org.telegram.ui.Components.t71;
 import org.telegram.ui.Components.vf0;
 import org.telegram.ui.Components.yz;
 import org.telegram.ui.Components.zz;
-public final class pa implements CameraView.CameraViewDelegate, r0.n, org.telegram.ui.ActionBar.a2, aa1, Utilities.CallbackVoidReturn, s71, g9, i8 {
+public final class pa implements CameraView.CameraViewDelegate, r0.n, org.telegram.ui.ActionBar.a2, ba1, Utilities.CallbackVoidReturn, t71, g9, i8 {
     public final int f5711a;
     public final kc f5712b;
 
@@ -49,7 +49,7 @@ public final class pa implements CameraView.CameraViewDelegate, r0.n, org.telegr
         kcVar.f5375a0 = defaultWindowInsets.f11528c;
         kcVar.f5378b0 = defaultWindowInsets.d;
         kcVar.f5415n.requestLayout();
-        return r0.l1.f45616b;
+        return r0.l1.f45623b;
     }
 
     @Override
@@ -307,10 +307,10 @@ public final class pa implements CameraView.CameraViewDelegate, r0.n, org.telegr
             str = C;
         }
         kcVar.e0(str);
-        ba1 ba1Var = kcVar.V0;
-        if (ba1Var != null) {
+        ca1 ca1Var = kcVar.V0;
+        if (ca1Var != null) {
             kcVar.T1 = 0.0f;
-            ba1Var.b(0.0f, false);
+            ca1Var.b(0.0f, false);
         }
         kcVar.m0(true);
     }

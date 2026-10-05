@@ -13,19 +13,19 @@ import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class iq0 extends org.telegram.ui.ActionBar.n2 {
-    public Bitmap f37488a;
-    public BitmapDrawable f37489b;
-    public hq0 f37490c;
+    public Bitmap f37475a;
+    public BitmapDrawable f37476b;
+    public hq0 f37477c;
     public gq0 d;
-    public boolean f37491e;
-    public boolean f37492f;
+    public boolean f37478e;
+    public boolean f37479f;
 
     @Override
     public final View createView(Context context) {
         this.actionBar.setBackgroundColor(-13421773);
-        this.actionBar.A(-12763843, false);
+        this.actionBar.z(-12763843, false);
         this.actionBar.setTitleColor(-1);
-        this.actionBar.B(-1, false);
+        this.actionBar.A(-1, false);
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setTitle(LocaleController.getString(R.string.CropImage));
@@ -47,7 +47,7 @@ public final class iq0 extends org.telegram.ui.ActionBar.n2 {
     @Override
     public final boolean onFragmentCreate() {
         int max;
-        if (this.f37488a == null) {
+        if (this.f37475a == null) {
             String string = getArguments().getString("photoPath");
             Uri uri = (Uri) getArguments().getParcelable("photoUri");
             if (string == null && uri == null) {
@@ -64,12 +64,12 @@ public final class iq0 extends org.telegram.ui.ActionBar.n2 {
             }
             float f7 = max;
             Bitmap loadBitmap = ImageLoader.loadBitmap(string, uri, f7, f7, true);
-            this.f37488a = loadBitmap;
+            this.f37475a = loadBitmap;
             if (loadBitmap == null) {
                 return false;
             }
         }
-        this.f37489b = new BitmapDrawable(this.f37488a);
+        this.f37476b = new BitmapDrawable(this.f37475a);
         super.onFragmentCreate();
         return true;
     }
@@ -77,11 +77,11 @@ public final class iq0 extends org.telegram.ui.ActionBar.n2 {
     @Override
     public final void onFragmentDestroy() {
         super.onFragmentDestroy();
-        Bitmap bitmap = this.f37488a;
-        if (bitmap != null && !this.f37491e) {
+        Bitmap bitmap = this.f37475a;
+        if (bitmap != null && !this.f37478e) {
             bitmap.recycle();
-            this.f37488a = null;
+            this.f37475a = null;
         }
-        this.f37489b = null;
+        this.f37476b = null;
     }
 }

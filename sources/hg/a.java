@@ -9,7 +9,7 @@ import org.telegram.ui.Cells.r8;
 import org.telegram.ui.Cells.w8;
 import org.telegram.ui.Components.d5;
 import org.telegram.ui.Components.e5;
-import org.telegram.ui.Components.g61;
+import org.telegram.ui.Components.h61;
 import org.telegram.ui.yn;
 public final class a implements Utilities.Callback5, org.telegram.ui.ActionBar.a2 {
     public final int f11100a;
@@ -34,47 +34,47 @@ public final class a implements Utilities.Callback5, org.telegram.ui.ActionBar.a
 
     @Override
     public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        g61 g61Var = (g61) obj;
+        h61 h61Var = (h61) obj;
         final View view = (View) obj2;
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
         final d dVar = this.f11101b;
-        if (!dVar.d.h(g61Var)) {
-            int i10 = g61Var.d;
-            if (i10 != 2 && g61Var.f17187a != 17) {
+        if (!dVar.d.h(h61Var)) {
+            int i10 = h61Var.d;
+            if (i10 != 2 && h61Var.f17192a != 17) {
                 if (i10 == 1) {
                     dVar.f11143s = !dVar.f11143s;
-                    dVar.f11138c.f25250f3.N(true);
+                    dVar.f11138c.f26034f3.N(true);
                     dVar.T(true);
                     return;
                 } else if (i10 == 6) {
                     b0 b0Var = dVar.d;
                     dVar.v = true;
                     b0Var.h = true;
-                    dVar.f11138c.f25250f3.N(true);
+                    dVar.f11138c.f26034f3.N(true);
                     dVar.T(true);
                     return;
                 } else if (i10 == 7) {
                     b0 b0Var2 = dVar.d;
                     dVar.v = false;
                     b0Var2.h = false;
-                    dVar.f11138c.f25250f3.N(true);
+                    dVar.f11138c.f26034f3.N(true);
                     dVar.T(true);
                     return;
                 } else if (i10 == 3) {
                     dVar.f11145x = 0;
-                    dVar.f11138c.f25250f3.N(true);
+                    dVar.f11138c.f26034f3.N(true);
                     dVar.T(true);
                     return;
                 } else if (i10 == 4) {
                     dVar.f11145x = 1;
-                    dVar.f11138c.f25250f3.N(true);
+                    dVar.f11138c.f26034f3.N(true);
                     dVar.T(true);
                     return;
                 } else if (i10 == 5) {
                     dVar.f11145x = 2;
-                    dVar.f11138c.f25250f3.N(true);
+                    dVar.f11138c.f26034f3.N(true);
                     dVar.T(true);
                     return;
                 } else if (i10 == 8) {

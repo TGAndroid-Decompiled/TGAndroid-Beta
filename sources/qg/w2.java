@@ -9,19 +9,19 @@ import org.telegram.messenger.bi;
 import org.telegram.ui.Components.uk0;
 import w7.z5;
 public final class w2 extends j {
-    public final s0 f45405q0;
-    public boolean f45406r0;
-    public int f45407s0;
-    public int f45408t0;
-    public final jd f45409u0;
+    public final s0 f45412q0;
+    public boolean f45413r0;
+    public int f45414s0;
+    public int f45415t0;
+    public final jd f45416u0;
 
     public w2(Context context, PointF pointF, int i10, jd jdVar, float f7, int i11) {
         super(context, pointF);
         s0 s0Var = new s0(context, f7);
-        this.f45405q0 = s0Var;
+        this.f45412q0 = s0Var;
         s0Var.setMaxWidth(i11);
-        s0Var.e(0, this.f45407s0);
-        this.f45409u0 = jdVar;
+        s0Var.e(0, this.f45414s0);
+        this.f45416u0 = jdVar;
         String str = jdVar.f5281c;
         String a2 = jdVar.a();
         s0Var.d(i10, str);
@@ -39,7 +39,7 @@ public final class w2 extends j {
     }
 
     public int getColor() {
-        return this.f45407s0;
+        return this.f45414s0;
     }
 
     @Override
@@ -64,30 +64,30 @@ public final class w2 extends j {
 
     @Override
     public float getStickyPaddingBottom() {
-        return this.f45405q0.J;
+        return this.f45412q0.J;
     }
 
     @Override
     public float getStickyPaddingLeft() {
-        return this.f45405q0.I;
+        return this.f45412q0.I;
     }
 
     @Override
     public float getStickyPaddingRight() {
-        return this.f45405q0.I;
+        return this.f45412q0.I;
     }
 
     @Override
     public float getStickyPaddingTop() {
-        return this.f45405q0.J;
+        return this.f45412q0.J;
     }
 
     public int getType() {
-        return this.f45408t0;
+        return this.f45415t0;
     }
 
     public int getTypesCount() {
-        return this.f45405q0.getTypesCount() - (!this.f45406r0 ? 1 : 0);
+        return this.f45412q0.getTypesCount() - (!this.f45413r0 ? 1 : 0);
     }
 
     @Override
@@ -103,21 +103,21 @@ public final class w2 extends j {
     }
 
     public void setColor(int i10) {
-        this.f45406r0 = true;
-        this.f45407s0 = i10;
+        this.f45413r0 = true;
+        this.f45414s0 = i10;
     }
 
     @Override
     public void setIsVideo(boolean z10) {
-        this.f45405q0.setIsVideo(true);
+        this.f45412q0.setIsVideo(true);
     }
 
     public void setMaxWidth(int i10) {
-        this.f45405q0.setMaxWidth(i10);
+        this.f45412q0.setMaxWidth(i10);
     }
 
     public void setType(int i10) {
-        this.f45408t0 = i10;
-        this.f45405q0.e(i10, this.f45407s0);
+        this.f45415t0 = i10;
+        this.f45412q0.e(i10, this.f45414s0);
     }
 }

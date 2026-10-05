@@ -10,15 +10,15 @@ import org.telegram.ui.Components.kj0;
 public final class lc extends kc {
     public final ob f1317a;
     public final TL_stories.TL_mediaAreaSuggestedReaction f1318b;
-    public final zg.f0 f1319c;
+    public final zg.d0 f1319c;
     public final oc d;
 
     public lc(oc ocVar, TL_stories.TL_mediaAreaSuggestedReaction tL_mediaAreaSuggestedReaction) {
         this.d = ocVar;
         ob obVar = new ob(null);
         this.f1317a = obVar;
-        zg.f0 f0Var = new zg.f0(null);
-        this.f1319c = f0Var;
+        zg.d0 d0Var = new zg.d0(null);
+        this.f1319c = d0Var;
         this.f1318b = tL_mediaAreaSuggestedReaction;
         if (tL_mediaAreaSuggestedReaction.flipped) {
             obVar.b(true, false);
@@ -26,20 +26,20 @@ public final class lc extends kc {
         if (tL_mediaAreaSuggestedReaction.dark) {
             obVar.a();
         }
-        f0Var.f53387i = true;
-        f0Var.e(zg.o0.d(tL_mediaAreaSuggestedReaction.reaction));
+        d0Var.f53370i = true;
+        d0Var.e(zg.m0.d(tL_mediaAreaSuggestedReaction.reaction));
     }
 
     @Override
     public final void a(Canvas canvas, float f7) {
         ImageReceiver imageReceiver;
         int i10;
-        zg.f0 f0Var = this.f1319c;
-        org.telegram.ui.Components.q5 q5Var = f0Var.f53382b;
+        zg.d0 d0Var = this.f1319c;
+        org.telegram.ui.Components.q5 q5Var = d0Var.f53365b;
         if (q5Var != null) {
-            imageReceiver = q5Var.f29914k;
+            imageReceiver = q5Var.f29935k;
         } else {
-            imageReceiver = f0Var.f53381a;
+            imageReceiver = d0Var.f53364a;
         }
         if (imageReceiver != null && imageReceiver.hasImageSet() && imageReceiver.hasImageLoaded()) {
             kj0 lottieAnimation = imageReceiver.getLottieAnimation();
@@ -50,11 +50,11 @@ public final class lc extends kc {
             double d = ocVar.d;
             TL_stories.TL_mediaAreaSuggestedReaction tL_mediaAreaSuggestedReaction = this.f1318b;
             TL_stories.MediaAreaCoordinates mediaAreaCoordinates = tL_mediaAreaSuggestedReaction.coordinates;
-            float f10 = (float) (((mediaAreaCoordinates.f20276x * d) / 100.0d) + ocVar.f1489b);
+            float f10 = (float) (((mediaAreaCoordinates.f20281x * d) / 100.0d) + ocVar.f1489b);
             double d10 = ocVar.f1490c;
             double d11 = ocVar.f1491e;
-            float f11 = (float) (((mediaAreaCoordinates.f20277y * d11) / 100.0d) + d10);
-            float f12 = ((float) ((d * mediaAreaCoordinates.f20275w) / 100.0d)) / 2.0f;
+            float f11 = (float) (((mediaAreaCoordinates.f20282y * d11) / 100.0d) + d10);
+            float f12 = ((float) ((d * mediaAreaCoordinates.f20280w) / 100.0d)) / 2.0f;
             float f13 = ((float) ((d11 * mediaAreaCoordinates.h) / 100.0d)) / 2.0f;
             ob obVar = this.f1317a;
             obVar.setBounds((int) (f10 - f12), (int) (f11 - f13), (int) (f12 + f10), (int) (f13 + f11));
@@ -69,15 +69,15 @@ public final class lc extends kc {
             rect.set((int) (obVar.getBounds().centerX() - height), (int) (obVar.getBounds().centerY() - height), (int) (obVar.getBounds().centerX() + height), (int) (obVar.getBounds().centerY() + height));
             obVar.c(1.0f);
             obVar.draw(canvas);
-            f0Var.c(rect);
-            f0Var.h = f7;
+            d0Var.c(rect);
+            d0Var.h = f7;
             if (obVar.f1480a == 1) {
                 i10 = -1;
             } else {
                 i10 = -16777216;
             }
-            f0Var.d(i10);
-            f0Var.a(canvas);
+            d0Var.d(i10);
+            d0Var.a(canvas);
             canvas.restore();
         }
     }
@@ -89,16 +89,16 @@ public final class lc extends kc {
 
     @Override
     public final void c(View view) {
-        zg.f0 f0Var = this.f1319c;
-        if (f0Var.f53385f == view) {
+        zg.d0 d0Var = this.f1319c;
+        if (d0Var.f53368f == view) {
             return;
         }
-        if (f0Var.f53386g) {
-            f0Var.b(false);
-            f0Var.f53385f = view;
-            f0Var.b(true);
+        if (d0Var.f53369g) {
+            d0Var.b(false);
+            d0Var.f53368f = view;
+            d0Var.b(true);
             return;
         }
-        f0Var.f53385f = view;
+        d0Var.f53368f = view;
     }
 }

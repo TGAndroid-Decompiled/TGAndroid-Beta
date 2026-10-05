@@ -1,8 +1,8 @@
 package org.telegram.ui.Components;
 public final class xn0 {
-    public zg.o0 f32955a;
-    public int f32956b;
-    public String f32957c;
+    public zg.m0 f33046a;
+    public int f33047b;
+    public String f33048c;
     public int d;
 
     public final boolean equals(Object obj) {
@@ -10,7 +10,7 @@ public final class xn0 {
             return false;
         }
         xn0 xn0Var = (xn0) obj;
-        if (this.f32956b != xn0Var.f32956b || this.f32955a.h != xn0Var.f32955a.h || this.d != xn0Var.d) {
+        if (this.f33047b != xn0Var.f33047b || this.f33046a.h != xn0Var.f33046a.h || this.d != xn0Var.d) {
             return false;
         }
         return true;

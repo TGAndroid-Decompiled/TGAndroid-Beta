@@ -4,10 +4,10 @@ import org.telegram.ui.Components.cx;
 public final class i implements z4.e {
     public int f15655a;
     public final cx f15656b;
-    public final n f15657c;
+    public final p f15657c;
 
-    public i(n nVar, cx cxVar) {
-        this.f15657c = nVar;
+    public i(p pVar, cx cxVar) {
+        this.f15657c = pVar;
         this.f15656b = cxVar;
         this.f15655a = cxVar.getScrollX();
     }
@@ -21,7 +21,7 @@ public final class i implements z4.e {
 
     @Override
     public final void c(int i10) {
-        this.f15657c.f15669e++;
+        this.f15657c.f15674e++;
     }
 
     @Override

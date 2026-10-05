@@ -11,7 +11,7 @@ import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.fw0;
+import org.telegram.ui.Components.gw0;
 import org.telegram.ui.Components.kf0;
 import org.telegram.ui.Components.mf0;
 import org.telegram.ui.Components.uk0;
@@ -85,17 +85,17 @@ public final class wb extends FrameLayout {
         kc kcVar = this.d;
         mf0 mf0Var = kcVar.F1;
         if (mf0Var != null) {
-            uk0 uk0Var = mf0Var.f28615e;
-            uk0Var.f31394a = 0.0f;
-            uk0Var.f31395b = 0.0f;
-            uk0Var.f31396c = mf0Var.getMeasuredWidth();
+            uk0 uk0Var = mf0Var.f28694e;
+            uk0Var.f31448a = 0.0f;
+            uk0Var.f31449b = 0.0f;
+            uk0Var.f31450c = mf0Var.getMeasuredWidth();
             uk0Var.d = kcVar.F1.getMeasuredHeight();
         }
         kf0 kf0Var = kcVar.E1;
         if (kf0Var != null) {
-            fw0 fw0Var = kf0Var.d;
-            fw0Var.f26590a = kf0Var.getMeasuredWidth();
-            fw0Var.f26591b = kcVar.E1.getMeasuredHeight();
+            gw0 gw0Var = kf0Var.d;
+            gw0Var.f27002a = kf0Var.getMeasuredWidth();
+            gw0Var.f27003b = kcVar.E1.getMeasuredHeight();
         }
     }
 

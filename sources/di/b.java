@@ -11,7 +11,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import yh.s;
+import yh.t;
 public final class b implements Runnable {
     public final int f8360a;
     public final Context f8361b;
@@ -26,7 +26,7 @@ public final class b implements Runnable {
         Handler handler;
         switch (this.f8360a) {
             case 0:
-                new s(this.f8361b).show();
+                new t(this.f8361b).show();
                 return;
             case 1:
                 nf.f.s(this.f8361b, LocaleController.getString(R.string.ChannelAffiliateProgramJoinButtonInfoLink));
@@ -43,16 +43,16 @@ public final class b implements Runnable {
                 new ThreadPoolExecutor(0, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue()).execute(new b(this.f8361b, 4));
                 return;
             case 4:
-                r4.d.s(this.f8361b, new a3.b(2), r4.d.f45804a, false);
+                r4.d.s(this.f8361b, new a3.b(2), r4.d.f45811a, false);
                 return;
             case 5:
-                new s(this.f8361b).show();
+                new t(this.f8361b).show();
                 return;
             case 6:
                 nf.f.s(this.f8361b, LocaleController.getString(R.string.StarsTOSLink));
                 return;
             case 7:
-                new s(this.f8361b).show();
+                new t(this.f8361b).show();
                 return;
             case 8:
                 nf.f.s(this.f8361b, LocaleController.getString(R.string.StarsTOSLink));

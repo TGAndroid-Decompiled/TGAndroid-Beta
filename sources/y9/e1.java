@@ -2,14 +2,14 @@ package y9;
 
 import android.os.Build;
 public final class e1 {
-    public final boolean f50634a;
+    public final boolean f50641a;
 
     public e1(boolean z10) {
         String str = Build.VERSION.RELEASE;
         String str2 = Build.VERSION.CODENAME;
         if (str != null) {
             if (str2 != null) {
-                this.f50634a = z10;
+                this.f50641a = z10;
                 return;
             }
             throw new NullPointerException("Null osCodeName");
@@ -24,7 +24,7 @@ public final class e1 {
                 String str = Build.VERSION.RELEASE;
                 if (str.equals(str)) {
                     String str2 = Build.VERSION.CODENAME;
-                    if (str2.equals(str2) && this.f50634a == e1Var.f50634a) {
+                    if (str2.equals(str2) && this.f50641a == e1Var.f50641a) {
                         return true;
                     }
                     return false;
@@ -39,7 +39,7 @@ public final class e1 {
     public final int hashCode() {
         int i10;
         int hashCode = (((Build.VERSION.RELEASE.hashCode() ^ 1000003) * 1000003) ^ Build.VERSION.CODENAME.hashCode()) * 1000003;
-        if (this.f50634a) {
+        if (this.f50641a) {
             i10 = 1231;
         } else {
             i10 = 1237;
@@ -48,6 +48,6 @@ public final class e1 {
     }
 
     public final String toString() {
-        return "OsData{osRelease=" + Build.VERSION.RELEASE + ", osCodeName=" + Build.VERSION.CODENAME + ", isRooted=" + this.f50634a + "}";
+        return "OsData{osRelease=" + Build.VERSION.RELEASE + ", osCodeName=" + Build.VERSION.CODENAME + ", isRooted=" + this.f50641a + "}";
     }
 }

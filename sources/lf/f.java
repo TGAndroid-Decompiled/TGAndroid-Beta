@@ -51,15 +51,15 @@ public final class f {
         }
         byte b13 = 8;
         if (i11 == 2) {
-            this.f15483c = ((gVar.D() & 255) << 16) | ((gVar.D() & 255) << 8) | (gVar.D() & 255);
+            this.f15483c = ((gVar.d0() & 255) << 16) | ((gVar.d0() & 255) << 8) | (gVar.d0() & 255);
         } else if (i11 == 3) {
-            this.f15483c = gVar.H();
+            this.f15483c = gVar.j0();
         } else {
-            this.f15483c = gVar.I();
+            this.f15483c = gVar.k0();
         }
         if (i11 > 2) {
-            gVar.D();
-            byte D = gVar.D();
+            gVar.d0();
+            byte d02 = gVar.d0();
             byte b14 = 64;
             if (i11 == 3) {
                 b13 = 128;
@@ -71,44 +71,44 @@ public final class f {
                 b10 = 64;
                 b11 = 1;
             }
-            if ((b13 & D) != 0) {
+            if ((b13 & d02) != 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             this.f15484e = z10;
-            if ((b12 & D) != 0) {
+            if ((b12 & d02) != 0) {
                 z11 = true;
             } else {
                 z11 = false;
             }
             this.d = z11;
-            boolean z12 = (D & b14) != 0;
+            boolean z12 = (d02 & b14) != 0;
             this.f15485f = z12;
             if (i11 == 3) {
                 if (z10) {
-                    this.f15486g = gVar.H();
+                    this.f15486g = gVar.j0();
                     this.f15483c -= 4;
                 }
                 if (z12) {
-                    gVar.D();
+                    gVar.d0();
                     this.f15483c--;
                 }
-                if ((D & b10) != 0) {
-                    gVar.D();
+                if ((d02 & b10) != 0) {
+                    gVar.d0();
                     this.f15483c--;
                 }
             } else {
-                if ((D & b10) != 0) {
-                    gVar.D();
+                if ((d02 & b10) != 0) {
+                    gVar.d0();
                     this.f15483c--;
                 }
                 if (z12) {
-                    gVar.D();
+                    gVar.d0();
                     this.f15483c--;
                 }
-                if ((D & b11) != 0) {
-                    this.f15486g = gVar.I();
+                if ((d02 & b11) != 0) {
+                    this.f15486g = gVar.k0();
                     this.f15483c -= 4;
                 }
             }

@@ -15,19 +15,19 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class sy extends s4.v {
     public s4.c1 d;
-    public boolean f40636e;
-    public boolean f40637f;
-    public final ty f40638g;
+    public boolean f40648e;
+    public boolean f40649f;
+    public final ty f40650g;
     public final uy h;
 
     public sy(uy uyVar, ty tyVar) {
         this.h = uyVar;
-        this.f40638g = tyVar;
+        this.f40650g = tyVar;
     }
 
     @Override
     public final int b(int i10, int i11) {
-        if (this.f40637f) {
+        if (this.f40649f) {
             return 0;
         }
         return super.b(i10, i11);
@@ -41,7 +41,7 @@ public final class sy extends s4.v {
             return 200L;
         }
         if (i10 == 8 && (s2Var = (uyVar = this.h).X0) != null) {
-            AndroidUtilities.runOnUIThread(new gh(1, s2Var), this.f40638g.f40999x.f46622e);
+            AndroidUtilities.runOnUIThread(new gh(1, s2Var), this.f40650g.f41055x.f46629e);
             uyVar.X0 = null;
         }
         return super.d(recyclerView, i10, f7, f10);
@@ -72,8 +72,8 @@ public final class sy extends s4.v {
         char c10;
         int i10;
         uy uyVar = this.h;
-        ArrayList arrayList = uyVar.f41379a1;
-        View view = c1Var2.f46531a;
+        ArrayList arrayList = uyVar.f41414a1;
+        View view = c1Var2.f46538a;
         char c11 = 0;
         if (view instanceof org.telegram.ui.Cells.s2) {
             long dialogId = ((org.telegram.ui.Cells.s2) view).getDialogId();
@@ -81,9 +81,9 @@ public final class sy extends s4.v {
             if (dialog != null && uyVar.p4(dialog) && !DialogObject.isFolderDialogId(dialogId)) {
                 int b10 = c1Var.b();
                 int b11 = c1Var2.b();
-                ty tyVar = this.f40638g;
-                if (tyVar.f40990a.getItemAnimator() == null) {
-                    tyVar.f40990a.setItemAnimator(tyVar.f40999x);
+                ty tyVar = this.f40650g;
+                if (tyVar.f41046a.getItemAnimator() == null) {
+                    tyVar.f41046a.setItemAnimator(tyVar.f41055x);
                 }
                 zw zwVar = tyVar.d;
                 uy uyVar2 = zwVar.R;
@@ -106,13 +106,13 @@ public final class sy extends s4.v {
                         c10 = 0;
                     }
                     MessagesController.DialogFilter dialogFilter = dialogFilterArr[c10];
-                    int i14 = dialogFilter.pinnedDialogs.get(dialog2.f20046id);
-                    dialogFilter.pinnedDialogs.put(dialog2.f20046id, dialogFilter.pinnedDialogs.get(dialog3.f20046id));
-                    dialogFilter.pinnedDialogs.put(dialog3.f20046id, i14);
+                    int i14 = dialogFilter.pinnedDialogs.get(dialog2.f20051id);
+                    dialogFilter.pinnedDialogs.put(dialog2.f20051id, dialogFilter.pinnedDialogs.get(dialog3.f20051id));
+                    dialogFilter.pinnedDialogs.put(dialog3.f20051id, i14);
                 }
                 Collections.swap(a42, G, G2);
                 zwVar.W(null);
-                int i15 = uyVar.f41400e0[0].f40997s;
+                int i15 = uyVar.f41435e0[0].f41053s;
                 if (i15 != 7) {
                     i10 = 8;
                     if (i15 != 8) {
@@ -123,7 +123,7 @@ public final class sy extends s4.v {
                     i10 = 8;
                 }
                 MessagesController.DialogFilter[] dialogFilterArr2 = uyVar.getMessagesController().selectedDialogFilter;
-                if (uyVar.f41400e0[0].f40997s == i10) {
+                if (uyVar.f41435e0[0].f41053s == i10) {
                     c11 = 1;
                 }
                 MessagesController.DialogFilter dialogFilter2 = dialogFilterArr2[c11];
@@ -140,13 +140,13 @@ public final class sy extends s4.v {
     @Override
     public final void p(s4.c1 c1Var, int i10) {
         if (c1Var != null) {
-            this.f40638g.f40990a.e1(false);
+            this.f40650g.f41046a.d1(false);
         }
         this.d = c1Var;
         if (c1Var != null) {
-            View view = c1Var.f46531a;
+            View view = c1Var.f46538a;
             if (view instanceof org.telegram.ui.Cells.s2) {
-                ((org.telegram.ui.Cells.s2) view).f22883w = false;
+                ((org.telegram.ui.Cells.s2) view).f22886w = false;
             }
         }
     }
@@ -156,15 +156,15 @@ public final class sy extends s4.v {
         int i10;
         uy uyVar = this.h;
         if (c1Var != null) {
-            org.telegram.ui.Cells.s2 s2Var = (org.telegram.ui.Cells.s2) c1Var.f46531a;
+            org.telegram.ui.Cells.s2 s2Var = (org.telegram.ui.Cells.s2) c1Var.f46538a;
             long dialogId = s2Var.getDialogId();
             boolean isFolderDialogId = DialogObject.isFolderDialogId(dialogId);
             int i11 = 0;
-            ty tyVar = this.f40638g;
+            ty tyVar = this.f40650g;
             if (isFolderDialogId) {
-                qy qyVar = tyVar.f40990a;
+                qy qyVar = tyVar.f41046a;
                 int i12 = qy.C3;
-                qyVar.B1(false, s2Var);
+                qyVar.A1(false, s2Var);
                 return;
             }
             TLRPC.Dialog dialog = (TLRPC.Dialog) uyVar.getMessagesController().dialogs_dict.f(dialogId);
@@ -192,24 +192,24 @@ public final class sy extends s4.v {
             uyVar.J4(true, true);
             if (Utilities.random.nextInt(1000) == 1) {
                 if (uyVar.V0 == null) {
-                    qy qyVar2 = tyVar.f40990a;
+                    qy qyVar2 = tyVar.f41046a;
                     ?? obj = new Object();
-                    obj.f28946a = new Paint(1);
+                    obj.f29035a = new Paint(1);
                     Paint paint = new Paint(1);
-                    obj.f28947b = paint;
-                    obj.f28949e = 0L;
-                    obj.f28950f = new RectF();
+                    obj.f29036b = paint;
+                    obj.f29038e = 0L;
+                    obj.f29039f = new RectF();
                     paint.setStyle(Paint.Style.STROKE);
                     paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-                    obj.f28948c = qyVar2;
+                    obj.f29037c = qyVar2;
                     uyVar.V0 = obj;
                 }
                 org.telegram.ui.Components.nd0 nd0Var = uyVar.V0;
                 nd0Var.d = a0Var;
                 nd0Var.h = 0.0f;
-                nd0Var.f28951g = 0.0f;
-                nd0Var.f28949e = System.currentTimeMillis();
-                nd0Var.f28948c.invalidate();
+                nd0Var.f29040g = 0.0f;
+                nd0Var.f29038e = System.currentTimeMillis();
+                nd0Var.f29037c.invalidate();
                 return;
             }
             a0Var.run();

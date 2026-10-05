@@ -7,22 +7,22 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-public final class nx extends c71 {
-    public final t61[] f39074d2;
-    public final uy f39075e2;
+public final class nx extends a71 {
+    public final r61[] f39063d2;
+    public final uy f39064e2;
 
-    public nx(uy uyVar, uy uyVar2, Activity activity, Integer num, org.telegram.ui.ActionBar.d6 d6Var, t61[] t61VarArr) {
+    public nx(uy uyVar, uy uyVar2, Activity activity, Integer num, org.telegram.ui.ActionBar.d6 d6Var, r61[] r61VarArr) {
         super(uyVar2, activity, true, num, 0, d6Var);
-        this.f39075e2 = uyVar;
-        this.f39074d2 = t61VarArr;
+        this.f39064e2 = uyVar;
+        this.f39063d2 = r61VarArr;
     }
 
     @Override
     public final boolean F(TL_stars.TL_starGiftUnique tL_starGiftUnique) {
         int i10;
         if (tL_starGiftUnique != null) {
-            i10 = ((org.telegram.ui.ActionBar.n2) this.f39075e2).currentAccount;
-            if (yh.t5.y(i10, false).n(tL_starGiftUnique.f20269id) != null && MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) < 2) {
+            i10 = ((org.telegram.ui.ActionBar.n2) this.f39064e2).currentAccount;
+            if (yh.u5.y(i10, false).n(tL_starGiftUnique.f20274id) != null && MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) < 2) {
                 return false;
             }
             return true;
@@ -38,14 +38,14 @@ public final class nx extends c71 {
         int i11;
         int i12;
         org.telegram.ui.ActionBar.d6 d6Var;
-        t61[] t61VarArr = this.f39074d2;
-        uy uyVar = this.f39075e2;
+        r61[] r61VarArr = this.f39063d2;
+        uy uyVar = this.f39064e2;
         if (l4 == null) {
             emojiStatus = new TLRPC.TL_emojiStatusEmpty();
         } else {
             if (tL_starGiftUnique != null) {
                 i10 = ((org.telegram.ui.ActionBar.n2) uyVar).currentAccount;
-                TL_stars.SavedStarGift n10 = yh.t5.y(i10, false).n(tL_starGiftUnique.f20269id);
+                TL_stars.SavedStarGift n10 = yh.u5.y(i10, false).n(tL_starGiftUnique.f20274id);
                 if (n10 != null && MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) < 2) {
                     MessagesController.getGlobalMainSettings().edit().putInt("statusgiftpage", MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) + 1).apply();
                     Context context = getContext();
@@ -53,20 +53,20 @@ public final class nx extends c71 {
                     i12 = ((org.telegram.ui.ActionBar.n2) uyVar).currentAccount;
                     long clientUserId = UserConfig.getInstance(i12).getClientUserId();
                     d6Var = ((org.telegram.ui.ActionBar.n2) uyVar).resourceProvider;
-                    yh.x3 x3Var = new yh.x3(context, i11, clientUserId, d6Var, null);
-                    x3Var.j2(n10, null);
-                    x3Var.m2();
-                    x3Var.show();
-                    t61 t61Var = t61VarArr[0];
-                    if (t61Var != null) {
+                    yh.y3 y3Var = new yh.y3(context, i11, clientUserId, d6Var, null);
+                    y3Var.j2(n10, null);
+                    y3Var.m2();
+                    y3Var.show();
+                    r61 r61Var = r61VarArr[0];
+                    if (r61Var != null) {
                         uyVar.M0 = null;
-                        t61Var.dismiss();
+                        r61Var.dismiss();
                         return;
                     }
                     return;
                 }
                 TLRPC.TL_inputEmojiStatusCollectible tL_inputEmojiStatusCollectible = new TLRPC.TL_inputEmojiStatusCollectible();
-                tL_inputEmojiStatusCollectible.collectible_id = tL_starGiftUnique.f20269id;
+                tL_inputEmojiStatusCollectible.collectible_id = tL_starGiftUnique.f20274id;
                 tL_emojiStatus = tL_inputEmojiStatusCollectible;
                 if (num != null) {
                     tL_inputEmojiStatusCollectible.flags |= 1;
@@ -90,14 +90,14 @@ public final class nx extends c71 {
             org.telegram.ui.Cells.o oVar = uyVar.E3;
             ?? obj = new Object();
             long longValue = l4.longValue();
-            obj.f53486g = longValue;
+            obj.f53472g = longValue;
             obj.h = longValue;
             oVar.a(obj);
         }
-        t61 t61Var2 = t61VarArr[0];
-        if (t61Var2 != null) {
+        r61 r61Var2 = r61VarArr[0];
+        if (r61Var2 != null) {
             uyVar.M0 = null;
-            t61Var2.dismiss();
+            r61Var2.dismiss();
         }
     }
 }

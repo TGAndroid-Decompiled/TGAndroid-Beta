@@ -22,7 +22,7 @@ public final class s0 implements View.OnClickListener {
     }
 
     @Override
-    public final void onClick(android.view.View r22) {
+    public final void onClick(android.view.View r23) {
         throw new UnsupportedOperationException("Method not decompiled: ai.s0.onClick(android.view.View):void");
     }
 

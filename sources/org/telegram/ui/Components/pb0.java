@@ -17,7 +17,7 @@ public final class pb0 extends s4.t {
     public final boolean B1(int i10) {
         byte b10;
         cc0 cc0Var = this.S;
-        MessageObject messageObject = cc0Var.f25330r.previewMessages.get(i10);
+        MessageObject messageObject = cc0Var.f25378r.previewMessages.get(i10);
         MessageObject.GroupedMessages a2 = cc0.a(cc0Var, messageObject);
         if (a2 != null) {
             MessageObject.GroupedMessagePosition position = a2.getPosition(messageObject);

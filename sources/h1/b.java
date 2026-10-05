@@ -76,7 +76,7 @@ public abstract class b extends BaseAdapter implements Filterable {
             this.f10964c.moveToPosition(i10);
             if (view == null) {
                 z2 z2Var = (z2) this;
-                view = z2Var.f15955s.inflate(z2Var.f15954r, viewGroup, false);
+                view = z2Var.f15960s.inflate(z2Var.f15959r, viewGroup, false);
             }
             a(view, this.f10964c);
             return view;
@@ -119,7 +119,7 @@ public abstract class b extends BaseAdapter implements Filterable {
             if (this.f10964c.moveToPosition(i10)) {
                 if (view == null) {
                     z2 z2Var = (z2) this;
-                    view = z2Var.f15955s.inflate(z2Var.f15953n, viewGroup, false);
+                    view = z2Var.f15960s.inflate(z2Var.f15958n, viewGroup, false);
                     view.setTag(new y2(view));
                     ((ImageView) view.findViewById(2131296420)).setImageResource(z2Var.E);
                 }

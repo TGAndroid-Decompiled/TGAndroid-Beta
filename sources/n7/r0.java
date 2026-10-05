@@ -1,30 +1,30 @@
 package n7;
 public final class r0 extends s0 {
     public final int d;
-    public final int f16826e;
+    public final int f16831e;
 
     public r0(byte[] bArr, int i10, int i11) {
         super(bArr);
         s0.s(i10, i10 + i11, bArr.length);
         this.d = i10;
-        this.f16826e = i11;
+        this.f16831e = i11;
     }
 
     @Override
     public final byte i(int i10) {
-        int i11 = this.f16826e;
+        int i11 = this.f16831e;
         if (((i11 - (i10 + 1)) | i10) < 0) {
             if (i10 < 0) {
                 throw new ArrayIndexOutOfBoundsException(hg.c.h(i10, "Index < 0: "));
             }
             throw new ArrayIndexOutOfBoundsException(a4.a.m(i10, i11, "Index > length: ", ", "));
         }
-        return this.f16830b[this.d + i10];
+        return this.f16835b[this.d + i10];
     }
 
     @Override
     public final byte n(int i10) {
-        return this.f16830b[this.d + i10];
+        return this.f16835b[this.d + i10];
     }
 
     @Override
@@ -34,11 +34,11 @@ public final class r0 extends s0 {
 
     @Override
     public final int p() {
-        return this.f16826e;
+        return this.f16831e;
     }
 
     @Override
     public final void q(int i10, byte[] bArr) {
-        System.arraycopy(this.f16830b, this.d, bArr, 0, i10);
+        System.arraycopy(this.f16835b, this.d, bArr, 0, i10);
     }
 }

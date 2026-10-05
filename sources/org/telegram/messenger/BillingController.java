@@ -233,7 +233,7 @@ public class BillingController implements c5.q, c5.d {
                 SerializedData serializedData = new SerializedData(Utilities.hexToBytes(str2));
                 yf.a a2 = yf.a.a(serializedData, serializedData.readInt32(true));
                 SerializedData serializedData2 = new SerializedData(8);
-                serializedData2.writeInt64(a2.f50937b);
+                serializedData2.writeInt64(a2.f50944b);
                 String bytesToHex = Utilities.bytesToHex(serializedData2.toByteArray());
                 serializedData2.cleanup();
                 FileLog.d("BillingUtilities.clearPurpose: id_hex = " + bytesToHex);
@@ -570,17 +570,17 @@ public class BillingController implements c5.q, c5.d {
         serializedData.cleanup();
         FileLog.d("BillingUtilities.savePurpose id_hex=" + bytesToHex + " paymentPurpose=" + inputStorePaymentPurpose);
         ?? tLObject = new TLObject();
-        tLObject.f50937b = nextLong;
-        tLObject.f50936a = 1;
-        tLObject.f50938c = inputStorePaymentPurpose;
+        tLObject.f50944b = nextLong;
+        tLObject.f50943a = 1;
+        tLObject.f50945c = inputStorePaymentPurpose;
         SerializedData serializedData2 = new SerializedData(tLObject.getObjectSize());
         tLObject.serializeToStream(serializedData2);
         String bytesToHex2 = Utilities.bytesToHex(serializedData2.toByteArray());
         serializedData2.cleanup();
         if (tLObject.getObjectSize() > 28) {
             FileLog.d("BillingUtilities.savePurpose: sending short version, original size is " + tLObject.getObjectSize() + " bytes");
-            tLObject.f50936a = 0;
-            tLObject.f50938c = null;
+            tLObject.f50943a = 0;
+            tLObject.f50945c = null;
         }
         SerializedData serializedData3 = new SerializedData(tLObject.getObjectSize());
         tLObject.serializeToStream(serializedData3);

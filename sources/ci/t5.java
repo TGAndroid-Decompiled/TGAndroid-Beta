@@ -11,16 +11,16 @@ public final class t5 implements qg.v1 {
     }
 
     @Override
-    public final void E(float f7) {
+    public final void X(float f7) {
         switch (this.f5974a) {
             case 0:
                 qg.v2 v2Var = this.f5975b;
-                v2Var.f45382z0 = true;
+                v2Var.f45389z0 = true;
                 v2Var.setBaseFontSize((int) (this.f5976c * f7));
                 return;
             default:
                 qg.v2 v2Var2 = this.f5975b;
-                v2Var2.f45382z0 = true;
+                v2Var2.f45389z0 = true;
                 v2Var2.setBaseFontSize((int) (this.f5976c * f7));
                 return;
         }

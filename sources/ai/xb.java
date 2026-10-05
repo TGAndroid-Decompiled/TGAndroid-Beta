@@ -13,10 +13,10 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.lw0;
+import org.telegram.ui.Components.mw0;
 import org.telegram.ui.Components.sk0;
 import org.telegram.ui.Components.tr;
-public final class xb extends lw0 {
+public final class xb extends mw0 {
     public final Path A0;
     public final RectF B0;
     public final RectF C0;
@@ -98,9 +98,9 @@ public final class xb extends lw0 {
                 f7 += view.getX();
                 f10 += view.getY();
             }
-            if (currentPeerView.f891r3.getReactionsWindow() != null && currentPeerView.f891r3.getReactionsWindow().f53324c != null) {
-                motionEvent.offsetLocation(-f7, (-f10) - currentPeerView.f891r3.getReactionsWindow().f53324c.getTranslationY());
-                currentPeerView.f891r3.getReactionsWindow().f53324c.dispatchTouchEvent(motionEvent);
+            if (currentPeerView.f891r3.getReactionsWindow() != null && currentPeerView.f891r3.getReactionsWindow().f53552c != null) {
+                motionEvent.offsetLocation(-f7, (-f10) - currentPeerView.f891r3.getReactionsWindow().f53552c.getTranslationY());
+                currentPeerView.f891r3.getReactionsWindow().f53552c.dispatchTouchEvent(motionEvent);
                 return true;
             }
             Rect rect = AndroidUtilities.rectTmp2;
@@ -126,7 +126,7 @@ public final class xb extends lw0 {
                 ofFloat.addUpdateListener(new ub(this, 0));
                 jcVar.G.addListener(new vb(this, 0));
                 jcVar.G.setDuration(250L);
-                jcVar.G.setInterpolator(tr.f31147f);
+                jcVar.G.setInterpolator(tr.f31215f);
                 jcVar.G.start();
             }
             if (jcVar.V >= 0.3f) {
@@ -285,7 +285,7 @@ public final class xb extends lw0 {
                 ofFloat.addUpdateListener(new ub(this, 1));
                 jcVar.G.addListener(new vb(this, 1));
                 jcVar.G.setDuration(150L);
-                jcVar.G.setInterpolator(tr.f31147f);
+                jcVar.G.setInterpolator(tr.f31215f);
                 jcVar.G.start();
             }
             e6 t10 = jcVar.t();

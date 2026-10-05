@@ -8,25 +8,25 @@ import android.text.style.URLSpan;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.l61;
 import org.telegram.ui.Components.r90;
 import org.telegram.ui.Components.yc;
 public final class f implements Runnable {
-    public final j f22071a;
+    public final j f22075a;
 
     public f(j jVar) {
-        this.f22071a = jVar;
+        this.f22075a = jVar;
     }
 
     @Override
     public final void run() {
         String obj;
-        j jVar = this.f22071a;
-        r90 r90Var = jVar.f22304w;
+        j jVar = this.f22075a;
+        r90 r90Var = jVar.f22308w;
         if (r90Var != null) {
-            CharacterStyle characterStyle = r90Var.f30312i;
-            if (characterStyle instanceof k61) {
-                obj = ((k61) characterStyle).getURL();
+            CharacterStyle characterStyle = r90Var.f30394i;
+            if (characterStyle instanceof l61) {
+                obj = ((l61) characterStyle).getURL();
             } else if (characterStyle instanceof URLSpan) {
                 obj = ((URLSpan) characterStyle).getURL();
             } else {
@@ -37,10 +37,10 @@ public final class f implements Runnable {
                 jVar.performHapticFeedback(0, 2);
             } catch (Exception unused) {
             }
-            final StaticLayout staticLayout = jVar.f22306y;
-            final float f7 = jVar.f22305x;
+            final StaticLayout staticLayout = jVar.f22310y;
+            final float f7 = jVar.f22309x;
             if (jVar.getContext() != null) {
-                final ClickableSpan clickableSpan = (ClickableSpan) jVar.f22304w.f30312i;
+                final ClickableSpan clickableSpan = (ClickableSpan) jVar.f22308w.f30394i;
                 org.telegram.ui.ActionBar.f3 f3Var = new org.telegram.ui.ActionBar.f3(1, jVar.getContext(), (org.telegram.ui.ActionBar.d6) null, false);
                 f3Var.fixNavigationBar();
                 f3Var.title = str;
@@ -48,7 +48,7 @@ public final class f implements Runnable {
                 DialogInterface.OnClickListener onClickListener = new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i10) {
-                        j jVar2 = f.this.f22071a;
+                        j jVar2 = f.this.f22075a;
                         org.telegram.ui.ActionBar.n2 n2Var = jVar2.H;
                         if (i10 == 0) {
                             jVar2.d(clickableSpan, staticLayout, f7);
@@ -72,12 +72,12 @@ public final class f implements Runnable {
                 f3Var.setOnHideListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public final void onDismiss(DialogInterface dialogInterface) {
-                        f.this.f22071a.e();
+                        f.this.f22075a.e();
                     }
                 });
                 f3Var.show();
             }
-            jVar.f22304w = null;
+            jVar.f22308w = null;
         }
     }
 }

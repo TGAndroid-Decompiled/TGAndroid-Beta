@@ -7,29 +7,29 @@ import android.os.Build;
 import android.util.Log;
 import com.google.android.gms.common.api.GoogleApiActivity;
 public final class r implements DialogInterface.OnClickListener {
-    public final int f16736a;
-    public final Intent f16737b;
-    public final Object f16738c;
+    public final int f16741a;
+    public final Intent f16742b;
+    public final Object f16743c;
 
     public r(Intent intent, Object obj, int i10) {
-        this.f16736a = i10;
-        this.f16737b = intent;
-        this.f16738c = obj;
+        this.f16741a = i10;
+        this.f16742b = intent;
+        this.f16743c = obj;
     }
 
     public final void a() {
-        switch (this.f16736a) {
+        switch (this.f16741a) {
             case 0:
-                Intent intent = this.f16737b;
+                Intent intent = this.f16742b;
                 if (intent != null) {
-                    ((GoogleApiActivity) this.f16738c).startActivityForResult(intent, 2);
+                    ((GoogleApiActivity) this.f16743c).startActivityForResult(intent, 2);
                     return;
                 }
                 return;
             default:
-                Intent intent2 = this.f16737b;
+                Intent intent2 = this.f16742b;
                 if (intent2 != null) {
-                    ((com.google.android.gms.common.api.internal.m) this.f16738c).startActivityForResult(intent2, 2);
+                    ((com.google.android.gms.common.api.internal.m) this.f16743c).startActivityForResult(intent2, 2);
                     return;
                 }
                 return;

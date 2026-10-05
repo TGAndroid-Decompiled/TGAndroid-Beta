@@ -9,19 +9,19 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public final class gp extends org.telegram.ui.Components.zl0 {
-    public static final int f36697i3 = 0;
-    public final fp f36698e3;
-    public boolean f36699f3;
-    public final Paint f36700g3;
-    public final hp f36701h3;
+    public static final int f36721i3 = 0;
+    public final fp f36722e3;
+    public boolean f36723f3;
+    public final Paint f36724g3;
+    public final hp f36725h3;
 
     public gp(hp hpVar, Context context) {
         super(context, null);
-        this.f36701h3 = hpVar;
-        this.f36699f3 = false;
-        this.f36700g3 = new Paint(1);
+        this.f36725h3 = hpVar;
+        this.f36723f3 = false;
+        this.f36724g3 = new Paint(1);
         fp fpVar = new fp(this);
-        this.f36698e3 = fpVar;
+        this.f36722e3 = fpVar;
         setAdapter(fpVar);
         setLayoutManager(new s4.c0());
         setOnItemClickListener(new ep(this));
@@ -32,7 +32,7 @@ public final class gp extends org.telegram.ui.Components.zl0 {
     public final void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
         int R;
-        int size = this.f36701h3.N.size();
+        int size = this.f36725h3.O.size();
         int i10 = Integer.MAX_VALUE;
         int i11 = Integer.MIN_VALUE;
         for (int i12 = 0; i12 < getChildCount(); i12++) {
@@ -43,8 +43,8 @@ public final class gp extends org.telegram.ui.Components.zl0 {
             }
         }
         if (i10 < i11) {
-            int v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20822d6, this.f33552p2);
-            Paint paint = this.f36700g3;
+            int v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20827d6, this.f33560p2);
+            Paint paint = this.f36724g3;
             paint.setColor(v02);
             canvas2 = canvas;
             canvas2.drawRect(0.0f, i10, getWidth(), i11, paint);
@@ -59,11 +59,11 @@ public final class gp extends org.telegram.ui.Components.zl0 {
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(9999999, Integer.MIN_VALUE));
     }
 
-    public final void y1(TLRPC.TL_username tL_username, boolean z10, boolean z11) {
+    public final void x1(TLRPC.TL_username tL_username, boolean z10, boolean z11) {
         TLRPC.TL_username tL_username2;
         int min;
-        hp hpVar = this.f36701h3;
-        ArrayList arrayList = hpVar.N;
+        hp hpVar = this.f36725h3;
+        ArrayList arrayList = hpVar.O;
         int i10 = 0;
         for (int i11 = 0; i11 < arrayList.size(); i11++) {
             if (arrayList.get(i11) == tL_username) {
@@ -114,10 +114,10 @@ public final class gp extends org.telegram.ui.Components.zl0 {
                             }
                             if (childAt instanceof pa) {
                                 pa paVar = (pa) childAt;
-                                paVar.setLoading(hpVar.P.contains(tL_username2.username));
+                                paVar.setLoading(hpVar.Q.contains(tL_username2.username));
                                 TLRPC.TL_username tL_username3 = paVar.v;
                                 if (tL_username3 != null) {
-                                    paVar.a(tL_username3, paVar.f39425w, true, paVar.f39426x);
+                                    paVar.a(tL_username3, paVar.f39437w, true, paVar.f39438x);
                                 }
                             }
                         } else {
@@ -126,8 +126,8 @@ public final class gp extends org.telegram.ui.Components.zl0 {
                     }
                     if (i13 >= 0 && i12 != i13) {
                         int i18 = i13 - 1;
-                        fp fpVar = this.f36698e3;
-                        ArrayList arrayList2 = fpVar.f36361c.f36701h3.N;
+                        fp fpVar = this.f36722e3;
+                        ArrayList arrayList2 = fpVar.f36369c.f36725h3.O;
                         if (i11 < arrayList2.size() && i18 < arrayList2.size()) {
                             arrayList2.add(i18, (TLRPC.TL_username) arrayList2.remove(i11));
                             fpVar.p(i12, i13);

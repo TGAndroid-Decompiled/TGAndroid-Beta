@@ -7,36 +7,36 @@ import android.graphics.Rect;
 import android.text.TextPaint;
 import android.util.TypedValue;
 public class j40 extends EditTextBoldCursor {
-    public final TextPaint f27597b;
-    public String f27598c;
+    public final TextPaint f27675b;
+    public String f27676c;
     public final Rect d;
 
     public j40(Context context) {
         super(context);
         TextPaint textPaint = new TextPaint(1);
-        this.f27597b = textPaint;
+        this.f27675b = textPaint;
         this.d = new Rect();
         textPaint.setColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.H6, false));
     }
 
     public String getHintText() {
-        return this.f27598c;
+        return this.f27676c;
     }
 
     @Override
     public void onDraw(Canvas canvas) {
         float measureText;
         Canvas canvas2;
-        if (this.f27598c != null && length() < this.f27598c.length()) {
+        if (this.f27676c != null && length() < this.f27676c.length()) {
             int i10 = 0;
             float f7 = 0.0f;
-            while (i10 < this.f27598c.length()) {
+            while (i10 < this.f27676c.length()) {
                 int length = length();
-                TextPaint textPaint = this.f27597b;
+                TextPaint textPaint = this.f27675b;
                 if (i10 < length) {
                     measureText = getPaint().measureText(getText(), i10, i10 + 1);
                 } else {
-                    measureText = textPaint.measureText(this.f27598c, i10, i10 + 1);
+                    measureText = textPaint.measureText(this.f27676c, i10, i10 + 1);
                 }
                 if (i10 < length()) {
                     f7 += measureText;
@@ -44,14 +44,14 @@ public class j40 extends EditTextBoldCursor {
                 } else {
                     int color = textPaint.getColor();
                     canvas.save();
-                    String str = this.f27598c;
+                    String str = this.f27676c;
                     int length2 = str.length();
                     Rect rect = this.d;
                     textPaint.getTextBounds(str, 0, length2, rect);
                     float height = (rect.height() + getHeight()) / 2.0f;
                     i(i10);
                     canvas2 = canvas;
-                    canvas2.drawText(this.f27598c, i10, i10 + 1, f7, height, (Paint) textPaint);
+                    canvas2.drawText(this.f27676c, i10, i10 + 1, f7, height, (Paint) textPaint);
                     f7 += measureText;
                     canvas2.restore();
                     textPaint.setColor(color);
@@ -70,7 +70,7 @@ public class j40 extends EditTextBoldCursor {
     }
 
     public void setHintText(String str) {
-        this.f27598c = str;
+        this.f27676c = str;
         invalidate();
         setText(getText());
     }
@@ -78,7 +78,7 @@ public class j40 extends EditTextBoldCursor {
     @Override
     public void setTextSize(int i10, float f7) {
         super.setTextSize(i10, f7);
-        this.f27597b.setTextSize(TypedValue.applyDimension(i10, f7, getResources().getDisplayMetrics()));
+        this.f27675b.setTextSize(TypedValue.applyDimension(i10, f7, getResources().getDisplayMetrics()));
     }
 
     public void i(int i10) {

@@ -13,9 +13,9 @@ import e9.g0;
 import e9.i0;
 import java.util.ArrayList;
 import java.util.List;
+import z3.l;
 import z3.m;
-import z3.n;
-public final class i implements n {
+public final class i implements m {
     public static final byte[] f3668n = {0, 7, 8, 15};
     public static final byte[] f3669r = {0, 119, -120, -1};
     public static final byte[] f3670s = {0, 17, 34, 51, 68, 85, 102, 119, -120, -103, -86, -69, -52, -35, -18, -1};
@@ -373,12 +373,7 @@ public final class i implements n {
     }
 
     @Override
-    public final int A() {
-        return 2;
-    }
-
-    @Override
-    public final void F(byte[] bArr, int i10, int i11, m mVar, e2.h hVar) {
+    public final void E(byte[] bArr, int i10, int i11, l lVar, e2.h hVar) {
         h hVar2;
         z3.a aVar;
         int i12;
@@ -695,5 +690,10 @@ public final class i implements n {
         hVar.f3666g.clear();
         hVar.h = null;
         hVar.f3667i = null;
+    }
+
+    @Override
+    public final int y() {
+        return 2;
     }
 }

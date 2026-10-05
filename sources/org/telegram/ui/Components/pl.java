@@ -4,27 +4,27 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.MediaController;
 public final class pl implements q0.a {
-    public final int f29662a;
-    public final Object f29663b;
-    public final boolean f29664c;
+    public final int f29755a;
+    public final Object f29756b;
+    public final boolean f29757c;
 
     public pl(int i10, Object obj, boolean z10) {
-        this.f29662a = i10;
-        this.f29663b = obj;
-        this.f29664c = z10;
+        this.f29755a = i10;
+        this.f29756b = obj;
+        this.f29757c = z10;
     }
 
     @Override
     public final void accept(Object obj) {
-        int i10 = this.f29662a;
+        int i10 = this.f29755a;
         boolean z10 = false;
-        boolean z11 = this.f29664c;
-        Object obj2 = this.f29663b;
+        boolean z11 = this.f29757c;
+        Object obj2 = this.f29756b;
         switch (i10) {
             case 0:
                 ArrayList arrayList = (ArrayList) obj2;
                 View view = (View) obj;
-                boolean z12 = ChatAttachAlertPhotoLayout.f24022q1;
+                boolean z12 = ChatAttachAlertPhotoLayout.f24025q1;
                 if (view instanceof org.telegram.ui.Cells.t5) {
                     org.telegram.ui.Cells.t5 t5Var = (org.telegram.ui.Cells.t5) view;
                     MediaController.PhotoEntry photoEntry = t5Var.getPhotoEntry();
@@ -38,7 +38,7 @@ public final class pl implements q0.a {
             case 1:
                 ArrayList arrayList2 = (ArrayList) obj2;
                 View view2 = (View) obj;
-                boolean z13 = ChatAttachAlertPhotoLayout.f24022q1;
+                boolean z13 = ChatAttachAlertPhotoLayout.f24025q1;
                 if (view2 instanceof org.telegram.ui.Cells.t5) {
                     org.telegram.ui.Cells.t5 t5Var2 = (org.telegram.ui.Cells.t5) view2;
                     MediaController.PhotoEntry photoEntry2 = t5Var2.getPhotoEntry();
@@ -51,10 +51,10 @@ public final class pl implements q0.a {
                 return;
             default:
                 Float f7 = (Float) obj;
-                rc rcVar = ((kb) obj2).f28065b;
-                pb pbVar = rcVar.f30351p;
+                rc rcVar = ((kb) obj2).f28151b;
+                pb pbVar = rcVar.f30433p;
                 if (pbVar != null && !z11) {
-                    pbVar.c(rcVar.f30341e.getHeight() - f7.floatValue());
+                    pbVar.c(rcVar.f30423e.getHeight() - f7.floatValue());
                     return;
                 }
                 return;

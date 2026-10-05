@@ -1,9 +1,17 @@
 package org.telegram.ui;
-public final class qf1 {
-    public final int f39720a;
-    public int f39721b;
 
-    public qf1(int i10) {
-        this.f39720a = i10;
+import androidx.recyclerview.widget.RecyclerView;
+public final class qf1 extends s4.s0 {
+    public final int f39788a;
+
+    @Override
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        int i12 = this.f39788a;
+    }
+
+    private final void c(RecyclerView recyclerView, int i10, int i11) {
+    }
+
+    private final void d(RecyclerView recyclerView, int i10, int i11) {
     }
 }

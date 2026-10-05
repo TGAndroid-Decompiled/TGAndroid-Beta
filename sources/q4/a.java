@@ -1,27 +1,27 @@
 package q4;
 public final class a {
-    public final int f44804a;
-    public int f44805b;
-    public int f44806c;
+    public final int f44811a;
+    public int f44812b;
+    public int f44813c;
     public int d;
-    public int f44807e;
-    public int f44808f;
-    public int f44809g;
+    public int f44814e;
+    public int f44815f;
+    public int f44816g;
     public int h;
-    public int f44810i;
-    public final b f44811j;
+    public int f44817i;
+    public final b f44818j;
 
     public a(b bVar, int i10, int i11) {
-        this.f44811j = bVar;
-        this.f44804a = i10;
-        this.f44805b = i11;
+        this.f44818j = bVar;
+        this.f44811a = i10;
+        this.f44812b = i11;
         a();
     }
 
     public final void a() {
-        b bVar = this.f44811j;
-        int[] iArr = (int[]) bVar.f44814a;
-        int[] iArr2 = (int[]) bVar.f44815b;
+        b bVar = this.f44818j;
+        int[] iArr = (int[]) bVar.f44821a;
+        int[] iArr2 = (int[]) bVar.f44822b;
         int i10 = Integer.MAX_VALUE;
         int i11 = Integer.MAX_VALUE;
         int i12 = Integer.MAX_VALUE;
@@ -29,7 +29,7 @@ public final class a {
         int i14 = Integer.MIN_VALUE;
         int i15 = Integer.MIN_VALUE;
         int i16 = 0;
-        for (int i17 = this.f44804a; i17 <= this.f44805b; i17++) {
+        for (int i17 = this.f44811a; i17 <= this.f44812b; i17++) {
             int i18 = iArr[i17];
             i16 += iArr2[i18];
             int i19 = (i18 >> 10) & 31;
@@ -55,15 +55,15 @@ public final class a {
             }
         }
         this.d = i10;
-        this.f44807e = i13;
-        this.f44808f = i11;
-        this.f44809g = i14;
+        this.f44814e = i13;
+        this.f44815f = i11;
+        this.f44816g = i14;
         this.h = i12;
-        this.f44810i = i15;
-        this.f44806c = i16;
+        this.f44817i = i15;
+        this.f44813c = i16;
     }
 
     public final int b() {
-        return ((this.f44810i - this.h) + 1) * ((this.f44809g - this.f44808f) + 1) * ((this.f44807e - this.d) + 1);
+        return ((this.f44817i - this.h) + 1) * ((this.f44816g - this.f44815f) + 1) * ((this.f44814e - this.d) + 1);
     }
 }

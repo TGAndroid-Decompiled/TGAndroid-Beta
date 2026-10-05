@@ -3,17 +3,17 @@ package w3;
 import e2.v;
 import f2.s;
 public final class e implements d9.e, s {
-    public final h f48482a;
+    public final h f48489a;
 
     @Override
     public Object apply(Object obj) {
         o oVar = (o) obj;
-        this.f48482a.getClass();
+        this.f48489a.getClass();
         return oVar;
     }
 
     @Override
     public void b(long j3, v vVar) {
-        c3.b.d(j3, vVar, this.f48482a.K);
+        c3.b.d(j3, vVar, this.f48489a.K);
     }
 }

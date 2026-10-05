@@ -2,19 +2,19 @@ package v2;
 
 import java.util.NoSuchElementException;
 public abstract class b implements l {
-    public final long f47770a;
-    public final long f47771b;
-    public long f47772c;
+    public final long f47777a;
+    public final long f47778b;
+    public long f47779c;
 
     public b(long j3, long j10) {
-        this.f47770a = j3;
-        this.f47771b = j10;
-        this.f47772c = j3 - 1;
+        this.f47777a = j3;
+        this.f47778b = j10;
+        this.f47779c = j3 - 1;
     }
 
     public final void b() {
-        long j3 = this.f47772c;
-        if (j3 >= this.f47770a && j3 <= this.f47771b) {
+        long j3 = this.f47779c;
+        if (j3 >= this.f47777a && j3 <= this.f47778b) {
             return;
         }
         throw new NoSuchElementException();
@@ -23,9 +23,9 @@ public abstract class b implements l {
     @Override
     public final boolean next() {
         boolean z10;
-        long j3 = this.f47772c + 1;
-        this.f47772c = j3;
-        if (j3 > this.f47771b) {
+        long j3 = this.f47779c + 1;
+        this.f47779c = j3;
+        if (j3 > this.f47778b) {
             z10 = true;
         } else {
             z10 = false;

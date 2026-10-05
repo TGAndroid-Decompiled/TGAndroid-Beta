@@ -6,85 +6,85 @@ import android.view.View;
 import android.widget.FrameLayout;
 import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
-public final class cw0 extends org.telegram.ui.Components.x81 {
-    public final int f35568a;
-    public final Object f35569b;
-    public final Object f35570c;
+public final class cw0 extends org.telegram.ui.Components.y81 {
+    public final int f35560a;
+    public final Object f35561b;
+    public final Object f35562c;
 
     public cw0(Object obj, Context context, int i10) {
-        this.f35568a = i10;
-        this.f35570c = obj;
-        this.f35569b = context;
+        this.f35560a = i10;
+        this.f35562c = obj;
+        this.f35561b = context;
     }
 
     @Override
     public final void b(View view, int i10, int i11) {
         org.telegram.ui.ActionBar.n2 n2Var;
         u5 u5Var;
-        int i12 = this.f35568a;
-        Object obj = this.f35570c;
+        int i12 = this.f35560a;
+        Object obj = this.f35562c;
         switch (i12) {
             case 0:
                 return;
             case 1:
-                ((u31) view).a(i11);
+                ((s31) view).a(i11);
                 return;
             case 2:
                 return;
             case 3:
-                th1 th1Var = (th1) obj;
-                SparseArray sparseArray = th1Var.f40853a;
-                rh1 rh1Var = (rh1) sparseArray.get(i10);
-                if (rh1Var != null) {
-                    n2Var = rh1Var.f40134a;
+                rh1 rh1Var = (rh1) obj;
+                SparseArray sparseArray = rh1Var.f40106a;
+                ph1 ph1Var = (ph1) sparseArray.get(i10);
+                if (ph1Var != null) {
+                    n2Var = ph1Var.f39588a;
                 } else {
-                    org.telegram.ui.ActionBar.n2 T = th1Var.T(i10);
-                    rh1 rh1Var2 = new rh1(T);
-                    sparseArray.put(i10, rh1Var2);
+                    org.telegram.ui.ActionBar.n2 T = rh1Var.T(i10);
+                    ph1 ph1Var2 = new ph1(T);
+                    sparseArray.put(i10, ph1Var2);
                     n2Var = T;
-                    rh1Var = rh1Var2;
+                    ph1Var = ph1Var2;
                 }
-                if (!rh1Var.f40135b) {
+                if (!ph1Var.f39589b) {
                     n2Var.onFragmentCreate();
-                    rh1Var.f40135b = true;
+                    ph1Var.f39589b = true;
                 }
-                n2Var.setParentLayout(th1Var.getParentLayout());
+                n2Var.setParentLayout(rh1Var.getParentLayout());
                 if (n2Var.getFragmentView() == null) {
-                    n2Var.performCreateView((Context) this.f35569b);
-                    n2Var.setTitleOverlayText(th1Var.f40858n, th1Var.f40859r, th1Var.f40860s);
+                    n2Var.performCreateView((Context) this.f35561b);
+                    n2Var.setTitleOverlayText(rh1Var.f40111n, rh1Var.f40112r, rh1Var.f40113s);
                 }
                 FrameLayout frameLayout = (FrameLayout) view;
                 frameLayout.removeAllViews();
                 View fragmentView = n2Var.getFragmentView();
                 AndroidUtilities.removeFromParent(fragmentView);
                 if (!n2Var.hasOwnBackground() && fragmentView.getBackground() == null) {
-                    fragmentView.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20822d6, false));
+                    fragmentView.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20827d6, false));
                 }
                 frameLayout.addView(fragmentView, w7.z5.c(-1.0f, -1));
                 if (n2Var.getActionBar() != null && n2Var.getActionBar().K) {
                     AndroidUtilities.removeFromParent(n2Var.getActionBar());
                     frameLayout.addView(n2Var.getActionBar());
                 }
-                WeakHashMap weakHashMap = r0.i0.f45603a;
+                WeakHashMap weakHashMap = r0.i0.f45610a;
                 r0.y.c(frameLayout);
-                th1Var.checkSystemBarColors();
-                th1Var.S();
+                rh1Var.checkSystemBarColors();
+                rh1Var.S();
                 return;
             case 4:
                 return;
             default:
-                yh.x3 x3Var = (yh.x3) obj;
+                yh.y3 y3Var = (yh.y3) obj;
                 if (i11 == 0) {
-                    yh.x3.j1(x3Var, false);
-                    xh.n2 n2Var2 = x3Var.f52214b0;
+                    yh.y3.j1(y3Var, false);
+                    xh.n2 n2Var2 = y3Var.f52282b0;
                     if (n2Var2 != null) {
                         u5Var = n2Var2.Y;
                     } else {
                         return;
                     }
                 } else if (i11 == 2) {
-                    yh.x3.j1(x3Var, true);
-                    xh.n2 n2Var3 = x3Var.f52216c0;
+                    yh.y3.j1(y3Var, true);
+                    xh.n2 n2Var3 = y3Var.f52284c0;
                     if (n2Var3 != null) {
                         u5Var = n2Var3.Y;
                     } else {
@@ -104,44 +104,44 @@ public final class cw0 extends org.telegram.ui.Components.x81 {
     @Override
     public final View d(int i10) {
         u5 u5Var;
-        switch (this.f35568a) {
+        switch (this.f35560a) {
             case 0:
-                FrameLayout frameLayout = new FrameLayout((Context) this.f35569b);
+                FrameLayout frameLayout = new FrameLayout((Context) this.f35561b);
                 frameLayout.setOnClickListener(new j60(this, 23));
                 return frameLayout;
             case 1:
-                return new u31((v31) this.f35570c, (Context) this.f35569b);
+                return new s31((t31) this.f35562c, (Context) this.f35561b);
             case 2:
-                FrameLayout frameLayout2 = new FrameLayout((Context) this.f35569b);
-                frameLayout2.setOnClickListener(new a41(this, 7));
+                FrameLayout frameLayout2 = new FrameLayout((Context) this.f35561b);
+                frameLayout2.setOnClickListener(new y31(this, 7));
                 return frameLayout2;
             case 3:
-                return new n41((Context) this.f35569b, 8);
+                return new l41((Context) this.f35561b, 8);
             case 4:
                 if (i10 == 0) {
-                    return ((tg.a0) this.f35569b).getContainerView();
+                    return ((tg.a0) this.f35561b).getContainerView();
                 }
-                return ((tg.z0) this.f35570c).getContainerView();
+                return ((tg.z0) this.f35562c).getContainerView();
             default:
-                yh.x3 x3Var = (yh.x3) this.f35570c;
+                yh.y3 y3Var = (yh.y3) this.f35562c;
                 if (i10 == 0) {
-                    yh.x3.j1(x3Var, false);
-                    xh.n2 n2Var = x3Var.f52214b0;
+                    yh.y3.j1(y3Var, false);
+                    xh.n2 n2Var = y3Var.f52282b0;
                     if (n2Var != null) {
                         u5Var = n2Var.Y;
                         AndroidUtilities.removeFromParent(u5Var);
-                        FrameLayout frameLayout3 = new FrameLayout((Context) this.f35569b);
+                        FrameLayout frameLayout3 = new FrameLayout((Context) this.f35561b);
                         frameLayout3.addView(u5Var, w7.z5.e(-1, -1, 119));
                         return frameLayout3;
                     }
                     return null;
                 }
                 if (i10 == 1) {
-                    u5Var = x3Var.Y;
+                    u5Var = y3Var.Y;
                 } else {
                     if (i10 == 2) {
-                        yh.x3.j1(x3Var, true);
-                        xh.n2 n2Var2 = x3Var.f52216c0;
+                        yh.y3.j1(y3Var, true);
+                        xh.n2 n2Var2 = y3Var.f52284c0;
                         if (n2Var2 != null) {
                             u5Var = n2Var2.Y;
                         }
@@ -149,7 +149,7 @@ public final class cw0 extends org.telegram.ui.Components.x81 {
                     return null;
                 }
                 AndroidUtilities.removeFromParent(u5Var);
-                FrameLayout frameLayout32 = new FrameLayout((Context) this.f35569b);
+                FrameLayout frameLayout32 = new FrameLayout((Context) this.f35561b);
                 frameLayout32.addView(u5Var, w7.z5.e(-1, -1, 119));
                 return frameLayout32;
         }
@@ -157,7 +157,7 @@ public final class cw0 extends org.telegram.ui.Components.x81 {
 
     @Override
     public final int e() {
-        switch (this.f35568a) {
+        switch (this.f35560a) {
             case 0:
                 return 2;
             case 1:
@@ -165,19 +165,19 @@ public final class cw0 extends org.telegram.ui.Components.x81 {
             case 2:
                 return 2;
             case 3:
-                ((th1) this.f35570c).getClass();
+                ((rh1) this.f35562c).getClass();
                 return 4;
             case 4:
                 return 2;
             default:
-                yh.x3 x3Var = (yh.x3) this.f35570c;
-                return (x3Var.L1(true) ? 1 : 0) + (x3Var.L1(false) ? 1 : 0) + 1;
+                yh.y3 y3Var = (yh.y3) this.f35562c;
+                return (y3Var.L1(true) ? 1 : 0) + (y3Var.L1(false) ? 1 : 0) + 1;
         }
     }
 
     @Override
     public int h(int i10) {
-        switch (this.f35568a) {
+        switch (this.f35560a) {
             case 1:
                 if (i10 == 0) {
                     return 0;
@@ -190,14 +190,14 @@ public final class cw0 extends org.telegram.ui.Components.x81 {
             case 4:
                 return i10;
             case 5:
-                return (i10 - (((yh.x3) this.f35570c).L1(false) ? 1 : 0)) + 1;
+                return (i10 - (((yh.y3) this.f35562c).L1(false) ? 1 : 0)) + 1;
         }
     }
 
     public cw0(tg.a0 a0Var, tg.z0 z0Var) {
-        this.f35568a = 4;
-        this.f35569b = a0Var;
-        this.f35570c = z0Var;
+        this.f35560a = 4;
+        this.f35561b = a0Var;
+        this.f35562c = z0Var;
     }
 
     private final void i(View view, int i10, int i11) {

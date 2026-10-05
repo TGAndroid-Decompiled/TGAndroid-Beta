@@ -10,19 +10,19 @@ import org.telegram.ui.Components.cl0;
 import org.telegram.ui.Components.kj0;
 import w7.z5;
 public final class l3 extends FrameLayout {
-    public final r1 f31973a;
-    public k3 f31974b;
-    public int f31975c;
+    public final r1 f32040a;
+    public k3 f32041b;
+    public int f32042c;
     public final TextView d;
-    public final TextView f31976e;
-    public int f31977f;
+    public final TextView f32043e;
+    public int f32044f;
 
     public l3(Activity activity, r1 r1Var) {
         super(activity);
-        this.f31973a = r1Var;
+        this.f32040a = r1Var;
         setWillNotDraw(true);
         k3 k3Var = new k3(activity, r1Var);
-        this.f31974b = k3Var;
+        this.f32041b = k3Var;
         addView(k3Var, z5.a(53.5f, 53.5f, 1));
         TextView textView = new TextView(activity);
         this.d = textView;
@@ -32,7 +32,7 @@ public final class l3 extends FrameLayout {
         textView.setImportantForAccessibility(2);
         addView(textView, z5.d(-1, -2.0f, 0, 0.0f, 58.0f, 0.0f, 2.0f));
         TextView textView2 = new TextView(activity);
-        this.f31976e = textView2;
+        this.f32043e = textView2;
         textView2.setGravity(1);
         textView2.setTextSize(1, 11.0f);
         textView2.setTextColor(-1);
@@ -43,37 +43,37 @@ public final class l3 extends FrameLayout {
     }
 
     public final void a(int i10) {
-        this.f31974b.f31951a = new kj0(R.raw.bt_to_speaker, i10, i10, true, null);
-        this.f31974b.f31952b = new kj0(R.raw.bt_to_speaker, i10, i10, true, null);
-        this.f31974b.f31952b.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
+        this.f32041b.f32018a = new kj0(R.raw.bt_to_speaker, i10, i10, true, null);
+        this.f32041b.f32019b = new kj0(R.raw.bt_to_speaker, i10, i10, true, null);
+        this.f32041b.f32019b.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
     }
 
     public final void b(int i10, int i11, int i12, boolean z10) {
-        k3 k3Var = new k3(getContext(), this.f31973a);
+        k3 k3Var = new k3(getContext(), this.f32040a);
         if (i10 == R.raw.camera_flip2) {
             kj0 kj0Var = new kj0(i10, i11, i11, true, null);
-            k3Var.f31953c = kj0Var;
+            k3Var.f32020c = kj0Var;
             kj0Var.R(k3Var);
         } else {
-            k3Var.f31951a = new kj0(i10, i11, i11, true, null);
+            k3Var.f32018a = new kj0(i10, i11, i11, true, null);
             kj0 kj0Var2 = new kj0(i10, i11, i11, true, null);
-            k3Var.f31952b = kj0Var2;
+            k3Var.f32019b = kj0Var2;
             kj0Var2.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
         }
         k3Var.a(i12, z10, false);
         k3Var.setAlpha(0.0f);
-        k3Var.setOnBtnClickedListener(this.f31974b.f31960x);
+        k3Var.setOnBtnClickedListener(this.f32041b.f32027x);
         addView(k3Var, z5.a(53.5f, 53.5f, 1));
-        k3 k3Var2 = this.f31974b;
-        this.f31974b = k3Var;
+        k3 k3Var2 = this.f32041b;
+        this.f32041b = k3Var;
         k3Var.animate().alpha(1.0f).setDuration(250L).start();
         k3Var2.animate().alpha(0.0f).setDuration(250L).setListener(new cl0(5, this, k3Var2)).start();
     }
 
     public final void c(int i10) {
-        this.f31974b.f31951a = new kj0(R.raw.speaker_to_bt, i10, i10, true, null);
-        this.f31974b.f31952b = new kj0(R.raw.speaker_to_bt, i10, i10, true, null);
-        this.f31974b.f31952b.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
+        this.f32041b.f32018a = new kj0(R.raw.speaker_to_bt, i10, i10, true, null);
+        this.f32041b.f32019b = new kj0(R.raw.speaker_to_bt, i10, i10, true, null);
+        this.f32041b.f32019b.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
     }
 
     public final void d(int r17, boolean r18, boolean r19) {
@@ -81,6 +81,6 @@ public final class l3 extends FrameLayout {
     }
 
     public void setOnBtnClickedListener(j3 j3Var) {
-        this.f31974b.setOnBtnClickedListener(j3Var);
+        this.f32041b.setOnBtnClickedListener(j3Var);
     }
 }

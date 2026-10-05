@@ -2,16 +2,16 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
-public final class la0 implements bu0 {
-    public final pa0 f28330a;
+public final class la0 implements cu0 {
+    public final pa0 f28433a;
 
     public la0(pa0 pa0Var) {
-        this.f28330a = pa0Var;
+        this.f28433a = pa0Var;
     }
 
     @Override
     public final void P() {
-        this.f28330a.Z();
+        this.f28433a.Z();
     }
 
     @Override

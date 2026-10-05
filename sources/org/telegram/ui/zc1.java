@@ -1,50 +1,28 @@
 package org.telegram.ui;
+public final class zc1 implements gd1 {
+    public boolean f43745a;
+    public final yn f43746b;
 
-import android.graphics.Point;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-public final class zc1 extends w7.w5 {
-    public final int f43755a;
-    public final NotificationCenter.NotificationCenterDelegate f43756b;
-
-    public zc1(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f43755a = i10;
-        this.f43756b = notificationCenterDelegate;
+    public zc1(yn ynVar, boolean z10) {
+        this.f43746b = ynVar;
+        this.f43745a = z10;
     }
 
     @Override
-    public void a() {
-        switch (this.f43755a) {
-            case 1:
-                ((mi1) this.f43756b).v.invalidate();
-                return;
-            default:
-                return;
-        }
+    public final boolean a() {
+        return this.f43745a;
     }
 
     @Override
-    public void b(int i10, int i11) {
-        boolean z10;
-        switch (this.f43755a) {
-            case 0:
-                Point point = AndroidUtilities.displaySize;
-                boolean z11 = false;
-                if (point.x <= point.y) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                if (i10 <= i11) {
-                    z11 = true;
-                }
-                if (z10 == z11) {
-                    ((rd1) this.f43756b).f40100x0.invalidate();
-                    return;
-                }
-                return;
-            default:
-                return;
-        }
+    public final boolean a1() {
+        return true;
+    }
+
+    @Override
+    public final void q1(boolean z10) {
+        boolean z11 = !this.f43745a;
+        this.f43745a = z11;
+        wn wnVar = this.f43746b.f43300ca;
+        wnVar.i(wnVar.f42613f, wnVar.h, z10, Boolean.valueOf(z11), false);
     }
 }

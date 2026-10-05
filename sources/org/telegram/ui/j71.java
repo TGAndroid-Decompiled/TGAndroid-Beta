@@ -1,20 +1,85 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-public final class j71 extends s4.s0 {
-    public final m71 f37597a;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class j71 implements NotificationCenter.NotificationCenterDelegate {
+    public final int f37594a;
+    public final TLRPC.Chat f37595b;
+    public TLRPC.ChannelParticipantsFilter f37596c;
+    public boolean f37598f;
+    public boolean h;
+    public boolean f37600r;
+    public boolean f37601s;
+    public final ArrayList d = new ArrayList();
+    public final ArrayList f37597e = new ArrayList();
+    public int f37599n = -1;
 
-    public j71(m71 m71Var) {
-        this.f37597a = m71Var;
+    public j71(int i10, long j3, TLRPC.ChannelParticipantsFilter channelParticipantsFilter) {
+        this.f37594a = i10;
+        this.f37595b = MessagesController.getInstance(i10).getChat(Long.valueOf(j3));
+        TLRPC.ChatFull chatFull = MessagesController.getInstance(i10).getChatFull(j3);
+        this.f37596c = channelParticipantsFilter;
+        if (chatFull == null) {
+            if (!this.f37601s) {
+                this.f37601s = true;
+                NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.chatInfoDidLoad);
+            }
+            MessagesController.getInstance(i10).loadFullChat(j3, 0, false);
+        }
+    }
+
+    public final void a() {
+        if (this.f37601s) {
+            return;
+        }
+        this.f37601s = false;
+        int i10 = this.f37594a;
+        NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.chatInfoDidLoad);
+        if (this.f37599n >= 0) {
+            ConnectionsManager.getInstance(i10).cancelRequest(this.f37599n, true);
+            this.f37599n = -1;
+        }
+        this.f37598f = false;
+    }
+
+    public final void b() {
+        int size;
+        if (!this.f37598f && !this.h) {
+            TLRPC.ChannelParticipantsFilter channelParticipantsFilter = this.f37596c;
+            if (!(channelParticipantsFilter instanceof TLRPC.TL_channelParticipantsSearch) || !TextUtils.isEmpty(channelParticipantsFilter.f20046q)) {
+                this.f37598f = true;
+                TLRPC.Chat chat = this.f37595b;
+                if (ChatObject.isChannel(chat)) {
+                    TLRPC.TL_channels_getParticipants tL_channels_getParticipants = new TLRPC.TL_channels_getParticipants();
+                    tL_channels_getParticipants.channel = MessagesController.getInputChannel(chat);
+                    tL_channels_getParticipants.filter = this.f37596c;
+                    tL_channels_getParticipants.limit = 30;
+                    if (this.f37600r) {
+                        size = 0;
+                    } else {
+                        size = this.d.size();
+                    }
+                    tL_channels_getParticipants.offset = size;
+                    ConnectionsManager.getInstance(this.f37594a).sendRequestTyped(tL_channels_getParticipants, new Object(), new c5(this, 24));
+                }
+            }
+        }
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        m71 m71Var = this.f37597a;
-        if (m71Var.d.K1) {
-            AndroidUtilities.hideKeyboard(m71Var.f38461c0);
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.chatInfoDidLoad) {
+            long j3 = ((TLRPC.ChatFull) objArr[0]).f20048id;
+            TLRPC.Chat chat = this.f37595b;
+            if (j3 == chat.f20047id && !ChatObject.isChannel(chat) && this.f37598f) {
+                this.f37598f = false;
+                b();
+            }
         }
-        m71.Q(m71Var);
     }
 }

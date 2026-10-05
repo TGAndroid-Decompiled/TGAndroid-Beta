@@ -17,18 +17,18 @@ import org.telegram.ui.Components.tr;
 import w7.z5;
 import yf.p;
 public final class c extends FrameLayout implements le.d, y5 {
-    public ShapeDrawable f16906a;
-    public final d6 f16907b;
-    public final f8 f16908c;
+    public ShapeDrawable f16911a;
+    public final d6 f16912b;
+    public final f8 f16913c;
     public final TextView d;
-    public final le.b f16909e;
+    public final le.b f16914e;
 
     public c(Context context, d6 d6Var) {
         super(context);
-        this.f16909e = new le.b(0, this, tr.h, 380L, false);
-        this.f16907b = d6Var;
+        this.f16914e = new le.b(0, this, tr.h, 380L, false);
+        this.f16912b = d6Var;
         f8 f8Var = new f8(context, d6Var, false);
-        this.f16908c = f8Var;
+        this.f16913c = f8Var;
         addView(f8Var, z5.d(45, 45.0f, 49, 0.0f, 8.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
         this.d = textView;
@@ -41,10 +41,10 @@ public final class c extends FrameLayout implements le.d, y5 {
     }
 
     public final void a(boolean z10, boolean z11) {
-        if (z10 && this.f16906a == null) {
-            this.f16906a = i6.b0(AndroidUtilities.dp(10.0f), i0.a.k(i6.v0(i6.Wk, this.f16907b), 25));
+        if (z10 && this.f16911a == null) {
+            this.f16911a = i6.b0(AndroidUtilities.dp(10.0f), i0.a.k(i6.v0(i6.Wk, this.f16912b), 25));
         }
-        le.b bVar = this.f16909e;
+        le.b bVar = this.f16914e;
         if (bVar.f15437f == z10 && !z11) {
             return;
         }
@@ -53,7 +53,7 @@ public final class c extends FrameLayout implements le.d, y5 {
 
     @Override
     public final void a0(int i10, float f7, float f10, e eVar) {
-        ShapeDrawable shapeDrawable = this.f16906a;
+        ShapeDrawable shapeDrawable = this.f16911a;
         if (shapeDrawable != null) {
             shapeDrawable.setAlpha((int) (f7 * 255.0f));
         }
@@ -62,12 +62,12 @@ public final class c extends FrameLayout implements le.d, y5 {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        ShapeDrawable shapeDrawable = this.f16906a;
+        ShapeDrawable shapeDrawable = this.f16911a;
         if (shapeDrawable != null) {
-            le.b bVar = this.f16909e;
+            le.b bVar = this.f16914e;
             if (bVar.f15436e > 0.0f) {
                 shapeDrawable.setBounds(0, 0, getWidth(), getHeight());
-                p.b(canvas, this.f16906a, AndroidUtilities.lerp(0.9f, 1.0f, bVar.f15436e));
+                p.b(canvas, this.f16911a, AndroidUtilities.lerp(0.9f, 1.0f, bVar.f15436e));
             }
         }
         super.dispatchDraw(canvas);
@@ -75,12 +75,12 @@ public final class c extends FrameLayout implements le.d, y5 {
 
     @Override
     public final void e() {
-        ShapeDrawable shapeDrawable = this.f16906a;
-        d6 d6Var = this.f16907b;
+        ShapeDrawable shapeDrawable = this.f16911a;
+        d6 d6Var = this.f16912b;
         if (shapeDrawable != null) {
             ShapeDrawable b02 = i6.b0(AndroidUtilities.dp(10.0f), i0.a.k(i6.v0(i6.Wk, d6Var), 25));
-            this.f16906a = b02;
-            b02.setAlpha((int) (this.f16909e.f15436e * 255.0f));
+            this.f16911a = b02;
+            b02.setAlpha((int) (this.f16914e.f15436e * 255.0f));
         }
         this.d.setTextColor(i0.a.k(i6.v0(i6.Wk, d6Var), 229));
     }
@@ -91,7 +91,7 @@ public final class c extends FrameLayout implements le.d, y5 {
 
     @Override
     public final boolean isSelected() {
-        return this.f16909e.f15437f;
+        return this.f16914e.f15437f;
     }
 
     public void setPack(TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
@@ -102,7 +102,7 @@ public final class c extends FrameLayout implements le.d, y5 {
         } else {
             document = null;
         }
-        this.f16908c.d(document, null, null, null, false, false);
+        this.f16913c.d(document, null, null, null, false, false);
     }
 
     @Override

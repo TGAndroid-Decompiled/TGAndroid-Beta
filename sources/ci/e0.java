@@ -277,7 +277,7 @@ public abstract class e0 extends FrameLayout implements a80 {
             float x10 = motionEvent.getX();
             float y3 = motionEvent.getY();
             org.telegram.ui.Components.e6 e6Var = this.I;
-            float f7 = e6Var.f25939c;
+            float f7 = e6Var.f25987c;
             int i10 = 0;
             while (true) {
                 arrayList = this.h;
@@ -289,7 +289,7 @@ public abstract class e0 extends FrameLayout implements a80 {
                     s sVar = d0Var.h;
                     int i11 = sVar.f5888c;
                     int i12 = sVar.f5887b;
-                    float f10 = e6VarArr[i11].f25939c;
+                    float f10 = e6VarArr[i11].f25987c;
                     rectF.set((getMeasuredWidth() / f10) * i12, (getMeasuredHeight() / f7) * i11, (getMeasuredWidth() / f10) * (i12 + 1), (getMeasuredHeight() / f7) * (i11 + 1));
                     if (rectF.contains(x10, y3)) {
                         break;
@@ -335,14 +335,14 @@ public abstract class e0 extends FrameLayout implements a80 {
                 } else if (this.f4947e0 && this.f4951h0 != null) {
                     float x11 = motionEvent.getX();
                     float y10 = motionEvent.getY();
-                    float f11 = e6Var.f25939c;
+                    float f11 = e6Var.f25987c;
                     int i13 = 0;
                     while (true) {
                         if (i13 < arrayList.size()) {
                             s sVar2 = ((d0) arrayList.get(i13)).h;
                             int i14 = sVar2.f5888c;
                             int i15 = sVar2.f5887b;
-                            float f12 = e6VarArr[i14].f25939c;
+                            float f12 = e6VarArr[i14].f25987c;
                             rectF.set((getMeasuredWidth() / f12) * i15, (getMeasuredHeight() / f11) * i14, (getMeasuredWidth() / f12) * (i15 + 1), (getMeasuredHeight() / f11) * (i14 + 1));
                             if (rectF.contains(x11, y10)) {
                                 break;
@@ -363,7 +363,7 @@ public abstract class e0 extends FrameLayout implements a80 {
                         s sVar3 = this.f4951h0.h;
                         int i16 = sVar3.f5888c;
                         int i17 = sVar3.f5887b;
-                        float f14 = e6VarArr[i16].f25939c;
+                        float f14 = e6VarArr[i16].f25987c;
                         rectF.set((getMeasuredWidth() / f14) * i17, (getMeasuredHeight() / f13) * i16, (getMeasuredWidth() / f14) * (i17 + 1), (getMeasuredHeight() / f13) * (i16 + 1));
                         this.f4940a0 = this.f4944c0;
                         this.f4942b0 = this.f4945d0;

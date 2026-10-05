@@ -14,33 +14,33 @@ public final class tf0 extends View {
     public float G;
     public float H;
     public lc0 I;
-    public TextPaint f31039a;
-    public TextPaint f31040b;
-    public StaticLayout f31041c;
+    public TextPaint f31126a;
+    public TextPaint f31127b;
+    public StaticLayout f31128c;
     public float d;
-    public float f31042e;
-    public StaticLayout f31043f;
+    public float f31129e;
+    public StaticLayout f31130f;
     public float h;
-    public float f31044n;
-    public boolean f31045r;
-    public e6 f31046s;
+    public float f31131n;
+    public boolean f31132r;
+    public e6 f31133s;
     public boolean v;
-    public vf0 f31047w;
-    public ci.ga f31048x;
-    public boolean f31049y;
+    public vf0 f31134w;
+    public ci.ga f31135x;
+    public boolean f31136y;
 
     @Override
     public final void onDraw(Canvas canvas) {
-        float e7 = this.f31046s.e(this.f31045r);
-        if (e7 > 0.0f && this.f31041c != null && this.f31043f != null) {
+        float e7 = this.f31133s.e(this.f31132r);
+        if (e7 > 0.0f && this.f31128c != null && this.f31130f != null) {
             canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (e7 * 255.0f), 31);
             canvas.save();
-            canvas.translate(((getWidth() - this.d) / 2.0f) - this.f31042e, getHeight() * 0.22f);
-            this.f31041c.draw(canvas);
+            canvas.translate(((getWidth() - this.d) / 2.0f) - this.f31129e, getHeight() * 0.22f);
+            this.f31128c.draw(canvas);
             canvas.restore();
             canvas.save();
-            canvas.translate(((getWidth() - this.h) / 2.0f) - this.f31044n, (getHeight() * 0.22f) + AndroidUtilities.dp(60.0f));
-            this.f31043f.draw(canvas);
+            canvas.translate(((getWidth() - this.h) / 2.0f) - this.f31131n, (getHeight() * 0.22f) + AndroidUtilities.dp(60.0f));
+            this.f31130f.draw(canvas);
             canvas.restore();
             canvas.restore();
         }
@@ -50,28 +50,28 @@ public final class tf0 extends View {
     public final void onMeasure(int i10, int i11) {
         float f7;
         setMeasuredDimension(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11));
-        TextPaint textPaint = this.f31039a;
+        TextPaint textPaint = this.f31126a;
         textPaint.setColor(-1);
         float f10 = 0.0f;
         textPaint.setShadowLayer(AndroidUtilities.dp(8.0f), 0.0f, 0.0f, 805306368);
         textPaint.setTextSize(AndroidUtilities.dp(34.0f));
-        TextPaint textPaint2 = this.f31040b;
+        TextPaint textPaint2 = this.f31127b;
         textPaint2.setColor(-1);
         textPaint2.setShadowLayer(AndroidUtilities.dp(12.0f), 0.0f, 0.0f, 805306368);
         textPaint2.setTextSize(AndroidUtilities.dp(58.0f));
-        if (this.f31041c == null) {
+        if (this.f31128c == null) {
             StaticLayout staticLayout = new StaticLayout(LocaleController.getString(R.string.Enhance), textPaint, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            this.f31041c = staticLayout;
+            this.f31128c = staticLayout;
             if (staticLayout.getLineCount() > 0) {
-                f7 = this.f31041c.getLineWidth(0);
+                f7 = this.f31128c.getLineWidth(0);
             } else {
                 f7 = 0.0f;
             }
             this.d = f7;
-            if (this.f31041c.getLineCount() > 0) {
-                f10 = this.f31041c.getLineLeft(0);
+            if (this.f31128c.getLineCount() > 0) {
+                f10 = this.f31128c.getLineLeft(0);
             }
-            this.f31042e = f10;
+            this.f31129e = f10;
         }
     }
 
@@ -80,6 +80,6 @@ public final class tf0 extends View {
     }
 
     public void setFilterView(vf0 vf0Var) {
-        this.f31047w = vf0Var;
+        this.f31134w = vf0Var;
     }
 }

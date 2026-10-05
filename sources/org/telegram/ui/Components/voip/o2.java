@@ -15,16 +15,16 @@ import org.telegram.ui.Components.k90;
 import org.telegram.ui.Components.u90;
 import org.telegram.ui.ug0;
 public class o2 extends TextView {
-    public final int f32047a = 0;
-    public final Object f32048b;
-    public final Object f32049c;
+    public final int f32114a = 0;
+    public final Object f32115b;
+    public final Object f32116c;
     public final Object d;
 
     public o2(q2 q2Var, Activity activity, r1 r1Var) {
         super(activity);
         this.d = q2Var;
-        this.f32049c = r1Var;
-        this.f32048b = new RectF();
+        this.f32116c = r1Var;
+        this.f32115b = new RectF();
         r1Var.a(this);
     }
 
@@ -38,21 +38,21 @@ public class o2 extends TextView {
 
     public void c() {
         CharSequence text;
-        u90 u90Var = (u90) this.f32049c;
+        u90 u90Var = (u90) this.f32116c;
         Layout layout = getLayout();
         if (layout == null || (text = layout.getText()) == null) {
             return;
         }
         k90 k90Var = new k90(0);
-        k90Var.f28044q = AndroidUtilities.dp(3.0f);
-        k90Var.f28045r = AndroidUtilities.dp(6.0f);
+        k90Var.f28125q = AndroidUtilities.dp(3.0f);
+        k90Var.f28126r = AndroidUtilities.dp(6.0f);
         int length = text.length();
         k90Var.d(layout, 0, 0.0f);
         layout.getSelectionPath(0, length, k90Var);
         RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(k90Var.f28046s, k90Var.f28048u, k90Var.f28047t, k90Var.v);
-        ((org.telegram.ui.Cells.z) this.f32048b).setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-        u90Var.f31353x = k90Var;
+        rectF.set(k90Var.f28127s, k90Var.f28129u, k90Var.f28128t, k90Var.v);
+        ((org.telegram.ui.Cells.z) this.f32115b).setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+        u90Var.f31406x = k90Var;
         u90Var.j(4.0f);
         int themedColor = ((ug0) this.d).getThemedColor(i6.Ld);
         u90Var.f(i6.l1(0.85f, themedColor), i6.l1(2.0f, themedColor), i6.l1(3.5f, themedColor), i6.l1(6.0f, themedColor));
@@ -62,21 +62,21 @@ public class o2 extends TextView {
     @Override
     public final void onDraw(Canvas canvas) {
         float paddingTop;
-        switch (this.f32047a) {
+        switch (this.f32114a) {
             case 0:
-                RectF rectF = (RectF) this.f32048b;
+                RectF rectF = (RectF) this.f32115b;
                 rectF.set(0.0f, 0.0f, getWidth(), getHeight());
                 float x10 = ((View) getParent()).getX() + getX();
                 q2 q2Var = (q2) this.d;
                 float x11 = ((View) q2Var.getParent()).getX() + q2Var.getX() + x10;
                 float y3 = ((View) q2Var.getParent()).getY() + q2Var.getY() + ((View) getParent()).getY() + getY();
-                r1 r1Var = (r1) this.f32049c;
+                r1 r1Var = (r1) this.f32116c;
                 r1Var.d(x11, y3);
                 canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), r1Var.b());
                 super.onDraw(canvas);
                 return;
             default:
-                u90 u90Var = (u90) this.f32049c;
+                u90 u90Var = (u90) this.f32116c;
                 canvas.save();
                 if ((getGravity() & 16) != 0 && getLayout() != null) {
                     paddingTop = ((((getHeight() - getPaddingTop()) - getPaddingBottom()) - getLayout().getHeight()) / 2.0f) + getPaddingTop();
@@ -84,7 +84,7 @@ public class o2 extends TextView {
                     paddingTop = getPaddingTop();
                 }
                 canvas.translate(getPaddingLeft(), paddingTop);
-                ((org.telegram.ui.Cells.z) this.f32048b).draw(canvas);
+                ((org.telegram.ui.Cells.z) this.f32115b).draw(canvas);
                 canvas.restore();
                 super.onDraw(canvas);
                 if (a() || u90Var.c()) {
@@ -101,7 +101,7 @@ public class o2 extends TextView {
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f32047a) {
+        switch (this.f32114a) {
             case 1:
                 super.onLayout(z10, i10, i11, i12, i13);
                 c();
@@ -114,9 +114,9 @@ public class o2 extends TextView {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f32047a) {
+        switch (this.f32114a) {
             case 1:
-                org.telegram.ui.Cells.z zVar = (org.telegram.ui.Cells.z) this.f32048b;
+                org.telegram.ui.Cells.z zVar = (org.telegram.ui.Cells.z) this.f32115b;
                 if (b() && motionEvent.getAction() == 0) {
                     zVar.setHotspot(motionEvent.getX(), motionEvent.getY());
                     zVar.setState(new int[]{16842910, 16842919});
@@ -131,7 +131,7 @@ public class o2 extends TextView {
 
     @Override
     public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        switch (this.f32047a) {
+        switch (this.f32114a) {
             case 1:
                 super.setText(charSequence, bufferType);
                 c();
@@ -144,9 +144,9 @@ public class o2 extends TextView {
 
     @Override
     public boolean verifyDrawable(Drawable drawable) {
-        switch (this.f32047a) {
+        switch (this.f32114a) {
             case 1:
-                if (drawable != ((org.telegram.ui.Cells.z) this.f32048b) && !super.verifyDrawable(drawable)) {
+                if (drawable != ((org.telegram.ui.Cells.z) this.f32115b) && !super.verifyDrawable(drawable)) {
                     return false;
                 }
                 return true;
@@ -159,11 +159,11 @@ public class o2 extends TextView {
         super(context);
         this.d = ug0Var;
         org.telegram.ui.Cells.z f02 = i6.f0(i6.l1(0.1f, i6.w0(null, i6.I6, false)), 7, -1);
-        this.f32048b = f02;
+        this.f32115b = f02;
         u90 u90Var = new u90();
-        this.f32049c = u90Var;
+        this.f32116c = u90Var;
         f02.setCallback(this);
         u90Var.C = true;
-        u90Var.f31351u = 0.8f;
+        u90Var.f31404u = 0.8f;
     }
 }

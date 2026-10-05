@@ -5,14 +5,14 @@ import b2.l1;
 import e2.d0;
 import java.util.Arrays;
 import java.util.List;
-import org.telegram.ui.gb1;
+import org.telegram.ui.eb1;
 public abstract class c implements r {
-    public final l1 f49189a;
-    public final int f49190b;
-    public final int[] f49191c;
+    public final l1 f49196a;
+    public final int f49197b;
+    public final int[] f49198c;
     public final b2.s[] d;
-    public final long[] f49192e;
-    public int f49193f;
+    public final long[] f49199e;
+    public int f49200f;
 
     public c(l1 l1Var, int[] iArr) {
         boolean z10;
@@ -24,22 +24,22 @@ public abstract class c implements r {
         }
         e2.d.g(z10);
         l1Var.getClass();
-        this.f49189a = l1Var;
+        this.f49196a = l1Var;
         int length = iArr.length;
-        this.f49190b = length;
+        this.f49197b = length;
         this.d = new b2.s[length];
         for (int i11 = 0; i11 < iArr.length; i11++) {
             this.d[i11] = l1Var.d[iArr[i11]];
         }
-        Arrays.sort(this.d, new gb1(10));
-        this.f49191c = new int[this.f49190b];
+        Arrays.sort(this.d, new eb1(10));
+        this.f49198c = new int[this.f49197b];
         while (true) {
-            int i12 = this.f49190b;
+            int i12 = this.f49197b;
             if (i10 < i12) {
-                this.f49191c[i10] = l1Var.a(this.d[i10]);
+                this.f49198c[i10] = l1Var.a(this.d[i10]);
                 i10++;
             } else {
-                this.f49192e = new long[i12];
+                this.f49199e = new long[i12];
                 return;
             }
         }
@@ -47,7 +47,7 @@ public abstract class c implements r {
 
     @Override
     public final boolean a(int i10, long j3) {
-        if (this.f49192e[i10] > j3) {
+        if (this.f49199e[i10] > j3) {
             return true;
         }
         return false;
@@ -55,7 +55,7 @@ public abstract class c implements r {
 
     @Override
     public final l1 b() {
-        return this.f49189a;
+        return this.f49196a;
     }
 
     @Override
@@ -69,7 +69,7 @@ public abstract class c implements r {
         }
         if (obj != null && getClass() == obj.getClass()) {
             c cVar = (c) obj;
-            if (this.f49189a.equals(cVar.f49189a) && Arrays.equals(this.f49191c, cVar.f49191c)) {
+            if (this.f49196a.equals(cVar.f49196a) && Arrays.equals(this.f49198c, cVar.f49198c)) {
                 return true;
             }
         }
@@ -83,14 +83,14 @@ public abstract class c implements r {
 
     @Override
     public final int h(int i10) {
-        return this.f49191c[i10];
+        return this.f49198c[i10];
     }
 
     public final int hashCode() {
-        if (this.f49193f == 0) {
-            this.f49193f = Arrays.hashCode(this.f49191c) + (System.identityHashCode(this.f49189a) * 31);
+        if (this.f49200f == 0) {
+            this.f49200f = Arrays.hashCode(this.f49198c) + (System.identityHashCode(this.f49196a) * 31);
         }
-        return this.f49193f;
+        return this.f49200f;
     }
 
     @Override
@@ -100,12 +100,12 @@ public abstract class c implements r {
 
     @Override
     public final int l() {
-        return this.f49191c[c()];
+        return this.f49198c[c()];
     }
 
     @Override
     public final int length() {
-        return this.f49191c.length;
+        return this.f49198c.length;
     }
 
     @Override
@@ -117,7 +117,7 @@ public abstract class c implements r {
     public final boolean o(int i10, long j3) {
         long elapsedRealtime = SystemClock.elapsedRealtime();
         boolean a2 = a(i10, elapsedRealtime);
-        for (int i11 = 0; i11 < this.f49190b && !a2; i11++) {
+        for (int i11 = 0; i11 < this.f49197b && !a2; i11++) {
             if (i11 != i10 && !a(i11, elapsedRealtime)) {
                 a2 = true;
             } else {
@@ -127,7 +127,7 @@ public abstract class c implements r {
         if (!a2) {
             return false;
         }
-        long[] jArr = this.f49192e;
+        long[] jArr = this.f49199e;
         long j10 = jArr[i10];
         String str = d0.f8538a;
         long j11 = elapsedRealtime + j3;
@@ -140,7 +140,7 @@ public abstract class c implements r {
 
     @Override
     public final int s(b2.s sVar) {
-        for (int i10 = 0; i10 < this.f49190b; i10++) {
+        for (int i10 = 0; i10 < this.f49197b; i10++) {
             if (this.d[i10] == sVar) {
                 return i10;
             }
@@ -150,8 +150,8 @@ public abstract class c implements r {
 
     @Override
     public final int u(int i10) {
-        for (int i11 = 0; i11 < this.f49190b; i11++) {
-            if (this.f49191c[i11] == i10) {
+        for (int i11 = 0; i11 < this.f49197b; i11++) {
+            if (this.f49198c[i11] == i10) {
                 return i11;
             }
         }

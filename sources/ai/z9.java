@@ -27,7 +27,7 @@ public final class z9 implements Runnable {
                 return;
             case 1:
                 try {
-                    int i10 = n0.g.f16492a;
+                    int i10 = n0.g.f16497a;
                     Trace.beginSection("EmojiCompat.EmojiCompatInitializer.run");
                     if (androidx.emoji2.text.l.f2525j == null) {
                         z10 = false;
@@ -38,18 +38,18 @@ public final class z9 implements Runnable {
                     Trace.endSection();
                     return;
                 } catch (Throwable th2) {
-                    int i11 = n0.g.f16492a;
+                    int i11 = n0.g.f16497a;
                     Trace.endSection();
                     throw th2;
                 }
             case 2:
                 return;
             case 3:
-                org.telegram.ui.ActionBar.i6.f20925j = false;
+                org.telegram.ui.ActionBar.i6.f20930j = false;
                 org.telegram.ui.ActionBar.i6.l(false);
                 return;
             case 4:
-                org.telegram.ui.ActionBar.i6.f20944k = false;
+                org.telegram.ui.ActionBar.i6.f20949k = false;
                 org.telegram.ui.ActionBar.i6.l(true);
                 return;
             case 5:
@@ -57,7 +57,7 @@ public final class z9 implements Runnable {
             case 6:
                 org.telegram.ui.Components.voip.n2 n2Var = org.telegram.ui.Components.voip.n2.U;
                 if (n2Var != null) {
-                    AndroidUtilities.cancelRunOnUIThread(n2Var.f32028b.f32022f.M);
+                    AndroidUtilities.cancelRunOnUIThread(n2Var.f32095b.f32089f.M);
                     return;
                 }
                 return;

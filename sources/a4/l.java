@@ -13,7 +13,7 @@ public abstract class l implements z3.e {
 
     public l() {
         for (int i10 = 0; i10 < 10; i10++) {
-            this.f290a.add(new z3.j());
+            this.f290a.add(new z3.i());
         }
         this.f291b = new ArrayDeque();
         for (int i11 = 0; i11 < 2; i11++) {
@@ -58,29 +58,29 @@ public abstract class l implements z3.e {
     @Override
     public final void e(Object obj) {
         boolean z10;
-        z3.j jVar = (z3.j) obj;
-        if (jVar == this.d) {
+        z3.i iVar = (z3.i) obj;
+        if (iVar == this.d) {
             z10 = true;
         } else {
             z10 = false;
         }
         e2.d.b(z10);
-        j jVar2 = (j) jVar;
-        if (!jVar2.isEndOfStream()) {
-            long j3 = jVar2.f10981e;
+        j jVar = (j) iVar;
+        if (!jVar.isEndOfStream()) {
+            long j3 = jVar.f10981e;
             if (j3 != Long.MIN_VALUE) {
                 long j10 = this.f295g;
                 if (j10 != -9223372036854775807L && j3 < j10) {
-                    jVar2.clear();
-                    this.f290a.add(jVar2);
+                    jVar.clear();
+                    this.f290a.add(jVar);
                     this.d = null;
                 }
             }
         }
         long j11 = this.f294f;
         this.f294f = 1 + j11;
-        jVar2.f288s = j11;
-        this.f292c.add(jVar2);
+        jVar.f288s = j11;
+        this.f292c.add(jVar);
         this.d = null;
     }
 
@@ -114,7 +114,7 @@ public abstract class l implements z3.e {
     public abstract void g(j jVar);
 
     @Override
-    public z3.k c() {
+    public z3.j c() {
         ArrayDeque arrayDeque = this.f291b;
         if (arrayDeque.isEmpty()) {
             return null;
@@ -128,23 +128,23 @@ public abstract class l implements z3.e {
                     boolean isEndOfStream = jVar.isEndOfStream();
                     ArrayDeque arrayDeque3 = this.f290a;
                     if (isEndOfStream) {
-                        z3.k kVar = (z3.k) arrayDeque.pollFirst();
-                        kVar.addFlag(4);
+                        z3.j jVar2 = (z3.j) arrayDeque.pollFirst();
+                        jVar2.addFlag(4);
                         jVar.clear();
                         arrayDeque3.add(jVar);
-                        return kVar;
+                        return jVar2;
                     }
                     g(jVar);
                     if (i()) {
                         m f7 = f();
-                        z3.k kVar2 = (z3.k) arrayDeque.pollFirst();
+                        z3.j jVar3 = (z3.j) arrayDeque.pollFirst();
                         long j3 = jVar.f10981e;
-                        kVar2.timeUs = j3;
-                        kVar2.f52379a = f7;
-                        kVar2.f52380b = j3;
+                        jVar3.timeUs = j3;
+                        jVar3.f52400a = f7;
+                        jVar3.f52401b = j3;
                         jVar.clear();
                         arrayDeque3.add(jVar);
-                        return kVar2;
+                        return jVar3;
                     }
                     jVar.clear();
                     arrayDeque3.add(jVar);

@@ -6,7 +6,7 @@ import android.graphics.Path;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.d6;
-public final class x extends yh.u3 {
+public final class x extends yh.v3 {
     public final Path A0;
     public final float[] B0;
     public final int C0;
@@ -30,7 +30,7 @@ public final class x extends yh.u3 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == this.f52059b) {
+        if (view == this.f52129b) {
             return true;
         }
         return super.drawChild(canvas, view, j3);
@@ -49,7 +49,7 @@ public final class x extends yh.u3 {
     @Override
     public final void invalidate() {
         super.invalidate();
-        z zVar = this.D0.f49909c0;
+        z zVar = this.D0.f49916c0;
         if (zVar != null) {
             zVar.invalidate();
         }
@@ -57,7 +57,7 @@ public final class x extends yh.u3 {
 
     @Override
     public final void j(int i10) {
-        this.D0.f49909c0.setRibbonColor(i10);
+        this.D0.f49916c0.setRibbonColor(i10);
     }
 
     @Override

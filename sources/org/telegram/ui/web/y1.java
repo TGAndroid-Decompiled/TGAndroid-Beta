@@ -9,30 +9,30 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.c71;
-import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.e71;
 import org.telegram.ui.Components.g61;
+import org.telegram.ui.Components.h61;
 import org.telegram.ui.Components.q5;
 import org.telegram.ui.Components.sq;
-import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.w61;
 import org.telegram.ui.Components.zl0;
 import org.telegram.ui.pk;
-public final class y1 extends f61 {
-    public static final int f42427a = 0;
+public final class y1 extends g61 {
+    public static final int f42439a = 0;
 
     static {
-        f61.setup(new f61());
+        g61.setup(new g61());
     }
 
     @Override
-    public final void bindView(View view, g61 g61Var, boolean z10, u61 u61Var, c71 c71Var) {
+    public final void bindView(View view, h61 h61Var, boolean z10, w61 w61Var, e71 e71Var) {
         z1 z1Var = (z1) view;
-        CharSequence charSequence = g61Var.f26676n;
-        String str = (String) g61Var.f26674l;
-        long j3 = g61Var.B;
-        ImageView imageView = z1Var.f42442a;
-        z1Var.f42443b.setText(charSequence);
-        pk pkVar = z1Var.f42444c;
+        CharSequence charSequence = h61Var.f27095n;
+        String str = (String) h61Var.f27093l;
+        long j3 = h61Var.B;
+        ImageView imageView = z1Var.f42454a;
+        z1Var.f42455b.setText(charSequence);
+        pk pkVar = z1Var.f42456c;
         pkVar.setText(str);
         if (TextUtils.isEmpty(charSequence)) {
             pkVar.setTranslationY(-AndroidUtilities.dp(14.0f));
@@ -43,7 +43,7 @@ public final class y1 extends f61 {
             pkVar.setScaleX(1.0f);
             pkVar.setScaleY(1.0f);
         }
-        z1Var.f42445e = str;
+        z1Var.f42457e = str;
         if (TextUtils.isEmpty(charSequence)) {
             if (!str.isEmpty() && !TextUtils.isEmpty(str)) {
                 charSequence = str;
@@ -67,10 +67,10 @@ public final class y1 extends f61 {
             int dp = AndroidUtilities.dp(28.0f);
             int dp2 = AndroidUtilities.dp(28.0f);
             sqVar.h = dp;
-            sqVar.f30860n = dp2;
+            sqVar.f30928n = dp2;
             imageView.setImageDrawable(sqVar);
         }
-        z1Var.f42446f = z10;
+        z1Var.f42458f = z10;
         z1Var.invalidate();
     }
 

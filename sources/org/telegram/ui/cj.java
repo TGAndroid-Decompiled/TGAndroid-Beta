@@ -7,17 +7,17 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SharedConfig;
 public final class cj extends AnimatorListenerAdapter {
-    public final int f35491a = 1;
-    public final boolean f35492b;
-    public int f35493c;
+    public final int f35482a = 1;
+    public final boolean f35483b;
+    public int f35484c;
     public final Object d;
-    public final NotificationCenter.NotificationCenterDelegate f35494e;
+    public final NotificationCenter.NotificationCenterDelegate f35485e;
 
-    public cj(org.telegram.ui.Components.pv0 pv0Var, boolean z10, int i10, org.telegram.ui.Components.iu0 iu0Var) {
-        this.f35494e = pv0Var;
-        this.f35492b = z10;
-        this.f35493c = i10;
-        this.d = iu0Var;
+    public cj(org.telegram.ui.Components.qv0 qv0Var, boolean z10, int i10, org.telegram.ui.Components.ju0 ju0Var) {
+        this.f35485e = qv0Var;
+        this.f35483b = z10;
+        this.f35484c = i10;
+        this.d = ju0Var;
     }
 
     @Override
@@ -26,14 +26,14 @@ public final class cj extends AnimatorListenerAdapter {
         View m10;
         int i10;
         s4.h0 adapter;
-        switch (this.f35491a) {
+        switch (this.f35482a) {
             case 0:
-                yn ynVar = (yn) this.f35494e;
+                yn ynVar = (yn) this.f35485e;
                 ynVar.M5 = true;
                 ((org.telegram.ui.ActionBar.n2) ynVar).fragmentBeginToShow = true;
                 ynVar.T9 = null;
-                if (this.f35492b) {
-                    ynVar.f43381ia = false;
+                if (this.f35483b) {
+                    ynVar.f43374ia = false;
                 }
                 kVar = ((org.telegram.ui.ActionBar.n2) ynVar).actionBar;
                 kVar.invalidate();
@@ -42,53 +42,53 @@ public final class cj extends AnimatorListenerAdapter {
                 ((Runnable) this.d).run();
                 return;
             default:
-                int i11 = this.f35493c;
-                org.telegram.ui.Components.pv0 pv0Var = (org.telegram.ui.Components.pv0) this.f35494e;
-                int[] iArr = pv0Var.f29785m1;
-                org.telegram.ui.Components.iu0[] iu0VarArr = pv0Var.f29782k0;
-                pv0Var.f29790o1 = false;
-                boolean z10 = this.f35492b;
+                int i11 = this.f35484c;
+                org.telegram.ui.Components.qv0 qv0Var = (org.telegram.ui.Components.qv0) this.f35485e;
+                int[] iArr = qv0Var.f30242m1;
+                org.telegram.ui.Components.ju0[] ju0VarArr = qv0Var.f30239k0;
+                qv0Var.f30247o1 = false;
+                boolean z10 = this.f35483b;
                 if (z10) {
-                    int i12 = pv0Var.f29794q1;
+                    int i12 = qv0Var.f30251q1;
                     iArr[i11] = i12;
                     if (i11 == 0) {
                         SharedConfig.setMediaColumnsCount(i12);
-                    } else if (pv0Var.c0(((org.telegram.ui.Components.iu0) this.d).F) >= 5) {
-                        SharedConfig.setStoriesColumnsCount(pv0Var.f29794q1);
+                    } else if (qv0Var.c0(((org.telegram.ui.Components.ju0) this.d).F) >= 5) {
+                        SharedConfig.setStoriesColumnsCount(qv0Var.f30251q1);
                     }
                 }
-                for (int i13 = 0; i13 < iu0VarArr.length; i13++) {
-                    org.telegram.ui.Components.iu0 iu0Var = iu0VarArr[i13];
-                    if (iu0Var != null && iu0Var.h != null && (((i10 = iu0Var.F) == 0 || org.telegram.ui.Components.pv0.p0(i10)) && (adapter = iu0VarArr[i13].h.getAdapter()) != null)) {
+                for (int i13 = 0; i13 < ju0VarArr.length; i13++) {
+                    org.telegram.ui.Components.ju0 ju0Var = ju0VarArr[i13];
+                    if (ju0Var != null && ju0Var.h != null && (((i10 = ju0Var.F) == 0 || org.telegram.ui.Components.qv0.p0(i10)) && (adapter = ju0VarArr[i13].h.getAdapter()) != null)) {
                         int h = adapter.h();
                         if (i13 == 0) {
-                            pv0Var.f29802t1[0].g(false);
+                            qv0Var.f30259t1[0].g(false);
                         }
                         if (z10) {
-                            iu0VarArr[i13].f27510x.y1(iArr[i11]);
-                            iu0VarArr[i13].h.a0();
+                            ju0VarArr[i13].f27980x.y1(iArr[i11]);
+                            ju0VarArr[i13].h.a0();
                             if (adapter.h() == h) {
-                                AndroidUtilities.updateVisibleRows(iu0VarArr[i13].h);
+                                AndroidUtilities.updateVisibleRows(ju0VarArr[i13].h);
                             } else {
                                 adapter.l();
                             }
                         }
-                        iu0VarArr[i13].f27507r.setVisibility(8);
+                        ju0VarArr[i13].f27977r.setVisibility(8);
                     }
                 }
-                if (pv0Var.f29798s >= 0) {
-                    for (int i14 = 0; i14 < iu0VarArr.length; i14++) {
-                        org.telegram.ui.Components.iu0 iu0Var2 = iu0VarArr[i14];
-                        if (iu0Var2.F == pv0Var.f29792p1) {
-                            if (z10 && (m10 = iu0Var2.f27508s.m(pv0Var.f29798s)) != null) {
-                                pv0Var.v = m10.getTop();
+                if (qv0Var.f30255s >= 0) {
+                    for (int i14 = 0; i14 < ju0VarArr.length; i14++) {
+                        org.telegram.ui.Components.ju0 ju0Var2 = ju0VarArr[i14];
+                        if (ju0Var2.F == qv0Var.f30249p1) {
+                            if (z10 && (m10 = ju0Var2.f27978s.m(qv0Var.f30255s)) != null) {
+                                qv0Var.v = m10.getTop();
                             }
-                            org.telegram.ui.Components.iu0 iu0Var3 = iu0VarArr[i14];
-                            iu0Var3.f27510x.h1(pv0Var.f29798s, (-iu0Var3.h.getPaddingTop()) + pv0Var.v);
+                            org.telegram.ui.Components.ju0 ju0Var3 = ju0VarArr[i14];
+                            ju0Var3.f27980x.h1(qv0Var.f30255s, (-ju0Var3.h.getPaddingTop()) + qv0Var.v);
                         }
                     }
                 } else {
-                    pv0Var.X0();
+                    qv0Var.X0();
                 }
                 super.onAnimationEnd(animator);
                 return;
@@ -98,11 +98,11 @@ public final class cj extends AnimatorListenerAdapter {
     @Override
     public void onAnimationStart(Animator animator) {
         int i10;
-        switch (this.f35491a) {
+        switch (this.f35482a) {
             case 0:
                 super.onAnimationStart(animator);
-                i10 = ((org.telegram.ui.ActionBar.n2) ((yn) this.f35494e)).currentAccount;
-                this.f35493c = NotificationCenter.getInstance(i10).setAnimationInProgress(this.f35493c, null);
+                i10 = ((org.telegram.ui.ActionBar.n2) ((yn) this.f35485e)).currentAccount;
+                this.f35484c = NotificationCenter.getInstance(i10).setAnimationInProgress(this.f35484c, null);
                 return;
             default:
                 super.onAnimationStart(animator);
@@ -111,8 +111,8 @@ public final class cj extends AnimatorListenerAdapter {
     }
 
     public cj(yn ynVar, boolean z10, Runnable runnable) {
-        this.f35494e = ynVar;
-        this.f35492b = z10;
+        this.f35485e = ynVar;
+        this.f35483b = z10;
         this.d = runnable;
     }
 }

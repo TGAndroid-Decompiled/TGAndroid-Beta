@@ -10,20 +10,20 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 public final class nr0 implements Runnable {
-    public final int f39035a = 0;
-    public final boolean f39036b;
-    public final boolean f39037c;
+    public final int f39024a = 0;
+    public final boolean f39025b;
+    public final boolean f39026c;
     public final boolean d;
-    public final Object f39038e;
-    public final Serializable f39039f;
+    public final Object f39027e;
+    public final Serializable f39028f;
     public final Object h;
 
     public nr0(ns0 ns0Var, int[] iArr, int[] iArr2, boolean z10, boolean z11, boolean z12) {
-        this.f39038e = ns0Var;
-        this.f39039f = iArr;
+        this.f39027e = ns0Var;
+        this.f39028f = iArr;
         this.h = iArr2;
-        this.f39036b = z10;
-        this.f39037c = z11;
+        this.f39025b = z10;
+        this.f39026c = z11;
         this.d = z12;
     }
 
@@ -33,10 +33,10 @@ public final class nr0 implements Runnable {
         float f7;
         float f10;
         org.telegram.ui.Components.xc xcVar;
-        int i10 = this.f39035a;
+        int i10 = this.f39024a;
         Object obj = this.h;
-        Serializable serializable = this.f39039f;
-        Object obj2 = this.f39038e;
+        Serializable serializable = this.f39028f;
+        Object obj2 = this.f39027e;
         switch (i10) {
             case 0:
                 PhotoViewer photoViewer = (PhotoViewer) obj2;
@@ -47,17 +47,17 @@ public final class nr0 implements Runnable {
                 int i11 = photoViewer.V3;
                 photoViewer.V3 = i11 - 1;
                 String absolutePath = file.getAbsolutePath();
-                boolean z10 = this.f39036b;
+                boolean z10 = this.f39025b;
                 if (z10) {
                     intValue = 0;
                 } else {
                     intValue = ((Integer) imageOrientation.first).intValue();
                 }
                 MediaController.PhotoEntry orientation = new MediaController.PhotoEntry(0, i11, 0L, absolutePath, intValue, z10, 0, 0, 0L).setOrientation(imageOrientation);
-                photoViewer.f33884c2 = 2;
-                photoViewer.f34043u2 = false;
-                photoViewer.d = new zt0(photoViewer, photoViewer.d, messageObject, orientation, this.f39037c, this.d);
-                photoViewer.f33997p1.l();
+                photoViewer.f33897c2 = 2;
+                photoViewer.f34056u2 = false;
+                photoViewer.d = new zt0(photoViewer, photoViewer.d, messageObject, orientation, this.f39026c, this.d);
+                photoViewer.f34010p1.l();
                 if (photoViewer.U6 == null) {
                     photoViewer.U6 = VelocityTracker.obtain();
                 }
@@ -71,18 +71,18 @@ public final class nr0 implements Runnable {
                     photoViewer.S1();
                 }
                 photoViewer.L0.setAlpha(255);
-                photoViewer.f33901e0.setAlpha(1.0f);
+                photoViewer.f33914e0.setAlpha(1.0f);
                 photoViewer.Z1(null, null, null, null, null, null, Collections.singletonList(orientation), 0, null);
                 u5 u5Var = photoViewer.P0;
                 float f11 = 96.0f;
-                if (photoViewer.f34014r1) {
+                if (photoViewer.f34027r1) {
                     f7 = 154.0f;
                 } else {
                     f7 = 96.0f;
                 }
                 u5Var.setTranslationY(AndroidUtilities.dp(f7));
                 ii.z1 z1Var = photoViewer.S0;
-                if (photoViewer.f34014r1) {
+                if (photoViewer.f34027r1) {
                     f10 = 154.0f;
                 } else {
                     f10 = 96.0f;
@@ -91,7 +91,7 @@ public final class nr0 implements Runnable {
                 org.telegram.ui.Components.y7 y7Var = photoViewer.F;
                 y7Var.setTranslationY(-y7Var.getHeight());
                 mu0 mu0Var = photoViewer.Q1;
-                if (photoViewer.f34014r1) {
+                if (photoViewer.f34027r1) {
                     f11 = 154.0f;
                 }
                 mu0Var.setTranslationY(AndroidUtilities.dp(f11));
@@ -106,29 +106,29 @@ public final class nr0 implements Runnable {
                 iArr[0] = i12;
                 int i13 = ((int[]) obj)[0];
                 if (i12 == i13) {
-                    qu0 qu0Var = ns0Var.f39041b.f33901e0;
-                    boolean z11 = this.f39036b;
-                    boolean z12 = this.f39037c;
+                    qu0 qu0Var = ns0Var.f39030b.f33914e0;
+                    boolean z11 = this.f39025b;
+                    boolean z12 = this.f39026c;
                     int i14 = z11 ? 1 : 0;
                     boolean z13 = this.d;
                     if ((z12 ? 1 : 0) + i14 + (z13 ? 1 : 0) > 1) {
                         xcVar = org.telegram.ui.Components.xc.v;
                     } else if (z13) {
                         if (i13 > 1) {
-                            xcVar = org.telegram.ui.Components.xc.f32766s;
+                            xcVar = org.telegram.ui.Components.xc.f32857s;
                         } else {
-                            xcVar = org.telegram.ui.Components.xc.f32765r;
+                            xcVar = org.telegram.ui.Components.xc.f32856r;
                         }
                     } else if (z11) {
                         if (i13 > 1) {
-                            xcVar = org.telegram.ui.Components.xc.f32764n;
+                            xcVar = org.telegram.ui.Components.xc.f32855n;
                         } else {
                             xcVar = org.telegram.ui.Components.xc.h;
                         }
                     } else if (i13 > 1) {
-                        xcVar = org.telegram.ui.Components.xc.f32763f;
+                        xcVar = org.telegram.ui.Components.xc.f32854f;
                     } else {
-                        xcVar = org.telegram.ui.Components.xc.f32762e;
+                        xcVar = org.telegram.ui.Components.xc.f32853e;
                     }
                     new org.telegram.ui.Components.yc(qu0Var, null).m(xcVar, i13, -115203550, -1, null).j();
                     return;
@@ -138,11 +138,11 @@ public final class nr0 implements Runnable {
     }
 
     public nr0(PhotoViewer photoViewer, File file, boolean z10, MessageObject messageObject, boolean z11, boolean z12) {
-        this.f39038e = photoViewer;
-        this.f39039f = file;
-        this.f39036b = z10;
+        this.f39027e = photoViewer;
+        this.f39028f = file;
+        this.f39025b = z10;
         this.h = messageObject;
-        this.f39037c = z11;
+        this.f39026c = z11;
         this.d = z12;
     }
 }

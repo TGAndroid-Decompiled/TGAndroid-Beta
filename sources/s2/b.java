@@ -41,7 +41,7 @@ public final class b extends f implements Handler.Callback {
             handler = new Handler(looper, this);
         }
         this.K = handler;
-        this.I = a.f46482a;
+        this.I = a.f46489a;
         this.L = new l3.a();
         this.R = -9223372036854775807L;
     }
@@ -214,7 +214,7 @@ public final class b extends f implements Handler.Callback {
                         }
                     }
                 } else if (w10 == -5) {
-                    s sVar = (s) yVar.f16645c;
+                    s sVar = (s) yVar.f16650c;
                     sVar.getClass();
                     this.P = sVar.f3568w;
                 }

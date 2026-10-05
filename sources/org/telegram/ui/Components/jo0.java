@@ -19,13 +19,13 @@ public final class jo0 extends gg.i0 {
         int i10 = this.B0;
         super.l();
         org.telegram.ui.dy dyVar = this.K0;
-        if (!dyVar.K0 && (w0Var = dyVar.f30122a0) != null) {
+        if (!dyVar.K0 && (w0Var = dyVar.f30144a0) != null) {
             w0Var.v0(0);
             dyVar.K0 = true;
         }
         if (h() != 0 || i10 == 0 || this.D0 > 0) {
             return;
         }
-        dyVar.f30123b0.e(false, false);
+        dyVar.f30145b0.e(false, false);
     }
 }

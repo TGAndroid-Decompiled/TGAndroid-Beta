@@ -19,6 +19,11 @@ public class b implements a {
 
     @Override
     public int B() {
+        return this.f8346e;
+    }
+
+    @Override
+    public int H() {
         return this.d;
     }
 
@@ -50,11 +55,6 @@ public class b implements a {
         this.f8347f = -1;
         this.h = -1;
         this.f8346e = 536870912;
-    }
-
-    @Override
-    public int x() {
-        return this.f8346e;
     }
 
     public b(d6 d6Var, int i10, float f7) {

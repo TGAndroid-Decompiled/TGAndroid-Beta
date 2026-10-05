@@ -4,7 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 public interface r {
-    byte[] B();
+    h2.b B(byte[] bArr);
+
+    byte[] C();
 
     void I(byte[] bArr, byte[] bArr2);
 
@@ -29,6 +31,4 @@ public interface r {
     boolean r0(String str, byte[] bArr);
 
     void release();
-
-    h2.b y(byte[] bArr);
 }

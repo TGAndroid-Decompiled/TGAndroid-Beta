@@ -17,7 +17,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Cells.s7;
 import org.telegram.ui.Cells.t7;
-import org.telegram.ui.Components.ds0;
+import org.telegram.ui.Components.es0;
 import org.telegram.ui.Components.gl0;
 import org.telegram.ui.Components.zl0;
 import s4.c1;
@@ -77,11 +77,11 @@ public class t extends gl0 {
     }
 
     public final boolean L(int i10) {
-        ds0 ds0Var = this.f3872s.W;
+        es0 es0Var = this.f3872s.W;
         d9 d9Var = this.f3868e;
         if (d9Var != null) {
             if (d9Var instanceof u8) {
-                TLRPC.User user = MessagesController.getInstance(ds0Var.f3892b).getUser(Long.valueOf(ds0Var.d));
+                TLRPC.User user = MessagesController.getInstance(es0Var.f3892b).getUser(Long.valueOf(es0Var.d));
                 if (user != null && user.bot && user.bot_has_main_app && user.bot_can_edit) {
                     return true;
                 }
@@ -173,23 +173,23 @@ public class t extends gl0 {
         int i12;
         int i13;
         if (this.f3868e != null) {
-            View view = c1Var.f46531a;
+            View view = c1Var.f46538a;
             if (!(view instanceof t7)) {
                 return;
             }
             t7 t7Var = (t7) view;
-            t7Var.f23078d0 = true;
+            t7Var.f23081d0 = true;
             u uVar = this.f3872s;
             ArrayList arrayList = this.d;
             if (i10 >= 0 && i10 < arrayList.size()) {
                 k9 k9Var = (k9) arrayList.get(i10);
-                t7Var.f23082f0 = false;
+                t7Var.f23085f0 = false;
                 if (k9Var.K == null) {
                     TL_stories.TL_storyItem tL_storyItem = new TL_stories.TL_storyItem();
                     long j3 = k9Var.f1230a;
                     int i14 = (int) (j3 ^ (j3 >>> 32));
                     tL_storyItem.messageId = i14;
-                    tL_storyItem.f20279id = i14;
+                    tL_storyItem.f20284id = i14;
                     tL_storyItem.attachPath = k9Var.f1234f;
                     MessageObject messageObject = new MessageObject(this.f3868e.f785c, tL_storyItem);
                     k9Var.K = messageObject;
@@ -202,7 +202,7 @@ public class t extends gl0 {
                     i13 = uVar.d;
                 }
                 t7Var.k(messageObject2, i13, false);
-                t7Var.f23078d0 = true;
+                t7Var.f23081d0 = true;
                 t7Var.setReorder(false);
                 t7Var.i(false, false);
                 return;
@@ -215,7 +215,7 @@ public class t extends gl0 {
                 } else {
                     z10 = false;
                 }
-                t7Var.f23082f0 = z10;
+                t7Var.f23085f0 = z10;
                 t7Var.setReorder(true);
                 if (this == this.f3869f) {
                     i12 = uVar.f3877e;
@@ -223,36 +223,36 @@ public class t extends gl0 {
                     i12 = uVar.d;
                 }
                 t7Var.k(messageObject3, i12, false);
-                ds0 ds0Var = uVar.W;
-                if (ds0Var.G.C1 && messageObject3 != null) {
-                    t7Var.i(ds0Var.c(messageObject3), true);
+                es0 es0Var = uVar.W;
+                if (es0Var.G.C1 && messageObject3 != null) {
+                    t7Var.i(es0Var.c(messageObject3), true);
                     return;
                 } else {
                     t7Var.i(false, false);
                     return;
                 }
             }
-            t7Var.f23082f0 = false;
+            t7Var.f23085f0 = false;
             if (this == this.f3869f) {
                 i11 = uVar.f3877e;
             } else {
                 i11 = uVar.d;
             }
             t7Var.k(null, i11, false);
-            t7Var.f23078d0 = true;
+            t7Var.f23081d0 = true;
         }
     }
 
     @Override
     public final c1 x(ViewGroup viewGroup, int i10) {
-        ds0 ds0Var = this.f3872s.W;
+        es0 es0Var = this.f3872s.W;
         if (this.h == null) {
-            this.h = new s7(viewGroup.getContext(), ds0Var.f3893c);
+            this.h = new s7(viewGroup.getContext(), es0Var.f3893c);
         }
-        t7 t7Var = new t7(this.f3867c, this.h, ds0Var.f3892b);
-        t7Var.f23102w0 = true;
+        t7 t7Var = new t7(this.f3867c, this.h, es0Var.f3892b);
+        t7Var.f23105w0 = true;
         t7Var.setGradientView(null);
-        t7Var.f23078d0 = true;
+        t7Var.f23081d0 = true;
         return new c1(t7Var);
     }
 

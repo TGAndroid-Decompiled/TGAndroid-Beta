@@ -12,33 +12,48 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class pi0 implements org.telegram.ui.Components.rk0 {
-    public final org.telegram.ui.ActionBar.n2 f39502a;
-    public final zi0 f39503b;
+    public final org.telegram.ui.ActionBar.n2 f39595a;
+    public final zi0 f39596b;
 
     public pi0(zi0 zi0Var, org.telegram.ui.ActionBar.n2 n2Var) {
-        this.f39503b = zi0Var;
-        this.f39502a = n2Var;
+        this.f39596b = zi0Var;
+        this.f39595a = n2Var;
     }
 
     @Override
-    public final void h(View view, zg.o0 o0Var, boolean z10, boolean z11) {
+    public final boolean B() {
+        return true;
+    }
+
+    @Override
+    public final boolean E() {
+        return false;
+    }
+
+    @Override
+    public final boolean K() {
+        return false;
+    }
+
+    @Override
+    public final void i(View view, zg.m0 m0Var, boolean z10, boolean z11) {
         boolean z12;
         boolean z13;
         TLRPC.TL_availableEffect effect;
-        zg.o0 o0Var2;
+        zg.m0 m0Var2;
         org.telegram.ui.ActionBar.n2 n2Var;
         boolean z14;
         long j3;
         boolean z15;
-        zg.o0 o0Var3;
-        zg.o0 o0Var4 = o0Var;
-        if (o0Var4 != null) {
-            zi0 zi0Var = this.f39503b;
-            ni0 ni0Var = zi0Var.f43807e0;
-            li0 li0Var = zi0Var.f43800a0;
-            int i10 = zi0Var.f43803c;
+        zg.m0 m0Var3;
+        zg.m0 m0Var4 = m0Var;
+        if (m0Var4 != null) {
+            zi0 zi0Var = this.f39596b;
+            ni0 ni0Var = zi0Var.f43810e0;
+            li0 li0Var = zi0Var.f43803a0;
+            int i10 = zi0Var.f43806c;
             if (ni0Var != null) {
-                if (!UserConfig.getInstance(i10).isPremium() && o0Var4.d) {
+                if (!UserConfig.getInstance(i10).isPremium() && m0Var4.d) {
                     z12 = true;
                 } else {
                     z12 = false;
@@ -49,7 +64,7 @@ public final class pi0 implements org.telegram.ui.Components.rk0 {
                     if (messageObject != null) {
                         TLRPC.Message message = messageObject.messageOwner;
                         long j10 = message.effect;
-                        long j11 = o0Var4.f53483c;
+                        long j11 = m0Var4.f53469c;
                         if (j11 == j10) {
                             message.flags2 &= -5;
                             message.effect = 0L;
@@ -69,20 +84,20 @@ public final class pi0 implements org.telegram.ui.Components.rk0 {
                                 z15 = false;
                             }
                             u1Var2.X3(messageObject, l4, z15, false, false, false);
-                            ni0 ni0Var2 = zi0Var.f43807e0;
+                            ni0 ni0Var2 = zi0Var.f43810e0;
                             if (z14) {
-                                o0Var3 = null;
+                                m0Var3 = null;
                             } else {
-                                o0Var3 = o0Var4;
+                                m0Var3 = m0Var4;
                             }
-                            ni0Var2.setSelectedReactionAnimated(o0Var3);
-                            if (zi0Var.f43807e0.getReactionsWindow() != null && zi0Var.f43807e0.getReactionsWindow().f53332m != null) {
-                                zg.x xVar = zi0Var.f43807e0.getReactionsWindow().f53332m;
+                            ni0Var2.setSelectedReactionAnimated(m0Var3);
+                            if (zi0Var.f43810e0.getReactionsWindow() != null && zi0Var.f43810e0.getReactionsWindow().f53560m != null) {
+                                zg.v vVar = zi0Var.f43810e0.getReactionsWindow().f53560m;
                                 if (z14) {
-                                    o0Var4 = null;
+                                    m0Var4 = null;
                                 }
-                                xVar.setSelectedReaction(o0Var4);
-                                zi0Var.f43807e0.getReactionsWindow().f53322a.invalidate();
+                                vVar.setSelectedReaction(m0Var4);
+                                zi0Var.f43810e0.getReactionsWindow().f53550a.invalidate();
                             }
                         } else {
                             j3 = j10;
@@ -106,8 +121,8 @@ public final class pi0 implements org.telegram.ui.Components.rk0 {
                     } else {
                         return;
                     }
-                } else if (zi0Var.f43815l0 != null) {
-                    long j12 = o0Var4.f53483c;
+                } else if (zi0Var.f43818l0 != null) {
+                    long j12 = m0Var4.f53469c;
                     if (j12 == zi0Var.I) {
                         zi0Var.I = 0L;
                         z13 = true;
@@ -134,20 +149,20 @@ public final class pi0 implements org.telegram.ui.Components.rk0 {
                                 o5Var.g(null, true);
                             }
                         }
-                        ni0 ni0Var3 = zi0Var.f43807e0;
+                        ni0 ni0Var3 = zi0Var.f43810e0;
                         if (z13) {
-                            o0Var2 = null;
+                            m0Var2 = null;
                         } else {
-                            o0Var2 = o0Var4;
+                            m0Var2 = m0Var4;
                         }
-                        ni0Var3.setSelectedReactionAnimated(o0Var2);
-                        if (zi0Var.f43807e0.getReactionsWindow() != null && zi0Var.f43807e0.getReactionsWindow().f53332m != null) {
-                            zg.x xVar2 = zi0Var.f43807e0.getReactionsWindow().f53332m;
+                        ni0Var3.setSelectedReactionAnimated(m0Var2);
+                        if (zi0Var.f43810e0.getReactionsWindow() != null && zi0Var.f43810e0.getReactionsWindow().f53560m != null) {
+                            zg.v vVar2 = zi0Var.f43810e0.getReactionsWindow().f53560m;
                             if (z13) {
-                                o0Var4 = null;
+                                m0Var4 = null;
                             }
-                            xVar2.setSelectedReaction(o0Var4);
-                            zi0Var.f43807e0.getReactionsWindow().f53322a.invalidate();
+                            vVar2.setSelectedReaction(m0Var4);
+                            zi0Var.f43810e0.getReactionsWindow().f53550a.invalidate();
                         }
                     }
                     li0Var.c();
@@ -158,11 +173,11 @@ public final class pi0 implements org.telegram.ui.Components.rk0 {
                         if (j13 != 0) {
                             tL_message.flags2 |= 4;
                         }
-                        zi0Var.f43800a0.d(null, 0, null, new MessageObject(i10, tL_message, false, false), 0, false, false, 0.0f, 0.0f, true);
+                        zi0Var.f43803a0.d(null, 0, null, new MessageObject(i10, tL_message, false, false), 0, false, false, 0.0f, 0.0f, true);
                     }
                 }
-                if (z12 && (n2Var = this.f39502a) != null) {
-                    new org.telegram.ui.Components.yc(zi0Var.G, zi0Var.f43801b).Q(R.raw.star_premium_2, 36, AndroidUtilities.premiumText(LocaleController.getString(R.string.AnimatedEffectPremium), new oi0(0, n2Var))).j();
+                if (z12 && (n2Var = this.f39595a) != null) {
+                    new org.telegram.ui.Components.yc(zi0Var.G, zi0Var.f43804b).Q(R.raw.star_premium_2, 36, AndroidUtilities.premiumText(LocaleController.getString(R.string.AnimatedEffectPremium), new oi0(0, n2Var))).j();
                 }
                 zi0Var.H.invalidate();
             }
@@ -170,25 +185,10 @@ public final class pi0 implements org.telegram.ui.Components.rk0 {
     }
 
     @Override
-    public final boolean j() {
-        return true;
+    public final void I() {
     }
 
     @Override
-    public final boolean k() {
-        return false;
-    }
-
-    @Override
-    public final boolean p() {
-        return false;
-    }
-
-    @Override
-    public final void o() {
-    }
-
-    @Override
-    public final void n(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
+    public final void H(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
     }
 }

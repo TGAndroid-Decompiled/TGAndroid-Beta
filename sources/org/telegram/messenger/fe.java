@@ -13,47 +13,47 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
 public final class fe implements Runnable {
-    public final int f17849a = 0;
-    public final int f17850b;
-    public final Object f17851c;
+    public final int f17854a = 0;
+    public final int f17855b;
+    public final Object f17856c;
     public final Collection d;
-    public final Object f17852e;
-    public final Object f17853f;
+    public final Object f17857e;
+    public final Object f17858f;
     public final Object h;
-    public final Object f17854n;
-    public final Object f17855r;
-    public final Object f17856s;
+    public final Object f17859n;
+    public final Object f17860r;
+    public final Object f17861s;
     public final Object v;
 
     public fe(MessagesController messagesController, int i10, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, TLRPC.messages_Dialogs messages_dialogs, ArrayList arrayList4, a0.i iVar, a0.i iVar2, Runnable runnable) {
-        this.f17851c = messagesController;
-        this.f17850b = i10;
+        this.f17856c = messagesController;
+        this.f17855b = i10;
         this.d = arrayList;
-        this.f17852e = arrayList2;
-        this.f17853f = arrayList3;
-        this.f17854n = messages_dialogs;
+        this.f17857e = arrayList2;
+        this.f17858f = arrayList3;
+        this.f17859n = messages_dialogs;
         this.h = arrayList4;
-        this.f17855r = iVar;
-        this.f17856s = iVar2;
+        this.f17860r = iVar;
+        this.f17861s = iVar2;
         this.v = runnable;
     }
 
     @Override
     public final void run() {
         String str;
-        switch (this.f17849a) {
+        switch (this.f17854a) {
             case 0:
-                ((MessagesController) this.f17851c).lambda$processLoadedDialogFilters$22(this.f17850b, (ArrayList) this.d, (ArrayList) this.f17852e, (ArrayList) this.f17853f, (TLRPC.messages_Dialogs) this.f17854n, (ArrayList) this.h, (a0.i) this.f17855r, (a0.i) this.f17856s, (Runnable) this.v);
+                ((MessagesController) this.f17856c).lambda$processLoadedDialogFilters$22(this.f17855b, (ArrayList) this.d, (ArrayList) this.f17857e, (ArrayList) this.f17858f, (TLRPC.messages_Dialogs) this.f17859n, (ArrayList) this.h, (a0.i) this.f17860r, (a0.i) this.f17861s, (Runnable) this.v);
                 return;
             default:
-                int[] iArr = (int[]) this.f17852e;
-                final String[] strArr = (String[]) this.f17853f;
+                int[] iArr = (int[]) this.f17857e;
+                final String[] strArr = (String[]) this.f17858f;
                 final String[] strArr2 = (String[]) this.h;
-                final ci.d dVar = (ci.d) this.f17854n;
-                final org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) this.f17855r;
-                final org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) this.f17856s;
+                final ci.d dVar = (ci.d) this.f17859n;
+                final org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) this.f17860r;
+                final org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) this.f17861s;
                 final int[] iArr2 = (int[]) this.v;
-                String charSequence = ((org.telegram.ui.Cells.j3) this.f17851c).getText().toString();
+                String charSequence = ((org.telegram.ui.Cells.j3) this.f17856c).getText().toString();
                 StringBuilder v = a4.a.v(charSequence);
                 Iterator it = ((Set) this.d).iterator();
                 while (true) {
@@ -68,7 +68,7 @@ public final class fe implements Runnable {
                 v.append(str);
                 final String sb2 = v.toString();
                 int length = sb2.length();
-                int i10 = this.f17850b;
+                int i10 = this.f17855b;
                 if (length < 4) {
                     if (iArr[0] >= 0) {
                         ConnectionsManager.getInstance(i10).cancelRequest(iArr[0], true);
@@ -79,7 +79,7 @@ public final class fe implements Runnable {
                     dVar.setLoading(false);
                     dVar.setEnabled(false);
                     e9Var.setText(LocaleController.getString(R.string.UsernameInvalidShort));
-                    e9Var.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21063q7, d6Var));
+                    e9Var.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21068q7, d6Var));
                     int i11 = -iArr2[0];
                     iArr2[0] = i11;
                     AndroidUtilities.shakeViewSpring(e9Var, i11);
@@ -94,7 +94,7 @@ public final class fe implements Runnable {
                     dVar.setLoading(false);
                     dVar.setEnabled(false);
                     e9Var.setText(LocaleController.getString(R.string.UsernameInvalidLong));
-                    e9Var.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21063q7, d6Var));
+                    e9Var.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21068q7, d6Var));
                     int i12 = -iArr2[0];
                     iArr2[0] = i12;
                     AndroidUtilities.shakeViewSpring(e9Var, i12);
@@ -123,13 +123,13 @@ public final class fe implements Runnable {
                                 strArr3[0] = str2;
                                 dVar2.setEnabled(true);
                                 e9Var2.setText(LocaleController.formatString(R.string.UsernameAvailable, sa.e.i("@", str2)));
-                                e9Var2.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21175w6, d6Var2));
+                                e9Var2.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21180w6, d6Var2));
                                 return;
                             }
                             strArr3[0] = null;
                             dVar2.setEnabled(false);
                             e9Var2.setText(LocaleController.getString(R.string.UsernameInUse));
-                            e9Var2.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21063q7, d6Var2));
+                            e9Var2.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21068q7, d6Var2));
                             int[] iArr3 = iArr2;
                             int i13 = -iArr3[0];
                             iArr3[0] = i13;
@@ -144,15 +144,15 @@ public final class fe implements Runnable {
     }
 
     public fe(org.telegram.ui.Cells.j3 j3Var, Set set, int[] iArr, int i10, String[] strArr, String[] strArr2, ci.d dVar, org.telegram.ui.Cells.e9 e9Var, org.telegram.ui.ActionBar.d6 d6Var, int[] iArr2) {
-        this.f17851c = j3Var;
+        this.f17856c = j3Var;
         this.d = set;
-        this.f17852e = iArr;
-        this.f17850b = i10;
-        this.f17853f = strArr;
+        this.f17857e = iArr;
+        this.f17855b = i10;
+        this.f17858f = strArr;
         this.h = strArr2;
-        this.f17854n = dVar;
-        this.f17855r = e9Var;
-        this.f17856s = d6Var;
+        this.f17859n = dVar;
+        this.f17860r = e9Var;
+        this.f17861s = d6Var;
         this.v = iArr2;
     }
 }

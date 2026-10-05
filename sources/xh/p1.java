@@ -9,38 +9,38 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.e6;
 import org.telegram.ui.Components.tr;
-import org.telegram.ui.xb1;
+import org.telegram.ui.vb1;
 import w7.z5;
 public final class p1 extends FrameLayout {
-    public final xb1 f50172a;
-    public int f50173b;
-    public final e6 f50174c;
+    public final vb1 f50179a;
+    public int f50180b;
+    public final e6 f50181c;
     public final ArrayList d;
-    public final RectF f50175e;
-    public final RectF f50176f;
+    public final RectF f50182e;
+    public final RectF f50183f;
     public final RectF h;
-    public final Paint f50177n;
-    public int f50178r;
+    public final Paint f50184n;
+    public int f50185r;
 
     public p1(Context context) {
         super(context);
         this.d = new ArrayList();
-        this.f50175e = new RectF();
-        this.f50176f = new RectF();
+        this.f50182e = new RectF();
+        this.f50183f = new RectF();
         this.h = new RectF();
-        this.f50177n = new Paint(1);
-        this.f50178r = Integer.MIN_VALUE;
-        xb1 xb1Var = new xb1(this, context, 18);
-        this.f50172a = xb1Var;
-        xb1Var.setClipToPadding(false);
-        xb1Var.setClipChildren(false);
-        xb1Var.setOrientation(0);
-        xb1Var.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(10.0f));
-        addView(xb1Var, z5.e(-2, -1, 1));
+        this.f50184n = new Paint(1);
+        this.f50185r = Integer.MIN_VALUE;
+        vb1 vb1Var = new vb1(this, context, 18);
+        this.f50179a = vb1Var;
+        vb1Var.setClipToPadding(false);
+        vb1Var.setClipChildren(false);
+        vb1Var.setOrientation(0);
+        vb1Var.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(10.0f));
+        addView(vb1Var, z5.e(-2, -1, 1));
         setHorizontalScrollBarEnabled(false);
         setClipToPadding(false);
         setClipChildren(false);
-        this.f50174c = new e6(xb1Var, 0L, 320L, tr.h);
+        this.f50181c = new e6(vb1Var, 0L, 320L, tr.h);
     }
 
     @Override

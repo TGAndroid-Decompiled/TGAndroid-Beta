@@ -16,10 +16,10 @@ public final class q2 implements Runnable {
     public final void run() {
         switch (this.f12586a) {
             case 0:
-                this.f12587b.a2(this.f12588c, this.d);
+                this.f12587b.Z1(this.f12588c, this.d);
                 return;
             default:
-                this.f12587b.i4(this.f12588c, this.d);
+                this.f12587b.h4(this.f12588c, this.d);
                 return;
         }
     }

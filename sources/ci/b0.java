@@ -45,14 +45,14 @@ public final class b0 implements Runnable {
                 return;
             case 1:
                 ii.x3 x3Var = (ii.x3) this.f4726e;
-                View C4 = x3Var.C4(this.f4724b);
-                if (C4 instanceof org.telegram.ui.Cells.p9) {
-                    x3Var.f12782u3.c0(this.f4725c, this.d, (org.telegram.ui.Cells.p9) C4);
+                View B4 = x3Var.B4(this.f4724b);
+                if (B4 instanceof org.telegram.ui.Cells.p9) {
+                    x3Var.f12782u3.c0(this.f4725c, this.d, (org.telegram.ui.Cells.p9) B4);
                     return;
                 }
                 return;
             case 2:
-                ii.x3.M1(((ii.m3) this.f4726e).f12524b, this.f4724b, this.f4725c, this.d);
+                ii.x3.L1(((ii.m3) this.f4726e).f12524b, this.f4724b, this.f4725c, this.d);
                 return;
             default:
                 ((MessagesStorage) this.f4726e).lambda$setMessageSeq$211(this.f4724b, this.f4725c, this.d);

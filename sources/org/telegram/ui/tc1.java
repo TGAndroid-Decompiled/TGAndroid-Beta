@@ -1,82 +1,63 @@
 package org.telegram.ui;
 
-import android.view.MotionEvent;
-import android.widget.Scroller;
-import org.telegram.messenger.Utilities;
-public final class tc1 implements org.telegram.ui.Components.xo0, org.telegram.ui.Components.m20 {
-    public final rd1 f40794a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.ViewGroup;
+public final class tc1 extends AnimatorListenerAdapter {
+    public final int f40849a;
+    public final pd1 f40850b;
 
-    public tc1(rd1 rd1Var) {
-        this.f40794a = rd1Var;
+    public tc1(pd1 pd1Var, int i10) {
+        this.f40849a = i10;
+        this.f40850b = pd1Var;
     }
 
     @Override
-    public void Y(float f7, boolean z10) {
-        rd1 rd1Var = this.f40794a;
-        rd1Var.l1 = f7;
-        rd1Var.k1();
-    }
-
-    @Override
-    public CharSequence getContentDescription() {
-        return null;
-    }
-
-    @Override
-    public boolean onDown(MotionEvent motionEvent) {
-        Scroller scroller = this.f40794a.f40044c;
-        if (scroller != null) {
-            scroller.abortAnimation();
-            return true;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f40849a) {
+            case 0:
+                super.onAnimationEnd(animator);
+                pd1 pd1Var = this.f40850b;
+                pd1Var.f39550x0.invalidate();
+                pd1Var.f39547w0[1].setVisibility(8);
+                pd1Var.f39497c2 = null;
+                return;
+            case 1:
+                this.f40850b.B0 = null;
+                return;
+            case 2:
+                pd1 pd1Var2 = this.f40850b;
+                if (pd1Var2.D0.getTag() == null) {
+                    pd1Var2.D0.setVisibility(4);
+                }
+                pd1Var2.H0 = null;
+                return;
+            case 3:
+                pd1 pd1Var3 = this.f40850b;
+                if (pd1Var3.E0.getTag() == null) {
+                    pd1Var3.E0.setVisibility(4);
+                }
+                pd1Var3.I0 = null;
+                return;
+            case 4:
+                pd1 pd1Var4 = this.f40850b;
+                mc mcVar = pd1Var4.f39514h2;
+                if (mcVar != null) {
+                    if (mcVar.getParent() != null) {
+                        ((ViewGroup) pd1Var4.f39514h2.getParent()).removeView(pd1Var4.f39514h2);
+                    }
+                    pd1Var4.f39514h2 = null;
+                }
+                pd1Var4.f39520j2 = null;
+                super.onAnimationEnd(animator);
+                return;
+            default:
+                pd1 pd1Var5 = this.f40850b;
+                if (!pd1Var5.f39531p1.a()) {
+                    pd1Var5.R1.setVisibility(8);
+                    return;
+                }
+                return;
         }
-        return true;
-    }
-
-    @Override
-    public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        rd1 rd1Var = this.f40794a;
-        Scroller scroller = rd1Var.f40044c;
-        if (scroller != null) {
-            scroller.abortAnimation();
-            rd1Var.f40044c.fling((int) rd1Var.X1, 0, Math.round(-f7), Math.round(f10), 0, (int) rd1Var.W1, 0, Integer.MAX_VALUE);
-            rd1Var.f40100x0.postInvalidate();
-            return true;
-        }
-        return true;
-    }
-
-    @Override
-    public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        rd1 rd1Var = this.f40794a;
-        Scroller scroller = rd1Var.f40044c;
-        if (scroller != null) {
-            scroller.abortAnimation();
-        }
-        rd1Var.X1 = Utilities.clamp(rd1Var.X1 + f7, rd1Var.W1, 0.0f);
-        rd1Var.V0();
-        rd1Var.f40100x0.invalidate();
-        return true;
-    }
-
-    @Override
-    public boolean onSingleTapUp(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public int p0() {
-        return 0;
-    }
-
-    @Override
-    public void B() {
-    }
-
-    @Override
-    public void d1() {
-    }
-
-    @Override
-    public void onLongPress(MotionEvent motionEvent) {
     }
 }

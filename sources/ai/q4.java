@@ -221,7 +221,7 @@ public final class q4 implements Runnable {
                 return;
             case 25:
                 m.r1 r1Var = (m.r1) this.f1543b;
-                r1Var.f15875w = null;
+                r1Var.f15880w = null;
                 r1Var.drawableStateChanged();
                 return;
             case 26:
@@ -236,23 +236,23 @@ public final class q4 implements Runnable {
                 return;
             case 28:
                 org.telegram.ui.Cells.a0 a0Var = (org.telegram.ui.Cells.a0) this.f1543b;
-                if (a0Var.f21775b == null) {
-                    a0Var.f21775b = new androidx.emoji2.text.j(a0Var, 3);
+                if (a0Var.f21779b == null) {
+                    a0Var.f21779b = new androidx.emoji2.text.j(a0Var, 3);
                 }
-                androidx.emoji2.text.j jVar2 = a0Var.f21775b;
-                int i10 = a0Var.f21776c + 1;
-                a0Var.f21776c = i10;
+                androidx.emoji2.text.j jVar2 = a0Var.f21779b;
+                int i10 = a0Var.f21780c + 1;
+                a0Var.f21780c = i10;
                 jVar2.f2522b = i10;
                 a0Var.postDelayed(jVar2, ViewConfiguration.getLongPressTimeout() - ViewConfiguration.getTapTimeout());
                 return;
             default:
                 org.telegram.ui.Cells.v5 v5Var = (org.telegram.ui.Cells.v5) this.f1543b;
-                TextView textView = v5Var.f23558b;
+                TextView textView = v5Var.f23561b;
                 textView.setTag(null);
                 AnimatorSet animatorSet = new AnimatorSet();
                 v5Var.d = animatorSet;
                 Property property = View.ALPHA;
-                animatorSet.playTogether(ObjectAnimator.ofFloat(textView, property, 0.0f), ObjectAnimator.ofFloat(v5Var.f23557a, property, 1.0f));
+                animatorSet.playTogether(ObjectAnimator.ofFloat(textView, property, 0.0f), ObjectAnimator.ofFloat(v5Var.f23560a, property, 1.0f));
                 v5Var.d.setDuration(250L);
                 v5Var.d.setInterpolator(new DecelerateInterpolator());
                 v5Var.d.addListener(new org.telegram.ui.u4(this, 9));

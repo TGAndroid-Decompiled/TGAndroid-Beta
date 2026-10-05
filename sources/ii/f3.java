@@ -40,7 +40,7 @@ public final class f3 implements c6 {
         x3 x3Var = this.f12362a;
         v3 v3Var = x3Var.f12770o3;
         if (i10 == 7) {
-            x3Var.T4(aVar, new TL_iv.pageBlockButtonRow(), 0, 0, false, false);
+            x3Var.S4(aVar, new TL_iv.pageBlockButtonRow(), 0, 0, false, false);
             return;
         }
         x3Var.f12763i4 = null;
@@ -51,9 +51,9 @@ public final class f3 implements c6 {
         }
         if (aVar != null) {
             f6.f(aVar.f12187b, "");
-            View B1 = x3Var.B1(aVar);
-            if (B1 instanceof f6) {
-                ((f6) B1).getEditText().setTextSilently("");
+            View A1 = x3Var.A1(aVar);
+            if (A1 instanceof f6) {
+                ((f6) A1).getEditText().setTextSilently("");
             }
         }
         i2 i2Var2 = x3Var.Q3;
@@ -75,7 +75,7 @@ public final class f3 implements c6 {
                 v3Var.r(1);
                 return;
             case 6:
-                x3Var.v3();
+                x3Var.u3();
                 return;
             default:
                 return;
@@ -88,11 +88,11 @@ public final class f3 implements c6 {
         x3 x3Var = this.f12362a;
         if (z13) {
             if (aVar == null) {
-                aVar = x3Var.Z4();
+                aVar = x3Var.Y4();
             }
             if (aVar != null) {
                 ArrayList arrayList = aVar.f12194k;
-                if (x3Var.f12778s3.indexOf(aVar) >= 0 && !x3.z3(aVar) && !aVar.f12192i) {
+                if (x3Var.f12778s3.indexOf(aVar) >= 0 && !x3.y3(aVar) && !aVar.f12192i) {
                     i2 i2Var = x3Var.Q3;
                     if (i2Var != null) {
                         i2Var.d();
@@ -118,17 +118,17 @@ public final class f3 implements c6 {
                         aVar.f12187b = new TL_iv.pageBlockParagraph();
                         arrayList.add(Long.valueOf(q0.a()));
                     }
-                    x3Var.u4();
+                    x3Var.t4();
                     if (z12 && (x3Var.findFocus() instanceof i1)) {
-                        x3Var.Z1();
+                        x3Var.Y1();
                         i2 i2Var2 = x3Var.Q3;
                         if (i2Var2 != null) {
                             i2Var2.h();
                         }
-                        x3Var.f3(aVar);
+                        x3Var.e3(aVar);
                         return;
                     }
-                    x3Var.f25250f3.N(false);
+                    x3Var.f26034f3.N(false);
                     i2 i2Var3 = x3Var.Q3;
                     if (i2Var3 != null) {
                         i2Var3.h();
@@ -140,6 +140,6 @@ public final class f3 implements c6 {
             }
             return;
         }
-        x3Var.T4(aVar, pageBlock, i10, i11, z10, z11);
+        x3Var.S4(aVar, pageBlock, i10, i11, z10, z11);
     }
 }

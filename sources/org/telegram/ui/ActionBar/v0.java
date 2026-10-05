@@ -46,8 +46,8 @@ import org.telegram.ui.Components.kj0;
 import org.telegram.ui.Components.nj0;
 import org.telegram.ui.Components.q90;
 import org.telegram.ui.Components.qo;
-import org.telegram.ui.Components.t21;
 import org.telegram.ui.Components.tr;
+import org.telegram.ui.Components.u21;
 import org.telegram.ui.vh;
 public class v0 extends FrameLayout {
     public final TextView E;
@@ -69,41 +69,41 @@ public class v0 extends FrameLayout {
     public boolean U;
     public boolean V;
     public ci.j2 W;
-    public FrameLayout f21573a;
-    public int f21574a0;
-    public ActionBarPopupWindow$ActionBarPopupWindowLayout f21575b;
-    public int f21576b0;
-    public final z f21577c;
-    public boolean f21578c0;
+    public FrameLayout f21577a;
+    public int f21578a0;
+    public ActionBarPopupWindow$ActionBarPopupWindowLayout f21579b;
+    public int f21580b0;
+    public final z f21581c;
+    public boolean f21582c0;
     public n1 d;
-    public boolean f21579d0;
-    public ci.h2 f21580e;
-    public boolean f21581e0;
-    public LinearLayout f21582f;
-    public boolean f21583f0;
-    public final ArrayList f21584g0;
+    public boolean f21583d0;
+    public ci.h2 f21584e;
+    public boolean f21585e0;
+    public LinearLayout f21586f;
+    public boolean f21587f0;
+    public final ArrayList f21588g0;
     public TextView h;
-    public int f21585h0;
-    public final AnimationNotificationsLocker f21586i0;
-    public float f21587j0;
-    public float f21588k0;
-    public View f21589l0;
+    public int f21589h0;
+    public final AnimationNotificationsLocker f21590i0;
+    public float f21591j0;
+    public float f21592k0;
+    public View f21593l0;
     public final d6 m0;
-    public CharSequence f21590n;
-    public int f21591n0;
-    public View.OnClickListener f21592o0;
-    public boolean f21593p0;
-    public ah.c f21594q0;
-    public CharSequence f21595r;
-    public dh.e f21596r0;
-    public k0 f21597s;
-    public AnimatorSet f21598s0;
-    public ArrayList f21599t0;
-    public HashMap f21600u0;
+    public CharSequence f21594n;
+    public int f21595n0;
+    public View.OnClickListener f21596o0;
+    public boolean f21597p0;
+    public ah.c f21598q0;
+    public CharSequence f21599r;
+    public dh.e f21600r0;
+    public k0 f21601s;
+    public AnimatorSet f21602s0;
+    public ArrayList f21603t0;
+    public HashMap f21604u0;
     public AnimatorSet v;
-    public View f21601w;
-    public final nj0 f21602x;
-    public int f21603y;
+    public View f21605w;
+    public final nj0 f21606x;
+    public int f21607y;
 
     public v0(Context context, int i10, int i11, boolean z10) {
         this(context, null, i10, i11, z10, null);
@@ -125,24 +125,24 @@ public class v0 extends FrameLayout {
     }
 
     public final t0 A(t0 t0Var) {
-        if (this.f21599t0 == null) {
-            this.f21599t0 = new ArrayList();
+        if (this.f21603t0 == null) {
+            this.f21603t0 = new ArrayList();
         }
-        this.f21599t0.add(t0Var);
-        if (this.f21600u0 == null) {
-            this.f21600u0 = new HashMap();
+        this.f21603t0.add(t0Var);
+        if (this.f21604u0 == null) {
+            this.f21604u0 = new HashMap();
         }
-        this.f21600u0.put(Integer.valueOf(t0Var.f21510b), t0Var);
+        this.f21604u0.put(Integer.valueOf(t0Var.f21514b), t0Var);
         return t0Var;
     }
 
     public final void B(int i10) {
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f21575b;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f21579b;
         if (actionBarPopupWindow$ActionBarPopupWindowLayout != null && actionBarPopupWindow$ActionBarPopupWindowLayout.getBackgroundColor() != i10) {
-            this.f21575b.setBackgroundColor(i10);
+            this.f21579b.setBackgroundColor(i10);
             n1 n1Var = this.d;
             if (n1Var != null && n1Var.isShowing()) {
-                this.f21575b.invalidate();
+                this.f21579b.invalidate();
             }
         }
     }
@@ -151,14 +151,14 @@ public class v0 extends FrameLayout {
         if (!q0Var.h) {
             return;
         }
-        ArrayList arrayList = this.f21584g0;
+        ArrayList arrayList = this.f21588g0;
         arrayList.remove(q0Var);
-        int i10 = this.f21585h0;
+        int i10 = this.f21589h0;
         if (i10 < 0 || i10 > arrayList.size() - 1) {
-            this.f21585h0 = arrayList.size() - 1;
+            this.f21589h0 = arrayList.size() - 1;
         }
         y();
-        this.f21580e.hideActionMode();
+        this.f21584e.hideActionMode();
     }
 
     public final void D() {
@@ -166,9 +166,9 @@ public class v0 extends FrameLayout {
     }
 
     public final void E(ah.c cVar, dh.e eVar) {
-        this.f21594q0 = cVar;
-        this.f21596r0 = eVar;
-        View view = this.f21575b;
+        this.f21598q0 = cVar;
+        this.f21600r0 = eVar;
+        View view = this.f21579b;
         if (view != null && cVar != null) {
             ch.d c10 = cVar.c(view, null, true);
             c10.w(eVar);
@@ -179,14 +179,14 @@ public class v0 extends FrameLayout {
     }
 
     public final void F() {
-        if (this.f21577c == null) {
+        if (this.f21581c == null) {
             return;
         }
         this.G = true;
     }
 
     public final void G(int i10, boolean z10) {
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f21575b;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f21579b;
         if (actionBarPopupWindow$ActionBarPopupWindowLayout != null) {
             j1 j1Var = actionBarPopupWindow$ActionBarPopupWindowLayout.L;
             int childCount = j1Var.getChildCount();
@@ -206,12 +206,12 @@ public class v0 extends FrameLayout {
     }
 
     public final void H(CharSequence charSequence, boolean z10) {
-        this.f21595r = charSequence;
+        this.f21599r = charSequence;
         if (this.h != null) {
-            this.f21579d0 = z10;
-            this.f21580e.setText(charSequence);
+            this.f21583d0 = z10;
+            this.f21584e.setText(charSequence);
             if (!TextUtils.isEmpty(charSequence)) {
-                this.f21580e.setSelection(charSequence.length());
+                this.f21584e.setSelection(charSequence.length());
             }
         }
     }
@@ -231,7 +231,7 @@ public class v0 extends FrameLayout {
     public final void K(int i10) {
         t0 t0Var;
         View findViewWithTag;
-        HashMap hashMap = this.f21600u0;
+        HashMap hashMap = this.f21604u0;
         if (hashMap == null) {
             t0Var = null;
         } else {
@@ -240,10 +240,10 @@ public class v0 extends FrameLayout {
         if (t0Var != null) {
             t0Var.e(0);
         }
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f21575b;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f21579b;
         if (actionBarPopupWindow$ActionBarPopupWindowLayout != null && (findViewWithTag = actionBarPopupWindow$ActionBarPopupWindowLayout.findViewWithTag(Integer.valueOf(i10))) != null && findViewWithTag.getVisibility() != 0) {
             findViewWithTag.setAlpha(0.0f);
-            bi.r(findViewWithTag.animate().alpha(1.0f), tr.f31147f, 150L);
+            bi.r(findViewWithTag.animate().alpha(1.0f), tr.f31215f, 150L);
             findViewWithTag.setVisibility(0);
         }
     }
@@ -265,7 +265,7 @@ public class v0 extends FrameLayout {
         ArrayList arrayList = new ArrayList();
         int i10 = 0;
         while (true) {
-            zVar = this.f21577c;
+            zVar = this.f21581c;
             if (i10 >= zVar.getChildCount()) {
                 break;
             }
@@ -279,25 +279,25 @@ public class v0 extends FrameLayout {
         Property property = View.ALPHA;
         if (tag != null) {
             this.F.setTag(null);
-            AnimatorSet animatorSet = this.f21598s0;
+            AnimatorSet animatorSet = this.f21602s0;
             if (animatorSet != null) {
                 animatorSet.removeAllListeners();
-                this.f21598s0.cancel();
+                this.f21602s0.cancel();
             }
             AnimatorSet animatorSet2 = new AnimatorSet();
-            this.f21598s0 = animatorSet2;
+            this.f21602s0 = animatorSet2;
             q0 q0Var = this.F;
             animatorSet2.playTogether(ObjectAnimator.ofFloat(q0Var, property, q0Var.getAlpha(), 0.0f));
             for (int i11 = 0; i11 < arrayList.size(); i11++) {
                 ((View) arrayList.get(i11)).setAlpha(0.0f);
-                this.f21598s0.playTogether(ObjectAnimator.ofFloat((View) arrayList.get(i11), property, ((View) arrayList.get(i11)).getAlpha(), 1.0f));
+                this.f21602s0.playTogether(ObjectAnimator.ofFloat((View) arrayList.get(i11), property, ((View) arrayList.get(i11)).getAlpha(), 1.0f));
             }
-            this.f21598s0.setDuration(150L);
-            this.f21598s0.addListener(new m0(this, arrayList, 0));
-            this.f21598s0.start();
-            this.f21580e.clearFocus();
+            this.f21602s0.setDuration(150L);
+            this.f21602s0.addListener(new m0(this, arrayList, 0));
+            this.f21602s0.start();
+            this.f21584e.clearFocus();
             setVisibility(0);
-            ArrayList arrayList2 = this.f21584g0;
+            ArrayList arrayList2 = this.f21588g0;
             if (!arrayList2.isEmpty() && this.H != null) {
                 for (int i12 = 0; i12 < arrayList2.size(); i12++) {
                     if (((gg.q0) arrayList2.get(i12)).h) {
@@ -310,7 +310,7 @@ public class v0 extends FrameLayout {
                 f5Var3.m();
             }
             if (z10) {
-                AndroidUtilities.hideKeyboard(this.f21580e);
+                AndroidUtilities.hideKeyboard(this.f21584e);
             }
             zVar.requestLayout();
             requestLayout();
@@ -318,27 +318,27 @@ public class v0 extends FrameLayout {
         }
         this.F.setVisibility(0);
         this.F.setAlpha(0.0f);
-        AnimatorSet animatorSet3 = this.f21598s0;
+        AnimatorSet animatorSet3 = this.f21602s0;
         if (animatorSet3 != null) {
             animatorSet3.removeAllListeners();
-            this.f21598s0.cancel();
+            this.f21602s0.cancel();
         }
         AnimatorSet animatorSet4 = new AnimatorSet();
-        this.f21598s0 = animatorSet4;
+        this.f21602s0 = animatorSet4;
         q0 q0Var2 = this.F;
         animatorSet4.playTogether(ObjectAnimator.ofFloat(q0Var2, property, q0Var2.getAlpha(), 1.0f));
         for (int i13 = 0; i13 < arrayList.size(); i13++) {
-            this.f21598s0.playTogether(ObjectAnimator.ofFloat((View) arrayList.get(i13), property, ((View) arrayList.get(i13)).getAlpha(), 0.0f));
+            this.f21602s0.playTogether(ObjectAnimator.ofFloat((View) arrayList.get(i13), property, ((View) arrayList.get(i13)).getAlpha(), 0.0f));
         }
-        this.f21598s0.setDuration(150L);
-        this.f21598s0.addListener(new m0(this, arrayList, 1));
-        this.f21598s0.start();
+        this.f21602s0.setDuration(150L);
+        this.f21602s0.addListener(new m0(this, arrayList, 1));
+        this.f21602s0.start();
         setVisibility(8);
         m();
-        this.f21580e.setText("");
-        this.f21580e.requestFocus();
+        this.f21584e.setText("");
+        this.f21584e.requestFocus();
         if (z10) {
-            AndroidUtilities.showKeyboard(this.f21580e);
+            AndroidUtilities.showKeyboard(this.f21584e);
         }
         this.F.setTag(1);
         f5 f5Var4 = this.H;
@@ -361,24 +361,24 @@ public class v0 extends FrameLayout {
         n1 n1Var = this.d;
         d6 d6Var = this.m0;
         View view2 = null;
-        if ((n1Var != null && n1Var.isShowing()) || this.f21599t0 == null) {
+        if ((n1Var != null && n1Var.isShowing()) || this.f21603t0 == null) {
             f7 = 8.0f;
         } else {
-            for (int i10 = 0; i10 < this.f21599t0.size(); i10++) {
-                t0 t0Var = (t0) this.f21599t0.get(i10);
+            for (int i10 = 0; i10 < this.f21603t0.size(); i10++) {
+                t0 t0Var = (t0) this.f21603t0.get(i10);
                 t0Var.getClass();
                 o();
-                View view3 = t0Var.f21515i;
+                View view3 = t0Var.f21519i;
                 if (view3 != null) {
-                    this.f21575b.addView(view3);
+                    this.f21579b.addView(view3);
                 } else {
-                    int i11 = t0Var.f21509a;
+                    int i11 = t0Var.f21513a;
                     if (i11 == 0) {
                         f1 f1Var = new f1(0, getContext(), this.m0, false, false);
-                        f1Var.g(t0Var.f21512e, t0Var.f21511c, t0Var.d);
+                        f1Var.g(t0Var.f21516e, t0Var.f21515c, t0Var.d);
                         f1Var.setMinimumWidth(AndroidUtilities.dp(196.0f));
-                        f1Var.setTag(Integer.valueOf(t0Var.f21510b));
-                        this.f21575b.addView(f1Var);
+                        f1Var.setTag(Integer.valueOf(t0Var.f21514b));
+                        this.f21579b.addView(f1Var);
                         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) f1Var.getLayoutParams();
                         if (LocaleController.isRTL) {
                             layoutParams.gravity = 5;
@@ -387,23 +387,23 @@ public class v0 extends FrameLayout {
                         layoutParams.height = AndroidUtilities.dp(48.0f);
                         f1Var.setLayoutParams(layoutParams);
                         f1Var.setOnClickListener(new ai.f2(17, t0Var, this));
-                        Integer num = t0Var.f21519m;
-                        if (num != null && t0Var.f21520n != null) {
-                            f1Var.c(num.intValue(), t0Var.f21520n.intValue());
+                        Integer num = t0Var.f21523m;
+                        if (num != null && t0Var.f21524n != null) {
+                            f1Var.c(num.intValue(), t0Var.f21524n.intValue());
                         }
-                        t0Var.f21515i = f1Var;
+                        t0Var.f21519i = f1Var;
                     } else if (i11 == 1) {
                         k1 k1Var = new k1(getContext(), i6.H8, d6Var);
                         k1Var.setTag(R.id.fit_width_tag, 1);
-                        this.f21575b.a(k1Var, w7.z5.n(-1, 8));
-                        t0Var.f21515i = k1Var;
+                        this.f21579b.a(k1Var, w7.z5.n(-1, 8));
+                        t0Var.f21519i = k1Var;
                     } else if (i11 == 2) {
                         f1 f1Var2 = new f1(0, getContext(), this.m0, false, false);
-                        f1Var2.g(t0Var.f21512e, t0Var.f21511c, t0Var.d);
+                        f1Var2.g(t0Var.f21516e, t0Var.f21515c, t0Var.d);
                         f1Var2.setMinimumWidth(AndroidUtilities.dp(196.0f));
                         f1Var2.setRightIcon(R.drawable.msg_arrowright);
-                        f1Var2.getRightIcon().setVisibility(t0Var.f21518l);
-                        this.f21575b.addView(f1Var2);
+                        f1Var2.getRightIcon().setVisibility(t0Var.f21522l);
+                        this.f21579b.addView(f1Var2);
                         LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams) f1Var2.getLayoutParams();
                         if (LocaleController.isRTL) {
                             layoutParams2.gravity = 5;
@@ -411,14 +411,14 @@ public class v0 extends FrameLayout {
                         layoutParams2.width = -1;
                         layoutParams2.height = AndroidUtilities.dp(48.0f);
                         f1Var2.setLayoutParams(layoutParams2);
-                        f1Var2.G = new g0(this, this.f21575b.b(t0Var.f21514g), 1);
+                        f1Var2.G = new g0(this, this.f21579b.b(t0Var.f21518g), 1);
                         f1Var2.setOnClickListener(new h0(f1Var2, 1));
-                        this.f21575b.f20363c = true;
-                        Integer num2 = t0Var.f21519m;
-                        if (num2 != null && t0Var.f21520n != null) {
-                            f1Var2.c(num2.intValue(), t0Var.f21520n.intValue());
+                        this.f21579b.f20368c = true;
+                        Integer num2 = t0Var.f21523m;
+                        if (num2 != null && t0Var.f21524n != null) {
+                            f1Var2.c(num2.intValue(), t0Var.f21524n.intValue());
                         }
-                        t0Var.f21515i = f1Var2;
+                        t0Var.f21519i = f1Var2;
                     } else if (i11 == 3) {
                         q90 q90Var = new q90(getContext(), null);
                         q90Var.setTag(R.id.fit_width_tag, 1);
@@ -427,27 +427,27 @@ public class v0 extends FrameLayout {
                         q90Var.setTextColor(i6.w0(null, i6.E8, false));
                         q90Var.setMovementMethod(LinkMovementMethod.getInstance());
                         q90Var.setLinkTextColor(i6.w0(null, i6.J6, false));
-                        q90Var.setText(t0Var.f21512e);
+                        q90Var.setText(t0Var.f21516e);
                         q90Var.setMaxWidth(AndroidUtilities.dp(200.0f));
-                        this.f21575b.a(q90Var, w7.z5.p(-1, -2, 0.0f, 0, 0, 8, 0, 0));
-                        t0Var.f21515i = q90Var;
+                        this.f21579b.a(q90Var, w7.z5.p(-1, -2, 0.0f, 0, 0, 8, 0, 0));
+                        t0Var.f21519i = q90Var;
                     }
                 }
-                View view4 = t0Var.f21515i;
+                View view4 = t0Var.f21519i;
                 if (view4 != null) {
-                    view4.setVisibility(t0Var.f21517k);
-                    vh vhVar = t0Var.f21516j;
+                    view4.setVisibility(t0Var.f21521k);
+                    vh vhVar = t0Var.f21520j;
                     if (vhVar != null) {
-                        t0Var.f21515i.setOnClickListener(vhVar);
+                        t0Var.f21519i.setOnClickListener(vhVar);
                     }
                 }
             }
             f7 = 8.0f;
-            this.f21599t0.clear();
+            this.f21603t0.clear();
         }
-        if (this.f21575b != null) {
-            z zVar = this.f21577c;
-            if (zVar == null || !zVar.f21725c || (kVar = zVar.f21724b) == null || kVar.s()) {
+        if (this.f21579b != null) {
+            z zVar = this.f21581c;
+            if (zVar == null || !zVar.f21729c || (kVar = zVar.f21728b) == null || kVar.s()) {
                 q qVar = this.L;
                 if (qVar != null) {
                     AndroidUtilities.cancelRunOnUIThread(qVar);
@@ -458,22 +458,22 @@ public class v0 extends FrameLayout {
                     this.d.d(true);
                     return;
                 }
-                this.f21589l0 = v0Var;
+                this.f21593l0 = v0Var;
                 s0 s0Var = this.Q;
                 if (s0Var != null) {
                     s0Var.e();
                 }
-                if (this.f21575b.getParent() != null) {
-                    ((ViewGroup) this.f21575b.getParent()).removeView(this.f21575b);
+                if (this.f21579b.getParent() != null) {
+                    ((ViewGroup) this.f21579b.getParent()).removeView(this.f21579b);
                 }
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout2 = this.f21575b;
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout2 = this.f21579b;
                 if (view != null) {
                     ?? w5Var = new ci.w5(this, getContext(), view);
                     w5Var.setOrientation(1);
                     frameLayout = new FrameLayout(getContext());
                     frameLayout.setAlpha(0.0f);
                     ViewPropertyAnimator duration = frameLayout.animate().alpha(1.0f).setDuration(100L);
-                    if (this.f21575b.v) {
+                    if (this.f21579b.v) {
                         j3 = 165;
                     } else {
                         j3 = 0;
@@ -483,32 +483,32 @@ public class v0 extends FrameLayout {
                         ((ViewGroup) view.getParent()).removeView(view);
                     }
                     if ((view instanceof f1) || (view instanceof LinearLayout)) {
-                        ah.c cVar = this.f21594q0;
+                        ah.c cVar = this.f21598q0;
                         if (cVar != null) {
-                            ch.d c10 = cVar.c(this.f21575b, null, true);
-                            c10.w(this.f21596r0);
+                            ch.d c10 = cVar.c(this.f21579b, null, true);
+                            c10.w(this.f21600r0);
                             c10.y(AndroidUtilities.dp(12.0f));
                             c10.x(AndroidUtilities.dp(f7));
                             c10.f4633l.f4617e = true;
                             frameLayout.setBackground(c10);
                         } else {
                             Drawable mutate = getContext().getDrawable(R.drawable.popup_fixed_alert2).mutate();
-                            mutate.setColorFilter(new PorterDuffColorFilter(this.f21575b.getBackgroundColor(), PorterDuff.Mode.MULTIPLY));
+                            mutate.setColorFilter(new PorterDuffColorFilter(this.f21579b.getBackgroundColor(), PorterDuff.Mode.MULTIPLY));
                             frameLayout.setBackground(mutate);
                         }
                     }
                     frameLayout.addView(view, w7.z5.c(-2.0f, -1));
                     w5Var.addView(frameLayout, w7.z5.n(-1, -2));
-                    w5Var.addView(this.f21575b, w7.z5.t(-2, -2, 0, 0, -10, 0, 0));
-                    this.f21575b.setTopView(frameLayout);
+                    w5Var.addView(this.f21579b, w7.z5.t(-2, -2, 0, 0, -10, 0, 0));
+                    this.f21579b.setTopView(frameLayout);
                     actionBarPopupWindow$ActionBarPopupWindowLayout = w5Var;
                 } else {
                     actionBarPopupWindow$ActionBarPopupWindowLayout2.setTopView(null);
                     frameLayout = null;
                     actionBarPopupWindow$ActionBarPopupWindowLayout = actionBarPopupWindow$ActionBarPopupWindowLayout2;
                 }
-                if (this.f21594q0 != null) {
-                    b80.U(this.f21575b, i6.l1(0.06f, i6.v0(i6.E8, d6Var)));
+                if (this.f21598q0 != null) {
+                    b80.U(this.f21579b, i6.l1(0.06f, i6.v0(i6.E8, d6Var)));
                 }
                 n1 n1Var3 = new n1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
                 this.d = n1Var3;
@@ -519,7 +519,7 @@ public class v0 extends FrameLayout {
                 }
                 boolean z13 = this.V;
                 if (!z13) {
-                    this.d.f21411b = z13;
+                    this.d.f21415b = z13;
                 }
                 this.d.setOutsideTouchable(true);
                 this.d.setClippingEnabled(true);
@@ -552,7 +552,7 @@ public class v0 extends FrameLayout {
                     }
                 });
                 actionBarPopupWindow$ActionBarPopupWindowLayout.measure(bi.c(40.0f, AndroidUtilities.displaySize.x, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.y, Integer.MIN_VALUE));
-                if (frameLayout != null && frameLayout.getLayoutParams() != null && this.f21575b.getSwipeBack() != null && (childAt = this.f21575b.getSwipeBack().getChildAt(0)) != null && childAt.getMeasuredWidth() > 0) {
+                if (frameLayout != null && frameLayout.getLayoutParams() != null && this.f21579b.getSwipeBack() != null && (childAt = this.f21579b.getSwipeBack().getChildAt(0)) != null && childAt.getMeasuredWidth() > 0) {
                     frameLayout.getLayoutParams().width = AndroidUtilities.dp(16.0f) + childAt.getMeasuredWidth();
                 }
                 this.T = false;
@@ -563,7 +563,7 @@ public class v0 extends FrameLayout {
                     z10 = false;
                 }
                 O(true, z10);
-                j1 j1Var = this.f21575b.L;
+                j1 j1Var = this.f21579b.L;
                 int childCount = j1Var.getChildCount();
                 View view5 = null;
                 for (int i12 = 0; i12 < childCount; i12++) {
@@ -601,11 +601,11 @@ public class v0 extends FrameLayout {
                         }
                     }
                 }
-                if (this.f21575b.getSwipeBack() != null) {
-                    this.f21575b.getSwipeBack().b(false);
+                if (this.f21579b.getSwipeBack() != null) {
+                    this.f21579b.getSwipeBack().b(false);
                 }
                 this.d.h();
-                float f10 = this.f21587j0;
+                float f10 = this.f21591j0;
                 if (f10 > 0.0f) {
                     this.d.c(f10);
                 }
@@ -614,30 +614,30 @@ public class v0 extends FrameLayout {
     }
 
     public final void N() {
-        if (this.f21582f != null) {
-            for (int i10 = 0; i10 < this.f21582f.getChildCount(); i10++) {
-                if (this.f21582f.getChildAt(i10) instanceof u0) {
-                    ((u0) this.f21582f.getChildAt(i10)).a();
+        if (this.f21586f != null) {
+            for (int i10 = 0; i10 < this.f21586f.getChildCount(); i10++) {
+                if (this.f21586f.getChildAt(i10) instanceof u0) {
+                    ((u0) this.f21586f.getChildAt(i10)).a();
                 }
             }
         }
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f21575b;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f21579b;
         d6 d6Var = this.m0;
         if (actionBarPopupWindow$ActionBarPopupWindowLayout != null) {
-            for (int i11 = 0; i11 < this.f21575b.getItemsCount(); i11++) {
-                if (this.f21575b.L.getChildAt(i11) instanceof f1) {
-                    ((f1) this.f21575b.L.getChildAt(i11)).setSelectorColor(i6.v0(i6.I5, d6Var));
+            for (int i11 = 0; i11 < this.f21579b.getItemsCount(); i11++) {
+                if (this.f21579b.L.getChildAt(i11) instanceof f1) {
+                    ((f1) this.f21579b.L.getChildAt(i11)).setSelectorColor(i6.v0(i6.I5, d6Var));
                 }
             }
         }
-        ci.h2 h2Var = this.f21580e;
+        ci.h2 h2Var = this.f21584e;
         if (h2Var != null) {
             int i12 = i6.C8;
             h2Var.setCursorColor(i6.v0(i12, d6Var));
-            this.f21580e.setHintTextColor(i6.v0(i6.D8, d6Var));
-            this.f21580e.setTextColor(i6.v0(i12, d6Var));
-            this.f21580e.setHighlightColor(i6.v0(i6.f21148uf, d6Var));
-            this.f21580e.setHandlesColor(i6.v0(i6.f21165vf, d6Var));
+            this.f21584e.setHintTextColor(i6.v0(i6.D8, d6Var));
+            this.f21584e.setTextColor(i6.v0(i12, d6Var));
+            this.f21584e.setHighlightColor(i6.v0(i6.f21153uf, d6Var));
+            this.f21584e.setHandlesColor(i6.v0(i6.f21170vf, d6Var));
         }
     }
 
@@ -646,9 +646,9 @@ public class v0 extends FrameLayout {
         int i10;
         int i11;
         ScrollView scrollView;
-        z zVar = this.f21577c;
+        z zVar = this.f21581c;
         if (zVar != null) {
-            i11 = zVar.getTop() + (-zVar.f21724b.getMeasuredHeight());
+            i11 = zVar.getTop() + (-zVar.f21728b.getMeasuredHeight());
             i10 = zVar.getPaddingTop();
         } else {
             float scaleY = getScaleY();
@@ -659,18 +659,18 @@ public class v0 extends FrameLayout {
                 f7 = 0.0f;
             }
             i10 = -((int) (measuredHeight - (f7 / scaleY)));
-            i11 = this.f21574a0;
+            i11 = this.f21578a0;
         }
         int i12 = i10 + i11 + this.N;
-        if (z10 && (scrollView = this.f21575b.K) != null) {
+        if (z10 && (scrollView = this.f21579b.K) != null) {
             scrollView.scrollTo(0, 0);
         }
-        View view = this.f21589l0;
+        View view = this.f21593l0;
         if (view == null) {
             view = this;
         }
         if (zVar != null) {
-            k kVar = zVar.f21724b;
+            k kVar = zVar.f21728b;
             if (this.M == 0) {
                 if (z10) {
                     this.d.showAsDropDown(kVar, ((view.getMeasuredWidth() + (zVar.getLeft() + view.getLeft())) - this.d.getContentView().getMeasuredWidth()) + ((int) getTranslationX()) + this.O, i12);
@@ -682,7 +682,7 @@ public class v0 extends FrameLayout {
                 return;
             }
             if (z10) {
-                if (this.f21581e0) {
+                if (this.f21585e0) {
                     this.d.showAtLocation(kVar, 51, (getLeft() - AndroidUtilities.dp(8.0f)) + ((int) getTranslationX()) + this.O, i12);
                 } else {
                     this.d.showAsDropDown(kVar, (getLeft() - AndroidUtilities.dp(8.0f)) + ((int) getTranslationX()) + this.O, i12);
@@ -699,25 +699,25 @@ public class v0 extends FrameLayout {
             if (getParent() != null) {
                 View view2 = (View) getParent();
                 if (z10) {
-                    this.d.showAsDropDown(view2, ((getMeasuredWidth() + getLeft()) - this.d.getContentView().getMeasuredWidth()) + this.f21576b0 + this.O, i12);
+                    this.d.showAsDropDown(view2, ((getMeasuredWidth() + getLeft()) - this.d.getContentView().getMeasuredWidth()) + this.f21580b0 + this.O, i12);
                 }
                 if (z11) {
-                    this.d.update(view2, ((getMeasuredWidth() + getLeft()) - this.d.getContentView().getMeasuredWidth()) + this.f21576b0 + this.O, i12, -1, -1);
+                    this.d.update(view2, ((getMeasuredWidth() + getLeft()) - this.d.getContentView().getMeasuredWidth()) + this.f21580b0 + this.O, i12, -1, -1);
                 }
             }
         } else if (i13 == 1) {
             if (z10) {
-                this.d.showAsDropDown(this, (-AndroidUtilities.dp(8.0f)) + this.f21576b0 + this.O, i12);
+                this.d.showAsDropDown(this, (-AndroidUtilities.dp(8.0f)) + this.f21580b0 + this.O, i12);
             }
             if (z11) {
-                this.d.update(this, (-AndroidUtilities.dp(8.0f)) + this.f21576b0 + this.O, i12, -1, -1);
+                this.d.update(this, (-AndroidUtilities.dp(8.0f)) + this.f21580b0 + this.O, i12, -1, -1);
             }
         } else {
             if (z10) {
-                this.d.showAsDropDown(this, (getMeasuredWidth() - this.d.getContentView().getMeasuredWidth()) + this.f21576b0 + this.O, i12);
+                this.d.showAsDropDown(this, (getMeasuredWidth() - this.d.getContentView().getMeasuredWidth()) + this.f21580b0 + this.O, i12);
             }
             if (z11) {
-                this.d.update(this, (getMeasuredWidth() - this.d.getContentView().getMeasuredWidth()) + this.f21576b0 + this.O, i12, -1, -1);
+                this.d.update(this, (getMeasuredWidth() - this.d.getContentView().getMeasuredWidth()) + this.f21580b0 + this.O, i12, -1, -1);
             }
         }
     }
@@ -729,7 +729,7 @@ public class v0 extends FrameLayout {
             k1Var.setTag(Integer.valueOf(i10));
         }
         k1Var.setTag(R.id.fit_width_tag, 1);
-        this.f21575b.a(k1Var, w7.z5.n(-1, 8));
+        this.f21579b.a(k1Var, w7.z5.n(-1, 8));
         return k1Var;
     }
 
@@ -738,7 +738,7 @@ public class v0 extends FrameLayout {
         TextView textView = new TextView(getContext());
         textView.setBackgroundColor(i10);
         textView.setMinimumWidth(AndroidUtilities.dp(196.0f));
-        this.f21575b.addView(textView);
+        this.f21579b.addView(textView);
         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) textView.getLayoutParams();
         layoutParams.width = -1;
         layoutParams.height = 1;
@@ -755,7 +755,7 @@ public class v0 extends FrameLayout {
         f1Var.g(charSequence, i11, drawable);
         f1Var.setMinimumWidth(AndroidUtilities.dp(196.0f));
         f1Var.setTag(Integer.valueOf(i10));
-        this.f21575b.addView(f1Var);
+        this.f21579b.addView(f1Var);
         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) f1Var.getLayoutParams();
         if (LocaleController.isRTL) {
             layoutParams.gravity = 5;
@@ -769,7 +769,7 @@ public class v0 extends FrameLayout {
 
     @Override
     public final void draw(Canvas canvas) {
-        if (this.f21593p0) {
+        if (this.f21597p0) {
             getBackground().draw(canvas);
         }
         super.draw(canvas);
@@ -800,7 +800,7 @@ public class v0 extends FrameLayout {
         textView.setEllipsize(TextUtils.TruncateAt.END);
         textView.setTag(Integer.valueOf(i10));
         textView.setText(charSequence);
-        this.f21575b.addView(textView);
+        this.f21579b.addView(textView);
         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) textView.getLayoutParams();
         if (LocaleController.isRTL) {
             layoutParams.gravity = 5;
@@ -812,7 +812,7 @@ public class v0 extends FrameLayout {
     }
 
     public View getContentView() {
-        nj0 nj0Var = this.f21602x;
+        nj0 nj0Var = this.f21606x;
         if (nj0Var != null) {
             return nj0Var;
         }
@@ -820,22 +820,22 @@ public class v0 extends FrameLayout {
     }
 
     public nj0 getIconView() {
-        return this.f21602x;
+        return this.f21606x;
     }
 
     public View.OnClickListener getOnClickListener() {
-        return this.f21592o0;
+        return this.f21596o0;
     }
 
     public ActionBarPopupWindow$ActionBarPopupWindowLayout getPopupLayout() {
-        if (this.f21575b == null) {
+        if (this.f21579b == null) {
             o();
         }
-        return this.f21575b;
+        return this.f21579b;
     }
 
     public ImageView getSearchClearButton() {
-        return this.f21597s;
+        return this.f21601s;
     }
 
     public FrameLayout getSearchContainer() {
@@ -844,7 +844,7 @@ public class v0 extends FrameLayout {
 
     public EditTextBoldCursor getSearchField() {
         k();
-        return this.f21580e;
+        return this.f21584e;
     }
 
     public TextView getTextView() {
@@ -853,8 +853,8 @@ public class v0 extends FrameLayout {
 
     public int getVisibleSubItemsCount() {
         int i10 = 0;
-        for (int i11 = 0; i11 < this.f21575b.getItemsCount(); i11++) {
-            View childAt = this.f21575b.L.getChildAt(i11);
+        for (int i11 = 0; i11 < this.f21579b.getItemsCount(); i11++) {
+            View childAt = this.f21579b.L.getChildAt(i11);
             if (childAt != null && childAt.getVisibility() == 0) {
                 i10++;
             }
@@ -865,19 +865,19 @@ public class v0 extends FrameLayout {
     public final void h(org.telegram.ui.Cells.k kVar, int i10) {
         o();
         kVar.setLayoutParams(new LinearLayout.LayoutParams(-2, i10));
-        this.f21575b.addView(kVar);
+        this.f21579b.addView(kVar);
         kVar.setTag(8);
         kVar.setOnClickListener(new b0(this, 1));
         kVar.setBackgroundDrawable(i6.K0(false));
     }
 
-    public final f1 i(int i10, t21 t21Var, String str, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
+    public final f1 i(int i10, u21 u21Var, String str, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
         o();
         f1 f1Var = new f1(0, getContext(), this.m0, false, false);
-        f1Var.g(str, i10, t21Var);
+        f1Var.g(str, i10, u21Var);
         f1Var.setMinimumWidth(AndroidUtilities.dp(196.0f));
         f1Var.setRightIcon(R.drawable.msg_arrowright);
-        this.f21575b.addView(f1Var);
+        this.f21579b.addView(f1Var);
         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) f1Var.getLayoutParams();
         if (LocaleController.isRTL) {
             layoutParams.gravity = 5;
@@ -885,9 +885,9 @@ public class v0 extends FrameLayout {
         layoutParams.width = -1;
         layoutParams.height = AndroidUtilities.dp(48.0f);
         f1Var.setLayoutParams(layoutParams);
-        f1Var.G = new g0(this, this.f21575b.b(actionBarPopupWindow$ActionBarPopupWindowLayout), 0);
+        f1Var.G = new g0(this, this.f21579b.b(actionBarPopupWindow$ActionBarPopupWindowLayout), 0);
         f1Var.setOnClickListener(new h0(f1Var, 0));
-        this.f21575b.f20363c = true;
+        this.f21579b.f20368c = true;
         return f1Var;
     }
 
@@ -895,48 +895,48 @@ public class v0 extends FrameLayout {
         f5 f5Var;
         TextView textView;
         f5 f5Var2;
-        if (this.f21597s != null) {
+        if (this.f21601s != null) {
             boolean p5 = p();
             Property property = View.ROTATION;
             Property property2 = View.SCALE_Y;
             Property property3 = View.SCALE_X;
             Property property4 = View.ALPHA;
-            if (!p5 && TextUtils.isEmpty(this.f21580e.getText()) && (((f5Var = this.H) == null || !f5Var.f()) && ((textView = this.h) == null || textView.getVisibility() != 0 || ((f5Var2 = this.H) != null && !f5Var2.r())))) {
-                if (this.f21597s.getTag() != null) {
-                    this.f21597s.setTag(null);
+            if (!p5 && TextUtils.isEmpty(this.f21584e.getText()) && (((f5Var = this.H) == null || !f5Var.f()) && ((textView = this.h) == null || textView.getVisibility() != 0 || ((f5Var2 = this.H) != null && !f5Var2.r())))) {
+                if (this.f21601s.getTag() != null) {
+                    this.f21601s.setTag(null);
                     AnimatorSet animatorSet = this.v;
                     if (animatorSet != null) {
                         animatorSet.cancel();
                     }
-                    if (this.f21579d0) {
+                    if (this.f21583d0) {
                         AnimatorSet duration = new AnimatorSet().setDuration(180L);
                         duration.setInterpolator(new DecelerateInterpolator());
                         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                            public final v0 f20514b;
+                            public final v0 f20519b;
 
                             {
-                                this.f20514b = this;
+                                this.f20519b = this;
                             }
 
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                                 switch (r2) {
                                     case 0:
-                                        v0 v0Var = this.f20514b;
+                                        v0 v0Var = this.f20519b;
                                         v0Var.getClass();
                                         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                        View view = v0Var.f21601w;
+                                        View view = v0Var.f21605w;
                                         if (view != null) {
                                             view.setTranslationX(AndroidUtilities.dp(32.0f) * floatValue);
                                             return;
                                         }
                                         return;
                                     default:
-                                        v0 v0Var2 = this.f20514b;
+                                        v0 v0Var2 = this.f20519b;
                                         v0Var2.getClass();
                                         float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                        View view2 = v0Var2.f21601w;
+                                        View view2 = v0Var2.f21605w;
                                         if (view2 != null) {
                                             view2.setTranslationX(AndroidUtilities.dp(32.0f) * floatValue2);
                                             return;
@@ -945,55 +945,55 @@ public class v0 extends FrameLayout {
                                 }
                             }
                         });
-                        duration.playTogether(ObjectAnimator.ofFloat(this.f21597s, property4, 0.0f), ObjectAnimator.ofFloat(this.f21597s, property3, 0.0f), ObjectAnimator.ofFloat(this.f21597s, property2, 0.0f), ObjectAnimator.ofFloat(this.f21597s, property, 45.0f), ofFloat);
+                        duration.playTogether(ObjectAnimator.ofFloat(this.f21601s, property4, 0.0f), ObjectAnimator.ofFloat(this.f21601s, property3, 0.0f), ObjectAnimator.ofFloat(this.f21601s, property2, 0.0f), ObjectAnimator.ofFloat(this.f21601s, property, 45.0f), ofFloat);
                         duration.addListener(new l0(this, 0));
                         duration.start();
                         this.v = duration;
                         return;
                     }
-                    this.f21597s.setAlpha(0.0f);
-                    this.f21597s.setRotation(45.0f);
-                    this.f21597s.setScaleX(0.0f);
-                    this.f21597s.setScaleY(0.0f);
-                    this.f21597s.setVisibility(4);
-                    this.f21579d0 = true;
+                    this.f21601s.setAlpha(0.0f);
+                    this.f21601s.setRotation(45.0f);
+                    this.f21601s.setScaleX(0.0f);
+                    this.f21601s.setScaleY(0.0f);
+                    this.f21601s.setVisibility(4);
+                    this.f21583d0 = true;
                 }
-            } else if (this.f21597s.getTag() == null) {
-                this.f21597s.setTag(1);
+            } else if (this.f21601s.getTag() == null) {
+                this.f21601s.setTag(1);
                 AnimatorSet animatorSet2 = this.v;
                 if (animatorSet2 != null) {
                     animatorSet2.cancel();
                 }
-                this.f21597s.setVisibility(0);
-                if (this.f21579d0) {
+                this.f21601s.setVisibility(0);
+                if (this.f21583d0) {
                     AnimatorSet duration2 = new AnimatorSet().setDuration(180L);
                     duration2.setInterpolator(new DecelerateInterpolator());
                     ValueAnimator ofFloat2 = ValueAnimator.ofFloat(1.0f, 0.0f);
                     ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                        public final v0 f20514b;
+                        public final v0 f20519b;
 
                         {
-                            this.f20514b = this;
+                            this.f20519b = this;
                         }
 
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                             switch (r2) {
                                 case 0:
-                                    v0 v0Var = this.f20514b;
+                                    v0 v0Var = this.f20519b;
                                     v0Var.getClass();
                                     float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                    View view = v0Var.f21601w;
+                                    View view = v0Var.f21605w;
                                     if (view != null) {
                                         view.setTranslationX(AndroidUtilities.dp(32.0f) * floatValue);
                                         return;
                                     }
                                     return;
                                 default:
-                                    v0 v0Var2 = this.f20514b;
+                                    v0 v0Var2 = this.f20519b;
                                     v0Var2.getClass();
                                     float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                    View view2 = v0Var2.f21601w;
+                                    View view2 = v0Var2.f21605w;
                                     if (view2 != null) {
                                         view2.setTranslationX(AndroidUtilities.dp(32.0f) * floatValue2);
                                         return;
@@ -1002,21 +1002,21 @@ public class v0 extends FrameLayout {
                             }
                         }
                     });
-                    duration2.playTogether(ObjectAnimator.ofFloat(this.f21597s, property4, 1.0f), ObjectAnimator.ofFloat(this.f21597s, property3, 1.0f), ObjectAnimator.ofFloat(this.f21597s, property2, 1.0f), ObjectAnimator.ofFloat(this.f21597s, property, 0.0f), ofFloat2);
+                    duration2.playTogether(ObjectAnimator.ofFloat(this.f21601s, property4, 1.0f), ObjectAnimator.ofFloat(this.f21601s, property3, 1.0f), ObjectAnimator.ofFloat(this.f21601s, property2, 1.0f), ObjectAnimator.ofFloat(this.f21601s, property, 0.0f), ofFloat2);
                     duration2.addListener(new l0(this, 1));
                     duration2.start();
                     this.v = duration2;
                     return;
                 }
-                this.f21597s.setAlpha(1.0f);
-                this.f21597s.setRotation(0.0f);
-                this.f21597s.setScaleX(1.0f);
-                this.f21597s.setScaleY(1.0f);
-                View view = this.f21601w;
+                this.f21601s.setAlpha(1.0f);
+                this.f21601s.setRotation(0.0f);
+                this.f21601s.setScaleX(1.0f);
+                this.f21601s.setScaleY(1.0f);
+                View view = this.f21605w;
                 if (view != null) {
                     view.setTranslationX(0.0f);
                 }
-                this.f21579d0 = true;
+                this.f21583d0 = true;
             }
         }
     }
@@ -1027,16 +1027,16 @@ public class v0 extends FrameLayout {
         if (this.F == null && this.G) {
             q0 q0Var = new q0(this, getContext(), 0);
             this.F = q0Var;
-            if (this.f21591n0 != 0) {
+            if (this.f21595n0 != 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             q0Var.setClipChildren(z10);
-            this.f21573a = null;
+            this.f21577a = null;
             q0 q0Var2 = this.F;
-            LinearLayout.LayoutParams m10 = w7.z5.m(1.0f, 0, -1, this.f21591n0 + 6, 0, 0);
-            z zVar = this.f21577c;
+            LinearLayout.LayoutParams m10 = w7.z5.m(1.0f, 0, -1, this.f21595n0 + 6, 0, 0);
+            z zVar = this.f21581c;
             zVar.addView(q0Var2, 0, m10);
             this.F.setVisibility(8);
             TextView textView = new TextView(getContext());
@@ -1057,30 +1057,30 @@ public class v0 extends FrameLayout {
             }
             textView3.setGravity(i10);
             ci.h2 h2Var = new ci.h2(this, getContext(), 2);
-            this.f21580e = h2Var;
+            this.f21584e = h2Var;
             h2Var.setScrollContainer(false);
-            this.f21580e.setCursorWidth(1.5f);
-            this.f21580e.setCursorColor(i6.v0(i11, d6Var));
-            this.f21580e.setTextSize(1, 18.0f);
-            this.f21580e.setHintTextColor(i6.v0(i6.D8, d6Var));
-            this.f21580e.setTextColor(i6.v0(i11, d6Var));
-            this.f21580e.setSingleLine(true);
-            this.f21580e.setBackgroundResource(0);
-            this.f21580e.setPadding(0, 0, 0, 0);
-            this.f21580e.setInputType(this.f21580e.getInputType() | 524288);
+            this.f21584e.setCursorWidth(1.5f);
+            this.f21584e.setCursorColor(i6.v0(i11, d6Var));
+            this.f21584e.setTextSize(1, 18.0f);
+            this.f21584e.setHintTextColor(i6.v0(i6.D8, d6Var));
+            this.f21584e.setTextColor(i6.v0(i11, d6Var));
+            this.f21584e.setSingleLine(true);
+            this.f21584e.setBackgroundResource(0);
+            this.f21584e.setPadding(0, 0, 0, 0);
+            this.f21584e.setInputType(this.f21584e.getInputType() | 524288);
             if (Build.VERSION.SDK_INT < 23) {
-                this.f21580e.setCustomSelectionActionModeCallback(new ii.d1(1));
+                this.f21584e.setCustomSelectionActionModeCallback(new ii.d1(1));
             }
-            this.f21580e.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            this.f21584e.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                 @Override
                 public final boolean onEditorAction(TextView textView4, int i12, KeyEvent keyEvent) {
                     if (keyEvent != null) {
                         if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
                             v0 v0Var = v0.this;
-                            AndroidUtilities.hideKeyboard(v0Var.f21580e);
+                            AndroidUtilities.hideKeyboard(v0Var.f21584e);
                             f5 f5Var = v0Var.H;
                             if (f5Var != null) {
-                                f5Var.p(v0Var.f21580e);
+                                f5Var.p(v0Var.f21584e);
                                 return false;
                             }
                             return false;
@@ -1090,48 +1090,48 @@ public class v0 extends FrameLayout {
                     return false;
                 }
             });
-            this.f21580e.addTextChangedListener(new j0(this));
-            this.f21580e.setImeOptions(234881027);
-            this.f21580e.setTextIsSelectable(false);
-            this.f21580e.setHighlightColor(i6.v0(i6.f21148uf, d6Var));
-            this.f21580e.setHandlesColor(i6.v0(i6.f21165vf, d6Var));
-            CharSequence charSequence = this.f21590n;
+            this.f21584e.addTextChangedListener(new j0(this));
+            this.f21584e.setImeOptions(234881027);
+            this.f21584e.setTextIsSelectable(false);
+            this.f21584e.setHighlightColor(i6.v0(i6.f21153uf, d6Var));
+            this.f21584e.setHandlesColor(i6.v0(i6.f21170vf, d6Var));
+            CharSequence charSequence = this.f21594n;
             if (charSequence != null) {
-                this.f21580e.setHint(charSequence);
-                setContentDescription(this.f21590n);
+                this.f21584e.setHint(charSequence);
+                setContentDescription(this.f21594n);
             }
-            CharSequence charSequence2 = this.f21595r;
+            CharSequence charSequence2 = this.f21599r;
             if (charSequence2 != null) {
-                this.f21580e.setText(charSequence2);
+                this.f21584e.setText(charSequence2);
             }
             LinearLayout linearLayout = new LinearLayout(getContext());
-            this.f21582f = linearLayout;
+            this.f21586f = linearLayout;
             linearLayout.setOrientation(0);
-            this.f21582f.setVisibility(0);
+            this.f21586f.setVisibility(0);
             if (!LocaleController.isRTL) {
                 this.F.addView(this.h, w7.z5.d(-2, 36.0f, 19, 0.0f, 5.5f, 0.0f, 0.0f));
-                this.F.addView(this.f21580e, w7.z5.d(-1, 36.0f, 16, 6.0f, 0.0f, 48.0f, 0.0f));
-                this.F.addView(this.f21582f, w7.z5.d(-2, 32.0f, 16, 0.0f, 0.0f, 48.0f, 0.0f));
+                this.F.addView(this.f21584e, w7.z5.d(-1, 36.0f, 16, 6.0f, 0.0f, 48.0f, 0.0f));
+                this.F.addView(this.f21586f, w7.z5.d(-2, 32.0f, 16, 0.0f, 0.0f, 48.0f, 0.0f));
             } else {
-                this.F.addView(this.f21582f, w7.z5.d(-2, 32.0f, 16, 0.0f, 0.0f, 48.0f, 0.0f));
-                this.F.addView(this.f21580e, w7.z5.d(-1, 36.0f, 16, 0.0f, 0.0f, 48.0f, 0.0f));
+                this.F.addView(this.f21586f, w7.z5.d(-2, 32.0f, 16, 0.0f, 0.0f, 48.0f, 0.0f));
+                this.F.addView(this.f21584e, w7.z5.d(-1, 36.0f, 16, 0.0f, 0.0f, 48.0f, 0.0f));
                 this.F.addView(this.h, w7.z5.d(-2, 36.0f, 21, 0.0f, 5.5f, 48.0f, 0.0f));
             }
-            this.f21582f.setClipChildren(false);
+            this.f21586f.setClipChildren(false);
             k0 k0Var = new k0(this, getContext(), 0);
-            this.f21597s = k0Var;
+            this.f21601s = k0Var;
             ci.j2 j2Var = new ci.j2(1, this);
             this.W = j2Var;
             k0Var.setImageDrawable(j2Var);
-            this.f21597s.setBackground(i6.f0(zVar.f21724b.f21287q0, 1, -1));
-            this.f21597s.setScaleType(ImageView.ScaleType.CENTER);
-            this.f21597s.setAlpha(0.0f);
-            this.f21597s.setRotation(45.0f);
-            this.f21597s.setScaleX(0.0f);
-            this.f21597s.setScaleY(0.0f);
-            this.f21597s.setOnClickListener(new b0(this, 0));
-            this.f21597s.setContentDescription(LocaleController.getString(R.string.ClearButton));
-            this.F.addView(this.f21597s, w7.z5.e(48, -1, 21));
+            this.f21601s.setBackground(i6.f0(zVar.f21728b.f21292q0, 1, -1));
+            this.f21601s.setScaleType(ImageView.ScaleType.CENTER);
+            this.f21601s.setAlpha(0.0f);
+            this.f21601s.setRotation(45.0f);
+            this.f21601s.setScaleX(0.0f);
+            this.f21601s.setScaleY(0.0f);
+            this.f21601s.setOnClickListener(new b0(this, 0));
+            this.f21601s.setContentDescription(LocaleController.getString(R.string.ClearButton));
+            this.F.addView(this.f21601s, w7.z5.e(48, -1, 21));
         }
     }
 
@@ -1139,8 +1139,8 @@ public class v0 extends FrameLayout {
         int i10 = 0;
         int i11 = 0;
         while (true) {
-            if (i11 < this.f21575b.getItemsCount()) {
-                if (this.f21575b.L.getChildAt(i11).getVisibility() == 0) {
+            if (i11 < this.f21579b.getItemsCount()) {
+                if (this.f21579b.L.getChildAt(i11).getVisibility() == 0) {
                     break;
                 }
                 i11++;
@@ -1157,7 +1157,7 @@ public class v0 extends FrameLayout {
     public final void m() {
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.f21584g0;
+            ArrayList arrayList = this.f21588g0;
             if (i10 < arrayList.size()) {
                 if (((gg.q0) arrayList.get(i10)).h) {
                     arrayList.remove(i10);
@@ -1179,22 +1179,22 @@ public class v0 extends FrameLayout {
     }
 
     public final void o() {
-        if (this.f21575b != null) {
+        if (this.f21579b != null) {
             return;
         }
         this.I = new Rect();
         this.J = new int[2];
         ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(R.drawable.popup_fixed_alert4, 1, getContext(), this.m0);
-        this.f21575b = actionBarPopupWindow$ActionBarPopupWindowLayout;
-        ah.c cVar = this.f21594q0;
+        this.f21579b = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        ah.c cVar = this.f21598q0;
         if (cVar != null) {
             ch.d c10 = cVar.c(actionBarPopupWindow$ActionBarPopupWindowLayout, null, true);
-            c10.w(this.f21596r0);
+            c10.w(this.f21600r0);
             c10.y(AndroidUtilities.dp(12.0f));
             c10.x(AndroidUtilities.dp(8.0f));
             actionBarPopupWindow$ActionBarPopupWindowLayout.setBackground(c10);
         }
-        this.f21575b.setOnTouchListener(new View.OnTouchListener() {
+        this.f21579b.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
                 n1 n1Var;
@@ -1211,13 +1211,13 @@ public class v0 extends FrameLayout {
                 return false;
             }
         });
-        this.f21575b.setDispatchKeyEventListener(new p(this, 1));
+        this.f21579b.setDispatchKeyEventListener(new p(this, 1));
     }
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.f21602x != null) {
+        if (this.f21606x != null) {
             accessibilityNodeInfo.setClassName("android.widget.ImageButton");
             return;
         }
@@ -1249,13 +1249,13 @@ public class v0 extends FrameLayout {
         n1 n1Var2;
         n1 n1Var3;
         if (motionEvent.getActionMasked() == 0) {
-            if (this.f21578c0 && q() && ((n1Var3 = this.d) == null || !n1Var3.isShowing())) {
+            if (this.f21582c0 && q() && ((n1Var3 = this.d) == null || !n1Var3.isShowing())) {
                 q qVar = new q(this, 1);
                 this.L = qVar;
                 AndroidUtilities.runOnUIThread(qVar, 200L);
             }
         } else if (motionEvent.getActionMasked() == 2) {
-            if (this.f21583f0 && q() && ((n1Var2 = this.d) == null || !n1Var2.isShowing())) {
+            if (this.f21587f0 && q() && ((n1Var2 = this.d) == null || !n1Var2.isShowing())) {
                 if (motionEvent.getY() > getHeight()) {
                     if (getParent() != null) {
                         getParent().requestDisallowInterceptTouchEvent(true);
@@ -1263,19 +1263,19 @@ public class v0 extends FrameLayout {
                     M(null, null);
                     return true;
                 }
-            } else if (this.f21583f0 && (n1Var = this.d) != null && n1Var.isShowing()) {
+            } else if (this.f21587f0 && (n1Var = this.d) != null && n1Var.isShowing()) {
                 getLocationOnScreen(this.J);
                 float x10 = motionEvent.getX() + this.J[0];
                 float y3 = motionEvent.getY();
                 int[] iArr = this.J;
                 float f7 = y3 + iArr[1];
-                this.f21575b.getLocationOnScreen(iArr);
+                this.f21579b.getLocationOnScreen(iArr);
                 int[] iArr2 = this.J;
                 float f10 = x10 - iArr2[0];
                 float f11 = f7 - iArr2[1];
                 this.K = null;
-                for (int i10 = 0; i10 < this.f21575b.getItemsCount(); i10++) {
-                    View childAt = this.f21575b.L.getChildAt(i10);
+                for (int i10 = 0; i10 < this.f21579b.getItemsCount(); i10++) {
+                    View childAt = this.f21579b.L.getChildAt(i10);
                     childAt.getHitRect(this.I);
                     Object tag = childAt.getTag();
                     if ((tag instanceof Integer) && ((Integer) tag).intValue() < 100) {
@@ -1303,7 +1303,7 @@ public class v0 extends FrameLayout {
                 View view = this.K;
                 if (view != null) {
                     view.setSelected(false);
-                    z zVar = this.f21577c;
+                    z zVar = this.f21581c;
                     if (zVar != null) {
                         zVar.o(((Integer) this.K.getTag()).intValue());
                     } else {
@@ -1313,7 +1313,7 @@ public class v0 extends FrameLayout {
                         }
                     }
                     this.d.d(this.R);
-                } else if (this.f21583f0) {
+                } else if (this.f21587f0) {
                     this.d.d(true);
                 }
             } else {
@@ -1328,7 +1328,7 @@ public class v0 extends FrameLayout {
     }
 
     public final boolean p() {
-        ArrayList arrayList = this.f21584g0;
+        ArrayList arrayList = this.f21588g0;
         if (!arrayList.isEmpty()) {
             for (int i10 = 0; i10 < arrayList.size(); i10++) {
                 if (((gg.q0) arrayList.get(i10)).h) {
@@ -1340,8 +1340,8 @@ public class v0 extends FrameLayout {
     }
 
     public final boolean q() {
-        if (this.f21575b == null) {
-            ArrayList arrayList = this.f21599t0;
+        if (this.f21579b == null) {
+            ArrayList arrayList = this.f21603t0;
             if (arrayList == null || arrayList.isEmpty()) {
                 return false;
             }
@@ -1353,7 +1353,7 @@ public class v0 extends FrameLayout {
     public final void r(int i10) {
         t0 t0Var;
         View findViewWithTag;
-        HashMap hashMap = this.f21600u0;
+        HashMap hashMap = this.f21604u0;
         if (hashMap == null) {
             t0Var = null;
         } else {
@@ -1362,7 +1362,7 @@ public class v0 extends FrameLayout {
         if (t0Var != null) {
             t0Var.e(8);
         }
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f21575b;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f21579b;
         if (actionBarPopupWindow$ActionBarPopupWindowLayout != null && (findViewWithTag = actionBarPopupWindow$ActionBarPopupWindowLayout.findViewWithTag(Integer.valueOf(i10))) != null && findViewWithTag.getVisibility() != 8) {
             findViewWithTag.setVisibility(8);
         }
@@ -1377,11 +1377,11 @@ public class v0 extends FrameLayout {
     }
 
     public void setAdditionalXOffset(int i10) {
-        this.f21576b0 = i10;
+        this.f21580b0 = i10;
     }
 
     public void setAdditionalYOffset(int i10) {
-        this.f21574a0 = i10;
+        this.f21578a0 = i10;
     }
 
     public void setDelegate(r0 r0Var) {
@@ -1389,24 +1389,24 @@ public class v0 extends FrameLayout {
     }
 
     public void setDimMenu(float f7) {
-        this.f21587j0 = f7;
+        this.f21591j0 = f7;
     }
 
     public void setFitSubItems(boolean z10) {
-        this.f21575b.setFitItems(z10);
+        this.f21579b.setFitItems(z10);
     }
 
     public void setFixBackground(boolean z10) {
-        this.f21593p0 = z10;
+        this.f21597p0 = z10;
         invalidate();
     }
 
     public void setForceSmoothKeyboard(boolean z10) {
-        this.f21581e0 = z10;
+        this.f21585e0 = z10;
     }
 
     public void setIcon(Drawable drawable) {
-        nj0 nj0Var = this.f21602x;
+        nj0 nj0Var = this.f21606x;
         if (nj0Var == null) {
             return;
         }
@@ -1415,11 +1415,11 @@ public class v0 extends FrameLayout {
         } else {
             nj0Var.setImageDrawable(drawable);
         }
-        this.f21603y = 0;
+        this.f21607y = 0;
     }
 
     public void setIconColor(int i10) {
-        nj0 nj0Var = this.f21602x;
+        nj0 nj0Var = this.f21606x;
         if (nj0Var != null) {
             nj0Var.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
         }
@@ -1427,7 +1427,7 @@ public class v0 extends FrameLayout {
         if (textView != null) {
             textView.setTextColor(i10);
         }
-        k0 k0Var = this.f21597s;
+        k0 k0Var = this.f21601s;
         if (k0Var != null) {
             k0Var.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
         }
@@ -1438,7 +1438,7 @@ public class v0 extends FrameLayout {
     }
 
     public void setLongClickEnabled(boolean z10) {
-        this.f21578c0 = z10;
+        this.f21582c0 = z10;
     }
 
     public void setMenuXOffset(int i10) {
@@ -1451,7 +1451,7 @@ public class v0 extends FrameLayout {
 
     @Override
     public void setOnClickListener(View.OnClickListener onClickListener) {
-        this.f21592o0 = onClickListener;
+        this.f21596o0 = onClickListener;
         super.setOnClickListener(onClickListener);
     }
 
@@ -1473,13 +1473,13 @@ public class v0 extends FrameLayout {
     public void setPopupAnimationEnabled(boolean z10) {
         n1 n1Var = this.d;
         if (n1Var != null) {
-            n1Var.f21411b = z10;
+            n1Var.f21415b = z10;
         }
         this.V = z10;
     }
 
     public void setPopupItemsSelectorColor(int i10) {
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f21575b;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f21579b;
         if (actionBarPopupWindow$ActionBarPopupWindowLayout != null) {
             j1 j1Var = actionBarPopupWindow$ActionBarPopupWindowLayout.L;
             int childCount = j1Var.getChildCount();
@@ -1493,7 +1493,7 @@ public class v0 extends FrameLayout {
     }
 
     public void setSearchAdditionalButton(View view) {
-        this.f21601w = view;
+        this.f21605w = view;
     }
 
     public void setSearchFieldCaption(CharSequence charSequence) {
@@ -1509,22 +1509,22 @@ public class v0 extends FrameLayout {
     }
 
     public void setSearchFieldHint(CharSequence charSequence) {
-        this.f21590n = charSequence;
+        this.f21594n = charSequence;
         if (this.h == null) {
             return;
         }
-        this.f21580e.setHint(charSequence);
+        this.f21584e.setHint(charSequence);
         setContentDescription(charSequence);
     }
 
     public void setSearchPaddingStart(int i10) {
         boolean z10;
-        this.f21591n0 = i10;
+        this.f21595n0 = i10;
         q0 q0Var = this.F;
         if (q0Var != null) {
             ((ViewGroup.MarginLayoutParams) q0Var.getLayoutParams()).leftMargin = AndroidUtilities.dp(i10);
             q0 q0Var2 = this.F;
-            if (this.f21591n0 != 0) {
+            if (this.f21595n0 != 0) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -1541,20 +1541,20 @@ public class v0 extends FrameLayout {
             return;
         }
         if (z10) {
-            j2Var.f27463e = true;
-            j2Var.f27461b = System.currentTimeMillis();
+            j2Var.f27561e = true;
+            j2Var.f27559b = System.currentTimeMillis();
             j2Var.invalidateSelf();
             return;
         }
-        j2Var.f27463e = false;
+        j2Var.f27561e = false;
     }
 
     public void setShowSubmenuByMove(boolean z10) {
-        this.f21583f0 = z10;
+        this.f21587f0 = z10;
     }
 
     public void setShowedFromBottom(boolean z10) {
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f21575b;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f21579b;
         if (actionBarPopupWindow$ActionBarPopupWindowLayout == null) {
             return;
         }
@@ -1578,17 +1578,17 @@ public class v0 extends FrameLayout {
     }
 
     public void setTransitionOffset(float f7) {
-        this.f21588k0 = f7;
+        this.f21592k0 = f7;
         setTranslationX(0.0f);
     }
 
     @Override
     public void setTranslationX(float f7) {
-        super.setTranslationX(f7 + this.f21588k0);
+        super.setTranslationX(f7 + this.f21592k0);
     }
 
     public void setupPopupRadialSelectors(int i10) {
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f21575b;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f21579b;
         if (actionBarPopupWindow$ActionBarPopupWindowLayout != null) {
             actionBarPopupWindow$ActionBarPopupWindowLayout.setupRadialSelectors(i10);
         }
@@ -1604,38 +1604,38 @@ public class v0 extends FrameLayout {
 
     public final t0 u(int i10, int i11, String str) {
         t0 t0Var = new t0(0);
-        t0Var.f21510b = i10;
-        t0Var.f21511c = i11;
+        t0Var.f21514b = i10;
+        t0Var.f21515c = i11;
         t0Var.d = null;
-        t0Var.f21512e = str;
-        t0Var.f21513f = true;
+        t0Var.f21516e = str;
+        t0Var.f21517f = true;
         A(t0Var);
         return t0Var;
     }
 
     public final void v(kj0 kj0Var, String str) {
         t0 t0Var = new t0(0);
-        t0Var.f21510b = 29;
-        t0Var.f21511c = 0;
+        t0Var.f21514b = 29;
+        t0Var.f21515c = 0;
         t0Var.d = kj0Var;
-        t0Var.f21512e = str;
-        t0Var.f21513f = true;
+        t0Var.f21516e = str;
+        t0Var.f21517f = true;
         A(t0Var);
     }
 
     public final t0 w(int i10, qo qoVar) {
         t0 t0Var = new t0(2);
-        t0Var.f21511c = i10;
+        t0Var.f21515c = i10;
         t0Var.d = null;
-        t0Var.f21512e = null;
-        t0Var.f21514g = qoVar;
+        t0Var.f21516e = null;
+        t0Var.f21518g = qoVar;
         A(t0Var);
         return t0Var;
     }
 
     public final t0 x() {
         t0 t0Var = new t0(3);
-        t0Var.f21512e = "";
+        t0Var.f21516e = "";
         t0Var.h = 13;
         A(t0Var);
         return t0Var;
@@ -1644,7 +1644,7 @@ public class v0 extends FrameLayout {
     public final void y() {
         Integer num;
         boolean z10;
-        ArrayList arrayList = this.f21584g0;
+        ArrayList arrayList = this.f21588g0;
         boolean isEmpty = arrayList.isEmpty();
         ArrayList arrayList2 = new ArrayList(arrayList);
         q0 q0Var = this.F;
@@ -1654,15 +1654,15 @@ public class v0 extends FrameLayout {
             changeBounds.setDuration(150L);
             transitionSet.addTransition(new n0(0).setDuration(150L)).addTransition(changeBounds);
             transitionSet.setOrdering(0);
-            transitionSet.setInterpolator((TimeInterpolator) tr.f31148g);
+            transitionSet.setInterpolator((TimeInterpolator) tr.f31216g);
             transitionSet.addListener((Transition.TransitionListener) new o0(this));
-            TransitionManager.beginDelayedTransition(this.f21582f, transitionSet);
+            TransitionManager.beginDelayedTransition(this.f21586f, transitionSet);
         }
-        if (this.f21582f != null) {
+        if (this.f21586f != null) {
             int i10 = 0;
-            while (i10 < this.f21582f.getChildCount()) {
-                if (!arrayList2.remove(((u0) this.f21582f.getChildAt(i10)).getFilter())) {
-                    this.f21582f.removeViewAt(i10);
+            while (i10 < this.f21586f.getChildCount()) {
+                if (!arrayList2.remove(((u0) this.f21586f.getChildAt(i10)).getFilter())) {
+                    this.f21586f.removeViewAt(i10);
                     i10--;
                 }
                 i10++;
@@ -1674,12 +1674,12 @@ public class v0 extends FrameLayout {
             u0 u0Var = new u0(getContext(), this.m0);
             u0Var.setData(q0Var2);
             u0Var.setOnClickListener(new ai.f2(16, this, u0Var));
-            this.f21582f.addView(u0Var, w7.z5.t(-2, -1, 0, 0, 0, 6, 0));
+            this.f21586f.addView(u0Var, w7.z5.t(-2, -1, 0, 0, 0, 6, 0));
         }
-        if (this.f21582f != null) {
-            for (int i12 = 0; i12 < this.f21582f.getChildCount(); i12++) {
-                u0 u0Var2 = (u0) this.f21582f.getChildAt(i12);
-                if (i12 == this.f21585h0) {
+        if (this.f21586f != null) {
+            for (int i12 = 0; i12 < this.f21586f.getChildCount(); i12++) {
+                u0 u0Var2 = (u0) this.f21586f.getChildAt(i12);
+                if (i12 == this.f21589h0) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -1687,7 +1687,7 @@ public class v0 extends FrameLayout {
                 u0Var2.setExpanded(z10);
             }
         }
-        LinearLayout linearLayout = this.f21582f;
+        LinearLayout linearLayout = this.f21586f;
         if (linearLayout != null) {
             if (!isEmpty) {
                 num = 1;
@@ -1696,9 +1696,9 @@ public class v0 extends FrameLayout {
             }
             linearLayout.setTag(num);
         }
-        float x10 = this.f21580e.getX();
+        float x10 = this.f21584e.getX();
         if (this.F.getTag() != null) {
-            this.f21580e.getViewTreeObserver().addOnPreDrawListener(new p0(this, x10));
+            this.f21584e.getViewTreeObserver().addOnPreDrawListener(new p0(this, x10));
         }
         j();
     }
@@ -1707,8 +1707,8 @@ public class v0 extends FrameLayout {
         z zVar;
         k();
         q0 q0Var = this.F;
-        if (q0Var != null && q0Var.getVisibility() != 0 && (zVar = this.f21577c) != null) {
-            zVar.f21724b.v(L(z10));
+        if (q0Var != null && q0Var.getVisibility() != 0 && (zVar = this.f21581c) != null) {
+            zVar.f21728b.v(L(z10));
         }
     }
 
@@ -1721,16 +1721,16 @@ public class v0 extends FrameLayout {
         new ArrayList();
         this.R = true;
         this.V = true;
-        this.f21579d0 = true;
-        this.f21583f0 = true;
-        this.f21584g0 = new ArrayList();
-        this.f21585h0 = -1;
-        this.f21586i0 = new AnimationNotificationsLocker();
+        this.f21583d0 = true;
+        this.f21587f0 = true;
+        this.f21588g0 = new ArrayList();
+        this.f21589h0 = -1;
+        this.f21590i0 = new AnimationNotificationsLocker();
         this.m0 = d6Var;
         if (i10 != 0) {
             setBackgroundDrawable(i6.f0(i10, z10 ? 5 : 1, -1));
         }
-        this.f21577c = zVar;
+        this.f21581c = zVar;
         if (z10) {
             TextView textView = new TextView(context);
             this.E = textView;
@@ -1746,7 +1746,7 @@ public class v0 extends FrameLayout {
             return;
         }
         ?? imageView = new ImageView(context);
-        this.f21602x = imageView;
+        this.f21606x = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImportantForAccessibility(2);
         addView((View) imageView, w7.z5.c(-1.0f, -1));
@@ -1756,11 +1756,11 @@ public class v0 extends FrameLayout {
     }
 
     public void setIcon(int i10) {
-        nj0 nj0Var = this.f21602x;
+        nj0 nj0Var = this.f21606x;
         if (nj0Var == null) {
             return;
         }
-        this.f21603y = i10;
+        this.f21607y = i10;
         nj0Var.setImageResource(i10);
     }
 }

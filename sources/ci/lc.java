@@ -33,7 +33,7 @@ public final class lc implements Runnable {
             default:
                 oc ocVar2 = this.f5508b.f6135a;
                 if (ocVar2 != null) {
-                    ocVar2.u();
+                    ocVar2.s();
                     return;
                 }
                 return;

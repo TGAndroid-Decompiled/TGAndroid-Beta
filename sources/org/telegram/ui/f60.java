@@ -9,18 +9,18 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class f60 extends LinearLayout {
-    public final org.telegram.ui.Components.p6 f36199a;
-    public float f36200b;
-    public final h60 f36201c;
+    public final org.telegram.ui.Components.p6 f36209a;
+    public float f36210b;
+    public final h60 f36211c;
 
     public f60(h60 h60Var, Context context) {
         super(context);
-        this.f36201c = h60Var;
-        this.f36200b = 0.0f;
+        this.f36211c = h60Var;
+        this.f36210b = 0.0f;
         setOrientation(1);
         setGravity(17);
         org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(context, true, false, false);
-        this.f36199a = p6Var;
+        this.f36209a = p6Var;
         p6Var.setTextColor(-1);
         p6Var.setTextSize(AndroidUtilities.dp(46.0f));
         p6Var.setTypeface(AndroidUtilities.bold());
@@ -35,13 +35,13 @@ public final class f60 extends LinearLayout {
 
     public void setWatchersCount(int i10) {
         String formatNumber = LocaleController.formatNumber(i10, ',');
-        org.telegram.ui.Components.p6 p6Var = this.f36199a;
+        org.telegram.ui.Components.p6 p6Var = this.f36209a;
         float measureText = p6Var.getPaint().measureText((CharSequence) formatNumber, 0, formatNumber.length());
-        if (this.f36200b != measureText) {
+        if (this.f36210b != measureText) {
             int i11 = org.telegram.ui.ActionBar.i6.Lj;
-            h60 h60Var = this.f36201c;
+            h60 h60Var = this.f36211c;
             p6Var.getPaint().setShader(new LinearGradient(0.0f, 0.0f, measureText, 0.0f, new int[]{h60Var.getThemedColor(i11), h60Var.getThemedColor(org.telegram.ui.ActionBar.i6.Nj)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
-            this.f36200b = measureText;
+            this.f36210b = measureText;
         }
         p6Var.setText(formatNumber);
     }

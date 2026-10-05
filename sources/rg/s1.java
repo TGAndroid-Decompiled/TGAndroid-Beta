@@ -8,47 +8,46 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.f3;
-import org.telegram.ui.Components.ax0;
-import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.bx0;
+import org.telegram.ui.Components.w61;
 import org.telegram.ui.Components.yc;
-import org.telegram.ui.Components.zl0;
 import org.telegram.ui.ft;
 import org.telegram.ui.n21;
 import xh.s2;
-import yh.j8;
-import yh.m2;
-import yh.n7;
-import yh.x2;
+import yh.l8;
+import yh.n2;
+import yh.p7;
+import yh.y2;
 public final class s1 implements Runnable {
-    public final int f46311a;
-    public final Object f46312b;
+    public final int f46318a;
+    public final Object f46319b;
 
     public s1(Object obj, int i10) {
-        this.f46311a = i10;
-        this.f46312b = obj;
+        this.f46318a = i10;
+        this.f46319b = obj;
     }
 
     @Override
     public final void run() {
-        switch (this.f46311a) {
+        switch (this.f46318a) {
             case 0:
-                ((t1) this.f46312b).invalidate();
+                ((t1) this.f46319b).invalidate();
                 return;
             case 1:
-                ((b2) this.f46312b).a();
+                ((b2) this.f46319b).a();
                 return;
             case 2:
-                RecyclerView recyclerView = (RecyclerView) this.f46312b;
+                RecyclerView recyclerView = (RecyclerView) this.f46319b;
                 if (recyclerView.getAdapter() != null) {
                     recyclerView.getAdapter().l();
                     return;
                 }
                 return;
             case 3:
-                ((rf.b) ((com.google.android.gms.internal.cast.p) this.f46312b).f6950c).a(false);
+                ((rf.b) ((com.google.android.gms.internal.cast.p) this.f46319b).f6950c).a(false);
                 return;
             case 4:
-                CharSequence charSequence = (CharSequence) this.f46312b;
+                CharSequence charSequence = (CharSequence) this.f46319b;
                 yc X = yc.X();
                 if (X != null) {
                     X.Q(R.raw.forward, 30, charSequence).j();
@@ -56,130 +55,124 @@ public final class s1 implements Runnable {
                 }
                 return;
             case 5:
-                ((tg.y) this.f46312b).run(null);
+                ((tg.y) this.f46319b).run(null);
                 return;
             case 6:
-                ((ft) this.f46312b).run(Collections.EMPTY_LIST);
+                ((ft) this.f46319b).run(Collections.EMPTY_LIST);
                 return;
             case 7:
-                ((tg.v) this.f46312b).run(null);
+                ((tg.v) this.f46319b).run(null);
                 return;
             case 8:
-                tg.c0 c0Var = ((tg.b0) this.f46312b).f46988r;
-                m1 m1Var = new m1(c0Var.f25309n, tg.c0.O(c0Var), null, null, null, tg.c0.P(c0Var));
+                tg.c0 c0Var = ((tg.b0) this.f46319b).f46995r;
+                m1 m1Var = new m1(c0Var.f25357n, tg.c0.O(c0Var), null, null, null, tg.c0.P(c0Var));
                 m1Var.J0 = true;
-                m1Var.f46195c0 = true;
-                c0Var.f25309n.showDialog(m1Var);
+                m1Var.f46202c0 = true;
+                c0Var.f25357n.showDialog(m1Var);
                 return;
             case 9:
-                ((f3) this.f46312b).dismiss();
+                ((f3) this.f46319b).dismiss();
                 NotificationCenter.getInstance(UserConfig.selectedAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didStartedMultiGiftsSelector, new Object[0]);
                 AndroidUtilities.runOnUIThread(new n21(16), 220L);
                 return;
             case 10:
-                ((th.f) this.f46312b).f47163d0.N(true);
+                ((th.f) this.f46319b).f47170d0.N(true);
                 return;
             case 11:
-                wh.m mVar = (wh.m) this.f46312b;
+                wh.m mVar = (wh.m) this.f46319b;
                 mVar.f();
                 mVar.e(true);
                 return;
             case 12:
-                ((xg.b) this.f46312b).f();
+                ((xg.b) this.f46319b).f();
                 return;
             case 13:
-                xh.m mVar2 = (xh.m) this.f46312b;
-                mVar2.f50091h0.setTranslationX(mVar2.f50090g0.getAnimatedWidth() + AndroidUtilities.dp(28.0f));
+                xh.m mVar2 = (xh.m) this.f46319b;
+                mVar2.f50098h0.setTranslationX(mVar2.f50097g0.getAnimatedWidth() + AndroidUtilities.dp(28.0f));
                 return;
             case 14:
-                ((xh.c0) this.f46312b).onBackPressed();
+                ((xh.c0) this.f46319b).onBackPressed();
                 return;
             case 15:
-                u61 u61Var = ((xh.q1) this.f46312b).Y;
-                if (u61Var != null) {
-                    u61Var.N(false);
+                w61 w61Var = ((xh.q1) this.f46319b).Y;
+                if (w61Var != null) {
+                    w61Var.N(false);
                     return;
                 }
                 return;
             case 16:
-                ((xh.f1) this.f46312b).c();
+                ((xh.f1) this.f46319b).c();
                 return;
             case 17:
-                xh.n1 n1Var = (xh.n1) this.f46312b;
-                j8 j8Var = n1Var.f50136e;
-                if (j8Var != null) {
-                    j8Var.d();
+                xh.n1 n1Var = (xh.n1) this.f46319b;
+                l8 l8Var = n1Var.f50143e;
+                if (l8Var != null) {
+                    l8Var.d();
                     n1Var.invalidateSelf();
                     return;
                 }
                 return;
             case 18:
-                ((s2) this.f46312b).o();
+                ((s2) this.f46319b).o();
                 return;
             case 19:
                 try {
-                    ((Bitmap) this.f46312b).recycle();
+                    ((Bitmap) this.f46319b).recycle();
                     return;
                 } catch (Exception unused) {
                     return;
                 }
             case 20:
-                yf.n nVar = (yf.n) this.f46312b;
-                long j3 = nVar.f51007b;
+                yf.n nVar = (yf.n) this.f46319b;
+                long j3 = nVar.f51014b;
                 if (j3 > 0) {
                     long j10 = j3 - 1;
-                    nVar.f51007b = j10;
-                    nVar.f51006a.e(j10);
+                    nVar.f51014b = j10;
+                    nVar.f51013a.e(j10);
                 }
-                if (nVar.f51007b <= 0) {
-                    nVar.f51008c = false;
+                if (nVar.f51014b <= 0) {
+                    nVar.f51015c = false;
                 }
-                if (nVar.f51008c) {
+                if (nVar.f51015c) {
                     AndroidUtilities.runOnUIThread(nVar.d, 1000L);
                     return;
                 }
                 return;
             case 21:
-                yh.a aVar = (yh.a) this.f46312b;
+                yh.a aVar = (yh.a) this.f46319b;
                 aVar.getClass();
-                new n7(aVar.getContext(), aVar.f51058b).show();
+                new p7(aVar.getContext(), aVar.f51065b).show();
                 return;
             case 22:
-                yh.f fVar = (yh.f) this.f46312b;
-                fVar.getClass();
-                try {
-                    zl0 currentListView = fVar.f51255x0.F.getCurrentListView();
-                    if (currentListView != null && currentListView.getAdapter() != null) {
-                        currentListView.getAdapter().l();
-                        return;
-                    }
-                    return;
-                } catch (Throwable unused2) {
+                yh.g gVar = (yh.g) this.f46319b;
+                if (gVar.isAttachedToWindow() && !gVar.f51312c.canScrollVertically(1)) {
+                    gVar.a();
                     return;
                 }
+                return;
             case 23:
-                new ax0(((yh.s) this.f46312b).getContext()).show();
+                new bx0(((yh.t) this.f46319b).getContext()).show();
                 return;
             case 24:
-                AndroidUtilities.showKeyboard(((yh.a0) this.f46312b).f51066d0);
+                AndroidUtilities.showKeyboard(((yh.b0) this.f46319b).f51122d0);
                 return;
             case 25:
-                AndroidUtilities.showKeyboard(((yh.e0) this.f46312b).h);
+                AndroidUtilities.showKeyboard(((yh.f0) this.f46319b).h);
                 return;
             case 26:
-                AndroidUtilities.showKeyboard(((yh.i0) this.f46312b).f51407c);
+                AndroidUtilities.showKeyboard(((yh.j0) this.f46319b).f51472c);
                 return;
             case 27:
-                ((yh.s0) this.f46312b).onBackPressed();
+                ((yh.t0) this.f46319b).onBackPressed();
                 return;
             case 28:
-                x2 x2Var = (x2) this.f46312b;
-                x2Var.f52200h0 = false;
-                x2Var.f52202j0 = false;
-                x2Var.a(x2Var.W, x2Var.f52189a0, x2Var.f52191b0, x2Var.f52193c0);
+                y2 y2Var = (y2) this.f46319b;
+                y2Var.f52268h0 = false;
+                y2Var.f52270j0 = false;
+                y2Var.a(y2Var.W, y2Var.f52257a0, y2Var.f52259b0, y2Var.f52261c0);
                 return;
             default:
-                ((m2) this.f46312b).invalidateSelf();
+                ((n2) this.f46319b).invalidateSelf();
                 return;
         }
     }

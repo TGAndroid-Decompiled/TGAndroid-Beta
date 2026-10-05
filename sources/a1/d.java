@@ -48,10 +48,10 @@ import org.telegram.ui.Components.d5;
 import org.telegram.ui.Components.e5;
 import org.telegram.ui.Components.ed0;
 import org.telegram.ui.Components.gd0;
-import org.telegram.ui.Components.h01;
+import org.telegram.ui.Components.i01;
 import org.telegram.ui.Components.j8;
-import org.telegram.ui.Components.k01;
 import org.telegram.ui.Components.kd0;
+import org.telegram.ui.Components.l01;
 import org.telegram.ui.Components.md0;
 import org.telegram.ui.Components.xi;
 import org.telegram.ui.Components.xn;
@@ -59,27 +59,26 @@ import org.telegram.ui.Components.yc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.NotificationsCustomSettingsActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
+import org.telegram.ui.a71;
 import org.telegram.ui.ak0;
-import org.telegram.ui.c71;
 import org.telegram.ui.h60;
 import org.telegram.ui.i4;
-import org.telegram.ui.m71;
+import org.telegram.ui.k71;
 import org.telegram.ui.n40;
 import org.telegram.ui.o40;
 import org.telegram.ui.oy;
 import org.telegram.ui.pt;
-import org.telegram.ui.td1;
+import org.telegram.ui.rd1;
+import org.telegram.ui.ue1;
 import org.telegram.ui.ug0;
 import org.telegram.ui.uy;
-import org.telegram.ui.we1;
-import org.telegram.ui.yf1;
+import org.telegram.ui.wf1;
 import org.telegram.ui.yn;
 import v0.i;
 import w7.z5;
 import x2.m;
-import yh.t5;
-import yh.u;
-import zg.o0;
+import yh.u5;
+import yh.v;
 public final class d implements OnFailureListener, oy, a2, d5, ed0, MediaDataController.KeywordResultCallback, MessagesStorage.LongCallback, Utilities.Callback2Return, m, BillingController.ProductDetailsResponseListenerLegacy {
     public final int f41a;
     public final Object f42b;
@@ -128,8 +127,8 @@ public final class d implements OnFailureListener, oy, a2, d5, ed0, MediaDataCon
                 return;
             case 8:
                 xn xnVar = (xn) this.f44e;
-                xnVar.f32931j0.e((TLRPC.TL_messageMediaPoll) this.f42b, xnVar.O, xnVar.l1, (ArrayList) this.f43c, z10, i10, ((Long) this.d).longValue());
-                xnVar.f29648b.dismiss(true);
+                xnVar.f33022j0.e((TLRPC.TL_messageMediaPoll) this.f42b, xnVar.O, xnVar.l1, (ArrayList) this.f43c, z10, i10, ((Long) this.d).longValue());
+                xnVar.f29741b.dismiss(true);
                 return;
             case 9:
                 pt ptVar = (pt) this.f44e;
@@ -187,7 +186,7 @@ public final class d implements OnFailureListener, oy, a2, d5, ed0, MediaDataCon
                     } else {
                         ak0Var.K = str3;
                     }
-                    kd0 kd0Var2 = ak0Var.f34850e;
+                    kd0 kd0Var2 = ak0Var.f34901e;
                     if (kd0Var2 != null) {
                         kd0Var2.getEditText().setText(str);
                     } else {
@@ -206,17 +205,17 @@ public final class d implements OnFailureListener, oy, a2, d5, ed0, MediaDataCon
                 edit.putBoolean((String) obj2, ((boolean[]) obj)[0]);
                 edit.apply();
                 notificationsCustomSettingsActivity.l0(true);
-                notificationsCustomSettingsActivity.getNotificationsController().updateServerNotificationsSettings(notificationsCustomSettingsActivity.f33831s);
+                notificationsCustomSettingsActivity.getNotificationsController().updateServerNotificationsSettings(notificationsCustomSettingsActivity.f33844s);
                 return;
             default:
-                yf1 yf1Var = (yf1) obj4;
+                wf1 wf1Var = (wf1) obj4;
                 HashSet hashSet = (HashSet) obj3;
                 HashSet hashSet2 = new HashSet();
-                yf1Var.A0 = hashSet2;
+                wf1Var.A0 = hashSet2;
                 hashSet2.addAll(hashSet);
-                yf1Var.U0(true, false);
-                yc.a0(yf1Var).U(LocaleController.getPluralString("TopicsDeleted", hashSet.size()), false, new we1(yf1Var, 4), new td1(yf1Var, (ArrayList) obj2, (Runnable) obj, 4)).j();
-                yf1Var.C0();
+                wf1Var.U0(true, false);
+                yc.a0(wf1Var).U(LocaleController.getPluralString("TopicsDeleted", hashSet.size()), false, new ue1(wf1Var, 4), new rd1(wf1Var, (ArrayList) obj2, (Runnable) obj, 4)).j();
+                wf1Var.C0();
                 b2Var.dismiss();
                 return;
         }
@@ -244,10 +243,10 @@ public final class d implements OnFailureListener, oy, a2, d5, ed0, MediaDataCon
     public void onProductDetailsResponse(h hVar, List list) {
         switch (this.f41a) {
             case 21:
-                AndroidUtilities.runOnUIThread(new u(list, (Utilities.Callback2) this.f44e, (TLRPC.TL_inputStorePaymentStarsTopup) this.f42b, (TL_stars.TL_starsTopupOption) this.f43c, (Activity) this.d, 7));
+                AndroidUtilities.runOnUIThread(new v(list, (Utilities.Callback2) this.f44e, (TLRPC.TL_inputStorePaymentStarsTopup) this.f42b, (TL_stars.TL_starsTopupOption) this.f43c, (Activity) this.d, 7));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new z8((t5) this.f44e, list, (m0) this.f42b, (TLRPC.TL_inputStorePaymentStarsGiveaway) this.f43c, hVar, (Activity) this.d, 18));
+                AndroidUtilities.runOnUIThread(new z8((u5) this.f44e, list, (m0) this.f42b, (TLRPC.TL_inputStorePaymentStarsGiveaway) this.f43c, hVar, (Activity) this.d, 18));
                 return;
         }
     }
@@ -267,11 +266,11 @@ public final class d implements OnFailureListener, oy, a2, d5, ed0, MediaDataCon
 
     @Override
     public void run(long j3) {
-        m71.N((m71) this.f44e, (TLRPC.User) this.f42b, (TLRPC.InputCheckPasswordSRP) this.f43c, (TwoStepVerificationActivity) this.d, j3);
+        k71.N((k71) this.f44e, (TLRPC.User) this.f42b, (TLRPC.InputCheckPasswordSRP) this.f43c, (TwoStepVerificationActivity) this.d, j3);
     }
 
     @Override
-    public boolean u(uy uyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, yf1 yf1Var) {
+    public boolean u(uy uyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, wf1 wf1Var) {
         switch (this.f41a) {
             case 2:
                 TLRPC.User user = (TLRPC.User) this.f42b;
@@ -303,7 +302,7 @@ public final class d implements OnFailureListener, oy, a2, d5, ed0, MediaDataCon
                             l3Var.M0 = true;
                         }
                         a5 a5Var = new a5(new yn(i12));
-                        a5Var.f20384b = true;
+                        a5Var.f20389b = true;
                         lastFragment.presentFragment(a5Var);
                     }
                 }
@@ -315,7 +314,7 @@ public final class d implements OnFailureListener, oy, a2, d5, ed0, MediaDataCon
                 TLRPC.User user2 = (TLRPC.User) this.f42b;
                 String str2 = (String) this.f43c;
                 md0 md0Var2 = (md0) this.d;
-                xi xiVar = ((ci) this.f44e).f25385e;
+                xi xiVar = ((ci) this.f44e).f25433e;
                 long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
                 Bundle i13 = a4.a.i("scrollToTopOnResume", true);
                 if (DialogObject.isEncryptedDialog(j10)) {
@@ -326,12 +325,12 @@ public final class d implements OnFailureListener, oy, a2, d5, ed0, MediaDataCon
                     i13.putLong("chat_id", -j10);
                 }
                 i13.putString("start_text", "@" + UserObject.getPublicUsername(user2) + " " + str2);
-                n2 n2Var = xiVar.f32819f0;
+                n2 n2Var = xiVar.f32910f0;
                 if (MessagesController.getInstance(xiVar.J1).checkCanOpenChat(i13, n2Var)) {
                     md0Var2.dismiss();
                     xiVar.dismiss(true);
                     a5 a5Var2 = new a5(new yn(i13));
-                    a5Var2.f20384b = true;
+                    a5Var2.f20389b = true;
                     n2Var.presentFragment(a5Var2);
                 }
                 return true;
@@ -351,7 +350,7 @@ public final class d implements OnFailureListener, oy, a2, d5, ed0, MediaDataCon
         Context context = (Context) this.f44e;
         int[] iArr = (int[]) this.f42b;
         d6 d6Var = (d6) this.f43c;
-        k01 k01Var = (k01) this.d;
+        l01 l01Var = (l01) this.d;
         Integer num = (Integer) obj;
         Float f7 = (Float) obj2;
         LinearLayout e7 = bi.e(context, 1);
@@ -371,7 +370,7 @@ public final class d implements OnFailureListener, oy, a2, d5, ed0, MediaDataCon
         }
         TextView textView = new TextView(context);
         textView.setTypeface(AndroidUtilities.getTypeface("fonts/num.otf"));
-        textView.setTextColor(i6.v0(i6.f20930j5, d6Var));
+        textView.setTextColor(i6.v0(i6.f20935j5, d6Var));
         StringBuilder sb2 = new StringBuilder("x");
         int i11 = (f7.floatValue() > 0.0f ? 1 : (f7.floatValue() == 0.0f ? 0 : -1));
         Object obj3 = f7;
@@ -383,7 +382,7 @@ public final class d implements OnFailureListener, oy, a2, d5, ed0, MediaDataCon
         textView.setTextSize(1, 13.0f);
         textView.setGravity(17);
         e7.addView(textView, z5.k(0.0f, 3.0f, 0.0f, 0.0f, -1, -2));
-        return new h01(k01Var, e7, false);
+        return new i01(l01Var, e7, false);
     }
 
     @Override
@@ -393,7 +392,7 @@ public final class d implements OnFailureListener, oy, a2, d5, ed0, MediaDataCon
                 ArrayList arrayList2 = (ArrayList) this.f42b;
                 ArrayList arrayList3 = (ArrayList) this.f43c;
                 Runnable runnable = (Runnable) this.d;
-                TLRPC.messages_AvailableEffects availableEffects = MessagesController.getInstance(((c71) this.f44e).V).getAvailableEffects();
+                TLRPC.messages_AvailableEffects availableEffects = MessagesController.getInstance(((a71) this.f44e).V).getAvailableEffects();
                 HashSet hashSet = new HashSet();
                 if (availableEffects != null) {
                     for (int i10 = 0; i10 < arrayList.size(); i10++) {
@@ -402,9 +401,9 @@ public final class d implements OnFailureListener, oy, a2, d5, ed0, MediaDataCon
                                 String fixEmoji = Emoji.fixEmoji(((MediaDataController.KeywordResult) arrayList.get(i10)).emoji);
                                 for (int i11 = 0; i11 < availableEffects.effects.size(); i11++) {
                                     TLRPC.TL_availableEffect tL_availableEffect = availableEffects.effects.get(i11);
-                                    if (!hashSet.contains(Long.valueOf(tL_availableEffect.f20073id)) && (tL_availableEffect.emoticon.contains(fixEmoji) || fixEmoji.contains(tL_availableEffect.emoticon))) {
-                                        (tL_availableEffect.effect_animation_id == 0 ? arrayList2 : arrayList3).add(o0.e(tL_availableEffect));
-                                        hashSet.add(Long.valueOf(tL_availableEffect.f20073id));
+                                    if (!hashSet.contains(Long.valueOf(tL_availableEffect.f20078id)) && (tL_availableEffect.emoticon.contains(fixEmoji) || fixEmoji.contains(tL_availableEffect.emoticon))) {
+                                        (tL_availableEffect.effect_animation_id == 0 ? arrayList2 : arrayList3).add(zg.m0.e(tL_availableEffect));
+                                        hashSet.add(Long.valueOf(tL_availableEffect.f20078id));
                                     }
                                 }
                             }

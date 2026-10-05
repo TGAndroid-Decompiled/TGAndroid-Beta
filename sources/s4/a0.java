@@ -3,28 +3,28 @@ package s4;
 import android.view.View;
 import java.util.List;
 public final class a0 {
-    public boolean f46496a;
-    public int f46497b;
-    public int f46498c;
+    public boolean f46503a;
+    public int f46504b;
+    public int f46505c;
     public int d;
-    public int f46499e;
-    public int f46500f;
-    public int f46501g;
+    public int f46506e;
+    public int f46507f;
+    public int f46508g;
     public int h;
-    public int f46502i;
-    public int f46503j;
-    public List f46504k;
-    public boolean f46505l;
+    public int f46509i;
+    public int f46510j;
+    public List f46511k;
+    public boolean f46512l;
 
     public final void a(View view) {
         int b10;
-        int size = this.f46504k.size();
+        int size = this.f46511k.size();
         View view2 = null;
         int i10 = Integer.MAX_VALUE;
         for (int i11 = 0; i11 < size; i11++) {
-            View view3 = ((c1) this.f46504k.get(i11)).f46531a;
+            View view3 = ((c1) this.f46511k.get(i11)).f46538a;
             p0 p0Var = (p0) view3.getLayoutParams();
-            if (view3 != view && !p0Var.f46650a.j() && (b10 = (p0Var.b() - this.d) * this.f46499e) >= 0 && b10 < i10) {
+            if (view3 != view && !p0Var.f46657a.j() && (b10 = (p0Var.b() - this.d) * this.f46506e) >= 0 && b10 < i10) {
                 view2 = view3;
                 if (b10 == 0) {
                     break;
@@ -48,21 +48,21 @@ public final class a0 {
     }
 
     public final View c(of.e eVar) {
-        List list = this.f46504k;
+        List list = this.f46511k;
         if (list != null) {
             int size = list.size();
             for (int i10 = 0; i10 < size; i10++) {
-                View view = ((c1) this.f46504k.get(i10)).f46531a;
+                View view = ((c1) this.f46511k.get(i10)).f46538a;
                 p0 p0Var = (p0) view.getLayoutParams();
-                if (!p0Var.f46650a.j() && this.d == p0Var.b()) {
+                if (!p0Var.f46657a.j() && this.d == p0Var.b()) {
                     a(view);
                     return view;
                 }
             }
             return null;
         }
-        View view2 = eVar.j(this.d, Long.MAX_VALUE).f46531a;
-        this.d += this.f46499e;
+        View view2 = eVar.j(this.d, Long.MAX_VALUE).f46538a;
+        this.d += this.f46506e;
         return view2;
     }
 }

@@ -26,7 +26,7 @@ public final class k6 extends v7 {
             bVar.a(true, true);
         }
         kVar2 = ((org.telegram.ui.ActionBar.n2) a7Var).actionBar;
-        kVar2.M(null, null);
+        kVar2.L(null, null);
     }
 
     @Override
@@ -41,8 +41,8 @@ public final class k6 extends v7 {
         }
     }
 
-    public k6(a7 a7Var, Context context, a7 a7Var2, li.n nVar, org.telegram.ui.Components.aw0 aw0Var) {
-        super(context, a7Var2, nVar, aw0Var);
+    public k6(a7 a7Var, Context context, a7 a7Var2, li.p pVar, org.telegram.ui.Components.bw0 bw0Var) {
+        super(context, a7Var2, pVar, bw0Var);
         this.G = a7Var;
     }
 }

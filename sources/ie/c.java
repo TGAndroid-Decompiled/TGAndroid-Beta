@@ -36,7 +36,7 @@ public final class c implements l, i2 {
 
     @Override
     public final id.h getContext() {
-        return this.f12062a.f53247e;
+        return this.f12062a.f53268e;
     }
 
     @Override

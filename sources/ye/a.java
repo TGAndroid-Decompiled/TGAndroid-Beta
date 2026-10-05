@@ -2,11 +2,11 @@ package ye;
 
 import bf.p;
 public final class a extends df.a {
-    public final bf.b f50864a = new p();
+    public final bf.b f50871a = new p();
 
     public static boolean i(d dVar, int i10) {
-        CharSequence charSequence = dVar.f50875a;
-        if (dVar.f50880g < 4 && i10 < charSequence.length() && charSequence.charAt(i10) == '>') {
+        CharSequence charSequence = dVar.f50882a;
+        if (dVar.f50887g < 4 && i10 < charSequence.length() && charSequence.charAt(i10) == '>') {
             return true;
         }
         return false;
@@ -14,17 +14,17 @@ public final class a extends df.a {
 
     @Override
     public final bf.a e() {
-        return this.f50864a;
+        return this.f50871a;
     }
 
     @Override
     public final q3.h h(d dVar) {
         char charAt;
-        int i10 = dVar.f50878e;
+        int i10 = dVar.f50885e;
         if (i(dVar, i10)) {
-            int i11 = dVar.f50877c + dVar.f50880g;
+            int i11 = dVar.f50884c + dVar.f50887g;
             int i12 = i11 + 1;
-            CharSequence charSequence = dVar.f50875a;
+            CharSequence charSequence = dVar.f50882a;
             int i13 = i10 + 1;
             if (i13 < charSequence.length() && ((charAt = charSequence.charAt(i13)) == '\t' || charAt == ' ')) {
                 i12 = i11 + 2;

@@ -6,97 +6,97 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class vl0 implements View.OnClickListener {
-    public final int f41776a;
-    public final kn0 f41777b;
+    public final int f41774a;
+    public final kn0 f41775b;
 
     public vl0(kn0 kn0Var, int i10) {
-        this.f41776a = i10;
-        this.f41777b = kn0Var;
+        this.f41774a = i10;
+        this.f41775b = kn0Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f41776a) {
+        switch (this.f41774a) {
             case 0:
-                kn0 kn0Var = this.f41777b;
+                kn0 kn0Var = this.f41775b;
                 kn0Var.S0 = 2;
                 kn0Var.D1();
                 return;
             case 1:
-                this.f41777b.d1();
+                this.f41775b.d1();
                 return;
             case 2:
-                kn0 kn0Var2 = this.f41777b;
+                kn0 kn0Var2 = this.f41775b;
                 kn0Var2.S0 = 3;
                 kn0Var2.D1();
                 return;
             case 3:
-                kn0 kn0Var3 = this.f41777b;
+                kn0 kn0Var3 = this.f41775b;
                 kn0Var3.S0 = 1;
                 kn0Var3.D1();
                 return;
             case 4:
-                kn0 kn0Var4 = this.f41777b;
+                kn0 kn0Var4 = this.f41775b;
                 kn0Var4.S0 = 4;
                 kn0Var4.D1();
                 return;
             case 5:
-                kn0.e0(this.f41777b);
+                kn0.e0(this.f41775b);
                 return;
             case 6:
-                kn0 kn0Var5 = this.f41777b;
-                kn0Var5.f38023f = true;
+                kn0 kn0Var5 = this.f41775b;
+                kn0Var5.f38091f = true;
                 kn0Var5.L.callOnClick();
-                kn0Var5.f38023f = false;
+                kn0Var5.f38091f = false;
                 return;
             case 7:
-                kn0 kn0Var6 = this.f41777b;
+                kn0 kn0Var6 = this.f41775b;
                 kn0Var6.S0 = 0;
                 kn0Var6.D1();
                 return;
             case 8:
-                kn0 kn0Var7 = this.f41777b;
+                kn0 kn0Var7 = this.f41775b;
                 kn0Var7.S0 = 4;
                 kn0Var7.D1();
                 return;
             case 9:
-                this.f41777b.d1();
+                this.f41775b.d1();
                 return;
             case 10:
-                kn0.b0(this.f41777b);
+                kn0.b0(this.f41775b);
                 return;
             case 11:
-                kn0.c0(this.f41777b);
+                kn0.c0(this.f41775b);
                 return;
             case 12:
-                this.f41777b.C1();
+                this.f41775b.C1();
                 return;
             case 13:
-                kn0 kn0Var8 = this.f41777b;
+                kn0 kn0Var8 = this.f41775b;
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(kn0Var8.getParentActivity());
-                alertDialog$Builder.f20372a.R = LocaleController.getString(R.string.TelegramPassportDeleteTitle);
-                alertDialog$Builder.f20372a.T = LocaleController.getString(R.string.TelegramPassportDeleteAlert);
+                alertDialog$Builder.f20377a.R = LocaleController.getString(R.string.TelegramPassportDeleteTitle);
+                alertDialog$Builder.f20377a.T = LocaleController.getString(R.string.TelegramPassportDeleteAlert);
                 alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new xl0(kn0Var8, 5));
                 alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20372a;
+                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20377a;
                 kn0Var8.showDialog(b2Var);
                 TextView textView = (TextView) b2Var.d(-1);
                 if (textView != null) {
-                    textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21063q7, false));
+                    textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21068q7, false));
                     return;
                 }
                 return;
             case 14:
-                this.f41777b.C1();
+                this.f41775b.C1();
                 return;
             case 15:
-                kn0.T(this.f41777b);
+                kn0.T(this.f41775b);
                 return;
             default:
-                kn0 kn0Var9 = this.f41777b;
-                kn0Var9.f38023f = true;
+                kn0 kn0Var9 = this.f41775b;
+                kn0Var9.f38091f = true;
                 kn0Var9.L.callOnClick();
-                kn0Var9.f38023f = false;
+                kn0Var9.f38091f = false;
                 return;
         }
     }

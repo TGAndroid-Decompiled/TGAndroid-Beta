@@ -80,7 +80,7 @@ public final class ba implements Runnable {
                 r90 r90Var = (r90) this.f667c;
                 r90 r90Var2 = vaVar.f1764a;
                 if (r90Var == r90Var2 && r90Var2 != null) {
-                    CharacterStyle characterStyle = r90Var2.f30312i;
+                    CharacterStyle characterStyle = r90Var2.f30394i;
                     if (characterStyle instanceof URLSpan) {
                         wa waVar = vaVar.v;
                         n90 n90Var = vaVar.f1766c;
@@ -303,7 +303,7 @@ public final class ba implements Runnable {
                         }
                         if (document != null) {
                             TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                            tL_inputDocument.f20054id = document.f20048id;
+                            tL_inputDocument.f20059id = document.f20053id;
                             tL_inputDocument.access_hash = document.access_hash;
                             tL_inputDocument.file_reference = document.file_reference;
                             k8Var2.V0.add(tL_inputDocument);
@@ -319,7 +319,7 @@ public final class ba implements Runnable {
                 ci.t8 t8Var = (ci.t8) this.f666b;
                 TextView textView = (TextView) this.f667c;
                 ClipboardManager clipboardManager = (ClipboardManager) t8Var.getContext().getSystemService("clipboard");
-                org.telegram.ui.Cells.h3 h3Var = t8Var.Y.f22311b;
+                org.telegram.ui.Cells.h3 h3Var = t8Var.Y.f22315b;
                 if ((TextUtils.isEmpty(h3Var.getText()) || TextUtils.equals(h3Var.getText(), "https://") || TextUtils.isEmpty(h3Var.getText().toString())) && clipboardManager != null && clipboardManager.hasPrimaryClip()) {
                     i10 = 1;
                 }

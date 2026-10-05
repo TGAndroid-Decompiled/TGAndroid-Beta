@@ -36,40 +36,40 @@ import y9.e2;
 import y9.h0;
 import y9.i0;
 public final class n {
-    public static final ba.a f48956r = new ba.a(3);
-    public final Context f48957a;
-    public final s f48958b;
-    public final z0 f48959c;
+    public static final ba.a f48963r = new ba.a(3);
+    public final Context f48964a;
+    public final s f48965b;
+    public final z0 f48966c;
     public final p3 d;
-    public final com.google.firebase.messaging.s f48960e;
-    public final v f48961f;
-    public final ba.c f48962g;
+    public final com.google.firebase.messaging.s f48967e;
+    public final v f48968f;
+    public final ba.c f48969g;
     public final a h;
-    public final x9.e f48963i;
-    public final t9.a f48964j;
-    public final u9.a f48965k;
-    public final j f48966l;
-    public final com.google.firebase.messaging.n f48967m;
-    public r f48968n;
-    public final TaskCompletionSource f48969o = new TaskCompletionSource();
-    public final TaskCompletionSource f48970p = new TaskCompletionSource();
-    public final TaskCompletionSource f48971q = new TaskCompletionSource();
+    public final x9.e f48970i;
+    public final t9.a f48971j;
+    public final u9.a f48972k;
+    public final j f48973l;
+    public final com.google.firebase.messaging.n f48974m;
+    public r f48975n;
+    public final TaskCompletionSource f48976o = new TaskCompletionSource();
+    public final TaskCompletionSource f48977p = new TaskCompletionSource();
+    public final TaskCompletionSource f48978q = new TaskCompletionSource();
 
     public n(Context context, com.google.firebase.messaging.s sVar, v vVar, s sVar2, ba.c cVar, z0 z0Var, a aVar, p3 p3Var, x9.e eVar, com.google.firebase.messaging.n nVar, t9.a aVar2, u9.a aVar3, j jVar) {
         new AtomicBoolean(false);
-        this.f48957a = context;
-        this.f48960e = sVar;
-        this.f48961f = vVar;
-        this.f48958b = sVar2;
-        this.f48962g = cVar;
-        this.f48959c = z0Var;
+        this.f48964a = context;
+        this.f48967e = sVar;
+        this.f48968f = vVar;
+        this.f48965b = sVar2;
+        this.f48969g = cVar;
+        this.f48966c = z0Var;
         this.h = aVar;
         this.d = p3Var;
-        this.f48963i = eVar;
-        this.f48964j = aVar2;
-        this.f48965k = aVar3;
-        this.f48966l = jVar;
-        this.f48967m = nVar;
+        this.f48970i = eVar;
+        this.f48971j = aVar2;
+        this.f48972k = aVar3;
+        this.f48973l = jVar;
+        this.f48974m = nVar;
     }
 
     public static void a(n nVar, String str, Boolean bool) {
@@ -84,12 +84,12 @@ public final class n {
             Log.d("FirebaseCrashlytics", i12, null);
         }
         Locale locale = Locale.US;
-        v vVar = nVar.f48961f;
+        v vVar = nVar.f48968f;
         a aVar = nVar.h;
-        String str2 = vVar.f49009c;
-        String str3 = aVar.f48927f;
-        String str4 = aVar.f48928g;
-        String str5 = vVar.b().f48932a;
+        String str2 = vVar.f49016c;
+        String str3 = aVar.f48934f;
+        String str4 = aVar.f48935g;
+        String str5 = vVar.b().f48939a;
         if (aVar.d != null) {
             i10 = 4;
         } else {
@@ -99,10 +99,10 @@ public final class n {
         String str6 = Build.VERSION.RELEASE;
         String str7 = Build.VERSION.CODENAME;
         e1 e1Var = new e1(h.h());
-        Context context = nVar.f48957a;
+        Context context = nVar.f48964a;
         StatFs statFs = new StatFs(Environment.getDataDirectory().getPath());
         long blockCount = statFs.getBlockCount() * statFs.getBlockSize();
-        g gVar = g.f48939a;
+        g gVar = g.f48946a;
         String str8 = Build.CPU_ABI;
         if (TextUtils.isEmpty(str8)) {
             i11 = 3;
@@ -111,7 +111,7 @@ public final class n {
             }
         } else {
             i11 = 3;
-            g gVar2 = (g) g.f48940b.get(str8.toLowerCase(locale));
+            g gVar2 = (g) g.f48947b.get(str8.toLowerCase(locale));
             if (gVar2 != null) {
                 gVar = gVar2;
             }
@@ -124,25 +124,25 @@ public final class n {
         int d = h.d();
         String str10 = Build.MANUFACTURER;
         String str11 = Build.PRODUCT;
-        nVar.f48964j.d(str, currentTimeMillis, new b1(c1Var, e1Var, new d1(ordinal, availableProcessors, d, b10, blockCount, g10)));
+        nVar.f48971j.d(str, currentTimeMillis, new b1(c1Var, e1Var, new d1(ordinal, availableProcessors, d, b10, blockCount, g10)));
         if (bool.booleanValue() && str != null) {
             p3 p3Var = nVar.d;
-            synchronized (((String) p3Var.f15856c)) {
+            synchronized (((String) p3Var.f15861c)) {
                 try {
-                    p3Var.f15856c = str;
+                    p3Var.f15861c = str;
                     Map a2 = ((x9.d) ((AtomicMarkableReference) ((com.google.firebase.messaging.m) p3Var.d).f7903b).getReference()).a();
-                    List g11 = ((b0) p3Var.f15858f).g();
+                    List g11 = ((b0) p3Var.f15863f).g();
                     if (((String) ((AtomicMarkableReference) p3Var.h).getReference()) != null) {
                         j3 = currentTimeMillis;
-                        ((x9.f) p3Var.f15854a).i(str, (String) ((AtomicMarkableReference) p3Var.h).getReference());
+                        ((x9.f) p3Var.f15859a).i(str, (String) ((AtomicMarkableReference) p3Var.h).getReference());
                     } else {
                         j3 = currentTimeMillis;
                     }
                     if (!a2.isEmpty()) {
-                        ((x9.f) p3Var.f15854a).g(str, a2, false);
+                        ((x9.f) p3Var.f15859a).g(str, a2, false);
                     }
                     if (!g11.isEmpty()) {
-                        ((x9.f) p3Var.f15854a).h(str, g11);
+                        ((x9.f) p3Var.f15859a).h(str, g11);
                     }
                 } finally {
                 }
@@ -150,71 +150,71 @@ public final class n {
         } else {
             j3 = currentTimeMillis;
         }
-        x9.e eVar = nVar.f48963i;
-        ((x9.c) eVar.f49797b).b();
-        eVar.f49797b = x9.e.f49795c;
+        x9.e eVar = nVar.f48970i;
+        ((x9.c) eVar.f49804b).b();
+        eVar.f49804b = x9.e.f49802c;
         if (str != null) {
-            eVar.f49797b = new x9.k(((ba.c) eVar.f49796a).b(str, "userlog"));
+            eVar.f49804b = new x9.k(((ba.c) eVar.f49803a).b(str, "userlog"));
         }
-        nVar.f48966l.b(str);
-        com.google.firebase.messaging.n nVar2 = nVar.f48967m;
+        nVar.f48973l.b(str);
+        com.google.firebase.messaging.n nVar2 = nVar.f48974m;
         q qVar = (q) nVar2.f7905a;
-        Charset charset = e2.f50635a;
+        Charset charset = e2.f50642a;
         ?? obj = new Object();
-        obj.f47900a = "18.6.0";
-        a aVar2 = qVar.f48991c;
-        String str12 = aVar2.f48923a;
+        obj.f47907a = "18.6.0";
+        a aVar2 = qVar.f48998c;
+        String str12 = aVar2.f48930a;
         if (str12 != null) {
-            obj.f47901b = str12;
-            v vVar2 = qVar.f48990b;
-            String str13 = vVar2.b().f48932a;
+            obj.f47908b = str12;
+            v vVar2 = qVar.f48997b;
+            String str13 = vVar2.b().f48939a;
             if (str13 != null) {
-                obj.f47902c = str13;
-                obj.d = vVar2.b().f48933b;
-                String str14 = aVar2.f48927f;
+                obj.f47909c = str13;
+                obj.d = vVar2.b().f48940b;
+                String str14 = aVar2.f48934f;
                 if (str14 != null) {
-                    obj.f47908k = str14;
-                    String str15 = aVar2.f48928g;
+                    obj.f47915k = str14;
+                    String str15 = aVar2.f48935g;
                     if (str15 != null) {
-                        obj.f47904f = str15;
-                        obj.f47906i = 4;
+                        obj.f47911f = str15;
+                        obj.f47913i = 4;
                         ?? obj2 = new Object();
-                        obj2.f50651f = Boolean.FALSE;
+                        obj2.f50658f = Boolean.FALSE;
                         obj2.d = Long.valueOf(j3);
                         if (str != null) {
-                            obj2.f50648b = str;
-                            String str16 = q.f48988g;
+                            obj2.f50655b = str;
+                            String str16 = q.f48995g;
                             if (str16 != null) {
-                                obj2.f50647a = str16;
-                                String str17 = vVar2.f49009c;
+                                obj2.f50654a = str16;
+                                String str17 = vVar2.f49016c;
                                 if (str17 != null) {
-                                    String str18 = vVar2.b().f48932a;
+                                    String str18 = vVar2.b().f48939a;
                                     z0 z0Var = aVar2.h;
-                                    if (((c5.a) z0Var.f16852c) == null) {
-                                        z0Var.f16852c = new c5.a(z0Var);
+                                    if (((c5.a) z0Var.f16857c) == null) {
+                                        z0Var.f16857c = new c5.a(z0Var);
                                     }
-                                    c5.a aVar3 = (c5.a) z0Var.f16852c;
+                                    c5.a aVar3 = (c5.a) z0Var.f16857c;
                                     String str19 = aVar3.f4148a;
                                     if (aVar3 == null) {
-                                        z0Var.f16852c = new c5.a(z0Var);
+                                        z0Var.f16857c = new c5.a(z0Var);
                                     }
-                                    obj2.f50652g = new i0(str17, str14, str15, str18, str19, ((c5.a) z0Var.f16852c).f4149b);
+                                    obj2.f50659g = new i0(str17, str14, str15, str18, str19, ((c5.a) z0Var.f16857c).f4149b);
                                     ?? obj3 = new Object();
                                     Integer valueOf = Integer.valueOf(i11);
-                                    obj3.f45534a = valueOf;
+                                    obj3.f45541a = valueOf;
                                     if (str6 != null) {
-                                        obj3.f45535b = str6;
+                                        obj3.f45542b = str6;
                                         if (str7 != null) {
-                                            obj3.f45536c = str7;
+                                            obj3.f45543c = str7;
                                             obj3.d = Boolean.valueOf(h.h());
-                                            obj2.f50653i = obj3.g();
+                                            obj2.f50660i = obj3.g();
                                             StatFs statFs2 = new StatFs(Environment.getDataDirectory().getPath());
                                             int i13 = 7;
-                                            if (!TextUtils.isEmpty(str8) && (num = (Integer) q.f48987f.get(str8.toLowerCase(locale))) != null) {
+                                            if (!TextUtils.isEmpty(str8) && (num = (Integer) q.f48994f.get(str8.toLowerCase(locale))) != null) {
                                                 i13 = num.intValue();
                                             }
                                             int availableProcessors2 = Runtime.getRuntime().availableProcessors();
-                                            long b11 = h.b(qVar.f48989a);
+                                            long b11 = h.b(qVar.f48996a);
                                             long blockCount2 = statFs2.getBlockCount() * statFs2.getBlockSize();
                                             boolean g12 = h.g();
                                             int d10 = h.d();
@@ -231,12 +231,12 @@ public final class n {
                                                     obj4.h = str10;
                                                     if (str11 != null) {
                                                         obj4.f8186i = str11;
-                                                        obj2.f50654j = obj4.b();
-                                                        obj2.f50656l = valueOf;
-                                                        obj.f47905g = obj2.a();
+                                                        obj2.f50661j = obj4.b();
+                                                        obj2.f50663l = valueOf;
+                                                        obj.f47912g = obj2.a();
                                                         a0 a10 = obj.a();
                                                         ba.c cVar = ((ba.b) nVar2.f7906b).f3718b;
-                                                        d2 d2Var = a10.f50579j;
+                                                        d2 d2Var = a10.f50586j;
                                                         if (d2Var == null) {
                                                             if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                                                                 Log.d("FirebaseCrashlytics", "Could not get session for report", null);
@@ -244,10 +244,10 @@ public final class n {
                                                             }
                                                             return;
                                                         }
-                                                        String str20 = ((h0) d2Var).f50659b;
+                                                        String str20 = ((h0) d2Var).f50666b;
                                                         try {
                                                             ba.b.f3715g.getClass();
-                                                            ba.b.f(cVar.b(str20, "report"), z9.c.f53055a.c(a10));
+                                                            ba.b.f(cVar.b(str20, "report"), z9.c.f53076a.c(a10));
                                                             File b12 = cVar.b(str20, "start-time");
                                                             long j10 = ((h0) d2Var).d;
                                                             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(b12), ba.b.f3713e);
@@ -293,8 +293,8 @@ public final class n {
         Task call;
         nVar.getClass();
         ArrayList arrayList = new ArrayList();
-        ba.c cVar = nVar.f48962g;
-        for (File file : ba.c.e(cVar.f3721b.listFiles(f48956r))) {
+        ba.c cVar = nVar.f48969g;
+        for (File file : ba.c.e(cVar.f3721b.listFiles(f48963r))) {
             try {
                 long parseLong = Long.parseLong(file.getName().substring(3));
                 try {
@@ -325,9 +325,9 @@ public final class n {
     }
 
     public final boolean d(da.b bVar) {
-        if (Boolean.TRUE.equals(((ThreadLocal) this.f48960e.f7924e).get())) {
-            r rVar = this.f48968n;
-            if (rVar != null && rVar.f48996e.get()) {
+        if (Boolean.TRUE.equals(((ThreadLocal) this.f48967e.f7924e).get())) {
+            r rVar = this.f48975n;
+            if (rVar != null && rVar.f49003e.get()) {
                 Log.w("FirebaseCrashlytics", "Skipping session finalization because a crash has already occurred.", null);
                 return false;
             }
@@ -349,7 +349,7 @@ public final class n {
     }
 
     public final String e() {
-        NavigableSet c10 = ((ba.b) this.f48967m.f7906b).c();
+        NavigableSet c10 = ((ba.b) this.f48974m.f7906b).c();
         if (!c10.isEmpty()) {
             return (String) c10.first();
         }
@@ -362,9 +362,9 @@ public final class n {
             String f7 = f();
             if (f7 != null) {
                 try {
-                    ((com.google.firebase.messaging.m) this.d.f15857e).u("com.crashlytics.version-control-info", f7);
+                    ((com.google.firebase.messaging.m) this.d.f15862e).u("com.crashlytics.version-control-info", f7);
                 } catch (IllegalArgumentException e7) {
-                    Context context = this.f48957a;
+                    Context context = this.f48964a;
                     if (context != null) {
                         if ((context.getApplicationInfo().flags & 2) != 0) {
                             z10 = true;
@@ -387,8 +387,8 @@ public final class n {
     public final Task h(Task task) {
         Task task2;
         Task task3;
-        TaskCompletionSource taskCompletionSource = this.f48969o;
-        ba.c cVar = ((ba.b) this.f48967m.f7906b).f3718b;
+        TaskCompletionSource taskCompletionSource = this.f48976o;
+        ba.c cVar = ((ba.b) this.f48974m.f7906b).f3718b;
         if (ba.c.e(cVar.d.listFiles()).isEmpty() && ba.c.e(cVar.f3723e.listFiles()).isEmpty() && ba.c.e(cVar.f3724f.listFiles()).isEmpty()) {
             if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                 Log.v("FirebaseCrashlytics", "No crash reports are available to be sent.", null);
@@ -396,9 +396,9 @@ public final class n {
             taskCompletionSource.trySetResult(Boolean.FALSE);
             return Tasks.forResult(null);
         }
-        t9.b bVar = t9.b.f46944a;
+        t9.b bVar = t9.b.f46951a;
         bVar.c("Crash reports are available to be sent.");
-        s sVar = this.f48958b;
+        s sVar = this.f48965b;
         if (sVar.a()) {
             if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                 Log.d("FirebaseCrashlytics", "Automatic data collection is enabled. Allowing upload.", null);
@@ -409,13 +409,13 @@ public final class n {
             bVar.b("Automatic data collection is disabled.");
             bVar.c("Notifying that unsent reports are available.");
             taskCompletionSource.trySetResult(Boolean.TRUE);
-            synchronized (sVar.f48999c) {
+            synchronized (sVar.f49006c) {
                 task2 = sVar.d.getTask();
             }
             Task onSuccessTask = task2.onSuccessTask(new Object());
             bVar.b("Waiting for send/deleteUnsentReports to be called.");
-            Task task4 = this.f48970p.getTask();
-            ExecutorService executorService = x.f49014a;
+            Task task4 = this.f48977p.getTask();
+            ExecutorService executorService = x.f49021a;
             TaskCompletionSource taskCompletionSource2 = new TaskCompletionSource();
             w wVar = new w(1, taskCompletionSource2);
             onSuccessTask.continueWith(wVar);

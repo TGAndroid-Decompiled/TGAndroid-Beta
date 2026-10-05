@@ -8,11 +8,11 @@ import android.text.TextUtils;
 import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputConnectionWrapper;
 public final class d extends InputConnectionWrapper {
-    public final e f46886a;
+    public final e f46893a;
 
     public d(InputConnection inputConnection, e eVar) {
         super(inputConnection, false);
-        this.f46886a = eVar;
+        this.f46893a = eVar;
     }
 
     @Override
@@ -25,7 +25,7 @@ public final class d extends InputConnectionWrapper {
         String str5;
         String str6;
         String str7;
-        e eVar = this.f46886a;
+        e eVar = this.f46893a;
         boolean z11 = false;
         z11 = false;
         z11 = false;

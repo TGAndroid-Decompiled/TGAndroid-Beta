@@ -20,7 +20,7 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.oy;
 import org.telegram.ui.uy;
-import org.telegram.ui.yf1;
+import org.telegram.ui.wf1;
 public final class n1 implements org.telegram.ui.ActionBar.a2, oy {
     public final int f11277a;
     public final KeyEvent.Callback f11278b;
@@ -80,7 +80,7 @@ public final class n1 implements org.telegram.ui.ActionBar.a2, oy {
     }
 
     @Override
-    public boolean u(uy uyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, yf1 yf1Var) {
+    public boolean u(uy uyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, wf1 wf1Var) {
         String str;
         TLRPC.TL_chatAdminRights tL_chatAdminRights;
         final LaunchActivity launchActivity = (LaunchActivity) this.f11278b;
@@ -103,7 +103,7 @@ public final class n1 implements org.telegram.ui.ActionBar.a2, oy {
         } else {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(launchActivity);
             String string = LocaleController.getString(R.string.AddBot);
-            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20372a;
+            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20377a;
             b2Var.R = string;
             if (chat == null) {
                 str = "";

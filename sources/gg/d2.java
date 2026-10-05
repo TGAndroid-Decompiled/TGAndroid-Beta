@@ -65,12 +65,12 @@ public final class d2 implements MediaDataController.KeywordResultCallback, org.
         int i10;
         m4.k0 k0Var = (m4.k0) this.f10559c;
         n4.l lVar = (n4.l) this.d;
-        if (TextUtils.isEmpty(lVar.f16607a)) {
+        if (TextUtils.isEmpty(lVar.f16612a)) {
             e2.a.n("MediaSessionLegacyStub", "onAddQueueItem(): Media ID shouldn't be empty");
             return;
         }
-        int i11 = m4.k.f16210a;
-        String str = lVar.f16607a;
+        int i11 = m4.k.f16215a;
+        String str = lVar.f16612a;
         b2.y yVar = new b2.y();
         e9.g0 g0Var = e9.i0.f8758b;
         e9.a1 a1Var = e9.a1.f8721e;
@@ -82,16 +82,16 @@ public final class d2 implements MediaDataController.KeywordResultCallback, org.
         }
         String str2 = str;
         aa.a aVar = new aa.a(4);
-        aVar.f387c = lVar.f16612n;
+        aVar.f387c = lVar.f16617n;
         b2.g0 g0Var3 = new b2.g0(aVar);
-        CharSequence charSequence = lVar.f16608b;
+        CharSequence charSequence = lVar.f16613b;
         b2.m0 m0Var = new b2.m0();
-        m0Var.f3345f = lVar.f16609c;
+        m0Var.f3345f = lVar.f16614c;
         m0Var.f3346g = lVar.d;
-        m0Var.f3351m = lVar.f16611f;
+        m0Var.f3351m = lVar.f16616f;
         Bundle bundle = null;
         m0Var.f3347i = m4.k.c(null);
-        Bitmap bitmap = lVar.f16610e;
+        Bitmap bitmap = lVar.f16615e;
         if (bitmap != null) {
             try {
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -158,7 +158,7 @@ public final class d2 implements MediaDataController.KeywordResultCallback, org.
             m0Var.H = bundle;
         }
         m0Var.f3356r = Boolean.TRUE;
-        i9.w l4 = k0Var.f16213g.l(rVar, e9.i0.z(new b2.k0(str2, new b2.z(yVar), null, new b2.e0(d0Var), new b2.n0(m0Var), g0Var3)));
+        i9.w l4 = k0Var.f16218g.l(rVar, e9.i0.z(new b2.k0(str2, new b2.z(yVar), null, new b2.e0(d0Var), new b2.n0(m0Var), g0Var3)));
         l4.a(new i9.s(0, l4, new a5.a(k0Var, rVar, this.f10558b)), i9.q.f12025a);
     }
 
@@ -197,10 +197,10 @@ public final class d2 implements MediaDataController.KeywordResultCallback, org.
             case 6:
                 yn ynVar = (yn) this.f10559c;
                 boolean[] zArr = (boolean[]) this.d;
-                ynVar.getMessagesController().pinMessage(ynVar.f43322e, ynVar.f43334f, this.f10558b, false, !zArr[1], zArr[0]);
-                rc B = yc.B(ynVar, true, null, null, ynVar.f43307ca);
+                ynVar.getMessagesController().pinMessage(ynVar.f43315e, ynVar.f43327f, this.f10558b, false, !zArr[1], zArr[0]);
+                rc B = yc.B(ynVar, true, null, null, ynVar.f43300ca);
                 B.j();
-                vb vbVar = B.f30341e;
+                vb vbVar = B.f30423e;
                 vbVar.postDelayed(new gh(0, vbVar), 550L);
                 return;
             case 7:
@@ -225,18 +225,18 @@ public final class d2 implements MediaDataController.KeywordResultCallback, org.
                     AndroidUtilities.shakeView(un0Var);
                     return;
                 }
-                MessagesController.getInstance(this.f10558b).renameSavedReactionTag(zg.o0.d(reaction), obj2);
+                MessagesController.getInstance(this.f10558b).renameSavedReactionTag(zg.m0.d(reaction), obj2);
                 b2Var.dismiss();
                 return;
             case 11:
                 EditTextBoldCursor editTextBoldCursor2 = (EditTextBoldCursor) this.d;
-                l50 l50Var = ((h50) this.f10559c).f36873n;
-                ChatObject.Call call = l50Var.f38169b.f36879a1;
+                l50 l50Var = ((h50) this.f10559c).f36898n;
+                ChatObject.Call call = l50Var.f38233b.f36906a1;
                 String obj3 = editTextBoldCursor2.getText().toString();
                 int i12 = this.f10558b;
                 call.toggleRecord(obj3, i12);
                 AndroidUtilities.hideKeyboard(editTextBoldCursor2);
-                UndoView k12 = l50Var.f38169b.k1();
+                UndoView k12 = l50Var.f38233b.k1();
                 if (i12 == 0) {
                     i11 = 39;
                 } else {
@@ -251,7 +251,7 @@ public final class d2 implements MediaDataController.KeywordResultCallback, org.
             case 12:
                 LaunchActivity launchActivity = (LaunchActivity) this.f10559c;
                 HashMap hashMap = (HashMap) this.d;
-                ArrayList arrayList = launchActivity.f33780d0;
+                ArrayList arrayList = launchActivity.f33793d0;
                 if (!arrayList.isEmpty() && AndroidUtilities.isMapsInstalled((n2) hg.c.g(1, arrayList))) {
                     gd0 gd0Var = new gd0(0);
                     gd0Var.F0 = new i2.s(hashMap, this.f10558b, 12);

@@ -32,7 +32,7 @@ public final class d5 implements q0.a {
                 l3Var.f9183y.setLoadProgressAnimated(f7.floatValue());
                 if (f7.floatValue() == 1.0f) {
                     ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(200L);
-                    duration.setInterpolator(tr.f31147f);
+                    duration.setInterpolator(tr.f31215f);
                     duration.addUpdateListener(new ei.e2(l3Var, 1));
                     duration.addListener(new ai.b(l3Var, 21));
                     duration.start();
@@ -45,7 +45,7 @@ public final class d5 implements q0.a {
                 r4Var.I.setLoadProgressAnimated(f10.floatValue());
                 if (f10.floatValue() == 1.0f) {
                     ValueAnimator duration2 = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(200L);
-                    duration2.setInterpolator(tr.f31147f);
+                    duration2.setInterpolator(tr.f31215f);
                     duration2.addUpdateListener(new ei.i4(r4Var, 0));
                     duration2.addListener(new ai.b(r4Var, 22));
                     duration2.start();

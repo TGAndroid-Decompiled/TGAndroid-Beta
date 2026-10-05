@@ -38,7 +38,7 @@ public class s2 extends org.telegram.ui.ActionBar.f3 implements NotificationCent
         this.f5896r = z10;
         this.f5897s = z11;
         this.useSmoothKeyboard = true;
-        fixNavigationBar(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20894h5, d6Var));
+        fixNavigationBar(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20899h5, d6Var));
         this.occupyNavigationBar = true;
         setUseLightStatusBar(false);
         this.containerView = new k1(this, context);
@@ -49,7 +49,7 @@ public class s2 extends org.telegram.ui.ActionBar.f3 implements NotificationCent
         } else {
             i10 = G;
         }
-        i1Var.f26736b = i10;
+        i1Var.f27166b = i10;
         i1Var.setAdapter(new j1(this, z10, context));
         this.containerView.addView(i1Var, w7.z5.e(-1, -1, 87));
         new i4(this.containerView, false, new e1(this, 0));
@@ -57,7 +57,7 @@ public class s2 extends org.telegram.ui.ActionBar.f3 implements NotificationCent
             r2 r2Var = new r2(context);
             this.h = r2Var;
             r2Var.G = new e1(this, 1);
-            r2Var.F = i1Var.f26736b;
+            r2Var.F = i1Var.f27166b;
             r2Var.invalidate();
             this.containerView.addView(r2Var, w7.z5.e(-1, -2, 87));
         }
@@ -83,12 +83,24 @@ public class s2 extends org.telegram.ui.ActionBar.f3 implements NotificationCent
         return s2Var.currentAccount;
     }
 
+    public static boolean E(s2 s2Var) {
+        return s2Var.keyboardVisible;
+    }
+
     public static int F(s2 s2Var) {
         return s2Var.currentAccount;
     }
 
     public static org.telegram.ui.ActionBar.d6 G(s2 s2Var) {
         return s2Var.resourcesProvider;
+    }
+
+    public static ViewGroup H(s2 s2Var) {
+        return s2Var.containerView;
+    }
+
+    public static boolean I(s2 s2Var) {
+        return s2Var.keyboardVisible;
     }
 
     public static int R(s2 s2Var) {
@@ -119,8 +131,12 @@ public class s2 extends org.telegram.ui.ActionBar.f3 implements NotificationCent
                 int i11 = s2Var.keyboardHeight;
                 f7 = Math.min(0.0f, Math.max(((i10 - i11) * 0.3f) - s2Var.f5899x, (-i11) / 3.0f));
             }
-            s2Var.container.animate().translationY(f7).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.p1.f21448w).start();
+            s2Var.container.animate().translationY(f7).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.p1.f21452w).start();
         }
+    }
+
+    public static ViewGroup t(s2 s2Var) {
+        return s2Var.containerView;
     }
 
     @Override
@@ -182,7 +198,7 @@ public class s2 extends org.telegram.ui.ActionBar.f3 implements NotificationCent
         View[] viewPages;
         l2 l2Var;
         this.keyboardVisible = false;
-        this.container.animate().translationY(0.0f).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.p1.f21448w).start();
+        this.container.animate().translationY(0.0f).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.p1.f21452w).start();
         for (View view : this.f5894f.getViewPages()) {
             if (view instanceof e2) {
                 l2 l2Var2 = ((e2) view).f4977f;

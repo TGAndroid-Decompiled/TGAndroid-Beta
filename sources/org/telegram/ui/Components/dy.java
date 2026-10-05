@@ -3,5 +3,5 @@ package org.telegram.ui.Components;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 public final class dy extends FrameLayout {
-    public TextView f25842a;
+    public TextView f25889a;
 }

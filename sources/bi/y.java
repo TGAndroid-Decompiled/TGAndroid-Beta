@@ -6,13 +6,13 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Components.cb;
-import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.w61;
 import org.telegram.ui.Components.yl0;
 import org.telegram.ui.Components.zl0;
 public final class y extends cb {
     public final int X;
     public final CharSequence Y;
-    public u61 Z;
+    public w61 Z;
 
     public y(n2 n2Var, String str, y1 y1Var) {
         super(n2Var, true, false, n2Var.getResourceProvider());
@@ -22,7 +22,7 @@ public final class y extends cb {
         this.Y = str;
         L();
         this.v = 0.6f;
-        this.f25314y = true;
+        this.f25362y = true;
         this.E = true;
         fixNavigationBar();
         I();
@@ -34,10 +34,10 @@ public final class y extends cb {
 
     @Override
     public final yl0 v(zl0 zl0Var) {
-        u61 u61Var = new u61(zl0Var, getContext(), this.X, 0, false, new v(this, 0), this.resourcesProvider);
-        this.Z = u61Var;
-        u61Var.f31313r = false;
-        return u61Var;
+        w61 w61Var = new w61(zl0Var, getContext(), this.X, 0, false, new v(this, 0), this.resourcesProvider);
+        this.Z = w61Var;
+        w61Var.f32531r = false;
+        return w61Var;
     }
 
     @Override

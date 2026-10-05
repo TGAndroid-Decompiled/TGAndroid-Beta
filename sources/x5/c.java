@@ -9,18 +9,18 @@ import v8.r;
 import w7.g0;
 public final class c extends o6.a {
     public static final Parcelable.Creator<c> CREATOR = new r(29);
-    public final boolean f49385a;
-    public final byte[] f49386b;
-    public final String f49387c;
+    public final boolean f49392a;
+    public final byte[] f49393b;
+    public final String f49394c;
 
     public c(boolean z10, byte[] bArr, String str) {
         if (z10) {
             l.h(bArr);
             l.h(str);
         }
-        this.f49385a = z10;
-        this.f49386b = bArr;
-        this.f49387c = str;
+        this.f49392a = z10;
+        this.f49393b = bArr;
+        this.f49394c = str;
     }
 
     public final boolean equals(Object obj) {
@@ -31,23 +31,23 @@ public final class c extends o6.a {
             return false;
         }
         c cVar = (c) obj;
-        if (this.f49385a == cVar.f49385a && Arrays.equals(this.f49386b, cVar.f49386b) && Objects.equals(this.f49387c, cVar.f49387c)) {
+        if (this.f49392a == cVar.f49392a && Arrays.equals(this.f49393b, cVar.f49393b) && Objects.equals(this.f49394c, cVar.f49394c)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(this.f49386b) + (Objects.hash(Boolean.valueOf(this.f49385a), this.f49387c) * 31);
+        return Arrays.hashCode(this.f49393b) + (Objects.hash(Boolean.valueOf(this.f49392a), this.f49394c) * 31);
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = g0.q(parcel, 20293);
         g0.s(parcel, 1, 4);
-        parcel.writeInt(this.f49385a ? 1 : 0);
-        g0.c(parcel, 2, this.f49386b);
-        g0.l(parcel, 3, this.f49387c);
+        parcel.writeInt(this.f49392a ? 1 : 0);
+        g0.c(parcel, 2, this.f49393b);
+        g0.l(parcel, 3, this.f49394c);
         g0.r(parcel, q6);
     }
 }

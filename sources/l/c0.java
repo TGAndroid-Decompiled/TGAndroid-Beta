@@ -95,7 +95,7 @@ public final class c0 extends s implements PopupWindow.OnDismissListener, View.O
 
     @Override
     public final r1 f() {
-        return this.f15138n.f15719c;
+        return this.f15138n.f15724c;
     }
 
     @Override
@@ -128,7 +128,7 @@ public final class c0 extends s implements PopupWindow.OnDismissListener, View.O
             }
             view2.addOnAttachStateChangeListener(this.f15140s);
             j2Var.E = view2;
-            j2Var.f15725w = this.I;
+            j2Var.f15730w = this.I;
             boolean z11 = this.G;
             Context context = this.f15134b;
             h hVar = this.d;
@@ -146,7 +146,7 @@ public final class c0 extends s implements PopupWindow.OnDismissListener, View.O
             }
             j2Var.M = rect;
             j2Var.g();
-            r1 r1Var = j2Var.f15719c;
+            r1 r1Var = j2Var.f15724c;
             r1Var.setOnKeyListener(this);
             if (this.J) {
                 k kVar = this.f15135c;
@@ -207,11 +207,11 @@ public final class c0 extends s implements PopupWindow.OnDismissListener, View.O
             this.v = null;
             this.f15135c.c(false);
             j2 j2Var = this.f15138n;
-            int i11 = j2Var.f15721f;
+            int i11 = j2Var.f15726f;
             int m10 = j2Var.m();
             int i12 = this.I;
             View view = this.f15141w;
-            WeakHashMap weakHashMap = i0.f45603a;
+            WeakHashMap weakHashMap = i0.f45610a;
             if ((Gravity.getAbsoluteGravity(i12, view.getLayoutDirection()) & 7) == 5) {
                 i11 += this.f15141w.getWidth();
             }
@@ -274,7 +274,7 @@ public final class c0 extends s implements PopupWindow.OnDismissListener, View.O
 
     @Override
     public final void q(int i10) {
-        this.f15138n.f15721f = i10;
+        this.f15138n.f15726f = i10;
     }
 
     @Override

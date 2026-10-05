@@ -111,7 +111,7 @@ public final class x2 {
         ofFloat.addUpdateListener(new ai.a(this, 17));
         this.f6271i.addListener(new ai.t2(this, f7, runnable, 1));
         this.f6271i.setDuration(j3);
-        this.f6271i.setInterpolator(tr.f31149i);
+        this.f6271i.setInterpolator(tr.f31217i);
         this.f6271i.start();
     }
 

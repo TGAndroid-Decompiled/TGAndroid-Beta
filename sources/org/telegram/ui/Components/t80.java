@@ -39,7 +39,7 @@ public final class t80 extends org.telegram.ui.yn {
         }
         boolean z11 = chat.creator;
         d6Var = ((org.telegram.ui.ActionBar.f3) t80Var.Nc).resourcesProvider;
-        w01.c(parentActivity, i10, j10, currentUser, null, z10, z11, d6Var);
+        x01.c(parentActivity, i10, j10, currentUser, null, z10, z11, d6Var);
     }
 
     @Override
@@ -52,12 +52,12 @@ public final class t80 extends org.telegram.ui.yn {
             TLRPC.Chat chat = messagesController.getChat(Long.valueOf(j3));
             if (ChatObject.canManageMyTag(chat)) {
                 rc J = yc.a0(this).J(R.raw.contact_check, LocaleController.getString(R.string.JoinedGroup), LocaleController.getString(R.string.JoinedGroupAddTag), new a3.h0(this, j3, chat, 20));
-                J.f30353r = false;
+                J.f30435r = false;
                 J.k(true);
                 return;
             }
             rc Q = yc.a0(this).Q(R.raw.contact_check, 36, LocaleController.getString(R.string.JoinedGroup));
-            Q.f30353r = false;
+            Q.f30435r = false;
             Q.k(true);
         }
     }

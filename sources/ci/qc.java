@@ -21,8 +21,8 @@ import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.aw0;
-import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.bw0;
+import org.telegram.ui.Components.w61;
 import org.telegram.ui.LaunchActivity;
 public final class qc implements Runnable {
     public final int f5801a;
@@ -41,49 +41,49 @@ public final class qc implements Runnable {
         y2.e eVar = (y2.e) tVar.f8580a.get();
         if (eVar != null) {
             int b10 = tVar.f8582c.b();
-            y2.f fVar = eVar.f50378a;
+            y2.f fVar = eVar.f50385a;
             synchronized (fVar) {
                 synchronized (fVar) {
-                    int i11 = fVar.f50396n;
-                    if (i11 != 0 && !fVar.f50388e) {
+                    int i11 = fVar.f50403n;
+                    if (i11 != 0 && !fVar.f50395e) {
                         return;
                     }
-                    if (i11 == b10 && fVar.f50397o != null) {
+                    if (i11 == b10 && fVar.f50404o != null) {
                         return;
                     }
-                    fVar.f50396n = b10;
+                    fVar.f50403n = b10;
                     if (b10 != 1 && b10 != 0 && b10 != 8) {
-                        if (fVar.f50397o == null) {
-                            Context context = fVar.f50385a;
+                        if (fVar.f50404o == null) {
+                            Context context = fVar.f50392a;
                             String str = e2.d0.f8538a;
                             if (context != null && (telephonyManager = (TelephonyManager) context.getSystemService("phone")) != null) {
                                 String networkCountryIso = telephonyManager.getNetworkCountryIso();
                                 if (!TextUtils.isEmpty(networkCountryIso)) {
                                     c10 = v7.r6.c(networkCountryIso);
-                                    fVar.f50397o = c10;
+                                    fVar.f50404o = c10;
                                 }
                             }
                             c10 = v7.r6.c(Locale.getDefault().getCountry());
-                            fVar.f50397o = c10;
+                            fVar.f50404o = c10;
                         }
-                        fVar.f50394l = fVar.a(b10);
+                        fVar.f50401l = fVar.a(b10);
                         fVar.d.getClass();
                         long elapsedRealtime = SystemClock.elapsedRealtime();
-                        if (fVar.f50390g > 0) {
+                        if (fVar.f50397g > 0) {
                             i10 = (int) (elapsedRealtime - fVar.h);
                         } else {
                             i10 = 0;
                         }
-                        fVar.c(i10, fVar.f50391i, fVar.f50394l);
+                        fVar.c(i10, fVar.f50398i, fVar.f50401l);
                         fVar.h = elapsedRealtime;
-                        fVar.f50391i = 0L;
-                        fVar.f50393k = 0L;
-                        fVar.f50392j = 0L;
-                        y2.q qVar = fVar.f50389f;
-                        qVar.f50420a.clear();
-                        qVar.f50422c = -1;
+                        fVar.f50398i = 0L;
+                        fVar.f50400k = 0L;
+                        fVar.f50399j = 0L;
+                        y2.q qVar = fVar.f50396f;
+                        qVar.f50427a.clear();
+                        qVar.f50429c = -1;
                         qVar.d = 0;
-                        qVar.f50423e = 0;
+                        qVar.f50430e = 0;
                     }
                 }
             }
@@ -149,9 +149,9 @@ public final class qc implements Runnable {
                 return;
             case 4:
                 di.k kVar = (di.k) this.f5802b;
-                aw0 aw0Var = kVar.S;
-                if (aw0Var != null && kVar.Y != -1) {
-                    aw0Var.Z();
+                bw0 bw0Var = kVar.S;
+                if (bw0Var != null && kVar.Y != -1) {
+                    bw0Var.a();
                     return;
                 }
                 return;
@@ -201,7 +201,7 @@ public final class qc implements Runnable {
                 return;
             case 18:
                 hg.d dVar = (hg.d) this.f5802b;
-                dVar.f11138c.f25250f3.N(true);
+                dVar.f11138c.f26034f3.N(true);
                 dVar.T(true);
                 return;
             case 19:
@@ -210,25 +210,25 @@ public final class qc implements Runnable {
                 return;
             case 20:
                 hg.l0 l0Var = (hg.l0) this.f5802b;
-                u61 u61Var = l0Var.f11256d0;
-                if (u61Var != null) {
-                    u61Var.N(true);
+                w61 w61Var = l0Var.f11256d0;
+                if (w61Var != null) {
+                    w61Var.N(true);
                 }
                 l0Var.R(true);
                 return;
             case 21:
-                hg.u0 u0Var = (hg.u0) ((xa.c) this.f5802b).f49821b;
-                u0Var.f11350c.f25250f3.N(true);
+                hg.u0 u0Var = (hg.u0) ((xa.c) this.f5802b).f49828b;
+                u0Var.f11350c.f26034f3.N(true);
                 u0Var.b0();
                 return;
             case 22:
                 hg.w0 w0Var = (hg.w0) this.f5802b;
-                w0Var.f11379c.f25250f3.N(true);
+                w0Var.f11379c.f26034f3.N(true);
                 w0Var.T(true);
                 return;
             case 23:
                 hg.g1 g1Var = (hg.g1) this.f5802b;
-                g1Var.f11198a.f25250f3.N(true);
+                g1Var.f11198a.f26034f3.N(true);
                 g1Var.X(true);
                 return;
             case 24:

@@ -6,7 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.widget.FrameLayout;
 import org.telegram.messenger.R;
 public final class k1 extends FrameLayout {
-    public final Drawable f21310a;
+    public final Drawable f21314a;
 
     public k1(Context context, d6 d6Var) {
         this(context, i6.H8, d6Var);
@@ -15,7 +15,7 @@ public final class k1 extends FrameLayout {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Drawable drawable = this.f21310a;
+        Drawable drawable = this.f21314a;
         if (drawable != null) {
             drawable.setBounds(0, 0, getWidth(), getHeight());
             drawable.draw(canvas);
@@ -29,8 +29,8 @@ public final class k1 extends FrameLayout {
     public k1(Context context, int i10, d6 d6Var) {
         super(context);
         int v02 = i6.v0(i10, d6Var);
-        int v03 = i6.v0(i6.f20786b7, d6Var);
-        this.f21310a = i6.U0(getContext(), R.drawable.greydivider, v03);
+        int v03 = i6.v0(i6.f20791b7, d6Var);
+        this.f21314a = i6.U0(getContext(), R.drawable.greydivider, v03);
         setBackgroundColor(v02);
     }
 }

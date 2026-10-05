@@ -10,23 +10,23 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.ui.Components.PipRoundVideoView;
 public final class dm implements ViewTreeObserver.OnPreDrawListener {
-    public final int f35811a;
-    public final Object f35812b;
-    public final Object f35813c;
+    public final int f35850a;
+    public final Object f35851b;
+    public final Object f35852c;
 
     public dm(int i10, Object obj, Object obj2) {
-        this.f35811a = i10;
-        this.f35813c = obj;
-        this.f35812b = obj2;
+        this.f35850a = i10;
+        this.f35852c = obj;
+        this.f35851b = obj2;
     }
 
     @Override
     public final boolean onPreDraw() {
         int[] iArr;
         float f7;
-        int i10 = this.f35811a;
-        Object obj = this.f35813c;
-        Object obj2 = this.f35812b;
+        int i10 = this.f35850a;
+        Object obj = this.f35852c;
+        Object obj2 = this.f35851b;
         switch (i10) {
             case 0:
                 yn ynVar = ((jm) obj).Q;
@@ -40,7 +40,7 @@ public final class dm implements ViewTreeObserver.OnPreDrawListener {
                 float imageWidth = photoImage.getImageWidth();
                 RectF cameraRect = ynVar.Z2.getCameraRect();
                 float width = imageWidth / cameraRect.width();
-                u1Var.getTransitionParams().f23034x0 = true;
+                u1Var.getTransitionParams().f23037x0 = true;
                 u1Var.setAlpha(0.0f);
                 u1Var.setTimeAlpha(0.0f);
                 u1Var.getLocationOnScreen(r9);
@@ -57,10 +57,10 @@ public final class dm implements ViewTreeObserver.OnPreDrawListener {
                 ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(cameraContainer, View.TRANSLATION_Y, iArr2[1] - cameraRect.top);
                 View buttonsLayout = ynVar.Z2.getButtonsLayout();
                 Property property = View.ALPHA;
-                animatorSet.playTogether(ofFloat, ofFloat2, ofFloat3, ObjectAnimator.ofFloat(buttonsLayout, property, 0.0f), ObjectAnimator.ofInt(ynVar.Z2.getPaint(), org.telegram.ui.Components.s6.f30637b, 0), ObjectAnimator.ofFloat(ynVar.Z2.getMuteImageView(), property, 0.0f));
+                animatorSet.playTogether(ofFloat, ofFloat2, ofFloat3, ObjectAnimator.ofFloat(buttonsLayout, property, 0.0f), ObjectAnimator.ofInt(ynVar.Z2.getPaint(), org.telegram.ui.Components.s6.f30697b, 0), ObjectAnimator.ofFloat(ynVar.Z2.getMuteImageView(), property, 0.0f));
                 animatorSet.setInterpolator(org.telegram.ui.Components.tr.h);
                 ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(cameraContainer, View.TRANSLATION_X, iArr2[0] - cameraRect.left);
-                ofFloat4.setInterpolator(org.telegram.ui.Components.tr.f31147f);
+                ofFloat4.setInterpolator(org.telegram.ui.Components.tr.f31215f);
                 animatorSet2.playTogether(ofFloat4, animatorSet);
                 animatorSet2.setDuration(300L);
                 org.telegram.ui.Components.k60 k60Var = ynVar.Z2;
@@ -71,7 +71,7 @@ public final class dm implements ViewTreeObserver.OnPreDrawListener {
                 animatorSet2.start();
                 return true;
             case 1:
-                ((cy) obj).f35573a.f41400e0[0].f40990a.getViewTreeObserver().removeOnPreDrawListener(this);
+                ((cy) obj).f35565a.f41435e0[0].f41046a.getViewTreeObserver().removeOnPreDrawListener(this);
                 AndroidUtilities.runOnUIThread((ai.j) obj2, 100L);
                 return false;
             default:
@@ -79,7 +79,7 @@ public final class dm implements ViewTreeObserver.OnPreDrawListener {
                 uh.h hVar = (uh.h) obj;
                 org.telegram.ui.Components.zb zbVar = hVar.W;
                 if (zbVar != null) {
-                    int[] iArr3 = uh.h.f47732d0;
+                    int[] iArr3 = uh.h.f47739d0;
                     zbVar.getLocationInWindow(iArr3);
                     float f10 = iArr3[0];
                     float translationY = iArr3[1] - hVar.W.getTranslationY();
@@ -89,9 +89,9 @@ public final class dm implements ViewTreeObserver.OnPreDrawListener {
                     } else {
                         f7 = -zbVar2.getBottomOffset();
                     }
-                    hVar.f47735a.getLocationInWindow(iArr3);
-                    hVar.X = (hVar.W.f33471a.getMeasuredWidth() / 2.0f) + (f10 - iArr3[0]) + hVar.W.f33471a.getLeft();
-                    hVar.Y = (hVar.W.f33471a.getMeasuredHeight() / 2.0f) + ((translationY + f7) - iArr3[1]) + hVar.W.f33471a.getTop();
+                    hVar.f47742a.getLocationInWindow(iArr3);
+                    hVar.X = (hVar.W.f33479a.getMeasuredWidth() / 2.0f) + (f10 - iArr3[0]) + hVar.W.f33479a.getLeft();
+                    hVar.Y = (hVar.W.f33479a.getMeasuredHeight() / 2.0f) + ((translationY + f7) - iArr3[1]) + hVar.W.f33479a.getTop();
                 }
                 hVar.c();
                 return true;

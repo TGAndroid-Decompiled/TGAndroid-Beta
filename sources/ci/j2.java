@@ -5,7 +5,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.az;
 import org.telegram.ui.Components.iq;
 import org.telegram.ui.Components.pn0;
-import org.telegram.ui.t51;
+import org.telegram.ui.r51;
 public final class j2 extends iq {
     public final int h;
     public final Object f5203i;
@@ -21,13 +21,13 @@ public final class j2 extends iq {
             case 0:
                 return org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Je, (org.telegram.ui.ActionBar.d6) this.f5203i);
             case 1:
-                return ((org.telegram.ui.ActionBar.v0) this.f5203i).f21577c.f21724b.f21290r0;
+                return ((org.telegram.ui.ActionBar.v0) this.f5203i).f21581c.f21728b.f21295r0;
             case 2:
                 return org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Je, ((az) this.f5203i).G.Z1);
             case 3:
-                return org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Q5, ((pn0) this.f5203i).f29678f);
+                return org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Q5, ((pn0) this.f5203i).f29771f);
             default:
-                return org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Je, ((t51) this.f5203i).f39942y.Z0);
+                return org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Je, ((r51) this.f5203i).f39376y.Z0);
         }
     }
 
@@ -35,20 +35,20 @@ public final class j2 extends iq {
         super(1.25f);
         this.h = 2;
         this.f5203i = azVar;
-        this.f27464f = AndroidUtilities.dp(7.0f);
+        this.f27562f = AndroidUtilities.dp(7.0f);
     }
 
     public j2(org.telegram.ui.ActionBar.d6 d6Var) {
         super(1.25f);
         this.h = 0;
         this.f5203i = d6Var;
-        this.f27464f = AndroidUtilities.dp(7.0f);
+        this.f27562f = AndroidUtilities.dp(7.0f);
     }
 
-    public j2(t51 t51Var) {
+    public j2(r51 r51Var) {
         super(1.25f);
         this.h = 4;
-        this.f5203i = t51Var;
-        this.f27464f = AndroidUtilities.dp(7.0f);
+        this.f5203i = r51Var;
+        this.f27562f = AndroidUtilities.dp(7.0f);
     }
 }

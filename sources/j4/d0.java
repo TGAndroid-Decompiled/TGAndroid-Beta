@@ -17,7 +17,7 @@ public final class d0 implements c3.o {
     public final e2.v d;
     public final SparseIntArray f13729e;
     public final f f13730f;
-    public final z3.l f13731g;
+    public final z3.k f13731g;
     public final SparseArray h;
     public final SparseBooleanArray f13732i;
     public final SparseBooleanArray f13733j;
@@ -32,11 +32,11 @@ public final class d0 implements c3.o {
     public int f13742s;
     public int f13743t;
 
-    public d0(int i10, int i11, z3.l lVar, e2.b0 b0Var, f fVar) {
+    public d0(int i10, int i11, z3.k kVar, e2.b0 b0Var, f fVar) {
         this.f13730f = fVar;
         this.f13726a = i10;
         this.f13727b = i11;
-        this.f13731g = lVar;
+        this.f13731g = kVar;
         if (i10 != 1 && i10 != 2) {
             ArrayList arrayList = new ArrayList();
             this.f13728c = arrayList;

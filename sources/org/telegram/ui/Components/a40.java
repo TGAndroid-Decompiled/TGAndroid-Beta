@@ -14,7 +14,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class a40 extends cb {
     public final LinearLayout X;
-    public u61 Y;
+    public w61 Y;
 
     public a40(Activity activity, org.telegram.ui.ActionBar.d6 d6Var, TLRPC.User user, TLObject tLObject, org.telegram.ui.cq cqVar) {
         super(activity, null, false, false, 1, d6Var);
@@ -29,7 +29,7 @@ public final class a40 extends cb {
         org.telegram.ui.f01 N2 = N(activity, AndroidUtilities.dp(60.0f), tLObject);
         ImageView imageView = new ImageView(activity);
         imageView.setImageResource(R.drawable.msg_arrow_avatar);
-        imageView.setColorFilter(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21228z6, d6Var));
+        imageView.setColorFilter(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21233z6, d6Var));
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         LinearLayout linearLayout2 = new LinearLayout(activity);
         linearLayout2.setOrientation(0);
@@ -86,10 +86,10 @@ public final class a40 extends cb {
 
     @Override
     public final yl0 v(zl0 zl0Var) {
-        u61 u61Var = new u61(this.d, getContext(), this.currentAccount, 0, true, new d(this, 14), this.resourcesProvider);
-        this.Y = u61Var;
-        u61Var.f31313r = false;
-        return u61Var;
+        w61 w61Var = new w61(this.d, getContext(), this.currentAccount, 0, true, new d(this, 14), this.resourcesProvider);
+        this.Y = w61Var;
+        w61Var.f32531r = false;
+        return w61Var;
     }
 
     @Override

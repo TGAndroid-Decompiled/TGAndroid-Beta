@@ -34,7 +34,7 @@ import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout
 import org.telegram.ui.Components.ml0;
 import org.telegram.ui.Components.rq;
 import org.telegram.ui.Components.tr;
-import org.telegram.ui.Components.tx0;
+import org.telegram.ui.Components.ux0;
 import org.telegram.ui.Components.w00;
 import org.telegram.ui.Components.zl0;
 public abstract class w3 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
@@ -76,7 +76,7 @@ public abstract class w3 extends FrameLayout implements NotificationCenter.Notif
     public ai.w5 f6221i0;
     public final zl0 f6222n;
     public final l3 f6223r;
-    public final tx0 f6224s;
+    public final ux0 f6224s;
     public final i4 v;
     public boolean f6225w;
     public final org.telegram.ui.ActionBar.k f6226x;
@@ -206,9 +206,9 @@ public abstract class w3 extends FrameLayout implements NotificationCenter.Notif
         kVar.setAlpha(0.0f);
         kVar.setVisibility(8);
         kVar.setBackButtonImage(R.drawable.ic_ab_back);
-        kVar.A(436207615, false);
-        kVar.B(-1, false);
-        kVar.B(-1, true);
+        kVar.z(436207615, false);
+        kVar.A(-1, false);
+        kVar.A(-1, true);
         addView(kVar, w7.z5.e(-1, -2, 55));
         kVar.setActionBarMenuOnItemClick(new j3(this));
         org.telegram.ui.ActionBar.z n10 = kVar.n();
@@ -290,16 +290,16 @@ public abstract class w3 extends FrameLayout implements NotificationCenter.Notif
         w00Var.setAlpha(0.0f);
         w00Var.setVisibility(8);
         frameLayout.addView(w00Var, w7.z5.e(-1, -1, 119));
-        tx0 tx0Var = new tx0(context, w00Var, 11, d6Var);
-        this.f6224s = tx0Var;
-        vh.n nVar = tx0Var.d;
+        ux0 ux0Var = new ux0(context, w00Var, 11, d6Var);
+        this.f6224s = ux0Var;
+        vh.n nVar = ux0Var.d;
         nVar.setTextSize(1, 16.0f);
-        nVar.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21209y6, d6Var));
+        nVar.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21214y6, d6Var));
         nVar.setTypeface(null);
         nVar.setText(LocaleController.getString(R.string.SearchImagesType));
         this.v = new i4(this, false, new ai.y1(this, 9));
-        frameLayout.addView(tx0Var, w7.z5.e(-1, -1, 119));
-        zl0Var.setEmptyView(tx0Var);
+        frameLayout.addView(ux0Var, w7.z5.e(-1, -1, 119));
+        zl0Var.setEmptyView(ux0Var);
         org.telegram.ui.ActionBar.v0 a2 = n10.a(0, R.drawable.outline_header_search);
         a2.F();
         a2.H = new d3(this);
@@ -405,7 +405,7 @@ public abstract class w3 extends FrameLayout implements NotificationCenter.Notif
             LinearLayout linearLayout = new LinearLayout(context);
             this.I = linearLayout;
             linearLayout.setOrientation(1);
-            linearLayout.setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20894h5, d6Var));
+            linearLayout.setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20899h5, d6Var));
             linearLayout.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(AndroidUtilities.navigationBarHeight > 0 ? 0.0f : 10.0f) + AndroidUtilities.navigationBarHeight);
             addView(linearLayout, w7.z5.d(-1, -2.0f, 87, 0.0f, 0.0f, 0.0f, 0.0f));
             linearLayout.setAlpha(0.0f);
@@ -708,7 +708,7 @@ public abstract class w3 extends FrameLayout implements NotificationCenter.Notif
         f3 f3Var = this.f6215e;
         if (z10) {
             ji.o oVar = new ji.o(getContext(), 2);
-            oVar.f46699a = 1;
+            oVar.f46706a = 1;
             oVar.f14237p = AndroidUtilities.dp(16.0f) + (-org.telegram.ui.ActionBar.k.getCurrentActionBarHeight());
             f3Var.w0(oVar);
             return;
@@ -811,7 +811,7 @@ public abstract class w3 extends FrameLayout implements NotificationCenter.Notif
     public final void h() {
         a aVar;
         k3 k3Var = this.F;
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = k3Var.f21575b;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = k3Var.f21579b;
         if (actionBarPopupWindow$ActionBarPopupWindowLayout != null) {
             actionBarPopupWindow$ActionBarPopupWindowLayout.d();
         }

@@ -29,43 +29,43 @@ public final class sm0 extends Dialog {
     public boolean L;
     public boolean M;
     public ValueAnimator N;
-    public final Context f30823a;
-    public final org.telegram.ui.ActionBar.d6 f30824b;
-    public Bitmap f30825c;
+    public final Context f30879a;
+    public final org.telegram.ui.ActionBar.d6 f30880b;
+    public Bitmap f30881c;
     public BitmapShader d;
-    public Paint f30826e;
-    public Matrix f30827f;
+    public Paint f30882e;
+    public Matrix f30883f;
     public final fh.b h;
-    public final ah.c f30828n;
-    public float f30829r;
-    public final ai.f0 f30830s;
-    public final lw0 v;
-    public b80 f30831w;
-    public FrameLayout f30832x;
-    public ViewGroup f30833y;
+    public final ah.c f30884n;
+    public float f30885r;
+    public final ai.f0 f30886s;
+    public final mw0 v;
+    public b80 f30887w;
+    public FrameLayout f30888x;
+    public ViewGroup f30889y;
 
     public sm0(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, R.style.TransparentDialog);
         this.J = 1.0f;
         this.K = 1.0f;
         this.M = false;
-        this.f30823a = context;
-        this.f30824b = d6Var;
+        this.f30879a = context;
+        this.f30880b = d6Var;
         ai.f0 f0Var = new ai.f0(this, context, 17);
-        this.f30830s = f0Var;
+        this.f30886s = f0Var;
         f0Var.setOnClickListener(new l80(this, 10));
-        lw0 lw0Var = new lw0(context, null);
-        this.v = lw0Var;
-        lw0Var.setClipToPadding(false);
-        f0Var.addView(lw0Var, w7.z5.e(-1, -1, 119));
+        mw0 mw0Var = new mw0(context, null);
+        this.v = mw0Var;
+        mw0Var.setClipToPadding(false);
+        f0Var.addView(mw0Var, w7.z5.e(-1, -1, 119));
         fh.b bVar = new fh.b();
         this.h = bVar;
         ah.c cVar = new ah.c(bVar);
-        this.f30828n = cVar;
+        this.f30884n = cVar;
         cVar.f459f = new hh.k(f0Var);
         cVar.f460g = f0Var;
         ii.n4 n4Var = new ii.n4(this, 15);
-        WeakHashMap weakHashMap = r0.i0.f45603a;
+        WeakHashMap weakHashMap = r0.i0.f45610a;
         r0.a0.j(f0Var, n4Var);
     }
 
@@ -79,7 +79,7 @@ public final class sm0 extends Dialog {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        float f10 = this.f30829r;
+        float f10 = this.f30885r;
         if (z10) {
             f7 = 1.0f;
         } else {
@@ -101,20 +101,20 @@ public final class sm0 extends Dialog {
         }
         this.M = true;
         c(new qm0(this, 1), false);
-        this.f30830s.invalidate();
+        this.f30886s.invalidate();
     }
 
     public final void e(b80 b80Var) {
         int i10 = org.telegram.ui.ActionBar.i6.E8;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f30824b;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f30880b;
         b80Var.T(org.telegram.ui.ActionBar.i6.l1(0.06f, org.telegram.ui.ActionBar.i6.v0(i10, d6Var)));
-        b80Var.Q(this.f30828n, eh.b.k(d6Var), false);
-        this.f30831w = b80Var;
-        this.f30833y = b80Var.A;
-        FrameLayout frameLayout = new FrameLayout(this.f30823a);
-        this.f30832x = frameLayout;
-        frameLayout.addView(this.f30833y, w7.z5.c(-2.0f, -2));
-        this.v.addView(this.f30832x, w7.z5.c(-2.0f, -2));
+        b80Var.Q(this.f30884n, eh.b.k(d6Var), false);
+        this.f30887w = b80Var;
+        this.f30889y = b80Var.A;
+        FrameLayout frameLayout = new FrameLayout(this.f30879a);
+        this.f30888x = frameLayout;
+        frameLayout.addView(this.f30889y, w7.z5.c(-2.0f, -2));
+        this.v.addView(this.f30888x, w7.z5.c(-2.0f, -2));
     }
 
     public final void f(org.telegram.ui.Cells.u1 r30, android.text.style.CharacterStyle r31, java.lang.CharSequence r32, boolean r33) {
@@ -132,7 +132,7 @@ public final class sm0 extends Dialog {
         Window window = getWindow();
         window.setWindowAnimations(R.style.DialogNoAnimation);
         ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(-1, -1);
-        ai.f0 f0Var = this.f30830s;
+        ai.f0 f0Var = this.f30886s;
         setContentView(f0Var, layoutParams);
         WindowManager.LayoutParams attributes = window.getAttributes();
         attributes.width = -1;

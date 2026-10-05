@@ -9,18 +9,18 @@ import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
 import android.util.Log;
 public final class q {
-    public static final PorterDuff.Mode f15859b = PorterDuff.Mode.SRC_IN;
-    public static q f15860c;
-    public m2 f15861a;
+    public static final PorterDuff.Mode f15864b = PorterDuff.Mode.SRC_IN;
+    public static q f15865c;
+    public m2 f15866a;
 
     public static synchronized q a() {
         q qVar;
         synchronized (q.class) {
             try {
-                if (f15860c == null) {
+                if (f15865c == null) {
                     c();
                 }
-                qVar = f15860c;
+                qVar = f15865c;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -30,11 +30,11 @@ public final class q {
 
     public static synchronized void c() {
         synchronized (q.class) {
-            if (f15860c == null) {
+            if (f15865c == null) {
                 ?? obj = new Object();
-                f15860c = obj;
-                obj.f15861a = m2.d();
-                f15860c.f15861a.l(new com.google.firebase.messaging.n(3));
+                f15865c = obj;
+                obj.f15866a = m2.d();
+                f15865c.f15866a.l(new com.google.firebase.messaging.n(3));
             }
         }
     }
@@ -44,23 +44,23 @@ public final class q {
         PorterDuff.Mode mode;
         PorterDuff.Mode mode2 = m2.h;
         int[] state = drawable.getState();
-        int[] iArr2 = l1.f15786a;
+        int[] iArr2 = l1.f15791a;
         if (drawable.mutate() == drawable) {
             if ((drawable instanceof LayerDrawable) && drawable.isStateful()) {
                 drawable.setState(new int[0]);
                 drawable.setState(state);
             }
-            boolean z10 = c3Var.f15708b;
-            if (!z10 && !c3Var.f15707a) {
+            boolean z10 = c3Var.f15713b;
+            if (!z10 && !c3Var.f15712a) {
                 drawable.clearColorFilter();
             } else {
                 PorterDuffColorFilter porterDuffColorFilter = null;
                 if (z10) {
-                    colorStateList = (ColorStateList) c3Var.f15709c;
+                    colorStateList = (ColorStateList) c3Var.f15714c;
                 } else {
                     colorStateList = null;
                 }
-                if (c3Var.f15707a) {
+                if (c3Var.f15712a) {
                     mode = (PorterDuff.Mode) c3Var.d;
                 } else {
                     mode = m2.h;
@@ -80,6 +80,6 @@ public final class q {
     }
 
     public final synchronized Drawable b(Context context, int i10) {
-        return this.f15861a.g(context, i10);
+        return this.f15866a.g(context, i10);
     }
 }

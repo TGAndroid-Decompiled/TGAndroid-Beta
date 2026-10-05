@@ -1,80 +1,63 @@
 package org.telegram.ui.Components;
 
-import java.util.Collections;
+import android.content.Context;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class pr0 implements Runnable {
-    public final int f29736a;
-    public final pv0 f29737b;
-    public final TLRPC.TL_error f29738c;
-    public final int d;
-    public final int f29739e;
-    public final TLObject f29740f;
+    public final int f29835a = 0;
+    public final qv0 f29836b;
+    public final org.telegram.ui.ActionBar.d6 f29837c;
+    public final MessageObject d;
+    public final int f29838e;
 
-    public pr0(pv0 pv0Var, TLRPC.TL_error tL_error, int i10, int i11, TLObject tLObject, int i12) {
-        this.f29736a = i12;
-        this.f29737b = pv0Var;
-        this.f29738c = tL_error;
-        this.d = i10;
-        this.f29739e = i11;
-        this.f29740f = tLObject;
+    public pr0(qv0 qv0Var, org.telegram.ui.ActionBar.d6 d6Var, int i10, MessageObject messageObject) {
+        this.f29836b = qv0Var;
+        this.f29837c = d6Var;
+        this.f29838e = i10;
+        this.d = messageObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f29736a) {
+        switch (this.f29835a) {
             case 0:
-                pv0 pv0Var = this.f29737b;
-                NotificationCenter.getInstance(pv0Var.f29806v1.getCurrentAccount()).doOnIdle(new pr0(pv0Var, this.f29738c, this.d, this.f29739e, this.f29740f, 1));
-                return;
-            default:
-                pv0 pv0Var2 = this.f29737b;
-                ev0[] ev0VarArr = pv0Var2.f29802t1;
-                if (this.f29738c == null) {
-                    int i10 = this.f29739e;
-                    ev0 ev0Var = ev0VarArr[i10];
-                    if (this.d == ev0Var.f26157p) {
-                        TLRPC.TL_messages_searchResultsPositions tL_messages_searchResultsPositions = (TLRPC.TL_messages_searchResultsPositions) this.f29740f;
-                        ev0Var.f26147e.clear();
-                        int size = tL_messages_searchResultsPositions.positions.size();
-                        int i11 = 0;
-                        for (int i12 = 0; i12 < size; i12++) {
-                            TLRPC.TL_searchResultPosition tL_searchResultPosition = tL_messages_searchResultsPositions.positions.get(i12);
-                            int i13 = tL_searchResultPosition.date;
-                            if (i13 != 0) {
-                                ?? obj = new Object();
-                                obj.f29071c = i13;
-                                obj.d = tL_searchResultPosition.msg_id;
-                                obj.f29070b = tL_searchResultPosition.offset;
-                                obj.f29069a = LocaleController.formatYearMont(i13, true);
-                                ev0VarArr[i10].f26147e.add(obj);
-                            }
-                        }
-                        Collections.sort(ev0VarArr[i10].f26147e, new org.telegram.ui.ff(17));
-                        ev0 ev0Var2 = ev0VarArr[i10];
-                        ev0Var2.f26148f[0] = tL_messages_searchResultsPositions.count;
-                        ev0Var2.h = true;
-                        if (!ev0Var2.f26147e.isEmpty()) {
-                            while (true) {
-                                iu0[] iu0VarArr = pv0Var2.f29782k0;
-                                if (i11 < iu0VarArr.length) {
-                                    iu0 iu0Var = iu0VarArr[i11];
-                                    if (iu0Var.F == i10) {
-                                        iu0Var.f27502b = true;
-                                        pv0Var2.o1(iu0Var, true);
-                                    }
-                                    i11++;
-                                }
-                            }
-                        }
-                        pv0Var2.H.l();
-                        return;
-                    }
+                org.telegram.ui.ActionBar.b2[] b2VarArr = {new org.telegram.ui.ActionBar.b2(this.f29836b.getContext(), 3, this.f29837c)};
+                int i10 = this.f29838e;
+                int sendVote = SendMessagesHelper.getInstance(i10).sendVote(this.d, null, new os(b2VarArr, 1));
+                if (sendVote != 0) {
+                    AndroidUtilities.runOnUIThread(new tr0(b2VarArr, i10, sendVote, 0), 500L);
                     return;
                 }
                 return;
+            default:
+                qv0 qv0Var = this.f29836b;
+                Context context = qv0Var.getContext();
+                org.telegram.ui.ActionBar.d6 d6Var = this.f29837c;
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, d6Var);
+                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20377a;
+                b2Var.P0 = false;
+                MessageObject messageObject = this.d;
+                if (messageObject.isQuiz()) {
+                    b2Var.R = LocaleController.getString(R.string.StopQuizAlertTitle);
+                    b2Var.T = LocaleController.getString(R.string.StopQuizAlertText);
+                } else {
+                    b2Var.R = LocaleController.getString(R.string.StopPollAlertTitle);
+                    b2Var.T = LocaleController.getString(R.string.StopPollAlertText);
+                }
+                alertDialog$Builder.k(LocaleController.getString(R.string.Stop), new org.telegram.ui.fa(qv0Var, d6Var, messageObject, this.f29838e, 4));
+                hg.c.p(R.string.Cancel, alertDialog$Builder, null);
+                return;
         }
+    }
+
+    public pr0(qv0 qv0Var, org.telegram.ui.ActionBar.d6 d6Var, MessageObject messageObject, int i10) {
+        this.f29836b = qv0Var;
+        this.f29837c = d6Var;
+        this.d = messageObject;
+        this.f29838e = i10;
     }
 }

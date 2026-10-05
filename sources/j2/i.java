@@ -3,8 +3,11 @@ package j2;
 import android.content.Context;
 import android.media.metrics.LogSessionId;
 import android.media.metrics.MediaMetricsManager;
+import android.media.metrics.NetworkEvent;
+import android.media.metrics.PlaybackErrorEvent;
 import android.media.metrics.PlaybackMetrics;
 import android.media.metrics.PlaybackSession;
+import android.media.metrics.PlaybackStateEvent;
 import android.media.metrics.TrackChangeEvent;
 import android.os.SystemClock;
 import android.util.Pair;
@@ -58,6 +61,26 @@ public final class i implements b {
         hVar.d = this;
     }
 
+    public static void i(i iVar, PlaybackErrorEvent playbackErrorEvent) {
+        iVar.d.reportPlaybackErrorEvent(playbackErrorEvent);
+    }
+
+    public static void j(i iVar, PlaybackMetrics playbackMetrics) {
+        iVar.d.reportPlaybackMetrics(playbackMetrics);
+    }
+
+    public static void k(i iVar, NetworkEvent networkEvent) {
+        iVar.d.reportNetworkEvent(networkEvent);
+    }
+
+    public static void l(i iVar, TrackChangeEvent trackChangeEvent) {
+        iVar.d.reportTrackChangeEvent(trackChangeEvent);
+    }
+
+    public static void m(i iVar, PlaybackStateEvent playbackStateEvent) {
+        iVar.d.reportPlaybackStateEvent(playbackStateEvent);
+    }
+
     public static i o(Context context) {
         MediaMetricsManager mediaMetricsManager = (MediaMetricsManager) context.getSystemService("media_metrics");
         if (mediaMetricsManager == null) {
@@ -74,7 +97,7 @@ public final class i implements b {
 
     @Override
     public final void b(b0 b0Var) {
-        this.M = b0Var.f47217a;
+        this.M = b0Var.f47224a;
     }
 
     @Override
@@ -100,13 +123,13 @@ public final class i implements b {
     public final void e(a aVar, b0 b0Var) {
         f0 f0Var = aVar.d;
         if (f0Var != null) {
-            s sVar = b0Var.f47219c;
+            s sVar = b0Var.f47226c;
             sVar.getClass();
             int i10 = b0Var.d;
             k1 k1Var = aVar.f13641b;
             f0Var.getClass();
             a5.a aVar2 = new a5.a(sVar, i10, this.f13675c.d(k1Var, f0Var), 9);
-            int i11 = b0Var.f47218b;
+            int i11 = b0Var.f47225b;
             if (i11 != 0) {
                 if (i11 != 1) {
                     if (i11 != 2) {
@@ -230,7 +253,7 @@ public final class i implements b {
     public final void r(k1 k1Var, f0 f0Var) {
         int b10;
         PlaybackMetrics.Builder builder = this.v;
-        if (f0Var == null || (b10 = k1Var.b(f0Var.f47263a)) == -1) {
+        if (f0Var == null || (b10 = k1Var.b(f0Var.f47270a)) == -1) {
             return;
         }
         h1 h1Var = this.h;

@@ -22,7 +22,7 @@ public final class a2 extends ImageView implements org.telegram.ui.ActionBar.y5 
     public a2(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         this.f12218e = 20;
-        this.f12219f = org.telegram.ui.ActionBar.i6.f20822d6;
+        this.f12219f = org.telegram.ui.ActionBar.i6.f20827d6;
         this.f12220n = true;
         this.f12222s = true;
         this.f12216b = i10;
@@ -80,7 +80,7 @@ public final class a2 extends ImageView implements org.telegram.ui.ActionBar.y5 
             setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
             return;
         }
-        setBackground(org.telegram.ui.ActionBar.i6.Z(org.telegram.ui.ActionBar.i6.v0(this.f12219f, d6Var), org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20913i6, d6Var), AndroidUtilities.dp(this.f12218e), AndroidUtilities.dp(this.f12218e)));
+        setBackground(org.telegram.ui.ActionBar.i6.Z(org.telegram.ui.ActionBar.i6.v0(this.f12219f, d6Var), org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20918i6, d6Var), AndroidUtilities.dp(this.f12218e), AndroidUtilities.dp(this.f12218e)));
         setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.G6, d6Var), PorterDuff.Mode.SRC_IN));
     }
 

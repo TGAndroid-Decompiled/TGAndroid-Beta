@@ -7,19 +7,19 @@ import org.telegram.ui.Components.az;
 import org.telegram.ui.Components.iz;
 import org.telegram.ui.Components.ny;
 public final class c2 implements View.OnTouchListener {
-    public final int f15705a;
-    public final Object f15706b;
+    public final int f15710a;
+    public final Object f15711b;
 
     public c2(Object obj, int i10) {
-        this.f15705a = i10;
-        this.f15706b = obj;
+        this.f15710a = i10;
+        this.f15711b = obj;
     }
 
     @Override
     public final boolean onTouch(View view, MotionEvent motionEvent) {
-        switch (this.f15705a) {
+        switch (this.f15710a) {
             case 0:
-                d2 d2Var = (d2) this.f15706b;
+                d2 d2Var = (d2) this.f15711b;
                 a2 a2Var = d2Var.G;
                 Handler handler = d2Var.K;
                 x xVar = d2Var.O;
@@ -36,27 +36,27 @@ public final class c2 implements View.OnTouchListener {
                     return false;
                 }
             case 1:
-                ny nyVar = (ny) this.f15706b;
+                ny nyVar = (ny) this.f15711b;
                 if (motionEvent.getAction() == 0) {
-                    nyVar.F.f29106f = true;
+                    nyVar.F.f29203f = true;
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    nyVar.F.f29106f = false;
+                    nyVar.F.f29203f = false;
                 }
                 return false;
             case 2:
-                az azVar = (az) this.f15706b;
+                az azVar = (az) this.f15711b;
                 if (motionEvent.getAction() == 0) {
-                    azVar.G.f29106f = true;
+                    azVar.G.f29203f = true;
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    azVar.G.f29106f = false;
+                    azVar.G.f29203f = false;
                 }
                 return false;
             default:
-                iz izVar = (iz) this.f15706b;
+                iz izVar = (iz) this.f15711b;
                 if (motionEvent.getAction() == 0) {
-                    izVar.Q.f29106f = true;
+                    izVar.Q.f29203f = true;
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    izVar.Q.f29106f = false;
+                    izVar.Q.f29203f = false;
                 }
                 return false;
         }

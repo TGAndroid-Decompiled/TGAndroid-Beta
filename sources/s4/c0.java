@@ -13,18 +13,18 @@ public class c0 extends o0 {
     public final int[] F;
     public boolean G;
     public boolean H;
-    public int f46519o;
-    public a0 f46520p;
-    public androidx.emoji2.text.g f46521q;
-    public boolean f46522r;
-    public boolean f46523s;
-    public boolean f46524t;
-    public boolean f46525u;
+    public int f46526o;
+    public a0 f46527p;
+    public androidx.emoji2.text.g f46528q;
+    public boolean f46529r;
+    public boolean f46530s;
+    public boolean f46531t;
+    public boolean f46532u;
     public boolean v;
-    public boolean f46526w;
-    public final boolean f46527x;
-    public int f46528y;
-    public boolean f46529z;
+    public boolean f46533w;
+    public final boolean f46534x;
+    public int f46535y;
+    public boolean f46536z;
 
     public c0() {
         this(1, false);
@@ -33,15 +33,15 @@ public class c0 extends o0 {
     public void A0(z0 z0Var, a0 a0Var, a0.h hVar) {
         int i10 = a0Var.d;
         if (i10 >= 0 && i10 < z0Var.b()) {
-            hVar.b(i10, Math.max(0, a0Var.f46501g));
+            hVar.b(i10, Math.max(0, a0Var.f46508g));
         }
     }
 
     public final int B0(z0 z0Var) {
         if (r() != 0) {
             G0();
-            androidx.emoji2.text.g gVar = this.f46521q;
-            boolean z10 = this.f46527x;
+            androidx.emoji2.text.g gVar = this.f46528q;
+            boolean z10 = this.f46534x;
             boolean z11 = !z10;
             View K0 = K0(z11);
             View J0 = J0(z11);
@@ -60,8 +60,8 @@ public class c0 extends o0 {
         int max;
         if (r() != 0) {
             G0();
-            androidx.emoji2.text.g gVar = this.f46521q;
-            boolean z10 = this.f46527x;
+            androidx.emoji2.text.g gVar = this.f46528q;
+            boolean z10 = this.f46534x;
             boolean z11 = !z10;
             View K0 = K0(z11);
             View J0 = J0(z11);
@@ -86,8 +86,8 @@ public class c0 extends o0 {
     public final int D0(z0 z0Var) {
         if (r() != 0) {
             G0();
-            androidx.emoji2.text.g gVar = this.f46521q;
-            boolean z10 = this.f46527x;
+            androidx.emoji2.text.g gVar = this.f46528q;
+            boolean z10 = this.f46534x;
             boolean z11 = !z10;
             View K0 = K0(z11);
             View J0 = J0(z11);
@@ -114,7 +114,7 @@ public class c0 extends o0 {
         if (z10 != this.v) {
             i11 = -1;
         }
-        if (this.f46519o == 0) {
+        if (this.f46526o == 0) {
             return new PointF(i11, 0.0f);
         }
         return new PointF(0.0f, i11);
@@ -126,31 +126,31 @@ public class c0 extends o0 {
                 if (i10 != 17) {
                     if (i10 != 33) {
                         if (i10 != 66) {
-                            if (i10 == 130 && this.f46519o == 1) {
+                            if (i10 == 130 && this.f46526o == 1) {
                                 return 1;
                             }
                             return Integer.MIN_VALUE;
-                        } else if (this.f46519o == 0) {
+                        } else if (this.f46526o == 0) {
                             return 1;
                         } else {
                             return Integer.MIN_VALUE;
                         }
-                    } else if (this.f46519o == 1) {
+                    } else if (this.f46526o == 1) {
                         return -1;
                     } else {
                         return Integer.MIN_VALUE;
                     }
-                } else if (this.f46519o == 0) {
+                } else if (this.f46526o == 0) {
                     return -1;
                 } else {
                     return Integer.MIN_VALUE;
                 }
-            } else if (this.f46519o != 1 && Y0()) {
+            } else if (this.f46526o != 1 && Y0()) {
                 return -1;
             } else {
                 return 1;
             }
-        } else if (this.f46519o == 1 || !Y0()) {
+        } else if (this.f46526o == 1 || !Y0()) {
             return -1;
         } else {
             return 1;
@@ -158,51 +158,51 @@ public class c0 extends o0 {
     }
 
     public final void G0() {
-        if (this.f46520p == null) {
+        if (this.f46527p == null) {
             ?? obj = new Object();
-            obj.f46496a = true;
+            obj.f46503a = true;
             obj.h = 0;
-            obj.f46502i = 0;
-            obj.f46504k = null;
-            this.f46520p = obj;
+            obj.f46509i = 0;
+            obj.f46511k = null;
+            this.f46527p = obj;
         }
     }
 
     public final int H0(of.e eVar, a0 a0Var, z0 z0Var, boolean z10) {
-        int i10 = a0Var.f46498c;
-        int i11 = a0Var.f46501g;
+        int i10 = a0Var.f46505c;
+        int i11 = a0Var.f46508g;
         if (i11 != Integer.MIN_VALUE) {
             if (i10 < 0) {
-                a0Var.f46501g = i11 + i10;
+                a0Var.f46508g = i11 + i10;
             }
             c1(eVar, a0Var);
         }
-        int i12 = a0Var.f46498c + a0Var.h;
+        int i12 = a0Var.f46505c + a0Var.h;
         while (true) {
-            if ((!a0Var.f46505l && i12 <= 0) || !a0Var.b(z0Var)) {
+            if ((!a0Var.f46512l && i12 <= 0) || !a0Var.b(z0Var)) {
                 break;
             }
             z zVar = this.D;
-            zVar.f46705a = 0;
-            zVar.f46706b = false;
-            zVar.f46707c = false;
+            zVar.f46712a = 0;
+            zVar.f46713b = false;
+            zVar.f46714c = false;
             zVar.d = false;
             Z0(eVar, z0Var, a0Var, zVar);
-            if (!zVar.f46706b) {
-                int i13 = a0Var.f46497b;
-                int i14 = zVar.f46705a;
-                a0Var.f46497b = (a0Var.f46500f * i14) + i13;
-                if (!zVar.f46707c || a0Var.f46504k != null || !z0Var.f46713g) {
-                    a0Var.f46498c -= i14;
+            if (!zVar.f46713b) {
+                int i13 = a0Var.f46504b;
+                int i14 = zVar.f46712a;
+                a0Var.f46504b = (a0Var.f46507f * i14) + i13;
+                if (!zVar.f46714c || a0Var.f46511k != null || !z0Var.f46720g) {
+                    a0Var.f46505c -= i14;
                     i12 -= i14;
                 }
-                int i15 = a0Var.f46501g;
+                int i15 = a0Var.f46508g;
                 if (i15 != Integer.MIN_VALUE) {
                     int i16 = i15 + i14;
-                    a0Var.f46501g = i16;
-                    int i17 = a0Var.f46498c;
+                    a0Var.f46508g = i16;
+                    int i17 = a0Var.f46505c;
                     if (i17 < 0) {
-                        a0Var.f46501g = i16 + i17;
+                        a0Var.f46508g = i16 + i17;
                     }
                     c1(eVar, a0Var);
                 }
@@ -213,7 +213,7 @@ public class c0 extends o0 {
                 break;
             }
         }
-        return i10 - a0Var.f46498c;
+        return i10 - a0Var.f46505c;
     }
 
     public final int I0() {
@@ -267,15 +267,15 @@ public class c0 extends o0 {
         int i13;
         G0();
         if (i11 > i10 || i11 < i10) {
-            if (this.f46521q.d(q(i10)) < this.f46521q.j()) {
+            if (this.f46528q.d(q(i10)) < this.f46528q.j()) {
                 i12 = 16644;
                 i13 = 16388;
             } else {
                 i12 = 4161;
                 i13 = 4097;
             }
-            if (this.f46519o == 0) {
-                return this.f46636c.C(i10, i11, i12, i13);
+            if (this.f46526o == 0) {
+                return this.f46643c.C(i10, i11, i12, i13);
             }
             return this.d.C(i10, i11, i12, i13);
         }
@@ -294,8 +294,8 @@ public class c0 extends o0 {
         if (!z11) {
             i13 = 0;
         }
-        if (this.f46519o == 0) {
-            return this.f46636c.C(i10, i11, i12, i13);
+        if (this.f46526o == 0) {
+            return this.f46643c.C(i10, i11, i12, i13);
         }
         return this.d.C(i10, i11, i12, i13);
     }
@@ -304,12 +304,12 @@ public class c0 extends o0 {
         int j3;
         int i13;
         G0();
-        if (this.f46522r) {
+        if (this.f46529r) {
             j3 = 0;
         } else {
-            j3 = this.f46521q.j();
+            j3 = this.f46528q.j();
         }
-        int f7 = this.f46521q.f();
+        int f7 = this.f46528q.f();
         if (i11 > i10) {
             i13 = 1;
         } else {
@@ -321,11 +321,11 @@ public class c0 extends o0 {
             View q6 = q(i10);
             int H = o0.H(q6);
             if (H >= 0 && H < i12) {
-                if (((p0) q6.getLayoutParams()).f46650a.j()) {
+                if (((p0) q6.getLayoutParams()).f46657a.j()) {
                     if (view2 == null) {
                         view2 = q6;
                     }
-                } else if (this.f46521q.d(q6) < f7 && this.f46521q.a(q6) >= j3) {
+                } else if (this.f46528q.d(q6) < f7 && this.f46528q.a(q6) >= j3) {
                     return q6;
                 } else {
                     if (view == null) {
@@ -349,10 +349,10 @@ public class c0 extends o0 {
         f1();
         if (r() != 0 && (F0 = F0(i10)) != Integer.MIN_VALUE) {
             G0();
-            m1(F0, (int) (this.f46521q.k() * 0.33333334f), false, z0Var);
-            a0 a0Var = this.f46520p;
-            a0Var.f46501g = Integer.MIN_VALUE;
-            a0Var.f46496a = false;
+            m1(F0, (int) (this.f46528q.k() * 0.33333334f), false, z0Var);
+            a0 a0Var = this.f46527p;
+            a0Var.f46508g = Integer.MIN_VALUE;
+            a0Var.f46503a = false;
             H0(eVar, a0Var, z0Var, true);
             if (F0 == -1) {
                 if (this.v) {
@@ -388,11 +388,11 @@ public class c0 extends o0 {
     public final int S0(int i10, of.e eVar, z0 z0Var, boolean z10) {
         int f7;
         int f10;
-        if (this.G && this.H && (f7 = this.f46521q.f() - i10) > 0) {
+        if (this.G && this.H && (f7 = this.f46528q.f() - i10) > 0) {
             int i11 = -g1(-f7, eVar, z0Var);
             int i12 = i10 + i11;
-            if (z10 && (f10 = this.f46521q.f() - i12) > 0) {
-                this.f46521q.n(f10);
+            if (z10 && (f10 = this.f46528q.f() - i12) > 0) {
+                this.f46528q.n(f10);
                 return f10 + i11;
             }
             return i11;
@@ -406,8 +406,8 @@ public class c0 extends o0 {
         if (this.G && (X0 = i10 - X0()) > 0) {
             int i11 = -g1(X0, eVar, z0Var);
             int i12 = i10 + i11;
-            if (z10 && (j3 = i12 - this.f46521q.j()) > 0) {
-                this.f46521q.n(-j3);
+            if (z10 && (j3 = i12 - this.f46528q.j()) > 0) {
+                this.f46528q.n(-j3);
                 return i11 - j3;
             }
             return i11;
@@ -436,19 +436,19 @@ public class c0 extends o0 {
     }
 
     public int W0(z0 z0Var) {
-        if (z0Var.f46708a != -1) {
-            return this.f46521q.k();
+        if (z0Var.f46715a != -1) {
+            return this.f46528q.k();
         }
         return 0;
     }
 
     public int X0() {
-        return this.f46521q.j();
+        return this.f46528q.j();
     }
 
     public boolean Y0() {
-        RecyclerView recyclerView = this.f46635b;
-        WeakHashMap weakHashMap = r0.i0.f45603a;
+        RecyclerView recyclerView = this.f46642b;
+        WeakHashMap weakHashMap = r0.i0.f45610a;
         if (recyclerView.getLayoutDirection() == 1) {
             return true;
         }
@@ -464,13 +464,13 @@ public class c0 extends o0 {
         boolean z11;
         View c10 = a0Var.c(eVar);
         if (c10 == null) {
-            zVar.f46706b = true;
+            zVar.f46713b = true;
             return;
         }
         p0 p0Var = (p0) c10.getLayoutParams();
-        if (a0Var.f46504k == null) {
+        if (a0Var.f46511k == null) {
             boolean z12 = this.v;
-            if (a0Var.f46500f == -1) {
+            if (a0Var.f46507f == -1) {
                 z11 = true;
             } else {
                 z11 = false;
@@ -482,7 +482,7 @@ public class c0 extends o0 {
             }
         } else {
             boolean z13 = this.v;
-            if (a0Var.f46500f == -1) {
+            if (a0Var.f46507f == -1) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -494,35 +494,35 @@ public class c0 extends o0 {
             }
         }
         P(c10);
-        zVar.f46705a = this.f46521q.b(c10);
-        if (this.f46519o == 1) {
+        zVar.f46712a = this.f46528q.b(c10);
+        if (this.f46526o == 1) {
             if (Y0()) {
-                i13 = this.f46644m - E();
-                i10 = i13 - this.f46521q.c(c10);
+                i13 = this.f46651m - E();
+                i10 = i13 - this.f46528q.c(c10);
             } else {
                 i10 = D();
-                i13 = this.f46521q.c(c10) + i10;
+                i13 = this.f46528q.c(c10) + i10;
             }
-            if (a0Var.f46500f == -1) {
-                i11 = a0Var.f46497b;
-                i12 = i11 - zVar.f46705a;
+            if (a0Var.f46507f == -1) {
+                i11 = a0Var.f46504b;
+                i12 = i11 - zVar.f46712a;
             } else {
-                i12 = a0Var.f46497b;
-                i11 = zVar.f46705a + i12;
+                i12 = a0Var.f46504b;
+                i11 = zVar.f46712a + i12;
             }
         } else {
             int F = F();
-            int c11 = this.f46521q.c(c10) + F;
-            if (a0Var.f46500f == -1) {
-                int i14 = a0Var.f46497b;
-                int i15 = i14 - zVar.f46705a;
+            int c11 = this.f46528q.c(c10) + F;
+            if (a0Var.f46507f == -1) {
+                int i14 = a0Var.f46504b;
+                int i15 = i14 - zVar.f46712a;
                 i13 = i14;
                 i11 = c11;
                 i10 = i15;
                 i12 = F;
             } else {
-                int i16 = a0Var.f46497b;
-                int i17 = zVar.f46705a + i16;
+                int i16 = a0Var.f46504b;
+                int i17 = zVar.f46712a + i16;
                 i10 = i16;
                 i11 = c11;
                 i12 = F;
@@ -530,8 +530,8 @@ public class c0 extends o0 {
             }
         }
         o0.O(c10, i10, i12, i13, i11);
-        if (p0Var.f46650a.j() || p0Var.f46650a.m()) {
-            zVar.f46707c = true;
+        if (p0Var.f46657a.j() || p0Var.f46657a.m()) {
+            zVar.f46714c = true;
         }
         zVar.d = c10.hasFocusable();
     }
@@ -539,7 +539,7 @@ public class c0 extends o0 {
     @Override
     public final void b(String str) {
         RecyclerView recyclerView;
-        if (this.B == null && (recyclerView = this.f46635b) != null) {
+        if (this.B == null && (recyclerView = this.f46642b) != null) {
             recyclerView.l(str);
         }
     }
@@ -563,21 +563,21 @@ public class c0 extends o0 {
         }
         if (this.v) {
             if (c10 == 1) {
-                h1(H2, this.f46521q.f() - (this.f46521q.b(view) + this.f46521q.d(view2)));
+                h1(H2, this.f46528q.f() - (this.f46528q.b(view) + this.f46528q.d(view2)));
                 return;
             }
-            h1(H2, this.f46521q.f() - this.f46521q.a(view2));
+            h1(H2, this.f46528q.f() - this.f46528q.a(view2));
         } else if (c10 == 65535) {
-            h1(H2, this.f46521q.d(view2));
+            h1(H2, this.f46528q.d(view2));
         } else {
-            h1(H2, this.f46521q.a(view2) - this.f46521q.b(view));
+            h1(H2, this.f46528q.a(view2) - this.f46528q.b(view));
         }
     }
 
     @Override
     public void c0(z0 z0Var) {
         this.B = null;
-        this.f46528y = -1;
+        this.f46535y = -1;
         this.A = Integer.MIN_VALUE;
         this.C.g();
     }
@@ -585,17 +585,17 @@ public class c0 extends o0 {
     public final void c1(of.e eVar, a0 a0Var) {
         c1 T;
         c1 T2;
-        if (a0Var.f46496a && !a0Var.f46505l) {
-            int i10 = a0Var.f46501g;
-            int i11 = a0Var.f46502i;
-            if (a0Var.f46500f == -1) {
+        if (a0Var.f46503a && !a0Var.f46512l) {
+            int i10 = a0Var.f46508g;
+            int i11 = a0Var.f46509i;
+            if (a0Var.f46507f == -1) {
                 int r10 = r();
                 if (i10 >= 0) {
-                    int e7 = (this.f46521q.e() - i10) + i11;
+                    int e7 = (this.f46528q.e() - i10) + i11;
                     if (this.v) {
                         for (int i12 = 0; i12 < r10; i12++) {
                             View q6 = q(i12);
-                            if (q6 != null && (T2 = this.f46635b.T(q6)) != null && !T2.r() && (this.f46521q.d(q6) < e7 || this.f46521q.m(q6) < e7)) {
+                            if (q6 != null && (T2 = this.f46642b.T(q6)) != null && !T2.r() && (this.f46528q.d(q6) < e7 || this.f46528q.m(q6) < e7)) {
                                 d1(eVar, 0, i12);
                                 return;
                             }
@@ -605,7 +605,7 @@ public class c0 extends o0 {
                     int i13 = r10 - 1;
                     for (int i14 = i13; i14 >= 0; i14--) {
                         View q10 = q(i14);
-                        if (q10 != null && (T = this.f46635b.T(q10)) != null && !T.r() && (this.f46521q.d(q10) < e7 || this.f46521q.m(q10) < e7)) {
+                        if (q10 != null && (T = this.f46642b.T(q10)) != null && !T.r() && (this.f46528q.d(q10) < e7 || this.f46528q.m(q10) < e7)) {
                             d1(eVar, i13, i14);
                             return;
                         }
@@ -620,7 +620,7 @@ public class c0 extends o0 {
 
     @Override
     public final boolean d() {
-        if (!this.f46525u && this.f46519o == 0) {
+        if (!this.f46532u && this.f46526o == 0) {
             return true;
         }
         return false;
@@ -643,7 +643,7 @@ public class c0 extends o0 {
 
     @Override
     public boolean e() {
-        if (!this.f46525u && this.f46519o == 1) {
+        if (!this.f46532u && this.f46526o == 1) {
             return true;
         }
         return false;
@@ -654,28 +654,28 @@ public class c0 extends o0 {
         b0 b0Var = this.B;
         if (b0Var != null) {
             ?? obj = new Object();
-            obj.f46509a = b0Var.f46509a;
-            obj.f46510b = b0Var.f46510b;
-            obj.f46511c = b0Var.f46511c;
+            obj.f46516a = b0Var.f46516a;
+            obj.f46517b = b0Var.f46517b;
+            obj.f46518c = b0Var.f46518c;
             return obj;
         }
         ?? obj2 = new Object();
         if (r() > 0) {
             G0();
-            boolean z10 = this.f46523s ^ this.v;
-            obj2.f46511c = z10;
+            boolean z10 = this.f46530s ^ this.v;
+            obj2.f46518c = z10;
             if (z10) {
                 View U0 = U0();
-                obj2.f46510b = this.f46521q.f() - this.f46521q.a(U0);
-                obj2.f46509a = ((p0) U0.getLayoutParams()).b();
+                obj2.f46517b = this.f46528q.f() - this.f46528q.a(U0);
+                obj2.f46516a = ((p0) U0.getLayoutParams()).b();
                 return obj2;
             }
             View V0 = V0();
-            obj2.f46509a = o0.H(V0);
-            obj2.f46510b = this.f46521q.d(V0) - this.f46521q.j();
+            obj2.f46516a = o0.H(V0);
+            obj2.f46517b = this.f46528q.d(V0) - this.f46528q.j();
             return obj2;
         }
-        obj2.f46509a = -1;
+        obj2.f46516a = -1;
         return obj2;
     }
 
@@ -689,7 +689,7 @@ public class c0 extends o0 {
                 int i13 = r10 - 1;
                 for (int i14 = i13; i14 >= 0; i14--) {
                     View q6 = q(i14);
-                    if (q6 != null && (T2 = this.f46635b.T(q6)) != null && !T2.r() && (this.f46521q.a(q6) > i12 || this.f46521q.l(q6) > i12)) {
+                    if (q6 != null && (T2 = this.f46642b.T(q6)) != null && !T2.r() && (this.f46528q.a(q6) > i12 || this.f46528q.l(q6) > i12)) {
                         d1(eVar, i13, i14);
                         return;
                     }
@@ -698,7 +698,7 @@ public class c0 extends o0 {
             }
             for (int i15 = 0; i15 < r10; i15++) {
                 View q10 = q(i15);
-                if (q10 != null && (T = this.f46635b.T(q10)) != null && !T.r() && (this.f46521q.a(q10) > i12 || this.f46521q.l(q10) > i12)) {
+                if (q10 != null && (T = this.f46642b.T(q10)) != null && !T.r() && (this.f46528q.a(q10) > i12 || this.f46528q.l(q10) > i12)) {
                     d1(eVar, 0, i15);
                     return;
                 }
@@ -707,10 +707,10 @@ public class c0 extends o0 {
     }
 
     public final void f1() {
-        if (this.f46519o != 1 && Y0()) {
-            this.v = !this.f46524t;
+        if (this.f46526o != 1 && Y0()) {
+            this.v = !this.f46531t;
         } else {
-            this.v = this.f46524t;
+            this.v = this.f46531t;
         }
     }
 
@@ -720,7 +720,7 @@ public class c0 extends o0 {
             return 0;
         }
         G0();
-        this.f46520p.f46496a = true;
+        this.f46527p.f46503a = true;
         if (i10 > 0) {
             i11 = 1;
         } else {
@@ -728,16 +728,16 @@ public class c0 extends o0 {
         }
         int abs = Math.abs(i10);
         m1(i11, abs, true, z0Var);
-        a0 a0Var = this.f46520p;
-        int H0 = H0(eVar, a0Var, z0Var, false) + a0Var.f46501g;
+        a0 a0Var = this.f46527p;
+        int H0 = H0(eVar, a0Var, z0Var, false) + a0Var.f46508g;
         if (H0 < 0) {
             return 0;
         }
         if (abs > H0) {
             i10 = i11 * H0;
         }
-        this.f46521q.n(-i10);
-        this.f46520p.f46503j = i10;
+        this.f46528q.n(-i10);
+        this.f46527p.f46510j = i10;
         return i10;
     }
 
@@ -756,15 +756,15 @@ public class c0 extends o0 {
     }
 
     public void i1(int i10, int i11, boolean z10) {
-        if (this.f46528y == i10 && this.A == i11 && this.f46529z == z10) {
+        if (this.f46535y == i10 && this.A == i11 && this.f46536z == z10) {
             return;
         }
-        this.f46528y = i10;
+        this.f46535y = i10;
         this.A = i11;
-        this.f46529z = z10;
+        this.f46536z = z10;
         b0 b0Var = this.B;
         if (b0Var != null) {
-            b0Var.f46509a = -1;
+            b0Var.f46516a = -1;
         }
         l0();
     }
@@ -780,7 +780,7 @@ public class c0 extends o0 {
             throw new IllegalArgumentException(hg.c.h(i10, "invalid orientation:"));
         }
         b(null);
-        if (i10 == this.f46519o && this.f46521q != null) {
+        if (i10 == this.f46526o && this.f46528q != null) {
             return;
         }
         if (i10 != 0) {
@@ -792,9 +792,9 @@ public class c0 extends o0 {
         } else {
             f0Var = new f0(this, 0);
         }
-        this.f46521q = f0Var;
+        this.f46528q = f0Var;
         this.C.f11736f = f0Var;
-        this.f46519o = i10;
+        this.f46526o = i10;
         l0();
     }
 
@@ -805,10 +805,10 @@ public class c0 extends o0 {
 
     public void k1(boolean z10) {
         b(null);
-        if (z10 == this.f46524t) {
+        if (z10 == this.f46531t) {
             return;
         }
-        this.f46524t = z10;
+        this.f46531t = z10;
         l0();
     }
 
@@ -819,10 +819,10 @@ public class c0 extends o0 {
 
     public void l1(boolean z10) {
         b(null);
-        if (this.f46526w == z10) {
+        if (this.f46533w == z10) {
             return;
         }
-        this.f46526w = z10;
+        this.f46533w = z10;
         l0();
     }
 
@@ -841,7 +841,7 @@ public class c0 extends o0 {
             for (int i11 = 0; i11 < r11; i11++) {
                 View q10 = q(i11);
                 c1 U = RecyclerView.U(q10);
-                if (U != null && U.c() == i10 && !U.r() && (this.f46635b.f3085t0.f46713g || !U.j())) {
+                if (U != null && U.c() == i10 && !U.r() && (this.f46642b.f3085t0.f46720g || !U.j())) {
                     return q10;
                 }
             }
@@ -852,7 +852,7 @@ public class c0 extends o0 {
 
     @Override
     public int m0(int i10, of.e eVar, z0 z0Var) {
-        if (this.f46519o == 1) {
+        if (this.f46526o == 1) {
             return 0;
         }
         return g1(i10, eVar, z0Var);
@@ -862,16 +862,16 @@ public class c0 extends o0 {
         boolean z11;
         int i12;
         int j3;
-        a0 a0Var = this.f46520p;
+        a0 a0Var = this.f46527p;
         boolean z12 = false;
         int i13 = 1;
-        if (this.f46521q.h() == 0 && this.f46521q.e() == 0) {
+        if (this.f46528q.h() == 0 && this.f46528q.e() == 0) {
             z11 = true;
         } else {
             z11 = false;
         }
-        a0Var.f46505l = z11;
-        this.f46520p.f46500f = i10;
+        a0Var.f46512l = z11;
+        this.f46527p.f46507f = i10;
         int[] iArr = this.F;
         iArr[0] = 0;
         iArr[1] = 0;
@@ -881,7 +881,7 @@ public class c0 extends o0 {
         if (i10 == 1) {
             z12 = true;
         }
-        a0 a0Var2 = this.f46520p;
+        a0 a0Var2 = this.f46527p;
         if (z12) {
             i12 = max2;
         } else {
@@ -891,41 +891,41 @@ public class c0 extends o0 {
         if (!z12) {
             max = max2;
         }
-        a0Var2.f46502i = max;
+        a0Var2.f46509i = max;
         if (z12) {
-            a0Var2.h = this.f46521q.g() + i12;
+            a0Var2.h = this.f46528q.g() + i12;
             View U0 = U0();
-            a0 a0Var3 = this.f46520p;
+            a0 a0Var3 = this.f46527p;
             if (this.v) {
                 i13 = -1;
             }
-            a0Var3.f46499e = i13;
+            a0Var3.f46506e = i13;
             int H = o0.H(U0);
-            a0 a0Var4 = this.f46520p;
-            a0Var3.d = H + a0Var4.f46499e;
-            a0Var4.f46497b = this.f46521q.a(U0);
-            j3 = this.f46521q.a(U0) - this.f46521q.f();
+            a0 a0Var4 = this.f46527p;
+            a0Var3.d = H + a0Var4.f46506e;
+            a0Var4.f46504b = this.f46528q.a(U0);
+            j3 = this.f46528q.a(U0) - this.f46528q.f();
         } else {
             View V0 = V0();
-            a0 a0Var5 = this.f46520p;
-            a0Var5.h = this.f46521q.j() + a0Var5.h;
-            a0 a0Var6 = this.f46520p;
+            a0 a0Var5 = this.f46527p;
+            a0Var5.h = this.f46528q.j() + a0Var5.h;
+            a0 a0Var6 = this.f46527p;
             if (!this.v) {
                 i13 = -1;
             }
-            a0Var6.f46499e = i13;
+            a0Var6.f46506e = i13;
             int H2 = o0.H(V0);
-            a0 a0Var7 = this.f46520p;
-            a0Var6.d = H2 + a0Var7.f46499e;
-            a0Var7.f46497b = this.f46521q.d(V0);
-            j3 = (-this.f46521q.d(V0)) + this.f46521q.j();
+            a0 a0Var7 = this.f46527p;
+            a0Var6.d = H2 + a0Var7.f46506e;
+            a0Var7.f46504b = this.f46528q.d(V0);
+            j3 = (-this.f46528q.d(V0)) + this.f46528q.j();
         }
-        a0 a0Var8 = this.f46520p;
-        a0Var8.f46498c = i11;
+        a0 a0Var8 = this.f46527p;
+        a0Var8.f46505c = i11;
         if (z10) {
-            a0Var8.f46498c = i11 - j3;
+            a0Var8.f46505c = i11 - j3;
         }
-        a0Var8.f46501g = j3;
+        a0Var8.f46508g = j3;
     }
 
     @Override
@@ -935,34 +935,34 @@ public class c0 extends o0 {
 
     @Override
     public void n0(int i10) {
-        this.f46528y = i10;
+        this.f46535y = i10;
         this.A = Integer.MIN_VALUE;
         b0 b0Var = this.B;
         if (b0Var != null) {
-            b0Var.f46509a = -1;
+            b0Var.f46516a = -1;
         }
         l0();
     }
 
     public final void n1(int i10, int i11) {
         int i12;
-        this.f46520p.f46498c = this.f46521q.f() - i11;
-        a0 a0Var = this.f46520p;
+        this.f46527p.f46505c = this.f46528q.f() - i11;
+        a0 a0Var = this.f46527p;
         if (this.v) {
             i12 = -1;
         } else {
             i12 = 1;
         }
-        a0Var.f46499e = i12;
+        a0Var.f46506e = i12;
         a0Var.d = i10;
-        a0Var.f46500f = 1;
-        a0Var.f46497b = i11;
-        a0Var.f46501g = Integer.MIN_VALUE;
+        a0Var.f46507f = 1;
+        a0Var.f46504b = i11;
+        a0Var.f46508g = Integer.MIN_VALUE;
     }
 
     @Override
     public int o0(int i10, of.e eVar, z0 z0Var) {
-        if (this.f46519o == 0) {
+        if (this.f46526o == 0) {
             return 0;
         }
         return g1(i10, eVar, z0Var);
@@ -970,30 +970,30 @@ public class c0 extends o0 {
 
     public final void o1(int i10, int i11) {
         int i12;
-        this.f46520p.f46498c = i11 - this.f46521q.j();
-        a0 a0Var = this.f46520p;
+        this.f46527p.f46505c = i11 - this.f46528q.j();
+        a0 a0Var = this.f46527p;
         a0Var.d = i10;
         if (this.v) {
             i12 = 1;
         } else {
             i12 = -1;
         }
-        a0Var.f46499e = i12;
-        a0Var.f46500f = -1;
-        a0Var.f46497b = i11;
-        a0Var.f46501g = Integer.MIN_VALUE;
+        a0Var.f46506e = i12;
+        a0Var.f46507f = -1;
+        a0Var.f46504b = i11;
+        a0Var.f46508g = Integer.MIN_VALUE;
     }
 
     @Override
     public void v0(RecyclerView recyclerView, z0 z0Var, int i10) {
         d0 d0Var = new d0(recyclerView.getContext());
-        d0Var.f46699a = i10;
+        d0Var.f46706a = i10;
         w0(d0Var);
     }
 
     @Override
     public boolean y0() {
-        if (this.B == null && this.f46523s == this.f46526w) {
+        if (this.B == null && this.f46530s == this.f46533w) {
             return true;
         }
         return false;
@@ -1002,7 +1002,7 @@ public class c0 extends o0 {
     public void z0(z0 z0Var, int[] iArr) {
         int i10;
         int W0 = W0(z0Var);
-        if (this.f46520p.f46500f == -1) {
+        if (this.f46527p.f46507f == -1) {
             i10 = 0;
         } else {
             i10 = W0;
@@ -1013,15 +1013,15 @@ public class c0 extends o0 {
     }
 
     public c0(int i10, boolean z10) {
-        this.f46519o = 1;
-        this.f46522r = false;
-        this.f46524t = false;
-        this.f46525u = false;
+        this.f46526o = 1;
+        this.f46529r = false;
+        this.f46531t = false;
+        this.f46532u = false;
         this.v = false;
-        this.f46526w = false;
-        this.f46527x = true;
-        this.f46528y = -1;
-        this.f46529z = true;
+        this.f46533w = false;
+        this.f46534x = true;
+        this.f46535y = -1;
+        this.f46536z = true;
         this.A = Integer.MIN_VALUE;
         this.B = null;
         i2.m0 m0Var = new i2.m0();

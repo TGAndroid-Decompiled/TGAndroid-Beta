@@ -8,64 +8,64 @@ import org.telegram.messenger.PushListenerController;
 import org.telegram.messenger.RichMessageLayout;
 import org.telegram.messenger.SendMessagesHelper;
 public final class ug implements Runnable {
-    public final int f19351a;
-    public final Object f19352b;
+    public final int f19356a;
+    public final Object f19357b;
 
     public ug(Object obj, int i10) {
-        this.f19351a = i10;
-        this.f19352b = obj;
+        this.f19356a = i10;
+        this.f19357b = obj;
     }
 
     @Override
     public final void run() {
-        switch (this.f19351a) {
+        switch (this.f19356a) {
             case 0:
-                NotificationBadge.HuaweiHomeBadger.lambda$executeBadge$0((Bundle) this.f19352b);
+                NotificationBadge.HuaweiHomeBadger.lambda$executeBadge$0((Bundle) this.f19357b);
                 return;
             case 1:
-                ((NotificationsSettingsFacade) this.f19352b).lambda$applyDialogNotificationsSettings$0();
+                ((NotificationsSettingsFacade) this.f19357b).lambda$applyDialogNotificationsSettings$0();
                 return;
             case 2:
-                ((CancellationSignal) this.f19352b).cancel();
+                ((CancellationSignal) this.f19357b).cancel();
                 return;
             case 3:
-                ((ProxyRotationController) this.f19352b).lambda$new$2();
+                ((ProxyRotationController) this.f19357b).lambda$new$2();
                 return;
             case 4:
-                ((PushListenerController.GooglePushListenerServiceProvider) this.f19352b).lambda$onRequestPushToken$1();
+                ((PushListenerController.GooglePushListenerServiceProvider) this.f19357b).lambda$onRequestPushToken$1();
                 return;
             case 5:
-                ((RichMessageLayout.PreviewView) this.f19352b).lambda$onTouchEvent$0();
+                ((RichMessageLayout.PreviewView) this.f19357b).lambda$onTouchEvent$0();
                 return;
             case 6:
-                ((RichMessageLayout.RichButtonRowBlock) this.f19352b).invalidate();
+                ((RichMessageLayout.RichButtonRowBlock) this.f19357b).invalidate();
                 return;
             case 7:
-                ((RichMessageLayout.RichButtonSpan) this.f19352b).invalidate();
+                ((RichMessageLayout.RichButtonSpan) this.f19357b).invalidate();
                 return;
             case 8:
-                RichMessageLayout.RichUnsupportedBlock.lambda$new$0((RichMessageLayout) this.f19352b);
+                RichMessageLayout.RichUnsupportedBlock.lambda$new$0((RichMessageLayout) this.f19357b);
                 return;
             case 9:
-                ((RichMessageLayout.Text) this.f19352b).lambda$scheduleLongPress$2();
+                ((RichMessageLayout.Text) this.f19357b).lambda$scheduleLongPress$2();
                 return;
             case 10:
-                ((SecretChatHelper) this.f19352b).lambda$startSecretChat$25();
+                ((SecretChatHelper) this.f19357b).lambda$startSecretChat$25();
                 return;
             case 11:
-                ((SendMessagesHelper) this.f19352b).lambda$new$0();
+                ((SendMessagesHelper) this.f19357b).lambda$new$0();
                 return;
             case 12:
-                ((MessagesStorage.StringCallback) this.f19352b).run(null);
+                ((MessagesStorage.StringCallback) this.f19357b).run(null);
                 return;
             case 13:
-                ((SendMessagesHelper.LocationProvider) this.f19352b).lambda$start$0();
+                ((SendMessagesHelper.LocationProvider) this.f19357b).lambda$start$0();
                 return;
             case 14:
-                ((TelegramMediaSession) this.f19352b).onAccountSwitched();
+                ((TelegramMediaSession) this.f19357b).onAccountSwitched();
                 return;
             default:
-                ((TranslateController) this.f19352b).loadTranslatingDialogsCached();
+                ((TranslateController) this.f19357b).loadTranslatingDialogsCached();
                 return;
         }
     }

@@ -65,17 +65,17 @@ public final class t2 extends AnimatorListenerAdapter {
             case 3:
                 r50 r50Var = (r50) obj;
                 r50Var.h = f7;
-                r50Var.f39924a.invalidate();
+                r50Var.f39987a.invalidate();
                 if (runnable != null) {
                     runnable.run();
                     return;
                 }
                 return;
             default:
-                yh.b4 b4Var = (yh.b4) obj;
-                b4Var.f51135y = f7;
-                b4Var.invalidate();
-                if (animator == b4Var.E && runnable != null) {
+                yh.c4 c4Var = (yh.c4) obj;
+                c4Var.f51193y = f7;
+                c4Var.invalidate();
+                if (animator == c4Var.E && runnable != null) {
                     runnable.run();
                     return;
                 }

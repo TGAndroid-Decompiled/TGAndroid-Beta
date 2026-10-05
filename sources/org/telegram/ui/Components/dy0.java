@@ -1,33 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class dy0 extends zq0 {
-    public final qy0 X0;
+import org.telegram.tgnet.tl.TL_account;
+public final class dy0 implements Runnable {
+    public final int f25890a;
+    public final TLObject f25891b;
+    public final Utilities.Callback f25892c;
 
-    public dy0(qy0 qy0Var, Context context, String str, String str2, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, null, str, false, str2, false, d6Var);
-        this.X0 = qy0Var;
+    public dy0(TLObject tLObject, Utilities.Callback callback, int i10) {
+        this.f25890a = i10;
+        this.f25891b = tLObject;
+        this.f25892c = callback;
     }
 
     @Override
-    public final void O0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        if (!z10) {
-            return;
-        }
-        AndroidUtilities.runOnUIThread(new zm(this, iVar, i10, 20), 100L);
-    }
-
-    @Override
-    public final void dismissInternal() {
-        super.dismissInternal();
-        org.telegram.ui.ActionBar.n2 n2Var = this.X0.L;
-        if (n2Var instanceof org.telegram.ui.yn) {
-            AndroidUtilities.requestAdjustResize(n2Var.getParentActivity(), n2Var.getClassGuid());
-            if (((org.telegram.ui.yn) n2Var).W.getVisibility() == 0) {
-                n2Var.getFragmentView().requestLayout();
-            }
+    public final void run() {
+        boolean z10;
+        switch (this.f25890a) {
+            case 0:
+                TLObject tLObject = this.f25891b;
+                if (tLObject instanceof TLRPC.TL_messages_stickerSet) {
+                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject;
+                    MediaDataController.getInstance(UserConfig.selectedAccount).putStickerSet(tL_messages_stickerSet);
+                    if (!MediaDataController.getInstance(UserConfig.selectedAccount).isStickerPackInstalled(tL_messages_stickerSet.set.f20074id)) {
+                        MediaDataController.getInstance(UserConfig.selectedAccount).toggleStickerSet(null, tL_messages_stickerSet, 2, null, false, false);
+                    }
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                this.f25892c.run(Boolean.valueOf(z10));
+                return;
+            default:
+                TLObject tLObject2 = this.f25891b;
+                boolean z11 = tLObject2 instanceof TL_account.paidMessagesRevenue;
+                Utilities.Callback callback = this.f25892c;
+                if (z11) {
+                    callback.run(Long.valueOf(((TL_account.paidMessagesRevenue) tLObject2).stars_amount));
+                    return;
+                } else {
+                    callback.run(0L);
+                    return;
+                }
         }
     }
 }

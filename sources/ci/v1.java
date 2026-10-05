@@ -9,7 +9,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.fy0;
+import org.telegram.ui.Components.gy0;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.h60;
 import org.telegram.ui.hy;
@@ -69,7 +69,7 @@ public final class v1 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new u1((Object) ((me) this.d), (Object) tL_error, tLObject, (Object) ((TwoStepVerificationActivity) this.f6104b), this.f6105c, 14));
                 return;
             case 3:
-                AndroidUtilities.runOnUIThread(new ai.s4((fy0) this.d, tLObject, this.f6105c, (org.telegram.ui.ActionBar.b2) this.f6104b, 20));
+                AndroidUtilities.runOnUIThread(new ai.s4((gy0) this.d, tLObject, this.f6105c, (org.telegram.ui.ActionBar.b2) this.f6104b, 20));
                 return;
             case 4:
                 AndroidUtilities.runOnUIThread(new u1((Object) ((hy) this.d), (Object) tL_error, tLObject, (Object) ((String) this.f6104b), this.f6105c, 20));
@@ -99,7 +99,7 @@ public final class v1 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new u1((NotificationCenter.NotificationCenterDelegate) ((so0) this.d), (TLObject) tL_error, this.f6105c, tLObject, (Object) ((String) this.f6104b), 22));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new pg.l0((yh.k5) this.d, (int[]) this.f6104b, tLObject, this.f6105c, 2));
+                AndroidUtilities.runOnUIThread(new pg.l0((yh.l5) this.d, (int[]) this.f6104b, tLObject, this.f6105c, 2));
                 return;
         }
     }

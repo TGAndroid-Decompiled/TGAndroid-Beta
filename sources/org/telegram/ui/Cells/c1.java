@@ -14,7 +14,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.aw0;
+import org.telegram.ui.Components.bw0;
 import org.telegram.ui.Components.q90;
 import org.telegram.ui.Components.w00;
 import org.telegram.ui.Components.yc;
@@ -37,7 +37,7 @@ public abstract class c1 {
     }
 
     public static float c(RecyclerView recyclerView) {
-        int i10 = aw0.f24689o1;
+        int i10 = bw0.f25116l0;
         s4.o0 layoutManager = recyclerView.getLayoutManager();
         if (layoutManager == null || !recyclerView.canScrollVertically(-1)) {
             return 0.0f;

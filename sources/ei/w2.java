@@ -7,7 +7,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.d8;
 import org.telegram.ui.Components.dl0;
 import org.telegram.ui.Components.fy;
-import org.telegram.ui.Components.kt0;
+import org.telegram.ui.Components.lt0;
 import org.telegram.ui.Components.o6;
 import org.telegram.ui.Components.tp;
 import org.telegram.ui.Components.tr;
@@ -70,16 +70,16 @@ public final class w2 extends AnimatorListenerAdapter {
                 if (!e4Var.c()) {
                     e4Var.b(this.f9426b);
                 }
-                e4Var.f22026d0 = null;
+                e4Var.f22030d0 = null;
                 return;
             case 4:
                 ((o6) this.f9427c).r(this.f9426b);
                 return;
             case 5:
-                ((d8) this.f9427c).f25622a[this.f9426b].setVisibility(8);
+                ((d8) this.f9427c).f25699a[this.f9426b].setVisibility(8);
                 return;
             case 6:
-                ((tp) this.f9427c).f31137a[this.f9426b].animate().scaleX(1.0f).scaleY(1.0f).setInterpolator(tr.f31148g).setStartDelay(0L).setDuration(100L).start();
+                ((tp) this.f9427c).f31201a[this.f9426b].animate().scaleX(1.0f).scaleY(1.0f).setInterpolator(tr.f31216g).setStartDelay(0L).setDuration(100L).start();
                 return;
             case 7:
                 fy fyVar = (fy) this.f9427c;
@@ -92,14 +92,14 @@ public final class w2 extends AnimatorListenerAdapter {
                     i10 = 8;
                 }
                 q0Var.setVisibility(i10);
-                TextView textView = fyVar.f26599e;
+                TextView textView = fyVar.f26628e;
                 if (i13 == 2) {
                     i11 = 0;
                 } else {
                     i11 = 8;
                 }
                 textView.setVisibility(i11);
-                TextView textView2 = fyVar.f26600f;
+                TextView textView2 = fyVar.f26629f;
                 if (i13 == 3) {
                     i12 = 0;
                 }
@@ -108,25 +108,25 @@ public final class w2 extends AnimatorListenerAdapter {
             case 8:
                 vh0 vh0Var = (vh0) this.f9427c;
                 vh0Var.H = null;
-                vh0Var.P.f24967d1.delete(this.f9426b);
+                vh0Var.P.f24983d1.delete(this.f9426b);
                 return;
             case 9:
                 yq yqVar = (yq) this.f9427c;
-                ((dl0) yqVar.d).f25763b.remove(this.f9426b);
+                ((dl0) yqVar.d).f25818b.remove(this.f9426b);
                 dl0 dl0Var = (dl0) yqVar.d;
                 dl0Var.d = true;
-                dl0Var.f25762a.invalidate();
+                dl0Var.f25817a.invalidate();
                 return;
             case 10:
-                kt0 kt0Var = (kt0) this.f9427c;
-                kt0Var.f28203e.O1.remove(this.f9426b);
-                kt0Var.f28200a.invalidate();
+                lt0 lt0Var = (lt0) this.f9427c;
+                lt0Var.f28539e.O1.remove(this.f9426b);
+                lt0Var.f28536a.invalidate();
                 return;
             default:
                 org.telegram.ui.Components.voip.d1 d1Var = (org.telegram.ui.Components.voip.d1) this.f9427c;
-                d1Var.f31818x = -1;
+                d1Var.f31885x = -1;
                 d1Var.v = this.f9426b;
-                d1Var.f31816s = 0.0f;
+                d1Var.f31883s = 0.0f;
                 d1Var.U = null;
                 d1Var.e();
                 return;
@@ -139,8 +139,8 @@ public final class w2 extends AnimatorListenerAdapter {
             case 7:
                 fy fyVar = (fy) this.f9427c;
                 fyVar.h.setVisibility(0);
-                fyVar.f26599e.setVisibility(0);
-                fyVar.f26600f.setVisibility(0);
+                fyVar.f26628e.setVisibility(0);
+                fyVar.f26629f.setVisibility(0);
                 return;
             default:
                 super.onAnimationStart(animator);

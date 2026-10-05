@@ -27,35 +27,35 @@ public final class is extends cb {
     public boolean D0;
     public boolean E0;
     public float F0;
-    public u61 X;
+    public w61 X;
     public final TLRPC.Chat Y;
     public final TLRPC.Chat Z;
-    public final boolean f27471a0;
-    public final ArrayList f27472b0;
-    public final long f27473c0;
-    public final int f27474d0;
-    public final int f27475e0;
-    public final Runnable f27476f0;
-    public boolean f27477g0;
-    public final boolean f27478h0;
-    public final hs f27479i0;
-    public final hs f27480j0;
-    public final hs f27481k0;
-    public final hs f27482l0;
+    public final boolean f27570a0;
+    public final ArrayList f27571b0;
+    public final long f27572c0;
+    public final int f27573d0;
+    public final int f27574e0;
+    public final Runnable f27575f0;
+    public boolean f27576g0;
+    public final boolean f27577h0;
+    public final hs f27578i0;
+    public final hs f27579j0;
+    public final hs f27580k0;
+    public final hs f27581l0;
     public final boolean[] m0;
-    public final boolean[] f27483n0;
-    public final boolean f27484o0;
-    public boolean f27485p0;
-    public final long f27486q0;
-    public TL_communities.ParticipantJoinedChats f27487r0;
-    public int[] f27488s0;
-    public boolean f27489t0;
-    public boolean f27490u0;
-    public final TLRPC.TL_chatBannedRights f27491v0;
-    public final TLRPC.TL_chatBannedRights f27492w0;
-    public final ArrayList f27493x0;
-    public boolean f27494y0;
-    public final boolean f27495z0;
+    public final boolean[] f27582n0;
+    public final boolean f27583o0;
+    public boolean f27584p0;
+    public final long f27585q0;
+    public TL_communities.ParticipantJoinedChats f27586r0;
+    public int[] f27587s0;
+    public boolean f27588t0;
+    public boolean f27589u0;
+    public final TLRPC.TL_chatBannedRights f27590v0;
+    public final TLRPC.TL_chatBannedRights f27591w0;
+    public final ArrayList f27592x0;
+    public boolean f27593y0;
+    public final boolean f27594z0;
 
     public is(org.telegram.ui.ActionBar.n2 r18, org.telegram.tgnet.TLRPC.Chat r19, java.util.ArrayList r20, java.util.ArrayList r21, org.telegram.tgnet.TLRPC.ChannelParticipant[] r22, long r23, int r25, int r26, boolean r27, java.lang.Runnable r28) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.is.<init>(org.telegram.ui.ActionBar.n2, org.telegram.tgnet.TLRPC$Chat, java.util.ArrayList, java.util.ArrayList, org.telegram.tgnet.TLRPC$ChannelParticipant[], long, int, int, boolean, java.lang.Runnable):void");
@@ -63,13 +63,13 @@ public final class is extends cb {
 
     public static void N(is isVar, TLObject tLObject, TLRPC.InputPeer inputPeer, int i10, int[] iArr) {
         if (tLObject instanceof TLRPC.TL_messages_channelMessages) {
-            isVar.f27488s0[i10] = ((TLRPC.TL_messages_channelMessages) tLObject).count - ((int) Collection.EL.stream(isVar.f27472b0).filter(new fs(0, inputPeer)).count());
+            isVar.f27587s0[i10] = ((TLRPC.TL_messages_channelMessages) tLObject).count - ((int) Collection.EL.stream(isVar.f27571b0).filter(new fs(0, inputPeer)).count());
         }
         int i11 = iArr[0] - 1;
         iArr[0] = i11;
         if (i11 == 0) {
-            isVar.f27489t0 = false;
-            isVar.f27490u0 = true;
+            isVar.f27588t0 = false;
+            isVar.f27589u0 = true;
             isVar.M();
         }
     }
@@ -81,16 +81,16 @@ public final class is extends cb {
         Context context2 = isVar.getContext();
         org.telegram.ui.ActionBar.d6 d6Var = isVar.resourcesProvider;
         int i10 = isVar.currentAccount;
-        long j3 = isVar.f27486q0;
-        ArrayList<Long> arrayList = isVar.f27487r0.joined_chat_ids;
+        long j3 = isVar.f27585q0;
+        ArrayList<Long> arrayList = isVar.f27586r0.joined_chat_ids;
         boolean z11 = false;
         es esVar = new es(isVar, 0);
-        Pattern pattern = e5.f25919a;
+        Pattern pattern = e5.f25971a;
         LinearLayout e7 = org.telegram.messenger.bi.e(context2, 1);
         org.telegram.ui.ActionBar.b2[] b2VarArr = new org.telegram.ui.ActionBar.b2[1];
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context2, 0, d6Var);
         String string = LocaleController.getString(R.string.CommunityBanUserTitle);
-        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20372a;
+        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20377a;
         b2Var.R = string;
         b2Var.T = AndroidUtilities.replaceTags(LocaleController.formatPluralString("CommunityBanWillRemoveFromChats", arrayList.size(), DialogObject.getShortName(i10, j3)));
         alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
@@ -134,7 +134,7 @@ public final class is extends cb {
     }
 
     public final boolean Q() {
-        TLRPC.TL_chatBannedRights tL_chatBannedRights = this.f27491v0;
+        TLRPC.TL_chatBannedRights tL_chatBannedRights = this.f27590v0;
         if (tL_chatBannedRights.send_photos && tL_chatBannedRights.send_videos && tL_chatBannedRights.send_stickers && tL_chatBannedRights.send_audios && tL_chatBannedRights.send_docs && tL_chatBannedRights.send_voices && tL_chatBannedRights.send_roundvideos && tL_chatBannedRights.embed_links && tL_chatBannedRights.send_polls && tL_chatBannedRights.send_reactions) {
             return true;
         }
@@ -144,52 +144,52 @@ public final class is extends cb {
     public final void R(ArrayList arrayList, hs hsVar) {
         boolean z10;
         boolean c10 = hsVar.c();
-        int i10 = hsVar.f27234g;
-        int i11 = hsVar.f27229a;
+        int i10 = hsVar.f27319g;
+        int i11 = hsVar.f27314a;
         if (c10) {
             boolean z11 = false;
             if (!hsVar.b()) {
-                g61 y3 = g61.y(i11, hsVar.f27230b);
-                if (hsVar.f27235i > 0) {
+                h61 z12 = h61.z(i11, hsVar.f27315b);
+                if (hsVar.f27320i > 0) {
                     z11 = true;
                 }
-                y3.K(z11);
-                arrayList.add(y3);
+                z12.L(z11);
+                arrayList.add(z12);
                 return;
             }
-            String str = hsVar.f27230b;
-            int i12 = hsVar.f27235i;
+            String str = hsVar.f27315b;
+            int i12 = hsVar.f27320i;
             if (i12 <= 0) {
-                if (hsVar.f27232e != null) {
+                if (hsVar.f27317e != null) {
                     i12 = hsVar.h;
                 } else {
                     i12 = i10;
                 }
             }
             String valueOf = String.valueOf(i12);
-            g61 g61Var = new g61(36);
-            g61Var.d = i11;
-            g61Var.f26674l = str;
-            g61Var.f26677o = valueOf;
-            if (hsVar.f27235i > 0) {
+            h61 h61Var = new h61(36);
+            h61Var.d = i11;
+            h61Var.f27093l = str;
+            h61Var.f27096o = valueOf;
+            if (hsVar.f27320i > 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            g61Var.K(z10);
-            g61Var.f26669f = hsVar.f27233f;
-            g61Var.D = new org.telegram.ui.qf(28, this, hsVar);
-            arrayList.add(g61Var);
-            if (!hsVar.f27233f) {
+            h61Var.L(z10);
+            h61Var.f27088f = hsVar.f27318f;
+            h61Var.D = new org.telegram.ui.qf(28, this, hsVar);
+            arrayList.add(h61Var);
+            if (!hsVar.f27318f) {
                 for (int i13 = 0; i13 < i10; i13++) {
-                    boolean[] zArr = hsVar.f27232e;
+                    boolean[] zArr = hsVar.f27317e;
                     if (zArr == null || zArr[i13]) {
-                        g61 g61Var2 = new g61(37);
-                        g61Var2.d = (i11 << 24) | i13;
-                        g61Var2.G = (TLObject) hsVar.f27231c.get(i13);
-                        g61Var2.K(hsVar.d[i13]);
-                        g61Var2.f26671i = 1;
-                        arrayList.add(g61Var2);
+                        h61 h61Var2 = new h61(37);
+                        h61Var2.d = (i11 << 24) | i13;
+                        h61Var2.G = (TLObject) hsVar.f27316c.get(i13);
+                        h61Var2.L(hsVar.d[i13]);
+                        h61Var2.f27090i = 1;
+                        arrayList.add(h61Var2);
                     }
                 }
             }
@@ -197,19 +197,19 @@ public final class is extends cb {
     }
 
     public final void S() {
-        if (this.f27490u0) {
+        if (this.f27589u0) {
             M();
-        } else if (!this.f27489t0) {
-            this.f27489t0 = true;
-            hs hsVar = this.f27480j0;
-            int i10 = hsVar.f27234g;
-            this.f27488s0 = new int[i10];
+        } else if (!this.f27588t0) {
+            this.f27588t0 = true;
+            hs hsVar = this.f27579j0;
+            int i10 = hsVar.f27319g;
+            this.f27587s0 = new int[i10];
             int[] iArr = {i10};
-            for (int i11 = 0; i11 < hsVar.f27234g; i11++) {
+            for (int i11 = 0; i11 < hsVar.f27319g; i11++) {
                 TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
                 tL_messages_search.peer = MessagesController.getInputPeer(this.Y);
-                tL_messages_search.f20151q = "";
-                TLRPC.InputPeer inputPeer = MessagesController.getInputPeer((TLObject) hsVar.f27231c.get(i11));
+                tL_messages_search.f20156q = "";
+                TLRPC.InputPeer inputPeer = MessagesController.getInputPeer((TLObject) hsVar.f27316c.get(i11));
                 tL_messages_search.from_id = inputPeer;
                 tL_messages_search.flags |= 1;
                 tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterEmpty();
@@ -222,22 +222,22 @@ public final class is extends cb {
     public final void T() {
         boolean z10;
         boolean z11;
-        boolean z12 = this.f27477g0;
+        boolean z12 = this.f27576g0;
         boolean z13 = false;
-        hs hsVar = this.f27482l0;
+        hs hsVar = this.f27581l0;
         if (z12 && hsVar.c()) {
-            if (hsVar.f27235i > 0) {
+            if (hsVar.f27320i > 0) {
                 z11 = true;
             } else {
                 z11 = false;
             }
             this.E0 = z11;
         }
-        if (this.f27477g0 && hsVar.c() && hsVar.f27235i == 0) {
+        if (this.f27576g0 && hsVar.c() && hsVar.f27320i == 0) {
             hsVar.d();
-        } else if (!this.f27477g0 && hsVar.c()) {
+        } else if (!this.f27576g0 && hsVar.c()) {
             boolean z14 = this.E0;
-            if (hsVar.f27235i > 0) {
+            if (hsVar.f27320i > 0) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -246,8 +246,8 @@ public final class is extends cb {
                 hsVar.d();
             }
         }
-        if (!this.f27477g0 && hsVar.c()) {
-            if (hsVar.f27235i > 0) {
+        if (!this.f27576g0 && hsVar.c()) {
+            if (hsVar.f27320i > 0) {
                 z13 = true;
             }
             this.E0 = z13;
@@ -262,9 +262,9 @@ public final class is extends cb {
     public final void dismiss() {
         boolean z10;
         SharedPreferences.Editor edit = MessagesController.getInstance(this.currentAccount).getMainSettings().edit();
-        edit.putBoolean("delete_report", this.f27479i0.a());
-        edit.putBoolean("delete_deleteAll", this.f27480j0.a());
-        if (!this.f27477g0 && this.f27482l0.a()) {
+        edit.putBoolean("delete_report", this.f27578i0.a());
+        edit.putBoolean("delete_deleteAll", this.f27579j0.a());
+        if (!this.f27576g0 && this.f27581l0.a()) {
             z10 = true;
         } else {
             z10 = false;
@@ -296,10 +296,10 @@ public final class is extends cb {
 
     @Override
     public final yl0 v(zl0 zl0Var) {
-        u61 u61Var = new u61(zl0Var, getContext(), this.currentAccount, this.f25309n.getClassGuid(), true, new bs(this, 0), this.resourcesProvider);
-        this.X = u61Var;
-        u61Var.f31313r = false;
-        return u61Var;
+        w61 w61Var = new w61(zl0Var, getContext(), this.currentAccount, this.f25357n.getClassGuid(), true, new bs(this, 0), this.resourcesProvider);
+        this.X = w61Var;
+        w61Var.f32531r = false;
+        return w61Var;
     }
 
     @Override
@@ -315,23 +315,23 @@ public final class is extends cb {
             }
             return LocaleController.formatPluralString("DeleteReactionOptionsTitle", 1, new Object[0]);
         }
-        ArrayList arrayList = this.f27472b0;
+        ArrayList arrayList = this.f27571b0;
         if (arrayList != null) {
             i10 = arrayList.size();
         } else {
             i10 = 0;
         }
         int[] iArr = {i10};
-        if (this.f27488s0 != null && this.f27490u0) {
+        if (this.f27587s0 != null && this.f27589u0) {
             int i11 = 0;
             while (true) {
-                hs hsVar = this.f27480j0;
-                if (i11 >= hsVar.f27234g) {
+                hs hsVar = this.f27579j0;
+                if (i11 >= hsVar.f27319g) {
                     break;
                 }
-                if (hsVar.d[i11] && ((zArr = hsVar.f27232e) == null || zArr[i11])) {
-                    TLObject tLObject = (TLObject) hsVar.f27231c.get(i11);
-                    iArr[0] = iArr[0] + this.f27488s0[i11];
+                if (hsVar.d[i11] && ((zArr = hsVar.f27317e) == null || zArr[i11])) {
+                    TLObject tLObject = (TLObject) hsVar.f27316c.get(i11);
+                    iArr[0] = iArr[0] + this.f27587s0[i11];
                 }
                 i11++;
             }

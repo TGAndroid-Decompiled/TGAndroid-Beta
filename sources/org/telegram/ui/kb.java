@@ -8,13 +8,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 public final class kb extends tb {
-    public final hh.l f37921x0;
-    public final wb f37922y0;
+    public final hh.l f37944x0;
+    public final wb f37945y0;
 
     public kb(wb wbVar, Context context) {
         super(wbVar, context);
-        this.f37922y0 = wbVar;
-        this.f37921x0 = new hh.l();
+        this.f37945y0 = wbVar;
+        this.f37944x0 = new hh.l();
     }
 
     @Override
@@ -22,11 +22,11 @@ public final class kb extends tb {
         if (drawable instanceof org.telegram.ui.Components.pc0) {
             ((org.telegram.ui.Components.pc0) drawable).p();
         }
-        hh.l lVar = this.f37921x0;
+        hh.l lVar = this.f37944x0;
         fh.a c10 = lVar.c(drawable);
         AndroidUtilities.computePerceivedBrightness(lVar.a(c10));
-        wb wbVar = this.f37922y0;
-        wbVar.f42021a.f9867a = c10;
+        wb wbVar = this.f37945y0;
+        wbVar.f42036a.f9867a = c10;
         jh.f fVar = wbVar.W;
         if (fVar != null) {
             fVar.invalidate();
@@ -53,9 +53,9 @@ public final class kb extends tb {
         MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
         if (playingMessageObject != null && playingMessageObject.isRoundVideo() && playingMessageObject.eventId != 0) {
             long dialogId = playingMessageObject.getDialogId();
-            wb wbVar = this.f37922y0;
-            if (dialogId == (-wbVar.f42030f.f20042id)) {
-                MediaController.getInstance().setTextureView(wbVar.Q0(false), wbVar.f42029e0, wbVar.f42027d0, true);
+            wb wbVar = this.f37945y0;
+            if (dialogId == (-wbVar.f42045f.f20047id)) {
+                MediaController.getInstance().setTextureView(wbVar.Q0(false), wbVar.f42044e0, wbVar.f42042d0, true);
             }
         }
     }
@@ -69,8 +69,8 @@ public final class kb extends tb {
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
-        wb wbVar = this.f37922y0;
-        fh.a aVar = wbVar.f42021a.f9867a;
+        wb wbVar = this.f37945y0;
+        fh.a aVar = wbVar.f42036a.f9867a;
         if (aVar instanceof fh.b) {
             ((fh.b) aVar).c(size, size2);
         }
@@ -85,14 +85,14 @@ public final class kb extends tb {
         for (int i12 = 0; i12 < childCount; i12++) {
             View childAt = getChildAt(i12);
             if (childAt != null && childAt.getVisibility() != 8 && childAt != wb.d0(wbVar)) {
-                if (childAt != wbVar.v && childAt != wbVar.f42038n) {
+                if (childAt != wbVar.v && childAt != wbVar.f42053n) {
                     if (childAt == wbVar.H) {
                         childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(paddingTop, 1073741824));
                     } else {
                         measureChildWithMargins(childAt, i10, 0, i11, 0);
                     }
                 } else {
-                    childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.max(AndroidUtilities.dp(10.0f), View.MeasureSpec.getSize(i11)) + (wbVar.f42028e * 2), 1073741824));
+                    childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.max(AndroidUtilities.dp(10.0f), View.MeasureSpec.getSize(i11)) + (wbVar.f42043e * 2), 1073741824));
                 }
             }
         }

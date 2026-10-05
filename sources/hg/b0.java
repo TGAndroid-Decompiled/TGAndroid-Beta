@@ -17,9 +17,9 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Components.c71;
-import org.telegram.ui.Components.g61;
-import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.e71;
+import org.telegram.ui.Components.h61;
+import org.telegram.ui.Components.w61;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.UsersSelectActivity;
 public final class b0 {
@@ -49,10 +49,10 @@ public final class b0 {
         this.f11115c = n2Var.getResourceProvider();
     }
 
-    public final void a(ArrayList arrayList, u61 u61Var, boolean z10) {
+    public final void a(ArrayList arrayList, w61 w61Var, boolean z10) {
         String str;
         String str2;
-        u61Var.U();
+        w61Var.U();
         int d = d();
         String str3 = "";
         if (!this.h) {
@@ -99,8 +99,8 @@ public final class b0 {
             if (TextUtils.isEmpty(str)) {
                 str = LocaleController.getString(R.string.BusinessChatsIncludedAdd2);
             }
-            g61 f7 = g61.f(LocaleController.getString(R.string.BusinessChatsIncluded), str, 101);
-            f7.f26670g = z10;
+            h61 f7 = h61.f(LocaleController.getString(R.string.BusinessChatsIncluded), str, 101);
+            f7.f27089g = z10;
             arrayList.add(f7);
         }
         boolean z11 = this.f11119i;
@@ -146,11 +146,11 @@ public final class b0 {
             if (TextUtils.isEmpty(str3)) {
                 str3 = LocaleController.getString(R.string.BusinessChatsExcludedAdd2);
             }
-            g61 f10 = g61.f(LocaleController.getString(R.string.BusinessChatsExcluded), str3, 103);
-            f10.f26670g = z10;
+            h61 f10 = h61.f(LocaleController.getString(R.string.BusinessChatsExcluded), str3, 103);
+            f10.f27089g = z10;
             arrayList.add(f10);
         }
-        u61Var.T();
+        w61Var.T();
     }
 
     public final TL_account.TL_inputBusinessBotRecipients b() {
@@ -430,13 +430,13 @@ public final class b0 {
         return true;
     }
 
-    public final boolean h(g61 g61Var) {
+    public final boolean h(h61 h61Var) {
         boolean z10;
         ArrayList arrayList;
         boolean z11;
         int i10;
         int i11;
-        int i12 = g61Var.d;
+        int i12 = h61Var.d;
         n2 n2Var = this.d;
         boolean z12 = false;
         if (i12 != 101 && i12 != 103) {
@@ -447,11 +447,11 @@ public final class b0 {
             } else if (i12 == 104) {
                 runnable.run();
                 return true;
-            } else if (g61Var.f17187a != 11) {
+            } else if (h61Var.f17192a != 11) {
                 return false;
             } else {
-                boolean z13 = g61Var.f26684w;
-                String peerName = MessagesController.getInstance(this.f11114b).getPeerName(g61Var.f26685x);
+                boolean z13 = h61Var.f27103w;
+                String peerName = MessagesController.getInstance(this.f11114b).getPeerName(h61Var.f27104x);
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f11113a, 0, this.f11115c);
                 if (!z13) {
                     i10 = R.string.BusinessRecipientsRemoveExcludeTitle;
@@ -459,7 +459,7 @@ public final class b0 {
                     i10 = R.string.BusinessRecipientsRemoveIncludeTitle;
                 }
                 String string = LocaleController.getString(i10);
-                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20372a;
+                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20377a;
                 b2Var.R = string;
                 if (!z13) {
                     i11 = R.string.BusinessRecipientsRemoveExcludeMessage;
@@ -467,7 +467,7 @@ public final class b0 {
                     i11 = R.string.BusinessRecipientsRemoveIncludeMessage;
                 }
                 b2Var.T = LocaleController.formatString(i11, peerName);
-                alertDialog$Builder.k(LocaleController.getString(R.string.Remove), new com.google.firebase.messaging.i(this, z13, g61Var, 1));
+                alertDialog$Builder.k(LocaleController.getString(R.string.Remove), new com.google.firebase.messaging.i(this, z13, h61Var, 1));
                 alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
                 if (n2Var != null) {
                     n2Var.showDialog(b2Var);
@@ -488,7 +488,7 @@ public final class b0 {
             arrayList = this.f11121k;
         }
         UsersSelectActivity usersSelectActivity = new UsersSelectActivity(d(), arrayList, z10);
-        usersSelectActivity.f34598x = 2;
+        usersSelectActivity.f34611x = 2;
         usersSelectActivity.G = false;
         if (this.f11119i && !this.h && !z10) {
             z11 = true;
@@ -501,7 +501,7 @@ public final class b0 {
             z12 = true;
         }
         usersSelectActivity.H = z12;
-        usersSelectActivity.f34594n = new ai.k(1, this, z10);
+        usersSelectActivity.f34607n = new ai.k(1, this, z10);
         if (n2Var != null) {
             n2Var.presentFragment(usersSelectActivity);
             return true;
@@ -511,7 +511,7 @@ public final class b0 {
             return true;
         }
         ?? obj = new Object();
-        obj.f21354a = true;
+        obj.f21358a = true;
         U.showAsSheet(usersSelectActivity, obj);
         return true;
     }
@@ -591,14 +591,14 @@ public final class b0 {
         arrayList2.addAll(this.f11122l.exclude_users);
     }
 
-    public final boolean k(c71 c71Var) {
+    public final boolean k(e71 e71Var) {
         if (!this.h && this.f11120j.isEmpty() && this.f11117f == 0) {
             BotWebViewVibrationEffect.APP_ERROR.vibrate();
-            View A1 = c71Var.A1(101);
+            View z12 = e71Var.z1(101);
             int i10 = -this.f11123m;
             this.f11123m = i10;
-            AndroidUtilities.shakeViewSpring(A1, i10);
-            c71Var.y0(c71Var.z1(101));
+            AndroidUtilities.shakeViewSpring(z12, i10);
+            e71Var.y0(e71Var.y1(101));
             return false;
         }
         return true;

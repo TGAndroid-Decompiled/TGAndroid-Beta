@@ -88,7 +88,7 @@ public final class tb implements GestureDetector.OnGestureListener {
                 jcVar.f1156e0 = f12 + f10;
             }
             xb xbVar = jcVar.f1185s;
-            org.telegram.ui.Components.rc rcVar2 = org.telegram.ui.Components.rc.f30337w;
+            org.telegram.ui.Components.rc rcVar2 = org.telegram.ui.Components.rc.f30419w;
             if (rcVar2 != null && rcVar2.h == xbVar) {
                 rcVar2.b();
             }
@@ -108,7 +108,7 @@ public final class tb implements GestureDetector.OnGestureListener {
                 f11 = 0.3f;
                 jcVar.W -= f10 * f11;
                 xb xbVar2 = jcVar.f1185s;
-                rcVar = org.telegram.ui.Components.rc.f30337w;
+                rcVar = org.telegram.ui.Components.rc.f30419w;
                 if (rcVar != null && rcVar.h == xbVar2) {
                     rcVar.b();
                 }
@@ -119,7 +119,7 @@ public final class tb implements GestureDetector.OnGestureListener {
         f11 = 0.6f;
         jcVar.W -= f10 * f11;
         xb xbVar22 = jcVar.f1185s;
-        rcVar = org.telegram.ui.Components.rc.f30337w;
+        rcVar = org.telegram.ui.Components.rc.f30419w;
         if (rcVar != null) {
             rcVar.b();
         }

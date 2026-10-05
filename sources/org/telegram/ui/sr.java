@@ -1,27 +1,27 @@
 package org.telegram.ui;
 public final class sr implements Runnable {
-    public final int f40612a;
-    public final tr f40613b;
+    public final int f40624a;
+    public final tr f40625b;
 
     public sr(tr trVar, int i10) {
-        this.f40612a = i10;
-        this.f40613b = trVar;
+        this.f40624a = i10;
+        this.f40625b = trVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f40612a) {
+        switch (this.f40624a) {
             case 0:
-                org.telegram.ui.Components.w61 w61Var = this.f40613b.f32731a;
-                if (w61Var != null) {
-                    w61Var.f25250f3.N(true);
+                org.telegram.ui.Components.y61 y61Var = this.f40625b.f33438a;
+                if (y61Var != null) {
+                    y61Var.f26034f3.N(true);
                     return;
                 }
                 return;
             default:
-                org.telegram.ui.Components.w61 w61Var2 = this.f40613b.f32731a;
-                if (w61Var2 != null) {
-                    w61Var2.f25250f3.N(true);
+                org.telegram.ui.Components.y61 y61Var2 = this.f40625b.f33438a;
+                if (y61Var2 != null) {
+                    y61Var2.f26034f3.N(true);
                     return;
                 }
                 return;

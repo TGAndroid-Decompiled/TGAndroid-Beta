@@ -1,4 +1,4 @@
 package w7;
 public abstract class n6 {
-    public static String[] f48797a;
+    public static String[] f48804a;
 }

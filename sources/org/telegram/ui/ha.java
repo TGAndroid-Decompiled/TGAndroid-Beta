@@ -6,10 +6,10 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ha implements org.telegram.ui.Components.ml0 {
-    public final sa f37017a;
+    public final sa f37045a;
 
     public ha(sa saVar) {
-        this.f37017a = saVar;
+        this.f37045a = saVar;
     }
 
     @Override
@@ -18,13 +18,13 @@ public final class ha implements org.telegram.ui.Components.ml0 {
         int i12;
         int i13;
         boolean z10 = view instanceof pa;
-        sa saVar = this.f37017a;
+        sa saVar = this.f37045a;
         if (z10) {
             pa paVar = (pa) view;
             TLRPC.TL_username tL_username = paVar.v;
-            if (tL_username != null && !paVar.f39423r) {
-                if (tL_username.editable && saVar.f40437x == 0) {
-                    saVar.f40429b.y0(0);
+            if (tL_username != null && !paVar.f39435r) {
+                if (tL_username.editable && saVar.f40420x == 0) {
+                    saVar.f40412b.y0(0);
                     saVar.e0(true);
                     return;
                 }
@@ -34,13 +34,13 @@ public final class ha implements org.telegram.ui.Components.ml0 {
                 } else {
                     i11 = R.string.UsernameActivateLink;
                 }
-                alertDialog$Builder.f20372a.R = LocaleController.getString(i11);
+                alertDialog$Builder.f20377a.R = LocaleController.getString(i11);
                 if (tL_username.active) {
                     i12 = R.string.UsernameDeactivateLinkProfileMessage;
                 } else {
                     i12 = R.string.UsernameActivateLinkProfileMessage;
                 }
-                alertDialog$Builder.f20372a.T = LocaleController.getString(i12);
+                alertDialog$Builder.f20377a.T = LocaleController.getString(i12);
                 if (tL_username.active) {
                     i13 = R.string.Hide;
                 } else {

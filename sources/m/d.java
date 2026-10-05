@@ -4,12 +4,12 @@ import android.content.Context;
 import android.view.View;
 import ii.n4;
 public final class d extends l.v {
-    public final int f15710l = 0;
-    public final h f15711m;
+    public final int f15715l = 0;
+    public final h f15716m;
 
     public d(h hVar, Context context, l.k kVar, View view) {
         super(context, kVar, view, true, 2130968608, 0);
-        this.f15711m = hVar;
+        this.f15716m = hVar;
         this.f15232f = 8388613;
         n4 n4Var = hVar.M;
         this.h = n4Var;
@@ -21,16 +21,16 @@ public final class d extends l.v {
 
     @Override
     public final void c() {
-        switch (this.f15710l) {
+        switch (this.f15715l) {
             case 0:
-                h hVar = this.f15711m;
+                h hVar = this.f15716m;
                 hVar.J = null;
                 hVar.getClass();
                 super.c();
                 return;
             default:
-                h hVar2 = this.f15711m;
-                l.k kVar = hVar2.f15750c;
+                h hVar2 = this.f15716m;
+                l.k kVar = hVar2.f15755c;
                 if (kVar != null) {
                     kVar.c(true);
                 }
@@ -42,10 +42,10 @@ public final class d extends l.v {
 
     public d(h hVar, Context context, l.d0 d0Var, View view) {
         super(context, d0Var, view, false, 2130968608, 0);
-        this.f15711m = hVar;
+        this.f15716m = hVar;
         if ((d0Var.A.f15215x & 32) != 32) {
-            View view2 = hVar.f15754r;
-            this.f15231e = view2 == null ? (View) hVar.f15753n : view2;
+            View view2 = hVar.f15759r;
+            this.f15231e = view2 == null ? (View) hVar.f15758n : view2;
         }
         n4 n4Var = hVar.M;
         this.h = n4Var;

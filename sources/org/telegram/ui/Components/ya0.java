@@ -3,7 +3,7 @@ package org.telegram.ui.Components;
 import android.graphics.Paint;
 import org.telegram.tgnet.TLRPC;
 public interface ya0 {
-    void F(int i10, int i11, CharSequence charSequence, boolean z10);
+    void C(int i10, int i11, CharSequence charSequence, boolean z10);
 
     void G(String str);
 
@@ -11,5 +11,5 @@ public interface ya0 {
 
     Paint.FontMetricsInt r();
 
-    void x(TLRPC.TL_document tL_document, String str, Object obj);
+    void y(TLRPC.TL_document tL_document, String str, Object obj);
 }

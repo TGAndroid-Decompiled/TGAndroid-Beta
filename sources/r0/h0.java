@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.WeakHashMap;
 public final class h0 {
     public static final ArrayList d = new ArrayList();
-    public WeakHashMap f45598a;
-    public SparseArray f45599b;
-    public WeakReference f45600c;
+    public WeakHashMap f45605a;
+    public SparseArray f45606b;
+    public WeakReference f45607c;
 
     public final View a(View view) {
         int size;
-        WeakHashMap weakHashMap = this.f45598a;
+        WeakHashMap weakHashMap = this.f45605a;
         if (weakHashMap != null && weakHashMap.containsKey(view)) {
             if (view instanceof ViewGroup) {
                 ViewGroup viewGroup = (ViewGroup) view;

@@ -1,21 +1,21 @@
 package org.telegram.ui;
 
 import android.view.View;
-public final class zo0 extends org.telegram.ui.Components.x81 {
-    public final wp0 f43864a;
+public final class zo0 extends org.telegram.ui.Components.y81 {
+    public final wp0 f43871a;
 
     public zo0(wp0 wp0Var) {
-        this.f43864a = wp0Var;
+        this.f43871a = wp0Var;
     }
 
     @Override
     public final View d(int i10) {
-        wp0 wp0Var = this.f43864a;
+        wp0 wp0Var = this.f43871a;
         if (i10 == 1) {
             return wp0Var.h;
         }
         if (i10 == 0) {
-            return wp0Var.f42588n;
+            return wp0Var.f42655n;
         }
         return null;
     }

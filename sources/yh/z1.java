@@ -1,27 +1,23 @@
 package yh;
 
-import android.content.Context;
-import org.telegram.tgnet.tl.TL_stars;
-public final class z1 implements org.telegram.ui.ActionBar.a2 {
-    public final int f52308a;
-    public final x3 f52309b;
-    public final TL_stars.TL_starGiftUnique f52310c;
+import android.content.DialogInterface;
+public final class z1 implements DialogInterface.OnDismissListener {
+    public final int f52339a;
+    public final y3 f52340b;
 
-    public z1(x3 x3Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, int i10) {
-        this.f52308a = i10;
-        this.f52309b = x3Var;
-        this.f52310c = tL_starGiftUnique;
+    public z1(y3 y3Var, int i10) {
+        this.f52339a = i10;
+        this.f52340b = y3Var;
     }
 
     @Override
-    public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f52308a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f52339a) {
             case 0:
-                x3.N0(this.f52309b, this.f52310c, b2Var);
+                this.f52340b.f52298j0.setLoading(false);
                 return;
             default:
-                Context context = this.f52309b.getContext();
-                nf.f.u(context, "https://fragment.com/gift/" + this.f52310c.slug);
+                this.f52340b.f52298j0.setLoading(false);
                 return;
         }
     }

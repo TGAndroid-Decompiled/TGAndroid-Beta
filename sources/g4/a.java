@@ -18,9 +18,9 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import sa.e;
+import z3.l;
 import z3.m;
-import z3.n;
-public final class a implements n {
+public final class a implements m {
     public final v f10234a = new v();
     public final boolean f10235b;
     public final int f10236c;
@@ -99,12 +99,7 @@ public final class a implements n {
     }
 
     @Override
-    public final int A() {
-        return 2;
-    }
-
-    @Override
-    public final void F(byte[] bArr, int i10, int i11, m mVar, h hVar) {
+    public final void E(byte[] bArr, int i10, int i11, l lVar, h hVar) {
         boolean z10;
         String v;
         boolean z11;
@@ -217,6 +212,11 @@ public final class a implements n {
     @Override
     public final z3.d h(int i10, int i11, byte[] bArr) {
         return e.a(this, bArr, i11);
+    }
+
+    @Override
+    public final int y() {
+        return 2;
     }
 
     @Override

@@ -5,33 +5,33 @@ import android.graphics.Bitmap;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.aa1;
 import org.telegram.ui.Components.d30;
-import org.telegram.ui.Components.f71;
 import org.telegram.ui.Components.h30;
 import org.telegram.ui.Components.j30;
+import org.telegram.ui.Components.q61;
 import org.telegram.ui.Components.su;
-import org.telegram.ui.Components.z91;
 public final class fa implements ViewTreeObserver.OnPreDrawListener {
-    public final int f22117a;
-    public final Object f22118b;
+    public final int f22121a;
+    public final Object f22122b;
 
     public fa(Object obj, int i10) {
-        this.f22117a = i10;
-        this.f22118b = obj;
+        this.f22121a = i10;
+        this.f22122b = obj;
     }
 
     @Override
     public final boolean onPreDraw() {
         boolean z10;
-        int i10 = this.f22117a;
-        Object obj = this.f22118b;
+        int i10 = this.f22121a;
+        Object obj = this.f22122b;
         switch (i10) {
             case 0:
-                ha haVar = ((ga) obj).f22182a;
+                ha haVar = ((ga) obj).f22186a;
                 haVar.getViewTreeObserver().removeOnPreDrawListener(this);
                 haVar.getTransitionParams().j();
                 haVar.getTransitionParams().f();
-                haVar.getTransitionParams().f22962g = true;
+                haVar.getTransitionParams().f22965g = true;
                 haVar.getTransitionParams().K1 = 0.0f;
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                 ofFloat.addUpdateListener(new r(this, 8));
@@ -39,19 +39,19 @@ public final class fa implements ViewTreeObserver.OnPreDrawListener {
                 ofFloat.start();
                 return false;
             case 1:
-                ((su) obj).f30884a.f33652c.getViewTreeObserver().removeOnPreDrawListener(this);
+                ((su) obj).f30950a.f33643c.getViewTreeObserver().removeOnPreDrawListener(this);
                 return true;
             case 2:
                 d30 d30Var = (d30) obj;
-                h30 h30Var = d30Var.f25546f;
-                org.telegram.ui.x7 x7Var = d30Var.f25545e;
+                h30 h30Var = d30Var.f25608f;
+                org.telegram.ui.x7 x7Var = d30Var.f25607e;
                 x7Var.getViewTreeObserver().removeOnPreDrawListener(this);
                 int[] iArr = d30Var.G;
                 x7Var.getLocationOnScreen(iArr);
-                float f7 = d30Var.f25548r.x + d30Var.Q;
+                float f7 = d30Var.f25610r.x + d30Var.Q;
                 j30 j30Var = d30Var.U;
                 float measuredWidth = ((j30Var.getMeasuredWidth() / 2.0f) + f7) - iArr[0];
-                float measuredWidth2 = ((j30Var.getMeasuredWidth() / 2.0f) + (d30Var.f25548r.y + d30Var.R)) - iArr[1];
+                float measuredWidth2 = ((j30Var.getMeasuredWidth() / 2.0f) + (d30Var.f25610r.y + d30Var.R)) - iArr[1];
                 if (measuredWidth2 - AndroidUtilities.dp(61.0f) > 0.0f && AndroidUtilities.dp(61.0f) + measuredWidth2 < x7Var.getMeasuredHeight()) {
                     z10 = true;
                 } else {
@@ -84,20 +84,20 @@ public final class fa implements ViewTreeObserver.OnPreDrawListener {
                 ((ci.r6) obj).invalidate();
                 return true;
             default:
-                z91 z91Var = (z91) ((ki.d) obj).f14863b;
-                z91Var.f33462n.getViewTreeObserver().removeOnPreDrawListener(this);
-                ImageView imageView = z91Var.f33453e;
+                aa1 aa1Var = (aa1) ((ki.d) obj).f14863b;
+                aa1Var.f24570n.getViewTreeObserver().removeOnPreDrawListener(this);
+                ImageView imageView = aa1Var.f24561e;
                 if (imageView != null) {
                     imageView.setVisibility(4);
-                    z91Var.f33453e.setImageDrawable(null);
-                    Bitmap bitmap = z91Var.h;
+                    aa1Var.f24561e.setImageDrawable(null);
+                    Bitmap bitmap = aa1Var.h;
                     if (bitmap != null) {
                         bitmap.recycle();
-                        z91Var.h = null;
+                        aa1Var.h = null;
                     }
                 }
-                AndroidUtilities.runOnUIThread(new f71(this, 5));
-                z91Var.f33463r = 0;
+                AndroidUtilities.runOnUIThread(new q61(this, 6));
+                aa1Var.f24571r = 0;
                 return true;
         }
     }

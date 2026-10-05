@@ -5,24 +5,24 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.c71;
-import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.e71;
 import org.telegram.ui.Components.g61;
-import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.h61;
+import org.telegram.ui.Components.w61;
 import org.telegram.ui.Components.zl0;
-public final class h5 extends f61 {
+public final class h5 extends g61 {
     public static final int f12417a = 0;
 
     static {
-        f61.setup(new f61());
+        g61.setup(new g61());
     }
 
     @Override
-    public final void bindView(View view, g61 g61Var, boolean z10, u61 u61Var, c71 c71Var) {
+    public final void bindView(View view, h61 h61Var, boolean z10, w61 w61Var, e71 e71Var) {
         TL_iv.RichText richText;
         i5 i5Var = (i5) view;
-        a aVar = (a) g61Var.G;
-        g5 g5Var = (g5) g61Var.H;
+        a aVar = (a) h61Var.G;
+        g5 g5Var = (g5) h61Var.H;
         i1 i1Var = i5Var.f12449r;
         i5Var.f12204a = aVar;
         i5Var.f12450s = g5Var;

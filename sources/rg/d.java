@@ -17,28 +17,28 @@ import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Cells.t3;
 import org.telegram.ui.Components.Premium.LimitPreviewView;
 import org.telegram.ui.Components.yl0;
-import org.telegram.ui.n41;
+import org.telegram.ui.l41;
 import w7.z5;
 public final class d extends yl0 {
-    public final d6 f46093c;
+    public final d6 f46100c;
     public final int d;
-    public final int f46094e;
-    public final ArrayList f46095f;
+    public final int f46101e;
+    public final ArrayList f46102f;
     public final a1 h;
-    public int f46096n;
-    public c f46097r;
-    public final boolean f46098s;
+    public int f46103n;
+    public c f46104r;
+    public final boolean f46105s;
 
     public d(int i10, d6 d6Var) {
         ArrayList arrayList = new ArrayList();
-        this.f46095f = arrayList;
-        this.f46098s = true;
-        this.f46093c = d6Var;
+        this.f46102f = arrayList;
+        this.f46105s = true;
+        this.f46100c = d6Var;
         a1 a1Var = new a1(i6.Lj, i6.Mj, i6.Nj, i6.Oj, d6Var);
         this.h = a1Var;
-        a1Var.f46053o = 0.0f;
-        a1Var.f46054p = 0.0f;
-        a1Var.f46055q = 1.0f;
+        a1Var.f46060o = 0.0f;
+        a1Var.f46061p = 0.0f;
+        a1Var.f46062q = 1.0f;
         MessagesController messagesController = MessagesController.getInstance(i10);
         arrayList.add(new e(messagesController.channelsLimitDefault, messagesController.channelsLimitPremium, LocaleController.getString(R.string.GroupsAndChannelsLimitTitle), LocaleController.formatString(R.string.GroupsAndChannelsLimitSubtitle, Integer.valueOf(messagesController.channelsLimitPremium))));
         arrayList.add(new e(messagesController.dialogFiltersPinnedLimitDefault, messagesController.dialogFiltersPinnedLimitPremium, LocaleController.getString(R.string.PinChatsLimitTitle), LocaleController.formatString(R.string.PinChatsLimitSubtitle, Integer.valueOf(messagesController.dialogFiltersPinnedLimitPremium))));
@@ -52,7 +52,7 @@ public final class d extends yl0 {
         arrayList.add(new e(3, 4, LocaleController.getString(R.string.ConnectedAccountsLimitTitle), LocaleController.formatString(R.string.ConnectedAccountsLimitSubtitle, 4)));
         arrayList.add(new e(messagesController.recommendedChannelsLimitDefault, messagesController.recommendedChannelsLimitPremium, LocaleController.getString(R.string.SimilarChannelsLimitTitle), LocaleController.formatString(R.string.SimilarChannelsLimitSubtitle, Integer.valueOf(messagesController.recommendedChannelsLimitPremium))));
         this.d = 1;
-        this.f46094e = 1;
+        this.f46101e = 1;
         this.d = arrayList.size() + 1;
     }
 
@@ -79,14 +79,14 @@ public final class d extends yl0 {
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
-        if (c1Var.f46535f == 0) {
-            f fVar = (f) c1Var.f46531a;
-            int i11 = i10 - this.f46094e;
-            ArrayList arrayList = this.f46095f;
+        if (c1Var.f46542f == 0) {
+            f fVar = (f) c1Var.f46538a;
+            int i11 = i10 - this.f46101e;
+            ArrayList arrayList = this.f46102f;
             fVar.a((e) arrayList.get(i11));
-            LimitPreviewView limitPreviewView = fVar.f46109c;
-            limitPreviewView.F = ((e) arrayList.get(i11)).f46103e;
-            limitPreviewView.f24240c = this.f46096n;
+            LimitPreviewView limitPreviewView = fVar.f46116c;
+            limitPreviewView.F = ((e) arrayList.get(i11)).f46110e;
+            limitPreviewView.f24243c = this.f46103n;
         }
     }
 
@@ -94,21 +94,21 @@ public final class d extends yl0 {
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         t3 t3Var;
         Context context = viewGroup.getContext();
-        d6 d6Var = this.f46093c;
+        d6 d6Var = this.f46100c;
         if (i10 != 1) {
             if (i10 != 2) {
                 ?? fVar = new f(context, d6Var);
-                fVar.f46109c.setParentViewForGradien(this.f46097r);
-                fVar.f46109c.setStaticGradinet(this.h);
+                fVar.f46116c.setParentViewForGradien(this.f46104r);
+                fVar.f46116c.setStaticGradinet(this.h);
                 t3Var = fVar;
             } else {
                 t3Var = new t3(context, 16);
             }
-        } else if (this.f46098s) {
-            ?? n41Var = new n41(context, 11);
+        } else if (this.f46105s) {
+            ?? l41Var = new l41(context, 11);
             LinearLayout e7 = bi.e(context, 0);
             ImageView imageView = new ImageView(context);
-            imageView.setImageDrawable(b1.c(context.getDrawable(R.drawable.other_2x_large), b1.d().f46063a));
+            imageView.setImageDrawable(b1.c(context.getDrawable(R.drawable.other_2x_large), b1.d().f46070a));
             e7.addView(imageView, z5.d(40, 28.0f, 16, 0.0f, 0.0f, 8.0f, 0.0f));
             TextView textView = new TextView(context);
             textView.setText(LocaleController.getString(R.string.DoubledLimits));
@@ -117,8 +117,8 @@ public final class d extends yl0 {
             textView.setTextColor(i6.v0(i6.G6, d6Var));
             textView.setTypeface(AndroidUtilities.bold());
             e7.addView(textView, z5.e(-2, -2, 16));
-            n41Var.addView(e7, z5.e(-2, -2, 17));
-            t3Var = n41Var;
+            l41Var.addView(e7, z5.e(-2, -2, 17));
+            t3Var = l41Var;
         } else {
             t3Var = new t3(context, 64);
         }

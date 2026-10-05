@@ -16,7 +16,7 @@ public final class d extends a implements l.i {
 
     @Override
     public final boolean M(l.k kVar, MenuItem menuItem) {
-        return ((qi.f) this.f14244e.f16644b).G(this, menuItem);
+        return ((qi.f) this.f14244e.f16649b).G(this, menuItem);
     }
 
     @Override
@@ -106,7 +106,7 @@ public final class d extends a implements l.i {
     }
 
     @Override
-    public final void y(l.k kVar) {
+    public final void w(l.k kVar) {
         g();
         m.h hVar = this.d.d;
         if (hVar != null) {

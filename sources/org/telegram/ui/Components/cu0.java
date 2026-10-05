@@ -1,53 +1,19 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-public final class cu0 extends LinearLayout {
-    public final TextView f25453a;
-    public final ImageView f25454b;
-    public boolean f25455c;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+public interface cu0 {
+    void C();
 
-    public cu0(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context);
-        TextView textView = new TextView(context);
-        this.f25453a = textView;
-        ImageView imageView = new ImageView(context);
-        this.f25454b = imageView;
-        setOrientation(1);
-        setGravity(17);
-        addView(imageView, w7.z5.n(-2, -2));
-        textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21228z6, d6Var));
-        textView.setGravity(17);
-        textView.setTextSize(1, 17.0f);
-        textView.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(128.0f));
-        addView(textView, w7.z5.t(-2, -2, 17, 0, 24, 0, 0));
-    }
+    void P();
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int rotation = ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getRotation();
-        this.f25455c = true;
-        if (AndroidUtilities.isTablet()) {
-            this.f25453a.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(128.0f));
-        } else if (rotation != 3 && rotation != 1) {
-            this.f25453a.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(128.0f));
-        } else {
-            this.f25453a.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), 0);
-        }
-        this.f25455c = false;
-        super.onMeasure(i10, i11);
-    }
+    boolean R();
 
-    @Override
-    public final void requestLayout() {
-        if (this.f25455c) {
-            return;
-        }
-        super.requestLayout();
-    }
+    zl0 f();
+
+    TLRPC.Chat g();
+
+    boolean h(TLRPC.ChatParticipant chatParticipant, boolean z10, boolean z11, View view);
+
+    boolean p();
 }

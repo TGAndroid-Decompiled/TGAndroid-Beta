@@ -3,22 +3,22 @@ package org.telegram.ui;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class xd0 implements Runnable {
-    public final int f42840a;
-    public final ee0 f42841b;
+    public final int f42892a;
+    public final ee0 f42893b;
 
     public xd0(ee0 ee0Var, int i10) {
-        this.f42840a = i10;
-        this.f42841b = ee0Var;
+        this.f42892a = i10;
+        this.f42893b = ee0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f42840a) {
+        switch (this.f42892a) {
             case 0:
-                this.f42841b.p();
+                this.f42893b.p();
                 return;
             case 1:
-                ee0 ee0Var = this.f42841b;
+                ee0 ee0Var = this.f42893b;
                 ee0Var.postDelayed(new xd0(ee0Var, 2), 150L);
                 xd0 xd0Var = ee0Var.S;
                 ee0Var.removeCallbacks(xd0Var);
@@ -26,12 +26,12 @@ public final class xd0 implements Runnable {
                 ee0Var.R = true;
                 return;
             case 2:
-                be0 be0Var = this.f42841b.f36001a;
+                be0 be0Var = this.f42893b.f36013a;
                 int i10 = 0;
-                be0Var.f35548e = false;
-                be0Var.f35549f[0].requestFocus();
+                be0Var.f35540e = false;
+                be0Var.f35541f[0].requestFocus();
                 while (true) {
-                    es[] esVarArr = be0Var.f35549f;
+                    es[] esVarArr = be0Var.f35541f;
                     if (i10 < esVarArr.length) {
                         esVarArr[i10].i(0.0f);
                         i10++;
@@ -40,24 +40,24 @@ public final class xd0 implements Runnable {
                     }
                 }
             case 3:
-                ee0 ee0Var2 = this.f42841b;
+                ee0 ee0Var2 = this.f42893b;
                 ee0Var2.postDelayed(new xd0(ee0Var2, 5), 150L);
                 return;
             case 4:
-                ee0 ee0Var3 = this.f42841b;
+                ee0 ee0Var3 = this.f42893b;
                 de0 de0Var = ee0Var3.Q;
                 boolean z10 = false;
                 ee0Var3.R = false;
                 int i11 = 0;
                 while (true) {
-                    es[] esVarArr2 = ee0Var3.f36001a.f35549f;
+                    es[] esVarArr2 = ee0Var3.f36013a.f35541f;
                     if (i11 < esVarArr2.length) {
                         esVarArr2[i11].i(0.0f);
                         i11++;
-                    } else if (de0Var.getCurrentView() != ee0Var3.f36004e) {
+                    } else if (de0Var.getCurrentView() != ee0Var3.f36016e) {
                         de0Var.showNext();
                         FrameLayout frameLayout = ee0Var3.h;
-                        if (ee0Var3.f36005f.getVisibility() != 0 && ee0Var3.W.F != 3 && !ee0Var3.P) {
+                        if (ee0Var3.f36017f.getVisibility() != 0 && ee0Var3.W.F != 3 && !ee0Var3.P) {
                             z10 = true;
                         }
                         AndroidUtilities.updateViewVisibilityAnimated(frameLayout, z10, 1.0f, true);
@@ -68,12 +68,12 @@ public final class xd0 implements Runnable {
                 }
                 break;
             case 5:
-                be0 be0Var2 = this.f42841b.f36001a;
+                be0 be0Var2 = this.f42893b.f36013a;
                 int i12 = 0;
-                be0Var2.f35548e = false;
-                be0Var2.f35549f[0].requestFocus();
+                be0Var2.f35540e = false;
+                be0Var2.f35541f[0].requestFocus();
                 while (true) {
-                    es[] esVarArr3 = be0Var2.f35549f;
+                    es[] esVarArr3 = be0Var2.f35541f;
                     if (i12 < esVarArr3.length) {
                         esVarArr3[i12].i(0.0f);
                         i12++;
@@ -82,20 +82,20 @@ public final class xd0 implements Runnable {
                     }
                 }
             case 6:
-                this.f42841b.q(true);
+                this.f42893b.q(true);
                 return;
             case 7:
-                this.f42841b.r();
+                this.f42893b.r();
                 return;
             default:
-                ee0 ee0Var4 = this.f42841b;
-                org.telegram.ui.Components.nj0 nj0Var = ee0Var4.f36009w;
+                ee0 ee0Var4 = this.f42893b;
+                org.telegram.ui.Components.nj0 nj0Var = ee0Var4.f36021w;
                 nj0Var.getAnimatedDrawable().N(0, false, false);
                 nj0Var.d();
-                be0 be0Var3 = ee0Var4.f36001a;
-                if (be0Var3 != null && be0Var3.f35549f != null) {
+                be0 be0Var3 = ee0Var4.f36013a;
+                if (be0Var3 != null && be0Var3.f35541f != null) {
                     be0Var3.setText("");
-                    be0Var3.f35549f[0].requestFocus();
+                    be0Var3.f35541f[0].requestFocus();
                     return;
                 }
                 return;

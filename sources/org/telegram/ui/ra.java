@@ -10,21 +10,21 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class ra extends FrameLayout {
-    public final org.telegram.ui.Components.q90 f39961a;
-    public final org.telegram.ui.Cells.y1 f39962b;
-    public Integer f39963c;
+    public final org.telegram.ui.Components.q90 f40018a;
+    public final org.telegram.ui.Cells.y1 f40019b;
+    public Integer f40020c;
     public ValueAnimator d;
-    public final sa f39964e;
+    public final sa f40021e;
 
     public ra(sa saVar, Activity activity) {
         super(activity);
         int i10;
-        this.f39964e = saVar;
+        this.f40021e = saVar;
         saVar.F = this;
         setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(17.0f));
         setClipChildren(false);
         org.telegram.ui.Components.q90 q90Var = new org.telegram.ui.Components.q90(activity, null);
-        this.f39961a = q90Var;
+        this.f40018a = q90Var;
         q90Var.setTextSize(1, 15.0f);
         int i11 = org.telegram.ui.ActionBar.i6.F6;
         q90Var.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i11, false));
@@ -41,7 +41,7 @@ public final class ra extends FrameLayout {
         q90Var.setPadding(AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f), 0);
         org.telegram.ui.Cells.y1 y1Var = new org.telegram.ui.Cells.y1(this, activity, 2);
         saVar.G = y1Var;
-        this.f39962b = y1Var;
+        this.f40019b = y1Var;
         y1Var.setTextSize(1, 15.0f);
         y1Var.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i11, false));
         y1Var.setGravity(LocaleController.isRTL ? 5 : 3);
@@ -50,7 +50,7 @@ public final class ra extends FrameLayout {
         y1Var.setPadding(AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f), 0);
         addView(q90Var, w7.z5.e(-1, -2, 48));
         addView(y1Var, w7.z5.e(-1, -2, 48));
-        if (saVar.f40437x != 0) {
+        if (saVar.f40420x != 0) {
             String string = LocaleController.getString(R.string.BotUsernameHelp);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
             int indexOf = string.indexOf(42);
@@ -58,7 +58,7 @@ public final class ra extends FrameLayout {
             if (indexOf != -1 && lastIndexOf != -1 && indexOf != lastIndexOf) {
                 spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 1, (CharSequence) "");
                 spannableStringBuilder.replace(indexOf, indexOf + 1, (CharSequence) "");
-                spannableStringBuilder.setSpan(new org.telegram.ui.Components.k61("https://fragment.com", (org.telegram.ui.Components.m11) null), indexOf, lastIndexOf - 1, 33);
+                spannableStringBuilder.setSpan(new org.telegram.ui.Components.l61("https://fragment.com", (org.telegram.ui.Components.n11) null), indexOf, lastIndexOf - 1, 33);
             }
             q90Var.setText(spannableStringBuilder);
             return;
@@ -70,8 +70,8 @@ public final class ra extends FrameLayout {
         int intValue;
         int i10;
         final float f7;
-        org.telegram.ui.Components.q90 q90Var = raVar.f39961a;
-        org.telegram.ui.Cells.y1 y1Var = raVar.f39962b;
+        org.telegram.ui.Components.q90 q90Var = raVar.f40018a;
+        org.telegram.ui.Cells.y1 y1Var = raVar.f40019b;
         if (y1Var.getVisibility() == 0) {
             y1Var.measure(View.MeasureSpec.makeMeasureSpec((raVar.getMeasuredWidth() - raVar.getPaddingLeft()) - raVar.getPaddingRight(), 1073741824), View.MeasureSpec.makeMeasureSpec(9999999, Integer.MIN_VALUE));
         }
@@ -79,7 +79,7 @@ public final class ra extends FrameLayout {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        Integer num = raVar.f39963c;
+        Integer num = raVar.f40020c;
         if (num == null) {
             intValue = raVar.getMeasuredHeight();
         } else {
@@ -107,8 +107,8 @@ public final class ra extends FrameLayout {
                 ra raVar2 = ra.this;
                 raVar2.getClass();
                 float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
-                raVar2.f39961a.setTranslationY(AndroidUtilities.lerp(translationY, f7, floatValue));
-                raVar2.f39963c = Integer.valueOf(AndroidUtilities.lerp(i11, i12, floatValue));
+                raVar2.f40018a.setTranslationY(AndroidUtilities.lerp(translationY, f7, floatValue));
+                raVar2.f40020c = Integer.valueOf(AndroidUtilities.lerp(i11, i12, floatValue));
                 raVar2.requestLayout();
             }
         });
@@ -119,7 +119,7 @@ public final class ra extends FrameLayout {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        Integer num = this.f39963c;
+        Integer num = this.f40020c;
         if (num != null) {
             i11 = View.MeasureSpec.makeMeasureSpec(num.intValue(), 1073741824);
         }

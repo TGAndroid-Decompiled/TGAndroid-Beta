@@ -2,12 +2,12 @@ package org.telegram.ui.Components;
 
 import android.text.TextUtils;
 public final class ih implements Runnable {
-    public final int f27418a;
-    public final xi f27419b;
+    public final int f27513a;
+    public final xi f27514b;
 
     public ih(xi xiVar, int i10) {
-        this.f27418a = i10;
-        this.f27419b = xiVar;
+        this.f27513a = i10;
+        this.f27514b = xiVar;
     }
 
     @Override
@@ -16,10 +16,10 @@ public final class ih implements Runnable {
         boolean z10;
         long j3;
         boolean F1;
-        switch (this.f27418a) {
+        switch (this.f27513a) {
             case 0:
-                xi xiVar = this.f27419b;
-                if (xiVar.f32808c0) {
+                xi xiVar = this.f27514b;
+                if (xiVar.f32899c0) {
                     muVar = xiVar.P0;
                 } else {
                     muVar = xiVar.E0;
@@ -32,8 +32,8 @@ public final class ih implements Runnable {
                 xiVar.L1(z10);
                 return;
             case 1:
-                xi xiVar2 = this.f27419b;
-                of ofVar = xiVar2.f32825h0;
+                xi xiVar2 = this.f27514b;
+                of ofVar = xiVar2.f32916h0;
                 if (ofVar != null) {
                     j3 = ofVar.k();
                 } else {
@@ -43,8 +43,8 @@ public final class ih implements Runnable {
                 ei eiVar = xiVar2.I0;
                 xiVar2.N0 = j10;
                 eiVar.setEffect(j10);
-                pi piVar = xiVar2.f32880y0;
-                if (piVar != xiVar2.f32831j0 && piVar != xiVar2.f32851q0) {
+                pi piVar = xiVar2.f32971y0;
+                if (piVar != xiVar2.f32922j0 && piVar != xiVar2.f32942q0) {
                     if (!piVar.G(0, false, 0, xiVar2.r1(), j10)) {
                         xiVar2.dismiss();
                     }
@@ -52,18 +52,18 @@ public final class ih implements Runnable {
                 } else {
                     F1 = xiVar2.F1(0, false, 0, xiVar2.r1(), j10);
                 }
-                of ofVar2 = xiVar2.f32825h0;
+                of ofVar2 = xiVar2.f32916h0;
                 if (ofVar2 != null) {
                     ofVar2.h(!F1);
-                    xiVar2.f32825h0 = null;
+                    xiVar2.f32916h0 = null;
                     return;
                 }
                 return;
             case 2:
-                this.f27419b.E1();
+                this.f27514b.E1();
                 return;
             default:
-                xi.n(this.f27419b);
+                xi.n(this.f27514b);
                 return;
         }
     }

@@ -41,10 +41,10 @@ import qb.k;
 import v2.l;
 import v7.l8;
 public class d implements m0, bg.a, q, q9.e, cg.a, n, q9.d, l1, r4.c, Continuation, l, xf.a, y6.d {
-    public final int f16864a;
+    public final int f16869a;
 
     public d(int i10) {
-        this.f16864a = i10;
+        this.f16869a = i10;
     }
 
     public static final CharSequence G3(Object obj) {
@@ -90,17 +90,17 @@ public class d implements m0, bg.a, q, q9.e, cg.a, n, q9.d, l1, r4.c, Continuati
 
     @Override
     public void A(u1 u1Var) {
-        int i10 = this.f16864a;
+        int i10 = this.f16869a;
     }
 
     @Override
     public void A0(u1 u1Var, TLObject tLObject, boolean z10) {
-        int i10 = this.f16864a;
+        int i10 = this.f16869a;
     }
 
     @Override
     public boolean A1() {
-        switch (this.f16864a) {
+        switch (this.f16869a) {
             case 17:
                 return false;
             default:
@@ -110,768 +110,21 @@ public class d implements m0, bg.a, q, q9.e, cg.a, n, q9.d, l1, r4.c, Continuati
 
     @Override
     public void B0(u1 u1Var, float f7, float f10) {
-        int i10 = this.f16864a;
+        int i10 = this.f16869a;
     }
 
     @Override
-    public void C(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11, int i12) {
-        if (i10 <= i11) {
-            if (i12 != 1 && i12 != 2) {
-                throw new IllegalArgumentException(hg.c.h(i12, "Illegal use of UpsampleAudioResampler. Channels:"));
-            }
-            int remaining = shortBuffer.remaining() / i12;
-            int ceil = ((int) Math.ceil((i11 / i10) * remaining)) - remaining;
-            float f7 = remaining;
-            float f10 = f7 / f7;
-            float f11 = ceil;
-            float f12 = f11 / f11;
-            while (remaining > 0 && ceil > 0) {
-                if (f10 >= f12) {
-                    shortBuffer2.put(shortBuffer.get());
-                    if (i12 == 2) {
-                        shortBuffer2.put(shortBuffer.get());
-                    }
-                    remaining--;
-                    f10 = remaining / f7;
-                } else {
-                    shortBuffer2.put(shortBuffer2.get(shortBuffer2.position() - i12));
-                    if (i12 == 2) {
-                        shortBuffer2.put(shortBuffer2.get(shortBuffer2.position() - i12));
-                    }
-                    ceil--;
-                    f12 = ceil / f11;
-                }
-            }
-            return;
-        }
-        throw new IllegalArgumentException("Illegal use of UpsampleAudioResampler");
-    }
-
-    @Override
-    public void C1(u1 u1Var) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public void D0(u1 u1Var) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public void D1(u1 u1Var, boolean z10) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public Object E(cf.c cVar) {
-        switch (this.f16864a) {
-            case 15:
-                qb.a aVar = new qb.a();
-                z9 z9Var = new z9(7);
-                ReferenceQueue referenceQueue = aVar.f44904a;
-                Set set = aVar.f44905b;
-                set.add(new qb.l(aVar, referenceQueue, set, z9Var));
-                Thread thread = new Thread(new s(24, referenceQueue, set), "MlKitCleaner");
-                thread.setDaemon(true);
-                thread.start();
-                return aVar;
-            case 20:
-                return new k((Context) cVar.a(Context.class));
-            default:
-                return new Object();
-        }
-    }
-
-    @Override
-    public void F(u1 u1Var, BotInlineKeyboard.ButtonCustom buttonCustom) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public void F0(u1 u1Var) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public void G(u1 u1Var) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public boolean G1(u1 u1Var, TLRPC.Chat chat) {
-        switch (this.f16864a) {
-            case 17:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public boolean H0(Context context) {
-        return e0.b.p(context);
-    }
-
-    @Override
-    public void H1(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public void I0(u1 u1Var) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public boolean I1() {
-        switch (this.f16864a) {
-            case 17:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public void J(MessageObject.TextLayoutBlock textLayoutBlock) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public void K1(u1 u1Var) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public int L1(int i10, int i11, int i12) {
-        return i10 / 2;
-    }
-
-    @Override
-    public void M(u1 u1Var) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public boolean M0(long j3) {
-        switch (this.f16864a) {
-            case 17:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public void M1(MessageObject messageObject) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public void N(int i10, u1 u1Var) {
-        int i11 = this.f16864a;
-    }
-
-    @Override
-    public void N0(u1 u1Var) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public void N1(u1 u1Var, TLRPC.WebPage webPage, String str, boolean z10) {
-        switch (this.f16864a) {
-            case 17:
-            default:
-                nf.f.s(u1Var.getContext(), str);
-                return;
-        }
-    }
-
-    @Override
-    public void O(MessageObject messageObject) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public CharacterStyle O1(u1 u1Var) {
-        switch (this.f16864a) {
-            case 17:
-                return null;
-            default:
-                return null;
-        }
-    }
-
-    @Override
-    public boolean P(u1 u1Var, TLRPC.TodoItem todoItem, boolean z10) {
-        switch (this.f16864a) {
-            case 17:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public void P0(int i10, u1 u1Var) {
-        int i11 = this.f16864a;
-    }
-
-    @Override
-    public void P1(MessageObject messageObject, String str, String str2, String str3, String str4, int i10, int i11) {
-        int i12 = this.f16864a;
-    }
-
-    @Override
-    public boolean Q() {
-        switch (this.f16864a) {
-            case 17:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public boolean Q1(u1 u1Var, MessageObject messageObject) {
-        switch (this.f16864a) {
-            case 17:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public boolean R(u1 u1Var) {
-        switch (this.f16864a) {
-            case 17:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public void R0(u1 u1Var, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public void R1() {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public boolean S() {
-        switch (this.f16864a) {
-            case 17:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public void S0(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11) {
-        int min = Math.min(shortBuffer.remaining() / 2, shortBuffer2.remaining());
-        for (int i12 = 0; i12 < min; i12++) {
-            shortBuffer2.put(s3(shortBuffer.get(), shortBuffer.get()));
-        }
-    }
-
-    @Override
-    public void T(u1 u1Var, TLRPC.Chat chat, int i10, float f7, float f10, boolean z10) {
-        int i11 = this.f16864a;
-    }
-
-    @Override
-    public void T1(u1 u1Var, TLRPC.MessageExtendedMedia messageExtendedMedia) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public void U(u1 u1Var) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public void U1(u1 u1Var, TLRPC.User user, TLRPC.Document document, String str) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public void V0(u1 u1Var, CharacterStyle characterStyle, boolean z10) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public boolean V1(u1 u1Var, TLRPC.PollAnswer pollAnswer) {
-        switch (this.f16864a) {
-            case 17:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public int W() {
-        switch (this.f16864a) {
-            case 17:
-                return 0;
-            default:
-                return 0;
-        }
-    }
-
-    @Override
-    public boolean W0(u1 u1Var, boolean z10) {
-        switch (this.f16864a) {
-            case 17:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public void X0(u1 u1Var) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public void X1(b0 b0Var) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public kv0 Y1() {
-        switch (this.f16864a) {
-            case 17:
-                return null;
-            default:
-                return null;
-        }
-    }
-
-    @Override
-    public hh.a Z() {
-        switch (this.f16864a) {
-            case 17:
-                return null;
-            default:
-                return null;
-        }
-    }
-
-    @Override
-    public void Z0(u1 u1Var) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public h0 Z1(int i10, int i11) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public long a() {
-        throw new NoSuchElementException();
-    }
-
-    @Override
-    public boolean a2(long j3) {
-        switch (this.f16864a) {
-            case 17:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public List b(ComponentRegistrar componentRegistrar) {
-        ArrayList arrayList = new ArrayList();
-        for (q9.a aVar : componentRegistrar.getComponents()) {
-            String str = aVar.f44844a;
-            if (str != null) {
-                aVar = new q9.a(str, aVar.f44845b, aVar.f44846c, aVar.d, aVar.f44847e, new ah.b(5, str, aVar), aVar.f44849g);
-            }
-            arrayList.add(aVar);
-        }
-        return arrayList;
-    }
-
-    @Override
-    public boolean b0(u1 u1Var) {
-        switch (this.f16864a) {
-            case 17:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public void b2(u1 u1Var, int i10, float f7, float f10, boolean z10) {
-        int i11 = this.f16864a;
-    }
-
-    @Override
-    public boolean c(Context context) {
-        return e0.b.l(context);
-    }
-
-    @Override
-    public boolean c0(u1 u1Var, TLRPC.User user) {
-        switch (this.f16864a) {
-            case 17:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public boolean c1(int i10, u1 u1Var) {
-        switch (this.f16864a) {
-            case 17:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public boolean c2(u1 u1Var, TLRPC.TodoItem todoItem) {
-        switch (this.f16864a) {
-            case 17:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public a3.l d(Context context, String str, y6.c cVar) {
-        a3.l lVar = new a3.l();
-        lVar.f155a = cVar.m(context, str);
-        int i10 = 1;
-        int i11 = cVar.i(context, str, true);
-        lVar.f156b = i11;
-        int i12 = lVar.f155a;
-        if (i12 == 0) {
-            i12 = 0;
-            if (i11 == 0) {
-                i10 = 0;
-                lVar.f157c = i10;
-                return lVar;
-            }
-        }
-        if (i11 < i12) {
-            i10 = -1;
-        }
-        lVar.f157c = i10;
-        return lVar;
-    }
-
-    @Override
-    public boolean e() {
-        switch (this.f16864a) {
-            case 17:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public void e0(int i10) {
-        int i11 = this.f16864a;
-    }
-
-    @Override
-    public void e1() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void e2(u1 u1Var) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public long f() {
-        throw new NoSuchElementException();
-    }
-
-    @Override
-    public boolean f0() {
-        switch (this.f16864a) {
-            case 17:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public boolean g() {
-        switch (this.f16864a) {
-            case 17:
-                return true;
-            default:
-                return true;
-        }
-    }
-
-    @Override
-    public void g0(u1 u1Var, float f7, float f10) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public void g2(u1 u1Var, long j3) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public String h(u1 u1Var) {
-        switch (this.f16864a) {
-            case 17:
-                return null;
-            default:
-                return null;
-        }
-    }
-
-    @Override
-    public int h0(u1 u1Var) {
-        switch (this.f16864a) {
-            case 17:
-                return 0;
-            default:
-                return 0;
-        }
-    }
-
-    @Override
-    public boolean h1(MessageObject messageObject) {
-        int i10 = this.f16864a;
-        return c1.a(messageObject);
-    }
-
-    @Override
-    public void i0(u1 u1Var) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public void j(u1 u1Var, bi.f fVar) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public void k(u1 u1Var, ArrayList arrayList, int i10, int i11, int i12) {
-        int i13 = this.f16864a;
-    }
-
-    @Override
-    public void k1() {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public void l() {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public boolean l0() {
-        switch (this.f16864a) {
-            case 17:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public boolean l2(u1 u1Var, TL_iv.PageBlock pageBlock) {
-        switch (this.f16864a) {
-            case 17:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public void m1(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public void m2(u1 u1Var) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public void n(u1 u1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i10) {
-        int i11 = this.f16864a;
-    }
-
-    @Override
-    public void n0(String str) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public boolean next() {
-        return false;
-    }
-
-    @Override
-    public void o(u1 u1Var) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public boolean o0(z5 z5Var) {
-        switch (this.f16864a) {
-            case 17:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public void p() {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public void p1(u1 u1Var, TLRPC.Document document) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public Object p2() {
-        switch (this.f16864a) {
-            case 8:
-                return new TreeSet();
-            default:
-                return new ConcurrentHashMap();
-        }
-    }
-
-    @Override
-    public void q0(u1 u1Var, float f7, float f10) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public void q2() {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public void r(u1 u1Var) {
-        int i10 = this.f16864a;
-    }
-
-    public boolean r3(CharSequence charSequence) {
-        return false;
-    }
-
-    @Override
-    public void s() {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public void t(u1 u1Var) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public void t0(u1 u1Var, TLRPC.User user, float f7, float f10) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public void t2(u1 u1Var, TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public Object then(Task task) {
-        if (!task.isSuccessful()) {
-            Log.e("FirebaseCrashlytics", "Error fetching settings.", task.getException());
-            return null;
-        }
-        return null;
-    }
-
-    @Override
-    public void u(u1 u1Var) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public void u1(u1 u1Var, float f7, float f10) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public void v0(u1 u1Var, float f7, float f10, boolean z10) {
-        int i10 = this.f16864a;
-    }
-
-    @Override
-    public boolean v2(int i10) {
-        switch (this.f16864a) {
-            case 17:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public String w(long j3) {
-        switch (this.f16864a) {
-            case 17:
-                return null;
-            default:
-                return null;
-        }
-    }
-
-    @Override
-    public boolean w0(MessageObject messageObject) {
-        switch (this.f16864a) {
-            case 17:
-                return true;
-            default:
-                return true;
-        }
-    }
-
-    @Override
-    public void x() {
+    public void C() {
         Log.d("ProfileInstaller", "DIAGNOSTIC_PROFILE_IS_COMPRESSED");
     }
 
     @Override
-    public void x2() {
-        int i10 = this.f16864a;
+    public void C1(u1 u1Var) {
+        int i10 = this.f16869a;
     }
 
     @Override
-    public void y(int i10, Object obj) {
+    public void D(int i10, Object obj) {
         String str;
         switch (i10) {
             case 1:
@@ -917,28 +170,775 @@ public class d implements m0, bg.a, q, q9.e, cg.a, n, q9.d, l1, r4.c, Continuati
     }
 
     @Override
+    public void D0(u1 u1Var) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public void D1(u1 u1Var, boolean z10) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public Object E(cf.c cVar) {
+        switch (this.f16869a) {
+            case 15:
+                qb.a aVar = new qb.a();
+                z9 z9Var = new z9(7);
+                ReferenceQueue referenceQueue = aVar.f44911a;
+                Set set = aVar.f44912b;
+                set.add(new qb.l(aVar, referenceQueue, set, z9Var));
+                Thread thread = new Thread(new s(24, referenceQueue, set), "MlKitCleaner");
+                thread.setDaemon(true);
+                thread.start();
+                return aVar;
+            case 20:
+                return new k((Context) cVar.a(Context.class));
+            default:
+                return new Object();
+        }
+    }
+
+    @Override
+    public void F(u1 u1Var, BotInlineKeyboard.ButtonCustom buttonCustom) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public void F0(u1 u1Var) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public void G(u1 u1Var) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public boolean G1(u1 u1Var, TLRPC.Chat chat) {
+        switch (this.f16869a) {
+            case 17:
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public boolean H0(Context context) {
+        return e0.b.p(context);
+    }
+
+    @Override
+    public void H1(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public void I0(u1 u1Var) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public boolean I1() {
+        switch (this.f16869a) {
+            case 17:
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public void J(MessageObject.TextLayoutBlock textLayoutBlock) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public void K1(u1 u1Var) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public int L1(int i10, int i11, int i12) {
+        return i10 / 2;
+    }
+
+    @Override
+    public void M(u1 u1Var) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public boolean M0(long j3) {
+        switch (this.f16869a) {
+            case 17:
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public void M1(MessageObject messageObject) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public void N(int i10, u1 u1Var) {
+        int i11 = this.f16869a;
+    }
+
+    @Override
+    public void N0(u1 u1Var) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public void N1(u1 u1Var, TLRPC.WebPage webPage, String str, boolean z10) {
+        switch (this.f16869a) {
+            case 17:
+            default:
+                nf.f.s(u1Var.getContext(), str);
+                return;
+        }
+    }
+
+    @Override
+    public void O(MessageObject messageObject) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public CharacterStyle O1(u1 u1Var) {
+        switch (this.f16869a) {
+            case 17:
+                return null;
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public boolean P(u1 u1Var, TLRPC.TodoItem todoItem, boolean z10) {
+        switch (this.f16869a) {
+            case 17:
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public void P0(int i10, u1 u1Var) {
+        int i11 = this.f16869a;
+    }
+
+    @Override
+    public void P1(MessageObject messageObject, String str, String str2, String str3, String str4, int i10, int i11) {
+        int i12 = this.f16869a;
+    }
+
+    @Override
+    public boolean Q() {
+        switch (this.f16869a) {
+            case 17:
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public boolean Q1(u1 u1Var, MessageObject messageObject) {
+        switch (this.f16869a) {
+            case 17:
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public boolean R(u1 u1Var) {
+        switch (this.f16869a) {
+            case 17:
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public void R0(u1 u1Var, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public void R1() {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public boolean S() {
+        switch (this.f16869a) {
+            case 17:
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public void S0(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11) {
+        int min = Math.min(shortBuffer.remaining() / 2, shortBuffer2.remaining());
+        for (int i12 = 0; i12 < min; i12++) {
+            shortBuffer2.put(s3(shortBuffer.get(), shortBuffer.get()));
+        }
+    }
+
+    @Override
+    public void T(u1 u1Var, TLRPC.Chat chat, int i10, float f7, float f10, boolean z10) {
+        int i11 = this.f16869a;
+    }
+
+    @Override
+    public void T1(u1 u1Var, TLRPC.MessageExtendedMedia messageExtendedMedia) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public void U(u1 u1Var) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public void U1(u1 u1Var, TLRPC.User user, TLRPC.Document document, String str) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public void V0(u1 u1Var, CharacterStyle characterStyle, boolean z10) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public boolean V1(u1 u1Var, TLRPC.PollAnswer pollAnswer) {
+        switch (this.f16869a) {
+            case 17:
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public int W() {
+        switch (this.f16869a) {
+            case 17:
+                return 0;
+            default:
+                return 0;
+        }
+    }
+
+    @Override
+    public boolean W0(u1 u1Var, boolean z10) {
+        switch (this.f16869a) {
+            case 17:
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public void X0(u1 u1Var) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public void X1(b0 b0Var) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public kv0 Y1() {
+        switch (this.f16869a) {
+            case 17:
+                return null;
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public hh.a Z() {
+        switch (this.f16869a) {
+            case 17:
+                return null;
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public void Z0(u1 u1Var) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public h0 Z1(int i10, int i11) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public long a() {
+        throw new NoSuchElementException();
+    }
+
+    @Override
+    public boolean a2(long j3) {
+        switch (this.f16869a) {
+            case 17:
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public List b(ComponentRegistrar componentRegistrar) {
+        ArrayList arrayList = new ArrayList();
+        for (q9.a aVar : componentRegistrar.getComponents()) {
+            String str = aVar.f44851a;
+            if (str != null) {
+                aVar = new q9.a(str, aVar.f44852b, aVar.f44853c, aVar.d, aVar.f44854e, new ah.b(5, str, aVar), aVar.f44856g);
+            }
+            arrayList.add(aVar);
+        }
+        return arrayList;
+    }
+
+    @Override
+    public boolean b0(u1 u1Var) {
+        switch (this.f16869a) {
+            case 17:
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public void b2(u1 u1Var, int i10, float f7, float f10, boolean z10) {
+        int i11 = this.f16869a;
+    }
+
+    @Override
+    public boolean c(Context context) {
+        return e0.b.l(context);
+    }
+
+    @Override
+    public boolean c0(u1 u1Var, TLRPC.User user) {
+        switch (this.f16869a) {
+            case 17:
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public boolean c1(int i10, u1 u1Var) {
+        switch (this.f16869a) {
+            case 17:
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public boolean c2(u1 u1Var, TLRPC.TodoItem todoItem) {
+        switch (this.f16869a) {
+            case 17:
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public a3.l d(Context context, String str, y6.c cVar) {
+        a3.l lVar = new a3.l();
+        lVar.f155a = cVar.m(context, str);
+        int i10 = 1;
+        int i11 = cVar.i(context, str, true);
+        lVar.f156b = i11;
+        int i12 = lVar.f155a;
+        if (i12 == 0) {
+            i12 = 0;
+            if (i11 == 0) {
+                i10 = 0;
+                lVar.f157c = i10;
+                return lVar;
+            }
+        }
+        if (i11 < i12) {
+            i10 = -1;
+        }
+        lVar.f157c = i10;
+        return lVar;
+    }
+
+    @Override
+    public boolean e() {
+        switch (this.f16869a) {
+            case 17:
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public void e0(int i10) {
+        int i11 = this.f16869a;
+    }
+
+    @Override
+    public void e1() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void e2(u1 u1Var) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public long f() {
+        throw new NoSuchElementException();
+    }
+
+    @Override
+    public boolean f0() {
+        switch (this.f16869a) {
+            case 17:
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public boolean g() {
+        switch (this.f16869a) {
+            case 17:
+                return true;
+            default:
+                return true;
+        }
+    }
+
+    @Override
+    public void g0(u1 u1Var, float f7, float f10) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public void g2(u1 u1Var, long j3) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public String h(u1 u1Var) {
+        switch (this.f16869a) {
+            case 17:
+                return null;
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public int h0(u1 u1Var) {
+        switch (this.f16869a) {
+            case 17:
+                return 0;
+            default:
+                return 0;
+        }
+    }
+
+    @Override
+    public boolean h1(MessageObject messageObject) {
+        int i10 = this.f16869a;
+        return c1.a(messageObject);
+    }
+
+    @Override
+    public void i0(u1 u1Var) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public void j(u1 u1Var, bi.f fVar) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public void k(u1 u1Var, ArrayList arrayList, int i10, int i11, int i12) {
+        int i13 = this.f16869a;
+    }
+
+    @Override
+    public void k1() {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public void l() {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public boolean l0() {
+        switch (this.f16869a) {
+            case 17:
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public boolean l2(u1 u1Var, TL_iv.PageBlock pageBlock) {
+        switch (this.f16869a) {
+            case 17:
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public void m1(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public void m2(u1 u1Var) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public void n(u1 u1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i10) {
+        int i11 = this.f16869a;
+    }
+
+    @Override
+    public void n0(String str) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public boolean next() {
+        return false;
+    }
+
+    @Override
+    public void o(u1 u1Var) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public boolean o0(z5 z5Var) {
+        switch (this.f16869a) {
+            case 17:
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public void p() {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public void p1(u1 u1Var, TLRPC.Document document) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public Object p2() {
+        switch (this.f16869a) {
+            case 8:
+                return new TreeSet();
+            default:
+                return new ConcurrentHashMap();
+        }
+    }
+
+    @Override
+    public void q0(u1 u1Var, float f7, float f10) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public void q2() {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public void r(u1 u1Var) {
+        int i10 = this.f16869a;
+    }
+
+    public boolean r3(CharSequence charSequence) {
+        return false;
+    }
+
+    @Override
+    public void s() {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public void t(u1 u1Var) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public void t0(u1 u1Var, TLRPC.User user, float f7, float f10) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public void t2(u1 u1Var, TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public Object then(Task task) {
+        if (!task.isSuccessful()) {
+            Log.e("FirebaseCrashlytics", "Error fetching settings.", task.getException());
+            return null;
+        }
+        return null;
+    }
+
+    @Override
+    public void u(u1 u1Var) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public void u1(u1 u1Var, float f7, float f10) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public void v0(u1 u1Var, float f7, float f10, boolean z10) {
+        int i10 = this.f16869a;
+    }
+
+    @Override
+    public boolean v2(int i10) {
+        switch (this.f16869a) {
+            case 17:
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public String w(long j3) {
+        switch (this.f16869a) {
+            case 17:
+                return null;
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public boolean w0(MessageObject messageObject) {
+        switch (this.f16869a) {
+            case 17:
+                return true;
+            default:
+                return true;
+        }
+    }
+
+    @Override
+    public void x(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11, int i12) {
+        if (i10 <= i11) {
+            if (i12 != 1 && i12 != 2) {
+                throw new IllegalArgumentException(hg.c.h(i12, "Illegal use of UpsampleAudioResampler. Channels:"));
+            }
+            int remaining = shortBuffer.remaining() / i12;
+            int ceil = ((int) Math.ceil((i11 / i10) * remaining)) - remaining;
+            float f7 = remaining;
+            float f10 = f7 / f7;
+            float f11 = ceil;
+            float f12 = f11 / f11;
+            while (remaining > 0 && ceil > 0) {
+                if (f10 >= f12) {
+                    shortBuffer2.put(shortBuffer.get());
+                    if (i12 == 2) {
+                        shortBuffer2.put(shortBuffer.get());
+                    }
+                    remaining--;
+                    f10 = remaining / f7;
+                } else {
+                    shortBuffer2.put(shortBuffer2.get(shortBuffer2.position() - i12));
+                    if (i12 == 2) {
+                        shortBuffer2.put(shortBuffer2.get(shortBuffer2.position() - i12));
+                    }
+                    ceil--;
+                    f12 = ceil / f11;
+                }
+            }
+            return;
+        }
+        throw new IllegalArgumentException("Illegal use of UpsampleAudioResampler");
+    }
+
+    @Override
+    public void x2() {
+        int i10 = this.f16869a;
+    }
+
+    @Override
     public void y0(u1 u1Var) {
-        int i10 = this.f16864a;
+        int i10 = this.f16869a;
     }
 
     @Override
     public void y2(u1 u1Var, int i10, int i11) {
-        int i12 = this.f16864a;
+        int i12 = this.f16869a;
     }
 
     @Override
     public void z(u1 u1Var) {
-        int i10 = this.f16864a;
+        int i10 = this.f16869a;
     }
 
     @Override
     public void z0() {
-        int i10 = this.f16864a;
+        int i10 = this.f16869a;
     }
 
     @Override
     public r9 z2() {
-        switch (this.f16864a) {
+        switch (this.f16869a) {
             case 17:
                 return null;
             default:
@@ -947,7 +947,7 @@ public class d implements m0, bg.a, q, q9.e, cg.a, n, q9.d, l1, r4.c, Continuati
     }
 
     public d(Context context) {
-        this.f16864a = 11;
+        this.f16869a = 11;
     }
 
     private final void A3() {
@@ -1003,7 +1003,7 @@ public class d implements m0, bg.a, q, q9.e, cg.a, n, q9.d, l1, r4.c, Continuati
     }
 
     @Override
-    public void D() {
+    public void H() {
     }
 
     @Override
@@ -1170,9 +1170,6 @@ public class d implements m0, bg.a, q, q9.e, cg.a, n, q9.d, l1, r4.c, Continuati
     private final void y3(int i10) {
     }
 
-    private final void H(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
-    }
-
     private final void Q2(u1 u1Var, long j3) {
     }
 
@@ -1228,6 +1225,9 @@ public class d implements m0, bg.a, q, q9.e, cg.a, n, q9.d, l1, r4.c, Continuati
     }
 
     private final void v(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+    }
+
+    private final void y(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
     }
 
     private final void y1(int i10, u1 u1Var) {

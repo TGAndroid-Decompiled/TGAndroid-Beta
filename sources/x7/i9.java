@@ -1,28 +1,28 @@
 package x7;
 public final class i9 {
-    public final String f49520a;
-    public final String f49521b;
-    public final String f49522c;
+    public final String f49527a;
+    public final String f49528b;
+    public final String f49529c;
     public final String d;
-    public final s f49523e;
-    public final String f49524f;
-    public final Boolean f49525g;
+    public final s f49530e;
+    public final String f49531f;
+    public final Boolean f49532g;
     public final Boolean h;
-    public final Boolean f49526i;
-    public final Integer f49527j;
-    public final Integer f49528k;
+    public final Boolean f49533i;
+    public final Integer f49534j;
+    public final Integer f49535k;
 
     public i9(v7.d8 d8Var) {
-        this.f49520a = d8Var.f47900a;
-        this.f49521b = d8Var.f47901b;
-        this.f49522c = d8Var.f47902c;
+        this.f49527a = d8Var.f47907a;
+        this.f49528b = d8Var.f47908b;
+        this.f49529c = d8Var.f47909c;
         this.d = d8Var.d;
-        this.f49523e = (s) d8Var.f47908k;
-        this.f49524f = d8Var.f47903e;
-        this.f49525g = (Boolean) d8Var.f47904f;
-        this.h = (Boolean) d8Var.f47905g;
-        this.f49526i = (Boolean) d8Var.h;
-        this.f49527j = d8Var.f47906i;
-        this.f49528k = (Integer) d8Var.f47907j;
+        this.f49530e = (s) d8Var.f47915k;
+        this.f49531f = d8Var.f47910e;
+        this.f49532g = (Boolean) d8Var.f47911f;
+        this.h = (Boolean) d8Var.f47912g;
+        this.f49533i = (Boolean) d8Var.h;
+        this.f49534j = d8Var.f47913i;
+        this.f49535k = (Integer) d8Var.f47914j;
     }
 }

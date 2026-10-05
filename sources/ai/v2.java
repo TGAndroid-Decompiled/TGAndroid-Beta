@@ -11,7 +11,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
-import org.telegram.ui.Components.e11;
+import org.telegram.ui.Components.f11;
 import org.telegram.ui.Components.kj0;
 import org.telegram.ui.Components.rq;
 import org.telegram.ui.Components.tr;
@@ -22,7 +22,7 @@ public final class v2 {
     public final kj0 d;
     public final Paint f1742e;
     public final ImageReceiver f1743f;
-    public final e11 f1744g;
+    public final f11 f1744g;
     public boolean h;
     public final org.telegram.ui.Components.e6 f1745i;
     public final org.telegram.ui.Components.e6 f1746j;
@@ -61,7 +61,7 @@ public final class v2 {
         spannableStringBuilder.setSpan(rqVar, 0, spannableStringBuilder.length(), 33);
         spannableStringBuilder.append((CharSequence) " ");
         spannableStringBuilder.append((CharSequence) LocaleController.formatNumber(i11, ','));
-        this.f1744g = new e11(spannableStringBuilder, 10.0f, AndroidUtilities.getTypeface("fonts/num.otf"));
+        this.f1744g = new f11(spannableStringBuilder, 10.0f, AndroidUtilities.getTypeface("fonts/num.otf"));
         org.telegram.ui.Components.e6 e6Var = new org.telegram.ui.Components.e6(view, 2000L, new LinearInterpolator());
         this.f1745i = e6Var;
         e6Var.d(0.0f, true);

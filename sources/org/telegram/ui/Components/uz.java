@@ -4,25 +4,25 @@ import android.graphics.Point;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 public final class uz implements Runnable {
-    public final int f31470a;
-    public final yz f31471b;
-    public final int f31472c;
+    public final int f31564a;
+    public final yz f31565b;
+    public final int f31566c;
     public final int d;
 
     public uz(yz yzVar, int i10, int i11, int i12) {
-        this.f31470a = i12;
-        this.f31471b = yzVar;
-        this.f31472c = i10;
+        this.f31564a = i12;
+        this.f31565b = yzVar;
+        this.f31566c = i10;
         this.d = i11;
     }
 
     @Override
     public final void run() {
         int i10;
-        switch (this.f31470a) {
+        switch (this.f31564a) {
             case 0:
-                yz yzVar = this.f31471b;
-                int i11 = this.f31472c;
+                yz yzVar = this.f31565b;
+                int i11 = this.f31566c;
                 int i12 = this.d;
                 if (yzVar.W != i11 || yzVar.X != i12) {
                     yzVar.W = i11;
@@ -54,24 +54,24 @@ public final class uz implements Runnable {
                     }
                     yzVar.Z = false;
                     yzVar.g();
-                    yzVar.f33303d0.run();
+                    yzVar.f33379d0.run();
                     return;
                 }
                 return;
             case 1:
-                yz yzVar2 = this.f31471b;
-                int i16 = this.f31472c;
+                yz yzVar2 = this.f31565b;
+                int i16 = this.f31566c;
                 int i17 = this.d;
-                yzVar2.f33306n = i16;
-                yzVar2.f33307r = i17;
+                yzVar2.f33382n = i16;
+                yzVar2.f33383r = i17;
                 return;
             default:
-                yz yzVar3 = this.f31471b;
-                int i18 = this.f31472c;
+                yz yzVar3 = this.f31565b;
+                int i18 = this.f31566c;
                 int i19 = this.d;
                 qa qaVar = yzVar3.I;
-                qaVar.f29986l = i18;
-                qaVar.f29987m = i19;
+                qaVar.f30008l = i18;
+                qaVar.f30009m = i19;
                 return;
         }
     }

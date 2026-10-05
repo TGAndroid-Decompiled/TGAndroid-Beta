@@ -8,42 +8,42 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 public final class vc0 extends Drawable {
-    public uc0 f31637a;
-    public final Paint f31638b;
-    public int f31639c;
+    public uc0 f31704a;
+    public final Paint f31705b;
+    public int f31706c;
     public int d;
-    public final long f31640e;
-    public int f31641f;
+    public final long f31707e;
+    public int f31708f;
 
     public vc0() {
         Paint paint = new Paint(1);
-        this.f31638b = paint;
-        this.f31639c = 255;
+        this.f31705b = paint;
+        this.f31706c = 255;
         this.d = 255;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeWidth(AndroidUtilities.dp(1.0f));
-        this.f31640e = System.currentTimeMillis();
+        this.f31707e = System.currentTimeMillis();
     }
 
     public final void a(int i10) {
-        if (i10 != this.f31641f) {
+        if (i10 != this.f31708f) {
             int alpha = Color.alpha(i10);
             this.d = alpha;
-            this.f31638b.setColor(i0.a.k(i10, (int) ((alpha / 255.0f) * this.f31639c)));
+            this.f31705b.setColor(i0.a.k(i10, (int) ((alpha / 255.0f) * this.f31706c)));
         }
-        this.f31641f = i10;
+        this.f31708f = i10;
     }
 
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
         int min = Math.min(bounds.width(), bounds.height());
-        Paint paint = this.f31638b;
+        Paint paint = this.f31705b;
         canvas.drawCircle(bounds.centerX(), bounds.centerY(), (min >> 1) - AndroidUtilities.dp(0.5f), paint);
         long currentTimeMillis = System.currentTimeMillis();
         canvas.save();
-        long j3 = this.f31640e;
+        long j3 = this.f31707e;
         canvas.rotate(((((float) (currentTimeMillis - j3)) % 1500.0f) * 360.0f) / 1500.0f, bounds.centerX(), bounds.centerY());
         canvas.drawLine(bounds.centerX(), bounds.centerY(), bounds.centerX(), bounds.centerY() - AndroidUtilities.dp(3.0f), paint);
         canvas.restore();
@@ -55,10 +55,10 @@ public final class vc0 extends Drawable {
 
     @Override
     public final Drawable.ConstantState getConstantState() {
-        if (this.f31637a == null) {
-            this.f31637a = new Drawable.ConstantState();
+        if (this.f31704a == null) {
+            this.f31704a = new Drawable.ConstantState();
         }
-        return this.f31637a;
+        return this.f31704a;
     }
 
     @Override
@@ -78,9 +78,9 @@ public final class vc0 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        if (this.f31639c != i10) {
-            this.f31639c = i10;
-            this.f31638b.setAlpha((int) ((this.d / 255.0f) * i10));
+        if (this.f31706c != i10) {
+            this.f31706c = i10;
+            this.f31705b.setAlpha((int) ((this.d / 255.0f) * i10));
         }
     }
 

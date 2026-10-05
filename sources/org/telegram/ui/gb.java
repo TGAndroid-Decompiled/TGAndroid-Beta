@@ -1,16 +1,16 @@
 package org.telegram.ui;
 public final class gb extends org.telegram.ui.ActionBar.n1 {
-    public final wb f36552o;
+    public final wb f36583o;
 
     public gb(wb wbVar, fb fbVar) {
         super(fbVar, -2, -2);
-        this.f36552o = wbVar;
+        this.f36583o = wbVar;
     }
 
     @Override
     public final void dismiss() {
         d(true);
-        wb wbVar = this.f36552o;
+        wb wbVar = this.f36583o;
         if (wbVar.F0 != this) {
             return;
         }

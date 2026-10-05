@@ -6,5 +6,5 @@ public interface oy {
 
     boolean H(uy uyVar);
 
-    boolean u(uy uyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, yf1 yf1Var);
+    boolean u(uy uyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, wf1 wf1Var);
 }

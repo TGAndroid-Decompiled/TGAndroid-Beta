@@ -4,22 +4,22 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.TranslateController;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.c71;
-import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.e71;
 import org.telegram.ui.Components.g61;
-import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.h61;
+import org.telegram.ui.Components.w61;
 import org.telegram.ui.Components.zl0;
-public final class w extends f61 {
+public final class w extends g61 {
     public static final int f3887a = 0;
 
     static {
-        f61.setup(new f61());
+        g61.setup(new g61());
     }
 
     @Override
-    public final void bindView(View view, g61 g61Var, boolean z10, u61 u61Var, c71 c71Var) {
+    public final void bindView(View view, h61 h61Var, boolean z10, w61 w61Var, e71 e71Var) {
         x xVar = (x) view;
-        TranslateController.Language language = (TranslateController.Language) g61Var.G;
+        TranslateController.Language language = (TranslateController.Language) h61Var.G;
         xVar.f3888a.setText(language.displayName);
         xVar.f3889b.setText(language.ownDisplayName);
         if (xVar.f3890c != z10) {

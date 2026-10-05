@@ -12,7 +12,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.nn;
-import org.telegram.ui.Components.tx0;
+import org.telegram.ui.Components.ux0;
 import org.telegram.ui.Components.zl0;
 public final class t9 extends og.b {
     public final Context d;
@@ -30,7 +30,7 @@ public final class t9 extends og.b {
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f46535f;
+        int i10 = c1Var.f46542f;
         if ((i10 != 3 || !this.f6014n.W.F) && i10 != 7 && i10 != 9 && i10 != 10) {
             return false;
         }
@@ -51,7 +51,7 @@ public final class t9 extends og.b {
         x9 x9Var = this.f6014n;
         ArrayList arrayList = x9Var.L;
         if (arrayList != null && i10 >= 0 && i10 < arrayList.size()) {
-            return ((j9) x9Var.L.get(i10)).f17187a;
+            return ((j9) x9Var.L.get(i10)).f17192a;
         }
         return -1;
     }
@@ -69,8 +69,8 @@ public final class t9 extends og.b {
         ArrayList arrayList = x9Var.L;
         if (arrayList != null && i10 >= 0 && i10 < arrayList.size()) {
             j9 j9Var2 = (j9) arrayList.get(i10);
-            int i15 = c1Var.f46535f;
-            View view = c1Var.f46531a;
+            int i15 = c1Var.f46542f;
+            View view = c1Var.f46538a;
             boolean z11 = true;
             int i16 = i10 + 1;
             if (i16 < arrayList.size()) {
@@ -78,7 +78,7 @@ public final class t9 extends og.b {
             } else {
                 j9Var = null;
             }
-            if (j9Var != null && ((i14 = j9Var.f17187a) == i15 || (i14 == 9 && j9Var.f5266q == 1))) {
+            if (j9Var != null && ((i14 = j9Var.f17192a) == i15 || (i14 == 9 && j9Var.f5266q == 1))) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -151,7 +151,7 @@ public final class t9 extends og.b {
                     h9Var2.f5139b.setText((CharSequence) null);
                 } else if (i15 == 5) {
                     try {
-                        ((tx0) view).f31199b.getImageReceiver().startAnimation();
+                        ((ux0) view).f31549b.getImageReceiver().startAnimation();
                     } catch (Exception unused) {
                     }
                 } else if (i15 == 6) {
@@ -188,9 +188,9 @@ public final class t9 extends og.b {
                     int clamp = Utilities.clamp(eaVar.H, i19, 0);
                     ai.w1 w1Var = new ai.w1(23);
                     org.telegram.ui.Cells.y7 y7Var = new org.telegram.ui.Cells.y7();
-                    y7Var.f23777c = a2;
+                    y7Var.f23780c = a2;
                     y7Var.d = 20;
-                    y7Var.f23778e = w1Var;
+                    y7Var.f23781e = w1Var;
                     ((org.telegram.ui.Cells.z7) view).d(clamp, y7Var, new ai.y1(this, 16));
                 }
             }
@@ -222,13 +222,13 @@ public final class t9 extends og.b {
                     nnVar = new h9(context, d6Var, false);
                 } else if (i10 == 8) {
                     nnVar = new org.telegram.ui.Cells.m4(context, d6Var);
-                    nnVar.setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20894h5, d6Var));
+                    nnVar.setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20899h5, d6Var));
                 } else if (i10 == 5) {
-                    tx0 tx0Var = new tx0(context, null, 1, d6Var);
-                    tx0Var.d.setText(LocaleController.getString(R.string.NoResult));
-                    tx0Var.f31201e.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
-                    tx0Var.f31198a.setTranslationY(AndroidUtilities.dp(24.0f));
-                    view = tx0Var;
+                    ux0 ux0Var = new ux0(context, null, 1, d6Var);
+                    ux0Var.d.setText(LocaleController.getString(R.string.NoResult));
+                    ux0Var.f31551e.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
+                    ux0Var.f31548a.setTranslationY(AndroidUtilities.dp(24.0f));
+                    view = ux0Var;
                 } else if (i10 == 6) {
                     nnVar = new org.telegram.ui.Cells.e9(context, d6Var);
                     nnVar.setBackgroundColor(-15921907);

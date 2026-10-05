@@ -10,17 +10,17 @@ import com.google.android.gms.internal.vision.g3;
 import com.google.android.gms.internal.vision.u2;
 import java.nio.ByteBuffer;
 public final class n extends b2.g {
-    public final u2 f45938b;
+    public final u2 f45945b;
 
     public n(u2 u2Var) {
         super(3);
-        this.f45938b = u2Var;
+        this.f45945b = u2Var;
     }
 
     @Override
     public final void U0() {
         super.U0();
-        this.f45938b.l();
+        this.f45945b.l();
     }
 
     public final SparseArray Z0(la.h hVar) {
@@ -28,7 +28,7 @@ public final class n extends b2.g {
         if (hVar != null) {
             g3 b10 = g3.b(hVar);
             Bitmap bitmap = (Bitmap) hVar.d;
-            u2 u2Var = this.f45938b;
+            u2 u2Var = this.f45945b;
             if (bitmap != null) {
                 if (!u2Var.k()) {
                     mVarArr = new m[0];
@@ -54,13 +54,13 @@ public final class n extends b2.g {
                     throw new IllegalArgumentException("Internal barcode detector error; check logcat output.");
                 }
             } else {
-                ByteBuffer I = hVar.I();
-                n6.l.h(I);
+                ByteBuffer F = hVar.F();
+                n6.l.h(F);
                 if (!u2Var.k()) {
                     mVarArr = new m[0];
                 } else {
                     try {
-                        x6.b bVar2 = new x6.b(I);
+                        x6.b bVar2 = new x6.b(F);
                         e3 e3Var2 = (e3) u2Var.m();
                         n6.l.h(e3Var2);
                         Parcel G02 = e3Var2.G0();
@@ -79,7 +79,7 @@ public final class n extends b2.g {
             }
             SparseArray sparseArray = new SparseArray(mVarArr.length);
             for (m mVar : mVarArr) {
-                sparseArray.append(mVar.f45928b.hashCode(), mVar);
+                sparseArray.append(mVar.f45935b.hashCode(), mVar);
             }
             return sparseArray;
         }

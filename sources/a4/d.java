@@ -106,24 +106,24 @@ public final class d extends l {
     }
 
     @Override
-    public final z3.k c() {
-        z3.k kVar;
-        z3.k c10 = super.c();
+    public final z3.j c() {
+        z3.j jVar;
+        z3.j c10 = super.c();
         if (c10 != null) {
             return c10;
         }
         long j3 = this.f235l;
         if (j3 != -9223372036854775807L) {
             long j10 = this.f247y;
-            if (j10 != -9223372036854775807L && this.f293e - j10 >= j3 && (kVar = (z3.k) this.f291b.pollFirst()) != null) {
+            if (j10 != -9223372036854775807L && this.f293e - j10 >= j3 && (jVar = (z3.j) this.f291b.pollFirst()) != null) {
                 this.f238o = Collections.EMPTY_LIST;
                 this.f247y = -9223372036854775807L;
                 m f7 = f();
                 long j11 = this.f293e;
-                kVar.timeUs = j11;
-                kVar.f52379a = f7;
-                kVar.f52380b = j11;
-                return kVar;
+                jVar.timeUs = j11;
+                jVar.f52400a = f7;
+                jVar.f52401b = j11;
+                return jVar;
             }
             return null;
         }

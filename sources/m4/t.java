@@ -5,20 +5,20 @@ import android.os.Looper;
 import java.util.HashMap;
 import org.telegram.ui.LaunchActivity;
 public class t {
-    public static final Object f16296b = new Object();
-    public static final HashMap f16297c = new HashMap();
-    public final a0 f16298a;
+    public static final Object f16301b = new Object();
+    public static final HashMap f16302c = new HashMap();
+    public final a0 f16303a;
 
     public t(LaunchActivity launchActivity, b2.b1 b1Var, e9.i0 i0Var, e9.i0 i0Var2, e9.i0 i0Var3, na.d dVar, Bundle bundle, Bundle bundle2, n4.y yVar) {
-        synchronized (f16296b) {
-            HashMap hashMap = f16297c;
+        synchronized (f16301b) {
+            HashMap hashMap = f16302c;
             if (!hashMap.containsKey("pip-media-session")) {
                 hashMap.put("pip-media-session", this);
             } else {
                 throw new IllegalStateException("Session ID must be unique. ID=pip-media-session");
             }
         }
-        this.f16298a = new a0(this, launchActivity, b1Var, i0Var, i0Var2, i0Var3, dVar, bundle, bundle2, yVar);
+        this.f16303a = new a0(this, launchActivity, b1Var, i0Var, i0Var2, i0Var3, dVar, bundle, bundle2, yVar);
     }
 
     public final void a(b2.b1 b1Var) {
@@ -26,9 +26,9 @@ public class t {
         b1Var.getClass();
         e2.d.b(b1Var.Q());
         Looper y02 = b1Var.y0();
-        a0 a0Var = this.f16298a;
+        a0 a0Var = this.f16303a;
         boolean z11 = false;
-        if (y02 == a0Var.f16057t.f16133a.y0()) {
+        if (y02 == a0Var.f16062t.f16138a.y0()) {
             z10 = true;
         } else {
             z10 = false;
@@ -38,8 +38,8 @@ public class t {
             z11 = true;
         }
         e2.d.g(z11);
-        e1 e1Var = a0Var.f16057t;
-        if (b1Var == e1Var.f16133a) {
+        e1 e1Var = a0Var.f16062t;
+        if (b1Var == e1Var.f16138a) {
             return;
         }
         a0Var.u(e1Var, new e1(b1Var));

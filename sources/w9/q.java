@@ -12,30 +12,30 @@ import n4.y;
 import y9.o0;
 import y9.p0;
 public final class q {
-    public static final HashMap f48987f;
-    public static final String f48988g;
-    public final Context f48989a;
-    public final v f48990b;
-    public final a f48991c;
+    public static final HashMap f48994f;
+    public static final String f48995g;
+    public final Context f48996a;
+    public final v f48997b;
+    public final a f48998c;
     public final y d;
-    public final da.b f48992e;
+    public final da.b f48999e;
 
     static {
         HashMap hashMap = new HashMap();
-        f48987f = hashMap;
+        f48994f = hashMap;
         e2.o(5, hashMap, "armeabi", 6, "armeabi-v7a");
         e2.o(9, hashMap, "arm64-v8a", 0, "x86");
         hashMap.put("x86_64", 1);
         Locale locale = Locale.US;
-        f48988g = "Crashlytics Android SDK/18.6.0";
+        f48995g = "Crashlytics Android SDK/18.6.0";
     }
 
     public q(Context context, v vVar, a aVar, y yVar, da.b bVar) {
-        this.f48989a = context;
-        this.f48990b = vVar;
-        this.f48991c = aVar;
+        this.f48996a = context;
+        this.f48997b = vVar;
+        this.f48998c = aVar;
         this.d = yVar;
-        this.f48992e = bVar;
+        this.f48999e = bVar;
     }
 
     public static p0 c(com.google.firebase.messaging.s sVar, int i10) {
@@ -91,7 +91,7 @@ public final class q {
                 obj.f4604b = str;
                 obj.f4605c = fileName;
                 obj.d = Long.valueOf(j10);
-                arrayList.add(obj.l());
+                arrayList.add(obj.j());
             } else {
                 throw new NullPointerException("Null symbol");
             }
@@ -100,10 +100,10 @@ public final class q {
     }
 
     public final List a() {
-        a aVar = this.f48991c;
-        String str = aVar.f48926e;
+        a aVar = this.f48998c;
+        String str = aVar.f48933e;
         if (str != null) {
-            return Collections.singletonList(new o0(str, 0L, 0L, aVar.f48924b));
+            return Collections.singletonList(new o0(str, 0L, 0L, aVar.f48931b));
         }
         throw new NullPointerException("Null name");
     }

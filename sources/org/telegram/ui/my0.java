@@ -7,41 +7,41 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class my0 implements Utilities.Callback {
-    public final int f38784a;
-    public final ProfileActivity f38785b;
+    public final int f38770a;
+    public final ProfileActivity f38771b;
 
     public my0(ProfileActivity profileActivity, int i10) {
-        this.f38784a = i10;
-        this.f38785b = profileActivity;
+        this.f38770a = i10;
+        this.f38771b = profileActivity;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f38784a) {
+        switch (this.f38770a) {
             case 0:
                 View view = (View) obj;
                 if (view instanceof org.telegram.ui.Cells.c9) {
                     org.telegram.ui.Cells.c9 c9Var = (org.telegram.ui.Cells.c9) view;
-                    vh.n nVar = c9Var.f21892a;
-                    ProfileActivity profileActivity = this.f38785b;
-                    nVar.setLoading(profileActivity.f34273i5);
-                    c9Var.f21893b.setLoading(profileActivity.f34273i5);
+                    vh.n nVar = c9Var.f21896a;
+                    ProfileActivity profileActivity = this.f38771b;
+                    nVar.setLoading(profileActivity.f34286i5);
+                    c9Var.f21897b.setLoading(profileActivity.f34286i5);
                     return;
                 }
                 return;
             case 1:
-                ProfileActivity profileActivity2 = this.f38785b;
+                ProfileActivity profileActivity2 = this.f38771b;
                 profileActivity2.getClass();
                 ArrayList arrayList = new ArrayList(1);
                 arrayList.add((TLRPC.InputStickerSet) obj);
-                profileActivity2.showDialog(new org.telegram.ui.Components.wv(profileActivity2, profileActivity2.getParentActivity(), profileActivity2.f34383z0, arrayList));
+                profileActivity2.showDialog(new org.telegram.ui.Components.wv(profileActivity2, profileActivity2.getParentActivity(), profileActivity2.f34396z0, arrayList));
                 return;
             case 2:
                 View view2 = (View) obj;
                 boolean z10 = view2 instanceof org.telegram.ui.Cells.m4;
-                ProfileActivity profileActivity3 = this.f38785b;
+                ProfileActivity profileActivity3 = this.f38771b;
                 if (z10) {
-                    ((org.telegram.ui.Cells.m4) view2).setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.L6, profileActivity3.f34383z0));
+                    ((org.telegram.ui.Cells.m4) view2).setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.L6, profileActivity3.f34396z0));
                 } else if (view2 instanceof org.telegram.ui.Cells.c9) {
                     ((org.telegram.ui.Cells.c9) view2).e();
                 } else if (view2 instanceof org.telegram.ui.Cells.r8) {
@@ -54,7 +54,7 @@ public final class my0 implements Utilities.Callback {
                     hg.j1 j1Var = (hg.j1) view2;
                     org.telegram.ui.Components.gq gqVar = j1Var.f11234r;
                     int dp = AndroidUtilities.dp(8.0f);
-                    int i10 = org.telegram.ui.ActionBar.i6.f21025o6;
+                    int i10 = org.telegram.ui.ActionBar.i6.f21030o6;
                     org.telegram.ui.ActionBar.d6 d6Var = j1Var.f11228a;
                     int v02 = org.telegram.ui.ActionBar.i6.v0(i10, d6Var);
                     j1Var.a(v02);
@@ -70,13 +70,13 @@ public final class my0 implements Utilities.Callback {
                     ((org.telegram.ui.Cells.h6) view2).e();
                 }
                 s01 s01Var = profileActivity3.d;
-                profileActivity3.f34208a.getClass();
+                profileActivity3.f34221a.getClass();
                 RecyclerView.R(view2);
                 s01Var.getClass();
                 profileActivity3.d.getClass();
                 return;
             default:
-                ProfileActivity.e0(this.f38785b, (Boolean) obj);
+                ProfileActivity.e0(this.f38771b, (Boolean) obj);
                 return;
         }
     }

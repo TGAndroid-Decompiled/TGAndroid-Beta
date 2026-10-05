@@ -19,7 +19,7 @@ import org.telegram.ui.Components.h9;
 import org.telegram.ui.Components.q90;
 import org.telegram.ui.Components.zl0;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.xb1;
+import org.telegram.ui.vb1;
 import w7.z5;
 public final class j0 extends rg.m1 {
     public final ArrayList Q0;
@@ -41,7 +41,7 @@ public final class j0 extends rg.m1 {
         int i11 = this.backgroundPaddingLeft;
         zl0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(64.0f));
         Context context = getContext();
-        int i12 = i0.f47023f;
+        int i12 = i0.f47030f;
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.setClipChildren(false);
         FrameLayout frameLayout2 = new FrameLayout(context);
@@ -51,9 +51,9 @@ public final class j0 extends rg.m1 {
             i0 i0Var = new i0(context, 47.0f);
             i0Var.d = false;
             TLRPC.User user = (TLRPC.User) arrayList2.get(0);
-            h9 h9Var = i0Var.f47027e;
+            h9 h9Var = i0Var.f47034e;
             h9Var.r(user);
-            i0Var.f47024a.e(user, h9Var);
+            i0Var.f47031a.e(user, h9Var);
             frameLayout2.addView(i0Var, 0, z5.e(94, 94, 17));
         } else {
             frameLayout.addView(frameLayout2, z5.d(-1, 83.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
@@ -61,15 +61,15 @@ public final class j0 extends rg.m1 {
             for (int i14 = 0; i14 < arrayList2.size(); i14++) {
                 TLRPC.User user2 = (TLRPC.User) arrayList2.get(i14);
                 i0 i0Var2 = new i0(context, 41.5f);
-                h9 h9Var2 = i0Var2.f47027e;
+                h9 h9Var2 = i0Var2.f47034e;
                 h9Var2.r(user2);
-                i0Var2.f47024a.e(user2, h9Var2);
+                i0Var2.f47031a.e(user2, h9Var2);
                 frameLayout2.addView(i0Var2, 0, z5.e(83, 83, 17));
                 i0Var2.setTranslationX(AndroidUtilities.dp(29.0f) * (-i14));
                 if (i14 == 0 && arrayList2.size() > 3) {
-                    h0 h0Var = i0Var2.f47025b;
+                    h0 h0Var = i0Var2.f47032b;
                     h0Var.setAlpha(1.0f);
-                    h0Var.f47022b = arrayList2.size() - 3;
+                    h0Var.f47029b = arrayList2.size() - 3;
                 }
                 i13++;
                 if (i14 == 2) {
@@ -98,13 +98,13 @@ public final class j0 extends rg.m1 {
         if (i10 == 0) {
             view.setOutlineProvider(new k2(21));
             view.setClipToOutline(true);
-            view.setBackgroundColor(i6.v0(i6.f20766a7, this.resourcesProvider));
+            view.setBackgroundColor(i6.v0(i6.f20771a7, this.resourcesProvider));
             ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).topMargin = -AndroidUtilities.dp(6.0f);
         }
     }
 
     @Override
-    public final void U(xb1 xb1Var) {
+    public final void U(vb1 vb1Var) {
         int i10;
         float f7;
         float f10;
@@ -125,7 +125,7 @@ public final class j0 extends rg.m1 {
         } else {
             f10 = 14.0f;
         }
-        xb1Var.addView(view, z5.k(0.0f, f7, 0.0f, f10, -1, i10));
+        vb1Var.addView(view, z5.k(0.0f, f7, 0.0f, f10, -1, i10));
     }
 
     @Override
@@ -165,13 +165,13 @@ public final class j0 extends rg.m1 {
 
     @Override
     public final void b0() {
-        this.f46198f0 = 1;
-        this.f46199g0 = 0;
-        this.f46202j0 = 1;
+        this.f46205f0 = 1;
+        this.f46206g0 = 0;
+        this.f46209j0 = 1;
         int size = this.X.size();
         int i10 = 1 + size;
-        this.f46203k0 = i10;
-        this.f46198f0 = size + 2;
-        this.f46205n0 = i10;
+        this.f46210k0 = i10;
+        this.f46205f0 = size + 2;
+        this.f46212n0 = i10;
     }
 }

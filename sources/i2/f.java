@@ -91,13 +91,13 @@ public abstract class f implements j1 {
             return f7;
         }
         if (f7 == -5) {
-            b2.s sVar = (b2.s) yVar.f16645c;
+            b2.s sVar = (b2.s) yVar.f16650c;
             sVar.getClass();
             long j10 = sVar.f3568w;
             if (j10 != Long.MAX_VALUE) {
                 b2.r a2 = sVar.a();
                 a2.v = j10 + this.v;
-                yVar.f16645c = new b2.s(a2);
+                yVar.f16650c = new b2.s(a2);
             }
         }
         return f7;

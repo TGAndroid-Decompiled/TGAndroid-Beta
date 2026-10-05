@@ -2,7 +2,7 @@ package bi;
 
 import ai.u8;
 import android.view.View;
-import org.telegram.ui.Components.ds0;
+import org.telegram.ui.Components.es0;
 public final class e implements View.OnClickListener {
     public final int f3848a;
     public final u f3849b;
@@ -18,14 +18,14 @@ public final class e implements View.OnClickListener {
         switch (this.f3848a) {
             case 0:
                 u uVar = this.f3849b;
-                ds0 ds0Var = uVar.W;
+                es0 es0Var = uVar.W;
                 u8 u8Var = uVar.f3874a;
                 if (u8Var == null) {
                     str = "";
                 } else {
                     str = u8Var.E;
                 }
-                ds0Var.a(str);
+                es0Var.a(str);
                 return;
             default:
                 u uVar2 = this.f3849b;

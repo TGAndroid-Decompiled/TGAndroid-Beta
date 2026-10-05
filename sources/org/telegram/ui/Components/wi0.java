@@ -15,11 +15,11 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.TelegramQRCodeWriter;
 public class wi0 extends org.telegram.ui.ActionBar.f3 {
-    public final Bitmap f32569b;
-    public final TextView f32570c;
+    public final Bitmap f32651b;
+    public final TextView f32652c;
     public final TextView d;
-    public final TextView f32571e;
-    public final int f32572f;
+    public final TextView f32653e;
+    public final int f32654f;
     public final nj0 h;
 
     public wi0(Context context, String str, String str2, String str3, boolean z10) {
@@ -34,19 +34,19 @@ public class wi0 extends org.telegram.ui.ActionBar.f3 {
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         linearLayout.setPadding(0, AndroidUtilities.dp(16.0f), 0, 0);
-        Bitmap bitmap2 = this.f32569b;
+        Bitmap bitmap2 = this.f32651b;
         try {
             HashMap hashMap = new HashMap();
             hashMap.put(cc.b.f4532a, hc.c.M);
             hashMap.put(cc.b.f4534c, 0);
             TelegramQRCodeWriter telegramQRCodeWriter = new TelegramQRCodeWriter();
             Bitmap encode = telegramQRCodeWriter.encode(str2, 768, 768, hashMap, bitmap2);
-            this.f32572f = telegramQRCodeWriter.getImageSize();
+            this.f32654f = telegramQRCodeWriter.getImageSize();
             bitmap = encode;
         } catch (Exception e7) {
             FileLog.e(e7);
         }
-        this.f32569b = bitmap;
+        this.f32651b = bitmap;
         lVar.setImageBitmap(bitmap);
         ?? imageView = new ImageView(context);
         this.h = imageView;
@@ -57,7 +57,7 @@ public class wi0 extends org.telegram.ui.ActionBar.f3 {
         em0Var.addView((View) imageView, w7.z5.e(60, 60, 17));
         linearLayout.addView(em0Var, w7.z5.t(220, 220, 1, 30, 0, 30, 0));
         TextView textView = new TextView(context);
-        this.f32570c = textView;
+        this.f32652c = textView;
         textView.setTextSize(1, 14.0f);
         textView.setText(str3);
         textView.setGravity(1);
@@ -73,7 +73,7 @@ public class wi0 extends org.telegram.ui.ActionBar.f3 {
         linearLayout.addView(textView2, w7.z5.t(-1, 48, 80, 16, 15, 16, 3));
         if (z10) {
             TextView textView3 = new TextView(context);
-            this.f32571e = textView3;
+            this.f32653e = textView3;
             textView3.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
             textView3.setGravity(17);
             textView3.setTextSize(1, 14.0f);
@@ -103,19 +103,19 @@ public class wi0 extends org.telegram.ui.ActionBar.f3 {
         int themedColor2 = getThemedColor(i10);
         int themedColor3 = getThemedColor(org.telegram.ui.ActionBar.i6.Qh);
         textView.setBackground(org.telegram.ui.ActionBar.i6.i0(dp, dp, dp, dp, themedColor2, themedColor3, themedColor3));
-        TextView textView2 = this.f32571e;
+        TextView textView2 = this.f32653e;
         if (textView2 != null) {
             textView2.setTextColor(getThemedColor(i10));
-            textView2.setBackground(org.telegram.ui.ActionBar.i6.f0(i0.a.k(getThemedColor(i10), Math.min(255, Color.alpha(getThemedColor(org.telegram.ui.ActionBar.i6.f20913i6)) * 2)), 7, -1));
+            textView2.setBackground(org.telegram.ui.ActionBar.i6.f0(i0.a.k(getThemedColor(i10), Math.min(255, Color.alpha(getThemedColor(org.telegram.ui.ActionBar.i6.f20918i6)) * 2)), 7, -1));
         }
-        int i11 = org.telegram.ui.ActionBar.i6.f21209y6;
+        int i11 = org.telegram.ui.ActionBar.i6.f21214y6;
         int themedColor4 = getThemedColor(i11);
-        TextView textView3 = this.f32570c;
+        TextView textView3 = this.f32652c;
         textView3.setTextColor(themedColor4);
         textView3.setTextColor(getThemedColor(i11));
         if (getTitleView() != null) {
             getTitleView().setTextColor(getThemedColor(org.telegram.ui.ActionBar.i6.G6));
         }
-        setBackgroundColor(getThemedColor(org.telegram.ui.ActionBar.i6.f20894h5));
+        setBackgroundColor(getThemedColor(org.telegram.ui.ActionBar.i6.f20899h5));
     }
 }

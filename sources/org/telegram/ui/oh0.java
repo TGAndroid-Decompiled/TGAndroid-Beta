@@ -10,22 +10,22 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class oh0 extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
-    public final org.telegram.ui.Components.w9 f39195a;
-    public final int f39196b;
+    public final org.telegram.ui.Components.w9 f39204a;
+    public final int f39205b;
 
     public oh0(Context context) {
         super(context);
-        this.f39196b = UserConfig.selectedAccount;
+        this.f39205b = UserConfig.selectedAccount;
         setPadding(0, AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f));
         setOrientation(1);
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-        this.f39195a = w9Var;
+        this.f39204a = w9Var;
         addView(w9Var, w7.z5.t(104, 104, 49, 0, 2, 0, 0));
     }
 
     public final void a() {
         boolean z10;
-        int i10 = this.f39196b;
+        int i10 = this.f39205b;
         TLRPC.TL_messages_stickerSet stickerSetByName = MediaDataController.getInstance(i10).getStickerSetByName("tg_placeholders_android");
         if (stickerSetByName == null) {
             stickerSetByName = MediaDataController.getInstance(i10).getStickerSetByEmojiOrName("tg_placeholders_android");
@@ -33,7 +33,7 @@ public final class oh0 extends LinearLayout implements NotificationCenter.Notifi
         TLRPC.TL_messages_stickerSet tL_messages_stickerSet = stickerSetByName;
         if (tL_messages_stickerSet != null && tL_messages_stickerSet.documents.size() >= 4) {
             TLRPC.Document document = tL_messages_stickerSet.documents.get(3);
-            this.f39195a.i(ImageLocation.getForDocument(document), "104_104", "tgs", DocumentObject.getSvgThumb(document, org.telegram.ui.ActionBar.i6.f20766a7, 1.0f), tL_messages_stickerSet);
+            this.f39204a.i(ImageLocation.getForDocument(document), "104_104", "tgs", DocumentObject.getSvgThumb(document, org.telegram.ui.ActionBar.i6.f20771a7, 1.0f), tL_messages_stickerSet);
             return;
         }
         MediaDataController mediaDataController = MediaDataController.getInstance(i10);
@@ -56,12 +56,12 @@ public final class oh0 extends LinearLayout implements NotificationCenter.Notifi
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         a();
-        NotificationCenter.getInstance(this.f39196b).addObserver(this, NotificationCenter.diceStickersDidLoad);
+        NotificationCenter.getInstance(this.f39205b).addObserver(this, NotificationCenter.diceStickersDidLoad);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        NotificationCenter.getInstance(this.f39196b).removeObserver(this, NotificationCenter.diceStickersDidLoad);
+        NotificationCenter.getInstance(this.f39205b).removeObserver(this, NotificationCenter.diceStickersDidLoad);
     }
 }

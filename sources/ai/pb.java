@@ -15,9 +15,9 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.gz;
 public final class pb extends kb {
-    public final zg.o0 I;
+    public final zg.m0 I;
     public final ob J;
-    public final zg.f0 K;
+    public final zg.d0 K;
     public final ImageReceiver L;
     public final org.telegram.ui.Components.e6 M;
     public final org.telegram.ui.Components.o6 N;
@@ -29,32 +29,32 @@ public final class pb extends kb {
         ArrayList arrayList;
         ob obVar = new ob(this);
         this.J = obVar;
-        zg.f0 f0Var = new zg.f0(this);
-        this.K = f0Var;
+        zg.d0 d0Var = new zg.d0(this);
+        this.K = d0Var;
         this.L = new ImageReceiver(this);
         this.M = new org.telegram.ui.Components.e6(this);
         this.N = new org.telegram.ui.Components.o6(false, false, false, false);
-        zg.o0 d = zg.o0.d(tL_mediaAreaSuggestedReaction.reaction);
+        zg.m0 d = zg.m0.d(tL_mediaAreaSuggestedReaction.reaction);
         this.I = d;
         if (tL_mediaAreaSuggestedReaction.flipped) {
             obVar.b(true, false);
         }
         obVar.c(getScaleX());
-        f0Var.e(d);
+        d0Var.e(d);
         gzVar.getClass();
-        String str = d.f53485f;
-        str = str == null ? MessageObject.findAnimatedEmojiEmoticon(org.telegram.ui.Components.q5.f(gzVar.f36783b, d.f53486g)) : str;
-        if (str != null && (arrayList = (ArrayList) gzVar.f36785e.get(str)) != null && !arrayList.isEmpty()) {
+        String str = d.f53471f;
+        str = str == null ? MessageObject.findAnimatedEmojiEmoticon(org.telegram.ui.Components.q5.f(gzVar.f36807b, d.f53472g)) : str;
+        if (str != null && (arrayList = (ArrayList) gzVar.f36809e.get(str)) != null && !arrayList.isEmpty()) {
             int min = Math.min(1, arrayList.size());
             for (int i10 = 0; i10 < min; i10++) {
                 gzVar.m((TLRPC.Document) arrayList.get(i10));
             }
         }
-        if (this.I.f53485f != null && (tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(this.I.f53485f)) != null) {
+        if (this.I.f53471f != null && (tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(this.I.f53471f)) != null) {
             this.L.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_lastreactframe", null, "webp", tL_availableReaction, 1);
         }
         org.telegram.ui.Components.o6 o6Var = this.N;
-        o6Var.f29245b = 17;
+        o6Var.f29354b = 17;
         o6Var.u(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
         this.N.t(AndroidUtilities.dp(18.0f));
         this.N.G = AndroidUtilities.displaySize.x;
@@ -94,10 +94,10 @@ public final class pb extends kb {
         } else {
             i10 = -16777216;
         }
-        zg.f0 f0Var = this.K;
-        f0Var.d(i10);
-        f0Var.c(rect);
-        f0Var.a(canvas);
+        zg.d0 d0Var = this.K;
+        d0Var.d(i10);
+        d0Var.c(rect);
+        d0Var.a(canvas);
         float height2 = (obVar.getBounds().height() * 0.839f) + obVar.getBounds().top;
         org.telegram.ui.Components.o6 o6Var = this.N;
         o6Var.setBounds(obVar.getBounds().left, (int) (height2 - AndroidUtilities.dp(10.0f)), obVar.getBounds().right, (int) (AndroidUtilities.dp(10.0f) + height2));
@@ -114,7 +114,7 @@ public final class pb extends kb {
         org.telegram.ui.Components.e6 e6Var = this.M;
         if (storyViews != null) {
             for (int i10 = 0; i10 < storyViews.reactions.size(); i10++) {
-                if (zg.q0.d(storyViews.reactions.get(i10).reaction, this.I)) {
+                if (zg.o0.d(storyViews.reactions.get(i10).reaction, this.I)) {
                     if (z10 && this.O) {
                         z11 = true;
                     } else {
@@ -149,7 +149,7 @@ public final class pb extends kb {
     }
 
     public org.telegram.ui.Components.q5 getAnimatedEmojiDrawable() {
-        return this.K.f53382b;
+        return this.K.f53365b;
     }
 
     @Override

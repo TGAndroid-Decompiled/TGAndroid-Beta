@@ -27,12 +27,12 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class lj extends org.telegram.ui.ActionBar.j {
-    public final Context f38283a;
-    public final yn f38284b;
+    public final Context f38337a;
+    public final yn f38338b;
 
     public lj(yn ynVar, Context context) {
-        this.f38284b = ynVar;
-        this.f38283a = context;
+        this.f38338b = ynVar;
+        this.f38337a = context;
     }
 
     @Override
@@ -57,36 +57,36 @@ public final class lj extends org.telegram.ui.ActionBar.j {
         boolean z15;
         TLRPC.User user3;
         org.telegram.ui.ActionBar.k kVar;
-        yn ynVar = this.f38284b;
+        yn ynVar = this.f38338b;
         SparseArray[] sparseArrayArr = ynVar.W5;
         SparseArray[] sparseArrayArr2 = ynVar.V5;
         SparseArray[] sparseArrayArr3 = ynVar.U5;
         long j3 = 0;
         if (i10 == -1) {
-            if (!ynVar.f43519tc.f15437f) {
+            if (!ynVar.f43512tc.f15437f) {
                 kVar = ((org.telegram.ui.ActionBar.n2) ynVar).actionBar;
                 if (kVar.s()) {
                     ynVar.z7(false);
-                } else if (ynVar.P3 == 5 && (ynVar.f43501s6.isEmpty() || ynVar.f43287b4 == 0)) {
+                } else if (ynVar.P3 == 5 && (ynVar.f43494s6.isEmpty() || ynVar.f43280b4 == 0)) {
                     ynVar.Pb();
                 } else if (ynVar.P3 == 6 && ynVar.W.w()) {
                     ynVar.vb(new Runnable(this) {
-                        public final lj f37451b;
+                        public final lj f37438b;
 
                         {
-                            this.f37451b = this;
+                            this.f37438b = this;
                         }
 
                         @Override
                         public final void run() {
                             switch (r2) {
                                 case 0:
-                                    this.f37451b.f38284b.finishFragment();
+                                    this.f37438b.f38338b.finishFragment();
                                     return;
                                 default:
-                                    lj ljVar = this.f37451b;
+                                    lj ljVar = this.f37438b;
                                     ljVar.getClass();
-                                    yn ynVar2 = ljVar.f38284b;
+                                    yn ynVar2 = ljVar.f38338b;
                                     Intent intent = new Intent(ynVar2.getParentActivity(), LaunchActivity.class);
                                     intent.setAction("android.intent.action.SEND");
                                     intent.setType("text/plain");
@@ -109,7 +109,7 @@ public final class lj extends org.telegram.ui.ActionBar.j {
                 return;
             }
             ynVar.getMessagesController().getTopicsController().toggleViewForumAsMessages(-ynVar.R5, false);
-            yf1.I0(ynVar);
+            wf1.I0(ynVar);
         } else {
             String str = null;
             MessageObject messageObject = null;
@@ -131,7 +131,7 @@ public final class lj extends org.telegram.ui.ActionBar.j {
                         if (spannableStringBuilder.length() != 0) {
                             spannableStringBuilder.append((CharSequence) "\n\n");
                         }
-                        if (arrayList.size() != 1 && ((user3 = ynVar.f43334f) == null || !user3.self)) {
+                        if (arrayList.size() != 1 && ((user3 = ynVar.f43327f) == null || !user3.self)) {
                             z15 = true;
                         } else {
                             z15 = false;
@@ -143,7 +143,7 @@ public final class lj extends org.telegram.ui.ActionBar.j {
                 if (spannableStringBuilder.length() != 0) {
                     AndroidUtilities.addToClipboard(spannableStringBuilder);
                     ynVar.Q7();
-                    ynVar.f43549w3.j(58, 0L, null);
+                    ynVar.f43542w3.j(58, 0L, null);
                 }
                 ynVar.z7(false);
             } else if (i10 == 12) {
@@ -155,34 +155,34 @@ public final class lj extends org.telegram.ui.ActionBar.j {
             } else if (i10 == 69) {
                 yn.B1(ynVar);
             } else if (i10 == 70) {
-                TLRPC.Chat chat = ynVar.f43322e;
+                TLRPC.Chat chat = ynVar.f43315e;
                 if (chat != null) {
                     ynVar.presentFragment(yn.Q9(-chat.linked_monoforum_id));
                 }
             } else if (i10 == 72) {
                 long j11 = ynVar.R5;
-                if (ChatObject.isMonoForum(ynVar.f43322e)) {
+                if (ChatObject.isMonoForum(ynVar.f43315e)) {
                     i17 = ((org.telegram.ui.ActionBar.n2) ynVar).currentAccount;
-                    if (ChatObject.canManageMonoForum(i17, ynVar.f43322e)) {
-                        j11 = ynVar.f43287b4;
+                    if (ChatObject.canManageMonoForum(i17, ynVar.f43315e)) {
+                        j11 = ynVar.f43280b4;
                         j3 = ynVar.R5;
                     }
                 }
                 i16 = ((org.telegram.ui.ActionBar.n2) ynVar).currentAccount;
-                yh.t5.y(i16, false).i0(j11, j3, false, false);
+                yh.u5.y(i16, false).i0(j11, j3, false, false);
             } else if (i10 == 71) {
                 long j12 = ynVar.R5;
-                if (ChatObject.isMonoForum(ynVar.f43322e)) {
+                if (ChatObject.isMonoForum(ynVar.f43315e)) {
                     i15 = ((org.telegram.ui.ActionBar.n2) ynVar).currentAccount;
-                    if (ChatObject.canManageMonoForum(i15, ynVar.f43322e)) {
-                        j12 = ynVar.f43287b4;
+                    if (ChatObject.canManageMonoForum(i15, ynVar.f43315e)) {
+                        j12 = ynVar.f43280b4;
                         j3 = ynVar.R5;
                     }
                 }
                 long j13 = j12;
                 long j14 = j3;
                 i14 = ((org.telegram.ui.ActionBar.n2) ynVar).currentAccount;
-                yh.t5.y(i14, false).C(j13, j14, new kg(this, j13, j14, 1));
+                yh.u5.y(i14, false).C(j13, j14, new kg(this, j13, j14, 1));
             } else if (i10 == 28) {
                 if (ynVar.Ya == null) {
                     yn.G1(ynVar);
@@ -199,7 +199,7 @@ public final class lj extends org.telegram.ui.ActionBar.j {
                     sparseArrayArr2[i21].clear();
                     sparseArrayArr[i21].clear();
                 }
-                if (ynVar.f43315d6 > 0) {
+                if (ynVar.f43308d6 > 0) {
                     z14 = true;
                 } else {
                     z14 = false;
@@ -210,14 +210,14 @@ public final class lj extends org.telegram.ui.ActionBar.j {
                 MediaController.saveFilesFromMessages(ynVar.getParentActivity(), ynVar.getAccountInstance(), arrayList2, new jj(0, this, z14));
             } else if (i10 == 13) {
                 if (ynVar.getParentActivity() != null) {
-                    ynVar.showDialog(org.telegram.ui.Components.e5.V(ynVar.getParentActivity(), ynVar.h, ynVar.f43307ca).f20372a);
+                    ynVar.showDialog(org.telegram.ui.Components.e5.V(ynVar.getParentActivity(), ynVar.h, ynVar.f43300ca).f20377a);
                 }
             } else if (i10 == 15 || i10 == 16 || i10 == 26) {
                 boolean z16 = false;
                 if (ynVar.getParentActivity() != null) {
-                    if (i10 == 15 && ChatObject.isMonoForum(ynVar.f43322e)) {
-                        if (ynVar.f43287b4 != 0 && (user2 = ynVar.getMessagesController().getUser(Long.valueOf(ynVar.f43287b4))) != null) {
-                            org.telegram.ui.Components.e5.r(ynVar, -1, user2, ynVar.f43322e, true, new o(13, this, user2), ynVar.getResourceProvider());
+                    if (i10 == 15 && ChatObject.isMonoForum(ynVar.f43315e)) {
+                        if (ynVar.f43280b4 != 0 && (user2 = ynVar.getMessagesController().getUser(Long.valueOf(ynVar.f43280b4))) != null) {
+                            org.telegram.ui.Components.e5.r(ynVar, -1, user2, ynVar.f43315e, true, new o(13, this, user2), ynVar.getResourceProvider());
                             return;
                         }
                         return;
@@ -228,9 +228,9 @@ public final class lj extends org.telegram.ui.ActionBar.j {
                     } else {
                         z10 = false;
                     }
-                    if (i10 == 26 || (i10 == 15 && ynVar.h == null && (((user = ynVar.f43334f) != null && !UserObject.isUserSelf(user) && !UserObject.isDeleted(ynVar.f43334f)) || ((chatFull = ynVar.X7) != null && chatFull.can_delete_channel)))) {
+                    if (i10 == 26 || (i10 == 15 && ynVar.h == null && (((user = ynVar.f43327f) != null && !UserObject.isUserSelf(user) && !UserObject.isDeleted(ynVar.f43327f)) || ((chatFull = ynVar.X7) != null && chatFull.can_delete_channel)))) {
                         boolean z17 = z10;
-                        org.telegram.ui.Components.e5.r(ynVar, -1, ynVar.f43334f, ynVar.f43322e, z17, new kj(this, z17), ynVar.getResourceProvider());
+                        org.telegram.ui.Components.e5.r(ynVar, -1, ynVar.f43327f, ynVar.f43315e, z17, new kj(this, z17), ynVar.getResourceProvider());
                         return;
                     }
                     if (i10 == 15) {
@@ -238,22 +238,22 @@ public final class lj extends org.telegram.ui.ActionBar.j {
                     } else {
                         z11 = false;
                     }
-                    TLRPC.Chat chat2 = ynVar.f43322e;
-                    TLRPC.User user4 = ynVar.f43334f;
+                    TLRPC.Chat chat2 = ynVar.f43315e;
+                    TLRPC.User user4 = ynVar.f43327f;
                     if (ynVar.h != null) {
                         z16 = true;
                     }
                     org.telegram.ui.Components.e5.s(ynVar, z11, chat2, user4, z16, true, false, z10, new i2.s(this, i10, z10));
                 }
             } else if (i10 == 17) {
-                if (ynVar.f43334f != null && ynVar.getParentActivity() != null) {
+                if (ynVar.f43327f != null && ynVar.getParentActivity() != null) {
                     TextView textView = ynVar.J1;
                     if (textView != null && textView.getTag() != null) {
                         ynVar.qb(null, ((Integer) ynVar.J1.getTag()).intValue());
                         return;
                     }
                     Bundle bundle = new Bundle();
-                    bundle.putLong("user_id", ynVar.f43334f.f20189id);
+                    bundle.putLong("user_id", ynVar.f43327f.f20194id);
                     bundle.putBoolean("addContact", true);
                     ynVar.presentFragment(new qs(bundle));
                 }
@@ -261,12 +261,12 @@ public final class lj extends org.telegram.ui.ActionBar.j {
                 ynVar.ac(false);
             } else if (i10 == 24) {
                 try {
-                    ynVar.getMediaDataController().installShortcut(ynVar.f43334f.f20189id, MediaDataController.SHORTCUT_TYPE_USER_OR_CHAT);
+                    ynVar.getMediaDataController().installShortcut(ynVar.f43327f.f20194id, MediaDataController.SHORTCUT_TYPE_USER_OR_CHAT);
                 } catch (Exception e7) {
                     FileLog.e(e7);
                 }
             } else if (i10 == 29) {
-                if (ChatObject.hasAdminRights(ynVar.f43322e)) {
+                if (ChatObject.hasAdminRights(ynVar.f43315e)) {
                     w5 w5Var = new w5(ynVar.R5);
                     TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = ynVar.B1;
                     w5Var.R = tL_premium_boostsStatus;
@@ -278,12 +278,12 @@ public final class lj extends org.telegram.ui.ActionBar.j {
                 }
                 ynVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.openBoostForUsersDialog, Long.valueOf(ynVar.R5));
             } else if (i10 == 21) {
-                int i23 = v31.v;
+                int i23 = t31.v;
                 int currentAccount = ynVar.getCurrentAccount();
                 Activity parentActivity = ynVar.getParentActivity();
                 long a2 = ynVar.a();
                 if (parentActivity != null) {
-                    v31.I(currentAccount, parentActivity, a2, false, false, new ArrayList(), null, null, new byte[0], null, null);
+                    t31.I(currentAccount, parentActivity, a2, false, false, new ArrayList(), null, null, new byte[0], null, null);
                 }
             } else if (i10 == 22) {
                 for (int i24 = 0; i24 < 2; i24++) {
@@ -300,14 +300,14 @@ public final class lj extends org.telegram.ui.ActionBar.j {
                         for (int i27 = 0; i27 < sparseArrayArr3[i26].size(); i27++) {
                             arrayList3.add(Integer.valueOf(sparseArrayArr3[i26].keyAt(i27)));
                         }
-                        messageObject = (MessageObject) ynVar.f43425m6[i26].get(((Integer) arrayList3.get(0)).intValue());
+                        messageObject = (MessageObject) ynVar.f43418m6[i26].get(((Integer) arrayList3.get(0)).intValue());
                     }
                     sparseArrayArr3[i26].clear();
                     sparseArrayArr2[i26].clear();
                     sparseArrayArr[i26].clear();
                 }
                 if (messageObject != null && messageObject.isTodo()) {
-                    ynVar.f43288b5 = messageObject;
+                    ynVar.f43281b5 = messageObject;
                     ynVar.Aa(109);
                     r92 = 0;
                 } else {
@@ -324,13 +324,13 @@ public final class lj extends org.telegram.ui.ActionBar.j {
                 i13 = ((org.telegram.ui.ActionBar.n2) ynVar).currentAccount;
                 hg.y1.d0(parentActivity2, i13, ynVar.O3, c10, ynVar.getResourceProvider(), new qc(9, this, c10));
             } else if (i10 == 14) {
-                org.telegram.ui.ActionBar.f1 f1Var = new org.telegram.ui.ActionBar.f1(0, this.f38283a, ynVar.getResourceProvider(), true, true);
+                org.telegram.ui.ActionBar.f1 f1Var = new org.telegram.ui.ActionBar.f1(0, this.f38337a, ynVar.getResourceProvider(), true, true);
                 f1Var.g(LocaleController.getString(R.string.AttachMenu), R.drawable.input_attach, null);
                 f1Var.setOnClickListener(new a(this, 13));
-                org.telegram.ui.ActionBar.v0 v0Var = ynVar.f43335f0;
-                org.telegram.ui.ActionBar.y yVar = ynVar.f43297c0;
+                org.telegram.ui.ActionBar.v0 v0Var = ynVar.f43328f0;
+                org.telegram.ui.ActionBar.y yVar = ynVar.f43290c0;
                 yVar.a();
-                v0Var.M(f1Var, yVar.f21706m);
+                v0Var.M(f1Var, yVar.f21710m);
             } else if (i10 == 30) {
                 ynVar.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of("/help", ynVar.R5, null, null, null, false, null, null, null, true, 0, 0, null, false));
             } else if (i10 == 31) {
@@ -349,71 +349,71 @@ public final class lj extends org.telegram.ui.ActionBar.j {
                 if (i10 == 50) {
                     jk jkVar = ynVar.W;
                     if (jkVar != null && jkVar.getEditField() != null) {
-                        ynVar.W.getEditField().setSelectionOverride(ynVar.f43575y4, ynVar.f43588z4);
+                        ynVar.W.getEditField().setSelectionOverride(ynVar.f43568y4, ynVar.f43581z4);
                         ynVar.W.getEditField().makeSelectedBold();
                     }
                 } else if (i10 == 51) {
                     jk jkVar2 = ynVar.W;
                     if (jkVar2 != null && jkVar2.getEditField() != null) {
-                        ynVar.W.getEditField().setSelectionOverride(ynVar.f43575y4, ynVar.f43588z4);
+                        ynVar.W.getEditField().setSelectionOverride(ynVar.f43568y4, ynVar.f43581z4);
                         ynVar.W.getEditField().makeSelectedItalic();
                     }
                 } else if (i10 == 57) {
                     jk jkVar3 = ynVar.W;
                     if (jkVar3 != null && jkVar3.getEditField() != null) {
-                        ynVar.W.getEditField().setSelectionOverride(ynVar.f43575y4, ynVar.f43588z4);
+                        ynVar.W.getEditField().setSelectionOverride(ynVar.f43568y4, ynVar.f43581z4);
                         ynVar.W.getEditField().makeSelectedSpoiler();
                     }
                 } else if (i10 == 58) {
                     jk jkVar4 = ynVar.W;
                     if (jkVar4 != null && jkVar4.getEditField() != null) {
-                        ynVar.W.getEditField().setSelectionOverride(ynVar.f43575y4, ynVar.f43588z4);
+                        ynVar.W.getEditField().setSelectionOverride(ynVar.f43568y4, ynVar.f43581z4);
                         ynVar.W.getEditField().makeSelectedQuote();
                     }
                 } else if (i10 == 52) {
                     jk jkVar5 = ynVar.W;
                     if (jkVar5 != null && jkVar5.getEditField() != null) {
-                        ynVar.W.getEditField().setSelectionOverride(ynVar.f43575y4, ynVar.f43588z4);
+                        ynVar.W.getEditField().setSelectionOverride(ynVar.f43568y4, ynVar.f43581z4);
                         ynVar.W.getEditField().makeSelectedMono();
                     }
                 } else if (i10 == 55) {
                     jk jkVar6 = ynVar.W;
                     if (jkVar6 != null && jkVar6.getEditField() != null) {
-                        ynVar.W.getEditField().setSelectionOverride(ynVar.f43575y4, ynVar.f43588z4);
+                        ynVar.W.getEditField().setSelectionOverride(ynVar.f43568y4, ynVar.f43581z4);
                         ynVar.W.getEditField().makeSelectedStrike();
                     }
                 } else if (i10 == 56) {
                     jk jkVar7 = ynVar.W;
                     if (jkVar7 != null && jkVar7.getEditField() != null) {
-                        ynVar.W.getEditField().setSelectionOverride(ynVar.f43575y4, ynVar.f43588z4);
+                        ynVar.W.getEditField().setSelectionOverride(ynVar.f43568y4, ynVar.f43581z4);
                         ynVar.W.getEditField().makeSelectedUnderline();
                     }
                 } else if (i10 == 74) {
                     jk jkVar8 = ynVar.W;
                     if (jkVar8 != null && jkVar8.getEditField() != null) {
-                        ynVar.W.getEditField().setSelectionOverride(ynVar.f43575y4, ynVar.f43588z4);
+                        ynVar.W.getEditField().setSelectionOverride(ynVar.f43568y4, ynVar.f43581z4);
                         ynVar.W.getEditField().makeSelectedDate();
                     }
                 } else if (i10 == 53) {
                     jk jkVar9 = ynVar.W;
                     if (jkVar9 != null && jkVar9.getEditField() != null) {
-                        ynVar.W.getEditField().setSelectionOverride(ynVar.f43575y4, ynVar.f43588z4);
+                        ynVar.W.getEditField().setSelectionOverride(ynVar.f43568y4, ynVar.f43581z4);
                         ynVar.W.getEditField().makeSelectedUrl();
                     }
                 } else if (i10 == 54) {
                     jk jkVar10 = ynVar.W;
                     if (jkVar10 != null && jkVar10.getEditField() != null) {
-                        ynVar.W.getEditField().setSelectionOverride(ynVar.f43575y4, ynVar.f43588z4);
+                        ynVar.W.getEditField().setSelectionOverride(ynVar.f43568y4, ynVar.f43581z4);
                         ynVar.W.getEditField().makeSelectedRegular();
                     }
                 } else if (i10 == 27) {
                     ynVar.wb();
                 } else if (i10 == 60) {
-                    if (ynVar.f43273a4 != null) {
+                    if (ynVar.f43266a4 != null) {
                         TopicsController topicsController = ynVar.getMessagesController().getTopicsController();
-                        long j15 = ynVar.f43322e.f20042id;
-                        TLRPC.TL_forumTopic tL_forumTopic = ynVar.f43273a4;
-                        int i28 = tL_forumTopic.f20094id;
+                        long j15 = ynVar.f43315e.f20047id;
+                        TLRPC.TL_forumTopic tL_forumTopic = ynVar.f43266a4;
+                        int i28 = tL_forumTopic.f20099id;
                         tL_forumTopic.closed = true;
                         topicsController.toggleCloseTopic(j15, i28, true);
                         ynVar.Qc();
@@ -421,28 +421,28 @@ public final class lj extends org.telegram.ui.ActionBar.j {
                         ynVar.Pc(true);
                     }
                 } else if (i10 == 61) {
-                    yf1.I0(ynVar);
+                    wf1.I0(ynVar);
                 } else if (i10 == 65) {
                     AndroidUtilities.addToClipboard(ynVar.N3.link);
                     org.telegram.ui.Components.yc.a0(LaunchActivity.R()).k(false).j();
                 } else if (i10 == 66) {
                     Runnable runnable = new Runnable(this) {
-                        public final lj f37451b;
+                        public final lj f37438b;
 
                         {
-                            this.f37451b = this;
+                            this.f37438b = this;
                         }
 
                         @Override
                         public final void run() {
                             switch (r2) {
                                 case 0:
-                                    this.f37451b.f38284b.finishFragment();
+                                    this.f37438b.f38338b.finishFragment();
                                     return;
                                 default:
-                                    lj ljVar = this.f37451b;
+                                    lj ljVar = this.f37438b;
                                     ljVar.getClass();
-                                    yn ynVar2 = ljVar.f38284b;
+                                    yn ynVar2 = ljVar.f38338b;
                                     Intent intent = new Intent(ynVar2.getParentActivity(), LaunchActivity.class);
                                     intent.setAction("android.intent.action.SEND");
                                     intent.setType("text/plain");
@@ -466,7 +466,7 @@ public final class lj extends org.telegram.ui.ActionBar.j {
                 } else if (i10 == 68) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ynVar.getParentActivity(), 0, ynVar.getResourceProvider());
                     String string = LocaleController.getString(R.string.BusinessLinksDeleteTitle);
-                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20372a;
+                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20377a;
                     b2Var.R = string;
                     b2Var.T = LocaleController.getString(R.string.BusinessLinksDeleteMessage);
                     alertDialog$Builder.k(LocaleController.getString(R.string.Remove), new z0(this, 19));
@@ -474,20 +474,20 @@ public final class lj extends org.telegram.ui.ActionBar.j {
                     ynVar.showDialog(b2Var);
                     TextView textView2 = (TextView) b2Var.d(-1);
                     if (textView2 != null) {
-                        textView2.setTextColor(ynVar.getThemedColor(org.telegram.ui.ActionBar.i6.f21063q7));
+                        textView2.setTextColor(ynVar.getThemedColor(org.telegram.ui.ActionBar.i6.f21068q7));
                     }
                 } else if (i10 == 73) {
-                    ue1 Z = ue1.Z(-ynVar.R5, 0L);
-                    Z.f41171y = ynVar;
+                    se1 Z = se1.Z(-ynVar.R5, 0L);
+                    Z.f40464y = ynVar;
                     ynVar.presentFragment(Z);
                 } else if (i10 == 888) {
                     ynVar.dumpCanvas();
                 } else if (i10 == 889) {
-                    HashSet hashSet = i4.f37236b1;
+                    HashSet hashSet = i4.f37239b1;
                     org.telegram.ui.Components.yc.a0(ynVar).t("No rich message copied", null).j();
                 }
-            } else if (ynVar.f43334f != null && ynVar.getParentActivity() != null) {
-                TLRPC.User user5 = ynVar.f43334f;
+            } else if (ynVar.f43327f != null && ynVar.getParentActivity() != null) {
+                TLRPC.User user5 = ynVar.f43327f;
                 if (i10 == 33) {
                     z12 = true;
                 } else {
@@ -499,7 +499,7 @@ public final class lj extends org.telegram.ui.ActionBar.j {
                 } else {
                     z13 = false;
                 }
-                org.telegram.ui.Components.voip.g2.m(user5, z12, z13, ynVar.getParentActivity(), ynVar.getMessagesController().getUserFull(ynVar.f43334f.f20189id), ynVar.getAccountInstance());
+                org.telegram.ui.Components.voip.g2.m(user5, z12, z13, ynVar.getParentActivity(), ynVar.getMessagesController().getUserFull(ynVar.f43327f.f20194id), ynVar.getAccountInstance());
             }
         }
     }

@@ -17,31 +17,31 @@ public final class jd extends Drawable {
     public int C;
     public int D;
     public float h;
-    public float f27738i;
-    public float f27739j;
-    public float f27740k;
-    public float f27741l;
-    public float f27742m;
-    public float f27743n;
-    public float f27744o;
-    public float f27745p;
-    public final id f27746q;
-    public final id f27747r;
-    public float f27748s;
-    public long f27749t;
-    public boolean f27750u;
+    public float f27805i;
+    public float f27806j;
+    public float f27807k;
+    public float f27808l;
+    public float f27809m;
+    public float f27810n;
+    public float f27811o;
+    public float f27812p;
+    public final id f27813q;
+    public final id f27814r;
+    public float f27815s;
+    public long f27816t;
+    public boolean f27817u;
     public float v;
-    public float f27751w;
-    public float f27752x;
-    public final float f27732a = AndroidUtilities.dp(18.0f);
-    public final float f27733b = AndroidUtilities.dp(22.0f);
-    public final float f27734c = 2.4f;
+    public float f27818w;
+    public float f27819x;
+    public final float f27799a = AndroidUtilities.dp(18.0f);
+    public final float f27800b = AndroidUtilities.dp(22.0f);
+    public final float f27801c = 2.4f;
     public final float d = AndroidUtilities.dp(12.0f);
-    public final float f27735e = AndroidUtilities.dp(1.5f);
-    public final float f27736f = 3600.0f;
-    public final float f27737g = 0.25f;
-    public final Path f27753y = new Path();
-    public final float[] f27754z = new float[4];
+    public final float f27802e = AndroidUtilities.dp(1.5f);
+    public final float f27803f = 3600.0f;
+    public final float f27804g = 0.25f;
+    public final Path f27820y = new Path();
+    public final float[] f27821z = new float[4];
     public int A = -1;
     public float E = 1.0f;
     public final qg F = new qg(this, 16);
@@ -49,23 +49,23 @@ public final class jd extends Drawable {
 
     public jd() {
         id idVar = new id();
-        this.f27746q = idVar;
-        idVar.f27372a = 1.0f;
-        idVar.f27373b = 0.0f;
-        idVar.f27374c = AndroidUtilities.dp(0.5f);
+        this.f27813q = idVar;
+        idVar.f27467a = 1.0f;
+        idVar.f27468b = 0.0f;
+        idVar.f27469c = AndroidUtilities.dp(0.5f);
         idVar.d = AndroidUtilities.dp(8.5f);
-        idVar.f27375e = 1.0f;
-        idVar.f27376f = 1.0f;
-        idVar.f27377g = 61;
+        idVar.f27470e = 1.0f;
+        idVar.f27471f = 1.0f;
+        idVar.f27472g = 61;
         id idVar2 = new id();
-        this.f27747r = idVar2;
-        idVar2.f27372a = 0.82f;
-        idVar2.f27373b = 0.6f;
-        idVar2.f27374c = AndroidUtilities.dp(0.0f);
+        this.f27814r = idVar2;
+        idVar2.f27467a = 0.82f;
+        idVar2.f27468b = 0.6f;
+        idVar2.f27469c = AndroidUtilities.dp(0.0f);
         idVar2.d = AndroidUtilities.dp(4.25f);
-        idVar2.f27375e = 0.55f;
-        idVar2.f27376f = 0.55f;
-        idVar2.f27377g = 128;
+        idVar2.f27470e = 0.55f;
+        idVar2.f27471f = 0.55f;
+        idVar2.f27472g = 128;
         e(0, false);
     }
 
@@ -73,7 +73,7 @@ public final class jd extends Drawable {
         double d = f11;
         float cos = (float) Math.cos(d);
         float sin = (float) Math.sin(d);
-        float f12 = this.f27739j;
+        float f12 = this.f27806j;
         fArr[0] = (f12 * cos) + f7;
         fArr[1] = (f12 * sin) + f10;
         fArr[2] = -sin;
@@ -85,25 +85,25 @@ public final class jd extends Drawable {
         char c10;
         char c11;
         int i11;
-        int i12 = idVar.f27392x;
+        int i12 = idVar.f27487x;
         if (i12 == 0) {
             return;
         }
-        float f12 = idVar.f27374c;
+        float f12 = idVar.f27469c;
         float f13 = this.v;
         float f14 = ((idVar.d - f12) * f13) + f12;
-        float B = com.google.android.gms.internal.vision.e2.B(f13, 1.0f, 0.0f, this.d * idVar.f27375e);
-        float[] fArr = idVar.f27390u;
+        float B = com.google.android.gms.internal.vision.e2.B(f13, 1.0f, 0.0f, this.d * idVar.f27470e);
+        float[] fArr = idVar.f27485u;
         float[] fArr2 = idVar.v;
-        float[] fArr3 = idVar.f27391w;
+        float[] fArr3 = idVar.f27486w;
         char c12 = 0;
         for (int i13 = 0; i13 < i12; i13++) {
-            float interpolation = H.getInterpolation(idVar.f27384o[i13]);
+            float interpolation = H.getInterpolation(idVar.f27479o[i13]);
             float f15 = 1.0f - interpolation;
-            fArr[i13] = (idVar.f27381l[i13] * interpolation) + (idVar.f27380k[i13] * f15);
-            fArr3[i13] = (idVar.f27383n[i13] * interpolation) + (idVar.f27382m[i13] * f15);
+            fArr[i13] = (idVar.f27476l[i13] * interpolation) + (idVar.f27475k[i13] * f15);
+            fArr3[i13] = (idVar.f27478n[i13] * interpolation) + (idVar.f27477m[i13] * f15);
         }
-        float f16 = this.f27737g;
+        float f16 = this.f27804g;
         char c13 = 2;
         if (f16 > 0.0f) {
             int i14 = 0;
@@ -130,57 +130,57 @@ public final class jd extends Drawable {
         int i18 = 0;
         while (i18 < i12) {
             float f18 = (i18 / i12) + fArr3[i18];
-            float floor = (f18 - ((float) Math.floor(f18))) * this.f27745p;
-            float f19 = this.f27742m;
-            float[] fArr5 = this.f27754z;
+            float floor = (f18 - ((float) Math.floor(f18))) * this.f27812p;
+            float f19 = this.f27809m;
+            float[] fArr5 = this.f27821z;
             if (floor < f19) {
-                fArr5[c12] = (-this.f27740k) + floor;
-                fArr5[1] = -this.f27738i;
+                fArr5[c12] = (-this.f27807k) + floor;
+                fArr5[1] = -this.f27805i;
                 fArr5[c13] = 1.0f;
                 fArr5[3] = 0.0f;
                 c10 = 0;
                 c11 = 2;
             } else {
                 float f20 = floor - f19;
-                float f21 = this.f27744o;
+                float f21 = this.f27811o;
                 c10 = 0;
-                float f22 = this.f27734c;
+                float f22 = this.f27801c;
                 if (f20 < f21) {
                     c11 = 2;
-                    a(this.f27740k, -this.f27741l, (f20 / (f22 * this.f27739j)) - 1.5707964f, fArr5);
+                    a(this.f27807k, -this.f27808l, (f20 / (f22 * this.f27806j)) - 1.5707964f, fArr5);
                 } else {
                     c11 = 2;
                     float f23 = f20 - f21;
-                    float f24 = this.f27743n;
+                    float f24 = this.f27810n;
                     if (f23 < f24) {
                         fArr5[0] = this.h;
-                        fArr5[1] = (-this.f27741l) + f23;
+                        fArr5[1] = (-this.f27808l) + f23;
                         fArr5[2] = 0.0f;
                         fArr5[3] = 1.0f;
                     } else {
                         float f25 = f23 - f24;
                         if (f25 < f21) {
-                            a(this.f27740k, this.f27741l, f25 / (f22 * this.f27739j), fArr5);
+                            a(this.f27807k, this.f27808l, f25 / (f22 * this.f27806j), fArr5);
                         } else {
                             float f26 = f25 - f21;
                             if (f26 < f19) {
-                                fArr5[0] = this.f27740k - f26;
-                                fArr5[1] = this.f27738i;
+                                fArr5[0] = this.f27807k - f26;
+                                fArr5[1] = this.f27805i;
                                 fArr5[2] = -1.0f;
                                 fArr5[3] = 0.0f;
                             } else {
                                 float f27 = f26 - f19;
                                 if (f27 < f21) {
-                                    a(-this.f27740k, this.f27741l, (f27 / (f22 * this.f27739j)) + 1.5707964f, fArr5);
+                                    a(-this.f27807k, this.f27808l, (f27 / (f22 * this.f27806j)) + 1.5707964f, fArr5);
                                 } else {
                                     float f28 = f27 - f21;
                                     if (f28 < f24) {
                                         fArr5[0] = -this.h;
-                                        fArr5[1] = this.f27741l - f28;
+                                        fArr5[1] = this.f27808l - f28;
                                         fArr5[2] = 0.0f;
                                         fArr5[3] = -1.0f;
                                     } else {
-                                        a(-this.f27740k, -this.f27741l, ((f28 - f24) / (f22 * this.f27739j)) + 3.1415927f, fArr5);
+                                        a(-this.f27807k, -this.f27808l, ((f28 - f24) / (f22 * this.f27806j)) + 3.1415927f, fArr5);
                                     }
                                 }
                             }
@@ -190,17 +190,17 @@ public final class jd extends Drawable {
             }
             float f29 = fArr5[3];
             float f30 = (fArr[i18] * B) + f14 + f11;
-            idVar.f27386q[i18] = (f29 * f30) + f7 + fArr5[c10];
-            idVar.f27387r[i18] = ((-fArr5[c11]) * f30) + f10 + fArr5[1];
-            idVar.f27388s[i18] = fArr5[c11];
-            idVar.f27389t[i18] = fArr5[3];
+            idVar.f27481q[i18] = (f29 * f30) + f7 + fArr5[c10];
+            idVar.f27482r[i18] = ((-fArr5[c11]) * f30) + f10 + fArr5[1];
+            idVar.f27483s[i18] = fArr5[c11];
+            idVar.f27484t[i18] = fArr5[3];
             i18++;
             c12 = 0;
             c13 = 2;
         }
-        Path path = this.f27753y;
+        Path path = this.f27820y;
         path.rewind();
-        path.moveTo(idVar.f27386q[0], idVar.f27387r[0]);
+        path.moveTo(idVar.f27481q[0], idVar.f27482r[0]);
         int i19 = 0;
         while (i19 < i12) {
             int i20 = i19 + 1;
@@ -209,54 +209,54 @@ public final class jd extends Drawable {
             } else {
                 i10 = 0;
             }
-            float[] fArr6 = idVar.f27386q;
+            float[] fArr6 = idVar.f27481q;
             float f31 = fArr6[i10] - fArr6[i19];
-            float[] fArr7 = idVar.f27387r;
+            float[] fArr7 = idVar.f27482r;
             float f32 = fArr7[i10] - fArr7[i19];
             float sqrt = ((float) Math.sqrt((f32 * f32) + (f31 * f31))) / 3.0f;
-            float[] fArr8 = idVar.f27386q;
+            float[] fArr8 = idVar.f27481q;
             float f33 = fArr8[i19];
-            float[] fArr9 = idVar.f27388s;
+            float[] fArr9 = idVar.f27483s;
             float f34 = (fArr9[i19] * sqrt) + f33;
-            float[] fArr10 = idVar.f27387r;
+            float[] fArr10 = idVar.f27482r;
             float f35 = fArr10[i19];
-            float[] fArr11 = idVar.f27389t;
+            float[] fArr11 = idVar.f27484t;
             float f36 = fArr8[i10];
             float f37 = fArr10[i10];
             path.cubicTo(f34, (fArr11[i19] * sqrt) + f35, f36 - (fArr9[i10] * sqrt), f37 - (fArr11[i10] * sqrt), f36, f37);
             i19 = i20;
         }
         path.close();
-        canvas.drawPath(path, idVar.f27378i);
+        canvas.drawPath(path, idVar.f27473i);
     }
 
     public final float c() {
-        id idVar = this.f27746q;
+        id idVar = this.f27813q;
         float f7 = idVar.d;
-        float f10 = idVar.f27376f;
-        float f11 = this.f27735e;
+        float f10 = idVar.f27471f;
+        float f11 = this.f27802e;
         float f12 = (f10 * f11) + f7;
-        float f13 = idVar.f27375e;
+        float f13 = idVar.f27470e;
         float f14 = this.d;
         float f15 = (f13 * f14) + f12;
-        id idVar2 = this.f27747r;
+        id idVar2 = this.f27814r;
         float f16 = idVar2.d;
-        return Math.max(f15, (f14 * idVar2.f27375e) + (f11 * idVar2.f27376f) + f16);
+        return Math.max(f15, (f14 * idVar2.f27470e) + (f11 * idVar2.f27471f) + f16);
     }
 
     public final void d(float f7) {
         float f10;
-        this.f27751w = f7;
+        this.f27818w = f7;
         if (!LiteMode.isEnabled(512)) {
             return;
         }
-        float f11 = this.f27751w - this.v;
+        float f11 = this.f27818w - this.v;
         if (f11 > 0.0f) {
             f10 = 400.0f;
         } else {
             f10 = 500.0f;
         }
-        this.f27752x = f11 / ((f10 * 0.55f) + 100.0f);
+        this.f27819x = f11 / ((f10 * 0.55f) + 100.0f);
     }
 
     @Override
@@ -265,20 +265,20 @@ public final class jd extends Drawable {
         Rect bounds = getBounds();
         if (!bounds.isEmpty() && this.h >= 1.0f) {
             long elapsedRealtime = SystemClock.elapsedRealtime();
-            if (!this.f27750u && this.E >= 1.0f) {
+            if (!this.f27817u && this.E >= 1.0f) {
                 min = 0;
             } else {
-                min = Math.min(40L, Math.max(0L, elapsedRealtime - this.f27749t));
+                min = Math.min(40L, Math.max(0L, elapsedRealtime - this.f27816t));
             }
-            this.f27749t = elapsedRealtime;
+            this.f27816t = elapsedRealtime;
             boolean isEnabled = LiteMode.isEnabled(512);
-            id idVar = this.f27747r;
-            id idVar2 = this.f27746q;
+            id idVar = this.f27814r;
+            id idVar2 = this.f27813q;
             if (isEnabled && min > 0) {
-                float f7 = this.f27751w;
+                float f7 = this.f27818w;
                 float f10 = this.v;
                 if (f7 != f10) {
-                    float f11 = this.f27752x;
+                    float f11 = this.f27819x;
                     float f12 = (((float) min) * f11) + f10;
                     this.v = f12;
                     if (f11 > 0.0f) {
@@ -289,7 +289,7 @@ public final class jd extends Drawable {
                         this.v = f7;
                     }
                 }
-                this.f27748s = a4.a.e((float) min, this.f27736f, 6.2831855f, this.f27748s);
+                this.f27815s = a4.a.e((float) min, this.f27803f, 6.2831855f, this.f27815s);
                 idVar2.d(this.v);
                 idVar.d(this.v);
             }
@@ -310,12 +310,12 @@ public final class jd extends Drawable {
             float exactCenterX = bounds.exactCenterX();
             float exactCenterY = bounds.exactCenterY();
             float f15 = 1.0f - (this.v * 0.7f);
-            float f16 = idVar2.f27376f;
-            float f17 = this.f27735e;
-            float B = com.google.android.gms.internal.vision.e2.B((float) Math.sin(this.f27748s), 0.5f, 0.5f, f16 * f17 * f15);
-            float B2 = com.google.android.gms.internal.vision.e2.B((float) Math.sin(this.f27748s + idVar.f27373b), 0.5f, 0.5f, f17 * idVar.f27376f * f15);
-            b(canvas, this.f27746q, exactCenterX, exactCenterY, B);
-            b(canvas, this.f27747r, exactCenterX, exactCenterY, B2);
+            float f16 = idVar2.f27471f;
+            float f17 = this.f27802e;
+            float B = com.google.android.gms.internal.vision.e2.B((float) Math.sin(this.f27815s), 0.5f, 0.5f, f16 * f17 * f15);
+            float B2 = com.google.android.gms.internal.vision.e2.B((float) Math.sin(this.f27815s + idVar.f27468b), 0.5f, 0.5f, f17 * idVar.f27471f * f15);
+            b(canvas, this.f27813q, exactCenterX, exactCenterY, B);
+            b(canvas, this.f27814r, exactCenterX, exactCenterY, B2);
             if (this.E < 1.0f) {
                 invalidateSelf();
             }
@@ -331,12 +331,12 @@ public final class jd extends Drawable {
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 3) {
-                    d = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20795bh, false);
+                    d = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20800bh, false);
                 } else {
-                    d = i0.a.d(0.5f, i0.a.d(0.5f, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20923ih, false), org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20942jh, false)), org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20962kh, false));
+                    d = i0.a.d(0.5f, i0.a.d(0.5f, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20928ih, false), org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20947jh, false)), org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20967kh, false));
                 }
             } else {
-                d = i0.a.d(0.5f, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Zg, false), org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20776ah, false));
+                d = i0.a.d(0.5f, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Zg, false), org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20781ah, false));
             }
         } else {
             d = i0.a.d(0.5f, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Xg, false), org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Yg, false));
@@ -348,9 +348,9 @@ public final class jd extends Drawable {
         } else {
             this.E = 1.0f;
             this.B = d;
-            id idVar = this.f27746q;
+            id idVar = this.f27813q;
             idVar.h = d;
-            id idVar2 = this.f27747r;
+            id idVar2 = this.f27814r;
             idVar2.h = d;
             idVar.a();
             idVar2.a();
@@ -404,28 +404,28 @@ public final class jd extends Drawable {
             }
             this.h = (bounds.width() / 2.0f) - c10;
             float height = (bounds.height() / 2.0f) - c10;
-            this.f27738i = height;
+            this.f27805i = height;
             float f7 = this.h;
             if (f7 >= 1.0f && height >= 1.0f) {
-                float min2 = Math.min(this.f27732a, Math.min(f7, height));
-                this.f27739j = min2;
+                float min2 = Math.min(this.f27799a, Math.min(f7, height));
+                this.f27806j = min2;
                 float f10 = this.h - min2;
-                this.f27740k = f10;
-                float f11 = this.f27738i - min2;
-                this.f27741l = f11;
+                this.f27807k = f10;
+                float f11 = this.f27805i - min2;
+                this.f27808l = f11;
                 float f12 = f10 * 2.0f;
-                this.f27742m = f12;
+                this.f27809m = f12;
                 float f13 = f11 * 2.0f;
-                this.f27743n = f13;
-                float f14 = this.f27734c * 1.5707964f * min2;
-                this.f27744o = f14;
+                this.f27810n = f13;
+                float f14 = this.f27801c * 1.5707964f * min2;
+                this.f27811o = f14;
                 float f15 = (f13 * 2.0f) + (f12 * 2.0f);
-                this.f27745p = (f14 * 4.0f) + f15;
-                int max = Math.max(12, Math.min(80, Math.round(((min2 * 6.2831855f) + f15) / this.f27733b)));
-                id idVar = this.f27746q;
-                if (max != idVar.f27392x) {
+                this.f27812p = (f14 * 4.0f) + f15;
+                int max = Math.max(12, Math.min(80, Math.round(((min2 * 6.2831855f) + f15) / this.f27800b)));
+                id idVar = this.f27813q;
+                if (max != idVar.f27487x) {
                     idVar.c(max);
-                    this.f27747r.c(max);
+                    this.f27814r.c(max);
                 }
             }
         }
@@ -435,11 +435,11 @@ public final class jd extends Drawable {
     public final void setAlpha(int i10) {
         if (this.G != i10) {
             this.G = i10;
-            id idVar = this.f27746q;
-            idVar.f27393y = i10;
+            id idVar = this.f27813q;
+            idVar.f27488y = i10;
             idVar.a();
-            id idVar2 = this.f27747r;
-            idVar2.f27393y = i10;
+            id idVar2 = this.f27814r;
+            idVar2.f27488y = i10;
             idVar2.a();
             invalidateSelf();
         }
@@ -447,8 +447,8 @@ public final class jd extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f27746q.f27378i.setColorFilter(colorFilter);
-        this.f27747r.f27378i.setColorFilter(colorFilter);
+        this.f27813q.f27473i.setColorFilter(colorFilter);
+        this.f27814r.f27473i.setColorFilter(colorFilter);
         invalidateSelf();
     }
 }

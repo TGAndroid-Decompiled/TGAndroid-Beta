@@ -28,7 +28,7 @@ public final class t0 implements TextView.OnEditorActionListener {
                     if (TextUtils.isEmpty(u0Var.f11352f.getText())) {
                         u0Var.f11358y = null;
                         u0Var.d.b();
-                        u0Var.f11350c.f25250f3.N(true);
+                        u0Var.f11350c.f26034f3.N(true);
                     } else {
                         AndroidUtilities.runOnUIThread(n0Var);
                     }
@@ -47,12 +47,12 @@ public final class t0 implements TextView.OnEditorActionListener {
                 }
                 return false;
             default:
-                yh.g gVar = (yh.g) this.f11326b;
+                yh.h hVar = (yh.h) this.f11326b;
                 if (i10 == 5) {
-                    gVar.k0();
+                    hVar.t0();
                     return true;
                 }
-                gVar.getClass();
+                hVar.getClass();
                 return false;
         }
     }

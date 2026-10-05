@@ -13,7 +13,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.gx0;
+import org.telegram.ui.Components.hx0;
 import org.telegram.ui.Components.oc0;
 import org.telegram.ui.Components.tr;
 public class o6 extends FrameLayout {
@@ -23,29 +23,29 @@ public class o6 extends FrameLayout {
     public static final oc0 J;
     public float E;
     public ValueAnimator F;
-    public boolean f22600a;
-    public final int f22601b;
-    public final n6 f22602c;
+    public boolean f22603a;
+    public final int f22604b;
+    public final n6 f22605c;
     public final ai.z5 d;
-    public final org.telegram.ui.ActionBar.i5 f22603e;
-    public final org.telegram.ui.Components.w9 f22604f;
+    public final org.telegram.ui.ActionBar.i5 f22606e;
+    public final org.telegram.ui.Components.w9 f22607f;
     public final org.telegram.ui.Components.w9 h;
-    public int f22605n;
-    public final org.telegram.ui.Components.h9 f22606r;
-    public final gx0 f22607s;
+    public int f22608n;
+    public final org.telegram.ui.Components.h9 f22609r;
+    public final hx0 f22610s;
     public final org.telegram.ui.ActionBar.d6 v;
-    public final int f22608w;
-    public long f22609x;
-    public final m6 f22610y;
+    public final int f22611w;
+    public long f22612x;
+    public final m6 f22613y;
 
     static {
         int i10 = R.drawable.msg_mini_checks;
-        int i11 = org.telegram.ui.ActionBar.i6.f21209y6;
+        int i11 = org.telegram.ui.ActionBar.i6.f21214y6;
         G = new oc0(i10, i11);
         oc0 oc0Var = new oc0(R.drawable.msg_reactions, i11);
-        oc0Var.f29342g = 16;
+        oc0Var.f29442g = 16;
         oc0Var.h = 16;
-        oc0Var.f29343i = 5.66f;
+        oc0Var.f29443i = 5.66f;
         H = oc0Var;
         int i12 = R.drawable.mini_repost_story;
         int i13 = org.telegram.ui.ActionBar.i6.hk;
@@ -60,12 +60,12 @@ public class o6 extends FrameLayout {
         float f10;
         float f11;
         float f12;
-        this.f22606r = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
+        this.f22609r = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
         this.E = 1.0f;
-        this.f22608w = i10;
-        this.f22601b = i11;
+        this.f22611w = i10;
+        this.f22604b = i11;
         this.v = d6Var;
-        this.f22610y = new m6(this, d6Var);
+        this.f22613y = new m6(this, d6Var);
         setLayoutParams(new s4.p0(-1, AndroidUtilities.dp(50.0f)));
         if (i10 == 1) {
             i12 = 48;
@@ -73,7 +73,7 @@ public class o6 extends FrameLayout {
             i12 = 34;
         }
         n6 n6Var = new n6(this, context, i10);
-        this.f22602c = n6Var;
+        this.f22605c = n6Var;
         float f13 = i12;
         n6Var.setRoundRadius(AndroidUtilities.dp(f13));
         addView(n6Var, w7.z5.i(f13, f13, 8388627, 10.0f, 0.0f, 0.0f, 0.0f));
@@ -106,14 +106,14 @@ public class o6 extends FrameLayout {
             f11 = 55.0f;
         }
         addView(z5Var, w7.z5.i(-1.0f, -2.0f, 55, f11, f10, 12.0f, 0.0f));
-        gx0 gx0Var = new gx0(this);
-        this.f22607s = gx0Var;
+        hx0 hx0Var = new hx0(this);
+        this.f22610s = hx0Var;
         z5Var.setDrawablePadding(AndroidUtilities.dp(3.0f));
-        z5Var.i(gx0Var.f26948a);
+        z5Var.i(hx0Var.f27341a);
         org.telegram.ui.ActionBar.i5 i5Var = new org.telegram.ui.ActionBar.i5(context);
-        this.f22603e = i5Var;
+        this.f22606e = i5Var;
         i5Var.setTextSize(13);
-        i5Var.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21209y6, d6Var));
+        i5Var.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21214y6, d6Var));
         i5Var.setEllipsizeByGradient(true);
         i5Var.setImportantForAccessibility(2);
         i5Var.setTranslationX(LocaleController.isRTL ? AndroidUtilities.dp(30.0f) : 0.0f);
@@ -125,7 +125,7 @@ public class o6 extends FrameLayout {
         addView(i5Var, w7.z5.i(-1.0f, -2.0f, 55, f11, f12, 20.0f, 0.0f));
         if (z11) {
             org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-            this.f22604f = w9Var;
+            this.f22607f = w9Var;
             addView(w9Var, w7.z5.i(24.0f, 24.0f, 8388629, 0.0f, 0.0f, 12.0f, 0.0f));
             org.telegram.ui.Components.w9 w9Var2 = new org.telegram.ui.Components.w9(context);
             this.h = w9Var2;
@@ -173,8 +173,8 @@ public class o6 extends FrameLayout {
             z10 = false;
         }
         super.dispatchDraw(canvas);
-        if (this.f22600a) {
-            if (this.f22608w == 1) {
+        if (this.f22603a) {
+            if (this.f22611w == 1) {
                 f7 = 73.0f;
             } else {
                 f7 = 55.0f;
@@ -204,14 +204,14 @@ public class o6 extends FrameLayout {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f22607s.f26948a.a();
+        this.f22610s.f27341a.a();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f22607s.f26948a.b();
-        this.f22610y.g();
+        this.f22610s.f27341a.b();
+        this.f22613y.g();
     }
 
     @Override
@@ -223,7 +223,7 @@ public class o6 extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         int i12;
-        if (this.f22608w == 0) {
+        if (this.f22611w == 0) {
             i12 = 50;
         } else {
             i12 = 58;
@@ -237,7 +237,7 @@ public class o6 extends FrameLayout {
             return;
         }
         long peerId = MessageObject.getPeerId(messagePeerReaction.peer_id);
-        int i10 = this.f22601b;
+        int i10 = this.f22604b;
         TLRPC.Chat chat = null;
         if (peerId > 0) {
             user = MessagesController.getInstance(i10).getUser(Long.valueOf(peerId));

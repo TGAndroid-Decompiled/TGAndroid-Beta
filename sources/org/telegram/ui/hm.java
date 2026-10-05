@@ -13,7 +13,7 @@ public final class hm extends org.telegram.ui.Components.r6 {
     @Override
     public final void c(Object obj, float f7) {
         ((MessageObject.SendAnimationData) obj).timeAlpha = f7;
-        View view = this.f37121b.f37465b.Q.fragmentView;
+        View view = this.f37121b.f37452b.Q.fragmentView;
         if (view != null) {
             view.invalidate();
         }

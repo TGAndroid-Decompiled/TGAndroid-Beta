@@ -31,7 +31,7 @@ public final class i implements fb.n {
         if (str4 != null) {
             aVar.q("X-CRASHLYTICS-OS-DISPLAY-VERSION", str4);
         }
-        String str5 = dVar.f8190e.b().f48932a;
+        String str5 = dVar.f8190e.b().f48939a;
         if (str5 != null) {
             aVar.q("X-CRASHLYTICS-INSTALLATION-ID", str5);
         }
@@ -87,7 +87,7 @@ public final class i implements fb.n {
     public JSONObject c(aa.b bVar) {
         String str = this.f4210a;
         int i10 = bVar.f390c;
-        t9.b bVar2 = t9.b.f46944a;
+        t9.b bVar2 = t9.b.f46951a;
         bVar2.c("Settings response code was: " + i10);
         if (i10 != 200 && i10 != 201 && i10 != 202 && i10 != 203) {
             String str2 = "Settings request failed; (status: " + i10 + ") from " + str;

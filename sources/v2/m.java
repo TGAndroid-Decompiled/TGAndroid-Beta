@@ -20,23 +20,23 @@ public final class m extends a {
     @Override
     public final void a() {
         b1[] b1VarArr;
-        b0 b0Var = this.f47792r;
-        o0.a aVar = this.f47768x;
+        b0 b0Var = this.f47799r;
+        o0.a aVar = this.f47775x;
         e2.d.h(aVar);
-        for (b1 b1Var : (b1[]) aVar.f16933c) {
+        for (b1 b1Var : (b1[]) aVar.f16938c) {
             if (b1Var.F != 0) {
                 b1Var.F = 0L;
-                b1Var.f47245z = true;
+                b1Var.f47252z = true;
             }
         }
         h0 K = aVar.K(this.E);
         K.b(this.F);
         try {
-            long open = b0Var.open(this.f47787b.b(this.G));
+            long open = b0Var.open(this.f47794b.b(this.G));
             if (open != -1) {
                 open += this.G;
             }
-            c3.l lVar = new c3.l(this.f47792r, this.G, open);
+            c3.l lVar = new c3.l(this.f47799r, this.G, open);
             for (int i10 = 0; i10 != -1; i10 = K.a(lVar, Integer.MAX_VALUE, true)) {
                 this.G += i10;
             }

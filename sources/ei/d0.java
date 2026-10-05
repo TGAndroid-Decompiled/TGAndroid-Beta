@@ -16,7 +16,7 @@ import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.fx0;
+import org.telegram.ui.Components.gx0;
 import org.telegram.ui.Components.kj0;
 public final class d0 extends View {
     public boolean E;
@@ -49,19 +49,19 @@ public final class d0 extends View {
         this.f8984e = kj0Var;
         this.f8986n = LocaleController.getString(R.string.BotsMenuTitle);
         this.E = true;
-        paint.setColor(i6.w0(null, i6.f20812cf, false));
-        int w02 = i6.w0(null, i6.f20849ef, false);
-        a0Var.f20540k = w02;
-        a0Var.f20539j = w02;
+        paint.setColor(i6.w0(null, i6.f20817cf, false));
+        int w02 = i6.w0(null, i6.f20854ef, false);
+        a0Var.f20545k = w02;
+        a0Var.f20544j = w02;
         kj0Var.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
         textPaint.setColor(w02);
-        a0Var.f20543n = true;
+        a0Var.f20548n = true;
         a0Var.h = false;
         a0Var.a(0.0f, false);
         a0Var.setCallback(this);
         textPaint.setTypeface(AndroidUtilities.bold());
-        a0Var.f20532a.setStrokeCap(Paint.Cap.ROUND);
-        a0Var.f20541l = true;
+        a0Var.f20537a.setStrokeCap(Paint.Cap.ROUND);
+        a0Var.f20546l = true;
         int dp = AndroidUtilities.dp(16.0f);
         int w03 = i6.w0(null, i6.Qh, false);
         org.telegram.ui.Cells.z i02 = i6.i0(dp, dp, dp, dp, 0, w03, w03);
@@ -100,7 +100,7 @@ public final class d0 extends View {
             this.F = size;
             CharSequence replaceEmoji = Emoji.replaceEmoji(this.f8986n, textPaint.getFontMetricsInt(), false);
             int i12 = (int) (AndroidUtilities.displaySize.x * 0.6f);
-            StaticLayout c10 = fx0.c(replaceEmoji, textPaint, i12, Layout.Alignment.ALIGN_NORMAL, 0.0f, false, TextUtils.TruncateAt.END, i12, 1, true);
+            StaticLayout c10 = gx0.c(replaceEmoji, textPaint, i12, Layout.Alignment.ALIGN_NORMAL, 0.0f, false, TextUtils.TruncateAt.END, i12, 1, true);
             this.f8987r = c10;
             if (c10.getLineCount() > 0) {
                 f7 = this.f8987r.getLineWidth(0);
@@ -134,7 +134,7 @@ public final class d0 extends View {
                 kj0Var.stop();
                 kj0Var.h = true;
                 if (z10) {
-                    i10 = kj0Var.f28130e[0];
+                    i10 = kj0Var.f28216e[0];
                 }
                 kj0Var.P(i10);
                 kj0Var.start();

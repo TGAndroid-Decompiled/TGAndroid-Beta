@@ -4,53 +4,53 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLMethod;
 import org.telegram.tgnet.TLRPC;
 public final class n9 implements Runnable {
-    public final int f18644a;
-    public final long f18645b;
-    public final int f18646c;
+    public final int f18649a;
+    public final long f18650b;
+    public final int f18651c;
     public final long d;
-    public final Object f18647e;
-    public final Object f18648f;
+    public final Object f18652e;
+    public final Object f18653f;
 
     public n9(int i10, long j3, long j10, org.telegram.ui.ActionBar.f1 f1Var, org.telegram.ui.ActionBar.f1 f1Var2) {
-        this.f18644a = 3;
-        this.f18646c = i10;
-        this.f18645b = j3;
+        this.f18649a = 3;
+        this.f18651c = i10;
+        this.f18650b = j3;
         this.d = j10;
-        this.f18647e = f1Var;
-        this.f18648f = f1Var2;
+        this.f18652e = f1Var;
+        this.f18653f = f1Var2;
     }
 
     @Override
     public final void run() {
         int i10;
-        switch (this.f18644a) {
+        switch (this.f18649a) {
             case 0:
-                int i11 = this.f18646c;
-                ((MediaDataController) this.f18647e).lambda$loadBotInfo$200(this.f18645b, this.d, (Utilities.Callback) this.f18648f, i11);
+                int i11 = this.f18651c;
+                ((MediaDataController) this.f18652e).lambda$loadBotInfo$200(this.f18650b, this.d, (Utilities.Callback) this.f18653f, i11);
                 return;
             case 1:
-                int i12 = this.f18646c;
+                int i12 = this.f18651c;
                 long j3 = this.d;
-                ((MessagesController) this.f18647e).lambda$loadFullChat$67(this.f18645b, (TLRPC.TL_messages_chatFull) this.f18648f, i12, j3);
+                ((MessagesController) this.f18652e).lambda$loadFullChat$67(this.f18650b, (TLRPC.TL_messages_chatFull) this.f18653f, i12, j3);
                 return;
             case 2:
-                int i13 = this.f18646c;
-                ((MessagesStorage) this.f18647e).lambda$loadPendingTasks$20(this.f18645b, this.d, (TLMethod) this.f18648f, i13);
+                int i13 = this.f18651c;
+                ((MessagesStorage) this.f18652e).lambda$loadPendingTasks$20(this.f18650b, this.d, (TLMethod) this.f18653f, i13);
                 return;
             default:
-                org.telegram.ui.ActionBar.f1 f1Var = (org.telegram.ui.ActionBar.f1) this.f18647e;
-                org.telegram.ui.ActionBar.f1 f1Var2 = (org.telegram.ui.ActionBar.f1) this.f18648f;
-                int i14 = this.f18646c;
+                org.telegram.ui.ActionBar.f1 f1Var = (org.telegram.ui.ActionBar.f1) this.f18652e;
+                org.telegram.ui.ActionBar.f1 f1Var2 = (org.telegram.ui.ActionBar.f1) this.f18653f;
+                int i14 = this.f18651c;
                 MessagesController messagesController = MessagesController.getInstance(i14);
-                long j10 = this.f18645b;
+                long j10 = this.f18650b;
                 long j11 = this.d;
                 if (messagesController.isDialogMuted(j10, j11)) {
                     f1Var.g(LocaleController.getString(R.string.UnmuteNotifications), R.drawable.msg_unmute, null);
-                    i10 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21192x6, false);
+                    i10 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21197x6, false);
                     f1Var2.setVisibility(8);
                 } else {
                     f1Var.g(LocaleController.getString(R.string.MuteNotifications), R.drawable.msg_mute, null);
-                    int w02 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21063q7, false);
+                    int w02 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21068q7, false);
                     f1Var2.setVisibility(0);
                     if (MessagesController.getInstance(i14).isDialogNotificationsSoundEnabled(j10, j11)) {
                         f1Var2.g(LocaleController.getString(R.string.SoundOff), R.drawable.msg_tone_off, null);
@@ -66,20 +66,20 @@ public final class n9 implements Runnable {
     }
 
     public n9(BaseController baseController, long j3, long j10, Object obj, int i10, int i11) {
-        this.f18644a = i11;
-        this.f18647e = baseController;
-        this.f18645b = j3;
+        this.f18649a = i11;
+        this.f18652e = baseController;
+        this.f18650b = j3;
         this.d = j10;
-        this.f18648f = obj;
-        this.f18646c = i10;
+        this.f18653f = obj;
+        this.f18651c = i10;
     }
 
     public n9(MessagesController messagesController, long j3, TLRPC.TL_messages_chatFull tL_messages_chatFull, int i10, long j10) {
-        this.f18644a = 1;
-        this.f18647e = messagesController;
-        this.f18645b = j3;
-        this.f18648f = tL_messages_chatFull;
-        this.f18646c = i10;
+        this.f18649a = 1;
+        this.f18652e = messagesController;
+        this.f18650b = j3;
+        this.f18653f = tL_messages_chatFull;
+        this.f18651c = i10;
         this.d = j10;
     }
 }

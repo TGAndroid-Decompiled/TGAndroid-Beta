@@ -1,17 +1,22 @@
 package yh;
-public final class i8 {
-    public float f51442a;
-    public float f51443b;
-    public float f51444c;
-    public float d;
-    public float f51445e;
-    public long f51446f;
-    public long f51447g;
-    public float h;
-    public float f51448i;
-    public final j8 f51449j;
 
-    public i8(j8 j8Var) {
-        this.f51449j = j8Var;
+import android.os.Bundle;
+import org.telegram.ui.yn;
+public final class i8 extends yn {
+    public final boolean Kc;
+    public final r8 Lc;
+
+    public i8(r8 r8Var, Bundle bundle, boolean z10) {
+        super(bundle);
+        this.Lc = r8Var;
+        this.Kc = z10;
+    }
+
+    @Override
+    public final void onFragmentDestroy() {
+        super.onFragmentDestroy();
+        if (!this.Kc) {
+            this.Lc.show();
+        }
     }
 }

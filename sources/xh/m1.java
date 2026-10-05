@@ -5,21 +5,21 @@ import android.graphics.drawable.NinePatchDrawable;
 import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
 public final class m1 {
-    public NinePatchDrawable f50113b;
+    public NinePatchDrawable f50120b;
     public NinePatchDrawable d;
-    public NinePatchDrawable f50116f;
-    public final float[] f50117g;
+    public NinePatchDrawable f50123f;
+    public final float[] f50124g;
     public int h;
-    public int f50118i;
-    public int f50119j;
-    public int f50120k;
-    public final Bitmap[] f50112a = new Bitmap[1];
-    public final Bitmap[] f50114c = new Bitmap[1];
-    public final Bitmap[] f50115e = new Bitmap[1];
+    public int f50125i;
+    public int f50126j;
+    public int f50127k;
+    public final Bitmap[] f50119a = new Bitmap[1];
+    public final Bitmap[] f50121c = new Bitmap[1];
+    public final Bitmap[] f50122e = new Bitmap[1];
 
     public m1() {
         float[] fArr = new float[8];
-        this.f50117g = fArr;
+        this.f50124g = fArr;
         Arrays.fill(fArr, AndroidUtilities.dp(11.0f));
     }
 }

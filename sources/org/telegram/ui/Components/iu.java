@@ -30,15 +30,15 @@ public final class iu extends nz {
         mu muVar = this.Q2;
         if (muVar.b()) {
             int i15 = i13 - i11;
-            if (!this.O2 && muVar.f28719x) {
+            if (!this.O2 && muVar.f28802x) {
                 this.P2 = true;
             }
             if (this.P2 && (i14 = this.N2) > 0 && i15 > 0 && i15 != i14) {
                 setTranslationY(i15 - i14);
-                org.telegram.messenger.bi.r(animate().translationY(0.0f), org.telegram.ui.ActionBar.p1.f21448w, 250L);
+                org.telegram.messenger.bi.r(animate().translationY(0.0f), org.telegram.ui.ActionBar.p1.f21452w, 250L);
                 this.P2 = false;
             }
-            this.O2 = muVar.f28719x;
+            this.O2 = muVar.f28802x;
             this.N2 = i15;
         }
     }

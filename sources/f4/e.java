@@ -14,9 +14,9 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 import w7.g9;
+import z3.l;
 import z3.m;
-import z3.n;
-public final class e implements n {
+public final class e implements m {
     public static final Pattern f9636b = Pattern.compile("^([0-9][0-9]+):([0-9][0-9]):([0-9][0-9])(?:(\\.[0-9]+)|:([0-9][0-9])(?:\\.([0-9]+))?)?$");
     public static final Pattern f9637c = Pattern.compile("^([0-9]+(?:\\.[0-9]+)?)(h|m|s|ms|f|t)$");
     public static final Pattern d = Pattern.compile("^(([0-9]*.)?[0-9]+)(px|em|%)$");
@@ -338,13 +338,8 @@ public final class e implements n {
     }
 
     @Override
-    public final int A() {
-        return 1;
-    }
-
-    @Override
-    public final void F(byte[] bArr, int i10, int i11, m mVar, h hVar) {
-        g9.b(h(i10, i11, bArr), mVar, hVar);
+    public final void E(byte[] bArr, int i10, int i11, l lVar, h hVar) {
+        g9.b(h(i10, i11, bArr), lVar, hVar);
     }
 
     @Override
@@ -431,6 +426,11 @@ public final class e implements n {
         } catch (XmlPullParserException e11) {
             throw new IllegalStateException("Unable to decode source", e11);
         }
+    }
+
+    @Override
+    public final int y() {
+        return 1;
     }
 
     @Override

@@ -1,234 +1,76 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.text.TextUtils;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class bj1 extends org.telegram.ui.Components.yl0 {
-    public final WallpapersListActivity E;
-    public final Context f35129c;
-    public final ArrayList d = new ArrayList();
-    public final HashMap f35130e = new HashMap();
-    public boolean f35131f = true;
-    public String h;
-    public String f35132n;
-    public String f35133r;
-    public int f35134s;
-    public int v;
-    public boolean f35135w;
-    public String f35136x;
-    public g91 f35137y;
+import java.math.BigInteger;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.SecureRandom;
+import java.util.Arrays;
+import javax.crypto.Cipher;
+import javax.crypto.spec.GCMParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+public abstract class bj1 {
+    public static final BigInteger f35159a = new BigInteger("FFFFFFFFFFFFFFFFC90FDAA22168C234C4C6628B80DC1CD129024E088A67CC74020BBEA63B139B22514A08798E3404DDEF9519B3CD3A431B302B0A6DF25F14374FE1356D6D51C245E485B576625E7EC6F44C42E9A637ED6B0BFF5CB6F406B7EDEE386BFB5A899FA5AE9F24117C4B1FE649286651ECE45B3DC2007CB8A163BF0598DA48361C55D39A69163FA8FD24CF5F83655D23DCA3AD961C62F356208552BB9ED529077096966D670C354E4ABC9804F1746C08CA18217C32905E462E36CE3BE39E772C180E86039B2783A2EC07A28FB5C55DF06F4C52C9DE2BCBF6955817183995497CEA956AE515D2261898FA051015728E5A8AACAA68FFFFFFFFFFFFFFFF", 16);
+    public static final BigInteger f35160b = BigInteger.valueOf(2);
+    public static org.telegram.ui.ActionBar.f3 f35161c;
+    public static cf.c d;
 
-    public bj1(WallpapersListActivity wallpapersListActivity, Context context) {
-        this.E = wallpapersListActivity;
-        this.f35129c = context;
+    public static byte[] a(BigInteger bigInteger) {
+        byte[] byteArray = bigInteger.toByteArray();
+        if (byteArray.length == 256) {
+            return byteArray;
+        }
+        if (byteArray.length == 257 && byteArray[0] == 0) {
+            return Arrays.copyOfRange(byteArray, 1, byteArray.length);
+        }
+        if (byteArray.length < 256) {
+            byte[] bArr = new byte[256];
+            System.arraycopy(byteArray, 0, bArr, 256 - byteArray.length, byteArray.length);
+            return bArr;
+        }
+        throw new IllegalStateException("unexpected DH value size " + byteArray.length);
     }
 
-    @Override
-    public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f46535f != 2) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void E(String str, boolean z10) {
-        int i10;
-        if (str != null && this.f35132n != null) {
-            str = a4.a.r(this.f35132n, " ", str, new StringBuilder("#color"));
-        }
-        g91 g91Var = this.f35137y;
-        if (g91Var != null) {
-            AndroidUtilities.cancelRunOnUIThread(g91Var);
-            this.f35137y = null;
-        }
-        boolean isEmpty = TextUtils.isEmpty(str);
-        HashMap hashMap = this.f35130e;
-        ArrayList arrayList = this.d;
-        WallpapersListActivity wallpapersListActivity = this.E;
-        if (isEmpty) {
-            arrayList.clear();
-            hashMap.clear();
-            this.f35131f = true;
-            this.h = null;
-            if (this.f35134s != 0) {
-                i10 = ((org.telegram.ui.ActionBar.n2) wallpapersListActivity).currentAccount;
-                ConnectionsManager.getInstance(i10).cancelRequest(this.f35134s, true);
-                this.f35134s = 0;
+    public static byte[] b(byte[][] bArr) {
+        try {
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+            for (byte[] bArr2 : bArr) {
+                messageDigest.update(bArr2);
             }
-            wallpapersListActivity.L.c();
-        } else {
-            wallpapersListActivity.L.b();
-            if (z10) {
-                arrayList.clear();
-                hashMap.clear();
-                this.f35131f = true;
-                F(str, "", true);
-                this.h = str;
-                l();
-            } else {
-                g91 g91Var2 = new g91(21, this, str);
-                this.f35137y = g91Var2;
-                AndroidUtilities.runOnUIThread(g91Var2, 500L);
-            }
-        }
-        l();
-    }
-
-    public final void F(String str, String str2, boolean z10) {
-        int i10;
-        int i11;
-        int i12;
-        int i13;
-        int i14;
-        int i15;
-        int i16;
-        int i17;
-        int i18;
-        int i19 = this.f35134s;
-        WallpapersListActivity wallpapersListActivity = this.E;
-        if (i19 != 0) {
-            i18 = ((org.telegram.ui.ActionBar.n2) wallpapersListActivity).currentAccount;
-            ConnectionsManager.getInstance(i18).cancelRequest(this.f35134s, true);
-            this.f35134s = 0;
-        }
-        this.f35136x = str;
-        i10 = ((org.telegram.ui.ActionBar.n2) wallpapersListActivity).currentAccount;
-        MessagesController messagesController = MessagesController.getInstance(i10);
-        i11 = ((org.telegram.ui.ActionBar.n2) wallpapersListActivity).currentAccount;
-        TLObject userOrChat = messagesController.getUserOrChat(MessagesController.getInstance(i11).imageSearchBot);
-        if (!(userOrChat instanceof TLRPC.User)) {
-            if (z10 && !this.f35135w) {
-                this.f35135w = true;
-                TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
-                i16 = ((org.telegram.ui.ActionBar.n2) wallpapersListActivity).currentAccount;
-                tL_contacts_resolveUsername.username = MessagesController.getInstance(i16).imageSearchBot;
-                i17 = ((org.telegram.ui.ActionBar.n2) wallpapersListActivity).currentAccount;
-                ConnectionsManager.getInstance(i17).sendRequest(tL_contacts_resolveUsername, new m(this, 25));
-                return;
-            }
-            return;
-        }
-        TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
-        tL_messages_getInlineBotResults.query = sa.e.i("#wallpaper ", str);
-        i12 = ((org.telegram.ui.ActionBar.n2) wallpapersListActivity).currentAccount;
-        tL_messages_getInlineBotResults.bot = MessagesController.getInstance(i12).getInputUser((TLRPC.User) userOrChat);
-        tL_messages_getInlineBotResults.offset = str2;
-        tL_messages_getInlineBotResults.peer = new TLRPC.TL_inputPeerEmpty();
-        int i20 = this.v + 1;
-        this.v = i20;
-        i13 = ((org.telegram.ui.ActionBar.n2) wallpapersListActivity).currentAccount;
-        this.f35134s = ConnectionsManager.getInstance(i13).sendRequest(tL_messages_getInlineBotResults, new ai.i8(this, i20, 7));
-        i14 = ((org.telegram.ui.ActionBar.n2) wallpapersListActivity).currentAccount;
-        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i14);
-        int i21 = this.f35134s;
-        i15 = ((org.telegram.ui.ActionBar.n2) wallpapersListActivity).classGuid;
-        connectionsManager.bindRequestToGuid(i21, i15);
-    }
-
-    @Override
-    public final int h() {
-        if (TextUtils.isEmpty(this.h)) {
-            return 2;
-        }
-        return (int) Math.ceil(this.d.size() / this.E.P);
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (TextUtils.isEmpty(this.h)) {
-            if (i10 == 0) {
-                return 2;
-            }
-            return 1;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        boolean z10;
-        Object obj;
-        int i11 = c1Var.f46535f;
-        View view = c1Var.f46531a;
-        if (i11 != 0) {
-            if (i11 == 2) {
-                ((org.telegram.ui.Cells.v3) view).setText(LocaleController.getString(R.string.SearchByColor));
-                return;
-            }
-            return;
-        }
-        org.telegram.ui.Cells.eb ebVar = (org.telegram.ui.Cells.eb) view;
-        WallpapersListActivity wallpapersListActivity = this.E;
-        int i12 = i10 * wallpapersListActivity.P;
-        ArrayList arrayList = this.d;
-        int ceil = (int) Math.ceil(arrayList.size() / wallpapersListActivity.P);
-        int i13 = wallpapersListActivity.P;
-        boolean z11 = true;
-        if (i12 == 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (i12 / i13 != ceil - 1) {
-            z11 = false;
-        }
-        ebVar.d(i13, z10, z11);
-        for (int i14 = 0; i14 < wallpapersListActivity.P; i14++) {
-            int i15 = i12 + i14;
-            if (i15 < arrayList.size()) {
-                obj = arrayList.get(i15);
-            } else {
-                obj = null;
-            }
-            ebVar.e(wallpapersListActivity.f34618r, obj, "", i14);
+            return messageDigest.digest();
+        } catch (Exception e7) {
+            throw new RuntimeException(e7);
         }
     }
 
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        FrameLayout ljVar;
-        FrameLayout frameLayout;
-        Context context = this.f35129c;
-        if (i10 != 0) {
-            ljVar = null;
-            if (i10 != 1) {
-                if (i10 == 2) {
-                    frameLayout = new org.telegram.ui.Cells.v3(context, null);
-                }
-            } else {
-                ?? zb1Var = new zb1(context, 13, null);
-                zb1Var.setItemAnimator(null);
-                zb1Var.setLayoutAnimation(null);
-                gg.b0 b0Var = new gg.b0(20);
-                zb1Var.setPadding(AndroidUtilities.dp(7.0f), 0, AndroidUtilities.dp(7.0f), 0);
-                zb1Var.setClipToPadding(false);
-                b0Var.j1(0);
-                zb1Var.setLayoutManager(b0Var);
-                zb1Var.setAdapter(new gg.n0(this, 4));
-                zb1Var.setOnItemClickListener(new t21(this, 14));
-                frameLayout = zb1Var;
-            }
-            ljVar = frameLayout;
-        } else {
-            ljVar = new org.telegram.ui.Components.lj(this, context, 2);
-            ljVar.setTag(-33024);
+    public static byte[] c(cf.c cVar, String str, int i10, boolean z10) {
+        byte[] bytes = str.getBytes(StandardCharsets.UTF_8);
+        ByteBuffer allocate = ByteBuffer.allocate(bytes.length + 9);
+        allocate.order(ByteOrder.BIG_ENDIAN);
+        allocate.putInt(bytes.length);
+        allocate.put(bytes);
+        allocate.putInt(i10);
+        allocate.put(z10 ? (byte) 1 : (byte) 0);
+        byte[] array = allocate.array();
+        byte[] bArr = new byte[12];
+        new SecureRandom().nextBytes(bArr);
+        Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
+        cipher.init(1, new SecretKeySpec((byte[]) cVar.f4606e, "AES"), new GCMParameterSpec(128, bArr));
+        byte[] doFinal = cipher.doFinal(array);
+        byte[] bArr2 = new byte[doFinal.length + 28];
+        System.arraycopy((byte[]) cVar.f4604b, 0, bArr2, 0, 16);
+        System.arraycopy(bArr, 0, bArr2, 16, 12);
+        System.arraycopy(doFinal, 0, bArr2, 28, doFinal.length);
+        return bArr2;
+    }
+
+    public static String d(byte[] bArr) {
+        StringBuilder sb2 = new StringBuilder(bArr.length * 2);
+        int length = bArr.length;
+        for (int i10 = 0; i10 < length; i10++) {
+            sb2.append(String.format("%02x", Byte.valueOf(bArr[i10])));
         }
-        if (i10 == 1) {
-            ljVar.setLayoutParams(new s4.p0(-1, AndroidUtilities.dp(60.0f)));
-        } else {
-            ljVar.setLayoutParams(new s4.p0(-1, -2));
-        }
-        return new s4.c1(ljVar);
+        return sb2.toString();
     }
 }

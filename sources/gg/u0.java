@@ -91,8 +91,8 @@ public abstract class u0 extends c {
         int i11;
         TLRPC.TL_messageMediaVenue tL_messageMediaVenue;
         int i12;
-        int i13 = c1Var.f46535f;
-        View view = c1Var.f46531a;
+        int i13 = c1Var.f46542f;
+        View view = c1Var.f46538a;
         boolean z10 = true;
         ArrayList arrayList = this.f10522r;
         if (i13 == 0) {

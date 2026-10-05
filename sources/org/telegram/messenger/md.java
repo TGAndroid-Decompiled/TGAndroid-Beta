@@ -2,16 +2,16 @@ package org.telegram.messenger;
 
 import java.util.function.IntFunction;
 public final class md implements IntFunction {
-    public final int f18571a;
+    public final int f18576a;
 
     public md(int i10) {
-        this.f18571a = i10;
+        this.f18576a = i10;
     }
 
     @Override
     public final Object apply(int i10) {
         int[][] lambda$new$16;
-        switch (this.f18571a) {
+        switch (this.f18576a) {
             case 0:
                 return String.valueOf(i10);
             default:

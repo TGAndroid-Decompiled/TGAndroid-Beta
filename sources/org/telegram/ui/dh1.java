@@ -1,88 +1,51 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.WeakHashMap;
+import android.app.Activity;
+import java.util.ArrayList;
+import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-public final class dh1 extends ViewGroup {
-    public final Paint f35778a;
-    public View f35779b;
-    public boolean f35780c;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class dh1 implements RequestDelegate {
+    public final int f35817a;
+    public final Object f35818b;
+    public final Object f35819c;
+    public final Object d;
+    public final Object f35820e;
+    public final Object f35821f;
+    public final Object f35822g;
 
-    public dh1(Context context) {
-        super(context);
-        this.f35778a = new Paint(1);
-        setClipToPadding(false);
+    public dh1(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, int i10) {
+        this.f35817a = i10;
+        this.f35818b = obj;
+        this.f35819c = obj2;
+        this.d = obj3;
+        this.f35820e = obj4;
+        this.f35821f = obj5;
+        this.f35822g = obj6;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int paddingBottom = getPaddingBottom();
-        float navigationBarThirdButtonsFactor = AndroidUtilities.getNavigationBarThirdButtonsFactor(0.1f, 0.75f, paddingBottom);
-        int w02 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Oh, false);
-        int h = i0.a.h(org.telegram.ui.ActionBar.i6.l1(navigationBarThirdButtonsFactor, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20822d6, false)), w02);
-        Paint paint = this.f35778a;
-        paint.setColor(w02);
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - paddingBottom, paint);
-        paint.setColor(h);
-        canvas.drawRect(0.0f, getMeasuredHeight() - paddingBottom, getMeasuredWidth(), getMeasuredHeight(), paint);
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int childCount = getChildCount();
-        for (int i14 = 0; i14 < childCount; i14++) {
-            View childAt = getChildAt(i14);
-            childAt.layout(0, 0, childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        boolean z10;
-        int i12;
-        View view = this.f35779b;
-        if (view != null && view.getVisibility() == 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        int size = View.MeasureSpec.getSize(i10);
-        if (z10) {
-            i12 = getPaddingBottom() + AndroidUtilities.dp(44.0f);
-        } else {
-            i12 = 0;
-        }
-        setMeasuredDimension(size, i12);
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
-        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(i12, 1073741824);
-        int childCount = getChildCount();
-        for (int i13 = 0; i13 < childCount; i13++) {
-            getChildAt(i13).measure(makeMeasureSpec, makeMeasureSpec2);
-        }
-        if (this.f35780c != z10) {
-            this.f35780c = z10;
-            WeakHashMap weakHashMap = r0.i0.f45603a;
-            r0.y.c(this);
-        }
-    }
-
-    @Override
-    public final void onViewAdded(View view) {
-        super.onViewAdded(view);
-        this.f35779b = view;
-    }
-
-    @Override
-    public final void setPadding(int i10, int i11, int i12, int i13) {
-        super.setPadding(i10, i11, i12, i13);
-        int childCount = getChildCount();
-        for (int i14 = 0; i14 < childCount; i14++) {
-            getChildAt(i14).setPadding(i10, i11, i12, i13);
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f35817a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new ii.k((UserInfoActivity) this.f35818b, tL_error, (TLObject) this.f35819c, (TL_account.TL_birthday) this.d, (TLRPC.UserFull) this.f35820e, tLObject, (int[]) this.f35821f, (ArrayList) this.f35822g));
+                return;
+            case 1:
+                AndroidUtilities.runOnUIThread(new ii.k(tL_error, (tg.v) this.f35818b, tLObject, (List) this.f35819c, (c5.h) this.d, (tg.v) this.f35820e, (org.telegram.ui.ActionBar.n2) this.f35821f, (TLRPC.TL_inputStorePaymentPremiumGiveaway) this.f35822g, 3));
+                return;
+            case 2:
+                AndroidUtilities.runOnUIThread(new ii.k(tL_error, (Utilities.Callback) this.f35818b, tLObject, (List) this.f35819c, (c5.h) this.d, (Utilities.Callback) this.f35820e, (org.telegram.ui.ActionBar.n2) this.f35821f, (TLRPC.TL_inputStorePaymentPremiumGiftCode) this.f35822g, 4));
+                return;
+            case 3:
+                AndroidUtilities.runOnUIThread(new ii.k(tLObject, (c5.o) this.f35818b, (c5.h) this.f35819c, (ai.m0) this.d, (Activity) this.f35820e, (TLRPC.TL_inputStorePaymentStarsGiveaway) this.f35821f, (List) this.f35822g, tL_error, 5));
+                return;
+            default:
+                AndroidUtilities.runOnUIThread(new ii.k(tLObject, (c5.o) this.f35818b, (c5.h) this.f35819c, (org.telegram.ui.Components.r80) this.d, (Activity) this.f35820e, (TLRPC.TL_inputStorePaymentStarsGift) this.f35821f, (List) this.f35822g, tL_error, 6));
+                return;
         }
     }
 }

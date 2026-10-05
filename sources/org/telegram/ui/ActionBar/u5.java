@@ -8,27 +8,27 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 public final class u5 extends Drawable {
-    public final RectF f21565a = new RectF();
-    public final View f21566b;
-    public final View f21567c;
+    public final RectF f21569a = new RectF();
+    public final View f21570b;
+    public final View f21571c;
     public final int d;
-    public final Paint f21568e;
+    public final Paint f21572e;
 
     public u5(View view, View view2, int i10, Paint paint) {
-        this.f21566b = view;
-        this.f21567c = view2;
+        this.f21570b = view;
+        this.f21571c = view2;
         this.d = i10;
-        this.f21568e = paint;
+        this.f21572e = paint;
     }
 
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
-        RectF rectF = this.f21565a;
+        RectF rectF = this.f21569a;
         rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
-        i6.s(this.f21566b, this.f21567c, null);
+        i6.s(this.f21570b, this.f21571c, null);
         float f7 = this.d;
-        Paint paint = this.f21568e;
+        Paint paint = this.f21572e;
         if (paint == null) {
             paint = i6.S0("paintChatActionBackground");
         }

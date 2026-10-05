@@ -6,9 +6,9 @@ public enum u3 {
     BY_DATE(R.string.ResellGiftFilterSortDate),
     BY_NUMBER(R.string.ResellGiftFilterSortNumber);
     
-    public final int f50256a;
+    public final int f50263a;
 
     u3(int i10) {
-        this.f50256a = i10;
+        this.f50263a = i10;
     }
 }

@@ -41,7 +41,7 @@ public final class fe0 implements Runnable {
                 ke0Var.getClass();
                 if (tL_error == null) {
                     TL_account.Password password = (TL_account.Password) tLObject;
-                    ke0Var.f37960s = password;
+                    ke0Var.f37988s = password;
                     TwoStepVerificationActivity.m0(password);
                     ke0Var.o(str2, str);
                     return;
@@ -60,7 +60,7 @@ public final class fe0 implements Runnable {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ug0Var.getParentActivity());
                     alertDialog$Builder.k(LocaleController.getString(R.string.Continue), new pw(18, ke0Var, tLObject));
                     boolean isEmpty = TextUtils.isEmpty(str2);
-                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20372a;
+                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20377a;
                     if (isEmpty) {
                         b2Var.T = LocaleController.getString(R.string.YourPasswordReset);
                     } else {
@@ -75,7 +75,7 @@ public final class fe0 implements Runnable {
                     }
                     return;
                 } else if (tL_error != null) {
-                    ke0Var.f37961w = false;
+                    ke0Var.f37989w = false;
                     if (tL_error.text.startsWith("FLOOD_WAIT")) {
                         int intValue = Utilities.parseInt((CharSequence) tL_error.text).intValue();
                         if (intValue < 60) {

@@ -37,7 +37,7 @@ public final class r0 implements h1 {
     }
 
     @Override
-    public final boolean G(boolean z10) {
+    public final boolean C(boolean z10) {
         return false;
     }
 
@@ -46,7 +46,7 @@ public final class r0 implements h1 {
         e3 e3Var = this.f12608a.h;
         if (e3Var != null) {
             x3 x3Var = e3Var.f12349a;
-            x3.O1(x3Var, i1Var);
+            x3.N1(x3Var, i1Var);
             x3Var.f12770o3.P(i1Var, true);
         }
     }
@@ -56,7 +56,7 @@ public final class r0 implements h1 {
         u0 u0Var = this.f12608a;
         e3 e3Var = u0Var.h;
         if (e3Var != null && u0Var.f12679f != null) {
-            return e3Var.f12349a.U4();
+            return e3Var.f12349a.T4();
         }
         return false;
     }
@@ -73,10 +73,10 @@ public final class r0 implements h1 {
             TL_iv.pageBlockDetails pageblockdetails = (TL_iv.pageBlockDetails) aVar.f12187b;
             if (!pageblockdetails.open) {
                 pageblockdetails.open = true;
-                x3Var.f25250f3.N(true);
+                x3Var.f26034f3.N(true);
             }
             int i10 = indexOf + 1;
-            if (i10 < arrayList.size() && !((a) arrayList.get(i10)).f12192i && !x3.z3((a) arrayList.get(i10))) {
+            if (i10 < arrayList.size() && !((a) arrayList.get(i10)).f12192i && !x3.y3((a) arrayList.get(i10))) {
                 x3Var.post(new p2(x3Var, (a) arrayList.get(i10), 24));
             }
         }
@@ -120,10 +120,10 @@ public final class r0 implements h1 {
     }
 
     @Override
-    public final void x(CharSequence charSequence) {
+    public final void w(CharSequence charSequence) {
         e3 e3Var = this.f12608a.h;
         if (e3Var != null && charSequence != null && charSequence.length() > 0) {
-            e3Var.f12349a.v4(charSequence.toString());
+            e3Var.f12349a.u4(charSequence.toString());
         }
     }
 

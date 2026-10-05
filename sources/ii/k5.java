@@ -27,7 +27,7 @@ public final class k5 implements h1 {
     }
 
     @Override
-    public final boolean G(boolean z10) {
+    public final boolean C(boolean z10) {
         return this.f12491b.s(this.f12490a, z10);
     }
 
@@ -36,7 +36,7 @@ public final class k5 implements h1 {
         d3 d3Var = this.f12491b.E;
         if (d3Var != null) {
             x3 x3Var = d3Var.f12299a;
-            x3.O1(x3Var, i1Var);
+            x3.N1(x3Var, i1Var);
             x3Var.f12770o3.P(i1Var, true);
         }
     }
@@ -46,7 +46,7 @@ public final class k5 implements h1 {
         q5 q5Var = this.f12491b;
         d3 d3Var = q5Var.E;
         if (d3Var != null && q5Var.f12204a != null) {
-            return d3Var.f12299a.U4();
+            return d3Var.f12299a.T4();
         }
         return false;
     }
@@ -98,10 +98,10 @@ public final class k5 implements h1 {
     }
 
     @Override
-    public final void x(CharSequence charSequence) {
+    public final void w(CharSequence charSequence) {
         d3 d3Var = this.f12491b.E;
         if (d3Var != null && charSequence != null && charSequence.length() > 0) {
-            d3Var.f12299a.v4(charSequence.toString());
+            d3Var.f12299a.u4(charSequence.toString());
         }
     }
 

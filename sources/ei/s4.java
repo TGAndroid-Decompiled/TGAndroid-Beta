@@ -14,7 +14,7 @@ import org.telegram.ui.Components.rc;
 import org.telegram.ui.Components.yc;
 import org.telegram.ui.jr0;
 import org.telegram.ui.o6;
-import yh.j5;
+import yh.k5;
 public final class s4 implements Utilities.Callback {
     public final int f9336a;
     public final int f9337b;
@@ -38,7 +38,7 @@ public final class s4 implements Utilities.Callback {
                 org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.f9338c;
                 TLRPC.Chat chat = (TLRPC.Chat) this.d;
                 TLRPC.Chat chat2 = (TLRPC.Chat) obj;
-                n2Var.showDialog(new hi.b(n2Var.getContext(), chat, -chat2.f20042id, new fi.m0(n2Var, this.f9337b, chat2, chat, 0)));
+                n2Var.showDialog(new hi.b(n2Var.getContext(), chat, -chat2.f20047id, new fi.m0(n2Var, this.f9337b, chat2, chat, 0)));
                 return;
             case 2:
                 float f7 = this.f9337b;
@@ -59,23 +59,23 @@ public final class s4 implements Utilities.Callback {
                 xh.s2 s2Var = (xh.s2) this.f9338c;
                 int i11 = this.f9337b;
                 ArrayList arrayList = (ArrayList) obj;
-                org.telegram.ui.ActionBar.n2 n2Var2 = s2Var.f50225a;
-                j5 j5Var = s2Var.f50228e;
-                j5Var.a(i11, arrayList);
+                org.telegram.ui.ActionBar.n2 n2Var2 = s2Var.f50232a;
+                k5 k5Var = s2Var.f50235e;
+                k5Var.a(i11, arrayList);
                 ((xh.o2) this.d).f(true);
                 s2Var.f(true);
                 s2Var.n();
-                TL_stars.TL_starGiftCollection c10 = j5Var.c(i11);
+                TL_stars.TL_starGiftCollection c10 = k5Var.c(i11);
                 if (c10 != null) {
                     if (arrayList.size() > 1) {
                         rc R = yc.a0(n2Var2).R(((TL_stars.SavedStarGift) arrayList.get(0)).gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("Gift2AddedToCollectionMany", arrayList.size(), c10.title)));
-                        R.f30353r = false;
+                        R.f30435r = false;
                         R.j();
                         return;
                     } else if (arrayList.size() == 1) {
                         TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) arrayList.get(0);
-                        rc R2 = yc.a0(n2Var2).R(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2AddedToCollection, yh.x3.D1(savedStarGift.gift), c10.title)));
-                        R2.f30353r = false;
+                        rc R2 = yc.a0(n2Var2).R(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2AddedToCollection, yh.y3.D1(savedStarGift.gift), c10.title)));
+                        R2.f30435r = false;
                         R2.j();
                         return;
                     } else {

@@ -23,10 +23,10 @@ public final class j3 implements b5 {
             uVar.f12670j = i10;
             uVar.f12671k = i11;
         }
-        View B1 = this.f12466c.B1(this.f12465b);
-        if (B1 instanceof w4) {
-            B1.requestLayout();
-            B1.invalidate();
+        View A1 = this.f12466c.A1(this.f12465b);
+        if (A1 instanceof w4) {
+            A1.requestLayout();
+            A1.invalidate();
         }
     }
 
@@ -38,18 +38,18 @@ public final class j3 implements b5 {
         uVar.f12668g = photo;
         uVar.f12663a = 2;
         TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.getPhotoSize());
-        if (closestPhotoSizeWithSize != null && (i10 = closestPhotoSizeWithSize.f20067w) > 0 && (i11 = closestPhotoSizeWithSize.h) > 0) {
+        if (closestPhotoSizeWithSize != null && (i10 = closestPhotoSizeWithSize.f20072w) > 0 && (i11 = closestPhotoSizeWithSize.h) > 0) {
             uVar.f12670j = i10;
             uVar.f12671k = i11;
         }
         a aVar = this.f12465b;
-        TL_iv.PageBlock P3 = x3.P3(aVar, uVar);
-        if (P3 instanceof TL_iv.pageBlockPhoto) {
-            ((TL_iv.pageBlockPhoto) P3).photo_id = photo.f20066id;
+        TL_iv.PageBlock O3 = x3.O3(aVar, uVar);
+        if (O3 instanceof TL_iv.pageBlockPhoto) {
+            ((TL_iv.pageBlockPhoto) O3).photo_id = photo.f20071id;
         }
         x3 x3Var = this.f12466c;
         x3Var.f12761g4.remove(uVar);
-        x3Var.p4(aVar);
+        x3Var.o4(aVar);
         x3Var.f12770o3.onContentChanged();
     }
 
@@ -59,13 +59,13 @@ public final class j3 implements b5 {
         uVar.h = document;
         uVar.f12663a = 2;
         a aVar = this.f12465b;
-        TL_iv.PageBlock P3 = x3.P3(aVar, uVar);
-        if (P3 instanceof TL_iv.pageBlockVideo) {
-            ((TL_iv.pageBlockVideo) P3).video_id = document.f20048id;
+        TL_iv.PageBlock O3 = x3.O3(aVar, uVar);
+        if (O3 instanceof TL_iv.pageBlockVideo) {
+            ((TL_iv.pageBlockVideo) O3).video_id = document.f20053id;
         }
         x3 x3Var = this.f12466c;
         x3Var.f12761g4.remove(uVar);
-        x3Var.p4(aVar);
+        x3Var.o4(aVar);
         x3Var.f12770o3.onContentChanged();
     }
 
@@ -74,10 +74,10 @@ public final class j3 implements b5 {
         this.f12464a.f12667f = f7;
         a aVar = this.f12465b;
         x3 x3Var = this.f12466c;
-        View B1 = x3Var.B1(aVar);
-        if (B1 instanceof w4) {
-            B1.requestLayout();
-            B1.invalidate();
+        View A1 = x3Var.A1(aVar);
+        if (A1 instanceof w4) {
+            A1.requestLayout();
+            A1.invalidate();
         }
         x3Var.f12770o3.onContentChanged();
     }
@@ -88,7 +88,7 @@ public final class j3 implements b5 {
         uVar.f12663a = 3;
         x3 x3Var = this.f12466c;
         x3Var.f12761g4.remove(uVar);
-        x3Var.s4(this.f12465b, uVar);
+        x3Var.r4(this.f12465b, uVar);
         x3Var.f12770o3.onContentChanged();
     }
 

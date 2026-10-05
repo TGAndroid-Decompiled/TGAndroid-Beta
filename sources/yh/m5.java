@@ -1,43 +1,16 @@
 package yh;
+public interface m5 {
+    void a();
 
-import j$.util.Objects;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-public final class m5 {
-    public final long f51636a;
-    public final int f51637b;
+    int b(int i10);
 
-    public m5(long j3, int i10) {
-        this.f51636a = j3;
-        this.f51637b = i10;
-    }
+    int c();
 
-    public static m5 a(int i10, long j3) {
-        return new m5(j3, i10);
-    }
+    void d();
 
-    public static m5 b(MessageObject messageObject) {
-        if (messageObject == null) {
-            return null;
-        }
-        TLRPC.Message message = messageObject.messageOwner;
-        if (message != null && ((message.isThreadMessage || messageObject.isForwardedChannelPost()) && messageObject.messageOwner.fwd_from != null)) {
-            return new m5(messageObject.getFromChatId(), messageObject.messageOwner.fwd_from.saved_from_msg_id);
-        }
-        return new m5(messageObject.getDialogId(), messageObject.getId());
-    }
+    int e();
 
-    public final boolean equals(Object obj) {
-        if (obj instanceof m5) {
-            m5 m5Var = (m5) obj;
-            if (m5Var.f51636a == this.f51636a && m5Var.f51637b == this.f51637b) {
-                return true;
-            }
-        }
-        return false;
-    }
+    Object get(int i10);
 
-    public final int hashCode() {
-        return Objects.hash(Long.valueOf(this.f51636a), Integer.valueOf(this.f51637b));
-    }
+    int indexOf(Object obj);
 }

@@ -1,54 +1,46 @@
 package yh;
 
-import org.telegram.messenger.MessagesStorage;
-public final class v implements MessagesStorage.IntCallback {
-    public final int f52113a;
-    public final Object f52114b;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class v implements Runnable {
+    public final int f52114a;
+    public final Object f52115b;
+    public final Object f52116c;
+    public final Object d;
+    public final Object f52117e;
+    public final Object f52118f;
 
-    public v(Object obj, int i10) {
-        this.f52113a = i10;
-        this.f52114b = obj;
+    public v(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, int i10) {
+        this.f52114a = i10;
+        this.f52116c = obj;
+        this.d = obj2;
+        this.f52117e = obj3;
+        this.f52118f = obj4;
+        this.f52115b = obj5;
     }
 
     @Override
-    public final void run(int i10) {
-        zf.b bVar;
-        zf.b bVar2;
-        zf.b bVar3;
-        switch (this.f52113a) {
-            case 0:
-                a0 a0Var = (a0) this.f52114b;
-                a0Var.getClass();
-                if (i10 == 0) {
-                    bVar = zf.b.f53302a;
-                } else {
-                    bVar = zf.b.f53303b;
-                }
-                a0Var.S(zf.a.i(0L, bVar), true, false, true);
-                a0Var.f51066d0.setText("");
-                return;
-            case 1:
-                e0 e0Var = (e0) this.f52114b;
-                e0Var.getClass();
-                if (i10 == 0) {
-                    bVar2 = zf.b.f53302a;
-                } else {
-                    bVar2 = zf.b.f53303b;
-                }
-                e0Var.q(zf.a.i(0L, bVar2), true, false, true);
-                e0Var.h.setText("");
-                return;
-            default:
-                c3 c3Var = (c3) this.f52114b;
-                c3Var.getClass();
-                if (i10 == 0) {
-                    bVar3 = zf.b.f53302a;
-                } else {
-                    bVar3 = zf.b.f53303b;
-                }
-                c3Var.f51170q = bVar3;
-                c3Var.a(true);
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: yh.v.run():void");
+    }
+
+    public v(u5 u5Var, TLRPC.TL_error tL_error, Utilities.Callback2 callback2, TLObject tLObject, TLRPC.TL_inputInvoiceStars tL_inputInvoiceStars, int i10) {
+        this.f52114a = i10;
+        this.f52116c = u5Var;
+        this.f52115b = tL_error;
+        this.d = callback2;
+        this.f52117e = tLObject;
+        this.f52118f = tL_inputInvoiceStars;
+    }
+
+    public v(u5 u5Var, org.telegram.ui.ActionBar.b2 b2Var, TLObject tLObject, TL_stars.InputSavedStarGift inputSavedStarGift, Utilities.Callback callback) {
+        this.f52114a = 5;
+        this.f52116c = u5Var;
+        this.f52117e = b2Var;
+        this.d = tLObject;
+        this.f52118f = inputSavedStarGift;
+        this.f52115b = callback;
     }
 }

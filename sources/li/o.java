@@ -1,30 +1,19 @@
 package li;
 
-import j$.util.Objects;
+import android.graphics.RectF;
+import android.view.View;
 public final class o {
-    public final boolean f15689a;
-    public final boolean f15690b;
+    public final View f15665a;
+    public final e f15666b;
+    public final RectF f15667c = new RectF();
+    public final RectF d = new RectF();
+    public final RectF f15668e = new RectF();
+    public final RectF f15669f = new RectF();
+    public boolean f15670g;
+    public boolean h;
 
-    public o(boolean z10, boolean z11) {
-        this.f15689a = z10;
-        this.f15690b = z11;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof o)) {
-            return false;
-        }
-        o oVar = (o) obj;
-        if (this.f15689a == oVar.f15689a && this.f15690b == oVar.f15690b) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Objects.hash(Boolean.valueOf(this.f15689a), Boolean.valueOf(this.f15690b));
+    public o(View view, e eVar) {
+        this.f15665a = view;
+        this.f15666b = eVar;
     }
 }

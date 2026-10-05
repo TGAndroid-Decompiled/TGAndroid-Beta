@@ -9,7 +9,7 @@ import android.view.animation.LinearInterpolator;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class i1 extends LinearLayout {
-    public yh.j8 f1060a;
+    public yh.l8 f1060a;
     public final Path f1061b;
     public final Paint f1062c;
     public long d;
@@ -60,12 +60,12 @@ public final class i1 extends LinearLayout {
             canvas2 = canvas;
         }
         if (this.f1060a == null) {
-            this.f1060a = new yh.j8(1, 250);
+            this.f1060a = new yh.l8(1, 250);
         }
         this.f1060a.f(0, 0, getWidth(), getHeight());
-        yh.j8 j8Var = this.f1060a;
-        j8Var.h = 30.0f;
-        j8Var.d();
+        yh.l8 l8Var = this.f1060a;
+        l8Var.h = 30.0f;
+        l8Var.d();
         this.f1060a.b(canvas2, -1, 0.85f);
         invalidate();
         canvas2.restore();

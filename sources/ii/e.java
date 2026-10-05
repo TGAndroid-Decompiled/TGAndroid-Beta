@@ -25,9 +25,9 @@ public final class e implements el, gj {
             TL_iv.pageBlockMap pageblockmap = new TL_iv.pageBlockMap();
             pageblockmap.geo = messageMedia.geo;
             pageblockmap.zoom = 15;
-            pageblockmap.f20265w = 600;
+            pageblockmap.f20270w = 600;
             pageblockmap.h = 400;
-            rVar.f12603r.T1(pageblockmap);
+            rVar.f12603r.S1(pageblockmap);
             rVar.T(true);
             xiVar.dismiss(true);
             return;
@@ -38,7 +38,7 @@ public final class e implements el, gj {
     @Override
     public void j(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j3, boolean z11, long j10) {
         if (!arrayList.isEmpty()) {
-            this.f12305a.f12603r.d2((MessageObject) arrayList.get(0));
+            this.f12305a.f12603r.c2((MessageObject) arrayList.get(0));
         }
         this.f12306b.dismiss(true);
     }

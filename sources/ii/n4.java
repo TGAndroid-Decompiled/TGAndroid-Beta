@@ -34,19 +34,19 @@ import org.telegram.messenger.R;
 import org.telegram.ui.Cells.e9;
 import org.telegram.ui.Cells.p9;
 import org.telegram.ui.Cells.q9;
-import org.telegram.ui.Components.g71;
+import org.telegram.ui.Components.h71;
 import org.telegram.ui.Components.il0;
 import org.telegram.ui.Components.m9;
 import org.telegram.ui.Components.o20;
 import org.telegram.ui.Components.p20;
 import org.telegram.ui.Components.rg0;
 import org.telegram.ui.Components.sm0;
-import org.telegram.ui.Components.u71;
-import org.telegram.ui.Components.xo0;
+import org.telegram.ui.Components.v71;
+import org.telegram.ui.Components.yo0;
 import org.telegram.ui.ThemeActivity;
+import org.telegram.ui.ub1;
 import org.telegram.ui.vt0;
-import org.telegram.ui.wb1;
-public final class n4 implements k0, k2.o, l.w, l.i, k1.f, xo0, le.f, u71, r0.n, me.a, qg.v1, com.google.android.gms.common.api.internal.o, s4.h1, com.google.android.gms.common.api.internal.s, androidx.lifecycle.s0, w2.d {
+public final class n4 implements k0, k2.o, l.w, l.i, k1.f, yo0, le.f, v71, r0.n, me.a, qg.v1, com.google.android.gms.common.api.internal.o, s4.h1, com.google.android.gms.common.api.internal.s, androidx.lifecycle.s0, w2.d {
     public final int f12543a;
     public Object f12544b;
 
@@ -56,743 +56,15 @@ public final class n4 implements k0, k2.o, l.w, l.i, k1.f, xo0, le.f, u71, r0.n,
     }
 
     @Override
-    public void A() {
-        ((FfmpegAudioRenderer) this.f12544b).Z = true;
-    }
-
-    @Override
-    public void C(k2.l lVar) {
+    public void A(k2.l lVar) {
         n4.y yVar = ((FfmpegAudioRenderer) this.f12544b).I;
-        Handler handler = (Handler) yVar.f16644b;
+        Handler handler = (Handler) yVar.f16649b;
         if (handler != null) {
             handler.post(new k2.i(yVar, lVar, 0));
         }
     }
 
-    @Override
-    public androidx.lifecycle.p0 D(Class cls, v1.b bVar) {
-        androidx.lifecycle.m0 m0Var = null;
-        for (v1.c cVar : (v1.c[]) this.f12544b) {
-            if (cVar.f47766a.equals(cls)) {
-                m0Var = new androidx.lifecycle.m0();
-            }
-        }
-        if (m0Var != null) {
-            return m0Var;
-        }
-        throw new IllegalArgumentException("No initializer set for given class ".concat(cls.getName()));
-    }
-
-    @Override
-    public void E(float f7) {
-        vt0 vt0Var = (vt0) this.f12544b;
-        pg.u0.e(vt0Var.P1).k(String.valueOf(pg.m.f44534a.indexOf(vt0Var.W0.getCurrentBrush())), f7);
-        pg.t1 t1Var = vt0Var.K1;
-        t1Var.f44640c = f7;
-        vt0Var.t0(t1Var, null);
-    }
-
-    public void F(int i10, long j3) {
-        u3.d dVar = (u3.d) this.f12544b;
-        if (i10 != 20529) {
-            if (i10 != 20530) {
-                boolean z10 = false;
-                switch (i10) {
-                    case 131:
-                        dVar.d(i10);
-                        dVar.f47524x.f47473e = (int) j3;
-                        return;
-                    case 136:
-                        dVar.d(i10);
-                        u3.c cVar = dVar.f47524x;
-                        if (j3 == 1) {
-                            z10 = true;
-                        }
-                        cVar.X = z10;
-                        return;
-                    case 155:
-                        dVar.L = dVar.l(j3);
-                        return;
-                    case 159:
-                        dVar.d(i10);
-                        dVar.f47524x.Q = (int) j3;
-                        return;
-                    case 176:
-                        dVar.d(i10);
-                        dVar.f47524x.f47481n = (int) j3;
-                        return;
-                    case 179:
-                        dVar.a(i10);
-                        dVar.F.c(dVar.l(j3));
-                        return;
-                    case 186:
-                        dVar.d(i10);
-                        dVar.f47524x.f47482o = (int) j3;
-                        return;
-                    case 215:
-                        dVar.d(i10);
-                        dVar.f47524x.d = (int) j3;
-                        return;
-                    case 231:
-                        dVar.E = dVar.l(j3);
-                        return;
-                    case 238:
-                        dVar.S = (int) j3;
-                        return;
-                    case 241:
-                        if (!dVar.H) {
-                            dVar.a(i10);
-                            dVar.G.c(j3);
-                            dVar.H = true;
-                            return;
-                        }
-                        return;
-                    case 251:
-                        dVar.T = true;
-                        return;
-                    case 16871:
-                        dVar.d(i10);
-                        dVar.f47524x.h = (int) j3;
-                        return;
-                    case 16980:
-                        if (j3 != 3) {
-                            throw b2.s0.a(null, "ContentCompAlgo " + j3 + " not supported");
-                        }
-                        return;
-                    case 17029:
-                        if (j3 < 1 || j3 > 2) {
-                            throw b2.s0.a(null, "DocTypeReadVersion " + j3 + " not supported");
-                        }
-                        return;
-                    case 17143:
-                        if (j3 != 1) {
-                            throw b2.s0.a(null, "EBMLReadVersion " + j3 + " not supported");
-                        }
-                        return;
-                    case 18401:
-                        if (j3 != 5) {
-                            throw b2.s0.a(null, "ContentEncAlgo " + j3 + " not supported");
-                        }
-                        return;
-                    case 18408:
-                        if (j3 != 1) {
-                            throw b2.s0.a(null, "AESSettingsCipherMode " + j3 + " not supported");
-                        }
-                        return;
-                    case 21420:
-                        dVar.A = j3 + dVar.f47520s;
-                        return;
-                    case 21432:
-                        int i11 = (int) j3;
-                        dVar.d(i10);
-                        if (i11 != 0) {
-                            if (i11 != 1) {
-                                if (i11 != 3) {
-                                    if (i11 == 15) {
-                                        dVar.f47524x.f47491y = 3;
-                                        return;
-                                    }
-                                    return;
-                                }
-                                dVar.f47524x.f47491y = 1;
-                                return;
-                            }
-                            dVar.f47524x.f47491y = 2;
-                            return;
-                        }
-                        dVar.f47524x.f47491y = 0;
-                        return;
-                    case 21680:
-                        dVar.d(i10);
-                        dVar.f47524x.f47484q = (int) j3;
-                        return;
-                    case 21682:
-                        dVar.d(i10);
-                        dVar.f47524x.f47486s = (int) j3;
-                        return;
-                    case 21690:
-                        dVar.d(i10);
-                        dVar.f47524x.f47485r = (int) j3;
-                        return;
-                    case 21930:
-                        dVar.d(i10);
-                        u3.c cVar2 = dVar.f47524x;
-                        if (j3 == 1) {
-                            z10 = true;
-                        }
-                        cVar2.W = z10;
-                        return;
-                    case 21938:
-                        dVar.d(i10);
-                        u3.c cVar3 = dVar.f47524x;
-                        cVar3.f47492z = true;
-                        cVar3.f47483p = (int) j3;
-                        return;
-                    case 21998:
-                        dVar.d(i10);
-                        dVar.f47524x.f47475g = (int) j3;
-                        return;
-                    case 22186:
-                        dVar.d(i10);
-                        dVar.f47524x.T = j3;
-                        return;
-                    case 22203:
-                        dVar.d(i10);
-                        dVar.f47524x.U = j3;
-                        return;
-                    case 25188:
-                        dVar.d(i10);
-                        dVar.f47524x.R = (int) j3;
-                        return;
-                    case 30114:
-                        dVar.U = j3;
-                        return;
-                    case 30321:
-                        dVar.d(i10);
-                        int i12 = (int) j3;
-                        if (i12 != 0) {
-                            if (i12 != 1) {
-                                if (i12 != 2) {
-                                    if (i12 == 3) {
-                                        dVar.f47524x.f47487t = 3;
-                                        return;
-                                    }
-                                    return;
-                                }
-                                dVar.f47524x.f47487t = 2;
-                                return;
-                            }
-                            dVar.f47524x.f47487t = 1;
-                            return;
-                        }
-                        dVar.f47524x.f47487t = 0;
-                        return;
-                    case 2352003:
-                        dVar.d(i10);
-                        dVar.f47524x.f47474f = (int) j3;
-                        return;
-                    case 2807729:
-                        dVar.f47521t = j3;
-                        return;
-                    default:
-                        switch (i10) {
-                            case 21945:
-                                dVar.d(i10);
-                                int i13 = (int) j3;
-                                if (i13 != 1) {
-                                    if (i13 == 2) {
-                                        dVar.f47524x.C = 1;
-                                        return;
-                                    }
-                                    return;
-                                }
-                                dVar.f47524x.C = 2;
-                                return;
-                            case 21946:
-                                dVar.d(i10);
-                                int g10 = b2.j.g((int) j3);
-                                if (g10 != -1) {
-                                    dVar.f47524x.B = g10;
-                                    return;
-                                }
-                                return;
-                            case 21947:
-                                dVar.d(i10);
-                                dVar.f47524x.f47492z = true;
-                                int f7 = b2.j.f((int) j3);
-                                if (f7 != -1) {
-                                    dVar.f47524x.A = f7;
-                                    return;
-                                }
-                                return;
-                            case 21948:
-                                dVar.d(i10);
-                                dVar.f47524x.D = (int) j3;
-                                return;
-                            case 21949:
-                                dVar.d(i10);
-                                dVar.f47524x.E = (int) j3;
-                                return;
-                            default:
-                                return;
-                        }
-                }
-            } else if (j3 != 1) {
-                throw b2.s0.a(null, "ContentEncodingScope " + j3 + " not supported");
-            }
-        } else if (j3 == 0) {
-        } else {
-            throw b2.s0.a(null, "ContentEncodingOrder " + j3 + " not supported");
-        }
-    }
-
-    public boolean G(android.view.MotionEvent r22) {
-        throw new UnsupportedOperationException("Method not decompiled: ii.n4.G(android.view.MotionEvent):boolean");
-    }
-
-    public void I() {
-        ArrayDeque arrayDeque = (ArrayDeque) this.f12544b;
-        if (arrayDeque.isEmpty()) {
-            return;
-        }
-        int size = arrayDeque.size();
-        long O = O();
-        throw new IOException("data item not completed, stackSize: " + size + " scope: " + O);
-    }
-
-    @Override
-    public q9 J() {
-        o4 o4Var = ((q4) this.f12544b).G;
-        if (o4Var != null) {
-            return ((t3) o4Var).f12658a.getTextSelectionHelper();
-        }
-        return null;
-    }
-
-    @Override
-    public void K(k2.l lVar) {
-        n4.y yVar = ((FfmpegAudioRenderer) this.f12544b).I;
-        Handler handler = (Handler) yVar.f16644b;
-        if (handler != null) {
-            handler.post(new k2.i(yVar, lVar, 1));
-        }
-    }
-
-    public void L(long j3) {
-        long O = O();
-        if (O != j3) {
-            if (O != -1) {
-                if (O == -2) {
-                    O = -2;
-                } else {
-                    return;
-                }
-            }
-            StringBuilder u10 = a4.a.u(j3, "expected non-string scope or scope ", " but found ");
-            u10.append(O);
-            throw new IOException(u10.toString());
-        }
-    }
-
-    @Override
-    public boolean M(l.k kVar, MenuItem menuItem) {
-        ((Toolbar) this.f12544b).getClass();
-        return false;
-    }
-
-    @Override
-    public void N(CharSequence charSequence) {
-        o4 o4Var = ((q4) this.f12544b).G;
-        if (o4Var != null) {
-            t3 t3Var = (t3) o4Var;
-            t3Var.getClass();
-            if (charSequence != null && charSequence.length() > 0) {
-                t3Var.f12658a.v4(charSequence.toString());
-            }
-        }
-    }
-
-    public long O() {
-        ArrayDeque arrayDeque = (ArrayDeque) this.f12544b;
-        if (arrayDeque.isEmpty()) {
-            return 0L;
-        }
-        return ((Long) arrayDeque.peek()).longValue();
-    }
-
-    @Override
-    public r0.l1 Q0(View view, r0.l1 l1Var) {
-        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
-        sm0 sm0Var = (sm0) this.f12544b;
-        sm0Var.v.setPadding(defaultWindowInsets.f11526a, defaultWindowInsets.f11527b, defaultWindowInsets.f11528c, defaultWindowInsets.d);
-        sm0Var.f30830s.requestLayout();
-        return r0.l1.f45616b;
-    }
-
-    @Override
-    public p9 R() {
-        return (q4) this.f12544b;
-    }
-
-    @Override
-    public a T() {
-        return ((q4) this.f12544b).f12204a;
-    }
-
-    @Override
-    public boolean W() {
-        q4 q4Var = (q4) this.f12544b;
-        o4 o4Var = q4Var.G;
-        if (o4Var != null) {
-            a aVar = q4Var.f12204a;
-            if (((t3) o4Var).f12658a.U4()) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public void Y(float f7, boolean z10) {
-        wb1 wb1Var = (wb1) ((org.telegram.ui.Cells.k0) this.f12544b);
-        int i10 = (int) (org.telegram.ui.ActionBar.i6.f21056q * 100.0f);
-        int i11 = (int) (f7 * 100.0f);
-        org.telegram.ui.ActionBar.i6.f21056q = f7;
-        if (i10 != i11) {
-            ThemeActivity themeActivity = wb1Var.f42059e.f35064e;
-            il0 il0Var = (il0) themeActivity.f34528b.K(themeActivity.f34536f0);
-            if (il0Var != null) {
-                ((e9) il0Var.f46531a).setText(LocaleController.formatString("AutoNightBrightnessInfo", R.string.AutoNightBrightnessInfo, Integer.valueOf((int) (org.telegram.ui.ActionBar.i6.f21056q * 100.0f))));
-            }
-            org.telegram.ui.ActionBar.i6.E(true);
-        }
-    }
-
-    @Override
-    public void Z(int i10, int i11) {
-        q4 q4Var = (q4) this.f12544b;
-        o4 o4Var = q4Var.G;
-        if (o4Var != null) {
-            a aVar = q4Var.f12204a;
-            i2 i2Var = ((t3) o4Var).f12658a.Q3;
-            if (i2Var != null) {
-                i2Var.f(i10, i11);
-            }
-        }
-    }
-
-    @Override
-    public void accept(Object obj, Object obj2) {
-        switch (this.f12543a) {
-            case 25:
-                s6.f fVar = new s6.f(1, (TaskCompletionSource) obj2);
-                s6.e eVar = (s6.e) ((s6.h) obj).u();
-                Parcel I0 = eVar.I0();
-                k7.a.d(I0, fVar);
-                k7.a.c(I0, (s6.a) this.f12544b);
-                I0.writeStrongBinder(null);
-                eVar.J0(I0, 2);
-                return;
-            default:
-                v8.e eVar2 = (v8.e) this.f12544b;
-                e8.b bVar = (e8.b) obj;
-                bVar.getClass();
-                e8.a aVar = new e8.a(1, (TaskCompletionSource) obj2);
-                try {
-                    e8.i iVar = (e8.i) bVar.u();
-                    Bundle G = bVar.G();
-                    Parcel obtain = Parcel.obtain();
-                    obtain.writeInterfaceToken("com.google.android.gms.wallet.internal.IOwService");
-                    int i10 = e8.c.f8707a;
-                    obtain.writeInt(1);
-                    eVar2.writeToParcel(obtain, 0);
-                    obtain.writeInt(1);
-                    G.writeToParcel(obtain, 0);
-                    obtain.writeStrongBinder(aVar);
-                    iVar.f8715a.transact(14, obtain, null, 1);
-                    obtain.recycle();
-                    return;
-                } catch (RemoteException e7) {
-                    Log.e("WalletClientImpl", "RemoteException during isReadyToPay", e7);
-                    Bundle bundle = Bundle.EMPTY;
-                    v7.g5.a(Status.h, Boolean.FALSE, aVar.f8706b);
-                    return;
-                }
-        }
-    }
-
-    @Override
-    public void b(i1 i1Var) {
-        o4 o4Var = ((q4) this.f12544b).G;
-        if (o4Var != null) {
-            x3 x3Var = ((t3) o4Var).f12658a;
-            x3.O1(x3Var, i1Var);
-            x3Var.f12770o3.P(i1Var, true);
-        }
-    }
-
-    @Override
-    public void c(l.k kVar, boolean z10) {
-        if (kVar instanceof l.d0) {
-            ((l.d0) kVar).f15147z.k().c(false);
-        }
-        l.w wVar = ((m.h) this.f12544b).f15751e;
-        if (wVar != null) {
-            wVar.c(kVar, z10);
-        }
-    }
-
-    @Override
-    public void d(long j3) {
-        n4.y yVar = ((FfmpegAudioRenderer) this.f12544b).I;
-        Handler handler = (Handler) yVar.f16644b;
-        if (handler != null) {
-            handler.post(new ai.j(yVar, j3, 12));
-        }
-    }
-
-    @Override
-    public int e(View view) {
-        return s4.o0.z(view) - ((ViewGroup.MarginLayoutParams) ((s4.p0) view.getLayoutParams())).topMargin;
-    }
-
-    @Override
-    public androidx.lifecycle.p0 f(Class cls) {
-        throw new UnsupportedOperationException("Factory.create(String) is unsupported.  This Factory requires `CreationExtras` to be passed into `create` method.");
-    }
-
-    @Override
-    public boolean forceEnableVibration() {
-        return false;
-    }
-
-    @Override
-    public void g() {
-        q4 q4Var = (q4) this.f12544b;
-        o4 o4Var = q4Var.G;
-        if (o4Var != null) {
-            x3.R1(((t3) o4Var).f12658a, q4Var.f12204a);
-        }
-    }
-
-    @Override
-    public void g0() {
-        q4 q4Var = (q4) this.f12544b;
-        o4 o4Var = q4Var.G;
-        if (o4Var != null) {
-            a aVar = q4Var.f12204a;
-            x3 x3Var = ((t3) o4Var).f12658a;
-            i2 i2Var = x3Var.Q3;
-            if (i2Var != null) {
-                i2Var.g();
-            }
-            x3Var.f12770o3.onContentChanged();
-        }
-    }
-
-    @Override
-    public float get() {
-        vt0 vt0Var = (vt0) this.f12544b;
-        int i10 = vt0Var.P1;
-        pg.m currentBrush = vt0Var.W0.getCurrentBrush();
-        if (currentBrush == null) {
-            return pg.u0.e(i10).f44653i;
-        }
-        return pg.u0.e(i10).f(String.valueOf(pg.m.f44534a.indexOf(currentBrush)), currentBrush.d());
-    }
-
-    @Override
-    public CharSequence getContentDescription() {
-        return " ";
-    }
-
-    @Override
-    public ce.b getData() {
-        return ((k1.a0) this.f12544b).f14289c;
-    }
-
-    @Override
-    public long getLongPressDuration() {
-        return ViewConfiguration.getLongPressTimeout();
-    }
-
-    @Override
-    public boolean i() {
-        return false;
-    }
-
-    @Override
-    public boolean ignoreHapticFeedbackSettings(float f7, float f10) {
-        return false;
-    }
-
-    @Override
-    public void invalidate() {
-        ((rg0) this.f12544b).h.invalidate();
-    }
-
-    @Override
-    public boolean j(float f7) {
-        return false;
-    }
-
-    @Override
-    public int l() {
-        return ((s4.o0) this.f12544b).G();
-    }
-
-    @Override
-    public void m() {
-        ((FfmpegAudioRenderer) this.f12544b).f2868f0 = true;
-    }
-
-    @Override
-    public int n() {
-        s4.o0 o0Var = (s4.o0) this.f12544b;
-        return o0Var.f46645n - o0Var.C();
-    }
-
-    @Override
-    public boolean needCancelTouchBySlopMove() {
-        return true;
-    }
-
-    @Override
-    public boolean needClickAt(View view, float f7, float f10) {
-        int dp = AndroidUtilities.dp(9.0f);
-        g71 g71Var = (g71) this.f12544b;
-        float f11 = -dp;
-        g71Var.f26700g.inset(f11, f11);
-        boolean contains = g71Var.f26700g.contains(f7, f10);
-        float f12 = dp;
-        g71Var.f26700g.inset(f12, f12);
-        return contains;
-    }
-
-    @Override
-    public boolean needLongPress(float f7, float f10) {
-        return false;
-    }
-
-    @Override
-    public void onAudioSessionIdChanged(int i10) {
-        n4.y yVar = ((FfmpegAudioRenderer) this.f12544b).I;
-        Handler handler = (Handler) yVar.f16644b;
-        if (handler != null) {
-            handler.post(new o8(yVar, i10, 11));
-        }
-    }
-
-    @Override
-    public void onClickAt(View view, float f7, float f10) {
-        Runnable runnable = ((g71) this.f12544b).f26702j;
-        if (runnable != null) {
-            runnable.run();
-        }
-    }
-
-    @Override
-    public void onClickTouchDown(View view, float f7, float f10) {
-        ((g71) this.f12544b).h.c(true);
-    }
-
-    @Override
-    public void onClickTouchUp(View view, float f7, float f10) {
-        ((g71) this.f12544b).h.c(false);
-    }
-
-    @Override
-    public boolean onLongPressRequestedAt(View view, float f7, float f10) {
-        return false;
-    }
-
-    @Override
-    public void onSkipSilenceEnabledChanged(boolean z10) {
-        n4.y yVar = ((FfmpegAudioRenderer) this.f12544b).I;
-        Handler handler = (Handler) yVar.f16644b;
-        if (handler != null) {
-            handler.post(new bi.f(7, yVar, z10));
-        }
-    }
-
-    @Override
-    public View p(int i10) {
-        return ((s4.o0) this.f12544b).q(i10);
-    }
-
-    @Override
-    public int p0() {
-        return 0;
-    }
-
-    @Override
-    public void q(Object obj) {
-        ((g8.c) obj).onLocationResult((LocationResult) this.f12544b);
-    }
-
-    @Override
-    public int r(View view) {
-        return s4.o0.v(view) + ((ViewGroup.MarginLayoutParams) ((s4.p0) view.getLayoutParams())).bottomMargin;
-    }
-
-    @Override
-    public void s(int i10, long j3, long j10) {
-        n4.y yVar = ((FfmpegAudioRenderer) this.f12544b).I;
-        Handler handler = (Handler) yVar.f16644b;
-        if (handler != null) {
-            handler.post(new k2.j(yVar, i10, j3, j10, 0));
-        }
-    }
-
-    @Override
-    public Object t(rd.p pVar, kd.c cVar) {
-        return ((k1.a0) this.f12544b).t(new n1.c(pVar, null, 0), cVar);
-    }
-
-    public String toString() {
-        switch (this.f12543a) {
-            case 22:
-                re.b bVar = re.b.f46016e;
-                StringBuffer stringBuffer = new StringBuffer();
-                stringBuffer.append("method-execution".substring(7));
-                stringBuffer.append("(");
-                stringBuffer.append(((ra.a) this.f12544b).n());
-                stringBuffer.append(")");
-                return stringBuffer.toString();
-            default:
-                return super.toString();
-        }
-    }
-
-    @Override
-    public void u() {
-        x2.p pVar;
-        FfmpegAudioRenderer ffmpegAudioRenderer = (FfmpegAudioRenderer) this.f12544b;
-        synchronized (ffmpegAudioRenderer.f11594a) {
-            pVar = ffmpegAudioRenderer.H;
-        }
-        if (pVar != null) {
-            pVar.h();
-        }
-    }
-
-    @Override
-    public boolean v(l.k kVar) {
-        m.h hVar = (m.h) this.f12544b;
-        if (kVar == hVar.f15750c) {
-            return false;
-        }
-        ((l.d0) kVar).A.getClass();
-        hVar.getClass();
-        l.w wVar = hVar.f15751e;
-        if (wVar == null) {
-            return false;
-        }
-        return wVar.v(kVar);
-    }
-
-    @Override
-    public void v0() {
-        q4 q4Var = (q4) this.f12544b;
-        o4 o4Var = q4Var.G;
-        if (o4Var != null) {
-            a aVar = q4Var.f12204a;
-            x3.Q1(((t3) o4Var).f12658a);
-        }
-    }
-
-    @Override
-    public void w(Exception exc) {
-        e2.a.f("DecoderAudioRenderer", "Audio sink error", exc);
-        n4.y yVar = ((FfmpegAudioRenderer) this.f12544b).I;
-        Handler handler = (Handler) yVar.f16644b;
-        if (handler != null) {
-            handler.post(new k2.g(yVar, exc, 1));
-        }
-    }
-
-    public void x(int i10, int i11, c3.p pVar) {
+    public void C(int i10, int i11, c3.p pVar) {
         char c10;
         char c11;
         long j3;
@@ -803,10 +75,10 @@ public final class n4 implements k0, k2.o, l.w, l.i, k1.f, xo0, le.f, u71, r0.n,
         byte[] bArr;
         int i16;
         u3.d dVar = (u3.d) this.f12544b;
-        u3.e eVar = dVar.f47501b;
-        SparseArray sparseArray = dVar.f47503c;
-        e2.v vVar = dVar.f47512k;
-        e2.v vVar2 = dVar.f47510i;
+        u3.e eVar = dVar.f47508b;
+        SparseArray sparseArray = dVar.f47510c;
+        e2.v vVar = dVar.f47519k;
+        e2.v vVar2 = dVar.f47517i;
         int i17 = 1;
         int i18 = 0;
         if (i10 != 161 && i10 != 163) {
@@ -819,7 +91,7 @@ public final class n4 implements k0, k2.o, l.w, l.i, k1.f, xo0, le.f, u71, r0.n,
                                     if (i10 == 30322) {
                                         dVar.d(i10);
                                         byte[] bArr2 = new byte[i11];
-                                        dVar.f47524x.f47490x = bArr2;
+                                        dVar.f47531x.f47497x = bArr2;
                                         pVar.readFully(bArr2, 0, i11);
                                         return;
                                     }
@@ -827,30 +99,30 @@ public final class n4 implements k0, k2.o, l.w, l.i, k1.f, xo0, le.f, u71, r0.n,
                                 }
                                 dVar.d(i10);
                                 byte[] bArr3 = new byte[i11];
-                                dVar.f47524x.f47479l = bArr3;
+                                dVar.f47531x.f47486l = bArr3;
                                 pVar.readFully(bArr3, 0, i11);
                                 return;
                             }
                             Arrays.fill(vVar.f8590a, (byte) 0);
                             pVar.readFully(vVar.f8590a, 4 - i11, i11);
                             vVar.J(0);
-                            dVar.f47526z = (int) vVar.z();
+                            dVar.f47533z = (int) vVar.z();
                             return;
                         }
                         byte[] bArr4 = new byte[i11];
                         pVar.readFully(bArr4, 0, i11);
                         dVar.d(i10);
-                        dVar.f47524x.f47478k = new c3.g0(1, 0, 0, bArr4);
+                        dVar.f47531x.f47485k = new c3.g0(1, 0, 0, bArr4);
                         return;
                     }
                     dVar.d(i10);
                     byte[] bArr5 = new byte[i11];
-                    dVar.f47524x.f47477j = bArr5;
+                    dVar.f47531x.f47484j = bArr5;
                     pVar.readFully(bArr5, 0, i11);
                     return;
                 }
                 dVar.d(i10);
-                u3.c cVar = dVar.f47524x;
+                u3.c cVar = dVar.f47531x;
                 int i19 = cVar.h;
                 if (i19 != 1685485123 && i19 != 1685480259) {
                     pVar.o(i11);
@@ -863,8 +135,8 @@ public final class n4 implements k0, k2.o, l.w, l.i, k1.f, xo0, le.f, u71, r0.n,
             } else if (dVar.J == 2) {
                 u3.c cVar2 = (u3.c) sparseArray.get(dVar.P);
                 int i20 = dVar.S;
-                e2.v vVar3 = dVar.f47517p;
-                if (i20 == 4 && "V_VP9".equals(cVar2.f47472c)) {
+                e2.v vVar3 = dVar.f47524p;
+                if (i20 == 4 && "V_VP9".equals(cVar2.f47479c)) {
                     vVar3.G(i11);
                     pVar.readFully(vVar3.f8590a, 0, i11);
                     return;
@@ -877,7 +149,7 @@ public final class n4 implements k0, k2.o, l.w, l.i, k1.f, xo0, le.f, u71, r0.n,
         }
         if (dVar.J == 0) {
             dVar.P = (int) eVar.b(pVar, false, true, 8);
-            dVar.Q = eVar.f47529c;
+            dVar.Q = eVar.f47536c;
             dVar.L = -9223372036854775807L;
             dVar.J = 1;
             vVar2.G(0);
@@ -1015,7 +287,7 @@ public final class n4 implements k0, k2.o, l.w, l.i, k1.f, xo0, le.f, u71, r0.n,
             c11 = 0;
             int i36 = vVar2.f8590a[c10] & 255;
             dVar.K = dVar.l(i36 | (bArr[c11] << 8)) + dVar.E;
-            if (cVar3.f47473e != 2 && (i10 != 163 || (vVar2.f8590a[2] & 128) != 128)) {
+            if (cVar3.f47480e != 2 && (i10 != 163 || (vVar2.f8590a[2] & 128) != 128)) {
                 i16 = 0;
             } else {
                 i16 = 1;
@@ -1028,7 +300,7 @@ public final class n4 implements k0, k2.o, l.w, l.i, k1.f, xo0, le.f, u71, r0.n,
             while (true) {
                 int i37 = dVar.M;
                 if (i37 < dVar.N) {
-                    dVar.e(cVar3, ((dVar.M * cVar3.f47474f) / 1000) + dVar.K, dVar.R, dVar.n(pVar, cVar3, dVar.O[i37], false), 0);
+                    dVar.e(cVar3, ((dVar.M * cVar3.f47481f) / 1000) + dVar.K, dVar.R, dVar.n(pVar, cVar3, dVar.O[i37], false), 0);
                     dVar.M++;
                 } else {
                     dVar.J = 0;
@@ -1050,7 +322,720 @@ public final class n4 implements k0, k2.o, l.w, l.i, k1.f, xo0, le.f, u71, r0.n,
     }
 
     @Override
-    public void y(l.k kVar) {
+    public void E(k2.l lVar) {
+        n4.y yVar = ((FfmpegAudioRenderer) this.f12544b).I;
+        Handler handler = (Handler) yVar.f16649b;
+        if (handler != null) {
+            handler.post(new k2.i(yVar, lVar, 1));
+        }
+    }
+
+    public void F(int i10, long j3) {
+        u3.d dVar = (u3.d) this.f12544b;
+        if (i10 != 20529) {
+            if (i10 != 20530) {
+                boolean z10 = false;
+                switch (i10) {
+                    case 131:
+                        dVar.d(i10);
+                        dVar.f47531x.f47480e = (int) j3;
+                        return;
+                    case 136:
+                        dVar.d(i10);
+                        u3.c cVar = dVar.f47531x;
+                        if (j3 == 1) {
+                            z10 = true;
+                        }
+                        cVar.X = z10;
+                        return;
+                    case 155:
+                        dVar.L = dVar.l(j3);
+                        return;
+                    case 159:
+                        dVar.d(i10);
+                        dVar.f47531x.Q = (int) j3;
+                        return;
+                    case 176:
+                        dVar.d(i10);
+                        dVar.f47531x.f47488n = (int) j3;
+                        return;
+                    case 179:
+                        dVar.a(i10);
+                        dVar.F.c(dVar.l(j3));
+                        return;
+                    case 186:
+                        dVar.d(i10);
+                        dVar.f47531x.f47489o = (int) j3;
+                        return;
+                    case 215:
+                        dVar.d(i10);
+                        dVar.f47531x.d = (int) j3;
+                        return;
+                    case 231:
+                        dVar.E = dVar.l(j3);
+                        return;
+                    case 238:
+                        dVar.S = (int) j3;
+                        return;
+                    case 241:
+                        if (!dVar.H) {
+                            dVar.a(i10);
+                            dVar.G.c(j3);
+                            dVar.H = true;
+                            return;
+                        }
+                        return;
+                    case 251:
+                        dVar.T = true;
+                        return;
+                    case 16871:
+                        dVar.d(i10);
+                        dVar.f47531x.h = (int) j3;
+                        return;
+                    case 16980:
+                        if (j3 != 3) {
+                            throw b2.s0.a(null, "ContentCompAlgo " + j3 + " not supported");
+                        }
+                        return;
+                    case 17029:
+                        if (j3 < 1 || j3 > 2) {
+                            throw b2.s0.a(null, "DocTypeReadVersion " + j3 + " not supported");
+                        }
+                        return;
+                    case 17143:
+                        if (j3 != 1) {
+                            throw b2.s0.a(null, "EBMLReadVersion " + j3 + " not supported");
+                        }
+                        return;
+                    case 18401:
+                        if (j3 != 5) {
+                            throw b2.s0.a(null, "ContentEncAlgo " + j3 + " not supported");
+                        }
+                        return;
+                    case 18408:
+                        if (j3 != 1) {
+                            throw b2.s0.a(null, "AESSettingsCipherMode " + j3 + " not supported");
+                        }
+                        return;
+                    case 21420:
+                        dVar.A = j3 + dVar.f47527s;
+                        return;
+                    case 21432:
+                        int i11 = (int) j3;
+                        dVar.d(i10);
+                        if (i11 != 0) {
+                            if (i11 != 1) {
+                                if (i11 != 3) {
+                                    if (i11 == 15) {
+                                        dVar.f47531x.f47498y = 3;
+                                        return;
+                                    }
+                                    return;
+                                }
+                                dVar.f47531x.f47498y = 1;
+                                return;
+                            }
+                            dVar.f47531x.f47498y = 2;
+                            return;
+                        }
+                        dVar.f47531x.f47498y = 0;
+                        return;
+                    case 21680:
+                        dVar.d(i10);
+                        dVar.f47531x.f47491q = (int) j3;
+                        return;
+                    case 21682:
+                        dVar.d(i10);
+                        dVar.f47531x.f47493s = (int) j3;
+                        return;
+                    case 21690:
+                        dVar.d(i10);
+                        dVar.f47531x.f47492r = (int) j3;
+                        return;
+                    case 21930:
+                        dVar.d(i10);
+                        u3.c cVar2 = dVar.f47531x;
+                        if (j3 == 1) {
+                            z10 = true;
+                        }
+                        cVar2.W = z10;
+                        return;
+                    case 21938:
+                        dVar.d(i10);
+                        u3.c cVar3 = dVar.f47531x;
+                        cVar3.f47499z = true;
+                        cVar3.f47490p = (int) j3;
+                        return;
+                    case 21998:
+                        dVar.d(i10);
+                        dVar.f47531x.f47482g = (int) j3;
+                        return;
+                    case 22186:
+                        dVar.d(i10);
+                        dVar.f47531x.T = j3;
+                        return;
+                    case 22203:
+                        dVar.d(i10);
+                        dVar.f47531x.U = j3;
+                        return;
+                    case 25188:
+                        dVar.d(i10);
+                        dVar.f47531x.R = (int) j3;
+                        return;
+                    case 30114:
+                        dVar.U = j3;
+                        return;
+                    case 30321:
+                        dVar.d(i10);
+                        int i12 = (int) j3;
+                        if (i12 != 0) {
+                            if (i12 != 1) {
+                                if (i12 != 2) {
+                                    if (i12 == 3) {
+                                        dVar.f47531x.f47494t = 3;
+                                        return;
+                                    }
+                                    return;
+                                }
+                                dVar.f47531x.f47494t = 2;
+                                return;
+                            }
+                            dVar.f47531x.f47494t = 1;
+                            return;
+                        }
+                        dVar.f47531x.f47494t = 0;
+                        return;
+                    case 2352003:
+                        dVar.d(i10);
+                        dVar.f47531x.f47481f = (int) j3;
+                        return;
+                    case 2807729:
+                        dVar.f47528t = j3;
+                        return;
+                    default:
+                        switch (i10) {
+                            case 21945:
+                                dVar.d(i10);
+                                int i13 = (int) j3;
+                                if (i13 != 1) {
+                                    if (i13 == 2) {
+                                        dVar.f47531x.C = 1;
+                                        return;
+                                    }
+                                    return;
+                                }
+                                dVar.f47531x.C = 2;
+                                return;
+                            case 21946:
+                                dVar.d(i10);
+                                int g10 = b2.j.g((int) j3);
+                                if (g10 != -1) {
+                                    dVar.f47531x.B = g10;
+                                    return;
+                                }
+                                return;
+                            case 21947:
+                                dVar.d(i10);
+                                dVar.f47531x.f47499z = true;
+                                int f7 = b2.j.f((int) j3);
+                                if (f7 != -1) {
+                                    dVar.f47531x.A = f7;
+                                    return;
+                                }
+                                return;
+                            case 21948:
+                                dVar.d(i10);
+                                dVar.f47531x.D = (int) j3;
+                                return;
+                            case 21949:
+                                dVar.d(i10);
+                                dVar.f47531x.E = (int) j3;
+                                return;
+                            default:
+                                return;
+                        }
+                }
+            } else if (j3 != 1) {
+                throw b2.s0.a(null, "ContentEncodingScope " + j3 + " not supported");
+            }
+        } else if (j3 == 0) {
+        } else {
+            throw b2.s0.a(null, "ContentEncodingOrder " + j3 + " not supported");
+        }
+    }
+
+    public boolean G(android.view.MotionEvent r22) {
+        throw new UnsupportedOperationException("Method not decompiled: ii.n4.G(android.view.MotionEvent):boolean");
+    }
+
+    @Override
+    public androidx.lifecycle.p0 H(Class cls, v1.b bVar) {
+        androidx.lifecycle.m0 m0Var = null;
+        for (v1.c cVar : (v1.c[]) this.f12544b) {
+            if (cVar.f47773a.equals(cls)) {
+                m0Var = new androidx.lifecycle.m0();
+            }
+        }
+        if (m0Var != null) {
+            return m0Var;
+        }
+        throw new IllegalArgumentException("No initializer set for given class ".concat(cls.getName()));
+    }
+
+    public void I() {
+        ArrayDeque arrayDeque = (ArrayDeque) this.f12544b;
+        if (arrayDeque.isEmpty()) {
+            return;
+        }
+        int size = arrayDeque.size();
+        long L = L();
+        throw new IOException("data item not completed, stackSize: " + size + " scope: " + L);
+    }
+
+    @Override
+    public q9 J() {
+        o4 o4Var = ((q4) this.f12544b).G;
+        if (o4Var != null) {
+            return ((t3) o4Var).f12658a.getTextSelectionHelper();
+        }
+        return null;
+    }
+
+    public void K(long j3) {
+        long L = L();
+        if (L != j3) {
+            if (L != -1) {
+                if (L == -2) {
+                    L = -2;
+                } else {
+                    return;
+                }
+            }
+            StringBuilder u10 = a4.a.u(j3, "expected non-string scope or scope ", " but found ");
+            u10.append(L);
+            throw new IOException(u10.toString());
+        }
+    }
+
+    public long L() {
+        ArrayDeque arrayDeque = (ArrayDeque) this.f12544b;
+        if (arrayDeque.isEmpty()) {
+            return 0L;
+        }
+        return ((Long) arrayDeque.peek()).longValue();
+    }
+
+    @Override
+    public boolean M(l.k kVar, MenuItem menuItem) {
+        ((Toolbar) this.f12544b).getClass();
+        return false;
+    }
+
+    @Override
+    public void N(CharSequence charSequence) {
+        o4 o4Var = ((q4) this.f12544b).G;
+        if (o4Var != null) {
+            t3 t3Var = (t3) o4Var;
+            t3Var.getClass();
+            if (charSequence != null && charSequence.length() > 0) {
+                t3Var.f12658a.u4(charSequence.toString());
+            }
+        }
+    }
+
+    @Override
+    public r0.l1 Q0(View view, r0.l1 l1Var) {
+        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
+        sm0 sm0Var = (sm0) this.f12544b;
+        sm0Var.v.setPadding(defaultWindowInsets.f11526a, defaultWindowInsets.f11527b, defaultWindowInsets.f11528c, defaultWindowInsets.d);
+        sm0Var.f30886s.requestLayout();
+        return r0.l1.f45623b;
+    }
+
+    @Override
+    public p9 R() {
+        return (q4) this.f12544b;
+    }
+
+    @Override
+    public a T() {
+        return ((q4) this.f12544b).f12204a;
+    }
+
+    @Override
+    public boolean W() {
+        q4 q4Var = (q4) this.f12544b;
+        o4 o4Var = q4Var.G;
+        if (o4Var != null) {
+            a aVar = q4Var.f12204a;
+            if (((t3) o4Var).f12658a.T4()) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public void X(float f7) {
+        vt0 vt0Var = (vt0) this.f12544b;
+        pg.u0.e(vt0Var.P1).k(String.valueOf(pg.m.f44541a.indexOf(vt0Var.W0.getCurrentBrush())), f7);
+        pg.t1 t1Var = vt0Var.K1;
+        t1Var.f44647c = f7;
+        vt0Var.t0(t1Var, null);
+    }
+
+    @Override
+    public void Y(float f7, boolean z10) {
+        ub1 ub1Var = (ub1) ((org.telegram.ui.Cells.k0) this.f12544b);
+        int i10 = (int) (org.telegram.ui.ActionBar.i6.f21061q * 100.0f);
+        int i11 = (int) (f7 * 100.0f);
+        org.telegram.ui.ActionBar.i6.f21061q = f7;
+        if (i10 != i11) {
+            ThemeActivity themeActivity = ub1Var.f41198e.f43742e;
+            il0 il0Var = (il0) themeActivity.f34541b.K(themeActivity.f34549f0);
+            if (il0Var != null) {
+                ((e9) il0Var.f46538a).setText(LocaleController.formatString("AutoNightBrightnessInfo", R.string.AutoNightBrightnessInfo, Integer.valueOf((int) (org.telegram.ui.ActionBar.i6.f21061q * 100.0f))));
+            }
+            org.telegram.ui.ActionBar.i6.E(true);
+        }
+    }
+
+    @Override
+    public void Z(int i10, int i11) {
+        q4 q4Var = (q4) this.f12544b;
+        o4 o4Var = q4Var.G;
+        if (o4Var != null) {
+            a aVar = q4Var.f12204a;
+            i2 i2Var = ((t3) o4Var).f12658a.Q3;
+            if (i2Var != null) {
+                i2Var.f(i10, i11);
+            }
+        }
+    }
+
+    @Override
+    public void accept(Object obj, Object obj2) {
+        switch (this.f12543a) {
+            case 25:
+                s6.f fVar = new s6.f(1, (TaskCompletionSource) obj2);
+                s6.e eVar = (s6.e) ((s6.h) obj).u();
+                Parcel I0 = eVar.I0();
+                k7.a.d(I0, fVar);
+                k7.a.c(I0, (s6.a) this.f12544b);
+                I0.writeStrongBinder(null);
+                eVar.J0(I0, 2);
+                return;
+            default:
+                v8.e eVar2 = (v8.e) this.f12544b;
+                e8.b bVar = (e8.b) obj;
+                bVar.getClass();
+                e8.a aVar = new e8.a(1, (TaskCompletionSource) obj2);
+                try {
+                    e8.i iVar = (e8.i) bVar.u();
+                    Bundle G = bVar.G();
+                    Parcel obtain = Parcel.obtain();
+                    obtain.writeInterfaceToken("com.google.android.gms.wallet.internal.IOwService");
+                    int i10 = e8.c.f8707a;
+                    obtain.writeInt(1);
+                    eVar2.writeToParcel(obtain, 0);
+                    obtain.writeInt(1);
+                    G.writeToParcel(obtain, 0);
+                    obtain.writeStrongBinder(aVar);
+                    iVar.f8715a.transact(14, obtain, null, 1);
+                    obtain.recycle();
+                    return;
+                } catch (RemoteException e7) {
+                    Log.e("WalletClientImpl", "RemoteException during isReadyToPay", e7);
+                    Bundle bundle = Bundle.EMPTY;
+                    v7.g5.a(Status.h, Boolean.FALSE, aVar.f8706b);
+                    return;
+                }
+        }
+    }
+
+    @Override
+    public void b(i1 i1Var) {
+        o4 o4Var = ((q4) this.f12544b).G;
+        if (o4Var != null) {
+            x3 x3Var = ((t3) o4Var).f12658a;
+            x3.N1(x3Var, i1Var);
+            x3Var.f12770o3.P(i1Var, true);
+        }
+    }
+
+    @Override
+    public void c(l.k kVar, boolean z10) {
+        if (kVar instanceof l.d0) {
+            ((l.d0) kVar).f15147z.k().c(false);
+        }
+        l.w wVar = ((m.h) this.f12544b).f15756e;
+        if (wVar != null) {
+            wVar.c(kVar, z10);
+        }
+    }
+
+    @Override
+    public void d(long j3) {
+        n4.y yVar = ((FfmpegAudioRenderer) this.f12544b).I;
+        Handler handler = (Handler) yVar.f16649b;
+        if (handler != null) {
+            handler.post(new ai.j(yVar, j3, 12));
+        }
+    }
+
+    @Override
+    public int e(View view) {
+        return s4.o0.z(view) - ((ViewGroup.MarginLayoutParams) ((s4.p0) view.getLayoutParams())).topMargin;
+    }
+
+    @Override
+    public androidx.lifecycle.p0 f(Class cls) {
+        throw new UnsupportedOperationException("Factory.create(String) is unsupported.  This Factory requires `CreationExtras` to be passed into `create` method.");
+    }
+
+    @Override
+    public boolean forceEnableVibration() {
+        return false;
+    }
+
+    @Override
+    public void g() {
+        q4 q4Var = (q4) this.f12544b;
+        o4 o4Var = q4Var.G;
+        if (o4Var != null) {
+            x3.Q1(((t3) o4Var).f12658a, q4Var.f12204a);
+        }
+    }
+
+    @Override
+    public void g0() {
+        q4 q4Var = (q4) this.f12544b;
+        o4 o4Var = q4Var.G;
+        if (o4Var != null) {
+            a aVar = q4Var.f12204a;
+            x3 x3Var = ((t3) o4Var).f12658a;
+            i2 i2Var = x3Var.Q3;
+            if (i2Var != null) {
+                i2Var.g();
+            }
+            x3Var.f12770o3.onContentChanged();
+        }
+    }
+
+    @Override
+    public float get() {
+        vt0 vt0Var = (vt0) this.f12544b;
+        int i10 = vt0Var.P1;
+        pg.m currentBrush = vt0Var.W0.getCurrentBrush();
+        if (currentBrush == null) {
+            return pg.u0.e(i10).f44660i;
+        }
+        return pg.u0.e(i10).f(String.valueOf(pg.m.f44541a.indexOf(currentBrush)), currentBrush.d());
+    }
+
+    @Override
+    public CharSequence getContentDescription() {
+        return " ";
+    }
+
+    @Override
+    public ce.b getData() {
+        return ((k1.a0) this.f12544b).f14289c;
+    }
+
+    @Override
+    public long getLongPressDuration() {
+        return ViewConfiguration.getLongPressTimeout();
+    }
+
+    @Override
+    public boolean i() {
+        return false;
+    }
+
+    @Override
+    public boolean ignoreHapticFeedbackSettings(float f7, float f10) {
+        return false;
+    }
+
+    @Override
+    public void invalidate() {
+        ((rg0) this.f12544b).h.invalidate();
+    }
+
+    @Override
+    public boolean j(float f7) {
+        return false;
+    }
+
+    @Override
+    public int l() {
+        return ((s4.o0) this.f12544b).G();
+    }
+
+    @Override
+    public void m() {
+        ((FfmpegAudioRenderer) this.f12544b).f2868f0 = true;
+    }
+
+    @Override
+    public int n() {
+        s4.o0 o0Var = (s4.o0) this.f12544b;
+        return o0Var.f46652n - o0Var.C();
+    }
+
+    @Override
+    public boolean needCancelTouchBySlopMove() {
+        return true;
+    }
+
+    @Override
+    public boolean needClickAt(View view, float f7, float f10) {
+        int dp = AndroidUtilities.dp(9.0f);
+        h71 h71Var = (h71) this.f12544b;
+        float f11 = -dp;
+        h71Var.f27118g.inset(f11, f11);
+        boolean contains = h71Var.f27118g.contains(f7, f10);
+        float f12 = dp;
+        h71Var.f27118g.inset(f12, f12);
+        return contains;
+    }
+
+    @Override
+    public boolean needLongPress(float f7, float f10) {
+        return false;
+    }
+
+    @Override
+    public void onAudioSessionIdChanged(int i10) {
+        n4.y yVar = ((FfmpegAudioRenderer) this.f12544b).I;
+        Handler handler = (Handler) yVar.f16649b;
+        if (handler != null) {
+            handler.post(new o8(yVar, i10, 11));
+        }
+    }
+
+    @Override
+    public void onClickAt(View view, float f7, float f10) {
+        Runnable runnable = ((h71) this.f12544b).f27120j;
+        if (runnable != null) {
+            runnable.run();
+        }
+    }
+
+    @Override
+    public void onClickTouchDown(View view, float f7, float f10) {
+        ((h71) this.f12544b).h.c(true);
+    }
+
+    @Override
+    public void onClickTouchUp(View view, float f7, float f10) {
+        ((h71) this.f12544b).h.c(false);
+    }
+
+    @Override
+    public boolean onLongPressRequestedAt(View view, float f7, float f10) {
+        return false;
+    }
+
+    @Override
+    public void onSkipSilenceEnabledChanged(boolean z10) {
+        n4.y yVar = ((FfmpegAudioRenderer) this.f12544b).I;
+        Handler handler = (Handler) yVar.f16649b;
+        if (handler != null) {
+            handler.post(new bi.f(7, yVar, z10));
+        }
+    }
+
+    @Override
+    public View p(int i10) {
+        return ((s4.o0) this.f12544b).q(i10);
+    }
+
+    @Override
+    public int p0() {
+        return 0;
+    }
+
+    @Override
+    public void q(Object obj) {
+        ((g8.c) obj).onLocationResult((LocationResult) this.f12544b);
+    }
+
+    @Override
+    public int r(View view) {
+        return s4.o0.v(view) + ((ViewGroup.MarginLayoutParams) ((s4.p0) view.getLayoutParams())).bottomMargin;
+    }
+
+    @Override
+    public void s(int i10, long j3, long j10) {
+        n4.y yVar = ((FfmpegAudioRenderer) this.f12544b).I;
+        Handler handler = (Handler) yVar.f16649b;
+        if (handler != null) {
+            handler.post(new k2.j(yVar, i10, j3, j10, 0));
+        }
+    }
+
+    @Override
+    public Object t(rd.p pVar, kd.c cVar) {
+        return ((k1.a0) this.f12544b).t(new n1.c(pVar, null, 0), cVar);
+    }
+
+    public String toString() {
+        switch (this.f12543a) {
+            case 22:
+                re.b bVar = re.b.f46023e;
+                StringBuffer stringBuffer = new StringBuffer();
+                stringBuffer.append("method-execution".substring(7));
+                stringBuffer.append("(");
+                stringBuffer.append(((ra.a) this.f12544b).n());
+                stringBuffer.append(")");
+                return stringBuffer.toString();
+            default:
+                return super.toString();
+        }
+    }
+
+    @Override
+    public void u() {
+        x2.p pVar;
+        FfmpegAudioRenderer ffmpegAudioRenderer = (FfmpegAudioRenderer) this.f12544b;
+        synchronized (ffmpegAudioRenderer.f11594a) {
+            pVar = ffmpegAudioRenderer.H;
+        }
+        if (pVar != null) {
+            pVar.h();
+        }
+    }
+
+    @Override
+    public boolean v(l.k kVar) {
+        m.h hVar = (m.h) this.f12544b;
+        if (kVar == hVar.f15755c) {
+            return false;
+        }
+        ((l.d0) kVar).A.getClass();
+        hVar.getClass();
+        l.w wVar = hVar.f15756e;
+        if (wVar == null) {
+            return false;
+        }
+        return wVar.v(kVar);
+    }
+
+    @Override
+    public void v0() {
+        q4 q4Var = (q4) this.f12544b;
+        o4 o4Var = q4Var.G;
+        if (o4Var != null) {
+            a aVar = q4Var.f12204a;
+            x3.P1(((t3) o4Var).f12658a);
+        }
+    }
+
+    @Override
+    public void w(l.k kVar) {
         Toolbar toolbar = (Toolbar) this.f12544b;
         m.h hVar = toolbar.f2194a.J;
         if (hVar != null && hVar.g()) {
@@ -1063,8 +1048,23 @@ public final class n4 implements k0, k2.o, l.w, l.i, k1.f, xo0, le.f, u71, r0.n,
     }
 
     @Override
+    public void x(Exception exc) {
+        e2.a.f("DecoderAudioRenderer", "Audio sink error", exc);
+        n4.y yVar = ((FfmpegAudioRenderer) this.f12544b).I;
+        Handler handler = (Handler) yVar.f16649b;
+        if (handler != null) {
+            handler.post(new k2.g(yVar, exc, 1));
+        }
+    }
+
+    @Override
+    public void y() {
+        ((FfmpegAudioRenderer) this.f12544b).Z = true;
+    }
+
+    @Override
     public void z() {
-        ((m9) this.f12544b).f28554a.invalidate();
+        ((m9) this.f12544b).f28632a.invalidate();
     }
 
     public n4(s6.g gVar, s6.a aVar) {
@@ -1115,7 +1115,7 @@ public final class n4 implements k0, k2.o, l.w, l.i, k1.f, xo0, le.f, u71, r0.n,
 
     public n4(Context context, n4.y yVar) {
         this.f12543a = 8;
-        n4.x xVar = ((n4.r) yVar.f16644b).f16626c;
+        n4.x xVar = ((n4.r) yVar.f16649b).f16631c;
         DesugarCollections.synchronizedSet(new HashSet());
         if (Build.VERSION.SDK_INT >= 29) {
             this.f12544b = new n4.j(context, xVar);
@@ -1133,7 +1133,7 @@ public final class n4 implements k0, k2.o, l.w, l.i, k1.f, xo0, le.f, u71, r0.n,
     }
 
     @Override
-    public void H() {
+    public void D() {
     }
 
     @Override

@@ -4,11 +4,11 @@ import android.content.Context;
 import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
 public final class lb extends ub {
-    public final wb f38223e3;
+    public final wb f38269e3;
 
     public lb(wb wbVar, Context context) {
         super(context, null);
-        this.f38223e3 = wbVar;
+        this.f38269e3 = wbVar;
     }
 
     @Override
@@ -20,16 +20,16 @@ public final class lb extends ub {
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         int i14;
         MessageObject messageObject;
-        wb wbVar = this.f38223e3;
-        if (wbVar.v != null && wbVar.f42052x != null && (i14 = wbVar.N0) >= 0) {
+        wb wbVar = this.f38269e3;
+        if (wbVar.v != null && wbVar.f42067x != null && (i14 = wbVar.N0) >= 0) {
             if (wbVar.M0 != 0) {
                 int i15 = 0;
                 while (true) {
                     sb sbVar = wbVar.E;
                     if (i15 < sbVar.d) {
-                        if (i15 >= sbVar.f40446f && i15 < sbVar.h) {
-                            ArrayList arrayList = sbVar.f40447n.f42040o0;
-                            messageObject = (MessageObject) arrayList.get((arrayList.size() - (i15 - sbVar.f40446f)) - 1);
+                        if (i15 >= sbVar.f40429f && i15 < sbVar.h) {
+                            ArrayList arrayList = sbVar.f40430n.f42055o0;
+                            messageObject = (MessageObject) arrayList.get((arrayList.size() - (i15 - sbVar.f40429f)) - 1);
                         } else {
                             messageObject = null;
                         }
@@ -43,7 +43,7 @@ public final class lb extends ub {
                     }
                 }
             }
-            wbVar.f42052x.i1(i14, wbVar.O0, true);
+            wbVar.f42067x.i1(i14, wbVar.O0, true);
             wbVar.N0 = -1;
             wbVar.M0 = 0L;
         }

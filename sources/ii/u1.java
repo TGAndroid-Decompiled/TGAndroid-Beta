@@ -22,7 +22,7 @@ public final class u1 implements ik {
         boolean isEmpty = arrayList.isEmpty();
         e2 e2Var = this.f12682b;
         if (!isEmpty) {
-            e2Var.P.e2((String) arrayList.get(0));
+            e2Var.P.d2((String) arrayList.get(0));
         } else if (!arrayList3.isEmpty()) {
             x3 x3Var = e2Var.P;
             MessageObject messageObject = (MessageObject) arrayList3.get(0);
@@ -35,7 +35,7 @@ public final class u1 implements ik {
                 } else {
                     str2 = null;
                 }
-                x3Var.f2(document, str2);
+                x3Var.e2(document, str2);
             }
         }
         this.f12681a.dismiss(true);

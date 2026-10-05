@@ -3,7 +3,7 @@ package li;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 public abstract class e extends Drawable {
-    public o f15649a = n.f();
+    public q f15649a = p.f();
     public int f15650b = 255;
     public float f15651c;
     public float d;
@@ -53,7 +53,7 @@ public abstract class e extends Drawable {
     public void f(int i10) {
     }
 
-    public void g(o oVar) {
+    public void g(q qVar) {
     }
 
     public void h() {

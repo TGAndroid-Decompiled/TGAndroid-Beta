@@ -10,14 +10,14 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public class n6 extends FrameLayout {
-    public final k0 f38829a;
-    public final org.telegram.ui.Components.o6 f38830b;
-    public final org.telegram.ui.Components.o6 f38831c;
+    public final k0 f38809a;
+    public final org.telegram.ui.Components.o6 f38810b;
+    public final org.telegram.ui.Components.o6 f38811c;
 
     public n6(Context context) {
         super(context);
         k0 k0Var = new k0(this, context, 3);
-        this.f38829a = k0Var;
+        this.f38809a = k0Var;
         int i10 = org.telegram.ui.ActionBar.i6.Oh;
         k0Var.setBackground(org.telegram.ui.ActionBar.x5.f(new float[]{24.0f}, i10));
         k0Var.setImportantForAccessibility(1);
@@ -32,25 +32,25 @@ public class n6 extends FrameLayout {
             k0Var.addView(textView, w7.z5.e(-2, -1, 17));
         }
         org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(true, true, true, false);
-        this.f38830b = o6Var;
+        this.f38810b = o6Var;
         org.telegram.ui.Components.tr trVar = org.telegram.ui.Components.tr.h;
         o6Var.k(0.25f, 300L, trVar);
         o6Var.setCallback(k0Var);
         o6Var.t(AndroidUtilities.dp(14.0f));
         o6Var.q(LocaleController.getString(R.string.ClearCache), true, true);
-        o6Var.f29245b = 5;
+        o6Var.f29354b = 5;
         o6Var.u(AndroidUtilities.bold());
         int i11 = org.telegram.ui.ActionBar.i6.Sh;
         o6Var.r(org.telegram.ui.ActionBar.i6.w0(null, i11, false));
         org.telegram.ui.Components.o6 o6Var2 = new org.telegram.ui.Components.o6(true, true, true, false);
-        this.f38831c = o6Var2;
+        this.f38811c = o6Var2;
         o6Var2.k(0.25f, 300L, trVar);
         o6Var2.setCallback(k0Var);
         o6Var2.t(AndroidUtilities.dp(14.0f));
         o6Var2.u(AndroidUtilities.bold());
         o6Var2.r(org.telegram.ui.ActionBar.i6.v(org.telegram.ui.ActionBar.i6.w0(null, i10, false), org.telegram.ui.ActionBar.i6.l1(0.7f, org.telegram.ui.ActionBar.i6.w0(null, i11, false))));
         o6Var2.q("", true, true);
-        k0Var.setContentDescription(TextUtils.concat(o6Var.f29249g, "\t", o6Var2.f29249g));
+        k0Var.setContentDescription(TextUtils.concat(o6Var.f29358g, "\t", o6Var2.f29358g));
         addView(k0Var, w7.z5.d(-1, 48.0f, 119, 16.0f, 16.0f, 16.0f, 16.0f));
     }
 
@@ -63,7 +63,7 @@ public class n6 extends FrameLayout {
         } else {
             string = LocaleController.getString(R.string.ClearSelectedCache);
         }
-        org.telegram.ui.Components.o6 o6Var = this.f38830b;
+        org.telegram.ui.Components.o6 o6Var = this.f38810b;
         o6Var.q(string, true, true);
         int i10 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
         if (i10 <= 0) {
@@ -71,7 +71,7 @@ public class n6 extends FrameLayout {
         } else {
             formatFileSize = AndroidUtilities.formatFileSize(j3);
         }
-        org.telegram.ui.Components.o6 o6Var2 = this.f38831c;
+        org.telegram.ui.Components.o6 o6Var2 = this.f38811c;
         o6Var2.q(formatFileSize, true, true);
         if (i10 <= 0) {
             z11 = true;
@@ -79,9 +79,9 @@ public class n6 extends FrameLayout {
             z11 = false;
         }
         setDisabled(z11);
-        k0 k0Var = this.f38829a;
+        k0 k0Var = this.f38809a;
         k0Var.invalidate();
-        k0Var.setContentDescription(TextUtils.concat(o6Var.f29249g, "\t", o6Var2.f29249g));
+        k0Var.setContentDescription(TextUtils.concat(o6Var.f29358g, "\t", o6Var2.f29358g));
     }
 
     @Override
@@ -91,7 +91,7 @@ public class n6 extends FrameLayout {
 
     public void setDisabled(boolean z10) {
         float f7;
-        k0 k0Var = this.f38829a;
+        k0 k0Var = this.f38809a;
         k0Var.animate().cancel();
         ViewPropertyAnimator animate = k0Var.animate();
         if (z10) {

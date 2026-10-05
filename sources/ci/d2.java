@@ -20,7 +20,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.sq;
-import org.telegram.ui.c71;
+import org.telegram.ui.a71;
 public final class d2 extends s4.h0 {
     public final TLRPC.TL_inputStickerSetShortName E;
     public TLRPC.TL_messages_stickerSet F;
@@ -91,8 +91,8 @@ public final class d2 extends s4.h0 {
         TLRPC.StickerSet stickerSet;
         e2 e2Var = this.N;
         s2 s2Var = e2Var.f4980s;
-        int i11 = c1Var.f46535f;
-        View view = c1Var.f46531a;
+        int i11 = c1Var.f46542f;
+        View view = c1Var.f46538a;
         if (i11 == 0) {
             view.setTag(34);
             view.setLayoutParams(new s4.p0(-1, (int) s2Var.f5895n));
@@ -150,12 +150,12 @@ public final class d2 extends s4.h0 {
                 int dp2 = AndroidUtilities.dp(56.0f);
                 int dp3 = AndroidUtilities.dp(56.0f);
                 sqVar.h = dp2;
-                sqVar.f30860n = dp3;
+                sqVar.f30928n = dp3;
                 int dp4 = AndroidUtilities.dp(24.0f);
                 int dp5 = AndroidUtilities.dp(24.0f);
-                sqVar.f30858e = dp4;
-                sqVar.f30859f = dp5;
-                sqVar.f30861r = true;
+                sqVar.f30926e = dp4;
+                sqVar.f30927f = dp5;
+                sqVar.f30929r = true;
                 o1Var.setDrawable(sqVar);
                 return;
             }
@@ -223,7 +223,7 @@ public final class d2 extends s4.h0 {
             int i18 = this.K;
             if (b2Var.f4734b != i18) {
                 b2Var.f4734b = i18;
-                c71.D(UserConfig.selectedAccount, b2Var.f4733a);
+                a71.D(UserConfig.selectedAccount, b2Var.f4733a);
             }
         }
     }

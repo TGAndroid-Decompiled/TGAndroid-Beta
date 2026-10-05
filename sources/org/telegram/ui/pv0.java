@@ -30,18 +30,18 @@ public final class pv0 extends org.telegram.ui.Cells.d6 {
         org.telegram.ui.Cells.c6 c6Var = this.d;
         c6Var.getText().replace(c6Var.getSelectionStart(), c6Var.getSelectionEnd(), (CharSequence) arrayList.remove(0));
         int i10 = 0;
-        while (!arrayList.isEmpty() && i10 < uv0Var.f41348n) {
+        while (!arrayList.isEmpty() && i10 < uv0Var.f41383n) {
             for (int length = uv0Var.v.length - 1; length > i10; length--) {
                 CharSequence[] charSequenceArr = uv0Var.v;
                 charSequenceArr[length] = charSequenceArr[length - 1];
             }
             uv0Var.v[i10] = (CharSequence) arrayList.remove(0);
-            uv0Var.f41364y++;
+            uv0Var.f41399y++;
             i10++;
         }
         uv0Var.r0();
-        uv0Var.f41342g0 = (uv0Var.f41349n0 + i10) - 1;
-        uv0Var.f41333b.l();
+        uv0Var.f41377g0 = (uv0Var.f41384n0 + i10) - 1;
+        uv0Var.f41368b.l();
         return true;
     }
 

@@ -40,6 +40,6 @@ public final class q2 extends View {
 
     public q2(Activity activity) {
         super(activity);
-        this.f1538b = new wp(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(3.0f), org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20987m5, false));
+        this.f1538b = new wp(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(3.0f), org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20992m5, false));
     }
 }

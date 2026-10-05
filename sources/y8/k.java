@@ -7,12 +7,12 @@ import java.util.HashMap;
 import java.util.Map;
 public final class k extends l6.a {
     public final int d;
-    public final int f50501e;
+    public final int f50508e;
 
     public k(DataHolder dataHolder, int i10, int i11, int i12) {
         super(dataHolder, i10);
         this.d = i12;
-        this.f50501e = i11;
+        this.f50508e = i11;
     }
 
     public final String toString() {
@@ -34,14 +34,14 @@ public final class k extends l6.a {
                         str = "unknown";
                     }
                 }
-                return org.telegram.ui.Cells.c1.k("DataEventRef{ type=", str, ", dataitem=", new k(dataHolder, this.f15376b, this.f50501e, 1).toString(), " }");
+                return org.telegram.ui.Cells.c1.k("DataEventRef{ type=", str, ", dataitem=", new k(dataHolder, this.f15376b, this.f50508e, 1).toString(), " }");
             default:
                 boolean isLoggable = Log.isLoggable("DataItem", 3);
                 DataHolder dataHolder2 = this.f15375a;
                 int i12 = this.f15376b;
                 dataHolder2.c(i12, "data");
                 byte[] blob = dataHolder2.d[this.f15377c].getBlob(i12, dataHolder2.f6687c.getInt("data"));
-                int i13 = this.f50501e;
+                int i13 = this.f50508e;
                 HashMap hashMap = new HashMap(i13);
                 for (int i14 = 0; i14 < i13; i14++) {
                     l6.a aVar = new l6.a(dataHolder2, this.f15376b + i14);

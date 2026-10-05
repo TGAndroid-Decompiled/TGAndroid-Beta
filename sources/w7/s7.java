@@ -110,7 +110,7 @@ public abstract class s7 {
 
     public static ActionMode.Callback d(ActionMode.Callback callback) {
         if ((callback instanceof u0.i) && Build.VERSION.SDK_INT >= 26) {
-            return ((u0.i) callback).f47195a;
+            return ((u0.i) callback).f47202a;
         }
         return callback;
     }

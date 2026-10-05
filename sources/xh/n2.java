@@ -4,21 +4,21 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.Components.yc;
-public final class n2 extends yh.x3 {
-    public final int f50140r1;
-    public final Object f50141s1;
+public final class n2 extends yh.y3 {
+    public final int f50147r1;
+    public final Object f50148s1;
 
     public n2(o2 o2Var, Context context, int i10, long j3, d6 d6Var, int i11) {
         super(context, i10, j3, d6Var, null);
-        this.f50140r1 = i11;
-        this.f50141s1 = o2Var;
+        this.f50147r1 = i11;
+        this.f50148s1 = o2Var;
     }
 
     @Override
     public int getBottomInset() {
-        switch (this.f50140r1) {
+        switch (this.f50147r1) {
             case 3:
-                return ((yh.x3) this.f50141s1).getBottomInset();
+                return ((yh.y3) this.f50148s1).getBottomInset();
             default:
                 return super.getBottomInset();
         }
@@ -26,21 +26,21 @@ public final class n2 extends yh.x3 {
 
     @Override
     public yc getBulletinFactory() {
-        switch (this.f50140r1) {
+        switch (this.f50147r1) {
             case 0:
-                return yc.a0(((o2) this.f50141s1).f50152a.f50225a);
+                return yc.a0(((o2) this.f50148s1).f50159a.f50232a);
             case 1:
-                return yc.a0(((o2) this.f50141s1).f50152a.f50225a);
+                return yc.a0(((o2) this.f50148s1).f50159a.f50232a);
             case 2:
-                return yc.a0(((o2) this.f50141s1).f50152a.f50225a);
+                return yc.a0(((o2) this.f50148s1).f50159a.f50232a);
             default:
                 return super.getBulletinFactory();
         }
     }
 
-    public n2(yh.x3 x3Var, Context context, int i10, long j3, d6 d6Var, View view) {
+    public n2(yh.y3 y3Var, Context context, int i10, long j3, d6 d6Var, View view) {
         super(context, i10, j3, d6Var, view);
-        this.f50140r1 = 3;
-        this.f50141s1 = x3Var;
+        this.f50147r1 = 3;
+        this.f50148s1 = y3Var;
     }
 }

@@ -14,9 +14,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ve0;
 public final class i3 implements TextWatcher {
-    public final int f22237a = 1;
-    public boolean f22238b;
-    public int f22239c;
+    public final int f22241a = 1;
+    public boolean f22242b;
+    public int f22243c;
     public Object d;
 
     public i3() {
@@ -24,21 +24,21 @@ public final class i3 implements TextWatcher {
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        switch (this.f22237a) {
+        switch (this.f22241a) {
             case 0:
-                int i10 = this.f22239c;
+                int i10 = this.f22243c;
                 j3 j3Var = (j3) this.d;
-                h3 h3Var = j3Var.f22311b;
-                if (!j3Var.f22310a) {
+                h3 h3Var = j3Var.f22315b;
+                if (!j3Var.f22314a) {
                     if (i10 > 0 && editable != null && editable.length() > i10) {
-                        j3Var.f22310a = true;
+                        j3Var.f22314a = true;
                         h3Var.setText(editable.subSequence(0, i10));
                         h3Var.setSelection(h3Var.length());
-                        j3Var.f22310a = false;
+                        j3Var.f22314a = false;
                     }
                     j3Var.b(editable);
                 }
-                if (this.f22238b) {
+                if (this.f22242b) {
                     return;
                 }
                 while (true) {
@@ -53,29 +53,29 @@ public final class i3 implements TextWatcher {
                 return;
             default:
                 ve0 ve0Var = (ve0) this.d;
-                ci.h2 h2Var = ve0Var.f41721c;
-                if (!this.f22238b) {
+                ci.h2 h2Var = ve0Var.f41727c;
+                if (!this.f22242b) {
                     boolean z10 = true;
                     ve0Var.q(true);
                     AndroidUtilities.cancelRunOnUIThread(ve0Var.V);
                     ve0Var.o(false);
                     if (TextUtils.isEmpty(editable)) {
-                        ve0Var.f41729y = false;
+                        ve0Var.f41735y = false;
                     }
                     if (!ve0Var.p(editable.toString())) {
                         ve0Var.s(true);
-                        this.f22238b = true;
+                        this.f22242b = true;
                         if (h2Var.getSelectionEnd() < h2Var.getText().length()) {
                             z10 = false;
                         }
-                        if (!ve0Var.f41729y) {
+                        if (!ve0Var.f41735y) {
                             String str = ve0Var.K;
-                            h2Var.setText(str.substring(0, Utilities.clamp(this.f22239c, str.length(), 0)));
+                            h2Var.setText(str.substring(0, Utilities.clamp(this.f22243c, str.length(), 0)));
                             if (z10) {
                                 h2Var.setSelection(h2Var.getText().length());
                             }
                         }
-                        this.f22238b = false;
+                        this.f22242b = false;
                         return;
                     }
                     return;
@@ -86,16 +86,16 @@ public final class i3 implements TextWatcher {
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        switch (this.f22237a) {
+        switch (this.f22241a) {
             case 0:
                 j3 j3Var = (j3) this.d;
-                if (!j3Var.f22310a) {
+                if (!j3Var.f22314a) {
                     j3Var.h = false;
                     return;
                 }
                 return;
             case 1:
-                if (!this.f22238b) {
+                if (!this.f22242b) {
                     HashMap hashMap = new HashMap();
                     boolean z10 = charSequence instanceof Spannable;
                     int i13 = 0;
@@ -122,13 +122,13 @@ public final class i3 implements TextWatcher {
                     if (z10) {
                         i13 = ((SuggestionSpan[]) ((Spannable) charSequence).getSpans(0, charSequence.length(), SuggestionSpan.class)).length;
                     }
-                    this.f22239c = i13;
+                    this.f22243c = i13;
                     return;
                 }
                 return;
             default:
-                if (!this.f22238b && charSequence != null && ((ve0) this.d).K != null) {
-                    this.f22239c = ve0.u(charSequence.toString()).length();
+                if (!this.f22242b && charSequence != null && ((ve0) this.d).K != null) {
+                    this.f22243c = ve0.u(charSequence.toString()).length();
                     return;
                 }
                 return;
@@ -138,11 +138,11 @@ public final class i3 implements TextWatcher {
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         int i13;
-        switch (this.f22237a) {
+        switch (this.f22241a) {
             case 0:
                 return;
             case 1:
-                if (!this.f22238b) {
+                if (!this.f22242b) {
                     boolean z10 = charSequence instanceof Spannable;
                     if (z10) {
                         i13 = ((SuggestionSpan[]) ((Spannable) charSequence).getSpans(0, charSequence.length(), SuggestionSpan.class)).length;
@@ -151,8 +151,8 @@ public final class i3 implements TextWatcher {
                     }
                     HashMap hashMap = (HashMap) this.d;
                     if (hashMap != null) {
-                        if ((i13 > 0 || this.f22239c > 0) && i10 == 0 && i11 == i12) {
-                            this.f22238b = true;
+                        if ((i13 > 0 || this.f22243c > 0) && i10 == 0 && i11 == i12) {
+                            this.f22242b = true;
                             if (z10) {
                                 Spannable spannable = (Spannable) charSequence;
                                 for (Map.Entry entry : hashMap.entrySet()) {
@@ -161,7 +161,7 @@ public final class i3 implements TextWatcher {
                                     }
                                 }
                             }
-                            this.f22238b = false;
+                            this.f22242b = false;
                             return;
                         }
                         return;
@@ -176,8 +176,8 @@ public final class i3 implements TextWatcher {
 
     public i3(j3 j3Var, int i10, boolean z10) {
         this.d = j3Var;
-        this.f22239c = i10;
-        this.f22238b = z10;
+        this.f22243c = i10;
+        this.f22242b = z10;
     }
 
     public i3(ve0 ve0Var) {

@@ -2,12 +2,12 @@ package org.telegram.ui.Components;
 
 import org.telegram.tgnet.tl.TL_iv;
 public final class ba0 extends v7.j0 {
-    public int f24890a;
-    public final TL_iv.PageBlock f24891b;
-    public TL_iv.textConcat f24892c = new TL_iv.textConcat();
+    public int f24917a;
+    public final TL_iv.PageBlock f24918b;
+    public TL_iv.textConcat f24919c = new TL_iv.textConcat();
 
     public ba0(TL_iv.PageBlock pageBlock) {
-        this.f24891b = pageBlock;
+        this.f24918b = pageBlock;
     }
 
     public static TL_iv.RichText x(TL_iv.textConcat textconcat) {
@@ -22,29 +22,29 @@ public final class ba0 extends v7.j0 {
 
     @Override
     public final void a(bf.b bVar) {
-        int i10 = this.f24890a;
+        int i10 = this.f24917a;
         if (i10 >= 64) {
             return;
         }
-        this.f24890a = i10 + 1;
+        this.f24917a = i10 + 1;
         try {
             v(bVar);
         } finally {
-            this.f24890a--;
+            this.f24917a--;
         }
     }
 
     @Override
     public final void b(bf.c cVar) {
-        int i10 = this.f24890a;
+        int i10 = this.f24917a;
         if (i10 >= 64) {
             return;
         }
-        this.f24890a = i10 + 1;
+        this.f24917a = i10 + 1;
         try {
             v(cVar);
         } finally {
-            this.f24890a--;
+            this.f24917a--;
         }
     }
 
@@ -62,7 +62,7 @@ public final class ba0 extends v7.j0 {
             textstrike.text = y(eVar);
             w(textstrike);
         } else if (eVar instanceof zc.d) {
-            w(ea0.c(((zc.d) eVar).f53195g));
+            w(ea0.c(((zc.d) eVar).f53216g));
         } else {
             v(eVar);
         }
@@ -83,10 +83,10 @@ public final class ba0 extends v7.j0 {
     @Override
     public final void k(bf.n nVar) {
         if (nVar instanceof zc.a) {
-            if (!this.f24892c.texts.isEmpty()) {
+            if (!this.f24919c.texts.isEmpty()) {
                 w(ea0.j("\n"));
             }
-            w(ea0.c(((zc.a) nVar).f53190g));
+            w(ea0.c(((zc.a) nVar).f53211g));
             w(ea0.j("\n"));
             return;
         }
@@ -95,35 +95,35 @@ public final class ba0 extends v7.j0 {
 
     @Override
     public final void l(bf.o oVar) {
-        int i10 = this.f24890a;
+        int i10 = this.f24917a;
         if (i10 >= 64) {
             return;
         }
-        this.f24890a = i10 + 1;
+        this.f24917a = i10 + 1;
         try {
             v(oVar);
         } finally {
-            this.f24890a--;
+            this.f24917a--;
         }
     }
 
     @Override
     public final void m(bf.q qVar) {
-        int i10 = this.f24890a;
+        int i10 = this.f24917a;
         if (i10 >= 64) {
             return;
         }
-        this.f24890a = i10 + 1;
+        this.f24917a = i10 + 1;
         try {
             v(qVar);
         } finally {
-            this.f24890a--;
+            this.f24917a--;
         }
     }
 
     @Override
     public final void n(bf.r rVar) {
-        if (!this.f24892c.texts.isEmpty()) {
+        if (!this.f24919c.texts.isEmpty()) {
             w(ea0.j("\n\n"));
         }
         v(rVar);
@@ -172,7 +172,7 @@ public final class ba0 extends v7.j0 {
     @Override
     public final void t(bf.g gVar) {
         String str;
-        if (this.f24891b instanceof TL_iv.pageBlockBlockquote) {
+        if (this.f24918b instanceof TL_iv.pageBlockBlockquote) {
             str = "\n";
         } else {
             str = " ";
@@ -188,15 +188,15 @@ public final class ba0 extends v7.j0 {
     }
 
     public final void w(TL_iv.RichText richText) {
-        this.f24892c.texts.add(richText);
+        this.f24919c.texts.add(richText);
     }
 
     public final TL_iv.RichText y(bf.p pVar) {
-        TL_iv.textConcat textconcat = this.f24892c;
-        this.f24892c = new TL_iv.textConcat();
+        TL_iv.textConcat textconcat = this.f24919c;
+        this.f24919c = new TL_iv.textConcat();
         v(pVar);
-        TL_iv.RichText x10 = x(this.f24892c);
-        this.f24892c = textconcat;
+        TL_iv.RichText x10 = x(this.f24919c);
+        this.f24919c = textconcat;
         return x10;
     }
 }

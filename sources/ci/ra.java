@@ -43,7 +43,7 @@ public final class ra implements o1.f {
                 pg0 pg0Var = (pg0) this.f5877c;
                 if (!z10) {
                     rg0 rg0Var = pg0Var.d;
-                    o1.l lVar = rg0Var.M.f16988u;
+                    o1.l lVar = rg0Var.M.f16993u;
                     int i10 = rg0Var.H;
                     float f12 = (i10 / 2.0f) + this.f5876b;
                     int i11 = AndroidUtilities.displaySize.x;
@@ -52,7 +52,7 @@ public final class ra implements o1.f {
                     } else {
                         dp = AndroidUtilities.dp(16.0f);
                     }
-                    lVar.f16995i = dp;
+                    lVar.f17000i = dp;
                     return;
                 }
                 return;

@@ -1,99 +1,62 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
 import android.view.View;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-public final class r91 implements org.telegram.ui.Components.ol0, le.d {
-    public final va1 f39960a;
+import android.widget.FrameLayout;
+public final class r91 extends org.telegram.ui.Components.y81 {
+    public final boolean f40014a;
+    public final boolean f40015b;
+    public final boolean f40016c;
+    public final FrameLayout d;
+    public final ta1 f40017e;
 
-    public r91(va1 va1Var) {
-        this.f39960a = va1Var;
+    public r91(ta1 ta1Var, boolean z10, boolean z11, boolean z12, FrameLayout frameLayout) {
+        this.f40017e = ta1Var;
+        this.f40014a = z10;
+        this.f40015b = z11;
+        this.f40016c = z12;
+        this.d = frameLayout;
     }
 
     @Override
-    public void a0(int i10, float f7, float f10, le.e eVar) {
-        this.f39960a.n0();
-    }
-
-    @Override
-    public boolean d(int i10, View view) {
-        final va1 va1Var = this.f39960a;
-        org.telegram.ui.ActionBar.b2[] b2VarArr = va1Var.f41656g0;
-        aa1 aa1Var = va1Var.W;
-        int i11 = aa1Var.I;
-        if (i10 >= i11 && i10 <= aa1Var.J) {
-            final MessageObject messageObject = ((sa1) va1Var.f41679y0.get(i10 - i11)).f40443b;
-            if (!messageObject.isStory()) {
-                org.telegram.ui.Components.b80 H = org.telegram.ui.Components.b80.H(va1Var, view);
-                H.c(R.drawable.msg_stats, LocaleController.getString(R.string.ViewMessageStatistic), new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r3) {
-                            case 0:
-                                va1 va1Var2 = va1Var;
-                                va1Var2.getClass();
-                                va1Var2.presentFragment(new hj0(messageObject));
-                                return;
-                            default:
-                                va1 va1Var3 = va1Var;
-                                va1Var3.getClass();
-                                Bundle bundle = new Bundle();
-                                bundle.putLong("chat_id", va1Var3.f41647b);
-                                bundle.putInt("message_id", messageObject.getId());
-                                bundle.putBoolean("need_remove_previous_same_chat_activity", false);
-                                va1Var3.presentFragment(new yn(bundle), false);
-                                return;
-                        }
-                    }
-                }, false);
-                H.c(R.drawable.msg_msgbubble3, LocaleController.getString(R.string.ViewMessage), new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r3) {
-                            case 0:
-                                va1 va1Var2 = va1Var;
-                                va1Var2.getClass();
-                                va1Var2.presentFragment(new hj0(messageObject));
-                                return;
-                            default:
-                                va1 va1Var3 = va1Var;
-                                va1Var3.getClass();
-                                Bundle bundle = new Bundle();
-                                bundle.putLong("chat_id", va1Var3.f41647b);
-                                bundle.putInt("message_id", messageObject.getId());
-                                bundle.putBoolean("need_remove_previous_same_chat_activity", false);
-                                va1Var3.presentFragment(new yn(bundle), false);
-                                return;
-                        }
-                    }
-                }, false);
-                H.W(va1Var.S.W0(view, false));
-                H.Z();
-                return true;
-            }
-        } else {
-            int i12 = aa1Var.U;
-            if (i10 >= i12 && i10 <= aa1Var.V) {
-                ((oa1) va1Var.Q.get(i10 - i12)).c(va1Var.f41645a, va1Var, b2VarArr, true);
-                return true;
-            }
-            int i13 = aa1Var.R;
-            if (i10 >= i13 && i10 <= aa1Var.S) {
-                ((oa1) va1Var.O.get(i10 - i13)).c(va1Var.f41645a, va1Var, b2VarArr, true);
-                return true;
-            }
-            int i14 = aa1Var.X;
-            if (i10 >= i14 && i10 <= aa1Var.Y) {
-                ((oa1) va1Var.P.get(i10 - i14)).c(va1Var.f41645a, va1Var, b2VarArr, true);
-                return true;
-            }
+    public final View d(int i10) {
+        ta1 ta1Var = this.f40017e;
+        if (ta1Var.f40820n0) {
+            return ta1Var.f40815i0;
         }
-        return false;
+        boolean z10 = this.f40014a;
+        FrameLayout frameLayout = this.d;
+        if (z10) {
+            if (i10 == 0) {
+                return frameLayout;
+            }
+            i10--;
+        }
+        if (this.f40015b) {
+            if (i10 == 0) {
+                return ta1Var.f40815i0;
+            }
+            i10--;
+        }
+        if (this.f40016c && i10 == 0) {
+            return ta1Var.f40816j0;
+        }
+        return frameLayout;
     }
 
     @Override
-    public void V(float f7, int i10) {
+    public final int e() {
+        if (this.f40017e.f40820n0) {
+            return 1;
+        }
+        return (this.f40014a ? 1 : 0) + (this.f40015b ? 1 : 0) + (this.f40016c ? 1 : 0);
+    }
+
+    @Override
+    public final int h(int i10) {
+        return i10;
+    }
+
+    @Override
+    public final void b(View view, int i10, int i11) {
     }
 }

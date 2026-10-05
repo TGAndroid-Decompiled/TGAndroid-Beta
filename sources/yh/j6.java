@@ -1,37 +1,46 @@
 package yh;
 
-import android.view.View;
-import org.telegram.ui.LaunchActivity;
-public final class j6 implements View.OnClickListener {
-    public final int f51489a;
-    public final l7 f51490b;
+import org.telegram.ui.Components.xv0;
+public final class j6 implements le.d, xv0 {
+    public final int f51501a;
+    public final z7 f51502b;
 
-    public j6(l7 l7Var, int i10) {
-        this.f51489a = i10;
-        this.f51490b = l7Var;
+    public j6(z7 z7Var, int i10) {
+        this.f51501a = i10;
+        this.f51502b = z7Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        org.telegram.ui.ActionBar.n2 R;
-        org.telegram.ui.ActionBar.n2 R2;
-        switch (this.f51489a) {
+    public void V(float f7, int i10) {
+        int i11 = this.f51501a;
+    }
+
+    @Override
+    public void a0(int i10, float f7, float f10, le.e eVar) {
+        switch (this.f51501a) {
             case 0:
-                if (this.f51490b.f51593f > 0 && (R = LaunchActivity.R()) != 0) {
-                    ?? obj = new Object();
-                    obj.f21354a = true;
-                    R.showAsSheet(new x7(), obj);
-                    return;
-                }
+                this.f51502b.u1();
+                return;
+            case 1:
+                this.f51502b.u1();
                 return;
             default:
-                if (this.f51490b.f51593f > 0 && (R2 = LaunchActivity.R()) != 0) {
-                    ?? obj2 = new Object();
-                    obj2.f21354a = true;
-                    R2.showAsSheet(new x7(), obj2);
-                    return;
-                }
+                this.f51502b.U.setAlpha(f7);
                 return;
         }
+    }
+
+    @Override
+    public int b() {
+        return this.f51502b.Y;
+    }
+
+    private final void a(float f7, int i10) {
+    }
+
+    private final void c(float f7, int i10) {
+    }
+
+    private final void d(float f7, int i10) {
     }
 }

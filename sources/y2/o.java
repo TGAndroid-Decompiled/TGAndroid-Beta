@@ -6,30 +6,30 @@ import g2.b0;
 import java.io.IOException;
 import u2.t;
 public final class o implements i {
-    public final long f50411a = t.f47401b.getAndIncrement();
-    public final g2.m f50412b;
-    public final int f50413c;
+    public final long f50418a = t.f47408b.getAndIncrement();
+    public final g2.m f50419b;
+    public final int f50420c;
     public final b0 d;
-    public final n f50414e;
-    public volatile Object f50415f;
+    public final n f50421e;
+    public volatile Object f50422f;
 
     public o(g2.h hVar, g2.m mVar, int i10, n nVar) {
         this.d = new b0(hVar);
-        this.f50412b = mVar;
-        this.f50413c = i10;
-        this.f50414e = nVar;
+        this.f50419b = mVar;
+        this.f50420c = i10;
+        this.f50421e = nVar;
     }
 
     @Override
     public final void a() {
         this.d.f10161b = 0L;
-        g2.k kVar = new g2.k(this.d, this.f50412b);
+        g2.k kVar = new g2.k(this.d, this.f50419b);
         try {
             kVar.f10183a.open(kVar.f10184b);
             kVar.d = true;
             Uri uri = this.d.f10160a.getUri();
             uri.getClass();
-            this.f50415f = this.f50414e.n2(uri, kVar);
+            this.f50422f = this.f50421e.n2(uri, kVar);
             try {
                 kVar.close();
             } catch (IOException unused) {

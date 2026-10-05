@@ -4,14 +4,14 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.g61;
 import org.telegram.ui.Components.w00;
 import org.telegram.ui.Components.zl0;
-public final class o extends f61 {
-    public static final int f45498a = 0;
+public final class o extends g61 {
+    public static final int f45505a = 0;
 
     static {
-        f61.setup(new f61());
+        g61.setup(new g61());
     }
 
     @Override

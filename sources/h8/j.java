@@ -86,7 +86,7 @@ public final class j {
                 }
                 i8.g X0 = j8.a(context).X0(new x6.b(context));
                 if (X0 != null) {
-                    this.f11043g.g(new aa.a(this.f11041e, X0));
+                    this.f11043g.h(new aa.a(this.f11041e, X0));
                     int size = arrayList.size();
                     int i10 = 0;
                     while (i10 < size) {

@@ -39,7 +39,7 @@ public class AudioBufferConverter {
         this.mRemixer.S0(shortBuffer, i11, createBuffer, i13);
         createBuffer.rewind();
         ShortBuffer createBuffer2 = createBuffer(((int) Math.ceil((L1 * i12) / i10)) + 10);
-        this.mResampler.C(createBuffer, i10, createBuffer2, i12, i13);
+        this.mResampler.x(createBuffer, i10, createBuffer2, i12, i13);
         createBuffer2.limit(createBuffer2.position());
         createBuffer2.rewind();
         return createBuffer2;

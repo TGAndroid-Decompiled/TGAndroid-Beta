@@ -11,7 +11,7 @@ public final class fe extends org.telegram.ui.Components.bm0 {
 
     @Override
     public final boolean canScrollHorizontally(int i10) {
-        if (this.f36282c0.f37413w.T1 && super.canScrollHorizontally(i10)) {
+        if (this.f36282c0.f37396w.Q0 && super.canScrollHorizontally(i10)) {
             return true;
         }
         return false;

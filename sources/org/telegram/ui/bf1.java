@@ -1,61 +1,23 @@
 package org.telegram.ui;
 
-import android.os.Build;
-import androidx.recyclerview.widget.RecyclerView;
-public final class bf1 extends s4.s0 {
-    public final int f35083a;
-    public final yf1 f35084b;
+import android.view.View;
+import org.telegram.messenger.NotificationCenter;
+public final class bf1 implements View.OnClickListener {
+    public final wf1 f35132a;
 
-    public bf1(yf1 yf1Var, int i10) {
-        this.f35083a = i10;
-        this.f35084b = yf1Var;
+    public bf1(wf1 wf1Var) {
+        this.f35132a = wf1Var;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        int i12;
-        boolean z10;
-        yf1 yf1Var;
-        ah.i iVar;
-        switch (this.f35083a) {
-            case 0:
-                yf1 yf1Var2 = this.f35084b;
-                int L0 = yf1Var2.F.L0();
-                if (L0 != -1) {
-                    s4.c1 K = recyclerView.K(L0);
-                    boolean z11 = false;
-                    if (K != null) {
-                        i12 = K.f46531a.getTop();
-                    } else {
-                        i12 = 0;
-                    }
-                    if (L0 == 0) {
-                        int i13 = 0 - i12;
-                        if (i12 < 0) {
-                            z10 = true;
-                        } else {
-                            z10 = false;
-                        }
-                        Math.abs(i13);
-                    } else if (L0 > 0) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    yf1Var2.G0((z10 || !yf1Var2.K) ? true : true, true);
-                    return;
-                }
-                return;
-            case 1:
-                this.f35084b.y0();
-                return;
-            default:
-                if (Build.VERSION.SDK_INT >= 31 && (iVar = (yf1Var = this.f35084b).f43186f1) != null) {
-                    iVar.f(i10, i11);
-                    yf1Var.x0();
-                    return;
-                }
-                return;
+    public final void onClick(View view) {
+        wf1 wf1Var = this.f35132a;
+        if (wf1Var.M == 1) {
+            org.telegram.ui.Components.e5.j0(wf1Var, -wf1Var.f42467a, null, wf1Var.g(), null, false, wf1Var.J, new wa(this, 5), wf1Var.getResourceProvider());
+            return;
         }
+        wf1Var.getMessagesController().addUserToChat(wf1Var.f42467a, wf1Var.getUserConfig().getCurrentUser(), 0, null, wf1Var, false, new ue1(wf1Var, 2), new ve1(wf1Var));
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeSearchByActiveAction, new Object[0]);
+        wf1Var.O0(false);
     }
 }

@@ -5,28 +5,28 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import org.telegram.messenger.AndroidUtilities;
 public final class sl0 extends p20 {
-    public View f30810a;
-    public final tl0 f30811b;
+    public View f30866a;
+    public final tl0 f30867b;
 
     public sl0(tl0 tl0Var) {
-        this.f30811b = tl0Var;
+        this.f30867b = tl0Var;
     }
 
     @Override
     public final boolean a() {
-        if (((zl0) this.f30811b.f31096b).Y0 != null) {
+        if (((zl0) this.f30867b.f31183b).Y0 != null) {
             return true;
         }
         return false;
     }
 
     public final void b(MotionEvent motionEvent, View view) {
-        zl0 zl0Var = (zl0) this.f30811b.f31096b;
+        zl0 zl0Var = (zl0) this.f30867b.f31183b;
         if (view != null) {
             if (zl0Var.V0 != null || zl0Var.W0 != null) {
                 float x10 = motionEvent.getX();
                 float y3 = motionEvent.getY();
-                zl0Var.k1(view, x10, y3, true);
+                zl0Var.j1(view, x10, y3, true);
                 int i10 = zl0Var.O1;
                 if (zl0Var.R1 && i10 != -1) {
                     try {
@@ -47,13 +47,13 @@ public final class sl0 extends p20 {
                 rl0 rl0Var = new rl0(this, view, i10, x10, y3);
                 zl0Var.S1 = rl0Var;
                 AndroidUtilities.runOnUIThread(rl0Var, ViewConfiguration.getPressedStateDuration());
-                ql0 ql0Var = zl0Var.f33530e1;
+                ql0 ql0Var = zl0Var.f33538e1;
                 if (ql0Var != null) {
                     AndroidUtilities.cancelRunOnUIThread(ql0Var);
-                    zl0Var.f33530e1 = null;
+                    zl0Var.f33538e1 = null;
                     zl0Var.N1 = null;
                     zl0Var.P1 = false;
-                    zl0Var.n1(motionEvent, view);
+                    zl0Var.m1(motionEvent, view);
                 }
             }
         }
@@ -62,11 +62,11 @@ public final class sl0 extends p20 {
     @Override
     public final boolean onDoubleTap(MotionEvent motionEvent) {
         nl0 nl0Var;
-        zl0 zl0Var = (zl0) this.f30811b.f31096b;
-        View view = this.f30810a;
+        zl0 zl0Var = (zl0) this.f30867b.f31183b;
+        View view = this.f30866a;
         if (view != null && (nl0Var = zl0Var.W0) != null && nl0Var.f1(view)) {
-            zl0Var.W0.s0(this.f30810a, motionEvent.getX(), motionEvent.getY());
-            this.f30810a = null;
+            zl0Var.W0.s0(this.f30866a, motionEvent.getX(), motionEvent.getY());
+            this.f30866a = null;
             return true;
         }
         return false;
@@ -80,7 +80,7 @@ public final class sl0 extends p20 {
     @Override
     public final void onLongPress(MotionEvent motionEvent) {
         int i10;
-        zl0 zl0Var = (zl0) this.f30811b.f31096b;
+        zl0 zl0Var = (zl0) this.f30867b.f31183b;
         View view = zl0Var.N1;
         if (view != null && (i10 = zl0Var.O1) != -1) {
             ol0 ol0Var = zl0Var.X0;
@@ -108,10 +108,10 @@ public final class sl0 extends p20 {
     @Override
     public final boolean onSingleTapConfirmed(MotionEvent motionEvent) {
         nl0 nl0Var;
-        View view = this.f30810a;
-        if (view != null && (nl0Var = ((zl0) this.f30811b.f31096b).W0) != null && nl0Var.f1(view)) {
-            b(motionEvent, this.f30810a);
-            this.f30810a = null;
+        View view = this.f30866a;
+        if (view != null && (nl0Var = ((zl0) this.f30867b.f31183b).W0) != null && nl0Var.f1(view)) {
+            b(motionEvent, this.f30866a);
+            this.f30866a = null;
             return true;
         }
         return false;
@@ -119,12 +119,12 @@ public final class sl0 extends p20 {
 
     @Override
     public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        zl0 zl0Var = (zl0) this.f30811b.f31096b;
+        zl0 zl0Var = (zl0) this.f30867b.f31183b;
         View view = zl0Var.N1;
         if (view != null) {
             nl0 nl0Var = zl0Var.W0;
             if (nl0Var != null && nl0Var.f1(view)) {
-                this.f30810a = zl0Var.N1;
+                this.f30866a = zl0Var.N1;
                 return false;
             }
             b(motionEvent, zl0Var.N1);

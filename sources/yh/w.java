@@ -1,189 +1,54 @@
 package yh;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
-import java.util.regex.Pattern;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.gd0;
-public final class w implements View.OnClickListener {
-    public final int f52143a;
-    public final Object f52144b;
-    public final Object f52145c;
+import org.telegram.messenger.MessagesStorage;
+public final class w implements MessagesStorage.IntCallback {
+    public final int f52180a;
+    public final Object f52181b;
 
-    public w(int i10, Object obj, Object obj2) {
-        this.f52143a = i10;
-        this.f52144b = obj;
-        this.f52145c = obj2;
+    public w(Object obj, int i10) {
+        this.f52180a = i10;
+        this.f52181b = obj;
     }
 
     @Override
-    public final void onClick(View view) {
-        int i10 = this.f52143a;
-        o0 o0Var = null;
-        Object obj = this.f52144b;
-        Object obj2 = this.f52145c;
-        switch (i10) {
+    public final void run(int i10) {
+        zf.b bVar;
+        zf.b bVar2;
+        zf.b bVar3;
+        switch (this.f52180a) {
             case 0:
-                a0 a0Var = (a0) obj;
-                Context context = (Context) obj2;
-                String[] strArr = new String[6];
-                int i11 = 0;
-                int i12 = 0;
-                while (true) {
-                    int[] iArr = a0.f51062w0;
-                    if (i11 < 6) {
-                        strArr[i11] = LocaleController.formatPluralString("GiftOfferHours", iArr[i11] / 3600, new Object[0]);
-                        if (iArr[i11] == a0Var.f51075n0) {
-                            i12 = i11;
-                        }
-                        i11++;
-                    } else {
-                        String string = LocaleController.getString(R.string.GiftOfferDuration);
-                        ii.q1 q1Var = new ii.q1(a0Var, 24);
-                        Pattern pattern = org.telegram.ui.Components.e5.f25919a;
-                        hg.f2 b10 = hg.f2.b(UserConfig.selectedAccount);
-                        b10.g();
-                        if (!b10.d.isEmpty()) {
-                            int w02 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20930j5, false);
-                            int w03 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20894h5, false);
-                            org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Ji, false);
-                            org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Ni, false);
-                            org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.E8, false);
-                            org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.G8, false);
-                            org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20913i6, false);
-                            org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Sh, false);
-                            org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Oh, false);
-                            org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Qh, false);
-                            org.telegram.ui.ActionBar.f3 f3Var = new org.telegram.ui.ActionBar.f3(1, context, (org.telegram.ui.ActionBar.d6) null, false);
-                            f3Var.fixNavigationBar();
-                            f3Var.applyBottomPadding = false;
-                            LinearLayout linearLayout = new LinearLayout(context);
-                            linearLayout.setOrientation(0);
-                            linearLayout.setWeightSum(1.0f);
-                            gd0 gd0Var = new gd0(context, null);
-                            gd0Var.setAllItemsCount(6);
-                            gd0Var.setItemCount(Math.min(6, 8));
-                            gd0Var.setTextColor(w02);
-                            gd0Var.setGravity(17);
-                            gd0Var.setMinValue(0);
-                            gd0Var.setMaxValue(5);
-                            gd0Var.setValue(i12);
-                            linearLayout.addView(gd0Var, w7.z5.l(1.0f, 0, 432));
-                            gd0Var.setFormatter(new org.telegram.ui.Components.s(strArr, 7));
-                            org.telegram.ui.Components.w4 w4Var = new org.telegram.ui.Components.w4(context, gd0Var);
-                            w4Var.setOrientation(1);
-                            FrameLayout frameLayout = new FrameLayout(context);
-                            TextView textView = new TextView(context);
-                            textView.setText(string);
-                            textView.setTextColor(w02);
-                            textView.setTextSize(1, 20.0f);
-                            textView.setTypeface(AndroidUtilities.bold());
-                            frameLayout.addView(textView, w7.z5.d(-2, -2.0f, 51, 0.0f, 12.0f, 0.0f, 0.0f));
-                            textView.setOnTouchListener(new bi.d(10));
-                            w4Var.addView(frameLayout, w7.z5.t(-1, -2, 51, 22, 0, 0, 4));
-                            w4Var.addView(linearLayout, w7.z5.p(-1, -2, 1.0f, 0, 0, 12, 0, 12));
-                            ci.d dVar = new ci.d(context, null, true);
-                            dVar.g(LocaleController.getString(R.string.Select), false, true);
-                            dVar.setOnClickListener(new org.telegram.ui.Components.k2(r3, 1));
-                            w4Var.addView(dVar, w7.z5.t(-1, 48, 0, 16, 12, 16, 12));
-                            f3Var.customView = w4Var;
-                            f3Var.show();
-                            f3Var.setOnDismissListener(new ei.f0(7, q1Var, gd0Var));
-                            f3Var.setBackgroundColor(w03);
-                            f3Var.fixNavigationBar(w03);
-                            org.telegram.ui.ActionBar.f3[] f3VarArr = {f3Var};
-                            return;
-                        }
-                        return;
-                    }
-                }
-            case 1:
-                i0 i0Var = (i0) obj;
-                q6 q6Var = (q6) obj2;
-                ci.d dVar2 = i0Var.f51409f;
-                if (dVar2.W && !dVar2.N) {
-                    AndroidUtilities.hideKeyboard(i0Var.f51407c);
-                    dVar2.setLoading(true);
-                    q6Var.run(i0Var.E);
-                    return;
-                }
-                return;
-            case 2:
-                s0 s0Var = (s0) obj;
-                ArrayList<TL_stars.StarGiftAttribute> arrayList = (ArrayList) obj2;
-                m0 m0Var = s0Var.f51947o0;
-                int i13 = s0Var.f51957y0;
-                if (i13 == 2) {
-                    m0Var.setPreviewingAttributes(arrayList);
-                    s0Var.Q(1);
-                    return;
-                } else if (i13 == 1) {
-                    o0 o0Var2 = new o0(m0Var.getUpgradeBackdropAttribute(), m0Var.getUpgradePatternAttribute(), m0Var.getUpgradeImageViewAttribute());
-                    s0Var.f51952t0 = o0Var2;
-                    m0Var.setPreviewAttributes(o0Var2);
-                    s0Var.Q(2);
-                    return;
+                b0 b0Var = (b0) this.f52181b;
+                b0Var.getClass();
+                if (i10 == 0) {
+                    bVar = zf.b.f53323a;
                 } else {
-                    return;
+                    bVar = zf.b.f53324b;
                 }
-            case 3:
-                o0 o0Var3 = (o0) obj2;
-                s0 s0Var2 = ((n0) obj).N;
-                int i14 = s0Var2.f51957y0;
-                m0 m0Var2 = s0Var2.f51947o0;
-                if (i14 == 1) {
-                    s0Var2.f51952t0 = new o0(m0Var2.getUpgradeBackdropAttribute(), m0Var2.getUpgradePatternAttribute(), m0Var2.getUpgradeImageViewAttribute());
-                    s0Var2.Q(2);
-                }
-                int i15 = s0Var2.f51943j0.f51886r;
-                o0 o0Var4 = s0Var2.f51952t0;
-                if (o0Var4 != null) {
-                    TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = o0Var4.f51726a;
-                    TL_stars.starGiftAttributeModel stargiftattributemodel = o0Var4.f51728c;
-                    TL_stars.starGiftAttributePattern stargiftattributepattern = o0Var4.f51727b;
-                    if (i15 == 1) {
-                        o0Var = new o0(o0Var3.f51726a, stargiftattributepattern, stargiftattributemodel);
-                    } else if (i15 == 2) {
-                        o0Var = new o0(stargiftattributebackdrop, o0Var3.f51727b, stargiftattributemodel);
-                    } else if (i15 == 0) {
-                        o0Var = new o0(stargiftattributebackdrop, stargiftattributepattern, o0Var3.f51728c);
-                    }
-                }
-                s0Var2.f51952t0 = o0Var;
-                m0Var2.setPreviewAttributes(o0Var);
-                s0Var2.S();
+                b0Var.S(zf.a.i(0L, bVar), true, false, true);
+                b0Var.f51122d0.setText("");
                 return;
-            case 4:
-                nf.f.u(((x3) obj).getContext(), ((TL_stars.UniqueStarGiftValueInfo) obj2).fragment_listed_url);
-                return;
-            case 5:
-                ((x3) obj).n2((CharSequence) obj2);
-                return;
-            case 6:
-                x2 x2Var = (x2) obj;
-                org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) obj2;
-                if (x2Var.E.getAlpha() >= 1.0f && !x2Var.f52200h0 && !x2Var.f52202j0 && x2Var.f52194d0 != null) {
-                    new s0(x2Var.getContext(), d6Var, x2Var.W, x2Var.f52193c0, x2Var.f52194d0, true).show();
-                    return;
+            case 1:
+                f0 f0Var = (f0) this.f52181b;
+                f0Var.getClass();
+                if (i10 == 0) {
+                    bVar2 = zf.b.f53323a;
+                } else {
+                    bVar2 = zf.b.f53324b;
                 }
+                f0Var.q(zf.a.i(0L, bVar2), true, false, true);
+                f0Var.h.setText("");
                 return;
             default:
-                nf.f.s((Context) obj2, ((TL_stars.StarsTransaction) obj).transaction_url);
+                d3 d3Var = (d3) this.f52181b;
+                d3Var.getClass();
+                if (i10 == 0) {
+                    bVar3 = zf.b.f53323a;
+                } else {
+                    bVar3 = zf.b.f53324b;
+                }
+                d3Var.f51226q = bVar3;
+                d3Var.a(true);
                 return;
         }
-    }
-
-    public w(Context context, TL_stars.StarsTransaction starsTransaction) {
-        this.f52143a = 7;
-        this.f52145c = context;
-        this.f52144b = starsTransaction;
     }
 }

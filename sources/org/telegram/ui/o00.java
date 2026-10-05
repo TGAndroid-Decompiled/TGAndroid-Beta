@@ -25,88 +25,88 @@ public final class o00 extends y00 {
     public final void c() {
         org.telegram.ui.Components.b80 F = org.telegram.ui.Components.b80.F(this.E.d.container, null, this);
         F.c(R.drawable.msg_copy, LocaleController.getString(R.string.CopyLink), new Runnable(this) {
-            public final o00 f38799b;
+            public final o00 f38785b;
 
             {
-                this.f38799b = this;
+                this.f38785b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        o00 o00Var = this.f38799b;
-                        String str = o00Var.f42993x;
+                        o00 o00Var = this.f38785b;
+                        String str = o00Var.f43055x;
                         if (str != null && AndroidUtilities.addToClipboard(str)) {
                             new org.telegram.ui.Components.yc(o00Var.E.d.Z, null).k(false).j();
                             return;
                         }
                         return;
                     case 1:
-                        this.f38799b.d();
+                        this.f38785b.d();
                         return;
                     default:
-                        this.f38799b.a();
+                        this.f38785b.a();
                         return;
                 }
             }
         }, false);
         F.c(R.drawable.msg_qrcode, LocaleController.getString(R.string.GetQRCode), new Runnable(this) {
-            public final o00 f38799b;
+            public final o00 f38785b;
 
             {
-                this.f38799b = this;
+                this.f38785b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        o00 o00Var = this.f38799b;
-                        String str = o00Var.f42993x;
+                        o00 o00Var = this.f38785b;
+                        String str = o00Var.f43055x;
                         if (str != null && AndroidUtilities.addToClipboard(str)) {
                             new org.telegram.ui.Components.yc(o00Var.E.d.Z, null).k(false).j();
                             return;
                         }
                         return;
                     case 1:
-                        this.f38799b.d();
+                        this.f38785b.d();
                         return;
                     default:
-                        this.f38799b.a();
+                        this.f38785b.a();
                         return;
                 }
             }
         }, false);
         F.c(R.drawable.msg_delete, LocaleController.getString(R.string.DeleteLink), new Runnable(this) {
-            public final o00 f38799b;
+            public final o00 f38785b;
 
             {
-                this.f38799b = this;
+                this.f38785b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        o00 o00Var = this.f38799b;
-                        String str = o00Var.f42993x;
+                        o00 o00Var = this.f38785b;
+                        String str = o00Var.f43055x;
                         if (str != null && AndroidUtilities.addToClipboard(str)) {
                             new org.telegram.ui.Components.yc(o00Var.E.d.Z, null).k(false).j();
                             return;
                         }
                         return;
                     case 1:
-                        this.f38799b.d();
+                        this.f38785b.d();
                         return;
                     default:
-                        this.f38799b.a();
+                        this.f38785b.a();
                         return;
                 }
             }
         }, true);
         if (LocaleController.isRTL) {
-            F.f24831i = 3;
+            F.f24867i = 3;
         }
         F.Z();
     }

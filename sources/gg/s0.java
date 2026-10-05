@@ -52,10 +52,69 @@ public final class s0 extends zl0 {
         setWillNotDraw(false);
         setHideIfEmpty(false);
         setSelectorRadius(AndroidUtilities.dp(28.0f));
-        setSelectorDrawableColor(i6.v0(i6.f20913i6, this.f33552p2));
+        setSelectorDrawableColor(i6.v0(i6.f20918i6, this.f33560p2));
     }
 
-    public static void A1(String str, ArrayList arrayList) {
+    public static int A1(String str) {
+        String[] strArr = {LocaleController.getString(R.string.January).toLowerCase(), LocaleController.getString(R.string.February).toLowerCase(), LocaleController.getString(R.string.March).toLowerCase(), LocaleController.getString(R.string.April).toLowerCase(), LocaleController.getString(R.string.May).toLowerCase(), LocaleController.getString(R.string.June).toLowerCase(), LocaleController.getString(R.string.July).toLowerCase(), LocaleController.getString(R.string.August).toLowerCase(), LocaleController.getString(R.string.September).toLowerCase(), LocaleController.getString(R.string.October).toLowerCase(), LocaleController.getString(R.string.November).toLowerCase(), LocaleController.getString(R.string.December).toLowerCase()};
+        String[] strArr2 = new String[12];
+        Calendar calendar = Calendar.getInstance();
+        for (int i10 = 1; i10 <= 12; i10++) {
+            calendar.set(0, 0, 0, 0, 0, 0);
+            calendar.set(2, i10);
+            strArr2[i10 - 1] = calendar.getDisplayName(2, 2, Locale.ENGLISH).toLowerCase();
+        }
+        for (int i11 = 0; i11 < 12; i11++) {
+            if (strArr2[i11].startsWith(str) || strArr[i11].startsWith(str)) {
+                return i11;
+            }
+        }
+        return -1;
+    }
+
+    public static void x1(int i10, int i11, ArrayList arrayList) {
+        int i12 = i11;
+        if (i12 >= 0 && i12 < 12 && i10 >= 0 && i10 < f10782p3[i12]) {
+            int i13 = Calendar.getInstance().get(1);
+            long timeInMillis = Calendar.getInstance().getTimeInMillis();
+            GregorianCalendar gregorianCalendar = (GregorianCalendar) Calendar.getInstance();
+            int i14 = i13;
+            while (i14 >= 2013) {
+                if (i12 != 1 || i10 != 28 || gregorianCalendar.isLeapYear(i14)) {
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.set(i14, i12, i10 + 1, 0, 0, 0);
+                    long timeInMillis2 = calendar.getTimeInMillis();
+                    if (timeInMillis2 <= timeInMillis) {
+                        calendar.set(i14, i11, i10 + 2, 0, 0, 0);
+                        long timeInMillis3 = calendar.getTimeInMillis() - 1;
+                        if (i14 == i13) {
+                            arrayList.add(new o0(timeInMillis2, timeInMillis3, LocaleController.getInstance().getFormatterDayMonth().format(timeInMillis2)));
+                        } else {
+                            arrayList.add(new o0(timeInMillis2, timeInMillis3, LocaleController.getInstance().getFormatterYearMax().format(timeInMillis2)));
+                        }
+                    }
+                }
+                i14--;
+                i12 = i11;
+            }
+        }
+    }
+
+    public static void y1(int i10, int i11, ArrayList arrayList) {
+        int i12 = Calendar.getInstance().get(1);
+        long timeInMillis = Calendar.getInstance().getTimeInMillis();
+        if (i11 >= 2013 && i11 <= i12) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(i11, i10, 1, 0, 0, 0);
+            long timeInMillis2 = calendar.getTimeInMillis();
+            if (timeInMillis2 <= timeInMillis) {
+                calendar.add(2, 1);
+                arrayList.add(new o0(timeInMillis2, calendar.getTimeInMillis() - 1, LocaleController.getInstance().getFormatterMonthYear().format(timeInMillis2)));
+            }
+        }
+    }
+
+    public static void z1(String str, ArrayList arrayList) {
         arrayList.clear();
         if (str != null) {
             String trim = str.trim();
@@ -98,16 +157,16 @@ public final class s0 extends zl0 {
                             int parseInt2 = Integer.parseInt(group2);
                             if (parseInt > 0 && parseInt <= 31) {
                                 if (parseInt2 >= 2013 && parseInt <= 12) {
-                                    z1(parseInt - 1, parseInt2, arrayList);
+                                    y1(parseInt - 1, parseInt2, arrayList);
                                     return;
                                 } else if (parseInt2 <= 12) {
-                                    y1(parseInt - 1, parseInt2 - 1, arrayList);
+                                    x1(parseInt - 1, parseInt2 - 1, arrayList);
                                     return;
                                 } else {
                                     return;
                                 }
                             } else if (parseInt >= 2013 && parseInt2 <= 12) {
-                                z1(parseInt2 - 1, parseInt, arrayList);
+                                y1(parseInt2 - 1, parseInt, arrayList);
                                 return;
                             } else {
                                 return;
@@ -167,14 +226,14 @@ public final class s0 extends zl0 {
                             if (matcher3.matches()) {
                                 String group6 = matcher3.group(1);
                                 String group7 = matcher3.group(2);
-                                int B1 = B1(group6);
-                                if (B1 >= 0) {
+                                int A1 = A1(group6);
+                                if (A1 >= 0) {
                                     int intValue2 = Integer.valueOf(group7).intValue();
                                     if (intValue2 > 0 && intValue2 <= 31) {
-                                        y1(intValue2 - 1, B1, arrayList);
+                                        x1(intValue2 - 1, A1, arrayList);
                                         return;
                                     } else if (intValue2 >= 2013) {
-                                        z1(B1, intValue2, arrayList);
+                                        y1(A1, intValue2, arrayList);
                                         return;
                                     }
                                 }
@@ -182,24 +241,24 @@ public final class s0 extends zl0 {
                             Matcher matcher4 = f10779m3.matcher(trim);
                             if (matcher4.matches()) {
                                 String group8 = matcher4.group(1);
-                                int B12 = B1(matcher4.group(2));
-                                if (B12 >= 0) {
+                                int A12 = A1(matcher4.group(2));
+                                if (A12 >= 0) {
                                     int intValue3 = Integer.valueOf(group8).intValue();
                                     if (intValue3 > 0 && intValue3 <= 31) {
-                                        y1(intValue3 - 1, B12, arrayList);
+                                        x1(intValue3 - 1, A12, arrayList);
                                         return;
                                     } else if (intValue3 >= 2013) {
-                                        z1(B12, intValue3, arrayList);
+                                        y1(A12, intValue3, arrayList);
                                     }
                                 }
                             }
                             if (!TextUtils.isEmpty(trim) && trim.length() > 2) {
-                                int B13 = B1(trim);
+                                int A13 = A1(trim);
                                 long timeInMillis6 = Calendar.getInstance().getTimeInMillis();
-                                if (B13 >= 0) {
+                                if (A13 >= 0) {
                                     for (int i19 = Calendar.getInstance().get(1); i19 >= 2013; i19--) {
                                         Calendar calendar6 = Calendar.getInstance();
-                                        calendar6.set(i19, B13, 1, 0, 0, 0);
+                                        calendar6.set(i19, A13, 1, 0, 0, 0);
                                         long timeInMillis7 = calendar6.getTimeInMillis();
                                         if (timeInMillis7 <= timeInMillis6) {
                                             calendar6.add(2, 1);
@@ -234,66 +293,7 @@ public final class s0 extends zl0 {
         }
     }
 
-    public static int B1(String str) {
-        String[] strArr = {LocaleController.getString(R.string.January).toLowerCase(), LocaleController.getString(R.string.February).toLowerCase(), LocaleController.getString(R.string.March).toLowerCase(), LocaleController.getString(R.string.April).toLowerCase(), LocaleController.getString(R.string.May).toLowerCase(), LocaleController.getString(R.string.June).toLowerCase(), LocaleController.getString(R.string.July).toLowerCase(), LocaleController.getString(R.string.August).toLowerCase(), LocaleController.getString(R.string.September).toLowerCase(), LocaleController.getString(R.string.October).toLowerCase(), LocaleController.getString(R.string.November).toLowerCase(), LocaleController.getString(R.string.December).toLowerCase()};
-        String[] strArr2 = new String[12];
-        Calendar calendar = Calendar.getInstance();
-        for (int i10 = 1; i10 <= 12; i10++) {
-            calendar.set(0, 0, 0, 0, 0, 0);
-            calendar.set(2, i10);
-            strArr2[i10 - 1] = calendar.getDisplayName(2, 2, Locale.ENGLISH).toLowerCase();
-        }
-        for (int i11 = 0; i11 < 12; i11++) {
-            if (strArr2[i11].startsWith(str) || strArr[i11].startsWith(str)) {
-                return i11;
-            }
-        }
-        return -1;
-    }
-
-    public static void y1(int i10, int i11, ArrayList arrayList) {
-        int i12 = i11;
-        if (i12 >= 0 && i12 < 12 && i10 >= 0 && i10 < f10782p3[i12]) {
-            int i13 = Calendar.getInstance().get(1);
-            long timeInMillis = Calendar.getInstance().getTimeInMillis();
-            GregorianCalendar gregorianCalendar = (GregorianCalendar) Calendar.getInstance();
-            int i14 = i13;
-            while (i14 >= 2013) {
-                if (i12 != 1 || i10 != 28 || gregorianCalendar.isLeapYear(i14)) {
-                    Calendar calendar = Calendar.getInstance();
-                    calendar.set(i14, i12, i10 + 1, 0, 0, 0);
-                    long timeInMillis2 = calendar.getTimeInMillis();
-                    if (timeInMillis2 <= timeInMillis) {
-                        calendar.set(i14, i11, i10 + 2, 0, 0, 0);
-                        long timeInMillis3 = calendar.getTimeInMillis() - 1;
-                        if (i14 == i13) {
-                            arrayList.add(new o0(timeInMillis2, timeInMillis3, LocaleController.getInstance().getFormatterDayMonth().format(timeInMillis2)));
-                        } else {
-                            arrayList.add(new o0(timeInMillis2, timeInMillis3, LocaleController.getInstance().getFormatterYearMax().format(timeInMillis2)));
-                        }
-                    }
-                }
-                i14--;
-                i12 = i11;
-            }
-        }
-    }
-
-    public static void z1(int i10, int i11, ArrayList arrayList) {
-        int i12 = Calendar.getInstance().get(1);
-        long timeInMillis = Calendar.getInstance().getTimeInMillis();
-        if (i11 >= 2013 && i11 <= i12) {
-            Calendar calendar = Calendar.getInstance();
-            calendar.set(i11, i10, 1, 0, 0, 0);
-            long timeInMillis2 = calendar.getTimeInMillis();
-            if (timeInMillis2 <= timeInMillis) {
-                calendar.add(2, 1);
-                arrayList.add(new o0(timeInMillis2, calendar.getTimeInMillis() - 1, LocaleController.getInstance().getFormatterMonthYear().format(timeInMillis2)));
-            }
-        }
-    }
-
-    public final void C1(ArrayList arrayList, ArrayList arrayList2, boolean z10) {
+    public final void B1(ArrayList arrayList, ArrayList arrayList2, boolean z10) {
         String formatName;
         ArrayList arrayList3 = this.f10784f3;
         arrayList3.clear();
@@ -305,7 +305,7 @@ public final class s0 extends zl0 {
                 Object obj = arrayList.get(i10);
                 if (obj instanceof TLRPC.User) {
                     TLRPC.User user = (TLRPC.User) obj;
-                    if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().f20189id == user.f20189id) {
+                    if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().f20194id == user.f20194id) {
                         formatName = LocaleController.getString(R.string.SavedMessages);
                     } else {
                         formatName = ContactsController.formatName(user.first_name, user.last_name, 10);
@@ -345,7 +345,7 @@ public final class s0 extends zl0 {
         }
     }
 
-    public final void D1() {
+    public final void C1() {
         getRecycledViewPool().a();
         for (int i10 = 0; i10 < getChildCount(); i10++) {
             View childAt = getChildAt(i10);
@@ -368,7 +368,7 @@ public final class s0 extends zl0 {
                 ((p0) O).a();
             }
         }
-        setSelectorDrawableColor(i6.v0(i6.f20913i6, this.f33552p2));
+        setSelectorDrawableColor(i6.v0(i6.f20918i6, this.f33560p2));
     }
 
     public ArrayList<k6> getThemeDescriptions() {
@@ -382,7 +382,7 @@ public final class s0 extends zl0 {
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (this.f10786h3) {
-            canvas.drawRect(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), i6.f20945k0);
+            canvas.drawRect(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), i6.f20950k0);
         }
     }
 

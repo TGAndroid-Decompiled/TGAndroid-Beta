@@ -6,36 +6,36 @@ import android.graphics.Paint;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import java.util.ArrayList;
-import org.telegram.ui.Components.a91;
+import org.telegram.ui.Components.b91;
 public final class r1 {
-    public final com.google.firebase.messaging.n f32109a;
-    public final com.google.firebase.messaging.n f32110b;
-    public com.google.firebase.messaging.n f32111c;
+    public final com.google.firebase.messaging.n f32176a;
+    public final com.google.firebase.messaging.n f32177b;
+    public com.google.firebase.messaging.n f32178c;
     public com.google.firebase.messaging.n d;
-    public boolean f32112e;
-    public int f32113f;
-    public int f32114g;
+    public boolean f32179e;
+    public int f32180f;
+    public int f32181g;
     public int h;
-    public boolean f32115i;
-    public final Paint f32116j;
-    public final Paint f32117k;
-    public final Paint f32118l;
-    public final ArrayList f32119m;
+    public boolean f32182i;
+    public final Paint f32183j;
+    public final Paint f32184k;
+    public final Paint f32185l;
+    public final ArrayList f32186m;
 
     public r1() {
         com.google.firebase.messaging.n nVar = new com.google.firebase.messaging.n(80, 80);
-        this.f32109a = nVar;
+        this.f32176a = nVar;
         com.google.firebase.messaging.n nVar2 = new com.google.firebase.messaging.n(80, 80);
-        this.f32110b = nVar2;
-        this.f32113f = 0;
-        this.f32114g = 0;
+        this.f32177b = nVar2;
+        this.f32180f = 0;
+        this.f32181g = 0;
         Paint paint = new Paint(1);
-        this.f32116j = paint;
+        this.f32183j = paint;
         Paint paint2 = new Paint(1);
-        this.f32117k = paint2;
+        this.f32184k = paint2;
         Paint paint3 = new Paint(1);
-        this.f32118l = paint3;
-        this.f32119m = new ArrayList();
+        this.f32185l = paint3;
+        this.f32186m = new ArrayList();
         nVar2.z(0.0f, 0.0f, 80.0f, 80.0f);
         nVar.z(0.0f, 0.0f, 80.0f, 80.0f);
         paint.setColor(-1);
@@ -48,18 +48,18 @@ public final class r1 {
     }
 
     public final void a(View view) {
-        this.f32119m.add(view);
+        this.f32186m.add(view);
     }
 
     public final Paint b() {
-        if (this.f32115i) {
-            return this.f32117k;
+        if (this.f32182i) {
+            return this.f32184k;
         }
-        return (Paint) this.f32110b.f7905a;
+        return (Paint) this.f32177b.f7905a;
     }
 
     public final void c() {
-        ArrayList arrayList = this.f32119m;
+        ArrayList arrayList = this.f32186m;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -70,43 +70,43 @@ public final class r1 {
     }
 
     public final void d(float f7, float f10) {
-        float f11 = this.f32114g * 1.12f;
-        com.google.firebase.messaging.n nVar = this.f32110b;
+        float f11 = this.f32181g * 1.12f;
+        com.google.firebase.messaging.n nVar = this.f32177b;
         float f12 = -f7;
         float f13 = -f10;
-        nVar.B(f12 - ((f11 - this.f32113f) / 2.0f), f13 - ((f11 - this.f32114g) / 2.0f), f11 / ((Bitmap) nVar.f7907c).getHeight(), this.h);
-        this.d.z(f12, f13, this.f32113f - f7, this.f32114g - f10);
+        nVar.B(f12 - ((f11 - this.f32180f) / 2.0f), f13 - ((f11 - this.f32181g) / 2.0f), f11 / ((Bitmap) nVar.f7907c).getHeight(), this.h);
+        this.d.z(f12, f13, this.f32180f - f7, this.f32181g - f10);
     }
 
     public final void e(boolean z10) {
-        if (this.f32115i && !z10) {
+        if (this.f32182i && !z10) {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, 0.0f);
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final r1 f32099b;
+                public final r1 f32166b;
 
                 {
-                    this.f32099b = this;
+                    this.f32166b = this;
                 }
 
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                     switch (r2) {
                         case 0:
-                            r1 r1Var = this.f32099b;
+                            r1 r1Var = this.f32166b;
                             r1Var.getClass();
                             float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             int i10 = (int) (35.0f * floatValue);
-                            r1Var.f32118l.setAlpha(i10);
-                            r1Var.f32117k.setAlpha((int) (floatValue * 102.0f));
-                            r1Var.f32116j.setAlpha(i10);
+                            r1Var.f32185l.setAlpha(i10);
+                            r1Var.f32184k.setAlpha((int) (floatValue * 102.0f));
+                            r1Var.f32183j.setAlpha(i10);
                             r1Var.c();
                             return;
                         default:
-                            r1 r1Var2 = this.f32099b;
+                            r1 r1Var2 = this.f32166b;
                             r1Var2.getClass();
                             float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                            ((Paint) r1Var2.f32110b.f7905a).setAlpha((int) (180.0f * floatValue2));
-                            ((Paint) r1Var2.f32109a.f7905a).setAlpha((int) (floatValue2 * 255.0f));
+                            ((Paint) r1Var2.f32177b.f7905a).setAlpha((int) (180.0f * floatValue2));
+                            ((Paint) r1Var2.f32176a.f7905a).setAlpha((int) (floatValue2 * 255.0f));
                             r1Var2.c();
                             return;
                     }
@@ -114,35 +114,35 @@ public final class r1 {
             });
             ofFloat.setInterpolator(new LinearInterpolator());
             ofFloat.setDuration(80L);
-            ofFloat.addListener(new a91(this, 7));
+            ofFloat.addListener(new b91(this, 7));
             ofFloat.start();
             ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
             ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final r1 f32099b;
+                public final r1 f32166b;
 
                 {
-                    this.f32099b = this;
+                    this.f32166b = this;
                 }
 
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                     switch (r2) {
                         case 0:
-                            r1 r1Var = this.f32099b;
+                            r1 r1Var = this.f32166b;
                             r1Var.getClass();
                             float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             int i10 = (int) (35.0f * floatValue);
-                            r1Var.f32118l.setAlpha(i10);
-                            r1Var.f32117k.setAlpha((int) (floatValue * 102.0f));
-                            r1Var.f32116j.setAlpha(i10);
+                            r1Var.f32185l.setAlpha(i10);
+                            r1Var.f32184k.setAlpha((int) (floatValue * 102.0f));
+                            r1Var.f32183j.setAlpha(i10);
                             r1Var.c();
                             return;
                         default:
-                            r1 r1Var2 = this.f32099b;
+                            r1 r1Var2 = this.f32166b;
                             r1Var2.getClass();
                             float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                            ((Paint) r1Var2.f32110b.f7905a).setAlpha((int) (180.0f * floatValue2));
-                            ((Paint) r1Var2.f32109a.f7905a).setAlpha((int) (floatValue2 * 255.0f));
+                            ((Paint) r1Var2.f32177b.f7905a).setAlpha((int) (180.0f * floatValue2));
+                            ((Paint) r1Var2.f32176a.f7905a).setAlpha((int) (floatValue2 * 255.0f));
                             r1Var2.c();
                             return;
                     }
@@ -153,7 +153,7 @@ public final class r1 {
             ofFloat2.setDuration(80L);
             ofFloat2.start();
         } else {
-            this.f32115i = z10;
+            this.f32182i = z10;
         }
         c();
     }

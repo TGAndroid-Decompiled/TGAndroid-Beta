@@ -1,6 +1,6 @@
 package w7;
 public final class i1 implements ia.d {
-    public static final i1 f48723a = new Object();
+    public static final i1 f48730a = new Object();
 
     static {
         sa.e.t(sa.e.m(d.class, sa.e.q(4, sa.e.m(d.class, sa.e.q(3, sa.e.m(d.class, sa.e.q(2, sa.e.m(d.class, new a(1)))))))));

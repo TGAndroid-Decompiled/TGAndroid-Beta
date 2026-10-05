@@ -15,7 +15,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d3;
 import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Components.cb;
-import org.telegram.ui.Components.lw0;
+import org.telegram.ui.Components.mw0;
 import org.telegram.ui.Components.rc;
 import org.telegram.ui.Components.yl0;
 import org.telegram.ui.Components.zl0;
@@ -24,7 +24,7 @@ public final class c0 extends cb {
     public final TLRPC.TL_payments_checkedGiftCode X;
     public final boolean Y;
     public b0 Z;
-    public final String f46993a0;
+    public final String f47000a0;
 
     public c0(n2 n2Var, TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode, String str) {
         super(n2Var, true);
@@ -36,7 +36,7 @@ public final class c0 extends cb {
         }
         this.Y = z10;
         this.X = tL_payments_checkedGiftCode;
-        this.f46993a0 = str;
+        this.f47000a0 = str;
         setApplyTopPadding(false);
         setApplyBottomPadding(false);
         fixNavigationBar();
@@ -45,10 +45,10 @@ public final class c0 extends cb {
         d3 d3Var = this.container;
         b0Var.getClass();
         b0Var.d = tL_payments_checkedGiftCode.used_date == 0;
-        b0Var.f47658e = n2Var;
-        b0Var.f47659f = tL_payments_checkedGiftCode;
+        b0Var.f47665e = n2Var;
+        b0Var.f47666f = tL_payments_checkedGiftCode;
         b0Var.h = str;
-        b0Var.f47660n = d3Var;
+        b0Var.f47667n = d3Var;
     }
 
     public static boolean Q(Intent intent, nf.e eVar) {
@@ -89,7 +89,7 @@ public final class c0 extends cb {
         AtomicBoolean atomicBoolean = new AtomicBoolean(false);
         if (eVar != null) {
             eVar.d();
-            eVar.f16881b = new d(atomicBoolean, 1);
+            eVar.f16886b = new d(atomicBoolean, 1);
         }
         e4 e4Var = new e4(atomicBoolean, n2Var, str, eVar, 16);
         f fVar = new f(atomicBoolean, eVar, 1);
@@ -101,7 +101,7 @@ public final class c0 extends cb {
     }
 
     @Override
-    public final void E(lw0 lw0Var) {
+    public final void E(mw0 mw0Var) {
         rc.a(this.container, new z8(14));
     }
 

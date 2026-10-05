@@ -10,32 +10,32 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class qb implements org.telegram.ui.Cells.t0 {
-    public final sb f39691a;
+    public final sb f39755a;
 
     public qb(sb sbVar) {
-        this.f39691a = sbVar;
+        this.f39755a = sbVar;
     }
 
     @Override
     public final org.telegram.ui.ActionBar.n2 O0() {
-        return this.f39691a.f40447n;
+        return this.f39755a.f40430n;
     }
 
     @Override
     public final void Q0(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
         Object obj;
-        wb wbVar = this.f39691a.f40447n;
+        wb wbVar = this.f39755a.f40430n;
         if (wbVar.A0) {
             return;
         }
-        if (wbVar.f42055y0.containsKey(tL_chatInviteExported.link)) {
-            obj = wbVar.f42055y0.get(tL_chatInviteExported.link);
+        if (wbVar.f42070y0.containsKey(tL_chatInviteExported.link)) {
+            obj = wbVar.f42070y0.get(tL_chatInviteExported.link);
         } else {
             obj = null;
         }
         if (obj == null) {
             TLRPC.TL_messages_getExportedChatInvite tL_messages_getExportedChatInvite = new TLRPC.TL_messages_getExportedChatInvite();
-            tL_messages_getExportedChatInvite.peer = wbVar.getMessagesController().getInputPeer(-wbVar.f42030f.f20042id);
+            tL_messages_getExportedChatInvite.peer = wbVar.getMessagesController().getInputPeer(-wbVar.f42045f.f20047id);
             tL_messages_getExportedChatInvite.link = tL_chatInviteExported.link;
             wbVar.A0 = true;
             final boolean[] zArr = new boolean[1];
@@ -43,14 +43,14 @@ public final class qb implements org.telegram.ui.Cells.t0 {
             b2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public final void onCancel(DialogInterface dialogInterface) {
-                    qb.this.f39691a.f40447n.A0 = false;
+                    qb.this.f39755a.f40430n.A0 = false;
                     zArr[0] = true;
                 }
             });
             b2Var.q(300L);
             wbVar.getConnectionsManager().bindRequestToGuid(wbVar.getConnectionsManager().sendRequest(tL_messages_getExportedChatInvite, new ai.p3(this, tL_chatInviteExported, zArr, b2Var, 4)), wb.z0(wbVar));
         } else if (obj instanceof TLRPC.TL_messages_exportedChatInvite) {
-            wb.A0(wbVar, (TLRPC.TL_messages_exportedChatInvite) obj, wbVar.f42056z0);
+            wb.A0(wbVar, (TLRPC.TL_messages_exportedChatInvite) obj, wbVar.f42071z0);
         } else {
             org.telegram.messenger.q.p(R.string.LinkHashExpired, org.telegram.ui.Components.yc.a0(wbVar), R.raw.linkbroken, 36);
         }
@@ -58,7 +58,7 @@ public final class qb implements org.telegram.ui.Cells.t0 {
 
     @Override
     public final long a() {
-        return -this.f39691a.f40447n.f42030f.f20042id;
+        return -this.f39755a.f40430n.f42045f.f20047id;
     }
 
     @Override
@@ -73,11 +73,11 @@ public final class qb implements org.telegram.ui.Cells.t0 {
 
     @Override
     public final void k0(org.telegram.ui.Cells.w0 w0Var) {
-        wb wbVar = this.f39691a.f40447n;
+        wb wbVar = this.f39755a.f40430n;
         MessageObject messageObject = w0Var.getMessageObject();
         if (messageObject.type == 22) {
             cd cdVar = new cd(a());
-            cdVar.f35430l0 = wbVar;
+            cdVar.f35414l0 = wbVar;
             wbVar.presentFragment(cdVar);
             return;
         }
@@ -92,14 +92,14 @@ public final class qb implements org.telegram.ui.Cells.t0 {
 
     @Override
     public final boolean r2(org.telegram.ui.Cells.w0 w0Var, float f7, float f10) {
-        wb wbVar = this.f39691a.f40447n;
+        wb wbVar = this.f39755a.f40430n;
         int i10 = wb.Q0;
         return wbVar.P0(w0Var, 0.0f, 0.0f);
     }
 
     @Override
     public final void x1(long j3) {
-        wb wbVar = this.f39691a.f40447n;
+        wb wbVar = this.f39755a.f40430n;
         if (j3 < 0) {
             Bundle bundle = new Bundle();
             bundle.putLong("chat_id", -j3);

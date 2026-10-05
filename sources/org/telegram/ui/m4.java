@@ -13,11 +13,11 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
-public final class m4 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.ow0, Utilities.Callback2Return, org.telegram.ui.Components.yv0, hh.i, org.telegram.ui.Components.ll0, org.telegram.ui.Components.cw0, org.telegram.ui.Components.dw0, LanguageDetector.ExceptionCallback, org.telegram.ui.Components.cd0, org.telegram.ui.Components.ed0 {
-    public final int f38413a;
+public final class m4 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.pw0, Utilities.Callback2Return, org.telegram.ui.Components.zv0, hh.i, org.telegram.ui.Components.ll0, org.telegram.ui.Components.dw0, org.telegram.ui.Components.ew0, LanguageDetector.ExceptionCallback, org.telegram.ui.Components.cd0, org.telegram.ui.Components.ed0 {
+    public final int f38468a;
 
     public m4(int i10) {
-        this.f38413a = i10;
+        this.f38468a = i10;
     }
 
     public static ActionMode.Callback2 c(Object obj) {
@@ -27,9 +27,9 @@ public final class m4 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
     @Override
     public void b(Object obj, float f7) {
         es esVar = (es) obj;
-        switch (this.f38413a) {
+        switch (this.f38468a) {
             case 12:
-                esVar.f36079b = f7;
+                esVar.f36100b = f7;
                 if (esVar.getParent() != null) {
                     ((View) esVar.getParent()).invalidate();
                     return;
@@ -38,14 +38,14 @@ public final class m4 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
             case 13:
             case 15:
             default:
-                esVar.f36081e = f7;
+                esVar.f36102e = f7;
                 if (esVar.getParent() != null) {
                     ((View) esVar.getParent()).invalidate();
                     return;
                 }
                 return;
             case 14:
-                esVar.f36080c = f7;
+                esVar.f36101c = f7;
                 if (esVar.getParent() != null) {
                     ((View) esVar.getParent()).invalidate();
                     return;
@@ -63,7 +63,7 @@ public final class m4 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
 
     @Override
     public String e(int i10) {
-        switch (this.f38413a) {
+        switch (this.f38468a) {
             case 21:
                 return hg.c.h(i10, "");
             case 22:
@@ -127,7 +127,7 @@ public final class m4 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f38413a) {
+        switch (this.f38468a) {
             case 0:
                 b2Var.dismiss();
                 return;
@@ -146,15 +146,15 @@ public final class m4 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
     @Override
     public float get(Object obj) {
         es esVar = (es) obj;
-        switch (this.f38413a) {
+        switch (this.f38468a) {
             case 11:
-                return esVar.f36079b;
+                return esVar.f36100b;
             case 12:
             case 14:
             default:
-                return esVar.f36081e;
+                return esVar.f36102e;
             case 13:
-                return esVar.f36080c;
+                return esVar.f36101c;
             case 15:
                 return esVar.d;
         }
@@ -167,7 +167,7 @@ public final class m4 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
 
     @Override
     public RecyclerView i(View view) {
-        return ((ge) view).f36603a;
+        return ((ge) view).f36637a;
     }
 
     @Override
@@ -195,12 +195,12 @@ public final class m4 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
 
     @Override
     public void q(org.telegram.ui.Components.gd0 gd0Var, int i10) {
-        Pattern pattern = org.telegram.ui.Components.e5.f25919a;
+        Pattern pattern = org.telegram.ui.Components.e5.f25971a;
     }
 
     @Override
     public void run(Exception exc) {
-        switch (this.f38413a) {
+        switch (this.f38468a) {
             case 19:
                 FileLog.e(exc);
                 return;
@@ -214,7 +214,7 @@ public final class m4 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
     public Object run(Object obj, Object obj2) {
         Integer num = (Integer) obj;
         Integer num2 = (Integer) obj2;
-        switch (this.f38413a) {
+        switch (this.f38468a) {
             case 3:
                 if (num.intValue() == 0) {
                     return LocaleController.formatPluralString("MaximumReactionsValue", num2.intValue(), new Object[0]);

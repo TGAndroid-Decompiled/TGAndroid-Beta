@@ -3,24 +3,24 @@ package org.telegram.ui.Components;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class t8 extends AnimatorListenerAdapter {
-    public final int f30997a;
-    public final e9 f30998b;
+    public final int f31076a;
+    public final e9 f31077b;
 
     public t8(e9 e9Var, int i10) {
-        this.f30997a = i10;
-        this.f30998b = e9Var;
+        this.f31076a = i10;
+        this.f31077b = e9Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         float f7;
-        switch (this.f30997a) {
+        switch (this.f31076a) {
             case 0:
                 super.onAnimationEnd(animator);
-                this.f30998b.f26014f = false;
+                this.f31077b.f26076f = false;
                 return;
             default:
-                e9 e9Var = this.f30998b;
+                e9 e9Var = this.f31077b;
                 if (e9Var.F) {
                     f7 = 1.0f;
                 } else {

@@ -9,9 +9,9 @@ import android.graphics.RectF;
 import android.view.KeyEvent;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.lw0;
+import org.telegram.ui.Components.mw0;
 import org.telegram.ui.Components.yc;
-public final class w1 extends lw0 {
+public final class w1 extends mw0 {
     public boolean f12712w0;
     public final Paint f12713x0;
     public final RectF f12714y0;
@@ -29,7 +29,7 @@ public final class w1 extends lw0 {
     public final void dispatchDraw(Canvas canvas) {
         e2 e2Var = this.f12715z0;
         Rect rect = e2Var.f12342w;
-        int l1 = org.telegram.ui.ActionBar.i6.l1(e2Var.I, e2Var.getThemedColor(org.telegram.ui.ActionBar.i6.f20822d6));
+        int l1 = org.telegram.ui.ActionBar.i6.l1(e2Var.I, e2Var.getThemedColor(org.telegram.ui.ActionBar.i6.f20827d6));
         Paint paint = this.f12713x0;
         paint.setColor(l1);
         if (e2Var.E && e2Var.f12344x != null) {
@@ -78,7 +78,7 @@ public final class w1 extends lw0 {
                 org.telegram.messenger.q.p(R.string.RichEditorDraftSaved, new yc(e2Var.X, e2Var.getResourceProvider()), R.raw.contact_check, 36);
                 return true;
             }
-        } else if (!e2Var.P.j3(keyEvent)) {
+        } else if (!e2Var.P.i3(keyEvent)) {
             return super.dispatchKeyEvent(keyEvent);
         }
         return true;

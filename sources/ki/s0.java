@@ -16,9 +16,9 @@ import java.util.concurrent.Executors;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.NotificationCenter;
+import org.telegram.ui.Components.a11;
 import org.telegram.ui.Components.e60;
 import org.telegram.ui.Components.pv;
-import org.telegram.ui.Components.z01;
 public final class s0 {
     public boolean A;
     public boolean B;
@@ -233,16 +233,16 @@ public final class s0 {
                 e60 e60Var = (e60) this.d.f15268b;
                 e60Var.u();
                 FileLog.e(exc);
-                z01 z01Var = e60Var.T;
-                if (z01Var != null) {
-                    z01Var.d(true);
+                a11 a11Var = e60Var.T;
+                if (a11Var != null) {
+                    a11Var.d(true);
                 }
                 e60Var.T = null;
                 MediaController.getInstance().requestRecordAudioFocus(false);
-                if (e60Var.f25950e0) {
+                if (e60Var.f25998e0) {
                     e60Var.r(6);
                 } else {
-                    NotificationCenter.getInstance(e60Var.h).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStartError, Integer.valueOf(e60Var.f25959n));
+                    NotificationCenter.getInstance(e60Var.h).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStartError, Integer.valueOf(e60Var.f26007n));
                 }
                 e60Var.t(false, false);
                 if (!this.B && !this.f15053l.D()) {
@@ -374,25 +374,25 @@ public final class s0 {
         if (i10 == 3 && i11 != 3) {
             e60Var.s(true);
         }
-        e60Var.f25960n0 = Math.max(e60Var.f25960n0, j3);
+        e60Var.f26008n0 = Math.max(e60Var.f26008n0, j3);
         if (i11 == 3) {
-            if (!e60Var.f25970v0) {
-                e60Var.f25970v0 = true;
+            if (!e60Var.f26018v0) {
+                e60Var.f26018v0 = true;
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
             }
             e60.l(e60Var);
             e60.m(e60Var, true);
             e60Var.w();
-            if (!e60Var.f25950e0) {
-                e60Var.f25950e0 = true;
-                NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStarted, Integer.valueOf(e60Var.f25959n), Boolean.FALSE);
-            } else if (e60Var.f25952f0) {
-                e60Var.f25952f0 = false;
+            if (!e60Var.f25998e0) {
+                e60Var.f25998e0 = true;
+                NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStarted, Integer.valueOf(e60Var.f26007n), Boolean.FALSE);
+            } else if (e60Var.f26000f0) {
+                e60Var.f26000f0 = false;
                 NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordResumed, new Object[0]);
             }
         } else {
             e60.m(e60Var, false);
-            e60Var.f25971w.setProgress(((float) j3) / ((float) j11));
+            e60Var.f26019w.setProgress(((float) j3) / ((float) j11));
         }
         if (i11 == 8 || i11 == 9 || i11 == 10) {
             e60Var.u();
@@ -492,7 +492,7 @@ public final class s0 {
             this.v = z10;
             pv pvVar = this.f15048f;
             if (pvVar != null) {
-                e60.j((e60) pvVar.f29752b, z10);
+                e60.j((e60) pvVar.f29849b, z10);
             }
         }
     }

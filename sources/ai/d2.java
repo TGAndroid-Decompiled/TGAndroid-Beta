@@ -72,7 +72,7 @@ public final class d2 implements NotificationCenter.NotificationCenterDelegate, 
         this.I = z12;
         b2 b2Var = new b2(this);
         this.H = b2Var;
-        FileLog.d("[LivePlayer] setup to call " + inputGroupCall.f20059id);
+        FileLog.d("[LivePlayer] setup to call " + inputGroupCall.f20064id);
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.storyGroupCallUpdated);
         if (z11) {
             this.J = NativeInstance.createVideoCapturer(b2Var, z12 ? 1 : 0);
@@ -150,7 +150,7 @@ public final class d2 implements NotificationCenter.NotificationCenterDelegate, 
             if (this.f754b == longValue) {
                 zf.d.a(this.v, groupCall);
                 this.v = groupCall;
-                NotificationCenter.getInstance(this.f756e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(groupCall.f20052id));
+                NotificationCenter.getInstance(this.f756e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(groupCall.f20057id));
             }
         }
     }
@@ -194,7 +194,7 @@ public final class d2 implements NotificationCenter.NotificationCenterDelegate, 
 
     public final boolean f(TLRPC.InputGroupCall inputGroupCall) {
         TLRPC.InputGroupCall inputGroupCall2 = this.f757f;
-        if (inputGroupCall2 != inputGroupCall && inputGroupCall2.f20059id != inputGroupCall.f20059id) {
+        if (inputGroupCall2 != inputGroupCall && inputGroupCall2.f20064id != inputGroupCall.f20064id) {
             return false;
         }
         return true;
@@ -203,11 +203,11 @@ public final class d2 implements NotificationCenter.NotificationCenterDelegate, 
     public final long g() {
         TLRPC.GroupCall groupCall = this.v;
         if (groupCall != null) {
-            return groupCall.f20052id;
+            return groupCall.f20057id;
         }
         TLRPC.InputGroupCall inputGroupCall = this.f757f;
         if (inputGroupCall != null) {
-            return inputGroupCall.f20059id;
+            return inputGroupCall.f20064id;
         }
         return 0L;
     }
@@ -240,7 +240,7 @@ public final class d2 implements NotificationCenter.NotificationCenterDelegate, 
         if (this.f761w) {
             return;
         }
-        NativeInstance makeGroup = NativeInstance.makeGroup(org.telegram.ui.Components.voip.g2.d("live_" + this.f757f.f20059id), 0L, false, SharedConfig.noiseSupression, new p1(this, 0), new w1(0), new p1(this, 2), new p1(this, 3), new p1(this, 4), new p1(this, 5), false);
+        NativeInstance makeGroup = NativeInstance.makeGroup(org.telegram.ui.Components.voip.g2.d("live_" + this.f757f.f20064id), 0L, false, SharedConfig.noiseSupression, new p1(this, 0), new w1(0), new p1(this, 2), new p1(this, 3), new p1(this, 4), new p1(this, 5), false);
         this.E = makeGroup;
         makeGroup.setOnStateUpdatedListener(new c2(this));
         this.E.resetGroupInstance(false, false);
@@ -422,7 +422,7 @@ public final class d2 implements NotificationCenter.NotificationCenterDelegate, 
         tL_updateStory.peer = MessagesController.getInstance(i10).getPeer(this.f754b);
         TL_stories.TL_storyItemDeleted tL_storyItemDeleted = new TL_stories.TL_storyItemDeleted();
         tL_updateStory.story = tL_storyItemDeleted;
-        tL_storyItemDeleted.f20279id = this.f755c;
+        tL_storyItemDeleted.f20284id = this.f755c;
         MessagesController.getInstance(i10).getStoriesController().Z(tL_updateStory);
         e();
     }

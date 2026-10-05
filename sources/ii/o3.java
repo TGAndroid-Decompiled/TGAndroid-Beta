@@ -20,7 +20,7 @@ public final class o3 {
 
     public final TL_iv.RichMessage a() {
         int i10;
-        TL_iv.PageBlock N1;
+        TL_iv.PageBlock M1;
         x3 x3Var = this.f12560e;
         ArrayList arrayList = x3Var.f12778s3;
         int i11 = this.f12557a;
@@ -36,28 +36,28 @@ public final class o3 {
         } else {
             i10 = -1;
         }
-        TL_iv.PageBlock N12 = x3.N1(x3Var, aVar, this.f12559c, i10);
+        TL_iv.PageBlock M12 = x3.M1(x3Var, aVar, this.f12559c, i10);
         if (i11 == i12) {
-            N1 = null;
+            M1 = null;
         } else {
-            N1 = x3.N1(x3Var, aVar2, 0, i13);
+            M1 = x3.M1(x3Var, aVar2, 0, i13);
         }
-        if (N12 != null) {
-            aVar.f12187b = N12;
+        if (M12 != null) {
+            aVar.f12187b = M12;
         }
-        if (N1 != null) {
-            aVar2.f12187b = N1;
+        if (M1 != null) {
+            aVar2.f12187b = M1;
         }
         try {
-            ArrayList<TL_iv.PageBlock> a32 = x3Var.a3(i11, i12 + 1, 0, false);
-            ArrayList<TLRPC.Photo> C2 = x3Var.C2(i11, i12);
-            ArrayList<TLRPC.Document> B2 = x3Var.B2(i11, i12);
+            ArrayList<TL_iv.PageBlock> Z2 = x3Var.Z2(i11, i12 + 1, 0, false);
+            ArrayList<TLRPC.Photo> B2 = x3Var.B2(i11, i12);
+            ArrayList<TLRPC.Document> A2 = x3Var.A2(i11, i12);
             aVar.f12187b = pageBlock;
             aVar2.f12187b = pageBlock2;
             TL_iv.RichMessage richMessage = new TL_iv.RichMessage();
-            richMessage.blocks = a32;
-            richMessage.photos = C2;
-            richMessage.documents = B2;
+            richMessage.blocks = Z2;
+            richMessage.photos = B2;
+            richMessage.documents = A2;
             return richMessage;
         } catch (Throwable th2) {
             aVar.f12187b = pageBlock;

@@ -10,16 +10,16 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.Components.oa;
 public final class y0 extends org.telegram.ui.Cells.w0 {
-    public final oa f45427l2;
-    public final TextPaint f45428m2;
-    public final a1 f45429n2;
+    public final oa f45434l2;
+    public final TextPaint f45435m2;
+    public final a1 f45436n2;
 
     public y0(a1 a1Var, Context context, com.google.firebase.messaging.n nVar) {
         super(context, nVar, false);
-        this.f45429n2 = a1Var;
-        this.f45427l2 = new oa(a1Var.d, this, 10, false);
+        this.f45436n2 = a1Var;
+        this.f45434l2 = new oa(a1Var.d, this, 10, false);
         TextPaint textPaint = new TextPaint(1);
-        this.f45428m2 = textPaint;
+        this.f45435m2 = textPaint;
         textPaint.setTypeface(AndroidUtilities.bold());
         textPaint.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
         textPaint.setColor(-1);
@@ -31,29 +31,29 @@ public final class y0 extends org.telegram.ui.Cells.w0 {
         float f10;
         if (!"paintChatActionText".equals(str) && !"paintChatActionText2".equals(str)) {
             if ("paintChatActionBackground".equals(str)) {
-                b6 b6Var = this.f45429n2.h;
-                b6Var.f45018v0 = true;
+                b6 b6Var = this.f45436n2.h;
+                b6Var.f45025v0 = true;
                 boolean z10 = b6Var.B0;
-                oa oaVar = this.f45427l2;
-                if (oaVar.f29324r != z10) {
-                    oaVar.f29324r = z10;
-                    if (oaVar.f29315i == 10) {
+                oa oaVar = this.f45434l2;
+                if (oaVar.f29424r != z10) {
+                    oaVar.f29424r = z10;
+                    if (oaVar.f29415i == 10) {
                         ColorMatrix colorMatrix = new ColorMatrix();
                         colorMatrix.setSaturation(1.6f);
-                        if (oaVar.f29324r) {
+                        if (oaVar.f29424r) {
                             f7 = 0.97f;
                         } else {
                             f7 = 0.92f;
                         }
                         AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, f7);
-                        if (oaVar.f29324r) {
+                        if (oaVar.f29424r) {
                             f10 = 0.12f;
                         } else {
                             f10 = -0.06f;
                         }
                         AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, f10);
                         oaVar.h.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-                        oaVar.f29314g.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+                        oaVar.f29414g.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
                     }
                 }
                 Paint c10 = oaVar.c(1.0f);
@@ -63,6 +63,6 @@ public final class y0 extends org.telegram.ui.Cells.w0 {
             }
             return super.F(str);
         }
-        return this.f45428m2;
+        return this.f45435m2;
     }
 }

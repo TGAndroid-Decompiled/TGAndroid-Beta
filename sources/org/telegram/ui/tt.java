@@ -3,15 +3,15 @@ package org.telegram.ui;
 import android.view.View;
 import org.telegram.messenger.NotificationCenter;
 public final class tt implements View.OnAttachStateChangeListener {
-    public st f40965a;
+    public st f41021a;
 
     @Override
     public final void onViewAttachedToWindow(View view) {
-        NotificationCenter.getGlobalInstance().addObserver(this.f40965a, NotificationCenter.emojiLoaded);
+        NotificationCenter.getGlobalInstance().addObserver(this.f41021a, NotificationCenter.emojiLoaded);
     }
 
     @Override
     public final void onViewDetachedFromWindow(View view) {
-        NotificationCenter.getGlobalInstance().removeObserver(this.f40965a, NotificationCenter.emojiLoaded);
+        NotificationCenter.getGlobalInstance().removeObserver(this.f41021a, NotificationCenter.emojiLoaded);
     }
 }

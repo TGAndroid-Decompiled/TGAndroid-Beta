@@ -10,5 +10,5 @@ public interface vq0 {
 
     void g();
 
-    void i(int i10, boolean z10, boolean z11);
+    void h(int i10, boolean z10, boolean z11);
 }

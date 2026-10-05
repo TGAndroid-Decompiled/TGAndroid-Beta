@@ -255,7 +255,7 @@ public final class i {
 
     public final void h(ni.a aVar) {
         ArrayList arrayList;
-        this.f499k = aVar.f16914b;
+        this.f499k = aVar.f16919b;
         while (true) {
             int i10 = this.f499k;
             arrayList = this.f498j;

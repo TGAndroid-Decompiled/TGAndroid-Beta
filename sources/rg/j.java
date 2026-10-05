@@ -4,8 +4,8 @@ import android.graphics.Bitmap;
 import java.util.ArrayList;
 public final class j extends b {
     public final ArrayList d;
-    public final Bitmap f46137e;
-    public final int f46138f;
+    public final Bitmap f46144e;
+    public final int f46145f;
 
     public j(android.content.Context r22, int r23, org.telegram.ui.ActionBar.d6 r24) {
         throw new UnsupportedOperationException("Method not decompiled: rg.j.<init>(android.content.Context, int, org.telegram.ui.ActionBar.d6):void");

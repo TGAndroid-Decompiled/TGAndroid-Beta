@@ -5,16 +5,16 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 import ci.m6;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.a91;
 import org.telegram.ui.Components.ab0;
-import org.telegram.ui.Components.aw0;
 import org.telegram.ui.Components.b80;
 import org.telegram.ui.Components.bb0;
-import org.telegram.ui.Components.f91;
+import org.telegram.ui.Components.bw0;
 import org.telegram.ui.Components.g00;
-import org.telegram.ui.Components.j31;
+import org.telegram.ui.Components.g91;
+import org.telegram.ui.Components.k31;
 import org.telegram.ui.Components.n00;
 import org.telegram.ui.Components.sk0;
-import org.telegram.ui.Components.z81;
 import org.telegram.ui.StickersActivity;
 import org.telegram.ui.ly;
 import org.telegram.ui.rr;
@@ -40,7 +40,7 @@ public final class j0 extends s4.c0 {
                 return;
             case 7:
                 super.S(eVar, z0Var, dVar);
-                if (((f91) this.J).V) {
+                if (((g91) this.J).V) {
                     dVar.p(false);
                     return;
                 }
@@ -55,7 +55,7 @@ public final class j0 extends s4.c0 {
     public int W0(s4.z0 z0Var) {
         switch (this.I) {
             case 6:
-                if (((j31) this.J).f25252h3) {
+                if (((k31) this.J).f26036h3) {
                     return AndroidUtilities.displaySize.y;
                 }
                 return super.W0(z0Var);
@@ -70,7 +70,7 @@ public final class j0 extends s4.c0 {
         switch (this.I) {
             case 3:
                 super.k1(z10);
-                ab0 ab0Var = ((bb0) this.J).f24911b;
+                ab0 ab0Var = ((bb0) this.J).f24927b;
                 if (z10) {
                     i10 = -1;
                 } else {
@@ -92,7 +92,7 @@ public final class j0 extends s4.c0 {
         boolean z12;
         switch (this.I) {
             case 2:
-                b80 b80Var = ((ly) ((n00) this.J).J).f38365b.L0;
+                b80 b80Var = ((ly) ((n00) this.J).J).f38419b.L0;
                 if (b80Var != null && b80Var.D()) {
                     i10 = 0;
                 }
@@ -102,7 +102,7 @@ public final class j0 extends s4.c0 {
                 return super.m0(i10, eVar, z0Var);
             case 4:
                 sk0 sk0Var = (sk0) this.J;
-                ai.w0 w0Var = sk0Var.f30763b;
+                ai.w0 w0Var = sk0Var.f30819b;
                 boolean z13 = false;
                 if (i10 < 0 && sk0Var.B0 != 0.0f) {
                     float pullingLeftProgress = sk0Var.getPullingLeftProgress();
@@ -139,10 +139,10 @@ public final class j0 extends s4.c0 {
                 }
                 int m0 = super.m0(i10, eVar, z0Var);
                 if (i10 > 0 && m0 == 0 && w0Var.getScrollState() == 1 && sk0Var.q()) {
-                    ValueAnimator valueAnimator = sk0Var.f30804y0;
+                    ValueAnimator valueAnimator = sk0Var.f30860y0;
                     if (valueAnimator != null) {
                         valueAnimator.removeAllListeners();
-                        sk0Var.f30804y0.cancel();
+                        sk0Var.f30860y0.cancel();
                     }
                     int i11 = (sk0Var.getPullingLeftProgress() > 1.0f ? 1 : (sk0Var.getPullingLeftProgress() == 1.0f ? 0 : -1));
                     if (i11 > 0) {
@@ -186,14 +186,14 @@ public final class j0 extends s4.c0 {
                 }
                 return super.o0(i10, eVar, z0Var);
             case 5:
-                aw0 aw0Var = (aw0) this.J;
-                if (i10 > 0 && aw0Var.T0 != null) {
+                bw0 bw0Var = (bw0) this.J;
+                if (i10 > 0 && bw0Var.N != null) {
                     int i11 = 0;
                     while (i11 < i10) {
-                        int min = Math.min(i10 - i11, Math.max(1, Math.round((aw0Var.getHeight() - aw0Var.f24690a1) * 0.5f)));
-                        float j02 = aw0Var.j0();
-                        if (!Float.isInfinite(j02)) {
-                            min = Math.min(min, Math.max(0, Math.round(j02 - aw0Var.f24690a1)));
+                        int min = Math.min(i10 - i11, Math.max(1, Math.round((bw0Var.getHeight() - bw0Var.U) * 0.5f)));
+                        float k10 = bw0Var.k();
+                        if (!Float.isInfinite(k10)) {
+                            min = Math.min(min, Math.max(0, Math.round(k10 - bw0Var.U)));
                         }
                         if (min != 0) {
                             int o02 = super.o0(min, eVar, z0Var);
@@ -218,13 +218,13 @@ public final class j0 extends s4.c0 {
         switch (this.I) {
             case 2:
                 g00 g00Var = new g00(this, recyclerView.getContext());
-                g00Var.f46699a = i10;
+                g00Var.f46706a = i10;
                 w0(g00Var);
                 return;
             case 7:
-                z81 z81Var = new z81(this, recyclerView.getContext());
-                z81Var.f46699a = i10;
-                w0(z81Var);
+                a91 a91Var = new a91(this, recyclerView.getContext());
+                a91Var.f46706a = i10;
+                w0(a91Var);
                 return;
             default:
                 super.v0(recyclerView, z0Var, i10);
@@ -252,7 +252,7 @@ public final class j0 extends s4.c0 {
     public void z0(s4.z0 z0Var, int[] iArr) {
         switch (this.I) {
             case 8:
-                iArr[1] = ((StickersActivity) this.J).f34483a.getHeight();
+                iArr[1] = ((StickersActivity) this.J).f34496a.getHeight();
                 return;
             default:
                 super.z0(z0Var, iArr);

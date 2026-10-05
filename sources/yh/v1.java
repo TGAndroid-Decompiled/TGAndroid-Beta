@@ -1,50 +1,29 @@
 package yh;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.rc;
-public final class v1 implements Runnable {
-    public final int f52118a;
-    public final x3 f52119b;
-    public final String f52120c;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.TwoStepVerificationActivity;
+public final class v1 implements RequestDelegate {
+    public final int f52121a;
+    public final y3 f52122b;
+    public final TwoStepVerificationActivity f52123c;
 
-    public v1(x3 x3Var, String str, int i10) {
-        this.f52118a = i10;
-        this.f52119b = x3Var;
-        this.f52120c = str;
+    public v1(y3 y3Var, TwoStepVerificationActivity twoStepVerificationActivity, int i10) {
+        this.f52121a = i10;
+        this.f52122b = y3Var;
+        this.f52123c = twoStepVerificationActivity;
     }
 
     @Override
-    public final void run() {
-        switch (this.f52118a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f52121a) {
             case 0:
-                x3.i1(this.f52119b, this.f52120c);
-                return;
-            case 1:
-                x3.h1(this.f52119b, this.f52120c);
-                return;
-            case 2:
-                x3.u0(this.f52119b, this.f52120c);
-                return;
-            case 3:
-                x3.Q0(this.f52119b, this.f52120c);
-                return;
-            case 4:
-                x3.D0(this.f52119b, this.f52120c);
-                return;
-            case 5:
-                x3.O(this.f52119b, this.f52120c);
-                return;
-            case 6:
-                x3.x0(this.f52119b, this.f52120c);
-                return;
-            case 7:
-                AndroidUtilities.addToClipboard(this.f52120c);
-                rc k10 = this.f52119b.getBulletinFactory().k(false);
-                k10.f30355t = true;
-                k10.j();
+                AndroidUtilities.runOnUIThread(new u0(this.f52122b, tL_error, this.f52123c, tLObject));
                 return;
             default:
-                x3.o0(this.f52119b, this.f52120c);
+                AndroidUtilities.runOnUIThread(new u0(this.f52122b, tL_error, tLObject, this.f52123c));
                 return;
         }
     }

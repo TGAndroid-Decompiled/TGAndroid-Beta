@@ -1,10 +1,25 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.widget.FrameLayout;
-public final class f41 extends FrameLayout {
+import org.telegram.messenger.LanguageDetector;
+import org.telegram.messenger.Utilities;
+public final class f41 implements LanguageDetector.StringCallback, LanguageDetector.ExceptionCallback {
+    public final String f26321a;
+    public final String f26322b;
+    public final Utilities.Callback2 f26323c;
+
+    public f41(String str, String str2, Utilities.Callback2 callback2) {
+        this.f26321a = str;
+        this.f26322b = str2;
+        this.f26323c = callback2;
+    }
+
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public void run(String str) {
+        u41.x(this.f26321a, str, this.f26322b, this.f26323c);
+    }
+
+    @Override
+    public void run(Exception exc) {
+        u41.x(this.f26321a, "en", this.f26322b, this.f26323c);
     }
 }

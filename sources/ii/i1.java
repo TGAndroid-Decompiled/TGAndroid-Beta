@@ -21,8 +21,8 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.eu;
 import org.telegram.ui.Components.k90;
-import org.telegram.ui.Components.m61;
-import org.telegram.ui.Components.n11;
+import org.telegram.ui.Components.n61;
+import org.telegram.ui.Components.o11;
 public final class i1 extends eu {
     public boolean E;
     public k90 F;
@@ -67,7 +67,7 @@ public final class i1 extends eu {
                 }
                 h1 h1Var = i1Var.f12426c;
                 if (h1Var != null && charSequence != null && i11 > i10 && i12 == i13) {
-                    h1Var.x(charSequence.subSequence(i10, i11));
+                    h1Var.w(charSequence.subSequence(i10, i11));
                 }
                 return spanned.subSequence(i12, i13);
             }
@@ -108,7 +108,7 @@ public final class i1 extends eu {
     }
 
     @Override
-    public final m61 createUrlSpan(String str) {
+    public final n61 createUrlSpan(String str) {
         return h6.k(str);
     }
 
@@ -118,7 +118,7 @@ public final class i1 extends eu {
         h1 h1Var;
         if (keyEvent.getKeyCode() == 61) {
             if (keyEvent.getAction() == 0 && (h1Var = this.f12426c) != null) {
-                h1Var.G(keyEvent.isShiftPressed());
+                h1Var.C(keyEvent.isShiftPressed());
                 return true;
             }
         } else {
@@ -239,7 +239,7 @@ public final class i1 extends eu {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        n11[] n11VarArr;
+        o11[] o11VarArr;
         int i10;
         int i11;
         float f7;
@@ -258,15 +258,15 @@ public final class i1 extends eu {
                 this.F = null;
                 if (text instanceof Spanned) {
                     Spanned spanned = (Spanned) text;
-                    for (n11 n11Var : (n11[]) spanned.getSpans(0, spanned.length(), n11.class)) {
-                        int i12 = n11Var.f28823b.f28502a;
+                    for (o11 o11Var : (o11[]) spanned.getSpans(0, spanned.length(), o11.class)) {
+                        int i12 = o11Var.f29298b.f28925a;
                         if ((65536 & i12) != 0) {
-                            int spanStart = spanned.getSpanStart(n11Var);
-                            int spanEnd = spanned.getSpanEnd(n11Var);
+                            int spanStart = spanned.getSpanStart(o11Var);
+                            int spanEnd = spanned.getSpanEnd(o11Var);
                             if (spanStart >= 0 && spanEnd > spanStart) {
                                 if (k90Var == null) {
                                     k90Var = new k90(0);
-                                    k90Var.f28041n = false;
+                                    k90Var.f28122n = false;
                                 }
                                 k90Var.d(layout, spanStart, 0.0f);
                                 if ((32768 & i12) != 0) {
@@ -286,13 +286,13 @@ public final class i1 extends eu {
                                 } else {
                                     i11 = 0;
                                 }
-                                k90Var.f28042o = i11;
+                                k90Var.f28123o = i11;
                                 layout.getSelectionPath(spanStart, spanEnd, k90Var);
                             }
                         }
                     }
                     if (k90Var != null) {
-                        k90Var.f28041n = true;
+                        k90Var.f28122n = true;
                     }
                     this.F = k90Var;
                 }
@@ -659,7 +659,7 @@ public final class i1 extends eu {
         }
         setHintTextColor(v02);
         setCursorColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.G6, d6Var));
-        setHandlesColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20969l6, d6Var));
+        setHandlesColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20974l6, d6Var));
         m();
     }
 

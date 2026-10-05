@@ -24,7 +24,7 @@ public final class b6 extends CharacterStyle {
             case 1:
                 textPaint.setTypeface(AndroidUtilities.bold());
                 int alpha = textPaint.getAlpha();
-                int i10 = org.telegram.ui.ActionBar.i6.f21008n6;
+                int i10 = org.telegram.ui.ActionBar.i6.f21013n6;
                 ((hb0) this.f12245b).getClass();
                 textPaint.setColor(org.telegram.ui.ActionBar.i6.w0(null, i10, false));
                 textPaint.setAlpha(alpha);

@@ -10,20 +10,20 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public final class r implements y2.n {
-    public final o f44133a;
-    public final l f44134b;
-    public static final Pattern f44101c = Pattern.compile("AVERAGE-BANDWIDTH=(\\d+)\\b");
+    public final o f44140a;
+    public final l f44141b;
+    public static final Pattern f44108c = Pattern.compile("AVERAGE-BANDWIDTH=(\\d+)\\b");
     public static final Pattern d = Pattern.compile("VIDEO=\"((?:.|\f)+?)\"");
-    public static final Pattern f44104e = Pattern.compile("AUDIO=\"((?:.|\f)+?)\"");
-    public static final Pattern f44106f = Pattern.compile("SUBTITLES=\"((?:.|\f)+?)\"");
+    public static final Pattern f44111e = Pattern.compile("AUDIO=\"((?:.|\f)+?)\"");
+    public static final Pattern f44113f = Pattern.compile("SUBTITLES=\"((?:.|\f)+?)\"");
     public static final Pattern h = Pattern.compile("CLOSED-CAPTIONS=\"((?:.|\f)+?)\"");
-    public static final Pattern f44114n = Pattern.compile("[^-]BANDWIDTH=(\\d+)\\b");
-    public static final Pattern f44119r = Pattern.compile("CHANNELS=\"((?:.|\f)+?)\"");
-    public static final Pattern f44121s = Pattern.compile("VIDEO-RANGE=(SDR|PQ|HLG)");
+    public static final Pattern f44121n = Pattern.compile("[^-]BANDWIDTH=(\\d+)\\b");
+    public static final Pattern f44126r = Pattern.compile("CHANNELS=\"((?:.|\f)+?)\"");
+    public static final Pattern f44128s = Pattern.compile("VIDEO-RANGE=(SDR|PQ|HLG)");
     public static final Pattern v = Pattern.compile("CODECS=\"((?:.|\f)+?)\"");
-    public static final Pattern f44126w = Pattern.compile("SUPPLEMENTAL-CODECS=\"((?:.|\f)+?)\"");
-    public static final Pattern f44128x = Pattern.compile("MIME=\"(.+?)\"");
-    public static final Pattern f44130y = Pattern.compile("CACHED=\"(.+?)\"");
+    public static final Pattern f44133w = Pattern.compile("SUPPLEMENTAL-CODECS=\"((?:.|\f)+?)\"");
+    public static final Pattern f44135x = Pattern.compile("MIME=\"(.+?)\"");
+    public static final Pattern f44137y = Pattern.compile("CACHED=\"(.+?)\"");
     public static final Pattern E = Pattern.compile("DOCID=\"(.+?)\"");
     public static final Pattern F = Pattern.compile("DOCFILENAME=\"(.+?)\"");
     public static final Pattern G = Pattern.compile("ACCOUNT=\"(.+?)\"");
@@ -46,32 +46,32 @@ public final class r implements y2.n {
     public static final Pattern X = Pattern.compile("#EXTINF:[\\d\\.]+\\b,(.+)");
     public static final Pattern Y = Pattern.compile("LAST-MSN=(\\d+)\\b");
     public static final Pattern Z = Pattern.compile("LAST-PART=(\\d+)\\b");
-    public static final Pattern f44099a0 = Pattern.compile("TIME-OFFSET=(-?[\\d\\.]+)\\b");
-    public static final Pattern f44100b0 = Pattern.compile("#EXT-X-BYTERANGE:(\\d+(?:@\\d+)?)\\b");
-    public static final Pattern f44102c0 = Pattern.compile("BYTERANGE=\"(\\d+(?:@\\d+)?)\\b\"");
-    public static final Pattern f44103d0 = Pattern.compile("BYTERANGE-START=(\\d+)\\b");
-    public static final Pattern f44105e0 = Pattern.compile("BYTERANGE-LENGTH=(\\d+)\\b");
-    public static final Pattern f44107f0 = Pattern.compile("METHOD=(NONE|AES-128|SAMPLE-AES|SAMPLE-AES-CENC|SAMPLE-AES-CTR)\\s*(?:,|$)");
-    public static final Pattern f44108g0 = Pattern.compile("KEYFORMAT=\"((?:.|\f)+?)\"");
-    public static final Pattern f44109h0 = Pattern.compile("KEYFORMATVERSIONS=\"((?:.|\f)+?)\"");
-    public static final Pattern f44110i0 = Pattern.compile("URI=\"((?:.|\f)+?)\"");
-    public static final Pattern f44111j0 = Pattern.compile("IV=([^,.*]+)");
-    public static final Pattern f44112k0 = Pattern.compile("TYPE=(AUDIO|VIDEO|SUBTITLES|CLOSED-CAPTIONS)");
-    public static final Pattern f44113l0 = Pattern.compile("TYPE=(PART|MAP)");
+    public static final Pattern f44106a0 = Pattern.compile("TIME-OFFSET=(-?[\\d\\.]+)\\b");
+    public static final Pattern f44107b0 = Pattern.compile("#EXT-X-BYTERANGE:(\\d+(?:@\\d+)?)\\b");
+    public static final Pattern f44109c0 = Pattern.compile("BYTERANGE=\"(\\d+(?:@\\d+)?)\\b\"");
+    public static final Pattern f44110d0 = Pattern.compile("BYTERANGE-START=(\\d+)\\b");
+    public static final Pattern f44112e0 = Pattern.compile("BYTERANGE-LENGTH=(\\d+)\\b");
+    public static final Pattern f44114f0 = Pattern.compile("METHOD=(NONE|AES-128|SAMPLE-AES|SAMPLE-AES-CENC|SAMPLE-AES-CTR)\\s*(?:,|$)");
+    public static final Pattern f44115g0 = Pattern.compile("KEYFORMAT=\"((?:.|\f)+?)\"");
+    public static final Pattern f44116h0 = Pattern.compile("KEYFORMATVERSIONS=\"((?:.|\f)+?)\"");
+    public static final Pattern f44117i0 = Pattern.compile("URI=\"((?:.|\f)+?)\"");
+    public static final Pattern f44118j0 = Pattern.compile("IV=([^,.*]+)");
+    public static final Pattern f44119k0 = Pattern.compile("TYPE=(AUDIO|VIDEO|SUBTITLES|CLOSED-CAPTIONS)");
+    public static final Pattern f44120l0 = Pattern.compile("TYPE=(PART|MAP)");
     public static final Pattern m0 = Pattern.compile("LANGUAGE=\"((?:.|\f)+?)\"");
-    public static final Pattern f44115n0 = Pattern.compile("NAME=\"((?:.|\f)+?)\"");
-    public static final Pattern f44116o0 = Pattern.compile("GROUP-ID=\"((?:.|\f)+?)\"");
-    public static final Pattern f44117p0 = Pattern.compile("CHARACTERISTICS=\"((?:.|\f)+?)\"");
-    public static final Pattern f44118q0 = Pattern.compile("INSTREAM-ID=\"((?:CC|SERVICE)\\d+)\"");
-    public static final Pattern f44120r0 = a("AUTOSELECT");
-    public static final Pattern f44122s0 = a("DEFAULT");
-    public static final Pattern f44123t0 = a("FORCED");
-    public static final Pattern f44124u0 = a("INDEPENDENT");
-    public static final Pattern f44125v0 = a("GAP");
-    public static final Pattern f44127w0 = a("PRECISE");
-    public static final Pattern f44129x0 = Pattern.compile("VALUE=\"((?:.|\f)+?)\"");
-    public static final Pattern f44131y0 = Pattern.compile("IMPORT=\"((?:.|\f)+?)\"");
-    public static final Pattern f44132z0 = Pattern.compile("[:,]ID=\"((?:.|\f)+?)\"");
+    public static final Pattern f44122n0 = Pattern.compile("NAME=\"((?:.|\f)+?)\"");
+    public static final Pattern f44123o0 = Pattern.compile("GROUP-ID=\"((?:.|\f)+?)\"");
+    public static final Pattern f44124p0 = Pattern.compile("CHARACTERISTICS=\"((?:.|\f)+?)\"");
+    public static final Pattern f44125q0 = Pattern.compile("INSTREAM-ID=\"((?:CC|SERVICE)\\d+)\"");
+    public static final Pattern f44127r0 = a("AUTOSELECT");
+    public static final Pattern f44129s0 = a("DEFAULT");
+    public static final Pattern f44130t0 = a("FORCED");
+    public static final Pattern f44131u0 = a("INDEPENDENT");
+    public static final Pattern f44132v0 = a("GAP");
+    public static final Pattern f44134w0 = a("PRECISE");
+    public static final Pattern f44136x0 = Pattern.compile("VALUE=\"((?:.|\f)+?)\"");
+    public static final Pattern f44138y0 = Pattern.compile("IMPORT=\"((?:.|\f)+?)\"");
+    public static final Pattern f44139z0 = Pattern.compile("[:,]ID=\"((?:.|\f)+?)\"");
     public static final Pattern A0 = Pattern.compile("CLASS=\"((?:.|\f)+?)\"");
     public static final Pattern B0 = Pattern.compile("START-DATE=\"((?:.|\f)+?)\"");
     public static final Pattern C0 = Pattern.compile("CUE=\"((?:.|\f)+?)\"");
@@ -91,8 +91,8 @@ public final class r implements y2.n {
     public static final Pattern Q0 = Pattern.compile("\\b(X-[A-Z0-9-]+)=");
 
     public r(o oVar, l lVar) {
-        this.f44133a = oVar;
-        this.f44134b = lVar;
+        this.f44140a = oVar;
+        this.f44141b = lVar;
     }
 
     public static Pattern a(String str) {
@@ -109,9 +109,9 @@ public final class r implements y2.n {
     }
 
     public static b2.n c(String str, String str2, HashMap hashMap) {
-        String i10 = i(str, f44109h0, "1", hashMap);
+        String i10 = i(str, f44116h0, "1", hashMap);
         boolean equals = "urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed".equals(str2);
-        Pattern pattern = f44110i0;
+        Pattern pattern = f44117i0;
         if (equals) {
             String j3 = j(str, pattern, hashMap);
             return new b2.n(b2.i.d, null, "video/mp4", Base64.decode(j3.substring(j3.indexOf(44)), 0));

@@ -1,251 +1,276 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.os.SystemClock;
+import android.media.MediaCodec;
+import android.os.Build;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
 public final class bp0 {
-    public static Paint N;
-    public static Paint O;
-    public long A;
-    public e6 B;
-    public Paint C;
-    public float D;
-    public int E;
-    public int F;
-    public float[] G;
-    public float[] H;
-    public float[] I;
-    public boolean J;
-    public float K;
-    public float L;
-    public ap0 M;
-    public int f25023a;
-    public int f25024b;
-    public float f25025c;
-    public float d;
-    public boolean f25026e;
-    public boolean f25027f;
-    public int f25028g;
-    public int h;
-    public int f25029i;
-    public int f25030j;
-    public org.telegram.ui.Cells.u1 f25031k;
-    public byte[] f25032l;
-    public MessageObject f25033m;
-    public org.telegram.ui.Cells.u1 f25034n;
-    public boolean f25035o;
-    public int f25036p;
-    public int f25037q;
-    public int f25038r;
-    public float f25039s;
-    public float f25040t;
-    public boolean f25041u;
-    public e6 v;
-    public float f25042w;
-    public Path f25043x;
-    public Path f25044y;
-    public boolean f25045z;
+    public final int f25039a;
+    public long f25040b;
+    public final Object f25041c;
+    public final Object d;
+    public Object f25042e;
+    public Object f25043f;
+    public Object f25044g;
 
-    public final void a(Path path, float f7, float f10) {
-        float dpf2 = AndroidUtilities.dpf2(2.0f);
-        int z10 = org.telegram.messenger.bi.z(14.0f, this.h, 2);
-        float f11 = f10 * this.f25042w;
-        RectF rectF = AndroidUtilities.rectTmp;
-        float f12 = dpf2 / 2.0f;
-        rectF.set((AndroidUtilities.dpf2(1.0f) + f7) - f12, ((-f11) - f12) + AndroidUtilities.dp(7.0f) + z10, AndroidUtilities.dpf2(1.0f) + f7 + f12, f11 + f12 + AndroidUtilities.dp(7.0f) + z10);
-        path.addRoundRect(rectF, dpf2, dpf2, Path.Direction.CW);
+    public bp0(y2.d dVar) {
+        this.f25041c = dVar;
+        int i10 = dVar.f50381b;
+        this.f25039a = i10;
+        this.d = new e2.v(32);
+        u2.y0 y0Var = new u2.y0(0L, i10);
+        this.f25042e = y0Var;
+        this.f25043f = y0Var;
+        this.f25044g = y0Var;
     }
 
-    public final float[] b(int i10) {
-        byte[] bArr = this.f25032l;
-        if (bArr != null && i10 > 0) {
-            float[] fArr = new float[i10];
-            int i11 = 5;
-            int length = (bArr.length * 8) / 5;
-            float f7 = length / i10;
-            int i12 = 0;
-            int i13 = 0;
-            float f10 = 0.0f;
-            int i14 = 0;
-            loop0: while (i12 < length) {
-                if (i12 == i13) {
-                    int i15 = i13;
-                    int i16 = 0;
-                    while (i13 == i15) {
-                        f10 += f7;
-                        i15 = (int) f10;
-                        i16++;
-                    }
-                    int i17 = i12 * 5;
-                    int i18 = i17 / 8;
-                    int i19 = i17 - (i18 * 8);
-                    int i20 = 8 - i19;
-                    int i21 = 5 - i20;
-                    byte min = (byte) ((this.f25032l[i18] >> i19) & ((2 << (Math.min(i11, i20) - 1)) - 1));
-                    if (i21 > 0) {
-                        int i22 = i18 + 1;
-                        byte[] bArr2 = this.f25032l;
-                        if (i22 < bArr2.length) {
-                            min = (byte) (((byte) (min << i21)) | (bArr2[i22] & ((2 << (4 - i20)) - 1)));
-                        }
-                    }
-                    int i23 = 0;
-                    while (i23 < i16) {
-                        if (i14 >= i10) {
-                            break loop0;
-                        }
-                        fArr[i14] = Math.max(0.0f, (min * 7) / 31.0f);
-                        i23++;
-                        i14++;
-                    }
-                    i13 = i15;
-                }
-                i12++;
-                i11 = 5;
-            }
-            return fArr;
+    public static u2.y0 d(u2.y0 y0Var, long j3, ByteBuffer byteBuffer, int i10) {
+        while (j3 >= y0Var.f47463b) {
+            y0Var = (u2.y0) y0Var.d;
         }
-        return null;
+        while (i10 > 0) {
+            int min = Math.min(i10, (int) (y0Var.f47463b - j3));
+            y2.a aVar = (y2.a) y0Var.f47464c;
+            byteBuffer.put(aVar.f50375a, ((int) (j3 - y0Var.f47462a)) + aVar.f50376b, min);
+            i10 -= min;
+            j3 += min;
+            if (j3 == y0Var.f47463b) {
+                y0Var = (u2.y0) y0Var.d;
+            }
+        }
+        return y0Var;
     }
 
-    public final void c(android.graphics.Canvas r21, org.telegram.ui.Cells.u1 r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.bp0.c(android.graphics.Canvas, org.telegram.ui.Cells.u1):void");
+    public static u2.y0 e(u2.y0 y0Var, long j3, byte[] bArr, int i10) {
+        while (j3 >= y0Var.f47463b) {
+            y0Var = (u2.y0) y0Var.d;
+        }
+        int i11 = i10;
+        while (i11 > 0) {
+            int min = Math.min(i11, (int) (y0Var.f47463b - j3));
+            y2.a aVar = (y2.a) y0Var.f47464c;
+            System.arraycopy(aVar.f50375a, ((int) (j3 - y0Var.f47462a)) + aVar.f50376b, bArr, i10 - i11, min);
+            i11 -= min;
+            j3 += min;
+            if (j3 == y0Var.f47463b) {
+                y0Var = (u2.y0) y0Var.d;
+            }
+        }
+        return y0Var;
     }
 
-    public final void d(Canvas canvas, float f7) {
+    public static u2.y0 f(u2.y0 y0Var, h2.h hVar, ii.b0 b0Var, e2.v vVar) {
         boolean z10;
-        int i10;
-        float f10;
-        Paint paint;
-        Paint paint2;
-        e6 e6Var = this.B;
-        float dpf2 = AndroidUtilities.dpf2(2.0f);
-        MessageObject messageObject = this.f25033m;
-        if (messageObject != null && messageObject.isContentUnread() && !this.f25033m.isOut() && this.f25025c <= 0.0f) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        this.f25041u = z10;
-        Paint paint3 = N;
-        if (z10) {
-            i10 = this.f25037q;
-        } else if (this.f25035o) {
-            i10 = this.f25038r;
-        } else {
-            i10 = this.f25036p;
-        }
-        paint3.setColor(i10);
-        O.setColor(this.f25037q);
-        e6Var.f25937a = this.f25034n;
-        boolean isPlayingMessage = MediaController.getInstance().isPlayingMessage(this.f25033m);
-        if (this.f25045z && !isPlayingMessage) {
-            f10 = 1.0f;
-        } else {
-            f10 = 0.0f;
-        }
-        float d = e6Var.d(f10, false);
-        Paint paint4 = N;
-        paint4.setColor(i0.a.d(d, paint4.getColor(), this.f25036p));
-        float f11 = 1.0f - d;
-        O.setAlpha((int) (paint.getAlpha() * f11 * f7));
-        N.setAlpha((int) (paint2.getAlpha() * f7));
-        canvas.drawRect(0.0f, 0.0f, this.f25028g + dpf2, this.h, N);
-        if (d < 1.0f) {
-            canvas.drawRect(0.0f, 0.0f, (this.f25028g + dpf2) * this.f25025c * f11, this.h, O);
-        }
-        if (d > 0.0f) {
-            if (this.C == null || Math.abs(this.D - this.f25028g) > AndroidUtilities.dp(8.0f) || this.E != this.f25036p || this.F != this.f25037q) {
-                if (this.C == null) {
-                    this.C = new Paint(1);
+        if (hVar.getFlag(1073741824)) {
+            long j3 = b0Var.f12235b;
+            int i10 = 1;
+            vVar.G(1);
+            u2.y0 e7 = e(y0Var, j3, vVar.f8590a, 1);
+            long j10 = j3 + 1;
+            byte b10 = vVar.f8590a[0];
+            if ((b10 & 128) != 0) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int i11 = b10 & Byte.MAX_VALUE;
+            h2.d dVar = hVar.f10979b;
+            byte[] bArr = dVar.f10970a;
+            if (bArr == null) {
+                dVar.f10970a = new byte[16];
+            } else {
+                Arrays.fill(bArr, (byte) 0);
+            }
+            y0Var = e(e7, j10, dVar.f10970a, i11);
+            long j11 = j10 + i11;
+            if (z10) {
+                vVar.G(2);
+                y0Var = e(y0Var, j11, vVar.f8590a, 2);
+                j11 += 2;
+                i10 = vVar.D();
+            }
+            int[] iArr = dVar.d;
+            if (iArr == null || iArr.length < i10) {
+                iArr = new int[i10];
+            }
+            int[] iArr2 = dVar.f10973e;
+            if (iArr2 == null || iArr2.length < i10) {
+                iArr2 = new int[i10];
+            }
+            if (z10) {
+                int i12 = i10 * 6;
+                vVar.G(i12);
+                y0Var = e(y0Var, j11, vVar.f8590a, i12);
+                j11 += i12;
+                vVar.J(0);
+                for (int i13 = 0; i13 < i10; i13++) {
+                    iArr[i13] = vVar.D();
+                    iArr2[i13] = vVar.B();
                 }
-                this.E = this.f25036p;
-                this.F = this.f25037q;
-                Paint paint5 = this.C;
-                float f12 = this.f25028g;
-                this.D = f12;
-                int i11 = this.E;
-                paint5.setShader(new LinearGradient(0.0f, 0.0f, f12, 0.0f, new int[]{i11, this.F, i11}, new float[]{0.0f, 0.2f, 0.4f}, Shader.TileMode.CLAMP));
+            } else {
+                iArr[0] = 0;
+                iArr2[0] = b0Var.f12234a - ((int) (j11 - b0Var.f12235b));
             }
-            this.C.setAlpha((int) (d * 255.0f * f7));
-            canvas.save();
-            float pow = ((((float) Math.pow(((float) (SystemClock.elapsedRealtime() - this.A)) / 270.0f, 0.75d)) % 1.6f) - 0.6f) * this.D;
-            canvas.translate(pow, 0.0f);
-            canvas.drawRect(-pow, 0.0f, (this.f25028g + 5) - pow, this.h, this.C);
-            canvas.restore();
-            org.telegram.ui.Cells.u1 u1Var = this.f25034n;
-            if (u1Var != null) {
-                u1Var.invalidate();
+            c3.g0 g0Var = (c3.g0) b0Var.f12236c;
+            String str = e2.d0.f8538a;
+            byte[] bArr2 = g0Var.f4065b;
+            byte[] bArr3 = dVar.f10970a;
+            int i14 = g0Var.f4064a;
+            int i15 = g0Var.f4066c;
+            int i16 = g0Var.d;
+            dVar.f10974f = i10;
+            dVar.d = iArr;
+            dVar.f10973e = iArr2;
+            dVar.f10971b = bArr2;
+            dVar.f10970a = bArr3;
+            dVar.f10972c = i14;
+            dVar.f10975g = i15;
+            dVar.h = i16;
+            MediaCodec.CryptoInfo cryptoInfo = dVar.f10976i;
+            cryptoInfo.numSubSamples = i10;
+            cryptoInfo.numBytesOfClearData = iArr;
+            cryptoInfo.numBytesOfEncryptedData = iArr2;
+            cryptoInfo.key = bArr2;
+            cryptoInfo.iv = bArr3;
+            cryptoInfo.mode = i14;
+            if (Build.VERSION.SDK_INT >= 24) {
+                h2.c cVar = dVar.f10977j;
+                cVar.getClass();
+                h2.c.a(cVar, i15, i16);
             }
+            long j12 = b0Var.f12235b;
+            int i17 = (int) (j11 - j12);
+            b0Var.f12235b = j12 + i17;
+            b0Var.f12234a -= i17;
         }
+        if (hVar.hasSupplementalData()) {
+            vVar.G(4);
+            u2.y0 e10 = e(y0Var, b0Var.f12235b, vVar.f8590a, 4);
+            int B = vVar.B();
+            b0Var.f12235b += 4;
+            b0Var.f12234a -= 4;
+            hVar.b(B);
+            u2.y0 d = d(e10, b0Var.f12235b, hVar.f10980c, B);
+            b0Var.f12235b += B;
+            int i18 = b0Var.f12234a - B;
+            b0Var.f12234a = i18;
+            ByteBuffer byteBuffer = hVar.f10982f;
+            if (byteBuffer != null && byteBuffer.capacity() >= i18) {
+                hVar.f10982f.clear();
+            } else {
+                hVar.f10982f = ByteBuffer.allocate(i18);
+            }
+            return d(d, b0Var.f12235b, hVar.f10982f, b0Var.f12234a);
+        }
+        hVar.b(b0Var.f12234a);
+        return d(y0Var, b0Var.f12235b, hVar.f10980c, b0Var.f12234a);
     }
 
-    public final void e(float f7) {
-        this.f25039s = f7;
-    }
-
-    public final void f() {
-        g(0.0f, false);
-    }
-
-    public final void g(float f7, boolean z10) {
-        float f10;
-        int i10;
-        if (!this.f25031k.p3()) {
-            this.f25025c = 1.0f;
+    public void a(u2.y0 y0Var) {
+        if (((y2.a) y0Var.f47464c) == null) {
             return;
         }
-        boolean z11 = this.f25041u;
-        if (z11) {
-            f10 = 1.0f;
-        } else {
-            f10 = f7;
+        y2.d dVar = (y2.d) this.f25041c;
+        synchronized (dVar) {
+            u2.y0 y0Var2 = y0Var;
+            while (y0Var2 != null) {
+                try {
+                    y2.a[] aVarArr = dVar.f50384f;
+                    int i10 = dVar.f50383e;
+                    dVar.f50383e = i10 + 1;
+                    y2.a aVar = (y2.a) y0Var2.f47464c;
+                    aVar.getClass();
+                    aVarArr[i10] = aVar;
+                    dVar.d--;
+                    y0Var2 = (u2.y0) y0Var2.d;
+                    if (y0Var2 == null || ((y2.a) y0Var2.f47464c) == null) {
+                        y0Var2 = null;
+                    }
+                } catch (Throwable th2) {
+                    throw th2;
+                }
+            }
+            dVar.notifyAll();
         }
-        this.f25025c = f10;
-        if (z11) {
-            i10 = this.f25028g;
-        } else {
-            i10 = this.f25023a;
-        }
-        if (z10 && i10 != 0 && f7 == 0.0f) {
-            this.f25040t = 0.0f;
-        } else if (!z10) {
-            this.f25040t = 1.0f;
-        }
-        int ceil = (int) Math.ceil(this.f25028g * f7);
-        this.f25023a = ceil;
-        if (ceil < 0) {
-            this.f25023a = 0;
-            return;
-        }
-        int i11 = this.f25028g;
-        if (ceil > i11) {
-            this.f25023a = i11;
+        y0Var.f47464c = null;
+        y0Var.d = null;
+    }
+
+    public void b(long j3) {
+        u2.y0 y0Var;
+        if (j3 != -1) {
+            while (true) {
+                y0Var = (u2.y0) this.f25042e;
+                if (j3 < y0Var.f47463b) {
+                    break;
+                }
+                y2.d dVar = (y2.d) this.f25041c;
+                y2.a aVar = (y2.a) y0Var.f47464c;
+                synchronized (dVar) {
+                    y2.a[] aVarArr = dVar.f50384f;
+                    int i10 = dVar.f50383e;
+                    dVar.f50383e = i10 + 1;
+                    aVarArr[i10] = aVar;
+                    dVar.d--;
+                    dVar.notifyAll();
+                }
+                u2.y0 y0Var2 = (u2.y0) this.f25042e;
+                y0Var2.f47464c = null;
+                y0Var2.d = null;
+                this.f25042e = (u2.y0) y0Var2.d;
+            }
+            if (((u2.y0) this.f25043f).f47462a < y0Var.f47462a) {
+                this.f25043f = y0Var;
+            }
         }
     }
 
-    public final void h(int i10, int i11, int i12, int i13) {
-        this.f25028g = i10;
-        this.h = i11;
-        float[] fArr = this.G;
-        if (fArr == null || fArr.length != ((int) (i10 / AndroidUtilities.dpf2(3.0f)))) {
-            this.G = b((int) (this.f25028g / AndroidUtilities.dpf2(3.0f)));
+    public int c(int i10) {
+        y2.a aVar;
+        u2.y0 y0Var = (u2.y0) this.f25044g;
+        if (((y2.a) y0Var.f47464c) == null) {
+            y2.d dVar = (y2.d) this.f25041c;
+            synchronized (dVar) {
+                try {
+                    int i11 = dVar.d + 1;
+                    dVar.d = i11;
+                    int i12 = dVar.f50383e;
+                    if (i12 > 0) {
+                        y2.a[] aVarArr = dVar.f50384f;
+                        int i13 = i12 - 1;
+                        dVar.f50383e = i13;
+                        aVar = aVarArr[i13];
+                        aVar.getClass();
+                        dVar.f50384f[dVar.f50383e] = null;
+                    } else {
+                        y2.a aVar2 = new y2.a(new byte[dVar.f50381b], 0);
+                        y2.a[] aVarArr2 = dVar.f50384f;
+                        if (i11 > aVarArr2.length) {
+                            dVar.f50384f = (y2.a[]) Arrays.copyOf(aVarArr2, aVarArr2.length * 2);
+                        }
+                        aVar = aVar2;
+                    }
+                } catch (Throwable th2) {
+                    throw th2;
+                }
+            }
+            u2.y0 y0Var2 = new u2.y0(((u2.y0) this.f25044g).f47463b, this.f25039a);
+            y0Var.f47464c = aVar;
+            y0Var.d = y0Var2;
         }
-        if (i12 != i13 && (this.f25029i != i12 || this.f25030j != i13)) {
-            this.f25029i = i12;
-            this.f25030j = i13;
-            this.H = b((int) (i12 / AndroidUtilities.dpf2(3.0f)));
-            this.I = b((int) (this.f25030j / AndroidUtilities.dpf2(3.0f)));
-        } else if (i12 == i13) {
-            this.I = null;
-            this.H = null;
-        }
+        return Math.min(i10, (int) (((u2.y0) this.f25044g).f47463b - this.f25040b));
+    }
+
+    public bp0(lc0 lc0Var) {
+        this.d = new ArrayList(50);
+        this.f25042e = new ArrayList(50);
+        Paint paint = new Paint(1);
+        this.f25043f = paint;
+        this.f25039a = 250;
+        this.f25041c = lc0Var;
+        paint.setStrokeWidth(AndroidUtilities.dp(1.33f));
     }
 }

@@ -4,16 +4,16 @@ import android.content.Context;
 import android.view.MotionEvent;
 import android.widget.EditText;
 public final class rb0 extends EditText {
-    public final int f40013a;
+    public final int f40059a;
 
     public rb0(Context context, int i10) {
         super(context);
-        this.f40013a = i10;
+        this.f40059a = i10;
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f40013a) {
+        switch (this.f40059a) {
             case 0:
                 if (motionEvent.getAction() == 1) {
                     setCursorVisible(true);

@@ -19,7 +19,6 @@ import android.view.View;
 import android.widget.TextView;
 import ci.q6;
 import ci.qc;
-import com.google.android.gms.internal.cast.a2;
 import com.google.android.gms.internal.cast.b2;
 import com.google.android.gms.internal.cast.c2;
 import com.google.android.gms.internal.cast.d2;
@@ -67,12 +66,13 @@ import org.telegram.ui.Components.ka;
 import org.telegram.ui.Components.oa;
 import org.telegram.ui.Components.rk0;
 import org.telegram.ui.Components.tr;
-import org.telegram.ui.dj1;
+import org.telegram.ui.bj1;
 import q9.p;
 import q9.r;
+import qg.a2;
 import y9.s0;
 import z3.d;
-import zg.o0;
+import zg.m0;
 public final class c implements rk0, d, le.d, n5.b, q9.b {
     public Object f4603a;
     public Object f4604b;
@@ -88,23 +88,7 @@ public final class c implements rk0, d, le.d, n5.b, q9.b {
         this.f4606e = obj5;
     }
 
-    public static void B(c cVar, y6 y6Var) {
-        int i10 = y6Var.f7047e;
-        if (i10 == 2 && ((x6) cVar.d) != null) {
-            cVar.D();
-        }
-        if (i10 == 2) {
-            cVar.d = new x6((r0) cVar.f4603a, (String) cVar.f4605c);
-        } else {
-            cVar.d = cVar.C();
-        }
-        x6 x6Var = (x6) cVar.d;
-        l.h(x6Var);
-        y6Var.d = x6Var.h;
-        x6Var.f7032b.add(y6Var);
-    }
-
-    public static c r(SharedPreferences sharedPreferences, ScheduledThreadPoolExecutor scheduledThreadPoolExecutor) {
+    public static c l(SharedPreferences sharedPreferences, ScheduledThreadPoolExecutor scheduledThreadPoolExecutor) {
         ?? obj = new Object();
         obj.d = new ArrayDeque();
         obj.f4603a = sharedPreferences;
@@ -133,7 +117,360 @@ public final class c implements rk0, d, le.d, n5.b, q9.b {
         }
     }
 
-    public void A() {
+    public static void v(c cVar, y6 y6Var) {
+        int i10 = y6Var.f7047e;
+        if (i10 == 2 && ((x6) cVar.d) != null) {
+            cVar.x();
+        }
+        if (i10 == 2) {
+            cVar.d = new x6((r0) cVar.f4603a, (String) cVar.f4605c);
+        } else {
+            cVar.d = cVar.w();
+        }
+        x6 x6Var = (x6) cVar.d;
+        l.h(x6Var);
+        y6Var.d = x6Var.h;
+        x6Var.f7032b.add(y6Var);
+    }
+
+    @Override
+    public boolean B() {
+        return true;
+    }
+
+    @Override
+    public boolean E() {
+        return false;
+    }
+
+    @Override
+    public int G() {
+        return ((long[]) this.f4604b).length;
+    }
+
+    @Override
+    public void H(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
+        Paint paint;
+        ka kaVar;
+        Path path = (Path) this.f4604b;
+        oa oaVar = (oa) this.f4605c;
+        Paint paint2 = (Paint) this.d;
+        q6 q6Var = (q6) this.f4606e;
+        if (!z10 && (kaVar = q6Var.f5754e2) != null && kaVar.c()) {
+            if (z10) {
+                oaVar = (oa) this.f4603a;
+            }
+            path.rewind();
+            path.addRoundRect(rectF, f7, f7, Path.Direction.CW);
+            canvas.save();
+            canvas.clipPath(path);
+            oaVar.b(canvas, true);
+            paint2.setAlpha((int) (i10 * 0.4f));
+            canvas.drawPaint(paint2);
+            canvas.restore();
+            return;
+        }
+        if (z10) {
+            if (((oa) this.f4603a) == null) {
+                this.f4603a = new oa(q6Var.f5754e2, q6Var.Z1.getReactionsWindow().f53552c, 0, false);
+            }
+            float f12 = -f10;
+            float f13 = -f11;
+            ((oa) this.f4603a).e(f12, f13, q6Var.getMeasuredWidth() + f12, q6Var.getMeasuredHeight() + f13);
+            paint = ((oa) this.f4603a).h;
+        } else {
+            float f14 = -f10;
+            float f15 = -f11;
+            oaVar.e(f14, f15, q6Var.getMeasuredWidth() + f14, q6Var.getMeasuredHeight() + f15);
+            paint = oaVar.h;
+        }
+        paint.setAlpha(i10);
+        paint2.setAlpha((int) (i10 * 0.4f));
+        canvas.drawRoundRect(rectF, f7, f7, paint);
+        canvas.drawRoundRect(rectF, f7, f7, paint2);
+    }
+
+    @Override
+    public boolean K() {
+        return true;
+    }
+
+    @Override
+    public Object a(Class cls) {
+        if (((Set) this.f4603a).contains(r.a(cls))) {
+            Object a2 = ((q9.b) this.f4606e).a(cls);
+            if (!cls.equals(ma.a.class)) {
+                return a2;
+            }
+            ma.a aVar = (ma.a) a2;
+            return new Object();
+        }
+        throw new RuntimeException("Attempting to request an undeclared dependency " + cls + ".");
+    }
+
+    @Override
+    public void a0(int i10, float f7, float f10, e eVar) {
+        ((TextView) this.f4604b).setAlpha(AndroidUtilities.lerp(0.5f, 1.0f, ((le.b) this.d).f15436e));
+        ((jh.c) this.f4606e).b(this);
+    }
+
+    @Override
+    public p b(r rVar) {
+        if (((Set) this.f4605c).contains(rVar)) {
+            return ((q9.b) this.f4606e).b(rVar);
+        }
+        throw new RuntimeException("Attempting to request an undeclared dependency Deferred<" + rVar + ">.");
+    }
+
+    @Override
+    public int c(long j3) {
+        long[] jArr = (long[]) this.f4604b;
+        int a2 = d0.a(jArr, j3, false);
+        if (a2 < jArr.length) {
+            return a2;
+        }
+        return -1;
+    }
+
+    @Override
+    public pa.b d(Class cls) {
+        return e(r.a(cls));
+    }
+
+    @Override
+    public pa.b e(r rVar) {
+        if (((Set) this.f4604b).contains(rVar)) {
+            return ((q9.b) this.f4606e).e(rVar);
+        }
+        throw new RuntimeException("Attempting to request an undeclared dependency Provider<" + rVar + ">.");
+    }
+
+    @Override
+    public Set f(r rVar) {
+        if (((Set) this.d).contains(rVar)) {
+            return ((q9.b) this.f4606e).f(rVar);
+        }
+        throw new RuntimeException("Attempting to request an undeclared dependency Set<" + rVar + ">.");
+    }
+
+    @Override
+    public Object g(r rVar) {
+        if (((Set) this.f4603a).contains(rVar)) {
+            return ((q9.b) this.f4606e).g(rVar);
+        }
+        throw new RuntimeException("Attempting to request an undeclared dependency " + rVar + ".");
+    }
+
+    @Override
+    public Object mo28get() {
+        return new q5.a((Executor) ((fd.a) this.f4603a).mo28get(), (m5.d) ((fd.a) this.f4604b).mo28get(), (h) ((h) this.f4605c).mo28get(), (s5.d) ((fd.a) this.d).mo28get(), (t5.c) ((fd.a) this.f4606e).mo28get());
+    }
+
+    public byte[] h() {
+        byte[] bArr = (byte[]) this.f4605c;
+        byte[] bArr2 = (byte[]) this.f4604b;
+        SecureRandom secureRandom = new SecureRandom();
+        BigInteger bigInteger = new BigInteger(2048, secureRandom);
+        BigInteger bigInteger2 = bj1.f35160b;
+        BigInteger bigInteger3 = bj1.f35159a;
+        BigInteger modPow = bigInteger2.modPow(bigInteger, bigInteger3);
+        BigInteger bigInteger4 = BigInteger.ONE;
+        if (modPow.compareTo(bigInteger4) > 0 && modPow.compareTo(bigInteger3.subtract(bigInteger4)) < 0) {
+            byte[] a2 = bj1.a(modPow);
+            BigInteger bigInteger5 = new BigInteger(1, bArr);
+            if (bigInteger5.compareTo(bigInteger4) > 0 && bigInteger5.compareTo(bigInteger3.subtract(bigInteger4)) < 0) {
+                byte[] a10 = bj1.a(bigInteger5.modPow(bigInteger, bigInteger3));
+                byte[] bArr3 = new byte[16];
+                secureRandom.nextBytes(bArr3);
+                byte[] b10 = bj1.b(new byte[][]{a10, bArr2, bArr3});
+                byte[] b11 = bj1.b(new byte[][]{a10, bArr});
+                this.f4606e = b10;
+                String[] strArr = {"👋", "👍", "👎", "👌", "👊", "🤟", "🫵", "👏", "🤝", "✍", "💪", "👀", "👅", "🥶", "🤡", "💀", "👽", "😈", "😎", "🤠", "🤩", "😍", "🤯", "🦄", "🐶", "🐷", "🐔", "🐥", "🦊", "🐙", "🐸", "🐳", "🦉", "🦆", "🐢", "🦖", "🐵", "🐝", "🦁", "🐧", "🦋", "🐬", "🦀", "🐌", "🦠", "🐠", "🌵", "💐", "💐", "🎄", "🍄", "🍔", "🍕", "☕", "🍩", "🍪", "🎂", "🍫", "🍭", "🍎", "🥥", "🍒", "🌶", "🥒", "🥦", "🍇", "🍋", "🍓", "🍌", "🍍", "🍆", "🌽", "🍺", "🍷", "🍾", "🍦", "🍰", "🍞", "🍖", "🌭", "🧊", "🍳", "⭐", "☁", "🚀", "🎈", "💎", "💡", "🔑", "❄", "🔎", "👠", "👕", "👗", "👖", "👙", "👜", "👓", "🎀", "💄", "💍", "♠", "❤", "♦", "♣", "🌈", "🌊", "🎃", "👻", "🎁", "🔮", "🎥", "💿", "💻", "📡", "🔉", "⏳", "🔒", "🚗", "🔱", "🔗", "🎲", "🎮", "⚽", "🎳", "🏁", "🏆", "🎸", "💣", "🚽", "🎹", "🎤", "🎨", "🔫", "💊", "💰", "📦", "📅", "📚", "❗", "❓", "💯", "💦", "💤", "🌍", "🏝", "🚂", "🛢", "🛹", "🚢", "✈", "🛎", "🧳", "🌖", "🌞", "🔥", "🏓", "🎰", "🧸", "🪩", "🎭", "👑", "🎩", "🧢", "🔈", "🔋", "🕯", "✏", "💼", "📌", "✂", "🗑", "🛡", "⚙", "🧲", "🪏", "⚖", "🧪", "🚪", "🫧", "🛒", "🪑", "🗿", "🏁", "🏴\u200d☠", "📊", "🥁", "🎧", "🎵", "🧩", "⛳", "🥇", "🥈", "🥈", "🌪", "⛺", "🧭", "🫆", "🧠", "💋"};
+                ArrayList arrayList = new ArrayList(4);
+                for (int i10 = 0; i10 < 4; i10++) {
+                    int i11 = i10 * 8;
+                    arrayList.add(strArr[(int) (((b11[i11 + 7] & 255) | ((((((((b11[i11] & 127) << 56) | ((b11[i11 + 1] & 255) << 48)) | ((b11[i11 + 2] & 255) << 40)) | ((b11[i11 + 3] & 255) << 32)) | ((b11[i11 + 4] & 255) << 24)) | ((b11[i11 + 5] & 255) << 16)) | ((b11[i11 + 6] & 255) << 8))) % 200)]);
+                }
+                this.f4603a = arrayList;
+                FileLog.d("wear-auth: built answer; session " + bj1.d(bArr2) + " emojis=" + ((ArrayList) this.f4603a));
+                byte[] bArr4 = new byte[288];
+                System.arraycopy(bArr2, 0, bArr4, 0, 16);
+                System.arraycopy(bArr3, 0, bArr4, 16, 16);
+                System.arraycopy(a2, 0, bArr4, 32, 256);
+                return bArr4;
+            }
+            throw new IllegalArgumentException("peer pubkey out of range");
+        }
+        throw new IllegalStateException("our pubkey invalid (extremely unlikely)");
+    }
+
+    @Override
+    public void i(View view, m0 m0Var, boolean z10, boolean z11) {
+        q6 q6Var = (q6) this.f4606e;
+        a2 a2Var = q6Var.a2;
+        if (a2Var == null) {
+            return;
+        }
+        a2Var.s(m0Var, true);
+        q6Var.O0(false);
+    }
+
+    public s0 j() {
+        String str;
+        if (((Long) this.f4603a) == null) {
+            str = " pc";
+        } else {
+            str = "";
+        }
+        if (((String) this.f4604b) == null) {
+            str = str.concat(" symbol");
+        }
+        if (((Long) this.d) == null) {
+            str = sa.e.v(str, " offset");
+        }
+        if (((Integer) this.f4606e) == null) {
+            str = sa.e.v(str, " importance");
+        }
+        if (str.isEmpty()) {
+            return new s0(((Long) this.f4603a).longValue(), (String) this.f4604b, (String) this.f4605c, ((Long) this.d).longValue(), ((Integer) this.f4606e).intValue());
+        }
+        throw new IllegalStateException("Missing required properties:".concat(str));
+    }
+
+    public void k(Canvas canvas, boolean z10, boolean z11, int i10, float f7) {
+        int i11;
+        RectF rectF = (RectF) this.f4604b;
+        float[] fArr = (float[]) this.f4605c;
+        Paint paint = (Paint) this.f4606e;
+        n3 n3Var = (n3) this.f4603a;
+        Path path = (Path) this.d;
+        if (z11) {
+            i11 = 0;
+        } else {
+            i11 = (int) n3Var.G;
+        }
+        int i12 = (int) (i11 * f7);
+        int dp = AndroidUtilities.dp(10.0f) * Math.min(1, i12 / AndroidUtilities.dp(60.0f));
+        if (i12 <= 0) {
+            return;
+        }
+        fArr[3] = 0.0f;
+        fArr[2] = 0.0f;
+        fArr[1] = 0.0f;
+        fArr[0] = 0.0f;
+        float f10 = dp;
+        fArr[7] = f10;
+        fArr[6] = f10;
+        fArr[5] = f10;
+        fArr[4] = f10;
+        path.rewind();
+        rectF.set(0.0f, 0.0f, i10, (n3Var.getY() + n3Var.getHeight()) - i12);
+        path.addRoundRect(rectF, fArr, Path.Direction.CW);
+        paint.setAlpha(0);
+        if (z10) {
+            paint.setShadowLayer(AndroidUtilities.dp(2.0f), 0.0f, AndroidUtilities.dp(1.0f), 268435456);
+            canvas.drawPath(path, paint);
+        }
+        canvas.clipPath(path);
+    }
+
+    @Override
+    public long m(int i10) {
+        return ((long[]) this.f4604b)[i10];
+    }
+
+    public p n(Class cls) {
+        return b(r.a(cls));
+    }
+
+    public String o() {
+        String str;
+        synchronized (((ArrayDeque) this.d)) {
+            str = (String) ((ArrayDeque) this.d).peek();
+        }
+        return str;
+    }
+
+    public boolean p(Object obj) {
+        boolean remove;
+        synchronized (((ArrayDeque) this.d)) {
+            remove = ((ArrayDeque) this.d).remove(obj);
+            if (remove) {
+                ((ScheduledThreadPoolExecutor) this.f4606e).execute(new qc(this, 2));
+            }
+        }
+        return remove;
+    }
+
+    public Set q(Class cls) {
+        return f(r.a(cls));
+    }
+
+    public void r(Bitmap bitmap) {
+        Bitmap bitmap2;
+        View view = (View) this.f4603a;
+        View view2 = (View) this.f4604b;
+        if (((Bitmap) this.f4605c) != bitmap) {
+            if (((fd) this.f4606e) != null) {
+                view.setBackground(null);
+                this.f4606e = null;
+            }
+            if (((fd) this.d) == null && ((fd) this.f4606e) == null && (bitmap2 = (Bitmap) this.f4605c) != null) {
+                bitmap2.recycle();
+                this.f4605c = null;
+            }
+            s();
+            this.f4605c = bitmap;
+            fd fdVar = new fd((Bitmap) this.f4605c);
+            this.f4606e = fdVar;
+            view.setBackground(fdVar);
+            if (view2 != null) {
+                fd fdVar2 = new fd((Bitmap) this.f4605c);
+                this.d = fdVar2;
+                view2.setBackground(fdVar2);
+            }
+        }
+    }
+
+    public void s() {
+        Bitmap bitmap;
+        if (((fd) this.d) != null) {
+            this.d = null;
+            View view = (View) this.f4604b;
+            if (view != null) {
+                view.setBackground(null);
+            }
+        }
+        if (((fd) this.d) == null && ((fd) this.f4606e) == null && (bitmap = (Bitmap) this.f4605c) != null) {
+            bitmap.recycle();
+            this.f4605c = null;
+        }
+    }
+
+    public void t(Uri uri) {
+        int i10;
+        Context context = (Context) this.f4603a;
+        if (uri == null) {
+            u();
+        } else if (!uri.equals((Uri) this.f4605c)) {
+            u();
+            this.f4605c = uri;
+            e6.b bVar = (e6.b) this.f4604b;
+            int i11 = bVar.f8649b;
+            if (i11 != 0 && (i10 = bVar.f8650c) != 0) {
+                this.d = new f6.b(context, i11, i10, this);
+            } else {
+                this.d = new f6.b(context, 0, 0, this);
+            }
+            f6.b bVar2 = (f6.b) this.d;
+            l.h(bVar2);
+            Uri uri2 = (Uri) this.f4605c;
+            l.h(uri2);
+            bVar2.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, uri2);
+        }
+    }
+
+    public void u() {
         f6.b bVar = (f6.b) this.d;
         if (bVar != null) {
             bVar.cancel(true);
@@ -142,7 +479,7 @@ public final class c implements rk0, d, le.d, n5.b, q9.b {
         this.f4605c = null;
     }
 
-    public x6 C() {
+    public x6 w() {
         if (((x6) this.d) == null) {
             x6 x6Var = new x6((r0) this.f4603a, (String) this.f4605c);
             this.d = x6Var;
@@ -151,7 +488,7 @@ public final class c implements rk0, d, le.d, n5.b, q9.b {
         return (x6) this.d;
     }
 
-    public void D() {
+    public void x() {
         t1 t1Var;
         int i10;
         int i11;
@@ -191,14 +528,14 @@ public final class c implements rk0, d, le.d, n5.b, q9.b {
             m10.c();
             u1.r((u1) m10.f6876b, (n1) l4.a());
             f0 f0Var = x6Var.f7031a;
-            z1 l10 = a2.l();
+            z1 l10 = com.google.android.gms.internal.cast.a2.l();
             Object zza = f0Var.zza();
             if (zza != null) {
                 l2 l11 = m2.l();
                 l11.c();
                 m2.m((m2) l11.f6876b, (String) zza);
                 l10.c();
-                a2.m((a2) l10.f6876b, (m2) l11.a());
+                com.google.android.gms.internal.cast.a2.m((com.google.android.gms.internal.cast.a2) l10.f6876b, (m2) l11.a());
             }
             String str5 = x6Var.f7039k;
             if (str5 != null) {
@@ -211,7 +548,7 @@ public final class c implements rk0, d, le.d, n5.b, q9.b {
                     j3 = 0;
                 }
                 l10.c();
-                a2.n((a2) l10.f6876b, j3);
+                com.google.android.gms.internal.cast.a2.n((com.google.android.gms.internal.cast.a2) l10.f6876b, j3);
             }
             if (!list3.isEmpty()) {
                 ArrayList arrayList = new ArrayList();
@@ -238,7 +575,7 @@ public final class c implements rk0, d, le.d, n5.b, q9.b {
                     arrayList.add((y1) l12.a());
                 }
                 l10.c();
-                a2.o((a2) l10.f6876b, arrayList);
+                com.google.android.gms.internal.cast.a2.o((com.google.android.gms.internal.cast.a2) l10.f6876b, arrayList);
             }
             if (!list2.isEmpty()) {
                 ArrayList arrayList2 = new ArrayList();
@@ -266,7 +603,7 @@ public final class c implements rk0, d, le.d, n5.b, q9.b {
                     arrayList2.add((e2) l13.a());
                 }
                 l10.c();
-                a2.q((a2) l10.f6876b, arrayList2);
+                com.google.android.gms.internal.cast.a2.q((com.google.android.gms.internal.cast.a2) l10.f6876b, arrayList2);
             }
             if (!list.isEmpty()) {
                 ArrayList arrayList3 = new ArrayList();
@@ -756,7 +1093,7 @@ public final class c implements rk0, d, le.d, n5.b, q9.b {
                 }
                 t1Var = m10;
                 l10.c();
-                a2.p((a2) l10.f6876b, arrayList3);
+                com.google.android.gms.internal.cast.a2.p((com.google.android.gms.internal.cast.a2) l10.f6876b, arrayList3);
             } else {
                 t1Var = m10;
             }
@@ -779,349 +1116,12 @@ public final class c implements rk0, d, le.d, n5.b, q9.b {
                     arrayList4.add((c2) l15.a());
                 }
                 l10.c();
-                a2.r((a2) l10.f6876b, arrayList4);
+                com.google.android.gms.internal.cast.a2.r((com.google.android.gms.internal.cast.a2) l10.f6876b, arrayList4);
             }
             t1Var.c();
-            u1.q((u1) t1Var.f6876b, (a2) l10.a());
+            u1.q((u1) t1Var.f6876b, (com.google.android.gms.internal.cast.a2) l10.a());
             x6Var.f7035f.a((u1) t1Var.a(), 233);
             this.d = null;
-        }
-    }
-
-    @Override
-    public int G() {
-        return ((long[]) this.f4604b).length;
-    }
-
-    @Override
-    public Object a(Class cls) {
-        if (((Set) this.f4603a).contains(r.a(cls))) {
-            Object a2 = ((q9.b) this.f4606e).a(cls);
-            if (!cls.equals(ma.a.class)) {
-                return a2;
-            }
-            ma.a aVar = (ma.a) a2;
-            return new Object();
-        }
-        throw new RuntimeException("Attempting to request an undeclared dependency " + cls + ".");
-    }
-
-    @Override
-    public void a0(int i10, float f7, float f10, e eVar) {
-        ((TextView) this.f4604b).setAlpha(AndroidUtilities.lerp(0.5f, 1.0f, ((le.b) this.d).f15436e));
-        ((jh.c) this.f4606e).b(this);
-    }
-
-    @Override
-    public p b(r rVar) {
-        if (((Set) this.f4605c).contains(rVar)) {
-            return ((q9.b) this.f4606e).b(rVar);
-        }
-        throw new RuntimeException("Attempting to request an undeclared dependency Deferred<" + rVar + ">.");
-    }
-
-    @Override
-    public int c(long j3) {
-        long[] jArr = (long[]) this.f4604b;
-        int a2 = d0.a(jArr, j3, false);
-        if (a2 < jArr.length) {
-            return a2;
-        }
-        return -1;
-    }
-
-    @Override
-    public pa.b d(Class cls) {
-        return e(r.a(cls));
-    }
-
-    @Override
-    public pa.b e(r rVar) {
-        if (((Set) this.f4604b).contains(rVar)) {
-            return ((q9.b) this.f4606e).e(rVar);
-        }
-        throw new RuntimeException("Attempting to request an undeclared dependency Provider<" + rVar + ">.");
-    }
-
-    @Override
-    public Set f(r rVar) {
-        if (((Set) this.d).contains(rVar)) {
-            return ((q9.b) this.f4606e).f(rVar);
-        }
-        throw new RuntimeException("Attempting to request an undeclared dependency Set<" + rVar + ">.");
-    }
-
-    @Override
-    public Object g(r rVar) {
-        if (((Set) this.f4603a).contains(rVar)) {
-            return ((q9.b) this.f4606e).g(rVar);
-        }
-        throw new RuntimeException("Attempting to request an undeclared dependency " + rVar + ".");
-    }
-
-    @Override
-    public Object mo28get() {
-        return new q5.a((Executor) ((fd.a) this.f4603a).mo28get(), (m5.d) ((fd.a) this.f4604b).mo28get(), (h) ((h) this.f4605c).mo28get(), (s5.d) ((fd.a) this.d).mo28get(), (t5.c) ((fd.a) this.f4606e).mo28get());
-    }
-
-    @Override
-    public void h(View view, o0 o0Var, boolean z10, boolean z11) {
-        q6 q6Var = (q6) this.f4606e;
-        qg.a2 a2Var = q6Var.a2;
-        if (a2Var == null) {
-            return;
-        }
-        a2Var.s(o0Var, true);
-        q6Var.O0(false);
-    }
-
-    public byte[] i() {
-        byte[] bArr = (byte[]) this.f4605c;
-        byte[] bArr2 = (byte[]) this.f4604b;
-        SecureRandom secureRandom = new SecureRandom();
-        BigInteger bigInteger = new BigInteger(2048, secureRandom);
-        BigInteger bigInteger2 = dj1.f35794b;
-        BigInteger bigInteger3 = dj1.f35793a;
-        BigInteger modPow = bigInteger2.modPow(bigInteger, bigInteger3);
-        BigInteger bigInteger4 = BigInteger.ONE;
-        if (modPow.compareTo(bigInteger4) > 0 && modPow.compareTo(bigInteger3.subtract(bigInteger4)) < 0) {
-            byte[] a2 = dj1.a(modPow);
-            BigInteger bigInteger5 = new BigInteger(1, bArr);
-            if (bigInteger5.compareTo(bigInteger4) > 0 && bigInteger5.compareTo(bigInteger3.subtract(bigInteger4)) < 0) {
-                byte[] a10 = dj1.a(bigInteger5.modPow(bigInteger, bigInteger3));
-                byte[] bArr3 = new byte[16];
-                secureRandom.nextBytes(bArr3);
-                byte[] b10 = dj1.b(new byte[][]{a10, bArr2, bArr3});
-                byte[] b11 = dj1.b(new byte[][]{a10, bArr});
-                this.f4606e = b10;
-                String[] strArr = {"👋", "👍", "👎", "👌", "👊", "🤟", "🫵", "👏", "🤝", "✍", "💪", "👀", "👅", "🥶", "🤡", "💀", "👽", "😈", "😎", "🤠", "🤩", "😍", "🤯", "🦄", "🐶", "🐷", "🐔", "🐥", "🦊", "🐙", "🐸", "🐳", "🦉", "🦆", "🐢", "🦖", "🐵", "🐝", "🦁", "🐧", "🦋", "🐬", "🦀", "🐌", "🦠", "🐠", "🌵", "💐", "💐", "🎄", "🍄", "🍔", "🍕", "☕", "🍩", "🍪", "🎂", "🍫", "🍭", "🍎", "🥥", "🍒", "🌶", "🥒", "🥦", "🍇", "🍋", "🍓", "🍌", "🍍", "🍆", "🌽", "🍺", "🍷", "🍾", "🍦", "🍰", "🍞", "🍖", "🌭", "🧊", "🍳", "⭐", "☁", "🚀", "🎈", "💎", "💡", "🔑", "❄", "🔎", "👠", "👕", "👗", "👖", "👙", "👜", "👓", "🎀", "💄", "💍", "♠", "❤", "♦", "♣", "🌈", "🌊", "🎃", "👻", "🎁", "🔮", "🎥", "💿", "💻", "📡", "🔉", "⏳", "🔒", "🚗", "🔱", "🔗", "🎲", "🎮", "⚽", "🎳", "🏁", "🏆", "🎸", "💣", "🚽", "🎹", "🎤", "🎨", "🔫", "💊", "💰", "📦", "📅", "📚", "❗", "❓", "💯", "💦", "💤", "🌍", "🏝", "🚂", "🛢", "🛹", "🚢", "✈", "🛎", "🧳", "🌖", "🌞", "🔥", "🏓", "🎰", "🧸", "🪩", "🎭", "👑", "🎩", "🧢", "🔈", "🔋", "🕯", "✏", "💼", "📌", "✂", "🗑", "🛡", "⚙", "🧲", "🪏", "⚖", "🧪", "🚪", "🫧", "🛒", "🪑", "🗿", "🏁", "🏴\u200d☠", "📊", "🥁", "🎧", "🎵", "🧩", "⛳", "🥇", "🥈", "🥈", "🌪", "⛺", "🧭", "🫆", "🧠", "💋"};
-                ArrayList arrayList = new ArrayList(4);
-                for (int i10 = 0; i10 < 4; i10++) {
-                    int i11 = i10 * 8;
-                    arrayList.add(strArr[(int) (((b11[i11 + 7] & 255) | ((((((((b11[i11] & 127) << 56) | ((b11[i11 + 1] & 255) << 48)) | ((b11[i11 + 2] & 255) << 40)) | ((b11[i11 + 3] & 255) << 32)) | ((b11[i11 + 4] & 255) << 24)) | ((b11[i11 + 5] & 255) << 16)) | ((b11[i11 + 6] & 255) << 8))) % 200)]);
-                }
-                this.f4603a = arrayList;
-                FileLog.d("wear-auth: built answer; session " + dj1.d(bArr2) + " emojis=" + ((ArrayList) this.f4603a));
-                byte[] bArr4 = new byte[288];
-                System.arraycopy(bArr2, 0, bArr4, 0, 16);
-                System.arraycopy(bArr3, 0, bArr4, 16, 16);
-                System.arraycopy(a2, 0, bArr4, 32, 256);
-                return bArr4;
-            }
-            throw new IllegalArgumentException("peer pubkey out of range");
-        }
-        throw new IllegalStateException("our pubkey invalid (extremely unlikely)");
-    }
-
-    @Override
-    public boolean j() {
-        return true;
-    }
-
-    @Override
-    public boolean k() {
-        return false;
-    }
-
-    public s0 l() {
-        String str;
-        if (((Long) this.f4603a) == null) {
-            str = " pc";
-        } else {
-            str = "";
-        }
-        if (((String) this.f4604b) == null) {
-            str = str.concat(" symbol");
-        }
-        if (((Long) this.d) == null) {
-            str = sa.e.v(str, " offset");
-        }
-        if (((Integer) this.f4606e) == null) {
-            str = sa.e.v(str, " importance");
-        }
-        if (str.isEmpty()) {
-            return new s0(((Long) this.f4603a).longValue(), (String) this.f4604b, (String) this.f4605c, ((Long) this.d).longValue(), ((Integer) this.f4606e).intValue());
-        }
-        throw new IllegalStateException("Missing required properties:".concat(str));
-    }
-
-    @Override
-    public long m(int i10) {
-        return ((long[]) this.f4604b)[i10];
-    }
-
-    @Override
-    public void n(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
-        Paint paint;
-        ka kaVar;
-        Path path = (Path) this.f4604b;
-        oa oaVar = (oa) this.f4605c;
-        Paint paint2 = (Paint) this.d;
-        q6 q6Var = (q6) this.f4606e;
-        if (!z10 && (kaVar = q6Var.f5754e2) != null && kaVar.c()) {
-            if (z10) {
-                oaVar = (oa) this.f4603a;
-            }
-            path.rewind();
-            path.addRoundRect(rectF, f7, f7, Path.Direction.CW);
-            canvas.save();
-            canvas.clipPath(path);
-            oaVar.b(canvas, true);
-            paint2.setAlpha((int) (i10 * 0.4f));
-            canvas.drawPaint(paint2);
-            canvas.restore();
-            return;
-        }
-        if (z10) {
-            if (((oa) this.f4603a) == null) {
-                this.f4603a = new oa(q6Var.f5754e2, q6Var.Z1.getReactionsWindow().f53324c, 0, false);
-            }
-            float f12 = -f10;
-            float f13 = -f11;
-            ((oa) this.f4603a).e(f12, f13, q6Var.getMeasuredWidth() + f12, q6Var.getMeasuredHeight() + f13);
-            paint = ((oa) this.f4603a).h;
-        } else {
-            float f14 = -f10;
-            float f15 = -f11;
-            oaVar.e(f14, f15, q6Var.getMeasuredWidth() + f14, q6Var.getMeasuredHeight() + f15);
-            paint = oaVar.h;
-        }
-        paint.setAlpha(i10);
-        paint2.setAlpha((int) (i10 * 0.4f));
-        canvas.drawRoundRect(rectF, f7, f7, paint);
-        canvas.drawRoundRect(rectF, f7, f7, paint2);
-    }
-
-    @Override
-    public boolean p() {
-        return true;
-    }
-
-    public void q(Canvas canvas, boolean z10, boolean z11, int i10, float f7) {
-        int i11;
-        RectF rectF = (RectF) this.f4604b;
-        float[] fArr = (float[]) this.f4605c;
-        Paint paint = (Paint) this.f4606e;
-        n3 n3Var = (n3) this.f4603a;
-        Path path = (Path) this.d;
-        if (z11) {
-            i11 = 0;
-        } else {
-            i11 = (int) n3Var.G;
-        }
-        int i12 = (int) (i11 * f7);
-        int dp = AndroidUtilities.dp(10.0f) * Math.min(1, i12 / AndroidUtilities.dp(60.0f));
-        if (i12 <= 0) {
-            return;
-        }
-        fArr[3] = 0.0f;
-        fArr[2] = 0.0f;
-        fArr[1] = 0.0f;
-        fArr[0] = 0.0f;
-        float f10 = dp;
-        fArr[7] = f10;
-        fArr[6] = f10;
-        fArr[5] = f10;
-        fArr[4] = f10;
-        path.rewind();
-        rectF.set(0.0f, 0.0f, i10, (n3Var.getY() + n3Var.getHeight()) - i12);
-        path.addRoundRect(rectF, fArr, Path.Direction.CW);
-        paint.setAlpha(0);
-        if (z10) {
-            paint.setShadowLayer(AndroidUtilities.dp(2.0f), 0.0f, AndroidUtilities.dp(1.0f), 268435456);
-            canvas.drawPath(path, paint);
-        }
-        canvas.clipPath(path);
-    }
-
-    public p s(Class cls) {
-        return b(r.a(cls));
-    }
-
-    public String t() {
-        String str;
-        synchronized (((ArrayDeque) this.d)) {
-            str = (String) ((ArrayDeque) this.d).peek();
-        }
-        return str;
-    }
-
-    public boolean u(Object obj) {
-        boolean remove;
-        synchronized (((ArrayDeque) this.d)) {
-            remove = ((ArrayDeque) this.d).remove(obj);
-            if (remove) {
-                ((ScheduledThreadPoolExecutor) this.f4606e).execute(new qc(this, 2));
-            }
-        }
-        return remove;
-    }
-
-    public Set v(Class cls) {
-        return f(r.a(cls));
-    }
-
-    public void w(Bitmap bitmap) {
-        Bitmap bitmap2;
-        View view = (View) this.f4603a;
-        View view2 = (View) this.f4604b;
-        if (((Bitmap) this.f4605c) != bitmap) {
-            if (((fd) this.f4606e) != null) {
-                view.setBackground(null);
-                this.f4606e = null;
-            }
-            if (((fd) this.d) == null && ((fd) this.f4606e) == null && (bitmap2 = (Bitmap) this.f4605c) != null) {
-                bitmap2.recycle();
-                this.f4605c = null;
-            }
-            x();
-            this.f4605c = bitmap;
-            fd fdVar = new fd((Bitmap) this.f4605c);
-            this.f4606e = fdVar;
-            view.setBackground(fdVar);
-            if (view2 != null) {
-                fd fdVar2 = new fd((Bitmap) this.f4605c);
-                this.d = fdVar2;
-                view2.setBackground(fdVar2);
-            }
-        }
-    }
-
-    public void x() {
-        Bitmap bitmap;
-        if (((fd) this.d) != null) {
-            this.d = null;
-            View view = (View) this.f4604b;
-            if (view != null) {
-                view.setBackground(null);
-            }
-        }
-        if (((fd) this.d) == null && ((fd) this.f4606e) == null && (bitmap = (Bitmap) this.f4605c) != null) {
-            bitmap.recycle();
-            this.f4605c = null;
-        }
-    }
-
-    public void y(Uri uri) {
-        int i10;
-        Context context = (Context) this.f4603a;
-        if (uri == null) {
-            A();
-        } else if (!uri.equals((Uri) this.f4605c)) {
-            A();
-            this.f4605c = uri;
-            e6.b bVar = (e6.b) this.f4604b;
-            int i11 = bVar.f8649b;
-            if (i11 != 0 && (i10 = bVar.f8650c) != 0) {
-                this.d = new f6.b(context, i11, i10, this);
-            } else {
-                this.d = new f6.b(context, 0, 0, this);
-            }
-            f6.b bVar2 = (f6.b) this.d;
-            l.h(bVar2);
-            Uri uri2 = (Uri) this.f4605c;
-            l.h(uri2);
-            bVar2.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, uri2);
         }
     }
 
@@ -1224,7 +1224,7 @@ public final class c implements rk0, d, le.d, n5.b, q9.b {
     public c(Context context, e6.b bVar) {
         this.f4603a = context;
         this.f4604b = bVar;
-        A();
+        u();
     }
 
     public c(f4.c cVar, HashMap hashMap, HashMap hashMap2, HashMap hashMap3) {
@@ -1260,7 +1260,7 @@ public final class c implements rk0, d, le.d, n5.b, q9.b {
     }
 
     @Override
-    public void o() {
+    public void I() {
     }
 
     @Override

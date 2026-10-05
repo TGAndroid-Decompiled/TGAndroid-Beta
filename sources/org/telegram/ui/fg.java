@@ -5,28 +5,28 @@ import android.view.View;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.tl.TL_keyboard;
 public final class fg implements View.OnLongClickListener {
-    public final int f36304a;
-    public final Object f36305b;
-    public final Object f36306c;
+    public final int f36305a;
+    public final Object f36306b;
+    public final Object f36307c;
     public final Object d;
-    public final Object f36307e;
+    public final Object f36308e;
 
     public fg(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f36304a = i10;
-        this.f36305b = obj;
-        this.f36306c = obj2;
+        this.f36305a = i10;
+        this.f36306b = obj;
+        this.f36307c = obj2;
         this.d = obj3;
-        this.f36307e = obj4;
+        this.f36308e = obj4;
     }
 
     @Override
     public final boolean onLongClick(View view) {
-        switch (this.f36304a) {
+        switch (this.f36305a) {
             case 0:
-                yn ynVar = (yn) this.f36305b;
-                TL_keyboard.KeyboardInlineButton keyboardInlineButton = (TL_keyboard.KeyboardInlineButton) this.f36306c;
+                yn ynVar = (yn) this.f36306b;
+                TL_keyboard.KeyboardInlineButton keyboardInlineButton = (TL_keyboard.KeyboardInlineButton) this.f36307c;
                 MessageObject messageObject = (MessageObject) this.d;
-                ai.p4 p4Var = (ai.p4) this.f36307e;
+                ai.p4 p4Var = (ai.p4) this.f36308e;
                 TL_keyboard.TL_inlineButtonTypeUrl tL_inlineButtonTypeUrl = (TL_keyboard.TL_inlineButtonTypeUrl) zf.c.a(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeUrl.class);
                 if (ynVar.getParentActivity() == null) {
                     return false;
@@ -41,7 +41,7 @@ public final class fg implements View.OnLongClickListener {
                 }
                 return true;
             default:
-                return org.telegram.ui.Components.xi.w((org.telegram.ui.Components.xi) this.f36305b, (Context) this.f36306c, (org.telegram.ui.ActionBar.d6) this.d, (org.telegram.ui.ActionBar.n2) this.f36307e, view);
+                return org.telegram.ui.Components.xi.w((org.telegram.ui.Components.xi) this.f36306b, (Context) this.f36307c, (org.telegram.ui.ActionBar.d6) this.d, (org.telegram.ui.ActionBar.n2) this.f36308e, view);
         }
     }
 }

@@ -23,9 +23,9 @@ import java.util.HashMap;
 import java.util.Map;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.xb1;
+import org.telegram.ui.vb1;
 public abstract class an0 extends HorizontalScrollView {
-    public static final int f24582t0 = 0;
+    public static final int f24648t0 = 0;
     public final e6 E;
     public final RectF F;
     public final float G;
@@ -45,47 +45,47 @@ public abstract class an0 extends HorizontalScrollView {
     public int U;
     public float V;
     public float W;
-    public int f24583a;
-    public float f24584a0;
-    public zm0 f24585b;
-    public boolean f24586b0;
-    public final LinearLayout.LayoutParams f24587c;
-    public float f24588c0;
+    public int f24649a;
+    public float f24650a0;
+    public zm0 f24651b;
+    public boolean f24652b0;
+    public final LinearLayout.LayoutParams f24653c;
+    public float f24654c0;
     public final LinearLayout.LayoutParams d;
-    public float f24589d0;
-    public final xb1 f24590e;
-    public final vm0 f24591e0;
-    public ym0 f24592f;
-    public boolean f24593f0;
-    public boolean f24594g0;
+    public float f24655d0;
+    public final vb1 f24656e;
+    public final vm0 f24657e0;
+    public ym0 f24658f;
+    public boolean f24659f0;
+    public boolean f24660g0;
     public HashMap h;
-    public ValueAnimator f24595h0;
-    public float f24596i0;
-    public final float f24597j0;
-    public final float f24598k0;
-    public float f24599l0;
+    public ValueAnimator f24661h0;
+    public float f24662i0;
+    public final float f24663j0;
+    public final float f24664k0;
+    public float f24665l0;
     public int m0;
-    public HashMap f24600n;
-    public final Paint f24601n0;
-    public boolean f24602o0;
-    public final e6 f24603p0;
-    public boolean f24604q0;
-    public final SparseArray f24605r;
-    public long f24606r0;
-    public View f24607s;
-    public final vm0 f24608s0;
+    public HashMap f24666n;
+    public final Paint f24667n0;
+    public boolean f24668o0;
+    public final e6 f24669p0;
+    public boolean f24670q0;
+    public final SparseArray f24671r;
+    public long f24672r0;
+    public View f24673s;
+    public final vm0 f24674s0;
     public float v;
-    public boolean f24609w;
-    public int f24610x;
-    public int f24611y;
+    public boolean f24675w;
+    public int f24676x;
+    public int f24677y;
 
     public an0(Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
         super(context);
-        this.f24583a = 1;
-        this.f24585b = zm0.f33576a;
+        this.f24649a = 1;
+        this.f24651b = zm0.f33584a;
         this.h = new HashMap();
-        this.f24600n = new HashMap();
-        this.f24605r = new SparseArray();
+        this.f24666n = new HashMap();
+        this.f24671r = new SparseArray();
         tr trVar = tr.h;
         this.E = new e6(this, 350L, trVar);
         new RectF();
@@ -100,37 +100,37 @@ public abstract class an0 extends HorizontalScrollView {
         this.N = 0;
         this.Q = new SparseArray();
         this.R = new SparseArray();
-        this.f24591e0 = new vm0(this, 0);
-        this.f24593f0 = false;
-        this.f24597j0 = AndroidUtilities.dp(64.0f);
-        this.f24598k0 = AndroidUtilities.dp(33.0f);
+        this.f24657e0 = new vm0(this, 0);
+        this.f24659f0 = false;
+        this.f24663j0 = AndroidUtilities.dp(64.0f);
+        this.f24664k0 = AndroidUtilities.dp(33.0f);
         this.m0 = -1;
-        this.f24601n0 = new Paint();
-        this.f24602o0 = true;
-        this.f24603p0 = new e6(this, 350L, trVar);
-        this.f24608s0 = new vm0(this, 1);
+        this.f24667n0 = new Paint();
+        this.f24668o0 = true;
+        this.f24669p0 = new e6(this, 350L, trVar);
+        this.f24674s0 = new vm0(this, 1);
         this.O = d6Var;
         this.P = z10;
         this.G = ViewConfiguration.get(context).getScaledTouchSlop();
         setFillViewport(true);
         setWillNotDraw(false);
         setHorizontalScrollBarEnabled(false);
-        xb1 xb1Var = new xb1(this, context, 8);
-        this.f24590e = xb1Var;
-        xb1Var.setOrientation(0);
-        xb1Var.setPadding(AndroidUtilities.dp(9.5f), 0, AndroidUtilities.dp(9.5f), 0);
-        addView(xb1Var, new FrameLayout.LayoutParams(-1, -1, 16));
+        vb1 vb1Var = new vb1(this, context, 8);
+        this.f24656e = vb1Var;
+        vb1Var.setOrientation(0);
+        vb1Var.setPadding(AndroidUtilities.dp(9.5f), 0, AndroidUtilities.dp(9.5f), 0);
+        addView(vb1Var, new FrameLayout.LayoutParams(-1, -1, 16));
         Paint paint = new Paint();
         this.H = paint;
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.FILL);
-        this.f24587c = new LinearLayout.LayoutParams(AndroidUtilities.dp(33.0f), -1);
+        this.f24653c = new LinearLayout.LayoutParams(AndroidUtilities.dp(33.0f), -1);
         this.d = new LinearLayout.LayoutParams(0, -1, 1.0f);
     }
 
     public int getTabSize() {
         float f7;
-        if (this.f24594g0) {
+        if (this.f24660g0) {
             f7 = 64.0f;
         } else {
             f7 = 33.0f;
@@ -140,9 +140,9 @@ public abstract class an0 extends HorizontalScrollView {
 
     public final FrameLayout b(int i10, Drawable drawable) {
         String h = hg.c.h(i10, "tab");
-        int i11 = this.f24610x;
-        this.f24610x = i11 + 1;
-        FrameLayout frameLayout = (FrameLayout) this.f24600n.get(h);
+        int i11 = this.f24676x;
+        this.f24676x = i11 + 1;
+        FrameLayout frameLayout = (FrameLayout) this.f24666n.get(h);
         boolean z10 = true;
         if (frameLayout != null) {
             g(h, frameLayout, i11);
@@ -154,10 +154,10 @@ public abstract class an0 extends HorizontalScrollView {
             frameLayout.addView(imageView, w7.z5.e(24, 24, 17));
             frameLayout.setFocusable(true);
             frameLayout.setOnClickListener(new tm0(this, 3));
-            this.f24590e.addView(frameLayout, i11);
+            this.f24656e.addView(frameLayout, i11);
         }
         frameLayout.setTag(R.id.index_tag, Integer.valueOf(i11));
-        if (i11 != this.f24611y) {
+        if (i11 != this.f24677y) {
             z10 = false;
         }
         frameLayout.setSelected(z10);
@@ -165,57 +165,57 @@ public abstract class an0 extends HorizontalScrollView {
         return frameLayout;
     }
 
-    public final yx0 c(int i10, Drawable drawable) {
+    public final zx0 c(int i10, Drawable drawable) {
         String h = hg.c.h(i10, "tab");
-        int i11 = this.f24610x;
-        this.f24610x = i11 + 1;
-        yx0 yx0Var = (yx0) this.f24600n.get(h);
+        int i11 = this.f24676x;
+        this.f24676x = i11 + 1;
+        zx0 zx0Var = (zx0) this.f24666n.get(h);
         boolean z10 = true;
-        if (yx0Var != null) {
-            g(h, yx0Var, i11);
+        if (zx0Var != null) {
+            g(h, zx0Var, i11);
         } else {
-            yx0Var = new yx0(getContext(), 1);
-            yx0Var.f33277f.setImageDrawable(drawable);
-            yx0Var.setFocusable(true);
-            yx0Var.setOnClickListener(new tm0(this, 4));
-            yx0Var.setExpanded(this.f24593f0);
-            yx0Var.a(this.f24596i0);
-            this.f24590e.addView(yx0Var, i11);
+            zx0Var = new zx0(getContext(), 1);
+            zx0Var.f33665f.setImageDrawable(drawable);
+            zx0Var.setFocusable(true);
+            zx0Var.setOnClickListener(new tm0(this, 4));
+            zx0Var.setExpanded(this.f24659f0);
+            zx0Var.a(this.f24662i0);
+            this.f24656e.addView(zx0Var, i11);
         }
-        yx0Var.d = false;
-        yx0Var.setTag(R.id.index_tag, Integer.valueOf(i11));
-        if (i11 != this.f24611y) {
+        zx0Var.d = false;
+        zx0Var.setTag(R.id.index_tag, Integer.valueOf(i11));
+        if (i11 != this.f24677y) {
             z10 = false;
         }
-        yx0Var.setSelected(z10);
-        this.h.put(h, yx0Var);
-        return yx0Var;
+        zx0Var.setSelected(z10);
+        this.h.put(h, zx0Var);
+        return zx0Var;
     }
 
     @Override
     public final void cancelLongPress() {
         super.cancelLongPress();
-        this.f24586b0 = false;
-        AndroidUtilities.cancelRunOnUIThread(this.f24591e0);
+        this.f24652b0 = false;
+        AndroidUtilities.cancelRunOnUIThread(this.f24657e0);
     }
 
     public final void d(boolean z10) {
-        this.f24600n = this.h;
+        this.f24666n = this.h;
         this.h = new HashMap();
-        this.f24605r.clear();
-        this.f24610x = 0;
+        this.f24671r.clear();
+        this.f24676x = 0;
         if (z10) {
             AutoTransition autoTransition = new AutoTransition();
             autoTransition.setDuration(250L);
             autoTransition.setOrdering(0);
             autoTransition.addTransition(new wm0(this, 0));
-            TransitionManager.beginDelayedTransition(this.f24590e, autoTransition);
+            TransitionManager.beginDelayedTransition(this.f24656e, autoTransition);
         }
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        xb1 xb1Var;
+        vb1 vb1Var;
         float f7;
         Canvas canvas2;
         View view;
@@ -226,78 +226,78 @@ public abstract class an0 extends HorizontalScrollView {
         float b11;
         float f12;
         float f13;
-        float f14 = this.f24598k0 - this.f24597j0;
-        float f15 = (1.0f - this.f24596i0) * this.f24599l0;
+        float f14 = this.f24664k0 - this.f24663j0;
+        float f15 = (1.0f - this.f24662i0) * this.f24665l0;
         int i10 = 0;
         while (true) {
-            xb1Var = this.f24590e;
-            if (i10 >= xb1Var.getChildCount()) {
+            vb1Var = this.f24656e;
+            if (i10 >= vb1Var.getChildCount()) {
                 break;
             }
-            if (xb1Var.getChildAt(i10) instanceof yx0) {
-                yx0 yx0Var = (yx0) xb1Var.getChildAt(i10);
-                float f16 = yx0Var.f33283y;
-                if (yx0Var.getLeft() != f16 && yx0Var.E) {
-                    yx0Var.f33274b = f16 - yx0Var.getLeft();
-                    ValueAnimator valueAnimator = yx0Var.f33282x;
+            if (vb1Var.getChildAt(i10) instanceof zx0) {
+                zx0 zx0Var = (zx0) vb1Var.getChildAt(i10);
+                float f16 = zx0Var.f33671y;
+                if (zx0Var.getLeft() != f16 && zx0Var.E) {
+                    zx0Var.f33662b = f16 - zx0Var.getLeft();
+                    ValueAnimator valueAnimator = zx0Var.f33670x;
                     if (valueAnimator != null) {
                         valueAnimator.removeAllListeners();
-                        yx0Var.f33282x.cancel();
+                        zx0Var.f33670x.cancel();
                     }
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(yx0Var.f33274b, 0.0f);
-                    yx0Var.f33282x = ofFloat;
-                    ofFloat.addUpdateListener(new xx0(yx0Var, this, 0));
-                    yx0Var.f33282x.addListener(new cl0(3, yx0Var, this));
-                    yx0Var.f33282x.start();
+                    ValueAnimator ofFloat = ValueAnimator.ofFloat(zx0Var.f33662b, 0.0f);
+                    zx0Var.f33670x = ofFloat;
+                    ofFloat.addUpdateListener(new yx0(zx0Var, this, 0));
+                    zx0Var.f33670x.addListener(new cl0(3, zx0Var, this));
+                    zx0Var.f33670x.start();
                 }
-                yx0Var.E = false;
-                if (this.f24594g0) {
-                    yx0Var.setTranslationX(com.google.android.gms.internal.vision.e2.z(1.0f, this.f24596i0, i10 * f14, f15) + yx0Var.f33274b);
+                zx0Var.E = false;
+                if (this.f24660g0) {
+                    zx0Var.setTranslationX(com.google.android.gms.internal.vision.e2.z(1.0f, this.f24662i0, i10 * f14, f15) + zx0Var.f33662b);
                 } else {
-                    yx0Var.setTranslationX(yx0Var.f33274b);
+                    zx0Var.setTranslationX(zx0Var.f33662b);
                 }
             }
             i10++;
         }
         float height = getHeight();
-        if (this.f24594g0) {
-            height = com.google.android.gms.internal.vision.e2.b(1.0f, this.f24596i0, AndroidUtilities.dp(50.0f), getHeight());
+        if (this.f24660g0) {
+            height = com.google.android.gms.internal.vision.e2.b(1.0f, this.f24662i0, AndroidUtilities.dp(50.0f), getHeight());
         }
         float f17 = height;
-        if (this.f24602o0) {
+        if (this.f24668o0) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
-        float d = this.f24603p0.d(f7, false);
-        if (!isInEditMode() && this.f24610x != 0 && this.J >= 0) {
+        float d = this.f24669p0.d(f7, false);
+        if (!isInEditMode() && this.f24676x != 0 && this.J >= 0) {
             e6 e6Var = this.E;
-            float d10 = e6Var.d(this.f24611y, false);
+            float d10 = e6Var.d(this.f24677y, false);
             TimeInterpolator timeInterpolator = e6Var.h;
             double d11 = d10;
             int floor = (int) Math.floor(d11);
             int ceil = (int) Math.ceil(d11);
             View view2 = null;
-            if (floor >= 0 && floor < xb1Var.getChildCount()) {
-                view = xb1Var.getChildAt(floor);
+            if (floor >= 0 && floor < vb1Var.getChildCount()) {
+                view = vb1Var.getChildAt(floor);
             } else {
                 view = null;
             }
-            if (ceil >= 0 && ceil < xb1Var.getChildCount()) {
-                view2 = xb1Var.getChildAt(ceil);
+            if (ceil >= 0 && ceil < vb1Var.getChildCount()) {
+                view2 = vb1Var.getChildAt(ceil);
             }
             float f18 = f17 / 2.0f;
             if (view != null && view2 != null) {
                 f10 = 2.0f;
                 float f19 = d10 - floor;
-                f11 = AndroidUtilities.lerp((AndroidUtilities.lerp(AndroidUtilities.dp(33.0f), AndroidUtilities.dp(64.0f), this.f24596i0) / 2.0f) + view.getTranslationX() + view.getLeft(), (AndroidUtilities.lerp(AndroidUtilities.dp(33.0f), AndroidUtilities.dp(64.0f), this.f24596i0) / 2.0f) + view2.getTranslationX() + view2.getLeft(), f19);
-                if (view instanceof yx0) {
-                    f12 = ((yx0) view).getTextWidth();
+                f11 = AndroidUtilities.lerp((AndroidUtilities.lerp(AndroidUtilities.dp(33.0f), AndroidUtilities.dp(64.0f), this.f24662i0) / 2.0f) + view.getTranslationX() + view.getLeft(), (AndroidUtilities.lerp(AndroidUtilities.dp(33.0f), AndroidUtilities.dp(64.0f), this.f24662i0) / 2.0f) + view2.getTranslationX() + view2.getLeft(), f19);
+                if (view instanceof zx0) {
+                    f12 = ((zx0) view).getTextWidth();
                 } else {
                     f12 = 0.0f;
                 }
-                if (view2 instanceof yx0) {
-                    f13 = ((yx0) view2).getTextWidth();
+                if (view2 instanceof zx0) {
+                    f13 = ((zx0) view2).getTextWidth();
                 } else {
                     f13 = 0.0f;
                 }
@@ -305,16 +305,16 @@ public abstract class an0 extends HorizontalScrollView {
             } else {
                 f10 = 2.0f;
                 if (view != null) {
-                    f11 = (AndroidUtilities.lerp(AndroidUtilities.dp(33.0f), AndroidUtilities.dp(64.0f), this.f24596i0) / 2.0f) + view.getTranslationX() + view.getLeft();
-                    if (view instanceof yx0) {
-                        textWidth = ((yx0) view).getTextWidth();
+                    f11 = (AndroidUtilities.lerp(AndroidUtilities.dp(33.0f), AndroidUtilities.dp(64.0f), this.f24662i0) / 2.0f) + view.getTranslationX() + view.getLeft();
+                    if (view instanceof zx0) {
+                        textWidth = ((zx0) view).getTextWidth();
                     }
                     textWidth = 0.0f;
                 } else {
                     if (view2 != null) {
-                        f11 = (AndroidUtilities.lerp(AndroidUtilities.dp(33.0f), AndroidUtilities.dp(64.0f), this.f24596i0) / 2.0f) + view2.getTranslationX() + view2.getLeft();
-                        if (view2 instanceof yx0) {
-                            textWidth = ((yx0) view2).getTextWidth();
+                        f11 = (AndroidUtilities.lerp(AndroidUtilities.dp(33.0f), AndroidUtilities.dp(64.0f), this.f24662i0) / 2.0f) + view2.getTranslationX() + view2.getLeft();
+                        if (view2 instanceof zx0) {
+                            textWidth = ((zx0) view2).getTextWidth();
                         }
                     } else {
                         f11 = 0.0f;
@@ -335,7 +335,7 @@ public abstract class an0 extends HorizontalScrollView {
                 b11 = e6Var.b();
             }
             float abs2 = ((Math.abs(0.5f - b11) * 0.1f * f10) + 0.9f) * dp;
-            float interpolation = tr.f31149i.getInterpolation(this.f24596i0);
+            float interpolation = tr.f31217i.getInterpolation(this.f24662i0);
             float lerp = f18 + AndroidUtilities.lerp(0, AndroidUtilities.dp(26.0f), interpolation);
             float lerp2 = AndroidUtilities.lerp(abs, textWidth + AndroidUtilities.dp(10.0f), interpolation) / f10;
             float lerp3 = (AndroidUtilities.lerp(1.0f, 0.55f, interpolation) * abs2) / f10;
@@ -344,7 +344,7 @@ public abstract class an0 extends HorizontalScrollView {
             rectF.set(f11 - lerp2, lerp - lerp3, f11 + lerp2, f20);
             boolean z10 = this.P;
             org.telegram.ui.ActionBar.d6 d6Var = this.O;
-            Paint paint = this.f24601n0;
+            Paint paint = this.f24667n0;
             if (z10) {
                 paint.setColor(i0.a.k(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Wk, d6Var), (int) 12.75f));
             } else {
@@ -357,22 +357,22 @@ public abstract class an0 extends HorizontalScrollView {
             canvas2 = canvas;
         }
         super.dispatchDraw(canvas);
-        if (!isInEditMode() && this.f24610x != 0 && this.M > 0) {
+        if (!isInEditMode() && this.f24676x != 0 && this.M > 0) {
             int i11 = this.I;
             Paint paint2 = this.H;
             paint2.setColor(i11);
-            canvas2.drawRect(0.0f, f17 - this.M, xb1Var.getWidth(), f17, paint2);
+            canvas2.drawRect(0.0f, f17 - this.M, vb1Var.getWidth(), f17, paint2);
         }
     }
 
     public final boolean e(int i10) {
         if (this.S && i10 >= 0) {
-            xb1 xb1Var = this.f24590e;
-            if (i10 < xb1Var.getChildCount()) {
-                View childAt = xb1Var.getChildAt(i10);
-                if (childAt instanceof yx0) {
-                    yx0 yx0Var = (yx0) childAt;
-                    if (yx0Var.f33273a == 0 && !yx0Var.d) {
+            vb1 vb1Var = this.f24656e;
+            if (i10 < vb1Var.getChildCount()) {
+                View childAt = vb1Var.getChildAt(i10);
+                if (childAt instanceof zx0) {
+                    zx0 zx0Var = (zx0) childAt;
+                    if (zx0Var.f33661a == 0 && !zx0Var.d) {
                         return true;
                     }
                     return false;
@@ -386,25 +386,25 @@ public abstract class an0 extends HorizontalScrollView {
 
     public final boolean f(MotionEvent motionEvent) {
         int action = motionEvent.getAction();
-        vm0 vm0Var = this.f24591e0;
-        if (action == 0 && this.f24607s == null) {
-            this.f24586b0 = true;
+        vm0 vm0Var = this.f24657e0;
+        if (action == 0 && this.f24673s == null) {
+            this.f24652b0 = true;
             AndroidUtilities.runOnUIThread(vm0Var, 500L);
             this.W = motionEvent.getX();
-            this.f24584a0 = motionEvent.getY();
+            this.f24650a0 = motionEvent.getY();
         }
-        if (this.f24586b0 && motionEvent.getAction() == 2) {
+        if (this.f24652b0 && motionEvent.getAction() == 2) {
             float abs = Math.abs(motionEvent.getX() - this.W);
             float f7 = this.G;
-            if (abs > f7 || Math.abs(motionEvent.getY() - this.f24584a0) > f7) {
-                this.f24586b0 = false;
+            if (abs > f7 || Math.abs(motionEvent.getY() - this.f24650a0) > f7) {
+                this.f24652b0 = false;
                 AndroidUtilities.cancelRunOnUIThread(vm0Var);
             }
         }
         int action2 = motionEvent.getAction();
-        vm0 vm0Var2 = this.f24608s0;
-        xb1 xb1Var = this.f24590e;
-        if (action2 == 2 && this.f24607s != null) {
+        vm0 vm0Var2 = this.f24674s0;
+        vb1 vb1Var = this.f24656e;
+        if (action2 == 2 && this.f24673s != null) {
             int ceil = ((int) Math.ceil((motionEvent.getX() + getScrollX()) / getTabSize())) - 1;
             int i10 = this.U;
             if (ceil != i10) {
@@ -419,54 +419,54 @@ public abstract class an0 extends HorizontalScrollView {
                 }
             }
             if (this.U != ceil && e(ceil)) {
-                for (int i11 = 0; i11 < xb1Var.getChildCount(); i11++) {
+                for (int i11 = 0; i11 < vb1Var.getChildCount(); i11++) {
                     if (i11 != this.U) {
-                        yx0 yx0Var = (yx0) xb1Var.getChildAt(i11);
-                        yx0Var.f33283y = yx0Var.getLeft();
-                        yx0Var.E = true;
-                        yx0Var.invalidate();
+                        zx0 zx0Var = (zx0) vb1Var.getChildAt(i11);
+                        zx0Var.f33671y = zx0Var.getLeft();
+                        zx0Var.E = true;
+                        zx0Var.invalidate();
                     }
                 }
                 this.V += (ceil - this.U) * getTabSize();
                 this.U = ceil;
-                xb1Var.removeView(this.f24607s);
-                xb1Var.addView(this.f24607s, this.U);
+                vb1Var.removeView(this.f24673s);
+                vb1Var.addView(this.f24673s, this.U);
                 invalidate();
             }
-            this.f24589d0 = this.W - motionEvent.getX();
+            this.f24655d0 = this.W - motionEvent.getX();
             float x10 = motionEvent.getX();
-            if (x10 < this.f24607s.getMeasuredWidth() / 2.0f) {
-                this.f24604q0 = false;
-                if (this.f24606r0 <= 0) {
-                    this.f24606r0 = System.currentTimeMillis();
+            if (x10 < this.f24673s.getMeasuredWidth() / 2.0f) {
+                this.f24670q0 = false;
+                if (this.f24672r0 <= 0) {
+                    this.f24672r0 = System.currentTimeMillis();
                 }
                 AndroidUtilities.runOnUIThread(vm0Var2, 16L);
-            } else if (x10 > getMeasuredWidth() - (this.f24607s.getMeasuredWidth() / 2.0f)) {
-                this.f24604q0 = true;
-                if (this.f24606r0 <= 0) {
-                    this.f24606r0 = System.currentTimeMillis();
+            } else if (x10 > getMeasuredWidth() - (this.f24673s.getMeasuredWidth() / 2.0f)) {
+                this.f24670q0 = true;
+                if (this.f24672r0 <= 0) {
+                    this.f24672r0 = System.currentTimeMillis();
                 }
                 AndroidUtilities.runOnUIThread(vm0Var2, 16L);
             } else {
-                this.f24606r0 = -1L;
+                this.f24672r0 = -1L;
                 AndroidUtilities.cancelRunOnUIThread(vm0Var2);
             }
-            xb1Var.invalidate();
+            vb1Var.invalidate();
             j();
             return true;
         } else if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
             return false;
         } else {
-            this.f24606r0 = -1L;
+            this.f24672r0 = -1L;
             AndroidUtilities.cancelRunOnUIThread(vm0Var2);
             AndroidUtilities.cancelRunOnUIThread(vm0Var);
-            if (this.f24607s != null) {
+            if (this.f24673s != null) {
                 int i12 = this.T;
                 int i13 = this.U;
                 if (i12 != i13) {
                     o(i12, i13);
-                    for (int i14 = 0; i14 < xb1Var.getChildCount(); i14++) {
-                        xb1Var.getChildAt(i14).setTag(R.id.index_tag, Integer.valueOf(i14));
+                    for (int i14 = 0; i14 < vb1Var.getChildCount(); i14++) {
+                        vb1Var.getChildAt(i14).setTag(R.id.index_tag, Integer.valueOf(i14));
                     }
                 }
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
@@ -474,52 +474,52 @@ public abstract class an0 extends HorizontalScrollView {
                 ofFloat.addListener(new hd0(this, 9));
                 ofFloat.start();
             }
-            this.f24586b0 = false;
+            this.f24652b0 = false;
             j();
             return false;
         }
     }
 
     public final void g(String str, FrameLayout frameLayout, int i10) {
-        HashMap hashMap = this.f24600n;
+        HashMap hashMap = this.f24666n;
         if (hashMap != null) {
             hashMap.remove(str);
         }
-        this.f24605r.put(i10, frameLayout);
+        this.f24671r.put(i10, frameLayout);
     }
 
     public int getCurrentPosition() {
-        return this.f24611y;
+        return this.f24677y;
     }
 
     public float getExpandedOffset() {
-        if (this.f24594g0) {
-            return AndroidUtilities.dp(50.0f) * this.f24596i0;
+        if (this.f24660g0) {
+            return AndroidUtilities.dp(50.0f) * this.f24662i0;
         }
         return 0.0f;
     }
 
     public zm0 getType() {
-        return this.f24585b;
+        return this.f24651b;
     }
 
     public final void h() {
-        HashMap hashMap = this.f24600n;
-        xb1 xb1Var = this.f24590e;
+        HashMap hashMap = this.f24666n;
+        vb1 vb1Var = this.f24656e;
         if (hashMap != null) {
             for (Map.Entry entry : hashMap.entrySet()) {
-                xb1Var.removeView((View) entry.getValue());
+                vb1Var.removeView((View) entry.getValue());
             }
-            this.f24600n.clear();
+            this.f24666n.clear();
         }
-        SparseArray sparseArray = this.f24605r;
+        SparseArray sparseArray = this.f24671r;
         int size = sparseArray.size();
         for (int i10 = 0; i10 < size; i10++) {
             int keyAt = sparseArray.keyAt(i10);
             View view = (View) sparseArray.valueAt(i10);
-            if (xb1Var.indexOfChild(view) != keyAt) {
-                xb1Var.removeView(view);
-                xb1Var.addView(view, keyAt);
+            if (vb1Var.indexOfChild(view) != keyAt) {
+                vb1Var.removeView(view);
+                vb1Var.addView(view, keyAt);
             }
         }
         sparseArray.clear();
@@ -527,33 +527,33 @@ public abstract class an0 extends HorizontalScrollView {
 
     public final void i(final float f7, final boolean z10) {
         float f10;
-        if (this.f24593f0 != z10) {
-            this.f24593f0 = z10;
+        if (this.f24659f0 != z10) {
+            this.f24659f0 = z10;
             if (!z10) {
                 fling(0);
             }
-            ValueAnimator valueAnimator = this.f24595h0;
+            ValueAnimator valueAnimator = this.f24661h0;
             if (valueAnimator != null) {
                 valueAnimator.removeAllListeners();
-                this.f24595h0.cancel();
+                this.f24661h0.cancel();
             }
-            float f11 = this.f24596i0;
+            float f11 = this.f24662i0;
             if (z10) {
                 f10 = 1.0f;
             } else {
                 f10 = 0.0f;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(f11, f10);
-            this.f24595h0 = ofFloat;
+            this.f24661h0 = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
                     an0 an0Var = an0.this;
-                    xb1 xb1Var = an0Var.f24590e;
+                    vb1 vb1Var = an0Var.f24656e;
                     if (!z10) {
-                        float childCount = an0Var.f24598k0 * xb1Var.getChildCount();
+                        float childCount = an0Var.f24664k0 * vb1Var.getChildCount();
                         float f12 = f7;
-                        float scrollX = (an0Var.getScrollX() + f12) / (an0Var.f24597j0 * xb1Var.getChildCount());
+                        float scrollX = (an0Var.getScrollX() + f12) / (an0Var.f24663j0 * vb1Var.getChildCount());
                         float measuredWidth = (childCount - an0Var.getMeasuredWidth()) / childCount;
                         if (scrollX > measuredWidth) {
                             scrollX = measuredWidth;
@@ -563,66 +563,66 @@ public abstract class an0 extends HorizontalScrollView {
                         if (f13 - f12 < 0.0f) {
                             f13 = f12;
                         }
-                        an0Var.f24599l0 = (an0Var.getScrollX() + f12) - f13;
+                        an0Var.f24665l0 = (an0Var.getScrollX() + f12) - f13;
                     }
-                    an0Var.f24596i0 = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
-                    for (int i10 = 0; i10 < xb1Var.getChildCount(); i10++) {
-                        xb1Var.getChildAt(i10).invalidate();
+                    an0Var.f24662i0 = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
+                    for (int i10 = 0; i10 < vb1Var.getChildCount(); i10++) {
+                        vb1Var.getChildAt(i10).invalidate();
                     }
-                    xb1Var.invalidate();
+                    vb1Var.invalidate();
                     an0Var.p();
                 }
             });
-            this.f24595h0.addListener(new xm0(this, z10, f7, 0));
-            this.f24595h0.start();
-            xb1 xb1Var = this.f24590e;
+            this.f24661h0.addListener(new xm0(this, z10, f7, 0));
+            this.f24661h0.start();
+            vb1 vb1Var = this.f24656e;
             if (z10) {
-                this.f24594g0 = true;
-                for (int i10 = 0; i10 < xb1Var.getChildCount(); i10++) {
-                    View childAt = xb1Var.getChildAt(i10);
-                    if (childAt instanceof yx0) {
-                        ((yx0) childAt).setExpanded(true);
+                this.f24660g0 = true;
+                for (int i10 = 0; i10 < vb1Var.getChildCount(); i10++) {
+                    View childAt = vb1Var.getChildAt(i10);
+                    if (childAt instanceof zx0) {
+                        ((zx0) childAt).setExpanded(true);
                     }
                     childAt.getLayoutParams().width = AndroidUtilities.dp(64.0f);
                 }
-                xb1Var.requestLayout();
+                vb1Var.requestLayout();
                 getLayoutParams().height = AndroidUtilities.dp(86.0f);
             }
             if (z10) {
-                float childCount = this.f24597j0 * xb1Var.getChildCount() * ((getScrollX() + f7) / (this.f24598k0 * xb1Var.getChildCount()));
-                this.f24599l0 = childCount - (getScrollX() + f7);
+                float childCount = this.f24663j0 * vb1Var.getChildCount() * ((getScrollX() + f7) / (this.f24664k0 * vb1Var.getChildCount()));
+                this.f24665l0 = childCount - (getScrollX() + f7);
                 this.m0 = (int) (childCount - f7);
             }
         }
     }
 
     public final void k(int i10, int i11) {
-        int i12 = this.f24611y;
+        int i12 = this.f24677y;
         if (i12 != i10) {
-            xb1 xb1Var = this.f24590e;
-            View childAt = xb1Var.getChildAt(i12);
+            vb1 vb1Var = this.f24656e;
+            View childAt = vb1Var.getChildAt(i12);
             if (childAt != null) {
                 childAt.getLeft();
                 SystemClock.elapsedRealtime();
             }
-            this.f24611y = i10;
-            if (i10 >= xb1Var.getChildCount()) {
+            this.f24677y = i10;
+            if (i10 >= vb1Var.getChildCount()) {
                 return;
             }
             int i13 = 0;
             while (true) {
                 boolean z10 = true;
-                if (i13 >= xb1Var.getChildCount()) {
+                if (i13 >= vb1Var.getChildCount()) {
                     break;
                 }
-                View childAt2 = xb1Var.getChildAt(i13);
+                View childAt2 = vb1Var.getChildAt(i13);
                 if (i13 != i10) {
                     z10 = false;
                 }
                 childAt2.setSelected(z10);
                 i13++;
             }
-            if (this.f24595h0 == null) {
+            if (this.f24661h0 == null) {
                 if (i11 == i10 && i10 > 1) {
                     l(i10 - 1);
                 } else {
@@ -634,10 +634,10 @@ public abstract class an0 extends HorizontalScrollView {
     }
 
     public final void l(int i10) {
-        if (this.f24610x != 0) {
-            xb1 xb1Var = this.f24590e;
-            if (xb1Var.getChildAt(i10) != null) {
-                int left = xb1Var.getChildAt(i10).getLeft();
+        if (this.f24676x != 0) {
+            vb1 vb1Var = this.f24656e;
+            if (vb1Var.getChildAt(i10) != null) {
+                int left = vb1Var.getChildAt(i10).getLeft();
                 int i11 = this.L;
                 if (i10 > 0) {
                     left -= i11;
@@ -658,8 +658,8 @@ public abstract class an0 extends HorizontalScrollView {
     }
 
     public final void m(int i10) {
-        if (i10 >= 0 && i10 < this.f24610x) {
-            this.f24590e.getChildAt(i10).performClick();
+        if (i10 >= 0 && i10 < this.f24676x) {
+            this.f24656e.getChildAt(i10).performClick();
         }
     }
 
@@ -701,22 +701,22 @@ public abstract class an0 extends HorizontalScrollView {
     }
 
     public final void q() {
-        for (int i10 = 0; i10 < this.f24610x; i10++) {
-            View childAt = this.f24590e.getChildAt(i10);
-            if (this.f24609w) {
+        for (int i10 = 0; i10 < this.f24676x; i10++) {
+            View childAt = this.f24656e.getChildAt(i10);
+            if (this.f24675w) {
                 childAt.setLayoutParams(this.d);
             } else {
-                childAt.setLayoutParams(this.f24587c);
+                childAt.setLayoutParams(this.f24653c);
             }
         }
     }
 
     public void setCurrentPosition(int i10) {
-        this.f24611y = i10;
+        this.f24677y = i10;
     }
 
     public void setDelegate(ym0 ym0Var) {
-        this.f24592f = ym0Var;
+        this.f24658f = ym0Var;
     }
 
     public void setDragEnabled(boolean z10) {
@@ -724,7 +724,7 @@ public abstract class an0 extends HorizontalScrollView {
     }
 
     public void setImageReceiversLayerNum(int i10) {
-        this.f24583a = i10;
+        this.f24649a = i10;
     }
 
     public void setIndicatorColor(int i10) {
@@ -737,13 +737,13 @@ public abstract class an0 extends HorizontalScrollView {
     }
 
     public void setShouldExpand(boolean z10) {
-        this.f24609w = z10;
+        this.f24675w = z10;
         requestLayout();
     }
 
     public void setType(zm0 zm0Var) {
-        if (zm0Var != null && this.f24585b != zm0Var) {
-            this.f24585b = zm0Var;
+        if (zm0Var != null && this.f24651b != zm0Var) {
+            this.f24651b = zm0Var;
             int ordinal = zm0Var.ordinal();
             GradientDrawable gradientDrawable = this.K;
             if (ordinal != 0) {

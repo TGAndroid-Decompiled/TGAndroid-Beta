@@ -15,7 +15,7 @@ public final class q8 extends wp {
             case 0:
                 return AndroidUtilities.dp(26.0f);
             default:
-                return (int) ((this.f32597b * 2.0f) + this.f32596a);
+                return (int) ((this.f32681b * 2.0f) + this.f32680a);
         }
     }
 
@@ -25,7 +25,7 @@ public final class q8 extends wp {
             case 0:
                 return AndroidUtilities.dp(26.0f);
             default:
-                return (int) ((this.f32597b * 2.0f) + this.f32596a);
+                return (int) ((this.f32681b * 2.0f) + this.f32680a);
         }
     }
 

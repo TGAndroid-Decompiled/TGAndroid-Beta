@@ -2,23 +2,23 @@ package n6;
 
 import android.os.Bundle;
 public final class e0 extends w {
-    public final g f16667g;
+    public final g f16672g;
 
     public e0(g gVar, int i10, Bundle bundle) {
         super(gVar, i10, bundle);
-        this.f16667g = gVar;
+        this.f16672g = gVar;
     }
 
     @Override
     public final void a(k6.a aVar) {
-        g gVar = this.f16667g;
+        g gVar = this.f16672g;
         gVar.E.a(aVar);
         gVar.z(aVar);
     }
 
     @Override
     public final boolean b() {
-        this.f16667g.E.a(k6.a.f14663e);
+        this.f16672g.E.a(k6.a.f14663e);
         return true;
     }
 }

@@ -4,38 +4,38 @@ import android.content.DialogInterface;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.vt0;
-import yh.w6;
+import yh.x6;
 public final class s implements DialogInterface.OnDismissListener {
-    public final int f45325a = 1;
-    public final int f45326b;
-    public final NotificationCenter.NotificationCenterDelegate f45327c;
+    public final int f45332a = 1;
+    public final int f45333b;
+    public final NotificationCenter.NotificationCenterDelegate f45334c;
 
-    public s(int i10, w6 w6Var) {
-        this.f45326b = i10;
-        this.f45327c = w6Var;
+    public s(int i10, x6 x6Var) {
+        this.f45333b = i10;
+        this.f45334c = x6Var;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f45325a) {
+        switch (this.f45332a) {
             case 0:
-                m0 m0Var = (m0) this.f45327c;
-                PhotoViewer photoViewer = ((vt0) m0Var).f41822o2;
+                m0 m0Var = (m0) this.f45334c;
+                PhotoViewer photoViewer = ((vt0) m0Var).f41820o2;
                 if (photoViewer.F2 != null) {
                     photoViewer.H2 = false;
                     photoViewer.u0();
                     photoViewer.F2.C();
                 }
-                m0Var.C0(this.f45326b);
+                m0Var.C0(this.f45333b);
                 return;
             default:
-                NotificationCenter.getInstance(this.f45326b).removeObserver((w6) this.f45327c, NotificationCenter.starSubscriptionsLoaded);
+                NotificationCenter.getInstance(this.f45333b).removeObserver((x6) this.f45334c, NotificationCenter.starSubscriptionsLoaded);
                 return;
         }
     }
 
     public s(m0 m0Var, int i10) {
-        this.f45327c = m0Var;
-        this.f45326b = i10;
+        this.f45334c = m0Var;
+        this.f45333b = i10;
     }
 }

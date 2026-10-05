@@ -17,53 +17,53 @@ public final class lu0 extends vh.n {
     public Layout U;
     public org.telegram.ui.Components.v5 V;
     public boolean W;
-    public org.telegram.ui.Components.u90 f38343a0;
-    public Layout f38344b0;
-    public Path f38345c0;
+    public org.telegram.ui.Components.u90 f38397a0;
+    public Layout f38398b0;
+    public Path f38399c0;
 
     public lu0(Context context, ju0 ju0Var, org.telegram.ui.Cells.aa aaVar, final Utilities.Callback2 callback2, final Utilities.Callback3 callback3) {
         super(context);
         setClearLinkOnLongPress(false);
         setDisablePaddingsOffsetY(false);
-        this.f48449x = new org.telegram.ui.Components.p90(this) {
-            public final lu0 f38097b;
+        this.f48456x = new org.telegram.ui.Components.p90(this) {
+            public final lu0 f38165b;
 
             {
-                this.f38097b = this;
+                this.f38165b = this;
             }
 
             @Override
             public final void a(ClickableSpan clickableSpan) {
                 switch (r3) {
                     case 0:
-                        lu0 lu0Var = this.f38097b;
+                        lu0 lu0Var = this.f38165b;
                         lu0Var.getClass();
                         ((Utilities.Callback2) callback2).run(clickableSpan, lu0Var);
                         return;
                     default:
-                        lu0 lu0Var2 = this.f38097b;
+                        lu0 lu0Var2 = this.f38165b;
                         ((Utilities.Callback3) callback2).run(clickableSpan, lu0Var2, new nl0(lu0Var2, 22));
                         return;
                 }
             }
         };
-        this.f48450y = new org.telegram.ui.Components.p90(this) {
-            public final lu0 f38097b;
+        this.f48457y = new org.telegram.ui.Components.p90(this) {
+            public final lu0 f38165b;
 
             {
-                this.f38097b = this;
+                this.f38165b = this;
             }
 
             @Override
             public final void a(ClickableSpan clickableSpan) {
                 switch (r3) {
                     case 0:
-                        lu0 lu0Var = this.f38097b;
+                        lu0 lu0Var = this.f38165b;
                         lu0Var.getClass();
                         ((Utilities.Callback2) callback3).run(clickableSpan, lu0Var);
                         return;
                     default:
-                        lu0 lu0Var2 = this.f38097b;
+                        lu0 lu0Var2 = this.f38165b;
                         ((Utilities.Callback3) callback3).run(clickableSpan, lu0Var2, new nl0(lu0Var2, 22));
                         return;
                 }
@@ -85,10 +85,10 @@ public final class lu0 extends vh.n {
         float f7;
         if (this.W) {
             Layout layout = getLayout();
-            Path path = this.f38345c0;
-            if (path == null || this.f38344b0 != layout) {
+            Path path = this.f38399c0;
+            if (path == null || this.f38398b0 != layout) {
                 if (path == null) {
-                    this.f38345c0 = new Path();
+                    this.f38399c0 = new Path();
                 } else {
                     path.rewind();
                 }
@@ -110,23 +110,23 @@ public final class lu0 extends vh.n {
                         } else {
                             f7 = lineBottom;
                         }
-                        this.f38345c0.addRect(getPaddingLeft() + lineLeft, getPaddingTop() + f10, getPaddingLeft() + lineRight, getPaddingTop() + f7, Path.Direction.CW);
+                        this.f38399c0.addRect(getPaddingLeft() + lineLeft, getPaddingTop() + f10, getPaddingLeft() + lineRight, getPaddingTop() + f7, Path.Direction.CW);
                         i11++;
                         f10 = f7;
                     }
                 }
-                this.f38344b0 = layout;
+                this.f38398b0 = layout;
             }
-            if (this.f38343a0 == null) {
+            if (this.f38397a0 == null) {
                 org.telegram.ui.Components.u90 u90Var = new org.telegram.ui.Components.u90();
-                this.f38343a0 = u90Var;
-                u90Var.f31353x = this.f38345c0;
+                this.f38397a0 = u90Var;
+                u90Var.f31406x = this.f38399c0;
                 u90Var.j(4.0f);
-                this.f38343a0.f(org.telegram.ui.ActionBar.i6.l1(0.3f, -1), org.telegram.ui.ActionBar.i6.l1(0.1f, -1), org.telegram.ui.ActionBar.i6.l1(0.2f, -1), org.telegram.ui.ActionBar.i6.l1(0.7f, -1));
-                this.f38343a0.setCallback(this);
+                this.f38397a0.f(org.telegram.ui.ActionBar.i6.l1(0.3f, -1), org.telegram.ui.ActionBar.i6.l1(0.1f, -1), org.telegram.ui.ActionBar.i6.l1(0.2f, -1), org.telegram.ui.ActionBar.i6.l1(0.7f, -1));
+                this.f38397a0.setCallback(this);
             }
-            this.f38343a0.setBounds(0, 0, getWidth(), getHeight());
-            this.f38343a0.draw(canvas);
+            this.f38397a0.setBounds(0, 0, getWidth(), getHeight());
+            this.f38397a0.draw(canvas);
         }
         if (this.W) {
             canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 178, 31);
@@ -171,7 +171,7 @@ public final class lu0 extends vh.n {
         if (aaVar != null && aaVar.y()) {
             canvas.save();
             canvas.translate(getPaddingLeft(), getPaddingTop());
-            if (aaVar != null && getStaticTextLayout() != null && aaVar.f21809u0 == this) {
+            if (aaVar != null && getStaticTextLayout() != null && aaVar.f21813u0 == this) {
                 aaVar.X(canvas);
             }
             canvas.restore();
@@ -223,7 +223,7 @@ public final class lu0 extends vh.n {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f38343a0 && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f38397a0 && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

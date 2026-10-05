@@ -25,9 +25,9 @@ import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.a01;
 import org.telegram.ui.h60;
-import org.telegram.ui.og1;
+import org.telegram.ui.mg1;
 import org.telegram.ui.uy;
-public final class p9 implements org.telegram.ui.ActionBar.a2, ChatObject.Call.OnParticipantsLoad, ImageReceiver.ImageReceiverDelegate, nl0, MessagesController.IsInChatCheckedCallback, t5.b, s5.e, pa.a, og1 {
+public final class p9 implements org.telegram.ui.ActionBar.a2, ChatObject.Call.OnParticipantsLoad, ImageReceiver.ImageReceiverDelegate, nl0, MessagesController.IsInChatCheckedCallback, t5.b, s5.e, pa.a, mg1 {
     public final int f5708a;
     public final long f5709b;
     public final Object f5710c;
@@ -45,7 +45,7 @@ public final class p9 implements org.telegram.ui.ActionBar.a2, ChatObject.Call.O
         boolean z10;
         String str = (String) this.f5710c;
         SQLiteDatabase sQLiteDatabase = (SQLiteDatabase) obj;
-        int i10 = ((o5.c) this.d).f17131a;
+        int i10 = ((o5.c) this.d).f17136a;
         Cursor rawQuery = sQLiteDatabase.rawQuery("SELECT 1 FROM log_event_dropped WHERE log_source = ? AND reason = ?", new String[]{str, Integer.toString(i10)});
         try {
             if (rawQuery.getCount() > 0) {
@@ -141,7 +141,7 @@ public final class p9 implements org.telegram.ui.ActionBar.a2, ChatObject.Call.O
                 return;
             default:
                 h60 h60Var = (h60) this.f5710c;
-                h60Var.d.getMessagesController().addUserToChat(h60Var.i1(), (TLRPC.User) this.d, 0, null, (org.telegram.ui.ActionBar.n2) h60Var.f36913i0.O().getFragmentStack().get(h60Var.f36913i0.O().getFragmentStack().size() - 1), new ai.j(h60Var, this.f5709b, 24));
+                h60Var.d.getMessagesController().addUserToChat(h60Var.i1(), (TLRPC.User) this.d, 0, null, (org.telegram.ui.ActionBar.n2) h60Var.f36940i0.O().getFragmentStack().get(h60Var.f36940i0.O().getFragmentStack().size() - 1), new ai.j(h60Var, this.f5709b, 24));
                 return;
         }
     }
@@ -158,7 +158,7 @@ public final class p9 implements org.telegram.ui.ActionBar.a2, ChatObject.Call.O
 
     @Override
     public void j(TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP) {
-        ((yh.g) this.f5710c).h0(true, this.f5709b, tL_inputCheckPasswordSRP, (TwoStepVerificationActivity) this.d);
+        ((yh.h) this.f5710c).p0(true, this.f5709b, tL_inputCheckPasswordSRP, (TwoStepVerificationActivity) this.d);
     }
 
     @Override

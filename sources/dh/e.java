@@ -28,6 +28,11 @@ public final class e implements a {
 
     @Override
     public final int B() {
+        return b(this.f8352b);
+    }
+
+    @Override
+    public final int H() {
         return b(this.f8354e);
     }
 
@@ -63,10 +68,5 @@ public final class e implements a {
 
     public final void f(int i10, int i11) {
         this.f8353c = new c(i11, i10, 0);
-    }
-
-    @Override
-    public final int x() {
-        return b(this.f8352b);
     }
 }

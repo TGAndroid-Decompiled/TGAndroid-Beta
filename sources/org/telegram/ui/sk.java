@@ -13,7 +13,7 @@ public final class sk extends kv0 {
     @Override
     public final void c(Canvas canvas, float f7, float f10, float f11, float f12, float f13) {
         if (f7 > 0.0f) {
-            View view = this.f38103e;
+            View view = this.f38171e;
             if (view instanceof org.telegram.ui.Cells.u1) {
                 org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) view;
                 RectF rectF = AndroidUtilities.rectTmp;

@@ -33,7 +33,7 @@ public final class mb extends q6 {
         kcVar.f5443v1.O0(false);
         kcVar.f5383c1.clearAnimation();
         ViewPropertyAnimator duration = kcVar.f5383c1.animate().alpha(0.0f).setDuration(180L);
-        tr trVar = tr.f31148g;
+        tr trVar = tr.f31216g;
         duration.setInterpolator(trVar).start();
         if (kcVar.f5396g0 != 2) {
             kcVar.Y0.clearAnimation();
@@ -49,12 +49,12 @@ public final class mb extends q6 {
             kcVar.f5423p1.setVisibility(0);
             kcVar.f5423p1.setAlpha(0.0f);
             kcVar.f5423p1.clearAnimation();
-            kcVar.f5423p1.animate().alpha(1.0f).setDuration(180L).setInterpolator(tr.f31148g).start();
+            kcVar.f5423p1.animate().alpha(1.0f).setDuration(180L).setInterpolator(tr.f31216g).start();
             return;
         }
         kcVar.f5423p1.a(false, z11);
         kcVar.f5423p1.clearAnimation();
-        ViewPropertyAnimator interpolator = kcVar.f5423p1.animate().alpha(0.0f).withEndAction(new androidx.fragment.app.a0(this, 25)).setDuration(180L).setInterpolator(tr.f31148g);
+        ViewPropertyAnimator interpolator = kcVar.f5423p1.animate().alpha(0.0f).withEndAction(new androidx.fragment.app.a0(this, 25)).setDuration(180L).setInterpolator(tr.f31216g);
         if (z11) {
             j3 = 500;
         } else {
@@ -118,7 +118,7 @@ public final class mb extends q6 {
             f7 = 0.0f;
         }
         ViewPropertyAnimator duration = animate.alpha(f7).setDuration(180L);
-        tr trVar = tr.f31148g;
+        tr trVar = tr.f31216g;
         duration.setInterpolator(trVar).start();
         kcVar.Y0.clearAnimation();
         ViewPropertyAnimator animate2 = kcVar.Y0.animate();

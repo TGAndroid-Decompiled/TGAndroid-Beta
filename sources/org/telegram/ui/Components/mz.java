@@ -9,13 +9,13 @@ import android.widget.HorizontalScrollView;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 public class mz extends s4.s0 {
-    public final int f28760a;
-    public boolean f28761b;
-    public final nz f28762c;
+    public final int f28862a;
+    public boolean f28863b;
+    public final nz f28864c;
 
     public mz(nz nzVar, int i10) {
-        this.f28762c = nzVar;
-        this.f28760a = i10;
+        this.f28864c = nzVar;
+        this.f28862a = i10;
     }
 
     @Override
@@ -24,19 +24,19 @@ public class mz extends s4.s0 {
         az azVar;
         float f7;
         int i11;
-        nz nzVar = this.f28762c;
+        nz nzVar = this.f28864c;
         ObjectAnimator[] objectAnimatorArr = nzVar.R0;
-        s4.y0 y0Var = recyclerView.getLayoutManager().f46637e;
+        s4.y0 y0Var = recyclerView.getLayoutManager().f46644e;
         boolean z10 = true;
-        if (y0Var != null && y0Var.f46702e) {
-            this.f28761b = true;
+        if (y0Var != null && y0Var.f46709e) {
+            this.f28863b = true;
             return;
         }
-        int i12 = this.f28760a;
+        int i12 = this.f28862a;
         if (i10 == 0) {
-            if (!this.f28761b) {
+            if (!this.f28863b) {
                 int[] iArr = nzVar.Q0;
-                oy oyVar = nzVar.f29151t1;
+                oy oyVar = nzVar.f29248t1;
                 if ((oyVar == null || !oyVar.z()) && i12 != 0) {
                     float f10 = 48.0f;
                     if (i12 == 1) {
@@ -78,9 +78,9 @@ public class mz extends s4.s0 {
                         int dp = AndroidUtilities.dp(f10);
                         s4.c1 K = x10.K(0);
                         if (K != null) {
-                            int bottom = K.f46531a.getBottom();
+                            int bottom = K.f46538a.getBottom();
                             int i14 = iArr[i12];
-                            float f12 = (bottom - (dp + i14)) / nzVar.f29093b1;
+                            float f12 = (bottom - (dp + i14)) / nzVar.f29190b1;
                             if (f12 > 0.0f || f12 < 1.0f) {
                                 if (f12 <= 0.5f) {
                                     z10 = false;
@@ -94,7 +94,7 @@ public class mz extends s4.s0 {
             if (nzVar.J0) {
                 nzVar.J0 = false;
             }
-            this.f28761b = false;
+            this.f28863b = false;
             return;
         }
         if (i10 == 1) {
@@ -104,7 +104,7 @@ public class mz extends s4.s0 {
             if (i12 != 0) {
                 if (i12 != 1) {
                     if (i12 == 2) {
-                        azVar = nzVar.f29133o0;
+                        azVar = nzVar.f29230o0;
                     } else {
                         throw new IllegalArgumentException(hg.c.h(i12, "Unexpected argument: "));
                     }
@@ -117,14 +117,14 @@ public class mz extends s4.s0 {
             if (azVar != null) {
                 azVar.b();
             }
-            this.f28761b = false;
+            this.f28863b = false;
         }
-        if (!this.f28761b && (objectAnimator = objectAnimatorArr[i12]) != null && objectAnimator.isRunning()) {
+        if (!this.f28863b && (objectAnimator = objectAnimatorArr[i12]) != null && objectAnimator.isRunning()) {
             objectAnimatorArr[i12].cancel();
         }
         if (i12 == 0) {
             if (nzVar.T0 == null) {
-                gg.g1 g1Var = new gg.g1(nzVar, nzVar.f29097c1, nzVar.f29151t1.a(), nzVar.f29151t1.f(), 1);
+                gg.g1 g1Var = new gg.g1(nzVar, nzVar.f29194c1, nzVar.f29248t1.a(), nzVar.f29248t1.f(), 1);
                 nzVar.T0 = g1Var;
                 g1Var.a();
             }
@@ -135,8 +135,8 @@ public class mz extends s4.s0 {
     @Override
     public void b(RecyclerView recyclerView, int i10, int i11) {
         int dp;
-        nz nzVar = this.f28762c;
-        int i12 = this.f28760a;
+        nz nzVar = this.f28864c;
+        int i12 = this.f28862a;
         nzVar.p(i12);
         nz.e(nzVar, i12, i11);
         if (i12 != 0) {
@@ -150,9 +150,9 @@ public class mz extends s4.s0 {
         } else {
             nzVar.q(false);
         }
-        if (!this.f28761b) {
+        if (!this.f28863b) {
             float f7 = i11;
-            FrameLayout frameLayout = nzVar.f29129n;
+            FrameLayout frameLayout = nzVar.f29226n;
             if (SystemClock.elapsedRealtime() - nzVar.C2 >= ViewConfiguration.getTapTimeout()) {
                 nzVar.H += f7;
                 if (nzVar.h.getCurrentItem() == 0) {

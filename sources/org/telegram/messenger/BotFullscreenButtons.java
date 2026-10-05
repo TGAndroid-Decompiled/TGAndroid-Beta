@@ -17,7 +17,7 @@ import android.os.Build;
 import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebView;
-import org.telegram.ui.Components.e11;
+import org.telegram.ui.Components.f11;
 import org.telegram.ui.Components.tr;
 import org.telegram.ui.k20;
 public class BotFullscreenButtons extends View {
@@ -25,14 +25,14 @@ public class BotFullscreenButtons extends View {
     private final org.telegram.ui.Components.e6 animatedDownloading;
     private final org.telegram.ui.Components.e6 animatedPreview;
     private boolean back;
-    private final e11 backText;
+    private final f11 backText;
     private final Paint backgroundPaint;
     private final Path backgroundPath;
     private RenderNode blurNode;
     private final org.telegram.ui.Components.zc closeBounce;
     private final RectF closeRect;
     private final RectF closeRectArea;
-    private final e11 closeText;
+    private final f11 closeText;
     private final org.telegram.ui.Components.zc collapseBounce;
     private final RectF collapseClickRect;
     private final RectF collapseRect;
@@ -55,7 +55,7 @@ public class BotFullscreenButtons extends View {
     int pressed;
     private boolean preview;
     private final k20 previewClip;
-    private e11 previewText;
+    private f11 previewText;
     private final RectF rightMenu;
     private final long start;
     private Drawable verifiedBackground;
@@ -194,8 +194,8 @@ public class BotFullscreenButtons extends View {
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
-        this.backText = new e11(LocaleController.getString(R.string.BotFullscreenBack), 13.0f, AndroidUtilities.bold());
-        this.closeText = new e11(LocaleController.getString(R.string.BotFullscreenClose), 13.0f, AndroidUtilities.bold());
+        this.backText = new f11(LocaleController.getString(R.string.BotFullscreenBack), 13.0f, AndroidUtilities.bold());
+        this.closeText = new f11(LocaleController.getString(R.string.BotFullscreenClose), 13.0f, AndroidUtilities.bold());
         paint2.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(1.0f)));
         path.rewind();
         path.moveTo(-AndroidUtilities.dpf2(1.33f), AndroidUtilities.dpf2(0.16f));
@@ -279,12 +279,12 @@ public class BotFullscreenButtons extends View {
         float e7 = this.animatedBack.e(this.back);
         float e10 = this.animatedPreview.e(this.preview);
         float dp4 = (this.rightMenu.left - AndroidUtilities.dp(18.0f)) - (this.insets.left + AndroidUtilities.dp(38.0f));
-        e11 e11Var = this.previewText;
-        if (e11Var == null) {
+        f11 f11Var = this.previewText;
+        if (f11Var == null) {
             dp = 0.0f;
             f7 = 18.0f;
         } else {
-            float f16 = e11Var.f25884c;
+            float f16 = f11Var.f26266c;
             f7 = 18.0f;
             if (this.verifiedBackground != null) {
                 f10 = 30.0f;
@@ -294,7 +294,7 @@ public class BotFullscreenButtons extends View {
             dp = f16 + AndroidUtilities.dp(f10);
         }
         float min = Math.min(dp4, dp);
-        this.leftMenu.set(this.insets.left + AndroidUtilities.dp(8.0f), this.insets.top + AndroidUtilities.dp(8.0f), this.insets.left + AndroidUtilities.dp(38.0f) + AndroidUtilities.lerp(AndroidUtilities.lerp(this.closeText.f25884c, this.backText.f25884c, e7) + AndroidUtilities.dp(12.0f), min, e10), this.insets.top + AndroidUtilities.dp(38.0f));
+        this.leftMenu.set(this.insets.left + AndroidUtilities.dp(8.0f), this.insets.top + AndroidUtilities.dp(8.0f), this.insets.left + AndroidUtilities.dp(38.0f) + AndroidUtilities.lerp(AndroidUtilities.lerp(this.closeText.f26266c, this.backText.f26266c, e7) + AndroidUtilities.dp(12.0f), min, e10), this.insets.top + AndroidUtilities.dp(38.0f));
         RectF rectF9 = this.closeRect;
         RectF rectF10 = this.leftMenu;
         float f17 = rectF10.left;
@@ -358,16 +358,16 @@ public class BotFullscreenButtons extends View {
         if (e10 > 0.0f && this.previewText != null) {
             canvas2.save();
             canvas2.translate(com.google.android.gms.internal.vision.e2.b(1.0f, e10, min, this.leftMenu.left + AndroidUtilities.dp(30.0f)), this.leftMenu.centerY());
-            e11 e11Var2 = this.previewText;
+            f11 f11Var2 = this.previewText;
             float f22 = this.leftMenu.right;
             if (this.verifiedBackground != null) {
                 f15 = 30.0f;
             } else {
                 f15 = 12.0f;
             }
-            e11Var2.f25895p = ((f22 - AndroidUtilities.dp(f15)) - (this.leftMenu.left + AndroidUtilities.dp(30.0f))) + 2.0f;
+            f11Var2.f26277p = ((f22 - AndroidUtilities.dp(f15)) - (this.leftMenu.left + AndroidUtilities.dp(30.0f))) + 2.0f;
             f14 = 1.0f;
-            e11Var2.c(0.0f, 0.0f, e10, -1, canvas);
+            f11Var2.c(0.0f, 0.0f, e10, -1, canvas);
             f13 = e10;
             canvas2 = canvas;
             canvas2.translate(this.previewText.l() + AndroidUtilities.dp(5.0f), 0.0f);
@@ -507,7 +507,7 @@ public class BotFullscreenButtons extends View {
     }
 
     public void setName(String str, boolean z10) {
-        this.previewText = new e11(str, 13.0f, AndroidUtilities.bold());
+        this.previewText = new f11(str, 13.0f, AndroidUtilities.bold());
         if (!z10) {
             this.verifiedBackground = null;
             this.verifiedForeground = null;

@@ -39,7 +39,7 @@ import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.b2;
 import org.telegram.ui.Components.Switch;
 import org.telegram.ui.Components.kj0;
-import org.telegram.ui.Components.uo0;
+import org.telegram.ui.Components.vo0;
 import org.telegram.ui.Components.voip.n1;
 import org.telegram.ui.dr0;
 import org.telegram.ui.vt0;
@@ -51,7 +51,7 @@ import qg.n2;
 import qg.o2;
 import qg.x1;
 import w7.n6;
-public final class v implements le.d, li.j, m4.z, z0, e2.h, x0, q9.d, Vector.TLDeserializer, GlGenericDrawer.TextureCallback, n1, a2, pg.i0, v1, i8, OnSuccessListener, ImageReceiver.ImageReceiverDelegate {
+public final class v implements le.d, li.l, m4.z, z0, e2.h, x0, q9.d, Vector.TLDeserializer, GlGenericDrawer.TextureCallback, n1, a2, pg.i0, v1, i8, OnSuccessListener, ImageReceiver.ImageReceiverDelegate {
     public final int f14537a;
     public final Object f14538b;
 
@@ -64,7 +64,7 @@ public final class v implements le.d, li.j, m4.z, z0, e2.h, x0, q9.d, Vector.TLD
     public Object E(cf.c cVar) {
         switch (this.f14537a) {
             case 9:
-                return new na.c((Context) cVar.a(Context.class), ((k9.h) cVar.a(k9.h.class)).d(), cVar.v(na.d.class), cVar.d(xa.b.class), (Executor) cVar.g((q9.r) this.f14538b));
+                return new na.c((Context) cVar.a(Context.class), ((k9.h) cVar.a(k9.h.class)).d(), cVar.q(na.d.class), cVar.d(xa.b.class), (Executor) cVar.g((q9.r) this.f14538b));
             default:
                 return this.f14538b;
         }
@@ -157,7 +157,7 @@ public final class v implements le.d, li.j, m4.z, z0, e2.h, x0, q9.d, Vector.TLD
                 ((dr0) this.f14538b).run();
                 return;
             default:
-                ((qg.b0) this.f14538b).f44983a.f45173f2.r();
+                ((qg.b0) this.f14538b).f44990a.f45180f2.r();
                 return;
         }
     }
@@ -173,7 +173,7 @@ public final class v implements le.d, li.j, m4.z, z0, e2.h, x0, q9.d, Vector.TLD
                 x0 x0Var = (x0) obj;
                 i9.u uVar = i9.u.f12030b;
                 if (!a0Var.j()) {
-                    x0Var.c(a0Var.f16057t, rVar);
+                    x0Var.c(a0Var.f16062t, rVar);
                     a1.O0(a0Var, rVar, i10, new k1(0));
                 }
                 return i9.u.f12030b;
@@ -184,9 +184,9 @@ public final class v implements le.d, li.j, m4.z, z0, e2.h, x0, q9.d, Vector.TLD
     public void j() {
         float f7;
         vt0 vt0Var = (vt0) this.f14538b;
-        TextView textView = vt0Var.f45199y1;
+        TextView textView = vt0Var.f45206y1;
         boolean a2 = vt0Var.F0.a();
-        ImageView imageView = vt0Var.f45197w1;
+        ImageView imageView = vt0Var.f45204w1;
         imageView.animate().cancel();
         ViewPropertyAnimator animate = imageView.animate();
         float f10 = 0.6f;
@@ -211,19 +211,19 @@ public final class v implements le.d, li.j, m4.z, z0, e2.h, x0, q9.d, Vector.TLD
         boolean z10;
         int i11;
         li.a aVar = (li.a) this.f14538b;
-        li.n nVar = aVar.f15605a;
+        li.p pVar = aVar.f15605a;
         ah.i iVar = aVar.d;
         li.d dVar = aVar.f15608e;
         if (Build.VERSION.SDK_INT >= 31 && iVar != null) {
             if (w7.e0.a(i10, 4) || w7.e0.a(i10, 2)) {
-                ni.a e7 = nVar.e();
+                ni.a e7 = pVar.e();
                 ViewGroup viewGroup = aVar.h;
                 if (viewGroup != null) {
                     e7.b(viewGroup.getY(), aVar.f15610g.getWidth(), aVar.h.getY() + aVar.h.getHeight());
                 }
                 if (dVar != null) {
                     ArrayList arrayList = dVar.f15633a;
-                    dVar.f15634b = e7.f16914b;
+                    dVar.f15634b = e7.f16919b;
                     while (dVar.f15634b > arrayList.size()) {
                         arrayList.add(new li.b(arrayList.size()));
                     }
@@ -247,7 +247,7 @@ public final class v implements le.d, li.j, m4.z, z0, e2.h, x0, q9.d, Vector.TLD
                 dVar.f15635c = aVar.f15611i;
                 dVar.d = aVar.f15610g;
                 int i17 = 1;
-                if (nVar.h > 0) {
+                if (pVar.h > 0) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -271,8 +271,8 @@ public final class v implements le.d, li.j, m4.z, z0, e2.h, x0, q9.d, Vector.TLD
                     }
                     dVar.f();
                 }
-                int i19 = nVar.f15672i;
-                int i20 = nVar.f15673j;
+                int i19 = pVar.f15677i;
+                int i20 = pVar.f15678j;
                 dVar.f15647q = i19;
                 dVar.f15648r = i20;
                 dVar.f();
@@ -305,11 +305,11 @@ public final class v implements le.d, li.j, m4.z, z0, e2.h, x0, q9.d, Vector.TLD
                 for (int i11 = 0; i11 < bVar2.f410a.size(); i11++) {
                     ac.a aVar = (ac.a) bVar2.f410a.get(i11);
                     ?? obj3 = new Object();
-                    obj3.f45201a = aVar.f406a;
-                    obj3.f45202b = aVar.d;
-                    obj3.f45203c = aVar.f409e;
+                    obj3.f45208a = aVar.f406a;
+                    obj3.f45209b = aVar.d;
+                    obj3.f45210c = aVar.f409e;
                     obj3.d = aVar.f407b;
-                    obj3.f45204e = aVar.f408c;
+                    obj3.f45211e = aVar.f408c;
                     arrayList.add(obj3);
                 }
                 s4Var.run(arrayList);
@@ -322,25 +322,25 @@ public final class v implements le.d, li.j, m4.z, z0, e2.h, x0, q9.d, Vector.TLD
                     FileLog.d("objimg: no objects");
                     return;
                 }
-                int i12 = ((xb.a) list.get(0)).f49824c;
+                int i12 = ((xb.a) list.get(0)).f49831c;
                 String str = null;
-                if (n6.f48797a == null) {
-                    n6.f48797a = new String[]{"👥", "🔥", "📚", "🏔", "🧊", "🍱", null, "🚰", "🧸", "🗿", "🍔", "🚜", "🛷", "🐠", "🎪", null, "🪑", "🧔", "🌉", "🩰", "🐦", "🚣", "🏞", null, "🏭", "🎓", "🍶", "🌿", "🌸", "🛋", "😎", "🏗", "🎡", "🐠", "🤿", "🐶", "⛵", "🎨", "🏆", "🧗", "🏸", "🦁", "🚲", "🏟", null, "⛵", "🙂", "🏄", "🍟", "🌇", "🌭", "🩳", "🚌", "🐂", "🌌", "🐹", "🪨", "👥", "👗", "👣", null, "🐻", "🍽", "🗼", "🧱", "🗑", "👤", "🏄", "👙", "🎢", "🏕", "🎠", "🚽", "😆", "🎈", "🎤", "👗", "🚧", "📦", "🐠", "🧺", "🌼", "🛒", "🥊", "💍", "💎", "🎰", "🚗", "🪜", "💻", "🍳", "📽️", "🪑", "🖼", "🍷", "🚢", "🛳", "👥", "🧗", "🕳", "👔", "🛠", "🌊", "🤡", "🎉", "🚴", "☄️", "🎓", "🏟", "🎄", "⛪", "🕰", "👨", "🐄", "🌴", "🖥", "🥌", "🍲", "🐱", "🧃", "🍚", null, "👥", "🏙", null, "🧸", "🍪", "🟩", "🕎", "🧶", "🛹", "✂️", "💅", "🥤", "🍴", "📜", null, "👘", "🧸", "📱", "🚦", "❄️", "🇵🇷", "⛓", "💃", "🏜", "🎅", "🦃", "🤵", "👄", "🏜", "🦕", "👳\u200d♂️", "🔥", "🛏", "🥽", "🐉", "🛋", "🛷", "🧢", "📋", "🎩", "🍨", "🐎", "🧶", "👕", "🧣", "🏖", "⚽", "🖤", "🎧", "🏛", "🚘", "🛹", "🦢", "🍖", "🥅", "🧁", "🐕", "🚤", "🌳", "☕", "⚽", "🧸", "🍲", "🧍", "📖", "🍉", "🍜", "✨", "💼", "🌳", "🐕", "🌲", "🚩", "⛵", "🦶", "🧥", null, "🛏", null, "🛁", "🗻", "🤸\u200d♀️", "👂", "🌸", "🐚", "👵", "🏛", "👁️", "🛏", "⚖️", "🎒", "🐎", "✨", "🛸", "💇", "🧸", "👥", "🪟", "🌟", "🐱", "🐄", "🐞", "❄️", "💍", "🚪", "💎", "🧶", "🏺", "🧥", "❤️", "💪", "🏍", "💰", "🕌", "🍽", "💃", "🛶", "🏖", "🧾", "🏞", "🚨", "🐴", "🧥", "📯", "⌚", "🧱", "🤿", "👖", "🏊", "🎸", "🎭", "🤘", "🌕", "🧥", "💍", "📱", "🪖", "🍽", "🎉", "🌌", "📰", "🗞", null, "🎹", "🪴", "🛂", "🐧", "🐕", "🏰", "🏵", "🏇", "📝", "🎶", "⛵", "🍕", "🐾", "🧵", "🐦", "🛹", "🏄", "🏉", "💄", "🏞", "🏁", "🚣", "🛣", "🏃", "🛋", "🏠", "⭐", "🏅", "👟", "🚤", "🪐", "😴", "🤲", "🏊", "🏫", "🍣", "🛋", "🦸", "😎", "⛷", "🚢", "🎵", "📚", "🏙", "🌋", "📺", "🐎", "💉", "🚆", "🚪", "🥤", "🚗", "👜", "💡", "🎫", "🍷", "🍗", "🎡", "🏄", "💻", null, null, "🏡", "🎣", "❤️", "🌱", "☕", "🍞", "🏖", null, "🏛", "🚁", "⛰", "🦆", "🌱", "🐢", "🐊", "🎶", "👟", "🧶", "💍", "🎤", "🎡", "🏂", "🚤", "🧱", "🚀", "🏠", "🏖", "🌈", "🌿", "👨", "🌷", "👗", "🏞", "🐶", "🦸", "🌸", "🍽", "🔊", "⛪", "🏢", "✈️", "🐾", "🐂", "🪑", "🛕", "🦋", "👠", "🏃", "🪡", "🍳", "🏰", "🌌", "🐛", "🏎", null, "✈️", "🚣", "🧵", "🤵", "🎢", "🍲", "🥦", "🚲", "👖", "🪴", "🗄", "🎂", "💺", "✈️", null, "🌫", "🎆", "🚜", "🦭", "📚", "💇", "⚡", "🚐", "🐱", "🚗", "👖", "🌾", "🤿", "☔", "🛣", "⛵", "🐶", "🔳", "🍽", "👰", "💧", null, "🍴", "🚙", "👶", "👓", "🚗", "✈️", "✋", "🐎", "🏞", "🍽", "⚾", "🍷", "👰", "🌿", "🥧", "🎒", "🃏", "🦹", "🪖", "🛶", "🤳", "🛺", "🏚", "🏹", "🚀", null, "⛈", "⛑"};
+                if (n6.f48804a == null) {
+                    n6.f48804a = new String[]{"👥", "🔥", "📚", "🏔", "🧊", "🍱", null, "🚰", "🧸", "🗿", "🍔", "🚜", "🛷", "🐠", "🎪", null, "🪑", "🧔", "🌉", "🩰", "🐦", "🚣", "🏞", null, "🏭", "🎓", "🍶", "🌿", "🌸", "🛋", "😎", "🏗", "🎡", "🐠", "🤿", "🐶", "⛵", "🎨", "🏆", "🧗", "🏸", "🦁", "🚲", "🏟", null, "⛵", "🙂", "🏄", "🍟", "🌇", "🌭", "🩳", "🚌", "🐂", "🌌", "🐹", "🪨", "👥", "👗", "👣", null, "🐻", "🍽", "🗼", "🧱", "🗑", "👤", "🏄", "👙", "🎢", "🏕", "🎠", "🚽", "😆", "🎈", "🎤", "👗", "🚧", "📦", "🐠", "🧺", "🌼", "🛒", "🥊", "💍", "💎", "🎰", "🚗", "🪜", "💻", "🍳", "📽️", "🪑", "🖼", "🍷", "🚢", "🛳", "👥", "🧗", "🕳", "👔", "🛠", "🌊", "🤡", "🎉", "🚴", "☄️", "🎓", "🏟", "🎄", "⛪", "🕰", "👨", "🐄", "🌴", "🖥", "🥌", "🍲", "🐱", "🧃", "🍚", null, "👥", "🏙", null, "🧸", "🍪", "🟩", "🕎", "🧶", "🛹", "✂️", "💅", "🥤", "🍴", "📜", null, "👘", "🧸", "📱", "🚦", "❄️", "🇵🇷", "⛓", "💃", "🏜", "🎅", "🦃", "🤵", "👄", "🏜", "🦕", "👳\u200d♂️", "🔥", "🛏", "🥽", "🐉", "🛋", "🛷", "🧢", "📋", "🎩", "🍨", "🐎", "🧶", "👕", "🧣", "🏖", "⚽", "🖤", "🎧", "🏛", "🚘", "🛹", "🦢", "🍖", "🥅", "🧁", "🐕", "🚤", "🌳", "☕", "⚽", "🧸", "🍲", "🧍", "📖", "🍉", "🍜", "✨", "💼", "🌳", "🐕", "🌲", "🚩", "⛵", "🦶", "🧥", null, "🛏", null, "🛁", "🗻", "🤸\u200d♀️", "👂", "🌸", "🐚", "👵", "🏛", "👁️", "🛏", "⚖️", "🎒", "🐎", "✨", "🛸", "💇", "🧸", "👥", "🪟", "🌟", "🐱", "🐄", "🐞", "❄️", "💍", "🚪", "💎", "🧶", "🏺", "🧥", "❤️", "💪", "🏍", "💰", "🕌", "🍽", "💃", "🛶", "🏖", "🧾", "🏞", "🚨", "🐴", "🧥", "📯", "⌚", "🧱", "🤿", "👖", "🏊", "🎸", "🎭", "🤘", "🌕", "🧥", "💍", "📱", "🪖", "🍽", "🎉", "🌌", "📰", "🗞", null, "🎹", "🪴", "🛂", "🐧", "🐕", "🏰", "🏵", "🏇", "📝", "🎶", "⛵", "🍕", "🐾", "🧵", "🐦", "🛹", "🏄", "🏉", "💄", "🏞", "🏁", "🚣", "🛣", "🏃", "🛋", "🏠", "⭐", "🏅", "👟", "🚤", "🪐", "😴", "🤲", "🏊", "🏫", "🍣", "🛋", "🦸", "😎", "⛷", "🚢", "🎵", "📚", "🏙", "🌋", "📺", "🐎", "💉", "🚆", "🚪", "🥤", "🚗", "👜", "💡", "🎫", "🍷", "🍗", "🎡", "🏄", "💻", null, null, "🏡", "🎣", "❤️", "🌱", "☕", "🍞", "🏖", null, "🏛", "🚁", "⛰", "🦆", "🌱", "🐢", "🐊", "🎶", "👟", "🧶", "💍", "🎤", "🎡", "🏂", "🚤", "🧱", "🚀", "🏠", "🏖", "🌈", "🌿", "👨", "🌷", "👗", "🏞", "🐶", "🦸", "🌸", "🍽", "🔊", "⛪", "🏢", "✈️", "🐾", "🐂", "🪑", "🛕", "🦋", "👠", "🏃", "🪡", "🍳", "🏰", "🌌", "🐛", "🏎", null, "✈️", "🚣", "🧵", "🤵", "🎢", "🍲", "🥦", "🚲", "👖", "🪴", "🗄", "🎂", "💺", "✈️", null, "🌫", "🎆", "🚜", "🦭", "📚", "💇", "⚡", "🚐", "🐱", "🚗", "👖", "🌾", "🤿", "☔", "🛣", "⛵", "🐶", "🔳", "🍽", "👰", "💧", null, "🍴", "🚙", "👶", "👓", "🚗", "✈️", "✋", "🐎", "🏞", "🍽", "⚾", "🍷", "👰", "🌿", "🥧", "🎒", "🃏", "🦹", "🪖", "🛶", "🤳", "🛺", "🏚", "🏹", "🚀", null, "⛈", "⛑"};
                 }
                 if (i12 >= 0) {
-                    String[] strArr = n6.f48797a;
+                    String[] strArr = n6.f48804a;
                     if (i12 < strArr.length) {
                         str = strArr[i12];
                     }
                 }
-                n2Var.f45222c0 = str;
+                n2Var.f45229c0 = str;
                 StringBuilder sb2 = new StringBuilder("objimg: detected #");
-                sb2.append(((xb.a) list.get(0)).f49824c);
+                sb2.append(((xb.a) list.get(0)).f49831c);
                 sb2.append(" ");
-                sb2.append(n2Var.f45222c0);
+                sb2.append(n2Var.f45229c0);
                 sb2.append(" ");
-                e2.t(((xb.a) list.get(0)).f49822a, sb2);
-                Emoji.getEmojiDrawable(n2Var.f45222c0);
+                e2.t(((xb.a) list.get(0)).f49829a, sb2);
+                Emoji.getEmojiDrawable(n2Var.f45229c0);
                 return;
         }
     }
@@ -350,7 +350,7 @@ public final class v implements le.d, li.j, m4.z, z0, e2.h, x0, q9.d, Vector.TLD
         org.telegram.ui.Components.voip.u uVar = (org.telegram.ui.Components.voip.u) this.f14538b;
         if (bitmap != null && bitmap.getPixel(0, 0) != 0) {
             Utilities.stackBlurBitmap(bitmap, Math.max(7, Math.max(bitmap.getWidth(), bitmap.getHeight()) / 180));
-            AndroidUtilities.runOnUIThread(new uo0(25, uVar, bitmap));
+            AndroidUtilities.runOnUIThread(new vo0(25, uVar, bitmap));
         }
     }
 

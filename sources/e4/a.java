@@ -13,9 +13,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import sa.e;
 import z3.d;
+import z3.l;
 import z3.m;
-import z3.n;
-public final class a implements n {
+public final class a implements m {
     public static final Pattern d = Pattern.compile("\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d{3}))?)\\s*-->\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d{3}))?)\\s*");
     public static final Pattern f8638e = Pattern.compile("\\{\\\\.*?\\}");
     public final StringBuilder f8639a = new StringBuilder();
@@ -48,17 +48,12 @@ public final class a implements n {
     }
 
     @Override
-    public final int A() {
-        return 1;
-    }
-
-    @Override
-    public final void F(byte[] bArr, int i10, int i11, m mVar, h hVar) {
+    public final void E(byte[] bArr, int i10, int i11, l lVar, h hVar) {
         ArrayList arrayList;
         String k10;
         String str;
         a aVar = this;
-        long j3 = mVar.f52382a;
+        long j3 = lVar.f52403a;
         v vVar = aVar.f8641c;
         vVar.H(i10 + i11, bArr);
         vVar.J(i10);
@@ -67,7 +62,7 @@ public final class a implements n {
             F = StandardCharsets.UTF_8;
         }
         long j10 = -9223372036854775807L;
-        if (j3 != -9223372036854775807L && mVar.f52383b) {
+        if (j3 != -9223372036854775807L && lVar.f52404b) {
             arrayList = new ArrayList();
         } else {
             arrayList = null;
@@ -164,6 +159,11 @@ public final class a implements n {
     @Override
     public final d h(int i10, int i11, byte[] bArr) {
         return e.a(this, bArr, i11);
+    }
+
+    @Override
+    public final int y() {
+        return 1;
     }
 
     @Override

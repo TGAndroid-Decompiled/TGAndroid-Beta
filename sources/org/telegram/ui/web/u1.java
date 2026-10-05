@@ -13,23 +13,23 @@ import org.telegram.ui.Components.e6;
 import org.telegram.ui.Components.o6;
 import org.telegram.ui.Components.tr;
 public final class u1 {
-    public final o6 f42359a;
-    public final o6 f42360b;
-    public final e6 f42361c;
+    public final o6 f42371a;
+    public final o6 f42372b;
+    public final e6 f42373c;
     public int d;
-    public boolean f42362e;
-    public int f42363f;
-    public final Drawable f42364g;
+    public boolean f42374e;
+    public int f42375f;
+    public final Drawable f42376g;
     public final org.telegram.ui.l0 h;
 
     public u1(org.telegram.ui.l0 l0Var) {
         this.h = l0Var;
         o6 o6Var = new o6(true, true, true, false);
-        this.f42359a = o6Var;
+        this.f42371a = o6Var;
         o6 o6Var2 = new o6(true, true, true, false);
-        this.f42360b = o6Var2;
-        this.f42361c = new e6(l0Var, 0L, 300L, tr.h);
-        this.f42362e = false;
+        this.f42372b = o6Var2;
+        this.f42373c = new e6(l0Var, 0L, 300L, tr.h);
+        this.f42374e = false;
         o6Var.E = true;
         o6Var.t(AndroidUtilities.dp(18.33f));
         o6Var.v = 0.6f;
@@ -42,19 +42,19 @@ public final class u1 {
         o6Var2.n(false);
         o6Var2.setCallback(l0Var);
         o6Var2.G = 9999999;
-        this.f42364g = l0Var.getContext().getResources().getDrawable(R.drawable.warning_sign).mutate();
+        this.f42376g = l0Var.getContext().getResources().getDrawable(R.drawable.warning_sign).mutate();
     }
 
     public final void a(Canvas canvas, float f7, float f10, float f11) {
         org.telegram.ui.l0 l0Var = this.h;
-        RectF rectF = l0Var.f42372a;
+        RectF rectF = l0Var.f42384a;
         rectF.set(0.0f, 0.0f, f7, f10);
         canvas.saveLayerAlpha(rectF, (int) (f11 * 255.0f), 31);
-        o6 o6Var = this.f42359a;
+        o6 o6Var = this.f42371a;
         float g10 = o6Var.g();
-        o6 o6Var2 = this.f42360b;
+        o6 o6Var2 = this.f42372b;
         float g11 = o6Var2.g();
-        TextPaint textPaint = o6Var2.f29244a;
+        TextPaint textPaint = o6Var2.f29353a;
         float f12 = g11 * g10;
         canvas.save();
         float f13 = 0.82f * f10;
@@ -65,20 +65,20 @@ public final class u1 {
         o6Var.l(0.0f, 0.0f, f7, f10);
         o6Var.draw(canvas);
         canvas.restore();
-        float e7 = this.f42361c.e(this.f42362e);
+        float e7 = this.f42373c.e(this.f42374e);
         canvas.save();
         float f14 = ((1.0f - l0Var.G) * f13 * f12) + (-AndroidUtilities.dp(1.0f));
         canvas.translate(0.0f, com.google.android.gms.internal.vision.e2.b(1.0f, f12, AndroidUtilities.dp(4.0f), (AndroidUtilities.dp(14.0f) * f12) + f14));
         float lerp2 = AndroidUtilities.lerp(1.15f, 0.9f, f12) * l0Var.G;
         canvas.scale(lerp2, lerp2, 0.0f, 0.0f);
-        o6Var2.r(i0.a.d(e7, this.d, i6.w0(null, i6.f21063q7, false)));
+        o6Var2.r(i0.a.d(e7, this.d, i6.w0(null, i6.f21068q7, false)));
         if (e7 > 0.0f) {
-            int i10 = this.f42363f;
+            int i10 = this.f42375f;
             int color = textPaint.getColor();
-            Drawable drawable = this.f42364g;
+            Drawable drawable = this.f42376g;
             if (i10 != color) {
                 int color2 = textPaint.getColor();
-                this.f42363f = color2;
+                this.f42375f = color2;
                 drawable.setColorFilter(new PorterDuffColorFilter(color2, PorterDuff.Mode.SRC_IN));
             }
             drawable.setAlpha((int) (e7 * 255.0f));
@@ -89,7 +89,7 @@ public final class u1 {
         o6Var2.draw(canvas);
         canvas.restore();
         rectF.set(f7 - AndroidUtilities.dp(12.0f), 0.0f, f7, f10);
-        l0Var.f42395r0.b(canvas, rectF, 2, 1.0f);
+        l0Var.f42407r0.b(canvas, rectF, 2, 1.0f);
         canvas.restore();
     }
 }

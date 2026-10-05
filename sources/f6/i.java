@@ -263,7 +263,7 @@ public final class i {
         if (aVar == null) {
             return null;
         }
-        return aVar.f16327b;
+        return aVar.f16332b;
     }
 
     public final void e(Bitmap bitmap, int i10) {
@@ -280,7 +280,7 @@ public final class i {
         }
         b0 b0Var2 = this.f9783p;
         MediaMetadataCompat mediaMetadataCompat = null;
-        if (b0Var2 != null && (metadata = ((android.support.v4.media.session.h) b0Var2.f1995b.f16644b).f2009a.getMetadata()) != null) {
+        if (b0Var2 != null && (metadata = ((android.support.v4.media.session.h) b0Var2.f1995b.f16649b).f2009a.getMetadata()) != null) {
             a0.f fVar = MediaMetadataCompat.d;
             Parcel obtain = Parcel.obtain();
             metadata.writeToParcel(obtain, 0);
@@ -333,7 +333,7 @@ public final class i {
         if (gVar != null) {
             v.b("Stopping media notification.", new Object[0]);
             cf.c cVar = gVar.f9757i;
-            cVar.A();
+            cVar.u();
             cVar.f4606e = null;
             NotificationManager notificationManager = gVar.f9752b;
             if (notificationManager != null) {
@@ -480,7 +480,7 @@ public final class i {
                     c6.l.c(1, "com.google.android.gms.cast.metadata.SUBTITLE");
                     String string2 = bundle2.getString("com.google.android.gms.cast.metadata.SUBTITLE");
                     b0 b0Var3 = this.f9783p;
-                    if (b0Var3 == null || (metadata = ((android.support.v4.media.session.h) b0Var3.f1995b.f16644b).f2009a.getMetadata()) == null) {
+                    if (b0Var3 == null || (metadata = ((android.support.v4.media.session.h) b0Var3.f1995b.f16649b).f2009a.getMetadata()) == null) {
                         i11 = 0;
                         createFromParcel = null;
                     } else {
@@ -509,7 +509,7 @@ public final class i {
                     b0Var.e(new MediaMetadataCompat(cVar.f1966b));
                     Uri d = d(lVar);
                     if (d != null) {
-                        this.h.y(d);
+                        this.h.t(d);
                         bitmap = null;
                     } else {
                         bitmap = null;
@@ -517,7 +517,7 @@ public final class i {
                     }
                     Uri d10 = d(lVar);
                     if (d10 != null) {
-                        this.f9776i.y(d10);
+                        this.f9776i.t(d10);
                         return;
                     } else {
                         e(bitmap, 3);

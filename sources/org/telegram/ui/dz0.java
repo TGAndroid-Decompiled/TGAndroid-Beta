@@ -3,7 +3,7 @@ package org.telegram.ui;
 import android.app.Activity;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
-public final class dz0 extends org.telegram.ui.Components.zq0 {
+public final class dz0 extends org.telegram.ui.Components.br0 {
     public final ez0 X0;
 
     public dz0(ez0 ez0Var, Activity activity, String str) {

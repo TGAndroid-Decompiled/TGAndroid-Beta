@@ -23,7 +23,7 @@ import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.gk0;
 import org.telegram.ui.h60;
 import org.telegram.ui.i50;
-import org.telegram.ui.yf1;
+import org.telegram.ui.wf1;
 public final class t7 implements View.OnClickListener {
     public final int f1694a;
     public final int f1695b;
@@ -63,7 +63,7 @@ public final class t7 implements View.OnClickListener {
                     edit.putInt("popupChannel", iArr[0]);
                 }
                 edit.commit();
-                alertDialog$Builder.f20372a.L0.run();
+                alertDialog$Builder.f20377a.L0.run();
                 gk0Var.run();
                 return;
             case 3:
@@ -73,12 +73,12 @@ public final class t7 implements View.OnClickListener {
                 int size = arrayList.size();
                 int i11 = this.f1695b;
                 if (i11 < size) {
-                    TLRPC.GroupCallParticipant groupCallParticipant2 = (TLRPC.GroupCallParticipant) h60Var.f36879a1.participants.f(MessageObject.getPeerId(groupCallParticipant.peer));
+                    TLRPC.GroupCallParticipant groupCallParticipant2 = (TLRPC.GroupCallParticipant) h60Var.f36906a1.participants.f(MessageObject.getPeerId(groupCallParticipant.peer));
                     if (groupCallParticipant2 != null) {
                         groupCallParticipant = groupCallParticipant2;
                     }
                     h60Var.x1(groupCallParticipant, MessageObject.getPeerId(groupCallParticipant.peer), ((Integer) arrayList.get(i11)).intValue());
-                    i50 i50Var = h60Var.f36904f3;
+                    i50 i50Var = h60Var.f36931f3;
                     if (i50Var != null) {
                         i50Var.dismiss();
                         return;
@@ -118,16 +118,16 @@ public final class t7 implements View.OnClickListener {
                     return;
                 }
             default:
-                yf1 yf1Var = (yf1) this.f1696c;
+                wf1 wf1Var = (wf1) this.f1696c;
                 TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) this.d;
                 ActionBarPopupWindow$ActionBarPopupWindowLayout[] actionBarPopupWindow$ActionBarPopupWindowLayoutArr = (ActionBarPopupWindow$ActionBarPopupWindowLayout[]) this.f1697e;
-                MessagesController messagesController = yf1Var.getMessagesController();
-                long j3 = -yf1Var.f43170a;
-                if (messagesController.isDialogMuted(j3, tL_forumTopic.f20094id)) {
-                    yf1Var.getNotificationsController().muteDialog(j3, tL_forumTopic.f20094id, false);
-                    yf1Var.finishPreviewFragment();
-                    if (yc.a(yf1Var)) {
-                        yc.z(yf1Var, 4, 0, yf1Var.getResourceProvider()).j();
+                MessagesController messagesController = wf1Var.getMessagesController();
+                long j3 = -wf1Var.f42467a;
+                if (messagesController.isDialogMuted(j3, tL_forumTopic.f20099id)) {
+                    wf1Var.getNotificationsController().muteDialog(j3, tL_forumTopic.f20099id, false);
+                    wf1Var.finishPreviewFragment();
+                    if (yc.a(wf1Var)) {
+                        yc.z(wf1Var, 4, 0, wf1Var.getResourceProvider()).j();
                         return;
                     }
                     return;

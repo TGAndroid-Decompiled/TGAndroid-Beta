@@ -10,7 +10,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.Components.n11;
+import org.telegram.ui.Components.o11;
 public abstract class e4 {
     public static void A(java.util.ArrayList r31, java.util.ArrayList r32, java.util.Map r33) {
         throw new UnsupportedOperationException("Method not decompiled: ii.e4.A(java.util.ArrayList, java.util.ArrayList, java.util.Map):void");
@@ -23,7 +23,7 @@ public abstract class e4 {
         } else {
             pageblockcollage = new TL_iv.pageBlockCollage();
         }
-        ArrayList i32 = x3.i3(pageblockcollage);
+        ArrayList h32 = x3.h3(pageblockcollage);
         ArrayList arrayList = d4Var.f12303e;
         int size = arrayList.size();
         CharSequence charSequence = null;
@@ -42,17 +42,17 @@ public abstract class e4 {
                         if (E > 0) {
                             TL_iv.PageBlock y3 = y(E, equals, d4Var2.b("data-spoiler"));
                             J(y3);
-                            i32.add(y3);
+                            h32.add(y3);
                         }
                     }
                 }
             }
         }
-        if (i32.isEmpty()) {
+        if (h32.isEmpty()) {
             return null;
         }
-        if (i32.size() == 1) {
-            TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) i32.get(0);
+        if (h32.size() == 1) {
+            TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) h32.get(0);
             if (charSequence != null && charSequence.length() > 0) {
                 I(pageBlock, charSequence);
             }
@@ -200,7 +200,7 @@ public abstract class e4 {
                     i17 = i10;
                     i18 = i15;
                 } else {
-                    if (x3.z3(aVar)) {
+                    if (x3.y3(aVar)) {
                         mVar2.h(sb3);
                         a aVar3 = (a) list3.get(iArr[0]);
                         sb3.append(((TL_iv.pageBlockDetails) aVar3.f12187b).open ? "<details open>" : "<details>");
@@ -298,16 +298,16 @@ public abstract class e4 {
                                 } else {
                                     sb3 = sb2;
                                     String str3 = "<figcaption>";
-                                    if (x3.D3(pageBlock)) {
+                                    if (x3.C3(pageBlock)) {
                                         String str4 = pageBlock instanceof TL_iv.pageBlockSlideshow ? "slideshow" : "collage";
                                         sb3.append("<div class=\"");
                                         sb3.append(str4);
                                         sb3.append("\">");
-                                        ArrayList i32 = x3.i3(pageBlock);
-                                        if (i32 != null) {
+                                        ArrayList h32 = x3.h3(pageBlock);
+                                        if (h32 != null) {
                                             int i26 = 0;
-                                            while (i26 < i32.size()) {
-                                                TL_iv.PageBlock pageBlock2 = (TL_iv.PageBlock) i32.get(i26);
+                                            while (i26 < h32.size()) {
+                                                TL_iv.PageBlock pageBlock2 = (TL_iv.PageBlock) h32.get(i26);
                                                 ArrayList arrayList3 = aVar.h;
                                                 u uVar = (arrayList3 == null || i26 >= arrayList3.size()) ? null : (u) aVar.h.get(i26);
                                                 if (pageBlock2 instanceof TL_iv.pageBlockVideo) {
@@ -369,9 +369,9 @@ public abstract class e4 {
                                             sb3.append(pageblockmap.zoom);
                                             sb3.append('\"');
                                         }
-                                        if (pageblockmap.f20265w != 0) {
+                                        if (pageblockmap.f20270w != 0) {
                                             sb3.append(" w=\"");
-                                            sb3.append(pageblockmap.f20265w);
+                                            sb3.append(pageblockmap.f20270w);
                                             sb3.append('\"');
                                         }
                                         if (pageblockmap.h != 0) {
@@ -604,7 +604,7 @@ public abstract class e4 {
         CharSequence A;
         int i15;
         int i16;
-        if (x3.z3(aVar)) {
+        if (x3.y3(aVar)) {
             A = h6.r(((TL_iv.pageBlockDetails) aVar.f12187b).title, null, true);
         } else {
             A = f6.A(aVar.f12187b);
@@ -1030,8 +1030,8 @@ public abstract class e4 {
             }
             if (i10 != 0) {
                 ?? obj = new Object();
-                obj.f28502a = i10 & 114975;
-                spannableStringBuilder.setSpan(new n11(obj, AndroidUtilities.dp(SharedConfig.fontSize)), length, length2, 33);
+                obj.f28925a = i10 & 114975;
+                spannableStringBuilder.setSpan(new o11(obj, AndroidUtilities.dp(SharedConfig.fontSize)), length, length2, 33);
             }
             if (str2 != null) {
                 spannableStringBuilder.setSpan(h6.k(str2), length, length2, 33);

@@ -12,39 +12,39 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 public final class a implements g2.h {
-    public final g2.h f16997a;
-    public final byte[] f16998b;
-    public final byte[] f16999c;
+    public final g2.h f17002a;
+    public final byte[] f17003b;
+    public final byte[] f17004c;
     public CipherInputStream d;
 
     public a(g2.h hVar, byte[] bArr, byte[] bArr2) {
-        this.f16997a = hVar;
-        this.f16998b = bArr;
-        this.f16999c = bArr2;
+        this.f17002a = hVar;
+        this.f17003b = bArr;
+        this.f17004c = bArr2;
     }
 
     @Override
     public final void addTransferListener(c0 c0Var) {
         c0Var.getClass();
-        this.f16997a.addTransferListener(c0Var);
+        this.f17002a.addTransferListener(c0Var);
     }
 
     @Override
     public final void close() {
         if (this.d != null) {
             this.d = null;
-            this.f16997a.close();
+            this.f17002a.close();
         }
     }
 
     @Override
     public final Map getResponseHeaders() {
-        return this.f16997a.getResponseHeaders();
+        return this.f17002a.getResponseHeaders();
     }
 
     @Override
     public final Uri getUri() {
-        return this.f16997a.getUri();
+        return this.f17002a.getUri();
     }
 
     @Override
@@ -52,8 +52,8 @@ public final class a implements g2.h {
         try {
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
             try {
-                cipher.init(2, new SecretKeySpec(this.f16998b, "AES"), new IvParameterSpec(this.f16999c));
-                g2.k kVar = new g2.k(this.f16997a, mVar);
+                cipher.init(2, new SecretKeySpec(this.f17003b, "AES"), new IvParameterSpec(this.f17004c));
+                g2.k kVar = new g2.k(this.f17002a, mVar);
                 this.d = new CipherInputStream(kVar, cipher);
                 if (!kVar.d) {
                     kVar.f10183a.open(kVar.f10184b);

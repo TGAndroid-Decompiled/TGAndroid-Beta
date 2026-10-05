@@ -2,5 +2,5 @@ package y6;
 
 import android.database.Cursor;
 public final class i {
-    public Cursor f50448a;
+    public Cursor f50455a;
 }

@@ -14,16 +14,16 @@ public final class k2 implements Runnable {
     public final void run() {
         switch (this.f12487a) {
             case 0:
-                this.f12488b.f4(this.f12489c);
+                this.f12488b.e4(this.f12489c);
                 return;
             case 1:
-                this.f12488b.h4(this.f12489c);
+                this.f12488b.g4(this.f12489c);
                 return;
             case 2:
                 this.f12488b.scrollBy(0, this.f12489c);
                 return;
             default:
-                this.f12488b.g4(this.f12489c);
+                this.f12488b.f4(this.f12489c);
                 return;
         }
     }

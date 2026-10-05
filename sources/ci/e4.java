@@ -24,7 +24,7 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.d61;
+import org.telegram.ui.Components.e61;
 import org.telegram.ui.Components.kj0;
 import org.telegram.ui.Components.n90;
 import org.telegram.ui.Components.r90;
@@ -199,7 +199,7 @@ public class e4 extends View {
             return textPaint.measureText(charSequence.toString());
         }
         Spanned spanned = (Spanned) charSequence;
-        d61[] d61VarArr = (d61[]) spanned.getSpans(0, charSequence.length(), d61.class);
+        e61[] e61VarArr = (e61[]) spanned.getSpans(0, charSequence.length(), e61.class);
         ReplacementSpan[] replacementSpanArr = (ReplacementSpan[]) spanned.getSpans(0, charSequence.length(), ReplacementSpan.class);
         int i10 = 0;
         int i11 = 0;
@@ -216,11 +216,11 @@ public class e4 extends View {
         }
         CharSequence charSequence3 = charSequence;
         TextPaint textPaint3 = textPaint;
-        if (d61VarArr != null && d61VarArr.length != 0) {
+        if (e61VarArr != null && e61VarArr.length != 0) {
             int i12 = 0;
-            for (int i13 = 0; i13 < d61VarArr.length; i13++) {
-                int spanStart2 = spanned.getSpanStart(d61VarArr[i13]);
-                int spanEnd2 = spanned.getSpanEnd(d61VarArr[i13]);
+            for (int i13 = 0; i13 < e61VarArr.length; i13++) {
+                int spanStart2 = spanned.getSpanStart(e61VarArr[i13]);
+                int spanEnd2 = spanned.getSpanEnd(e61VarArr[i13]);
                 int max = Math.max(i12, spanStart2);
                 if (max - i12 > 0) {
                     f7 += textPaint3.measureText(spanned, i12, max);
@@ -228,7 +228,7 @@ public class e4 extends View {
                 i12 = Math.max(max, spanEnd2);
                 if (i12 - max > 0) {
                     Typeface typeface = textPaint3.getTypeface();
-                    textPaint3.setTypeface(d61VarArr[i13].f25612a);
+                    textPaint3.setTypeface(e61VarArr[i13].f26026a);
                     textPaint3.setTypeface(typeface);
                     f7 = textPaint3.measureText(spanned, max, i12) + f7;
                 }
@@ -446,7 +446,7 @@ public class e4 extends View {
             if (this.I) {
                 f7 = this.P;
             } else {
-                f7 = o6Var.f29247e;
+                f7 = o6Var.f29356e;
             }
             if (this.f5004r) {
                 if (this.f4999n == null) {
@@ -583,7 +583,7 @@ public class e4 extends View {
                 float f28 = rectF2.left;
                 float f29 = e4Var.P / 2.0f;
                 o6Var.setBounds((int) (f12 + f27 + f28), (int) (f18 - f29), (int) (f27 + f28 + f14), (int) (f29 + f18));
-                o6Var.f29263w = (int) (f13 * f11);
+                o6Var.f29372w = (int) (f13 * f11);
                 o6Var.draw(canvas2);
             }
             if (e4Var.f5004r) {
@@ -616,7 +616,7 @@ public class e4 extends View {
         invalidate();
         Runnable runnable2 = this.f4998l0;
         if (runnable2 != null) {
-            AndroidUtilities.runOnUIThread(runnable2, e6Var.f25939c * ((float) e6Var.f25942g));
+            AndroidUtilities.runOnUIThread(runnable2, e6Var.f25987c * ((float) e6Var.f25990g));
         }
         this.Q.d(true);
     }
@@ -641,7 +641,7 @@ public class e4 extends View {
             return charSequence;
         }
         if (!this.I) {
-            return this.H.f29249g;
+            return this.H.f29358g;
         }
         StaticLayout staticLayout = this.L;
         if (staticLayout != null) {
@@ -654,7 +654,7 @@ public class e4 extends View {
         if (this.I) {
             return this.J;
         }
-        return this.H.f29244a;
+        return this.H.f29353a;
     }
 
     public final void h(int i10) {
@@ -690,8 +690,8 @@ public class e4 extends View {
             this.d = Math.max(this.d, kj0Var3.r());
         }
         kj0 kj0Var4 = this.f4987c0;
-        this.f4992f0 = kj0Var4.f28125b;
-        this.f4993g0 = kj0Var4.f28127c;
+        this.f4992f0 = kj0Var4.f28211b;
+        this.f4993g0 = kj0Var4.f28213c;
         this.f4994h0 = true;
     }
 
@@ -834,7 +834,7 @@ public class e4 extends View {
             this.f5000n0 = ofFloat;
             ofFloat.addUpdateListener(new ai.a(this, 19));
             this.f5000n0.addListener(new ai.b(this, 14));
-            this.f5000n0.setInterpolator(tr.f31151k);
+            this.f5000n0.setInterpolator(tr.f31219k);
             this.f5000n0.setDuration(300L);
             this.f5000n0.start();
         }

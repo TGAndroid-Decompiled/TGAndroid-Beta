@@ -32,9 +32,9 @@ import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Cells.j6;
 import org.telegram.ui.Components.RadialProgressView;
 import org.telegram.ui.Components.b80;
-import org.telegram.ui.Components.c71;
 import org.telegram.ui.Components.e5;
-import org.telegram.ui.Components.g61;
+import org.telegram.ui.Components.e71;
+import org.telegram.ui.Components.h61;
 import org.telegram.ui.Components.h9;
 import org.telegram.ui.Components.tr;
 import org.telegram.ui.Components.w9;
@@ -57,7 +57,7 @@ public final class p extends n2 implements x40, NotificationCenter.NotificationC
     public final le.b f9946a;
     public long f9947b;
     public w7 f9948c;
-    public c71 d;
+    public e71 d;
     public String f9949e;
     public boolean f9950f;
     public boolean h;
@@ -76,17 +76,17 @@ public final class p extends n2 implements x40, NotificationCenter.NotificationC
         this.K = new m(this);
     }
 
-    public static boolean S(p pVar, g61 g61Var, View view) {
+    public static boolean S(p pVar, h61 h61Var, View view) {
         long j3;
         boolean canRemoveBotFromCommunity;
         boolean z10;
         boolean z11;
         boolean z12;
         int i10;
-        Object obj = g61Var.G;
+        Object obj = h61Var.G;
         if (obj instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
-            j3 = -chat.f20042id;
+            j3 = -chat.f20047id;
             boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
             canRemoveBotFromCommunity = ChatObject.canRemoveChatFromCommunity(chat, pVar.H);
             z11 = isChannelAndNotMegaGroup;
@@ -94,7 +94,7 @@ public final class p extends n2 implements x40, NotificationCenter.NotificationC
         } else {
             if (obj instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) obj;
-                j3 = user.f20189id;
+                j3 = user.f20194id;
                 boolean isBot = UserObject.isBot(user);
                 canRemoveBotFromCommunity = ChatObject.canRemoveBotFromCommunity(user, pVar.H);
                 z10 = isBot;
@@ -122,17 +122,17 @@ public final class p extends n2 implements x40, NotificationCenter.NotificationC
             }
             F.l(i11, LocaleController.getString(i10), new g(pVar, j10, 1), z12);
             F.m(z13, R.drawable.msg_cancel, LocaleController.getString(R.string.CommunityMenuRemoveFromCommunity), true, new l(pVar, z10, z11, j10, 0));
-            F.W(pVar.d.W0(view, true));
+            F.W(pVar.d.V0(view, true));
             F.Z();
             return true;
         }
         return false;
     }
 
-    public static void T(p pVar, g61 g61Var) {
+    public static void T(p pVar, h61 h61Var) {
         TLRPC.Chat chat;
         TLRPC.ChatPhoto chatPhoto;
-        int i10 = g61Var.d;
+        int i10 = h61Var.d;
         if (i10 == 140) {
             if (!pVar.E.h() && (chatPhoto = (chat = pVar.getMessagesController().getChat(Long.valueOf(pVar.f9947b))).photo) != null && chatPhoto.photo_big != null) {
                 ImageLocation imageLocation = null;
@@ -188,11 +188,11 @@ public final class p extends n2 implements x40, NotificationCenter.NotificationC
         } else if (i10 == 146) {
             u0.e(pVar.J, pVar, pVar.currentAccount, pVar.H);
         } else {
-            Object obj = g61Var.G;
+            Object obj = h61Var.G;
             if (obj instanceof TLRPC.Chat) {
-                pVar.presentFragment(yn.Q9(-((TLRPC.Chat) obj).f20042id));
+                pVar.presentFragment(yn.Q9(-((TLRPC.Chat) obj).f20047id));
             } else if (obj instanceof TLRPC.User) {
-                pVar.presentFragment(yn.Q9(((TLRPC.User) obj).f20189id));
+                pVar.presentFragment(yn.Q9(((TLRPC.User) obj).f20194id));
             }
         }
     }
@@ -241,11 +241,11 @@ public final class p extends n2 implements x40, NotificationCenter.NotificationC
         if (this.h == z10) {
             return;
         }
-        j6 j6Var = (j6) this.d.A1(151);
+        j6 j6Var = (j6) this.d.z1(151);
         if (j6Var != null) {
             j6Var.a(!z10);
         }
-        j6 j6Var2 = (j6) this.d.A1(150);
+        j6 j6Var2 = (j6) this.d.z1(150);
         if (j6Var2 != null) {
             j6Var2.a(z10);
         }
@@ -318,12 +318,12 @@ public final class p extends n2 implements x40, NotificationCenter.NotificationC
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setActionBarMenuOnItemClick(new ei.u(this, 4));
         fh.c cVar = new fh.c();
-        cVar.a(getThemedColor(i6.f20822d6));
-        this.actionBar.K(new ah.c(cVar), eh.b.p(this.resourceProvider), false);
+        cVar.a(getThemedColor(i6.f20827d6));
+        this.actionBar.J(new ah.c(cVar), eh.b.p(this.resourceProvider), false);
         this.actionBar.Q0 = true;
         w7 w7Var = new w7(this, context);
         this.f9948c = w7Var;
-        w7Var.setBackgroundColor(i6.w0(null, i6.f20766a7, false));
+        w7Var.setBackgroundColor(i6.w0(null, i6.f20771a7, false));
         this.f9956y = new h9(this.H);
         n nVar = new n(context);
         this.f9952r = nVar;
@@ -377,18 +377,18 @@ public final class p extends n2 implements x40, NotificationCenter.NotificationC
         this.f9955x.setNoProgress(false);
         this.f9952r.addView(this.f9955x, z5.d(64, 64.0f, 81, 0.0f, 0.0f, 0.0f, 32.0f));
         Z(false, false);
-        c71 c71Var = new c71(this, new i(this, 1), new j(this), new j(this));
-        this.d = c71Var;
-        c71Var.setClipToPadding(false);
-        c71 c71Var2 = this.d;
-        c71Var2.f25250f3.f31313r = false;
-        c71Var2.s1();
+        e71 e71Var = new e71(this, new i(this, 1), new j(this), new j(this));
+        this.d = e71Var;
+        e71Var.setClipToPadding(false);
+        e71 e71Var2 = this.d;
+        e71Var2.f26034f3.f32531r = false;
+        e71Var2.r1();
         this.actionBar.setBackground(null);
         this.f9948c.addView(this.d, z5.c(-1.0f, -1));
         this.f9948c.addView(this.actionBar, z5.e(-1, -2, 48));
         w7 w7Var2 = this.f9948c;
         j jVar = new j(this);
-        WeakHashMap weakHashMap = r0.i0.f45603a;
+        WeakHashMap weakHashMap = r0.i0.f45610a;
         r0.a0.j(w7Var2, jVar);
         w7 w7Var3 = this.f9948c;
         this.fragmentView = w7Var3;
@@ -399,9 +399,9 @@ public final class p extends n2 implements x40, NotificationCenter.NotificationC
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.chatInfoDidLoad) {
             TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
-            if (chatFull.f20043id == this.f9947b) {
+            if (chatFull.f20048id == this.f9947b) {
                 this.I = chatFull;
-                this.d.f25250f3.N(true);
+                this.d.f26034f3.N(true);
             }
         }
     }
@@ -416,7 +416,7 @@ public final class p extends n2 implements x40, NotificationCenter.NotificationC
 
     @Override
     public final boolean dismissDialogOnPause(Dialog dialog) {
-        if (dialog != this.E.f33050c && super.dismissDialogOnPause(dialog)) {
+        if (dialog != this.E.f33172c && super.dismissDialogOnPause(dialog)) {
             return true;
         }
         return false;
@@ -469,8 +469,8 @@ public final class p extends n2 implements x40, NotificationCenter.NotificationC
         this.I = getMessagesController().getChatFull(this.f9947b);
         y40 y40Var = new y40(3, true, true);
         this.E = y40Var;
-        y40Var.f33048a = this;
-        y40Var.f33049b = this;
+        y40Var.f33170a = this;
+        y40Var.f33171b = this;
         getNotificationCenter().addObserver(this, NotificationCenter.chatInfoDidLoad);
         return super.onFragmentCreate();
     }
@@ -506,7 +506,7 @@ public final class p extends n2 implements x40, NotificationCenter.NotificationC
     public final void restoreSelfArgs(Bundle bundle) {
         y40 y40Var = this.E;
         if (y40Var != null) {
-            y40Var.f33052f = bundle.getString("path");
+            y40Var.f33174f = bundle.getString("path");
         }
     }
 
@@ -514,7 +514,7 @@ public final class p extends n2 implements x40, NotificationCenter.NotificationC
     public final void saveSelfArgs(Bundle bundle) {
         String str;
         y40 y40Var = this.E;
-        if (y40Var != null && (str = y40Var.f33052f) != null) {
+        if (y40Var != null && (str = y40Var.f33174f) != null) {
             bundle.putString("path", str);
         }
         ai.f0 f0Var = this.f9951n;

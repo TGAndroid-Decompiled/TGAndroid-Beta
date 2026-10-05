@@ -3,8 +3,8 @@ package ci;
 import android.content.Context;
 import org.telegram.ui.Components.nx;
 import org.telegram.ui.Components.nz;
-import org.telegram.ui.c71;
-import org.telegram.ui.q51;
+import org.telegram.ui.a71;
+import org.telegram.ui.o51;
 public final class m1 extends ji.o {
     public final int f5556q;
     public final Object f5557r;
@@ -22,14 +22,14 @@ public final class m1 extends ji.o {
                 ((p1) this.f5557r).f5684i3 = true;
                 return;
             case 1:
-                ((nz) this.f5557r).f29107f0 = true;
+                ((nz) this.f5557r).f29204f0 = true;
                 return;
             case 2:
             case 3:
             default:
                 return;
             case 4:
-                ((c71) this.f5557r).f35353w1 = true;
+                ((a71) this.f5557r).f34772w1 = true;
                 return;
         }
     }
@@ -41,19 +41,19 @@ public final class m1 extends ji.o {
                 ((p1) this.f5557r).f5684i3 = false;
                 return;
             case 1:
-                ((nz) this.f5557r).f29107f0 = false;
+                ((nz) this.f5557r).f29204f0 = false;
                 return;
             case 2:
-                ((nx) this.f5557r).Q.f29107f0 = false;
+                ((nx) this.f5557r).Q.f29204f0 = false;
                 return;
             case 3:
-                ((q51) this.f5557r).R.f35353w1 = false;
+                ((o51) this.f5557r).R.f34772w1 = false;
                 return;
             case 4:
-                ((c71) this.f5557r).f35353w1 = false;
+                ((a71) this.f5557r).f34772w1 = false;
                 return;
             default:
-                ((q51) this.f5557r).R.f35353w1 = false;
+                ((o51) this.f5557r).R.f34772w1 = false;
                 return;
         }
     }

@@ -1,153 +1,21 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-public final class rq0 extends yl0 {
-    public final Context f30496c;
-    public final ArrayList d = new ArrayList();
-    public final a0.i f30497e = new a0.i();
-    public final zq0 f30498f;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class rq0 extends org.telegram.ui.Cells.g7 {
+    public final tq0 N;
 
-    public rq0(zq0 zq0Var, Context context) {
-        this.f30498f = zq0Var;
-        this.f30496c = context;
-        E();
+    public rq0(tq0 tq0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, 0, d6Var);
+        this.N = tq0Var;
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f46535f != 1) {
-            return true;
+    public final String a() {
+        if (this.N.f31214f.f25051a0) {
+            return LocaleController.getString(R.string.RepostToStory);
         }
-        return false;
-    }
-
-    public final void E() {
-        int i10;
-        int i11;
-        int i12;
-        int i13;
-        TLRPC.TL_chatAdminRights tL_chatAdminRights;
-        int i14;
-        ArrayList arrayList = this.d;
-        arrayList.clear();
-        a0.i iVar = this.f30497e;
-        iVar.b();
-        zq0 zq0Var = this.f30498f;
-        i10 = ((org.telegram.ui.ActionBar.f3) zq0Var).currentAccount;
-        long j3 = UserConfig.getInstance(i10).clientUserId;
-        if (zq0Var.Z) {
-            TLRPC.Dialog dialog = new TLRPC.Dialog();
-            dialog.f20046id = Long.MAX_VALUE;
-            arrayList.add(dialog);
-            iVar.k(dialog, dialog.f20046id);
-        }
-        i11 = ((org.telegram.ui.ActionBar.f3) zq0Var).currentAccount;
-        if (!MessagesController.getInstance(i11).dialogsForward.isEmpty()) {
-            i14 = ((org.telegram.ui.ActionBar.f3) zq0Var).currentAccount;
-            TLRPC.Dialog dialog2 = MessagesController.getInstance(i14).dialogsForward.get(0);
-            arrayList.add(dialog2);
-            iVar.k(dialog2, dialog2.f20046id);
-        }
-        ArrayList arrayList2 = new ArrayList();
-        i12 = ((org.telegram.ui.ActionBar.f3) zq0Var).currentAccount;
-        ArrayList<TLRPC.Dialog> allDialogs = MessagesController.getInstance(i12).getAllDialogs();
-        for (int i15 = 0; i15 < allDialogs.size(); i15++) {
-            TLRPC.Dialog dialog3 = allDialogs.get(i15);
-            if (dialog3 instanceof TLRPC.TL_dialog) {
-                long j10 = dialog3.f20046id;
-                if (j10 != j3 && !DialogObject.isEncryptedDialog(j10)) {
-                    if (!DialogObject.isUserDialog(dialog3.f20046id)) {
-                        i13 = ((org.telegram.ui.ActionBar.f3) zq0Var).currentAccount;
-                        TLRPC.Chat chat = MessagesController.getInstance(i13).getChat(Long.valueOf(-dialog3.f20046id));
-                        if (chat != null && !ChatObject.isNotInChat(chat) && ((!chat.gigagroup || ChatObject.hasAdminRights(chat)) && (!ChatObject.isChannel(chat) || chat.creator || (((tL_chatAdminRights = chat.admin_rights) != null && tL_chatAdminRights.post_messages) || chat.megagroup)))) {
-                            if (dialog3.folder_id == 1) {
-                                arrayList2.add(dialog3);
-                            } else {
-                                arrayList.add(dialog3);
-                            }
-                            iVar.k(dialog3, dialog3.f20046id);
-                        }
-                    } else {
-                        if (dialog3.folder_id == 1) {
-                            arrayList2.add(dialog3);
-                        } else {
-                            arrayList.add(dialog3);
-                        }
-                        iVar.k(dialog3, dialog3.f20046id);
-                    }
-                }
-            }
-        }
-        arrayList.addAll(arrayList2);
-        org.telegram.ui.yn ynVar = zq0Var.f33611f0;
-        if (ynVar != null) {
-            int i16 = ynVar.f43269a;
-            if (i16 != 1) {
-                if (i16 == 2) {
-                    while (!arrayList.isEmpty() && arrayList.size() < 80) {
-                        arrayList.add((TLRPC.Dialog) hg.c.g(1, arrayList));
-                    }
-                }
-            } else {
-                ArrayList arrayList3 = new ArrayList(arrayList.subList(0, Math.min(4, arrayList.size())));
-                arrayList.clear();
-                arrayList.addAll(arrayList3);
-            }
-        }
-        l();
-    }
-
-    @Override
-    public final int h() {
-        int size = this.d.size();
-        if (size != 0) {
-            return size + 1;
-        }
-        return size;
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 == 0) {
-            return 1;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.c1 r7, int r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.rq0.v(s4.c1, int):void");
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        View pq0Var;
-        org.telegram.ui.ActionBar.d6 d6Var;
-        float f7;
-        zq0 zq0Var = this.f30498f;
-        Context context = this.f30496c;
-        if (i10 == 0) {
-            d6Var = ((org.telegram.ui.ActionBar.f3) zq0Var).resourcesProvider;
-            pq0Var = new pq0(this, context, d6Var);
-            pq0Var.setLayoutParams(new s4.p0(-1, AndroidUtilities.dp(100.0f)));
-        } else {
-            pq0Var = new View(context);
-            if (zq0Var.f33613h0 && zq0Var.f33620o0[1] != null) {
-                f7 = 109.0f;
-            } else {
-                f7 = 56.0f;
-            }
-            pq0Var.setLayoutParams(new s4.p0(-1, AndroidUtilities.dp(f7)));
-        }
-        return new s4.c1(pq0Var);
+        return LocaleController.getString(R.string.FwdMyStory);
     }
 }

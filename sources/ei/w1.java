@@ -12,15 +12,15 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.yc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.uy;
-import org.telegram.ui.yf1;
+import org.telegram.ui.wf1;
 public final class w1 implements Utilities.Callback {
-    public final yf1 f9422a;
+    public final wf1 f9422a;
     public final uy f9423b;
     public final long f9424c;
     public final int d;
 
-    public w1(yf1 yf1Var, uy uyVar, long j3, int i10) {
-        this.f9422a = yf1Var;
+    public w1(wf1 wf1Var, uy uyVar, long j3, int i10) {
+        this.f9422a = wf1Var;
         this.f9423b = uyVar;
         this.f9424c = j3;
         this.d = i10;
@@ -32,10 +32,10 @@ public final class w1 implements Utilities.Callback {
         TLRPC.User user;
         int i10;
         Boolean bool = (Boolean) obj;
-        yf1 yf1Var = this.f9422a;
+        wf1 wf1Var = this.f9422a;
         uy uyVar = this.f9423b;
-        if (yf1Var != null) {
-            yf1Var.finishFragment();
+        if (wf1Var != null) {
+            wf1Var.finishFragment();
             uyVar.removeSelfFromStack();
         } else {
             uyVar.finishFragment();

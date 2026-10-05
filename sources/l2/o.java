@@ -9,7 +9,7 @@ import c3.h0;
 import e2.d0;
 import e2.v;
 import n4.y;
-import org.telegram.ui.Components.ap0;
+import org.telegram.ui.Components.bp0;
 import u2.b1;
 public final class o implements h0 {
     public final b1 f15311a;
@@ -51,11 +51,11 @@ public final class o implements h0 {
                 p0 a2 = this.f15314e.f15317c.a(aVar);
                 if (a2 != null) {
                     n3.a aVar2 = (n3.a) a2.f3428a[0];
-                    String str = aVar2.f16567a;
-                    String str2 = aVar2.f16568b;
+                    String str = aVar2.f16572a;
+                    String str2 = aVar2.f16573b;
                     if ("urn:mpeg:dash:event:2012".equals(str) && ("1".equals(str2) || "2".equals(str2) || "3".equals(str2))) {
                         try {
-                            j10 = d0.T(d0.p(aVar2.f16570e));
+                            j10 = d0.T(d0.p(aVar2.f16575e));
                         } catch (s0 unused) {
                             j10 = -9223372036854775807L;
                         }
@@ -69,16 +69,16 @@ public final class o implements h0 {
             }
         }
         b1 b1Var = this.f15311a;
-        ap0 ap0Var = b1Var.f47223a;
+        bp0 bp0Var = b1Var.f47230a;
         synchronized (b1Var) {
-            int i14 = b1Var.f47239s;
+            int i14 = b1Var.f47246s;
             if (i14 == 0) {
                 i13 = -1;
             } else {
                 i13 = b1Var.i(i14);
             }
         }
-        ap0Var.b(i13);
+        bp0Var.b(i13);
     }
 
     @Override

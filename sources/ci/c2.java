@@ -7,7 +7,7 @@ public final class c2 extends gw {
     public final e2 f4800g0;
 
     public c2(e2 e2Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, d6Var, false, false, false, true, 0, null, org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21157v6, d6Var), false);
+        super(context, d6Var, false, false, false, true, 0, null, org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21162v6, d6Var), false);
         this.f4800g0 = e2Var;
     }
 
@@ -26,10 +26,10 @@ public final class c2 extends gw {
         }
         if (l2Var != null && (k2Var = l2Var.f5484f) != null) {
             if (k2Var.getSelectedCategory() != null) {
-                p1.y1(p1Var, 0, 0);
-                l2Var.f5484f.H1(null);
+                p1.x1(p1Var, 0, 0);
+                l2Var.f5484f.G1(null);
             }
-            l2Var.f5484f.F1();
+            l2Var.f5484f.E1();
             l2Var.b();
         }
         if (d2Var != null) {
@@ -56,7 +56,7 @@ public final class c2 extends gw {
                 e2Var.f4978n = f7;
                 paddingTop = p1Var.getPaddingTop();
             }
-            p1.y1(p1Var, i11, ((int) (f7 + paddingTop)) - AndroidUtilities.dp(102.0f));
+            p1.x1(p1Var, i11, ((int) (f7 + paddingTop)) - AndroidUtilities.dp(102.0f));
         }
         return true;
     }

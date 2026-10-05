@@ -58,7 +58,7 @@ public final class i0 extends r2.r implements t0 {
 
     public final int A0(r2.o oVar, b2.s sVar) {
         int i10;
-        if ("OMX.google.raw.decoder".equals(oVar.f45737a) && (i10 = Build.VERSION.SDK_INT) < 24 && (i10 != 23 || !e2.d0.N(this.X0))) {
+        if ("OMX.google.raw.decoder".equals(oVar.f45744a) && (i10 = Build.VERSION.SDK_INT) < 24 && (i10 != 23 || !e2.d0.N(this.X0))) {
             return -1;
         }
         return sVar.f3565s;
@@ -88,7 +88,7 @@ public final class i0 extends r2.r implements t0 {
             i11 |= 64;
         }
         int i12 = i11;
-        String str = oVar.f45737a;
+        String str = oVar.f45744a;
         if (i12 != 0) {
             i10 = 0;
         } else {
@@ -132,7 +132,7 @@ public final class i0 extends r2.r implements t0 {
             }
             f7 = r2.x.f(iVar, sVar, z10, false);
         }
-        HashMap hashMap = r2.x.f45784a;
+        HashMap hashMap = r2.x.f45791a;
         ArrayList arrayList = new ArrayList(f7);
         Collections.sort(arrayList, new e8(new r2.s(sVar, 0), 3));
         return arrayList;
@@ -175,7 +175,7 @@ public final class i0 extends r2.r implements t0 {
     @Override
     public final void R(h2.h hVar) {
         b2.s sVar;
-        if (Build.VERSION.SDK_INT >= 29 && (sVar = hVar.f10978a) != null && Objects.equals(sVar.f3564r, "audio/opus") && this.f45776x0) {
+        if (Build.VERSION.SDK_INT >= 29 && (sVar = hVar.f10978a) != null && Objects.equals(sVar.f3564r, "audio/opus") && this.f45783x0) {
             ByteBuffer byteBuffer = hVar.f10982f;
             byteBuffer.getClass();
             b2.s sVar2 = hVar.f10978a;
@@ -191,7 +191,7 @@ public final class i0 extends r2.r implements t0 {
     public final void X(Exception exc) {
         e2.a.f("MediaCodecAudioRenderer", "Audio codec error", exc);
         n4.y yVar = this.Y0;
-        Handler handler = (Handler) yVar.f16644b;
+        Handler handler = (Handler) yVar.f16649b;
         if (handler != null) {
             handler.post(new g(yVar, exc, 0));
         }
@@ -200,7 +200,7 @@ public final class i0 extends r2.r implements t0 {
     @Override
     public final void Y(long j3, long j10, String str) {
         n4.y yVar = this.Y0;
-        Handler handler = (Handler) yVar.f16644b;
+        Handler handler = (Handler) yVar.f16649b;
         if (handler != null) {
             handler.post(new a3.g0(yVar, str, j3, j10, 2));
         }
@@ -209,7 +209,7 @@ public final class i0 extends r2.r implements t0 {
     @Override
     public final void Z(String str) {
         n4.y yVar = this.Y0;
-        Handler handler = (Handler) yVar.f16644b;
+        Handler handler = (Handler) yVar.f16649b;
         if (handler != null) {
             handler.post(new x1(25, yVar, str));
         }
@@ -225,12 +225,12 @@ public final class i0 extends r2.r implements t0 {
 
     @Override
     public final i2.h a0(n4.y yVar) {
-        b2.s sVar = (b2.s) yVar.f16645c;
+        b2.s sVar = (b2.s) yVar.f16650c;
         sVar.getClass();
         this.f14449e1 = sVar;
         i2.h a02 = super.a0(yVar);
         n4.y yVar2 = this.Y0;
-        Handler handler = (Handler) yVar2.f16644b;
+        Handler handler = (Handler) yVar2.f16649b;
         if (handler != null) {
             handler.post(new gg.t(yVar2, sVar, a02, 21));
         }
@@ -252,7 +252,7 @@ public final class i0 extends r2.r implements t0 {
         int[] iArr = null;
         if (sVar2 != null) {
             sVar = sVar2;
-        } else if (this.f45755b0 != null) {
+        } else if (this.f45762b0 != null) {
             mediaFormat.getClass();
             String str = sVar.f3564r;
             int i11 = sVar.J;
@@ -313,7 +313,7 @@ public final class i0 extends r2.r implements t0 {
             int i14 = Build.VERSION.SDK_INT;
             q qVar = this.Z0;
             if (i14 >= 29) {
-                if (this.f45776x0) {
+                if (this.f45783x0) {
                     n1 n1Var = this.d;
                     n1Var.getClass();
                     if (n1Var.f11753a != 0) {
@@ -391,7 +391,7 @@ public final class i0 extends r2.r implements t0 {
                         }
                         obj.getClass();
                         this.f14455k1 = ((Integer) obj).intValue();
-                        r2.l lVar = this.f45755b0;
+                        r2.l lVar = this.f45762b0;
                         if (lVar != null && Build.VERSION.SDK_INT >= 35) {
                             Bundle bundle = new Bundle();
                             bundle.putInt("importance", Math.max(0, -this.f14455k1));
@@ -479,7 +479,7 @@ public final class i0 extends r2.r implements t0 {
             return false;
         } catch (n e7) {
             b2.s sVar2 = this.f14449e1;
-            if (this.f45776x0) {
+            if (this.f45783x0) {
                 n1 n1Var = this.d;
                 n1Var.getClass();
                 if (n1Var.f11753a != 0) {
@@ -490,7 +490,7 @@ public final class i0 extends r2.r implements t0 {
             i14 = 5001;
             throw d(e7, sVar2, e7.f14487b, i14);
         } catch (p e10) {
-            if (this.f45776x0) {
+            if (this.f45783x0) {
                 n1 n1Var2 = this.d;
                 n1Var2.getClass();
                 if (n1Var2.f11753a != 0) {
@@ -518,7 +518,7 @@ public final class i0 extends r2.r implements t0 {
                 this.f14456m1 = j3;
             }
         } catch (p e7) {
-            if (this.f45776x0) {
+            if (this.f45783x0) {
                 i10 = 5003;
             } else {
                 i10 = 5002;
@@ -576,7 +576,7 @@ public final class i0 extends r2.r implements t0 {
         ?? obj = new Object();
         this.O0 = obj;
         n4.y yVar = this.Y0;
-        Handler handler = (Handler) yVar.f16644b;
+        Handler handler = (Handler) yVar.f16649b;
         if (handler != null) {
             handler.post(new h(yVar, obj, 1));
         }
@@ -648,7 +648,7 @@ public final class i0 extends r2.r implements t0 {
         this.f14454j1 = false;
         this.f14456m1 = -9223372036854775807L;
         try {
-            this.f45776x0 = false;
+            this.f45783x0 = false;
             l0();
             j0();
             hg.c.z(this.V, null);

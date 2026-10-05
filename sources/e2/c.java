@@ -42,22 +42,22 @@ public final class c {
                     this.f8536f = new Object();
                 }
                 c3 c3Var = (c3) this.f8536f;
-                c3Var.f15709c = null;
-                c3Var.f15708b = false;
+                c3Var.f15714c = null;
+                c3Var.f15713b = false;
                 c3Var.d = null;
-                c3Var.f15707a = false;
-                WeakHashMap weakHashMap = i0.f45603a;
+                c3Var.f15712a = false;
+                WeakHashMap weakHashMap = i0.f45610a;
                 ColorStateList c10 = r0.a0.c(view);
                 if (c10 != null) {
-                    c3Var.f15708b = true;
-                    c3Var.f15709c = c10;
+                    c3Var.f15713b = true;
+                    c3Var.f15714c = c10;
                 }
                 PorterDuff.Mode d = r0.a0.d(view);
                 if (d != null) {
-                    c3Var.f15707a = true;
+                    c3Var.f15712a = true;
                     c3Var.d = d;
                 }
-                if (c3Var.f15708b || c3Var.f15707a) {
+                if (c3Var.f15713b || c3Var.f15712a) {
                     m.q.d(background, c3Var, view.getDrawableState());
                     return;
                 }
@@ -102,7 +102,7 @@ public final class c {
     public ColorStateList d() {
         c3 c3Var = (c3) this.f8535e;
         if (c3Var != null) {
-            return (ColorStateList) c3Var.f15709c;
+            return (ColorStateList) c3Var.f15714c;
         }
         return null;
     }
@@ -132,7 +132,7 @@ public final class c {
         if (qVar != null) {
             Context context = ((View) this.f8533b).getContext();
             synchronized (qVar) {
-                colorStateList = qVar.f15861a.i(context, i10);
+                colorStateList = qVar.f15866a.i(context, i10);
             }
         } else {
             colorStateList = null;
@@ -155,8 +155,8 @@ public final class c {
                 this.d = new Object();
             }
             c3 c3Var = (c3) this.d;
-            c3Var.f15709c = colorStateList;
-            c3Var.f15708b = true;
+            c3Var.f15714c = colorStateList;
+            c3Var.f15713b = true;
         } else {
             this.d = null;
         }
@@ -180,8 +180,8 @@ public final class c {
             this.f8535e = new Object();
         }
         c3 c3Var = (c3) this.f8535e;
-        c3Var.f15709c = colorStateList;
-        c3Var.f15708b = true;
+        c3Var.f15714c = colorStateList;
+        c3Var.f15713b = true;
         b();
     }
 
@@ -191,7 +191,7 @@ public final class c {
         }
         c3 c3Var = (c3) this.f8535e;
         c3Var.d = mode;
-        c3Var.f15707a = true;
+        c3Var.f15712a = true;
         b();
     }
 

@@ -21,8 +21,8 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.e11;
 import org.telegram.ui.Components.e6;
+import org.telegram.ui.Components.f11;
 import org.telegram.ui.Components.h9;
 import org.telegram.ui.Components.nj0;
 import org.telegram.ui.Components.q5;
@@ -35,7 +35,7 @@ public final class c5 extends Drawable implements x6, NotificationCenter.Notific
     public final ImageReceiver d;
     public int f8970e;
     public final q5[] f8971f;
-    public final e11 h;
+    public final f11 h;
     public final RectF f8972n;
     public final boolean f8973r;
     public final e6 f8974s;
@@ -56,7 +56,7 @@ public final class c5 extends Drawable implements x6, NotificationCenter.Notific
         this.f8972n = new RectF();
         this.f8974s = new e6(new b5(this, 1), 320L, tr.h, 0);
         this.f8973r = false;
-        int i10 = i6.f20822d6;
+        int i10 = i6.f20827d6;
         paint.setColor(i6.w0(null, i10, false));
         paint2.setColor(i6.w0(null, i10, false));
         paint2.setShadowLayer(AndroidUtilities.dp(2.33f), 0.0f, AndroidUtilities.dp(2.0f), i6.l1(0.18f, -16777216));
@@ -65,7 +65,7 @@ public final class c5 extends Drawable implements x6, NotificationCenter.Notific
         imageReceiver.setForUserOrChat(user, h9Var);
         imageReceiver.setRoundRadius(AndroidUtilities.dp(16.0f));
         d();
-        this.h = new e11(UserObject.getUserName(user), 14.0f, null);
+        this.h = new f11(UserObject.getUserName(user), 14.0f, null);
     }
 
     @Override
@@ -157,7 +157,7 @@ public final class c5 extends Drawable implements x6, NotificationCenter.Notific
         } else {
             i10 = 28;
         }
-        float dp = (AndroidUtilities.dp((i10 + 38) + 6.66f) + this.h.f25884c) / 2.0f;
+        float dp = (AndroidUtilities.dp((i10 + 38) + 6.66f) + this.h.f26266c) / 2.0f;
         float dp2 = AndroidUtilities.dp(32.0f) / 2.0f;
         RectF rectF = this.f8972n;
         rectF.set(bounds.centerX() - dp, bounds.centerY() - dp2, bounds.centerX() + dp, bounds.centerY() + dp2);
@@ -239,7 +239,7 @@ public final class c5 extends Drawable implements x6, NotificationCenter.Notific
         this.f8972n = new RectF();
         this.f8974s = new e6(new b5(this, 1), 320L, tr.h, 0);
         this.f8973r = true;
-        int i10 = i6.f20822d6;
+        int i10 = i6.f20827d6;
         paint.setColor(i6.w0(null, i10, false));
         paint2.setColor(i6.w0(null, i10, false));
         paint2.setShadowLayer(AndroidUtilities.dp(2.33f), 0.0f, AndroidUtilities.dp(2.0f), i6.l1(0.18f, -16777216));
@@ -248,8 +248,8 @@ public final class c5 extends Drawable implements x6, NotificationCenter.Notific
         imageReceiver.setForUserOrChat(user, h9Var);
         imageReceiver.setRoundRadius(AndroidUtilities.dp(16.0f));
         TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 120);
-        imageReceiver2.setImage(ImageLocation.getForDocument(document), "120_120", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "120_120", DocumentObject.getSvgThumb(document.thumbs, i6.f20766a7, 0.35f), 0L, null, null, 0);
-        this.h = new e11(UserObject.getUserName(user), 14.0f, null);
+        imageReceiver2.setImage(ImageLocation.getForDocument(document), "120_120", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "120_120", DocumentObject.getSvgThumb(document.thumbs, i6.f20771a7, 0.35f), 0L, null, null, 0);
+        this.h = new f11(UserObject.getUserName(user), 14.0f, null);
     }
 
     @Override

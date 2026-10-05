@@ -7,20 +7,20 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 public final class si0 extends org.telegram.ui.Components.zl0 {
-    public final ArrayList f40497e3;
-    public final org.telegram.ui.Components.e6 f40498f3;
-    public final org.telegram.ui.Components.e6 f40499g3;
-    public final k20 f40500h3;
-    public final zi0 f40501i3;
+    public final ArrayList f40507e3;
+    public final org.telegram.ui.Components.e6 f40508f3;
+    public final org.telegram.ui.Components.e6 f40509g3;
+    public final k20 f40510h3;
+    public final zi0 f40511i3;
 
     public si0(zi0 zi0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, d6Var);
-        this.f40501i3 = zi0Var;
-        this.f40497e3 = new ArrayList(10);
+        this.f40511i3 = zi0Var;
+        this.f40507e3 = new ArrayList(10);
         org.telegram.ui.Components.tr trVar = org.telegram.ui.Components.tr.h;
-        this.f40498f3 = new org.telegram.ui.Components.e6(this, 0L, 360L, trVar);
-        this.f40499g3 = new org.telegram.ui.Components.e6(this, 0L, 360L, trVar);
-        this.f40500h3 = new k20();
+        this.f40508f3 = new org.telegram.ui.Components.e6(this, 0L, 360L, trVar);
+        this.f40509g3 = new org.telegram.ui.Components.e6(this, 0L, 360L, trVar);
+        this.f40510h3 = new k20();
     }
 
     @Override
@@ -31,8 +31,8 @@ public final class si0 extends org.telegram.ui.Components.zl0 {
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         org.telegram.ui.Cells.u1 u1Var;
-        zi0 zi0Var = this.f40501i3;
-        if (zi0Var.f43828w && ((view == (u1Var = zi0Var.Q) && u1Var != null && u1Var.getCurrentPosition() == null) || view == zi0Var.X)) {
+        zi0 zi0Var = this.f40511i3;
+        if (zi0Var.f43831w && ((view == (u1Var = zi0Var.Q) && u1Var != null && u1Var.getCurrentPosition() == null) || view == zi0Var.X)) {
             return false;
         }
         if (!(view instanceof org.telegram.ui.Cells.u1)) {
@@ -95,7 +95,7 @@ public final class si0 extends org.telegram.ui.Components.zl0 {
         int measuredHeight;
         int l4;
         int i12;
-        zi0 zi0Var = this.f40501i3;
+        zi0 zi0Var = this.f40511i3;
         if (zi0Var.N.isEmpty()) {
             f7 = -6.0f;
         } else {
@@ -108,13 +108,13 @@ public final class si0 extends org.telegram.ui.Components.zl0 {
         } else {
             measuredHeight = viewGroup.getMeasuredHeight();
         }
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(0, ((AndroidUtilities.displaySize.y - (dp + measuredHeight)) - AndroidUtilities.dp(8.0f)) - zi0Var.f43806e.f11527b), Integer.MIN_VALUE));
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(0, ((AndroidUtilities.displaySize.y - (dp + measuredHeight)) - AndroidUtilities.dp(8.0f)) - zi0Var.f43809e.f11527b), Integer.MIN_VALUE));
         if (zi0Var.m0) {
             l4 = zi0Var.Y;
         } else {
             l4 = zi0Var.W.l();
         }
-        int max = Math.max(AndroidUtilities.dp(12.0f) + l4, -((AndroidUtilities.dp(7.0f) + zi0Var.f43818o0[0]) - getMeasuredWidth()));
+        int max = Math.max(AndroidUtilities.dp(12.0f) + l4, -((AndroidUtilities.dp(7.0f) + zi0Var.f43821o0[0]) - getMeasuredWidth()));
         int i13 = zi0Var.O;
         int measuredWidth = getMeasuredWidth() - max;
         if (zi0Var.P.i()) {

@@ -5,11 +5,11 @@ import android.graphics.Matrix;
 import android.view.TextureView;
 import android.view.View;
 public final class pf0 extends TextureView {
-    public final vf0 f29640a;
+    public final vf0 f29733a;
 
     public pf0(vf0 vf0Var, Context context) {
         super(context);
-        this.f29640a = vf0Var;
+        this.f29733a = vf0Var;
     }
 
     @Override
@@ -21,7 +21,7 @@ public final class pf0 extends TextureView {
     @Override
     public final void setTransform(Matrix matrix) {
         super.setTransform(matrix);
-        yz yzVar = this.f29640a.f31665l0;
+        yz yzVar = this.f29733a.f31732l0;
         if (yzVar != null) {
             int width = getWidth();
             int height = getHeight();

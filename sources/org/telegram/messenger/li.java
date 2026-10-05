@@ -4,55 +4,55 @@ import java.util.HashMap;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 public final class li implements Runnable {
-    public final int f18492a;
-    public final SendMessagesHelper f18493b;
-    public final TLObject f18494c;
+    public final int f18497a;
+    public final SendMessagesHelper f18498b;
+    public final TLObject f18499c;
     public final MessageObject d;
-    public final String f18495e;
-    public final SendMessagesHelper.DelayedMessage f18496f;
+    public final String f18500e;
+    public final SendMessagesHelper.DelayedMessage f18501f;
     public final boolean h;
-    public final SendMessagesHelper.DelayedMessage f18497n;
-    public final Object f18498r;
-    public final HashMap f18499s;
+    public final SendMessagesHelper.DelayedMessage f18502n;
+    public final Object f18503r;
+    public final HashMap f18504s;
     public final boolean v;
 
     public li(SendMessagesHelper sendMessagesHelper, TLObject tLObject, MessageObject messageObject, String str, SendMessagesHelper.DelayedMessage delayedMessage, boolean z10, SendMessagesHelper.DelayedMessage delayedMessage2, Object obj, HashMap hashMap, boolean z11, int i10) {
-        this.f18492a = i10;
-        this.f18493b = sendMessagesHelper;
-        this.f18494c = tLObject;
+        this.f18497a = i10;
+        this.f18498b = sendMessagesHelper;
+        this.f18499c = tLObject;
         this.d = messageObject;
-        this.f18495e = str;
-        this.f18496f = delayedMessage;
+        this.f18500e = str;
+        this.f18501f = delayedMessage;
         this.h = z10;
-        this.f18497n = delayedMessage2;
-        this.f18498r = obj;
-        this.f18499s = hashMap;
+        this.f18502n = delayedMessage2;
+        this.f18503r = obj;
+        this.f18504s = hashMap;
         this.v = z11;
     }
 
     @Override
     public final void run() {
-        switch (this.f18492a) {
+        switch (this.f18497a) {
             case 0:
-                HashMap hashMap = this.f18499s;
+                HashMap hashMap = this.f18504s;
                 boolean z10 = this.v;
-                Object obj = this.f18498r;
-                String str = this.f18495e;
-                this.f18493b.lambda$performSendMessageRequest$77(this.f18494c, this.d, str, this.f18496f, this.h, this.f18497n, obj, hashMap, z10);
+                Object obj = this.f18503r;
+                String str = this.f18500e;
+                this.f18498b.lambda$performSendMessageRequest$77(this.f18499c, this.d, str, this.f18501f, this.h, this.f18502n, obj, hashMap, z10);
                 return;
             case 1:
-                HashMap hashMap2 = this.f18499s;
+                HashMap hashMap2 = this.f18504s;
                 boolean z11 = this.v;
-                Object obj2 = this.f18498r;
-                String str2 = this.f18495e;
-                this.f18493b.lambda$performSendMessageRequest$78(this.f18494c, this.d, str2, this.f18496f, this.h, this.f18497n, obj2, hashMap2, z11);
+                Object obj2 = this.f18503r;
+                String str2 = this.f18500e;
+                this.f18498b.lambda$performSendMessageRequest$78(this.f18499c, this.d, str2, this.f18501f, this.h, this.f18502n, obj2, hashMap2, z11);
                 return;
             default:
-                HashMap hashMap3 = this.f18499s;
+                HashMap hashMap3 = this.f18504s;
                 boolean z12 = this.v;
-                Object obj3 = this.f18498r;
-                String str3 = this.f18495e;
-                this.f18493b.lambda$performSendMessageRequest$82(this.f18494c, this.d, str3, this.f18496f, this.h, this.f18497n, obj3, hashMap3, z12);
+                Object obj3 = this.f18503r;
+                String str3 = this.f18500e;
+                this.f18498b.lambda$performSendMessageRequest$82(this.f18499c, this.d, str3, this.f18501f, this.h, this.f18502n, obj3, hashMap3, z12);
                 return;
         }
     }

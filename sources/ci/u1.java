@@ -9,8 +9,8 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.Components.eu;
 import org.telegram.ui.Components.vy;
-import org.telegram.ui.bh1;
 import org.telegram.ui.so0;
+import org.telegram.ui.zg1;
 public final class u1 implements Runnable {
     public final int f6053a;
     public final boolean f6054b;
@@ -123,9 +123,9 @@ public final class u1 implements Runnable {
         this.f6056e = updatepasswordsettings;
     }
 
-    public u1(bh1 bh1Var, TLObject tLObject, boolean z10, String str, TL_account.passwordInputSettings passwordinputsettings) {
+    public u1(zg1 zg1Var, TLObject tLObject, boolean z10, String str, TL_account.passwordInputSettings passwordinputsettings) {
         this.f6053a = 23;
-        this.f6055c = bh1Var;
+        this.f6055c = zg1Var;
         this.d = tLObject;
         this.f6054b = z10;
         this.f6057f = str;

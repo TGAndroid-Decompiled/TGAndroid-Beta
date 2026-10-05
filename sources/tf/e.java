@@ -7,7 +7,7 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.R;
 public abstract class e {
     public static b a(View view, d dVar) {
-        b bVar = dVar.f46951b;
+        b bVar = dVar.f46958b;
         if (bVar != null) {
             return bVar;
         }
@@ -29,7 +29,7 @@ public abstract class e {
                 }
                 bVar2 = bVar3;
             }
-            dVar.f46951b = bVar2;
+            dVar.f46958b = bVar2;
             return bVar2;
         }
         throw new IllegalArgumentException("Cannot add OnPostDrawListener to root view");

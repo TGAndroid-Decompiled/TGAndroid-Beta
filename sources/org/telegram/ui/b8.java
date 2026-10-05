@@ -3,25 +3,25 @@ package org.telegram.ui;
 import android.view.View;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public final class b8 implements View.OnClickListener {
-    public final int f35027a;
-    public final Object f35028b;
+    public final int f35081a;
+    public final Object f35082b;
 
     public b8(Object obj, int i10) {
-        this.f35027a = i10;
-        this.f35028b = obj;
+        this.f35081a = i10;
+        this.f35082b = obj;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f35027a) {
+        switch (this.f35081a) {
             case 0:
-                h8 h8Var = (h8) this.f35028b;
-                k8 k8Var = h8Var.f37003x;
-                if (h8Var.f36999n != null && k8Var.G) {
+                h8 h8Var = (h8) this.f35082b;
+                k8 k8Var = h8Var.f37028x;
+                if (h8Var.f37024n != null && k8Var.G) {
                     int i10 = -1;
                     int i11 = -1;
                     for (int i12 = 0; i12 < h8Var.d; i12++) {
-                        i8 i8Var = (i8) h8Var.f36999n.get(i12, null);
+                        i8 i8Var = (i8) h8Var.f37024n.get(i12, null);
                         if (i8Var != null) {
                             if (i10 == -1) {
                                 i10 = i8Var.h;
@@ -41,17 +41,17 @@ public final class b8 implements View.OnClickListener {
                 return;
             case 1:
                 org.telegram.ui.Components.rc.e();
-                ((ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f35028b).getSwipeBack().b(true);
+                ((ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f35082b).getSwipeBack().b(true);
                 return;
             case 2:
-                if (((n81) this.f35028b).f38849a.getImageReceiver().getLottieAnimation() != null && !((n81) this.f35028b).f38849a.getImageReceiver().getLottieAnimation().f28138k0) {
-                    ((n81) this.f35028b).f38849a.getImageReceiver().getLottieAnimation().N(0, false, false);
-                    ((n81) this.f35028b).f38849a.getImageReceiver().getLottieAnimation().H(false);
+                if (((k81) this.f35082b).f37917a.getImageReceiver().getLottieAnimation() != null && !((k81) this.f35082b).f37917a.getImageReceiver().getLottieAnimation().f28224k0) {
+                    ((k81) this.f35082b).f37917a.getImageReceiver().getLottieAnimation().N(0, false, false);
+                    ((k81) this.f35082b).f37917a.getImageReceiver().getLottieAnimation().H(false);
                     return;
                 }
                 return;
             default:
-                ((yf1) this.f35028b).H0(true);
+                ((wf1) this.f35082b).H0(true);
                 return;
         }
     }

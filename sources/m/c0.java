@@ -6,22 +6,22 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.SeekBar;
 public class c0 extends SeekBar {
-    public final d0 f15704a;
+    public final d0 f15709a;
 
     public c0(Context context, AttributeSet attributeSet, int i10) {
         super(context, attributeSet, i10);
         a3.a(this, getContext());
         d0 d0Var = new d0(this);
-        this.f15704a = d0Var;
+        this.f15709a = d0Var;
         d0Var.b(attributeSet, i10);
     }
 
     @Override
     public void drawableStateChanged() {
         super.drawableStateChanged();
-        d0 d0Var = this.f15704a;
-        c0 c0Var = d0Var.f15712e;
-        Drawable drawable = d0Var.f15713f;
+        d0 d0Var = this.f15709a;
+        c0 c0Var = d0Var.f15717e;
+        Drawable drawable = d0Var.f15718f;
         if (drawable != null && drawable.isStateful() && drawable.setState(c0Var.getDrawableState())) {
             c0Var.invalidateDrawable(drawable);
         }
@@ -30,7 +30,7 @@ public class c0 extends SeekBar {
     @Override
     public final void jumpDrawablesToCurrentState() {
         super.jumpDrawablesToCurrentState();
-        Drawable drawable = this.f15704a.f15713f;
+        Drawable drawable = this.f15709a.f15718f;
         if (drawable != null) {
             drawable.jumpToCurrentState();
         }
@@ -39,6 +39,6 @@ public class c0 extends SeekBar {
     @Override
     public final synchronized void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        this.f15704a.g(canvas);
+        this.f15709a.g(canvas);
     }
 }

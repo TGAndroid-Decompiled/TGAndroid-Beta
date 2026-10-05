@@ -48,7 +48,7 @@ public final class j6 implements GestureDetector.OnGestureListener {
                     eVar.T = null;
                 }
                 AndroidUtilities.cancelRunOnUIThread(eVar.U);
-                eVar.f46818a = true;
+                eVar.f46825a = true;
                 return true;
         }
     }
@@ -96,9 +96,9 @@ public final class j6 implements GestureDetector.OnGestureListener {
                 l7Var.invalidate();
                 return false;
             default:
-                sg.a aVar = ((sg.e) this.f1117b).f46820b;
+                sg.a aVar = ((sg.e) this.f1117b).f46827b;
                 aVar.d = (f7 * 0.5f) + aVar.d;
-                aVar.f46794g = (f10 * 0.05f) + aVar.f46794g;
+                aVar.f46801g = (f10 * 0.05f) + aVar.f46801g;
                 return true;
         }
     }

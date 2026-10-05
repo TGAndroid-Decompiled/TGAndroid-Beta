@@ -22,17 +22,17 @@ public final class wx extends yl0 {
     public int E;
     public final nz F;
     public ArrayList h;
-    public int f32665y;
-    public int f32657c = -1;
+    public int f32740y;
+    public int f32732c = -1;
     public int d = -1;
-    public int f32658e = -1;
-    public int f32659f = -1;
-    public final ArrayList f32660n = new ArrayList();
-    public final SparseIntArray f32661r = new SparseIntArray();
-    public final SparseIntArray f32662s = new SparseIntArray();
+    public int f32733e = -1;
+    public int f32734f = -1;
+    public final ArrayList f32735n = new ArrayList();
+    public final SparseIntArray f32736r = new SparseIntArray();
+    public final SparseIntArray f32737s = new SparseIntArray();
     public final SparseIntArray v = new SparseIntArray();
-    public final SparseIntArray f32663w = new SparseIntArray();
-    public final ArrayList f32664x = new ArrayList();
+    public final SparseIntArray f32738w = new SparseIntArray();
+    public final ArrayList f32739x = new ArrayList();
 
     public wx(nz nzVar) {
         this.F = nzVar;
@@ -40,7 +40,7 @@ public final class wx extends yl0 {
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f46535f;
+        int i10 = c1Var.f46542f;
         if (i10 != 0 && i10 != 4 && i10 != 3 && i10 != 6) {
             return false;
         }
@@ -54,8 +54,8 @@ public final class wx extends yl0 {
         Integer num;
         float f7;
         nz nzVar = this.F;
-        ArrayList arrayList = nzVar.f29140q1;
-        int i11 = this.f32663w.get(i10);
+        ArrayList arrayList = nzVar.f29237q1;
+        int i11 = this.f32738w.get(i10);
         if (i11 >= 0 && i11 < arrayList.size()) {
             ay ayVar = (ay) arrayList.get(i11);
             if (!ayVar.h) {
@@ -64,27 +64,27 @@ public final class wx extends yl0 {
                 } else {
                     z10 = false;
                 }
-                int intValue = ((Integer) this.f32664x.get(i11)).intValue();
-                nzVar.f29134o1.add(Long.valueOf(ayVar.f24708b.f20069id));
-                if (!UserConfig.getInstance(nzVar.f29097c1).isPremium() && !nzVar.U0) {
+                int intValue = ((Integer) this.f32739x.get(i11)).intValue();
+                nzVar.f29231o1.add(Long.valueOf(ayVar.f24760b.f20074id));
+                if (!UserConfig.getInstance(nzVar.f29194c1).isPremium() && !nzVar.U0) {
                     z11 = false;
                 } else {
                     z11 = true;
                 }
                 int i12 = nzVar.Q.J * 3;
-                if ((ayVar.f24711f && !ayVar.f24712g && (ayVar.f24710e || z11)) || ayVar.h) {
-                    min = ayVar.f24709c.size();
+                if ((ayVar.f24763f && !ayVar.f24764g && (ayVar.f24762e || z11)) || ayVar.h) {
+                    min = ayVar.f24761c.size();
                 } else {
-                    min = Math.min(i12, ayVar.f24709c.size());
+                    min = Math.min(i12, ayVar.f24761c.size());
                 }
                 Integer num2 = null;
-                if (ayVar.f24709c.size() > i12) {
+                if (ayVar.f24761c.size() > i12) {
                     num = Integer.valueOf(intValue + 1 + min);
                 } else {
                     num = null;
                 }
                 ayVar.h = true;
-                int size = ayVar.f24709c.size() - min;
+                int size = ayVar.f24761c.size() - min;
                 if (size > 0) {
                     num = Integer.valueOf(intValue + 1 + min);
                     num2 = Integer.valueOf(size);
@@ -92,10 +92,10 @@ public final class wx extends yl0 {
                 G(false);
                 H();
                 if (num != null && num2 != null) {
-                    nzVar.f29145r2 = view;
-                    nzVar.f29149s2 = num.intValue();
-                    nzVar.f29152t2 = num2.intValue() + num.intValue();
-                    nzVar.f29155u2 = SystemClock.elapsedRealtime();
+                    nzVar.f29242r2 = view;
+                    nzVar.f29246s2 = num.intValue();
+                    nzVar.f29249t2 = num2.intValue() + num.intValue();
+                    nzVar.f29252u2 = SystemClock.elapsedRealtime();
                     s(num.intValue(), num2.intValue());
                     m(num.intValue());
                     if (z10) {
@@ -114,18 +114,18 @@ public final class wx extends yl0 {
 
     public final void F(boolean z10) {
         nz nzVar = this.F;
-        ArrayList arrayList = nzVar.f29131n1;
+        ArrayList arrayList = nzVar.f29228n1;
         if (nzVar.L2) {
             return;
         }
-        ArrayList arrayList2 = new ArrayList(this.f32660n);
-        MediaDataController mediaDataController = MediaDataController.getInstance(nzVar.f29097c1);
+        ArrayList arrayList2 = new ArrayList(this.f32735n);
+        MediaDataController mediaDataController = MediaDataController.getInstance(nzVar.f29194c1);
         ArrayList<TLRPC.StickerSetCovered> featuredEmojiSets = mediaDataController.getFeaturedEmojiSets();
         arrayList.clear();
         int size = featuredEmojiSets.size();
         for (int i10 = 0; i10 < size; i10++) {
             TLRPC.StickerSetCovered stickerSetCovered = featuredEmojiSets.get(i10);
-            if (!mediaDataController.isStickerPackInstalled(stickerSetCovered.set.f20069id) || nzVar.f29137p1.contains(Long.valueOf(stickerSetCovered.set.f20069id))) {
+            if (!mediaDataController.isStickerPackInstalled(stickerSetCovered.set.f20074id) || nzVar.f29234p1.contains(Long.valueOf(stickerSetCovered.set.f20074id))) {
                 arrayList.add(stickerSetCovered);
             }
         }
@@ -145,12 +145,12 @@ public final class wx extends yl0 {
         TLRPC.StickerSet stickerSet;
         TLRPC.TL_messages_stickerSet groupStickerSetById;
         nz nzVar = this.F;
-        ArrayList arrayList = nzVar.f29131n1;
-        ArrayList arrayList2 = nzVar.f29134o1;
-        int i11 = nzVar.f29097c1;
-        ArrayList arrayList3 = nzVar.f29140q1;
+        ArrayList arrayList = nzVar.f29228n1;
+        ArrayList arrayList2 = nzVar.f29231o1;
+        int i11 = nzVar.f29194c1;
+        ArrayList arrayList3 = nzVar.f29237q1;
         arrayList3.clear();
-        if (nzVar.f29098c2) {
+        if (nzVar.f29195c2) {
             MediaDataController mediaDataController = MediaDataController.getInstance(i11);
             if (z10 || this.h == null) {
                 this.h = new ArrayList(mediaDataController.getStickerSets(5));
@@ -165,22 +165,22 @@ public final class wx extends yl0 {
             TLRPC.ChatFull chatFull = nzVar.J1;
             if (chatFull != null && (stickerSet = chatFull.emojiset) != null && (groupStickerSetById = mediaDataController.getGroupStickerSetById(stickerSet)) != null) {
                 ay ayVar = new ay();
-                ayVar.f24708b = nzVar.J1.emojiset;
-                ayVar.f24709c = new ArrayList(groupStickerSetById.documents);
-                ayVar.f24710e = true;
-                ayVar.f24711f = true;
-                ayVar.f24712g = false;
+                ayVar.f24760b = nzVar.J1.emojiset;
+                ayVar.f24761c = new ArrayList(groupStickerSetById.documents);
+                ayVar.f24762e = true;
+                ayVar.f24763f = true;
+                ayVar.f24764g = false;
                 ayVar.h = true;
-                ayVar.f24713i = true;
+                ayVar.f24765i = true;
                 arrayList3.add(ayVar);
-                TLRPC.StickerSet stickerSet2 = ayVar.f24708b;
+                TLRPC.StickerSet stickerSet2 = ayVar.f24760b;
                 int i12 = 0;
                 while (true) {
                     if (i12 >= arrayList4.size()) {
                         break;
                     }
                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) arrayList4.get(i12);
-                    if (tL_messages_stickerSet != null && tL_messages_stickerSet.set.f20069id == stickerSet2.f20069id) {
+                    if (tL_messages_stickerSet != null && tL_messages_stickerSet.set.f20074id == stickerSet2.f20074id) {
                         arrayList4.remove(i12);
                         break;
                     }
@@ -193,11 +193,11 @@ public final class wx extends yl0 {
                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) arrayList4.get(i13);
                     if (tL_messages_stickerSet2 != null && !MessageObject.isPremiumEmojiPack(tL_messages_stickerSet2)) {
                         ay ayVar2 = new ay();
-                        ayVar2.f24708b = tL_messages_stickerSet2.set;
-                        ayVar2.f24709c = new ArrayList(tL_messages_stickerSet2.documents);
-                        ayVar2.f24710e = true;
-                        ayVar2.f24711f = mediaDataController.isStickerPackInstalled(tL_messages_stickerSet2.set.f20069id);
-                        ayVar2.f24712g = false;
+                        ayVar2.f24760b = tL_messages_stickerSet2.set;
+                        ayVar2.f24761c = new ArrayList(tL_messages_stickerSet2.documents);
+                        ayVar2.f24762e = true;
+                        ayVar2.f24763f = mediaDataController.isStickerPackInstalled(tL_messages_stickerSet2.set.f20074id);
+                        ayVar2.f24764g = false;
                         ayVar2.h = true;
                         arrayList3.add(ayVar2);
                         arrayList4.remove(i13);
@@ -212,11 +212,11 @@ public final class wx extends yl0 {
                 if (z11) {
                     ay ayVar3 = new ay();
                     TLRPC.StickerSet stickerSet3 = tL_messages_stickerSet3.set;
-                    ayVar3.f24708b = stickerSet3;
-                    ayVar3.f24709c = tL_messages_stickerSet3.documents;
-                    ayVar3.f24710e = false;
-                    ayVar3.f24711f = mediaDataController.isStickerPackInstalled(stickerSet3.f20069id);
-                    ayVar3.f24712g = false;
+                    ayVar3.f24760b = stickerSet3;
+                    ayVar3.f24761c = tL_messages_stickerSet3.documents;
+                    ayVar3.f24762e = false;
+                    ayVar3.f24763f = mediaDataController.isStickerPackInstalled(stickerSet3.f20074id);
+                    ayVar3.f24764g = false;
                     ayVar3.h = z13;
                     arrayList3.add(ayVar3);
                     i10 = i14;
@@ -234,12 +234,12 @@ public final class wx extends yl0 {
                     }
                     if (arrayList5.size() > 0) {
                         ay ayVar4 = new ay();
-                        ayVar4.f24708b = tL_messages_stickerSet3.set;
-                        ayVar4.f24709c = new ArrayList(arrayList5);
-                        ayVar4.f24710e = z13;
+                        ayVar4.f24760b = tL_messages_stickerSet3.set;
+                        ayVar4.f24761c = new ArrayList(arrayList5);
+                        ayVar4.f24762e = z13;
                         i10 = i14;
-                        ayVar4.f24711f = mediaDataController.isStickerPackInstalled(tL_messages_stickerSet3.set.f20069id);
-                        ayVar4.f24712g = false;
+                        ayVar4.f24763f = mediaDataController.isStickerPackInstalled(tL_messages_stickerSet3.set.f20074id);
+                        ayVar4.f24764g = false;
                         ayVar4.h = true;
                         arrayList3.add(ayVar4);
                     } else {
@@ -247,12 +247,12 @@ public final class wx extends yl0 {
                     }
                     if (arrayList6.size() > 0) {
                         ay ayVar5 = new ay();
-                        ayVar5.f24708b = tL_messages_stickerSet3.set;
-                        ayVar5.f24709c = new ArrayList(arrayList6);
-                        ayVar5.f24710e = false;
-                        ayVar5.f24711f = mediaDataController.isStickerPackInstalled(tL_messages_stickerSet3.set.f20069id);
-                        ayVar5.f24712g = false;
-                        ayVar5.h = arrayList2.contains(Long.valueOf(ayVar5.f24708b.f20069id));
+                        ayVar5.f24760b = tL_messages_stickerSet3.set;
+                        ayVar5.f24761c = new ArrayList(arrayList6);
+                        ayVar5.f24762e = false;
+                        ayVar5.f24763f = mediaDataController.isStickerPackInstalled(tL_messages_stickerSet3.set.f20074id);
+                        ayVar5.f24764g = false;
+                        ayVar5.h = arrayList2.contains(Long.valueOf(ayVar5.f24760b.f20074id));
                         arrayList3.add(ayVar5);
                     }
                 }
@@ -262,27 +262,27 @@ public final class wx extends yl0 {
             for (int i16 = 0; i16 < arrayList.size(); i16++) {
                 TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(i16);
                 ay ayVar6 = new ay();
-                ayVar6.f24711f = mediaDataController.isStickerPackInstalled(stickerSetCovered.set.f20069id);
+                ayVar6.f24763f = mediaDataController.isStickerPackInstalled(stickerSetCovered.set.f20074id);
                 TLRPC.StickerSet stickerSet4 = stickerSetCovered.set;
-                ayVar6.f24708b = stickerSet4;
+                ayVar6.f24760b = stickerSet4;
                 if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
-                    ayVar6.f24709c = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
+                    ayVar6.f24761c = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
                 } else if (stickerSetCovered instanceof TLRPC.TL_stickerSetNoCovered) {
                     TLRPC.TL_messages_stickerSet stickerSet5 = mediaDataController.getStickerSet(MediaDataController.getInputStickerSet(stickerSet4), Integer.valueOf(stickerSetCovered.set.hash), true);
                     if (stickerSet5 != null) {
-                        ayVar6.f24709c = stickerSet5.documents;
+                        ayVar6.f24761c = stickerSet5.documents;
                     } else {
                         ayVar6.d = MediaDataController.getInputStickerSet(stickerSetCovered.set);
                     }
                 } else {
-                    ayVar6.f24709c = stickerSetCovered.covers;
+                    ayVar6.f24761c = stickerSetCovered.covers;
                 }
-                ArrayList arrayList7 = ayVar6.f24709c;
+                ArrayList arrayList7 = ayVar6.f24761c;
                 if (arrayList7 != null && !arrayList7.isEmpty()) {
                     int i17 = 0;
                     while (true) {
-                        if (i17 < ayVar6.f24709c.size()) {
-                            if (!MessageObject.isFreeEmoji((TLRPC.Document) ayVar6.f24709c.get(i17))) {
+                        if (i17 < ayVar6.f24761c.size()) {
+                            if (!MessageObject.isFreeEmoji((TLRPC.Document) ayVar6.f24761c.get(i17))) {
                                 z12 = true;
                                 break;
                             }
@@ -292,9 +292,9 @@ public final class wx extends yl0 {
                             break;
                         }
                     }
-                    ayVar6.f24710e = !z12;
-                    ayVar6.h = arrayList2.contains(Long.valueOf(ayVar6.f24708b.f20069id));
-                    ayVar6.f24712g = true;
+                    ayVar6.f24762e = !z12;
+                    ayVar6.h = arrayList2.contains(Long.valueOf(ayVar6.f24760b.f20074id));
+                    ayVar6.f24764g = true;
                     arrayList3.add(ayVar6);
                 }
             }
@@ -311,7 +311,7 @@ public final class wx extends yl0 {
 
     @Override
     public final int h() {
-        return this.f32665y;
+        return this.f32740y;
     }
 
     @Override
@@ -324,22 +324,22 @@ public final class wx extends yl0 {
         if (i10 == this.d) {
             return 4;
         }
-        if (i10 == this.f32657c || i10 == this.f32659f) {
+        if (i10 == this.f32732c || i10 == this.f32734f) {
             return 1;
         }
-        SparseIntArray sparseIntArray = this.f32661r;
+        SparseIntArray sparseIntArray = this.f32736r;
         if (sparseIntArray.indexOfKey(i10) >= 0) {
             if (sparseIntArray.get(i10) < EmojiData.dataColored.length) {
                 return 1;
             }
             return 5;
-        } else if (this.F.f29099d0 && i10 == 0) {
+        } else if (this.F.f29196d0 && i10 == 0) {
             return 2;
         } else {
             if (this.v.indexOfKey(i10) >= 0) {
                 return 3;
             }
-            if (this.f32663w.indexOfKey(i10) >= 0) {
+            if (this.f32738w.indexOfKey(i10) >= 0) {
                 return 6;
             }
             return 0;
@@ -364,27 +364,27 @@ public final class wx extends yl0 {
         int i12;
         int i13 = i10;
         nz nzVar = this.F;
-        String[] strArr = nzVar.f29090a1;
+        String[] strArr = nzVar.f29187a1;
         nx nxVar = nzVar.Q;
-        int i14 = nzVar.f29097c1;
-        ArrayList arrayList = nzVar.f29140q1;
-        int i15 = c1Var.f46535f;
-        View view = c1Var.f46531a;
+        int i14 = nzVar.f29194c1;
+        ArrayList arrayList = nzVar.f29237q1;
+        int i15 = c1Var.f46542f;
+        View view = c1Var.f46538a;
         boolean z10 = true;
         ay ayVar2 = null;
         if (i15 != 0) {
-            SparseIntArray sparseIntArray = this.f32661r;
+            SparseIntArray sparseIntArray = this.f32736r;
             if (i15 != 1) {
                 if (i15 != 5) {
                     if (i15 == 6) {
                         dy dyVar = (dy) view;
-                        int i16 = this.f32663w.get(i13);
+                        int i16 = this.f32738w.get(i13);
                         int i17 = nxVar.J * 3;
                         if (i16 >= 0 && i16 < arrayList.size()) {
                             ayVar2 = (ay) arrayList.get(i16);
                         }
                         if (ayVar2 != null) {
-                            dyVar.f25842a.setText("+" + ((ayVar2.f24709c.size() - i17) + 1));
+                            dyVar.f25889a.setText("+" + ((ayVar2.f24761c.size() - i17) + 1));
                             return;
                         }
                         return;
@@ -400,7 +400,7 @@ public final class wx extends yl0 {
                 } else {
                     ayVar = null;
                 }
-                if (ayVar3 == null || !ayVar3.f24712g || (ayVar != null && !ayVar.f24710e && ayVar.f24711f && !UserConfig.getInstance(i14).isPremium())) {
+                if (ayVar3 == null || !ayVar3.f24764g || (ayVar != null && !ayVar.f24762e && ayVar.f24763f && !UserConfig.getInstance(i14).isPremium())) {
                     z10 = false;
                 }
                 if (ayVar3 != null && ayVar3.d != null) {
@@ -409,17 +409,17 @@ public final class wx extends yl0 {
                 }
                 rg.q0 q0Var = fyVar.h;
                 if (ayVar3 != null) {
-                    fyVar.f26603s = ayVar3;
+                    fyVar.f26632s = ayVar3;
                     fyVar.v = z10;
-                    fyVar.f26597b.l(ayVar3.f24708b.title, false);
-                    TextView textView = fyVar.f26598c;
-                    if (ayVar3.f24713i) {
+                    fyVar.f26626b.l(ayVar3.f24760b.title, false);
+                    TextView textView = fyVar.f26627c;
+                    if (ayVar3.f24765i) {
                         i12 = 0;
                     } else {
                         i12 = 8;
                     }
                     textView.setVisibility(i12);
-                    if (ayVar3.f24711f && !ayVar3.f24708b.official) {
+                    if (ayVar3.f24763f && !ayVar3.f24760b.official) {
                         q0Var.a(LocaleController.getString(R.string.Restore), new ey(fyVar, 5), false);
                     } else {
                         q0Var.a(LocaleController.getString(R.string.Unlock), new ey(fyVar, 6), false);
@@ -432,15 +432,15 @@ public final class wx extends yl0 {
             org.telegram.ui.Cells.o8 o8Var = (org.telegram.ui.Cells.o8) view;
             o8Var.getClass();
             int i19 = sparseIntArray.get(i13);
-            if (i13 == this.f32657c) {
+            if (i13 == this.f32732c) {
                 o8Var.c(LocaleController.getString(R.string.FeaturedEmojiPacks), R.drawable.msg_close, LocaleController.getString(R.string.AccDescrCloseTrendingEmoji), 0, 0);
                 return;
-            } else if (i13 == this.f32659f) {
+            } else if (i13 == this.f32734f) {
                 o8Var.b(0, LocaleController.getString(R.string.RecentlyUsed));
                 return;
             } else if (i19 >= strArr.length) {
                 try {
-                    o8Var.b(0, ((ay) arrayList.get(i19 - strArr.length)).f24708b.title);
+                    o8Var.b(0, ((ay) arrayList.get(i19 - strArr.length)).f24760b.title);
                     return;
                 } catch (Exception unused) {
                     o8Var.b(0, "");
@@ -452,12 +452,12 @@ public final class wx extends yl0 {
             }
         }
         wy wyVar = (wy) view;
-        wyVar.f32672a = i13;
-        wyVar.f32675e = null;
-        if (nzVar.f29099d0) {
+        wyVar.f32741a = i13;
+        wyVar.f32744e = null;
+        if (nzVar.f29196d0) {
             i13--;
         }
-        if (this.f32659f >= 0) {
+        if (this.f32734f >= 0) {
             i13--;
         }
         if (this.d >= 0) {
@@ -511,25 +511,25 @@ public final class wx extends yl0 {
                 int i22 = nxVar.J * 3;
                 int i23 = 0;
                 while (true) {
-                    ArrayList arrayList2 = this.f32664x;
+                    ArrayList arrayList2 = this.f32739x;
                     if (i23 >= arrayList2.size()) {
                         break;
                     }
                     ay ayVar4 = (ay) arrayList.get(i23);
                     int intValue = ((Integer) arrayList2.get(i23)).intValue() + 1;
-                    if ((ayVar4.f24711f && !ayVar4.f24712g && (ayVar4.f24710e || isPremium)) || ayVar4.h) {
-                        min = ayVar4.f24709c.size();
+                    if ((ayVar4.f24763f && !ayVar4.f24764g && (ayVar4.f24762e || isPremium)) || ayVar4.h) {
+                        min = ayVar4.f24761c.size();
                     } else {
-                        min = Math.min(i22, ayVar4.f24709c.size());
+                        min = Math.min(i22, ayVar4.f24761c.size());
                     }
-                    int i24 = wyVar.f32672a;
+                    int i24 = wyVar.f32741a;
                     if (i24 >= intValue && (i11 = i24 - intValue) < min) {
-                        wyVar.f32675e = ayVar4;
-                        TLRPC.Document document2 = (TLRPC.Document) ayVar4.f24709c.get(i11);
+                        wyVar.f32744e = ayVar4;
+                        TLRPC.Document document2 = (TLRPC.Document) ayVar4.f24761c.get(i11);
                         if (document2 == null) {
                             valueOf = null;
                         } else {
-                            valueOf = Long.valueOf(document2.f20048id);
+                            valueOf = Long.valueOf(document2.f20053id);
                         }
                         Long l10 = valueOf;
                         document = document2;
@@ -577,15 +577,15 @@ public final class wx extends yl0 {
                         if (i10 != 5) {
                             if (i10 != 6) {
                                 View view = new View(nzVar.getContext());
-                                view.setLayoutParams(new s4.p0(-1, nzVar.f29093b1));
+                                view.setLayoutParams(new s4.p0(-1, nzVar.f29190b1));
                                 w0Var = view;
                             } else {
                                 Context context = nzVar.getContext();
                                 ?? frameLayout = new FrameLayout(context);
                                 TextView textView = new TextView(context);
-                                frameLayout.f25842a = textView;
+                                frameLayout.f25889a = textView;
                                 textView.setTextSize(1, 13.0f);
-                                textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20822d6, d6Var));
+                                textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20827d6, d6Var));
                                 textView.setBackground(org.telegram.ui.ActionBar.i6.b0(AndroidUtilities.dp(11.0f), i0.a.k(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Te, d6Var), 99)));
                                 textView.setTypeface(AndroidUtilities.bold());
                                 textView.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(1.66f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(2.0f));
@@ -624,7 +624,7 @@ public final class wx extends yl0 {
                     w0Var = frameLayout2;
                 }
             } else {
-                org.telegram.ui.Cells.o8 o8Var = new org.telegram.ui.Cells.o8(nzVar.getContext(), true, false, nzVar.Z1, nzVar.f29118i2);
+                org.telegram.ui.Cells.o8 o8Var = new org.telegram.ui.Cells.o8(nzVar.getContext(), true, false, nzVar.Z1, nzVar.f29215i2);
                 o8Var.setOnIconClickListener(new f0(this, 14));
                 w0Var = o8Var;
             }

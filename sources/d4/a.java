@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import sa.e;
-import z3.n;
-public final class a implements n {
+import z3.m;
+public final class a implements m {
     public static final Pattern h = Pattern.compile("(?:(\\d+):)?(\\d+):(\\d+)[:.](\\d+)");
     public final boolean f8077a;
     public final b4.b f8078b;
@@ -75,13 +75,8 @@ public final class a implements n {
     }
 
     @Override
-    public final int A() {
-        return 1;
-    }
-
-    @Override
-    public final void F(byte[] r44, int r45, int r46, z3.m r47, e2.h r48) {
-        throw new UnsupportedOperationException("Method not decompiled: d4.a.F(byte[], int, int, z3.m, e2.h):void");
+    public final void E(byte[] r44, int r45, int r46, z3.l r47, e2.h r48) {
+        throw new UnsupportedOperationException("Method not decompiled: d4.a.E(byte[], int, int, z3.l, e2.h):void");
     }
 
     public final void b(e2.v r39, java.nio.charset.Charset r40) {
@@ -91,6 +86,11 @@ public final class a implements n {
     @Override
     public final z3.d h(int i10, int i11, byte[] bArr) {
         return e.a(this, bArr, i11);
+    }
+
+    @Override
+    public final int y() {
+        return 1;
     }
 
     @Override

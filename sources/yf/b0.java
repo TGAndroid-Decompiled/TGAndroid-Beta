@@ -15,7 +15,7 @@ public abstract class b0 {
         TLRPC.TL_userProfilePhoto tL_userProfilePhoto = new TLRPC.TL_userProfilePhoto();
         user.photo = tL_userProfilePhoto;
         tL_userProfilePhoto.personal = z10;
-        tL_userProfilePhoto.photo_id = photo.f20066id;
+        tL_userProfilePhoto.photo_id = photo.f20071id;
         ArrayList<TLRPC.VideoSize> arrayList2 = photo.video_sizes;
         if (arrayList2 != null && arrayList2.size() > 0) {
             z11 = true;

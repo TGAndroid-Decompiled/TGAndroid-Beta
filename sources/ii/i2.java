@@ -218,18 +218,18 @@ public final class i2 {
             i1 i1Var = (i1) findFocus;
             int selectionStart = i1Var.getSelectionStart();
             int selectionEnd = i1Var.getSelectionEnd();
-            q5 W2 = x3.W2(i1Var);
-            if (W2 != null && W2.getRow() != null) {
-                if (i1Var == W2.getTitleEditText()) {
-                    f2Var = new f2(W2.getRow().f12186a, 0, selectionStart, selectionEnd);
+            q5 V2 = x3.V2(i1Var);
+            if (V2 != null && V2.getRow() != null) {
+                if (i1Var == V2.getTitleEditText()) {
+                    f2Var = new f2(V2.getRow().f12186a, 0, selectionStart, selectionEnd);
                 } else {
-                    t5 o9 = W2.o(i1Var);
+                    t5 o9 = V2.o(i1Var);
                     if (o9 != null) {
-                        i10 = W2.k(o9.f12662b);
+                        i10 = V2.k(o9.f12662b);
                     } else {
                         i10 = -1;
                     }
-                    f2Var = new f2(W2.getRow().f12186a, i10, selectionStart, selectionEnd);
+                    f2Var = new f2(V2.getRow().f12186a, i10, selectionStart, selectionEnd);
                 }
             } else {
                 if (i1Var instanceof m0) {

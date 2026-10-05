@@ -17,31 +17,31 @@ public final class ae extends org.telegram.ui.Components.ld0 {
         switch (this.L) {
             case 0:
                 me meVar = (me) this.M;
-                org.telegram.ui.Components.c71 c71Var = meVar.a2;
-                fi.o oVar = meVar.R1;
+                org.telegram.ui.Components.e71 e71Var = meVar.X0;
+                fi.o oVar = meVar.O0;
                 if (oVar != null && !oVar.isFocusable()) {
                     oVar.setFocusable(true);
                     oVar.setFocusableInTouchMode(true);
-                    int z12 = c71Var.z1(3);
-                    if (z12 >= 0 && z12 < c71Var.f25250f3.f31316x.size()) {
-                        c71Var.C0();
-                        c71Var.y0(z12);
+                    int y12 = e71Var.y1(3);
+                    if (y12 >= 0 && y12 < e71Var.f26034f3.f32534x.size()) {
+                        e71Var.C0();
+                        e71Var.y0(y12);
                     }
                     oVar.requestFocus();
                 }
                 return super.dispatchTouchEvent(motionEvent);
             default:
-                yh.g gVar = (yh.g) this.M;
-                fi.o oVar2 = gVar.Q;
+                yh.h hVar = (yh.h) this.M;
+                fi.o oVar2 = hVar.Z;
                 if (oVar2 != null && !oVar2.isFocusable()) {
-                    gVar.Q.setFocusable(true);
-                    gVar.Q.setFocusableInTouchMode(true);
-                    int z13 = gVar.f51311e.z1(1);
-                    if (z13 >= 0 && z13 < gVar.f51311e.f25250f3.f31316x.size()) {
-                        gVar.f51311e.C0();
-                        gVar.f51311e.y0(z13);
+                    hVar.Z.setFocusable(true);
+                    hVar.Z.setFocusableInTouchMode(true);
+                    int y13 = hVar.f51373e.y1(1);
+                    if (y13 >= 0 && y13 < hVar.f51373e.f26034f3.f32534x.size()) {
+                        hVar.f51373e.C0();
+                        hVar.f51373e.y0(y13);
                     }
-                    gVar.Q.requestFocus();
+                    hVar.Z.requestFocus();
                 }
                 return super.dispatchTouchEvent(motionEvent);
         }

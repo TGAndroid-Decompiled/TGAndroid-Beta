@@ -3,18 +3,18 @@ package x4;
 import android.animation.TypeEvaluator;
 import v7.g8;
 public final class e implements TypeEvaluator {
-    public i0.d[] f49322a;
+    public i0.d[] f49329a;
 
     @Override
     public final Object evaluate(float f7, Object obj, Object obj2) {
         i0.d[] dVarArr = (i0.d[]) obj;
         i0.d[] dVarArr2 = (i0.d[]) obj2;
         if (g8.a(dVarArr, dVarArr2)) {
-            if (!g8.a(this.f49322a, dVarArr)) {
-                this.f49322a = g8.e(dVarArr);
+            if (!g8.a(this.f49329a, dVarArr)) {
+                this.f49329a = g8.e(dVarArr);
             }
             for (int i10 = 0; i10 < dVarArr.length; i10++) {
-                i0.d dVar = this.f49322a[i10];
+                i0.d dVar = this.f49329a[i10];
                 i0.d dVar2 = dVarArr[i10];
                 i0.d dVar3 = dVarArr2[i10];
                 dVar.getClass();
@@ -28,7 +28,7 @@ public final class e implements TypeEvaluator {
                     }
                 }
             }
-            return this.f49322a;
+            return this.f49329a;
         }
         throw new IllegalArgumentException("Can't interpolate between two incompatible pathData");
     }

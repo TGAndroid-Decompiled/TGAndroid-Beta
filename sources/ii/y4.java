@@ -78,7 +78,7 @@ public final class y4 implements NotificationCenter.NotificationCenterDelegate {
         u uVar = i3Var.f12441a;
         identityHashMap.remove(uVar);
         uVar.f12663a = 3;
-        x3Var.s4(i3Var.f12442b, uVar);
+        x3Var.r4(i3Var.f12442b, uVar);
         x3Var.f12770o3.onContentChanged();
     }
 
@@ -99,10 +99,10 @@ public final class y4 implements NotificationCenter.NotificationCenterDelegate {
             if (i10 == NotificationCenter.fileNewChunkAvailable) {
                 long longValue = ((Long) objArr[3]).longValue();
                 uVar.f12667f = ((Float) objArr[4]).floatValue();
-                View B1 = x3Var.B1(aVar);
-                if (B1 instanceof w4) {
-                    B1.requestLayout();
-                    B1.invalidate();
+                View A1 = x3Var.A1(aVar);
+                if (A1 instanceof w4) {
+                    A1.requestLayout();
+                    A1.invalidate();
                 }
                 if (longValue > 0) {
                     this.f12817n = true;
@@ -124,8 +124,8 @@ public final class y4 implements NotificationCenter.NotificationCenterDelegate {
                     uVar.f12672l = 0;
                     uVar.f12673m = 0;
                     uVar.f12667f = 0.0f;
-                    x3Var.p4(aVar);
-                    x3Var.N4(i3Var.f12442b, uVar, str, true, uVar.f12670j, uVar.f12671k, ceil);
+                    x3Var.o4(aVar);
+                    x3Var.M4(i3Var.f12442b, uVar, str, true, uVar.f12670j, uVar.f12671k, ceil);
                 }
             } else if (i10 == NotificationCenter.filePreparingFailed) {
                 b();

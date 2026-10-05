@@ -20,19 +20,19 @@ import org.telegram.ui.Components.q90;
 import org.telegram.ui.Components.tr;
 import w7.z5;
 public final class r0 extends LinearLayout {
-    public final ArrayList f47096a;
-    public final o0 f47097b;
-    public final FrameLayout f47098c;
+    public final ArrayList f47103a;
+    public final o0 f47104b;
+    public final FrameLayout f47105c;
     public final FrameLayout d;
-    public final q90 f47099e;
+    public final q90 f47106e;
 
     public r0(Context context) {
         super(context);
-        this.f47096a = new ArrayList();
+        this.f47103a = new ArrayList();
         setOrientation(1);
         setClipChildren(false);
         FrameLayout frameLayout = new FrameLayout(getContext());
-        this.f47098c = frameLayout;
+        this.f47105c = frameLayout;
         frameLayout.setClipChildren(false);
         FrameLayout frameLayout2 = new FrameLayout(getContext());
         this.d = frameLayout2;
@@ -45,7 +45,7 @@ public final class r0 extends LinearLayout {
         frameLayout3.addView(imageView);
         frameLayout.addView(frameLayout3, z5.e(24, 24, 17));
         o0 o0Var = new o0(context);
-        this.f47097b = o0Var;
+        this.f47104b = o0Var;
         o0Var.setLayerType(2, null);
         frameLayout.addView(o0Var, z5.e(70, 70, 17));
         addView(frameLayout, z5.k(0.0f, 15.0f, 0.0f, 0.0f, -1, 70));
@@ -56,10 +56,10 @@ public final class r0 extends LinearLayout {
         textView.setTextColor(i6.w0(null, i6.G6, false));
         addView(textView, z5.t(-2, -2, 1, 0, 15, 0, 7));
         q90 q90Var = new q90(getContext(), null);
-        this.f47099e = q90Var;
+        this.f47106e = q90Var;
         q90Var.setTextSize(1, 14.0f);
         q90Var.setGravity(1);
-        q90Var.setTextColor(i6.w0(null, i6.f20930j5, false));
+        q90Var.setTextColor(i6.w0(null, i6.f20935j5, false));
         q90Var.setLineSpacing(q90Var.getLineSpacingExtra(), q90Var.getLineSpacingMultiplier() * 1.1f);
         addView(q90Var, z5.t(-2, -2, 1, 28, 0, 28, 18));
     }
@@ -81,11 +81,11 @@ public final class r0 extends LinearLayout {
         }
         ArrayList arrayList4 = new ArrayList();
         ArrayList arrayList5 = new ArrayList();
-        tr trVar = tr.f31147f;
+        tr trVar = tr.f31215f;
         int size2 = arrayList3.size();
         int i14 = 0;
         while (true) {
-            arrayList2 = this.f47096a;
+            arrayList2 = this.f47103a;
             if (i14 >= size2) {
                 break;
             }
@@ -128,9 +128,9 @@ public final class r0 extends LinearLayout {
             o0 o0Var3 = new o0(getContext());
             o0Var3.setLayerType(2, null);
             o0Var3.d = chat4;
-            h9 h9Var = o0Var3.f47084e;
+            h9 h9Var = o0Var3.f47091e;
             h9Var.q(chat4);
-            o0Var3.f47081a.e(chat4, h9Var);
+            o0Var3.f47088a.e(chat4, h9Var);
             int size5 = arrayList6.size();
             frameLayout.addView(o0Var3, i12, z5.e(70, 70, 17));
             o0Var3.setTranslationX(AndroidUtilities.dp(23.0f) * (-size5));
@@ -140,7 +140,7 @@ public final class r0 extends LinearLayout {
             ArrayList arrayList7 = arrayList5;
             o0Var3.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setInterpolator(trVar).setDuration(200).start();
             if (size5 == 0) {
-                p0 p0Var = o0Var3.f47082b;
+                p0 p0Var = o0Var3.f47089b;
                 p0Var.setScaleY(1.0f);
                 p0Var.setScaleX(1.0f);
                 p0Var.setAlpha(1.0f);
@@ -193,9 +193,9 @@ public final class r0 extends LinearLayout {
                 }
                 i10 = size6;
                 if (hg.c.g(1, arrayList6) == o0Var && arrayList6.size() > 1) {
-                    ((o0) hg.c.g(2, arrayList6)).f47082b.setScaleY(0.1f);
-                    ((o0) arrayList6.get(arrayList6.size() - 2)).f47082b.setScaleX(0.1f);
-                    ((o0) arrayList6.get(arrayList6.size() - 2)).f47082b.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(j3).setInterpolator(trVar).start();
+                    ((o0) hg.c.g(2, arrayList6)).f47089b.setScaleY(0.1f);
+                    ((o0) arrayList6.get(arrayList6.size() - 2)).f47089b.setScaleX(0.1f);
+                    ((o0) arrayList6.get(arrayList6.size() - 2)).f47089b.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(j3).setInterpolator(trVar).start();
                     size6 = i10;
                 }
             } else {
@@ -203,16 +203,16 @@ public final class r0 extends LinearLayout {
             }
             size6 = i10;
         }
-        o0 o0Var5 = this.f47097b;
+        o0 o0Var5 = this.f47104b;
         if (o0Var5.d == null) {
             o0Var5.d = chat;
-            h9 h9Var2 = o0Var5.f47084e;
+            h9 h9Var2 = o0Var5.f47091e;
             h9Var2.q(chat);
-            o0Var5.f47081a.e(chat, h9Var2);
+            o0Var5.f47088a.e(chat, h9Var2);
         }
         arrayList2.removeAll(arrayList4);
         arrayList2.addAll(arrayList8);
-        FrameLayout frameLayout2 = this.f47098c;
+        FrameLayout frameLayout2 = this.f47105c;
         frameLayout2.animate().cancel();
         if (!arrayList2.isEmpty() && arrayList2.size() != 1) {
             frameLayout2.animate().setInterpolator(trVar).translationX(AndroidUtilities.dp(11.5f) * (arrayList2.size() - 1)).setDuration(200).start();

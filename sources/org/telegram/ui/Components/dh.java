@@ -25,5 +25,5 @@ public interface dh {
 
     void o();
 
-    lw0 y();
+    mw0 y();
 }

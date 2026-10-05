@@ -11,32 +11,32 @@ import org.telegram.ui.Components.tr;
 import org.telegram.ui.Components.zl0;
 public abstract class i1 extends zl0 {
     public static final Paint j3;
-    public static final Paint f45057k3;
-    public static final Path f45058l3;
-    public static final Paint f45059m3;
-    public final Paint f45060e3;
-    public final Paint f45061f3;
-    public int f45062g3;
-    public pg.u0 f45063h3;
-    public q0.a f45064i3;
+    public static final Paint f45064k3;
+    public static final Path f45065l3;
+    public static final Paint f45066m3;
+    public final Paint f45067e3;
+    public final Paint f45068f3;
+    public int f45069g3;
+    public pg.u0 f45070h3;
+    public q0.a f45071i3;
 
     static {
         Paint paint = new Paint(1);
         j3 = paint;
         Paint paint2 = new Paint(1);
-        f45057k3 = paint2;
+        f45064k3 = paint2;
         paint.setColor(-2013265920);
         paint2.setColor(-1996488705);
-        f45058l3 = new Path();
-        f45059m3 = new Paint(1);
+        f45065l3 = new Path();
+        f45066m3 = new Paint(1);
     }
 
     public i1(Context context) {
         super(context, null);
-        this.f45060e3 = new Paint(1);
+        this.f45067e3 = new Paint(1);
         Paint paint = new Paint(1);
-        this.f45061f3 = paint;
-        this.f45062g3 = -1;
+        this.f45068f3 = paint;
+        this.f45069g3 = -1;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
         setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
@@ -46,7 +46,7 @@ public abstract class i1 extends zl0 {
         setOnItemClickListener(new ai.g(this, 15));
     }
 
-    public static void y1(Canvas canvas, RectF rectF, int i10) {
+    public static void x1(Canvas canvas, RectF rectF, int i10) {
         float f7 = rectF.left;
         while (f7 <= rectF.right) {
             float f10 = rectF.top;
@@ -59,7 +59,7 @@ public abstract class i1 extends zl0 {
                 canvas2.drawRect(f7, f10, f12, f13, paint);
                 float f14 = i10 * 2;
                 float f15 = f7 + f14;
-                Paint paint2 = f45057k3;
+                Paint paint2 = f45064k3;
                 float f16 = f10;
                 canvas2.drawRect(f12, f16, f15, f13, paint2);
                 float f17 = f16 + f14;
@@ -73,15 +73,15 @@ public abstract class i1 extends zl0 {
         }
     }
 
-    public static void z1(float f7, float f10, float f11, int i10, Canvas canvas) {
-        Paint paint = f45059m3;
+    public static void y1(float f7, float f10, float f11, int i10, Canvas canvas) {
+        Paint paint = f45066m3;
         paint.setColor(i10);
         if (paint.getAlpha() != 255) {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(f7 - f11, f10 - f11, f7 + f11, f10 + f11);
             paint.setAlpha(255);
             canvas.drawArc(rectF, -45.0f, -180.0f, true, paint);
-            Path path = f45058l3;
+            Path path = f45065l3;
             path.rewind();
             path.moveTo(rectF.centerX(), rectF.centerY());
             path.lineTo((float) hg.c.e(-1.5707963267948966d, rectF.width() / 2.0f, rectF.centerX()), (float) ((Math.sin(-1.5707963267948966d) * (rectF.height() / 2.0f)) + rectF.centerY()));
@@ -90,7 +90,7 @@ public abstract class i1 extends zl0 {
             path.addArc(rectF, -45.0f, 180.0f);
             canvas.save();
             canvas.clipPath(path);
-            y1(canvas, rectF, AndroidUtilities.dp(4.0f));
+            x1(canvas, rectF, AndroidUtilities.dp(4.0f));
             canvas.restore();
             paint.setColor(i10);
             canvas.drawArc(rectF, -45.0f, 180.0f, true, paint);
@@ -99,13 +99,31 @@ public abstract class i1 extends zl0 {
         canvas.drawCircle(f7, f10, f11, paint);
     }
 
-    public final void A1(float f7, boolean z10) {
+    public int getSelectedColorIndex() {
+        return this.f45069g3;
+    }
+
+    public void setColorListener(q0.a aVar) {
+        this.f45071i3 = aVar;
+    }
+
+    public void setColorPalette(pg.u0 u0Var) {
+        this.f45070h3 = u0Var;
+        getAdapter().l();
+    }
+
+    public void setSelectedColorIndex(int i10) {
+        this.f45069g3 = i10;
+        getAdapter().l();
+    }
+
+    public final void z1(float f7, boolean z10) {
         float interpolation;
         float f10;
         if (z10) {
-            interpolation = tr.f31148g.getInterpolation(f7);
+            interpolation = tr.f31216g.getInterpolation(f7);
         } else {
-            interpolation = tr.f31149i.getInterpolation(f7);
+            interpolation = tr.f31217i.getInterpolation(f7);
         }
         float childCount = 1.0f / (getChildCount() - 1);
         for (int i10 = 0; i10 < getChildCount(); i10++) {
@@ -125,23 +143,5 @@ public abstract class i1 extends zl0 {
             }
         }
         invalidate();
-    }
-
-    public int getSelectedColorIndex() {
-        return this.f45062g3;
-    }
-
-    public void setColorListener(q0.a aVar) {
-        this.f45064i3 = aVar;
-    }
-
-    public void setColorPalette(pg.u0 u0Var) {
-        this.f45063h3 = u0Var;
-        getAdapter().l();
-    }
-
-    public void setSelectedColorIndex(int i10) {
-        this.f45062g3 = i10;
-        getAdapter().l();
     }
 }

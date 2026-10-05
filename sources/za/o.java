@@ -5,14 +5,14 @@ public enum o implements ka.f {
     LOG_ENVIRONMENT_STAGING(2),
     LOG_ENVIRONMENT_PROD(3);
     
-    public final int f53143a;
+    public final int f53164a;
 
     o(int i10) {
-        this.f53143a = i10;
+        this.f53164a = i10;
     }
 
     @Override
     public final int a() {
-        return this.f53143a;
+        return this.f53164a;
     }
 }

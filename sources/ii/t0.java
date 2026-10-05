@@ -5,25 +5,25 @@ import android.text.SpannableStringBuilder;
 import android.view.View;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.AnimatedArrowDrawable;
-import org.telegram.ui.Components.c71;
-import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.e71;
 import org.telegram.ui.Components.g61;
-import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.h61;
+import org.telegram.ui.Components.w61;
 import org.telegram.ui.Components.zl0;
-public final class t0 extends f61 {
+public final class t0 extends g61 {
     public static final int f12654a = 0;
 
     static {
-        f61.setup(new f61());
+        g61.setup(new g61());
     }
 
     @Override
-    public final void bindView(View view, g61 g61Var, boolean z10, u61 u61Var, c71 c71Var) {
+    public final void bindView(View view, h61 h61Var, boolean z10, w61 w61Var, e71 e71Var) {
         boolean z11;
         float f7;
         u0 u0Var = (u0) view;
-        a aVar = (a) g61Var.G;
-        e3 e3Var = (e3) g61Var.H;
+        a aVar = (a) h61Var.G;
+        e3 e3Var = (e3) h61Var.H;
         i1 i1Var = u0Var.d;
         boolean z12 = false;
         if (u0Var.f12679f != aVar) {

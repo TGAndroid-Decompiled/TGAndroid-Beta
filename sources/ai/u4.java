@@ -13,27 +13,17 @@ public final class u4 implements rk0 {
     }
 
     @Override
-    public final void h(View view, zg.o0 o0Var, boolean z10, boolean z11) {
-        e6 e6Var = this.f1716a;
-        if (!z10) {
-            e6Var.n0(new s4(this, view, o0Var, z10, z11));
-        } else {
-            org.telegram.ui.Components.e5.a0(e6Var.C2, 1, e6Var.B1, new t4(this, z10, o0Var, view));
-        }
-    }
-
-    @Override
-    public final boolean j() {
+    public final boolean B() {
         return true;
     }
 
     @Override
-    public final boolean k() {
+    public final boolean E() {
         return this.f1716a.N0();
     }
 
     @Override
-    public final void n(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
+    public final void H(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
         e6 e6Var = this.f1716a;
         Paint paint = e6Var.f878n2;
         com.google.firebase.messaging.n nVar = e6Var.P1;
@@ -50,12 +40,22 @@ public final class u4 implements rk0 {
     }
 
     @Override
-    public final void o() {
+    public final void I() {
         ((ac) this.f1716a.Q1).b(false);
     }
 
     @Override
-    public final boolean p() {
+    public final boolean K() {
         return false;
+    }
+
+    @Override
+    public final void i(View view, zg.m0 m0Var, boolean z10, boolean z11) {
+        e6 e6Var = this.f1716a;
+        if (!z10) {
+            e6Var.n0(new s4(this, view, m0Var, z10, z11));
+        } else {
+            org.telegram.ui.Components.e5.a0(e6Var.C2, 1, e6Var.B1, new t4(this, z10, m0Var, view));
+        }
     }
 }

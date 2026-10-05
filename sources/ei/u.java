@@ -84,17 +84,17 @@ public final class u extends org.telegram.ui.ActionBar.j {
                         k0Var.dismiss();
                         return;
                     }
-                    k0Var.v.d.f25250f3.N(false);
+                    k0Var.v.d.f26034f3.N(false);
                     k0Var.d.E(0);
                     return;
                 } else if (i10 == 3) {
                     k0Var.f9916c.a(true, true);
                     k0Var.setAllowNestedScroll(false);
                     k0Var.S = null;
-                    k0Var.G.f25250f3.N(true);
-                    k0Var.E.f26252r.getText().clear();
-                    k0Var.E.f26252r.requestFocus();
-                    AndroidUtilities.showKeyboard(k0Var.E.f26252r);
+                    k0Var.G.f26034f3.N(true);
+                    k0Var.E.f26295r.getText().clear();
+                    k0Var.E.f26295r.requestFocus();
+                    AndroidUtilities.showKeyboard(k0Var.E.f26295r);
                     return;
                 } else {
                     return;
@@ -113,9 +113,9 @@ public final class u extends org.telegram.ui.ActionBar.j {
                     TextUtils.isEmpty(k0Var2.R);
                     k0Var2.R = null;
                     k0Var2.F.h(0L, k0Var2.f9917e, 0L, 0L, null, false, null, true);
-                    k0Var2.f9924y.f26252r.getText().clear();
-                    k0Var2.f9924y.f26252r.requestFocus();
-                    AndroidUtilities.showKeyboard(k0Var2.f9924y.f26252r);
+                    k0Var2.f9924y.f26295r.getText().clear();
+                    k0Var2.f9924y.f26295r.requestFocus();
+                    AndroidUtilities.showKeyboard(k0Var2.f9924y.f26295r);
                     return;
                 } else {
                     return;
@@ -123,7 +123,7 @@ public final class u extends org.telegram.ui.ActionBar.j {
             case 8:
                 fi.k0 k0Var3 = ((fi.j0) obj).h;
                 if (i10 == -1) {
-                    k0Var3.v.d.f25250f3.N(false);
+                    k0Var3.v.d.f26034f3.N(false);
                     k0Var3.d.E(0);
                     return;
                 }
@@ -258,7 +258,7 @@ public final class u extends org.telegram.ui.ActionBar.j {
                 a7 a7Var = (a7) obj;
                 if (i10 == -1) {
                     if (a7.Y(a7Var).s()) {
-                        zh.b bVar = a7Var.f34692e0;
+                        zh.b bVar = a7Var.f34700e0;
                         if (bVar != null) {
                             bVar.d();
                         }
@@ -326,7 +326,7 @@ public final class u extends org.telegram.ui.ActionBar.j {
                 if (i10 == -1) {
                     baVar.finishFragment();
                     return;
-                } else if (i10 == 1 && baVar.f35045a.getText().length() != 0) {
+                } else if (i10 == 1 && baVar.f35098a.getText().length() != 0) {
                     ba.S(baVar);
                     baVar.finishFragment();
                     return;
@@ -354,7 +354,7 @@ public final class u extends org.telegram.ui.ActionBar.j {
             default:
                 cd cdVar = (cd) obj;
                 if (i10 == -1) {
-                    if (cdVar.f35416b >= cdVar.S0() && cdVar.Q0()) {
+                    if (cdVar.f35400b >= cdVar.S0() && cdVar.Q0()) {
                         cdVar.V0();
                         return;
                     } else {
@@ -382,14 +382,14 @@ public final class u extends org.telegram.ui.ActionBar.j {
                     mc mcVar = new mc(cdVar, cdVar.getParentActivity(), canvas, (cdVar.L.getMeasuredWidth() / 2.0f) + f7, (cdVar.L.getMeasuredHeight() / 2.0f) + f10, Math.max(createBitmap.getHeight(), createBitmap.getWidth()) + AndroidUtilities.navigationBarHeight, paint, createBitmap, paint2, f7, f10, 0);
                     cdVar.m0 = mcVar;
                     mcVar.setOnTouchListener(new bi.d(2));
-                    cdVar.f35432n0 = 0.0f;
+                    cdVar.f35416n0 = 0.0f;
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    cdVar.f35433o0 = ofFloat;
+                    cdVar.f35417o0 = ofFloat;
                     ofFloat.addUpdateListener(new tb(cdVar, 1));
-                    cdVar.f35433o0.addListener(new org.telegram.ui.u4(cdVar, 17));
-                    cdVar.f35433o0.setDuration(400L);
-                    cdVar.f35433o0.setInterpolator(nt.f29067e);
-                    cdVar.f35433o0.start();
+                    cdVar.f35417o0.addListener(new org.telegram.ui.u4(cdVar, 17));
+                    cdVar.f35417o0.setDuration(400L);
+                    cdVar.f35417o0.setInterpolator(nt.f29149e);
+                    cdVar.f35417o0.start();
                     frameLayout.addView(cdVar.m0, new ViewGroup.LayoutParams(-1, -1));
                     AndroidUtilities.runOnUIThread(new hc(cdVar, 0));
                     return;

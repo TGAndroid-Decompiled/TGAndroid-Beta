@@ -8,18 +8,18 @@ import java.util.List;
 import java.util.Timer;
 import org.telegram.messenger.Emoji;
 public final class xt extends org.telegram.ui.Components.yl0 {
-    public final Context f42949c;
+    public final Context f43011c;
     public Timer d;
-    public ArrayList f42950e;
-    public final ArrayList f42951f = new ArrayList();
+    public ArrayList f43012e;
+    public final ArrayList f43013f = new ArrayList();
     public final zt h;
 
     public xt(zt ztVar, Context context, HashMap hashMap) {
         this.h = ztVar;
-        this.f42949c = context;
+        this.f43011c = context;
         for (List<ut> list : hashMap.values()) {
             for (ut utVar : list) {
-                this.f42951f.add(utVar);
+                this.f43013f.add(utVar);
             }
         }
     }
@@ -31,7 +31,7 @@ public final class xt extends org.telegram.ui.Components.yl0 {
 
     @Override
     public final int h() {
-        ArrayList arrayList = this.f42950e;
+        ArrayList arrayList = this.f43012e;
         if (arrayList == null) {
             return 0;
         }
@@ -46,11 +46,11 @@ public final class xt extends org.telegram.ui.Components.yl0 {
     @Override
     public final void v(s4.c1 c1Var, int i10) {
         String str;
-        ut utVar = (ut) this.f42950e.get(i10);
-        org.telegram.ui.Cells.ea eaVar = (org.telegram.ui.Cells.ea) c1Var.f46531a;
+        ut utVar = (ut) this.f43012e.get(i10);
+        org.telegram.ui.Cells.ea eaVar = (org.telegram.ui.Cells.ea) c1Var.f46538a;
         CharSequence replaceEmoji = Emoji.replaceEmoji(zt.T(utVar), eaVar.getTextView().getPaint().getFontMetricsInt(), false);
         if (this.h.h) {
-            str = "+" + utVar.f41307c;
+            str = "+" + utVar.f41342c;
         } else {
             str = null;
         }
@@ -59,6 +59,6 @@ public final class xt extends org.telegram.ui.Components.yl0 {
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        return new s4.c1(zt.S(this.f42949c));
+        return new s4.c1(zt.S(this.f43011c));
     }
 }

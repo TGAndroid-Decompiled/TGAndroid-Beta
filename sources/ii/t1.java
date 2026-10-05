@@ -21,7 +21,7 @@ public final class t1 implements vi {
     @Override
     public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
         xi xiVar = this.f12655a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = xiVar.f32831j0;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = xiVar.f32922j0;
         e2 e2Var = this.f12656b;
         if (i10 == 7 || i10 == 8) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
@@ -37,9 +37,9 @@ public final class t1 implements vi {
                 Object obj = selectedPhotos.get(selectedPhotosOrder.get(i13));
                 if (obj instanceof MediaController.PhotoEntry) {
                     if (aVar != null) {
-                        e2Var.P.V1(aVar, (MediaController.PhotoEntry) obj);
+                        e2Var.P.U1(aVar, (MediaController.PhotoEntry) obj);
                     } else {
-                        e2Var.P.h2((MediaController.PhotoEntry) obj);
+                        e2Var.P.g2((MediaController.PhotoEntry) obj);
                     }
                 } else {
                     i13++;

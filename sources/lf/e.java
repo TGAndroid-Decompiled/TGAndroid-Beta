@@ -46,14 +46,14 @@ public final class e {
     }
 
     public final b b() {
-        byte D = this.d.D();
-        if (D != 0) {
-            if (D != 1) {
-                if (D != 2) {
-                    if (D == 3) {
+        byte d02 = this.d.d0();
+        if (d02 != 0) {
+            if (d02 != 1) {
+                if (d02 != 2) {
+                    if (d02 == 3) {
                         return b.UTF_8;
                     }
-                    throw new Exception(hg.c.h(D, "Invalid encoding: "));
+                    throw new Exception(hg.c.h(d02, "Invalid encoding: "));
                 }
                 return b.UTF_16BE;
             }
@@ -108,9 +108,9 @@ public final class e {
         byte[] bArr2 = dVar.f15476a;
         int i11 = 0;
         for (int i12 = 0; i12 < min; i12++) {
-            byte D = this.d.D();
-            bArr2[i12] = D;
-            if (D == 0 && (bVar != b.UTF_16 || i11 != 0 || i12 % 2 == 0)) {
+            byte d02 = this.d.d0();
+            bArr2[i12] = d02;
+            if (d02 == 0 && (bVar != b.UTF_16 || i11 != 0 || i12 % 2 == 0)) {
                 i11++;
                 int i13 = bVar.f15475b;
                 if (i11 == i13) {

@@ -203,8 +203,8 @@ public abstract class d extends li.e {
         if (aVar == null) {
             return;
         }
-        this.f4629g = aVar.B();
-        this.f4628f = this.f4627e.x();
+        this.f4629g = aVar.H();
+        this.f4628f = this.f4627e.B();
         this.h = this.f4627e.a();
         this.f4630i = this.f4627e.c();
     }

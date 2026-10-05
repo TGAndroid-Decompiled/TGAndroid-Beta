@@ -14,10 +14,10 @@ import m.p3;
 import w9.n;
 import w9.p;
 public final class c {
-    public final p f46758a;
+    public final p f46765a;
 
     public c(p pVar) {
-        this.f46758a = pVar;
+        this.f46765a = pVar;
     }
 
     public final void a(Throwable th2) {
@@ -25,47 +25,47 @@ public final class c {
             Log.w("FirebaseCrashlytics", "A null value was passed to recordException. Ignoring.", null);
             return;
         }
-        n nVar = this.f46758a.f48978f;
+        n nVar = this.f46765a.f48985f;
         Thread currentThread = Thread.currentThread();
         nVar.getClass();
         long currentTimeMillis = System.currentTimeMillis();
-        s sVar = nVar.f48960e;
+        s sVar = nVar.f48967e;
         v vVar = new v(nVar, currentTimeMillis, th2, currentThread);
         sVar.getClass();
         sVar.l(new x(vVar, 7));
     }
 
     public final void b() {
-        p pVar = this.f46758a;
+        p pVar = this.f46765a;
         Boolean bool = Boolean.TRUE;
-        w9.s sVar = pVar.f48975b;
+        w9.s sVar = pVar.f48982b;
         synchronized (sVar) {
-            sVar.f49001f = false;
-            sVar.f49002g = bool;
-            SharedPreferences.Editor edit = sVar.f48997a.edit();
+            sVar.f49008f = false;
+            sVar.f49009g = bool;
+            SharedPreferences.Editor edit = sVar.f49004a.edit();
             edit.putBoolean("firebase_crashlytics_collection_enabled", true);
             edit.apply();
-            synchronized (sVar.f48999c) {
+            synchronized (sVar.f49006c) {
                 if (sVar.a()) {
-                    if (!sVar.f49000e) {
+                    if (!sVar.f49007e) {
                         sVar.d.trySetResult(null);
-                        sVar.f49000e = true;
+                        sVar.f49007e = true;
                     }
-                } else if (sVar.f49000e) {
+                } else if (sVar.f49007e) {
                     sVar.d = new TaskCompletionSource();
-                    sVar.f49000e = false;
+                    sVar.f49007e = false;
                 }
             }
         }
     }
 
     public final void c(String str, String str2) {
-        n nVar = this.f46758a.f48978f;
+        n nVar = this.f46765a.f48985f;
         nVar.getClass();
         try {
             ((m) nVar.d.d).u(str, str2);
         } catch (IllegalArgumentException e7) {
-            Context context = nVar.f48957a;
+            Context context = nVar.f48964a;
             if (context != null && (context.getApplicationInfo().flags & 2) != 0) {
                 throw e7;
             }
@@ -75,7 +75,7 @@ public final class c {
 
     public final void d(String str) {
         boolean equals;
-        p3 p3Var = this.f46758a.f48978f.d;
+        p3 p3Var = this.f46765a.f48985f.d;
         p3Var.getClass();
         String b10 = x9.d.b(1024, str);
         synchronized (((AtomicMarkableReference) p3Var.h)) {
@@ -94,7 +94,7 @@ public final class c {
                     return;
                 }
                 ((AtomicMarkableReference) p3Var.h).set(b10, true);
-                ((s) p3Var.f15855b).l(new g(p3Var, 1));
+                ((s) p3Var.f15860b).l(new g(p3Var, 1));
             } finally {
             }
         }

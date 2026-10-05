@@ -1,18 +1,18 @@
 package y9;
 public final class v implements ia.d {
-    public static final v f50788a = new Object();
-    public static final ia.c f50789b = ia.c.c("rolloutVariant");
-    public static final ia.c f50790c = ia.c.c("parameterKey");
+    public static final v f50795a = new Object();
+    public static final ia.c f50796b = ia.c.c("rolloutVariant");
+    public static final ia.c f50797c = ia.c.c("parameterKey");
     public static final ia.c d = ia.c.c("parameterValue");
-    public static final ia.c f50791e = ia.c.c("templateVersion");
+    public static final ia.c f50798e = ia.c.c("templateVersion");
 
     @Override
     public final void a(Object obj, Object obj2) {
         ia.e eVar = (ia.e) obj2;
         w0 w0Var = (w0) ((y1) obj);
-        eVar.a(f50789b, w0Var.f50796a);
-        eVar.a(f50790c, w0Var.f50797b);
-        eVar.a(d, w0Var.f50798c);
-        eVar.f(f50791e, w0Var.d);
+        eVar.a(f50796b, w0Var.f50803a);
+        eVar.a(f50797c, w0Var.f50804b);
+        eVar.a(d, w0Var.f50805c);
+        eVar.f(f50798e, w0Var.d);
     }
 }

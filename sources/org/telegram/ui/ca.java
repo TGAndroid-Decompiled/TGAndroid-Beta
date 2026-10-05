@@ -22,26 +22,26 @@ import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stats;
 import org.telegram.tgnet.tl.TL_update;
 public final class ca implements RequestDelegate {
-    public final int f35383a;
-    public final Object f35384b;
-    public final Object f35385c;
+    public final int f35367a;
+    public final Object f35368b;
+    public final Object f35369c;
     public final Object d;
 
     public ca(Object obj, Object obj2, Object obj3, int i10) {
-        this.f35383a = i10;
-        this.f35384b = obj;
-        this.f35385c = obj2;
+        this.f35367a = i10;
+        this.f35368b = obj;
+        this.f35369c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f35383a;
+        int i10 = this.f35367a;
         jg.b bVar = null;
         int i11 = 0;
         Object obj = this.d;
-        Object obj2 = this.f35385c;
-        Object obj3 = this.f35384b;
+        Object obj2 = this.f35369c;
+        Object obj3 = this.f35368b;
         switch (i10) {
             case 0:
                 AndroidUtilities.runOnUIThread(new ai.m3((sa) obj3, (String) obj2, tL_error, tLObject, (TL_account.checkUsername) obj, 13));
@@ -129,8 +129,8 @@ public final class ca implements RequestDelegate {
                 yn ynVar = (yn) obj3;
                 long[] jArr = (long[]) obj;
                 AndroidUtilities.cancelRunOnUIThread((org.telegram.ui.ActionBar.m5) obj2);
-                ynVar.f43288b5.messageOwner.voiceTranscriptionRated = true;
-                ynVar.getMessagesStorage().updateMessageVoiceTranscriptionOpen(ynVar.f43288b5.getDialogId(), ynVar.f43288b5.getId(), ynVar.f43288b5.messageOwner);
+                ynVar.f43281b5.messageOwner.voiceTranscriptionRated = true;
+                ynVar.getMessagesStorage().updateMessageVoiceTranscriptionOpen(ynVar.f43281b5.getDialogId(), ynVar.f43281b5.getId(), ynVar.f43281b5.messageOwner);
                 ug ugVar = new ug(ynVar, 15);
                 long j3 = 0;
                 if (jArr[0] > 0) {
@@ -195,7 +195,7 @@ public final class ca implements RequestDelegate {
             case 14:
                 r70 r70Var = (r70) obj3;
                 String str = (String) obj;
-                s70 s70Var = r70Var.f39948r;
+                s70 s70Var = r70Var.f40003r;
                 if (Objects.equals(r70Var.h, (String) obj2) && (tLObject instanceof TLRPC.TL_messages_foundStickerSets)) {
                     ArrayList arrayList = new ArrayList();
                     ArrayList<TLRPC.StickerSetCovered> arrayList2 = ((TLRPC.TL_messages_foundStickerSets) tLObject).sets;
@@ -267,7 +267,7 @@ public final class ca implements RequestDelegate {
                 TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph = (TL_stats.TL_loadAsyncGraph) obj;
                 if (tLObject instanceof TL_stats.TL_statsGraph) {
                     try {
-                        bVar = va1.c0(new JSONObject(((TL_stats.TL_statsGraph) tLObject).json.data), 1, false);
+                        bVar = ta1.c0(new JSONObject(((TL_stats.TL_statsGraph) tLObject).json.data), 1, false);
                     } catch (JSONException e7) {
                         e7.printStackTrace();
                     }
@@ -279,17 +279,17 @@ public final class ca implements RequestDelegate {
             case 25:
                 ej0 ej0Var = (ej0) obj3;
                 String str4 = (String) obj2;
-                ua1 ua1Var = (ua1) obj;
+                sa1 sa1Var = (sa1) obj;
                 if (tLObject instanceof TL_stats.TL_statsGraph) {
                     try {
-                        bVar = va1.c0(new JSONObject(((TL_stats.TL_statsGraph) tLObject).json.data), ej0Var.f36241r.f37027i, false);
+                        bVar = ta1.c0(new JSONObject(((TL_stats.TL_statsGraph) tLObject).json.data), ej0Var.f35738r.f36250i, false);
                     } catch (JSONException e10) {
                         e10.printStackTrace();
                     }
                 } else if (tLObject instanceof TL_stats.TL_statsGraphError) {
                     Toast.makeText(ej0Var.getContext(), ((TL_stats.TL_statsGraphError) tLObject).error, 1).show();
                 }
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.bo0(ej0Var, bVar, str4, ua1Var, 24));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.bo0(ej0Var, bVar, str4, sa1Var, 24));
                 return;
             case 26:
                 AndroidUtilities.runOnUIThread(new f90((ak0) obj3, (TLRPC.TL_contacts_importedContacts) tLObject, (TLRPC.TL_inputPhoneContact) obj2, tL_error, (TLRPC.TL_contacts_importContacts) obj));
@@ -315,9 +315,9 @@ public final class ca implements RequestDelegate {
     }
 
     public ca(Object obj, TLObject tLObject, String str, int i10) {
-        this.f35383a = i10;
-        this.f35384b = obj;
+        this.f35367a = i10;
+        this.f35368b = obj;
         this.d = tLObject;
-        this.f35385c = str;
+        this.f35369c = str;
     }
 }

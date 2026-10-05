@@ -6,6 +6,6 @@ import org.telegram.ui.Components.mh0;
 public final class e extends mh0 {
     @Override
     public final void addExtraDataToAccessibilityNodeInfo(int i10, AccessibilityNodeInfo accessibilityNodeInfo, String str, Bundle bundle) {
-        ((k2.e) this.f28628b).getClass();
+        ((k2.e) this.f28707b).getClass();
     }
 }

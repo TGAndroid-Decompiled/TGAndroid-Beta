@@ -24,24 +24,24 @@ import org.telegram.tgnet.TLRPC;
 public class c11 extends org.telegram.ui.Components.yl0 {
     public TLRPC.WebPage E;
     public boolean F;
-    public b11[] f35251c;
-    public final org.telegram.ui.ActionBar.n2 f35252e;
-    public final int f35253f;
+    public b11[] f35275c;
+    public final org.telegram.ui.ActionBar.n2 f35276e;
+    public final int f35277f;
     public final Context h;
-    public boolean f35257w;
-    public wx0 f35258x;
-    public String f35259y;
+    public boolean f35281w;
+    public wx0 f35282x;
+    public String f35283y;
     public final ArrayList d = new ArrayList();
-    public ArrayList f35254n = new ArrayList();
-    public ArrayList f35255r = new ArrayList();
-    public ArrayList f35256s = new ArrayList();
+    public ArrayList f35278n = new ArrayList();
+    public ArrayList f35279r = new ArrayList();
+    public ArrayList f35280s = new ArrayList();
     public final ArrayList v = new ArrayList();
 
     public c11(Context context, org.telegram.ui.ActionBar.n2 n2Var) {
-        this.f35252e = n2Var;
-        this.f35253f = n2Var.getCurrentAccount();
+        this.f35276e = n2Var;
+        this.f35277f = n2Var.getCurrentAccount();
         this.h = context;
-        this.f35251c = H(n2Var);
+        this.f35275c = H(n2Var);
         J();
     }
 
@@ -135,10 +135,10 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(lc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = lc0Var8.f38241s;
+                            ArrayList arrayList = lc0Var8.f38283s;
                             if (i10 < arrayList.size()) {
-                                if (((fc0) arrayList.get(i10)).f36273f == 1) {
-                                    lc0Var8.f38235b.f1(new i2.s(lc0Var8, i10, 13), 700, true);
+                                if (((fc0) arrayList.get(i10)).f36267f == 1) {
+                                    lc0Var8.f38277b.e1(new i2.s(lc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -187,7 +187,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        n2Var.presentFragment(PasscodeActivity.b0());
+                        n2Var.presentFragment(PasscodeActivity.h0());
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
@@ -697,7 +697,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new f31());
+                        n2Var.presentFragment(new d31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -833,7 +833,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new f31());
+                        n2Var.presentFragment(new d31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -971,7 +971,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new f31());
+                        n2Var.presentFragment(new d31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -1121,10 +1121,10 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(lc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = lc0Var8.f38241s;
+                            ArrayList arrayList = lc0Var8.f38283s;
                             if (i10 < arrayList.size()) {
-                                if (((fc0) arrayList.get(i10)).f36273f == 1) {
-                                    lc0Var8.f38235b.f1(new i2.s(lc0Var8, i10, 13), 700, true);
+                                if (((fc0) arrayList.get(i10)).f36267f == 1) {
+                                    lc0Var8.f38277b.e1(new i2.s(lc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -1173,7 +1173,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        n2Var.presentFragment(PasscodeActivity.b0());
+                        n2Var.presentFragment(PasscodeActivity.h0());
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
@@ -1259,10 +1259,10 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(lc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = lc0Var8.f38241s;
+                            ArrayList arrayList = lc0Var8.f38283s;
                             if (i10 < arrayList.size()) {
-                                if (((fc0) arrayList.get(i10)).f36273f == 1) {
-                                    lc0Var8.f38235b.f1(new i2.s(lc0Var8, i10, 13), 700, true);
+                                if (((fc0) arrayList.get(i10)).f36267f == 1) {
+                                    lc0Var8.f38277b.e1(new i2.s(lc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -1311,7 +1311,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        n2Var.presentFragment(PasscodeActivity.b0());
+                        n2Var.presentFragment(PasscodeActivity.h0());
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
@@ -1396,10 +1396,10 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(lc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = lc0Var8.f38241s;
+                            ArrayList arrayList = lc0Var8.f38283s;
                             if (i10 < arrayList.size()) {
-                                if (((fc0) arrayList.get(i10)).f36273f == 1) {
-                                    lc0Var8.f38235b.f1(new i2.s(lc0Var8, i10, 13), 700, true);
+                                if (((fc0) arrayList.get(i10)).f36267f == 1) {
+                                    lc0Var8.f38277b.e1(new i2.s(lc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -1448,7 +1448,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        n2Var.presentFragment(PasscodeActivity.b0());
+                        n2Var.presentFragment(PasscodeActivity.h0());
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
@@ -1533,10 +1533,10 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(lc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = lc0Var8.f38241s;
+                            ArrayList arrayList = lc0Var8.f38283s;
                             if (i10 < arrayList.size()) {
-                                if (((fc0) arrayList.get(i10)).f36273f == 1) {
-                                    lc0Var8.f38235b.f1(new i2.s(lc0Var8, i10, 13), 700, true);
+                                if (((fc0) arrayList.get(i10)).f36267f == 1) {
+                                    lc0Var8.f38277b.e1(new i2.s(lc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -1585,7 +1585,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        n2Var.presentFragment(PasscodeActivity.b0());
+                        n2Var.presentFragment(PasscodeActivity.h0());
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
@@ -1670,10 +1670,10 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(lc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = lc0Var8.f38241s;
+                            ArrayList arrayList = lc0Var8.f38283s;
                             if (i10 < arrayList.size()) {
-                                if (((fc0) arrayList.get(i10)).f36273f == 1) {
-                                    lc0Var8.f38235b.f1(new i2.s(lc0Var8, i10, 13), 700, true);
+                                if (((fc0) arrayList.get(i10)).f36267f == 1) {
+                                    lc0Var8.f38277b.e1(new i2.s(lc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -1722,7 +1722,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        n2Var.presentFragment(PasscodeActivity.b0());
+                        n2Var.presentFragment(PasscodeActivity.h0());
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
@@ -1808,10 +1808,10 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(lc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = lc0Var8.f38241s;
+                            ArrayList arrayList = lc0Var8.f38283s;
                             if (i10 < arrayList.size()) {
-                                if (((fc0) arrayList.get(i10)).f36273f == 1) {
-                                    lc0Var8.f38235b.f1(new i2.s(lc0Var8, i10, 13), 700, true);
+                                if (((fc0) arrayList.get(i10)).f36267f == 1) {
+                                    lc0Var8.f38277b.e1(new i2.s(lc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -1860,7 +1860,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        n2Var.presentFragment(PasscodeActivity.b0());
+                        n2Var.presentFragment(PasscodeActivity.h0());
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
@@ -1918,9 +1918,9 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                                 spannableStringBuilder.replace(indexOf, lastIndexOf + 1, (CharSequence) string.substring(indexOf + 1, lastIndexOf));
                                 spannableStringBuilder.setSpan(new ci.zb(a02, 5), indexOf, lastIndexOf - 1, 33);
                             }
-                            zbVar.f33472b.setText(spannableStringBuilder);
-                            zbVar.f33472b.setSingleLine(false);
-                            zbVar.f33472b.setMaxLines(2);
+                            zbVar.f33480b.setText(spannableStringBuilder);
+                            zbVar.f33480b.setSingleLine(false);
+                            zbVar.f33480b.setMaxLines(2);
                             a02.b(zbVar, 2750).j();
                             return;
                         }
@@ -1984,10 +1984,10 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(lc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = lc0Var8.f38241s;
+                            ArrayList arrayList = lc0Var8.f38283s;
                             if (i10 < arrayList.size()) {
-                                if (((fc0) arrayList.get(i10)).f36273f == 1) {
-                                    lc0Var8.f38235b.f1(new i2.s(lc0Var8, i10, 13), 700, true);
+                                if (((fc0) arrayList.get(i10)).f36267f == 1) {
+                                    lc0Var8.f38277b.e1(new i2.s(lc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -2036,7 +2036,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        n2Var.presentFragment(PasscodeActivity.b0());
+                        n2Var.presentFragment(PasscodeActivity.h0());
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
@@ -2125,10 +2125,10 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                             n2Var.presentFragment(lc0Var8);
                             int i10 = 0;
                             while (true) {
-                                ArrayList arrayList = lc0Var8.f38241s;
+                                ArrayList arrayList = lc0Var8.f38283s;
                                 if (i10 < arrayList.size()) {
-                                    if (((fc0) arrayList.get(i10)).f36273f == 1) {
-                                        lc0Var8.f38235b.f1(new i2.s(lc0Var8, i10, 13), 700, true);
+                                    if (((fc0) arrayList.get(i10)).f36267f == 1) {
+                                        lc0Var8.f38277b.e1(new i2.s(lc0Var8, i10, 13), 700, true);
                                         return;
                                     }
                                     i10++;
@@ -2177,7 +2177,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                             n2Var.presentFragment(new TwoStepVerificationActivity());
                             return;
                         case 22:
-                            n2Var.presentFragment(PasscodeActivity.b0());
+                            n2Var.presentFragment(PasscodeActivity.h0());
                             return;
                         case 23:
                             org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
@@ -2267,10 +2267,10 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(lc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = lc0Var8.f38241s;
+                            ArrayList arrayList = lc0Var8.f38283s;
                             if (i10 < arrayList.size()) {
-                                if (((fc0) arrayList.get(i10)).f36273f == 1) {
-                                    lc0Var8.f38235b.f1(new i2.s(lc0Var8, i10, 13), 700, true);
+                                if (((fc0) arrayList.get(i10)).f36267f == 1) {
+                                    lc0Var8.f38277b.e1(new i2.s(lc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -2319,7 +2319,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        n2Var.presentFragment(PasscodeActivity.b0());
+                        n2Var.presentFragment(PasscodeActivity.h0());
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
@@ -2405,10 +2405,10 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(lc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = lc0Var8.f38241s;
+                            ArrayList arrayList = lc0Var8.f38283s;
                             if (i10 < arrayList.size()) {
-                                if (((fc0) arrayList.get(i10)).f36273f == 1) {
-                                    lc0Var8.f38235b.f1(new i2.s(lc0Var8, i10, 13), 700, true);
+                                if (((fc0) arrayList.get(i10)).f36267f == 1) {
+                                    lc0Var8.f38277b.e1(new i2.s(lc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -2457,7 +2457,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        n2Var.presentFragment(PasscodeActivity.b0());
+                        n2Var.presentFragment(PasscodeActivity.h0());
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
@@ -2543,10 +2543,10 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(lc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = lc0Var8.f38241s;
+                            ArrayList arrayList = lc0Var8.f38283s;
                             if (i10 < arrayList.size()) {
-                                if (((fc0) arrayList.get(i10)).f36273f == 1) {
-                                    lc0Var8.f38235b.f1(new i2.s(lc0Var8, i10, 13), 700, true);
+                                if (((fc0) arrayList.get(i10)).f36267f == 1) {
+                                    lc0Var8.f38277b.e1(new i2.s(lc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -2595,7 +2595,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        n2Var.presentFragment(PasscodeActivity.b0());
+                        n2Var.presentFragment(PasscodeActivity.h0());
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
@@ -2681,10 +2681,10 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(lc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = lc0Var8.f38241s;
+                            ArrayList arrayList = lc0Var8.f38283s;
                             if (i10 < arrayList.size()) {
-                                if (((fc0) arrayList.get(i10)).f36273f == 1) {
-                                    lc0Var8.f38235b.f1(new i2.s(lc0Var8, i10, 13), 700, true);
+                                if (((fc0) arrayList.get(i10)).f36267f == 1) {
+                                    lc0Var8.f38277b.e1(new i2.s(lc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -2733,7 +2733,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        n2Var.presentFragment(PasscodeActivity.b0());
+                        n2Var.presentFragment(PasscodeActivity.h0());
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
@@ -3401,9 +3401,9 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                                 spannableStringBuilder.replace(indexOf, lastIndexOf + 1, (CharSequence) string.substring(indexOf + 1, lastIndexOf));
                                 spannableStringBuilder.setSpan(new ci.zb(a02, 5), indexOf, lastIndexOf - 1, 33);
                             }
-                            zbVar.f33472b.setText(spannableStringBuilder);
-                            zbVar.f33472b.setSingleLine(false);
-                            zbVar.f33472b.setMaxLines(2);
+                            zbVar.f33480b.setText(spannableStringBuilder);
+                            zbVar.f33480b.setSingleLine(false);
+                            zbVar.f33480b.setMaxLines(2);
                             a02.b(zbVar, 2750).j();
                             return;
                         }
@@ -6821,7 +6821,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new f31());
+                        n2Var.presentFragment(new d31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -6957,7 +6957,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new f31());
+                        n2Var.presentFragment(new d31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -7093,7 +7093,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new f31());
+                        n2Var.presentFragment(new d31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -7230,7 +7230,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new f31());
+                        n2Var.presentFragment(new d31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -7366,7 +7366,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new f31());
+                        n2Var.presentFragment(new d31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -7503,7 +7503,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new f31());
+                        n2Var.presentFragment(new d31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -7639,7 +7639,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new f31());
+                        n2Var.presentFragment(new d31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -7776,7 +7776,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new f31());
+                        n2Var.presentFragment(new d31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -7913,7 +7913,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new f31());
+                        n2Var.presentFragment(new d31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -8049,7 +8049,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new f31());
+                        n2Var.presentFragment(new d31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -8186,7 +8186,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new f31());
+                        n2Var.presentFragment(new d31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -8323,7 +8323,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new f31());
+                        n2Var.presentFragment(new d31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -8478,10 +8478,10 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                             n2Var.presentFragment(lc0Var8);
                             int i10 = 0;
                             while (true) {
-                                ArrayList arrayList = lc0Var8.f38241s;
+                                ArrayList arrayList = lc0Var8.f38283s;
                                 if (i10 < arrayList.size()) {
-                                    if (((fc0) arrayList.get(i10)).f36273f == 1) {
-                                        lc0Var8.f38235b.f1(new i2.s(lc0Var8, i10, 13), 700, true);
+                                    if (((fc0) arrayList.get(i10)).f36267f == 1) {
+                                        lc0Var8.f38277b.e1(new i2.s(lc0Var8, i10, 13), 700, true);
                                         return;
                                     }
                                     i10++;
@@ -8530,7 +8530,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                             n2Var.presentFragment(new TwoStepVerificationActivity());
                             return;
                         case 22:
-                            n2Var.presentFragment(PasscodeActivity.b0());
+                            n2Var.presentFragment(PasscodeActivity.h0());
                             return;
                         case 23:
                             org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
@@ -8623,10 +8623,10 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                             n2Var.presentFragment(lc0Var8);
                             int i10 = 0;
                             while (true) {
-                                ArrayList arrayList = lc0Var8.f38241s;
+                                ArrayList arrayList = lc0Var8.f38283s;
                                 if (i10 < arrayList.size()) {
-                                    if (((fc0) arrayList.get(i10)).f36273f == 1) {
-                                        lc0Var8.f38235b.f1(new i2.s(lc0Var8, i10, 13), 700, true);
+                                    if (((fc0) arrayList.get(i10)).f36267f == 1) {
+                                        lc0Var8.f38277b.e1(new i2.s(lc0Var8, i10, 13), 700, true);
                                         return;
                                     }
                                     i10++;
@@ -8675,7 +8675,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                             n2Var.presentFragment(new TwoStepVerificationActivity());
                             return;
                         case 22:
-                            n2Var.presentFragment(PasscodeActivity.b0());
+                            n2Var.presentFragment(PasscodeActivity.h0());
                             return;
                         case 23:
                             org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
@@ -8764,10 +8764,10 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                             n2Var.presentFragment(lc0Var8);
                             int i10 = 0;
                             while (true) {
-                                ArrayList arrayList = lc0Var8.f38241s;
+                                ArrayList arrayList = lc0Var8.f38283s;
                                 if (i10 < arrayList.size()) {
-                                    if (((fc0) arrayList.get(i10)).f36273f == 1) {
-                                        lc0Var8.f38235b.f1(new i2.s(lc0Var8, i10, 13), 700, true);
+                                    if (((fc0) arrayList.get(i10)).f36267f == 1) {
+                                        lc0Var8.f38277b.e1(new i2.s(lc0Var8, i10, 13), 700, true);
                                         return;
                                     }
                                     i10++;
@@ -8816,7 +8816,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                             n2Var.presentFragment(new TwoStepVerificationActivity());
                             return;
                         case 22:
-                            n2Var.presentFragment(PasscodeActivity.b0());
+                            n2Var.presentFragment(PasscodeActivity.h0());
                             return;
                         case 23:
                             org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
@@ -9414,7 +9414,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                             n2Var.presentFragment(new StickersActivity(5, null));
                             return;
                         case 11:
-                            n2Var.presentFragment(new f31());
+                            n2Var.presentFragment(new d31());
                             return;
                         case 12:
                             n2Var.presentFragment(new FiltersSetupActivity());
@@ -9554,7 +9554,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                             n2Var.presentFragment(new StickersActivity(5, null));
                             return;
                         case 11:
-                            n2Var.presentFragment(new f31());
+                            n2Var.presentFragment(new d31());
                             return;
                         case 12:
                             n2Var.presentFragment(new FiltersSetupActivity());
@@ -9694,7 +9694,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                             n2Var.presentFragment(new StickersActivity(5, null));
                             return;
                         case 11:
-                            n2Var.presentFragment(new f31());
+                            n2Var.presentFragment(new d31());
                             return;
                         case 12:
                             n2Var.presentFragment(new FiltersSetupActivity());
@@ -9834,7 +9834,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                             n2Var.presentFragment(new StickersActivity(5, null));
                             return;
                         case 11:
-                            n2Var.presentFragment(new f31());
+                            n2Var.presentFragment(new d31());
                             return;
                         case 12:
                             n2Var.presentFragment(new FiltersSetupActivity());
@@ -9974,7 +9974,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                             n2Var.presentFragment(new StickersActivity(5, null));
                             return;
                         case 11:
-                            n2Var.presentFragment(new f31());
+                            n2Var.presentFragment(new d31());
                             return;
                         case 12:
                             n2Var.presentFragment(new FiltersSetupActivity());
@@ -10113,7 +10113,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new f31());
+                        n2Var.presentFragment(new d31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -10250,7 +10250,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new f31());
+                        n2Var.presentFragment(new d31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -10387,7 +10387,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new f31());
+                        n2Var.presentFragment(new d31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -10523,7 +10523,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new f31());
+                        n2Var.presentFragment(new d31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -10659,7 +10659,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new f31());
+                        n2Var.presentFragment(new d31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -10796,7 +10796,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new f31());
+                        n2Var.presentFragment(new d31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -10932,7 +10932,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new f31());
+                        n2Var.presentFragment(new d31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -11068,7 +11068,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new f31());
+                        n2Var.presentFragment(new d31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -11204,7 +11204,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new f31());
+                        n2Var.presentFragment(new d31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -11341,7 +11341,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new f31());
+                        n2Var.presentFragment(new d31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -11491,10 +11491,10 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(lc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = lc0Var8.f38241s;
+                            ArrayList arrayList = lc0Var8.f38283s;
                             if (i10 < arrayList.size()) {
-                                if (((fc0) arrayList.get(i10)).f36273f == 1) {
-                                    lc0Var8.f38235b.f1(new i2.s(lc0Var8, i10, 13), 700, true);
+                                if (((fc0) arrayList.get(i10)).f36267f == 1) {
+                                    lc0Var8.f38277b.e1(new i2.s(lc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -11543,7 +11543,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        n2Var.presentFragment(PasscodeActivity.b0());
+                        n2Var.presentFragment(PasscodeActivity.h0());
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
@@ -11628,10 +11628,10 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(lc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = lc0Var8.f38241s;
+                            ArrayList arrayList = lc0Var8.f38283s;
                             if (i10 < arrayList.size()) {
-                                if (((fc0) arrayList.get(i10)).f36273f == 1) {
-                                    lc0Var8.f38235b.f1(new i2.s(lc0Var8, i10, 13), 700, true);
+                                if (((fc0) arrayList.get(i10)).f36267f == 1) {
+                                    lc0Var8.f38277b.e1(new i2.s(lc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -11680,7 +11680,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        n2Var.presentFragment(PasscodeActivity.b0());
+                        n2Var.presentFragment(PasscodeActivity.h0());
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
@@ -11766,10 +11766,10 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                             n2Var.presentFragment(lc0Var8);
                             int i10 = 0;
                             while (true) {
-                                ArrayList arrayList = lc0Var8.f38241s;
+                                ArrayList arrayList = lc0Var8.f38283s;
                                 if (i10 < arrayList.size()) {
-                                    if (((fc0) arrayList.get(i10)).f36273f == 1) {
-                                        lc0Var8.f38235b.f1(new i2.s(lc0Var8, i10, 13), 700, true);
+                                    if (((fc0) arrayList.get(i10)).f36267f == 1) {
+                                        lc0Var8.f38277b.e1(new i2.s(lc0Var8, i10, 13), 700, true);
                                         return;
                                     }
                                     i10++;
@@ -11818,7 +11818,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                             n2Var.presentFragment(new TwoStepVerificationActivity());
                             return;
                         case 22:
-                            n2Var.presentFragment(PasscodeActivity.b0());
+                            n2Var.presentFragment(PasscodeActivity.h0());
                             return;
                         case 23:
                             org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
@@ -11906,10 +11906,10 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(lc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = lc0Var8.f38241s;
+                            ArrayList arrayList = lc0Var8.f38283s;
                             if (i10 < arrayList.size()) {
-                                if (((fc0) arrayList.get(i10)).f36273f == 1) {
-                                    lc0Var8.f38235b.f1(new i2.s(lc0Var8, i10, 13), 700, true);
+                                if (((fc0) arrayList.get(i10)).f36267f == 1) {
+                                    lc0Var8.f38277b.e1(new i2.s(lc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -11958,7 +11958,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        n2Var.presentFragment(PasscodeActivity.b0());
+                        n2Var.presentFragment(PasscodeActivity.h0());
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
@@ -12043,10 +12043,10 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(lc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = lc0Var8.f38241s;
+                            ArrayList arrayList = lc0Var8.f38283s;
                             if (i10 < arrayList.size()) {
-                                if (((fc0) arrayList.get(i10)).f36273f == 1) {
-                                    lc0Var8.f38235b.f1(new i2.s(lc0Var8, i10, 13), 700, true);
+                                if (((fc0) arrayList.get(i10)).f36267f == 1) {
+                                    lc0Var8.f38277b.e1(new i2.s(lc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -12095,7 +12095,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        n2Var.presentFragment(PasscodeActivity.b0());
+                        n2Var.presentFragment(PasscodeActivity.h0());
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
@@ -12181,10 +12181,10 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(lc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = lc0Var8.f38241s;
+                            ArrayList arrayList = lc0Var8.f38283s;
                             if (i10 < arrayList.size()) {
-                                if (((fc0) arrayList.get(i10)).f36273f == 1) {
-                                    lc0Var8.f38235b.f1(new i2.s(lc0Var8, i10, 13), 700, true);
+                                if (((fc0) arrayList.get(i10)).f36267f == 1) {
+                                    lc0Var8.f38277b.e1(new i2.s(lc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -12233,7 +12233,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        n2Var.presentFragment(PasscodeActivity.b0());
+                        n2Var.presentFragment(PasscodeActivity.h0());
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
@@ -12319,10 +12319,10 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(lc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = lc0Var8.f38241s;
+                            ArrayList arrayList = lc0Var8.f38283s;
                             if (i10 < arrayList.size()) {
-                                if (((fc0) arrayList.get(i10)).f36273f == 1) {
-                                    lc0Var8.f38235b.f1(new i2.s(lc0Var8, i10, 13), 700, true);
+                                if (((fc0) arrayList.get(i10)).f36267f == 1) {
+                                    lc0Var8.f38277b.e1(new i2.s(lc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -12371,7 +12371,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        n2Var.presentFragment(PasscodeActivity.b0());
+                        n2Var.presentFragment(PasscodeActivity.h0());
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
@@ -12457,10 +12457,10 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(lc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = lc0Var8.f38241s;
+                            ArrayList arrayList = lc0Var8.f38283s;
                             if (i10 < arrayList.size()) {
-                                if (((fc0) arrayList.get(i10)).f36273f == 1) {
-                                    lc0Var8.f38235b.f1(new i2.s(lc0Var8, i10, 13), 700, true);
+                                if (((fc0) arrayList.get(i10)).f36267f == 1) {
+                                    lc0Var8.f38277b.e1(new i2.s(lc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -12509,7 +12509,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        n2Var.presentFragment(PasscodeActivity.b0());
+                        n2Var.presentFragment(PasscodeActivity.h0());
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
@@ -12595,10 +12595,10 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(lc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = lc0Var8.f38241s;
+                            ArrayList arrayList = lc0Var8.f38283s;
                             if (i10 < arrayList.size()) {
-                                if (((fc0) arrayList.get(i10)).f36273f == 1) {
-                                    lc0Var8.f38235b.f1(new i2.s(lc0Var8, i10, 13), 700, true);
+                                if (((fc0) arrayList.get(i10)).f36267f == 1) {
+                                    lc0Var8.f38277b.e1(new i2.s(lc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -12647,7 +12647,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        n2Var.presentFragment(PasscodeActivity.b0());
+                        n2Var.presentFragment(PasscodeActivity.h0());
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
@@ -12733,10 +12733,10 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(lc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = lc0Var8.f38241s;
+                            ArrayList arrayList = lc0Var8.f38283s;
                             if (i10 < arrayList.size()) {
-                                if (((fc0) arrayList.get(i10)).f36273f == 1) {
-                                    lc0Var8.f38235b.f1(new i2.s(lc0Var8, i10, 13), 700, true);
+                                if (((fc0) arrayList.get(i10)).f36267f == 1) {
+                                    lc0Var8.f38277b.e1(new i2.s(lc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -12785,7 +12785,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        n2Var.presentFragment(PasscodeActivity.b0());
+                        n2Var.presentFragment(PasscodeActivity.h0());
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
@@ -12872,10 +12872,10 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                             n2Var.presentFragment(lc0Var8);
                             int i10 = 0;
                             while (true) {
-                                ArrayList arrayList = lc0Var8.f38241s;
+                                ArrayList arrayList = lc0Var8.f38283s;
                                 if (i10 < arrayList.size()) {
-                                    if (((fc0) arrayList.get(i10)).f36273f == 1) {
-                                        lc0Var8.f38235b.f1(new i2.s(lc0Var8, i10, 13), 700, true);
+                                    if (((fc0) arrayList.get(i10)).f36267f == 1) {
+                                        lc0Var8.f38277b.e1(new i2.s(lc0Var8, i10, 13), 700, true);
                                         return;
                                     }
                                     i10++;
@@ -12924,7 +12924,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                             n2Var.presentFragment(new TwoStepVerificationActivity());
                             return;
                         case 22:
-                            n2Var.presentFragment(PasscodeActivity.b0());
+                            n2Var.presentFragment(PasscodeActivity.h0());
                             return;
                         case 23:
                             org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
@@ -13012,10 +13012,10 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(lc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = lc0Var8.f38241s;
+                            ArrayList arrayList = lc0Var8.f38283s;
                             if (i10 < arrayList.size()) {
-                                if (((fc0) arrayList.get(i10)).f36273f == 1) {
-                                    lc0Var8.f38235b.f1(new i2.s(lc0Var8, i10, 13), 700, true);
+                                if (((fc0) arrayList.get(i10)).f36267f == 1) {
+                                    lc0Var8.f38277b.e1(new i2.s(lc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -13064,7 +13064,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        n2Var.presentFragment(PasscodeActivity.b0());
+                        n2Var.presentFragment(PasscodeActivity.h0());
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
@@ -13150,10 +13150,10 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(lc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = lc0Var8.f38241s;
+                            ArrayList arrayList = lc0Var8.f38283s;
                             if (i10 < arrayList.size()) {
-                                if (((fc0) arrayList.get(i10)).f36273f == 1) {
-                                    lc0Var8.f38235b.f1(new i2.s(lc0Var8, i10, 13), 700, true);
+                                if (((fc0) arrayList.get(i10)).f36267f == 1) {
+                                    lc0Var8.f38277b.e1(new i2.s(lc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -13202,7 +13202,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        n2Var.presentFragment(PasscodeActivity.b0());
+                        n2Var.presentFragment(PasscodeActivity.h0());
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
@@ -13288,10 +13288,10 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(lc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = lc0Var8.f38241s;
+                            ArrayList arrayList = lc0Var8.f38283s;
                             if (i10 < arrayList.size()) {
-                                if (((fc0) arrayList.get(i10)).f36273f == 1) {
-                                    lc0Var8.f38235b.f1(new i2.s(lc0Var8, i10, 13), 700, true);
+                                if (((fc0) arrayList.get(i10)).f36267f == 1) {
+                                    lc0Var8.f38277b.e1(new i2.s(lc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -13340,7 +13340,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         n2Var.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        n2Var.presentFragment(PasscodeActivity.b0());
+                        n2Var.presentFragment(PasscodeActivity.h0());
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
@@ -13377,7 +13377,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f46535f == 0) {
+        if (c1Var.f46542f == 0) {
             return true;
         }
         return false;
@@ -13390,7 +13390,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
             arrayList.remove(indexOf);
         }
         arrayList.add(0, obj);
-        if (!this.f35257w) {
+        if (!this.f35281w) {
             l();
         }
         if (arrayList.size() > 20) {
@@ -13401,7 +13401,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
         for (int i10 = 0; i10 < size; i10++) {
             Object obj2 = arrayList.get(i10);
             if (obj2 instanceof b11) {
-                ((b11) obj2).f34962g = i10;
+                ((b11) obj2).f35013g = i10;
             } else if (obj2 instanceof MessagesController.FaqSearchResult) {
                 ((MessagesController.FaqSearchResult) obj2).num = i10;
             }
@@ -13411,7 +13411,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
     }
 
     public final void G() {
-        int i10 = this.f35253f;
+        int i10 = this.f35277f;
         TLRPC.WebPage webPage = MessagesController.getInstance(i10).faqWebPage;
         this.E = webPage;
         if (webPage != null) {
@@ -13427,21 +13427,21 @@ public class c11 extends org.telegram.ui.Components.yl0 {
     }
 
     public final void I(String str) {
-        this.f35259y = str;
-        if (this.f35258x != null) {
-            Utilities.searchQueue.cancelRunnable(this.f35258x);
-            this.f35258x = null;
+        this.f35283y = str;
+        if (this.f35282x != null) {
+            Utilities.searchQueue.cancelRunnable(this.f35282x);
+            this.f35282x = null;
         }
         if (TextUtils.isEmpty(str)) {
-            this.f35257w = false;
-            this.f35255r.clear();
-            this.f35256s.clear();
-            this.f35254n.clear();
-            org.telegram.ui.ActionBar.n2 n2Var = this.f35252e;
+            this.f35281w = false;
+            this.f35279r.clear();
+            this.f35280s.clear();
+            this.f35278n.clear();
+            org.telegram.ui.ActionBar.n2 n2Var = this.f35276e;
             if (n2Var instanceof ProfileActivity) {
                 try {
-                    ((ProfileActivity) n2Var).P.f31199b.getImageReceiver().startAnimation();
-                    ((ProfileActivity) this.f35252e).P.d.setText(LocaleController.getString(R.string.SettingsNoRecent));
+                    ((ProfileActivity) n2Var).P.f31549b.getImageReceiver().startAnimation();
+                    ((ProfileActivity) this.f35276e).P.d.setText(LocaleController.getString(R.string.SettingsNoRecent));
                 } catch (Exception e7) {
                     FileLog.e(e7);
                 }
@@ -13451,7 +13451,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
         }
         DispatchQueue dispatchQueue = Utilities.searchQueue;
         wx0 wx0Var = new wx0(14, this, str);
-        this.f35258x = wx0Var;
+        this.f35282x = wx0Var;
         dispatchQueue.postRunnable(wx0Var, 300L);
     }
 
@@ -13461,13 +13461,13 @@ public class c11 extends org.telegram.ui.Components.yl0 {
         HashMap hashMap = new HashMap();
         int i10 = 0;
         while (true) {
-            b11[] b11VarArr = this.f35251c;
+            b11[] b11VarArr = this.f35275c;
             if (i10 >= b11VarArr.length) {
                 break;
             }
             b11 b11Var2 = b11VarArr[i10];
             if (b11Var2 != null) {
-                hashMap.put(Integer.valueOf(b11Var2.f34961f), this.f35251c[i10]);
+                hashMap.put(Integer.valueOf(b11Var2.f35012f), this.f35275c[i10]);
             }
             i10++;
         }
@@ -13494,7 +13494,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
                         faqSearchResult.num = readInt32;
                         arrayList.add(faqSearchResult);
                     } else if (readInt322 == 1 && (b11Var = (b11) hashMap.get(Integer.valueOf(serializedData.readInt32(false)))) != null) {
-                        b11Var.f34962g = readInt32;
+                        b11Var.f35013g = readInt32;
                         arrayList.add(b11Var);
                     }
                 } catch (Exception unused) {
@@ -13508,10 +13508,10 @@ public class c11 extends org.telegram.ui.Components.yl0 {
     public final int h() {
         int size;
         int i10 = 0;
-        if (this.f35257w) {
-            int size2 = this.f35255r.size();
-            if (!this.f35256s.isEmpty()) {
-                i10 = this.f35256s.size() + 1;
+        if (this.f35281w) {
+            int size2 = this.f35279r.size();
+            if (!this.f35280s.isEmpty()) {
+                i10 = this.f35280s.size() + 1;
             }
             return size2 + i10;
         }
@@ -13530,8 +13530,8 @@ public class c11 extends org.telegram.ui.Components.yl0 {
 
     @Override
     public final int j(int i10) {
-        if (this.f35257w) {
-            if (i10 < this.f35255r.size() || i10 != this.f35255r.size()) {
+        if (this.f35281w) {
+            if (i10 < this.f35279r.size() || i10 != this.f35279r.size()) {
                 return 0;
             }
         } else {
@@ -13551,8 +13551,8 @@ public class c11 extends org.telegram.ui.Components.yl0 {
     public final void v(s4.c1 c1Var, int i10) {
         b11 b11Var;
         int i11;
-        int i12 = c1Var.f46535f;
-        View view = c1Var.f46531a;
+        int i12 = c1Var.f46542f;
+        View view = c1Var.f46538a;
         boolean z10 = true;
         if (i12 != 0) {
             if (i12 != 1) {
@@ -13567,31 +13567,31 @@ public class c11 extends org.telegram.ui.Components.yl0 {
         }
         org.telegram.ui.Cells.y6 y6Var = (org.telegram.ui.Cells.y6) view;
         boolean z11 = false;
-        if (this.f35257w) {
-            if (i10 < this.f35255r.size()) {
-                b11 b11Var2 = (b11) this.f35255r.get(i10);
+        if (this.f35281w) {
+            if (i10 < this.f35279r.size()) {
+                b11 b11Var2 = (b11) this.f35279r.get(i10);
                 if (i10 > 0) {
-                    b11Var = (b11) this.f35255r.get(i10 - 1);
+                    b11Var = (b11) this.f35279r.get(i10 - 1);
                 } else {
                     b11Var = null;
                 }
-                if (b11Var != null && b11Var.f34960e == b11Var2.f34960e) {
+                if (b11Var != null && b11Var.f35011e == b11Var2.f35011e) {
                     i11 = 0;
                 } else {
-                    i11 = b11Var2.f34960e;
+                    i11 = b11Var2.f35011e;
                 }
-                CharSequence charSequence = (CharSequence) this.f35254n.get(i10);
+                CharSequence charSequence = (CharSequence) this.f35278n.get(i10);
                 String[] strArr = b11Var2.d;
-                if (i10 >= this.f35255r.size() - 1) {
+                if (i10 >= this.f35279r.size() - 1) {
                     z10 = false;
                 }
                 y6Var.b(charSequence, strArr, i11, z10);
                 return;
             }
-            int f7 = com.google.android.gms.internal.vision.e2.f(1, i10, this.f35255r);
-            CharSequence charSequence2 = (CharSequence) this.f35254n.get(this.f35255r.size() + f7);
-            String[] strArr2 = ((MessagesController.FaqSearchResult) this.f35256s.get(f7)).path;
-            if (f7 < this.f35255r.size() - 1) {
+            int f7 = com.google.android.gms.internal.vision.e2.f(1, i10, this.f35279r);
+            CharSequence charSequence2 = (CharSequence) this.f35278n.get(this.f35279r.size() + f7);
+            String[] strArr2 = ((MessagesController.FaqSearchResult) this.f35280s.get(f7)).path;
+            if (f7 < this.f35279r.size() - 1) {
                 z11 = true;
             }
             y6Var.a(charSequence2, strArr2, true, z11);
@@ -13605,7 +13605,7 @@ public class c11 extends org.telegram.ui.Components.yl0 {
             Object obj = arrayList.get(i10);
             if (obj instanceof b11) {
                 b11 b11Var3 = (b11) obj;
-                String str = b11Var3.f34957a;
+                String str = b11Var3.f35008a;
                 String[] strArr3 = b11Var3.d;
                 if (i10 >= arrayList.size() - 1) {
                     z10 = false;

@@ -5,21 +5,21 @@ import android.os.Parcelable;
 import w7.g0;
 public final class i extends o6.a {
     public static final Parcelable.Creator<i> CREATOR = new h(1);
-    public final int f16343a;
-    public final boolean f16344b;
+    public final int f16348a;
+    public final boolean f16349b;
 
     public i(int i10, boolean z10) {
-        this.f16343a = i10;
-        this.f16344b = z10;
+        this.f16348a = i10;
+        this.f16349b = z10;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = g0.q(parcel, 20293);
         g0.s(parcel, 2, 4);
-        parcel.writeInt(this.f16343a);
+        parcel.writeInt(this.f16348a);
         g0.s(parcel, 3, 4);
-        parcel.writeInt(this.f16344b ? 1 : 0);
+        parcel.writeInt(this.f16349b ? 1 : 0);
         g0.r(parcel, q6);
     }
 }

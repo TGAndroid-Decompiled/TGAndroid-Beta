@@ -3,25 +3,25 @@ package xh;
 import android.content.Context;
 import android.view.View;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.c71;
-import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.e71;
 import org.telegram.ui.Components.g61;
-import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.h61;
+import org.telegram.ui.Components.w61;
 import org.telegram.ui.Components.zl0;
-public final class k3 extends f61 {
+public final class k3 extends g61 {
     static {
-        f61.setup(new f61());
+        g61.setup(new g61());
     }
 
-    public static g61 a(String str) {
-        g61 J = g61.J(k3.class);
-        J.f26674l = str;
-        return J;
+    public static h61 a(String str) {
+        h61 K = h61.K(k3.class);
+        K.f27093l = str;
+        return K;
     }
 
     @Override
-    public final void bindView(View view, g61 g61Var, boolean z10, u61 u61Var, c71 c71Var) {
-        ((l3) view).set(g61Var.f26674l);
+    public final void bindView(View view, h61 h61Var, boolean z10, w61 w61Var, e71 e71Var) {
+        ((l3) view).set(h61Var.f27093l);
     }
 
     @Override

@@ -21,7 +21,7 @@ public final class x5 implements View.OnFocusChangeListener {
                 f6.a((f6) this.f12795b, z10);
                 return;
             case 1:
-                EditTextBoldCursor editTextBoldCursor = ((pg.v) this.f12795b).f44661c;
+                EditTextBoldCursor editTextBoldCursor = ((pg.v) this.f12795b).f44668c;
                 if (!z10 && TextUtils.isEmpty(editTextBoldCursor.getText())) {
                     editTextBoldCursor.setText("0");
                     return;
@@ -35,7 +35,7 @@ public final class x5 implements View.OnFocusChangeListener {
                 }
                 return;
             case 3:
-                ae aeVar = ((yh.g) this.f12795b).M;
+                ae aeVar = ((yh.h) this.f12795b).V;
                 if (z10) {
                     f7 = 1.0f;
                 } else {
@@ -44,29 +44,29 @@ public final class x5 implements View.OnFocusChangeListener {
                 aeVar.b(f7, f7, true);
                 return;
             case 4:
-                yh.a0 a0Var = (yh.a0) this.f12795b;
-                a0Var.f51065c0.c(z10, !TextUtils.isEmpty(a0Var.f51066d0.getText()));
+                yh.b0 b0Var = (yh.b0) this.f12795b;
+                b0Var.f51121c0.c(z10, !TextUtils.isEmpty(b0Var.f51122d0.getText()));
                 return;
             case 5:
-                yh.e0 e0Var = (yh.e0) this.f12795b;
-                e0Var.f51218f.c(z10, !TextUtils.isEmpty(e0Var.h.getText()));
+                yh.f0 f0Var = (yh.f0) this.f12795b;
+                f0Var.f51277f.c(z10, !TextUtils.isEmpty(f0Var.h.getText()));
                 return;
             case 6:
-                yh.i0 i0Var = (yh.i0) this.f12795b;
-                i0Var.f51406b.c(z10, !TextUtils.isEmpty(i0Var.f51407c.getText()));
+                yh.j0 j0Var = (yh.j0) this.f12795b;
+                j0Var.f51471b.c(z10, !TextUtils.isEmpty(j0Var.f51472c.getText()));
                 return;
             default:
-                zg.o oVar = (zg.o) this.f12795b;
+                zg.l lVar = (zg.l) this.f12795b;
                 if (z10) {
-                    oVar.n(true);
-                    Runnable runnable = oVar.f53367e;
+                    lVar.n(true);
+                    Runnable runnable = lVar.f53335e;
                     if (runnable != null) {
                         runnable.run();
                         return;
                     }
                     return;
                 }
-                oVar.m();
+                lVar.m();
                 return;
         }
     }

@@ -2,9 +2,9 @@ package qg;
 
 import android.graphics.Bitmap;
 public final class m2 {
-    public Bitmap f45201a;
-    public int f45202b;
-    public int f45203c;
+    public Bitmap f45208a;
+    public int f45209b;
+    public int f45210c;
     public int d;
-    public int f45204e;
+    public int f45211e;
 }

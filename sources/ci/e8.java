@@ -19,7 +19,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.tr;
-import org.telegram.ui.hc1;
+import org.telegram.ui.fc1;
 public class e8 extends View {
     public final Path E;
     public final Path F;
@@ -93,7 +93,7 @@ public class e8 extends View {
             paint5.setStrokeCap(Paint.Cap.ROUND);
         } else {
             o6Var.t(AndroidUtilities.dp(14.0f));
-            o6Var.f29245b = 5;
+            o6Var.f29354b = 5;
             org.telegram.ui.Components.o6 o6Var2 = new org.telegram.ui.Components.o6(false, true, true, false);
             this.f5040y = o6Var2;
             o6Var2.G = AndroidUtilities.displaySize.x;
@@ -127,8 +127,8 @@ public class e8 extends View {
         this.f5032c = 0.9f;
     }
 
-    public final void c(hc1 hc1Var) {
-        this.h = hc1Var;
+    public final void c(fc1 fc1Var) {
+        this.h = fc1Var;
     }
 
     public final void d(float f7) {
@@ -275,7 +275,7 @@ public class e8 extends View {
         long j3;
         String str = Math.round(100.0f * f7) + "%";
         org.telegram.ui.Components.o6 o6Var = this.f5039x;
-        if (!TextUtils.equals(o6Var.f29249g, str)) {
+        if (!TextUtils.equals(o6Var.f29358g, str)) {
             o6Var.b();
             if (this.f5033e) {
                 j3 = 320;

@@ -11,7 +11,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
 import org.telegram.messenger.q;
 import org.telegram.ui.me;
-import yh.x7;
+import yh.z7;
 public final class d {
     public final long[] f14777a;
     public final CharSequence[] f14778b;
@@ -77,12 +77,12 @@ public final class d {
                 i12 = 6;
             }
             decimalFormat2.setMaximumFractionDigits(i12);
-            return me.D0("TON " + this.h.format(j3 / 1.0E9d), textPaint, 0.8f, -AndroidUtilities.dp(0.66f), false);
+            return me.K("TON " + this.h.format(j3 / 1.0E9d), textPaint, 0.8f, -AndroidUtilities.dp(0.66f), false);
         } else if (i11 == 2) {
             if (i10 == 1) {
                 return "≈" + BillingController.getInstance().formatCurrency(j3, "USD");
             }
-            return x7.d1(false, q.h(j3, ' ', new StringBuilder("XTR ")), 0.65f, null);
+            return z7.d1(false, q.h(j3, ' ', new StringBuilder("XTR ")), 0.65f, null);
         } else {
             return AndroidUtilities.formatWholeNumber((int) j3, 0);
         }

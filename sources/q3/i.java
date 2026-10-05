@@ -16,11 +16,11 @@ import java.util.Locale;
 import org.telegram.ui.web.w;
 import v7.r6;
 public final class i extends w7.m {
-    public static final w f44788b = new w(11);
-    public final g f44789a;
+    public static final w f44795b = new w(11);
+    public final g f44796a;
 
     public i(g gVar) {
-        this.f44789a = gVar;
+        this.f44796a = gVar;
     }
 
     public static a d(v vVar, int i10, int i11) {

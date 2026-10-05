@@ -6,26 +6,26 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 public final class xe extends ch {
-    public final Rect f32780x;
-    public final ChatActivityEnterView f32781y;
+    public final Rect f32871x;
+    public final ChatActivityEnterView f32872y;
 
     public xe(ChatActivityEnterView chatActivityEnterView, Activity activity) {
         super(activity, 24);
-        this.f32781y = chatActivityEnterView;
-        this.f32780x = new Rect();
+        this.f32872y = chatActivityEnterView;
+        this.f32871x = new Rect();
     }
 
     @Override
     public final void draw(Canvas canvas) {
         Drawable drawable;
-        ChatActivityEnterView chatActivityEnterView = this.f32781y;
-        if (chatActivityEnterView.f23854a1) {
+        ChatActivityEnterView chatActivityEnterView = this.f32872y;
+        if (chatActivityEnterView.f23857a1) {
             int measuredWidth = getMeasuredWidth();
             int measuredHeight = getMeasuredHeight();
-            Rect rect = this.f32780x;
+            Rect rect = this.f32871x;
             rect.set(0, 0, measuredWidth, measuredHeight);
             rect.inset(AndroidUtilities.dp(7.5f), AndroidUtilities.dp(7.5f));
-            if (getCurrentState() == ah.f24530b) {
+            if (getCurrentState() == ah.f24596b) {
                 drawable = chatActivityEnterView.O3;
             } else {
                 drawable = chatActivityEnterView.N3;

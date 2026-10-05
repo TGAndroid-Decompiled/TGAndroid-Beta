@@ -7,24 +7,24 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 public final class gn0 implements Runnable {
-    public final int f26902a = 1;
-    public final on0 f26903b;
-    public final String f26904c;
+    public final int f26951a = 1;
+    public final on0 f26952b;
+    public final String f26953c;
     public final ArrayList d;
-    public final ArrayList f26905e;
+    public final ArrayList f26954e;
 
     public gn0(on0 on0Var, String str, ArrayList arrayList, ArrayList arrayList2) {
-        this.f26903b = on0Var;
-        this.f26904c = str;
+        this.f26952b = on0Var;
+        this.f26953c = str;
         this.d = arrayList;
-        this.f26905e = arrayList2;
+        this.f26954e = arrayList2;
     }
 
     @Override
     public final void run() {
-        switch (this.f26902a) {
+        switch (this.f26951a) {
             case 0:
-                on0 on0Var = this.f26903b;
+                on0 on0Var = this.f26952b;
                 int i10 = on0Var.d;
                 ArrayList arrayList = new ArrayList();
                 ArrayList arrayList2 = new ArrayList();
@@ -32,7 +32,7 @@ public final class gn0 implements Runnable {
                 while (true) {
                     ArrayList arrayList3 = this.d;
                     int size = arrayList3.size();
-                    String str = this.f26904c;
+                    String str = this.f26953c;
                     if (i11 < size) {
                         String documentFileName = FileLoader.getDocumentFileName(((MessageObject) arrayList3.get(i11)).getDocument());
                         if (documentFileName != null && documentFileName.toLowerCase().contains(str)) {
@@ -45,7 +45,7 @@ public final class gn0 implements Runnable {
                     } else {
                         int i12 = 0;
                         while (true) {
-                            ArrayList arrayList4 = this.f26905e;
+                            ArrayList arrayList4 = this.f26954e;
                             if (i12 < arrayList4.size()) {
                                 String documentFileName2 = FileLoader.getDocumentFileName(((MessageObject) arrayList4.get(i12)).getDocument());
                                 if (documentFileName2 != null && documentFileName2.toLowerCase().contains(str)) {
@@ -64,17 +64,17 @@ public final class gn0 implements Runnable {
                 }
                 break;
             default:
-                on0 on0Var2 = this.f26903b;
-                tx0 tx0Var = on0Var2.f29412a;
-                if (this.f26904c.equals(on0Var2.L)) {
-                    if (on0Var2.f29418r == 0) {
+                on0 on0Var2 = this.f26952b;
+                ux0 ux0Var = on0Var2.f29512a;
+                if (this.f26953c.equals(on0Var2.L)) {
+                    if (on0Var2.f29518r == 0) {
                         on0Var2.N.b(0);
                     }
-                    on0Var2.e(this.d, this.f26905e, true);
-                    if (on0Var2.f29418r == 0) {
-                        tx0Var.e(false, true);
-                        q90 q90Var = tx0Var.f31201e;
-                        tx0Var.d.setText(LocaleController.getString(R.string.SearchEmptyViewTitle2));
+                    on0Var2.e(this.d, this.f26954e, true);
+                    if (on0Var2.f29518r == 0) {
+                        ux0Var.e(false, true);
+                        q90 q90Var = ux0Var.f31551e;
+                        ux0Var.d.setText(LocaleController.getString(R.string.SearchEmptyViewTitle2));
                         q90Var.setVisibility(0);
                         q90Var.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
                         return;
@@ -86,9 +86,9 @@ public final class gn0 implements Runnable {
     }
 
     public gn0(on0 on0Var, ArrayList arrayList, String str, ArrayList arrayList2) {
-        this.f26903b = on0Var;
+        this.f26952b = on0Var;
         this.d = arrayList;
-        this.f26904c = str;
-        this.f26905e = arrayList2;
+        this.f26953c = str;
+        this.f26954e = arrayList2;
     }
 }

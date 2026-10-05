@@ -125,7 +125,7 @@ public final class l implements Utilities.Callback {
                 Runnable runnable = (Runnable) obj;
                 rxVar.getClass();
                 ((org.telegram.ui.ActionBar.b2) obj3).dismiss();
-                uy uyVar = rxVar.f40303b;
+                uy uyVar = rxVar.f40278b;
                 uyVar.getMessagesController().loadChannelParticipants(Long.valueOf(j3));
                 oy oyVar = uyVar.C2;
                 uyVar.removeSelfFromStack();
@@ -177,7 +177,7 @@ public final class l implements Utilities.Callback {
                 c1Var.v1(j3, new e4((xh.q1) obj4, eVar, (Utilities.Callback) obj2, c1Var, 19));
                 return;
             default:
-                yh.x3.s0((yh.x3) obj4, (TL_stories.TL_premium_boostsStatus) obj3, this.f1257b, (MessagesController) obj2, (ChannelBoostsController.CanApplyBoost) obj);
+                yh.y3.s0((yh.y3) obj4, (TL_stories.TL_premium_boostsStatus) obj3, this.f1257b, (MessagesController) obj2, (ChannelBoostsController.CanApplyBoost) obj);
                 return;
         }
     }

@@ -5,18 +5,18 @@ import android.graphics.Canvas;
 import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
 public final class ak extends org.telegram.ui.Cells.w0 {
-    public final yn f34843l2;
+    public final yn f34894l2;
 
     public ak(Context context, org.telegram.ui.ActionBar.d6 d6Var, yn ynVar) {
         super(context, d6Var, false);
-        this.f34843l2 = ynVar;
+        this.f34894l2 = ynVar;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        yn ynVar = this.f34843l2;
-        if (ynVar.f43592z8 == null) {
-            float y3 = ((ynVar.f43533v0.getY() + ynVar.f43476q9) - getY()) - AndroidUtilities.dp(4.0f);
+        yn ynVar = this.f34894l2;
+        if (ynVar.f43585z8 == null) {
+            float y3 = ((ynVar.f43526v0.getY() + ynVar.f43469q9) - getY()) - AndroidUtilities.dp(4.0f);
             if (y3 > 0.0f) {
                 if (y3 < getMeasuredHeight()) {
                     canvas.save();
@@ -35,7 +35,7 @@ public final class ak extends org.telegram.ui.Cells.w0 {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         org.telegram.ui.ActionBar.k kVar;
         if (getAlpha() != 0.0f) {
-            yn ynVar = this.f34843l2;
+            yn ynVar = this.f34894l2;
             kVar = ((org.telegram.ui.ActionBar.n2) ynVar).actionBar;
             if (!kVar.s() && !ynVar.z9()) {
                 return super.onInterceptTouchEvent(motionEvent);
@@ -49,7 +49,7 @@ public final class ak extends org.telegram.ui.Cells.w0 {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         org.telegram.ui.ActionBar.k kVar;
         if (getAlpha() != 0.0f) {
-            yn ynVar = this.f34843l2;
+            yn ynVar = this.f34894l2;
             kVar = ((org.telegram.ui.ActionBar.n2) ynVar).actionBar;
             if (!kVar.s() && !ynVar.z9()) {
                 return super.onTouchEvent(motionEvent);

@@ -29,9 +29,9 @@ public final class v3 extends AnimatorListenerAdapter {
                 e6Var2.N2.unlock();
                 e6Var2.H2 = e6Var2.f881o2;
                 a4 a4Var = e6Var2.f841b2;
-                if (a4Var != null && (runnable = a4Var.f23978w) != null) {
+                if (a4Var != null && (runnable = a4Var.f23981w) != null) {
                     runnable.run();
-                    a4Var.f23978w = null;
+                    a4Var.f23981w = null;
                 }
                 if (e6Var2.K1 && !e6Var2.f902v2) {
                     jc jcVar = ((ac) e6Var2.Q1).d;

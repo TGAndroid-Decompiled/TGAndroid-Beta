@@ -3,19 +3,19 @@ package org.telegram.ui;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.IMapsProvider;
 public final class qc0 implements Runnable {
-    public final int f39697a;
-    public final gd0 f39698b;
+    public final int f39761a;
+    public final gd0 f39762b;
 
     public qc0(gd0 gd0Var, int i10) {
-        this.f39697a = i10;
-        this.f39698b = gd0Var;
+        this.f39761a = i10;
+        this.f39762b = gd0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f39697a) {
+        switch (this.f39761a) {
             case 0:
-                gd0 gd0Var = this.f39698b;
+                gd0 gd0Var = this.f39762b;
                 IMapsProvider.ICameraUpdate iCameraUpdate = gd0Var.J;
                 if (iCameraUpdate != null) {
                     gd0Var.I.moveCamera(iCameraUpdate);
@@ -24,12 +24,12 @@ public final class qc0 implements Runnable {
                 }
                 return;
             case 1:
-                gd0 gd0Var2 = this.f39698b;
-                gd0Var2.getLocationController().setProximityLocation(gd0Var2.f36575e0, 0, true);
+                gd0 gd0Var2 = this.f39762b;
+                gd0Var2.getLocationController().setProximityLocation(gd0Var2.f36609e0, 0, true);
                 gd0Var2.G = false;
                 return;
             case 2:
-                gd0 gd0Var3 = this.f39698b;
+                gd0 gd0Var3 = this.f39762b;
                 IMapsProvider.IMap iMap = gd0Var3.I;
                 if (iMap != null) {
                     iMap.setPadding(AndroidUtilities.dp(70.0f), 0, AndroidUtilities.dp(70.0f), AndroidUtilities.dp(10.0f));
@@ -49,17 +49,17 @@ public final class qc0 implements Runnable {
                 gd0Var3.R = null;
                 return;
             case 3:
-                dd0 dd0Var = this.f39698b.f36598x;
+                dd0 dd0Var = this.f39762b.f36632x;
                 if (dd0Var != null) {
                     dd0Var.a();
                     return;
                 }
                 return;
             case 4:
-                gd0.U(this.f39698b);
+                gd0.U(this.f39762b);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new qc0(this.f39698b, 0));
+                AndroidUtilities.runOnUIThread(new qc0(this.f39762b, 0));
                 return;
         }
     }

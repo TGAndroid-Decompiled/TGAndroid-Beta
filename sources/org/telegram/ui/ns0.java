@@ -5,25 +5,25 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.tgnet.TLRPC;
 public final class ns0 extends org.telegram.ui.ActionBar.j {
-    public final org.telegram.ui.ActionBar.d6 f39040a;
-    public final PhotoViewer f39041b;
+    public final org.telegram.ui.ActionBar.d6 f39029a;
+    public final PhotoViewer f39030b;
 
     public ns0(PhotoViewer photoViewer, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.f39041b = photoViewer;
-        this.f39040a = d6Var;
+        this.f39030b = photoViewer;
+        this.f39029a = d6Var;
     }
 
     @Override
     public final boolean a() {
         TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated;
         boolean z10;
-        PhotoViewer photoViewer = this.f39041b;
-        if (photoViewer.T4 != null || photoViewer.f33877b5 != null) {
+        PhotoViewer photoViewer = this.f39030b;
+        if (photoViewer.T4 != null || photoViewer.f33890b5 != null) {
             return true;
         }
-        if (photoViewer.f33867a5 != null) {
+        if (photoViewer.f33880a5 != null) {
             FileLoader fileLoader = FileLoader.getInstance(photoViewer.T);
-            ImageLocation imageLocation = photoViewer.f33867a5;
+            ImageLocation imageLocation = photoViewer.f33880a5;
             TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated2 = null;
             if (imageLocation == null) {
                 tL_fileLocationToBeDeprecated = null;
@@ -31,7 +31,7 @@ public final class ns0 extends org.telegram.ui.ActionBar.j {
                 tL_fileLocationToBeDeprecated = imageLocation.location;
             }
             String q12 = PhotoViewer.q1(imageLocation);
-            if (photoViewer.f34093z5 == 0 && !photoViewer.B5) {
+            if (photoViewer.f34106z5 == 0 && !photoViewer.B5) {
                 z10 = false;
             } else {
                 z10 = true;
@@ -39,7 +39,7 @@ public final class ns0 extends org.telegram.ui.ActionBar.j {
             File pathToAttach = fileLoader.getPathToAttach(tL_fileLocationToBeDeprecated, q12, z10);
             File file = new File(FileLoader.getDirectory(4), pathToAttach.getName());
             FileLoader fileLoader2 = FileLoader.getInstance(photoViewer.T);
-            ImageLocation imageLocation2 = photoViewer.f33867a5;
+            ImageLocation imageLocation2 = photoViewer.f33880a5;
             if (imageLocation2 != null) {
                 tL_fileLocationToBeDeprecated2 = imageLocation2.location;
             }
@@ -48,7 +48,7 @@ public final class ns0 extends org.telegram.ui.ActionBar.j {
                 return true;
             }
             return false;
-        } else if (photoViewer.f33951j7 != null) {
+        } else if (photoViewer.f33964j7 != null) {
             return true;
         } else {
             return false;

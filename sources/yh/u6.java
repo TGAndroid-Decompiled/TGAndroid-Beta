@@ -1,36 +1,47 @@
 package yh;
 
-import android.content.Context;
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.view.View;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class u6 extends ClickableSpan {
-    public final org.telegram.ui.ActionBar.f3[] f52105a;
-    public final Context f52106b;
-    public final boolean f52107c;
+import android.widget.LinearLayout;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.w9;
+import org.telegram.ui.ou0;
+import org.telegram.ui.yu0;
+public final class u6 extends ou0 {
+    public final w9 f52108a;
+    public final LinearLayout f52109b;
+    public final long f52110c;
 
-    public u6(org.telegram.ui.ActionBar.f3[] f3VarArr, Context context, boolean z10) {
-        this.f52105a = f3VarArr;
-        this.f52106b = context;
-        this.f52107c = z10;
+    public u6(w9 w9Var, LinearLayout linearLayout, long j3) {
+        this.f52108a = w9Var;
+        this.f52109b = linearLayout;
+        this.f52110c = j3;
     }
 
     @Override
-    public final void onClick(View view) {
-        int i10;
-        this.f52105a[0].dismiss();
-        if (this.f52107c) {
-            i10 = R.string.StarsTransactionTONFromFragmentLink;
-        } else {
-            i10 = R.string.StarsTransactionUnknownLink;
+    public final yu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        w9 w9Var = this.f52108a;
+        ImageReceiver imageReceiver = w9Var.getImageReceiver();
+        int[] iArr = new int[2];
+        w9Var.getLocationInWindow(iArr);
+        yu0 yu0Var = new yu0();
+        yu0Var.f43621b = iArr[0];
+        yu0Var.f43622c = iArr[1];
+        yu0Var.d = this.f52109b;
+        yu0Var.f43630m = null;
+        yu0Var.f43620a = imageReceiver;
+        if (z10) {
+            yu0Var.f43623e = imageReceiver.getBitmapSafe();
         }
-        nf.f.s(this.f52106b, LocaleController.getString(i10));
+        yu0Var.h = imageReceiver.getRoundRadius(true);
+        yu0Var.f43624f = this.f52110c;
+        yu0Var.f43627j = 0;
+        yu0Var.f43626i = 0;
+        return yu0Var;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setUnderlineText(false);
+    public final boolean K() {
+        return true;
     }
 }

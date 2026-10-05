@@ -1,48 +1,32 @@
 package org.telegram.ui.Components;
+public final class cq0 extends g.p {
+    public final int f25502c;
+    public final br0 d;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-public final class cq0 extends s4.s0 {
-    public final int f25431a;
-    public final zq0 f25432b;
-
-    public cq0(zq0 zq0Var, int i10) {
-        this.f25431a = i10;
-        this.f25432b = zq0Var;
+    public cq0(br0 br0Var, int i10) {
+        this.f25502c = i10;
+        this.d = br0Var;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        vb vbVar;
-        switch (this.f25431a) {
+    public final int i(int i10) {
+        switch (this.f25502c) {
             case 0:
-                zq0 zq0Var = this.f25432b;
-                if (i11 != 0) {
-                    zq0.k0(zq0Var);
-                    zq0Var.f33622q0 = zq0Var.f33621p0;
+                if (i10 == 0) {
+                    return this.d.H.J;
                 }
-                rc rcVar = rc.f30337w;
-                if (rcVar != null && (vbVar = rcVar.f30341e) != null && (vbVar.getParent() instanceof View) && ((View) rc.f30337w.f30341e.getParent()).getParent() == zq0Var.f33630w) {
-                    rc.e();
-                    return;
-                }
-                return;
+                return 1;
             case 1:
-                if (i11 != 0) {
-                    zq0 zq0Var2 = this.f25432b;
-                    zq0.k0(zq0Var2);
-                    zq0Var2.f33622q0 = zq0Var2.f33621p0;
-                    return;
+                xq0 xq0Var = this.d.M;
+                if (i10 != xq0Var.f33068w && i10 != xq0Var.f33069x && i10 != xq0Var.f33070y && i10 != xq0Var.F && xq0Var.j(i10) != 0) {
+                    return 1;
                 }
-                return;
+                return 4;
             default:
-                if (i11 != 0) {
-                    zq0 zq0Var3 = this.f25432b;
-                    zq0.k0(zq0Var3);
-                    zq0Var3.f33622q0 = zq0Var3.f33621p0;
-                    return;
+                if (i10 == 0) {
+                    return this.d.I.J;
                 }
-                return;
+                return 1;
         }
     }
 }

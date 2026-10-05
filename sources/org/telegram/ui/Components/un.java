@@ -7,7 +7,7 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Arrays;
-import org.telegram.ui.zb1;
+import org.telegram.ui.xb1;
 public final class un extends org.telegram.ui.Cells.d6 {
     public final vn F;
 
@@ -20,17 +20,17 @@ public final class un extends org.telegram.ui.Cells.d6 {
     public final boolean e() {
         s4.c1 T;
         xn xnVar = this.F.d;
-        zb1 zb1Var = xnVar.f32943s;
-        View F = zb1Var.F(this);
+        xb1 xb1Var = xnVar.f33034s;
+        View F = xb1Var.F(this);
         if (F == null) {
             T = null;
         } else {
-            T = zb1Var.T(F);
+            T = xb1Var.T(F);
         }
         if (T != null) {
             int b10 = T.b();
             int i10 = xnVar.M;
-            if (i10 == xnVar.J && b10 == (xnVar.f32945t0 + i10) - 1) {
+            if (i10 == xnVar.J && b10 == (xnVar.f33036t0 + i10) - 1) {
                 return false;
             }
         }
@@ -42,15 +42,15 @@ public final class un extends org.telegram.ui.Cells.d6 {
         s4.c1 T;
         int b10;
         xn xnVar = this.F.d;
-        zb1 zb1Var = xnVar.f32943s;
-        View F = zb1Var.F(d6Var);
+        xb1 xb1Var = xnVar.f33034s;
+        View F = xb1Var.F(d6Var);
         if (F == null) {
             T = null;
         } else {
-            T = zb1Var.T(F);
+            T = xb1Var.T(F);
         }
         if (T != null && (b10 = T.b()) != -1) {
-            return xnVar.L[b10 - xnVar.f32945t0];
+            return xnVar.L[b10 - xnVar.f33036t0];
         }
         return false;
     }
@@ -58,10 +58,10 @@ public final class un extends org.telegram.ui.Cells.d6 {
     @Override
     public final void g(org.telegram.ui.Cells.c6 c6Var, ActionMode actionMode) {
         xn xnVar = this.F.d;
-        if (xnVar.f32936n && c6Var.isFocused() && c6Var.hasSelection()) {
+        if (xnVar.f33027n && c6Var.isFocused() && c6Var.hasSelection()) {
             Menu menu = actionMode.getMenu();
             if (menu.findItem(16908321) != null) {
-                org.telegram.ui.yn.k8(menu, ((org.telegram.ui.yn) xnVar.f29648b.f32819f0).h, false, true, true, true);
+                org.telegram.ui.yn.k8(menu, ((org.telegram.ui.yn) xnVar.f29741b.f32910f0).h, false, true, true, true);
             }
         }
     }
@@ -71,29 +71,29 @@ public final class un extends org.telegram.ui.Cells.d6 {
         s4.c1 T;
         int b10;
         xn xnVar = this.F.d;
-        if (z10 && xnVar.f32917c0 && !xnVar.f32915b0) {
+        if (z10 && xnVar.f33008c0 && !xnVar.f33006b0) {
             Arrays.fill(xnVar.L, false);
-            xnVar.f32943s.getChildCount();
-            for (int i10 = xnVar.f32945t0; i10 < xnVar.f32945t0 + xnVar.M; i10++) {
-                s4.c1 K = xnVar.f32943s.K(i10);
+            xnVar.f33034s.getChildCount();
+            for (int i10 = xnVar.f33036t0; i10 < xnVar.f33036t0 + xnVar.M; i10++) {
+                s4.c1 K = xnVar.f33034s.K(i10);
                 if (K != null) {
-                    View view = K.f46531a;
+                    View view = K.f46538a;
                     if (view instanceof org.telegram.ui.Cells.d6) {
-                        ((org.telegram.ui.Cells.d6) view).f21929r.a(false, true);
+                        ((org.telegram.ui.Cells.d6) view).f21933r.a(false, true);
                     }
                 }
             }
         }
         super.h(d6Var, z10);
-        zb1 zb1Var = xnVar.f32943s;
-        View F = zb1Var.F(d6Var);
+        xb1 xb1Var = xnVar.f33034s;
+        View F = xb1Var.F(d6Var);
         if (F == null) {
             T = null;
         } else {
-            T = zb1Var.T(F);
+            T = xb1Var.T(F);
         }
         if (T != null && (b10 = T.b()) != -1) {
-            xnVar.L[b10 - xnVar.f32945t0] = z10;
+            xnVar.L[b10 - xnVar.f33036t0] = z10;
         }
         xnVar.R();
     }
@@ -110,15 +110,15 @@ public final class un extends org.telegram.ui.Cells.d6 {
 
     @Override
     public final void k(org.telegram.ui.Cells.c6 c6Var) {
-        this.F.d.f29648b.s1(c6Var, true);
+        this.F.d.f29741b.s1(c6Var, true);
     }
 
     @Override
     public final boolean l(ArrayList arrayList) {
         xn xnVar = this.F.d;
         if (!arrayList.isEmpty()) {
-            xnVar.f32943s.getClass();
-            int R = RecyclerView.R(this) - xnVar.f32945t0;
+            xnVar.f33034s.getClass();
+            int R = RecyclerView.R(this) - xnVar.f33036t0;
             if (R >= 0) {
                 org.telegram.ui.Cells.c6 c6Var = this.d;
                 c6Var.getText().replace(c6Var.getSelectionStart(), c6Var.getSelectionEnd(), (CharSequence) arrayList.remove(0));
@@ -133,9 +133,9 @@ public final class un extends org.telegram.ui.Cells.d6 {
                     i10++;
                 }
                 xnVar.h0();
-                xnVar.f32933k0 = (xnVar.f32945t0 + i10) - 1;
-                xnVar.f32943s.setItemAnimator(xnVar.v);
-                xnVar.f32941r.l();
+                xnVar.f33024k0 = (xnVar.f33036t0 + i10) - 1;
+                xnVar.f33034s.setItemAnimator(xnVar.v);
+                xnVar.f33032r.l();
                 return true;
             }
         }
@@ -144,6 +144,6 @@ public final class un extends org.telegram.ui.Cells.d6 {
 
     @Override
     public final boolean o() {
-        return this.F.d.f32917c0;
+        return this.F.d.f33008c0;
     }
 }

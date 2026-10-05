@@ -13,36 +13,36 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.c71;
-import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.e71;
 import org.telegram.ui.Components.g61;
+import org.telegram.ui.Components.h61;
 import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.w61;
 import org.telegram.ui.Components.w9;
 import org.telegram.ui.Components.zl0;
 import s4.p0;
-public final class g extends f61 {
+public final class g extends g61 {
     public static final int f10905a = 0;
 
     static {
-        f61.setup(new f61());
+        g61.setup(new g61());
     }
 
     @Override
-    public final void bindView(View view, g61 g61Var, boolean z10, u61 u61Var, c71 c71Var) {
+    public final void bindView(View view, h61 h61Var, boolean z10, w61 w61Var, e71 e71Var) {
         int i10;
         h hVar = (h) view;
-        f fVar = (f) g61Var.G;
+        f fVar = (f) h61Var.G;
         TLRPC.User user = fVar.f10903b;
         long j3 = fVar.f10902a;
         boolean z11 = fVar.f10904c;
-        boolean z12 = !g61Var.f26672j;
+        boolean z12 = !h61Var.f27091j;
         w9 w9Var = hVar.f10908c;
         TextView textView = hVar.f10911n;
         TextView textView2 = hVar.d;
-        hVar.f10915x = (e) g61Var.H;
+        hVar.f10915x = (e) h61Var.H;
         hVar.f10916y = j3;
-        hVar.E = user.f20189id;
+        hVar.E = user.f20194id;
         int i11 = hVar.f10907b;
         TLRPC.Chat chat = MessagesController.getInstance(i11).getChat(Long.valueOf(-j3));
         TLRPC.User user2 = MessagesController.getInstance(i11).getUser(Long.valueOf(j3));
@@ -90,9 +90,9 @@ public final class g extends f61 {
     }
 
     @Override
-    public final boolean equals(g61 g61Var, g61 g61Var2) {
-        f fVar = (f) g61Var.G;
-        f fVar2 = (f) g61Var2.G;
+    public final boolean equals(h61 h61Var, h61 h61Var2) {
+        f fVar = (f) h61Var.G;
+        f fVar2 = (f) h61Var2.G;
         if (fVar.f10902a == fVar2.f10902a && DialogObject.getDialogId(fVar.f10903b) == DialogObject.getDialogId(fVar2.f10903b)) {
             return true;
         }

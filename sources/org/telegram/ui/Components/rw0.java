@@ -1,38 +1,51 @@
 package org.telegram.ui.Components;
-public final class rw0 implements Runnable {
-    public final int f30524a;
-    public final tw0 f30525b;
 
-    public rw0(tw0 tw0Var, int i10) {
-        this.f30524a = i10;
-        this.f30525b = tw0Var;
+import android.os.Bundle;
+import android.widget.LinearLayout;
+public abstract class rw0 extends LinearLayout {
+    public boolean a() {
+        return this instanceof org.telegram.ui.ee0;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f30524a) {
-            case 0:
-                tw0 tw0Var = this.f30525b;
-                tw0Var.V0 = false;
-                if (!tw0Var.Y0 && tw0Var.W0) {
-                    tw0Var.C(true);
-                    return;
-                }
-                return;
-            case 1:
-                this.f30525b.V0 = false;
-                return;
-            case 2:
-                tw0 tw0Var2 = this.f30525b;
-                tw0Var2.Y0 = false;
-                if (!tw0Var2.V0 && tw0Var2.W0) {
-                    tw0Var2.C(true);
-                    return;
-                }
-                return;
-            default:
-                this.f30525b.Y0 = false;
-                return;
-        }
+    public boolean b() {
+        return this instanceof org.telegram.ui.ee0;
+    }
+
+    public boolean c(boolean z10) {
+        return true;
+    }
+
+    public String getHeaderName() {
+        return "";
+    }
+
+    public void d() {
+    }
+
+    public void f() {
+    }
+
+    public void g() {
+    }
+
+    public void h(String str) {
+    }
+
+    public void i() {
+    }
+
+    public void j() {
+    }
+
+    public void k(Bundle bundle) {
+    }
+
+    public void l(Bundle bundle) {
+    }
+
+    public void n() {
+    }
+
+    public void m(Bundle bundle, boolean z10) {
     }
 }

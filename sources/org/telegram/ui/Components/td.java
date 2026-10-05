@@ -19,23 +19,23 @@ import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class td implements Runnable {
-    public final int f31028a;
-    public final ChatActivityEnterView f31029b;
+    public final int f31115a;
+    public final ChatActivityEnterView f31116b;
 
     public td(ChatActivityEnterView chatActivityEnterView, int i10) {
-        this.f31028a = i10;
-        this.f31029b = chatActivityEnterView;
+        this.f31115a = i10;
+        this.f31116b = chatActivityEnterView;
     }
 
     @Override
     public final void run() {
         rf rfVar;
         long O8;
-        int i10 = this.f31028a;
+        int i10 = this.f31115a;
         ViewGroup viewGroup = null;
         ArrayList<TLRPC.RestrictionReason> arrayList = null;
         boolean z10 = true;
-        ChatActivityEnterView chatActivityEnterView = this.f31029b;
+        ChatActivityEnterView chatActivityEnterView = this.f31116b;
         switch (i10) {
             case 0:
                 org.telegram.ui.yn ynVar = chatActivityEnterView.P2;
@@ -45,7 +45,7 @@ public final class td implements Runnable {
                 }
                 return;
             case 1:
-                int i11 = ChatActivityEnterView.f23851n5;
+                int i11 = ChatActivityEnterView.f23854n5;
                 AndroidUtilities.runOnUIThread(new td(chatActivityEnterView, 4));
                 return;
             case 2:
@@ -63,7 +63,7 @@ public final class td implements Runnable {
                 }
                 return;
             case 4:
-                ei.d0 d0Var = chatActivityEnterView.f23921l0;
+                ei.d0 d0Var = chatActivityEnterView.f23924l0;
                 if (d0Var != null) {
                     d0Var.setOpened(false);
                     return;
@@ -74,7 +74,7 @@ public final class td implements Runnable {
                 if (AndroidUtilities.isTablet()) {
                     Activity activity = chatActivityEnterView.O2;
                     if (activity instanceof LaunchActivity) {
-                        ActionBarLayout actionBarLayout = ((LaunchActivity) activity).f33806r0;
+                        ActionBarLayout actionBarLayout = ((LaunchActivity) activity).f33819r0;
                         if (actionBarLayout != null) {
                             viewGroup = actionBarLayout.getView();
                         }
@@ -83,7 +83,7 @@ public final class td implements Runnable {
                         }
                     }
                 }
-                if (!chatActivityEnterView.f23912j2 && z10 && (rfVar = chatActivityEnterView.E0) != null) {
+                if (!chatActivityEnterView.f23915j2 && z10 && (rfVar = chatActivityEnterView.E0) != null) {
                     try {
                         rfVar.requestFocus();
                         return;
@@ -96,7 +96,7 @@ public final class td implements Runnable {
             case 6:
                 fg fgVar = chatActivityEnterView.U0;
                 if (fgVar != null) {
-                    if (chatActivityEnterView.f23877d5 == null) {
+                    if (chatActivityEnterView.f23880d5 == null) {
                         fgVar.getLayoutParams().height = chatActivityEnterView.D3;
                     }
                     chatActivityEnterView.U0.setLayerType(0, null);
@@ -119,7 +119,7 @@ public final class td implements Runnable {
                 chatActivityEnterView.N4 = null;
                 return;
             case 9:
-                int i12 = ChatActivityEnterView.f23851n5;
+                int i12 = ChatActivityEnterView.f23854n5;
                 chatActivityEnterView.S1();
                 return;
             case 10:
@@ -136,7 +136,7 @@ public final class td implements Runnable {
                 chatActivityEnterView.removeView(chatActivityEnterView.L);
                 return;
             case 13:
-                int i13 = ChatActivityEnterView.f23851n5;
+                int i13 = ChatActivityEnterView.f23854n5;
                 chatActivityEnterView.L0();
                 return;
             case 14:
@@ -168,8 +168,8 @@ public final class td implements Runnable {
                 e5.M(chatActivityEnterView.O2, chatActivityEnterView.P2.a(), new se(chatActivityEnterView, 1), chatActivityEnterView.W3);
                 return;
             case 19:
-                int i14 = ChatActivityEnterView.f23851n5;
-                ChatActivityEnterView chatActivityEnterView2 = this.f31029b;
+                int i14 = ChatActivityEnterView.f23854n5;
+                ChatActivityEnterView chatActivityEnterView2 = this.f31116b;
                 chatActivityEnterView2.T0(2147483646, true, 0, true, 0L);
                 of ofVar3 = chatActivityEnterView2.L0;
                 if (ofVar3 != null) {
@@ -221,11 +221,11 @@ public final class td implements Runnable {
                 }
                 return;
             case 22:
-                chatActivityEnterView.f23923l3 = false;
+                chatActivityEnterView.f23926l3 = false;
                 chatActivityEnterView.I0();
                 return;
             case 23:
-                int i15 = ChatActivityEnterView.f23851n5;
+                int i15 = ChatActivityEnterView.f23854n5;
                 chatActivityEnterView.w1(true, true);
                 chatActivityEnterView.V = null;
                 return;
@@ -244,20 +244,20 @@ public final class td implements Runnable {
                 chatActivityEnterView.I(true);
                 return;
             case 26:
-                int i16 = ChatActivityEnterView.f23851n5;
+                int i16 = ChatActivityEnterView.f23854n5;
                 chatActivityEnterView.V0();
                 return;
             case 27:
-                chatActivityEnterView.f23923l3 = false;
+                chatActivityEnterView.f23926l3 = false;
                 chatActivityEnterView.I0();
                 return;
             case 28:
-                int i17 = ChatActivityEnterView.f23851n5;
+                int i17 = ChatActivityEnterView.f23854n5;
                 AndroidUtilities.hideKeyboard(chatActivityEnterView);
                 int i18 = chatActivityEnterView.Q;
                 long j3 = chatActivityEnterView.Q2;
-                String str = chatActivityEnterView.f23904i0;
-                String str2 = chatActivityEnterView.f23910j0;
+                String str = chatActivityEnterView.f23907i0;
+                String str2 = chatActivityEnterView.f23913j0;
                 org.telegram.ui.yn ynVar5 = chatActivityEnterView.P2;
                 if (ynVar5 == null) {
                     O8 = 0;
@@ -267,16 +267,16 @@ public final class td implements Runnable {
                 ei.f5 b10 = ei.f5.b(i18, j3, j3, str, str2, 2, 0, O8, null, false, null, null, 0, false, false);
                 LaunchActivity launchActivity = LaunchActivity.G1;
                 if (launchActivity != null && launchActivity.P() != null && LaunchActivity.G1.P().k(b10) != null) {
-                    ei.d0 d0Var2 = chatActivityEnterView.f23921l0;
+                    ei.d0 d0Var2 = chatActivityEnterView.f23924l0;
                     if (d0Var2 != null) {
                         d0Var2.setOpened(false);
                         return;
                     }
                     return;
-                } else if (org.telegram.ui.dc0.l(chatActivityEnterView.f23910j0)) {
+                } else if (org.telegram.ui.dc0.l(chatActivityEnterView.f23913j0)) {
                     ?? obj = new Object();
-                    obj.f16882c = new td(chatActivityEnterView, 1);
-                    nf.f.k(chatActivityEnterView.getContext(), chatActivityEnterView.f23910j0, false, false, obj);
+                    obj.f16887c = new td(chatActivityEnterView, 1);
+                    nf.f.k(chatActivityEnterView.getContext(), chatActivityEnterView.f23913j0, false, false, obj);
                     return;
                 } else {
                     TLRPC.User user = MessagesController.getInstance(chatActivityEnterView.Q).getUser(Long.valueOf(chatActivityEnterView.Q2));
@@ -296,7 +296,7 @@ public final class td implements Runnable {
                     l3Var.f9165k0 = chatActivityEnterView.O2;
                     l3Var.s(ynVar5, b10);
                     l3Var.show();
-                    ei.d0 d0Var3 = chatActivityEnterView.f23921l0;
+                    ei.d0 d0Var3 = chatActivityEnterView.f23924l0;
                     if (d0Var3 != null) {
                         d0Var3.setOpened(false);
                         return;
@@ -304,8 +304,8 @@ public final class td implements Runnable {
                     return;
                 }
             default:
-                if (chatActivityEnterView.f23921l0 != null && !SharedPrefsHelper.isWebViewConfirmShown(chatActivityEnterView.Q, chatActivityEnterView.Q2)) {
-                    chatActivityEnterView.f23921l0.setOpened(false);
+                if (chatActivityEnterView.f23924l0 != null && !SharedPrefsHelper.isWebViewConfirmShown(chatActivityEnterView.Q, chatActivityEnterView.Q2)) {
+                    chatActivityEnterView.f23924l0.setOpened(false);
                     return;
                 }
                 return;

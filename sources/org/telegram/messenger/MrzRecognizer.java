@@ -439,15 +439,15 @@ public class MrzRecognizer {
             int i13 = mVar.d;
             int i14 = 6;
             int i15 = 4;
-            if (i13 == 12 && mVar.f45937y != null) {
+            if (i13 == 12 && mVar.f45944y != null) {
                 Result result = new Result();
-                if ("ID".equals(mVar.f45937y.f45897a)) {
+                if ("ID".equals(mVar.f45944y.f45904a)) {
                     i10 = 2;
                 } else {
                     i10 = 4;
                 }
                 result.type = i10;
-                String str = mVar.f45937y.f45907y;
+                String str = mVar.f45944y.f45914y;
                 str.getClass();
                 if (!str.equals("CAN")) {
                     if (str.equals("USA")) {
@@ -458,12 +458,12 @@ public class MrzRecognizer {
                     result.issuingCountry = "CA";
                     result.nationality = "CA";
                 }
-                result.firstName = capitalize(mVar.f45937y.f45898b);
-                result.lastName = capitalize(mVar.f45937y.d);
-                result.middleName = capitalize(mVar.f45937y.f45899c);
-                r8.e eVar = mVar.f45937y;
-                result.number = eVar.f45904s;
-                String str2 = eVar.f45900e;
+                result.firstName = capitalize(mVar.f45944y.f45905b);
+                result.lastName = capitalize(mVar.f45944y.d);
+                result.middleName = capitalize(mVar.f45944y.f45906c);
+                r8.e eVar = mVar.f45944y;
+                result.number = eVar.f45911s;
+                String str2 = eVar.f45907e;
                 if (str2 != null) {
                     if (!str2.equals("1")) {
                         if (str2.equals("2")) {
@@ -479,25 +479,25 @@ public class MrzRecognizer {
                     i15 = 0;
                 }
                 try {
-                    String str3 = mVar.f45937y.f45906x;
+                    String str3 = mVar.f45944y.f45913x;
                     if (str3 != null && str3.length() == 8) {
-                        result.birthYear = Integer.parseInt(mVar.f45937y.f45906x.substring(i11, i11 + 4));
-                        result.birthMonth = Integer.parseInt(mVar.f45937y.f45906x.substring(i15, i15 + 2));
-                        result.birthDay = Integer.parseInt(mVar.f45937y.f45906x.substring(i14, i14 + 2));
+                        result.birthYear = Integer.parseInt(mVar.f45944y.f45913x.substring(i11, i11 + 4));
+                        result.birthMonth = Integer.parseInt(mVar.f45944y.f45913x.substring(i15, i15 + 2));
+                        result.birthDay = Integer.parseInt(mVar.f45944y.f45913x.substring(i14, i14 + 2));
                     }
-                    String str4 = mVar.f45937y.f45905w;
+                    String str4 = mVar.f45944y.f45912w;
                     if (str4 != null && str4.length() == 8) {
-                        result.expiryYear = Integer.parseInt(mVar.f45937y.f45905w.substring(i11, i11 + 4));
-                        result.expiryMonth = Integer.parseInt(mVar.f45937y.f45905w.substring(i15, i15 + 2));
-                        result.expiryDay = Integer.parseInt(mVar.f45937y.f45905w.substring(i14, i14 + 2));
+                        result.expiryYear = Integer.parseInt(mVar.f45944y.f45912w.substring(i11, i11 + 4));
+                        result.expiryMonth = Integer.parseInt(mVar.f45944y.f45912w.substring(i15, i15 + 2));
+                        result.expiryDay = Integer.parseInt(mVar.f45944y.f45912w.substring(i14, i14 + 2));
                     }
                 } catch (NumberFormatException unused) {
                 }
                 return result;
             }
-            if (i13 == 7 && mVar.f45927a == 2048 && mVar.f45928b.matches("^[A-Za-z0-9=]+$")) {
+            if (i13 == 7 && mVar.f45934a == 2048 && mVar.f45935b.matches("^[A-Za-z0-9=]+$")) {
                 try {
-                    String[] split = new String(Base64.decode(mVar.f45928b, 0), "windows-1251").split("\\|");
+                    String[] split = new String(Base64.decode(mVar.f45935b, 0), "windows-1251").split("\\|");
                     if (split.length >= 10) {
                         Result result2 = new Result();
                         result2.type = 4;

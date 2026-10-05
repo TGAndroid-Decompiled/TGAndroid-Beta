@@ -14,7 +14,7 @@ import org.telegram.messenger.MediaController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.RadialProgress2;
 import org.telegram.ui.Components.pc0;
-import org.telegram.ui.od1;
+import org.telegram.ui.md1;
 public final class k5 extends org.telegram.ui.Components.w9 implements DownloadController.FileDownloadProgressListener {
     public RectF G;
     public RadialProgress2 H;
@@ -29,7 +29,7 @@ public final class k5 extends org.telegram.ui.Components.w9 implements DownloadC
     public Paint Q;
     public pc0 R;
     public int S;
-    public od1 T;
+    public md1 T;
     public int U;
 
     @Override
@@ -50,9 +50,9 @@ public final class k5 extends org.telegram.ui.Components.w9 implements DownloadC
 
     @Override
     public final void onFailedDownload(String str, boolean z10) {
-        TLRPC.TL_wallPaper tL_wallPaper = this.T.f39170a.d.W0;
+        TLRPC.TL_wallPaper tL_wallPaper = this.T.f38577a.d.W0;
         TLRPC.TL_wallPaper tL_wallPaper2 = this.I;
-        if ((tL_wallPaper2 == null && tL_wallPaper == null) || (tL_wallPaper != null && tL_wallPaper2 != null && tL_wallPaper2.f20194id == tL_wallPaper.f20194id)) {
+        if ((tL_wallPaper2 == null && tL_wallPaper == null) || (tL_wallPaper != null && tL_wallPaper2 != null && tL_wallPaper2.f20199id == tL_wallPaper.f20199id)) {
             if (z10) {
                 this.H.setIcon(4, false, true);
             } else {
@@ -70,9 +70,9 @@ public final class k5 extends org.telegram.ui.Components.w9 implements DownloadC
     public final void onProgressDownload(String str, long j3, long j10) {
         RadialProgress2 radialProgress2 = this.H;
         radialProgress2.o(Math.min(1.0f, ((float) j3) / ((float) j10)), true);
-        TLRPC.TL_wallPaper tL_wallPaper = this.T.f39170a.d.W0;
+        TLRPC.TL_wallPaper tL_wallPaper = this.T.f38577a.d.W0;
         TLRPC.TL_wallPaper tL_wallPaper2 = this.I;
-        if (((tL_wallPaper2 == null && tL_wallPaper == null) || (tL_wallPaper != null && tL_wallPaper2 != null && tL_wallPaper2.f20194id == tL_wallPaper.f20194id)) && radialProgress2.f24267i.f26782q != 10) {
+        if (((tL_wallPaper2 == null && tL_wallPaper == null) || (tL_wallPaper != null && tL_wallPaper2 != null && tL_wallPaper2.f20199id == tL_wallPaper.f20199id)) && radialProgress2.f24270i.f26831q != 10) {
             t(tL_wallPaper2, false, true);
         }
     }
@@ -80,9 +80,9 @@ public final class k5 extends org.telegram.ui.Components.w9 implements DownloadC
     @Override
     public final void onSuccessDownload(String str) {
         this.H.o(1.0f, true);
-        TLRPC.TL_wallPaper tL_wallPaper = this.T.f39170a.d.W0;
+        TLRPC.TL_wallPaper tL_wallPaper = this.T.f38577a.d.W0;
         TLRPC.TL_wallPaper tL_wallPaper2 = this.I;
-        if ((tL_wallPaper2 == null && tL_wallPaper == null) || (tL_wallPaper != null && tL_wallPaper2 != null && tL_wallPaper2.f20194id == tL_wallPaper.f20194id)) {
+        if ((tL_wallPaper2 == null && tL_wallPaper == null) || (tL_wallPaper != null && tL_wallPaper2 != null && tL_wallPaper2.f20199id == tL_wallPaper.f20199id)) {
             t(tL_wallPaper2, false, true);
         }
     }
@@ -149,9 +149,9 @@ public final class k5 extends org.telegram.ui.Components.w9 implements DownloadC
     }
 
     public final void u(boolean z10) {
-        TLRPC.TL_wallPaper tL_wallPaper = this.T.f39170a.d.W0;
+        TLRPC.TL_wallPaper tL_wallPaper = this.T.f38577a.d.W0;
         TLRPC.TL_wallPaper tL_wallPaper2 = this.I;
-        if ((tL_wallPaper2 == null && tL_wallPaper == null) || (tL_wallPaper != null && tL_wallPaper2 != null && tL_wallPaper2.f20194id == tL_wallPaper.f20194id)) {
+        if ((tL_wallPaper2 == null && tL_wallPaper == null) || (tL_wallPaper != null && tL_wallPaper2 != null && tL_wallPaper2.f20199id == tL_wallPaper.f20199id)) {
             t(tL_wallPaper, false, z10);
         } else {
             this.H.setIcon(4, false, z10);

@@ -31,5 +31,5 @@ public interface v3 {
 
     void r(int i10);
 
-    void w();
+    void t();
 }

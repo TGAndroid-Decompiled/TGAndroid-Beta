@@ -13,7 +13,7 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLObject;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.e61;
+import org.telegram.ui.Components.f61;
 import org.telegram.ui.Components.h9;
 import org.telegram.ui.Components.tr;
 import yf.p;
@@ -29,11 +29,11 @@ public final class a extends View {
         this.f10890c = new le.b(this, tr.h, 380L);
         this.f10889b = new Paint(1);
         this.d = d6Var;
-        e61 e61Var = new e61(true);
-        this.f10891e = e61Var;
-        e61Var.setCallback(this);
-        e61Var.b(-1);
-        e61Var.f25984i = true;
+        f61 f61Var = new f61(true);
+        this.f10891e = f61Var;
+        f61Var.setCallback(this);
+        f61Var.b(-1);
+        f61Var.f26396i = true;
     }
 
     @Override
@@ -41,7 +41,7 @@ public final class a extends View {
         switch (this.f10888a) {
             case 1:
                 super.onAttachedToWindow();
-                ((e61) this.f10891e).d();
+                ((f61) this.f10891e).d();
                 return;
             case 2:
                 super.onAttachedToWindow();
@@ -59,7 +59,7 @@ public final class a extends View {
         switch (this.f10888a) {
             case 1:
                 super.onDetachedFromWindow();
-                ((e61) this.f10891e).e();
+                ((f61) this.f10891e).e();
                 return;
             case 2:
                 super.onDetachedFromWindow();
@@ -96,7 +96,7 @@ public final class a extends View {
                 float f7 = ((le.b) this.f10890c).f15436e;
                 float f10 = 1.0f - f7;
                 if (f10 > 0.0f) {
-                    p.b(canvas, (e61) this.f10891e, f10 * 1.35f);
+                    p.b(canvas, (f61) this.f10891e, f10 * 1.35f);
                     invalidate();
                 }
                 if (f7 > 0.0f) {
@@ -141,7 +141,7 @@ public final class a extends View {
         switch (this.f10888a) {
             case 1:
                 super.onSizeChanged(i10, i11, i12, i13);
-                p.d((e61) this.f10891e, i10 / 2.0f, i11 / 2.0f, 17);
+                p.d((f61) this.f10891e, i10 / 2.0f, i11 / 2.0f, 17);
                 return;
             default:
                 super.onSizeChanged(i10, i11, i12, i13);
@@ -153,7 +153,7 @@ public final class a extends View {
     public boolean verifyDrawable(Drawable drawable) {
         switch (this.f10888a) {
             case 1:
-                if (!super.verifyDrawable(drawable) && (drawable != ((e61) this.f10891e) || ((le.b) this.f10890c).f15437f)) {
+                if (!super.verifyDrawable(drawable) && (drawable != ((f61) this.f10891e) || ((le.b) this.f10890c).f15437f)) {
                     return false;
                 }
                 return true;
@@ -172,7 +172,7 @@ public final class a extends View {
         this.d = paint3;
         this.f10891e = new RectF();
         paint2.setColor(-1);
-        paint.setColor(i6.v0(i6.f20822d6, d6Var));
+        paint.setColor(i6.v0(i6.f20827d6, d6Var));
         paint3.setColor(i6.v0(i6.wj, d6Var));
     }
 

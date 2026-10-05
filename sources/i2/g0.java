@@ -8,7 +8,7 @@ import org.telegram.ui.Components.qn0;
 import org.telegram.ui.Components.rc;
 import org.telegram.ui.Components.yc;
 import org.telegram.ui.f10;
-import yh.t5;
+import yh.u5;
 public final class g0 implements Runnable {
     public final int f11654a;
     public final boolean f11655b;
@@ -37,11 +37,11 @@ public final class g0 implements Runnable {
                 fVar.q(p5, 1033, new ga.a(p5, i11, i12, this.f11655b));
                 return;
             case 1:
-                ((cg0) this.d).f25368a.f25721b.y3(this.f11656c, this.f11655b);
+                ((cg0) this.d).f25416a.f25776b.y3(this.f11656c, this.f11655b);
                 return;
             case 2:
                 qn0 qn0Var = (qn0) this.d;
-                qn0Var.f30117o = null;
+                qn0Var.f30139o = null;
                 qn0Var.c(this.f11656c, this.f11655b, true);
                 return;
             case 3:
@@ -59,19 +59,19 @@ public final class g0 implements Runnable {
                     formatPluralString = LocaleController.formatPluralString("FolderLinkRemovedChats", i13, new Object[0]);
                 }
                 rc M = a02.M(formatPluralString, LocaleController.getString(R.string.FolderLinkChatlistUpdate), i10);
-                M.f30345j = 5000;
+                M.f30427j = 5000;
                 M.j();
                 return;
             default:
-                t5 t5Var = (t5) this.d;
+                u5 u5Var = (u5) this.d;
                 if (!this.f11655b) {
-                    t5Var.getClass();
+                    u5Var.getClass();
                     return;
                 }
-                Set set = t5Var.Q;
+                Set set = u5Var.Q;
                 int i14 = this.f11656c;
                 set.remove(Integer.valueOf(i14));
-                Runnable runnable = (Runnable) t5Var.R.remove(Integer.valueOf(i14));
+                Runnable runnable = (Runnable) u5Var.R.remove(Integer.valueOf(i14));
                 if (runnable != null) {
                     runnable.run();
                     return;

@@ -50,7 +50,7 @@ public final class k8 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new ei.q3((di0) this.d, tL_error, tLObject, this.f1228c, this.f1227b, (TLRPC.Chat) this.f1229e, 4));
                 return;
             case 6:
-                AndroidUtilities.runOnUIThread(new m8((yh.o) this.d, (yh.n) this.f1229e, this.f1227b, tLObject, this.f1228c));
+                AndroidUtilities.runOnUIThread(new m8((yh.p) this.d, (yh.o) this.f1229e, this.f1227b, tLObject, this.f1228c));
                 return;
             default:
                 AndroidUtilities.runOnUIThread(new org.telegram.messenger.g7((ci.d) this.d, (org.telegram.ui.ActionBar.f3[]) this.f1229e, this.f1227b, this.f1228c, 15));

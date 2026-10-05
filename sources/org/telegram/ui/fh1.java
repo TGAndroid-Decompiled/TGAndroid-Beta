@@ -1,51 +1,37 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import java.util.ArrayList;
-import java.util.List;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class fh1 implements RequestDelegate {
-    public final int f36321a;
-    public final Object f36322b;
-    public final Object f36323c;
-    public final Object d;
-    public final Object f36324e;
-    public final Object f36325f;
-    public final Object f36326g;
+import android.content.Context;
+import android.text.Editable;
+public final class fh1 extends org.telegram.ui.Cells.j3 {
+    public final int f36322x;
+    public final UserInfoActivity f36323y;
 
-    public fh1(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, int i10) {
-        this.f36321a = i10;
-        this.f36322b = obj;
-        this.f36323c = obj2;
-        this.d = obj3;
-        this.f36324e = obj4;
-        this.f36325f = obj5;
-        this.f36326g = obj6;
+    public fh1(UserInfoActivity userInfoActivity, Context context, String str, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
+        super(context, str, false, false, -1, d6Var);
+        this.f36322x = i10;
+        this.f36323y = userInfoActivity;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f36321a) {
+    public final void b(Editable editable) {
+        switch (this.f36322x) {
             case 0:
-                AndroidUtilities.runOnUIThread(new ii.k((UserInfoActivity) this.f36322b, tL_error, (TLObject) this.f36323c, (TL_account.TL_birthday) this.d, (TLRPC.UserFull) this.f36324e, tLObject, (int[]) this.f36325f, (ArrayList) this.f36326g));
+                this.f36323y.b0(true);
                 return;
             case 1:
-                AndroidUtilities.runOnUIThread(new ii.k(tL_error, (tg.v) this.f36322b, tLObject, (List) this.f36323c, (c5.h) this.d, (tg.v) this.f36324e, (org.telegram.ui.ActionBar.n2) this.f36325f, (TLRPC.TL_inputStorePaymentPremiumGiveaway) this.f36326g, 3));
-                return;
-            case 2:
-                AndroidUtilities.runOnUIThread(new ii.k(tL_error, (Utilities.Callback) this.f36322b, tLObject, (List) this.f36323c, (c5.h) this.d, (Utilities.Callback) this.f36324e, (org.telegram.ui.ActionBar.n2) this.f36325f, (TLRPC.TL_inputStorePaymentPremiumGiftCode) this.f36326g, 4));
-                return;
-            case 3:
-                AndroidUtilities.runOnUIThread(new ii.k(tLObject, (c5.o) this.f36322b, (c5.h) this.f36323c, (ai.m0) this.d, (Activity) this.f36324e, (TLRPC.TL_inputStorePaymentStarsGiveaway) this.f36325f, (List) this.f36326g, tL_error, 5));
+                this.f36323y.b0(true);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new ii.k(tLObject, (c5.o) this.f36322b, (c5.h) this.f36323c, (org.telegram.ui.Components.r80) this.d, (Activity) this.f36324e, (TLRPC.TL_inputStorePaymentStarsGift) this.f36325f, (List) this.f36326g, tL_error, 6));
+                UserInfoActivity userInfoActivity = this.f36323y;
+                userInfoActivity.b0(true);
+                userInfoActivity.e0();
                 return;
         }
+    }
+
+    public fh1(UserInfoActivity userInfoActivity, Context context, String str, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, str, true, false, i10, d6Var);
+        this.f36322x = 2;
+        this.f36323y = userInfoActivity;
     }
 }

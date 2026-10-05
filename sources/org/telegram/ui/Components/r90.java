@@ -14,32 +14,32 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
 public final class r90 {
-    public static final ArrayList f30305s = new ArrayList();
-    public int f30306a;
-    public int f30307b;
-    public Paint f30308c;
+    public static final ArrayList f30387s = new ArrayList();
+    public int f30388a;
+    public int f30389b;
+    public Paint f30390c;
     public Paint d;
-    public int f30309e;
-    public int f30310f;
-    public final CharacterStyle f30312i;
-    public final float f30313j;
-    public final float f30314k;
-    public Rect f30316m;
-    public float f30317n;
-    public final long f30320q;
-    public final ArrayList f30311g = new ArrayList();
+    public int f30391e;
+    public int f30392f;
+    public final CharacterStyle f30394i;
+    public final float f30395j;
+    public final float f30396k;
+    public Rect f30398m;
+    public float f30399n;
+    public final long f30402q;
+    public final ArrayList f30393g = new ArrayList();
     public int h = 0;
-    public final Path f30315l = new Path();
-    public long f30318o = -1;
-    public long f30319p = -1;
-    public final boolean f30321r = !LiteMode.isEnabled(360928);
+    public final Path f30397l = new Path();
+    public long f30400o = -1;
+    public long f30401p = -1;
+    public final boolean f30403r = !LiteMode.isEnabled(360928);
 
     public r90(CharacterStyle characterStyle, org.telegram.ui.ActionBar.d6 d6Var, float f7, float f10, int i10) {
-        this.f30312i = characterStyle;
+        this.f30394i = characterStyle;
         d(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Ld, d6Var));
-        this.f30313j = f7;
-        this.f30314k = f10;
-        this.f30320q = Math.min(ViewConfiguration.getTapTimeout() * 1.8f, ViewConfiguration.getLongPressTimeout() * 0.8f);
+        this.f30395j = f7;
+        this.f30396k = f10;
+        this.f30402q = Math.min(ViewConfiguration.getTapTimeout() * 1.8f, ViewConfiguration.getLongPressTimeout() * 0.8f);
     }
 
     public final boolean a(Canvas canvas) {
@@ -50,66 +50,66 @@ public final class r90 {
         boolean z12;
         boolean z13;
         float min;
-        boolean z14 = this.f30321r;
+        boolean z14 = this.f30403r;
         if (z14) {
             dp = 0;
         } else {
             dp = AndroidUtilities.dp(4.0f);
         }
-        if (this.f30306a != dp) {
+        if (this.f30388a != dp) {
             z10 = true;
         } else {
             z10 = false;
         }
-        if (this.f30308c == null) {
+        if (this.f30390c == null) {
             Paint paint = new Paint(1);
-            this.f30308c = paint;
+            this.f30390c = paint;
             paint.setStyle(Paint.Style.FILL_AND_STROKE);
-            this.f30308c.setColor(this.f30307b);
-            this.f30309e = Color.alpha(this.f30307b);
+            this.f30390c.setColor(this.f30389b);
+            this.f30391e = Color.alpha(this.f30389b);
         }
         if (this.d == null) {
             Paint paint2 = new Paint(1);
             this.d = paint2;
             paint2.setStyle(Paint.Style.FILL_AND_STROKE);
-            this.d.setColor(this.f30307b);
-            this.f30310f = Color.alpha(this.f30307b);
+            this.d.setColor(this.f30389b);
+            this.f30392f = Color.alpha(this.f30389b);
         }
         if (z10) {
-            this.f30306a = dp;
+            this.f30388a = dp;
             if (dp <= 0) {
-                this.f30308c.setPathEffect(null);
+                this.f30390c.setPathEffect(null);
                 this.d.setPathEffect(null);
             } else {
-                this.f30308c.setPathEffect(new CornerPathEffect(this.f30306a));
-                this.d.setPathEffect(new CornerPathEffect(this.f30306a));
+                this.f30390c.setPathEffect(new CornerPathEffect(this.f30388a));
+                this.d.setPathEffect(new CornerPathEffect(this.f30388a));
             }
         }
-        Rect rect = this.f30316m;
-        float f10 = this.f30314k;
-        float f11 = this.f30313j;
-        ArrayList arrayList = this.f30311g;
+        Rect rect = this.f30398m;
+        float f10 = this.f30396k;
+        float f11 = this.f30395j;
+        ArrayList arrayList = this.f30393g;
         if (rect == null && this.h > 0) {
             RectF rectF = AndroidUtilities.rectTmp;
             ((k90) arrayList.get(0)).computeBounds(rectF, false);
-            this.f30316m = new Rect((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+            this.f30398m = new Rect((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
             for (int i10 = 1; i10 < this.h; i10++) {
                 RectF rectF2 = AndroidUtilities.rectTmp;
                 ((k90) arrayList.get(i10)).computeBounds(rectF2, false);
-                Rect rect2 = this.f30316m;
+                Rect rect2 = this.f30398m;
                 rect2.left = Math.min(rect2.left, (int) rectF2.left);
-                Rect rect3 = this.f30316m;
+                Rect rect3 = this.f30398m;
                 rect3.top = Math.min(rect3.top, (int) rectF2.top);
-                Rect rect4 = this.f30316m;
+                Rect rect4 = this.f30398m;
                 rect4.right = Math.max(rect4.right, (int) rectF2.right);
-                Rect rect5 = this.f30316m;
+                Rect rect5 = this.f30398m;
                 rect5.bottom = Math.max(rect5.bottom, (int) rectF2.bottom);
             }
             z11 = z14;
             z12 = false;
             f7 = f11;
             z13 = true;
-            this.f30317n = (float) Math.sqrt(Math.max(Math.max(Math.pow(this.f30316m.top - f10, 2.0d) + Math.pow(this.f30316m.left - f11, 2.0d), Math.pow(this.f30316m.top - f10, 2.0d) + Math.pow(this.f30316m.right - f11, 2.0d)), Math.max(Math.pow(this.f30316m.bottom - f10, 2.0d) + Math.pow(this.f30316m.left - f11, 2.0d), Math.pow(this.f30316m.bottom - f10, 2.0d) + Math.pow(this.f30316m.right - f11, 2.0d))));
+            this.f30399n = (float) Math.sqrt(Math.max(Math.max(Math.pow(this.f30398m.top - f10, 2.0d) + Math.pow(this.f30398m.left - f11, 2.0d), Math.pow(this.f30398m.top - f10, 2.0d) + Math.pow(this.f30398m.right - f11, 2.0d)), Math.max(Math.pow(this.f30398m.bottom - f10, 2.0d) + Math.pow(this.f30398m.left - f11, 2.0d), Math.pow(this.f30398m.bottom - f10, 2.0d) + Math.pow(this.f30398m.right - f11, 2.0d))));
         } else {
             z11 = z14;
             f7 = f11;
@@ -122,30 +122,30 @@ public final class r90 {
             }
         } else {
             long elapsedRealtime = SystemClock.elapsedRealtime();
-            if (this.f30318o < 0) {
-                this.f30318o = elapsedRealtime;
+            if (this.f30400o < 0) {
+                this.f30400o = elapsedRealtime;
             }
-            float interpolation = tr.f31147f.getInterpolation(Math.min(1.0f, ((float) (elapsedRealtime - this.f30318o)) / ((float) this.f30320q)));
-            long j3 = this.f30319p;
+            float interpolation = tr.f31215f.getInterpolation(Math.min(1.0f, ((float) (elapsedRealtime - this.f30400o)) / ((float) this.f30402q)));
+            long j3 = this.f30401p;
             if (j3 < 0) {
                 min = 0.0f;
             } else {
                 min = Math.min(1.0f, Math.max(0.0f, ((float) ((elapsedRealtime - 75) - j3)) / 100.0f));
             }
             float f12 = 1.0f - min;
-            this.f30308c.setAlpha((int) (Math.min(1.0f, interpolation * 5.0f) * this.f30309e * 0.2f * f12));
-            this.f30308c.setStrokeWidth(Math.min(1.0f, 0.0f) * AndroidUtilities.dp(5.0f));
+            this.f30390c.setAlpha((int) (Math.min(1.0f, interpolation * 5.0f) * this.f30391e * 0.2f * f12));
+            this.f30390c.setStrokeWidth(Math.min(1.0f, 0.0f) * AndroidUtilities.dp(5.0f));
             for (int i12 = 0; i12 < this.h; i12++) {
                 ((k90) arrayList.get(i12)).a();
-                canvas.drawPath((Path) arrayList.get(i12), this.f30308c);
+                canvas.drawPath((Path) arrayList.get(i12), this.f30390c);
             }
-            this.d.setAlpha((int) (this.f30310f * 0.8f * f12));
+            this.d.setAlpha((int) (this.f30392f * 0.8f * f12));
             this.d.setStrokeWidth(Math.min(1.0f, 0.0f) * AndroidUtilities.dp(5.0f));
             int i13 = (interpolation > 1.0f ? 1 : (interpolation == 1.0f ? 0 : -1));
             if (i13 < 0) {
-                float f13 = interpolation * this.f30317n;
+                float f13 = interpolation * this.f30399n;
                 canvas.save();
-                Path path = this.f30315l;
+                Path path = this.f30397l;
                 path.reset();
                 path.addCircle(f7, f10, f13, Path.Direction.CW);
                 canvas.clipPath(path);
@@ -158,7 +158,7 @@ public final class r90 {
                     canvas.drawPath((Path) arrayList.get(i15), this.d);
                 }
             }
-            if (i13 < 0 || this.f30319p >= 0) {
+            if (i13 < 0 || this.f30401p >= 0) {
                 return z13;
             }
         }
@@ -167,41 +167,41 @@ public final class r90 {
 
     public final k90 b() {
         k90 k90Var;
-        ArrayList arrayList = f30305s;
+        ArrayList arrayList = f30387s;
         if (!arrayList.isEmpty()) {
             k90Var = (k90) arrayList.remove(0);
         } else {
             k90Var = new k90(0);
         }
-        k90Var.f32968c = !this.f30321r;
+        k90Var.f33059c = !this.f30403r;
         k90Var.reset();
-        ArrayList arrayList2 = this.f30311g;
+        ArrayList arrayList2 = this.f30393g;
         arrayList2.add(k90Var);
         this.h = arrayList2.size();
         return k90Var;
     }
 
     public final void c() {
-        ArrayList arrayList = this.f30311g;
+        ArrayList arrayList = this.f30393g;
         if (arrayList.isEmpty()) {
             return;
         }
-        f30305s.addAll(arrayList);
+        f30387s.addAll(arrayList);
         arrayList.clear();
         this.h = 0;
     }
 
     public final void d(int i10) {
-        this.f30307b = i10;
-        Paint paint = this.f30308c;
+        this.f30389b = i10;
+        Paint paint = this.f30390c;
         if (paint != null) {
             paint.setColor(i10);
-            this.f30309e = Color.alpha(i10);
+            this.f30391e = Color.alpha(i10);
         }
         Paint paint2 = this.d;
         if (paint2 != null) {
             paint2.setColor(i10);
-            this.f30310f = Color.alpha(i10);
+            this.f30392f = Color.alpha(i10);
         }
     }
 }

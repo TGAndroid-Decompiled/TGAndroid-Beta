@@ -16,28 +16,28 @@ public final class a3 implements Runnable {
     public final void run() {
         switch (this.f12223a) {
             case 0:
-                View B1 = this.f12224b.B1(this.f12225c);
-                if (B1 instanceof f6) {
-                    f6 f6Var = (f6) B1;
+                View A1 = this.f12224b.A1(this.f12225c);
+                if (A1 instanceof f6) {
+                    f6 f6Var = (f6) A1;
                     f6Var.B();
                     f6Var.getEditText().setSelection(0);
                     return;
                 }
                 return;
             case 1:
-                this.f12224b.f3(this.f12225c);
+                this.f12224b.e3(this.f12225c);
                 return;
             case 2:
-                this.f12224b.f3(this.f12225c);
+                this.f12224b.e3(this.f12225c);
                 return;
             case 3:
-                this.f12224b.g3(this.f12225c);
+                this.f12224b.f3(this.f12225c);
                 return;
             case 4:
-                this.f12224b.f3(this.f12225c);
+                this.f12224b.e3(this.f12225c);
                 return;
             default:
-                this.f12224b.f3(this.f12225c);
+                this.f12224b.e3(this.f12225c);
                 return;
         }
     }

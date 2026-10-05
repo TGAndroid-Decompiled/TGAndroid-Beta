@@ -1,180 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.view.View;
-import android.view.animation.OvershootInterpolator;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class mx0 extends nj0 {
-    public float E;
-    public ValueAnimator F;
-    public ValueAnimator G;
-    public final rx0 H;
-    public int f28749r;
-    public float f28750s;
-    public ValueAnimator v;
-    public boolean f28751w;
-    public long f28752x;
-    public float f28753y;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class mx0 extends AnimatorListenerAdapter {
+    public final int f28859a;
+    public final nx0 f28860b;
 
-    public mx0(rx0 rx0Var, Context context) {
-        super(context);
-        int v02;
-        org.telegram.ui.ActionBar.d6 d6Var = rx0Var.f33552p2;
-        this.H = rx0Var;
-        this.f28751w = false;
-        this.f28753y = 1.0f;
-        if (rx0Var.D3) {
-            v02 = i0.a.k(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Wk, d6Var), (int) 102.0f);
-        } else {
-            v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Me, d6Var);
-        }
-        k(v02);
-        setScaleType(ImageView.ScaleType.CENTER);
-        setLayerNum(null);
+    public mx0(nx0 nx0Var, int i10) {
+        this.f28859a = i10;
+        this.f28860b = nx0Var;
     }
 
     @Override
-    public final void c() {
-        this.f28751w = true;
-        if (this.f28753y < 1.0f) {
-            ValueAnimator valueAnimator = this.G;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-                this.G = null;
-            }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f28753y, 1.0f);
-            this.G = ofFloat;
-            ofFloat.addUpdateListener(new jx0(this, 2));
-            this.G.addListener(new lx0(this, 0));
-            this.G.setDuration(320L);
-            this.G.setInterpolator(tr.h);
-            this.G.start();
-        }
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        if (isPressed()) {
-            float f7 = this.E;
-            if (f7 != 1.0f) {
-                this.E = Utilities.clamp(((1000.0f / AndroidUtilities.screenRefreshRate) / 100.0f) + f7, 1.0f, 0.0f);
-                invalidate();
-                this.H.invalidate();
-            }
-        }
-        float z10 = com.google.android.gms.internal.vision.e2.z(1.0f, this.E, 0.15f, 0.85f) * this.f28753y;
-        int i10 = (z10 > 1.0f ? 1 : (z10 == 1.0f ? 0 : -1));
-        if (i10 != 0) {
-            canvas.save();
-            canvas.scale(z10, z10, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
-        }
-        super.draw(canvas);
-        if (i10 != 0) {
-            canvas.restore();
-        }
-    }
-
-    public final void j() {
-        if (System.currentTimeMillis() - this.f28752x > 250) {
-            this.f28752x = System.currentTimeMillis();
-            kj0 animatedDrawable = getAnimatedDrawable();
-            if (animatedDrawable == null && getImageReceiver() != null) {
-                animatedDrawable = getImageReceiver().getLottieAnimation();
-            }
-            if (animatedDrawable != null) {
-                animatedDrawable.stop();
-                animatedDrawable.M(0);
-                animatedDrawable.H(true);
-            } else if (animatedDrawable == null) {
-                setProgress(0.0f);
-                d();
-            }
-        }
-    }
-
-    public final void k(int i10) {
-        if (this.f28749r != i10) {
-            this.f28749r = i10;
-            setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
-        }
-    }
-
-    public final void l(boolean z10, boolean z11) {
-        if (Math.abs(this.f28750s - (z10 ? 1.0f : 0.0f)) > 0.01f) {
-            ValueAnimator valueAnimator = this.v;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-                this.v = null;
-            }
-            float f7 = 0.0f;
-            if (z11) {
-                float f10 = this.f28750s;
-                if (z10) {
-                    f7 = 1.0f;
-                }
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-                this.v = ofFloat;
-                ofFloat.addUpdateListener(new jx0(this, 1));
-                this.v.addListener(new lx0(this, 1));
-                this.v.setDuration(350L);
-                this.v.setInterpolator(tr.h);
-                this.v.start();
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f28859a) {
+            case 0:
+                nx0 nx0Var = this.f28860b;
+                nx0Var.f29170y = 1.0f;
+                nx0Var.invalidate();
+                nx0Var.G = null;
                 return;
-            }
-            if (z10) {
-                f7 = 1.0f;
-            }
-            m(f7);
-        }
-    }
-
-    public final void m(float f7) {
-        this.f28750s = f7;
-        rx0 rx0Var = this.H;
-        org.telegram.ui.ActionBar.d6 d6Var = rx0Var.f33552p2;
-        if (rx0Var.D3) {
-            k(i0.a.k(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Wk, d6Var), (int) (AndroidUtilities.lerp(0.4f, 0.8f, f7) * 255.0f)));
-        } else {
-            k(i0.a.d(this.f28750s, org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Me, d6Var), org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Oe, d6Var)));
-        }
-        invalidate();
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i11);
-        super.onMeasure(org.telegram.messenger.bi.c(4.0f, size, 1073741824), View.MeasureSpec.makeMeasureSpec(size, 1073741824));
-    }
-
-    @Override
-    public final void setPressed(boolean z10) {
-        ValueAnimator valueAnimator;
-        if (isPressed() != z10) {
-            super.setPressed(z10);
-            invalidate();
-            this.H.invalidate();
-            if (z10 && (valueAnimator = this.F) != null) {
-                valueAnimator.removeAllListeners();
-                this.F.cancel();
-            }
-            if (!z10) {
-                float f7 = this.E;
-                if (f7 != 0.0f) {
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, 0.0f);
-                    this.F = ofFloat;
-                    ofFloat.addUpdateListener(new jx0(this, 0));
-                    this.F.addListener(new lx0(this, 2));
-                    this.F.setInterpolator(new OvershootInterpolator(3.0f));
-                    this.F.setDuration(350L);
-                    this.F.start();
-                }
-            }
+            case 1:
+                nx0 nx0Var2 = this.f28860b;
+                nx0Var2.m(((Float) nx0Var2.v.getAnimatedValue()).floatValue());
+                nx0Var2.v = null;
+                return;
+            default:
+                super.onAnimationEnd(animator);
+                this.f28860b.F = null;
+                return;
         }
     }
 }

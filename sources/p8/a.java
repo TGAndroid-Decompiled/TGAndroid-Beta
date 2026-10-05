@@ -21,33 +21,33 @@ import org.telegram.ui.Cells.t6;
 import u6.e;
 import u6.f;
 public final class a {
-    public static final long f44341n = TimeUnit.DAYS.toMillis(366);
-    public static volatile ScheduledExecutorService f44342o = null;
-    public static final Object f44343p = new Object();
-    public final Object f44344a;
-    public final PowerManager.WakeLock f44345b;
-    public int f44346c;
+    public static final long f44348n = TimeUnit.DAYS.toMillis(366);
+    public static volatile ScheduledExecutorService f44349o = null;
+    public static final Object f44350p = new Object();
+    public final Object f44351a;
+    public final PowerManager.WakeLock f44352b;
+    public int f44353c;
     public ScheduledFuture d;
-    public long f44347e;
-    public final HashSet f44348f;
-    public boolean f44349g;
+    public long f44354e;
+    public final HashSet f44355f;
+    public boolean f44356g;
     public c8.a h;
-    public final u6.a f44350i;
-    public final String f44351j;
-    public final HashMap f44352k;
-    public final AtomicInteger f44353l;
-    public final ScheduledExecutorService f44354m;
+    public final u6.a f44357i;
+    public final String f44358j;
+    public final HashMap f44359k;
+    public final AtomicInteger f44360l;
+    public final ScheduledExecutorService f44361m;
 
     public a(Context context) {
         String str;
         String packageName = context.getPackageName();
-        this.f44344a = new Object();
-        this.f44346c = 0;
-        this.f44348f = new HashSet();
-        this.f44349g = true;
-        this.f44350i = u6.a.f47550a;
-        this.f44352k = new HashMap();
-        this.f44353l = new AtomicInteger(0);
+        this.f44351a = new Object();
+        this.f44353c = 0;
+        this.f44355f = new HashSet();
+        this.f44356g = true;
+        this.f44357i = u6.a.f47557a;
+        this.f44359k = new HashMap();
+        this.f44360l = new AtomicInteger(0);
         l.g("wake:com.google.firebase.iid.WakeLockHolder", "WakeLock: wakeLockName must not be empty");
         context.getApplicationContext();
         WorkSource workSource = null;
@@ -58,19 +58,19 @@ public final class a {
             } else {
                 str = new String("*gcore*:");
             }
-            this.f44351j = str;
+            this.f44358j = str;
         } else {
-            this.f44351j = "wake:com.google.firebase.iid.WakeLockHolder";
+            this.f44358j = "wake:com.google.firebase.iid.WakeLockHolder";
         }
         PowerManager powerManager = (PowerManager) context.getSystemService("power");
         if (powerManager != null) {
-            this.f44345b = powerManager.newWakeLock(1, "wake:com.google.firebase.iid.WakeLockHolder");
+            this.f44352b = powerManager.newWakeLock(1, "wake:com.google.firebase.iid.WakeLockHolder");
             if (f.b(context)) {
-                int i10 = e.f47558a;
+                int i10 = e.f47565a;
                 packageName = (packageName == null || packageName.trim().isEmpty()) ? context.getPackageName() : packageName;
                 if (context.getPackageManager() != null && packageName != null) {
                     try {
-                        ApplicationInfo applicationInfo = w6.b.a(context).f47755a.getPackageManager().getApplicationInfo(packageName, 0);
+                        ApplicationInfo applicationInfo = w6.b.a(context).f47762a.getPackageManager().getApplicationInfo(packageName, 0);
                         if (applicationInfo == null) {
                             Log.e("WorkSourceUtil", "Could not get applicationInfo from package: ".concat(packageName));
                         } else {
@@ -84,26 +84,26 @@ public final class a {
                 }
                 if (workSource != null) {
                     try {
-                        this.f44345b.setWorkSource(workSource);
+                        this.f44352b.setWorkSource(workSource);
                     } catch (ArrayIndexOutOfBoundsException | IllegalArgumentException e7) {
                         Log.wtf("WakeLock", e7.toString());
                     }
                 }
             }
-            ScheduledExecutorService scheduledExecutorService = f44342o;
+            ScheduledExecutorService scheduledExecutorService = f44349o;
             if (scheduledExecutorService == null) {
-                synchronized (f44343p) {
+                synchronized (f44350p) {
                     try {
-                        scheduledExecutorService = f44342o;
+                        scheduledExecutorService = f44349o;
                         if (scheduledExecutorService == null) {
                             scheduledExecutorService = Executors.unconfigurableScheduledExecutorService(Executors.newScheduledThreadPool(1));
-                            f44342o = scheduledExecutorService;
+                            f44349o = scheduledExecutorService;
                         }
                     } finally {
                     }
                 }
             }
-            this.f44354m = scheduledExecutorService;
+            this.f44361m = scheduledExecutorService;
             return;
         }
         StringBuilder sb2 = new StringBuilder(29);
@@ -112,44 +112,44 @@ public final class a {
     }
 
     public final void a(long j3) {
-        this.f44353l.incrementAndGet();
+        this.f44360l.incrementAndGet();
         long j10 = Long.MAX_VALUE;
-        long max = Math.max(Math.min(Long.MAX_VALUE, f44341n), 1L);
+        long max = Math.max(Math.min(Long.MAX_VALUE, f44348n), 1L);
         if (j3 > 0) {
             max = Math.min(j3, max);
         }
-        synchronized (this.f44344a) {
+        synchronized (this.f44351a) {
             try {
                 if (!b()) {
                     this.h = c8.a.f4511a;
-                    this.f44345b.acquire();
-                    this.f44350i.getClass();
+                    this.f44352b.acquire();
+                    this.f44357i.getClass();
                     SystemClock.elapsedRealtime();
                 }
-                this.f44346c++;
-                if (this.f44349g) {
+                this.f44353c++;
+                if (this.f44356g) {
                     TextUtils.isEmpty(null);
                 }
-                b bVar = (b) this.f44352k.get(null);
+                b bVar = (b) this.f44359k.get(null);
                 b bVar2 = bVar;
                 if (bVar == null) {
                     Object obj = new Object();
-                    this.f44352k.put(null, obj);
+                    this.f44359k.put(null, obj);
                     bVar2 = obj;
                 }
-                bVar2.f44355a++;
-                this.f44350i.getClass();
+                bVar2.f44362a++;
+                this.f44357i.getClass();
                 long elapsedRealtime = SystemClock.elapsedRealtime();
                 if (Long.MAX_VALUE - elapsedRealtime > max) {
                     j10 = elapsedRealtime + max;
                 }
-                if (j10 > this.f44347e) {
-                    this.f44347e = j10;
+                if (j10 > this.f44354e) {
+                    this.f44354e = j10;
                     ScheduledFuture scheduledFuture = this.d;
                     if (scheduledFuture != null) {
                         scheduledFuture.cancel(false);
                     }
-                    this.d = this.f44354m.schedule(new t6(this, 29), max, TimeUnit.MILLISECONDS);
+                    this.d = this.f44361m.schedule(new t6(this, 29), max, TimeUnit.MILLISECONDS);
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -159,8 +159,8 @@ public final class a {
 
     public final boolean b() {
         boolean z10;
-        synchronized (this.f44344a) {
-            if (this.f44346c > 0) {
+        synchronized (this.f44351a) {
+            if (this.f44353c > 0) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -170,25 +170,25 @@ public final class a {
     }
 
     public final void c() {
-        if (this.f44353l.decrementAndGet() < 0) {
-            Log.e("WakeLock", String.valueOf(this.f44351j).concat(" release without a matched acquire!"));
+        if (this.f44360l.decrementAndGet() < 0) {
+            Log.e("WakeLock", String.valueOf(this.f44358j).concat(" release without a matched acquire!"));
         }
-        synchronized (this.f44344a) {
+        synchronized (this.f44351a) {
             try {
-                if (this.f44349g) {
+                if (this.f44356g) {
                     TextUtils.isEmpty(null);
                 }
-                if (this.f44352k.containsKey(null)) {
-                    b bVar = (b) this.f44352k.get(null);
+                if (this.f44359k.containsKey(null)) {
+                    b bVar = (b) this.f44359k.get(null);
                     if (bVar != null) {
-                        int i10 = bVar.f44355a - 1;
-                        bVar.f44355a = i10;
+                        int i10 = bVar.f44362a - 1;
+                        bVar.f44362a = i10;
                         if (i10 == 0) {
-                            this.f44352k.remove(null);
+                            this.f44359k.remove(null);
                         }
                     }
                 } else {
-                    Log.w("WakeLock", String.valueOf(this.f44351j).concat(" counter does not exist"));
+                    Log.w("WakeLock", String.valueOf(this.f44358j).concat(" counter does not exist"));
                 }
                 e();
             } catch (Throwable th2) {
@@ -198,7 +198,7 @@ public final class a {
     }
 
     public final void d() {
-        HashSet hashSet = this.f44348f;
+        HashSet hashSet = this.f44355f;
         if (!hashSet.isEmpty()) {
             ArrayList arrayList = new ArrayList(hashSet);
             hashSet.clear();
@@ -211,40 +211,40 @@ public final class a {
     }
 
     public final void e() {
-        synchronized (this.f44344a) {
+        synchronized (this.f44351a) {
             try {
                 if (!b()) {
                     return;
                 }
-                if (this.f44349g) {
-                    int i10 = this.f44346c - 1;
-                    this.f44346c = i10;
+                if (this.f44356g) {
+                    int i10 = this.f44353c - 1;
+                    this.f44353c = i10;
                     if (i10 > 0) {
                         return;
                     }
                 } else {
-                    this.f44346c = 0;
+                    this.f44353c = 0;
                 }
                 d();
-                for (b bVar : this.f44352k.values()) {
-                    bVar.f44355a = 0;
+                for (b bVar : this.f44359k.values()) {
+                    bVar.f44362a = 0;
                 }
-                this.f44352k.clear();
+                this.f44359k.clear();
                 ScheduledFuture scheduledFuture = this.d;
                 if (scheduledFuture != null) {
                     scheduledFuture.cancel(false);
                     this.d = null;
-                    this.f44347e = 0L;
+                    this.f44354e = 0L;
                 }
-                if (this.f44345b.isHeld()) {
+                if (this.f44352b.isHeld()) {
                     try {
-                        this.f44345b.release();
+                        this.f44352b.release();
                         if (this.h != null) {
                             this.h = null;
                         }
                     } catch (RuntimeException e7) {
                         if (e7.getClass().equals(RuntimeException.class)) {
-                            Log.e("WakeLock", String.valueOf(this.f44351j).concat(" failed to release!"), e7);
+                            Log.e("WakeLock", String.valueOf(this.f44358j).concat(" failed to release!"), e7);
                             if (this.h != null) {
                                 this.h = null;
                             }
@@ -253,7 +253,7 @@ public final class a {
                         }
                     }
                 } else {
-                    Log.e("WakeLock", String.valueOf(this.f44351j).concat(" should be held!"));
+                    Log.e("WakeLock", String.valueOf(this.f44358j).concat(" should be held!"));
                 }
             } catch (Throwable th2) {
                 throw th2;

@@ -24,8 +24,8 @@ import org.telegram.ui.Components.rc;
 import org.telegram.ui.Components.yc;
 import org.telegram.ui.ExternalActionActivity;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.mi1;
-import org.telegram.ui.r51;
+import org.telegram.ui.ki1;
+import org.telegram.ui.p51;
 import org.telegram.ui.to0;
 public final class f0 implements DialogInterface.OnDismissListener {
     public final int f9023a;
@@ -92,7 +92,7 @@ public final class f0 implements DialogInterface.OnDismissListener {
                 org.telegram.ui.ActionBar.l2 l2Var = (org.telegram.ui.ActionBar.l2) obj2;
                 n2Var2.onPause();
                 n2Var2.onFragmentDestroy();
-                if (l2Var != null && (runnable = l2Var.f21355b) != null) {
+                if (l2Var != null && (runnable = l2Var.f21359b) != null) {
                     runnable.run();
                     return;
                 }
@@ -113,7 +113,7 @@ public final class f0 implements DialogInterface.OnDismissListener {
                 return;
             case 8:
                 ExternalActionActivity externalActionActivity = (ExternalActionActivity) obj;
-                ArrayList arrayList = ExternalActionActivity.f33746x;
+                ArrayList arrayList = ExternalActionActivity.f33759x;
                 externalActionActivity.getClass();
                 externalActionActivity.setResult(1, new Intent().putExtra("error", ((TLRPC.TL_error) obj2).text));
                 externalActionActivity.finish();
@@ -122,7 +122,7 @@ public final class f0 implements DialogInterface.OnDismissListener {
                 LaunchActivity launchActivity = (LaunchActivity) obj;
                 org.telegram.ui.ActionBar.b2 b2Var = (org.telegram.ui.ActionBar.b2) obj2;
                 if (b2Var == launchActivity.H0) {
-                    ActionBarLayout actionBarLayout = launchActivity.f33804q0;
+                    ActionBarLayout actionBarLayout = launchActivity.f33817q0;
                     if (actionBarLayout == null) {
                         lastFragment = null;
                     } else {
@@ -139,7 +139,7 @@ public final class f0 implements DialogInterface.OnDismissListener {
                                 hashMap2 = launchActivity.J0;
                             }
                             rc Q = a02.Q(i11, 36, LaunchActivity.V(R.string.ChangeLanguageLater, "ChangeLanguageLater", hashMap2));
-                            Q.f30345j = 5000;
+                            Q.f30427j = 5000;
                             Q.j();
                         } else {
                             yc ycVar = new yc(mb.a(launchActivity), null);
@@ -150,7 +150,7 @@ public final class f0 implements DialogInterface.OnDismissListener {
                                 hashMap = launchActivity.J0;
                             }
                             rc Q2 = ycVar.Q(i12, 36, LaunchActivity.V(R.string.ChangeLanguageLater, "ChangeLanguageLater", hashMap));
-                            Q2.f30345j = 5000;
+                            Q2.f30427j = 5000;
                             Q2.j();
                         }
                     } catch (Exception e7) {
@@ -176,16 +176,16 @@ public final class f0 implements DialogInterface.OnDismissListener {
                 }
                 return;
             case 11:
-                r51 r51Var = (r51) obj2;
+                p51 p51Var = (p51) obj2;
                 if (!((boolean[]) obj)[0]) {
-                    r51Var.c(true);
+                    p51Var.c(true);
                 }
-                r51Var.f43084w = null;
+                p51Var.f41956w = null;
                 return;
             case 12:
-                mi1 mi1Var = (mi1) obj2;
+                ki1 ki1Var = (ki1) obj2;
                 if (!((boolean[]) obj)[0]) {
-                    mi1Var.f38648u0.b();
+                    ki1Var.f38057u0.b();
                     return;
                 }
                 return;
@@ -196,7 +196,7 @@ public final class f0 implements DialogInterface.OnDismissListener {
                     c1Var.getClass();
                     runnable2.run();
                 }
-                c1Var.f42131c0 = null;
+                c1Var.f42143c0 = null;
                 return;
             case 14:
                 boolean[] zArr3 = (boolean[]) obj;

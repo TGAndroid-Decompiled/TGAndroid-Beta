@@ -7,36 +7,36 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class vg extends View {
-    public float f31685a;
-    public long f31686b;
-    public boolean f31687c;
+    public float f31752a;
+    public long f31753b;
+    public boolean f31754c;
     public boolean d;
-    public boolean f31688e;
-    public final kj0 f31689f;
+    public boolean f31755e;
+    public final kj0 f31756f;
     public boolean h;
-    public boolean f31690n;
-    public long f31691r;
-    public final ChatActivityEnterView f31692s;
+    public boolean f31757n;
+    public long f31758r;
+    public final ChatActivityEnterView f31759s;
 
     public vg(ChatActivityEnterView chatActivityEnterView, Context context) {
         super(context);
-        this.f31692s = chatActivityEnterView;
-        this.f31691r = -1L;
+        this.f31759s = chatActivityEnterView;
+        this.f31758r = -1L;
         kj0 kj0Var = new kj0(R.raw.chat_audio_record_delete_2, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), false, null);
-        this.f31689f = kj0Var;
-        kj0Var.f28142o0 = true;
+        this.f31756f = kj0Var;
+        kj0Var.f28228o0 = true;
         a();
     }
 
     public final void a() {
-        int i10 = org.telegram.ui.ActionBar.i6.f20940jf;
-        int i11 = ChatActivityEnterView.f23851n5;
-        ChatActivityEnterView chatActivityEnterView = this.f31692s;
+        int i10 = org.telegram.ui.ActionBar.i6.f20945jf;
+        int i11 = ChatActivityEnterView.f23854n5;
+        ChatActivityEnterView chatActivityEnterView = this.f31759s;
         int i02 = chatActivityEnterView.i0(i10);
         int i03 = chatActivityEnterView.i0(org.telegram.ui.ActionBar.i6.Sd);
-        int i04 = chatActivityEnterView.i0(org.telegram.ui.ActionBar.i6.f20831df);
-        chatActivityEnterView.f23982w3.setColor(i02);
-        kj0 kj0Var = this.f31689f;
+        int i04 = chatActivityEnterView.i0(org.telegram.ui.ActionBar.i6.f20836df);
+        chatActivityEnterView.f23985w3.setColor(i02);
+        kj0 kj0Var = this.f31756f;
         kj0Var.Z = true;
         kj0Var.Q(i02, "Cup Red");
         kj0Var.Q(i02, "Box Red");
@@ -56,8 +56,8 @@ public final class vg extends View {
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.d = true;
-        boolean z10 = this.f31688e;
-        kj0 kj0Var = this.f31689f;
+        boolean z10 = this.f31755e;
+        kj0 kj0Var = this.f31756f;
         if (z10) {
             kj0Var.start();
         }
@@ -68,49 +68,49 @@ public final class vg extends View {
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.d = false;
-        kj0 kj0Var = this.f31689f;
+        kj0 kj0Var = this.f31756f;
         kj0Var.stop();
         kj0Var.R(null);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        Paint paint = this.f31692s.f23982w3;
-        boolean z10 = this.f31688e;
-        kj0 kj0Var = this.f31689f;
+        Paint paint = this.f31759s.f23985w3;
+        boolean z10 = this.f31755e;
+        kj0 kj0Var = this.f31756f;
         if (z10) {
-            kj0Var.setAlpha((int) (this.f31685a * 255.0f));
+            kj0Var.setAlpha((int) (this.f31752a * 255.0f));
         }
-        paint.setAlpha((int) (this.f31685a * 255.0f));
-        if (!this.f31690n) {
+        paint.setAlpha((int) (this.f31752a * 255.0f));
+        if (!this.f31757n) {
             long currentTimeMillis = System.currentTimeMillis();
-            long j3 = currentTimeMillis - this.f31686b;
+            long j3 = currentTimeMillis - this.f31753b;
             if (this.h) {
-                this.f31685a = 1.0f;
-            } else if (!this.f31687c && !this.f31688e) {
-                float f7 = this.f31685a - (((float) j3) / 600.0f);
-                this.f31685a = f7;
+                this.f31752a = 1.0f;
+            } else if (!this.f31754c && !this.f31755e) {
+                float f7 = this.f31752a - (((float) j3) / 600.0f);
+                this.f31752a = f7;
                 if (f7 <= 0.0f) {
-                    this.f31685a = 0.0f;
-                    this.f31687c = true;
+                    this.f31752a = 0.0f;
+                    this.f31754c = true;
                 }
             } else {
-                float f10 = (((float) j3) / 600.0f) + this.f31685a;
-                this.f31685a = f10;
+                float f10 = (((float) j3) / 600.0f) + this.f31752a;
+                this.f31752a = f10;
                 if (f10 >= 1.0f) {
-                    this.f31685a = 1.0f;
-                    this.f31687c = false;
+                    this.f31752a = 1.0f;
+                    this.f31754c = false;
                 }
             }
-            this.f31686b = currentTimeMillis;
+            this.f31753b = currentTimeMillis;
         }
-        if (this.f31688e) {
+        if (this.f31755e) {
             kj0Var.draw(canvas);
         }
-        if (!this.f31688e || !kj0Var.u()) {
+        if (!this.f31755e || !kj0Var.u()) {
             canvas.drawCircle(getMeasuredWidth() >> 1, getMeasuredHeight() >> 1, AndroidUtilities.dp(5.0f), paint);
         }
-        if (!this.f31690n) {
+        if (!this.f31757n) {
             invalidate();
         }
     }
@@ -118,6 +118,6 @@ public final class vg extends View {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        this.f31689f.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+        this.f31756f.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
     }
 }

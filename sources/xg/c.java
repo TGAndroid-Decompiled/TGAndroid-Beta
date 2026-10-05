@@ -16,22 +16,22 @@ import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Components.voip.o;
 import w7.z5;
 public class c extends FrameLayout {
-    public final d6 f49842a;
-    public final ImageView f49843b;
-    public final TextView f49844c;
+    public final d6 f49849a;
+    public final ImageView f49850b;
+    public final TextView f49851c;
     public Runnable d;
-    public final g2 f49845e;
-    public final Paint f49846f;
+    public final g2 f49852e;
+    public final Paint f49853f;
 
     public c(Context context, d6 d6Var) {
         super(context);
         int i10;
         float f7;
         float f10;
-        this.f49846f = new Paint(1);
-        this.f49842a = d6Var;
+        this.f49853f = new Paint(1);
+        this.f49849a = d6Var;
         TextView textView = new TextView(context);
-        this.f49844c = textView;
+        this.f49851c = textView;
         bi.j(20.0f, 1, textView);
         if (LocaleController.isRTL) {
             i10 = 5;
@@ -39,7 +39,7 @@ public class c extends FrameLayout {
             i10 = 3;
         }
         textView.setGravity(i10);
-        int i11 = i6.f20930j5;
+        int i11 = i6.f20935j5;
         textView.setTextColor(i6.v0(i11, d6Var));
         boolean z10 = LocaleController.isRTL;
         if (z10) {
@@ -54,13 +54,13 @@ public class c extends FrameLayout {
         }
         addView(textView, z5.d(-1, -2.0f, 23, f7, 0.0f, f10, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f49843b = imageView;
+        this.f49850b = imageView;
         g2 g2Var = new g2(false);
-        this.f49845e = g2Var;
+        this.f49852e = g2Var;
         imageView.setImageDrawable(g2Var);
         g2Var.a(i6.v0(i11, d6Var));
         g2Var.b(i6.v0(i11, d6Var));
-        g2Var.f20653k = 220.0f;
+        g2Var.f20658k = 220.0f;
         addView(imageView, z5.d(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
         imageView.setOnClickListener(new o(this, 14));
     }
@@ -68,8 +68,8 @@ public class c extends FrameLayout {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        int v02 = i6.v0(i6.f20823d7, this.f49842a);
-        Paint paint = this.f49846f;
+        int v02 = i6.v0(i6.f20828d7, this.f49849a);
+        Paint paint = this.f49853f;
         paint.setColor(v02);
         canvas.drawRect(0.0f, getHeight() - AndroidUtilities.getShadowHeight(), getWidth(), getHeight(), paint);
     }
@@ -84,7 +84,7 @@ public class c extends FrameLayout {
     }
 
     public void setBackImage(int i10) {
-        this.f49843b.setImageResource(i10);
+        this.f49850b.setImageResource(i10);
     }
 
     public void setCloseImageVisible(boolean z10) {
@@ -96,7 +96,7 @@ public class c extends FrameLayout {
         } else {
             i10 = 8;
         }
-        this.f49843b.setVisibility(i10);
+        this.f49850b.setVisibility(i10);
         boolean z11 = LocaleController.isRTL;
         if (!z11 && z10) {
             f7 = 53.0f;
@@ -108,7 +108,7 @@ public class c extends FrameLayout {
         } else {
             f10 = 22.0f;
         }
-        this.f49844c.setLayoutParams(z5.d(-1, -2.0f, 23, f7, 0.0f, f10, 0.0f));
+        this.f49851c.setLayoutParams(z5.d(-1, -2.0f, 23, f7, 0.0f, f10, 0.0f));
     }
 
     public void setOnCloseClickListener(Runnable runnable) {
@@ -116,6 +116,6 @@ public class c extends FrameLayout {
     }
 
     public void setText(CharSequence charSequence) {
-        this.f49844c.setText(charSequence);
+        this.f49851c.setText(charSequence);
     }
 }

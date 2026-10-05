@@ -17,48 +17,48 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 public final class r50 extends Dialog {
-    public final ai.n4 f39924a;
-    public final n20 f39925b;
-    public Bitmap f39926c;
+    public final ai.n4 f39987a;
+    public final n20 f39988b;
+    public Bitmap f39989c;
     public Paint d;
-    public BitmapShader f39927e;
-    public final Matrix f39928f;
+    public BitmapShader f39990e;
+    public final Matrix f39991f;
     public float h;
-    public ValueAnimator f39929n;
-    public boolean f39930r;
+    public ValueAnimator f39992n;
+    public boolean f39993r;
 
     public r50(Context context, n20 n20Var) {
         super(context, R.style.TransparentDialog);
-        this.f39928f = new Matrix();
-        this.f39925b = n20Var;
+        this.f39991f = new Matrix();
+        this.f39988b = n20Var;
         n20Var.setVisibility(4);
         AndroidUtilities.makeGlobalBlurBitmap(new ft(4, this, n20Var), 14.0f);
         ai.n4 n4Var = new ai.n4(this, context, n20Var);
-        this.f39924a = n4Var;
+        this.f39987a = n4Var;
         n4Var.setOnClickListener(new a(this, 29));
     }
 
     public final void b(float f7, q50 q50Var) {
-        ValueAnimator valueAnimator = this.f39929n;
+        ValueAnimator valueAnimator = this.f39992n;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f39929n = null;
+            this.f39992n = null;
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(this.h, f7);
-        this.f39929n = ofFloat;
+        this.f39992n = ofFloat;
         ofFloat.addUpdateListener(new c3(this, 15));
-        this.f39929n.addListener(new ai.t2(this, f7, q50Var, 3));
-        this.f39929n.setDuration(420L);
-        this.f39929n.setInterpolator(org.telegram.ui.Components.tr.h);
-        this.f39929n.start();
+        this.f39992n.addListener(new ai.t2(this, f7, q50Var, 3));
+        this.f39992n.setDuration(420L);
+        this.f39992n.setInterpolator(org.telegram.ui.Components.tr.h);
+        this.f39992n.start();
     }
 
     @Override
     public final void dismiss() {
-        if (this.f39930r) {
+        if (this.f39993r) {
             return;
         }
-        this.f39930r = true;
+        this.f39993r = true;
         b(0.0f, new q50(this, 0));
         try {
             WindowManager.LayoutParams attributes = getWindow().getAttributes();
@@ -74,7 +74,7 @@ public final class r50 extends Dialog {
         super.onCreate(bundle);
         Window window = getWindow();
         window.setWindowAnimations(R.style.DialogNoAnimation);
-        setContentView(this.f39924a, new ViewGroup.LayoutParams(-1, -1));
+        setContentView(this.f39987a, new ViewGroup.LayoutParams(-1, -1));
         WindowManager.LayoutParams attributes = window.getAttributes();
         attributes.width = -1;
         attributes.height = -1;

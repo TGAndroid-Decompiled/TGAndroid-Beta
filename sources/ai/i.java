@@ -16,7 +16,7 @@ import org.telegram.ui.Components.uh;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.cd;
-import org.telegram.ui.y31;
+import org.telegram.ui.w31;
 public final class i implements Utilities.Callback {
     public final int f1056a;
 
@@ -64,11 +64,11 @@ public final class i implements Utilities.Callback {
                 return;
             case 7:
                 Boolean bool2 = (Boolean) obj;
-                int i10 = org.telegram.ui.ActionBar.l3.f21358r;
+                int i10 = org.telegram.ui.ActionBar.l3.f21362r;
                 return;
             case 8:
                 ArrayList arrayList = (ArrayList) obj;
-                int i11 = org.telegram.ui.Cells.wa.f23705f;
+                int i11 = org.telegram.ui.Cells.wa.f23708f;
                 return;
             case 9:
                 cd.Y0((View) obj);
@@ -101,8 +101,8 @@ public final class i implements Utilities.Callback {
                 View view7 = (View) obj;
                 if (view7 instanceof org.telegram.ui.Cells.h5) {
                     org.telegram.ui.Cells.h5 h5Var = (org.telegram.ui.Cells.h5) view7;
-                    h5Var.f22207b.invalidate();
-                    h5Var.f22208c.invalidate();
+                    h5Var.f22211b.invalidate();
+                    h5Var.f22212c.invalidate();
                     return;
                 } else if (view7 instanceof hg.x1) {
                     ((hg.x1) view7).f11397c.invalidate();
@@ -149,7 +149,7 @@ public final class i implements Utilities.Callback {
             case 20:
                 HashSet hashSet = (HashSet) obj;
                 String str = LocaleController.getInstance().getCurrentLocaleInfo().pluralLangCode;
-                hashSet.addAll(y31.X());
+                hashSet.addAll(w31.X());
                 SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
                 if (hashSet.size() == 1 && TextUtils.equals((CharSequence) hashSet.iterator().next(), str)) {
                     edit.remove("translate_button_restricted_languages");
@@ -157,7 +157,7 @@ public final class i implements Utilities.Callback {
                     edit.putStringSet("translate_button_restricted_languages", hashSet);
                 }
                 edit.putInt("translate_button_restricted_languages_version", 2).apply();
-                y31.f43043s = false;
+                w31.f41904s = false;
                 for (int i12 = 0; i12 < 4; i12++) {
                     try {
                         MessagesController.getInstance(i12).getTranslateController().checkRestrictedLanguagesUpdate();

@@ -16,13 +16,13 @@ public final class s1 extends yl0 {
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
-        n1 n1Var = (n1) c1Var.f46531a;
+        n1 n1Var = (n1) c1Var.f46538a;
         pg.k0 k0Var = (pg.k0) pg.k0.c().get(i10);
         n1Var.getClass();
         n1Var.setTypeface(k0Var.d());
-        String str = k0Var.f44523c;
+        String str = k0Var.f44530c;
         if (str == null) {
-            str = LocaleController.getString(k0Var.f44522b);
+            str = LocaleController.getString(k0Var.f44529b);
         }
         n1Var.setText(str);
     }

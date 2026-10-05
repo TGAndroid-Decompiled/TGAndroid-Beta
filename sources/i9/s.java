@@ -59,8 +59,8 @@ public final class s implements Runnable {
         try {
             c();
         } catch (Error e7) {
-            synchronized (((r9.i) this.f12029c).f45962b) {
-                ((r9.i) this.f12029c).f45963c = 1;
+            synchronized (((r9.i) this.f12029c).f45969b) {
+                ((r9.i) this.f12029c).f45970c = 1;
                 throw e7;
             }
         }
@@ -402,7 +402,7 @@ public final class s implements Runnable {
                 ((c5.z) this.f12028b).accept(this.f12029c);
                 return;
             case 21:
-                yn ynVar = ((nm) this.f12029c).f39015c;
+                yn ynVar = ((nm) this.f12029c).f39004c;
                 if (this == ynVar.H5) {
                     ynVar.Xa((CharSequence) this.f12028b, false);
                     ynVar.H5 = null;
@@ -429,7 +429,7 @@ public final class s implements Runnable {
                 tL_chatBannedRights.embed_links = z22;
                 tL_chatBannedRights.send_polls = z22;
                 tL_chatBannedRights.send_reactions = z22;
-                AndroidUtilities.updateVisibleRows(rrVar.f40195c);
+                AndroidUtilities.updateVisibleRows(rrVar.f40170c);
                 lr w02 = rrVar.w0();
                 rrVar.B0();
                 rrVar.A0(w02);
@@ -443,9 +443,9 @@ public final class s implements Runnable {
                 while (!((Set) this.f12029c).isEmpty()) {
                     try {
                         qb.l lVar = (qb.l) referenceQueue.remove();
-                        if (lVar.f44925a.remove(lVar)) {
+                        if (lVar.f44932a.remove(lVar)) {
                             lVar.clear();
-                            lVar.f44926b.getClass();
+                            lVar.f44933b.getClass();
                         }
                     } catch (InterruptedException unused) {
                     }
@@ -467,17 +467,17 @@ public final class s implements Runnable {
             case 26:
                 qb.i iVar2 = (qb.i) this.f12028b;
                 TaskCompletionSource taskCompletionSource2 = (TaskCompletionSource) this.f12029c;
-                int decrementAndGet = iVar2.f44918b.decrementAndGet();
+                int decrementAndGet = iVar2.f44925b.decrementAndGet();
                 if (decrementAndGet < 0) {
                     z19 = false;
                 }
                 n6.l.k(z19);
                 if (decrementAndGet == 0) {
                     iVar2.c();
-                    iVar2.f44919c.set(false);
+                    iVar2.f44926c.set(false);
                 }
-                t7.n.f46920a.clear();
-                t7.t.f46927a.clear();
+                t7.n.f46927a.clear();
+                t7.t.f46934a.clear();
                 taskCompletionSource2.setResult(null);
                 return;
             case 27:
@@ -505,7 +505,7 @@ public final class s implements Runnable {
                 return;
             default:
                 s4.u uVar = (s4.u) this.f12028b;
-                c1 c1Var = uVar.f46666e;
+                c1 c1Var = uVar.f46673e;
                 s4.y yVar = (s4.y) this.f12029c;
                 RecyclerView recyclerView = yVar.H;
                 if (recyclerView != null && recyclerView.G && !uVar.v && c1Var.b() != -1) {
@@ -514,10 +514,10 @@ public final class s implements Runnable {
                         ArrayList arrayList2 = yVar.F;
                         int size2 = arrayList2.size();
                         for (int i16 = 0; i16 < size2; i16++) {
-                            if (((s4.u) arrayList2.get(i16)).f46671w) {
+                            if (((s4.u) arrayList2.get(i16)).f46678w) {
                             }
                         }
-                        yVar.f46697x.q(c1Var);
+                        yVar.f46704x.q(c1Var);
                         return;
                     }
                     yVar.H.post(this);
@@ -533,9 +533,9 @@ public final class s implements Runnable {
             case 0:
                 aa.a aVar = new aa.a(s.class.getSimpleName(), 13);
                 of.b bVar = new of.b(13, false);
-                ((of.b) aVar.d).f17163c = bVar;
+                ((of.b) aVar.d).f17168c = bVar;
                 aVar.d = bVar;
-                bVar.f17162b = (r) this.f12029c;
+                bVar.f17167b = (r) this.f12029c;
                 return aVar.toString();
             case 28:
                 Runnable runnable = (Runnable) this.f12028b;
@@ -543,7 +543,7 @@ public final class s implements Runnable {
                     return "SequentialExecutorWorker{running=" + runnable + "}";
                 }
                 StringBuilder sb2 = new StringBuilder("SequentialExecutorWorker{state=");
-                int i10 = ((r9.i) this.f12029c).f45963c;
+                int i10 = ((r9.i) this.f12029c).f45970c;
                 if (i10 != 1) {
                     if (i10 != 2) {
                         if (i10 != 3) {

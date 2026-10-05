@@ -1,44 +1,44 @@
 package org.telegram.ui;
-public final class i20 implements org.telegram.ui.Components.xo0 {
-    public final int f37228a;
-    public final sg.a f37229b;
+public final class i20 implements org.telegram.ui.Components.yo0 {
+    public final int f37229a;
+    public final sg.a f37230b;
 
     public i20(sg.a aVar, int i10) {
-        this.f37228a = i10;
-        this.f37229b = aVar;
+        this.f37229a = i10;
+        this.f37230b = aVar;
     }
 
     @Override
     public final void B() {
-        int i10 = this.f37228a;
+        int i10 = this.f37229a;
     }
 
     @Override
     public final void Y(float f7, boolean z10) {
-        switch (this.f37228a) {
+        switch (this.f37229a) {
             case 0:
-                sg.f fVar = this.f37229b.f46791c;
+                sg.f fVar = this.f37230b.f46798c;
                 if (fVar != null) {
                     fVar.v = f7 * 2.0f;
                     return;
                 }
                 return;
             case 1:
-                sg.f fVar2 = this.f37229b.f46791c;
+                sg.f fVar2 = this.f37230b.f46798c;
                 if (fVar2 != null) {
-                    fVar2.f46853w = f7 * 2.0f;
+                    fVar2.f46860w = f7 * 2.0f;
                     return;
                 }
                 return;
             case 2:
-                sg.f fVar3 = this.f37229b.f46791c;
+                sg.f fVar3 = this.f37230b.f46798c;
                 if (fVar3 != null) {
-                    fVar3.f46854x = f7;
+                    fVar3.f46861x = f7;
                     return;
                 }
                 return;
             default:
-                sg.f fVar4 = this.f37229b.f46791c;
+                sg.f fVar4 = this.f37230b.f46798c;
                 if (fVar4 != null) {
                     fVar4.A = f7 * 2.0f;
                     return;
@@ -49,7 +49,7 @@ public final class i20 implements org.telegram.ui.Components.xo0 {
 
     @Override
     public final CharSequence getContentDescription() {
-        switch (this.f37228a) {
+        switch (this.f37229a) {
             case 0:
                 return null;
             case 1:
@@ -63,7 +63,7 @@ public final class i20 implements org.telegram.ui.Components.xo0 {
 
     @Override
     public final int p0() {
-        switch (this.f37228a) {
+        switch (this.f37229a) {
             case 0:
                 return 0;
             case 1:

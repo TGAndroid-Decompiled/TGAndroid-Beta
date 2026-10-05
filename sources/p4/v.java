@@ -14,40 +14,40 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 public final class v {
-    public final u f44273a;
-    public final String f44274b;
-    public final String f44275c;
+    public final u f44280a;
+    public final String f44281b;
+    public final String f44282c;
     public String d;
-    public String f44276e;
-    public Uri f44277f;
-    public boolean f44278g;
+    public String f44283e;
+    public Uri f44284f;
+    public boolean f44285g;
     public final boolean h;
-    public int f44279i;
-    public boolean f44280j;
-    public int f44282l;
-    public int f44283m;
-    public int f44284n;
-    public int f44285o;
-    public int f44286p;
-    public int f44287q;
-    public Bundle f44289s;
-    public IntentSender f44290t;
-    public m f44291u;
-    public a0.f f44292w;
-    public final ArrayList f44281k = new ArrayList();
-    public int f44288r = -1;
+    public int f44286i;
+    public boolean f44287j;
+    public int f44289l;
+    public int f44290m;
+    public int f44291n;
+    public int f44292o;
+    public int f44293p;
+    public int f44294q;
+    public Bundle f44296s;
+    public IntentSender f44297t;
+    public m f44298u;
+    public a0.f f44299w;
+    public final ArrayList f44288k = new ArrayList();
+    public int f44295r = -1;
     public ArrayList v = new ArrayList();
 
     public v(u uVar, String str, String str2, boolean z10) {
-        this.f44273a = uVar;
-        this.f44274b = str;
-        this.f44275c = str2;
+        this.f44280a = uVar;
+        this.f44281b = str;
+        this.f44282c = str2;
         this.h = z10;
     }
 
     public static p a() {
         x.b();
-        q qVar = x.c().f44157e;
+        q qVar = x.c().f44164e;
         if (qVar instanceof p) {
             return (p) qVar;
         }
@@ -56,10 +56,10 @@ public final class v {
 
     public final n4 b(v vVar) {
         if (vVar != null) {
-            String str = vVar.f44275c;
-            a0.f fVar = this.f44292w;
+            String str = vVar.f44282c;
+            a0.f fVar = this.f44299w;
             if (fVar != null && fVar.containsKey(str)) {
-                return new n4((o) this.f44292w.get(str), 18);
+                return new n4((o) this.f44299w.get(str), 18);
             }
             return null;
         }
@@ -67,17 +67,17 @@ public final class v {
     }
 
     public final h3 c() {
-        u uVar = this.f44273a;
+        u uVar = this.f44280a;
         uVar.getClass();
         x.b();
-        return uVar.f44269a;
+        return uVar.f44276a;
     }
 
     public final boolean d() {
         x.b();
         v vVar = x.c().v;
         if (vVar != null) {
-            if (vVar != this && this.f44284n != 3) {
+            if (vVar != this && this.f44291n != 3) {
                 if (TextUtils.equals(((ComponentName) ((l2.g) c().d).f15268b).getPackageName(), "android") && m("android.media.intent.category.LIVE_AUDIO") && !m("android.media.intent.category.LIVE_VIDEO")) {
                     return true;
                 }
@@ -96,7 +96,7 @@ public final class v {
     }
 
     public final boolean f() {
-        if (this.f44291u != null && this.f44278g) {
+        if (this.f44298u != null && this.f44285g) {
             return true;
         }
         return false;
@@ -113,10 +113,10 @@ public final class v {
     public final boolean h(r rVar) {
         if (rVar != null) {
             x.b();
-            ArrayList arrayList = this.f44281k;
+            ArrayList arrayList = this.f44288k;
             if (arrayList != null) {
                 rVar.a();
-                if (!rVar.f44251b.isEmpty()) {
+                if (!rVar.f44258b.isEmpty()) {
                     int size = arrayList.size();
                     int i10 = 0;
                     while (i10 < size) {
@@ -124,7 +124,7 @@ public final class v {
                         i10++;
                         IntentFilter intentFilter = (IntentFilter) obj;
                         if (intentFilter != null) {
-                            for (String str : rVar.f44251b) {
+                            for (String str : rVar.f44258b) {
                                 if (intentFilter.hasCategory(str)) {
                                     return true;
                                 }
@@ -148,11 +148,11 @@ public final class v {
         q qVar2;
         x.b();
         e c10 = x.c();
-        int min = Math.min(this.f44287q, Math.max(0, i10));
-        HashMap hashMap = c10.f44155b;
-        if (this == c10.d && (qVar2 = c10.f44157e) != null) {
+        int min = Math.min(this.f44294q, Math.max(0, i10));
+        HashMap hashMap = c10.f44162b;
+        if (this == c10.d && (qVar2 = c10.f44164e) != null) {
             qVar2.f(min);
-        } else if (!hashMap.isEmpty() && (qVar = (q) hashMap.get(this.f44275c)) != null) {
+        } else if (!hashMap.isEmpty() && (qVar = (q) hashMap.get(this.f44282c)) != null) {
             qVar.f(min);
         }
     }
@@ -163,10 +163,10 @@ public final class v {
         x.b();
         if (i10 != 0) {
             e c10 = x.c();
-            HashMap hashMap = c10.f44155b;
-            if (this == c10.d && (qVar2 = c10.f44157e) != null) {
+            HashMap hashMap = c10.f44162b;
+            if (this == c10.d && (qVar2 = c10.f44164e) != null) {
                 qVar2.i(i10);
-            } else if (!hashMap.isEmpty() && (qVar = (q) hashMap.get(this.f44275c)) != null) {
+            } else if (!hashMap.isEmpty() && (qVar = (q) hashMap.get(this.f44282c)) != null) {
                 qVar.i(i10);
             }
         }
@@ -179,7 +179,7 @@ public final class v {
 
     public final boolean m(String str) {
         x.b();
-        ArrayList arrayList = this.f44281k;
+        ArrayList arrayList = this.f44288k;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -194,62 +194,62 @@ public final class v {
 
     public final void n(Collection collection) {
         this.v.clear();
-        if (this.f44292w == null) {
-            this.f44292w = new a0.m(0);
+        if (this.f44299w == null) {
+            this.f44299w = new a0.m(0);
         }
-        this.f44292w.clear();
+        this.f44299w.clear();
         Iterator it = collection.iterator();
         while (it.hasNext()) {
             o oVar = (o) it.next();
-            v a2 = this.f44273a.a(oVar.f44226a.d());
+            v a2 = this.f44280a.a(oVar.f44233a.d());
             if (a2 != null) {
-                this.f44292w.put(a2.f44275c, oVar);
-                int i10 = oVar.f44227b;
+                this.f44299w.put(a2.f44282c, oVar);
+                int i10 = oVar.f44234b;
                 if (i10 == 2 || i10 == 3) {
                     this.v.add(a2);
                 }
             }
         }
-        x.c().f44154a.b(259, this);
+        x.c().f44161a.b(259, this);
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("MediaRouter.RouteInfo{ uniqueId=");
-        sb2.append(this.f44275c);
+        sb2.append(this.f44282c);
         sb2.append(", name=");
         sb2.append(this.d);
         sb2.append(", description=");
-        sb2.append(this.f44276e);
+        sb2.append(this.f44283e);
         sb2.append(", iconUri=");
-        sb2.append(this.f44277f);
+        sb2.append(this.f44284f);
         sb2.append(", enabled=");
-        sb2.append(this.f44278g);
+        sb2.append(this.f44285g);
         sb2.append(", isSystemRoute=");
         sb2.append(this.h);
         sb2.append(", connectionState=");
-        sb2.append(this.f44279i);
+        sb2.append(this.f44286i);
         sb2.append(", canDisconnect=");
-        sb2.append(this.f44280j);
+        sb2.append(this.f44287j);
         sb2.append(", playbackType=");
-        sb2.append(this.f44282l);
+        sb2.append(this.f44289l);
         sb2.append(", playbackStream=");
-        sb2.append(this.f44283m);
+        sb2.append(this.f44290m);
         sb2.append(", deviceType=");
-        sb2.append(this.f44284n);
+        sb2.append(this.f44291n);
         sb2.append(", volumeHandling=");
-        sb2.append(this.f44285o);
+        sb2.append(this.f44292o);
         sb2.append(", volume=");
-        sb2.append(this.f44286p);
+        sb2.append(this.f44293p);
         sb2.append(", volumeMax=");
-        sb2.append(this.f44287q);
+        sb2.append(this.f44294q);
         sb2.append(", presentationDisplayId=");
-        sb2.append(this.f44288r);
+        sb2.append(this.f44295r);
         sb2.append(", extras=");
-        sb2.append(this.f44289s);
+        sb2.append(this.f44296s);
         sb2.append(", settingsIntent=");
-        sb2.append(this.f44290t);
+        sb2.append(this.f44297t);
         sb2.append(", providerPackageName=");
-        sb2.append(((ComponentName) this.f44273a.d.f15268b).getPackageName());
+        sb2.append(((ComponentName) this.f44280a.d.f15268b).getPackageName());
         if (e()) {
             sb2.append(", members=[");
             int size = this.v.size();
@@ -258,7 +258,7 @@ public final class v {
                     sb2.append(", ");
                 }
                 if (this.v.get(i10) != this) {
-                    sb2.append(((v) this.v.get(i10)).f44275c);
+                    sb2.append(((v) this.v.get(i10)).f44282c);
                 }
             }
             sb2.append(']');

@@ -4,15 +4,15 @@ import java.util.List;
 import org.telegram.messenger.ApplicationLoader;
 import v7.l8;
 public final class o0 implements e2.h, z0, y0, n2.m, d9.e, g2.g {
-    public final int f16271a;
+    public final int f16276a;
 
     public o0(int i10) {
-        this.f16271a = i10;
+        this.f16276a = i10;
     }
 
     @Override
     public void a(e1 e1Var, r rVar, List list) {
-        switch (this.f16271a) {
+        switch (this.f16276a) {
             case 9:
                 e1Var.v0(list);
                 return;
@@ -24,7 +24,7 @@ public final class o0 implements e2.h, z0, y0, n2.m, d9.e, g2.g {
 
     @Override
     public void accept(Object obj) {
-        switch (this.f16271a) {
+        switch (this.f16276a) {
             case 0:
                 ((e1) obj).z0();
                 return;
@@ -76,7 +76,7 @@ public final class o0 implements e2.h, z0, y0, n2.m, d9.e, g2.g {
     public Object apply(Object obj) {
         o2.q qVar = (o2.q) obj;
         qVar.e();
-        return e9.i0.v(e9.q.w(qVar.Y.f47380b, new u2.l0(2)));
+        return e9.i0.v(e9.q.w(qVar.Y.f47387b, new u2.l0(2)));
     }
 
     @Override
@@ -86,14 +86,14 @@ public final class o0 implements e2.h, z0, y0, n2.m, d9.e, g2.g {
 
     @Override
     public Object h(a0 a0Var, r rVar, int i10) {
-        switch (this.f16271a) {
+        switch (this.f16276a) {
             case 2:
                 return a0Var.n(rVar);
             case 5:
                 a0Var.getClass();
                 throw new ClassCastException();
             case 8:
-                na.d dVar = a0Var.f16043e;
+                na.d dVar = a0Var.f16048e;
                 a0Var.s(rVar);
                 dVar.getClass();
                 return l8.b(new k1(-6));
@@ -110,7 +110,7 @@ public final class o0 implements e2.h, z0, y0, n2.m, d9.e, g2.g {
                 a0Var.getClass();
                 throw new ClassCastException();
             default:
-                na.d dVar2 = a0Var.f16043e;
+                na.d dVar2 = a0Var.f16048e;
                 a0Var.s(rVar);
                 dVar2.getClass();
                 return l8.b(new k1(-6));
@@ -118,15 +118,15 @@ public final class o0 implements e2.h, z0, y0, n2.m, d9.e, g2.g {
     }
 
     public o0(int i10, Object obj, Object obj2) {
-        this.f16271a = i10;
+        this.f16276a = i10;
     }
 
     public o0(Object obj, int i10) {
-        this.f16271a = i10;
+        this.f16276a = i10;
     }
 
     public o0(String str, int i10, int i11, n nVar) {
-        this.f16271a = 12;
+        this.f16276a = 12;
     }
 
     @Override

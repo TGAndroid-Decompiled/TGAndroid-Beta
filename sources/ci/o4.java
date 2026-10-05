@@ -5,8 +5,8 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.c71;
-public final class o4 extends c71 {
+import org.telegram.ui.Components.e71;
+public final class o4 extends e71 {
     public final bb f5652m3;
 
     public o4(bb bbVar, Context context, int i10, m4 m4Var, a1.c cVar, ai.d dVar) {
@@ -15,12 +15,12 @@ public final class o4 extends c71 {
     }
 
     @Override
-    public final void J1() {
+    public final void I1() {
         AndroidUtilities.forEachViews((RecyclerView) this.f5652m3.f5964b, (Utilities.Callback<View>) new ai.y1(this, 11));
     }
 
     @Override
-    public final Integer X0(int i10) {
+    public final Integer W0(int i10) {
         return 0;
     }
 }

@@ -14,29 +14,29 @@ import org.telegram.ui.Components.ol0;
 import org.telegram.ui.Components.rp;
 import org.telegram.ui.LaunchActivity;
 public final class la implements ol0, yf.m, ImageReceiver.ImageReceiverDelegate, FlagSecureReason.FlagSecureCondition, rp, Utilities.Callback2Return {
-    public final int f22445a;
-    public final Object f22446b;
+    public final int f22448a;
+    public final Object f22449b;
 
     public la(Object obj, int i10) {
-        this.f22445a = i10;
-        this.f22446b = obj;
+        this.f22448a = i10;
+        this.f22449b = obj;
     }
 
     @Override
     public void a() {
-        switch (this.f22445a) {
+        switch (this.f22448a) {
             case 4:
-                n4 n4Var = (n4) this.f22446b;
+                n4 n4Var = (n4) this.f22449b;
                 float progress = 1.0f - (n4Var.v.getProgress() * 0.143f);
-                org.telegram.ui.Components.w9 w9Var = n4Var.f22522a;
+                org.telegram.ui.Components.w9 w9Var = n4Var.f22525a;
                 w9Var.setScaleX(progress);
                 w9Var.setScaleY(progress);
                 n4Var.invalidate();
                 return;
             default:
-                g7 g7Var = (g7) this.f22446b;
+                g7 g7Var = (g7) this.f22449b;
                 float progress2 = 1.0f - (g7Var.d.getProgress() * 0.143f);
-                org.telegram.ui.Components.w9 w9Var2 = g7Var.f22162a;
+                org.telegram.ui.Components.w9 w9Var2 = g7Var.f22166a;
                 w9Var2.setScaleX(progress2);
                 w9Var2.setScaleY(progress2);
                 g7Var.invalidate();
@@ -46,9 +46,9 @@ public final class la implements ol0, yf.m, ImageReceiver.ImageReceiverDelegate,
 
     @Override
     public boolean d(int i10, View view) {
-        pa paVar = (pa) this.f22446b;
+        pa paVar = (pa) this.f22449b;
         paVar.getClass();
-        paVar.B1(((ThemesHorizontalListCell$InnerThemeView) view).f21762b);
+        paVar.A1(((ThemesHorizontalListCell$InnerThemeView) view).f21766b);
         return true;
     }
 
@@ -58,9 +58,9 @@ public final class la implements ol0, yf.m, ImageReceiver.ImageReceiverDelegate,
         t0 t0Var;
         int v;
         MessageObject messageObject;
-        switch (this.f22445a) {
+        switch (this.f22448a) {
             case 2:
-                w0 w0Var = (w0) this.f22446b;
+                w0 w0Var = (w0) this.f22449b;
                 if (z10 && (lottieAnimation = w0Var.I.getLottieAnimation()) != null) {
                     MessageObject messageObject2 = w0Var.H0;
                     if (messageObject2 != null && !messageObject2.playedGiftAnimation) {
@@ -75,19 +75,19 @@ public final class la implements ol0, yf.m, ImageReceiver.ImageReceiverDelegate,
                             } catch (Exception unused) {
                             }
                             if (w0Var.getContext() instanceof LaunchActivity) {
-                                ((LaunchActivity) w0Var.getContext()).f33818x0.c(false);
+                                ((LaunchActivity) w0Var.getContext()).f33831x0.c(false);
                             }
                             TLRPC.VideoSize videoSize = w0Var.A1;
                             if (videoSize != null && (t0Var = w0Var.X0) != null) {
-                                t0Var.g1(w0Var, w0Var.f23661z1, videoSize);
+                                t0Var.g1(w0Var, w0Var.f23664z1, videoSize);
                                 return;
                             }
                             return;
                         }
                         return;
-                    } else if (lottieAnimation.f28124a0 < 1) {
+                    } else if (lottieAnimation.f28210a0 < 1) {
                         lottieAnimation.stop();
-                        lottieAnimation.N(lottieAnimation.f28130e[0] - 1, false, false);
+                        lottieAnimation.N(lottieAnimation.f28216e[0] - 1, false, false);
                         return;
                     } else {
                         return;
@@ -95,21 +95,21 @@ public final class la implements ol0, yf.m, ImageReceiver.ImageReceiverDelegate,
                 }
                 return;
             default:
-                t7 t7Var = (t7) this.f22446b;
+                t7 t7Var = (t7) this.f22449b;
                 ImageReceiver imageReceiver2 = t7Var.d;
-                ImageReceiver imageReceiver3 = t7Var.f23076c;
-                if (z10 && !z11 && (messageObject = t7Var.f23089n) != null && messageObject.hasMediaSpoilers() && imageReceiver3.getBitmap() != null) {
+                ImageReceiver imageReceiver3 = t7Var.f23079c;
+                if (z10 && !z11 && (messageObject = t7Var.f23092n) != null && messageObject.hasMediaSpoilers() && imageReceiver3.getBitmap() != null) {
                     if (imageReceiver2.getBitmap() != null) {
                         imageReceiver2.getBitmap().recycle();
                     }
                     imageReceiver2.setImageBitmap(Utilities.stackBlurBitmapMax(imageReceiver3.getBitmap()));
                 }
-                if (z10 && !z11 && t7Var.f23102w0 && imageReceiver3.getBitmap() != null) {
+                if (z10 && !z11 && t7Var.f23105w0 && imageReceiver3.getBitmap() != null) {
                     int dominantColor = AndroidUtilities.getDominantColor(imageReceiver3.getBitmap());
-                    t7Var.f23072a = dominantColor;
+                    t7Var.f23075a = dominantColor;
                     CheckBoxBase checkBoxBase = t7Var.P;
-                    if (checkBoxBase != null && checkBoxBase.f24104x != (v = org.telegram.ui.ActionBar.i6.v(dominantColor, org.telegram.ui.ActionBar.i6.l1(0.25f, -1)))) {
-                        checkBoxBase.f24104x = v;
+                    if (checkBoxBase != null && checkBoxBase.f24107x != (v = org.telegram.ui.ActionBar.i6.v(dominantColor, org.telegram.ui.ActionBar.i6.l1(0.25f, -1)))) {
+                        checkBoxBase.f24107x = v;
                         checkBoxBase.b();
                         return;
                     }
@@ -121,38 +121,38 @@ public final class la implements ol0, yf.m, ImageReceiver.ImageReceiverDelegate,
 
     @Override
     public void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        int i11 = this.f22445a;
+        int i11 = this.f22448a;
         org.telegram.messenger.h5.a(this, i10, str, drawable);
     }
 
     @Override
     public void e(long j3) {
-        ((l) this.f22446b).b(j3);
+        ((l) this.f22449b).b(j3);
     }
 
     @Override
     public void onAnimationReady(ImageReceiver imageReceiver) {
-        int i10 = this.f22445a;
+        int i10 = this.f22448a;
         org.telegram.messenger.h5.b(this, imageReceiver);
     }
 
     @Override
     public Object run(Object obj, Object obj2) {
         Integer num = (Integer) obj;
-        return (CharSequence) ((ei.c) this.f22446b).run((Integer) obj2);
+        return (CharSequence) ((ei.c) this.f22449b).run((Integer) obj2);
     }
 
     @Override
     public boolean run() {
         TLRPC.Message message;
         k4 k4Var;
-        u1 u1Var = (u1) this.f22446b;
-        MessageObject messageObject = u1Var.f23474y7;
+        u1 u1Var = (u1) this.f22449b;
+        MessageObject messageObject = u1Var.f23477y7;
         if (messageObject == null || (message = messageObject.messageOwner) == null) {
             return false;
         }
-        if (messageObject.type != 29 || ((k4Var = u1Var.F7) != null && k4Var.f22389i)) {
-            return (message.noforwards && !messageObject.isEphemeral()) || u1Var.f23474y7.isVoiceOnce() || u1Var.f23474y7.hasRevealedExtendedMedia();
+        if (messageObject.type != 29 || ((k4Var = u1Var.F7) != null && k4Var.f22392i)) {
+            return (message.noforwards && !messageObject.isEphemeral()) || u1Var.f23477y7.isVoiceOnce() || u1Var.f23477y7.hasRevealedExtendedMedia();
         }
         return true;
     }

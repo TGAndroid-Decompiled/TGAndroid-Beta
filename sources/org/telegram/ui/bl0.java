@@ -11,28 +11,28 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class bl0 implements Utilities.Callback2 {
-    public final int f35142a;
-    public final Serializable f35143b;
-    public final Object f35144c;
+    public final int f35166a;
+    public final Serializable f35167b;
+    public final Object f35168c;
     public final Object d;
-    public final Object f35145e;
+    public final Object f35169e;
 
     public bl0(Object obj, Object obj2, Serializable serializable, Object obj3, int i10) {
-        this.f35142a = i10;
-        this.f35144c = obj;
+        this.f35166a = i10;
+        this.f35168c = obj;
         this.d = obj2;
-        this.f35143b = serializable;
-        this.f35145e = obj3;
+        this.f35167b = serializable;
+        this.f35169e = obj3;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
         CharSequence replaceSingleLinkBold;
-        int i10 = this.f35142a;
-        Object obj3 = this.f35145e;
-        Serializable serializable = this.f35143b;
+        int i10 = this.f35166a;
+        Object obj3 = this.f35169e;
+        Serializable serializable = this.f35167b;
         Object obj4 = this.d;
-        Object obj5 = this.f35144c;
+        Object obj5 = this.f35168c;
         switch (i10) {
             case 0:
                 org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) obj4;
@@ -41,14 +41,14 @@ public final class bl0 implements Utilities.Callback2 {
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 ((org.telegram.ui.ActionBar.b2) obj5).dismiss();
                 if (((TLRPC.Bool) obj) instanceof TLRPC.TL_boolTrue) {
-                    gl0.f36676a = f3Var;
+                    gl0.f36700a = f3Var;
                     f3Var.show();
                     return;
                 }
-                org.telegram.ui.ActionBar.f3 f3Var2 = gl0.f36676a;
+                org.telegram.ui.ActionBar.f3 f3Var2 = gl0.f36700a;
                 if (f3Var2 != null) {
                     f3Var2.dismiss();
-                    gl0.f36676a = null;
+                    gl0.f36700a = null;
                 }
                 org.telegram.ui.Components.yc a2 = gl0.a();
                 int i11 = R.raw.error;
@@ -67,19 +67,19 @@ public final class bl0 implements Utilities.Callback2 {
                 TLRPC.User user = (TLRPC.User) obj3;
                 TLRPC.Updates updates = (TLRPC.Updates) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                org.telegram.ui.ActionBar.d6 d6Var2 = c1Var.f42133e;
+                org.telegram.ui.ActionBar.d6 d6Var2 = c1Var.f42145e;
                 if (updates != null) {
                     MessagesController.getInstance(c1Var.M).processUpdates(updates, false);
                     c1Var.y(daVar, "requested_chat_sent", org.telegram.ui.web.c1.B(str2, "req_id"));
-                    long j3 = c1Var.U.f20189id;
+                    long j3 = c1Var.U.f20194id;
                     Bundle bundle = new Bundle();
-                    bundle.putLong("user_id", user.f20189id);
+                    bundle.putLong("user_id", user.f20194id);
                     org.telegram.ui.web.f0 f0Var = new org.telegram.ui.web.f0(c1Var, bundle, user, j3);
                     org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                     if (U != null) {
                         U.presentFragment(f0Var);
                     }
-                    org.telegram.ui.web.h0 h0Var = c1Var.f42130c;
+                    org.telegram.ui.web.h0 h0Var = c1Var.f42142c;
                     if (h0Var != null) {
                         h0Var.b();
                         return;
@@ -95,7 +95,7 @@ public final class bl0 implements Utilities.Callback2 {
                     return;
                 }
             default:
-                yh.x3.c0((yh.x3) obj5, (Utilities.Callback2) obj4, (ArrayList) serializable, (Runnable) obj3, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                yh.y3.c0((yh.y3) obj5, (Utilities.Callback2) obj4, (ArrayList) serializable, (Runnable) obj3, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
                 return;
         }
     }

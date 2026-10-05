@@ -5,14 +5,14 @@ import android.graphics.RectF;
 import org.telegram.messenger.BotWebViewVibrationEffect;
 import org.telegram.ui.Components.tr;
 public final class o0 implements Runnable {
-    public final int f44558a;
-    public final s0 f44559b;
-    public final i1 f44560c;
+    public final int f44565a;
+    public final s0 f44566b;
+    public final i1 f44567c;
 
     public o0(s0 s0Var, i1 i1Var, int i10) {
-        this.f44558a = i10;
-        this.f44559b = s0Var;
-        this.f44560c = i1Var;
+        this.f44565a = i10;
+        this.f44566b = s0Var;
+        this.f44567c = i1Var;
     }
 
     @Override
@@ -20,25 +20,25 @@ public final class o0 implements Runnable {
         boolean z10;
         boolean z11;
         float f7;
-        int i10 = this.f44558a;
-        i1 i1Var = this.f44560c;
-        s0 s0Var = this.f44559b;
+        int i10 = this.f44565a;
+        i1 i1Var = this.f44567c;
+        s0 s0Var = this.f44566b;
         switch (i10) {
             case 0:
-                s0Var.f44592c = i1Var;
+                s0Var.f44599c = i1Var;
                 if (s0Var.h == null) {
                     s0Var.h = new RectF();
                 }
-                s0Var.f44592c.a(s0Var.h);
-                l2.g gVar = s0Var.f44590a;
+                s0Var.f44599c.a(s0Var.h);
+                l2.g gVar = s0Var.f44597a;
                 if (gVar != null) {
-                    gVar.m();
+                    gVar.V();
                     return;
                 }
                 return;
             default:
-                if (i1Var != null && s0Var.f44604q == 0) {
-                    s0Var.f44604q = u1.b(s0Var.f44595g);
+                if (i1Var != null && s0Var.f44611q == 0) {
+                    s0Var.f44611q = u1.b(s0Var.f44602g);
                 }
                 boolean z12 = s0Var.H;
                 if (i1Var != null) {
@@ -71,9 +71,9 @@ public final class o0 implements Runnable {
                     s0Var.K.setInterpolator(tr.h);
                     s0Var.K.start();
                     s0Var.d = i1Var;
-                    l2.g gVar2 = s0Var.f44590a;
+                    l2.g gVar2 = s0Var.f44597a;
                     if (gVar2 != null) {
-                        gVar2.m();
+                        gVar2.V();
                     }
                     if (s0Var.H) {
                         BotWebViewVibrationEffect.SELECTION_CHANGE.vibrate();
@@ -82,9 +82,9 @@ public final class o0 implements Runnable {
                     return;
                 } else if (i1Var != s0Var.d) {
                     s0Var.d = i1Var;
-                    l2.g gVar3 = s0Var.f44590a;
+                    l2.g gVar3 = s0Var.f44597a;
                     if (gVar3 != null) {
-                        gVar3.m();
+                        gVar3.V();
                         return;
                     }
                     return;

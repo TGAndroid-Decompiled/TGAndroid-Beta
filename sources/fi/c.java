@@ -4,13 +4,13 @@ import ai.g3;
 import android.view.View;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.g61;
+import org.telegram.ui.Components.h61;
 public final class c implements Utilities.Callback5, Utilities.Callback5Return, MessagesStorage.StringCallback {
     public final f f9876a;
 
     @Override
     public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        g61 g61Var = (g61) obj;
+        h61 h61Var = (h61) obj;
         View view = (View) obj2;
         ((Integer) obj3).intValue();
         ((Float) obj4).floatValue();
@@ -25,7 +25,7 @@ public final class c implements Utilities.Callback5, Utilities.Callback5Return, 
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        f.S(this.f9876a, (g61) obj);
+        f.S(this.f9876a, (h61) obj);
     }
 
     @Override

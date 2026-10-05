@@ -4,12 +4,12 @@ import android.content.Context;
 import android.view.View;
 import android.view.Window;
 public final class k3 implements View.OnClickListener {
-    public final l.a f15779a;
-    public final l3 f15780b;
+    public final l.a f15784a;
+    public final l3 f15785b;
 
     public k3(l3 l3Var) {
-        this.f15780b = l3Var;
-        Context context = l3Var.f15789a.getContext();
+        this.f15785b = l3Var;
+        Context context = l3Var.f15794a.getContext();
         CharSequence charSequence = l3Var.h;
         ?? obj = new Object();
         obj.f15121e = 4096;
@@ -21,15 +21,15 @@ public final class k3 implements View.OnClickListener {
         obj.f15131p = 16;
         obj.f15124i = context;
         obj.f15118a = charSequence;
-        this.f15779a = obj;
+        this.f15784a = obj;
     }
 
     @Override
     public final void onClick(View view) {
-        l3 l3Var = this.f15780b;
-        Window.Callback callback = l3Var.f15797k;
-        if (callback != null && l3Var.f15798l) {
-            callback.onMenuItemSelected(0, this.f15779a);
+        l3 l3Var = this.f15785b;
+        Window.Callback callback = l3Var.f15802k;
+        if (callback != null && l3Var.f15803l) {
+            callback.onMenuItemSelected(0, this.f15784a);
         }
     }
 }

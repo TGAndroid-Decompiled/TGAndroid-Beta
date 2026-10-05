@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.tgnet.TLRPC;
-public final class bt0 extends org.telegram.ui.Components.zq0 {
+public final class bt0 extends org.telegram.ui.Components.br0 {
     public final FrameLayout X0;
     public final boolean Y0;
     public final PhotoViewer Z0;
@@ -24,7 +24,7 @@ public final class bt0 extends org.telegram.ui.Components.zq0 {
         if (!z10) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.q21(this, this.X0, iVar, i10, 9), 250L);
+        AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.r21(this, this.X0, iVar, i10, 9), 250L);
     }
 
     @Override
@@ -34,9 +34,9 @@ public final class bt0 extends org.telegram.ui.Components.zq0 {
             AndroidUtilities.runOnUIThread(new nl0(this, 17), 50L);
         }
         PhotoViewer photoViewer = this.Z0;
-        photoViewer.f33891d0.softInputMode = 272;
+        photoViewer.f33904d0.softInputMode = 272;
         try {
-            ((WindowManager) photoViewer.f34079y.getSystemService("window")).updateViewLayout(photoViewer.f33918g0, photoViewer.f33891d0);
+            ((WindowManager) photoViewer.f34092y.getSystemService("window")).updateViewLayout(photoViewer.f33931g0, photoViewer.f33904d0);
         } catch (Exception e7) {
             FileLog.e(e7);
         }

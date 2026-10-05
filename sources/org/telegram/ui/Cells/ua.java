@@ -30,48 +30,48 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.ay;
 import org.telegram.ui.Components.b80;
 import org.telegram.ui.Components.bf0;
-import org.telegram.ui.Components.fs0;
 import org.telegram.ui.Components.gd0;
-import org.telegram.ui.Components.i51;
+import org.telegram.ui.Components.gs0;
 import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.j51;
 import org.telegram.ui.Components.p40;
-import org.telegram.ui.Components.pv0;
 import org.telegram.ui.Components.qp;
-import org.telegram.ui.Components.u61;
-import org.telegram.ui.Components.uo0;
+import org.telegram.ui.Components.qv0;
+import org.telegram.ui.Components.vo0;
+import org.telegram.ui.Components.w61;
 import org.telegram.ui.Components.wv;
 import org.telegram.ui.Components.yc;
-import org.telegram.ui.Components.yt0;
 import org.telegram.ui.Components.ze0;
+import org.telegram.ui.Components.zt0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.SaveToGallerySettingsActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.b61;
-import org.telegram.ui.c71;
+import org.telegram.ui.a71;
+import org.telegram.ui.bj1;
 import org.telegram.ui.ce;
 import org.telegram.ui.ch0;
-import org.telegram.ui.dj1;
-import org.telegram.ui.g61;
-import org.telegram.ui.l41;
+import org.telegram.ui.e61;
+import org.telegram.ui.j41;
 import org.telegram.ui.me;
 import org.telegram.ui.qd;
+import org.telegram.ui.si1;
+import org.telegram.ui.ta1;
 import org.telegram.ui.ud;
-import org.telegram.ui.ui1;
 import org.telegram.ui.uy;
-import org.telegram.ui.va1;
 import org.telegram.ui.vd;
+import org.telegram.ui.x51;
 import org.telegram.ui.yn;
 import org.telegram.ui.z51;
 public final class ua implements View.OnClickListener {
-    public final int f23539a;
-    public final int f23540b;
-    public final Object f23541c;
+    public final int f23542a;
+    public final int f23543b;
+    public final Object f23544c;
     public final Object d;
 
     public ua(int i10, View view, AtomicReference atomicReference) {
-        this.f23539a = 17;
-        this.f23540b = i10;
-        this.f23541c = view;
+        this.f23542a = 17;
+        this.f23543b = i10;
+        this.f23544c = view;
         this.d = atomicReference;
     }
 
@@ -86,18 +86,18 @@ public final class ua implements View.OnClickListener {
         int i10;
         int i11;
         int i12;
-        int i13 = this.f23539a;
+        int i13 = this.f23542a;
         AndroidUtilities.VcardItem vcardItem = null;
         boolean z13 = false;
         int i14 = 0;
         boolean z14 = false;
-        int i15 = this.f23540b;
+        int i15 = this.f23543b;
         Object obj = this.d;
-        Object obj2 = this.f23541c;
+        Object obj2 = this.f23544c;
         switch (i13) {
             case 0:
                 wa waVar = (wa) obj2;
-                waVar.f23709e.a(true, true);
+                waVar.f23712e.a(true, true);
                 MessagesController.getInstance(i15).getUnconfirmedAuthController().deny((ArrayList) obj, new ci.l4(waVar, i15, 3));
                 return;
             case 1:
@@ -105,23 +105,23 @@ public final class ua implements View.OnClickListener {
                 return;
             case 2:
                 me meVar = (me) obj2;
-                va1 va1Var = (va1) obj;
-                ce ceVar = meVar.J1;
-                if (view.isEnabled() && !ceVar.N && !meVar.D1.N) {
+                ta1 ta1Var = (ta1) obj;
+                ce ceVar = meVar.G0;
+                if (view.isEnabled() && !ceVar.N && !meVar.A0.N) {
                     int currentTime = ConnectionsManager.getInstance(i15).getCurrentTime();
-                    if (meVar.E1 > currentTime) {
-                        meVar.S1 = yc.a0(va1Var).Q(R.raw.timer_3, 36, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotStarsWithdrawalToast, yh.g.j0(meVar.E1 - currentTime)))).j();
+                    if (meVar.B0 > currentTime) {
+                        meVar.P0 = yc.a0(ta1Var).Q(R.raw.timer_3, 36, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotStarsWithdrawalToast, yh.h.r0(meVar.B0 - currentTime)))).j();
                         return;
-                    } else if (meVar.Q1 < MessagesController.getInstance(i15).starsRevenueWithdrawalMin) {
-                        yc.a0(va1Var).L(meVar.getContext().getResources().getDrawable(R.drawable.star_small_inner).mutate(), AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("BotStarsWithdrawMinLimit", (int) MessagesController.getInstance(i15).starsRevenueWithdrawalMin, new Object[0]), new qd(meVar, i15, 1))).j();
+                    } else if (meVar.N0 < MessagesController.getInstance(i15).starsRevenueWithdrawalMin) {
+                        yc.a0(ta1Var).L(meVar.getContext().getResources().getDrawable(R.drawable.star_small_inner).mutate(), AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("BotStarsWithdrawMinLimit", (int) MessagesController.getInstance(i15).starsRevenueWithdrawalMin, new Object[0]), new qd(meVar, i15, 1))).j();
                         return;
                     } else {
                         TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
                         ud udVar = new ud(meVar, twoStepVerificationActivity, 2);
                         twoStepVerificationActivity.Z = 1;
-                        twoStepVerificationActivity.f34570b0 = udVar;
+                        twoStepVerificationActivity.f34583b0 = udVar;
                         ceVar.setLoading(true);
-                        twoStepVerificationActivity.s0(new vd(meVar, va1Var, twoStepVerificationActivity, 2));
+                        twoStepVerificationActivity.s0(new vd(meVar, ta1Var, twoStepVerificationActivity, 2));
                         return;
                     }
                 }
@@ -137,7 +137,7 @@ public final class ua implements View.OnClickListener {
             case 4:
                 yn ynVar2 = (yn) obj2;
                 ArrayList arrayList = (ArrayList) obj;
-                if (ynVar2.f43288b5 != null && i15 < arrayList.size()) {
+                if (ynVar2.f43281b5 != null && i15 < arrayList.size()) {
                     ynVar2.Aa(((Integer) arrayList.get(i15)).intValue());
                     return;
                 }
@@ -148,11 +148,11 @@ public final class ua implements View.OnClickListener {
                 return;
             case 6:
                 is isVar = (is) obj2;
-                u61 u61Var = (u61) obj;
+                w61 w61Var = (w61) obj;
                 if (isVar.Q()) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(isVar.getContext());
                     String string = LocaleController.getString(R.string.UserRestrictionsCantModify);
-                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20372a;
+                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20377a;
                     b2Var.R = string;
                     b2Var.T = LocaleController.getString(R.string.UserRestrictionsCantModifyDisabled);
                     alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
@@ -162,7 +162,7 @@ public final class ua implements View.OnClickListener {
                 if (i15 <= 0) {
                     z13 = true;
                 }
-                TLRPC.TL_chatBannedRights tL_chatBannedRights = isVar.f27492w0;
+                TLRPC.TL_chatBannedRights tL_chatBannedRights = isVar.f27591w0;
                 boolean z15 = !z13;
                 tL_chatBannedRights.send_media = z15;
                 tL_chatBannedRights.send_photos = z15;
@@ -179,22 +179,22 @@ public final class ua implements View.OnClickListener {
                 tL_chatBannedRights.send_polls = z15;
                 tL_chatBannedRights.send_reactions = z15;
                 isVar.T();
-                u61Var.N(true);
+                w61Var.N(true);
                 return;
             case 7:
                 p40 p40Var = (p40) obj2;
-                p40Var.f29507n = i15;
-                p40Var.f29503b.d(view.getLeft(), false);
-                p40Var.f29504c.d(view.getRight(), false);
+                p40Var.f29587n = i15;
+                p40Var.f29583b.d(view.getLeft(), false);
+                p40Var.f29584c.d(view.getRight(), false);
                 ((MessagesStorage.IntCallback) obj).run(i15);
                 p40Var.invalidate();
                 return;
             case 8:
                 bf0 bf0Var = (bf0) obj2;
                 ViewGroup viewGroup = (ViewGroup) obj;
-                TextView textView = bf0Var.f24941n;
+                TextView textView = bf0Var.f24957n;
                 ArrayList arrayList2 = bf0Var.M;
-                org.telegram.ui.ActionBar.n2 n2Var = bf0Var.f24942r;
+                org.telegram.ui.ActionBar.n2 n2Var = bf0Var.f24958r;
                 int i16 = bf0Var.F;
                 if (i15 >= i16 && i15 < bf0Var.G) {
                     vcardItem = (AndroidUtilities.VcardItem) arrayList2.get(i15 - i16);
@@ -258,23 +258,23 @@ public final class ua implements View.OnClickListener {
                 }
                 return;
             case 9:
-                yt0 yt0Var = (yt0) obj2;
+                zt0 zt0Var = (zt0) obj2;
                 TLRPC.Chat chat = (TLRPC.Chat) obj;
-                pv0 pv0Var = yt0Var.f33257f;
-                org.telegram.ui.ActionBar.n2 n2Var2 = pv0Var.f29806v1;
+                qv0 qv0Var = zt0Var.f33641f;
+                org.telegram.ui.ActionBar.n2 n2Var2 = qv0Var.f30263v1;
                 n2Var2.finishPreviewFragment();
                 chat.left = false;
-                yt0Var.E(false);
-                yt0Var.u(i15);
-                if (yt0Var.d.isEmpty()) {
-                    pv0Var.v1(true);
-                    pv0Var.F();
+                zt0Var.E(false);
+                zt0Var.u(i15);
+                if (zt0Var.d.isEmpty()) {
+                    qv0Var.v1(true);
+                    qv0Var.F();
                 }
-                n2Var2.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.channelRecommendationsLoaded, Long.valueOf(-pv0Var.f29781j1));
-                n2Var2.getMessagesController().addUserToChat(chat.f20042id, n2Var2.getUserConfig().getCurrentUser(), 0, null, n2Var2, new uo0(6, yt0Var, chat));
+                n2Var2.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.channelRecommendationsLoaded, Long.valueOf(-qv0Var.f30238j1));
+                n2Var2.getMessagesController().addUserToChat(chat.f20047id, n2Var2.getUserConfig().getCurrentUser(), 0, null, n2Var2, new vo0(6, zt0Var, chat));
                 return;
             case 10:
-                ((i51) obj2).run();
+                ((j51) obj2).run();
                 ((ActionBarPopupWindow$ActionBarPopupWindowLayout) obj).getSwipeBack().e(i15);
                 return;
             case 11:
@@ -305,7 +305,7 @@ public final class ua implements View.OnClickListener {
                     } else {
                         z12 = false;
                     }
-                    l6Var.f22440c.a(z12, true);
+                    l6Var.f22443c.a(z12, true);
                 }
                 return;
             case 14:
@@ -313,26 +313,26 @@ public final class ua implements View.OnClickListener {
                 saveToGallerySettingsActivity.getClass();
                 ((org.telegram.ui.ActionBar.n1) obj).dismiss();
                 Bundle bundle = new Bundle();
-                bundle.putLong("dialog_id", ((l41) saveToGallerySettingsActivity.f34407s.get(i15)).f38163c.dialogId);
-                bundle.putInt("type", saveToGallerySettingsActivity.f34400a);
+                bundle.putLong("dialog_id", ((j41) saveToGallerySettingsActivity.f34420s.get(i15)).f37570c.dialogId);
+                bundle.putInt("type", saveToGallerySettingsActivity.f34413a);
                 saveToGallerySettingsActivity.presentFragment(new SaveToGallerySettingsActivity(bundle));
                 return;
             case 15:
                 ay ayVar = (ay) obj;
-                c71 c71Var = ((b61) obj2).f35015c;
-                if (!ayVar.f24710e && !UserConfig.getInstance(c71Var.V).isPremium()) {
+                a71 a71Var = ((z51) obj2).f43700c;
+                if (!ayVar.f24762e && !UserConfig.getInstance(a71Var.V).isPremium()) {
                     org.telegram.ui.ActionBar.n2 R2 = LaunchActivity.R();
                     if (R2 != null) {
-                        R2.showDialog(new rg.y0(c71Var.f35309c1, c71Var.getContext(), c71Var.V, 11, false));
+                        R2.showDialog(new rg.y0(a71Var.f34728c1, a71Var.getContext(), a71Var.V, 11, false));
                         return;
                     }
                     return;
                 }
                 int i21 = 0;
                 while (true) {
-                    z51 z51Var = c71Var.f35320h0;
-                    if (i21 < z51Var.getChildCount()) {
-                        if ((z51Var.getChildAt(i21) instanceof g61) && (R = RecyclerView.R((view2 = z51Var.getChildAt(i21)))) >= 0 && c71Var.f35358y0.get(R) == i15) {
+                    x51 x51Var = a71Var.f34739h0;
+                    if (i21 < x51Var.getChildCount()) {
+                        if ((x51Var.getChildAt(i21) instanceof e61) && (R = RecyclerView.R((view2 = x51Var.getChildAt(i21)))) >= 0 && a71Var.f34777y0.get(R) == i15) {
                             num = Integer.valueOf(R);
                         } else {
                             i21++;
@@ -343,23 +343,23 @@ public final class ua implements View.OnClickListener {
                     }
                 }
                 if (num != null) {
-                    c71Var.i(num.intValue(), view2);
+                    a71Var.i(num.intValue(), view2);
                 }
-                wv.U(null, ayVar.f24708b, false, null, null);
-                c71Var.B0.add(Long.valueOf(ayVar.f24708b.f20069id));
-                c71Var.B(true, true, true);
+                wv.U(null, ayVar.f24760b, false, null, null);
+                a71Var.B0.add(Long.valueOf(ayVar.f24760b.f20074id));
+                a71Var.B(true, true, true);
                 return;
             case 16:
                 ci.d dVar = (ci.d) obj2;
                 org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) obj;
                 if (!dVar.N) {
-                    cf.c cVar = dj1.d;
+                    cf.c cVar = bj1.d;
                     if (cVar != null && ((byte[]) cVar.f4606e) != null) {
                         dVar.setLoading(true);
                         TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth = new TLRPC.TL_messages_requestUrlAuth();
                         tL_messages_requestUrlAuth.flags |= 4;
                         tL_messages_requestUrlAuth.url = "https://web.telegram.org/";
-                        int i22 = this.f23540b;
+                        int i22 = this.f23543b;
                         ConnectionsManager.getInstance(i22).sendRequestTyped(tL_messages_requestUrlAuth, new Object(), new jh(dVar, f3Var, i22, view, cVar));
                         return;
                     }
@@ -369,21 +369,21 @@ public final class ua implements View.OnClickListener {
                 return;
             case 17:
                 SharedConfig.setSearchEngineType(i15);
-                ((r8) ((View) obj2)).u(org.telegram.ui.web.o1.a().f42306a, true);
+                ((r8) ((View) obj2)).u(org.telegram.ui.web.o1.a().f42318a, true);
                 ((Dialog) ((AtomicReference) obj).get()).dismiss();
                 return;
             case 18:
                 qg.r1 r1Var = (qg.r1) obj2;
                 r1Var.a(i15);
-                r1Var.f45318b.w().i(i15 - 1, true);
-                r1Var.f45318b.b((pg.m) obj);
+                r1Var.f45325b.w().i(i15 - 1, true);
+                r1Var.f45325b.b((pg.m) obj);
                 return;
             case 19:
-                fs0 fs0Var = (fs0) obj2;
+                gs0 gs0Var = (gs0) obj2;
                 org.telegram.ui.ActionBar.n2 n2Var3 = (org.telegram.ui.ActionBar.n2) obj;
-                qp qpVar = fs0Var.F;
-                qpVar.a(!qpVar.f30147a.f24098q, true);
-                boolean z17 = qpVar.f30147a.f24098q;
+                qp qpVar = gs0Var.F;
+                qpVar.a(!qpVar.f30169a.f24101q, true);
+                boolean z17 = qpVar.f30169a.f24101q;
                 yc a02 = yc.a0(n2Var3);
                 if (z17) {
                     i10 = R.raw.silent_unmute;
@@ -396,34 +396,34 @@ public final class ua implements View.OnClickListener {
                     i11 = R.string.Gift2ChannelNotifyNotChecked;
                 }
                 a02.P(i10, LocaleController.getString(i11)).j();
-                fs0Var.d.h = Boolean.valueOf(z17);
-                if (fs0Var.H >= 0) {
-                    ConnectionsManager.getInstance(i15).cancelRequest(fs0Var.H, true);
-                    fs0Var.H = -1;
+                gs0Var.d.h = Boolean.valueOf(z17);
+                if (gs0Var.H >= 0) {
+                    ConnectionsManager.getInstance(i15).cancelRequest(gs0Var.H, true);
+                    gs0Var.H = -1;
                 }
                 TL_stars.toggleChatStarGiftNotifications togglechatstargiftnotifications = new TL_stars.toggleChatStarGiftNotifications();
-                togglechatstargiftnotifications.peer = MessagesController.getInstance(i15).getInputPeer(fs0Var.f50227c);
+                togglechatstargiftnotifications.peer = MessagesController.getInstance(i15).getInputPeer(gs0Var.f50234c);
                 togglechatstargiftnotifications.enabled = z17;
-                ConnectionsManager.getInstance(i15).sendRequest(togglechatstargiftnotifications, new ui1(4, fs0Var, n2Var3));
+                ConnectionsManager.getInstance(i15).sendRequest(togglechatstargiftnotifications, new si1(4, gs0Var, n2Var3));
                 return;
             case 20:
-                yh.k5 k5Var = (yh.k5) obj2;
+                yh.l5 l5Var = (yh.l5) obj2;
                 Runnable runnable = (Runnable) obj;
-                k5Var.getClass();
+                l5Var.getClass();
                 if ((i15 & 15) != 0) {
                     i14 = 15;
                 } else if ((i15 & 768) != 0) {
                     i14 = 768;
                 }
-                int flag = TLObject.setFlag(k5Var.f51529g & i14, i15, !TLObject.hasFlag(i12, i15));
+                int flag = TLObject.setFlag(l5Var.f51586g & i14, i15, !TLObject.hasFlag(i12, i15));
                 if (flag == 0) {
                     flag = (~i15) & i14;
                 }
-                int i23 = k5Var.f51529g;
+                int i23 = l5Var.f51586g;
                 int i24 = flag | ((~i14) & i23);
                 if (i23 != i24) {
-                    k5Var.f51529g = i24;
-                    k5Var.i(true);
+                    l5Var.f51586g = i24;
+                    l5Var.i(true);
                 }
                 runnable.run();
                 return;
@@ -434,16 +434,16 @@ public final class ua implements View.OnClickListener {
     }
 
     public ua(Object obj, int i10, Object obj2, int i11) {
-        this.f23539a = i11;
-        this.f23541c = obj;
-        this.f23540b = i10;
+        this.f23542a = i11;
+        this.f23544c = obj;
+        this.f23543b = i10;
         this.d = obj2;
     }
 
     public ua(Object obj, Object obj2, int i10, int i11) {
-        this.f23539a = i11;
-        this.f23541c = obj;
+        this.f23542a = i11;
+        this.f23544c = obj;
         this.d = obj2;
-        this.f23540b = i10;
+        this.f23543b = i10;
     }
 }

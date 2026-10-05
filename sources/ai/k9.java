@@ -240,7 +240,7 @@ public final class k9 implements NotificationCenter.NotificationCenterDelegate {
         this.f1237s = E;
         if (E) {
             TLRPC.TL_message tL_message = new TLRPC.TL_message();
-            tL_message.f20063id = 1;
+            tL_message.f20068id = 1;
             String absolutePath = ci.k8.x(this.M.f1290a, true).getAbsolutePath();
             tL_message.attachPath = absolutePath;
             this.f1233e = absolutePath;

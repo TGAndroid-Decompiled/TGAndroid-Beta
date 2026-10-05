@@ -1,68 +1,96 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class lf1 extends s4.j {
-    public Runnable F;
-    public int G;
-    public final yf1 H;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
+public final class lf1 extends og.b {
+    public final wf1 d;
 
-    public lf1(yf1 yf1Var) {
-        this.H = yf1Var;
+    public lf1(wf1 wf1Var) {
+        this.d = wf1Var;
     }
 
     @Override
-    public final void F() {
-        if (this.G == -1) {
-            this.G = this.H.getNotificationCenter().setAnimationInProgress(this.G, null, false);
-            Runnable runnable = this.F;
-            if (runnable != null) {
-                AndroidUtilities.cancelRunOnUIThread(runnable);
-                this.F = null;
+    public final boolean D(s4.c1 c1Var) {
+        int i10 = c1Var.f46542f;
+        if (i10 != 0 && i10 != 3) {
+            return false;
+        }
+        return true;
+    }
+
+    public final ArrayList F() {
+        wf1 wf1Var = this.d;
+        wf1Var.getClass();
+        return wf1Var.f42470b;
+    }
+
+    @Override
+    public final int h() {
+        return F().size() + 1;
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (i10 == h() - 1) {
+            return 2;
+        }
+        return ((nf1) this.d.f42470b.get(i10)).f17192a;
+    }
+
+    @Override
+    public final void l() {
+        this.d.f42473c = h();
+        super.l();
+    }
+
+    @Override
+    public final void v(s4.c1 r21, int r22) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.lf1.v(s4.c1, int):void");
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        boolean z10;
+        int i11;
+        int i12;
+        int i13;
+        wf1 wf1Var = this.d;
+        if (i10 != 0 && i10 != 3) {
+            if (i10 == 2) {
+                kf1 kf1Var = new kf1(this, wf1Var.getParentActivity());
+                wf1Var.E0 = kf1Var;
+                return new s4.c1(kf1Var);
             }
+            org.telegram.ui.Components.w00 w00Var = new org.telegram.ui.Components.w00(viewGroup.getContext(), null);
+            w00Var.setViewType(24);
+            w00Var.setIsSingleCell(true);
+            w00Var.f32460w = true;
+            return new s4.c1(w00Var);
         }
-    }
-
-    @Override
-    public final void N() {
-        Runnable runnable = this.F;
-        if (runnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-            this.F = null;
-        }
-        kf1 kf1Var = new kf1(this, 0);
-        this.F = kf1Var;
-        AndroidUtilities.runOnUIThread(kf1Var);
-    }
-
-    @Override
-    public final void g() {
-        super.g();
-        Runnable runnable = this.F;
-        if (runnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-        }
-        kf1 kf1Var = new kf1(this, 1);
-        this.F = kf1Var;
-        AndroidUtilities.runOnUIThread(kf1Var);
-    }
-
-    @Override
-    public final void z(s4.c1 c1Var) {
-        yf1 yf1Var = this.H;
-        View view = yf1Var.f43175b1;
-        if (view == c1Var.f46531a) {
-            view.setTranslationX(0.0f);
-            cf1 cf1Var = yf1Var.O;
-            if (cf1Var != null) {
-                cf1Var.F.clear();
+        tf1 tf1Var = new tf1(wf1Var, viewGroup.getContext(), false);
+        if (i10 == 3) {
+            i11 = ((org.telegram.ui.ActionBar.n2) wf1Var).currentAccount;
+            boolean isBotForumWithEditableTopics = UserObject.isBotForumWithEditableTopics(i11, -wf1Var.f42467a);
+            tf1Var.setForumIcon(ng.d.d(ng.a.f16894k[0], ""));
+            if (!isBotForumWithEditableTopics) {
+                i12 = R.string.BotForumAskForStartOffNewChatTitle;
+            } else {
+                i12 = R.string.BotForumAskForStartNewChatTitle;
             }
-            View view2 = yf1Var.f43175b1;
-            if (view2 instanceof vf1) {
-                vf1 vf1Var = (vf1) view2;
-                vf1Var.setTopicIcon(vf1Var.Y4);
+            tf1Var.setTitleOverride(LocaleController.getString(i12));
+            if (!isBotForumWithEditableTopics) {
+                i13 = R.string.BotForumAskForStartOffNewChatForward;
+            } else {
+                i13 = R.string.BotForumAskForStartNewChatForward;
             }
-            yf1Var.f43175b1 = null;
+            tf1Var.setCustomMessage(LocaleController.getString(i13));
         }
+        z10 = ((org.telegram.ui.ActionBar.n2) wf1Var).inPreviewMode;
+        tf1Var.f22826k0 = z10;
+        tf1Var.setArchivedPullAnimation(wf1Var.f42508w);
+        return new s4.c1(tf1Var);
     }
 }

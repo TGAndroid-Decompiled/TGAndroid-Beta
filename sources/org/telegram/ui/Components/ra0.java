@@ -8,19 +8,19 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.LaunchActivity;
-public abstract class ra0 extends n71 {
+public abstract class ra0 extends o71 {
     public final int T;
     public final qa0 U;
     public final w00 V;
-    public final tx0 W;
-    public final tx0 X;
+    public final ux0 W;
+    public final ux0 X;
     public float Y;
     public boolean Z;
 
     public ra0(org.telegram.ui.ActionBar.n2 n2Var, long j3) {
         super(n2Var.getParentActivity(), n2Var.getCurrentAccount(), n2Var.getResourceProvider());
         this.T = ViewConfiguration.get(getContext()).getScaledTouchSlop();
-        int i10 = org.telegram.ui.ActionBar.i6.f20766a7;
+        int i10 = org.telegram.ui.ActionBar.i6.f20771a7;
         setBackgroundColor(getThemedColor(i10));
         this.L = i10;
         this.K = i10;
@@ -32,14 +32,14 @@ public abstract class ra0 extends n71 {
         this.U = qa0Var;
         qa0Var.B = false;
         setDimBehindAlpha(75);
-        this.f28900w.J.setHint(LocaleController.getString(R.string.SearchMemberRequests));
-        wh.g gVar = qa0Var.f49147f;
-        this.f28896f = gVar;
-        this.f28895e = gVar;
+        this.f29395w.J.setHint(LocaleController.getString(R.string.SearchMemberRequests));
+        wh.g gVar = qa0Var.f49154f;
+        this.f29391f = gVar;
+        this.f29390e = gVar;
         this.d.setAdapter(gVar);
-        this.d.s1();
+        this.d.r1();
         ai.w0 w0Var = this.d;
-        qa0Var.f49156p = w0Var;
+        qa0Var.f49163p = w0Var;
         w0Var.setOnItemClickListener(new ai.g(qa0Var, 18));
         s4.s0 onScrollListener = w0Var.getOnScrollListener();
         if (onScrollListener == null) {
@@ -51,10 +51,10 @@ public abstract class ra0 extends n71 {
         w00 b10 = qa0Var.b();
         this.V = b10;
         this.containerView.addView(b10, indexOfChild, w7.z5.c(-1.0f, -1));
-        tx0 a2 = qa0Var.a();
+        ux0 a2 = qa0Var.a();
         this.W = a2;
         this.containerView.addView(a2, indexOfChild, w7.z5.c(-1.0f, -1));
-        tx0 c10 = qa0Var.c();
+        ux0 c10 = qa0Var.c();
         this.X = c10;
         this.containerView.addView(c10, indexOfChild, w7.z5.c(-1.0f, -1));
         qa0Var.e();
@@ -67,9 +67,9 @@ public abstract class ra0 extends n71 {
         int action = motionEvent.getAction();
         qa0 qa0Var = this.U;
         if (action == 0) {
-            this.Y = this.f28902y;
+            this.Y = this.f29397y;
             qa0Var.i(false);
-        } else if (motionEvent.getAction() == 1 && Math.abs(this.f28902y - this.Y) < this.T && !this.Z) {
+        } else if (motionEvent.getAction() == 1 && Math.abs(this.f29397y - this.Y) < this.T && !this.Z) {
             Activity findActivity = AndroidUtilities.findActivity(getContext());
             if (findActivity instanceof LaunchActivity) {
                 LaunchActivity launchActivity = (LaunchActivity) findActivity;
@@ -108,7 +108,7 @@ public abstract class ra0 extends n71 {
     @Override
     public final void G(int i10) {
         super.G(i10);
-        this.V.setTranslationY(this.f28894c.getMeasuredHeight() + i10);
+        this.V.setTranslationY(this.f29389c.getMeasuredHeight() + i10);
         float f7 = i10;
         this.W.setTranslationY(f7);
         this.X.setTranslationY(f7);
@@ -124,8 +124,8 @@ public abstract class ra0 extends n71 {
             } else {
                 i10 = 0;
             }
-            if (this.f28902y != i10) {
-                this.f28902y = i10;
+            if (this.f29397y != i10) {
+                this.f29397y = i10;
                 G(i10);
                 return;
             }
@@ -136,7 +136,7 @@ public abstract class ra0 extends n71 {
 
     @Override
     public final void onBackPressed() {
-        wh.m mVar = this.U.f49159s;
+        wh.m mVar = this.U.f49166s;
         if (mVar != null) {
             mVar.e(false);
         } else {
@@ -147,10 +147,10 @@ public abstract class ra0 extends n71 {
     @Override
     public final void show() {
         qa0 qa0Var = this.U;
-        if (qa0Var.f49144b && this.f28902y == 0) {
-            this.f28902y = AndroidUtilities.dp(8.0f);
+        if (qa0Var.f49151b && this.f29397y == 0) {
+            this.f29397y = AndroidUtilities.dp(8.0f);
         }
         super.show();
-        qa0Var.f49144b = false;
+        qa0Var.f49151b = false;
     }
 }

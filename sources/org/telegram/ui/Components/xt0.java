@@ -1,32 +1,12 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class xt0 extends mv0 {
-    public final pv0 G;
-
-    public xt0(pv0 pv0Var, Context context) {
-        super(pv0Var, context, 0, false);
-        this.G = pv0Var;
-    }
-
+import android.graphics.Outline;
+import android.view.View;
+import android.view.ViewOutlineProvider;
+import org.telegram.messenger.AndroidUtilities;
+public final class xt0 extends ViewOutlineProvider {
     @Override
-    public final void l() {
-        boolean z10;
-        super.l();
-        pv0 pv0Var = this.G;
-        iu0 W = pv0Var.W(8);
-        if (W != null && W.f27507r.getVisibility() == 0) {
-            pv0Var.f29766d0.l();
-        }
-        if (W != null) {
-            zs0 zs0Var = W.f27509w;
-            ai.d9 d9Var = this.f28735s;
-            if (d9Var != null && (d9Var.k() || (pv0Var.i0() && this.f28735s.g() > 0))) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            zs0Var.e(z10, true);
-        }
+    public final void getOutline(View view, Outline outline) {
+        outline.setRoundRect(0, 0, view.getWidth(), AndroidUtilities.dp(24.0f) + view.getHeight(), AndroidUtilities.dp(24.0f));
     }
 }

@@ -11,7 +11,7 @@ public final class f4 implements ya0 {
     }
 
     @Override
-    public final void F(int i10, int i11, CharSequence charSequence, boolean z10) {
+    public final void C(int i10, int i11, CharSequence charSequence, boolean z10) {
         this.f942a.f841b2.O0(i10, i11, charSequence, z10);
     }
 
@@ -34,7 +34,7 @@ public final class f4 implements ya0 {
     }
 
     @Override
-    public final void x(TLRPC.TL_document tL_document, String str, Object obj) {
+    public final void y(TLRPC.TL_document tL_document, String str, Object obj) {
         e6 e6Var = this.f942a;
         org.telegram.ui.Components.e5.a0(e6Var.C2, 1, e6Var.B1, new e4(this, tL_document, str, obj, 0));
     }

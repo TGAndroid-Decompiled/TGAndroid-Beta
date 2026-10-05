@@ -10,19 +10,19 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import u4.e;
 public final class a implements Runnable {
-    public static Handler f49167f;
-    public final d f49171e;
-    public volatile int f49169b = 1;
-    public final AtomicBoolean f49170c = new AtomicBoolean();
+    public static Handler f49174f;
+    public final d f49178e;
+    public volatile int f49176b = 1;
+    public final AtomicBoolean f49177c = new AtomicBoolean();
     public final AtomicBoolean d = new AtomicBoolean();
-    public final b f49168a = new b(this, new x(this, 8));
+    public final b f49175a = new b(this, new x(this, 8));
 
     public a(d dVar) {
-        this.f49171e = dVar;
+        this.f49178e = dVar;
     }
 
     public final void a() {
-        d dVar = this.f49171e;
+        d dVar = this.f49178e;
         int i10 = 0;
         for (m mVar : dVar.f319j) {
             if (mVar.d(dVar)) {
@@ -41,10 +41,10 @@ public final class a implements Runnable {
         Handler handler;
         synchronized (a.class) {
             try {
-                if (f49167f == null) {
-                    f49167f = new Handler(Looper.getMainLooper());
+                if (f49174f == null) {
+                    f49174f = new Handler(Looper.getMainLooper());
                 }
-                handler = f49167f;
+                handler = f49174f;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -54,6 +54,6 @@ public final class a implements Runnable {
 
     @Override
     public final void run() {
-        this.f49171e.b();
+        this.f49178e.b();
     }
 }

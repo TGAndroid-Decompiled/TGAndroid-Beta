@@ -1,35 +1,46 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-public final class c41 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f35281a;
-    public final f41 f35282b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.NotificationCenter;
+public final class c41 extends AnimatorListenerAdapter {
+    public final int f35304a;
+    public final d41 f35305b;
 
-    public c41(f41 f41Var, int i10) {
-        this.f35281a = i10;
-        this.f35282b = f41Var;
+    public c41(d41 d41Var, int i10) {
+        this.f35304a = i10;
+        this.f35305b = d41Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f35281a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f35304a) {
             case 0:
-                f41 f41Var = this.f35282b;
-                f41Var.getClass();
-                f41Var.f36186e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                f41Var.g();
-                return;
-            case 1:
-                f41 f41Var2 = this.f35282b;
-                f41Var2.getClass();
-                f41Var2.f36186e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                f41Var2.g();
+                d41 d41Var = this.f35305b;
+                if (d41Var.h != null) {
+                    d41Var.h = null;
+                    d41Var.f35641e = 0.0f;
+                    d41Var.g();
+                    d41Var.f35643n.unlock();
+                    tx txVar = d41Var.f35638a;
+                    if (txVar != null) {
+                        txVar.onPause();
+                        d41Var.f35638a.onFragmentDestroy();
+                        d41Var.removeAllViews();
+                        d41Var.f35638a = null;
+                        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
+                    }
+                    d41Var.d(false);
+                    return;
+                }
                 return;
             default:
-                f41 f41Var3 = this.f35282b;
-                f41Var3.getClass();
-                f41Var3.f36186e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                f41Var3.g();
+                d41 d41Var2 = this.f35305b;
+                if (d41Var2.h != null) {
+                    d41Var2.h = null;
+                    d41Var2.d(true);
+                    return;
+                }
                 return;
         }
     }

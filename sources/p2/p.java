@@ -3,13 +3,13 @@ package p2;
 import j$.util.DesugarCollections;
 import java.util.List;
 public abstract class p implements t2.a {
-    public final String f44096a;
-    public final List f44097b;
-    public final boolean f44098c;
+    public final String f44103a;
+    public final List f44104b;
+    public final boolean f44105c;
 
     public p(String str, List list, boolean z10) {
-        this.f44096a = str;
-        this.f44097b = DesugarCollections.unmodifiableList(list);
-        this.f44098c = z10;
+        this.f44103a = str;
+        this.f44104b = DesugarCollections.unmodifiableList(list);
+        this.f44105c = z10;
     }
 }

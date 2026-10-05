@@ -22,7 +22,7 @@ public final class n4 implements o1.f {
 
     @Override
     public final void a(o1.h hVar, boolean z10, float f7, float f10) {
-        li.n nVar;
+        li.p pVar;
         ViewGroup viewGroup;
         switch (this.f9221a) {
             case 0:
@@ -62,10 +62,10 @@ public final class n4 implements o1.f {
                 return;
             case 3:
                 xi xiVar = (xi) ((fi) this.f9222b).d;
-                xiVar.f32883z0.setTranslationY(0.0f);
-                xiVar.f32883z0.k(xiVar.f32838l2);
-                nVar = ((org.telegram.ui.ActionBar.f3) xiVar).glassEngine;
-                nVar.g();
+                xiVar.f32974z0.setTranslationY(0.0f);
+                xiVar.f32974z0.k(xiVar.f32929l2);
+                pVar = ((org.telegram.ui.ActionBar.f3) xiVar).glassEngine;
+                pVar.g();
                 viewGroup = ((org.telegram.ui.ActionBar.f3) xiVar).containerView;
                 viewGroup.invalidate();
                 ((ih) this.f9223c).run();

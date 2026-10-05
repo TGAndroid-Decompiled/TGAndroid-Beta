@@ -5,14 +5,14 @@ public enum h6 implements f {
     TYPE_THICK(2),
     TYPE_GMV(3);
     
-    public final int f47953a;
+    public final int f47960a;
 
     h6(int i10) {
-        this.f47953a = i10;
+        this.f47960a = i10;
     }
 
     @Override
     public final int zza() {
-        return this.f47953a;
+        return this.f47960a;
     }
 }

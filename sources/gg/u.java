@@ -13,7 +13,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Components.er0;
+import org.telegram.ui.Components.fr0;
 import org.telegram.ui.Components.i40;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.f9;
@@ -59,7 +59,7 @@ public final class u implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new c9((i40) this.d, this.f10809b, tLObject, (String) this.f10810c, 20));
                 return;
             case 7:
-                AndroidUtilities.runOnUIThread(new c9((er0) this.d, this.f10809b, tLObject, (String) this.f10810c, 22));
+                AndroidUtilities.runOnUIThread(new c9((fr0) this.d, this.f10809b, tLObject, (String) this.f10810c, 22));
                 return;
             case 8:
                 AndroidUtilities.runOnUIThread(new gy0((ProfileActivity) this.d, tL_error, tLObject, (TLRPC.TL_channels_getParticipants) this.f10810c, 0), this.f10809b);

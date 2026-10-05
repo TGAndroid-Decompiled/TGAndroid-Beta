@@ -5,9 +5,9 @@ import a6.d;
 import androidx.lifecycle.p0;
 import b2.p;
 public class b extends p0 {
-    public static final qb.b f48464f = new qb.b(24);
+    public static final qb.b f48471f = new qb.b(24);
     public final n d = new n();
-    public boolean f48465e = false;
+    public boolean f48472e = false;
 
     @Override
     public final void b() {
@@ -15,10 +15,10 @@ public class b extends p0 {
         int i10 = nVar.f36c;
         for (int i11 = 0; i11 < i10; i11++) {
             a aVar = (a) nVar.f35b[i11];
-            d dVar = aVar.f48461l;
+            d dVar = aVar.f48468l;
             dVar.a();
             dVar.f314c = true;
-            p pVar = aVar.f48463n;
+            p pVar = aVar.f48470n;
             if (pVar != null) {
                 aVar.i(pVar);
             }

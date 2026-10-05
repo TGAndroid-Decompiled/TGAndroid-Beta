@@ -210,14 +210,14 @@ public final class f0 extends b2.g implements r {
             j2.f fVar = this.f11633s;
             b11.getClass();
             fVar.getClass();
-            k2.e eVar = b11.f50387c;
+            k2.e eVar = b11.f50394c;
             eVar.getClass();
             CopyOnWriteArrayList copyOnWriteArrayList = (CopyOnWriteArrayList) eVar.f14389b;
             Iterator it = copyOnWriteArrayList.iterator();
             while (it.hasNext()) {
                 y2.b bVar = (y2.b) it.next();
-                if (bVar.f50371b == fVar) {
-                    bVar.f50372c = true;
+                if (bVar.f50378b == fVar) {
+                    bVar.f50379c = true;
                     copyOnWriteArrayList.remove(bVar);
                 }
             }
@@ -295,7 +295,7 @@ public final class f0 extends b2.g implements r {
     public static long i1(h1 h1Var) {
         b2.j1 j1Var = new b2.j1();
         b2.h1 h1Var2 = new b2.h1();
-        h1Var.f11674a.g(h1Var.f11675b.f47263a, h1Var2);
+        h1Var.f11674a.g(h1Var.f11675b.f47270a, h1Var2);
         long j3 = h1Var.f11676c;
         if (j3 == -9223372036854775807L) {
             return h1Var.f11674a.m(h1Var2.f3250c, j1Var, 0L).f3309l;
@@ -349,7 +349,7 @@ public final class f0 extends b2.g implements r {
             return 0;
         }
         h1 h1Var = this.f11621j0;
-        return h1Var.f11674a.b(h1Var.f11675b.f47263a);
+        return h1Var.f11674a.b(h1Var.f11675b.f47270a);
     }
 
     @Override
@@ -407,13 +407,13 @@ public final class f0 extends b2.g implements r {
         long j10 = h1Var.f11688q;
         if (this.f11621j0.f11682k.b()) {
             h1 h1Var2 = this.f11621j0;
-            h1Var2.f11674a.g(h1Var2.f11682k.f47263a, this.f11629o).d(this.f11621j0.f11682k.f47264b);
+            h1Var2.f11674a.g(h1Var2.f11682k.f47270a, this.f11629o).d(this.f11621j0.f11682k.f47271b);
         } else {
             j3 = j10;
         }
         h1 h1Var3 = this.f11621j0;
         b2.k1 k1Var = h1Var3.f11674a;
-        Object obj = h1Var3.f11682k.f47263a;
+        Object obj = h1Var3.f11682k.f47270a;
         b2.h1 h1Var4 = this.f11629o;
         k1Var.g(obj, h1Var4);
         return e2.d0.e0(j3 + h1Var4.f3251e);
@@ -542,7 +542,7 @@ public final class f0 extends b2.g implements r {
     public final int O() {
         B1();
         if (o()) {
-            return this.f11621j0.f11675b.f47265c;
+            return this.f11621j0.f11675b.f47272c;
         }
         return -1;
     }
@@ -566,7 +566,7 @@ public final class f0 extends b2.g implements r {
         int min = Math.min(i11, size);
         if (min - i10 == list.size()) {
             for (int i12 = i10; i12 < min; i12++) {
-                if (((e0) arrayList.get(i12)).f11589b.f47384k.a((b2.k0) list.get(i12 - i10))) {
+                if (((e0) arrayList.get(i12)).f11589b.f47391k.a((b2.k0) list.get(i12 - i10))) {
                 }
             }
             this.H++;
@@ -592,7 +592,7 @@ public final class f0 extends b2.g implements r {
             return;
         }
         h1 n12 = n1(a1(this.f11621j0, min, c12), i10, min);
-        z1(n12, 0, !n12.f11675b.f47263a.equals(this.f11621j0.f11675b.f47263a), 4, f1(n12), -1, false);
+        z1(n12, 0, !n12.f11675b.f47270a.equals(this.f11621j0.f11675b.f47270a), 4, f1(n12), -1, false);
     }
 
     @Override
@@ -609,7 +609,7 @@ public final class f0 extends b2.g implements r {
         int min = Math.min(i11, size);
         if (i10 < size && i10 != min) {
             h1 n12 = n1(this.f11621j0, i10, min);
-            z1(n12, 0, !n12.f11675b.f47263a.equals(this.f11621j0.f11675b.f47263a), 4, f1(n12), -1, false);
+            z1(n12, 0, !n12.f11675b.f47270a.equals(this.f11621j0.f11675b.f47270a), 4, f1(n12), -1, false);
         }
     }
 
@@ -657,12 +657,12 @@ public final class f0 extends b2.g implements r {
         this.f11620j.f8599a.removeCallbacksAndMessages(null);
         y2.c cVar = this.f11635u;
         j2.f fVar = this.f11633s;
-        CopyOnWriteArrayList copyOnWriteArrayList = (CopyOnWriteArrayList) ((y2.f) cVar).f50387c.f14389b;
+        CopyOnWriteArrayList copyOnWriteArrayList = (CopyOnWriteArrayList) ((y2.f) cVar).f50394c.f14389b;
         Iterator it = copyOnWriteArrayList.iterator();
         while (it.hasNext()) {
             y2.b bVar = (y2.b) it.next();
-            if (bVar.f50371b == fVar) {
-                bVar.f50372c = true;
+            if (bVar.f50378b == fVar) {
+                bVar.f50379c = true;
                 copyOnWriteArrayList.remove(bVar);
             }
         }
@@ -1051,7 +1051,7 @@ public final class f0 extends b2.g implements r {
         long j3 = h1Var.f11676c;
         b2.k1 k1Var = h1Var.f11674a;
         if (f0Var.b()) {
-            Object obj = h1Var.f11675b.f47263a;
+            Object obj = h1Var.f11675b.f47270a;
             b2.h1 h1Var2 = this.f11629o;
             k1Var.g(obj, h1Var2);
             if (j3 == -9223372036854775807L) {
@@ -1093,7 +1093,7 @@ public final class f0 extends b2.g implements r {
             return j3;
         }
         b2.k1 k1Var = h1Var.f11674a;
-        Object obj = h1Var.f11675b.f47263a;
+        Object obj = h1Var.f11675b.f47270a;
         b2.h1 h1Var2 = this.f11629o;
         k1Var.g(obj, h1Var2);
         return j3 + h1Var2.f3251e;
@@ -1109,7 +1109,7 @@ public final class f0 extends b2.g implements r {
         if (h1Var.f11674a.p()) {
             return this.f11623k0;
         }
-        return h1Var.f11674a.g(h1Var.f11675b.f47263a, this.f11629o).f3250c;
+        return h1Var.f11674a.g(h1Var.f11675b.f47270a, this.f11629o).f3250c;
     }
 
     @Override
@@ -1119,10 +1119,10 @@ public final class f0 extends b2.g implements r {
             h1 h1Var = this.f11621j0;
             u2.f0 f0Var = h1Var.f11675b;
             b2.k1 k1Var = h1Var.f11674a;
-            Object obj = f0Var.f47263a;
+            Object obj = f0Var.f47270a;
             b2.h1 h1Var2 = this.f11629o;
             k1Var.g(obj, h1Var2);
-            return e2.d0.e0(h1Var2.a(f0Var.f47264b, f0Var.f47265c));
+            return e2.d0.e0(h1Var2.a(f0Var.f47271b, f0Var.f47272c));
         }
         return A();
     }
@@ -1199,7 +1199,7 @@ public final class f0 extends b2.g implements r {
     public final int k0() {
         B1();
         if (o()) {
-            return this.f11621j0.f11675b.f47264b;
+            return this.f11621j0.f11675b.f47271b;
         }
         return -1;
     }
@@ -1228,7 +1228,7 @@ public final class f0 extends b2.g implements r {
             c10.f11688q = c10.f11690s;
             return c10;
         }
-        Object obj = j10.f11675b.f47263a;
+        Object obj = j10.f11675b.f47270a;
         String str = e2.d0.f8538a;
         boolean equals = obj.equals(pair.first);
         if (!equals) {
@@ -1266,13 +1266,13 @@ public final class f0 extends b2.g implements r {
             c11.f11688q = longValue;
             return c11;
         } else if (i10 == 0) {
-            int b10 = k1Var.b(j10.f11682k.f47263a);
-            if (b10 != -1 && k1Var.f(b10, this.f11629o, false).f3250c == k1Var.g(f0Var.f47263a, this.f11629o).f3250c) {
+            int b10 = k1Var.b(j10.f11682k.f47270a);
+            if (b10 != -1 && k1Var.f(b10, this.f11629o, false).f3250c == k1Var.g(f0Var.f47270a, this.f11629o).f3250c) {
                 return j10;
             }
-            k1Var.g(f0Var.f47263a, this.f11629o);
+            k1Var.g(f0Var.f47270a, this.f11629o);
             if (f0Var.b()) {
-                j3 = this.f11629o.a(f0Var.f47264b, f0Var.f47265c);
+                j3 = this.f11629o.a(f0Var.f47271b, f0Var.f47272c);
             } else {
                 j3 = this.f11629o.d;
             }
@@ -1542,7 +1542,7 @@ public final class f0 extends b2.g implements r {
             }
             j12 = j1(k12, i12);
             this.f11624l.f11803n.a(17, new k0(Z0, this.M, i11, e2.d0.Q(j10))).b();
-            if (this.f11621j0.f11675b.f47263a.equals(j12.f11675b.f47263a) && !this.f11621j0.f11674a.p()) {
+            if (this.f11621j0.f11675b.f47270a.equals(j12.f11675b.f47270a) && !this.f11621j0.f11674a.p()) {
                 z11 = true;
             } else {
                 z11 = false;
@@ -1560,7 +1560,7 @@ public final class f0 extends b2.g implements r {
         }
         j12 = j1(k122, i12);
         this.f11624l.f11803n.a(17, new k0(Z0, this.M, i11, e2.d0.Q(j10))).b();
-        if (this.f11621j0.f11675b.f47263a.equals(j12.f11675b.f47263a)) {
+        if (this.f11621j0.f11675b.f47270a.equals(j12.f11675b.f47270a)) {
         }
         z11 = false;
         z1(j12, 0, z11, 4, f1(j12), -1, false);
@@ -1904,7 +1904,7 @@ public final class f0 extends b2.g implements r {
             pair = new Pair(Boolean.FALSE, -1);
         } else if (k1Var2.p() != k1Var.p()) {
             pair = new Pair(Boolean.TRUE, 3);
-        } else if (!k1Var.m(k1Var.g(f0Var.f47263a, h1Var3).f3250c, j1Var, 0L).f3300a.equals(k1Var2.m(k1Var2.g(f0Var2.f47263a, h1Var3).f3250c, j1Var, 0L).f3300a)) {
+        } else if (!k1Var.m(k1Var.g(f0Var.f47270a, h1Var3).f3250c, j1Var, 0L).f3300a.equals(k1Var2.m(k1Var2.g(f0Var2.f47270a, h1Var3).f3250c, j1Var, 0L).f3300a)) {
             if (z10 && i11 == 0) {
                 i13 = 1;
             } else if (z10 && i11 == 1) {
@@ -1926,7 +1926,7 @@ public final class f0 extends b2.g implements r {
         int intValue = ((Integer) pair.second).intValue();
         if (booleanValue) {
             if (!h1Var.f11674a.p()) {
-                k0Var = h1Var.f11674a.m(h1Var.f11674a.g(h1Var.f11675b.f47263a, this.f11629o).f3250c, (b2.j1) this.f3235a, 0L).f3302c;
+                k0Var = h1Var.f11674a.m(h1Var.f11674a.g(h1Var.f11675b.f47270a, this.f11629o).f3250c, (b2.j1) this.f3235a, 0L).f3302c;
             } else {
                 k0Var = null;
             }
@@ -1977,7 +1977,7 @@ public final class f0 extends b2.g implements r {
         if (z10) {
             b2.h1 h1Var4 = new b2.h1();
             if (!h1Var2.f11674a.p()) {
-                Object obj5 = h1Var2.f11675b.f47263a;
+                Object obj5 = h1Var2.f11675b.f47270a;
                 h1Var2.f11674a.g(obj5, h1Var4);
                 int i20 = h1Var4.f3250c;
                 int b10 = h1Var2.f11674a.b(obj5);
@@ -2002,9 +2002,9 @@ public final class f0 extends b2.g implements r {
             if (i11 == 0) {
                 if (h1Var2.f11675b.b()) {
                     u2.f0 f0Var3 = h1Var2.f11675b;
-                    j12 = h1Var4.a(f0Var3.f47264b, f0Var3.f47265c);
+                    j12 = h1Var4.a(f0Var3.f47271b, f0Var3.f47272c);
                     i16 = i1(h1Var2);
-                } else if (h1Var2.f11675b.f47266e != -1) {
+                } else if (h1Var2.f11675b.f47273e != -1) {
                     j12 = i1(this.f11621j0);
                     i16 = j12;
                 } else {
@@ -2025,12 +2025,12 @@ public final class f0 extends b2.g implements r {
             long e02 = e2.d0.e0(j12);
             long e03 = e2.d0.e0(i16);
             u2.f0 f0Var4 = h1Var2.f11675b;
-            b2.a1 a1Var = new b2.a1(obj, i14, k0Var2, obj2, i15, e02, e03, f0Var4.f47264b, f0Var4.f47265c);
+            b2.a1 a1Var = new b2.a1(obj, i14, k0Var2, obj2, i15, e02, e03, f0Var4.f47271b, f0Var4.f47272c);
             b2.j1 j1Var2 = (b2.j1) this.f3235a;
             int l02 = l0();
             if (!this.f11621j0.f11674a.p()) {
                 h1 h1Var5 = this.f11621j0;
-                Object obj6 = h1Var5.f11675b.f47263a;
+                Object obj6 = h1Var5.f11675b.f47270a;
                 h1Var5.f11674a.g(obj6, this.f11629o);
                 int b11 = this.f11621j0.f11674a.b(obj6);
                 Object obj7 = this.f11621j0.f11674a.m(l02, j1Var2, 0L).f3300a;
@@ -2051,7 +2051,7 @@ public final class f0 extends b2.g implements r {
                 j13 = e04;
             }
             u2.f0 f0Var5 = this.f11621j0.f11675b;
-            this.f11626m.c(11, new d2(i11, a1Var, new b2.a1(obj3, l02, k0Var3, obj4, i17, e04, j13, f0Var5.f47264b, f0Var5.f47265c), 2));
+            this.f11626m.c(11, new d2(i11, a1Var, new b2.a1(obj3, l02, k0Var3, obj4, i17, e04, j13, f0Var5.f47271b, f0Var5.f47272c), 2));
         } else {
             z15 = booleanValue;
             z16 = equals2;
@@ -2152,9 +2152,9 @@ public final class f0 extends b2.g implements r {
         x2.v vVar2 = h1Var.f11680i;
         if (vVar != vVar2) {
             x2.u uVar = this.f11618i;
-            Object obj8 = vVar2.f49262e;
+            Object obj8 = vVar2.f49269e;
             uVar.getClass();
-            uVar.f49258c = (x2.t) obj8;
+            uVar.f49265c = (x2.t) obj8;
             this.f11626m.c(2, new e2.m() {
                 @Override
                 public final void invoke(Object obj82) {

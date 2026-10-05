@@ -4,24 +4,24 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class nj implements ol0, sj {
-    public final bk f28997a;
+    public final bk f29086a;
 
     public nj(bk bkVar) {
-        this.f28997a = bkVar;
+        this.f29086a = bkVar;
     }
 
     @Override
     public void a(TLRPC.User user, boolean z10, int i10, long j3) {
-        bk bkVar = this.f28997a;
-        bkVar.f29648b.dismiss(true);
+        bk bkVar = this.f29086a;
+        bkVar.f29741b.dismiss(true);
         bkVar.J.a(user, z10, i10, j3);
     }
 
     @Override
     public boolean d(int i10, View view) {
         Object O;
-        bk bkVar = this.f28997a;
-        s4.h0 adapter = bkVar.f24993s.getAdapter();
+        bk bkVar = this.f29086a;
+        s4.h0 adapter = bkVar.f25009s.getAdapter();
         xj xjVar = bkVar.F;
         if (adapter == xjVar) {
             O = xjVar.E(i10);

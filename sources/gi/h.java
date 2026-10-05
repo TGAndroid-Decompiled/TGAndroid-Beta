@@ -243,7 +243,7 @@ public final class h extends FrameLayout implements y5 {
         dVar2.setPadding(AndroidUtilities.dp(15.0f), 0, AndroidUtilities.dp(15.0f), 0);
         dVar2.e();
         dVar2.d();
-        dVar2.setColor(i6.l1(0.14f, i6.v0(i6.f21228z6, d6Var)));
+        dVar2.setColor(i6.l1(0.14f, i6.v0(i6.f21233z6, d6Var)));
         dVar2.setTextColor(i6.w0(null, i6.G6, false));
         dVar2.g(LocaleController.getString(R.string.Decline), false, true);
         dVar2.setOnClickListener(new View.OnClickListener(this) {
@@ -373,7 +373,7 @@ public final class h extends FrameLayout implements y5 {
         Canvas canvas2;
         if (this.f10914w) {
             canvas2 = canvas;
-            canvas2.drawLine(AndroidUtilities.dp(76.0f), getHeight() - 1, getMeasuredWidth(), getHeight() - 1, i6.f20945k0);
+            canvas2.drawLine(AndroidUtilities.dp(76.0f), getHeight() - 1, getMeasuredWidth(), getHeight() - 1, i6.f20950k0);
         } else {
             canvas2 = canvas;
         }
@@ -391,7 +391,7 @@ public final class h extends FrameLayout implements y5 {
             int dp2 = (dp * 2) + AndroidUtilities.dp(52.0f);
             RecordingCanvas a2 = dVar.a(dp2, dp2);
             a2.translate(-left, -top);
-            a2.drawColor(i6.v0(i6.f20822d6, this.f10906a));
+            a2.drawColor(i6.v0(i6.f20827d6, this.f10906a));
             a2.save();
             float f7 = dp2 / 2.0f;
             a2.scale(1.125f, 1.125f, f7, f7);
@@ -408,7 +408,7 @@ public final class h extends FrameLayout implements y5 {
         int i10 = i6.G6;
         d6 d6Var = this.f10906a;
         this.f10910f.setTextColor(i6.v0(i10, d6Var));
-        int i11 = i6.f21228z6;
+        int i11 = i6.f21233z6;
         this.h.setTextColor(i6.v0(i11, d6Var));
         this.f10911n.setTextColor(i6.v0(i11, d6Var));
     }

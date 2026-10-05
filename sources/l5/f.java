@@ -8,7 +8,7 @@ public final class f implements ia.d {
     public final void a(Object obj, Object obj2) {
         o5.f fVar = (o5.f) obj;
         ia.e eVar = (ia.e) obj2;
-        eVar.f(f15337b, fVar.f17137a);
-        eVar.f(f15338c, fVar.f17138b);
+        eVar.f(f15337b, fVar.f17142a);
+        eVar.f(f15338c, fVar.f17143b);
     }
 }

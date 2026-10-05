@@ -24,7 +24,7 @@ public final class i extends a0 implements j0 {
         } else {
             j0Var = null;
         }
-        this.f8878e = j0Var == null ? g0.f53233a : j0Var;
+        this.f8878e = j0Var == null ? g0.f53254a : j0Var;
         this.f8879f = new l();
         this.h = new Object();
     }

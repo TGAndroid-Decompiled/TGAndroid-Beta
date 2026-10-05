@@ -10,18 +10,18 @@ import androidx.appcompat.view.menu.ListMenuItemView;
 public final class i2 extends r1 {
     public e2 E;
     public l.m F;
-    public final int f15767x;
-    public final int f15768y;
+    public final int f15772x;
+    public final int f15773y;
 
     public i2(Context context, boolean z10) {
         super(context, z10);
         if (1 == h2.a(context.getResources().getConfiguration())) {
-            this.f15767x = 21;
-            this.f15768y = 22;
+            this.f15772x = 21;
+            this.f15773y = 22;
             return;
         }
-        this.f15767x = 22;
-        this.f15768y = 21;
+        this.f15772x = 22;
+        this.f15773y = 21;
     }
 
     @Override
@@ -50,7 +50,7 @@ public final class i2 extends r1 {
             if (mVar2 != mVar) {
                 l.k kVar = hVar.f15165a;
                 if (mVar2 != null) {
-                    this.E.x(kVar, mVar2);
+                    this.E.u(kVar, mVar2);
                 }
                 this.F = mVar;
                 if (mVar != null) {
@@ -65,12 +65,12 @@ public final class i2 extends r1 {
     public final boolean onKeyDown(int i10, KeyEvent keyEvent) {
         l.h hVar;
         ListMenuItemView listMenuItemView = (ListMenuItemView) getSelectedView();
-        if (listMenuItemView != null && i10 == this.f15767x) {
+        if (listMenuItemView != null && i10 == this.f15772x) {
             if (listMenuItemView.isEnabled() && listMenuItemView.getItemData().hasSubMenu()) {
                 performItemClick(listMenuItemView, getSelectedItemPosition(), getSelectedItemId());
             }
             return true;
-        } else if (listMenuItemView != null && i10 == this.f15768y) {
+        } else if (listMenuItemView != null && i10 == this.f15773y) {
             setSelection(-1);
             ListAdapter adapter = getAdapter();
             if (adapter instanceof HeaderViewListAdapter) {

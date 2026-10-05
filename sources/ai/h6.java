@@ -46,11 +46,11 @@ public final class h6 {
         this.h = new org.telegram.ui.Components.e6(profileStoriesView, 420L, trVar);
         this.f1036m = new RectF();
         this.f1037n = new RectF();
-        this.f1026a = storyItem.f20279id;
+        this.f1026a = storyItem.f20284id;
         imageReceiver.setRoundRadius(AndroidUtilities.dp(200.0f));
         imageReceiver.setParentView(profileStoriesView);
         this.f1035l = storyItem.media instanceof TLRPC.TL_messageMediaVideoStream;
-        if (profileStoriesView.f34521x) {
+        if (profileStoriesView.f34534x) {
             imageReceiver.onAttachedToWindow();
         }
         s20[] s20VarArr = ia.f1085a;

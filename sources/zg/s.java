@@ -1,48 +1,43 @@
 package zg;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.sk0;
-public final class s extends sk0 {
-    public float l1;
-    public long f53529m1;
+import org.telegram.ui.Components.lc0;
+import yh.u3;
+public final class s implements Runnable {
+    public final int f53526a;
+    public final z f53527b;
 
-    @Override
-    public final void draw(Canvas canvas) {
-        long min = Math.min(16L, System.currentTimeMillis() - this.f53529m1);
-        this.f53529m1 = System.currentTimeMillis();
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-        canvas.saveLayerAlpha(rectF, (int) (this.l1 * 255.0f), 31);
-        super.draw(canvas);
-        canvas.restore();
-        if (!isEnabled()) {
-            float f7 = this.l1;
-            if (f7 != 0.0f) {
-                this.l1 = Math.max(0.0f, f7 - (((float) min) / 150.0f));
-                invalidate();
-                if (this.l1 == 0.0f) {
-                    setVisibility(8);
-                    return;
-                }
-                return;
-            }
-        }
-        if (isEnabled()) {
-            float f10 = this.l1;
-            if (f10 != 1.0f) {
-                this.l1 = Math.min(1.0f, (((float) min) / 150.0f) + f10);
-                invalidate();
-            }
-        }
+    public s(z zVar, int i10) {
+        this.f53526a = i10;
+        this.f53527b = zVar;
     }
 
     @Override
-    public final void setVisibility(int i10) {
-        super.setVisibility(i10);
-        if (i10 == 8 && this.l1 != 0.0f) {
-            this.l1 = 0.0f;
+    public final void run() {
+        switch (this.f53526a) {
+            case 0:
+                this.f53527b.f53550a.invalidate();
+                return;
+            default:
+                z zVar = this.f53527b;
+                u3 u3Var = zVar.f53552c;
+                if (u3Var.getParent() != null) {
+                    if (zVar.d) {
+                        AndroidUtilities.removeFromParent(u3Var);
+                    } else {
+                        try {
+                            zVar.f53551b.removeView(u3Var);
+                        } catch (Exception unused) {
+                        }
+                    }
+                    lc0 lc0Var = zVar.f53563p;
+                    if (lc0Var != null) {
+                        lc0Var.run();
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
     }
 }

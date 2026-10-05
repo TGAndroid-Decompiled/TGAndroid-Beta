@@ -55,9 +55,9 @@ import org.telegram.ui.tn;
 import org.telegram.ui.ug0;
 import org.telegram.ui.wn;
 public class ActionBarLayout extends FrameLayout implements c5, mg.b {
-    public static Drawable f20308p1;
-    public static Drawable f20309q1;
-    public static Paint f20310r1;
+    public static Drawable f20313p1;
+    public static Drawable f20314q1;
+    public static Paint f20315r1;
     public boolean A0;
     public View B0;
     public boolean C0;
@@ -103,96 +103,96 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
     public boolean X0;
     public final int[] Y0;
     public boolean Z0;
-    public boolean f20311a;
-    public boolean f20312a0;
-    public int f20313a1;
-    public boolean f20314b;
-    public final ArrayList f20315b0;
-    public final org.telegram.ui.Components.e6 f20316b1;
-    public Window f20317c;
-    public final ArrayList f20318c0;
-    public boolean f20319c1;
+    public boolean f20316a;
+    public boolean f20317a0;
+    public int f20318a1;
+    public boolean f20319b;
+    public final ArrayList f20320b0;
+    public final org.telegram.ui.Components.e6 f20321b1;
+    public Window f20322c;
+    public final ArrayList f20323c0;
+    public boolean f20324c1;
     public Runnable d;
-    public final n7.z0 f20320d0;
-    public boolean f20321d1;
-    public Runnable f20322e;
-    public e5 f20323e0;
-    public boolean f20324e1;
-    public boolean f20325f;
-    public e5 f20326f0;
-    public float f20327f1;
-    public tn f20328g0;
-    public boolean f20329g1;
+    public final n7.z0 f20325d0;
+    public boolean f20326d1;
+    public Runnable f20327e;
+    public e5 f20328e0;
+    public boolean f20329e1;
+    public boolean f20330f;
+    public e5 f20331f0;
+    public float f20332f1;
+    public tn f20333g0;
+    public boolean f20334g1;
     public boolean h;
-    public final ArrayList f20330h0;
-    public AnimatorSet f20331h1;
-    public ArrayList f20332i0;
-    public ArrayList f20333i1;
-    public final ArrayList f20334j0;
-    public final o f20335j1;
-    public AnimatorSet f20336k0;
-    public boolean f20337k1;
-    public final AnimationNotificationsLocker f20338l0;
+    public final ArrayList f20335h0;
+    public AnimatorSet f20336h1;
+    public ArrayList f20337i0;
+    public ArrayList f20338i1;
+    public final ArrayList f20339j0;
+    public final o f20340j1;
+    public AnimatorSet f20341k0;
+    public boolean f20342k1;
+    public final AnimationNotificationsLocker f20343l0;
     public int l1;
     public float m0;
-    public r0.l1 f20339m1;
-    public boolean f20340n;
-    public boolean f20341n0;
-    public i0.b f20342n1;
-    public h6 f20343o0;
-    public i0.b f20344o1;
-    public boolean f20345p0;
-    public boolean f20346q0;
-    public ColorDrawable f20347r;
-    public int f20348r0;
-    public w f20349s;
-    public boolean f20350s0;
-    public boolean f20351t0;
-    public boolean f20352u0;
+    public r0.l1 f20344m1;
+    public boolean f20345n;
+    public boolean f20346n0;
+    public i0.b f20347n1;
+    public h6 f20348o0;
+    public i0.b f20349o1;
+    public boolean f20350p0;
+    public boolean f20351q0;
+    public ColorDrawable f20352r;
+    public int f20353r0;
+    public w f20354s;
+    public boolean f20355s0;
+    public boolean f20356t0;
+    public boolean f20357u0;
     public w v;
-    public long f20353v0;
-    public w f20354w;
-    public boolean f20355w0;
-    public y3 f20356x;
-    public int f20357x0;
-    public k f20358y;
-    public Runnable f20359y0;
-    public Runnable f20360z0;
+    public long f20358v0;
+    public w f20359w;
+    public boolean f20360w0;
+    public y3 f20361x;
+    public int f20362x0;
+    public k f20363y;
+    public Runnable f20364y0;
+    public Runnable f20365z0;
 
     public ActionBarLayout(Context context, boolean z10) {
         super(context);
         this.L = new DecelerateInterpolator(1.5f);
         this.M = new OvershootInterpolator(1.02f);
         this.N = new AccelerateDecelerateInterpolator();
-        this.f20315b0 = new ArrayList();
-        this.f20318c0 = new ArrayList();
+        this.f20320b0 = new ArrayList();
+        this.f20323c0 = new ArrayList();
         n7.z0 z0Var = new n7.z0(1);
-        z0Var.f16851b = new SparseIntArray();
-        z0Var.f16852c = new int[]{i6.Aa, i6.Da, i6.Ea, i6.Fa, i6.f20771ac, i6.Ca};
-        this.f20320d0 = z0Var;
-        this.f20330h0 = new ArrayList();
-        this.f20334j0 = new ArrayList();
-        this.f20338l0 = new AnimationNotificationsLocker();
+        z0Var.f16856b = new SparseIntArray();
+        z0Var.f16857c = new int[]{i6.Aa, i6.Da, i6.Ea, i6.Fa, i6.f20776ac, i6.Ca};
+        this.f20325d0 = z0Var;
+        this.f20335h0 = new ArrayList();
+        this.f20339j0 = new ArrayList();
+        this.f20343l0 = new AnimationNotificationsLocker();
         this.Q0 = new Rect();
         this.T0 = -1;
         this.V0 = new Path();
         this.W0 = new float[8];
         this.Y0 = new int[2];
-        this.f20316b1 = new org.telegram.ui.Components.e6(this, 280L, tr.h);
-        this.f20333i1 = new ArrayList();
-        this.f20335j1 = new o(this, 2);
+        this.f20321b1 = new org.telegram.ui.Components.e6(this, 280L, tr.h);
+        this.f20338i1 = new ArrayList();
+        this.f20340j1 = new o(this, 2);
         i0.b bVar = i0.b.f11525e;
-        this.f20342n1 = bVar;
-        this.f20344o1 = bVar;
+        this.f20347n1 = bVar;
+        this.f20349o1 = bVar;
         this.K0 = (Activity) context;
         this.L0 = z10;
-        if (f20309q1 == null) {
-            f20309q1 = getResources().getDrawable(R.drawable.layer_shadow);
-            f20308p1 = getResources().getDrawable(R.drawable.header_shadow).mutate();
-            f20310r1 = new Paint();
+        if (f20314q1 == null) {
+            f20314q1 = getResources().getDrawable(R.drawable.layer_shadow);
+            f20313p1 = getResources().getDrawable(R.drawable.header_shadow).mutate();
+            f20315r1 = new Paint();
         }
         p pVar = new p(this, 0);
-        WeakHashMap weakHashMap = r0.i0.f45603a;
+        WeakHashMap weakHashMap = r0.i0.f45610a;
         r0.a0.j(this, pVar);
     }
 
@@ -224,19 +224,19 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
             List list = actionBarLayout.O0;
             list.remove(list.size() - 1);
             actionBarLayout.I("onSlideAnimationEnd");
-            w wVar = actionBarLayout.f20349s;
+            w wVar = actionBarLayout.f20354s;
             wVar.setAlpha(1.0f);
             w wVar2 = actionBarLayout.v;
-            actionBarLayout.f20349s = wVar2;
+            actionBarLayout.f20354s = wVar2;
             actionBarLayout.v = wVar;
             actionBarLayout.bringChildToFront(wVar2);
-            View view = actionBarLayout.f20354w;
+            View view = actionBarLayout.f20359w;
             if (view != null) {
                 actionBarLayout.bringChildToFront(view);
             }
             if (actionBarLayout.O0.size() > 0) {
                 n2 n2Var2 = (n2) sa.e.h(1, actionBarLayout.O0);
-                actionBarLayout.f20358y = n2Var2.actionBar;
+                actionBarLayout.f20363y = n2Var2.actionBar;
                 n2Var2.onResume();
                 n2Var2.onBecomeFullyVisible();
                 n2Var2.prepareFragmentToSlide(false, false);
@@ -260,9 +260,9 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
         actionBarLayout.v.setVisibility(4);
         actionBarLayout.Q = false;
         actionBarLayout.T = false;
-        actionBarLayout.f20349s.setTranslationX(0.0f);
+        actionBarLayout.f20354s.setTranslationX(0.0f);
         actionBarLayout.v.setTranslationX(0.0f);
-        actionBarLayout.f20349s.setLayerType(0, null);
+        actionBarLayout.f20354s.setLayerType(0, null);
         actionBarLayout.setInnerTranslationX(0.0f);
     }
 
@@ -330,7 +330,7 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
     }
 
     public final boolean D() {
-        if (this.f20321d1 && this.f20324e1) {
+        if (this.f20326d1 && this.f20329e1) {
             return true;
         }
         return false;
@@ -357,9 +357,9 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
             this.D0 = null;
         }
         setAlpha(1.0f);
-        this.f20349s.setAlpha(1.0f);
-        this.f20349s.setScaleX(1.0f);
-        this.f20349s.setScaleY(1.0f);
+        this.f20354s.setAlpha(1.0f);
+        this.f20354s.setScaleX(1.0f);
+        this.f20354s.setScaleY(1.0f);
         this.v.setAlpha(1.0f);
         this.v.setScaleX(1.0f);
         this.v.setScaleY(1.0f);
@@ -367,15 +367,15 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
 
     public final void G() {
         k kVar;
-        if (!this.f20312a0 && !this.Q && !j() && !this.O0.isEmpty()) {
-            d30 d30Var = d30.f25537d0;
-            if (d30Var != null && d30Var.f25550w) {
+        if (!this.f20317a0 && !this.Q && !j() && !this.O0.isEmpty()) {
+            d30 d30Var = d30.f25599d0;
+            if (d30Var != null && d30Var.f25612w) {
                 d30Var.e(false);
                 return;
             }
-            if (!e0() && (kVar = this.f20358y) != null && !kVar.s()) {
-                k kVar2 = this.f20358y;
-                if (kVar2.f21281n0) {
+            if (!e0() && (kVar = this.f20363y) != null && !kVar.s()) {
+                k kVar2 = this.f20363y;
+                if (kVar2.f21286n0) {
                     kVar2.h(true);
                     return;
                 }
@@ -388,19 +388,19 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
     }
 
     public final void H() {
-        if (this.W && this.f20359y0 != null) {
+        if (this.W && this.f20364y0 != null) {
             AnimatorSet animatorSet = this.K;
             if (animatorSet != null) {
                 this.K = null;
                 animatorSet.cancel();
             }
             this.W = false;
-            this.f20312a0 = false;
-            this.f20353v0 = 0L;
+            this.f20317a0 = false;
+            this.f20358v0 = 0L;
             this.H = null;
             this.I = null;
-            Runnable runnable = this.f20359y0;
-            this.f20359y0 = null;
+            Runnable runnable = this.f20364y0;
+            this.f20364y0 = null;
             if (runnable != null) {
                 runnable.run();
             }
@@ -426,13 +426,13 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
 
     public final void K() {
         Runnable runnable;
-        if (this.W && (runnable = this.f20360z0) != null) {
+        if (this.W && (runnable = this.f20365z0) != null) {
             this.W = false;
-            this.f20312a0 = false;
-            this.f20353v0 = 0L;
+            this.f20317a0 = false;
+            this.f20358v0 = 0L;
             this.H = null;
             this.I = null;
-            this.f20360z0 = null;
+            this.f20365z0 = null;
             runnable.run();
             i();
         }
@@ -476,7 +476,7 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
         View view = n2Var.fragmentView;
         if (view == null && (view = n2Var.performCreateView(this.K0)) != null && n2Var.isSupportEdgeToEdge() && n2Var.drawEdgeNavigationBar()) {
             n nVar = new n(n2Var);
-            WeakHashMap weakHashMap = r0.i0.f45603a;
+            WeakHashMap weakHashMap = r0.i0.f45610a;
             r0.a0.j(view, nVar);
             this.v.invalidate();
         }
@@ -507,13 +507,13 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
         n2Var.setTitleOverlayTextIfActionBarAttached(this.G0, this.H0, this.I0);
         n2Var.attachSheets(this.v);
         if (!n2Var.hasOwnBackground && view.getBackground() == null) {
-            view.setBackgroundColor(i6.w0(null, i6.f20822d6, false));
+            view.setBackgroundColor(i6.w0(null, i6.f20827d6, false));
         }
         n2Var.onResume();
-        if (this.f20336k0 != null) {
-            this.f20332i0 = n2Var.getThemeDescriptions();
+        if (this.f20341k0 != null) {
+            this.f20337i0 = n2Var.getThemeDescriptions();
         }
-        this.f20349s.setLayerType(2, null);
+        this.f20354s.setLayerType(2, null);
         ((n2) sa.e.h(1, this.O0)).prepareFragmentToSlide(true, true);
         n2Var.prepareFragmentToSlide(false, true);
     }
@@ -524,7 +524,7 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
 
     public final boolean Q(n2 n2Var, boolean z10) {
         a5 a5Var = new a5(n2Var);
-        a5Var.f20384b = z10;
+        a5Var.f20389b = z10;
         return R(a5Var);
     }
 
@@ -534,10 +534,10 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
 
     public final boolean S(n2 n2Var, boolean z10, boolean z11) {
         a5 a5Var = new a5(n2Var);
-        a5Var.f20384b = z10;
-        a5Var.f20385c = z11;
+        a5Var.f20389b = z10;
+        a5Var.f20390c = z11;
         a5Var.d = true;
-        a5Var.f20386e = false;
+        a5Var.f20391e = false;
         return R(a5Var);
     }
 
@@ -601,9 +601,9 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
             }
             return;
         }
-        this.f20350s0 = true;
-        this.f20351t0 = z10;
-        this.f20352u0 = z11;
+        this.f20355s0 = true;
+        this.f20356t0 = z10;
+        this.f20357u0 = z11;
     }
 
     public final void V() {
@@ -611,9 +611,9 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
     }
 
     public final void W() {
-        this.f20349s.removeAllViews();
+        this.f20354s.removeAllViews();
         this.v.removeAllViews();
-        this.f20358y = null;
+        this.f20363y = null;
         this.H = null;
         this.I = null;
     }
@@ -658,7 +658,7 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
     @Override
     public final void addView(View view, int i10, ViewGroup.LayoutParams layoutParams) {
         super.addView(view, i10, layoutParams);
-        r0.l1 l1Var = this.f20339m1;
+        r0.l1 l1Var = this.f20344m1;
         if (l1Var != null) {
             o(view, l1Var);
         }
@@ -667,7 +667,7 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
     public final void b(ArrayList arrayList) {
         if (arrayList != null) {
             int[] iArr = new int[arrayList.size()];
-            this.f20318c0.add(iArr);
+            this.f20323c0.add(iArr);
             int size = arrayList.size();
             for (int i10 = 0; i10 < size; i10++) {
                 iArr[i10] = ((k6) arrayList.get(i10)).c();
@@ -708,9 +708,9 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
                     view = n2Var.performCreateView(activity);
                     if (view != null && n2Var.isSupportEdgeToEdge() && n2Var.drawEdgeNavigationBar()) {
                         n nVar = new n(n2Var);
-                        WeakHashMap weakHashMap = r0.i0.f45603a;
+                        WeakHashMap weakHashMap = r0.i0.f45610a;
                         r0.a0.j(view, nVar);
-                        this.f20349s.invalidate();
+                        this.f20354s.invalidate();
                     }
                 } else {
                     ViewGroup viewGroup3 = (ViewGroup) view.getParent();
@@ -720,12 +720,12 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
                     }
                 }
                 if (!n2Var.hasOwnBackground && view.getBackground() == null) {
-                    view.setBackgroundColor(i6.w0(null, i6.f20822d6, false));
+                    view.setBackgroundColor(i6.w0(null, i6.f20827d6, false));
                 }
-                w wVar = this.f20349s;
+                w wVar = this.f20354s;
                 wVar.addView(view, Utilities.clamp(0, wVar.getChildCount(), 0), w7.z5.c(-1.0f, -1));
-                this.f20349s.setShouldHandleBottomInsets(n2Var.getEdgeToEdgeSupportMode());
-                this.f20349s.setDrawNavigationBar(n2Var.drawEdgeNavigationBar());
+                this.f20354s.setShouldHandleBottomInsets(n2Var.getEdgeToEdgeSupportMode());
+                this.f20354s.setDrawNavigationBar(n2Var.drawEdgeNavigationBar());
                 k kVar = n2Var.actionBar;
                 if (kVar != null && kVar.K) {
                     if (this.C0) {
@@ -735,10 +735,10 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
                     if (viewGroup4 != null) {
                         viewGroup4.removeView(n2Var.actionBar);
                     }
-                    this.f20349s.addView(n2Var.actionBar);
+                    this.f20354s.addView(n2Var.actionBar);
                 }
                 n2Var.setTitleOverlayTextIfActionBarAttached(this.G0, this.H0, this.I0);
-                n2Var.attachSheets(this.f20349s);
+                n2Var.attachSheets(this.f20354s);
                 i10 = 0;
             }
             this.O0.add(i10, n2Var);
@@ -765,9 +765,9 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
                     view3 = n2Var.performCreateView(activity);
                     if (view3 != null && n2Var.isSupportEdgeToEdge() && n2Var.drawEdgeNavigationBar()) {
                         n nVar2 = new n(n2Var);
-                        WeakHashMap weakHashMap2 = r0.i0.f45603a;
+                        WeakHashMap weakHashMap2 = r0.i0.f45610a;
                         r0.a0.j(view3, nVar2);
-                        this.f20349s.invalidate();
+                        this.f20354s.invalidate();
                     }
                 } else {
                     ViewGroup viewGroup5 = (ViewGroup) view3.getParent();
@@ -777,11 +777,11 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
                     }
                 }
                 if (!n2Var.hasOwnBackground && view3.getBackground() == null) {
-                    view3.setBackgroundColor(i6.w0(null, i6.f20822d6, false));
+                    view3.setBackgroundColor(i6.w0(null, i6.f20827d6, false));
                 }
-                this.f20349s.addView(view3, w7.z5.c(-1.0f, -1));
-                this.f20349s.setShouldHandleBottomInsets(n2Var.getEdgeToEdgeSupportMode());
-                this.f20349s.setDrawNavigationBar(n2Var.drawEdgeNavigationBar());
+                this.f20354s.addView(view3, w7.z5.c(-1.0f, -1));
+                this.f20354s.setShouldHandleBottomInsets(n2Var.getEdgeToEdgeSupportMode());
+                this.f20354s.setDrawNavigationBar(n2Var.drawEdgeNavigationBar());
                 k kVar3 = n2Var.actionBar;
                 if (kVar3 != null && kVar3.K) {
                     if (this.C0) {
@@ -791,10 +791,10 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
                     if (viewGroup6 != null) {
                         viewGroup6.removeView(n2Var.actionBar);
                     }
-                    this.f20349s.addView(n2Var.actionBar);
+                    this.f20354s.addView(n2Var.actionBar);
                 }
                 n2Var.setTitleOverlayTextIfActionBarAttached(this.G0, this.H0, this.I0);
-                n2Var.attachSheets(this.f20349s);
+                n2Var.attachSheets(this.f20354s);
                 n2Var.onResume();
                 n2Var.onTransitionAnimationEnd(false, true);
                 n2Var.onTransitionAnimationEnd(true, true);
@@ -839,9 +839,9 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
                         view2 = n2Var2.performCreateView(this.K0);
                         if (view2 != null && n2Var2.isSupportEdgeToEdge() && n2Var2.drawEdgeNavigationBar()) {
                             n nVar = new n(n2Var2);
-                            WeakHashMap weakHashMap = r0.i0.f45603a;
+                            WeakHashMap weakHashMap = r0.i0.f45610a;
                             r0.a0.j(view2, nVar);
-                            this.f20349s.invalidate();
+                            this.f20354s.invalidate();
                         }
                     } else {
                         ViewGroup viewGroup3 = (ViewGroup) view2.getParent();
@@ -850,24 +850,24 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
                             viewGroup3.removeView(view2);
                         }
                     }
-                    this.f20349s.addView(view2, w7.z5.c(-1.0f, -1));
-                    this.f20349s.setShouldHandleBottomInsets(n2Var2.getEdgeToEdgeSupportMode());
-                    this.f20349s.setDrawNavigationBar(n2Var2.drawEdgeNavigationBar());
+                    this.f20354s.addView(view2, w7.z5.c(-1.0f, -1));
+                    this.f20354s.setShouldHandleBottomInsets(n2Var2.getEdgeToEdgeSupportMode());
+                    this.f20354s.setDrawNavigationBar(n2Var2.drawEdgeNavigationBar());
                     k kVar2 = n2Var2.actionBar;
                     if (kVar2 != null && kVar2.K) {
                         if (this.C0) {
                             kVar2.setOccupyStatusBar(false);
                         }
                         AndroidUtilities.removeFromParent(n2Var2.actionBar);
-                        this.f20349s.addView(n2Var2.actionBar);
+                        this.f20354s.addView(n2Var2.actionBar);
                     }
                     n2Var2.setTitleOverlayTextIfActionBarAttached(this.G0, this.H0, this.I0);
-                    n2Var2.attachSheets(this.f20349s);
+                    n2Var2.attachSheets(this.f20354s);
                     n2Var2.onResume();
                     n2Var2.onBecomeFullyVisible();
-                    this.f20358y = n2Var2.actionBar;
+                    this.f20363y = n2Var2.actionBar;
                     if (!n2Var2.hasOwnBackground && view2.getBackground() == null) {
-                        view2.setBackgroundColor(i6.w0(null, i6.f20822d6, false));
+                        view2.setBackgroundColor(i6.w0(null, i6.f20827d6, false));
                     }
                 }
             }
@@ -876,9 +876,9 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
 
     public final void d(ArrayList arrayList) {
         if (arrayList != null) {
-            this.f20330h0.add(arrayList);
+            this.f20335h0.add(arrayList);
             int[] iArr = new int[arrayList.size()];
-            this.f20315b0.add(iArr);
+            this.f20320b0.add(iArr);
             int size = arrayList.size();
             for (int i10 = 0; i10 < size; i10++) {
                 k6 k6Var = (k6) arrayList.get(i10);
@@ -886,7 +886,7 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
                 j6 j6Var = k6Var.h;
                 k6Var.h = null;
                 if (j6Var != null) {
-                    ArrayList arrayList2 = this.f20334j0;
+                    ArrayList arrayList2 = this.f20339j0;
                     if (!arrayList2.contains(j6Var)) {
                         arrayList2.add(j6Var);
                     }
@@ -910,7 +910,7 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
         Canvas canvas2;
         if (this.E != null && v(true) > 0) {
             canvas2 = canvas;
-            canvas2.drawRect(0.0f, getHeight() - (this.E.getMeasuredHeight() + this.f20342n1.d), getWidth(), getHeight(), this.E.getBackgroundPaint());
+            canvas2.drawRect(0.0f, getHeight() - (this.E.getMeasuredHeight() + this.f20347n1.d), getWidth(), getHeight(), this.E.getBackgroundPaint());
         } else {
             canvas2 = canvas;
         }
@@ -967,13 +967,13 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
         if (n2Var == null) {
             return;
         }
-        float x10 = this.f20349s.getX();
+        float x10 = this.f20354s.getX();
         AnimatorSet animatorSet = new AnimatorSet();
         boolean shouldOverrideSlideTransition = n2Var.shouldOverrideSlideTransition(false, z10);
         Property property = View.TRANSLATION_X;
         if (!z10) {
-            x10 = Math.abs(this.f20349s.getMeasuredWidth() - x10);
-            int measuredWidth = (int) ((200.0f / this.f20349s.getMeasuredWidth()) * x10);
+            x10 = Math.abs(this.f20354s.getMeasuredWidth() - x10);
+            int measuredWidth = (int) ((200.0f / this.f20354s.getMeasuredWidth()) * x10);
             if (D()) {
                 i11 = 380;
             } else {
@@ -981,22 +981,22 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
             }
             int max = Math.max(measuredWidth, i11);
             if (!shouldOverrideSlideTransition) {
-                w wVar = this.f20349s;
+                w wVar = this.f20354s;
                 int measuredWidth2 = wVar.getMeasuredWidth();
-                if (this.f20321d1) {
+                if (this.f20326d1) {
                     i12 = AndroidUtilities.dp(56.0f);
                 } else {
                     i12 = 0;
                 }
                 ObjectAnimator ofFloat = ObjectAnimator.ofFloat(wVar, property, measuredWidth2 + i12);
                 long j3 = max;
-                animatorSet.playTogether(ofFloat.setDuration(j3), ObjectAnimator.ofFloat(this, "innerTranslationX", this.f20349s.getMeasuredWidth()).setDuration(j3));
+                animatorSet.playTogether(ofFloat.setDuration(j3), ObjectAnimator.ofFloat(this, "innerTranslationX", this.f20354s.getMeasuredWidth()).setDuration(j3));
                 if (D()) {
                     animatorSet.setInterpolator(tr.h);
                 }
             }
         } else {
-            int measuredWidth3 = (int) ((320.0f / this.f20349s.getMeasuredWidth()) * x10);
+            int measuredWidth3 = (int) ((320.0f / this.f20354s.getMeasuredWidth()) * x10);
             if (D()) {
                 i10 = 320;
             } else {
@@ -1004,7 +1004,7 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
             }
             int max2 = Math.max(measuredWidth3, i10);
             if (!shouldOverrideSlideTransition) {
-                ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(this.f20349s, property, 0.0f);
+                ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(this.f20354s, property, 0.0f);
                 long j10 = max2;
                 animatorSet.playTogether(ofFloat2.setDuration(j10), ObjectAnimator.ofFloat(this, "innerTranslationX", 0.0f).setDuration(j10));
                 if (D()) {
@@ -1021,7 +1021,7 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
             animatorSet.playTogether(customSlideTransition);
         }
         animatorSet.addListener(new g(this, z10));
-        this.f20331h1 = animatorSet;
+        this.f20336h1 = animatorSet;
         animatorSet.start();
         this.T = true;
     }
@@ -1066,20 +1066,20 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
 
     public float getCurrentPreviewFragmentAlpha() {
         w wVar;
-        if (!this.h && !this.f20312a0 && !this.f20340n) {
+        if (!this.h && !this.f20317a0 && !this.f20345n) {
             return 0.0f;
         }
         n2 n2Var = this.I;
         if (n2Var != null && n2Var.inPreviewMode) {
             wVar = this.v;
         } else {
-            wVar = this.f20349s;
+            wVar = this.f20354s;
         }
         return wVar.getAlpha();
     }
 
     public y3 getDrawerLayoutContainer() {
-        return this.f20356x;
+        return this.f20361x;
     }
 
     @Override
@@ -1109,12 +1109,12 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
 
     @Override
     public e5 getMessageDrawableOutMediaStart() {
-        return this.f20326f0;
+        return this.f20331f0;
     }
 
     @Override
     public e5 getMessageDrawableOutStart() {
-        return this.f20323e0;
+        return this.f20328e0;
     }
 
     @Override
@@ -1156,7 +1156,7 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
 
     @Override
     public Window getWindow() {
-        Window window = this.f20317c;
+        Window window = this.f20322c;
         if (window != null) {
             return window;
         }
@@ -1168,19 +1168,19 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
 
     public final void h(String str) {
         if (BuildVars.DEBUG_VERSION) {
-            ArrayList arrayList = this.f20333i1;
+            ArrayList arrayList = this.f20338i1;
             StringBuilder j3 = sa.e.j(str, " ");
             j3.append(this.O0.size());
             arrayList.add(0, j3.toString());
-            if (this.f20333i1.size() > 20) {
+            if (this.f20338i1.size() > 20) {
                 ArrayList arrayList2 = new ArrayList();
                 for (int i10 = 0; i10 < 10; i10++) {
-                    arrayList2.add((String) this.f20333i1.get(i10));
+                    arrayList2.add((String) this.f20338i1.get(i10));
                 }
-                this.f20333i1 = arrayList2;
+                this.f20338i1 = arrayList2;
             }
         }
-        o oVar = this.f20335j1;
+        o oVar = this.f20340j1;
         AndroidUtilities.cancelRunOnUIThread(oVar);
         AndroidUtilities.runOnUIThread(oVar, 500L);
     }
@@ -1191,27 +1191,27 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
     }
 
     public final void i() {
-        if (this.f20350s0) {
-            U(this.f20351t0, this.f20352u0);
-            this.f20350s0 = false;
-        } else if (this.f20341n0) {
-            b5 b5Var = new b5(this.f20343o0, this.f20348r0, this.f20346q0, false);
-            boolean z10 = this.f20345p0;
+        if (this.f20355s0) {
+            U(this.f20356t0, this.f20357u0);
+            this.f20355s0 = false;
+        } else if (this.f20346n0) {
+            b5 b5Var = new b5(this.f20348o0, this.f20353r0, this.f20351q0, false);
+            boolean z10 = this.f20350p0;
             if (!z10) {
-                b5Var.f20472g = z10;
-                b5Var.f20471f = z10;
+                b5Var.f20477g = z10;
+                b5Var.f20476f = z10;
             }
             f(b5Var, null);
-            this.f20343o0 = null;
-            this.f20341n0 = false;
+            this.f20348o0 = null;
+            this.f20346n0 = false;
         }
     }
 
     public final boolean j() {
-        if (this.f20312a0) {
+        if (this.f20317a0) {
             return false;
         }
-        if (this.W && (this.f20353v0 < System.currentTimeMillis() - 1500 || this.h)) {
+        if (this.W && (this.f20358v0 < System.currentTimeMillis() - 1500 || this.h)) {
             F(true);
         }
         return this.W;
@@ -1235,7 +1235,7 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
                     AndroidUtilities.hideKeyboard(activity.getCurrentFocus());
                 }
                 setInnerTranslationX(0.0f);
-                if (!z11 && (this.h || this.f20312a0 || (z10 && MessagesController.getGlobalMainSettings().getBoolean("view_animations", true)))) {
+                if (!z11 && (this.h || this.f20317a0 || (z10 && MessagesController.getGlobalMainSettings().getBoolean("view_animations", true)))) {
                     z12 = true;
                 } else {
                     z12 = false;
@@ -1248,25 +1248,25 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
                     n2Var = null;
                 }
                 if (n2Var != null) {
-                    if (i6.w0(null, i6.f21104s8, false) != -1 && (!n2Var.hasForceLightStatusBar() || i6.A0().q())) {
+                    if (i6.w0(null, i6.f21109s8, false) != -1 && (!n2Var.hasForceLightStatusBar() || i6.A0().q())) {
                         z13 = false;
                     } else {
                         z13 = true;
                     }
                     AndroidUtilities.setLightStatusBar(activity, z13);
-                    w wVar = this.f20349s;
-                    this.f20349s = this.v;
+                    w wVar = this.f20354s;
+                    this.f20354s = this.v;
                     this.v = wVar;
                     n2Var.setParentLayout(this);
                     View view = n2Var.fragmentView;
                     if (view == null && (view = n2Var.performCreateView(activity)) != null && n2Var.isSupportEdgeToEdge() && n2Var.drawEdgeNavigationBar()) {
                         n nVar = new n(n2Var);
-                        WeakHashMap weakHashMap = r0.i0.f45603a;
+                        WeakHashMap weakHashMap = r0.i0.f45610a;
                         r0.a0.j(view, nVar);
-                        this.f20349s.invalidate();
+                        this.f20354s.invalidate();
                     }
                     if (!this.h) {
-                        this.f20349s.setVisibility(0);
+                        this.f20354s.setVisibility(0);
                         ViewGroup viewGroup = (ViewGroup) view.getParent();
                         if (viewGroup != null) {
                             n2Var.onRemoveFromParent();
@@ -1276,9 +1276,9 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
                                 FileLog.e(e7);
                             }
                         }
-                        this.f20349s.addView(view);
-                        this.f20349s.setShouldHandleBottomInsets(n2Var.getEdgeToEdgeSupportMode());
-                        this.f20349s.setDrawNavigationBar(n2Var.drawEdgeNavigationBar());
+                        this.f20354s.addView(view);
+                        this.f20354s.setShouldHandleBottomInsets(n2Var.getEdgeToEdgeSupportMode());
+                        this.f20354s.setDrawNavigationBar(n2Var.drawEdgeNavigationBar());
                         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) view.getLayoutParams();
                         layoutParams.width = -1;
                         layoutParams.height = -1;
@@ -1293,39 +1293,39 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
                                 kVar.setOccupyStatusBar(false);
                             }
                             AndroidUtilities.removeFromParent(n2Var.actionBar);
-                            this.f20349s.addView(n2Var.actionBar);
+                            this.f20354s.addView(n2Var.actionBar);
                         }
                         n2Var.setTitleOverlayTextIfActionBarAttached(this.G0, this.H0, this.I0);
-                        n2Var.attachSheets(this.f20349s);
+                        n2Var.attachSheets(this.f20354s);
                     }
                     this.H = n2Var;
                     this.I = n2Var2;
                     n2Var.onTransitionAnimationStart(true, true);
                     n2Var2.onTransitionAnimationStart(false, true);
                     n2Var.onResume();
-                    if (this.f20336k0 != null) {
-                        this.f20332i0 = n2Var.getThemeDescriptions();
+                    if (this.f20341k0 != null) {
+                        this.f20337i0 = n2Var.getThemeDescriptions();
                     }
-                    this.f20358y = n2Var.actionBar;
+                    this.f20363y = n2Var.actionBar;
                     if (!n2Var.hasOwnBackground && view.getBackground() == null) {
-                        view.setBackgroundColor(i6.w0(null, i6.f20822d6, false));
+                        view.setBackgroundColor(i6.w0(null, i6.f20827d6, false));
                     }
                     if (z12) {
-                        this.f20353v0 = System.currentTimeMillis();
+                        this.f20358v0 = System.currentTimeMillis();
                         this.W = true;
                         n2Var2.setRemovingFromStack(true);
-                        this.f20359y0 = new org.telegram.messenger.video.o(this, n2Var2, n2Var, 3);
-                        if (!this.h && !this.f20312a0) {
+                        this.f20364y0 = new org.telegram.messenger.video.o(this, n2Var2, n2Var, 3);
+                        if (!this.h && !this.f20317a0) {
                             animatorSet = n2Var2.onCustomTransitionAnimation(false, new o(this, 3));
                         }
                         if (animatorSet == null) {
                             boolean z15 = this.h;
-                            if (!z15 && (this.f20349s.f21630b || this.v.f21630b)) {
+                            if (!z15 && (this.f20354s.f21634b || this.v.f21634b)) {
                                 v2 v2Var = new v2(this, 1);
                                 this.d = v2Var;
                                 AndroidUtilities.runOnUIThread(v2Var, 200L);
                             } else {
-                                if (!z15 && !this.f20312a0) {
+                                if (!z15 && !this.f20317a0) {
                                     z14 = false;
                                 } else {
                                     z14 = true;
@@ -1334,8 +1334,8 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
                             }
                         } else {
                             this.K = animatorSet;
-                            rc rcVar = rc.f30337w;
-                            if (rcVar != null && rcVar.f30347l) {
+                            rc rcVar = rc.f30419w;
+                            if (rcVar != null && rcVar.f30429l) {
                                 rcVar.b();
                             }
                         }
@@ -1347,9 +1347,9 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
                         n2Var.onBecomeFullyVisible();
                     }
                 } else if (this.A0 && !z11) {
-                    this.f20353v0 = System.currentTimeMillis();
+                    this.f20358v0 = System.currentTimeMillis();
                     this.W = true;
-                    this.f20359y0 = new ki.h0(26, this, n2Var2);
+                    this.f20364y0 = new ki.h0(26, this, n2Var2);
                     ArrayList arrayList = new ArrayList();
                     Property property = View.ALPHA;
                     arrayList.add(ObjectAnimator.ofFloat(this, property, 1.0f, 0.0f));
@@ -1387,8 +1387,8 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
         this.O0.remove(n2Var);
         this.v.setVisibility(4);
         this.v.setTranslationY(0.0f);
-        bringChildToFront(this.f20349s);
-        w wVar = this.f20354w;
+        bringChildToFront(this.f20354s);
+        w wVar = this.f20359w;
         if (wVar != null) {
             bringChildToFront(wVar);
         }
@@ -1416,8 +1416,8 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
         r0.b1 x0Var;
         boolean z11 = this.M0;
         if (z11) {
-            if ((view instanceof w) && ((w) view).f21638x) {
-                int i18 = l1Var.f45617a.f(8).d;
+            if ((view instanceof w) && ((w) view).f21642x) {
+                int i18 = l1Var.f45624a.f(8).d;
                 if (getParent() instanceof View) {
                     view2 = (View) getParent();
                 } else {
@@ -1429,7 +1429,7 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
                     i17 = 0;
                 }
                 int max = Math.max(0, i18 - i17);
-                r0.l1 l1Var2 = r0.l1.f45616b;
+                r0.l1 l1Var2 = r0.l1.f45623b;
                 int i19 = Build.VERSION.SDK_INT;
                 if (i19 >= 34) {
                     x0Var = new r0.a1(l1Var2);
@@ -1444,7 +1444,7 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
                 r0.i0.b(view, x0Var.b());
                 return;
             }
-            r0.i0.b(view, r0.l1.f45616b);
+            r0.i0.b(view, r0.l1.f45623b);
             return;
         }
         boolean z12 = this.N0;
@@ -1454,8 +1454,8 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
         } else {
             z10 = false;
         }
-        i0.b bVar = this.f20342n1;
-        i0.b bVar2 = this.f20344o1;
+        i0.b bVar = this.f20347n1;
+        i0.b bVar2 = this.f20349o1;
         if (view instanceof n3) {
             if (z12) {
                 i15 = 0;
@@ -1477,8 +1477,8 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
             } else {
                 i10 = 0;
             }
-            z3 z3Var = wVar.f21637w;
-            if (z3Var != z3.f21736c) {
+            z3 z3Var = wVar.f21641w;
+            if (z3Var != z3.f21740c) {
                 z13 = false;
             }
             if (!z13 && !z12) {
@@ -1501,11 +1501,11 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
             } else {
                 i14 = bVar2.f11528c;
             }
-            if (z3Var == z3.f21734a) {
+            if (z3Var == z3.f21738a) {
                 i10 = Math.max(i10, bVar2.d);
-                r0.i0.b(view, r0.l1.f45616b);
+                r0.i0.b(view, r0.l1.f45623b);
             } else {
-                r0.i0.b(view, l1Var.f45617a.m(i13, 0, i14, i10));
+                r0.i0.b(view, l1Var.f45624a.m(i13, 0, i14, i10));
             }
             view.setPadding(i11, 0, i12, i10);
         }
@@ -1514,7 +1514,7 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f20311a = true;
+        this.f20316a = true;
     }
 
     @Override
@@ -1536,7 +1536,7 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f20311a = false;
+        this.f20316a = false;
     }
 
     @Override
@@ -1551,7 +1551,7 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
     public final boolean onKeyUp(int i10, KeyEvent keyEvent) {
         k kVar;
         z zVar;
-        if (i10 == 82 && !j() && !this.Q && (kVar = this.f20358y) != null && !kVar.s() && (zVar = kVar.E) != null) {
+        if (i10 == 82 && !j() && !this.Q && (kVar = this.f20363y) != null && !kVar.s() && (zVar = kVar.E) != null) {
             int childCount = zVar.getChildCount();
             int i11 = 0;
             while (true) {
@@ -1617,19 +1617,19 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         s sVar;
         boolean z10 = false;
-        if (!j() && !this.f20355w0 && !this.T && !this.f20321d1) {
+        if (!j() && !this.f20360w0 && !this.T && !this.f20326d1) {
             if (this.O0.size() > 1 && ((sVar = this.G) == null || sVar.getLastSheet() == null || !this.G.getLastSheet().isShown())) {
                 if (motionEvent != null && motionEvent.getAction() == 0) {
                     if (!((n2) sa.e.h(1, this.O0)).isSwipeBackEnabled(motionEvent)) {
                         this.P = false;
                         this.Q = false;
-                        w wVar = this.f20349s;
+                        w wVar = this.f20354s;
                         if (wVar != null) {
                             wVar.setLayerType(0, null);
                             return false;
                         }
                     } else {
-                        this.f20357x0 = motionEvent.getPointerId(0);
+                        this.f20362x0 = motionEvent.getPointerId(0);
                         this.P = true;
                         this.R = (int) motionEvent.getX();
                         this.S = (int) motionEvent.getY();
@@ -1638,7 +1638,7 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
                             velocityTracker.clear();
                         }
                     }
-                } else if (motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.f20357x0) {
+                } else if (motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.f20362x0) {
                     if (this.U == null) {
                         this.U = VelocityTracker.obtain();
                     }
@@ -1663,22 +1663,22 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
                         }
                         if (D()) {
                             float f7 = max;
-                            this.f20349s.setTranslationX((f7 / getWidth()) * AndroidUtilities.dp(56.0f) * 5);
+                            this.f20354s.setTranslationX((f7 / getWidth()) * AndroidUtilities.dp(56.0f) * 5);
                             setInnerTranslationX((f7 / getWidth()) * AndroidUtilities.dp(56.0f) * 5);
                         } else {
                             float f10 = max;
-                            this.f20349s.setTranslationX(f10);
+                            this.f20354s.setTranslationX(f10);
                             setInnerTranslationX(f10);
                         }
                     }
-                } else if (motionEvent != null && motionEvent.getPointerId(0) == this.f20357x0 && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6)) {
+                } else if (motionEvent != null && motionEvent.getPointerId(0) == this.f20362x0 && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6)) {
                     if (this.U == null) {
                         this.U = VelocityTracker.obtain();
                     }
                     this.U.addMovement(motionEvent);
                     this.U.computeCurrentVelocity(1000);
                     n2 n2Var = (n2) sa.e.h(1, this.O0);
-                    if (!this.h && !this.f20312a0 && !this.Q && n2Var.isSwipeBackEnabled(motionEvent)) {
+                    if (!this.h && !this.f20317a0 && !this.Q && n2Var.isSwipeBackEnabled(motionEvent)) {
                         float xVelocity = this.U.getXVelocity();
                         float yVelocity = this.U.getYVelocity();
                         if (xVelocity >= 3500.0f && xVelocity > Math.abs(yVelocity) && n2Var.canBeginSlide()) {
@@ -1693,10 +1693,10 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
                         }
                     }
                     if (this.Q) {
-                        float x10 = this.f20349s.getX();
+                        float x10 = this.f20354s.getX();
                         float xVelocity2 = this.U.getXVelocity();
                         float yVelocity2 = this.U.getYVelocity();
-                        if (!D() ? x10 < this.f20349s.getMeasuredWidth() / 3.0f : !(x10 >= AndroidUtilities.dp(56.0f) / 2 && xVelocity2 >= -1000.0f)) {
+                        if (!D() ? x10 < this.f20354s.getMeasuredWidth() / 3.0f : !(x10 >= AndroidUtilities.dp(56.0f) / 2 && xVelocity2 >= -1000.0f)) {
                             if (xVelocity2 < 3500.0f || Math.abs(xVelocity2) < Math.abs(yVelocity2)) {
                                 z10 = true;
                             }
@@ -1705,7 +1705,7 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
                     } else {
                         this.P = false;
                         this.Q = false;
-                        w wVar2 = this.f20349s;
+                        w wVar2 = this.f20354s;
                         if (wVar2 != null) {
                             wVar2.setLayerType(0, null);
                         }
@@ -1718,7 +1718,7 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
                 } else if (motionEvent == null) {
                     this.P = false;
                     this.Q = false;
-                    w wVar3 = this.f20349s;
+                    w wVar3 = this.f20354s;
                     if (wVar3 != null) {
                         wVar3.setLayerType(0, null);
                     }
@@ -1735,13 +1735,13 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
     }
 
     public final void p(Canvas canvas, int i10, int i11) {
-        if (f20308p1 != null && SharedConfig.drawActionBarShadow) {
+        if (f20313p1 != null && SharedConfig.drawActionBarShadow) {
             int i12 = i10 / 2;
-            if (f20308p1.getAlpha() != i12) {
-                f20308p1.setAlpha(i12);
+            if (f20313p1.getAlpha() != i12) {
+                f20313p1.setAlpha(i12);
             }
-            f20308p1.setBounds(0, i11, getMeasuredWidth(), f20308p1.getIntrinsicHeight() + i11);
-            f20308p1.draw(canvas);
+            f20313p1.setBounds(0, i11, getMeasuredWidth(), f20313p1.getIntrinsicHeight() + i11);
+            f20313p1.draw(canvas);
         }
     }
 
@@ -1751,7 +1751,7 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
 
     public final void r() {
         boolean z10 = true;
-        this.f20340n = true;
+        this.f20345n = true;
         this.h = false;
         n2 n2Var = (n2) sa.e.h(1, this.O0);
         n2Var.fragmentView.setOutlineProvider(null);
@@ -1774,13 +1774,13 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
             performHapticFeedback(3);
         } catch (Exception unused) {
         }
-        this.f20349s.setShouldHandleBottomInsets(n2Var.getEdgeToEdgeSupportMode());
-        this.f20349s.setDrawNavigationBar(n2Var.drawEdgeNavigationBar());
+        this.f20354s.setShouldHandleBottomInsets(n2Var.getEdgeToEdgeSupportMode());
+        this.f20354s.setDrawNavigationBar(n2Var.drawEdgeNavigationBar());
         n2Var.setInPreviewMode(false);
         n2Var.setInMenuMode(false);
         try {
             Activity activity = this.K0;
-            if (i6.w0(null, i6.f21104s8, false) != -1 && (!n2Var.hasForceLightStatusBar() || i6.A0().q())) {
+            if (i6.w0(null, i6.f21109s8, false) != -1 && (!n2Var.hasForceLightStatusBar() || i6.A0().q())) {
                 z10 = false;
             }
             AndroidUtilities.setLightStatusBar(activity, z10);
@@ -1813,12 +1813,12 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
 
     @Override
     public void setDrawerLayoutContainer(y3 y3Var) {
-        this.f20356x = y3Var;
+        this.f20361x = y3Var;
     }
 
     @Override
     public void setFragmentPanTranslationOffset(int i10) {
-        w wVar = this.f20349s;
+        w wVar = this.f20354s;
         if (wVar != null) {
             wVar.setFragmentPanTranslationOffset(i10);
         }
@@ -1850,7 +1850,7 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
             FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, AndroidUtilities.dp(76.0f));
             layoutParams.gravity = 87;
             addView(this.E, layoutParams);
-            w3 w3Var = LaunchActivity.G1.f33820y0;
+            w3 w3Var = LaunchActivity.G1.f33833y0;
             if (w3Var != null) {
                 w3Var.setTabsView(this.E);
             }
@@ -1867,31 +1867,31 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
         layoutParams2.height = -1;
         layoutParams2.gravity = 51;
         this.v.setLayoutParams(layoutParams2);
-        w wVar3 = this.f20349s;
+        w wVar3 = this.f20354s;
         if (wVar3 != null) {
             AndroidUtilities.removeFromParent(wVar3);
         }
         w wVar4 = new w(activity, this);
-        this.f20349s = wVar4;
+        this.f20354s = wVar4;
         addView(wVar4);
-        FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) this.f20349s.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) this.f20354s.getLayoutParams();
         layoutParams3.width = -1;
         layoutParams3.height = -1;
         layoutParams3.gravity = 51;
-        this.f20349s.setLayoutParams(layoutParams3);
-        w wVar5 = this.f20354w;
+        this.f20354s.setLayoutParams(layoutParams3);
+        w wVar5 = this.f20359w;
         if (wVar5 != null) {
             AndroidUtilities.removeFromParent(wVar5);
         }
         w wVar6 = new w(activity, this);
-        this.f20354w = wVar6;
-        this.f20316b1.f25937a = wVar6;
+        this.f20359w = wVar6;
+        this.f20321b1.f25985a = wVar6;
         addView(wVar6);
-        FrameLayout.LayoutParams layoutParams4 = (FrameLayout.LayoutParams) this.f20354w.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams4 = (FrameLayout.LayoutParams) this.f20359w.getLayoutParams();
         layoutParams4.width = -1;
         layoutParams4.height = -1;
         layoutParams4.gravity = 51;
-        this.f20354w.setLayoutParams(layoutParams4);
+        this.f20359w.setLayoutParams(layoutParams4);
         s sVar = this.G;
         if (sVar != null) {
             sVar.setParentLayout(this);
@@ -1900,10 +1900,10 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
             if (view == null) {
                 view = sVar2.performCreateView(activity);
             }
-            if (view.getParent() != this.f20354w) {
+            if (view.getParent() != this.f20359w) {
                 AndroidUtilities.removeFromParent(view);
-                this.f20354w.addView(view, w7.z5.c(-1.0f, -1));
-                this.f20354w.setShouldHandleBottomInsets(this.G.getEdgeToEdgeSupportMode());
+                this.f20359w.addView(view, w7.z5.c(-1.0f, -1));
+                this.f20359w.setShouldHandleBottomInsets(this.G.getEdgeToEdgeSupportMode());
             }
             this.G.onResume();
             this.G.onBecomeFullyVisible();
@@ -1919,7 +1919,7 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
 
     @Override
     public void setInBubbleMode(boolean z10) {
-        this.f20325f = z10;
+        this.f20330f = z10;
     }
 
     public void setInnerTranslationX(float f7) {
@@ -1928,11 +1928,11 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
         int navigationBarColor2;
         this.O = f7;
         invalidate();
-        if (this.O0.size() >= 2 && this.f20349s.getMeasuredWidth() > 0) {
+        if (this.O0.size() >= 2 && this.f20354s.getMeasuredWidth() > 0) {
             if (D()) {
                 measuredWidth = Utilities.clamp01(f7 / (AndroidUtilities.dp(56.0f) * 6));
             } else {
-                measuredWidth = f7 / this.f20349s.getMeasuredWidth();
+                measuredWidth = f7 / this.f20354s.getMeasuredWidth();
             }
             n2 n2Var = (n2) sa.e.h(2, this.O0);
             n2Var.onSlideProgress(false, measuredWidth);
@@ -1946,7 +1946,7 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
 
     @Override
     public void setIsSheet(boolean z10) {
-        this.f20314b = z10;
+        this.f20319b = z10;
     }
 
     @Override
@@ -1956,7 +1956,7 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
             this.l1 = i10;
             invalidate();
         }
-        y3 y3Var = this.f20356x;
+        y3 y3Var = this.f20361x;
         if (y3Var != null) {
             y3Var.setInternalNavigationBarColor(i10);
         }
@@ -1988,13 +1988,13 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
 
     public void setThemeAnimationValue(float f7) {
         this.m0 = f7;
-        ArrayList arrayList = this.f20330h0;
+        ArrayList arrayList = this.f20335h0;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
             ArrayList arrayList2 = (ArrayList) arrayList.get(i10);
-            int[] iArr = (int[]) this.f20315b0.get(i10);
-            int[] iArr2 = (int[]) this.f20318c0.get(i10);
+            int[] iArr = (int[]) this.f20320b0.get(i10);
+            int[] iArr2 = (int[]) this.f20323c0.get(i10);
             int size2 = arrayList2.size();
             int i11 = 0;
             while (i11 < size2) {
@@ -2011,8 +2011,8 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
                 int i13 = i10;
                 int argb = Color.argb(Math.min(255, (int) (((alpha - alpha2) * f7) + alpha2)), Math.min(255, (int) (((red - red2) * f7) + red2)), Math.min(255, (int) (((green - green2) * f7) + green2)), Math.min(255, (int) (((blue - blue2) * f7) + blue2)));
                 k6 k6Var = (k6) arrayList2.get(i11);
-                int i14 = k6Var.f21342f;
-                d6 d6Var = k6Var.f21350o;
+                int i14 = k6Var.f21346f;
+                d6 d6Var = k6Var.f21354o;
                 if (d6Var != null) {
                     d6Var.L0(i14, argb);
                 } else {
@@ -2029,7 +2029,7 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
             }
             i10++;
         }
-        ArrayList arrayList4 = this.f20334j0;
+        ArrayList arrayList4 = this.f20339j0;
         int size3 = arrayList4.size();
         for (int i15 = 0; i15 < size3; i15++) {
             j6 j6Var = (j6) arrayList4.get(i15);
@@ -2038,18 +2038,18 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
                 j6Var.a(f7);
             }
         }
-        ArrayList arrayList5 = this.f20332i0;
+        ArrayList arrayList5 = this.f20337i0;
         if (arrayList5 != null) {
             int size4 = arrayList5.size();
             for (int i16 = 0; i16 < size4; i16++) {
-                k6 k6Var2 = (k6) this.f20332i0.get(i16);
-                k6Var2.e(i6.v0(k6Var2.f21342f, k6Var2.f21350o), false, false);
+                k6 k6Var2 = (k6) this.f20337i0.get(i16);
+                k6Var2.e(i6.v0(k6Var2.f21346f, k6Var2.f21354o), false, false);
             }
         }
-        tn tnVar = this.f20328g0;
+        tn tnVar = this.f20333g0;
         if (tnVar != null) {
-            wn wnVar = tnVar.f40885a;
-            wnVar.V.f43533v0.invalidate();
+            wn wnVar = tnVar.f40941a;
+            wnVar.V.f43526v0.invalidate();
             wnVar.I.I = f7;
             wnVar.J.I = f7;
             wnVar.k(f7);
@@ -2068,7 +2068,7 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
 
     @Override
     public void setWindow(Window window) {
-        this.f20317c = window;
+        this.f20322c = window;
     }
 
     public final n2 t() {
@@ -2109,11 +2109,11 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
             if (view == null) {
                 view = sVar2.performCreateView(activity);
             }
-            if (view.getParent() != this.f20354w) {
+            if (view.getParent() != this.f20359w) {
                 AndroidUtilities.removeFromParent(view);
-                this.f20354w.addView(view, w7.z5.c(-1.0f, -1));
-                this.f20354w.setShouldHandleBottomInsets(this.G.getEdgeToEdgeSupportMode());
-                this.f20354w.setDrawNavigationBar(this.G.drawEdgeNavigationBar());
+                this.f20359w.addView(view, w7.z5.c(-1.0f, -1));
+                this.f20359w.setShouldHandleBottomInsets(this.G.getEdgeToEdgeSupportMode());
+                this.f20359w.setDrawNavigationBar(this.G.drawEdgeNavigationBar());
             }
             this.G.onResume();
             this.G.onBecomeFullyVisible();
@@ -2122,7 +2122,7 @@ public class ActionBarLayout extends FrameLayout implements c5, mg.b {
     }
 
     public final boolean y() {
-        if (!this.h && !this.f20312a0) {
+        if (!this.h && !this.f20317a0) {
             return false;
         }
         return true;

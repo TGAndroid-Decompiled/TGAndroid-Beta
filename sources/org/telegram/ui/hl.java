@@ -34,7 +34,7 @@ public final class hl extends org.telegram.ui.ActionBar.i5 {
         switch (this.M0) {
             case 2:
                 super.onAttachedToWindow();
-                ((up0) this.N0).f41288s.a();
+                ((up0) this.N0).f41323s.a();
                 return;
             default:
                 super.onAttachedToWindow();
@@ -47,7 +47,7 @@ public final class hl extends org.telegram.ui.ActionBar.i5 {
         switch (this.M0) {
             case 2:
                 super.onDetachedFromWindow();
-                ((up0) this.N0).f41288s.b();
+                ((up0) this.N0).f41323s.b();
                 return;
             default:
                 super.onDetachedFromWindow();
@@ -79,13 +79,13 @@ public final class hl extends org.telegram.ui.ActionBar.i5 {
                 ProfileActivity profileActivity = (ProfileActivity) this.N0;
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
                 if (isFocusable()) {
-                    if (profileActivity.h != null || profileActivity.f34299n != null) {
+                    if (profileActivity.h != null || profileActivity.f34312n != null) {
                         StringBuilder sb2 = new StringBuilder(getText());
-                        if (profileActivity.f34299n != null) {
+                        if (profileActivity.f34312n != null) {
                             if (sb2.length() > 0) {
                                 sb2.append(", ");
                             }
-                            sb2.append(profileActivity.f34299n);
+                            sb2.append(profileActivity.f34312n);
                         }
                         if (profileActivity.h != null) {
                             if (sb2.length() > 0) {
@@ -114,10 +114,10 @@ public final class hl extends org.telegram.ui.ActionBar.i5 {
                 yn ynVar = (yn) this.N0;
                 if (this == ynVar.B2[0] && ynVar.F2[1] != null) {
                     if (ynVar.M4 && f7 < 0.0f) {
-                        ynVar.f43561x2.setTranslationY(f7 / 2.0f);
+                        ynVar.f43554x2.setTranslationY(f7 / 2.0f);
                         return;
                     } else {
-                        ynVar.f43561x2.setTranslationY(0.0f);
+                        ynVar.f43554x2.setTranslationY(0.0f);
                         return;
                     }
                 }

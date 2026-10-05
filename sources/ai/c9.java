@@ -3,7 +3,7 @@ package ai;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.iz0;
+import org.telegram.ui.Components.jz0;
 import org.telegram.ui.Components.u30;
 public final class c9 implements Runnable {
     public final int f708a;
@@ -57,9 +57,9 @@ public final class c9 implements Runnable {
         this.f710c = arrayList;
     }
 
-    public c9(iz0 iz0Var, int i10, String str, ArrayList arrayList) {
+    public c9(jz0 jz0Var, int i10, String str, ArrayList arrayList) {
         this.f708a = 28;
-        this.d = iz0Var;
+        this.d = jz0Var;
         this.f709b = i10;
         this.f711e = str;
         this.f710c = arrayList;

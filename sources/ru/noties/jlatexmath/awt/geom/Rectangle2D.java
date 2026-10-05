@@ -3,14 +3,14 @@ public abstract class Rectangle2D {
 
     public static class Float extends Rectangle2D {
         public float h;
-        public float f46462w;
-        public float f46463x;
-        public float f46464y;
+        public float f46469w;
+        public float f46470x;
+        public float f46471y;
 
         public Float(float f7, float f10, float f11, float f12) {
-            this.f46463x = f7;
-            this.f46464y = f10;
-            this.f46462w = f11;
+            this.f46470x = f7;
+            this.f46471y = f10;
+            this.f46469w = f11;
             this.h = f12;
         }
 
@@ -21,21 +21,21 @@ public abstract class Rectangle2D {
 
         @Override
         public float getWidth() {
-            return this.f46462w;
+            return this.f46469w;
         }
 
         @Override
         public float getX() {
-            return this.f46463x;
+            return this.f46470x;
         }
 
         @Override
         public float getY() {
-            return this.f46464y;
+            return this.f46471y;
         }
 
         public String toString() {
-            return "Float{x=" + this.f46463x + ", y=" + this.f46464y + ", w=" + this.f46462w + ", h=" + this.h + '}';
+            return "Float{x=" + this.f46470x + ", y=" + this.f46471y + ", w=" + this.f46469w + ", h=" + this.h + '}';
         }
     }
 

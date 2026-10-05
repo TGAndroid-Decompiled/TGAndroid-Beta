@@ -1,43 +1,30 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.tgnet.ConnectionsManager;
+import android.util.SparseArray;
 import org.telegram.tgnet.TLRPC;
-public final class v51 extends s4.s0 {
-    public final c61 f31576a;
+public final class v51 extends g.p {
+    public final d61 f31667c;
 
-    public v51(c61 c61Var) {
-        this.f31576a = c61Var;
+    public v51(d61 d61Var) {
+        this.f31667c = d61Var;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        s4.s0 s0Var = this.f31576a.f25242y;
-        if (s0Var != null) {
-            s0Var.a(recyclerView, i10);
-        }
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        c61 c61Var = this.f31576a;
-        b61 b61Var = c61Var.f25239s;
-        s51 s51Var = c61Var.f25237n;
-        s4.s0 s0Var = c61Var.f25242y;
-        if (s0Var != null) {
-            s0Var.b(s51Var, i10, i11);
-        }
-        if (i11 > 0 && s51Var.getAdapter() == b61Var && c61Var.J && !b61Var.f24809r && !b61Var.f24810s) {
-            if (c61Var.f25238r.N0() >= ((b61Var.f24811w + 1) - ((b61Var.v + 1) * 10)) - 1) {
-                c61 c61Var2 = b61Var.f24812x;
-                if (c61Var2.J && !b61Var.f24809r && !b61Var.f24810s) {
-                    b61Var.f24809r = true;
-                    TLRPC.TL_messages_getOldFeaturedStickers tL_messages_getOldFeaturedStickers = new TLRPC.TL_messages_getOldFeaturedStickers();
-                    tL_messages_getOldFeaturedStickers.offset = b61Var.f24808n.size();
-                    tL_messages_getOldFeaturedStickers.limit = 40;
-                    ConnectionsManager.getInstance(c61Var2.f25232a).sendRequest(tL_messages_getOldFeaturedStickers, new y1(b61Var, 17));
-                }
+    public final int i(int i10) {
+        d61 d61Var = this.f31667c;
+        s4.h0 adapter = d61Var.f25688n.getAdapter();
+        c61 c61Var = d61Var.f25690s;
+        if (adapter == c61Var) {
+            if ((c61Var.d.get(i10) instanceof Integer) || i10 >= c61Var.f25281w) {
+                return c61Var.v;
             }
+            return 1;
         }
+        gg.g2 g2Var = d61Var.v;
+        SparseArray sparseArray = g2Var.f10597s;
+        if (i10 != g2Var.f10600y && (sparseArray.get(i10) == null || (sparseArray.get(i10) instanceof TLRPC.Document))) {
+            return 1;
+        }
+        return g2Var.f10593e.a();
     }
 }

@@ -19,9 +19,9 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.NativeInstance;
-import org.telegram.ui.Components.cw0;
 import org.telegram.ui.Components.dw0;
-public final class w1 implements NativeInstance.AudioLevelsCallback, cw0, dw0, org.telegram.ui.ActionBar.a2, d9.e, i5.e, GenericProvider, Utilities.Callback2Return, Continuation, q9.d {
+import org.telegram.ui.Components.ew0;
+public final class w1 implements NativeInstance.AudioLevelsCallback, dw0, ew0, org.telegram.ui.ActionBar.a2, d9.e, i5.e, GenericProvider, Utilities.Callback2Return, Continuation, q9.d {
     public final int f1788a;
 
     public w1(int i10) {
@@ -258,13 +258,13 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, cw0, dw0, o
                 hVar.getClass();
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                 try {
-                    hVar.y(eVar, byteArrayOutputStream);
+                    hVar.t(eVar, byteArrayOutputStream);
                 } catch (IOException unused) {
                 }
                 return byteArrayOutputStream.toByteArray();
             case 20:
                 ca.a.f4514b.getClass();
-                return z9.c.f53055a.c((y9.e2) obj).getBytes(Charset.forName("UTF-8"));
+                return z9.c.f53076a.c((y9.e2) obj).getBytes(Charset.forName("UTF-8"));
         }
     }
 

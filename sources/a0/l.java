@@ -14,8 +14,8 @@ public final class l {
                 int[] iArr = this.f29a;
                 int[] iArr2 = lVar.f29a;
                 ud.e a2 = v7.a(0, i11);
-                int i12 = a2.f47618a;
-                int i13 = a2.f47619b;
+                int i12 = a2.f47625a;
+                int i13 = a2.f47626b;
                 if (i12 <= i13) {
                     while (iArr[i12] == iArr2[i12]) {
                         if (i12 != i13) {

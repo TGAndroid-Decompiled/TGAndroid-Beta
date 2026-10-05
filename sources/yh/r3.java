@@ -1,39 +1,41 @@
 package yh;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class r3 extends AnimatorListenerAdapter {
-    public final int f51893a;
-    public final u3 f51894b;
+import android.animation.ValueAnimator;
+import android.widget.FrameLayout;
+public final class r3 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f51914a;
+    public final v3 f51915b;
 
-    public r3(u3 u3Var, int i10) {
-        this.f51893a = i10;
-        this.f51894b = u3Var;
+    public r3(v3 v3Var, int i10) {
+        this.f51914a = i10;
+        this.f51915b = v3Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f51893a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f51914a) {
             case 0:
-                this.f51894b.f52063d0 = false;
+                v3 v3Var = this.f51915b;
+                v3Var.getClass();
+                v3Var.f52152s0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                v3Var.d(v3Var.U);
                 return;
             case 1:
-                this.f51894b.f52063d0 = false;
-                return;
-            case 2:
-                this.f51894b.N.setVisibility(4);
-                return;
-            case 3:
-                u3 u3Var = this.f51894b;
-                u3Var.f52082s0 = u3Var.f52080r0;
-                u3Var.d(u3Var.U);
+                v3 v3Var2 = this.f51915b;
+                v3Var2.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                float x10 = com.google.android.gms.internal.vision.e2.x((float) Math.pow((floatValue * 2.0f) - 2.0f, 2.0d), 0.075f, floatValue, 1.0f);
+                v3Var2.f52153t0 = x10;
+                FrameLayout frameLayout = v3Var2.f52129b;
+                frameLayout.setScaleX(x10);
+                frameLayout.setScaleY(v3Var2.f52153t0);
+                v3Var2.invalidate();
                 return;
             default:
-                u3 u3Var2 = this.f51894b;
-                u3Var2.f52083t0 = 1.0f;
-                u3Var2.f52059b.setScaleX(1.0f);
-                u3Var2.f52059b.setScaleY(u3Var2.f52083t0);
-                u3Var2.invalidate();
+                v3 v3Var3 = this.f51915b;
+                v3Var3.getClass();
+                v3Var3.f52152s0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                v3Var3.d(v3Var3.U);
                 return;
         }
     }

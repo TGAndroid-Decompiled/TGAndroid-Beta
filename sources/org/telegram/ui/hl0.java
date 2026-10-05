@@ -16,7 +16,7 @@ public final class hl0 implements Runnable {
         switch (this.f37119a) {
             case 0:
                 PasscodeActivity passcodeActivity = this.f37120b;
-                passcodeActivity.f33851n.postDelayed(passcodeActivity.O, 3000L);
+                passcodeActivity.f33864n.postDelayed(passcodeActivity.O, 3000L);
                 passcodeActivity.N = true;
                 return;
             case 1:
@@ -33,7 +33,7 @@ public final class hl0 implements Runnable {
             case 2:
                 PasscodeActivity passcodeActivity4 = this.f37120b;
                 hl0 hl0Var = new hl0(passcodeActivity4, 3);
-                if (passcodeActivity4.e0()) {
+                if (passcodeActivity4.k0()) {
                     j3 = 150;
                 } else {
                     j3 = 1000;
@@ -42,21 +42,21 @@ public final class hl0 implements Runnable {
                 return;
             case 3:
                 PasscodeActivity passcodeActivity5 = this.f37120b;
-                if (passcodeActivity5.e0()) {
-                    for (es esVar : passcodeActivity5.f33851n.f35549f) {
+                if (passcodeActivity5.k0()) {
+                    for (es esVar : passcodeActivity5.f33864n.f35541f) {
                         esVar.i(0.0f);
                     }
                     return;
                 }
-                passcodeActivity5.f33850f.a(0.0f);
+                passcodeActivity5.f33863f.a(0.0f);
                 return;
             case 4:
                 PasscodeActivity passcodeActivity6 = this.f37120b;
                 passcodeActivity6.N = false;
-                AndroidUtilities.updateViewVisibilityAnimated(passcodeActivity6.f33852r, false);
+                AndroidUtilities.updateViewVisibilityAnimated(passcodeActivity6.f33865r, false);
                 return;
             default:
-                this.f37120b.k0();
+                this.f37120b.q0();
                 return;
         }
     }

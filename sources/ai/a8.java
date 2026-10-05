@@ -13,7 +13,7 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.pv0;
+import org.telegram.ui.Components.qv0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.yn;
 import org.telegram.ui.z90;
@@ -73,7 +73,7 @@ public final class a8 implements Runnable {
                 }
                 return;
             case 7:
-                pv0.n((pv0) this.d, this.f580c, this.f579b);
+                qv0.n((qv0) this.d, this.f580c, this.f579b);
                 return;
             default:
                 Long l4 = (Long) this.d;

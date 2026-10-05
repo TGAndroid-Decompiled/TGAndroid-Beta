@@ -4,6 +4,8 @@ import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 import java.util.Iterator;
+import li.o;
+import li.p;
 public final class c {
     public final fh.a f455a;
     public int f456b;
@@ -12,7 +14,7 @@ public final class c {
     public pe.b f458e;
     public hh.k f459f;
     public ViewGroup f460g;
-    public li.n h;
+    public p h;
     public boolean f461i;
 
     public c(fh.a aVar) {
@@ -43,9 +45,9 @@ public final class c {
         if (bVar != null && view != null) {
             bVar.add(view);
         }
-        li.n nVar = this.h;
-        if (nVar != null && view != null) {
-            nVar.f15668c.add(new li.m(view, b10));
+        p pVar = this.h;
+        if (pVar != null && view != null) {
+            pVar.f15673c.add(new o(view, b10));
         }
         hh.k kVar = this.f459f;
         if (kVar != null && (viewGroup = this.f460g) != null && view != null) {
@@ -68,8 +70,8 @@ public final class c {
         }
     }
 
-    public final void e(li.n nVar) {
-        this.h = nVar;
+    public final void e(p pVar) {
+        this.h = pVar;
     }
 
     public final void f(pe.b bVar) {

@@ -9,14 +9,14 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Cells.w8;
 import org.telegram.ui.Components.z5;
 import org.telegram.ui.am0;
-import yh.r5;
+import yh.s5;
 public final class i implements Utilities.Callback {
-    public final int f53406a;
-    public final q f53407b;
+    public final int f53405a;
+    public final o f53406b;
 
-    public i(q qVar, int i10) {
-        this.f53406a = i10;
-        this.f53407b = qVar;
+    public i(o oVar, int i10) {
+        this.f53405a = i10;
+        this.f53406b = oVar;
     }
 
     @Override
@@ -24,40 +24,40 @@ public final class i implements Utilities.Callback {
         z5[] z5VarArr;
         w8 w8Var;
         long j3;
-        switch (this.f53406a) {
+        switch (this.f53405a) {
             case 0:
-                q qVar = this.f53407b;
-                qVar.Q = (TL_stories.TL_premium_boostsStatus) obj;
-                if (!qVar.E.keySet().equals(qVar.G.keySet())) {
-                    qVar.X(false);
+                o oVar = this.f53406b;
+                oVar.V = (TL_stories.TL_premium_boostsStatus) obj;
+                if (!oVar.H.keySet().equals(oVar.J.keySet())) {
+                    oVar.Y(false);
                     return;
                 }
                 return;
             case 1:
                 Boolean bool = (Boolean) obj;
-                q qVar2 = this.f53407b;
-                h hVar = qVar2.U;
-                if (!qVar2.Z()) {
-                    int editTextSelectionEnd = qVar2.f53520n.getEditTextSelectionEnd();
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(qVar2.f53520n.getText());
+                o oVar2 = this.f53406b;
+                h hVar = oVar2.Z;
+                if (!oVar2.b0()) {
+                    int editTextSelectionEnd = oVar2.h.getEditTextSelectionEnd();
+                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(oVar2.h.getText());
                     for (z5 z5Var : (z5[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), z5.class)) {
                         if (spannableStringBuilder.getSpanEnd(z5Var) == editTextSelectionEnd) {
-                            qVar2.E.remove(Long.valueOf(z5Var.documentId));
-                            qVar2.F.remove(Long.valueOf(z5Var.documentId));
-                            qVar2.f53516b.A(Long.valueOf(z5Var.documentId));
-                            if (z5Var.documentId == -1 && (w8Var = qVar2.f53522s) != null) {
+                            oVar2.H.remove(Long.valueOf(z5Var.documentId));
+                            oVar2.I.remove(Long.valueOf(z5Var.documentId));
+                            oVar2.f53501b.A(Long.valueOf(z5Var.documentId));
+                            if (z5Var.documentId == -1 && (w8Var = oVar2.f53506r) != null) {
                                 w8Var.setChecked(false);
-                                qVar2.f53520n.setMaxLength(qVar2.J);
+                                oVar2.h.setMaxLength(oVar2.M);
                             }
                             if (bool.booleanValue()) {
-                                qVar2.f53520n.dispatchKeyEvent(new KeyEvent(0, 67));
+                                oVar2.h.dispatchKeyEvent(new KeyEvent(0, 67));
                                 AndroidUtilities.cancelRunOnUIThread(hVar);
                                 AndroidUtilities.runOnUIThread(hVar, 350L);
                                 return;
                             }
-                            z5Var.setRemoved(new am0(qVar2, z5Var, editTextSelectionEnd, 19));
-                            qVar2.U(z5Var);
-                            qVar2.X(false);
+                            z5Var.setRemoved(new am0(oVar2, z5Var, editTextSelectionEnd, 19));
+                            oVar2.W(z5Var);
+                            oVar2.Y(false);
                             return;
                         }
                     }
@@ -66,27 +66,27 @@ public final class i implements Utilities.Callback {
                 return;
             case 2:
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
-                q qVar3 = this.f53407b;
-                if (!qVar3.isFinishing()) {
-                    qVar3.v.setLoading(false);
+                o oVar3 = this.f53406b;
+                if (!oVar3.isFinishing()) {
+                    oVar3.f53507s.setLoading(false);
                     if (tL_error.text.equals("CHAT_NOT_MODIFIED")) {
-                        qVar3.finishFragment();
+                        oVar3.finishFragment();
                         return;
                     }
-                    r5 r5Var = new r5(4, qVar3, tL_error);
-                    if (qVar3.Q == null) {
+                    s5 s5Var = new s5(4, oVar3, tL_error);
+                    if (oVar3.V == null) {
                         j3 = 200;
                     } else {
                         j3 = 0;
                     }
-                    AndroidUtilities.runOnUIThread(r5Var, j3);
+                    AndroidUtilities.runOnUIThread(s5Var, j3);
                     return;
                 }
                 return;
             default:
-                q qVar4 = this.f53407b;
-                qVar4.getClass();
-                qVar4.O = ((Integer) obj).intValue();
+                o oVar4 = this.f53406b;
+                oVar4.getClass();
+                oVar4.T = ((Integer) obj).intValue();
                 return;
         }
     }

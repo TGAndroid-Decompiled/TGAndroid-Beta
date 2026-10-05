@@ -15,15 +15,15 @@ public final class qa0 extends wh.n {
         switch (this.E) {
             case 0:
                 wh.b bVar = (wh.b) this.F;
-                tx0 tx0Var = bVar.W;
-                if (this.f49146e.isEmpty()) {
-                    if (tx0Var.getVisibility() != 4) {
-                        tx0Var.setVisibility(4);
+                ux0 ux0Var = bVar.W;
+                if (this.f49153e.isEmpty()) {
+                    if (ux0Var.getVisibility() != 4) {
+                        ux0Var.setVisibility(4);
                         return;
                     }
                     return;
                 } else if (z11) {
-                    bVar.f28900w.J.setText("");
+                    bVar.f29395w.J.setText("");
                     return;
                 } else {
                     super.f(str, z10, z11);

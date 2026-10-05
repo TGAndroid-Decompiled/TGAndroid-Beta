@@ -2,14 +2,14 @@ package sa;
 
 import m1.j;
 public final class b {
-    public final String f46763a;
-    public final long f46764b;
-    public final int f46765c;
+    public final String f46770a;
+    public final long f46771b;
+    public final int f46772c;
 
     public b(String str, long j3, int i10) {
-        this.f46763a = str;
-        this.f46764b = j3;
-        this.f46765c = i10;
+        this.f46770a = str;
+        this.f46771b = j3;
+        this.f46772c = i10;
     }
 
     public static a5.a a() {
@@ -22,9 +22,9 @@ public final class b {
         if (obj != this) {
             if (obj instanceof b) {
                 b bVar = (b) obj;
-                int i10 = bVar.f46765c;
-                String str = bVar.f46763a;
-                String str2 = this.f46763a;
+                int i10 = bVar.f46772c;
+                String str = bVar.f46770a;
+                String str2 = this.f46770a;
                 if (str2 == null) {
                     if (str != null) {
                         return false;
@@ -32,8 +32,8 @@ public final class b {
                 } else if (!str2.equals(str)) {
                     return false;
                 }
-                if (this.f46764b == bVar.f46764b) {
-                    int i11 = this.f46765c;
+                if (this.f46771b == bVar.f46771b) {
+                    int i11 = this.f46772c;
                     if (i11 == 0) {
                         if (i10 == 0) {
                             return true;
@@ -55,15 +55,15 @@ public final class b {
     public final int hashCode() {
         int hashCode;
         int i10 = 0;
-        String str = this.f46763a;
+        String str = this.f46770a;
         if (str == null) {
             hashCode = 0;
         } else {
             hashCode = str.hashCode();
         }
-        long j3 = this.f46764b;
+        long j3 = this.f46771b;
         int i11 = (((hashCode ^ 1000003) * 1000003) ^ ((int) (j3 ^ (j3 >>> 32)))) * 1000003;
-        int i12 = this.f46765c;
+        int i12 = this.f46772c;
         if (i12 != 0) {
             i10 = j.c(i12);
         }
@@ -73,11 +73,11 @@ public final class b {
     public final String toString() {
         String str;
         StringBuilder sb2 = new StringBuilder("TokenResult{token=");
-        sb2.append(this.f46763a);
+        sb2.append(this.f46770a);
         sb2.append(", tokenExpirationTimestamp=");
-        sb2.append(this.f46764b);
+        sb2.append(this.f46771b);
         sb2.append(", responseCode=");
-        int i10 = this.f46765c;
+        int i10 = this.f46772c;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 3) {

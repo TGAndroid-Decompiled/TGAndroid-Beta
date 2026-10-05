@@ -1,99 +1,181 @@
 package yh;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RadialGradient;
-import android.graphics.Shader;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.OvalShape;
-import android.widget.FrameLayout;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.w9;
-public final class l2 extends FrameLayout {
-    public final w9 f51561a;
-    public final s2 f51562b;
-    public final org.telegram.ui.Components.p6 f51563c;
-    public TL_stars.starGiftAttributeBackdrop d;
-    public TL_stars.starGiftAttributePattern f51564e;
-    public float f51565f;
+import org.telegram.ui.ft;
+public final class l2 implements View.OnClickListener {
+    public final int f51573a;
+    public final y2 f51574b;
 
-    public l2(Context context) {
-        super(context);
-        w9 w9Var = new w9(context);
-        this.f51561a = w9Var;
-        w9Var.setRoundRadius(AndroidUtilities.dp(13.0f));
-        addView(w9Var, w7.z5.d(26, 26.0f, 49, 0.0f, 11.33f, 0.0f, 0.0f));
-        s2 s2Var = new s2(context);
-        this.f51562b = s2Var;
-        s2Var.f51964e = AndroidUtilities.dp(18.0f);
-        s2Var.f51961a.setStrokeWidth(AndroidUtilities.dp(3.0f));
-        addView(s2Var, w7.z5.d(48, 48.0f, 49, 0.0f, 0.66f, 0.0f, 0.0f));
-        org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(context, false, false, false);
-        this.f51563c = p6Var;
-        p6Var.setTypeface(AndroidUtilities.bold());
-        p6Var.setGravity(17);
-        p6Var.setTextSize(AndroidUtilities.dp(12.0f));
-        p6Var.setTextColor(-1);
-        addView(p6Var, w7.z5.d(-1, 14.0f, 48, 0.0f, 39.0f, 0.0f, 0.0f));
-        c(0.0f, false);
-        w7.b6.a(this);
+    public l2(y2 y2Var, int i10) {
+        this.f51573a = i10;
+        this.f51574b = y2Var;
     }
 
-    public final void a(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop) {
-        this.d = stargiftattributebackdrop;
-        this.f51564e = null;
-        w9 w9Var = this.f51561a;
-        w9Var.setScaleX(1.0f);
-        w9Var.setScaleY(1.0f);
-        if (stargiftattributebackdrop != null) {
-            w9Var.setAlpha(1.0f);
-            OvalShape ovalShape = new OvalShape();
-            ovalShape.resize(AndroidUtilities.dp(26.0f), AndroidUtilities.dp(26.0f));
-            ShapeDrawable shapeDrawable = new ShapeDrawable(ovalShape);
-            shapeDrawable.setIntrinsicWidth(AndroidUtilities.dp(26.0f));
-            shapeDrawable.setIntrinsicHeight(AndroidUtilities.dp(26.0f));
-            shapeDrawable.getPaint().setShader(new RadialGradient(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), new int[]{stargiftattributebackdrop.center_color | (-16777216), stargiftattributebackdrop.edge_color | (-16777216)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
-            w9Var.setImageDrawable(shapeDrawable);
-            return;
+    @Override
+    public final void onClick(View view) {
+        TL_stars.StarGift starGift;
+        TL_stars.StarGift starGift2;
+        TL_stars.StarGift starGift3;
+        w2 w2Var;
+        int i10 = this.f51573a;
+        boolean z10 = true;
+        y2 y2Var = this.f51574b;
+        switch (i10) {
+            case 0:
+                if (y2Var.P.getAlpha() >= 1.0f) {
+                    y2Var.f52267g0.run();
+                    return;
+                }
+                return;
+            case 1:
+                if (y2Var.P.getAlpha() >= 1.0f) {
+                    y2Var.f52267g0.run();
+                    return;
+                }
+                return;
+            case 2:
+                y2Var.getClass();
+                y2Var.b((m2) view);
+                return;
+            case 3:
+                y2Var.getClass();
+                y2Var.b((m2) view);
+                return;
+            case 4:
+                y2 y2Var2 = this.f51574b;
+                LinearLayout linearLayout = y2Var2.G;
+                w2[] w2VarArr = y2Var2.f52273n;
+                if (y2Var2.getAlpha() >= 1.0f && !y2Var2.f52268h0) {
+                    if (y2Var2.f52270j0) {
+                        y2Var2.a(y2Var2.W, y2Var2.f52257a0, y2Var2.f52259b0, y2Var2.f52261c0);
+                        return;
+                    }
+                    ArrayList arrayList = new ArrayList();
+                    for (w2 w2Var2 : w2VarArr) {
+                        if (w2Var2 != null) {
+                            TL_stars.StarGift starGift4 = w2Var2.h;
+                            if (starGift4 != null) {
+                                starGift3 = starGift4;
+                            } else {
+                                starGift3 = null;
+                            }
+                            if (starGift3 != null) {
+                                if (starGift4 == null) {
+                                    starGift4 = null;
+                                }
+                                arrayList.add(starGift4);
+                            }
+                        }
+                    }
+                    if (!arrayList.isEmpty() && y2Var2.f52264e0 != null) {
+                        TextView textView = y2Var2.K;
+                        y2Var2.f52268h0 = true;
+                        y2Var2.f52270j0 = false;
+                        ci.e4 e4Var = y2Var2.T;
+                        if (e4Var != null) {
+                            e4Var.e(true);
+                            y2Var2.T = null;
+                        }
+                        textView.setText("");
+                        y2Var2.L.setText(LocaleController.formatString(R.string.GiftCraftProgressSuccessChance, ei.m.L0(y2Var2.getGiftsSuccessChance())));
+                        for (int i11 = 0; i11 < w2VarArr.length; i11++) {
+                            w2 w2Var3 = w2VarArr[i11];
+                            if (w2Var3 != null) {
+                                w2Var3.setClickable(false);
+                                w2 w2Var4 = w2VarArr[i11];
+                                TL_stars.StarGift starGift5 = w2Var4.h;
+                                if (starGift5 == null) {
+                                    starGift5 = null;
+                                }
+                                if (starGift5 == null) {
+                                    w2Var4.animate().alpha(0.0f).start();
+                                }
+                            }
+                        }
+                        int i12 = 0;
+                        while (true) {
+                            if (i12 < w2VarArr.length) {
+                                w2 w2Var5 = w2VarArr[i12];
+                                if (w2Var5 != null) {
+                                    TL_stars.StarGift starGift6 = w2Var5.h;
+                                    if (starGift6 != null) {
+                                        starGift2 = starGift6;
+                                    } else {
+                                        starGift2 = null;
+                                    }
+                                    if (starGift2 != null) {
+                                        if (starGift6 == null) {
+                                            starGift6 = null;
+                                        }
+                                        textView.setText(starGift6.title + " #" + LocaleController.formatNumber(starGift6.num, ','));
+                                    }
+                                }
+                                i12++;
+                            }
+                        }
+                        y2Var2.Q.animate().alpha(0.0f).start();
+                        linearLayout.animate().alpha(0.0f).start();
+                        y2Var2.R.animate().alpha(1.0f).start();
+                        y2Var2.P.animate().alpha(0.25f).start();
+                        y2Var2.J.d();
+                        ArrayList arrayList2 = new ArrayList();
+                        for (w2 w2Var6 : w2VarArr) {
+                            TL_stars.StarGift starGift7 = w2Var6.h;
+                            if (starGift7 != null) {
+                                starGift = starGift7;
+                            } else {
+                                starGift = null;
+                            }
+                            if (starGift != null) {
+                                if (starGift7 == null) {
+                                    starGift7 = null;
+                                }
+                                arrayList2.add(starGift7);
+                            }
+                        }
+                        y2Var2.f52264e0.run(arrayList2, new ai.m0(23, y2Var2, arrayList2), new rg.s1(y2Var2, 28));
+                        return;
+                    }
+                    AndroidUtilities.shakeViewSpring(linearLayout);
+                    return;
+                }
+                return;
+            default:
+                w2 w2Var7 = (w2) view;
+                TL_stars.StarGift starGift8 = w2Var7.h;
+                if (starGift8 == null) {
+                    starGift8 = null;
+                }
+                if (starGift8 != null && !w2Var7.f52193n) {
+                    w2Var7.a(null, true);
+                    y2Var.d(true);
+                    return;
+                }
+                int i13 = 0;
+                while (true) {
+                    w2[] w2VarArr2 = y2Var.f52273n;
+                    if (i13 < w2VarArr2.length && (w2Var = w2VarArr2[i13]) != view) {
+                        if (w2Var != null) {
+                            TL_stars.StarGift starGift9 = w2Var.h;
+                            if (starGift9 == null) {
+                                starGift9 = null;
+                            }
+                            if (starGift9 != null) {
+                                z10 = false;
+                            }
+                        }
+                        i13++;
+                    }
+                }
+                y2Var.f52266f0.run(new ft(28, y2Var, w2Var7), Boolean.valueOf(z10));
+                return;
         }
-        w9Var.setAlpha(1.0f);
-        w9Var.setImageDrawable(org.telegram.ui.ActionBar.i6.K(AndroidUtilities.dp(26.0f), org.telegram.ui.ActionBar.i6.l1(0.25f, -1)));
-    }
-
-    public final void b(TL_stars.starGiftAttributePattern stargiftattributepattern) {
-        this.d = null;
-        this.f51564e = stargiftattributepattern;
-        w9 w9Var = this.f51561a;
-        if (stargiftattributepattern == null) {
-            w9Var.setAlpha(0.25f);
-            w9Var.setScaleX(0.75f);
-            w9Var.setScaleY(0.75f);
-            w9Var.setTranslationY(0.0f);
-            w9Var.setAnimatedEmojiDrawable(null);
-            w9Var.setImageResource(R.drawable.mini_roll);
-            return;
-        }
-        w9Var.setAlpha(1.0f);
-        w9Var.setScaleX(0.95f);
-        w9Var.setScaleY(0.95f);
-        w9Var.setTranslationY(AndroidUtilities.dp(2.0f));
-        org.telegram.ui.Components.q5 m10 = org.telegram.ui.Components.q5.m(UserConfig.selectedAccount, 9, stargiftattributepattern.document);
-        m10.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        w9Var.setAnimatedEmojiDrawable(m10);
-    }
-
-    public final void c(float f7, boolean z10) {
-        this.f51565f = f7;
-        s2 s2Var = this.f51562b;
-        s2Var.d = f7;
-        if (!z10) {
-            s2Var.f51962b.d(f7, true);
-        }
-        s2Var.invalidate();
-        this.f51563c.c(Math.round(f7 * 100.0f) + "%", z10, true);
     }
 }

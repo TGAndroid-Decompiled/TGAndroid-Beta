@@ -28,14 +28,14 @@ import org.telegram.tgnet.tl.TL_stats;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class h90 implements Runnable {
-    public final int f37011a;
-    public final Object f37012b;
-    public final Object f37013c;
+    public final int f37036a;
+    public final Object f37037b;
+    public final Object f37038c;
 
     public h90(int i10, Object obj, Object obj2) {
-        this.f37011a = i10;
-        this.f37012b = obj;
-        this.f37013c = obj2;
+        this.f37036a = i10;
+        this.f37037b = obj;
+        this.f37038c = obj2;
     }
 
     @Override
@@ -43,10 +43,10 @@ public final class h90 implements Runnable {
         byte[] bArr;
         int i10;
         int i11;
-        switch (this.f37011a) {
+        switch (this.f37036a) {
             case 0:
-                LaunchActivity launchActivity = (LaunchActivity) this.f37012b;
-                TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView = (TLRPC.TL_chatInviteJoinResultWebView) this.f37013c;
+                LaunchActivity launchActivity = (LaunchActivity) this.f37037b;
+                TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView = (TLRPC.TL_chatInviteJoinResultWebView) this.f37038c;
                 Pattern pattern = LaunchActivity.B1;
                 MessagesController.getInstance(launchActivity.O).putUsers(tL_chatInviteJoinResultWebView.users, false);
                 BotGuardHelper botGuardHelper = BotGuardHelper.getInstance(launchActivity.O);
@@ -58,33 +58,33 @@ public final class h90 implements Runnable {
                 String string = LocaleController.getString(R.string.AuthAnotherClient);
                 StringBuilder sb2 = new StringBuilder();
                 org.telegram.ui.Cells.c1.n(R.string.ErrorOccurred, "\n", sb2);
-                sb2.append(((TLRPC.TL_error) this.f37013c).text);
-                org.telegram.ui.Components.e5.u0((h) this.f37012b, string, sb2.toString(), null);
+                sb2.append(((TLRPC.TL_error) this.f37038c).text);
+                org.telegram.ui.Components.e5.u0((h) this.f37037b, string, sb2.toString(), null);
                 return;
             case 2:
-                LaunchActivity launchActivity2 = (LaunchActivity) this.f37012b;
-                String str = (String) this.f37013c;
-                if (!launchActivity2.f33804q0.getFragmentStack().isEmpty()) {
-                    launchActivity2.f33804q0.getFragmentStack().get(0).presentFragment(new PremiumPreviewFragment(0, Uri.parse(str).getQueryParameter("ref")));
+                LaunchActivity launchActivity2 = (LaunchActivity) this.f37037b;
+                String str = (String) this.f37038c;
+                if (!launchActivity2.f33817q0.getFragmentStack().isEmpty()) {
+                    launchActivity2.f33817q0.getFragmentStack().get(0).presentFragment(new PremiumPreviewFragment(0, Uri.parse(str).getQueryParameter("ref")));
                     return;
                 }
                 return;
             case 3:
                 Pattern pattern3 = LaunchActivity.B1;
-                ((LaunchActivity) this.f37012b).j0((TL_account.Password) this.f37013c);
+                ((LaunchActivity) this.f37037b).j0((TL_account.Password) this.f37038c);
                 return;
             case 4:
-                LaunchActivity launchActivity3 = (LaunchActivity) this.f37012b;
-                Runnable runnable = (Runnable) this.f37013c;
-                launchActivity3.f33804q0.getView().setVisibility(4);
+                LaunchActivity launchActivity3 = (LaunchActivity) this.f37037b;
+                Runnable runnable = (Runnable) this.f37038c;
+                launchActivity3.f33817q0.getView().setVisibility(4);
                 if (AndroidUtilities.isTablet()) {
-                    ActionBarLayout actionBarLayout = launchActivity3.f33806r0;
-                    if (actionBarLayout != null && actionBarLayout.getView() != null && launchActivity3.f33806r0.getView().getVisibility() == 0) {
-                        launchActivity3.f33806r0.getView().setVisibility(4);
+                    ActionBarLayout actionBarLayout = launchActivity3.f33819r0;
+                    if (actionBarLayout != null && actionBarLayout.getView() != null && launchActivity3.f33819r0.getView().getVisibility() == 0) {
+                        launchActivity3.f33819r0.getView().setVisibility(4);
                     }
-                    ActionBarLayout actionBarLayout2 = launchActivity3.f33808s0;
+                    ActionBarLayout actionBarLayout2 = launchActivity3.f33821s0;
                     if (actionBarLayout2 != null && actionBarLayout2.getView() != null) {
-                        launchActivity3.f33808s0.getView().setVisibility(4);
+                        launchActivity3.f33821s0.getView().setVisibility(4);
                     }
                 }
                 if (runnable != null) {
@@ -93,19 +93,19 @@ public final class h90 implements Runnable {
                 }
                 return;
             case 5:
-                org.telegram.ui.Components.rc rcVar = (org.telegram.ui.Components.rc) this.f37013c;
-                if (!((LaunchActivity) this.f37012b).Q && LaunchActivity.E1) {
+                org.telegram.ui.Components.rc rcVar = (org.telegram.ui.Components.rc) this.f37038c;
+                if (!((LaunchActivity) this.f37037b).Q && LaunchActivity.E1) {
                     rcVar.j();
                     return;
                 }
                 return;
             case 6:
                 Pattern pattern4 = LaunchActivity.B1;
-                ((LaunchActivity) this.f37012b).p0((rd1) this.f37013c);
+                ((LaunchActivity) this.f37037b).p0((pd1) this.f37038c);
                 return;
             case 7:
-                LaunchActivity launchActivity4 = (LaunchActivity) this.f37012b;
-                nf.e eVar = (nf.e) this.f37013c;
+                LaunchActivity launchActivity4 = (LaunchActivity) this.f37037b;
+                nf.e eVar = (nf.e) this.f37038c;
                 launchActivity4.P0 = null;
                 launchActivity4.Q0 = null;
                 launchActivity4.R0 = null;
@@ -118,8 +118,8 @@ public final class h90 implements Runnable {
                 }
                 return;
             case 8:
-                nf.e eVar2 = (nf.e) this.f37012b;
-                org.telegram.ui.ActionBar.b2 b2Var = (org.telegram.ui.ActionBar.b2) this.f37013c;
+                nf.e eVar2 = (nf.e) this.f37037b;
+                org.telegram.ui.ActionBar.b2 b2Var = (org.telegram.ui.ActionBar.b2) this.f37038c;
                 Pattern pattern5 = LaunchActivity.B1;
                 if (eVar2 != null) {
                     eVar2.b();
@@ -130,20 +130,20 @@ public final class h90 implements Runnable {
                 }
                 return;
             case 9:
-                dc0 dc0Var = (dc0) this.f37012b;
-                TLObject tLObject = (TLObject) this.f37013c;
+                dc0 dc0Var = (dc0) this.f37037b;
+                TLObject tLObject = (TLObject) this.f37038c;
                 dc0Var.a();
                 if (tLObject != null) {
-                    dc0Var.f35740a.j0((TL_account.Password) tLObject);
+                    dc0Var.f35777a.j0((TL_account.Password) tLObject);
                     return;
                 }
                 return;
             case 10:
-                ((FiltersSetupActivity) this.f37013c).W(((dc0) this.f37012b).f35740a.O());
+                ((FiltersSetupActivity) this.f37038c).W(((dc0) this.f37037b).f35777a.O());
                 return;
             case 11:
-                gd0 gd0Var = (gd0) this.f37012b;
-                GLSurfaceView gLSurfaceView = (GLSurfaceView) this.f37013c;
+                gd0 gd0Var = (gd0) this.f37037b;
+                GLSurfaceView gLSurfaceView = (GLSurfaceView) this.f37038c;
                 if (gLSurfaceView.getWidth() != 0 && gLSurfaceView.getHeight() != 0) {
                     ByteBuffer allocateDirect = ByteBuffer.allocateDirect(gLSurfaceView.getHeight() * gLSurfaceView.getWidth() * 4);
                     GLES20.glReadPixels(0, 0, gLSurfaceView.getWidth(), gLSurfaceView.getHeight(), 6408, 5121, allocateDirect);
@@ -158,40 +158,40 @@ public final class h90 implements Runnable {
                 }
                 return;
             case 12:
-                gd0 gd0Var2 = (gd0) this.f37012b;
-                gd0Var2.f36571c.setImageResource(R.drawable.msg_location_alert2);
-                gd0Var2.e0(((LocationController.SharingLocationInfo) this.f37013c).proximityMeters);
+                gd0 gd0Var2 = (gd0) this.f37037b;
+                gd0Var2.f36605c.setImageResource(R.drawable.msg_location_alert2);
+                gd0Var2.e0(((LocationController.SharingLocationInfo) this.f37038c).proximityMeters);
                 gd0Var2.G = false;
                 return;
             case 13:
-                ((EditText) this.f37012b).removeTextChangedListener((org.telegram.ui.Components.tn) this.f37013c);
+                ((EditText) this.f37037b).removeTextChangedListener((org.telegram.ui.Components.tn) this.f37038c);
                 return;
             case 14:
-                Runnable runnable2 = (Runnable) this.f37013c;
-                be0 be0Var = ((ee0) this.f37012b).f36001a;
+                Runnable runnable2 = (Runnable) this.f37038c;
+                be0 be0Var = ((ee0) this.f37037b).f36013a;
                 int i12 = 0;
                 while (true) {
-                    es[] esVarArr = be0Var.f35549f;
+                    es[] esVarArr = be0Var.f35541f;
                     if (i12 < esVarArr.length) {
                         esVarArr[i12].l(0.0f);
                         i12++;
                     } else {
                         runnable2.run();
-                        be0Var.f35548e = false;
+                        be0Var.f35540e = false;
                         return;
                     }
                 }
             case 15:
-                ne0 ne0Var = (ne0) this.f37012b;
-                ug0 ug0Var = ne0Var.f38960y;
+                ne0 ne0Var = (ne0) this.f37037b;
+                ug0 ug0Var = ne0Var.f38948y;
                 ug0Var.k1(false, false);
-                AndroidUtilities.hideKeyboard(ne0Var.f38950a);
-                ug0Var.o1((TLRPC.TL_auth_authorization) ((TLObject) this.f37013c), false);
+                AndroidUtilities.hideKeyboard(ne0Var.f38938a);
+                ug0Var.o1((TLRPC.TL_auth_authorization) ((TLObject) this.f37038c), false);
                 return;
             case 16:
-                ne0 ne0Var2 = (ne0) this.f37012b;
-                String str2 = (String) this.f37013c;
-                TLRPC.PasswordKdfAlgo passwordKdfAlgo = ne0Var2.f38955n.current_algo;
+                ne0 ne0Var2 = (ne0) this.f37037b;
+                String str2 = (String) this.f37038c;
+                TLRPC.PasswordKdfAlgo passwordKdfAlgo = ne0Var2.f38943n.current_algo;
                 boolean z10 = passwordKdfAlgo instanceof TLRPC.TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow;
                 if (z10) {
                     bArr = SRPHelper.getX(AndroidUtilities.getStringBytes(str2), (TLRPC.TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow) passwordKdfAlgo);
@@ -200,7 +200,7 @@ public final class h90 implements Runnable {
                 }
                 le0 le0Var = new le0(ne0Var2, 2);
                 if (z10) {
-                    TL_account.Password password = ne0Var2.f38955n;
+                    TL_account.Password password = ne0Var2.f38943n;
                     TLRPC.TL_inputCheckPasswordSRP startCheck = SRPHelper.startCheck(bArr, password.srp_id, password.srp_B, (TLRPC.TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow) passwordKdfAlgo);
                     if (startCheck == null) {
                         TLRPC.TL_error tL_error = new TLRPC.TL_error();
@@ -210,16 +210,16 @@ public final class h90 implements Runnable {
                     }
                     TLRPC.TL_auth_checkPassword tL_auth_checkPassword = new TLRPC.TL_auth_checkPassword();
                     tL_auth_checkPassword.password = startCheck;
-                    i10 = ((org.telegram.ui.ActionBar.n2) ne0Var2.f38960y).currentAccount;
+                    i10 = ((org.telegram.ui.ActionBar.n2) ne0Var2.f38948y).currentAccount;
                     ConnectionsManager.getInstance(i10).sendRequest(tL_auth_checkPassword, le0Var, 10);
                     return;
                 }
                 return;
             case 17:
-                ff0 ff0Var = (ff0) this.f37012b;
+                ff0 ff0Var = (ff0) this.f37037b;
                 ff0Var.O.k1(false, false);
                 AndroidUtilities.hideKeyboard(ff0Var.O.fragmentView.findFocus());
-                ff0Var.O.o1((TLRPC.TL_auth_authorization) ((TLObject) this.f37013c), true);
+                ff0Var.O.o1((TLRPC.TL_auth_authorization) ((TLObject) this.f37038c), true);
                 TLRPC.FileLocation fileLocation = ff0Var.N;
                 if (fileLocation != null) {
                     Utilities.cacheClearQueue.postRunnable(new h90(18, ff0Var, fileLocation));
@@ -227,19 +227,19 @@ public final class h90 implements Runnable {
                 }
                 return;
             case 18:
-                i11 = ((org.telegram.ui.ActionBar.n2) ((ff0) this.f37012b).O).currentAccount;
-                MessagesController.getInstance(i11).uploadAndApplyUserAvatar((TLRPC.FileLocation) this.f37013c);
+                i11 = ((org.telegram.ui.ActionBar.n2) ((ff0) this.f37037b).O).currentAccount;
+                MessagesController.getInstance(i11).uploadAndApplyUserAvatar((TLRPC.FileLocation) this.f37038c);
                 return;
             case 19:
-                gf0 gf0Var = (gf0) this.f37012b;
-                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.f37013c;
+                gf0 gf0Var = (gf0) this.f37037b;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.f37038c;
                 ug0 ug0Var2 = gf0Var.E;
                 ug0Var2.k1(false, true);
                 if (tL_error2 == null) {
-                    if (gf0Var.f36635r != null && gf0Var.f36636s != null && gf0Var.v != null) {
+                    if (gf0Var.f36654r != null && gf0Var.f36655s != null && gf0Var.v != null) {
                         Bundle bundle = new Bundle();
-                        bundle.putString("phoneFormated", gf0Var.f36635r);
-                        bundle.putString("phoneHash", gf0Var.f36636s);
+                        bundle.putString("phoneFormated", gf0Var.f36654r);
+                        bundle.putString("phoneHash", gf0Var.f36655s);
                         bundle.putString("code", gf0Var.v);
                         ug0Var2.u1(5, true, bundle, false);
                         return;
@@ -254,84 +254,84 @@ public final class h90 implements Runnable {
                     return;
                 }
             case 20:
-                xf0 xf0Var = (xf0) this.f37012b;
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder((Activity) this.f37013c);
-                alertDialog$Builder.f20372a.R = LocaleController.getString(R.string.CancelLinkSuccessTitle);
-                alertDialog$Builder.f20372a.T = LocaleController.formatString("CancelLinkSuccess", R.string.CancelLinkSuccess, org.telegram.messenger.bi.g(new StringBuilder("+"), xf0Var.f42859b, gf.b.c()));
+                xf0 xf0Var = (xf0) this.f37037b;
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder((Activity) this.f37038c);
+                alertDialog$Builder.f20377a.R = LocaleController.getString(R.string.CancelLinkSuccessTitle);
+                alertDialog$Builder.f20377a.T = LocaleController.formatString("CancelLinkSuccess", R.string.CancelLinkSuccess, org.telegram.messenger.bi.g(new StringBuilder("+"), xf0Var.f42911b, gf.b.c()));
                 alertDialog$Builder.k(LocaleController.getString(R.string.Close), null);
-                alertDialog$Builder.f20372a.setOnDismissListener(new tf0(xf0Var, 0));
+                alertDialog$Builder.f20377a.setOnDismissListener(new tf0(xf0Var, 0));
                 alertDialog$Builder.o();
                 return;
             case 21:
-                xf0 xf0Var2 = (xf0) this.f37012b;
+                xf0 xf0Var2 = (xf0) this.f37037b;
                 xf0Var2.getClass();
-                xf0Var2.f42865e0 = ((TLRPC.TL_error) this.f37013c).text;
+                xf0Var2.f42917e0 = ((TLRPC.TL_error) this.f37038c).text;
                 return;
             case 22:
-                ((xf0) this.f37012b).f42882s0.o1((TLRPC.TL_auth_authorization) ((TLObject) this.f37013c), false);
+                ((xf0) this.f37037b).f42934s0.o1((TLRPC.TL_auth_authorization) ((TLObject) this.f37038c), false);
                 return;
             case 23:
-                Runnable runnable3 = (Runnable) this.f37013c;
-                cs csVar = ((xf0) this.f37012b).f42866f;
+                Runnable runnable3 = (Runnable) this.f37038c;
+                cs csVar = ((xf0) this.f37037b).f42918f;
                 int i13 = 0;
                 while (true) {
-                    es[] esVarArr2 = csVar.f35549f;
+                    es[] esVarArr2 = csVar.f35541f;
                     if (i13 < esVarArr2.length) {
                         esVarArr2[i13].l(0.0f);
                         i13++;
                     } else {
                         runnable3.run();
-                        csVar.f35548e = false;
+                        csVar.f35540e = false;
                         return;
                     }
                 }
             case 24:
-                ((t3) this.f37012b).run((String) this.f37013c);
+                ((t3) this.f37037b).run((String) this.f37038c);
                 return;
             case 25:
-                wh0 wh0Var = (wh0) this.f37012b;
-                TLRPC.TL_error tL_error3 = (TLRPC.TL_error) this.f37013c;
-                wh0Var.f42479c0 = false;
+                wh0 wh0Var = (wh0) this.f37037b;
+                TLRPC.TL_error tL_error3 = (TLRPC.TL_error) this.f37038c;
+                wh0Var.f42534c0 = false;
                 if (tL_error3 == null) {
                     nh0 f02 = wh0Var.f0();
-                    wh0Var.f42488j0.clear();
+                    wh0Var.f42543j0.clear();
                     wh0Var.h0(f02);
                     return;
                 }
                 return;
             case 26:
-                wh0 wh0Var2 = ((mh0) this.f37012b).f38602a;
+                wh0 wh0Var2 = ((mh0) this.f37037b).f38631a;
                 nh0 f03 = wh0Var2.f0();
-                wh0Var2.f42487i0.add(0, (TLRPC.TL_chatInviteExported) ((TLObject) this.f37013c));
+                wh0Var2.f42542i0.add(0, (TLRPC.TL_chatInviteExported) ((TLObject) this.f37038c));
                 TLRPC.ChatFull chatFull = wh0Var2.d;
                 if (chatFull != null) {
                     chatFull.invitesCount++;
-                    wh0Var2.getMessagesStorage().saveChatLinksCount(wh0Var2.f42491n, wh0Var2.d.invitesCount);
+                    wh0Var2.getMessagesStorage().saveChatLinksCount(wh0Var2.f42546n, wh0Var2.d.invitesCount);
                 }
                 wh0Var2.h0(f03);
                 return;
             case 27:
-                hj0 hj0Var = (hj0) this.f37012b;
-                TL_stats.TL_statsGraphError tL_statsGraphError = (TL_stats.TL_statsGraphError) this.f37013c;
+                hj0 hj0Var = (hj0) this.f37037b;
+                TL_stats.TL_statsGraphError tL_statsGraphError = (TL_stats.TL_statsGraphError) this.f37038c;
                 if (hj0Var.getParentActivity() != null) {
                     Toast.makeText(hj0Var.getParentActivity(), tL_statsGraphError.error, 1).show();
                     return;
                 }
                 return;
             case 28:
-                ak0 ak0Var = (ak0) this.f37012b;
+                ak0 ak0Var = (ak0) this.f37037b;
                 ak0Var.getClass();
                 Intent intent = new Intent("android.intent.action.VIEW");
-                intent.setData(Uri.parse("sms:+" + ((String) this.f37013c)));
+                intent.setData(Uri.parse("sms:+" + ((String) this.f37038c)));
                 intent.putExtra("sms_body", LocaleController.formatString(R.string.InviteText2, "https://telegram.org/dl"));
                 ak0Var.getContext().startActivity(intent);
                 return;
             default:
-                TLRPC.User user = (TLRPC.User) this.f37013c;
-                ((ak0) this.f37012b).dismiss();
+                TLRPC.User user = (TLRPC.User) this.f37038c;
+                ((ak0) this.f37037b).dismiss();
                 org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                 if (U != null) {
-                    U.presentFragment(ProfileActivity.m4(user.f20189id));
+                    U.presentFragment(ProfileActivity.m4(user.f20194id));
                     return;
                 }
                 return;

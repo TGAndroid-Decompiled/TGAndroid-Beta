@@ -60,12 +60,12 @@ public final class c extends f {
             iVar.f9772c.L0(null);
             cf.c cVar2 = iVar.h;
             if (cVar2 != null) {
-                cVar2.A();
+                cVar2.u();
                 cVar2.f4606e = null;
             }
             cf.c cVar3 = iVar.f9776i;
             if (cVar3 != null) {
-                cVar3.A();
+                cVar3.u();
                 cVar3.f4606e = null;
             }
             android.support.v4.media.session.b0 b0Var = iVar.f9783p;

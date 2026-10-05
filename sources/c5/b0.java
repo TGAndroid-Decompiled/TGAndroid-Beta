@@ -279,7 +279,7 @@ public final class b0 implements r2.v {
     }
 
     @Override
-    public boolean x(String str, String str2, MediaCodecInfo.CodecCapabilities codecCapabilities) {
+    public boolean y(String str, String str2, MediaCodecInfo.CodecCapabilities codecCapabilities) {
         return codecCapabilities.isFeatureSupported(str);
     }
 

@@ -77,17 +77,17 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.a81;
+import org.telegram.ui.Components.b81;
 import org.telegram.ui.Components.d5;
-import org.telegram.ui.Components.d81;
-import org.telegram.ui.Components.so0;
+import org.telegram.ui.Components.e81;
+import org.telegram.ui.Components.to0;
 import org.telegram.ui.Components.ya0;
 import org.telegram.ui.Stories.ProfileStoriesView;
 import org.telegram.ui.f01;
 import org.telegram.ui.lz0;
 import org.telegram.ui.yn;
 import org.telegram.ui.zi0;
-public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, ya0, a81, k0, v0, OnCompleteListener, f6.a, n, s0, w, b2, he.a, so0, d5 {
+public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, ya0, b81, k0, v0, OnCompleteListener, f6.a, n, s0, w, b2, he.a, to0, d5 {
     public static i f324c;
     public final int f325a;
     public Object f326b;
@@ -145,21 +145,7 @@ public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, ya
     }
 
     @Override
-    public void C(ArrayList arrayList) {
-        k1 k1Var = (k1) this.f326b;
-        String str = k1Var.Z;
-        if (str != null) {
-            k1Var.U(str, k1Var.f10671c0, k1Var.f10672d0, k1Var.f10669b0, k1Var.f10668a0);
-        }
-    }
-
-    @Override
-    public com.google.android.gms.common.api.internal.e E(com.google.android.gms.common.api.internal.e eVar) {
-        throw new IllegalStateException("GoogleApiClient is not connected yet.");
-    }
-
-    @Override
-    public void F(int i10, int i11, CharSequence charSequence, boolean z10) {
+    public void C(int i10, int i11, CharSequence charSequence, boolean z10) {
         ci.g gVar = ((ci.m) this.f326b).f5518f;
         if (gVar == null) {
             return;
@@ -177,12 +163,26 @@ public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, ya
         }
     }
 
-    public boolean H(String str) {
+    @Override
+    public com.google.android.gms.common.api.internal.e D(com.google.android.gms.common.api.internal.e eVar) {
+        throw new IllegalStateException("GoogleApiClient is not connected yet.");
+    }
+
+    public boolean E(String str) {
         String M = M(str);
         if (!"1".equals(M) && !Boolean.parseBoolean(M)) {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public void F(ArrayList arrayList) {
+        k1 k1Var = (k1) this.f326b;
+        String str = k1Var.Z;
+        if (str != null) {
+            k1Var.U(str, k1Var.f10671c0, k1Var.f10672d0, k1Var.f10669b0, k1Var.f10668a0);
+        }
     }
 
     public Integer I(String str) {
@@ -314,7 +314,7 @@ public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, ya
 
     @Override
     public void a0(long j3, int i10, ai.d5 d5Var) {
-        int i11 = ProfileStoriesView.f34494s0;
+        int i11 = ProfileStoriesView.f34507s0;
         ((lz0) this.f326b).f(true, false);
         d5Var.run();
     }
@@ -438,7 +438,7 @@ public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, ya
         m0Var.f6582a.lock();
         try {
             m0Var.f6591m = new g0(m0Var, m0Var.f6588j, m0Var.f6589k, m0Var.d, m0Var.f6590l, m0Var.f6582a, m0Var.f6584c);
-            m0Var.f6591m.u();
+            m0Var.f6591m.w();
             m0Var.f6583b.signalAll();
         } finally {
             m0Var.f6582a.unlock();
@@ -468,7 +468,7 @@ public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, ya
         gcVar.f991c = null;
         lz0 lz0Var = (lz0) this.f326b;
         f01 f01Var = lz0Var.h;
-        ArrayList arrayList = lz0Var.f34520w;
+        ArrayList arrayList = lz0Var.f34533w;
         if (lz0Var.N < 0.2f) {
             gcVar.f990b = f01Var.getImageReceiver();
             gcVar.f991c = null;
@@ -476,7 +476,7 @@ public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, ya
             gcVar.h = 0.0f;
             gcVar.f995i = AndroidUtilities.displaySize.y;
             gcVar.f994g = (View) lz0Var.getParent();
-            gcVar.d = lz0Var.f34522y;
+            gcVar.d = lz0Var.f34535y;
             gcVar.f1000n = true;
             return true;
         }
@@ -608,7 +608,7 @@ public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, ya
             z10 = false;
         }
         bVar.a(z10, true);
-        sVar.d.f25250f3.N(true);
+        sVar.d.f26034f3.N(true);
     }
 
     @Override
@@ -665,8 +665,8 @@ public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, ya
         b7 b7Var = (b7) this.f326b;
         z6 z6Var = b7Var.L;
         AndroidUtilities.cancelRunOnUIThread(z6Var);
-        d81 d81Var = b7Var.f4771y;
-        if (d81Var != null && d81Var.y()) {
+        e81 e81Var = b7Var.f4771y;
+        if (e81Var != null && e81Var.y()) {
             AndroidUtilities.runOnUIThread(z6Var);
         }
     }
@@ -708,7 +708,12 @@ public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, ya
     }
 
     @Override
-    public void s(Bundle bundle) {
+    public a0.i s() {
+        return null;
+    }
+
+    @Override
+    public void u(Bundle bundle) {
         x xVar = (x) this.f326b;
         xVar.f6659o.lock();
         try {
@@ -717,15 +722,6 @@ public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, ya
         } finally {
             xVar.f6659o.unlock();
         }
-    }
-
-    @Override
-    public void u() {
-        com.google.android.gms.common.api.internal.m0 m0Var = (com.google.android.gms.common.api.internal.m0) this.f326b;
-        for (com.google.android.gms.common.api.c cVar : m0Var.f6586f.values()) {
-            cVar.disconnect();
-        }
-        m0Var.f6593o.F = Collections.EMPTY_SET;
     }
 
     @Override
@@ -740,8 +736,12 @@ public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, ya
     }
 
     @Override
-    public a0.i w() {
-        return null;
+    public void w() {
+        com.google.android.gms.common.api.internal.m0 m0Var = (com.google.android.gms.common.api.internal.m0) this.f326b;
+        for (com.google.android.gms.common.api.c cVar : m0Var.f6586f.values()) {
+            cVar.disconnect();
+        }
+        m0Var.f6593o.F = Collections.EMPTY_SET;
     }
 
     @Override
@@ -759,7 +759,7 @@ public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, ya
     }
 
     @Override
-    public a0.i y() {
+    public a0.i x() {
         return null;
     }
 
@@ -813,7 +813,7 @@ public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, ya
     }
 
     @Override
-    public void D() {
+    public void H() {
     }
 
     @Override
@@ -841,7 +841,7 @@ public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, ya
     }
 
     @Override
-    public void onError(d81 d81Var, Exception exc) {
+    public void onError(e81 e81Var, Exception exc) {
     }
 
     @Override
@@ -853,7 +853,7 @@ public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, ya
     }
 
     @Override
-    public void x(TLRPC.TL_document tL_document, String str, Object obj) {
+    public void y(TLRPC.TL_document tL_document, String str, Object obj) {
     }
 
     @Override

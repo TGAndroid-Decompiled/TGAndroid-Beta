@@ -10,7 +10,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.ui.Components.e60;
 import org.telegram.ui.Components.j60;
-import org.telegram.ui.Components.s81;
+import org.telegram.ui.Components.t81;
 import org.telegram.ui.jk;
 import org.telegram.ui.re;
 public final class d0 implements Runnable {
@@ -36,7 +36,7 @@ public final class d0 implements Runnable {
         long j10;
         long j11;
         jk jkVar;
-        s81 s81Var;
+        t81 t81Var;
         b2.c0 c0Var;
         switch (this.f14864a) {
             case 0:
@@ -112,9 +112,9 @@ public final class d0 implements Runnable {
                     long j14 = s0Var2.E;
                     long j15 = s0Var2.G;
                     long j16 = s0Var2.H;
-                    ((e60) gVar.f15268b).f25971w.setProgress(((float) j14) / 60000.0f);
+                    ((e60) gVar.f15268b).f26019w.setProgress(((float) j14) / 60000.0f);
                     e60 e60Var = (e60) gVar.f15268b;
-                    e60Var.f25954h0 = r32;
+                    e60Var.f26002h0 = r32;
                     e60Var.I.setAlpha(0.0f);
                     s0 s0Var3 = ((e60) gVar.f15268b).P;
                     if (s0Var3 == null) {
@@ -142,7 +142,7 @@ public final class d0 implements Runnable {
                         videoEditedInfo.endTime = j11;
                         NotificationCenter notificationCenter = NotificationCenter.getInstance(e60Var3.h);
                         int i10 = NotificationCenter.audioDidSent;
-                        Integer valueOf = Integer.valueOf(((e60) gVar.f15268b).f25959n);
+                        Integer valueOf = Integer.valueOf(((e60) gVar.f15268b).f26007n);
                         VideoEditedInfo videoEditedInfo2 = ((e60) gVar.f15268b).U;
                         String absolutePath = file.getAbsolutePath();
                         ArrayList arrayList = new ArrayList();
@@ -155,12 +155,12 @@ public final class d0 implements Runnable {
                         float max = (float) Math.max(1L, j14);
                         float f7 = ((float) j15) / max;
                         float f10 = ((float) j16) / max;
-                        j60 j60Var = ((e60) gVar.f15268b).f27973b;
-                        if (j60Var != null && (jkVar = ((re) j60Var).f40108b.W) != null && (s81Var = jkVar.f23887f1) != null) {
+                        j60 j60Var = ((e60) gVar.f15268b).f28067b;
+                        if (j60Var != null && (jkVar = ((re) j60Var).f40078b.W) != null && (t81Var = jkVar.f23890f1) != null) {
                             float max2 = Math.max(0.0f, Math.min(1.0f, f7));
-                            s81Var.f30657b = max2;
-                            s81Var.f30658c = Math.max(max2, Math.min(1.0f, f10));
-                            s81Var.invalidate();
+                            t81Var.f31079b = max2;
+                            t81Var.f31080c = Math.max(max2, Math.min(1.0f, f10));
+                            t81Var.invalidate();
                         }
                     }
                     s0Var2.q();

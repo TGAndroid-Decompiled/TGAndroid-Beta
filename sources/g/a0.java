@@ -26,7 +26,7 @@ public final class a0 extends k.a implements l.i {
     public final boolean M(l.k kVar, MenuItem menuItem) {
         n4.y yVar = this.f10001e;
         if (yVar != null) {
-            return ((qi.f) yVar.f16644b).G(this, menuItem);
+            return ((qi.f) yVar.f16649b).G(this, menuItem);
         }
         return false;
     }
@@ -134,7 +134,7 @@ public final class a0 extends k.a implements l.i {
     }
 
     @Override
-    public final void y(l.k kVar) {
+    public final void w(l.k kVar) {
         if (this.f10001e != null) {
             g();
             m.h hVar = this.h.f10011f.d;

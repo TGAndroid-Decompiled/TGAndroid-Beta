@@ -29,8 +29,8 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Cells.t7;
-import org.telegram.ui.Components.ds0;
-import org.telegram.ui.Components.f91;
+import org.telegram.ui.Components.es0;
+import org.telegram.ui.Components.g91;
 import org.telegram.ui.Components.rq;
 import org.telegram.ui.Components.tr;
 import org.telegram.ui.Components.xi;
@@ -47,7 +47,7 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
     public final ArrayList f3895f;
     public final ArrayList h;
     public final a f3896n;
-    public final f91 f3897r;
+    public final g91 f3897r;
     public Boolean f3898s;
     public int v;
     public float f3899w;
@@ -67,7 +67,7 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
         d6 resourceProvider = n2Var.getResourceProvider();
         this.f3893c = resourceProvider;
         this.d = j3;
-        setBackgroundColor(i6.v(i6.v0(i6.f20822d6, resourceProvider), i6.l1(0.04f, i6.v0(i6.G6, resourceProvider))));
+        setBackgroundColor(i6.v(i6.v0(i6.f20827d6, resourceProvider), i6.l1(0.04f, i6.v0(i6.G6, resourceProvider))));
         if (F == null) {
             F = new LongSparseArray();
         }
@@ -86,16 +86,16 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
             u8Var = u8Var2;
         }
         this.f3894e = u8Var;
-        ds0 ds0Var = (ds0) this;
-        a aVar = new a(ds0Var, context);
+        es0 es0Var = (es0) this;
+        a aVar = new a(es0Var, context);
         this.f3896n = aVar;
         aVar.setAllowDisallowInterceptTouch(true);
-        aVar.setAdapter(new b(ds0Var, context));
+        aVar.setAdapter(new b(es0Var, context));
         addView(aVar, z5.e(-1, -1, 119));
-        f91 n10 = aVar.n(9, true);
+        g91 n10 = aVar.n(9, true);
         this.f3897r = n10;
-        n10.f26420r = 12;
-        n10.setPreTabClick(new a1.c(ds0Var, 11));
+        n10.f26789r = 12;
+        n10.setPreTabClick(new a1.c(es0Var, 11));
         addView(n10, z5.e(-1, 42, 48));
         i(false);
     }
@@ -107,8 +107,8 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
             xiVar.I1(1, false);
             xiVar.T0 = true;
             xiVar.S0 = false;
-            xiVar.f32832j1.setText(LocaleController.getString(R.string.ChoosePhotoOrVideo));
-            xiVar.f32831j0.f0();
+            xiVar.f32923j1.setText(LocaleController.getString(R.string.ChoosePhotoOrVideo));
+            xiVar.f32922j0.f0();
             int i10 = Build.VERSION.SDK_INT;
             if (i10 == 21 || i10 == 22) {
                 AndroidUtilities.hideKeyboard(n2Var.getFragmentView().findFocus());
@@ -408,9 +408,9 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
         rqVar.setScale(0.9f, 0.9f);
         rqVar.spaceScaleX = 0.85f;
         spannableString.setSpan(rqVar, 0, 1, 33);
-        f91 f91Var = this.f3897r;
-        f91Var.a(-1, spannableString);
-        f91Var.f26424x.l();
+        g91 g91Var = this.f3897r;
+        g91Var.a(-1, spannableString);
+        g91Var.f26793x.l();
         if (arrayList3.size() + 1 > 1) {
             z11 = true;
         } else {
@@ -437,7 +437,7 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
             } else {
                 f7 = -42.0f;
             }
-            f91Var.setTranslationY(AndroidUtilities.dp(f7));
+            g91Var.setTranslationY(AndroidUtilities.dp(f7));
             if (z11) {
                 f11 = 42.0f;
             }

@@ -21,30 +21,29 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
-import n7.z0;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.a81;
+import org.telegram.ui.Components.b81;
 import org.telegram.ui.Components.d5;
-import org.telegram.ui.Components.d81;
+import org.telegram.ui.Components.e81;
 import org.telegram.ui.Components.ff0;
 import org.telegram.ui.Components.gf0;
 import org.telegram.ui.Components.lc0;
 import org.telegram.ui.Components.mh0;
-import org.telegram.ui.Components.oq0;
 import org.telegram.ui.Components.r6;
-import org.telegram.ui.Components.rc;
 import org.telegram.ui.Components.sg0;
 import org.telegram.ui.Components.tk0;
-import org.telegram.ui.Components.xo0;
+import org.telegram.ui.Components.yo0;
+import org.telegram.ui.Components.yv0;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.os0;
+import org.telegram.ui.y61;
 import s4.c1;
 import s4.f1;
 import s4.h1;
 import s4.o0;
 import s4.p0;
-import yh.x3;
-public class e implements m.k, xo0, d5, lg.o, a81, com.google.android.gms.common.api.internal.s, h1, oq0 {
+import yh.v7;
+public class e implements m.k, yo0, d5, lg.o, b81, com.google.android.gms.common.api.internal.s, h1, yv0, y61 {
     public final int f14388a;
     public Object f14389b;
 
@@ -211,10 +210,18 @@ public class e implements m.k, xo0, d5, lg.o, a81, com.google.android.gms.common
     }
 
     @Override
+    public void E(boolean z10) {
+        le.b bVar = ((yh.h) this.f14389b).f51390s;
+        if (bVar != null) {
+            bVar.a(z10, true);
+        }
+    }
+
+    @Override
     public void F() {
-        ff0 ff0Var = ((gf0) this.f14389b).f26855a;
+        ff0 ff0Var = ((gf0) this.f14389b).f26904a;
         if (ff0Var != null) {
-            ((os0) ff0Var).f39277a.f33901e0.invalidate();
+            ((os0) ff0Var).f39287a.f33914e0.invalidate();
         }
     }
 
@@ -227,21 +234,26 @@ public class e implements m.k, xo0, d5, lg.o, a81, com.google.android.gms.common
 
     @Override
     public void S(boolean z10) {
-        ((gf0) this.f14389b).f26857c.setAspectLock(z10);
+        ((gf0) this.f14389b).f26906c.setAspectLock(z10);
     }
 
     @Override
     public void Y(float f7, boolean z10) {
         mg.h hVar = (mg.h) this.f14389b;
-        float f10 = hVar.f16419b;
-        float z11 = e2.z(hVar.f16420c, f10, f7, f10);
+        float f10 = hVar.f16424b;
+        float z11 = e2.z(hVar.f16425c, f10, f7, f10);
         hVar.d = z11;
         if (z10) {
-            r6 r6Var = hVar.f16421e;
+            r6 r6Var = hVar.f16426e;
             r6Var.getClass();
             r6Var.c(null, z11);
         }
         hVar.invalidate();
+    }
+
+    @Override
+    public float Y0() {
+        return org.telegram.messenger.q.b(9.0f, ((org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() / 2) * 2) + yh.h.Z((yh.h) this.f14389b).f11527b, 0);
     }
 
     public n4.a a() {
@@ -297,7 +309,23 @@ public class e implements m.k, xo0, d5, lg.o, a81, com.google.android.gms.common
         return o0.x(view) - ((ViewGroup.MarginLayoutParams) ((p0) view.getLayoutParams())).leftMargin;
     }
 
-    public void g(aa.a aVar) {
+    @Override
+    public int e1() {
+        return yh.h.b0((yh.h) this.f14389b).d;
+    }
+
+    public void g(za.a0 a0Var) {
+        ((l5.r) ((i5.f) ((pa.b) this.f14389b).get())).a("FIREBASE_APPQUALITY_SESSION", new i5.c("json"), new v7(this, 3)).a(new i5.a(null, a0Var, i5.d.f11964a, null), new j2.e(20));
+    }
+
+    @Override
+    public CharSequence getContentDescription() {
+        mg.h hVar = (mg.h) this.f14389b;
+        float f7 = hVar.f16424b;
+        return String.valueOf(Math.round((hVar.f16423a.getProgress() * (hVar.f16425c - f7)) + f7));
+    }
+
+    public void h(aa.a aVar) {
         h8.j jVar = (h8.j) this.f14389b;
         jVar.f11038a = aVar;
         Iterator it = jVar.f11040c.iterator();
@@ -308,26 +336,19 @@ public class e implements m.k, xo0, d5, lg.o, a81, com.google.android.gms.common
         jVar.f11039b = null;
     }
 
-    @Override
-    public CharSequence getContentDescription() {
-        mg.h hVar = (mg.h) this.f14389b;
-        float f7 = hVar.f16419b;
-        return String.valueOf(Math.round((hVar.f16418a.getProgress() * (hVar.f16420c - f7)) + f7));
-    }
-
-    public void h(p4.p pVar, p4.m mVar, Collection collection) {
+    public void i(p4.p pVar, p4.m mVar, Collection collection) {
         p4.e eVar = (p4.e) this.f14389b;
-        if (pVar == eVar.f44175y && mVar != null) {
-            p4.u uVar = eVar.f44174x.f44273a;
+        if (pVar == eVar.f44182y && mVar != null) {
+            p4.u uVar = eVar.f44181x.f44280a;
             String d = mVar.d();
             p4.v vVar = new p4.v(uVar, d, eVar.b(uVar, d), false);
             vVar.i(mVar);
             if (eVar.d != vVar) {
-                eVar.h(eVar, vVar, eVar.f44175y, 3, eVar.f44174x, collection);
-                eVar.f44174x = null;
-                eVar.f44175y = null;
+                eVar.h(eVar, vVar, eVar.f44182y, 3, eVar.f44181x, collection);
+                eVar.f44181x = null;
+                eVar.f44182y = null;
             }
-        } else if (pVar == eVar.f44157e) {
+        } else if (pVar == eVar.f44164e) {
             if (mVar != null) {
                 eVar.n(eVar.d, mVar);
             }
@@ -335,11 +356,11 @@ public class e implements m.k, xo0, d5, lg.o, a81, com.google.android.gms.common
         }
     }
 
-    public boolean i(int i10, int i11, Bundle bundle) {
+    public boolean j(int i10, int i11, Bundle bundle) {
         return false;
     }
 
-    public void j(c1 c1Var, q0 q0Var, q0 q0Var2) {
+    public void k(c1 c1Var, q0 q0Var, q0 q0Var2) {
         int i10;
         int i11;
         boolean z10;
@@ -353,7 +374,7 @@ public class e implements m.k, xo0, d5, lg.o, a81, com.google.android.gms.common
         f1Var.getClass();
         int i13 = q0Var.f3454a;
         int i14 = q0Var.f3455b;
-        View view = c1Var.f46531a;
+        View view = c1Var.f46538a;
         if (q0Var2 == null) {
             i10 = view.getLeft();
         } else {
@@ -380,7 +401,7 @@ public class e implements m.k, xo0, d5, lg.o, a81, com.google.android.gms.common
                     }
                 }
             }
-            c1Var.f46537i = (c1Var.h - i18) + (i18 * 1000);
+            c1Var.f46544i = (c1Var.h - i18) + (i18 * 1000);
             f1Var.s(c1Var, q0Var);
             z10 = true;
         }
@@ -389,7 +410,12 @@ public class e implements m.k, xo0, d5, lg.o, a81, com.google.android.gms.common
         }
     }
 
-    public e k(int i10) {
+    @Override
+    public int l() {
+        return ((o0) this.f14389b).D();
+    }
+
+    public e m(int i10) {
         if (i10 == 16) {
             i10 = 12;
         }
@@ -398,45 +424,23 @@ public class e implements m.k, xo0, d5, lg.o, a81, com.google.android.gms.common
     }
 
     @Override
-    public int l() {
-        return ((o0) this.f14389b).D();
-    }
-
-    public void m(int i10) {
-        k(i10);
-    }
-
-    @Override
     public int n() {
         o0 o0Var = (o0) this.f14389b;
-        return o0Var.f46644m - o0Var.E();
+        return o0Var.f46651m - o0Var.E();
     }
 
     @Override
     public void n0(boolean z10) {
         gf0 gf0Var = (gf0) this.f14389b;
         gf0Var.getClass();
-        ff0 ff0Var = gf0Var.f26855a;
+        ff0 ff0Var = gf0Var.f26904a;
         if (ff0Var != null) {
             ((os0) ff0Var).a(z10);
         }
     }
 
-    public void o(c1 c1Var) {
-        RecyclerView recyclerView = (RecyclerView) this.f14389b;
-        o0 o0Var = recyclerView.f3090x;
-        View view = c1Var.f46531a;
-        of.e eVar = recyclerView.f3061b;
-        la.h hVar = o0Var.f46634a;
-        hh.h hVar2 = (hh.h) hVar.f15399b;
-        int indexOfChild = hVar2.f11463a.indexOfChild(view);
-        if (indexOfChild >= 0) {
-            if (((e6.n) hVar.f15400c).A(indexOfChild)) {
-                hVar.Y(view);
-            }
-            hVar2.a(indexOfChild);
-        }
-        eVar.g(view);
+    public void o(int i10) {
+        m(i10);
     }
 
     @Override
@@ -446,11 +450,11 @@ public class e implements m.k, xo0, d5, lg.o, a81, com.google.android.gms.common
     @Override
     public void onStateChanged(boolean z10, int i10) {
         tk0 tk0Var = (tk0) this.f14389b;
-        if (z10 && tk0Var.f31087n.n() >= 0) {
-            tk0Var.f31090w = true;
+        if (z10 && tk0Var.f31174n.n() >= 0) {
+            tk0Var.f31177w = true;
         }
-        sg0 sg0Var = tk0Var.f31086f;
-        lc0 lc0Var = tk0Var.f31091x;
+        sg0 sg0Var = tk0Var.f31173f;
+        lc0 lc0Var = tk0Var.f31178x;
         sg0Var.a(z10, true);
         AndroidUtilities.cancelRunOnUIThread(lc0Var);
         if (z10) {
@@ -473,13 +477,21 @@ public class e implements m.k, xo0, d5, lg.o, a81, com.google.android.gms.common
         return 0;
     }
 
-    public Object q() {
-        if (n7.a.f16764b == null) {
-            n7.a.f16764b = new Exception();
+    public void q(c1 c1Var) {
+        RecyclerView recyclerView = (RecyclerView) this.f14389b;
+        o0 o0Var = recyclerView.f3090x;
+        View view = c1Var.f46538a;
+        of.e eVar = recyclerView.f3061b;
+        la.h hVar = o0Var.f46641a;
+        hh.h hVar2 = (hh.h) hVar.f15399b;
+        int indexOfChild = hVar2.f11463a.indexOfChild(view);
+        if (indexOfChild >= 0) {
+            if (((e6.n) hVar.f15400c).A(indexOfChild)) {
+                hVar.Y(view);
+            }
+            hVar2.a(indexOfChild);
         }
-        synchronized (n7.a.f16763a) {
-        }
-        throw new IllegalStateException("Must call PhenotypeContext.setContext() first");
+        eVar.g(view);
     }
 
     @Override
@@ -489,21 +501,23 @@ public class e implements m.k, xo0, d5, lg.o, a81, com.google.android.gms.common
 
     @Override
     public void r0() {
-        ff0 ff0Var = ((gf0) this.f14389b).f26855a;
+        ff0 ff0Var = ((gf0) this.f14389b).f26904a;
         if (ff0Var != null) {
-            PhotoViewer photoViewer = ((os0) ff0Var).f39277a;
-            if (photoViewer.f33884c2 == 1) {
+            PhotoViewer photoViewer = ((os0) ff0Var).f39287a;
+            if (photoViewer.f33897c2 == 1) {
                 photoViewer.H2 = true;
                 photoViewer.q3();
             }
         }
     }
 
-    @Override
-    public void x0() {
-        rc k10 = ((x3) this.f14389b).getBulletinFactory().k(false);
-        k10.f30355t = true;
-        k10.j();
+    public Object s() {
+        if (n7.a.f16769b == null) {
+            n7.a.f16769b = new Exception();
+        }
+        synchronized (n7.a.f16768a) {
+        }
+        throw new IllegalStateException("Must call PhenotypeContext.setContext() first");
     }
 
     public e(Object obj, int i10) {
@@ -539,9 +553,6 @@ public class e implements m.k, xo0, d5, lg.o, a81, com.google.android.gms.common
             case 25:
                 this.f14389b = new CopyOnWriteArrayList();
                 return;
-            case 27:
-                this.f14389b = new z0[zf.b.values().length];
-                return;
             default:
                 this.f14389b = new AudioAttributes.Builder();
                 return;
@@ -550,10 +561,6 @@ public class e implements m.k, xo0, d5, lg.o, a81, com.google.android.gms.common
 
     @Override
     public void B() {
-    }
-
-    @Override
-    public void V() {
     }
 
     @Override
@@ -569,7 +576,7 @@ public class e implements m.k, xo0, d5, lg.o, a81, com.google.android.gms.common
     }
 
     @Override
-    public void onError(d81 d81Var, Exception exc) {
+    public void onError(e81 e81Var, Exception exc) {
     }
 
     @Override

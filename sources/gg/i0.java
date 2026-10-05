@@ -37,7 +37,7 @@ import org.telegram.ui.Components.yl0;
 import org.telegram.ui.fy;
 import org.telegram.ui.o10;
 import org.telegram.ui.uy;
-import org.telegram.ui.zb1;
+import org.telegram.ui.xb1;
 import w7.z5;
 public abstract class i0 extends yl0 {
     public o10 A0;
@@ -73,7 +73,7 @@ public abstract class i0 extends yl0 {
     public final int f10620h0;
     public final s4.j f10621i0;
     public final z f10622j0;
-    public zb1 f10623k0;
+    public xb1 f10623k0;
     public final long f10624l0;
     public long f10626n0;
     public View f10627o0;
@@ -153,7 +153,7 @@ public abstract class i0 extends yl0 {
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f46535f;
+        int i10 = c1Var.f46542f;
         if (i10 != 1 && i10 != 4 && i10 != 10) {
             return true;
         }
@@ -212,20 +212,20 @@ public abstract class i0 extends yl0 {
             if (((TLRPC.User) obj).bot) {
                 return uyVar.A2;
             }
-            return uyVar.f41505z2;
+            return uyVar.f41540z2;
         } else if (!(obj instanceof TLRPC.Chat)) {
             return false;
         } else {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
             if (ChatObject.isChannel(chat)) {
-                return uyVar.f41502y2;
+                return uyVar.f41537y2;
             }
             if (ChatObject.isMegagroup(chat)) {
-                if (uyVar.f41487v2 || uyVar.f41492w2) {
+                if (uyVar.f41522v2 || uyVar.f41527w2) {
                     return true;
                 }
                 return false;
-            } else if (uyVar.f41487v2 || uyVar.f41497x2) {
+            } else if (uyVar.f41522v2 || uyVar.f41532x2) {
                 return true;
             } else {
                 return false;
@@ -293,7 +293,7 @@ public abstract class i0 extends yl0 {
         return spannableStringBuilder;
     }
 
-    public final zb1 I() {
+    public final xb1 I() {
         return this.f10623k0;
     }
 
@@ -331,12 +331,12 @@ public abstract class i0 extends yl0 {
                 boolean z10 = tLObject instanceof TLRPC.User;
                 int i14 = this.f10633s0;
                 if (z10) {
-                    TLRPC.User user = MessagesController.getInstance(i14).getUser(Long.valueOf(((TLRPC.User) tLObject).f20189id));
+                    TLRPC.User user = MessagesController.getInstance(i14).getUser(Long.valueOf(((TLRPC.User) tLObject).f20194id));
                     if (user != null) {
                         return user;
                     }
                     return tLObject;
-                } else if ((tLObject instanceof TLRPC.Chat) && (chat = MessagesController.getInstance(i14).getChat(Long.valueOf(((TLRPC.Chat) tLObject).f20042id))) != null) {
+                } else if ((tLObject instanceof TLRPC.Chat) && (chat = MessagesController.getInstance(i14).getChat(Long.valueOf(((TLRPC.Chat) tLObject).f20047id))) != null) {
                     return chat;
                 } else {
                     return tLObject;
@@ -492,7 +492,7 @@ public abstract class i0 extends yl0 {
 
     public final boolean M() {
         if (!this.N && !MediaDataController.getInstance(this.f10633s0).hints.isEmpty()) {
-            if (this.f10620h0 != 14 || this.f10631r0.f41505z2) {
+            if (this.f10620h0 != 14 || this.f10631r0.f41540z2) {
                 return true;
             }
             return false;
@@ -687,7 +687,7 @@ public abstract class i0 extends yl0 {
                     long a2 = this.U.a();
                     TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
                     tL_messages_search.limit = 20;
-                    tL_messages_search.f20151q = str;
+                    tL_messages_search.f20156q = str;
                     tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterEmpty();
                     tL_messages_search.peer = MessagesController.getInstance(i12).getInputPeer(a2);
                     if (str.equals(this.Z) && !arrayList.isEmpty()) {
@@ -752,7 +752,7 @@ public abstract class i0 extends yl0 {
                     }
                     tL_messages_searchGlobal.users_only = z12;
                     tL_messages_searchGlobal.limit = 20;
-                    tL_messages_searchGlobal.f20153q = str;
+                    tL_messages_searchGlobal.f20158q = str;
                     tL_messages_searchGlobal.filter = new TLRPC.TL_inputMessagesFilterEmpty();
                     tL_messages_searchGlobal.flags |= 1;
                     tL_messages_searchGlobal.folder_id = this.C0;
@@ -907,7 +907,7 @@ public abstract class i0 extends yl0 {
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        zb1 zb1Var;
+        xb1 xb1Var;
         TextView textView;
         boolean z10;
         int i11 = this.f10620h0;
@@ -919,9 +919,9 @@ public abstract class i0 extends yl0 {
                 if (i11 != 3) {
                     z11 = false;
                 }
-                i6Var.f22260l0 = z11;
-                zb1Var = i6Var;
-                textView = zb1Var;
+                i6Var.f22264l0 = z11;
+                xb1Var = i6Var;
+                textView = xb1Var;
                 break;
             case 1:
                 textView = new v3(context, null);
@@ -948,25 +948,25 @@ public abstract class i0 extends yl0 {
                 textView = textView2;
                 break;
             case 6:
-                zb1 zb1Var2 = new zb1(context, 2, null);
-                zb1Var2.setSelectorDrawableColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20913i6, false));
-                zb1Var2.setTag(9);
-                zb1Var2.setItemAnimator(null);
-                zb1Var2.setLayoutAnimation(null);
+                xb1 xb1Var2 = new xb1(context, 2, null);
+                xb1Var2.setSelectorDrawableColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20918i6, false));
+                xb1Var2.setTag(9);
+                xb1Var2.setItemAnimator(null);
+                xb1Var2.setLayoutAnimation(null);
                 b0 b0Var = new b0(0);
                 b0Var.j1(0);
-                zb1Var2.setLayoutManager(b0Var);
+                xb1Var2.setLayoutManager(b0Var);
                 if (i11 == 3) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                zb1Var2.setAdapter(new c0(this.f10633s0, this.f10615e, null, false, z10));
-                zb1Var2.setOnItemClickListener(new ai.g(this, 9));
-                zb1Var2.setOnItemLongClickListener(new y(this));
-                this.f10623k0 = zb1Var2;
-                zb1Var = zb1Var2;
-                textView = zb1Var;
+                xb1Var2.setAdapter(new c0(this.f10633s0, this.f10615e, null, false, z10));
+                xb1Var2.setOnItemClickListener(new ai.g(this, 9));
+                xb1Var2.setOnItemLongClickListener(new y(this));
+                this.f10623k0 = xb1Var2;
+                xb1Var = xb1Var2;
+                textView = xb1Var;
                 break;
             case 7:
             default:

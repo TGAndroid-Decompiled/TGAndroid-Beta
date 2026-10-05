@@ -11,27 +11,27 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_account;
-public final class rl0 extends org.telegram.ui.Components.f61 {
-    public static final int f40166a = 0;
+public final class rl0 extends org.telegram.ui.Components.g61 {
+    public static final int f40141a = 0;
 
     static {
-        org.telegram.ui.Components.f61.setup(new org.telegram.ui.Components.f61());
+        org.telegram.ui.Components.g61.setup(new org.telegram.ui.Components.g61());
     }
 
     @Override
-    public final void bindView(View view, org.telegram.ui.Components.g61 g61Var, boolean z10, org.telegram.ui.Components.u61 u61Var, org.telegram.ui.Components.c71 c71Var) {
+    public final void bindView(View view, org.telegram.ui.Components.h61 h61Var, boolean z10, org.telegram.ui.Components.w61 w61Var, org.telegram.ui.Components.e71 e71Var) {
         sl0 sl0Var = (sl0) view;
-        TL_account.Passkey passkey = (TL_account.Passkey) g61Var.G;
-        View.OnClickListener onClickListener = g61Var.D;
-        TextView textView = sl0Var.f40532f;
-        TextView textView2 = sl0Var.f40531e;
-        org.telegram.ui.ActionBar.d6 d6Var = sl0Var.f40529b;
-        FrameLayout frameLayout = sl0Var.f40530c;
+        TL_account.Passkey passkey = (TL_account.Passkey) h61Var.G;
+        View.OnClickListener onClickListener = h61Var.D;
+        TextView textView = sl0Var.f40544f;
+        TextView textView2 = sl0Var.f40543e;
+        org.telegram.ui.ActionBar.d6 d6Var = sl0Var.f40541b;
+        FrameLayout frameLayout = sl0Var.f40542c;
         org.telegram.ui.Components.w9 w9Var = sl0Var.d;
-        sl0Var.f40534r = passkey.f20247id;
+        sl0Var.f40546r = passkey.f20252id;
         long j3 = passkey.software_emoji_id;
         if (j3 != 0) {
-            w9Var.setAnimatedEmojiDrawable(org.telegram.ui.Components.q5.n(sl0Var.f40528a, j3, null, 3));
+            w9Var.setAnimatedEmojiDrawable(org.telegram.ui.Components.q5.n(sl0Var.f40540a, j3, null, 3));
             frameLayout.setBackground(null);
             w9Var.setColorFilter(null);
             w9Var.setScaleX(1.0f);
@@ -58,7 +58,7 @@ public final class rl0 extends org.telegram.ui.Components.f61 {
             textView.setText(LocaleController.formatString(R.string.PasskeyCreatedOn, LocaleController.formatDateTime(passkey.date, false)));
         }
         sl0Var.h.setOnClickListener(onClickListener);
-        sl0Var.f40533n = z10;
+        sl0Var.f40545n = z10;
         sl0Var.setWillNotDraw(!z10);
     }
 

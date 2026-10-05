@@ -15,7 +15,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.qy0;
+import org.telegram.ui.Components.ry0;
 import org.telegram.ui.PrivacyControlActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.an0;
@@ -27,9 +27,9 @@ import org.telegram.ui.ms0;
 import org.telegram.ui.nl0;
 import org.telegram.ui.no;
 import org.telegram.ui.sm0;
+import org.telegram.ui.t31;
 import org.telegram.ui.tp;
 import org.telegram.ui.ug0;
-import org.telegram.ui.v31;
 public final class p3 implements RequestDelegate {
     public final int f1501a;
     public final Object f1502b;
@@ -80,15 +80,15 @@ public final class p3 implements RequestDelegate {
                 TLRPC.TL_chatInviteExported tL_chatInviteExported = (TLRPC.TL_chatInviteExported) obj;
                 boolean[] zArr = (boolean[]) obj3;
                 org.telegram.ui.ActionBar.b2 b2Var = (org.telegram.ui.ActionBar.b2) obj2;
-                org.telegram.ui.wb wbVar = qbVar.f39691a.f40447n;
+                org.telegram.ui.wb wbVar = qbVar.f39755a.f40430n;
                 if (tL_error == null) {
                     tL_messages_exportedChatInvite = (TLRPC.TL_messages_exportedChatInvite) tLObject;
                     for (int i11 = 0; i11 < tL_messages_exportedChatInvite.users.size(); i11++) {
                         TLRPC.User user = tL_messages_exportedChatInvite.users.get(i11);
-                        if (wbVar.f42056z0 == null) {
-                            wbVar.f42056z0 = new HashMap();
+                        if (wbVar.f42071z0 == null) {
+                            wbVar.f42071z0 = new HashMap();
                         }
-                        wbVar.f42056z0.put(Long.valueOf(user.f20189id), user);
+                        wbVar.f42071z0.put(Long.valueOf(user.f20194id), user);
                     }
                 } else {
                     tL_messages_exportedChatInvite = null;
@@ -102,7 +102,7 @@ public final class p3 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new m3((mq) obj4, tL_error, (TLRPC.InputCheckPasswordSRP) obj, (TwoStepVerificationActivity) obj3, (TLRPC.TL_channels_editCreator) obj2, 20));
                 return;
             case 7:
-                qy0.p((ms0) obj4, this.d, (TLRPC.TL_messages_getAttachedStickers) obj3, (no) obj2, tLObject, tL_error);
+                ry0.p((ms0) obj4, this.d, (TLRPC.TL_messages_getAttachedStickers) obj3, (no) obj2, tLObject, tL_error);
                 return;
             case 8:
                 AndroidUtilities.runOnUIThread(new f90((Object) ((ug0) obj4), tL_error, (Object) ((String) obj), (Object) ((String) obj3), (Object) ((String) obj2), 5));
@@ -117,9 +117,9 @@ public final class p3 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new f90((Object) ((PrivacyControlActivity) obj4), tL_error, (Object) ((boolean[]) obj), (Object) ((TLRPC.GlobalPrivacySettings) obj3), (Object) ((TL_account.setGlobalPrivacySettings) obj2), 16));
                 return;
             case 12:
-                v31 v31Var = (v31) obj4;
-                v31Var.getClass();
-                AndroidUtilities.runOnUIThread(new z8(v31Var, tLObject, (CharSequence) obj, tL_error, (byte[]) obj3, (String) obj2, 10));
+                t31 t31Var = (t31) obj4;
+                t31Var.getClass();
+                AndroidUtilities.runOnUIThread(new z8(t31Var, tLObject, (CharSequence) obj, tL_error, (byte[]) obj3, (String) obj2, 10));
                 return;
             case 13:
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.web.b0((org.telegram.ui.web.c1) obj4, tLObject, (da) obj, (String) obj3, (String) obj2));
@@ -133,21 +133,21 @@ public final class p3 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new z8((xh.q1) obj4, (org.telegram.ui.ActionBar.b2) obj, tLObject, (xh.o0) obj3, (Utilities.Callback) obj2, tL_error, 15));
                 return;
             case 16:
-                AndroidUtilities.runOnUIThread(new z8((yh.x3) obj4, tLObject, (CharSequence) obj, (TL_stars.TL_starGiftUnique) obj3, (TLRPC.TL_inputInvoiceStarGiftDropOriginalDetails) obj2, tL_error, 16));
+                AndroidUtilities.runOnUIThread(new z8((yh.y3) obj4, tLObject, (CharSequence) obj, (TL_stars.TL_starGiftUnique) obj3, (TLRPC.TL_inputInvoiceStarGiftDropOriginalDetails) obj2, tL_error, 16));
                 return;
             case 17:
-                AndroidUtilities.runOnUIThread(new z8((yh.x3) obj4, tLObject, (tg.m1[]) obj, (Long) obj3, (tg.q) obj2, tL_error, 17));
+                AndroidUtilities.runOnUIThread(new z8((yh.y3) obj4, tLObject, (tg.m1[]) obj, (Long) obj3, (tg.q) obj2, tL_error, 17));
                 return;
             case 18:
-                AndroidUtilities.runOnUIThread(new yh.u((yh.t5) obj4, (org.telegram.ui.ActionBar.b2) obj, tLObject, (TL_stars.InputSavedStarGift) obj3, (Utilities.Callback) obj2));
+                AndroidUtilities.runOnUIThread(new yh.v((yh.u5) obj4, (org.telegram.ui.ActionBar.b2) obj, tLObject, (TL_stars.InputSavedStarGift) obj3, (Utilities.Callback) obj2));
                 return;
             case 19:
-                AndroidUtilities.runOnUIThread(new z8((yh.t5) obj4, tLObject, (MessageObject) obj, (TLRPC.TL_inputInvoiceMessage) obj3, (bj) obj2, tL_error, 20));
+                AndroidUtilities.runOnUIThread(new z8((yh.u5) obj4, tLObject, (MessageObject) obj, (TLRPC.TL_inputInvoiceMessage) obj3, (bj) obj2, tL_error, 20));
                 return;
             default:
-                yh.j5 j5Var = (yh.j5) obj4;
-                j5Var.getClass();
-                AndroidUtilities.runOnUIThread(new z8(j5Var, tLObject, (TL_stars.TL_starGiftCollection) obj, (yh.k5) obj3, (Utilities.Callback) obj2, tL_error, 22));
+                yh.k5 k5Var = (yh.k5) obj4;
+                k5Var.getClass();
+                AndroidUtilities.runOnUIThread(new z8(k5Var, tLObject, (TL_stars.TL_starGiftCollection) obj, (yh.l5) obj3, (Utilities.Callback) obj2, tL_error, 22));
                 return;
         }
     }

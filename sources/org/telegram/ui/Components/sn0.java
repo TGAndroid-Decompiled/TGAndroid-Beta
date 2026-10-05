@@ -6,38 +6,38 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class sn0 implements ml0 {
-    public final int f30834a;
-    public final int f30835b;
-    public final org.telegram.ui.ActionBar.n2 f30836c;
+    public final int f30890a;
+    public final int f30891b;
+    public final org.telegram.ui.ActionBar.n2 f30892c;
     public final Object d;
 
     public sn0(Object obj, int i10, org.telegram.ui.ActionBar.n2 n2Var, int i11) {
-        this.f30834a = i11;
+        this.f30890a = i11;
         this.d = obj;
-        this.f30835b = i10;
-        this.f30836c = n2Var;
+        this.f30891b = i10;
+        this.f30892c = n2Var;
     }
 
     @Override
     public final void d(int i10, View view) {
-        zg.o0 o0Var;
-        switch (this.f30834a) {
+        zg.m0 m0Var;
+        switch (this.f30890a) {
             case 0:
                 ao0 ao0Var = (ao0) this.d;
-                ArrayList arrayList = ao0Var.f24621r;
+                ArrayList arrayList = ao0Var.f24687r;
                 ai.w0 w0Var = ao0Var.d;
                 if (i10 >= 0 && i10 < arrayList.size()) {
-                    if (!UserConfig.getInstance(this.f30835b).isPremium()) {
-                        new rg.y0(this.f30836c, 24, true).show();
+                    if (!UserConfig.getInstance(this.f30891b).isPremium()) {
+                        new rg.y0(this.f30892c, 24, true).show();
                         return;
                     }
-                    long j3 = ((xn0) arrayList.get(i10)).f32955a.h;
+                    long j3 = ((xn0) arrayList.get(i10)).f33046a.h;
                     if (ao0Var.h == j3) {
-                        o0Var = null;
+                        m0Var = null;
                     } else {
-                        o0Var = ((xn0) arrayList.get(i10)).f32955a;
+                        m0Var = ((xn0) arrayList.get(i10)).f33046a;
                     }
-                    if (ao0Var.f(o0Var)) {
+                    if (ao0Var.f(m0Var)) {
                         for (int i11 = 0; i11 < w0Var.getChildCount(); i11++) {
                             if (w0Var.getChildAt(i11) == view) {
                                 float f7 = 50.0f;
@@ -70,8 +70,8 @@ public final class sn0 implements ml0 {
                 rg.m1 m1Var = (rg.m1) this.d;
                 if (view instanceof org.telegram.ui.ow0) {
                     org.telegram.ui.ow0 ow0Var = (org.telegram.ui.ow0) view;
-                    PremiumPreviewFragment.q0(this.f30835b, ow0Var.f39295f.f36112a);
-                    m1Var.showDialog(new rg.y0(this.f30836c, ow0Var.f39295f.f36112a, false));
+                    PremiumPreviewFragment.q0(this.f30891b, ow0Var.f39305f.f36133a);
+                    m1Var.showDialog(new rg.y0(this.f30892c, ow0Var.f39305f.f36133a, false));
                     return;
                 }
                 return;

@@ -45,23 +45,23 @@ public final class cc0 extends FrameLayout {
     public boolean U;
     public boolean V;
     public int W;
-    public final int f25321a;
-    public int f25322a0;
-    public final org.telegram.ui.y8 f25323b;
-    public boolean f25324b0;
-    public final ci.m6 f25325c;
-    public final ic0 f25326c0;
+    public final int f25369a;
+    public int f25370a0;
+    public final org.telegram.ui.y8 f25371b;
+    public boolean f25372b0;
+    public final ci.m6 f25373c;
+    public final ic0 f25374c0;
     public final org.telegram.ui.Cells.ca d;
-    public final tb0 f25327e;
-    public final ub0 f25328f;
+    public final tb0 f25375e;
+    public final ub0 f25376f;
     public final wb0 h;
-    public final bc0 f25329n;
-    public MessagePreviewParams.Messages f25330r;
-    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f25331s;
+    public final bc0 f25377n;
+    public MessagePreviewParams.Messages f25378r;
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f25379s;
     public final sb0 v;
-    public final sb0 f25332w;
-    public final org.telegram.ui.ActionBar.f1 f25333x;
-    public final org.telegram.ui.ActionBar.f1 f25334y;
+    public final sb0 f25380w;
+    public final org.telegram.ui.ActionBar.f1 f25381x;
+    public final org.telegram.ui.ActionBar.f1 f25382y;
 
     public cc0(org.telegram.ui.Components.ic0 r34, android.content.Context r35, int r36) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.cc0.<init>(org.telegram.ui.Components.ic0, android.content.Context, int):void");
@@ -69,7 +69,7 @@ public final class cc0 extends FrameLayout {
 
     public static MessageObject.GroupedMessages a(cc0 cc0Var, MessageObject messageObject) {
         if (messageObject.getGroupId() != 0) {
-            MessageObject.GroupedMessages groupedMessages = cc0Var.f25330r.groupedMessagesMap.get(messageObject.getGroupId());
+            MessageObject.GroupedMessages groupedMessages = cc0Var.f25378r.groupedMessagesMap.get(messageObject.getGroupId());
             if (groupedMessages == null || (groupedMessages.messages.size() > 1 && groupedMessages.getPosition(messageObject) != null)) {
                 return groupedMessages;
             }
@@ -81,8 +81,8 @@ public final class cc0 extends FrameLayout {
     public static void b(cc0 cc0Var, org.telegram.ui.Cells.u1 u1Var) {
         CharacterStyle characterStyle;
         TLRPC.WebPage webPage;
-        if (cc0Var.f25321a == 2) {
-            MessagePreviewParams messagePreviewParams = cc0Var.f25326c0.d;
+        if (cc0Var.f25369a == 2) {
+            MessagePreviewParams messagePreviewParams = cc0Var.f25374c0.d;
             if (!messagePreviewParams.singleLink && (characterStyle = messagePreviewParams.currentLink) != null && (webPage = messagePreviewParams.webpage) != null && !(webPage instanceof TLRPC.TL_webPagePending)) {
                 u1Var.Q3(characterStyle);
                 return;
@@ -93,7 +93,7 @@ public final class cc0 extends FrameLayout {
 
     public final MessageObject c(MessageObject messageObject) {
         MessageObject.GroupedMessages valueAt;
-        ic0 ic0Var = this.f25326c0;
+        ic0 ic0Var = this.f25374c0;
         MessagePreviewParams.Messages messages = ic0Var.d.replyMessage;
         if (messages != null) {
             LongSparseArray<MessageObject.GroupedMessages> longSparseArray = messages.groupedMessagesMap;
@@ -104,7 +104,7 @@ public final class cc0 extends FrameLayout {
                     }
                     org.telegram.ui.on onVar = ic0Var.d.quote;
                     if (onVar != null) {
-                        return onVar.f39241a;
+                        return onVar.f39251a;
                     }
                 }
                 return valueAt.captionMessage;
@@ -119,10 +119,10 @@ public final class cc0 extends FrameLayout {
     }
 
     public final void e(float f7, int i10) {
-        boolean z10 = this.f25326c0.v;
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f25331s;
-        ci.m6 m6Var = this.f25325c;
-        org.telegram.ui.y8 y8Var = this.f25323b;
+        boolean z10 = this.f25374c0.v;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f25379s;
+        ci.m6 m6Var = this.f25373c;
+        org.telegram.ui.y8 y8Var = this.f25371b;
         if (z10) {
             m6Var.setTranslationY(0.0f);
             y8Var.invalidateOutline();
@@ -141,7 +141,7 @@ public final class cc0 extends FrameLayout {
     }
 
     public final void f() {
-        ic0 ic0Var = this.f25326c0;
+        ic0 ic0Var = this.f25374c0;
         new yc(ic0Var, ic0Var.F).M(LocaleController.getString(R.string.QuoteMaxError), LocaleController.getString(R.string.QuoteMaxErrorMessage), R.raw.error).j();
     }
 
@@ -156,7 +156,7 @@ public final class cc0 extends FrameLayout {
         float f13;
         float f14;
         int i13 = 0;
-        if (this.f25326c0.f27362b) {
+        if (this.f25374c0.f27457b) {
             z10 = false;
         }
         if (!z11 || this.O != z10) {
@@ -166,9 +166,9 @@ public final class cc0 extends FrameLayout {
                 animatorSet.cancel();
                 this.P = null;
             }
-            org.telegram.ui.ActionBar.f1 f1Var = this.f25334y;
-            org.telegram.ui.ActionBar.f1 f1Var2 = this.f25333x;
-            sb0 sb0Var = this.f25332w;
+            org.telegram.ui.ActionBar.f1 f1Var = this.f25382y;
+            org.telegram.ui.ActionBar.f1 f1Var2 = this.f25381x;
+            sb0 sb0Var = this.f25380w;
             sb0 sb0Var2 = this.v;
             float f15 = 0.0f;
             if (z11) {
@@ -275,17 +275,17 @@ public final class cc0 extends FrameLayout {
         int i10;
         TLRPC.Message message;
         TLRPC.MessageMedia messageMedia;
-        ic0 ic0Var = this.f25326c0;
+        ic0 ic0Var = this.f25374c0;
         MessagePreviewParams messagePreviewParams = ic0Var.d;
         wb0 wb0Var = this.h;
         if (wb0Var.k()) {
             this.V = true;
             return;
         }
-        for (int i11 = 0; i11 < this.f25330r.previewMessages.size(); i11++) {
-            MessageObject messageObject = this.f25330r.previewMessages.get(i11);
+        for (int i11 = 0; i11 < this.f25378r.previewMessages.size(); i11++) {
+            MessageObject messageObject = this.f25378r.previewMessages.get(i11);
             messageObject.forceUpdate = true;
-            messageObject.sendAsPeer = ic0Var.f27361a;
+            messageObject.sendAsPeer = ic0Var.f27456a;
             if (!messagePreviewParams.hideForwardSendersName) {
                 messageObject.messageOwner.flags |= 4;
                 messageObject.hideSendersName = false;
@@ -293,7 +293,7 @@ public final class cc0 extends FrameLayout {
                 messageObject.messageOwner.flags &= -5;
                 messageObject.hideSendersName = true;
             }
-            if (this.f25321a == 2) {
+            if (this.f25369a == 2) {
                 TLRPC.WebPage webPage = messagePreviewParams.webpage;
                 if (webPage != null && ((messageMedia = (message = messageObject.messageOwner).media) == null || messageMedia.webpage != webPage)) {
                     message.flags |= 512;
@@ -334,22 +334,22 @@ public final class cc0 extends FrameLayout {
                 pollResults.total_voters = i10;
             }
         }
-        for (int i12 = 0; i12 < this.f25330r.pollChosenAnswers.size(); i12++) {
-            this.f25330r.pollChosenAnswers.get(i12).chosen = !messagePreviewParams.hideForwardSendersName;
+        for (int i12 = 0; i12 < this.f25378r.pollChosenAnswers.size(); i12++) {
+            this.f25378r.pollChosenAnswers.get(i12).chosen = !messagePreviewParams.hideForwardSendersName;
         }
-        for (int i13 = 0; i13 < this.f25330r.groupedMessagesMap.size(); i13++) {
-            wb0Var.V(this.f25330r.groupedMessagesMap.valueAt(i13));
+        for (int i13 = 0; i13 < this.f25378r.groupedMessagesMap.size(); i13++) {
+            wb0Var.V(this.f25378r.groupedMessagesMap.valueAt(i13));
         }
-        this.f25329n.q(0, this.f25330r.previewMessages.size());
+        this.f25377n.q(0, this.f25378r.previewMessages.size());
     }
 
     public final void i() {
         int i10 = this.R;
         float f7 = this.S;
-        ic0 ic0Var = this.f25326c0;
+        ic0 ic0Var = this.f25374c0;
         boolean z10 = ic0Var.v;
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f25331s;
-        ub0 ub0Var = this.f25328f;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f25379s;
+        ub0 ub0Var = this.f25376f;
         int i11 = 0;
         if (!z10) {
             int measuredHeight = ub0Var.getMeasuredHeight();
@@ -361,7 +361,7 @@ public final class cc0 extends FrameLayout {
                     i12++;
                 }
             }
-            MessagePreviewParams.Messages messages = this.f25330r;
+            MessagePreviewParams.Messages messages = this.f25378r;
             if (messages != null && i12 != 0 && i12 <= messages.previewMessages.size()) {
                 int b10 = org.telegram.messenger.q.b(4.0f, measuredHeight, 0);
                 this.R = b10;
@@ -374,7 +374,7 @@ public final class cc0 extends FrameLayout {
             } else {
                 this.R = 0;
             }
-            float A = com.google.android.gms.internal.vision.e2.A(getMeasuredHeight() - AndroidUtilities.dp(16.0f), (this.f25323b.getMeasuredHeight() - this.R) + (this.W - AndroidUtilities.dp(8.0f)), 2.0f, AndroidUtilities.dp(8.0f)) - this.R;
+            float A = com.google.android.gms.internal.vision.e2.A(getMeasuredHeight() - AndroidUtilities.dp(16.0f), (this.f25371b.getMeasuredHeight() - this.R) + (this.W - AndroidUtilities.dp(8.0f)), 2.0f, AndroidUtilities.dp(8.0f)) - this.R;
             this.S = A;
             if (A > AndroidUtilities.dp(8.0f)) {
                 this.S = AndroidUtilities.dp(8.0f);
@@ -397,7 +397,7 @@ public final class cc0 extends FrameLayout {
             ic0Var.h.setDuration(250L);
             ic0Var.h.setInterpolator(ji.n.V);
             ic0Var.h.addListener(new r8(this, 29));
-            AndroidUtilities.runOnUIThread(ic0Var.f27371y, 50L);
+            AndroidUtilities.runOnUIThread(ic0Var.f27466y, 50L);
             this.T = i10;
             e(f7, i10);
         } else if (z11) {
@@ -411,11 +411,11 @@ public final class cc0 extends FrameLayout {
     public final void j() {
         MessageObject messageObject;
         MessageObject messageObject2;
-        ic0 ic0Var = this.f25326c0;
+        ic0 ic0Var = this.f25374c0;
         MessagePreviewParams messagePreviewParams = ic0Var.d;
-        if (this.f25321a == 0) {
-            tb0 tb0Var = this.f25327e;
-            if (tb0Var.v - tb0Var.f21984u <= MessagesController.getInstance(ic0Var.f27369w).quoteLengthMax) {
+        if (this.f25369a == 0) {
+            tb0 tb0Var = this.f25375e;
+            if (tb0Var.v - tb0Var.f21988u <= MessagesController.getInstance(ic0Var.f27464w).quoteLengthMax) {
                 org.telegram.ui.Cells.y9 y9Var = tb0Var.W;
                 if (y9Var != null) {
                     messageObject = ((org.telegram.ui.Cells.u1) y9Var).getMessageObject();
@@ -424,9 +424,9 @@ public final class cc0 extends FrameLayout {
                 }
                 MessageObject c10 = c(messageObject);
                 if (messagePreviewParams.quote != null && tb0Var.y()) {
-                    messagePreviewParams.quoteStart = tb0Var.f21984u;
+                    messagePreviewParams.quoteStart = tb0Var.f21988u;
                     messagePreviewParams.quoteEnd = tb0Var.v;
-                    if (c10 != null && ((messageObject2 = messagePreviewParams.quote.f39241a) == null || messageObject2.getId() != c10.getId())) {
+                    if (c10 != null && ((messageObject2 = messagePreviewParams.quote.f39251a) == null || messageObject2.getId() != c10.getId())) {
                         messagePreviewParams.quote = org.telegram.ui.on.b(messagePreviewParams.quoteStart, messagePreviewParams.quoteEnd, c10);
                         ic0Var.b();
                     }
@@ -440,12 +440,12 @@ public final class cc0 extends FrameLayout {
         String str;
         int size;
         String string;
-        ic0 ic0Var = this.f25326c0;
-        TLRPC.User user = ic0Var.f27366n;
+        ic0 ic0Var = this.f25374c0;
+        TLRPC.User user = ic0Var.f27461n;
         MessagePreviewParams messagePreviewParams = ic0Var.d;
-        TLRPC.Chat chat = ic0Var.f27367r;
-        ci.m6 m6Var = this.f25325c;
-        int i10 = this.f25321a;
+        TLRPC.Chat chat = ic0Var.f27462r;
+        ci.m6 m6Var = this.f25373c;
+        int i10 = this.f25369a;
         if (i10 == 1) {
             MessagePreviewParams.Messages messages = messagePreviewParams.forwardMessages;
             if (messages == null) {
@@ -508,8 +508,8 @@ public final class cc0 extends FrameLayout {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        if (this.f25321a == 0) {
-            AndroidUtilities.forEachViews((RecyclerView) this.f25328f, (Utilities.Callback<View>) new y2(this, 8));
+        if (this.f25369a == 0) {
+            AndroidUtilities.forEachViews((RecyclerView) this.f25376f, (Utilities.Callback<View>) new y2(this, 8));
         }
     }
 
@@ -517,7 +517,7 @@ public final class cc0 extends FrameLayout {
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         j();
-        this.f25324b0 = true;
+        this.f25372b0 = true;
         this.K = true;
     }
 
@@ -537,19 +537,19 @@ public final class cc0 extends FrameLayout {
         } else {
             z10 = false;
         }
-        ic0 ic0Var = this.f25326c0;
+        ic0 ic0Var = this.f25374c0;
         ic0Var.v = z10;
         this.W = 0;
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 0);
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f25331s;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f25379s;
         actionBarPopupWindow$ActionBarPopupWindowLayout.measure(i10, makeMeasureSpec);
         int i12 = this.W;
         int measuredHeight = actionBarPopupWindow$ActionBarPopupWindowLayout.getMeasuredHeight();
         Rect rect = this.Q;
         this.W = Math.max(i12, measuredHeight + rect.top + rect.bottom);
-        ((ViewGroup.MarginLayoutParams) this.f25328f.getLayoutParams()).topMargin = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
+        ((ViewGroup.MarginLayoutParams) this.f25376f.getLayoutParams()).topMargin = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
         boolean z11 = ic0Var.v;
-        org.telegram.ui.y8 y8Var = this.f25323b;
+        org.telegram.ui.y8 y8Var = this.f25371b;
         if (z11) {
             y8Var.getLayoutParams().height = -1;
             ((ViewGroup.MarginLayoutParams) y8Var.getLayoutParams()).topMargin = AndroidUtilities.dp(8.0f);
@@ -567,9 +567,9 @@ public final class cc0 extends FrameLayout {
             actionBarPopupWindow$ActionBarPopupWindowLayout.getLayoutParams().height = View.MeasureSpec.getSize(i11) - y8Var.getLayoutParams().height;
         }
         int size2 = (View.MeasureSpec.getSize(i11) + View.MeasureSpec.getSize(i10)) << 16;
-        if (this.f25322a0 != size2) {
-            for (int i13 = 0; i13 < this.f25330r.previewMessages.size(); i13++) {
-                MessageObject messageObject = this.f25330r.previewMessages.get(i13);
+        if (this.f25370a0 != size2) {
+            for (int i13 = 0; i13 < this.f25378r.previewMessages.size(); i13++) {
+                MessageObject messageObject = this.f25378r.previewMessages.get(i13);
                 if (ic0Var.v) {
                     size = y8Var.getLayoutParams().width;
                 } else {
@@ -578,14 +578,14 @@ public final class cc0 extends FrameLayout {
                 messageObject.parentWidth = size;
                 messageObject.resetLayout();
                 messageObject.forceUpdate = true;
-                bc0 bc0Var = this.f25329n;
+                bc0 bc0Var = this.f25377n;
                 if (bc0Var != null) {
                     bc0Var.l();
                 }
             }
             this.K = true;
         }
-        this.f25322a0 = size2;
+        this.f25370a0 = size2;
         super.onMeasure(i10, i11);
     }
 }

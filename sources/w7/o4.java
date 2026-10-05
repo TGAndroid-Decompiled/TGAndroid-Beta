@@ -1,6 +1,6 @@
 package w7;
 public final class o4 implements ia.d {
-    public static final o4 f48803a = new Object();
+    public static final o4 f48810a = new Object();
 
     static {
         sa.e.t(sa.e.m(d.class, new a(1)));

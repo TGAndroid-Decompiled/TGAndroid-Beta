@@ -1,24 +1,24 @@
 package org.telegram.messenger;
 public final class sa implements Runnable {
-    public final int f19146a;
-    public final Runnable f19147b;
+    public final int f19151a;
+    public final Runnable f19152b;
 
     public sa(int i10, Runnable runnable) {
-        this.f19146a = i10;
-        this.f19147b = runnable;
+        this.f19151a = i10;
+        this.f19152b = runnable;
     }
 
     @Override
     public final void run() {
-        switch (this.f19146a) {
+        switch (this.f19151a) {
             case 0:
-                MessagesController.lambda$unblockPeer$110(this.f19147b);
+                MessagesController.lambda$unblockPeer$110(this.f19152b);
                 return;
             case 1:
-                this.f19147b.run();
+                this.f19152b.run();
                 return;
             default:
-                SendMessagesHelper.h0(this.f19147b);
+                SendMessagesHelper.h0(this.f19152b);
                 return;
         }
     }

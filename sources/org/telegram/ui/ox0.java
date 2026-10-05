@@ -2,13 +2,13 @@ package org.telegram.ui;
 
 import android.util.SparseIntArray;
 public final class ox0 extends s4.o {
-    public int f39298b;
-    public final SparseIntArray f39299c = new SparseIntArray();
+    public int f39308b;
+    public final SparseIntArray f39309c = new SparseIntArray();
     public final SparseIntArray d = new SparseIntArray();
-    public final PrivacyControlActivity f39300e;
+    public final PrivacyControlActivity f39310e;
 
     public ox0(PrivacyControlActivity privacyControlActivity) {
-        this.f39300e = privacyControlActivity;
+        this.f39310e = privacyControlActivity;
     }
 
     public static void g(int i10, int i11, SparseIntArray sparseIntArray) {
@@ -24,7 +24,7 @@ public final class ox0 extends s4.o {
 
     @Override
     public final boolean b(int i10, int i11) {
-        int i12 = this.f39299c.get(i10, -1);
+        int i12 = this.f39309c.get(i10, -1);
         if (i12 == this.d.get(i11, -1) && i12 >= 0) {
             return true;
         }
@@ -33,12 +33,12 @@ public final class ox0 extends s4.o {
 
     @Override
     public final int d() {
-        return this.f39300e.f34181r0;
+        return this.f39310e.f34194r0;
     }
 
     @Override
     public final int e() {
-        return this.f39298b;
+        return this.f39308b;
     }
 
     public final void f(SparseIntArray sparseIntArray) {
@@ -51,7 +51,7 @@ public final class ox0 extends s4.o {
         int i16;
         int i17;
         sparseIntArray.clear();
-        PrivacyControlActivity privacyControlActivity = this.f39300e;
+        PrivacyControlActivity privacyControlActivity = this.f39310e;
         g(1, privacyControlActivity.M, sparseIntArray);
         g(2, privacyControlActivity.N, sparseIntArray);
         i10 = privacyControlActivity.everybodyRow;
@@ -59,7 +59,7 @@ public final class ox0 extends s4.o {
         g(4, privacyControlActivity.O, sparseIntArray);
         i11 = privacyControlActivity.nobodyRow;
         g(5, i11, sparseIntArray);
-        g(6, privacyControlActivity.f34169g0, sparseIntArray);
+        g(6, privacyControlActivity.f34182g0, sparseIntArray);
         g(7, privacyControlActivity.P, sparseIntArray);
         g(8, privacyControlActivity.R, sparseIntArray);
         g(9, privacyControlActivity.S, sparseIntArray);
@@ -74,28 +74,28 @@ public final class ox0 extends s4.o {
         i13 = privacyControlActivity.currentPhotoForRestRow;
         g(17, i13, sparseIntArray);
         g(18, privacyControlActivity.Z, sparseIntArray);
-        g(19, privacyControlActivity.f34159a0, sparseIntArray);
-        g(20, privacyControlActivity.f34161b0, sparseIntArray);
-        g(21, privacyControlActivity.f34163c0, sparseIntArray);
+        g(19, privacyControlActivity.f34172a0, sparseIntArray);
+        g(20, privacyControlActivity.f34174b0, sparseIntArray);
+        g(21, privacyControlActivity.f34176c0, sparseIntArray);
         i14 = privacyControlActivity.readRow;
         g(22, i14, sparseIntArray);
-        g(23, privacyControlActivity.f34164d0, sparseIntArray);
-        g(24, privacyControlActivity.f34166e0, sparseIntArray);
-        g(25, privacyControlActivity.f34168f0, sparseIntArray);
-        g(26, privacyControlActivity.f34170h0, sparseIntArray);
+        g(23, privacyControlActivity.f34177d0, sparseIntArray);
+        g(24, privacyControlActivity.f34179e0, sparseIntArray);
+        g(25, privacyControlActivity.f34181f0, sparseIntArray);
+        g(26, privacyControlActivity.f34183h0, sparseIntArray);
         i15 = privacyControlActivity.priceRow;
         g(27, i15, sparseIntArray);
-        g(28, privacyControlActivity.f34172j0, sparseIntArray);
+        g(28, privacyControlActivity.f34185j0, sparseIntArray);
         i16 = privacyControlActivity.showGiftIconRow;
         g(29, i16, sparseIntArray);
-        g(30, privacyControlActivity.f34173k0, sparseIntArray);
+        g(30, privacyControlActivity.f34186k0, sparseIntArray);
         i17 = privacyControlActivity.giftTypesHeaderRow;
         g(31, i17, sparseIntArray);
         g(32, privacyControlActivity.m0, sparseIntArray);
-        g(33, privacyControlActivity.f34174l0, sparseIntArray);
-        g(34, privacyControlActivity.f34176n0, sparseIntArray);
-        g(35, privacyControlActivity.f34177o0, sparseIntArray);
-        g(36, privacyControlActivity.f34178p0, sparseIntArray);
-        g(37, privacyControlActivity.f34179q0, sparseIntArray);
+        g(33, privacyControlActivity.f34187l0, sparseIntArray);
+        g(34, privacyControlActivity.f34189n0, sparseIntArray);
+        g(35, privacyControlActivity.f34190o0, sparseIntArray);
+        g(36, privacyControlActivity.f34191p0, sparseIntArray);
+        g(37, privacyControlActivity.f34192q0, sparseIntArray);
     }
 }

@@ -5,20 +5,20 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.c71;
-import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.e71;
 import org.telegram.ui.Components.g61;
-import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.h61;
+import org.telegram.ui.Components.w61;
 import org.telegram.ui.Components.zl0;
-public final class r8 extends f61 {
+public final class r8 extends g61 {
     public static final int f5871a = 0;
 
     static {
-        f61.setup(new f61());
+        g61.setup(new g61());
     }
 
     @Override
-    public final void bindView(View view, g61 g61Var, boolean z10, u61 u61Var, c71 c71Var) {
+    public final void bindView(View view, h61 h61Var, boolean z10, w61 w61Var, e71 e71Var) {
         TLRPC.WebPage webPage;
         boolean z11;
         float f7;
@@ -27,13 +27,13 @@ public final class r8 extends f61 {
         float f12;
         String str;
         s8 s8Var = (s8) view;
-        Object obj = g61Var.G;
+        Object obj = h61Var.G;
         if (obj instanceof TLRPC.WebPage) {
             webPage = (TLRPC.WebPage) obj;
         } else {
             webPage = null;
         }
-        View.OnClickListener onClickListener = g61Var.D;
+        View.OnClickListener onClickListener = h61Var.D;
         org.telegram.ui.Components.p6 p6Var = s8Var.f5921e;
         org.telegram.ui.Components.p6 p6Var2 = s8Var.d;
         ImageView imageView = s8Var.f5920c;

@@ -57,7 +57,7 @@ public final class k {
         jVar.getClass();
         y2.d dVar = this.f11709a;
         synchronized (dVar) {
-            i10 = dVar.d * dVar.f50374b;
+            i10 = dVar.d * dVar.f50381b;
         }
         if (i10 >= b()) {
             z10 = true;
@@ -86,7 +86,7 @@ public final class k {
         if (this.h.isEmpty()) {
             y2.d dVar = this.f11709a;
             synchronized (dVar) {
-                if (dVar.f50373a) {
+                if (dVar.f50380a) {
                     dVar.a(0);
                 }
             }

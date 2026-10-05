@@ -26,14 +26,14 @@ import org.telegram.ui.Cells.c1;
 import org.telegram.ui.Cells.l1;
 import org.telegram.ui.Cells.r9;
 import org.telegram.ui.Cells.u1;
-import org.telegram.ui.Components.xo0;
+import org.telegram.ui.Components.yo0;
 import org.telegram.ui.Components.z5;
-import org.telegram.ui.b71;
 import org.telegram.ui.kv0;
+import org.telegram.ui.z61;
 import org.telegram.ui.zd;
-public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.android.gms.common.api.internal.s, w, n6.k, q9.d, xo0, l1, p2.s, OnFailureListener, r4.c, u9.a, SuccessContinuation, x9.c, y6.d, y2.i, b71 {
-    public static u f46928a;
-    public static u f46929b;
+public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.android.gms.common.api.internal.s, w, n6.k, q9.d, yo0, l1, p2.s, OnFailureListener, r4.c, u9.a, SuccessContinuation, x9.c, y6.d, y2.i, z61 {
+    public static u f46935a;
+    public static u f46936b;
 
     public u(Object obj) {
     }
@@ -41,60 +41,6 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
     @Override
     public boolean A1() {
         return false;
-    }
-
-    @Override
-    public void C(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11, int i12) {
-        if (i10 == i11) {
-            shortBuffer2.put(shortBuffer);
-            return;
-        }
-        throw new IllegalArgumentException("Illegal use of PassThroughAudioResampler");
-    }
-
-    @Override
-    public StackTraceElement[] D(StackTraceElement[] stackTraceElementArr) {
-        int i10;
-        HashMap hashMap = new HashMap();
-        StackTraceElement[] stackTraceElementArr2 = new StackTraceElement[stackTraceElementArr.length];
-        int i11 = 0;
-        int i12 = 0;
-        int i13 = 1;
-        while (i11 < stackTraceElementArr.length) {
-            StackTraceElement stackTraceElement = stackTraceElementArr[i11];
-            Integer num = (Integer) hashMap.get(stackTraceElement);
-            if (num != null) {
-                int intValue = num.intValue();
-                int i14 = i11 - intValue;
-                if (i11 + i14 <= stackTraceElementArr.length) {
-                    for (int i15 = 0; i15 < i14; i15++) {
-                        if (stackTraceElementArr[intValue + i15].equals(stackTraceElementArr[i11 + i15])) {
-                        }
-                    }
-                    int intValue2 = i11 - num.intValue();
-                    if (i13 < 10) {
-                        System.arraycopy(stackTraceElementArr, i11, stackTraceElementArr2, i12, intValue2);
-                        i12 += intValue2;
-                        i13++;
-                    }
-                    i10 = (intValue2 - 1) + i11;
-                    hashMap.put(stackTraceElement, Integer.valueOf(i11));
-                    i11 = i10 + 1;
-                }
-            }
-            stackTraceElementArr2[i12] = stackTraceElementArr[i11];
-            i12++;
-            i10 = i11;
-            i13 = 1;
-            hashMap.put(stackTraceElement, Integer.valueOf(i11));
-            i11 = i10 + 1;
-        }
-        StackTraceElement[] stackTraceElementArr3 = new StackTraceElement[i12];
-        System.arraycopy(stackTraceElementArr2, 0, stackTraceElementArr3, 0, i12);
-        if (i12 < stackTraceElementArr.length) {
-            return stackTraceElementArr3;
-        }
-        return stackTraceElementArr;
     }
 
     @Override
@@ -121,7 +67,7 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
 
     @Override
     public y2.n K() {
-        return new p2.r(p2.o.f44087n, null);
+        return new p2.r(p2.o.f44094n, null);
     }
 
     @Override
@@ -216,7 +162,7 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
 
     @Override
     public void Y(float f7, boolean z10) {
-        zd.f43757b = f7 * 2.0f;
+        zd.f43747b = f7 * 2.0f;
     }
 
     @Override
@@ -231,17 +177,17 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
 
     @Override
     public void a() {
-        synchronized (z2.b.f52356a) {
-            Object obj = z2.b.f52357b;
+        synchronized (z2.b.f52379a) {
+            Object obj = z2.b.f52380b;
             synchronized (obj) {
-                if (z2.b.f52358c) {
+                if (z2.b.f52381c) {
                     return;
                 }
                 long a2 = z2.b.a();
                 synchronized (obj) {
                     SystemClock.elapsedRealtime();
                     z2.b.d = a2;
-                    z2.b.f52358c = true;
+                    z2.b.f52381c = true;
                 }
             }
         }
@@ -414,12 +360,70 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
     }
 
     @Override
+    public void x(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11, int i12) {
+        if (i10 == i11) {
+            shortBuffer2.put(shortBuffer);
+            return;
+        }
+        throw new IllegalArgumentException("Illegal use of PassThroughAudioResampler");
+    }
+
+    @Override
+    public StackTraceElement[] y(StackTraceElement[] stackTraceElementArr) {
+        int i10;
+        HashMap hashMap = new HashMap();
+        StackTraceElement[] stackTraceElementArr2 = new StackTraceElement[stackTraceElementArr.length];
+        int i11 = 0;
+        int i12 = 0;
+        int i13 = 1;
+        while (i11 < stackTraceElementArr.length) {
+            StackTraceElement stackTraceElement = stackTraceElementArr[i11];
+            Integer num = (Integer) hashMap.get(stackTraceElement);
+            if (num != null) {
+                int intValue = num.intValue();
+                int i14 = i11 - intValue;
+                if (i11 + i14 <= stackTraceElementArr.length) {
+                    for (int i15 = 0; i15 < i14; i15++) {
+                        if (stackTraceElementArr[intValue + i15].equals(stackTraceElementArr[i11 + i15])) {
+                        }
+                    }
+                    int intValue2 = i11 - num.intValue();
+                    if (i13 < 10) {
+                        System.arraycopy(stackTraceElementArr, i11, stackTraceElementArr2, i12, intValue2);
+                        i12 += intValue2;
+                        i13++;
+                    }
+                    i10 = (intValue2 - 1) + i11;
+                    hashMap.put(stackTraceElement, Integer.valueOf(i11));
+                    i11 = i10 + 1;
+                }
+            }
+            stackTraceElementArr2[i12] = stackTraceElementArr[i11];
+            i12++;
+            i10 = i11;
+            i13 = 1;
+            hashMap.put(stackTraceElement, Integer.valueOf(i11));
+            i11 = i10 + 1;
+        }
+        StackTraceElement[] stackTraceElementArr3 = new StackTraceElement[i12];
+        System.arraycopy(stackTraceElementArr2, 0, stackTraceElementArr3, 0, i12);
+        if (i12 < stackTraceElementArr.length) {
+            return stackTraceElementArr3;
+        }
+        return stackTraceElementArr;
+    }
+
+    @Override
     public r9 z2() {
         return null;
     }
 
     @Override
     public void B() {
+    }
+
+    @Override
+    public void C() {
     }
 
     @Override
@@ -452,10 +456,6 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
 
     @Override
     public void s() {
-    }
-
-    @Override
-    public void x() {
     }
 
     @Override
@@ -576,6 +576,10 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
     }
 
     @Override
+    public void D(int i10, Object obj) {
+    }
+
+    @Override
     public void D1(u1 u1Var, boolean z10) {
     }
 
@@ -621,10 +625,6 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
 
     @Override
     public void p1(u1 u1Var, TLRPC.Document document) {
-    }
-
-    @Override
-    public void y(int i10, Object obj) {
     }
 
     @Override

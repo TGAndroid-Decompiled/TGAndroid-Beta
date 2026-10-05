@@ -11,10 +11,10 @@ import android.view.TextureView;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.lw0;
+import org.telegram.ui.Components.mw0;
 import org.telegram.ui.Components.nz;
 import org.telegram.ui.Components.sk0;
-public final class jc extends lw0 {
+public final class jc extends mw0 {
     public boolean A0;
     public float B0;
     public float C0;
@@ -165,7 +165,7 @@ public final class jc extends lw0 {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         int i14;
-        yh.t3 t3Var;
+        yh.u3 u3Var;
         nz emojiView;
         int measuredWidth = getMeasuredWidth();
         int measuredHeight = getMeasuredHeight();
@@ -221,13 +221,13 @@ public final class jc extends lw0 {
                 int i21 = kcVar.Y;
                 sk0Var.layout(i21, kcVar.Z, sk0Var.getMeasuredWidth() + i21, kcVar.f5443v1.Z1.getMeasuredHeight() + kcVar.Z);
                 if (kcVar.f5443v1.Z1.getReactionsWindow() != null) {
-                    t3Var = kcVar.f5443v1.Z1.getReactionsWindow().f53324c;
+                    u3Var = kcVar.f5443v1.Z1.getReactionsWindow().f53552c;
                 } else {
-                    t3Var = null;
+                    u3Var = null;
                 }
-                if (t3Var != null) {
+                if (u3Var != null) {
                     int i22 = kcVar.Y;
-                    t3Var.layout(i22, kcVar.Z, t3Var.getMeasuredWidth() + i22, t3Var.getMeasuredHeight() + kcVar.Z);
+                    u3Var.layout(i22, kcVar.Z, u3Var.getMeasuredWidth() + i22, u3Var.getMeasuredHeight() + kcVar.Z);
                 }
             }
         }
@@ -328,7 +328,7 @@ public final class jc extends lw0 {
             if (sk0Var != null) {
                 measureChild(sk0Var, i10, i11);
                 if (kcVar.f5443v1.Z1.getReactionsWindow() != null) {
-                    measureChild(kcVar.f5443v1.Z1.getReactionsWindow().f53324c, i10, i11);
+                    measureChild(kcVar.f5443v1.Z1.getReactionsWindow().f53552c, i10, i11);
                 }
             }
         }

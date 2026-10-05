@@ -130,9 +130,9 @@ public final class h extends u2.a {
     }
 
     public static boolean u(m2.h hVar) {
-        List list = hVar.f16006c;
+        List list = hVar.f16011c;
         for (int i10 = 0; i10 < list.size(); i10++) {
-            int i11 = ((m2.a) list.get(i10)).f15969b;
+            int i11 = ((m2.a) list.get(i10)).f15974b;
             if (i11 == 1 || i11 == 2) {
                 return true;
             }
@@ -176,14 +176,14 @@ public final class h extends u2.a {
 
     @Override
     public final d0 c(u2.f0 f0Var, y2.d dVar, long j3) {
-        int intValue = ((Integer) f0Var.f47263a).intValue() - this.O;
+        int intValue = ((Integer) f0Var.f47270a).intValue() - this.O;
         a5.a b10 = b(f0Var);
-        n2.k kVar = new n2.k(this.d.f16550c, 0, f0Var);
+        n2.k kVar = new n2.k(this.d.f16555c, 0, f0Var);
         int i10 = this.O + intValue;
         m2.c cVar = this.H;
         c0 c0Var = this.B;
         long j10 = this.L;
-        j2.k kVar2 = this.f47208g;
+        j2.k kVar2 = this.f47215g;
         e2.d.h(kVar2);
         b bVar = new b(i10, cVar, this.f15274n, intValue, this.f15270j, c0Var, this.f15272l, kVar, this.f15273m, b10, j10, this.f15284y, dVar, this.f15271k, this.f15283x, kVar2);
         this.f15281u.put(i10, bVar);
@@ -204,7 +204,7 @@ public final class h extends u2.a {
     public final void m(c0 c0Var) {
         this.B = c0Var;
         Looper myLooper = Looper.myLooper();
-        j2.k kVar = this.f47208g;
+        j2.k kVar = this.f47215g;
         e2.d.h(kVar);
         n2.n nVar = this.f15272l;
         nVar.C(myLooper, kVar);
@@ -271,8 +271,8 @@ public final class h extends u2.a {
         y2.l lVar;
         y2.l lVar2 = this.A;
         d dVar = new d(this);
-        synchronized (z2.b.f52357b) {
-            z10 = z2.b.f52358c;
+        synchronized (z2.b.f52380b) {
+            z10 = z2.b.f52381c;
             lVar = lVar2;
         }
         if (z10) {
@@ -282,15 +282,15 @@ public final class h extends u2.a {
         if (lVar2 == null) {
             lVar = new y2.l("SntpClient");
         }
-        lVar.f(new Object(), new n2.c(dVar, 27), 1);
+        lVar.f(new Object(), new g(dVar, 24), 1);
     }
 
     public final void w(y2.o oVar, long j3) {
-        long j10 = oVar.f50411a;
+        long j10 = oVar.f50418a;
         Uri uri = oVar.d.f10162c;
         t tVar = new t(j3);
         this.f15273m.getClass();
-        this.f15277q.o(tVar, oVar.f50413c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+        this.f15277q.o(tVar, oVar.f50420c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
     }
 
     public final void x(IOException iOException) {

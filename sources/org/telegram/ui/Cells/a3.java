@@ -17,15 +17,15 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLObject;
 import org.telegram.ui.Components.q90;
 public final class a3 extends FrameLayout {
-    public final LinearLayout f21790a;
-    public final LinearLayout f21791b;
-    public final org.telegram.ui.Components.y5 f21792c;
+    public final LinearLayout f21794a;
+    public final LinearLayout f21795b;
+    public final org.telegram.ui.Components.y5 f21796c;
     public final q90 d;
-    public final ImageView f21793e;
-    public final ImageView f21794f;
+    public final ImageView f21797e;
+    public final ImageView f21798f;
     public final org.telegram.ui.Components.w9 h;
-    public final org.telegram.ui.Components.k9 f21795n;
-    public boolean f21796r;
+    public final org.telegram.ui.Components.k9 f21799n;
+    public boolean f21800r;
 
     public a3(Context context) {
         super(context);
@@ -36,7 +36,7 @@ public final class a3 extends FrameLayout {
         setWillNotDraw(false);
         setPadding(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(7.0f));
         org.telegram.ui.Components.k9 k9Var = new org.telegram.ui.Components.k9(context, false);
-        this.f21795n = k9Var;
+        this.f21799n = k9Var;
         k9Var.setStepFactor(0.56790125f);
         k9Var.setVisibility(8);
         k9Var.setCount(0);
@@ -44,7 +44,7 @@ public final class a3 extends FrameLayout {
         this.h = w9Var;
         w9Var.setVisibility(8);
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f21791b = linearLayout;
+        this.f21795b = linearLayout;
         linearLayout.setOrientation(1);
         if (LocaleController.isRTL) {
             i10 = AndroidUtilities.dp(24.0f);
@@ -58,7 +58,7 @@ public final class a3 extends FrameLayout {
         }
         linearLayout.setPadding(i10, 0, dp, 0);
         org.telegram.ui.Components.y5 y5Var = new org.telegram.ui.Components.y5(context);
-        this.f21792c = y5Var;
+        this.f21796c = y5Var;
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         y5Var.setEllipsize(truncateAt);
         y5Var.setTextSize(1, 14.0f);
@@ -79,7 +79,7 @@ public final class a3 extends FrameLayout {
         NotificationCenter.listenEmojiLoading(y5Var);
         NotificationCenter.listenEmojiLoading(q90Var);
         LinearLayout linearLayout2 = new LinearLayout(context);
-        this.f21790a = linearLayout2;
+        this.f21794a = linearLayout2;
         linearLayout2.setOrientation(0);
         if (LocaleController.isRTL) {
             linearLayout2.addView(linearLayout, w7.z5.d(-1, -1.0f, 16, 7.0f, 0.0f, 7.0f, 0.0f));
@@ -94,7 +94,7 @@ public final class a3 extends FrameLayout {
         linearLayout2.setClipChildren(false);
         linearLayout2.setClipToPadding(false);
         ImageView imageView = new ImageView(context);
-        this.f21793e = imageView;
+        this.f21797e = imageView;
         imageView.setImageResource(R.drawable.arrow_newchat);
         if (LocaleController.isRTL) {
             i12 = 3;
@@ -103,7 +103,7 @@ public final class a3 extends FrameLayout {
         }
         addView(imageView, w7.z5.d(16, 16.0f, i12 | 16, 4.0f, 0.0f, 4.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
-        this.f21794f = imageView2;
+        this.f21798f = imageView2;
         imageView2.setImageResource(R.drawable.msg_close);
         imageView2.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f));
         addView(imageView2, w7.z5.d(36, 36.0f, (LocaleController.isRTL ? 3 : 5) | 16, -4.0f, 0.0f, -4.0f, 0.0f));
@@ -125,8 +125,8 @@ public final class a3 extends FrameLayout {
             size = arrayList.size();
         }
         int min = Math.min(3, size);
-        org.telegram.ui.Components.k9 k9Var = this.f21795n;
-        if (min != k9Var.f28031a.f27677n) {
+        org.telegram.ui.Components.k9 k9Var = this.f21799n;
+        if (min != k9Var.f28112a.f27750n) {
             z10 = true;
         } else {
             z10 = false;
@@ -153,7 +153,7 @@ public final class a3 extends FrameLayout {
         }
         layoutParams.width = dp;
         if (z10) {
-            this.f21790a.requestLayout();
+            this.f21794a.requestLayout();
         }
         if (arrayList != null) {
             for (int i12 = 0; i12 < 3; i12++) {
@@ -177,13 +177,13 @@ public final class a3 extends FrameLayout {
         int i11;
         int i12;
         int i13;
-        this.f21796r = z11;
+        this.f21800r = z11;
         if (TextUtils.isEmpty(charSequence)) {
             i10 = 8;
         } else {
             i10 = 0;
         }
-        org.telegram.ui.Components.y5 y5Var = this.f21792c;
+        org.telegram.ui.Components.y5 y5Var = this.f21796c;
         y5Var.setVisibility(i10);
         y5Var.setText(charSequence);
         y5Var.setCompoundDrawables(null, null, null, null);
@@ -193,8 +193,8 @@ public final class a3 extends FrameLayout {
         } else {
             i11 = 8;
         }
-        this.f21793e.setVisibility(i11);
-        this.f21794f.setVisibility(8);
+        this.f21797e.setVisibility(i11);
+        this.f21798f.setVisibility(8);
         if (z10) {
             i12 = AndroidUtilities.dp(24.0f);
         } else {
@@ -209,42 +209,42 @@ public final class a3 extends FrameLayout {
         if (z12) {
             i12 = 0;
         }
-        this.f21791b.setPadding(i13, 0, i12, 0);
+        this.f21795b.setPadding(i13, 0, i12, 0);
         d();
     }
 
     public final void d() {
         int i10;
-        if (this.f21796r) {
-            i10 = org.telegram.ui.ActionBar.i6.f21063q7;
+        if (this.f21800r) {
+            i10 = org.telegram.ui.ActionBar.i6.f21068q7;
         } else {
             i10 = org.telegram.ui.ActionBar.i6.G6;
         }
-        this.f21792c.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i10, false));
-        int i11 = org.telegram.ui.ActionBar.i6.f21209y6;
+        this.f21796c.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i10, false));
+        int i11 = org.telegram.ui.ActionBar.i6.f21214y6;
         int w02 = org.telegram.ui.ActionBar.i6.w0(null, i11, false);
         q90 q90Var = this.d;
         q90Var.setTextColor(w02);
         q90Var.setLinkTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.gc, false));
         int w03 = org.telegram.ui.ActionBar.i6.w0(null, i11, false);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        this.f21793e.setColorFilter(w03, mode);
+        this.f21797e.setColorFilter(w03, mode);
         int w04 = org.telegram.ui.ActionBar.i6.w0(null, i11, false);
-        ImageView imageView = this.f21794f;
+        ImageView imageView = this.f21798f;
         imageView.setColorFilter(w04, mode);
-        imageView.setBackground(org.telegram.ui.ActionBar.x5.c(null, org.telegram.ui.ActionBar.x5.b(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.x5.f21694a, false))));
+        imageView.setBackground(org.telegram.ui.ActionBar.x5.c(null, org.telegram.ui.ActionBar.x5.b(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.x5.f21698a, false))));
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.y, Integer.MIN_VALUE));
-        LinearLayout linearLayout = this.f21791b;
+        LinearLayout linearLayout = this.f21795b;
         linearLayout.measure(View.MeasureSpec.makeMeasureSpec(linearLayout.getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.y, Integer.MIN_VALUE));
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(getPaddingBottom() + getPaddingTop() + linearLayout.getMeasuredHeight(), 1073741824));
-        this.f21794f.setTranslationY((getPaddingBottom() - getPaddingTop()) / 2.0f);
-        this.f21795n.setTranslationY((getPaddingBottom() - getPaddingTop()) / 2.0f);
+        this.f21798f.setTranslationY((getPaddingBottom() - getPaddingTop()) / 2.0f);
+        this.f21799n.setTranslationY((getPaddingBottom() - getPaddingTop()) / 2.0f);
         this.h.setTranslationY((getPaddingBottom() - getPaddingTop()) / 2.0f);
-        this.f21793e.setTranslationY((getPaddingBottom() - getPaddingTop()) / 2.0f);
+        this.f21797e.setTranslationY((getPaddingBottom() - getPaddingTop()) / 2.0f);
     }
 
     @Override
@@ -261,8 +261,8 @@ public final class a3 extends FrameLayout {
     }
 
     public void setOnCloseListener(View.OnClickListener onClickListener) {
-        this.f21793e.setVisibility(4);
-        ImageView imageView = this.f21794f;
+        this.f21797e.setVisibility(4);
+        ImageView imageView = this.f21798f;
         imageView.setVisibility(0);
         imageView.setOnClickListener(onClickListener);
     }

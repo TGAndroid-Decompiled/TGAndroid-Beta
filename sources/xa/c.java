@@ -81,22 +81,22 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Cells.q9;
 import org.telegram.ui.Components.d5;
 import org.telegram.ui.Components.jo0;
-import org.telegram.ui.Components.oq0;
+import org.telegram.ui.Components.qq0;
 import org.telegram.ui.fy;
 import org.telegram.ui.zi0;
-import pg.m;
 import pg.t1;
 import pg.u0;
 import qg.v1;
 import v7.i5;
-public final class c implements s, oq0, a0, androidx.activity.result.b, ce.b, v1, v0, OnSuccessListener, SuccessContinuation, n, f6.a, fb.n, w, b2, z3.n, d5, h1 {
-    public static volatile c f49819c;
-    public final int f49820a;
-    public Object f49821b;
+import z3.m;
+public final class c implements s, qq0, a0, androidx.activity.result.b, ce.b, v1, v0, OnSuccessListener, SuccessContinuation, n, f6.a, fb.n, w, b2, m, d5, h1 {
+    public static volatile c f49826c;
+    public final int f49827a;
+    public Object f49828b;
 
     public c(r rVar, String[] strArr) {
-        this.f49820a = 22;
-        this.f49821b = strArr;
+        this.f49827a = 22;
+        this.f49828b = strArr;
     }
 
     public static p D(Looper looper, Object obj, String str) {
@@ -106,13 +106,13 @@ public final class c implements s, oq0, a0, androidx.activity.result.b, ce.b, v1
     }
 
     @Override
-    public int A() {
-        return 2;
+    public void A(java.lang.String r14, long r15, int r17, java.lang.Object r18, long r19, long r21) {
+        throw new UnsupportedOperationException("Method not decompiled: xa.c.A(java.lang.String, long, int, java.lang.Object, long, long):void");
     }
 
     @Override
     public void B(Editable editable) {
-        q5 q5Var = (q5) this.f49821b;
+        q5 q5Var = (q5) this.f49828b;
         ii.a aVar = q5Var.f12204a;
         if (aVar != null) {
             aVar.f12202s = true;
@@ -126,45 +126,16 @@ public final class c implements s, oq0, a0, androidx.activity.result.b, ce.b, v1
     }
 
     @Override
-    public void C(ArrayList arrayList) {
-        boolean z10;
-        switch (this.f49820a) {
-            case 23:
-                jo0 jo0Var = (jo0) this.f49821b;
-                for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                    jo0Var.J.add(((a2) arrayList.get(i10)).f10513a);
-                }
-                fy fyVar = jo0Var.U;
-                if (fyVar != null) {
-                    if (jo0Var.D0 > 0) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    fyVar.d(z10, false);
-                }
-                jo0Var.l();
-                return;
-            default:
-                return;
-        }
+    public boolean C(boolean z10) {
+        return false;
     }
 
     @Override
-    public void E(float f7) {
-        mb mbVar = (mb) this.f49821b;
-        u0.e(mbVar.F1).k(String.valueOf(m.f44534a.indexOf(mbVar.O0.getCurrentBrush())), f7);
-        t1 t1Var = mbVar.A1;
-        t1Var.f44640c = f7;
-        mbVar.E0(t1Var, null, false);
-    }
-
-    @Override
-    public void F(byte[] bArr, int i10, int i11, z3.m mVar, h hVar) {
+    public void E(byte[] bArr, int i10, int i11, z3.l lVar, h hVar) {
         boolean z10;
         d2.b a2;
         boolean z11;
-        v vVar = (v) this.f49821b;
+        v vVar = (v) this.f49828b;
         vVar.H(i10 + i11, bArr);
         vVar.J(i10);
         ArrayList arrayList = new ArrayList();
@@ -226,21 +197,41 @@ public final class c implements s, oq0, a0, androidx.activity.result.b, ce.b, v1
     }
 
     @Override
-    public boolean G(boolean z10) {
-        return false;
+    public void F(ArrayList arrayList) {
+        boolean z10;
+        switch (this.f49827a) {
+            case 23:
+                jo0 jo0Var = (jo0) this.f49828b;
+                for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                    jo0Var.J.add(((a2) arrayList.get(i10)).f10513a);
+                }
+                fy fyVar = jo0Var.U;
+                if (fyVar != null) {
+                    if (jo0Var.D0 > 0) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    fyVar.d(z10, false);
+                }
+                jo0Var.l();
+                return;
+            default:
+                return;
+        }
     }
 
-    public dc.d H(com.google.firebase.messaging.m r24) {
-        throw new UnsupportedOperationException("Method not decompiled: xa.c.H(com.google.firebase.messaging.m):dc.d");
+    public dc.d G(com.google.firebase.messaging.m r24) {
+        throw new UnsupportedOperationException("Method not decompiled: xa.c.G(com.google.firebase.messaging.m):dc.d");
     }
 
-    public int I(int i10, int[] iArr) {
+    public int H(int i10, int[] iArr) {
         int[] iArr2;
         int[] iArr3;
         int i11;
         int i12;
         int i13;
-        fc.a aVar = (fc.a) this.f49821b;
+        fc.a aVar = (fc.a) this.f49828b;
         if (iArr.length != 0) {
             int length = iArr.length;
             if (length > 1 && iArr[0] == 0) {
@@ -392,20 +383,24 @@ public final class c implements s, oq0, a0, androidx.activity.result.b, ce.b, v1
         throw new IllegalArgumentException();
     }
 
-    public Set J() {
+    public Set I() {
         Set unmodifiableSet;
-        synchronized (((HashSet) this.f49821b)) {
-            unmodifiableSet = DesugarCollections.unmodifiableSet((HashSet) this.f49821b);
+        synchronized (((HashSet) this.f49828b)) {
+            unmodifiableSet = DesugarCollections.unmodifiableSet((HashSet) this.f49828b);
         }
         return unmodifiableSet;
     }
 
+    public void J() {
+        ((u) this.f49828b).d.R();
+    }
+
     @Override
     public void K(int i10, int i11, boolean z10) {
-        switch (this.f49820a) {
+        switch (this.f49827a) {
             case 27:
-                ((ii.r) this.f49821b).G(i10, z10, i11, false, 0L);
-                ii.r rVar = (ii.r) this.f49821b;
+                ((ii.r) this.f49828b).G(i10, z10, i11, false, 0L);
+                ii.r rVar = (ii.r) this.f49828b;
                 zi0 zi0Var = rVar.O;
                 if (zi0Var != null) {
                     zi0Var.i();
@@ -414,21 +409,26 @@ public final class c implements s, oq0, a0, androidx.activity.result.b, ce.b, v1
                 }
                 return;
             default:
-                ((e2) this.f49821b).s0(i10, i11, z10);
+                ((e2) this.f49828b).s0(i10, i11, z10);
                 return;
         }
     }
 
-    public void L() {
-        ((u) this.f49821b).d.R();
+    @Override
+    public void X(float f7) {
+        mb mbVar = (mb) this.f49828b;
+        u0.e(mbVar.F1).k(String.valueOf(pg.m.f44541a.indexOf(mbVar.O0.getCurrentBrush())), f7);
+        t1 t1Var = mbVar.A1;
+        t1Var.f44647c = f7;
+        mbVar.E0(t1Var, null, false);
     }
 
     @Override
     public void a(int i10) {
         boolean z10;
-        switch (this.f49820a) {
+        switch (this.f49827a) {
             case 23:
-                jo0 jo0Var = (jo0) this.f49821b;
+                jo0 jo0Var = (jo0) this.f49828b;
                 jo0Var.D0--;
                 jo0Var.f10616e0 = i10;
                 if (jo0Var.f10618f0 != i10) {
@@ -462,7 +462,7 @@ public final class c implements s, oq0, a0, androidx.activity.result.b, ce.b, v1
 
     @Override
     public void accept(Object obj, Object obj2) {
-        switch (this.f49820a) {
+        switch (this.f49827a) {
             case 1:
                 e eVar = new e(0, (TaskCompletionSource) obj2);
                 Parcel obtain = Parcel.obtain();
@@ -470,7 +470,7 @@ public final class c implements s, oq0, a0, androidx.activity.result.b, ce.b, v1
                 int i10 = a8.a.f331a;
                 obtain.writeStrongBinder(eVar);
                 obtain.writeInt(1);
-                ((l8.a) this.f49821b).writeToParcel(obtain, 0);
+                ((l8.a) this.f49828b).writeToParcel(obtain, 0);
                 ((a8.c) ((a8.g) obj).u()).G0(obtain, 2);
                 return;
             default:
@@ -478,7 +478,7 @@ public final class c implements s, oq0, a0, androidx.activity.result.b, ce.b, v1
                 i iVar = (i) ((g6.s) obj).u();
                 Parcel O0 = iVar.O0();
                 com.google.android.gms.internal.cast.v.d(O0, qVar);
-                O0.writeStringArray((String[]) this.f49821b);
+                O0.writeStringArray((String[]) this.f49828b);
                 iVar.T0(O0, 5);
                 return;
         }
@@ -486,17 +486,17 @@ public final class c implements s, oq0, a0, androidx.activity.result.b, ce.b, v1
 
     @Override
     public void b(i1 i1Var) {
-        d3 d3Var = ((q5) this.f49821b).E;
+        d3 d3Var = ((q5) this.f49828b).E;
         if (d3Var != null) {
             x3 x3Var = d3Var.f12299a;
-            x3.O1(x3Var, i1Var);
+            x3.N1(x3Var, i1Var);
             x3Var.f12770o3.P(i1Var, true);
         }
     }
 
     @Override
     public void c(k kVar, boolean z10) {
-        ((g.s) this.f49821b).g(kVar);
+        ((g.s) this.f49828b).g(kVar);
     }
 
     @Override
@@ -506,10 +506,10 @@ public final class c implements s, oq0, a0, androidx.activity.result.b, ce.b, v1
 
     @Override
     public boolean e() {
-        q5 q5Var = (q5) this.f49821b;
+        q5 q5Var = (q5) this.f49828b;
         d3 d3Var = q5Var.E;
         if (d3Var != null && q5Var.f12204a != null) {
-            return d3Var.f12299a.U4();
+            return d3Var.f12299a.T4();
         }
         return false;
     }
@@ -517,7 +517,7 @@ public final class c implements s, oq0, a0, androidx.activity.result.b, ce.b, v1
     @Override
     public void f(int i10, int i11) {
         i2 i2Var;
-        q5 q5Var = (q5) this.f49821b;
+        q5 q5Var = (q5) this.f49828b;
         d3 d3Var = q5Var.E;
         if (d3Var != null && q5Var.f12204a != null && (i2Var = d3Var.f12299a.Q3) != null) {
             i2Var.f(i10, i11);
@@ -525,7 +525,7 @@ public final class c implements s, oq0, a0, androidx.activity.result.b, ce.b, v1
     }
 
     public void g(j jVar) {
-        LinkedHashMap linkedHashMap = (LinkedHashMap) this.f49821b;
+        LinkedHashMap linkedHashMap = (LinkedHashMap) this.f49828b;
         long[] jArr = jVar.f4079e;
         if (jArr.length > 0 && !linkedHashMap.containsKey(Long.valueOf(jArr[0]))) {
             linkedHashMap.put(Long.valueOf(jVar.f4079e[0]), jVar);
@@ -534,13 +534,13 @@ public final class c implements s, oq0, a0, androidx.activity.result.b, ce.b, v1
 
     @Override
     public float get() {
-        mb mbVar = (mb) this.f49821b;
+        mb mbVar = (mb) this.f49828b;
         int i10 = mbVar.F1;
-        m currentBrush = mbVar.O0.getCurrentBrush();
+        pg.m currentBrush = mbVar.O0.getCurrentBrush();
         if (currentBrush == null) {
-            return u0.e(i10).f44653i;
+            return u0.e(i10).f44660i;
         }
-        return u0.e(i10).f(String.valueOf(m.f44534a.indexOf(currentBrush)), currentBrush.d());
+        return u0.e(i10).f(String.valueOf(pg.m.f44541a.indexOf(currentBrush)), currentBrush.d());
     }
 
     @Override
@@ -550,7 +550,7 @@ public final class c implements s, oq0, a0, androidx.activity.result.b, ce.b, v1
 
     @Override
     public void i(k6.a aVar) {
-        x xVar = (x) this.f49821b;
+        x xVar = (x) this.f49828b;
         xVar.f6659o.lock();
         try {
             xVar.f6656l = aVar;
@@ -563,7 +563,7 @@ public final class c implements s, oq0, a0, androidx.activity.result.b, ce.b, v1
     @Override
     public void j(Object obj) {
         Bundle extras;
-        ProxyBillingActivityV2 proxyBillingActivityV2 = (ProxyBillingActivityV2) this.f49821b;
+        ProxyBillingActivityV2 proxyBillingActivityV2 = (ProxyBillingActivityV2) this.f49828b;
         androidx.activity.result.a aVar = (androidx.activity.result.a) obj;
         proxyBillingActivityV2.getClass();
         Intent intent = aVar.f2083b;
@@ -598,7 +598,7 @@ public final class c implements s, oq0, a0, androidx.activity.result.b, ce.b, v1
                 }
                 sb2.append(obj);
                 while (it.hasNext()) {
-                    sb2.append((CharSequence) ((String) this.f49821b));
+                    sb2.append((CharSequence) ((String) this.f49828b));
                     Object next2 = it.next();
                     Objects.requireNonNull(next2);
                     if (next2 instanceof CharSequence) {
@@ -633,7 +633,7 @@ public final class c implements s, oq0, a0, androidx.activity.result.b, ce.b, v1
             new Canvas(createBitmap).drawBitmap(bitmap, (Rect) null, rectF, (Paint) null);
             bitmap2 = createBitmap;
         }
-        ((f6.i) this.f49821b).e(bitmap2, 0);
+        ((f6.i) this.f49828b).e(bitmap2, 0);
     }
 
     @Override
@@ -644,7 +644,7 @@ public final class c implements s, oq0, a0, androidx.activity.result.b, ce.b, v1
     @Override
     public void o(int i10) {
         k6.a aVar;
-        x xVar = (x) this.f49821b;
+        x xVar = (x) this.f49828b;
         Lock lock = xVar.f6659o;
         lock.lock();
         try {
@@ -664,7 +664,7 @@ public final class c implements s, oq0, a0, androidx.activity.result.b, ce.b, v1
 
     @Override
     public void onSuccess(Object obj) {
-        ((d6.a) this.f49821b).getClass();
+        ((d6.a) this.f49828b).getClass();
         i5.a("com.google.android.gms.cast.MAP_CAST_STATUS_CODES_TO_CAST_REASON_CODES", (Bundle) obj);
     }
 
@@ -675,7 +675,7 @@ public final class c implements s, oq0, a0, androidx.activity.result.b, ce.b, v1
 
     @Override
     public Object p2() {
-        Type type = (Type) this.f49821b;
+        Type type = (Type) this.f49828b;
         if (type instanceof ParameterizedType) {
             Type type2 = ((ParameterizedType) type).getActualTypeArguments()[0];
             if (type2 instanceof Class) {
@@ -688,7 +688,7 @@ public final class c implements s, oq0, a0, androidx.activity.result.b, ce.b, v1
 
     @Override
     public void q(String str, long j3, long j10, long j11) {
-        e6.p pVar = (e6.p) this.f49821b;
+        e6.p pVar = (e6.p) this.f49828b;
         try {
             pVar.a(new o(new Status(2103, null, null, null), 1));
         } catch (IllegalStateException e7) {
@@ -702,20 +702,12 @@ public final class c implements s, oq0, a0, androidx.activity.result.b, ce.b, v1
     }
 
     @Override
-    public void s(Bundle bundle) {
-        x xVar = (x) this.f49821b;
-        xVar.f6659o.lock();
-        try {
-            Bundle bundle2 = xVar.f6655k;
-            if (bundle2 == null) {
-                xVar.f6655k = bundle;
-            } else if (bundle != null) {
-                bundle2.putAll(bundle);
-            }
-            xVar.f6656l = k6.a.f14663e;
-            x.l(xVar);
-        } finally {
-            xVar.f6659o.unlock();
+    public a0.i s() {
+        switch (this.f49827a) {
+            case 23:
+                return null;
+            default:
+                return null;
         }
     }
 
@@ -723,7 +715,7 @@ public final class c implements s, oq0, a0, androidx.activity.result.b, ce.b, v1
     public void t(i1 i1Var, int i10, int i11) {
         d3 d3Var;
         q9 textSelectionHelper;
-        q5 q5Var = (q5) this.f49821b;
+        q5 q5Var = (q5) this.f49828b;
         if (!q5Var.G && i10 != i11 && (d3Var = q5Var.E) != null && (textSelectionHelper = d3Var.f12299a.getTextSelectionHelper()) != null) {
             if (!textSelectionHelper.y() || textSelectionHelper.W != q5Var) {
                 q5Var.post(new y4(this, i1Var, i11, textSelectionHelper, i10, 4));
@@ -736,7 +728,7 @@ public final class c implements s, oq0, a0, androidx.activity.result.b, ce.b, v1
         JSONObject jSONObject;
         FileWriter fileWriter;
         Void r13 = (Void) obj;
-        da.b bVar = (da.b) this.f49821b;
+        da.b bVar = (da.b) this.f49828b;
         c5.i iVar = (c5.i) bVar.f8184f;
         da.d dVar = (da.d) bVar.f8181b;
         String str = iVar.f4210a;
@@ -815,13 +807,26 @@ public final class c implements s, oq0, a0, androidx.activity.result.b, ce.b, v1
     }
 
     @Override
-    public void u(java.lang.String r14, long r15, int r17, java.lang.Object r18, long r19, long r21) {
-        throw new UnsupportedOperationException("Method not decompiled: xa.c.u(java.lang.String, long, int, java.lang.Object, long, long):void");
+    public void u(Bundle bundle) {
+        x xVar = (x) this.f49828b;
+        xVar.f6659o.lock();
+        try {
+            Bundle bundle2 = xVar.f6655k;
+            if (bundle2 == null) {
+                xVar.f6655k = bundle;
+            } else if (bundle != null) {
+                bundle2.putAll(bundle);
+            }
+            xVar.f6656l = k6.a.f14663e;
+            x.l(xVar);
+        } finally {
+            xVar.f6659o.unlock();
+        }
     }
 
     @Override
     public boolean v(k kVar) {
-        Window.Callback callback = ((g.s) this.f49821b).f10103f.getCallback();
+        Window.Callback callback = ((g.s) this.f49828b).f10103f.getCallback();
         if (callback != null) {
             callback.onMenuOpened(108, kVar);
             return true;
@@ -830,12 +835,10 @@ public final class c implements s, oq0, a0, androidx.activity.result.b, ce.b, v1
     }
 
     @Override
-    public a0.i w() {
-        switch (this.f49820a) {
-            case 23:
-                return null;
-            default:
-                return null;
+    public void w(CharSequence charSequence) {
+        d3 d3Var = ((q5) this.f49828b).E;
+        if (d3Var != null && charSequence != null && charSequence.length() > 0) {
+            d3Var.f12299a.u4(charSequence.toString());
         }
     }
 
@@ -845,21 +848,8 @@ public final class c implements s, oq0, a0, androidx.activity.result.b, ce.b, v1
     }
 
     @Override
-    public void x(CharSequence charSequence) {
-        d3 d3Var = ((q5) this.f49821b).E;
-        if (d3Var != null && charSequence != null && charSequence.length() > 0) {
-            d3Var.f12299a.v4(charSequence.toString());
-        }
-    }
-
-    @Override
-    public void x0() {
-        e6.j0((e6) this.f49821b);
-    }
-
-    @Override
-    public a0.i y() {
-        switch (this.f49820a) {
+    public a0.i x() {
+        switch (this.f49827a) {
             case 23:
                 return null;
             default:
@@ -868,10 +858,20 @@ public final class c implements s, oq0, a0, androidx.activity.result.b, ce.b, v1
     }
 
     @Override
+    public void x0() {
+        e6.j0((e6) this.f49828b);
+    }
+
+    @Override
+    public int y() {
+        return 2;
+    }
+
+    @Override
     public boolean z(int i10) {
-        switch (this.f49820a) {
+        switch (this.f49827a) {
             case 23:
-                if (i10 == ((jo0) this.f49821b).f10614d0) {
+                if (i10 == ((jo0) this.f49828b).f10614d0) {
                     return true;
                 }
                 return false;
@@ -881,37 +881,37 @@ public final class c implements s, oq0, a0, androidx.activity.result.b, ce.b, v1
     }
 
     public c(Object obj, int i10) {
-        this.f49820a = i10;
-        this.f49821b = obj;
+        this.f49827a = i10;
+        this.f49828b = obj;
     }
 
     public c(int i10) {
-        this.f49820a = i10;
+        this.f49827a = i10;
         switch (i10) {
             case 6:
                 return;
             case 7:
-                this.f49821b = new LinkedHashMap();
+                this.f49828b = new LinkedHashMap();
                 return;
             case 11:
-                this.f49821b = Collections.newSetFromMap(new WeakHashMap());
+                this.f49828b = Collections.newSetFromMap(new WeakHashMap());
                 return;
             case 24:
-                this.f49821b = new c(fc.a.h, 20);
+                this.f49828b = new c(fc.a.h, 20);
                 return;
             case 26:
-                this.f49821b = new v();
+                this.f49828b = new v();
                 return;
             default:
-                this.f49821b = new HashSet();
+                this.f49828b = new HashSet();
                 return;
         }
     }
 
     public c(String str) {
-        this.f49820a = 15;
+        this.f49827a = 15;
         str.getClass();
-        this.f49821b = str;
+        this.f49828b = str;
     }
 
     @Override
@@ -926,7 +926,7 @@ public final class c implements s, oq0, a0, androidx.activity.result.b, ce.b, v1
     public void reset() {
     }
 
-    private final void M(ArrayList arrayList) {
+    private final void L(ArrayList arrayList) {
     }
 
     @Override

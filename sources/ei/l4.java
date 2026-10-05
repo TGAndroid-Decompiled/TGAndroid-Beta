@@ -7,18 +7,18 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.ew0;
+import org.telegram.ui.Components.fw0;
 public class l4 extends View {
-    public final ew0 f9186a;
+    public final fw0 f9186a;
     public final Paint f9187b;
     public float f9188c;
     public o1.k d;
 
     public l4(Context context, d6 d6Var) {
         super(context);
-        ew0 ew0Var = new ew0(new d2.c(19), new d2.c(20));
-        ew0Var.f26170c = 100.0f;
-        this.f9186a = ew0Var;
+        fw0 fw0Var = new fw0(new d2.c(19), new d2.c(20));
+        fw0Var.f26617c = 100.0f;
+        this.f9186a = fw0Var;
         Paint paint = new Paint(1);
         this.f9187b = paint;
         paint.setColor(i6.v0(i6.Oh, d6Var));
@@ -44,7 +44,7 @@ public class l4 extends View {
         o1.l lVar = new o1.l();
         lVar.b(400.0f);
         lVar.a(1.0f);
-        kVar.f16988u = lVar;
+        kVar.f16993u = lVar;
         this.d = kVar;
     }
 
@@ -66,7 +66,7 @@ public class l4 extends View {
             setLoadProgress(f7);
             return;
         }
-        kVar.f16988u.f16995i = f7 * 100.0f;
+        kVar.f16993u.f17000i = f7 * 100.0f;
         kVar.f();
     }
 }

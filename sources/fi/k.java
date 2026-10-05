@@ -15,7 +15,6 @@ import org.telegram.ui.Components.h9;
 import org.telegram.ui.Components.kj0;
 import org.telegram.ui.Components.x40;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.a91;
 import org.telegram.ui.g10;
 import org.telegram.ui.h60;
 import org.telegram.ui.jo;
@@ -24,6 +23,7 @@ import org.telegram.ui.nd;
 import org.telegram.ui.no;
 import org.telegram.ui.p50;
 import org.telegram.ui.to;
+import org.telegram.ui.y81;
 public final class k implements Runnable {
     public final int f9908a;
     public final TLRPC.InputFile f9909b;
@@ -70,7 +70,7 @@ public final class k implements Runnable {
                     pVar.getMessagesController().changeChatAvatar(pVar.f9947b, null, inputFile, inputFile2, videoSize, this.f9912f, this.f9911e, photoSize.location, this.f9913n.location, null);
                     pVar.Z(false, true);
                 }
-                pVar.d.f25250f3.N(z10);
+                pVar.d.f26034f3.N(z10);
                 return;
             case 1:
                 nd ndVar = (nd) this.f9914r;
@@ -78,30 +78,30 @@ public final class k implements Runnable {
                 TLRPC.InputFile inputFile4 = this.f9910c;
                 if (inputFile3 == null && inputFile4 == null) {
                     TLRPC.FileLocation fileLocation2 = this.h.location;
-                    ndVar.f38940x = fileLocation2;
-                    ndVar.f38941y = this.f9913n.location;
-                    ndVar.f38916e.h(ImageLocation.getForLocal(fileLocation2), "50_50", ndVar.f38933s, null);
+                    ndVar.f38930x = fileLocation2;
+                    ndVar.f38931y = this.f9913n.location;
+                    ndVar.f38906e.h(ImageLocation.getForLocal(fileLocation2), "50_50", ndVar.f38923s, null);
                     ndVar.e0(true, false);
                     return;
                 }
-                ndVar.f38925l0 = inputFile3;
+                ndVar.f38915l0 = inputFile3;
                 ndVar.m0 = inputFile4;
-                ndVar.f38927n0 = this.d;
-                ndVar.f38928o0 = this.f9911e;
-                ndVar.f38929p0 = this.f9912f;
-                if (ndVar.f38930q0) {
-                    b2 b2Var = ndVar.f38936u0;
+                ndVar.f38917n0 = this.d;
+                ndVar.f38918o0 = this.f9911e;
+                ndVar.f38919p0 = this.f9912f;
+                if (ndVar.f38920q0) {
+                    b2 b2Var = ndVar.f38926u0;
                     if (b2Var != null) {
                         try {
                             b2Var.dismiss();
-                            ndVar.f38936u0 = null;
+                            ndVar.f38926u0 = null;
                         } catch (Exception e7) {
                             FileLog.e(e7);
                         }
                     }
                     ndVar.g0(false);
-                    ndVar.f38932r0 = false;
-                    ndVar.f38909a.performClick();
+                    ndVar.f38922r0 = false;
+                    ndVar.f38899a.performClick();
                 }
                 ndVar.e0(false, true);
                 ndVar.h.setImageDrawable(null);
@@ -110,25 +110,25 @@ public final class k implements Runnable {
                 to toVar = (to) this.f9914r;
                 TLRPC.PhotoSize photoSize2 = this.h;
                 TLRPC.FileLocation fileLocation3 = photoSize2.location;
-                toVar.f40916v0 = fileLocation3;
+                toVar.f40972v0 = fileLocation3;
                 TLRPC.InputFile inputFile5 = this.f9909b;
                 TLRPC.InputFile inputFile6 = this.f9910c;
                 TLRPC.VideoSize videoSize2 = this.d;
                 if (inputFile5 == null && inputFile6 == null && videoSize2 == null) {
-                    y5 y5Var = toVar.f40895e;
+                    y5 y5Var = toVar.f40951e;
                     ImageLocation forLocal = ImageLocation.getForLocal(fileLocation3);
-                    h9 h9Var = toVar.f40910r;
+                    h9 h9Var = toVar.f40966r;
                     Object obj = toVar.D0;
                     if (obj == null) {
-                        obj = toVar.f40920x0;
+                        obj = toVar.f40976x0;
                     }
                     y5Var.h(forLocal, "50_50", h9Var, obj);
-                    toVar.f40891b0.m(R.drawable.msg_addphoto, LocaleController.getString("ChatSetNewPhoto", R.string.ChatSetNewPhoto), true);
+                    toVar.f40947b0.m(R.drawable.msg_addphoto, LocaleController.getString("ChatSetNewPhoto", R.string.ChatSetNewPhoto), true);
                     if (toVar.R0 == null) {
                         toVar.R0 = new kj0(R.raw.camera_outline, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
                     }
-                    toVar.f40891b0.f22727e.setTranslationX(-AndroidUtilities.dp(8.0f));
-                    toVar.f40891b0.f22727e.setAnimation(toVar.R0);
+                    toVar.f40947b0.f22730e.setTranslationX(-AndroidUtilities.dp(8.0f));
+                    toVar.f40947b0.f22730e.setAnimation(toVar.R0);
                     toVar.n0(true, false);
                     return;
                 }
@@ -142,9 +142,9 @@ public final class k implements Runnable {
                         user.photo = new TLRPC.TL_userProfilePhoto();
                         TLRPC.UserProfilePhoto userProfilePhoto = toVar.D0.photo;
                         if (inputFile5 != null) {
-                            j10 = inputFile5.f20056id;
+                            j10 = inputFile5.f20061id;
                         } else if (inputFile6 != null) {
-                            j10 = inputFile6.f20056id;
+                            j10 = inputFile6.f20061id;
                         }
                         userProfilePhoto.photo_id = j10;
                         userProfilePhoto.photo_big = photoSize3.location;
@@ -172,7 +172,7 @@ public final class k implements Runnable {
                     z11 = false;
                 } else {
                     MessagesController messagesController = toVar.getMessagesController();
-                    long j11 = toVar.f40918w0;
+                    long j11 = toVar.f40974w0;
                     TLRPC.FileLocation fileLocation4 = photoSize2.location;
                     TLRPC.FileLocation fileLocation5 = photoSize3.location;
                     z11 = false;
@@ -180,23 +180,23 @@ public final class k implements Runnable {
                 }
                 if (toVar.M0) {
                     try {
-                        b2 b2Var2 = toVar.f40890b;
+                        b2 b2Var2 = toVar.f40946b;
                         if (b2Var2 != null && b2Var2.isShowing()) {
-                            toVar.f40890b.dismiss();
-                            toVar.f40890b = null;
+                            toVar.f40946b.dismiss();
+                            toVar.f40946b = null;
                         }
                     } catch (Exception e10) {
                         FileLog.e(e10);
                     }
                     toVar.N0 = z11;
-                    toVar.f40888a.performClick();
+                    toVar.f40944a.performClick();
                 }
                 toVar.n0(z11, true);
                 return;
             case 3:
                 p50 p50Var = (p50) this.f9914r;
-                long j12 = p50Var.f39350e;
-                h60 h60Var = p50Var.f39351f;
+                long j12 = p50Var.f39358e;
+                h60 h60Var = p50Var.f39359f;
                 AccountInstance accountInstance = h60Var.d;
                 TLRPC.InputFile inputFile7 = this.f9909b;
                 TLRPC.InputFile inputFile8 = this.f9910c;
@@ -204,12 +204,12 @@ public final class k implements Runnable {
                 TLRPC.PhotoSize photoSize4 = this.h;
                 TLRPC.PhotoSize photoSize5 = this.f9913n;
                 if (inputFile7 == null && inputFile8 == null && videoSize3 == null) {
-                    p50Var.f39349c = photoSize4.location;
+                    p50Var.f39357c = photoSize4.location;
                     TLRPC.FileLocation fileLocation6 = photoSize5.location;
-                    p50Var.f39348b = fileLocation6;
+                    p50Var.f39356b = fileLocation6;
                     ImageLocation forLocal2 = ImageLocation.getForLocal(fileLocation6);
                     p50Var.d = forLocal2;
-                    h60Var.f36881b.A(forLocal2, ImageLocation.getForLocal(p50Var.f39349c));
+                    h60Var.f36908b.A(forLocal2, ImageLocation.getForLocal(p50Var.f39357c));
                     AndroidUtilities.updateVisibleRows(h60Var.Q);
                     return;
                 }
@@ -243,9 +243,9 @@ public final class k implements Runnable {
                 TLRPC.VideoSize videoSize4 = this.d;
                 if (inputFile9 == null && inputFile10 == null && videoSize4 == null) {
                     TLRPC.FileLocation fileLocation7 = this.h.location;
-                    k70Var.f37855y = fileLocation7;
+                    k70Var.f37870y = fileLocation7;
                     k70Var.E = this.f9913n.location;
-                    k70Var.d.h(ImageLocation.getForLocal(fileLocation7), "50_50", k70Var.f37851r, null);
+                    k70Var.d.h(ImageLocation.getForLocal(fileLocation7), "50_50", k70Var.f37866r, null);
                     k70Var.Y(true, false);
                     return;
                 }
@@ -255,16 +255,16 @@ public final class k implements Runnable {
                 k70Var.I = this.f9911e;
                 k70Var.J = this.f9912f;
                 if (k70Var.L) {
-                    k70Var.getMessagesController().createChat(k70Var.f37847c.getText().toString(), k70Var.K, null, k70Var.P, k70Var.S, k70Var.U, k70Var.T, k70Var.W, k70Var);
+                    k70Var.getMessagesController().createChat(k70Var.f37862c.getText().toString(), k70Var.K, null, k70Var.P, k70Var.S, k70Var.U, k70Var.T, k70Var.W, k70Var);
                 }
                 k70Var.Y(false, true);
-                k70Var.f37849f.setImageDrawable(null);
+                k70Var.f37864f.setImageDrawable(null);
                 return;
             case 5:
                 ProfileActivity.d0((ProfileActivity) this.f9914r, this.f9909b, this.f9910c, this.d, this.f9912f, this.f9911e, this.h, this.f9913n);
                 return;
             default:
-                a91.T((a91) this.f9914r, this.f9909b, this.f9910c, this.d, this.f9912f, this.f9911e, this.h, this.f9913n);
+                y81.T((y81) this.f9914r, this.f9909b, this.f9910c, this.d, this.f9912f, this.f9911e, this.h, this.f9913n);
                 return;
         }
     }

@@ -8,6 +8,19 @@ public final class f extends dh.b {
     }
 
     @Override
+    public int B() {
+        switch (this.f5066n) {
+            case 2:
+                if (b()) {
+                    return 83886079;
+                }
+                return 536870912;
+            default:
+                return super.B();
+        }
+    }
+
+    @Override
     public int a() {
         switch (this.f5066n) {
             case 2:
@@ -42,19 +55,6 @@ public final class f extends dh.b {
                 return 536870912;
             default:
                 return super.c();
-        }
-    }
-
-    @Override
-    public int x() {
-        switch (this.f5066n) {
-            case 2:
-                if (b()) {
-                    return 83886079;
-                }
-                return 536870912;
-            default:
-                return super.x();
         }
     }
 

@@ -12,39 +12,39 @@ import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.UndoView;
-public final class re implements org.telegram.ui.Components.g60, org.telegram.ui.Components.j60, org.telegram.ui.ActionBar.a2, MessagesStorage.BooleanCallback, org.telegram.ui.Components.lo, org.telegram.ui.Components.zj0, ResultCallback, li.j, wh.c, jh.a, jh.b, org.telegram.ui.Components.ol0, y60, ps, jh.d {
-    public final int f40107a;
-    public final yn f40108b;
+public final class re implements org.telegram.ui.Components.g60, org.telegram.ui.Components.j60, org.telegram.ui.ActionBar.a2, MessagesStorage.BooleanCallback, org.telegram.ui.Components.lo, org.telegram.ui.Components.zj0, ResultCallback, li.l, wh.c, jh.a, jh.b, org.telegram.ui.Components.ol0, y60, ps, jh.d {
+    public final int f40077a;
+    public final yn f40078b;
 
     public re(yn ynVar, int i10) {
-        this.f40107a = i10;
-        this.f40108b = ynVar;
+        this.f40077a = i10;
+        this.f40078b = ynVar;
     }
 
     @Override
     public void a() {
-        yn ynVar = this.f40108b;
-        if (ynVar.f43549w3 == null && ynVar.getParentActivity() != null) {
+        yn ynVar = this.f40078b;
+        if (ynVar.f43542w3 == null && ynVar.getParentActivity() != null) {
             ynVar.Q7();
-            ynVar.f43549w3.m(ynVar.R5, ynVar.f43334f, 8);
+            ynVar.f43542w3.m(ynVar.R5, ynVar.f43327f, 8);
         }
     }
 
     @Override
     public void b(TLRPC.Document document) {
-        switch (this.f40107a) {
+        switch (this.f40077a) {
             case 6:
-                yn.u0(this.f40108b, document);
+                yn.u0(this.f40078b, document);
                 return;
             default:
-                yn.v0(this.f40108b, document);
+                yn.v0(this.f40078b, document);
                 return;
         }
     }
 
     @Override
     public boolean d(int i10, View view) {
-        yn ynVar = this.f40108b;
+        yn ynVar = this.f40078b;
         boolean z10 = false;
         if (ynVar.getParentActivity() != null) {
             gg.k1 adapter = ynVar.G1.getAdapter();
@@ -56,11 +56,11 @@ public final class re implements org.telegram.ui.Components.g60, org.telegram.ui
                 Object J = ynVar.G1.getAdapter().J(i10 - 1);
                 if (J instanceof gg.h1) {
                     gg.h1 h1Var = (gg.h1) J;
-                    if (ynVar.G1.getAdapter().J != null && org.telegram.ui.Components.h61.h) {
+                    if (ynVar.G1.getAdapter().J != null && org.telegram.ui.Components.i61.h) {
                         ynVar.W.setFieldText("");
                         jk jkVar = ynVar.W;
                         String str = h1Var.f10605a;
-                        TLRPC.Chat chat = ynVar.f43322e;
+                        TLRPC.Chat chat = ynVar.f43315e;
                         if (chat != null && chat.megagroup) {
                             z10 = true;
                         }
@@ -69,11 +69,11 @@ public final class re implements org.telegram.ui.Components.g60, org.telegram.ui
                     }
                 } else if (J instanceof String) {
                     if (ynVar.G1.getAdapter().J != null) {
-                        if (org.telegram.ui.Components.h61.h) {
+                        if (org.telegram.ui.Components.i61.h) {
                             ynVar.W.setFieldText("");
                             jk jkVar2 = ynVar.W;
                             String str2 = (String) J;
-                            TLRPC.Chat chat2 = ynVar.f43322e;
+                            TLRPC.Chat chat2 = ynVar.f43315e;
                             if (chat2 != null && chat2.megagroup) {
                                 z10 = true;
                             }
@@ -81,12 +81,12 @@ public final class re implements org.telegram.ui.Components.g60, org.telegram.ui
                             return true;
                         }
                     } else {
-                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ynVar.getParentActivity(), 0, ynVar.f43307ca);
-                        alertDialog$Builder.f20372a.R = LocaleController.getString(R.string.AppName);
-                        alertDialog$Builder.f20372a.T = LocaleController.getString(R.string.ClearSearch);
+                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ynVar.getParentActivity(), 0, ynVar.f43300ca);
+                        alertDialog$Builder.f20377a.R = LocaleController.getString(R.string.AppName);
+                        alertDialog$Builder.f20377a.T = LocaleController.getString(R.string.ClearSearch);
                         alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new re(ynVar, 10));
                         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                        ynVar.showDialog(alertDialog$Builder.f20372a);
+                        ynVar.showDialog(alertDialog$Builder.f20377a);
                         return true;
                     }
                 }
@@ -97,17 +97,17 @@ public final class re implements org.telegram.ui.Components.g60, org.telegram.ui
 
     @Override
     public void e(boolean z10, boolean z11) {
-        yn ynVar = this.f40108b;
-        ynVar.K0.i(ynVar.f43319da.c(), z10, z11);
+        yn ynVar = this.f40078b;
+        ynVar.K0.i(ynVar.f43312da.c(), z10, z11);
     }
 
     @Override
     public void f(ArrayList arrayList) {
-        switch (this.f40107a) {
+        switch (this.f40077a) {
             case 12:
-                yn ynVar = this.f40108b;
+                yn ynVar = this.f40078b;
                 if (ynVar.getParentActivity() != null && ynVar.getParentActivity() != null) {
-                    hi hiVar = new hi(ynVar, ynVar, ynVar.getParentActivity(), ynVar.f43307ca, arrayList);
+                    hi hiVar = new hi(ynVar, ynVar, ynVar.getParentActivity(), ynVar.f43300ca, arrayList);
                     hiVar.setCalcMandatoryInsets(ynVar.w9());
                     hiVar.setDimBehind(false);
                     ynVar.A7(false);
@@ -116,9 +116,9 @@ public final class re implements org.telegram.ui.Components.g60, org.telegram.ui
                 }
                 return;
             default:
-                yn ynVar2 = this.f40108b;
+                yn ynVar2 = this.f40078b;
                 if (ynVar2.getParentActivity() != null && ynVar2.getParentActivity() != null) {
-                    ej ejVar = new ej(ynVar2, ynVar2, ynVar2.getParentActivity(), ynVar2.f43307ca, arrayList);
+                    ej ejVar = new ej(ynVar2, ynVar2, ynVar2.getParentActivity(), ynVar2.f43300ca, arrayList);
                     ejVar.setCalcMandatoryInsets(ynVar2.w9());
                     ejVar.setDimBehind(false);
                     ynVar2.A7(false);
@@ -131,20 +131,20 @@ public final class re implements org.telegram.ui.Components.g60, org.telegram.ui
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f40107a) {
+        switch (this.f40077a) {
             case 2:
-                qk qkVar = this.f40108b.f43584z0;
+                qk qkVar = this.f40078b.f43577z0;
                 if (qkVar != null) {
                     qkVar.callOnClick();
                     return;
                 }
                 return;
             case 3:
-                this.f40108b.finishFragment();
+                this.f40078b.finishFragment();
                 return;
             case 4:
-                yn ynVar = this.f40108b;
-                ynVar.getMessagesController().unblockPeer(ynVar.f43334f.f20189id);
+                yn ynVar = this.f40078b;
+                ynVar.getMessagesController().unblockPeer(ynVar.f43327f.f20194id);
                 return;
             case 5:
             case 6:
@@ -155,26 +155,26 @@ public final class re implements org.telegram.ui.Components.g60, org.telegram.ui
             case 17:
             case 18:
             default:
-                yn ynVar2 = this.f40108b;
+                yn ynVar2 = this.f40078b;
                 MessageObject messageObject = (MessageObject) ynVar2.H4.get(Integer.valueOf(ynVar2.J4));
                 if (messageObject == null) {
-                    messageObject = (MessageObject) ynVar2.f43425m6[0].get(ynVar2.J4);
+                    messageObject = (MessageObject) ynVar2.f43418m6[0].get(ynVar2.J4);
                 }
                 ynVar2.bc(messageObject);
                 return;
             case 8:
-                yn ynVar3 = this.f40108b;
-                MessagePreviewParams messagePreviewParams = ynVar3.f43314d5;
+                yn ynVar3 = this.f40078b;
+                MessagePreviewParams messagePreviewParams = ynVar3.f43307d5;
                 if (messagePreviewParams != null) {
                     messagePreviewParams.updateForward(null, ynVar3.R5);
                 }
                 ynVar3.j8();
                 return;
             case 9:
-                this.f40108b.ba(1);
+                this.f40078b.ba(1);
                 return;
             case 10:
-                gg.k1 adapter = this.f40108b.G1.getAdapter();
+                gg.k1 adapter = this.f40078b.G1.getAdapter();
                 adapter.f10695w.c();
                 adapter.I.clear();
                 adapter.l();
@@ -185,48 +185,48 @@ public final class re implements org.telegram.ui.Components.g60, org.telegram.ui
                 }
                 return;
             case 11:
-                this.f40108b.finishFragment();
+                this.f40078b.finishFragment();
                 return;
             case 14:
-                yn ynVar4 = this.f40108b;
+                yn ynVar4 = this.f40078b;
                 ynVar4.showDialog(new tl(ynVar4, ynVar4.getParentActivity(), ynVar4));
                 return;
             case 15:
-                yn ynVar5 = this.f40108b;
+                yn ynVar5 = this.f40078b;
                 ynVar5.Q7();
-                UndoView undoView = ynVar5.f43549w3;
+                UndoView undoView = ynVar5.f43542w3;
                 if (undoView != null) {
                     undoView.j(75, 0L, null);
                     return;
                 }
                 return;
             case 19:
-                yn ynVar6 = this.f40108b;
-                MessagePreviewParams messagePreviewParams2 = ynVar6.f43314d5;
+                yn ynVar6 = this.f40078b;
+                MessagePreviewParams messagePreviewParams2 = ynVar6.f43307d5;
                 if (messagePreviewParams2 != null && messagePreviewParams2.quote != null) {
                     ynVar6.ba(0);
                     return;
                 }
                 return;
             case 20:
-                this.f40108b.f9(true);
+                this.f40078b.f9(true);
                 return;
         }
     }
 
     @Override
     public void h(int i10) {
-        yn ynVar = this.f40108b;
+        yn ynVar = this.f40078b;
         if (i10 == 1) {
             ynVar.T9();
         } else if (i10 == 2) {
             ynVar.G9();
         } else if (i10 == 3) {
             ynVar.B4 = true;
-            ynVar.getMessagesController().getNextReactionMention(ynVar.R5, ynVar.d(), ynVar.f43385j1, new og(ynVar, 0));
+            ynVar.getMessagesController().getNextReactionMention(ynVar.R5, ynVar.d(), ynVar.f43378j1, new og(ynVar, 0));
         } else if (i10 == 4) {
             ynVar.B4 = true;
-            ynVar.getMessagesController().getNextPollVotesMention(ynVar.R5, ynVar.d(), ynVar.f43397k1, new og(ynVar, 1));
+            ynVar.getMessagesController().getNextPollVotesMention(ynVar.R5, ynVar.d(), ynVar.f43390k1, new og(ynVar, 1));
         } else if (i10 == 6) {
             ynVar.Z8(true);
         } else if (i10 == 5) {
@@ -242,24 +242,24 @@ public final class re implements org.telegram.ui.Components.g60, org.telegram.ui
 
     @Override
     public void i(int i10, ArrayList arrayList) {
-        yn ynVar = this.f40108b;
-        ynVar.getMessagesController().addUsersToChat(ynVar.f43322e, ynVar, arrayList, i10, null, null, null);
-        ynVar.getMessagesController().hidePeerSettingsBar(ynVar.R5, ynVar.f43334f, ynVar.f43322e);
+        yn ynVar = this.f40078b;
+        ynVar.getMessagesController().addUsersToChat(ynVar.f43315e, ynVar, arrayList, i10, null, null, null);
+        ynVar.getMessagesController().hidePeerSettingsBar(ynVar.R5, ynVar.f43327f, ynVar.f43315e);
         ynVar.Pc(true);
         ynVar.nc(true);
     }
 
     @Override
     public void k(int i10) {
-        yn.T0(this.f40108b, i10);
+        yn.T0(this.f40078b, i10);
     }
 
     @Override
     public void onComplete(Object obj) {
         boolean z10;
         org.telegram.ui.ActionBar.c4 c4Var = (org.telegram.ui.ActionBar.c4) obj;
-        yn ynVar = this.f40108b;
-        wn wnVar = ynVar.f43307ca;
+        yn ynVar = this.f40078b;
+        wn wnVar = ynVar.f43300ca;
         TLRPC.WallPaper wallPaper = wnVar.h;
         if (ynVar.N5 != 0) {
             z10 = true;
@@ -276,13 +276,13 @@ public final class re implements org.telegram.ui.Components.g60, org.telegram.ui
 
     @Override
     public void run(boolean z10) {
-        yn ynVar = this.f40108b;
+        yn ynVar = this.f40078b;
         NotificationCenter notificationCenter = ynVar.getNotificationCenter();
         int i10 = NotificationCenter.closeChats;
         notificationCenter.removeObserver(ynVar, i10);
         ynVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i10, new Object[0]);
         ynVar.finishFragment();
-        ynVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(ynVar.R5), ynVar.f43334f, ynVar.f43322e, Boolean.valueOf(z10));
+        ynVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(ynVar.R5), ynVar.f43327f, ynVar.f43315e, Boolean.valueOf(z10));
     }
 
     @Override

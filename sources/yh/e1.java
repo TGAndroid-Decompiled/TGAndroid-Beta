@@ -1,75 +1,62 @@
 package yh;
 
-import android.view.View;
-public final class e1 implements View.OnClickListener {
-    public final int f51225a;
-    public final x3 f51226b;
-    public final int f51227c;
+import org.telegram.messenger.AndroidUtilities;
+public final class e1 implements Runnable {
+    public final int f51242a;
+    public final y3 f51243b;
+    public final long f51244c;
 
-    public e1(x3 x3Var, int i10, int i11) {
-        this.f51225a = i11;
-        this.f51226b = x3Var;
-        this.f51227c = i10;
+    public e1(y3 y3Var, long j3, int i10) {
+        this.f51242a = i10;
+        this.f51243b = y3Var;
+        this.f51244c = j3;
     }
 
     @Override
-    public final void onClick(View view) {
-        int i10;
-        int i11;
-        int i12;
-        int i13;
-        switch (this.f51225a) {
+    public final void run() {
+        switch (this.f51242a) {
             case 0:
-                x3 x3Var = this.f51226b;
-                int i14 = this.f51227c;
-                x3Var.R0 = i14;
-                g2 g2Var = x3Var.Z;
-                int currentPosition = g2Var.getCurrentPosition();
-                if (i14 > x3Var.G1()) {
-                    i10 = 1;
-                } else {
-                    i10 = -1;
+                y3 y3Var = this.f51243b;
+                d1 d1Var = y3Var.f52305n1;
+                y3Var.q2(1, true, null);
+                if (this.f51244c > 0) {
+                    AndroidUtilities.cancelRunOnUIThread(d1Var);
+                    AndroidUtilities.runOnUIThread(d1Var);
+                    return;
                 }
-                g2Var.E(currentPosition + i10);
                 return;
             case 1:
-                x3 x3Var2 = this.f51226b;
-                int i15 = this.f51227c;
-                x3Var2.R0 = i15;
-                g2 g2Var2 = x3Var2.Z;
-                int currentPosition2 = g2Var2.getCurrentPosition();
-                if (i15 > x3Var2.G1()) {
-                    i11 = 1;
-                } else {
-                    i11 = -1;
-                }
-                g2Var2.E(currentPosition2 + i11);
+                this.f51243b.X1(this.f51244c);
                 return;
             case 2:
-                x3 x3Var3 = this.f51226b;
-                int i16 = this.f51227c;
-                x3Var3.R0 = i16;
-                g2 g2Var3 = x3Var3.Z;
-                int currentPosition3 = g2Var3.getCurrentPosition();
-                if (i16 > x3Var3.G1()) {
-                    i12 = 1;
-                } else {
-                    i12 = -1;
-                }
-                g2Var3.E(currentPosition3 + i12);
+                y3.P0(this.f51243b, this.f51244c);
+                return;
+            case 3:
+                y3.d1(this.f51243b, this.f51244c);
+                return;
+            case 4:
+                this.f51243b.X1(this.f51244c);
+                return;
+            case 5:
+                y3.l0(this.f51243b, this.f51244c);
+                return;
+            case 6:
+                this.f51243b.X1(this.f51244c);
+                return;
+            case 7:
+                y3.N(this.f51243b, this.f51244c);
+                return;
+            case 8:
+                this.f51243b.X1(this.f51244c);
+                return;
+            case 9:
+                y3.B0(this.f51243b, this.f51244c);
+                return;
+            case 10:
+                this.f51243b.X1(this.f51244c);
                 return;
             default:
-                x3 x3Var4 = this.f51226b;
-                int i17 = this.f51227c;
-                x3Var4.R0 = i17;
-                g2 g2Var4 = x3Var4.Z;
-                int currentPosition4 = g2Var4.getCurrentPosition();
-                if (i17 > x3Var4.G1()) {
-                    i13 = 1;
-                } else {
-                    i13 = -1;
-                }
-                g2Var4.E(currentPosition4 + i13);
+                this.f51243b.X1(this.f51244c);
                 return;
         }
     }

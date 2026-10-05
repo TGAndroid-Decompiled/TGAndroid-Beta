@@ -692,9 +692,9 @@ public final class q5 extends a0 implements org.telegram.ui.ActionBar.y5, p9 {
             x3 x3Var = ((u2) n5Var).f12683a;
             if (this == x3Var.f12773p4) {
                 if (this.H.isEmpty()) {
-                    x3Var.O2();
+                    x3Var.N2();
                 } else if (!x3Var.I3) {
-                    x3Var.H4(this);
+                    x3Var.G4(this);
                 }
             }
         }

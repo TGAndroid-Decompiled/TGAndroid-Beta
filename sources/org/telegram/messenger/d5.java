@@ -5,15 +5,15 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class d5 implements RequestDelegate {
-    public final int f17626a;
+    public final int f17631a;
 
     public d5(int i10) {
-        this.f17626a = i10;
+        this.f17631a = i10;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f17626a) {
+        switch (this.f17631a) {
             case 0:
                 ImageLoader.HttpImageTask.lambda$doInBackground$2(tLObject, tL_error);
                 return;

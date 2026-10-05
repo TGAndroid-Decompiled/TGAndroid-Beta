@@ -22,7 +22,7 @@ public final class g6 implements pg.e1 {
             return;
         }
         mbVar.f5765k1.b(1);
-        mbVar.b((pg.m) pg.m.f44534a.get(0));
+        mbVar.b((pg.m) pg.m.f44541a.get(0));
     }
 
     @Override
@@ -43,7 +43,7 @@ public final class g6 implements pg.e1 {
     @Override
     public final void e() {
         mb mbVar = this.f5112a;
-        mbVar.D0.f44678a.j();
+        mbVar.D0.f44685a.j();
         mbVar.f5751d1.setViewHidden(false);
     }
 

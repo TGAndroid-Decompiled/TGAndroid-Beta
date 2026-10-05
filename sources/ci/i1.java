@@ -5,16 +5,16 @@ import android.text.SpannableStringBuilder;
 import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.g91;
-import org.telegram.ui.ge1;
+import org.telegram.ui.Components.h91;
+import org.telegram.ui.ee1;
 import org.telegram.ui.gw0;
 import org.telegram.ui.qp0;
+import org.telegram.ui.r31;
+import org.telegram.ui.s31;
 import org.telegram.ui.t31;
-import org.telegram.ui.u31;
-import org.telegram.ui.v31;
 import org.telegram.ui.wp0;
 import org.telegram.ui.yn;
-public final class i1 extends g91 {
+public final class i1 extends h91 {
     public final int V;
     public final Object W;
 
@@ -30,9 +30,9 @@ public final class i1 extends g91 {
             case 3:
                 if (i10 == 0) {
                     yn ynVar = (yn) this.W;
-                    if (ynVar.f43469q1) {
-                        ynVar.f43469q1 = false;
-                        ynVar.f43445o1.h.clear();
+                    if (ynVar.f43462q1) {
+                        ynVar.f43462q1 = false;
+                        ynVar.f43438o1.h.clear();
                         return;
                     }
                     return;
@@ -103,7 +103,7 @@ public final class i1 extends g91 {
         switch (this.V) {
             case 2:
                 if (getCurrentPosition() == 1) {
-                    ((fi.k0) this.W).v.d.f25250f3.N(false);
+                    ((fi.k0) this.W).v.d.f26034f3.N(false);
                     return;
                 }
                 return;
@@ -114,11 +114,11 @@ public final class i1 extends g91 {
 
     @Override
     public void v() {
-        t31 t31Var;
+        r31 r31Var;
         switch (this.V) {
             case 6:
-                if ((getCurrentView() instanceof u31) && (t31Var = ((u31) getCurrentView()).f41048n) != null) {
-                    AndroidUtilities.hideKeyboard(t31Var);
+                if ((getCurrentView() instanceof s31) && (r31Var = ((s31) getCurrentView()).f40330n) != null) {
+                    AndroidUtilities.hideKeyboard(r31Var);
                     return;
                 }
                 return;
@@ -158,15 +158,15 @@ public final class i1 extends g91 {
                 wp0 wp0Var = (wp0) this.W;
                 float positionAnimated = wp0Var.I.getPositionAnimated();
                 wp0Var.M.setSelected(positionAnimated);
-                wp0Var.f42586e.setProgressToGradient(1.0f - w7.q.a((positionAnimated - 0.333333f) / 0.333333f, 0.0f, 1.0f));
+                wp0Var.f42653e.setProgressToGradient(1.0f - w7.q.a((positionAnimated - 0.333333f) / 0.333333f, 0.0f, 1.0f));
                 wp0Var.F0();
                 qp0 C0 = wp0Var.C0();
                 d dVar = wp0Var.Q;
                 if (dVar != null && C0 != null && C0 != wp0Var.R) {
                     wp0Var.R = C0;
-                    n7.z0 z0Var = C0.f39775e;
-                    dVar.g((CharSequence) z0Var.f16851b, true, true);
-                    wp0Var.Q.f((SpannableStringBuilder) z0Var.f16852c, true);
+                    n7.z0 z0Var = C0.f39836e;
+                    dVar.g((CharSequence) z0Var.f16856b, true, true);
+                    wp0Var.Q.f((SpannableStringBuilder) z0Var.f16857c, true);
                     return;
                 }
                 return;
@@ -174,10 +174,10 @@ public final class i1 extends g91 {
                 ((gw0) this.W).e();
                 return;
             case 6:
-                v31.o((v31) this.W).invalidate();
+                t31.o((t31) this.W).invalidate();
                 return;
             default:
-                ((ge1) this.W).e();
+                ((ee1) this.W).e();
                 return;
         }
     }

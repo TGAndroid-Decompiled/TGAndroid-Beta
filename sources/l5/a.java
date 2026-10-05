@@ -10,9 +10,9 @@ public final class a implements ia.d {
     public final void a(Object obj, Object obj2) {
         o5.a aVar = (o5.a) obj;
         ia.e eVar = (ia.e) obj2;
-        eVar.a(f15324b, aVar.f17121a);
-        eVar.a(f15325c, aVar.f17122b);
-        eVar.a(d, aVar.f17123c);
+        eVar.a(f15324b, aVar.f17126a);
+        eVar.a(f15325c, aVar.f17127b);
+        eVar.a(d, aVar.f17128c);
         eVar.a(f15326e, aVar.d);
     }
 }

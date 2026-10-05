@@ -1,88 +1,47 @@
 package org.telegram.ui.Components;
+public final class d01 {
+    public static final d01 f25568e = new d01(false, new a01(Integer.MIN_VALUE, -2147483647), g01.R, 0.0f);
+    public final boolean f25569a;
+    public final a01 f25570b;
+    public final sz0 f25571c;
+    public final float d;
 
-import android.graphics.Rect;
-import java.util.ArrayList;
-import org.telegram.tgnet.tl.TL_iv;
-public final class d01 extends j1.b {
-    public final Rect f25503o;
-    public final f01 f25504p;
-
-    public d01(f01 f01Var, f01 f01Var2) {
-        super(f01Var2);
-        this.f25504p = f01Var;
-        this.f25503o = new Rect();
+    public d01(boolean z10, a01 a01Var, sz0 sz0Var, float f7) {
+        this.f25569a = z10;
+        this.f25570b = a01Var;
+        this.f25571c = sz0Var;
+        this.d = f7;
     }
 
-    @Override
-    public final int g(float f7, float f10) {
-        int i10;
-        f01 f01Var = this.f25504p;
-        int childCount = f01Var.getChildCount();
-        for (int i11 = 0; i11 < childCount; i11++) {
-            yz0 d = f01Var.d(i11);
-            int i12 = d.f33320k;
-            if (i12 > 0 && (i10 = d.f33321l) > 0) {
-                int i13 = d.f33325p;
-                if (f7 >= i13 && f7 < i13 + i12) {
-                    int i14 = d.f33326q;
-                    if (f10 >= i14 && f10 < i14 + i10) {
-                        return i11;
-                    }
-                }
-            }
+    public static sz0 a(d01 d01Var, boolean z10) {
+        sz0 sz0Var = d01Var.f25571c;
+        if (sz0Var != g01.R) {
+            return sz0Var;
         }
-        return Integer.MIN_VALUE;
-    }
-
-    @Override
-    public final void h(ArrayList arrayList) {
-        f01 f01Var = this.f25504p;
-        int childCount = f01Var.getChildCount();
-        for (int i10 = 0; i10 < childCount; i10++) {
-            yz0 d = f01Var.d(i10);
-            if (d.f33320k > 0 && d.f33321l > 0) {
-                arrayList.add(Integer.valueOf(i10));
+        if (d01Var.d == 0.0f) {
+            if (z10) {
+                return g01.S;
             }
+            return g01.T;
         }
+        return g01.U;
     }
 
-    @Override
-    public final boolean k(int i10, int i11) {
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || d01.class != obj.getClass()) {
+            return false;
+        }
+        d01 d01Var = (d01) obj;
+        if (this.f25571c.equals(d01Var.f25571c) && this.f25570b.equals(d01Var.f25570b)) {
+            return true;
+        }
         return false;
     }
 
-    @Override
-    public final void l(int i10, s0.d dVar) {
-        String str;
-        Rect rect = this.f25503o;
-        if (i10 >= 0) {
-            f01 f01Var = this.f25504p;
-            if (i10 < f01Var.getChildCount()) {
-                yz0 d = f01Var.d(i10);
-                int i11 = d.f33325p;
-                int i12 = d.f33326q;
-                rect.set(i11, i12, d.f33320k + i11, d.f33321l + i12);
-                dVar.h(rect);
-                dVar.i("android.widget.TextView");
-                dVar.f46478a.setEnabled(true);
-                xz0 xz0Var = d.f33313b;
-                if (xz0Var != null) {
-                    str = xz0Var.getText();
-                } else {
-                    str = null;
-                }
-                dVar.o((str == null || str.length() == 0) ? " " : " ");
-                TL_iv.pageTableCell pagetablecell = d.f33314c;
-                if (pagetablecell != null && pagetablecell.header) {
-                    dVar.k(true);
-                    return;
-                }
-                return;
-            }
-        }
-        rect.set(0, 0, 1, 1);
-        dVar.h(rect);
-        dVar.p(false);
-        dVar.j("");
+    public final int hashCode() {
+        return this.f25571c.hashCode() + (this.f25570b.hashCode() * 31);
     }
 }

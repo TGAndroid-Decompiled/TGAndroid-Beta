@@ -14,7 +14,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.iz0;
+import org.telegram.ui.Components.jz0;
 import org.telegram.ui.Components.wv;
 import org.telegram.ui.Components.ym;
 import org.telegram.ui.FiltersSetupActivity;
@@ -66,22 +66,22 @@ public final class q1 implements View.OnTouchListener {
                 org.telegram.ui.Components.i8 i8Var = (org.telegram.ui.Components.i8) this.f5734b;
                 org.telegram.ui.Cells.x xVar = (org.telegram.ui.Cells.x) this.f5735c;
                 if (motionEvent.getAction() == 0) {
-                    org.telegram.ui.Components.j8 j8Var = i8Var.f27335n;
-                    j8Var.H.r(j8Var.f27643n.T(xVar));
+                    org.telegram.ui.Components.j8 j8Var = i8Var.f27421n;
+                    j8Var.H.r(j8Var.f27716n.T(xVar));
                     return false;
                 }
                 return false;
             case 3:
                 return wv.m((wv) this.f5734b, (ym) this.f5735c, motionEvent);
             case 4:
-                return iz0.a((iz0) this.f5734b, (org.telegram.ui.Components.j) this.f5735c, motionEvent);
+                return jz0.a((jz0) this.f5734b, (org.telegram.ui.Components.j) this.f5735c, motionEvent);
             case 5:
                 az azVar = (az) this.f5734b;
                 org.telegram.ui.Cells.g4 g4Var = (org.telegram.ui.Cells.g4) this.f5735c;
                 azVar.getClass();
                 if (motionEvent.getAction() == 0) {
                     dz dzVar = azVar.d;
-                    dzVar.f35869c.r(dzVar.f35868b.T(g4Var));
+                    dzVar.f35908c.r(dzVar.f35907b.T(g4Var));
                     return false;
                 }
                 return false;
@@ -89,8 +89,8 @@ public final class q1 implements View.OnTouchListener {
                 d20 d20Var = (d20) this.f5734b;
                 z10 z10Var = (z10) this.f5735c;
                 if (motionEvent.getAction() == 0) {
-                    FiltersSetupActivity filtersSetupActivity = d20Var.f35627e;
-                    filtersSetupActivity.f33759c.r(filtersSetupActivity.f33757a.T(z10Var));
+                    FiltersSetupActivity filtersSetupActivity = d20Var.f35619e;
+                    filtersSetupActivity.f33772c.r(filtersSetupActivity.f33770a.T(z10Var));
                     return false;
                 }
                 return false;
@@ -139,7 +139,7 @@ public final class q1 implements View.OnTouchListener {
                         if (intValue == 8) {
                             x10.h(LocaleController.getString(R.string.PassportSelectNotExpire), new pw(24, kn0Var, editTextBoldCursor));
                         }
-                        kn0Var.showDialog(x10.f20372a);
+                        kn0Var.showDialog(x10.f20377a);
                     } catch (Exception e7) {
                         FileLog.e(e7);
                     }

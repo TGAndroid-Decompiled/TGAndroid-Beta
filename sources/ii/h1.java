@@ -4,7 +4,7 @@ import android.text.Editable;
 public interface h1 {
     void B(Editable editable);
 
-    boolean G(boolean z10);
+    boolean C(boolean z10);
 
     void b(i1 i1Var);
 
@@ -22,5 +22,5 @@ public interface h1 {
 
     void t(i1 i1Var, int i10, int i11);
 
-    void x(CharSequence charSequence);
+    void w(CharSequence charSequence);
 }

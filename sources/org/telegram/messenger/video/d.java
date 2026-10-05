@@ -1,21 +1,21 @@
 package org.telegram.messenger.video;
 public final class d implements Runnable {
-    public final int f19446a;
-    public final VideoAds f19447b;
+    public final int f19451a;
+    public final VideoAds f19452b;
 
     public d(VideoAds videoAds, int i10) {
-        this.f19446a = i10;
-        this.f19447b = videoAds;
+        this.f19451a = i10;
+        this.f19452b = videoAds;
     }
 
     @Override
     public final void run() {
-        switch (this.f19446a) {
+        switch (this.f19451a) {
             case 0:
-                VideoAds.r(this.f19447b);
+                VideoAds.r(this.f19452b);
                 return;
             default:
-                VideoAds.b(this.f19447b);
+                VideoAds.b(this.f19452b);
                 return;
         }
     }

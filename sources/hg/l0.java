@@ -26,7 +26,7 @@ import org.telegram.ui.Components.cb;
 import org.telegram.ui.Components.h9;
 import org.telegram.ui.Components.ld;
 import org.telegram.ui.Components.tr;
-import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.w61;
 import org.telegram.ui.Components.w9;
 import org.telegram.ui.Components.yc;
 import org.telegram.ui.Components.yl0;
@@ -42,7 +42,7 @@ public final class l0 extends cb {
     public final LinearLayout f11253a0;
     public final ci.d f11254b0;
     public final ci.d f11255c0;
-    public u61 f11256d0;
+    public w61 f11256d0;
     public boolean f11257e0;
     public Boolean f11258f0;
 
@@ -74,10 +74,10 @@ public final class l0 extends cb {
         textView.setTypeface(AndroidUtilities.bold());
         textView.setText(UserObject.getUserName(user));
         linearLayout.addView(textView, z5.r(-1, -2, 1, 32.0f, 15.66f, 32.0f, 3.66f));
-        this.f25307e.setTitle(UserObject.getUserName(user));
+        this.f25355e.setTitle(UserObject.getUserName(user));
         TextView textView2 = new TextView(activity);
         textView2.setTextSize(1, 14.0f);
-        textView2.setTextColor(getThemedColor(i6.f21209y6));
+        textView2.setTextColor(getThemedColor(i6.f21214y6));
         textView2.setGravity(17);
         textView2.setText(LocaleController.getString(R.string.SessionBot));
         linearLayout.addView(textView2, z5.r(-1, -2, 1, 32.0f, 0.0f, 32.0f, 3.66f));
@@ -90,13 +90,13 @@ public final class l0 extends cb {
             textView3.setGravity(17);
             linearLayout.addView(textView3, z5.t(-1, -2, 1, 32, 0, 32, 18));
         }
-        int i10 = i6.f20766a7;
+        int i10 = i6.f20771a7;
         setBackgroundColor(getThemedColor(i10));
         fixNavigationBar(getThemedColor(i10));
         zl0 zl0Var = this.d;
         int i11 = this.backgroundPaddingLeft;
         zl0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(72.0f));
-        this.d.s1();
+        this.d.r1();
         this.d.setOnItemClickListener(new ai.g(this, 11));
         FrameLayout frameLayout = new FrameLayout(activity);
         frameLayout.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
@@ -122,14 +122,14 @@ public final class l0 extends cb {
         e7.rightMargin += i13;
         this.containerView.addView(frameLayout, e7);
         s4.j jVar = new s4.j();
-        jVar.f46570m = false;
+        jVar.f46577m = false;
         jVar.C = false;
         jVar.o(tr.h);
         jVar.n(350L);
         this.d.setItemAnimator(jVar);
-        u61 u61Var = this.f11256d0;
-        if (u61Var != null) {
-            u61Var.N(false);
+        w61 w61Var = this.f11256d0;
+        if (w61Var != null) {
+            w61Var.N(false);
         }
     }
 
@@ -177,7 +177,7 @@ public final class l0 extends cb {
 
     @Override
     public final void A(float f7) {
-        i5 titleTextView = this.f25307e.getTitleTextView();
+        i5 titleTextView = this.f25355e.getTitleTextView();
         if (titleTextView != null) {
             titleTextView.setAlpha(f7);
         }
@@ -381,10 +381,10 @@ public final class l0 extends cb {
 
     @Override
     public final yl0 v(zl0 zl0Var) {
-        u61 u61Var = new u61(zl0Var, getContext(), this.currentAccount, 0, true, new bi.v(this, 23), this.resourcesProvider);
-        this.f11256d0 = u61Var;
-        u61Var.f31313r = false;
-        return u61Var;
+        w61 w61Var = new w61(zl0Var, getContext(), this.currentAccount, 0, true, new bi.v(this, 23), this.resourcesProvider);
+        this.f11256d0 = w61Var;
+        w61Var.f32531r = false;
+        return w61Var;
     }
 
     @Override

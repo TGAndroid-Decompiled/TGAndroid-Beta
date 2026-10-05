@@ -6,19 +6,19 @@ import android.view.View;
 import android.widget.HorizontalScrollView;
 import org.telegram.messenger.AndroidUtilities;
 public final class t2 extends HorizontalScrollView {
-    public final t70 f40680a;
-    public final u2 f40681b;
+    public final t70 f40692a;
+    public final u2 f40693b;
 
     public t2(u2 u2Var, Context context, t70 t70Var) {
         super(context);
-        this.f40681b = u2Var;
-        this.f40680a = t70Var;
+        this.f40693b = u2Var;
+        this.f40692a = t70Var;
     }
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         boolean onInterceptTouchEvent = super.onInterceptTouchEvent(motionEvent);
-        this.f40681b.f41030e.getMeasuredWidth();
+        this.f40693b.f41086e.getMeasuredWidth();
         getMeasuredWidth();
         AndroidUtilities.dp(36.0f);
         return onInterceptTouchEvent;
@@ -26,20 +26,20 @@ public final class t2 extends HorizontalScrollView {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        u2 u2Var = this.f40681b;
-        u2Var.f41030e.measure(View.MeasureSpec.makeMeasureSpec((View.MeasureSpec.getSize(i10) - getPaddingLeft()) - getPaddingRight(), 0), i11);
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), u2Var.f41030e.getMeasuredHeight());
+        u2 u2Var = this.f40693b;
+        u2Var.f41086e.measure(View.MeasureSpec.makeMeasureSpec((View.MeasureSpec.getSize(i10) - getPaddingLeft()) - getPaddingRight(), 0), i11);
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), u2Var.f41086e.getMeasuredHeight());
     }
 
     @Override
     public final void onScrollChanged(int i10, int i11, int i12, int i13) {
         super.onScrollChanged(i10, i11, i12, i13);
-        t70 t70Var = this.f40680a;
+        t70 t70Var = this.f40692a;
         if (t70Var.d != null) {
             t70Var.d = null;
-            t70Var.f40712f = null;
+            t70Var.f40731f = null;
         }
-        this.f40681b.a();
+        this.f40693b.a();
         org.telegram.ui.Cells.q9 q9Var = ((i4) t70Var).O0;
         if (q9Var != null && q9Var.y()) {
             q9Var.x();
@@ -48,7 +48,7 @@ public final class t2 extends HorizontalScrollView {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.f40681b.f41030e.getMeasuredWidth() <= getMeasuredWidth() - AndroidUtilities.dp(36.0f)) {
+        if (this.f40693b.f41086e.getMeasuredWidth() <= getMeasuredWidth() - AndroidUtilities.dp(36.0f)) {
             return false;
         }
         return super.onTouchEvent(motionEvent);
@@ -56,7 +56,7 @@ public final class t2 extends HorizontalScrollView {
 
     @Override
     public final boolean overScrollBy(int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, boolean z10) {
-        i4.T(this.f40680a);
+        i4.T(this.f40692a);
         return super.overScrollBy(i10, i11, i12, i13, i14, i15, i16, i17, z10);
     }
 }

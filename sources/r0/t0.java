@@ -3,11 +3,11 @@ package r0;
 import android.view.ViewGroup;
 import android.view.WindowInsetsAnimation;
 public final class t0 extends u0 {
-    public final WindowInsetsAnimation f45636e;
+    public final WindowInsetsAnimation f45643e;
 
     public t0(WindowInsetsAnimation windowInsetsAnimation) {
         super(0, 0L, null);
-        this.f45636e = windowInsetsAnimation;
+        this.f45643e = windowInsetsAnimation;
     }
 
     public static i0.b e(WindowInsetsAnimation.Bounds bounds) {
@@ -24,21 +24,21 @@ public final class t0 extends u0 {
 
     @Override
     public final long a() {
-        return this.f45636e.getDurationMillis();
+        return this.f45643e.getDurationMillis();
     }
 
     @Override
     public final float b() {
-        return this.f45636e.getInterpolatedFraction();
+        return this.f45643e.getInterpolatedFraction();
     }
 
     @Override
     public final int c() {
-        return this.f45636e.getTypeMask();
+        return this.f45643e.getTypeMask();
     }
 
     @Override
     public final void d(float f7) {
-        this.f45636e.setFraction(f7);
+        this.f45643e.setFraction(f7);
     }
 }

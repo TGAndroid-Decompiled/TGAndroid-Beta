@@ -1,83 +1,85 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class lq0 extends yq0 {
-    public final zq0 f28411n;
+public final class lq0 extends org.telegram.ui.ActionBar.p1 {
+    public final mq0 f28514x;
 
-    public lq0(zq0 zq0Var, Context context) {
-        super(context);
-        this.f28411n = zq0Var;
-        this.f33244f = new Paint(1);
-        this.h = new RectF();
-        View view = new View(context);
-        int dp = AndroidUtilities.dp(18.0f);
-        int i10 = org.telegram.ui.ActionBar.i6.O5;
-        int i11 = zq0.W0;
-        view.setBackgroundDrawable(org.telegram.ui.ActionBar.i6.b0(dp, zq0Var.getThemedColor(i10)));
-        addView(view, w7.z5.d(-1, 36.0f, 51, 14.0f, 0.0f, 14.0f, 0.0f));
-        ci.ab abVar = new ci.ab(this, context, 23);
-        this.f33242c = abVar;
-        addView(abVar, w7.z5.d(-1, 36.0f, 51, 14.0f, 0.0f, 14.0f, 0.0f));
-        org.telegram.ui.ActionBar.i5 i5Var = new org.telegram.ui.ActionBar.i5(context);
-        this.f33241b = i5Var;
-        int i12 = org.telegram.ui.ActionBar.i6.f21015ng;
-        i5Var.setTextColor(zq0Var.getThemedColor(i12));
-        i5Var.setTextSize(13);
-        i5Var.setLeftDrawable(R.drawable.msg_tabs_mic1);
-        i5Var.l(LocaleController.getString(R.string.VoipGroupInviteCanSpeak), false);
-        i5Var.setGravity(17);
-        addView(i5Var, w7.z5.d(-1, -1.0f, 51, 14.0f, 0.0f, 0.0f, 0.0f));
-        i5Var.setOnClickListener(new View.OnClickListener(this) {
-            public final lq0 f32972b;
+    public lq0(mq0 mq0Var, mq0 mq0Var2) {
+        super(mq0Var2);
+        this.f28514x = mq0Var;
+    }
 
-            {
-                this.f32972b = this;
+    @Override
+    public final boolean b() {
+        br0 br0Var = this.f28514x.H0;
+        if (!br0Var.isDismissed() && br0Var.Y) {
+            return !br0Var.d.m();
+        }
+        return false;
+    }
+
+    @Override
+    public final void e(float r9, float r10, boolean r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.lq0.e(float, float, boolean):void");
+    }
+
+    @Override
+    public final void f() {
+        br0 br0Var = this.f28514x.H0;
+        fq0 fq0Var = br0Var.d;
+        if (fq0Var == null || !fq0Var.m()) {
+            int i10 = br0Var.N0;
+            AndroidUtilities.dp(20.0f);
+        }
+        br0Var.f25073r0 = false;
+        int i11 = br0Var.f25070p0;
+        br0Var.f25071q0 = i11;
+        br0Var.F.setTopGlowOffset(i11);
+        br0Var.f25052b.setTranslationY(br0Var.f25070p0);
+        br0Var.Q.setTranslationY(br0Var.f25070p0);
+        br0Var.F.setTranslationY(0.0f);
+        br0Var.G.setTranslationY(0.0f);
+        br0Var.V0();
+    }
+
+    @Override
+    public final void g(int i10, boolean z10) {
+        int i11;
+        mq0 mq0Var = this.f28514x;
+        br0 br0Var = mq0Var.H0;
+        int i12 = br0Var.f25071q0;
+        int i13 = br0Var.f25070p0;
+        if (i12 != i13) {
+            mq0Var.B0 = i12;
+            mq0Var.C0 = i13;
+            br0Var.f25073r0 = true;
+            br0Var.f25070p0 = i12;
+        } else {
+            mq0Var.B0 = -1;
+        }
+        int i14 = mq0Var.f28766z0;
+        int i15 = mq0Var.A0;
+        if (i14 != i15) {
+            mq0Var.D0 = 0;
+            mq0Var.E0 = 0;
+            br0Var.f25073r0 = true;
+            if (!z10) {
+                mq0Var.E0 = 0 - (i14 - i15);
+            } else {
+                mq0Var.E0 = i14 - i15;
             }
-
-            @Override
-            public final void onClick(View view2) {
-                switch (r2) {
-                    case 0:
-                        this.f32972b.a(0);
-                        return;
-                    default:
-                        this.f32972b.a(1);
-                        return;
-                }
+            if (z10) {
+                i11 = mq0Var.B0;
+            } else {
+                i11 = mq0Var.C0;
             }
-        });
-        org.telegram.ui.ActionBar.i5 i5Var2 = new org.telegram.ui.ActionBar.i5(context);
-        this.f33240a = i5Var2;
-        i5Var2.setTextColor(zq0Var.getThemedColor(i12));
-        i5Var2.setTextSize(13);
-        i5Var2.setLeftDrawable(R.drawable.msg_tabs_mic2);
-        i5Var2.l(LocaleController.getString(R.string.VoipGroupInviteListenOnly), false);
-        i5Var2.setGravity(17);
-        addView(i5Var2, w7.z5.d(-1, -1.0f, 51, 0.0f, 0.0f, 14.0f, 0.0f));
-        i5Var2.setOnClickListener(new View.OnClickListener(this) {
-            public final lq0 f32972b;
-
-            {
-                this.f32972b = this;
-            }
-
-            @Override
-            public final void onClick(View view2) {
-                switch (r2) {
-                    case 0:
-                        this.f32972b.a(0);
-                        return;
-                    default:
-                        this.f32972b.a(1);
-                        return;
-                }
-            }
-        });
+            br0Var.f25070p0 = i11;
+        } else {
+            mq0Var.D0 = -1;
+        }
+        br0Var.F.setTopGlowOffset((int) (br0Var.f25076t0 + br0Var.f25070p0));
+        br0Var.f25052b.setTranslationY(br0Var.f25076t0 + br0Var.f25070p0);
+        br0Var.Q.setTranslationY(br0Var.f25076t0 + br0Var.f25070p0);
+        mq0Var.invalidate();
     }
 }

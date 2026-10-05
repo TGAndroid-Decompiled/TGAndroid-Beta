@@ -28,10 +28,10 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Components.ad;
 import org.telegram.ui.Components.bd;
-import org.telegram.ui.Components.q21;
+import org.telegram.ui.Components.r21;
 import org.telegram.ui.Components.rc;
-import org.telegram.ui.Components.vx0;
 import org.telegram.ui.Components.wv;
+import org.telegram.ui.Components.wx0;
 import org.telegram.ui.Components.yc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
@@ -64,17 +64,17 @@ public final class m0 implements Utilities.Callback {
             case 0:
                 n2 n2Var = (n2) obj4;
                 TLRPC.Chat chat = (TLRPC.Chat) obj3;
-                long j3 = ((TLRPC.Chat) obj2).f20042id;
+                long j3 = ((TLRPC.Chat) obj2).f20047id;
                 boolean booleanValue = ((Boolean) obj).booleanValue();
                 boolean isChannel = ChatObject.isChannel(chat);
                 int i12 = this.f9934b;
                 if (!isChannel) {
                     b2 b2Var = new b2(n2Var.getContext(), 3, null);
                     b2Var.q(250L);
-                    MessagesController.getInstance(i12).convertToMegaGroup(n2Var.getParentActivity(), chat.f20042id, n2Var, new n0(b2Var, n2Var, i12, j3, booleanValue));
+                    MessagesController.getInstance(i12).convertToMegaGroup(n2Var.getParentActivity(), chat.f20047id, n2Var, new n0(b2Var, n2Var, i12, j3, booleanValue));
                     return;
                 }
-                long j10 = chat.f20042id;
+                long j10 = chat.f20047id;
                 MessagesController.getInstance(i12).linkCommunity(-j10, j3, booleanValue, new o0(n2Var, j10, 0));
                 return;
             case 1:
@@ -107,14 +107,14 @@ public final class m0 implements Utilities.Callback {
                 wv wvVar = (wv) obj4;
                 int[] iArr = (int[]) obj3;
                 ArrayList arrayList = (ArrayList) obj2;
-                n2 n2Var2 = wvVar.f32636c;
+                n2 n2Var2 = wvVar.f32711c;
                 iArr[0] = iArr[0] + 1;
                 if (((Boolean) obj).booleanValue()) {
                     iArr[1] = iArr[1] + 1;
                 }
                 if (iArr[0] == i11 && iArr[1] > 0) {
                     wvVar.dismiss();
-                    rc.g(n2Var2, new vx0(n2Var2.getFragmentView().getContext(), (TLObject) arrayList.get(0), iArr[1], 2, null, n2Var2.getResourceProvider()), 1500).j();
+                    rc.g(n2Var2, new wx0(n2Var2.getFragmentView().getContext(), (TLObject) arrayList.get(0), iArr[1], 2, null, n2Var2.getResourceProvider()), 1500).j();
                     return;
                 }
                 return;
@@ -157,19 +157,19 @@ public final class m0 implements Utilities.Callback {
                 MessageObject messageObject = (MessageObject) obj2;
                 String str2 = (String) obj;
                 if (i11 == photoViewer.Q4) {
-                    photoViewer.f33992o5 = str2;
-                    if (translateController.isContextTranslateEnabled() && translateController.canTranslatePhoto(messageObject, photoViewer.f33992o5)) {
-                        if (photoViewer.f33983n5) {
-                            photoViewer.f33987o0.K(20);
-                            photoViewer.f33987o0.r(19);
+                    photoViewer.f34005o5 = str2;
+                    if (translateController.isContextTranslateEnabled() && translateController.canTranslatePhoto(messageObject, photoViewer.f34005o5)) {
+                        if (photoViewer.f33996n5) {
+                            photoViewer.f34000o0.K(20);
+                            photoViewer.f34000o0.r(19);
                             return;
                         }
-                        photoViewer.f33987o0.K(19);
-                        photoViewer.f33987o0.r(20);
+                        photoViewer.f34000o0.K(19);
+                        photoViewer.f34000o0.r(20);
                         return;
                     }
-                    photoViewer.f33987o0.r(19);
-                    photoViewer.f33987o0.r(20);
+                    photoViewer.f34000o0.r(19);
+                    photoViewer.f34000o0.r(20);
                     return;
                 }
                 return;
@@ -180,7 +180,7 @@ public final class m0 implements Utilities.Callback {
                 TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
                 if (savedStarGift != null) {
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(adVar.getText());
-                    spannableStringBuilder.append((CharSequence) " ").append((CharSequence) bd.b(LocaleController.getString(R.string.StarGiftReasonUpgradeView), new q21(this.f9934b, context, d6Var, savedStarGift, 18), d6Var, null));
+                    spannableStringBuilder.append((CharSequence) " ").append((CharSequence) bd.b(LocaleController.getString(R.string.StarGiftReasonUpgradeView), new r21(this.f9934b, context, d6Var, savedStarGift, 18), d6Var, null));
                     adVar.setText(spannableStringBuilder);
                     return;
                 }

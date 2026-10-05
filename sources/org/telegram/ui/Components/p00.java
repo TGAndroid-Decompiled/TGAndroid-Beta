@@ -15,12 +15,12 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 public final class p00 extends yl0 {
-    public final Context f29483c;
+    public final Context f29565c;
     public final q00 d;
 
     public p00(q00 q00Var, Activity activity) {
         this.d = q00Var;
-        this.f29483c = activity;
+        this.f29565c = activity;
     }
 
     @Override
@@ -30,7 +30,7 @@ public final class p00 extends yl0 {
 
     @Override
     public final int h() {
-        int size = this.d.f29860s.size();
+        int size = this.d.f29893s.size();
         if (size < 10) {
             return size + 1;
         }
@@ -45,14 +45,14 @@ public final class p00 extends yl0 {
     @Override
     public final void v(s4.c1 c1Var, int i10) {
         int i11;
-        org.telegram.ui.ActionBar.y2 y2Var = (org.telegram.ui.ActionBar.y2) c1Var.f46531a;
+        org.telegram.ui.ActionBar.y2 y2Var = (org.telegram.ui.ActionBar.y2) c1Var.f46538a;
         q00 q00Var = this.d;
         ArrayList arrayList = q00Var.v;
-        ArrayList arrayList2 = q00Var.f29860s;
+        ArrayList arrayList2 = q00Var.f29893s;
         if (i10 < arrayList2.size()) {
             y2Var.getImageView().setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.J5, false), PorterDuff.Mode.MULTIPLY));
             MessagesController.DialogFilter dialogFilter = (MessagesController.DialogFilter) arrayList2.get(i10);
-            y2Var.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20930j5, false));
+            y2Var.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20935j5, false));
             int i12 = dialogFilter.flags;
             if ((MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS & i12) == (MessagesController.DIALOG_FILTER_FLAG_CONTACTS | MessagesController.DIALOG_FILTER_FLAG_NON_CONTACTS)) {
                 i11 = R.drawable.msg_openprofile;
@@ -87,13 +87,13 @@ public final class p00 extends yl0 {
             return;
         }
         y2Var.getImageView().setColorFilter((ColorFilter) null);
-        Context context = this.f29483c;
+        Context context = this.f29565c;
         Drawable drawable = context.getResources().getDrawable(R.drawable.poll_add_circle);
         Drawable drawable2 = context.getResources().getDrawable(R.drawable.poll_add_plus);
         int w02 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.N6, false);
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         drawable.setColorFilter(new PorterDuffColorFilter(w02, mode));
-        drawable2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20952k7, false), mode));
+        drawable2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20957k7, false), mode));
         sq sqVar = new sq(drawable, drawable2);
         y2Var.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.q6, false));
         y2Var.a(LocaleController.getString(R.string.CreateNewFilter), 0, sqVar, false);
@@ -101,7 +101,7 @@ public final class p00 extends yl0 {
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        org.telegram.ui.ActionBar.y2 y2Var = new org.telegram.ui.ActionBar.y2(this.f29483c, 0, null);
+        org.telegram.ui.ActionBar.y2 y2Var = new org.telegram.ui.ActionBar.y2(this.f29565c, 0, null);
         y2Var.setBackground(null);
         y2Var.setLayoutParams(new s4.p0(-1, -2));
         return new s4.c1(y2Var);

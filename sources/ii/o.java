@@ -21,7 +21,7 @@ public final class o implements ik {
         String str2;
         x3 x3Var = this.f12546b.f12603r;
         if (!arrayList.isEmpty()) {
-            x3Var.e2((String) arrayList.get(0));
+            x3Var.d2((String) arrayList.get(0));
         } else if (!arrayList3.isEmpty()) {
             MessageObject messageObject = (MessageObject) arrayList3.get(0);
             x3Var.getClass();
@@ -33,7 +33,7 @@ public final class o implements ik {
                 } else {
                     str2 = null;
                 }
-                x3Var.f2(document, str2);
+                x3Var.e2(document, str2);
             }
         }
         this.f12545a.dismiss(true);
@@ -44,7 +44,7 @@ public final class o implements ik {
         try {
             Intent intent = new Intent("android.intent.action.GET_CONTENT");
             intent.setType("*/*");
-            this.f12546b.f29648b.f32819f0.startActivityForResult(intent, 21);
+            this.f12546b.f29741b.f32910f0.startActivityForResult(intent, 21);
         } catch (Exception e7) {
             FileLog.e(e7);
         }

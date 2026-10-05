@@ -94,15 +94,15 @@ public final class c0 extends e6.g {
             case 0:
                 q4 q4Var = ((c) this.f8139b).f8137l;
                 if (q4Var != null) {
-                    x6 C = q4Var.f6962a.C();
+                    x6 w10 = q4Var.f6962a.w();
                     u2 u2Var = new u2(str);
                     u2Var.f7002b = j3;
                     u2Var.f7003c = i10;
                     u2Var.d = j10;
                     u2Var.f7004e = j11;
                     j3 j3Var = new j3(u2Var);
-                    j3Var.f6904f = C.h;
-                    C.d.add(j3Var);
+                    j3Var.f6904f = w10.h;
+                    w10.d.add(j3Var);
                     return;
                 }
                 return;

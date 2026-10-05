@@ -9,13 +9,13 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.av0;
+import org.telegram.ui.Components.bv0;
 import org.telegram.ui.Components.uh;
 import org.telegram.ui.Components.zm;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.am0;
-import org.telegram.ui.bj1;
 import org.telegram.ui.ki;
+import org.telegram.ui.zi1;
 public final class i8 implements RequestDelegate {
     public final int f1080a;
     public final int f1081b;
@@ -56,7 +56,7 @@ public final class i8 implements RequestDelegate {
                 ((VoIPService) obj).lambda$startScreenCapture$60(i11, tLObject, tL_error);
                 return;
             case 4:
-                AndroidUtilities.runOnUIThread(new zm((av0) obj, tLObject, i11, 16));
+                AndroidUtilities.runOnUIThread(new zm((bv0) obj, tLObject, i11, 16));
                 return;
             case 5:
                 LaunchActivity launchActivity = (LaunchActivity) obj;
@@ -79,13 +79,13 @@ public final class i8 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new zm((ki) obj, tLObject, i11, 29));
                 return;
             case 7:
-                AndroidUtilities.runOnUIThread(new am0((bj1) obj, i11, tLObject, 10));
+                AndroidUtilities.runOnUIThread(new am0((zi1) obj, i11, tLObject, 10));
                 return;
             case 8:
-                yh.x3.S((yh.x3) obj, i11, tLObject);
+                yh.y3.S((yh.y3) obj, i11, tLObject);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new am0((yh.t5) obj, i11, tLObject, 17));
+                AndroidUtilities.runOnUIThread(new am0((yh.u5) obj, i11, tLObject, 17));
                 return;
         }
     }

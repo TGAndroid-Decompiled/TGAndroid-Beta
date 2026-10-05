@@ -40,13 +40,13 @@ public final class m5 implements View.OnLongClickListener {
                 int i11 = q6Var.F1;
                 if (q6Var.I1 != null) {
                     pg.u0 e11 = pg.u0.e(i11);
-                    e11.f44655k = !e11.f44655k;
-                    e11.f44647a.edit().putBoolean("fill_shapes", e11.f44655k).apply();
-                    boolean z11 = pg.u0.e(i11).f44655k;
+                    e11.f44662k = !e11.f44662k;
+                    e11.f44654a.edit().putBoolean("fill_shapes", e11.f44662k).apply();
+                    boolean z11 = pg.u0.e(i11).f44662k;
                     for (int i12 = 0; i12 < q6Var.I1.getItemsCount(); i12++) {
                         View childAt = q6Var.I1.L.getChildAt(i12);
                         if (childAt instanceof n6) {
-                            pg.l lVar = (pg.l) pg.l.f44526b.get(i12);
+                            pg.l lVar = (pg.l) pg.l.f44533b.get(i12);
                             if (z11) {
                                 e7 = lVar.m();
                             } else {
@@ -79,8 +79,8 @@ public final class m5 implements View.OnLongClickListener {
                 e8Var2.d(kcVar.f5432s.f6278p);
                 e8Var2.h = new ha(kcVar, 0);
                 F.q(e8Var2);
-                F.f24844p = new ga(kcVar, 1);
-                F.f24849s = 0;
+                F.f24880p = new ga(kcVar, 1);
+                F.f24885s = 0;
                 F.V(5);
                 F.a0(AndroidUtilities.dp(46.0f), -AndroidUtilities.dp(4.0f));
                 F.P(-1155851493);
@@ -96,23 +96,23 @@ public final class m5 implements View.OnLongClickListener {
             case 4:
                 ii.r rVar = ((ii.m) this.f5568b).f12516a;
                 ii.c4 c4Var = rVar.f12604s;
-                org.telegram.ui.ActionBar.d6 d6Var = rVar.f29647a;
-                xi xiVar = rVar.f29648b;
+                org.telegram.ui.ActionBar.d6 d6Var = rVar.f29740a;
+                xi xiVar = rVar.f29741b;
                 ii.x3 x3Var = rVar.f12603r;
                 int i13 = rVar.f12602n;
                 if (!UserConfig.getInstance(i13).isPremium()) {
-                    new rg.y0(xiVar.f32819f0, rVar.getContext(), rVar.f12602n, 43, true).show();
+                    new rg.y0(xiVar.f32910f0, rVar.getContext(), rVar.f12602n, 43, true).show();
                     return true;
                 }
-                if (x3Var.m3() && !x3Var.o3()) {
-                    if (!x3Var.O3()) {
+                if (x3Var.l3() && !x3Var.n3()) {
+                    if (!x3Var.N3()) {
                         if (c4Var != null) {
-                            c4Var.setSendEnabled(x3Var.O3());
+                            c4Var.setSendEnabled(x3Var.N3());
                         }
                     } else {
-                        ArrayList<TL_iv.PageBlock> b32 = x3Var.b3();
-                        if (!b32.isEmpty()) {
-                            org.telegram.ui.ActionBar.n2 n2Var = xiVar.f32819f0;
+                        ArrayList<TL_iv.PageBlock> a32 = x3Var.a3();
+                        if (!a32.isEmpty()) {
+                            org.telegram.ui.ActionBar.n2 n2Var = xiVar.f32910f0;
                             if (n2Var instanceof yn) {
                                 ynVar = (yn) n2Var;
                             } else {
@@ -128,21 +128,21 @@ public final class m5 implements View.OnLongClickListener {
                             zi0Var2.setOnDismissListener(new ai.f5(rVar, 4));
                             long n12 = xiVar.n1();
                             if (ynVar != null) {
-                                messageObject = ynVar.f43412l5;
+                                messageObject = ynVar.f43405l5;
                             } else {
                                 messageObject = null;
                             }
                             TLRPC.TL_message tL_message = new TLRPC.TL_message();
-                            tL_message.f20063id = 0;
+                            tL_message.f20068id = 0;
                             tL_message.out = true;
                             tL_message.peer_id = MessagesController.getInstance(i13).getPeer(n12);
                             tL_message.from_id = MessagesController.getInstance(i13).getPeer(UserConfig.getInstance(i13).getClientUserId());
                             tL_message.flags2 |= 8192;
                             TL_iv.RichMessage richMessage = new TL_iv.RichMessage();
                             tL_message.rich_message = richMessage;
-                            richMessage.blocks = b32;
-                            richMessage.photos = x3Var.D2();
-                            tL_message.rich_message.documents = x3Var.A2();
+                            richMessage.blocks = a32;
+                            richMessage.photos = x3Var.C2();
+                            tL_message.rich_message.documents = x3Var.z2();
                             if (messageObject != null && !messageObject.isTopicMainMessage) {
                                 TLRPC.TL_messageReplyHeader tL_messageReplyHeader = new TLRPC.TL_messageReplyHeader();
                                 tL_messageReplyHeader.flags |= 16;
@@ -210,13 +210,13 @@ public final class m5 implements View.OnLongClickListener {
                 int i15 = m0Var.P1;
                 if (m0Var.S1 != null) {
                     pg.u0 e12 = pg.u0.e(i15);
-                    e12.f44655k = !e12.f44655k;
-                    e12.f44647a.edit().putBoolean("fill_shapes", e12.f44655k).apply();
-                    boolean z12 = pg.u0.e(i15).f44655k;
+                    e12.f44662k = !e12.f44662k;
+                    e12.f44654a.edit().putBoolean("fill_shapes", e12.f44662k).apply();
+                    boolean z12 = pg.u0.e(i15).f44662k;
                     for (int i16 = 0; i16 < m0Var.S1.getItemsCount(); i16++) {
                         View childAt2 = m0Var.S1.L.getChildAt(i16);
                         if (childAt2 instanceof qg.l0) {
-                            pg.l lVar2 = (pg.l) pg.l.f44526b.get(i16);
+                            pg.l lVar2 = (pg.l) pg.l.f44533b.get(i16);
                             if (z12) {
                                 e10 = lVar2.m();
                             } else {

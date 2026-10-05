@@ -122,7 +122,7 @@ public final class w4 extends a0 implements org.telegram.ui.ActionBar.y5, p9, m0
             return null;
         }
         vh.f fVar = this.M;
-        if (fVar != null && fVar.f48386i) {
+        if (fVar != null && fVar.f48393i) {
             this.M = null;
         }
         if (this.M == null) {
@@ -216,7 +216,7 @@ public final class w4 extends a0 implements org.telegram.ui.ActionBar.y5, p9, m0
         int i10 = org.telegram.ui.ActionBar.i6.Gd;
         org.telegram.ui.ActionBar.d6 d6Var = this.f12735n;
         this.f12736r.setColor(org.telegram.ui.ActionBar.i6.v0(i10, d6Var));
-        this.f12737s.setColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21148uf, d6Var));
+        this.f12737s.setColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21153uf, d6Var));
         l0 l0Var = this.v;
         if (l0Var != null) {
             l0Var.a();
@@ -255,8 +255,8 @@ public final class w4 extends a0 implements org.telegram.ui.ActionBar.y5, p9, m0
             int i10 = org.telegram.ui.ActionBar.i6.G6;
             org.telegram.ui.ActionBar.d6 d6Var = this.f12735n;
             imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.v0(i10, d6Var), PorterDuff.Mode.SRC_IN));
-            int i11 = org.telegram.ui.ActionBar.i6.f20822d6;
-            imageView.setBackground(new d2(org.telegram.ui.ActionBar.i6.Z(org.telegram.ui.ActionBar.i6.v0(i11, d6Var), org.telegram.ui.ActionBar.i6.v(org.telegram.ui.ActionBar.i6.v0(i11, d6Var), org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20913i6, d6Var)), 20, 20)));
+            int i11 = org.telegram.ui.ActionBar.i6.f20827d6;
+            imageView.setBackground(new d2(org.telegram.ui.ActionBar.i6.Z(org.telegram.ui.ActionBar.i6.v0(i11, d6Var), org.telegram.ui.ActionBar.i6.v(org.telegram.ui.ActionBar.i6.v0(i11, d6Var), org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20918i6, d6Var)), 20, 20)));
         }
         w7.b6.a(imageView);
         this.K.add(imageView);
@@ -427,7 +427,7 @@ public final class w4 extends a0 implements org.telegram.ui.ActionBar.y5, p9, m0
             List m10 = m();
             if (!m10.isEmpty() && (m10.size() != 1 || ((u) m10.get(0)).f12663a != 0)) {
                 if (i10 >= 0 && i10 < m10.size() && ((u) m10.get(i10)).a()) {
-                    x3.P1(this.f12204a, (u) m10.get(i10), this.N.f12589a);
+                    x3.O1(this.f12204a, (u) m10.get(i10), this.N.f12589a);
                     return;
                 }
                 return;
@@ -631,7 +631,7 @@ public final class w4 extends a0 implements org.telegram.ui.ActionBar.y5, p9, m0
         int paddingTop = getPaddingTop();
         j(canvas);
         org.telegram.ui.Components.e6 e6Var = this.U;
-        float f12 = e6Var.f25939c;
+        float f12 = e6Var.f25987c;
         ArrayList arrayList = this.f12740y;
         if (arrayList.size() >= 2 && f12 > 0.001f) {
             if (f12724k0 == null) {
@@ -671,7 +671,7 @@ public final class w4 extends a0 implements org.telegram.ui.ActionBar.y5, p9, m0
         if (q3Var != null && (textSelectionHelper = q3Var.f12589a.getTextSelectionHelper()) != null && textSelectionHelper.y() && (getParent() instanceof RecyclerView)) {
             ((RecyclerView) getParent()).getClass();
             int R = RecyclerView.R(this);
-            if (R >= 0 && R > textSelectionHelper.f22699u0 && R <= textSelectionHelper.f22702x0) {
+            if (R >= 0 && R > textSelectionHelper.f22702u0 && R <= textSelectionHelper.f22705x0) {
                 canvas.drawRect(getPaddingLeft(), paddingTop, getWidth() - getPaddingRight(), paddingTop + this.P, this.f12737s);
             }
         }
@@ -705,7 +705,7 @@ public final class w4 extends a0 implements org.telegram.ui.ActionBar.y5, p9, m0
                 i(canvas, imageView2);
             }
         }
-        if (e6Var.f25943i) {
+        if (e6Var.f25991i) {
             requestLayout();
         }
     }
@@ -799,7 +799,7 @@ public final class w4 extends a0 implements org.telegram.ui.ActionBar.y5, p9, m0
             z10 = false;
         }
         int i11 = -1;
-        if (l() && !this.U.f25943i) {
+        if (l() && !this.U.f25991i) {
             ArrayList arrayList = this.f12740y;
             if (arrayList.size() >= 2) {
                 if (actionMasked == 0) {

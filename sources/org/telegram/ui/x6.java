@@ -2,18 +2,18 @@ package org.telegram.ui;
 
 import android.content.Context;
 public final class x6 extends org.telegram.ui.Components.ed {
-    public final y6 f42760e0;
+    public final y6 f42818e0;
 
     public x6(y6 y6Var, Context context) {
-        super(context, 11, org.telegram.ui.Components.ed.W, 0, org.telegram.ui.Components.ed.f26039a0);
-        this.f42760e0 = y6Var;
+        super(context, 11, org.telegram.ui.Components.ed.W, 0, org.telegram.ui.Components.ed.f26108a0);
+        this.f42818e0 = y6Var;
     }
 
     @Override
     public final void d(int i10, boolean z10) {
-        a7 a7Var = this.f42760e0.f43075e;
+        a7 a7Var = this.f42818e0.f43124e;
         if (!z10) {
-            a7Var.f34686b.m1();
+            a7Var.f34694b.l1();
             return;
         }
         int i11 = -1;
@@ -22,9 +22,9 @@ public final class x6 extends org.telegram.ui.Components.ed {
         }
         int i12 = 0;
         while (true) {
-            if (i12 < a7Var.f34695g0.size()) {
-                w6 w6Var = (w6) a7Var.f34695g0.get(i12);
-                if (w6Var != null && w6Var.f17187a == 11 && w6Var.f41933f == i10) {
+            if (i12 < a7Var.f34703g0.size()) {
+                w6 w6Var = (w6) a7Var.f34703g0.get(i12);
+                if (w6Var != null && w6Var.f17192a == 11 && w6Var.f41941f == i10) {
                     i11 = i12;
                     break;
                 }
@@ -34,9 +34,9 @@ public final class x6 extends org.telegram.ui.Components.ed {
             }
         }
         if (i11 >= 0) {
-            a7Var.f34686b.f1(new i2.w(i11, 7), 0, true);
+            a7Var.f34694b.e1(new i2.w(i11, 7), 0, true);
         } else {
-            a7Var.f34686b.m1();
+            a7Var.f34694b.l1();
         }
     }
 }

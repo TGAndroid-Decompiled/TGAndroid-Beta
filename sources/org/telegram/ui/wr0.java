@@ -7,8 +7,8 @@ public final class wr0 implements ValueAnimator.AnimatorUpdateListener {
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         org.telegram.ui.Components.vb vbVar;
         Drawable[] drawableArr = PhotoViewer.U8;
-        org.telegram.ui.Components.rc rcVar = org.telegram.ui.Components.rc.f30337w;
-        if (rcVar != null && (vbVar = rcVar.f30341e) != null) {
+        org.telegram.ui.Components.rc rcVar = org.telegram.ui.Components.rc.f30419w;
+        if (rcVar != null && (vbVar = rcVar.f30423e) != null) {
             vbVar.updatePosition();
         }
     }

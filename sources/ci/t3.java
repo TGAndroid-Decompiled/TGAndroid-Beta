@@ -9,7 +9,6 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.Components.me0;
 import org.telegram.ui.WallpapersListActivity;
-import org.telegram.ui.bh1;
 import org.telegram.ui.ha0;
 import org.telegram.ui.hp;
 import org.telegram.ui.kn;
@@ -19,6 +18,7 @@ import org.telegram.ui.so0;
 import org.telegram.ui.to;
 import org.telegram.ui.wm0;
 import org.telegram.ui.wq0;
+import org.telegram.ui.zg1;
 public final class t3 implements RequestDelegate {
     public final int f5960a;
     public final boolean f5961b;
@@ -100,10 +100,10 @@ public final class t3 implements RequestDelegate {
                 }
                 return;
             case 12:
-                AndroidUtilities.runOnUIThread(new ai.s4((bh1) obj, tL_error, tLObject, this.f5961b, 29));
+                AndroidUtilities.runOnUIThread(new ai.s4((zg1) obj, tL_error, tLObject, this.f5961b, 29));
                 return;
             default:
-                int[][] iArr = WallpapersListActivity.f34600i0;
+                int[][] iArr = WallpapersListActivity.f34613i0;
                 AndroidUtilities.runOnUIThread(new ha0((WallpapersListActivity) obj, tLObject, z10, 10));
                 return;
         }

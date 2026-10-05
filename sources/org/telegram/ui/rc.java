@@ -4,16 +4,16 @@ import android.content.Context;
 import android.view.ViewGroup;
 import org.telegram.messenger.MessagesController;
 public final class rc extends org.telegram.ui.Components.yl0 {
-    public final Context f40017c;
+    public final Context f40063c;
     public final org.telegram.ui.ActionBar.d6 d;
-    public final int f40018e;
-    public final tc f40019f;
+    public final int f40064e;
+    public final tc f40065f;
 
     public rc(tc tcVar, Context context, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
-        this.f40019f = tcVar;
-        this.f40017c = context;
+        this.f40065f = tcVar;
+        this.f40063c = context;
         this.d = d6Var;
-        this.f40018e = i10;
+        this.f40064e = i10;
     }
 
     @Override
@@ -23,7 +23,7 @@ public final class rc extends org.telegram.ui.Components.yl0 {
 
     @Override
     public final int h() {
-        MessagesController.PeerColors peerColors = MessagesController.getInstance(this.f40018e).peerColors;
+        MessagesController.PeerColors peerColors = MessagesController.getInstance(this.f40064e).peerColors;
         if (peerColors == null) {
             return 0;
         }
@@ -33,17 +33,17 @@ public final class rc extends org.telegram.ui.Components.yl0 {
     @Override
     public final void v(s4.c1 c1Var, int i10) {
         boolean z10;
-        sc scVar = (sc) c1Var.f46531a;
-        scVar.setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20822d6, this.d));
-        if (i10 == this.f40019f.f40792e) {
+        sc scVar = (sc) c1Var.f46538a;
+        scVar.setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20827d6, this.d));
+        if (i10 == this.f40065f.f40847e) {
             z10 = true;
         } else {
             z10 = false;
         }
-        scVar.f40456s = z10;
+        scVar.f40441s = z10;
         scVar.v.f(z10, true);
         scVar.invalidate();
-        MessagesController.PeerColors peerColors = MessagesController.getInstance(this.f40018e).peerColors;
+        MessagesController.PeerColors peerColors = MessagesController.getInstance(this.f40064e).peerColors;
         if (peerColors != null && i10 >= 0 && i10 < peerColors.colors.size()) {
             scVar.a(peerColors.colors.get(i10));
         }
@@ -51,6 +51,6 @@ public final class rc extends org.telegram.ui.Components.yl0 {
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        return new s4.c1(new sc(this.f40019f, this.f40017c));
+        return new s4.c1(new sc(this.f40065f, this.f40063c));
     }
 }

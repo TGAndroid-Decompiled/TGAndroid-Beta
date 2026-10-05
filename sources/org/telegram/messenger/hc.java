@@ -2,45 +2,45 @@ package org.telegram.messenger;
 
 import java.util.ArrayList;
 public final class hc implements Runnable {
-    public final int f18046a = 1;
-    public final MessagesController f18047b;
-    public final long f18048c;
+    public final int f18051a = 1;
+    public final MessagesController f18052b;
+    public final long f18053c;
     public final long d;
-    public final ArrayList f18049e;
+    public final ArrayList f18054e;
 
     public hc(MessagesController messagesController, long j3, long j10, ArrayList arrayList) {
-        this.f18047b = messagesController;
-        this.f18048c = j3;
+        this.f18052b = messagesController;
+        this.f18053c = j3;
         this.d = j10;
-        this.f18049e = arrayList;
+        this.f18054e = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f18046a) {
+        switch (this.f18051a) {
             case 0:
-                this.f18047b.lambda$processUpdateArray$419(this.f18048c, this.f18049e, this.d);
+                this.f18052b.lambda$processUpdateArray$419(this.f18053c, this.f18054e, this.d);
                 return;
             case 1:
-                this.f18047b.lambda$checkUnreadPollVotesInternal2$431(this.f18048c, this.d, 0, this.f18049e);
+                this.f18052b.lambda$checkUnreadPollVotesInternal2$431(this.f18053c, this.d, 0, this.f18054e);
                 return;
             default:
-                this.f18047b.lambda$deleteMessagesByPush$370(this.f18049e, this.f18048c, this.d);
+                this.f18052b.lambda$deleteMessagesByPush$370(this.f18054e, this.f18053c, this.d);
                 return;
         }
     }
 
     public hc(MessagesController messagesController, long j3, ArrayList arrayList, long j10) {
-        this.f18047b = messagesController;
-        this.f18048c = j3;
-        this.f18049e = arrayList;
+        this.f18052b = messagesController;
+        this.f18053c = j3;
+        this.f18054e = arrayList;
         this.d = j10;
     }
 
     public hc(MessagesController messagesController, ArrayList arrayList, long j3, long j10) {
-        this.f18047b = messagesController;
-        this.f18049e = arrayList;
-        this.f18048c = j3;
+        this.f18052b = messagesController;
+        this.f18054e = arrayList;
+        this.f18053c = j3;
         this.d = j10;
     }
 }

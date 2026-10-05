@@ -36,7 +36,7 @@ public final class p1 extends zl0 {
         this.f5689o3 = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
     }
 
-    public static void y1(p1 p1Var, int i10, int i11) {
+    public static void x1(p1 p1Var, int i10, int i11) {
         int i12;
         if (p1Var.f5680e3 != null && (p1Var.getLayoutManager() instanceof s4.s)) {
             s4.s sVar = (s4.s) p1Var.getLayoutManager();
@@ -49,12 +49,12 @@ public final class p1 extends zl0 {
                 } else {
                     i12 = 1;
                 }
-                bl0Var.f24999b = i12;
+                bl0Var.f25015b = i12;
                 p1Var.f5680e3.d(i10, i11, false, false);
                 return;
             }
             m1 m1Var = new m1(p1Var, p1Var.getContext(), 0);
-            m1Var.f46699a = i10;
+            m1Var.f46706a = i10;
             m1Var.f14237p = i11;
             sVar.w0(m1Var);
         }
@@ -82,7 +82,7 @@ public final class p1 extends zl0 {
         if (!rect.isEmpty()) {
             this.D1.setBounds(rect);
             canvas.save();
-            q0.a aVar = this.f33550o2;
+            q0.a aVar = this.f33558o2;
             if (aVar != null) {
                 aVar.accept(canvas);
             }
@@ -212,7 +212,7 @@ public final class p1 extends zl0 {
         if (o0Var instanceof s4.c0) {
             bl0 bl0Var = new bl0(this, (s4.c0) o0Var);
             this.f5680e3 = bl0Var;
-            bl0Var.f25004i = new l1(this, 0);
+            bl0Var.f25020i = new l1(this, 0);
             bl0Var.h = new a1.c(this, 15);
         }
     }

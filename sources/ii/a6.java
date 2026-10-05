@@ -41,7 +41,7 @@ public final class a6 implements h1 {
     }
 
     @Override
-    public final boolean G(boolean z10) {
+    public final boolean C(boolean z10) {
         return false;
     }
 
@@ -50,7 +50,7 @@ public final class a6 implements h1 {
         c6 c6Var = this.f12231a.f12378y;
         if (c6Var != null) {
             x3 x3Var = ((f3) c6Var).f12362a;
-            x3.O1(x3Var, i1Var);
+            x3.N1(x3Var, i1Var);
             x3Var.f12770o3.P(i1Var, true);
         }
     }
@@ -60,7 +60,7 @@ public final class a6 implements h1 {
         f6 f6Var = this.f12231a;
         c6 c6Var = f6Var.f12378y;
         if (c6Var != null && f6Var.f12377x != null) {
-            return ((f3) c6Var).f12362a.U4();
+            return ((f3) c6Var).f12362a.T4();
         }
         return false;
     }
@@ -81,7 +81,7 @@ public final class a6 implements h1 {
         f6 f6Var = this.f12231a;
         c6 c6Var = f6Var.f12378y;
         if (c6Var != null && (aVar = f6Var.f12377x) != null) {
-            x3.R1(((f3) c6Var).f12362a, aVar);
+            x3.Q1(((f3) c6Var).f12362a, aVar);
         }
     }
 
@@ -110,12 +110,12 @@ public final class a6 implements h1 {
     }
 
     @Override
-    public final void x(CharSequence charSequence) {
+    public final void w(CharSequence charSequence) {
         c6 c6Var = this.f12231a.f12378y;
         if (c6Var != null) {
             f3 f3Var = (f3) c6Var;
             if (charSequence != null && charSequence.length() > 0) {
-                f3Var.f12362a.v4(charSequence.toString());
+                f3Var.f12362a.u4(charSequence.toString());
             }
         }
     }

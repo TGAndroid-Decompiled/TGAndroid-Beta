@@ -11,11 +11,11 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.bi;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.g91;
+import org.telegram.ui.Components.h91;
 import org.telegram.ui.Components.zl0;
 import w7.z5;
 public final class a {
-    public final n f15605a;
+    public final p f15605a;
     public final fh.c f15606b;
     public final ah.c f15607c;
     public final ah.i d;
@@ -25,26 +25,26 @@ public final class a {
     public ViewGroup h;
     public bh.a f15611i;
 
-    public a(n nVar, org.telegram.ui.ActionBar.n nVar2) {
-        this.f15605a = nVar;
-        nVar.f15666a = new v(this, 2);
-        nVar.d = new ni.b(AndroidUtilities.dp(48.0f));
+    public a(p pVar, org.telegram.ui.ActionBar.n nVar) {
+        this.f15605a = pVar;
+        pVar.f15671a = new v(this, 2);
+        pVar.d = new ni.b(AndroidUtilities.dp(48.0f));
         fh.c cVar = new fh.c();
         this.f15606b = cVar;
-        cVar.a(nVar2.f());
-        nVar.A.add(new l(cVar, nVar2));
+        cVar.a(nVar.f());
+        pVar.A.add(new n(cVar, nVar));
         if (Build.VERSION.SDK_INT >= 31 && SharedConfig.chatBlurEnabled()) {
             ah.i iVar = new ah.i(false, false);
             this.d = iVar;
             d dVar = new d();
             this.f15608e = dVar;
-            nVar.a(iVar);
+            pVar.a(iVar);
             fh.d dVar2 = new fh.d(cVar);
             dVar2.f9863f = cVar;
             ah.f.c();
             ah.c cVar2 = new ah.c(dVar2);
             this.f15607c = cVar2;
-            cVar2.h = nVar;
+            cVar2.h = pVar;
             int dp = AndroidUtilities.dp(LiteMode.isEnabled(262144) ? 8.0f : 48.0f);
             cVar2.f456b = dp;
             cVar2.f457c = dp;
@@ -55,12 +55,12 @@ public final class a {
             this.f15609f = dVar.d(1);
             return;
         }
-        this.f15609f = oi.b.f17217a;
+        this.f15609f = oi.b.f17222a;
         this.f15608e = null;
         this.d = null;
         ah.c cVar3 = new ah.c(cVar);
         this.f15607c = cVar3;
-        cVar3.h = nVar;
+        cVar3.h = pVar;
     }
 
     public static void c(ViewGroup viewGroup, int i10, int i11, int i12, int i13) {
@@ -75,40 +75,40 @@ public final class a {
         mi.g gVar = new mi.g(AndroidUtilities.dp(32.0f));
         mi.g gVar2 = new mi.g(AndroidUtilities.dp(56.0f));
         mi.g gVar3 = new mi.g(AndroidUtilities.dp(48.0f));
-        if (fVar.f16466l != 1) {
-            fVar.f16466l = 1;
-            fVar.f16464j = true;
-            fVar.f16465k = true;
+        if (fVar.f16471l != 1) {
+            fVar.f16471l = 1;
+            fVar.f16469j = true;
+            fVar.f16470k = true;
             fVar.invalidateSelf();
         }
-        fVar.f16470p = this.f15606b;
-        fVar.f16464j = true;
+        fVar.f16475p = this.f15606b;
+        fVar.f16469j = true;
         fVar.k();
         fVar.invalidateSelf();
-        fVar.f16472r = 160;
-        fh.c cVar = fVar.f16470p;
+        fVar.f16477r = 160;
+        fh.c cVar = fVar.f16475p;
         if (cVar != null) {
-            fVar.f16471q = i6.l1(160 / 255.0f, cVar.f9858b);
+            fVar.f16476q = i6.l1(160 / 255.0f, cVar.f9858b);
         }
-        fVar.f16464j = true;
+        fVar.f16469j = true;
         fVar.invalidateSelf();
-        fVar.f16467m = gVar;
-        fVar.f16464j = true;
+        fVar.f16472m = gVar;
+        fVar.f16469j = true;
         fVar.invalidateSelf();
-        fVar.f16468n = gVar2;
-        fVar.f16464j = true;
+        fVar.f16473n = gVar2;
+        fVar.f16469j = true;
         fVar.invalidateSelf();
-        fVar.f16474t = 210;
-        fh.c cVar2 = fVar.f16470p;
+        fVar.f16479t = 210;
+        fh.c cVar2 = fVar.f16475p;
         if (cVar2 != null) {
-            fVar.f16473s = i6.l1(210 / 255.0f, cVar2.f9858b);
+            fVar.f16478s = i6.l1(210 / 255.0f, cVar2.f9858b);
         }
-        fVar.f16465k = true;
+        fVar.f16470k = true;
         fVar.invalidateSelf();
-        fVar.f16469o = gVar3;
-        fVar.f16465k = true;
+        fVar.f16474o = gVar3;
+        fVar.f16470k = true;
         fVar.invalidateSelf();
-        this.f15605a.f15668c.add(new m(view, fVar));
+        this.f15605a.f15673c.add(new o(view, fVar));
         return fVar;
     }
 
@@ -117,40 +117,40 @@ public final class a {
         mi.g gVar = new mi.g(AndroidUtilities.dp(28.0f));
         mi.g gVar2 = new mi.g(AndroidUtilities.dp(40.0f));
         mi.g gVar3 = new mi.g(AndroidUtilities.dp(30.0f));
-        if (fVar.f16466l != 4) {
-            fVar.f16466l = 4;
-            fVar.f16464j = true;
-            fVar.f16465k = true;
+        if (fVar.f16471l != 4) {
+            fVar.f16471l = 4;
+            fVar.f16469j = true;
+            fVar.f16470k = true;
             fVar.invalidateSelf();
         }
-        fVar.f16470p = this.f15606b;
-        fVar.f16464j = true;
+        fVar.f16475p = this.f15606b;
+        fVar.f16469j = true;
         fVar.k();
         fVar.invalidateSelf();
-        fVar.f16472r = 160;
-        fh.c cVar = fVar.f16470p;
+        fVar.f16477r = 160;
+        fh.c cVar = fVar.f16475p;
         if (cVar != null) {
-            fVar.f16471q = i6.l1(160 / 255.0f, cVar.f9858b);
+            fVar.f16476q = i6.l1(160 / 255.0f, cVar.f9858b);
         }
-        fVar.f16464j = true;
+        fVar.f16469j = true;
         fVar.invalidateSelf();
-        fVar.f16467m = gVar;
-        fVar.f16464j = true;
+        fVar.f16472m = gVar;
+        fVar.f16469j = true;
         fVar.invalidateSelf();
-        fVar.f16468n = gVar2;
-        fVar.f16464j = true;
+        fVar.f16473n = gVar2;
+        fVar.f16469j = true;
         fVar.invalidateSelf();
-        fVar.f16474t = 210;
-        fh.c cVar2 = fVar.f16470p;
+        fVar.f16479t = 210;
+        fh.c cVar2 = fVar.f16475p;
         if (cVar2 != null) {
-            fVar.f16473s = i6.l1(210 / 255.0f, cVar2.f9858b);
+            fVar.f16478s = i6.l1(210 / 255.0f, cVar2.f9858b);
         }
-        fVar.f16465k = true;
+        fVar.f16470k = true;
         fVar.invalidateSelf();
-        fVar.f16469o = gVar3;
-        fVar.f16465k = true;
+        fVar.f16474o = gVar3;
+        fVar.f16470k = true;
         fVar.invalidateSelf();
-        this.f15605a.f15668c.add(new m(view, fVar));
+        this.f15605a.f15673c.add(new o(view, fVar));
         return fVar;
     }
 
@@ -167,19 +167,19 @@ public final class a {
         kVar.setCenterTitleAndGlass(true);
         kVar.setExtraHeight(AndroidUtilities.dp(6.0f));
         kVar.T0 = true;
-        kVar.K(this.f15607c, eh.b.m(d6Var), false);
+        kVar.J(this.f15607c, eh.b.m(d6Var), false);
     }
 
-    public final void e(FrameLayout frameLayout, g91 g91Var, org.telegram.ui.ActionBar.k kVar, d6 d6Var) {
+    public final void e(FrameLayout frameLayout, h91 h91Var, org.telegram.ui.ActionBar.k kVar, d6 d6Var) {
         this.f15610g = frameLayout;
-        this.h = g91Var;
-        this.f15605a.c(g91Var);
+        this.h = h91Var;
+        this.f15605a.c(h91Var);
         AndroidUtilities.removeFromParent(kVar);
         frameLayout.addView(kVar, z5.e(-1, -2, 48));
         kVar.setAddToContainer(false);
         kVar.setCenterTitleAndGlass(true);
         kVar.setExtraHeight(AndroidUtilities.dp(6.0f));
         kVar.T0 = true;
-        kVar.K(this.f15607c, eh.b.m(d6Var), false);
+        kVar.J(this.f15607c, eh.b.m(d6Var), false);
     }
 }

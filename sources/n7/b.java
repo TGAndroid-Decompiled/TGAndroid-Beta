@@ -1,6 +1,6 @@
 package n7;
 public final class b extends d {
-    public static final b f16769a = new Object();
+    public static final b f16774a = new Object();
 
     @Override
     public final Object a() {

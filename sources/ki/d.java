@@ -14,13 +14,13 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.camera.Camera2Session;
 import org.telegram.messenger.camera.CameraController;
 import org.telegram.ui.Cells.fa;
+import org.telegram.ui.Components.aa1;
 import org.telegram.ui.Components.f60;
 import org.telegram.ui.Components.q50;
 import org.telegram.ui.Components.rg0;
-import org.telegram.ui.Components.t11;
 import org.telegram.ui.Components.u11;
 import org.telegram.ui.Components.v11;
-import org.telegram.ui.Components.z91;
+import org.telegram.ui.Components.w11;
 public final class d implements TextureView.SurfaceTextureListener {
     public final int f14862a;
     public final Object f14863b;
@@ -48,7 +48,7 @@ public final class d implements TextureView.SurfaceTextureListener {
                 if (BuildVars.LOGS_ENABLED) {
                     FileLog.d("InstantCamera camera surface available");
                 }
-                if (f60Var.m0 == null && surfaceTexture != null && !f60Var.f26319l0) {
+                if (f60Var.m0 == null && surfaceTexture != null && !f60Var.f26370l0) {
                     if (BuildVars.LOGS_ENABLED) {
                         FileLog.d("InstantCamera start create thread");
                     }
@@ -59,27 +59,27 @@ public final class d implements TextureView.SurfaceTextureListener {
             case 2:
                 return;
             case 3:
-                final v11 v11Var = (v11) this.f14863b;
-                ArrayList arrayList = v11Var.f31508c;
-                t11 t11Var = v11Var.f31506a;
-                if (t11Var != null) {
-                    t11Var.i();
-                    v11Var.f31506a = null;
+                final w11 w11Var = (w11) this.f14863b;
+                ArrayList arrayList = w11Var.f32474c;
+                u11 u11Var = w11Var.f32472a;
+                if (u11Var != null) {
+                    u11Var.i();
+                    w11Var.f32472a = null;
                 }
-                t11 t11Var2 = new t11(surfaceTexture, new Runnable() {
+                u11 u11Var2 = new u11(surfaceTexture, new Runnable() {
                     @Override
                     public final void run() {
                         switch (r2) {
                             case 0:
-                                v11Var.invalidate();
+                                w11Var.invalidate();
                                 return;
                             default:
-                                v11 v11Var2 = v11Var;
-                                Runnable runnable = v11Var2.d;
+                                w11 w11Var2 = w11Var;
+                                Runnable runnable = w11Var2.d;
                                 if (runnable != null) {
-                                    v11Var2.f31509e = true;
-                                    v11Var2.d = null;
-                                    v11.b(runnable);
+                                    w11Var2.f32475e = true;
+                                    w11Var2.d = null;
+                                    w11.b(runnable);
                                     return;
                                 }
                                 return;
@@ -90,40 +90,40 @@ public final class d implements TextureView.SurfaceTextureListener {
                     public final void run() {
                         switch (r2) {
                             case 0:
-                                v11Var.invalidate();
+                                w11Var.invalidate();
                                 return;
                             default:
-                                v11 v11Var2 = v11Var;
-                                Runnable runnable = v11Var2.d;
+                                w11 w11Var2 = w11Var;
+                                Runnable runnable = w11Var2.d;
                                 if (runnable != null) {
-                                    v11Var2.f31509e = true;
-                                    v11Var2.d = null;
-                                    v11.b(runnable);
+                                    w11Var2.f32475e = true;
+                                    w11Var2.d = null;
+                                    w11.b(runnable);
                                     return;
                                 }
                                 return;
                         }
                     }
                 }, i10, i11);
-                v11Var.f31506a = t11Var2;
-                t11Var2.f30928a = EmuDetector.with(v11Var.getContext()).detect();
+                w11Var.f32472a = u11Var2;
+                u11Var2.f31289a = EmuDetector.with(w11Var.getContext()).detect();
                 if (!arrayList.isEmpty()) {
                     for (int i12 = 0; i12 < arrayList.size(); i12++) {
-                        u11 u11Var = (u11) arrayList.get(i12);
-                        Bitmap bitmap = u11Var.f31248e;
+                        v11 v11Var = (v11) arrayList.get(i12);
+                        Bitmap bitmap = v11Var.f31603e;
                         if (bitmap != null) {
-                            v11Var.f31506a.c(u11Var.f31249f, bitmap, u11Var.f31247c, u11Var.d);
+                            w11Var.f32472a.c(v11Var.f31604f, bitmap, v11Var.f31602c, v11Var.d);
                         } else {
-                            ArrayList arrayList2 = u11Var.f31246b;
+                            ArrayList arrayList2 = v11Var.f31601b;
                             if (arrayList2 != null) {
-                                v11Var.f31506a.f(arrayList2, u11Var.d);
+                                w11Var.f32472a.f(arrayList2, v11Var.d);
                             } else {
-                                v11Var.f31506a.e(u11Var.f31245a, u11Var.f31250g, u11Var.d);
+                                w11Var.f32472a.e(v11Var.f31600a, v11Var.f31605g, v11Var.d);
                             }
                         }
                     }
                     arrayList.clear();
-                    Choreographer.getInstance().postFrameCallback(v11Var.f31507b);
+                    Choreographer.getInstance().postFrameCallback(w11Var.f32473b);
                     return;
                 }
                 return;
@@ -131,9 +131,9 @@ public final class d implements TextureView.SurfaceTextureListener {
                 return;
             default:
                 vh.f fVar = (vh.f) this.f14863b;
-                if (fVar.f48384f == null) {
+                if (fVar.f48391f == null) {
                     vh.e eVar = new vh.e(fVar, surfaceTexture, i10, i11, new vh.d(fVar, 1));
-                    fVar.f48384f = eVar;
+                    fVar.f48391f = eVar;
                     eVar.start();
                     return;
                 }
@@ -154,13 +154,13 @@ public final class d implements TextureView.SurfaceTextureListener {
                 return true;
             case 1:
                 f60 f60Var = (f60) this.f14863b;
-                Camera2Session[] camera2SessionArr = f60Var.f26331v0;
+                Camera2Session[] camera2SessionArr = f60Var.f26382v0;
                 q50 q50Var = f60Var.m0;
                 if (q50Var != null) {
                     q50Var.b(0L, 0, true, 0, 0);
                     f60Var.m0 = null;
                 }
-                if (f60Var.f26328s0) {
+                if (f60Var.f26379s0) {
                     for (int i10 = 0; i10 < camera2SessionArr.length; i10++) {
                         Camera2Session camera2Session = camera2SessionArr[i10];
                         if (camera2Session != null) {
@@ -169,47 +169,47 @@ public final class d implements TextureView.SurfaceTextureListener {
                         }
                     }
                     return true;
-                } else if (f60Var.f26329t0 != null) {
-                    CameraController.getInstance().close(f60Var.f26329t0, null, null);
+                } else if (f60Var.f26380t0 != null) {
+                    CameraController.getInstance().close(f60Var.f26380t0, null, null);
                     return true;
                 } else {
                     return true;
                 }
             case 2:
-                ((rg0) this.f14863b).V.f34063w3.setSurfaceTexture(surfaceTexture);
+                ((rg0) this.f14863b).V.f34076w3.setSurfaceTexture(surfaceTexture);
                 return false;
             case 3:
-                v11 v11Var = (v11) this.f14863b;
-                t11 t11Var = v11Var.f31506a;
-                if (t11Var != null) {
-                    t11Var.i();
-                    v11Var.f31506a = null;
+                w11 w11Var = (w11) this.f14863b;
+                u11 u11Var = w11Var.f32472a;
+                if (u11Var != null) {
+                    u11Var.i();
+                    w11Var.f32472a = null;
                 }
-                Runnable runnable = v11Var.d;
+                Runnable runnable = w11Var.d;
                 if (runnable != null) {
-                    v11Var.d = null;
-                    v11.b(runnable);
+                    w11Var.d = null;
+                    w11.b(runnable);
                     return false;
                 }
                 return false;
             case 4:
-                z91 z91Var = (z91) this.f14863b;
-                TextureView textureView = z91Var.d;
-                if (z91Var.S) {
-                    if (z91Var.W) {
-                        z91Var.f33463r = 2;
+                aa1 aa1Var = (aa1) this.f14863b;
+                TextureView textureView = aa1Var.d;
+                if (aa1Var.S) {
+                    if (aa1Var.W) {
+                        aa1Var.f24571r = 2;
                     }
                     textureView.setSurfaceTexture(surfaceTexture);
                     textureView.setVisibility(0);
-                    z91Var.S = false;
+                    aa1Var.S = false;
                     return false;
                 }
                 return true;
             default:
-                vh.e eVar = ((vh.f) this.f14863b).f48384f;
+                vh.e eVar = ((vh.f) this.f14863b).f48391f;
                 if (eVar != null) {
-                    eVar.f48368a = false;
-                    ((vh.f) this.f14863b).f48384f = null;
+                    eVar.f48375a = false;
+                    ((vh.f) this.f14863b).f48391f = null;
                     return true;
                 }
                 return true;
@@ -238,8 +238,8 @@ public final class d implements TextureView.SurfaceTextureListener {
             case 2:
                 return;
             case 3:
-                t11 t11Var = ((v11) this.f14863b).f31506a;
-                if (t11Var != null && (handler = t11Var.getHandler()) != null && t11Var.f30929b.get()) {
+                u11 u11Var = ((w11) this.f14863b).f32472a;
+                if (u11Var != null && (handler = u11Var.getHandler()) != null && u11Var.f31290b.get()) {
                     handler.sendMessage(handler.obtainMessage(1, i10, i11));
                     return;
                 }
@@ -247,12 +247,12 @@ public final class d implements TextureView.SurfaceTextureListener {
             case 4:
                 return;
             default:
-                vh.e eVar = ((vh.f) this.f14863b).f48384f;
+                vh.e eVar = ((vh.f) this.f14863b).f48391f;
                 if (eVar != null) {
-                    synchronized (eVar.f48371e) {
-                        eVar.f48372f = true;
+                    synchronized (eVar.f48378e) {
+                        eVar.f48379f = true;
                         eVar.h = i10;
-                        eVar.f48373n = i11;
+                        eVar.f48380n = i11;
                     }
                     return;
                 }
@@ -370,10 +370,10 @@ public final class d implements TextureView.SurfaceTextureListener {
             case 3:
                 return;
             case 4:
-                z91 z91Var = (z91) this.f14863b;
-                if (z91Var.f33463r == 1) {
-                    z91Var.f33462n.getViewTreeObserver().addOnPreDrawListener(new fa(this, 4));
-                    z91Var.f33462n.invalidate();
+                aa1 aa1Var = (aa1) this.f14863b;
+                if (aa1Var.f24571r == 1) {
+                    aa1Var.f24570n.getViewTreeObserver().addOnPreDrawListener(new fa(this, 4));
+                    aa1Var.f24570n.invalidate();
                     return;
                 }
                 return;

@@ -34,17 +34,17 @@ public final class hm0 implements v9 {
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 == 2) {
-                    kn0Var.f38059w = "female";
+                    kn0Var.f38127w = "female";
                     kn0Var.Y[4].setText(LocaleController.getString(R.string.PassportFemale));
                 }
             } else {
-                kn0Var.f38059w = "male";
+                kn0Var.f38127w = "male";
                 kn0Var.Y[4].setText(LocaleController.getString(R.string.PassportMale));
             }
         }
         if (!TextUtils.isEmpty(result.nationality)) {
             String str = result.nationality;
-            kn0Var.f38050s = str;
+            kn0Var.f38118s = str;
             String str2 = (String) kn0Var.Y0.get(str);
             if (str2 != null) {
                 kn0Var.Y[5].setText(str2);

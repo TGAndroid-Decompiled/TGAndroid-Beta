@@ -18,7 +18,7 @@ public final class ld extends RadialProgressView {
         switch (this.K) {
             case 3:
                 super.invalidate();
-                qu0 qu0Var = ((PhotoViewer) this.L).f33901e0;
+                qu0 qu0Var = ((PhotoViewer) this.L).f33914e0;
                 if (qu0Var != null) {
                     qu0Var.invalidate();
                     return;
@@ -35,11 +35,11 @@ public final class ld extends RadialProgressView {
         switch (this.K) {
             case 0:
                 super.setAlpha(f7);
-                ((nd) this.L).f38918f.invalidate();
+                ((nd) this.L).f38908f.invalidate();
                 return;
             case 1:
                 super.setAlpha(f7);
-                ((k70) this.L).f37848e.invalidate();
+                ((k70) this.L).f37863e.invalidate();
                 return;
             case 2:
                 super.setAlpha(f7);
@@ -47,7 +47,7 @@ public final class ld extends RadialProgressView {
                 return;
             default:
                 super.setAlpha(f7);
-                qu0 qu0Var = ((PhotoViewer) this.L).f33901e0;
+                qu0 qu0Var = ((PhotoViewer) this.L).f33914e0;
                 if (qu0Var != null) {
                     qu0Var.invalidate();
                     return;

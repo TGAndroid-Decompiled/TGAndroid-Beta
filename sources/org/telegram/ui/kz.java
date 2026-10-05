@@ -2,19 +2,19 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.view.View;
-public final class kz extends org.telegram.ui.Components.f61 {
-    public static final int f38133a = 0;
+public final class kz extends org.telegram.ui.Components.g61 {
+    public static final int f38201a = 0;
 
     static {
-        org.telegram.ui.Components.f61.setup(new org.telegram.ui.Components.f61());
+        org.telegram.ui.Components.g61.setup(new org.telegram.ui.Components.g61());
     }
 
     @Override
-    public final void bindView(View view, org.telegram.ui.Components.g61 g61Var, boolean z10, org.telegram.ui.Components.u61 u61Var, org.telegram.ui.Components.c71 c71Var) {
+    public final void bindView(View view, org.telegram.ui.Components.h61 h61Var, boolean z10, org.telegram.ui.Components.w61 w61Var, org.telegram.ui.Components.e71 e71Var) {
         lz lzVar = (lz) view;
-        lzVar.f38370b.setOnClickListener((View.OnClickListener) g61Var.G);
-        lzVar.f38372e.setOnClickListener((View.OnClickListener) g61Var.H);
-        lzVar.a(g61Var.f26668e, false);
+        lzVar.f38424b.setOnClickListener((View.OnClickListener) h61Var.G);
+        lzVar.f38426e.setOnClickListener((View.OnClickListener) h61Var.H);
+        lzVar.a(h61Var.f27087e, false);
     }
 
     @Override

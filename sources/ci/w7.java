@@ -1,5 +1,5 @@
 package ci;
-public final class w7 implements li.k, li.j {
+public final class w7 implements li.m, li.l {
     public final c8 f6238a;
 
     public w7(c8 c8Var) {
@@ -10,7 +10,7 @@ public final class w7 implements li.k, li.j {
     public int f() {
         c8 c8Var = this.f6238a;
         c8Var.getClass();
-        return c8Var.getThemedColor(org.telegram.ui.ActionBar.i6.f20822d6);
+        return c8Var.getThemedColor(org.telegram.ui.ActionBar.i6.f20827d6);
     }
 
     @Override

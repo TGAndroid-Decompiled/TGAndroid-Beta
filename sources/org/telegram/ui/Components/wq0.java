@@ -1,177 +1,83 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
-public final class wq0 extends yl0 {
-    public final Context f32611c;
-    public boolean d;
-    public boolean f32612e;
-    public ArrayList f32613f;
-    public final zq0 h;
+public final class wq0 extends gg.c0 {
+    public final xq0 f32695n;
 
-    public wq0(zq0 zq0Var, Context context) {
-        this.h = zq0Var;
-        this.f32611c = context;
-    }
-
-    @Override
-    public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f46535f != 1) {
-            return true;
-        }
-        return false;
-    }
-
-    public final TLRPC.TL_forumTopic E(int i10) {
-        int i11 = i10 - 1;
-        if (this.d) {
-            i11 = i10 - 2;
-        }
-        ArrayList arrayList = this.f32613f;
-        if (arrayList != null && i11 >= 0 && i11 < arrayList.size()) {
-            return (TLRPC.TL_forumTopic) this.f32613f.get(i11);
-        }
-        return null;
-    }
-
-    @Override
-    public final int h() {
-        int i10;
-        ArrayList arrayList = this.f32613f;
-        if (arrayList != null) {
-            i10 = arrayList.size() + 1;
-        } else {
-            i10 = 0;
-        }
-        return i10 + (this.d ? 1 : 0);
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 == 0) {
-            return 1;
-        }
-        return 0;
+    public wq0(xq0 xq0Var, Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(i10, context, d6Var, true, true);
+        this.f32695n = xq0Var;
     }
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
+        int i11;
+        TLRPC.Chat chat;
+        int i12;
+        int i13;
         boolean z10;
-        boolean z11;
-        int dp;
-        if (c1Var.f46535f == 0) {
-            org.telegram.ui.Cells.h7 h7Var = (org.telegram.ui.Cells.h7) c1Var.f46531a;
-            if (i10 == 1 && this.d) {
-                h7Var.setAsNewBotForumTopic(this.f32612e);
-            } else if (this.f32613f != null) {
-                TLRPC.TL_forumTopic E = E(i10);
-                zq0 zq0Var = this.h;
-                TLRPC.Dialog dialog = zq0Var.C0;
-                if (E != null && zq0Var.U.h(E.f20094id) >= 0) {
-                    z10 = true;
+        String str;
+        int i14;
+        org.telegram.ui.Cells.n4 n4Var = (org.telegram.ui.Cells.n4) c1Var.f46538a;
+        br0 br0Var = this.f32695n.K;
+        boolean z11 = false;
+        TLRPC.User user = null;
+        if (br0Var.f25062h0 || br0Var.f25063i0) {
+            int i15 = org.telegram.ui.ActionBar.i6.f21020ng;
+            int i16 = org.telegram.ui.ActionBar.i6.f20872fg;
+            n4Var.f22526b.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i15, false));
+            n4Var.H = i16;
+            n4Var.v.b(org.telegram.ui.ActionBar.i6.B5, i16, org.telegram.ui.ActionBar.i6.C5);
+        }
+        i11 = ((org.telegram.ui.ActionBar.f3) br0Var).currentAccount;
+        TLRPC.TL_topPeer tL_topPeer = MediaDataController.getInstance(i11).hints.get(i10);
+        TLRPC.Peer peer = tL_topPeer.peer;
+        long j3 = peer.user_id;
+        if (j3 != 0) {
+            i14 = ((org.telegram.ui.ActionBar.f3) br0Var).currentAccount;
+            user = MessagesController.getInstance(i14).getUser(Long.valueOf(tL_topPeer.peer.user_id));
+            chat = null;
+        } else {
+            long j10 = peer.channel_id;
+            if (j10 != 0) {
+                j3 = -j10;
+                i13 = ((org.telegram.ui.ActionBar.f3) br0Var).currentAccount;
+                chat = MessagesController.getInstance(i13).getChat(Long.valueOf(tL_topPeer.peer.channel_id));
+            } else {
+                long j11 = peer.chat_id;
+                if (j11 != 0) {
+                    j3 = -j11;
+                    i12 = ((org.telegram.ui.ActionBar.f3) br0Var).currentAccount;
+                    chat = MessagesController.getInstance(i12).getChat(Long.valueOf(tL_topPeer.peer.chat_id));
                 } else {
-                    z10 = false;
-                }
-                org.telegram.ui.Cells.e7 e7Var = h7Var.f22219b;
-                int i11 = h7Var.f22222f;
-                w9 w9Var = h7Var.f22218a;
-                TextView textView = h7Var.f22220c;
-                if (dialog != null) {
-                    TLRPC.Chat chat = MessagesController.getInstance(i11).getChat(Long.valueOf(-dialog.f20046id));
-                    String str = "";
-                    if (dialog.f20046id > 0) {
-                        textView.setText(E.title);
-                        z11 = z10;
-                    } else if (chat != null) {
-                        if (chat.monoforum) {
-                            z11 = z10;
-                            textView.setText(MessagesController.getInstance(i11).getPeerName(DialogObject.getPeerDialogId(E.from_id)));
-                        } else {
-                            z11 = z10;
-                            textView.setText(E.title);
-                        }
-                    } else {
-                        z11 = z10;
-                        textView.setText("");
-                    }
-                    if (ChatObject.isMonoForum(chat)) {
-                        w9Var.setAnimatedEmojiDrawable(null);
-                        w9Var.setImageDrawable(null);
-                        long peerDialogId = DialogObject.getPeerDialogId(E.from_id);
-                        if (DialogObject.isUserDialog(peerDialogId)) {
-                            TLRPC.User user = MessagesController.getInstance(i11).getUser(Long.valueOf(peerDialogId));
-                            textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20930j5, h7Var.h));
-                            e7Var.m(i11, user);
-                            if (user != null) {
-                                textView.setText(ContactsController.formatName(user.first_name, user.last_name));
-                            } else {
-                                textView.setText("");
-                            }
-                            w9Var.e(user, e7Var);
-                            w9Var.setRoundRadius(AndroidUtilities.dp(28.0f));
-                        } else {
-                            TLRPC.Chat chat2 = MessagesController.getInstance(i11).getChat(Long.valueOf(peerDialogId));
-                            if (chat2 != null) {
-                                textView.setText(chat2.title);
-                            } else {
-                                textView.setText("");
-                            }
-                            e7Var.k(i11, chat2);
-                            w9Var.e(chat, e7Var);
-                        }
-                    } else if (E.icon_emoji_id != 0) {
-                        w9Var.setImageDrawable(null);
-                        w9Var.setAnimatedEmojiDrawable(new q5(13, UserConfig.selectedAccount, E.icon_emoji_id));
-                    } else {
-                        w9Var.setAnimatedEmojiDrawable(null);
-                        ng.a aVar = new ng.a(E.icon_color);
-                        z80 z80Var = new z80(1, null);
-                        String upperCase = E.title.trim().toUpperCase();
-                        if (upperCase.length() >= 1) {
-                            str = upperCase.substring(0, 1);
-                        }
-                        z80Var.a(str);
-                        z80Var.f33427i = 1.8f;
-                        sq sqVar = new sq(aVar, z80Var, 0, 0);
-                        sqVar.f30863w = true;
-                        w9Var.setImageDrawable(sqVar);
-                    }
-                    if (chat != null && chat.forum && !z11) {
-                        dp = AndroidUtilities.dp(16.0f);
-                    } else {
-                        dp = AndroidUtilities.dp(28.0f);
-                    }
-                    w9Var.setRoundRadius(dp);
-                    h7Var.d = dialog.f20046id;
-                    h7Var.f22221e = E.f20094id;
+                    chat = null;
+                    j3 = 0;
                 }
             }
         }
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        View h7Var;
-        org.telegram.ui.ActionBar.d6 d6Var;
-        Context context = this.f32611c;
-        if (i10 == 0 || i10 == 2) {
-            d6Var = ((org.telegram.ui.ActionBar.f3) this.h).resourcesProvider;
-            h7Var = new org.telegram.ui.Cells.h7(context, d6Var);
-            h7Var.setLayoutParams(new s4.p0(-1, AndroidUtilities.dp(100.0f)));
+        if (j3 == n4Var.getDialogId()) {
+            z10 = true;
         } else {
-            h7Var = new View(context);
-            h7Var.setLayoutParams(new s4.p0(-1, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()));
+            z10 = false;
         }
-        return new s4.c1(h7Var);
+        n4Var.setTag(Long.valueOf(j3));
+        if (user != null) {
+            str = UserObject.getFirstName(user);
+        } else if (chat != null) {
+            str = chat.title;
+        } else {
+            str = "";
+        }
+        n4Var.a(j3, str);
+        if (br0Var.U.h(j3) >= 0) {
+            z11 = true;
+        }
+        if (n4Var.f22533w) {
+            n4Var.v.a(z11, z10);
+        }
     }
 }

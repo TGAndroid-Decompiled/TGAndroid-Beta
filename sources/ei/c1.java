@@ -13,7 +13,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.h31;
+import org.telegram.ui.f31;
 import org.telegram.ui.h60;
 import org.telegram.ui.yn;
 import org.telegram.ui.zh;
@@ -68,7 +68,7 @@ public final class c1 implements RequestDelegate {
                         AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.e(tLObject, activity, d6Var, this.f8951b, bArr, ynVar, messageObject));
                         return;
                     } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultReported) {
-                        AndroidUtilities.runOnUIThread(new h31(ynVar, activity, d6Var, messageObject, 0), 200L);
+                        AndroidUtilities.runOnUIThread(new f31(ynVar, activity, d6Var, messageObject, 0), 200L);
                         return;
                     } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultAdsHidden) {
                         AndroidUtilities.runOnUIThread(new zh(ynVar, this.f8952c, messageObject), 200L);
@@ -77,7 +77,7 @@ public final class c1 implements RequestDelegate {
                         return;
                     }
                 } else if (tL_error != null && "AD_EXPIRED".equalsIgnoreCase(tL_error.text)) {
-                    AndroidUtilities.runOnUIThread(new h31(ynVar, activity, d6Var, messageObject, 1), 200L);
+                    AndroidUtilities.runOnUIThread(new f31(ynVar, activity, d6Var, messageObject, 1), 200L);
                     return;
                 } else {
                     return;

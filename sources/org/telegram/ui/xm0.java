@@ -8,10 +8,10 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class xm0 implements TextWatcher {
-    public final kn0 f42919a;
+    public final kn0 f42981a;
 
     public xm0(kn0 kn0Var) {
-        this.f42919a = kn0Var;
+        this.f42981a = kn0Var;
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class xm0 implements TextWatcher {
         String str;
         boolean z10;
         int indexOf;
-        kn0 kn0Var = this.f42919a;
+        kn0 kn0Var = this.f42981a;
         ArrayList arrayList = kn0Var.U0;
         HashMap hashMap = kn0Var.W0;
         if (kn0Var.Z0) {

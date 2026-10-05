@@ -50,7 +50,7 @@ public final class c extends AnimatorListenerAdapter {
                 v1Var.O = false;
                 v1Var.M = true;
                 v1Var.W = this.f15439b;
-                v1Var.f32227a0 = this.f15440c;
+                v1Var.f32294a0 = this.f15440c;
                 v1Var.requestLayout();
                 return;
         }

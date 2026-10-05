@@ -4,37 +4,37 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
-import org.telegram.ui.Components.ds0;
-import org.telegram.ui.Components.g91;
-import org.telegram.ui.Components.js0;
+import org.telegram.ui.Components.es0;
+import org.telegram.ui.Components.h91;
 import org.telegram.ui.Components.ks0;
-import org.telegram.ui.Components.pv0;
-public final class a extends g91 {
+import org.telegram.ui.Components.ls0;
+import org.telegram.ui.Components.qv0;
+public final class a extends h91 {
     public final int V = 0;
     public Object W;
     public final FrameLayout f3841a0;
 
-    public a(ks0 ks0Var, Context context, js0 js0Var) {
+    public a(ls0 ls0Var, Context context, ks0 ks0Var) {
         super(context, null);
-        this.f3841a0 = ks0Var;
-        this.W = js0Var;
+        this.f3841a0 = ls0Var;
+        this.W = ks0Var;
     }
 
     @Override
     public final void A(int i10) {
         switch (this.V) {
             case 0:
-                ds0 ds0Var = (ds0) this.f3841a0;
-                String currentLang = ds0Var.getCurrentLang();
+                es0 es0Var = (es0) this.f3841a0;
+                String currentLang = es0Var.getCurrentLang();
                 if (!TextUtils.equals((String) this.W, currentLang)) {
                     this.W = currentLang;
-                    ds0Var.G.L0();
+                    es0Var.G.L0();
                     return;
                 }
                 return;
             default:
-                ((ks0) this.f3841a0).f40674n.f26401b0.get(i10, -1);
-                ((js0) this.W).d.J0(1.0f);
+                ((ls0) this.f3841a0).f40686n.f26770b0.get(i10, -1);
+                ((ks0) this.W).d.J0(1.0f);
                 return;
         }
     }
@@ -43,7 +43,7 @@ public final class a extends g91 {
     public boolean i(MotionEvent motionEvent) {
         switch (this.V) {
             case 0:
-                return !((ds0) this.f3841a0).G.C1;
+                return !((es0) this.f3841a0).G.C1;
             default:
                 return super.i(motionEvent);
         }
@@ -53,16 +53,16 @@ public final class a extends g91 {
     public final void w(boolean z10) {
         switch (this.V) {
             case 0:
-                ds0 ds0Var = (ds0) this.f3841a0;
-                String currentLang = ds0Var.getCurrentLang();
+                es0 es0Var = (es0) this.f3841a0;
+                String currentLang = es0Var.getCurrentLang();
                 if (!TextUtils.equals((String) this.W, currentLang)) {
                     this.W = currentLang;
-                    ds0Var.G.L0();
+                    es0Var.G.L0();
                     return;
                 }
                 return;
             default:
-                ((js0) this.W).d.J0(((ks0) this.f3841a0).f40674n.getAnimatingIndicatorProgress());
+                ((ks0) this.W).d.J0(((ls0) this.f3841a0).f40686n.getAnimatingIndicatorProgress());
                 return;
         }
     }
@@ -71,11 +71,11 @@ public final class a extends g91 {
     public void y(int i10) {
         switch (this.V) {
             case 0:
-                ds0 ds0Var = (ds0) this.f3841a0;
-                String currentLang = ds0Var.getCurrentLang();
+                es0 es0Var = (es0) this.f3841a0;
+                String currentLang = es0Var.getCurrentLang();
                 if (!TextUtils.equals((String) this.W, currentLang)) {
                     this.W = currentLang;
-                    ds0Var.G.L0();
+                    es0Var.G.L0();
                     return;
                 }
                 return;
@@ -88,13 +88,13 @@ public final class a extends g91 {
     public void z(int i10, boolean z10) {
         switch (this.V) {
             case 1:
-                int i11 = ((ks0) this.f3841a0).f40674n.f26401b0.get(i10, -1);
-                pv0 pv0Var = ((js0) this.W).d;
+                int i11 = ((ls0) this.f3841a0).f40686n.f26770b0.get(i10, -1);
+                qv0 qv0Var = ((ks0) this.W).d;
                 if (i11 <= 0) {
-                    pv0.t(pv0Var, 8, z10);
+                    qv0.t(qv0Var, 8, z10);
                     return;
                 } else {
-                    pv0.t(pv0Var, pv0Var.i1(i11).f29460a, z10);
+                    qv0.t(qv0Var, qv0Var.i1(i11).f29850a, z10);
                     return;
                 }
             default:
@@ -103,8 +103,8 @@ public final class a extends g91 {
         }
     }
 
-    public a(ds0 ds0Var, Context context) {
+    public a(es0 es0Var, Context context) {
         super(context, null);
-        this.f3841a0 = ds0Var;
+        this.f3841a0 = es0Var;
     }
 }

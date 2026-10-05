@@ -2,14 +2,14 @@ package org.telegram.ui;
 
 import java.util.Comparator;
 public final class vq implements Comparator {
-    public final int f41808a;
-    public final int f41809b;
-    public final Object f41810c;
+    public final int f41806a;
+    public final int f41807b;
+    public final Object f41808c;
 
     public vq(Object obj, int i10, int i11) {
-        this.f41808a = i11;
-        this.f41810c = obj;
-        this.f41809b = i10;
+        this.f41806a = i11;
+        this.f41808c = obj;
+        this.f41807b = i10;
     }
 
     @Override

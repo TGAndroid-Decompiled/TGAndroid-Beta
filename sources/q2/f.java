@@ -26,15 +26,15 @@ public final class f extends i2.f {
     public boolean X;
     public b0 Y;
     public b0 Z;
-    public int f44765a0;
-    public boolean f44766b0;
+    public int f44772a0;
+    public boolean f44773b0;
 
     public f(k0.b bVar) {
         super(4);
         this.I = bVar;
-        this.V = d.f44761a;
+        this.V = d.f44768a;
         this.J = new h(0, 0);
-        this.N = e.f44762c;
+        this.N = e.f44769c;
         this.K = new ArrayDeque();
         this.P = -9223372036854775807L;
         this.O = -9223372036854775807L;
@@ -57,7 +57,7 @@ public final class f extends i2.f {
     }
 
     public final void E() {
-        if (!this.f44766b0) {
+        if (!this.f44773b0) {
             return;
         }
         s sVar = this.S;
@@ -73,7 +73,7 @@ public final class f extends i2.f {
             bVar2.release();
         }
         this.T = new b(bVar.f14284a);
-        this.f44766b0 = false;
+        this.f44773b0 = false;
     }
 
     public final void F() {
@@ -99,7 +99,7 @@ public final class f extends i2.f {
             dVar = null;
         }
         if (dVar == null) {
-            dVar = d.f44761a;
+            dVar = d.f44768a;
         }
         this.V = dVar;
     }
@@ -129,7 +129,7 @@ public final class f extends i2.f {
     @Override
     public final void o() {
         this.S = null;
-        this.N = e.f44762c;
+        this.N = e.f44769c;
         this.K.clear();
         F();
         this.V.getClass();
@@ -183,10 +183,10 @@ public final class f extends i2.f {
                 hVar.clear();
                 int w10 = w(yVar, hVar, 2);
                 if (w10 == -5) {
-                    s sVar = (s) yVar.f16645c;
+                    s sVar = (s) yVar.f16650c;
                     e2.d.h(sVar);
                     this.S = sVar;
-                    this.f44766b0 = true;
+                    this.f44773b0 = true;
                 } else if (w10 == -4) {
                     e2.d.g(hVar.isEndOfStream());
                     this.L = true;

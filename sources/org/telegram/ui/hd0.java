@@ -3,33 +3,33 @@ package org.telegram.ui;
 import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
 public final class hd0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f37044a;
-    public final ug0 f37045b;
+    public final int f37064a;
+    public final ug0 f37065b;
 
     public hd0(ug0 ug0Var, int i10) {
-        this.f37044a = i10;
-        this.f37045b = ug0Var;
+        this.f37064a = i10;
+        this.f37065b = ug0Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f37044a) {
+        switch (this.f37064a) {
             case 0:
-                ug0 ug0Var = this.f37045b;
+                ug0 ug0Var = this.f37065b;
                 ug0Var.getClass();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ug0Var.f41204c.setAlpha(floatValue);
-                ug0Var.f41204c.setTranslationY((1.0f - floatValue) * AndroidUtilities.dp(230.0f));
+                ug0Var.f41240c.setAlpha(floatValue);
+                ug0Var.f41240c.setTranslationY((1.0f - floatValue) * AndroidUtilities.dp(230.0f));
                 return;
             case 1:
-                ug0 ug0Var2 = this.f37045b;
+                ug0 ug0Var2 = this.f37065b;
                 ug0Var2.getClass();
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ug0Var2.f41204c.setAlpha(floatValue2);
-                ug0Var2.f41204c.setTranslationY((1.0f - floatValue2) * AndroidUtilities.dp(230.0f));
+                ug0Var2.f41240c.setAlpha(floatValue2);
+                ug0Var2.f41240c.setTranslationY((1.0f - floatValue2) * AndroidUtilities.dp(230.0f));
                 return;
             default:
-                ug0 ug0Var3 = this.f37045b;
+                ug0 ug0Var3 = this.f37065b;
                 ug0Var3.getClass();
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 float f7 = (0.9f * floatValue3) + 0.1f;

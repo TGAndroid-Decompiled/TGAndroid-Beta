@@ -6,7 +6,7 @@ public final class e extends d {
         if (obj instanceof e) {
             if (!isEmpty() || !((e) obj).isEmpty()) {
                 e eVar = (e) obj;
-                if (this.f47618a == eVar.f47618a && this.f47619b == eVar.f47619b) {
+                if (this.f47625a == eVar.f47625a && this.f47626b == eVar.f47626b) {
                     return true;
                 }
                 return false;
@@ -20,17 +20,17 @@ public final class e extends d {
         if (isEmpty()) {
             return -1;
         }
-        return (this.f47618a * 31) + this.f47619b;
+        return (this.f47625a * 31) + this.f47626b;
     }
 
     public final boolean isEmpty() {
-        if (this.f47618a > this.f47619b) {
+        if (this.f47625a > this.f47626b) {
             return true;
         }
         return false;
     }
 
     public final String toString() {
-        return this.f47618a + ".." + this.f47619b;
+        return this.f47625a + ".." + this.f47626b;
     }
 }

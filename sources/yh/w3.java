@@ -1,133 +1,87 @@
 package yh;
 
-import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
-import java.util.Date;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.Premium.LimitPreviewView;
-import org.telegram.ui.Components.k01;
-import org.telegram.ui.Components.va;
-import org.telegram.ui.Components.zl0;
-public final class w3 extends va {
-    public final ArrayList f52158a0;
-    public final LimitPreviewView f52159b0;
+import org.telegram.ui.Components.uq;
+public final class w3 extends uq {
+    public final View f52194b;
+    public final Paint f52195c;
+    public final Path d;
+    public final long f52196e;
+    public float f52197f;
 
-    public w3(Context context, long j3, ArrayList arrayList, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, d6Var);
-        float f7;
-        int i10;
-        this.f52158a0 = arrayList;
-        float f10 = this.backgroundPaddingLeft / AndroidUtilities.density;
-        LimitPreviewView limitPreviewView = new LimitPreviewView(getContext(), R.drawable.star, 0, d6Var, 0);
-        this.f52159b0 = limitPreviewView;
-        limitPreviewView.setTranslationY(-AndroidUtilities.dp(14.0f));
-        limitPreviewView.setIconScale(1.8f);
-        float f11 = f10;
-        this.X.addView(limitPreviewView, w7.z5.r(-1, -2, 17, f11, 20.0f, f11, 10.0f));
-        N(j3);
-        int i11 = org.telegram.ui.ActionBar.i6.G6;
-        TextView b10 = w7.d6.b(context, 20.0f, i11, true, null);
-        b10.setGravity(17);
-        b10.setText(LocaleController.getString(R.string.Gift2UpgradeCostsTitle));
-        setTitle(LocaleController.getString(R.string.Gift2UpgradeCostsTitle));
-        this.X.addView(b10, w7.z5.t(-1, -2, 17, 32, 0, 32, 0));
-        TextView b11 = w7.d6.b(context, 14.0f, i11, false, null);
-        b11.setGravity(17);
-        b11.setText(LocaleController.getString(R.string.Gift2UpgradeCostsText));
-        this.X.addView(b11, w7.z5.t(-1, -2, 17, 32, 10, 32, 10));
-        int currentTime = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
-        k01 k01Var = new k01(context, d6Var);
-        int i12 = 0;
-        boolean z10 = false;
-        while (i12 < arrayList.size()) {
-            TL_stars.StarGiftUpgradePrice starGiftUpgradePrice = (TL_stars.StarGiftUpgradePrice) arrayList.get(i12);
-            if (currentTime > starGiftUpgradePrice.date && ((i10 = i12 + 1) >= arrayList.size() || currentTime > ((TL_stars.StarGiftUpgradePrice) arrayList.get(i10)).date)) {
-                f7 = f11;
-            } else {
-                f7 = f11;
-                Date date = new Date(starGiftUpgradePrice.date * 1000);
-                k01Var.c(LocaleController.getInstance().getFormatterDay().format(date) + ", " + LocaleController.getInstance().getFormatterDayMonth().format(date), x7.d1(false, org.telegram.messenger.q.h((int) starGiftUpgradePrice.upgrade_stars, ',', new StringBuilder("⭐️ ")), 0.8f, null), null, null);
-                z10 = true;
-            }
-            i12++;
-            f11 = f7;
-        }
-        float f12 = f11;
-        if (!z10) {
-            int size = arrayList.size();
-            int i13 = 0;
-            while (i13 < size) {
-                Object obj = arrayList.get(i13);
-                i13++;
-                TL_stars.StarGiftUpgradePrice starGiftUpgradePrice2 = (TL_stars.StarGiftUpgradePrice) obj;
-                Date date2 = new Date(starGiftUpgradePrice2.date * 1000);
-                k01Var.c(LocaleController.getInstance().getFormatterDay().format(date2) + ", " + LocaleController.getInstance().getFormatterDayMonth().format(date2), x7.d1(false, org.telegram.messenger.q.h((int) starGiftUpgradePrice2.upgrade_stars, ',', new StringBuilder("⭐️ ")), 0.8f, null), null, null);
-            }
-        }
-        float f13 = f12 + 14.0f;
-        this.X.addView(k01Var, w7.z5.r(-1, -2, 7, f13, 16.0f, f13, 15.0f));
-        TextView b12 = w7.d6.b(context, 12.0f, org.telegram.ui.ActionBar.i6.f21209y6, false, null);
-        b12.setGravity(17);
-        b12.setText(LocaleController.getString(R.string.Gift2UpgradeCostsFooter));
-        this.X.addView(b12, w7.z5.t(-1, -2, 17, 32, 0, 32, 15));
-        float f14 = this.backgroundPaddingLeft / AndroidUtilities.density;
-        FrameLayout frameLayout = new FrameLayout(getContext());
-        this.Y = frameLayout;
-        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20894h5, this.resourcesProvider));
-        View view = new View(getContext());
-        view.setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20823d7, this.resourcesProvider));
-        this.Y.addView(view, w7.z5.a(-1.0f, 1.0f / AndroidUtilities.density, 55));
-        ci.d dVar = new ci.d(getContext(), this.resourcesProvider, true);
-        this.Z = dVar;
-        float f15 = f14 + 16.0f;
-        this.Y.addView(dVar, w7.z5.d(-1, 48.0f, 119, f15, 16.0f, f15, 16.0f));
-        this.containerView.addView(this.Y, w7.z5.e(-1, -2, 87));
-        zl0 zl0Var = this.d;
-        zl0Var.setPadding(zl0Var.getPaddingLeft(), zl0Var.getPaddingTop(), zl0Var.getPaddingRight(), AndroidUtilities.dp(80.0f) + zl0Var.getPaddingBottom());
-        this.Z.g(x3.g2(LocaleController.getString(R.string.Understood)), false, true);
-        this.Z.setOnClickListener(new org.telegram.ui.Components.voip.o(this, 25));
+    public w3(ci.d dVar, int i10) {
+        super(dVar);
+        Paint paint = new Paint(1);
+        this.f52195c = paint;
+        Path path = new Path();
+        this.d = path;
+        this.f52196e = System.currentTimeMillis();
+        this.f52197f = 1.0f;
+        this.f52194b = dVar;
+        this.f31500a.setColor(-1);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setColor(i10);
+        path.rewind();
+        path.moveTo(-AndroidUtilities.dpf2(2.91f), AndroidUtilities.dpf2(1.08f));
+        path.lineTo(0.0f, -AndroidUtilities.dpf2(1.08f));
+        path.lineTo(AndroidUtilities.dpf2(2.91f), AndroidUtilities.dpf2(1.08f));
     }
 
-    public final void N(long j3) {
-        int v02;
-        ArrayList arrayList = this.f52158a0;
-        if (arrayList != null && !arrayList.isEmpty()) {
-            TL_stars.StarGiftUpgradePrice starGiftUpgradePrice = (TL_stars.StarGiftUpgradePrice) arrayList.get(0);
-            TL_stars.StarGiftUpgradePrice starGiftUpgradePrice2 = (TL_stars.StarGiftUpgradePrice) hg.c.g(1, arrayList);
-            LimitPreviewView limitPreviewView = this.f52159b0;
-            limitPreviewView.M = true;
-            Paint paint = limitPreviewView.K;
-            int i10 = org.telegram.ui.ActionBar.i6.Oh;
-            org.telegram.ui.ActionBar.d6 d6Var = limitPreviewView.S;
-            paint.setColor(org.telegram.ui.ActionBar.i6.v0(i10, d6Var));
-            limitPreviewView.f24236a = AndroidUtilities.ilerp((float) j3, (float) starGiftUpgradePrice.upgrade_stars, (float) starGiftUpgradePrice2.upgrade_stars);
-            org.telegram.ui.Components.p6 p6Var = limitPreviewView.N;
-            p6Var.setText(LocaleController.formatPluralStringComma("Stars", (int) starGiftUpgradePrice.upgrade_stars));
-            org.telegram.ui.Components.p6 p6Var2 = limitPreviewView.v;
-            p6Var2.setText(LocaleController.formatPluralStringComma("Stars", (int) starGiftUpgradePrice2.upgrade_stars));
-            ((FrameLayout.LayoutParams) p6Var2.getLayoutParams()).gravity = 5;
-            limitPreviewView.setType(17);
-            limitPreviewView.f24255w.setVisibility(8);
-            limitPreviewView.O.setVisibility(8);
-            if (limitPreviewView.L) {
-                v02 = -1;
+    @Override
+    public final void draw(Canvas canvas) {
+        float f7;
+        Paint paint = this.f31500a;
+        paint.setAlpha((int) (this.f52197f * 255.0f));
+        canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), getBounds().width() / 2.0f, paint);
+        float currentTimeMillis = ((float) ((System.currentTimeMillis() - this.f52196e) % 400)) / 400.0f;
+        Paint paint2 = this.f52195c;
+        int alpha = paint2.getAlpha();
+        paint2.setAlpha((int) (alpha * this.f52197f));
+        paint2.setStrokeWidth(AndroidUtilities.dpf2(1.33f));
+        canvas.save();
+        canvas.translate(getBounds().centerX(), getBounds().centerY() - (((AndroidUtilities.dpf2(1.166f) * 2.0f) + (AndroidUtilities.dpf2(2.16f) * 3.0f)) / 2.0f));
+        for (int i10 = 0; i10 < 4; i10++) {
+            if (i10 == 0) {
+                f7 = 1.0f - currentTimeMillis;
+            } else if (i10 == 3) {
+                f7 = currentTimeMillis;
             } else {
-                v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.G6, d6Var);
+                f7 = 1.0f;
             }
-            p6Var2.setTextColor(v02);
-            p6Var.setTextColor(-1);
-            limitPreviewView.g((int) j3, false);
-            limitPreviewView.P = true;
-            limitPreviewView.Q = true;
-            limitPreviewView.R = true;
+            paint2.setAlpha((int) (f7 * 255.0f * this.f52197f));
+            canvas.save();
+            float lerp = AndroidUtilities.lerp(0.5f, 1.0f, f7);
+            canvas.scale(lerp, lerp);
+            canvas.drawPath(this.d, paint2);
+            canvas.restore();
+            canvas.translate(0.0f, AndroidUtilities.dpf2(3.3260002f) * f7);
         }
+        canvas.restore();
+        paint2.setAlpha(alpha);
+        View view = this.f52194b;
+        if (view != null) {
+            view.invalidate();
+        }
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(18.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(18.0f);
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f52197f = i10 / 255.0f;
     }
 }

@@ -62,7 +62,7 @@ public final class h0 extends a0 implements org.telegram.ui.ActionBar.y5 {
                         f0 f0Var = h0Var.E;
                         if (f0Var != null && (aVar = h0Var.f12204a) != null) {
                             x3 x3Var = ((p3) f0Var).f12577a;
-                            x3Var.q3(false);
+                            x3Var.p3(false);
                             x3Var.f12770o3.o0(new u3(x3Var, aVar, -1), view);
                             return;
                         }
@@ -72,7 +72,7 @@ public final class h0 extends a0 implements org.telegram.ui.ActionBar.y5 {
                         f0 f0Var2 = h0Var2.E;
                         if (f0Var2 != null && (aVar2 = h0Var2.f12204a) != null) {
                             x3 x3Var2 = ((p3) f0Var2).f12577a;
-                            x3Var2.q3(false);
+                            x3Var2.p3(false);
                             x3Var2.f12770o3.o0(new u3(x3Var2, aVar2, -1), view);
                             return;
                         }
@@ -106,7 +106,7 @@ public final class h0 extends a0 implements org.telegram.ui.ActionBar.y5 {
                         f0 f0Var = h0Var.E;
                         if (f0Var != null && (aVar = h0Var.f12204a) != null) {
                             x3 x3Var = ((p3) f0Var).f12577a;
-                            x3Var.q3(false);
+                            x3Var.p3(false);
                             x3Var.f12770o3.o0(new u3(x3Var, aVar, -1), view);
                             return;
                         }
@@ -116,7 +116,7 @@ public final class h0 extends a0 implements org.telegram.ui.ActionBar.y5 {
                         f0 f0Var2 = h0Var2.E;
                         if (f0Var2 != null && (aVar2 = h0Var2.f12204a) != null) {
                             x3 x3Var2 = ((p3) f0Var2).f12577a;
-                            x3Var2.q3(false);
+                            x3Var2.p3(false);
                             x3Var2.f12770o3.o0(new u3(x3Var2, aVar2, -1), view);
                             return;
                         }
@@ -163,7 +163,7 @@ public final class h0 extends a0 implements org.telegram.ui.ActionBar.y5 {
         int i10 = org.telegram.ui.ActionBar.i6.Oh;
         org.telegram.ui.ActionBar.d6 d6Var = this.f12405r;
         int v02 = org.telegram.ui.ActionBar.i6.v0(i10, d6Var);
-        int v = org.telegram.ui.ActionBar.i6.v(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20822d6, d6Var), org.telegram.ui.ActionBar.i6.l1(0.1f, v02));
+        int v = org.telegram.ui.ActionBar.i6.v(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20827d6, d6Var), org.telegram.ui.ActionBar.i6.l1(0.1f, v02));
         TextView textView = this.f12408x;
         textView.setTextColor(v02);
         textView.setBackground(org.telegram.ui.ActionBar.i6.Z(v, org.telegram.ui.ActionBar.i6.l1(0.16f, v02), AndroidUtilities.dp(19.0f), AndroidUtilities.dp(19.0f)));

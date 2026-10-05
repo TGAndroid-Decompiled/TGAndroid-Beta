@@ -59,7 +59,7 @@ public final class x4 implements ValueAnimator.AnimatorUpdateListener {
                     }
                     childAt.setAlpha((f7 * 0.4f) + 0.6f);
                 }
-                float interpolation = tr.f31147f.getInterpolation(q6Var.f5746a1);
+                float interpolation = tr.f31215f.getInterpolation(q6Var.f5746a1);
                 if (view != null && view2 != null) {
                     float f11 = 1.0f - interpolation;
                     float f12 = (f11 * 0.4f) + 0.6f;
@@ -94,15 +94,15 @@ public final class x4 implements ValueAnimator.AnimatorUpdateListener {
                 org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) this.d;
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 if (mVar.f14219l) {
-                    t1Var.f22963g0 = (-mVar.f14226s) * floatValue2;
-                    t1Var.f22967h0 = (-mVar.f14227t) * floatValue2;
-                    t1Var.f22977j0 = (-mVar.f14228u) * floatValue2;
-                    t1Var.f22972i0 = (-mVar.v) * floatValue2;
+                    t1Var.f22966g0 = (-mVar.f14226s) * floatValue2;
+                    t1Var.f22970h0 = (-mVar.f14227t) * floatValue2;
+                    t1Var.f22980j0 = (-mVar.f14228u) * floatValue2;
+                    t1Var.f22975i0 = (-mVar.v) * floatValue2;
                 } else {
-                    t1Var.f22963g0 = ((-mVar.f14226s) * floatValue2) - u1Var.getAnimationOffsetX();
-                    t1Var.f22967h0 = ((-mVar.f14227t) * floatValue2) - u1Var.getAnimationOffsetX();
-                    t1Var.f22977j0 = ((-mVar.f14228u) * floatValue2) - u1Var.getTranslationY();
-                    t1Var.f22972i0 = ((-mVar.v) * floatValue2) - u1Var.getTranslationY();
+                    t1Var.f22966g0 = ((-mVar.f14226s) * floatValue2) - u1Var.getAnimationOffsetX();
+                    t1Var.f22970h0 = ((-mVar.f14227t) * floatValue2) - u1Var.getAnimationOffsetX();
+                    t1Var.f22980j0 = ((-mVar.f14228u) * floatValue2) - u1Var.getTranslationY();
+                    t1Var.f22975i0 = ((-mVar.v) * floatValue2) - u1Var.getTranslationY();
                 }
                 u1Var.invalidate();
                 return;
@@ -110,22 +110,22 @@ public final class x4 implements ValueAnimator.AnimatorUpdateListener {
                 qg.m0 m0Var = (qg.m0) this.f1842b;
                 View view3 = (View) this.f1843c;
                 View view4 = (View) this.d;
-                m0Var.f45178i1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                m0Var.f45172f1.invalidate();
-                m0Var.f45166c1.invalidate();
-                m0Var.f45168d1.invalidate();
-                for (int i11 = 0; i11 < m0Var.f45172f1.getChildCount(); i11++) {
-                    View childAt2 = m0Var.f45172f1.getChildAt(i11);
-                    if (i11 == m0Var.f45176h1) {
-                        f10 = m0Var.f45178i1;
-                    } else if (i11 == m0Var.f45174g1) {
-                        f10 = 1.0f - m0Var.f45178i1;
+                m0Var.f45185i1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                m0Var.f45179f1.invalidate();
+                m0Var.f45173c1.invalidate();
+                m0Var.f45175d1.invalidate();
+                for (int i11 = 0; i11 < m0Var.f45179f1.getChildCount(); i11++) {
+                    View childAt2 = m0Var.f45179f1.getChildAt(i11);
+                    if (i11 == m0Var.f45183h1) {
+                        f10 = m0Var.f45185i1;
+                    } else if (i11 == m0Var.f45181g1) {
+                        f10 = 1.0f - m0Var.f45185i1;
                     } else {
                         f10 = 0.0f;
                     }
                     childAt2.setAlpha((f10 * 0.4f) + 0.6f);
                 }
-                float interpolation2 = tr.f31147f.getInterpolation(m0Var.f45178i1);
+                float interpolation2 = tr.f31215f.getInterpolation(m0Var.f45185i1);
                 if (view3 != null && view4 != null) {
                     float f14 = 1.0f - interpolation2;
                     float f15 = (f14 * 0.4f) + 0.6f;

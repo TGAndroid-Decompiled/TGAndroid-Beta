@@ -2,67 +2,55 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.os.Bundle;
-import android.text.TextPaint;
+import android.graphics.Paint;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
+import android.widget.Button;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
-public final class rb1 extends FrameLayout {
-    public final org.telegram.ui.Components.yo0 f40014a;
-    public final int f40015b;
-    public final TextPaint f40016c;
-    public final ThemeActivity d;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class rb1 extends View {
+    public static final int f40060c = 0;
+    public final Paint f40061a;
+    public int[] f40062b;
 
-    public rb1(ThemeActivity themeActivity, Context context) {
+    public rb1(Context context) {
         super(context);
-        this.d = themeActivity;
-        this.f40015b = 17;
-        setWillNotDraw(false);
-        TextPaint textPaint = new TextPaint(1);
-        this.f40016c = textPaint;
-        textPaint.setTextSize(AndroidUtilities.dp(16.0f));
-        org.telegram.ui.Components.yo0 yo0Var = new org.telegram.ui.Components.yo0(context);
-        this.f40014a = yo0Var;
-        yo0Var.setReportChanges(true);
-        yo0Var.setSeparatorsCount(18);
-        yo0Var.setDelegate(new dw0(this, 3));
-        yo0Var.setImportantForAccessibility(2);
-        addView(yo0Var, w7.z5.d(-1, 38.0f, 51, 5.0f, 5.0f, 39.0f, 0.0f));
-    }
-
-    @Override
-    public final void invalidate() {
-        super.invalidate();
-        this.f40014a.invalidate();
+        this.f40061a = new Paint(1);
+        this.f40062b = new int[7];
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        int w02 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.I6, false);
-        TextPaint textPaint = this.f40016c;
-        textPaint.setColor(w02);
-        canvas.drawText("" + SharedConfig.bubbleRadius, getMeasuredWidth() - AndroidUtilities.dp(39.0f), AndroidUtilities.dp(28.0f), textPaint);
+        float measuredWidth = getMeasuredWidth() * 0.5f;
+        float measuredHeight = getMeasuredHeight() * 0.5f;
+        float dp = AndroidUtilities.dp(5.0f);
+        float dp2 = AndroidUtilities.dp(20.0f) - dp;
+        Paint.Style style = Paint.Style.FILL;
+        Paint paint = this.f40061a;
+        paint.setStyle(style);
+        int i10 = 0;
+        paint.setColor(this.f40062b[0]);
+        canvas.drawCircle(measuredWidth, measuredHeight, dp, paint);
+        double d = 0.0d;
+        while (i10 < 6) {
+            i10++;
+            paint.setColor(this.f40062b[i10]);
+            canvas.drawCircle((((float) Math.sin(d)) * dp2) + measuredWidth, measuredHeight - (((float) Math.cos(d)) * dp2), dp, paint);
+            d += 1.0471975511965976d;
+        }
     }
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        this.f40014a.getSeekBarAccessibilityDelegate().e(this, accessibilityNodeInfo);
+        accessibilityNodeInfo.setText(LocaleController.getString("ColorPickerMainColor", R.string.ColorPickerMainColor));
+        accessibilityNodeInfo.setClassName(Button.class.getName());
+        accessibilityNodeInfo.setEnabled(true);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
-        this.f40014a.setProgress(SharedConfig.bubbleRadius / this.f40015b);
-    }
-
-    @Override
-    public final boolean performAccessibilityAction(int i10, Bundle bundle) {
-        if (!super.performAccessibilityAction(i10, bundle) && !this.f40014a.getSeekBarAccessibilityDelegate().g(this, i10, bundle)) {
-            return false;
-        }
-        return true;
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(62.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(62.0f), 1073741824));
     }
 }

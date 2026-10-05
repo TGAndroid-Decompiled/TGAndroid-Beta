@@ -9,23 +9,23 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.c71;
+import org.telegram.ui.a71;
 public final class mk implements Utilities.Callback {
-    public final int f18604a = 0;
-    public final boolean f18605b;
-    public final NotificationCenter.NotificationCenterDelegate f18606c;
+    public final int f18609a = 0;
+    public final boolean f18610b;
+    public final NotificationCenter.NotificationCenterDelegate f18611c;
     public final Object d;
-    public final Object f18607e;
-    public final Object f18608f;
-    public final Object f18609g;
+    public final Object f18612e;
+    public final Object f18613f;
+    public final Object f18614g;
 
     public mk(SendMessagesHelper sendMessagesHelper, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, SendMessagesHelper.DelayedMessage delayedMessage, boolean z10) {
-        this.f18606c = sendMessagesHelper;
+        this.f18611c = sendMessagesHelper;
         this.d = arrayList;
-        this.f18607e = arrayList2;
-        this.f18608f = arrayList3;
-        this.f18609g = delayedMessage;
-        this.f18605b = z10;
+        this.f18612e = arrayList2;
+        this.f18613f = arrayList3;
+        this.f18614g = delayedMessage;
+        this.f18610b = z10;
     }
 
     @Override
@@ -33,19 +33,19 @@ public final class mk implements Utilities.Callback {
         boolean z10;
         ArrayList<TLRPC.Document> arrayList;
         ArrayList<TLRPC.Document> arrayList2;
-        switch (this.f18604a) {
+        switch (this.f18609a) {
             case 0:
-                ((SendMessagesHelper) this.f18606c).lambda$performSendMessageRequestMulti$64((ArrayList) this.d, (ArrayList) this.f18607e, (ArrayList) this.f18608f, (SendMessagesHelper.DelayedMessage) this.f18609g, this.f18605b, (TLObject) obj);
+                ((SendMessagesHelper) this.f18611c).lambda$performSendMessageRequestMulti$64((ArrayList) this.d, (ArrayList) this.f18612e, (ArrayList) this.f18613f, (SendMessagesHelper.DelayedMessage) this.f18614g, this.f18610b, (TLObject) obj);
                 return;
             case 1:
-                ProfileActivity profileActivity = (ProfileActivity) this.f18606c;
+                ProfileActivity profileActivity = (ProfileActivity) this.f18611c;
                 TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) this.d;
-                TLRPC.User user = (TLRPC.User) this.f18607e;
-                TLRPC.ChatParticipant chatParticipant = (TLRPC.ChatParticipant) this.f18608f;
-                String str = (String) this.f18609g;
+                TLRPC.User user = (TLRPC.User) this.f18612e;
+                TLRPC.ChatParticipant chatParticipant = (TLRPC.ChatParticipant) this.f18613f;
+                String str = (String) this.f18614g;
                 Integer num = (Integer) obj;
                 profileActivity.getClass();
-                boolean z11 = this.f18605b;
+                boolean z11 = this.f18610b;
                 if (channelParticipant != null) {
                     profileActivity.A4(num.intValue(), user, chatParticipant, channelParticipant.admin_rights, channelParticipant.banned_rights, channelParticipant.rank, z11);
                     return;
@@ -54,20 +54,20 @@ public final class mk implements Utilities.Callback {
                     return;
                 }
             default:
-                c71 c71Var = (c71) this.f18606c;
-                LinkedHashSet linkedHashSet = (LinkedHashSet) this.f18607e;
-                String str2 = (String) this.f18608f;
-                HashMap hashMap = (HashMap) this.f18609g;
+                a71 a71Var = (a71) this.f18611c;
+                LinkedHashSet linkedHashSet = (LinkedHashSet) this.f18612e;
+                String str2 = (String) this.f18613f;
+                HashMap hashMap = (HashMap) this.f18614g;
                 ArrayList arrayList3 = (ArrayList) this.d;
                 Runnable runnable = (Runnable) obj;
-                int i10 = c71Var.V;
-                if (this.f18605b) {
+                int i10 = a71Var.V;
+                if (this.f18610b) {
                     ArrayList<TLRPC.TL_messages_stickerSet> stickerSets = MediaDataController.getInstance(i10).getStickerSets(5);
                     for (int i11 = 0; i11 < stickerSets.size(); i11++) {
                         if (stickerSets.get(i11).documents != null && (arrayList2 = stickerSets.get(i11).documents) != null) {
                             for (int i12 = 0; i12 < arrayList2.size(); i12++) {
                                 String findAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(arrayList2.get(i12), null);
-                                long j3 = arrayList2.get(i12).f20048id;
+                                long j3 = arrayList2.get(i12).f20053id;
                                 if (findAnimatedEmojiEmoticon != null && !linkedHashSet.contains(Long.valueOf(j3)) && str2.contains(findAnimatedEmojiEmoticon.toLowerCase())) {
                                     linkedHashSet.add(Long.valueOf(j3));
                                 }
@@ -79,7 +79,7 @@ public final class mk implements Utilities.Callback {
                         if ((featuredEmojiSets.get(i13) instanceof TLRPC.TL_stickerSetFullCovered) && ((TLRPC.TL_stickerSetFullCovered) featuredEmojiSets.get(i13)).keywords != null && (arrayList = ((TLRPC.TL_stickerSetFullCovered) featuredEmojiSets.get(i13)).documents) != null) {
                             for (int i14 = 0; i14 < arrayList.size(); i14++) {
                                 String findAnimatedEmojiEmoticon2 = MessageObject.findAnimatedEmojiEmoticon(arrayList.get(i14), null);
-                                long j10 = arrayList.get(i14).f20048id;
+                                long j10 = arrayList.get(i14).f20053id;
                                 if (findAnimatedEmojiEmoticon2 != null && !linkedHashSet.contains(Long.valueOf(j10)) && str2.contains(findAnimatedEmojiEmoticon2)) {
                                     linkedHashSet.add(Long.valueOf(j10));
                                 }
@@ -90,9 +90,9 @@ public final class mk implements Utilities.Callback {
                     return;
                 }
                 MediaDataController mediaDataController = MediaDataController.getInstance(i10);
-                String[] strArr = c71.a2;
-                ai.g6 g6Var = new ai.g6(c71Var, linkedHashSet, hashMap, arrayList3, runnable);
-                if (c71Var.W == 3) {
+                String[] strArr = a71.a2;
+                ai.g6 g6Var = new ai.g6(a71Var, linkedHashSet, hashMap, arrayList3, runnable);
+                if (a71Var.W == 3) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -103,20 +103,20 @@ public final class mk implements Utilities.Callback {
     }
 
     public mk(ProfileActivity profileActivity, TLRPC.ChannelParticipant channelParticipant, TLRPC.User user, TLRPC.ChatParticipant chatParticipant, boolean z10, String str) {
-        this.f18606c = profileActivity;
+        this.f18611c = profileActivity;
         this.d = channelParticipant;
-        this.f18607e = user;
-        this.f18608f = chatParticipant;
-        this.f18605b = z10;
-        this.f18609g = str;
+        this.f18612e = user;
+        this.f18613f = chatParticipant;
+        this.f18610b = z10;
+        this.f18614g = str;
     }
 
-    public mk(c71 c71Var, boolean z10, LinkedHashSet linkedHashSet, String str, HashMap hashMap, ArrayList arrayList) {
-        this.f18606c = c71Var;
-        this.f18605b = z10;
-        this.f18607e = linkedHashSet;
-        this.f18608f = str;
-        this.f18609g = hashMap;
+    public mk(a71 a71Var, boolean z10, LinkedHashSet linkedHashSet, String str, HashMap hashMap, ArrayList arrayList) {
+        this.f18611c = a71Var;
+        this.f18610b = z10;
+        this.f18612e = linkedHashSet;
+        this.f18613f = str;
+        this.f18614g = hashMap;
         this.d = arrayList;
     }
 }

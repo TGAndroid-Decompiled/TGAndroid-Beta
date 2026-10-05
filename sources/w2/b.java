@@ -4,23 +4,23 @@ import h2.f;
 import h2.h;
 import h2.l;
 import java.nio.ByteBuffer;
+import z3.i;
 import z3.j;
-import z3.k;
-import z3.n;
+import z3.m;
 public final class b extends l implements z3.e {
-    public final String f48466o;
-    public final n f48467p;
+    public final String f48473o;
+    public final m f48474p;
 
-    public b(String str, n nVar) {
-        super(new j[2], new k[2]);
-        this.f48466o = str;
+    public b(String str, m mVar) {
+        super(new i[2], new j[2]);
+        this.f48473o = str;
         o(1024);
-        this.f48467p = nVar;
+        this.f48474p = mVar;
     }
 
     @Override
     public final h f() {
-        return new j();
+        return new i();
     }
 
     @Override
@@ -30,7 +30,7 @@ public final class b extends l implements z3.e {
 
     @Override
     public final String getName() {
-        return this.f48466o;
+        return this.f48473o;
     }
 
     @Override
@@ -40,27 +40,27 @@ public final class b extends l implements z3.e {
 
     @Override
     public final f i(h hVar, h2.j jVar, boolean z10) {
-        j jVar2 = (j) hVar;
-        k kVar = (k) jVar;
+        i iVar = (i) hVar;
+        j jVar2 = (j) jVar;
         try {
-            ByteBuffer byteBuffer = jVar2.f10980c;
+            ByteBuffer byteBuffer = iVar.f10980c;
             byteBuffer.getClass();
             byte[] array = byteBuffer.array();
             int limit = byteBuffer.limit();
-            n nVar = this.f48467p;
+            m mVar = this.f48474p;
             if (z10) {
-                nVar.reset();
+                mVar.reset();
             }
-            z3.d h = nVar.h(0, limit, array);
-            long j3 = jVar2.f10981e;
-            long j10 = jVar2.f52378r;
-            kVar.timeUs = j3;
-            kVar.f52379a = h;
+            z3.d h = mVar.h(0, limit, array);
+            long j3 = iVar.f10981e;
+            long j10 = iVar.f52399r;
+            jVar2.timeUs = j3;
+            jVar2.f52400a = h;
             if (j10 != Long.MAX_VALUE) {
                 j3 = j10;
             }
-            kVar.f52380b = j3;
-            kVar.shouldBeSkipped = false;
+            jVar2.f52401b = j3;
+            jVar2.shouldBeSkipped = false;
             return null;
         } catch (z3.f e7) {
             return e7;

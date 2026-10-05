@@ -5,21 +5,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import n6.l;
 public final class b implements q9.d {
-    public static final b f47583b = new b(0);
-    public static final b f47584c = new b(1);
-    public final int f47585a;
+    public static final b f47590b = new b(0);
+    public static final b f47591c = new b(1);
+    public final int f47592a;
 
     public b(int i10) {
-        this.f47585a = i10;
+        this.f47592a = i10;
     }
 
     @Override
     public final Object E(cf.c cVar) {
-        switch (this.f47585a) {
+        switch (this.f47592a) {
             case 0:
-                ArrayList arrayList = new ArrayList(cVar.v(tb.a.class));
+                ArrayList arrayList = new ArrayList(cVar.q(tb.a.class));
                 l.j("No delegate creator registered.", !arrayList.isEmpty());
-                Collections.sort(arrayList, c.f47586a);
+                Collections.sort(arrayList, c.f47593a);
                 return new e((Context) cVar.a(Context.class), (tb.a) arrayList.get(0));
             default:
                 return new a((e) cVar.a(e.class), (qb.d) cVar.a(qb.d.class));

@@ -2,7 +2,7 @@ package ci;
 
 import android.animation.ValueAnimator;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.rd1;
+import org.telegram.ui.pd1;
 import org.telegram.ui.wp0;
 public final class tb implements ValueAnimator.AnimatorUpdateListener {
     public final int f6022a;
@@ -31,9 +31,9 @@ public final class tb implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 1:
                 org.telegram.ui.cd cdVar = (org.telegram.ui.cd) this.f6024c;
-                cdVar.f35432n0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                cdVar.f35416n0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 cdVar.m0.invalidate();
-                if (!this.f6023b && cdVar.f35432n0 > 0.5f) {
+                if (!this.f6023b && cdVar.f35416n0 > 0.5f) {
                     this.f6023b = true;
                     return;
                 }
@@ -48,10 +48,10 @@ public final class tb implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             default:
-                rd1 rd1Var = (rd1) this.f6024c;
-                rd1Var.f40067i2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                rd1Var.f40064h2.invalidate();
-                if (!this.f6023b && rd1Var.f40067i2 > 0.5f) {
+                pd1 pd1Var = (pd1) this.f6024c;
+                pd1Var.f39517i2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                pd1Var.f39514h2.invalidate();
+                if (!this.f6023b && pd1Var.f39517i2 > 0.5f) {
                     this.f6023b = true;
                     return;
                 }

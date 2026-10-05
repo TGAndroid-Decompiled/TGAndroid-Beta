@@ -306,7 +306,7 @@ public final class k8 {
     public static k8 n(File file, TL_stories.StoryItem storyItem) {
         k8 k8Var = new k8();
         k8Var.f5326g = true;
-        k8Var.f5324f = storyItem.f20279id;
+        k8Var.f5324f = storyItem.f20284id;
         k8Var.L = file;
         k8Var.M = false;
         k8Var.f5334k0 = 720;
@@ -330,7 +330,7 @@ public final class k8 {
                     }
                     TLRPC.DocumentAttribute documentAttribute = storyItem.media.document.attributes.get(i11);
                     if (documentAttribute instanceof TLRPC.TL_documentAttributeVideo) {
-                        k8Var.f5334k0 = documentAttribute.f20049w;
+                        k8Var.f5334k0 = documentAttribute.f20054w;
                         k8Var.f5336l0 = documentAttribute.h;
                         k8Var.f5329i = documentAttribute.duration;
                         break;
@@ -404,9 +404,9 @@ public final class k8 {
         arrayList.addAll(arrayList3);
         k8Var.I0 = storyItem.expire_date - storyItem.date;
         try {
-            CharSequence replaceEmoji = Emoji.replaceEmoji(new SpannableString(storyItem.caption), org.telegram.ui.ActionBar.i6.f21021o2.getFontMetricsInt(), true);
+            CharSequence replaceEmoji = Emoji.replaceEmoji(new SpannableString(storyItem.caption), org.telegram.ui.ActionBar.i6.f21026o2.getFontMetricsInt(), true);
             MessageObject.addEntitiesToText(replaceEmoji, storyItem.entities, true, false, true, false);
-            k8Var.C0 = MessageObject.replaceAnimatedEmoji(replaceEmoji, storyItem.entities, org.telegram.ui.ActionBar.i6.f21021o2.getFontMetricsInt());
+            k8Var.C0 = MessageObject.replaceAnimatedEmoji(replaceEmoji, storyItem.entities, org.telegram.ui.ActionBar.i6.f21026o2.getFontMetricsInt());
         } catch (Exception unused) {
         }
         k8Var.A();
@@ -498,7 +498,7 @@ public final class k8 {
                 if (MessageObject.isAnimatedStickerDocument(document, true)) {
                     RLottieNative a2 = RLottieNative.a(str, null, null, null, 0, null);
                     if (a2 != null) {
-                        int i10 = a2.f24258a[0];
+                        int i10 = a2.f24261a[0];
                         a2.d();
                         j3 = i10;
                     } else {
@@ -553,8 +553,8 @@ public final class k8 {
         k8Var.f5362z0 = p((MessageObject) arrayList.get(0));
         VideoEditedInfo.MediaEntity mediaEntity = new VideoEditedInfo.MediaEntity();
         mediaEntity.type = (byte) 6;
-        mediaEntity.f17284x = 0.5f;
-        mediaEntity.f17285y = 0.5f;
+        mediaEntity.f17289x = 0.5f;
+        mediaEntity.f17290y = 0.5f;
         ArrayList arrayList2 = new ArrayList();
         k8Var.T0 = arrayList2;
         arrayList2.add(mediaEntity);
@@ -702,8 +702,8 @@ public final class k8 {
                 if (photo.has_stickers) {
                     TLRPC.TL_inputStickeredMediaPhoto tL_inputStickeredMediaPhoto = new TLRPC.TL_inputStickeredMediaPhoto();
                     TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
-                    tL_inputStickeredMediaPhoto.f20112id = tL_inputPhoto;
-                    tL_inputPhoto.f20061id = photo.f20066id;
+                    tL_inputStickeredMediaPhoto.f20117id = tL_inputPhoto;
+                    tL_inputPhoto.f20066id = photo.f20071id;
                     tL_inputPhoto.access_hash = photo.access_hash;
                     byte[] bArr = photo.file_reference;
                     tL_inputPhoto.file_reference = bArr;
@@ -719,8 +719,8 @@ public final class k8 {
                 if (document != null && MessageObject.isDocumentHasAttachedStickers(document)) {
                     TLRPC.TL_inputStickeredMediaDocument tL_inputStickeredMediaDocument = new TLRPC.TL_inputStickeredMediaDocument();
                     TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                    tL_inputStickeredMediaDocument.f20111id = tL_inputDocument;
-                    tL_inputDocument.f20054id = document.f20048id;
+                    tL_inputStickeredMediaDocument.f20116id = tL_inputDocument;
+                    tL_inputDocument.f20059id = document.f20053id;
                     tL_inputDocument.access_hash = document.access_hash;
                     byte[] bArr2 = document.file_reference;
                     tL_inputDocument.file_reference = bArr2;

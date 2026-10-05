@@ -4,26 +4,26 @@ import android.graphics.Matrix;
 import android.graphics.SurfaceTexture;
 import android.view.TextureView;
 public final class qf0 implements TextureView.SurfaceTextureListener {
-    public final boolean f30022a;
-    public final ka f30023b;
-    public final vf0 f30024c;
+    public final boolean f30044a;
+    public final ka f30045b;
+    public final vf0 f30046c;
 
     public qf0(vf0 vf0Var, boolean z10, ka kaVar) {
-        this.f30024c = vf0Var;
-        this.f30022a = z10;
-        this.f30023b = kaVar;
+        this.f30046c = vf0Var;
+        this.f30044a = z10;
+        this.f30045b = kaVar;
     }
 
     @Override
     public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
-        vf0 vf0Var = this.f30024c;
-        TextureView textureView = vf0Var.f31662i0;
-        if (vf0Var.f31665l0 == null && surfaceTexture != null) {
-            yz yzVar = new yz(surfaceTexture, vf0Var.C0, vf0Var.H0, vf0Var.f31679w0, this.f30022a, this.f30023b, i10, i11);
-            vf0Var.f31665l0 = yzVar;
-            if (!this.f30022a) {
+        vf0 vf0Var = this.f30046c;
+        TextureView textureView = vf0Var.f31729i0;
+        if (vf0Var.f31732l0 == null && surfaceTexture != null) {
+            yz yzVar = new yz(surfaceTexture, vf0Var.C0, vf0Var.H0, vf0Var.f31746w0, this.f30044a, this.f30045b, i10, i11);
+            vf0Var.f31732l0 = yzVar;
+            if (!this.f30044a) {
                 yzVar.i(vf0Var.J0, vf0Var.K0);
-                yz yzVar2 = vf0Var.f31665l0;
+                yz yzVar2 = vf0Var.f31732l0;
                 Matrix transform = textureView.getTransform(null);
                 int width = textureView.getWidth();
                 int height = textureView.getHeight();
@@ -39,21 +39,21 @@ public final class qf0 implements TextureView.SurfaceTextureListener {
                     yzVar2.e(false, false, false);
                 }
             }
-            vf0Var.f31665l0.f(vf0Var);
-            yz yzVar3 = vf0Var.f31665l0;
+            vf0Var.f31732l0.f(vf0Var);
+            yz yzVar3 = vf0Var.f31732l0;
             yzVar3.getClass();
             yzVar3.postRunnable(new uz(yzVar3, i10, i11, 1));
-            vf0Var.f31665l0.e(true, true, false);
+            vf0Var.f31732l0.e(true, true, false);
         }
     }
 
     @Override
     public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        vf0 vf0Var = this.f30024c;
-        yz yzVar = vf0Var.f31665l0;
+        vf0 vf0Var = this.f30046c;
+        yz yzVar = vf0Var.f31732l0;
         if (yzVar != null) {
             yzVar.postRunnable(new vz(yzVar, 0));
-            vf0Var.f31665l0 = null;
+            vf0Var.f31732l0 = null;
             return true;
         }
         return true;
@@ -61,12 +61,12 @@ public final class qf0 implements TextureView.SurfaceTextureListener {
 
     @Override
     public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
-        vf0 vf0Var = this.f30024c;
-        yz yzVar = vf0Var.f31665l0;
+        vf0 vf0Var = this.f30046c;
+        yz yzVar = vf0Var.f31732l0;
         if (yzVar != null) {
             yzVar.postRunnable(new uz(yzVar, i10, i11, 1));
-            vf0Var.f31665l0.e(false, true, false);
-            vf0Var.f31665l0.postRunnable(new lc0(this, 7));
+            vf0Var.f31732l0.e(false, true, false);
+            vf0Var.f31732l0.postRunnable(new lc0(this, 7));
         }
     }
 

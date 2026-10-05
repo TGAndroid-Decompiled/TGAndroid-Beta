@@ -11,24 +11,24 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.ActionBar.c5;
 import org.telegram.ui.Components.q90;
 import org.telegram.ui.ProfileActivity;
-import yh.t5;
+import yh.u5;
 public final class f2 implements Runnable {
-    public final int f45031a;
-    public final int f45032b;
-    public final Object f45033c;
+    public final int f45038a;
+    public final int f45039b;
+    public final Object f45040c;
 
     public f2(int i10, c5 c5Var) {
-        this.f45031a = 2;
-        this.f45032b = i10;
-        this.f45033c = c5Var;
+        this.f45038a = 2;
+        this.f45039b = i10;
+        this.f45040c = c5Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f45031a;
+        int i10 = this.f45038a;
         boolean z10 = false;
-        int i11 = this.f45032b;
-        Object obj = this.f45033c;
+        int i11 = this.f45039b;
+        Object obj = this.f45040c;
         switch (i10) {
             case 0:
                 n2 n2Var = (n2) obj;
@@ -37,7 +37,7 @@ public final class f2 implements Runnable {
                 n2Var.h();
                 return;
             case 1:
-                q90 q90Var = ((tg.r0) obj).f47099e;
+                q90 q90Var = ((tg.r0) obj).f47106e;
                 try {
                     if (q90Var.getLayout().getLineForOffset(i11) == 0) {
                         q90Var.getEditableText().insert(i11, "\n");
@@ -54,10 +54,10 @@ public final class f2 implements Runnable {
                 ((c5) obj).getLastFragment().presentFragment(new ProfileActivity(bundle, null));
                 return;
             case 3:
-                nf.f.s(((yh.g) obj).getParentActivity(), LocaleController.getString(i11));
+                nf.f.s(((yh.h) obj).getParentActivity(), LocaleController.getString(i11));
                 return;
             case 4:
-                ConnectionsManager.getInstance(((t5) obj).f52016a).cancelRequest(i11, true);
+                ConnectionsManager.getInstance(((u5) obj).f52085a).cancelRequest(i11, true);
                 return;
             default:
                 zg.f fVar = (zg.f) obj;
@@ -83,8 +83,8 @@ public final class f2 implements Runnable {
     }
 
     public f2(Object obj, int i10, int i11) {
-        this.f45031a = i11;
-        this.f45033c = obj;
-        this.f45032b = i10;
+        this.f45038a = i11;
+        this.f45040c = obj;
+        this.f45039b = i10;
     }
 }

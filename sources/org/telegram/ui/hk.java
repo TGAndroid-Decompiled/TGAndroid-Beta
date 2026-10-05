@@ -18,7 +18,7 @@ public final class hk extends org.telegram.ui.Components.wo {
         ynVar.v7();
         al alVar = ynVar.Ya;
         if (alVar != null) {
-            alVar.setTranslationY(ynVar.f43529u9 + getCurrentHeight());
+            alVar.setTranslationY(ynVar.f43522u9 + getCurrentHeight());
         }
         if (z10) {
             ynVar.B9 = true;

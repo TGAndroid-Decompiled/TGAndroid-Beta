@@ -34,11 +34,11 @@ public interface oc {
 
     void m0();
 
+    void s();
+
     void s0(float f7);
 
     void t0(int i10, long j3);
-
-    void u();
 
     void u0(long j3);
 }

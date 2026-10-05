@@ -21,7 +21,7 @@ import org.telegram.ui.Components.uk0;
 import org.telegram.ui.Components.zc;
 import v7.z6;
 public abstract class j extends FrameLayout {
-    public static final List f45075p0 = Arrays.asList(-90, 0, 90, 180);
+    public static final List f45082p0 = Arrays.asList(-90, 0, 90, 180);
     public boolean E;
     public h F;
     public PointF G;
@@ -41,59 +41,59 @@ public abstract class j extends FrameLayout {
     public final e U;
     public int V;
     public int W;
-    public final zc f45076a;
-    public ValueAnimator f45077a0;
-    public float f45078b;
-    public ValueAnimator f45079b0;
-    public float f45080c;
-    public boolean f45081c0;
+    public final zc f45083a;
+    public ValueAnimator f45084a0;
+    public float f45085b;
+    public ValueAnimator f45086b0;
+    public float f45087c;
+    public boolean f45088c0;
     public float d;
-    public boolean f45082d0;
-    public float f45083e;
-    public final float[] f45084e0;
-    public float f45085f;
-    public final float[] f45086f0;
-    public final float[] f45087g0;
+    public boolean f45089d0;
+    public float f45090e;
+    public final float[] f45091e0;
+    public float f45092f;
+    public final float[] f45093f0;
+    public final float[] f45094g0;
     public float h;
-    public float f45088h0;
-    public float f45089i0;
-    public float f45090j0;
-    public ValueAnimator f45091k0;
-    public boolean f45092l0;
+    public float f45095h0;
+    public float f45096i0;
+    public float f45097j0;
+    public ValueAnimator f45098k0;
+    public boolean f45099l0;
     public ViewGroup m0;
-    public boolean f45093n;
-    public float f45094n0;
-    public ValueAnimator f45095o0;
-    public boolean f45096r;
-    public boolean f45097s;
+    public boolean f45100n;
+    public float f45101n0;
+    public ValueAnimator f45102o0;
+    public boolean f45103r;
+    public boolean f45104s;
     public boolean v;
-    public boolean f45098w;
-    public boolean f45099x;
-    public boolean f45100y;
+    public boolean f45105w;
+    public boolean f45106x;
+    public boolean f45107y;
 
     public j(Context context, PointF pointF) {
         super(context);
-        this.f45076a = new zc(this);
-        this.f45093n = false;
-        this.f45096r = false;
-        this.f45097s = false;
+        this.f45083a = new zc(this);
+        this.f45100n = false;
+        this.f45103r = false;
+        this.f45104s = false;
         this.v = false;
-        this.f45098w = false;
-        this.f45099x = false;
-        this.f45100y = false;
+        this.f45105w = false;
+        this.f45106x = false;
+        this.f45107y = false;
         this.E = false;
         this.I = new Runnable(this) {
-            public final j f45011b;
+            public final j f45018b;
 
             {
-                this.f45011b = this;
+                this.f45018b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        j jVar = this.f45011b;
+                        j jVar = this.f45018b;
                         jVar.E = true;
                         if (jVar.F != null) {
                             try {
@@ -105,10 +105,10 @@ public abstract class j extends FrameLayout {
                         }
                         return;
                     case 1:
-                        this.f45011b.n();
+                        this.f45018b.n();
                         return;
                     default:
-                        this.f45011b.o();
+                        this.f45018b.o();
                         return;
                 }
             }
@@ -119,17 +119,17 @@ public abstract class j extends FrameLayout {
         this.R = 0;
         this.S = 0;
         this.T = new Runnable(this) {
-            public final j f45011b;
+            public final j f45018b;
 
             {
-                this.f45011b = this;
+                this.f45018b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        j jVar = this.f45011b;
+                        j jVar = this.f45018b;
                         jVar.E = true;
                         if (jVar.F != null) {
                             try {
@@ -141,26 +141,26 @@ public abstract class j extends FrameLayout {
                         }
                         return;
                     case 1:
-                        this.f45011b.n();
+                        this.f45018b.n();
                         return;
                     default:
-                        this.f45011b.o();
+                        this.f45018b.o();
                         return;
                 }
             }
         };
         this.U = new Runnable(this) {
-            public final j f45011b;
+            public final j f45018b;
 
             {
-                this.f45011b = this;
+                this.f45018b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        j jVar = this.f45011b;
+                        j jVar = this.f45018b;
                         jVar.E = true;
                         if (jVar.F != null) {
                             try {
@@ -172,20 +172,20 @@ public abstract class j extends FrameLayout {
                         }
                         return;
                     case 1:
-                        this.f45011b.n();
+                        this.f45018b.n();
                         return;
                     default:
-                        this.f45011b.o();
+                        this.f45018b.o();
                         return;
                 }
             }
         };
-        this.f45084e0 = new float[2];
-        this.f45086f0 = new float[2];
-        this.f45087g0 = new float[2];
-        this.f45088h0 = 1.0f;
-        this.f45092l0 = false;
-        this.f45094n0 = 1.0f;
+        this.f45091e0 = new float[2];
+        this.f45093f0 = new float[2];
+        this.f45094g0 = new float[2];
+        this.f45095h0 = 1.0f;
+        this.f45099l0 = false;
+        this.f45101n0 = 1.0f;
         this.J = UUID.randomUUID();
         this.G = pointF;
     }
@@ -220,10 +220,10 @@ public abstract class j extends FrameLayout {
             } else {
                 f14 = f10;
             }
-            float f17 = (f13 - this.f45085f) / scaleX;
+            float f17 = (f13 - this.f45092f) / scaleX;
             float f18 = (f14 - this.h) / scaleX;
             float hypot = (float) Math.hypot(f17, f18);
-            if (this.f45093n) {
+            if (this.f45100n) {
                 f15 = 6.0f;
             } else {
                 f15 = 16.0f;
@@ -233,21 +233,21 @@ public abstract class j extends FrameLayout {
                 e(f17, f18);
                 if (z10) {
                     float a2 = z6.a(f7, f10, f11, f12);
-                    float a10 = z6.a(this.f45078b, this.f45080c, this.d, this.f45083e);
+                    float a10 = z6.a(this.f45085b, this.f45087c, this.d, this.f45090e);
                     if (a10 > 0.0f) {
                         j(a2 / a10);
                     }
-                    f(this.f45089i0 + ((float) Math.toDegrees(Math.atan2(f10 - f12, f7 - f11) - Math.atan2(this.f45080c - this.f45083e, this.f45078b - this.d))));
+                    f(this.f45096i0 + ((float) Math.toDegrees(Math.atan2(f10 - f12, f7 - f11) - Math.atan2(this.f45087c - this.f45090e, this.f45085b - this.d))));
                 }
-                this.f45078b = f7;
-                this.f45080c = f10;
-                this.f45085f = f13;
+                this.f45085b = f7;
+                this.f45087c = f10;
+                this.f45092f = f13;
                 this.h = f14;
                 if (z10) {
                     this.d = f11;
-                    this.f45083e = f12;
+                    this.f45090e = f12;
                 }
-                this.f45093n = true;
+                this.f45100n = true;
                 if ((getParent() instanceof d) && (this.R != 0 || this.S != 0)) {
                     ((d) getParent()).invalidate();
                 }
@@ -255,17 +255,17 @@ public abstract class j extends FrameLayout {
                     this.v = true;
                     hVar4.C();
                 }
-                if (!this.f45098w && z10 && (hVar3 = this.F) != null) {
-                    this.f45098w = true;
+                if (!this.f45105w && z10 && (hVar3 = this.F) != null) {
+                    this.f45105w = true;
                     hVar3.j();
                 }
-                if (this.f45098w && !z10 && (hVar2 = this.F) != null) {
-                    this.f45098w = false;
+                if (this.f45105w && !z10 && (hVar2 = this.F) != null) {
+                    this.f45105w = false;
                     hVar2.i();
                 }
-                if (!this.f45092l0 && !this.f45099x && (hVar = this.F) != null) {
+                if (!this.f45099l0 && !this.f45106x && (hVar = this.F) != null) {
                     hVar.c(this);
-                    this.f45099x = true;
+                    this.f45106x = true;
                 }
                 h hVar5 = this.F;
                 if (hVar5 != null) {
@@ -289,31 +289,31 @@ public abstract class j extends FrameLayout {
                 } else {
                     z11 = false;
                 }
-                if (this.f45100y != z11) {
-                    ValueAnimator valueAnimator = this.f45095o0;
+                if (this.f45107y != z11) {
+                    ValueAnimator valueAnimator = this.f45102o0;
                     if (valueAnimator != null) {
                         valueAnimator.cancel();
-                        this.f45095o0 = null;
+                        this.f45102o0 = null;
                     }
-                    float f19 = this.f45094n0;
+                    float f19 = this.f45101n0;
                     if (z11) {
                         f16 = 0.5f;
                     } else {
                         f16 = 1.0f;
                     }
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f19, f16);
-                    this.f45095o0 = ofFloat;
+                    this.f45102o0 = ofFloat;
                     ofFloat.addUpdateListener(new f(this, 1));
-                    this.f45095o0.setInterpolator(tr.h);
-                    this.f45095o0.setDuration(280L);
-                    this.f45095o0.start();
-                    this.f45100y = z11;
+                    this.f45102o0.setInterpolator(tr.h);
+                    this.f45102o0.setDuration(280L);
+                    this.f45102o0.start();
+                    this.f45107y = z11;
                     h hVar8 = this.F;
                     if (hVar8 != null) {
                         hVar8.l(z11);
                     }
                 }
-                this.f45076a.c(false);
+                this.f45083a.c(false);
                 return true;
             }
         }
@@ -324,23 +324,23 @@ public abstract class j extends FrameLayout {
         h hVar;
         h hVar2;
         if (this.v) {
-            this.F.h(this.f45100y);
+            this.F.h(this.f45107y);
             this.v = false;
         }
-        this.f45098w = false;
-        if (!z10 && !this.E && !this.f45093n && !this.f45097s && !this.f45099x && (hVar2 = this.F) != null) {
+        this.f45105w = false;
+        if (!z10 && !this.E && !this.f45100n && !this.f45104s && !this.f45106x && (hVar2 = this.F) != null) {
             hVar2.c(this);
         }
-        if (this.f45093n && (hVar = this.F) != null) {
+        if (this.f45100n && (hVar = this.F) != null) {
             hVar.B(false);
             this.F.g(false);
         }
         AndroidUtilities.cancelRunOnUIThread(this.I);
         this.E = false;
-        this.f45093n = false;
-        this.f45097s = false;
-        this.f45096r = true;
-        this.f45099x = false;
+        this.f45100n = false;
+        this.f45104s = false;
+        this.f45103r = true;
+        this.f45106x = false;
         this.M = this.L;
         ld ldVar = this.N;
         if (ldVar != null) {
@@ -358,18 +358,18 @@ public abstract class j extends FrameLayout {
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        float a2 = this.f45076a.a(getBounceScale());
+        float a2 = this.f45083a.a(getBounceScale());
         canvas.save();
         canvas.scale(a2, a2, getWidth() / 2.0f, getHeight() / 2.0f);
         if (getParent() instanceof View) {
             View view = (View) getParent();
             if (this instanceof b2) {
-                float f7 = this.f45094n0;
+                float f7 = this.f45101n0;
                 canvas.scale(f7, f7, getWidth() / 2.0f, getHeight() / 2.0f);
             } else {
                 float width = (view.getWidth() / 2.0f) - getX();
                 float height = (view.getHeight() - AndroidUtilities.dp(76.0f)) - getY();
-                float f10 = this.f45094n0;
+                float f10 = this.f45101n0;
                 canvas.scale(f10, f10, width, height);
             }
         }
@@ -390,10 +390,10 @@ public abstract class j extends FrameLayout {
             this.W = 0;
             o();
         }
-        this.f45089i0 = f7;
+        this.f45096i0 = f7;
         boolean z10 = this.K;
-        if (!z10 && !this.f45081c0) {
-            Iterator it = f45075p0.iterator();
+        if (!z10 && !this.f45088c0) {
+            Iterator it = f45082p0.iterator();
             while (true) {
                 if (!it.hasNext()) {
                     break;
@@ -413,7 +413,7 @@ public abstract class j extends FrameLayout {
                 }
             }
         } else if (z10) {
-            if (Math.abs(this.L - f7) < 12.0f && !this.f45081c0) {
+            if (Math.abs(this.L - f7) < 12.0f && !this.f45088c0) {
                 if (this.P != null) {
                     f7 = this.O;
                 } else {
@@ -436,7 +436,7 @@ public abstract class j extends FrameLayout {
                 }
                 ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
                 this.Q = duration;
-                duration.setInterpolator(tr.f31147f);
+                duration.setInterpolator(tr.f31215f);
                 this.Q.addUpdateListener(new f(this, 0));
                 this.Q.addListener(new g(this, 3));
                 this.Q.start();
@@ -489,7 +489,7 @@ public abstract class j extends FrameLayout {
             } else {
                 f7 = f10;
             }
-            ValueAnimator valueAnimator = this.f45077a0;
+            ValueAnimator valueAnimator = this.f45084a0;
             if (valueAnimator != null) {
                 return AndroidUtilities.lerp(f10, f7, ((Float) valueAnimator.getAnimatedValue()).floatValue());
             }
@@ -515,7 +515,7 @@ public abstract class j extends FrameLayout {
             } else {
                 f7 = f10;
             }
-            ValueAnimator valueAnimator = this.f45079b0;
+            ValueAnimator valueAnimator = this.f45086b0;
             if (valueAnimator != null) {
                 return AndroidUtilities.lerp(f10, f7, ((Float) valueAnimator.getAnimatedValue()).floatValue());
             }
@@ -563,41 +563,41 @@ public abstract class j extends FrameLayout {
     }
 
     public final void h(float... fArr) {
-        ValueAnimator valueAnimator = this.f45077a0;
+        ValueAnimator valueAnimator = this.f45084a0;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
         ValueAnimator duration = ValueAnimator.ofFloat(fArr).setDuration(150L);
-        this.f45077a0 = duration;
-        duration.setInterpolator(tr.f31147f);
-        this.f45077a0.addUpdateListener(new f(this, 3));
-        this.f45077a0.addListener(new g(this, 0));
-        this.f45077a0.start();
+        this.f45084a0 = duration;
+        duration.setInterpolator(tr.f31215f);
+        this.f45084a0.addUpdateListener(new f(this, 3));
+        this.f45084a0.addListener(new g(this, 0));
+        this.f45084a0.start();
     }
 
     public final void i(float... fArr) {
-        ValueAnimator valueAnimator = this.f45079b0;
+        ValueAnimator valueAnimator = this.f45086b0;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
         ValueAnimator duration = ValueAnimator.ofFloat(fArr).setDuration(150L);
-        this.f45079b0 = duration;
-        duration.setInterpolator(tr.f31147f);
-        this.f45079b0.addUpdateListener(new f(this, 4));
-        this.f45079b0.addListener(new g(this, 1));
-        this.f45079b0.start();
+        this.f45086b0 = duration;
+        duration.setInterpolator(tr.f31215f);
+        this.f45086b0.addUpdateListener(new f(this, 4));
+        this.f45086b0.addListener(new g(this, 1));
+        this.f45086b0.start();
     }
 
     @Override
     public final boolean isSelected() {
-        return this.f45092l0;
+        return this.f45099l0;
     }
 
     public final void j(float f7) {
         boolean z10;
-        float f10 = this.f45088h0;
+        float f10 = this.f45095h0;
         float f11 = f7 * f10;
-        this.f45088h0 = f11;
+        this.f45095h0 = f11;
         float clamp = Utilities.clamp(Math.max(f11, 0.1f), getMaxScale(), getMinScale());
         if (!(this instanceof a2)) {
             boolean z11 = false;
@@ -624,38 +624,38 @@ public abstract class j extends FrameLayout {
     }
 
     public final void l(ViewGroup viewGroup, boolean z10) {
-        if (this.f45092l0 != z10) {
-            this.f45092l0 = z10;
-            ValueAnimator valueAnimator = this.f45091k0;
+        if (this.f45099l0 != z10) {
+            this.f45099l0 = z10;
+            ValueAnimator valueAnimator = this.f45098k0;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
-                this.f45091k0 = null;
+                this.f45098k0 = null;
             }
             float f7 = 0.0f;
             if (this.H == null) {
                 if (z10 || viewGroup != null) {
                     i a2 = a();
                     this.H = a2;
-                    a2.f45055f = !this.f45081c0;
+                    a2.f45062f = !this.f45088c0;
                     a2.invalidate();
                     viewGroup.addView(this.H);
-                    this.f45090j0 = 0.0f;
+                    this.f45097j0 = 0.0f;
                 } else {
                     return;
                 }
             }
             this.H.b();
-            float f10 = this.f45090j0;
+            float f10 = this.f45097j0;
             if (z10) {
                 f7 = 1.0f;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-            this.f45091k0 = ofFloat;
+            this.f45098k0 = ofFloat;
             ofFloat.addUpdateListener(new f(this, 2));
-            this.f45091k0.addListener(new g(this, 4));
-            this.f45091k0.setDuration(280L);
-            this.f45091k0.setInterpolator(tr.h);
-            this.f45091k0.start();
+            this.f45098k0.addListener(new g(this, 4));
+            this.f45098k0.setDuration(280L);
+            this.f45098k0.setInterpolator(tr.h);
+            this.f45098k0.start();
         }
     }
 
@@ -677,7 +677,7 @@ public abstract class j extends FrameLayout {
         if (getParent() instanceof d) {
             ((d) getParent()).invalidate();
         }
-        ValueAnimator valueAnimator = this.f45077a0;
+        ValueAnimator valueAnimator = this.f45084a0;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
@@ -703,7 +703,7 @@ public abstract class j extends FrameLayout {
         if (getParent() instanceof d) {
             ((d) getParent()).invalidate();
         }
-        ValueAnimator valueAnimator = this.f45079b0;
+        ValueAnimator valueAnimator = this.f45086b0;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
@@ -742,7 +742,7 @@ public abstract class j extends FrameLayout {
     }
 
     public void setScale(float f7) {
-        this.f45088h0 = f7;
+        this.f45095h0 = f7;
         setScaleX(f7);
         setScaleY(f7);
     }

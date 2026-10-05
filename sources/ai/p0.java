@@ -40,7 +40,7 @@ public final class p0 implements Runnable {
                     d dVar = new d();
                     long j3 = this.f1494c;
                     long j10 = this.f1493b;
-                    new yh.m7(context, dVar, j10, 17, "", new a3.g0(o1Var, j3, tL_textWithEntities, j10, 1), o1Var.M).show();
+                    new yh.n7(context, dVar, j10, 17, "", new a3.g0(o1Var, j3, tL_textWithEntities, j10, 1), o1Var.M).show();
                     return;
                 } else if ("GROUPCALL_INVALID".equalsIgnoreCase(tL_error.text)) {
                     d2 d2Var = o1Var.P;
@@ -84,7 +84,7 @@ public final class p0 implements Runnable {
             default:
                 Context context2 = (Context) this.f1495e;
                 int i13 = this.d;
-                yh.o g10 = yh.o.g(i13);
+                yh.p g10 = yh.p.g(i13);
                 long j13 = this.f1493b;
                 g10.f(context2, j13, this.f1494c, new ei.r3((org.telegram.ui.ActionBar.f3[]) this.f1496f, context2, i13, j13, (org.telegram.ui.ActionBar.d6) this.h, 2));
                 return;

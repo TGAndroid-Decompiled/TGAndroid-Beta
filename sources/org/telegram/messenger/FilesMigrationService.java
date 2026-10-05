@@ -23,7 +23,7 @@ import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.function.Consumer;
-import org.telegram.ui.Components.ux0;
+import org.telegram.ui.Components.vx0;
 public class FilesMigrationService extends Service {
     public static FilesMigrationBottomSheet filesMigrationBottomSheet = null;
     public static boolean hasOldFolder = false;
@@ -221,13 +221,13 @@ public class FilesMigrationService extends Service {
             setCanceledOnTouchOutside(false);
             Activity parentActivity = n2Var.getParentActivity();
             LinearLayout e7 = q.e(parentActivity, 1);
-            ux0 ux0Var = new ux0(parentActivity, this.currentAccount);
-            ux0Var.setStickerNum(7);
-            ux0Var.getImageReceiver().setAutoRepeat(1);
-            e7.addView(ux0Var, w7.z5.t(144, 144, 1, 0, 16, 0, 0));
+            vx0 vx0Var = new vx0(parentActivity, this.currentAccount);
+            vx0Var.setStickerNum(7);
+            vx0Var.getImageReceiver().setAutoRepeat(1);
+            e7.addView(vx0Var, w7.z5.t(144, 144, 1, 0, 16, 0, 0));
             TextView textView = new TextView(parentActivity);
             textView.setGravity(8388611);
-            int i10 = org.telegram.ui.ActionBar.i6.f20930j5;
+            int i10 = org.telegram.ui.ActionBar.i6.f20935j5;
             q.q(textView, org.telegram.ui.ActionBar.i6.w0(null, i10, false), 1, 20.0f);
             textView.setText(LocaleController.getString(R.string.MigrateOldFolderTitle));
             e7.addView(textView, w7.z5.d(-1, -2.0f, 0, 21.0f, 30.0f, 21.0f, 0.0f));

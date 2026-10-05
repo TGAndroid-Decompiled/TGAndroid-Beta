@@ -15,10 +15,10 @@ import ci.qc;
 import ci.ra;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.GenericProvider;
-import org.telegram.ui.Components.ew0;
+import org.telegram.ui.Components.fw0;
 import org.telegram.ui.Components.rc;
 public abstract class q4 extends FrameLayout {
-    public static final ew0 f9281b0 = new ew0(new d2.c(21), new d2.c(22));
+    public static final fw0 f9281b0 = new fw0(new d2.c(21), new d2.c(22));
     public Runnable E;
     public p4 F;
     public o1.k G;
@@ -107,7 +107,7 @@ public abstract class q4 extends FrameLayout {
         if (runnable != null) {
             runnable.run();
         }
-        rc rcVar = rc.f30337w;
+        rc rcVar = rc.f30419w;
         if (rcVar != null) {
             rcVar.l();
         }
@@ -214,7 +214,7 @@ public abstract class q4 extends FrameLayout {
         if (this.J && !z10) {
             f7 = (-getOffsetY()) + getTopActionBarOffsetY();
         }
-        if (this.f9289r != f7 && ((kVar = this.G) == null || ((float) kVar.f16988u.f16995i) != f7)) {
+        if (this.f9289r != f7 && ((kVar = this.G) == null || ((float) kVar.f16993u.f17000i) != f7)) {
             this.f9288n = f7;
             o1.k kVar2 = this.v;
             if (kVar2 != null) {
@@ -225,7 +225,7 @@ public abstract class q4 extends FrameLayout {
                 kVar3.c();
             }
             o1.k kVar4 = new o1.k(this, f9281b0, f7);
-            kVar4.f16988u = org.telegram.ui.Cells.c1.l(f7, 1200.0f, 1.0f);
+            kVar4.f16993u = org.telegram.ui.Cells.c1.l(f7, 1200.0f, 1.0f);
             kVar4.a(new n4(0, this, runnable));
             this.G = kVar4;
             kVar4.f();
@@ -341,7 +341,7 @@ public abstract class q4 extends FrameLayout {
                 kVar2.c();
             }
             o1.k kVar3 = new o1.k(new o1.j(f10));
-            kVar3.f16988u = org.telegram.ui.Cells.c1.l(f7, 1400.0f, 1.0f);
+            kVar3.f16993u = org.telegram.ui.Cells.c1.l(f7, 1400.0f, 1.0f);
             kVar3.b(new o1.g() {
                 @Override
                 public final void a(o1.h hVar, float f12, float f13) {
@@ -360,11 +360,11 @@ public abstract class q4 extends FrameLayout {
                     }
                     o1.k kVar4 = q4Var.G;
                     if (kVar4 != null) {
-                        o1.l lVar = kVar4.f16988u;
-                        float f17 = (float) lVar.f16995i;
+                        o1.l lVar = kVar4.f16993u;
+                        float f17 = (float) lVar.f17000i;
                         float f18 = q4Var.f9286e;
                         if (f17 == (-f16) + f18) {
-                            lVar.f16995i = (-f7) + f18;
+                            lVar.f17000i = (-f7) + f18;
                         }
                     }
                     q4Var.c();

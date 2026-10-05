@@ -12,7 +12,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.c61;
+import org.telegram.ui.Components.d61;
 import org.telegram.ui.Components.oy;
 public final class e6 implements oy {
     public final q6 f5021a;
@@ -99,8 +99,8 @@ public final class e6 implements oy {
     public final void n() {
         q6 q6Var = this.f5021a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(q6Var.getContext(), 0, q6Var.G1);
-        alertDialog$Builder.f20372a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f20372a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
+        alertDialog$Builder.f20377a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f20377a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
         alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new a1.c(this, 19));
         hg.c.p(R.string.Cancel, alertDialog$Builder, null);
     }
@@ -122,7 +122,7 @@ public final class e6 implements oy {
             try {
                 SpannableString spannableString = new SpannableString(str);
                 if (document != null) {
-                    z5Var = new org.telegram.ui.Components.z5(document.f20048id, 1.0f, editText.getPaint().getFontMetricsInt());
+                    z5Var = new org.telegram.ui.Components.z5(document.f20053id, 1.0f, editText.getPaint().getFontMetricsInt());
                     z5Var.document = document;
                 } else {
                     z5Var = new org.telegram.ui.Components.z5(j3, 1.0f, editText.getPaint().getFontMetricsInt());
@@ -153,7 +153,7 @@ public final class e6 implements oy {
     }
 
     @Override
-    public final void o(c61 c61Var) {
+    public final void o(d61 d61Var) {
     }
 
     @Override

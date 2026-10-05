@@ -1,6 +1,6 @@
 package z7;
 public final class m2 implements ia.d {
-    public static final m2 f52839a = new Object();
+    public static final m2 f52860a = new Object();
 
     static {
         sa.e.t(sa.e.o(w.class, sa.e.s(3, sa.e.o(w.class, sa.e.s(2, sa.e.o(w.class, new s(1)))))));

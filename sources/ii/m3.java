@@ -12,7 +12,7 @@ public final class m3 extends w7.j0 {
 
     @Override
     public final void a(boolean z10) {
-        this.f12523a.w();
+        this.f12523a.t();
         x3 x3Var = this.f12524b;
         if (z10) {
             k3 k3Var = x3Var.f12782u3;
@@ -20,8 +20,8 @@ public final class m3 extends w7.j0 {
             x3Var.f12788x3 = k3Var.H0;
             x3Var.y3 = k3Var.I0;
             x3Var.setEditTextsLocked(true);
-            x3Var.p3();
-            x3Var.X2();
+            x3Var.o3();
+            x3Var.W2();
             return;
         }
         final int i10 = x3Var.f12786w3;
@@ -35,7 +35,7 @@ public final class m3 extends w7.j0 {
         final float f10 = x3Var.B3;
         x3Var.f12791z3 = false;
         x3Var.setEditTextsLocked(false);
-        x3Var.X2();
+        x3Var.W2();
         if (z11) {
             x3Var.post(new Runnable() {
                 @Override
@@ -48,24 +48,24 @@ public final class m3 extends w7.j0 {
                         float f12 = f10;
                         if (z12) {
                             f6 f6Var = (f6) childAt;
-                            if (!x3.j4(f6Var.getEditText(), f11, f12)) {
-                                if (f6Var.n() && x3.j4(f6Var.getAuthorEditText(), f11, f12)) {
+                            if (!x3.i4(f6Var.getEditText(), f11, f12)) {
+                                if (f6Var.n() && x3.i4(f6Var.getAuthorEditText(), f11, f12)) {
                                     return;
                                 }
                             } else {
                                 return;
                             }
                         } else if (childAt instanceof m0) {
-                            if (x3.j4(((m0) childAt).getCaptionEditText(), f11, f12)) {
+                            if (x3.i4(((m0) childAt).getCaptionEditText(), f11, f12)) {
                                 return;
                             }
-                        } else if ((childAt instanceof u0) && x3.j4(((u0) childAt).getEditText(), f11, f12)) {
+                        } else if ((childAt instanceof u0) && x3.i4(((u0) childAt).getEditText(), f11, f12)) {
                             return;
                         }
                     }
                     int i14 = i10;
                     if (i14 >= 0) {
-                        x3.M1(x3Var2, i14, i12, i11);
+                        x3.L1(x3Var2, i14, i12, i11);
                     }
                 }
             });

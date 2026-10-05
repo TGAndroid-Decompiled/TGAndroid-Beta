@@ -5,15 +5,15 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public abstract class yh0 extends FrameLayout {
-    public TLRPC.User f43229a;
-    public org.telegram.ui.Components.q90 f43230b;
-    public org.telegram.ui.Components.w00 f43231c;
+    public TLRPC.User f43234a;
+    public org.telegram.ui.Components.q90 f43235b;
+    public org.telegram.ui.Components.w00 f43236c;
     public boolean d;
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        org.telegram.ui.Components.q90 q90Var = this.f43230b;
-        org.telegram.ui.Components.w00 w00Var = this.f43231c;
+        org.telegram.ui.Components.q90 q90Var = this.f43235b;
+        org.telegram.ui.Components.w00 w00Var = this.f43236c;
         View view = (View) getParent();
         if (view != null && view.getWidth() > 0) {
             i10 = View.MeasureSpec.makeMeasureSpec(view.getWidth(), 1073741824);

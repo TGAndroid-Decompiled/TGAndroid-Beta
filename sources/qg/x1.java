@@ -19,7 +19,7 @@ import org.telegram.messenger.bi;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.e6;
-import org.telegram.ui.Components.fw0;
+import org.telegram.ui.Components.gw0;
 import org.telegram.ui.Components.tr;
 import org.telegram.ui.Components.uk0;
 import org.telegram.ui.fs0;
@@ -32,22 +32,22 @@ public final class x1 extends j {
     public final Rect E0;
     public final Paint F0;
     public MediaController.CropState G0;
-    public final TLObject f45415q0;
-    public final String f45416r0;
-    public final int f45417s0;
-    public boolean f45418t0;
-    public final e6 f45419u0;
-    public final fw0 f45420v0;
-    public final int f45421w0;
-    public boolean f45422x0;
-    public final e6 f45423y0;
-    public final ai.f0 f45424z0;
+    public final TLObject f45422q0;
+    public final String f45423r0;
+    public final int f45424s0;
+    public boolean f45425t0;
+    public final e6 f45426u0;
+    public final gw0 f45427v0;
+    public final int f45428w0;
+    public boolean f45429x0;
+    public final e6 f45430y0;
+    public final ai.f0 f45431z0;
 
-    public x1(Context context, PointF pointF, fw0 fw0Var, String str, int i10) {
+    public x1(Context context, PointF pointF, gw0 gw0Var, String str, int i10) {
         super(context, pointF);
-        this.f45417s0 = -1;
-        this.f45418t0 = false;
-        this.f45422x0 = false;
+        this.f45424s0 = -1;
+        this.f45425t0 = false;
+        this.f45429x0 = false;
         new Rect();
         new RectF();
         new Paint(3);
@@ -56,15 +56,15 @@ public final class x1 extends j {
         this.F0 = new Paint(3);
         setRotation(0.0f);
         setScale(1.0f);
-        this.f45416r0 = str;
-        this.f45420v0 = fw0Var;
+        this.f45423r0 = str;
+        this.f45427v0 = gw0Var;
         ai.f0 f0Var = new ai.f0(this, context);
-        this.f45424z0 = f0Var;
+        this.f45431z0 = f0Var;
         addView(f0Var, z5.c(-1.0f, -1));
         tr trVar = tr.h;
-        this.f45419u0 = new e6(f0Var, 0L, 500L, trVar);
-        this.f45423y0 = new e6(f0Var, 0L, 350L, trVar);
-        this.f45421w0 = i10;
+        this.f45426u0 = new e6(f0Var, 0L, 500L, trVar);
+        this.f45430y0 = new e6(f0Var, 0L, 350L, trVar);
+        this.f45428w0 = i10;
         Bitmap q6 = k8.q(new k2.v(str, 23), 1920, 1920, 0, false);
         this.A0 = q6;
         if (q6 != null) {
@@ -85,11 +85,11 @@ public final class x1 extends j {
     }
 
     public int getAnchor() {
-        return this.f45417s0;
+        return this.f45424s0;
     }
 
-    public fw0 getBaseSize() {
-        return this.f45420v0;
+    public gw0 getBaseSize() {
+        return this.f45427v0;
     }
 
     public int getContentHeight() {
@@ -109,7 +109,7 @@ public final class x1 extends j {
     }
 
     public int getOrientation() {
-        return this.f45421w0;
+        return this.f45428w0;
     }
 
     public Bitmap getSegmentedOutBitmap() {
@@ -136,9 +136,9 @@ public final class x1 extends j {
 
     @Override
     public final void k() {
-        fw0 fw0Var = this.f45420v0;
-        float f7 = fw0Var.f26590a / 2.0f;
-        float f10 = fw0Var.f26591b / 2.0f;
+        gw0 gw0Var = this.f45427v0;
+        float f7 = gw0Var.f27002a / 2.0f;
+        float f10 = gw0Var.f27003b / 2.0f;
         MediaController.CropState cropState = this.G0;
         if (cropState != null) {
             f7 *= cropState.cropPw;
@@ -161,9 +161,9 @@ public final class x1 extends j {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        fw0 fw0Var = this.f45420v0;
-        float f7 = fw0Var.f26590a;
-        float f10 = fw0Var.f26591b;
+        gw0 gw0Var = this.f45427v0;
+        float f7 = gw0Var.f27002a;
+        float f10 = gw0Var.f27003b;
         MediaController.CropState cropState = this.G0;
         if (cropState != null) {
             f7 *= cropState.cropPw;
@@ -173,23 +173,23 @@ public final class x1 extends j {
     }
 
     public final String q(int i10) {
-        TLObject tLObject = this.f45415q0;
+        TLObject tLObject = this.f45422q0;
         if (tLObject instanceof TLRPC.Photo) {
             try {
                 return FileLoader.getInstance(i10).getPathToAttach(FileLoader.getClosestPhotoSizeWithSize(((TLRPC.Photo) tLObject).sizes, 1000), true).getAbsolutePath();
             } catch (Exception unused) {
             }
         }
-        return this.f45416r0;
+        return this.f45423r0;
     }
 
     public final void r(boolean z10) {
-        boolean z11 = !this.f45418t0;
-        this.f45418t0 = z11;
+        boolean z11 = !this.f45425t0;
+        this.f45425t0 = z11;
         if (!z10) {
-            this.f45419u0.f(z11, true);
+            this.f45426u0.f(z11, true);
         }
-        ai.f0 f0Var = this.f45424z0;
+        ai.f0 f0Var = this.f45431z0;
         if (f0Var != null) {
             f0Var.invalidate();
         }
@@ -201,27 +201,27 @@ public final class x1 extends j {
             dVar.f411a = true;
             zzd a2 = i8.d.a(new ac.e(dVar));
             this.B0 = true;
-            a2.g(vb.a.a(bitmap, this.f45421w0)).addOnSuccessListener(new k2.v(this, 24)).addOnFailureListener(new fs0(27, this, bitmap));
+            a2.g(vb.a.a(bitmap, this.f45428w0)).addOnSuccessListener(new k2.v(this, 24)).addOnFailureListener(new fs0(27, this, bitmap));
         }
     }
 
     public final void t(boolean z10) {
-        boolean z11 = !this.f45422x0;
-        this.f45422x0 = z11;
+        boolean z11 = !this.f45429x0;
+        this.f45429x0 = z11;
         if (!z10) {
-            this.f45423y0.f(z11, true);
+            this.f45430y0.f(z11, true);
         }
-        ai.f0 f0Var = this.f45424z0;
+        ai.f0 f0Var = this.f45431z0;
         if (f0Var != null) {
             f0Var.invalidate();
         }
     }
 
-    public x1(Context context, PointF pointF, fw0 fw0Var, TLObject tLObject) {
+    public x1(Context context, PointF pointF, gw0 gw0Var, TLObject tLObject) {
         super(context, pointF);
-        this.f45417s0 = -1;
-        this.f45418t0 = false;
-        this.f45422x0 = false;
+        this.f45424s0 = -1;
+        this.f45425t0 = false;
+        this.f45429x0 = false;
         new Rect();
         new RectF();
         new Paint(3);
@@ -230,14 +230,14 @@ public final class x1 extends j {
         this.F0 = new Paint(3);
         setRotation(0.0f);
         setScale(1.0f);
-        this.f45415q0 = tLObject;
-        this.f45420v0 = fw0Var;
+        this.f45422q0 = tLObject;
+        this.f45427v0 = gw0Var;
         ai.f0 f0Var = new ai.f0(this, context);
-        this.f45424z0 = f0Var;
+        this.f45431z0 = f0Var;
         addView(f0Var, z5.c(-1.0f, -1));
         tr trVar = tr.h;
-        this.f45419u0 = new e6(f0Var, 0L, 500L, trVar);
-        this.f45423y0 = new e6(f0Var, 0L, 350L, trVar);
+        this.f45426u0 = new e6(f0Var, 0L, 500L, trVar);
+        this.f45430y0 = new e6(f0Var, 0L, 350L, trVar);
         k();
     }
 }
