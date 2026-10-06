@@ -2167,7 +2167,7 @@ public final class n2 extends FrameLayout implements NotificationCenter.Notifica
         this.V = false;
     }
 
-    public final Bitmap d(Bitmap bitmap, int i10, int i11, boolean z10) {
+    public final Bitmap d(int i10, int i11, Bitmap bitmap, boolean z10) {
         Bitmap sourceBitmap = getSourceBitmap();
         if (bitmap != null && !bitmap.isRecycled() && sourceBitmap != null) {
             Paint paint = new Paint(3);

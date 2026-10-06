@@ -890,7 +890,7 @@ public final class m3 implements Runnable {
                         k2Var.f45125i.set(k2Var.h);
                         matrix.mapRect(k2Var.f45125i);
                         k2Var.f45121c = i45;
-                        Bitmap d = n2Var5.d(n2Var5.I, 0, 0, false);
+                        Bitmap d = n2Var5.d(0, 0, n2Var5.I, false);
                         k2Var.d = d;
                         if (d == null) {
                             FileLog.e(new RuntimeException("createSmoothEdgesSegmentedImage failed on empty image"));
@@ -914,7 +914,7 @@ public final class m3 implements Runnable {
                         k2Var2.f45125i.set(k2Var2.h);
                         matrix.mapRect(k2Var2.f45125i);
                         k2Var2.f45121c = i45;
-                        Bitmap d10 = n2Var5.d(m2Var.f45208a, m2Var.f45209b, m2Var.f45210c, false);
+                        Bitmap d10 = n2Var5.d(m2Var.f45209b, m2Var.f45210c, m2Var.f45208a, false);
                         k2Var2.d = d10;
                         if (d10 != null) {
                             k2Var2.f45123f = k2Var2.c();

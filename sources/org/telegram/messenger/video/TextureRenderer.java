@@ -34,7 +34,6 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.Bitmaps;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
@@ -581,7 +580,7 @@ public class TextureRenderer {
                 if (((Integer) imageOrientation.first).intValue() != 0) {
                     matrix.postRotate(((Integer) imageOrientation.first).intValue());
                 }
-                decodeFile = Bitmaps.createBitmap(decodeFile, 0, 0, decodeFile.getWidth(), decodeFile.getHeight(), matrix, true);
+                decodeFile = Bitmap.createBitmap(decodeFile, 0, 0, decodeFile.getWidth(), decodeFile.getHeight(), matrix, true);
             }
             Bitmap bitmap = decodeFile;
             GLUtils.texImage2D(3553, 0, bitmap, 0);

@@ -16,10 +16,10 @@ public final class sh implements Runnable {
     public final void run() {
         switch (this.f19175a) {
             case 0:
-                PushListenerController.lambda$processRemoteMessage$6(this.f19176b, this.f19177c, this.d);
+                PushListenerController.c(this.d, this.f19176b, this.f19177c);
                 return;
             default:
-                PushListenerController.lambda$processRemoteMessage$7(this.f19176b, this.f19177c, this.d);
+                PushListenerController.h(this.d, this.f19176b, this.f19177c);
                 return;
         }
     }

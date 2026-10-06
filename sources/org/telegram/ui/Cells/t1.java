@@ -234,10 +234,26 @@ public final class t1 {
         this.f23000n3 = u1Var;
     }
 
+    public static float a(t1 t1Var) {
+        return t1Var.V1;
+    }
+
     public static void b(t1 t1Var) {
         float max = Math.max(0.0f, Math.min(1.0f, t1Var.K1));
         t1Var.Q1 = (float) Math.pow(1.0f - max, 0.5d);
         t1Var.R1 = (float) Math.pow(max, 0.5d);
+    }
+
+    public static StaticLayout c(t1 t1Var) {
+        return t1Var.R0;
+    }
+
+    public static org.telegram.ui.Components.v5 d(t1 t1Var) {
+        return t1Var.S0;
+    }
+
+    public static org.telegram.ui.Components.v5 e(t1 t1Var) {
+        return t1Var.f22995m3;
     }
 
     public final boolean f() {
@@ -256,10 +272,12 @@ public final class t1 {
         boolean z11;
         boolean z12;
         boolean z13;
+        int repliesCount;
         boolean z14;
         float f7;
         boolean z15;
         boolean z16;
+        int repliesCount2;
         o0 o0Var;
         boolean z17 = true;
         this.f23029v0 = true;
@@ -338,7 +356,8 @@ public final class t1 {
         }
         this.K2 = z13;
         if (u1Var.Z8 != null) {
-            this.M = u1Var.getRepliesCount();
+            repliesCount2 = u1Var.getRepliesCount();
+            this.M = repliesCount2;
             this.N = u1Var.f23234h9;
             this.T = u1Var.Z8;
             this.O = u1Var.f23164c9;
@@ -347,7 +366,8 @@ public final class t1 {
             this.R = u1Var.f23220g9;
             this.S = u1Var.f23150b9;
         }
-        this.E = u1Var.getRepliesCount();
+        repliesCount = u1Var.getRepliesCount();
+        this.E = repliesCount;
         this.f22944b2 = u1Var.getMessageObject().messageOwner.views;
         this.G = u1Var.Vb;
         this.f22949c2 = u1Var.Sb;

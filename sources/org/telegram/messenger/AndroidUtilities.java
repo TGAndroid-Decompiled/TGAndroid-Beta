@@ -747,7 +747,7 @@ public class AndroidUtilities {
             return 0;
         }
         try {
-            Bitmap createScaledBitmap = Bitmaps.createScaledBitmap(bitmap, 1, 1, true);
+            Bitmap createScaledBitmap = Bitmap.createScaledBitmap(bitmap, 1, 1, true);
             if (createScaledBitmap != null) {
                 int pixel = createScaledBitmap.getPixel(0, 0);
                 if (bitmap != createScaledBitmap) {

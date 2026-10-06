@@ -533,10 +533,6 @@ public final class wb extends org.telegram.ui.ActionBar.n2 implements Notificati
         }
     }
 
-    public static org.telegram.ui.ActionBar.k Z(wb wbVar) {
-        return wbVar.actionBar;
-    }
-
     public static void Z0(MessageObject messageObject, int i10) {
         if (messageObject == null) {
             return;
@@ -572,42 +568,6 @@ public final class wb extends org.telegram.ui.ActionBar.n2 implements Notificati
             spannableStringBuilder.setSpan(ah.f.g(AndroidUtilities.dp(8.0f)), charSequenceIndexOf + 1, charSequenceIndexOf + 2, 33);
         }
         return spannableStringBuilder;
-    }
-
-    public static org.telegram.ui.ActionBar.k b0(wb wbVar) {
-        return wbVar.actionBar;
-    }
-
-    public static org.telegram.ui.ActionBar.k c0(wb wbVar) {
-        return wbVar.actionBar;
-    }
-
-    public static org.telegram.ui.ActionBar.k d0(wb wbVar) {
-        return wbVar.actionBar;
-    }
-
-    public static org.telegram.ui.ActionBar.k e0(wb wbVar) {
-        return wbVar.actionBar;
-    }
-
-    public static org.telegram.ui.ActionBar.k f0(wb wbVar) {
-        return wbVar.actionBar;
-    }
-
-    public static org.telegram.ui.ActionBar.k g0(wb wbVar) {
-        return wbVar.actionBar;
-    }
-
-    public static org.telegram.ui.ActionBar.k h0(wb wbVar) {
-        return wbVar.actionBar;
-    }
-
-    public static org.telegram.ui.ActionBar.k i0(wb wbVar) {
-        return wbVar.actionBar;
-    }
-
-    public static org.telegram.ui.ActionBar.k j0(wb wbVar) {
-        return wbVar.actionBar;
     }
 
     public static int l0(wb wbVar) {

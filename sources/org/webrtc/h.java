@@ -21,7 +21,7 @@ public final class h implements Runnable {
                 ((VideoFrame.I420Buffer) this.f43957b).release();
                 return;
             case 2:
-                ((TextureViewRenderer.TextureEglRenderer) this.f43957b).lambda$onFirstFrameRendered$0();
+                TextureViewRenderer.TextureEglRenderer.j((TextureViewRenderer.TextureEglRenderer) this.f43957b);
                 return;
             default:
                 VideoFileRenderer.c((VideoFileRenderer) this.f43957b);

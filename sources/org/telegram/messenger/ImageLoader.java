@@ -1298,7 +1298,7 @@ public class ImageLoader {
                         float f12 = min;
                         float f13 = height;
                         float min2 = Math.min(f11 / f12, f13 / f12);
-                        if (min2 > 1.0f && (createScaledBitmap = Bitmaps.createScaledBitmap(bitmap, (int) (f11 / min2), (int) (f13 / min2), true)) != bitmap) {
+                        if (min2 > 1.0f && (createScaledBitmap = Bitmap.createScaledBitmap(bitmap, (int) (f11 / min2), (int) (f13 / min2), true)) != bitmap) {
                             bitmap.recycle();
                             bitmap = createScaledBitmap;
                         }
@@ -1844,7 +1844,7 @@ public class ImageLoader {
                         Utilities.blurBitmap(loadBitmap, 3);
                         float f11 = C2.x;
                         float f12 = AndroidUtilities.density;
-                        Bitmap createScaledBitmap = Bitmaps.createScaledBitmap(loadBitmap, (int) (f11 / f12), (int) (C2.y / f12), true);
+                        Bitmap createScaledBitmap = Bitmap.createScaledBitmap(loadBitmap, (int) (f11 / f12), (int) (C2.y / f12), true);
                         if (createScaledBitmap != loadBitmap) {
                             loadBitmap.recycle();
                             loadBitmap = createScaledBitmap;
@@ -1889,7 +1889,7 @@ public class ImageLoader {
                             Utilities.blurBitmap(strippedPhotoBitmap, 3);
                             float f13 = C22.x;
                             float f14 = AndroidUtilities.density;
-                            Bitmap createScaledBitmap2 = Bitmaps.createScaledBitmap(strippedPhotoBitmap, (int) (f13 / f14), (int) (C22.y / f14), true);
+                            Bitmap createScaledBitmap2 = Bitmap.createScaledBitmap(strippedPhotoBitmap, (int) (f13 / f14), (int) (C22.y / f14), true);
                             if (createScaledBitmap2 != strippedPhotoBitmap) {
                                 strippedPhotoBitmap.recycle();
                                 strippedPhotoBitmap = createScaledBitmap2;

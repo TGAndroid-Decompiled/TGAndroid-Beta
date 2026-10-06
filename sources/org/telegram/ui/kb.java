@@ -67,6 +67,10 @@ public final class kb extends tb {
 
     @Override
     public final void onMeasure(int i10, int i11) {
+        org.telegram.ui.ActionBar.k kVar;
+        org.telegram.ui.ActionBar.k kVar2;
+        org.telegram.ui.ActionBar.k kVar3;
+        org.telegram.ui.ActionBar.k kVar4;
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
         wb wbVar = this.f37945y0;
@@ -76,23 +80,29 @@ public final class kb extends tb {
         }
         setMeasuredDimension(size, size2);
         int paddingTop = size2 - getPaddingTop();
-        measureChildWithMargins(wb.Z(wbVar), i10, 0, i11, 0);
-        int measuredHeight = wb.b0(wbVar).getMeasuredHeight();
-        if (wb.c0(wbVar).getVisibility() == 0) {
+        kVar = ((org.telegram.ui.ActionBar.n2) wbVar).actionBar;
+        measureChildWithMargins(kVar, i10, 0, i11, 0);
+        kVar2 = ((org.telegram.ui.ActionBar.n2) wbVar).actionBar;
+        int measuredHeight = kVar2.getMeasuredHeight();
+        kVar3 = ((org.telegram.ui.ActionBar.n2) wbVar).actionBar;
+        if (kVar3.getVisibility() == 0) {
             paddingTop -= measuredHeight;
         }
         int childCount = getChildCount();
         for (int i12 = 0; i12 < childCount; i12++) {
             View childAt = getChildAt(i12);
-            if (childAt != null && childAt.getVisibility() != 8 && childAt != wb.d0(wbVar)) {
-                if (childAt != wbVar.v && childAt != wbVar.f42053n) {
-                    if (childAt == wbVar.H) {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(paddingTop, 1073741824));
+            if (childAt != null && childAt.getVisibility() != 8) {
+                kVar4 = ((org.telegram.ui.ActionBar.n2) wbVar).actionBar;
+                if (childAt != kVar4) {
+                    if (childAt != wbVar.v && childAt != wbVar.f42053n) {
+                        if (childAt == wbVar.H) {
+                            childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(paddingTop, 1073741824));
+                        } else {
+                            measureChildWithMargins(childAt, i10, 0, i11, 0);
+                        }
                     } else {
-                        measureChildWithMargins(childAt, i10, 0, i11, 0);
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.max(AndroidUtilities.dp(10.0f), View.MeasureSpec.getSize(i11)) + (wbVar.f42043e * 2), 1073741824));
                     }
-                } else {
-                    childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.max(AndroidUtilities.dp(10.0f), View.MeasureSpec.getSize(i11)) + (wbVar.f42043e * 2), 1073741824));
                 }
             }
         }

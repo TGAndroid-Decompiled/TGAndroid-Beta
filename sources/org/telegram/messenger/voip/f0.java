@@ -16,7 +16,7 @@ public final class f0 implements Runnable {
     public final void run() {
         switch (this.f19548a) {
             case 0:
-                VoIPService.C(this.f19549b, this.f19550c);
+                this.f19549b.lambda$configureDeviceForCall$111(this.f19550c);
                 return;
             default:
                 VoIPService.g1(this.f19549b, this.f19550c);
