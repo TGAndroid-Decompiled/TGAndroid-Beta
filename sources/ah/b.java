@@ -56,6 +56,7 @@ import ii.r;
 import ii.t5;
 import ii.u3;
 import ii.x3;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -628,7 +629,10 @@ public final class b implements hh.i, g9, a2, OnFailureListener, q9.d, nl0, OnCo
     @Override
     public void k(RectF rectF, View view) {
         ((ch.d) this.f453b).i(rectF.left, rectF.top);
-        ((View) this.f454c).invalidate();
+        View view2 = (View) ((WeakReference) this.f454c).get();
+        if (view2 != null) {
+            view2.invalidate();
+        }
     }
 
     @Override

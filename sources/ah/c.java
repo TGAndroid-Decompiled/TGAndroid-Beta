@@ -3,6 +3,7 @@ package ah;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
+import java.lang.ref.WeakReference;
 import java.util.Iterator;
 import li.o;
 import li.p;
@@ -30,7 +31,6 @@ public final class c {
     }
 
     public final ch.d c(View view, dh.a aVar, boolean z10) {
-        ViewGroup viewGroup;
         ch.d b10 = this.f455a.b();
         if (this.f461i && Build.VERSION.SDK_INT >= 33 && (b10 instanceof ch.e)) {
             ch.e eVar = (ch.e) b10;
@@ -49,9 +49,8 @@ public final class c {
         if (pVar != null && view != null) {
             pVar.f15673c.add(new o(view, b10));
         }
-        hh.k kVar = this.f459f;
-        if (kVar != null && (viewGroup = this.f460g) != null && view != null) {
-            kVar.d(view, viewGroup, new b(0, b10, view), z10);
+        if (this.f459f != null && this.f460g != null && view != null) {
+            this.f459f.d(view, this.f460g, new b(0, b10, new WeakReference(view)), z10);
         }
         pe.b bVar2 = this.d;
         if (bVar2 != null) {

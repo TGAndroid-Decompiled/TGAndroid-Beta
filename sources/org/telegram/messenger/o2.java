@@ -12,22 +12,22 @@ public final class o2 implements Runnable {
     public final void run() {
         switch (this.f18746a) {
             case 0:
-                this.f18747b.lambda$clearOperation$26();
+                FileLoadOperation.w(this.f18747b);
                 return;
             case 1:
-                this.f18747b.lambda$start$10();
+                FileLoadOperation.a(this.f18747b);
                 return;
             case 2:
-                this.f18747b.lambda$pause$7();
+                FileLoadOperation.k(this.f18747b);
                 return;
             case 3:
-                this.f18747b.lambda$onFinishLoadingFile$18();
+                FileLoadOperation.m(this.f18747b);
                 return;
             case 4:
-                this.f18747b.lambda$cancelOnStage$14();
+                FileLoadOperation.q(this.f18747b);
                 return;
             default:
-                this.f18747b.lambda$new$6();
+                FileLoadOperation.j(this.f18747b);
                 return;
         }
     }

@@ -21,7 +21,7 @@ public final class k implements Runnable {
                 VoIPPreNotificationService.d();
                 return;
             case 3:
-                VoIPService.lambda$acceptIncomingCall$100();
+                VoIPService.r0();
                 return;
             case 4:
                 VoIPService.lambda$configureDeviceForCall$110();

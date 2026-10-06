@@ -278,6 +278,10 @@ public final class ea extends org.telegram.ui.ActionBar.f3 implements Notificati
         return eaVar.resourcesProvider;
     }
 
+    public static org.telegram.ui.ActionBar.d6 X(ea eaVar) {
+        return eaVar.resourcesProvider;
+    }
+
     public static int Y(ea eaVar) {
         return eaVar.currentAccount;
     }

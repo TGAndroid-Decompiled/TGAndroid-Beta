@@ -14,16 +14,16 @@ public final class p2 implements Runnable {
     public final void run() {
         switch (this.f18844a) {
             case 0:
-                this.f18845b.lambda$setIsPreloadVideoOperation$12(this.f18846c);
+                FileLoadOperation.d(this.f18845b, this.f18846c);
                 return;
             case 1:
-                this.f18845b.lambda$cancel$13(this.f18846c);
+                FileLoadOperation.g(this.f18845b, this.f18846c);
                 return;
             case 2:
-                this.f18845b.lambda$onFinishLoadingFile$17(this.f18846c);
+                FileLoadOperation.n(this.f18845b, this.f18846c);
                 return;
             default:
-                this.f18845b.lambda$onFinishLoadingFile$19(this.f18846c);
+                FileLoadOperation.b(this.f18845b, this.f18846c);
                 return;
         }
     }
