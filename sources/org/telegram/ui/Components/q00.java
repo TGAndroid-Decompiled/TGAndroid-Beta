@@ -19,7 +19,7 @@ public final class q00 implements fm0, gm0 {
     public void c(float f7, float f10, int i10, View view) {
         a10 a10Var = this.f29981a;
         u00 u00Var = a10Var.J;
-        if (!((org.telegram.ui.sw) u00Var).f41778b.f42200j2) {
+        if (!((org.telegram.ui.sw) u00Var).f41780b.f42202j2) {
             y00 y00Var = (y00) view;
             if (a10Var.f24515n) {
                 if (i10 != 0) {
@@ -28,11 +28,11 @@ public final class q00 implements fm0, gm0 {
                     float f11 = dp;
                     if (rectF.left - f11 < f7 && rectF.right + f11 > f7) {
                         org.telegram.ui.sw swVar = (org.telegram.ui.sw) a10Var.J;
-                        swVar.d(swVar.f41778b.getMessagesController().getDialogFilters().get(y00Var.f33067b.f32498a));
+                        swVar.d(swVar.f41780b.getMessagesController().getDialogFilters().get(y00Var.f33067b.f32498a));
                     }
                 }
             } else if (i10 == a10Var.K && u00Var != null) {
-                ((org.telegram.ui.sw) u00Var).f41778b.u4(true, false);
+                ((org.telegram.ui.sw) u00Var).f41780b.u4(true, false);
             } else {
                 a10Var.f(y00Var.f33067b, i10);
             }

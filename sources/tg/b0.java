@@ -11,18 +11,18 @@ import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Components.ad;
 import org.telegram.ui.zn;
 public final class b0 extends ug.e {
-    public final c0 f48294r;
+    public final c0 f48296r;
 
     public b0(c0 c0Var, e6 e6Var) {
         super(e6Var);
-        this.f48294r = c0Var;
+        this.f48296r = c0Var;
     }
 
     @Override
     public final void E() {
         String string;
-        c0 c0Var = this.f48294r;
-        String str = c0Var.f48299a0;
+        c0 c0Var = this.f48296r;
+        String str = c0Var.f48301a0;
         if ((str == null || str.isEmpty()) && c0Var.X.to_id == -1) {
             string = LocaleController.getString(R.string.BoostingOnlyGiveawayCreatorSeeLink);
         } else {
@@ -33,7 +33,7 @@ public final class b0 extends ug.e {
 
     @Override
     public final void F(TLObject tLObject) {
-        c0 c0Var = this.f48294r;
+        c0 c0Var = this.f48296r;
         TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode = c0Var.X;
         n2 n2Var = c0Var.f26025n;
         c0Var.dismiss();

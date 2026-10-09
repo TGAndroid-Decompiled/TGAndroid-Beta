@@ -1,12 +1,12 @@
 package r0;
 public final class g {
-    public final f f46750a;
+    public final f f46752a;
 
     public g(f fVar) {
-        this.f46750a = fVar;
+        this.f46752a = fVar;
     }
 
     public final String toString() {
-        return this.f46750a.toString();
+        return this.f46752a.toString();
     }
 }

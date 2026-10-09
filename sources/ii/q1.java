@@ -77,7 +77,7 @@ public final class q1 implements Utilities.Callback {
                 AndroidUtilities.runOnUIThread((Runnable) obj, 80L);
                 return;
             case 3:
-                org.telegram.ui.web.y0 y0Var = ((BotWebViewContainer$WebViewProxy) obj2).f43213b;
+                org.telegram.ui.web.y0 y0Var = ((BotWebViewContainer$WebViewProxy) obj2).f43215b;
                 StringBuilder sb2 = new StringBuilder("window.navigator.__share__receive(");
                 if (((Boolean) obj).booleanValue()) {
                     str = "";
@@ -90,7 +90,7 @@ public final class q1 implements Utilities.Callback {
                 return;
             case 4:
                 org.telegram.ui.web.g1 g1Var = (org.telegram.ui.web.g1) obj2;
-                g1Var.f43304e = (ArrayList) obj;
+                g1Var.f43306e = (ArrayList) obj;
                 e71 e71Var = g1Var.f26290a;
                 if (e71Var.G) {
                     e71Var.W2.N(true);
@@ -99,7 +99,7 @@ public final class q1 implements Utilities.Callback {
                 return;
             case 5:
                 org.telegram.ui.web.z1 z1Var = (org.telegram.ui.web.z1) obj2;
-                z1Var.f43563n = ((ArrayList) obj).size();
+                z1Var.f43565n = ((ArrayList) obj).size();
                 e71 e71Var2 = z1Var.f26290a;
                 if (e71Var2 != null && (c71Var = e71Var2.W2) != null && e71Var2.G) {
                     c71Var.N(true);
@@ -109,49 +109,49 @@ public final class q1 implements Utilities.Callback {
             case 6:
                 pg.d0 d0Var = (pg.d0) obj2;
                 pg.h1 h1Var = (pg.h1) obj;
-                pg.e1 e1Var = d0Var.f45607a;
+                pg.e1 e1Var = d0Var.f45609a;
                 if (h1Var != null) {
                     float currentWeight = e1Var.getCurrentWeight();
-                    h1Var.f45655f = currentWeight;
-                    double d = d0Var.f45620p;
+                    h1Var.f45657f = currentWeight;
+                    double d = d0Var.f45622p;
                     if (d > 0.0d) {
-                        h1Var.f45655f = (float) ((d / d0Var.f45621q) * currentWeight);
+                        h1Var.f45657f = (float) ((d / d0Var.f45623q) * currentWeight);
                     }
-                    if (h1Var.f45651a.o() == 4) {
-                        h1Var.f45659k *= h1Var.f45655f;
+                    if (h1Var.f45653a.o() == 4) {
+                        h1Var.f45661k *= h1Var.f45657f;
                     }
                 }
                 pg.s0 painting = e1Var.getPainting();
                 if (painting.L == null) {
-                    painting.f45757f.f(new pg.o0(painting, h1Var, 1));
+                    painting.f45759f.f(new pg.o0(painting, h1Var, 1));
                     return;
                 }
                 return;
             case 7:
                 ph.i iVar = (ph.i) obj2;
-                if (((ph.b) obj) == ph.b.d && ((i10 = iVar.f45877s) == 2 || i10 == 3)) {
-                    iVar.f45877s = 1;
+                if (((ph.b) obj) == ph.b.d && ((i10 = iVar.f45879s) == 2 || i10 == 3)) {
+                    iVar.f45879s = 1;
                 }
                 iVar.h.run();
                 return;
             case 8:
                 ci.b6 b6Var = (ci.b6) obj2;
                 TextureView textureView = (TextureView) obj;
-                b6Var.f46233w0 = textureView;
+                b6Var.f46235w0 = textureView;
                 if (textureView != null) {
-                    b6Var.f46227q0.addView(textureView, 0);
+                    b6Var.f46229q0.addView(textureView, 0);
                     return;
                 }
                 return;
             case 9:
                 qg.u2 u2Var = (qg.u2) obj2;
-                u2Var.f46575n = (Bitmap) obj;
+                u2Var.f46577n = (Bitmap) obj;
                 Paint paint = new Paint(1);
-                u2Var.f46577s = paint;
-                Bitmap bitmap = u2Var.f46575n;
+                u2Var.f46579s = paint;
+                Bitmap bitmap = u2Var.f46577n;
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                 BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
-                u2Var.f46576r = bitmapShader;
+                u2Var.f46578r = bitmapShader;
                 paint.setShader(bitmapShader);
                 ColorMatrix colorMatrix = new ColorMatrix();
                 if (!org.telegram.ui.ActionBar.i6.I.q()) {
@@ -164,14 +164,14 @@ public final class q1 implements Utilities.Callback {
                     f7 = -0.07f;
                 }
                 AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, f7);
-                u2Var.f46577s.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+                u2Var.f46579s.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
                 u2Var.v = new Matrix();
                 return;
             case 10:
                 qh.c cVar = (qh.c) obj2;
                 qh.e eVar = (qh.e) obj;
                 cVar.h = eVar;
-                cVar.f46663c.a(eVar, true);
+                cVar.f46665c.a(eVar, true);
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.web.q0(cVar, 19), 200L);
                 return;
             case 11:
@@ -242,14 +242,14 @@ public final class q1 implements Utilities.Callback {
                 return;
             case 14:
                 tg.s0 s0Var = (tg.s0) obj2;
-                s0Var.f48405a0.setLoading(false);
+                s0Var.f48407a0.setLoading(false);
                 tg.i.j(s0Var.getContext(), (TLRPC.TL_error) obj);
                 return;
             case 15:
                 th.f.Q((th.f) obj2, (Pair) obj);
                 return;
             case 16:
-                HashMap hashMap = ((ug.b) obj2).f48914w;
+                HashMap hashMap = ((ug.b) obj2).f48916w;
                 hashMap.clear();
                 hashMap.putAll((HashMap) obj);
                 return;
@@ -257,7 +257,7 @@ public final class q1 implements Utilities.Callback {
                 ((ug.e) obj2).F((TLObject) obj);
                 return;
             case 18:
-                HashMap hashMap2 = ((ug.h) obj2).f48942r;
+                HashMap hashMap2 = ((ug.h) obj2).f48944r;
                 hashMap2.clear();
                 hashMap2.putAll((HashMap) obj);
                 return;
@@ -312,28 +312,28 @@ public final class q1 implements Utilities.Callback {
                 return;
             case 24:
                 yh.y yVar = (yh.y) obj2;
-                int i12 = yh.y.f53380w0[((Integer) obj).intValue()];
-                if (yVar.f53393n0 != i12) {
-                    yVar.f53393n0 = i12;
-                    yVar.f53386f0.setText(LocaleController.formatPluralString("GiftOfferHours", i12 / 3600, new Object[0]));
+                int i12 = yh.y.f53382w0[((Integer) obj).intValue()];
+                if (yVar.f53395n0 != i12) {
+                    yVar.f53395n0 = i12;
+                    yVar.f53388f0.setText(LocaleController.formatPluralString("GiftOfferHours", i12 / 3600, new Object[0]));
                 }
                 yVar.U(true);
                 return;
             case 25:
                 yh.r0 r0Var = (yh.r0) obj2;
                 Integer num = (Integer) obj;
-                r0Var.f53097i0.g();
-                r0Var.f53099k0.N(true);
+                r0Var.f53099i0.g();
+                r0Var.f53101k0.N(true);
                 return;
             case 26:
                 yh.f2 f2Var = (yh.f2) obj2;
                 f2Var.getClass();
-                f2Var.f52495s = new Matrix();
+                f2Var.f52497s = new Matrix();
                 f2Var.v = new Matrix();
                 Shader.TileMode tileMode3 = Shader.TileMode.CLAMP;
                 BitmapShader bitmapShader2 = new BitmapShader((Bitmap) obj, tileMode3, tileMode3);
-                f2Var.f52494r = bitmapShader2;
-                Paint paint3 = f2Var.f52490c;
+                f2Var.f52496r = bitmapShader2;
+                Paint paint3 = f2Var.f52492c;
                 paint3.setShader(bitmapShader2);
                 ColorMatrix colorMatrix3 = new ColorMatrix();
                 AndroidUtilities.adjustSaturationColorMatrix(colorMatrix3, 0.25f);

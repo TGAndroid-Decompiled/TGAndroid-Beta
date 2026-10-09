@@ -60,7 +60,7 @@ public final class c4 extends Drawable {
                 Rect bounds = getBounds();
                 a1Var.getClass();
                 a1Var.d(bounds.left, 0.0f, bounds.top, bounds.right, 0.0f, bounds.bottom);
-                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), Math.min(getBounds().width(), getBounds().height()) / 2.0f, a1Var.f47177f);
+                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), Math.min(getBounds().width(), getBounds().height()) / 2.0f, a1Var.f47179f);
                 return;
             case 4:
                 ImageReceiver imageReceiver = (ImageReceiver) this.f4835b;

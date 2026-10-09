@@ -45,7 +45,7 @@ public final class h extends RecyclerView {
         this.S0 = eVar;
         setAdapter(eVar);
         f fVar = new f(this);
-        fVar.f47696m = false;
+        fVar.f47698m = false;
         fVar.C = false;
         fVar.o(hs.h);
         fVar.n(320L);

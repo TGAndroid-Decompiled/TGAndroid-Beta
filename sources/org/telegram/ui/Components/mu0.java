@@ -76,8 +76,8 @@ public final class mu0 extends pm0 {
 
     @Override
     public final void v(s4.d1 d1Var, int i10) {
-        if (d1Var.f47660f == 14) {
-            View view = d1Var.f47656a;
+        if (d1Var.f47662f == 14) {
+            View view = d1Var.f47658a;
             if (view instanceof org.telegram.ui.Cells.i6) {
                 org.telegram.ui.Cells.i6 i6Var = (org.telegram.ui.Cells.i6) view;
                 ArrayList arrayList = this.d;

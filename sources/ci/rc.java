@@ -41,49 +41,49 @@ public final class rc implements Runnable {
         y2.e eVar = (y2.e) tVar.f8574a.get();
         if (eVar != null) {
             int b10 = tVar.f8576c.b();
-            y2.f fVar = eVar.f51664a;
+            y2.f fVar = eVar.f51666a;
             synchronized (fVar) {
                 synchronized (fVar) {
-                    int i11 = fVar.f51682n;
-                    if (i11 != 0 && !fVar.f51674e) {
+                    int i11 = fVar.f51684n;
+                    if (i11 != 0 && !fVar.f51676e) {
                         return;
                     }
-                    if (i11 == b10 && fVar.f51683o != null) {
+                    if (i11 == b10 && fVar.f51685o != null) {
                         return;
                     }
-                    fVar.f51682n = b10;
+                    fVar.f51684n = b10;
                     if (b10 != 1 && b10 != 0 && b10 != 8) {
-                        if (fVar.f51683o == null) {
-                            Context context = fVar.f51671a;
+                        if (fVar.f51685o == null) {
+                            Context context = fVar.f51673a;
                             String str = e2.d0.f8532a;
                             if (context != null && (telephonyManager = (TelephonyManager) context.getSystemService("phone")) != null) {
                                 String networkCountryIso = telephonyManager.getNetworkCountryIso();
                                 if (!TextUtils.isEmpty(networkCountryIso)) {
                                     c10 = v7.r6.c(networkCountryIso);
-                                    fVar.f51683o = c10;
+                                    fVar.f51685o = c10;
                                 }
                             }
                             c10 = v7.r6.c(Locale.getDefault().getCountry());
-                            fVar.f51683o = c10;
+                            fVar.f51685o = c10;
                         }
-                        fVar.f51680l = fVar.a(b10);
+                        fVar.f51682l = fVar.a(b10);
                         fVar.d.getClass();
                         long elapsedRealtime = SystemClock.elapsedRealtime();
-                        if (fVar.f51676g > 0) {
+                        if (fVar.f51678g > 0) {
                             i10 = (int) (elapsedRealtime - fVar.h);
                         } else {
                             i10 = 0;
                         }
-                        fVar.c(i10, fVar.f51677i, fVar.f51680l);
+                        fVar.c(i10, fVar.f51679i, fVar.f51682l);
                         fVar.h = elapsedRealtime;
-                        fVar.f51677i = 0L;
-                        fVar.f51679k = 0L;
-                        fVar.f51678j = 0L;
-                        y2.q qVar = fVar.f51675f;
-                        qVar.f51706a.clear();
-                        qVar.f51708c = -1;
+                        fVar.f51679i = 0L;
+                        fVar.f51681k = 0L;
+                        fVar.f51680j = 0L;
+                        y2.q qVar = fVar.f51677f;
+                        qVar.f51708a.clear();
+                        qVar.f51710c = -1;
                         qVar.d = 0;
-                        qVar.f51709e = 0;
+                        qVar.f51711e = 0;
                     }
                 }
             }

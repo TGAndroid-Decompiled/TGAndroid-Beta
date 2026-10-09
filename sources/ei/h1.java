@@ -237,7 +237,7 @@ public final class h1 implements Utilities.Callback2 {
                 if (textView != null && wallettransaction != null) {
                     long j11 = wallettransaction.fee;
                     if (j11 > 0) {
-                        textView.setText(org.telegram.ui.Wallet.z4.l0(this.f9093b, j11, e6Var));
+                        textView.setText(org.telegram.ui.Wallet.a5.l0(this.f9093b, j11, e6Var));
                         return;
                     }
                     return;

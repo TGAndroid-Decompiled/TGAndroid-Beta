@@ -5,16 +5,16 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.camera.Size;
 import org.telegram.ui.Components.AnimatedFileNative;
 public final class ku0 implements Runnable {
-    public final String f39350a;
-    public final long f39351b;
-    public final int f39352c;
+    public final String f39352a;
+    public final long f39353b;
+    public final int f39354c;
     public final PhotoViewer d;
 
     public ku0(PhotoViewer photoViewer, String str, long j3, int i10) {
         this.d = photoViewer;
-        this.f39350a = str;
-        this.f39351b = j3;
-        this.f39352c = i10;
+        this.f39352a = str;
+        this.f39353b = j3;
+        this.f39354c = i10;
     }
 
     @Override
@@ -22,9 +22,9 @@ public final class ku0 implements Runnable {
         boolean z10;
         boolean z11;
         if (this.d.f34081x8 == this) {
-            int videoBitrate = MediaController.getVideoBitrate(this.f39350a);
+            int videoBitrate = MediaController.getVideoBitrate(this.f39352a);
             int[] iArr = new int[11];
-            AnimatedFileNative.d(this.f39350a, iArr, this.f39351b);
+            AnimatedFileNative.d(this.f39352a, iArr, this.f39353b);
             if (iArr[10] != 0) {
                 z10 = true;
             } else {
@@ -64,7 +64,7 @@ public final class ku0 implements Runnable {
                     photoViewer5.Z7 = 1;
                 }
                 PhotoViewer photoViewer6 = this.d;
-                int i12 = this.f39352c;
+                int i12 = this.f39354c;
                 if (i12 == -1) {
                     i12 = photoViewer6.v2();
                 }
@@ -78,7 +78,7 @@ public final class ku0 implements Runnable {
                         MediaController.extractRealEncoderBitrate(p02.getWidth(), p02.getHeight(), MediaController.makeVideoBitrate(photoViewer7.f33902d8, photoViewer7.f33893c8, photoViewer7.f33938h8, p02.getHeight(), p02.getWidth()), false);
                     }
                 }
-                this.d.f33971l8 = MediaController.isH264Video(this.f39350a);
+                this.d.f33971l8 = MediaController.isH264Video(this.f39352a);
             }
             if (this.d.f34081x8 != this) {
                 return;

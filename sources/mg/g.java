@@ -37,7 +37,7 @@ public final class g extends pm0 {
     public final boolean D(d1 d1Var) {
         switch (this.f16425c) {
             case 0:
-                if (j.d(3)[d1Var.f47660f] == 1) {
+                if (j.d(3)[d1Var.f47662f] == 1) {
                     return true;
                 }
                 return false;
@@ -82,7 +82,7 @@ public final class g extends pm0 {
         m91 m91Var;
         switch (this.f16425c) {
             case 0:
-                View view = d1Var.f47656a;
+                View view = d1Var.f47658a;
                 a aVar = (a) ((i) this.f16426e).E.get(i10);
                 int i11 = aVar.f16410b;
                 t6 t6Var = aVar.f16413f;
@@ -112,7 +112,7 @@ public final class g extends pm0 {
                 x1Var.a(0, charSequence);
                 return;
             default:
-                l91 l91Var = (l91) d1Var.f47656a;
+                l91 l91Var = (l91) d1Var.f47658a;
                 n91 n91Var = (n91) this.f16426e;
                 k91 k91Var = (k91) n91Var.h.get(i10);
                 l91Var.f28394a = k91Var;

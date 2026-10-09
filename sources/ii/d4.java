@@ -7,7 +7,7 @@ public final class d4 {
 
     public p4.r a() {
         if (this.f12348a == null) {
-            return p4.r.f45420c;
+            return p4.r.f45422c;
         }
         Bundle bundle = new Bundle();
         bundle.putStringArrayList("controlCategories", this.f12348a);

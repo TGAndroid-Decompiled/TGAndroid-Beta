@@ -161,17 +161,17 @@ public final class k implements d0, p2.t {
                         e2.d.g(z10);
                         p2.l a2 = iVar.f16970g.a(iVar.f16968e[iVar.h.a(jVar.d)], false);
                         a2.getClass();
-                        i0 i0Var2 = a2.f45245r;
-                        int i11 = (int) (jVar.f49073s - a2.f45238k);
+                        i0 i0Var2 = a2.f45247r;
+                        int i11 = (int) (jVar.f49075s - a2.f45240k);
                         if (i11 < 0) {
                             j3 = 0;
                         } else {
                             if (i11 < i0Var2.size()) {
-                                i0Var = ((p2.i) i0Var2.get(i11)).f45220x;
+                                i0Var = ((p2.i) i0Var2.get(i11)).f45222x;
                             } else {
-                                i0Var = a2.f45246s;
+                                i0Var = a2.f45248s;
                             }
-                            j3 = ((p2.g) i0Var.get(i10)).f45223c;
+                            j3 = ((p2.g) i0Var.get(i10)).f45225c;
                         }
                         jVar.f16983a0 = j3;
                     }
@@ -271,11 +271,11 @@ public final class k implements d0, p2.t {
         this.G = c0Var;
         p2.c cVar3 = this.f16989b;
         cVar3.getClass();
-        cVar3.f45173e.add(this);
-        p2.o oVar = cVar3.f45177s;
+        cVar3.f45175e.add(this);
+        p2.o oVar = cVar3.f45179s;
         oVar.getClass();
-        List list3 = oVar.f45261g;
-        List list4 = oVar.f45259e;
+        List list3 = oVar.f45263g;
+        List list4 = oVar.f45261e;
         Map map = Collections.EMPTY_MAP;
         boolean isEmpty = list4.isEmpty();
         List list5 = oVar.h;
@@ -286,7 +286,7 @@ public final class k implements d0, p2.t {
         c cVar4 = this.f16988a;
         boolean z15 = this.f16997x;
         if (!isEmpty) {
-            b2.s sVar = oVar.f45263j;
+            b2.s sVar = oVar.f45265j;
             int size = list4.size();
             int[] iArr = new int[size];
             int i15 = 0;
@@ -296,7 +296,7 @@ public final class k implements d0, p2.t {
                 if (i15 >= list4.size()) {
                     break;
                 }
-                b2.s sVar2 = ((p2.n) list4.get(i15)).f45254b;
+                b2.s sVar2 = ((p2.n) list4.get(i15)).f45256b;
                 int i17 = sVar2.f3650z;
                 String str = sVar2.f3636k;
                 if (i17 <= 0 && e2.d0.u(2, str) == null) {
@@ -346,8 +346,8 @@ public final class k implements d0, p2.t {
                 }
                 if (!z13 || iArr[i18] != 1) {
                     p2.n nVar = (p2.n) list4.get(i18);
-                    uriArr[i19] = nVar.f45253a;
-                    sVarArr[i19] = nVar.f45254b;
+                    uriArr[i19] = nVar.f45255a;
+                    sVarArr[i19] = nVar.f45256b;
                     iArr2[i19] = i18;
                     i19++;
                 }
@@ -371,7 +371,7 @@ public final class k implements d0, p2.t {
             c cVar5 = cVar2;
             list = list3;
             z10 = z15;
-            q e7 = e("main", i13, uriArr3, sVarArr, oVar.f45263j, oVar.f45264k, map, j3);
+            q e7 = e("main", i13, uriArr3, sVarArr, oVar.f45265j, oVar.f45266k, map, j3);
             arrayList.add(e7);
             arrayList2.add(iArr2);
             if (z10 && z14) {
@@ -407,7 +407,7 @@ public final class k implements d0, p2.t {
                     if (t11 > 0 && (sVar != null || list.isEmpty())) {
                         arrayList3.add(new l1("main:audio", f(sVarArr3[0], sVar, false)));
                     }
-                    List list6 = oVar.f45264k;
+                    List list6 = oVar.f45266k;
                     if (list6 != null) {
                         for (int i21 = 0; i21 < list6.size(); i21++) {
                             arrayList3.add(new l1(hg.c.h(i21, "main:cc:"), cVar5.b((b2.s) list6.get(i21))));
@@ -444,7 +444,7 @@ public final class k implements d0, p2.t {
         int i23 = 0;
         while (i23 < list.size()) {
             List list7 = list;
-            String str3 = ((p2.m) list7.get(i23)).f45252c;
+            String str3 = ((p2.m) list7.get(i23)).f45254c;
             if (!hashSet3.add(str3)) {
                 hashSet2 = hashSet3;
                 i11 = i23;
@@ -455,11 +455,11 @@ public final class k implements d0, p2.t {
                 arrayList6.clear();
                 boolean z16 = true;
                 for (int i24 = 0; i24 < list7.size(); i24++) {
-                    if (str3.equals(((p2.m) list7.get(i24)).f45252c)) {
+                    if (str3.equals(((p2.m) list7.get(i24)).f45254c)) {
                         p2.m mVar = (p2.m) list7.get(i24);
                         arrayList6.add(Integer.valueOf(i24));
-                        Uri uri = mVar.f45250a;
-                        b2.s sVar4 = mVar.f45251b;
+                        Uri uri = mVar.f45252a;
+                        b2.s sVar4 = mVar.f45253b;
                         arrayList4.add(uri);
                         arrayList5.add(sVar4);
                         if (e2.d0.t(1, sVar4.f3636k) == 1) {
@@ -493,7 +493,7 @@ public final class k implements d0, p2.t {
         int i25 = 0;
         while (i25 < list2.size()) {
             List list8 = list2;
-            String str5 = ((p2.m) list8.get(i25)).f45252c;
+            String str5 = ((p2.m) list8.get(i25)).f45254c;
             if (!hashSet4.add(str5)) {
                 hashSet = hashSet4;
                 i10 = i25;
@@ -503,11 +503,11 @@ public final class k implements d0, p2.t {
                 arrayList8.clear();
                 arrayList9.clear();
                 for (int i26 = 0; i26 < list8.size(); i26++) {
-                    if (str5.equals(((p2.m) list8.get(i26)).f45252c)) {
+                    if (str5.equals(((p2.m) list8.get(i26)).f45254c)) {
                         p2.m mVar2 = (p2.m) list8.get(i26);
                         arrayList9.add(Integer.valueOf(i26));
-                        arrayList7.add(mVar2.f45250a);
-                        arrayList8.add(mVar2.f45251b);
+                        arrayList7.add(mVar2.f45252a);
+                        arrayList8.add(mVar2.f45253b);
                     }
                 }
                 String concat2 = "subtitle:".concat(str5);
@@ -607,14 +607,14 @@ public final class k implements d0, p2.t {
                     lVar = null;
                 }
                 if (lVar != null) {
-                    i0 i0Var = lVar.f45245r;
+                    i0 i0Var = lVar.f45247r;
                     if (!i0Var.isEmpty()) {
-                        long j11 = lVar.h - cVar.f45180y;
+                        long j11 = lVar.h - cVar.f45182y;
                         long j12 = j3 - j11;
                         int c11 = e2.d0.c(i0Var, Long.valueOf(j12), true);
-                        long j13 = ((p2.i) i0Var.get(c11)).f45224e;
-                        if (lVar.f45269c && c11 != i0Var.size() - 1) {
-                            j10 = ((p2.i) i0Var.get(c11 + 1)).f45224e;
+                        long j13 = ((p2.i) i0Var.get(c11)).f45226e;
+                        if (lVar.f45271c && c11 != i0Var.size() - 1) {
+                            j10 = ((p2.i) i0Var.get(c11 + 1)).f45226e;
                         } else {
                             j10 = j13;
                         }

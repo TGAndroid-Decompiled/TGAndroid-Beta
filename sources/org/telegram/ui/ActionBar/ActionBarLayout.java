@@ -192,7 +192,7 @@ public class ActionBarLayout extends FrameLayout implements d5, mg.b {
             f20312r1 = new Paint();
         }
         n nVar = new n(this, 1);
-        WeakHashMap weakHashMap = r0.i0.f46764a;
+        WeakHashMap weakHashMap = r0.i0.f46766a;
         r0.a0.i(this, nVar);
     }
 
@@ -485,7 +485,7 @@ public class ActionBarLayout extends FrameLayout implements d5, mg.b {
         View view = n2Var.fragmentView;
         if (view == null && (view = n2Var.performCreateView(this.K0)) != null && n2Var.isSupportEdgeToEdge() && n2Var.drawEdgeNavigationBar()) {
             n nVar = new n(n2Var, 0);
-            WeakHashMap weakHashMap = r0.i0.f46764a;
+            WeakHashMap weakHashMap = r0.i0.f46766a;
             r0.a0.i(view, nVar);
             this.v.invalidate();
         }
@@ -720,7 +720,7 @@ public class ActionBarLayout extends FrameLayout implements d5, mg.b {
                     view = n2Var.performCreateView(activity);
                     if (view != null && n2Var.isSupportEdgeToEdge() && n2Var.drawEdgeNavigationBar()) {
                         n nVar = new n(n2Var, 0);
-                        WeakHashMap weakHashMap = r0.i0.f46764a;
+                        WeakHashMap weakHashMap = r0.i0.f46766a;
                         r0.a0.i(view, nVar);
                         this.f20351s.invalidate();
                     }
@@ -777,7 +777,7 @@ public class ActionBarLayout extends FrameLayout implements d5, mg.b {
                     view3 = n2Var.performCreateView(activity);
                     if (view3 != null && n2Var.isSupportEdgeToEdge() && n2Var.drawEdgeNavigationBar()) {
                         n nVar2 = new n(n2Var, 0);
-                        WeakHashMap weakHashMap2 = r0.i0.f46764a;
+                        WeakHashMap weakHashMap2 = r0.i0.f46766a;
                         r0.a0.i(view3, nVar2);
                         this.f20351s.invalidate();
                     }
@@ -851,7 +851,7 @@ public class ActionBarLayout extends FrameLayout implements d5, mg.b {
                         view2 = n2Var2.performCreateView(this.K0);
                         if (view2 != null && n2Var2.isSupportEdgeToEdge() && n2Var2.drawEdgeNavigationBar()) {
                             n nVar = new n(n2Var2, 0);
-                            WeakHashMap weakHashMap = r0.i0.f46764a;
+                            WeakHashMap weakHashMap = r0.i0.f46766a;
                             r0.a0.i(view2, nVar);
                             this.f20351s.invalidate();
                         }
@@ -1273,7 +1273,7 @@ public class ActionBarLayout extends FrameLayout implements d5, mg.b {
                     View view = n2Var.fragmentView;
                     if (view == null && (view = n2Var.performCreateView(activity)) != null && n2Var.isSupportEdgeToEdge() && n2Var.drawEdgeNavigationBar()) {
                         n nVar = new n(n2Var, 0);
-                        WeakHashMap weakHashMap = r0.i0.f46764a;
+                        WeakHashMap weakHashMap = r0.i0.f46766a;
                         r0.a0.i(view, nVar);
                         this.f20351s.invalidate();
                     }
@@ -1429,7 +1429,7 @@ public class ActionBarLayout extends FrameLayout implements d5, mg.b {
         boolean z11 = this.M0;
         if (z11) {
             if ((view instanceof w) && ((w) view).f21641x) {
-                int i18 = k1Var.f46775a.f(8).d;
+                int i18 = k1Var.f46777a.f(8).d;
                 if (getParent() instanceof View) {
                     view2 = (View) getParent();
                 } else {
@@ -1441,7 +1441,7 @@ public class ActionBarLayout extends FrameLayout implements d5, mg.b {
                     i17 = 0;
                 }
                 int max = Math.max(0, i18 - i17);
-                r0.k1 k1Var2 = r0.k1.f46774b;
+                r0.k1 k1Var2 = r0.k1.f46776b;
                 int i19 = Build.VERSION.SDK_INT;
                 if (i19 >= 34) {
                     w0Var = new r0.z0(k1Var2);
@@ -1456,7 +1456,7 @@ public class ActionBarLayout extends FrameLayout implements d5, mg.b {
                 r0.i0.b(view, w0Var.b());
                 return;
             }
-            r0.i0.b(view, r0.k1.f46774b);
+            r0.i0.b(view, r0.k1.f46776b);
             return;
         }
         boolean z12 = this.N0;
@@ -1515,9 +1515,9 @@ public class ActionBarLayout extends FrameLayout implements d5, mg.b {
             }
             if (z3Var == z3.f21744a) {
                 i10 = Math.max(i10, bVar2.d);
-                r0.i0.b(view, r0.k1.f46774b);
+                r0.i0.b(view, r0.k1.f46776b);
             } else {
-                r0.i0.b(view, k1Var.f46775a.m(i13, 0, i14, i10));
+                r0.i0.b(view, k1Var.f46777a.m(i13, 0, i14, i10));
             }
             view.setPadding(i11, 0, i12, i10);
         }
@@ -2060,8 +2060,8 @@ public class ActionBarLayout extends FrameLayout implements d5, mg.b {
         }
         un unVar = this.f20330g0;
         if (unVar != null) {
-            xn xnVar = unVar.f42458a;
-            xnVar.V.f44988x0.invalidate();
+            xn xnVar = unVar.f42460a;
+            xnVar.V.f44990x0.invalidate();
             xnVar.I.K = f7;
             xnVar.J.K = f7;
             xnVar.k(f7);

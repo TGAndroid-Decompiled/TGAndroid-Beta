@@ -22,131 +22,131 @@ public final class wj extends ai.g7 {
     public int X2;
     public final ArrayList Y2;
     public final ArrayList Z2;
-    public final ArrayList f43672a3;
-    public final ArrayList f43673b3;
-    public final ArrayList f43674c3;
-    public int f43675d3;
-    public int f43676e3;
-    public int f43677f3;
-    public long f43678g3;
-    public float f43679h3;
-    public float f43680i3;
+    public final ArrayList f43674a3;
+    public final ArrayList f43675b3;
+    public final ArrayList f43676c3;
+    public int f43677d3;
+    public int f43678e3;
+    public int f43679f3;
+    public long f43680g3;
+    public float f43681h3;
+    public float f43682i3;
     public boolean j3;
-    public final float f43681k3;
-    public final Paint f43682l3;
-    public final Paint f43683m3;
-    public final o1.j f43684n3;
-    public final o1.k f43685o3;
-    public final o1.j f43686p3;
-    public final o1.k f43687q3;
-    public final o1.j f43688r3;
-    public final o1.k f43689s3;
-    public boolean f43690t3;
-    public final Path f43691u3;
-    public boolean f43692v3;
-    public int f43693w3;
-    public final zn f43694x3;
+    public final float f43683k3;
+    public final Paint f43684l3;
+    public final Paint f43685m3;
+    public final o1.j f43686n3;
+    public final o1.k f43687o3;
+    public final o1.j f43688p3;
+    public final o1.k f43689q3;
+    public final o1.j f43690r3;
+    public final o1.k f43691s3;
+    public boolean f43692t3;
+    public final Path f43693u3;
+    public boolean f43694v3;
+    public int f43695w3;
+    public final zn f43696x3;
 
     public wj(zn znVar, Context context, xn xnVar) {
         super(znVar, context, xnVar, 1);
-        this.f43694x3 = znVar;
+        this.f43696x3 = znVar;
         this.Y2 = new ArrayList();
         this.Z2 = new ArrayList();
-        this.f43672a3 = new ArrayList();
-        this.f43673b3 = new ArrayList();
-        this.f43674c3 = new ArrayList(10);
-        this.f43681k3 = 2000.0f;
+        this.f43674a3 = new ArrayList();
+        this.f43675b3 = new ArrayList();
+        this.f43676c3 = new ArrayList(10);
+        this.f43683k3 = 2000.0f;
         Paint paint = new Paint(1);
-        this.f43682l3 = paint;
+        this.f43684l3 = paint;
         Paint paint2 = new Paint(1);
-        this.f43683m3 = paint2;
+        this.f43685m3 = paint2;
         o1.j jVar = new o1.j(0.0f);
-        this.f43684n3 = jVar;
+        this.f43686n3 = jVar;
         o1.k kVar = new o1.k(jVar);
         kVar.h = 0.0f;
         kVar.f16932g = 2000.0f;
         kVar.f16938u = org.telegram.ui.Cells.c1.j(0.0f, 1500.0f, 1.0f);
         kVar.b(new o1.g(this) {
-            public final wj f42878b;
+            public final wj f42880b;
 
             {
-                this.f42878b = this;
+                this.f42880b = this;
             }
 
             @Override
             public final void a(o1.h hVar, float f7, float f10) {
                 switch (r2) {
                     case 0:
-                        this.f42878b.invalidate();
+                        this.f42880b.invalidate();
                         return;
                     case 1:
-                        this.f42878b.invalidate();
+                        this.f42880b.invalidate();
                         return;
                     default:
-                        this.f42878b.invalidate();
+                        this.f42880b.invalidate();
                         return;
                 }
             }
         });
-        this.f43685o3 = kVar;
+        this.f43687o3 = kVar;
         o1.j jVar2 = new o1.j(0.0f);
-        this.f43686p3 = jVar2;
+        this.f43688p3 = jVar2;
         o1.k kVar2 = new o1.k(jVar2);
         kVar2.h = 0.0f;
         kVar2.f16938u = org.telegram.ui.Cells.c1.j(0.0f, 400.0f, 0.5f);
         kVar2.b(new o1.g(this) {
-            public final wj f42878b;
+            public final wj f42880b;
 
             {
-                this.f42878b = this;
+                this.f42880b = this;
             }
 
             @Override
             public final void a(o1.h hVar, float f7, float f10) {
                 switch (r2) {
                     case 0:
-                        this.f42878b.invalidate();
+                        this.f42880b.invalidate();
                         return;
                     case 1:
-                        this.f42878b.invalidate();
+                        this.f42880b.invalidate();
                         return;
                     default:
-                        this.f42878b.invalidate();
+                        this.f42880b.invalidate();
                         return;
                 }
             }
         });
-        this.f43687q3 = kVar2;
+        this.f43689q3 = kVar2;
         o1.j jVar3 = new o1.j(0.0f);
-        this.f43688r3 = jVar3;
+        this.f43690r3 = jVar3;
         o1.k kVar3 = new o1.k(jVar3);
         kVar3.h = 0.0f;
         kVar3.f16938u = org.telegram.ui.Cells.c1.j(0.0f, 200.0f, 1.0f);
         kVar3.b(new o1.g(this) {
-            public final wj f42878b;
+            public final wj f42880b;
 
             {
-                this.f42878b = this;
+                this.f42880b = this;
             }
 
             @Override
             public final void a(o1.h hVar, float f7, float f10) {
                 switch (r2) {
                     case 0:
-                        this.f42878b.invalidate();
+                        this.f42880b.invalidate();
                         return;
                     case 1:
-                        this.f42878b.invalidate();
+                        this.f42880b.invalidate();
                         return;
                     default:
-                        this.f42878b.invalidate();
+                        this.f42880b.invalidate();
                         return;
                 }
             }
         });
-        this.f43689s3 = kVar3;
-        this.f43691u3 = new Path();
-        this.f43693w3 = 0;
+        this.f43691s3 = kVar3;
+        this.f43693u3 = new Path();
+        this.f43695w3 = 0;
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
         Paint.Cap cap = Paint.Cap.ROUND;
@@ -186,7 +186,7 @@ public final class wj extends ai.g7 {
 
     @Override
     public final AccessibilityNodeInfo createAccessibilityNodeInfo() {
-        if (this.f43694x3.h != null) {
+        if (this.f43696x3.h != null) {
             return null;
         }
         return super.createAccessibilityNodeInfo();
@@ -195,8 +195,8 @@ public final class wj extends ai.g7 {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         float f7;
-        zn znVar = this.f43694x3;
-        znVar.f44956u8 = null;
+        zn znVar = this.f43696x3;
+        znVar.f44958u8 = null;
         canvas.save();
         if (znVar.V9 != null && znVar.R9) {
             boolean z10 = znVar.S9;
@@ -205,12 +205,12 @@ public final class wj extends ai.g7 {
         if (znVar.N9 != 0.0f) {
             int save = canvas.save();
             if (znVar.U9 != 0.0f) {
-                f7 = (znVar.f44988x0.getMeasuredHeight() - znVar.N9) * znVar.U9;
+                f7 = (znVar.f44990x0.getMeasuredHeight() - znVar.N9) * znVar.U9;
             } else {
                 f7 = 0.0f;
             }
             float f10 = (-znVar.N9) - f7;
-            znVar.f45022za = f10;
+            znVar.f45024za = f10;
             canvas.translate(0.0f, f10);
             x1(canvas, null);
             super.dispatchDraw(canvas);
@@ -263,7 +263,7 @@ public final class wj extends ai.g7 {
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        if (this.f43694x3.h == null) {
+        if (this.f43696x3.h == null) {
             super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
             AccessibilityNodeInfo.CollectionInfo collectionInfo = accessibilityNodeInfo.getCollectionInfo();
             if (collectionInfo != null) {
@@ -276,8 +276,8 @@ public final class wj extends ai.g7 {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         uh.i iVar;
         org.telegram.ui.ActionBar.k kVar;
-        zn znVar = this.f43694x3;
-        tm tmVar = znVar.f44735c9;
+        zn znVar = this.f43696x3;
+        tm tmVar = znVar.f44737c9;
         tmVar.getClass();
         if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
             AndroidUtilities.cancelRunOnUIThread(tmVar.f21862f0);
@@ -299,7 +299,7 @@ public final class wj extends ai.g7 {
         super.onLayout(z10, i10, i11, i12, i13);
         int i14 = this.X2;
         int i15 = i12 - i10;
-        zn znVar = this.f43694x3;
+        zn znVar = this.f43696x3;
         if (i14 != i15) {
             if (i14 != 0) {
                 znVar.m9(false);
@@ -307,20 +307,20 @@ public final class wj extends ai.g7 {
             this.X2 = i15;
         }
         int measuredHeight = getMeasuredHeight();
-        if (this.f43693w3 != measuredHeight) {
-            this.f43692v3 = true;
-            yj yjVar = znVar.f45001y0;
+        if (this.f43695w3 != measuredHeight) {
+            this.f43694v3 = true;
+            yj yjVar = znVar.f45003y0;
             if (yjVar != null) {
                 yjVar.g();
             }
             znVar.W8.a();
-            this.f43692v3 = false;
-            this.f43693w3 = measuredHeight;
+            this.f43694v3 = false;
+            this.f43695w3 = measuredHeight;
         }
         znVar.R5 = false;
-        tm tmVar = znVar.f44735c9;
+        tm tmVar = znVar.f44737c9;
         if (tmVar != null && tmVar.x()) {
-            znVar.f44735c9.w();
+            znVar.f44737c9.w();
         }
         znVar.u9();
         znVar.I9();
@@ -330,16 +330,16 @@ public final class wj extends ai.g7 {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         org.telegram.ui.ActionBar.k kVar;
         xp xpVar;
-        zn znVar = this.f43694x3;
-        me.b bVar = znVar.f44960uc;
-        tm tmVar = znVar.f44735c9;
+        zn znVar = this.f43696x3;
+        me.b bVar = znVar.f44962uc;
+        tm tmVar = znVar.f44737c9;
         tmVar.getClass();
         if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
             AndroidUtilities.cancelRunOnUIThread(tmVar.f21862f0);
             tmVar.f21888z = false;
         }
         if (motionEvent.getAction() == 0) {
-            znVar.f44933sa = true;
+            znVar.f44935sa = true;
         }
         if (znVar.N9 != 0.0f && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3)) {
             float min = Math.min(1.0f, znVar.N9 / AndroidUtilities.dp(110.0f));
@@ -349,34 +349,34 @@ public final class wj extends ai.g7 {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, AndroidUtilities.dp(8.0f) + f7);
                     znVar.Q9 = ofFloat;
                     ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                        public final wj f42446b;
+                        public final wj f42448b;
 
                         {
-                            this.f42446b = this;
+                            this.f42448b = this;
                         }
 
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                             switch (r2) {
                                 case 0:
-                                    zn znVar2 = this.f42446b.f43694x3;
+                                    zn znVar2 = this.f42448b.f43696x3;
                                     znVar2.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                    znVar2.f44988x0.invalidate();
+                                    znVar2.f44990x0.invalidate();
                                     return;
                                 case 1:
-                                    zn znVar3 = this.f42446b.f43694x3;
+                                    zn znVar3 = this.f42448b.f43696x3;
                                     znVar3.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                    znVar3.f44988x0.invalidate();
+                                    znVar3.f44990x0.invalidate();
                                     return;
                                 case 2:
-                                    zn znVar4 = this.f42446b.f43694x3;
+                                    zn znVar4 = this.f42448b.f43696x3;
                                     znVar4.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                    znVar4.f44988x0.invalidate();
+                                    znVar4.f44990x0.invalidate();
                                     return;
                                 default:
-                                    zn znVar5 = this.f42446b.f43694x3;
+                                    zn znVar5 = this.f42448b.f43696x3;
                                     znVar5.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                    znVar5.f44988x0.invalidate();
+                                    znVar5.f44990x0.invalidate();
                                     return;
                             }
                         }
@@ -404,7 +404,7 @@ public final class wj extends ai.g7 {
                                     xpVar3.getClass();
                                     xpVar3.K = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                     xpVar3.T.invalidate();
-                                    View view = xpVar3.f44088a0;
+                                    View view = xpVar3.f44090a0;
                                     if (view != null) {
                                         view.invalidate();
                                         return;
@@ -414,7 +414,7 @@ public final class wj extends ai.g7 {
                                     xp xpVar4 = xpVar2;
                                     xpVar4.getClass();
                                     xpVar4.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                    View view2 = xpVar4.f44088a0;
+                                    View view2 = xpVar4.f44090a0;
                                     if (view2 != null) {
                                         view2.invalidate();
                                         return;
@@ -433,7 +433,7 @@ public final class wj extends ai.g7 {
                                     xpVar3.getClass();
                                     xpVar3.K = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                     xpVar3.T.invalidate();
-                                    View view = xpVar3.f44088a0;
+                                    View view = xpVar3.f44090a0;
                                     if (view != null) {
                                         view.invalidate();
                                         return;
@@ -443,7 +443,7 @@ public final class wj extends ai.g7 {
                                     xp xpVar4 = xpVar2;
                                     xpVar4.getClass();
                                     xpVar4.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                    View view2 = xpVar4.f44088a0;
+                                    View view2 = xpVar4.f44090a0;
                                     if (view2 != null) {
                                         view2.invalidate();
                                         return;
@@ -473,34 +473,34 @@ public final class wj extends ai.g7 {
                         }
                         ValueAnimator ofFloat4 = ValueAnimator.ofFloat(znVar.N9, AndroidUtilities.dp(111.0f));
                         ofFloat4.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                            public final wj f42446b;
+                            public final wj f42448b;
 
                             {
-                                this.f42446b = this;
+                                this.f42448b = this;
                             }
 
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                                 switch (r2) {
                                     case 0:
-                                        zn znVar2 = this.f42446b.f43694x3;
+                                        zn znVar2 = this.f42448b.f43696x3;
                                         znVar2.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                        znVar2.f44988x0.invalidate();
+                                        znVar2.f44990x0.invalidate();
                                         return;
                                     case 1:
-                                        zn znVar3 = this.f42446b.f43694x3;
+                                        zn znVar3 = this.f42448b.f43696x3;
                                         znVar3.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                        znVar3.f44988x0.invalidate();
+                                        znVar3.f44990x0.invalidate();
                                         return;
                                     case 2:
-                                        zn znVar4 = this.f42446b.f43694x3;
+                                        zn znVar4 = this.f42448b.f43696x3;
                                         znVar4.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                        znVar4.f44988x0.invalidate();
+                                        znVar4.f44990x0.invalidate();
                                         return;
                                     default:
-                                        zn znVar5 = this.f42446b.f43694x3;
+                                        zn znVar5 = this.f42448b.f43696x3;
                                         znVar5.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                        znVar5.f44988x0.invalidate();
+                                        znVar5.f44990x0.invalidate();
                                         return;
                                 }
                             }
@@ -509,34 +509,34 @@ public final class wj extends ai.g7 {
                         ofFloat4.setInterpolator(org.telegram.ui.Components.hs.f27118f);
                         ValueAnimator ofFloat5 = ValueAnimator.ofFloat(AndroidUtilities.dp(111.0f), 0.0f);
                         ofFloat5.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                            public final wj f42446b;
+                            public final wj f42448b;
 
                             {
-                                this.f42446b = this;
+                                this.f42448b = this;
                             }
 
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                                 switch (r2) {
                                     case 0:
-                                        zn znVar2 = this.f42446b.f43694x3;
+                                        zn znVar2 = this.f42448b.f43696x3;
                                         znVar2.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                        znVar2.f44988x0.invalidate();
+                                        znVar2.f44990x0.invalidate();
                                         return;
                                     case 1:
-                                        zn znVar3 = this.f42446b.f43694x3;
+                                        zn znVar3 = this.f42448b.f43696x3;
                                         znVar3.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                        znVar3.f44988x0.invalidate();
+                                        znVar3.f44990x0.invalidate();
                                         return;
                                     case 2:
-                                        zn znVar4 = this.f42446b.f43694x3;
+                                        zn znVar4 = this.f42448b.f43696x3;
                                         znVar4.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                        znVar4.f44988x0.invalidate();
+                                        znVar4.f44990x0.invalidate();
                                         return;
                                     default:
-                                        zn znVar5 = this.f42446b.f43694x3;
+                                        zn znVar5 = this.f42448b.f43696x3;
                                         znVar5.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                        znVar5.f44988x0.invalidate();
+                                        znVar5.f44990x0.invalidate();
                                         return;
                                 }
                             }
@@ -554,34 +554,34 @@ public final class wj extends ai.g7 {
                     bVar.a(false, true);
                 }
                 ofFloat6.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                    public final wj f42446b;
+                    public final wj f42448b;
 
                     {
-                        this.f42446b = this;
+                        this.f42448b = this;
                     }
 
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                         switch (r2) {
                             case 0:
-                                zn znVar2 = this.f42446b.f43694x3;
+                                zn znVar2 = this.f42448b.f43696x3;
                                 znVar2.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                znVar2.f44988x0.invalidate();
+                                znVar2.f44990x0.invalidate();
                                 return;
                             case 1:
-                                zn znVar3 = this.f42446b.f43694x3;
+                                zn znVar3 = this.f42448b.f43696x3;
                                 znVar3.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                znVar3.f44988x0.invalidate();
+                                znVar3.f44990x0.invalidate();
                                 return;
                             case 2:
-                                zn znVar4 = this.f42446b.f43694x3;
+                                zn znVar4 = this.f42448b.f43696x3;
                                 znVar4.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                znVar4.f44988x0.invalidate();
+                                znVar4.f44990x0.invalidate();
                                 return;
                             default:
-                                zn znVar5 = this.f42446b.f43694x3;
+                                zn znVar5 = this.f42448b.f43696x3;
                                 znVar5.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                znVar5.f44988x0.invalidate();
+                                znVar5.f44990x0.invalidate();
                                 return;
                         }
                     }
@@ -596,7 +596,7 @@ public final class wj extends ai.g7 {
             kVar = ((org.telegram.ui.ActionBar.n2) znVar).actionBar;
             if (!kVar.t() && !znVar.F9()) {
                 z1(motionEvent);
-                if (znVar.f44772f9 || onTouchEvent) {
+                if (znVar.f44774f9 || onTouchEvent) {
                     return true;
                 }
             } else {
@@ -608,7 +608,7 @@ public final class wj extends ai.g7 {
 
     @Override
     public final boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
-        if (this.f43694x3.Q8 != null) {
+        if (this.f43696x3.Q8 != null) {
             return false;
         }
         return super.requestChildRectangleOnScreen(view, rect, z10);
@@ -617,17 +617,17 @@ public final class wj extends ai.g7 {
     @Override
     public final void requestDisallowInterceptTouchEvent(boolean z10) {
         super.requestDisallowInterceptTouchEvent(z10);
-        if (this.f43694x3.f44747d9 != null) {
+        if (this.f43696x3.f44749d9 != null) {
             z1(null);
         }
     }
 
     @Override
     public final void requestLayout() {
-        if (this.f43692v3) {
+        if (this.f43694v3) {
             return;
         }
-        hh.a aVar = this.f43694x3.Qb;
+        hh.a aVar = this.f43696x3.Qb;
         if (aVar.f11472b != 0) {
             int childCount = aVar.f11471a.getChildCount();
             for (int i10 = 0; i10 < childCount; i10++) {
@@ -649,7 +649,7 @@ public final class wj extends ai.g7 {
     public final void setTranslationY(float f7) {
         if (f7 != getTranslationY()) {
             super.setTranslationY(f7);
-            zn znVar = this.f43694x3;
+            zn znVar = this.f43696x3;
             znVar.t9();
             znVar.w9();
         }
@@ -670,7 +670,7 @@ public final class wj extends ai.g7 {
         float f13;
         ArrayList arrayList2 = this.Y2;
         int size = arrayList2.size();
-        zn znVar = this.f43694x3;
+        zn znVar = this.f43696x3;
         boolean z12 = true;
         boolean z13 = false;
         if (size > 0) {
@@ -713,7 +713,7 @@ public final class wj extends ai.g7 {
             }
             arrayList3.clear();
         }
-        ArrayList arrayList4 = this.f43672a3;
+        ArrayList arrayList4 = this.f43674a3;
         int size3 = arrayList4.size();
         if (size3 > 0) {
             int i12 = 0;
@@ -774,7 +774,7 @@ public final class wj extends ai.g7 {
         } else {
             f7 = 8.0f;
         }
-        ArrayList arrayList5 = this.f43673b3;
+        ArrayList arrayList5 = this.f43675b3;
         int size4 = arrayList5.size();
         if (size4 > 0) {
             for (int i13 = 0; i13 < size4; i13++) {
@@ -830,11 +830,11 @@ public final class wj extends ai.g7 {
         boolean z10;
         ArrayList arrayList;
         TLRPC.Chat chat2;
-        zn znVar = this.f43694x3;
+        zn znVar = this.f43696x3;
         if (motionEvent != null) {
             znVar.D4 = true;
         }
-        if (motionEvent != null && motionEvent.getAction() == 0 && !znVar.f44772f9 && !znVar.f44760e9 && znVar.f44747d9 == null) {
+        if (motionEvent != null && motionEvent.getAction() == 0 && !znVar.f44774f9 && !znVar.f44762e9 && znVar.f44749d9 == null) {
             z10 = ((org.telegram.ui.ActionBar.n2) znVar).inPreviewMode;
             if (!z10) {
                 View pressedChildView = getPressedChildView();
@@ -844,11 +844,11 @@ public final class wj extends ai.g7 {
                         float x10 = motionEvent.getX() - pressedChildView.getX();
                         float y3 = motionEvent.getY() - pressedChildView.getY();
                         if (w0Var.M()) {
-                            org.telegram.ui.Wallet.c3 c3Var = w0Var.I0;
+                            org.telegram.ui.Wallet.d3 d3Var = w0Var.I0;
                             float f11 = (x10 - w0Var.K0) - (w0Var.f23607j0 / 2.0f);
                             float paddingTop = (y3 - w0Var.L0) - w0Var.getPaddingTop();
-                            org.telegram.ui.Wallet.b3 b3Var = c3Var.f34730m;
-                            if (b3Var != null && b3Var.h && c3Var.f34745w.contains((int) f11, (int) paddingTop)) {
+                            org.telegram.ui.Wallet.c3 c3Var = d3Var.f34795m;
+                            if (c3Var != null && c3Var.h && d3Var.f34810w.contains((int) f11, (int) paddingTop)) {
                                 return;
                             }
                         } else {
@@ -858,41 +858,41 @@ public final class wj extends ai.g7 {
                         return;
                     }
                 }
-                if (znVar.f44747d9 != null) {
+                if (znVar.f44749d9 != null) {
                     zn.W1(znVar, 0.0f);
                 }
-                znVar.f44747d9 = pressedChildView;
+                znVar.f44749d9 = pressedChildView;
                 MessageObject T1 = zn.T1(znVar);
                 boolean I6 = znVar.I6(T1);
                 int i10 = znVar.R3;
-                if ((i10 == 0 || i10 == 5 || i10 == 8 || (i10 == 3 && znVar.f44742d4 == znVar.getUserConfig().getClientUserId())) && (((arrayList = znVar.f44702a4) == null || !arrayList.contains(T1)) && ((znVar.J8(T1) != 1 || (T1.getDialogId() != znVar.L6 && !T1.needDrawBluredPreview())) && ((znVar.h != null || T1.getId() >= 0) && (((chat2 = znVar.f44751e) == null || !ChatObject.isForum(chat2) || I6) && !znVar.g9() && (!T1.isEphemeral() || !T1.isOut())))))) {
-                    this.f43677f3 = motionEvent.getPointerId(0);
-                    znVar.f44760e9 = true;
-                    this.f43675d3 = (int) motionEvent.getX();
-                    this.f43676e3 = (int) motionEvent.getY();
+                if ((i10 == 0 || i10 == 5 || i10 == 8 || (i10 == 3 && znVar.f44744d4 == znVar.getUserConfig().getClientUserId())) && (((arrayList = znVar.f44704a4) == null || !arrayList.contains(T1)) && ((znVar.J8(T1) != 1 || (T1.getDialogId() != znVar.L6 && !T1.needDrawBluredPreview())) && ((znVar.h != null || T1.getId() >= 0) && (((chat2 = znVar.f44753e) == null || !ChatObject.isForum(chat2) || I6) && !znVar.g9() && (!T1.isEphemeral() || !T1.isOut())))))) {
+                    this.f43679f3 = motionEvent.getPointerId(0);
+                    znVar.f44762e9 = true;
+                    this.f43677d3 = (int) motionEvent.getX();
+                    this.f43678e3 = (int) motionEvent.getY();
                     return;
                 }
                 zn.W1(znVar, 0.0f);
-                znVar.f44747d9 = null;
+                znVar.f44749d9 = null;
                 return;
             }
         }
-        if (znVar.f44747d9 != null && motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.f43677f3) {
-            int max = Math.max(AndroidUtilities.dp(-80.0f), Math.min(0, (int) (motionEvent.getX() - this.f43675d3)));
-            int abs = Math.abs(((int) motionEvent.getY()) - this.f43676e3);
-            if (getScrollState() == 0 && znVar.f44760e9 && !znVar.f44772f9 && max <= (-AndroidUtilities.getPixelsInCM(0.4f, true)) && Math.abs(max) / 3 > abs) {
+        if (znVar.f44749d9 != null && motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.f43679f3) {
+            int max = Math.max(AndroidUtilities.dp(-80.0f), Math.min(0, (int) (motionEvent.getX() - this.f43677d3)));
+            int abs = Math.abs(((int) motionEvent.getY()) - this.f43678e3);
+            if (getScrollState() == 0 && znVar.f44762e9 && !znVar.f44774f9 && max <= (-AndroidUtilities.getPixelsInCM(0.4f, true)) && Math.abs(max) / 3 > abs) {
                 MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
-                znVar.f44747d9.onTouchEvent(obtain);
+                znVar.f44749d9.onTouchEvent(obtain);
                 super.onInterceptTouchEvent(obtain);
                 obtain.recycle();
-                znVar.f45012z0.R = false;
-                znVar.f44760e9 = false;
-                znVar.f44772f9 = true;
-                this.f43675d3 = (int) motionEvent.getX();
+                znVar.f45014z0.R = false;
+                znVar.f44762e9 = false;
+                znVar.f44774f9 = true;
+                this.f43677d3 = (int) motionEvent.getX();
                 if (getParent() != null) {
                     getParent().requestDisallowInterceptTouchEvent(true);
                 }
-            } else if (znVar.f44772f9) {
+            } else if (znVar.f44774f9) {
                 if (Math.abs(max) >= AndroidUtilities.dp(50.0f)) {
                     if (!this.j3) {
                         try {
@@ -910,15 +910,15 @@ public final class wj extends ai.g7 {
                 if (T12 != null && (T12.isRoundVideo() || T12.isVideo())) {
                     znVar.Qc(false, false);
                 }
-                View view = znVar.f44747d9;
+                View view = znVar.f44749d9;
                 if (view instanceof org.telegram.ui.Cells.u1) {
                     A1((org.telegram.ui.Cells.u1) view, f12);
                 }
                 invalidate();
             }
-        } else if (znVar.f44747d9 != null) {
+        } else if (znVar.f44749d9 != null) {
             if (motionEvent != null) {
-                if (motionEvent.getPointerId(0) == this.f43677f3) {
+                if (motionEvent.getPointerId(0) == this.f43679f3) {
                     if (motionEvent.getAction() != 3 && motionEvent.getAction() != 1 && motionEvent.getAction() != 6) {
                         return;
                     }
@@ -927,7 +927,7 @@ public final class wj extends ai.g7 {
                 }
             }
             if (motionEvent != null && motionEvent.getAction() != 3) {
-                View view2 = znVar.f44747d9;
+                View view2 = znVar.f44749d9;
                 if (view2 instanceof org.telegram.ui.Cells.u1) {
                     f10 = ((org.telegram.ui.Cells.u1) view2).E2(false);
                 } else if (view2 instanceof org.telegram.ui.Cells.w0) {
@@ -939,11 +939,11 @@ public final class wj extends ai.g7 {
                     MessageObject T13 = zn.T1(znVar);
                     boolean I62 = znVar.I6(T13);
                     sk skVar = znVar.O0;
-                    if ((skVar != null && skVar.getVisibility() == 0 && ((!znVar.I0 || !I62) && !T13.wasJustSent)) || ((chat = znVar.f44751e) != null && ((ChatObject.isNotInChat(chat) && !znVar.K9()) || ((ChatObject.isChannel(znVar.f44751e) && !ChatObject.canPost(znVar.f44751e) && !znVar.f44751e.megagroup) || !ChatObject.canSendMessages(znVar.f44751e))))) {
+                    if ((skVar != null && skVar.getVisibility() == 0 && ((!znVar.I0 || !I62) && !T13.wasJustSent)) || ((chat = znVar.f44753e) != null && ((ChatObject.isNotInChat(chat) && !znVar.K9()) || ((ChatObject.isChannel(znVar.f44753e) && !ChatObject.canPost(znVar.f44753e) && !znVar.f44753e.megagroup) || !ChatObject.canSendMessages(znVar.f44753e))))) {
                         if (T13.getGroupId() != 0 && (D8 = znVar.D8(T13.getGroupId())) != null && (messageObject = D8.captionMessage) != null) {
                             T13 = messageObject;
                         }
-                        znVar.f44866n5 = T13;
+                        znVar.f44868n5 = T13;
                         Bundle d = org.telegram.messenger.bi.d(3, "onlySelect", "dialogsType", true);
                         d.putBoolean("quote", true);
                         d.putBoolean("reply_to", true);
@@ -962,7 +962,7 @@ public final class wj extends ai.g7 {
                     }
                 }
             }
-            View view3 = znVar.f44747d9;
+            View view3 = znVar.f44749d9;
             if (view3 instanceof org.telegram.ui.Cells.u1) {
                 f7 = ((org.telegram.ui.Cells.u1) view3).getSlidingOffsetX();
             } else if (view3 instanceof org.telegram.ui.Cells.w0) {
@@ -970,16 +970,16 @@ public final class wj extends ai.g7 {
             } else {
                 f7 = 0.0f;
             }
-            this.f43680i3 = f7;
+            this.f43682i3 = f7;
             if (f7 == 0.0f) {
-                znVar.f44747d9 = null;
+                znVar.f44749d9 = null;
             }
-            this.f43678g3 = System.currentTimeMillis();
-            this.f43679h3 = 0.0f;
+            this.f43680g3 = System.currentTimeMillis();
+            this.f43681h3 = 0.0f;
             invalidate();
-            znVar.f44760e9 = false;
-            znVar.f44772f9 = false;
-            znVar.f45012z0.R = true;
+            znVar.f44762e9 = false;
+            znVar.f44774f9 = false;
+            znVar.f45014z0.R = true;
         }
     }
 }

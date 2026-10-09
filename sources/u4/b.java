@@ -1,8 +1,8 @@
 package u4;
 public final class b {
-    public final String f48835a;
+    public final String f48837a;
 
     public b(String str) {
-        this.f48835a = str;
+        this.f48837a = str;
     }
 }

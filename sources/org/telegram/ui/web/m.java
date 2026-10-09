@@ -13,10 +13,10 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ls0;
 public final class m extends org.telegram.ui.ActionBar.j {
-    public final o f43389a;
+    public final o f43391a;
 
     public m(o oVar) {
-        this.f43389a = oVar;
+        this.f43391a = oVar;
     }
 
     @Override
@@ -24,8 +24,8 @@ public final class m extends org.telegram.ui.ActionBar.j {
         String str;
         org.telegram.ui.ActionBar.k kVar;
         org.telegram.ui.ActionBar.k kVar2;
-        o oVar = this.f43389a;
-        HashSet hashSet = oVar.f43418w;
+        o oVar = this.f43391a;
+        HashSet hashSet = oVar.f43420w;
         if (i10 == -1) {
             kVar = ((org.telegram.ui.ActionBar.n2) oVar).actionBar;
             if (kVar.t()) {
@@ -48,7 +48,7 @@ public final class m extends org.telegram.ui.ActionBar.j {
                     break;
                 }
                 int intValue = ((Integer) it.next()).intValue();
-                ArrayList arrayList2 = oVar.d.f43338a;
+                ArrayList arrayList2 = oVar.d.f43340a;
                 int size = arrayList2.size();
                 int i12 = 0;
                 while (true) {
@@ -63,9 +63,9 @@ public final class m extends org.telegram.ui.ActionBar.j {
                         break;
                     }
                 }
-                i iVar = oVar.f43413e;
+                i iVar = oVar.f43415e;
                 if (iVar != null && messageObject == null) {
-                    ArrayList arrayList3 = iVar.f43338a;
+                    ArrayList arrayList3 = iVar.f43340a;
                     int size2 = arrayList3.size();
                     while (true) {
                         if (i11 >= size2) {

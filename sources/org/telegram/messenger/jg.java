@@ -30,7 +30,7 @@ public final class jg implements Runnable {
                 return;
             default:
                 yh.m5 m5Var = (yh.m5) obj;
-                int i11 = m5Var.f52878a;
+                int i11 = m5Var.f52880a;
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
                     long j3 = this.f18264b;
                     int i12 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));

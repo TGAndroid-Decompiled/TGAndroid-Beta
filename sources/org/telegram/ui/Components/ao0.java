@@ -16,7 +16,7 @@ public final class ao0 extends pm0 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47660f;
+        int i10 = d1Var.f47662f;
         if (i10 == 1 || i10 == 2) {
             return true;
         }
@@ -65,8 +65,8 @@ public final class ao0 extends pm0 {
         int i12;
         bo0 bo0Var = this.f24724c;
         org.telegram.ui.o10 o10Var = bo0Var.J;
-        int i13 = d1Var.f47660f;
-        View view = d1Var.f47656a;
+        int i13 = d1Var.f47662f;
+        View view = d1Var.f47658a;
         boolean z13 = false;
         if (i13 == 0) {
             org.telegram.ui.Cells.v3 v3Var = (org.telegram.ui.Cells.v3) view;
@@ -118,8 +118,8 @@ public final class ao0 extends pm0 {
                 }
                 k7Var.c(E, true);
                 int id4 = k7Var.getMessage().getId();
-                o10Var.f40397a = k7Var.getMessage().getDialogId();
-                o10Var.f40398b = id4;
+                o10Var.f40399a = k7Var.getMessage().getDialogId();
+                o10Var.f40400b = id4;
                 boolean c10 = bo0Var.I.c(o10Var);
                 if (id3 == E.getId()) {
                     z12 = true;
@@ -149,8 +149,8 @@ public final class ao0 extends pm0 {
                 }
                 j7Var.f(E, true);
                 int id5 = j7Var.getMessage().getId();
-                o10Var.f40397a = j7Var.getMessage().getDialogId();
-                o10Var.f40398b = id5;
+                o10Var.f40399a = j7Var.getMessage().getDialogId();
+                o10Var.f40400b = id5;
                 boolean c11 = bo0Var.I.c(o10Var);
                 if (id2 == E.getId()) {
                     z11 = true;

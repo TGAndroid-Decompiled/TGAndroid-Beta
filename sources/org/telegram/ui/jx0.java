@@ -17,24 +17,24 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class jx0 extends LinearLayout {
-    public final TextView f39035a;
-    public final TextView f39036b;
-    public final FrameLayout f39037c;
+    public final TextView f39037a;
+    public final TextView f39038b;
+    public final FrameLayout f39039c;
     public final fx0 d;
-    public final gx0 f39038e;
-    public boolean f39039f;
+    public final gx0 f39040e;
+    public boolean f39041f;
     public boolean h;
-    public final PremiumPreviewFragment f39040n;
+    public final PremiumPreviewFragment f39042n;
 
     public jx0(PremiumPreviewFragment premiumPreviewFragment, Context context) {
         super(context);
         int i10;
         int i11;
         int i12;
-        this.f39040n = premiumPreviewFragment;
+        this.f39042n = premiumPreviewFragment;
         setOrientation(1);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f39037c = frameLayout;
+        this.f39039c = frameLayout;
         int i13 = premiumPreviewFragment.f34136g0;
         if (i13 == 1) {
             i10 = 175;
@@ -54,7 +54,7 @@ public final class jx0 extends LinearLayout {
         frameLayout.setClipChildren(false);
         setClipChildren(false);
         TextView textView = new TextView(context);
-        this.f39035a = textView;
+        this.f39037a = textView;
         textView.setTextSize(1, 22.0f);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setGravity(1);
@@ -65,13 +65,13 @@ public final class jx0 extends LinearLayout {
         }
         addView(textView, w7.x5.p(-2, -2, 0.0f, 1, 16, i12, 16, 0));
         TextView textView2 = new TextView(context);
-        this.f39036b = textView2;
+        this.f39038b = textView2;
         textView2.setTextSize(1, 14.0f);
         textView2.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         textView2.setGravity(1);
         addView(textView2, w7.x5.p(-1, -2, 0.0f, 1, 16, 7, 16, 0));
         gx0 gx0Var = new gx0(this, context);
-        this.f39038e = gx0Var;
+        this.f39040e = gx0Var;
         gx0Var.setOverScrollMode(2);
         gx0Var.setLayoutManager(new s4.d0());
         gx0Var.setAdapter(new ix0(this, context));
@@ -83,7 +83,7 @@ public final class jx0 extends LinearLayout {
             public final void accept(Object obj) {
                 int b10;
                 Canvas canvas = (Canvas) obj;
-                gx0 gx0Var2 = jx0.this.f39038e;
+                gx0 gx0Var2 = jx0.this.f39040e;
                 View pressedChildView = gx0Var2.getPressedChildView();
                 if (pressedChildView == null) {
                     b10 = -1;
@@ -124,10 +124,10 @@ public final class jx0 extends LinearLayout {
         boolean z10;
         int i12;
         int i13;
-        PremiumPreviewFragment premiumPreviewFragment = this.f39040n;
+        PremiumPreviewFragment premiumPreviewFragment = this.f39042n;
         int i14 = premiumPreviewFragment.f34136g0;
-        TextView textView = this.f39035a;
-        TextView textView2 = this.f39036b;
+        TextView textView = this.f39037a;
+        TextView textView2 = this.f39038b;
         if (i14 == 0) {
             if (premiumPreviewFragment.f34145p0) {
                 i12 = R.string.TelegramPremiumSubscribedTitle;
@@ -162,8 +162,8 @@ public final class jx0 extends LinearLayout {
         } else {
             z10 = true;
         }
-        boolean z11 = this.f39039f;
-        gx0 gx0Var = this.f39038e;
+        boolean z11 = this.f39041f;
+        gx0 gx0Var = this.f39040e;
         if (z11 && z10) {
             if (gx0Var.getVisibility() == 0 && z10 && this.h == z10) {
                 ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(250L);
@@ -177,7 +177,7 @@ public final class jx0 extends LinearLayout {
                 i15 = 8;
             }
             gx0Var.setVisibility(i15);
-            this.f39039f = true;
+            this.f39041f = true;
         }
         this.h = !z10;
     }

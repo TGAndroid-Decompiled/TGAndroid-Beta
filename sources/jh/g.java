@@ -43,7 +43,7 @@ public final class g implements View.OnLongClickListener {
             case 0:
                 b bVar = ((h) this.f14195c).f14202n;
                 if (bVar != null) {
-                    zn znVar = ((re) bVar).f41394b;
+                    zn znVar = ((re) bVar).f41396b;
                     int i10 = this.f14194b;
                     if (i10 == 2) {
                         rfVar = new rf(znVar, 8);
@@ -95,7 +95,7 @@ public final class g implements View.OnLongClickListener {
                     }
                     n1Var.showAtLocation(smVar, 51, (int) width, (int) measuredHeight);
                     znVar.Q8 = n1Var;
-                    znVar.i8(znVar.f44813j1, false);
+                    znVar.i8(znVar.f44815j1, false);
                     znVar.Q8.setOnDismissListener(new f0(znVar, 1));
                     try {
                         view.performHapticFeedback(0, 2);

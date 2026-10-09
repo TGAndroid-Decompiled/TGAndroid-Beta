@@ -33,10 +33,10 @@ public final class oa implements View.OnAttachStateChangeListener {
                 l11Var.f28228k = b6.update(l11Var.f28229l, (View) obj, l11Var.f28228k, l11Var.f28221b);
                 return;
             default:
-                org.telegram.ui.Wallet.c3 c3Var = (org.telegram.ui.Wallet.c3) obj2;
-                org.telegram.ui.Wallet.b3 b3Var = c3Var.f34730m;
-                if (b3Var != null) {
-                    b3Var.setPaused(!c3Var.f34731n);
+                org.telegram.ui.Wallet.d3 d3Var = (org.telegram.ui.Wallet.d3) obj2;
+                org.telegram.ui.Wallet.c3 c3Var = d3Var.f34795m;
+                if (c3Var != null) {
+                    c3Var.setPaused(!d3Var.f34796n);
                     return;
                 }
                 return;
@@ -65,30 +65,35 @@ public final class oa implements View.OnAttachStateChangeListener {
                 b6.release((View) this.f29438b, ((l11) this.f29439c).f28228k);
                 return;
             default:
-                org.telegram.ui.Wallet.c3 c3Var = (org.telegram.ui.Wallet.c3) this.f29439c;
-                c3Var.f();
-                c3Var.M = false;
-                c3Var.N = 0L;
-                c3Var.k();
-                o1.k kVar = c3Var.Z;
+                org.telegram.ui.Wallet.d3 d3Var = (org.telegram.ui.Wallet.d3) this.f29439c;
+                d3Var.f();
+                d3Var.M = false;
+                d3Var.N = 0L;
+                d3Var.k();
+                o1.k kVar = d3Var.Z;
                 if (kVar != null) {
                     kVar.c();
-                    c3Var.Z = null;
+                    d3Var.Z = null;
                 }
-                c3Var.f34709a0 = 1.0f;
-                c3Var.l();
-                org.telegram.ui.Wallet.k5 k5Var = c3Var.f34726k;
-                WeakHashMap weakHashMap = k5Var.f35134e;
+                d3Var.f34774a0 = 1.0f;
+                org.telegram.ui.Cells.w0 w0Var = d3Var.f34773a;
+                w0Var.invalidate();
+                if (w0Var.getParent() instanceof View) {
+                    ((View) w0Var.getParent()).invalidate();
+                }
+                d3Var.l();
+                org.telegram.ui.Wallet.l5 l5Var = d3Var.f34791k;
+                WeakHashMap weakHashMap = l5Var.f35199e;
                 weakHashMap.remove((org.telegram.ui.Cells.w0) this.f29438b);
                 if (weakHashMap.isEmpty()) {
-                    k5Var.a();
+                    l5Var.a();
                 }
-                org.telegram.ui.Wallet.b3 b3Var = c3Var.f34730m;
-                if (b3Var != null) {
-                    b3Var.setPaused(true);
+                org.telegram.ui.Wallet.c3 c3Var = d3Var.f34795m;
+                if (c3Var != null) {
+                    c3Var.setPaused(true);
                 }
-                c3Var.f34728l.stop();
-                c3Var.H = false;
+                d3Var.f34793l.stop();
+                d3Var.H = false;
                 return;
         }
     }

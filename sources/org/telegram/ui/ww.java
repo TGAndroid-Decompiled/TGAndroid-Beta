@@ -21,7 +21,7 @@ public final class ww extends s4.d0 {
     @Override
     public final int R0() {
         sy syVar = this.L;
-        if (syVar.f41795s == 0 && this.M.W3() && syVar.v == 2) {
+        if (syVar.f41797s == 0 && this.M.W3() && syVar.v == 2) {
             return 1;
         }
         return 0;
@@ -65,7 +65,7 @@ public final class ww extends s4.d0 {
             this.K.cancel();
         }
         sy syVar = this.L;
-        if (syVar.f41788a.getScrollState() != 1) {
+        if (syVar.f41790a.getScrollState() != 1) {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(this.M.T, 0.0f);
             this.K = ofFloat;
             ofFloat.addUpdateListener(new ai.x(21, this, syVar));
@@ -79,7 +79,7 @@ public final class ww extends s4.d0 {
     @Override
     public final void h1(int i10, int i11) {
         if (this.I) {
-            i11 -= this.L.f41788a.getPaddingTop();
+            i11 -= this.L.f41790a.getPaddingTop();
         }
         super.h1(i10, i11);
     }
@@ -96,7 +96,7 @@ public final class ww extends s4.d0 {
             return;
         }
         ji.o oVar = new ji.o(recyclerView.getContext(), 0);
-        oVar.f47825a = i10;
+        oVar.f47827a = i10;
         w0(oVar);
     }
 }

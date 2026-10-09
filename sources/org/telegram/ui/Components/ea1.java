@@ -92,26 +92,26 @@ public final class ea1 implements Runnable {
                 }
                 String translitSafe = AndroidUtilities.translitSafe(lowerCase);
                 ArrayList arrayList = new ArrayList();
-                ArrayList arrayList2 = xtVar.f44146f;
+                ArrayList arrayList2 = xtVar.f44148f;
                 int size = arrayList2.size();
                 while (i12 < size) {
                     Object obj3 = arrayList2.get(i12);
                     i12++;
                     org.telegram.ui.ut utVar = (org.telegram.ui.ut) obj3;
-                    String str2 = utVar.f42547a;
+                    String str2 = utVar.f42549a;
                     String str3 = "";
                     if (str2 == null) {
                         str2 = "";
                     }
                     String lowerCase2 = str2.toLowerCase();
-                    String lowerCase3 = AndroidUtilities.translitSafe(utVar.f42547a).toLowerCase();
-                    String str4 = utVar.f42548b;
+                    String lowerCase3 = AndroidUtilities.translitSafe(utVar.f42549a).toLowerCase();
+                    String str4 = utVar.f42550b;
                     if (str4 == null) {
                         str4 = "";
                     }
                     String lowerCase4 = str4.toLowerCase();
-                    String lowerCase5 = AndroidUtilities.translitSafe(utVar.f42548b).toLowerCase();
-                    String str5 = utVar.f42549c;
+                    String lowerCase5 = AndroidUtilities.translitSafe(utVar.f42550b).toLowerCase();
+                    String str5 = utVar.f42551c;
                     if (str5 == null) {
                         str5 = "";
                     }
@@ -128,14 +128,14 @@ public final class ea1 implements Runnable {
                 org.telegram.ui.xt xtVar2 = (org.telegram.ui.xt) obj2;
                 ArrayList arrayList3 = (ArrayList) obj;
                 org.telegram.ui.zt ztVar = xtVar2.h;
-                if (ztVar.f45063f) {
-                    xtVar2.f44145e = arrayList3;
-                    if (ztVar.f45062e && (qm0Var = ztVar.f45059a) != null) {
+                if (ztVar.f45065f) {
+                    xtVar2.f44147e = arrayList3;
+                    if (ztVar.f45064e && (qm0Var = ztVar.f45061a) != null) {
                         s4.i0 adapter = qm0Var.getAdapter();
                         org.telegram.ui.xt xtVar3 = ztVar.d;
                         if (adapter != xtVar3) {
-                            ztVar.f45059a.setAdapter(xtVar3);
-                            ztVar.f45059a.setFastScrollVisible(false);
+                            ztVar.f45061a.setAdapter(xtVar3);
+                            ztVar.f45061a.setFastScrollVisible(false);
                         }
                     }
                     xtVar2.l();
@@ -162,7 +162,7 @@ public final class ea1 implements Runnable {
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.ov(tyVar, 25), 300L);
                 return;
             case 11:
-                ((org.telegram.ui.sy) obj).f41788a.postOnAnimation(new org.telegram.ui.ov((org.telegram.ui.ty) obj2, 15));
+                ((org.telegram.ui.sy) obj).f41790a.postOnAnimation(new org.telegram.ui.ov((org.telegram.ui.ty) obj2, 15));
                 return;
             case 12:
                 org.telegram.ui.ty tyVar2 = (org.telegram.ui.ty) obj2;
@@ -177,7 +177,7 @@ public final class ea1 implements Runnable {
                 return;
             case 13:
                 ArrayList arrayList5 = (ArrayList) obj;
-                org.telegram.ui.ty tyVar3 = ((org.telegram.ui.sw) obj2).f41778b;
+                org.telegram.ui.ty tyVar3 = ((org.telegram.ui.sw) obj2).f41780b;
                 tyVar3.y3 = 2;
                 tyVar3.x4(true, true);
                 tyVar3.l3();
@@ -199,7 +199,7 @@ public final class ea1 implements Runnable {
                 return;
             case 15:
                 CharSequence charSequence = (CharSequence) obj;
-                org.telegram.ui.ty tyVar4 = ((org.telegram.ui.ex) obj2).f37377a;
+                org.telegram.ui.ty tyVar4 = ((org.telegram.ui.ex) obj2).f37379a;
                 tyVar4.H2 = null;
                 rr0 rr0Var = tyVar4.G2;
                 if (rr0Var != null && rr0Var.h) {
@@ -209,7 +209,7 @@ public final class ea1 implements Runnable {
                 return;
             case 16:
                 org.telegram.ui.ActionBar.n2[] n2VarArr = (org.telegram.ui.ActionBar.n2[]) obj;
-                ((org.telegram.ui.sx) obj2).f41782b.removeSelfFromStack();
+                ((org.telegram.ui.sx) obj2).f41784b.removeSelfFromStack();
                 if (n2VarArr[1] != null) {
                     n2VarArr[0].removeSelfFromStack();
                     n2VarArr[1].finishFragment();
@@ -219,8 +219,8 @@ public final class ea1 implements Runnable {
                 return;
             case 17:
                 org.telegram.ui.fz fzVar = (org.telegram.ui.fz) obj2;
-                org.telegram.ui.zn znVar = fzVar.f37717a;
-                xy0 xy0Var = new xy0(znVar.getParentActivity(), fzVar.f37717a, ((MessageObject) obj).getInputStickerSet(), null, znVar.Y, znVar.getResourceProvider());
+                org.telegram.ui.zn znVar = fzVar.f37719a;
+                xy0 xy0Var = new xy0(znVar.getParentActivity(), fzVar.f37719a, ((MessageObject) obj).getInputStickerSet(), null, znVar.Y, znVar.getResourceProvider());
                 xy0Var.setCalcMandatoryInsets(znVar.C9());
                 znVar.showDialog(xy0Var);
                 return;
@@ -229,26 +229,26 @@ public final class ea1 implements Runnable {
                 a00Var.getClass();
                 ((org.telegram.ui.ActionBar.b2) obj).dismiss();
                 org.telegram.ui.b00 b00Var = a00Var.E;
-                org.telegram.ui.c00 c00Var = b00Var.f36080c;
-                Utilities.Callback callback = c00Var.f36480x;
+                org.telegram.ui.c00 c00Var = b00Var.f36082c;
+                Utilities.Callback callback = c00Var.f36482x;
                 if (callback != null) {
                     callback.run(c00Var.d);
                 }
-                b00Var.f36080c.finishFragment();
+                b00Var.f36082c.finishFragment();
                 return;
             case 19:
                 org.telegram.ui.f10 f10Var = (org.telegram.ui.f10) obj2;
-                org.telegram.ui.c00 c00Var2 = new org.telegram.ui.c00(f10Var.f37416r, ((org.telegram.ui.w00) obj).f43033m);
-                c00Var2.f36481y = new org.telegram.ui.f00(f10Var, 1);
-                c00Var2.f36480x = new org.telegram.ui.f00(f10Var, 2);
+                org.telegram.ui.c00 c00Var2 = new org.telegram.ui.c00(f10Var.f37418r, ((org.telegram.ui.w00) obj).f43035m);
+                c00Var2.f36483y = new org.telegram.ui.f00(f10Var, 1);
+                c00Var2.f36482x = new org.telegram.ui.f00(f10Var, 2);
                 f10Var.presentFragment(c00Var2);
                 return;
             case 20:
                 org.telegram.ui.f10 f10Var2 = (org.telegram.ui.f10) obj2;
                 Runnable runnable = (Runnable) obj;
                 f10Var2.h = false;
-                f10Var2.f37417s = false;
-                f10Var2.f37416r.flags = f10Var2.f37420y;
+                f10Var2.f37419s = false;
+                f10Var2.f37418r.flags = f10Var2.f37422y;
                 f10Var2.i0(true);
                 f10Var2.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogFiltersUpdated, new Object[0]);
                 if (runnable != null) {
@@ -274,7 +274,7 @@ public final class ea1 implements Runnable {
             case 22:
                 org.telegram.ui.f10 f10Var4 = (org.telegram.ui.f10) obj2;
                 org.telegram.ui.ActionBar.b2 b2Var = (org.telegram.ui.ActionBar.b2) obj;
-                MessagesController.DialogFilter dialogFilter = f10Var4.f37416r;
+                MessagesController.DialogFilter dialogFilter = f10Var4.f37418r;
                 if (b2Var != null) {
                     try {
                         b2Var.dismiss();
@@ -300,7 +300,7 @@ public final class ea1 implements Runnable {
                 }
                 return;
             case 25:
-                FiltersSetupActivity filtersSetupActivity2 = ((org.telegram.ui.c20) obj2).f36499e;
+                FiltersSetupActivity filtersSetupActivity2 = ((org.telegram.ui.c20) obj2).f36501e;
                 filtersSetupActivity2.getMessagesController().suggestedFilters.remove((TLRPC.TL_dialogFilterSuggested) obj);
                 filtersSetupActivity2.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogFiltersUpdated, new Object[0]);
                 return;
@@ -343,7 +343,7 @@ public final class ea1 implements Runnable {
                     return;
                 }
             default:
-                ((org.telegram.ui.g60) ((org.telegram.ui.w5) obj2).f43090b).U0.setNewColors((int[]) obj);
+                ((org.telegram.ui.g60) ((org.telegram.ui.w5) obj2).f43092b).U0.setNewColors((int[]) obj);
                 return;
         }
     }

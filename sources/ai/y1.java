@@ -258,8 +258,8 @@ public final class y1 implements Utilities.Callback {
                     u8Var.V();
                     return;
                 }
-                u8Var.f6092o0 = n0Var.f46421e;
-                u8Var.f6091n0 = n0Var.f46422f;
+                u8Var.f6092o0 = n0Var.f46423e;
+                u8Var.f6091n0 = n0Var.f46424f;
                 return;
             case 16:
                 ((ci.u9) this.f1933b).f6095n.W.H = ((Integer) obj).intValue();

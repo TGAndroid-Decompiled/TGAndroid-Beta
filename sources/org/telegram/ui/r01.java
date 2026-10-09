@@ -7,20 +7,20 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_fragment;
 public final class r01 extends ClickableSpan {
-    public final TLRPC.TL_username f41236a;
-    public final String f41237b;
-    public final y01 f41238c;
+    public final TLRPC.TL_username f41238a;
+    public final String f41239b;
+    public final y01 f41240c;
 
     public r01(y01 y01Var, TLRPC.TL_username tL_username, String str) {
-        this.f41238c = y01Var;
-        this.f41236a = tL_username;
-        this.f41237b = str;
+        this.f41240c = y01Var;
+        this.f41238a = tL_username;
+        this.f41239b = str;
     }
 
     @Override
     public final void onClick(View view) {
-        ProfileActivity profileActivity = this.f41238c.f44189e;
-        TLRPC.TL_username tL_username = this.f41236a;
+        ProfileActivity profileActivity = this.f41240c.f44191e;
+        TLRPC.TL_username tL_username = this.f41238a;
         if (!tL_username.editable) {
             if (profileActivity.f34276i5 != this) {
                 profileActivity.M4(this);
@@ -34,7 +34,7 @@ public final class r01 extends ClickableSpan {
             return;
         }
         profileActivity.M4(null);
-        String str = profileActivity.getMessagesController().linkPrefix + "/" + this.f41237b;
+        String str = profileActivity.getMessagesController().linkPrefix + "/" + this.f41239b;
         TLRPC.Chat chat = profileActivity.E2;
         if (chat != null && chat.noforwards) {
             return;

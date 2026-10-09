@@ -78,7 +78,7 @@ public final class bo0 extends FrameLayout implements NotificationCenter.Notific
         w0Var.setOnScrollListener(new mh0(this, 3));
         s4.j jVar = new s4.j();
         jVar.C = false;
-        jVar.f47696m = false;
+        jVar.f47698m = false;
         w0Var.setItemAnimator(jVar);
         w0Var.setOnItemClickListener(new vn0(this, i10, 0));
         w0Var.setOnItemLongClickListener(new bw(this, 17));
@@ -279,8 +279,8 @@ public final class bo0 extends FrameLayout implements NotificationCenter.Notific
                             int id2 = k7Var.getMessage().getId();
                             long dialogId = k7Var.getMessage().getDialogId();
                             org.telegram.ui.o10 o10Var = this.J;
-                            o10Var.f40397a = dialogId;
-                            o10Var.f40398b = id2;
+                            o10Var.f40399a = dialogId;
+                            o10Var.f40400b = id2;
                             k7Var.b(this.I.c(o10Var), true);
                         }
                     }

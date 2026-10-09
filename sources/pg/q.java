@@ -5,15 +5,15 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.f91;
 public final class q extends f91 {
-    public final ai.d1 f45719a;
+    public final ai.d1 f45721a;
 
     public q(ai.d1 d1Var) {
-        this.f45719a = d1Var;
+        this.f45721a = d1Var;
     }
 
     @Override
     public final View d(int i10) {
-        ai.d1 d1Var = this.f45719a;
+        ai.d1 d1Var = this.f45721a;
         if (i10 != 1) {
             if (i10 != 2) {
                 return (t) d1Var.f804b;

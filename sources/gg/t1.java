@@ -37,7 +37,7 @@ public abstract class t1 extends pm0 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47660f;
+        int i10 = d1Var.f47662f;
         if (i10 != 0 && i10 != 2 && i10 != 3) {
             return false;
         }

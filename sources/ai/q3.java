@@ -80,15 +80,15 @@ public final class q3 implements RequestDelegate {
                 TLRPC.TL_chatInviteExported tL_chatInviteExported = (TLRPC.TL_chatInviteExported) obj;
                 boolean[] zArr = (boolean[]) obj3;
                 org.telegram.ui.ActionBar.b2 b2Var = (org.telegram.ui.ActionBar.b2) obj2;
-                org.telegram.ui.vb vbVar = pbVar.f40756a.f41366n;
+                org.telegram.ui.vb vbVar = pbVar.f40758a.f41368n;
                 if (tL_error == null) {
                     tL_messages_exportedChatInvite = (TLRPC.TL_messages_exportedChatInvite) tLObject;
                     for (int i11 = 0; i11 < tL_messages_exportedChatInvite.users.size(); i11++) {
                         TLRPC.User user = tL_messages_exportedChatInvite.users.get(i11);
-                        if (vbVar.f42801z0 == null) {
-                            vbVar.f42801z0 = new HashMap();
+                        if (vbVar.f42803z0 == null) {
+                            vbVar.f42803z0 = new HashMap();
                         }
-                        vbVar.f42801z0.put(Long.valueOf(user.f20185id), user);
+                        vbVar.f42803z0.put(Long.valueOf(user.f20185id), user);
                     }
                 } else {
                     tL_messages_exportedChatInvite = null;
@@ -139,7 +139,7 @@ public final class q3 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new a9((yh.s3) obj4, tLObject, (tg.m1[]) obj, (Long) obj3, (tg.q) obj2, tL_error, 22));
                 return;
             case 18:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Wallet.p6((yh.m5) obj4, (org.telegram.ui.ActionBar.b2) obj, tLObject, (TL_stars.InputSavedStarGift) obj3, (Utilities.Callback) obj2, 11));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Wallet.q6((yh.m5) obj4, (org.telegram.ui.ActionBar.b2) obj, tLObject, (TL_stars.InputSavedStarGift) obj3, (Utilities.Callback) obj2, 11));
                 return;
             case 19:
                 AndroidUtilities.runOnUIThread(new a9((yh.m5) obj4, tLObject, (MessageObject) obj, (TLRPC.TL_inputInvoiceMessage) obj3, (cj) obj2, tL_error, 25));

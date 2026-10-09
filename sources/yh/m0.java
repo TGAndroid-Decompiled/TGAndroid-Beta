@@ -15,15 +15,15 @@ public final class m0 extends c71 {
     @Override
     public final void v(s4.d1 d1Var, int i10) {
         super.v(d1Var, i10);
-        View view = d1Var.f47656a;
+        View view = d1Var.f47658a;
         if (!(view instanceof p0)) {
             return;
         }
         p0 p0Var = (p0) view;
         n0 n0Var = p0Var.v;
         boolean S = this.N.S(n0Var);
-        p0Var.f52980c.f(S, false);
-        p0Var.f52984r.a(S, false);
+        p0Var.f52982c.f(S, false);
+        p0Var.f52986r.a(S, false);
         p0Var.setOnClickListener(new xh.a(9, this, n0Var));
     }
 }

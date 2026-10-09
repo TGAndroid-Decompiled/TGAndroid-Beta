@@ -51,10 +51,10 @@ public final class d implements View.OnTouchListener {
             case 2:
                 return true;
             case 3:
-                HashSet hashSet = i4.f38469b1;
+                HashSet hashSet = i4.f38471b1;
                 return true;
             case 4:
-                int i12 = g9.f37940e;
+                int i12 = g9.f37942e;
                 return true;
             case 5:
                 int i13 = y2.f23756w;
@@ -122,10 +122,10 @@ public final class d implements View.OnTouchListener {
                 int i27 = UndoView.f24370e0;
                 return true;
             case 27:
-                int i28 = dk0.f37028d0;
+                int i28 = dk0.f37030d0;
                 return true;
             case 28:
-                List list = vo0.f42909g1;
+                List list = vo0.f42911g1;
                 return true;
             default:
                 int i29 = PopupNotificationActivity.f34112b0;

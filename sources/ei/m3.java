@@ -75,11 +75,11 @@ public final class m3 implements View.OnClickListener {
                 g10.n();
                 g10.o();
                 ArrayList arrayList = new ArrayList();
-                ArrayList arrayList2 = g10.f52950j;
+                ArrayList arrayList2 = g10.f52952j;
                 if (arrayList2 != null) {
                     arrayList.addAll(arrayList2);
                 }
-                ArrayList arrayList3 = g10.f52952l;
+                ArrayList arrayList3 = g10.f52954l;
                 if (arrayList3 != null) {
                     arrayList.addAll(arrayList3);
                 }

@@ -61,7 +61,7 @@ public final class k implements u9, wh1, m4.a1, e2.h, org.telegram.ui.ActionBar.
             default:
                 f10 f10Var = (f10) this.f1217c;
                 LongSparseIntArray longSparseIntArray = f10Var.H;
-                f10Var.f37420y = i10;
+                f10Var.f37422y = i10;
                 if (this.f1216b) {
                     f10Var.o0(f10Var.F, arrayList, true);
                     f10Var.F = arrayList;
@@ -139,8 +139,8 @@ public final class k implements u9, wh1, m4.a1, e2.h, org.telegram.ui.ActionBar.
                 return;
             case 6:
             default:
-                g60 g60Var = ((j50) this.f1217c).f38824b;
-                g60Var.f37787a1.toggleRecord(null, 0);
+                g60 g60Var = ((j50) this.f1217c).f38826b;
+                g60Var.f37789a1.toggleRecord(null, 0);
                 UndoView l1 = g60Var.l1();
                 if (this.f1216b) {
                     i11 = 101;
@@ -228,7 +228,7 @@ public final class k implements u9, wh1, m4.a1, e2.h, org.telegram.ui.ActionBar.
     @Override
     public void l(vh.g gVar, float f7, float f10) {
         vh.n nVar = (vh.n) this.f1217c;
-        if (!nVar.d && !nVar.f49731e && !nVar.f49732f && this.f1216b) {
+        if (!nVar.d && !nVar.f49733e && !nVar.f49734f && this.f1216b) {
             nVar.c(f7, f10);
         }
     }

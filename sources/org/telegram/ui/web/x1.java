@@ -18,7 +18,7 @@ import org.telegram.ui.Components.qm0;
 import org.telegram.ui.Components.s5;
 import org.telegram.ui.tk;
 public final class x1 extends o61 {
-    public static final int f43533a = 0;
+    public static final int f43535a = 0;
 
     static {
         o61.setup(new o61());
@@ -30,9 +30,9 @@ public final class x1 extends o61 {
         CharSequence charSequence = p61Var.f29736n;
         String str = (String) p61Var.f29734l;
         long j3 = p61Var.B;
-        ImageView imageView = y1Var.f43548a;
-        y1Var.f43549b.setText(charSequence);
-        tk tkVar = y1Var.f43550c;
+        ImageView imageView = y1Var.f43550a;
+        y1Var.f43551b.setText(charSequence);
+        tk tkVar = y1Var.f43552c;
         tkVar.setText(str);
         if (TextUtils.isEmpty(charSequence)) {
             tkVar.setTranslationY(-AndroidUtilities.dp(14.0f));
@@ -43,7 +43,7 @@ public final class x1 extends o61 {
             tkVar.setScaleX(1.0f);
             tkVar.setScaleY(1.0f);
         }
-        y1Var.f43551e = str;
+        y1Var.f43553e = str;
         if (TextUtils.isEmpty(charSequence)) {
             if (!str.isEmpty() && !TextUtils.isEmpty(str)) {
                 charSequence = str;
@@ -70,7 +70,7 @@ public final class x1 extends o61 {
             frVar.f26468n = dp2;
             imageView.setImageDrawable(frVar);
         }
-        y1Var.f43552f = z10;
+        y1Var.f43554f = z10;
         y1Var.invalidate();
     }
 

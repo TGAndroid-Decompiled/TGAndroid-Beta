@@ -22,7 +22,7 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import w7.x5;
 public final class d extends eb {
-    public static final int f51197a0 = 0;
+    public static final int f51199a0 = 0;
     public final List X;
     public final GiftAuctionController.Auction Y;
     public c71 Z;

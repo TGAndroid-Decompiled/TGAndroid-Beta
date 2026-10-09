@@ -9,16 +9,16 @@ import org.telegram.messenger.SvgHelper;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.i6;
 public final class h extends qh.e {
-    public final TLRPC.Document f47561b;
-    public final Object f47562c;
+    public final TLRPC.Document f47563b;
+    public final Object f47564c;
 
     public h(TLRPC.Document document, Object obj) {
         boolean z10;
         String str;
-        this.f47561b = document;
-        this.f47562c = obj;
+        this.f47563b = document;
+        this.f47564c = obj;
         MessageObject.isAnimatedEmoji(document);
-        ImageReceiver imageReceiver = this.f46675a;
+        ImageReceiver imageReceiver = this.f46677a;
         if (!MessageObject.isStickerDocument(document) && !MessageObject.isVideoSticker(document)) {
             z10 = false;
         } else {
@@ -39,7 +39,7 @@ public final class h extends qh.e {
 
     @Override
     public final void c(Canvas canvas, int i10, int i11) {
-        ImageReceiver imageReceiver = this.f46675a;
+        ImageReceiver imageReceiver = this.f46677a;
         imageReceiver.setImageCoords(0.0f, 0.0f, i10, i11);
         imageReceiver.draw(canvas);
     }

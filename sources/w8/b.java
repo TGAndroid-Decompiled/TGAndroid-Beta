@@ -7,16 +7,16 @@ import v8.r;
 import w7.d0;
 public final class b extends o6.a {
     public static final Parcelable.Creator<b> CREATOR = new r(18);
-    public String f50189a;
-    public String f50190b;
-    public ArrayList f50191c;
+    public String f50191a;
+    public String f50192b;
+    public ArrayList f50193c;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = d0.q(parcel, 20293);
-        d0.l(parcel, 2, this.f50189a);
-        d0.l(parcel, 3, this.f50190b);
-        d0.p(parcel, 4, this.f50191c);
+        d0.l(parcel, 2, this.f50191a);
+        d0.l(parcel, 3, this.f50192b);
+        d0.p(parcel, 4, this.f50193c);
         d0.r(parcel, q6);
     }
 }

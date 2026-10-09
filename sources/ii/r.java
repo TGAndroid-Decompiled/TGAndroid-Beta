@@ -352,7 +352,7 @@ public final class r extends qi implements NotificationCenter.NotificationCenter
                         org.telegram.ui.ActionBar.n2 n2Var2 = yiVar.f33228f0;
                         if (n2Var2 instanceof zn) {
                             zn znVar = (zn) n2Var2;
-                            MessageObject messageObject3 = znVar.f44866n5;
+                            MessageObject messageObject3 = znVar.f44868n5;
                             MessageObject messageObject4 = znVar.X3;
                             j10 = znVar.S8();
                             sendMessageChatArguments = znVar.H8();
@@ -545,7 +545,7 @@ public final class r extends qi implements NotificationCenter.NotificationCenter
                 return false;
             }
             TL_iv.RichMessage k22 = x3Var.k2();
-            AccountInstance.getInstance(this.f12649n).getMediaDataController().saveDraft(znVar.a(), znVar.E7(znVar.f44866n5), "", null, null, null, null, 0L, false, false, k22);
+            AccountInstance.getInstance(this.f12649n).getMediaDataController().saveDraft(znVar.a(), znVar.E7(znVar.f44868n5), "", null, null, null, null, 0L, false, false, k22);
             ok okVar = znVar.Y;
             if (okVar != null) {
                 okVar.setRichDraftPreview(k22);

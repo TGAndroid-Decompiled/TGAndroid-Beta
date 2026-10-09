@@ -191,13 +191,13 @@ public final class q51 implements Runnable {
                 TL_wallet.inputTonConnectOauthSession[] inputtonconnectoauthsessionArr = (TL_wallet.inputTonConnectOauthSession[]) this.f30060r;
                 ai.db dbVar = (ai.db) this.f30061s;
                 if (!tL_urlAuthResultRequest.request_wallet) {
-                    org.telegram.ui.ml0.f39936a = f3Var;
+                    org.telegram.ui.ml0.f39938a = f3Var;
                     f3Var.show();
                     return;
                 }
                 org.telegram.ui.Wallet.i2 B2 = org.telegram.ui.Wallet.d2.B(context, iArr[0], null, tL_urlAuthResultRequest, e6Var, new org.telegram.ui.e90(f3VarArr, zArr2, inputtonconnectoauthsessionArr, tL_urlAuthResultRequest, f3Var, dbVar, 2), new org.telegram.ui.tf0(12, f3VarArr, zArr2));
                 f3VarArr[0] = B2;
-                org.telegram.ui.ml0.f39936a = B2;
+                org.telegram.ui.ml0.f39938a = B2;
                 return;
             case 3:
                 org.telegram.ui.Wallet.d2 d2Var = (org.telegram.ui.Wallet.d2) this.d;
@@ -211,7 +211,7 @@ public final class q51 implements Runnable {
                 ai.m0 m0Var = (ai.m0) this.f30061s;
                 d2Var.getClass();
                 try {
-                    AndroidUtilities.runOnUIThread(new ai.a9(d2Var, str6, bArr, org.telegram.ui.Wallet.d2.q(h0Var, tonconnectsession, str6, bArr, jSONArray, tL_urlAuthResultRequest2.domain, null, tonconnectchallenge, d2Var.f34791f.getCurrentTime()), m0Var, tonconnectsession, 13));
+                    AndroidUtilities.runOnUIThread(new ai.a9(d2Var, str6, bArr, org.telegram.ui.Wallet.d2.q(h0Var, tonconnectsession, str6, bArr, jSONArray, tL_urlAuthResultRequest2.domain, null, tonconnectchallenge, d2Var.f34771f.getCurrentTime()), m0Var, tonconnectsession, 13));
                     return;
                 } catch (Exception e7) {
                     m0Var.run(null, org.telegram.ui.Wallet.d2.h("prepare OAuth connect", e7));
@@ -227,12 +227,12 @@ public final class q51 implements Runnable {
                 final org.telegram.ui.Wallet.h0 h0Var2 = (org.telegram.ui.Wallet.h0) this.f30056c;
                 final JSONArray jSONArray2 = (JSONArray) this.f30060r;
                 final TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest3 = (TLRPC.TL_urlAuthResultRequest) this.f30061s;
-                org.telegram.ui.Wallet.k0 k0Var = d2Var2.f34788b;
+                org.telegram.ui.Wallet.k0 k0Var = d2Var2.f34768b;
                 if (TextUtils.equals(str7, k0Var.r()) && Arrays.equals(bArr2, k0Var.w()) && ((str = tonconnectsession2.client_id) == null || str8.equalsIgnoreCase(str))) {
                     TL_wallet.tonConnectRegisterKey tonconnectregisterkey = new TL_wallet.tonConnectRegisterKey();
                     tonconnectregisterkey.session_id = tonconnectsession2.f20299id;
                     tonconnectregisterkey.client_id = str8;
-                    d2Var2.f34791f.sendRequestTyped(tonconnectregisterkey, new Object(), new Utilities.Callback2() {
+                    d2Var2.f34771f.sendRequestTyped(tonconnectregisterkey, new Object(), new Utilities.Callback2() {
                         @Override
                         public final void run(Object obj, Object obj2) {
                             d2 d2Var3 = d2.this;

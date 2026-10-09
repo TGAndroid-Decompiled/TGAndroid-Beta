@@ -173,9 +173,9 @@ public final class p3 implements Runnable {
                     if (arrayList.isEmpty()) {
                         for (int i16 = 0; i16 < arrayList3.size(); i16++) {
                             Pair pair = (Pair) arrayList3.get(i16);
-                            hi0Var.f38349a.add((Long) pair.first);
-                            hi0Var.f38350b.add((Integer) pair.second);
-                            hi0Var.f38351c.add((TLObject) hashMap.get(pair.first));
+                            hi0Var.f38351a.add((Long) pair.first);
+                            hi0Var.f38352b.add((Integer) pair.second);
+                            hi0Var.f38353c.add((TLObject) hashMap.get(pair.first));
                         }
                         hi0Var.b();
                         return;
@@ -219,9 +219,9 @@ public final class p3 implements Runnable {
                                                                         ArrayList arrayList5 = arrayList4;
                                                                         if (i18 < arrayList5.size()) {
                                                                             Pair pair2 = (Pair) arrayList5.get(i18);
-                                                                            hi0Var3.f38349a.add((Long) pair2.first);
-                                                                            hi0Var3.f38350b.add((Integer) pair2.second);
-                                                                            hi0Var3.f38351c.add((TLObject) hashMap3.get(pair2.first));
+                                                                            hi0Var3.f38351a.add((Long) pair2.first);
+                                                                            hi0Var3.f38352b.add((Integer) pair2.second);
+                                                                            hi0Var3.f38353c.add((TLObject) hashMap3.get(pair2.first));
                                                                             i18++;
                                                                         }
                                                                     }
@@ -251,9 +251,9 @@ public final class p3 implements Runnable {
                                                                         ArrayList arrayList6 = arrayList4;
                                                                         if (i20 < arrayList6.size()) {
                                                                             Pair pair3 = (Pair) arrayList6.get(i20);
-                                                                            hi0Var4.f38349a.add((Long) pair3.first);
-                                                                            hi0Var4.f38350b.add((Integer) pair3.second);
-                                                                            hi0Var4.f38351c.add((TLObject) hashMap4.get(pair3.first));
+                                                                            hi0Var4.f38351a.add((Long) pair3.first);
+                                                                            hi0Var4.f38352b.add((Integer) pair3.second);
+                                                                            hi0Var4.f38353c.add((TLObject) hashMap4.get(pair3.first));
                                                                             i20++;
                                                                         }
                                                                     }
@@ -296,9 +296,9 @@ public final class p3 implements Runnable {
                                                                         ArrayList arrayList52 = arrayList5;
                                                                         if (i182 < arrayList52.size()) {
                                                                             Pair pair2 = (Pair) arrayList52.get(i182);
-                                                                            hi0Var32.f38349a.add((Long) pair2.first);
-                                                                            hi0Var32.f38350b.add((Integer) pair2.second);
-                                                                            hi0Var32.f38351c.add((TLObject) hashMap32.get(pair2.first));
+                                                                            hi0Var32.f38351a.add((Long) pair2.first);
+                                                                            hi0Var32.f38352b.add((Integer) pair2.second);
+                                                                            hi0Var32.f38353c.add((TLObject) hashMap32.get(pair2.first));
                                                                             i182++;
                                                                         }
                                                                     }
@@ -328,9 +328,9 @@ public final class p3 implements Runnable {
                                                                         ArrayList arrayList6 = arrayList5;
                                                                         if (i20 < arrayList6.size()) {
                                                                             Pair pair3 = (Pair) arrayList6.get(i20);
-                                                                            hi0Var4.f38349a.add((Long) pair3.first);
-                                                                            hi0Var4.f38350b.add((Integer) pair3.second);
-                                                                            hi0Var4.f38351c.add((TLObject) hashMap4.get(pair3.first));
+                                                                            hi0Var4.f38351a.add((Long) pair3.first);
+                                                                            hi0Var4.f38352b.add((Integer) pair3.second);
+                                                                            hi0Var4.f38353c.add((TLObject) hashMap4.get(pair3.first));
                                                                             i20++;
                                                                         }
                                                                     }
@@ -384,9 +384,9 @@ public final class p3 implements Runnable {
                                                                         ArrayList arrayList52 = arrayList4;
                                                                         if (i182 < arrayList52.size()) {
                                                                             Pair pair2 = (Pair) arrayList52.get(i182);
-                                                                            hi0Var32.f38349a.add((Long) pair2.first);
-                                                                            hi0Var32.f38350b.add((Integer) pair2.second);
-                                                                            hi0Var32.f38351c.add((TLObject) hashMap32.get(pair2.first));
+                                                                            hi0Var32.f38351a.add((Long) pair2.first);
+                                                                            hi0Var32.f38352b.add((Integer) pair2.second);
+                                                                            hi0Var32.f38353c.add((TLObject) hashMap32.get(pair2.first));
                                                                             i182++;
                                                                         }
                                                                     }
@@ -416,9 +416,9 @@ public final class p3 implements Runnable {
                                                                         ArrayList arrayList6 = arrayList4;
                                                                         if (i20 < arrayList6.size()) {
                                                                             Pair pair3 = (Pair) arrayList6.get(i20);
-                                                                            hi0Var4.f38349a.add((Long) pair3.first);
-                                                                            hi0Var4.f38350b.add((Integer) pair3.second);
-                                                                            hi0Var4.f38351c.add((TLObject) hashMap4.get(pair3.first));
+                                                                            hi0Var4.f38351a.add((Long) pair3.first);
+                                                                            hi0Var4.f38352b.add((Integer) pair3.second);
+                                                                            hi0Var4.f38353c.add((TLObject) hashMap4.get(pair3.first));
                                                                             i20++;
                                                                         }
                                                                     }
@@ -461,9 +461,9 @@ public final class p3 implements Runnable {
                                                                         ArrayList arrayList52 = arrayList5;
                                                                         if (i182 < arrayList52.size()) {
                                                                             Pair pair2 = (Pair) arrayList52.get(i182);
-                                                                            hi0Var32.f38349a.add((Long) pair2.first);
-                                                                            hi0Var32.f38350b.add((Integer) pair2.second);
-                                                                            hi0Var32.f38351c.add((TLObject) hashMap32.get(pair2.first));
+                                                                            hi0Var32.f38351a.add((Long) pair2.first);
+                                                                            hi0Var32.f38352b.add((Integer) pair2.second);
+                                                                            hi0Var32.f38353c.add((TLObject) hashMap32.get(pair2.first));
                                                                             i182++;
                                                                         }
                                                                     }
@@ -493,9 +493,9 @@ public final class p3 implements Runnable {
                                                                         ArrayList arrayList6 = arrayList5;
                                                                         if (i20 < arrayList6.size()) {
                                                                             Pair pair3 = (Pair) arrayList6.get(i20);
-                                                                            hi0Var4.f38349a.add((Long) pair3.first);
-                                                                            hi0Var4.f38350b.add((Integer) pair3.second);
-                                                                            hi0Var4.f38351c.add((TLObject) hashMap4.get(pair3.first));
+                                                                            hi0Var4.f38351a.add((Long) pair3.first);
+                                                                            hi0Var4.f38352b.add((Integer) pair3.second);
+                                                                            hi0Var4.f38353c.add((TLObject) hashMap4.get(pair3.first));
                                                                             i20++;
                                                                         }
                                                                     }

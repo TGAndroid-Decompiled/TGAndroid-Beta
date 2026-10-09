@@ -58,7 +58,7 @@ public final class kh0 extends FrameLayout {
                 return;
             case 3:
                 org.telegram.ui.b61 b61Var = (org.telegram.ui.b61) obj;
-                if (!this.f28010b && b61Var.f44496r > 0.0f) {
+                if (!this.f28010b && b61Var.f44498r > 0.0f) {
                     if (((Paint) this.f28011c) == null) {
                         Paint paint3 = new Paint();
                         this.f28011c = paint3;
@@ -67,7 +67,7 @@ public final class kh0 extends FrameLayout {
                     }
                     canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), 255, 31);
                     super.dispatchDraw(canvas);
-                    ((Paint) this.f28011c).setAlpha((int) (b61Var.f44496r * 255.0f));
+                    ((Paint) this.f28011c).setAlpha((int) (b61Var.f44498r * 255.0f));
                     canvas.drawRect(0.0f, 0.0f, AndroidUtilities.dp(18.0f), getMeasuredHeight(), (Paint) this.f28011c);
                     canvas.restore();
                     return;
@@ -102,7 +102,7 @@ public final class kh0 extends FrameLayout {
                     if ((z10 || z12) && limitPreviewView.f24243e0 != null) {
                         canvas.saveLayer(view.getLeft(), view.getTop(), view.getRight(), view.getBottom(), (Paint) this.f28011c, 31);
                         rg.t tVar = limitPreviewView.f24243e0;
-                        canvas.drawRect(view.getLeft(), view.getTop(), view.getRight(), view.getBottom(), ((org.telegram.ui.v5) ((org.telegram.ui.z0) tVar).f44437b).u0(getX() + ((ViewGroup) getParent()).getX(), getY() + ((ViewGroup) getParent()).getY()));
+                        canvas.drawRect(view.getLeft(), view.getTop(), view.getRight(), view.getBottom(), ((org.telegram.ui.v5) ((org.telegram.ui.z0) tVar).f44439b).u0(getX() + ((ViewGroup) getParent()).getX(), getY() + ((ViewGroup) getParent()).getY()));
                         canvas.restore();
                         invalidate();
                         return drawChild;

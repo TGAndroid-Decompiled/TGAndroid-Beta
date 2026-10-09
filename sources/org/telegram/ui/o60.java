@@ -54,25 +54,25 @@ public final class o60 extends org.telegram.ui.Components.qm0 {
             case 0:
                 super.dispatchDraw(canvas);
                 q60 q60Var = (q60) this.W2;
-                if (q60Var.f41027z0 != null && q60Var.A0 >= 1.0f) {
+                if (q60Var.f41029z0 != null && q60Var.A0 >= 1.0f) {
                     canvas.save();
-                    int measuredHeight = q60Var.f41027z0.getMeasuredHeight();
+                    int measuredHeight = q60Var.f41029z0.getMeasuredHeight();
                     kVar = ((org.telegram.ui.ActionBar.n2) q60Var).actionBar;
                     canvas.translate(0.0f, -(measuredHeight - kVar.getMeasuredHeight()));
-                    q60Var.f41027z0.draw(canvas);
+                    q60Var.f41029z0.draw(canvas);
                     canvas.restore();
                     return;
                 }
                 return;
             case 1:
                 zp0 zp0Var = (zp0) this.W2;
-                Paint paint = zp0Var.f45039w;
-                RectF rectF = zp0Var.f45038s;
-                RectF rectF2 = zp0Var.f45037r;
-                RectF rectF3 = zp0Var.f45036n;
-                s4.d0 d0Var = zp0Var.f45032b;
-                if (!zp0Var.f45035f.isEmpty()) {
-                    float d = zp0Var.f45034e.d(zp0Var.d, false);
+                Paint paint = zp0Var.f45041w;
+                RectF rectF = zp0Var.f45040s;
+                RectF rectF2 = zp0Var.f45039r;
+                RectF rectF3 = zp0Var.f45038n;
+                s4.d0 d0Var = zp0Var.f45034b;
+                if (!zp0Var.f45037f.isEmpty()) {
+                    float d = zp0Var.f45036e.d(zp0Var.d, false);
                     double d10 = d;
                     int clamp = Utilities.clamp((int) Math.floor(d10), arrayList.size() - 1, 0);
                     int clamp2 = Utilities.clamp((int) Math.ceil(d10), arrayList.size() - 1, 0);
@@ -90,7 +90,7 @@ public final class o60 extends org.telegram.ui.Components.qm0 {
                         }
                         rectF2.set(m10.getLeft(), m10.getTop(), m10.getRight(), m10.getBottom());
                         AndroidUtilities.lerp(rectF3, rectF2, d - clamp, rectF);
-                        paint.setColor(zp0Var.f45040x);
+                        paint.setColor(zp0Var.f45042x);
                         float height = rectF.height() / 2.0f;
                         canvas.drawRoundRect(rectF, height, height, paint);
                         super.dispatchDraw(canvas);

@@ -26,7 +26,7 @@ public final class i91 extends AnimatorListenerAdapter {
     public void onAnimationCancel(Animator animator) {
         switch (this.f27296a) {
             case 26:
-                ((org.telegram.ui.gf0) this.f27297b).f38005s = null;
+                ((org.telegram.ui.gf0) this.f27297b).f38007s = null;
                 return;
             default:
                 super.onAnimationCancel(animator);
@@ -158,36 +158,36 @@ public final class i91 extends AnimatorListenerAdapter {
                 return;
             case 15:
                 org.telegram.ui.fu fuVar = (org.telegram.ui.fu) this.f27297b;
-                if (animator.equals(fuVar.f37694n[0])) {
-                    fuVar.f37694n[0] = null;
+                if (animator.equals(fuVar.f37696n[0])) {
+                    fuVar.f37696n[0] = null;
                     return;
                 }
                 return;
             case 16:
                 org.telegram.ui.kv kvVar = (org.telegram.ui.kv) this.f27297b;
-                org.telegram.ui.mv mvVar = kvVar.f39358n;
-                org.telegram.ui.lv[] lvVarArr = mvVar.f39993f;
+                org.telegram.ui.mv mvVar = kvVar.f39360n;
+                org.telegram.ui.lv[] lvVarArr = mvVar.f39995f;
                 mvVar.h = null;
-                if (mvVar.f39996s) {
+                if (mvVar.f39998s) {
                     lvVarArr[1].setVisibility(8);
                 } else {
                     org.telegram.ui.lv lvVar = lvVarArr[0];
                     lvVarArr[0] = lvVarArr[1];
                     lvVarArr[1] = lvVar;
                     lvVar.setVisibility(8);
-                    if (mvVar.f39993f[0].f39683f == mvVar.f39992e.getFirstTabId()) {
+                    if (mvVar.f39995f[0].f39685f == mvVar.f39994e.getFirstTabId()) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    mvVar.f39997w = z10;
-                    mvVar.f39992e.j(1.0f, mvVar.f39993f[0].f39683f);
+                    mvVar.f39999w = z10;
+                    mvVar.f39994e.j(1.0f, mvVar.f39995f[0].f39685f);
                 }
-                mvVar.f39994n = false;
-                kvVar.f39355c = false;
-                kvVar.f39354b = false;
+                mvVar.f39996n = false;
+                kvVar.f39357c = false;
+                kvVar.f39356b = false;
                 org.telegram.ui.mv.f0(mvVar).setEnabled(true);
-                mvVar.f39992e.setEnabled(true);
+                mvVar.f39994e.setEnabled(true);
                 return;
             case 17:
                 org.telegram.ui.ww wwVar = (org.telegram.ui.ww) this.f27297b;
@@ -211,26 +211,26 @@ public final class i91 extends AnimatorListenerAdapter {
                 return;
             case 19:
                 org.telegram.ui.ty tyVar2 = ((org.telegram.ui.my) this.f27297b).E0;
-                tyVar2.f42181f3 = null;
+                tyVar2.f42183f3 = null;
                 if (!tyVar2.j3) {
-                    org.telegram.ui.sy[] syVarArr = tyVar2.f42172e0;
+                    org.telegram.ui.sy[] syVarArr = tyVar2.f42174e0;
                     org.telegram.ui.sy syVar = syVarArr[0];
                     org.telegram.ui.sy syVar2 = syVarArr[1];
                     syVarArr[0] = syVar2;
                     syVarArr[1] = syVar;
-                    tyVar2.f42276z0.g(1.0f, syVar2.h);
+                    tyVar2.f42278z0.g(1.0f, syVar2.h);
                     tyVar2.Q4(false);
-                    tyVar2.f42172e0[0].d.getClass();
-                    tyVar2.f42172e0[1].d.getClass();
+                    tyVar2.f42174e0[0].d.getClass();
+                    tyVar2.f42174e0[1].d.getClass();
                 }
-                tyVar2.f42172e0[1].setVisibility(8);
+                tyVar2.f42174e0[1].setVisibility(8);
                 org.telegram.ui.ty.c1(tyVar2, true);
-                tyVar2.f42186g3 = false;
-                tyVar2.f42212m3 = false;
+                tyVar2.f42188g3 = false;
+                tyVar2.f42214m3 = false;
                 kVar = ((org.telegram.ui.ActionBar.n2) tyVar2).actionBar;
                 kVar.setEnabled(true);
-                tyVar2.f42276z0.setEnabled(true);
-                tyVar2.o3(tyVar2.f42172e0[0]);
+                tyVar2.f42278z0.setEnabled(true);
+                tyVar2.o3(tyVar2.f42174e0[0]);
                 return;
             case 20:
                 super.onAnimationEnd(animator);
@@ -246,13 +246,13 @@ public final class i91 extends AnimatorListenerAdapter {
                 frameLayout.getViewTreeObserver().removeOnPreDrawListener((org.telegram.ui.ei) t90Var.d);
                 return;
             case 22:
-                org.telegram.ui.g60 g60Var = ((org.telegram.ui.g50) this.f27297b).f37783o;
+                org.telegram.ui.g60 g60Var = ((org.telegram.ui.g50) this.f27297b).f37785o;
                 org.telegram.ui.g60 g60Var2 = org.telegram.ui.g60.D3;
                 g60Var.c1();
                 org.telegram.ui.g60.n0(g60Var).invalidate();
                 g60Var.Q.invalidate();
-                if (g60Var.f37861s0) {
-                    g60Var.f37861s0 = false;
+                if (g60Var.f37863s0) {
+                    g60Var.f37863s0 = false;
                     g60Var.P0(true);
                     return;
                 }
@@ -272,8 +272,8 @@ public final class i91 extends AnimatorListenerAdapter {
             case 24:
                 org.telegram.ui.k80 k80Var = (org.telegram.ui.k80) this.f27297b;
                 k80Var.d = null;
-                k80Var.f39173a = null;
-                k80Var.f39174b = false;
+                k80Var.f39175a = null;
+                k80Var.f39176b = false;
                 return;
             case 25:
                 org.telegram.ui.hd0 hd0Var = (org.telegram.ui.hd0) this.f27297b;
@@ -282,9 +282,9 @@ public final class i91 extends AnimatorListenerAdapter {
                 return;
             case 26:
                 org.telegram.ui.gf0 gf0Var = (org.telegram.ui.gf0) this.f27297b;
-                if (gf0Var.f38005s != null && gf0Var.f38003n != null) {
-                    gf0Var.f38004r.setVisibility(4);
-                    gf0Var.f38005s = null;
+                if (gf0Var.f38007s != null && gf0Var.f38005n != null) {
+                    gf0Var.f38006r.setVisibility(4);
+                    gf0Var.f38007s = null;
                     return;
                 }
                 return;
@@ -293,7 +293,7 @@ public final class i91 extends AnimatorListenerAdapter {
                 return;
             case 28:
                 org.telegram.ui.fk0 fk0Var = (org.telegram.ui.fk0) this.f27297b;
-                fk0Var.f37628f = 1.0f;
+                fk0Var.f37630f = 1.0f;
                 fk0Var.invalidate();
                 return;
             default:

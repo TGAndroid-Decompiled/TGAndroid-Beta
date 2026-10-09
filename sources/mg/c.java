@@ -45,12 +45,12 @@ public final class c implements Runnable {
                 n2 R = LaunchActivity.R();
                 ?? f3Var = new f3(R.getParentActivity(), false);
                 if (R.getFragmentView() instanceof sw0) {
-                    f3Var.f38527b = (sw0) R.getFragmentView();
+                    f3Var.f38529b = (sw0) R.getFragmentView();
                 }
                 Activity parentActivity = R.getParentActivity();
                 LinearLayout e7 = q.e(parentActivity, 1);
                 TextView textView = new TextView(parentActivity);
-                textView.setText("Saturation " + (i5.f38525c * 5.0f));
+                textView.setText("Saturation " + (i5.f38527c * 5.0f));
                 int i16 = i6.f20981n5;
                 bi.u(textView, i6.x0(null, i16, false), 1, 16.0f, 1);
                 textView.setMaxLines(1);
@@ -73,7 +73,7 @@ public final class c implements Runnable {
                 kp0Var.setReportChanges(true);
                 e7.addView(kp0Var, x5.a(38.0f, 5.0f, 4.0f, 5.0f, 0.0f, -1, 0));
                 TextView textView2 = new TextView(parentActivity);
-                textView2.setText("Alpha " + i5.f38526e);
+                textView2.setText("Alpha " + i5.f38528e);
                 bi.u(textView2, i6.x0(null, i16, false), 1, 16.0f, 1);
                 textView2.setMaxLines(1);
                 textView2.setSingleLine(true);

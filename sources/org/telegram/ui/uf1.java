@@ -14,7 +14,7 @@ public final class uf1 extends og.b {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47660f;
+        int i10 = d1Var.f47662f;
         if (i10 != 0 && i10 != 3) {
             return false;
         }
@@ -24,7 +24,7 @@ public final class uf1 extends og.b {
     public final ArrayList F() {
         fg1 fg1Var = this.d;
         fg1Var.getClass();
-        return fg1Var.f37559b;
+        return fg1Var.f37561b;
     }
 
     @Override
@@ -37,12 +37,12 @@ public final class uf1 extends og.b {
         if (i10 == h() - 1) {
             return 2;
         }
-        return ((wf1) this.d.f37559b.get(i10)).f17125a;
+        return ((wf1) this.d.f37561b.get(i10)).f17125a;
     }
 
     @Override
     public final void l() {
-        this.d.f37562c = h();
+        this.d.f37564c = h();
         super.l();
     }
 
@@ -73,7 +73,7 @@ public final class uf1 extends og.b {
         cg1 cg1Var = new cg1(fg1Var, viewGroup.getContext(), false);
         if (i10 == 3) {
             i11 = ((org.telegram.ui.ActionBar.n2) fg1Var).currentAccount;
-            boolean isBotForumWithEditableTopics = UserObject.isBotForumWithEditableTopics(i11, -fg1Var.f37556a);
+            boolean isBotForumWithEditableTopics = UserObject.isBotForumWithEditableTopics(i11, -fg1Var.f37558a);
             cg1Var.setForumIcon(ng.d.d(ng.a.f16843k[0], ""));
             if (!isBotForumWithEditableTopics) {
                 i12 = R.string.BotForumAskForStartOffNewChatTitle;
@@ -90,7 +90,7 @@ public final class uf1 extends og.b {
         }
         z10 = ((org.telegram.ui.ActionBar.n2) fg1Var).inPreviewMode;
         cg1Var.f22815k0 = z10;
-        cg1Var.setArchivedPullAnimation(fg1Var.f37597w);
+        cg1Var.setArchivedPullAnimation(fg1Var.f37599w);
         return new s4.d1(cg1Var);
     }
 }

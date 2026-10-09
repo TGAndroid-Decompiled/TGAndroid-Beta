@@ -364,13 +364,13 @@ public final class f0 extends FrameLayout {
                 return;
             case 28:
                 qg.u2 u2Var = (qg.u2) this.f933b;
-                if (u2Var.f46580y > 0.0f && u2Var.f46577s != null) {
+                if (u2Var.f46582y > 0.0f && u2Var.f46579s != null) {
                     u2Var.v.reset();
-                    float width2 = getWidth() / u2Var.f46575n.getWidth();
+                    float width2 = getWidth() / u2Var.f46577n.getWidth();
                     u2Var.v.postScale(width2, width2);
-                    u2Var.f46576r.setLocalMatrix(u2Var.v);
-                    u2Var.f46577s.setAlpha((int) (u2Var.f46580y * 255.0f));
-                    canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), u2Var.f46577s);
+                    u2Var.f46578r.setLocalMatrix(u2Var.v);
+                    u2Var.f46579s.setAlpha((int) (u2Var.f46582y * 255.0f));
+                    canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), u2Var.f46579s);
                 }
                 super.dispatchDraw(canvas);
                 return;
@@ -538,20 +538,20 @@ public final class f0 extends FrameLayout {
                 Rect rect = y1Var.E0;
                 Rect rect2 = y1Var.D0;
                 Paint paint = y1Var.F0;
-                mw0 mw0Var = y1Var.f46636v0;
+                mw0 mw0Var = y1Var.f46638v0;
                 Bitmap bitmap = y1Var.A0;
-                if (y1Var.f46640z0 != null) {
+                if (y1Var.f46642z0 != null) {
                     canvas.save();
-                    float e7 = y1Var.f46635u0.e(y1Var.f46634t0);
+                    float e7 = y1Var.f46637u0.e(y1Var.f46636t0);
                     canvas.scale(1.0f - (e7 * 2.0f), 1.0f, mw0Var.f28963a / 2.0f, 0.0f);
                     canvas.skew(0.0f, org.telegram.messenger.q.z(1.0f, e7, 4.0f * e7, 0.25f));
-                    float e10 = y1Var.f46639y0.e(y1Var.f46638x0);
-                    if (!y1Var.f46638x0) {
+                    float e10 = y1Var.f46641y0.e(y1Var.f46640x0);
+                    if (!y1Var.f46640x0) {
                         canvas.save();
                         paint.setAlpha((int) ((1.0f - e10) * 255.0f));
                         if (bitmap != null) {
                             canvas.translate(f0Var.getWidth() / 2.0f, f0Var.getHeight() / 2.0f);
-                            canvas.rotate(y1Var.f46637w0);
+                            canvas.rotate(y1Var.f46639w0);
                             float max = Math.max(mw0Var.f28963a / bitmap.getWidth(), mw0Var.f28964b / bitmap.getHeight());
                             canvas.scale(max, max);
                             if (y1Var.G0 != null) {
@@ -591,11 +591,11 @@ public final class f0 extends FrameLayout {
                 return;
             case 27:
                 qg.p2 p2Var = (qg.p2) this.f933b;
-                ImageReceiver imageReceiver = p2Var.f46513x0;
-                mw0 mw0Var2 = p2Var.f46511v0;
-                if (p2Var.f46512w0 != null) {
+                ImageReceiver imageReceiver = p2Var.f46515x0;
+                mw0 mw0Var2 = p2Var.f46513v0;
+                if (p2Var.f46514w0 != null) {
                     canvas.save();
-                    float e11 = p2Var.f46510u0.e(p2Var.f46509t0);
+                    float e11 = p2Var.f46512u0.e(p2Var.f46511t0);
                     canvas.scale(1.0f - (e11 * 2.0f), 1.0f, mw0Var2.f28963a / 2.0f, 0.0f);
                     canvas.skew(0.0f, org.telegram.messenger.q.z(1.0f, e11, 4.0f * e11, 0.25f));
                     imageReceiver.setImageCoords(0.0f, 0.0f, (int) mw0Var2.f28963a, (int) mw0Var2.f28964b);
@@ -620,7 +620,7 @@ public final class f0 extends FrameLayout {
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
                 accessibilityNodeInfo.setClassName("android.widget.Button");
                 rg.p0 p0Var = (rg.p0) this.f933b;
-                if (p0Var.h && (o0Var2 = p0Var.f47380e) != null) {
+                if (p0Var.h && (o0Var2 = p0Var.f47382e) != null) {
                     charSequence = o0Var2.getText();
                 } else {
                     charSequence = null;
@@ -907,7 +907,7 @@ public final class f0 extends FrameLayout {
                 return;
             case 24:
                 super.onMeasure(i10, i11);
-                setMeasuredDimension(getMeasuredWidth(), (int) Math.ceil(((org.telegram.ui.Wallet.z4) this.f933b).T.c(AndroidUtilities.dp(4.0f))));
+                setMeasuredDimension(getMeasuredWidth(), (int) Math.ceil(((org.telegram.ui.Wallet.a5) this.f933b).T.c(AndroidUtilities.dp(4.0f))));
                 return;
             default:
                 super.onMeasure(i10, i11);
@@ -976,7 +976,7 @@ public final class f0 extends FrameLayout {
             case 25:
                 super.onWindowFocusChanged(z10);
                 if (z10) {
-                    ((org.telegram.ui.Wallet.r8) this.f933b).e0(true);
+                    ((org.telegram.ui.Wallet.s8) this.f933b).e0(true);
                     return;
                 }
                 return;

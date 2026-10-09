@@ -4,16 +4,16 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import org.telegram.messenger.MessageObject;
 public final class ie1 implements org.telegram.ui.Components.jl0 {
-    public final zn f38621a;
-    public final MessageObject f38622b;
-    public final org.telegram.ui.Components.kl0 f38623c;
+    public final zn f38623a;
+    public final MessageObject f38624b;
+    public final org.telegram.ui.Components.kl0 f38625c;
     public final me1 d;
 
     public ie1(me1 me1Var, zn znVar, MessageObject messageObject, org.telegram.ui.Components.kl0 kl0Var) {
         this.d = me1Var;
-        this.f38621a = znVar;
-        this.f38622b = messageObject;
-        this.f38623c = kl0Var;
+        this.f38623a = znVar;
+        this.f38624b = messageObject;
+        this.f38625c = kl0Var;
     }
 
     @Override

@@ -54,7 +54,7 @@ public final class b0 extends pm0 {
 
     @Override
     public final void v(s4.d1 d1Var, int i10) {
-        a0 a0Var = (a0) d1Var.f47656a;
+        a0 a0Var = (a0) d1Var.f47658a;
         String str = (String) this.f8956c.get(i10);
         if (((Boolean) this.f8957e.get(i10)).booleanValue()) {
             er erVar = new er(R.drawable.mini_ephemeral_hidden_14, 0);

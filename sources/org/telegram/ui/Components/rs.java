@@ -179,7 +179,7 @@ public final class rs implements MessagesStorage.LongCallback, fm0 {
                                     if (G2.f17125a == 39 && G2.d == 0) {
                                         s4.d1 K = vsVar.d.K(i15 + 1);
                                         if (K != null) {
-                                            View view2 = K.f47656a;
+                                            View view2 = K.f47658a;
                                             float f11 = -vsVar.F0;
                                             vsVar.F0 = f11;
                                             AndroidUtilities.shakeViewSpring(view2, f11);

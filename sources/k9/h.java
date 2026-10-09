@@ -54,7 +54,7 @@ public final class h {
         ArrayList j3 = new b5(context, new f3(ComponentDiscoveryService.class, 14), false, 11).j();
         Trace.endSection();
         Trace.beginSection("Runtime");
-        r9.j jVar2 = r9.j.f47122a;
+        r9.j jVar2 = r9.j.f47124a;
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
         arrayList.addAll(j3);
@@ -224,7 +224,7 @@ public final class h {
         a();
         ua.a aVar = (ua.a) this.f14752g.get();
         synchronized (aVar) {
-            z10 = aVar.f48879a;
+            z10 = aVar.f48881a;
         }
         return z10;
     }

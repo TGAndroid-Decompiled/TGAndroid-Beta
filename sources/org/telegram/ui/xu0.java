@@ -12,12 +12,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 public final class xu0 extends org.telegram.ui.Components.pm0 {
-    public final Context f44150c;
+    public final Context f44152c;
     public final PhotoViewer d;
 
     public xu0(Context context, PhotoViewer photoViewer) {
         this.d = photoViewer;
-        this.f44150c = context;
+        this.f44152c = context;
     }
 
     @Override
@@ -43,7 +43,7 @@ public final class xu0 extends org.telegram.ui.Components.pm0 {
     @Override
     public final void v(s4.d1 d1Var, int i10) {
         int i11;
-        org.telegram.ui.Cells.z5 z5Var = (org.telegram.ui.Cells.z5) d1Var.f47656a;
+        org.telegram.ui.Cells.z5 z5Var = (org.telegram.ui.Cells.z5) d1Var.f47658a;
         int dp = AndroidUtilities.dp(85.0f);
         if (i10 != 0) {
             i11 = AndroidUtilities.dp(6.0f);
@@ -66,7 +66,7 @@ public final class xu0 extends org.telegram.ui.Components.pm0 {
             z5Var.setTag(photoEntry);
             t5Var.setVisibility(4);
             String str = photoEntry.thumbPath;
-            Context context = this.f44150c;
+            Context context = this.f44152c;
             if (str != null) {
                 y9Var.f(str, null, context.getResources().getDrawable(R.drawable.nophotos));
             } else if (photoEntry.path != null) {
@@ -95,7 +95,7 @@ public final class xu0 extends org.telegram.ui.Components.pm0 {
 
     @Override
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        Context context = this.f44150c;
+        Context context = this.f44152c;
         ?? frameLayout = new FrameLayout(context);
         new Paint();
         frameLayout.setWillNotDraw(false);
@@ -107,10 +107,10 @@ public final class xu0 extends org.telegram.ui.Components.pm0 {
         frameLayout.f23802b = frameLayout2;
         frameLayout.addView(frameLayout2, w7.x5.e(42, 42, 53));
         t5 t5Var = new t5(context);
-        t5Var.f41844c = new Path();
+        t5Var.f41846c = new Path();
         t5Var.d = new float[8];
-        t5Var.f41843b = new RectF();
-        t5Var.f41845e = new Paint(1);
+        t5Var.f41845b = new RectF();
+        t5Var.f41847e = new Paint(1);
         frameLayout.f23804e = t5Var;
         t5Var.setWillNotDraw(false);
         t5Var.setPadding(AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f), 0);

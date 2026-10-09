@@ -128,9 +128,9 @@ public final class h0 implements Runnable {
                 if (fg1Var.getParentLayout() != null) {
                     fg1Var.H = true;
                     Bundle bundle = new Bundle();
-                    bundle.putLong("chat_id", fg1Var.f37556a);
+                    bundle.putLong("chat_id", fg1Var.f37558a);
                     zn znVar = new zn(bundle);
-                    znVar.f44821ja = true;
+                    znVar.f44823ja = true;
                     fg1Var.presentFragment(znVar);
                     return;
                 }
@@ -245,10 +245,10 @@ public final class h0 implements Runnable {
                 x2Var.postInvalidate();
                 return;
             case 28:
-                ((org.telegram.ui.web.k) this.f11722b).f43372w.W2.N(true);
+                ((org.telegram.ui.web.k) this.f11722b).f43374w.W2.N(true);
                 return;
             default:
-                org.telegram.ui.web.i iVar = ((org.telegram.ui.web.n) this.f11722b).h.f43413e;
+                org.telegram.ui.web.i iVar = ((org.telegram.ui.web.n) this.f11722b).h.f43415e;
                 if (iVar != null) {
                     iVar.d();
                     return;

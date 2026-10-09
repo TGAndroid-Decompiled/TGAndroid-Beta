@@ -14,10 +14,10 @@ import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class td1 extends org.telegram.ui.Components.pm0 {
-    public final Context f41979c;
+    public final Context f41981c;
     public final ArrayList d;
-    public final boolean f41980e;
-    public final xd1 f41981f;
+    public final boolean f41982e;
+    public final xd1 f41983f;
 
     public td1(Context context, xd1 xd1Var) {
         boolean z10;
@@ -49,15 +49,15 @@ public final class td1 extends org.telegram.ui.Components.pm0 {
         int i33;
         int i34;
         int i35;
-        this.f41981f = xd1Var;
-        int i36 = xd1Var.f43938b;
+        this.f41983f = xd1Var;
+        int i36 = xd1Var.f43940b;
         if (i36 == 0 && Utilities.random.nextInt(100) <= 1) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f41980e = z10;
-        this.f41979c = context;
+        this.f41982e = z10;
+        this.f41981c = context;
         ArrayList arrayList = new ArrayList();
         this.d = arrayList;
         int currentTimeMillis = (int) (System.currentTimeMillis() / 1000);
@@ -139,7 +139,7 @@ public final class td1 extends org.telegram.ui.Components.pm0 {
             messageObject4.eventId = 1L;
             messageObject4.resetLayout();
             arrayList.add(messageObject4);
-            if (xd1Var.J1 != 0 && xd1Var.f43980q0 == null) {
+            if (xd1Var.J1 != 0 && xd1Var.f43982q0 == null) {
                 TLRPC.User user = xd1Var.getMessagesController().getUser(Long.valueOf(xd1Var.J1));
                 TLRPC.TL_message tL_message4 = new TLRPC.TL_message();
                 tL_message4.message = "";
@@ -528,11 +528,11 @@ public final class td1 extends org.telegram.ui.Components.pm0 {
     }
 
     public final boolean F() {
-        xd1 xd1Var = this.f41981f;
-        int i10 = xd1Var.f43938b;
-        if (xd1Var.f44003z0 == null || i10 != 1 || xd1Var.f43973n != 3 || xd1Var.f43985s.f20658g == 0) {
-            if (xd1Var.f44001y0 != null) {
-                if (i10 != 2 && (i10 != 1 || xd1Var.f43973n != 2)) {
+        xd1 xd1Var = this.f41983f;
+        int i10 = xd1Var.f43940b;
+        if (xd1Var.f44005z0 == null || i10 != 1 || xd1Var.f43975n != 3 || xd1Var.f43987s.f20658g == 0) {
+            if (xd1Var.f44003y0 != null) {
+                if (i10 != 2 && (i10 != 1 || xd1Var.f43975n != 2)) {
                     return false;
                 }
             } else {
@@ -555,7 +555,7 @@ public final class td1 extends org.telegram.ui.Components.pm0 {
     public final int j(int i10) {
         if (F()) {
             if (i10 == 0) {
-                if (this.f41981f.f43973n == 3) {
+                if (this.f41983f.f43975n == 3) {
                     return 3;
                 }
                 return 2;
@@ -577,16 +577,16 @@ public final class td1 extends org.telegram.ui.Components.pm0 {
         boolean z10;
         boolean z11;
         boolean z12;
-        int i11 = d1Var.f47660f;
+        int i11 = d1Var.f47662f;
         if (i11 != 2 && i11 != 3) {
             if (F()) {
                 i10--;
             }
             ArrayList arrayList = this.d;
             MessageObject messageObject = (MessageObject) arrayList.get(i10);
-            View view = d1Var.f47656a;
+            View view = d1Var.f47658a;
             boolean z13 = view instanceof org.telegram.ui.Cells.u1;
-            xd1 xd1Var = this.f41981f;
+            xd1 xd1Var = this.f41983f;
             if (z13) {
                 org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) view;
                 boolean z14 = false;
@@ -595,11 +595,11 @@ public final class td1 extends org.telegram.ui.Components.pm0 {
                 int j3 = j(i12);
                 int i13 = i10 + 1;
                 int j10 = j(i13);
-                if (!(messageObject.messageOwner.reply_markup instanceof TLRPC.TL_replyInlineMarkup) && j3 == d1Var.f47660f) {
+                if (!(messageObject.messageOwner.reply_markup instanceof TLRPC.TL_replyInlineMarkup) && j3 == d1Var.f47662f) {
                     MessageObject messageObject2 = (MessageObject) arrayList.get(i12);
                     if (messageObject2.isOutOwner() == messageObject.isOutOwner() && Math.abs(messageObject2.messageOwner.date - messageObject.messageOwner.date) <= 300) {
                         z10 = true;
-                        if (j10 != d1Var.f47660f && i13 < arrayList.size()) {
+                        if (j10 != d1Var.f47662f && i13 < arrayList.size()) {
                             MessageObject messageObject3 = (MessageObject) arrayList.get(i13);
                             if (!(messageObject3.messageOwner.reply_markup instanceof TLRPC.TL_replyInlineMarkup) && messageObject3.isOutOwner() == messageObject.isOutOwner() && Math.abs(messageObject3.messageOwner.date - messageObject.messageOwner.date) <= 300) {
                                 z12 = true;
@@ -610,7 +610,7 @@ public final class td1 extends org.telegram.ui.Components.pm0 {
                         } else {
                             z11 = false;
                         }
-                        if (!this.f41980e || xd1Var.J1 < 0) {
+                        if (!this.f41982e || xd1Var.J1 < 0) {
                             z14 = true;
                         }
                         u1Var.N7 = z14;
@@ -619,10 +619,10 @@ public final class td1 extends org.telegram.ui.Components.pm0 {
                     }
                 }
                 z10 = false;
-                if (j10 != d1Var.f47660f) {
+                if (j10 != d1Var.f47662f) {
                 }
                 z11 = false;
-                if (!this.f41980e) {
+                if (!this.f41982e) {
                 }
                 z14 = true;
                 u1Var.N7 = z14;
@@ -641,33 +641,33 @@ public final class td1 extends org.telegram.ui.Components.pm0 {
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
         org.telegram.ui.Cells.u1 u1Var;
         int i11;
-        xd1 xd1Var = this.f41981f;
+        xd1 xd1Var = this.f41983f;
         if (i10 == 0) {
             i11 = ((org.telegram.ui.ActionBar.n2) xd1Var).currentAccount;
-            org.telegram.ui.Cells.u1 u1Var2 = new org.telegram.ui.Cells.u1(this.f41979c, i11, false, null, new jw0(this, 5));
+            org.telegram.ui.Cells.u1 u1Var2 = new org.telegram.ui.Cells.u1(this.f41981c, i11, false, null, new jw0(this, 5));
             u1Var2.setDelegate(new na.d(18));
             u1Var = u1Var2;
         } else {
-            Context context = this.f41979c;
+            Context context = this.f41981c;
             if (i10 == 1) {
-                org.telegram.ui.Cells.w0 w0Var = new org.telegram.ui.Cells.w0(context, xd1Var.f43935a, false);
+                org.telegram.ui.Cells.w0 w0Var = new org.telegram.ui.Cells.w0(context, xd1Var.f43937a, false);
                 w0Var.setDelegate(new ob.a(18));
                 u1Var = w0Var;
             } else if (i10 == 2) {
-                if (xd1Var.f44001y0.getParent() != null) {
-                    ((ViewGroup) xd1Var.f44001y0.getParent()).removeView(xd1Var.f44001y0);
+                if (xd1Var.f44003y0.getParent() != null) {
+                    ((ViewGroup) xd1Var.f44003y0.getParent()).removeView(xd1Var.f44003y0);
                 }
                 w51 w51Var = new w51(context, 3);
-                w51Var.addView(xd1Var.f44001y0, w7.x5.e(-1, 76, 17));
+                w51Var.addView(xd1Var.f44003y0, w7.x5.e(-1, 76, 17));
                 u1Var = w51Var;
             } else if (i10 == 5) {
                 u1Var = new org.telegram.ui.Components.ao(xd1Var.getParentActivity(), 26);
             } else {
-                if (xd1Var.f44003z0.getParent() != null) {
-                    ((ViewGroup) xd1Var.f44003z0.getParent()).removeView(xd1Var.f44003z0);
+                if (xd1Var.f44005z0.getParent() != null) {
+                    ((ViewGroup) xd1Var.f44005z0.getParent()).removeView(xd1Var.f44005z0);
                 }
                 w51 w51Var2 = new w51(context, 4);
-                w51Var2.addView(xd1Var.f44003z0, w7.x5.e(-1, 76, 17));
+                w51Var2.addView(xd1Var.f44005z0, w7.x5.e(-1, 76, 17));
                 u1Var = w51Var2;
             }
         }

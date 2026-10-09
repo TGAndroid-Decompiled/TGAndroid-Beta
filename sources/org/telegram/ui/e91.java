@@ -35,16 +35,16 @@ public final class e91 extends org.telegram.ui.Components.o61 {
         CharSequence charSequence = p61Var.f29734l;
         CharSequence charSequence2 = p61Var.f29735m;
         CharSequence charSequence3 = p61Var.f29736n;
-        TextView textView = f91Var.f37493e;
-        TextView textView2 = f91Var.f37494f;
+        TextView textView = f91Var.f37495e;
+        TextView textView2 = f91Var.f37496f;
         int i14 = 0;
         if (i11 == 0 && i12 == 0) {
             z11 = false;
         } else {
             z11 = true;
         }
-        f91Var.f37495n = z11;
-        FrameLayout frameLayout = f91Var.f37492c;
+        f91Var.f37497n = z11;
+        FrameLayout frameLayout = f91Var.f37494c;
         if (i13 != 0) {
             i10 = 0;
         } else {
@@ -62,11 +62,11 @@ public final class e91 extends org.telegram.ui.Components.o61 {
             f10 = AndroidUtilities.dp(2.0f);
         }
         textView2.setTranslationX(f10);
-        f91Var.f37491b.b(i11, i12);
+        f91Var.f37493b.b(i11, i12);
         f91Var.d.setImageResource(i13);
         textView.setText(charSequence);
         boolean isEmpty = TextUtils.isEmpty(charSequence2);
-        f91Var.f37496r = !isEmpty;
+        f91Var.f37498r = !isEmpty;
         if (isEmpty) {
             i14 = 8;
         }

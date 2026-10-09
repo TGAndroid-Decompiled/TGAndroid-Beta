@@ -1279,7 +1279,7 @@ public final class x3 extends k71 {
     public final void F1(s4.d1 d1Var) {
         v3 v3Var = this.f12809f3;
         if (v3Var != null && d1Var != null) {
-            View view = d1Var.f47656a;
+            View view = d1Var.f47658a;
             int[] iArr = new int[2];
             view.getLocationOnScreen(iArr);
             view.getWidth();
@@ -1372,7 +1372,7 @@ public final class x3 extends k71 {
                 v3Var.onContentChanged();
             }
         } else if (d1Var != null) {
-            View view = d1Var.f47656a;
+            View view = d1Var.f47658a;
             view.setTranslationX(0.0f);
             view.setTranslationY(0.0f);
         }

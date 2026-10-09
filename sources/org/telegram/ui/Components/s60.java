@@ -450,7 +450,7 @@ public final class s60 extends y60 {
             if (this.d != z10) {
                 this.d = z10;
                 w60 w60Var = this.f33129c;
-                if (w60Var != null && (okVar = ((org.telegram.ui.sj) w60Var).f41705a.Y) != null) {
+                if (w60Var != null && (okVar = ((org.telegram.ui.sj) w60Var).f41707a.Y) != null) {
                     okVar.setRoundVideoUiFrameClockActive(z10);
                 }
             }
@@ -740,15 +740,15 @@ public final class s60 extends y60 {
             nlVar.invalidate();
         }
         this.T = new g11(this.h, this.f30691r);
-        this.Q = (ki.r0) pi.e.f45892c.a();
+        this.Q = (ki.r0) pi.e.f45894c.a();
         ki.k0 k0Var = new ki.k0(getContext(), this.f30702y);
         k0Var.f15016c = new File(ApplicationLoader.getFilesDirFixed(), "cache");
         k0Var.d = (ki.m0) pi.e.h.a();
         k0Var.f15017e = this.Q;
-        k0Var.h = pi.e.f45894f.a();
+        k0Var.h = pi.e.f45896f.a();
         k0Var.f15018f = (ki.n0) pi.e.d.a();
-        k0Var.f15019g = (ki.o0) pi.e.f45893e.a();
-        pi.a aVar = pi.e.f45895g;
+        k0Var.f15019g = (ki.o0) pi.e.f45895e.a();
+        pi.a aVar = pi.e.f45897g;
         aVar.a();
         k0Var.f15020i = aVar.d;
         m2.t tVar = this.J0;
@@ -1123,7 +1123,7 @@ public final class s60 extends y60 {
         float f15;
         u60 u60Var = this.f33127a;
         if (u60Var != null) {
-            ((org.telegram.ui.re) u60Var).f41394b.f44972vc.a(z10, true);
+            ((org.telegram.ui.re) u60Var).f41396b.f44974vc.a(z10, true);
         }
         AnimatorSet animatorSet = this.W;
         if (animatorSet != null) {
@@ -1266,7 +1266,7 @@ public final class s60 extends y60 {
                 this.f30695t0 = min;
                 this.f30698w.setProgress(((float) min) / ((float) j3));
                 w60 w60Var = this.f33129c;
-                if (w60Var != null && (okVar = ((org.telegram.ui.sj) w60Var).f41705a.Y) != null && okVar.f23910j1) {
+                if (w60Var != null && (okVar = ((org.telegram.ui.sj) w60Var).f41707a.Y) != null && okVar.f23910j1) {
                     okVar.f23904i1 = min;
                     zg zgVar = okVar.Y0;
                     if (zgVar != null && zgVar.f33573r) {

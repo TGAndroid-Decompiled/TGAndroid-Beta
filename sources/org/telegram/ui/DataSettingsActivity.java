@@ -138,7 +138,7 @@ public class DataSettingsActivity extends org.telegram.ui.ActionBar.n2 {
         jVar.n(350L);
         jVar.o(org.telegram.ui.Components.hs.h);
         jVar.C = false;
-        jVar.f47696m = false;
+        jVar.f47698m = false;
         this.f33739b.setItemAnimator(jVar);
         return this.fragmentView;
     }
@@ -290,7 +290,7 @@ public class DataSettingsActivity extends org.telegram.ui.ActionBar.n2 {
     @Override
     public final void onFragmentDestroy() {
         super.onFragmentDestroy();
-        y6.f44241k0 = true;
+        y6.f44243k0 = true;
     }
 
     @Override

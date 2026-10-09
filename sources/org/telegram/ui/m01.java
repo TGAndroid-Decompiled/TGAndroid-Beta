@@ -4,17 +4,17 @@ import android.util.SparseIntArray;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class m01 extends s4.o {
-    public int f39721b;
-    public final SparseIntArray f39722c = new SparseIntArray();
+    public int f39723b;
+    public final SparseIntArray f39724c = new SparseIntArray();
     public final SparseIntArray d = new SparseIntArray();
-    public final ArrayList f39723e = new ArrayList();
-    public final ArrayList f39724f = new ArrayList();
-    public int f39725g;
+    public final ArrayList f39725e = new ArrayList();
+    public final ArrayList f39726f = new ArrayList();
+    public int f39727g;
     public int h;
-    public final ProfileActivity f39726i;
+    public final ProfileActivity f39728i;
 
     public m01(ProfileActivity profileActivity) {
-        this.f39726i = profileActivity;
+        this.f39728i = profileActivity;
     }
 
     public static void g(int i10, int i11, SparseIntArray sparseIntArray) {
@@ -32,15 +32,15 @@ public final class m01 extends s4.o {
     public final boolean b(int i10, int i11) {
         TLRPC.ChatParticipant chatParticipant;
         TLRPC.ChatParticipant chatParticipant2;
-        ProfileActivity profileActivity = this.f39726i;
-        if (i11 >= profileActivity.f34356u4 && i11 < profileActivity.f34363v4 && i10 >= this.f39725g && i10 < this.h) {
-            ArrayList arrayList = this.f39724f;
+        ProfileActivity profileActivity = this.f39728i;
+        if (i11 >= profileActivity.f34356u4 && i11 < profileActivity.f34363v4 && i10 >= this.f39727g && i10 < this.h) {
+            ArrayList arrayList = this.f39726f;
             boolean isEmpty = arrayList.isEmpty();
-            ArrayList arrayList2 = this.f39723e;
+            ArrayList arrayList2 = this.f39725e;
             if (!isEmpty) {
-                chatParticipant = (TLRPC.ChatParticipant) arrayList2.get(((Integer) arrayList.get(i10 - this.f39725g)).intValue());
+                chatParticipant = (TLRPC.ChatParticipant) arrayList2.get(((Integer) arrayList.get(i10 - this.f39727g)).intValue());
             } else {
-                chatParticipant = (TLRPC.ChatParticipant) arrayList2.get(i10 - this.f39725g);
+                chatParticipant = (TLRPC.ChatParticipant) arrayList2.get(i10 - this.f39727g);
             }
             if (!profileActivity.C2.isEmpty()) {
                 chatParticipant2 = (TLRPC.ChatParticipant) profileActivity.Q4.get(((Integer) profileActivity.R4.get(i11 - profileActivity.f34356u4)).intValue());
@@ -52,7 +52,7 @@ public final class m01 extends s4.o {
             }
             return true;
         }
-        int i12 = this.f39722c.get(i10, -1);
+        int i12 = this.f39724c.get(i10, -1);
         if (i12 != this.d.get(i11, -1) || i12 < 0) {
             return false;
         }
@@ -61,12 +61,12 @@ public final class m01 extends s4.o {
 
     @Override
     public final int d() {
-        return this.f39726i.N2;
+        return this.f39728i.N2;
     }
 
     @Override
     public final int e() {
-        return this.f39721b;
+        return this.f39723b;
     }
 
     public final void f(SparseIntArray sparseIntArray) {
@@ -74,7 +74,7 @@ public final class m01 extends s4.o {
         int i11;
         int i12;
         sparseIntArray.clear();
-        ProfileActivity profileActivity = this.f39726i;
+        ProfileActivity profileActivity = this.f39728i;
         g(1, profileActivity.O2, sparseIntArray);
         g(2, profileActivity.P2, sparseIntArray);
         g(3, profileActivity.S2, sparseIntArray);

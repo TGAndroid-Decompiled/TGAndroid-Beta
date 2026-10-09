@@ -46,7 +46,7 @@ public final class og extends org.telegram.ui.uu0 {
         org.telegram.ui.zn znVar;
         ChatActivityEnterView chatActivityEnterView = this.d.d;
         org.telegram.ui.pn pnVar = chatActivityEnterView.V2;
-        if (pnVar != null && (znVar = chatActivityEnterView.P2) != null && pnVar.f40847f) {
+        if (pnVar != null && (znVar = chatActivityEnterView.P2) != null && pnVar.f40849f) {
             znVar.Vb();
             return;
         }
@@ -105,7 +105,7 @@ public final class og extends org.telegram.ui.uu0 {
         long sendMonoForumPeerId = chatActivityEnterView.getSendMonoForumPeerId();
         org.telegram.ui.zn znVar3 = chatActivityEnterView.P2;
         if (znVar3 != null) {
-            messageSuggestionParams = znVar3.f44781g5;
+            messageSuggestionParams = znVar3.f44783g5;
         }
         SendMessagesHelper.prepareSendingMedia(accountInstance, arrayList, j3, messageObject, threadMessage, null, pnVar2, false, false, messageObject2, z10, i11, i12, i14, checkUpdateStickersOrder, null, sendMessageChatArguments, 0L, false, 0L, sendMonoForumPeerId, messageSuggestionParams);
         qg qgVar = chatActivityEnterView.Z2;

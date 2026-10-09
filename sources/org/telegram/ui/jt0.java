@@ -8,19 +8,19 @@ import android.graphics.PorterDuffColorFilter;
 import org.telegram.messenger.MediaController;
 import org.telegram.ui.Components.Crop.CropAreaView;
 public final class jt0 extends AnimatorListenerAdapter {
-    public final float f39019a;
-    public final Runnable f39020b;
-    public final PhotoViewer f39021c;
+    public final float f39021a;
+    public final Runnable f39022b;
+    public final PhotoViewer f39023c;
 
     public jt0(PhotoViewer photoViewer, float f7, Runnable runnable) {
-        this.f39021c = photoViewer;
-        this.f39019a = f7;
-        this.f39020b = runnable;
+        this.f39023c = photoViewer;
+        this.f39021a = f7;
+        this.f39022b = runnable;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        PhotoViewer photoViewer = this.f39021c;
+        PhotoViewer photoViewer = this.f39023c;
         photoViewer.f34004p6 = null;
         photoViewer.f33919f6 = 0.0f;
         photoViewer.f33881b6 = 0.0f;
@@ -37,7 +37,7 @@ public final class jt0 extends AnimatorListenerAdapter {
         cropAreaView.f24152q0 = 0.0f;
         cropAreaView.invalidate();
         photoViewer.C1.f31769c.setRotated(false);
-        float f7 = this.f39019a;
+        float f7 = this.f39021a;
         if (Math.abs(f7) > 0.0f) {
             org.telegram.ui.Components.vf0 vf0Var = photoViewer.C1;
             lg.f fVar = vf0Var.f31769c;
@@ -51,14 +51,14 @@ public final class jt0 extends AnimatorListenerAdapter {
                 photoViewer.f33876b1.setColorFilter((ColorFilter) null);
             }
         }
-        MediaController.CropState cropState = photoViewer.X4.f42124c;
+        MediaController.CropState cropState = photoViewer.X4.f42126c;
         if (cropState != null) {
             cropState.cropPy = 0.0f;
             cropState.cropPx = 0.0f;
             cropState.cropPh = 1.0f;
             cropState.cropPw = 1.0f;
         }
-        Runnable runnable = this.f39020b;
+        Runnable runnable = this.f39022b;
         if (runnable != null) {
             runnable.run();
         }

@@ -355,7 +355,7 @@ public final class m implements q {
         this.f15033f.a(sb2.toString(), runtimeException);
         if (this.h.compareAndSet(false, true)) {
             xa.d dVar = this.f15034g.f14882a;
-            ((t0) dVar.f51105b).f15119i.post(new i0(1, dVar, runtimeException));
+            ((t0) dVar.f51107b).f15119i.post(new i0(1, dVar, runtimeException));
         }
     }
 

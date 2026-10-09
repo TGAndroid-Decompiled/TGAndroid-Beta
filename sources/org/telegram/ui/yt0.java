@@ -10,12 +10,12 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 public final class yt0 extends AnimatorListenerAdapter {
-    public final int f44405a;
-    public final PhotoViewer f44406b;
+    public final int f44407a;
+    public final PhotoViewer f44408b;
 
     public yt0(PhotoViewer photoViewer, int i10) {
-        this.f44406b = photoViewer;
-        this.f44405a = i10;
+        this.f44408b = photoViewer;
+        this.f44407a = i10;
     }
 
     @Override
@@ -23,7 +23,7 @@ public final class yt0 extends AnimatorListenerAdapter {
         int i10;
         float min;
         int i11;
-        PhotoViewer photoViewer = this.f44406b;
+        PhotoViewer photoViewer = this.f44408b;
         photoViewer.q6 = null;
         photoViewer.P0.setVisibility(8);
         photoViewer.S0.setVisibility(8);
@@ -74,7 +74,7 @@ public final class yt0 extends AnimatorListenerAdapter {
                     i10 = 0;
                 }
                 photoViewer.f33900d6 = i13 + i10;
-                MediaController.CropState cropState = photoViewer.X4.f42124c;
+                MediaController.CropState cropState = photoViewer.X4.f42126c;
                 if (cropState != null && ((i11 = cropState.transformRotation) == 90 || i11 == 270)) {
                     min = Math.min(photoViewer.k1(photoViewer.f34048u4) / bitmapHeight, photoViewer.i1() / bitmapWidth);
                 } else {

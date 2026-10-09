@@ -709,7 +709,7 @@ public abstract class v3 extends FrameLayout implements NotificationCenter.Notif
         e3 e3Var = this.f6135e;
         if (z10) {
             ji.o oVar = new ji.o(getContext(), 2);
-            oVar.f47825a = 1;
+            oVar.f47827a = 1;
             oVar.f14273p = AndroidUtilities.dp(16.0f) + (-org.telegram.ui.ActionBar.k.getCurrentActionBarHeight());
             e3Var.w0(oVar);
             return;

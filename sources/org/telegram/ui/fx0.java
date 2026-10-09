@@ -9,13 +9,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.LocaleController;
 public final class fx0 extends sg.n {
-    public final Context f37713f0;
-    public final jx0 f37714g0;
+    public final Context f37715f0;
+    public final jx0 f37716g0;
 
     public fx0(jx0 jx0Var, Context context, int i10, int i11, Context context2) {
         super(context, i10, i11);
-        this.f37714g0 = jx0Var;
-        this.f37713f0 = context2;
+        this.f37716g0 = jx0Var;
+        this.f37715f0 = context2;
     }
 
     @Override
@@ -33,13 +33,13 @@ public final class fx0 extends sg.n {
         int i17;
         int i18;
         int i19;
-        jx0 jx0Var = this.f37714g0;
-        PremiumPreviewFragment premiumPreviewFragment = jx0Var.f39040n;
+        jx0 jx0Var = this.f37716g0;
+        PremiumPreviewFragment premiumPreviewFragment = jx0Var.f39042n;
         if (premiumPreviewFragment.f34148r0 == null && BuildVars.DEBUG_PRIVATE_VERSION) {
-            Context context = this.f37713f0;
+            Context context = this.f37715f0;
             premiumPreviewFragment.f34148r0 = new FrameLayout(context);
             ScrollView scrollView = new ScrollView(context);
-            sg.g gVar = jx0Var.d.f48076b;
+            sg.g gVar = jx0Var.d.f48078b;
             yd ydVar = new yd(context, 5);
             ydVar.setOrientation(1);
             TextView textView = new TextView(context);
@@ -62,7 +62,7 @@ public final class fx0 extends sg.n {
             ydVar.addView(textView, w7.x5.a(-1.0f, 21.0f, 13.0f, 21.0f, 0.0f, -2, i11 | 48));
             org.telegram.ui.Components.kp0 kp0Var = new org.telegram.ui.Components.kp0(context);
             kp0Var.setDelegate(new h20(gVar, 0));
-            sg.o oVar = gVar.f48040c;
+            sg.o oVar = gVar.f48042c;
             float f12 = 0.0f;
             if (oVar == null) {
                 f7 = 0.0f;
@@ -91,7 +91,7 @@ public final class fx0 extends sg.n {
             ydVar.addView(textView2, w7.x5.a(-1.0f, 21.0f, 13.0f, 21.0f, 0.0f, -2, i13 | 48));
             org.telegram.ui.Components.kp0 kp0Var2 = new org.telegram.ui.Components.kp0(context);
             kp0Var2.setDelegate(new h20(gVar, 1));
-            sg.o oVar2 = gVar.f48040c;
+            sg.o oVar2 = gVar.f48042c;
             if (oVar2 == null) {
                 f10 = 0.0f;
             } else {
@@ -132,7 +132,7 @@ public final class fx0 extends sg.n {
             ydVar.addView(textView4, w7.x5.a(-1.0f, 21.0f, 13.0f, 21.0f, 0.0f, -2, i15 | 48));
             org.telegram.ui.Components.kp0 kp0Var3 = new org.telegram.ui.Components.kp0(context);
             kp0Var3.setDelegate(new h20(gVar, 2));
-            sg.o oVar3 = gVar.f48040c;
+            sg.o oVar3 = gVar.f48042c;
             if (oVar3 == null) {
                 f11 = 0.0f;
             } else {
@@ -160,7 +160,7 @@ public final class fx0 extends sg.n {
             ydVar.addView(textView5, w7.x5.a(-1.0f, 21.0f, 13.0f, 21.0f, 0.0f, -2, i17 | 48));
             org.telegram.ui.Components.kp0 kp0Var4 = new org.telegram.ui.Components.kp0(context);
             kp0Var4.setDelegate(new h20(gVar, 3));
-            sg.o oVar4 = gVar.f48040c;
+            sg.o oVar4 = gVar.f48042c;
             if (oVar4 != null) {
                 f12 = oVar4.G / 2.0f;
             }
@@ -197,7 +197,7 @@ public final class fx0 extends sg.n {
             ydVar.addView(textView7, w7.x5.a(-1.0f, 21.0f, 13.0f, 21.0f, 0.0f, -2, i19 | 48));
             org.telegram.ui.Components.kp0 kp0Var5 = new org.telegram.ui.Components.kp0(context);
             kp0Var5.setDelegate(new Object());
-            kp0Var5.setProgress(yd.f44316b / 2.0f);
+            kp0Var5.setProgress(yd.f44318b / 2.0f);
             kp0Var5.setReportChanges(true);
             ydVar.addView(kp0Var5, w7.x5.a(38.0f, 5.0f, 4.0f, 5.0f, 0.0f, -1, 0));
             scrollView.addView(ydVar);

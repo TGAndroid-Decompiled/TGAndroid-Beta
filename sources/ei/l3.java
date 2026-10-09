@@ -417,7 +417,7 @@ public final class l3 implements Runnable {
                     TL_iv.PageBlock pageBlock2 = (TL_iv.PageBlock) hashMap.get(obj7);
                     if (obj7 instanceof TL_iv.RichText) {
                         TL_iv.RichText richText = (TL_iv.RichText) obj7;
-                        CharSequence C = org.telegram.ui.i4.C(i4Var, i4Var.f38513u0[0].f39751c.E, null, richText, richText, pageBlock2, 1000);
+                        CharSequence C = org.telegram.ui.i4.C(i4Var, i4Var.f38515u0[0].f39753c.E, null, richText, richText, pageBlock2, 1000);
                         pageBlock = pageBlock2;
                         if (!TextUtils.isEmpty(C)) {
                             lowerCase = C.toString().toLowerCase();
@@ -438,9 +438,9 @@ public final class l3 implements Runnable {
                                 int length = str2.length() + indexOf;
                                 if (indexOf == 0 || AndroidUtilities.isPunctuationCharacter(lowerCase.charAt(indexOf - 1))) {
                                     ?? obj8 = new Object();
-                                    obj8.f41255a = indexOf;
-                                    obj8.f41257c = pageBlock;
-                                    obj8.f41256b = obj7;
+                                    obj8.f41257a = indexOf;
+                                    obj8.f41259c = pageBlock;
+                                    obj8.f41258b = obj7;
                                     arrayList11.add(obj8);
                                 }
                                 i24 = length;
@@ -501,14 +501,14 @@ public final class l3 implements Runnable {
             case 17:
                 ln lnVar = (ln) obj5;
                 aj ajVar = (aj) obj2;
-                ajVar.f17118b = lnVar.f39634a.getMessagesController().ensureMessagesLoaded(-((TLRPC.Chat) obj4).f20038id, i17, new gn(lnVar, ajVar, (zn) obj3));
+                ajVar.f17118b = lnVar.f39636a.getMessagesController().ensureMessagesLoaded(-((TLRPC.Chat) obj4).f20038id, i17, new gn(lnVar, ajVar, (zn) obj3));
                 return;
             case 18:
                 ln lnVar2 = (ln) obj5;
                 MessageObject messageObject = (MessageObject) obj2;
                 Integer num = (Integer) obj4;
                 byte[] bArr = (byte[]) obj3;
-                zn znVar = lnVar2.f39634a;
+                zn znVar = lnVar2.f39636a;
                 int id2 = messageObject.getId();
                 if (messageObject.getDialogId() == znVar.L6) {
                     i12 = 1;

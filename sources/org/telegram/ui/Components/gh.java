@@ -114,12 +114,12 @@ public final class gh implements sl, org.telegram.ui.ActionBar.a2, me.k, gm0, dh
                 org.telegram.ui.zn znVar = (org.telegram.ui.zn) yiVar.f33228f0;
                 TLRPC.TL_messageMediaToDo tL_messageMediaToDo = (TLRPC.TL_messageMediaToDo) messageMedia;
                 if (znVar.i7()) {
-                    SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of((TLRPC.TL_messageMediaPoll) null, znVar.T5, znVar.f44866n5, znVar.X3, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z10, i10, 0);
+                    SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of((TLRPC.TL_messageMediaPoll) null, znVar.T5, znVar.f44868n5, znVar.X3, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z10, i10, 0);
                     of2.todo = tL_messageMediaToDo;
                     of2.sendMessageChatArguments = znVar.H8();
                     of2.payStars = j3;
                     of2.monoForumPeer = znVar.S8();
-                    of2.suggestionParams = znVar.f44781g5;
+                    of2.suggestionParams = znVar.f44783g5;
                     znVar.getSendMessagesHelper().sendMessage(of2);
                     znVar.B6();
                     return;
@@ -138,7 +138,7 @@ public final class gh implements sl, org.telegram.ui.ActionBar.a2, me.k, gm0, dh
                         str = null;
                         arrayList2 = null;
                     }
-                    SendMessagesHelper.prepareSendingPoll(znVar2.getAccountInstance(), new qh.h(fVar, tL_messageMediaPoll, nextLong, str, arrayList2, arrayList), znVar2.T5, znVar2.f44866n5, znVar2.X3, null, znVar2.f44840l5, z10, i10, znVar2.H8(), j3, znVar2.S8(), znVar2.f44781g5);
+                    SendMessagesHelper.prepareSendingPoll(znVar2.getAccountInstance(), new qh.h(fVar, tL_messageMediaPoll, nextLong, str, arrayList2, arrayList), znVar2.T5, znVar2.f44868n5, znVar2.X3, null, znVar2.f44842l5, z10, i10, znVar2.H8(), j3, znVar2.S8(), znVar2.f44783g5);
                     znVar2.B6();
                     return;
                 }
@@ -225,7 +225,7 @@ public final class gh implements sl, org.telegram.ui.ActionBar.a2, me.k, gm0, dh
                 } else {
                     charSequence2 = null;
                 }
-                SendMessagesHelper.prepareSendingAudioDocuments(accountInstance, arrayList, charSequence2, znVar.T5, znVar.f44866n5, znVar.X3, null, z10, i10, i11, znVar.p5, znVar.H8(), j3, z11, j10);
+                SendMessagesHelper.prepareSendingAudioDocuments(accountInstance, arrayList, charSequence2, znVar.T5, znVar.f44868n5, znVar.X3, null, z10, i10, i11, znVar.p5, znVar.H8(), j3, z11, j10);
                 znVar.B6();
                 return;
             }

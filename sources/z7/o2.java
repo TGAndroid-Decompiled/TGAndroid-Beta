@@ -1,6 +1,6 @@
 package z7;
 public final class o2 implements ia.d {
-    public static final o2 f53986a = new Object();
+    public static final o2 f53988a = new Object();
 
     static {
         sc.v.t(sc.v.o(w.class, sc.v.s(3, sc.v.o(w.class, sc.v.s(2, sc.v.o(w.class, new s(1)))))));

@@ -516,7 +516,7 @@ public abstract class n91 extends FrameLayout {
         if (this.m0 && this.f29114o0 == null) {
             j91 j91Var = new j91(this);
             this.f29114o0 = j91Var;
-            j91Var.f47696m = false;
+            j91Var.f47698m = false;
             j91Var.C = false;
             j91Var.o(hs.h);
             this.f29114o0.n(350L);

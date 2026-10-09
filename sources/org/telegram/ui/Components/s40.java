@@ -105,9 +105,9 @@ public final class s40 extends org.telegram.ui.ActionBar.n2 implements Notificat
             }
             frameLayout2.setVisibility(i10);
             org.telegram.ui.jk jkVar = this.f30631f;
-            if (jkVar != null && (aoVar = jkVar.f36357a) != null && (w0Var = aoVar.L3) != null) {
+            if (jkVar != null && (aoVar = jkVar.f36359a) != null && (w0Var = aoVar.L3) != null) {
                 w0Var.setScaleX(AndroidUtilities.lerp(1.0f, 0.95f, this.E));
-                this.f30631f.f36357a.L3.setScaleY(AndroidUtilities.lerp(1.0f, 0.95f, this.E));
+                this.f30631f.f36359a.L3.setScaleY(AndroidUtilities.lerp(1.0f, 0.95f, this.E));
             }
         } else if (this.f30637y == z10) {
         } else {
@@ -288,7 +288,7 @@ public final class s40 extends org.telegram.ui.ActionBar.n2 implements Notificat
                     textView.setText(LocaleController.formatPluralString("FoundStories", w8Var.J, new Object[0]));
                 }
             }
-        } else if (i10 == NotificationCenter.hashtagSearchUpdated && (jkVar = this.f30631f) != null && jkVar.f36357a != null && ((Integer) objArr[0]).intValue() == this.f30631f.f36357a.getClassGuid()) {
+        } else if (i10 == NotificationCenter.hashtagSearchUpdated && (jkVar = this.f30631f) != null && jkVar.f36359a != null && ((Integer) objArr[0]).intValue() == this.f30631f.f36359a.getClassGuid()) {
             int intValue = ((Integer) objArr[1]).intValue();
             gg.m1 m1Var2 = this.f30633r;
             if (m1Var2 != null) {

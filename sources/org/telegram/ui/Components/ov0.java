@@ -150,8 +150,8 @@ public final class ov0 extends yl0 {
         SparseArray[] sparseArrayArr = bw0Var.Z0;
         qv0 qv0Var = bw0Var.f25162t1[this.d];
         ArrayList arrayList = qv0Var.f30274a;
-        int i11 = d1Var.f47660f;
-        View view = d1Var.f47656a;
+        int i11 = d1Var.f47662f;
+        View view = d1Var.f47658a;
         boolean z12 = false;
         if (i11 != 7) {
             if (i11 == 10 && (view instanceof org.telegram.ui.Cells.j7)) {

@@ -42,21 +42,21 @@ public final class xc0 implements View.OnClickListener {
                 return;
             default:
                 ArrayList arrayList = (ArrayList) this.d;
-                org.telegram.ui.rt rtVar = ((org.telegram.ui.nt) this.f32800c).f40360a;
-                if (rtVar.f41506w != null && rtVar.f41496l != null) {
+                org.telegram.ui.rt rtVar = ((org.telegram.ui.nt) this.f32800c).f40362a;
+                if (rtVar.f41508w != null && rtVar.f41498l != null) {
                     int intValue = ((Integer) arrayList.get(((Integer) view.getTag()).intValue())).intValue();
                     if (intValue == 0) {
-                        rtVar.f41496l.C(rtVar.W);
+                        rtVar.f41498l.C(rtVar.W);
                     } else if (intValue == 1) {
-                        rtVar.f41496l.v(rtVar.W);
+                        rtVar.f41498l.v(rtVar.W);
                     } else if (intValue == 2) {
-                        rtVar.f41496l.v(null);
+                        rtVar.f41498l.v(null);
                     } else if (intValue == 3) {
-                        rtVar.f41496l.H(rtVar.W);
+                        rtVar.f41498l.H(rtVar.W);
                     } else if (intValue == 4) {
-                        rtVar.f41496l.r(rtVar.W);
+                        rtVar.f41498l.r(rtVar.W);
                     } else if (intValue == 5) {
-                        MediaDataController.getInstance(rtVar.f41502r).addRecentSticker(2, rtVar.f41485b0, rtVar.W, (int) (System.currentTimeMillis() / 1000), this.f32799b);
+                        MediaDataController.getInstance(rtVar.f41504r).addRecentSticker(2, rtVar.f41487b0, rtVar.W, (int) (System.currentTimeMillis() / 1000), this.f32799b);
                     }
                     rtVar.p();
                     return;

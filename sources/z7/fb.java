@@ -5,14 +5,14 @@ public enum fb implements u {
     TYPE_THICK(2),
     TYPE_GMV(3);
     
-    public final int f53663a;
+    public final int f53665a;
 
     fb(int i10) {
-        this.f53663a = i10;
+        this.f53665a = i10;
     }
 
     @Override
     public final int zza() {
-        return this.f53663a;
+        return this.f53665a;
     }
 }

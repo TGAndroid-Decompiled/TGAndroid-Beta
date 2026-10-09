@@ -48,9 +48,9 @@ public final class i implements Runnable {
             case 2:
                 k0 k0Var = (k0) this.d;
                 Utilities.Callback callback = (Utilities.Callback) this.f17535e;
-                TL_wallet.TL_walletState tL_walletState = (TL_wallet.TL_walletState) k0Var.f35096e;
-                p0 p0Var = k0Var.f35095c;
-                if (p0Var != null && TextUtils.equals(p0Var.f35347c, tL_walletState.address) && k0Var.f35095c.f(tL_walletState.public_key)) {
+                TL_wallet.TL_walletState tL_walletState = (TL_wallet.TL_walletState) k0Var.f35120e;
+                p0 p0Var = k0Var.f35119c;
+                if (p0Var != null && TextUtils.equals(p0Var.f35375c, tL_walletState.address) && k0Var.f35119c.f(tL_walletState.public_key)) {
                     callback.run(null);
                     return;
                 } else {
@@ -61,10 +61,10 @@ public final class i implements Runnable {
                 k0 k0Var2 = (k0) this.d;
                 Utilities.Callback2 callback2 = (Utilities.Callback2) this.f17535e;
                 k0.E("getSecretPhrase: ready!");
-                TL_wallet.TL_walletState tL_walletState2 = (TL_wallet.TL_walletState) k0Var2.f35096e;
-                if (k0Var2.f35095c.f(tL_walletState2.public_key)) {
+                TL_wallet.TL_walletState tL_walletState2 = (TL_wallet.TL_walletState) k0Var2.f35120e;
+                if (k0Var2.f35119c.f(tL_walletState2.public_key)) {
                     k0.E("getSecretPhrase: device has secured phrase, requesting");
-                    p0 p0Var2 = k0Var2.f35095c;
+                    p0 p0Var2 = k0Var2.f35119c;
                     byte[] bArr = tL_walletState2.public_key;
                     org.telegram.ui.Wallet.j jVar = new org.telegram.ui.Wallet.j(callback2, 1);
                     if (bArr == null) {
@@ -82,7 +82,7 @@ public final class i implements Runnable {
                     return;
                 } else {
                     k0.E("getSecretPhrase: exportSecretPhrase through password request");
-                    q2.a(k0Var2.f35093a, new ei.c(7), null, null, null, new q0(4, k0Var2, callback2), this.f17533b, this.f17534c, new ib0((Object) null, 1));
+                    q2.a(k0Var2.f35117a, new ei.c(7), null, null, null, new q0(4, k0Var2, callback2), this.f17533b, this.f17534c, new ib0((Object) null, 1));
                     return;
                 }
         }

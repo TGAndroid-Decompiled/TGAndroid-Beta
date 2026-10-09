@@ -40,7 +40,7 @@ public final class aj implements Utilities.CallbackReturn {
                 SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(i11, i12, i10 * 0.12f);
                 svgThumb.setAspectCenter(true);
                 svgThumb.setColorKey(org.telegram.ui.ActionBar.i6.f21044qe);
-                imageReceiver.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(fVar.f47558b.geo, 300, 168, 15, Math.min(2, (int) Math.ceil(AndroidUtilities.density)))), (String) null, (ImageLocation) null, (String) null, new uq(svgThumb), (Object) null, 0);
+                imageReceiver.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(fVar.f47560b.geo, 300, 168, 15, Math.min(2, (int) Math.ceil(AndroidUtilities.density)))), (String) null, (ImageLocation) null, (String) null, new uq(svgThumb), (Object) null, 0);
                 view.addOnAttachStateChangeListener(new org.telegram.ui.Cells.q8(imageReceiver, 1));
                 imageReceiver.setRoundRadius(AndroidUtilities.dp(14.0f));
                 return new hd(imageReceiver, view.getContext().getResources().getDrawable(R.drawable.map_pin).mutate());
@@ -61,7 +61,7 @@ public final class aj implements Utilities.CallbackReturn {
                 if (view2.getParent() != k71Var) {
                     return Boolean.FALSE;
                 }
-                return Boolean.valueOf(!c71.K(k71Var.T(view2).f47660f));
+                return Boolean.valueOf(!c71.K(k71Var.T(view2).f47662f));
         }
     }
 }

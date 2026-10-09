@@ -329,7 +329,7 @@ public final class nd implements Runnable {
                 adVar.L(resources.getDrawable(i13).mutate(), org.telegram.ui.g60.h1(i18)).k(g60Var.o1());
                 return;
             case 15:
-                org.telegram.ui.g60 g60Var2 = ((org.telegram.ui.j50) obj).f38824b;
+                org.telegram.ui.g60 g60Var2 = ((org.telegram.ui.j50) obj).f38826b;
                 VoIPService sharedInstance3 = VoIPService.getSharedInstance();
                 if (sharedInstance3 != null) {
                     sharedInstance3.setAudioOutput(i18);
@@ -354,14 +354,14 @@ public final class nd implements Runnable {
             case 16:
                 org.telegram.ui.c70 c70Var = (org.telegram.ui.c70) obj;
                 AnimatorSet animatorSet = new AnimatorSet();
-                int childCount = c70Var.f36557n.getChildCount();
+                int childCount = c70Var.f36559n.getChildCount();
                 for (int i19 = 0; i19 < childCount; i19++) {
-                    View childAt = c70Var.f36557n.getChildAt(i19);
-                    c70Var.f36557n.getClass();
+                    View childAt = c70Var.f36559n.getChildAt(i19);
+                    c70Var.f36559n.getClass();
                     if (RecyclerView.R(childAt) >= i18) {
                         childAt.setAlpha(0.0f);
                         ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt, View.ALPHA, 0.0f, 1.0f);
-                        ofFloat.setStartDelay((int) ((Math.min(c70Var.f36557n.getMeasuredHeight(), Math.max(0, childAt.getTop())) / c70Var.f36557n.getMeasuredHeight()) * 100.0f));
+                        ofFloat.setStartDelay((int) ((Math.min(c70Var.f36559n.getMeasuredHeight(), Math.max(0, childAt.getTop())) / c70Var.f36559n.getMeasuredHeight()) * 100.0f));
                         ofFloat.setDuration(200L);
                         animatorSet.playTogether(ofFloat);
                     }
@@ -374,7 +374,7 @@ public final class nd implements Runnable {
                 hd0Var.z0(false);
                 return;
             case 18:
-                ((org.telegram.ui.fe0) obj).f37523a.f36732f[i18].l(1.0f);
+                ((org.telegram.ui.fe0) obj).f37525a.f36734f[i18].l(1.0f);
                 return;
             case 19:
                 NotificationsSettingsActivity notificationsSettingsActivity = (NotificationsSettingsActivity) obj;
@@ -385,7 +385,7 @@ public final class nd implements Runnable {
                 ((org.telegram.ui.il0) obj).run(Integer.valueOf(i18));
                 return;
             case 21:
-                ((org.telegram.ui.np0) obj).f40308e.f42530p0.I.D(1 - i18);
+                ((org.telegram.ui.np0) obj).f40310e.f42532p0.I.D(1 - i18);
                 return;
             case 22:
                 PhotoViewer photoViewer = (PhotoViewer) obj;
@@ -412,8 +412,8 @@ public final class nd implements Runnable {
             case 24:
                 org.telegram.ui.x01 x01Var = (org.telegram.ui.x01) obj;
                 org.telegram.ui.y01 y01Var = x01Var.h;
-                NotificationCenter notificationCenter = y01Var.f44189e.getNotificationCenter();
-                ProfileActivity profileActivity2 = y01Var.f44189e;
+                NotificationCenter notificationCenter = y01Var.f44191e.getNotificationCenter();
+                ProfileActivity profileActivity2 = y01Var.f44191e;
                 int i21 = NotificationCenter.newSuggestionsAvailable;
                 notificationCenter.removeObserver(profileActivity2, i21);
                 if (i18 == 2) {
@@ -435,7 +435,7 @@ public final class nd implements Runnable {
                 org.telegram.ui.n21 n21Var = (org.telegram.ui.n21) obj;
                 AndroidUtilities.hideKeyboard(n21Var.d.findFocus());
                 while (true) {
-                    EditTextBoldCursor[] editTextBoldCursorArr = n21Var.f40050a;
+                    EditTextBoldCursor[] editTextBoldCursorArr = n21Var.f40052a;
                     if (i17 < editTextBoldCursorArr.length) {
                         if (i17 != 0 && ((i18 != 3 || i17 != 4) && ((i18 != 2 || (i17 != 4 && i17 != 1)) && (i18 != 1 || (i17 != 1 && i17 != 2 && i17 != 3))))) {
                             editTextBoldCursorArr[i17].setText((CharSequence) null);
@@ -448,19 +448,19 @@ public final class nd implements Runnable {
                 break;
             case 26:
                 org.telegram.ui.d31 d31Var = (org.telegram.ui.d31) obj;
-                s4.p0 layoutManager = d31Var.f36830y.getLayoutManager();
+                s4.p0 layoutManager = d31Var.f36832y.getLayoutManager();
                 if (layoutManager != null) {
                     if (d31Var.R) {
                         if (i18 > d31Var.L) {
-                            i15 = Math.min(i18 + 1, d31Var.f36821b.d.size() - 1);
+                            i15 = Math.min(i18 + 1, d31Var.f36823b.d.size() - 1);
                         } else {
                             i15 = Math.max(i18 - 1, 0);
                         }
                     } else {
                         i15 = i18;
                     }
-                    org.telegram.ui.a31 a31Var = d31Var.f36822c;
-                    a31Var.f47825a = i15;
+                    org.telegram.ui.a31 a31Var = d31Var.f36824c;
+                    a31Var.f47827a = i15;
                     layoutManager.w0(a31Var);
                 }
                 d31Var.L = i18;

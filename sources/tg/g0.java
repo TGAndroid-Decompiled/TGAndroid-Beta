@@ -36,11 +36,11 @@ public final class g0 extends rg.l1 {
             this.Q0 = aVar;
             aVar.setOnClickListener(new org.telegram.ui.Components.voip.o(this, 11));
             vg.a aVar2 = this.Q0;
-            aVar2.f49564e = true;
-            ci.d dVar = aVar2.f49561a;
+            aVar2.f49566e = true;
+            ci.d dVar = aVar2.f49563a;
             dVar.setEnabled(true);
             dVar.g(LocaleController.getString(R.string.GiftPremiumActivateForFree), false, true);
-            aVar2.f49562b.setBackgroundColor(i6.w0(i6.f20868h5, aVar2.f49563c));
+            aVar2.f49564b.setBackgroundColor(i6.w0(i6.f20868h5, aVar2.f49565c));
             this.containerView.addView(this.Q0, x5.a(68.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 80));
         }
         fixNavigationBar();
@@ -55,7 +55,7 @@ public final class g0 extends rg.l1 {
         rg.l1 l1Var = new rg.l1(g0Var.f26025n, UserConfig.selectedAccount, null, null, null, g0Var.resourcesProvider);
         l1Var.J0 = true;
         l1Var.K0 = true;
-        l1Var.f47321c0 = true;
+        l1Var.f47323c0 = true;
         g0Var.f26025n.showDialog(l1Var);
     }
 
@@ -97,17 +97,17 @@ public final class g0 extends rg.l1 {
 
     @Override
     public final void c0() {
-        int i10 = this.f47324f0;
-        this.f47325g0 = i10;
-        this.f47326h0 = i10 + 1;
+        int i10 = this.f47326f0;
+        this.f47327g0 = i10;
+        this.f47328h0 = i10 + 1;
         int i11 = i10 + 2;
-        this.f47324f0 = i11;
-        this.f47327i0 = i11;
-        this.f47328j0 = i11;
+        this.f47326f0 = i11;
+        this.f47329i0 = i11;
+        this.f47330j0 = i11;
         int size = this.X.size() + i11;
-        this.f47329k0 = size;
-        this.f47324f0 = size + 1;
-        this.f47330l0 = size;
+        this.f47331k0 = size;
+        this.f47326f0 = size + 1;
+        this.f47332l0 = size;
     }
 
     @Override

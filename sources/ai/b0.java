@@ -166,7 +166,7 @@ public abstract class b0 extends FrameLayout implements NotificationCenter.Notif
         this.R = jVar;
         jVar.C = false;
         jVar.n(150L);
-        jVar.f47696m = false;
+        jVar.f47698m = false;
         qVar.setItemAnimator(jVar);
         s4.d0 d0Var = new s4.d0(0, false);
         this.S = d0Var;
@@ -223,7 +223,7 @@ public abstract class b0 extends FrameLayout implements NotificationCenter.Notif
         ?? jVar2 = new s4.j();
         this.d = jVar2;
         jVar2.C = false;
-        jVar2.f47696m = false;
+        jVar2.f47698m = false;
         qVar2.setItemAnimator(jVar2);
         qVar2.setAdapter(vVar2);
         qVar2.setClipChildren(false);

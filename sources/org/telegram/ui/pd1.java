@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class pd1 extends org.telegram.ui.Components.pm0 {
-    public final Context f40776c;
+    public final Context f40778c;
     public final ArrayList d;
 
     public pd1(Context context) {
-        this.f40776c = context;
+        this.f40778c = context;
         ArrayList arrayList = new ArrayList();
         this.d = arrayList;
         int currentTimeMillis = (int) (System.currentTimeMillis() / 1000);
@@ -123,7 +123,7 @@ public final class pd1 extends org.telegram.ui.Components.pm0 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47660f != 1) {
+        if (d1Var.f47662f != 1) {
             return true;
         }
         return false;
@@ -144,8 +144,8 @@ public final class pd1 extends org.telegram.ui.Components.pm0 {
 
     @Override
     public final void v(s4.d1 d1Var, int i10) {
-        if (d1Var.f47660f == 0) {
-            org.telegram.ui.Cells.s2 s2Var = (org.telegram.ui.Cells.s2) d1Var.f47656a;
+        if (d1Var.f47662f == 0) {
+            org.telegram.ui.Cells.s2 s2Var = (org.telegram.ui.Cells.s2) d1Var.f47658a;
             ArrayList arrayList = this.d;
             boolean z10 = true;
             if (i10 == arrayList.size() - 1) {
@@ -159,7 +159,7 @@ public final class pd1 extends org.telegram.ui.Components.pm0 {
     @Override
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
         View s4Var;
-        Context context = this.f40776c;
+        Context context = this.f40778c;
         if (i10 == 0) {
             s4Var = new org.telegram.ui.Cells.s2(context, false);
         } else {

@@ -6,22 +6,22 @@ import org.telegram.messenger.BillingController;
 import org.telegram.messenger.BuildVars;
 import org.telegram.tgnet.TLRPC;
 public final class lx0 {
-    public final TLRPC.TL_premiumSubscriptionOption f39695a;
-    public int f39696b;
-    public long f39697c;
+    public final TLRPC.TL_premiumSubscriptionOption f39697a;
+    public int f39698b;
+    public long f39699c;
     public long d;
-    public long f39698e;
-    public c5.o f39699f;
-    public c5.n f39700g;
+    public long f39700e;
+    public c5.o f39701f;
+    public c5.n f39702g;
     public int h;
 
     public lx0(TLRPC.TL_premiumSubscriptionOption tL_premiumSubscriptionOption) {
-        this.f39695a = tL_premiumSubscriptionOption;
+        this.f39697a = tL_premiumSubscriptionOption;
     }
 
     public final void a() {
-        c5.o oVar = this.f39699f;
-        if (oVar != null && this.f39700g == null) {
+        c5.o oVar = this.f39701f;
+        if (oVar != null && this.f39702g == null) {
             ArrayList arrayList = oVar.h;
             int size = arrayList.size();
             int i10 = 0;
@@ -30,16 +30,16 @@ public final class lx0 {
                 i10++;
                 c5.n nVar = (c5.n) obj;
                 String str = ((c5.l) nVar.f4276b.f4274a.get(0)).d;
-                int i11 = this.f39695a.months;
+                int i11 = this.f39697a.months;
                 if (i11 == 12) {
                     if (str.equals("P1Y")) {
-                        this.f39700g = nVar;
+                        this.f39702g = nVar;
                         return;
                     }
                 } else {
                     Locale locale = Locale.ROOT;
                     if (str.equals("P" + i11 + "M")) {
-                        this.f39700g = nVar;
+                        this.f39702g = nVar;
                         return;
                     }
                 }
@@ -49,11 +49,11 @@ public final class lx0 {
 
     public final String b() {
         boolean useInvoiceBilling = BuildVars.useInvoiceBilling();
-        TLRPC.TL_premiumSubscriptionOption tL_premiumSubscriptionOption = this.f39695a;
+        TLRPC.TL_premiumSubscriptionOption tL_premiumSubscriptionOption = this.f39697a;
         if (!useInvoiceBilling && tL_premiumSubscriptionOption.store_product != null) {
-            if (this.f39699f != null) {
+            if (this.f39701f != null) {
                 a();
-                c5.n nVar = this.f39700g;
+                c5.n nVar = this.f39702g;
                 if (nVar == null) {
                     return "";
                 }
@@ -65,24 +65,24 @@ public final class lx0 {
     }
 
     public final int c() {
-        if (this.f39696b == 0) {
+        if (this.f39698b == 0) {
             if (h() == 0) {
                 return 0;
             }
-            if (this.f39698e != 0) {
-                int i10 = (int) ((1.0d - (i() / this.f39698e)) * 100.0d);
-                this.f39696b = i10;
+            if (this.f39700e != 0) {
+                int i10 = (int) ((1.0d - (i() / this.f39700e)) * 100.0d);
+                this.f39698b = i10;
                 if (i10 == 0) {
-                    this.f39696b = -1;
+                    this.f39698b = -1;
                 }
             }
         }
-        return this.f39696b;
+        return this.f39698b;
     }
 
     public final String d() {
-        if (!BuildVars.useInvoiceBilling() && this.f39695a.store_product != null) {
-            if (this.f39699f == null) {
+        if (!BuildVars.useInvoiceBilling() && this.f39697a.store_product != null) {
+            if (this.f39701f == null) {
                 return "";
             }
             return BillingController.getInstance().formatCurrency(g(), b(), 6);
@@ -91,8 +91,8 @@ public final class lx0 {
     }
 
     public final String e() {
-        if (!BuildVars.useInvoiceBilling() && this.f39695a.store_product != null) {
-            if (this.f39699f == null) {
+        if (!BuildVars.useInvoiceBilling() && this.f39697a.store_product != null) {
+            if (this.f39701f == null) {
                 return "";
             }
             return BillingController.getInstance().formatCurrency(h(), b(), 6);
@@ -101,8 +101,8 @@ public final class lx0 {
     }
 
     public final String f() {
-        if (!BuildVars.useInvoiceBilling() && this.f39695a.store_product != null) {
-            if (this.f39699f == null) {
+        if (!BuildVars.useInvoiceBilling() && this.f39697a.store_product != null) {
+            if (this.f39701f == null) {
                 return "";
             }
             return BillingController.getInstance().formatCurrency(i(), b(), 6);
@@ -112,11 +112,11 @@ public final class lx0 {
 
     public final long g() {
         boolean useInvoiceBilling = BuildVars.useInvoiceBilling();
-        TLRPC.TL_premiumSubscriptionOption tL_premiumSubscriptionOption = this.f39695a;
+        TLRPC.TL_premiumSubscriptionOption tL_premiumSubscriptionOption = this.f39697a;
         if (!useInvoiceBilling && tL_premiumSubscriptionOption.store_product != null) {
-            if (this.f39699f != null) {
+            if (this.f39701f != null) {
                 a();
-                c5.n nVar = this.f39700g;
+                c5.n nVar = this.f39702g;
                 if (nVar == null) {
                     return 0L;
                 }
@@ -128,20 +128,20 @@ public final class lx0 {
     }
 
     public final long h() {
-        if (this.f39697c == 0) {
+        if (this.f39699c == 0) {
             long g10 = g();
             if (g10 != 0) {
-                this.f39697c = g10 / this.f39695a.months;
+                this.f39699c = g10 / this.f39697a.months;
             }
         }
-        return this.f39697c;
+        return this.f39699c;
     }
 
     public final long i() {
         if (this.d == 0) {
             long g10 = g();
             if (g10 != 0) {
-                this.d = (long) ((g10 / this.f39695a.months) * 12.0d);
+                this.d = (long) ((g10 / this.f39697a.months) * 12.0d);
             }
         }
         return this.d;

@@ -16,14 +16,14 @@ public final class f20 extends s4.w {
     @Override
     public final void a(RecyclerView recyclerView, s4.d1 d1Var) {
         super.a(recyclerView, d1Var);
-        View view = d1Var.f47656a;
+        View view = d1Var.f47658a;
         view.setPressed(false);
         view.setTag(R.id.dragging, null);
     }
 
     @Override
     public final int e(RecyclerView recyclerView, s4.d1 d1Var) {
-        if (d1Var.f47660f != 2) {
+        if (d1Var.f47662f != 2) {
             return s4.w.l(0, 0);
         }
         return s4.w.l(3, 0);
@@ -38,13 +38,13 @@ public final class f20 extends s4.w {
     public final boolean n(RecyclerView recyclerView, s4.d1 d1Var, s4.d1 d1Var2) {
         MessagesController.DialogFilter dialogFilter;
         MessagesController.DialogFilter dialogFilter2;
-        if (d1Var.f47660f != d1Var2.f47660f) {
+        if (d1Var.f47662f != d1Var2.f47662f) {
             return false;
         }
         c20 c20Var = this.d.f33761b;
         int b10 = d1Var.b();
         int b11 = d1Var2.b();
-        FiltersSetupActivity filtersSetupActivity = c20Var.f36499e;
+        FiltersSetupActivity filtersSetupActivity = c20Var.f36501e;
         int i10 = filtersSetupActivity.f33766r;
         ArrayList arrayList = filtersSetupActivity.f33765n;
         if (b10 >= i10 && b11 >= i10) {
@@ -72,13 +72,13 @@ public final class f20 extends s4.w {
         Boolean bool;
         if (i10 != 0) {
             this.d.f33760a.I0(false);
-            d1Var.f47656a.setPressed(true);
+            d1Var.f47658a.setPressed(true);
         } else {
             AndroidUtilities.cancelRunOnUIThread(new uz(this, 5));
             AndroidUtilities.runOnUIThread(new uz(this, 5), 320L);
         }
         if (d1Var != null) {
-            View view = d1Var.f47656a;
+            View view = d1Var.f47658a;
             int i11 = R.id.dragging;
             if (i10 == 2) {
                 bool = Boolean.TRUE;

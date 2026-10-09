@@ -238,14 +238,14 @@ public final class j0 implements i9.r, q {
         } else {
             Uri uri5 = R0.f3479m;
             if (uri5 != null) {
-                la.h hVar = (la.h) bVar.f45557c;
+                la.h hVar = (la.h) bVar.f45559c;
                 if (hVar != null && (uri2 = (Uri) hVar.f15463c) != null && uri2.equals(uri5)) {
-                    wVar = (i9.w) ((la.h) bVar.f45557c).d;
+                    wVar = (i9.w) ((la.h) bVar.f45559c).d;
                     e2.d.h(wVar);
                 } else {
-                    g2.i iVar = (g2.i) bVar.f45556b;
+                    g2.i iVar = (g2.i) bVar.f45558b;
                     i9.w a2 = ((i9.y) iVar.f10251a).a(new com.google.firebase.messaging.h(2, iVar, uri5));
-                    bVar.f45557c = new la.h(uri5, a2);
+                    bVar.f45559c = new la.h(uri5, a2);
                     wVar = a2;
                 }
             } else {

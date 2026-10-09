@@ -3,18 +3,18 @@ package org.telegram.ui;
 import java.util.regex.Pattern;
 import org.telegram.messenger.Utilities;
 public final class j90 implements Utilities.Callback {
-    public final int f38881a;
-    public final Runnable f38882b;
+    public final int f38883a;
+    public final Runnable f38884b;
 
     public j90(xh.p4 p4Var, int i10) {
-        this.f38881a = i10;
-        this.f38882b = p4Var;
+        this.f38883a = i10;
+        this.f38884b = p4Var;
     }
 
     @Override
     public final void run(Object obj) {
-        int i10 = this.f38881a;
-        Runnable runnable = this.f38882b;
+        int i10 = this.f38883a;
+        Runnable runnable = this.f38884b;
         String str = (String) obj;
         switch (i10) {
             case 0:

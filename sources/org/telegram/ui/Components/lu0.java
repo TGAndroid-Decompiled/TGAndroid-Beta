@@ -62,7 +62,7 @@ public final class lu0 extends pm0 {
         boolean z17;
         bw0 bw0Var = this.f28597f;
         org.telegram.ui.ActionBar.n2 n2Var = bw0Var.f25166v1;
-        View view = d1Var.f47656a;
+        View view = d1Var.f47658a;
         if (view instanceof org.telegram.ui.Cells.xa) {
             org.telegram.ui.Cells.xa xaVar = (org.telegram.ui.Cells.xa) view;
             if (!this.f28596e.isEmpty()) {

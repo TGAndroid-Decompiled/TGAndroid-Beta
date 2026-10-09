@@ -89,7 +89,7 @@ public final class m40 extends View implements GestureDetector.OnGestureListener
             imageReceiver = (ImageReceiver) arrayList.get(0);
         }
         this.f28669c.add(imageReceiver);
-        imageReceiver.setCurrentAccount(((org.telegram.ui.vs0) this.W).f42975a.T);
+        imageReceiver.setCurrentAccount(((org.telegram.ui.vs0) this.W).f42977a.T);
         return imageReceiver;
     }
 
@@ -167,14 +167,14 @@ public final class m40 extends View implements GestureDetector.OnGestureListener
                         if (arrayList4.get(0) instanceof MessageObject) {
                             obj = arrayList4.get(i11);
                         } else if (arrayList4.get(0) instanceof TL_iv.PageBlock) {
-                            org.telegram.ui.yu0 yu0Var = ((org.telegram.ui.vs0) this.W).f42975a.f33954j7;
+                            org.telegram.ui.yu0 yu0Var = ((org.telegram.ui.vs0) this.W).f42977a.f33954j7;
                             if (yu0Var != null) {
                                 obj = yu0Var.g();
                             } else {
                                 obj = null;
                             }
                         } else {
-                            obj = "avatar_" + ((org.telegram.ui.vs0) this.W).f42975a.f34096z5;
+                            obj = "avatar_" + ((org.telegram.ui.vs0) this.W).f42977a.f34096z5;
                         }
                         freeReceiver.setImage(null, null, imageLocation, "80_80", 0L, null, obj, 1);
                         freeReceiver.setParam(i11);
@@ -196,7 +196,7 @@ public final class m40 extends View implements GestureDetector.OnGestureListener
                         if (arrayList4.get(0) instanceof MessageObject) {
                             sb2 = arrayList4.get(i12);
                         } else if (arrayList4.get(0) instanceof TL_iv.PageBlock) {
-                            org.telegram.ui.yu0 yu0Var2 = ((org.telegram.ui.vs0) this.W).f42975a.f33954j7;
+                            org.telegram.ui.yu0 yu0Var2 = ((org.telegram.ui.vs0) this.W).f42977a.f33954j7;
                             if (yu0Var2 != null) {
                                 sb2 = yu0Var2.g();
                             } else {
@@ -205,7 +205,7 @@ public final class m40 extends View implements GestureDetector.OnGestureListener
                         } else {
                             StringBuilder sb3 = new StringBuilder(str2);
                             str = str2;
-                            sb3.append(((org.telegram.ui.vs0) this.W).f42975a.f34096z5);
+                            sb3.append(((org.telegram.ui.vs0) this.W).f42977a.f34096z5);
                             sb2 = sb3.toString();
                             freeReceiver2.setImage(null, null, imageLocation2, "80_80", 0L, null, sb2, 1);
                             freeReceiver2.setParam(i12);
@@ -271,7 +271,7 @@ public final class m40 extends View implements GestureDetector.OnGestureListener
             this.T = -1;
             l40 l40Var = this.W;
             if (l40Var != null) {
-                PhotoViewer photoViewer = ((org.telegram.ui.vs0) l40Var).f42975a;
+                PhotoViewer photoViewer = ((org.telegram.ui.vs0) l40Var).f42977a;
                 if (PhotoViewer.R2(photoViewer.T4)) {
                     photoViewer.Y2 = true;
                     photoViewer.U1(true);
@@ -306,7 +306,7 @@ public final class m40 extends View implements GestureDetector.OnGestureListener
             i10 = 0;
         }
         this.T = this.f28672f - i10;
-        PhotoViewer photoViewer = ((org.telegram.ui.vs0) this.W).f42975a;
+        PhotoViewer photoViewer = ((org.telegram.ui.vs0) this.W).f42977a;
         int i18 = photoViewer.P4;
         ArrayList arrayList = photoViewer.f33872a7;
         ArrayList arrayList2 = photoViewer.Y6;
@@ -591,7 +591,7 @@ public final class m40 extends View implements GestureDetector.OnGestureListener
     @Override
     public final boolean onSingleTapUp(MotionEvent motionEvent) {
         List list;
-        PhotoViewer photoViewer = ((org.telegram.ui.vs0) this.W).f42975a;
+        PhotoViewer photoViewer = ((org.telegram.ui.vs0) this.W).f42977a;
         int i10 = photoViewer.P4;
         ArrayList arrayList = photoViewer.f33872a7;
         ArrayList arrayList2 = photoViewer.Y6;

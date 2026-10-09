@@ -4,18 +4,18 @@ import android.content.Context;
 import android.widget.LinearLayout;
 import org.telegram.tgnet.TLRPC;
 public final class qt extends LinearLayout {
-    public final org.telegram.ui.Components.y9 f41181a;
-    public final org.telegram.ui.ActionBar.j5 f41182b;
-    public final org.telegram.ui.ActionBar.e6 f41183c;
+    public final org.telegram.ui.Components.y9 f41183a;
+    public final org.telegram.ui.ActionBar.j5 f41184b;
+    public final org.telegram.ui.ActionBar.e6 f41185c;
     public TLRPC.StickerSetCovered d;
 
     public qt(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
-        this.f41183c = e6Var;
+        this.f41185c = e6Var;
         org.telegram.ui.Components.y9 y9Var = new org.telegram.ui.Components.y9(context);
-        this.f41181a = y9Var;
+        this.f41183a = y9Var;
         org.telegram.ui.ActionBar.j5 j5Var = new org.telegram.ui.ActionBar.j5(context);
-        this.f41182b = j5Var;
+        this.f41184b = j5Var;
         j5Var.setTextSize(16);
         j5Var.setTextColor(-1);
         setOrientation(0);

@@ -38,8 +38,8 @@ public final class zi implements Runnable {
                 org.telegram.ui.ga gaVar = (org.telegram.ui.ga) this.f20019e;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f20021n;
                 TLRPC.TL_username tL_username2 = (TLRPC.TL_username) this.f20022r;
-                org.telegram.ui.ra raVar = gaVar.f37949a;
-                ArrayList arrayList = raVar.f41324w;
+                org.telegram.ui.ra raVar = gaVar.f37951a;
+                ArrayList arrayList = raVar.f41326w;
                 ArrayList arrayList2 = raVar.v;
                 arrayList.remove((String) this.f20020f);
                 boolean z10 = ((TLObject) this.h) instanceof TLRPC.TL_boolTrue;
@@ -63,7 +63,7 @@ public final class zi implements Runnable {
                 }
                 TLRPC.User user = MessagesController.getInstance(org.telegram.ui.ra.c0(raVar)).getUser(Long.valueOf(raVar.g0()));
                 raVar.getMessagesController().updateUsernameActiveness(user, tL_username2.username, tL_username2.active);
-                if (raVar.f41325x != 0 && arrayList2 != null) {
+                if (raVar.f41327x != 0 && arrayList2 != null) {
                     int size = arrayList2.size();
                     int i11 = 0;
                     while (i11 < size) {

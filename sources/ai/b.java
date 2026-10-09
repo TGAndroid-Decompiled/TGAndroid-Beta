@@ -217,20 +217,20 @@ public final class b extends AnimatorListenerAdapter {
                 return;
             case 27:
                 org.telegram.ui.i4 i4Var = (org.telegram.ui.i4) obj;
-                Runnable runnable = i4Var.f38493a0;
+                Runnable runnable = i4Var.f38495a0;
                 if (runnable != null) {
                     runnable.run();
-                    i4Var.f38493a0 = null;
+                    i4Var.f38495a0 = null;
                     return;
                 }
                 return;
             case 28:
                 org.telegram.ui.v3 v3Var2 = (org.telegram.ui.v3) obj;
-                v3Var2.f42630w = 1.0f;
+                v3Var2.f42632w = 1.0f;
                 v3Var2.n();
                 v3Var2.i();
                 v3Var2.h();
-                v3Var2.f42622a.unlock();
+                v3Var2.f42624a.unlock();
                 return;
             case 29:
                 org.telegram.ui.q4 q4Var = (org.telegram.ui.q4) obj;

@@ -6,17 +6,17 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ws extends org.telegram.ui.ActionBar.j {
-    public final ContactsActivity f43748a;
+    public final ContactsActivity f43750a;
 
     public ws(ContactsActivity contactsActivity) {
-        this.f43748a = contactsActivity;
+        this.f43750a = contactsActivity;
     }
 
     @Override
     public final void b(int i10) {
         int i11;
         org.telegram.ui.ActionBar.k kVar;
-        ContactsActivity contactsActivity = this.f43748a;
+        ContactsActivity contactsActivity = this.f43750a;
         if (i10 == -1) {
             kVar = ((org.telegram.ui.ActionBar.n2) contactsActivity).actionBar;
             if (kVar.t()) {

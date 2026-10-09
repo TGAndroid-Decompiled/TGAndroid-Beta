@@ -74,21 +74,21 @@ public final class t2 implements Runnable {
                 TL_stories.PrepaidGiveaway prepaidGiveaway = (TL_stories.PrepaidGiveaway) obj2;
                 TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway = (TL_stories.TL_prepaidStarsGiveaway) obj;
                 int l4 = tg.s.l(a0Var.m0);
-                int i13 = a0Var.f48273j0;
+                int i13 = a0Var.f48275j0;
                 int i14 = vg.u.v;
                 if (i13 == 1) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                a0Var.f48279q0.b(true);
-                ArrayList arrayList = a0Var.f48266c0;
-                ArrayList arrayList2 = a0Var.f48268e0;
-                TLRPC.Chat chat = a0Var.f48265b0;
-                boolean z11 = a0Var.f48286x0;
-                boolean z12 = a0Var.f48285w0;
+                a0Var.f48281q0.b(true);
+                ArrayList arrayList = a0Var.f48268c0;
+                ArrayList arrayList2 = a0Var.f48270e0;
+                TLRPC.Chat chat = a0Var.f48267b0;
+                boolean z11 = a0Var.f48288x0;
+                boolean z12 = a0Var.f48287w0;
                 int i15 = prepaidGiveaway.quantity;
-                String str = a0Var.f48284v0;
+                String str = a0Var.f48286v0;
                 tg.y yVar = new tg.y(a0Var, tL_prepaidStarsGiveaway, this.f19202b, this.f19203c, prepaidGiveaway);
                 tg.v vVar = new tg.v(a0Var, 6);
                 MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);

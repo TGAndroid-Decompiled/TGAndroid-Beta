@@ -50,7 +50,7 @@ public final class x7 implements Utilities.CallbackReturn {
                 return paintArr[((Integer) obj).intValue() % paintArr.length];
             default:
                 yh.r6 r6Var = (yh.r6) this.f6310b;
-                return r6Var.f53133n[((Integer) obj).intValue() % r6Var.f53133n.length];
+                return r6Var.f53135n[((Integer) obj).intValue() % r6Var.f53135n.length];
         }
     }
 }

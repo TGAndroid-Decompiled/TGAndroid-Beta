@@ -19,7 +19,7 @@ public final class pk extends AnimatorListenerAdapter {
                 return;
             default:
                 org.telegram.ui.zq zqVar = this.f29882b;
-                View view = zqVar.f45043b;
+                View view = zqVar.f45045b;
                 view.setAlpha(1.0f);
                 s4.p0.x0(view);
                 ((rk) zqVar.d).X.f30837r.removeView(view);

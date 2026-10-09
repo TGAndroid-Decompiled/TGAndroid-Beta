@@ -92,8 +92,8 @@ public final class oc0 extends s4.i0 {
         ic0 ic0Var = pc0Var.f29847f;
         int i12 = pc0Var.f29840a;
         MessagePreviewParams.Messages messages = pc0Var.f29849r;
-        if (messages != null && d1Var.f47660f == 0) {
-            org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) d1Var.f47656a;
+        if (messages != null && d1Var.f47662f == 0) {
+            org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) d1Var.f47658a;
             u1Var.setInvalidateSpoilersParent(messages.hasSpoilers);
             u1Var.Z3(ic0Var.getMeasuredWidth(), ic0Var.getMeasuredHeight());
             if (u1Var.getMessageObject() != null) {
@@ -150,7 +150,7 @@ public final class oc0 extends s4.i0 {
         hc0 hc0Var = pc0Var.f29846e;
         vc0 vc0Var = pc0Var.f29845c0;
         if (pc0Var.f29849r != null && (i10 = pc0Var.f29840a) != 1) {
-            View view = d1Var.f47656a;
+            View view = d1Var.f47658a;
             if (view instanceof org.telegram.ui.Cells.u1) {
                 org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) view;
                 if (i10 == 0) {

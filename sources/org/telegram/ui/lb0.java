@@ -3,40 +3,40 @@ package org.telegram.ui;
 import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 public final class lb0 implements org.telegram.ui.Components.f5, org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.vw0 {
-    public final int f39494a;
-    public final vb0 f39495b;
+    public final int f39496a;
+    public final vb0 f39497b;
 
     public lb0(vb0 vb0Var, int i10) {
-        this.f39494a = i10;
-        this.f39495b = vb0Var;
+        this.f39496a = i10;
+        this.f39497b = vb0Var;
     }
 
     @Override
     public void J(int i10, int i11, boolean z10) {
-        this.f39495b.V(i10);
+        this.f39497b.V(i10);
     }
 
     @Override
     public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        vb0 vb0Var = this.f39495b;
-        vb0Var.T.a(vb0Var.f42805e);
+        vb0 vb0Var = this.f39497b;
+        vb0Var.T.a(vb0Var.f42807e);
         vb0Var.finishFragment();
     }
 
     @Override
     public void g(int i10) {
-        switch (this.f39494a) {
+        switch (this.f39496a) {
             case 2:
-                vb0 vb0Var = this.f39495b;
+                vb0 vb0Var = this.f39497b;
                 ArrayList arrayList = vb0Var.P;
                 if (i10 < arrayList.size()) {
-                    vb0Var.f42810w.setText(LocaleController.formatDateAudio(vb0Var.getConnectionsManager().getCurrentTime() + ((Integer) arrayList.get(i10)).intValue(), false));
+                    vb0Var.f42812w.setText(LocaleController.formatDateAudio(vb0Var.getConnectionsManager().getCurrentTime() + ((Integer) arrayList.get(i10)).intValue(), false));
                     return;
                 }
-                vb0Var.f42810w.setText("");
+                vb0Var.f42812w.setText("");
                 return;
             default:
-                vb0 vb0Var2 = this.f39495b;
+                vb0 vb0Var2 = this.f39497b;
                 vb0Var2.F.clearFocus();
                 vb0Var2.O = true;
                 ArrayList arrayList2 = vb0Var2.R;
@@ -52,7 +52,7 @@ public final class lb0 implements org.telegram.ui.Components.f5, org.telegram.ui
 
     @Override
     public void l() {
-        int i10 = this.f39494a;
+        int i10 = this.f39496a;
     }
 
     private final void a() {

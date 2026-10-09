@@ -10,12 +10,12 @@ import org.telegram.messenger.ProxyRotationController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 public final class e21 extends org.telegram.ui.Components.pm0 {
-    public final Context f37131c;
+    public final Context f37133c;
     public final ProxyListActivity d;
 
     public e21(ProxyListActivity proxyListActivity, Context context) {
         this.d = proxyListActivity;
-        this.f37131c = context;
+        this.f37133c = context;
         C(true);
     }
 
@@ -169,8 +169,8 @@ public final class e21 extends org.telegram.ui.Components.pm0 {
         ProxyListActivity proxyListActivity = this.d;
         ArrayList arrayList = proxyListActivity.F;
         ArrayList arrayList2 = proxyListActivity.G;
-        int i13 = d1Var.f47660f;
-        View view = d1Var.f47656a;
+        int i13 = d1Var.f47662f;
+        View view = d1Var.f47658a;
         boolean z11 = true;
         switch (i13) {
             case 1:
@@ -234,7 +234,7 @@ public final class e21 extends org.telegram.ui.Components.pm0 {
                 f21Var.setChecked(z10);
                 boolean contains = arrayList.contains(arrayList2.get(i10 - proxyListActivity.f34397n));
                 f21Var.h = contains;
-                f21Var.f37430f.a(contains, false);
+                f21Var.f37432f.a(contains, false);
                 f21Var.a(!arrayList.isEmpty(), false);
                 return;
             case 6:
@@ -261,18 +261,18 @@ public final class e21 extends org.telegram.ui.Components.pm0 {
         boolean contains;
         ProxyListActivity proxyListActivity = this.d;
         ArrayList arrayList = proxyListActivity.F;
-        int i12 = d1Var.f47660f;
-        View view = d1Var.f47656a;
+        int i12 = d1Var.f47662f;
+        View view = d1Var.f47658a;
         if (i12 == 5 && !list.isEmpty()) {
             f21 f21Var = (f21) view;
             if (list.contains(1) && (contains = arrayList.contains(proxyListActivity.G.get(i10 - proxyListActivity.f34397n))) != f21Var.h) {
                 f21Var.h = contains;
-                f21Var.f37430f.a(contains, true);
+                f21Var.f37432f.a(contains, true);
             }
             if (list.contains(2)) {
                 f21Var.a(!arrayList.isEmpty(), true);
             }
-        } else if (d1Var.f47660f == 3 && list.contains(0)) {
+        } else if (d1Var.f47662f == 3 && list.contains(0)) {
             org.telegram.ui.Cells.w8 w8Var = (org.telegram.ui.Cells.w8) view;
             i11 = proxyListActivity.useProxyRow;
             if (i10 == i11) {
@@ -288,7 +288,7 @@ public final class e21 extends org.telegram.ui.Components.pm0 {
     @Override
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
         View b7Var;
-        Context context = this.f37131c;
+        Context context = this.f37133c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {
@@ -325,8 +325,8 @@ public final class e21 extends org.telegram.ui.Components.pm0 {
     @Override
     public final void y(s4.d1 d1Var) {
         int i10;
-        if (d1Var.f47660f == 3) {
-            org.telegram.ui.Cells.w8 w8Var = (org.telegram.ui.Cells.w8) d1Var.f47656a;
+        if (d1Var.f47662f == 3) {
+            org.telegram.ui.Cells.w8 w8Var = (org.telegram.ui.Cells.w8) d1Var.f47658a;
             int b10 = d1Var.b();
             ProxyListActivity proxyListActivity = this.d;
             i10 = proxyListActivity.useProxyRow;

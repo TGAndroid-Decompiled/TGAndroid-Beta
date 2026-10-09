@@ -45,8 +45,8 @@ public final class jg0 extends pm0 {
 
     @Override
     public final void v(s4.d1 d1Var, int i10) {
-        int i11 = d1Var.f47660f;
-        View view = d1Var.f47656a;
+        int i11 = d1Var.f47662f;
+        View view = d1Var.f47658a;
         kg0 kg0Var = this.d;
         if (i11 != 0) {
             if (i11 == 1) {

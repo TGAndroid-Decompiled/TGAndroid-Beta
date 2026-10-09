@@ -25,7 +25,7 @@ import org.telegram.ui.Components.tc;
 import org.telegram.ui.Components.ud0;
 import org.telegram.ui.ExternalActionActivity;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.Wallet.i8;
+import org.telegram.ui.Wallet.j8;
 import org.telegram.ui.wi1;
 import org.telegram.ui.xo0;
 import org.telegram.ui.z51;
@@ -46,7 +46,7 @@ public final class e0 implements DialogInterface.OnDismissListener {
         org.telegram.ui.ActionBar.n2 lastFragment;
         HashMap hashMap;
         HashMap hashMap2;
-        i8 i8Var;
+        j8 j8Var;
         int i10 = this.f9022a;
         Object obj = this.f9023b;
         Object obj2 = this.f9024c;
@@ -183,12 +183,12 @@ public final class e0 implements DialogInterface.OnDismissListener {
                 if (!((boolean[]) obj)[0]) {
                     z51Var.c(true);
                 }
-                z51Var.f37908w = null;
+                z51Var.f37910w = null;
                 return;
             case 12:
                 wi1 wi1Var = (wi1) obj2;
                 if (!((boolean[]) obj)[0]) {
-                    wi1Var.f43663u0.b();
+                    wi1Var.f43665u0.b();
                     return;
                 }
                 return;
@@ -198,12 +198,12 @@ public final class e0 implements DialogInterface.OnDismissListener {
                 org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                 if (U != null) {
                     if (user != null) {
-                        i8Var = new i8(user);
+                        j8Var = new j8(user);
                     } else {
-                        i8Var = new i8(wallettransactionpeeruser.address);
-                        i8Var.u0(wallettransactionpeeruser.domain);
+                        j8Var = new j8(wallettransactionpeeruser.address);
+                        j8Var.u0(wallettransactionpeeruser.domain);
                     }
-                    U.presentFragment(i8Var);
+                    U.presentFragment(j8Var);
                     return;
                 }
                 return;
@@ -214,7 +214,7 @@ public final class e0 implements DialogInterface.OnDismissListener {
                     b1Var.getClass();
                     runnable2.run();
                 }
-                b1Var.f43240c0 = null;
+                b1Var.f43242c0 = null;
                 return;
             case 15:
                 boolean[] zArr3 = (boolean[]) obj;

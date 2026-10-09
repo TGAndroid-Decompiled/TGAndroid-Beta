@@ -796,8 +796,8 @@ public class xy0 extends org.telegram.ui.ActionBar.f3 implements NotificationCen
             org.telegram.ui.n70 n70Var = this.f33027d0;
             if (n70Var != null) {
                 gy0 gy0Var = new gy0(this, 5);
-                boolean z12 = n70Var.f40091a;
-                if (n70Var.f40093c.N) {
+                boolean z12 = n70Var.f40093a;
+                if (n70Var.f40095c.N) {
                     if (z12) {
                         i15 = R.string.RemoveGroupEmojiPackSet;
                     } else {
@@ -813,7 +813,7 @@ public class xy0 extends org.telegram.ui.ActionBar.f3 implements NotificationCen
                     string = LocaleController.getString(i12);
                 }
                 String str = string;
-                boolean z13 = this.f33027d0.f40091a;
+                boolean z13 = this.f33027d0.f40093a;
                 if (z13) {
                     i13 = org.telegram.ui.ActionBar.i6.f21037q7;
                 } else {

@@ -41,13 +41,13 @@ public final class l5 implements View.OnLongClickListener {
                 int i11 = q6Var.F1;
                 if (q6Var.I1 != null) {
                     pg.u0 e11 = pg.u0.e(i11);
-                    e11.f45806k = !e11.f45806k;
-                    e11.f45798a.edit().putBoolean("fill_shapes", e11.f45806k).apply();
-                    boolean z12 = pg.u0.e(i11).f45806k;
+                    e11.f45808k = !e11.f45808k;
+                    e11.f45800a.edit().putBoolean("fill_shapes", e11.f45808k).apply();
+                    boolean z12 = pg.u0.e(i11).f45808k;
                     for (int i12 = 0; i12 < q6Var.I1.getItemsCount(); i12++) {
                         View childAt = q6Var.I1.L.getChildAt(i12);
                         if (childAt instanceof n6) {
-                            pg.l lVar = (pg.l) pg.l.f45678b.get(i12);
+                            pg.l lVar = (pg.l) pg.l.f45680b.get(i12);
                             if (z12) {
                                 e7 = lVar.m();
                             } else {
@@ -129,7 +129,7 @@ public final class l5 implements View.OnLongClickListener {
                             dj0Var2.setOnDismissListener(new ai.g5(rVar, 4));
                             long p12 = yiVar.p1();
                             if (znVar != null) {
-                                messageObject = znVar.f44866n5;
+                                messageObject = znVar.f44868n5;
                             } else {
                                 messageObject = null;
                             }
@@ -214,13 +214,13 @@ public final class l5 implements View.OnLongClickListener {
                 int i15 = m0Var.P1;
                 if (m0Var.S1 != null) {
                     pg.u0 e12 = pg.u0.e(i15);
-                    e12.f45806k = !e12.f45806k;
-                    e12.f45798a.edit().putBoolean("fill_shapes", e12.f45806k).apply();
-                    boolean z13 = pg.u0.e(i15).f45806k;
+                    e12.f45808k = !e12.f45808k;
+                    e12.f45800a.edit().putBoolean("fill_shapes", e12.f45808k).apply();
+                    boolean z13 = pg.u0.e(i15).f45808k;
                     for (int i16 = 0; i16 < m0Var.S1.getItemsCount(); i16++) {
                         View childAt2 = m0Var.S1.L.getChildAt(i16);
                         if (childAt2 instanceof qg.l0) {
-                            pg.l lVar2 = (pg.l) pg.l.f45678b.get(i16);
+                            pg.l lVar2 = (pg.l) pg.l.f45680b.get(i16);
                             if (z13) {
                                 e10 = lVar2.m();
                             } else {

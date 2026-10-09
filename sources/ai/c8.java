@@ -219,14 +219,14 @@ public final class c8 implements Runnable {
                                     AndroidUtilities.cancelRunOnUIThread(m51Var);
                                     k71Var3.I1 = null;
                                 }
-                                String str3 = k71Var3.f39171z1;
+                                String str3 = k71Var3.f39173z1;
                                 String str4 = str2;
                                 if (str4 != str3) {
                                     return;
                                 }
-                                k71Var3.f39169y1 = true;
+                                k71Var3.f39171y1 = true;
                                 k71Var3.z(true, z15);
-                                b61 b61Var = k71Var3.f39126f0;
+                                b61 b61Var = k71Var3.f39128f0;
                                 if (b61Var != null) {
                                     b61Var.d(true);
                                 }
@@ -255,7 +255,7 @@ public final class c8 implements Runnable {
                                     arrayList15.clear();
                                 }
                                 int i17 = 0;
-                                k71Var3.f39132i0.u0(0);
+                                k71Var3.f39134i0.u0(0);
                                 int i18 = k71Var3.W;
                                 if (i18 == 1 || i18 == 14 || i18 == 11 || i18 == 2) {
                                     ArrayList arrayList16 = arrayList8;
@@ -279,7 +279,7 @@ public final class c8 implements Runnable {
                                     ArrayList arrayList18 = k71Var3.A1;
                                     ?? obj5 = new Object();
                                     long longValue2 = l4.longValue();
-                                    obj5.f54616g = longValue2;
+                                    obj5.f54618g = longValue2;
                                     obj5.h = longValue2;
                                     arrayList18.add(obj5);
                                 }
@@ -295,7 +295,7 @@ public final class c8 implements Runnable {
                                     i17++;
                                     k71Var3.C1.addAll((ArrayList) obj6);
                                 }
-                                k71Var3.f39147q0.E(true ^ z16);
+                                k71Var3.f39149q0.E(true ^ z16);
                             }
                         });
                     }
@@ -419,8 +419,8 @@ public final class c8 implements Runnable {
             default:
                 Bitmap[] bitmapArr = (Bitmap[]) obj2;
                 CountDownLatch countDownLatch = (CountDownLatch) obj;
-                pg.s0 s0Var = ((pg.c1) obj3).f45606y.f45633c;
-                mw0 mw0Var = s0Var.f45758g;
+                pg.s0 s0Var = ((pg.c1) obj3).f45608y.f45635c;
+                mw0 mw0Var = s0Var.f45760g;
                 n6.t h = s0Var.h(new RectF(0.0f, 0.0f, mw0Var.f28963a, mw0Var.f28964b), false, z12, z11);
                 if (h != null) {
                     bitmapArr[0] = (Bitmap) h.f16717b;

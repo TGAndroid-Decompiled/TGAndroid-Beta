@@ -195,15 +195,15 @@ public class NotificationsCustomSettingsActivity extends org.telegram.ui.ActionB
         qm0Var2.setAdapter(pk0Var);
         this.f33827a.setOnItemClickListener(new rw(21, this, context));
         mk0 mk0Var = new mk0(this);
-        mk0Var.f47748c = 150L;
-        mk0Var.f47749e = 350L;
-        mk0Var.f47750f = 0L;
-        mk0Var.f47751g = 0L;
+        mk0Var.f47750c = 150L;
+        mk0Var.f47751e = 350L;
+        mk0Var.f47752f = 0L;
+        mk0Var.f47753g = 0L;
         mk0Var.d = 0L;
         mk0Var.C = false;
-        mk0Var.f47752i = new OvershootInterpolator(1.1f);
-        mk0Var.f47716o = org.telegram.ui.Components.hs.h;
-        mk0Var.f47696m = false;
+        mk0Var.f47754i = new OvershootInterpolator(1.1f);
+        mk0Var.f47718o = org.telegram.ui.Components.hs.h;
+        mk0Var.f47698m = false;
         this.f33827a.setItemAnimator(mk0Var);
         this.f33827a.setOnScrollListener(new i3(this, 22));
         return this.fragmentView;
@@ -238,8 +238,8 @@ public class NotificationsCustomSettingsActivity extends org.telegram.ui.ActionB
             arrayList2.remove(vk0Var);
         }
         if (i0(this.currentAccount, vk0Var.d)) {
-            vk0Var.f42895f = true;
-            vk0Var.f42893c = 0;
+            vk0Var.f42897f = true;
+            vk0Var.f42895c = 0;
             this.v.add(vk0Var);
         }
         if (view instanceof org.telegram.ui.Cells.xa) {
@@ -401,9 +401,9 @@ public class NotificationsCustomSettingsActivity extends org.telegram.ui.ActionB
         } else {
             i10 = 0;
         }
-        vk0Var.f42893c = i10;
-        if (vk0Var.f42895f) {
-            vk0Var.f42895f = false;
+        vk0Var.f42895c = i10;
+        if (vk0Var.f42897f) {
+            vk0Var.f42897f = false;
             edit.putBoolean(sc.v.i("stories_", sharedPrefKey), !z10).commit();
             ArrayList arrayList = this.v;
             if (arrayList != null) {
@@ -467,7 +467,7 @@ public class NotificationsCustomSettingsActivity extends org.telegram.ui.ActionB
         if (i15 != -1) {
             String string2 = LocaleController.getString(R.string.NotifyMeAbout);
             ?? aVar = new og.a(0, true);
-            aVar.f40551e = string2;
+            aVar.f40553e = string2;
             arrayList3.add(aVar);
             if (i15 == 3) {
                 this.newRow = arrayList3.size();
@@ -508,11 +508,11 @@ public class NotificationsCustomSettingsActivity extends org.telegram.ui.ActionB
                 String string5 = LocaleController.getString(i11);
                 boolean z13 = notificationsSettings.getBoolean("EnableReactionsMessages", true);
                 ?? aVar2 = new og.a(6, true);
-                aVar2.f40550c = 103;
+                aVar2.f40552c = 103;
                 aVar2.d = i16;
-                aVar2.f40551e = string4;
-                aVar2.f40552f = string5;
-                aVar2.f40554i = z13;
+                aVar2.f40553e = string4;
+                aVar2.f40554f = string5;
+                aVar2.f40556i = z13;
                 arrayList3.add(aVar2);
                 this.storiesRow = arrayList3.size();
                 int i17 = R.drawable.msg_stories_saved;
@@ -527,17 +527,17 @@ public class NotificationsCustomSettingsActivity extends org.telegram.ui.ActionB
                 String string7 = LocaleController.getString(i12);
                 boolean z14 = notificationsSettings.getBoolean("EnableReactionsStories", true);
                 ?? aVar3 = new og.a(6, true);
-                aVar3.f40550c = 104;
+                aVar3.f40552c = 104;
                 aVar3.d = i17;
-                aVar3.f40551e = string6;
-                aVar3.f40552f = string7;
-                aVar3.f40554i = z14;
+                aVar3.f40553e = string6;
+                aVar3.f40554f = string7;
+                aVar3.f40556i = z14;
                 arrayList3.add(aVar3);
                 arrayList3.add(ok0.d(-1, null));
             }
             String string8 = LocaleController.getString(R.string.SETTINGS);
             ?? aVar4 = new og.a(0, true);
-            aVar4.f40551e = string8;
+            aVar4.f40553e = string8;
             arrayList3.add(aVar4);
             arrayList3.size();
             if (i15 == 3) {
@@ -607,7 +607,7 @@ public class NotificationsCustomSettingsActivity extends org.telegram.ui.ActionB
                 String string11 = LocaleController.getString("LedColor", R.string.LedColor);
                 int f02 = f0();
                 ?? aVar5 = new og.a(3, true);
-                aVar5.f40551e = string11;
+                aVar5.f40553e = string11;
                 aVar5.h = f02;
                 arrayList3.add(aVar5);
                 if (i15 != 0) {
@@ -643,13 +643,13 @@ public class NotificationsCustomSettingsActivity extends org.telegram.ui.ActionB
                 arrayList3.add(ok0.c(4, LocaleController.getString("NotificationsImportance", R.string.NotificationsImportance), h0()));
                 String string13 = LocaleController.getString(R.string.NotifyLessOptions);
                 ?? aVar6 = new og.a(8, true);
-                aVar6.f40551e = string13;
+                aVar6.f40553e = string13;
                 aVar6.d = 0;
                 arrayList3.add(aVar6);
             } else {
                 String string14 = LocaleController.getString(R.string.NotifyMoreOptions);
                 ?? aVar7 = new og.a(8, true);
-                aVar7.f40551e = string14;
+                aVar7.f40553e = string14;
                 aVar7.d = 1;
                 arrayList3.add(aVar7);
             }
@@ -665,23 +665,23 @@ public class NotificationsCustomSettingsActivity extends org.telegram.ui.ActionB
                 int i18 = R.drawable.msg_contact_add;
                 String string15 = LocaleController.getString("NotificationsAddAnException", R.string.NotificationsAddAnException);
                 ?? aVar8 = new og.a(7, true);
-                aVar8.f40550c = 6;
+                aVar8.f40552c = 6;
                 aVar8.d = i18;
-                aVar8.f40551e = string15;
+                aVar8.f40553e = string15;
                 arrayList3.add(aVar8);
             }
             arrayList3.size();
             if (this.v != null && this.h) {
                 for (int i19 = 0; i19 < this.v.size(); i19++) {
                     ?? aVar9 = new og.a(2, true);
-                    aVar9.f40553g = (vk0) this.v.get(i19);
+                    aVar9.f40555g = (vk0) this.v.get(i19);
                     arrayList3.add(aVar9);
                 }
             }
             if (this.f33835w != null) {
                 for (int i20 = 0; i20 < this.f33835w.size(); i20++) {
                     ?? aVar10 = new og.a(2, true);
-                    aVar10.f40553g = (vk0) this.f33835w.get(i20);
+                    aVar10.f40555g = (vk0) this.f33835w.get(i20);
                     arrayList3.add(aVar10);
                 }
             }
@@ -694,9 +694,9 @@ public class NotificationsCustomSettingsActivity extends org.telegram.ui.ActionB
                 this.deleteExceptionsRow = arrayList3.size();
                 String string16 = LocaleController.getString("NotificationsDeleteAllException", R.string.NotificationsDeleteAllException);
                 ?? aVar11 = new og.a(7, true);
-                aVar11.f40550c = 7;
+                aVar11.f40552c = 7;
                 aVar11.d = 0;
-                aVar11.f40551e = string16;
+                aVar11.f40553e = string16;
                 arrayList3.add(aVar11);
             }
         }

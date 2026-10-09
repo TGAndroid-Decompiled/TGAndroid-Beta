@@ -105,13 +105,13 @@ public abstract class dp0 extends o91 implements org.telegram.ui.v10, Notificati
         this.P0 = yxVar;
         s4.j jVar = new s4.j();
         this.f25765a0 = jVar;
-        jVar.f47748c = 150L;
-        jVar.f47749e = 350L;
-        jVar.f47750f = 0L;
-        jVar.f47751g = 0L;
+        jVar.f47750c = 150L;
+        jVar.f47751e = 350L;
+        jVar.f47752f = 0L;
+        jVar.f47753g = 0L;
         jVar.d = 0L;
-        jVar.f47752i = new OvershootInterpolator(1.1f);
-        jVar.f47716o = hs.h;
+        jVar.f47754i = new OvershootInterpolator(1.1f);
+        jVar.f47718o = hs.h;
         org.telegram.ui.dy dyVar = (org.telegram.ui.dy) this;
         this.f25766b0 = new wo0(dyVar, context, tyVar, i10, i11, jVar, tyVar.F, tyVar, context);
         if (i11 == 15) {
@@ -145,7 +145,7 @@ public abstract class dp0 extends o91 implements org.telegram.ui.v10, Notificati
         w0Var.C0(new bd0(dyVar, 23));
         org.telegram.ui.w10 w10Var = new org.telegram.ui.w10(this.J0);
         this.M0 = w10Var;
-        ai.w0 w0Var2 = w10Var.f43042b;
+        ai.w0 w0Var2 = w10Var.f43044b;
         w0Var2.setClipToPadding(false);
         w0Var2.j(new vo0(dyVar, 1));
         w0Var2.C0(new bd0(dyVar, 23));
@@ -170,7 +170,7 @@ public abstract class dp0 extends o91 implements org.telegram.ui.v10, Notificati
         FrameLayout frameLayout2 = new FrameLayout(context);
         this.f25770f0 = frameLayout2;
         xo0 xo0Var = new xo0(dyVar);
-        xo0Var.f47696m = false;
+        xo0Var.f47698m = false;
         xo0Var.C = false;
         hs hsVar = hs.h;
         xo0Var.o(hsVar);
@@ -213,7 +213,7 @@ public abstract class dp0 extends o91 implements org.telegram.ui.v10, Notificati
         FrameLayout frameLayout3 = new FrameLayout(context);
         this.f25775k0 = frameLayout3;
         po0 po0Var = new po0(dyVar);
-        po0Var.f47696m = false;
+        po0Var.f47698m = false;
         po0Var.C = false;
         po0Var.o(hsVar);
         po0Var.n(350L);
@@ -255,7 +255,7 @@ public abstract class dp0 extends o91 implements org.telegram.ui.v10, Notificati
         FrameLayout frameLayout4 = new FrameLayout(context);
         this.f25781r0 = frameLayout4;
         to0 to0Var = new to0(dyVar);
-        to0Var.f47696m = false;
+        to0Var.f47698m = false;
         to0Var.C = false;
         to0Var.o(hsVar);
         to0Var.n(350L);
@@ -688,7 +688,7 @@ public abstract class dp0 extends o91 implements org.telegram.ui.v10, Notificati
                     qo0Var.setVisibility(8);
                 }
                 qo0Var.b(this.N0, z13);
-                w10Var.f43044c.b(this.N0, z13);
+                w10Var.f43046c.b(this.N0, z13);
             } else {
                 long j16 = j3;
                 long j17 = j12;
@@ -701,7 +701,7 @@ public abstract class dp0 extends o91 implements org.telegram.ui.v10, Notificati
                         z11 = false;
                     }
                     w10Var3.setUseFromUserAsAvatar(z11);
-                    w10Var3.f43044c.b(this.N0, false);
+                    w10Var3.f43046c.b(this.N0, false);
                     w10Var3.h(j10, this.T0, j17, j18, gg.r0.f10779a3[((bp0) this.T.f25458a.get(i10)).f25081b], z20, str, z10);
                 } else if (view instanceof bo0) {
                     bo0 bo0Var = (bo0) view;
@@ -994,7 +994,7 @@ public abstract class dp0 extends o91 implements org.telegram.ui.v10, Notificati
                             if (view == di0Var) {
                                 qm0Var = di0Var.f25714c;
                             } else if (view instanceof org.telegram.ui.w10) {
-                                qm0Var = ((org.telegram.ui.w10) view).f43042b;
+                                qm0Var = ((org.telegram.ui.w10) view).f43044b;
                             }
                         }
                     }
@@ -1005,7 +1005,7 @@ public abstract class dp0 extends o91 implements org.telegram.ui.v10, Notificati
                 if (view == frameLayout) {
                     org.telegram.ui.w10 w10Var = this.M0;
                     if (w10Var.getVisibility() == 0) {
-                        ai.w0 w0Var = w10Var.f43042b;
+                        ai.w0 w0Var = w10Var.f43044b;
                         gh.d.a(w0Var, canvas, rectF, w0Var, this);
                     }
                 }
@@ -1101,10 +1101,10 @@ public abstract class dp0 extends o91 implements org.telegram.ui.v10, Notificati
         }
         for (int i11 = 0; i11 < getChildCount(); i11++) {
             if (getChildAt(i11) instanceof org.telegram.ui.w10) {
-                ((org.telegram.ui.w10) getChildAt(i11)).f43044c.b(i10, z10);
+                ((org.telegram.ui.w10) getChildAt(i11)).f43046c.b(i10, z10);
             } else if (getChildAt(i11) == this.U) {
                 this.W.b(i10, z10);
-                this.M0.f43044c.b(i10, z10);
+                this.M0.f43046c.b(i10, z10);
             } else if (getChildAt(i11) instanceof bo0) {
                 ((bo0) getChildAt(i11)).f25066a.b(i10, z10);
             } else if (getChildAt(i11) == this.f25770f0) {

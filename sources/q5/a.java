@@ -7,18 +7,18 @@ import la.h;
 import m5.d;
 import t5.c;
 public final class a implements b {
-    public static final Logger f45993f = Logger.getLogger(s.class.getName());
-    public final h f45994a;
-    public final Executor f45995b;
-    public final d f45996c;
+    public static final Logger f45995f = Logger.getLogger(s.class.getName());
+    public final h f45996a;
+    public final Executor f45997b;
+    public final d f45998c;
     public final s5.d d;
-    public final c f45997e;
+    public final c f45999e;
 
     public a(Executor executor, d dVar, h hVar, s5.d dVar2, c cVar) {
-        this.f45995b = executor;
-        this.f45996c = dVar;
-        this.f45994a = hVar;
+        this.f45997b = executor;
+        this.f45998c = dVar;
+        this.f45996a = hVar;
         this.d = dVar2;
-        this.f45997e = cVar;
+        this.f45999e = cVar;
     }
 }

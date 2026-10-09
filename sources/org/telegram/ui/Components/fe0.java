@@ -19,7 +19,7 @@ public final class fe0 implements ImageReceiver.ImageReceiverDelegate, r0.n, jw0
 
     @Override
     public r0.k1 M0(View view, r0.k1 k1Var) {
-        return r0.k1.f46774b;
+        return r0.k1.f46776b;
     }
 
     @Override

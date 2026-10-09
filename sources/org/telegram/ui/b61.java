@@ -16,8 +16,8 @@ public final class b61 extends z61 {
     public final void dispatchDraw(Canvas canvas) {
         float y3;
         k71 k71Var = this.E;
-        w51 w51Var = k71Var.f39128g0;
-        b61 b61Var = k71Var.f39126f0;
+        w51 w51Var = k71Var.f39130g0;
+        b61 b61Var = k71Var.f39128f0;
         k61 k61Var = k71Var.U;
         if (k61Var != null) {
             int measuredWidth = getMeasuredWidth();
@@ -25,17 +25,17 @@ public final class b61 extends z61 {
             float x10 = w51Var.getX() + b61Var.getX();
             float y10 = w51Var.getY() + b61Var.getY();
             qg.x1 x1Var = (qg.x1) k61Var;
-            zg.a0 a0Var = (zg.a0) x1Var.f46619b;
-            zg.z zVar = a0Var.f54447a;
+            zg.a0 a0Var = (zg.a0) x1Var.f46621b;
+            zg.z zVar = a0Var.f54449a;
             RectF rectF = AndroidUtilities.rectTmp;
             float f7 = 0;
             rectF.set(f7, f7, measuredWidth, measuredHeight);
-            org.telegram.ui.Components.jl0 delegate = ((org.telegram.ui.Components.kl0) x1Var.f46620c).getDelegate();
+            org.telegram.ui.Components.jl0 delegate = ((org.telegram.ui.Components.kl0) x1Var.f46622c).getDelegate();
             float x11 = zVar.getX() + x10;
-            if (a0Var.f54468y == 1) {
+            if (a0Var.f54470y == 1) {
                 y3 = zVar.getY() - AndroidUtilities.statusBarHeight;
             } else {
-                y3 = zVar.getY() + a0Var.f54449c.getY();
+                y3 = zVar.getY() + a0Var.f54451c.getY();
             }
             delegate.r(canvas, rectF, 0.0f, x11, y3 + y10, 255, true);
         }

@@ -5,18 +5,18 @@ import android.text.TextPaint;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class h0 extends View {
-    public TextPaint f48327a;
-    public int f48328b;
+    public TextPaint f48329a;
+    public int f48330b;
 
     @Override
     public final void onDraw(Canvas canvas) {
         float measuredWidth = getMeasuredWidth() / 2.0f;
         float measuredHeight = getMeasuredHeight() / 2.0f;
-        TextPaint textPaint = this.f48327a;
+        TextPaint textPaint = this.f48329a;
         canvas.drawCircle(measuredWidth, measuredHeight, getMeasuredWidth() / 2.0f, textPaint);
         rg.b1.d().f(-AndroidUtilities.dp(10.0f), 0.0f, getMeasuredWidth(), getMeasuredHeight());
         canvas.drawCircle(measuredWidth, measuredHeight, (getMeasuredWidth() / 2.0f) - AndroidUtilities.dp(1.5f), rg.b1.d().e());
         float descent = textPaint.descent();
-        canvas.drawText("+" + this.f48328b, measuredWidth, (int) (measuredHeight - ((textPaint.ascent() + descent) / 2.0f)), textPaint);
+        canvas.drawText("+" + this.f48330b, measuredWidth, (int) (measuredHeight - ((textPaint.ascent() + descent) / 2.0f)), textPaint);
     }
 }

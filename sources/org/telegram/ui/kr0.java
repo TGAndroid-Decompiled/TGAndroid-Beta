@@ -7,14 +7,14 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaController;
 import org.telegram.ui.Components.ClippingImageView;
 public final class kr0 implements Runnable {
-    public final int f39339a;
-    public final PhotoViewer f39340b;
-    public final ev0 f39341c;
+    public final int f39341a;
+    public final PhotoViewer f39342b;
+    public final ev0 f39343c;
 
     public kr0(PhotoViewer photoViewer, ev0 ev0Var, int i10) {
-        this.f39339a = i10;
-        this.f39340b = photoViewer;
-        this.f39341c = ev0Var;
+        this.f39341a = i10;
+        this.f39342b = photoViewer;
+        this.f39343c = ev0Var;
     }
 
     @Override
@@ -22,12 +22,12 @@ public final class kr0 implements Runnable {
         ClippingImageView clippingImageView;
         ArrayList arrayList;
         ArrayList arrayList2;
-        switch (this.f39339a) {
+        switch (this.f39341a) {
             case 0:
-                PhotoViewer photoViewer = this.f39340b;
+                PhotoViewer photoViewer = this.f39342b;
                 photoViewer.f33930h0.setImageBitmap(null);
-                ev0 ev0Var = this.f39341c;
-                if (ev0Var != null && !AndroidUtilities.isTablet() && (clippingImageView = ev0Var.f37364m) != null) {
+                ev0 ev0Var = this.f39343c;
+                if (ev0Var != null && !AndroidUtilities.isTablet() && (clippingImageView = ev0Var.f37366m) != null) {
                     clippingImageView.setImageBitmap(null);
                 }
                 try {
@@ -42,13 +42,13 @@ public final class kr0 implements Runnable {
                     return;
                 }
             case 1:
-                PhotoViewer photoViewer2 = this.f39340b;
+                PhotoViewer photoViewer2 = this.f39342b;
                 photoViewer2.f34003p4 = null;
                 int i10 = 0;
                 photoViewer2.f33904e0.setLayerType(0, null);
                 photoViewer2.f33985n4 = 0;
                 photoViewer2.G1();
-                photoViewer2.Y1(this.f39341c);
+                photoViewer2.Y1(this.f39343c);
                 MediaController.getInstance().tryResumePausedAudio();
                 if (photoViewer2.f34060v7 && !photoViewer2.f34070w7 && (arrayList = photoViewer2.f33928g7) != null) {
                     int size = arrayList.size();
@@ -63,14 +63,14 @@ public final class kr0 implements Runnable {
                 }
                 return;
             default:
-                PhotoViewer photoViewer3 = this.f39340b;
+                PhotoViewer photoViewer3 = this.f39342b;
                 photoViewer3.f34003p4 = null;
                 wu0 wu0Var = photoViewer3.f33904e0;
                 if (wu0Var != null) {
                     int i11 = 0;
                     wu0Var.setLayerType(0, null);
                     photoViewer3.f33985n4 = 0;
-                    photoViewer3.Y1(this.f39341c);
+                    photoViewer3.Y1(this.f39343c);
                     photoViewer3.f33904e0.setScaleX(1.0f);
                     photoViewer3.f33904e0.setScaleY(1.0f);
                     MediaController.getInstance().tryResumePausedAudio();

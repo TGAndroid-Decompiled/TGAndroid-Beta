@@ -177,14 +177,14 @@ public final class h extends u2.a {
 
     @Override
     public final d0 c(u2.f0 f0Var, y2.d dVar, long j3) {
-        int intValue = ((Integer) f0Var.f48570a).intValue() - this.O;
+        int intValue = ((Integer) f0Var.f48572a).intValue() - this.O;
         a5.a b10 = b(f0Var);
         n2.j jVar = new n2.j(this.d.f16520c, 0, f0Var);
         int i10 = this.O + intValue;
         m2.c cVar = this.H;
         c0 c0Var = this.B;
         long j10 = this.L;
-        j2.k kVar = this.f48512g;
+        j2.k kVar = this.f48514g;
         e2.d.h(kVar);
         b bVar = new b(i10, cVar, this.f15338n, intValue, this.f15334j, c0Var, this.f15336l, jVar, this.f15337m, b10, j10, this.f15348y, dVar, this.f15335k, this.f15347x, kVar);
         this.f15345u.put(i10, bVar);
@@ -205,7 +205,7 @@ public final class h extends u2.a {
     public final void m(c0 c0Var) {
         this.B = c0Var;
         Looper myLooper = Looper.myLooper();
-        j2.k kVar = this.f48512g;
+        j2.k kVar = this.f48514g;
         e2.d.h(kVar);
         n2.m mVar = this.f15336l;
         mVar.F(myLooper, kVar);
@@ -271,8 +271,8 @@ public final class h extends u2.a {
         boolean z10;
         y2.l lVar = this.A;
         d dVar = new d(this);
-        synchronized (z2.b.f53484b) {
-            z10 = z2.b.f53485c;
+        synchronized (z2.b.f53486b) {
+            z10 = z2.b.f53487c;
         }
         if (z10) {
             dVar.a();
@@ -285,11 +285,11 @@ public final class h extends u2.a {
     }
 
     public final void w(y2.o oVar, long j3) {
-        long j10 = oVar.f51697a;
+        long j10 = oVar.f51699a;
         Uri uri = oVar.d.f10235c;
         u2.t tVar = new u2.t(j3);
         this.f15337m.getClass();
-        this.f15341q.p(tVar, oVar.f51699c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+        this.f15341q.p(tVar, oVar.f51701c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
     }
 
     public final void x(IOException iOException) {

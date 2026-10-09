@@ -234,9 +234,9 @@ public final class n implements OnFailureListener, c3.p, c3.q, l2.i, ep {
         bundle.putLong("dialog_id", this.f8689b);
         ?? n2Var = new n2(bundle);
         n2Var.d = new ArrayList();
-        n2Var.f39575e = new HashSet();
+        n2Var.f39577e = new HashSet();
         ProfileActivity profileActivity = (ProfileActivity) this.f8690c;
-        n2Var.f39575e = profileActivity.f34269h5;
+        n2Var.f39577e = profileActivity.f34269h5;
         profileActivity.presentFragment((n2) n2Var);
     }
 
@@ -276,10 +276,10 @@ public final class n implements OnFailureListener, c3.p, c3.q, l2.i, ep {
                 ((AtomicLong) ((t) this.f8690c).f16718c).set(this.f8689b);
                 return;
             case 8:
-                ((ga) this.f8690c).f50784b.set(this.f8689b);
+                ((ga) this.f8690c).f50786b.set(this.f8689b);
                 return;
             default:
-                ((ga) this.f8690c).f50784b.set(this.f8689b);
+                ((ga) this.f8690c).f50786b.set(this.f8689b);
                 return;
         }
     }

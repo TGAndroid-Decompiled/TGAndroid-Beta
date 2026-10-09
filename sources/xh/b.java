@@ -22,7 +22,7 @@ import org.telegram.ui.Components.r01;
 import w7.x5;
 import yh.p7;
 public final class b extends o61 {
-    public static final int f51174a = 0;
+    public static final int f51176a = 0;
 
     static {
         o61.setup(new o61());
@@ -34,7 +34,7 @@ public final class b extends o61 {
         GiftAuctionController.Auction auction = (GiftAuctionController.Auction) p61Var.H;
         TL_stars.TL_StarGiftAuctionAcquiredGift tL_StarGiftAuctionAcquiredGift = (TL_stars.TL_StarGiftAuctionAcquiredGift) p61Var.G;
         View.OnClickListener onClickListener = p61Var.D;
-        int i10 = c.f51187c;
+        int i10 = c.f51189c;
         cVar.removeAllViews();
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("*");
         spannableStringBuilder.setSpan(new b6(auction.giftDocumentId, i6.f21069s2.getFontMetricsInt()), 0, spannableStringBuilder.length(), 33);
@@ -44,9 +44,9 @@ public final class b extends o61 {
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
         spannableStringBuilder2.append((CharSequence) p7.Y0(false, org.telegram.messenger.q.h(tL_StarGiftAuctionAcquiredGift.bid_amount, ',', new StringBuilder("⭐️")), 0.75f, null));
         String formatString = LocaleController.formatString(R.string.Gift2AuctionsAcquiredTop, Integer.valueOf(tL_StarGiftAuctionAcquiredGift.pos));
-        r01 r01Var = new r01(cVar.getContext(), cVar.f51188a);
+        r01 r01Var = new r01(cVar.getContext(), cVar.f51190a);
         r01Var.a(spannableStringBuilder).setFilled(true);
-        r01Var.m(LocaleController.getString(R.string.Gift2AuctionsAcquiredRecipient), cVar.f51189b, DialogObject.getPeerDialogId(tL_StarGiftAuctionAcquiredGift.peer), new u2.p0(8, cVar, onClickListener));
+        r01Var.m(LocaleController.getString(R.string.Gift2AuctionsAcquiredRecipient), cVar.f51191b, DialogObject.getPeerDialogId(tL_StarGiftAuctionAcquiredGift.peer), new u2.p0(8, cVar, onClickListener));
         r01Var.f(tL_StarGiftAuctionAcquiredGift.date, LocaleController.getString(R.string.Gift2AuctionsAcquiredDate));
         r01Var.e(LocaleController.getString(R.string.Gift2AuctionsAcquiredAcceptedBid), spannableStringBuilder2, formatString, null, null);
         cVar.addView(r01Var, x5.d(-2.0f, -1));

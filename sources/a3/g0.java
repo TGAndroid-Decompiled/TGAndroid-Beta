@@ -48,7 +48,7 @@ public final class g0 implements Runnable {
                 long j3 = this.f127b;
                 long j10 = this.f128c;
                 String str2 = e2.d0.f8532a;
-                j2.f fVar = ((i2.c0) ((l0) ((pf.b) this.d).f45557c)).f11620a.f11683s;
+                j2.f fVar = ((i2.c0) ((l0) ((pf.b) this.d).f45559c)).f11620a.f11683s;
                 j2.a p5 = fVar.p();
                 fVar.q(p5, 1016, new j2.c(p5, str, j10, j3));
                 return;
@@ -115,7 +115,7 @@ public final class g0 implements Runnable {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(MessagesStorage.TopicKey.of(j15, j16));
                     tyVar.C2.w(tyVar, arrayList, null, false, tyVar.J2, tyVar.K2, tyVar.L2, fg1Var);
-                    if (tyVar.f42195i2) {
+                    if (tyVar.f42197i2) {
                         tyVar.C2 = null;
                         return;
                     }

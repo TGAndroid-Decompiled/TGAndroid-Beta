@@ -87,23 +87,23 @@ public final class w1 extends g.o {
                 return 1;
             case 6:
                 up0 up0Var = (up0) this.d;
-                if (i10 >= up0Var.f42513b0 && i10 < up0Var.f42515c0) {
+                if (i10 >= up0Var.f42515b0 && i10 < up0Var.f42517c0) {
                     return 1;
                 }
-                if (i10 >= up0Var.f42516d0 && i10 < up0Var.f42518e0) {
+                if (i10 >= up0Var.f42518d0 && i10 < up0Var.f42520e0) {
                     return 1;
                 }
                 return 3;
             case 7:
-                p61 G = ((xh.h4) this.d).f51274i0.G(i10 - 1);
+                p61 G = ((xh.h4) this.d).f51276i0.G(i10 - 1);
                 if (G == null || (i13 = G.f29743u) == -1) {
                     return 3;
                 }
                 return i13;
             default:
                 yh.r0 r0Var = (yh.r0) this.d;
-                d00 d00Var = r0Var.f53096h0;
-                yh.m0 m0Var = r0Var.f53099k0;
+                d00 d00Var = r0Var.f53098h0;
+                yh.m0 m0Var = r0Var.f53101k0;
                 if (m0Var != null && i10 != 0) {
                     p61 G2 = m0Var.G(i10 - 1);
                     if (G2 == null || (i14 = G2.f29743u) == -1) {

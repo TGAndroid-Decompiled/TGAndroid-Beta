@@ -78,7 +78,7 @@ public abstract class s51 extends FrameLayout implements org.telegram.ui.ActionB
                 boolean isPremium = UserConfig.getInstance(i11).isPremium();
                 org.telegram.ui.al alVar2 = org.telegram.ui.al.this;
                 if (!isPremium && (chat == null || !chat.autotranslation)) {
-                    org.telegram.ui.zn znVar2 = alVar2.f35950s;
+                    org.telegram.ui.zn znVar2 = alVar2.f35952s;
                     i10 = ((org.telegram.ui.ActionBar.n2) znVar2).currentAccount;
                     SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(i10).edit();
                     edit.putInt("dialog_show_translate_count" + znVar2.a(), 140).commit();

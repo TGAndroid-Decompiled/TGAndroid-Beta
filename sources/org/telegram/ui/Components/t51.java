@@ -51,12 +51,12 @@ public final class t51 extends s4.t0 {
                 ((org.telegram.ui.d31) this.f30999c).H.setAlpha((i12 * 1.0f) / AndroidUtilities.dp(6.0f));
                 return;
             default:
-                org.telegram.ui.Wallet.z4 z4Var = ((org.telegram.ui.Wallet.v3) this.f30999c).f35551a;
+                org.telegram.ui.Wallet.a5 a5Var = ((org.telegram.ui.Wallet.w3) this.f30999c).f35613a;
                 if (this.f30998b == 0) {
-                    z4Var.q0();
+                    a5Var.q0();
                     return;
                 } else {
-                    recyclerView.post(new org.telegram.ui.Wallet.e3(z4Var, 13));
+                    recyclerView.post(new org.telegram.ui.Wallet.f3(a5Var, 13));
                     return;
                 }
         }
@@ -68,9 +68,9 @@ public final class t51 extends s4.t0 {
         this.f30998b = 0;
     }
 
-    public t51(org.telegram.ui.Wallet.v3 v3Var, int i10) {
+    public t51(org.telegram.ui.Wallet.w3 w3Var, int i10) {
         this.f30997a = 2;
-        this.f30999c = v3Var;
+        this.f30999c = w3Var;
         this.f30998b = i10;
     }
 }

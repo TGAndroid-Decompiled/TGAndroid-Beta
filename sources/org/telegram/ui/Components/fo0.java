@@ -70,8 +70,8 @@ public final class fo0 implements em0 {
                 rg.l1 l1Var = (rg.l1) this.d;
                 if (view instanceof org.telegram.ui.uw0) {
                     org.telegram.ui.uw0 uw0Var = (org.telegram.ui.uw0) view;
-                    PremiumPreviewFragment.r0(this.f26444b, uw0Var.f42573f.f39363a);
-                    l1Var.showDialog(new rg.y0(this.f26445c, uw0Var.f42573f.f39363a, false));
+                    PremiumPreviewFragment.q0(this.f26444b, uw0Var.f42575f.f39365a);
+                    l1Var.showDialog(new rg.y0(this.f26445c, uw0Var.f42575f.f39365a, false));
                     return;
                 }
                 return;

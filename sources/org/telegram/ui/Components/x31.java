@@ -308,9 +308,9 @@ public final class x31 extends FrameLayout {
         if (userOrChat != null) {
             spannableStringBuilder.append((CharSequence) "x  ");
             org.telegram.ui.g5 g5Var3 = this.E;
-            j9 j9Var = g5Var3.f37777c;
-            j9Var.j(g5Var3.f37778e, userOrChat);
-            g5Var3.f37776b.setForUserOrChat(userOrChat, j9Var);
+            j9 j9Var = g5Var3.f37779c;
+            j9Var.j(g5Var3.f37780e, userOrChat);
+            g5Var3.f37778b.setForUserOrChat(userOrChat, j9Var);
             spannableStringBuilder.setSpan(this.E, 0, 1, 33);
         }
         spannableStringBuilder.append((CharSequence) DialogObject.getName(peerDialogId));

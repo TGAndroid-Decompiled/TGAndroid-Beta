@@ -14,12 +14,12 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.Components.Switch;
 public final class cy0 extends org.telegram.ui.Components.pm0 {
-    public final Context f36750c;
+    public final Context f36752c;
     public final PrivacySettingsActivity d;
 
     public cy0(PrivacySettingsActivity privacySettingsActivity, Context context) {
         this.d = privacySettingsActivity;
-        this.f36750c = context;
+        this.f36752c = context;
     }
 
     @Override
@@ -295,8 +295,8 @@ public final class cy0 extends org.telegram.ui.Components.pm0 {
         String str6;
         String string3;
         String str7;
-        int i42 = d1Var.f47660f;
-        View view = d1Var.f47656a;
+        int i42 = d1Var.f47662f;
+        View view = d1Var.f47658a;
         int i43 = 16;
         String str8 = null;
         boolean z17 = false;
@@ -809,7 +809,7 @@ public final class cy0 extends org.telegram.ui.Components.pm0 {
     @Override
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
         View caVar;
-        Context context = this.f36750c;
+        Context context = this.f36752c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {

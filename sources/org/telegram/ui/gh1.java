@@ -6,17 +6,17 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class gh1 extends org.telegram.ui.ActionBar.j {
-    public final ih1 f38019a;
+    public final ih1 f38021a;
 
     public gh1(ih1 ih1Var) {
-        this.f38019a = ih1Var;
+        this.f38021a = ih1Var;
     }
 
     @Override
     public final void b(int i10) {
         String string;
         org.telegram.ui.ActionBar.d5 d5Var;
-        ih1 ih1Var = this.f38019a;
+        ih1 ih1Var = this.f38021a;
         if (i10 == -1) {
             if (ih1Var.G >= 0) {
                 d5Var = ((org.telegram.ui.ActionBar.n2) ih1Var).parentLayout;

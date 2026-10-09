@@ -17,17 +17,17 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class aa extends org.telegram.ui.ActionBar.n2 {
-    public z9 f35880a;
-    public z9 f35881b;
-    public org.telegram.ui.ActionBar.v0 f35882c;
+    public z9 f35882a;
+    public z9 f35883b;
+    public org.telegram.ui.ActionBar.v0 f35884c;
     public org.telegram.ui.ActionBar.e6 d;
 
     public static void U(aa aaVar) {
         String str;
         TLRPC.User currentUser = UserConfig.getInstance(aaVar.currentAccount).getCurrentUser();
-        if (currentUser != null && aaVar.f35881b.getText() != null && aaVar.f35880a.getText() != null) {
-            String obj = aaVar.f35880a.getText().toString();
-            String obj2 = aaVar.f35881b.getText().toString();
+        if (currentUser != null && aaVar.f35883b.getText() != null && aaVar.f35882a.getText() != null) {
+            String obj = aaVar.f35882a.getText().toString();
+            String obj2 = aaVar.f35883b.getText().toString();
             String str2 = currentUser.first_name;
             if (str2 == null || !str2.equals(obj) || (str = currentUser.last_name) == null || !str.equals(obj2)) {
                 TL_account.updateProfile updateprofile = new TL_account.updateProfile();
@@ -62,7 +62,7 @@ public final class aa extends org.telegram.ui.ActionBar.n2 {
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setTitle(LocaleController.getString(R.string.EditName));
         this.actionBar.setActionBarMenuOnItemClick(new ei.t(this, 26));
-        this.f35882c = this.actionBar.o().h(1, R.drawable.ic_ab_done, LocaleController.getString(R.string.Done), AndroidUtilities.dp(56.0f));
+        this.f35884c = this.actionBar.o().h(1, R.drawable.ic_ab_done, LocaleController.getString(R.string.Done), AndroidUtilities.dp(56.0f));
         TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(UserConfig.getInstance(this.currentAccount).getClientUserId()));
         if (user == null) {
             user = UserConfig.getInstance(this.currentAccount).getCurrentUser();
@@ -73,44 +73,44 @@ public final class aa extends org.telegram.ui.ActionBar.n2 {
         ((LinearLayout) this.fragmentView).setOrientation(1);
         this.fragmentView.setOnTouchListener(new bi.d(2));
         z9 z9Var = new z9(this, context, 0);
-        this.f35880a = z9Var;
+        this.f35882a = z9Var;
         z9Var.setTextSize(1, 18.0f);
-        z9 z9Var2 = this.f35880a;
+        z9 z9Var2 = this.f35882a;
         int i13 = org.telegram.ui.ActionBar.i6.H6;
         z9Var2.setHintTextColor(org.telegram.ui.ActionBar.i6.w0(i13, e6Var));
-        z9 z9Var3 = this.f35880a;
+        z9 z9Var3 = this.f35882a;
         int i14 = org.telegram.ui.ActionBar.i6.G6;
         z9Var3.setTextColor(org.telegram.ui.ActionBar.i6.w0(i14, e6Var));
-        this.f35880a.setBackgroundDrawable(null);
-        z9 z9Var4 = this.f35880a;
+        this.f35882a.setBackgroundDrawable(null);
+        z9 z9Var4 = this.f35882a;
         int i15 = org.telegram.ui.ActionBar.i6.f20925k6;
         int themedColor = getThemedColor(i15);
         int i16 = org.telegram.ui.ActionBar.i6.f20943l6;
         int themedColor2 = getThemedColor(i16);
         int i17 = org.telegram.ui.ActionBar.i6.f21018p7;
         z9Var4.setLineColors(themedColor, themedColor2, getThemedColor(i17));
-        this.f35880a.setMaxLines(1);
-        this.f35880a.setLines(1);
-        this.f35880a.setSingleLine(true);
-        z9 z9Var5 = this.f35880a;
+        this.f35882a.setMaxLines(1);
+        this.f35882a.setLines(1);
+        this.f35882a.setSingleLine(true);
+        z9 z9Var5 = this.f35882a;
         if (LocaleController.isRTL) {
             i10 = 5;
         } else {
             i10 = 3;
         }
         z9Var5.setGravity(i10);
-        this.f35880a.setInputType(49152);
-        this.f35880a.setImeOptions(5);
-        this.f35880a.setHint(LocaleController.getString(R.string.FirstName));
-        this.f35880a.setCursorColor(org.telegram.ui.ActionBar.i6.w0(i14, e6Var));
-        this.f35880a.setCursorSize(AndroidUtilities.dp(20.0f));
-        this.f35880a.setCursorWidth(1.5f);
-        linearLayout.addView(this.f35880a, w7.x5.k(24.0f, 24.0f, 24.0f, 0.0f, -1, 36));
-        this.f35880a.setOnEditorActionListener(new TextView.OnEditorActionListener(this) {
-            public final aa f44282b;
+        this.f35882a.setInputType(49152);
+        this.f35882a.setImeOptions(5);
+        this.f35882a.setHint(LocaleController.getString(R.string.FirstName));
+        this.f35882a.setCursorColor(org.telegram.ui.ActionBar.i6.w0(i14, e6Var));
+        this.f35882a.setCursorSize(AndroidUtilities.dp(20.0f));
+        this.f35882a.setCursorWidth(1.5f);
+        linearLayout.addView(this.f35882a, w7.x5.k(24.0f, 24.0f, 24.0f, 0.0f, -1, 36));
+        this.f35882a.setOnEditorActionListener(new TextView.OnEditorActionListener(this) {
+            public final aa f44284b;
 
             {
-                this.f44282b = this;
+                this.f44284b = this;
             }
 
             @Override
@@ -118,16 +118,16 @@ public final class aa extends org.telegram.ui.ActionBar.n2 {
                 switch (r2) {
                     case 0:
                         if (i18 == 5) {
-                            aa aaVar = this.f44282b;
-                            aaVar.f35881b.requestFocus();
-                            z9 z9Var6 = aaVar.f35881b;
+                            aa aaVar = this.f44284b;
+                            aaVar.f35883b.requestFocus();
+                            z9 z9Var6 = aaVar.f35883b;
                             z9Var6.setSelection(z9Var6.length());
                             return true;
                         }
                         return false;
                     default:
                         if (i18 == 6) {
-                            this.f44282b.f35882c.performClick();
+                            this.f44284b.f35884c.performClick();
                             return true;
                         }
                         return false;
@@ -135,34 +135,34 @@ public final class aa extends org.telegram.ui.ActionBar.n2 {
             }
         });
         z9 z9Var6 = new z9(this, context, 1);
-        this.f35881b = z9Var6;
+        this.f35883b = z9Var6;
         z9Var6.setTextSize(1, 18.0f);
-        this.f35881b.setHintTextColor(org.telegram.ui.ActionBar.i6.w0(i13, e6Var));
-        this.f35881b.setTextColor(org.telegram.ui.ActionBar.i6.w0(i14, e6Var));
-        this.f35881b.setBackgroundDrawable(null);
-        this.f35881b.setLineColors(getThemedColor(i15), getThemedColor(i16), getThemedColor(i17));
-        this.f35881b.setMaxLines(1);
-        this.f35881b.setLines(1);
-        this.f35881b.setSingleLine(true);
-        z9 z9Var7 = this.f35881b;
+        this.f35883b.setHintTextColor(org.telegram.ui.ActionBar.i6.w0(i13, e6Var));
+        this.f35883b.setTextColor(org.telegram.ui.ActionBar.i6.w0(i14, e6Var));
+        this.f35883b.setBackgroundDrawable(null);
+        this.f35883b.setLineColors(getThemedColor(i15), getThemedColor(i16), getThemedColor(i17));
+        this.f35883b.setMaxLines(1);
+        this.f35883b.setLines(1);
+        this.f35883b.setSingleLine(true);
+        z9 z9Var7 = this.f35883b;
         if (LocaleController.isRTL) {
             i11 = 5;
         } else {
             i11 = 3;
         }
         z9Var7.setGravity(i11);
-        this.f35881b.setInputType(49152);
-        this.f35881b.setImeOptions(6);
-        this.f35881b.setHint(LocaleController.getString(R.string.LastName));
-        this.f35881b.setCursorColor(org.telegram.ui.ActionBar.i6.w0(i14, e6Var));
-        this.f35881b.setCursorSize(AndroidUtilities.dp(20.0f));
-        this.f35881b.setCursorWidth(1.5f);
-        linearLayout.addView(this.f35881b, w7.x5.k(24.0f, 16.0f, 24.0f, 0.0f, -1, 36));
-        this.f35881b.setOnEditorActionListener(new TextView.OnEditorActionListener(this) {
-            public final aa f44282b;
+        this.f35883b.setInputType(49152);
+        this.f35883b.setImeOptions(6);
+        this.f35883b.setHint(LocaleController.getString(R.string.LastName));
+        this.f35883b.setCursorColor(org.telegram.ui.ActionBar.i6.w0(i14, e6Var));
+        this.f35883b.setCursorSize(AndroidUtilities.dp(20.0f));
+        this.f35883b.setCursorWidth(1.5f);
+        linearLayout.addView(this.f35883b, w7.x5.k(24.0f, 16.0f, 24.0f, 0.0f, -1, 36));
+        this.f35883b.setOnEditorActionListener(new TextView.OnEditorActionListener(this) {
+            public final aa f44284b;
 
             {
-                this.f44282b = this;
+                this.f44284b = this;
             }
 
             @Override
@@ -170,16 +170,16 @@ public final class aa extends org.telegram.ui.ActionBar.n2 {
                 switch (r2) {
                     case 0:
                         if (i18 == 5) {
-                            aa aaVar = this.f44282b;
-                            aaVar.f35881b.requestFocus();
-                            z9 z9Var62 = aaVar.f35881b;
+                            aa aaVar = this.f44284b;
+                            aaVar.f35883b.requestFocus();
+                            z9 z9Var62 = aaVar.f35883b;
                             z9Var62.setSelection(z9Var62.length());
                             return true;
                         }
                         return false;
                     default:
                         if (i18 == 6) {
-                            this.f44282b.f35882c.performClick();
+                            this.f44284b.f35884c.performClick();
                             return true;
                         }
                         return false;
@@ -187,10 +187,10 @@ public final class aa extends org.telegram.ui.ActionBar.n2 {
             }
         });
         if (user != null) {
-            this.f35880a.setText(user.first_name);
-            z9 z9Var8 = this.f35880a;
+            this.f35882a.setText(user.first_name);
+            z9 z9Var8 = this.f35882a;
             z9Var8.setSelection(z9Var8.length());
-            this.f35881b.setText(user.last_name);
+            this.f35883b.setText(user.last_name);
         }
         return this.fragmentView;
     }
@@ -208,22 +208,22 @@ public final class aa extends org.telegram.ui.ActionBar.n2 {
         arrayList.add(new org.telegram.ui.ActionBar.k6(this.actionBar, 64, null, null, null, null, org.telegram.ui.ActionBar.i6.f21130v8));
         arrayList.add(new org.telegram.ui.ActionBar.k6(this.actionBar, 128, null, null, null, null, org.telegram.ui.ActionBar.i6.A8));
         arrayList.add(new org.telegram.ui.ActionBar.k6(this.actionBar, 256, null, null, null, null, org.telegram.ui.ActionBar.i6.f21094t8));
-        z9 z9Var = this.f35880a;
+        z9 z9Var = this.f35882a;
         int i10 = org.telegram.ui.ActionBar.i6.G6;
         arrayList.add(new org.telegram.ui.ActionBar.k6(z9Var, 4, null, null, null, null, i10));
-        z9 z9Var2 = this.f35880a;
+        z9 z9Var2 = this.f35882a;
         int i11 = org.telegram.ui.ActionBar.i6.H6;
         arrayList.add(new org.telegram.ui.ActionBar.k6(z9Var2, 8388608, null, null, null, null, i11));
-        z9 z9Var3 = this.f35880a;
+        z9 z9Var3 = this.f35882a;
         int i12 = org.telegram.ui.ActionBar.i6.f20925k6;
         arrayList.add(new org.telegram.ui.ActionBar.k6(z9Var3, 32, null, null, null, null, i12));
-        z9 z9Var4 = this.f35880a;
+        z9 z9Var4 = this.f35882a;
         int i13 = org.telegram.ui.ActionBar.i6.f20943l6;
         arrayList.add(new org.telegram.ui.ActionBar.k6(z9Var4, 65568, null, null, null, null, i13));
-        arrayList.add(new org.telegram.ui.ActionBar.k6(this.f35881b, 4, null, null, null, null, i10));
-        arrayList.add(new org.telegram.ui.ActionBar.k6(this.f35881b, 8388608, null, null, null, null, i11));
-        arrayList.add(new org.telegram.ui.ActionBar.k6(this.f35881b, 32, null, null, null, null, i12));
-        arrayList.add(new org.telegram.ui.ActionBar.k6(this.f35881b, 65568, null, null, null, null, i13));
+        arrayList.add(new org.telegram.ui.ActionBar.k6(this.f35883b, 4, null, null, null, null, i10));
+        arrayList.add(new org.telegram.ui.ActionBar.k6(this.f35883b, 8388608, null, null, null, null, i11));
+        arrayList.add(new org.telegram.ui.ActionBar.k6(this.f35883b, 32, null, null, null, null, i12));
+        arrayList.add(new org.telegram.ui.ActionBar.k6(this.f35883b, 65568, null, null, null, null, i13));
         return arrayList;
     }
 
@@ -231,8 +231,8 @@ public final class aa extends org.telegram.ui.ActionBar.n2 {
     public final void onResume() {
         super.onResume();
         if (!MessagesController.getGlobalMainSettings().getBoolean("view_animations", true)) {
-            this.f35880a.requestFocus();
-            AndroidUtilities.showKeyboard(this.f35880a);
+            this.f35882a.requestFocus();
+            AndroidUtilities.showKeyboard(this.f35882a);
         }
     }
 

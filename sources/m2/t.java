@@ -118,17 +118,17 @@ public final class t implements l2.i, k1.f, jp0, me.f, ah.j, m91, v1, com.google
 
     public void E(p4.p pVar, p4.m mVar, Collection collection) {
         p4.e eVar = (p4.e) this.f15972b;
-        if (pVar == eVar.f45346y && mVar != null) {
-            u uVar = eVar.f45345x.f45444a;
+        if (pVar == eVar.f45348y && mVar != null) {
+            u uVar = eVar.f45347x.f45446a;
             String d = mVar.d();
             v vVar = new v(uVar, d, eVar.b(uVar, d), false);
             vVar.i(mVar);
             if (eVar.d != vVar) {
-                eVar.h(eVar, vVar, eVar.f45346y, 3, eVar.f45345x, collection);
-                eVar.f45345x = null;
-                eVar.f45346y = null;
+                eVar.h(eVar, vVar, eVar.f45348y, 3, eVar.f45347x, collection);
+                eVar.f45347x = null;
+                eVar.f45348y = null;
             }
-        } else if (pVar == eVar.f45328e) {
+        } else if (pVar == eVar.f45330e) {
             if (mVar != null) {
                 eVar.n(eVar.d, mVar);
             }
@@ -177,10 +177,10 @@ public final class t implements l2.i, k1.f, jp0, me.f, ah.j, m91, v1, com.google
         int i11 = (int) (f7 * 100.0f);
         i6.f21030q = f7;
         if (i10 != i11) {
-            ThemeActivity themeActivity = cc1Var.f36623e.f38251e;
+            ThemeActivity themeActivity = cc1Var.f36625e.f38253e;
             am0 am0Var = (am0) themeActivity.f34531b.K(themeActivity.f34539f0);
             if (am0Var != null) {
-                ((e9) am0Var.f47656a).setText(LocaleController.formatString("AutoNightBrightnessInfo", R.string.AutoNightBrightnessInfo, Integer.valueOf((int) (i6.f21030q * 100.0f))));
+                ((e9) am0Var.f47658a).setText(LocaleController.formatString("AutoNightBrightnessInfo", R.string.AutoNightBrightnessInfo, Integer.valueOf((int) (i6.f21030q * 100.0f))));
             }
             i6.E(true);
         }
@@ -253,7 +253,7 @@ public final class t implements l2.i, k1.f, jp0, me.f, ah.j, m91, v1, com.google
     @Override
     public void m(View view, n0 n0Var, boolean z10, boolean z11) {
         zg.t tVar = (zg.t) this.f15972b;
-        tVar.f54660a.eb(null, tVar.f54663e, tVar.f54661b, view, 0.0f, 0.0f, n0Var, false, z10, z11, false);
+        tVar.f54662a.eb(null, tVar.f54665e, tVar.f54663b, view, 0.0f, 0.0f, n0Var, false, z10, z11, false);
         AndroidUtilities.runOnUIThread(new f0(this, 13));
     }
 
@@ -280,9 +280,9 @@ public final class t implements l2.i, k1.f, jp0, me.f, ah.j, m91, v1, com.google
     @Override
     public void q0(float f7) {
         bu0 bu0Var = (bu0) this.f15972b;
-        u0.e(bu0Var.P1).k(String.valueOf(pg.m.f45686a.indexOf(bu0Var.W0.getCurrentBrush())), f7);
+        u0.e(bu0Var.P1).k(String.valueOf(pg.m.f45688a.indexOf(bu0Var.W0.getCurrentBrush())), f7);
         s1 s1Var = bu0Var.K1;
-        s1Var.f45778c = f7;
+        s1Var.f45780c = f7;
         bu0Var.t0(s1Var, null);
     }
 
@@ -299,7 +299,7 @@ public final class t implements l2.i, k1.f, jp0, me.f, ah.j, m91, v1, com.google
     public String toString() {
         switch (this.f15971a) {
             case 17:
-                se.b bVar = se.b.f47968e;
+                se.b bVar = se.b.f47970e;
                 StringBuffer stringBuffer = new StringBuffer();
                 stringBuffer.append("method-execution".substring(7));
                 stringBuffer.append("(");
@@ -362,9 +362,9 @@ public final class t implements l2.i, k1.f, jp0, me.f, ah.j, m91, v1, com.google
         int i10 = bu0Var.P1;
         pg.m currentBrush = bu0Var.W0.getCurrentBrush();
         if (currentBrush == null) {
-            return u0.e(i10).f45804i;
+            return u0.e(i10).f45806i;
         }
-        return u0.e(i10).f(String.valueOf(pg.m.f45686a.indexOf(currentBrush)), currentBrush.d());
+        return u0.e(i10).f(String.valueOf(pg.m.f45688a.indexOf(currentBrush)), currentBrush.d());
     }
 
     public t(EditText editText) {

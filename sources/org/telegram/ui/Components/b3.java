@@ -92,7 +92,7 @@ public final class b3 implements Utilities.Callback2 {
                     if (optBoolean) {
                         TL_wallet.tonConnectCloseSession tonconnectclosesession = new TL_wallet.tonConnectCloseSession();
                         tonconnectclosesession.session_id = j10;
-                        d2Var.f34791f.sendRequestTyped(tonconnectclosesession, new Object(), new org.telegram.ui.Wallet.q1(d2Var, callback, j10, i16, 1));
+                        d2Var.f34771f.sendRequestTyped(tonconnectclosesession, new Object(), new org.telegram.ui.Wallet.q1(d2Var, callback, j10, i16, 1));
                         return;
                     }
                     d2Var.d(j10, i16, callback);
@@ -156,7 +156,7 @@ public final class b3 implements Utilities.Callback2 {
                         return;
                     } else if (auction.auctionUserState.bid_date > 0 && !auction.isFinished()) {
                         xh.o oVar = new xh.o(context2, e6Var, null, auction);
-                        oVar.f51410n0 = runnable;
+                        oVar.f51412n0 = runnable;
                         oVar.show();
                         return;
                     } else {

@@ -2,17 +2,17 @@ package org.telegram.ui;
 
 import android.text.TextUtils;
 public final class gc0 extends og.a {
-    public final CharSequence f37973c;
+    public final CharSequence f37975c;
     public final int d;
-    public final int f37974e;
-    public final int f37975f;
+    public final int f37976e;
+    public final int f37977f;
 
     public gc0(int i10, int i11, CharSequence charSequence, int i12, int i13) {
         super(i10, false);
-        this.f37973c = charSequence;
+        this.f37975c = charSequence;
         this.d = i11;
-        this.f37974e = i12;
-        this.f37975f = i13;
+        this.f37976e = i12;
+        this.f37977f = i13;
     }
 
     public static gc0 b(int i10, String str) {
@@ -31,9 +31,9 @@ public final class gc0 extends og.a {
                 int i11 = this.f17125a;
                 if (i10 == i11) {
                     if (i11 != 3 || gc0Var.d == this.d) {
-                        if (i11 != 5 || gc0Var.f37975f == this.f37975f) {
-                            if ((i11 != 3 && i11 != 4) || gc0Var.f37974e == this.f37974e) {
-                                if ((i11 == 0 || i11 == 2 || i11 == 3 || i11 == 4 || i11 == 5) && !TextUtils.equals(gc0Var.f37973c, this.f37973c)) {
+                        if (i11 != 5 || gc0Var.f37977f == this.f37977f) {
+                            if ((i11 != 3 && i11 != 4) || gc0Var.f37976e == this.f37976e) {
+                                if ((i11 == 0 || i11 == 2 || i11 == 3 || i11 == 4 || i11 == 5) && !TextUtils.equals(gc0Var.f37975c, this.f37975c)) {
                                     return false;
                                 }
                                 return true;

@@ -62,7 +62,7 @@ public class VoIPGroupNotification {
         public void destroy() {
             if (!this.destroyed) {
                 this.destroyed = true;
-                wi1 wi1Var = wi1.f43623n1;
+                wi1 wi1Var = wi1.f43625n1;
                 if (wi1Var != null) {
                     wi1Var.onStateChanged(getCallState());
                 }
@@ -158,7 +158,7 @@ public class VoIPGroupNotification {
         TL_phone.declineConferenceCallInvite declineconferencecallinvite = new TL_phone.declineConferenceCallInvite();
         declineconferencecallinvite.msg_id = i11;
         ConnectionsManager.getInstance(i10).sendRequest(declineconferencecallinvite, new q2(i10, 1));
-        wi1 wi1Var = wi1.f43623n1;
+        wi1 wi1Var = wi1.f43625n1;
         if (wi1Var != null) {
             wi1Var.m();
         }
@@ -183,7 +183,7 @@ public class VoIPGroupNotification {
             currentCallId = 0L;
             ((NotificationManager) context.getSystemService("notification")).cancel(203);
             VoIPPreNotificationService.stopRinging();
-            wi1 wi1Var = wi1.f43623n1;
+            wi1 wi1Var = wi1.f43625n1;
             if (wi1Var != null) {
                 wi1Var.m();
             }
@@ -274,7 +274,7 @@ public class VoIPGroupNotification {
             currentCallId = 0L;
             ((NotificationManager) context.getSystemService("notification")).cancel(203);
             VoIPPreNotificationService.stopRinging();
-            wi1 wi1Var = wi1.f43623n1;
+            wi1 wi1Var = wi1.f43625n1;
             if (wi1Var != null) {
                 wi1Var.m();
             }

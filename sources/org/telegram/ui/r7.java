@@ -12,24 +12,24 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 public abstract class r7 extends FrameLayout implements org.telegram.ui.Components.ld0 {
-    public final ArrayList f41286a;
-    public final org.telegram.ui.Components.n91 f41287b;
-    public final View f41288c;
+    public final ArrayList f41288a;
+    public final org.telegram.ui.Components.n91 f41289b;
+    public final View f41290c;
     public final org.telegram.ui.ActionBar.n2 d;
-    public final ArrayList f41289e;
-    public zh.b f41290f;
+    public final ArrayList f41291e;
+    public zh.b f41292f;
     public final org.telegram.ui.Components.o91 h;
-    public final q7[] f41291n;
-    public g7 f41292r;
-    public int f41293s;
+    public final q7[] f41293n;
+    public g7 f41294r;
+    public int f41295s;
     public h7 v;
 
     public r7(Context context, org.telegram.ui.ActionBar.n2 n2Var) {
         super(context);
-        this.f41286a = new ArrayList();
-        this.f41289e = new ArrayList();
+        this.f41288a = new ArrayList();
+        this.f41291e = new ArrayList();
         q7[] q7VarArr = new q7[5];
-        this.f41291n = q7VarArr;
+        this.f41293n = q7VarArr;
         this.d = n2Var;
         q7VarArr[0] = new q7(LocaleController.getString(R.string.FilterChats), 0, new i7(this));
         q7VarArr[1] = new q7(LocaleController.getString(R.string.MediaTab), 1, new n7(this));
@@ -37,11 +37,11 @@ public abstract class r7 extends FrameLayout implements org.telegram.ui.Componen
         q7VarArr[3] = new q7(LocaleController.getString(R.string.Music), 3, new p7(this));
         int i10 = 0;
         while (true) {
-            q7[] q7VarArr2 = this.f41291n;
+            q7[] q7VarArr2 = this.f41293n;
             if (i10 < q7VarArr2.length) {
                 q7 q7Var = q7VarArr2[i10];
                 if (q7Var != null) {
-                    this.f41289e.add(i10, q7Var);
+                    this.f41291e.add(i10, q7Var);
                 }
                 i10++;
             } else {
@@ -50,10 +50,10 @@ public abstract class r7 extends FrameLayout implements org.telegram.ui.Componen
                 o91Var.setAllowDisallowInterceptTouch(false);
                 addView(o91Var, w7.x5.a(-1.0f, 0.0f, 48.0f, 0.0f, 0.0f, -1, 0));
                 org.telegram.ui.Components.n91 n10 = o91Var.n(3, true);
-                this.f41287b = n10;
+                this.f41289b = n10;
                 addView(n10, w7.x5.d(48.0f, -1));
                 View view = new View(getContext());
-                this.f41288c = view;
+                this.f41290c = view;
                 view.setBackgroundColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20798d7, false));
                 addView(view, w7.x5.a(1.0f, 0.0f, 48.0f, 0.0f, 0.0f, -1, 0));
                 view.getLayoutParams().height = 1;
@@ -74,22 +74,22 @@ public abstract class r7 extends FrameLayout implements org.telegram.ui.Componen
                 imageView.setBackground(org.telegram.ui.ActionBar.i6.g0(org.telegram.ui.ActionBar.i6.x0(null, i12, false), 1, -1));
                 imageView.setContentDescription(LocaleController.getString(R.string.Close));
                 linearLayout.addView(imageView, new LinearLayout.LayoutParams(AndroidUtilities.dp(54.0f), -1));
-                this.f41286a.add(imageView);
+                this.f41288a.add(imageView);
                 imageView.setOnClickListener(new View.OnClickListener(this) {
-                    public final r7 f44486b;
+                    public final r7 f44488b;
 
                     {
-                        this.f44486b = this;
+                        this.f44488b = this;
                     }
 
                     @Override
                     public final void onClick(View view2) {
                         switch (r2) {
                             case 0:
-                                this.f44486b.v.g1();
+                                this.f44488b.v.g1();
                                 return;
                             default:
-                                this.f44486b.v.clear();
+                                this.f44488b.v.clear();
                                 return;
                         }
                     }
@@ -99,28 +99,28 @@ public abstract class r7 extends FrameLayout implements org.telegram.ui.Componen
                 r6Var.setTypeface(AndroidUtilities.bold());
                 r6Var.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, i11, false));
                 linearLayout.addView(r6Var, w7.x5.m(1.0f, 0, -1, 18, 0, 0));
-                this.f41286a.add(r6Var);
+                this.f41288a.add(r6Var);
                 org.telegram.ui.ActionBar.v0 v0Var = new org.telegram.ui.ActionBar.v0(context, null, org.telegram.ui.ActionBar.i6.x0(null, i12, false), org.telegram.ui.ActionBar.i6.x0(null, i11, false), false, null);
                 v0Var.setIcon(R.drawable.msg_clear);
                 v0Var.setContentDescription(LocaleController.getString(R.string.Delete));
                 v0Var.setDuplicateParentStateEnabled(false);
                 linearLayout.addView(v0Var, new LinearLayout.LayoutParams(AndroidUtilities.dp(54.0f), -1));
-                this.f41286a.add(v0Var);
+                this.f41288a.add(v0Var);
                 v0Var.setOnClickListener(new View.OnClickListener(this) {
-                    public final r7 f44486b;
+                    public final r7 f44488b;
 
                     {
-                        this.f44486b = this;
+                        this.f44488b = this;
                     }
 
                     @Override
                     public final void onClick(View view2) {
                         switch (r2) {
                             case 0:
-                                this.f44486b.v.g1();
+                                this.f44488b.v.g1();
                                 return;
                             default:
-                                this.f44486b.v.clear();
+                                this.f44488b.v.clear();
                                 return;
                         }
                     }
@@ -131,29 +131,29 @@ public abstract class r7 extends FrameLayout implements org.telegram.ui.Componen
     }
 
     public static void a(r7 r7Var, l7 l7Var, n7 n7Var, org.telegram.ui.Components.qm0 qm0Var) {
-        ArrayList arrayList = n7Var.f37173e;
+        ArrayList arrayList = n7Var.f37175e;
         PhotoViewer.t1().K2(null, r7Var.d, null);
-        if (r7Var.f41292r == null) {
-            r7Var.f41292r = new g7(r7Var);
+        if (r7Var.f41294r == null) {
+            r7Var.f41294r = new g7(r7Var);
         }
-        r7Var.f41292r.f37897a = qm0Var;
+        r7Var.f41294r.f37899a = qm0Var;
         if (arrayList.indexOf(l7Var) >= 0) {
-            PhotoViewer.t1().g2(n7Var.f40089r, arrayList.indexOf(l7Var), -1, false, r7Var.f41292r, null);
+            PhotoViewer.t1().g2(n7Var.f40091r, arrayList.indexOf(l7Var), -1, false, r7Var.f41294r, null);
         }
     }
 
     public static void b(r7 r7Var, zh.a aVar, j7 j7Var) {
         org.telegram.ui.ActionBar.n2 n2Var = r7Var.d;
         org.telegram.ui.Components.qm0 qm0Var = (org.telegram.ui.Components.qm0) r7Var.h.getCurrentView();
-        if (j7Var.f38841e == 2) {
+        if (j7Var.f38843e == 2) {
             if (qm0Var.getAdapter() instanceof k7) {
                 k7 k7Var = (k7) qm0Var.getAdapter();
                 PhotoViewer.t1().K2(null, n2Var, null);
-                if (r7Var.f41292r == null) {
-                    r7Var.f41292r = new g7(r7Var);
+                if (r7Var.f41294r == null) {
+                    r7Var.f41294r = new g7(r7Var);
                 }
-                r7Var.f41292r.f37897a = qm0Var;
-                File file = aVar.f54692a;
+                r7Var.f41294r.f37899a = qm0Var;
+                File file = aVar.f54694a;
                 String lowerCase = file.getName().toLowerCase();
                 if (!file.getName().endsWith("mp4") && !file.getName().endsWith(".jpg") && !lowerCase.endsWith(".jpeg") && !lowerCase.endsWith(".png") && !lowerCase.endsWith(".gif")) {
                     AndroidUtilities.openForView(file, file.getName(), null, n2Var.getParentActivity(), null, false);
@@ -165,23 +165,23 @@ public abstract class r7 extends FrameLayout implements org.telegram.ui.Componen
                         z10 = false;
                     }
                     arrayList.add(new MediaController.PhotoEntry(0, 0, 0L, path, 0, z10, 0, 0, 0L));
-                    PhotoViewer.t1().g2(arrayList, 0, -1, false, r7Var.f41292r, null);
+                    PhotoViewer.t1().g2(arrayList, 0, -1, false, r7Var.f41294r, null);
                 }
             } else {
                 return;
             }
         }
-        if (j7Var.f38841e == 3) {
-            if (MediaController.getInstance().isPlayingMessage(aVar.f54696f)) {
+        if (j7Var.f38843e == 3) {
+            if (MediaController.getInstance().isPlayingMessage(aVar.f54698f)) {
                 if (!MediaController.getInstance().isMessagePaused()) {
-                    MediaController.getInstance().lambda$startAudioAgain$7(aVar.f54696f);
+                    MediaController.getInstance().lambda$startAudioAgain$7(aVar.f54698f);
                     return;
                 } else {
-                    MediaController.getInstance().playMessage(aVar.f54696f);
+                    MediaController.getInstance().playMessage(aVar.f54698f);
                     return;
                 }
             }
-            MediaController.getInstance().playMessage(aVar.f54696f);
+            MediaController.getInstance().playMessage(aVar.f54698f);
         }
     }
 
@@ -216,7 +216,7 @@ public abstract class r7 extends FrameLayout implements org.telegram.ui.Componen
     }
 
     public void setBottomPadding(int i10) {
-        this.f41293s = i10;
+        this.f41295s = i10;
         int i11 = 0;
         while (true) {
             org.telegram.ui.Components.o91 o91Var = this.h;
@@ -233,7 +233,7 @@ public abstract class r7 extends FrameLayout implements org.telegram.ui.Componen
     }
 
     public void setCacheModel(zh.b bVar) {
-        this.f41290f = bVar;
+        this.f41292f = bVar;
         c();
     }
 

@@ -90,8 +90,8 @@ public class f3 implements l.i, jp0, f5, ah.j, h81, a81, r0.n, u9, com.google.an
     public void F(y2.i iVar, long j3, long j10) {
         boolean z10;
         l2.d dVar = (l2.d) this.f15668b;
-        synchronized (z2.b.f53484b) {
-            z10 = z2.b.f53485c;
+        synchronized (z2.b.f53486b) {
+            z10 = z2.b.f53487c;
         }
         if (!z10) {
             dVar.f15320a.x(new IOException(new ConcurrentModificationException()));
@@ -129,7 +129,7 @@ public class f3 implements l.i, jp0, f5, ah.j, h81, a81, r0.n, u9, com.google.an
         gn0 gn0Var = (gn0) this.f15668b;
         gn0Var.v.setPadding(defaultWindowInsets.f11576a, defaultWindowInsets.f11577b, defaultWindowInsets.f11578c, defaultWindowInsets.d);
         gn0Var.f26822s.requestLayout();
-        return r0.k1.f46774b;
+        return r0.k1.f46776b;
     }
 
     @Override
@@ -157,13 +157,13 @@ public class f3 implements l.i, jp0, f5, ah.j, h81, a81, r0.n, u9, com.google.an
         if (arrayList.isEmpty()) {
             return Long.MIN_VALUE;
         }
-        if (j3 < ((z3.a) arrayList.get(0)).f53487b) {
-            return ((z3.a) arrayList.get(0)).f53487b;
+        if (j3 < ((z3.a) arrayList.get(0)).f53489b) {
+            return ((z3.a) arrayList.get(0)).f53489b;
         }
         for (int i10 = 1; i10 < arrayList.size(); i10++) {
             z3.a aVar = (z3.a) arrayList.get(i10);
-            long j10 = aVar.f53487b;
-            long j11 = aVar.f53487b;
+            long j10 = aVar.f53489b;
+            long j11 = aVar.f53489b;
             if (j3 < j10) {
                 long j12 = ((z3.a) arrayList.get(i10 - 1)).d;
                 if (j12 != -9223372036854775807L && j12 > j3 && j12 < j11) {
@@ -203,7 +203,7 @@ public class f3 implements l.i, jp0, f5, ah.j, h81, a81, r0.n, u9, com.google.an
             e9.g0 g0Var2 = e9.i0.f8752b;
             return e9.a1.f8715e;
         }
-        return aVar.f53486a;
+        return aVar.f53488a;
     }
 
     @Override
@@ -219,11 +219,11 @@ public class f3 implements l.i, jp0, f5, ah.j, h81, a81, r0.n, u9, com.google.an
     @Override
     public long d(long j3) {
         ArrayList arrayList = (ArrayList) this.f15668b;
-        if (arrayList.isEmpty() || j3 < ((z3.a) arrayList.get(0)).f53487b) {
+        if (arrayList.isEmpty() || j3 < ((z3.a) arrayList.get(0)).f53489b) {
             return -9223372036854775807L;
         }
         for (int i10 = 1; i10 < arrayList.size(); i10++) {
-            long j10 = ((z3.a) arrayList.get(i10)).f53487b;
+            long j10 = ((z3.a) arrayList.get(i10)).f53489b;
             int i11 = (j3 > j10 ? 1 : (j3 == j10 ? 0 : -1));
             if (i11 == 0) {
                 return j10;
@@ -234,7 +234,7 @@ public class f3 implements l.i, jp0, f5, ah.j, h81, a81, r0.n, u9, com.google.an
                 if (j11 != -9223372036854775807L && j11 <= j3) {
                     return j11;
                 }
-                return aVar.f53487b;
+                return aVar.f53489b;
             }
         }
         z3.a aVar2 = (z3.a) e9.q.l(arrayList);
@@ -242,7 +242,7 @@ public class f3 implements l.i, jp0, f5, ah.j, h81, a81, r0.n, u9, com.google.an
         if (j12 != -9223372036854775807L && j3 >= j12) {
             return j12;
         }
-        return aVar2.f53487b;
+        return aVar2.f53489b;
     }
 
     @Override
@@ -271,13 +271,13 @@ public class f3 implements l.i, jp0, f5, ah.j, h81, a81, r0.n, u9, com.google.an
     public void g() {
         pg.c1 c1Var = ((pg.e1) this.f15668b).d;
         if (c1Var != null) {
-            pg.b1 b1Var = c1Var.f45603s;
+            pg.b1 b1Var = c1Var.f45605s;
             if (b1Var != null) {
                 c1Var.cancelRunnable(b1Var);
-                c1Var.f45603s = null;
+                c1Var.f45605s = null;
             }
             pg.b1 b1Var2 = new pg.b1(c1Var, 1);
-            c1Var.f45603s = b1Var2;
+            c1Var.f45605s = b1Var2;
             c1Var.postRunnable(b1Var2, 1L);
         }
     }
@@ -300,29 +300,29 @@ public class f3 implements l.i, jp0, f5, ah.j, h81, a81, r0.n, u9, com.google.an
 
     public void h(s4.a aVar) {
         RecyclerView recyclerView = (RecyclerView) this.f15668b;
-        int i10 = aVar.f47600a;
+        int i10 = aVar.f47602a;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 4) {
                     if (i10 != 8) {
                         return;
                     }
-                    recyclerView.f3169x.X(recyclerView, aVar.f47601b, aVar.d);
+                    recyclerView.f3169x.X(recyclerView, aVar.f47603b, aVar.d);
                     return;
                 }
-                recyclerView.f3169x.a0(recyclerView, aVar.f47601b, aVar.d, aVar.f47602c);
+                recyclerView.f3169x.a0(recyclerView, aVar.f47603b, aVar.d, aVar.f47604c);
                 return;
             }
-            recyclerView.f3169x.Y(recyclerView, aVar.f47601b, aVar.d);
+            recyclerView.f3169x.Y(recyclerView, aVar.f47603b, aVar.d);
             return;
         }
-        recyclerView.f3169x.V(recyclerView, aVar.f47601b, aVar.d);
+        recyclerView.f3169x.V(recyclerView, aVar.f47603b, aVar.d);
     }
 
     public int i(long j3) {
         ArrayList arrayList = (ArrayList) this.f15668b;
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            if (j3 < ((z3.a) arrayList.get(i10)).f53487b) {
+            if (j3 < ((z3.a) arrayList.get(i10)).f53489b) {
                 return i10;
             }
         }
@@ -348,26 +348,26 @@ public class f3 implements l.i, jp0, f5, ah.j, h81, a81, r0.n, u9, com.google.an
         for (int i15 = 0; i15 < M; i15++) {
             View L = recyclerView.f3145e.L(i15);
             s4.d1 U = RecyclerView.U(L);
-            if (U != null && !U.r() && (i13 = U.f47658c) >= i10 && i13 < i14) {
+            if (U != null && !U.r() && (i13 = U.f47660c) >= i10 && i13 < i14) {
                 U.a(2);
                 if (obj == null) {
                     U.a(1024);
-                } else if ((1024 & U.f47665l) == 0) {
-                    if (U.f47666m == null) {
+                } else if ((1024 & U.f47667l) == 0) {
+                    if (U.f47668m == null) {
                         ArrayList arrayList = new ArrayList();
-                        U.f47666m = arrayList;
-                        U.f47667n = DesugarCollections.unmodifiableList(arrayList);
+                        U.f47668m = arrayList;
+                        U.f47669n = DesugarCollections.unmodifiableList(arrayList);
                     }
-                    U.f47666m.add(obj);
+                    U.f47668m.add(obj);
                 }
-                ((s4.q0) L.getLayoutParams()).f47780c = true;
+                ((s4.q0) L.getLayoutParams()).f47782c = true;
             }
         }
         pf.e eVar = recyclerView.f3140b;
-        ArrayList arrayList2 = (ArrayList) eVar.f45572e;
+        ArrayList arrayList2 = (ArrayList) eVar.f45574e;
         for (int size = arrayList2.size() - 1; size >= 0; size--) {
             s4.d1 d1Var = (s4.d1) arrayList2.get(size);
-            if (d1Var != null && (i12 = d1Var.f47658c) >= i10 && i12 < i14) {
+            if (d1Var != null && (i12 = d1Var.f47660c) >= i10 && i12 < i14) {
                 d1Var.a(2);
                 eVar.f(size);
             }
@@ -385,16 +385,16 @@ public class f3 implements l.i, jp0, f5, ah.j, h81, a81, r0.n, u9, com.google.an
         int M = recyclerView.f3145e.M();
         for (int i12 = 0; i12 < M; i12++) {
             s4.d1 U = RecyclerView.U(recyclerView.f3145e.L(i12));
-            if (U != null && !U.r() && U.f47658c >= i10) {
+            if (U != null && !U.r() && U.f47660c >= i10) {
                 U.n(i11, false);
-                recyclerView.f3165u0.f47610f = true;
+                recyclerView.f3165u0.f47612f = true;
             }
         }
-        ArrayList arrayList = (ArrayList) recyclerView.f3140b.f45572e;
+        ArrayList arrayList = (ArrayList) recyclerView.f3140b.f45574e;
         int size = arrayList.size();
         for (int i13 = 0; i13 < size; i13++) {
             s4.d1 d1Var = (s4.d1) arrayList.get(i13);
-            if (d1Var != null && d1Var.f47658c >= i10) {
+            if (d1Var != null && d1Var.f47660c >= i10) {
                 d1Var.n(i11, true);
             }
         }
@@ -433,16 +433,16 @@ public class f3 implements l.i, jp0, f5, ah.j, h81, a81, r0.n, u9, com.google.an
         }
         for (int i20 = 0; i20 < M; i20++) {
             s4.d1 U = RecyclerView.U(recyclerView.f3145e.L(i20));
-            if (U != null && (i18 = U.f47658c) >= i13 && i18 <= i12) {
+            if (U != null && (i18 = U.f47660c) >= i13 && i18 <= i12) {
                 if (i18 == i10) {
                     U.n(i11 - i10, false);
                 } else {
                     U.n(i14, false);
                 }
-                recyclerView.f3165u0.f47610f = true;
+                recyclerView.f3165u0.f47612f = true;
             }
         }
-        ArrayList arrayList = (ArrayList) recyclerView.f3140b.f45572e;
+        ArrayList arrayList = (ArrayList) recyclerView.f3140b.f45574e;
         if (i10 < i11) {
             i16 = i10;
             i15 = i11;
@@ -454,7 +454,7 @@ public class f3 implements l.i, jp0, f5, ah.j, h81, a81, r0.n, u9, com.google.an
         int size = arrayList.size();
         for (int i21 = 0; i21 < size; i21++) {
             s4.d1 d1Var = (s4.d1) arrayList.get(i21);
-            if (d1Var != null && (i17 = d1Var.f47658c) >= i16 && i17 <= i15) {
+            if (d1Var != null && (i17 = d1Var.f47660c) >= i16 && i17 <= i15) {
                 if (i17 == i10) {
                     d1Var.n(i11 - i10, false);
                 } else {
@@ -494,7 +494,7 @@ public class f3 implements l.i, jp0, f5, ah.j, h81, a81, r0.n, u9, com.google.an
     public void onDismiss() {
         org.telegram.ui.web.b1 b1Var = (org.telegram.ui.web.b1) this.f15668b;
         b1Var.y("scan_qr_popup_closed", null);
-        b1Var.f43247h0 = false;
+        b1Var.f43249h0 = false;
     }
 
     @Override
@@ -543,7 +543,7 @@ public class f3 implements l.i, jp0, f5, ah.j, h81, a81, r0.n, u9, com.google.an
         String str;
         List list = (List) treeMap.get("Sec-WebSocket-Protocol");
         if (list != null && (str = (String) list.get(0)) != null && str.length() != 0) {
-            synchronized (((sc.u) this.f15668b).f47939c) {
+            synchronized (((sc.u) this.f15668b).f47941c) {
             }
             throw new sc.n(19, "The protocol contained in the Sec-WebSocket-Protocol header is not supported: ".concat(str), bVar);
         }
@@ -561,12 +561,12 @@ public class f3 implements l.i, jp0, f5, ah.j, h81, a81, r0.n, u9, com.google.an
     @Override
     public k4.d y(y2.i iVar, long j3, long j10, IOException iOException, int i10) {
         ((l2.d) this.f15668b).f15320a.x(iOException);
-        return y2.l.f51692e;
+        return y2.l.f51694e;
     }
 
     @Override
     public String z0() {
-        return ((org.telegram.ui.web.b1) this.f15668b).f43248i0;
+        return ((org.telegram.ui.web.b1) this.f15668b).f43250i0;
     }
 
     public f3(Context context, GestureDetector.OnGestureListener onGestureListener) {

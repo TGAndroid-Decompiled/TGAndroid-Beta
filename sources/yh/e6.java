@@ -3,39 +3,39 @@ package yh;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class e6 implements Runnable {
-    public final int f52446a;
-    public final EditTextBoldCursor f52447b;
-    public final org.telegram.ui.ActionBar.f3[] f52448c;
+    public final int f52448a;
+    public final EditTextBoldCursor f52449b;
+    public final org.telegram.ui.ActionBar.f3[] f52450c;
 
     public e6(EditTextBoldCursor editTextBoldCursor, org.telegram.ui.ActionBar.f3[] f3VarArr, int i10) {
-        this.f52446a = i10;
-        this.f52447b = editTextBoldCursor;
-        this.f52448c = f3VarArr;
+        this.f52448a = i10;
+        this.f52449b = editTextBoldCursor;
+        this.f52450c = f3VarArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f52446a) {
+        switch (this.f52448a) {
             case 0:
-                this.f52448c[0].setFocusable(true);
-                EditTextBoldCursor editTextBoldCursor = this.f52447b;
+                this.f52450c[0].setFocusable(true);
+                EditTextBoldCursor editTextBoldCursor = this.f52449b;
                 editTextBoldCursor.requestFocus();
                 AndroidUtilities.runOnUIThread(new f0(editTextBoldCursor, 8));
                 return;
             case 1:
-                AndroidUtilities.hideKeyboard(this.f52447b);
-                this.f52448c[0].dismiss();
+                AndroidUtilities.hideKeyboard(this.f52449b);
+                this.f52450c[0].dismiss();
                 return;
             default:
-                AndroidUtilities.hideKeyboard(this.f52447b);
-                this.f52448c[0].dismiss();
+                AndroidUtilities.hideKeyboard(this.f52449b);
+                this.f52450c[0].dismiss();
                 return;
         }
     }
 
     public e6(org.telegram.ui.ActionBar.f3[] f3VarArr, EditTextBoldCursor editTextBoldCursor) {
-        this.f52446a = 0;
-        this.f52448c = f3VarArr;
-        this.f52447b = editTextBoldCursor;
+        this.f52448a = 0;
+        this.f52450c = f3VarArr;
+        this.f52449b = editTextBoldCursor;
     }
 }

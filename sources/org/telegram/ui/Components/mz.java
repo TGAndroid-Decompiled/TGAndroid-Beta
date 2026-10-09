@@ -71,7 +71,7 @@ public abstract class mz extends FrameLayout implements me.d {
         }
         frameLayout.setBackground(org.telegram.ui.ActionBar.i6.c0(dp, B));
         frameLayout.setClipToOutline(true);
-        ai.l2 l2Var = yf.i0.f52169a;
+        ai.l2 l2Var = yf.i0.f52171a;
         frameLayout.setOutlineProvider(new yf.h0(0, AndroidUtilities.dp(18.0f)));
         if (i10 == 2) {
             addView(frameLayout, w7.x5.a(36.0f, 10.0f, 8.0f, 10.0f, 8.0f, -1, 119));

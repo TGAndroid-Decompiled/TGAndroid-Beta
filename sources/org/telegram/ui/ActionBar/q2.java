@@ -76,9 +76,9 @@ public final class q2 implements ValueAnimator.AnimatorUpdateListener {
                 vh.g gVar = (vh.g) this.f21490c;
                 gVar.getClass();
                 float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                gVar.f49689n = floatValue4;
+                gVar.f49691n = floatValue4;
                 gVar.setAlpha((int) ((1.0f - floatValue4) * this.f21489b));
-                gVar.f49691p = true;
+                gVar.f49693p = true;
                 gVar.invalidateSelf();
                 return;
         }

@@ -39,7 +39,7 @@ public final class xr0 implements View.OnClickListener {
                     if (rs0Var != null && rs0Var.g()) {
                         rs0Var.i();
                     }
-                    if (ws0Var != null && ws0Var.f35812w) {
+                    if (ws0Var != null && ws0Var.f35814w) {
                         aw0 i12 = bw0Var.i1(bw0Var.h1(bw0Var.getClosestTab()));
                         uu0 W = bw0Var.W(i12.f24783a);
                         if (W != null) {

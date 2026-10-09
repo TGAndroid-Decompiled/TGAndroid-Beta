@@ -5,27 +5,27 @@ import com.google.android.gms.internal.vision.h3;
 import java.util.ArrayList;
 import m.f3;
 public final class u {
-    public final h3 f45440a;
-    public final ArrayList f45441b = new ArrayList();
-    public final boolean f45442c;
+    public final h3 f45442a;
+    public final ArrayList f45443b = new ArrayList();
+    public final boolean f45444c;
     public final f3 d;
-    public b2.p f45443e;
+    public b2.p f45445e;
 
     public u(h3 h3Var, boolean z10) {
-        this.f45440a = h3Var;
+        this.f45442a = h3Var;
         this.d = (f3) h3Var.d;
-        this.f45442c = z10;
+        this.f45444c = z10;
     }
 
     public final v a(String str) {
-        ArrayList arrayList = this.f45441b;
+        ArrayList arrayList = this.f45443b;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
             v vVar = (v) obj;
-            if (vVar.f45445b.equals(str)) {
+            if (vVar.f45447b.equals(str)) {
                 return vVar;
             }
         }

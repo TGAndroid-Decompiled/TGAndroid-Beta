@@ -180,7 +180,7 @@ public final class x extends eb {
         ((ViewGroup.MarginLayoutParams) f7.getLayoutParams()).leftMargin += this.backgroundPaddingLeft;
         ((ViewGroup.MarginLayoutParams) f7.getLayoutParams()).rightMargin += this.backgroundPaddingLeft;
         s4.j jVar = new s4.j();
-        jVar.f47696m = false;
+        jVar.f47698m = false;
         jVar.C = false;
         jVar.o(hs.h);
         jVar.n(350L);

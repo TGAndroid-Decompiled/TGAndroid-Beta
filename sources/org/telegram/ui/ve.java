@@ -6,14 +6,14 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class ve implements Runnable {
-    public final int f42833a;
-    public final zn f42834b;
-    public final MessageObject f42835c;
+    public final int f42835a;
+    public final zn f42836b;
+    public final MessageObject f42837c;
 
     public ve(zn znVar, MessageObject messageObject, int i10) {
-        this.f42833a = i10;
-        this.f42834b = znVar;
-        this.f42835c = messageObject;
+        this.f42835a = i10;
+        this.f42836b = znVar;
+        this.f42837c = messageObject;
     }
 
     @Override
@@ -24,23 +24,23 @@ public final class ve implements Runnable {
         int i11;
         int i12;
         int i13;
-        switch (this.f42833a) {
+        switch (this.f42835a) {
             case 0:
-                MessageObject messageObject = this.f42835c;
+                MessageObject messageObject = this.f42837c;
                 TLRPC.MessageMedia messageMedia = messageObject.messageOwner.media;
                 if (messageMedia != null && (webPage = messageMedia.webpage) != null && webPage.cached_page != null) {
                     LaunchActivity launchActivity = LaunchActivity.G1;
                     if (launchActivity == null || launchActivity.P() == null || LaunchActivity.G1.P().l(messageObject) == null) {
-                        this.f42834b.createArticleViewer(false).N(messageObject, null, null, null);
+                        this.f42836b.createArticleViewer(false).N(messageObject, null, null, null);
                         return;
                     }
                     return;
                 }
                 return;
             case 1:
-                zn znVar = this.f42834b;
+                zn znVar = this.f42836b;
                 znVar.getClass();
-                MessageObject messageObject2 = this.f42835c;
+                MessageObject messageObject2 = this.f42837c;
                 TLRPC.Message message = messageObject2.messageOwner;
                 int i14 = message.ttl;
                 if (i14 != Integer.MAX_VALUE) {
@@ -63,9 +63,9 @@ public final class ve implements Runnable {
                     return;
                 }
             case 2:
-                zn znVar2 = this.f42834b;
+                zn znVar2 = this.f42836b;
                 znVar2.getClass();
-                MessageObject messageObject3 = this.f42835c;
+                MessageObject messageObject3 = this.f42837c;
                 int replyMsgId = messageObject3.getReplyMsgId();
                 int i15 = messageObject3.messageOwner.f20059id;
                 if (messageObject3.getDialogId() == znVar2.L6) {
@@ -76,9 +76,9 @@ public final class ve implements Runnable {
                 znVar2.bb(replyMsgId, i15, true, i11, false, 0, null, ((TLRPC.TL_messageActionPollAppendAnswer) messageObject3.messageOwner.action).answer.option, null);
                 return;
             case 3:
-                zn znVar3 = this.f42834b;
+                zn znVar3 = this.f42836b;
                 znVar3.getClass();
-                MessageObject messageObject4 = this.f42835c;
+                MessageObject messageObject4 = this.f42837c;
                 int replyMsgId2 = messageObject4.getReplyMsgId();
                 int i16 = messageObject4.messageOwner.f20059id;
                 if (messageObject4.getDialogId() == znVar3.L6) {
@@ -89,9 +89,9 @@ public final class ve implements Runnable {
                 znVar3.bb(replyMsgId2, i16, true, i12, false, 0, null, null, null);
                 return;
             case 4:
-                zn znVar4 = this.f42834b;
+                zn znVar4 = this.f42836b;
                 znVar4.getClass();
-                MessageObject messageObject5 = this.f42835c;
+                MessageObject messageObject5 = this.f42837c;
                 int replyMsgId3 = messageObject5.getReplyMsgId();
                 int i17 = messageObject5.messageOwner.f20059id;
                 if (messageObject5.getDialogId() == znVar4.L6) {
@@ -102,18 +102,18 @@ public final class ve implements Runnable {
                 znVar4.F(replyMsgId3, i17, i13, 0, true, false);
                 return;
             case 5:
-                int id2 = this.f42835c.getId();
-                zn znVar5 = this.f42834b;
+                int id2 = this.f42837c.getId();
+                zn znVar5 = this.f42836b;
                 znVar5.bb(id2, 0, true, 0, true, 0, null, null, new rf(znVar5, 23));
-                if (znVar5.f44793h6.isEmpty()) {
+                if (znVar5.f44795h6.isEmpty()) {
                     znVar5.Pb(false);
                     return;
                 }
                 return;
             case 6:
-                zn znVar6 = this.f42834b;
+                zn znVar6 = this.f42836b;
                 znVar6.getClass();
-                MessageObject messageObject6 = this.f42835c;
+                MessageObject messageObject6 = this.f42837c;
                 if (messageObject6.isVideo()) {
                     znVar6.ma(null, messageObject6);
                     return;
@@ -122,14 +122,14 @@ public final class ve implements Runnable {
                     return;
                 }
             case 7:
-                zn znVar7 = this.f42834b;
-                znVar7.getMessagesController().pinMessage(znVar7.f44751e, znVar7.f44763f, this.f42835c.getId(), true, false, false);
+                zn znVar7 = this.f42836b;
+                znVar7.getMessagesController().pinMessage(znVar7.f44753e, znVar7.f44765f, this.f42837c.getId(), true, false, false);
                 znVar7.A3 = null;
                 return;
             default:
-                zn znVar8 = this.f42834b;
+                zn znVar8 = this.f42836b;
                 org.telegram.ui.Components.ad.a0(znVar8).c(LocaleController.getString(R.string.AdHidden)).j();
-                MessageObject messageObject7 = this.f42835c;
+                MessageObject messageObject7 = this.f42837c;
                 znVar8.Ja(messageObject7);
                 znVar8.La(messageObject7);
                 return;

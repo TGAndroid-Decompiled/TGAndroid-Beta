@@ -4,12 +4,12 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 public final class uk0 extends org.telegram.ui.Components.pm0 {
-    public final Context f42447c;
+    public final Context f42449c;
     public final NotificationsSettingsActivity d;
 
     public uk0(NotificationsSettingsActivity notificationsSettingsActivity, Context context) {
         this.d = notificationsSettingsActivity;
-        this.f42447c = context;
+        this.f42449c = context;
     }
 
     @Override
@@ -141,7 +141,7 @@ public final class uk0 extends org.telegram.ui.Components.pm0 {
         org.telegram.ui.ActionBar.e6 e6Var4;
         org.telegram.ui.ActionBar.e6 e6Var5;
         NotificationsSettingsActivity notificationsSettingsActivity = this.d;
-        Context context = this.f42447c;
+        Context context = this.f42449c;
         if (i10 == 0) {
             e6Var = ((org.telegram.ui.ActionBar.n2) notificationsSettingsActivity).resourceProvider;
             m4Var = new org.telegram.ui.Cells.m4(context, e6Var);
@@ -151,7 +151,7 @@ public final class uk0 extends org.telegram.ui.Components.pm0 {
         } else if (i10 != 2) {
             if (i10 == 3) {
                 e6Var3 = ((org.telegram.ui.ActionBar.n2) notificationsSettingsActivity).resourceProvider;
-                m4Var = new org.telegram.ui.Cells.j5(21, 64, this.f42447c, e6Var3, true);
+                m4Var = new org.telegram.ui.Cells.j5(21, 64, this.f42449c, e6Var3, true);
             } else if (i10 != 4) {
                 if (i10 != 5) {
                     e6Var5 = ((org.telegram.ui.ActionBar.n2) notificationsSettingsActivity).resourceProvider;

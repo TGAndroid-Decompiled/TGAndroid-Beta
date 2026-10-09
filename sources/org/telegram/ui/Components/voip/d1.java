@@ -212,23 +212,23 @@ public abstract class d1 extends FrameLayout implements VoIPService.StateListene
             this.f31889a = true;
             b();
             wi1 wi1Var = pi1Var.V;
-            wi1Var.f43655o0 = null;
+            wi1Var.f43657o0 = null;
             VoIPService sharedInstance = VoIPService.getSharedInstance();
-            wi1Var.f43663u0.setLockOnScreen(false);
+            wi1Var.f43665u0.setLockOnScreen(false);
             if (z11) {
-                wi1Var.f43654n0 = true;
+                wi1Var.f43656n0 = true;
                 if (sharedInstance != null && !z10) {
                     sharedInstance.requestVideoCall(false);
                     sharedInstance.setVideoState(false, 2);
                     sharedInstance.switchToSpeaker();
                 }
                 if (sharedInstance != null) {
-                    wi1Var.u(wi1Var.f43638f, sharedInstance, true);
+                    wi1Var.u(wi1Var.f43640f, sharedInstance, true);
                 }
             } else if (sharedInstance != null) {
                 sharedInstance.setVideoState(false, 0);
             }
-            wi1Var.f43657q0 = wi1Var.f43656p0;
+            wi1Var.f43659q0 = wi1Var.f43658p0;
             wi1Var.G();
             if (pi1Var.V.m0 && z11) {
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);

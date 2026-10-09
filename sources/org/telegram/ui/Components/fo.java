@@ -37,7 +37,7 @@ public final class fo implements TextWatcher {
             Emoji.replaceEmoji(editable, eoVar.getEditField().getPaint().getFontMetricsInt(), false);
             loVar.f28532x.setDirection(1);
             loVar.f28532x.setDelegate(eoVar);
-            loVar.f28532x.setTranslationY(K.f47656a.getY());
+            loVar.f28532x.setTranslationY(K.f47658a.getY());
             loVar.f28532x.e();
         }
         if (i11 == 11) {
@@ -46,7 +46,7 @@ public final class fo implements TextWatcher {
             loVar.N = editable;
         }
         if (K != null) {
-            lo.O(loVar, K.f47656a, i10);
+            lo.O(loVar, K.f47658a, i10);
         }
         loVar.W();
     }

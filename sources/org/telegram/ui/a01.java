@@ -5,11 +5,11 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 public final class a01 extends org.telegram.ui.Components.t6 {
-    public final ProfileActivity f35789b;
+    public final ProfileActivity f35791b;
 
     public a01(ProfileActivity profileActivity) {
         super("avatarAnimationProgress", 0);
-        this.f35789b = profileActivity;
+        this.f35791b = profileActivity;
     }
 
     @Override
@@ -28,7 +28,7 @@ public final class a01 extends org.telegram.ui.Components.t6 {
         int color3;
         float f10;
         org.telegram.ui.ActionBar.k kVar3 = (org.telegram.ui.ActionBar.k) obj;
-        ProfileActivity profileActivity = this.f35789b;
+        ProfileActivity profileActivity = this.f35791b;
         profileActivity.E5 = f7;
         Drawable[] drawableArr = profileActivity.E;
         Drawable[] drawableArr2 = profileActivity.I;
@@ -150,7 +150,7 @@ public final class a01 extends org.telegram.ui.Components.t6 {
             drawableArr[1].setColorFilter(AndroidUtilities.getOffsetColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21210zh, profileActivity.f34386z0), org.telegram.ui.ActionBar.i6.w0(i11, profileActivity.f34386z0), f7, 1.0f), PorterDuff.Mode.MULTIPLY);
         }
         profileActivity.X4();
-        ProfileActivity profileActivity2 = profileActivity.f34310o0.f36093n;
+        ProfileActivity profileActivity2 = profileActivity.f34310o0.f36095n;
         if (profileActivity2.L0) {
             v0Var = profileActivity2.Q0;
         } else if (profileActivity2.N0) {
@@ -171,6 +171,6 @@ public final class a01 extends org.telegram.ui.Components.t6 {
     @Override
     public final Object get(Object obj) {
         org.telegram.ui.ActionBar.k kVar = (org.telegram.ui.ActionBar.k) obj;
-        return Float.valueOf(this.f35789b.E5);
+        return Float.valueOf(this.f35791b.E5);
     }
 }

@@ -481,7 +481,7 @@ public class x implements OnCompleteListener, com.google.android.gms.internal.cl
             p1.a b10 = nVar.b();
             int a2 = b10.a(8);
             if (a2 != 0) {
-                ((ByteBuffer) b10.d).getShort(a2 + b10.f45157a);
+                ((ByteBuffer) b10.d).getShort(a2 + b10.f45159a);
             }
             androidx.emoji2.text.d dVar = (androidx.emoji2.text.d) hVar;
             dVar.getClass();
@@ -530,14 +530,14 @@ public class x implements OnCompleteListener, com.google.android.gms.internal.cl
         }
         rVar.f10188x = null;
         ViewGroup viewGroup = rVar.J;
-        WeakHashMap weakHashMap = i0.f46764a;
+        WeakHashMap weakHashMap = i0.f46766a;
         r0.y.c(viewGroup);
         rVar.x();
     }
 
     public boolean Y(k.a aVar, Menu menu) {
         ViewGroup viewGroup = ((g.r) this.f16613c).J;
-        WeakHashMap weakHashMap = i0.f46764a;
+        WeakHashMap weakHashMap = i0.f46766a;
         r0.y.c(viewGroup);
         oi.f fVar = (oi.f) this.f16612b;
         ActionMode.Callback callback = (ActionMode.Callback) fVar.f17175a;
@@ -849,13 +849,13 @@ public class x implements OnCompleteListener, com.google.android.gms.internal.cl
                             p4.y yVar = new p4.y();
                             int i10 = Build.VERSION.SDK_INT;
                             if (i10 >= 30) {
-                                yVar.f45468b = z11;
+                                yVar.f45470b = z11;
                             }
                             if (i10 >= 30) {
                                 yVar.d = z13;
                             }
                             if (i10 >= 30) {
-                                yVar.f45469c = z14;
+                                yVar.f45471c = z14;
                             }
                             p4.x.i(new p4.z(yVar));
                             Log.i(bVar3.f10323a, bVar3.d("media transfer = %b, session transfer = %b, transfer to local = %b, in-app output switcher = %b", Boolean.valueOf(rVar.f6977i), Boolean.valueOf(z11), Boolean.valueOf(z13), Boolean.valueOf(z14)));
@@ -864,7 +864,7 @@ public class x implements OnCompleteListener, com.google.android.gms.internal.cl
                                 n6.l.h(uVar);
                                 com.google.android.gms.internal.cast.q qVar = new com.google.android.gms.internal.cast.q(uVar);
                                 p4.x.b();
-                                p4.x.c().f45329f = qVar;
+                                p4.x.c().f45331f = qVar;
                                 d2.a(d1.CAST_TRANSFER_TO_LOCAL_ENABLED);
                                 return;
                             }
@@ -898,7 +898,7 @@ public class x implements OnCompleteListener, com.google.android.gms.internal.cl
     @Override
     public void s(Bitmap bitmap) {
         pf.b bVar = (pf.b) this.f16612b;
-        bVar.f45557c = bitmap;
+        bVar.f45559c = bitmap;
         f6.g gVar = (f6.g) this.f16613c;
         gVar.f9771l = bVar;
         gVar.b();
@@ -1157,7 +1157,7 @@ public class x implements OnCompleteListener, com.google.android.gms.internal.cl
         this.f16611a = 0;
         if (!TextUtils.isEmpty(str)) {
             if (componentName == null) {
-                int i10 = t0.f45439b;
+                int i10 = t0.f45441b;
                 Intent intent = new Intent("android.intent.action.MEDIA_BUTTON");
                 intent.setPackage(context.getPackageName());
                 List<ResolveInfo> queryBroadcastReceivers = context.getPackageManager().queryBroadcastReceivers(intent, 0);

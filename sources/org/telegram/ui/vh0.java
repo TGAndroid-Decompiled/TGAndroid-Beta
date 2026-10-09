@@ -6,17 +6,17 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class vh0 extends org.telegram.ui.Components.mr0 {
-    public final wh0 f42862b1;
+    public final wh0 f42864b1;
 
     public vh0(wh0 wh0Var, Context context, String str, String str2, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context, null, str, false, str2, false, e6Var);
-        this.f42862b1 = wh0Var;
+        this.f42864b1 = wh0Var;
     }
 
     @Override
     public final void S0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
         String formatString;
-        zh0 zh0Var = this.f42862b1.K;
+        zh0 zh0Var = this.f42864b1.K;
         if (!z10) {
             return;
         }

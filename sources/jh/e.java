@@ -76,7 +76,7 @@ public class e extends FrameLayout implements me.d {
         FrameLayout frameLayout = new FrameLayout(context);
         this.f14180e = frameLayout;
         frameLayout.setClipToOutline(true);
-        l2 l2Var = i0.f52169a;
+        l2 l2Var = i0.f52171a;
         frameLayout.setOutlineProvider(new h0(0, AndroidUtilities.dp(22.0f)));
         addView(frameLayout, x5.e(-1, 44, 16));
     }
@@ -97,8 +97,8 @@ public class e extends FrameLayout implements me.d {
                 if (reVar != null) {
                     final ih.a aVar = (ih.a) nVar.f2148c;
                     boolean z10 = nVar.f2147b;
-                    int i13 = reVar.f41393a;
-                    final zn znVar = reVar.f41394b;
+                    int i13 = reVar.f41395a;
+                    final zn znVar = reVar.f41396b;
                     switch (i13) {
                         case 26:
                             if (znVar.J0 == null && !z10 && (((d4Var = znVar.L0) == null || !d4Var.V) && a50.h.c())) {
@@ -306,7 +306,7 @@ public class e extends FrameLayout implements me.d {
         if (dVar != null) {
             float f14 = this.f14187y;
             float f15 = this.E;
-            hh.f fVar = ((re) dVar).f41394b.S;
+            hh.f fVar = ((re) dVar).f41396b.S;
             fVar.f11509x = f14;
             fVar.f11510y = f15;
             fVar.invalidate();

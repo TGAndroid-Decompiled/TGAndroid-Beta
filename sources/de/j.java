@@ -17,7 +17,7 @@ public final class j implements c {
                 ((kotlin.jvm.internal.p) this.f8334b).f15180a = obj;
                 throw new ee.a(this);
             default:
-                ((a0) this.f8334b).f54188c.set((za.n) obj);
+                ((a0) this.f8334b).f54190c.set((za.n) obj);
                 return hd.i.f11092a;
         }
     }

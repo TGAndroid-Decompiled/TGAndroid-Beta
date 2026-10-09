@@ -8,28 +8,28 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class r91 extends ReplacementSpan {
-    public final org.telegram.ui.Components.l11 f41313a = new org.telegram.ui.Components.l11(LocaleController.getString(R.string.StakeDiceTitleBeta), 12.0f, AndroidUtilities.bold());
-    public final Paint f41314b = new Paint(1);
-    public final org.telegram.ui.ActionBar.e6 f41315c;
+    public final org.telegram.ui.Components.l11 f41315a = new org.telegram.ui.Components.l11(LocaleController.getString(R.string.StakeDiceTitleBeta), 12.0f, AndroidUtilities.bold());
+    public final Paint f41316b = new Paint(1);
+    public final org.telegram.ui.ActionBar.e6 f41317c;
 
     public r91(org.telegram.ui.ActionBar.e6 e6Var) {
-        this.f41315c = e6Var;
+        this.f41317c = e6Var;
     }
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
         float dp = ((i12 + i14) / 2.0f) + AndroidUtilities.dp(1.0f);
-        int w02 = org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.Oh, this.f41315c);
-        Paint paint2 = this.f41314b;
+        int w02 = org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.Oh, this.f41317c);
+        Paint paint2 = this.f41316b;
         paint2.setColor(w02);
         RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(f7, dp - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(16.0f) + f7 + this.f41313a.f28222c, AndroidUtilities.dp(9.0f) + dp);
+        rectF.set(f7, dp - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(16.0f) + f7 + this.f41315a.f28222c, AndroidUtilities.dp(9.0f) + dp);
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), paint2);
-        this.f41313a.c(f7 + AndroidUtilities.dp(8.0f), dp, 1.0f, -1, canvas);
+        this.f41315a.c(f7 + AndroidUtilities.dp(8.0f), dp, 1.0f, -1, canvas);
     }
 
     @Override
     public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        return (int) (AndroidUtilities.dp(16.0f) + this.f41313a.f28222c);
+        return (int) (AndroidUtilities.dp(16.0f) + this.f41315a.f28222c);
     }
 }

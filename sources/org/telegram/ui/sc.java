@@ -10,23 +10,23 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
 public final class sc extends FrameLayout {
-    public final org.telegram.ui.ActionBar.e6 f41663a;
-    public final fc1 f41664b;
-    public final s4.d0 f41665c;
+    public final org.telegram.ui.ActionBar.e6 f41665a;
+    public final fc1 f41666b;
+    public final s4.d0 f41667c;
     public final int d;
-    public int f41666e;
+    public int f41668e;
 
     public sc(int i10, Activity activity, org.telegram.ui.ActionBar.e6 e6Var) {
         super(activity);
         this.d = i10;
-        this.f41663a = e6Var;
+        this.f41665a = e6Var;
         fc1 fc1Var = new fc1(activity, 3, e6Var);
-        this.f41664b = fc1Var;
+        this.f41666b = fc1Var;
         fc1Var.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(6.0f), 0);
         fc1Var.setClipToPadding(false);
         fc1Var.setAdapter(new qc(this, activity, e6Var, i10));
         s4.d0 d0Var = new s4.d0();
-        this.f41665c = d0Var;
+        this.f41667c = d0Var;
         d0Var.j1(0);
         fc1Var.setLayoutManager(d0Var);
         addView(fc1Var, w7.x5.d(-1.0f, -1));
@@ -48,12 +48,12 @@ public final class sc extends FrameLayout {
                 }
             }
         }
-        if (i11 != this.f41666e) {
-            this.f41666e = i11;
+        if (i11 != this.f41668e) {
+            this.f41668e = i11;
             if (!z10) {
-                this.f41665c.h1(i11, (AndroidUtilities.displaySize.x - AndroidUtilities.dp(56.0f)) / 2);
+                this.f41667c.h1(i11, (AndroidUtilities.displaySize.x - AndroidUtilities.dp(56.0f)) / 2);
             }
-            AndroidUtilities.forEachViews((RecyclerView) this.f41664b, (Utilities.Callback<View>) new ai.j3(3, this, z10));
+            AndroidUtilities.forEachViews((RecyclerView) this.f41666b, (Utilities.Callback<View>) new ai.j3(3, this, z10));
         }
     }
 

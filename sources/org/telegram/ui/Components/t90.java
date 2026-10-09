@@ -30,7 +30,7 @@ public final class t90 implements PopupWindow.OnDismissListener {
                 r6Var.animate().alpha(0.0f).setDuration(150L).setListener(new t8(this, 28));
                 return;
             default:
-                ((org.telegram.ui.a00) this.f31097e).f43019x = null;
+                ((org.telegram.ui.a00) this.f31097e).f43021x = null;
                 ci.r6 r6Var2 = (ci.r6) this.f31096c;
                 r6Var2.animate().cancel();
                 r6Var2.animate().alpha(0.0f).setDuration(150L).setListener(new i91(this, 21));

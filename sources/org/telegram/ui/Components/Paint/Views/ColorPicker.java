@@ -106,8 +106,8 @@ public class ColorPicker extends FrameLayout {
     }
 
     public void setSwatch(s1 s1Var) {
-        setLocation(s1Var.f45777b);
-        setWeight(s1Var.f45778c);
+        setLocation(s1Var.f45779b);
+        setWeight(s1Var.f45780c);
     }
 
     public void setUndoEnabled(boolean z10) {

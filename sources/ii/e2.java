@@ -200,7 +200,7 @@ public final class e2 extends org.telegram.ui.ActionBar.n2 implements Notificati
                 e2Var.O0 = dj0Var2;
                 dj0Var2.setOnDismissListener(new ai.g5(e2Var, 5));
                 long a2 = e2Var.J.a();
-                MessageObject messageObject = e2Var.J.f44866n5;
+                MessageObject messageObject = e2Var.J.f44868n5;
                 TLRPC.TL_message tL_message = new TLRPC.TL_message();
                 tL_message.f20059id = 0;
                 tL_message.out = true;
@@ -1607,8 +1607,8 @@ public final class e2 extends org.telegram.ui.ActionBar.n2 implements Notificati
     public final r0.k1 onInsetsInternal(View view, r0.k1 k1Var) {
         boolean z10;
         p80 p80Var;
-        i0.b f7 = k1Var.f46775a.f(3);
-        int i10 = k1Var.f46775a.f(8).d;
+        i0.b f7 = k1Var.f46777a.f(3);
+        int i10 = k1Var.f46777a.f(8).d;
         this.U0 = i10;
         int i11 = i10 - f7.d;
         boolean z11 = this.G0;
@@ -1636,7 +1636,7 @@ public final class e2 extends org.telegram.ui.ActionBar.n2 implements Notificati
             this.f12390x0 = null;
         }
         onInsets(f7.f11576a, f7.f11577b, f7.f11578c, f7.d);
-        return r0.k1.f46774b;
+        return r0.k1.f46776b;
     }
 
     @Override
@@ -1693,7 +1693,7 @@ public final class e2 extends org.telegram.ui.ActionBar.n2 implements Notificati
                 xj0.a(spannableStringBuilder);
                 if (znVar != null) {
                     CharSequence[] charSequenceArr = {new SpannableStringBuilder(spannableStringBuilder)};
-                    MediaDataController.getInstance(okVar.Q).saveDraft(znVar.a(), znVar.E7(znVar.f44866n5), charSequenceArr[0], MediaDataController.getInstance(okVar.Q).getEntities(charSequenceArr, true, false), null, null, null, 0L, false, false, null);
+                    MediaDataController.getInstance(okVar.Q).saveDraft(znVar.a(), znVar.E7(znVar.f44868n5), charSequenceArr[0], MediaDataController.getInstance(okVar.Q).getEntities(charSequenceArr, true, false), null, null, null, 0L, false, false, null);
                 }
                 okVar.setRichDraftPreview(null);
                 if (okVar.E0.getText() != null) {
@@ -1706,7 +1706,7 @@ public final class e2 extends org.telegram.ui.ActionBar.n2 implements Notificati
         MediaDataController mediaDataController = getMediaDataController();
         long a2 = this.J.a();
         zn znVar2 = this.J;
-        mediaDataController.saveDraft(a2, znVar2.E7(znVar2.f44866n5), "", null, null, null, null, 0L, false, false, k22);
+        mediaDataController.saveDraft(a2, znVar2.E7(znVar2.f44868n5), "", null, null, null, null, 0L, false, false, k22);
         TL_iv.RichMessage richMessage = k22;
         if (okVar == null) {
             return true;
@@ -1759,7 +1759,7 @@ public final class e2 extends org.telegram.ui.ActionBar.n2 implements Notificati
                 final ArrayList a2 = d5.a(this.currentAccount, a32);
                 final long a10 = this.J.a();
                 zn znVar = this.J;
-                final MessageObject messageObject = znVar.f44866n5;
+                final MessageObject messageObject = znVar.f44868n5;
                 final MessageObject messageObject2 = znVar.X3;
                 final long S8 = znVar.S8();
                 final SendMessageChatArguments H8 = this.J.H8();

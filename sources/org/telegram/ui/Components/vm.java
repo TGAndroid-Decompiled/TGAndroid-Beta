@@ -46,11 +46,11 @@ public final class vm extends s4.o0 implements bh.a {
         if (!chatAttachAlertPhotoLayout.f24032d0 && !chatAttachAlertPhotoLayout.f24028b0 && chatAttachAlertPhotoLayout.G.f33314e && !chatAttachAlertPhotoLayout.O0 && !chatAttachAlertPhotoLayout.P0) {
             s4.d1 K = recyclerView.K(0);
             if (K != null) {
-                top = K.f47656a.getTop();
+                top = K.f47658a.getTop();
             } else {
                 K = recyclerView.K(chatAttachAlertPhotoLayout.M0);
                 if (K != null) {
-                    top = (K.f47656a.getTop() - AndroidUtilities.dp(2.0f)) - chatAttachAlertPhotoLayout.K0;
+                    top = (K.f47658a.getTop() - AndroidUtilities.dp(2.0f)) - chatAttachAlertPhotoLayout.K0;
                 } else if (aVar != null) {
                     aVar.f536a = true;
                     return;
@@ -58,7 +58,7 @@ public final class vm extends s4.o0 implements bh.a {
                     return;
                 }
             }
-            int left = K.f47656a.getLeft();
+            int left = K.f47658a.getLeft();
             int i10 = chatAttachAlertPhotoLayout.K0;
             int i11 = left + i10;
             int dp = AndroidUtilities.dp(2.0f) + (i10 * 2) + top;

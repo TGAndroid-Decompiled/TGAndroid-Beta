@@ -376,8 +376,8 @@ public final class f2 extends pm0 {
     @Override
     public final void v(s4.d1 d1Var, int i10) {
         int i11;
-        int i12 = d1Var.f47660f;
-        View view = d1Var.f47656a;
+        int i12 = d1Var.f47662f;
+        View view = d1Var.f47658a;
         SparseArray sparseArray = this.f10603s;
         if (i12 != 0) {
             if (i12 != 1) {
@@ -425,8 +425,8 @@ public final class f2 extends pm0 {
 
     @Override
     public final void w(s4.d1 d1Var, int i10, List list) {
-        if (list.contains(0) && d1Var.f47660f == 3) {
-            E((s3) d1Var.f47656a, i10, true);
+        if (list.contains(0) && d1Var.f47662f == 3) {
+            E((s3) d1Var.f47658a, i10, true);
         } else {
             v(d1Var, i10);
         }

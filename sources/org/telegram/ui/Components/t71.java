@@ -247,7 +247,7 @@ public abstract class t71 extends org.telegram.ui.ActionBar.f3 {
         if (w0Var.getChildCount() > 0) {
             s4.d1 K = w0Var.K(0);
             if (K != null) {
-                i10 = K.f47656a.getTop() - AndroidUtilities.dp(8.0f);
+                i10 = K.f47658a.getTop() - AndroidUtilities.dp(8.0f);
             } else {
                 i10 = 0;
             }

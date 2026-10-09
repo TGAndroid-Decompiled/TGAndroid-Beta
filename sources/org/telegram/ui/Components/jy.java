@@ -40,7 +40,7 @@ public final class jy extends pm0 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47660f;
+        int i10 = d1Var.f47662f;
         if (i10 != 0 && i10 != 4 && i10 != 3 && i10 != 6) {
             return false;
         }
@@ -368,8 +368,8 @@ public final class jy extends pm0 {
         zx zxVar = a00Var.Q;
         int i14 = a00Var.f24401c1;
         ArrayList arrayList = a00Var.f24444q1;
-        int i15 = d1Var.f47660f;
-        View view = d1Var.f47656a;
+        int i15 = d1Var.f47662f;
+        View view = d1Var.f47658a;
         boolean z10 = true;
         ny nyVar2 = null;
         if (i15 != 0) {

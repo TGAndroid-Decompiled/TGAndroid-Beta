@@ -46,7 +46,7 @@ public final class p10 extends FrameLayout {
         }
         r6Var2.setGravity(i12);
         addView(r6Var2, w7.x5.a(20.0f, 21.0f, 15.0f, 21.0f, 2.0f, -2, (LocaleController.isRTL ? 3 : 5) | 80));
-        WeakHashMap weakHashMap = r0.i0.f46764a;
+        WeakHashMap weakHashMap = r0.i0.f46766a;
         new r0.w(2131296684, Boolean.class, 0, 28, 2).d(this, Boolean.TRUE);
     }
 

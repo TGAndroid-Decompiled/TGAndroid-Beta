@@ -10,24 +10,24 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.i6;
 import w7.x5;
 public final class t implements Runnable {
-    public final int f46553a;
-    public final m0 f46554b;
-    public final j f46555c;
+    public final int f46555a;
+    public final m0 f46556b;
+    public final j f46557c;
 
     public t(m0 m0Var, j jVar, int i10) {
-        this.f46553a = i10;
-        this.f46554b = m0Var;
-        this.f46555c = jVar;
+        this.f46555a = i10;
+        this.f46556b = m0Var;
+        this.f46557c = jVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f46553a) {
+        switch (this.f46555a) {
             case 0:
-                this.f46554b.r0(this.f46555c);
+                this.f46556b.r0(this.f46557c);
                 return;
             default:
-                final m0 m0Var = this.f46554b;
+                final m0 m0Var = this.f46556b;
                 LinearLayout linearLayout = new LinearLayout(m0Var.getContext());
                 linearLayout.setOrientation(0);
                 TextView textView = new TextView(m0Var.getContext());
@@ -42,7 +42,7 @@ public final class t implements Runnable {
                 textView.setText(LocaleController.getString(R.string.PaintDelete));
                 TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
                 textView.setEllipsize(truncateAt);
-                final j jVar = this.f46555c;
+                final j jVar = this.f46557c;
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {

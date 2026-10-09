@@ -80,11 +80,11 @@ public final class n2 implements NotificationCenter.NotificationCenterDelegate, 
         qf.e eVar = this.L;
         if (eVar != null && eVar.h.b()) {
             WindowManager.LayoutParams layoutParams = this.f1448c;
-            int width = this.L.h.f48256a.width();
+            int width = this.L.h.f48258a.width();
             this.J = width;
             layoutParams.width = width;
             WindowManager.LayoutParams layoutParams2 = this.f1448c;
-            int height = this.L.h.f48256a.height();
+            int height = this.L.h.f48258a.height();
             this.K = height;
             layoutParams2.height = height;
         }

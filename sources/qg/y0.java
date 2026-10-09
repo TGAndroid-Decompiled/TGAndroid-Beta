@@ -10,16 +10,16 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.Components.qa;
 public final class y0 extends org.telegram.ui.Cells.w0 {
-    public final qa f46628t2;
-    public final TextPaint f46629u2;
-    public final a1 f46630v2;
+    public final qa f46630t2;
+    public final TextPaint f46631u2;
+    public final a1 f46632v2;
 
     public y0(a1 a1Var, Context context, com.google.firebase.messaging.n nVar) {
         super(context, nVar, false);
-        this.f46630v2 = a1Var;
-        this.f46628t2 = new qa(a1Var.d, this, 10, false);
+        this.f46632v2 = a1Var;
+        this.f46630t2 = new qa(a1Var.d, this, 10, false);
         TextPaint textPaint = new TextPaint(1);
-        this.f46629u2 = textPaint;
+        this.f46631u2 = textPaint;
         textPaint.setTypeface(AndroidUtilities.bold());
         textPaint.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
         textPaint.setColor(-1);
@@ -31,10 +31,10 @@ public final class y0 extends org.telegram.ui.Cells.w0 {
         float f10;
         if (!"paintChatActionText".equals(str) && !"paintChatActionText2".equals(str)) {
             if ("paintChatActionBackground".equals(str)) {
-                b6 b6Var = this.f46630v2.h;
-                b6Var.f46232v0 = true;
+                b6 b6Var = this.f46632v2.h;
+                b6Var.f46234v0 = true;
                 boolean z10 = b6Var.B0;
-                qa qaVar = this.f46628t2;
+                qa qaVar = this.f46630t2;
                 if (qaVar.f30132r != z10) {
                     qaVar.f30132r = z10;
                     if (qaVar.f30123i == 10) {
@@ -63,6 +63,6 @@ public final class y0 extends org.telegram.ui.Cells.w0 {
             }
             return super.I(str);
         }
-        return this.f46629u2;
+        return this.f46631u2;
     }
 }

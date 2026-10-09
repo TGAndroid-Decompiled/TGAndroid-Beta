@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.SecureRandom;
 public abstract class k {
-    public static final SecureRandom f47912a = new SecureRandom();
+    public static final SecureRandom f47914a = new SecureRandom();
 
     public static byte[] a(String str) {
         if (str == null) {

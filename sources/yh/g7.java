@@ -26,7 +26,7 @@ import org.telegram.ui.Components.qm0;
 import org.telegram.ui.Components.y9;
 import org.telegram.ui.w70;
 public final class g7 extends o61 {
-    public static final int f52589a = 0;
+    public static final int f52591a = 0;
 
     static {
         o61.setup(new o61());
@@ -44,15 +44,15 @@ public final class g7 extends o61 {
         h7 h7Var = (h7) view;
         TL_stars.StarsSubscription starsSubscription = (TL_stars.StarsSubscription) p61Var.G;
         org.telegram.ui.ActionBar.j5 j5Var2 = h7Var.d;
-        y9 y9Var = h7Var.f52640c;
-        org.telegram.ui.ActionBar.e6 e6Var = h7Var.f52639b;
+        y9 y9Var = h7Var.f52642c;
+        org.telegram.ui.ActionBar.e6 e6Var = h7Var.f52641b;
         TextView textView = h7Var.h;
-        TextView textView2 = h7Var.f52642f;
-        TextView textView3 = h7Var.f52641e;
-        int i12 = h7Var.f52638a;
-        TextView textView4 = h7Var.f52643n;
+        TextView textView2 = h7Var.f52644f;
+        TextView textView3 = h7Var.f52643e;
+        int i12 = h7Var.f52640a;
+        TextView textView4 = h7Var.f52645n;
         long peerDialogId = DialogObject.getPeerDialogId(starsSubscription.peer);
-        h7Var.f52644r = !TextUtils.isEmpty(starsSubscription.title);
+        h7Var.f52646r = !TextUtils.isEmpty(starsSubscription.title);
         if (peerDialogId < 0) {
             TLRPC.Chat chat = MessagesController.getInstance(i12).getChat(Long.valueOf(-peerDialogId));
             j9 j9Var = new j9((org.telegram.ui.ActionBar.e6) null);
@@ -80,12 +80,12 @@ public final class g7 extends o61 {
             if (starsSubscription.photo != null) {
                 w70 w70Var = new w70(textView3, 14.0f, i12);
                 w70Var.a(4.0f);
-                w70Var.f43105f = false;
+                w70Var.f43107f = false;
                 SpannableString spannableString = new SpannableString("x");
                 j5Var = j5Var2;
                 z12 = z11;
                 spannableString.setSpan(w70Var, 0, 1, 33);
-                w70Var.f43102b.setImage(ImageLocation.getForWebFile(WebFile.createWithWebDocument(starsSubscription.photo)), "14_14", null, null, 0, 0);
+                w70Var.f43104b.setImage(ImageLocation.getForWebFile(WebFile.createWithWebDocument(starsSubscription.photo)), "14_14", null, null, 0, 0);
                 spannableStringBuilder.append((CharSequence) spannableString).append((CharSequence) " ");
             } else {
                 j5Var = j5Var2;
@@ -97,7 +97,7 @@ public final class g7 extends o61 {
             z12 = z11;
             textView3.setVisibility(8);
         }
-        if (h7Var.f52644r) {
+        if (h7Var.f52646r) {
             f7 = 13.0f;
         } else {
             f7 = 14.0f;
@@ -145,7 +145,7 @@ public final class g7 extends o61 {
             }
             textView4.setText(LocaleController.getString(i11));
         }
-        h7Var.f52645s = z10;
+        h7Var.f52647s = z10;
         h7Var.setWillNotDraw(!z10);
     }
 

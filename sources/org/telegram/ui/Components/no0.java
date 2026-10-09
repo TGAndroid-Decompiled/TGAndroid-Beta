@@ -114,11 +114,11 @@ public abstract class no0 extends FrameLayout implements NotificationCenter.Noti
         zg.n0 d = zg.n0.d(reaction);
         TextPaint textPaint = new TextPaint();
         textPaint.setTextSize(AndroidUtilities.dp(20));
-        if (!TextUtils.isEmpty(d.f54615f)) {
-            charSequence = Emoji.replaceEmoji(d.f54615f, textPaint.getFontMetricsInt(), false);
+        if (!TextUtils.isEmpty(d.f54617f)) {
+            charSequence = Emoji.replaceEmoji(d.f54617f, textPaint.getFontMetricsInt(), false);
         } else {
             SpannableString spannableString = new SpannableString("😀");
-            spannableString.setSpan(new b6(d.f54616g, textPaint.getFontMetricsInt()), 0, spannableString.length(), 17);
+            spannableString.setSpan(new b6(d.f54618g, textPaint.getFontMetricsInt()), 0, spannableString.length(), 17);
             charSequence = spannableString;
         }
         SpannableStringBuilder append = new SpannableStringBuilder(charSequence).append((CharSequence) "  ");

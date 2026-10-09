@@ -4,9 +4,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 public final class c0 implements Parcelable {
     public static final Parcelable.Creator<c0> CREATOR = new p7.j(22);
-    public int f47633a;
-    public int f47634b;
-    public boolean f47635c;
+    public int f47635a;
+    public int f47636b;
+    public boolean f47637c;
 
     @Override
     public final int describeContents() {
@@ -15,8 +15,8 @@ public final class c0 implements Parcelable {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeInt(this.f47633a);
-        parcel.writeInt(this.f47634b);
-        parcel.writeInt(this.f47635c ? 1 : 0);
+        parcel.writeInt(this.f47635a);
+        parcel.writeInt(this.f47636b);
+        parcel.writeInt(this.f47637c ? 1 : 0);
     }
 }

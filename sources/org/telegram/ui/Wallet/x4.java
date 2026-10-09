@@ -1,217 +1,192 @@
 package org.telegram.ui.Wallet;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.text.SpannableStringBuilder;
-import android.text.style.ForegroundColorSpan;
-import android.view.View;
-import android.widget.FrameLayout;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import java.util.HashMap;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.TelegramQRCodeWriter;
-import org.telegram.ui.Components.hs;
-public final class x4 extends FrameLayout {
-    public final TextView f35624a;
-    public final FrameLayout f35625b;
-    public final FrameLayout f35626c;
-    public final FrameLayout d;
-    public q0 f35627e;
-    public boolean f35628f;
-    public boolean h;
-    public ValueAnimator f35629n;
+import java.util.Iterator;
+import org.telegram.ui.rj1;
+import org.telegram.ui.s00;
+public final class x4 extends AnimatorListenerAdapter {
+    public final int f35663a;
+    public final Object f35664b;
 
-    public x4(Context context, String str) {
-        super(context);
-        Bitmap bitmap;
-        char c10;
-        addView(new n4(context, str), w7.x5.e(-1, -1, 17));
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.f35625b = frameLayout;
-        frameLayout.setBackground(org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(20.0f), -1));
-        frameLayout.setCameraDistance(AndroidUtilities.dp(8000.0f));
-        addView(frameLayout, w7.x5.a(244.0f, 0.0f, 22.0f, 0.0f, 0.0f, 212, 49));
-        FrameLayout frameLayout2 = new FrameLayout(context);
-        this.f35626c = frameLayout2;
-        frameLayout.addView(frameLayout2, w7.x5.d(-1.0f, -1));
-        FrameLayout frameLayout3 = new FrameLayout(context);
-        frameLayout2.addView(frameLayout3, w7.x5.a(164.0f, 0.0f, 24.0f, 0.0f, 0.0f, 164, 49));
-        ImageView imageView = new ImageView(context);
-        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-        try {
-            HashMap hashMap = new HashMap();
-            hashMap.put(cc.b.f4582a, hc.c.H);
-            hashMap.put(cc.b.f4584c, 0);
-            TelegramQRCodeWriter telegramQRCodeWriter = new TelegramQRCodeWriter();
-            telegramQRCodeWriter.setCenterDrawable(context.getResources().getDrawable(R.drawable.mini_gram_72).mutate());
-            bitmap = telegramQRCodeWriter.encode("ton://transfer/".concat(str), 768, 768, hashMap, null);
-        } catch (Exception e7) {
-            FileLog.e(e7);
-            bitmap = null;
-        }
-        imageView.setImageBitmap(bitmap);
-        frameLayout3.addView(imageView, w7.x5.d(-1.0f, -1));
-        TextView textView = new TextView(context);
-        this.f35624a = textView;
-        textView.setText(LocaleController.getString(R.string.WalletCopyAddress));
-        textView.setTextColor(-15556886);
-        textView.setTextSize(1, 14.0f);
-        textView.setGravity(17);
-        textView.setCompoundDrawablePadding(AndroidUtilities.dp(4.0f));
-        textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
-        textView.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(12.0f), 0);
-        int dp = AndroidUtilities.dp(18.0f);
-        textView.setBackground(org.telegram.ui.ActionBar.i6.j0(dp, dp, dp, dp, -984578, -1903620, -1903620));
-        Drawable mutate = context.getResources().getDrawable(R.drawable.wallet_copy).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(-15556886, PorterDuff.Mode.SRC_IN));
-        mutate.setBounds(0, 0, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f));
-        textView.setCompoundDrawables(mutate, null, null, null);
-        w7.z5.a(textView);
-        this.f35626c.addView(textView, w7.x5.a(28.0f, 0.0f, 202.0f, 0.0f, 0.0f, -2, 49));
-        FrameLayout frameLayout4 = new FrameLayout(context);
-        this.d = frameLayout4;
-        frameLayout4.setVisibility(4);
-        frameLayout4.setRotationY(180.0f);
-        this.f35625b.addView(frameLayout4, w7.x5.d(-1.0f, -1));
-        TextView textView2 = new TextView(context);
-        String replace = str.replace(" ", "");
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        int i10 = 0;
-        int i11 = 0;
-        while (i10 < replace.length()) {
-            if (i11 > 0) {
-                if (i11 % 3 == 0) {
-                    c10 = '\n';
-                } else {
-                    c10 = ' ';
-                }
-                spannableStringBuilder.append(c10);
-            }
-            int length = spannableStringBuilder.length();
-            int i12 = i10 + 4;
-            spannableStringBuilder.append((CharSequence) replace, i10, Math.min(i12, replace.length()));
-            if ((i11 & 1) != 0) {
-                spannableStringBuilder.setSpan(new ForegroundColorSpan(-7434605), length, spannableStringBuilder.length(), 33);
-            }
-            i11++;
-            i10 = i12;
-        }
-        textView2.setText(spannableStringBuilder);
-        textView2.setTextColor(-16777216);
-        textView2.setTextSize(1, 18.0f);
-        textView2.setTypeface(z4.h0(context));
-        textView2.setGravity(17);
-        textView2.setIncludeFontPadding(false);
-        textView2.setMaxLines(4);
-        textView2.setLineSpacing(0.0f, 1.0f);
-        TextView g10 = org.telegram.ui.Cells.c1.g(this.d, textView2, w7.x5.a(112.0f, 8.0f, 32.0f, 8.0f, 0.0f, -1, 55), context);
-        g10.setText(LocaleController.getString(R.string.WalletAddressCopiedShort));
-        g10.setTextColor(-15556886);
-        g10.setTextSize(1, 14.0f);
-        g10.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
-        g10.setGravity(17);
-        g10.setCompoundDrawablePadding(AndroidUtilities.dp(3.0f));
-        Drawable mutate2 = context.getResources().getDrawable(R.drawable.msg_text_check).mutate();
-        mutate2.setColorFilter(new PorterDuffColorFilter(-15556886, PorterDuff.Mode.SRC_IN));
-        mutate2.setBounds(0, 0, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
-        g10.setCompoundDrawables(mutate2, null, null, null);
-        TextView g11 = org.telegram.ui.Cells.c1.g(this.d, g10, w7.x5.a(28.0f, 0.0f, 149.0f, 0.0f, 0.0f, -2, 49), context);
-        g11.setText(LocaleController.getString(R.string.WalletShowMyQR));
-        g11.setTextColor(-15556886);
-        g11.setTextSize(1, 14.0f);
-        g11.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
-        g11.setGravity(17);
-        g11.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
-        int dp2 = AndroidUtilities.dp(18.0f);
-        g11.setBackground(org.telegram.ui.ActionBar.i6.j0(dp2, dp2, dp2, dp2, -984578, -1903620, -1903620));
-        w7.z5.a(g11);
-        this.d.addView(g11, w7.x5.a(28.0f, 0.0f, 202.0f, 0.0f, 0.0f, -2, 49));
-        View.OnClickListener onClickListener = new View.OnClickListener(this) {
-            public final x4 f35553b;
-
-            {
-                this.f35553b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                switch (r2) {
-                    case 0:
-                        x4 x4Var = this.f35553b;
-                        if (!x4Var.f35628f && !x4Var.h) {
-                            q0 q0Var = x4Var.f35627e;
-                            if (q0Var != null) {
-                                q0Var.run();
-                            }
-                            x4Var.a(true);
-                            return;
-                        }
-                        return;
-                    default:
-                        this.f35553b.a(false);
-                        return;
-                }
-            }
-        };
-        frameLayout3.setOnClickListener(onClickListener);
-        this.f35624a.setOnClickListener(onClickListener);
-        g11.setOnClickListener(new View.OnClickListener(this) {
-            public final x4 f35553b;
-
-            {
-                this.f35553b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                switch (r2) {
-                    case 0:
-                        x4 x4Var = this.f35553b;
-                        if (!x4Var.f35628f && !x4Var.h) {
-                            q0 q0Var = x4Var.f35627e;
-                            if (q0Var != null) {
-                                q0Var.run();
-                            }
-                            x4Var.a(true);
-                            return;
-                        }
-                        return;
-                    default:
-                        this.f35553b.a(false);
-                        return;
-                }
-            }
-        });
+    public x4(Object obj, int i10) {
+        this.f35663a = i10;
+        this.f35664b = obj;
     }
 
-    public final void a(boolean z10) {
-        float f7;
-        if (this.f35628f != z10 && !this.h) {
-            this.h = true;
-            this.f35628f = z10;
-            FrameLayout frameLayout = this.f35625b;
-            frameLayout.setLayerType(2, null);
-            float rotationY = frameLayout.getRotationY();
-            if (z10) {
-                f7 = 180.0f;
-            } else {
-                f7 = 0.0f;
-            }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(rotationY, f7);
-            this.f35629n = ofFloat;
-            ofFloat.setDuration(420L);
-            this.f35629n.setInterpolator(hs.h);
-            this.f35629n.addUpdateListener(new s2(this, 3));
-            this.f35629n.addListener(new w4(this, 0));
-            this.f35629n.start();
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        int i10;
+        boolean z10;
+        int i11 = this.f35663a;
+        int i12 = 4;
+        float f7 = 0.0f;
+        Object obj = this.f35664b;
+        switch (i11) {
+            case 0:
+                y4 y4Var = (y4) obj;
+                y4Var.h = false;
+                y4Var.f35695n = null;
+                y4Var.f35691b.setLayerType(0, null);
+                return;
+            case 1:
+                d5 d5Var = (d5) obj;
+                d5Var.J = 0.0f;
+                d5Var.K = 0.0f;
+                d5Var.R = null;
+                return;
+            case 2:
+                p5 p5Var = (p5) obj;
+                k5 k5Var = p5Var.f35384f0;
+                k5Var.d = 0.0f;
+                k5Var.f48046i = 0.0f;
+                p5Var.f35392o0 = null;
+                return;
+            case 3:
+                c6 c6Var = (c6) obj;
+                c6Var.I = null;
+                c6Var.f34742i0 = 1.0f;
+                c6Var.f34741h0 = 0.0f;
+                c6Var.f34740g0 = 0.0f;
+                c6Var.e();
+                return;
+            case 4:
+                i8 i8Var = (i8) obj;
+                i8Var.h = null;
+                c6 c6Var2 = i8Var.f35048c;
+                if (i8Var.v) {
+                    i10 = 4;
+                } else {
+                    i10 = 0;
+                }
+                c6Var2.setVisibility(i10);
+                TextView textView = i8Var.f35049e;
+                if (i8Var.f35054w) {
+                    i12 = 0;
+                }
+                textView.setVisibility(i12);
+                return;
+            case 5:
+                oi.i iVar = (oi.i) obj;
+                ((rj1) iVar.f17181b).getClass();
+                ((rj1) iVar.f17181b).f41442c.setVisibility(4);
+                return;
+            case 6:
+                ((org.telegram.ui.web.b1) obj).f43261s.setVisibility(8);
+                return;
+            case 7:
+                pg.d0 d0Var = (pg.d0) obj;
+                d0Var.f45609a.getPainting().c(null, d0Var.f45609a.getCurrentColor(), true, null);
+                d0Var.f45624r = null;
+                return;
+            case 8:
+                super.onAnimationEnd(animator);
+                qg.l0 l0Var = (qg.l0) obj;
+                ImageView imageView = l0Var.f46332c;
+                l0Var.f46332c = l0Var.d;
+                l0Var.d = imageView;
+                imageView.bringToFront();
+                l0Var.d.setVisibility(8);
+                l0Var.h = null;
+                return;
+            case 9:
+                qg.r1 r1Var = (qg.r1) obj;
+                if (animator == r1Var.f46536r) {
+                    r1Var.f46534f = r1Var.h;
+                    r1Var.h = -1;
+                    r1Var.f46536r = null;
+                    return;
+                }
+                return;
+            case 10:
+                rg.p0 p0Var = (rg.p0) obj;
+                if (p0Var.h) {
+                    f7 = 1.0f;
+                }
+                p0Var.f47384n = f7;
+                p0Var.e();
+                return;
+            case 11:
+                rg.a2 a2Var = (rg.a2) ((ci.c0) obj).f4811b;
+                a2Var.F = true;
+                a2Var.invalidate();
+                return;
+            case 12:
+                int i13 = sg.f.K;
+                ((sg.f) ((sg.e) obj).f48028b).d();
+                return;
+            case 13:
+                sg.f fVar = (sg.f) obj;
+                fVar.d = null;
+                fVar.e();
+                return;
+            case 14:
+                super.onAnimationEnd(animator);
+                sg.n nVar = ((sg.i) obj).f48066b;
+                nVar.f48078b.d = 0.0f;
+                nVar.f48077a0 = null;
+                nVar.k(nVar.L);
+                return;
+            case 15:
+                tg.b bVar = (tg.b) obj;
+                bVar.f48293b = 1.0f;
+                bVar.invalidate();
+                return;
+            case 16:
+                vh.g gVar = (vh.g) obj;
+                Iterator it = gVar.h.iterator();
+                while (it.hasNext()) {
+                    vh.c cVar = (vh.c) it.next();
+                    if (gVar.f49682c.size() < gVar.d) {
+                        gVar.f49682c.push(cVar);
+                    }
+                    it.remove();
+                }
+                Runnable runnable = gVar.f49694q;
+                if (runnable != null) {
+                    runnable.run();
+                    gVar.f49694q = null;
+                }
+                gVar.f49695r = null;
+                gVar.invalidateSelf();
+                return;
+            case 17:
+                ((xh.j0) obj).f51294b.f51339w.setVisibility(8);
+                return;
+            case 18:
+                yh.m2 m2Var = (yh.m2) obj;
+                m2Var.E = 1.0f;
+                m2Var.F = -1;
+                yh.l2 l2Var = m2Var.H;
+                if (l2Var != null && (z10 = l2Var.f52823l) && z10) {
+                    l2Var.f52823l = false;
+                    l2Var.b();
+                }
+                m2Var.G = null;
+                return;
+            case 19:
+                s00 s00Var = ((yh.d7) obj).f52401c;
+                s00Var.setScaleX(1.0f);
+                s00Var.setScaleY(1.0f);
+                return;
+            case 20:
+                ((yh.t5) obj).run();
+                return;
+            case 21:
+                zg.t tVar = (zg.t) obj;
+                tVar.setVisibility(8);
+                zg.s sVar = tVar.f54663b;
+                if (sVar != null) {
+                    tVar.removeView(sVar);
+                    tVar.f54663b = null;
+                }
+                tVar.f54665e = null;
+                return;
+            default:
+                ((zg.g0) obj).f54535x.c();
+                return;
         }
     }
 }

@@ -5,20 +5,20 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
 public final class zv implements org.telegram.ui.Components.em0 {
-    public final int f45079a;
-    public final ty f45080b;
+    public final int f45081a;
+    public final ty f45082b;
 
     public zv(ty tyVar, int i10) {
-        this.f45079a = i10;
-        this.f45080b = tyVar;
+        this.f45081a = i10;
+        this.f45082b = tyVar;
     }
 
     @Override
     public final void d(int i10, View view) {
         gg.p0 p0Var;
-        switch (this.f45079a) {
+        switch (this.f45081a) {
             case 0:
-                ty tyVar = this.f45080b;
+                ty tyVar = this.f45082b;
                 Object obj = tyVar.C0.f25785v0.G(i10).G;
                 if (obj instanceof MessageObject) {
                     MessageObject messageObject = (MessageObject) obj;
@@ -44,9 +44,9 @@ public final class zv implements org.telegram.ui.Components.em0 {
                     return;
                 }
             default:
-                ty tyVar2 = this.f45080b;
-                tyVar2.f42155b0.I0(true);
-                ArrayList arrayList = tyVar2.f42155b0.V2;
+                ty tyVar2 = this.f45082b;
+                tyVar2.f42157b0.I0(true);
+                ArrayList arrayList = tyVar2.f42157b0.V2;
                 if (arrayList.isEmpty()) {
                     p0Var = gg.r0.f10779a3[i10];
                 } else {

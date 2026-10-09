@@ -69,9 +69,9 @@ public final class o implements h0 {
             }
         }
         a1 a1Var = this.f15375a;
-        mp0 mp0Var = a1Var.f48521a;
+        mp0 mp0Var = a1Var.f48523a;
         synchronized (a1Var) {
-            int i14 = a1Var.f48537s;
+            int i14 = a1Var.f48539s;
             if (i14 == 0) {
                 i13 = -1;
             } else {

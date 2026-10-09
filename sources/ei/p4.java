@@ -145,7 +145,7 @@ public final class p4 extends qi implements NotificationCenter.NotificationCente
                 this.f30173b.dismiss();
             }
         } else if (i10 == NotificationCenter.didSetNewTheme) {
-            b3Var.f43252n.b(i6.w0(i6.f20868h5, this.f30172a), 153);
+            b3Var.f43254n.b(i6.w0(i6.f20868h5, this.f30172a), 153);
         }
     }
 

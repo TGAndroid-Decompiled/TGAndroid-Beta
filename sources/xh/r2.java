@@ -16,11 +16,11 @@ import w7.x5;
 import yh.e5;
 import yh.m5;
 public final class r2 extends org.telegram.ui.ActionBar.f3 {
-    public long f51497b;
+    public long f51499b;
 
     public r2(Context context, long j3, TL_stars.SavedStarGift savedStarGift, e6 e6Var, Utilities.Callback0Return callback0Return) {
         super(1, context, e6Var, false);
-        this.f51497b = 0L;
+        this.f51499b = 0L;
         fixNavigationBar();
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);

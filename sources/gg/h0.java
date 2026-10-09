@@ -154,7 +154,7 @@ public abstract class h0 extends pm0 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47660f;
+        int i10 = d1Var.f47662f;
         if (i10 != 1 && i10 != 4 && i10 != 10) {
             return true;
         }
@@ -219,20 +219,20 @@ public abstract class h0 extends pm0 {
             if (((TLRPC.User) obj).bot) {
                 return tyVar.A2;
             }
-            return tyVar.f42278z2;
+            return tyVar.f42280z2;
         } else if (!(obj instanceof TLRPC.Chat)) {
             return false;
         } else {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
             if (ChatObject.isChannel(chat)) {
-                return tyVar.f42275y2;
+                return tyVar.f42277y2;
             }
             if (ChatObject.isMegagroup(chat)) {
-                if (tyVar.f42259v2 || tyVar.f42265w2) {
+                if (tyVar.f42261v2 || tyVar.f42267w2) {
                     return true;
                 }
                 return false;
-            } else if (tyVar.f42259v2 || tyVar.f42270x2) {
+            } else if (tyVar.f42261v2 || tyVar.f42272x2) {
                 return true;
             } else {
                 return false;
@@ -499,7 +499,7 @@ public abstract class h0 extends pm0 {
 
     public final boolean M() {
         if (!this.N && !MediaDataController.getInstance(this.f10638s0).hints.isEmpty()) {
-            if (this.f10625h0 != 14 || this.f10636r0.f42278z2) {
+            if (this.f10625h0 != 14 || this.f10636r0.f42280z2) {
                 return true;
             }
             return false;

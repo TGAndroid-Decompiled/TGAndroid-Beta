@@ -23,7 +23,7 @@ public final class r41 extends og.b {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47660f;
+        int i10 = d1Var.f47662f;
         if (i10 == 1 || i10 == 2 || i10 == 4 || i10 == 6) {
             return true;
         }
@@ -44,7 +44,7 @@ public final class r41 extends og.b {
     public final void v(s4.d1 d1Var, int i10) {
         String str;
         int i11;
-        View view = d1Var.f47656a;
+        View view = d1Var.f47658a;
         SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.d;
         ArrayList arrayList = saveToGallerySettingsActivity.f34410s;
         boolean z10 = false;
@@ -91,7 +91,7 @@ public final class r41 extends og.b {
             ((org.telegram.ui.Cells.m4) view).setText(((s41) arrayList.get(i10)).d);
         } else if (((s41) arrayList.get(i10)).f17125a == 2) {
             org.telegram.ui.Cells.xa xaVar = (org.telegram.ui.Cells.xa) view;
-            SaveToGallerySettingsHelper.DialogException dialogException = ((s41) arrayList.get(i10)).f41577c;
+            SaveToGallerySettingsHelper.DialogException dialogException = ((s41) arrayList.get(i10)).f41579c;
             TLObject userOrChat = saveToGallerySettingsActivity.getMessagesController().getUserOrChat(dialogException.dialogId);
             if (userOrChat instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) userOrChat;

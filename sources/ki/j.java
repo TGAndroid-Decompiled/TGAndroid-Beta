@@ -437,7 +437,7 @@ public final class j {
     public final void C(Exception exc) {
         this.f14978j.a("camera error", exc);
         xa.d dVar = this.f14980k;
-        ((t0) dVar.f51105b).f15119i.post(new i0(1, dVar, exc));
+        ((t0) dVar.f51107b).f15119i.post(new i0(1, dVar, exc));
     }
 
     public final void D() {

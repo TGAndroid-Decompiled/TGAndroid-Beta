@@ -94,8 +94,8 @@ public final class c2 implements MediaDataController.KeywordResultCallback, org.
             case 6:
                 zn znVar = (zn) this.f10564c;
                 boolean[] zArr = (boolean[]) this.d;
-                znVar.getMessagesController().pinMessage(znVar.f44751e, znVar.f44763f, this.f10563b, false, !zArr[1], zArr[0]);
-                tc B = ad.B(znVar, true, null, null, znVar.f44761ea);
+                znVar.getMessagesController().pinMessage(znVar.f44753e, znVar.f44765f, this.f10563b, false, !zArr[1], zArr[0]);
+                tc B = ad.B(znVar, true, null, null, znVar.f44763ea);
                 B.j();
                 xb xbVar = B.f31126e;
                 xbVar.postDelayed(new nh(0, xbVar), 550L);
@@ -127,13 +127,13 @@ public final class c2 implements MediaDataController.KeywordResultCallback, org.
                 return;
             case 11:
                 EditTextBoldCursor editTextBoldCursor2 = (EditTextBoldCursor) this.d;
-                j50 j50Var = ((f50) this.f10564c).f37450n;
-                ChatObject.Call call = j50Var.f38824b.f37787a1;
+                j50 j50Var = ((f50) this.f10564c).f37452n;
+                ChatObject.Call call = j50Var.f38826b.f37789a1;
                 String obj3 = editTextBoldCursor2.getText().toString();
                 int i12 = this.f10563b;
                 call.toggleRecord(obj3, i12);
                 AndroidUtilities.hideKeyboard(editTextBoldCursor2);
-                UndoView l1 = j50Var.f38824b.l1();
+                UndoView l1 = j50Var.f38826b.l1();
                 if (i12 == 0) {
                     i11 = 39;
                 } else {

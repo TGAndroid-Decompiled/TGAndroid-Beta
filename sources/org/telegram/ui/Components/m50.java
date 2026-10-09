@@ -523,7 +523,7 @@ public final class m50 implements NotificationCenter.NotificationCenterDelegate,
             i10 = 1;
         }
         org.telegram.ui.kq0 kq0Var = new org.telegram.ui.kq0(i10, false, false, null);
-        kq0Var.f39336x = this.J;
+        kq0Var.f39338x = this.J;
         kq0Var.V = new i50(this);
         this.f28682a.presentFragment(kq0Var);
     }
@@ -679,9 +679,9 @@ public final class m50 implements NotificationCenter.NotificationCenterDelegate,
         HashMap hashMap = new HashMap();
         ArrayList arrayList = new ArrayList();
         org.telegram.ui.br0 br0Var = new org.telegram.ui.br0(0, null, hashMap, arrayList, 1, false, null, this.R);
-        br0Var.f36412s0 = new g50(this, hashMap, arrayList);
+        br0Var.f36414s0 = new g50(this, hashMap, arrayList);
         br0Var.f0(1, false);
-        br0Var.f36407p0 = this.f28683b.getInitialSearchString();
+        br0Var.f36409p0 = this.f28683b.getInitialSearchString();
         if (this.S) {
             this.f28682a.showAsSheet(br0Var);
         } else {

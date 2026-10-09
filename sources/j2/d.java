@@ -46,12 +46,12 @@ public final class d implements m, y0, a1, RequestDelegateTimestamp, a2, Message
         n nVar = (n) this.d;
         z3.a aVar = (z3.a) obj;
         e2.d.h(nVar.h);
-        byte[] l32 = na.d.l3(aVar.f53486a, aVar.f53488c);
-        v vVar = nVar.f53511c;
+        byte[] l32 = na.d.l3(aVar.f53488a, aVar.f53490c);
+        v vVar = nVar.f53513c;
         vVar.getClass();
         vVar.H(l32.length, l32);
-        nVar.f53509a.d(l32.length, vVar);
-        long j3 = aVar.f53487b;
+        nVar.f53511a.d(l32.length, vVar);
+        long j3 = aVar.f53489b;
         int i10 = (j3 > (-9223372036854775807L) ? 1 : (j3 == (-9223372036854775807L) ? 0 : -1));
         long j10 = this.f13688c;
         if (i10 == 0) {
@@ -69,7 +69,7 @@ public final class d implements m, y0, a1, RequestDelegateTimestamp, a2, Message
                 j10 = j3 + j11;
             }
         }
-        nVar.f53509a.c(j10, this.f13687b | 1, l32.length, 0, null);
+        nVar.f53511a.c(j10, this.f13687b | 1, l32.length, 0, null);
     }
 
     @Override

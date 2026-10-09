@@ -13,14 +13,14 @@ public final class x7 extends s4.w {
     @Override
     public final void a(RecyclerView recyclerView, s4.d1 d1Var) {
         super.a(recyclerView, d1Var);
-        View view = d1Var.f47656a;
+        View view = d1Var.f47658a;
         view.setPressed(false);
         view.setTag(R.id.dragging, null);
     }
 
     @Override
     public final int e(RecyclerView recyclerView, s4.d1 d1Var) {
-        if (d1Var.f47660f != 0) {
+        if (d1Var.f47662f != 0) {
             return 0;
         }
         return s4.w.l(3, 0);
@@ -56,11 +56,11 @@ public final class x7 extends s4.w {
         if (i10 != 0) {
             w7Var.I0(false);
             if (d1Var != null) {
-                d1Var.f47656a.setPressed(true);
+                d1Var.f47658a.setPressed(true);
             }
         }
         if (d1Var != null) {
-            View view = d1Var.f47656a;
+            View view = d1Var.f47658a;
             int i11 = R.id.dragging;
             if (i10 == 2) {
                 bool = Boolean.TRUE;

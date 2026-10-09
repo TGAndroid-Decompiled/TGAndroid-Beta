@@ -234,8 +234,8 @@ public final class i40 extends t71 {
 
     @Override
     public final void F(MotionEvent motionEvent, ci.g2 g2Var) {
-        org.telegram.ui.g60 g60Var = this.f27227g0.f38206a;
-        if (!g60Var.f37878w0) {
+        org.telegram.ui.g60 g60Var = this.f27227g0.f38208a;
+        if (!g60Var.f37880w0) {
             if (motionEvent.getX() > g2Var.getLeft() && motionEvent.getX() < g2Var.getRight() && motionEvent.getY() > g2Var.getTop() && motionEvent.getY() < g2Var.getBottom()) {
                 g60Var.t1(g60Var.E1, null, g2Var, true);
             } else {

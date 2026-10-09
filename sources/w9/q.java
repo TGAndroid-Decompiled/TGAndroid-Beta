@@ -4,16 +4,16 @@ import android.util.Log;
 import java.lang.Thread;
 import java.util.concurrent.atomic.AtomicBoolean;
 public final class q implements Thread.UncaughtExceptionHandler {
-    public final w3.b f50279a;
-    public final da.c f50280b;
-    public final Thread.UncaughtExceptionHandler f50281c;
+    public final w3.b f50281a;
+    public final da.c f50282b;
+    public final Thread.UncaughtExceptionHandler f50283c;
     public final t9.a d;
-    public final AtomicBoolean f50282e = new AtomicBoolean(false);
+    public final AtomicBoolean f50284e = new AtomicBoolean(false);
 
     public q(w3.b bVar, da.c cVar, Thread.UncaughtExceptionHandler uncaughtExceptionHandler, t9.a aVar) {
-        this.f50279a = bVar;
-        this.f50280b = cVar;
-        this.f50281c = uncaughtExceptionHandler;
+        this.f50281a = bVar;
+        this.f50282b = cVar;
+        this.f50283c = uncaughtExceptionHandler;
         this.d = aVar;
     }
 

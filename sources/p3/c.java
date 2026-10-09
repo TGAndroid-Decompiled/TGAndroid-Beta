@@ -6,14 +6,14 @@ import b2.o0;
 import b2.s;
 import java.util.Arrays;
 public final class c implements o0 {
-    public final byte[] f45314a;
-    public final String f45315b;
-    public final String f45316c;
+    public final byte[] f45316a;
+    public final String f45317b;
+    public final String f45318c;
 
     public c(String str, String str2, byte[] bArr) {
-        this.f45314a = bArr;
-        this.f45315b = str;
-        this.f45316c = str2;
+        this.f45316a = bArr;
+        this.f45317b = str;
+        this.f45318c = str2;
     }
 
     @Override
@@ -23,7 +23,7 @@ public final class c implements o0 {
 
     @Override
     public final void b(m0 m0Var) {
-        String str = this.f45315b;
+        String str = this.f45317b;
         if (str != null) {
             m0Var.f3420a = str;
         }
@@ -39,16 +39,16 @@ public final class c implements o0 {
             return true;
         }
         if (obj != null && c.class == obj.getClass()) {
-            return Arrays.equals(this.f45314a, ((c) obj).f45314a);
+            return Arrays.equals(this.f45316a, ((c) obj).f45316a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(this.f45314a);
+        return Arrays.hashCode(this.f45316a);
     }
 
     public final String toString() {
-        return g.o(this.f45314a.length, "\"", g.x("ICY: title=\"", this.f45315b, "\", url=\"", this.f45316c, "\", rawMetadata.length=\""));
+        return g.o(this.f45316a.length, "\"", g.x("ICY: title=\"", this.f45317b, "\", url=\"", this.f45318c, "\", rawMetadata.length=\""));
     }
 }

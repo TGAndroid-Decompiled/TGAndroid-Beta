@@ -8,12 +8,12 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 public final class i3 extends s4.t0 {
-    public final int f38463a;
-    public final Object f38464b;
+    public final int f38465a;
+    public final Object f38466b;
 
     public i3(Object obj, int i10) {
-        this.f38463a = i10;
-        this.f38464b = obj;
+        this.f38465a = i10;
+        this.f38466b = obj;
     }
 
     @Override
@@ -25,10 +25,10 @@ public final class i3 extends s4.t0 {
         View m10;
         org.telegram.ui.ActionBar.k kVar3;
         View view3;
-        switch (this.f38463a) {
+        switch (this.f38465a) {
             case 0:
                 if (i10 == 0) {
-                    ((m3) this.f38464b).K.O0.V();
+                    ((m3) this.f38466b).K.O0.V();
                     return;
                 }
                 return;
@@ -44,7 +44,7 @@ public final class i3 extends s4.t0 {
             default:
                 return;
             case 4:
-                vb vbVar = (vb) this.f38464b;
+                vb vbVar = (vb) this.f38466b;
                 if (i10 == 1) {
                     vbVar.S = true;
                     vbVar.V = true;
@@ -59,51 +59,51 @@ public final class i3 extends s4.t0 {
                 }
             case 5:
                 if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(((zn) this.f38464b).X0);
+                    AndroidUtilities.hideKeyboard(((zn) this.f38466b).X0);
                     return;
                 }
                 return;
             case 6:
                 if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(((nq) this.f38464b).getParentActivity().getCurrentFocus());
+                    AndroidUtilities.hideKeyboard(((nq) this.f38466b).getParentActivity().getCurrentFocus());
                     return;
                 }
                 return;
             case 7:
                 if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(((tr) this.f38464b).getParentActivity().getCurrentFocus());
+                    AndroidUtilities.hideKeyboard(((tr) this.f38466b).getParentActivity().getCurrentFocus());
                     return;
                 }
                 return;
             case 8:
                 if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(((zt) this.f38464b).getParentActivity().getCurrentFocus());
+                    AndroidUtilities.hideKeyboard(((zt) this.f38466b).getParentActivity().getCurrentFocus());
                     return;
                 }
                 return;
             case 11:
-                p20 p20Var = (p20) this.f38464b;
+                p20 p20Var = (p20) this.f38466b;
                 if (i10 == 0) {
                     kVar = ((org.telegram.ui.ActionBar.n2) p20Var).actionBar;
                     int dp = AndroidUtilities.dp(16.0f) + kVar.getBottom();
                     if (p20Var.v > 0.5f) {
-                        p20Var.f40638c.v0(0, p20Var.f40642r - dp, null);
+                        p20Var.f40640c.v0(0, p20Var.f40644r - dp, null);
                         return;
                     }
-                    if (p20Var.f40638c.getLayoutManager() != null) {
-                        view = p20Var.f40638c.getLayoutManager().m(0);
+                    if (p20Var.f40640c.getLayoutManager() != null) {
+                        view = p20Var.f40640c.getLayoutManager().m(0);
                     } else {
                         view = null;
                     }
                     if (view != null && view.getTop() < 0) {
-                        p20Var.f40638c.v0(0, view.getTop(), null);
+                        p20Var.f40640c.v0(0, view.getTop(), null);
                         return;
                     }
                     return;
                 }
                 return;
             case 12:
-                q60 q60Var = (q60) this.f38464b;
+                q60 q60Var = (q60) this.f38466b;
                 if (i10 == 0) {
                     float f7 = q60Var.A0;
                     if (f7 >= 0.5f && f7 < 1.0f) {
@@ -132,27 +132,27 @@ public final class i3 extends s4.t0 {
                 }
                 return;
             case 13:
-                c70 c70Var = (c70) this.f38464b;
+                c70 c70Var = (c70) this.f38466b;
                 if (i10 == 1) {
-                    c70Var.f36549f.f30614r.hideActionMode();
-                    AndroidUtilities.hideKeyboard(c70Var.f36549f.f30614r);
+                    c70Var.f36551f.f30614r.hideActionMode();
+                    AndroidUtilities.hideKeyboard(c70Var.f36551f.f30614r);
                     return;
                 }
                 return;
             case 14:
                 if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(((j70) this.f38464b).f38845c);
+                    AndroidUtilities.hideKeyboard(((j70) this.f38466b).f38847c);
                     return;
                 }
                 return;
             case 15:
                 if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(((s70) this.f38464b).getParentActivity().getCurrentFocus());
+                    AndroidUtilities.hideKeyboard(((s70) this.f38466b).getParentActivity().getCurrentFocus());
                     return;
                 }
                 return;
             case 16:
-                l80 l80Var = (l80) this.f38464b;
+                l80 l80Var = (l80) this.f38466b;
                 if (i10 == 1) {
                     l80Var.d.d.hideActionMode();
                     AndroidUtilities.hideKeyboard(l80Var.d.d);
@@ -161,14 +161,14 @@ public final class i3 extends s4.t0 {
                 return;
             case 17:
                 if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(((LanguageSelectActivity) this.f38464b).getParentActivity().getCurrentFocus());
+                    AndroidUtilities.hideKeyboard(((LanguageSelectActivity) this.f38466b).getParentActivity().getCurrentFocus());
                     return;
                 }
                 return;
             case 18:
                 if (i10 == 1) {
-                    hd0 hd0Var = (hd0) this.f38464b;
-                    if (hd0Var.f38276r0 && hd0Var.f38278s0) {
+                    hd0 hd0Var = (hd0) this.f38466b;
+                    if (hd0Var.f38278r0 && hd0Var.f38280s0) {
                         AndroidUtilities.hideKeyboard(hd0Var.getParentActivity().getCurrentFocus());
                         return;
                     }
@@ -179,20 +179,20 @@ public final class i3 extends s4.t0 {
                 return;
             case 21:
                 if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(((sj0) this.f38464b).Y.getEditText());
+                    AndroidUtilities.hideKeyboard(((sj0) this.f38466b).Y.getEditText());
                     return;
                 }
                 return;
             case 22:
                 if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(((NotificationsCustomSettingsActivity) this.f38464b).getParentActivity().getCurrentFocus());
+                    AndroidUtilities.hideKeyboard(((NotificationsCustomSettingsActivity) this.f38466b).getParentActivity().getCurrentFocus());
                     return;
                 }
                 return;
             case 23:
                 return;
             case 24:
-                PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f38464b;
+                PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f38466b;
                 if (i10 == 0) {
                     kVar3 = ((org.telegram.ui.ActionBar.n2) premiumPreviewFragment).actionBar;
                     int dp2 = AndroidUtilities.dp(16.0f) + kVar3.getBottom();
@@ -214,13 +214,13 @@ public final class i3 extends s4.t0 {
                 return;
             case 27:
                 if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(((f41) this.f38464b).getParentActivity().getCurrentFocus());
+                    AndroidUtilities.hideKeyboard(((f41) this.f38466b).getParentActivity().getCurrentFocus());
                     return;
                 }
                 return;
             case 29:
                 if (i10 == 0) {
-                    ((xd1) this.f38464b).f43983r0 = false;
+                    ((xd1) this.f38466b).f43985r0 = false;
                     return;
                 }
                 return;
@@ -240,10 +240,10 @@ public final class i3 extends s4.t0 {
         ah.h hVar3;
         ViewGroup viewGroup;
         ah.h hVar4;
-        int i13 = this.f38463a;
+        int i13 = this.f38465a;
         boolean z10 = false;
         int i14 = 0;
-        Object obj = this.f38464b;
+        Object obj = this.f38466b;
         switch (i13) {
             case 0:
                 m3 m3Var = (m3) obj;
@@ -253,9 +253,9 @@ public final class i3 extends s4.t0 {
                     i4 i4Var = m3Var.K;
                     v3 v3Var = i4Var.K;
                     if (v3Var != null) {
-                        v3Var.f42624c.invalidate();
+                        v3Var.f42626c.invalidate();
                     } else {
-                        ArticleViewer$WindowView articleViewer$WindowView = i4Var.f38499f0;
+                        ArticleViewer$WindowView articleViewer$WindowView = i4Var.f38501f0;
                         if (articleViewer$WindowView != null) {
                             articleViewer$WindowView.invalidate();
                         }
@@ -272,15 +272,15 @@ public final class i3 extends s4.t0 {
                 return;
             case 1:
                 q qVar = (q) obj;
-                if (!qVar.I && !qVar.f40942r && qVar.d.N0() > qVar.E - 2) {
+                if (!qVar.I && !qVar.f40944r && qVar.d.N0() > qVar.E - 2) {
                     qVar.W();
                     return;
                 }
                 return;
             case 2:
                 i4 i4Var3 = (i4) obj;
-                if (i4Var3.f38502i0.f43372w.I1) {
-                    AndroidUtilities.hideKeyboard(i4Var3.f38501h0.f43477b0);
+                if (i4Var3.f38504i0.f43374w.I1) {
+                    AndroidUtilities.hideKeyboard(i4Var3.f38503h0.f43479b0);
                     return;
                 }
                 return;
@@ -330,7 +330,7 @@ public final class i3 extends s4.t0 {
                 return;
             case 10:
                 f10 f10Var = (f10) obj;
-                if (f10Var.f37410a.I1 && (z00Var = f10Var.K) != null && (e3Var = z00Var.f22114b) != null) {
+                if (f10Var.f37412a.I1 && (z00Var = f10Var.K) != null && (e3Var = z00Var.f22114b) != null) {
                     if (e3Var.f33652e) {
                         e3Var.k(true);
                         return;
@@ -341,46 +341,46 @@ public final class i3 extends s4.t0 {
                 }
                 return;
             case 11:
-                ((p20) obj).f40643s.invalidate();
+                ((p20) obj).f40645s.invalidate();
                 return;
             case 12:
                 q60 q60Var = (q60) obj;
-                if (q60Var.f41027z0 == null) {
-                    q60Var.f41027z0 = (uc) q60Var.y0(q60Var.Z);
+                if (q60Var.f41029z0 == null) {
+                    q60Var.f41029z0 = (uc) q60Var.y0(q60Var.Z);
                 }
-                int measuredHeight = q60Var.f41027z0.getMeasuredHeight();
+                int measuredHeight = q60Var.f41029z0.getMeasuredHeight();
                 kVar = ((org.telegram.ui.ActionBar.n2) q60Var).actionBar;
                 int measuredHeight2 = measuredHeight - kVar.getMeasuredHeight();
-                float top = q60Var.f41027z0.getTop() * (-1);
+                float top = q60Var.f41029z0.getTop() * (-1);
                 float f7 = measuredHeight2;
                 float max = Math.max(Math.min(1.0f, top / f7), 0.0f);
                 q60Var.A0 = max;
                 float min = Math.min(max * 2.0f, 1.0f);
                 float min2 = Math.min(Math.max(q60Var.A0 - 0.45f, 0.0f) * 2.0f, 1.0f);
-                q60Var.f41027z0.f42395b.setAlpha(AndroidUtilities.lerp(1.0f, 0.0f, min));
-                q60Var.f41027z0.f42398f.setAlpha(AndroidUtilities.lerp(1.0f, 0.0f, min));
-                q60Var.f41027z0.f42396c.setAlpha(AndroidUtilities.lerp(0.0f, 1.0f, min2));
+                q60Var.f41029z0.f42397b.setAlpha(AndroidUtilities.lerp(1.0f, 0.0f, min));
+                q60Var.f41029z0.f42400f.setAlpha(AndroidUtilities.lerp(1.0f, 0.0f, min));
+                q60Var.f41029z0.f42398c.setAlpha(AndroidUtilities.lerp(0.0f, 1.0f, min2));
                 if (q60Var.A0 >= 1.0f) {
-                    q60Var.f41027z0.setTranslationY(top - f7);
+                    q60Var.f41029z0.setTranslationY(top - f7);
                     return;
                 } else {
-                    q60Var.f41027z0.setTranslationY(0.0f);
+                    q60Var.f41029z0.setTranslationY(0.0f);
                     return;
                 }
             case 13:
                 c70 c70Var = (c70) obj;
-                int L0 = c70Var.f36562r.L0();
-                View childAt = c70Var.f36557n.getChildAt(0);
+                int L0 = c70Var.f36564r.L0();
+                View childAt = c70Var.f36559n.getChildAt(0);
                 if (childAt != null) {
                     i12 = childAt.getTop();
                 } else {
                     i12 = 0;
                 }
-                if (L0 != 0 || i12 < c70Var.f36557n.getPaddingTop()) {
+                if (L0 != 0 || i12 < c70Var.f36559n.getPaddingTop()) {
                     z10 = true;
                 }
-                c70Var.f36547e.b(z10, true);
-                if (Build.VERSION.SDK_INT >= 31 && (hVar = c70Var.f36560p0) != null) {
+                c70Var.f36549e.b(z10, true);
+                if (Build.VERSION.SDK_INT >= 31 && (hVar = c70Var.f36562p0) != null) {
                     hVar.f(i10, i11);
                     c70Var.e0();
                     return;
@@ -388,7 +388,7 @@ public final class i3 extends s4.t0 {
                 return;
             case 16:
                 l80 l80Var = (l80) obj;
-                l80Var.f39465n.L0();
+                l80Var.f39467n.L0();
                 View childAt2 = l80Var.h.getChildAt(0);
                 if (childAt2 != null) {
                     childAt2.getTop();
@@ -409,7 +409,7 @@ public final class i3 extends s4.t0 {
                     i14 = Math.abs(lj0Var.h.N0() - L02) + 1;
                 }
                 int h = recyclerView.getAdapter().h();
-                if (i14 > 0 && !lj0Var.V && !lj0Var.E && !lj0Var.f39607x.isEmpty() && L02 + i14 >= h - 5 && lj0Var.f39608y) {
+                if (i14 > 0 && !lj0Var.V && !lj0Var.E && !lj0Var.f39609x.isEmpty() && L02 + i14 >= h - 5 && lj0Var.f39610y) {
                     lj0Var.b0();
                     return;
                 }
@@ -425,7 +425,7 @@ public final class i3 extends s4.t0 {
                 if (oz0Var != null && oz0Var.f29612s) {
                     org.telegram.ui.Components.mz0 delegate = oz0Var.getDelegate();
                     if (delegate instanceof org.telegram.ui.Cells.d6) {
-                        fc1 fc1Var = aw0Var.f36036c;
+                        fc1 fc1Var = aw0Var.f36038c;
                         View F = fc1Var.F((org.telegram.ui.Cells.d6) delegate);
                         if (F == null) {
                             T = null;
@@ -433,14 +433,14 @@ public final class i3 extends s4.t0 {
                             T = fc1Var.T(F);
                         }
                         if (T != null) {
-                            View view = T.f47656a;
+                            View view = T.f47658a;
                             if (aw0Var.Q.getDirection() == 0) {
                                 aw0Var.Q.setTranslationY((view.getY() - AndroidUtilities.dp(166.0f)) + view.getMeasuredHeight());
                             } else {
                                 aw0Var.Q.setTranslationY(view.getY());
                             }
                             s4.d0 d0Var = aw0Var.d;
-                            if (!d0Var.f47763c.r(view) || !d0Var.d.r(view)) {
+                            if (!d0Var.f47765c.r(view) || !d0Var.d.r(view)) {
                                 aw0Var.Q.f();
                                 return;
                             }
@@ -458,16 +458,16 @@ public final class i3 extends s4.t0 {
                 premiumPreviewFragment.f34131d0.invalidate();
                 if (Build.VERSION.SDK_INT >= 31 && (hVar3 = premiumPreviewFragment.f34152u0) != null) {
                     hVar3.f(i10, i11);
-                    premiumPreviewFragment.k0();
+                    premiumPreviewFragment.j0();
                     return;
                 }
                 return;
             case 25:
                 gy0 gy0Var = (gy0) obj;
                 if (!gy0Var.getMessagesController().blockedEndReached) {
-                    int abs = Math.abs(gy0Var.f38141b.N0() - gy0Var.f38141b.L0()) + 1;
+                    int abs = Math.abs(gy0Var.f38143b.N0() - gy0Var.f38143b.L0()) + 1;
                     int h10 = recyclerView.getAdapter().h();
-                    if (abs > 0 && gy0Var.f38141b.N0() >= h10 - 10) {
+                    if (abs > 0 && gy0Var.f38143b.N0() >= h10 - 10) {
                         gy0Var.getMessagesController().getBlockedPeers(false);
                         return;
                     }
@@ -476,14 +476,14 @@ public final class i3 extends s4.t0 {
                 return;
             case 26:
                 b41 b41Var = (b41) obj;
-                b41Var.f36132e.invalidate();
+                b41Var.f36134e.invalidate();
                 viewGroup = ((org.telegram.ui.ActionBar.f3) b41Var.v).containerView;
                 viewGroup.invalidate();
                 return;
             case 28:
                 i91 i91Var = (i91) obj;
                 i91Var.o0(false, true);
-                if (i91Var.f38582c.I1) {
+                if (i91Var.f38584c.I1) {
                     AndroidUtilities.hideKeyboard(i91Var.fragmentView);
                 }
                 if (Build.VERSION.SDK_INT >= 31 && (hVar4 = i91Var.V) != null) {
@@ -494,15 +494,15 @@ public final class i3 extends s4.t0 {
                 return;
             case 29:
                 xd1 xd1Var = (xd1) obj;
-                xd1Var.f43990u0.f1();
-                xd1Var.f43983r0 = true;
+                xd1Var.f43992u0.f1();
+                xd1Var.f43985r0 = true;
                 return;
         }
     }
 
     public i3(vb vbVar) {
-        this.f38463a = 4;
-        this.f38464b = vbVar;
+        this.f38465a = 4;
+        this.f38466b = vbVar;
         AndroidUtilities.dp(100.0f);
     }
 

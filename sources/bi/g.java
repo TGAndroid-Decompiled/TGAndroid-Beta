@@ -47,26 +47,26 @@ public final class g extends s4.w {
         switch (this.d) {
             case 0:
                 super.a(recyclerView, d1Var);
-                d1Var.f47656a.setPressed(false);
+                d1Var.f47658a.setPressed(false);
                 return;
             case 1:
                 super.a(recyclerView, d1Var);
-                d1Var.f47656a.setPressed(false);
+                d1Var.f47658a.setPressed(false);
                 return;
             case 2:
                 super.a(recyclerView, d1Var);
-                View view = d1Var.f47656a;
+                View view = d1Var.f47658a;
                 view.setPressed(false);
                 view.setBackground(null);
                 return;
             case 3:
                 super.a(recyclerView, d1Var);
-                d1Var.f47656a.setPressed(false);
+                d1Var.f47658a.setPressed(false);
                 return;
             case 4:
                 k71 k71Var = (k71) this.f3902e;
                 super.a(recyclerView, d1Var);
-                View view2 = d1Var.f47656a;
+                View view2 = d1Var.f47658a;
                 view2.setPressed(false);
                 if (view2.getBackground() instanceof b2) {
                     b2 b2Var = (b2) view2.getBackground();
@@ -87,7 +87,7 @@ public final class g extends s4.w {
                 return;
             case 6:
                 super.a(recyclerView, d1Var);
-                d1Var.f47656a.setPressed(false);
+                d1Var.f47658a.setPressed(false);
                 return;
         }
     }
@@ -103,12 +103,12 @@ public final class g extends s4.w {
                 }
                 return s4.w.l(0, 0);
             case 1:
-                if (d1Var.f47660f == 1 && ((oa) d1Var.f47656a).G) {
+                if (d1Var.f47662f == 1 && ((oa) d1Var.f47658a).G) {
                     return s4.w.l(3, 0);
                 }
                 return s4.w.l(0, 0);
             case 2:
-                if (d1Var.f47660f != 5) {
+                if (d1Var.f47662f != 5) {
                     return s4.w.l(0, 0);
                 }
                 return s4.w.l(3, 0);
@@ -123,7 +123,7 @@ public final class g extends s4.w {
                 k71 k71Var = (k71) this.f3902e;
                 if (k71Var.f27866a3 && k71Var.W2.H(d1Var.b()) >= 0) {
                     int i10 = 15;
-                    if (k71Var.V2.f47644o == 0) {
+                    if (k71Var.V2.f47646o == 0) {
                         if (!k71Var.Z2) {
                             i10 = 12;
                         }
@@ -139,7 +139,7 @@ public final class g extends s4.w {
                 }
                 return s4.w.l(0, 0);
             default:
-                if (d1Var.f47660f == 5 && r(d1Var.b())) {
+                if (d1Var.f47662f == 5 && r(d1Var.b())) {
                     return s4.w.l(3, 0);
                 }
                 return s4.w.l(0, 0);
@@ -232,15 +232,15 @@ public final class g extends s4.w {
                 }
                 return true;
             case 1:
-                if (d1Var.f47660f == d1Var2.f47660f) {
-                    View view = d1Var2.f47656a;
+                if (d1Var.f47662f == d1Var2.f47662f) {
+                    View view = d1Var2.f47658a;
                     if (!(view instanceof oa) || ((oa) view).G) {
                         gp gpVar = ((hp) this.f3902e).V2;
                         int b12 = d1Var.b();
                         int b13 = d1Var2.b();
                         int i14 = b12 - 1;
                         int i15 = b13 - 1;
-                        hp hpVar = gpVar.f38064c;
+                        hp hpVar = gpVar.f38066c;
                         ip ipVar = hpVar.Y2;
                         ArrayList arrayList3 = ipVar.N;
                         if (i14 >= ipVar.N.size() || i15 >= arrayList3.size()) {
@@ -263,7 +263,7 @@ public final class g extends s4.w {
                 }
                 return false;
             case 2:
-                if (d1Var.f47660f != d1Var2.f47660f) {
+                if (d1Var.f47662f != d1Var2.f47662f) {
                     return false;
                 }
                 jo joVar = ((lo) this.f3902e).f28523r;
@@ -276,7 +276,7 @@ public final class g extends s4.w {
                 int i18 = b15 - i16;
                 if (i17 >= 0 && i18 >= 0 && i17 < (i10 = loVar.M) && i18 < i10) {
                     qh.e b16 = fVar.b(i17);
-                    SparseArray sparseArray = fVar.f46676a;
+                    SparseArray sparseArray = fVar.f46678a;
                     sparseArray.put(i17, fVar.b(i18));
                     sparseArray.put(i18, b16);
                     CharSequence[] charSequenceArr = loVar.K;
@@ -370,26 +370,26 @@ public final class g extends s4.w {
                 }
                 return z11;
             default:
-                if (d1Var.f47660f == d1Var2.f47660f && r(d1Var.b()) && r(d1Var2.b())) {
-                    yv0 yv0Var = ((aw0) this.f3902e).f36034b;
+                if (d1Var.f47662f == d1Var2.f47662f && r(d1Var.b()) && r(d1Var2.b())) {
+                    yv0 yv0Var = ((aw0) this.f3902e).f36036b;
                     int b24 = d1Var.b();
                     int b25 = d1Var2.b();
                     aw0 aw0Var = yv0Var.d;
-                    int i23 = aw0Var.f36050n0;
+                    int i23 = aw0Var.f36052n0;
                     int i24 = b24 - i23;
                     int i25 = b25 - i23;
-                    if (i24 >= 0 && i25 >= 0 && i24 < (i12 = aw0Var.f36065y) && i25 < i12) {
+                    if (i24 >= 0 && i25 >= 0 && i24 < (i12 = aw0Var.f36067y) && i25 < i12) {
                         CharSequence[] charSequenceArr2 = aw0Var.v;
                         CharSequence charSequence2 = charSequenceArr2[i24];
                         charSequenceArr2[i24] = charSequenceArr2[i25];
                         charSequenceArr2[i25] = charSequence2;
-                        int[] iArr = aw0Var.f36054r;
+                        int[] iArr = aw0Var.f36056r;
                         if (iArr != null) {
                             int i26 = iArr[i24];
                             iArr[i24] = iArr[i25];
                             iArr[i25] = i26;
                         }
-                        boolean[] zArr2 = aw0Var.f36061w;
+                        boolean[] zArr2 = aw0Var.f36063w;
                         boolean z12 = zArr2[i24];
                         zArr2[i24] = zArr2[i25];
                         zArr2[i25] = z12;
@@ -463,7 +463,7 @@ public final class g extends s4.w {
                 }
                 jVar.I0(false);
                 if (d1Var != null) {
-                    d1Var.f47656a.setPressed(true);
+                    d1Var.f47658a.setPressed(true);
                     return;
                 }
                 return;
@@ -509,7 +509,7 @@ public final class g extends s4.w {
                 }
                 ipVar.L = true;
                 hpVar.I0(false);
-                d1Var.f47656a.setPressed(true);
+                d1Var.f47658a.setPressed(true);
                 return;
             case 2:
                 lo loVar = (lo) this.f3902e;
@@ -517,15 +517,15 @@ public final class g extends s4.w {
                 if (i10 != 0) {
                     fc1Var.setItemAnimator(loVar.v);
                     fc1Var.I0(false);
-                    d1Var.f47656a.setPressed(true);
-                    d1Var.f47656a.setBackgroundColor(i6.w0(i6.f20868h5, loVar.f30172a));
+                    d1Var.f47658a.setPressed(true);
+                    d1Var.f47658a.setBackgroundColor(i6.w0(i6.f20868h5, loVar.f30172a));
                     return;
                 }
                 return;
             case 3:
                 if (i10 != 0) {
                     ((bo0) this.f3902e).f25067b.I0(false);
-                    d1Var.f47656a.setPressed(true);
+                    d1Var.f47658a.setPressed(true);
                     return;
                 }
                 return;
@@ -548,7 +548,7 @@ public final class g extends s4.w {
                 }
                 k71Var.I0(false);
                 if (d1Var != null) {
-                    View view = d1Var.f47656a;
+                    View view = d1Var.f47658a;
                     view.setPressed(true);
                     if (view.getBackground() instanceof b2) {
                         b2 b2Var = (b2) view.getBackground();
@@ -570,8 +570,8 @@ public final class g extends s4.w {
                 return;
             case 6:
                 if (i10 != 0) {
-                    ((aw0) this.f3902e).f36036c.I0(false);
-                    d1Var.f47656a.setPressed(true);
+                    ((aw0) this.f3902e).f36038c.I0(false);
+                    d1Var.f47658a.setPressed(true);
                     return;
                 }
                 return;
@@ -585,7 +585,7 @@ public final class g extends s4.w {
 
     public boolean r(int i10) {
         aw0 aw0Var = (aw0) this.f3902e;
-        if (!aw0Var.I || i10 - aw0Var.f36050n0 >= aw0Var.f36063x) {
+        if (!aw0Var.I || i10 - aw0Var.f36052n0 >= aw0Var.f36065x) {
             return true;
         }
         return false;

@@ -102,11 +102,11 @@ public final class pv0 extends mm0 {
         char c10;
         bw0 bw0Var = this.f29957s;
         qv0[] qv0VarArr = bw0Var.f25162t1;
-        int i12 = d1Var.f47660f;
-        View view = d1Var.f47656a;
+        int i12 = d1Var.f47662f;
+        View view = d1Var.f47658a;
         if (i12 != 6 && i12 != 5) {
             ArrayList arrayList = (ArrayList) qv0VarArr[3].d.get((String) qv0VarArr[3].f30276c.get(i10));
-            int i13 = d1Var.f47660f;
+            int i13 = d1Var.f47662f;
             boolean z11 = false;
             if (i13 != 3) {
                 if (i13 == 4) {

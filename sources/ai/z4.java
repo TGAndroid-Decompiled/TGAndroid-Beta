@@ -181,7 +181,7 @@ public final class z4 extends AnimatorListenerAdapter {
                         xh.j1 j1Var = (xh.j1) view2;
                         FrameLayout frameLayout = j1Var.d;
                         frameLayout.invalidate();
-                        frameLayout.invalidateDrawable(j1Var.f51301e);
+                        frameLayout.invalidateDrawable(j1Var.f51303e);
                         return;
                     }
                     return;
@@ -189,7 +189,7 @@ public final class z4 extends AnimatorListenerAdapter {
                 return;
             default:
                 k71 k71Var = (k71) this.d;
-                k71Var.f39151r1 = null;
+                k71Var.f39153r1 = null;
                 k71Var.invalidate();
                 boolean[] zArr3 = (boolean[]) this.f2005b;
                 if (!zArr3[0]) {

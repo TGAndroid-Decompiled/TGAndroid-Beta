@@ -77,7 +77,7 @@ public final class xd implements View.OnClickListener {
                 }
             case 1:
                 pf pfVar = chatActivityEnterView.L0;
-                if (pfVar == null || pfVar.f37009q0) {
+                if (pfVar == null || pfVar.f37011q0) {
                     AnimatorSet animatorSet = chatActivityEnterView.f23964t2;
                     if ((animatorSet == null || !animatorSet.isRunning()) && chatActivityEnterView.f23885f0 == null) {
                         chatActivityEnterView.Q0();
@@ -203,7 +203,7 @@ public final class xd implements View.OnClickListener {
                     MediaDataController mediaDataController = MediaDataController.getInstance(chatActivityEnterView.Q);
                     long j10 = chatActivityEnterView.Q2;
                     org.telegram.ui.zn znVar2 = chatActivityEnterView.P2;
-                    if (znVar2 != null && znVar2.f44791h4) {
+                    if (znVar2 != null && znVar2.f44793h4) {
                         j3 = znVar2.d();
                     } else {
                         j3 = 0;
@@ -294,7 +294,7 @@ public final class xd implements View.OnClickListener {
                 return;
             case 9:
                 SharedPreferences.Editor edit = MessagesController.getInstance(chatActivityEnterView.Q).getMainSettings().edit();
-                if (BirthdayController.isToday(chatActivityEnterView.P2.f44706a8)) {
+                if (BirthdayController.isToday(chatActivityEnterView.P2.f44708a8)) {
                     edit.putBoolean(Calendar.getInstance().get(1) + "show_gift_for_" + znVar.a(), false);
                 } else {
                     edit.putBoolean("show_gift_for_" + znVar.a(), false);
@@ -304,12 +304,12 @@ public final class xd implements View.OnClickListener {
                 }
                 edit.apply();
                 TLRPC.UserFull userFull = MessagesController.getInstance(chatActivityEnterView.Q).getUserFull(UserConfig.getInstance(chatActivityEnterView.Q).getClientUserId());
-                if ((chatActivityEnterView.getParentFragment().f44706a8 == null || !chatActivityEnterView.getParentFragment().f44706a8.display_gifts_button) && (userFull == null || !userFull.display_gifts_button)) {
+                if ((chatActivityEnterView.getParentFragment().f44708a8 == null || !chatActivityEnterView.getParentFragment().f44708a8.display_gifts_button) && (userFull == null || !userFull.display_gifts_button)) {
                     AndroidUtilities.updateViewVisibilityAnimated(chatActivityEnterView.K1, false);
                 }
                 TLRPC.User i19 = chatActivityEnterView.getParentFragment().i();
                 if (i19 != null) {
-                    if (chatActivityEnterView.getParentFragment().f44706a8 != null && BirthdayController.isToday(chatActivityEnterView.getParentFragment().f44706a8.birthday)) {
+                    if (chatActivityEnterView.getParentFragment().f44708a8 != null && BirthdayController.isToday(chatActivityEnterView.getParentFragment().f44708a8.birthday)) {
                         z11 = true;
                     } else {
                         z11 = false;
@@ -387,7 +387,7 @@ public final class xd implements View.OnClickListener {
                         }
                         org.telegram.ui.zn znVar3 = chatActivityEnterView.P2;
                         if (znVar3 != null) {
-                            ci.d4 d4Var = znVar3.f45002y1;
+                            ci.d4 d4Var = znVar3.f45004y1;
                             if (d4Var != null) {
                                 if (d4Var.V) {
                                     d4Var.e(true);
@@ -396,7 +396,7 @@ public final class xd implements View.OnClickListener {
                             } else {
                                 z14 = false;
                             }
-                            znVar3.f45002y1 = null;
+                            znVar3.f45004y1 = null;
                             if (z14) {
                                 z13 = true;
                                 ggVar3.D(z12, z13);

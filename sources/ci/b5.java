@@ -31,7 +31,7 @@ public final class b5 implements ValueAnimator.AnimatorUpdateListener {
             case 0:
                 q6 q6Var = (q6) obj;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                q6Var.A1.f45776a = i0.a.d(floatValue, i12, i11);
+                q6Var.A1.f45778a = i0.a.d(floatValue, i12, i11);
                 q6Var.T0.invalidate();
                 return;
             case 1:
@@ -72,8 +72,8 @@ public final class b5 implements ValueAnimator.AnimatorUpdateListener {
             default:
                 qg.m0 m0Var = (qg.m0) obj;
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                m0Var.K1.f45776a = i0.a.d(floatValue3, i12, i11);
-                m0Var.f46361c1.invalidate();
+                m0Var.K1.f45778a = i0.a.d(floatValue3, i12, i11);
+                m0Var.f46363c1.invalidate();
                 return;
         }
     }

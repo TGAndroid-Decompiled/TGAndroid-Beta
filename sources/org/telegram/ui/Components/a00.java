@@ -349,7 +349,7 @@ public class a00 extends FrameLayout implements me.d, NotificationCenter.Notific
         Paint paint = new Paint(1);
         this.f24452s1 = paint;
         paint.setColor(B(org.telegram.ui.ActionBar.i6.f20749af));
-        ai.l2 l2Var = yf.i0.f52169a;
+        ai.l2 l2Var = yf.i0.f52171a;
         this.M1 = new ai.j6(AndroidUtilities.dp(6.0f));
         yx yxVar2 = new yx(this, context);
         this.J = yxVar2;
@@ -366,11 +366,11 @@ public class a00 extends FrameLayout implements me.d, NotificationCenter.Notific
         this.P = myVar;
         eVar.a(myVar);
         s4.j jVar = new s4.j();
-        jVar.f47748c = 220L;
-        jVar.f47749e = 220L;
-        jVar.f47750f = 160L;
-        jVar.f47751g = 160L;
-        jVar.f47752i = hs.f27119g;
+        jVar.f47750c = 220L;
+        jVar.f47751e = 220L;
+        jVar.f47752f = 160L;
+        jVar.f47753g = 160L;
+        jVar.f47754i = hs.f27119g;
         myVar.setItemAnimator(jVar);
         myVar.setOnTouchListener(new View.OnTouchListener(this) {
             public final a00 f32467b;
@@ -551,7 +551,7 @@ public class a00 extends FrameLayout implements me.d, NotificationCenter.Notific
                 cxVar.setLayoutManager(fzVar);
                 cxVar.i(new dx(this));
                 cxVar.setPadding(0, dp, 0, AndroidUtilities.dp(44.0f) + this.f24442p2);
-                ((s4.g1) cxVar.getItemAnimator()).f47696m = false;
+                ((s4.g1) cxVar.getItemAnimator()).f47698m = false;
                 ez ezVar = new ez(this, context2, true, Integer.MAX_VALUE);
                 this.f24434n0 = ezVar;
                 cxVar.setAdapter(ezVar);
@@ -1336,7 +1336,7 @@ public class a00 extends FrameLayout implements me.d, NotificationCenter.Notific
         az azVar = a00Var.f24455t1;
         if ((azVar == null || !azVar.z()) && !a00Var.J0) {
             qm0 y3 = a00Var.y(i10);
-            if (i11 > 0 && y3 != null && y3.getVisibility() == 0 && (K = y3.K(0)) != null && K.f47656a.getTop() + a00Var.f24397b1 >= y3.getPaddingTop()) {
+            if (i11 > 0 && y3 != null && y3.getVisibility() == 0 && (K = y3.K(0)) != null && K.f47658a.getTop() + a00Var.f24397b1 >= y3.getPaddingTop()) {
                 return;
             }
             int i12 = iArr[i10] - i11;
@@ -1376,7 +1376,7 @@ public class a00 extends FrameLayout implements me.d, NotificationCenter.Notific
                 mz.a(fxVar, true, !z10);
                 return;
             }
-            if (K.f47656a.getTop() < cxVar.getPaddingTop()) {
+            if (K.f47658a.getTop() < cxVar.getPaddingTop()) {
                 z12 = true;
             }
             mz.a(fxVar, z12, !z10);
@@ -1557,7 +1557,7 @@ public class a00 extends FrameLayout implements me.d, NotificationCenter.Notific
         }
         this.J0 = true;
         ci.l1 l1Var = new ci.l1(this, this.P.getContext(), 1);
-        l1Var.f47825a = i10;
+        l1Var.f47827a = i10;
         l1Var.f14273p = i11;
         zxVar.w0(l1Var);
     }
@@ -2520,7 +2520,7 @@ public class a00 extends FrameLayout implements me.d, NotificationCenter.Notific
             }
             return;
         }
-        WeakHashMap weakHashMap = r0.i0.f46764a;
+        WeakHashMap weakHashMap = r0.i0.f46766a;
         if (hyVar.isLaidOut()) {
             if (!isEmpty && !z14) {
                 hyVar.k(i16 + 1, 0);
@@ -3237,7 +3237,7 @@ public class a00 extends FrameLayout implements me.d, NotificationCenter.Notific
             return;
         }
         wx wxVar = new wx(getContext(), i11);
-        wxVar.f47825a = !z10 ? 1 : 0;
+        wxVar.f47827a = !z10 ? 1 : 0;
         x(i10).w0(wxVar);
     }
 
@@ -3310,7 +3310,7 @@ public class a00 extends FrameLayout implements me.d, NotificationCenter.Notific
             if (K == null) {
                 mz.a(zwVar, true, !z10);
             } else {
-                if (K.f47656a.getTop() < myVar.getPaddingTop()) {
+                if (K.f47658a.getTop() < myVar.getPaddingTop()) {
                     z11 = true;
                 } else {
                     z11 = false;
@@ -3322,7 +3322,7 @@ public class a00 extends FrameLayout implements me.d, NotificationCenter.Notific
         } else if (zwVar != null && myVar != null) {
             s4.d1 K2 = myVar.K(0);
             if (K2 != null) {
-                i10 = K2.f47656a.getTop();
+                i10 = K2.f47658a.getTop();
             } else {
                 i10 = -this.f24397b1;
             }
@@ -3340,7 +3340,7 @@ public class a00 extends FrameLayout implements me.d, NotificationCenter.Notific
         boolean z10 = false;
         s4.d1 K = this.P.K(0);
         int dp = AndroidUtilities.dp(38.0f) + i10;
-        if (dp > 0 && (K == null || K.f47656a.getBottom() < dp)) {
+        if (dp > 0 && (K == null || K.f47658a.getBottom() < dp)) {
             z10 = true;
         }
         N(z10, !this.K1);
@@ -3431,7 +3431,7 @@ public class a00 extends FrameLayout implements me.d, NotificationCenter.Notific
             az azVar = this.f24455t1;
             if (azVar == null || !azVar.z()) {
                 if (i10 > 0 && (myVar = this.P) != null && myVar.getVisibility() == 0 && (K = myVar.K(0)) != null) {
-                    int top = K.f47656a.getTop();
+                    int top = K.f47658a.getTop();
                     if (this.f24403d0) {
                         i11 = this.f24397b1;
                     } else {
@@ -3477,12 +3477,12 @@ public class a00 extends FrameLayout implements me.d, NotificationCenter.Notific
             nvVar.dismiss();
         }
         org.telegram.ui.rt q6 = org.telegram.ui.rt.q();
-        if (q6.f41496l == this.f24416g2) {
+        if (q6.f41498l == this.f24416g2) {
             q6.W = null;
-            q6.f41483a0 = null;
+            q6.f41485a0 = null;
             q6.Y = null;
-            q6.f41496l = null;
-            q6.f41487c0 = null;
+            q6.f41498l = null;
+            q6.f41489c0 = null;
             q6.u();
         }
     }
@@ -3591,7 +3591,7 @@ public class a00 extends FrameLayout implements me.d, NotificationCenter.Notific
             if (K == null) {
                 mz.a(lxVar, true, !z10);
             } else {
-                if (K.f47656a.getTop() < ixVar.getPaddingTop()) {
+                if (K.f47658a.getTop() < ixVar.getPaddingTop()) {
                     z11 = true;
                 }
                 mz.a(lxVar, z11, !z10);
@@ -3600,7 +3600,7 @@ public class a00 extends FrameLayout implements me.d, NotificationCenter.Notific
         } else if (lxVar != null && ixVar != null) {
             s4.d1 K2 = ixVar.K(0);
             if (K2 != null) {
-                i10 = K2.f47656a.getTop();
+                i10 = K2.f47658a.getTop();
             } else {
                 i10 = -this.f24397b1;
             }

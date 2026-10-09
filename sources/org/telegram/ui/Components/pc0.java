@@ -104,7 +104,7 @@ public final class pc0 extends FrameLayout {
                     }
                     org.telegram.ui.pn pnVar = vc0Var.d.quote;
                     if (pnVar != null) {
-                        return pnVar.f40843a;
+                        return pnVar.f40845a;
                     }
                 }
                 return valueAt.captionMessage;
@@ -426,7 +426,7 @@ public final class pc0 extends FrameLayout {
                 if (messagePreviewParams.quote != null && hc0Var.x()) {
                     messagePreviewParams.quoteStart = hc0Var.f21884u;
                     messagePreviewParams.quoteEnd = hc0Var.v;
-                    if (c10 != null && ((messageObject2 = messagePreviewParams.quote.f40843a) == null || messageObject2.getId() != c10.getId())) {
+                    if (c10 != null && ((messageObject2 = messagePreviewParams.quote.f40845a) == null || messageObject2.getId() != c10.getId())) {
                         messagePreviewParams.quote = org.telegram.ui.pn.b(messagePreviewParams.quoteStart, messagePreviewParams.quoteEnd, c10);
                         vc0Var.b();
                     }

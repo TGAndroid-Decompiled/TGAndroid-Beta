@@ -3,12 +3,12 @@ package org.telegram.ui;
 import android.content.Context;
 import android.widget.FrameLayout;
 public final class lv extends FrameLayout {
-    public org.telegram.ui.ActionBar.n2 f39679a;
-    public FrameLayout f39680b;
-    public org.telegram.ui.ActionBar.k f39681c;
+    public org.telegram.ui.ActionBar.n2 f39681a;
+    public FrameLayout f39682b;
+    public org.telegram.ui.ActionBar.k f39683c;
     public org.telegram.ui.Components.qm0 d;
-    public ai.w0 f39682e;
-    public int f39683f;
+    public ai.w0 f39684e;
+    public int f39685f;
     public final mv h;
 
     public lv(mv mvVar, Context context) {
@@ -21,9 +21,9 @@ public final class lv extends FrameLayout {
         lv lvVar;
         super.setTranslationX(f7);
         mv mvVar = this.h;
-        lv[] lvVarArr = mvVar.f39993f;
-        if (mvVar.f39994n && (lvVar = lvVarArr[0]) == this) {
-            mvVar.f39992e.j(Math.abs(lvVar.getTranslationX()) / lvVarArr[0].getMeasuredWidth(), lvVarArr[1].f39683f);
+        lv[] lvVarArr = mvVar.f39995f;
+        if (mvVar.f39996n && (lvVar = lvVarArr[0]) == this) {
+            mvVar.f39994e.j(Math.abs(lvVar.getTranslationX()) / lvVarArr[0].getMeasuredWidth(), lvVarArr[1].f39685f);
         }
     }
 }

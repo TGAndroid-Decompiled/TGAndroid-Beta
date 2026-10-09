@@ -2241,8 +2241,8 @@ public class AndroidUtilities {
     }
 
     public static i0.b getDefaultWindowInsets(r0.k1 k1Var, boolean z10) {
-        i0.b g10 = k1Var.f46775a.g(647);
-        r0.h1 h1Var = k1Var.f46775a;
+        i0.b g10 = k1Var.f46777a.g(647);
+        r0.h1 h1Var = k1Var.f46777a;
         i0.b a2 = i0.b.a(g10, h1Var.f(647));
         if (z10) {
             return i0.b.a(a2, h1Var.f(8));
@@ -4821,7 +4821,7 @@ public class AndroidUtilities {
             try {
                 waitingForSms = z10;
                 if (z10) {
-                    com.google.android.gms.common.api.j jVar = new com.google.android.gms.common.api.j(ApplicationLoader.applicationContext, y5.a.f51720k, com.google.android.gms.common.api.b.f6528t, com.google.android.gms.common.api.i.f6537c);
+                    com.google.android.gms.common.api.j jVar = new com.google.android.gms.common.api.j(ApplicationLoader.applicationContext, y5.a.f51722k, com.google.android.gms.common.api.b.f6528t, com.google.android.gms.common.api.i.f6537c);
                     com.google.android.gms.common.api.internal.v e7 = com.google.android.gms.common.api.internal.w.e();
                     e7.f6696c = new t7.t(jVar);
                     e7.d = new k6.c[]{j7.b.f14065a};

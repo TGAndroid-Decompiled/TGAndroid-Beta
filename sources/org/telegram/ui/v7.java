@@ -8,17 +8,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class v7 extends s4.i0 {
-    public final int f42664c;
+    public final int f42666c;
     public final Object d;
 
     public v7(Object obj, int i10) {
-        this.f42664c = i10;
+        this.f42666c = i10;
         this.d = obj;
     }
 
     @Override
     public final int h() {
-        switch (this.f42664c) {
+        switch (this.f42666c) {
             case 0:
                 return ((g8) this.d).K;
             case 1:
@@ -30,13 +30,13 @@ public final class v7 extends s4.i0 {
             case 4:
                 return 1;
             default:
-                return ((zp0) this.d).f45035f.size();
+                return ((zp0) this.d).f45037f.size();
         }
     }
 
     @Override
     public long i(int i10) {
-        switch (this.f42664c) {
+        switch (this.f42666c) {
             case 0:
                 g8 g8Var = (g8) this.d;
                 return ((g8Var.I - (i10 / 12)) * 100) + (g8Var.J - (i10 % 12));
@@ -54,7 +54,7 @@ public final class v7 extends s4.i0 {
 
     @Override
     public int j(int i10) {
-        switch (this.f42664c) {
+        switch (this.f42666c) {
             case 2:
                 if (i10 >= ((org.telegram.ui.Components.d9) this.d).V2.size()) {
                     return 1;
@@ -72,7 +72,7 @@ public final class v7 extends s4.i0 {
 
     @Override
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        switch (this.f42664c) {
+        switch (this.f42666c) {
             case 0:
                 return new s4.d1(new d8((g8) this.d, viewGroup.getContext()));
             case 1:

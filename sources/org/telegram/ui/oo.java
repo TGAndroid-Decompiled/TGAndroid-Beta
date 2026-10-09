@@ -16,21 +16,21 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_bots;
 public final class oo implements RequestDelegate {
-    public final int f40579a;
-    public final Object f40580b;
-    public final Object f40581c;
+    public final int f40581a;
+    public final Object f40582b;
+    public final Object f40583c;
 
     public oo(int i10, Object obj, Object obj2) {
-        this.f40579a = i10;
-        this.f40580b = obj;
-        this.f40581c = obj2;
+        this.f40581a = i10;
+        this.f40582b = obj;
+        this.f40583c = obj2;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f40579a;
-        Object obj = this.f40581c;
-        Object obj2 = this.f40580b;
+        int i10 = this.f40581a;
+        Object obj = this.f40583c;
+        Object obj2 = this.f40582b;
         switch (i10) {
             case 0:
                 uo uoVar = (uo) obj2;
@@ -114,7 +114,7 @@ public final class oo implements RequestDelegate {
                 return;
             case 24:
                 o70 o70Var = (o70) obj2;
-                if (Objects.equals(o70Var.f40422a.f40690e, (String) obj)) {
+                if (Objects.equals(o70Var.f40424a.f40692e, (String) obj)) {
                     AndroidUtilities.runOnUIThread(new m70(2, o70Var, tLObject));
                     return;
                 }

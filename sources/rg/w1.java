@@ -15,12 +15,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.SharedConfig;
 public class w1 extends View {
-    public v1 f47501a;
-    public int f47502b;
-    public ii.q1 f47503c;
+    public v1 f47503a;
+    public int f47504b;
+    public ii.q1 f47505c;
     public boolean d;
-    public Paint f47504e;
-    public LinearGradient f47505f;
+    public Paint f47506e;
+    public LinearGradient f47507f;
     public Matrix h;
 
     public w1(Context context) {
@@ -34,21 +34,21 @@ public class w1 extends View {
             i10 = 50;
         }
         this.d = true;
-        this.f47501a = new v1(i10);
+        this.f47503a = new v1(i10);
         a();
     }
 
     public void a() {
-        v1 v1Var = this.f47501a;
+        v1 v1Var = this.f47503a;
         v1Var.N = 100;
         v1Var.M = true;
         v1Var.G = true;
         v1Var.K = true;
         v1Var.H = true;
-        v1Var.f47489r = 4;
-        v1Var.f47493w = 0.98f;
+        v1Var.f47491r = 4;
+        v1Var.f47495w = 0.98f;
         v1Var.v = 0.98f;
-        v1Var.f47492u = 0.98f;
+        v1Var.f47494u = 0.98f;
         v1Var.c();
     }
 
@@ -75,11 +75,11 @@ public class w1 extends View {
 
     public final void c() {
         Paint paint = new Paint(1);
-        this.f47504e = paint;
+        this.f47506e = paint;
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(12.0f), new int[]{16777215, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-        this.f47505f = linearGradient;
-        this.f47504e.setShader(linearGradient);
+        this.f47507f = linearGradient;
+        this.f47506e.setShader(linearGradient);
         this.h = new Matrix();
     }
 
@@ -91,7 +91,7 @@ public class w1 extends View {
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
         ii.q1 q1Var = new ii.q1(this, 12);
-        this.f47503c = q1Var;
+        this.f47505c = q1Var;
         LiteMode.addOnPowerSaverAppliedListener(q1Var);
         boolean isEnabled = LiteMode.isEnabled(131072);
         if (this.d != isEnabled) {
@@ -103,7 +103,7 @@ public class w1 extends View {
     @Override
     public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ii.q1 q1Var = this.f47503c;
+        ii.q1 q1Var = this.f47505c;
         if (q1Var != null) {
             LiteMode.removeOnPowerSaverAppliedListener(q1Var);
         }
@@ -114,28 +114,28 @@ public class w1 extends View {
         Canvas canvas2;
         super.onDraw(canvas);
         if (this.d) {
-            if (this.f47504e != null) {
+            if (this.f47506e != null) {
                 canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
                 canvas2 = canvas;
             } else {
                 canvas2 = canvas;
             }
-            this.f47501a.d(canvas2);
-            if (this.f47504e != null) {
+            this.f47503a.d(canvas2);
+            if (this.f47506e != null) {
                 canvas2.save();
                 this.h.reset();
                 this.h.postTranslate(0.0f, (getHeight() + 1) - AndroidUtilities.dp(12.0f));
-                this.f47505f.setLocalMatrix(this.h);
-                canvas2.drawRect(0.0f, getHeight() - AndroidUtilities.dp(12.0f), getWidth(), getHeight(), this.f47504e);
+                this.f47507f.setLocalMatrix(this.h);
+                canvas2.drawRect(0.0f, getHeight() - AndroidUtilities.dp(12.0f), getWidth(), getHeight(), this.f47506e);
                 this.h.reset();
                 this.h.postRotate(180.0f);
                 this.h.postTranslate(0.0f, AndroidUtilities.dp(12.0f));
-                this.f47505f.setLocalMatrix(this.h);
-                canvas2.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(12.0f), this.f47504e);
+                this.f47507f.setLocalMatrix(this.h);
+                canvas2.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(12.0f), this.f47506e);
                 canvas2.restore();
                 canvas2.restore();
             }
-            if (!this.f47501a.f47479g) {
+            if (!this.f47503a.f47481g) {
                 invalidate();
             }
         }
@@ -145,28 +145,28 @@ public class w1 extends View {
     public void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
         int measuredHeight = getMeasuredHeight() + (getMeasuredWidth() << 16);
-        this.f47501a.f47474a.set(0.0f, 0.0f, getStarsRectWidth(), AndroidUtilities.dp(140.0f));
-        this.f47501a.f47474a.offset((getMeasuredWidth() - this.f47501a.f47474a.width()) / 2.0f, (getMeasuredHeight() - this.f47501a.f47474a.height()) / 2.0f);
-        this.f47501a.f47475b.set(-AndroidUtilities.dp(15.0f), -AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f) + getMeasuredWidth(), AndroidUtilities.dp(15.0f) + getMeasuredHeight());
-        if (this.f47502b != measuredHeight) {
-            this.f47502b = measuredHeight;
-            this.f47501a.f();
+        this.f47503a.f47476a.set(0.0f, 0.0f, getStarsRectWidth(), AndroidUtilities.dp(140.0f));
+        this.f47503a.f47476a.offset((getMeasuredWidth() - this.f47503a.f47476a.width()) / 2.0f, (getMeasuredHeight() - this.f47503a.f47476a.height()) / 2.0f);
+        this.f47503a.f47477b.set(-AndroidUtilities.dp(15.0f), -AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f) + getMeasuredWidth(), AndroidUtilities.dp(15.0f) + getMeasuredHeight());
+        if (this.f47504b != measuredHeight) {
+            this.f47504b = measuredHeight;
+            this.f47503a.f();
         }
     }
 
     public void setPaused(boolean z10) {
-        v1 v1Var = this.f47501a;
-        if (z10 == v1Var.f47479g) {
+        v1 v1Var = this.f47503a;
+        if (z10 == v1Var.f47481g) {
             return;
         }
-        v1Var.f47479g = z10;
+        v1Var.f47481g = z10;
         if (z10) {
             v1Var.Q = System.currentTimeMillis();
             return;
         }
-        for (int i10 = 0; i10 < this.f47501a.f47485n.size(); i10++) {
-            u1 u1Var = (u1) this.f47501a.f47485n.get(i10);
-            u1Var.f47452a = (System.currentTimeMillis() - this.f47501a.Q) + u1Var.f47452a;
+        for (int i10 = 0; i10 < this.f47503a.f47487n.size(); i10++) {
+            u1 u1Var = (u1) this.f47503a.f47487n.get(i10);
+            u1Var.f47454a = (System.currentTimeMillis() - this.f47503a.Q) + u1Var.f47454a;
         }
         invalidate();
     }

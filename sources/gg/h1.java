@@ -83,7 +83,7 @@ public final class h1 extends LinearLayout {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.formatString(i11, j3.toString()));
         spannableStringBuilder.append((CharSequence) "  d");
         d10 d10Var = new d10(8);
-        d10Var.f36787f = i6.x0(null, i6.Lj, false);
+        d10Var.f36789f = i6.x0(null, i6.Lj, false);
         spannableStringBuilder.setSpan(d10Var, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
         textView2.setText(spannableStringBuilder);
         textView.setText(LocaleController.getString(R.string.HashtagSuggestion2Text));

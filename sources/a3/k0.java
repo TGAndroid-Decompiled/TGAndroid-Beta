@@ -129,7 +129,7 @@ public final class k0 implements Runnable {
             case 0:
                 b2.s sVar = (b2.s) this.f154c;
                 String str = e2.d0.f8532a;
-                i2.f0 f0Var = ((i2.c0) ((l0) ((pf.b) this.f153b).f45557c)).f11620a;
+                i2.f0 f0Var = ((i2.c0) ((l0) ((pf.b) this.f153b).f45559c)).f11620a;
                 f0Var.Q = sVar;
                 j2.f fVar = f0Var.f11683s;
                 j2.a p5 = fVar.p();
@@ -165,12 +165,12 @@ public final class k0 implements Runnable {
                     f6Var.f987m3 = dVar;
                 }
                 f6Var.f996p3 = false;
-                if (n0Var.f54616g != 0) {
+                if (n0Var.f54618g != 0) {
                     f6Var.f996p3 = true;
-                    s5 s5Var3 = new s5(2, f6Var.C2, n0Var.f54616g);
+                    s5 s5Var3 = new s5(2, f6Var.C2, n0Var.f54618g);
                     f6Var.f993o3 = s5Var3;
                     s5Var3.a(f6Var);
-                } else if (n0Var.f54615f != null && (tL_availableReaction = MediaDataController.getInstance(f6Var.C2).getReactionsMap().get(n0Var.f54615f)) != null) {
+                } else if (n0Var.f54617f != null && (tL_availableReaction = MediaDataController.getInstance(f6Var.C2).getReactionsMap().get(n0Var.f54617f)) != null) {
                     f6Var.f990n3.setImage(null, null, ImageLocation.getForDocument(tL_availableReaction.select_animation), "60_60", null, null, null, 0L, null, null, 0);
                     imageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.around_animation), zg.j0.a(), null, null, null, 0);
                     if (imageReceiver.getLottieAnimation() != null) {
@@ -191,7 +191,7 @@ public final class k0 implements Runnable {
                         f6Var.k1(true);
                     }
                 }
-                if (n0Var.f54616g != 0 && (s5Var = f6Var.E0.f1673f) != null) {
+                if (n0Var.f54618g != 0 && (s5Var = f6Var.E0.f1673f) != null) {
                     zg.d a2 = zg.d.a(s5Var, false, true);
                     f6Var.f987m3 = a2;
                     a2.f(f6Var);
@@ -210,7 +210,7 @@ public final class k0 implements Runnable {
                 r9 r9Var3 = f6Var.E0;
                 r9Var3.setAllowDrawReaction(false);
                 ImageReceiver imageReceiver2 = r9Var3.f1672e;
-                if (n0Var.f54616g == 0 && (tL_availableReaction2 = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(n0Var.f54615f)) != null) {
+                if (n0Var.f54618g == 0 && (tL_availableReaction2 = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(n0Var.f54617f)) != null) {
                     imageReceiver2.setImage(ImageLocation.getForDocument(tL_availableReaction2.center_icon), "40_40_nolimit", null, "tgs", tL_availableReaction2, 1);
                     imageReceiver2.setAutoRepeat(0);
                 }

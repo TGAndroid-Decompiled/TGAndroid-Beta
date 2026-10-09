@@ -19,7 +19,7 @@ public final class z00 extends s4.w {
     @Override
     public final void a(RecyclerView recyclerView, s4.d1 d1Var) {
         super.a(recyclerView, d1Var);
-        View view = d1Var.f47656a;
+        View view = d1Var.f47658a;
         view.setPressed(false);
         view.setBackground(null);
         view.setTag(R.id.dragging, null);
@@ -76,7 +76,7 @@ public final class z00 extends s4.w {
             int i15 = w00Var.f32498a;
             org.telegram.ui.sw swVar = (org.telegram.ui.sw) u00Var;
             while (true) {
-                org.telegram.ui.sy[] syVarArr = swVar.f41778b.f42172e0;
+                org.telegram.ui.sy[] syVarArr = swVar.f41780b.f42174e0;
                 if (i10 >= syVarArr.length) {
                     break;
                 }
@@ -121,15 +121,15 @@ public final class z00 extends s4.w {
         if (i10 != 0) {
             a10 a10Var = this.f33408e;
             a10Var.F.I0(false);
-            d1Var.f47656a.setPressed(true);
-            d1Var.f47656a.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(a10Var.f24501b0, a10Var.f24498a));
+            d1Var.f47658a.setPressed(true);
+            d1Var.f47658a.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(a10Var.f24501b0, a10Var.f24498a));
         } else {
             nq nqVar = this.d;
             AndroidUtilities.cancelRunOnUIThread(nqVar);
             AndroidUtilities.runOnUIThread(nqVar, 320L);
         }
         if (d1Var != null) {
-            View view = d1Var.f47656a;
+            View view = d1Var.f47658a;
             int i11 = R.id.dragging;
             if (i10 == 2) {
                 bool = Boolean.TRUE;

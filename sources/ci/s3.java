@@ -103,7 +103,7 @@ public final class s3 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new ai.t4((ih1) obj, tL_error, tLObject, this.f5939b, 29));
                 return;
             default:
-                int[][] iArr = WallpapersListActivity.f35759k0;
+                int[][] iArr = WallpapersListActivity.f35761k0;
                 AndroidUtilities.runOnUIThread(new ha0((WallpapersListActivity) obj, tLObject, z10, 12));
                 return;
         }

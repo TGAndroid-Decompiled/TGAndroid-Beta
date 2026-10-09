@@ -470,7 +470,7 @@ public final class u extends FrameLayout implements o0 {
         this.f32251a.d.release();
         p0 p0Var = this.f32269n0;
         if (p0Var != null) {
-            this.G.f37867t2.add(p0Var);
+            this.G.f37869t2.add(p0Var);
             this.f32269n0.b();
             p0 p0Var2 = this.f32269n0;
             p0Var2.f32152c = null;

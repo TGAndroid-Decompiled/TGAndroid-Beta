@@ -5,40 +5,40 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.MessagesController;
 public final class v60 implements View.OnKeyListener {
-    public final int f42659a;
-    public boolean f42660b;
-    public final org.telegram.ui.ActionBar.n2 f42661c;
+    public final int f42661a;
+    public boolean f42662b;
+    public final org.telegram.ui.ActionBar.n2 f42663c;
 
     public v60(int i10, org.telegram.ui.ActionBar.n2 n2Var) {
-        this.f42659a = i10;
-        this.f42661c = n2Var;
+        this.f42661a = i10;
+        this.f42663c = n2Var;
     }
 
     @Override
     public final boolean onKey(View view, int i10, KeyEvent keyEvent) {
-        switch (this.f42659a) {
+        switch (this.f42661a) {
             case 0:
-                c70 c70Var = (c70) this.f42661c;
+                c70 c70Var = (c70) this.f42663c;
                 if (i10 != 67) {
                     return false;
                 }
                 boolean z10 = true;
                 if (keyEvent.getAction() == 0) {
-                    if (c70Var.f36549f.f30614r.length() != 0) {
+                    if (c70Var.f36551f.f30614r.length() != 0) {
                         z10 = false;
                     }
-                    this.f42660b = z10;
+                    this.f42662b = z10;
                     return false;
-                } else if (keyEvent.getAction() != 1 || !this.f42660b || c70Var.f36541a0.isEmpty()) {
+                } else if (keyEvent.getAction() != 1 || !this.f42662b || c70Var.f36543a0.isEmpty()) {
                     return false;
                 } else {
-                    c70Var.h.c((org.telegram.ui.Components.d40) hg.c.g(1, c70Var.f36541a0));
+                    c70Var.h.c((org.telegram.ui.Components.d40) hg.c.g(1, c70Var.f36543a0));
                     c70Var.s0();
                     c70Var.k0();
                     return true;
                 }
             default:
-                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) this.f42661c;
+                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) this.f42663c;
                 ArrayList arrayList = usersSelectActivity.O;
                 if (i10 != 67) {
                     return false;
@@ -48,9 +48,9 @@ public final class v60 implements View.OnKeyListener {
                     if (usersSelectActivity.f34594c.length() != 0) {
                         z11 = false;
                     }
-                    this.f42660b = z11;
+                    this.f42662b = z11;
                     return false;
-                } else if (keyEvent.getAction() != 1 || !this.f42660b || arrayList.isEmpty()) {
+                } else if (keyEvent.getAction() != 1 || !this.f42662b || arrayList.isEmpty()) {
                     return false;
                 } else {
                     org.telegram.ui.Components.d40 d40Var = (org.telegram.ui.Components.d40) hg.c.g(1, arrayList);

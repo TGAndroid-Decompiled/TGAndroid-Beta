@@ -122,23 +122,23 @@ public final class i implements df.a {
         HashMap hashMap = new HashMap();
         ze.b bVar2 = this.h;
         while (bVar2 != null) {
-            ze.b bVar3 = bVar2.f54371e;
+            ze.b bVar3 = bVar2.f54373e;
             if (bVar3 == bVar) {
                 break;
             }
             bVar2 = bVar3;
         }
         while (bVar2 != null) {
-            s sVar = bVar2.f54368a;
-            char c10 = bVar2.f54369b;
+            s sVar = bVar2.f54370a;
+            char c10 = bVar2.f54371b;
             ff.a aVar = (ff.a) this.d.get(Character.valueOf(c10));
             if (bVar2.d && aVar != null) {
                 char e7 = aVar.e();
-                ze.b bVar4 = bVar2.f54371e;
+                ze.b bVar4 = bVar2.f54373e;
                 int i10 = 0;
                 boolean z11 = false;
                 while (bVar4 != null && bVar4 != bVar && bVar4 != hashMap.get(Character.valueOf(c10))) {
-                    if (bVar4.f54370c && bVar4.f54369b == e7) {
+                    if (bVar4.f54372c && bVar4.f54371b == e7) {
                         i10 = aVar.a(bVar4, bVar2);
                         z11 = true;
                         if (i10 > 0) {
@@ -146,27 +146,27 @@ public final class i implements df.a {
                             break;
                         }
                     }
-                    bVar4 = bVar4.f54371e;
+                    bVar4 = bVar4.f54373e;
                 }
                 z10 = z11;
                 z11 = false;
                 if (!z11) {
                     if (!z10) {
-                        hashMap.put(Character.valueOf(c10), bVar2.f54371e);
-                        if (!bVar2.f54370c) {
+                        hashMap.put(Character.valueOf(c10), bVar2.f54373e);
+                        if (!bVar2.f54372c) {
                             f(bVar2);
                         }
                     }
-                    bVar2 = bVar2.f54372f;
+                    bVar2 = bVar2.f54374f;
                 } else {
-                    s sVar2 = bVar4.f54368a;
-                    bVar4.f54373g -= i10;
-                    bVar2.f54373g -= i10;
+                    s sVar2 = bVar4.f54370a;
+                    bVar4.f54375g -= i10;
+                    bVar2.f54375g -= i10;
                     sVar2.f4657g = e2.i(i10, 0, sVar2.f4657g);
                     sVar.f4657g = e2.i(i10, 0, sVar.f4657g);
-                    ze.b bVar5 = bVar2.f54371e;
+                    ze.b bVar5 = bVar2.f54373e;
                     while (bVar5 != null && bVar5 != bVar4) {
-                        ze.b bVar6 = bVar5.f54371e;
+                        ze.b bVar6 = bVar5.f54373e;
                         f(bVar5);
                         bVar5 = bVar6;
                     }
@@ -174,19 +174,19 @@ public final class i implements df.a {
                         c7.b(pVar, (p) sVar.f4654e);
                     }
                     aVar.b(sVar2, sVar, i10);
-                    if (bVar4.f54373g == 0) {
-                        bVar4.f54368a.g();
+                    if (bVar4.f54375g == 0) {
+                        bVar4.f54370a.g();
                         f(bVar4);
                     }
-                    if (bVar2.f54373g == 0) {
-                        ze.b bVar7 = bVar2.f54372f;
+                    if (bVar2.f54375g == 0) {
+                        ze.b bVar7 = bVar2.f54374f;
                         sVar.g();
                         f(bVar2);
                         bVar2 = bVar7;
                     }
                 }
             } else {
-                bVar2 = bVar2.f54372f;
+                bVar2 = bVar2.f54374f;
             }
         }
         while (true) {
@@ -200,15 +200,15 @@ public final class i implements df.a {
     }
 
     public final void f(ze.b bVar) {
-        ze.b bVar2 = bVar.f54371e;
+        ze.b bVar2 = bVar.f54373e;
         if (bVar2 != null) {
-            bVar2.f54372f = bVar.f54372f;
+            bVar2.f54374f = bVar.f54374f;
         }
-        ze.b bVar3 = bVar.f54372f;
+        ze.b bVar3 = bVar.f54374f;
         if (bVar3 == null) {
             this.h = bVar2;
         } else {
-            bVar3.f54371e = bVar2;
+            bVar3.f54373e = bVar2;
         }
     }
 }

@@ -11,30 +11,30 @@ import org.telegram.messenger.MessagesController;
 public class gp0 extends View {
     public boolean E;
     public boolean F;
-    public int f38065a;
-    public final org.telegram.ui.ActionBar.e6 f38066b;
-    public float f38067c;
+    public int f38067a;
+    public final org.telegram.ui.ActionBar.e6 f38068b;
+    public float f38069c;
     public boolean d;
-    public int f38068e;
-    public int f38069f;
+    public int f38070e;
+    public int f38071f;
     public final org.telegram.ui.Components.j5 h;
-    public final org.telegram.ui.Components.j5 f38070n;
-    public int f38071r;
-    public int f38072s;
+    public final org.telegram.ui.Components.j5 f38072n;
+    public int f38073r;
+    public int f38074s;
     public int v;
-    public int f38073w;
-    public RadialGradient f38074x;
-    public final Paint f38075y;
+    public int f38075w;
+    public RadialGradient f38076x;
+    public final Paint f38077y;
 
     public gp0(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
-        this.f38067c = 0.0f;
+        this.f38069c = 0.0f;
         org.telegram.ui.Components.hs hsVar = org.telegram.ui.Components.hs.h;
         this.h = new org.telegram.ui.Components.j5(this, 350L, hsVar);
-        this.f38070n = new org.telegram.ui.Components.j5(this, 350L, hsVar);
-        this.f38075y = new Paint(1);
-        this.f38066b = e6Var;
-        this.f38065a = org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21075s8, e6Var);
+        this.f38072n = new org.telegram.ui.Components.j5(this, 350L, hsVar);
+        this.f38077y = new Paint(1);
+        this.f38068b = e6Var;
+        this.f38067a = org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21075s8, e6Var);
         b(-1, -1, false);
     }
 
@@ -50,24 +50,24 @@ public class gp0 extends View {
     public final void c(MessagesController.PeerColor peerColor, boolean z10) {
         boolean q6;
         this.d = false;
-        org.telegram.ui.ActionBar.e6 e6Var = this.f38066b;
+        org.telegram.ui.ActionBar.e6 e6Var = this.f38068b;
         if (peerColor == null) {
             this.d = true;
             int w02 = org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21075s8, e6Var);
-            this.f38069f = w02;
-            this.f38068e = w02;
+            this.f38071f = w02;
+            this.f38070e = w02;
         } else {
             if (e6Var != null) {
                 q6 = e6Var.a();
             } else {
                 q6 = org.telegram.ui.ActionBar.i6.I.q();
             }
-            this.f38068e = peerColor.getBgColor1(q6);
-            this.f38069f = peerColor.getBgColor2(q6);
+            this.f38070e = peerColor.getBgColor1(q6);
+            this.f38071f = peerColor.getBgColor2(q6);
         }
         if (!z10) {
-            this.h.a(this.f38068e, true);
-            this.f38070n.a(this.f38069f, true);
+            this.h.a(this.f38070e, true);
+            this.f38072n.a(this.f38071f, true);
         }
         invalidate();
     }
@@ -76,32 +76,32 @@ public class gp0 extends View {
     public final void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
         int i10;
-        int a2 = this.h.a(this.f38068e, false);
-        int a10 = this.f38070n.a(this.f38069f, false);
-        RadialGradient radialGradient = this.f38074x;
-        Paint paint = this.f38075y;
-        if (radialGradient == null || this.f38071r != a2 || this.f38072s != a10 || this.v != getWidth() || this.f38073w != getHeight()) {
+        int a2 = this.h.a(this.f38070e, false);
+        int a10 = this.f38072n.a(this.f38071f, false);
+        RadialGradient radialGradient = this.f38076x;
+        Paint paint = this.f38077y;
+        if (radialGradient == null || this.f38073r != a2 || this.f38074s != a10 || this.v != getWidth() || this.f38075w != getHeight()) {
             this.v = getWidth();
-            this.f38073w = getHeight();
+            this.f38075w = getHeight();
             float f7 = this.v;
-            float f10 = this.f38073w;
-            this.f38072s = a10;
-            this.f38071r = a2;
+            float f10 = this.f38075w;
+            this.f38074s = a10;
+            this.f38073r = a2;
             RadialGradient radialGradient2 = new RadialGradient(f7 / 2.0f, f10 * 0.4f, AndroidUtilities.distance(0.0f, 0.0f, f7, f10) * 0.75f, new int[]{a10, a2}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-            this.f38074x = radialGradient2;
+            this.f38076x = radialGradient2;
             paint.setShader(radialGradient2);
             a();
         }
-        if (this.f38067c < 1.0f && !this.E) {
+        if (this.f38069c < 1.0f && !this.E) {
             canvas2 = canvas;
-            canvas2.drawColor(this.f38065a);
+            canvas2.drawColor(this.f38067a);
         } else {
             canvas2 = canvas;
         }
         if (this.E) {
             i10 = 255;
         } else {
-            i10 = (int) (this.f38067c * 255.0f);
+            i10 = (int) (this.f38069c * 255.0f);
         }
         paint.setAlpha(i10);
         canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint);
@@ -110,25 +110,25 @@ public class gp0 extends View {
     public int getActionBarButtonColor() {
         int i10;
         int i11 = org.telegram.ui.ActionBar.i6.f21130v8;
-        org.telegram.ui.ActionBar.e6 e6Var = this.f38066b;
+        org.telegram.ui.ActionBar.e6 e6Var = this.f38068b;
         int w02 = org.telegram.ui.ActionBar.i6.w0(i11, e6Var);
         if (this.d) {
             i10 = org.telegram.ui.ActionBar.i6.w0(i11, e6Var);
         } else {
             i10 = -1;
         }
-        return i0.a.d(this.f38067c, w02, i10);
+        return i0.a.d(this.f38069c, w02, i10);
     }
 
     public int getColor() {
-        return i0.a.d(this.f38067c, org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21075s8, this.f38066b), i0.a.d(0.75f, this.h.f27600c, this.f38070n.f27600c));
+        return i0.a.d(this.f38069c, org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21075s8, this.f38068b), i0.a.d(0.75f, this.h.f27600c, this.f38072n.f27600c));
     }
 
     public int getTabsViewBackgroundColor() {
         int b10;
         int b11;
         int i10 = org.telegram.ui.ActionBar.i6.f21075s8;
-        org.telegram.ui.ActionBar.e6 e6Var = this.f38066b;
+        org.telegram.ui.ActionBar.e6 e6Var = this.f38068b;
         if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.i6.w0(i10, e6Var)) > 0.721f) {
             b10 = org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21130v8, e6Var);
         } else {
@@ -136,13 +136,13 @@ public class gp0 extends View {
         }
         org.telegram.ui.Components.j5 j5Var = this.h;
         int i11 = j5Var.f27600c;
-        org.telegram.ui.Components.j5 j5Var2 = this.f38070n;
+        org.telegram.ui.Components.j5 j5Var2 = this.f38072n;
         if (AndroidUtilities.computePerceivedBrightness(i0.a.d(0.75f, i11, j5Var2.f27600c)) > 0.721f) {
             b11 = org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21128v6, e6Var);
         } else {
             b11 = org.telegram.ui.ActionBar.i6.b(0.08f, -0.08f, i0.a.d(0.75f, j5Var.f27600c, j5Var2.f27600c));
         }
-        return i0.a.d(this.f38067c, b10, b11);
+        return i0.a.d(this.f38069c, b10, b11);
     }
 
     @Override
@@ -154,8 +154,8 @@ public class gp0 extends View {
     }
 
     public void setProgressToGradient(float f7) {
-        if (Math.abs(this.f38067c - f7) > 0.001f) {
-            this.f38067c = f7;
+        if (Math.abs(this.f38069c - f7) > 0.001f) {
+            this.f38069c = f7;
             a();
             invalidate();
         }

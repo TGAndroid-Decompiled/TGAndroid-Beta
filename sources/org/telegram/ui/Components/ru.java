@@ -541,8 +541,8 @@ public class ru extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
                 break;
             }
             s0.c cVar = (s0.c) d.get(i10);
-            if (((AccessibilityNodeInfo.AccessibilityAction) cVar.f47582a).getId() == 268435456) {
-                dVar.f47585a.removeAction((AccessibilityNodeInfo.AccessibilityAction) cVar.f47582a);
+            if (((AccessibilityNodeInfo.AccessibilityAction) cVar.f47584a).getId() == 268435456) {
+                dVar.f47587a.removeAction((AccessibilityNodeInfo.AccessibilityAction) cVar.f47584a);
                 break;
             }
             i10++;

@@ -17,7 +17,7 @@ public final class ro implements p8 {
         if (znVar != null) {
             znVar.getMessagesController().setDialogHistoryTTL(znVar.a(), i10);
             TLRPC.ChatFull chatFull = znVar.Z7;
-            TLRPC.UserFull userFull = znVar.f44706a8;
+            TLRPC.UserFull userFull = znVar.f44708a8;
             if (userFull != null || chatFull != null) {
                 znVar.T7();
                 UndoView undoView = znVar.y3;

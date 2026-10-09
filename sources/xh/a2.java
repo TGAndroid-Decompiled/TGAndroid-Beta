@@ -11,17 +11,17 @@ import org.telegram.ui.Components.j5;
 import org.telegram.ui.Components.q6;
 import org.telegram.ui.Components.ru;
 public final class a2 extends ru {
-    public final j5 f51163c;
+    public final j5 f51165c;
     public int d;
-    public final q6 f51164e;
-    public final s2 f51165f;
+    public final q6 f51166e;
+    public final s2 f51167f;
 
     public a2(s2 s2Var, Context context, e6 e6Var) {
         super(context, e6Var);
-        this.f51165f = s2Var;
-        this.f51163c = new j5(this);
+        this.f51167f = s2Var;
+        this.f51165c = new j5(this);
         q6 q6Var = new q6(false, true, true);
-        this.f51164e = q6Var;
+        this.f51166e = q6Var;
         q6Var.n(0.2f, 160L, hs.h);
         q6Var.w(AndroidUtilities.dp(15.33f));
         q6Var.setCallback(this);
@@ -37,8 +37,8 @@ public final class a2 extends ru {
         } else {
             i10 = i6.P5;
         }
-        int a2 = this.f51163c.a(i6.w0(i10, this.f51165f.f51513f), false);
-        q6 q6Var = this.f51164e;
+        int a2 = this.f51165c.a(i6.w0(i10, this.f51167f.f51515f), false);
+        q6 q6Var = this.f51166e;
         q6Var.u(a2);
         q6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
         q6Var.draw(canvas);
@@ -47,7 +47,7 @@ public final class a2 extends ru {
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         super.onTextChanged(charSequence, i10, i11, i12);
-        q6 q6Var = this.f51164e;
+        q6 q6Var = this.f51166e;
         if (q6Var != null) {
             this.d = 12 - charSequence.length();
             q6Var.a();
@@ -61,7 +61,7 @@ public final class a2 extends ru {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f51164e && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f51166e && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

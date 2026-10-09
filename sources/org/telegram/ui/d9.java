@@ -16,7 +16,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class d9 extends org.telegram.ui.Components.o61 {
-    public static final int f36903a = 0;
+    public static final int f36905a = 0;
 
     static {
         org.telegram.ui.Components.o61.setup(new org.telegram.ui.Components.o61());
@@ -36,13 +36,13 @@ public final class d9 extends org.telegram.ui.Components.o61 {
         f9 f9Var = (f9) p61Var.G;
         e9 e9Var = (e9) view;
         View.OnClickListener onClickListener = p61Var.D;
-        int i12 = e9Var.f37196a;
-        org.telegram.ui.Components.m9 m9Var = e9Var.f37197b;
+        int i12 = e9Var.f37198a;
+        org.telegram.ui.Components.m9 m9Var = e9Var.f37199b;
         org.telegram.ui.Cells.i6 i6Var = e9Var.d;
-        ImageView imageView = e9Var.f37198c;
-        boolean z13 = f9Var.f37487e;
-        ArrayList arrayList = f9Var.f37486c;
-        ArrayList arrayList2 = f9Var.f37485b;
+        ImageView imageView = e9Var.f37200c;
+        boolean z13 = f9Var.f37489e;
+        ArrayList arrayList = f9Var.f37488c;
+        ArrayList arrayList2 = f9Var.f37487b;
         if (z13) {
             i10 = R.drawable.menu_videocall;
         } else {
@@ -95,7 +95,7 @@ public final class d9 extends org.telegram.ui.Components.o61 {
             mutate4.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.A6, false), PorterDuff.Mode.MULTIPLY));
             spannableString.setSpan(new ImageSpan(mutate4, 0), str.length(), str.length() + 1, 33);
         }
-        if (f9Var.f37484a != 0) {
+        if (f9Var.f37486a != 0) {
             StringBuilder sb2 = new StringBuilder();
             for (int i14 = 0; i14 < Math.min(3, arrayList2.size()); i14++) {
                 if (i14 > 0) {
@@ -146,7 +146,7 @@ public final class d9 extends org.telegram.ui.Components.o61 {
         imageView.setTag(f9Var);
         imageView.setOnClickListener(onClickListener);
         boolean z15 = p61Var.f29728e;
-        org.telegram.ui.Components.dq dqVar = e9Var.f37199e;
+        org.telegram.ui.Components.dq dqVar = e9Var.f37201e;
         if (dqVar == null) {
             return;
         }

@@ -502,20 +502,20 @@ public class ContactsActivity extends org.telegram.ui.ActionBar.n2 implements me
             this.f33699e0.setColorFilter(new PorterDuffColorFilter(getThemedColor(org.telegram.ui.ActionBar.i6.f21183y8), PorterDuff.Mode.MULTIPLY));
             this.f33699e0.setBackground(org.telegram.ui.ActionBar.i6.g0(getThemedColor(org.telegram.ui.ActionBar.i6.f21201z8), 1, -1));
             this.f33699e0.setOnClickListener(new View.OnClickListener(this) {
-                public final ContactsActivity f42545b;
+                public final ContactsActivity f42547b;
 
                 {
-                    this.f42545b = this;
+                    this.f42547b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            this.f42545b.o0();
+                            this.f42547b.o0();
                             return;
                         default:
-                            ContactsActivity.Y(this.f42545b);
+                            ContactsActivity.Y(this.f42547b);
                             return;
                     }
                 }
@@ -600,7 +600,7 @@ public class ContactsActivity extends org.telegram.ui.ActionBar.n2 implements me
         s4.j jVar = new s4.j();
         jVar.C = false;
         jVar.n(150L);
-        jVar.f47696m = false;
+        jVar.f47698m = false;
         this.f33700f.setItemAnimator(jVar);
         this.f33700f.setSectionsType(1);
         this.f33700f.setVerticalScrollBarEnabled(false);
@@ -631,20 +631,20 @@ public class ContactsActivity extends org.telegram.ui.ActionBar.n2 implements me
             this.f33720w = p20Var;
             this.f33724y.addView(p20Var, org.telegram.ui.Components.p20.b());
             this.f33720w.setOnClickListener(new View.OnClickListener(this) {
-                public final ContactsActivity f42545b;
+                public final ContactsActivity f42547b;
 
                 {
-                    this.f42545b = this;
+                    this.f42547b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            this.f42545b.o0();
+                            this.f42547b.o0();
                             return;
                         default:
-                            ContactsActivity.Y(this.f42545b);
+                            ContactsActivity.Y(this.f42547b);
                             return;
                     }
                 }
@@ -674,7 +674,7 @@ public class ContactsActivity extends org.telegram.ui.ActionBar.n2 implements me
         }
         View view = this.fragmentView;
         ts tsVar = new ts(this);
-        WeakHashMap weakHashMap = r0.i0.f46764a;
+        WeakHashMap weakHashMap = r0.i0.f46766a;
         r0.a0.i(view, tsVar);
         return this.fragmentView;
     }
@@ -851,7 +851,7 @@ public class ContactsActivity extends org.telegram.ui.ActionBar.n2 implements me
 
     @Override
     public final void j(r0.k1 k1Var) {
-        this.f33714r0 = k1Var.f46775a.f(8).d;
+        this.f33714r0 = k1Var.f46777a.f(8).d;
         h0();
     }
 

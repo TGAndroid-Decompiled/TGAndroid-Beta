@@ -9,21 +9,21 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.SaveToGallerySettingsHelper;
 import org.telegram.tgnet.TLRPC;
 public final class p41 implements View.OnClickListener {
-    public final int f40665a;
-    public final Object f40666b;
+    public final int f40667a;
+    public final Object f40668b;
 
     public p41(Object obj, int i10) {
-        this.f40665a = i10;
-        this.f40666b = obj;
+        this.f40667a = i10;
+        this.f40668b = obj;
     }
 
     @Override
     public final void onClick(View view) {
         org.telegram.ui.Cells.a2 a2Var;
         float f7;
-        switch (this.f40665a) {
+        switch (this.f40667a) {
             case 0:
-                SaveToGallerySettingsActivity saveToGallerySettingsActivity = (SaveToGallerySettingsActivity) this.f40666b;
+                SaveToGallerySettingsActivity saveToGallerySettingsActivity = (SaveToGallerySettingsActivity) this.f40668b;
                 if (saveToGallerySettingsActivity.d) {
                     LongSparseArray<SaveToGallerySettingsHelper.DialogException> saveGalleryExceptions = saveToGallerySettingsActivity.getUserConfig().getSaveGalleryExceptions(saveToGallerySettingsActivity.f34403a);
                     SaveToGallerySettingsHelper.DialogException dialogException = saveToGallerySettingsActivity.f34405c;
@@ -33,10 +33,10 @@ public final class p41 implements View.OnClickListener {
                 saveToGallerySettingsActivity.finishFragment();
                 return;
             case 1:
-                ((u41) this.f40666b).dismiss();
+                ((u41) this.f40668b).dismiss();
                 return;
             case 2:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f40666b;
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f40668b;
                 MessageObject messageObject = secretMediaViewer.f34431h0;
                 if (messageObject != null) {
                     TLRPC.Message message = messageObject.messageOwner;
@@ -54,19 +54,19 @@ public final class p41 implements View.OnClickListener {
                 }
                 return;
             case 3:
-                u71 u71Var = (u71) this.f40666b;
-                if (u71Var.f42350a0 instanceof TLRPC.User) {
-                    ci.d dVar = u71Var.f42357h0;
+                u71 u71Var = (u71) this.f40668b;
+                if (u71Var.f42352a0 instanceof TLRPC.User) {
+                    ci.d dVar = u71Var.f42359h0;
                     if (!dVar.N) {
                         dVar.setLoading(true);
-                        u71Var.U((TLRPC.User) u71Var.f42350a0, null, null);
+                        u71Var.U((TLRPC.User) u71Var.f42352a0, null, null);
                         return;
                     }
                     return;
                 }
                 return;
             case 4:
-                SessionsActivity sessionsActivity = ((v81) this.f40666b).d;
+                SessionsActivity sessionsActivity = ((v81) this.f40668b).d;
                 if (sessionsActivity.getParentActivity() != null) {
                     if (sessionsActivity.getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
                         sessionsActivity.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 34);
@@ -77,15 +77,15 @@ public final class p41 implements View.OnClickListener {
                 }
                 return;
             case 5:
-                ((me1) this.f40666b).c(true);
+                ((me1) this.f40668b).c(true);
                 return;
             case 6:
-                ((me1) ((iw0) this.f40666b).f38772c).c(true);
+                ((me1) ((iw0) this.f40668b).f38774c).c(true);
                 return;
             case 7:
-                ue1 ue1Var = (ue1) this.f40666b;
-                ArrayList arrayList = ue1Var.f42414f;
-                HashSet hashSet = ue1Var.f42418w;
+                ue1 ue1Var = (ue1) this.f40668b;
+                ArrayList arrayList = ue1Var.f42416f;
+                HashSet hashSet = ue1Var.f42420w;
                 if (!hashSet.isEmpty()) {
                     TLRPC.User user = ue1Var.getMessagesController().getUser(Long.valueOf(ue1Var.getUserConfig().getClientUserId()));
                     ArrayList arrayList2 = new ArrayList();
@@ -104,11 +104,11 @@ public final class p41 implements View.OnClickListener {
                 }
                 return;
             default:
-                oj1 oj1Var = (oj1) this.f40666b;
-                oj1Var.f40544a.c(!a2Var.b(), true);
-                oj1Var.f40546c.setEnabled(oj1Var.f40544a.b());
-                ViewPropertyAnimator animate = oj1Var.f40546c.animate();
-                if (oj1Var.f40544a.b()) {
+                oj1 oj1Var = (oj1) this.f40668b;
+                oj1Var.f40546a.c(!a2Var.b(), true);
+                oj1Var.f40548c.setEnabled(oj1Var.f40546a.b());
+                ViewPropertyAnimator animate = oj1Var.f40548c.animate();
+                if (oj1Var.f40546a.b()) {
                     f7 = 1.0f;
                 } else {
                     f7 = 0.5f;

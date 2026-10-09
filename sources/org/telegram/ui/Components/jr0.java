@@ -26,7 +26,7 @@ public final class jr0 extends pm0 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47660f != 1) {
+        if (d1Var.f47662f != 1) {
             return true;
         }
         return false;
@@ -69,8 +69,8 @@ public final class jr0 extends pm0 {
         boolean z10;
         long j3;
         int dp;
-        if (d1Var.f47660f == 0) {
-            org.telegram.ui.Cells.h7 h7Var = (org.telegram.ui.Cells.h7) d1Var.f47656a;
+        if (d1Var.f47662f == 0) {
+            org.telegram.ui.Cells.h7 h7Var = (org.telegram.ui.Cells.h7) d1Var.f47658a;
             if (i10 == 1 && this.d) {
                 h7Var.setAsNewBotForumTopic(this.f27771e);
             } else if (this.f27772f != null) {

@@ -35,7 +35,7 @@ public final class cb extends pm0 {
             case 0:
                 return ((pm0) this.f25319e).D(d1Var);
             default:
-                if (d1Var.f47660f == 0) {
+                if (d1Var.f47662f == 0) {
                     return true;
                 }
                 return false;
@@ -89,7 +89,7 @@ public final class cb extends pm0 {
                 }
                 return;
             default:
-                org.telegram.ui.Cells.cb cbVar = (org.telegram.ui.Cells.cb) d1Var.f47656a;
+                org.telegram.ui.Cells.cb cbVar = (org.telegram.ui.Cells.cb) d1Var.f47658a;
                 cbVar.d(1, false, false);
                 cbVar.setSize(((nj) this.f25320f).f29164r);
                 cbVar.e(1, ((ArrayList) this.f25319e).get(i10), null, 0);

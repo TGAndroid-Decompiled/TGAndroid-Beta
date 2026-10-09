@@ -222,7 +222,7 @@ public final class x7 extends FrameLayout {
                 }
                 return drawChild;
             case 11:
-                qg.s2 s2Var = ((qg.u2) this.d).f46574f;
+                qg.s2 s2Var = ((qg.u2) this.d).f46576f;
                 if (view == s2Var) {
                     canvas.save();
                     canvas.translate(((org.telegram.ui.Components.g6) this.f1911b).d(view.getX(), false), ((org.telegram.ui.Components.g6) this.f1912c).d(view.getY(), false));
@@ -233,7 +233,7 @@ public final class x7 extends FrameLayout {
                 return super.drawChild(canvas, view, j3);
             case 13:
                 Paint paint = (Paint) this.f1911b;
-                if (((yh.j7) this.d).f52747e > 1) {
+                if (((yh.j7) this.d).f52749e > 1) {
                     paint.setColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20797d6, (org.telegram.ui.ActionBar.e6) this.f1912c));
                     RectF rectF = AndroidUtilities.rectTmp;
                     rectF.set(view.getX(), view.getY(), view.getX() + view.getWidth(), view.getY() + view.getHeight());
@@ -280,7 +280,7 @@ public final class x7 extends FrameLayout {
                 RectF rectF = (RectF) this.f1912c;
                 rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 path.addRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), Path.Direction.CW);
-                qg.s2 s2Var = ((qg.u2) this.d).f46574f;
+                qg.s2 s2Var = ((qg.u2) this.d).f46576f;
                 if (s2Var != null) {
                     s2Var.setMaxWidth(getMeasuredWidth() - AndroidUtilities.dp(32.0f));
                     return;

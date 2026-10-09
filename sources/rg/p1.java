@@ -12,7 +12,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.hs;
 import org.telegram.ui.Components.mh0;
 import org.telegram.ui.Components.qm0;
-import org.telegram.ui.Wallet.m5;
+import org.telegram.ui.Wallet.n5;
 import org.telegram.ui.mb1;
 public abstract class p1 extends qm0 implements NotificationCenter.NotificationCenterDelegate, l0 {
     public final ArrayList V2;
@@ -20,18 +20,18 @@ public abstract class p1 extends qm0 implements NotificationCenter.NotificationC
     public boolean X2;
     public boolean Y2;
     public final int Z2;
-    public boolean f47388a3;
-    public boolean f47389b3;
-    public final m5 f47390c3;
-    public final hs f47391d3;
-    public final ArrayList f47392e3;
-    public final mb1 f47393f3;
-    public View f47394g3;
-    public boolean f47395h3;
-    public int f47396i3;
+    public boolean f47390a3;
+    public boolean f47391b3;
+    public final n5 f47392c3;
+    public final hs f47393d3;
+    public final ArrayList f47394e3;
+    public final mb1 f47395f3;
+    public View f47396g3;
+    public boolean f47397h3;
+    public int f47398i3;
     public int j3;
-    public boolean f47397k3;
-    public boolean f47398l3;
+    public boolean f47399k3;
+    public boolean f47400l3;
 
     public p1(Context context, int i10) {
         super(context, null);
@@ -40,10 +40,10 @@ public abstract class p1 extends qm0 implements NotificationCenter.NotificationC
         this.X2 = true;
         this.Y2 = true;
         s0 s0Var = (s0) this;
-        this.f47390c3 = new m5(s0Var, 5);
-        this.f47391d3 = new hs(0.0f, 0.5f, 0.5f, 1.0f);
-        this.f47392e3 = new ArrayList();
-        this.f47393f3 = new mb1(8);
+        this.f47392c3 = new n5(s0Var, 5);
+        this.f47393d3 = new hs(0.0f, 0.5f, 0.5f, 1.0f);
+        this.f47394e3 = new ArrayList();
+        this.f47395f3 = new mb1(8);
         this.j3 = -1;
         this.Z2 = i10;
         s4.d0 d0Var = new s4.d0();
@@ -73,8 +73,8 @@ public abstract class p1 extends qm0 implements NotificationCenter.NotificationC
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        if (this.f47397k3) {
-            ArrayList arrayList = this.f47392e3;
+        if (this.f47399k3) {
+            ArrayList arrayList = this.f47394e3;
             arrayList.clear();
             for (int i10 = 0; i10 < getChildCount(); i10++) {
                 o1 o1Var = (o1) getChildAt(i10);
@@ -83,20 +83,20 @@ public abstract class p1 extends qm0 implements NotificationCenter.NotificationC
                     measuredHeight = 2.0f - measuredHeight;
                 }
                 float clamp = Utilities.clamp(measuredHeight, 1.0f, 0.0f);
-                o1Var.f47366a = clamp;
-                o1Var.f47367b.setTranslationX((1.0f - this.f47391d3.getInterpolation(clamp)) * (-getMeasuredWidth()) * 2.0f);
+                o1Var.f47368a = clamp;
+                o1Var.f47369b.setTranslationX((1.0f - this.f47393d3.getInterpolation(clamp)) * (-getMeasuredWidth()) * 2.0f);
                 arrayList.add(o1Var);
             }
-            Collections.sort(arrayList, this.f47393f3);
-            if ((this.Y2 || this.f47395h3) && arrayList.size() > 0 && !this.V2.isEmpty()) {
+            Collections.sort(arrayList, this.f47395f3);
+            if ((this.Y2 || this.f47397h3) && arrayList.size() > 0 && !this.V2.isEmpty()) {
                 View view = (View) hg.c.g(1, arrayList);
-                this.f47394g3 = view;
+                this.f47396g3 = view;
                 x1(view, !this.Y2);
                 this.Y2 = false;
-                this.f47395h3 = false;
-            } else if (this.f47394g3 != hg.c.g(1, arrayList)) {
-                this.f47394g3 = (View) hg.c.g(1, arrayList);
-                if (this.f47389b3) {
+                this.f47397h3 = false;
+            } else if (this.f47396g3 != hg.c.g(1, arrayList)) {
+                this.f47396g3 = (View) hg.c.g(1, arrayList);
+                if (this.f47391b3) {
                     try {
                         performHapticFeedback(3);
                     } catch (Exception unused) {
@@ -141,7 +141,7 @@ public abstract class p1 extends qm0 implements NotificationCenter.NotificationC
         if (i14 > 0) {
             s4.d1 K = K(i14);
             if (K != null) {
-                x1(K.f47656a, false);
+                x1(K.f47658a, false);
             }
             this.j3 = -1;
         }
@@ -150,23 +150,23 @@ public abstract class p1 extends qm0 implements NotificationCenter.NotificationC
     @Override
     public final void onMeasure(int i10, int i11) {
         if (View.MeasureSpec.getSize(i11) > View.MeasureSpec.getSize(i10)) {
-            this.f47396i3 = View.MeasureSpec.getSize(i10);
+            this.f47398i3 = View.MeasureSpec.getSize(i10);
         } else {
-            this.f47396i3 = View.MeasureSpec.getSize(i11);
+            this.f47398i3 = View.MeasureSpec.getSize(i11);
         }
         super.onMeasure(i10, i11);
     }
 
     public void setAutoPlayEnabled(boolean z10) {
-        if (this.f47398l3 != z10) {
-            this.f47398l3 = z10;
+        if (this.f47400l3 != z10) {
+            this.f47400l3 = z10;
             if (z10) {
                 y1();
-                this.f47395h3 = true;
+                this.f47397h3 = true;
                 invalidate();
                 return;
             }
-            AndroidUtilities.cancelRunOnUIThread(this.f47390c3);
+            AndroidUtilities.cancelRunOnUIThread(this.f47392c3);
             x1(null, true);
         }
     }
@@ -179,8 +179,8 @@ public abstract class p1 extends qm0 implements NotificationCenter.NotificationC
         } else {
             z10 = false;
         }
-        if (this.f47397k3 != z10) {
-            this.f47397k3 = z10;
+        if (this.f47399k3 != z10) {
+            this.f47399k3 = z10;
             invalidate();
         }
     }
@@ -192,23 +192,23 @@ public abstract class p1 extends qm0 implements NotificationCenter.NotificationC
         } else {
             z11 = false;
         }
-        this.f47388a3 = z11;
+        this.f47390a3 = z11;
         for (int i10 = 0; i10 < getChildCount(); i10++) {
             o1 o1Var = (o1) getChildAt(i10);
             if (o1Var == view) {
                 o1Var.a(true, true, z10);
             } else {
-                o1Var.a(!this.f47388a3, false, z10);
+                o1Var.a(!this.f47390a3, false, z10);
             }
         }
     }
 
     public final void y1() {
-        if (!this.f47398l3) {
+        if (!this.f47400l3) {
             return;
         }
-        m5 m5Var = this.f47390c3;
-        AndroidUtilities.cancelRunOnUIThread(m5Var);
-        AndroidUtilities.runOnUIThread(m5Var, 2700L);
+        n5 n5Var = this.f47392c3;
+        AndroidUtilities.cancelRunOnUIThread(n5Var);
+        AndroidUtilities.runOnUIThread(n5Var, 2700L);
     }
 }

@@ -6,16 +6,16 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import org.telegram.ui.Wallet.y0;
 public final class b0 extends a0 {
-    public final LinkedList f47891b;
-    public final o f47892c;
+    public final LinkedList f47893b;
+    public final o f47894c;
     public boolean d;
-    public y f47893e;
-    public boolean f47894f;
+    public y f47895e;
+    public boolean f47896f;
 
     public b0(u uVar) {
         super("WritingThread", uVar, 2);
-        this.f47891b = new LinkedList();
-        this.f47892c = uVar.f47955u;
+        this.f47893b = new LinkedList();
+        this.f47894c = uVar.f47957u;
     }
 
     @Override
@@ -24,7 +24,7 @@ public final class b0 extends a0 {
             c();
         } catch (Throwable th2) {
             w wVar = new w(39, "An uncaught throwable was detected in the writing thread: " + th2.getMessage(), th2);
-            com.google.firebase.messaging.m mVar = this.f47889a.d;
+            com.google.firebase.messaging.m mVar = this.f47891a.d;
             mVar.d(wVar);
             ArrayList arrayList = (ArrayList) mVar.n();
             int size = arrayList.size();
@@ -44,7 +44,7 @@ public final class b0 extends a0 {
             }
         }
         synchronized (this) {
-            this.f47894f = true;
+            this.f47896f = true;
             notifyAll();
         }
         e();
@@ -52,12 +52,12 @@ public final class b0 extends a0 {
 
     public final void b() {
         try {
-            this.f47889a.f47943i.flush();
+            this.f47891a.f47945i.flush();
             synchronized (this) {
             }
         } catch (IOException e7) {
             w wVar = new w(27, "Flushing frames to the server failed: " + e7.getMessage(), e7);
-            com.google.firebase.messaging.m mVar = this.f47889a.d;
+            com.google.firebase.messaging.m mVar = this.f47891a.d;
             mVar.d(wVar);
             ArrayList arrayList = (ArrayList) mVar.n();
             int size = arrayList.size();
@@ -81,10 +81,10 @@ public final class b0 extends a0 {
 
     public final void c() {
         boolean z10;
-        u uVar = this.f47889a;
-        synchronized (uVar.f47942g) {
-            uVar.f47950p = true;
-            z10 = uVar.f47949o;
+        u uVar = this.f47891a;
+        synchronized (uVar.f47944g) {
+            uVar.f47952p = true;
+            z10 = uVar.f47951o;
         }
         uVar.a();
         if (z10) {
@@ -95,7 +95,7 @@ public final class b0 extends a0 {
             if (j3 != 1) {
                 if (j3 == 3) {
                     try {
-                        this.f47889a.f47943i.flush();
+                        this.f47891a.f47945i.flush();
                     } catch (IOException unused) {
                     }
                 } else if (j3 == 2) {
@@ -117,13 +117,13 @@ public final class b0 extends a0 {
     }
 
     public final void e() {
-        u uVar = this.f47889a;
-        y yVar = this.f47893e;
-        synchronized (uVar.f47942g) {
+        u uVar = this.f47891a;
+        y yVar = this.f47895e;
+        synchronized (uVar.f47944g) {
             try {
-                uVar.f47952r = true;
-                uVar.f47954t = yVar;
-                if (!uVar.f47951q) {
+                uVar.f47954r = true;
+                uVar.f47956t = yVar;
+                if (!uVar.f47953q) {
                     return;
                 }
                 uVar.d();
@@ -148,9 +148,9 @@ public final class b0 extends a0 {
         int i10;
         byte[] bArr;
         byte[] bArr2;
-        o oVar = this.f47892c;
+        o oVar = this.f47894c;
         boolean z10 = true;
-        if (oVar != null && (((i10 = yVar.f47962e) == 1 || i10 == 2) && yVar.f47959a && !yVar.f47960b && (bArr = yVar.f47964g) != null && bArr.length != 0)) {
+        if (oVar != null && (((i10 = yVar.f47964e) == 1 || i10 == 2) && yVar.f47961a && !yVar.f47962b && (bArr = yVar.f47966g) != null && bArr.length != 0)) {
             try {
                 bArr2 = oVar.b(bArr);
             } catch (w unused) {
@@ -158,10 +158,10 @@ public final class b0 extends a0 {
             }
             if (bArr.length > bArr2.length) {
                 yVar.c(bArr2);
-                yVar.f47960b = true;
+                yVar.f47962b = true;
             }
         }
-        ArrayList arrayList = (ArrayList) this.f47889a.d.n();
+        ArrayList arrayList = (ArrayList) this.f47891a.d.n();
         int size = arrayList.size();
         int i11 = 0;
         int i12 = 0;
@@ -178,8 +178,8 @@ public final class b0 extends a0 {
                 y0Var.getClass();
             }
         }
-        if (this.f47893e != null) {
-            ArrayList arrayList2 = (ArrayList) this.f47889a.d.n();
+        if (this.f47895e != null) {
+            ArrayList arrayList2 = (ArrayList) this.f47891a.d.n();
             int size2 = arrayList2.size();
             while (i11 < size2) {
                 Object obj2 = arrayList2.get(i11);
@@ -196,12 +196,12 @@ public final class b0 extends a0 {
             }
             return;
         }
-        int i13 = yVar.f47962e;
+        int i13 = yVar.f47964e;
         if (i13 == 8) {
-            this.f47893e = yVar;
+            this.f47895e = yVar;
         }
         if (i13 == 8) {
-            q0 q0Var = this.f47889a.f47938b;
+            q0 q0Var = this.f47891a.f47940b;
             synchronized (q0Var) {
                 int i14 = q0Var.f3533a;
                 if (i14 != 4 && i14 != 5) {
@@ -214,12 +214,12 @@ public final class b0 extends a0 {
                 }
             }
             if (z10) {
-                this.f47889a.d.e();
+                this.f47891a.d.e();
             }
         }
         try {
-            this.f47889a.f47943i.a(yVar);
-            ArrayList arrayList3 = (ArrayList) this.f47889a.d.n();
+            this.f47891a.f47945i.a(yVar);
+            ArrayList arrayList3 = (ArrayList) this.f47891a.d.n();
             int size3 = arrayList3.size();
             while (i11 < size3) {
                 Object obj3 = arrayList3.get(i11);
@@ -236,7 +236,7 @@ public final class b0 extends a0 {
             }
         } catch (IOException e7) {
             w wVar = new w(26, "An I/O error occurred when a frame was tried to be sent: " + e7.getMessage(), e7);
-            com.google.firebase.messaging.m mVar = this.f47889a.d;
+            com.google.firebase.messaging.m mVar = this.f47891a.d;
             mVar.d(wVar);
             ArrayList arrayList4 = (ArrayList) mVar.n();
             int size4 = arrayList4.size();
@@ -267,10 +267,10 @@ public final class b0 extends a0 {
                 if (this.d) {
                     return 1;
                 }
-                if (this.f47893e != null) {
+                if (this.f47895e != null) {
                     return 1;
                 }
-                if (this.f47891b.size() == 0) {
+                if (this.f47893b.size() == 0) {
                     try {
                         wait();
                     } catch (InterruptedException unused) {
@@ -279,7 +279,7 @@ public final class b0 extends a0 {
                 if (this.d) {
                     return 1;
                 }
-                if (this.f47891b.size() == 0) {
+                if (this.f47893b.size() == 0) {
                     return 2;
                 }
                 return 0;

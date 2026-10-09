@@ -12,12 +12,12 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class wk0 extends org.telegram.ui.ActionBar.j {
-    public final Context f43699a;
-    public final al0 f43700b;
+    public final Context f43701a;
+    public final al0 f43702b;
 
     public wk0(al0 al0Var, Context context) {
-        this.f43700b = al0Var;
-        this.f43699a = context;
+        this.f43702b = al0Var;
+        this.f43701a = context;
     }
 
     @Override
@@ -25,7 +25,7 @@ public final class wk0 extends org.telegram.ui.ActionBar.j {
         int i11;
         int i12;
         org.telegram.ui.ActionBar.k kVar;
-        al0 al0Var = this.f43700b;
+        al0 al0Var = this.f43702b;
         org.telegram.ui.ActionBar.e6 e6Var = al0Var.h;
         SparseArray sparseArray = al0Var.J;
         if (i10 == -1) {
@@ -50,7 +50,7 @@ public final class wk0 extends org.telegram.ui.ActionBar.j {
             }
         } else if (i10 == 2) {
             int size = sparseArray.size();
-            Context context = this.f43699a;
+            Context context = this.f43701a;
             if (size == 1) {
                 Intent intent = new Intent(context, LaunchActivity.class);
                 intent.setAction("android.intent.action.SEND");
@@ -78,7 +78,7 @@ public final class wk0 extends org.telegram.ui.ActionBar.j {
             }
             al0.W(al0Var);
             al0Var.c0();
-            al0Var.f35955f.l();
+            al0Var.f35957f.l();
         }
     }
 }

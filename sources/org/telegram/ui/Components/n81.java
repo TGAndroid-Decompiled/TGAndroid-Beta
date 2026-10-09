@@ -29,7 +29,7 @@ public final class n81 implements Runnable {
                 s81Var2.f30724e = null;
                 if (s81Var2.f30719b != null) {
                     s81Var2.f30731s = true;
-                    PhotoViewer photoViewer = s81Var2.M.f41169a;
+                    PhotoViewer photoViewer = s81Var2.M.f41171a;
                     if (photoViewer.f34047u3) {
                         photoViewer.b3(true);
                         return;
@@ -43,7 +43,7 @@ public final class n81 implements Runnable {
                 s81Var3.f30724e = null;
                 if (s81Var3.f30719b != null) {
                     s81Var3.f30731s = true;
-                    PhotoViewer photoViewer2 = s81Var3.M.f41169a;
+                    PhotoViewer photoViewer2 = s81Var3.M.f41171a;
                     if (photoViewer2.f34047u3) {
                         photoViewer2.b3(true);
                         return;

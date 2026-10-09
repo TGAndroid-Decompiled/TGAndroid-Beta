@@ -24,8 +24,8 @@ public abstract class g7 extends qm0 implements t9 {
                 return;
             default:
                 zn znVar = (zn) this.W2;
-                iArr[0] = ((int) znVar.f44932s9) - AndroidUtilities.dp(4.0f);
-                iArr[1] = org.telegram.messenger.q.A(3.0f, znVar.f44988x0.getPaddingBottom(), znVar.f44988x0.getMeasuredHeight());
+                iArr[0] = ((int) znVar.f44934s9) - AndroidUtilities.dp(4.0f);
+                iArr[1] = org.telegram.messenger.q.A(3.0f, znVar.f44990x0.getPaddingBottom(), znVar.f44990x0.getMeasuredHeight());
                 return;
         }
     }

@@ -43,8 +43,8 @@ public final class ec extends bc implements NotificationCenter.NotificationCente
     public final void f() {
         if (this.d.getReactionsWindow() != null) {
             this.d.e();
-            if (this.d.getReactionsWindow().f54447a != null) {
-                this.d.getReactionsWindow().f54447a.animate().alpha(0.0f).setDuration(180L).start();
+            if (this.d.getReactionsWindow().f54449a != null) {
+                this.d.getReactionsWindow().f54449a.animate().alpha(0.0f).setDuration(180L).start();
             }
         }
     }

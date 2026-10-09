@@ -104,7 +104,7 @@ public final class w0 extends qm0 {
                 return false;
             case 16:
                 a10 a10Var = (a10) this.W2;
-                if (a10Var.isEnabled() && !((sw) a10Var.J).f41778b.f42200j2) {
+                if (a10Var.isEnabled() && !((sw) a10Var.J).f41780b.f42202j2) {
                     return true;
                 }
                 return false;
@@ -179,7 +179,7 @@ public final class w0 extends qm0 {
                     w00Var = null;
                 }
                 org.telegram.ui.ActionBar.e6 e6Var2 = this.f30216n2;
-                if (w00Var != null && w00Var.f43032l) {
+                if (w00Var != null && w00Var.f43034l) {
                     return Integer.valueOf(org.telegram.ui.ActionBar.i6.m1(0.12f, org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21018p7, e6Var2)));
                 }
                 return Integer.valueOf(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20888i6, e6Var2));
@@ -296,7 +296,7 @@ public final class w0 extends qm0 {
             case 28:
                 if (getAdapter() == ((w10) this.W2).U) {
                     for (int i13 = 0; i13 < getChildCount(); i13++) {
-                        if (T(getChildAt(i13)).f47660f == 1) {
+                        if (T(getChildAt(i13)).f47662f == 1) {
                             canvas.save();
                             canvas.translate(getChildAt(i13).getX(), (getChildAt(i13).getY() - getChildAt(i13).getMeasuredHeight()) + AndroidUtilities.dp(2.0f));
                             getChildAt(i13).draw(canvas);
@@ -395,7 +395,7 @@ public final class w0 extends qm0 {
                 }
                 return super.drawChild(canvas, view, j3);
             case 28:
-                if (getAdapter() == ((w10) this.W2).U && T(view).f47660f == 1) {
+                if (getAdapter() == ((w10) this.W2).U && T(view).f47662f == 1) {
                     return true;
                 }
                 return super.drawChild(canvas, view, j3);
@@ -646,7 +646,7 @@ public final class w0 extends qm0 {
     public void requestLayout() {
         switch (this.V2) {
             case 4:
-                if (!((org.telegram.ui.k1) this.W2).f39059r) {
+                if (!((org.telegram.ui.k1) this.W2).f39061r) {
                     super.requestLayout();
                     return;
                 }

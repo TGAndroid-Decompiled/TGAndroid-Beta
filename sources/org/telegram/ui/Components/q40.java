@@ -30,9 +30,9 @@ public final class q40 implements ValueAnimator.AnimatorUpdateListener {
                 s40Var2.f30632n.setScaleX(AndroidUtilities.lerp(0.95f, 1.0f, floatValue2));
                 s40Var2.f30632n.setScaleY(AndroidUtilities.lerp(0.95f, 1.0f, s40Var2.E));
                 org.telegram.ui.jk jkVar = s40Var2.f30631f;
-                if (jkVar != null && (aoVar = jkVar.f36357a) != null && (w0Var = aoVar.L3) != null) {
+                if (jkVar != null && (aoVar = jkVar.f36359a) != null && (w0Var = aoVar.L3) != null) {
                     w0Var.setScaleX(AndroidUtilities.lerp(1.0f, 0.95f, s40Var2.E));
-                    s40Var2.f30631f.f36357a.L3.setScaleY(AndroidUtilities.lerp(1.0f, 0.95f, s40Var2.E));
+                    s40Var2.f30631f.f36359a.L3.setScaleY(AndroidUtilities.lerp(1.0f, 0.95f, s40Var2.E));
                 }
                 s40Var2.h.setAlpha(s40Var2.E);
                 return;

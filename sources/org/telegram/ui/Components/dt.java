@@ -46,7 +46,7 @@ public final class dt implements Runnable {
                     }
                 }
             case 1:
-                org.telegram.ui.Wallet.z4.t0(this.f25808b, this.f25809c);
+                org.telegram.ui.Wallet.a5.t0(this.f25808b, this.f25809c);
                 return;
             default:
                 new yh.f7(this.f25808b, this.f25809c).show();

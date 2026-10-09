@@ -604,13 +604,13 @@ public final class m9 {
                     for (int i11 = 0; i11 < Math.min(2, storyItem.media_areas.size()); i11++) {
                         if (storyItem.media_areas.get(i11) instanceof TL_stories.TL_mediaAreaSuggestedReaction) {
                             zg.n0 d = zg.n0.d(((TL_stories.TL_mediaAreaSuggestedReaction) storyItem.media_areas.get(i11)).reaction);
-                            if (d.f54615f != null) {
-                                TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(i10).getReactionsMap().get(d.f54615f);
+                            if (d.f54617f != null) {
+                                TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(i10).getReactionsMap().get(d.f54617f);
                                 if (tL_availableReaction != null) {
                                     FileLoader.getInstance(i10).loadFile(tL_availableReaction.select_animation, d, 0, 0);
                                 }
                             } else {
-                                org.telegram.ui.Components.s5 s5Var = new org.telegram.ui.Components.s5(1, i10, d.f54616g);
+                                org.telegram.ui.Components.s5 s5Var = new org.telegram.ui.Components.s5(1, i10, d.f54618g);
                                 s5Var.f30656m = true;
                                 s5Var.v();
                             }
@@ -1074,15 +1074,15 @@ public final class m9 {
             tL_stories_sendReaction.reaction = new TLRPC.TL_reactionEmpty();
             storyItem.flags &= -32769;
             storyItem.sent_reaction = null;
-        } else if (n0Var.f54616g != 0) {
+        } else if (n0Var.f54618g != 0) {
             TLRPC.TL_reactionCustomEmoji tL_reactionCustomEmoji = new TLRPC.TL_reactionCustomEmoji();
-            tL_reactionCustomEmoji.document_id = n0Var.f54616g;
+            tL_reactionCustomEmoji.document_id = n0Var.f54618g;
             tL_stories_sendReaction.reaction = tL_reactionCustomEmoji;
             storyItem.flags |= 32768;
             storyItem.sent_reaction = tL_reactionCustomEmoji;
-        } else if (n0Var.f54615f != null) {
+        } else if (n0Var.f54617f != null) {
             TLRPC.TL_reactionEmoji tL_reactionEmoji = new TLRPC.TL_reactionEmoji();
-            tL_reactionEmoji.emoticon = n0Var.f54615f;
+            tL_reactionEmoji.emoticon = n0Var.f54617f;
             tL_stories_sendReaction.reaction = tL_reactionEmoji;
             storyItem.flags |= 32768;
             storyItem.sent_reaction = tL_reactionEmoji;

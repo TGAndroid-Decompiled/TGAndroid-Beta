@@ -15,8 +15,8 @@ public final class qy0 extends s4.y {
 
     @Override
     public final boolean n(RecyclerView recyclerView, s4.d1 d1Var, s4.d1 d1Var2) {
-        int i10 = d1Var.f47660f;
-        if (i10 != 3 && i10 == d1Var2.f47660f) {
+        int i10 = d1Var.f47662f;
+        if (i10 != 3 && i10 == d1Var2.f47662f) {
             xy0 xy0Var = this.f30303f;
             if (xy0Var.S == null) {
                 return false;
@@ -41,7 +41,7 @@ public final class qy0 extends s4.y {
             this.f30302e = -1;
             xy0Var.f33030f = null;
         } else if (i10 == 2) {
-            xy0Var.f33030f = ((org.telegram.ui.Cells.f8) d1Var.f47656a).getSticker();
+            xy0Var.f33030f = ((org.telegram.ui.Cells.f8) d1Var.f47658a).getSticker();
         }
     }
 

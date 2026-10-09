@@ -49,7 +49,7 @@ public final class mk implements org.telegram.ui.ActionBar.a2, e2.h {
             case 1:
                 ln lnVar = (ln) obj4;
                 TL_account.contentSettings contentsettings = (TL_account.contentSettings) obj;
-                zn znVar = lnVar.f39634a;
+                zn znVar = lnVar.f39636a;
                 org.telegram.ui.pc pcVar = new org.telegram.ui.pc(11, lnVar, (org.telegram.ui.Cells.u1) obj3);
                 if (((boolean[]) obj2)[0]) {
                     if (!z10 && (contentsettings == null || !contentsettings.sensitive_can_change)) {
@@ -78,7 +78,7 @@ public final class mk implements org.telegram.ui.ActionBar.a2, e2.h {
                 int i13 = c2Var.f10563b;
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) c2Var.d;
                 if (i13 == 8) {
-                    int[] iArr = nn0Var.f40291x;
+                    int[] iArr = nn0Var.f40293x;
                     iArr[0] = value;
                     iArr[1] = value2 + 1;
                     iArr[2] = value3;

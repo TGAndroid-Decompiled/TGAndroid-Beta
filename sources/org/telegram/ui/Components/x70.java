@@ -18,7 +18,7 @@ public final class x70 extends pm0 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47660f;
+        int i10 = d1Var.f47662f;
         if (i10 == 3 || i10 == 1) {
             return true;
         }
@@ -74,8 +74,8 @@ public final class x70 extends pm0 {
         boolean z10;
         long j10;
         boolean z11;
-        int i11 = d1Var.f47660f;
-        View view = d1Var.f47656a;
+        int i11 = d1Var.f47662f;
+        View view = d1Var.f47658a;
         if (i11 != 2) {
             if (i11 == 3) {
                 org.telegram.ui.Cells.g4 g4Var = (org.telegram.ui.Cells.g4) view;

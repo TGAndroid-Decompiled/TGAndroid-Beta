@@ -10,13 +10,13 @@ import org.telegram.ui.Components.hs;
 import org.telegram.ui.Components.r6;
 import w7.x5;
 public final class x extends m4 {
-    public final r6 f49636r;
+    public final r6 f49638r;
 
     public x(Context context, e6 e6Var) {
         super(context, e6Var);
         int i10;
         r6 r6Var = new r6(context, true, true, true);
-        this.f49636r = r6Var;
+        this.f49638r = r6Var;
         r6Var.b(0.45f, 240L, hs.h);
         if (LocaleController.isRTL) {
             i10 = 3;

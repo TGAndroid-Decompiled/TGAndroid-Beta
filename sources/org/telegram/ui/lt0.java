@@ -3,19 +3,19 @@ package org.telegram.ui;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class lt0 extends org.telegram.ui.Components.k10 {
-    public final ts0 f39672e;
-    public final PhotoViewer f39673f;
+    public final ts0 f39674e;
+    public final PhotoViewer f39675f;
 
     public lt0(PhotoViewer photoViewer, ts0 ts0Var) {
         super(false);
-        this.f39673f = photoViewer;
-        this.f39672e = ts0Var;
+        this.f39675f = photoViewer;
+        this.f39674e = ts0Var;
     }
 
     @Override
     public final CharSequence d() {
         StringBuilder sb2 = new StringBuilder();
-        PhotoViewer photoViewer = this.f39673f;
+        PhotoViewer photoViewer = this.f39675f;
         int[] iArr = photoViewer.f33974m3;
         sb2.append(LocaleController.formatPluralString("Minutes", iArr[0], new Object[0]));
         sb2.append(' ');
@@ -31,13 +31,13 @@ public final class lt0 extends org.telegram.ui.Components.k10 {
 
     @Override
     public final float k() {
-        return this.f39673f.f34010q3.c();
+        return this.f39675f.f34010q3.c();
     }
 
     @Override
     public final void l(float f7) {
-        this.f39672e.b(f7);
-        PhotoViewer photoViewer = this.f39673f;
+        this.f39674e.b(f7);
+        PhotoViewer photoViewer = this.f39675f;
         photoViewer.f34010q3.h(f7, false);
         photoViewer.f34019r3.invalidate();
     }

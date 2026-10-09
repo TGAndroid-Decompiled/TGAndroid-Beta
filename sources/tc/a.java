@@ -11,16 +11,16 @@ import uc.g;
 import v7.k;
 import w7.y8;
 public final class a extends AsyncTask {
-    public final String f48245a;
-    public final vc.a f48246b;
-    public final ko0 f48247c;
+    public final String f48247a;
+    public final vc.a f48248b;
+    public final ko0 f48249c;
     public final f3 d;
 
     public a(f3 f3Var, String str, vc.a aVar, ko0 ko0Var) {
         this.d = f3Var;
-        this.f48245a = str;
-        this.f48246b = aVar;
-        this.f48247c = ko0Var;
+        this.f48247a = str;
+        this.f48248b = aVar;
+        this.f48249c = ko0Var;
     }
 
     @Override
@@ -28,7 +28,7 @@ public final class a extends AsyncTask {
         Void[] voidArr = (Void[]) objArr;
         f3 f3Var = this.d;
         try {
-            k c10 = wc.b.c(y8.a(this.f48246b), new f2.a(this.f48245a));
+            k c10 = wc.b.c(y8.a(this.f48248b), new f2.a(this.f48247a));
             Object obj = f3Var.f15668b;
             return new b(c10, null);
         } catch (g e7) {
@@ -41,18 +41,18 @@ public final class a extends AsyncTask {
     public final void onPostExecute(Object obj) {
         b bVar = (b) obj;
         Object obj2 = this.d.f15668b;
-        k kVar = bVar.f48248a;
-        ko0 ko0Var = this.f48247c;
+        k kVar = bVar.f48250a;
+        ko0 ko0Var = this.f48249c;
         if (kVar != null) {
-            vo0 vo0Var = ko0Var.f39321a;
+            vo0 vo0Var = ko0Var.f39323a;
             if (vo0Var.Q0) {
                 return;
             }
-            vo0Var.f42947w0 = String.format(Locale.US, "{\"type\":\"%1$s\", \"id\":\"%2$s\"}", (String) kVar.f49245c, (String) kVar.f49244b);
+            vo0Var.f42949w0 = String.format(Locale.US, "{\"type\":\"%1$s\", \"id\":\"%2$s\"}", (String) kVar.f49247c, (String) kVar.f49246b);
             AndroidUtilities.runOnUIThread(new tk0(ko0Var, 9));
             return;
         }
-        Exception exc = bVar.f48249b;
+        Exception exc = bVar.f48251b;
         if (exc != null) {
             ko0Var.a(exc);
         } else {

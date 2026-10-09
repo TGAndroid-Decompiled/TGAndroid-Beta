@@ -542,9 +542,9 @@ public final class d implements m0, bg.a, q, q9.e, da.d, n, q9.d, l1, r4.c, Cont
     public List b(ComponentRegistrar componentRegistrar) {
         ArrayList arrayList = new ArrayList();
         for (q9.a aVar : componentRegistrar.getComponents()) {
-            String str = aVar.f46005a;
+            String str = aVar.f46007a;
             if (str != null) {
-                aVar = new q9.a(str, aVar.f46006b, aVar.f46007c, aVar.d, aVar.f46008e, new ah.b(5, str, aVar), aVar.f46010g);
+                aVar = new q9.a(str, aVar.f46008b, aVar.f46009c, aVar.d, aVar.f46010e, new ah.b(5, str, aVar), aVar.f46012g);
             }
             arrayList.add(aVar);
         }
@@ -929,8 +929,8 @@ public final class d implements m0, bg.a, q, q9.e, da.d, n, q9.d, l1, r4.c, Cont
             case 15:
                 qb.a aVar = new qb.a();
                 aa aaVar = new aa(7);
-                ReferenceQueue referenceQueue = aVar.f46065a;
-                Set set = aVar.f46066b;
+                ReferenceQueue referenceQueue = aVar.f46067a;
+                Set set = aVar.f46068b;
                 set.add(new qb.l(aVar, referenceQueue, set, aaVar));
                 Thread thread = new Thread(new s(25, referenceQueue, set), "MlKitCleaner");
                 thread.setDaemon(true);

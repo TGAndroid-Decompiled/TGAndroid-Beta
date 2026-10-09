@@ -86,7 +86,7 @@ public final class ln0 extends AnimatorListenerAdapter {
         switch (this.f28491a) {
             case 1:
                 super.onAnimationStart(animator);
-                wh.j jVar = ((wh.k) this.d).f50425y;
+                wh.j jVar = ((wh.k) this.d).f50427y;
                 jVar.setVisibility(0);
                 if (this.f28492b) {
                     float f7 = this.f28493c;

@@ -83,7 +83,7 @@ public final class aq extends pm0 {
         int s10;
         int intValue;
         String[] split;
-        z21 z21Var = (z21) d1Var.f47656a;
+        z21 z21Var = (z21) d1Var.f47658a;
         org.telegram.ui.ActionBar.h6 j3 = ((bq) this.d.get(i10)).f25082a.j(((bq) this.d.get(i10)).f25084c);
         if (j3 != null && j3.f20705b != null && !j3.T && new File(j3.f20705b).exists() && j3.f20705b != null) {
             try {
@@ -253,7 +253,7 @@ public final class aq extends pm0 {
         }
         bq bqVar = (bq) this.d.get(i10);
         bq bqVar2 = z21Var.G;
-        if (bqVar2 != null && fg.b.a(bqVar2.f25082a.f20507c, bqVar.f25082a.f20507c) && !org.telegram.ui.ty.f42145w4 && z21Var.V == bqVar.f25084c) {
+        if (bqVar2 != null && fg.b.a(bqVar2.f25082a.f20507c, bqVar.f25082a.f20507c) && !org.telegram.ui.ty.f42147w4 && z21Var.V == bqVar.f25084c) {
             z10 = true;
         } else {
             z10 = false;

@@ -48,7 +48,7 @@ public final class u4 implements Utilities.Callback {
                 View view = (View) obj2;
                 Long l4 = (Long) obj;
                 f6 f6Var = v4Var.f1824a;
-                if (z10 && n0Var.f54615f != null) {
+                if (z10 && n0Var.f54617f != null) {
                     try {
                         f6Var.performHapticFeedback(0);
                     } catch (Exception unused) {
@@ -59,20 +59,20 @@ public final class u4 implements Utilities.Callback {
                 }
                 zg.j0.B = j0Var;
                 int i15 = R.id.parent_tag;
-                zg.g0 g0Var = j0Var.f54556i;
+                zg.g0 g0Var = j0Var.f54558i;
                 g0Var.setTag(i15, 1);
                 f6Var.addView(g0Var);
                 d6 d6Var = f6Var.O1;
-                j0Var.f54566s = true;
-                j0Var.f54571y = System.currentTimeMillis();
-                if (n0Var.f54615f != null) {
-                    f7 = MediaDataController.getInstance(f6Var.C2).getEmojiAnimatedSticker(n0Var.f54615f);
-                    SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of(n0Var.f54615f, f6Var.B1);
+                j0Var.f54568s = true;
+                j0Var.f54573y = System.currentTimeMillis();
+                if (n0Var.f54617f != null) {
+                    f7 = MediaDataController.getInstance(f6Var.C2).getEmojiAnimatedSticker(n0Var.f54617f);
+                    SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of(n0Var.f54617f, f6Var.B1);
                     of2.replyToStoryItem = d6Var.f822a;
                     of2.payStars = l4.longValue();
                     SendMessagesHelper.getInstance(f6Var.C2).sendMessage(of2);
                 } else {
-                    f7 = org.telegram.ui.Components.s5.f(f6Var.C2, n0Var.f54616g);
+                    f7 = org.telegram.ui.Components.s5.f(f6Var.C2, n0Var.f54618g);
                     String findAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(f7, null);
                     if (findAnimatedEmojiEmoticon == null) {
                         if (f6Var.f967f2.getReactionsWindow() != null) {
@@ -84,7 +84,7 @@ public final class u4 implements Utilities.Callback {
                     SendMessagesHelper.SendMessageParams of3 = SendMessagesHelper.SendMessageParams.of(findAnimatedEmojiEmoticon, f6Var.B1);
                     of3.entities = new ArrayList<>();
                     TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityCustomEmoji();
-                    tL_messageEntityCustomEmoji.document_id = n0Var.f54616g;
+                    tL_messageEntityCustomEmoji.document_id = n0Var.f54618g;
                     tL_messageEntityCustomEmoji.offset = 0;
                     tL_messageEntityCustomEmoji.length = findAnimatedEmojiEmoticon.length();
                     of3.entities.add(tL_messageEntityCustomEmoji);

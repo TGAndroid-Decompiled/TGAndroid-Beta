@@ -8,14 +8,14 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public final class d20 extends FrameLayout {
-    public TextView f36802a;
-    public TextView f36803b;
-    public org.telegram.ui.Components.cj0 f36804c;
+    public TextView f36804a;
+    public TextView f36805b;
+    public org.telegram.ui.Components.cj0 f36806c;
     public boolean d;
-    public TLRPC.TL_dialogFilterSuggested f36805e;
+    public TLRPC.TL_dialogFilterSuggested f36807e;
 
     public TLRPC.TL_dialogFilterSuggested getSuggestedFilter() {
-        return this.f36805e;
+        return this.f36807e;
     }
 
     @Override
@@ -29,21 +29,21 @@ public final class d20 extends FrameLayout {
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setEnabled(true);
-        accessibilityNodeInfo.setText(this.f36804c.getText());
+        accessibilityNodeInfo.setText(this.f36806c.getText());
         accessibilityNodeInfo.setClassName("android.widget.Button");
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(64.0f));
-        measureChildWithMargins(this.f36804c, i10, 0, i11, 0);
-        TextView textView = this.f36802a;
-        org.telegram.ui.Components.cj0 cj0Var = this.f36804c;
+        measureChildWithMargins(this.f36806c, i10, 0, i11, 0);
+        TextView textView = this.f36804a;
+        org.telegram.ui.Components.cj0 cj0Var = this.f36806c;
         measureChildWithMargins(textView, i10, cj0Var.getMeasuredWidth(), i11, 0);
-        measureChildWithMargins(this.f36803b, i10, cj0Var.getMeasuredWidth(), i11, 0);
+        measureChildWithMargins(this.f36805b, i10, cj0Var.getMeasuredWidth(), i11, 0);
     }
 
     public void setAddOnClickListener(View.OnClickListener onClickListener) {
-        this.f36804c.setOnClickListener(onClickListener);
+        this.f36806c.setOnClickListener(onClickListener);
     }
 }

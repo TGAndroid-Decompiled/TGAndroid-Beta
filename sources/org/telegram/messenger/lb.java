@@ -109,7 +109,7 @@ public final class lb implements Runnable {
                 String str4 = (String) obj2;
                 TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = (TLRPC.TL_payments_canPurchaseStore) obj;
                 wg0 wg0Var = fg0Var.v;
-                ci.d dVar = fg0Var.f37548b;
+                ci.d dVar = fg0Var.f37550b;
                 FileLog.d("LoginBilling canPurchaseStore returned " + tLObject3 + " " + tL_error);
                 if (tLObject3 instanceof TLRPC.TL_boolTrue) {
                     dVar.g(LocaleController.formatString(R.string.SMSFeePurchaseTitle, kVar.f4265a), false, true);
@@ -123,11 +123,11 @@ public final class lb implements Runnable {
                     dVar.setOnClickListener(new ai.s0(fg0Var, oVar, tL_inputStorePaymentAuthCode, str4, tL_payments_canPurchaseStore, 14));
                     return;
                 } else if (tLObject3 instanceof TLRPC.TL_boolFalse) {
-                    fg0Var.f37550e = "RESPONSE_FALSE";
+                    fg0Var.f37552e = "RESPONSE_FALSE";
                     new org.telegram.ui.Components.ad(wg0Var.Z, null).H(R.raw.error, LocaleController.formatString(R.string.UnknownErrorCode, "RESPONSE_FALSE"));
                     return;
                 } else if (tL_error != null) {
-                    fg0Var.f37550e = tL_error.text;
+                    fg0Var.f37552e = tL_error.text;
                     new org.telegram.ui.Components.ad(wg0Var.Z, null).f0(tL_error, false);
                     return;
                 } else {

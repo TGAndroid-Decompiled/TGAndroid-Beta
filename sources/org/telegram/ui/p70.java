@@ -8,23 +8,23 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class p70 extends LinearLayout {
-    public final org.telegram.ui.Components.ru f40687a;
-    public boolean f40688b;
-    public int f40689c;
+    public final org.telegram.ui.Components.ru f40689a;
+    public boolean f40690b;
+    public int f40691c;
     public m70 d;
-    public String f40690e;
-    public final o70 f40691f;
+    public String f40692e;
+    public final o70 f40693f;
     public final s70 h;
 
     public p70(s70 s70Var, Context context) {
         super(context);
         this.h = s70Var;
-        this.f40691f = new o70(this);
+        this.f40693f = new o70(this);
         TextView f7 = org.telegram.messenger.q.f(context, 1, 16.0f);
         f7.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20905j5, false));
         f7.setText("t.me/addemoji/");
         org.telegram.ui.Components.ru ruVar = new org.telegram.ui.Components.ru(context, null);
-        this.f40687a = ruVar;
+        this.f40689a = ruVar;
         ruVar.setLines(1);
         ruVar.setSingleLine(true);
         ruVar.setInputType(16384);
@@ -48,7 +48,7 @@ public final class p70 extends LinearLayout {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (this.f40688b) {
+        if (this.f40690b) {
             canvas.drawLine(AndroidUtilities.dp(20.0f), getHeight() - 1, getWidth() - getPaddingRight(), getHeight() - 1, org.telegram.ui.ActionBar.i6.f20919k0);
         }
     }

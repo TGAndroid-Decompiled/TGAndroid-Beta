@@ -44,12 +44,12 @@ import uc.g;
 import y2.i;
 import y2.k;
 public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailureListener, l, v2.l, i {
-    public static volatile a f47141b;
-    public static a f47142c;
-    public final int f47143a;
+    public static volatile a f47143b;
+    public static a f47144c;
+    public final int f47145a;
 
     public a(int i10) {
-        this.f47143a = i10;
+        this.f47145a = i10;
     }
 
     public static void A3(String str) {
@@ -97,7 +97,7 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
     }
 
     public static MediaCodec y(com.google.firebase.messaging.n nVar) {
-        String str = ((p) nVar.f7954a).f46894a;
+        String str = ((p) nVar.f7954a).f46896a;
         Trace.beginSection("createCodec:" + str);
         MediaCodec createByCodecName = MediaCodec.createByCodecName(str);
         Trace.endSection();
@@ -106,22 +106,22 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public void A(u1 u1Var) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public void A0(u1 u1Var, TLRPC.User user, float f7, float f10) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public void A1(u1 u1Var, float f7, float f10) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public boolean A2(int i10) {
-        switch (this.f47143a) {
+        switch (this.f47145a) {
             case 16:
                 return false;
             default:
@@ -131,22 +131,22 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public void B(u1 u1Var) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public void C0(u1 u1Var, float f7, float f10, boolean z10) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public void C2() {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public boolean D0(MessageObject messageObject) {
-        switch (this.f47143a) {
+        switch (this.f47145a) {
             case 16:
                 return true;
             default:
@@ -156,22 +156,22 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public void D2(u1 u1Var, int i10, int i11) {
-        int i12 = this.f47143a;
+        int i12 = this.f47145a;
     }
 
     @Override
     public void E(u1 u1Var, BotInlineKeyboard.ButtonCustom buttonCustom) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public void E0(u1 u1Var) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public p9 E2() {
-        switch (this.f47143a) {
+        switch (this.f47145a) {
             case 16:
                 return null;
             default:
@@ -181,27 +181,27 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public void F0() {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public void G(u1 u1Var) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public void G0(u1 u1Var, TLObject tLObject, boolean z10) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public void H0(u1 u1Var, float f7, float f10) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public boolean H1() {
-        switch (this.f47143a) {
+        switch (this.f47145a) {
             case 16:
                 return false;
             default:
@@ -211,42 +211,42 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public void I(MessageObject.TextLayoutBlock textLayoutBlock) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public void J0(u1 u1Var) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public void J1(u1 u1Var) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public void K1(u1 u1Var, boolean z10) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public void L(u1 u1Var) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public void L0(u1 u1Var) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public void M(int i10, u1 u1Var) {
-        int i11 = this.f47143a;
+        int i11 = this.f47145a;
     }
 
     @Override
     public boolean M1(u1 u1Var, TLRPC.Chat chat) {
-        switch (this.f47143a) {
+        switch (this.f47145a) {
             case 16:
                 return false;
             default:
@@ -256,22 +256,22 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public void N(MessageObject messageObject) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public void N0(u1 u1Var) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public void N1(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public boolean O(u1 u1Var, TLRPC.TodoItem todoItem, boolean z10) {
-        switch (this.f47143a) {
+        switch (this.f47145a) {
             case 16:
                 return false;
             default:
@@ -281,7 +281,7 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public boolean O1() {
-        switch (this.f47143a) {
+        switch (this.f47145a) {
             case 16:
                 return false;
             default:
@@ -291,7 +291,7 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public boolean Q() {
-        switch (this.f47143a) {
+        switch (this.f47145a) {
             case 16:
                 return false;
             default:
@@ -301,12 +301,12 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public void Q1(u1 u1Var) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public boolean R(u1 u1Var) {
-        switch (this.f47143a) {
+        switch (this.f47145a) {
             case 16:
                 return false;
             default:
@@ -316,7 +316,7 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public boolean R0(long j3) {
-        switch (this.f47143a) {
+        switch (this.f47145a) {
             case 16:
                 return false;
             default:
@@ -331,7 +331,7 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public boolean S() {
-        switch (this.f47143a) {
+        switch (this.f47145a) {
             case 16:
                 return false;
             default:
@@ -341,22 +341,22 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public void S0(u1 u1Var) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public void S1(MessageObject messageObject) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public void T(u1 u1Var, TLRPC.Chat chat, int i10, float f7, float f10, boolean z10) {
-        int i11 = this.f47143a;
+        int i11 = this.f47145a;
     }
 
     @Override
     public void T1(u1 u1Var, TLRPC.WebPage webPage, String str, boolean z10) {
-        switch (this.f47143a) {
+        switch (this.f47145a) {
             case 16:
             default:
                 f.s(u1Var.getContext(), str);
@@ -366,12 +366,12 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public void U(u1 u1Var) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public CharacterStyle U1(u1 u1Var) {
-        switch (this.f47143a) {
+        switch (this.f47145a) {
             case 16:
                 return null;
             default:
@@ -381,17 +381,17 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public void V0(int i10, u1 u1Var) {
-        int i11 = this.f47143a;
+        int i11 = this.f47145a;
     }
 
     @Override
     public void V1(MessageObject messageObject, String str, String str2, String str3, String str4, int i10, int i11) {
-        int i12 = this.f47143a;
+        int i12 = this.f47145a;
     }
 
     @Override
     public int W() {
-        switch (this.f47143a) {
+        switch (this.f47145a) {
             case 16:
                 return 0;
             default:
@@ -401,7 +401,7 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public boolean W1(u1 u1Var, MessageObject messageObject) {
-        switch (this.f47143a) {
+        switch (this.f47145a) {
             case 16:
                 return false;
             default:
@@ -411,17 +411,17 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public void X0(u1 u1Var, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public void X1() {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public hh.a Y() {
-        switch (this.f47143a) {
+        switch (this.f47145a) {
             case 16:
                 return null;
             default:
@@ -441,22 +441,22 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public void Z1(u1 u1Var, TLRPC.MessageExtendedMedia messageExtendedMedia) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public void a() {
-        synchronized (z2.b.f53483a) {
-            Object obj = z2.b.f53484b;
+        synchronized (z2.b.f53485a) {
+            Object obj = z2.b.f53486b;
             synchronized (obj) {
-                if (z2.b.f53485c) {
+                if (z2.b.f53487c) {
                     return;
                 }
                 long a2 = z2.b.a();
                 synchronized (obj) {
                     SystemClock.elapsedRealtime();
                     z2.b.d = a2;
-                    z2.b.f53485c = true;
+                    z2.b.f53487c = true;
                 }
             }
         }
@@ -464,7 +464,7 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public void a2(u1 u1Var, TLRPC.User user, TLRPC.Document document, String str) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
@@ -479,7 +479,7 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public boolean b0(u1 u1Var) {
-        switch (this.f47143a) {
+        switch (this.f47145a) {
             case 16:
                 return false;
             default:
@@ -489,12 +489,12 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public void b1(u1 u1Var, CharacterStyle characterStyle, boolean z10) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public boolean b2(u1 u1Var, TLRPC.PollAnswer pollAnswer) {
-        switch (this.f47143a) {
+        switch (this.f47145a) {
             case 16:
                 return false;
             default:
@@ -509,7 +509,7 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public boolean c1(u1 u1Var, boolean z10) {
-        switch (this.f47143a) {
+        switch (this.f47145a) {
             case 16:
                 return false;
             default:
@@ -524,12 +524,12 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public void d1(u1 u1Var) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public boolean e() {
-        switch (this.f47143a) {
+        switch (this.f47145a) {
             case 16:
                 return false;
             default:
@@ -539,7 +539,7 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public boolean e0(u1 u1Var, TLRPC.User user) {
-        switch (this.f47143a) {
+        switch (this.f47145a) {
             case 16:
                 return false;
             default:
@@ -549,7 +549,7 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public qv0 e2() {
-        switch (this.f47143a) {
+        switch (this.f47145a) {
             case 16:
                 return null;
             default:
@@ -559,7 +559,7 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public boolean f() {
-        switch (this.f47143a) {
+        switch (this.f47145a) {
             case 16:
                 return true;
             default:
@@ -569,12 +569,12 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public void f1(u1 u1Var) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public String g(u1 u1Var) {
-        switch (this.f47143a) {
+        switch (this.f47145a) {
             case 16:
                 return null;
             default:
@@ -584,12 +584,12 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public void g0(int i10) {
-        int i11 = this.f47143a;
+        int i11 = this.f47145a;
     }
 
     @Override
     public boolean g2(long j3) {
-        switch (this.f47143a) {
+        switch (this.f47145a) {
             case 16:
                 return false;
             default:
@@ -604,7 +604,7 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public boolean h0() {
-        switch (this.f47143a) {
+        switch (this.f47145a) {
             case 16:
                 return false;
             default:
@@ -614,17 +614,17 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public void h2(u1 u1Var, int i10, float f7, float f10, boolean z10) {
-        int i11 = this.f47143a;
+        int i11 = this.f47145a;
     }
 
     @Override
     public void i(u1 u1Var, bi.f fVar) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public boolean i1(int i10, u1 u1Var) {
-        switch (this.f47143a) {
+        switch (this.f47145a) {
             case 16:
                 return false;
             default:
@@ -634,7 +634,7 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public boolean i2(u1 u1Var, TLRPC.TodoItem todoItem) {
-        switch (this.f47143a) {
+        switch (this.f47145a) {
             case 16:
                 return false;
             default:
@@ -644,22 +644,22 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public void j(u1 u1Var, ArrayList arrayList, int i10, int i11, int i12) {
-        int i13 = this.f47143a;
+        int i13 = this.f47145a;
     }
 
     @Override
     public void j0(u1 u1Var, float f7, float f10) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public void k() {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public void k2(u1 u1Var) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
@@ -675,7 +675,7 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public int l0(u1 u1Var) {
-        switch (this.f47143a) {
+        switch (this.f47145a) {
             case 16:
                 return 0;
             default:
@@ -690,12 +690,12 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public void m0(u1 u1Var) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public void m2(u1 u1Var, long j3) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     public int m3(int i10) {
@@ -707,12 +707,12 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public void n(u1 u1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i10) {
-        int i11 = this.f47143a;
+        int i11 = this.f47145a;
     }
 
     @Override
     public boolean n1(MessageObject messageObject) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
         return c1.a(messageObject);
     }
 
@@ -723,7 +723,7 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public void o(u1 u1Var) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
@@ -733,12 +733,12 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public void p() {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public boolean p0() {
-        switch (this.f47143a) {
+        switch (this.f47145a) {
             case 16:
                 return false;
             default:
@@ -753,22 +753,22 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public void q1() {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public void r(u1 u1Var) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public void r0(String str) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public boolean r2(u1 u1Var, TL_iv.PageBlock pageBlock) {
-        switch (this.f47143a) {
+        switch (this.f47145a) {
             case 16:
                 return false;
             default:
@@ -778,27 +778,27 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public void s() {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public void s1(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public void s2(u1 u1Var) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public void t(u1 u1Var) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public boolean t0(b6 b6Var) {
-        switch (this.f47143a) {
+        switch (this.f47145a) {
             case 16:
                 return false;
             default:
@@ -808,22 +808,22 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public void u(u1 u1Var) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public void v0(u1 u1Var, float f7, float f10) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public void v1(u1 u1Var, TLRPC.Document document) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
     public Object v2() {
-        switch (this.f47143a) {
+        switch (this.f47145a) {
             case 8:
                 return new ArrayList();
             default:
@@ -833,7 +833,7 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public String w(long j3) {
-        switch (this.f47143a) {
+        switch (this.f47145a) {
             case 16:
                 return null;
             default:
@@ -843,7 +843,7 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public void w2() {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     @Override
@@ -862,7 +862,7 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public Object y0(u5 u5Var) {
-        switch (this.f47143a) {
+        switch (this.f47145a) {
             case 14:
                 return new c(u5Var.y(pb.b.class));
             default:
@@ -872,11 +872,11 @@ public final class a implements b, bg.a, e, cg.a, ea.a, n, dh.a, d, l1, OnFailur
 
     @Override
     public void y2(u1 u1Var, TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10) {
-        int i10 = this.f47143a;
+        int i10 = this.f47145a;
     }
 
     public a() {
-        this.f47143a = 10;
+        this.f47145a = 10;
         if (Build.VERSION.SDK_INT >= 35) {
         }
     }

@@ -8,12 +8,12 @@ import android.view.View;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 public class yd extends LinearLayout {
-    public static float f44316b = 1.0f;
-    public final int f44317a;
+    public static float f44318b = 1.0f;
+    public final int f44319a;
 
     public yd(Context context, int i10) {
         super(context);
-        this.f44317a = i10;
+        this.f44319a = i10;
     }
 
     @Override
@@ -21,7 +21,7 @@ public class yd extends LinearLayout {
         View childAt;
         boolean z10;
         boolean z11;
-        switch (this.f44317a) {
+        switch (this.f44319a) {
             case 4:
                 if (getParent() instanceof org.telegram.ui.Components.ep0) {
                     org.telegram.ui.Components.ep0 ep0Var = (org.telegram.ui.Components.ep0) getParent();
@@ -98,7 +98,7 @@ public class yd extends LinearLayout {
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f44317a) {
+        switch (this.f44319a) {
             case 2:
                 super.onLayout(z10, i10, i11, i12, i13);
                 setPivotX(getWidth());
@@ -119,7 +119,7 @@ public class yd extends LinearLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f44317a) {
+        switch (this.f44319a) {
             case 0:
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
                 return;
@@ -159,7 +159,7 @@ public class yd extends LinearLayout {
 
     public yd(Context context) {
         super(context);
-        this.f44317a = 4;
+        this.f44319a = 4;
         setWillNotDraw(false);
     }
 }

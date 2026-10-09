@@ -59,7 +59,7 @@ public final class c6 extends ru {
     public void invalidate() {
         switch (this.f21919c) {
             case 1:
-                if (!zg.d0.f54500b) {
+                if (!zg.d0.f54502b) {
                     super.invalidate();
                     return;
                 }
@@ -111,7 +111,7 @@ public final class c6 extends ru {
                 return;
             case 1:
                 if (z10) {
-                    ((b61) this.d).f44500y.q();
+                    ((b61) this.d).f44502y.q();
                     AndroidUtilities.runOnUIThread(new x61(this, 0), 200L);
                 }
                 super.onFocusChanged(z10, i10, rect);
@@ -178,7 +178,7 @@ public final class c6 extends ru {
                 }
                 return super.onTouchEvent(motionEvent);
             case 1:
-                if (motionEvent.getAction() == 1 && ((b61) this.d).f44500y.u()) {
+                if (motionEvent.getAction() == 1 && ((b61) this.d).f44502y.u()) {
                     AndroidUtilities.runOnUIThread(new x61(this, 1), 200L);
                     return false;
                 }

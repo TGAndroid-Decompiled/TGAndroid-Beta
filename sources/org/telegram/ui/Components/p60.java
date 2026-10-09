@@ -41,7 +41,7 @@ public final class p60 extends TextureView {
         switch (this.f29725a) {
             case 1:
                 vh.f fVar = (vh.f) this.f29726b;
-                setMeasuredDimension(fVar.f49672g, fVar.h);
+                setMeasuredDimension(fVar.f49674g, fVar.h);
                 return;
             default:
                 super.onMeasure(i10, i11);

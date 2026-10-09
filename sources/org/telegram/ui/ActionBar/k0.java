@@ -66,7 +66,7 @@ public final class k0 extends ImageView {
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
                 boolean z10 = true;
                 accessibilityNodeInfo.setCheckable(true);
-                if (((ih1) this.f21311b).f38655n.getTransformationMethod() != null) {
+                if (((ih1) this.f21311b).f38657n.getTransformationMethod() != null) {
                     z10 = false;
                 }
                 accessibilityNodeInfo.setChecked(z10);

@@ -33,7 +33,7 @@ public final class k61 extends pm0 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47660f == 5) {
+        if (d1Var.f47662f == 5) {
             return true;
         }
         return false;
@@ -242,8 +242,8 @@ public final class k61 extends pm0 {
 
     @Override
     public final void v(s4.d1 d1Var, int i10) {
-        int i11 = d1Var.f47660f;
-        View view = d1Var.f47656a;
+        int i11 = d1Var.f47662f;
+        View view = d1Var.f47658a;
         if (i11 != 0) {
             if (i11 != 1) {
                 if (i11 != 2) {
@@ -268,11 +268,11 @@ public final class k61 extends pm0 {
     @Override
     public final void w(s4.d1 d1Var, int i10, List list) {
         if (list.contains(0)) {
-            int i11 = d1Var.f47660f;
+            int i11 = d1Var.f47662f;
             if (i11 != 2 && i11 != 5) {
                 return;
             }
-            E(d1Var.f47656a, i10, true);
+            E(d1Var.f47658a, i10, true);
             return;
         }
         v(d1Var, i10);

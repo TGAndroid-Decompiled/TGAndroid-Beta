@@ -24,9 +24,9 @@ public final class tb0 extends ReplacementSpan {
             case 0:
                 return ((vb0) this.f31121b).f31742x;
             case 1:
-                return (int) ((org.telegram.ui.sj0) this.f31121b).f41719n0;
+                return (int) ((org.telegram.ui.sj0) this.f31121b).f41721n0;
             default:
-                return (int) ((tg.m1) this.f31121b).f48371t0;
+                return (int) ((tg.m1) this.f31121b).f48373t0;
         }
     }
 

@@ -44,11 +44,11 @@ public final class ra implements o1.g {
                 qg.m0 m0Var = (qg.m0) this.f1678b;
                 float f13 = f7 / 1000.0f;
                 m0Var.D1 = f13;
-                qg.t1 t1Var2 = m0Var.f46391v1;
+                qg.t1 t1Var2 = m0Var.f46393v1;
                 t1Var2.setAlpha(f13);
                 t1Var2.invalidate();
-                m0Var.f46363d1.invalidate();
-                m0Var.f46390u1.getTypefaceCell().setAlpha(1.0f - m0Var.D1);
+                m0Var.f46365d1.invalidate();
+                m0Var.f46392u1.getTypefaceCell().setAlpha(1.0f - m0Var.D1);
                 return;
         }
     }

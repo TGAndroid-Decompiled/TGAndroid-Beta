@@ -18,18 +18,18 @@ public abstract class a21 extends org.telegram.ui.Components.ja implements Notif
     public final Rect F;
     public final nz0 G;
     public final bi.a h;
-    public final org.telegram.ui.Components.n91 f35809n;
-    public final ai.y8 f35810r;
-    public final z11 f35811s;
+    public final org.telegram.ui.Components.n91 f35811n;
+    public final ai.y8 f35812r;
+    public final z11 f35813s;
     public int v;
-    public boolean f35812w;
-    public ValueAnimator f35813x;
-    public float f35814y;
+    public boolean f35814w;
+    public ValueAnimator f35815x;
+    public float f35816y;
 
     public a21(Context context, org.telegram.ui.Components.sw0 sw0Var, ai.y8 y8Var, final org.telegram.ui.Components.vs0 vs0Var) {
         super(context, sw0Var);
         this.F = new Rect();
-        this.f35810r = y8Var;
+        this.f35812r = y8Var;
         Objects.requireNonNull(y8Var);
         this.G = new nz0(y8Var, 7);
         final org.telegram.ui.Components.ws0 ws0Var = (org.telegram.ui.Components.ws0) this;
@@ -37,12 +37,12 @@ public abstract class a21 extends org.telegram.ui.Components.ja implements Notif
         this.h = aVar;
         aVar.setAllowDisallowInterceptTouch(true);
         z11 z11Var = new z11(ws0Var);
-        this.f35811s = z11Var;
-        z11Var.f44460a = y8Var.a();
+        this.f35813s = z11Var;
+        z11Var.f44462a = y8Var.a();
         aVar.setAdapter(z11Var);
         aVar.setTranslationY(AndroidUtilities.dp(42.0f));
         org.telegram.ui.Components.n91 n10 = aVar.n(10, true);
-        this.f35809n = n10;
+        this.f35811n = n10;
         n10.g(org.telegram.ui.ActionBar.i6.Gh, org.telegram.ui.ActionBar.i6.G6, org.telegram.ui.ActionBar.i6.Eh, org.telegram.ui.ActionBar.i6.Hh, org.telegram.ui.ActionBar.i6.f21075s8);
         n10.f29117r = 12;
         n10.setPreTabClick(new Utilities.Callback2Return() {
@@ -53,7 +53,7 @@ public abstract class a21 extends org.telegram.ui.Components.ja implements Notif
                 switch (r3) {
                     case 0:
                         Integer num2 = (Integer) obj2;
-                        if (ws0Var.f35812w) {
+                        if (ws0Var.f35814w) {
                             return Boolean.TRUE;
                         }
                         if (num.intValue() == -1) {
@@ -64,7 +64,7 @@ public abstract class a21 extends org.telegram.ui.Components.ja implements Notif
                         return Boolean.FALSE;
                     default:
                         View view = (View) obj2;
-                        if (num.intValue() != -1 && num.intValue() != 0 && !ws0Var.f35812w) {
+                        if (num.intValue() != -1 && num.intValue() != 0 && !ws0Var.f35814w) {
                             final int intValue = num.intValue();
                             final org.telegram.ui.Components.vs0 vs0Var3 = vs0Var;
                             org.telegram.ui.Components.bw0 bw0Var = vs0Var3.d;
@@ -178,7 +178,7 @@ public abstract class a21 extends org.telegram.ui.Components.ja implements Notif
                 switch (r3) {
                     case 0:
                         Integer num2 = (Integer) obj2;
-                        if (ws0Var.f35812w) {
+                        if (ws0Var.f35814w) {
                             return Boolean.TRUE;
                         }
                         if (num.intValue() == -1) {
@@ -189,7 +189,7 @@ public abstract class a21 extends org.telegram.ui.Components.ja implements Notif
                         return Boolean.FALSE;
                     default:
                         View view = (View) obj2;
-                        if (num.intValue() != -1 && num.intValue() != 0 && !ws0Var.f35812w) {
+                        if (num.intValue() != -1 && num.intValue() != 0 && !ws0Var.f35814w) {
                             final int intValue = num.intValue();
                             final org.telegram.ui.Components.vs0 vs0Var3 = vs0Var;
                             org.telegram.ui.Components.bw0 bw0Var = vs0Var3.d;
@@ -307,30 +307,30 @@ public abstract class a21 extends org.telegram.ui.Components.ja implements Notif
         }
         this.E = z10;
         setEnabled(z10);
-        ValueAnimator valueAnimator = this.f35813x;
+        ValueAnimator valueAnimator = this.f35815x;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f35813x = null;
+            this.f35815x = null;
         }
         float f7 = 0.0f;
         if (!z11) {
             if (z10) {
                 f7 = 1.0f;
             }
-            this.f35814y = f7;
+            this.f35816y = f7;
             a();
             return;
         }
-        float f10 = this.f35814y;
+        float f10 = this.f35816y;
         if (z10) {
             f7 = 1.0f;
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-        this.f35813x = ofFloat;
+        this.f35815x = ofFloat;
         ofFloat.setDuration(480L);
-        this.f35813x.setInterpolator(org.telegram.ui.Components.hs.h);
-        this.f35813x.addUpdateListener(new y11(this, 0));
-        this.f35813x.start();
+        this.f35815x.setInterpolator(org.telegram.ui.Components.hs.h);
+        this.f35815x.addUpdateListener(new y11(this, 0));
+        this.f35815x.start();
     }
 
     @Override
@@ -338,17 +338,17 @@ public abstract class a21 extends org.telegram.ui.Components.ja implements Notif
         int i12;
         if (i10 == NotificationCenter.storyAlbumsCollectionsUpdate) {
             long longValue = ((Long) objArr[0]).longValue();
-            ai.y8 y8Var = this.f35810r;
+            ai.y8 y8Var = this.f35812r;
             if (longValue == y8Var.f1954b) {
-                org.telegram.ui.Components.n91 n91Var = this.f35809n;
+                org.telegram.ui.Components.n91 n91Var = this.f35811n;
                 if (n91Var != null) {
                     i12 = n91Var.getCurrentTabId();
                 } else {
                     i12 = 0;
                 }
                 boolean a2 = y8Var.a();
-                z11 z11Var = this.f35811s;
-                z11Var.f44460a = a2;
+                z11 z11Var = this.f35813s;
+                z11Var.f44462a = a2;
                 this.h.o(true);
                 b(!y8Var.h.isEmpty(), true, false);
                 int i13 = this.v;
@@ -373,27 +373,27 @@ public abstract class a21 extends org.telegram.ui.Components.ja implements Notif
     }
 
     public int getCurrentAlbumId() {
-        return this.f35811s.f(this.f35809n.getCurrentPosition());
+        return this.f35813s.f(this.f35811n.getCurrentPosition());
     }
 
     public float getVisibilityFactor() {
-        return this.f35814y;
+        return this.f35816y;
     }
 
     public float getVisualHeight() {
-        return getMeasuredHeight() * this.f35814y;
+        return getMeasuredHeight() * this.f35816y;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        NotificationCenter.getInstance(this.f35810r.f1953a).addObserver(this, NotificationCenter.storyAlbumsCollectionsUpdate);
+        NotificationCenter.getInstance(this.f35812r.f1953a).addObserver(this, NotificationCenter.storyAlbumsCollectionsUpdate);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        NotificationCenter.getInstance(this.f35810r.f1953a).removeObserver(this, NotificationCenter.storyAlbumsCollectionsUpdate);
+        NotificationCenter.getInstance(this.f35812r.f1953a).removeObserver(this, NotificationCenter.storyAlbumsCollectionsUpdate);
     }
 
     @Override
@@ -405,7 +405,7 @@ public abstract class a21 extends org.telegram.ui.Components.ja implements Notif
     }
 
     public void setInitialTabId(int i10) {
-        if (this.f35811s.i(i10) != -1) {
+        if (this.f35813s.i(i10) != -1) {
             AndroidUtilities.runOnUIThread(new w11(this, i10, 0), 500L);
         } else {
             this.v = i10;
@@ -415,11 +415,11 @@ public abstract class a21 extends org.telegram.ui.Components.ja implements Notif
     public void setReorderingAlbums(boolean z10) {
         float f7;
         float f10;
-        if (this.f35812w != z10) {
-            this.f35812w = z10;
-            org.telegram.ui.Components.n91 n91Var = this.f35809n;
+        if (this.f35814w != z10) {
+            this.f35814w = z10;
+            org.telegram.ui.Components.n91 n91Var = this.f35811n;
             n91Var.setReordering(z10);
-            boolean z11 = this.f35812w;
+            boolean z11 = this.f35814w;
             org.telegram.ui.Components.ws0 ws0Var = (org.telegram.ui.Components.ws0) this;
             org.telegram.ui.Components.bw0 bw0Var = ws0Var.H;
             TextView textView = bw0Var.f25153q0;
@@ -453,11 +453,11 @@ public abstract class a21 extends org.telegram.ui.Components.ja implements Notif
             }
             if (!z10) {
                 AndroidUtilities.cancelRunOnUIThread(this.G);
-                ai.y8 y8Var = this.f35810r;
+                ai.y8 y8Var = this.f35812r;
                 y8Var.e();
                 y8Var.f(false);
                 int currentPosition = n91Var.getCurrentPosition();
-                z11 z11Var = this.f35811s;
+                z11 z11Var = this.f35813s;
                 int f12 = z11Var.f(currentPosition);
                 this.h.o(true);
                 int i10 = z11Var.i(f12);

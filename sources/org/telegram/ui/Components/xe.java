@@ -242,12 +242,12 @@ public final class xe extends FrameLayout {
                 if (znVar == null) {
                     chat = null;
                 } else {
-                    chat = znVar.f44751e;
+                    chat = znVar.f44753e;
                 }
                 if (znVar == null) {
                     userFull = chatActivityEnterView.K;
                 } else {
-                    userFull = znVar.f44706a8;
+                    userFull = znVar.f44708a8;
                 }
                 if ((chat != null && !ChatObject.canSendVoice(chat) && (!ChatObject.canSendRoundVideo(chat) || !chatActivityEnterView.f23880e2)) || (userFull != null && userFull.voice_messages_forbidden)) {
                     chatActivityEnterView.Z2.o2();

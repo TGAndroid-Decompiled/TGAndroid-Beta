@@ -94,7 +94,7 @@ public final class cq extends org.telegram.ui.ActionBar.f3 implements Notificati
         this.f25471g0 = 0.0f;
         this.v = znVar;
         this.f25473n = xnVar;
-        this.f25474r = xnVar.f44070f;
+        this.f25474r = xnVar.f44072f;
         this.f25469f = xnVar.h;
         this.f25475s = org.telegram.ui.ActionBar.i6.I.q();
         aq aqVar = new aq(this.currentAccount, znVar.a(), xnVar, 0);
@@ -240,7 +240,7 @@ public final class cq extends org.telegram.ui.ActionBar.f3 implements Notificati
             if (znVar.i() != null) {
                 str = UserObject.getFirstName(znVar.i());
             } else {
-                TLRPC.Chat chat = znVar.f44751e;
+                TLRPC.Chat chat = znVar.f44753e;
                 if (chat != null) {
                     str = chat.title;
                 } else {
@@ -305,8 +305,8 @@ public final class cq extends org.telegram.ui.ActionBar.f3 implements Notificati
         ?? obj = new Object();
         obj.f21357a = true;
         org.telegram.ui.zn znVar = cqVar.v;
-        xd1Var.f43935a.f43920a = znVar.getResourceProvider();
-        xd1Var.f43979p1 = new up(cqVar);
+        xd1Var.f43937a.f43922a = znVar.getResourceProvider();
+        xd1Var.f43981p1 = new up(cqVar);
         obj.f21359c = new vh(3);
         obj.d = new kp(cqVar, 5);
         obj.f21358b = new kp(cqVar, 6);
@@ -766,7 +766,7 @@ public final class cq extends org.telegram.ui.ActionBar.f3 implements Notificati
             bq bqVar = new bq((org.telegram.ui.ActionBar.c4) list.get(0));
             ArrayList arrayList = new ArrayList(list.size());
             if (!this.V) {
-                org.telegram.ui.ActionBar.c4 c4Var = this.f25473n.f44070f;
+                org.telegram.ui.ActionBar.c4 c4Var = this.f25473n.f44072f;
                 this.W = c4Var;
                 if (c4Var != null) {
                     c4Var.l();

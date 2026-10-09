@@ -184,7 +184,7 @@ public final class e1 implements Runnable {
                             if (znVar.i() != null) {
                                 tLObject = znVar.i();
                             } else {
-                                tLObject = znVar.f44751e;
+                                tLObject = znVar.f44753e;
                             }
                             if (!MediaDataController.canShowAttachMenuBot(tL_attachMenuBot, tLObject)) {
                                 a02 = ad.a0(n2Var);

@@ -121,7 +121,7 @@ public class FileStreamLoadOperation implements g2.h, FileLoadOperationStream {
                         } finally {
                         }
                     }
-                    fVar.f51677i += i10;
+                    fVar.f51679i += i10;
                 }
             }
         }

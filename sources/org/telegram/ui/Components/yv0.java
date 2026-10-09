@@ -180,8 +180,8 @@ public class yv0 extends vv0 {
         boolean z11;
         char c10;
         boolean z12;
-        if (this.f33369s != null && d1Var.f47660f == 19) {
-            View view = d1Var.f47656a;
+        if (this.f33369s != null && d1Var.f47662f == 19) {
+            View view = d1Var.f47658a;
             if (view instanceof org.telegram.ui.Cells.t7) {
                 org.telegram.ui.Cells.t7 t7Var = (org.telegram.ui.Cells.t7) view;
                 t7Var.f23067d0 = true;
@@ -253,7 +253,7 @@ public class yv0 extends vv0 {
     @Override
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
         s4.d1 x10 = super.x(viewGroup, i10);
-        View view = x10.f47656a;
+        View view = x10.f47658a;
         if (view instanceof org.telegram.ui.Cells.t7) {
             ((org.telegram.ui.Cells.t7) view).f23067d0 = true;
         }

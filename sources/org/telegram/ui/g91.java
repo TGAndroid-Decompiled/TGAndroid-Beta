@@ -29,11 +29,11 @@ public final class g91 extends org.telegram.ui.Components.o61 {
         View.OnClickListener onClickListener = p61Var.D;
         CharSequence charSequence4 = p61Var.f29737o;
         View.OnClickListener onClickListener2 = p61Var.E;
-        ci.d dVar = h91Var.f38237e;
-        org.telegram.ui.Components.ea0 ea0Var = h91Var.f38235b;
+        ci.d dVar = h91Var.f38239e;
+        org.telegram.ui.Components.ea0 ea0Var = h91Var.f38237b;
         int i10 = 0;
         ea0Var.setText(Emoji.replaceEmoji(charSequence, ea0Var.getPaint().getFontMetricsInt(), false));
-        org.telegram.ui.Components.ea0 ea0Var2 = h91Var.f38236c;
+        org.telegram.ui.Components.ea0 ea0Var2 = h91Var.f38238c;
         ea0Var2.setText(Emoji.replaceEmoji(charSequence2, ea0Var2.getPaint().getFontMetricsInt(), false));
         ci.d dVar2 = h91Var.d;
         if (TextUtils.isEmpty(charSequence3)) {

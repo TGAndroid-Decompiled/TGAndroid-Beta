@@ -6,18 +6,18 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class am0 implements View.OnTouchListener {
-    public final int f35963a;
-    public final nn0 f35964b;
+    public final int f35965a;
+    public final nn0 f35966b;
 
     public am0(nn0 nn0Var, int i10) {
-        this.f35963a = i10;
-        this.f35964b = nn0Var;
+        this.f35965a = i10;
+        this.f35966b = nn0Var;
     }
 
     @Override
     public final boolean onTouch(View view, MotionEvent motionEvent) {
-        int i10 = this.f35963a;
-        nn0 nn0Var = this.f35964b;
+        int i10 = this.f35965a;
+        nn0 nn0Var = this.f35966b;
         switch (i10) {
             case 0:
                 if (nn0Var.getParentActivity() == null) {
@@ -25,7 +25,7 @@ public final class am0 implements View.OnTouchListener {
                 }
                 if (motionEvent.getAction() == 1) {
                     zt ztVar = new zt(null, false);
-                    ztVar.f45065r = new rw(24, nn0Var, view);
+                    ztVar.f45067r = new rw(24, nn0Var, view);
                     nn0Var.presentFragment(ztVar);
                 }
                 return true;
@@ -49,7 +49,7 @@ public final class am0 implements View.OnTouchListener {
                 }
                 if (motionEvent.getAction() == 1) {
                     zt ztVar2 = new zt(null, false);
-                    ztVar2.f45065r = new bm0(nn0Var, 2);
+                    ztVar2.f45067r = new bm0(nn0Var, 2);
                     nn0Var.presentFragment(ztVar2);
                 }
                 return true;
@@ -59,7 +59,7 @@ public final class am0 implements View.OnTouchListener {
                 }
                 if (motionEvent.getAction() == 1) {
                     zt ztVar3 = new zt(null, false);
-                    ztVar3.f45065r = new bm0(nn0Var, 3);
+                    ztVar3.f45067r = new bm0(nn0Var, 3);
                     nn0Var.presentFragment(ztVar3);
                 }
                 return true;

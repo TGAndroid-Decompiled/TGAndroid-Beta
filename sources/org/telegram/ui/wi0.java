@@ -32,7 +32,7 @@ public final class wi0 extends org.telegram.ui.Components.qm0 {
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         org.telegram.ui.Cells.u1 u1Var;
         dj0 dj0Var = this.Z2;
-        if (dj0Var.f37017w && ((view == (u1Var = dj0Var.Q) && u1Var != null && u1Var.getCurrentPosition() == null) || view == dj0Var.X)) {
+        if (dj0Var.f37019w && ((view == (u1Var = dj0Var.Q) && u1Var != null && u1Var.getCurrentPosition() == null) || view == dj0Var.X)) {
             return false;
         }
         if (!(view instanceof org.telegram.ui.Cells.u1)) {
@@ -108,13 +108,13 @@ public final class wi0 extends org.telegram.ui.Components.qm0 {
         } else {
             measuredHeight = viewGroup.getMeasuredHeight();
         }
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(0, ((AndroidUtilities.displaySize.y - (dp + measuredHeight)) - AndroidUtilities.dp(8.0f)) - dj0Var.f36995e.f11577b), Integer.MIN_VALUE));
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(0, ((AndroidUtilities.displaySize.y - (dp + measuredHeight)) - AndroidUtilities.dp(8.0f)) - dj0Var.f36997e.f11577b), Integer.MIN_VALUE));
         if (dj0Var.m0) {
             l4 = dj0Var.Y;
         } else {
             l4 = dj0Var.W.l();
         }
-        int max = Math.max(AndroidUtilities.dp(12.0f) + l4, -((AndroidUtilities.dp(7.0f) + dj0Var.f37007o0[0]) - getMeasuredWidth()));
+        int max = Math.max(AndroidUtilities.dp(12.0f) + l4, -((AndroidUtilities.dp(7.0f) + dj0Var.f37009o0[0]) - getMeasuredWidth()));
         int i13 = dj0Var.O;
         int measuredWidth = getMeasuredWidth() - max;
         if (dj0Var.P.i()) {

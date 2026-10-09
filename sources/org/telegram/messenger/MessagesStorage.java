@@ -2019,7 +2019,7 @@ public class MessagesStorage extends BaseController {
                 if (i12 != 0) {
                     yf.t tVar = this.ephemeralWelcomeAnchorsState;
                     int i13 = ephemeralMessage.f20251id;
-                    a0.i iVar3 = tVar.f52192a;
+                    a0.i iVar3 = tVar.f52194a;
                     SparseIntArray sparseIntArray = (SparseIntArray) iVar3.f(j3);
                     if (sparseIntArray != null && sparseIntArray.get(i12, -1) == i13) {
                         sparseIntArray.delete(i12);
@@ -5490,7 +5490,7 @@ public class MessagesStorage extends BaseController {
             int i11 = ephemeralMessage2.anchor_msg_id;
             yf.t tVar = this.ephemeralWelcomeAnchorsState;
             int i12 = ephemeralMessage2.f20251id;
-            a0.i iVar = tVar.f52192a;
+            a0.i iVar = tVar.f52194a;
             SparseIntArray sparseIntArray = (SparseIntArray) iVar.f(peerDialogId);
             if (sparseIntArray == null) {
                 sparseIntArray = new SparseIntArray();

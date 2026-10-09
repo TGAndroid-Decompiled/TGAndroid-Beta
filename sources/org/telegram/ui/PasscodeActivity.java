@@ -139,10 +139,10 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.n2 implements No
             } else if (i10 == passcodeActivity.J) {
                 org.telegram.ui.Wallet.k0 v = org.telegram.ui.Wallet.k0.v(passcodeActivity.currentAccount);
                 boolean z10 = !v.H();
-                if (v.f35103m != z10) {
-                    v.f35103m = z10;
+                if (v.f35127m != z10) {
+                    v.f35127m = z10;
                     try {
-                        org.telegram.ui.Wallet.k0.u().getSharedPreferences("gram_wallet", 0).edit().putBoolean("passcode", v.f35103m).apply();
+                        org.telegram.ui.Wallet.k0.u().getSharedPreferences("gram_wallet", 0).edit().putBoolean("passcode", v.f35127m).apply();
                     } catch (Exception e7) {
                         org.telegram.ui.Wallet.k0.j("failed to save prefs", e7);
                     }
@@ -154,7 +154,7 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.n2 implements No
                 boolean G = v9.G();
                 boolean z11 = !G;
                 ai.j3 j3Var = new ai.j3(6, view, G);
-                org.telegram.ui.Wallet.p0 p0Var = v9.f35095c;
+                org.telegram.ui.Wallet.p0 p0Var = v9.f35119c;
                 if (p0Var == null) {
                     j3Var.run(Boolean.FALSE);
                     return;
@@ -184,7 +184,7 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.n2 implements No
         int i10 = 0;
         while (true) {
             ce0 ce0Var = this.f33854n;
-            es[] esVarArr = ce0Var.f36732f;
+            es[] esVarArr = ce0Var.f36734f;
             if (i10 < esVarArr.length) {
                 es esVar = esVarArr[i10];
                 esVar.postDelayed(new pl0(esVar, 0), i10 * 75);
@@ -290,7 +290,7 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.n2 implements No
         } catch (Exception unused) {
         }
         if (h0()) {
-            for (es esVar : this.f33854n.f36732f) {
+            for (es esVar : this.f33854n.f36734f) {
                 esVar.i(1.0f);
             }
         } else {
@@ -326,11 +326,11 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.n2 implements No
         if (i10 == 1) {
             if (!this.F.equals(obj)) {
                 AndroidUtilities.updateViewVisibilityAnimated(this.f33855r, true);
-                for (es esVar : this.f33854n.f36732f) {
+                for (es esVar : this.f33854n.f36734f) {
                     esVar.setText("");
                 }
                 if (h0()) {
-                    this.f33854n.f36732f[0].requestFocus();
+                    this.f33854n.f36734f[0].requestFocus();
                 }
                 this.h.setText("");
                 i0();
@@ -357,7 +357,7 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.n2 implements No
             SharedConfig.saveConfig();
             this.h.clearFocus();
             AndroidUtilities.hideKeyboard(this.h);
-            for (es esVar2 : this.f33854n.f36732f) {
+            for (es esVar2 : this.f33854n.f36734f) {
                 esVar2.clearFocus();
                 AndroidUtilities.hideKeyboard(esVar2);
             }
@@ -367,22 +367,22 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.n2 implements No
             long j3 = SharedConfig.passcodeRetryInMs;
             if (j3 > 0) {
                 Toast.makeText(getParentActivity(), LocaleController.formatString("TooManyTries", R.string.TooManyTries, LocaleController.formatPluralString("Seconds", Math.max(1, (int) Math.ceil(j3 / 1000.0d)), new Object[0])), 0).show();
-                for (es esVar3 : this.f33854n.f36732f) {
+                for (es esVar3 : this.f33854n.f36734f) {
                     esVar3.setText("");
                 }
                 this.h.setText("");
                 if (h0()) {
-                    this.f33854n.f36732f[0].requestFocus();
+                    this.f33854n.f36734f[0].requestFocus();
                 }
                 i0();
             } else if (!SharedConfig.checkPasscode(obj)) {
                 SharedConfig.increaseBadPasscodeTries();
                 this.h.setText("");
-                for (es esVar4 : this.f33854n.f36732f) {
+                for (es esVar4 : this.f33854n.f36734f) {
                     esVar4.setText("");
                 }
                 if (h0()) {
-                    this.f33854n.f36732f[0].requestFocus();
+                    this.f33854n.f36734f[0].requestFocus();
                 }
                 i0();
             } else {
@@ -390,7 +390,7 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.n2 implements No
                 SharedConfig.saveConfig();
                 this.h.clearFocus();
                 AndroidUtilities.hideKeyboard(this.h);
-                for (es esVar5 : this.f33854n.f36732f) {
+                for (es esVar5 : this.f33854n.f36734f) {
                     esVar5.clearFocus();
                     AndroidUtilities.hideKeyboard(esVar5);
                 }
@@ -424,7 +424,7 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.n2 implements No
         this.F = obj;
         this.h.setText("");
         this.h.setInputType(524417);
-        for (es esVar : this.f33854n.f36732f) {
+        for (es esVar : this.f33854n.f36734f) {
             esVar.setText("");
         }
         n0();
@@ -488,9 +488,9 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.n2 implements No
 
     public final void n0() {
         if (h0()) {
-            this.f33854n.f36732f[0].requestFocus();
+            this.f33854n.f36734f[0].requestFocus();
             if (!f0()) {
-                AndroidUtilities.showKeyboard(this.f33854n.f36732f[0]);
+                AndroidUtilities.showKeyboard(this.f33854n.f36734f[0]);
             }
         } else if (g0()) {
             this.h.requestFocus();
@@ -573,7 +573,7 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.n2 implements No
             fk0Var.setVisibility(i10);
         }
         ce0 ce0Var = this.f33854n;
-        if (ce0Var != null && (esVarArr = ce0Var.f36732f) != null) {
+        if (ce0Var != null && (esVarArr = ce0Var.f36734f) != null) {
             for (es esVar : esVarArr) {
                 esVar.setShowSoftInputOnFocusCompat(!f0());
             }

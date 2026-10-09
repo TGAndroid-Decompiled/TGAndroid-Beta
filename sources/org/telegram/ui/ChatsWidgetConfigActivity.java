@@ -19,7 +19,7 @@ public class ChatsWidgetConfigActivity extends ExternalActionActivity {
         if (this.E != 0) {
             org.telegram.messenger.bi.d(10, "onlySelect", "dialogsType", true).putBoolean("allowSwitchAccount", true);
             cz czVar = new cz(0, this.E);
-            czVar.f36761y = new z0(this, 25);
+            czVar.f36763y = new z0(this, 25);
             if (AndroidUtilities.isTablet()) {
                 if (this.d.getFragmentStack().isEmpty()) {
                     this.d.c(-1, czVar);

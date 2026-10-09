@@ -72,27 +72,27 @@ public final class t8 extends org.telegram.ui.Components.t6 {
                 uh.h hVar = (uh.h) obj;
                 hVar.G = f7;
                 RectF rectF = hVar.v;
-                RectF rectF2 = hVar.f49006s;
-                float interpolation = 1.0f - uh.f.f48986p.getInterpolation(f7);
-                float interpolation2 = (uh.f.h.getInterpolation(hVar.G) - uh.f.f48979i.getInterpolation(hVar.G)) * AndroidUtilities.dp(13.0f);
-                RectF rectF3 = hVar.f49004n;
+                RectF rectF2 = hVar.f49008s;
+                float interpolation = 1.0f - uh.f.f48988p.getInterpolation(f7);
+                float interpolation2 = (uh.f.h.getInterpolation(hVar.G) - uh.f.f48981i.getInterpolation(hVar.G)) * AndroidUtilities.dp(13.0f);
+                RectF rectF3 = hVar.f49006n;
                 RectF rectF4 = hVar.h;
                 rectF3.set(rectF4);
                 rectF3.offset(0.0f, -interpolation2);
-                float g10 = uh.h.g(rectF3.height(), (AndroidUtilities.dp(2.0f) * interpolation) + AndroidUtilities.dp(uh.g.f48992b), uh.f.f48982l.getInterpolation(hVar.G)) / 2.0f;
-                uh.e eVar = uh.f.f48983m;
+                float g10 = uh.h.g(rectF3.height(), (AndroidUtilities.dp(2.0f) * interpolation) + AndroidUtilities.dp(uh.g.f48994b), uh.f.f48984l.getInterpolation(hVar.G)) / 2.0f;
+                uh.e eVar = uh.f.f48985m;
                 float g11 = uh.h.g(rectF3.width(), (AndroidUtilities.dp(10.0f) * interpolation) + hVar.h(), eVar.getInterpolation(hVar.G));
                 float f11 = g10 * 2.0f;
                 float max = Math.max(g11, f11);
                 float interpolation3 = (eVar.getInterpolation(hVar.G) * Math.min(AndroidUtilities.dp(-12.0f) + hVar.F, (max - Math.max(rectF3.width(), f11)) / 2.0f)) + rectF4.centerX() + g10;
-                float interpolation4 = ((rectF4.bottom - g10) - 1.0f) - (uh.f.f48984n.getInterpolation(hVar.G) * ((AndroidUtilities.dp(6.0f) * interpolation) + AndroidUtilities.dp(38.0f)));
-                RectF rectF5 = hVar.f49005r;
+                float interpolation4 = ((rectF4.bottom - g10) - 1.0f) - (uh.f.f48986n.getInterpolation(hVar.G) * ((AndroidUtilities.dp(6.0f) * interpolation) + AndroidUtilities.dp(38.0f)));
+                RectF rectF5 = hVar.f49007r;
                 rectF5.left = interpolation3 - max;
                 rectF5.top = interpolation4 - g10;
                 rectF5.right = interpolation3;
                 rectF5.bottom = interpolation4 + g10;
                 if (hVar.Q && !hVar.M) {
-                    float g12 = uh.h.g(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(3.0f), uh.f.f48985o.getInterpolation(hVar.G));
+                    float g12 = uh.h.g(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(3.0f), uh.f.f48987o.getInterpolation(hVar.G));
                     float f12 = rectF5.bottom + g12;
                     double width = (rectF3.width() / 2.0f) + g12;
                     double abs = Math.abs(f12 - rectF3.centerY());
@@ -140,7 +140,7 @@ public final class t8 extends org.telegram.ui.Components.t6 {
                         hVar.Q = false;
                     }
                     if (hVar.Q) {
-                        Path path = hVar.f49002e;
+                        Path path = hVar.f49004e;
                         path.reset();
                         float b10 = uh.h.b(rectF3.centerX(), rectF3.centerY(), rectF.centerX(), rectF.centerY());
                         float b11 = uh.h.b(rectF3.centerX(), rectF3.centerY(), rectF2.centerX(), rectF2.centerY());
@@ -157,7 +157,7 @@ public final class t8 extends org.telegram.ui.Components.t6 {
                         if (!z10) {
                             path.lineTo((rectF5.height() / 2.0f) + rectF5.left, rectF5.bottom);
                         }
-                        RectF rectF6 = uh.h.f48993b0;
+                        RectF rectF6 = uh.h.f48995b0;
                         float f19 = rectF5.left;
                         rectF6.set(f19, rectF5.top, rectF5.height() + f19, rectF5.bottom);
                         hVar.a(path, rectF6, uh.h.j(f18), -90.0f, false, false);

@@ -24,22 +24,22 @@ import org.telegram.ui.Components.y9;
 import org.telegram.ui.eg0;
 import w7.x5;
 public final class g extends FrameLayout {
-    public final y9 f47250a;
-    public final f30 f47251b;
-    public final int f47252c;
+    public final y9 f47252a;
+    public final f30 f47253b;
+    public final int f47254c;
     public final j d;
 
     public g(j jVar, Context context) {
         super(context);
         this.d = jVar;
         f30 f30Var = new f30();
-        this.f47251b = f30Var;
-        int i10 = jVar.f47271f;
-        e6 e6Var = jVar.f47199a;
+        this.f47253b = f30Var;
+        int i10 = jVar.f47273f;
+        e6 e6Var = jVar.f47201a;
         if (i10 == 0) {
-            this.f47252c = AndroidUtilities.dp(150.0f);
+            this.f47254c = AndroidUtilities.dp(150.0f);
             y9 y9Var = new y9(context);
-            this.f47250a = y9Var;
+            this.f47252a = y9Var;
             y9Var.setRoundRadius((int) (AndroidUtilities.dp(65.0f) / 2.0f));
             addView(y9Var, x5.a(65.0f, 0.0f, 32.0f, 0.0f, 0.0f, 65, 1));
             TLRPC.User currentUser = UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser();
@@ -67,8 +67,8 @@ public final class g extends FrameLayout {
             int i11 = i6.Mj;
             canvas.drawColor(i0.a.d(0.5f, i6.w0(i11, e6Var), i6.w0(i6.f20868h5, e6Var)));
             eg0Var.setBackgroundBitmap(createBitmap);
-            sg.g gVar = eg0Var.f48076b;
-            gVar.f48060z = i11;
+            sg.g gVar = eg0Var.f48078b;
+            gVar.f48062z = i11;
             gVar.A = i6.Lj;
             gVar.b();
             addView(eg0Var, x5.e(160, 160, 1));
@@ -88,13 +88,13 @@ public final class g extends FrameLayout {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        if (this.d.f47271f == 0) {
+        if (this.d.f47273f == 0) {
             Rect rect = AndroidUtilities.rectTmp2;
-            this.f47250a.getHitRect(rect);
+            this.f47252a.getHitRect(rect);
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(rect);
             rectF.inset(-AndroidUtilities.dp(5.0f), -AndroidUtilities.dp(5.0f));
-            f30 f30Var = this.f47251b;
+            f30 f30Var = this.f47253b;
             f30Var.c(rectF);
             float f7 = 360.0f / 7;
             for (int i10 = 0; i10 < 7; i10++) {
@@ -109,7 +109,7 @@ public final class g extends FrameLayout {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        int i12 = this.f47252c;
+        int i12 = this.f47254c;
         if (i12 > 0) {
             i11 = View.MeasureSpec.makeMeasureSpec(i12, 1073741824);
         }

@@ -8,23 +8,23 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.zn;
 public final class q0 implements Runnable {
-    public final int f51459a;
-    public final long f51460b;
-    public final Object f51461c;
+    public final int f51461a;
+    public final long f51462b;
+    public final Object f51463c;
     public final Object d;
 
     public q0(Object obj, long j3, Object obj2, int i10) {
-        this.f51459a = i10;
-        this.f51461c = obj;
-        this.f51460b = j3;
+        this.f51461a = i10;
+        this.f51463c = obj;
+        this.f51462b = j3;
         this.d = obj2;
     }
 
     @Override
     public final void run() {
-        switch (this.f51459a) {
+        switch (this.f51461a) {
             case 0:
-                r1 r1Var = (r1) this.f51461c;
+                r1 r1Var = (r1) this.f51463c;
                 Utilities.Callback callback = (Utilities.Callback) this.d;
                 r1Var.getClass();
                 org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
@@ -34,36 +34,36 @@ public final class q0 implements Runnable {
                         callback.run(Boolean.FALSE);
                     }
                     Bundle bundle = new Bundle();
-                    bundle.putLong("user_id", this.f51460b);
+                    bundle.putLong("user_id", this.f51462b);
                     bundle.putBoolean("open_gifts", true);
                     U.presentFragment(new ProfileActivity(bundle, null));
                     return;
                 }
                 return;
             case 1:
-                yh.s3 s3Var = (yh.s3) this.f51461c;
+                yh.s3 s3Var = (yh.s3) this.f51463c;
                 Runnable runnable = (Runnable) this.d;
-                s3Var.r2((int) this.f51460b, s3Var.getContext(), true);
+                s3Var.r2((int) this.f51462b, s3Var.getContext(), true);
                 if (runnable != null) {
                     runnable.run();
                     return;
                 }
                 return;
             case 2:
-                yh.s3 s3Var2 = (yh.s3) this.f51461c;
+                yh.s3 s3Var2 = (yh.s3) this.f51463c;
                 s3Var2.getClass();
                 ((of.e) this.d).b();
-                s3Var2.r2((int) this.f51460b, s3Var2.getContext(), true);
+                s3Var2.r2((int) this.f51462b, s3Var2.getContext(), true);
                 return;
             default:
                 TL_stories.Boost boost = (TL_stories.Boost) this.d;
-                org.telegram.ui.ActionBar.f3 f3Var = ((org.telegram.ui.ActionBar.f3[]) this.f51461c)[0];
+                org.telegram.ui.ActionBar.f3 f3Var = ((org.telegram.ui.ActionBar.f3[]) this.f51463c)[0];
                 if (f3Var != null) {
                     f3Var.dismiss();
                 }
                 org.telegram.ui.ActionBar.n2 U2 = LaunchActivity.U();
                 if (U2 != null) {
-                    U2.presentFragment(zn.V9(boost.giveaway_msg_id, this.f51460b));
+                    U2.presentFragment(zn.V9(boost.giveaway_msg_id, this.f51462b));
                     return;
                 }
                 return;
@@ -71,9 +71,9 @@ public final class q0 implements Runnable {
     }
 
     public q0(eb ebVar, Object obj, long j3, int i10) {
-        this.f51459a = i10;
-        this.f51461c = ebVar;
+        this.f51461a = i10;
+        this.f51463c = ebVar;
         this.d = obj;
-        this.f51460b = j3;
+        this.f51462b = j3;
     }
 }

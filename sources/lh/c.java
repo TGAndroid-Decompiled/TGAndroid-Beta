@@ -428,13 +428,13 @@ public final class c extends ViewGroup implements ne.a, NotificationCenter.Notif
             spannableStringBuilder2.append((CharSequence) "  ");
             spannableStringBuilder2.append(formatTextWithEntities);
             spannableStringBuilder = spannableStringBuilder2;
-        } else if (n0Var.f54615f != null) {
-            TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(groupCallMessage.currentAccount).getReactionsMap().get(groupCallMessage.visibleReaction.f54615f);
+        } else if (n0Var.f54617f != null) {
+            TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(groupCallMessage.currentAccount).getReactionsMap().get(groupCallMessage.visibleReaction.f54617f);
             if (tL_availableReaction != null) {
                 imageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.select_animation), "28_28", null, null, null, 0);
             }
-        } else if (n0Var.f54616g != 0) {
-            s5 s5Var = new s5(0, groupCallMessage.currentAccount, groupCallMessage.visibleReaction.f54616g);
+        } else if (n0Var.f54618g != 0) {
+            s5 s5Var = new s5(0, groupCallMessage.currentAccount, groupCallMessage.visibleReaction.f54618g);
             this.f15589r = s5Var;
             s5Var.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
             if (isAttachedToWindow()) {

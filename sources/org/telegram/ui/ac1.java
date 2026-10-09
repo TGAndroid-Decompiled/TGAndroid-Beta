@@ -8,15 +8,15 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.ThemeActivity;
 public final class ac1 implements org.telegram.ui.Components.em0 {
-    public final int f35904a;
-    public final Object f35905b;
-    public final Object f35906c;
+    public final int f35906a;
+    public final Object f35907b;
+    public final Object f35908c;
     public final Object d;
 
     public ac1(Object obj, Object obj2, Object obj3, int i10) {
-        this.f35904a = i10;
-        this.f35905b = obj;
-        this.f35906c = obj2;
+        this.f35906a = i10;
+        this.f35907b = obj;
+        this.f35908c = obj2;
         this.d = obj3;
     }
 
@@ -28,15 +28,15 @@ public final class ac1 implements org.telegram.ui.Components.em0 {
         boolean z11;
         boolean z12;
         boolean z13;
-        int i11 = this.f35904a;
+        int i11 = this.f35906a;
         Object obj = this.d;
-        Object obj2 = this.f35906c;
-        Object obj3 = this.f35905b;
+        Object obj2 = this.f35908c;
+        Object obj3 = this.f35907b;
         switch (i11) {
             case 0:
                 jc1 jc1Var = (jc1) obj2;
                 fc1 fc1Var = (fc1) obj;
-                ThemeActivity themeActivity = ((hc1) obj3).f38251e;
+                ThemeActivity themeActivity = ((hc1) obj3).f38253e;
                 int i12 = themeActivity.f34538f;
                 if (i12 == 1) {
                     B0 = org.telegram.ui.ActionBar.i6.J;
@@ -54,7 +54,7 @@ public final class ac1 implements org.telegram.ui.Components.em0 {
                     themeActivity.presentFragment(new xd1(h6Var, false, 1, false, z13));
                 } else {
                     interpolator = null;
-                    org.telegram.ui.ActionBar.g6 g6Var = (org.telegram.ui.ActionBar.g6) jc1Var.f38910e.get(i10);
+                    org.telegram.ui.ActionBar.g6 g6Var = (org.telegram.ui.ActionBar.g6) jc1Var.f38912e.get(i10);
                     if (!TextUtils.isEmpty(g6Var.f20665o) && g6Var.f20653a != org.telegram.ui.ActionBar.i6.f20975n) {
                         org.telegram.ui.ActionBar.d6.a(false);
                     }

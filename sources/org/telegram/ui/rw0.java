@@ -5,19 +5,19 @@ import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class rw0 implements ViewTreeObserver.OnPreDrawListener {
-    public final int f41528a;
-    public final PopupNotificationActivity f41529b;
+    public final int f41530a;
+    public final PopupNotificationActivity f41531b;
 
     public rw0(PopupNotificationActivity popupNotificationActivity, int i10) {
-        this.f41528a = i10;
-        this.f41529b = popupNotificationActivity;
+        this.f41530a = i10;
+        this.f41531b = popupNotificationActivity;
     }
 
     @Override
     public final boolean onPreDraw() {
-        switch (this.f41528a) {
+        switch (this.f41530a) {
             case 0:
-                PopupNotificationActivity popupNotificationActivity = this.f41529b;
+                PopupNotificationActivity popupNotificationActivity = this.f41531b;
                 FrameLayout frameLayout = popupNotificationActivity.f34118f;
                 if (frameLayout != null) {
                     frameLayout.getViewTreeObserver().removeOnPreDrawListener(this);
@@ -27,7 +27,7 @@ public final class rw0 implements ViewTreeObserver.OnPreDrawListener {
                 frameLayout2.setPadding(frameLayout2.getPaddingLeft(), A, popupNotificationActivity.f34118f.getPaddingRight(), A);
                 return true;
             default:
-                PopupNotificationActivity popupNotificationActivity2 = this.f41529b;
+                PopupNotificationActivity popupNotificationActivity2 = this.f41531b;
                 popupNotificationActivity2.f34119n.getViewTreeObserver().removeOnPreDrawListener(this);
                 if (!popupNotificationActivity2.c() && !popupNotificationActivity2.X) {
                     ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) popupNotificationActivity2.f34119n.getLayoutParams();

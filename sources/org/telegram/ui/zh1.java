@@ -11,21 +11,21 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 public final class zh1 extends ViewGroup {
-    public AnimatorSet f44661a;
-    public boolean f44662b;
-    public final ArrayList f44663c;
+    public AnimatorSet f44663a;
+    public boolean f44664b;
+    public final ArrayList f44665c;
     public org.telegram.ui.Components.d40 d;
-    public org.telegram.ui.Components.d40 f44664e;
-    public final UsersSelectActivity f44665f;
+    public org.telegram.ui.Components.d40 f44666e;
+    public final UsersSelectActivity f44667f;
 
     public zh1(UsersSelectActivity usersSelectActivity, Context context) {
         super(context);
-        this.f44665f = usersSelectActivity;
-        this.f44663c = new ArrayList();
+        this.f44667f = usersSelectActivity;
+        this.f44665c = new ArrayList();
     }
 
     public final void a(org.telegram.ui.Components.d40 d40Var, boolean z10) {
-        UsersSelectActivity usersSelectActivity = this.f44665f;
+        UsersSelectActivity usersSelectActivity = this.f44667f;
         usersSelectActivity.O.add(d40Var);
         long uid = d40Var.getUid();
         if (uid > -9223372036854775801L) {
@@ -34,19 +34,19 @@ public final class zh1 extends ViewGroup {
         usersSelectActivity.N.k(d40Var, uid);
         ci.g2 g2Var = usersSelectActivity.f34594c;
         g2Var.setHintVisible(false, TextUtils.isEmpty(g2Var.getText()));
-        AnimatorSet animatorSet = this.f44661a;
+        AnimatorSet animatorSet = this.f44663a;
         if (animatorSet != null && animatorSet.isRunning()) {
-            this.f44661a.setupEndValues();
-            this.f44661a.cancel();
+            this.f44663a.setupEndValues();
+            this.f44663a.cancel();
         }
-        this.f44662b = false;
+        this.f44664b = false;
         if (z10) {
             AnimatorSet animatorSet2 = new AnimatorSet();
-            this.f44661a = animatorSet2;
+            this.f44663a = animatorSet2;
             animatorSet2.addListener(new ep0(this, 27));
-            this.f44661a.setDuration(150L);
+            this.f44663a.setDuration(150L);
             this.d = d40Var;
-            ArrayList arrayList = this.f44663c;
+            ArrayList arrayList = this.f44665c;
             arrayList.clear();
             arrayList.add(ObjectAnimator.ofFloat(this.d, View.SCALE_X, 0.01f, 1.0f));
             arrayList.add(ObjectAnimator.ofFloat(this.d, View.SCALE_Y, 0.01f, 1.0f));
@@ -56,7 +56,7 @@ public final class zh1 extends ViewGroup {
     }
 
     public final void b(org.telegram.ui.Components.d40 d40Var) {
-        UsersSelectActivity usersSelectActivity = this.f44665f;
+        UsersSelectActivity usersSelectActivity = this.f44667f;
         usersSelectActivity.v = true;
         long uid = d40Var.getUid();
         if (uid > -9223372036854775801L) {
@@ -65,22 +65,22 @@ public final class zh1 extends ViewGroup {
         usersSelectActivity.N.l(uid);
         usersSelectActivity.O.remove(d40Var);
         d40Var.setOnClickListener(null);
-        AnimatorSet animatorSet = this.f44661a;
+        AnimatorSet animatorSet = this.f44663a;
         if (animatorSet != null) {
             animatorSet.setupEndValues();
-            this.f44661a.cancel();
+            this.f44663a.cancel();
         }
-        this.f44662b = false;
+        this.f44664b = false;
         AnimatorSet animatorSet2 = new AnimatorSet();
-        this.f44661a = animatorSet2;
+        this.f44663a = animatorSet2;
         animatorSet2.addListener(new org.telegram.ui.Components.ul0(16, this, d40Var));
-        this.f44661a.setDuration(150L);
-        this.f44664e = d40Var;
-        ArrayList arrayList = this.f44663c;
+        this.f44663a.setDuration(150L);
+        this.f44666e = d40Var;
+        ArrayList arrayList = this.f44665c;
         arrayList.clear();
-        arrayList.add(ObjectAnimator.ofFloat(this.f44664e, View.SCALE_X, 1.0f, 0.01f));
-        arrayList.add(ObjectAnimator.ofFloat(this.f44664e, View.SCALE_Y, 1.0f, 0.01f));
-        arrayList.add(ObjectAnimator.ofFloat(this.f44664e, View.ALPHA, 1.0f, 0.0f));
+        arrayList.add(ObjectAnimator.ofFloat(this.f44666e, View.SCALE_X, 1.0f, 0.01f));
+        arrayList.add(ObjectAnimator.ofFloat(this.f44666e, View.SCALE_Y, 1.0f, 0.01f));
+        arrayList.add(ObjectAnimator.ofFloat(this.f44666e, View.ALPHA, 1.0f, 0.0f));
         requestLayout();
     }
 
@@ -111,14 +111,14 @@ public final class zh1 extends ViewGroup {
         while (true) {
             property = View.TRANSLATION_Y;
             property2 = View.TRANSLATION_X;
-            arrayList = this.f44663c;
+            arrayList = this.f44665c;
             if (i13 >= childCount) {
                 break;
             }
             View childAt = getChildAt(i13);
             if (childAt instanceof org.telegram.ui.Components.d40) {
                 childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
-                if (childAt != this.f44664e && childAt.getMeasuredWidth() + i14 > dp) {
+                if (childAt != this.f44666e && childAt.getMeasuredWidth() + i14 > dp) {
                     dp2 = org.telegram.messenger.q.C(8.0f, childAt.getMeasuredHeight(), dp2);
                     i14 = 0;
                 }
@@ -127,8 +127,8 @@ public final class zh1 extends ViewGroup {
                     i15 = 0;
                 }
                 int dp4 = AndroidUtilities.dp(13.0f) + i14;
-                if (!this.f44662b) {
-                    org.telegram.ui.Components.d40 d40Var = this.f44664e;
+                if (!this.f44664b) {
+                    org.telegram.ui.Components.d40 d40Var = this.f44666e;
                     if (childAt == d40Var) {
                         childAt.setTranslationX(AndroidUtilities.dp(13.0f) + i15);
                         childAt.setTranslationY(dp3);
@@ -151,7 +151,7 @@ public final class zh1 extends ViewGroup {
                         childAt.setTranslationY(dp2);
                     }
                 }
-                if (childAt != this.f44664e) {
+                if (childAt != this.f44666e) {
                     i14 = org.telegram.messenger.q.C(9.0f, childAt.getMeasuredWidth(), i14);
                 }
                 i15 = org.telegram.messenger.q.C(9.0f, childAt.getMeasuredWidth(), i15);
@@ -171,13 +171,13 @@ public final class zh1 extends ViewGroup {
         if (dp - i15 < A) {
             dp3 += AndroidUtilities.dp(40.0f);
         }
-        UsersSelectActivity usersSelectActivity = this.f44665f;
+        UsersSelectActivity usersSelectActivity = this.f44667f;
         usersSelectActivity.f34594c.measure(View.MeasureSpec.makeMeasureSpec(dp - i14, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
-        if (!this.f44662b) {
+        if (!this.f44664b) {
             int dp5 = AndroidUtilities.dp(42.0f) + dp3;
             int dp6 = AndroidUtilities.dp(16.0f) + i14;
             usersSelectActivity.Q = dp2;
-            if (this.f44661a != null) {
+            if (this.f44663a != null) {
                 int dp7 = AndroidUtilities.dp(42.0f) + dp2;
                 if (usersSelectActivity.f34602y != dp7) {
                     arrayList.add(ObjectAnimator.ofInt(usersSelectActivity, "containerHeight", dp7));
@@ -192,15 +192,15 @@ public final class zh1 extends ViewGroup {
                     arrayList.add(ObjectAnimator.ofFloat(usersSelectActivity.f34594c, property, f12));
                 }
                 usersSelectActivity.f34594c.setAllowDrawCursor(false);
-                this.f44661a.playTogether(arrayList);
-                this.f44661a.start();
-                this.f44662b = true;
+                this.f44663a.playTogether(arrayList);
+                this.f44663a.start();
+                this.f44664b = true;
             } else {
                 usersSelectActivity.f34602y = dp5;
                 usersSelectActivity.f34594c.setTranslationX(dp6);
                 usersSelectActivity.f34594c.setTranslationY(usersSelectActivity.Q);
             }
-        } else if (this.f44661a != null && !usersSelectActivity.v && this.f44664e == null) {
+        } else if (this.f44663a != null && !usersSelectActivity.v && this.f44666e == null) {
             ci.g2 g2Var = usersSelectActivity.f34594c;
             g2Var.bringPointIntoView(g2Var.getSelectionStart());
         }

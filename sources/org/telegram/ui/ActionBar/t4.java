@@ -22,7 +22,7 @@ public final class t4 extends ListView {
     public t4(u4 u4Var) {
         super(u4Var.f21550a);
         int[] iArr = new int[8];
-        PathInterpolator pathInterpolator = yf.y.f52210i;
+        PathInterpolator pathInterpolator = yf.y.f52212i;
         yf.y.a(pathInterpolator, -16777216, iArr);
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
         LinearGradient linearGradient = new LinearGradient(0.0f, AndroidUtilities.dp(16.0f), 0.0f, 0.0f, iArr, (float[]) null, tileMode);

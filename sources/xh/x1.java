@@ -23,7 +23,7 @@ public final class x1 extends o91 {
     @Override
     public final void h() {
         rs0 rs0Var = this.U;
-        n91 n91Var = rs0Var.f51514n;
+        n91 n91Var = rs0Var.f51516n;
         if (rs0Var.b() && n91Var != null) {
             if (rs0Var.J == null) {
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(org.telegram.messenger.q.g(R.string.Gift2NewCollection, new StringBuilder("+ ")));

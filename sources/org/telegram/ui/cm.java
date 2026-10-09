@@ -5,27 +5,27 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
 public final class cm extends uu0 {
-    public final MessageObject f36702a;
-    public final MediaController.PhotoEntry f36703b;
-    public final dm f36704c;
+    public final MessageObject f36704a;
+    public final MediaController.PhotoEntry f36705b;
+    public final dm f36706c;
 
     public cm(dm dmVar, MessageObject messageObject, MediaController.PhotoEntry photoEntry) {
-        this.f36704c = dmVar;
-        this.f36702a = messageObject;
-        this.f36703b = photoEntry;
+        this.f36706c = dmVar;
+        this.f36704a = messageObject;
+        this.f36705b = photoEntry;
     }
 
     @Override
     public final ev0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        return this.f36704c.f37048a.Q.Ga.E(this.f36702a, fileLocation, i10, z10, false);
+        return this.f36706c.f37050a.Q.Ga.E(this.f36704a, fileLocation, i10, z10, false);
     }
 
     @Override
     public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        mm mmVar = this.f36704c.f37048a;
-        MessageObject messageObject = this.f36702a;
+        mm mmVar = this.f36706c.f37050a;
+        MessageObject messageObject = this.f36704a;
         messageObject.settingAvatar = true;
-        MediaController.PhotoEntry photoEntry = this.f36703b;
+        MediaController.PhotoEntry photoEntry = this.f36705b;
         if (photoEntry.imagePath == null && !photoEntry.isVideo) {
             TLRPC.TL_photos_updateProfilePhoto tL_photos_updateProfilePhoto = new TLRPC.TL_photos_updateProfilePhoto();
             TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();

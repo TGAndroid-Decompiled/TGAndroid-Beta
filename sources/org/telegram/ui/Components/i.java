@@ -43,7 +43,7 @@ public final class i implements View.OnLongClickListener {
                     return false;
                 }
                 org.telegram.ui.dj0 dj0Var = new org.telegram.ui.dj0(chatActivityEnterView.getContext(), e6Var);
-                dj0Var.f37000h0 = true;
+                dj0Var.f37002h0 = true;
                 ArrayList arrayList = new ArrayList();
                 if (groupedMessages != null) {
                     for (int i11 = 0; i11 < groupedMessages.messages.size(); i11++) {

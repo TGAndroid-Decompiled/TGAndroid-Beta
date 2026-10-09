@@ -79,7 +79,7 @@ public class ProxyListActivity extends org.telegram.ui.ActionBar.n2 implements N
             for (int i12 = proxyListActivity.f34397n; i12 < proxyListActivity.f34398r; i12++) {
                 org.telegram.ui.Components.am0 am0Var = (org.telegram.ui.Components.am0) proxyListActivity.f34393b.K(i12);
                 if (am0Var != null) {
-                    ((f21) am0Var.f47656a).b();
+                    ((f21) am0Var.f47658a).b();
                 }
             }
         } else if (i10 == proxyListActivity.v) {
@@ -103,7 +103,7 @@ public class ProxyListActivity extends org.telegram.ui.ActionBar.n2 implements N
             for (int i13 = proxyListActivity.f34397n; i13 < proxyListActivity.f34398r; i13++) {
                 org.telegram.ui.Components.am0 am0Var2 = (org.telegram.ui.Components.am0) proxyListActivity.f34393b.K(i13);
                 if (am0Var2 != null) {
-                    f21 f21Var = (f21) am0Var2.f47656a;
+                    f21 f21Var = (f21) am0Var2.f47658a;
                     if (f21Var.d == proxyInfo) {
                         z10 = true;
                     } else {
@@ -116,7 +116,7 @@ public class ProxyListActivity extends org.telegram.ui.ActionBar.n2 implements N
             proxyListActivity.b0(false);
             org.telegram.ui.Components.am0 am0Var3 = (org.telegram.ui.Components.am0) proxyListActivity.f34393b.K(proxyListActivity.useProxyRow);
             if (am0Var3 != null) {
-                ((org.telegram.ui.Cells.w8) am0Var3.f47656a).setChecked(true);
+                ((org.telegram.ui.Cells.w8) am0Var3.f47658a).setChecked(true);
             }
             ConnectionsManager.setProxySettings(proxyListActivity.d, SharedConfig.currentProxy.settings);
         } else if (i10 == proxyListActivity.proxyAddRow) {
@@ -183,7 +183,7 @@ public class ProxyListActivity extends org.telegram.ui.ActionBar.n2 implements N
         qm0Var.p1();
         this.actionBar.setAdaptiveBackground(this.f34393b);
         ((s4.j) this.f34393b.getItemAnimator()).C = false;
-        ((s4.j) this.f34393b.getItemAnimator()).f47716o = org.telegram.ui.Components.hs.f27118f;
+        ((s4.j) this.f34393b.getItemAnimator()).f47718o = org.telegram.ui.Components.hs.f27118f;
         this.f34393b.setVerticalScrollBarEnabled(false);
         this.f34393b.setLayoutManager(new s4.d0(1, false));
         ((FrameLayout) this.fragmentView).addView(this.f34393b, w7.x5.e(-1, -1, 51));

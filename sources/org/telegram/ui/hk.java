@@ -5,10 +5,10 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class hk implements pt {
-    public final zn f38365a;
+    public final zn f38367a;
 
     public hk(zn znVar) {
-        this.f38365a = znVar;
+        this.f38367a = znVar;
     }
 
     @Override
@@ -49,12 +49,12 @@ public final class hk implements pt {
     @Override
     public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
         if (inputStickerSet != null) {
-            zn znVar = this.f38365a;
+            zn znVar = this.f38367a;
             if (znVar.getParentActivity() != null) {
                 TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
                 tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
                 tL_inputStickerSetID.f20058id = inputStickerSet.f20058id;
-                org.telegram.ui.Components.xy0 xy0Var = new org.telegram.ui.Components.xy0(znVar.getParentActivity(), znVar, tL_inputStickerSetID, null, znVar.Y, znVar.f44761ea);
+                org.telegram.ui.Components.xy0 xy0Var = new org.telegram.ui.Components.xy0(znVar.getParentActivity(), znVar, tL_inputStickerSetID, null, znVar.Y, znVar.f44763ea);
                 xy0Var.setCalcMandatoryInsets(znVar.C9());
                 xy0Var.f33034i0 = z10;
                 znVar.showDialog(xy0Var);
@@ -79,17 +79,17 @@ public final class hk implements pt {
 
     @Override
     public final long a() {
-        return this.f38365a.T5;
+        return this.f38367a.T5;
     }
 
     @Override
     public final boolean b() {
-        return this.f38365a.G6();
+        return this.f38367a.G6();
     }
 
     @Override
     public final boolean c() {
-        if (this.f38365a.R3 == 1) {
+        if (this.f38367a.R3 == 1) {
             return true;
         }
         return false;
@@ -137,7 +137,7 @@ public final class hk implements pt {
 
     @Override
     public final void n(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
-        this.f38365a.Y.d(document, str, obj, null, true, z10, i10, i11);
+        this.f38367a.Y.d(document, str, obj, null, true, z10, i10, i11);
     }
 
     @Override

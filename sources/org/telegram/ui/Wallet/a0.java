@@ -26,7 +26,7 @@ public final class a0 implements Runnable {
                 if (this.f34603a) {
                     return;
                 }
-                WalletEngine2 walletEngine2 = this.h.f35094b;
+                WalletEngine2 walletEngine2 = this.h.f35118b;
                 String str = this.f34605c;
                 TL_wallet.nftItem nftitem = this.d;
                 String str2 = nftitem.address;

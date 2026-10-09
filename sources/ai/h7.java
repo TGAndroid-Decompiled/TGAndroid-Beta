@@ -56,7 +56,7 @@ public final class h7 implements ToIntFunction {
                 }
                 return Integer.MIN_VALUE;
             case 14:
-                return ((yf.d) obj).f52124a;
+                return ((yf.d) obj).f52126a;
             case 15:
                 return ((TL_stars.StarGift) obj).sold_out ? 1 : 0;
             case 16:

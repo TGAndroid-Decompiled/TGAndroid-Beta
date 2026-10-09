@@ -64,7 +64,7 @@ public final class j01 extends j1.b {
                 rect.set(i11, i12, d.f25895k + i11, d.f25896l + i12);
                 dVar.h(rect);
                 dVar.i("android.widget.TextView");
-                dVar.f47585a.setEnabled(true);
+                dVar.f47587a.setEnabled(true);
                 d01 d01Var = d.f25888b;
                 if (d01Var != null) {
                     str = d01Var.getText();

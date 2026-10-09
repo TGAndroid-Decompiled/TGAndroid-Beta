@@ -13,10 +13,10 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.UndoView;
 public final class tw extends org.telegram.ui.ActionBar.j {
-    public final ty f42132a;
+    public final ty f42134a;
 
     public tw(ty tyVar) {
-        this.f42132a = tyVar;
+        this.f42134a = tyVar;
     }
 
     @Override
@@ -30,7 +30,7 @@ public final class tw extends org.telegram.ui.ActionBar.j {
         boolean z10;
         org.telegram.ui.ActionBar.k kVar;
         org.telegram.ui.ActionBar.k kVar2;
-        ty tyVar = this.f42132a;
+        ty tyVar = this.f42134a;
         ArrayList arrayList3 = tyVar.I2;
         if ((i10 == 201 || i10 == 200 || i10 == 202 || i10 == 203) && (dyVar = tyVar.C0) != null) {
             HashMap hashMap = dyVar.f25789z0;
@@ -99,7 +99,7 @@ public final class tw extends org.telegram.ui.ActionBar.j {
                 }
                 return;
             }
-            qw qwVar = tyVar.f42276z0;
+            qw qwVar = tyVar.f42278z0;
             if (qwVar == null || !qwVar.f24515n) {
                 kVar = ((org.telegram.ui.ActionBar.n2) tyVar).actionBar;
                 if (kVar.t()) {
@@ -113,7 +113,7 @@ public final class tw extends org.telegram.ui.ActionBar.j {
                     }
                     tyVar.Y3(true);
                     return;
-                } else if (tyVar.f42208l2 || tyVar.V2 != 0 || tyVar.X2 != 0) {
+                } else if (tyVar.f42210l2 || tyVar.V2 != 0 || tyVar.X2 != 0) {
                     tyVar.finishFragment();
                     return;
                 } else {
@@ -127,8 +127,8 @@ public final class tw extends org.telegram.ui.ActionBar.j {
                 SharedConfig.appLocked = true;
                 SharedConfig.saveConfig();
                 int[] iArr = new int[2];
-                tyVar.f42178f0.getLocationInWindow(iArr);
-                ((LaunchActivity) tyVar.getParentActivity()).G0(false, true, (tyVar.f42178f0.getMeasuredWidth() / 2) + iArr[0], (tyVar.f42178f0.getMeasuredHeight() / 2) + iArr[1], new cj(this, 25));
+                tyVar.f42180f0.getLocationInWindow(iArr);
+                ((LaunchActivity) tyVar.getParentActivity()).G0(false, true, (tyVar.f42180f0.getMeasuredWidth() / 2) + iArr[0], (tyVar.f42180f0.getMeasuredHeight() / 2) + iArr[1], new cj(this, 25));
                 tyVar.getNotificationsController().showNotifications();
                 tyVar.v3();
             }
@@ -142,7 +142,7 @@ public final class tw extends org.telegram.ui.ActionBar.j {
             d10Var.f25550r = new gu(this, 4);
             tyVar.showDialog(d10Var);
         } else if (i10 == 110) {
-            MessagesController.DialogFilter dialogFilter2 = tyVar.getMessagesController().getDialogFilters().get(tyVar.f42172e0[0].h);
+            MessagesController.DialogFilter dialogFilter2 = tyVar.getMessagesController().getDialogFilters().get(tyVar.f42174e0[0].h);
             ArrayList J = org.telegram.ui.Components.d10.J(tyVar, dialogFilter2, arrayList3, false, false);
             if (dialogFilter2 != null) {
                 i11 = dialogFilter2.neverShow.size();

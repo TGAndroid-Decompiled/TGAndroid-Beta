@@ -858,9 +858,9 @@ public final class i implements m0, s, gc, a0, androidx.activity.result.b, p, o,
         int i10 = nbVar.F1;
         m currentBrush = nbVar.O0.getCurrentBrush();
         if (currentBrush == null) {
-            return u0.e(i10).f45804i;
+            return u0.e(i10).f45806i;
         }
-        return u0.e(i10).f(String.valueOf(m.f45686a.indexOf(currentBrush)), currentBrush.d());
+        return u0.e(i10).f(String.valueOf(m.f45688a.indexOf(currentBrush)), currentBrush.d());
     }
 
     @Override
@@ -1054,9 +1054,9 @@ public final class i implements m0, s, gc, a0, androidx.activity.result.b, p, o,
     @Override
     public void q0(float f7) {
         nb nbVar = (nb) this.f326b;
-        u0.e(nbVar.F1).k(String.valueOf(m.f45686a.indexOf(nbVar.O0.getCurrentBrush())), f7);
+        u0.e(nbVar.F1).k(String.valueOf(m.f45688a.indexOf(nbVar.O0.getCurrentBrush())), f7);
         s1 s1Var = nbVar.A1;
-        s1Var.f45778c = f7;
+        s1Var.f45780c = f7;
         nbVar.D0(s1Var, null, false);
     }
 
@@ -1109,7 +1109,7 @@ public final class i implements m0, s, gc, a0, androidx.activity.result.b, p, o,
             }
             try {
                 jSONObject.put("expires_at", j3);
-                fileWriter = new FileWriter((File) cVar2.f45542b);
+                fileWriter = new FileWriter((File) cVar2.f45544b);
                 try {
                     try {
                         fileWriter.write(jSONObject.toString());

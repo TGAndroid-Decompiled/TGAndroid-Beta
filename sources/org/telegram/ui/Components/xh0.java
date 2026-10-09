@@ -210,7 +210,7 @@ public final class xh0 extends FrameLayout {
                 vh0 vh0Var = this.K;
                 int height = (int) rectF.height();
                 this.J = height;
-                org.telegram.ui.ActionBar.n2[] n2VarArr = (org.telegram.ui.ActionBar.n2[]) ((org.telegram.ui.gu) vh0Var).f38107b;
+                org.telegram.ui.ActionBar.n2[] n2VarArr = (org.telegram.ui.ActionBar.n2[]) ((org.telegram.ui.gu) vh0Var).f38109b;
                 org.telegram.ui.ActionBar.n2 n2Var = n2VarArr[0];
                 if (n2Var != null && n2Var.getFragmentView() != null && n2VarArr[0].isInPreviewMode()) {
                     ViewGroup.LayoutParams layoutParams = n2VarArr[0].getFragmentView().getLayoutParams();

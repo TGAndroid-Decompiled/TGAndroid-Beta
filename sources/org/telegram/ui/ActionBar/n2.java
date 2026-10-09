@@ -318,7 +318,7 @@ public abstract class n2 {
         if (dialog != null) {
             dialog.dismiss();
         } else if (this.inPreviewMode && (m2Var = this.previewDelegate) != null) {
-            ((l41) ((hq0) m2Var).f38389b).a();
+            ((l41) ((hq0) m2Var).f38391b).a();
         } else {
             finishFragment(true);
         }
@@ -869,14 +869,14 @@ public abstract class n2 {
     }
 
     public r0.k1 onInsetsInternal(View view, r0.k1 k1Var) {
-        i0.b f7 = k1Var.f46775a.f(3);
+        i0.b f7 = k1Var.f46777a.f(3);
         int i10 = f7.f11576a;
         int i11 = f7.f11577b;
         int i12 = f7.f11578c;
         int i13 = f7.d;
         this.bottomInset = i13;
         onInsets(i10, i11, i12, i13);
-        return r0.k1.f46774b;
+        return r0.k1.f46776b;
     }
 
     public void onPause() {

@@ -39,7 +39,7 @@ public final class gx0 extends org.telegram.ui.Components.qm0 {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.X2.f39040n.f34146q0 >= 1.0f) {
+        if (this.X2.f39042n.f34146q0 >= 1.0f) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -47,7 +47,7 @@ public final class gx0 extends org.telegram.ui.Components.qm0 {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.X2.f39040n.f34146q0 >= 1.0f) {
+        if (this.X2.f39042n.f34146q0 >= 1.0f) {
             return false;
         }
         return super.onInterceptTouchEvent(motionEvent);
@@ -56,7 +56,7 @@ public final class gx0 extends org.telegram.ui.Components.qm0 {
     @Override
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
         super.onSizeChanged(i10, i11, i12, i13);
-        PremiumPreviewFragment premiumPreviewFragment = this.X2.f39040n;
+        PremiumPreviewFragment premiumPreviewFragment = this.X2.f39042n;
         int i14 = 0;
         int i15 = 0;
         while (true) {

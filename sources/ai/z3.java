@@ -148,7 +148,7 @@ public final class z3 extends org.telegram.ui.ActionBar.n2 {
             case 8:
                 return ((org.telegram.ui.web.b1) this.f2003b).W;
             case 9:
-                org.telegram.ui.ActionBar.n2 n2Var = ((rg.l1) this.f2003b).f47337t0;
+                org.telegram.ui.ActionBar.n2 n2Var = ((rg.l1) this.f2003b).f47339t0;
                 if (n2Var == null) {
                     return null;
                 }
@@ -201,7 +201,7 @@ public final class z3 extends org.telegram.ui.ActionBar.n2 {
             case 6:
                 return ((ry) this.f2003b).E.Z1;
             case 8:
-                return new y3(9, ((org.telegram.ui.web.b1) this.f2003b).f43242e);
+                return new y3(9, ((org.telegram.ui.web.b1) this.f2003b).f43244e);
             case 10:
                 return new org.telegram.ui.ActionBar.b5(new d());
             case 11:

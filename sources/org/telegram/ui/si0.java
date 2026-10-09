@@ -2,24 +2,24 @@ package org.telegram.ui;
 
 import java.util.ArrayList;
 public final class si0 implements Runnable {
-    public final int f41702a;
-    public final org.telegram.ui.ActionBar.n2 f41703b;
+    public final int f41704a;
+    public final org.telegram.ui.ActionBar.n2 f41705b;
 
     public si0(int i10, org.telegram.ui.ActionBar.n2 n2Var) {
-        this.f41702a = i10;
-        this.f41703b = n2Var;
+        this.f41704a = i10;
+        this.f41705b = n2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f41702a) {
+        switch (this.f41704a) {
             case 0:
                 ?? obj = new Object();
                 obj.f21357a = true;
-                this.f41703b.showAsSheet(new PremiumPreviewFragment(0, "effect"), obj);
+                this.f41705b.showAsSheet(new PremiumPreviewFragment(0, "effect"), obj);
                 return;
             case 1:
-                org.telegram.ui.ActionBar.n2 n2Var = this.f41703b;
+                org.telegram.ui.ActionBar.n2 n2Var = this.f41705b;
                 if (n2Var instanceof PremiumPreviewFragment) {
                     PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) n2Var;
                     premiumPreviewFragment.f34145p0 = true;
@@ -47,91 +47,91 @@ public final class si0 implements Runnable {
                 }
                 return;
             case 2:
-                this.f41703b.presentFragment(new DataSettingsActivity());
+                this.f41705b.presentFragment(new DataSettingsActivity());
                 return;
             case 3:
-                org.telegram.messenger.bi.n(0, this.f41703b);
+                org.telegram.messenger.bi.n(0, this.f41705b);
                 return;
             case 4:
-                org.telegram.messenger.bi.n(0, this.f41703b);
+                org.telegram.messenger.bi.n(0, this.f41705b);
                 return;
             case 5:
-                this.f41703b.presentFragment(new WallpapersListActivity(0));
+                this.f41705b.presentFragment(new WallpapersListActivity(0));
                 return;
             case 6:
-                this.f41703b.presentFragment(new WallpapersListActivity(1));
+                this.f41705b.presentFragment(new WallpapersListActivity(1));
                 return;
             case 7:
-                this.f41703b.presentFragment(new NotificationsCustomSettingsActivity(2, new ArrayList(), null, true));
+                this.f41705b.presentFragment(new NotificationsCustomSettingsActivity(2, new ArrayList(), null, true));
                 return;
             case 8:
-                this.f41703b.presentFragment(new WallpapersListActivity(0));
+                this.f41705b.presentFragment(new WallpapersListActivity(0));
                 return;
             case 9:
-                org.telegram.messenger.bi.n(0, this.f41703b);
+                org.telegram.messenger.bi.n(0, this.f41705b);
                 return;
             case 10:
-                org.telegram.messenger.bi.n(3, this.f41703b);
+                org.telegram.messenger.bi.n(3, this.f41705b);
                 return;
             case 11:
-                org.telegram.messenger.bi.n(3, this.f41703b);
+                org.telegram.messenger.bi.n(3, this.f41705b);
                 return;
             case 12:
-                org.telegram.ui.ActionBar.n2 n2Var2 = this.f41703b;
+                org.telegram.ui.ActionBar.n2 n2Var2 = this.f41705b;
                 rg.y0 y0Var = new rg.y0(n2Var2, 5, false);
                 y0Var.E();
                 n2Var2.showDialog(y0Var);
                 return;
             case 13:
-                org.telegram.messenger.bi.n(0, this.f41703b);
+                org.telegram.messenger.bi.n(0, this.f41705b);
                 return;
             case 14:
-                org.telegram.messenger.bi.n(0, this.f41703b);
+                org.telegram.messenger.bi.n(0, this.f41705b);
                 return;
             case 15:
-                org.telegram.messenger.bi.n(0, this.f41703b);
+                org.telegram.messenger.bi.n(0, this.f41705b);
                 return;
             case 16:
-                org.telegram.messenger.bi.n(0, this.f41703b);
+                org.telegram.messenger.bi.n(0, this.f41705b);
                 return;
             case 17:
-                org.telegram.messenger.bi.n(1, this.f41703b);
+                org.telegram.messenger.bi.n(1, this.f41705b);
                 return;
             case 18:
-                org.telegram.messenger.bi.n(0, this.f41703b);
+                org.telegram.messenger.bi.n(0, this.f41705b);
                 return;
             case 19:
-                this.f41703b.presentFragment(new NotificationsSettingsActivity());
+                this.f41705b.presentFragment(new NotificationsSettingsActivity());
                 return;
             case 20:
-                org.telegram.messenger.bi.n(0, this.f41703b);
+                org.telegram.messenger.bi.n(0, this.f41705b);
                 return;
             case 21:
-                org.telegram.messenger.bi.n(0, this.f41703b);
+                org.telegram.messenger.bi.n(0, this.f41705b);
                 return;
             case 22:
-                org.telegram.messenger.bi.n(0, this.f41703b);
+                org.telegram.messenger.bi.n(0, this.f41705b);
                 return;
             case 23:
-                this.f41703b.presentFragment(new NotificationsSettingsActivity());
+                this.f41705b.presentFragment(new NotificationsSettingsActivity());
                 return;
             case 24:
-                org.telegram.messenger.bi.n(0, this.f41703b);
+                org.telegram.messenger.bi.n(0, this.f41705b);
                 return;
             case 25:
-                org.telegram.messenger.bi.n(0, this.f41703b);
+                org.telegram.messenger.bi.n(0, this.f41705b);
                 return;
             case 26:
-                org.telegram.messenger.bi.n(0, this.f41703b);
+                org.telegram.messenger.bi.n(0, this.f41705b);
                 return;
             case 27:
-                org.telegram.messenger.bi.n(0, this.f41703b);
+                org.telegram.messenger.bi.n(0, this.f41705b);
                 return;
             case 28:
-                this.f41703b.presentFragment(new StickersActivity(0, null));
+                this.f41705b.presentFragment(new StickersActivity(0, null));
                 return;
             default:
-                this.f41703b.presentFragment(new StickersActivity(0, null));
+                this.f41705b.presentFragment(new StickersActivity(0, null));
                 return;
         }
     }

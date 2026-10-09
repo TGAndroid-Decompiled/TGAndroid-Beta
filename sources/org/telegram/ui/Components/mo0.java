@@ -47,11 +47,11 @@ public final class mo0 extends View {
         this.f28874e = z10;
         lo0 lo0Var = this.f28871a;
         if (lo0Var != null) {
-            lo0Var.f54598p = z10;
+            lo0Var.f54600p = z10;
             g6 g6Var = this.f28872b;
             if (z11) {
-                lo0Var.f54591i = lo0Var.N;
-                lo0Var.f54589g = lo0Var.O;
+                lo0Var.f54593i = lo0Var.N;
+                lo0Var.f54591g = lo0Var.O;
                 lo0Var.h = lo0Var.P;
                 g6Var.d(0.0f, true);
             } else {

@@ -83,7 +83,7 @@ public final class y1 extends ea0 {
                     int indexOf = charSequence.toString().indexOf(10);
                     if (indexOf >= 0) {
                         charSequence.replace(indexOf, indexOf + 1, " ");
-                        charSequence.setSpan(new ForegroundColorSpan(((org.telegram.ui.qa) this.M).f41061e.getThemedColor(org.telegram.ui.ActionBar.i6.f21018p7)), 0, indexOf, 33);
+                        charSequence.setSpan(new ForegroundColorSpan(((org.telegram.ui.qa) this.M).f41063e.getThemedColor(org.telegram.ui.ActionBar.i6.f21018p7)), 0, indexOf, 33);
                     }
                     m61[] m61VarArr = (m61[]) charSequence.getSpans(0, charSequence.length(), m61.class);
                     for (int i10 = 0; i10 < m61VarArr.length; i10++) {
@@ -103,9 +103,9 @@ public final class y1 extends ea0 {
                         charSequence.setSpan(new ForegroundColorSpan(mdVar.getThemedColor(org.telegram.ui.ActionBar.i6.f21018p7)), 0, indexOf2, 33);
                     }
                     m61[] m61VarArr2 = (m61[]) charSequence.getSpans(0, charSequence.length(), m61.class);
-                    EditTextBoldCursor editTextBoldCursor = mdVar.f39865w;
+                    EditTextBoldCursor editTextBoldCursor = mdVar.f39867w;
                     if (editTextBoldCursor != null && editTextBoldCursor.getText() != null) {
-                        str = mdVar.f39865w.getText().toString();
+                        str = mdVar.f39867w.getText().toString();
                     } else {
                         str = "";
                     }

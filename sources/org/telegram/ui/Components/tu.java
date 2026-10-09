@@ -82,7 +82,7 @@ public abstract class tu extends EditText {
         tuVar.isSpoilersRevealed = false;
         tuVar.invalidateSpoilers();
         if (!tuVar.spoilers.isEmpty()) {
-            tuVar.spoilers.get(0).f49692q = new su(tuVar, 3);
+            tuVar.spoilers.get(0).f49694q = new su(tuVar, 3);
             float sqrt = (float) Math.sqrt(Math.pow(tuVar.getHeight(), 2.0d) + Math.pow(tuVar.getWidth(), 2.0d));
             for (vh.g gVar : tuVar.spoilers) {
                 gVar.j(tuVar.lastRippleX, tuVar.lastRippleY, sqrt, true);
@@ -142,7 +142,7 @@ public abstract class tu extends EditText {
             this.postedSpoilerTimeout = false;
             removeCallbacks(this.spoilerTimeout);
             setSpoilersRevealed(true, false);
-            gVar.f49692q = new su(this, 0);
+            gVar.f49694q = new su(this, 0);
             float sqrt = (float) Math.sqrt(Math.pow(getHeight(), 2.0d) + Math.pow(getWidth(), 2.0d));
             for (vh.g gVar2 : this.spoilers) {
                 gVar2.j(f7, f10, sqrt, false);
@@ -199,7 +199,7 @@ public abstract class tu extends EditText {
             }
         }
         if (!z10) {
-            if (this.shouldRevealSpoilersByTouch && (lVar = this.clickDetector) != null && ((GestureDetector) lVar.f49722a.f15668b).onTouchEvent(motionEvent)) {
+            if (this.shouldRevealSpoilersByTouch && (lVar = this.clickDetector) != null && ((GestureDetector) lVar.f49724a.f15668b).onTouchEvent(motionEvent)) {
                 if (motionEvent.getActionMasked() == 1) {
                     MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
                     super.dispatchTouchEvent(obtain);
@@ -402,7 +402,7 @@ public abstract class tu extends EditText {
         canvas2.restore();
         if (!this.spoilers.isEmpty()) {
             vh.g gVar2 = this.spoilers.get(0);
-            if (gVar2.f49688m > 0.0f && gVar2.f49689n > 0.0f) {
+            if (gVar2.f49690m > 0.0f && gVar2.f49691n > 0.0f) {
                 canvas2.save();
                 canvas2.clipPath(this.path);
                 this.path.rewind();
@@ -431,7 +431,7 @@ public abstract class tu extends EditText {
                 int i12 = rect.top;
                 int i13 = bounds2.bottom;
                 if ((i12 <= i13 && rect.bottom >= bounds2.top) || (bounds2.top <= rect.bottom && i13 >= i12)) {
-                    if (gVar3.f49699y) {
+                    if (gVar3.f49701y) {
                         color = this.quoteColor;
                     } else {
                         color = getPaint().getColor();

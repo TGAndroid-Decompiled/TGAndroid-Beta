@@ -34,11 +34,11 @@ public final class al0 extends og.b {
 
     @Override
     public final void v(s4.d1 d1Var, int i10) {
-        int i11 = d1Var.f47660f;
+        int i11 = d1Var.f47662f;
         if (i11 != 0 && i11 != 3) {
             return;
         }
-        il0 il0Var = (il0) d1Var.f47656a;
+        il0 il0Var = (il0) d1Var.f47658a;
         il0Var.setScaleX(1.0f);
         il0Var.setScaleY(1.0f);
         il0.a(il0Var, ((bl0) this.d.d.get(i10)).f25046c, i10);
@@ -144,9 +144,9 @@ public final class al0 extends og.b {
     public final void y(s4.d1 d1Var) {
         int b10;
         ArrayList arrayList = this.d.d;
-        int i10 = d1Var.f47660f;
+        int i10 = d1Var.f47662f;
         if ((i10 == 0 || i10 == 3) && (b10 = d1Var.b()) >= 0 && b10 < arrayList.size()) {
-            ((il0) d1Var.f47656a).f(((bl0) arrayList.get(b10)).f25046c, false);
+            ((il0) d1Var.f47658a).f(((bl0) arrayList.get(b10)).f25046c, false);
         }
     }
 }

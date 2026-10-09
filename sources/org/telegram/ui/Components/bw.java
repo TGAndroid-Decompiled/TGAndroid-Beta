@@ -85,8 +85,8 @@ public final class bw implements org.telegram.ui.ActionBar.r0, Utilities.Callbac
                     }
                     org.telegram.ui.o10 o10Var = bo0Var.J;
                     int id2 = E.getId();
-                    o10Var.f40397a = E.getDialogId();
-                    o10Var.f40398b = id2;
+                    o10Var.f40399a = E.getDialogId();
+                    o10Var.f40400b = id2;
                 }
                 return true;
         }

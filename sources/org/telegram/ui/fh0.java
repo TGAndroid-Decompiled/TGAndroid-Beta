@@ -44,9 +44,9 @@ public final class fh0 extends ci1 implements NotificationCenter.NotificationCen
     public boolean Q;
     public final fh.c R;
     public final fh.d S;
-    public IUpdateLayout f37606w;
-    public boolean f37607x;
-    public kh1 f37608y;
+    public IUpdateLayout f37608w;
+    public boolean f37609x;
+    public kh1 f37610y;
     public final me.b v = new me.b(0, this, org.telegram.ui.Components.hs.h, 380, true);
     public final RectF T = new RectF();
 
@@ -61,7 +61,7 @@ public final class fh0 extends ci1 implements NotificationCenter.NotificationCen
         this.R = new fh.c();
         y8 y8Var = new y8(this, 5);
         setBulletinDelegate(y8Var);
-        org.telegram.ui.Components.tc.a(this.f36684b, y8Var);
+        org.telegram.ui.Components.tc.a(this.f36686b, y8Var);
     }
 
     public static void Y(fh0 fh0Var, int i10, org.telegram.ui.Components.p80 p80Var) {
@@ -188,19 +188,19 @@ public final class fh0 extends ci1 implements NotificationCenter.NotificationCen
         bVar.f();
         bVarArr2[4] = bVar;
         this.K[0].setOnLongClickListener(new View.OnLongClickListener(this) {
-            public final fh0 f35930b;
+            public final fh0 f35932b;
 
             {
-                this.f35930b = this;
+                this.f35932b = this;
             }
 
             @Override
             public final boolean onLongClick(View view) {
                 switch (r2) {
                     case 0:
-                        return fh0.Z(this.f35930b, view);
+                        return fh0.Z(this.f35932b, view);
                     case 1:
-                        fh0 fh0Var = this.f35930b;
+                        fh0 fh0Var = this.f35932b;
                         if (fh0Var.getParentActivity() == null || fh0Var.getParentActivity() == null) {
                             return false;
                         }
@@ -217,7 +217,7 @@ public final class fh0 extends ci1 implements NotificationCenter.NotificationCen
                         H.Z();
                         return true;
                     case 2:
-                        fh0 fh0Var2 = this.f35930b;
+                        fh0 fh0Var2 = this.f35932b;
                         if (fh0Var2.getParentActivity() == null || fh0Var2.getParentActivity() == null) {
                             return false;
                         }
@@ -237,25 +237,25 @@ public final class fh0 extends ci1 implements NotificationCenter.NotificationCen
                         H2.Z();
                         return true;
                     default:
-                        this.f35930b.k0(view);
+                        this.f35932b.k0(view);
                         return true;
                 }
             }
         });
         this.K[1].setOnLongClickListener(new View.OnLongClickListener(this) {
-            public final fh0 f35930b;
+            public final fh0 f35932b;
 
             {
-                this.f35930b = this;
+                this.f35932b = this;
             }
 
             @Override
             public final boolean onLongClick(View view) {
                 switch (r2) {
                     case 0:
-                        return fh0.Z(this.f35930b, view);
+                        return fh0.Z(this.f35932b, view);
                     case 1:
-                        fh0 fh0Var = this.f35930b;
+                        fh0 fh0Var = this.f35932b;
                         if (fh0Var.getParentActivity() == null || fh0Var.getParentActivity() == null) {
                             return false;
                         }
@@ -272,7 +272,7 @@ public final class fh0 extends ci1 implements NotificationCenter.NotificationCen
                         H.Z();
                         return true;
                     case 2:
-                        fh0 fh0Var2 = this.f35930b;
+                        fh0 fh0Var2 = this.f35932b;
                         if (fh0Var2.getParentActivity() == null || fh0Var2.getParentActivity() == null) {
                             return false;
                         }
@@ -292,25 +292,25 @@ public final class fh0 extends ci1 implements NotificationCenter.NotificationCen
                         H2.Z();
                         return true;
                     default:
-                        this.f35930b.k0(view);
+                        this.f35932b.k0(view);
                         return true;
                 }
             }
         });
         this.K[3].setOnLongClickListener(new View.OnLongClickListener(this) {
-            public final fh0 f35930b;
+            public final fh0 f35932b;
 
             {
-                this.f35930b = this;
+                this.f35932b = this;
             }
 
             @Override
             public final boolean onLongClick(View view) {
                 switch (r2) {
                     case 0:
-                        return fh0.Z(this.f35930b, view);
+                        return fh0.Z(this.f35932b, view);
                     case 1:
-                        fh0 fh0Var = this.f35930b;
+                        fh0 fh0Var = this.f35932b;
                         if (fh0Var.getParentActivity() == null || fh0Var.getParentActivity() == null) {
                             return false;
                         }
@@ -327,7 +327,7 @@ public final class fh0 extends ci1 implements NotificationCenter.NotificationCen
                         H.Z();
                         return true;
                     case 2:
-                        fh0 fh0Var2 = this.f35930b;
+                        fh0 fh0Var2 = this.f35932b;
                         if (fh0Var2.getParentActivity() == null || fh0Var2.getParentActivity() == null) {
                             return false;
                         }
@@ -347,25 +347,25 @@ public final class fh0 extends ci1 implements NotificationCenter.NotificationCen
                         H2.Z();
                         return true;
                     default:
-                        this.f35930b.k0(view);
+                        this.f35932b.k0(view);
                         return true;
                 }
             }
         });
         this.K[4].setOnLongClickListener(new View.OnLongClickListener(this) {
-            public final fh0 f35930b;
+            public final fh0 f35932b;
 
             {
-                this.f35930b = this;
+                this.f35932b = this;
             }
 
             @Override
             public final boolean onLongClick(View view) {
                 switch (r2) {
                     case 0:
-                        return fh0.Z(this.f35930b, view);
+                        return fh0.Z(this.f35932b, view);
                     case 1:
-                        fh0 fh0Var = this.f35930b;
+                        fh0 fh0Var = this.f35932b;
                         if (fh0Var.getParentActivity() == null || fh0Var.getParentActivity() == null) {
                             return false;
                         }
@@ -382,7 +382,7 @@ public final class fh0 extends ci1 implements NotificationCenter.NotificationCen
                         H.Z();
                         return true;
                     case 2:
-                        fh0 fh0Var2 = this.f35930b;
+                        fh0 fh0Var2 = this.f35932b;
                         if (fh0Var2.getParentActivity() == null || fh0Var2.getParentActivity() == null) {
                             return false;
                         }
@@ -402,7 +402,7 @@ public final class fh0 extends ci1 implements NotificationCenter.NotificationCen
                         H2.Z();
                         return true;
                     default:
-                        this.f35930b.k0(view);
+                        this.f35932b.k0(view);
                         return true;
                 }
             }
@@ -429,17 +429,17 @@ public final class fh0 extends ci1 implements NotificationCenter.NotificationCen
             i13++;
         }
         g0(getUserConfig().showCallsTab, false);
-        m0(this.f36685c.getCurrentPosition(), false);
+        m0(this.f36687c.getCurrentPosition(), false);
         int themedColor = getThemedColor(org.telegram.ui.ActionBar.i6.f20797d6);
         fh.c cVar = this.R;
         cVar.a(themedColor);
-        hh.j jVar = new hh.j(this.f36684b);
+        hh.j jVar = new hh.j(this.f36686b);
         fh.a aVar = this.S;
         if (aVar == null) {
             aVar = cVar;
         }
         ah.c cVar2 = new ah.c(aVar);
-        k0 k0Var = this.f36684b;
+        k0 k0Var = this.f36686b;
         cVar2.f545f = jVar;
         cVar2.f546g = k0Var;
         cVar2.f547i = LiteMode.isEnabled(262144);
@@ -449,30 +449,30 @@ public final class fh0 extends ci1 implements NotificationCenter.NotificationCen
         this.G.p(AndroidUtilities.dp(7.666f));
         this.F.setBackground(this.G);
         ah.c cVar3 = new ah.c(cVar);
-        k0 k0Var2 = this.f36684b;
+        k0 k0Var2 = this.f36686b;
         cVar3.f545f = jVar;
         cVar3.f546g = k0Var2;
         this.H = new View(context);
         ah.d dVar = new ah.d(cVar3.c(this.H, null, false));
         dVar.b(AndroidUtilities.dp(60.0f), true);
         this.H.setBackground(dVar);
-        this.f36684b.addView(this.H, w7.x5.e(-1, 0, 80));
+        this.f36686b.addView(this.H, w7.x5.e(-1, 0, 80));
         FrameLayout frameLayout = new FrameLayout(context);
         this.E = frameLayout;
         frameLayout.setOnClickListener(new ai.e2(20));
         this.E.addView(this.F, w7.x5.e(-1, 72, 81));
         this.E.setClipToPadding(false);
-        this.f36684b.addView(this.E, w7.x5.e(-1, -2, 80));
+        this.f36686b.addView(this.E, w7.x5.e(-1, -2, 80));
         kh1 kh1Var = new kh1(context);
-        this.f37608y = kh1Var;
-        this.f36684b.addView(kh1Var, w7.x5.e(-1, -2, 80));
-        IUpdateLayout takeUpdateLayout = ApplicationLoader.applicationLoaderInstance.takeUpdateLayout(getParentActivity(), this.f37608y);
-        this.f37606w = takeUpdateLayout;
+        this.f37610y = kh1Var;
+        this.f36686b.addView(kh1Var, w7.x5.e(-1, -2, 80));
+        IUpdateLayout takeUpdateLayout = ApplicationLoader.applicationLoaderInstance.takeUpdateLayout(getParentActivity(), this.f37610y);
+        this.f37608w = takeUpdateLayout;
         if (takeUpdateLayout != null) {
             takeUpdateLayout.updateAppUpdateViews(this.currentAccount, false);
         }
         j0(false);
-        return this.f36684b;
+        return this.f36686b;
     }
 
     public final void d0() {
@@ -495,36 +495,36 @@ public final class fh0 extends ci1 implements NotificationCenter.NotificationCen
         z10 = false;
         if (i10 != NotificationCenter.notificationsCountUpdated && i10 != NotificationCenter.updateInterfaces) {
             if (i10 == NotificationCenter.appUpdateLoading) {
-                IUpdateLayout iUpdateLayout3 = this.f37606w;
+                IUpdateLayout iUpdateLayout3 = this.f37608w;
                 if (iUpdateLayout3 != null) {
                     iUpdateLayout3.updateFileProgress(null);
-                    this.f37606w.updateAppUpdateViews(this.currentAccount, true);
+                    this.f37608w.updateAppUpdateViews(this.currentAccount, true);
                     return;
                 }
                 return;
             } else if (i10 == NotificationCenter.fileLoaded) {
                 String str = (String) objArr[0];
-                if (SharedConfig.isAppUpdateAvailable() && FileLoader.getAttachFileName(SharedConfig.pendingAppUpdate.document).equals(str) && (iUpdateLayout2 = this.f37606w) != null) {
+                if (SharedConfig.isAppUpdateAvailable() && FileLoader.getAttachFileName(SharedConfig.pendingAppUpdate.document).equals(str) && (iUpdateLayout2 = this.f37608w) != null) {
                     iUpdateLayout2.updateAppUpdateViews(this.currentAccount, true);
                     return;
                 }
                 return;
             } else if (i10 == NotificationCenter.fileLoadFailed) {
                 String str2 = (String) objArr[0];
-                if (SharedConfig.isAppUpdateAvailable() && FileLoader.getAttachFileName(SharedConfig.pendingAppUpdate.document).equals(str2) && (iUpdateLayout = this.f37606w) != null) {
+                if (SharedConfig.isAppUpdateAvailable() && FileLoader.getAttachFileName(SharedConfig.pendingAppUpdate.document).equals(str2) && (iUpdateLayout = this.f37608w) != null) {
                     iUpdateLayout.updateAppUpdateViews(this.currentAccount, true);
                     return;
                 }
                 return;
             } else if (i10 == NotificationCenter.fileLoadProgressChanged) {
-                IUpdateLayout iUpdateLayout4 = this.f37606w;
+                IUpdateLayout iUpdateLayout4 = this.f37608w;
                 if (iUpdateLayout4 != null) {
                     iUpdateLayout4.updateFileProgress(objArr);
                     return;
                 }
                 return;
             } else if (i10 == NotificationCenter.appUpdateAvailable) {
-                IUpdateLayout iUpdateLayout5 = this.f37606w;
+                IUpdateLayout iUpdateLayout5 = this.f37608w;
                 if (iUpdateLayout5 != null && (launchActivity = LaunchActivity.G1) != null) {
                     int i12 = this.currentAccount;
                     if (launchActivity.f33783d0.size() == 1) {
@@ -535,23 +535,23 @@ public final class fh0 extends ci1 implements NotificationCenter.NotificationCen
                 }
                 return;
             } else if (i10 == NotificationCenter.needSetDayNightTheme) {
-                int currentPosition = this.f36685c.getCurrentPosition();
-                SparseArray sparseArray = this.f36683a;
+                int currentPosition = this.f36687c.getCurrentPosition();
+                SparseArray sparseArray = this.f36685a;
                 int size = sparseArray.size();
                 for (int i13 = 0; i13 < size; i13++) {
                     ai1 ai1Var = (ai1) sparseArray.valueAt(i13);
                     if (sparseArray.keyAt(i13) != currentPosition && ai1Var != null) {
-                        ai1Var.f35936a.clearViews();
+                        ai1Var.f35938a.clearViews();
                     }
                 }
                 return;
             } else if (i10 == NotificationCenter.callTabsVisibleToggled) {
                 g0(getUserConfig().showCallsTab, true);
-                bi1 bi1Var = this.f36685c;
+                bi1 bi1Var = this.f36687c;
                 if (bi1Var != null && bi1Var.getCurrentPosition() == 2) {
-                    this.f36685c.D(0);
+                    this.f36687c.D(0);
                     m0(0, true);
-                    this.f37607x = true;
+                    this.f37609x = true;
                     return;
                 }
                 W(2);
@@ -583,7 +583,7 @@ public final class fh0 extends ci1 implements NotificationCenter.NotificationCen
         float f7;
         int themedColor = getThemedColor(org.telegram.ui.ActionBar.i6.f20741a7);
         int themedColor2 = getThemedColor(org.telegram.ui.ActionBar.i6.f20797d6);
-        bi1 bi1Var = this.f36685c;
+        bi1 bi1Var = this.f36687c;
         if (bi1Var != null) {
             f7 = bi1Var.r(0);
         } else {
@@ -667,7 +667,7 @@ public final class fh0 extends ci1 implements NotificationCenter.NotificationCen
 
     public final void h0() {
         int i10;
-        bi1 bi1Var = this.f36685c;
+        bi1 bi1Var = this.f36687c;
         if (bi1Var != null && this.H != null) {
             float a2 = 1.0f - w7.o.a(Math.abs(3.0f - bi1Var.getPositionAnimated()), 0.0f, 1.0f);
             float navigationBarThirdButtonsFactor = (1.0f - ((1.0f - AndroidUtilities.getNavigationBarThirdButtonsFactor(0.0f, 1.0f, this.L)) * a2)) * this.v.f16337e;
@@ -686,7 +686,7 @@ public final class fh0 extends ci1 implements NotificationCenter.NotificationCen
     public final void i0() {
         int i10;
         boolean z10;
-        View view = this.f37608y.f39296b;
+        View view = this.f37610y.f39298b;
         int i11 = 0;
         if (view != null && view.getVisibility() == 0) {
             i10 = AndroidUtilities.dp(44.0f);
@@ -806,7 +806,7 @@ public final class fh0 extends ci1 implements NotificationCenter.NotificationCen
         ty tyVar = new ty(bundle);
         this.J = tyVar;
         tyVar.I3 = new ch0(this);
-        this.f36683a.put(0, new ai1(tyVar));
+        this.f36685a.put(0, new ai1(tyVar));
         return this.J;
     }
 
@@ -858,10 +858,10 @@ public final class fh0 extends ci1 implements NotificationCenter.NotificationCen
     @Override
     public final boolean onBackPressed(boolean z10) {
         boolean onBackPressed = super.onBackPressed(z10);
-        if (onBackPressed && this.f36685c.getCurrentPosition() != 0) {
+        if (onBackPressed && this.f36687c.getCurrentPosition() != 0) {
             onBackPressed = false;
             if (z10) {
-                this.f36685c.D(0);
+                this.f36687c.D(0);
             }
         }
         return onBackPressed;
@@ -885,7 +885,7 @@ public final class fh0 extends ci1 implements NotificationCenter.NotificationCen
     @Override
     public final void onFragmentDestroy() {
         setBulletinDelegate(null);
-        org.telegram.ui.Components.tc.h(this.f36684b);
+        org.telegram.ui.Components.tc.h(this.f36686b);
         NotificationCenter.ObserversGroup observersGroup = this.O;
         if (observersGroup != null) {
             observersGroup.removeAllObservers();

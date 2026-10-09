@@ -13,20 +13,20 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class kg0 extends FrameLayout {
     public static final int E = 0;
-    public final ug0 f39277a;
-    public final ViewGroup f39278b;
-    public final View f39279c;
+    public final ug0 f39279a;
+    public final ViewGroup f39280b;
+    public final View f39281c;
     public final View d;
-    public final View f39280e;
-    public final org.telegram.ui.Components.k41 f39281f;
+    public final View f39282e;
+    public final org.telegram.ui.Components.k41 f39283f;
     public final org.telegram.ui.Components.p20 h;
-    public final TextView f39282n;
-    public final TextView f39283r;
-    public final TextView f39284s;
+    public final TextView f39284n;
+    public final TextView f39285r;
+    public final TextView f39286s;
     public final TextView v;
-    public final FrameLayout f39285w;
-    public boolean f39286x;
-    public final PointF f39287y;
+    public final FrameLayout f39287w;
+    public boolean f39288x;
+    public final PointF f39289y;
 
     public kg0(Context context, ViewGroup viewGroup, View view, String str, final ug0 ug0Var) {
         super(context);
@@ -35,21 +35,21 @@ public final class kg0 extends FrameLayout {
         int i12;
         int i13;
         PointF pointF = new PointF();
-        this.f39287y = pointF;
-        this.f39278b = viewGroup;
-        this.f39279c = view;
-        this.f39277a = ug0Var;
+        this.f39289y = pointF;
+        this.f39280b = viewGroup;
+        this.f39281c = view;
+        this.f39279a = ug0Var;
         View view2 = new View(getContext());
         this.d = view2;
         view2.setOnClickListener(new hg0(this));
         addView(view2, w7.x5.d(-1.0f, -1));
         View view3 = new View(getContext());
-        this.f39280e = view3;
+        this.f39282e = view3;
         view3.setBackgroundColor(1073741824);
         view3.setAlpha(0.0f);
         addView(view3, w7.x5.d(-1.0f, -1));
         org.telegram.ui.Components.k41 k41Var = new org.telegram.ui.Components.k41(getContext());
-        this.f39281f = k41Var;
+        this.f39283f = k41Var;
         k41Var.setTransformType(1);
         k41Var.setDrawBackground(false);
         org.telegram.ui.Components.p20 p20Var = new org.telegram.ui.Components.p20(context, null, false);
@@ -72,10 +72,10 @@ public final class kg0 extends FrameLayout {
         p20Var.setContentDescription(LocaleController.getString(R.string.Done));
         addView(p20Var, w7.x5.e(56, 56, 51));
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f39285w = frameLayout;
+        this.f39287w = frameLayout;
         addView(frameLayout, w7.x5.a(140.0f, 24.0f, 0.0f, 24.0f, 0.0f, -1, 49));
         TextView textView = new TextView(context);
-        this.f39282n = textView;
+        this.f39284n = textView;
         textView.setText(LocaleController.getString(R.string.ConfirmCorrectNumber));
         textView.setTextSize(1, 14.0f);
         textView.setSingleLine();
@@ -85,7 +85,7 @@ public final class kg0 extends FrameLayout {
             i10 = 3;
         }
         TextView g10 = org.telegram.ui.Cells.c1.g(frameLayout, textView, w7.x5.a(-2.0f, 24.0f, 20.0f, 24.0f, 0.0f, -1, i10), context);
-        this.f39283r = g10;
+        this.f39285r = g10;
         g10.setText(str);
         g10.setTextSize(1, 18.0f);
         g10.setTypeface(AndroidUtilities.bold());
@@ -98,7 +98,7 @@ public final class kg0 extends FrameLayout {
         frameLayout.addView(g10, w7.x5.a(-2.0f, 24.0f, 48.0f, 24.0f, 0.0f, -1, i11));
         int dp = AndroidUtilities.dp(16.0f);
         TextView textView2 = new TextView(context);
-        this.f39284s = textView2;
+        this.f39286s = textView2;
         textView2.setText(LocaleController.getString(R.string.Edit));
         textView2.setSingleLine();
         textView2.setTextSize(1, 16.0f);
@@ -151,11 +151,11 @@ public final class kg0 extends FrameLayout {
     }
 
     public final void a() {
-        if (this.f39286x) {
+        if (this.f39288x) {
             return;
         }
-        this.f39286x = true;
-        this.f39277a.f42427a.V.f43575b0 = null;
+        this.f39288x = true;
+        this.f39279a.f42429a.V.f43577b0 = null;
         ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(250L);
         duration.addListener(new jg0(this, 1));
         duration.addUpdateListener(new gg0(this, 0));
@@ -165,14 +165,14 @@ public final class kg0 extends FrameLayout {
 
     public final void b() {
         int x02 = org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.O9, false);
-        org.telegram.ui.Components.k41 k41Var = this.f39281f;
+        org.telegram.ui.Components.k41 k41Var = this.f39283f;
         k41Var.setColor(x02);
         k41Var.setBackgroundColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.P9, false));
-        this.f39285w.setBackground(org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(12.0f), org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20868h5, false)));
-        this.f39282n.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f21036q5, false));
-        this.f39283r.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20905j5, false));
+        this.f39287w.setBackground(org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(12.0f), org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20868h5, false)));
+        this.f39284n.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f21036q5, false));
+        this.f39285r.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20905j5, false));
         int i10 = org.telegram.ui.ActionBar.i6.Wh;
-        this.f39284s.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, i10, false));
+        this.f39286s.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, i10, false));
         this.v.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, i10, false));
         this.h.g();
     }
@@ -180,7 +180,7 @@ public final class kg0 extends FrameLayout {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        FrameLayout frameLayout = this.f39285w;
+        FrameLayout frameLayout = this.f39287w;
         int measuredHeight = frameLayout.getMeasuredHeight();
         int translationY = (int) (this.h.getTranslationY() - AndroidUtilities.dp(32.0f));
         frameLayout.layout(frameLayout.getLeft(), translationY - measuredHeight, frameLayout.getRight(), translationY);

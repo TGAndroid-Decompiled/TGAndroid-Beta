@@ -28,8 +28,8 @@ public final class qz0 extends org.telegram.ui.Components.z90 {
             j5VarArr[3].setTextColor(i10);
         }
         j11 j11Var = profileActivity.f34225b6;
-        if (j11Var != null && j11Var.f38803c != (m12 = org.telegram.ui.ActionBar.i6.m1(1.4f, org.telegram.ui.ActionBar.i6.b(-0.02f, 0.15f, i10)))) {
-            j11Var.f38803c = m12;
+        if (j11Var != null && j11Var.f38805c != (m12 = org.telegram.ui.ActionBar.i6.m1(1.4f, org.telegram.ui.ActionBar.i6.b(-0.02f, 0.15f, i10)))) {
+            j11Var.f38805c = m12;
             j11Var.invalidateSelf();
         }
     }

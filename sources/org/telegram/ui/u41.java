@@ -109,7 +109,7 @@ public final class u41 extends org.telegram.ui.Components.eb {
             if (U == null) {
                 return;
             }
-            U.presentFragment(new PremiumPreviewFragment(0, PremiumPreviewFragment.m0(3)));
+            U.presentFragment(new PremiumPreviewFragment(0, PremiumPreviewFragment.l0(3)));
         }
         u41Var.dismiss();
     }

@@ -14,11 +14,11 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class nu extends FrameLayout {
-    public final ImageView f40362a;
-    public final TextView f40363b;
-    public final ImageView f40364c;
+    public final ImageView f40364a;
+    public final TextView f40365b;
+    public final ImageView f40366c;
     public final TextView d;
-    public boolean f40365e;
+    public boolean f40367e;
 
     public nu(yu yuVar, Context context) {
         super(context);
@@ -26,7 +26,7 @@ public final class nu extends FrameLayout {
         int i11;
         setBackgroundColor(yuVar.getThemedColor(org.telegram.ui.ActionBar.i6.f20797d6));
         ImageView imageView = new ImageView(context);
-        this.f40362a = imageView;
+        this.f40364a = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         if (LocaleController.isRTL) {
             i10 = 5;
@@ -50,7 +50,7 @@ public final class nu extends FrameLayout {
         }
         linearLayout2.setWeightSum(2.0f);
         TextView textView = new TextView(context);
-        this.f40363b = textView;
+        this.f40365b = textView;
         textView.setTextSize(1, 16.0f);
         int i12 = org.telegram.ui.ActionBar.i6.G6;
         textView.setTextColor(yuVar.getThemedColor(i12));
@@ -58,7 +58,7 @@ public final class nu extends FrameLayout {
         textView.setSingleLine();
         textView.setLines(1);
         ImageView imageView2 = new ImageView(context);
-        this.f40364c = imageView2;
+        this.f40366c = imageView2;
         imageView2.setScaleType(ImageView.ScaleType.FIT_CENTER);
         imageView2.setImageResource(R.drawable.arrow_more);
         imageView2.setColorFilter(new PorterDuffColorFilter(yuVar.getThemedColor(i12), PorterDuff.Mode.MULTIPLY));
@@ -90,7 +90,7 @@ public final class nu extends FrameLayout {
         float dp;
         int i10;
         super.onDraw(canvas);
-        if (this.f40365e) {
+        if (this.f40367e) {
             if (LocaleController.isRTL) {
                 dp = 0.0f;
             } else {

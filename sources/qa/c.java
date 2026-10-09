@@ -23,19 +23,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import q9.n;
 public final class c implements d {
-    public static final Object f46046m = new Object();
-    public final k9.h f46047a;
-    public final sa.c f46048b;
-    public final t f46049c;
+    public static final Object f46048m = new Object();
+    public final k9.h f46049a;
+    public final sa.c f46050b;
+    public final t f46051c;
     public final j d;
-    public final n f46050e;
-    public final h f46051f;
-    public final Object f46052g;
+    public final n f46052e;
+    public final h f46053f;
+    public final Object f46054g;
     public final ExecutorService h;
-    public final r9.i f46053i;
-    public String f46054j;
-    public final HashSet f46055k;
-    public final ArrayList f46056l;
+    public final r9.i f46055i;
+    public String f46056j;
+    public final HashSet f46057k;
+    public final ArrayList f46058l;
 
     static {
         new AtomicInteger(1);
@@ -55,22 +55,22 @@ public final class c implements d {
         j jVar = j.d;
         n nVar = new n(new q9.c(hVar, 2));
         ?? obj = new Object();
-        this.f46052g = new Object();
-        this.f46055k = new HashSet();
-        this.f46056l = new ArrayList();
-        this.f46047a = hVar;
-        this.f46048b = cVar;
-        this.f46049c = tVar;
+        this.f46054g = new Object();
+        this.f46057k = new HashSet();
+        this.f46058l = new ArrayList();
+        this.f46049a = hVar;
+        this.f46050b = cVar;
+        this.f46051c = tVar;
         this.d = jVar;
-        this.f46050e = nVar;
-        this.f46051f = obj;
+        this.f46052e = nVar;
+        this.f46053f = obj;
         this.h = executorService;
-        this.f46053i = iVar;
+        this.f46055i = iVar;
     }
 
     public final void a(i iVar) {
-        synchronized (this.f46052g) {
-            this.f46056l.add(iVar);
+        synchronized (this.f46054g) {
+            this.f46058l.add(iVar);
         }
     }
 
@@ -82,15 +82,15 @@ public final class c implements d {
         int responseCode;
         boolean z10;
         sa.b f7;
-        k9.h hVar = this.f46047a;
+        k9.h hVar = this.f46049a;
         hVar.a();
         String str = hVar.f14749c.f14759a;
-        String str2 = bVar.f47132a;
+        String str2 = bVar.f47134a;
         hVar.a();
         String str3 = hVar.f14749c.f14764g;
         String str4 = bVar.d;
-        sa.c cVar = this.f46048b;
-        sa.d dVar = cVar.f47880c;
+        sa.c cVar = this.f46050b;
+        sa.d dVar = cVar.f47882c;
         if (dVar.b()) {
             URL a2 = sa.c.a("projects/" + str3 + "/installations/" + str2 + "/authTokens:generate");
             for (int i10 = 0; i10 <= 1; i10++) {
@@ -139,32 +139,32 @@ public final class c implements d {
                 }
                 c10.disconnect();
                 TrafficStats.clearThreadStatsTag();
-                int c11 = m1.j.c(f7.f47876c);
+                int c11 = m1.j.c(f7.f47878c);
                 if (c11 != 0) {
                     if (c11 != 1) {
                         if (c11 == 2) {
                             l(null);
                             ra.a a12 = bVar.a();
-                            a12.f47127b = 2;
+                            a12.f47129b = 2;
                             return a12.a();
                         }
                         throw new k("Firebase Installations Service is unavailable. Please try again later.");
                     }
                     ra.a a13 = bVar.a();
-                    a13.f47130f = "BAD CONFIG";
-                    a13.f47127b = 5;
+                    a13.f47132f = "BAD CONFIG";
+                    a13.f47129b = 5;
                     return a13.a();
                 }
-                String str5 = f7.f47874a;
-                long j3 = f7.f47875b;
+                String str5 = f7.f47876a;
+                long j3 = f7.f47877b;
                 j jVar = this.d;
                 jVar.getClass();
                 TimeUnit timeUnit = TimeUnit.MILLISECONDS;
-                jVar.f46064a.getClass();
+                jVar.f46066a.getClass();
                 long seconds = timeUnit.toSeconds(System.currentTimeMillis());
                 ra.a a14 = bVar.a();
                 a14.d = str5;
-                a14.f47131g = Long.valueOf(j3);
+                a14.f47133g = Long.valueOf(j3);
                 a14.h = Long.valueOf(seconds);
                 return a14.a();
             }
@@ -177,7 +177,7 @@ public final class c implements d {
         String str;
         g();
         synchronized (this) {
-            str = this.f46054j;
+            str = this.f46056j;
         }
         if (str != null) {
             return Tasks.forResult(str);
@@ -199,12 +199,12 @@ public final class c implements d {
     }
 
     public final void f(ra.b bVar) {
-        synchronized (f46046m) {
+        synchronized (f46048m) {
             try {
-                k9.h hVar = this.f46047a;
+                k9.h hVar = this.f46049a;
                 hVar.a();
                 t a2 = t.a(hVar.f14747a);
-                this.f46049c.J(bVar);
+                this.f46051c.J(bVar);
                 if (a2 != null) {
                     a2.Z();
                 }
@@ -215,7 +215,7 @@ public final class c implements d {
     }
 
     public final void g() {
-        k9.h hVar = this.f46047a;
+        k9.h hVar = this.f46049a;
         hVar.a();
         l.g(hVar.f14749c.f14760b, "Please set your Application ID. A valid Firebase App ID is required to communicate with Firebase server APIs: It identifies your application with Firebase.Please refer to https://firebase.google.com/support/privacy/init-options.");
         hVar.a();
@@ -224,10 +224,10 @@ public final class c implements d {
         l.g(hVar.f14749c.f14759a, "Please set a valid API key. A Firebase API key is required to communicate with Firebase server APIs: It authenticates your project with Google.Please refer to https://firebase.google.com/support/privacy/init-options.");
         hVar.a();
         String str = hVar.f14749c.f14760b;
-        Pattern pattern = j.f46063c;
+        Pattern pattern = j.f46065c;
         l.a("Please set your Application ID. A valid Firebase App ID is required to communicate with Firebase server APIs: It identifies your application with Firebase.Please refer to https://firebase.google.com/support/privacy/init-options.", str.contains(":"));
         hVar.a();
-        l.a("Please set a valid API key. A Firebase API key is required to communicate with Firebase server APIs: It authenticates your project with Google.Please refer to https://firebase.google.com/support/privacy/init-options.", j.f46063c.matcher(hVar.f14749c.f14759a).matches());
+        l.a("Please set a valid API key. A Firebase API key is required to communicate with Firebase server APIs: It authenticates your project with Google.Please refer to https://firebase.google.com/support/privacy/init-options.", j.f46065c.matcher(hVar.f14749c.f14759a).matches());
     }
 
     public final java.lang.String h(ra.b r3) {
@@ -237,18 +237,18 @@ public final class c implements d {
     public final ra.b i(ra.b bVar) {
         int responseCode;
         boolean z10;
-        String str = bVar.f47132a;
+        String str = bVar.f47134a;
         String str2 = null;
         if (str != null && str.length() == 11) {
-            ra.c cVar = (ra.c) this.f46050e.get();
-            synchronized (cVar.f47139a) {
+            ra.c cVar = (ra.c) this.f46052e.get();
+            synchronized (cVar.f47141a) {
                 try {
-                    String[] strArr = ra.c.f47138c;
+                    String[] strArr = ra.c.f47140c;
                     int i10 = 0;
                     while (true) {
                         if (i10 < 4) {
                             String str3 = strArr[i10];
-                            String string = cVar.f47139a.getString("|T|" + cVar.f47140b + "|" + str3, null);
+                            String string = cVar.f47141a.getString("|T|" + cVar.f47142b + "|" + str3, null);
                             if (string != null && !string.isEmpty()) {
                                 if (string.startsWith("{")) {
                                     try {
@@ -267,18 +267,18 @@ public final class c implements d {
                 }
             }
         }
-        sa.c cVar2 = this.f46048b;
-        k9.h hVar = this.f46047a;
+        sa.c cVar2 = this.f46050b;
+        k9.h hVar = this.f46049a;
         hVar.a();
         String str4 = hVar.f14749c.f14759a;
-        String str5 = bVar.f47132a;
-        k9.h hVar2 = this.f46047a;
+        String str5 = bVar.f47134a;
+        k9.h hVar2 = this.f46049a;
         hVar2.a();
         String str6 = hVar2.f14749c.f14764g;
-        k9.h hVar3 = this.f46047a;
+        k9.h hVar3 = this.f46049a;
         hVar3.a();
         String str7 = hVar3.f14749c.f14760b;
-        sa.d dVar = cVar2.f47880c;
+        sa.d dVar = cVar2.f47882c;
         if (dVar.b()) {
             URL a2 = sa.c.a("projects/" + str6 + "/installations");
             int i11 = 0;
@@ -335,32 +335,32 @@ public final class c implements d {
                             break;
                         }
                     }
-                    int c11 = m1.j.c(aVar.f47873e);
+                    int c11 = m1.j.c(aVar.f47875e);
                     if (c11 != 0) {
                         if (c11 == 1) {
                             ra.a a10 = bVar.a();
-                            a10.f47130f = "BAD CONFIG";
-                            a10.f47127b = 5;
+                            a10.f47132f = "BAD CONFIG";
+                            a10.f47129b = 5;
                             return a10.a();
                         }
                         throw new k("Firebase Installations Service is unavailable. Please try again later.");
                     }
-                    String str8 = aVar.f47871b;
-                    String str9 = aVar.f47872c;
+                    String str8 = aVar.f47873b;
+                    String str9 = aVar.f47874c;
                     j jVar = this.d;
                     jVar.getClass();
                     TimeUnit timeUnit = TimeUnit.MILLISECONDS;
-                    jVar.f46064a.getClass();
+                    jVar.f46066a.getClass();
                     long seconds = timeUnit.toSeconds(System.currentTimeMillis());
                     sa.b bVar2 = aVar.d;
-                    String str10 = bVar2.f47874a;
-                    long j3 = bVar2.f47875b;
+                    String str10 = bVar2.f47876a;
+                    long j3 = bVar2.f47877b;
                     ra.a a11 = bVar.a();
-                    a11.f47128c = str8;
-                    a11.f47127b = 4;
+                    a11.f47130c = str8;
+                    a11.f47129b = 4;
                     a11.d = str10;
-                    a11.f47129e = str9;
-                    a11.f47131g = Long.valueOf(j3);
+                    a11.f47131e = str9;
+                    a11.f47133g = Long.valueOf(j3);
                     a11.h = Long.valueOf(seconds);
                     return a11.a();
                 } finally {
@@ -374,9 +374,9 @@ public final class c implements d {
     }
 
     public final void j(Exception exc) {
-        synchronized (this.f46052g) {
+        synchronized (this.f46054g) {
             try {
-                Iterator it = this.f46056l.iterator();
+                Iterator it = this.f46058l.iterator();
                 while (it.hasNext()) {
                     if (((i) it.next()).a(exc)) {
                         it.remove();
@@ -389,9 +389,9 @@ public final class c implements d {
     }
 
     public final void k(ra.b bVar) {
-        synchronized (this.f46052g) {
+        synchronized (this.f46054g) {
             try {
-                Iterator it = this.f46056l.iterator();
+                Iterator it = this.f46058l.iterator();
                 while (it.hasNext()) {
                     if (((i) it.next()).b(bVar)) {
                         it.remove();
@@ -404,13 +404,13 @@ public final class c implements d {
     }
 
     public final synchronized void l(String str) {
-        this.f46054j = str;
+        this.f46056j = str;
     }
 
     public final synchronized void m(ra.b bVar, ra.b bVar2) {
         try {
-            if (this.f46055k.size() != 0 && !TextUtils.equals(bVar.f47132a, bVar2.f47132a)) {
-                Iterator it = this.f46055k.iterator();
+            if (this.f46057k.size() != 0 && !TextUtils.equals(bVar.f47134a, bVar2.f47134a)) {
+                Iterator it = this.f46057k.iterator();
                 if (it.hasNext()) {
                     if (it.next() == null) {
                         throw null;

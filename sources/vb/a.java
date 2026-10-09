@@ -18,24 +18,24 @@ import w7.la;
 import w7.na;
 import w7.y6;
 public final class a {
-    public volatile Bitmap f49513a;
-    public final int f49514b;
-    public final int f49515c;
+    public volatile Bitmap f49515a;
+    public final int f49516b;
+    public final int f49517c;
     public final int d;
-    public final int f49516e;
+    public final int f49518e;
 
     public a(Bitmap bitmap, int i10) {
         l.h(bitmap);
-        this.f49513a = bitmap;
-        this.f49514b = bitmap.getWidth();
-        this.f49515c = bitmap.getHeight();
+        this.f49515a = bitmap;
+        this.f49516b = bitmap.getWidth();
+        this.f49517c = bitmap.getHeight();
         boolean z10 = true;
         if (i10 != 0 && i10 != 90 && i10 != 180 && i10 != 270) {
             z10 = false;
         }
         l.a("Invalid rotation. Only 0, 90, 180, 270 are supported currently.", z10);
         this.d = i10;
-        this.f49516e = -1;
+        this.f49518e = -1;
     }
 
     public static a a(Bitmap bitmap, int i10) {
@@ -65,9 +65,9 @@ public final class a {
         }
         long elapsedRealtime2 = SystemClock.elapsedRealtime() - elapsedRealtime;
         j7 j7Var = j7.INPUT_IMAGE_CONSTRUCTION;
-        Task task2 = a2.f50060e;
+        Task task2 = a2.f50062e;
         long elapsedRealtime3 = SystemClock.elapsedRealtime();
-        HashMap hashMap = a2.f50063i;
+        HashMap hashMap = a2.f50065i;
         if (hashMap.get(j7Var) == null) {
             task = task2;
             aVar = aVar2;
@@ -94,9 +94,9 @@ public final class a {
         if (task.isSuccessful()) {
             a10 = (String) task.getResult();
         } else {
-            a10 = i.f16667c.a(a2.f50062g);
+            a10 = i.f16667c.a(a2.f50064g);
         }
-        m.f46089a.execute(new v(a2, tVar, a10));
+        m.f46091a.execute(new v(a2, tVar, a10));
         return aVar;
     }
 }

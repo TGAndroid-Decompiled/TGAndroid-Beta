@@ -140,7 +140,7 @@ public final class sa implements View.OnClickListener {
             case 4:
                 zn znVar2 = (zn) obj2;
                 ArrayList arrayList = (ArrayList) obj;
-                if (znVar2.f44743d5 != null && i15 < arrayList.size()) {
+                if (znVar2.f44745d5 != null && i15 < arrayList.size()) {
                     znVar2.Fa(((Integer) arrayList.get(i15)).intValue());
                     return;
                 }
@@ -327,26 +327,26 @@ public final class sa implements View.OnClickListener {
                 saveToGallerySettingsActivity.getClass();
                 ((org.telegram.ui.ActionBar.n1) obj).dismiss();
                 Bundle bundle = new Bundle();
-                bundle.putLong("dialog_id", ((s41) saveToGallerySettingsActivity.f34410s.get(i15)).f41577c.dialogId);
+                bundle.putLong("dialog_id", ((s41) saveToGallerySettingsActivity.f34410s.get(i15)).f41579c.dialogId);
                 bundle.putInt("type", saveToGallerySettingsActivity.f34403a);
                 saveToGallerySettingsActivity.presentFragment(new SaveToGallerySettingsActivity(bundle));
                 return;
             case 16:
                 ny nyVar = (ny) obj;
-                k71 k71Var = ((j61) obj2).f38837c;
+                k71 k71Var = ((j61) obj2).f38839c;
                 if (!nyVar.f29303e && !UserConfig.getInstance(k71Var.V).isPremium()) {
                     org.telegram.ui.ActionBar.n2 R2 = LaunchActivity.R();
                     if (R2 != null) {
-                        R2.showDialog(new rg.y0(k71Var.f39119c1, k71Var.getContext(), k71Var.V, 11, false));
+                        R2.showDialog(new rg.y0(k71Var.f39121c1, k71Var.getContext(), k71Var.V, 11, false));
                         return;
                     }
                     return;
                 }
                 int i21 = 0;
                 while (true) {
-                    h61 h61Var = k71Var.f39130h0;
+                    h61 h61Var = k71Var.f39132h0;
                     if (i21 < h61Var.getChildCount()) {
-                        if ((h61Var.getChildAt(i21) instanceof o61) && (R = RecyclerView.R((view2 = h61Var.getChildAt(i21)))) >= 0 && k71Var.f39168y0.get(R) == i15) {
+                        if ((h61Var.getChildAt(i21) instanceof o61) && (R = RecyclerView.R((view2 = h61Var.getChildAt(i21)))) >= 0 && k71Var.f39170y0.get(R) == i15) {
                             num = Integer.valueOf(R);
                         } else {
                             i21++;
@@ -365,7 +365,7 @@ public final class sa implements View.OnClickListener {
                 return;
             case 17:
                 ((org.telegram.ui.Wallet.j) obj).run(Integer.valueOf(i15));
-                ((org.telegram.ui.Wallet.t4) obj2).setSelected(i15);
+                ((org.telegram.ui.Wallet.u4) obj2).setSelected(i15);
                 return;
             case 18:
                 ci.d dVar = (ci.d) obj2;
@@ -387,14 +387,14 @@ public final class sa implements View.OnClickListener {
                 return;
             case 19:
                 SharedConfig.setSearchEngineType(i15);
-                ((r8) ((View) obj2)).u(org.telegram.ui.web.n1.a().f43406a, true);
+                ((r8) ((View) obj2)).u(org.telegram.ui.web.n1.a().f43408a, true);
                 ((Dialog) ((AtomicReference) obj).get()).dismiss();
                 return;
             case 20:
                 qg.r1 r1Var = (qg.r1) obj2;
                 r1Var.a(i15);
-                r1Var.f46529b.v().i(i15 - 1, true);
-                r1Var.f46529b.b((pg.m) obj);
+                r1Var.f46531b.v().i(i15 - 1, true);
+                r1Var.f46531b.b((pg.m) obj);
                 return;
             case 21:
                 rs0 rs0Var = (rs0) obj2;
@@ -420,7 +420,7 @@ public final class sa implements View.OnClickListener {
                     rs0Var.H = -1;
                 }
                 TL_stars.toggleChatStarGiftNotifications togglechatstargiftnotifications = new TL_stars.toggleChatStarGiftNotifications();
-                togglechatstargiftnotifications.peer = MessagesController.getInstance(i15).getInputPeer(rs0Var.f51511c);
+                togglechatstargiftnotifications.peer = MessagesController.getInstance(i15).getInputPeer(rs0Var.f51513c);
                 togglechatstargiftnotifications.enabled = z17;
                 ConnectionsManager.getInstance(i15).sendRequest(togglechatstargiftnotifications, new ej1(4, rs0Var, n2Var3));
                 return;
@@ -433,14 +433,14 @@ public final class sa implements View.OnClickListener {
                 } else if ((i15 & 768) != 0) {
                     i14 = 768;
                 }
-                int flag = TLObject.setFlag(e5Var.f52436g & i14, i15, !TLObject.hasFlag(i12, i15));
+                int flag = TLObject.setFlag(e5Var.f52438g & i14, i15, !TLObject.hasFlag(i12, i15));
                 if (flag == 0) {
                     flag = (~i15) & i14;
                 }
-                int i23 = e5Var.f52436g;
+                int i23 = e5Var.f52438g;
                 int i24 = flag | ((~i14) & i23);
                 if (i23 != i24) {
-                    e5Var.f52436g = i24;
+                    e5Var.f52438g = i24;
                     e5Var.i(true);
                 }
                 runnable.run();

@@ -31,15 +31,15 @@ public final class zr0 implements View.OnClickListener {
                 return;
             default:
                 rs0 rs0Var = (rs0) this.d;
-                if (rs0Var.f51512e.h() && rs0Var.h.getCurrentPosition() != 0) {
+                if (rs0Var.f51514e.h() && rs0Var.h.getCurrentPosition() != 0) {
                     rs0Var.a();
                     return;
                 }
                 boolean z10 = this.f33629b;
                 int i10 = this.f33630c;
                 if (z10) {
-                    xh.r1 r1Var = new xh.r1(rs0Var.getContext(), i10, rs0Var.f51511c, null, null);
-                    r1Var.W(BirthdayController.getInstance(i10).isToday(rs0Var.f51511c));
+                    xh.r1 r1Var = new xh.r1(rs0Var.getContext(), i10, rs0Var.f51513c, null, null);
+                    r1Var.W(BirthdayController.getInstance(i10).isToday(rs0Var.f51513c));
                     r1Var.show();
                     return;
                 }

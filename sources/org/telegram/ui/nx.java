@@ -18,27 +18,27 @@ public final class nx extends l41 {
         this.W = tyVar;
         this.U = myVar;
         this.V = context2;
-        this.f39426e = 0.0f;
-        this.f39428n = new AnimationNotificationsLocker();
+        this.f39428e = 0.0f;
+        this.f39430n = new AnimationNotificationsLocker();
         this.M = true;
     }
 
     @Override
     public final void d(boolean z10) {
         sy syVar = this.T;
-        syVar.f41790c.G = true;
-        syVar.d.O(this.T.f41788a, c());
+        syVar.f41792c.G = true;
+        syVar.d.O(this.T.f41790a, c());
         sy syVar2 = this.T;
         syVar2.d.G = false;
         syVar2.G.G = false;
         ty tyVar = this.W;
         tyVar.x4(false, true);
-        this.T.f41788a.setClipChildren(true);
-        this.T.f41788a.invalidate();
+        this.T.f41790a.setClipChildren(true);
+        this.T.f41790a.invalidate();
         this.T.d.l();
         this.T.G.l();
-        this.T.f41788a.z1(null, 0.0f, z10);
-        tyVar.f42272y = false;
+        this.T.f41790a.z1(null, 0.0f, z10);
+        tyVar.f42274y = false;
         this.U.requestLayout();
         if (!c()) {
             tyVar.Q = true;
@@ -62,18 +62,18 @@ public final class nx extends l41 {
         float f7;
         int i10;
         ty tyVar = this.W;
-        tyVar.f42272y = true;
+        tyVar.f42274y = true;
         tyVar.E = z10;
         this.U.requestLayout();
-        sy syVar = tyVar.f42172e0[0];
+        sy syVar = tyVar.f42174e0[0];
         this.T = syVar;
         if (syVar.F == null) {
             syVar.F = new org.telegram.ui.Components.qm0(this.V, null);
             this.T.F.setLayoutManager(new mx(this, this.T));
             sy syVar2 = this.T;
-            int i11 = this.T.f41795s;
+            int i11 = this.T.f41797s;
             int i12 = tyVar.V2;
-            boolean z11 = tyVar.f42208l2;
+            boolean z11 = tyVar.f42210l2;
             ArrayList arrayList = tyVar.I2;
             i10 = ((org.telegram.ui.ActionBar.n2) tyVar).currentAccount;
             syVar2.G = new gg.m(tyVar, this.V, i11, i12, z11, arrayList, i10, tyVar.G);
@@ -88,17 +88,17 @@ public final class nx extends l41 {
             tyVar.Q = false;
             tyVar.z4(-tyVar.Q3());
         }
-        this.T.f41788a.B0();
+        this.T.f41790a.B0();
         sy syVar5 = this.T;
         gg.m mVar2 = syVar5.G;
-        mVar2.h = syVar5.f41795s;
+        mVar2.h = syVar5.f41797s;
         mVar2.l();
         sy syVar6 = this.T;
-        syVar6.d.O(syVar6.f41788a, false);
+        syVar6.d.O(syVar6.f41790a, false);
         sy syVar7 = this.T;
         syVar7.d.G = true;
         syVar7.G.G = true;
-        syVar7.f41790c.H = false;
+        syVar7.f41792c.H = false;
         tyVar.x4(true, true);
         tyVar.Z3(this.S);
         this.T.d.l();
@@ -109,9 +109,9 @@ public final class nx extends l41 {
             f7 = -tyVar.N;
         }
         sy syVar8 = this.T;
-        syVar8.f41788a.z1(syVar8.F, f7, false);
-        this.T.f41788a.setClipChildren(false);
-        this.T.f41788a.B0();
+        syVar8.f41790a.z1(syVar8.F, f7, false);
+        this.T.f41790a.setClipChildren(false);
+        this.T.f41790a.B0();
         tyVar.A3();
         tyVar.R4();
     }
@@ -176,20 +176,20 @@ public final class nx extends l41 {
             backButton.setAlpha(f10);
         }
         if (tyVar.V2 != 0 || tyVar.X2 != 0) {
-            Paint paint = tyVar.f42179f1;
+            Paint paint = tyVar.f42181f1;
             int i10 = org.telegram.ui.ActionBar.i6.f20797d6;
             paint.setColor(i0.a.d(f7, tyVar.getThemedColor(i10), tyVar.getThemedColor(i10)));
         }
         sy syVar = this.T;
         if (syVar != null) {
-            syVar.f41788a.setOpenRightFragmentProgress(f7);
+            syVar.f41790a.setOpenRightFragmentProgress(f7);
         }
         tyVar.z3();
         tyVar.E3();
         tyVar.r3();
         tyVar.B3();
-        sy syVar2 = tyVar.f42172e0[0];
-        if (syVar2 != null && (pyVar = syVar2.f41788a) != null) {
+        sy syVar2 = tyVar.f42174e0[0];
+        if (syVar2 != null && (pyVar = syVar2.f41790a) != null) {
             pyVar.requestLayout();
         }
         View view2 = tyVar.fragmentView;

@@ -142,16 +142,16 @@ public final class cb implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 10:
                 k51 k51Var = (k51) this.f793c;
-                k51Var.f39097s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                k51Var.f39087b.invalidate();
-                k51Var.f39089c.invalidate();
+                k51Var.f39099s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                k51Var.f39089b.invalidate();
+                k51Var.f39091c.invalidate();
                 if (k51Var.S) {
                     k51Var.N.invalidate();
                 }
                 k51Var.e();
-                TextView textView = k51Var.f39100y;
+                TextView textView = k51Var.f39102y;
                 if (textView != null) {
-                    textView.setAlpha(k51Var.f39097s);
+                    textView.setAlpha(k51Var.f39099s);
                 }
                 if (!k51Var.S && (i51Var = k51Var.N) != null && i51Var.getSeekBarWaveform() != null) {
                     np0 seekBarWaveform = k51Var.N.getSeekBarWaveform();
@@ -160,7 +160,7 @@ public final class cb implements ValueAnimator.AnimatorUpdateListener {
                     } else {
                         hsVar = hs.f27120i;
                     }
-                    seekBarWaveform.L = hsVar.getInterpolation(Utilities.clamp(k51Var.f39097s * 1.25f, 1.0f, 0.0f));
+                    seekBarWaveform.L = hsVar.getInterpolation(Utilities.clamp(k51Var.f39099s * 1.25f, 1.0f, 0.0f));
                     org.telegram.ui.Cells.u1 u1Var2 = seekBarWaveform.f29243n;
                     if (u1Var2 != null) {
                         u1Var2.invalidate();
@@ -172,23 +172,23 @@ public final class cb implements ValueAnimator.AnimatorUpdateListener {
             case 11:
                 qg.l0 l0Var = (qg.l0) this.f793c;
                 float floatValue6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                l0Var.f46331e = floatValue6;
+                l0Var.f46333e = floatValue6;
                 if (!this.f792b) {
-                    l0Var.f46330c.setAlpha(1.0f - floatValue6);
+                    l0Var.f46332c.setAlpha(1.0f - floatValue6);
                 }
-                l0Var.f46329b.invalidate();
+                l0Var.f46331b.invalidate();
                 return;
             default:
                 zg.a0 a0Var = (zg.a0) this.f793c;
-                a0Var.f54467x = null;
-                a0Var.f54454j = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                a0Var.f54469x = null;
+                a0Var.f54456j = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 a0Var.k();
                 a0Var.l();
-                a0Var.f54458n.setCustomEmojiEnterProgress(Utilities.clamp(a0Var.f54454j, 1.0f, 0.0f));
-                a0Var.f54447a.invalidate();
-                a0Var.f54457m.invalidateOutline();
-                if (a0Var.f54466w) {
-                    a0Var.j(a0Var.f54454j, this.f792b);
+                a0Var.f54460n.setCustomEmojiEnterProgress(Utilities.clamp(a0Var.f54456j, 1.0f, 0.0f));
+                a0Var.f54449a.invalidate();
+                a0Var.f54459m.invalidateOutline();
+                if (a0Var.f54468w) {
+                    a0Var.j(a0Var.f54456j, this.f792b);
                     return;
                 }
                 return;

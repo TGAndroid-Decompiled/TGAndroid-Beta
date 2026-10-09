@@ -5,18 +5,18 @@ import android.view.View;
 import java.util.HashSet;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class iy0 implements View.OnClickListener {
-    public final int f38777a;
-    public final ProfileActivity f38778b;
+    public final int f38779a;
+    public final ProfileActivity f38780b;
 
     public iy0(ProfileActivity profileActivity, int i10) {
-        this.f38777a = i10;
-        this.f38778b = profileActivity;
+        this.f38779a = i10;
+        this.f38780b = profileActivity;
     }
 
     @Override
     public final void onClick(View view) {
-        int i10 = this.f38777a;
-        ProfileActivity profileActivity = this.f38778b;
+        int i10 = this.f38779a;
+        ProfileActivity profileActivity = this.f38780b;
         switch (i10) {
             case 0:
                 ProfileActivity.i0(profileActivity);
@@ -65,7 +65,7 @@ public final class iy0 implements View.OnClickListener {
                             nx nxVar = tyVar.F3;
                             if (nxVar != null) {
                                 org.telegram.ui.ActionBar.n2 fragment = nxVar.getFragment();
-                                if ((fragment instanceof fg1) && (-((fg1) fragment).f37556a) == profileActivity.a()) {
+                                if ((fragment instanceof fg1) && (-((fg1) fragment).f37558a) == profileActivity.a()) {
                                     tyVar.F3.a();
                                 }
                             }
@@ -75,7 +75,7 @@ public final class iy0 implements View.OnClickListener {
                                 i11--;
                             }
                         } else if (n2Var instanceof fg1) {
-                            if ((-((fg1) n2Var).f37556a) == profileActivity.a()) {
+                            if ((-((fg1) n2Var).f37558a) == profileActivity.a()) {
                                 ((ActionBarLayout) profileActivity.getParentLayout()).a0(n2Var, false);
                                 i11--;
                             }
@@ -92,7 +92,7 @@ public final class iy0 implements View.OnClickListener {
                 profileActivity.J1 = 0;
                 Bundle bundle2 = new Bundle();
                 bundle2.putLong("chat_id", profileActivity.f34251f1);
-                HashSet hashSet = fg1.f37555n1;
+                HashSet hashSet = fg1.f37557n1;
                 profileActivity.presentFragment(fg1.E0(profileActivity.getMessagesController(), profileActivity.getMessagesStorage(), bundle2));
                 return;
             case 11:

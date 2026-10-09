@@ -37,13 +37,13 @@ public final class o extends View {
         TLRPC.Document document;
         org.telegram.ui.Components.s5 m10;
         String findAnimatedEmojiEmoticon;
-        if (n0Var.f54615f != null) {
-            tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(n0Var.f54615f);
+        if (n0Var.f54617f != null) {
+            tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(n0Var.f54617f);
         } else {
             tL_availableReaction = null;
         }
         if (tL_availableReaction == null) {
-            document = org.telegram.ui.Components.s5.f(UserConfig.selectedAccount, n0Var.f54616g);
+            document = org.telegram.ui.Components.s5.f(UserConfig.selectedAccount, n0Var.f54618g);
             if (document != null && (findAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(document, null)) != null) {
                 tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(findAnimatedEmojiEmoticon);
             }
@@ -74,7 +74,7 @@ public final class o extends View {
             return;
         }
         if (document == null) {
-            m10 = org.telegram.ui.Components.s5.n(2, n0Var.f54616g, null, UserConfig.selectedAccount);
+            m10 = org.telegram.ui.Components.s5.n(2, n0Var.f54618g, null, UserConfig.selectedAccount);
         } else {
             m10 = org.telegram.ui.Components.s5.m(2, UserConfig.selectedAccount, document);
         }
@@ -165,7 +165,7 @@ public final class o extends View {
                 if (obj instanceof ImageReceiver) {
                     ((ImageReceiver) obj).setColorFilter(porterDuffColorFilter);
                 } else if (obj instanceof zg.d) {
-                    ((zg.d) obj).f54489a.setColorFilter(porterDuffColorFilter2);
+                    ((zg.d) obj).f54491a.setColorFilter(porterDuffColorFilter2);
                 }
                 i11++;
             } else {

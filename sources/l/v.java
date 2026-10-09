@@ -76,7 +76,7 @@ public class v {
         if (z10) {
             int i12 = this.f15296f;
             View view = this.f15295e;
-            WeakHashMap weakHashMap = i0.f46764a;
+            WeakHashMap weakHashMap = i0.f46766a;
             if ((Gravity.getAbsoluteGravity(i12, view.getLayoutDirection()) & 7) == 5) {
                 i10 -= this.f15295e.getWidth();
             }

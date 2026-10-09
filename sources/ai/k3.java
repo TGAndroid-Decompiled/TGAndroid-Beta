@@ -135,7 +135,7 @@ public final class k3 implements View.OnClickListener {
                 dc1 dc1Var = (dc1) this.f1221c;
                 boolean z16 = this.f1220b;
                 for (int i13 = 0; i13 < 2; i13++) {
-                    org.telegram.ui.Cells.y0 y0Var = ((org.telegram.ui.Cells.y0[]) dc1Var.f36927b)[i13];
+                    org.telegram.ui.Cells.y0 y0Var = ((org.telegram.ui.Cells.y0[]) dc1Var.f36929b)[i13];
                     org.telegram.ui.Cells.x0 x0Var = y0Var.f23753a;
                     if (y0Var == view) {
                         z10 = true;
@@ -174,16 +174,16 @@ public final class k3 implements View.OnClickListener {
                 ArrayList arrayList = new ArrayList();
                 gr0 gr0Var = new gr0(hashMap, arrayList, 0, true, (zn) n2Var);
                 xh xhVar = new xh(yiVar, hashMap, arrayList);
-                br0 br0Var = gr0Var.f38082a;
-                br0Var.f36412s0 = xhVar;
-                br0 br0Var2 = gr0Var.f38083b;
-                br0Var2.f36412s0 = xhVar;
-                br0Var.f36413t0 = new fr0(gr0Var, 0);
-                br0Var2.f36413t0 = new fr0(gr0Var, 1);
+                br0 br0Var = gr0Var.f38084a;
+                br0Var.f36414s0 = xhVar;
+                br0 br0Var2 = gr0Var.f38085b;
+                br0Var2.f36414s0 = xhVar;
+                br0Var.f36415t0 = new fr0(gr0Var, 0);
+                br0Var2.f36415t0 = new fr0(gr0Var, 1);
                 int i14 = yiVar.V1;
                 boolean z19 = yiVar.W1;
                 br0Var.f0(i14, z19);
-                gr0Var.f38083b.f0(i14, z19);
+                gr0Var.f38085b.f0(i14, z19);
                 if (z18) {
                     n2Var.showAsSheet(gr0Var);
                 } else {
@@ -312,8 +312,8 @@ public final class k3 implements View.OnClickListener {
                             ((LaunchActivity) activity).f33778a1.add(photoViewer.f34027s1);
                         }
                         ev0 ev0Var = photoViewer.f33899d5;
-                        if (ev0Var != null && !ev0Var.f37370s) {
-                            ev0Var.f37354a.setVisible(false, false);
+                        if (ev0Var != null && !ev0Var.f37372s) {
+                            ev0Var.f37356a.setVisible(false, false);
                         }
                     } catch (Exception e7) {
                         FileLog.e(e7);
@@ -338,7 +338,7 @@ public final class k3 implements View.OnClickListener {
             case 7:
                 vb0 vb0Var = (vb0) this.f1221c;
                 if (!this.f1220b) {
-                    org.telegram.ui.Cells.w8 w8Var = vb0Var.f42807n;
+                    org.telegram.ui.Cells.w8 w8Var = vb0Var.f42809n;
                     if (w8Var != null && w8Var.f23688e.h) {
                         int i15 = -vb0Var.N;
                         vb0Var.N = i15;
@@ -349,14 +349,14 @@ public final class k3 implements View.OnClickListener {
                     boolean z21 = w8Var2.f23688e.h;
                     w8Var2.setChecked(!z21);
                     vb0Var.Z(z21);
-                    org.telegram.ui.Cells.w8 w8Var3 = vb0Var.f42807n;
+                    org.telegram.ui.Cells.w8 w8Var3 = vb0Var.f42809n;
                     if (w8Var3 != null) {
                         if (w8Var2.f23688e.h) {
                             w8Var3.setChecked(false);
-                            vb0Var.f42807n.setCheckBoxIcon(R.drawable.permission_locked);
-                            vb0Var.f42808r.setVisibility(8);
+                            vb0Var.f42809n.setCheckBoxIcon(R.drawable.permission_locked);
+                            vb0Var.f42810r.setVisibility(8);
                             return;
-                        } else if (vb0Var.f42805e == null) {
+                        } else if (vb0Var.f42807e == null) {
                             w8Var3.setCheckBoxIcon(0);
                             return;
                         } else {

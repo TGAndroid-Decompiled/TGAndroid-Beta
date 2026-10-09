@@ -2224,7 +2224,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                         }
                     }
                 }
-                wi1 wi1Var = wi1.f43623n1;
+                wi1 wi1Var = wi1.f43625n1;
                 if (wi1Var != null) {
                     wi1Var.m();
                 }
@@ -2259,7 +2259,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                     }
                 }
             }
-            wi1 wi1Var2 = wi1.f43623n1;
+            wi1 wi1Var2 = wi1.f43625n1;
             if (wi1Var2 != null) {
                 wi1Var2.m();
             }
@@ -3612,7 +3612,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                         this.groupCall.addInvitedUser(j3);
                     }
                 }
-                wi1 wi1Var = wi1.f43623n1;
+                wi1 wi1Var = wi1.f43625n1;
                 if (wi1Var != null) {
                     wi1Var.m();
                 }
@@ -4175,8 +4175,8 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             }
             requestVideoCall(true);
             setVideoState(true, 2);
-            wi1 wi1Var = wi1.f43623n1;
-            if (wi1Var != null && (pi1Var = wi1Var.f43655o0) != null) {
+            wi1 wi1Var = wi1.f43625n1;
+            if (wi1Var != null && (pi1Var = wi1Var.f43657o0) != null) {
                 pi1Var.a(true, true);
                 return;
             }

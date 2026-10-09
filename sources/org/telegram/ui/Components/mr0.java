@@ -864,7 +864,7 @@ public class mr0 extends org.telegram.ui.ActionBar.f3 implements NotificationCen
             o1.k kVar2 = new o1.k(new o1.j(1000.0f));
             o1.l lVar = new o1.l(0.0f);
             org.telegram.ui.zn znVar = this.f28902f0;
-            if (znVar != null && znVar.f44711b) {
+            if (znVar != null && znVar.f44713b) {
                 f7 = 10.0f;
             } else {
                 f7 = 800.0f;
@@ -1329,7 +1329,7 @@ public class mr0 extends org.telegram.ui.ActionBar.f3 implements NotificationCen
             } else {
                 i10 = 1;
             }
-            WeakHashMap weakHashMap = r0.i0.f46764a;
+            WeakHashMap weakHashMap = r0.i0.f46766a;
             frameLayout2.setImportantForAccessibility(i10);
         }
         LinearLayout linearLayout = this.f28923x;
@@ -1337,7 +1337,7 @@ public class mr0 extends org.telegram.ui.ActionBar.f3 implements NotificationCen
             if (!z10) {
                 i11 = 1;
             }
-            WeakHashMap weakHashMap2 = r0.i0.f46764a;
+            WeakHashMap weakHashMap2 = r0.i0.f46766a;
             linearLayout.setImportantForAccessibility(i11);
         }
         this.f28925y = new AnimatorSet();

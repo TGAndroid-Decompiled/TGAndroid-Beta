@@ -3,16 +3,16 @@ package org.telegram.ui.Wallet;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 public final class i implements Utilities.Callback2 {
-    public final int f34994a;
-    public final Object f34995b;
-    public final Object f34996c;
+    public final int f35016a;
+    public final Object f35017b;
+    public final Object f35018c;
     public final Object d;
 
     public i(Object obj, Object obj2, Object obj3, int i10) {
-        this.f34994a = i10;
-        this.f34995b = obj;
+        this.f35016a = i10;
+        this.f35017b = obj;
         this.d = obj2;
-        this.f34996c = obj3;
+        this.f35018c = obj3;
     }
 
     @Override
@@ -21,30 +21,30 @@ public final class i implements Utilities.Callback2 {
     }
 
     public i(Utilities.Callback callback, k0 k0Var, ConnectionsManager connectionsManager) {
-        this.f34994a = 10;
+        this.f35016a = 10;
         this.d = callback;
-        this.f34995b = k0Var;
-        this.f34996c = connectionsManager;
+        this.f35017b = k0Var;
+        this.f35018c = connectionsManager;
     }
 
     public i(k0 k0Var, Object obj, Object obj2, int i10) {
-        this.f34994a = i10;
-        this.f34995b = k0Var;
-        this.f34996c = obj;
+        this.f35016a = i10;
+        this.f35017b = k0Var;
+        this.f35018c = obj;
         this.d = obj2;
     }
 
     public i(k0 k0Var, n nVar, String str, String str2) {
-        this.f34994a = 5;
-        this.f34995b = nVar;
+        this.f35016a = 5;
+        this.f35017b = nVar;
         this.d = str;
-        this.f34996c = str2;
+        this.f35018c = str2;
     }
 
-    public i(k7 k7Var, org.telegram.ui.ActionBar.b2 b2Var, k0 k0Var) {
-        this.f34994a = 11;
-        this.d = k7Var;
-        this.f34996c = b2Var;
-        this.f34995b = k0Var;
+    public i(l7 l7Var, org.telegram.ui.ActionBar.b2 b2Var, k0 k0Var) {
+        this.f35016a = 11;
+        this.d = l7Var;
+        this.f35018c = b2Var;
+        this.f35017b = k0Var;
     }
 }

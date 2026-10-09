@@ -30,8 +30,8 @@ public final class s extends eb {
         r6 r6Var = new r6(context, 70, 0);
         frameLayout.addView(r6Var, w7.x5.d(-1.0f, -1));
         sg.n nVar = new sg.n(context, 1, 2);
-        sg.g gVar = nVar.f48076b;
-        gVar.f48060z = org.telegram.ui.ActionBar.i6.fk;
+        sg.g gVar = nVar.f48078b;
+        gVar.f48062z = org.telegram.ui.ActionBar.i6.fk;
         gVar.A = org.telegram.ui.ActionBar.i6.gk;
         gVar.b();
         nVar.setStarParticlesView(r6Var);

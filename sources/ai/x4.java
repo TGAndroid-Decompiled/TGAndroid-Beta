@@ -68,7 +68,7 @@ public final class x4 implements org.telegram.ui.Components.rb {
             case 10:
                 org.telegram.ui.Components.xb xbVar = tcVar.f31126e;
                 xh.l0 l0Var = (xh.l0) this.f1906b;
-                ch.d c10 = l0Var.f51332e.c(xbVar, null, true);
+                ch.d c10 = l0Var.f51334e.c(xbVar, null, true);
                 dh.e eVar = new dh.e(xh.l0.o(l0Var));
                 eVar.f8366e = new d2.c(4);
                 float dpf2 = AndroidUtilities.dpf2(0.5f);
@@ -194,7 +194,7 @@ public final class x4 implements org.telegram.ui.Components.rb {
             case 10:
                 return 0;
             default:
-                return (int) ((zg.a0) ((xh.m) this.f1906b).f51345b).f54465u;
+                return (int) ((zg.a0) ((xh.m) this.f1906b).f51347b).f54467u;
         }
         return dp + editTextHeight;
     }

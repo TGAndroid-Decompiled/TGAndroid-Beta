@@ -14,17 +14,17 @@ import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class qt0 implements org.telegram.ui.Components.h81 {
-    public boolean f41184a = true;
-    public final PhotoViewer f41185b;
+    public boolean f41186a = true;
+    public final PhotoViewer f41187b;
 
     public qt0(PhotoViewer photoViewer) {
-        this.f41185b = photoViewer;
+        this.f41187b = photoViewer;
     }
 
     @Override
     public final void onError(org.telegram.ui.Components.k81 k81Var, Exception exc) {
         View findViewWithTag;
-        PhotoViewer photoViewer = this.f41185b;
+        PhotoViewer photoViewer = this.f41187b;
         if (photoViewer.F2 == k81Var) {
             FileLog.e(exc);
             ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = photoViewer.f33990o0.f21579b;
@@ -41,7 +41,7 @@ public final class qt0 implements org.telegram.ui.Components.h81 {
 
     @Override
     public final void onRenderedFirstFrame() {
-        PhotoViewer photoViewer = this.f41185b;
+        PhotoViewer photoViewer = this.f41187b;
         if (!photoViewer.H3) {
             photoViewer.H3 = true;
             photoViewer.f33904e0.invalidate();
@@ -61,7 +61,7 @@ public final class qt0 implements org.telegram.ui.Components.h81 {
         VideoEditedInfo videoEditedInfo;
         org.telegram.ui.Components.k81 k81Var2;
         boolean z11;
-        PhotoViewer photoViewer = this.f41185b;
+        PhotoViewer photoViewer = this.f41187b;
         ArrayList arrayList = photoViewer.f33928g7;
         org.telegram.ui.Components.k81 k81Var3 = photoViewer.F2;
         if (k81Var3 != null) {
@@ -72,8 +72,8 @@ public final class qt0 implements org.telegram.ui.Components.h81 {
             }
             k81Var3.O(z11);
         }
-        if (this.f41184a && (k81Var = photoViewer.F2) != null && k81Var.p() != -9223372036854775807L) {
-            this.f41184a = false;
+        if (this.f41186a && (k81Var = photoViewer.F2) != null && k81Var.p() != -9223372036854775807L) {
+            this.f41186a = false;
             if (photoViewer.Y6.isEmpty() && photoViewer.e7.isEmpty() && photoViewer.f33872a7.isEmpty() && !arrayList.isEmpty() && (i11 = photoViewer.Q4) >= 0 && i11 < arrayList.size()) {
                 Object obj = arrayList.get(photoViewer.Q4);
                 if (obj instanceof MediaController.PhotoEntry) {
@@ -96,8 +96,8 @@ public final class qt0 implements org.telegram.ui.Components.h81 {
         TextureView textureView;
         TextureView textureView2;
         qf.e p5 = org.telegram.ui.Components.gh0.p();
-        PhotoViewer photoViewer = this.f41185b;
-        if (p5 != null && org.telegram.ui.Components.gh0.p().f46161b.f47978a != 0 && (textureView = photoViewer.f34066w3) != null && textureView.getSurfaceTexture() == surfaceTexture) {
+        PhotoViewer photoViewer = this.f41187b;
+        if (p5 != null && org.telegram.ui.Components.gh0.p().f46163b.f47980a != 0 && (textureView = photoViewer.f34066w3) != null && textureView.getSurfaceTexture() == surfaceTexture) {
             org.telegram.ui.Components.gh0 gh0Var = org.telegram.ui.Components.gh0.f26700p0;
             TextureView textureView3 = null;
             if (gh0Var != null) {
@@ -128,14 +128,14 @@ public final class qt0 implements org.telegram.ui.Components.h81 {
     @Override
     public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
         Drawable[] drawableArr = PhotoViewer.U8;
-        this.f41185b.x0(false);
+        this.f41187b.x0(false);
         AndroidUtilities.runOnUIThread(new pt0(this, 0));
     }
 
     @Override
     public final void onVideoSizeChanged(int i10, int i11, int i12, float f7) {
         float f10;
-        PhotoViewer photoViewer = this.f41185b;
+        PhotoViewer photoViewer = this.f41187b;
         if (photoViewer.f34085y2 != null) {
             float f11 = i10 * f7;
             int i13 = (int) f11;
@@ -173,7 +173,7 @@ public final class qt0 implements org.telegram.ui.Components.h81 {
 
     @Override
     public final void onRenderedFirstFrame(j2.a aVar) {
-        PhotoViewer photoViewer = this.f41185b;
+        PhotoViewer photoViewer = this.f41187b;
         com.google.android.gms.internal.cast.p pVar = photoViewer.Q8;
         if (pVar != null) {
             pVar.run();

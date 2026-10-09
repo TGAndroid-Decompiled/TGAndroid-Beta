@@ -1832,7 +1832,7 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
         }
         sh.a aVar = this.f23114a6;
         if (aVar != null) {
-            aVar.f48174a.setState(StateSet.NOTHING);
+            aVar.f48176a.setState(StateSet.NOTHING);
         }
     }
 
@@ -1890,7 +1890,7 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
                 if (imageReceiver4 != null) {
                     imageReceiver4.onAttachedToWindow();
                 }
-                ImageReceiver[] imageReceiverArr2 = aVar.f50338a;
+                ImageReceiver[] imageReceiverArr2 = aVar.f50340a;
                 if (imageReceiverArr2 != null) {
                     for (ImageReceiver imageReceiver5 : imageReceiverArr2) {
                         imageReceiver5.onAttachedToWindow();
@@ -1900,7 +1900,7 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
                 if (imageReceiver6 != null) {
                     imageReceiver6.onAttachedToWindow();
                 }
-                ImageReceiver[] imageReceiverArr3 = cVar.f50364a;
+                ImageReceiver[] imageReceiverArr3 = cVar.f50366a;
                 if (imageReceiverArr3 != null) {
                     for (ImageReceiver imageReceiver7 : imageReceiverArr3) {
                         imageReceiver7.onAttachedToWindow();
@@ -1928,13 +1928,13 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
                 }
                 qh.g gVar3 = this.f23129b6;
                 if (gVar3 != null) {
-                    gVar3.f46679b.onDetachedFromWindow();
-                    gVar3.f46693x.f();
+                    gVar3.f46681b.onDetachedFromWindow();
+                    gVar3.f46695x.f();
                 }
                 qh.g gVar4 = this.f23144c6;
                 if (gVar4 != null) {
-                    gVar4.f46679b.onDetachedFromWindow();
-                    gVar4.f46693x.f();
+                    gVar4.f46681b.onDetachedFromWindow();
+                    gVar4.f46695x.f();
                 }
                 if (arrayList != null) {
                     int size2 = arrayList.size();
@@ -1964,7 +1964,7 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
                 if (imageReceiver8 != null) {
                     imageReceiver8.onDetachedFromWindow();
                 }
-                ImageReceiver[] imageReceiverArr5 = aVar.f50338a;
+                ImageReceiver[] imageReceiverArr5 = aVar.f50340a;
                 if (imageReceiverArr5 != null) {
                     for (ImageReceiver imageReceiver9 : imageReceiverArr5) {
                         imageReceiver9.onDetachedFromWindow();
@@ -1974,7 +1974,7 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
                 if (imageReceiver10 != null) {
                     imageReceiver10.onDetachedFromWindow();
                 }
-                ImageReceiver[] imageReceiverArr6 = cVar.f50364a;
+                ImageReceiver[] imageReceiverArr6 = cVar.f50366a;
                 if (imageReceiverArr6 != null) {
                     for (ImageReceiver imageReceiver11 : imageReceiverArr6) {
                         imageReceiver11.onDetachedFromWindow();
@@ -2085,13 +2085,13 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
             if (i10 == -2) {
                 qh.g gVar = this.f23129b6;
                 if (gVar != null) {
-                    return gVar.f46679b;
+                    return gVar.f46681b;
                 }
                 return null;
             } else if (i10 == -3) {
                 qh.g gVar2 = this.f23144c6;
                 if (gVar2 != null) {
-                    return gVar2.f46679b;
+                    return gVar2.f46681b;
                 }
                 return null;
             } else {
@@ -2105,7 +2105,7 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
                         s1 s1Var = (s1) obj;
                         sh.b bVar = s1Var.f22763x;
                         if (bVar != null && (pollAnswer = s1Var.f22759s) != null && pollAnswer.unshuffled_index == i10) {
-                            return bVar.f48165c;
+                            return bVar.f48167c;
                         }
                     }
                 }
@@ -2225,7 +2225,7 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
                         sh.d dVar = new sh.d(this, this.Id);
                         this.Z5 = dVar;
                         dVar.setCallback(this);
-                        dVar.f48174a.setCallback(this);
+                        dVar.f48176a.setCallback(this);
                         dVar.d.setCallback(this);
                     }
                     this.f23141c3 = charSequence;
@@ -3400,7 +3400,7 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
                 MessageObject messageObject = this.f23458y7;
                 vh.f fVar = this.Fb;
                 if (fVar != null) {
-                    Integer num = (Integer) fVar.f49675k.get(this);
+                    Integer num = (Integer) fVar.f49677k.get(this);
                     if (num == null) {
                         num = 0;
                     }
@@ -3700,7 +3700,7 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
             int z22 = (int) z2(motionEvent);
             qh.g gVar3 = this.f23129b6;
             if (gVar3 != null) {
-                if (gVar3.X && gVar3.f46677a.f16338f && gVar3.K.f(x10 - gVar3.L, z22 - gVar3.M, action)) {
+                if (gVar3.X && gVar3.f46679a.f16338f && gVar3.K.f(x10 - gVar3.L, z22 - gVar3.M, action)) {
                     if (action == 0) {
                         getParent().requestDisallowInterceptTouchEvent(true);
                     }
@@ -3716,7 +3716,7 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
                 }
             }
             if (this.f23458y7.expandedExplanation && (gVar2 = this.f23144c6) != null) {
-                if (gVar2.X && gVar2.f46677a.f16338f && gVar2.K.f(x10 - gVar2.L, z22 - gVar2.M, action)) {
+                if (gVar2.X && gVar2.f46679a.f16338f && gVar2.K.f(x10 - gVar2.L, z22 - gVar2.M, action)) {
                     if (action == 0) {
                         getParent().requestDisallowInterceptTouchEvent(true);
                     }
@@ -3752,7 +3752,7 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
                 int i10 = this.N6;
                 if (i10 == -2) {
                     qh.g gVar7 = this.f23129b6;
-                    ImageReceiver imageReceiver = gVar7.f46679b;
+                    ImageReceiver imageReceiver = gVar7.f46681b;
                     TLRPC.MessageMedia messageMedia = gVar7.T;
                     l1 l1Var = this.Jc;
                     if (l1Var != null) {
@@ -3760,7 +3760,7 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
                     }
                 } else if (i10 == -3) {
                     qh.g gVar8 = this.f23144c6;
-                    ImageReceiver imageReceiver2 = gVar8.f46679b;
+                    ImageReceiver imageReceiver2 = gVar8.f46681b;
                     TLRPC.MessageMedia messageMedia2 = gVar8.T;
                     l1 l1Var2 = this.Jc;
                     if (l1Var2 != null) {
@@ -3818,7 +3818,7 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
             if (z11 && SendMessagesHelper.getInstance(this.I7).isSendingVote(this.f23458y7) != null) {
                 z12 = true;
             }
-            me.b bVar = dVar.f48178f;
+            me.b bVar = dVar.f48180f;
             if (bVar.f16338f != z12) {
                 bVar.a(z12, z10);
             }
@@ -4163,7 +4163,7 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
             path.computeBounds(rectF, false);
             float sqrt = (float) Math.sqrt(Math.pow(rectF.height(), 2.0d) + Math.pow(rectF.width(), 2.0d));
             this.f23444x7 = true;
-            this.f23428w7.f49692q = new b1(9, this);
+            this.f23428w7.f49694q = new b1(9, this);
             MessageObject.TextLayoutBlocks textLayoutBlocks5 = this.f23210h4;
             if (textLayoutBlocks5 != null) {
                 ArrayList<MessageObject.TextLayoutBlock> arrayList7 = textLayoutBlocks5.textLayoutBlocks;
@@ -4229,7 +4229,7 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
                         u1 u1Var2 = (u1) childAt2;
                         ArrayList arrayList10 = u1Var2.Ld;
                         if (u1Var2.getMessageObject() != null && u1Var2.getMessageObject().getReplyMsgId() == getMessageObject().getId() && !arrayList10.isEmpty()) {
-                            ((vh.g) arrayList10.get(0)).f49692q = new la(6, this, u1Var2);
+                            ((vh.g) arrayList10.get(0)).f49694q = new la(6, this, u1Var2);
                             int size7 = arrayList10.size();
                             int i31 = 0;
                             while (i31 < size7) {
@@ -4412,7 +4412,7 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
                     return false;
                 }
             }
-            if (!this.N.f54621b) {
+            if (!this.N.f54623b) {
                 return true;
             }
             return false;
@@ -5001,7 +5001,7 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
     }
 
     public final boolean b3() {
-        if (this.f23426w5.d <= 0 && this.N.f54636s) {
+        if (this.f23426w5.d <= 0 && this.N.f54638s) {
             MessageObject messageObject = this.f23458y7;
             if (messageObject == null || !messageObject.preview) {
                 return false;
@@ -5152,7 +5152,7 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
         }
         zg.o0 o0Var = this.N;
         int i35 = o0Var.d;
-        boolean Z2 = Z2(i35, i35 + o0Var.f54632o, this.Yd, i18 + this.f23122ae);
+        boolean Z2 = Z2(i35, i35 + o0Var.f54634o, this.Yd, i18 + this.f23122ae);
         if (this.f23268l6 != Z2) {
             this.f23268l6 = Z2;
             invalidate();
@@ -5175,7 +5175,7 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
             return false;
         }
         float y3 = getY() + o0Var.d;
-        if (y3 <= f7 || (y3 + o0Var.f54632o) - AndroidUtilities.dp(16.0f) >= i10) {
+        if (y3 <= f7 || (y3 + o0Var.f54634o) - AndroidUtilities.dp(16.0f) >= i10) {
             return false;
         }
         return true;
@@ -5375,10 +5375,10 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
         float f10 = 1.0f;
         zg.o0 o0Var = this.N;
         if (z11) {
-            o0Var.f54620a = 1.0f - getVideoTranscriptionProgress();
+            o0Var.f54622a = 1.0f - getVideoTranscriptionProgress();
         }
         if (this.f23268l6 && V2()) {
-            if (o0Var.f54620a > 0.0f) {
+            if (o0Var.f54622a > 0.0f) {
                 p0();
             }
             if (getAlpha() * f7 != 1.0f) {
@@ -5389,7 +5389,7 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
             } else {
                 z10 = false;
             }
-            int i10 = (o0Var.f54620a > 0.0f ? 1 : (o0Var.f54620a == 0.0f ? 0 : -1));
+            int i10 = (o0Var.f54622a > 0.0f ? 1 : (o0Var.f54622a == 0.0f ? 0 : -1));
             t1 t1Var = this.Zc;
             if (i10 <= 0 && t1Var.f23019w0 && this.L == null && !this.f23344qd) {
                 canvas.save();
@@ -5504,13 +5504,13 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
         float f7 = 1.0f;
         zg.o0 o0Var = this.N;
         if (z10) {
-            o0Var.f54620a = 1.0f - getVideoTranscriptionProgress();
+            o0Var.f54622a = 1.0f - getVideoTranscriptionProgress();
         }
         boolean z11 = false;
         if (!this.f23268l6 || !V2()) {
             return false;
         }
-        if (o0Var.f54620a > 0.0f) {
+        if (o0Var.f54622a > 0.0f) {
             p0();
         }
         if (getAlpha() * 1.0f != 1.0f) {
@@ -5519,7 +5519,7 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
             canvas.saveLayerAlpha(rectF, (int) (getAlpha() * 255.0f), 31);
             z11 = true;
         }
-        int i10 = (o0Var.f54620a > 0.0f ? 1 : (o0Var.f54620a == 0.0f ? 0 : -1));
+        int i10 = (o0Var.f54622a > 0.0f ? 1 : (o0Var.f54622a == 0.0f ? 0 : -1));
         t1 t1Var = this.Zc;
         if (i10 <= 0 && t1Var.f23019w0 && this.L == null && !this.f23344qd) {
             canvas.save();
@@ -6256,7 +6256,7 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
         boolean z10 = this.N1;
         zg.o0 o0Var = this.N;
         if (z10) {
-            if (o0Var.f54636s) {
+            if (o0Var.f54638s) {
                 i10 = 18;
             } else {
                 i10 = 0;
@@ -6271,8 +6271,8 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
             }
             i11 += AndroidUtilities.dp(f7);
         }
-        if (!o0Var.f54636s && this.f23458y7.shouldDrawReactionsInLayout()) {
-            return i11 + o0Var.f54633p;
+        if (!o0Var.f54638s && this.f23458y7.shouldDrawReactionsInLayout()) {
+            return i11 + o0Var.f54635p;
         }
         return i11;
     }
@@ -6772,7 +6772,7 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
             }
         }
         zg.o0 o0Var = this.N;
-        if (!o0Var.f54621b) {
+        if (!o0Var.f54623b) {
             o0Var.D = f7;
             o0Var.E = z10;
             o0Var.d(canvas, this.Zc.K1, num);
@@ -6799,14 +6799,14 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
     public final void i1(u1 u1Var) {
         vh.f fVar;
         if (u1Var != null && (fVar = u1Var.Fb) != null) {
-            int i10 = (Integer) fVar.f49675k.get(u1Var);
+            int i10 = (Integer) fVar.f49677k.get(u1Var);
             if (i10 == null) {
                 i10 = 0;
             }
             this.Gb = i10;
             vh.f fVar2 = this.Fb;
             if (fVar2 != null) {
-                fVar2.f49675k.put(this, i10);
+                fVar2.f49677k.put(this, i10);
             }
         }
     }
@@ -6820,7 +6820,7 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
             }
         }
         zg.o0 o0Var = this.N;
-        if (!o0Var.f54621b) {
+        if (!o0Var.f54623b) {
             o0Var.D = f7;
             o0Var.f(smVar, canvas, i10, num);
         }
@@ -7025,10 +7025,10 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
                     }
                     if (this.f23458y7.shouldDrawReactions()) {
                         zg.o0 o0Var = this.N;
-                        if (!o0Var.f54621b) {
+                        if (!o0Var.f54623b) {
                             if (this.f23344qd) {
                                 this.Ha -= (1.0f - getVideoTranscriptionProgress()) * o0Var.i(t1Var.K1);
-                            } else if (o0Var.f54620a > 0.0f) {
+                            } else if (o0Var.f54622a > 0.0f) {
                                 this.Ha -= o0Var.i(t1Var.K1);
                             }
                         }
@@ -7929,7 +7929,7 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
                 float f29 = f12;
                 boolean shouldDrawReactions = u1Var2.f23458y7.shouldDrawReactions();
                 zg.o0 o0Var = u1Var2.N;
-                if (shouldDrawReactions && o0Var.f54621b) {
+                if (shouldDrawReactions && o0Var.f54623b) {
                     if (t1Var5.f23019w0 && t1Var5.f22957h0 != 0.0f) {
                         j3 = o0Var.j(1.0f);
                     } else {
@@ -8058,7 +8058,7 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
                     float f40 = -staticLayout.getLineLeft(0);
                     MessageObject messageObject8 = u1Var2.f23458y7;
                     float dp8 = f40 + ((messageObject8 == null || !messageObject8.isAnyKindOfSticker()) ? 0 : AndroidUtilities.dp(-6.0f));
-                    if (u1Var2.f23458y7.shouldDrawReactions() && o0Var.f54621b) {
+                    if (u1Var2.f23458y7.shouldDrawReactions() && o0Var.f54623b) {
                         u1Var2.t4();
                         o0Var.D = 0.0f;
                         o0Var.E = false;
@@ -8073,8 +8073,8 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
                         f23 = f31;
                     } else {
                         float lineWidth = (u1Var2.f23328pb - staticLayout.getLineWidth(0)) + dp8;
-                        if (o0Var.f54621b && !o0Var.f54636s) {
-                            lineWidth -= o0Var.f54634q;
+                        if (o0Var.f54623b && !o0Var.f54638s) {
+                            lineWidth -= o0Var.f54636q;
                         }
                         float f41 = lineWidth;
                         int g10 = t1Var5.g();
@@ -8177,7 +8177,7 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
                     }
                     i12 = i11;
                     float f45 = -staticLayout.getLineLeft(0);
-                    if (u1Var2.f23458y7.shouldDrawReactions() && o0Var.f54621b) {
+                    if (u1Var2.f23458y7.shouldDrawReactions() && o0Var.f54623b) {
                         u1Var2.t4();
                         o0Var.D = 0.0f;
                         o0Var.E = false;
@@ -8187,8 +8187,8 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
                         z12 = false;
                     } else {
                         float lineWidth2 = (f11 - staticLayout.getLineWidth(0)) + f45;
-                        if (o0Var.f54621b && !o0Var.f54636s) {
-                            lineWidth2 -= o0Var.f54634q;
+                        if (o0Var.f54623b && !o0Var.f54638s) {
+                            lineWidth2 -= o0Var.f54636q;
                         }
                         float f46 = lineWidth2;
                         int g11 = t1Var5.g();
@@ -8574,11 +8574,11 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
                 }
                 int dp4 = dp3 - AndroidUtilities.dp(f12);
                 zg.o0 o0Var = this.N;
-                if (!o0Var.f54636s && !o0Var.f54621b) {
+                if (!o0Var.f54638s && !o0Var.f54623b) {
                     if (this.f23458y7.type == 9 && this.L == null) {
                         f14 = 10.0f;
                     }
-                    i13 = AndroidUtilities.dp(f14) + o0Var.f54633p;
+                    i13 = AndroidUtilities.dp(f14) + o0Var.f54635p;
                 } else {
                     i13 = 0;
                 }
@@ -9168,12 +9168,12 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
         }
         vh.f fVar2 = u1Var.Fb;
         if (fVar2 != null) {
-            if (fVar2.f49673i) {
+            if (fVar2.f49675i) {
                 vh.f w32 = w3();
                 u1Var.Fb = w32;
                 Integer num = u1Var.Gb;
                 if (num != null) {
-                    w32.f49675k.put(this, num);
+                    w32.f49677k.put(this, num);
                 }
             } else {
                 fVar2.a(this);
@@ -9216,13 +9216,13 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
         }
         qh.g gVar = this.f23129b6;
         if (gVar != null) {
-            gVar.f46679b.onDetachedFromWindow();
-            gVar.f46693x.f();
+            gVar.f46681b.onDetachedFromWindow();
+            gVar.f46695x.f();
         }
         qh.g gVar2 = this.f23144c6;
         if (gVar2 != null) {
-            gVar2.f46679b.onDetachedFromWindow();
-            gVar2.f46693x.f();
+            gVar2.f46681b.onDetachedFromWindow();
+            gVar2.f46695x.f();
         }
         yf.n nVar = this.f23441x4;
         if (nVar != null) {
@@ -9550,7 +9550,7 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
         float f20 = (f12 * 0.5f) + 0.5f;
         float f21 = f7 * f12;
         zg.o0 o0Var = this.N;
-        if (o0Var.f54621b) {
+        if (o0Var.f54623b) {
             f13 = o0Var.j(1.0f);
         } else {
             f13 = 0.0f;
@@ -10318,13 +10318,13 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
             return;
         }
         zg.o0 o0Var = this.N;
-        if (!o0Var.f54636s && !o0Var.f54621b) {
-            lastLineWidth = o0Var.f54638u;
+        if (!o0Var.f54638s && !o0Var.f54623b) {
+            lastLineWidth = o0Var.f54640u;
         } else {
             lastLineWidth = this.f23458y7.getLastLineWidth();
         }
         boolean z10 = false;
-        if (!o0Var.f54636s && !o0Var.f54621b) {
+        if (!o0Var.f54638s && !o0Var.f54623b) {
             if (i10 - lastLineWidth < i11 || this.f23458y7.hasRtl) {
                 z10 = true;
             }
@@ -10337,11 +10337,11 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
         if (this.f23458y7.isUnsupported()) {
             z10 = true;
         }
-        if ((o0Var.f54636s || o0Var.f54621b) && (richMessageLayout = this.f23458y7.richLayout) != null && richMessageLayout.forceNewLineForTime()) {
+        if ((o0Var.f54638s || o0Var.f54623b) && (richMessageLayout = this.f23458y7.richLayout) != null && richMessageLayout.forceNewLineForTime()) {
             z10 = true;
         }
         MessageObject messageObject = this.f23458y7;
-        if ((messageObject.hasCodeAtBottom && (o0Var.f54636s || o0Var.f54621b)) || ((messageObject.hasQuoteAtBottom && (o0Var.f54636s || o0Var.f54621b)) || messageObject.isGiveawayOrGiveawayResults())) {
+        if ((messageObject.hasCodeAtBottom && (o0Var.f54638s || o0Var.f54623b)) || ((messageObject.hasQuoteAtBottom && (o0Var.f54638s || o0Var.f54623b)) || messageObject.isGiveawayOrGiveawayResults())) {
             i13 = 18;
             z10 = true;
         } else {
@@ -10592,7 +10592,7 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
                     return;
                 }
             }
-            if (this.N.f54621b) {
+            if (this.N.f54623b) {
                 return;
             }
         }
@@ -11669,7 +11669,7 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
                 return true;
             }
             sh.a aVar = this.f23114a6;
-            if (aVar == null || (drawable != aVar && drawable != aVar.f48174a)) {
+            if (aVar == null || (drawable != aVar && drawable != aVar.f48176a)) {
                 ArrayList arrayList = this.Y5;
                 int size = arrayList.size();
                 int i10 = 0;
@@ -11677,7 +11677,7 @@ public class u1 extends a0 implements fp0, ImageReceiver.ImageReceiverDelegate, 
                     Object obj = arrayList.get(i10);
                     i10++;
                     s1 s1Var = (s1) obj;
-                    if (s1Var.f22762w != drawable && ((bVar = s1Var.f22763x) == null || (drawable != bVar && drawable != bVar.f48163a && drawable != bVar.f48164b))) {
+                    if (s1Var.f22762w != drawable && ((bVar = s1Var.f22763x) == null || (drawable != bVar && drawable != bVar.f48165a && drawable != bVar.f48166b))) {
                     }
                 }
                 return false;

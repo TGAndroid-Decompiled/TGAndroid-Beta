@@ -285,8 +285,8 @@ public final class i30 extends FrameLayout implements org.telegram.ui.Components
             b(true);
         }
         this.K = true;
-        if (g60Var.f37867t2.size() > 0) {
-            this.I = (org.telegram.ui.Components.voip.p0) hg.c.x(1, g60Var.f37867t2);
+        if (g60Var.f37869t2.size() > 0) {
+            this.I = (org.telegram.ui.Components.voip.p0) hg.c.x(1, g60Var.f37869t2);
         } else {
             this.I = new org.telegram.ui.Components.voip.p0();
         }
@@ -313,7 +313,7 @@ public final class i30 extends FrameLayout implements org.telegram.ui.Components
         this.K = false;
         org.telegram.ui.Components.voip.p0 p0Var = this.I;
         if (p0Var != null) {
-            this.P.f27569r.f37867t2.add(p0Var);
+            this.P.f27569r.f37869t2.add(p0Var);
             org.telegram.ui.Components.voip.p0 p0Var2 = this.I;
             p0Var2.f32152c = null;
             p0Var2.c(false);

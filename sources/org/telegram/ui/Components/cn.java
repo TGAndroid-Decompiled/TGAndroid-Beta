@@ -63,18 +63,18 @@ public final class cn extends org.telegram.ui.uu0 {
                 if (Build.VERSION.SDK_INT < 26) {
                     iArr[0] = iArr[0] - hnVar.f30173b.getLeftInset();
                 }
-                ev0Var.f37355b = iArr[0];
-                ev0Var.f37356c = iArr[1] + ((int) fnVar.f26409a);
-                ev0Var.f37362k = 1.0f;
+                ev0Var.f37357b = iArr[0];
+                ev0Var.f37358c = iArr[1] + ((int) fnVar.f26409a);
+                ev0Var.f37364k = 1.0f;
                 ev0Var.d = gnVar;
                 ImageReceiver imageReceiver = enVar.f26115c;
-                ev0Var.f37354a = imageReceiver;
-                ev0Var.f37357e = imageReceiver.getBitmapSafe();
+                ev0Var.f37356a = imageReceiver;
+                ev0Var.f37359e = imageReceiver.getBitmapSafe();
                 ev0Var.h = r5;
                 RectF rectF = enVar.f26127q;
                 int[] iArr2 = {(int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom};
-                ev0Var.f37361j = (int) (-gnVar.getY());
-                ev0Var.f37360i = gnVar.getHeight() - ((int) (((-gnVar.getY()) + hnVar.f27090r.getHeight()) - hnVar.f30173b.n1()));
+                ev0Var.f37363j = (int) (-gnVar.getY());
+                ev0Var.f37362i = gnVar.getHeight() - ((int) (((-gnVar.getY()) + hnVar.f27090r.getHeight()) - hnVar.f30173b.n1()));
                 return ev0Var;
             }
         }

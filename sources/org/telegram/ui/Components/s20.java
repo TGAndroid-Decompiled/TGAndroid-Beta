@@ -334,7 +334,7 @@ public class s20 extends FrameLayout implements me.d, org.telegram.ui.ActionBar.
             }
             f();
             r20 r20Var = this.H;
-            if (r20Var != null && (dyVar = ((org.telegram.ui.yx) r20Var).f44423b.C0) != null) {
+            if (r20Var != null && (dyVar = ((org.telegram.ui.yx) r20Var).f44425b.C0) != null) {
                 dyVar.Q(false);
             }
         }

@@ -1,19 +1,19 @@
 package x9;
 public final class e implements i {
-    public static final ob.a f51078c = new ob.a(26);
-    public final Object f51079a;
-    public Object f51080b;
+    public static final ob.a f51080c = new ob.a(26);
+    public final Object f51081a;
+    public Object f51082b;
 
     public e(ba.c cVar) {
-        this.f51079a = cVar;
-        this.f51080b = f51078c;
+        this.f51081a = cVar;
+        this.f51082b = f51080c;
     }
 
     @Override
     public void a(h hVar, int i10) {
-        int[] iArr = (int[]) this.f51080b;
+        int[] iArr = (int[]) this.f51082b;
         try {
-            hVar.read((byte[]) this.f51079a, iArr[0], i10);
+            hVar.read((byte[]) this.f51081a, iArr[0], i10);
             iArr[0] = iArr[0] + i10;
         } finally {
             hVar.close();
@@ -21,7 +21,7 @@ public final class e implements i {
     }
 
     public e(byte[] bArr, int[] iArr) {
-        this.f51079a = bArr;
-        this.f51080b = iArr;
+        this.f51081a = bArr;
+        this.f51082b = iArr;
     }
 }

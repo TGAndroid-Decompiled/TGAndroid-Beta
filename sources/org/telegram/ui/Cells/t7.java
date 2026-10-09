@@ -594,7 +594,7 @@ public class t7 extends FrameLayout {
         }
         vh.f fVar = this.m0;
         if (fVar != null) {
-            if (fVar.f49673i) {
+            if (fVar.f49675i) {
                 this.m0 = vh.f.e(this);
             } else {
                 fVar.a(this);

@@ -5,19 +5,19 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.tgnet.TLRPC;
 public final class ss0 extends org.telegram.ui.ActionBar.j {
-    public final org.telegram.ui.ActionBar.e6 f41764a;
-    public final PhotoViewer f41765b;
+    public final org.telegram.ui.ActionBar.e6 f41766a;
+    public final PhotoViewer f41767b;
 
     public ss0(PhotoViewer photoViewer, org.telegram.ui.ActionBar.e6 e6Var) {
-        this.f41765b = photoViewer;
-        this.f41764a = e6Var;
+        this.f41767b = photoViewer;
+        this.f41766a = e6Var;
     }
 
     @Override
     public final boolean a() {
         TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated;
         boolean z10;
-        PhotoViewer photoViewer = this.f41765b;
+        PhotoViewer photoViewer = this.f41767b;
         if (photoViewer.T4 != null || photoViewer.f33880b5 != null) {
             return true;
         }

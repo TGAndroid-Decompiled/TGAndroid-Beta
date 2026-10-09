@@ -90,7 +90,7 @@ public final class r extends s4.t0 {
                 org.telegram.ui.Components.w7 w7Var = l8Var.f28347n;
                 if (i10 == 0) {
                     if (org.telegram.ui.Components.l8.k0(l8Var) + ((l8Var.A0 - org.telegram.ui.Components.l8.j0(l8Var)) - AndroidUtilities.dp(13.0f)) < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && w7Var.canScrollVertically(1) && (am0Var = (am0) w7Var.K(l8Var.f28358v0 ? 1 : 0)) != null) {
-                        View view = am0Var.f47656a;
+                        View view = am0Var.f47658a;
                         if (view.getTop() > AndroidUtilities.dp(7.0f)) {
                             w7Var.v0(0, view.getTop() - AndroidUtilities.dp(7.0f), null);
                             return;
@@ -119,7 +119,7 @@ public final class r extends s4.t0 {
                     int i13 = dp + i11;
                     int backgroundPaddingTop = yiVar.getBackgroundPaddingTop();
                     if (((yiVar.f33226e2[0] - backgroundPaddingTop) - i13) + backgroundPaddingTop < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (am0Var2 = (am0) w0Var.K(0)) != null) {
-                        View view2 = am0Var2.f47656a;
+                        View view2 = am0Var2.f47658a;
                         if (view2.getTop() > AndroidUtilities.dp(7.0f)) {
                             w0Var.v0(0, view2.getTop() - AndroidUtilities.dp(7.0f), null);
                             return;
@@ -137,7 +137,7 @@ public final class r extends s4.t0 {
                 if (i10 == 0) {
                     int dp2 = AndroidUtilities.dp(13.0f);
                     int backgroundPaddingTop2 = yiVar2.getBackgroundPaddingTop();
-                    if (((yiVar2.f33226e2[0] - backgroundPaddingTop2) - dp2) + backgroundPaddingTop2 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (am0Var3 = (am0) hkVar.K(0)) != null && (top = (am0Var3.f47656a.getTop() - AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(56.0f)) > 0) {
+                    if (((yiVar2.f33226e2[0] - backgroundPaddingTop2) - dp2) + backgroundPaddingTop2 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (am0Var3 = (am0) hkVar.K(0)) != null && (top = (am0Var3.f47658a.getTop() - AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(56.0f)) > 0) {
                         hkVar.v0(0, top, null);
                     }
                 }
@@ -164,7 +164,7 @@ public final class r extends s4.t0 {
                     int i14 = dp3 + i12;
                     int backgroundPaddingTop3 = yiVar3.getBackgroundPaddingTop();
                     if (((yiVar3.f33226e2[0] - backgroundPaddingTop3) - i14) + backgroundPaddingTop3 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (am0Var4 = (am0) qm0Var.K(0)) != null) {
-                        View view3 = am0Var4.f47656a;
+                        View view3 = am0Var4.f47658a;
                         if (view3.getTop() > AndroidUtilities.dp(7.0f)) {
                             qm0Var.v0(0, view3.getTop() - AndroidUtilities.dp(7.0f), null);
                             return;
@@ -191,7 +191,7 @@ public final class r extends s4.t0 {
                 if (i10 == 0) {
                     int dp4 = AndroidUtilities.dp(13.0f);
                     int backgroundPaddingTop4 = yiVar4.getBackgroundPaddingTop();
-                    if (((yiVar4.f33226e2[0] - backgroundPaddingTop4) - dp4) + backgroundPaddingTop4 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (am0Var5 = (am0) fc1Var.K(1)) != null && (top2 = (am0Var5.f47656a.getTop() - AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(65.0f)) > 0) {
+                    if (((yiVar4.f33226e2[0] - backgroundPaddingTop4) - dp4) + backgroundPaddingTop4 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (am0Var5 = (am0) fc1Var.K(1)) != null && (top2 = (am0Var5.f47658a.getTop() - AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(65.0f)) > 0) {
                         fc1Var.v0(0, top2, null);
                     }
                     int i15 = loVar.W0;
@@ -337,8 +337,8 @@ public final class r extends s4.t0 {
                 long j3 = e4Var.P;
                 int i16 = 0;
                 while (true) {
-                    if (i16 < e4Var.f40638c.getChildCount()) {
-                        if (!(e4Var.f40638c.getChildAt(i16) instanceof j10)) {
+                    if (i16 < e4Var.f40640c.getChildCount()) {
+                        if (!(e4Var.f40640c.getChildAt(i16) instanceof j10)) {
                             i16++;
                         }
                     } else if (recyclerView.canScrollVertically(1)) {
@@ -474,7 +474,7 @@ public final class r extends s4.t0 {
                             T = fc1Var.T(F);
                         }
                         if (T != null) {
-                            View view = T.f47656a;
+                            View view = T.f47658a;
                             int b10 = T.b();
                             if (znVar.getDirection() == 0) {
                                 znVar.setTranslationY((view.getY() - AndroidUtilities.dp(166.0f)) + view.getMeasuredHeight());

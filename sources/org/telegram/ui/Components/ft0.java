@@ -18,11 +18,11 @@ public final class ft0 extends org.telegram.ui.zn {
         bw0 bw0Var = this.Sc;
         mv0 mv0Var = bw0Var.S;
         if (this.Qc) {
-            if (this.f44812j0 != null) {
+            if (this.f44814j0 != null) {
                 qa("");
-                this.f44812j0.H(mv0Var.f28960w, false);
+                this.f44814j0.H(mv0Var.f28960w, false);
             }
-            org.telegram.ui.zk zkVar = this.f44873o1;
+            org.telegram.ui.zk zkVar = this.f44875o1;
             if (zkVar != null) {
                 zkVar.e(mv0Var.f28961x, false);
             }

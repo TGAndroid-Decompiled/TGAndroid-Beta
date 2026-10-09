@@ -53,10 +53,10 @@ public final class a4 extends o61 {
             if (connectedbotstarref.commission_permille > 0) {
                 spannableStringBuilder.append((CharSequence) " d");
                 d10 d10Var = new d10();
-                d10Var.f36787f = i6.x0(null, i6.uj, false);
-                d10Var.f36788n = l.H0(connectedbotstarref.commission_permille);
-                if (d10Var.f36785c != null) {
-                    d10Var.f36785c = null;
+                d10Var.f36789f = i6.x0(null, i6.uj, false);
+                d10Var.f36790n = l.H0(connectedbotstarref.commission_permille);
+                if (d10Var.f36787c != null) {
+                    d10Var.f36787c = null;
                     d10Var.a();
                 }
                 spannableStringBuilder.setSpan(d10Var, 1, 2, 33);
@@ -119,10 +119,10 @@ public final class a4 extends o61 {
             if (starrefprogram.commission_permille > 0) {
                 spannableStringBuilder2.append((CharSequence) " d");
                 d10 d10Var2 = new d10();
-                d10Var2.f36787f = i6.x0(null, i6.uj, false);
-                d10Var2.f36788n = l.H0(starrefprogram.commission_permille);
-                if (d10Var2.f36785c != null) {
-                    d10Var2.f36785c = null;
+                d10Var2.f36789f = i6.x0(null, i6.uj, false);
+                d10Var2.f36790n = l.H0(starrefprogram.commission_permille);
+                if (d10Var2.f36787c != null) {
+                    d10Var2.f36787c = null;
                     d10Var2.a();
                 }
                 spannableStringBuilder2.setSpan(d10Var2, 1, 2, 33);

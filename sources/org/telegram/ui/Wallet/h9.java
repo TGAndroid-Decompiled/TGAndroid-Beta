@@ -21,7 +21,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-public final class g9 extends FrameLayout {
+public final class h9 extends FrameLayout {
     public final Rect E;
     public final int[] F;
     public final int[] G;
@@ -32,36 +32,36 @@ public final class g9 extends FrameLayout {
     public int L;
     public int M;
     public final TextView[] N;
-    public final EditText f34945a;
-    public final TextView f34946b;
-    public final TextView f34947c;
+    public final EditText f35005a;
+    public final TextView f35006b;
+    public final TextView f35007c;
     public final ImageView d;
-    public final org.telegram.ui.ActionBar.e6 f34948e;
-    public Runnable f34949f;
+    public final org.telegram.ui.ActionBar.e6 f35008e;
+    public Runnable f35009f;
     public Runnable h;
-    public Runnable f34950n;
-    public Runnable f34951r;
-    public PopupWindow f34952s;
+    public Runnable f35010n;
+    public Runnable f35011r;
+    public PopupWindow f35012s;
     public boolean v;
-    public LinearLayout f34953w;
-    public ImageView f34954x;
-    public final Rect f34955y;
+    public LinearLayout f35013w;
+    public ImageView f35014x;
+    public final Rect f35015y;
 
-    public g9(int i10, Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
+    public h9(int i10, Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
         super(context);
         float f7;
-        this.f34955y = new Rect();
+        this.f35015y = new Rect();
         this.E = new Rect();
         this.F = new int[2];
         this.G = new int[2];
         this.H = new n1(this, 1);
         this.I = new m1(this, 1);
         this.N = new TextView[3];
-        this.f34948e = e6Var;
+        this.f35008e = e6Var;
         setBackground(org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(16.0f), org.telegram.ui.ActionBar.i6.m1(0.5f, org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20741a7, e6Var))));
         setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(11.0f), 0);
         TextView textView = new TextView(context);
-        this.f34946b = textView;
+        this.f35006b = textView;
         textView.setTextSize(15.0f);
         textView.setGravity(17);
         textView.setIncludeFontPadding(false);
@@ -70,7 +70,7 @@ public final class g9 extends FrameLayout {
         addView(textView, w7.x5.a(-2.0f, 0.0f, 0.0f, 8.0f, 0.0f, 22, 16));
         setClipChildren(false);
         EditText editText = new EditText(context);
-        this.f34945a = editText;
+        this.f35005a = editText;
         editText.setTextSize(16.0f);
         editText.setGravity(16);
         editText.setBackground(null);
@@ -85,23 +85,23 @@ public final class g9 extends FrameLayout {
         editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public final void onFocusChange(View view, boolean z11) {
-                g9 g9Var = g9.this;
+                h9 h9Var = h9.this;
                 if (z11) {
-                    g9Var.setError(false);
-                    g9Var.e();
-                    String lowerCase = g9Var.f34945a.getText().toString().trim().toLowerCase();
+                    h9Var.setError(false);
+                    h9Var.e();
+                    String lowerCase = h9Var.f35005a.getText().toString().trim().toLowerCase();
                     if (lowerCase.isEmpty()) {
-                        g9Var.a();
+                        h9Var.a();
                     } else {
-                        g9Var.f(lowerCase);
+                        h9Var.f(lowerCase);
                     }
                 } else {
-                    g9Var.a();
-                    if (!g9Var.v && !g9Var.b()) {
-                        g9Var.setError(true);
+                    h9Var.a();
+                    if (!h9Var.v && !h9Var.b()) {
+                        h9Var.setError(true);
                     }
                 }
-                g9Var.d();
+                h9Var.d();
             }
         });
         editText.addTextChangedListener(new ci.h2(this, 17));
@@ -111,12 +111,12 @@ public final class g9 extends FrameLayout {
             f7 = 8.0f;
         }
         addView(editText, w7.x5.a(-1.0f, 30.0f, 0.0f, f7, 0.0f, -1, 16));
-        editText.setOnEditorActionListener(new p7(this, 1));
+        editText.setOnEditorActionListener(new q7(this, 1));
         FrameLayout frameLayout = new FrameLayout(context);
         addView(frameLayout, w7.x5.e(-2, -2, 21));
         if (z10) {
             TextView textView2 = new TextView(context);
-            this.f34947c = textView2;
+            this.f35007c = textView2;
             textView2.setTextSize(14.0f);
             textView2.setTypeface(AndroidUtilities.bold());
             textView2.setGravity(17);
@@ -124,10 +124,10 @@ public final class g9 extends FrameLayout {
             textView2.setPadding(org.telegram.ui.Cells.c1.b(12.0f, R.string.WalletPaste, textView2), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f));
             textView2.setBackground(org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(28.0f), org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20797d6, e6Var)));
             textView2.setOnClickListener(new View.OnClickListener(this) {
-                public final g9 f34877b;
+                public final h9 f34943b;
 
                 {
-                    this.f34877b = this;
+                    this.f34943b = this;
                 }
 
                 @Override
@@ -135,14 +135,14 @@ public final class g9 extends FrameLayout {
                     CharSequence text;
                     switch (r2) {
                         case 0:
-                            g9 g9Var = this.f34877b;
-                            EditText editText2 = g9Var.f34945a;
+                            h9 h9Var = this.f34943b;
+                            EditText editText2 = h9Var.f35005a;
                             try {
-                                ClipboardManager clipboardManager = (ClipboardManager) g9Var.getContext().getSystemService("clipboard");
+                                ClipboardManager clipboardManager = (ClipboardManager) h9Var.getContext().getSystemService("clipboard");
                                 if (clipboardManager != null && clipboardManager.hasPrimaryClip() && clipboardManager.getPrimaryClip() != null && clipboardManager.getPrimaryClip().getItemCount() > 0 && (text = clipboardManager.getPrimaryClip().getItemAt(0).getText()) != null) {
                                     editText2.setText(text.toString().trim());
                                     editText2.setSelection(editText2.getText().length());
-                                    Runnable runnable = g9Var.h;
+                                    Runnable runnable = h9Var.h;
                                     if (runnable != null) {
                                         runnable.run();
                                         return;
@@ -154,7 +154,7 @@ public final class g9 extends FrameLayout {
                                 return;
                             }
                         default:
-                            EditText editText3 = this.f34877b.f34945a;
+                            EditText editText3 = this.f34943b.f35005a;
                             editText3.setText("");
                             editText3.setSelection(0);
                             return;
@@ -163,7 +163,7 @@ public final class g9 extends FrameLayout {
             });
             frameLayout.addView(textView2, w7.x5.e(-2, -2, 17));
         } else {
-            this.f34947c = null;
+            this.f35007c = null;
         }
         ImageView imageView = new ImageView(context);
         this.d = imageView;
@@ -174,10 +174,10 @@ public final class g9 extends FrameLayout {
         imageView.setVisibility(8);
         imageView.setFocusable(false);
         imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final g9 f34877b;
+            public final h9 f34943b;
 
             {
-                this.f34877b = this;
+                this.f34943b = this;
             }
 
             @Override
@@ -185,14 +185,14 @@ public final class g9 extends FrameLayout {
                 CharSequence text;
                 switch (r2) {
                     case 0:
-                        g9 g9Var = this.f34877b;
-                        EditText editText2 = g9Var.f34945a;
+                        h9 h9Var = this.f34943b;
+                        EditText editText2 = h9Var.f35005a;
                         try {
-                            ClipboardManager clipboardManager = (ClipboardManager) g9Var.getContext().getSystemService("clipboard");
+                            ClipboardManager clipboardManager = (ClipboardManager) h9Var.getContext().getSystemService("clipboard");
                             if (clipboardManager != null && clipboardManager.hasPrimaryClip() && clipboardManager.getPrimaryClip() != null && clipboardManager.getPrimaryClip().getItemCount() > 0 && (text = clipboardManager.getPrimaryClip().getItemAt(0).getText()) != null) {
                                 editText2.setText(text.toString().trim());
                                 editText2.setSelection(editText2.getText().length());
-                                Runnable runnable = g9Var.h;
+                                Runnable runnable = h9Var.h;
                                 if (runnable != null) {
                                     runnable.run();
                                     return;
@@ -204,7 +204,7 @@ public final class g9 extends FrameLayout {
                             return;
                         }
                     default:
-                        EditText editText3 = this.f34877b.f34945a;
+                        EditText editText3 = this.f34943b.f35005a;
                         editText3.setText("");
                         editText3.setSelection(0);
                         return;
@@ -217,14 +217,14 @@ public final class g9 extends FrameLayout {
     }
 
     public final void a() {
-        PopupWindow popupWindow = this.f34952s;
+        PopupWindow popupWindow = this.f35012s;
         if (popupWindow != null && popupWindow.isShowing()) {
-            this.f34952s.dismiss();
+            this.f35012s.dismiss();
         }
     }
 
     public final boolean b() {
-        String lowerCase = this.f34945a.getText().toString().trim().toLowerCase();
+        String lowerCase = this.f35005a.getText().toString().trim().toLowerCase();
         if (lowerCase.isEmpty()) {
             return true;
         }
@@ -240,7 +240,7 @@ public final class g9 extends FrameLayout {
         int i10;
         int height;
         float f7;
-        Rect rect = this.f34955y;
+        Rect rect = this.f35015y;
         getWindowVisibleDisplayFrame(rect);
         int[] iArr = this.F;
         getLocationOnScreen(iArr);
@@ -256,7 +256,7 @@ public final class g9 extends FrameLayout {
             a();
             return;
         }
-        LinearLayout linearLayout = (LinearLayout) this.f34952s.getContentView();
+        LinearLayout linearLayout = (LinearLayout) this.f35012s.getContentView();
         linearLayout.measure(View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(260.0f), rect.width()), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(0, 0));
         int measuredWidth = linearLayout.getMeasuredWidth();
         int measuredHeight = linearLayout.getMeasuredHeight();
@@ -270,10 +270,10 @@ public final class g9 extends FrameLayout {
             a();
             return;
         }
-        if (linearLayout.indexOfChild(this.f34954x) != i10) {
-            linearLayout.removeView(this.f34954x);
-            linearLayout.addView(this.f34954x, i10);
-            ImageView imageView = this.f34954x;
+        if (linearLayout.indexOfChild(this.f35014x) != i10) {
+            linearLayout.removeView(this.f35014x);
+            linearLayout.addView(this.f35014x, i10);
+            ImageView imageView = this.f35014x;
             if (i10 != 0) {
                 f7 = 180.0f;
             } else {
@@ -289,14 +289,14 @@ public final class g9 extends FrameLayout {
         }
         int i11 = (max + iArr2[0]) - iArr[0];
         int i12 = (height + iArr2[1]) - iArr[1];
-        if (this.f34952s.isShowing()) {
+        if (this.f35012s.isShowing()) {
             if (this.J != i11 || this.K != i12 || this.L != measuredWidth || this.M != measuredHeight) {
-                this.f34952s.update(i11, i12, measuredWidth, measuredHeight);
+                this.f35012s.update(i11, i12, measuredWidth, measuredHeight);
             }
         } else {
-            this.f34952s.setWidth(measuredWidth);
-            this.f34952s.setHeight(measuredHeight);
-            this.f34952s.showAtLocation(this, 51, i11, i12);
+            this.f35012s.setWidth(measuredWidth);
+            this.f35012s.setHeight(measuredHeight);
+            this.f35012s.showAtLocation(this, 51, i11, i12);
             getViewTreeObserver().addOnGlobalLayoutListener(this.H);
             getViewTreeObserver().addOnScrollChangedListener(this.I);
         }
@@ -307,19 +307,19 @@ public final class g9 extends FrameLayout {
     }
 
     public final void d() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.g9.d():void");
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.h9.d():void");
     }
 
     public final void e() {
         boolean z10;
         int w02;
-        if (!this.v && this.f34945a.getText().length() <= 0) {
+        if (!this.v && this.f35005a.getText().length() <= 0) {
             z10 = false;
         } else {
             z10 = true;
         }
         boolean z11 = this.v;
-        org.telegram.ui.ActionBar.e6 e6Var = this.f34948e;
+        org.telegram.ui.ActionBar.e6 e6Var = this.f35008e;
         if (z11) {
             w02 = org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21037q7, e6Var);
         } else if (z10) {
@@ -327,14 +327,14 @@ public final class g9 extends FrameLayout {
         } else {
             w02 = org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.A6, e6Var);
         }
-        this.f34946b.setTextColor(w02);
+        this.f35006b.setTextColor(w02);
     }
 
     public final void f(String str) {
         String[] mnemonicWordlist;
         ShapeDrawable shapeDrawable;
         int i10;
-        if (this.f34945a.hasFocus() && !TextUtils.isEmpty(str) && str.length() >= 1 && WalletEngine2.getMnemonicWordlist().length != 0) {
+        if (this.f35005a.hasFocus() && !TextUtils.isEmpty(str) && str.length() >= 1 && WalletEngine2.getMnemonicWordlist().length != 0) {
             ArrayList arrayList = new ArrayList();
             for (String str2 : WalletEngine2.getMnemonicWordlist()) {
                 if (str2.startsWith(str) && !str2.equals(str)) {
@@ -349,35 +349,35 @@ public final class g9 extends FrameLayout {
                 return;
             }
             Context context = getContext();
-            PopupWindow popupWindow = this.f34952s;
+            PopupWindow popupWindow = this.f35012s;
             TextView[] textViewArr = this.N;
             if (popupWindow == null) {
                 PopupWindow popupWindow2 = new PopupWindow(context);
-                this.f34952s = popupWindow2;
+                this.f35012s = popupWindow2;
                 popupWindow2.setOutsideTouchable(false);
-                this.f34952s.setFocusable(false);
-                this.f34952s.setInputMethodMode(1);
-                this.f34952s.setBackgroundDrawable(null);
-                this.f34952s.setElevation(AndroidUtilities.dp(8.0f));
+                this.f35012s.setFocusable(false);
+                this.f35012s.setInputMethodMode(1);
+                this.f35012s.setBackgroundDrawable(null);
+                this.f35012s.setElevation(AndroidUtilities.dp(8.0f));
                 LinearLayout linearLayout = new LinearLayout(context);
                 linearLayout.setOrientation(1);
                 linearLayout.setClipToPadding(false);
                 ImageView imageView = new ImageView(context);
-                this.f34954x = imageView;
+                this.f35014x = imageView;
                 imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-                this.f34954x.setColorFilter(new PorterDuffColorFilter(-872415232, PorterDuff.Mode.SRC_IN));
-                this.f34954x.setImageResource(R.drawable.wallet_tooltip_arrow);
-                linearLayout.addView(this.f34954x, w7.x5.t(18, 9, 1, 0, 0, 0, 0));
+                this.f35014x.setColorFilter(new PorterDuffColorFilter(-872415232, PorterDuff.Mode.SRC_IN));
+                this.f35014x.setImageResource(R.drawable.wallet_tooltip_arrow);
+                linearLayout.addView(this.f35014x, w7.x5.t(18, 9, 1, 0, 0, 0, 0));
                 LinearLayout linearLayout2 = new LinearLayout(context);
-                this.f34953w = linearLayout2;
+                this.f35013w = linearLayout2;
                 linearLayout2.setOrientation(0);
-                this.f34953w.setGravity(16);
-                this.f34953w.setPadding(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
-                this.f34953w.setClipToPadding(false);
+                this.f35013w.setGravity(16);
+                this.f35013w.setPadding(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
+                this.f35013w.setClipToPadding(false);
                 GradientDrawable gradientDrawable = new GradientDrawable();
                 gradientDrawable.setColor(-872415232);
                 gradientDrawable.setCornerRadius(AndroidUtilities.dp(8.0f));
-                this.f34953w.setBackground(gradientDrawable);
+                this.f35013w.setBackground(gradientDrawable);
                 for (int i11 = 0; i11 < 3; i11++) {
                     TextView textView = new TextView(context);
                     textView.setTextSize(14.0f);
@@ -391,7 +391,7 @@ public final class g9 extends FrameLayout {
                     textView.setVisibility(8);
                     textView.setOnClickListener(new ci.m4(this, i11, 26));
                     textViewArr[i11] = textView;
-                    LinearLayout linearLayout3 = this.f34953w;
+                    LinearLayout linearLayout3 = this.f35013w;
                     if (i11 == 0) {
                         i10 = 0;
                     } else {
@@ -399,16 +399,16 @@ public final class g9 extends FrameLayout {
                     }
                     linearLayout3.addView(textView, w7.x5.t(-2, -2, 16, i10, 0, 0, 0));
                 }
-                linearLayout.addView(this.f34953w, w7.x5.n(-2, -2));
-                this.f34952s.setContentView(linearLayout);
-                this.f34952s.setWidth(-2);
-                this.f34952s.setHeight(-2);
-                this.f34952s.setOnDismissListener(new PopupWindow.OnDismissListener() {
+                linearLayout.addView(this.f35013w, w7.x5.n(-2, -2));
+                this.f35012s.setContentView(linearLayout);
+                this.f35012s.setWidth(-2);
+                this.f35012s.setHeight(-2);
+                this.f35012s.setOnDismissListener(new PopupWindow.OnDismissListener() {
                     @Override
                     public final void onDismiss() {
-                        g9 g9Var = g9.this;
-                        g9Var.getViewTreeObserver().removeOnGlobalLayoutListener(g9Var.H);
-                        g9Var.getViewTreeObserver().removeOnScrollChangedListener(g9Var.I);
+                        h9 h9Var = h9.this;
+                        h9Var.getViewTreeObserver().removeOnGlobalLayoutListener(h9Var.H);
+                        h9Var.getViewTreeObserver().removeOnScrollChangedListener(h9Var.I);
                     }
                 });
             }
@@ -441,7 +441,7 @@ public final class g9 extends FrameLayout {
     }
 
     public String getWord() {
-        return this.f34945a.getText().toString().trim();
+        return this.f35005a.getText().toString().trim();
     }
 
     @Override
@@ -459,12 +459,12 @@ public final class g9 extends FrameLayout {
         if (this.v != z10) {
             this.v = z10;
             ImageView imageView = this.d;
-            EditText editText = this.f34945a;
-            org.telegram.ui.ActionBar.e6 e6Var = this.f34948e;
+            EditText editText = this.f35005a;
+            org.telegram.ui.ActionBar.e6 e6Var = this.f35008e;
             if (z10) {
                 setBackground(org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(16.0f), org.telegram.ui.ActionBar.i6.m1(0.24f, org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21056r7, e6Var))));
                 int i10 = org.telegram.ui.ActionBar.i6.f21037q7;
-                this.f34946b.setTextColor(org.telegram.ui.ActionBar.i6.w0(i10, e6Var));
+                this.f35006b.setTextColor(org.telegram.ui.ActionBar.i6.w0(i10, e6Var));
                 editText.setTextColor(org.telegram.ui.ActionBar.i6.w0(i10, e6Var));
                 if (imageView != null) {
                     imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(i10, e6Var), PorterDuff.Mode.SRC_IN));
@@ -479,7 +479,7 @@ public final class g9 extends FrameLayout {
                 e();
                 d();
             }
-            Runnable runnable = this.f34950n;
+            Runnable runnable = this.f35010n;
             if (runnable != null) {
                 runnable.run();
             }
@@ -487,11 +487,11 @@ public final class g9 extends FrameLayout {
     }
 
     public void setOnErrorClearListener(Runnable runnable) {
-        this.f34950n = runnable;
+        this.f35010n = runnable;
     }
 
     public void setOnNextListener(Runnable runnable) {
-        this.f34951r = runnable;
+        this.f35011r = runnable;
     }
 
     public void setOnPasteListener(Runnable runnable) {
@@ -499,11 +499,11 @@ public final class g9 extends FrameLayout {
     }
 
     public void setOnTextChangedListener(Runnable runnable) {
-        this.f34949f = runnable;
+        this.f35009f = runnable;
     }
 
     public void setText(String str) {
-        EditText editText = this.f34945a;
+        EditText editText = this.f35005a;
         editText.setText(str);
         editText.setSelection(str.length());
         setError(false);

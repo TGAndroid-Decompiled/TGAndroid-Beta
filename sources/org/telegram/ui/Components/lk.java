@@ -21,7 +21,7 @@ public final class lk extends pm0 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47660f == 1) {
+        if (d1Var.f47662f == 1) {
             return true;
         }
         return false;
@@ -80,8 +80,8 @@ public final class lk extends pm0 {
     @Override
     public final void v(s4.d1 d1Var, int i10) {
         boolean z10;
-        int i11 = d1Var.f47660f;
-        View view = d1Var.f47656a;
+        int i11 = d1Var.f47662f;
+        View view = d1Var.f47658a;
         sk skVar = this.h;
         if (i11 != 0) {
             if (i11 != 1) {

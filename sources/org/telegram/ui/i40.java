@@ -6,33 +6,33 @@ import android.graphics.RectF;
 import android.os.Build;
 import android.widget.FrameLayout;
 public final class i40 extends FrameLayout {
-    public final RectF f38519a;
-    public final RectF f38520b;
-    public final RectF f38521c;
+    public final RectF f38521a;
+    public final RectF f38522b;
+    public final RectF f38523c;
     public final Paint d;
-    public final g60 f38522e;
+    public final g60 f38524e;
 
     public i40(g60 g60Var, LaunchActivity launchActivity) {
         super(launchActivity);
-        this.f38522e = g60Var;
-        this.f38519a = new RectF();
-        this.f38520b = new RectF();
-        this.f38521c = new RectF();
+        this.f38524e = g60Var;
+        this.f38521a = new RectF();
+        this.f38522b = new RectF();
+        this.f38523c = new RectF();
         this.d = new Paint(1);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        g60 g60Var = this.f38522e;
+        g60 g60Var = this.f38524e;
         j40 j40Var = g60Var.F;
         float y3 = j40Var.getY() + j40Var.getMeasuredHeight();
         me.e eVar = g60Var.B3;
-        RectF rectF = this.f38519a;
+        RectF rectF = this.f38521a;
         rectF.set(0.0f, y3 - eVar.f16345e, getMeasuredWidth(), getMeasuredHeight());
-        RectF rectF2 = this.f38520b;
+        RectF rectF2 = this.f38522b;
         rectF2.set(0.0f, j40Var.getY() + j40Var.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight());
         float y10 = j40Var.getY() + j40Var.getMeasuredHeight();
-        RectF rectF3 = this.f38521c;
+        RectF rectF3 = this.f38523c;
         rectF3.set(0.0f, (j40Var.getY() + j40Var.getMeasuredHeight()) - eVar.f16345e, getMeasuredWidth(), y10);
         int i10 = Build.VERSION.SDK_INT;
         Paint paint = this.d;

@@ -24,15 +24,15 @@ import org.telegram.ui.Components.ea0;
 import org.telegram.ui.Components.pm0;
 import rg.x1;
 public final class m0 extends pm0 {
-    public final s0 f48352c;
+    public final s0 f48354c;
 
     public m0(s0 s0Var) {
-        this.f48352c = s0Var;
+        this.f48354c = s0Var;
     }
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47660f == 3) {
+        if (d1Var.f47662f == 3) {
             return true;
         }
         return false;
@@ -40,7 +40,7 @@ public final class m0 extends pm0 {
 
     @Override
     public final int h() {
-        return this.f48352c.Y.size() + 3;
+        return this.f48354c.Y.size() + 3;
     }
 
     @Override
@@ -61,9 +61,9 @@ public final class m0 extends pm0 {
     @Override
     public final void v(s4.d1 d1Var, int i10) {
         String str;
-        int i11 = d1Var.f47660f;
-        View view = d1Var.f47656a;
-        s0 s0Var = this.f48352c;
+        int i11 = d1Var.f47662f;
+        View view = d1Var.f47658a;
+        s0 s0Var = this.f48354c;
         if (i11 == 3) {
             TL_stories.TL_myBoost tL_myBoost = (TL_stories.TL_myBoost) s0Var.Y.get(i10 - 3);
             xg.l lVar = (xg.l) view;
@@ -76,9 +76,9 @@ public final class m0 extends pm0 {
             m4Var.setText(LocaleController.getString(R.string.BoostingRemoveBoostFrom));
         } else if (i11 == 0) {
             r0 r0Var = (r0) view;
-            s0Var.f48406b0 = r0Var;
+            s0Var.f48408b0 = r0Var;
             TLRPC.Chat chat = s0Var.Z;
-            ea0 ea0Var = r0Var.f48403e;
+            ea0 ea0Var = r0Var.f48405e;
             try {
                 int i12 = (int) MessagesController.getInstance(UserConfig.selectedAccount).boostsPerSentGift;
                 if (chat == null) {
@@ -103,7 +103,7 @@ public final class m0 extends pm0 {
         View view;
         e6 e6Var;
         Context context = viewGroup.getContext();
-        s0 s0Var = this.f48352c;
+        s0 s0Var = this.f48354c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {

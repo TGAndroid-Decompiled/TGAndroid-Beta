@@ -150,11 +150,11 @@ public final class d1 extends LinearLayout {
                 frameLayout2.setClipToPadding(false);
                 di.d dVar = new di.d(context, 70, 0);
                 frameLayout2.addView(dVar, w7.x5.d(-1.0f, -1));
-                org.telegram.ui.Wallet.b6 b6Var = new org.telegram.ui.Wallet.b6(170, context, false);
-                this.f804b = b6Var;
-                b6Var.setStarParticlesView(dVar);
-                frameLayout2.addView(b6Var, w7.x5.a(170.0f, 0.0f, 32.0f, 0.0f, 24.0f, 170, 17));
-                b6Var.setPaused(false);
+                org.telegram.ui.Wallet.c6 c6Var = new org.telegram.ui.Wallet.c6(170, context, false);
+                this.f804b = c6Var;
+                c6Var.setStarParticlesView(dVar);
+                frameLayout2.addView(c6Var, w7.x5.a(170.0f, 0.0f, 32.0f, 0.0f, 24.0f, 170, 17));
+                c6Var.setPaused(false);
                 addView(frameLayout2, w7.x5.d(180.0f, -1));
                 TextView textView2 = new TextView(context);
                 this.f805c = textView2;

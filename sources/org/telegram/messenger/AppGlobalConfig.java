@@ -69,6 +69,7 @@ public class AppGlobalConfig {
     public final ConfigDouble tonUsdRate;
     public final ConfigBoolean walletAvailable;
     public final ConfigLong walletGaslessMinNanos;
+    public final ConfigBoolean walletPaidMessageRecipientMessageAmountCheck;
     public final ConfigLong walletTransferMinNanos;
     private final HashMap<String, ConfigInternal> map = new HashMap<>();
     public final ConfigInt starsPaidMessagesChannelAmountDefault = ofInt("stars_paid_messages_channel_amount_default", 10);
@@ -430,6 +431,7 @@ public class AppGlobalConfig {
         this.starsSpendTopUpInvoiceDisabled = ofBoolean("stars_spend_topup_invoice_disabled", false);
         this.botAllowedSuffixes = ofStringSet("bot_allowed_suffixes", Collections.singleton("bot"));
         this.walletAvailable = ofBoolean("wallet_available", BuildVars.DEBUG_VERSION);
+        this.walletPaidMessageRecipientMessageAmountCheck = ofBoolean("wallet_paid_message_recipient_message_amount_check", true);
         this.walletTransferMinNanos = ofLong("wallet_transfer_min_nanos", 100000000L);
         this.walletGaslessMinNanos = ofLong("wallet_gasless_min_nanos", 100000000L);
     }

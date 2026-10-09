@@ -5,18 +5,18 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.Crop.CropAreaView;
 public final class hr0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f38391a;
-    public final PhotoViewer f38392b;
+    public final int f38393a;
+    public final PhotoViewer f38394b;
 
     public hr0(PhotoViewer photoViewer, int i10) {
-        this.f38391a = i10;
-        this.f38392b = photoViewer;
+        this.f38393a = i10;
+        this.f38394b = photoViewer;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i10 = this.f38391a;
-        PhotoViewer photoViewer = this.f38392b;
+        int i10 = this.f38393a;
+        PhotoViewer photoViewer = this.f38394b;
         switch (i10) {
             case 0:
                 Drawable[] drawableArr = PhotoViewer.U8;
@@ -58,7 +58,7 @@ public final class hr0 implements ValueAnimator.AnimatorUpdateListener {
             case 8:
                 bu0 bu0Var = photoViewer.L1;
                 if (bu0Var != null) {
-                    bu0Var.f46363d1.invalidate();
+                    bu0Var.f46365d1.invalidate();
                     return;
                 }
                 return;

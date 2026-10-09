@@ -218,10 +218,10 @@ public final class n3 extends FrameLayout {
                 org.telegram.ui.v3 v3Var = i4Var.K;
                 i3.b(v3Var);
                 sheetFragment.addSheet(v3Var);
-                org.telegram.ui.u3 u3Var = v3Var.f42624c;
+                org.telegram.ui.u3 u3Var = v3Var.f42626c;
                 v3Var.h = false;
-                v3Var.f42627n = false;
-                ValueAnimator valueAnimator = v3Var.f42632y;
+                v3Var.f42629n = false;
+                ValueAnimator valueAnimator = v3Var.f42634y;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
                 }
@@ -229,8 +229,8 @@ public final class n3 extends FrameLayout {
                 if (valueAnimator2 != null) {
                     valueAnimator2.cancel();
                 }
-                v3Var.f42631x = 0.0f;
-                v3Var.f42630w = 0.0f;
+                v3Var.f42633x = 0.0f;
+                v3Var.f42632w = 0.0f;
                 v3Var.h();
                 v3Var.n();
                 u3Var.invalidate();
@@ -515,8 +515,8 @@ public final class n3 extends FrameLayout {
         for (int i10 = 0; i10 < tabs.size(); i10++) {
             m3 m3Var = tabs.get(i10);
             org.telegram.ui.i4 i4Var = m3Var.J;
-            if (i4Var != null && !i4Var.f38497d0.isEmpty()) {
-                Object g10 = hg.c.g(1, m3Var.J.f38497d0);
+            if (i4Var != null && !i4Var.f38499d0.isEmpty()) {
+                Object g10 = hg.c.g(1, m3Var.J.f38499d0);
                 if ((g10 instanceof TLRPC.WebPage) && ((TLRPC.WebPage) g10).f20191id == webPage.f20191id) {
                     e(m3Var);
                     return m3Var;
@@ -585,7 +585,7 @@ public final class n3 extends FrameLayout {
             }
             ViewParent parent = getParent();
             if (parent instanceof View) {
-                WeakHashMap weakHashMap = r0.i0.f46764a;
+                WeakHashMap weakHashMap = r0.i0.f46766a;
                 r0.y.c((View) parent);
             }
         }

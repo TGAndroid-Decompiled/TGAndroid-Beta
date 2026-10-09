@@ -17,8 +17,8 @@ public final class n70 implements w90 {
         if (n2Var instanceof org.telegram.ui.zh0) {
             org.telegram.ui.zh0 zh0Var = (org.telegram.ui.zh0) n2Var;
             TLRPC.TL_chatInviteExported tL_chatInviteExported = t70Var.f31054b;
-            org.telegram.ui.vb0 vb0Var = new org.telegram.ui.vb0(1, zh0Var.f44648n);
-            vb0Var.T = zh0Var.f44656s0;
+            org.telegram.ui.vb0 vb0Var = new org.telegram.ui.vb0(1, zh0Var.f44650n);
+            vb0Var.T = zh0Var.f44658s0;
             vb0Var.Y(tL_chatInviteExported);
             zh0Var.presentFragment(vb0Var);
         } else {

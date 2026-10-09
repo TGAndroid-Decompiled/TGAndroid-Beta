@@ -9,24 +9,24 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class cg1 extends org.telegram.ui.Cells.s2 {
-    public boolean f36655a5;
-    public int f36656b5;
-    public TLRPC.TL_forumTopic f36657c5;
-    public org.telegram.ui.Components.s5 f36658d5;
-    public Drawable f36659e5;
-    public boolean f36660f5;
-    public boolean f36661g5;
-    public boolean f36662h5;
-    public Boolean f36663i5;
-    public float f36664j5;
-    public ValueAnimator f36665k5;
-    public final fg1 f36666l5;
+    public boolean f36657a5;
+    public int f36658b5;
+    public TLRPC.TL_forumTopic f36659c5;
+    public org.telegram.ui.Components.s5 f36660d5;
+    public Drawable f36661e5;
+    public boolean f36662f5;
+    public boolean f36663g5;
+    public boolean f36664h5;
+    public Boolean f36665i5;
+    public float f36666j5;
+    public ValueAnimator f36667k5;
+    public final fg1 f36668l5;
 
     public cg1(fg1 fg1Var, Context context, boolean z10) {
         super(context, z10);
         int i10;
-        this.f36666l5 = fg1Var;
-        this.f36656b5 = -1;
+        this.f36668l5 = fg1Var;
+        this.f36658b5 = -1;
         this.f22881x = false;
         if (fg1Var.isInPreviewMode()) {
             i10 = 11;
@@ -42,21 +42,21 @@ public final class cg1 extends org.telegram.ui.Cells.s2 {
 
     @Override
     public final boolean F() {
-        return this.f36662h5;
+        return this.f36664h5;
     }
 
     public final void f0() {
-        Drawable drawable = this.f36659e5;
+        Drawable drawable = this.f36661e5;
         boolean z10 = drawable instanceof ng.c;
-        fg1 fg1Var = this.f36666l5;
+        fg1 fg1Var = this.f36668l5;
         if (z10) {
-            ((ng.c) drawable).a(i0.a.d(this.f36664j5, fg1Var.getThemedColor(org.telegram.ui.ActionBar.i6.R9), fg1Var.getThemedColor(org.telegram.ui.ActionBar.i6.L7)));
+            ((ng.c) drawable).a(i0.a.d(this.f36666j5, fg1Var.getThemedColor(org.telegram.ui.ActionBar.i6.R9), fg1Var.getThemedColor(org.telegram.ui.ActionBar.i6.L7)));
         }
         Drawable[] drawableArr = this.f22801h0;
         if (drawableArr != null) {
             Drawable drawable2 = drawableArr[0];
             if (drawable2 instanceof ng.c) {
-                ((ng.c) drawable2).a(i0.a.d(this.f36664j5, fg1Var.getThemedColor(org.telegram.ui.ActionBar.i6.R9), fg1Var.getThemedColor(org.telegram.ui.ActionBar.i6.L7)));
+                ((ng.c) drawable2).a(i0.a.d(this.f36666j5, fg1Var.getThemedColor(org.telegram.ui.ActionBar.i6.R9), fg1Var.getThemedColor(org.telegram.ui.ActionBar.i6.L7)));
             }
         }
         invalidate();
@@ -64,34 +64,34 @@ public final class cg1 extends org.telegram.ui.Cells.s2 {
 
     public final void g0(boolean z10) {
         boolean z11;
-        if (this.f36663i5 == null) {
+        if (this.f36665i5 == null) {
             z11 = false;
         } else {
             z11 = true;
         }
-        ValueAnimator valueAnimator = this.f36665k5;
+        ValueAnimator valueAnimator = this.f36667k5;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f36665k5 = null;
+            this.f36667k5 = null;
         }
-        this.f36663i5 = Boolean.valueOf(z10);
+        this.f36665i5 = Boolean.valueOf(z10);
         float f7 = 0.0f;
         if (z11) {
-            float f10 = this.f36664j5;
+            float f10 = this.f36666j5;
             if (z10) {
                 f7 = 1.0f;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-            this.f36665k5 = ofFloat;
+            this.f36667k5 = ofFloat;
             ofFloat.addUpdateListener(new y11(this, 18));
-            this.f36665k5.setInterpolator(org.telegram.ui.Components.hs.f27119g);
-            this.f36665k5.start();
+            this.f36667k5.setInterpolator(org.telegram.ui.Components.hs.f27119g);
+            this.f36667k5.start();
             return;
         }
         if (z10) {
             f7 = 1.0f;
         }
-        this.f36664j5 = f7;
+        this.f36666j5 = f7;
         f0();
     }
 
@@ -103,8 +103,8 @@ public final class cg1 extends org.telegram.ui.Cells.s2 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f36660f5 = true;
-        org.telegram.ui.Components.s5 s5Var = this.f36658d5;
+        this.f36662f5 = true;
+        org.telegram.ui.Components.s5 s5Var = this.f36660d5;
         if (s5Var != null) {
             s5Var.a(this);
         }
@@ -113,8 +113,8 @@ public final class cg1 extends org.telegram.ui.Cells.s2 {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f36660f5 = false;
-        org.telegram.ui.Components.s5 s5Var = this.f36658d5;
+        this.f36662f5 = false;
+        org.telegram.ui.Components.s5 s5Var = this.f36660d5;
         if (s5Var != null) {
             s5Var.o(this);
         }
@@ -126,8 +126,8 @@ public final class cg1 extends org.telegram.ui.Cells.s2 {
         org.telegram.ui.Components.nj0 nj0Var;
         int dp;
         ci.o3 o3Var;
-        fg1 fg1Var = this.f36666l5;
-        if (fg1Var.getMessagesController().isMonoForum(-fg1Var.f37556a)) {
+        fg1 fg1Var = this.f36668l5;
+        if (fg1Var.getMessagesController().isMonoForum(-fg1Var.f37558a)) {
             super.onDraw(canvas);
             return;
         }
@@ -147,7 +147,7 @@ public final class cg1 extends org.telegram.ui.Cells.s2 {
         canvas.restore();
         canvas.save();
         canvas.translate(this.f22877w1, 0.0f);
-        if (this.f36655a5) {
+        if (this.f36657a5) {
             if (this.f22862t2) {
                 dp = 0;
             } else {
@@ -159,48 +159,48 @@ public final class cg1 extends org.telegram.ui.Cells.s2 {
                 canvas.drawLine(dp - this.f22877w1, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.ActionBar.i6.f20919k0);
             }
         }
-        if ((!this.f36661g5 || (nj0Var = this.f22787e2) == null || nj0Var.C != 0.0f) && (this.f36658d5 != null || this.f36659e5 != null)) {
+        if ((!this.f36663g5 || (nj0Var = this.f22787e2) == null || nj0Var.C != 0.0f) && (this.f36660d5 != null || this.f36661e5 != null)) {
             int dp2 = AndroidUtilities.dp(10.0f);
             int dp3 = AndroidUtilities.dp(10.0f);
             int dp4 = AndroidUtilities.dp(28.0f);
-            org.telegram.ui.Components.s5 s5Var = this.f36658d5;
+            org.telegram.ui.Components.s5 s5Var = this.f36660d5;
             if (s5Var != null) {
                 if (LocaleController.isRTL) {
                     s5Var.setBounds((getWidth() - dp2) - dp4, dp3, getWidth() - dp2, dp4 + dp3);
                 } else {
                     s5Var.setBounds(dp2, dp3, dp2 + dp4, dp4 + dp3);
                 }
-                this.f36658d5.draw(canvas);
+                this.f36660d5.draw(canvas);
             } else {
                 if (LocaleController.isRTL) {
-                    this.f36659e5.setBounds((getWidth() - dp2) - dp4, dp3, getWidth() - dp2, dp4 + dp3);
+                    this.f36661e5.setBounds((getWidth() - dp2) - dp4, dp3, getWidth() - dp2, dp4 + dp3);
                 } else {
-                    this.f36659e5.setBounds(dp2, dp3, dp2 + dp4, dp4 + dp3);
+                    this.f36661e5.setBounds(dp2, dp3, dp2 + dp4, dp4 + dp3);
                 }
-                this.f36659e5.draw(canvas);
+                this.f36661e5.draw(canvas);
             }
         }
         canvas.restore();
     }
 
     public void setAnimatedEmojiDrawable(org.telegram.ui.Components.s5 s5Var) {
-        org.telegram.ui.Components.s5 s5Var2 = this.f36658d5;
+        org.telegram.ui.Components.s5 s5Var2 = this.f36660d5;
         if (s5Var2 != s5Var) {
-            if (s5Var2 != null && this.f36660f5) {
+            if (s5Var2 != null && this.f36662f5) {
                 s5Var2.o(this);
             }
             if (s5Var != null) {
                 s5Var.setColorFilter(org.telegram.ui.ActionBar.i6.f21125v3);
             }
-            this.f36658d5 = s5Var;
-            if (s5Var != null && this.f36660f5) {
+            this.f36660d5 = s5Var;
+            if (s5Var != null && this.f36662f5) {
                 s5Var.a(this);
             }
         }
     }
 
     public void setForumIcon(Drawable drawable) {
-        this.f36659e5 = drawable;
+        this.f36661e5 = drawable;
     }
 
     public void setTopicIcon(TLRPC.TL_forumTopic tL_forumTopic) {
@@ -209,14 +209,14 @@ public final class cg1 extends org.telegram.ui.Cells.s2 {
         int i10;
         int i11;
         boolean z12;
-        this.f36657c5 = tL_forumTopic;
+        this.f36659c5 = tL_forumTopic;
         boolean z13 = false;
         if (tL_forumTopic != null && tL_forumTopic.closed) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f36662h5 = z10;
+        this.f36664h5 = z10;
         if (this.f22815k0) {
             if (tL_forumTopic != null && tL_forumTopic.hidden) {
                 z12 = true;
@@ -230,9 +230,9 @@ public final class cg1 extends org.telegram.ui.Cells.s2 {
         } else {
             z11 = false;
         }
-        this.f36661g5 = z11;
-        fg1 fg1Var = this.f36666l5;
-        if (tL_forumTopic != null && this != fg1Var.f37561b1) {
+        this.f36663g5 = z11;
+        fg1 fg1Var = this.f36668l5;
+        if (tL_forumTopic != null && this != fg1Var.f37563b1) {
             if (tL_forumTopic.hidden) {
                 this.L1 = true;
                 this.M1 = org.telegram.ui.ActionBar.i6.f20800d9;
@@ -258,9 +258,9 @@ public final class cg1 extends org.telegram.ui.Cells.s2 {
             setForumIcon(ng.d.c(getContext(), 1.0f, fg1Var.getThemedColor(org.telegram.ui.ActionBar.i6.Ac), false));
         } else if (tL_forumTopic != null && tL_forumTopic.icon_emoji_id != 0) {
             setForumIcon(null);
-            org.telegram.ui.Components.s5 s5Var = this.f36658d5;
+            org.telegram.ui.Components.s5 s5Var = this.f36660d5;
             if (s5Var == null || s5Var.i() != tL_forumTopic.icon_emoji_id) {
-                if (fg1Var.f37595u0) {
+                if (fg1Var.f37597u0) {
                     i10 = 13;
                 } else {
                     i10 = 10;

@@ -12,18 +12,18 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public final class k01 extends org.telegram.ui.Components.bw0 {
-    public boolean f39051f2;
-    public final ProfileActivity f39052g2;
+    public boolean f39053f2;
+    public final ProfileActivity f39054g2;
 
     public k01(ProfileActivity profileActivity, Context context, long j3, org.telegram.ui.Components.tv0 tv0Var, int i10, ArrayList arrayList, TLRPC.ChatFull chatFull, TLRPC.UserFull userFull, int i11, int i12, ProfileActivity profileActivity2, ProfileActivity profileActivity3, org.telegram.ui.ActionBar.e6 e6Var, ah.c cVar) {
         super(context, j3, tv0Var, i10, arrayList, chatFull, userFull, i11, i12, profileActivity2, profileActivity3, 1, e6Var, cVar);
-        this.f39052g2 = profileActivity;
+        this.f39054g2 = profileActivity;
     }
 
     @Override
     public final void D0(SparseArray sparseArray) {
         char c10;
-        ProfileActivity profileActivity = this.f39052g2;
+        ProfileActivity profileActivity = this.f39054g2;
         if (profileActivity.f34339s1) {
             int size = sparseArray.size();
             int selectedTab = getSelectedTab();
@@ -48,7 +48,7 @@ public final class k01 extends org.telegram.ui.Components.bw0 {
     @Override
     public final void E0() {
         FrameLayout frameLayout;
-        ProfileActivity profileActivity = this.f39052g2;
+        ProfileActivity profileActivity = this.f39054g2;
         if (profileActivity.f34339s1 && (frameLayout = profileActivity.f34350t5[0]) != null && profileActivity.O != null) {
             frameLayout.setTranslationY((1.0f - profileActivity.O.getBottomButtonStoriesVisibility()) * AndroidUtilities.dp(72.0f));
         }
@@ -56,7 +56,7 @@ public final class k01 extends org.telegram.ui.Components.bw0 {
 
     @Override
     public final boolean I0(TLRPC.ChatParticipant chatParticipant, boolean z10, View view) {
-        return this.f39052g2.h(chatParticipant, z10, false, view);
+        return this.f39054g2.h(chatParticipant, z10, false, view);
     }
 
     @Override
@@ -66,7 +66,7 @@ public final class k01 extends org.telegram.ui.Components.bw0 {
         int i11;
         int i12;
         int i13;
-        ProfileActivity profileActivity = this.f39052g2;
+        ProfileActivity profileActivity = this.f39054g2;
         Activity parentActivity = profileActivity.getParentActivity();
         i10 = ((org.telegram.ui.ActionBar.n2) profileActivity).classGuid;
         AndroidUtilities.removeAdjustResize(parentActivity, i10);
@@ -106,13 +106,13 @@ public final class k01 extends org.telegram.ui.Components.bw0 {
 
     @Override
     public final void L0() {
-        this.f39052g2.R();
+        this.f39054g2.R();
     }
 
     @Override
     public final void M0(float f7) {
         E0();
-        ProfileActivity profileActivity = this.f39052g2;
+        ProfileActivity profileActivity = this.f39054g2;
         k01 k01Var = profileActivity.O;
         if (k01Var != null && profileActivity.f34339s1) {
             if (profileActivity.f34350t5[0] != null) {
@@ -128,13 +128,13 @@ public final class k01 extends org.telegram.ui.Components.bw0 {
 
     @Override
     public final void P(Canvas canvas, float f7, Rect rect, Paint paint) {
-        ProfileActivity profileActivity = this.f39052g2;
+        ProfileActivity profileActivity = this.f39054g2;
         profileActivity.f34300m5.J(canvas, getY() + profileActivity.f34211a.getY() + f7, rect, paint, true);
     }
 
     @Override
     public final int V0(int i10) {
-        this.f39052g2.getClass();
+        this.f39054g2.getClass();
         return i10;
     }
 
@@ -150,7 +150,7 @@ public final class k01 extends org.telegram.ui.Components.bw0 {
 
     @Override
     public final boolean l0() {
-        ProfileActivity profileActivity = this.f39052g2;
+        ProfileActivity profileActivity = this.f39054g2;
         if (profileActivity.f34272i1 == profileActivity.getUserConfig().getClientUserId() && !profileActivity.f34265h1) {
             return true;
         }
@@ -159,7 +159,7 @@ public final class k01 extends org.telegram.ui.Components.bw0 {
 
     @Override
     public final void o0() {
-        i01 i01Var = this.f39052g2.f34300m5;
+        i01 i01Var = this.f39054g2.f34300m5;
         if (i01Var != null) {
             i01Var.M();
         }
@@ -173,12 +173,12 @@ public final class k01 extends org.telegram.ui.Components.bw0 {
 
     @Override
     public final boolean u0() {
-        return this.f39052g2.f34339s1;
+        return this.f39054g2.f34339s1;
     }
 
     @Override
     public final boolean v0() {
-        return this.f39052g2.f34339s1;
+        return this.f39054g2.f34339s1;
     }
 
     @Override
@@ -186,19 +186,19 @@ public final class k01 extends org.telegram.ui.Components.bw0 {
         int i10;
         int i11;
         super.v1(z10);
-        ProfileActivity profileActivity = this.f39052g2;
+        ProfileActivity profileActivity = this.f39054g2;
         boolean z11 = profileActivity.f34346t1;
         org.telegram.ui.Components.rs0 rs0Var = this.V;
         if (z11 && !profileActivity.f34368w1 && this.I0.d(14)) {
-            if (!this.f39051f2 && (i11 = profileActivity.f34353u1) > 0 && rs0Var != null) {
-                this.f39051f2 = true;
+            if (!this.f39053f2 && (i11 = profileActivity.f34353u1) > 0 && rs0Var != null) {
+                this.f39053f2 = true;
                 rs0Var.M = i11;
                 rs0Var.e();
             }
             profileActivity.f34368w1 = true;
             Y0(14);
-        } else if (profileActivity.f34346t1 && profileActivity.f34368w1 && !this.f39051f2 && (i10 = profileActivity.f34353u1) > 0 && rs0Var != null) {
-            this.f39051f2 = true;
+        } else if (profileActivity.f34346t1 && profileActivity.f34368w1 && !this.f39053f2 && (i10 = profileActivity.f34353u1) > 0 && rs0Var != null) {
+            this.f39053f2 = true;
             rs0Var.M = i10;
             rs0Var.e();
         }

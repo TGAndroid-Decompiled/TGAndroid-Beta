@@ -9,23 +9,23 @@ import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
 import qg.z1;
 public final class n extends z1 {
-    public final x f45702y;
+    public final x f45704y;
 
     public n(x xVar, Context context, Bitmap bitmap) {
         super(context);
-        this.f45702y = xVar;
+        this.f45704y = xVar;
         Paint paint = new Paint(1);
-        this.f46643b = paint;
+        this.f46645b = paint;
         Paint paint2 = new Paint(1);
-        this.f46644c = paint2;
+        this.f46646c = paint2;
         Paint paint3 = new Paint(1);
         this.d = paint3;
-        this.f46645e = 0.5f;
-        this.f46646f = 0.5f;
+        this.f46647e = 0.5f;
+        this.f46648f = 0.5f;
         this.h = new Path();
-        this.f46647n = new Rect();
-        this.f46648r = new RectF();
-        this.f46642a = bitmap;
+        this.f46649n = new Rect();
+        this.f46650r = new RectF();
+        this.f46644a = bitmap;
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
         paint.setStrokeWidth(AndroidUtilities.dp(4.0f));

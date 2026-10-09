@@ -36,7 +36,7 @@ public final class su0 extends pm0 {
 
     @Override
     public final void A(s4.d1 d1Var) {
-        View view = d1Var.f47656a;
+        View view = d1Var.f47658a;
         if (view instanceof org.telegram.ui.Cells.b5) {
             ((org.telegram.ui.Cells.b5) view).a();
         }
@@ -145,7 +145,7 @@ public final class su0 extends pm0 {
         } else {
             spannableStringBuilder = null;
         }
-        View view = d1Var.f47656a;
+        View view = d1Var.f47658a;
         if (view instanceof org.telegram.ui.Cells.b5) {
             org.telegram.ui.Cells.b5 b5Var = (org.telegram.ui.Cells.b5) view;
             b5Var.setTag(Integer.valueOf(i10));

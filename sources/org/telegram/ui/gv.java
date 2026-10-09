@@ -5,10 +5,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.R;
 public final class gv extends org.telegram.ui.Components.pm0 {
-    public final iv f38115c;
+    public final iv f38117c;
 
     public gv(iv ivVar) {
-        this.f38115c = ivVar;
+        this.f38117c = ivVar;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class gv extends org.telegram.ui.Components.pm0 {
 
     @Override
     public final int h() {
-        if (this.f38115c.f38765g0.h()) {
+        if (this.f38117c.f38767g0.h()) {
             return 1;
         }
         return 3;
@@ -29,11 +29,11 @@ public final class gv extends org.telegram.ui.Components.pm0 {
         View view;
         int i11;
         int i12;
-        iv ivVar = this.f38115c;
+        iv ivVar = this.f38117c;
         if (i10 == 0) {
-            view = ivVar.f38762d0;
+            view = ivVar.f38764d0;
         } else if (i10 == 2) {
-            view = ivVar.f38763e0;
+            view = ivVar.f38765e0;
             s4.q0 q0Var = new s4.q0(-1, -2);
             i11 = ((org.telegram.ui.ActionBar.f3) ivVar).backgroundPaddingLeft;
             ((ViewGroup.MarginLayoutParams) q0Var).leftMargin = i11;

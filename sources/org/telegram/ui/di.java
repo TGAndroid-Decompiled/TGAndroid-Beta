@@ -3,22 +3,22 @@ package org.telegram.ui;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class di extends AnimatorListenerAdapter {
-    public final yn f36979a;
-    public final boolean f36980b;
-    public final org.telegram.ui.ActionBar.j5 f36981c;
+    public final yn f36981a;
+    public final boolean f36982b;
+    public final org.telegram.ui.ActionBar.j5 f36983c;
     public final boolean d;
-    public final ai.q4 f36982e;
-    public final boolean f36983f;
+    public final ai.q4 f36984e;
+    public final boolean f36985f;
     public final zn h;
 
     public di(zn znVar, yn ynVar, boolean z10, org.telegram.ui.ActionBar.j5 j5Var, boolean z11, ai.q4 q4Var, boolean z12) {
         this.h = znVar;
-        this.f36979a = ynVar;
-        this.f36980b = z10;
-        this.f36981c = j5Var;
+        this.f36981a = ynVar;
+        this.f36982b = z10;
+        this.f36983c = j5Var;
         this.d = z11;
-        this.f36982e = q4Var;
-        this.f36983f = z12;
+        this.f36984e = q4Var;
+        this.f36985f = z12;
     }
 
     @Override
@@ -35,18 +35,18 @@ public final class di extends AnimatorListenerAdapter {
         znVar.D2[0].setTranslationX(0.0f);
         znVar.D2[1].setTranslationX(0.0f);
         znVar.F2.setTranslationX(znVar.G2 + 0.0f);
-        yn ynVar = this.f36979a;
+        yn ynVar = this.f36981a;
         ynVar.setTranslationY(0.0f);
-        boolean z10 = this.f36980b;
+        boolean z10 = this.f36982b;
         if (!z10) {
             ynVar.setTranslationY(0.0f);
         }
-        org.telegram.ui.ActionBar.j5 j5Var = this.f36981c;
+        org.telegram.ui.ActionBar.j5 j5Var = this.f36983c;
         if (!z10) {
             j5Var.setTranslationY(0.0f);
         }
         boolean z11 = this.d;
-        ai.q4 q4Var = this.f36982e;
+        ai.q4 q4Var = this.f36984e;
         if (!z11) {
             q4Var.setTranslationY(0.0f);
         }
@@ -75,7 +75,7 @@ public final class di extends AnimatorListenerAdapter {
             ynVarArr[0] = ynVar;
             ynVar2.setVisibility(4);
         }
-        if (this.f36983f) {
+        if (this.f36985f) {
             znVar.B2[1].setImageBitmap(null);
             znVar.B2[1].setVisibility(4);
         }

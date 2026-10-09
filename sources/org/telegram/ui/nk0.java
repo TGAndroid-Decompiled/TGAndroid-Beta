@@ -4,7 +4,7 @@ import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class nk0 extends org.telegram.ui.Cells.r8 {
-    public ImageView Q;
+    public ImageView R;
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
@@ -17,12 +17,12 @@ public final class nk0 extends org.telegram.ui.Cells.r8 {
             dp = i14 - AndroidUtilities.dp(41.0f);
         }
         int A = org.telegram.messenger.bi.A(24.0f, i13 - i11, 2);
-        this.Q.layout(dp, A, AndroidUtilities.dp(24.0f) + dp, AndroidUtilities.dp(24.0f) + A);
+        this.R.layout(dp, A, AndroidUtilities.dp(24.0f) + dp, AndroidUtilities.dp(24.0f) + A);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        this.Q.measure(i10, i11);
+        this.R.measure(i10, i11);
     }
 }

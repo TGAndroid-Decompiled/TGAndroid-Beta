@@ -3,26 +3,26 @@ package org.telegram.ui;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 public final class lz0 extends s4.t0 {
-    public final int f39712a;
-    public final ProfileActivity f39713b;
+    public final int f39714a;
+    public final ProfileActivity f39715b;
 
     public lz0(ProfileActivity profileActivity, int i10) {
-        this.f39712a = i10;
-        this.f39713b = profileActivity;
+        this.f39714a = i10;
+        this.f39715b = profileActivity;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, int i10) {
         boolean z10;
-        switch (this.f39712a) {
+        switch (this.f39714a) {
             case 0:
                 if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(this.f39713b.getParentActivity().getCurrentFocus());
+                    AndroidUtilities.hideKeyboard(this.f39715b.getParentActivity().getCurrentFocus());
                     return;
                 }
                 return;
             default:
-                ProfileActivity profileActivity = this.f39713b;
+                ProfileActivity profileActivity = this.f39715b;
                 boolean z11 = true;
                 if (i10 == 1) {
                     AndroidUtilities.hideKeyboard(profileActivity.getParentActivity().getCurrentFocus());
@@ -52,9 +52,9 @@ public final class lz0 extends s4.t0 {
 
     @Override
     public void b(RecyclerView recyclerView, int i10, int i11) {
-        switch (this.f39712a) {
+        switch (this.f39714a) {
             case 1:
-                ProfileActivity profileActivity = this.f39713b;
+                ProfileActivity profileActivity = this.f39715b;
                 org.telegram.ui.Components.z40 z40Var = profileActivity.X;
                 boolean z10 = true;
                 if (z40Var != null) {

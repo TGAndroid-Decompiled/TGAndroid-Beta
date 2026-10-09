@@ -31,7 +31,7 @@ public final class jx extends s4.s {
     public final void v0(RecyclerView recyclerView, s4.a1 a1Var, int i10) {
         try {
             ji.o oVar = new ji.o(recyclerView.getContext(), 2);
-            oVar.f47825a = i10;
+            oVar.f47827a = i10;
             w0(oVar);
         } catch (Exception e7) {
             FileLog.e(e7);

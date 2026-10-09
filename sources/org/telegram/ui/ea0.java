@@ -9,19 +9,19 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class ea0 implements Utilities.Callback {
-    public final int f37210a;
-    public final LaunchActivity f37211b;
+    public final int f37212a;
+    public final LaunchActivity f37213b;
 
     public ea0(LaunchActivity launchActivity, int i10) {
-        this.f37210a = i10;
-        this.f37211b = launchActivity;
+        this.f37212a = i10;
+        this.f37213b = launchActivity;
     }
 
     @Override
     public final void run(Object obj) {
         org.telegram.ui.ActionBar.n2 lastFragment;
-        int i10 = this.f37210a;
-        LaunchActivity launchActivity = this.f37211b;
+        int i10 = this.f37212a;
+        LaunchActivity launchActivity = this.f37213b;
         switch (i10) {
             case 0:
                 boolean booleanValue = ((Boolean) obj).booleanValue();

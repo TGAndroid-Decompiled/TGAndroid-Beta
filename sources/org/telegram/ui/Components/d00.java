@@ -48,8 +48,8 @@ public class d00 extends s4.s {
         boolean z11;
         float f7;
         SparseIntArray sparseIntArray = this.R;
-        if (sparseIntArray.size() != A() || this.W != this.f47771m || this.T != this.J) {
-            int i11 = this.f47771m;
+        if (sparseIntArray.size() != A() || this.W != this.f47773m || this.T != this.J) {
+            int i11 = this.f47773m;
             this.W = i11;
             float f10 = i11;
             if (f10 == 0.0f) {

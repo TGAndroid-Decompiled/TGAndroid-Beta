@@ -13,7 +13,7 @@ public final class gi extends org.telegram.ui.Components.iw {
     @Override
     public final void dismiss() {
         super.dismiss();
-        zn znVar = this.W.f38348p;
+        zn znVar = this.W.f38350p;
         znVar.getClass();
         znVar.j8(false, true, 0.0f);
     }

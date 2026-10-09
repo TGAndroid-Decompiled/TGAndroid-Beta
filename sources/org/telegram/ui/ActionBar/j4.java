@@ -36,9 +36,9 @@ public final class j4 implements View.OnLayoutChangeListener {
                 }
                 return;
             default:
-                ((kp0) this.f21217b).setProgress(org.telegram.ui.i5.f38525c);
+                ((kp0) this.f21217b).setProgress(org.telegram.ui.i5.f38527c);
                 ((kp0) this.f21218c).setProgress(org.telegram.ui.i5.d);
-                ((kp0) this.d).setProgress(org.telegram.ui.i5.f38526e);
+                ((kp0) this.d).setProgress(org.telegram.ui.i5.f38528e);
                 return;
         }
     }

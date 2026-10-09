@@ -60,13 +60,13 @@ public final class m1 implements Runnable {
                     m0Var.run(null, str);
                     return;
                 }
-                String str2 = z1Var.f35696e;
+                String str2 = z1Var.f35723e;
                 if (d2Var.y(z1Var) && !d2Var.i(z1Var)) {
-                    d2Var.f34792g = z1Var;
-                    if ("sendTransaction".equals(str2) && z1Var.f35697f != null) {
-                        SharedPreferences mainSettings = MessagesController.getMainSettings(d2Var.f34787a);
+                    d2Var.f34772g = z1Var;
+                    if ("sendTransaction".equals(str2) && z1Var.f35724f != null) {
+                        SharedPreferences mainSettings = MessagesController.getMainSettings(d2Var.f34767a);
                         if (mainSettings.contains(org.telegram.ui.Wallet.d2.j(this.f28642b, this.f28643c) + ".transfer")) {
-                            z1Var.f35703m = true;
+                            z1Var.f35730m = true;
                             d2Var.z(z1Var, h0Var, new Utilities.Callback() {
                                 @Override
                                 public final void run(Object obj) {
@@ -76,7 +76,7 @@ public final class m1 implements Runnable {
                                             d2 d2Var2 = d2Var;
                                             d2Var2.getClass();
                                             z1 z1Var2 = z1Var;
-                                            z1Var2.f35703m = false;
+                                            z1Var2.f35730m = false;
                                             d2Var2.s(z1Var2);
                                             m0Var.run(null, str3);
                                             return;
@@ -90,7 +90,7 @@ public final class m1 implements Runnable {
                             return;
                         }
                     }
-                    if (z1Var.f35702l < 0 && !"disconnect".equals(str2)) {
+                    if (z1Var.f35729l < 0 && !"disconnect".equals(str2)) {
                         m0Var.run(z1Var, null);
                         return;
                     }
@@ -104,7 +104,7 @@ public final class m1 implements Runnable {
                                     d2 d2Var2 = d2Var;
                                     d2Var2.getClass();
                                     z1 z1Var2 = z1Var;
-                                    z1Var2.f35703m = false;
+                                    z1Var2.f35730m = false;
                                     d2Var2.s(z1Var2);
                                     m0Var.run(null, str3);
                                     return;

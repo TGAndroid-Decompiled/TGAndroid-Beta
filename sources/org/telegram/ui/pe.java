@@ -12,19 +12,19 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class pe implements RequestDelegate {
-    public final int f40777a;
-    public final zn f40778b;
+    public final int f40779a;
+    public final zn f40780b;
 
     public pe(zn znVar, int i10) {
-        this.f40777a = i10;
-        this.f40778b = znVar;
+        this.f40779a = i10;
+        this.f40780b = znVar;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f40777a) {
+        switch (this.f40779a) {
             case 0:
-                final zn znVar = this.f40778b;
+                final zn znVar = this.f40780b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -39,9 +39,9 @@ public final class pe implements RequestDelegate {
                             case 2:
                                 zn znVar2 = znVar;
                                 TLObject tLObject2 = tLObject;
-                                znVar2.f44877o5 = 0;
+                                znVar2.f44879o5 = 0;
                                 if (tLObject2 == null && znVar2.getParentActivity() != null) {
-                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(znVar2.getParentActivity(), 0, znVar2.f44761ea);
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(znVar2.getParentActivity(), 0, znVar2.f44763ea);
                                     alertDialog$Builder.f20374a.R = LocaleController.getString(R.string.AppName);
                                     alertDialog$Builder.f20374a.T = LocaleController.getString(R.string.EditMessageError);
                                     alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
@@ -84,7 +84,7 @@ public final class pe implements RequestDelegate {
                 });
                 return;
             case 1:
-                final zn znVar2 = this.f40778b;
+                final zn znVar2 = this.f40780b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -99,9 +99,9 @@ public final class pe implements RequestDelegate {
                             case 2:
                                 zn znVar22 = znVar2;
                                 TLObject tLObject2 = tLObject;
-                                znVar22.f44877o5 = 0;
+                                znVar22.f44879o5 = 0;
                                 if (tLObject2 == null && znVar22.getParentActivity() != null) {
-                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(znVar22.getParentActivity(), 0, znVar22.f44761ea);
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(znVar22.getParentActivity(), 0, znVar22.f44763ea);
                                     alertDialog$Builder.f20374a.R = LocaleController.getString(R.string.AppName);
                                     alertDialog$Builder.f20374a.T = LocaleController.getString(R.string.EditMessageError);
                                     alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
@@ -144,7 +144,7 @@ public final class pe implements RequestDelegate {
                 });
                 return;
             case 2:
-                final zn znVar3 = this.f40778b;
+                final zn znVar3 = this.f40780b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -159,9 +159,9 @@ public final class pe implements RequestDelegate {
                             case 2:
                                 zn znVar22 = znVar3;
                                 TLObject tLObject2 = tLObject;
-                                znVar22.f44877o5 = 0;
+                                znVar22.f44879o5 = 0;
                                 if (tLObject2 == null && znVar22.getParentActivity() != null) {
-                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(znVar22.getParentActivity(), 0, znVar22.f44761ea);
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(znVar22.getParentActivity(), 0, znVar22.f44763ea);
                                     alertDialog$Builder.f20374a.R = LocaleController.getString(R.string.AppName);
                                     alertDialog$Builder.f20374a.T = LocaleController.getString(R.string.EditMessageError);
                                     alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
@@ -204,7 +204,7 @@ public final class pe implements RequestDelegate {
                 });
                 return;
             case 3:
-                final zn znVar4 = this.f40778b;
+                final zn znVar4 = this.f40780b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -219,9 +219,9 @@ public final class pe implements RequestDelegate {
                             case 2:
                                 zn znVar22 = znVar4;
                                 TLObject tLObject2 = tLObject;
-                                znVar22.f44877o5 = 0;
+                                znVar22.f44879o5 = 0;
                                 if (tLObject2 == null && znVar22.getParentActivity() != null) {
-                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(znVar22.getParentActivity(), 0, znVar22.f44761ea);
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(znVar22.getParentActivity(), 0, znVar22.f44763ea);
                                     alertDialog$Builder.f20374a.R = LocaleController.getString(R.string.AppName);
                                     alertDialog$Builder.f20374a.T = LocaleController.getString(R.string.EditMessageError);
                                     alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
@@ -264,7 +264,7 @@ public final class pe implements RequestDelegate {
                 });
                 return;
             case 4:
-                zn znVar5 = this.f40778b;
+                zn znVar5 = this.f40780b;
                 if (tL_error != null) {
                     znVar5.getClass();
                     return;
@@ -273,7 +273,7 @@ public final class pe implements RequestDelegate {
                     return;
                 }
             default:
-                zn.e1(this.f40778b, tLObject);
+                zn.e1(this.f40780b, tLObject);
                 return;
         }
     }

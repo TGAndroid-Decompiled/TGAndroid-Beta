@@ -7,23 +7,23 @@ import org.telegram.messenger.MessageSuggestionParams;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stories;
 public final class cf implements Utilities.Callback {
-    public final int f36643a;
-    public final zn f36644b;
+    public final int f36645a;
+    public final zn f36646b;
 
     public cf(zn znVar, int i10) {
-        this.f36643a = i10;
-        this.f36644b = znVar;
+        this.f36645a = i10;
+        this.f36646b = znVar;
     }
 
     @Override
     public final void run(Object obj) {
-        int i10 = this.f36643a;
-        zn znVar = this.f36644b;
+        int i10 = this.f36645a;
+        zn znVar = this.f36646b;
         switch (i10) {
             case 0:
                 MessageSuggestionParams messageSuggestionParams = (MessageSuggestionParams) obj;
-                zn znVar2 = this.f36644b;
-                znVar2.f44781g5 = messageSuggestionParams;
+                zn znVar2 = this.f36646b;
+                znVar2.f44783g5 = messageSuggestionParams;
                 znVar2.p5.messageOwner.suggested_post = messageSuggestionParams.toTl();
                 znVar2.Cb(true, null, znVar2.p5, null, null, true, 0, null, false, 0L, null, true);
                 return;
@@ -60,7 +60,7 @@ public final class cf implements Utilities.Callback {
                     boolean G9 = znVar.G9();
                     if (u1Var.G8 != G9) {
                         u1Var.G8 = G9;
-                        znVar.f44988x0.getClass();
+                        znVar.f44990x0.getClass();
                         int R = RecyclerView.R(view);
                         u1Var.f23300n8 = true;
                         u1Var.forceLayout();
@@ -111,8 +111,8 @@ public final class cf implements Utilities.Callback {
                 }
                 return;
             case 8:
-                fs fsVar = znVar.f44738d0;
-                fsVar.f37671c.add(((org.telegram.ui.ActionBar.v0) obj).getIconView());
+                fs fsVar = znVar.f44740d0;
+                fsVar.f37673c.add(((org.telegram.ui.ActionBar.v0) obj).getIconView());
                 return;
             case 9:
                 int intValue = ((Integer) obj).intValue();

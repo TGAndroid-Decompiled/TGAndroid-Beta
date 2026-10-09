@@ -116,7 +116,7 @@ public final class s3 extends j1.b {
         w3 w3Var = this.f21509p;
         ArrayList arrayList = w3Var.R;
         dVar.i("android.widget.Button");
-        dVar.b(s0.c.f47578c);
+        dVar.b(s0.c.f47580c);
         Rect rect = this.f21508o;
         if (i10 == 1) {
             org.telegram.ui.Cells.z zVar = w3Var.f21660i0;

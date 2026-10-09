@@ -6,10 +6,10 @@ public final class go0 extends s4.j {
     public final boolean r(s4.d1 d1Var, b2.q0 q0Var, int i10, int i11, int i12, int i13) {
         mo0 mo0Var;
         lo0 lo0Var;
-        View view = d1Var.f47656a;
+        View view = d1Var.f47658a;
         if ((view instanceof mo0) && (lo0Var = (mo0Var = (mo0) view).f28871a) != null) {
-            lo0Var.f54591i = lo0Var.N;
-            lo0Var.f54589g = lo0Var.O;
+            lo0Var.f54593i = lo0Var.N;
+            lo0Var.f54591g = lo0Var.O;
             lo0Var.h = lo0Var.P;
             mo0Var.f28872b.d(0.0f, true);
             mo0Var.invalidate();
@@ -29,7 +29,7 @@ public final class go0 extends s4.j {
         if (i15 != 0) {
             view.setTranslationY(-i15);
         }
-        this.f47719r.add(new s4.i(d1Var, translationX, translationY, i12, i13));
+        this.f47721r.add(new s4.i(d1Var, translationX, translationY, i12, i13));
         return true;
     }
 

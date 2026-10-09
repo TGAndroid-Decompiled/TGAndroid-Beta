@@ -161,7 +161,7 @@ public class SaveToGallerySettingsActivity extends org.telegram.ui.ActionBar.n2 
         jVar.n(400L);
         jVar.o(org.telegram.ui.Components.hs.h);
         jVar.C = false;
-        jVar.f47696m = false;
+        jVar.f47698m = false;
         this.f34409r.setItemAnimator(jVar);
         this.f34409r.setLayoutManager(new s4.d0());
         org.telegram.ui.Components.qm0 qm0Var2 = this.f34409r;

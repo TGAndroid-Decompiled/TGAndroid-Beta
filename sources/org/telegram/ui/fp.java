@@ -8,10 +8,10 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class fp implements org.telegram.ui.Components.em0 {
-    public final hp f37653a;
+    public final hp f37655a;
 
     public fp(hp hpVar) {
-        this.f37653a = hpVar;
+        this.f37655a = hpVar;
     }
 
     @Override
@@ -20,16 +20,16 @@ public final class fp implements org.telegram.ui.Components.em0 {
         int i11;
         int i12;
         int i13;
-        hp hpVar = this.f37653a;
+        hp hpVar = this.f37655a;
         ip ipVar = hpVar.Y2;
         if ((view instanceof oa) && (tL_username = ((oa) view).v) != null) {
             if (tL_username.editable) {
                 View view2 = ipVar.fragmentView;
                 if (view2 instanceof ScrollView) {
-                    ((ScrollView) view2).smoothScrollTo(0, ipVar.f38735y.getTop() - AndroidUtilities.dp(128.0f));
+                    ((ScrollView) view2).smoothScrollTo(0, ipVar.f38737y.getTop() - AndroidUtilities.dp(128.0f));
                 }
-                ipVar.f38706a.requestFocus();
-                AndroidUtilities.showKeyboard(ipVar.f38706a);
+                ipVar.f38708a.requestFocus();
+                AndroidUtilities.showKeyboard(ipVar.f38708a);
                 return;
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(hpVar.getContext(), 0, ipVar.getResourceProvider());

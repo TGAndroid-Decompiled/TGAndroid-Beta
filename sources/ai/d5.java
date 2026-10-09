@@ -206,14 +206,14 @@ public final class d5 implements Utilities.Callback {
                 j0Var.getClass();
                 ((ha0) obj3).setLoading(false);
                 if (tL_premium_boostsStatus != null) {
-                    j0Var.f47273b0.boosts++;
-                    if (j0Var.f47279h0 == 32 && (u12 = j0Var.u1()) != null) {
+                    j0Var.f47275b0.boosts++;
+                    if (j0Var.f47281h0 == 32 && (u12 = j0Var.u1()) != null) {
                         u12.boosts_applied++;
                     }
                     j0Var.A1();
-                    j0Var.G1(tL_premium_boostsStatus, j0Var.f47276e0);
-                    ChannelBoostsController.CanApplyBoost canApplyBoost = j0Var.f47274c0;
-                    if (j0Var.f47273b0.next_level_boosts <= 0) {
+                    j0Var.G1(tL_premium_boostsStatus, j0Var.f47278e0);
+                    ChannelBoostsController.CanApplyBoost canApplyBoost = j0Var.f47276c0;
+                    if (j0Var.f47275b0.next_level_boosts <= 0) {
                         z10 = true;
                     }
                     canApplyBoost.isMaxLvl = z10;
@@ -227,7 +227,7 @@ public final class d5 implements Utilities.Callback {
                 xh.o oVar = (xh.o) obj4;
                 oVar.getClass();
                 ((boolean[]) obj3)[0] = false;
-                new xh.d(oVar.getContext(), (org.telegram.ui.ActionBar.e6) obj2, oVar.f51409l0, (List) obj).show();
+                new xh.d(oVar.getContext(), (org.telegram.ui.ActionBar.e6) obj2, oVar.f51411l0, (List) obj).show();
                 return;
             case 12:
                 xh.x xVar = (xh.x) obj4;

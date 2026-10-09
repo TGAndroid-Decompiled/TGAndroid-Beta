@@ -29,7 +29,7 @@ public final class d3 extends zn {
             tc O = ad.a0(this).O(this.Rc.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, this.Sc)));
             O.f31138r = false;
             O.j();
-            h10 h10Var = this.f44856m9;
+            h10 h10Var = this.f44858m9;
             if (h10Var != null) {
                 h10Var.c(true);
             }

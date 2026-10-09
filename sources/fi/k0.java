@@ -145,7 +145,7 @@ public final class k0 extends f3 implements NotificationCenter.NotificationCente
                 }
                 if (n2Var instanceof zn) {
                     zn znVar = (zn) n2Var;
-                    TLRPC.Chat chat3 = znVar.f44751e;
+                    TLRPC.Chat chat3 = znVar.f44753e;
                     TLRPC.User i13 = znVar.i();
                     if ((chat3 != null && chat3.f20038id == (-j3)) || (i13 != null && i13.f20185id == j3)) {
                         k0Var.dismiss();
@@ -719,7 +719,7 @@ public final class k0 extends f3 implements NotificationCenter.NotificationCente
         w10Var.setBackground(null);
         w10Var.setChatPreviewDelegate(new Object());
         w10Var.setUiCallback(new a0(this));
-        w10Var.f43042b.setClipToPadding(false);
+        w10Var.f43044b.setClipToPadding(false);
         this.L = new View(getContext());
         Context context2 = getContext();
         e6 e6Var = this.resourcesProvider;
@@ -750,7 +750,7 @@ public final class k0 extends f3 implements NotificationCenter.NotificationCente
         tc.a((FrameLayout) this.containerView, new Object());
         ViewGroup viewGroup = this.containerView;
         u uVar = new u(this, 1);
-        WeakHashMap weakHashMap = r0.i0.f46764a;
+        WeakHashMap weakHashMap = r0.i0.f46766a;
         r0.a0.i(viewGroup, uVar);
     }
 

@@ -17,7 +17,7 @@ public final class b extends ci.d implements me.d {
         this.f16858h0 = new me.b(0, this, hs.h, 320L, true);
         this.f16859i0 = e6Var;
         e();
-        setOutlineProvider(i0.f52170b);
+        setOutlineProvider(i0.f52172b);
     }
 
     public final int m(int i10) {

@@ -94,8 +94,8 @@ public final class c implements Utilities.Callback2 {
                 org.telegram.ui.Wallet.h2 h2Var = (org.telegram.ui.Wallet.h2) callback;
                 TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
                 String str = (String) obj2;
-                if (!zArr[0] && !z1Var.f35703m && !z1Var.f35704n) {
-                    boolean z11 = z1Var.f35706p;
+                if (!zArr[0] && !z1Var.f35730m && !z1Var.f35731n) {
+                    boolean z11 = z1Var.f35733p;
                     zArr2[0] = z11;
                     dVar.setEnabled(z11);
                     boolean z12 = zArr2[0];

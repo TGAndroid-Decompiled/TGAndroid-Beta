@@ -162,7 +162,7 @@ public final class r4 implements Runnable {
                 ((com.google.android.gms.common.api.internal.p0) this.f1654b).f();
                 return;
             case 15:
-                com.google.android.gms.common.api.c cVar2 = ((com.google.android.gms.common.api.internal.p0) ((xa.d) this.f1654b).f51105b).f6657b;
+                com.google.android.gms.common.api.c cVar2 = ((com.google.android.gms.common.api.internal.p0) ((xa.d) this.f1654b).f51107b).f6657b;
                 cVar2.e(cVar2.getClass().getName().concat(" disconnecting because it was signed out."));
                 return;
             case 16:
@@ -232,7 +232,7 @@ public final class r4 implements Runnable {
                 }
                 return;
             case 27:
-                Object obj2 = ((xa.d) this.f1654b).f51105b;
+                Object obj2 = ((xa.d) this.f1654b).f51107b;
                 return;
             case 28:
                 org.telegram.ui.Cells.a0 a0Var = (org.telegram.ui.Cells.a0) this.f1654b;

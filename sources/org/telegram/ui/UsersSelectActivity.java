@@ -196,23 +196,23 @@ public class UsersSelectActivity extends org.telegram.ui.ActionBar.n2 implements
         this.f34593b = zh1Var;
         this.f34592a.addView(zh1Var, w7.x5.d(-2.0f, -1));
         this.f34593b.setOnClickListener(new View.OnClickListener(this) {
-            public final UsersSelectActivity f42439b;
+            public final UsersSelectActivity f42441b;
 
             {
-                this.f42439b = this;
+                this.f42441b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        UsersSelectActivity usersSelectActivity = this.f42439b;
+                        UsersSelectActivity usersSelectActivity = this.f42441b;
                         usersSelectActivity.f34594c.clearFocus();
                         usersSelectActivity.f34594c.requestFocus();
                         AndroidUtilities.showKeyboard(usersSelectActivity.f34594c);
                         return;
                     default:
-                        this.f42439b.X();
+                        this.f42441b.X();
                         return;
                 }
             }
@@ -290,23 +290,23 @@ public class UsersSelectActivity extends org.telegram.ui.ActionBar.n2 implements
         p20Var.setImageResource(R.drawable.floating_check);
         fVar.addView(this.f34598r, this.f34599s);
         this.f34598r.setOnClickListener(new View.OnClickListener(this) {
-            public final UsersSelectActivity f42439b;
+            public final UsersSelectActivity f42441b;
 
             {
-                this.f42439b = this;
+                this.f42441b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        UsersSelectActivity usersSelectActivity = this.f42439b;
+                        UsersSelectActivity usersSelectActivity = this.f42441b;
                         usersSelectActivity.f34594c.clearFocus();
                         usersSelectActivity.f34594c.requestFocus();
                         AndroidUtilities.showKeyboard(usersSelectActivity.f34594c);
                         return;
                     default:
-                        this.f42439b.X();
+                        this.f42441b.X();
                         return;
                 }
             }

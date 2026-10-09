@@ -101,9 +101,9 @@ public final class w extends FrameLayout implements Checkable {
             c(z11);
             if (z12 && (vVar = this.v) != null) {
                 org.telegram.ui.o oVar = (org.telegram.ui.o) vVar;
-                org.telegram.ui.q qVar = ((org.telegram.ui.p) oVar.f40386b).d;
-                TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) oVar.f40387c;
-                a0.i iVar = qVar.f40936a;
+                org.telegram.ui.q qVar = ((org.telegram.ui.p) oVar.f40388b).d;
+                TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) oVar.f40389c;
+                a0.i iVar = qVar.f40938a;
                 int i11 = 1;
                 if (z10) {
                     a(false, false, false);

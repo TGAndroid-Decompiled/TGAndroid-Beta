@@ -5,25 +5,25 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 public final class zs extends s4.t0 {
-    public boolean f45056a;
-    public boolean f45057b;
-    public final ContactsActivity f45058c;
+    public boolean f45058a;
+    public boolean f45059b;
+    public final ContactsActivity f45060c;
 
     public zs(ContactsActivity contactsActivity) {
-        this.f45058c = contactsActivity;
+        this.f45060c = contactsActivity;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, int i10) {
         if (i10 == 1) {
-            ContactsActivity contactsActivity = this.f45058c;
+            ContactsActivity contactsActivity = this.f45060c;
             if ((contactsActivity.F && contactsActivity.E) || contactsActivity.Z.f30614r.isFocused()) {
                 AndroidUtilities.hideKeyboard(contactsActivity.getParentActivity().getCurrentFocus());
             }
-            this.f45057b = true;
+            this.f45059b = true;
             return;
         }
-        this.f45057b = false;
+        this.f45059b = false;
     }
 
     @Override
@@ -31,7 +31,7 @@ public final class zs extends s4.t0 {
         int i12;
         ah.h hVar;
         boolean z10;
-        ContactsActivity contactsActivity = this.f45058c;
+        ContactsActivity contactsActivity = this.f45060c;
         int L0 = contactsActivity.f33708n.L0();
         boolean z11 = false;
         View childAt = recyclerView.getChildAt(0);
@@ -46,11 +46,11 @@ public final class zs extends s4.t0 {
             } else {
                 z10 = false;
             }
-            if (i11 != 0 && this.f45056a && (z10 || this.f45057b)) {
+            if (i11 != 0 && this.f45058a && (z10 || this.f45059b)) {
                 contactsActivity.f33722x = !z10;
                 ContactsActivity.e0(contactsActivity);
             }
-            this.f45056a = true;
+            this.f45058a = true;
         }
         if (L0 != 0 || i12 < contactsActivity.f33700f.getPaddingTop()) {
             z11 = true;

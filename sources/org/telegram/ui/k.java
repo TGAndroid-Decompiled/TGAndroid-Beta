@@ -14,7 +14,7 @@ public final class k extends og.b {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47660f;
+        int i10 = d1Var.f47662f;
         if (i10 != 2 && i10 != 0) {
             return true;
         }
@@ -53,19 +53,19 @@ public final class k extends og.b {
             } else {
                 z10 = false;
             }
-            int i13 = d1Var.f47660f;
-            View view = d1Var.f47656a;
+            int i13 = d1Var.f47662f;
+            View view = d1Var.f47658a;
             if (i13 == 0) {
-                ((org.telegram.ui.Cells.m4) view).setText(jVar.f38781c);
+                ((org.telegram.ui.Cells.m4) view).setText(jVar.f38783c);
             } else if (i13 == 2) {
                 org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
-                if (TextUtils.isEmpty(jVar.f38781c)) {
+                if (TextUtils.isEmpty(jVar.f38783c)) {
                     e9Var.setFixedSize(12);
                     e9Var.setText(null);
                     return;
                 }
                 e9Var.setFixedSize(0);
-                e9Var.setText(jVar.f38781c);
+                e9Var.setText(jVar.f38783c);
             } else if (i13 == 1) {
                 org.telegram.ui.Cells.w8 w8Var = (org.telegram.ui.Cells.w8) view;
                 int i14 = jVar.d;
@@ -85,7 +85,7 @@ public final class k extends og.b {
                 } else {
                     return;
                 }
-                w8Var.f(jVar.f38781c, z11, z10);
+                w8Var.f(jVar.f38783c, z11, z10);
             }
         }
     }

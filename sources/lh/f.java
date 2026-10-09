@@ -39,18 +39,18 @@ public final class f extends j {
             groupCallMessage = (GroupCallMessage) eVar.f15594c.get(b10);
         }
         if (groupCallMessage != null && (n0Var = groupCallMessage.visibleReaction) != null) {
-            View view = d1Var.f47656a;
+            View view = d1Var.f47658a;
             if ((view instanceof c) && (gVar = hVar.X0) != null) {
-                g60 g60Var = ((e40) gVar).f37149a;
+                g60 g60Var = ((e40) gVar).f37151a;
                 Context context = g60Var.getContext();
                 kl0 kl0Var = g60Var.K;
                 i10 = ((f3) g60Var).currentAccount;
                 j0 j0Var = new j0(context, null, kl0Var, (c) view, null, 0.0f, 0.0f, n0Var, i10, 1, false);
                 j0.B = j0Var;
-                j0Var.f54556i.setTag(R.id.parent_tag, 1);
-                g60Var.container.addView(j0Var.f54556i);
-                j0Var.f54566s = true;
-                j0Var.f54571y = System.currentTimeMillis();
+                j0Var.f54558i.setTag(R.id.parent_tag, 1);
+                g60Var.container.addView(j0Var.f54558i);
+                j0Var.f54568s = true;
+                j0Var.f54573y = System.currentTimeMillis();
             }
         }
     }

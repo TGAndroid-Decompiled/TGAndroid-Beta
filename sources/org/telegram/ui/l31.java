@@ -14,18 +14,18 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class l31 extends org.telegram.ui.ActionBar.n2 implements NotificationCenter.NotificationCenterDelegate {
-    public LinearLayout f39412a;
-    public org.telegram.ui.Components.qm0 f39413b;
-    public h31 f39414c;
+    public LinearLayout f39414a;
+    public org.telegram.ui.Components.qm0 f39415b;
+    public h31 f39416c;
     public int d;
-    public int f39415e;
-    public int f39416f;
+    public int f39417e;
+    public int f39418f;
     public int h;
-    public j31 f39417n;
+    public j31 f39419n;
 
     public l31() {
         super(null);
-        this.f39415e = -1;
+        this.f39417e = -1;
     }
 
     public static void U(l31 l31Var, View view) {
@@ -38,12 +38,12 @@ public final class l31 extends org.telegram.ui.ActionBar.n2 implements Notificat
                 return;
             }
             MediaDataController.getInstance(l31Var.currentAccount).setDoubleTapReaction(yVar.f23751f.reaction);
-            l31Var.f39413b.getAdapter().q(0, l31Var.f39413b.getAdapter().h());
+            l31Var.f39415b.getAdapter().q(0, l31Var.f39415b.getAdapter().h());
         } else if (view instanceof k31) {
             k31 k31Var = (k31) view;
-            if (l31Var.f39417n == null) {
+            if (l31Var.f39419n == null) {
                 b71[] b71VarArr = new b71[1];
-                org.telegram.ui.Components.q5 q5Var = k31Var.f39069a;
+                org.telegram.ui.Components.q5 q5Var = k31Var.f39071a;
                 if (q5Var != null) {
                     q5Var.f();
                     k31Var.b();
@@ -67,14 +67,14 @@ public final class l31 extends org.telegram.ui.ActionBar.n2 implements Notificat
                 ArrayList arrayList = new ArrayList(20);
                 for (int i12 = 0; i12 < reactionsList.size(); i12++) {
                     ?? obj = new Object();
-                    obj.f54615f = reactionsList.get(i12).reaction;
+                    obj.f54617f = reactionsList.get(i12).reaction;
                     arrayList.add(obj);
                 }
                 i31Var.setRecentReactions(arrayList);
                 i31Var.setSaveState(3);
                 i31Var.y(q5Var, k31Var);
                 j31 j31Var = new j31(l31Var, i31Var);
-                l31Var.f39417n = j31Var;
+                l31Var.f39419n = j31Var;
                 b71VarArr[0] = j31Var;
                 j31Var.showAsDropDown(k31Var, 0, i11, 53);
                 b71VarArr[0].b();
@@ -94,14 +94,14 @@ public final class l31 extends org.telegram.ui.ActionBar.n2 implements Notificat
         this.h = 2;
         this.d = 1;
         if (UserConfig.getInstance(this.currentAccount).isPremium()) {
-            this.f39415e = -1;
+            this.f39417e = -1;
             int i10 = this.h;
             this.h = i10 + 1;
-            this.f39416f = i10;
+            this.f39418f = i10;
             return;
         }
-        this.f39416f = -1;
-        this.f39415e = this.h;
+        this.f39418f = -1;
+        this.f39417e = this.h;
     }
 
     @Override
@@ -113,33 +113,33 @@ public final class l31 extends org.telegram.ui.ActionBar.n2 implements Notificat
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         org.telegram.ui.Components.qm0 qm0Var = new org.telegram.ui.Components.qm0(context, null);
-        this.f39413b = qm0Var;
+        this.f39415b = qm0Var;
         qm0Var.p1();
-        this.actionBar.setAdaptiveBackground(this.f39413b);
-        ((s4.j) this.f39413b.getItemAnimator()).f47696m = false;
-        this.f39413b.setLayoutManager(new s4.d0());
-        org.telegram.ui.Components.qm0 qm0Var2 = this.f39413b;
+        this.actionBar.setAdaptiveBackground(this.f39415b);
+        ((s4.j) this.f39415b.getItemAnimator()).f47698m = false;
+        this.f39415b.setLayoutManager(new s4.d0());
+        org.telegram.ui.Components.qm0 qm0Var2 = this.f39415b;
         h31 h31Var = new h31(this, context);
-        this.f39414c = h31Var;
+        this.f39416c = h31Var;
         qm0Var2.setAdapter(h31Var);
-        this.f39413b.setOnItemClickListener(new z21(this, 1));
-        linearLayout.addView(this.f39413b, w7.x5.n(-1, -1));
-        this.f39412a = linearLayout;
+        this.f39415b.setOnItemClickListener(new z21(this, 1));
+        linearLayout.addView(this.f39415b, w7.x5.n(-1, -1));
+        this.f39414a = linearLayout;
         this.fragmentView = linearLayout;
         linearLayout.setBackgroundColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20741a7, false));
-        this.f39414c.l();
+        this.f39416c.l();
         c0();
-        return this.f39412a;
+        return this.f39414a;
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i11 == this.currentAccount) {
             if (i10 == NotificationCenter.reactionsDidLoad) {
-                this.f39414c.l();
+                this.f39416c.l();
             } else if (i10 == NotificationCenter.currentUserPremiumStatusChanged) {
                 c0();
-                this.f39414c.l();
+                this.f39416c.l();
             }
         }
     }
@@ -170,7 +170,7 @@ public final class l31 extends org.telegram.ui.ActionBar.n2 implements Notificat
 
     @Override
     public final void onInsets(int i10, int i11, int i12, int i13) {
-        this.f39413b.setPadding(0, 0, 0, i13);
-        this.f39413b.setClipToPadding(false);
+        this.f39415b.setPadding(0, 0, 0, i13);
+        this.f39415b.setClipToPadding(false);
     }
 }

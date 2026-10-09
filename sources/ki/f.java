@@ -133,7 +133,7 @@ public final class f extends CameraCaptureSession.StateCallback {
                     Size size = jVar5.f14991q;
                     Size size2 = jVar5.f14993r;
                     j jVar6 = this.f14921a;
-                    ((t0) dVar.f51105b).f15119i.post(new x0(dVar, new h(m0Var, n0Var, o0Var, size, size2, jVar6.L, jVar6.x()), z10, 7));
+                    ((t0) dVar.f51107b).f15119i.post(new x0(dVar, new h(m0Var, n0Var, o0Var, size, size2, jVar6.L, jVar6.x()), z10, 7));
                     m0 m0Var2 = this.f14921a.C;
                     j jVar7 = this.f14921a;
                     if (m0Var2 != jVar7.D) {

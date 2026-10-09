@@ -18,17 +18,17 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Components.ru;
-import org.telegram.ui.Wallet.w4;
+import org.telegram.ui.Wallet.x4;
 import yh.t5;
 public abstract class c0 extends ru {
-    public final e6 f54485c;
+    public final e6 f54487c;
     public final f3 d;
-    public Runnable f54486e;
-    public int f54487f;
+    public Runnable f54488e;
+    public int f54489f;
 
     public c0(Context context, int i10, e6 e6Var) {
         super(context, e6Var);
-        this.f54485c = e6Var;
+        this.f54487c = e6Var;
         this.d = new f3(getContext(), new GestureDetector.SimpleOnGestureListener());
         setBackground(null);
         setIncludeFontPadding(true);
@@ -36,7 +36,7 @@ public abstract class c0 extends ru {
         setShowSoftInputOnFocus(false);
         setSingleLine(false);
         setMaxLines(50);
-        this.f54487f = i10;
+        this.f54489f = i10;
         setFilters(new InputFilter[]{new InputFilter.LengthFilter(i10)});
         setTextSize(1, 22.0f);
         setGravity(80);
@@ -98,8 +98,8 @@ public abstract class c0 extends ru {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(getText());
         if (((b[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), b.class)).length == 0) {
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("x");
-            b bVar = new b(this.f54485c);
-            ValueAnimator ofInt = ValueAnimator.ofInt(bVar.f54474f, 255);
+            b bVar = new b(this.f54487c);
+            ValueAnimator ofInt = ValueAnimator.ofInt(bVar.f54476f, 255);
             ofInt.addUpdateListener(new a(bVar, this, 0));
             ofInt.setDuration(200L);
             ofInt.start();
@@ -115,9 +115,9 @@ public abstract class c0 extends ru {
             t5 t5Var = new t5(6, this, bVar);
             if (z10) {
                 setCursorVisible(false);
-                ValueAnimator ofInt = ValueAnimator.ofInt(bVar.f54474f, 0);
+                ValueAnimator ofInt = ValueAnimator.ofInt(bVar.f54476f, 0);
                 ofInt.addUpdateListener(new a(bVar, this, 1));
-                ofInt.addListener(new w4(t5Var, 20));
+                ofInt.addListener(new x4(t5Var, 20));
                 ofInt.setDuration(200L);
                 ofInt.start();
             } else {
@@ -135,13 +135,13 @@ public abstract class c0 extends ru {
     }
 
     public void setMaxLength(int i10) {
-        if (this.f54487f != i10) {
-            this.f54487f = i10;
+        if (this.f54489f != i10) {
+            this.f54489f = i10;
             setFilters(new InputFilter[]{new InputFilter.LengthFilter(i10)});
         }
     }
 
     public void setOnFocused(Runnable runnable) {
-        this.f54486e = runnable;
+        this.f54488e = runnable;
     }
 }

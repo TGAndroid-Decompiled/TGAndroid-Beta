@@ -14,15 +14,15 @@ import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Components.ru;
 import w7.x5;
 public final class l extends LinearLayout {
-    public final ru f49598a;
-    public final TextView f49599b;
-    public k f49600c;
+    public final ru f49600a;
+    public final TextView f49601b;
+    public k f49602c;
 
     public l(Context context, e6 e6Var) {
         super(context);
         setOrientation(0);
         ru ruVar = new ru(context, e6Var);
-        this.f49598a = ruVar;
+        this.f49600a = ruVar;
         ruVar.setLines(1);
         ruVar.setSingleLine(true);
         InputFilter[] inputFilterArr = {new j(this)};
@@ -42,7 +42,7 @@ public final class l extends LinearLayout {
         ruVar.addTextChangedListener(new h2(this, 21));
         ruVar.setImeOptions(6);
         TextView textView = new TextView(context);
-        this.f49599b = textView;
+        this.f49601b = textView;
         textView.setTextSize(1, 16.0f);
         textView.setTextColor(i6.w0(i6.f20905j5, e6Var));
         if (LocaleController.isRTL) {
@@ -62,10 +62,10 @@ public final class l extends LinearLayout {
     }
 
     public void setAfterTextChangedListener(k kVar) {
-        this.f49600c = kVar;
+        this.f49602c = kVar;
     }
 
     public void setCount(int i10) {
-        this.f49599b.setText(String.valueOf(i10));
+        this.f49601b.setText(String.valueOf(i10));
     }
 }

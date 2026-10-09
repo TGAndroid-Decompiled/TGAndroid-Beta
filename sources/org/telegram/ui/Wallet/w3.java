@@ -1,38 +1,69 @@
 package org.telegram.ui.Wallet;
 
-import android.content.Context;
-import android.text.TextPaint;
 import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class w3 extends FrameLayout {
-    public final TextPaint f35591a;
-    public final z4 f35592b;
+import org.telegram.ui.Components.f91;
+import org.telegram.ui.Components.k71;
+import org.telegram.ui.Components.t51;
+public final class w3 extends f91 {
+    public final a5 f35613a;
 
-    public w3(z4 z4Var, Context context) {
-        super(context);
-        this.f35592b = z4Var;
-        this.f35591a = new TextPaint(1);
+    public w3(a5 a5Var) {
+        this.f35613a = a5Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12;
-        TextPaint textPaint = this.f35591a;
-        textPaint.setTextSize(AndroidUtilities.dp(14.0f));
-        textPaint.setTypeface(AndroidUtilities.bold());
-        int dp = AndroidUtilities.dp(14.0f);
-        for (int i13 = 0; i13 < 2; i13++) {
-            if (i13 == 0) {
-                i12 = R.string.WalletTransactions;
-            } else {
-                i12 = R.string.WalletCollectibles;
-            }
-            dp = org.telegram.messenger.q.C(24.0f, (int) Math.ceil(textPaint.measureText(LocaleController.getString(i12))), dp);
+    public final void b(View view, int i10, int i11) {
+        k71 k71Var = (k71) view;
+        boolean canScrollVertically = k71Var.canScrollVertically(-1);
+        k71Var.W2.N(false);
+        k71Var.a0();
+        if (!canScrollVertically) {
+            k71Var.V2.h1(0, 0);
         }
-        this.f35592b.f35722h0.getLayoutParams().width = Math.min(dp, Math.max(0, View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(32.0f)));
-        super.onMeasure(i10, i11);
+    }
+
+    @Override
+    public final View d(int i10) {
+        a5 a5Var = this.f35613a;
+        k71[] k71VarArr = a5Var.f34634p0;
+        k71 k71Var = k71VarArr[i10];
+        if (k71Var != null) {
+            return k71Var;
+        }
+        k71 k71Var2 = new k71(a5Var, new org.telegram.ui.Components.o(this, i10, 2), new i3(a5Var), new i3(a5Var));
+        k71Var2.setFocusableInTouchMode(false);
+        k71Var2.setClipChildren(false);
+        k71Var2.setClipToPadding(false);
+        k71Var2.p1();
+        k71Var2.W2.f25280r = false;
+        k71Var2.j(new t51(this, i10));
+        k71VarArr[i10] = k71Var2;
+        return k71Var2;
+    }
+
+    @Override
+    public final int e() {
+        if (this.f35613a.f34625g0) {
+            return 2;
+        }
+        return 1;
+    }
+
+    @Override
+    public final CharSequence g(int i10) {
+        int i11;
+        if (i10 == 0) {
+            i11 = R.string.WalletTransactions;
+        } else {
+            i11 = R.string.WalletCollectibles;
+        }
+        return LocaleController.getString(i11);
+    }
+
+    @Override
+    public final int h(int i10) {
+        return i10;
     }
 }

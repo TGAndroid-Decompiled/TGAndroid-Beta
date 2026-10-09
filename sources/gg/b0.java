@@ -41,7 +41,7 @@ public class b0 extends pm0 {
     public void v(s4.d1 d1Var, int i10) {
         TLRPC.Chat chat;
         String str;
-        n4 n4Var = (n4) d1Var.f47656a;
+        n4 n4Var = (n4) d1Var.f47658a;
         int i11 = this.d;
         TLRPC.TL_topPeer tL_topPeer = MediaDataController.getInstance(i11).hints.get(i10);
         new TLRPC.TL_dialog();

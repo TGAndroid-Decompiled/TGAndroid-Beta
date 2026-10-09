@@ -24,7 +24,7 @@ public final class ix0 implements Runnable {
                 kx0 kx0Var = lx0Var2.f28622e;
                 if (kx0Var != null) {
                     lx0Var2.getVisibilityFactor();
-                    ProfileActivity profileActivity = ((org.telegram.ui.jy0) kx0Var).f39042b;
+                    ProfileActivity profileActivity = ((org.telegram.ui.jy0) kx0Var).f39044b;
                     org.telegram.ui.ActionBar.j5[] j5VarArr = profileActivity.f34329r;
                     j5VarArr[1].setTranslationX(profileActivity.W3(profileActivity.Z5));
                     j5VarArr[1].setTranslationY(profileActivity.X3(profileActivity.f34217a6));

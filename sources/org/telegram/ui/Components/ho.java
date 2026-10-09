@@ -44,12 +44,12 @@ public final class ho implements TextWatcher {
                         Emoji.replaceEmoji(editable, goVar.getEditField().getPaint().getFontMetricsInt(), false);
                         loVar.f28532x.setDirection(1);
                         loVar.f28532x.setDelegate(goVar);
-                        loVar.f28532x.setTranslationY(K.f47656a.getY());
+                        loVar.f28532x.setTranslationY(K.f47658a.getY());
                         loVar.f28532x.e();
                     }
                     loVar.P = editable;
                     if (K != null) {
-                        lo.O(loVar, K.f47656a, loVar.f28521p0);
+                        lo.O(loVar, K.f47658a, loVar.f28521p0);
                     }
                     loVar.W();
                     return;
@@ -64,7 +64,7 @@ public final class ho implements TextWatcher {
                     d1Var = fc1Var.T(F);
                 }
                 if (d1Var != null) {
-                    View view = d1Var.f47656a;
+                    View view = d1Var.f47658a;
                     int b10 = d1Var.b();
                     int i11 = b10 - loVar2.f28527t0;
                     if (i11 >= 0 && i11 < loVar2.K.length) {
@@ -115,7 +115,7 @@ public final class ho implements TextWatcher {
                 org.telegram.ui.aw0 aw0Var = ((org.telegram.ui.yv0) obj).d;
                 org.telegram.ui.vv0 vv0Var = (org.telegram.ui.vv0) this.f27099c;
                 if (vv0Var.getTag() == null) {
-                    s4.d1 K2 = aw0Var.f36036c.K(aw0Var.f36045i0);
+                    s4.d1 K2 = aw0Var.f36038c.K(aw0Var.f36047i0);
                     if (K2 != null && aw0Var.Q != null) {
                         for (ImageSpan imageSpan3 : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
                             editable.removeSpan(imageSpan3);
@@ -123,12 +123,12 @@ public final class ho implements TextWatcher {
                         Emoji.replaceEmoji(editable, vv0Var.getEditField().getPaint().getFontMetricsInt(), false);
                         aw0Var.Q.setDirection(1);
                         aw0Var.Q.setDelegate(vv0Var);
-                        aw0Var.Q.setTranslationY(K2.f47656a.getY());
+                        aw0Var.Q.setTranslationY(K2.f47658a.getY());
                         aw0Var.Q.e();
                     }
                     aw0Var.E = editable;
                     if (K2 != null) {
-                        org.telegram.ui.aw0.c0(aw0Var, K2.f47656a, aw0Var.f36045i0);
+                        org.telegram.ui.aw0.c0(aw0Var, K2.f47658a, aw0Var.f36047i0);
                     }
                     aw0Var.i0();
                     return;
@@ -138,7 +138,7 @@ public final class ho implements TextWatcher {
                 org.telegram.ui.aw0 aw0Var2 = ((org.telegram.ui.yv0) obj).d;
                 org.telegram.ui.wv0 wv0Var = (org.telegram.ui.wv0) this.f27099c;
                 if (wv0Var.getTag() == null) {
-                    s4.d1 K3 = aw0Var2.f36036c.K(aw0Var2.f36045i0);
+                    s4.d1 K3 = aw0Var2.f36038c.K(aw0Var2.f36047i0);
                     if (K3 != null && aw0Var2.Q != null) {
                         for (ImageSpan imageSpan4 : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
                             editable.removeSpan(imageSpan4);
@@ -146,12 +146,12 @@ public final class ho implements TextWatcher {
                         Emoji.replaceEmoji(editable, wv0Var.getEditField().getPaint().getFontMetricsInt(), false);
                         aw0Var2.Q.setDirection(1);
                         aw0Var2.Q.setDelegate(wv0Var);
-                        aw0Var2.Q.setTranslationY(K3.f47656a.getY());
+                        aw0Var2.Q.setTranslationY(K3.f47658a.getY());
                         aw0Var2.Q.e();
                     }
                     aw0Var2.F = editable;
                     if (K3 != null) {
-                        org.telegram.ui.aw0.c0(aw0Var2, K3.f47656a, aw0Var2.f36046j0);
+                        org.telegram.ui.aw0.c0(aw0Var2, K3.f47658a, aw0Var2.f36048j0);
                     }
                     aw0Var2.i0();
                     return;
@@ -159,15 +159,15 @@ public final class ho implements TextWatcher {
                 return;
             case 6:
                 org.telegram.ui.aw0 aw0Var3 = ((org.telegram.ui.yv0) obj).d;
-                fc1 fc1Var2 = aw0Var3.f36036c;
+                fc1 fc1Var2 = aw0Var3.f36038c;
                 org.telegram.ui.xv0 xv0Var = (org.telegram.ui.xv0) this.f27099c;
                 View F2 = fc1Var2.F(xv0Var);
                 if (F2 != null) {
                     d1Var = fc1Var2.T(F2);
                 }
                 if (d1Var != null) {
-                    View view2 = d1Var.f47656a;
-                    int b11 = d1Var.b() - aw0Var3.f36050n0;
+                    View view2 = d1Var.f47658a;
+                    int b11 = d1Var.b() - aw0Var3.f36052n0;
                     if (b11 >= 0 && b11 < aw0Var3.v.length) {
                         if (aw0Var3.Q != null) {
                             for (ImageSpan imageSpan5 : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
@@ -195,20 +195,20 @@ public final class ho implements TextWatcher {
                 return;
             case 7:
                 pg.v vVar = (pg.v) obj;
-                pg.x xVar = vVar.f45812f;
-                if (!vVar.f45811e && ((String) this.f27099c) != null && editable != null && !TextUtils.isEmpty(editable) && !Objects.equals(((String) this.f27099c).toString(), editable.toString())) {
+                pg.x xVar = vVar.f45814f;
+                if (!vVar.f45813e && ((String) this.f27099c) != null && editable != null && !TextUtils.isEmpty(editable) && !Objects.equals(((String) this.f27099c).toString(), editable.toString())) {
                     int b12 = w7.o.b(Integer.parseInt(editable.toString()), 0, 255);
                     int i12 = vVar.d;
                     if (i12 != 1) {
                         if (i12 != 2) {
-                            argb = Color.argb(Color.alpha(xVar.f45834f), b12, Color.green(xVar.f45834f), Color.blue(xVar.f45834f));
+                            argb = Color.argb(Color.alpha(xVar.f45836f), b12, Color.green(xVar.f45836f), Color.blue(xVar.f45836f));
                         } else {
-                            argb = Color.argb(Color.alpha(xVar.f45834f), Color.red(xVar.f45834f), Color.green(xVar.f45834f), b12);
+                            argb = Color.argb(Color.alpha(xVar.f45836f), Color.red(xVar.f45836f), Color.green(xVar.f45836f), b12);
                         }
                     } else {
-                        argb = Color.argb(Color.alpha(xVar.f45834f), Color.red(xVar.f45834f), b12, Color.blue(xVar.f45834f));
+                        argb = Color.argb(Color.alpha(xVar.f45836f), Color.red(xVar.f45836f), b12, Color.blue(xVar.f45836f));
                     }
-                    int i13 = pg.x.f45830s;
+                    int i13 = pg.x.f45832s;
                     xVar.o(argb, 5);
                     return;
                 }

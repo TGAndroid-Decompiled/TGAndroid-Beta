@@ -2,26 +2,26 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
 public final class qg implements Runnable {
-    public final int f41106a;
-    public final zn f41107b;
-    public final TLRPC.User f41108c;
+    public final int f41108a;
+    public final zn f41109b;
+    public final TLRPC.User f41110c;
 
     public qg(zn znVar, TLRPC.User user, int i10) {
-        this.f41106a = i10;
-        this.f41107b = znVar;
-        this.f41108c = user;
+        this.f41108a = i10;
+        this.f41109b = znVar;
+        this.f41110c = user;
     }
 
     @Override
     public final void run() {
-        switch (this.f41106a) {
+        switch (this.f41108a) {
             case 0:
-                zn znVar = this.f41107b;
+                zn znVar = this.f41109b;
                 znVar.getClass();
-                znVar.presentFragment(zn.W9(this.f41108c.f20185id));
+                znVar.presentFragment(zn.W9(this.f41110c.f20185id));
                 return;
             default:
-                this.f41107b.ra(this.f41108c);
+                this.f41109b.ra(this.f41110c);
                 return;
         }
     }

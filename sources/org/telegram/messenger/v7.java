@@ -64,7 +64,7 @@ public final class v7 implements Runnable {
             case 2:
                 ArrayList arrayList = (ArrayList) obj2;
                 ArrayList arrayList2 = (ArrayList) obj;
-                zn znVar = ((org.telegram.ui.ol) obj3).f40556b;
+                zn znVar = ((org.telegram.ui.ol) obj3).f40558b;
                 if (z10) {
                     i10 = ((org.telegram.ui.ActionBar.n2) znVar).currentAccount;
                     MessagesController.getNotificationsSettings(i10).edit().remove("pin_" + znVar.T5).commit();
@@ -135,9 +135,9 @@ public final class v7 implements Runnable {
                 cv cvVar = (cv) obj3;
                 Context context = (Context) obj2;
                 org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) obj;
-                ev evVar = cvVar.f36741c;
+                ev evVar = cvVar.f36743c;
                 evVar.b();
-                org.telegram.ui.Cells.r8 r8Var = evVar.f37348e;
+                org.telegram.ui.Cells.r8 r8Var = evVar.f37350e;
                 evVar.d();
                 int x02 = org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.q6, false);
                 ck0 ck0Var2 = evVar.d;
@@ -163,7 +163,7 @@ public final class v7 implements Runnable {
                     }
                     ValueAnimator valueAnimator2 = evVar.h;
                     if (valueAnimator2 != null && valueAnimator2.isRunning()) {
-                        i14 = evVar.f37350n;
+                        i14 = evVar.f37352n;
                     }
                     int i20 = i14;
                     ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);

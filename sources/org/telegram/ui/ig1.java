@@ -9,33 +9,33 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ig1 implements org.telegram.ui.Components.em0 {
-    public final lg1 f38634a;
+    public final lg1 f38636a;
 
     public ig1(lg1 lg1Var) {
-        this.f38634a = lg1Var;
+        this.f38636a = lg1Var;
     }
 
     @Override
     public final void d(int i10, View view) {
-        lg1 lg1Var = this.f38634a;
+        lg1 lg1Var = this.f38636a;
         ArrayList arrayList = lg1Var.d;
         if (((kg1) arrayList.get(i10)).f17125a == 1) {
             Bundle bundle = new Bundle();
-            bundle.putLong("chat_id", -lg1Var.f39574c);
+            bundle.putLong("chat_id", -lg1Var.f39576c);
             bundle.putBoolean("for_select", true);
             fg1 fg1Var = new fg1(bundle);
-            fg1Var.A0 = lg1Var.f39575e;
+            fg1Var.A0 = lg1Var.f39577e;
             fg1Var.v = new gg1(this);
             lg1Var.presentFragment(fg1Var);
         }
         if (((kg1) arrayList.get(i10)).f17125a == 2) {
-            TLRPC.TL_forumTopic tL_forumTopic = ((kg1) arrayList.get(i10)).f39288c;
+            TLRPC.TL_forumTopic tL_forumTopic = ((kg1) arrayList.get(i10)).f39290c;
             Bundle bundle2 = new Bundle();
-            bundle2.putLong("dialog_id", lg1Var.f39574c);
+            bundle2.putLong("dialog_id", lg1Var.f39576c);
             bundle2.putLong("topic_id", tL_forumTopic.f20090id);
             bundle2.putBoolean("exception", false);
             v11 v11Var = new v11(bundle2, null);
-            v11Var.f42607r = new hg1(this, tL_forumTopic);
+            v11Var.f42609r = new hg1(this, tL_forumTopic);
             lg1Var.presentFragment(v11Var);
         }
         if (((kg1) arrayList.get(i10)).f17125a == 4) {

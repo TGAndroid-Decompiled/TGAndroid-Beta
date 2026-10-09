@@ -1759,7 +1759,7 @@ public abstract class g5 {
                 shortName = ng.d.h(i10, j3);
             } else if (U instanceof org.telegram.ui.zn) {
                 org.telegram.ui.zn znVar = (org.telegram.ui.zn) U;
-                if (znVar.f44780g4 && znVar.a() == j3 && (chat = znVar.f44768f4) != null) {
+                if (znVar.f44782g4 && znVar.a() == j3 && (chat = znVar.f44770f4) != null) {
                     shortName = DialogObject.getShortName(i10, -chat.f20038id);
                 }
             }
@@ -3629,7 +3629,7 @@ public abstract class g5 {
         long j3;
         if (n2Var != null && n2Var.getParentActivity() != null) {
             if (n2Var instanceof org.telegram.ui.zn) {
-                j3 = ((org.telegram.ui.zn) n2Var).f44771f8;
+                j3 = ((org.telegram.ui.zn) n2Var).f44773f8;
             } else {
                 j3 = 0;
             }

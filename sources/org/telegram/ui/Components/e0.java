@@ -206,7 +206,7 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
         this.d.setOnItemClickListener(new j(this, 0));
         this.O = true;
         m mVar = new m(this);
-        mVar.f47696m = false;
+        mVar.f47698m = false;
         mVar.C = false;
         mVar.o(hs.h);
         mVar.n(350L);

@@ -3,15 +3,15 @@ package org.telegram.ui;
 import android.view.ViewTreeObserver;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class oz implements ViewTreeObserver.OnGlobalLayoutListener {
-    public final ExternalActionActivity f40621a;
+    public final ExternalActionActivity f40623a;
 
     public oz(ExternalActionActivity externalActionActivity) {
-        this.f40621a = externalActionActivity;
+        this.f40623a = externalActionActivity;
     }
 
     @Override
     public final void onGlobalLayout() {
-        ExternalActionActivity externalActionActivity = this.f40621a;
+        ExternalActionActivity externalActionActivity = this.f40623a;
         externalActionActivity.f();
         ActionBarLayout actionBarLayout = externalActionActivity.f33753c;
         if (actionBarLayout != null) {

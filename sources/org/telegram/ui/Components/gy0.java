@@ -60,29 +60,29 @@ public final class gy0 implements View.OnClickListener {
             case 5:
                 xy0 xy0Var3 = this.f26896b;
                 org.telegram.ui.n70 n70Var = xy0Var3.f33027d0;
-                org.telegram.ui.s70 s70Var = n70Var.f40093c;
+                org.telegram.ui.s70 s70Var = n70Var.f40095c;
                 s4.d0 d0Var = s70Var.h;
                 boolean z10 = s70Var.N;
                 int L0 = d0Var.L0();
                 am0 am0Var = (am0) s70Var.d.K(L0);
                 if (am0Var != null) {
-                    i10 = am0Var.f47656a.getTop();
+                    i10 = am0Var.f47658a.getTop();
                 } else {
                     i10 = Integer.MAX_VALUE;
                 }
-                int i11 = s70Var.f41596n;
-                if (n70Var.f40091a) {
-                    s70Var.f41597r = null;
-                    s70Var.f41598s = true;
+                int i11 = s70Var.f41598n;
+                if (n70Var.f40093a) {
+                    s70Var.f41599r = null;
+                    s70Var.f41600s = true;
                 } else {
-                    s70Var.f41597r = n70Var.f40092b;
-                    s70Var.f41598s = false;
+                    s70Var.f41599r = n70Var.f40094b;
+                    s70Var.f41600s = false;
                 }
                 if (z10) {
                     AndroidUtilities.runOnUIThread(new org.telegram.ui.uz(n70Var, 10), 350L);
                 }
                 s70Var.h0();
-                s70Var.f0(s70Var.f41597r, true);
+                s70Var.f0(s70Var.f41599r, true);
                 if (i11 != -1) {
                     if (!s70Var.M) {
                         for (int i12 = 0; i12 < s70Var.d.getChildCount(); i12++) {
@@ -92,18 +92,18 @@ public final class gy0 implements View.OnClickListener {
                             }
                         }
                     }
-                    s70Var.f41594e.m(i11);
+                    s70Var.f41596e.m(i11);
                 }
-                if (s70Var.f41596n != -1) {
+                if (s70Var.f41598n != -1) {
                     if (!s70Var.M) {
                         for (int i13 = 0; i13 < s70Var.d.getChildCount(); i13++) {
                             View childAt2 = s70Var.d.getChildAt(i13);
-                            if (s70Var.d.T(childAt2).b() == s70Var.E + s70Var.f41596n) {
+                            if (s70Var.d.T(childAt2).b() == s70Var.E + s70Var.f41598n) {
                                 ((org.telegram.ui.Cells.m8) childAt2).b(true, true);
                             }
                         }
                     }
-                    s70Var.f41594e.m(s70Var.f41596n);
+                    s70Var.f41596e.m(s70Var.f41598n);
                 }
                 if (i10 != Integer.MAX_VALUE && !z10) {
                     s70Var.h.h1(L0 + 1, i10);

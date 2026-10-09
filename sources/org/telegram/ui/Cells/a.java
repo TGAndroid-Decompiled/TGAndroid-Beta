@@ -72,7 +72,7 @@ public final class a implements View.OnClickListener {
                 y5 y5Var = (y5) obj;
                 x5 x5Var = y5Var.d;
                 if (x5Var != null) {
-                    kq0.U(((iq0) ((hq0) x5Var).f38389b).d, y5Var.f23772b[((Integer) view.getTag()).intValue()]);
+                    kq0.U(((iq0) ((hq0) x5Var).f38391b).d, y5Var.f23772b[((Integer) view.getTag()).intValue()]);
                     return;
                 }
                 return;
@@ -83,8 +83,8 @@ public final class a implements View.OnClickListener {
                     r7 r7Var = u7Var.d;
                     int i11 = u7Var.f23512c[intValue];
                     MessageObject messageObject = u7Var.f23511b[intValue];
-                    w10 w10Var = ((u10) ((org.telegram.ui.g) r7Var).f37729b).d;
-                    SpannableStringBuilder[] spannableStringBuilderArr = w10.f43039s0;
+                    w10 w10Var = ((u10) ((org.telegram.ui.g) r7Var).f37731b).d;
+                    SpannableStringBuilder[] spannableStringBuilderArr = w10.f43041s0;
                     w10Var.f(i11, u7Var, messageObject, intValue);
                     return;
                 }

@@ -19,18 +19,18 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 public final class hc1 extends org.telegram.ui.Components.pm0 {
-    public final Context f38250c;
+    public final Context f38252c;
     public boolean d = true;
-    public final ThemeActivity f38251e;
+    public final ThemeActivity f38253e;
 
     public hc1(ThemeActivity themeActivity, Context context) {
-        this.f38251e = themeActivity;
-        this.f38250c = context;
+        this.f38253e = themeActivity;
+        this.f38252c = context;
     }
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47660f;
+        int i10 = d1Var.f47662f;
         if (i10 == 0 || i10 == 1 || i10 == 4 || i10 == 7 || i10 == 10 || i10 == 11 || i10 == 12 || i10 == 14 || i10 == 18 || i10 == 20 || i10 == 21) {
             return true;
         }
@@ -39,7 +39,7 @@ public final class hc1 extends org.telegram.ui.Components.pm0 {
 
     @Override
     public final int h() {
-        return this.f38251e.J0;
+        return this.f38253e.J0;
     }
 
     @Override
@@ -58,7 +58,7 @@ public final class hc1 extends org.telegram.ui.Components.pm0 {
         int i22;
         int i23;
         int i24;
-        ThemeActivity themeActivity = this.f38251e;
+        ThemeActivity themeActivity = this.f38253e;
         if (i10 != themeActivity.f34530a0 && i10 != themeActivity.K && i10 != themeActivity.f34532b0 && i10 != themeActivity.Y && i10 != themeActivity.P && i10 != themeActivity.Q && i10 != themeActivity.M && i10 != themeActivity.L) {
             if (i10 != themeActivity.f34539f0 && i10 != themeActivity.Z && i10 != themeActivity.f34557v0 && i10 != themeActivity.A0 && i10 != themeActivity.G0) {
                 if (i10 != themeActivity.f34552r0 && i10 != themeActivity.V && i10 != themeActivity.f34534c0 && i10 != themeActivity.O && i10 != themeActivity.f34541h0 && i10 != themeActivity.f34547n0 && i10 != themeActivity.f34544k0 && i10 != themeActivity.J && i10 != themeActivity.I0 && i10 != themeActivity.f34564z0 && i10 != themeActivity.B0 && i10 != themeActivity.C0 && i10 != themeActivity.D0) {
@@ -180,9 +180,9 @@ public final class hc1 extends org.telegram.ui.Components.pm0 {
         int i23;
         String string3;
         String string4;
-        int i24 = d1Var.f47660f;
-        View view = d1Var.f47656a;
-        ThemeActivity themeActivity = this.f38251e;
+        int i24 = d1Var.f47662f;
+        View view = d1Var.f47658a;
+        ThemeActivity themeActivity = this.f38253e;
         boolean z11 = false;
         boolean z12 = true;
         if (i24 != 1) {
@@ -239,7 +239,7 @@ public final class hc1 extends org.telegram.ui.Components.pm0 {
                                                         org.telegram.ui.Components.qm0 qm0Var = (org.telegram.ui.Components.qm0) view;
                                                         jc1 jc1Var = (jc1) qm0Var.getAdapter();
                                                         jc1Var.l();
-                                                        int indexOf = jc1Var.f38910e.indexOf(jc1Var.d.k(false));
+                                                        int indexOf = jc1Var.f38912e.indexOf(jc1Var.d.k(false));
                                                         if (indexOf == -1) {
                                                             indexOf = jc1Var.h() - 1;
                                                         }
@@ -526,7 +526,7 @@ public final class hc1 extends org.telegram.ui.Components.pm0 {
             caVar.c(string10, string, z13, z12);
             themeActivity.O0 = false;
         } else if (i10 == themeActivity.L) {
-            caVar.c(LocaleController.getString(R.string.SearchEngine), org.telegram.ui.web.n1.a().f43406a, themeActivity.P0, false);
+            caVar.c(LocaleController.getString(R.string.SearchEngine), org.telegram.ui.web.n1.a().f43408a, themeActivity.P0, false);
         } else if (i10 == themeActivity.M) {
             String string11 = LocaleController.getString(R.string.MicrophoneForVoiceMessages);
             if (SharedConfig.recordViaSco) {
@@ -557,8 +557,8 @@ public final class hc1 extends org.telegram.ui.Components.pm0 {
         float f10 = 21.0f;
         int i18 = 4;
         int i19 = 5;
-        ThemeActivity themeActivity = this.f38251e;
-        Context context = this.f38250c;
+        ThemeActivity themeActivity = this.f38253e;
+        Context context = this.f38252c;
         switch (i10) {
             case 1:
                 j5Var = new org.telegram.ui.Cells.ca(context);
@@ -624,12 +624,12 @@ public final class hc1 extends org.telegram.ui.Components.pm0 {
                 break;
             case 9:
                 frameLayout = new dc1(context);
-                frameLayout.f36927b = new org.telegram.ui.Cells.y0[2];
+                frameLayout.f36929b = new org.telegram.ui.Cells.y0[2];
                 frameLayout.setOrientation(0);
                 frameLayout.setPadding(AndroidUtilities.dp(21.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(21.0f), 0);
                 int i21 = 0;
                 while (true) {
-                    ?? r32 = (org.telegram.ui.Cells.y0[]) frameLayout.f36927b;
+                    ?? r32 = (org.telegram.ui.Cells.y0[]) frameLayout.f36929b;
                     if (i21 >= r32.length) {
                         j5Var = frameLayout;
                         break;
@@ -663,24 +663,24 @@ public final class hc1 extends org.telegram.ui.Components.pm0 {
                         }
                         x0Var.a(z11, false);
                         r32[i21] = frameLayout2;
-                        org.telegram.ui.Cells.y0 y0Var = ((org.telegram.ui.Cells.y0[]) frameLayout.f36927b)[i21];
+                        org.telegram.ui.Cells.y0 y0Var = ((org.telegram.ui.Cells.y0[]) frameLayout.f36929b)[i21];
                         if (i21 == 1) {
                             i14 = 10;
                         } else {
                             i14 = 0;
                         }
                         frameLayout.addView(y0Var, w7.x5.m(0.5f, -1, -1, i14, 0, 0));
-                        ((org.telegram.ui.Cells.y0[]) frameLayout.f36927b)[i21].setOnClickListener(new ai.k3(3, frameLayout, z10));
+                        ((org.telegram.ui.Cells.y0[]) frameLayout.f36929b)[i21].setOnClickListener(new ai.k3(3, frameLayout, z10));
                         i21++;
                     }
                 }
                 break;
             case 10:
-                j5Var = new org.telegram.ui.Cells.j5(21, 60, this.f38250c, null, true);
+                j5Var = new org.telegram.ui.Cells.j5(21, 60, this.f38252c, null, true);
                 break;
             case 11:
                 this.d = true;
-                ec1 ec1Var = new ec1(this, this.f38250c, themeActivity, themeActivity.f34538f, themeActivity.f34536e, themeActivity.d);
+                ec1 ec1Var = new ec1(this, this.f38252c, themeActivity, themeActivity.f34538f, themeActivity.f34536e, themeActivity.d);
                 themeActivity.f34533c = ec1Var;
                 ec1Var.setDrawDivider(themeActivity.v);
                 themeActivity.f34533c.setFocusable(false);
@@ -818,7 +818,7 @@ public final class hc1 extends org.telegram.ui.Components.pm0 {
                 break;
             case 21:
                 i17 = ((org.telegram.ui.ActionBar.n2) themeActivity).currentAccount;
-                frameLayout = new fp0(i17, 0L, this.f38250c, themeActivity.getResourceProvider());
+                frameLayout = new fp0(i17, 0L, this.f38252c, themeActivity.getResourceProvider());
                 j5Var = frameLayout;
                 break;
         }
@@ -828,8 +828,8 @@ public final class hc1 extends org.telegram.ui.Components.pm0 {
     @Override
     public final void y(s4.d1 d1Var) {
         boolean z10;
-        if (d1Var.f47660f == 4) {
-            org.telegram.ui.Cells.ha haVar = (org.telegram.ui.Cells.ha) d1Var.f47656a;
+        if (d1Var.f47662f == 4) {
+            org.telegram.ui.Cells.ha haVar = (org.telegram.ui.Cells.ha) d1Var.f47658a;
             if (d1Var.b() == org.telegram.ui.ActionBar.i6.f20993o) {
                 z10 = true;
             } else {

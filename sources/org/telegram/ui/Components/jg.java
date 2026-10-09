@@ -41,7 +41,7 @@ public final class jg implements az {
         yg ygVar2 = chatActivityEnterView.F0;
         org.telegram.ui.zn znVar = chatActivityEnterView.P2;
         org.telegram.ui.pn pnVar = chatActivityEnterView.V2;
-        if (pnVar != null && znVar != null && pnVar.f40847f) {
+        if (pnVar != null && znVar != null && pnVar.f40849f) {
             znVar.Vb();
         } else if (c() && i10 == 0) {
             g5.L(chatActivityEnterView.O2, znVar.a(), new org.telegram.ui.tq(this, view, obj, str, obj2, photoEntry, z11), chatActivityEnterView.W3);
@@ -116,7 +116,7 @@ public final class jg implements az {
         ChatActivityEnterView chatActivityEnterView = this.f27710a;
         org.telegram.ui.zn znVar = chatActivityEnterView.P2;
         if (znVar != null) {
-            PhotoViewer.t1().K2(null, znVar, znVar.f44761ea);
+            PhotoViewer.t1().K2(null, znVar, znVar.f44763ea);
             if (obj instanceof TLRPC.Document) {
                 file = FileLoader.getInstance(chatActivityEnterView.Q).getPathToAttach((TLRPC.Document) obj);
             } else {

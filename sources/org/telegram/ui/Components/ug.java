@@ -309,7 +309,7 @@ public final class ug extends FrameLayout {
                 MediaDataController mediaDataController = MediaDataController.getInstance(chatActivityEnterView.Q);
                 long j10 = chatActivityEnterView.Q2;
                 org.telegram.ui.zn znVar = chatActivityEnterView.P2;
-                if (znVar != null && znVar.f44791h4) {
+                if (znVar != null && znVar.f44793h4) {
                     j3 = znVar.d();
                 } else {
                     j3 = 0;

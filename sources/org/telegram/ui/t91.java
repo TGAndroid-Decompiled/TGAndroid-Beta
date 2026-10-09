@@ -22,13 +22,13 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class t91 extends org.telegram.ui.Components.eb {
-    public static final int f41923d0 = 0;
+    public static final int f41925d0 = 0;
     public final yh.a X;
     public final LinearLayout Y;
     public final LinearLayout Z;
-    public boolean f41924a0;
-    public boolean f41925b0;
-    public org.telegram.ui.Components.c71 f41926c0;
+    public boolean f41926a0;
+    public boolean f41927b0;
+    public org.telegram.ui.Components.c71 f41928c0;
 
     public t91(final Context context, final int i10, final org.telegram.ui.ActionBar.e6 e6Var, final pc pcVar) {
         super(1, context, e6Var, true);
@@ -38,7 +38,7 @@ public final class t91 extends org.telegram.ui.Components.eb {
         this.v = 0.2f;
         this.smoothKeyboardAnimationEnabled = true;
         this.smoothKeyboardByBottom = true;
-        yh.a aVar = new yh.a(context, i10, zf.b.f54442b, e6Var);
+        yh.a aVar = new yh.a(context, i10, zf.b.f54444b, e6Var);
         this.X = aVar;
         aVar.setScaleX(0.6f);
         aVar.setScaleY(0.6f);
@@ -241,8 +241,8 @@ public final class t91 extends org.telegram.ui.Components.eb {
                         int i26 = -iArr2[0];
                         iArr2[0] = i26;
                         AndroidUtilities.shakeViewSpring(zd0Var2, i26);
-                    } else if (yh.m5.y(i23, true).f52882f.toDouble() < parseDouble) {
-                        new di.h(context, e6Var, zf.a.i((long) (parseDouble * 1.0E9d), zf.b.f54442b), true, new t21(2));
+                    } else if (yh.m5.y(i23, true).f52884f.toDouble() < parseDouble) {
+                        new di.h(context, e6Var, zf.a.i((long) (parseDouble * 1.0E9d), zf.b.f54444b), true, new t21(2));
                     } else {
                         pcVar.run(Long.valueOf((long) (parseDouble * 1.0E9d)));
                         t91.this.dismiss();
@@ -259,7 +259,7 @@ public final class t91 extends org.telegram.ui.Components.eb {
         org.telegram.ui.Components.qm0 qm0Var = this.d;
         int i24 = this.backgroundPaddingLeft;
         qm0Var.setPadding(i24, 0, i24, AndroidUtilities.dp(68.0f));
-        this.f41926c0.N(false);
+        this.f41928c0.N(false);
     }
 
     @Override
@@ -270,13 +270,13 @@ public final class t91 extends org.telegram.ui.Components.eb {
     public final void Q() {
         boolean z10;
         float f7;
-        if (this.f41924a0 && !isDismissed() && !isKeyboardVisible()) {
+        if (this.f41926a0 && !isDismissed() && !isKeyboardVisible()) {
             z10 = true;
         } else {
             z10 = false;
         }
-        if (this.f41925b0 != z10) {
-            this.f41925b0 = z10;
+        if (this.f41927b0 != z10) {
+            this.f41927b0 = z10;
             yh.a aVar = this.X;
             if (aVar != null) {
                 aVar.setEnabled(z10);
@@ -320,21 +320,21 @@ public final class t91 extends org.telegram.ui.Components.eb {
     @Override
     public final void onDismissAnimationStart() {
         super.onDismissAnimationStart();
-        this.f41924a0 = false;
+        this.f41926a0 = false;
         Q();
     }
 
     @Override
     public final void onOpenAnimationEnd() {
         super.onOpenAnimationEnd();
-        this.f41924a0 = true;
+        this.f41926a0 = true;
         Q();
     }
 
     @Override
     public final org.telegram.ui.Components.pm0 x(org.telegram.ui.Components.qm0 qm0Var) {
         org.telegram.ui.Components.c71 c71Var = new org.telegram.ui.Components.c71(qm0Var, getContext(), this.currentAccount, 0, false, new b5(this, 27), this.resourcesProvider);
-        this.f41926c0 = c71Var;
+        this.f41928c0 = c71Var;
         return c71Var;
     }
 }

@@ -8,9 +8,9 @@ import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.ea0;
 public final class r extends LinearLayout {
-    public final ImageView f53086a;
-    public final ea0 f53087b;
-    public final ea0 f53088c;
+    public final ImageView f53088a;
+    public final ea0 f53089b;
+    public final ea0 f53090c;
 
     public r(Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
@@ -31,7 +31,7 @@ public final class r extends LinearLayout {
         }
         setPadding(dp, 0, dp2, AndroidUtilities.dp(f10));
         ImageView imageView = new ImageView(context);
-        this.f53086a = imageView;
+        this.f53088a = imageView;
         int i11 = org.telegram.ui.ActionBar.i6.G6;
         imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.x0(null, i11, false), PorterDuff.Mode.SRC_IN));
         imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -39,7 +39,7 @@ public final class r extends LinearLayout {
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         ea0 ea0Var = new ea0(context, null);
-        this.f53087b = ea0Var;
+        this.f53089b = ea0Var;
         ea0Var.setTypeface(AndroidUtilities.bold());
         ea0Var.setTextSize(1, 14.0f);
         ea0Var.setTextColor(org.telegram.ui.ActionBar.i6.w0(i11, e6Var));
@@ -47,7 +47,7 @@ public final class r extends LinearLayout {
         ea0Var.setLinkTextColor(org.telegram.ui.ActionBar.i6.w0(i12, e6Var));
         linearLayout.addView(ea0Var, w7.x5.t(-1, -2, 7, 0, 0, 0, 3));
         ea0 ea0Var2 = new ea0(context, null);
-        this.f53088c = ea0Var2;
+        this.f53090c = ea0Var2;
         ea0Var2.setTextSize(1, 14.0f);
         ea0Var2.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21199z6, e6Var));
         ea0Var2.setLinkTextColor(org.telegram.ui.ActionBar.i6.w0(i12, e6Var));
@@ -56,16 +56,16 @@ public final class r extends LinearLayout {
     }
 
     public final void a(CharSequence charSequence, CharSequence charSequence2, int i10) {
-        this.f53086a.setImageResource(i10);
-        this.f53087b.setText(charSequence);
-        this.f53088c.setText(charSequence2);
+        this.f53088a.setImageResource(i10);
+        this.f53089b.setText(charSequence);
+        this.f53090c.setText(charSequence2);
     }
 
     public void setSubtitle(CharSequence charSequence) {
-        this.f53088c.setText(charSequence);
+        this.f53090c.setText(charSequence);
     }
 
     public void setTitle(CharSequence charSequence) {
-        this.f53087b.setText(charSequence);
+        this.f53089b.setText(charSequence);
     }
 }

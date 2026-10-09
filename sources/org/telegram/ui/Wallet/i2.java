@@ -14,7 +14,7 @@ public class i2 extends eb implements org.telegram.ui.ActionBar.z5 {
     public c71 X;
     public final ViewGroup Y;
     public final Paint Z;
-    public float f35006a0;
+    public float f35028a0;
 
     public i2(Context context, ViewGroup viewGroup, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context, null, true, false, e6Var);
@@ -35,7 +35,7 @@ public class i2 extends eb implements org.telegram.ui.ActionBar.z5 {
 
     @Override
     public void G(float f7) {
-        this.f35006a0 = f7;
+        this.f35028a0 = f7;
         if (this.topBulletinContainer != null) {
             this.topBulletinContainer.setTranslationY(Math.max((this.containerView.getY() + f7) + this.backgroundPaddingTop, this.topBulletinContainer.getHeight() + (AndroidUtilities.dp(56.0f) + AndroidUtilities.statusBarHeight)) - this.topBulletinContainer.getBottom());
         }
@@ -60,7 +60,7 @@ public class i2 extends eb implements org.telegram.ui.ActionBar.z5 {
     @Override
     public final void mainContainerDispatchDraw(Canvas canvas) {
         float height = getContainer().getHeight();
-        float max = Math.max(height - AndroidUtilities.navigationBarHeight, this.containerView.getY() + this.f35006a0 + this.backgroundPaddingTop);
+        float max = Math.max(height - AndroidUtilities.navigationBarHeight, this.containerView.getY() + this.f35028a0 + this.backgroundPaddingTop);
         if (max >= height) {
             return;
         }

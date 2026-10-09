@@ -70,11 +70,11 @@ public abstract class p0 {
     }
 
     public static boolean d(TLRPC.Reaction reaction, n0 n0Var) {
-        if ((reaction instanceof TLRPC.TL_reactionEmoji) && n0Var.f54616g == 0 && TextUtils.equals(((TLRPC.TL_reactionEmoji) reaction).emoticon, n0Var.f54615f)) {
+        if ((reaction instanceof TLRPC.TL_reactionEmoji) && n0Var.f54618g == 0 && TextUtils.equals(((TLRPC.TL_reactionEmoji) reaction).emoticon, n0Var.f54617f)) {
             return true;
         }
         if (reaction instanceof TLRPC.TL_reactionCustomEmoji) {
-            long j3 = n0Var.f54616g;
+            long j3 = n0Var.f54618g;
             if (j3 != 0 && ((TLRPC.TL_reactionCustomEmoji) reaction).document_id == j3) {
                 return true;
             }

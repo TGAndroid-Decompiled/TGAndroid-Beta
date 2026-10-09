@@ -5,17 +5,17 @@ import android.view.ViewGroup;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class m41 extends org.telegram.ui.Components.pm0 {
-    public final Context f39765c;
+    public final Context f39767c;
 
     public m41(Context context) {
-        this.f39765c = context;
+        this.f39767c = context;
     }
 
     @Override
     public final boolean D(s4.d1 d1Var) {
         int b10 = d1Var.b();
         if (b10 != 1) {
-            pi.a aVar = pi.e.f45891b;
+            pi.a aVar = pi.e.f45893b;
             aVar.a();
             if (aVar.d) {
                 if (b10 != 2 && b10 != 3 && b10 != 4 && b10 != 5 && b10 != 8) {
@@ -53,12 +53,12 @@ public final class m41 extends org.telegram.ui.Components.pm0 {
         String string2;
         boolean z10;
         String string3;
-        pi.a aVar = pi.e.f45891b;
+        pi.a aVar = pi.e.f45893b;
         aVar.a();
         boolean z11 = aVar.d;
-        int i11 = d1Var.f47660f;
+        int i11 = d1Var.f47662f;
         if (i11 == 0) {
-            org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) d1Var.f47656a;
+            org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) d1Var.f47658a;
             if (i10 == 0) {
                 string3 = LocaleController.getString(R.string.RoundVideoGeneral);
             } else {
@@ -66,7 +66,7 @@ public final class m41 extends org.telegram.ui.Components.pm0 {
             }
             m4Var.setText(string3);
         } else if (i11 == 1) {
-            org.telegram.ui.Cells.w8 w8Var = (org.telegram.ui.Cells.w8) d1Var.f47656a;
+            org.telegram.ui.Cells.w8 w8Var = (org.telegram.ui.Cells.w8) d1Var.f47658a;
             if (i10 != 1 && !z11) {
                 z10 = false;
             } else {
@@ -78,14 +78,14 @@ public final class m41 extends org.telegram.ui.Components.pm0 {
                 return;
             }
             String string4 = LocaleController.getString(R.string.RoundVideoCompositionEnabled);
-            pi.a aVar2 = pi.e.f45895g;
+            pi.a aVar2 = pi.e.f45897g;
             aVar2.a();
             w8Var.f(string4, aVar2.d, false);
         } else if (i11 == 2) {
-            org.telegram.ui.Cells.ca caVar = (org.telegram.ui.Cells.ca) d1Var.f47656a;
+            org.telegram.ui.Cells.ca caVar = (org.telegram.ui.Cells.ca) d1Var.f47658a;
             caVar.setEnabled(z11);
             if (i10 == 2) {
-                caVar.c(LocaleController.getString(R.string.RoundVideoOutputResolution), a1.g.o(((ki.r0) pi.e.f45892c.a()).f15101a, "p", new StringBuilder()), false, true);
+                caVar.c(LocaleController.getString(R.string.RoundVideoOutputResolution), a1.g.o(((ki.r0) pi.e.f45894c.a()).f15101a, "p", new StringBuilder()), false, true);
             } else if (i10 == 3) {
                 String string5 = LocaleController.getString(R.string.RoundVideoCameraResolution);
                 ki.n0 n0Var = (ki.n0) pi.e.d.a();
@@ -98,12 +98,12 @@ public final class m41 extends org.telegram.ui.Components.pm0 {
                 }
                 caVar.c(string5, string2, false, true);
             } else if (i10 == 4) {
-                caVar.c(LocaleController.getString(R.string.RoundVideoFrameRate), a1.g.o(((ki.o0) pi.e.f45893e.a()).f15065a, " FPS", new StringBuilder()), false, true);
+                caVar.c(LocaleController.getString(R.string.RoundVideoFrameRate), a1.g.o(((ki.o0) pi.e.f45895e.a()).f15065a, " FPS", new StringBuilder()), false, true);
             } else {
-                caVar.c(LocaleController.getString(R.string.RoundVideoBitrate), n41.U(pi.e.f45894f.a()), false, false);
+                caVar.c(LocaleController.getString(R.string.RoundVideoBitrate), n41.U(pi.e.f45896f.a()), false, false);
             }
         } else {
-            org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) d1Var.f47656a;
+            org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) d1Var.f47658a;
             if (i10 == 6) {
                 string = LocaleController.getString(R.string.RoundVideoGeneralInfo);
             } else {
@@ -116,7 +116,7 @@ public final class m41 extends org.telegram.ui.Components.pm0 {
     @Override
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
         org.telegram.ui.Cells.ca caVar;
-        Context context = this.f39765c;
+        Context context = this.f39767c;
         if (i10 == 0) {
             caVar = new org.telegram.ui.Cells.m4(context);
         } else if (i10 == 1) {

@@ -4,16 +4,16 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class x50 extends org.telegram.ui.Cells.e4 {
-    public final a60 f43827f0;
+    public final a60 f43829f0;
 
     public x50(a60 a60Var, Context context) {
         super(context);
-        this.f43827f0 = a60Var;
+        this.f43829f0 = a60Var;
     }
 
     @Override
     public final void d(org.telegram.ui.Cells.e4 e4Var) {
-        g60 g60Var = this.f43827f0.M;
+        g60 g60Var = this.f43829f0.M;
         g60 g60Var2 = g60.D3;
         g60Var.G1(e4Var);
     }

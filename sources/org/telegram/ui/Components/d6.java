@@ -178,13 +178,13 @@ public final class d6 implements Runnable {
                     com.google.android.gms.internal.cast.a aVar = f6Var4.A0;
                     int i13 = aVar.f6763a;
                     yf.e eVar2 = f6Var4.f26282z0;
-                    int f10 = eVar2.f(f6Var4.v.f25264b, eVar2.f52137i);
-                    aVar.f6763a = eVar2.f52137i;
-                    if (eVar2.f52145q && !eVar2.f52134e.isEmpty()) {
-                        int i14 = eVar2.f52137i + 1;
-                        eVar2.f52137i = i14;
-                        if (i14 >= eVar2.f52134e.size()) {
-                            eVar2.f52137i = 0;
+                    int f10 = eVar2.f(f6Var4.v.f25264b, eVar2.f52139i);
+                    aVar.f6763a = eVar2.f52139i;
+                    if (eVar2.f52147q && !eVar2.f52136e.isEmpty()) {
+                        int i14 = eVar2.f52139i + 1;
+                        eVar2.f52139i = i14;
+                        if (i14 >= eVar2.f52136e.size()) {
+                            eVar2.f52139i = 0;
                         }
                     }
                     if (f10 != -1 && f6Var4.A0.f6763a < i13) {
@@ -192,7 +192,7 @@ public final class d6 implements Runnable {
                     }
                     int[] iArr2 = f6Var4.d;
                     c6 c6Var2 = f6Var4.v;
-                    int max = f6Var4.A0.f6763a * Math.max(16, iArr2[4] / Math.max(1, f6Var4.f26282z0.f52134e.size()));
+                    int max = f6Var4.A0.f6763a * Math.max(16, iArr2[4] / Math.max(1, f6Var4.f26282z0.f52136e.size()));
                     c6Var2.f25266e = max;
                     iArr2[3] = max;
                     f6Var4.v.f25267f = false;

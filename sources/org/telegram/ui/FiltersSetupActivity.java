@@ -116,11 +116,11 @@ public class FiltersSetupActivity extends org.telegram.ui.ActionBar.n2 implement
             int size = arrayList3.size();
             String string2 = LocaleController.getString(R.string.FilterRecommended);
             ?? aVar = new og.a(0, false);
-            aVar.f35807c = string2;
+            aVar.f35809c = string2;
             arrayList3.add(aVar);
             for (int i11 = 0; i11 < arrayList4.size(); i11++) {
                 ?? aVar2 = new og.a(5, false);
-                aVar2.f35808e = arrayList4.get(i11);
+                aVar2.f35810e = arrayList4.get(i11);
                 arrayList3.add(aVar2);
             }
             ai.w0 w0Var2 = this.f33760a;
@@ -128,14 +128,14 @@ public class FiltersSetupActivity extends org.telegram.ui.ActionBar.n2 implement
                 w0Var2.I2.add(Long.valueOf(AndroidUtilities.pack(size, arrayList3.size() - 1)));
             }
             ?? aVar3 = new og.a(3, false);
-            aVar3.f35807c = null;
+            aVar3.f35809c = null;
             arrayList3.add(aVar3);
         }
         if (!dialogFilters.isEmpty()) {
             this.f33767s = arrayList3.size();
             String string3 = LocaleController.getString(R.string.Filters);
             ?? aVar4 = new og.a(0, false);
-            aVar4.f35807c = string3;
+            aVar4.f35809c = string3;
             arrayList3.add(aVar4);
             this.f33766r = arrayList3.size();
             for (int i12 = 0; i12 < dialogFilters.size(); i12++) {
@@ -165,17 +165,17 @@ public class FiltersSetupActivity extends org.telegram.ui.ActionBar.n2 implement
         if (dialogFilters.size() < getMessagesController().dialogFiltersLimitPremium) {
             String string4 = LocaleController.getString(R.string.CreateNewFilter);
             ?? aVar6 = new og.a(4, false);
-            aVar6.f35807c = string4;
+            aVar6.f35809c = string4;
             arrayList3.add(aVar6);
         }
         ?? aVar7 = new og.a(3, false);
-        aVar7.f35807c = null;
+        aVar7.f35809c = null;
         arrayList3.add(aVar7);
         this.f33768w = arrayList3.size();
         this.showTagsRow = arrayList3.size();
         String string5 = LocaleController.getString(R.string.FolderShowTags);
         ?? aVar8 = new og.a(6, false);
-        aVar8.f35807c = string5;
+        aVar8.f35809c = string5;
         arrayList3.add(aVar8);
         if (!getUserConfig().isPremium()) {
             string = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FolderShowTagsInfoPremium), org.telegram.ui.ActionBar.i6.L6, 2, new x10(this, 0));
@@ -183,7 +183,7 @@ public class FiltersSetupActivity extends org.telegram.ui.ActionBar.n2 implement
             string = LocaleController.getString(R.string.FolderShowTagsInfo);
         }
         ?? aVar9 = new og.a(3, false);
-        aVar9.f35807c = string;
+        aVar9.f35809c = string;
         arrayList3.add(aVar9);
         c20 c20Var = this.f33761b;
         if (c20Var != null) {
@@ -216,7 +216,7 @@ public class FiltersSetupActivity extends org.telegram.ui.ActionBar.n2 implement
         jVar.n(350L);
         jVar.o(org.telegram.ui.Components.hs.h);
         jVar.C = false;
-        jVar.f47696m = false;
+        jVar.f47698m = false;
         this.f33760a.setItemAnimator(jVar);
         ((s4.j) this.f33760a.getItemAnimator()).C = false;
         this.f33760a.setLayoutManager(new s4.d0(1, false));

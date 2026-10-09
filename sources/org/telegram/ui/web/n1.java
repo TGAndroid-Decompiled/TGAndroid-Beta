@@ -6,14 +6,14 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 public final class n1 {
     public static ArrayList d;
-    public final String f43406a;
-    public final String f43407b;
-    public final String f43408c;
+    public final String f43408a;
+    public final String f43409b;
+    public final String f43410c;
 
     public n1(String str, String str2, String str3) {
-        this.f43406a = str;
-        this.f43407b = str2;
-        this.f43408c = str3;
+        this.f43408a = str;
+        this.f43409b = str2;
+        this.f43410c = str3;
     }
 
     public static n1 a() {

@@ -216,23 +216,23 @@ public final class k4 implements Utilities.Callback {
                 q60.e1((q60) obj2, i11, (ChannelBoostsController.CanApplyBoost) obj);
                 return;
             default:
-                org.telegram.ui.Wallet.r8 r8Var = (org.telegram.ui.Wallet.r8) obj2;
+                org.telegram.ui.Wallet.s8 s8Var = (org.telegram.ui.Wallet.s8) obj2;
                 String str3 = (String) obj;
-                if (!r8Var.f35426n && i11 == r8Var.I) {
-                    r8Var.f35431y = 0;
-                    r8Var.K = false;
+                if (!s8Var.f35492n && i11 == s8Var.I) {
+                    s8Var.f35497y = 0;
+                    s8Var.K = false;
                     if (WalletEngine2.isValidRecipientAddress(str3)) {
                         str = WalletEngine2.toUserFriendlyAddress(str3);
                     }
-                    r8Var.f35429w = str;
-                    d dVar2 = r8Var.V;
+                    s8Var.f35495w = str;
+                    d dVar2 = s8Var.V;
                     if (dVar2 != null) {
                         if (str != null) {
                             z11 = true;
                         }
                         dVar2.setEnabled(z11);
                     }
-                    r8Var.f26290a.W2.N(true);
+                    s8Var.f26290a.W2.N(true);
                     return;
                 }
                 return;

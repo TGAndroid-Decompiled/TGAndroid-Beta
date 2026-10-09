@@ -280,7 +280,7 @@ public final class k3 extends Dialog implements NotificationCenter.NotificationC
     }
 
     public static WindowInsets e(k3 k3Var, View view, WindowInsets windowInsets) {
-        r0.h1 h1Var = r0.k1.h(view, windowInsets).f46775a;
+        r0.h1 h1Var = r0.k1.h(view, windowInsets).f46777a;
         i0.b f7 = h1Var.f(2);
         k3Var.f9161f.set(f7.f11576a, f7.f11577b, f7.f11578c, f7.d);
         i0.b f10 = h1Var.f(647);
@@ -727,7 +727,7 @@ public final class k3 extends Dialog implements NotificationCenter.NotificationC
             str = null;
         }
         m3Var.f21395x = str;
-        if (b3Var != null && b3Var.f43261t0) {
+        if (b3Var != null && b3Var.f43263t0) {
             z11 = true;
         } else {
             z11 = false;
@@ -815,7 +815,7 @@ public final class k3 extends Dialog implements NotificationCenter.NotificationC
             }
         } else if (i10 == NotificationCenter.didSetNewTheme) {
             this.f9159e.invalidate();
-            this.f9183x.f43252n.b(i6.w0(i6.f20797d6, this.E), 153);
+            this.f9183x.f43254n.b(i6.w0(i6.f20797d6, this.E), 153);
             B();
             F();
         } else if (i10 == NotificationCenter.botDownloadsUpdate) {
@@ -1651,7 +1651,7 @@ public final class k3 extends Dialog implements NotificationCenter.NotificationC
                     if (znVar.i() != null) {
                         inputPeer = MessagesController.getInputPeer(znVar.i());
                     } else {
-                        inputPeer = MessagesController.getInputPeer(znVar.f44751e);
+                        inputPeer = MessagesController.getInputPeer(znVar.f44753e);
                     }
                 } else {
                     inputPeer = MessagesController.getInputPeer(e5Var.f9046m);
@@ -1680,7 +1680,7 @@ public final class k3 extends Dialog implements NotificationCenter.NotificationC
                     if (znVar2.i() != null) {
                         inputPeer2 = MessagesController.getInputPeer(znVar2.i());
                     } else {
-                        inputPeer2 = MessagesController.getInputPeer(znVar2.f44751e);
+                        inputPeer2 = MessagesController.getInputPeer(znVar2.f44753e);
                     }
                 } else {
                     inputPeer2 = MessagesController.getInstance(this.G).getInputPeer(e5Var.f9037b);

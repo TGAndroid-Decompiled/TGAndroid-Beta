@@ -66,7 +66,7 @@ public final class c implements Runnable {
                     jVar4.g();
                     n nVar2 = jVar4.f14978j;
                     nVar2.b("common A/V start completed: segmentElapsedMs=" + j.s(jVar4.f14996s0));
-                    t0 t0Var = (t0) jVar4.f14980k.f51105b;
+                    t0 t0Var = (t0) jVar4.f14980k.f51107b;
                     t0Var.f15119i.post(new c0(t0Var, 2));
                     return;
                 }

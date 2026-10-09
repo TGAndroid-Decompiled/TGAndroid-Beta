@@ -9,20 +9,20 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageReceiver;
 public final class w41 implements Runnable {
-    public final int f43087a;
-    public final SecretMediaViewer f43088b;
+    public final int f43089a;
+    public final SecretMediaViewer f43090b;
 
     public w41(SecretMediaViewer secretMediaViewer, int i10) {
-        this.f43087a = i10;
-        this.f43088b = secretMediaViewer;
+        this.f43089a = i10;
+        this.f43090b = secretMediaViewer;
     }
 
     @Override
     public final void run() {
         String format;
         String format2;
-        int i10 = this.f43087a;
-        SecretMediaViewer secretMediaViewer = this.f43088b;
+        int i10 = this.f43089a;
+        SecretMediaViewer secretMediaViewer = this.f43090b;
         switch (i10) {
             case 0:
                 secretMediaViewer.K0 = null;
@@ -127,7 +127,7 @@ public final class w41 implements Runnable {
     }
 
     public w41(SecretMediaViewer secretMediaViewer, ev0 ev0Var, int i10) {
-        this.f43087a = i10;
-        this.f43088b = secretMediaViewer;
+        this.f43089a = i10;
+        this.f43090b = secretMediaViewer;
     }
 }

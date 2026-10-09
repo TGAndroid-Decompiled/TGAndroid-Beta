@@ -12,22 +12,22 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class da0 implements ny {
-    public final int f36915a = 1;
-    public final LaunchActivity f36916b;
-    public final String f36917c;
+    public final int f36917a = 1;
+    public final LaunchActivity f36918b;
+    public final String f36919c;
     public final int d;
-    public final TLRPC.User f36918e;
+    public final TLRPC.User f36920e;
 
     public da0(LaunchActivity launchActivity, String str, int i10, TLRPC.User user) {
-        this.f36916b = launchActivity;
-        this.f36917c = str;
+        this.f36918b = launchActivity;
+        this.f36919c = str;
         this.d = i10;
-        this.f36918e = user;
+        this.f36920e = user;
     }
 
     @Override
     public final boolean C() {
-        switch (this.f36915a) {
+        switch (this.f36917a) {
             case 0:
                 return false;
             default:
@@ -37,7 +37,7 @@ public final class da0 implements ny {
 
     @Override
     public final boolean K(ty tyVar) {
-        switch (this.f36915a) {
+        switch (this.f36917a) {
             case 0:
                 return false;
             default:
@@ -47,11 +47,11 @@ public final class da0 implements ny {
 
     @Override
     public final boolean w(ty tyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, fg1 fg1Var) {
-        int i12 = this.f36915a;
-        TLRPC.User user = this.f36918e;
+        int i12 = this.f36917a;
+        TLRPC.User user = this.f36920e;
         int i13 = this.d;
-        String str = this.f36917c;
-        LaunchActivity launchActivity = this.f36916b;
+        String str = this.f36919c;
+        LaunchActivity launchActivity = this.f36918b;
         switch (i12) {
             case 0:
                 Pattern pattern = LaunchActivity.B1;
@@ -99,9 +99,9 @@ public final class da0 implements ny {
     }
 
     public da0(LaunchActivity launchActivity, TLRPC.User user, String str, int i10) {
-        this.f36916b = launchActivity;
-        this.f36918e = user;
-        this.f36917c = str;
+        this.f36918b = launchActivity;
+        this.f36920e = user;
+        this.f36919c = str;
         this.d = i10;
     }
 }

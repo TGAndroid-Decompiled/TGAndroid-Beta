@@ -68,7 +68,7 @@ public final class a0 implements Runnable {
                 dm dmVar = (dm) this.d;
                 dmVar.getClass();
                 MessageObject messageObject = ((org.telegram.ui.Cells.w0) this.f11606e).getMessageObject();
-                mm mmVar = dmVar.f37048a;
+                mm mmVar = dmVar.f37050a;
                 zn znVar = mmVar.Q;
                 int id2 = messageObject.getId();
                 if (messageObject.getDialogId() == mmVar.Q.L6) {
@@ -80,7 +80,7 @@ public final class a0 implements Runnable {
                 return;
             case 4:
                 u1 u1Var = (u1) this.f11606e;
-                zn znVar2 = ((ln) this.d).f39634a;
+                zn znVar2 = ((ln) this.d).f39636a;
                 if (znVar2.A1 != null) {
                     u1Var.getLocationInWindow(new int[2]);
                     znVar2.A1.setTranslationY(bi.D(520.0f, iArr[1] - d4Var.getTop(), this.f11604b));
@@ -92,22 +92,22 @@ public final class a0 implements Runnable {
             default:
                 final ry ryVar = (ry) this.d;
                 TLRPC.Dialog dialog = (TLRPC.Dialog) this.f11606e;
-                sy syVar = ryVar.f41539g;
+                sy syVar = ryVar.f41541g;
                 ty tyVar = ryVar.h;
                 ArrayList arrayList = tyVar.R1;
                 if (arrayList != null) {
                     arrayList.remove(dialog);
                     int i13 = dialog.pinnedNum;
                     tyVar.W0 = null;
-                    syVar.f41788a.invalidate();
-                    int N0 = syVar.f41790c.N0();
+                    syVar.f41790a.invalidate();
+                    int N0 = syVar.f41792c.N0();
                     if (N0 == this.f11604b - 1) {
-                        syVar.f41790c.m(N0).requestLayout();
+                        syVar.f41792c.m(N0).requestLayout();
                     }
                     boolean z10 = false;
                     if (tyVar.getMessagesController().isPromoDialog(dialog.f20042id, false)) {
                         tyVar.getMessagesController().hidePromoDialog();
-                        syVar.f41797x.D();
+                        syVar.f41799x.D();
                         syVar.q(true);
                         return;
                     }
@@ -122,7 +122,7 @@ public final class a0 implements Runnable {
                     int i14 = this.f11605c;
                     int i15 = 2;
                     if (addDialogToFolder != 2 || i14 != 0) {
-                        syVar.f41797x.D();
+                        syVar.f41799x.D();
                         syVar.q(true);
                     }
                     if (tyVar.V2 == 0) {
@@ -130,16 +130,16 @@ public final class a0 implements Runnable {
                             if (SharedConfig.archiveHidden) {
                                 SharedConfig.toggleArchiveHidden();
                             }
-                            syVar.f41797x.D();
+                            syVar.f41799x.D();
                             if (i14 == 0) {
                                 tyVar.x4(true, true);
                                 syVar.q(true);
                                 tyVar.l3();
                             } else {
                                 syVar.q(true);
-                                if (!SharedConfig.archiveHidden && syVar.f41790c.L0() == 0) {
-                                    tyVar.f42174e2 = true;
-                                    py pyVar = syVar.f41788a;
+                                if (!SharedConfig.archiveHidden && syVar.f41792c.L0() == 0) {
+                                    tyVar.f42176e2 = true;
+                                    py pyVar = syVar.f41790a;
                                     if (SharedConfig.useThreeLinesLayout) {
                                         f7 = 76.0f;
                                     } else {
@@ -149,7 +149,7 @@ public final class a0 implements Runnable {
                                 }
                             }
                             i12 = ((n2) tyVar).currentAccount;
-                            tyVar.R1.add(0, (TLRPC.Dialog) tyVar.O3(i12, syVar.f41795s, tyVar.V2, false).get(0));
+                            tyVar.R1.add(0, (TLRPC.Dialog) tyVar.O3(i12, syVar.f41797s, tyVar.V2, false).get(0));
                             syVar.q(true);
                             AndroidUtilities.runOnUIThread(new Runnable() {
                                 @Override
@@ -165,9 +165,9 @@ public final class a0 implements Runnable {
                                 }
                             }, 300L);
                         } else if (addDialogToFolder == 1) {
-                            s4.d1 K = syVar.f41788a.K(0);
+                            s4.d1 K = syVar.f41790a.K(0);
                             if (K != null) {
-                                View view = K.f47656a;
+                                View view = K.f47658a;
                                 if (view instanceof s2) {
                                     s2 s2Var = (s2) view;
                                     if (s2Var.a2.f27650n == 2) {
@@ -210,8 +210,8 @@ public final class a0 implements Runnable {
                         }
                     }
                     if (tyVar.V2 != 0 && tyVar.R1.isEmpty()) {
-                        syVar.f41788a.setEmptyView(null);
-                        syVar.f41796w.setVisibility(4);
+                        syVar.f41790a.setEmptyView(null);
+                        syVar.f41798w.setVisibility(4);
                         return;
                     }
                     return;

@@ -45,7 +45,7 @@ public final class e extends f implements Handler.Callback {
     public boolean X;
     public s Y;
     public long Z;
-    public long f49758a0;
+    public long f49760a0;
 
     public e(c0 c0Var, Looper looper) {
         super(3);
@@ -63,7 +63,7 @@ public final class e extends f implements Handler.Callback {
         this.I = new Object();
         this.J = new h(1, 0);
         this.V = new x(19, false);
-        this.f49758a0 = -9223372036854775807L;
+        this.f49760a0 = -9223372036854775807L;
         this.Z = -9223372036854775807L;
     }
 
@@ -208,7 +208,7 @@ public final class e extends f implements Handler.Callback {
     @Override
     public final void o() {
         this.Y = null;
-        this.f49758a0 = -9223372036854775807L;
+        this.f49760a0 = -9223372036854775807L;
         d2.d dVar = new d2.d(E(this.Z), a1.f8715e);
         Handler handler = this.T;
         if (handler != null) {
@@ -243,7 +243,7 @@ public final class e extends f implements Handler.Callback {
         }
         this.W = false;
         this.X = false;
-        this.f49758a0 = -9223372036854775807L;
+        this.f49760a0 = -9223372036854775807L;
         s sVar = this.Y;
         if (sVar != null && !Objects.equals(sVar.f3643r, "application/x-media3-cues")) {
             if (this.N != 0) {
@@ -292,7 +292,7 @@ public final class e extends f implements Handler.Callback {
         boolean z10;
         long j11;
         if (this.f11654y) {
-            long j12 = this.f49758a0;
+            long j12 = this.f49760a0;
             if (j12 != -9223372036854775807L && j3 >= j12) {
                 H();
                 this.X = true;
@@ -475,7 +475,7 @@ public final class e extends f implements Handler.Callback {
                                 } else {
                                     s sVar2 = (s) xVar.f16613c;
                                     if (sVar2 != null) {
-                                        iVar.f53503r = sVar2.f3647w;
+                                        iVar.f53505r = sVar2.f3647w;
                                         iVar.c();
                                         this.M &= !iVar.isKeyFrame();
                                     } else {

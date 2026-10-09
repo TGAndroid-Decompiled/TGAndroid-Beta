@@ -99,7 +99,7 @@ public final class t extends s4.o0 {
                 am0 am0Var3 = (am0) recyclerView.T(view);
                 if (am0Var3 != null) {
                     int i12 = 0;
-                    if (am0Var3.f47660f != 5) {
+                    if (am0Var3.f47662f != 5) {
                         rect.right = 0;
                         rect.left = 0;
                         return;

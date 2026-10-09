@@ -9,16 +9,16 @@ public final class ha extends oa {
     public ha(ia iaVar, Activity activity, org.telegram.ui.ActionBar.e6 e6Var) {
         super(activity, e6Var);
         this.K = iaVar;
-        this.f40446a = true;
+        this.f40448a = true;
     }
 
     @Override
     public final String getUsernameEditable() {
         switch (this.J) {
             case 0:
-                return ((ia) this.K).f38591c.f41322r;
+                return ((ia) this.K).f38593c.f41324r;
             default:
-                ci.g2 g2Var = ((gp) this.K).f38064c.Y2.f38706a;
+                ci.g2 g2Var = ((gp) this.K).f38066c.Y2.f38708a;
                 if (g2Var == null) {
                     return null;
                 }

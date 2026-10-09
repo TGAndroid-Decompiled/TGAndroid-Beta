@@ -204,8 +204,8 @@ public final class d0 implements View.OnClickListener {
                 if (nbVar.B1) {
                     pg.x xVar = new pg.x(context, nbVar.G1);
                     nbVar.T1 = xVar;
-                    xVar.o(nbVar.A1.f45776a, 2);
-                    xVar.f45835n = new ci.q5(nbVar, u0Var);
+                    xVar.o(nbVar.A1.f45778a, 2);
+                    xVar.f45837n = new ci.q5(nbVar, u0Var);
                     xVar.h = new ci.j5(0, nbVar, u0Var);
                     xVar.show();
                     return;
@@ -550,8 +550,8 @@ public final class d0 implements View.OnClickListener {
                 Bitmap bitmap = (Bitmap) this.d;
                 if (bu0Var.L1) {
                     pg.x xVar2 = new pg.x(context4, bu0Var.Q1);
-                    xVar2.o(bu0Var.K1.f45776a, 2);
-                    xVar2.f45835n = new qg.v(bu0Var, bitmap);
+                    xVar2.o(bu0Var.K1.f45778a, 2);
+                    xVar2.f45837n = new qg.v(bu0Var, bitmap);
                     xVar2.h = new qg.m(bu0Var, 1);
                     xVar2.show();
                     return;

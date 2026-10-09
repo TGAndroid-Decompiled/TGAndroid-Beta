@@ -224,7 +224,7 @@ public final class nq implements Runnable {
                                 org.telegram.ui.sw swVar = (org.telegram.ui.sw) u00Var;
                                 int i24 = 0;
                                 while (true) {
-                                    org.telegram.ui.sy[] syVarArr = swVar.f41778b.f42172e0;
+                                    org.telegram.ui.sy[] syVarArr = swVar.f41780b.f42174e0;
                                     if (i24 < syVarArr.length) {
                                         org.telegram.ui.sy syVar = syVarArr[i24];
                                         int i25 = syVar.h;
@@ -251,7 +251,7 @@ public final class nq implements Runnable {
                                 }
                                 tc I = ad.a0(tyVar).I(R.raw.filter_reorder, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LimitReachedReorderFolder, LocaleController.getString(R.string.FilterAllChats))), LocaleController.getString(R.string.PremiumMore), 5000, false, new org.telegram.ui.cj(qwVar, 23));
                                 I.k(true);
-                                tyVar.f42218n3 = I;
+                                tyVar.f42220n3 = I;
                                 return;
                             }
                             return;
@@ -335,7 +335,7 @@ public final class nq implements Runnable {
                 db0 db0Var = (db0) obj;
                 Activity parentActivity = db0Var.getParentActivity();
                 Activity parentActivity2 = db0Var.getParentActivity();
-                DispatchQueue dispatchQueue = pg.m1.f45690m;
+                DispatchQueue dispatchQueue = pg.m1.f45692m;
                 boolean z11 = parentActivity2.getSharedPreferences("shapedetector_conf", 0).getBoolean("learning", false);
                 SharedPreferences.Editor edit = parentActivity.getSharedPreferences("shapedetector_conf", 0).edit();
                 if (z11) {

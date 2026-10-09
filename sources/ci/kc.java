@@ -224,7 +224,7 @@ public final class kc extends sw0 {
                 int i21 = lcVar.Y;
                 kl0Var.layout(i21, lcVar.Z, kl0Var.getMeasuredWidth() + i21, lcVar.f5527v1.Z1.getMeasuredHeight() + lcVar.Z);
                 if (lcVar.f5527v1.Z1.getReactionsWindow() != null) {
-                    mVar = lcVar.f5527v1.Z1.getReactionsWindow().f54449c;
+                    mVar = lcVar.f5527v1.Z1.getReactionsWindow().f54451c;
                 } else {
                     mVar = null;
                 }
@@ -331,7 +331,7 @@ public final class kc extends sw0 {
             if (kl0Var != null) {
                 measureChild(kl0Var, i10, i11);
                 if (lcVar.f5527v1.Z1.getReactionsWindow() != null) {
-                    measureChild(lcVar.f5527v1.Z1.getReactionsWindow().f54449c, i10, i11);
+                    measureChild(lcVar.f5527v1.Z1.getReactionsWindow().f54451c, i10, i11);
                 }
             }
         }

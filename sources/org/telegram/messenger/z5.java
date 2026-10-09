@@ -106,9 +106,9 @@ public final class z5 implements Runnable {
                     pf.b bVar = new pf.b(7, false);
                     bVar.T(BillingController.PREMIUM_PRODUCT_DETAILS);
                     lx0Var.a();
-                    String str3 = lx0Var.f39700g.f4275a;
+                    String str3 = lx0Var.f39702g.f4275a;
                     if (!TextUtils.isEmpty(str3)) {
-                        bVar.f45557c = str3;
+                        bVar.f45559c = str3;
                         billingController.launchBillingFlow(activity2, accountInstance, tL_inputStorePaymentPremiumSubscription, Collections.singletonList(bVar.A()), fVar, false);
                         return;
                     }

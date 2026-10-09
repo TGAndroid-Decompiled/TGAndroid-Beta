@@ -16,10 +16,10 @@ import org.telegram.ui.Components.az;
 import org.telegram.ui.Components.b6;
 import org.telegram.ui.Components.l61;
 public final class b0 implements az {
-    public final m0 f46189a;
+    public final m0 f46191a;
 
     public b0(m0 m0Var) {
-        this.f46189a = m0Var;
+        this.f46191a = m0Var;
     }
 
     @Override
@@ -59,7 +59,7 @@ public final class b0 implements az {
 
     @Override
     public final boolean k() {
-        b editText = ((w2) this.f46189a.S0).getEditText();
+        b editText = ((w2) this.f46191a.S0).getEditText();
         if (editText == null || editText.length() == 0) {
             return false;
         }
@@ -72,7 +72,7 @@ public final class b0 implements az {
         w2 w2Var;
         b editText;
         Emoji.EmojiSpan[] emojiSpanArr;
-        j jVar = this.f46189a.S0;
+        j jVar = this.f46191a.S0;
         if ((jVar instanceof w2) && (editText = (w2Var = (w2) jVar).getEditText()) != null) {
             int selectionEnd = editText.getSelectionEnd();
             if (selectionEnd < 0) {
@@ -98,7 +98,7 @@ public final class b0 implements az {
 
     @Override
     public final void n() {
-        m0 m0Var = this.f46189a;
+        m0 m0Var = this.f46191a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(m0Var.getContext(), 0, m0Var.Q1);
         alertDialog$Builder.f20374a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
         alertDialog$Builder.f20374a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
@@ -114,7 +114,7 @@ public final class b0 implements az {
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         b6 b6Var;
-        b editText = ((w2) this.f46189a.S0).getEditText();
+        b editText = ((w2) this.f46191a.S0).getEditText();
         if (editText != null) {
             int selectionEnd = editText.getSelectionEnd();
             if (selectionEnd < 0) {

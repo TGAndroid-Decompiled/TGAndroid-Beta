@@ -23,26 +23,26 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Wallet.WalletEngine2;
 import org.telegram.ui.web.BotWebViewContainer$BotWebViewProxy;
 public final class ii1 implements Runnable {
-    public final int f38669a;
-    public final Object f38670b;
-    public final Object f38671c;
+    public final int f38671a;
+    public final Object f38672b;
+    public final Object f38673c;
 
     public ii1(int i10, Object obj, Object obj2) {
-        this.f38669a = i10;
-        this.f38670b = obj;
-        this.f38671c = obj2;
+        this.f38671a = i10;
+        this.f38672b = obj;
+        this.f38673c = obj2;
     }
 
     @Override
     public final void run() {
         org.telegram.ui.web.b1 b1Var;
         org.telegram.ui.web.g0 g0Var;
-        int i10 = this.f38669a;
+        int i10 = this.f38671a;
         float f7 = 1.0f;
         boolean z10 = true;
         int i11 = 0;
-        Object obj = this.f38671c;
-        Object obj2 = this.f38670b;
+        Object obj = this.f38673c;
+        Object obj2 = this.f38672b;
         switch (i10) {
             case 0:
                 wi1 wi1Var = (wi1) obj2;
@@ -56,9 +56,9 @@ public final class ii1 implements Runnable {
                 wi1Var.I.animate().alpha(1.0f).setDuration(150L).setInterpolator(hsVar).start();
                 wi1Var.N.animate().alpha(1.0f).setDuration(150L).setInterpolator(hsVar).start();
                 wi1Var.X.animate().alpha(1.0f).setDuration(150L).setInterpolator(hsVar).start();
-                wi1Var.f43647j0.animate().alpha(1.0f).setDuration(150L).setInterpolator(hsVar).start();
-                wi1Var.f43643h0.animate().alpha(1.0f).setDuration(350L).setInterpolator(hsVar).start();
-                wi1Var.f43645i0.animate().alpha(1.0f).setDuration(350L).setInterpolator(hsVar).start();
+                wi1Var.f43649j0.animate().alpha(1.0f).setDuration(150L).setInterpolator(hsVar).start();
+                wi1Var.f43645h0.animate().alpha(1.0f).setDuration(350L).setInterpolator(hsVar).start();
+                wi1Var.f43647i0.animate().alpha(1.0f).setDuration(350L).setInterpolator(hsVar).start();
                 wi1Var.M0.animate().alpha(1.0f).setDuration(350L).setInterpolator(hsVar).start();
                 valueAnimator.addListener(new ki1(wi1Var, 2));
                 valueAnimator.setDuration(350L);
@@ -66,12 +66,12 @@ public final class ii1 implements Runnable {
                 valueAnimator.start();
                 return;
             case 1:
-                MessagesController.getInstance(((org.telegram.ui.Wallet.k0) obj2).f35093a).lambda$processUpdates$377((TLRPC.Updates) obj, false);
+                MessagesController.getInstance(((org.telegram.ui.Wallet.k0) obj2).f35117a).lambda$processUpdates$377((TLRPC.Updates) obj, false);
                 return;
             case 2:
                 org.telegram.ui.Wallet.k0 k0Var = (org.telegram.ui.Wallet.k0) obj2;
                 org.telegram.ui.Wallet.k0.E("enable backup: ready! getting secret phrase...");
-                k0Var.x(new ai.m0(20, k0Var, (org.telegram.ui.Wallet.a7) obj), false, true);
+                k0Var.x(new ai.m0(20, k0Var, (org.telegram.ui.Wallet.b7) obj), false, true);
                 return;
             case 3:
                 boolean[] zArr = (boolean[]) obj2;
@@ -90,7 +90,7 @@ public final class ii1 implements Runnable {
                     iVar.run(500000L, null);
                     return;
                 }
-                WalletEngine2 walletEngine2 = k0Var2.f35094b;
+                WalletEngine2 walletEngine2 = k0Var2.f35118b;
                 if (walletEngine2 == null) {
                     org.telegram.ui.Wallet.k0.i("emulate disable backup: no engine!");
                     iVar.run(null, "NULL_ENGINE");
@@ -99,7 +99,7 @@ public final class ii1 implements Runnable {
                 walletEngine2.emulateRotateKey(new org.telegram.ui.Wallet.d(k0Var2, iVar));
                 return;
             case 5:
-                MessagesController.getInstance(((org.telegram.ui.Wallet.d2) obj2).f34787a).lambda$processUpdates$377((TLRPC.Updates) obj, false);
+                MessagesController.getInstance(((org.telegram.ui.Wallet.d2) obj2).f34767a).lambda$processUpdates$377((TLRPC.Updates) obj, false);
                 return;
             case 6:
                 TextView[] textViewArr = (TextView[]) obj2;
@@ -115,10 +115,10 @@ public final class ii1 implements Runnable {
                 }
                 return;
             case 7:
-                ((org.telegram.ui.Wallet.m3) obj2).run(((TL_wallet.walletTransaction[]) obj)[0]);
+                ((org.telegram.ui.Wallet.n3) obj2).run(((TL_wallet.walletTransaction[]) obj)[0]);
                 return;
             case 8:
-                ((org.telegram.ui.Wallet.z4) obj2).D0.remove((org.telegram.ui.Wallet.l6) obj);
+                ((org.telegram.ui.Wallet.a5) obj2).D0.remove((org.telegram.ui.Wallet.m6) obj);
                 return;
             case 9:
                 TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
@@ -126,7 +126,7 @@ public final class ii1 implements Runnable {
                 return;
             case 10:
                 org.telegram.ui.Wallet.i2[] i2VarArr = (org.telegram.ui.Wallet.i2[]) obj2;
-                i2VarArr[0].setOnDismissListener(new org.telegram.ui.Wallet.t3((TLRPC.User) obj, 0));
+                i2VarArr[0].setOnDismissListener(new org.telegram.ui.Wallet.u3((TLRPC.User) obj, 0));
                 i2VarArr[0].dismiss();
                 return;
             case 11:
@@ -134,36 +134,36 @@ public final class ii1 implements Runnable {
                 return;
             case 12:
                 org.telegram.ui.Wallet.i2[] i2VarArr2 = (org.telegram.ui.Wallet.i2[]) obj2;
-                i2VarArr2[0].setOnDismissListener(new org.telegram.ui.Wallet.t3((TL_wallet.WalletTransactionPeer) obj, 1));
+                i2VarArr2[0].setOnDismissListener(new org.telegram.ui.Wallet.u3((TL_wallet.WalletTransactionPeer) obj, 1));
                 i2VarArr2[0].dismiss();
                 return;
             case 13:
-                ((ViewGroup) obj).removeView(((org.telegram.ui.Wallet.u5) obj2).h);
+                ((ViewGroup) obj).removeView(((org.telegram.ui.Wallet.v5) obj2).h);
                 return;
             case 14:
                 ((Utilities.Callback) obj2).run((TL_wallet.walletTransaction) obj);
                 return;
             case 15:
-                org.telegram.ui.Wallet.z6 z6Var = (org.telegram.ui.Wallet.z6) obj2;
+                org.telegram.ui.Wallet.a7 a7Var = (org.telegram.ui.Wallet.a7) obj2;
                 org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) obj;
-                if ((n2Var instanceof org.telegram.ui.Wallet.z4) && org.telegram.ui.Components.ad.a(n2Var)) {
+                if ((n2Var instanceof org.telegram.ui.Wallet.a5) && org.telegram.ui.Components.ad.a(n2Var)) {
                     org.telegram.ui.Components.ad.a0(n2Var).M(LocaleController.getString(R.string.WalletImported), LocaleController.getString(R.string.WalletImportedInfo), R.raw.contact_check).j();
                 }
-                z6Var.finishFragment();
+                a7Var.finishFragment();
                 return;
             case 16:
                 ((org.telegram.ui.Wallet.p0) obj).B();
-                ((org.telegram.ui.Wallet.k7) obj2).f26290a.W2.N(true);
+                ((org.telegram.ui.Wallet.l7) obj2).f26290a.W2.N(true);
                 return;
             case 17:
-                org.telegram.ui.Wallet.k7 k7Var = (org.telegram.ui.Wallet.k7) obj2;
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(k7Var.getParentActivity(), 0, k7Var.getResourceProvider());
+                org.telegram.ui.Wallet.l7 l7Var = (org.telegram.ui.Wallet.l7) obj2;
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(l7Var.getParentActivity(), 0, l7Var.getResourceProvider());
                 String string = LocaleController.getString(R.string.WalletDisableBackupTitle);
                 org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20374a;
                 b2Var.R = string;
                 b2Var.T = LocaleController.getString(R.string.WalletDisableBackupExistingPhraseInfo);
                 alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                alertDialog$Builder.k(LocaleController.getString(R.string.WalletDisable), new ls0(24, k7Var, (org.telegram.ui.Wallet.k0) obj));
+                alertDialog$Builder.k(LocaleController.getString(R.string.WalletDisable), new ls0(24, l7Var, (org.telegram.ui.Wallet.k0) obj));
                 alertDialog$Builder.d(-1);
                 alertDialog$Builder.o();
                 return;
@@ -172,7 +172,7 @@ public final class ii1 implements Runnable {
                 ((Runnable) obj).run();
                 return;
             case 19:
-                ((ViewGroup) obj).removeView(((org.telegram.ui.Wallet.v8) obj2).h);
+                ((ViewGroup) obj).removeView(((org.telegram.ui.Wallet.w8) obj2).h);
                 return;
             case 20:
                 fj1 fj1Var = (fj1) obj2;
@@ -181,8 +181,8 @@ public final class ii1 implements Runnable {
                 int i12 = iArr[0] - 1;
                 iArr[0] = i12;
                 if (i12 == 0) {
-                    WallpapersListActivity wallpapersListActivity = fj1Var.f37622a;
-                    int[][] iArr2 = WallpapersListActivity.f35759k0;
+                    WallpapersListActivity wallpapersListActivity = fj1Var.f37624a;
+                    int[][] iArr2 = WallpapersListActivity.f35761k0;
                     wallpapersListActivity.B0(true);
                     return;
                 }
@@ -191,12 +191,12 @@ public final class ii1 implements Runnable {
                 lj1 lj1Var = (lj1) obj2;
                 String str = (String) obj;
                 lj1Var.d.clear();
-                lj1Var.f39610e.clear();
-                lj1Var.f39611f = true;
+                lj1Var.f39612e.clear();
+                lj1Var.f39613f = true;
                 lj1Var.F(str, "", true);
                 lj1Var.h = str;
                 lj1Var.l();
-                lj1Var.f39617y = null;
+                lj1Var.f39619y = null;
                 return;
             case 22:
                 lj1 lj1Var2 = (lj1) obj2;
@@ -205,15 +205,15 @@ public final class ii1 implements Runnable {
                 MessagesController.getInstance(WallpapersListActivity.p0(wallpapersListActivity2)).putUsers(tL_contacts_resolvedPeer.users, false);
                 MessagesController.getInstance(WallpapersListActivity.q0(wallpapersListActivity2)).putChats(tL_contacts_resolvedPeer.chats, false);
                 wallpapersListActivity2.getMessagesStorage().putUsersAndChats(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, true, true);
-                String str2 = lj1Var2.f39616x;
-                lj1Var2.f39616x = null;
+                String str2 = lj1Var2.f39618x;
+                lj1Var2.f39618x = null;
                 lj1Var2.F(str2, "", false);
                 return;
             case 23:
                 String str3 = (String) obj;
-                rj1 rj1Var = ((qj1) obj2).f41135a;
+                rj1 rj1Var = ((qj1) obj2).f41137a;
                 Activity parentActivity = rj1Var.getParentActivity();
-                MessageObject messageObject = rj1Var.f41443n;
+                MessageObject messageObject = rj1Var.f41445n;
                 if (parentActivity != null) {
                     if (BuildVars.LOGS_ENABLED) {
                         FileLog.d(str3);
@@ -232,7 +232,7 @@ public final class ii1 implements Runnable {
                 return;
             case 24:
                 org.telegram.ui.web.b1 b1Var2 = (org.telegram.ui.web.b1) obj2;
-                ei.r rVar = b1Var2.f43249j0;
+                ei.r rVar = b1Var2.f43251j0;
                 rVar.f9320f = true;
                 rVar.k();
                 b1Var2.v((ai.ea) obj);
@@ -240,7 +240,7 @@ public final class ii1 implements Runnable {
             case 25:
                 BotWebViewContainer$BotWebViewProxy botWebViewContainer$BotWebViewProxy = (BotWebViewContainer$BotWebViewProxy) obj2;
                 ArrayList arrayList = (ArrayList) obj;
-                if (botWebViewContainer$BotWebViewProxy != null && (b1Var = botWebViewContainer$BotWebViewProxy.f43211a) != null && (g0Var = b1Var.f43239c) != null) {
+                if (botWebViewContainer$BotWebViewProxy != null && (b1Var = botWebViewContainer$BotWebViewProxy.f43213a) != null && (g0Var = b1Var.f43241c) != null) {
                     g0Var.f(arrayList);
                     return;
                 }
@@ -248,13 +248,13 @@ public final class ii1 implements Runnable {
             case 26:
                 ArrayList arrayList2 = (ArrayList) obj2;
                 LongSparseArray longSparseArray = (LongSparseArray) obj;
-                org.telegram.ui.web.d1.f43287c.addAll(0, arrayList2);
+                org.telegram.ui.web.d1.f43289c.addAll(0, arrayList2);
                 for (int i13 = 0; i13 < longSparseArray.size(); i13++) {
                     org.telegram.ui.web.d1.d.put(longSparseArray.keyAt(i13), (org.telegram.ui.web.c1) longSparseArray.valueAt(i13));
                 }
-                org.telegram.ui.web.d1.f43286b = true;
-                org.telegram.ui.web.d1.f43285a = false;
-                ArrayList arrayList3 = org.telegram.ui.web.d1.f43288e;
+                org.telegram.ui.web.d1.f43288b = true;
+                org.telegram.ui.web.d1.f43287a = false;
+                ArrayList arrayList3 = org.telegram.ui.web.d1.f43290e;
                 if (arrayList3 != null) {
                     int size = arrayList3.size();
                     while (i11 < size) {
@@ -262,13 +262,13 @@ public final class ii1 implements Runnable {
                         i11++;
                         ((Utilities.Callback) obj3).run(arrayList2);
                     }
-                    org.telegram.ui.web.d1.f43288e = null;
+                    org.telegram.ui.web.d1.f43290e = null;
                     return;
                 }
                 return;
             case 27:
                 org.telegram.ui.web.g1 g1Var = ((org.telegram.ui.web.f1) obj2).h;
-                ArrayList arrayList4 = g1Var.f43305f;
+                ArrayList arrayList4 = g1Var.f43307f;
                 arrayList4.clear();
                 arrayList4.addAll((ArrayList) obj);
                 g1Var.h = false;
@@ -291,7 +291,7 @@ public final class ii1 implements Runnable {
                 animate.alpha(f7);
                 return;
             default:
-                ((l0) obj2).f43484f0.run((Integer) obj);
+                ((l0) obj2).f43486f0.run((Integer) obj);
                 return;
         }
     }

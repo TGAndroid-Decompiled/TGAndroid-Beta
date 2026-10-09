@@ -158,7 +158,7 @@ public abstract class o1 extends FrameLayout implements NotificationCenter.Notif
         addView(w0Var, w7.x5.a(-1.0f, 0.0f, 0.0f, 0.0f, 34.0f, -1, 87));
         w0Var.setOnItemClickListener(new u0(s3Var, viewGroup, kcVar, 0));
         y0 y0Var = new y0(s3Var);
-        y0Var.f47696m = false;
+        y0Var.f47698m = false;
         y0Var.C = false;
         hs hsVar = hs.h;
         y0Var.o(hsVar);
@@ -228,7 +228,7 @@ public abstract class o1 extends FrameLayout implements NotificationCenter.Notif
         addView(fc1Var, w7.x5.a(26.0f, 0.0f, 0.0f, 0.0f, 9.66f, -1, 87));
         fc1Var.setOnItemClickListener(new a1.c(s3Var, 4));
         s4.j jVar = new s4.j();
-        jVar.f47696m = false;
+        jVar.f47698m = false;
         jVar.C = false;
         jVar.o(hsVar);
         jVar.n(350L);

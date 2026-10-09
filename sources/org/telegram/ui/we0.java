@@ -31,21 +31,21 @@ public final class we0 extends org.telegram.ui.Components.xw0 {
     public final te0 U;
     public final te0 V;
     public float W;
-    public final int f43197a;
-    public final wg0 f43198a0;
-    public final org.telegram.ui.Components.zd0 f43199b;
-    public final ci.g2 f43200c;
+    public final int f43199a;
+    public final wg0 f43200a0;
+    public final org.telegram.ui.Components.zd0 f43201b;
+    public final ci.g2 f43202c;
     public final org.telegram.ui.Components.voip.n2 d;
-    public final TextView f43201e;
-    public final TextView f43202f;
+    public final TextView f43203e;
+    public final TextView f43204f;
     public final org.telegram.ui.Components.fk0 h;
-    public final TextView f43203n;
-    public final TextView f43204r;
-    public final TextView f43205s;
+    public final TextView f43205n;
+    public final TextView f43206r;
+    public final TextView f43207s;
     public final xf0 v;
-    public boolean f43206w;
-    public boolean f43207x;
-    public boolean f43208y;
+    public boolean f43208w;
+    public boolean f43209x;
+    public boolean f43210y;
 
     public we0(org.telegram.ui.wg0 r28, android.content.Context r29, int r30) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.we0.<init>(org.telegram.ui.wg0, android.content.Context, int):void");
@@ -70,7 +70,7 @@ public final class we0 extends org.telegram.ui.Components.xw0 {
 
     @Override
     public final boolean c(boolean z10) {
-        wg0 wg0Var = this.f43198a0;
+        wg0 wg0Var = this.f43200a0;
         wg0Var.k1(true, true);
         int i10 = this.F;
         if (i10 != 0) {
@@ -102,7 +102,7 @@ public final class we0 extends org.telegram.ui.Components.xw0 {
         if (this.R) {
             return;
         }
-        String obj = this.f43200c.getText().toString();
+        String obj = this.f43202c.getText().toString();
         if (obj.length() == 0) {
             s(false);
         } else if (!p(obj)) {
@@ -114,7 +114,7 @@ public final class we0 extends org.telegram.ui.Components.xw0 {
             tL_auth_signIn.phone_code = obj;
             tL_auth_signIn.phone_code_hash = this.H;
             tL_auth_signIn.flags |= 1;
-            wg0 wg0Var = this.f43198a0;
+            wg0 wg0Var = this.f43200a0;
             wg0Var.n1(wg0Var.getConnectionsManager().sendRequest(tL_auth_signIn, new pe0(this, tL_auth_signIn, 0), 10), true);
             wg0Var.v1(true, true);
         }
@@ -127,12 +127,12 @@ public final class we0 extends org.telegram.ui.Components.xw0 {
 
     @Override
     public final void j() {
-        AndroidUtilities.runOnUIThread(new te0(this, 3), wg0.f43571t0);
+        AndroidUtilities.runOnUIThread(new te0(this, 3), wg0.f43573t0);
     }
 
     @Override
     public final void k(Bundle bundle) {
-        Bundle bundle2 = bundle.getBundle("recoveryview_word" + this.f43197a);
+        Bundle bundle2 = bundle.getBundle("recoveryview_word" + this.f43199a);
         this.L = bundle2;
         if (bundle2 != null) {
             m(bundle2, true);
@@ -142,7 +142,7 @@ public final class we0 extends org.telegram.ui.Components.xw0 {
     @Override
     public final void l(Bundle bundle) {
         if (this.L != null) {
-            bundle.putBundle("recoveryview_word" + this.f43197a, this.L);
+            bundle.putBundle("recoveryview_word" + this.f43199a, this.L);
         }
     }
 
@@ -171,7 +171,7 @@ public final class we0 extends org.telegram.ui.Components.xw0 {
             }
             return;
         }
-        ci.g2 g2Var = this.f43200c;
+        ci.g2 g2Var = this.f43202c;
         g2Var.setText("");
         this.L = bundle;
         this.K = null;
@@ -203,17 +203,17 @@ public final class we0 extends org.telegram.ui.Components.xw0 {
         this.T = null;
         this.R = false;
         this.M = false;
-        wg0 wg0Var = this.f43198a0;
-        wg0Var.f43591o0 = false;
+        wg0 wg0Var = this.f43200a0;
+        wg0Var.f43593o0 = false;
         xf0Var.invalidate();
-        if (this.f43197a == 16) {
+        if (this.f43199a == 16) {
             z11 = false;
         } else {
             z11 = true;
         }
         String str = "+" + hf.b.c().b(hf.b.d(this.J, false));
         String str2 = this.K;
-        TextView textView = this.f43204r;
+        TextView textView = this.f43206r;
         if (str2 == null) {
             if (!z11) {
                 i11 = R.string.SMSWordText;
@@ -257,39 +257,39 @@ public final class we0 extends org.telegram.ui.Components.xw0 {
     @Override
     public final void n() {
         int i10 = org.telegram.ui.ActionBar.i6.G6;
-        wg0 wg0Var = this.f43198a0;
-        this.f43203n.setTextColor(wg0Var.getThemedColor(i10));
-        this.f43204r.setTextColor(wg0Var.getThemedColor(org.telegram.ui.ActionBar.i6.D6));
+        wg0 wg0Var = this.f43200a0;
+        this.f43205n.setTextColor(wg0Var.getThemedColor(i10));
+        this.f43206r.setTextColor(wg0Var.getThemedColor(org.telegram.ui.ActionBar.i6.D6));
         int themedColor = wg0Var.getThemedColor(i10);
-        ci.g2 g2Var = this.f43200c;
+        ci.g2 g2Var = this.f43202c;
         g2Var.setTextColor(themedColor);
         g2Var.setCursorColor(wg0Var.getThemedColor(org.telegram.ui.ActionBar.i6.f20943l6));
         g2Var.setHintTextColor(wg0Var.getThemedColor(org.telegram.ui.ActionBar.i6.H6));
-        this.f43199b.f();
+        this.f43201b.f();
     }
 
     public final void o(boolean z10) {
         float f7;
-        this.f43207x = z10;
+        this.f43209x = z10;
         float f10 = 0.0f;
         if (z10) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
-        this.f43199b.a(f7);
+        this.f43201b.a(f7);
         float f11 = (f7 * 0.1f) + 0.9f;
         float f12 = -5.0f;
-        ViewPropertyAnimator translationY = this.f43201e.animate().scaleX(f11).scaleY(f11).alpha(f7).translationY((1.0f - f7) * AndroidUtilities.dp(-5.0f));
+        ViewPropertyAnimator translationY = this.f43203e.animate().scaleX(f11).scaleY(f11).alpha(f7).translationY((1.0f - f7) * AndroidUtilities.dp(-5.0f));
         org.telegram.ui.Components.hs hsVar = org.telegram.ui.Components.hs.h;
         org.telegram.messenger.bi.t(translationY, hsVar, 290L);
-        if (this.f43206w && !this.f43207x) {
+        if (this.f43208w && !this.f43209x) {
             f10 = 1.0f;
         }
         float f13 = (0.1f * f10) + 0.9f;
-        ViewPropertyAnimator alpha = this.f43202f.animate().scaleX(f13).scaleY(f13).alpha(f10);
+        ViewPropertyAnimator alpha = this.f43204f.animate().scaleX(f13).scaleY(f13).alpha(f10);
         float f14 = 1.0f - f10;
-        if (this.f43207x) {
+        if (this.f43209x) {
             f12 = 5.0f;
         }
         alpha.translationY(f14 * AndroidUtilities.dp(f12)).setInterpolator(hsVar).setDuration(290L).start();
@@ -319,18 +319,18 @@ public final class we0 extends org.telegram.ui.Components.xw0 {
         te0 te0Var = this.U;
         AndroidUtilities.cancelRunOnUIThread(te0Var);
         ClipboardManager clipboardManager = (ClipboardManager) getContext().getSystemService("clipboard");
-        if (TextUtils.isEmpty(this.f43200c.getText()) && clipboardManager != null && clipboardManager.hasPrimaryClip()) {
+        if (TextUtils.isEmpty(this.f43202c.getText()) && clipboardManager != null && clipboardManager.hasPrimaryClip()) {
             z11 = true;
         } else {
             z11 = false;
         }
-        if (this.f43206w != z11) {
-            this.f43206w = z11;
+        if (this.f43208w != z11) {
+            this.f43208w = z11;
             float f15 = -5.0f;
             float f16 = 0.9f;
             float f17 = 0.7f;
-            TextView textView = this.f43205s;
-            TextView textView2 = this.f43202f;
+            TextView textView = this.f43207s;
+            TextView textView2 = this.f43204f;
             float f18 = 0.0f;
             float f19 = 1.0f;
             if (z10) {
@@ -354,22 +354,22 @@ public final class we0 extends org.telegram.ui.Components.xw0 {
                 org.telegram.ui.Components.hs hsVar = org.telegram.ui.Components.hs.h;
                 scaleY.setInterpolator(hsVar).setDuration(300L).start();
                 ViewPropertyAnimator animate2 = textView2.animate();
-                if (this.f43206w && !this.f43207x) {
+                if (this.f43208w && !this.f43209x) {
                     f14 = 1.0f;
                 } else {
                     f14 = 0.9f;
                 }
                 ViewPropertyAnimator scaleX2 = animate2.scaleX(f14);
-                if (this.f43206w && !this.f43207x) {
+                if (this.f43208w && !this.f43209x) {
                     f16 = 1.0f;
                 }
                 ViewPropertyAnimator scaleY2 = scaleX2.scaleY(f16);
-                if (!this.f43206w || this.f43207x) {
+                if (!this.f43208w || this.f43209x) {
                     f19 = 0.0f;
                 }
                 ViewPropertyAnimator alpha2 = scaleY2.alpha(f19);
-                if (!this.f43206w || this.f43207x) {
-                    if (this.f43207x) {
+                if (!this.f43208w || this.f43209x) {
+                    if (this.f43209x) {
                         f15 = 5.0f;
                     }
                     f18 = AndroidUtilities.dp(f15);
@@ -392,22 +392,22 @@ public final class we0 extends org.telegram.ui.Components.xw0 {
                     f17 = 1.0f;
                 }
                 textView.setScaleY(f17);
-                if (this.f43206w && !this.f43207x) {
+                if (this.f43208w && !this.f43209x) {
                     f11 = 1.0f;
                 } else {
                     f11 = 0.9f;
                 }
                 textView2.setScaleX(f11);
-                if (this.f43206w && !this.f43207x) {
+                if (this.f43208w && !this.f43209x) {
                     f16 = 1.0f;
                 }
                 textView2.setScaleY(f16);
-                if (!this.f43206w || this.f43207x) {
+                if (!this.f43208w || this.f43209x) {
                     f19 = 0.0f;
                 }
                 textView2.setAlpha(f19);
-                if (!this.f43206w || this.f43207x) {
-                    if (this.f43207x) {
+                if (!this.f43208w || this.f43209x) {
+                    if (this.f43209x) {
                         f15 = 5.0f;
                     }
                     f18 = AndroidUtilities.dp(f15);
@@ -440,20 +440,20 @@ public final class we0 extends org.telegram.ui.Components.xw0 {
         boolean z11;
         int i10;
         int i11;
-        ci.g2 g2Var = this.f43200c;
-        if (this.f43198a0.getParentActivity() == null) {
+        ci.g2 g2Var = this.f43202c;
+        if (this.f43200a0.getParentActivity() == null) {
             return;
         }
         try {
             g2Var.performHapticFeedback(3, 2);
         } catch (Exception unused) {
         }
-        if (this.f43197a == 16) {
+        if (this.f43199a == 16) {
             z11 = false;
         } else {
             z11 = true;
         }
-        TextView textView = this.f43201e;
+        TextView textView = this.f43203e;
         if (z10) {
             if (!z11) {
                 i11 = R.string.SMSWordBeginningError;
@@ -471,7 +471,7 @@ public final class we0 extends org.telegram.ui.Components.xw0 {
             }
             textView.setText(LocaleController.getString(i10));
         }
-        if (!this.f43207x && !this.f43208y) {
+        if (!this.f43209x && !this.f43210y) {
             AndroidUtilities.shakeViewSpring(g2Var, this.W);
             AndroidUtilities.shakeViewSpring(textView, this.W);
         }

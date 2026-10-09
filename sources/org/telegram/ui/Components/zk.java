@@ -43,18 +43,18 @@ public final class zk implements Runnable {
     private final void c() {
         int i10;
         TLRPC.Dialog dialog = (TLRPC.Dialog) this.d;
-        org.telegram.ui.ty tyVar = ((org.telegram.ui.xx) this.f33592c).f44157f0;
+        org.telegram.ui.ty tyVar = ((org.telegram.ui.xx) this.f33592c).f44159f0;
         ArrayList arrayList = tyVar.R1;
         if (arrayList != null && (i10 = this.f33591b) >= 0 && i10 < arrayList.size()) {
             tyVar.R1.add(i10, dialog);
-            tyVar.f42172e0[0].q(true);
+            tyVar.f42174e0[0].q(true);
         }
     }
 
     private final void e() {
         org.telegram.ui.ry ryVar = (org.telegram.ui.ry) this.f33592c;
         TLRPC.Dialog dialog = (TLRPC.Dialog) this.d;
-        org.telegram.ui.sy syVar = ryVar.f41539g;
+        org.telegram.ui.sy syVar = ryVar.f41541g;
         org.telegram.ui.ty tyVar = ryVar.h;
         tyVar.S1 = true;
         tyVar.getMessagesController().addDialogToFolder(dialog.f20042id, 0, this.f33591b, 0L);
@@ -65,7 +65,7 @@ public final class zk implements Runnable {
             ArrayList<TLRPC.Dialog> dialogs2 = tyVar.getMessagesController().getDialogs(1);
             if (!dialogs2.isEmpty() || indexOf != 1) {
                 tyVar.x4(true, true);
-                syVar.f41797x.D();
+                syVar.f41799x.D();
                 syVar.q(true);
                 tyVar.l3();
             }
@@ -80,7 +80,7 @@ public final class zk implements Runnable {
                 if (!tyVar.R1.isEmpty()) {
                     tyVar.R1.remove(0);
                 }
-                syVar.f41797x.D();
+                syVar.f41799x.D();
                 syVar.q(true);
                 return;
             }

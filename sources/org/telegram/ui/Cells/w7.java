@@ -350,7 +350,7 @@ public final class w7 extends FrameLayout {
                 i11 = sharingLocationInfo.stopTime;
                 i10 = sharingLocationInfo.period;
             } else {
-                TLRPC.Message message = this.f23681s.f36281b;
+                TLRPC.Message message = this.f23681s.f36283b;
                 int i12 = message.date;
                 i10 = message.media.period;
                 i11 = i12 + i10;

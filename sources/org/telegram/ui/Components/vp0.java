@@ -41,7 +41,7 @@ public final class vp0 extends pm0 {
     public final void v(s4.d1 d1Var, int i10) {
         long j3;
         String str;
-        zp0 zp0Var = (zp0) d1Var.f47656a;
+        zp0 zp0Var = (zp0) d1Var.f47658a;
         TLRPC.TL_sendAsPeer tL_sendAsPeer = (TLRPC.TL_sendAsPeer) this.d.get(i10);
         TLRPC.Peer peer = tL_sendAsPeer.peer;
         long j10 = peer.channel_id;

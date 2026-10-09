@@ -214,7 +214,7 @@ public final class p20 extends FrameLayout implements me.d {
         d(radialProgressView, 0.0f);
         w7.z5.a(this);
         if (!z10) {
-            setOutlineProvider(yf.i0.f52169a);
+            setOutlineProvider(yf.i0.f52171a);
             setTranslationZ(AndroidUtilities.dpf2(0.5f));
         }
         if (z10) {

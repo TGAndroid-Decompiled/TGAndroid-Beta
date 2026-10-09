@@ -234,7 +234,7 @@ public final class ki0 extends View {
         ti0 ti0Var = this.h;
         if (ti0Var != null) {
             ai.o7 o7Var = this.P;
-            ArrayList arrayList = ti0Var.f53548k0;
+            ArrayList arrayList = ti0Var.f53550k0;
             if (arrayList != null) {
                 arrayList.remove(o7Var);
             }
@@ -347,7 +347,7 @@ public final class ki0 extends View {
                             imageReceiver = l01Var.f33156a;
                         }
                         g(imageReceiver, beginRecording2, f16, f10);
-                        if (l01Var.f39387a0 && l01Var.V > 0.0f) {
+                        if (l01Var.f39389a0 && l01Var.V > 0.0f) {
                             g(l01Var.U, beginRecording2, f16, f10);
                         }
                         this.L.endRecording();

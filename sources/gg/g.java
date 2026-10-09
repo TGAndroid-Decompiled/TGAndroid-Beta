@@ -69,7 +69,7 @@ public final class g extends s4.o {
             case 3:
                 return Objects.equals(this.f10608c.get(i10), ((mm0) this.d).f28862n.get(i11));
             default:
-                return ((Long) this.f10608c.get(i10)).equals(((k71) this.d).f39159v0.get(i11));
+                return ((Long) this.f10608c.get(i10)).equals(((k71) this.d).f39161v0.get(i11));
         }
     }
 
@@ -85,7 +85,7 @@ public final class g extends s4.o {
             case 3:
                 return ((mm0) this.d).f28862n.size();
             default:
-                return ((k71) this.d).f39159v0.size();
+                return ((k71) this.d).f39161v0.size();
         }
     }
 

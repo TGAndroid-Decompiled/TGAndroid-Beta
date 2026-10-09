@@ -29,8 +29,8 @@ public final class og0 implements Runnable {
         boolean z10;
         String str = (String) this.f29485c;
         String str2 = (String) this.d;
-        org.telegram.ui.web.b1 b1Var = ((BotWebViewContainer$WebViewProxy) this.f29484b).f43212a;
-        if (b1Var != null && !b1Var.f43254o0 && b1Var.f43239c != null) {
+        org.telegram.ui.web.b1 b1Var = ((BotWebViewContainer$WebViewProxy) this.f29484b).f43214a;
+        if (b1Var != null && !b1Var.f43256o0 && b1Var.f43241c != null) {
             if (b1Var.F0 != null && !TextUtils.equals(b1Var.getOriginHost(), b1Var.F0)) {
                 b1Var.g("onWebEventReceived ignore " + str);
                 return;
@@ -78,25 +78,25 @@ public final class og0 implements Runnable {
                         JSONArray jSONArray = new JSONArray(str2);
                         boolean equals = TextUtils.equals(str, "actionBarColor");
                         int argb = Color.argb((int) Math.round(jSONArray.optDouble(3, 1.0d) * 255.0d), (int) Math.round(jSONArray.optDouble(0)), (int) Math.round(jSONArray.optDouble(1)), (int) Math.round(jSONArray.optDouble(2)));
-                        org.telegram.ui.web.y0 y0Var = b1Var.f43235a;
+                        org.telegram.ui.web.y0 y0Var = b1Var.f43237a;
                         if (y0Var != null) {
                             if (equals) {
-                                y0Var.f43544s = true;
-                                y0Var.f43545w = argb;
+                                y0Var.f43546s = true;
+                                y0Var.f43547w = argb;
                             } else {
                                 y0Var.v = true;
-                                y0Var.f43546x = argb;
+                                y0Var.f43548x = argb;
                             }
                             org.telegram.ui.web.y0.a(y0Var);
                         }
-                        b1Var.f43239c.o(argb, equals);
+                        b1Var.f43241c.o(argb, equals);
                         return;
                     } catch (Exception unused) {
                         return;
                     }
                 case 2:
                     b1Var.g("oauth_request " + str2);
-                    if (b1Var.f43235a != null) {
+                    if (b1Var.f43237a != null) {
                         String originHost = b1Var.getOriginHost();
                         if (!TextUtils.isEmpty(originHost)) {
                             try {
@@ -122,9 +122,9 @@ public final class og0 implements Runnable {
                     return;
                 case 3:
                     b1Var.g("siteName " + str2);
-                    org.telegram.ui.web.y0 y0Var2 = b1Var.f43235a;
+                    org.telegram.ui.web.y0 y0Var2 = b1Var.f43237a;
                     if (y0Var2 != null) {
-                        y0Var2.f43543r = str2;
+                        y0Var2.f43545r = str2;
                         org.telegram.ui.web.y0.a(y0Var2);
                         return;
                     }
@@ -160,28 +160,28 @@ public final class og0 implements Runnable {
         org.telegram.ui.web.h2 h2Var = (org.telegram.ui.web.h2) this.f29485c;
         Bitmap bitmap = (Bitmap) this.d;
         i2Var.getClass();
-        if (org.telegram.ui.web.i2.f43351f != null) {
+        if (org.telegram.ui.web.i2.f43353f != null) {
             int i10 = 0;
-            if ((h2Var.d <= 0 || h2Var.f43337e <= 0) && bitmap != null) {
+            if ((h2Var.d <= 0 || h2Var.f43339e <= 0) && bitmap != null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             if (bitmap != null) {
-                i2Var.d.put(h2Var.f43335b, bitmap);
+                i2Var.d.put(h2Var.f43337b, bitmap);
                 if (z10) {
                     int i11 = h2Var.d;
-                    if (i11 == 0 && h2Var.f43337e == 0) {
+                    if (i11 == 0 && h2Var.f43339e == 0) {
                         h2Var.d = bitmap.getWidth();
-                        h2Var.f43337e = bitmap.getHeight();
+                        h2Var.f43339e = bitmap.getHeight();
                     } else if (i11 == 0) {
-                        h2Var.d = (int) ((bitmap.getWidth() / bitmap.getHeight()) * h2Var.f43337e);
-                    } else if (h2Var.f43337e == 0) {
-                        h2Var.f43337e = (int) ((bitmap.getHeight() / bitmap.getWidth()) * h2Var.d);
+                        h2Var.d = (int) ((bitmap.getWidth() / bitmap.getHeight()) * h2Var.f43339e);
+                    } else if (h2Var.f43339e == 0) {
+                        h2Var.f43339e = (int) ((bitmap.getHeight() / bitmap.getWidth()) * h2Var.d);
                     }
                 }
             }
-            ArrayList arrayList = (ArrayList) org.telegram.ui.web.i2.f43351f.remove(h2Var.f43335b);
+            ArrayList arrayList = (ArrayList) org.telegram.ui.web.i2.f43353f.remove(h2Var.f43337b);
             if (arrayList != null) {
                 int size = arrayList.size();
                 while (i10 < size) {

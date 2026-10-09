@@ -87,11 +87,11 @@ public final class t extends View {
             f60VarArr[i10] = new f60(i10);
             int i11 = tVar.F;
             if (i11 == 2) {
-                f60VarArr[i11].f37461g = new LinearGradient(0.0f, 400.0f, 400.0f, 0.0f, new int[]{i6.x0(null, i6.f20898ih, false), i6.x0(null, i6.f20936kh, false), i6.x0(null, i6.f20916jh, false)}, (float[]) null, Shader.TileMode.CLAMP);
+                f60VarArr[i11].f37463g = new LinearGradient(0.0f, 400.0f, 400.0f, 0.0f, new int[]{i6.x0(null, i6.f20898ih, false), i6.x0(null, i6.f20936kh, false), i6.x0(null, i6.f20916jh, false)}, (float[]) null, Shader.TileMode.CLAMP);
             } else if (i11 == 1) {
-                f60VarArr[i11].f37461g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{i6.x0(null, i6.Fg, false), i6.x0(null, i6.Hg, false)}, (float[]) null, Shader.TileMode.CLAMP);
+                f60VarArr[i11].f37463g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{i6.x0(null, i6.Fg, false), i6.x0(null, i6.Hg, false)}, (float[]) null, Shader.TileMode.CLAMP);
             } else {
-                f60VarArr[i11].f37461g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{i6.x0(null, i6.Jg, false), i6.x0(null, i6.Ig, false)}, (float[]) null, Shader.TileMode.CLAMP);
+                f60VarArr[i11].f37463g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{i6.x0(null, i6.Jg, false), i6.x0(null, i6.Ig, false)}, (float[]) null, Shader.TileMode.CLAMP);
             }
         }
         f60 f60Var = f60VarArr[tVar.F];
@@ -182,11 +182,11 @@ public final class t extends View {
         for (int i10 = 0; i10 < 2; i10++) {
             Paint paint = this.f32231f;
             if (i10 == 0 && (f60Var2 = this.E) != null) {
-                paint.setShader(f60Var2.f37461g);
+                paint.setShader(f60Var2.f37463g);
                 f7 = 1.0f - this.G;
             } else {
                 if (i10 == 1 && (f60Var = this.f32237y) != null) {
-                    paint.setShader(f60Var.f37461g);
+                    paint.setShader(f60Var.f37463g);
                     f7 = this.G;
                 }
             }

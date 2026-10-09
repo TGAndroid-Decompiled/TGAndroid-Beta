@@ -37,17 +37,17 @@ public final class fv0 extends org.telegram.ui.uu0 {
                     int[] iArr = new int[2];
                     childAt.getLocationInWindow(iArr);
                     org.telegram.ui.ev0 ev0Var = new org.telegram.ui.ev0();
-                    ev0Var.f37355b = iArr[0];
-                    ev0Var.f37356c = childAt.getPaddingTop() + iArr[1];
+                    ev0Var.f37357b = iArr[0];
+                    ev0Var.f37358c = childAt.getPaddingTop() + iArr[1];
                     ev0Var.d = iv0Var.f27493r;
-                    ev0Var.f37364m = null;
-                    ev0Var.f37354a = imageReceiver;
+                    ev0Var.f37366m = null;
+                    ev0Var.f37356a = imageReceiver;
                     if (z10) {
-                        ev0Var.f37357e = imageReceiver.getBitmapSafe();
+                        ev0Var.f37359e = imageReceiver.getBitmapSafe();
                     }
                     ev0Var.h = imageReceiver.getRoundRadius(true);
-                    ev0Var.f37361j = 0;
-                    ev0Var.f37360i = 0;
+                    ev0Var.f37363j = 0;
+                    ev0Var.f37362i = 0;
                     return ev0Var;
                 }
             }

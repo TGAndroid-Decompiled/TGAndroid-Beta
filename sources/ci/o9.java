@@ -81,7 +81,7 @@ public final class o9 implements Runnable {
                 }
                 h8Var.t();
                 h8Var.J.a(true, true);
-                yh.g8 g8Var = h8Var.f52655y;
+                yh.g8 g8Var = h8Var.f52657y;
                 if (g8Var != null) {
                     g8Var.setMyPrivacy(h8Var.E);
                     return;

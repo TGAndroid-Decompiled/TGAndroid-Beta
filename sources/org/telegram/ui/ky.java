@@ -8,20 +8,20 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 public final class ky extends org.telegram.ui.ActionBar.g5 {
-    public final ty f39367f;
+    public final ty f39369f;
 
     public ky(ty tyVar) {
-        this.f39367f = tyVar;
+        this.f39369f = tyVar;
     }
 
     @Override
     public final boolean b() {
-        ty tyVar = this.f39367f;
+        ty tyVar = this.f39369f;
         org.telegram.ui.ActionBar.v0 v0Var = tyVar.D1;
         if (v0Var != null) {
             v0Var.setVisibility(0);
         }
-        if (tyVar.f42217n2 != null) {
+        if (tyVar.f42219n2 != null) {
             tyVar.finishFragment();
             return false;
         }
@@ -31,7 +31,7 @@ public final class ky extends org.telegram.ui.ActionBar.g5 {
     @Override
     public final boolean c() {
         org.telegram.ui.ActionBar.k kVar;
-        ty tyVar = this.f39367f;
+        ty tyVar = this.f39369f;
         kVar = ((org.telegram.ui.ActionBar.n2) tyVar).actionBar;
         if (!kVar.t() && tyVar.Q3 == null) {
             return true;
@@ -42,7 +42,7 @@ public final class ky extends org.telegram.ui.ActionBar.g5 {
     @Override
     public final void m() {
         org.telegram.ui.Components.j10 j10Var;
-        ty tyVar = this.f39367f;
+        ty tyVar = this.f39369f;
         jy jyVar = tyVar.X;
         if (jyVar != null) {
             ArrayList arrayList = jyVar.F;
@@ -54,13 +54,13 @@ public final class ky extends org.telegram.ui.ActionBar.g5 {
                 }
             }
         }
-        tyVar.f42200j2 = false;
-        tyVar.f42204k2 = false;
-        sy syVar = tyVar.f42172e0[0];
+        tyVar.f42202j2 = false;
+        tyVar.f42206k2 = false;
+        sy syVar = tyVar.f42174e0[0];
         if (syVar != null) {
-            py pyVar = syVar.f41788a;
+            py pyVar = syVar.f41790a;
             if (tyVar.V2 == 0) {
-                j10Var = syVar.f41796w;
+                j10Var = syVar.f41798w;
             } else {
                 j10Var = null;
             }
@@ -80,17 +80,17 @@ public final class ky extends org.telegram.ui.ActionBar.g5 {
         org.telegram.ui.ActionBar.k kVar;
         org.telegram.ui.Components.wo0 wo0Var;
         org.telegram.ui.Components.wo0 wo0Var2;
-        ty tyVar = this.f39367f;
-        tyVar.f42200j2 = true;
+        ty tyVar = this.f39369f;
+        tyVar.f42202j2 = true;
         org.telegram.ui.ActionBar.v0 v0Var = tyVar.D1;
         if (v0Var != null) {
             v0Var.setVisibility(8);
         }
         tyVar.J3();
-        sy syVar = tyVar.f42172e0[0];
+        sy syVar = tyVar.f42174e0[0];
         if (syVar != null) {
-            if (tyVar.f42217n2 != null) {
-                syVar.f41788a.c1();
+            if (tyVar.f42219n2 != null) {
+                syVar.f41790a.c1();
                 dy dyVar = tyVar.C0;
                 if (dyVar != null) {
                     ai.w0 w0Var = dyVar.V;
@@ -100,12 +100,12 @@ public final class ky extends org.telegram.ui.ActionBar.g5 {
                     }
                 }
             }
-            if (!tyVar.f42208l2) {
-                ci.d4 d4Var = tyVar.f42225p0;
+            if (!tyVar.f42210l2) {
+                ci.d4 d4Var = tyVar.f42227p0;
                 if (d4Var != null) {
                     d4Var.e(true);
                 }
-                ci.d4 d4Var2 = tyVar.f42230q0;
+                ci.d4 d4Var2 = tyVar.f42232q0;
                 if (d4Var2 != null) {
                     d4Var2.e(true);
                 }
@@ -127,9 +127,9 @@ public final class ky extends org.telegram.ui.ActionBar.g5 {
         if (dyVar2 != null && (wo0Var2 = dyVar2.f25766b0) != null) {
             wo0Var2.f10617c = gg.e0.All;
         }
-        if ((dyVar2 != null && (wo0Var = dyVar2.f25766b0) != null && wo0Var.N()) || tyVar.getMessagesController().getTotalDialogsCount() > 10 || tyVar.f42245s3 || tyVar.K) {
-            tyVar.f42204k2 = true;
-            if (!tyVar.f42228p3) {
+        if ((dyVar2 != null && (wo0Var = dyVar2.f25766b0) != null && wo0Var.N()) || tyVar.getMessagesController().getTotalDialogsCount() > 10 || tyVar.f42247s3 || tyVar.K) {
+            tyVar.f42206k2 = true;
+            if (!tyVar.f42230p3) {
                 tyVar.L4(true, false, true, false);
             }
         }
@@ -145,10 +145,10 @@ public final class ky extends org.telegram.ui.ActionBar.g5 {
         String obj = editText.getText().toString();
         boolean isEmpty = obj.isEmpty();
         boolean z10 = true;
-        ty tyVar = this.f39367f;
-        if (!isEmpty || (((dyVar = tyVar.C0) != null && (wo0Var = dyVar.f25766b0) != null && wo0Var.N()) || tyVar.f42245s3 || tyVar.K)) {
-            tyVar.f42204k2 = true;
-            if (!tyVar.f42228p3) {
+        ty tyVar = this.f39369f;
+        if (!isEmpty || (((dyVar = tyVar.C0) != null && (wo0Var = dyVar.f25766b0) != null && wo0Var.N()) || tyVar.f42247s3 || tyVar.K)) {
+            tyVar.f42206k2 = true;
+            if (!tyVar.f42230p3) {
                 tyVar.L4(true, false, true, false);
             }
         }

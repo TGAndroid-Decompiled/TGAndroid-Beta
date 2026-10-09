@@ -145,7 +145,7 @@ public final class p5 implements View.OnClickListener {
                 return;
             case 7:
                 q11 q11Var = (q11) obj2;
-                v11.U(q11Var.f40952a, q11Var.f40953b, ((org.telegram.ui.Components.m4) obj4).getValue() + 1, (((org.telegram.ui.Components.n4) obj3).getValue() + 1) * 60);
+                v11.U(q11Var.f40954a, q11Var.f40955b, ((org.telegram.ui.Components.m4) obj4).getValue() + 1, (((org.telegram.ui.Components.n4) obj3).getValue() + 1) * 60);
                 runnable2 = ((org.telegram.ui.ActionBar.a3) obj).f20380a.dismissRunnable;
                 runnable2.run();
                 return;
@@ -274,7 +274,7 @@ public final class p5 implements View.OnClickListener {
                 return;
             case 14:
                 fg0 fg0Var = (fg0) obj4;
-                p80 H = p80.H(fg0Var.v, fg0Var.f37547a);
+                p80 H = p80.H(fg0Var.v, fg0Var.f37549a);
                 H.c(R.drawable.msg_help, LocaleController.getString(R.string.SettingsHelp), new oo0(fg0Var, (String) obj3, (String) obj2, (String) obj, 22), false);
                 H.V(5);
                 H.Z();
@@ -295,7 +295,7 @@ public final class p5 implements View.OnClickListener {
                 int i17 = 0;
                 while (true) {
                     if (i17 < h.size()) {
-                        if (((TL_stars.SavedStarGift) h.get(i17)).gift.f20265id == r2Var.f51497b) {
+                        if (((TL_stars.SavedStarGift) h.get(i17)).gift.f20265id == r2Var.f51499b) {
                             savedStarGift = (TL_stars.SavedStarGift) h.get(i17);
                             i10 = i17;
                         } else {
@@ -310,13 +310,13 @@ public final class p5 implements View.OnClickListener {
                     savedStarGift.pinned_to_top = false;
                     h.set(i10, savedStarGift2);
                     savedStarGift2.pinned_to_top = true;
-                    ArrayList arrayList4 = e5Var.f52440l;
+                    ArrayList arrayList4 = e5Var.f52442l;
                     arrayList4.removeAll(h);
-                    if (e5Var.f52434e && !e5Var.f52433c) {
+                    if (e5Var.f52436e && !e5Var.f52435c) {
                         Collections.sort(arrayList4, new mb1(24));
                     }
                     arrayList4.addAll(0, h);
-                    NotificationCenter.getInstance(e5Var.f52431a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(e5Var.f52432b), e5Var);
+                    NotificationCenter.getInstance(e5Var.f52433a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(e5Var.f52434b), e5Var);
                     e5Var.l();
                     r2Var.dismiss();
                     ((ad) callback0Return.run()).M(LocaleController.formatString(R.string.Gift2ReplacedPinTitle, yh.s3.E1(savedStarGift2.gift)), LocaleController.formatString(R.string.Gift2ReplacedPinSubtitle, yh.s3.E1(savedStarGift.gift)), R.raw.ic_pin).j();

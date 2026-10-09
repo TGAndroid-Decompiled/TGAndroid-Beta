@@ -44,10 +44,10 @@ public final class mn implements em0 {
                 org.telegram.ui.ActionBar.e6 e6Var = this.f28864b;
                 if (i10 == i11) {
                     th.f fVar = new th.f(loVar.getContext(), e6Var);
-                    fVar.f48474k0 = new m2.t(loVar, 7);
+                    fVar.f48476k0 = new m2.t(loVar, 7);
                     ArrayList arrayList = loVar.P0;
-                    fVar.f48466c0 = null;
-                    fVar.f48477o0 = new HashSet(arrayList);
+                    fVar.f48468c0 = null;
+                    fVar.f48479o0 = new HashSet(arrayList);
                     fVar.show();
                     return;
                 } else if (i10 == loVar.I0) {
@@ -100,7 +100,7 @@ public final class mn implements em0 {
                                         if (i17 >= 0) {
                                             s4.d1 K = loVar2.f28525s.K(i17);
                                             if (K != null) {
-                                                View view2 = K.f47656a;
+                                                View view2 = K.f47658a;
                                                 if (view2 instanceof org.telegram.ui.Cells.a6) {
                                                     ((org.telegram.ui.Cells.a6) view2).setDivider(z11);
                                                 }
@@ -150,7 +150,7 @@ public final class mn implements em0 {
                                         if (i19 < 0) {
                                             s4.d1 K2 = fc1Var.K(loVar.H0);
                                             if (K2 != null) {
-                                                View view3 = K2.f47656a;
+                                                View view3 = K2.f47658a;
                                                 if (view3 instanceof org.telegram.ui.Cells.a6) {
                                                     ((org.telegram.ui.Cells.a6) view3).setDivider(true);
                                                 }
@@ -167,7 +167,7 @@ public final class mn implements em0 {
                                         joVar.t(i20, 3);
                                         s4.d1 K3 = fc1Var.K(loVar.H0);
                                         if (K3 != null) {
-                                            View view4 = K3.f47656a;
+                                            View view4 = K3.f47658a;
                                             if (view4 instanceof org.telegram.ui.Cells.a6) {
                                                 ((org.telegram.ui.Cells.a6) view4).setDivider(false);
                                             }
@@ -211,8 +211,8 @@ public final class mn implements em0 {
                                     int childCount = fc1Var.getChildCount();
                                     for (int i23 = 0; i23 < childCount; i23++) {
                                         s4.d1 T = fc1Var.T(fc1Var.getChildAt(i23));
-                                        if (T.f47660f == 5) {
-                                            ((org.telegram.ui.Cells.d6) T.f47656a).f21971a.a(loVar.f28497b0, true);
+                                        if (T.f47662f == 5) {
+                                            ((org.telegram.ui.Cells.d6) T.f47658a).f21971a.a(loVar.f28497b0, true);
                                         }
                                     }
                                 } else if (i10 == loVar.J0) {
@@ -237,7 +237,7 @@ public final class mn implements em0 {
                                             if (i25 >= 0) {
                                                 s4.d1 K4 = fc1Var.K(i25);
                                                 if (K4 != null) {
-                                                    ((org.telegram.ui.Cells.a6) K4.f47656a).setChecked(false);
+                                                    ((org.telegram.ui.Cells.a6) K4.f47658a).setChecked(false);
                                                 } else {
                                                     joVar.m(loVar.D0);
                                                 }
@@ -272,7 +272,7 @@ public final class mn implements em0 {
                         for (int i28 = loVar.f28527t0; i28 < loVar.f28527t0 + loVar.M; i28++) {
                             s4.d1 K5 = fc1Var.K(i28);
                             if (K5 != null) {
-                                View view5 = K5.f47656a;
+                                View view5 = K5.f47658a;
                                 if (view5 instanceof org.telegram.ui.Cells.d6) {
                                     org.telegram.ui.Cells.d6 d6Var = (org.telegram.ui.Cells.d6) view5;
                                     d6Var.m(loVar.f28499c0, true);

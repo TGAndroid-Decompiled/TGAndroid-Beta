@@ -11,54 +11,54 @@ import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ii1;
 public final class p implements Runnable {
-    public final int f35333a;
-    public final Object f35334b;
-    public final String f35335c;
+    public final int f35361a;
+    public final Object f35362b;
+    public final String f35363c;
     public final Object d;
-    public final Object f35336e;
-    public final Object f35337f;
+    public final Object f35364e;
+    public final Object f35365f;
     public final Object h;
-    public final Object f35338n;
-    public final long f35339r;
-    public final TLObject f35340s;
+    public final Object f35366n;
+    public final long f35367r;
+    public final TLObject f35368s;
     public final Object v;
-    public final Object f35341w;
+    public final Object f35369w;
 
     public p(k0 k0Var, String str, Utilities.Callback callback, TL_wallet.nftItem nftitem, String str2, String str3, byte[] bArr, long j3, TLRPC.User user, String str4, Utilities.Callback callback2, int i10) {
-        this.f35333a = i10;
-        this.f35334b = k0Var;
-        this.f35335c = str;
+        this.f35361a = i10;
+        this.f35362b = k0Var;
+        this.f35363c = str;
         this.d = callback;
-        this.f35336e = nftitem;
-        this.f35337f = str2;
+        this.f35364e = nftitem;
+        this.f35365f = str2;
         this.h = str3;
-        this.f35338n = bArr;
-        this.f35339r = j3;
-        this.f35340s = user;
+        this.f35366n = bArr;
+        this.f35367r = j3;
+        this.f35368s = user;
         this.v = str4;
-        this.f35341w = callback2;
+        this.f35369w = callback2;
     }
 
     @Override
     public final void run() {
         String str;
-        int i10 = this.f35333a;
-        TLObject tLObject = this.f35340s;
-        Object obj = this.f35338n;
-        Object obj2 = this.f35336e;
-        Object obj3 = this.f35341w;
+        int i10 = this.f35361a;
+        TLObject tLObject = this.f35368s;
+        Object obj = this.f35366n;
+        Object obj2 = this.f35364e;
+        Object obj3 = this.f35369w;
         Object obj4 = this.d;
         Object obj5 = this.v;
         Object obj6 = this.h;
-        Object obj7 = this.f35337f;
-        Object obj8 = this.f35334b;
+        Object obj7 = this.f35365f;
+        Object obj8 = this.f35362b;
         int i11 = 0;
         switch (i10) {
             case 0:
                 k0 k0Var = (k0) obj8;
                 Utilities.Callback callback = (Utilities.Callback) obj4;
-                String str2 = this.f35335c;
-                p pVar = new p(k0Var, str2, callback, (TL_wallet.nftItem) obj2, (String) obj7, (String) obj6, (byte[]) obj, this.f35339r, (TLRPC.User) tLObject, (String) obj5, (Utilities.Callback) obj3, 1);
+                String str2 = this.f35363c;
+                p pVar = new p(k0Var, str2, callback, (TL_wallet.nftItem) obj2, (String) obj7, (String) obj6, (byte[]) obj, this.f35367r, (TLRPC.User) tLObject, (String) obj5, (Utilities.Callback) obj3, 1);
                 if (k0Var.H() && !k0Var.G()) {
                     k0.E("send " + str2 + ": asking passcode");
                     org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
@@ -86,11 +86,11 @@ public final class p implements Runnable {
                 final String str5 = (String) obj5;
                 final Utilities.Callback callback3 = (Utilities.Callback) obj3;
                 StringBuilder sb2 = new StringBuilder("send ");
-                final String str6 = this.f35335c;
+                final String str6 = this.f35363c;
                 sb2.append(str6);
                 sb2.append(": ready, get secret phrase");
                 k0.E(sb2.toString());
-                final long j3 = this.f35339r;
+                final long j3 = this.f35367r;
                 k0Var2.x(new Utilities.Callback2() {
                     @Override
                     public final void run(java.lang.Object r27, java.lang.Object r28) {
@@ -130,23 +130,23 @@ public final class p implements Runnable {
                     i11++;
                     j10 += tL_labeledPrice.amount;
                 }
-                ConnectionsManager.getInstance(m5Var.f52878a).sendRequest(tL_payments_sendStarsForm, new yh.k4(m5Var, callback22, context, e6Var, j10, this.f35335c, this.f35339r, tLObject3, tL_textWithEntities));
+                ConnectionsManager.getInstance(m5Var.f52880a).sendRequest(tL_payments_sendStarsForm, new yh.k4(m5Var, callback22, context, e6Var, j10, this.f35363c, this.f35367r, tLObject3, tL_textWithEntities));
                 return;
         }
     }
 
     public p(yh.m5 m5Var, TLObject tLObject, TLRPC.TL_error tL_error, Utilities.Callback2 callback2, TLRPC.TL_inputInvoicePremiumGiftStars tL_inputInvoicePremiumGiftStars, Context context, org.telegram.ui.ActionBar.e6 e6Var, String str, long j3, TLObject tLObject2, TLRPC.TL_textWithEntities tL_textWithEntities) {
-        this.f35333a = 2;
-        this.f35334b = m5Var;
-        this.f35337f = tLObject;
+        this.f35361a = 2;
+        this.f35362b = m5Var;
+        this.f35365f = tLObject;
         this.h = tL_error;
         this.v = callback2;
         this.d = tL_inputInvoicePremiumGiftStars;
-        this.f35341w = context;
-        this.f35336e = e6Var;
-        this.f35335c = str;
-        this.f35339r = j3;
-        this.f35338n = tLObject2;
-        this.f35340s = tL_textWithEntities;
+        this.f35369w = context;
+        this.f35364e = e6Var;
+        this.f35363c = str;
+        this.f35367r = j3;
+        this.f35366n = tLObject2;
+        this.f35368s = tL_textWithEntities;
     }
 }

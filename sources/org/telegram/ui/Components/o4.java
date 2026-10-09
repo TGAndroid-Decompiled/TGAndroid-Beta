@@ -40,7 +40,7 @@ public final class o4 extends t61 {
                 MessagesController.getInstance(i11).openByUserName("stickers", s70Var, 1);
                 return;
             case 4:
-                ((org.telegram.ui.vm0) this.f29384f).f42903a.dismissCurrentDialog();
+                ((org.telegram.ui.vm0) this.f29384f).f42905a.dismissCurrentDialog();
                 super.onClick(view);
                 return;
             default:

@@ -27,7 +27,7 @@ public final class i2 extends vq {
             case 3:
                 return org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.Q5, ((co0) this.f5194i).f25452f);
             default:
-                return org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.Je, ((b61) this.f5194i).f44500y.Z0);
+                return org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.Je, ((b61) this.f5194i).f44502y.Z0);
         }
     }
 

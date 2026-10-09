@@ -12,28 +12,28 @@ import org.telegram.ui.Components.t2;
 import org.telegram.ui.jm0;
 import w7.x5;
 public final class w extends LinearLayout {
-    public final v f45822a;
-    public final v f45823b;
-    public final v f45824c;
+    public final v f45824a;
+    public final v f45825b;
+    public final v f45826c;
     public final EditTextBoldCursor d;
-    public boolean f45825e;
-    public final x f45826f;
+    public boolean f45827e;
+    public final x f45828f;
 
     public w(x xVar, Context context) {
         super(context);
-        this.f45826f = xVar;
+        this.f45828f = xVar;
         setOrientation(1);
         setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f), 0);
         v vVar = new v(xVar, context);
-        this.f45822a = vVar;
+        this.f45824a = vVar;
         vVar.a(0);
         addView(vVar, x5.p(-1, -2, 0.0f, 0, 0, 0, 0, 16));
         v vVar2 = new v(xVar, context);
-        this.f45823b = vVar2;
+        this.f45825b = vVar2;
         vVar2.a(1);
         addView(vVar2, x5.p(-1, -2, 0.0f, 0, 0, 0, 0, 16));
         v vVar3 = new v(xVar, context);
-        this.f45824c = vVar3;
+        this.f45826c = vVar3;
         vVar3.a(2);
         addView(vVar3, x5.p(-1, -2, 0.0f, 0, 0, 0, 0, 16));
         LinearLayout linearLayout = new LinearLayout(context);

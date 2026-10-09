@@ -11,32 +11,32 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.XiaomiUtilities;
 import org.telegram.ui.Components.UndoView;
 public final class vv implements org.telegram.ui.Components.qr0, org.telegram.ui.Components.fm0, org.telegram.ui.Components.gm0, n10, org.telegram.ui.ActionBar.a2, r0.n, org.telegram.ui.Components.sl0 {
-    public final int f42987a;
-    public final ty f42988b;
+    public final int f42989a;
+    public final ty f42990b;
 
     public vv(ty tyVar, int i10) {
-        this.f42987a = i10;
-        this.f42988b = tyVar;
+        this.f42989a = i10;
+        this.f42990b = tyVar;
     }
 
     @Override
     public r0.k1 M0(View view, r0.k1 k1Var) {
         UndoView[] undoViewArr;
-        ty tyVar = this.f42988b;
+        ty tyVar = this.f42990b;
         tyVar.v.k(k1Var);
         i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(k1Var, false);
-        tyVar.f42176e4 = defaultWindowInsets.f11577b;
-        tyVar.f42182f4 = defaultWindowInsets.d;
-        int i10 = k1Var.f46775a.f(8).d;
-        if (tyVar.f42187g4 != i10) {
-            tyVar.f42187g4 = i10;
+        tyVar.f42178e4 = defaultWindowInsets.f11577b;
+        tyVar.f42184f4 = defaultWindowInsets.d;
+        int i10 = k1Var.f46777a.f(8).d;
+        if (tyVar.f42189g4 != i10) {
+            tyVar.f42189g4 = i10;
             tyVar.fragmentView.requestLayout();
         }
-        tyVar.F0.setPadding(0, tyVar.f42176e4, 0, 0);
+        tyVar.F0.setPadding(0, tyVar.f42178e4, 0, 0);
         tyVar.U4();
-        for (UndoView undoView : tyVar.f42273y0) {
+        for (UndoView undoView : tyVar.f42275y0) {
             if (undoView != null) {
-                int i11 = tyVar.f42182f4 + tyVar.f42192h4;
+                int i11 = tyVar.f42184f4 + tyVar.f42194h4;
                 ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) undoView.getLayoutParams();
                 if (marginLayoutParams != null && marginLayoutParams.bottomMargin != i11) {
                     marginLayoutParams.bottomMargin = i11;
@@ -48,12 +48,12 @@ public final class vv implements org.telegram.ui.Components.qr0, org.telegram.ui
         if (nxVar != null) {
             r0.i0.b(nxVar, k1Var);
         }
-        return r0.k1.f46774b;
+        return r0.k1.f46776b;
     }
 
     @Override
     public boolean Y0(View view) {
-        switch (this.f42987a) {
+        switch (this.f42989a) {
             case 1:
                 return false;
             case 2:
@@ -65,7 +65,7 @@ public final class vv implements org.telegram.ui.Components.qr0, org.telegram.ui
 
     @Override
     public void a() {
-        ty tyVar = this.f42988b;
+        ty tyVar = this.f42990b;
         tyVar.Q = true;
         tyVar.fragmentView.invalidate();
     }
@@ -77,24 +77,24 @@ public final class vv implements org.telegram.ui.Components.qr0, org.telegram.ui
 
     @Override
     public boolean d(int i10, View view) {
-        ty.m0(this.f42988b, i10);
+        ty.m0(this.f42990b, i10);
         return false;
     }
 
     @Override
     public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f42987a) {
+        switch (this.f42989a) {
             case 6:
-                ty.d0(this.f42988b);
+                ty.d0(this.f42990b);
                 return;
             case 7:
             default:
-                ty tyVar = this.f42988b;
+                ty tyVar = this.f42990b;
                 tyVar.getMessagesController().hidePromoDialog();
                 tyVar.Y3(false);
                 return;
             case 8:
-                ty tyVar2 = this.f42988b;
+                ty tyVar2 = this.f42990b;
                 tyVar2.getClass();
                 Intent permissionManagerIntent = XiaomiUtilities.getPermissionManagerIntent();
                 if (permissionManagerIntent != null) {
@@ -115,7 +115,7 @@ public final class vv implements org.telegram.ui.Components.qr0, org.telegram.ui
                 }
                 return;
             case 9:
-                ty tyVar3 = this.f42988b;
+                ty tyVar3 = this.f42990b;
                 tyVar3.getClass();
                 Intent intent2 = new Intent("android.settings.MANAGE_APP_USE_FULL_SCREEN_INTENT");
                 intent2.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
@@ -130,7 +130,7 @@ public final class vv implements org.telegram.ui.Components.qr0, org.telegram.ui
     }
 
     public void h(int i10) {
-        dx dxVar = this.f42988b.B1;
+        dx dxVar = this.f42990b.B1;
         if (dxVar == null) {
             return;
         }
@@ -142,12 +142,12 @@ public final class vv implements org.telegram.ui.Components.qr0, org.telegram.ui
     }
 
     public void i(boolean z10, ArrayList arrayList, ArrayList arrayList2, boolean z11) {
-        this.f42988b.T4(z10, arrayList, arrayList2, z11, true);
+        this.f42990b.T4(z10, arrayList, arrayList2, z11, true);
     }
 
     @Override
     public void n0(View view, float f7, float f10) {
-        int i10 = this.f42987a;
+        int i10 = this.f42989a;
     }
 
     private final void b(View view, float f7, float f10) {

@@ -178,11 +178,11 @@ public final class za implements Utilities.Callback2 {
                 org.telegram.ui.Wallet.c0 c0Var = (org.telegram.ui.Wallet.c0) this.f6432c;
                 TL_wallet.nftItems nftitems = (TL_wallet.nftItems) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                ArrayList arrayList = c0Var.f34692b;
-                ArrayList arrayList2 = c0Var.f34693c;
-                c0Var.f34700l = -1;
-                c0Var.f34698j = false;
-                c0Var.f34697i = false;
+                ArrayList arrayList = c0Var.f34704b;
+                ArrayList arrayList2 = c0Var.f34705c;
+                c0Var.f34712l = -1;
+                c0Var.f34710j = false;
+                c0Var.f34709i = false;
                 boolean z13 = this.f6431b;
                 if (nftitems != null) {
                     if (z13) {
@@ -209,9 +209,9 @@ public final class za implements Utilities.Callback2 {
                         }
                     }
                     String str2 = nftitems.next_offset;
-                    c0Var.f34695f = str2;
+                    c0Var.f34707f = str2;
                     boolean isEmpty = TextUtils.isEmpty(str2);
-                    c0Var.f34696g = isEmpty;
+                    c0Var.f34708g = isEmpty;
                     c0Var.h = true;
                     if (isEmpty) {
                         for (int size2 = arrayList2.size() - 1; size2 >= 0; size2--) {
@@ -237,7 +237,7 @@ public final class za implements Utilities.Callback2 {
                     c0Var.g();
                 } else {
                     if (z13) {
-                        c0Var.f34696g = false;
+                        c0Var.f34708g = false;
                         c0Var.h = false;
                     }
                     if (tL_error2 == null) {
@@ -245,7 +245,7 @@ public final class za implements Utilities.Callback2 {
                     } else {
                         str = tL_error2.text;
                     }
-                    c0Var.f34699k = str;
+                    c0Var.f34711k = str;
                 }
                 c0Var.f();
                 return;

@@ -110,9 +110,9 @@ public class b5 implements e6, jp0, pu, pc, h7, bn0, fh.a, me.d, com.google.andr
 
     @Override
     public void X(float f7, boolean z10) {
-        ((TextView) this.f20461b).setText("Alpha " + org.telegram.ui.i5.f38526e);
-        org.telegram.ui.i5.f38526e = f7;
-        ((org.telegram.ui.i5) this.f20462c).f38527b.M();
+        ((TextView) this.f20461b).setText("Alpha " + org.telegram.ui.i5.f38528e);
+        org.telegram.ui.i5.f38528e = f7;
+        ((org.telegram.ui.i5) this.f20462c).f38529b.M();
     }
 
     @Override
@@ -148,7 +148,7 @@ public class b5 implements e6, jp0, pu, pc, h7, bn0, fh.a, me.d, com.google.andr
 
     @Override
     public void c(String str, String str2) {
-        nn0 nn0Var = ((vm0) this.f20462c).f42903a;
+        nn0 nn0Var = ((vm0) this.f20462c).f42905a;
         if ("PHONE_VERIFICATION_NEEDED".equals(str)) {
             nn0Var.N1(true, str2, (tk0) this.f20461b, this, nn0Var.B1);
         } else {
@@ -183,7 +183,7 @@ public class b5 implements e6, jp0, pu, pc, h7, bn0, fh.a, me.d, com.google.andr
         na.d dVar = new na.d(24);
         Object mo27get = ((gd.a) this.f20461b).mo27get();
         gd.a aVar2 = (gd.a) this.f20462c;
-        return new s5.g(aVar, dVar, s5.a.f47831f, (s5.i) mo27get, aVar2);
+        return new s5.g(aVar, dVar, s5.a.f47833f, (s5.i) mo27get, aVar2);
     }
 
     @Override
@@ -272,18 +272,18 @@ public class b5 implements e6, jp0, pu, pc, h7, bn0, fh.a, me.d, com.google.andr
             View u02 = j1Var.u0(i10);
             int b10 = j1Var.b(u02);
             int w02 = j1Var.w0(u02);
-            i1Var.f47713b = c10;
-            i1Var.f47714c = c02;
+            i1Var.f47715b = c10;
+            i1Var.f47716c = c02;
             i1Var.d = b10;
-            i1Var.f47715e = w02;
+            i1Var.f47717e = w02;
             if (i12 != 0) {
-                i1Var.f47712a = i12;
+                i1Var.f47714a = i12;
                 if (i1Var.a()) {
                     return u02;
                 }
             }
             if (i13 != 0) {
-                i1Var.f47712a = i13;
+                i1Var.f47714a = i13;
                 if (i1Var.a()) {
                     view = u02;
                 }
@@ -343,9 +343,9 @@ public class b5 implements e6, jp0, pu, pc, h7, bn0, fh.a, me.d, com.google.andr
     @Override
     public void n(int i10, float f7, float f10, me.e eVar) {
         ph.i iVar = (ph.i) this.f20462c;
-        iVar.f45872c.a(f7);
+        iVar.f45874c.a(f7);
         iVar.d.a(f7);
-        iVar.f45871b.a(f7);
+        iVar.f45873b.a(f7);
         ((Runnable) this.f20461b).run();
     }
 
@@ -356,11 +356,11 @@ public class b5 implements e6, jp0, pu, pc, h7, bn0, fh.a, me.d, com.google.andr
         int c02 = j1Var.c0();
         int b10 = j1Var.b(view);
         int w02 = j1Var.w0(view);
-        i1Var.f47713b = c10;
-        i1Var.f47714c = c02;
+        i1Var.f47715b = c10;
+        i1Var.f47716c = c02;
         i1Var.d = b10;
-        i1Var.f47715e = w02;
-        i1Var.f47712a = 24579;
+        i1Var.f47717e = w02;
+        i1Var.f47714a = 24579;
         return i1Var.a();
     }
 
@@ -369,14 +369,14 @@ public class b5 implements e6, jp0, pu, pc, h7, bn0, fh.a, me.d, com.google.andr
         switch (this.f20460a) {
             case 20:
                 da.b bVar = (da.b) obj;
-                w9.m mVar = ((w9.k) this.f20462c).f50239e;
+                w9.m mVar = ((w9.k) this.f20462c).f50241e;
                 if (bVar == null) {
                     Log.w("FirebaseCrashlytics", "Received null app settings, cannot send reports at crash time.", null);
                     return Tasks.forResult(null);
                 }
-                return Tasks.whenAll(w9.m.b(mVar), mVar.f50253m.y((Executor) this.f20461b, null));
+                return Tasks.whenAll(w9.m.b(mVar), mVar.f50255m.y((Executor) this.f20461b, null));
             default:
-                return ((w9.m) this.f20462c).f50246e.l(new u4.f(1, this, (Boolean) obj));
+                return ((w9.m) this.f20462c).f50248e.l(new u4.f(1, this, (Boolean) obj));
         }
     }
 
@@ -466,46 +466,46 @@ public class b5 implements e6, jp0, pu, pc, h7, bn0, fh.a, me.d, com.google.andr
         hv hvVar = ivVar.X;
         if (aVar != null) {
             ((zh.b) this.f20461b).i(aVar);
-            ivVar.f38763e0.d();
-            zh.b bVar = ivVar.f38765g0;
-            dz0[] dz0VarArr = ivVar.f38760b0;
-            org.telegram.ui.Cells.a2[] a2VarArr = ivVar.f38761c0;
+            ivVar.f38765e0.d();
+            zh.b bVar = ivVar.f38767g0;
+            dz0[] dz0VarArr = ivVar.f38762b0;
+            org.telegram.ui.Cells.a2[] a2VarArr = ivVar.f38763c0;
             org.telegram.ui.Cells.a2 a2Var = a2VarArr[0];
             if (a2Var != null) {
                 dz0 dz0Var = dz0VarArr[0];
-                boolean z11 = bVar.f54708m;
+                boolean z11 = bVar.f54710m;
                 dz0Var.f25858c = z11;
                 a2Var.c(z11, true);
             }
             org.telegram.ui.Cells.a2 a2Var2 = a2VarArr[1];
             if (a2Var2 != null) {
                 dz0 dz0Var2 = dz0VarArr[1];
-                boolean z12 = bVar.f54709n;
+                boolean z12 = bVar.f54711n;
                 dz0Var2.f25858c = z12;
                 a2Var2.c(z12, true);
             }
             org.telegram.ui.Cells.a2 a2Var3 = a2VarArr[2];
             if (a2Var3 != null) {
                 dz0 dz0Var3 = dz0VarArr[2];
-                boolean z13 = bVar.f54710o;
+                boolean z13 = bVar.f54712o;
                 dz0Var3.f25858c = z13;
                 a2Var3.c(z13, true);
             }
             org.telegram.ui.Cells.a2 a2Var4 = a2VarArr[3];
             if (a2Var4 != null) {
                 dz0 dz0Var4 = dz0VarArr[3];
-                boolean z14 = bVar.f54711p;
+                boolean z14 = bVar.f54713p;
                 dz0Var4.f25858c = z14;
                 a2Var4.c(z14, true);
             }
             org.telegram.ui.Cells.a2 a2Var5 = a2VarArr[4];
             if (a2Var5 != null) {
                 dz0 dz0Var5 = dz0VarArr[4];
-                boolean z15 = bVar.f54712q;
+                boolean z15 = bVar.f54714q;
                 dz0Var5.f25858c = z15;
                 a2Var5.c(z15, true);
             }
-            ivVar.f38759a0.a(hvVar.d(), true);
+            ivVar.f38761a0.a(hvVar.d(), true);
             hvVar.c(true);
         }
     }
@@ -550,7 +550,7 @@ public class b5 implements e6, jp0, pu, pc, h7, bn0, fh.a, me.d, com.google.andr
         this.f20460a = 14;
         this.f20461b = j1Var;
         ?? obj = new Object();
-        obj.f47712a = 0;
+        obj.f47714a = 0;
         this.f20462c = obj;
     }
 

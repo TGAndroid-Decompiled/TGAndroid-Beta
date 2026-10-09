@@ -22,7 +22,7 @@ public final class k11 extends FrameLayout {
         va0Var.getClass();
         UserConfig.getInstance(i10).unacceptedTermsOfService = null;
         UserConfig.getInstance(i10).saveConfig(false);
-        LaunchActivity launchActivity = va0Var.f42762a;
+        LaunchActivity launchActivity = va0Var.f42764a;
         ArrayList arrayList = launchActivity.f33783d0;
         if (!arrayList.isEmpty()) {
             ((org.telegram.ui.ActionBar.n2) hg.c.g(1, arrayList)).onResume();

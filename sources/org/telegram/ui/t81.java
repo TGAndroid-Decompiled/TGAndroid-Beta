@@ -5,21 +5,21 @@ import org.telegram.messenger.MrzRecognizer;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class t81 implements u9 {
-    public TLObject f41909a = null;
-    public TLRPC.TL_error f41910b = null;
-    public final SessionsActivity f41911c;
+    public TLObject f41911a = null;
+    public TLRPC.TL_error f41912b = null;
+    public final SessionsActivity f41913c;
 
     public t81(SessionsActivity sessionsActivity) {
-        this.f41911c = sessionsActivity;
+        this.f41913c = sessionsActivity;
     }
 
     @Override
     public final void K(String str) {
-        TLObject tLObject = this.f41909a;
+        TLObject tLObject = this.f41911a;
         if (tLObject instanceof TLRPC.TL_authorization) {
             TLRPC.TL_authorization tL_authorization = (TLRPC.TL_authorization) tLObject;
             boolean z10 = tL_authorization.password_pending;
-            SessionsActivity sessionsActivity = this.f41911c;
+            SessionsActivity sessionsActivity = this.f41913c;
             if (z10) {
                 sessionsActivity.f34477f.add(0, tL_authorization);
                 sessionsActivity.V = 4;
@@ -29,16 +29,16 @@ public final class t81 implements u9 {
             }
             sessionsActivity.m0();
             sessionsActivity.f34473a.l();
-            sessionsActivity.f34480s.m(0L, this.f41909a, 11);
-        } else if (this.f41910b != null) {
+            sessionsActivity.f34480s.m(0L, this.f41911a, 11);
+        } else if (this.f41912b != null) {
             AndroidUtilities.runOnUIThread(new s81(this, 0));
         }
     }
 
     @Override
     public final boolean Z0(String str, k9 k9Var) {
-        this.f41909a = null;
-        this.f41910b = null;
+        this.f41911a = null;
+        this.f41912b = null;
         AndroidUtilities.runOnUIThread(new of0(this, str, k9Var, 29), 750L);
         return true;
     }

@@ -5,10 +5,10 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MrzRecognizer;
 public final class ck0 implements u9 {
-    public final dk0 f36696a;
+    public final dk0 f36698a;
 
     public ck0(dk0 dk0Var) {
-        this.f36696a = dk0Var;
+        this.f36698a = dk0Var;
     }
 
     @Override
@@ -16,7 +16,7 @@ public final class ck0 implements u9 {
         int i10;
         String b10 = of.f.b(str);
         if (!TextUtils.isEmpty(b10)) {
-            i10 = ((org.telegram.ui.ActionBar.f3) this.f36696a).currentAccount;
+            i10 = ((org.telegram.ui.ActionBar.f3) this.f36698a).currentAccount;
             MessagesController.getInstance(i10).getUserNameResolver().resolve(b10, new ai.i(18));
             return;
         }

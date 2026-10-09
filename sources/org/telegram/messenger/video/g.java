@@ -20,7 +20,7 @@ import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.g5;
 import org.telegram.ui.Components.tc;
 import org.telegram.ui.Components.ud0;
-import org.telegram.ui.Wallet.d4;
+import org.telegram.ui.Wallet.e4;
 import org.telegram.ui.Wallet.i2;
 import org.telegram.ui.ba;
 import org.telegram.ui.c3;
@@ -39,10 +39,10 @@ public final class g implements View.OnClickListener {
     public final Object h;
     public final Object f19474n;
 
-    public g(ci.d dVar, d4 d4Var, Utilities.Callback3 callback3, String[] strArr, boolean[] zArr, i2[] i2VarArr, e6 e6Var) {
+    public g(ci.d dVar, e4 e4Var, Utilities.Callback3 callback3, String[] strArr, boolean[] zArr, i2[] i2VarArr, e6 e6Var) {
         this.f19469a = 2;
         this.f19470b = dVar;
-        this.f19471c = d4Var;
+        this.f19471c = e4Var;
         this.d = callback3;
         this.f19472e = strArr;
         this.h = zArr;
@@ -72,7 +72,7 @@ public final class g implements View.OnClickListener {
                 TLRPC.Chat chat = (TLRPC.Chat) obj;
                 AccountInstance accountInstance = (AccountInstance) obj3;
                 TLRPC.InputPeer inputPeer = (TLRPC.InputPeer) obj2;
-                q30 q30Var = g60Var.f37805e1;
+                q30 q30Var = g60Var.f37807e1;
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                 g60Var.X0 = ofFloat;
                 ofFloat.setDuration(600L);
@@ -92,12 +92,12 @@ public final class g implements View.OnClickListener {
                 if (f7) {
                     calendar.set(13, 0);
                 }
-                g60Var.f37830k2 = (int) (calendar.getTimeInMillis() / 1000);
+                g60Var.f37832k2 = (int) (calendar.getTimeInMillis() / 1000);
                 g60Var.M1(false);
                 TL_phone.createGroupCall creategroupcall = new TL_phone.createGroupCall();
                 creategroupcall.peer = MessagesController.getInputPeer(chat);
                 creategroupcall.random_id = Utilities.random.nextInt();
-                creategroupcall.schedule_date = g60Var.f37830k2;
+                creategroupcall.schedule_date = g60Var.f37832k2;
                 creategroupcall.flags |= 2;
                 accountInstance.getConnectionsManager().sendRequest(creategroupcall, new ba(g60Var, chat, inputPeer, 11), 2);
                 return;

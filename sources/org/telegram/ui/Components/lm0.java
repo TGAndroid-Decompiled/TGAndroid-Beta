@@ -29,19 +29,19 @@ public final class lm0 implements s4.s0 {
                 return;
             default:
                 s4.z zVar = (s4.z) this.f28488b;
-                org.telegram.ui.Wallet.m5 m5Var = zVar.I;
+                org.telegram.ui.Wallet.n5 n5Var = zVar.I;
                 ((GestureDetector) zVar.N.f15668b).onTouchEvent(motionEvent);
                 VelocityTracker velocityTracker = zVar.J;
                 if (velocityTracker != null) {
                     velocityTracker.addMovement(motionEvent);
                 }
-                if (zVar.f47822w != -1) {
+                if (zVar.f47824w != -1) {
                     int actionMasked = motionEvent.getActionMasked();
-                    int findPointerIndex = motionEvent.findPointerIndex(zVar.f47822w);
+                    int findPointerIndex = motionEvent.findPointerIndex(zVar.f47824w);
                     if (findPointerIndex >= 0) {
                         zVar.h(actionMasked, findPointerIndex, motionEvent);
                     }
-                    s4.d1 d1Var = zVar.f47816c;
+                    s4.d1 d1Var = zVar.f47818c;
                     if (d1Var != null) {
                         int i10 = 0;
                         if (actionMasked != 1) {
@@ -49,11 +49,11 @@ public final class lm0 implements s4.s0 {
                                 if (actionMasked != 3) {
                                     if (actionMasked == 6) {
                                         int actionIndex = motionEvent.getActionIndex();
-                                        if (motionEvent.getPointerId(actionIndex) == zVar.f47822w) {
+                                        if (motionEvent.getPointerId(actionIndex) == zVar.f47824w) {
                                             if (actionIndex == 0) {
                                                 i10 = 1;
                                             }
-                                            zVar.f47822w = motionEvent.getPointerId(i10);
+                                            zVar.f47824w = motionEvent.getPointerId(i10);
                                             zVar.s(zVar.E, actionIndex, motionEvent);
                                             return;
                                         }
@@ -68,8 +68,8 @@ public final class lm0 implements s4.s0 {
                             } else if (findPointerIndex >= 0) {
                                 zVar.s(zVar.E, findPointerIndex, motionEvent);
                                 zVar.n(d1Var);
-                                zVar.H.removeCallbacks(m5Var);
-                                m5Var.run();
+                                zVar.H.removeCallbacks(n5Var);
+                                n5Var.run();
                                 zVar.H.invalidate();
                                 return;
                             } else {
@@ -77,7 +77,7 @@ public final class lm0 implements s4.s0 {
                             }
                         }
                         zVar.p(null, 0);
-                        zVar.f47822w = -1;
+                        zVar.f47824w = -1;
                         return;
                     }
                     return;
@@ -201,15 +201,15 @@ public final class lm0 implements s4.s0 {
                 int actionMasked2 = motionEvent.getActionMasked();
                 s4.u uVar = null;
                 if (actionMasked2 == 0) {
-                    zVar2.f47822w = motionEvent.getPointerId(0);
+                    zVar2.f47824w = motionEvent.getPointerId(0);
                     zVar2.d = motionEvent.getX();
-                    zVar2.f47817e = motionEvent.getY();
+                    zVar2.f47819e = motionEvent.getY();
                     VelocityTracker velocityTracker = zVar2.J;
                     if (velocityTracker != null) {
                         velocityTracker.recycle();
                     }
                     zVar2.J = VelocityTracker.obtain();
-                    if (zVar2.f47816c == null) {
+                    if (zVar2.f47818c == null) {
                         ArrayList arrayList = zVar2.F;
                         if (!arrayList.isEmpty()) {
                             View k10 = zVar2.k(motionEvent);
@@ -217,7 +217,7 @@ public final class lm0 implements s4.s0 {
                             while (true) {
                                 if (size >= 0) {
                                     s4.u uVar2 = (s4.u) arrayList.get(size);
-                                    if (uVar2.f47786e.f47656a == k10) {
+                                    if (uVar2.f47788e.f47658a == k10) {
                                         uVar = uVar2;
                                     } else {
                                         size--;
@@ -226,31 +226,31 @@ public final class lm0 implements s4.s0 {
                             }
                         }
                         if (uVar != null) {
-                            s4.d1 d1Var = uVar.f47786e;
-                            zVar2.d -= uVar.f47789r;
-                            zVar2.f47817e -= uVar.f47790s;
+                            s4.d1 d1Var = uVar.f47788e;
+                            zVar2.d -= uVar.f47791r;
+                            zVar2.f47819e -= uVar.f47792s;
                             zVar2.j(d1Var, true);
-                            if (zVar2.f47814a.remove(d1Var.f47656a)) {
-                                zVar2.f47823x.a(zVar2.H, d1Var);
+                            if (zVar2.f47816a.remove(d1Var.f47658a)) {
+                                zVar2.f47825x.a(zVar2.H, d1Var);
                             }
-                            zVar2.p(d1Var, uVar.f47787f);
+                            zVar2.p(d1Var, uVar.f47789f);
                             zVar2.s(zVar2.E, 0, motionEvent);
                         }
                     }
                 } else if (actionMasked2 != 3 && actionMasked2 != 1) {
-                    int i10 = zVar2.f47822w;
+                    int i10 = zVar2.f47824w;
                     if (i10 != -1 && (findPointerIndex = motionEvent.findPointerIndex(i10)) >= 0) {
                         zVar2.h(actionMasked2, findPointerIndex, motionEvent);
                     }
                 } else {
-                    zVar2.f47822w = -1;
+                    zVar2.f47824w = -1;
                     zVar2.p(null, 0);
                 }
                 VelocityTracker velocityTracker2 = zVar2.J;
                 if (velocityTracker2 != null) {
                     velocityTracker2.addMovement(motionEvent);
                 }
-                if (zVar2.f47816c != null) {
+                if (zVar2.f47818c != null) {
                     return true;
                 }
                 return false;

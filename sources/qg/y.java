@@ -9,17 +9,17 @@ import org.telegram.ui.Components.jh;
 import org.telegram.ui.Components.wi;
 import org.telegram.ui.Components.yi;
 public final class y implements wi {
-    public final yi f46626a;
-    public final m0 f46627b;
+    public final yi f46628a;
+    public final m0 f46629b;
 
     public y(m0 m0Var, yi yiVar) {
-        this.f46627b = m0Var;
-        this.f46626a = yiVar;
+        this.f46629b = m0Var;
+        this.f46628a = yiVar;
     }
 
     @Override
     public final void I1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
-        yi yiVar = this.f46626a;
+        yi yiVar = this.f46628a;
         try {
             HashMap<Object, Object> selectedPhotos = yiVar.f33240j0.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
@@ -28,7 +28,7 @@ public final class y implements wi {
                 if (str == null) {
                     str = photoEntry.path;
                 }
-                m0 m0Var = this.f46627b;
+                m0 m0Var = this.f46629b;
                 m0Var.f0(m0Var.h0(str, true));
                 yiVar.dismiss();
             }

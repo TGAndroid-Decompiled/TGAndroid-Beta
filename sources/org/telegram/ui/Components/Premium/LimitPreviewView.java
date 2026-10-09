@@ -119,8 +119,8 @@ public class LimitPreviewView extends LinearLayout {
         float dp2 = AndroidUtilities.dp(14.0f);
         s sVar = this.f24242e;
         sVar.setTranslationX(Utilities.clamp((Math.max(this.f24251n, (getMeasuredWidth() - (dp * 2)) * f7) + dp2) - (sVar.getMeasuredWidth() / 2.0f), (getMeasuredWidth() - dp) - sVar.getMeasuredWidth(), dp2));
-        if (sVar.f47429s != f7) {
-            sVar.f47429s = f7;
+        if (sVar.f47431s != f7) {
+            sVar.f47431s = f7;
             sVar.v = true;
             sVar.invalidate();
         }
@@ -217,20 +217,20 @@ public class LimitPreviewView extends LinearLayout {
             r6Var.animate().alpha(0.0f).scaleX(0.7f).scaleY(0.7f).setDuration(320L).setInterpolator(hsVar).start();
             f((int) tl_starsRating.stars, (int) tl_starsRating.next_level_stars);
             Runnable runnable = new Runnable(this) {
-                public final LimitPreviewView f47363b;
+                public final LimitPreviewView f47365b;
 
                 {
-                    this.f47363b = this;
+                    this.f47365b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r3) {
                         case 0:
-                            LimitPreviewView.b(this.f47363b, tl_starsRating2);
+                            LimitPreviewView.b(this.f47365b, tl_starsRating2);
                             return;
                         default:
-                            LimitPreviewView.a(this.f47363b, tl_starsRating2);
+                            LimitPreviewView.a(this.f47365b, tl_starsRating2);
                             return;
                     }
                 }
@@ -266,20 +266,20 @@ public class LimitPreviewView extends LinearLayout {
             r6Var2.setTextColor(-1);
             f((int) tl_starsRating.stars, (int) tl_starsRating.next_level_stars);
             Runnable runnable2 = new Runnable(this) {
-                public final LimitPreviewView f47363b;
+                public final LimitPreviewView f47365b;
 
                 {
-                    this.f47363b = this;
+                    this.f47365b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r3) {
                         case 0:
-                            LimitPreviewView.b(this.f47363b, tl_starsRating2);
+                            LimitPreviewView.b(this.f47365b, tl_starsRating2);
                             return;
                         default:
-                            LimitPreviewView.a(this.f47363b, tl_starsRating2);
+                            LimitPreviewView.a(this.f47365b, tl_starsRating2);
                             return;
                     }
                 }
@@ -362,7 +362,7 @@ public class LimitPreviewView extends LinearLayout {
         spannableStringBuilder.setSpan(new bv(170, 0), length, spannableStringBuilder.length(), 33);
         spannableStringBuilder.setSpan(new RelativeSizeSpan(0.65f), length, spannableStringBuilder.length(), 33);
         s sVar = this.f24242e;
-        sVar.f47426f = spannableStringBuilder;
+        sVar.f47428f = spannableStringBuilder;
         sVar.requestLayout();
     }
 
@@ -387,16 +387,16 @@ public class LimitPreviewView extends LinearLayout {
         }
         s sVar = this.f24242e;
         if (!z10) {
-            sVar.f47426f = spannableStringBuilder;
+            sVar.f47428f = spannableStringBuilder;
         } else {
-            SpannableStringBuilder spannableStringBuilder2 = sVar.f47426f;
-            sVar.f47426f = spannableStringBuilder;
-            TextPaint textPaint = sVar.f47424c;
+            SpannableStringBuilder spannableStringBuilder2 = sVar.f47428f;
+            sVar.f47428f = spannableStringBuilder;
+            TextPaint textPaint = sVar.f47426c;
             ArrayList arrayList = sVar.h;
             if (sVar.d != null) {
                 arrayList.clear();
-                SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(sVar.f47426f);
-                int length = sVar.f47426f.length() - 1;
+                SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(sVar.f47428f);
+                int length = sVar.f47428f.length() - 1;
                 int i13 = 0;
                 while (length >= 0) {
                     if (length < spannableStringBuilder2.length()) {
@@ -404,20 +404,20 @@ public class LimitPreviewView extends LinearLayout {
                     } else {
                         c10 = ' ';
                     }
-                    if (c10 != sVar.f47426f.charAt(length) && Character.isDigit(sVar.f47426f.charAt(length))) {
+                    if (c10 != sVar.f47428f.charAt(length) && Character.isDigit(sVar.f47428f.charAt(length))) {
                         r rVar = new r();
                         arrayList.add(rVar);
-                        rVar.f47418e = sVar.d.getSecondaryHorizontal(length);
-                        rVar.f47415a = r62;
+                        rVar.f47420e = sVar.d.getSecondaryHorizontal(length);
+                        rVar.f47417a = r62;
                         if (i13 >= r62) {
                             i13 = i12;
                         }
                         Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
                         i11 = length;
-                        StaticLayout staticLayout = new StaticLayout("" + c10, textPaint, (int) sVar.f47425e, alignment, 1.0f, 0.0f, false);
-                        ArrayList arrayList2 = rVar.f47416b;
+                        StaticLayout staticLayout = new StaticLayout("" + c10, textPaint, (int) sVar.f47427e, alignment, 1.0f, 0.0f, false);
+                        ArrayList arrayList2 = rVar.f47418b;
                         arrayList2.add(staticLayout);
-                        arrayList2.add(new StaticLayout("" + sVar.f47426f.charAt(i11), textPaint, (int) sVar.f47425e, alignment, 1.0f, 0.0f, false));
+                        arrayList2.add(new StaticLayout("" + sVar.f47428f.charAt(i11), textPaint, (int) sVar.f47427e, alignment, 1.0f, 0.0f, false));
                         spannableStringBuilder3.setSpan(new b00(false), i11, i11 + 1, 0);
                         i13++;
                     } else {
@@ -427,18 +427,18 @@ public class LimitPreviewView extends LinearLayout {
                     i12 = 0;
                     r62 = 1;
                 }
-                sVar.f47427n = new StaticLayout(spannableStringBuilder3, textPaint, AndroidUtilities.dp(12.0f) + ((int) sVar.f47425e), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                sVar.f47429n = new StaticLayout(spannableStringBuilder3, textPaint, AndroidUtilities.dp(12.0f) + ((int) sVar.f47427e), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                 for (int i14 = 0; i14 < arrayList.size(); i14++) {
-                    sVar.f47428r = true;
+                    sVar.f47430r = true;
                     r rVar2 = (r) arrayList.get(i14);
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    rVar2.f47419f = ofFloat;
+                    rVar2.f47421f = ofFloat;
                     ofFloat.addUpdateListener(new p(sVar, rVar2, 0));
-                    rVar2.f47419f.addListener(new q(sVar, rVar2, 1));
-                    rVar2.f47419f.setInterpolator(hs.f27119g);
-                    rVar2.f47419f.setDuration(250L);
-                    rVar2.f47419f.setStartDelay(((arrayList.size() - 1) - i14) * 60);
-                    rVar2.f47419f.start();
+                    rVar2.f47421f.addListener(new q(sVar, rVar2, 1));
+                    rVar2.f47421f.setInterpolator(hs.f27119g);
+                    rVar2.f47421f.setDuration(250L);
+                    rVar2.f47421f.setStartDelay(((arrayList.size() - 1) - i14) * 60);
+                    rVar2.f47421f.start();
                 }
             }
         }
@@ -519,7 +519,7 @@ public class LimitPreviewView extends LinearLayout {
         int i19 = dp2 * 2;
         float max = (Math.max(this.f24251n, (getMeasuredWidth() - i19) * this.f24255x) + f17) - (sVar.getMeasuredWidth() / 2.0f);
         if (this.Q) {
-            float f18 = sVar.f47429s;
+            float f18 = sVar.f47431s;
             measuredWidth = Utilities.clamp(max, (getMeasuredWidth() - dp2) - sVar.getMeasuredWidth(), f17);
             int i20 = this.f24251n;
             if (i20 <= 0) {
@@ -567,30 +567,30 @@ public class LimitPreviewView extends LinearLayout {
         if (!z11) {
             sVar.setScaleX(0.0f);
             sVar.setScaleY(0.0f);
-            TextPaint textPaint2 = sVar.f47424c;
+            TextPaint textPaint2 = sVar.f47426c;
             ArrayList arrayList = sVar.h;
             arrayList.clear();
-            LimitPreviewView limitPreviewView = sVar.f47432y;
+            LimitPreviewView limitPreviewView = sVar.f47434y;
             if (limitPreviewView.P && limitPreviewView.f24237b == 0) {
                 f15 = f12;
                 z12 = z11;
             } else {
-                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(sVar.f47426f);
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(sVar.f47428f);
                 int i21 = 0;
                 boolean z18 = true;
-                while (i21 < sVar.f47426f.length()) {
-                    if (Character.isDigit(sVar.f47426f.charAt(i21))) {
+                while (i21 < sVar.f47428f.length()) {
+                    if (Character.isDigit(sVar.f47428f.charAt(i21))) {
                         r rVar = new r();
                         arrayList.add(rVar);
                         f16 = f12;
-                        rVar.f47418e = sVar.d.getSecondaryHorizontal(i21);
+                        rVar.f47420e = sVar.d.getSecondaryHorizontal(i21);
                         rVar.d = z18;
                         if (i18 >= 1) {
                             z18 = !z18;
                             i18 = 0;
                         }
                         i18++;
-                        int charAt = sVar.f47426f.charAt(i21) - '0';
+                        int charAt = sVar.f47428f.charAt(i21) - '0';
                         if (charAt == 0) {
                             i15 = 10;
                         } else {
@@ -607,7 +607,7 @@ public class LimitPreviewView extends LinearLayout {
                                 i16 = i22;
                                 i17 = i16;
                             }
-                            rVar.f47416b.add(new StaticLayout(c.h(i16, ""), textPaint2, (int) sVar.f47425e, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
+                            rVar.f47418b.add(new StaticLayout(c.h(i16, ""), textPaint2, (int) sVar.f47427e, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
                             i22 = i17 + 1;
                             i15 = i23;
                         }
@@ -625,18 +625,18 @@ public class LimitPreviewView extends LinearLayout {
                 }
                 f15 = f12;
                 z12 = z11;
-                sVar.f47427n = new StaticLayout(spannableStringBuilder, textPaint2, AndroidUtilities.dp(12.0f) + ((int) sVar.f47425e), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                sVar.f47429n = new StaticLayout(spannableStringBuilder, textPaint2, AndroidUtilities.dp(12.0f) + ((int) sVar.f47427e), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                 for (int i24 = 0; i24 < arrayList.size(); i24++) {
-                    sVar.f47428r = true;
+                    sVar.f47430r = true;
                     r rVar2 = (r) arrayList.get(i24);
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    rVar2.f47419f = ofFloat;
+                    rVar2.f47421f = ofFloat;
                     ofFloat.addUpdateListener(new p(sVar, rVar2, 1));
-                    rVar2.f47419f.addListener(new q(sVar, rVar2, 0));
-                    rVar2.f47419f.setInterpolator(hs.f27119g);
-                    rVar2.f47419f.setDuration(750L);
-                    rVar2.f47419f.setStartDelay(((arrayList.size() - 1) - i24) * 60);
-                    rVar2.f47419f.start();
+                    rVar2.f47421f.addListener(new q(sVar, rVar2, 0));
+                    rVar2.f47421f.setInterpolator(hs.f27119g);
+                    rVar2.f47421f.setDuration(750L);
+                    rVar2.f47421f.setStartDelay(((arrayList.size() - 1) - i24) * 60);
+                    rVar2.f47421f.start();
                 }
             }
             i14 = 2;
@@ -683,8 +683,8 @@ public class LimitPreviewView extends LinearLayout {
                 if (valueAnimator == limitPreviewView2.f24248i0) {
                     sVar2.setTranslationX(AndroidUtilities.lerp(f21, f14, min));
                     float lerp = AndroidUtilities.lerp(f22, f20, min);
-                    if (sVar2.f47429s != lerp) {
-                        sVar2.f47429s = lerp;
+                    if (sVar2.f47431s != lerp) {
+                        sVar2.f47431s = lerp;
                         sVar2.v = true;
                         sVar2.invalidate();
                     }
@@ -842,14 +842,14 @@ public class LimitPreviewView extends LinearLayout {
                     str = "2 GB";
                 }
                 spannableStringBuilder.append((CharSequence) str);
-                sVar.f47426f = spannableStringBuilder;
+                sVar.f47428f = spannableStringBuilder;
             }
             r6Var.setText("4 GB");
         } else if (i10 == 11) {
             if (sVar != null) {
                 SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
                 spannableStringBuilder2.append((CharSequence) "d").setSpan(new er(i11, 0), 0, 1, 0);
-                sVar.f47426f = spannableStringBuilder2;
+                sVar.f47428f = spannableStringBuilder2;
             }
             r6Var.setText("");
         }

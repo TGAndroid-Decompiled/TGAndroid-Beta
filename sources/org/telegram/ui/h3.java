@@ -10,12 +10,12 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.TLRPC;
 public final class h3 implements q0.a {
-    public final int f38204a;
-    public final Object f38205b;
+    public final int f38206a;
+    public final Object f38207b;
 
     public h3(Object obj, int i10) {
-        this.f38204a = i10;
-        this.f38205b = obj;
+        this.f38206a = i10;
+        this.f38207b = obj;
     }
 
     @Override
@@ -23,25 +23,25 @@ public final class h3 implements q0.a {
         ArrayList arrayList;
         String responseCodeString;
         boolean z10;
-        switch (this.f38204a) {
+        switch (this.f38206a) {
             case 0:
-                m3 m3Var = (m3) this.f38205b;
+                m3 m3Var = (m3) this.f38207b;
                 Float f7 = (Float) obj;
                 i4 i4Var = m3Var.K;
-                if (m3Var == i4Var.f38513u0[0]) {
-                    if (i4Var.f38501h0.f43480d0.getCurrentProgress() > f7.floatValue()) {
-                        i4Var.f38501h0.f43480d0.a(0.0f, false);
+                if (m3Var == i4Var.f38515u0[0]) {
+                    if (i4Var.f38503h0.f43482d0.getCurrentProgress() > f7.floatValue()) {
+                        i4Var.f38503h0.f43482d0.a(0.0f, false);
                     }
-                    i4Var.f38501h0.f43480d0.a(f7.floatValue(), true);
+                    i4Var.f38503h0.f43482d0.a(f7.floatValue(), true);
                     return;
                 }
                 return;
             case 1:
-                ((org.telegram.ui.Components.uk0) this.f38205b).h((List) obj);
+                ((org.telegram.ui.Components.uk0) this.f38207b).h((List) obj);
                 return;
             case 2:
                 TLRPC.User user = (TLRPC.User) obj;
-                tr trVar = ((jr) this.f38205b).f39008b;
+                tr trVar = ((jr) this.f38207b).f39010b;
                 mr w02 = trVar.w0();
                 ArrayList arrayList2 = trVar.F;
                 a0.i iVar = trVar.M;
@@ -54,7 +54,7 @@ public final class h3 implements q0.a {
                     iVar = trVar.K;
                 }
                 if (iVar.f(user.f20185id) == null) {
-                    if (ChatObject.isChannel(trVar.f42088r)) {
+                    if (ChatObject.isChannel(trVar.f42090r)) {
                         TLRPC.TL_channelParticipant tL_channelParticipant = new TLRPC.TL_channelParticipant();
                         tL_channelParticipant.inviter_id = trVar.getUserConfig().getClientUserId();
                         TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
@@ -77,7 +77,7 @@ public final class h3 implements q0.a {
                 trVar.A0(w02);
                 return;
             case 3:
-                t3 t3Var = (t3) this.f38205b;
+                t3 t3Var = (t3) this.f38207b;
                 int i10 = ((c5.h) obj).f4254a;
                 if (i10 == 0) {
                     responseCodeString = null;
@@ -87,17 +87,17 @@ public final class h3 implements q0.a {
                 AndroidUtilities.runOnUIThread(new tf0(2, t3Var, responseCodeString));
                 return;
             case 4:
-                si0 si0Var = (si0) this.f38205b;
+                si0 si0Var = (si0) this.f38207b;
                 if (((c5.h) obj).f4254a == 0) {
                     AndroidUtilities.runOnUIThread(si0Var);
                     return;
                 }
                 return;
             case 5:
-                ((ArrayList) this.f38205b).add((TLRPC.User) obj);
+                ((ArrayList) this.f38207b).add((TLRPC.User) obj);
                 return;
             case 6:
-                ProfileActivity profileActivity = (ProfileActivity) this.f38205b;
+                ProfileActivity profileActivity = (ProfileActivity) this.f38207b;
                 TLRPC.User user2 = (TLRPC.User) obj;
                 for (int i11 = 0; i11 < profileActivity.f34354u2.participants.participants.size(); i11++) {
                     if (profileActivity.f34354u2.participants.participants.get(i11).user_id == user2.f20185id) {
@@ -108,7 +108,7 @@ public final class h3 implements q0.a {
                 }
                 return;
             default:
-                View view = ((ProxyListActivity) this.f38205b).f34393b.T((View) obj).f47656a;
+                View view = ((ProxyListActivity) this.f38207b).f34393b.T((View) obj).f47658a;
                 if (view instanceof f21) {
                     f21 f21Var = (f21) view;
                     if (f21Var.d == SharedConfig.currentProxy) {

@@ -12,7 +12,7 @@ public final class lo0 extends zg.l0 {
 
     @Override
     public final boolean e() {
-        if (this.f54604w <= 0 && !this.f54603u && this.F.f28559l == 1.0f) {
+        if (this.f54606w <= 0 && !this.f54605u && this.F.f28559l == 1.0f) {
             return false;
         }
         return true;
@@ -33,7 +33,7 @@ public final class lo0 extends zg.l0 {
         int i10;
         int i11;
         int w02;
-        int i12 = this.f54591i;
+        int i12 = this.f54593i;
         mo0 mo0Var = this.f28537h0;
         if (mo0Var.f28874e) {
             i10 = org.telegram.ui.ActionBar.i6.Fj;
@@ -41,7 +41,7 @@ public final class lo0 extends zg.l0 {
             i10 = org.telegram.ui.ActionBar.i6.f21131va;
         }
         this.N = i0.a.d(f7, i12, org.telegram.ui.ActionBar.i6.w0(i10, mo0Var.f28878s.f29221c));
-        int i13 = this.f54589g;
+        int i13 = this.f54591g;
         if (mo0Var.f28874e) {
             i11 = org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.Cj, mo0Var.f28878s.f29221c);
         } else {

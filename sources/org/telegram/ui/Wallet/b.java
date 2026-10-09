@@ -23,7 +23,7 @@ import org.telegram.ui.Components.p61;
 import org.telegram.ui.Components.qm0;
 import org.telegram.ui.Components.y9;
 public final class b extends o61 {
-    public static final int f34635a = 0;
+    public static final int f34663a = 0;
 
     static {
         o61.setup(new o61());
@@ -33,9 +33,9 @@ public final class b extends o61 {
     public final void bindView(View view, p61 p61Var, boolean z10, c71 c71Var, k71 k71Var) {
         c cVar = (c) view;
         TL_wallet.nftItem nftitem = (TL_wallet.nftItem) p61Var.G;
-        y9 y9Var = cVar.f34688b;
+        y9 y9Var = cVar.f34700b;
         TextView textView = cVar.d;
-        TextView textView2 = cVar.f34689c;
+        TextView textView2 = cVar.f34701c;
         if (TextUtils.isEmpty(nftitem.name)) {
             textView2.setText(LocaleController.getString(R.string.WalletCollectible));
         } else {
@@ -54,7 +54,7 @@ public final class b extends o61 {
             textView.setText(nftitem.description);
         }
         ImageLocation b10 = c.b(nftitem, true);
-        int w02 = org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21181y6, cVar.f34687a);
+        int w02 = org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21181y6, cVar.f34699a);
         Drawable mutate = cVar.getContext().getResources().getDrawable(R.drawable.wallet_nft_placeholder).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
         fr frVar = new fr(org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(8.0f), org.telegram.ui.ActionBar.i6.m1(0.1f, w02)), mutate);
@@ -63,7 +63,7 @@ public final class b extends o61 {
         } else {
             y9Var.setImageDrawable(frVar);
         }
-        cVar.f34690e = z10;
+        cVar.f34702e = z10;
         cVar.e();
         cVar.invalidate();
     }

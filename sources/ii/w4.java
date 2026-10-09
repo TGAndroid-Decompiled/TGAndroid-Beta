@@ -122,7 +122,7 @@ public final class w4 extends a0 implements org.telegram.ui.ActionBar.z5, n9, m0
             return null;
         }
         vh.f fVar = this.M;
-        if (fVar != null && fVar.f49673i) {
+        if (fVar != null && fVar.f49675i) {
             this.M = null;
         }
         if (this.M == null) {

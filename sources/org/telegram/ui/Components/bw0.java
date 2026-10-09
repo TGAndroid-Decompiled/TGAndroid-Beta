@@ -1109,7 +1109,7 @@ public abstract class bw0 extends FrameLayout implements NotificationCenter.Noti
         int i13;
         if (messageObject != null && !this.f25150o1) {
             ws0 ws0Var = this.W;
-            if (ws0Var == null || !ws0Var.f35812w) {
+            if (ws0Var == null || !ws0Var.f35814w) {
                 int i14 = 0;
                 boolean z10 = false;
                 boolean z11 = false;
@@ -1586,7 +1586,7 @@ public abstract class bw0 extends FrameLayout implements NotificationCenter.Noti
         ai.e9 e9Var;
         if (!this.C1) {
             org.telegram.ui.ActionBar.n2 n2Var = this.f25166v1;
-            if (n2Var.getParentActivity() != null && messageObject != null && ((ws0Var = this.W) == null || !ws0Var.f35812w)) {
+            if (n2Var.getParentActivity() != null && messageObject != null && ((ws0Var = this.W) == null || !ws0Var.f35814w)) {
                 AndroidUtilities.hideKeyboard(n2Var.getParentActivity().getCurrentFocus());
                 long j3 = this.f25141j1;
                 int i13 = 8;
@@ -2432,7 +2432,7 @@ public abstract class bw0 extends FrameLayout implements NotificationCenter.Noti
                     i14 = ws0Var.getCurrentAlbumId();
                 }
             } else {
-                n91 n91Var = ws0Var.f35809n;
+                n91 n91Var = ws0Var.f35811n;
                 SparseIntArray sparseIntArray2 = n91Var.f29098b0;
                 int i16 = n91Var.F;
                 if (z10) {
@@ -2477,7 +2477,7 @@ public abstract class bw0 extends FrameLayout implements NotificationCenter.Noti
                     if (!z10) {
                     }
                 }
-                if ((!this.C1 || (uu0Var = uu0VarArr[0]) == null || uu0Var.F != 13) && ((rs0Var == null || !rs0Var.g()) && (ws0Var == null || !ws0Var.f35812w))) {
+                if ((!this.C1 || (uu0Var = uu0VarArr[0]) == null || uu0Var.F != 13) && ((rs0Var == null || !rs0Var.g()) && (ws0Var == null || !ws0Var.f35814w))) {
                     q1(false);
                     getParent().requestDisallowInterceptTouchEvent(true);
                     k0();
@@ -2740,7 +2740,7 @@ public abstract class bw0 extends FrameLayout implements NotificationCenter.Noti
         }
         ws0 ws0Var = this.W;
         if (ws0Var != null) {
-            n91 n91Var = ws0Var.f35809n;
+            n91 n91Var = ws0Var.f35811n;
             if (w0(i10)) {
                 n91Var.f(f7, h1(i10));
             } else if (i10 == 8) {
@@ -2869,7 +2869,7 @@ public abstract class bw0 extends FrameLayout implements NotificationCenter.Noti
         ws0 ws0Var = this.W;
         if (h12 != i10) {
             if (ws0Var != null) {
-                ws0Var.f35809n.d(i10, ws0Var.f35811s.i(i10));
+                ws0Var.f35811n.d(i10, ws0Var.f35813s.i(i10));
                 return;
             }
             return;
@@ -3198,7 +3198,7 @@ public abstract class bw0 extends FrameLayout implements NotificationCenter.Noti
             return this.V.getCurrentListView();
         }
         if (i10 == 12 && (hu0Var = this.T) != null) {
-            return hu0Var.f36357a.f44988x0;
+            return hu0Var.f36359a.f44990x0;
         }
         return uu0Var.h;
     }
@@ -4011,7 +4011,7 @@ public abstract class bw0 extends FrameLayout implements NotificationCenter.Noti
                 }
             }
             if (hu0Var != null && uu0VarArr2[z10 ? 1 : 0].F != 12 && hu0Var.getParent() == uu0VarArr2[z10 ? 1 : 0]) {
-                hu0Var.f36357a.onRemoveFromParent();
+                hu0Var.f36359a.onRemoveFromParent();
                 uu0VarArr2[z10 ? 1 : 0].removeView(hu0Var);
             }
             if (view != null && uu0VarArr2[z10 ? 1 : 0].F != 13) {
@@ -4570,7 +4570,7 @@ public abstract class bw0 extends FrameLayout implements NotificationCenter.Noti
             return;
         }
         float f7 = 0.0f;
-        if (!this.V0 && (((rs0Var = this.V) == null || !rs0Var.g()) && ((ws0Var = this.W) == null || !ws0Var.f35812w))) {
+        if (!this.V0 && (((rs0Var = this.V) == null || !rs0Var.g()) && ((ws0Var = this.W) == null || !ws0Var.f35814w))) {
             f7 = Utilities.clamp(this.f25149o0 + this.f25151p0, 1.0f, 0.0f);
         }
         fk0Var.setAlpha(f7);
@@ -5047,7 +5047,7 @@ public abstract class bw0 extends FrameLayout implements NotificationCenter.Noti
             rs0 rs0Var = this.V;
             if (rs0Var == null || !rs0Var.g()) {
                 ws0 ws0Var = this.W;
-                if ((ws0Var == null || !ws0Var.f35812w) && !this.f25150o1 && !this.f25135g1) {
+                if ((ws0Var == null || !ws0Var.f35814w) && !this.f25150o1 && !this.f25135g1) {
                     return true;
                 }
                 return false;

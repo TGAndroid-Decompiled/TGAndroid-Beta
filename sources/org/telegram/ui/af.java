@@ -18,32 +18,32 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.TopicsController;
 import org.telegram.tgnet.TLRPC;
 public final class af implements View.OnClickListener {
-    public final int f35913a;
-    public final zn f35914b;
+    public final int f35915a;
+    public final zn f35916b;
 
     public af(zn znVar, int i10) {
-        this.f35913a = i10;
-        this.f35914b = znVar;
+        this.f35915a = i10;
+        this.f35916b = znVar;
     }
 
     @Override
     public final void onClick(View view) {
         boolean z10;
         int i10;
-        int i11 = this.f35913a;
+        int i11 = this.f35915a;
         String str = "";
         MessageObject messageObject = null;
         int i12 = 0;
-        zn znVar = this.f35914b;
+        zn znVar = this.f35916b;
         switch (i11) {
             case 0:
-                zn znVar2 = this.f35914b;
+                zn znVar2 = this.f35916b;
                 rg.j0.D1(znVar2, znVar2.D1, znVar2.E1, znVar2.T5, false);
                 return;
             case 1:
                 znVar.getClass();
                 Bundle bundle = new Bundle();
-                bundle.putLong("user_id", znVar.f44908r);
+                bundle.putLong("user_id", znVar.f44910r);
                 znVar.presentFragment(new ProfileActivity(bundle, null));
                 return;
             case 2:
@@ -64,13 +64,13 @@ public final class af implements View.OnClickListener {
                 }
                 znVar.S2.setVisibility(8);
                 znVar.T2.setVisibility(8);
-                znVar.f44864n3 = true;
-                znVar.f44875o3 = null;
-                znVar.f44887p3 = null;
-                znVar.f44812j0.setSearchFieldHint(LocaleController.getString(R.string.SearchMembers));
-                znVar.f44812j0.setSearchFieldCaption(LocaleController.getString(R.string.SearchFrom));
-                AndroidUtilities.showKeyboard(znVar.f44812j0.getSearchField());
-                org.telegram.ui.ActionBar.v0 v0Var = znVar.f44812j0;
+                znVar.f44866n3 = true;
+                znVar.f44877o3 = null;
+                znVar.f44889p3 = null;
+                znVar.f44814j0.setSearchFieldHint(LocaleController.getString(R.string.SearchMembers));
+                znVar.f44814j0.setSearchFieldCaption(LocaleController.getString(R.string.SearchFrom));
+                AndroidUtilities.showKeyboard(znVar.f44814j0.getSearchField());
+                org.telegram.ui.ActionBar.v0 v0Var = znVar.f44814j0;
                 v0Var.f21599r = null;
                 ci.g2 g2Var = v0Var.f21584e;
                 if (g2Var != null) {
@@ -80,11 +80,11 @@ public final class af implements View.OnClickListener {
                 return;
             case 5:
                 if (znVar.getParentActivity() != null) {
-                    org.telegram.ui.ActionBar.v0 v0Var2 = znVar.f44812j0;
+                    org.telegram.ui.ActionBar.v0 v0Var2 = znVar.f44814j0;
                     if (v0Var2 != null) {
                         AndroidUtilities.hideKeyboard(v0Var2.getSearchField());
                     }
-                    znVar.showDialog(org.telegram.ui.Components.g5.o(znVar.getParentActivity(), new hl(znVar), znVar.f44761ea).f20380a);
+                    znVar.showDialog(org.telegram.ui.Components.g5.o(znVar.getParentActivity(), new hl(znVar), znVar.f44763ea).f20380a);
                     return;
                 }
                 return;
@@ -92,22 +92,22 @@ public final class af implements View.OnClickListener {
                 znVar.D7(true);
                 return;
             case 7:
-                MessageObject messageObject2 = znVar.f44743d5;
+                MessageObject messageObject2 = znVar.f44745d5;
                 if (messageObject2 != null) {
                     znVar.O9(messageObject2, false, false);
-                    of.f.r(znVar.getParentActivity(), Uri.parse(znVar.f44743d5.sponsoredUrl), true, false, false, null, null, false, znVar.getMessagesController().sponsoredLinksInappAllow, false);
+                    of.f.r(znVar.getParentActivity(), Uri.parse(znVar.f44745d5.sponsoredUrl), true, false, false, null, null, false, znVar.getMessagesController().sponsoredLinksInappAllow, false);
                     return;
                 }
                 return;
             case 8:
-                if (AndroidUtilities.addToClipboard(znVar.f44743d5.sponsoredInfo)) {
-                    org.telegram.messenger.bi.p(R.string.TextCopied, new org.telegram.ui.Components.ad(org.telegram.ui.Components.ob.a(znVar.getParentActivity()), znVar.f44761ea));
+                if (AndroidUtilities.addToClipboard(znVar.f44745d5.sponsoredInfo)) {
+                    org.telegram.messenger.bi.p(R.string.TextCopied, new org.telegram.ui.Components.ad(org.telegram.ui.Components.ob.a(znVar.getParentActivity()), znVar.f44763ea));
                     return;
                 }
                 return;
             case 9:
-                if (AndroidUtilities.addToClipboard(znVar.f44743d5.sponsoredAdditionalInfo)) {
-                    org.telegram.messenger.bi.p(R.string.TextCopied, new org.telegram.ui.Components.ad(org.telegram.ui.Components.ob.a(znVar.getParentActivity()), znVar.f44761ea));
+                if (AndroidUtilities.addToClipboard(znVar.f44745d5.sponsoredAdditionalInfo)) {
+                    org.telegram.messenger.bi.p(R.string.TextCopied, new org.telegram.ui.Components.ad(org.telegram.ui.Components.ob.a(znVar.getParentActivity()), znVar.f44763ea));
                     return;
                 }
                 return;
@@ -115,7 +115,7 @@ public final class af implements View.OnClickListener {
                 if (znVar.X0 != null && znVar.getParentActivity() != null) {
                     org.telegram.ui.ActionBar.f3 i13 = org.telegram.messenger.bi.i(1, znVar.X0.getContext(), null, false);
                     Activity parentActivity = znVar.getParentActivity();
-                    xn xnVar = znVar.f44761ea;
+                    xn xnVar = znVar.f44763ea;
                     final ?? frameLayout = new FrameLayout(parentActivity);
                     LinearLayout e7 = org.telegram.messenger.q.e(parentActivity, 1);
                     TextView textView = new TextView(parentActivity);
@@ -233,26 +233,26 @@ public final class af implements View.OnClickListener {
                 znVar.showDialog(new rg.y0((org.telegram.ui.ActionBar.n2) znVar, 28, true));
                 return;
             case 13:
-                zn znVar3 = this.f35914b;
+                zn znVar3 = this.f35916b;
                 long j3 = znVar3.T5;
-                TLRPC.User user = znVar3.f44763f;
-                TLRPC.Chat chat = znVar3.f44751e;
+                TLRPC.User user = znVar3.f44765f;
+                TLRPC.Chat chat = znVar3.f44753e;
                 TLRPC.EncryptedChat encryptedChat = znVar3.h;
                 if (znVar3.N1.getTag(R.id.object_tag) != null) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                org.telegram.ui.Components.g5.i0(znVar3, j3, user, chat, encryptedChat, z10, znVar3.Z7, new bh(znVar3, 2), znVar3.f44761ea);
+                org.telegram.ui.Components.g5.i0(znVar3, j3, user, chat, encryptedChat, z10, znVar3.Z7, new bh(znVar3, 2), znVar3.f44763ea);
                 return;
             case 14:
                 zn.k0(znVar);
                 return;
             case 15:
-                if (znVar.f44730c4 != null) {
+                if (znVar.f44732c4 != null) {
                     TopicsController topicsController = znVar.getMessagesController().getTopicsController();
-                    long j10 = znVar.f44751e.f20038id;
-                    TLRPC.TL_forumTopic tL_forumTopic = znVar.f44730c4;
+                    long j10 = znVar.f44753e.f20038id;
+                    TLRPC.TL_forumTopic tL_forumTopic = znVar.f44732c4;
                     int i16 = tL_forumTopic.f20090id;
                     tL_forumTopic.closed = false;
                     topicsController.toggleCloseTopic(j10, i16, false);
@@ -264,18 +264,18 @@ public final class af implements View.OnClickListener {
             case 16:
                 long j11 = znVar.T5;
                 if (znVar.h != null) {
-                    j11 = znVar.f44763f.f20185id;
+                    j11 = znVar.f44765f.f20185id;
                 }
                 znVar.Yb = false;
-                znVar.getMessagesController().hidePeerSettingsBar(j11, znVar.f44763f, znVar.f44751e);
+                znVar.getMessagesController().hidePeerSettingsBar(j11, znVar.f44765f, znVar.f44753e);
                 znVar.Uc(true);
                 znVar.sc(true);
                 return;
             case 17:
-                zn znVar4 = this.f35914b;
+                zn znVar4 = this.f35916b;
                 znVar4.D4 = true;
-                if (znVar4.K9() && !znVar4.f44791h4) {
-                    znVar4.F((int) znVar4.f44742d4, 0, 0, 0, true, true);
+                if (znVar4.K9() && !znVar4.f44793h4) {
+                    znVar4.F((int) znVar4.f44744d4, 0, 0, 0, true, true);
                     return;
                 }
                 int i17 = znVar4.L4;
@@ -325,7 +325,7 @@ public final class af implements View.OnClickListener {
                 SparseArray[] sparseArrayArr = znVar.W5;
                 for (int i18 = 1; i18 >= 0; i18--) {
                     if (messageObject == null && sparseArrayArr[i18].size() != 0) {
-                        messageObject = (MessageObject) znVar.f44878o6[i18].get(sparseArrayArr[i18].keyAt(0));
+                        messageObject = (MessageObject) znVar.f44880o6[i18].get(sparseArrayArr[i18].keyAt(0));
                     }
                     sparseArrayArr[i18].clear();
                     znVar.X5[i18].clear();
@@ -343,7 +343,7 @@ public final class af implements View.OnClickListener {
                 zn.c1(znVar);
                 return;
             case 27:
-                zn znVar5 = this.f35914b;
+                zn znVar5 = this.f35916b;
                 MessageObject messageObject3 = znVar5.p5;
                 if (messageObject3 != null) {
                     znVar5.F(messageObject3.getId(), 0, 0, 0, true, true);

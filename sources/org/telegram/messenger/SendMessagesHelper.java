@@ -2325,7 +2325,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
     }
 
     public void lambda$performSendMessageRequest$86(org.telegram.ui.ActionBar.n2 n2Var, TLRPC.TL_inputMediaStakeDice tL_inputMediaStakeDice, TLObject tLObject, MessageObject messageObject, String str, DelayedMessage delayedMessage, boolean z10, DelayedMessage delayedMessage2, Object obj, HashMap hashMap, boolean z11) {
-        new di.h(n2Var.getContext(), n2Var.getResourceProvider(), zf.a.i(tL_inputMediaStakeDice.ton_amount, zf.b.f54442b), false, new ri(this, tLObject, messageObject, str, delayedMessage, z10, delayedMessage2, obj, hashMap, z11, 2)).show();
+        new di.h(n2Var.getContext(), n2Var.getResourceProvider(), zf.a.i(tL_inputMediaStakeDice.ton_amount, zf.b.f54444b), false, new ri(this, tLObject, messageObject, str, delayedMessage, z10, delayedMessage2, obj, hashMap, z11, 2)).show();
         ArrayList<MessageObject> arrayList = new ArrayList<>();
         arrayList.add(messageObject);
         cancelSendingMessage(arrayList);
@@ -3368,7 +3368,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             }
         }
         if (iVar != null) {
-            iVar.f48189a.j();
+            iVar.f48191a.j();
         }
         handleError(i12, accountInstance);
     }
@@ -4437,7 +4437,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         boolean z11;
         boolean z12;
         boolean z13;
-        qh.f fVar = hVar.f46695a;
+        qh.f fVar = hVar.f46697a;
         boolean z14 = true;
         if (fVar != null) {
             final ArrayList arrayList = new ArrayList();
@@ -4449,8 +4449,8 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             ArrayList arrayList7 = new ArrayList();
             ArrayList arrayList8 = new ArrayList();
             final int[] iArr = new int[1];
-            SparseArray sparseArray = fVar.f46676a;
-            SparseArray sparseArray2 = fVar.f46676a;
+            SparseArray sparseArray = fVar.f46678a;
+            SparseArray sparseArray2 = fVar.f46678a;
             int size = sparseArray.size();
             int i11 = 0;
             while (i11 < size) {
@@ -4458,21 +4458,21 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                 int keyAt = sparseArray2.keyAt(i11);
                 boolean z15 = z14;
                 if (eVar instanceof rh.g) {
-                    arrayList7.add(((rh.g) eVar).f47559b);
+                    arrayList7.add(((rh.g) eVar).f47561b);
                     arrayList8.add(Integer.valueOf(keyAt));
                 } else if (eVar instanceof rh.d) {
-                    SendingMediaInfo sendingMediaInfo = ((rh.d) eVar).f47550c;
+                    SendingMediaInfo sendingMediaInfo = ((rh.d) eVar).f47552c;
                     sendingMediaInfo.pollIndex = keyAt;
                     arrayList.add(sendingMediaInfo);
                 } else if (eVar instanceof rh.c) {
                     rh.c cVar = (rh.c) eVar;
-                    String str = cVar.f47544b;
+                    String str = cVar.f47546b;
                     if (!TextUtils.isEmpty(str)) {
                         arrayList2.add(str);
                         arrayList3.add(str);
                         arrayList4.add(Integer.valueOf(keyAt));
                     } else {
-                        Uri uri = cVar.f47545c;
+                        Uri uri = cVar.f47547c;
                         if (uri != null) {
                             arrayList5.add(uri);
                             arrayList6.add(Integer.valueOf(keyAt));
@@ -4531,10 +4531,10 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         } else {
             hVar2 = hVar;
         }
-        SendMessageParams of2 = SendMessageParams.of(hVar2.f46696b, j3, messageObject, messageObject2, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z10, i10, 0);
-        of2.caption = hVar2.f46698e;
+        SendMessageParams of2 = SendMessageParams.of(hVar2.f46698b, j3, messageObject, messageObject2, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z10, i10, 0);
+        of2.caption = hVar2.f46700e;
         of2.invert_media = true;
-        of2.entities = hVar2.f46699f;
+        of2.entities = hVar2.f46701f;
         of2.sendMessageChatArguments = sendMessageChatArguments;
         of2.payStars = j10;
         of2.monoForumPeer = j11;
@@ -5016,17 +5016,17 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             }
             if (eVar instanceof rh.d) {
                 ArrayList arrayList = new ArrayList(1);
-                arrayList.add(((rh.d) eVar).f47550c);
+                arrayList.add(((rh.d) eVar).f47552c);
                 prepareSendingMedia(getAccountInstance(), arrayList, dialogId, null, null, null, null, false, false, messageObject, tL_inputPollAnswer, false, 0, 0, 0, false, null, null, 0L, false, 0L, 0L, null);
             } else if (eVar instanceof rh.h) {
                 rh.h hVar = (rh.h) eVar;
-                editMessage(messageObject, tL_inputPollAnswer, null, null, (TLRPC.TL_document) hVar.f47561b, null, null, null, false, false, hVar.f47562c);
+                editMessage(messageObject, tL_inputPollAnswer, null, null, (TLRPC.TL_document) hVar.f47563b, null, null, null, false, false, hVar.f47564c);
             } else if (eVar instanceof rh.f) {
-                tL_inputPollAnswer.input_media = zf.d.h(((rh.f) eVar).f47558b);
+                tL_inputPollAnswer.input_media = zf.d.h(((rh.f) eVar).f47560b);
                 editMessage(messageObject, tL_inputPollAnswer, null, null, null, null, null, null, false, false, null);
             } else if (eVar instanceof rh.e) {
                 TLRPC.TL_inputMediaWebPage tL_inputMediaWebPage = new TLRPC.TL_inputMediaWebPage();
-                tL_inputMediaWebPage.url = ((rh.e) eVar).f47551b;
+                tL_inputMediaWebPage.url = ((rh.e) eVar).f47553b;
                 tL_inputMediaWebPage.optional = true;
                 tL_inputPollAnswer.input_media = tL_inputMediaWebPage;
                 editMessage(messageObject, tL_inputPollAnswer, null, null, null, null, null, null, false, false, null);
@@ -5936,13 +5936,13 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             tL_messages_sendReaction.add_to_recent = z11;
             if (z11 && n0Var != null) {
                 ArrayList<TLRPC.Reaction> arrayList2 = MediaDataController.getInstance(this.currentAccount).recentReactions;
-                if (n0Var.f54615f != null) {
+                if (n0Var.f54617f != null) {
                     TLRPC.TL_reactionEmoji tL_reactionEmoji = new TLRPC.TL_reactionEmoji();
-                    tL_reactionEmoji.emoticon = n0Var.f54615f;
+                    tL_reactionEmoji.emoticon = n0Var.f54617f;
                     tL_reactionCustomEmoji = tL_reactionEmoji;
                 } else {
                     TLRPC.TL_reactionCustomEmoji tL_reactionCustomEmoji2 = new TLRPC.TL_reactionCustomEmoji();
-                    tL_reactionCustomEmoji2.document_id = n0Var.f54616g;
+                    tL_reactionCustomEmoji2.document_id = n0Var.f54618g;
                     tL_reactionCustomEmoji = tL_reactionCustomEmoji2;
                 }
                 arrayList2.add(0, tL_reactionCustomEmoji);
@@ -5950,14 +5950,14 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             if (arrayList != null && !arrayList.isEmpty()) {
                 for (int i10 = 0; i10 < arrayList.size(); i10++) {
                     zg.n0 n0Var2 = arrayList.get(i10);
-                    if (n0Var2.f54616g != 0) {
+                    if (n0Var2.f54618g != 0) {
                         TLRPC.TL_reactionCustomEmoji tL_reactionCustomEmoji3 = new TLRPC.TL_reactionCustomEmoji();
-                        tL_reactionCustomEmoji3.document_id = n0Var2.f54616g;
+                        tL_reactionCustomEmoji3.document_id = n0Var2.f54618g;
                         tL_messages_sendReaction.reaction.add(tL_reactionCustomEmoji3);
                         tL_messages_sendReaction.flags |= 1;
-                    } else if (n0Var2.f54615f != null) {
+                    } else if (n0Var2.f54617f != null) {
                         TLRPC.TL_reactionEmoji tL_reactionEmoji2 = new TLRPC.TL_reactionEmoji();
-                        tL_reactionEmoji2.emoticon = n0Var2.f54615f;
+                        tL_reactionEmoji2.emoticon = n0Var2.f54617f;
                         tL_messages_sendReaction.reaction.add(tL_reactionEmoji2);
                         tL_messages_sendReaction.flags |= 1;
                     }
@@ -7548,27 +7548,27 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             tL_inputReplyToMessage.flags |= 1;
             tL_inputReplyToMessage.top_msg_id = i11;
         }
-        if (pnVar != null && pnVar.h && (pollAnswer = pnVar.f40852l) != null) {
+        if (pnVar != null && pnVar.h && (pollAnswer = pnVar.f40854l) != null) {
             tL_inputReplyToMessage.poll_option = pollAnswer.option;
-        } else if (pnVar != null && pnVar.f40848g && (todoItem = pnVar.f40851k) != null) {
+        } else if (pnVar != null && pnVar.f40850g && (todoItem = pnVar.f40853k) != null) {
             tL_inputReplyToMessage.flags |= 64;
             tL_inputReplyToMessage.todo_item_id = todoItem.f20183id;
-        } else if (pnVar != null && !pnVar.f40848g && !pnVar.h) {
-            String str = pnVar.f40849i;
+        } else if (pnVar != null && !pnVar.f40850g && !pnVar.h) {
+            String str = pnVar.f40851i;
             tL_inputReplyToMessage.quote_text = str;
             if (!TextUtils.isEmpty(str)) {
                 tL_inputReplyToMessage.flags |= 4;
-                ArrayList<TLRPC.MessageEntity> arrayList = pnVar.f40850j;
+                ArrayList<TLRPC.MessageEntity> arrayList = pnVar.f40852j;
                 tL_inputReplyToMessage.quote_entities = arrayList;
                 if (arrayList != null && !arrayList.isEmpty()) {
                     tL_inputReplyToMessage.quote_entities = new ArrayList<>(tL_inputReplyToMessage.quote_entities);
                     tL_inputReplyToMessage.flags |= 8;
                 }
                 tL_inputReplyToMessage.flags |= 16;
-                tL_inputReplyToMessage.quote_offset = pnVar.f40844b;
+                tL_inputReplyToMessage.quote_offset = pnVar.f40846b;
             }
         }
-        if (pnVar != null && (messageObject = pnVar.f40843a) != null) {
+        if (pnVar != null && (messageObject = pnVar.f40845a) != null) {
             TLRPC.InputPeer inputPeer2 = getMessagesController().getInputPeer(messageObject.getDialogId());
             if (inputPeer2 != null && !MessageObject.peersEqual(inputPeer2, inputPeer)) {
                 tL_inputReplyToMessage.flags |= 2;

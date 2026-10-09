@@ -12,7 +12,7 @@ public final class m10 extends pm0 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47660f == 2) {
+        if (d1Var.f47662f == 2) {
             int b10 = d1Var.b();
             s10 s10Var = this.f28647c;
             if (b10 >= s10Var.f30586r0 && d1Var.b() <= s10Var.f30587s0) {

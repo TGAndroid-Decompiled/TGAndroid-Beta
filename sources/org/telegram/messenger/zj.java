@@ -55,26 +55,26 @@ public final class zj implements Runnable {
                 org.telegram.ui.ActionBar.f1 f1Var6 = (org.telegram.ui.ActionBar.f1) this.f20028n;
                 org.telegram.ui.ActionBar.f1 f1Var7 = (org.telegram.ui.ActionBar.f1) this.f20030s;
                 if (f1Var != null) {
-                    if (e5Var.f52434e) {
+                    if (e5Var.f52436e) {
                         i10 = R.string.Gift2FilterSortByValue;
                     } else {
                         i10 = R.string.Gift2FilterSortByDate;
                     }
                     String string = LocaleController.getString(i10);
-                    if (e5Var.f52434e) {
+                    if (e5Var.f52436e) {
                         i11 = R.drawable.menu_sort_value;
                     } else {
                         i11 = R.drawable.menu_sort_date;
                     }
                     f1Var.g(string, i11, null);
                 }
-                f1Var2.setChecked(TLObject.hasFlag(e5Var.f52436g, 1));
-                f1Var3.setChecked(TLObject.hasFlag(e5Var.f52436g, 2));
-                f1Var4.setChecked(TLObject.hasFlag(e5Var.f52436g, 4));
-                f1Var5.setChecked(TLObject.hasFlag(e5Var.f52436g, 8));
+                f1Var2.setChecked(TLObject.hasFlag(e5Var.f52438g, 1));
+                f1Var3.setChecked(TLObject.hasFlag(e5Var.f52438g, 2));
+                f1Var4.setChecked(TLObject.hasFlag(e5Var.f52438g, 4));
+                f1Var5.setChecked(TLObject.hasFlag(e5Var.f52438g, 8));
                 if (this.f20029r) {
-                    f1Var6.setChecked(TLObject.hasFlag(e5Var.f52436g, 256));
-                    f1Var7.setChecked(TLObject.hasFlag(e5Var.f52436g, 512));
+                    f1Var6.setChecked(TLObject.hasFlag(e5Var.f52438g, 256));
+                    f1Var7.setChecked(TLObject.hasFlag(e5Var.f52438g, 512));
                     return;
                 }
                 return;
@@ -86,26 +86,26 @@ public final class zj implements Runnable {
                 org.telegram.ui.ActionBar.f1 f1Var12 = (org.telegram.ui.ActionBar.f1) this.h;
                 org.telegram.ui.ActionBar.f1 f1Var13 = (org.telegram.ui.ActionBar.f1) this.f20028n;
                 org.telegram.ui.ActionBar.f1 f1Var14 = (org.telegram.ui.ActionBar.f1) this.f20030s;
-                yh.e5 e5Var2 = ((xh.j4) this.f20024b).f51319c.Y;
-                if (e5Var2.f52434e) {
+                yh.e5 e5Var2 = ((xh.j4) this.f20024b).f51321c.Y;
+                if (e5Var2.f52436e) {
                     i12 = R.string.Gift2FilterSortByValue;
                 } else {
                     i12 = R.string.Gift2FilterSortByDate;
                 }
                 String string2 = LocaleController.getString(i12);
-                if (e5Var2.f52434e) {
+                if (e5Var2.f52436e) {
                     i13 = R.drawable.menu_sort_value;
                 } else {
                     i13 = R.drawable.menu_sort_date;
                 }
                 f1Var8.g(string2, i13, null);
-                f1Var9.setChecked(TLObject.hasFlag(e5Var2.f52436g, 1));
-                f1Var10.setChecked(TLObject.hasFlag(e5Var2.f52436g, 2));
-                f1Var11.setChecked(TLObject.hasFlag(e5Var2.f52436g, 4));
-                f1Var12.setChecked(TLObject.hasFlag(e5Var2.f52436g, 8));
+                f1Var9.setChecked(TLObject.hasFlag(e5Var2.f52438g, 1));
+                f1Var10.setChecked(TLObject.hasFlag(e5Var2.f52438g, 2));
+                f1Var11.setChecked(TLObject.hasFlag(e5Var2.f52438g, 4));
+                f1Var12.setChecked(TLObject.hasFlag(e5Var2.f52438g, 8));
                 if (this.f20029r) {
-                    f1Var13.setChecked(TLObject.hasFlag(e5Var2.f52436g, 256));
-                    f1Var14.setChecked(TLObject.hasFlag(e5Var2.f52436g, 512));
+                    f1Var13.setChecked(TLObject.hasFlag(e5Var2.f52438g, 256));
+                    f1Var14.setChecked(TLObject.hasFlag(e5Var2.f52438g, 512));
                     return;
                 }
                 return;

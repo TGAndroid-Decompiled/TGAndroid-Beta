@@ -37,18 +37,18 @@ public final class v5 extends p20 implements NotificationCenter.NotificationCent
     public int X;
     public boolean Y;
     public int Z;
-    public final ArrayList f42640a0;
-    public int f42641b0;
-    public LimitPreviewView f42642c0;
-    public final o5 f42643d0;
-    public boolean f42644e0;
-    public LinearLayout f42645f0;
-    public final TLRPC.Chat f42646g0;
-    public String f42647h0;
-    public String f42648i0;
-    public int f42649j0;
-    public int f42650k0;
-    public int f42651l0;
+    public final ArrayList f42642a0;
+    public int f42643b0;
+    public LimitPreviewView f42644c0;
+    public final o5 f42645d0;
+    public boolean f42646e0;
+    public LinearLayout f42647f0;
+    public final TLRPC.Chat f42648g0;
+    public String f42649h0;
+    public String f42650i0;
+    public int f42651j0;
+    public int f42652k0;
+    public int f42653l0;
     public int m0;
 
     public v5(long j3) {
@@ -56,15 +56,15 @@ public final class v5 extends p20 implements NotificationCenter.NotificationCent
         this.Q = i10;
         this.U = new ArrayList();
         this.V = new ArrayList();
-        this.f42640a0 = new ArrayList();
-        this.f42641b0 = 0;
-        this.f42643d0 = new o5(this);
-        this.f42647h0 = "";
-        this.f42648i0 = "";
-        this.f42649j0 = 5;
-        this.f42650k0 = 5;
+        this.f42642a0 = new ArrayList();
+        this.f42643b0 = 0;
+        this.f42645d0 = new o5(this);
+        this.f42649h0 = "";
+        this.f42650i0 = "";
+        this.f42651j0 = 5;
+        this.f42652k0 = 5;
         this.P = j3;
-        this.f42646g0 = MessagesController.getInstance(i10).getChat(Long.valueOf(-j3));
+        this.f42648g0 = MessagesController.getInstance(i10).getChat(Long.valueOf(-j3));
     }
 
     public static void y0(v5 v5Var, Context context, View view, int i10) {
@@ -93,7 +93,7 @@ public final class v5 extends p20 implements NotificationCenter.NotificationCent
                     TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode = new TLRPC.TL_payments_checkedGiftCode();
                     tL_payments_checkedGiftCode.giveaway_msg_id = boost.giveaway_msg_id;
                     tL_payments_checkedGiftCode.to_id = boost.user_id;
-                    tL_payments_checkedGiftCode.from_id = MessagesController.getInstance(UserConfig.selectedAccount).getPeer(-v5Var.f42646g0.f20038id);
+                    tL_payments_checkedGiftCode.from_id = MessagesController.getInstance(UserConfig.selectedAccount).getPeer(-v5Var.f42648g0.f20038id);
                     int i11 = boost.date;
                     tL_payments_checkedGiftCode.date = i11;
                     tL_payments_checkedGiftCode.via_giveaway = boost.giveaway;
@@ -116,8 +116,8 @@ public final class v5 extends p20 implements NotificationCenter.NotificationCent
         if (view instanceof yg.c) {
             tg.m.o(v5Var, v5Var.resourceProvider, j3, ((yg.c) view).getPrepaidGiveaway());
         }
-        if (((u5) v5Var.f42640a0.get(i10)).f17125a == 9) {
-            if (v5Var.f42641b0 == 1) {
+        if (((u5) v5Var.f42642a0.get(i10)).f17125a == 9) {
+            if (v5Var.f42643b0 == 1) {
                 z10 = true;
             }
             v5Var.F0(Boolean.valueOf(z10));
@@ -126,8 +126,8 @@ public final class v5 extends p20 implements NotificationCenter.NotificationCent
 
     public final void D0(CountDownLatch countDownLatch, l5 l5Var) {
         TL_stories.TL_premium_getBoostsList tL_premium_getBoostsList = new TL_stories.TL_premium_getBoostsList();
-        tL_premium_getBoostsList.limit = this.f42650k0;
-        tL_premium_getBoostsList.offset = this.f42647h0;
+        tL_premium_getBoostsList.limit = this.f42652k0;
+        tL_premium_getBoostsList.offset = this.f42649h0;
         int i10 = this.Q;
         tL_premium_getBoostsList.peer = MessagesController.getInstance(i10).getInputPeer(this.P);
         ConnectionsManager.getInstance(i10).sendRequest(tL_premium_getBoostsList, new j5(this, countDownLatch, l5Var, 0), 2);
@@ -135,19 +135,19 @@ public final class v5 extends p20 implements NotificationCenter.NotificationCent
 
     public final void E0(CountDownLatch countDownLatch, l5 l5Var) {
         TL_stories.TL_premium_getBoostsList tL_premium_getBoostsList = new TL_stories.TL_premium_getBoostsList();
-        tL_premium_getBoostsList.limit = this.f42649j0;
+        tL_premium_getBoostsList.limit = this.f42651j0;
         tL_premium_getBoostsList.gifts = true;
-        tL_premium_getBoostsList.offset = this.f42648i0;
+        tL_premium_getBoostsList.offset = this.f42650i0;
         int i10 = this.Q;
         tL_premium_getBoostsList.peer = MessagesController.getInstance(i10).getInputPeer(this.P);
         ConnectionsManager.getInstance(i10).sendRequest(tL_premium_getBoostsList, new j5(this, countDownLatch, l5Var, 1), 2);
     }
 
     public final void F0(Boolean bool) {
-        if (this.f42644e0) {
+        if (this.f42646e0) {
             return;
         }
-        this.f42644e0 = true;
+        this.f42646e0 = true;
         if (bool == null) {
             Utilities.globalQueue.postRunnable(new l5(this, 1));
         } else if (bool.booleanValue()) {
@@ -165,24 +165,24 @@ public final class v5 extends p20 implements NotificationCenter.NotificationCent
         if (getParentActivity() == null) {
             return;
         }
-        if (this.f42642c0 == null) {
+        if (this.f42644c0 == null) {
             LimitPreviewView limitPreviewView = new LimitPreviewView(getParentActivity(), R.drawable.filled_limit_boost, 0, this.resourceProvider, 0);
-            this.f42642c0 = limitPreviewView;
+            this.f42644c0 = limitPreviewView;
             limitPreviewView.f24240c0 = true;
             limitPreviewView.setDarkGradientProvider(new z0(this, 5));
         }
-        if (this.f42642c0.getParent() != null) {
-            ((ViewGroup) this.f42642c0.getParent()).removeView(this.f42642c0);
+        if (this.f42644c0.getParent() != null) {
+            ((ViewGroup) this.f42644c0.getParent()).removeView(this.f42644c0);
         }
         TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.R;
         if (tL_premium_boostsStatus != null) {
-            this.f42642c0.e(tL_premium_boostsStatus, false);
+            this.f42644c0.e(tL_premium_boostsStatus, false);
             if (z10) {
-                this.f42642c0.setAlpha(0.0f);
-                this.f42642c0.animate().alpha(1.0f).start();
+                this.f42644c0.setAlpha(0.0f);
+                this.f42644c0.animate().alpha(1.0f).start();
             }
         }
-        TLRPC.Chat chat = this.f42646g0;
+        TLRPC.Chat chat = this.f42648g0;
         if (ChatObject.isChannelAndNotMegaGroup(chat)) {
             i10 = R.string.BoostingBoostForChannels;
         } else {
@@ -197,7 +197,7 @@ public final class v5 extends p20 implements NotificationCenter.NotificationCent
         SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.getString(i11));
         FrameLayout frameLayout = new FrameLayout(getParentActivity());
         if (this.R != null) {
-            view = this.f42642c0;
+            view = this.f42644c0;
         } else {
             view = new View(frameLayout.getContext());
         }
@@ -218,7 +218,7 @@ public final class v5 extends p20 implements NotificationCenter.NotificationCent
         int i13;
         boolean z12;
         boolean z13;
-        ArrayList arrayList = this.f42640a0;
+        ArrayList arrayList = this.f42642a0;
         ArrayList arrayList2 = new ArrayList(arrayList);
         arrayList.clear();
         arrayList.add(new og.a(14, false));
@@ -236,15 +236,15 @@ public final class v5 extends p20 implements NotificationCenter.NotificationCent
                         z13 = false;
                     }
                     ?? aVar = new og.a(11, true);
-                    aVar.f42328e = prepaidGiveaway;
-                    aVar.f42329f = z13;
+                    aVar.f42330e = prepaidGiveaway;
+                    aVar.f42331f = z13;
                     arrayList.add(aVar);
                 }
                 arrayList.add(new u5(6, LocaleController.getString(R.string.BoostingSelectPaidGiveaway)));
             }
             arrayList.add(new u5(13, LocaleController.getString(R.string.Boosters)));
-            int i15 = this.f42641b0;
-            TLRPC.Chat chat = this.f42646g0;
+            int i15 = this.f42643b0;
+            TLRPC.Chat chat = this.f42648g0;
             if (i15 == 0) {
                 ArrayList arrayList3 = this.U;
                 if (arrayList3.isEmpty()) {
@@ -258,7 +258,7 @@ public final class v5 extends p20 implements NotificationCenter.NotificationCent
                         } else {
                             z12 = false;
                         }
-                        arrayList.add(new u5(boost, z12, this.f42641b0));
+                        arrayList.add(new u5(boost, z12, this.f42643b0));
                     }
                     if (this.W) {
                         arrayList.add(new og.a(9, true));
@@ -285,7 +285,7 @@ public final class v5 extends p20 implements NotificationCenter.NotificationCent
                         } else {
                             z11 = false;
                         }
-                        arrayList.add(new u5(boost2, z11, this.f42641b0));
+                        arrayList.add(new u5(boost2, z11, this.f42643b0));
                     }
                     if (this.Y) {
                         arrayList.add(new og.a(9, true));
@@ -321,7 +321,7 @@ public final class v5 extends p20 implements NotificationCenter.NotificationCent
             }
             arrayList.add(new og.a(15, false));
         }
-        o5 o5Var = this.f42643d0;
+        o5 o5Var = this.f42645d0;
         if (z10) {
             o5Var.E(arrayList2, arrayList);
         } else {
@@ -334,22 +334,22 @@ public final class v5 extends p20 implements NotificationCenter.NotificationCent
         View createView = super.createView(context);
         G0(false);
         s4.j jVar = new s4.j();
-        jVar.f47696m = false;
+        jVar.f47698m = false;
         jVar.C = false;
-        this.f40638c.setItemAnimator(jVar);
-        this.f40638c.setOnItemClickListener(new ai.o6(3, this, context));
+        this.f40640c.setItemAnimator(jVar);
+        this.f40640c.setOnItemClickListener(new ai.o6(3, this, context));
         Activity parentActivity = getParentActivity();
         LinearLayout linearLayout = new LinearLayout(parentActivity);
-        this.f42645f0 = linearLayout;
+        this.f42647f0 = linearLayout;
         linearLayout.setOrientation(1);
-        this.f42645f0.addView(new ai.r2(parentActivity), w7.x5.t(100, 100, 17, 0, 120, 0, 0));
-        ((ViewGroup) this.fragmentView).addView(this.f42645f0, w7.x5.e(-1, -2, 17));
-        this.f42645f0.setAlpha(0.0f);
+        this.f42647f0.addView(new ai.r2(parentActivity), w7.x5.t(100, 100, 17, 0, 120, 0, 0));
+        ((ViewGroup) this.fragmentView).addView(this.f42647f0, w7.x5.e(-1, -2, 17));
+        this.f42647f0.setAlpha(0.0f);
         if (this.R == null) {
-            this.f42645f0.animate().alpha(1.0f).setDuration(200L).setStartDelay(500L).start();
+            this.f42647f0.animate().alpha(1.0f).setDuration(200L).setStartDelay(500L).start();
             getMessagesController().getBoostsController().getBoostsStats(this.P, new m5(this, 1));
         } else {
-            this.f42645f0.setVisibility(8);
+            this.f42647f0.setVisibility(8);
             F0(null);
         }
         H0(false);
@@ -410,7 +410,7 @@ public final class v5 extends p20 implements NotificationCenter.NotificationCent
 
     @Override
     public final s4.i0 n0() {
-        return this.f42643d0;
+        return this.f42645d0;
     }
 
     @Override

@@ -5,26 +5,26 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.zn;
 public final class p5 implements Runnable {
-    public final int f53036a;
-    public final org.telegram.ui.ActionBar.f3[] f53037b;
-    public final TL_stars.StarsTransaction f53038c;
+    public final int f53038a;
+    public final org.telegram.ui.ActionBar.f3[] f53039b;
+    public final TL_stars.StarsTransaction f53040c;
     public final long d;
 
     public p5(org.telegram.ui.ActionBar.f3[] f3VarArr, long j3, TL_stars.StarsTransaction starsTransaction) {
-        this.f53036a = 2;
-        this.f53037b = f3VarArr;
+        this.f53038a = 2;
+        this.f53039b = f3VarArr;
         this.d = j3;
-        this.f53038c = starsTransaction;
+        this.f53040c = starsTransaction;
     }
 
     @Override
     public final void run() {
-        switch (this.f53036a) {
+        switch (this.f53038a) {
             case 0:
-                this.f53037b[0].dismiss();
+                this.f53039b[0].dismiss();
                 org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                 if (U != null) {
-                    TL_stars.StarsTransaction starsTransaction = this.f53038c;
+                    TL_stars.StarsTransaction starsTransaction = this.f53040c;
                     int i10 = starsTransaction.flags & 8192;
                     long j3 = this.d;
                     if (i10 != 0) {
@@ -37,10 +37,10 @@ public final class p5 implements Runnable {
                 }
                 return;
             case 1:
-                this.f53037b[0].dismiss();
+                this.f53039b[0].dismiss();
                 org.telegram.ui.ActionBar.n2 U2 = LaunchActivity.U();
                 if (U2 != null) {
-                    TL_stars.StarsTransaction starsTransaction2 = this.f53038c;
+                    TL_stars.StarsTransaction starsTransaction2 = this.f53040c;
                     int i11 = starsTransaction2.flags & 8192;
                     long j10 = this.d;
                     if (i11 != 0) {
@@ -53,21 +53,21 @@ public final class p5 implements Runnable {
                 }
                 return;
             case 2:
-                this.f53037b[0].dismiss();
+                this.f53039b[0].dismiss();
                 org.telegram.ui.ActionBar.n2 U3 = LaunchActivity.U();
                 if (U3 != null) {
                     Bundle bundle = new Bundle();
                     bundle.putLong("chat_id", -this.d);
-                    bundle.putInt("message_id", this.f53038c.msg_id);
+                    bundle.putInt("message_id", this.f53040c.msg_id);
                     U3.presentFragment(new zn(bundle));
                     return;
                 }
                 return;
             case 3:
-                this.f53037b[0].dismiss();
+                this.f53039b[0].dismiss();
                 org.telegram.ui.ActionBar.n2 U4 = LaunchActivity.U();
                 if (U4 != null) {
-                    TL_stars.StarsTransaction starsTransaction3 = this.f53038c;
+                    TL_stars.StarsTransaction starsTransaction3 = this.f53040c;
                     int i12 = starsTransaction3.flags & 8192;
                     long j11 = this.d;
                     if (i12 != 0) {
@@ -80,10 +80,10 @@ public final class p5 implements Runnable {
                 }
                 return;
             default:
-                this.f53037b[0].dismiss();
+                this.f53039b[0].dismiss();
                 org.telegram.ui.ActionBar.n2 U5 = LaunchActivity.U();
                 if (U5 != null) {
-                    TL_stars.StarsTransaction starsTransaction4 = this.f53038c;
+                    TL_stars.StarsTransaction starsTransaction4 = this.f53040c;
                     int i13 = starsTransaction4.flags & 8192;
                     long j12 = this.d;
                     if (i13 != 0) {
@@ -99,9 +99,9 @@ public final class p5 implements Runnable {
     }
 
     public p5(org.telegram.ui.ActionBar.f3[] f3VarArr, TL_stars.StarsTransaction starsTransaction, long j3, int i10) {
-        this.f53036a = i10;
-        this.f53037b = f3VarArr;
-        this.f53038c = starsTransaction;
+        this.f53038a = i10;
+        this.f53039b = f3VarArr;
+        this.f53040c = starsTransaction;
         this.d = j3;
     }
 }

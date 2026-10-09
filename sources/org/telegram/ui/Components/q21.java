@@ -82,7 +82,7 @@ public final class q21 extends pm0 {
     @Override
     public final void v(s4.d1 d1Var, int i10) {
         int c10;
-        if (d1Var.f47660f == 0) {
+        if (d1Var.f47662f == 0) {
             boolean z10 = true;
             int i11 = i10 - 1;
             org.telegram.ui.ActionBar.k6 k6Var = (org.telegram.ui.ActionBar.k6) ((ArrayList) this.f30003e.get(i11)).get(0);
@@ -91,7 +91,7 @@ public final class q21 extends pm0 {
             } else {
                 c10 = k6Var.c();
             }
-            org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) d1Var.f47656a;
+            org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) d1Var.f47658a;
             z8Var.f23818a.setText((CharSequence) this.f30004f.get(i11));
             z8Var.f23819b = c10;
             if (c10 != 0) {

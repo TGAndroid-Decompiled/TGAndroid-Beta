@@ -133,14 +133,14 @@ public final class bb extends FrameLayout {
             }
         } else if (obj instanceof ij1) {
             ij1 ij1Var = (ij1) obj;
-            File file = ij1Var.f38679i;
+            File file = ij1Var.f38681i;
             int i11 = ij1Var.d;
-            int i12 = ij1Var.f38675c;
-            int i13 = ij1Var.f38674b;
-            if (file == null && ij1Var.f38678g == null && !"d".equals(ij1Var.f38673a)) {
+            int i12 = ij1Var.f38677c;
+            int i13 = ij1Var.f38676b;
+            if (file == null && ij1Var.f38680g == null && !"d".equals(ij1Var.f38675a)) {
                 y9Var2.setImageBitmap(null);
-                if (ij1Var.f38681k) {
-                    y9Var2.setBackground(new cd0(true, ij1Var.f38674b, ij1Var.f38675c, ij1Var.d, ij1Var.f38676e));
+                if (ij1Var.f38683k) {
+                    y9Var2.setBackground(new cd0(true, ij1Var.f38676b, ij1Var.f38677c, ij1Var.d, ij1Var.f38678e));
                     return;
                 } else if (i12 != 0) {
                     y9Var2.setBackground(new GradientDrawable(GradientDrawable.Orientation.BL_TR, new int[]{i13 | (-16777216), i12 | (-16777216)}));
@@ -151,36 +151,36 @@ public final class bb extends FrameLayout {
                 }
             }
             if (i11 != 0) {
-                cd0 cd0Var2 = new cd0(true, ij1Var.f38674b, ij1Var.f38675c, ij1Var.d, ij1Var.f38676e);
+                cd0 cd0Var2 = new cd0(true, ij1Var.f38676b, ij1Var.f38677c, ij1Var.d, ij1Var.f38678e);
                 if (ij1Var.h >= 0.0f) {
-                    y9Var2.setBackground(new cd0(true, ij1Var.f38674b, ij1Var.f38675c, ij1Var.d, ij1Var.f38676e));
+                    y9Var2.setBackground(new cd0(true, ij1Var.f38676b, ij1Var.f38677c, ij1Var.d, ij1Var.f38678e));
                     if (Build.VERSION.SDK_INT >= 29) {
                         y9Var2.getImageReceiver().setBlendMode(BlendMode.SOFT_LIGHT);
                     }
                 } else {
                     y9Var2.getImageReceiver().setGradientBitmap(cd0Var2.f25341k);
                 }
-                patternColor = cd0.g(i13, i12, i11, ij1Var.f38676e);
+                patternColor = cd0.g(i13, i12, i11, ij1Var.f38678e);
             } else {
                 patternColor = AndroidUtilities.getPatternColor(i13);
             }
             int i14 = patternColor;
-            if ("d".equals(ij1Var.f38673a)) {
-                if (ij1Var.f38683m == null) {
-                    ij1Var.f38683m = SvgHelper.getBitmap(R.raw.default_pattern, 100, 180, -16777216);
+            if ("d".equals(ij1Var.f38675a)) {
+                if (ij1Var.f38685m == null) {
+                    ij1Var.f38685m = SvgHelper.getBitmap(R.raw.default_pattern, 100, 180, -16777216);
                 }
-                y9Var2.setImageBitmap(ij1Var.f38683m);
+                y9Var2.setImageBitmap(ij1Var.f38685m);
                 y9Var2.getImageReceiver().setAlpha(Math.abs(ij1Var.h));
             } else if (file != null) {
                 y9Var2.f(file.getAbsolutePath(), "180_180", null);
             } else {
-                TLRPC.PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(ij1Var.f38678g.document.thumbs, 100);
+                TLRPC.PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(ij1Var.f38680g.document.thumbs, 100);
                 if (closestPhotoSizeWithSize3 != null) {
                     j3 = closestPhotoSizeWithSize3.size;
                 } else {
-                    j3 = ij1Var.f38678g.document.size;
+                    j3 = ij1Var.f38680g.document.size;
                 }
-                y9Var2.k(ImageLocation.getForDocument(closestPhotoSizeWithSize3, ij1Var.f38678g.document), "180_180", null, null, j3, "jpg", ij1Var.f38678g, 1);
+                y9Var2.k(ImageLocation.getForDocument(closestPhotoSizeWithSize3, ij1Var.f38680g.document), "180_180", null, null, j3, "jpg", ij1Var.f38680g, 1);
                 y9Var2.getImageReceiver().setAlpha(Math.abs(ij1Var.h));
                 if (Build.VERSION.SDK_INT >= 29 && i11 != 0) {
                     return;
@@ -189,7 +189,7 @@ public final class bb extends FrameLayout {
             }
         } else if (obj instanceof jj1) {
             jj1 jj1Var = (jj1) obj;
-            File file2 = jj1Var.f38963e;
+            File file2 = jj1Var.f38965e;
             if (file2 != null) {
                 y9Var2.f(file2.getAbsolutePath(), "180_180", null);
                 return;
@@ -197,10 +197,10 @@ public final class bb extends FrameLayout {
             File file3 = jj1Var.d;
             if (file3 != null) {
                 y9Var2.f(file3.getAbsolutePath(), "180_180", null);
-            } else if ("t".equals(jj1Var.f38960a)) {
+            } else if ("t".equals(jj1Var.f38962a)) {
                 y9Var2.setImageDrawable(org.telegram.ui.ActionBar.i6.X0(y9Var2, true));
             } else {
-                y9Var2.setImageResource(jj1Var.f38962c);
+                y9Var2.setImageResource(jj1Var.f38964c);
             }
         } else if (obj instanceof MediaController.SearchImage) {
             MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;

@@ -55,7 +55,7 @@ public final class r2 implements Runnable {
                 Utilities.Callback callback = (Utilities.Callback) this.f30342f;
                 org.telegram.ui.Wallet.h0 h0Var2 = null;
                 try {
-                    Object obj = org.telegram.ui.Wallet.p0.f35342f;
+                    Object obj = org.telegram.ui.Wallet.p0.f35370f;
                     synchronized (obj) {
                         p0Var.c(j10);
                         r10 = p0Var.r();
@@ -67,7 +67,7 @@ public final class r2 implements Runnable {
                                 p0Var.c(j10);
                                 if (z12) {
                                     try {
-                                        r10.f25857b = ConnectionsManager.getInstance(p0Var.f35346b).getCurrentTime();
+                                        r10.f25857b = ConnectionsManager.getInstance(p0Var.f35374b).getCurrentTime();
                                         if (!p0Var.d.exists()) {
                                             if (p0Var.q().edit().putInt("lastUsageDate", r10.f25857b).commit()) {
                                                 AndroidUtilities.runOnUIThread(new org.telegram.ui.t21(6));

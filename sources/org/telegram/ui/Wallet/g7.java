@@ -1,88 +1,64 @@
 package org.telegram.ui.Wallet;
 
-import android.text.TextUtils;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.Components.ad;
-import org.telegram.ui.Components.tc;
 public final class g7 implements Utilities.Callback {
-    public final int f34936a;
-    public final k7 f34937b;
-    public final of.e f34938c;
+    public final int f34966a = 0;
+    public final l7 f34967b;
+    public final Utilities.Callback f34968c;
+    public final p0 d;
+    public final k0 f34969e;
 
-    public g7(k7 k7Var, of.e eVar, int i10) {
-        this.f34936a = i10;
-        this.f34937b = k7Var;
-        this.f34938c = eVar;
+    public g7(l7 l7Var, Utilities.Callback callback, k0 k0Var, p0 p0Var) {
+        this.f34967b = l7Var;
+        this.f34968c = callback;
+        this.f34969e = k0Var;
+        this.d = p0Var;
     }
 
     @Override
     public final void run(Object obj) {
-        String str = (String) obj;
-        switch (this.f34936a) {
+        String o9;
+        switch (this.f34966a) {
             case 0:
-                k7 k7Var = this.f34937b;
-                k7Var.getClass();
-                this.f34938c.b();
-                if (!TextUtils.isEmpty(str)) {
-                    ad.a0(k7Var).e0(str, false);
-                    return;
-                }
-                return;
-            case 1:
-                this.f34938c.c(false);
-                k7 k7Var2 = this.f34937b;
-                org.telegram.ui.ActionBar.d5 parentLayout = k7Var2.getParentLayout();
-                if (parentLayout != null) {
-                    ArrayList arrayList = new ArrayList(parentLayout.getFragmentStack());
-                    int size = arrayList.size();
-                    int i10 = 0;
-                    while (i10 < size) {
-                        Object obj2 = arrayList.get(i10);
-                        i10++;
-                        org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) obj2;
-                        if ((n2Var instanceof r8) || (n2Var instanceof o7) || (n2Var instanceof y8)) {
-                            ((ActionBarLayout) parentLayout).a0(n2Var, false);
-                        }
-                    }
-                }
-                if (str != null) {
-                    ad.a0(k7Var2).e0(str, false);
-                    return;
-                }
-                tc M = ad.a0(k7Var2).M(LocaleController.getString(R.string.WalletBackupDisabled), LocaleController.getString(R.string.WalletBackupDisabledInfo), R.raw.contact_check);
-                M.f31130j = 5000;
-                M.j();
+                l7.Y(this.f34967b, this.f34968c, this.f34969e, this.d, (h0) obj);
                 return;
             default:
-                k7 k7Var3 = this.f34937b;
-                k7Var3.getClass();
-                this.f34938c.b();
-                if (str != null) {
-                    ad.a0(k7Var3).e0(str, false);
+                b0 b0Var = (b0) obj;
+                Utilities.Callback callback = this.f34968c;
+                if (b0Var == null) {
+                    callback.run("ADDRESS_NO_INFO");
                     return;
                 }
-                org.telegram.ui.ActionBar.d5 parentLayout2 = k7Var3.getParentLayout();
-                if (parentLayout2 == null) {
-                    k7Var3.finishFragment();
-                    return;
-                }
-                ArrayList arrayList2 = new ArrayList(parentLayout2.getFragmentStack());
-                int size2 = arrayList2.size();
-                int i11 = 0;
-                while (i11 < size2) {
-                    Object obj3 = arrayList2.get(i11);
-                    i11++;
-                    org.telegram.ui.ActionBar.n2 n2Var2 = (org.telegram.ui.ActionBar.n2) obj3;
-                    if ((n2Var2 instanceof r8) || (n2Var2 instanceof o7) || (n2Var2 instanceof y8) || (n2Var2 instanceof k7)) {
-                        ((ActionBarLayout) parentLayout2).a0(n2Var2, false);
+                byte[] bArr = b0Var.f34666c;
+                p0 p0Var = this.d;
+                if (bArr == null) {
+                    byte[][] m10 = p0Var.m();
+                    if (m10.length <= 0) {
+                        callback.run("STORAGE_NO_PUBLIC_KEY");
+                        return;
                     }
+                    bArr = m10[0];
                 }
-                k7Var3.finishFragment();
+                if (!p0Var.f(bArr)) {
+                    callback.run("STORAGE_OLD_PUBLIC_KEY");
+                    return;
+                }
+                g7 g7Var = new g7(this.f34967b, callback, this.f34969e, p0Var);
+                if (bArr == null) {
+                    o9 = "";
+                } else {
+                    o9 = p0.o(bArr);
+                }
+                String str = o9;
+                p0.h.execute(new org.telegram.ui.Components.r2(p0Var, p0Var.l(), str, false, (Utilities.Callback) g7Var));
                 return;
         }
+    }
+
+    public g7(l7 l7Var, Utilities.Callback callback, p0 p0Var, k0 k0Var) {
+        this.f34967b = l7Var;
+        this.f34968c = callback;
+        this.d = p0Var;
+        this.f34969e = k0Var;
     }
 }

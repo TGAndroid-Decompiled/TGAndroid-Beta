@@ -7,19 +7,19 @@ import android.text.Layout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class z8 extends TextView {
-    public final Paint f44507a;
-    public final org.telegram.ui.ActionBar.e6 f44508b;
+    public final Paint f44509a;
+    public final org.telegram.ui.ActionBar.e6 f44510b;
 
     public z8(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
-        this.f44508b = e6Var;
-        this.f44507a = new Paint(1);
+        this.f44510b = e6Var;
+        this.f44509a = new Paint(1);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        int m12 = org.telegram.ui.ActionBar.i6.m1(0.8f, org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21199z6, this.f44508b));
-        Paint paint = this.f44507a;
+        int m12 = org.telegram.ui.ActionBar.i6.m1(0.8f, org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21199z6, this.f44510b));
+        Paint paint = this.f44509a;
         paint.setColor(m12);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(1.0f);

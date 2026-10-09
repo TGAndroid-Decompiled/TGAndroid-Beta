@@ -3,14 +3,14 @@ package zb;
 import x7.fa;
 import x7.ia;
 public final class d {
-    public final e f54307a;
-    public final qb.d f54308b;
-    public final fa f54309c;
+    public final e f54309a;
+    public final qb.d f54310b;
+    public final fa f54311c;
 
     public d(e eVar, qb.d dVar) {
         fa b10 = ia.b();
-        this.f54307a = eVar;
-        this.f54308b = dVar;
-        this.f54309c = b10;
+        this.f54309a = eVar;
+        this.f54310b = dVar;
+        this.f54311c = b10;
     }
 }

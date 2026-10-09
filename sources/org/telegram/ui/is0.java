@@ -3,23 +3,23 @@ package org.telegram.ui;
 import android.net.Uri;
 import org.telegram.messenger.Utilities;
 public final class is0 implements Utilities.Callback {
-    public final int f38750a;
-    public final ss0 f38751b;
+    public final int f38752a;
+    public final ss0 f38753b;
 
     public is0(ss0 ss0Var, int i10) {
-        this.f38750a = i10;
-        this.f38751b = ss0Var;
+        this.f38752a = i10;
+        this.f38753b = ss0Var;
     }
 
     @Override
     public final void run(Object obj) {
         Uri uri = (Uri) obj;
-        switch (this.f38750a) {
+        switch (this.f38752a) {
             case 0:
-                new org.telegram.ui.Components.ad(this.f38751b.f41765b.f33904e0, null).m(org.telegram.ui.Components.zc.f33519r, 1, -115203550, -1, null).j();
+                new org.telegram.ui.Components.ad(this.f38753b.f41767b.f33904e0, null).m(org.telegram.ui.Components.zc.f33519r, 1, -115203550, -1, null).j();
                 return;
             default:
-                new org.telegram.ui.Components.ad(this.f38751b.f41765b.f33904e0, null).m(org.telegram.ui.Components.zc.f33519r, 1, -115203550, -1, null).j();
+                new org.telegram.ui.Components.ad(this.f38753b.f41767b.f33904e0, null).m(org.telegram.ui.Components.zc.f33519r, 1, -115203550, -1, null).j();
                 return;
         }
     }

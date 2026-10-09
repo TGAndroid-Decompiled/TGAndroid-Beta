@@ -11,31 +11,31 @@ import org.telegram.ui.Cells.r8;
 import org.telegram.ui.Components.fk0;
 import yh.b8;
 public final class r1 extends r8 {
-    public final b8 Q;
-    public final int R;
-    public final org.telegram.ui.web.q0 S;
+    public final b8 R;
+    public final int S;
+    public final org.telegram.ui.web.q0 T;
 
     public r1(Context context, int i10, e6 e6Var) {
         super(context, e6Var);
         int i11;
-        this.Q = new b8(1, 15);
-        this.S = new org.telegram.ui.web.q0(this, 29);
+        this.R = new b8(1, 15);
+        this.T = new org.telegram.ui.web.q0(this, 29);
         if (i10 == 1) {
             i11 = i6.fk;
         } else {
             i11 = i6.Mj;
         }
-        this.R = i11;
+        this.S = i11;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         boolean isEnabled = LiteMode.isEnabled(131072);
-        org.telegram.ui.web.q0 q0Var = this.S;
+        org.telegram.ui.web.q0 q0Var = this.T;
         if (isEnabled) {
-            b8 b8Var = this.Q;
+            b8 b8Var = this.R;
             b8Var.d();
-            b8Var.a(canvas, i6.x0(null, this.R, false));
+            b8Var.a(canvas, i6.x0(null, this.S, false));
             yf.h.d().a(15, q0Var);
         } else {
             yf.h.d().f(q0Var);
@@ -46,7 +46,7 @@ public final class r1 extends r8 {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        yf.h.d().f(this.S);
+        yf.h.d().f(this.T);
     }
 
     @Override
@@ -58,6 +58,6 @@ public final class r1 extends r8 {
         float height = ((fk0Var.getHeight() / 2.0f) + (y3 + fk0Var.getPaddingTop())) - AndroidUtilities.dp(3.0f);
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(width - AndroidUtilities.dp(16.0f), height - AndroidUtilities.dp(16.0f), width + AndroidUtilities.dp(16.0f), height + AndroidUtilities.dp(16.0f));
-        this.Q.g(rectF);
+        this.R.g(rectF);
     }
 }

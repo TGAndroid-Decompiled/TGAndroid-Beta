@@ -30,7 +30,7 @@ public final class u9 extends og.b {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47660f;
+        int i10 = d1Var.f47662f;
         if ((i10 != 3 || !this.f6095n.W.F) && i10 != 7 && i10 != 9 && i10 != 10) {
             return false;
         }
@@ -69,8 +69,8 @@ public final class u9 extends og.b {
         ArrayList arrayList = y9Var.L;
         if (arrayList != null && i10 >= 0 && i10 < arrayList.size()) {
             k9 k9Var2 = (k9) arrayList.get(i10);
-            int i15 = d1Var.f47660f;
-            View view = d1Var.f47656a;
+            int i15 = d1Var.f47662f;
+            View view = d1Var.f47658a;
             boolean z11 = true;
             int i16 = i10 + 1;
             if (i16 < arrayList.size()) {

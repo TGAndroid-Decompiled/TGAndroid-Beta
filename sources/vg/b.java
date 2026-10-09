@@ -16,14 +16,14 @@ import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.ActionBar.j5;
 import org.telegram.ui.Components.fr;
 public final class b extends FrameLayout {
-    public final j5 f49568a;
-    public final ImageView f49569b;
+    public final j5 f49570a;
+    public final ImageView f49571b;
 
     public b(Context context, e6 e6Var) {
         super(context);
         int i10;
         j5 j5Var = new j5(context);
-        this.f49568a = j5Var;
+        this.f49570a = j5Var;
         j5Var.setTextSize(16);
         if (LocaleController.isRTL) {
             i10 = 5;
@@ -36,7 +36,7 @@ public final class b extends FrameLayout {
         j5Var.setTag(Integer.valueOf(i11));
         addView(j5Var);
         ImageView imageView = new ImageView(context);
-        this.f49569b = imageView;
+        this.f49571b = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView);
         j5Var.k(LocaleController.getString(R.string.BoostingAddChannelOrGroup));
@@ -55,11 +55,11 @@ public final class b extends FrameLayout {
         int dp;
         int measuredWidth;
         int i14 = i12 - i10;
-        j5 j5Var = this.f49568a;
+        j5 j5Var = this.f49570a;
         int textHeight = ((i13 - i11) - j5Var.getTextHeight()) / 2;
         boolean z11 = LocaleController.isRTL;
         float f7 = 23.0f;
-        ImageView imageView = this.f49569b;
+        ImageView imageView = this.f49571b;
         if (z11) {
             int measuredWidth2 = getMeasuredWidth() - j5Var.getMeasuredWidth();
             if (imageView.getVisibility() == 0) {
@@ -84,8 +84,8 @@ public final class b extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
-        this.f49568a.measure(bi.c(94.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
-        this.f49569b.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
+        this.f49570a.measure(bi.c(94.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
+        this.f49571b.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
         setMeasuredDimension(size, AndroidUtilities.dp(50.0f));
     }
 }

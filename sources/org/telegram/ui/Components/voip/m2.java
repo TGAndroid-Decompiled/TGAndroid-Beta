@@ -223,11 +223,11 @@ public final class m2 implements VoIPService.StateListener, sf.a, NotificationCe
             if (sharedInstance3 != null && sharedInstance3.getRemoteVideoState() == 2 && tf.c.a(activity) == 1) {
                 m2 m2Var5 = V;
                 qf.d dVar = new qf.d(activity, m2Var5);
-                dVar.f46151c = "voip-pip";
-                dVar.f46152e = 1;
+                dVar.f46153c = "voip-pip";
+                dVar.f46154e = 1;
                 s2 s2Var = m2Var5.f32096s;
-                dVar.f46156j = s2Var.d;
-                dVar.f46157k = s2Var.getPlaceholderView();
+                dVar.f46158j = s2Var.d;
+                dVar.f46159k = s2Var.getPlaceholderView();
                 m2Var5.f32092e = dVar.a();
             }
         }
@@ -429,11 +429,11 @@ public final class m2 implements VoIPService.StateListener, sf.a, NotificationCe
             Context context = V.f32089a.getContext();
             if (this.f32092e == null && tf.c.a(context) == 1 && (context instanceof Activity)) {
                 qf.d dVar = new qf.d((Activity) context, this);
-                dVar.f46151c = "voip-pip";
-                dVar.f46152e = 1;
+                dVar.f46153c = "voip-pip";
+                dVar.f46154e = 1;
                 s2 s2Var = this.f32096s;
-                dVar.f46156j = s2Var.d;
-                dVar.f46157k = s2Var.getPlaceholderView();
+                dVar.f46158j = s2Var.d;
+                dVar.f46159k = s2Var.getPlaceholderView();
                 this.f32092e = dVar.a();
             }
         } else {

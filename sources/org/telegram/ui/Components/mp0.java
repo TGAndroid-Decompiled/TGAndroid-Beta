@@ -18,7 +18,7 @@ public final class mp0 {
 
     public mp0(y2.d dVar) {
         this.f28883c = dVar;
-        int i10 = dVar.f51660b;
+        int i10 = dVar.f51662b;
         this.f28881a = i10;
         this.d = new e2.v(32);
         u2.x0 x0Var = new u2.x0(0L, i10);
@@ -28,16 +28,16 @@ public final class mp0 {
     }
 
     public static u2.x0 d(u2.x0 x0Var, long j3, ByteBuffer byteBuffer, int i10) {
-        while (j3 >= x0Var.f48757b) {
+        while (j3 >= x0Var.f48759b) {
             x0Var = (u2.x0) x0Var.d;
         }
         while (i10 > 0) {
-            int min = Math.min(i10, (int) (x0Var.f48757b - j3));
-            y2.a aVar = (y2.a) x0Var.f48758c;
-            byteBuffer.put(aVar.f51654a, ((int) (j3 - x0Var.f48756a)) + aVar.f51655b, min);
+            int min = Math.min(i10, (int) (x0Var.f48759b - j3));
+            y2.a aVar = (y2.a) x0Var.f48760c;
+            byteBuffer.put(aVar.f51656a, ((int) (j3 - x0Var.f48758a)) + aVar.f51657b, min);
             i10 -= min;
             j3 += min;
-            if (j3 == x0Var.f48757b) {
+            if (j3 == x0Var.f48759b) {
                 x0Var = (u2.x0) x0Var.d;
             }
         }
@@ -45,17 +45,17 @@ public final class mp0 {
     }
 
     public static u2.x0 e(u2.x0 x0Var, long j3, byte[] bArr, int i10) {
-        while (j3 >= x0Var.f48757b) {
+        while (j3 >= x0Var.f48759b) {
             x0Var = (u2.x0) x0Var.d;
         }
         int i11 = i10;
         while (i11 > 0) {
-            int min = Math.min(i11, (int) (x0Var.f48757b - j3));
-            y2.a aVar = (y2.a) x0Var.f48758c;
-            System.arraycopy(aVar.f51654a, ((int) (j3 - x0Var.f48756a)) + aVar.f51655b, bArr, i10 - i11, min);
+            int min = Math.min(i11, (int) (x0Var.f48759b - j3));
+            y2.a aVar = (y2.a) x0Var.f48760c;
+            System.arraycopy(aVar.f51656a, ((int) (j3 - x0Var.f48758a)) + aVar.f51657b, bArr, i10 - i11, min);
             i11 -= min;
             j3 += min;
-            if (j3 == x0Var.f48757b) {
+            if (j3 == x0Var.f48759b) {
                 x0Var = (u2.x0) x0Var.d;
             }
         }
@@ -170,7 +170,7 @@ public final class mp0 {
     }
 
     public void a(u2.x0 x0Var) {
-        if (((y2.a) x0Var.f48758c) == null) {
+        if (((y2.a) x0Var.f48760c) == null) {
             return;
         }
         y2.d dVar = (y2.d) this.f28883c;
@@ -178,15 +178,15 @@ public final class mp0 {
             u2.x0 x0Var2 = x0Var;
             while (x0Var2 != null) {
                 try {
-                    y2.a[] aVarArr = dVar.f51663f;
-                    int i10 = dVar.f51662e;
-                    dVar.f51662e = i10 + 1;
-                    y2.a aVar = (y2.a) x0Var2.f48758c;
+                    y2.a[] aVarArr = dVar.f51665f;
+                    int i10 = dVar.f51664e;
+                    dVar.f51664e = i10 + 1;
+                    y2.a aVar = (y2.a) x0Var2.f48760c;
                     aVar.getClass();
                     aVarArr[i10] = aVar;
                     dVar.d--;
                     x0Var2 = (u2.x0) x0Var2.d;
-                    if (x0Var2 == null || ((y2.a) x0Var2.f48758c) == null) {
+                    if (x0Var2 == null || ((y2.a) x0Var2.f48760c) == null) {
                         x0Var2 = null;
                     }
                 } catch (Throwable th2) {
@@ -195,7 +195,7 @@ public final class mp0 {
             }
             dVar.notifyAll();
         }
-        x0Var.f48758c = null;
+        x0Var.f48760c = null;
         x0Var.d = null;
     }
 
@@ -204,25 +204,25 @@ public final class mp0 {
         if (j3 != -1) {
             while (true) {
                 x0Var = (u2.x0) this.f28884e;
-                if (j3 < x0Var.f48757b) {
+                if (j3 < x0Var.f48759b) {
                     break;
                 }
                 y2.d dVar = (y2.d) this.f28883c;
-                y2.a aVar = (y2.a) x0Var.f48758c;
+                y2.a aVar = (y2.a) x0Var.f48760c;
                 synchronized (dVar) {
-                    y2.a[] aVarArr = dVar.f51663f;
-                    int i10 = dVar.f51662e;
-                    dVar.f51662e = i10 + 1;
+                    y2.a[] aVarArr = dVar.f51665f;
+                    int i10 = dVar.f51664e;
+                    dVar.f51664e = i10 + 1;
                     aVarArr[i10] = aVar;
                     dVar.d--;
                     dVar.notifyAll();
                 }
                 u2.x0 x0Var2 = (u2.x0) this.f28884e;
-                x0Var2.f48758c = null;
+                x0Var2.f48760c = null;
                 x0Var2.d = null;
                 this.f28884e = (u2.x0) x0Var2.d;
             }
-            if (((u2.x0) this.f28885f).f48756a < x0Var.f48756a) {
+            if (((u2.x0) this.f28885f).f48758a < x0Var.f48758a) {
                 this.f28885f = x0Var;
             }
         }
@@ -231,25 +231,25 @@ public final class mp0 {
     public int c(int i10) {
         y2.a aVar;
         u2.x0 x0Var = (u2.x0) this.f28886g;
-        if (((y2.a) x0Var.f48758c) == null) {
+        if (((y2.a) x0Var.f48760c) == null) {
             y2.d dVar = (y2.d) this.f28883c;
             synchronized (dVar) {
                 try {
                     int i11 = dVar.d + 1;
                     dVar.d = i11;
-                    int i12 = dVar.f51662e;
+                    int i12 = dVar.f51664e;
                     if (i12 > 0) {
-                        y2.a[] aVarArr = dVar.f51663f;
+                        y2.a[] aVarArr = dVar.f51665f;
                         int i13 = i12 - 1;
-                        dVar.f51662e = i13;
+                        dVar.f51664e = i13;
                         aVar = aVarArr[i13];
                         aVar.getClass();
-                        dVar.f51663f[dVar.f51662e] = null;
+                        dVar.f51665f[dVar.f51664e] = null;
                     } else {
-                        y2.a aVar2 = new y2.a(new byte[dVar.f51660b], 0);
-                        y2.a[] aVarArr2 = dVar.f51663f;
+                        y2.a aVar2 = new y2.a(new byte[dVar.f51662b], 0);
+                        y2.a[] aVarArr2 = dVar.f51665f;
                         if (i11 > aVarArr2.length) {
-                            dVar.f51663f = (y2.a[]) Arrays.copyOf(aVarArr2, aVarArr2.length * 2);
+                            dVar.f51665f = (y2.a[]) Arrays.copyOf(aVarArr2, aVarArr2.length * 2);
                         }
                         aVar = aVar2;
                     }
@@ -257,11 +257,11 @@ public final class mp0 {
                     throw th2;
                 }
             }
-            u2.x0 x0Var2 = new u2.x0(((u2.x0) this.f28886g).f48757b, this.f28881a);
-            x0Var.f48758c = aVar;
+            u2.x0 x0Var2 = new u2.x0(((u2.x0) this.f28886g).f48759b, this.f28881a);
+            x0Var.f48760c = aVar;
             x0Var.d = x0Var2;
         }
-        return Math.min(i10, (int) (((u2.x0) this.f28886g).f48757b - this.f28882b));
+        return Math.min(i10, (int) (((u2.x0) this.f28886g).f48759b - this.f28882b));
     }
 
     public mp0(bd0 bd0Var) {

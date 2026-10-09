@@ -37,7 +37,7 @@ public final class g1 {
                 ArrayList arrayList2 = this.f11708b;
                 if (i11 > 0) {
                     f1 f1Var2 = (f1) arrayList2.get(i11 - 1);
-                    f1Var.d = f1Var2.f11690a.f48516o.f48689e.o() + f1Var2.d;
+                    f1Var.d = f1Var2.f11690a.f48518o.f48691e.o() + f1Var2.d;
                     f1Var.f11693e = false;
                     f1Var.f11692c.clear();
                 } else {
@@ -45,7 +45,7 @@ public final class g1 {
                     f1Var.f11693e = false;
                     f1Var.f11692c.clear();
                 }
-                int o9 = f1Var.f11690a.f48516o.f48689e.o();
+                int o9 = f1Var.f11690a.f48518o.f48691e.o();
                 for (int i12 = i11; i12 < arrayList2.size(); i12++) {
                     ((f1) arrayList2.get(i12)).d += o9;
                 }
@@ -76,7 +76,7 @@ public final class g1 {
         for (int i11 = 0; i11 < arrayList.size(); i11++) {
             f1 f1Var = (f1) arrayList.get(i11);
             f1Var.d = i10;
-            i10 += f1Var.f11690a.f48516o.f48689e.o();
+            i10 += f1Var.f11690a.f48518o.f48691e.o();
         }
         return new m1(arrayList, this.f11714j);
     }
@@ -127,11 +127,11 @@ public final class g1 {
         }
         Handler handler = new Handler(myLooper, null);
         a0Var.getClass();
-        a5.a aVar = a0Var.f48509c;
+        a5.a aVar = a0Var.f48511c;
         aVar.getClass();
         ?? obj = new Object();
-        obj.f48603a = handler;
-        obj.f48604b = d1Var;
+        obj.f48605a = handler;
+        obj.f48606b = d1Var;
         ((CopyOnWriteArrayList) aVar.d).add(obj);
         Looper myLooper2 = Looper.myLooper();
         if (myLooper2 == null) {
@@ -153,7 +153,7 @@ public final class g1 {
         f1 f1Var = (f1) identityHashMap.remove(d0Var);
         f1Var.getClass();
         f1Var.f11690a.o(d0Var);
-        f1Var.f11692c.remove(((u2.x) d0Var).f48751a);
+        f1Var.f11692c.remove(((u2.x) d0Var).f48753a);
         if (!identityHashMap.isEmpty()) {
             c();
         }
@@ -165,7 +165,7 @@ public final class g1 {
             ArrayList arrayList = this.f11708b;
             f1 f1Var = (f1) arrayList.remove(i12);
             this.d.remove(f1Var.f11691b);
-            int i13 = -f1Var.f11690a.f48516o.f48689e.o();
+            int i13 = -f1Var.f11690a.f48518o.f48691e.o();
             for (int i14 = i12; i14 < arrayList.size(); i14++) {
                 ((f1) arrayList.get(i14)).d += i13;
             }

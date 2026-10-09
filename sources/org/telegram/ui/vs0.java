@@ -2,14 +2,14 @@ package org.telegram.ui;
 
 import org.telegram.messenger.ImageReceiver;
 public final class vs0 implements org.telegram.ui.Components.l40 {
-    public final PhotoViewer f42975a;
+    public final PhotoViewer f42977a;
 
     public vs0(PhotoViewer photoViewer) {
-        this.f42975a = photoViewer;
+        this.f42977a = photoViewer;
     }
 
     public final void a(int i10) {
-        PhotoViewer photoViewer = this.f42975a;
+        PhotoViewer photoViewer = this.f42977a;
         photoViewer.P4 = -1;
         ImageReceiver.BitmapHolder bitmapHolder = photoViewer.f33952j5;
         if (bitmapHolder != null) {

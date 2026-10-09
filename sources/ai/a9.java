@@ -50,7 +50,7 @@ public final class a9 implements Runnable {
         String str = (String) this.f651e;
         TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f652f;
         String str2 = (String) this.h;
-        org.telegram.ui.ActionBar.e6 e6Var = b1Var.f43242e;
+        org.telegram.ui.ActionBar.e6 e6Var = b1Var.f43244e;
         if (tLObject != null) {
             if (tLObject instanceof TLRPC.TL_urlAuthResultRequest) {
                 ml0.b(false, b1Var.M, tL_messages_requestUrlAuth, (TLRPC.TL_urlAuthResultRequest) tLObject, null, null, null, false, b1Var);
@@ -113,7 +113,7 @@ public final class a9 implements Runnable {
         }
         TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = new TLRPC.TL_payments_canPurchaseStore();
         tL_payments_canPurchaseStore.purpose = tL_inputStorePaymentStarsGiveaway;
-        ConnectionsManager.getInstance(m5Var.f52878a).sendRequest(tL_payments_canPurchaseStore, new mh1(oVar, hVar, rVar, activity, tL_inputStorePaymentStarsGiveaway, list, 3));
+        ConnectionsManager.getInstance(m5Var.f52880a).sendRequest(tL_payments_canPurchaseStore, new mh1(oVar, hVar, rVar, activity, tL_inputStorePaymentStarsGiveaway, list, 3));
     }
 
     private final void i() {
@@ -123,7 +123,7 @@ public final class a9 implements Runnable {
         TLRPC.InputInvoice inputInvoice = (TLRPC.InputInvoice) this.f651e;
         TLRPC.TL_payments_paymentFormStars tL_payments_paymentFormStars = (TLRPC.TL_payments_paymentFormStars) this.f652f;
         Utilities.Callback callback = (Utilities.Callback) this.h;
-        if (!m5Var.f52881e) {
+        if (!m5Var.f52883e) {
             yh.m5.e("NO_BALANCE");
             runnable.run();
             return;

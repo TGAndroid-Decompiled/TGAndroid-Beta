@@ -17,10 +17,10 @@ import org.telegram.ui.ih1;
 import xh.h4;
 import yh.s3;
 public final class b implements q9.d, a2, GenericProvider, h, Vector.TLDeserializer, e {
-    public final int f51100a;
+    public final int f51102a;
 
     public b(int i10) {
-        this.f51100a = i10;
+        this.f51102a = i10;
     }
 
     @Override
@@ -40,7 +40,7 @@ public final class b implements q9.d, a2, GenericProvider, h, Vector.TLDeseriali
 
     @Override
     public void f(b2 b2Var, int i10) {
-        switch (this.f51100a) {
+        switch (this.f51102a) {
             case 1:
                 b2Var.dismiss();
                 return;
@@ -51,7 +51,7 @@ public final class b implements q9.d, a2, GenericProvider, h, Vector.TLDeseriali
                 s3.e2(new ih1(6, null));
                 return;
             default:
-                int i11 = s3.f53156r1;
+                int i11 = s3.f53158r1;
                 return;
         }
     }
@@ -59,23 +59,23 @@ public final class b implements q9.d, a2, GenericProvider, h, Vector.TLDeseriali
     @Override
     public Object provide(Object obj) {
         Integer num = (Integer) obj;
-        int i10 = h4.f51265k0;
+        int i10 = h4.f51267k0;
         return 0;
     }
 
     @Override
     public Object y0(u5 u5Var) {
-        switch (this.f51100a) {
+        switch (this.f51102a) {
             case 0:
                 Set y3 = u5Var.y(a.class);
-                d dVar = d.f51103c;
+                d dVar = d.f51105c;
                 if (dVar == null) {
                     synchronized (d.class) {
                         try {
-                            dVar = d.f51103c;
+                            dVar = d.f51105c;
                             if (dVar == null) {
                                 dVar = new d(0);
-                                d.f51103c = dVar;
+                                d.f51105c = dVar;
                             }
                         } finally {
                         }

@@ -34,7 +34,7 @@ public final class ml extends org.telegram.ui.ActionBar.j5 {
         switch (this.M0) {
             case 2:
                 super.onAttachedToWindow();
-                ((yp0) this.N0).f44391s.a();
+                ((yp0) this.N0).f44393s.a();
                 return;
             default:
                 super.onAttachedToWindow();
@@ -47,7 +47,7 @@ public final class ml extends org.telegram.ui.ActionBar.j5 {
         switch (this.M0) {
             case 2:
                 super.onDetachedFromWindow();
-                ((yp0) this.N0).f44391s.b();
+                ((yp0) this.N0).f44393s.b();
                 return;
             default:
                 super.onDetachedFromWindow();
@@ -114,10 +114,10 @@ public final class ml extends org.telegram.ui.ActionBar.j5 {
                 zn znVar = (zn) this.N0;
                 if (this == znVar.D2[0] && znVar.H2[1] != null) {
                     if (znVar.O4 && f7 < 0.0f) {
-                        znVar.f45014z2.setTranslationY(f7 / 2.0f);
+                        znVar.f45016z2.setTranslationY(f7 / 2.0f);
                         return;
                     } else {
-                        znVar.f45014z2.setTranslationY(0.0f);
+                        znVar.f45016z2.setTranslationY(0.0f);
                         return;
                     }
                 }

@@ -12,19 +12,19 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 public final class y01 extends org.telegram.ui.Components.pm0 {
-    public final Context f44188c;
+    public final Context f44190c;
     public final HashMap d = new HashMap();
-    public final ProfileActivity f44189e;
+    public final ProfileActivity f44191e;
 
     public y01(ProfileActivity profileActivity, Context context) {
-        this.f44189e = profileActivity;
-        this.f44188c = context;
+        this.f44191e = profileActivity;
+        this.f44190c = context;
     }
 
     @Override
     public final void A(s4.d1 d1Var) {
         int b10 = d1Var.b();
-        ProfileActivity profileActivity = this.f44189e;
+        ProfileActivity profileActivity = this.f44191e;
         if (b10 == profileActivity.O2) {
             profileActivity.M2 = null;
         }
@@ -32,21 +32,21 @@ public final class y01 extends org.telegram.ui.Components.pm0 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        ProfileActivity profileActivity = this.f44189e;
+        ProfileActivity profileActivity = this.f44191e;
         if (profileActivity.f34253f3 != -1) {
             int b10 = d1Var.b();
             if (b10 != profileActivity.f34253f3 && b10 != profileActivity.T2 && b10 != profileActivity.f34267h3 && b10 != profileActivity.f34260g3 && b10 != profileActivity.V2 && b10 != profileActivity.W2 && b10 != profileActivity.f34389z3 && b10 != profileActivity.f34274i3 && b10 != profileActivity.j3 && b10 != profileActivity.f34326q3 && b10 != profileActivity.f34306n3 && b10 != profileActivity.f34287k3 && b10 != profileActivity.f34298m3 && b10 != profileActivity.f34333r3 && b10 != profileActivity.f34341s3 && b10 != profileActivity.f34362v3 && b10 != profileActivity.f34370w3 && b10 != profileActivity.f34377x3 && b10 != profileActivity.y3 && b10 != profileActivity.O2 && b10 != profileActivity.f34215a4 && b10 != profileActivity.f34231c4 && b10 != profileActivity.f34261g4 && b10 != profileActivity.f34254f4 && b10 != profileActivity.f34293l3 && b10 != profileActivity.U2 && b10 != profileActivity.Q2 && b10 != profileActivity.f34238d4 && b10 != profileActivity.f34246e4 && b10 != profileActivity.l4) {
                 return false;
             }
         } else {
-            View view = d1Var.f47656a;
+            View view = d1Var.f47658a;
             if (view instanceof org.telegram.ui.Cells.xa) {
                 Object currentObject = ((org.telegram.ui.Cells.xa) view).getCurrentObject();
                 if ((currentObject instanceof TLRPC.User) && UserObject.isUserSelf((TLRPC.User) currentObject)) {
                     return false;
                 }
             }
-            int i10 = d1Var.f47660f;
+            int i10 = d1Var.f47662f;
             if (i10 == 1 || i10 == 5 || i10 == 7 || i10 == 11 || i10 == 31 || i10 == 28 || i10 == 12 || i10 == 13 || i10 == 9 || i10 == 10 || i10 == 25 || i10 == 32) {
                 return false;
             }
@@ -60,7 +60,7 @@ public final class y01 extends org.telegram.ui.Components.pm0 {
 
     @Override
     public final int h() {
-        return this.f44189e.N2;
+        return this.f44191e.N2;
     }
 
     @Override
@@ -68,7 +68,7 @@ public final class y01 extends org.telegram.ui.Components.pm0 {
         int i11;
         int i12;
         int i13;
-        ProfileActivity profileActivity = this.f44189e;
+        ProfileActivity profileActivity = this.f44191e;
         if (i10 != profileActivity.D3 && i10 != profileActivity.f34349t4 && i10 != profileActivity.f34245e3 && i10 != profileActivity.S2 && i10 != profileActivity.f34320p3 && i10 != profileActivity.f34355u3 && i10 != profileActivity.f34307n4) {
             if (i10 != profileActivity.G3 && i10 != profileActivity.I3 && i10 != profileActivity.T2 && i10 != profileActivity.U2) {
                 if (i10 != profileActivity.L3 && i10 != profileActivity.V2) {
@@ -186,11 +186,11 @@ public final class y01 extends org.telegram.ui.Components.pm0 {
         View v01Var;
         int i12 = 1;
         boolean z12 = false;
-        Context context = this.f44188c;
-        ProfileActivity profileActivity = this.f44189e;
+        Context context = this.f44190c;
+        ProfileActivity profileActivity = this.f44191e;
         switch (i10) {
             case 1:
-                xaVar = new org.telegram.ui.Cells.m4(this.f44188c, org.telegram.ui.ActionBar.i6.L6, 18, 7, false, profileActivity.f34386z0);
+                xaVar = new org.telegram.ui.Cells.m4(this.f44190c, org.telegram.ui.ActionBar.i6.L6, 18, 7, false, profileActivity.f34386z0);
                 break;
             case 2:
             case 19:
@@ -207,7 +207,7 @@ public final class y01 extends org.telegram.ui.Components.pm0 {
                 } else {
                     z11 = z10;
                 }
-                s01 s01Var = new s01(this, this.f44188c, e6Var, z12, z11);
+                s01 s01Var = new s01(this, this.f44190c, e6Var, z12, z11);
                 s01Var.setContentDescriptionValueFirst(true);
                 xaVar = s01Var;
                 break;
@@ -236,7 +236,7 @@ public final class y01 extends org.telegram.ui.Components.pm0 {
                 } else {
                     i11 = 6;
                 }
-                xaVar = new org.telegram.ui.Cells.xa(i11, 0, this.f44188c, profileActivity.f34386z0, true, false);
+                xaVar = new org.telegram.ui.Cells.xa(i11, 0, this.f44190c, profileActivity.f34386z0, true, false);
                 break;
             case 9:
             case 10:
@@ -344,8 +344,8 @@ public final class y01 extends org.telegram.ui.Components.pm0 {
 
     @Override
     public final void y(s4.d1 d1Var) {
-        View view = d1Var.f47656a;
-        ProfileActivity profileActivity = this.f44189e;
+        View view = d1Var.f47658a;
+        ProfileActivity profileActivity = this.f44191e;
         if (view == profileActivity.O) {
             profileActivity.Q = true;
         }
@@ -357,8 +357,8 @@ public final class y01 extends org.telegram.ui.Components.pm0 {
 
     @Override
     public final void z(s4.d1 d1Var) {
-        View view = d1Var.f47656a;
-        ProfileActivity profileActivity = this.f44189e;
+        View view = d1Var.f47658a;
+        ProfileActivity profileActivity = this.f44191e;
         if (view == profileActivity.O) {
             profileActivity.Q = false;
         }

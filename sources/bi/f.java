@@ -205,7 +205,7 @@ public final class f implements Runnable {
                 of.f.s(context, LocaleController.getString(i10));
                 return;
             case 21:
-                oz0 oz0Var = ((qm) obj).f41146c.f44739d1;
+                oz0 oz0Var = ((qm) obj).f41148c.f44741d1;
                 if (oz0Var != null && z10) {
                     oz0Var.setVisibility(8);
                     return;
@@ -213,8 +213,8 @@ public final class f implements Runnable {
                 return;
             case 22:
                 uo uoVar = (uo) obj;
-                uoVar.f42494x0.autotranslation = z10;
-                uoVar.getMessagesController().putChat(uoVar.f42494x0, false);
+                uoVar.f42496x0.autotranslation = z10;
+                uoVar.getMessagesController().putChat(uoVar.f42496x0, false);
                 return;
             case 23:
                 cq cqVar = (cq) obj;

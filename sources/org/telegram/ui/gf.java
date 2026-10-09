@@ -13,10 +13,10 @@ import org.telegram.messenger.camera.Size;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class gf implements Comparator {
-    public final int f37997a;
+    public final int f37999a;
 
     public gf(int i10) {
-        this.f37997a = i10;
+        this.f37999a = i10;
     }
 
     @Override
@@ -28,7 +28,7 @@ public final class gf implements Comparator {
         long j11;
         int i10;
         int i11;
-        switch (this.f37997a) {
+        switch (this.f37999a) {
             case 0:
                 return ((MessageObject) obj).getId() - ((MessageObject) obj2).getId();
             case 1:
@@ -281,14 +281,14 @@ public final class gf implements Comparator {
                 return (int) (((View) obj).getY() - ((View) obj2).getY());
             case 28:
                 if (obj instanceof h11) {
-                    i10 = ((h11) obj).f38193g;
+                    i10 = ((h11) obj).f38195g;
                 } else if (obj instanceof MessagesController.FaqSearchResult) {
                     i10 = ((MessagesController.FaqSearchResult) obj).num;
                 } else {
                     i10 = 0;
                 }
                 if (obj2 instanceof h11) {
-                    i11 = ((h11) obj2).f38193g;
+                    i11 = ((h11) obj2).f38195g;
                 } else if (obj2 instanceof MessagesController.FaqSearchResult) {
                     i11 = ((MessagesController.FaqSearchResult) obj2).num;
                 } else {

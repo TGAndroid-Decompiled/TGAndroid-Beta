@@ -88,7 +88,7 @@ public final class v2 implements View.OnAttachStateChangeListener {
                 }
                 return;
             case 12:
-                ((xh.g1) this.f1820b).f51235l.a();
+                ((xh.g1) this.f1820b).f51237l.a();
                 return;
             case 13:
                 xh.q3 q3Var = (xh.q3) this.f1820b;
@@ -107,14 +107,14 @@ public final class v2 implements View.OnAttachStateChangeListener {
                 }
                 return;
             default:
-                ArrayList arrayList2 = ((yh.f3) this.f1820b).f52500e;
+                ArrayList arrayList2 = ((yh.f3) this.f1820b).f52502e;
                 int size = arrayList2.size();
                 int i10 = 0;
                 while (i10 < size) {
                     Object obj = arrayList2.get(i10);
                     i10++;
                     yh.d3 d3Var = (yh.d3) obj;
-                    if (d3Var.f52379c) {
+                    if (d3Var.f52381c) {
                         d3Var.d.onAttachedToWindow();
                     }
                 }
@@ -202,7 +202,7 @@ public final class v2 implements View.OnAttachStateChangeListener {
                 }
                 return;
             case 12:
-                ((xh.g1) this.f1820b).f51235l.b();
+                ((xh.g1) this.f1820b).f51237l.b();
                 return;
             case 13:
                 xh.q3 q3Var = (xh.q3) this.f1820b;
@@ -221,7 +221,7 @@ public final class v2 implements View.OnAttachStateChangeListener {
                 }
                 return;
             default:
-                ArrayList arrayList = ((yh.f3) this.f1820b).f52500e;
+                ArrayList arrayList = ((yh.f3) this.f1820b).f52502e;
                 int size = arrayList.size();
                 int i10 = 0;
                 while (i10 < size) {

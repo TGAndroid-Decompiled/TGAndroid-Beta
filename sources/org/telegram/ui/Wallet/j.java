@@ -6,12 +6,12 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.ea0;
 import org.telegram.ui.e90;
 public final class j implements Utilities.Callback {
-    public final int f35043a;
-    public final Object f35044b;
+    public final int f35057a;
+    public final Object f35058b;
 
     public j(Object obj, int i10) {
-        this.f35043a = i10;
-        this.f35044b = obj;
+        this.f35057a = i10;
+        this.f35058b = obj;
     }
 
     @Override
@@ -19,9 +19,9 @@ public final class j implements Utilities.Callback {
         String str;
         int i10;
         CharSequence formatSpannable;
-        int i11 = this.f35043a;
+        int i11 = this.f35057a;
         boolean z10 = false;
-        Object obj2 = this.f35044b;
+        Object obj2 = this.f35058b;
         switch (i11) {
             case 0:
                 ai.j3 j3Var = (ai.j3) obj2;
@@ -51,19 +51,19 @@ public final class j implements Utilities.Callback {
                 ((Utilities.Callback) obj2).run(str3);
                 return;
             default:
-                z6 z6Var = (z6) obj2;
-                z6Var.getClass();
+                a7 a7Var = (a7) obj2;
+                a7Var.getClass();
                 if (((Integer) obj).intValue() == 0) {
                     i10 = 12;
                 } else {
                     i10 = 24;
                 }
-                if (z6Var.f35747a != i10) {
-                    z6Var.f35747a = i10;
-                    z6Var.W(z6Var.getParentActivity());
-                    z6Var.Y();
-                    ea0 ea0Var = z6Var.h;
-                    if (z6Var.f35754s != null) {
+                if (a7Var.f34651a != i10) {
+                    a7Var.f34651a = i10;
+                    a7Var.W(a7Var.getParentActivity());
+                    a7Var.Y();
+                    ea0 ea0Var = a7Var.h;
+                    if (a7Var.f34658s != null) {
                         formatSpannable = LocaleController.formatSpannable(R.string.WalletImportCurrentPhraseInfo, Integer.valueOf(i10));
                     } else {
                         formatSpannable = LocaleController.formatSpannable(R.string.WalletImportPhraseInfo, Integer.valueOf(i10));

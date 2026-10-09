@@ -4,16 +4,16 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import org.telegram.messenger.MessageObject;
 public final class gw0 implements org.telegram.ui.Components.jl0 {
-    public final zn f38127a;
-    public final MessageObject f38128b;
-    public final org.telegram.ui.Components.kl0 f38129c;
+    public final zn f38129a;
+    public final MessageObject f38130b;
+    public final org.telegram.ui.Components.kl0 f38131c;
     public final mw0 d;
 
     public gw0(mw0 mw0Var, zn znVar, MessageObject messageObject, org.telegram.ui.Components.kl0 kl0Var) {
         this.d = mw0Var;
-        this.f38127a = znVar;
-        this.f38128b = messageObject;
-        this.f38129c = kl0Var;
+        this.f38129a = znVar;
+        this.f38130b = messageObject;
+        this.f38131c = kl0Var;
     }
 
     @Override

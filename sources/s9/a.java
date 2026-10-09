@@ -6,19 +6,19 @@ import androidx.emoji2.text.f;
 import java.util.ArrayList;
 import t7.t;
 public final class a implements u9.a {
-    public final f f47865a;
+    public final f f47867a;
 
     public a(f fVar) {
-        this.f47865a = fVar;
+        this.f47867a = fVar;
     }
 
     @Override
     public void P(Bundle bundle) {
-        ((qb.b) this.f47865a.f2594a).P(bundle);
+        ((qb.b) this.f47867a.f2594a).P(bundle);
     }
 
     public void a(s0.b bVar) {
-        f fVar = this.f47865a;
+        f fVar = this.f47867a;
         synchronized (fVar) {
             ((ArrayList) fVar.f2595b).add(bVar);
             ((t) fVar.f2596c).getClass();

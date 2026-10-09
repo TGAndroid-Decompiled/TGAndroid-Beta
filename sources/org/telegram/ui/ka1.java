@@ -7,14 +7,14 @@ import android.text.TextPaint;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class ka1 {
-    public final org.telegram.ui.Components.i10 f39198a;
-    public kg.f f39199b;
-    public final int f39200c;
+    public final org.telegram.ui.Components.i10 f39200a;
+    public kg.f f39201b;
+    public final int f39202c;
     public final la1 d;
 
     public ka1(la1 la1Var, int i10) {
         this.d = la1Var;
-        this.f39200c = i10;
+        this.f39202c = i10;
         ?? view = new View(la1Var.getContext());
         view.f27183c = true;
         TextPaint textPaint = new TextPaint(1);
@@ -39,9 +39,9 @@ public final class ka1 {
         paint2.setStyle(style);
         paint2.setStrokeCap(Paint.Cap.ROUND);
         paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        this.f39198a = view;
+        this.f39200a = view;
         view.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
         la1Var.h.addView(view);
-        la1Var.f39491n.add(this);
+        la1Var.f39493n.add(this);
     }
 }

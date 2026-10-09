@@ -136,21 +136,21 @@ public final class il0 extends FrameLayout {
         }
         il0Var.d();
         il0Var.f27423e = n0Var;
-        if (!n0Var.f54611a && (n0Var.f54615f == null || ((!kl0Var.q() && !kl0Var.G0) || !LiteMode.isEnabled(8200)))) {
+        if (!n0Var.f54613a && (n0Var.f54617f == null || ((!kl0Var.q() && !kl0Var.G0) || !LiteMode.isEnabled(8200)))) {
             z11 = false;
         } else {
             z11 = true;
         }
         il0Var.f27426r = z11;
-        if (i13 == 4 || il0Var.f27423e.f54612b) {
+        if (i13 == 4 || il0Var.f27423e.f54614b) {
             il0Var.f27426r = false;
         }
         zg.n0 n0Var3 = il0Var.f27423e;
-        if (!n0Var3.f54611a && n0Var3.f54615f == null) {
+        if (!n0Var3.f54613a && n0Var3.f54617f == null) {
             hl0Var.getImageReceiver().clearImage();
             hl0Var3.getImageReceiver().clearImage();
-            s5 s5Var = new s5(4, kl0Var.J, il0Var.f27423e.f54616g);
-            s5 s5Var2 = new s5(3, kl0Var.J, il0Var.f27423e.f54616g);
+            s5 s5Var = new s5(4, kl0Var.J, il0Var.f27423e.f54618g);
+            s5 s5Var2 = new s5(3, kl0Var.J, il0Var.f27423e.f54618g);
             if (i13 != 1 && i13 != 2 && i13 != 4) {
                 int i14 = org.telegram.ui.ActionBar.i6.f21128v6;
                 int w02 = org.telegram.ui.ActionBar.i6.w0(i14, e6Var);
@@ -369,7 +369,7 @@ public final class il0 extends FrameLayout {
             float measuredWidth2 = (getMeasuredWidth() >> 1) - AndroidUtilities.dp(1.0f);
             zg.n0 n0Var = this.f27423e;
             kl0 kl0Var = this.P;
-            if (n0Var != null && n0Var.f54611a) {
+            if (n0Var != null && n0Var.f54613a) {
                 paint = kl0Var.I0;
             } else {
                 paint = kl0Var.H0;
@@ -389,7 +389,7 @@ public final class il0 extends FrameLayout {
             }
         }
         zg.n0 n0Var2 = this.f27423e;
-        if (n0Var2 != null && n0Var2.f54611a && this.F != null && LiteMode.isEnabled(8200) && LiteMode.isEnabled(131072)) {
+        if (n0Var2 != null && n0Var2.f54613a && this.F != null && LiteMode.isEnabled(8200) && LiteMode.isEnabled(131072)) {
             RectF rectF = AndroidUtilities.rectTmp;
             float height = ((int) (getHeight() * 0.7f)) / 2.0f;
             rectF.set((getWidth() / 2.0f) - height, (getHeight() / 2.0f) - height, (getWidth() / 2.0f) + height, (getHeight() / 2.0f) + height);
@@ -400,7 +400,7 @@ public final class il0 extends FrameLayout {
             } else {
                 f7 = 0.0f;
             }
-            b8Var.f52313j = (int) (b8Var.f52307b.size() * f7);
+            b8Var.f52315j = (int) (b8Var.f52309b.size() * f7);
             this.F.g(rectF);
             this.F.d();
             this.F.a(canvas, -673522);
@@ -420,7 +420,7 @@ public final class il0 extends FrameLayout {
         int i11 = kl0Var.M0;
         hl0 hl0Var = this.f27420a;
         hl0 hl0Var2 = this.f27421b;
-        if (n0Var != null && n0Var.f54611a) {
+        if (n0Var != null && n0Var.f54613a) {
             hl0Var.getImageReceiver().setImageBitmap(new ck0(R.raw.star_reaction, AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f)));
             hl0Var2.getImageReceiver().setImageBitmap(getContext().getResources().getDrawable(R.drawable.star_reaction));
             if (this.F == null) {
@@ -431,13 +431,13 @@ public final class il0 extends FrameLayout {
                 }
                 this.F = new yh.b8(1, i10);
             }
-        } else if (i11 == 4 && n0Var != null && n0Var.f54615f != null) {
-            hl0Var.getImageReceiver().setImageBitmap(Emoji.getEmojiDrawable(n0Var.f54615f));
-            hl0Var2.getImageReceiver().setImageBitmap(Emoji.getEmojiDrawable(n0Var.f54615f));
+        } else if (i11 == 4 && n0Var != null && n0Var.f54617f != null) {
+            hl0Var.getImageReceiver().setImageBitmap(Emoji.getEmojiDrawable(n0Var.f54617f));
+            hl0Var2.getImageReceiver().setImageBitmap(Emoji.getEmojiDrawable(n0Var.f54617f));
         } else {
             zg.n0 n0Var2 = this.f27423e;
-            if (n0Var2.f54612b) {
-                TLRPC.Document effectDocument = MessagesController.getInstance(kl0Var.J).getEffectDocument(this.f27423e.f54616g);
+            if (n0Var2.f54614b) {
+                TLRPC.Document effectDocument = MessagesController.getInstance(kl0Var.J).getEffectDocument(this.f27423e.f54618g);
                 SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(effectDocument, org.telegram.ui.ActionBar.i6.f20962m6, 0.2f);
                 ImageReceiver imageReceiver = hl0Var2.getImageReceiver();
                 ImageLocation forDocument = ImageLocation.getForDocument(effectDocument);
@@ -447,8 +447,8 @@ public final class il0 extends FrameLayout {
                     svgDrawable4 = svgThumb;
                 }
                 imageReceiver.setImage(forDocument, "60_60_firstframe", null, null, svgDrawable4, 0L, "tgs", this.f27423e, 0);
-            } else if (n0Var2.f54615f != null) {
-                TLRPC.TL_availableReaction tL_availableReaction2 = MediaDataController.getInstance(kl0Var.J).getReactionsMap().get(this.f27423e.f54615f);
+            } else if (n0Var2.f54617f != null) {
+                TLRPC.TL_availableReaction tL_availableReaction2 = MediaDataController.getInstance(kl0Var.J).getReactionsMap().get(this.f27423e.f54617f);
                 if (tL_availableReaction2 != null) {
                     SvgHelper.SvgDrawable svgThumb2 = DocumentObject.getSvgThumb(tL_availableReaction2.activate_animation, org.telegram.ui.ActionBar.i6.f20962m6, 0.2f);
                     if (!LiteMode.isEnabled(8200) || i11 == 4) {
@@ -597,7 +597,7 @@ public final class il0 extends FrameLayout {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         zg.n0 n0Var = this.f27423e;
         if (n0Var != null) {
-            String str = n0Var.f54615f;
+            String str = n0Var.f54617f;
             if (str != null) {
                 accessibilityNodeInfo.setText(str);
                 accessibilityNodeInfo.setEnabled(true);

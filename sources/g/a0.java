@@ -83,7 +83,7 @@ public final class a0 extends g7 implements m.b {
             d(false);
         }
         ActionBarContainer actionBarContainer = this.d;
-        WeakHashMap weakHashMap = i0.f46764a;
+        WeakHashMap weakHashMap = i0.f46766a;
         if (actionBarContainer.isLaidOut()) {
             if (z10) {
                 m3 m3Var = (m3) this.f10080e;
@@ -104,13 +104,13 @@ public final class a0 extends g7 implements m.b {
             bc.d dVar = new bc.d();
             ArrayList arrayList = (ArrayList) dVar.f3851c;
             arrayList.add(i10);
-            View view = (View) i10.f46776a.get();
+            View view = (View) i10.f46778a.get();
             if (view != null) {
                 j3 = view.animate().getDuration();
             } else {
                 j3 = 0;
             }
-            View view2 = (View) l0Var.f46776a.get();
+            View view2 = (View) l0Var.f46778a.get();
             if (view2 != null) {
                 view2.animate().setStartDelay(j3);
             }
@@ -188,7 +188,7 @@ public final class a0 extends g7 implements m.b {
             int dimensionPixelSize = obtainStyledAttributes.getDimensionPixelSize(12, 0);
             if (dimensionPixelSize != 0) {
                 ActionBarContainer actionBarContainer2 = this.d;
-                WeakHashMap weakHashMap = i0.f46764a;
+                WeakHashMap weakHashMap = i0.f46766a;
                 r0.a0.h(actionBarContainer2, dimensionPixelSize);
             }
             obtainStyledAttributes.recycle();
@@ -241,7 +241,7 @@ public final class a0 extends g7 implements m.b {
                     }
                     l0 a2 = i0.a(this.d);
                     a2.e(f7);
-                    View view2 = (View) a2.f46776a.get();
+                    View view2 = (View) a2.f46778a.get();
                     if (view2 != null) {
                         if (lVar != null) {
                             xVar = new ai.x(27, lVar, view2);
@@ -295,7 +295,7 @@ public final class a0 extends g7 implements m.b {
                 ArrayList arrayList2 = (ArrayList) dVar4.f3851c;
                 l0 a11 = i0.a(this.d);
                 a11.e(0.0f);
-                View view3 = (View) a11.f46776a.get();
+                View view3 = (View) a11.f46778a.get();
                 if (view3 != null) {
                     if (lVar != null) {
                         xVar = new ai.x(27, lVar, view3);
@@ -335,7 +335,7 @@ public final class a0 extends g7 implements m.b {
             }
             ActionBarOverlayLayout actionBarOverlayLayout = this.f10079c;
             if (actionBarOverlayLayout != null) {
-                WeakHashMap weakHashMap = i0.f46764a;
+                WeakHashMap weakHashMap = i0.f46766a;
                 r0.y.c(actionBarOverlayLayout);
             }
         }

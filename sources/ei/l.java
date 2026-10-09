@@ -383,11 +383,11 @@ public final class l extends p20 implements NotificationCenter.NotificationCente
         frameLayout.setClickable(true);
         sg.n nVar = new sg.n(context, 1, 3);
         this.R = nVar;
-        sg.g gVar = nVar.f48076b;
-        gVar.f48060z = i6.fk;
+        sg.g gVar = nVar.f48078b;
+        gVar.f48062z = i6.fk;
         gVar.A = i6.gk;
         gVar.b();
-        this.R.setStarParticlesView(this.f40639e);
+        this.R.setStarParticlesView(this.f40641e);
         this.Q.addView(this.R, x5.a(190.0f, 0.0f, 32.0f, 0.0f, 24.0f, 190, 17));
         m0(LocaleController.getString(R.string.BotAffiliateProgramTitle), LocaleController.getString(R.string.BotAffiliateProgramText), this.Q, null);
         LinearLayout linearLayout = new LinearLayout(context);
@@ -412,14 +412,14 @@ public final class l extends p20 implements NotificationCenter.NotificationCente
         this.S.addView(this.U, x5.k(32.0f, 1.0f, 32.0f, 8.0f, -1, -2));
         I0(false);
         ((FrameLayout) this.fragmentView).addView(this.S, x5.e(-1, -2, 87));
-        this.f40638c.setPadding(0, 0, 0, AndroidUtilities.dp(84.0f));
-        this.f40638c.setOnItemClickListener(new ai.g(this, 8));
+        this.f40640c.setPadding(0, 0, 0, AndroidUtilities.dp(84.0f));
+        this.f40640c.setOnItemClickListener(new ai.g(this, 8));
         s4.j jVar = new s4.j();
-        jVar.f47696m = false;
+        jVar.f47698m = false;
         jVar.C = false;
         jVar.o(hs.h);
         jVar.n(350L);
-        this.f40638c.setItemAnimator(jVar);
+        this.f40640c.setItemAnimator(jVar);
         return this.fragmentView;
     }
 
@@ -430,7 +430,7 @@ public final class l extends p20 implements NotificationCenter.NotificationCente
 
     @Override
     public final s4.i0 n0() {
-        g gVar = new g(this, this.f40638c, getParentActivity(), this.currentAccount, this.classGuid, new bi.v(this, 12), getResourceProvider());
+        g gVar = new g(this, this.f40640c, getParentActivity(), this.currentAccount, this.classGuid, new bi.v(this, 12), getResourceProvider());
         this.f9194c0 = gVar;
         return gVar;
     }
@@ -477,8 +477,8 @@ public final class l extends p20 implements NotificationCenter.NotificationCente
 
     @Override
     public final void onInsets(int i10, int i11, int i12, int i13) {
-        this.f40638c.setPadding(0, 0, 0, AndroidUtilities.dp(84.0f) + i13);
-        this.f40638c.setClipToPadding(false);
+        this.f40640c.setPadding(0, 0, 0, AndroidUtilities.dp(84.0f) + i13);
+        this.f40640c.setClipToPadding(false);
         this.S.setPadding(0, 0, 0, i13);
     }
 

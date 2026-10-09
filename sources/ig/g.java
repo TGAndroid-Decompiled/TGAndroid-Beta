@@ -404,9 +404,9 @@ public abstract class g extends View implements i {
                 e eVar = this.Q0;
                 if (eVar != null) {
                     getSelectedDate();
-                    la1 la1Var = (la1) ((hq0) eVar).f38389b;
+                    la1 la1Var = (la1) ((hq0) eVar).f38391b;
                     la1Var.f();
-                    la1Var.f39487b.f12192t0.d(false, false);
+                    la1Var.f39489b.f12192t0.d(false, false);
                 }
                 B();
                 invalidate();

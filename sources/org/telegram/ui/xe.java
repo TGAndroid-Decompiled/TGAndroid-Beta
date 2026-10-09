@@ -24,20 +24,20 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ThemeActivity;
 public final class xe implements org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.fm0 {
-    public final int f44005a;
-    public final long f44006b;
-    public final NotificationCenter.NotificationCenterDelegate f44007c;
+    public final int f44007a;
+    public final long f44008b;
+    public final NotificationCenter.NotificationCenterDelegate f44009c;
     public final Object d;
-    public final Object f44008e;
-    public final Object f44009f;
+    public final Object f44010e;
+    public final Object f44011f;
 
     public xe(Object obj, KeyEvent.Callback callback, Object obj2, long j3, Object obj3, int i10) {
-        this.f44005a = i10;
-        this.f44007c = (NotificationCenter.NotificationCenterDelegate) obj;
+        this.f44007a = i10;
+        this.f44009c = (NotificationCenter.NotificationCenterDelegate) obj;
         this.d = callback;
-        this.f44008e = obj2;
-        this.f44006b = j3;
-        this.f44009f = obj3;
+        this.f44010e = obj2;
+        this.f44008b = j3;
+        this.f44011f = obj3;
     }
 
     @Override
@@ -51,10 +51,10 @@ public final class xe implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
         int i11;
         long j3;
         int i12 = i10;
-        final org.telegram.ui.Components.bw0 bw0Var = (org.telegram.ui.Components.bw0) this.f44007c;
+        final org.telegram.ui.Components.bw0 bw0Var = (org.telegram.ui.Components.bw0) this.f44009c;
         org.telegram.ui.Components.xs0 xs0Var = (org.telegram.ui.Components.xs0) this.d;
-        final Context context = (Context) this.f44008e;
-        org.telegram.ui.ActionBar.e6 e6Var = (org.telegram.ui.ActionBar.e6) this.f44009f;
+        final Context context = (Context) this.f44010e;
+        org.telegram.ui.ActionBar.e6 e6Var = (org.telegram.ui.ActionBar.e6) this.f44011f;
         org.telegram.ui.Components.ku0 ku0Var = bw0Var.Q;
         org.telegram.ui.Components.lv0 lv0Var = bw0Var.R;
         org.telegram.ui.Components.lu0 lu0Var = bw0Var.f25116a0;
@@ -94,7 +94,7 @@ public final class xe implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
             bundle.putLong("chat_id", chat.f20038id);
             if (n2Var.getMessagesController().checkCanOpenChat(bundle, n2Var)) {
                 if (chat.forum) {
-                    HashSet hashSet = fg1.f37555n1;
+                    HashSet hashSet = fg1.f37557n1;
                     n2Var.presentFragment(fg1.E0(n2Var.getMessagesController(), n2Var.getMessagesStorage(), bundle));
                     return;
                 }
@@ -271,7 +271,7 @@ public final class xe implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
                                 bundle3.putLong("user_id", n2Var.getUserConfig().getClientUserId());
                                 bundle3.putInt("chatMode", 3);
                                 zn znVar = new zn(bundle3);
-                                znVar.f44742d4 = ((SavedMessagesController.SavedDialog) arrayList.get(i12)).dialogId;
+                                znVar.f44744d4 = ((SavedMessagesController.SavedDialog) arrayList.get(i12)).dialogId;
                                 n2Var.presentFragment(znVar);
                                 return;
                             }
@@ -287,7 +287,7 @@ public final class xe implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
                             }
                         }
                     } else if (bw0Var.C1) {
-                        if (lv0Var.v.f47824y == 0) {
+                        if (lv0Var.v.f47826y == 0) {
                             lv0Var.E(view);
                         }
                     } else {
@@ -296,7 +296,7 @@ public final class xe implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
                             bundle5.putLong("user_id", n2Var.getUserConfig().getClientUserId());
                             bundle5.putInt("chatMode", 3);
                             zn znVar2 = new zn(bundle5);
-                            znVar2.f44742d4 = ((SavedMessagesController.SavedDialog) lv0Var.f28610f.get(i12)).dialogId;
+                            znVar2.f44744d4 = ((SavedMessagesController.SavedDialog) lv0Var.f28610f.get(i12)).dialogId;
                             n2Var.presentFragment(znVar2);
                         }
                     }
@@ -306,7 +306,7 @@ public final class xe implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
                     xs0Var.h.B0();
                     int currentAccount2 = n2Var.getCurrentAccount();
                     MessagesController messagesController2 = n2Var.getMessagesController();
-                    long j10 = this.f44006b;
+                    long j10 = this.f44008b;
                     TLRPC.Chat chat2 = messagesController2.getChat(Long.valueOf(j10));
                     org.telegram.ui.Components.p80 F = org.telegram.ui.Components.p80.F(xs0Var, e6Var, u1Var);
                     F.f29762c0 = true;
@@ -337,19 +337,19 @@ public final class xe implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
 
     @Override
     public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f44005a) {
+        switch (this.f44007a) {
             case 0:
-                zn.K0((zn) this.f44007c, (TLRPC.TL_game) this.d, (MessageObject) this.f44008e, (String) this.f44009f, this.f44006b);
+                zn.K0((zn) this.f44009c, (TLRPC.TL_game) this.d, (MessageObject) this.f44010e, (String) this.f44011f, this.f44008b);
                 return;
             default:
-                org.telegram.ui.Components.c41 c41Var = (org.telegram.ui.Components.c41) this.f44007c;
+                org.telegram.ui.Components.c41 c41Var = (org.telegram.ui.Components.c41) this.f44009c;
                 ArrayList arrayList = (ArrayList) this.d;
-                HashSet hashSet = (HashSet) this.f44008e;
-                org.telegram.ui.Components.vh vhVar = (org.telegram.ui.Components.vh) this.f44009f;
+                HashSet hashSet = (HashSet) this.f44010e;
+                org.telegram.ui.Components.vh vhVar = (org.telegram.ui.Components.vh) this.f44011f;
                 int size = arrayList.size();
                 int i11 = 0;
                 while (true) {
-                    long j3 = this.f44006b;
+                    long j3 = this.f44008b;
                     if (i11 < size) {
                         Object obj = arrayList.get(i11);
                         i11++;
@@ -368,21 +368,21 @@ public final class xe implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
     }
 
     public xe(zn znVar, TLRPC.TL_game tL_game, MessageObject messageObject, String str, long j3) {
-        this.f44005a = 0;
-        this.f44007c = znVar;
+        this.f44007a = 0;
+        this.f44009c = znVar;
         this.d = tL_game;
-        this.f44008e = messageObject;
-        this.f44009f = str;
-        this.f44006b = j3;
+        this.f44010e = messageObject;
+        this.f44011f = str;
+        this.f44008b = j3;
     }
 
     public xe(org.telegram.ui.Components.c41 c41Var, ArrayList arrayList, long j3, HashSet hashSet, org.telegram.ui.Components.vh vhVar) {
-        this.f44005a = 2;
-        this.f44007c = c41Var;
+        this.f44007a = 2;
+        this.f44009c = c41Var;
         this.d = arrayList;
-        this.f44006b = j3;
-        this.f44008e = hashSet;
-        this.f44009f = vhVar;
+        this.f44008b = j3;
+        this.f44010e = hashSet;
+        this.f44011f = vhVar;
     }
 
     @Override

@@ -90,7 +90,7 @@ public final class j30 extends pm0 {
     public final void v(s4.d1 d1Var, int i10) {
         TLRPC.GroupCallParticipant groupCallParticipant;
         ChatObject.VideoParticipant videoParticipant;
-        i30 i30Var = (i30) d1Var.f47656a;
+        i30 i30Var = (i30) d1Var.f47658a;
         ChatObject.VideoParticipant videoParticipant2 = i30Var.f27209f;
         ArrayList arrayList = this.f27566e;
         if (i10 < arrayList.size()) {

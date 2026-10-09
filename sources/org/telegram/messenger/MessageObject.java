@@ -5854,7 +5854,7 @@ public class MessageObject {
             if (!TextUtils.isEmpty(fileNameFast2) && duration >= 10) {
                 iv0 iv0Var = (iv0) PhotoViewer.W8.get(fileNameFast2);
                 if (this.forceSeekTo < 0.0f && iv0Var != null) {
-                    float f10 = iv0Var.f38766a;
+                    float f10 = iv0Var.f38768a;
                     if (f10 > 0.0f && f10 < 0.999f) {
                         return f10;
                     }
@@ -5873,7 +5873,7 @@ public class MessageObject {
             if (duration2 >= 10) {
                 iv0 iv0Var2 = (iv0) PhotoViewer.W8.get(fileNameFast);
                 if (this.forceSeekTo < 0.0f && iv0Var2 != null) {
-                    float f11 = iv0Var2.f38766a;
+                    float f11 = iv0Var2.f38768a;
                     if (f11 > 0.0f && f11 < 0.999f) {
                         f7 = f11;
                     }
@@ -7497,7 +7497,7 @@ public class MessageObject {
     }
 
     public boolean probablyRingtone() {
-        if (!isVoiceOnce() && getDocument() != null && vf.c.f49552i.contains(getDocument().mime_type) && getDocument().size < MessagesController.getInstance(this.currentAccount).ringtoneSizeMax * 2) {
+        if (!isVoiceOnce() && getDocument() != null && vf.c.f49554i.contains(getDocument().mime_type) && getDocument().size < MessagesController.getInstance(this.currentAccount).ringtoneSizeMax * 2) {
             for (int i10 = 0; i10 < getDocument().attributes.size(); i10++) {
                 TLRPC.DocumentAttribute documentAttribute = getDocument().attributes.get(i10);
                 if ((documentAttribute instanceof TLRPC.TL_documentAttributeAudio) && documentAttribute.duration < 5.0d) {
@@ -7635,7 +7635,7 @@ public class MessageObject {
             }
             TLRPC.Reaction reaction = this.messageOwner.reactions.results.get(i12).reaction;
             if (reaction instanceof TLRPC.TL_reactionEmoji) {
-                String str = n0Var.f54615f;
+                String str = n0Var.f54617f;
                 if (str != null) {
                     if (((TLRPC.TL_reactionEmoji) reaction).emoticon.equals(str)) {
                         reactionCount = this.messageOwner.reactions.results.get(i12);
@@ -7643,7 +7643,7 @@ public class MessageObject {
                 }
             }
             if (reaction instanceof TLRPC.TL_reactionCustomEmoji) {
-                long j3 = n0Var.f54616g;
+                long j3 = n0Var.f54618g;
                 if (j3 != 0 && ((TLRPC.TL_reactionCustomEmoji) reaction).document_id == j3) {
                     reactionCount = this.messageOwner.reactions.results.get(i12);
                 }
@@ -7739,14 +7739,14 @@ public class MessageObject {
                 tL_messagePeerReaction.peer_id = MessagesController.getInstance(this.currentAccount).getSendAsSelectedPeer(getDialogId());
             }
             this.messageOwner.reactions.recent_reactions.add(0, tL_messagePeerReaction);
-            if (n0Var.f54615f != null) {
+            if (n0Var.f54617f != null) {
                 TLRPC.TL_reactionEmoji tL_reactionEmoji = new TLRPC.TL_reactionEmoji();
                 tL_messagePeerReaction.reaction = tL_reactionEmoji;
-                tL_reactionEmoji.emoticon = n0Var.f54615f;
+                tL_reactionEmoji.emoticon = n0Var.f54617f;
             } else {
                 TLRPC.TL_reactionCustomEmoji tL_reactionCustomEmoji = new TLRPC.TL_reactionCustomEmoji();
                 tL_messagePeerReaction.reaction = tL_reactionCustomEmoji;
-                tL_reactionCustomEmoji.document_id = n0Var.f54616g;
+                tL_reactionCustomEmoji.document_id = n0Var.f54618g;
             }
         }
         this.reactionsChanged = true;

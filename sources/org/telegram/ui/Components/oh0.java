@@ -167,8 +167,8 @@ public final class oh0 extends mm0 {
         TLRPC.Poll poll = sh0Var.f30801r;
         ArrayList arrayList2 = sh0Var.f30804x;
         MessageObject messageObject = sh0Var.f30800n;
-        int i12 = d1Var.f47660f;
-        View view = d1Var.f47656a;
+        int i12 = d1Var.f47662f;
+        View view = d1Var.f47658a;
         int i13 = 0;
         if (i12 != 2) {
             if (i12 == 3) {
@@ -258,11 +258,11 @@ public final class oh0 extends mm0 {
         TLRPC.Chat chat;
         boolean z11;
         org.telegram.ui.ActionBar.e6 e6Var;
-        if (d1Var.f47660f == 0) {
+        if (d1Var.f47662f == 0) {
             int b10 = d1Var.b();
             int S = S(b10);
             int Q = Q(b10) - 1;
-            PollVotesAlert$UserCell pollVotesAlert$UserCell = (PollVotesAlert$UserCell) d1Var.f47656a;
+            PollVotesAlert$UserCell pollVotesAlert$UserCell = (PollVotesAlert$UserCell) d1Var.f47658a;
             sh0 sh0Var = this.f29489s;
             rh0 rh0Var = (rh0) sh0Var.f30804x.get(S - 1);
             TLRPC.MessagePeerVote messagePeerVote = (TLRPC.MessagePeerVote) rh0Var.f30445b.get(Q);

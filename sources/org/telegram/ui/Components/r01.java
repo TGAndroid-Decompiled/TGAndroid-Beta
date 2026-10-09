@@ -134,7 +134,7 @@ public final class r01 extends TableLayout {
         c(str, LocaleController.formatString(R.string.formatDateAtTime, LocaleController.getInstance().getFormatterGiveawayCard().format(new Date(j3)), LocaleController.getInstance().getFormatterDay().format(new Date(j3))), null, null);
     }
 
-    public final TableRow g(CharSequence charSequence, CharSequence charSequence2, Runnable runnable, String str, org.telegram.ui.Wallet.r3 r3Var) {
+    public final TableRow g(CharSequence charSequence, CharSequence charSequence2, Runnable runnable, String str, org.telegram.ui.Wallet.s3 s3Var) {
         Context context = getContext();
         org.telegram.ui.ActionBar.e6 e6Var = this.f30325a;
         cd cdVar = new cd(context, e6Var);
@@ -150,7 +150,7 @@ public final class r01 extends TableLayout {
         spannableStringBuilder.setSpan(new xc(3, runnable), 0, spannableStringBuilder.length(), 33);
         cdVar.setText(spannableStringBuilder);
         if (str != null) {
-            cdVar.O = new dd(str, r3Var, e6Var);
+            cdVar.O = new dd(str, s3Var, e6Var);
         }
         return k(cdVar, charSequence);
     }
@@ -246,7 +246,7 @@ public final class r01 extends TableLayout {
         cdVar.setDisablePaddingsOffsetY(true);
         org.telegram.ui.g5 g5Var = new org.telegram.ui.g5(cdVar, 24.0f, i10);
         int i12 = (j3 > 2666000L ? 1 : (j3 == 2666000L ? 0 : -1));
-        ImageReceiver imageReceiver = g5Var.f37776b;
+        ImageReceiver imageReceiver = g5Var.f37778b;
         if (i12 == 0) {
             str3 = LocaleController.getString(R.string.StarsTransactionHidden);
             fr a2 = yh.j7.a(44, "anonymous");
@@ -327,7 +327,7 @@ public final class r01 extends TableLayout {
         ca0Var.setTextSize(14);
         org.telegram.ui.g5 g5Var = new org.telegram.ui.g5(ca0Var, 24.0f, i10);
         int i12 = (j3 > 2666000L ? 1 : (j3 == 2666000L ? 0 : -1));
-        ImageReceiver imageReceiver = g5Var.f37776b;
+        ImageReceiver imageReceiver = g5Var.f37778b;
         if (i12 == 0) {
             str3 = LocaleController.getString(R.string.StarsTransactionHidden);
             fr a2 = yh.j7.a(44, "anonymous");

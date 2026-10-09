@@ -121,7 +121,7 @@ public class m extends pm0 implements o2 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47660f;
+        int i10 = d1Var.f47662f;
         if (i10 != 1 && i10 != 5 && i10 != 3 && i10 != 8 && i10 != 7 && i10 != 10 && i10 != 11 && i10 != 13 && i10 != 15 && i10 != 16 && i10 != 18 && i10 != 19 && i10 != 20) {
             return true;
         }
@@ -584,7 +584,7 @@ public class m extends pm0 implements o2 {
 
     @Override
     public final void y(s4.d1 d1Var) {
-        View view = d1Var.f47656a;
+        View view = d1Var.f47658a;
         if (view instanceof s2) {
             s2 s2Var = (s2) view;
             s2Var.T(this.H, false);

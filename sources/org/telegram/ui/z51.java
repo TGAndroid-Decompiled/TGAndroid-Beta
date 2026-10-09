@@ -9,7 +9,7 @@ public final class z51 extends g71 {
     public final a61 S;
 
     public z51(a61 a61Var, Context context, Runnable runnable, View view, t61 t61Var, org.telegram.ui.ActionBar.e6 e6Var, View view2, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        super(a61Var.f35853e, context, runnable, view, t61Var, e6Var);
+        super(a61Var.f35855e, context, runnable, view, t61Var, e6Var);
         this.S = a61Var;
         this.Q = view2;
         this.R = tL_starGiftUnique;
@@ -18,6 +18,6 @@ public final class z51 extends g71 {
     @Override
     public final void dismiss() {
         super.dismiss();
-        this.S.f35853e.X0 = null;
+        this.S.f35855e.X0 = null;
     }
 }

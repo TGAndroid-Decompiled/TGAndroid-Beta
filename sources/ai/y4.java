@@ -110,22 +110,22 @@ public final class y4 implements ValueAnimator.AnimatorUpdateListener {
                 qg.m0 m0Var = (qg.m0) this.f1946b;
                 View view3 = (View) this.f1947c;
                 View view4 = (View) this.d;
-                m0Var.f46373i1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                m0Var.f46367f1.invalidate();
-                m0Var.f46361c1.invalidate();
-                m0Var.f46363d1.invalidate();
-                for (int i11 = 0; i11 < m0Var.f46367f1.getChildCount(); i11++) {
-                    View childAt2 = m0Var.f46367f1.getChildAt(i11);
-                    if (i11 == m0Var.f46371h1) {
-                        f10 = m0Var.f46373i1;
-                    } else if (i11 == m0Var.f46369g1) {
-                        f10 = 1.0f - m0Var.f46373i1;
+                m0Var.f46375i1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                m0Var.f46369f1.invalidate();
+                m0Var.f46363c1.invalidate();
+                m0Var.f46365d1.invalidate();
+                for (int i11 = 0; i11 < m0Var.f46369f1.getChildCount(); i11++) {
+                    View childAt2 = m0Var.f46369f1.getChildAt(i11);
+                    if (i11 == m0Var.f46373h1) {
+                        f10 = m0Var.f46375i1;
+                    } else if (i11 == m0Var.f46371g1) {
+                        f10 = 1.0f - m0Var.f46375i1;
                     } else {
                         f10 = 0.0f;
                     }
                     childAt2.setAlpha((f10 * 0.4f) + 0.6f);
                 }
-                float interpolation2 = hs.f27118f.getInterpolation(m0Var.f46373i1);
+                float interpolation2 = hs.f27118f.getInterpolation(m0Var.f46375i1);
                 if (view3 != null && view4 != null) {
                     float f14 = 1.0f - interpolation2;
                     float f15 = (f14 * 0.4f) + 0.6f;

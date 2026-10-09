@@ -272,11 +272,11 @@ public class xa extends FrameLayout implements NotificationCenter.NotificationCe
         int i10;
         String string;
         Object user;
-        boolean z11 = vk0Var.f42894e;
+        boolean z11 = vk0Var.f42896e;
         int i11 = this.P;
         if (z11) {
-            int i12 = vk0Var.f42893c;
-            if (i12 <= 0 && vk0Var.f42895f) {
+            int i12 = vk0Var.f42895c;
+            if (i12 <= 0 && vk0Var.f42897f) {
                 string = LocaleController.getString(R.string.NotificationEnabledAutomatically);
             } else if (i12 <= 0) {
                 string = LocaleController.getString(R.string.NotificationEnabled);
@@ -284,9 +284,9 @@ public class xa extends FrameLayout implements NotificationCenter.NotificationCe
                 string = LocaleController.getString(R.string.NotificationDisabled);
             }
         } else {
-            boolean z12 = vk0Var.f42892b;
-            int i13 = vk0Var.f42893c;
-            int i14 = vk0Var.f42891a;
+            boolean z12 = vk0Var.f42894b;
+            int i13 = vk0Var.f42895c;
+            int i14 = vk0Var.f42893a;
             boolean z13 = true;
             if (i13 == 3 && i14 != Integer.MAX_VALUE) {
                 int currentTime = i14 - ConnectionsManager.getInstance(i11).getCurrentTime();
@@ -323,7 +323,7 @@ public class xa extends FrameLayout implements NotificationCenter.NotificationCe
             if (string == null) {
                 string = LocaleController.getString(R.string.NotificationsOff);
             }
-            if (vk0Var.f42895f) {
+            if (vk0Var.f42897f) {
                 string = sc.v.v(string, ", Auto");
             }
         }

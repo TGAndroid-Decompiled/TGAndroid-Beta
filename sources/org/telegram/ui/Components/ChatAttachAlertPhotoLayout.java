@@ -662,7 +662,7 @@ public class ChatAttachAlertPhotoLayout extends qi implements NotificationCenter
         yi yiVar = chatAttachAlertPhotoLayout.f30173b;
         org.telegram.ui.ActionBar.n2 n2Var = yiVar.f33228f0;
         if ((n2Var instanceof org.telegram.ui.zn) && ((org.telegram.ui.zn) n2Var).R3 == 5) {
-            return n2Var.getMessagesController().config.quickReplyMessagesLimit.get() - ((org.telegram.ui.zn) yiVar.f33228f0).f44954u6.size();
+            return n2Var.getMessagesController().config.quickReplyMessagesLimit.get() - ((org.telegram.ui.zn) yiVar.f33228f0).f44956u6.size();
         }
         return Integer.MAX_VALUE;
     }
@@ -1004,10 +1004,10 @@ public class ChatAttachAlertPhotoLayout extends qi implements NotificationCenter
             km kmVar = this.E;
             s4.d1 K2 = kmVar.K(this.M0 - 1);
             if (K2 != null) {
-                K2.f47656a.invalidateOutline();
+                K2.f47658a.invalidateOutline();
             }
             if ((!this.G.d || !this.N0 || this.T0 != this.U0) && (K = kmVar.K(0)) != null) {
-                K.f47656a.invalidateOutline();
+                K.f47658a.invalidateOutline();
             }
             um umVar2 = this.P;
             if (umVar2 != null) {

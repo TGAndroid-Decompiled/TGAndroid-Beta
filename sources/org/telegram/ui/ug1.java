@@ -6,17 +6,17 @@ import android.view.ViewGroup;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class ug1 extends org.telegram.ui.Components.pm0 {
-    public final Context f42428c;
+    public final Context f42430c;
     public final TwoStepVerificationActivity d;
 
     public ug1(TwoStepVerificationActivity twoStepVerificationActivity, Context context) {
         this.d = twoStepVerificationActivity;
-        this.f42428c = context;
+        this.f42430c = context;
     }
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47660f == 0) {
+        if (d1Var.f47662f == 0) {
             return true;
         }
         return false;
@@ -44,8 +44,8 @@ public final class ug1 extends org.telegram.ui.Components.pm0 {
     public final void v(s4.d1 d1Var, int i10) {
         int i11;
         int i12;
-        int i13 = d1Var.f47660f;
-        View view = d1Var.f47656a;
+        int i13 = d1Var.f47662f;
+        View view = d1Var.f47658a;
         TwoStepVerificationActivity twoStepVerificationActivity = this.d;
         if (i13 != 0) {
             if (i13 == 1) {
@@ -86,7 +86,7 @@ public final class ug1 extends org.telegram.ui.Components.pm0 {
     @Override
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
         View caVar;
-        Context context = this.f42428c;
+        Context context = this.f42430c;
         if (i10 != 0) {
             caVar = new org.telegram.ui.Cells.e9(context);
         } else {

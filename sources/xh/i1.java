@@ -24,7 +24,7 @@ import org.telegram.ui.Components.y11;
 import org.telegram.ui.Components.y9;
 import yh.p7;
 public final class i1 extends o61 {
-    public static final int f51277a = 0;
+    public static final int f51279a = 0;
 
     static {
         o61.setup(new o61());
@@ -61,12 +61,12 @@ public final class i1 extends o61 {
             rg.t0 t0Var = j1Var.J;
             TextView textView = j1Var.I;
             TextView textView2 = j1Var.H;
-            g1 g1Var = j1Var.f51301e;
-            y9 y9Var = j1Var.f51315y;
+            g1 g1Var = j1Var.f51303e;
+            y9 y9Var = j1Var.f51317y;
             TextView textView3 = j1Var.L;
             TextView textView4 = j1Var.M;
             int d = kVar.d();
-            if (j1Var.f51306h0 != kVar) {
+            if (j1Var.f51308h0 != kVar) {
                 y11 d12 = p7.d1(y9Var, y9Var.getImageReceiver(), d);
                 j1Var.N = d12;
                 d12.run();
@@ -80,9 +80,9 @@ public final class i1 extends o61 {
             textView2.setVisibility(0);
             textView.setVisibility(0);
             y9Var.setTranslationY(-AndroidUtilities.dp(8.0f));
-            j1Var.f51310n.setVisibility(8);
+            j1Var.f51312n.setVisibility(8);
             j1Var.F.setVisibility(8);
-            if (kVar.f47300c == null && kVar.d == null) {
+            if (kVar.f47302c == null && kVar.d == null) {
                 textView4.setVisibility(8);
             } else {
                 if (i6.I.q()) {
@@ -108,15 +108,15 @@ public final class i1 extends o61 {
             textView3.setTextColor(-13397548);
             ((ViewGroup.MarginLayoutParams) t0Var.getLayoutParams()).topMargin = AndroidUtilities.dp(130.0f);
             ((FrameLayout.LayoutParams) t0Var.getLayoutParams()).gravity = 49;
-            j1Var.f51306h0 = kVar;
-            j1Var.f51307i0 = null;
+            j1Var.f51308h0 = kVar;
+            j1Var.f51309i0 = null;
             j1Var.V = kVar;
             j1Var.W = null;
-            j1Var.f51297b0 = false;
-            j1Var.f51299c0 = null;
-            j1Var.f51300d0 = false;
-            j1Var.f51302e0 = false;
-            j1Var.f51304f0 = false;
+            j1Var.f51299b0 = false;
+            j1Var.f51301c0 = null;
+            j1Var.f51302d0 = false;
+            j1Var.f51304e0 = false;
+            j1Var.f51306f0 = false;
             j1Var.O = null;
             j1Var.P = null;
             j1Var.c(false, false);
@@ -146,7 +146,7 @@ public final class i1 extends o61 {
             f7 = 0.65f;
         }
         frameLayout.setAlpha(f7);
-        k1 k1Var = j1Var.f51303f;
+        k1 k1Var = j1Var.f51305f;
         if (!p61Var.f29730g) {
             f10 = 0.5f;
         }

@@ -15,9 +15,9 @@ public final class k10 extends org.telegram.ui.Components.j10 {
     public final int getColumnsCount() {
         switch (this.U) {
             case 0:
-                return ((w10) this.V).f43064s;
+                return ((w10) this.V).f43066s;
             default:
-                return ((u10) this.V).d.f43064s;
+                return ((u10) this.V).d.f43066s;
         }
     }
 }

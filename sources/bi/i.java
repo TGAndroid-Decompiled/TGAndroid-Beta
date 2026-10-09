@@ -46,7 +46,7 @@ public final class i extends d00 {
         switch (this.X) {
             case 0:
                 super.U(eVar, a1Var, view, dVar);
-                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f47585a;
+                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f47587a;
                 AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
                 if (collectionItemInfo != null) {
                     aVar = new e.a(collectionItemInfo);

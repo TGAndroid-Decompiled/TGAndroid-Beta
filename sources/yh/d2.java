@@ -45,15 +45,15 @@ public final class d2 extends o91 {
             FrameLayout frameLayout = (FrameLayout) view;
             if (frameLayout.getChildCount() > 0) {
                 view2 = frameLayout.getChildAt(0);
-                n2Var = s3Var.f53161c0;
-                if (n2Var != null && view2 == n2Var.Y && (f2Var3 = n2Var.f53165e0) != null) {
+                n2Var = s3Var.f53163c0;
+                if (n2Var != null && view2 == n2Var.Y && (f2Var3 = n2Var.f53167e0) != null) {
                     f2Var3.invalidate();
                 }
-                if (view2 == s3Var.Y && (f2Var2 = s3Var.f53165e0) != null) {
+                if (view2 == s3Var.Y && (f2Var2 = s3Var.f53167e0) != null) {
                     f2Var2.invalidate();
                 }
-                n2Var2 = s3Var.f53163d0;
-                if (n2Var2 == null && view2 == n2Var2.Y && (f2Var = n2Var2.f53165e0) != null) {
+                n2Var2 = s3Var.f53165d0;
+                if (n2Var2 == null && view2 == n2Var2.Y && (f2Var = n2Var2.f53167e0) != null) {
                     f2Var.invalidate();
                     return;
                 }
@@ -61,14 +61,14 @@ public final class d2 extends o91 {
             }
         }
         view2 = null;
-        n2Var = s3Var.f53161c0;
+        n2Var = s3Var.f53163c0;
         if (n2Var != null) {
             f2Var3.invalidate();
         }
         if (view2 == s3Var.Y) {
             f2Var2.invalidate();
         }
-        n2Var2 = s3Var.f53163d0;
+        n2Var2 = s3Var.f53165d0;
         if (n2Var2 == null) {
         }
     }

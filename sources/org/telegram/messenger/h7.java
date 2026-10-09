@@ -106,22 +106,22 @@ public final class h7 implements Runnable {
                 return;
             case 15:
                 sc.u uVar = (sc.u) obj;
-                org.telegram.ui.Wallet.z0 z0Var = ((org.telegram.ui.Wallet.y0) obj2).f35645c;
+                org.telegram.ui.Wallet.z0 z0Var = ((org.telegram.ui.Wallet.y0) obj2).f35682c;
                 if (!z0Var.c(uVar, i11)) {
                     z0Var.d("closing stale connected websocket; attempt=" + i11);
                     uVar.c();
                     return;
                 }
                 z0Var.d("websocket connected after " + (SystemClock.elapsedRealtime() - j3) + " ms");
-                org.telegram.ui.Wallet.w0 w0Var = z0Var.f35691o;
+                org.telegram.ui.Wallet.w0 w0Var = z0Var.f35718o;
                 try {
-                    JSONArray put = new JSONArray().put(z0Var.f35680b);
+                    JSONArray put = new JSONArray().put(z0Var.f35707b);
                     StringBuilder sb2 = new StringBuilder("wallet-");
-                    int i12 = z0Var.f35684g + 1;
-                    z0Var.f35684g = i12;
+                    int i12 = z0Var.f35711g + 1;
+                    z0Var.f35711g = i12;
                     sb2.append(i12);
-                    z0Var.f35683f = sb2.toString();
-                    JSONObject put2 = new JSONObject().put("operation", "subscribe").put("id", z0Var.f35683f).put("types", new JSONArray().put("transactions").put("account_state_change")).put("include_address_book", true).put("addresses", put).put("min_finality", "pending");
+                    z0Var.f35710f = sb2.toString();
+                    JSONObject put2 = new JSONObject().put("operation", "subscribe").put("id", z0Var.f35710f).put("types", new JSONArray().put("transactions").put("account_state_change")).put("include_address_book", true).put("addresses", put).put("min_finality", "pending");
                     AndroidUtilities.cancelRunOnUIThread(w0Var);
                     AndroidUtilities.runOnUIThread(w0Var, 30000L);
                     z0Var.g(put2.toString());
@@ -137,7 +137,7 @@ public final class h7 implements Runnable {
                 TL_wallet.tonConnectGetPending tonconnectgetpending = new TL_wallet.tonConnectGetPending();
                 long j10 = this.f18027c;
                 tonconnectgetpending.session_id = Long.valueOf(j10);
-                d2Var.f34791f.sendRequestTyped(tonconnectgetpending, new Object(), new org.telegram.ui.Wallet.q1(d2Var, jhVar, j10, this.d, 0));
+                d2Var.f34771f.sendRequestTyped(tonconnectgetpending, new Object(), new org.telegram.ui.Wallet.q1(d2Var, jhVar, j10, this.d, 0));
                 return;
             case 17:
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder((Context) obj2, 0, (org.telegram.ui.ActionBar.e6) obj);

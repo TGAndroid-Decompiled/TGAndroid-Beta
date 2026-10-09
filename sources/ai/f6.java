@@ -1314,7 +1314,7 @@ public abstract class f6 extends sw0 implements NotificationCenter.NotificationC
         for (int i20 = 0; i20 < arrayList.size(); i20++) {
             iArr4[i20] = ((Integer) arrayList.get(i20)).intValue();
         }
-        e0Var.f52463e0 = iArr4;
+        e0Var.f52465e0 = iArr4;
         e0Var.setValue((int) jArr[0]);
         linearLayout.addView(e0Var, w7.x5.k(0.0f, -52.0f, 0.0f, -42.0f, -1, -2));
         callbackArr[0].run(Integer.valueOf((int) jArr[0]));
@@ -2775,7 +2775,7 @@ public abstract class f6 extends sw0 implements NotificationCenter.NotificationC
                         if (view2 != null) {
                             z40Var.g(view2);
                         }
-                    } else if (childAt != this.J2 && childAt != b5Var && childAt != imageView && childAt != this.O0 && childAt != n4Var && childAt != this.W2 && childAt != this.f960d2 && childAt != n4Var2 && ((kl0Var = this.f1002r3) == null || kl0Var.getReactionsWindow() == null || childAt != this.f1002r3.getReactionsWindow().f54449c)) {
+                    } else if (childAt != this.J2 && childAt != b5Var && childAt != imageView && childAt != this.O0 && childAt != n4Var && childAt != this.W2 && childAt != this.f960d2 && childAt != n4Var2 && ((kl0Var = this.f1002r3) == null || kl0Var.getReactionsWindow() == null || childAt != this.f1002r3.getReactionsWindow().f54451c)) {
                         float f28 = this.f998q2;
                         f28 = (childAt == this.X1 || childAt == this.Z1 || childAt == this.a2 || childAt == this.Y1) ? 0.0f : 0.0f;
                         float f29 = 1.0f - f28;
@@ -3400,7 +3400,7 @@ public abstract class f6 extends sw0 implements NotificationCenter.NotificationC
         if (this.f1005s3) {
             if (this.f1002r3.getReactionsWindow() != null) {
                 if (this.f1025y2 > 0) {
-                    AndroidUtilities.hideKeyboard(this.f1002r3.getReactionsWindow().f54449c);
+                    AndroidUtilities.hideKeyboard(this.f1002r3.getReactionsWindow().f54451c);
                     return true;
                 }
                 this.f1002r3.getReactionsWindow().d();
@@ -3458,7 +3458,7 @@ public abstract class f6 extends sw0 implements NotificationCenter.NotificationC
             return true;
         }
         kl0 kl0Var = this.f967f2;
-        if (kl0Var != null && kl0Var.getReactionsWindow() != null && !this.f967f2.getReactionsWindow().f54461q) {
+        if (kl0Var != null && kl0Var.getReactionsWindow() != null && !this.f967f2.getReactionsWindow().f54463q) {
             this.f967f2.getReactionsWindow().d();
             return true;
         }
@@ -3494,7 +3494,7 @@ public abstract class f6 extends sw0 implements NotificationCenter.NotificationC
     public void setAccount(int i10) {
         this.C2 = i10;
         this.S1 = MessagesController.getInstance(i10).storiesController;
-        this.f980k1.f37718b = i10;
+        this.f980k1.f37720b = i10;
         kl0 kl0Var = this.f967f2;
         if (kl0Var != null) {
             kl0Var.setCurrentAccount(i10);

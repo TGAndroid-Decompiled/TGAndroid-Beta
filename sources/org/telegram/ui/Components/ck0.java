@@ -319,16 +319,16 @@ public class ck0 extends BitmapDrawable implements Animatable, yf.c {
             D(z10);
             yf.e eVar = this.B0;
             if (eVar != null) {
-                RandomAccessFile randomAccessFile = eVar.f52147s;
+                RandomAccessFile randomAccessFile = eVar.f52149s;
                 if (randomAccessFile != null) {
                     try {
                         randomAccessFile.close();
                     } catch (IOException e7) {
                         e7.printStackTrace();
                     }
-                    eVar.f52147s = null;
+                    eVar.f52149s = null;
                 }
-                eVar.f52146r = true;
+                eVar.f52148r = true;
                 this.B0 = null;
             }
             E();

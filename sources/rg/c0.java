@@ -42,18 +42,18 @@ import org.telegram.ui.Components.pm0;
 import org.telegram.ui.t5;
 import w7.x5;
 public final class c0 extends pm0 {
-    public final j0 f47211c;
+    public final j0 f47213c;
 
     public c0(j0 j0Var) {
-        this.f47211c = j0Var;
+        this.f47213c = j0Var;
     }
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        j0 j0Var = this.f47211c;
-        int i10 = j0Var.f47279h0;
+        j0 j0Var = this.f47213c;
+        int i10 = j0Var.f47281h0;
         if ((i10 != 11 && i10 != 34) || j0Var.Y) {
-            int i11 = d1Var.f47660f;
+            int i11 = d1Var.f47662f;
             if (i11 == 1 || i11 == 4) {
                 return true;
             }
@@ -64,39 +64,39 @@ public final class c0 extends pm0 {
 
     @Override
     public final int h() {
-        return this.f47211c.f47282k0;
+        return this.f47213c.f47284k0;
     }
 
     @Override
     public final int j(int i10) {
         int i11;
-        j0 j0Var = this.f47211c;
-        if (j0Var.f47283l0 == i10) {
+        j0 j0Var = this.f47213c;
+        if (j0Var.f47285l0 == i10) {
             return 0;
         }
         if (j0Var.m0 == i10) {
             return 2;
         }
-        if (j0Var.f47284n0 == i10) {
+        if (j0Var.f47286n0 == i10) {
             return 3;
         }
-        if (j0Var.f47287q0 == i10) {
+        if (j0Var.f47289q0 == i10) {
             return 5;
         }
-        if (j0Var.f47288r0 == i10) {
+        if (j0Var.f47290r0 == i10) {
             return 6;
         }
         if (j0Var.Z == i10) {
             return 7;
         }
-        if (j0Var.f47289s0 == i10) {
+        if (j0Var.f47291s0 == i10) {
             return 8;
         }
-        ArrayList arrayList = j0Var.f47291u0;
-        if (arrayList != null && i10 >= (i11 = j0Var.f47290t0) && i10 <= arrayList.size() + i11) {
+        ArrayList arrayList = j0Var.f47293u0;
+        if (arrayList != null && i10 >= (i11 = j0Var.f47292t0) && i10 <= arrayList.size() + i11) {
             return 9;
         }
-        int i12 = j0Var.f47279h0;
+        int i12 = j0Var.f47281h0;
         if (i12 != 5 && i12 != 11 && i12 != 34) {
             return 1;
         }
@@ -110,11 +110,11 @@ public final class c0 extends pm0 {
         TL_account.requirementToContactPremium requirementtocontactpremium;
         int i11;
         String formatUserStatus;
-        j0 j0Var = this.f47211c;
-        int i12 = j0Var.f47279h0;
-        HashSet hashSet = j0Var.f47295y0;
-        int i13 = d1Var.f47660f;
-        View view = d1Var.f47656a;
+        j0 j0Var = this.f47213c;
+        int i12 = j0Var.f47281h0;
+        HashSet hashSet = j0Var.f47297y0;
+        int i13 = d1Var.f47662f;
+        View view = d1Var.f47658a;
         boolean z11 = false;
         boolean z12 = true;
         if (i13 != 1) {
@@ -123,17 +123,17 @@ public final class c0 extends pm0 {
                     if (i13 == 4) {
                         g4 g4Var = (g4) view;
                         if (i12 == 5) {
-                            TLRPC.Chat chat = (TLRPC.Chat) j0Var.f47296z0.get(i10 - j0Var.f47285o0);
-                            String str2 = (String) j0Var.A0.get(i10 - j0Var.f47285o0);
+                            TLRPC.Chat chat = (TLRPC.Chat) j0Var.f47298z0.get(i10 - j0Var.f47287o0);
+                            String str2 = (String) j0Var.A0.get(i10 - j0Var.f47287o0);
                             String str3 = chat.title;
-                            if (i10 == j0Var.f47286p0 - 1.0f) {
+                            if (i10 == j0Var.f47288p0 - 1.0f) {
                                 z12 = false;
                             }
                             g4Var.e(chat, str3, str2, z12);
                             g4Var.c(hashSet.contains(chat), false);
                             return;
                         } else if (i12 == 11 || i12 == 34) {
-                            TLRPC.User user = (TLRPC.User) j0Var.B0.get(i10 - j0Var.f47285o0);
+                            TLRPC.User user = (TLRPC.User) j0Var.B0.get(i10 - j0Var.f47287o0);
                             ArrayList arrayList = j0Var.C0;
                             if (arrayList != null && arrayList.contains(Long.valueOf(user.f20185id))) {
                                 z10 = true;
@@ -155,7 +155,7 @@ public final class c0 extends pm0 {
                                 formatUserStatus = LocaleController.getString(R.string.InvitePremiumBlockedUser);
                             }
                             String formatName = ContactsController.formatName(user.first_name, user.last_name);
-                            if (i10 == j0Var.f47286p0 - 1.0f) {
+                            if (i10 == j0Var.f47288p0 - 1.0f) {
                                 z12 = false;
                             }
                             g4Var.e(user, formatName, formatUserStatus, z12);
@@ -187,41 +187,41 @@ public final class c0 extends pm0 {
                     return;
                 }
             }
-            int i14 = i10 - j0Var.f47290t0;
-            ArrayList arrayList2 = j0Var.f47291u0;
+            int i14 = i10 - j0Var.f47292t0;
+            ArrayList arrayList2 = j0Var.f47293u0;
             if (arrayList2 != null && i14 >= 0 && i14 < arrayList2.size()) {
                 f0 f0Var = (f0) view;
-                e0 e0Var = (e0) j0Var.f47291u0.get(i14);
-                t5 t5Var = f0Var.f47246c;
-                ImageView imageView = f0Var.f47244a;
-                j5 j5Var = f0Var.f47245b;
+                e0 e0Var = (e0) j0Var.f47293u0.get(i14);
+                t5 t5Var = f0Var.f47248c;
+                ImageView imageView = f0Var.f47246a;
+                j5 j5Var = f0Var.f47247b;
                 if (e0Var instanceof d0) {
-                    f0Var.f47248f = (d0) e0Var;
-                    f0Var.f47247e = null;
+                    f0Var.f47250f = (d0) e0Var;
+                    f0Var.f47249e = null;
                     imageView.setVisibility(8);
                     j5Var.setVisibility(8);
                     t5Var.setVisibility(0);
                     j5 j5Var2 = f0Var.d;
-                    d0 d0Var = f0Var.f47248f;
+                    d0 d0Var = f0Var.f47250f;
                     if (d0Var.h) {
                         str = "BoostLevelUnlocks";
                     } else {
                         str = "BoostLevel";
                     }
-                    j5Var2.l(LocaleController.formatPluralString(str, d0Var.f47229g, new Object[0]), false);
+                    j5Var2.l(LocaleController.formatPluralString(str, d0Var.f47231g, new Object[0]), false);
                     return;
                 } else if (e0Var != null) {
-                    f0Var.f47248f = null;
-                    f0Var.f47247e = e0Var;
+                    f0Var.f47250f = null;
+                    f0Var.f47249e = e0Var;
                     imageView.setVisibility(0);
-                    imageView.setImageResource(f0Var.f47247e.f47234a);
+                    imageView.setImageResource(f0Var.f47249e.f47236a);
                     j5Var.setVisibility(0);
-                    e0 e0Var2 = f0Var.f47247e;
+                    e0 e0Var2 = f0Var.f47249e;
                     String str4 = "";
                     if (e0Var2.d != null) {
-                        String string = LocaleController.getString(f0Var.f47247e.d + "_" + LocaleController.getStringParamForNumber(f0Var.f47247e.f47237e));
+                        String string = LocaleController.getString(f0Var.f47249e.d + "_" + LocaleController.getStringParamForNumber(f0Var.f47249e.f47239e));
                         if (string == null || string.startsWith("LOC_ERR")) {
-                            string = LocaleController.getString(f0Var.f47247e.d + "_other");
+                            string = LocaleController.getString(f0Var.f47249e.d + "_other");
                         }
                         if (string == null) {
                             string = "";
@@ -230,22 +230,22 @@ public final class c0 extends pm0 {
                         int indexOf = string.indexOf("%d");
                         if (indexOf >= 0) {
                             spannableStringBuilder = new SpannableStringBuilder(string);
-                            SpannableString spannableString = new SpannableString(a1.g.o(f0Var.f47247e.f47237e, "", new StringBuilder()));
+                            SpannableString spannableString = new SpannableString(a1.g.o(f0Var.f47249e.f47239e, "", new StringBuilder()));
                             spannableString.setSpan(new m61(AndroidUtilities.bold()), 0, spannableString.length(), 33);
                             spannableStringBuilder.replace(indexOf, indexOf + 2, (CharSequence) spannableString);
                         }
                         j5Var.l(spannableStringBuilder, false);
                     } else {
-                        String string2 = LocaleController.getString(e0Var2.f47235b);
+                        String string2 = LocaleController.getString(e0Var2.f47237b);
                         if (string2 != null) {
                             str4 = string2;
                         }
-                        if (f0Var.f47247e.f47236c != null) {
+                        if (f0Var.f47249e.f47238c != null) {
                             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(str4);
                             int indexOf2 = str4.indexOf("%s");
                             if (indexOf2 >= 0) {
                                 spannableStringBuilder2 = new SpannableStringBuilder(str4);
-                                SpannableString spannableString2 = new SpannableString(f0Var.f47247e.f47236c);
+                                SpannableString spannableString2 = new SpannableString(f0Var.f47249e.f47238c);
                                 spannableString2.setSpan(new m61(AndroidUtilities.bold()), 0, spannableString2.length(), 33);
                                 spannableStringBuilder2.replace(indexOf2, indexOf2 + 2, (CharSequence) spannableString2);
                             }
@@ -262,7 +262,7 @@ public final class c0 extends pm0 {
             }
             return;
         }
-        TLRPC.Chat chat2 = (TLRPC.Chat) j0Var.f47280i0.get(i10 - j0Var.f47285o0);
+        TLRPC.Chat chat2 = (TLRPC.Chat) j0Var.f47282i0.get(i10 - j0Var.f47287o0);
         org.telegram.ui.Cells.n nVar = (org.telegram.ui.Cells.n) view;
         TLRPC.Chat currentChannel = nVar.getCurrentChannel();
         nVar.a(chat2, false);
@@ -298,7 +298,7 @@ public final class c0 extends pm0 {
         e6 e6Var11;
         e6 e6Var12;
         Context context = viewGroup.getContext();
-        j0 j0Var = this.f47211c;
+        j0 j0Var = this.f47213c;
         switch (i10) {
             case 1:
                 i0Var = new org.telegram.ui.Cells.n(context, new b0(this), true, 9);
@@ -323,7 +323,7 @@ public final class c0 extends pm0 {
                 break;
             case 5:
                 j10 j10Var = new j10(context, null);
-                if (j0Var.f47279h0 == 2) {
+                if (j0Var.f47281h0 == 2) {
                     i13 = 22;
                 } else {
                     i13 = 21;
@@ -371,10 +371,10 @@ public final class c0 extends pm0 {
                 e6Var5 = ((f3) j0Var).resourcesProvider;
                 textView.setTextColor(i6.w0(i22, e6Var5));
                 textView.setOnClickListener(new View.OnClickListener(this) {
-                    public final c0 f47172b;
+                    public final c0 f47174b;
 
                     {
-                        this.f47172b = this;
+                        this.f47174b = this;
                     }
 
                     @Override
@@ -382,22 +382,22 @@ public final class c0 extends pm0 {
                         e6 e6Var13;
                         switch (r2) {
                             case 0:
-                                j0 j0Var2 = this.f47172b.f47211c;
+                                j0 j0Var2 = this.f47174b.f47213c;
                                 n2 n2Var = j0Var2.f26025n;
-                                long j3 = j0Var2.f47272a0;
+                                long j3 = j0Var2.f47274a0;
                                 e6Var13 = ((f3) j0Var2).resourcesProvider;
                                 tg.m.o(n2Var, e6Var13, j3, null);
                                 return;
                             case 1:
-                                j0 j0Var3 = this.f47172b.f47211c;
+                                j0 j0Var3 = this.f47174b.f47213c;
                                 AndroidUtilities.addToClipboard(j0Var3.q1());
                                 j0Var3.dismiss();
                                 return;
                             case 2:
-                                AndroidUtilities.addToClipboard(this.f47172b.f47211c.q1());
+                                AndroidUtilities.addToClipboard(this.f47174b.f47213c.q1());
                                 return;
                             default:
-                                j0 j0Var4 = this.f47172b.f47211c;
+                                j0 j0Var4 = this.f47174b.f47213c;
                                 j0Var4.Q0.run();
                                 j0Var4.dismiss();
                                 return;
@@ -417,10 +417,10 @@ public final class c0 extends pm0 {
                     imageView.setBackground(i6.j0(dp5, dp5, dp5, dp5, 0, k11, k11));
                     frameLayout.addView(imageView, x5.a(40.0f, 15.0f, 0.0f, 15.0f, 0.0f, 40, 21));
                     imageView.setOnClickListener(new View.OnClickListener(this) {
-                        public final c0 f47172b;
+                        public final c0 f47174b;
 
                         {
-                            this.f47172b = this;
+                            this.f47174b = this;
                         }
 
                         @Override
@@ -428,22 +428,22 @@ public final class c0 extends pm0 {
                             e6 e6Var13;
                             switch (r2) {
                                 case 0:
-                                    j0 j0Var2 = this.f47172b.f47211c;
+                                    j0 j0Var2 = this.f47174b.f47213c;
                                     n2 n2Var = j0Var2.f26025n;
-                                    long j3 = j0Var2.f47272a0;
+                                    long j3 = j0Var2.f47274a0;
                                     e6Var13 = ((f3) j0Var2).resourcesProvider;
                                     tg.m.o(n2Var, e6Var13, j3, null);
                                     return;
                                 case 1:
-                                    j0 j0Var3 = this.f47172b.f47211c;
+                                    j0 j0Var3 = this.f47174b.f47213c;
                                     AndroidUtilities.addToClipboard(j0Var3.q1());
                                     j0Var3.dismiss();
                                     return;
                                 case 2:
-                                    AndroidUtilities.addToClipboard(this.f47172b.f47211c.q1());
+                                    AndroidUtilities.addToClipboard(this.f47174b.f47213c.q1());
                                     return;
                                 default:
-                                    j0 j0Var4 = this.f47172b.f47211c;
+                                    j0 j0Var4 = this.f47174b.f47213c;
                                     j0Var4.Q0.run();
                                     j0Var4.dismiss();
                                     return;
@@ -497,10 +497,10 @@ public final class c0 extends pm0 {
                 }
                 ea0Var.setGravity(1);
                 ea0Var.setOnClickListener(new View.OnClickListener(this) {
-                    public final c0 f47172b;
+                    public final c0 f47174b;
 
                     {
-                        this.f47172b = this;
+                        this.f47174b = this;
                     }
 
                     @Override
@@ -508,22 +508,22 @@ public final class c0 extends pm0 {
                         e6 e6Var13;
                         switch (r2) {
                             case 0:
-                                j0 j0Var2 = this.f47172b.f47211c;
+                                j0 j0Var2 = this.f47174b.f47213c;
                                 n2 n2Var = j0Var2.f26025n;
-                                long j3 = j0Var2.f47272a0;
+                                long j3 = j0Var2.f47274a0;
                                 e6Var13 = ((f3) j0Var2).resourcesProvider;
                                 tg.m.o(n2Var, e6Var13, j3, null);
                                 return;
                             case 1:
-                                j0 j0Var3 = this.f47172b.f47211c;
+                                j0 j0Var3 = this.f47174b.f47213c;
                                 AndroidUtilities.addToClipboard(j0Var3.q1());
                                 j0Var3.dismiss();
                                 return;
                             case 2:
-                                AndroidUtilities.addToClipboard(this.f47172b.f47211c.q1());
+                                AndroidUtilities.addToClipboard(this.f47174b.f47213c.q1());
                                 return;
                             default:
-                                j0 j0Var4 = this.f47172b.f47211c;
+                                j0 j0Var4 = this.f47174b.f47213c;
                                 j0Var4.Q0.run();
                                 j0Var4.dismiss();
                                 return;
@@ -536,10 +536,10 @@ public final class c0 extends pm0 {
                     ci.d dVar = new ci.d(context, e6Var10, true);
                     dVar.g(LocaleController.getString(R.string.Copy), false, true);
                     dVar.setOnClickListener(new View.OnClickListener(this) {
-                        public final c0 f47172b;
+                        public final c0 f47174b;
 
                         {
-                            this.f47172b = this;
+                            this.f47174b = this;
                         }
 
                         @Override
@@ -547,22 +547,22 @@ public final class c0 extends pm0 {
                             e6 e6Var13;
                             switch (r2) {
                                 case 0:
-                                    j0 j0Var2 = this.f47172b.f47211c;
+                                    j0 j0Var2 = this.f47174b.f47213c;
                                     n2 n2Var = j0Var2.f26025n;
-                                    long j3 = j0Var2.f47272a0;
+                                    long j3 = j0Var2.f47274a0;
                                     e6Var13 = ((f3) j0Var2).resourcesProvider;
                                     tg.m.o(n2Var, e6Var13, j3, null);
                                     return;
                                 case 1:
-                                    j0 j0Var3 = this.f47172b.f47211c;
+                                    j0 j0Var3 = this.f47174b.f47213c;
                                     AndroidUtilities.addToClipboard(j0Var3.q1());
                                     j0Var3.dismiss();
                                     return;
                                 case 2:
-                                    AndroidUtilities.addToClipboard(this.f47172b.f47211c.q1());
+                                    AndroidUtilities.addToClipboard(this.f47174b.f47213c.q1());
                                     return;
                                 default:
-                                    j0 j0Var4 = this.f47172b.f47211c;
+                                    j0 j0Var4 = this.f47174b.f47213c;
                                     j0Var4.Q0.run();
                                     j0Var4.dismiss();
                                     return;
@@ -586,7 +586,7 @@ public final class c0 extends pm0 {
                 break;
             default:
                 i0 i0Var2 = new i0(j0Var, context);
-                j0Var.f47275d0 = i0Var2;
+                j0Var.f47277d0 = i0Var2;
                 i0Var = i0Var2;
                 break;
         }

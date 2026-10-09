@@ -15,43 +15,43 @@ public class g implements GLSurfaceView.Renderer {
     public final int E;
     public boolean F;
     public float G;
-    public int f48038a;
-    public int f48039b;
-    public o f48040c;
-    public float f48047l;
-    public final Context f48052q;
-    public Bitmap f48053r;
-    public float f48054s;
-    public float f48055t;
-    public float f48056u;
+    public int f48040a;
+    public int f48041b;
+    public o f48042c;
+    public float f48049l;
+    public final Context f48054q;
+    public Bitmap f48055r;
+    public float f48056s;
+    public float f48057t;
+    public float f48058u;
     public float v;
-    public boolean f48057w;
-    public int f48058x;
-    public int f48059y;
+    public boolean f48059w;
+    public int f48060x;
+    public int f48061y;
     public float d = 0.0f;
-    public float f48041e = 0.0f;
-    public volatile float f48042f = 0.0f;
-    public volatile float f48043g = 0.0f;
+    public float f48043e = 0.0f;
+    public volatile float f48044f = 0.0f;
+    public volatile float f48045g = 0.0f;
     public volatile float h = 1.0f;
-    public float f48044i = 0.0f;
-    public volatile float f48045j = 0.0f;
-    public float f48046k = 0.0f;
-    public final float[] f48048m = new float[16];
-    public final float[] f48049n = new float[16];
-    public final float[] f48050o = new float[16];
-    public final float[] f48051p = new float[16];
-    public int f48060z = i6.Vj;
+    public float f48046i = 0.0f;
+    public volatile float f48047j = 0.0f;
+    public float f48048k = 0.0f;
+    public final float[] f48050m = new float[16];
+    public final float[] f48051n = new float[16];
+    public final float[] f48052o = new float[16];
+    public final float[] f48053p = new float[16];
+    public int f48062z = i6.Vj;
     public int A = i6.Wj;
     public final int B = i6.fk;
     public final int C = i6.gk;
 
     public g(Context context, int i10, int i11) {
-        this.f48047l = 0.0f;
-        this.f48052q = context;
+        this.f48049l = 0.0f;
+        this.f48054q = context;
         this.D = i10;
         this.E = i11;
         if (i11 == 2) {
-            this.f48047l = 1.0f;
+            this.f48049l = 1.0f;
         }
         b();
     }
@@ -80,9 +80,9 @@ public class g implements GLSurfaceView.Renderer {
         } else {
             z10 = false;
         }
-        this.f48057w = z10;
-        this.f48058x = i0.a.d(this.f48047l, i6.x0(null, this.f48060z, false), i6.x0(null, this.B, false));
-        this.f48059y = i0.a.d(this.f48047l, i6.x0(null, this.A, false), i6.x0(null, this.C, false));
+        this.f48059w = z10;
+        this.f48060x = i0.a.d(this.f48049l, i6.x0(null, this.f48062z, false), i6.x0(null, this.B, false));
+        this.f48061y = i0.a.d(this.f48049l, i6.x0(null, this.A, false), i6.x0(null, this.C, false));
         if (this.D == 1 && i0.a.f(i6.x0(null, i10, false)) < 0.5d) {
             z11 = true;
         }
@@ -95,65 +95,65 @@ public class g implements GLSurfaceView.Renderer {
         int i10;
         GLES20.glClear(16640);
         GLES20.glEnable(2929);
-        float[] fArr = this.f48050o;
+        float[] fArr = this.f48052o;
         if (this.E == 4) {
             f7 = 40.0f;
         } else {
             f7 = 0.0f;
         }
         Matrix.setLookAtM(fArr, 0, 0.0f, f7, 100.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
-        Matrix.setIdentityM(this.f48051p, 0);
-        Matrix.translateM(this.f48051p, 0, 0.0f, this.f48041e, 0.0f);
-        Matrix.rotateM(this.f48051p, 0, (-this.f48044i) - this.f48045j, 1.0f, 0.0f, 0.0f);
-        Matrix.rotateM(this.f48051p, 0, (-this.d) - this.f48042f, 0.0f, 1.0f, 0.0f);
-        Matrix.multiplyMM(this.f48048m, 0, this.f48050o, 0, this.f48051p, 0);
-        float[] fArr2 = this.f48048m;
-        Matrix.multiplyMM(fArr2, 0, this.f48049n, 0, fArr2, 0);
-        o oVar = this.f48040c;
+        Matrix.setIdentityM(this.f48053p, 0);
+        Matrix.translateM(this.f48053p, 0, 0.0f, this.f48043e, 0.0f);
+        Matrix.rotateM(this.f48053p, 0, (-this.f48046i) - this.f48047j, 1.0f, 0.0f, 0.0f);
+        Matrix.rotateM(this.f48053p, 0, (-this.d) - this.f48044f, 0.0f, 1.0f, 0.0f);
+        Matrix.multiplyMM(this.f48050m, 0, this.f48052o, 0, this.f48053p, 0);
+        float[] fArr2 = this.f48050m;
+        Matrix.multiplyMM(fArr2, 0, this.f48051n, 0, fArr2, 0);
+        o oVar = this.f48042c;
         if (oVar != null) {
-            oVar.f48095b = (float) Math.toRadians(this.d + this.f48042f);
-            this.f48040c.f48097c = (float) Math.toRadians(this.f48044i + this.f48045j);
-            this.f48040c.d = (float) Math.toRadians(this.f48043g);
-            this.f48040c.f48100e = this.h;
-            o oVar2 = this.f48040c;
+            oVar.f48097b = (float) Math.toRadians(this.d + this.f48044f);
+            this.f48042c.f48099c = (float) Math.toRadians(this.f48046i + this.f48047j);
+            this.f48042c.d = (float) Math.toRadians(this.f48045g);
+            this.f48042c.f48102e = this.h;
+            o oVar2 = this.f48042c;
             oVar2.getClass();
-            oVar2.J = this.f48057w;
-            oVar2.E = this.f48058x;
-            oVar2.F = this.f48059y;
-            float[] fArr3 = this.f48048m;
-            float[] fArr4 = this.f48051p;
-            int i11 = this.f48038a;
-            int i12 = this.f48039b;
-            float f10 = this.f48054s;
-            float f11 = this.f48056u;
-            float f12 = this.f48055t;
+            oVar2.J = this.f48059w;
+            oVar2.E = this.f48060x;
+            oVar2.F = this.f48061y;
+            float[] fArr3 = this.f48050m;
+            float[] fArr4 = this.f48053p;
+            int i11 = this.f48040a;
+            int i12 = this.f48041b;
+            float f10 = this.f48056s;
+            float f11 = this.f48058u;
+            float f12 = this.f48057t;
             float f13 = this.v;
-            float f14 = this.f48046k;
-            float f15 = this.f48047l;
+            float f14 = this.f48048k;
+            float f15 = this.f48049l;
             float f16 = this.G;
-            if (oVar2.f48093a != null) {
-                float min = Math.min(1.0f, (Math.max(0.0f, Math.min(f16, 0.1f)) / 0.22f) + oVar2.f48119z);
-                oVar2.f48119z = min;
-                a aVar = oVar2.f48093a;
-                aVar.B = oVar2.f48100e;
+            if (oVar2.f48095a != null) {
+                float min = Math.min(1.0f, (Math.max(0.0f, Math.min(f16, 0.1f)) / 0.22f) + oVar2.f48121z);
+                oVar2.f48121z = min;
+                a aVar = oVar2.f48095a;
+                aVar.B = oVar2.f48102e;
                 aVar.C = 0;
-                aVar.c(i11, i12, oVar2.f48095b, oVar2.f48097c, oVar2.d, f16, min * oVar2.A, f14, false);
+                aVar.c(i11, i12, oVar2.f48097b, oVar2.f48099c, oVar2.d, f16, min * oVar2.A, f14, false);
                 return;
             }
             if (oVar2.Z != null) {
-                GLES20.glBindTexture(3553, oVar2.f48109o);
+                GLES20.glBindTexture(3553, oVar2.f48111o);
                 i10 = 0;
                 GLUtils.texImage2D(3553, 0, oVar2.Z, 0);
                 oVar2.Z = null;
             } else {
                 i10 = 0;
             }
-            GLES20.glUniform1i(oVar2.f48106l, i10);
-            GLES20.glUniform1f(oVar2.f48113s, oVar2.f48117x);
-            GLES20.glUniform1f(oVar2.f48114t, oVar2.f48119z);
+            GLES20.glUniform1i(oVar2.f48108l, i10);
+            GLES20.glUniform1f(oVar2.f48115s, oVar2.f48119x);
+            GLES20.glUniform1f(oVar2.f48116t, oVar2.f48121z);
             GLES20.glUniform1f(oVar2.v, f14);
-            GLES20.glUniform1f(oVar2.f48116w, f15);
-            GLES20.glUniformMatrix4fv(oVar2.f48102g, 1, false, fArr3, 0);
+            GLES20.glUniform1f(oVar2.f48118w, f15);
+            GLES20.glUniformMatrix4fv(oVar2.f48104g, 1, false, fArr3, 0);
             GLES20.glUniformMatrix4fv(oVar2.h, 1, false, fArr4, 0);
             GLES20.glUniform1f(oVar2.K, oVar2.B);
             GLES20.glUniform1f(oVar2.L, oVar2.C);
@@ -166,33 +166,33 @@ public class g implements GLSurfaceView.Renderer {
             GLES20.glUniform2f(oVar2.S, i11, i12);
             GLES20.glUniform4f(oVar2.T, f10, f11, f12, f13);
             GLES20.glUniform1i(oVar2.W, oVar2.J ? 1 : 0);
-            float f17 = oVar2.f48099d0 + f16;
-            oVar2.f48099d0 = f17;
+            float f17 = oVar2.f48101d0 + f16;
+            oVar2.f48101d0 = f17;
             GLES20.glUniform1f(oVar2.X, f17);
-            for (int i13 = 0; i13 < oVar2.f48094a0; i13++) {
+            for (int i13 = 0; i13 < oVar2.f48096a0; i13++) {
                 int i14 = i13 * 3;
-                GLES20.glBindBuffer(34962, oVar2.f48098c0[i14]);
-                GLES20.glVertexAttribPointer(oVar2.f48111q, 2, 5126, false, 0, 0);
-                GLES20.glBindBuffer(34962, oVar2.f48098c0[i14 + 1]);
-                GLES20.glVertexAttribPointer(oVar2.f48112r, 3, 5126, false, 0, 0);
-                GLES20.glBindBuffer(34962, oVar2.f48098c0[i14 + 2]);
-                GLES20.glVertexAttribPointer(oVar2.f48110p, 3, 5126, false, 0, 0);
+                GLES20.glBindBuffer(34962, oVar2.f48100c0[i14]);
+                GLES20.glVertexAttribPointer(oVar2.f48113q, 2, 5126, false, 0, 0);
+                GLES20.glBindBuffer(34962, oVar2.f48100c0[i14 + 1]);
+                GLES20.glVertexAttribPointer(oVar2.f48114r, 3, 5126, false, 0, 0);
+                GLES20.glBindBuffer(34962, oVar2.f48100c0[i14 + 2]);
+                GLES20.glVertexAttribPointer(oVar2.f48112p, 3, 5126, false, 0, 0);
                 GLES20.glUniform1i(oVar2.U, i13);
-                GLES20.glUniform1i(oVar2.V, oVar2.f48096b0);
-                GLES20.glDrawArrays(4, 0, oVar2.f48118y[i13] / 3);
+                GLES20.glUniform1i(oVar2.V, oVar2.f48098b0);
+                GLES20.glDrawArrays(4, 0, oVar2.f48120y[i13] / 3);
             }
-            float f18 = oVar2.f48119z;
+            float f18 = oVar2.f48121z;
             if (f18 < 1.0f) {
                 float f19 = f18 + 0.07272727f;
-                oVar2.f48119z = f19;
+                oVar2.f48121z = f19;
                 if (f19 > 1.0f) {
-                    oVar2.f48119z = 1.0f;
+                    oVar2.f48121z = 1.0f;
                 }
             }
-            float f20 = oVar2.f48117x + 5.0E-4f;
-            oVar2.f48117x = f20;
+            float f20 = oVar2.f48119x + 5.0E-4f;
+            oVar2.f48119x = f20;
             if (f20 > 1.0f) {
-                oVar2.f48117x = f20 - 1.0f;
+                oVar2.f48119x = f20 - 1.0f;
             }
         }
     }
@@ -200,8 +200,8 @@ public class g implements GLSurfaceView.Renderer {
     @Override
     public void onSurfaceChanged(GL10 gl10, int i10, int i11) {
         float f7;
-        this.f48038a = i10;
-        this.f48039b = i11;
+        this.f48040a = i10;
+        this.f48041b = i11;
         GLES20.glViewport(0, 0, i10, i11);
         float f10 = i10 / i11;
         if (this.E == 4) {
@@ -209,26 +209,26 @@ public class g implements GLSurfaceView.Renderer {
         } else {
             f7 = 53.13f;
         }
-        Matrix.perspectiveM(this.f48049n, 0, f7, f10, 1.0f, 200.0f);
+        Matrix.perspectiveM(this.f48051n, 0, f7, f10, 1.0f, 200.0f);
     }
 
     @Override
     public void onSurfaceCreated(GL10 gl10, EGLConfig eGLConfig) {
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-        o oVar = this.f48040c;
+        o oVar = this.f48042c;
         if (oVar != null) {
-            a aVar = oVar.f48093a;
+            a aVar = oVar.f48095a;
             if (aVar != null) {
                 aVar.b();
-                oVar.f48093a = null;
+                oVar.f48095a = null;
             } else {
-                GLES20.glDeleteProgram(oVar.f48101f);
+                GLES20.glDeleteProgram(oVar.f48103f);
             }
         }
-        o oVar2 = new o(this.f48052q, this.E);
-        this.f48040c = oVar2;
-        Bitmap bitmap = this.f48053r;
-        if (bitmap != null && oVar2.f48093a == null) {
+        o oVar2 = new o(this.f48054q, this.E);
+        this.f48042c = oVar2;
+        Bitmap bitmap = this.f48055r;
+        if (bitmap != null && oVar2.f48095a == null) {
             oVar2.Z = bitmap;
         }
         if (this.F) {

@@ -75,11 +75,11 @@ public final class z0 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                org.telegram.ui.Wallet.z4 z4Var = (org.telegram.ui.Wallet.z4) this.f21740c;
-                if (z4Var.f35725k0 == animator) {
-                    z4Var.f35725k0 = null;
-                    z4Var.x0(this.f21739b);
-                    z4Var.f35728n0.o(false);
+                org.telegram.ui.Wallet.a5 a5Var = (org.telegram.ui.Wallet.a5) this.f21740c;
+                if (a5Var.f34629k0 == animator) {
+                    a5Var.f34629k0 = null;
+                    a5Var.x0(this.f21739b);
+                    a5Var.f34632n0.o(false);
                     return;
                 }
                 return;

@@ -48,7 +48,7 @@ public final class ji extends AnimatorListenerAdapter {
             default:
                 yh.s3 s3Var = (yh.s3) this.d;
                 s3Var.U1();
-                yh.e2 e2Var = s3Var.f53169g0;
+                yh.e2 e2Var = s3Var.f53171g0;
                 int i13 = 8;
                 int i14 = this.f27716b;
                 if (i14 == 0) {
@@ -57,14 +57,14 @@ public final class ji extends AnimatorListenerAdapter {
                     i10 = 8;
                 }
                 e2Var.setVisibility(i10);
-                yh.e2 e2Var2 = s3Var.f53190s0;
+                yh.e2 e2Var2 = s3Var.f53192s0;
                 if (i14 == 1) {
                     i11 = 0;
                 } else {
                     i11 = 8;
                 }
                 e2Var2.setVisibility(i11);
-                yh.e2 e2Var3 = s3Var.f53197z0;
+                yh.e2 e2Var3 = s3Var.f53199z0;
                 if (i14 == 2) {
                     i12 = 0;
                 } else {
@@ -77,7 +77,7 @@ public final class ji extends AnimatorListenerAdapter {
                 }
                 e2Var4.setVisibility(i13);
                 s3Var.u2();
-                s3Var.f53158a1 = null;
+                s3Var.f53160a1 = null;
                 Runnable runnable = (Runnable) this.f27717c;
                 if (runnable != null) {
                     runnable.run();

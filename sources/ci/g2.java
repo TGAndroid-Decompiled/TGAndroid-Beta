@@ -105,10 +105,10 @@ public final class g2 extends EditTextBoldCursor {
                 StringBuilder sb2 = new StringBuilder();
                 sb2.append((CharSequence) getText());
                 ip ipVar = (ip) this.f5116c;
-                cp cpVar = ipVar.f38715f;
-                if (cpVar != null && cpVar.getTextView() != null && !TextUtils.isEmpty(ipVar.f38715f.getTextView().getText())) {
+                cp cpVar = ipVar.f38717f;
+                if (cpVar != null && cpVar.getTextView() != null && !TextUtils.isEmpty(ipVar.f38717f.getTextView().getText())) {
                     sb2.append("\n");
-                    sb2.append(ipVar.f38715f.getTextView().getText());
+                    sb2.append(ipVar.f38717f.getTextView().getText());
                 }
                 accessibilityNodeInfo.setText(sb2);
                 return;
@@ -154,10 +154,10 @@ public final class g2 extends EditTextBoldCursor {
                 return super.onKeyDown(i10, keyEvent);
             case 7:
                 j80 j80Var = (j80) this.f5116c;
-                l80 l80Var = j80Var.f38859f;
+                l80 l80Var = j80Var.f38861f;
                 if (i10 == 67 && j80Var.d.length() == 0 && !l80Var.G.isEmpty()) {
-                    l80Var.f39464f.a((d40) hg.c.g(1, l80Var.G));
-                    l80Var.f39462c.e(!l80Var.G.isEmpty(), true);
+                    l80Var.f39466f.a((d40) hg.c.g(1, l80Var.G));
+                    l80Var.f39464c.e(!l80Var.G.isEmpty(), true);
                     l80Var.c0();
                     return true;
                 }
@@ -191,7 +191,7 @@ public final class g2 extends EditTextBoldCursor {
         switch (this.f5115b) {
             case 8:
                 if (i10 == 16908322 || i10 == 16908337) {
-                    ((we0) this.f5116c).f43208y = true;
+                    ((we0) this.f5116c).f43210y = true;
                     postDelayed(new uz(this, 22), 1000L);
                 }
                 return super.onTextContextMenuItem(i10);
@@ -255,10 +255,10 @@ public final class g2 extends EditTextBoldCursor {
                 return super.onTouchEvent(motionEvent);
             case 11:
                 xg.i iVar = (xg.i) this.f5116c;
-                d40 d40Var3 = iVar.f51145f;
+                d40 d40Var3 = iVar.f51147f;
                 if (d40Var3 != null) {
                     d40Var3.a();
-                    iVar.f51145f = null;
+                    iVar.f51147f = null;
                 }
                 if (motionEvent.getAction() == 0 && !AndroidUtilities.showKeyboard(this)) {
                     iVar.fullScroll(130);

@@ -625,16 +625,16 @@ public final class t1 {
         this.f22991p = false;
         zg.o0 o0Var = u1Var.N;
         ArrayList arrayList = o0Var.v;
-        ArrayList arrayList2 = o0Var.f54639w;
+        ArrayList arrayList2 = o0Var.f54641w;
         for (int i10 = 0; i10 < arrayList2.size(); i10++) {
             ((zg.l0) arrayList2.get(i10)).b();
         }
         arrayList2.clear();
-        o0Var.f54627j = false;
-        o0Var.f54628k = false;
-        o0Var.f54629l = false;
+        o0Var.f54629j = false;
+        o0Var.f54630k = false;
+        o0Var.f54631l = false;
         for (int i11 = 0; i11 < arrayList.size(); i11++) {
-            ((zg.l0) arrayList.get(i11)).f54582c = 0;
+            ((zg.l0) arrayList.get(i11)).f54584c = 0;
         }
         this.f22974k3 = null;
         org.telegram.ui.Components.b6.release(u1Var, this.f22978l3);

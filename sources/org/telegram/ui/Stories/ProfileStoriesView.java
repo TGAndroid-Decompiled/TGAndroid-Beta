@@ -129,7 +129,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
                 switch (i11) {
                     case 0:
                         int i12 = ProfileStoriesView.f34497s0;
-                        rz0Var2.f41545u0.w4(false);
+                        rz0Var2.f41547u0.w4(false);
                         return;
                     default:
                         rz0Var2.invalidate();
@@ -150,7 +150,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
                 switch (i11) {
                     case 0:
                         int i12 = ProfileStoriesView.f34497s0;
-                        rz0Var2.f41545u0.w4(false);
+                        rz0Var2.f41547u0.w4(false);
                         return;
                     default:
                         rz0Var2.invalidate();

@@ -10,31 +10,31 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 public final class vp0 extends Drawable {
-    public static final int f42956j = 0;
-    public float f42957a = AndroidUtilities.dpf2(10.6665f);
-    public final boolean f42958b;
-    public Paint f42959c;
+    public static final int f42958j = 0;
+    public float f42959a = AndroidUtilities.dpf2(10.6665f);
+    public final boolean f42960b;
+    public Paint f42961c;
     public final Paint d;
-    public final Paint f42960e;
-    public final Paint f42961f;
-    public final Path f42962g;
+    public final Paint f42962e;
+    public final Paint f42963f;
+    public final Path f42964g;
     public final Path h;
-    public final org.telegram.ui.Components.q5 f42963i;
+    public final org.telegram.ui.Components.q5 f42965i;
 
     public vp0(int i10, int i11, int i12) {
         Paint paint = new Paint(1);
         this.d = paint;
         Paint paint2 = new Paint(1);
-        this.f42960e = paint2;
+        this.f42962e = paint2;
         Paint paint3 = new Paint(1);
-        this.f42961f = paint3;
-        this.f42962g = new Path();
+        this.f42963f = paint3;
+        this.f42964g = new Path();
         this.h = new Path();
-        this.f42958b = i12 != i10;
+        this.f42960b = i12 != i10;
         paint.setColor(i10);
         paint2.setColor(i11);
         paint3.setColor(i12);
-        this.f42963i = null;
+        this.f42965i = null;
         d();
     }
 
@@ -85,38 +85,38 @@ public final class vp0 extends Drawable {
     public final void d() {
         Path path = this.h;
         path.rewind();
-        float f7 = this.f42957a;
+        float f7 = this.f42959a;
         path.addCircle(f7, f7, f7, Path.Direction.CW);
-        Path path2 = this.f42962g;
+        Path path2 = this.f42964g;
         path2.rewind();
-        path2.moveTo(this.f42957a * 2.0f, 0.0f);
-        float f10 = this.f42957a;
+        path2.moveTo(this.f42959a * 2.0f, 0.0f);
+        float f10 = this.f42959a;
         path2.lineTo(f10 * 2.0f, f10 * 2.0f);
-        path2.lineTo(0.0f, this.f42957a * 2.0f);
+        path2.lineTo(0.0f, this.f42959a * 2.0f);
         path2.close();
     }
 
     @Override
     public final void draw(Canvas canvas) {
         canvas.save();
-        canvas.translate(getBounds().centerX() - this.f42957a, getBounds().centerY() - this.f42957a);
-        Paint paint = this.f42959c;
+        canvas.translate(getBounds().centerX() - this.f42959a, getBounds().centerY() - this.f42959a);
+        Paint paint = this.f42961c;
         if (paint != null) {
-            float f7 = this.f42957a;
+            float f7 = this.f42959a;
             canvas.drawCircle(f7, f7, f7, paint);
         }
         canvas.clipPath(this.h);
         canvas.drawPaint(this.d);
-        canvas.drawPath(this.f42962g, this.f42960e);
-        if (this.f42958b) {
+        canvas.drawPath(this.f42964g, this.f42962e);
+        if (this.f42960b) {
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(this.f42957a - AndroidUtilities.dp(3.66f), this.f42957a - AndroidUtilities.dp(3.66f), this.f42957a + AndroidUtilities.dp(3.66f), this.f42957a + AndroidUtilities.dp(3.66f));
-            float f10 = this.f42957a;
+            rectF.set(this.f42959a - AndroidUtilities.dp(3.66f), this.f42959a - AndroidUtilities.dp(3.66f), this.f42959a + AndroidUtilities.dp(3.66f), this.f42959a + AndroidUtilities.dp(3.66f));
+            float f10 = this.f42959a;
             canvas.rotate(45.0f, f10, f10);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.33f), AndroidUtilities.dp(2.33f), this.f42961f);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.33f), AndroidUtilities.dp(2.33f), this.f42963f);
         }
         canvas.restore();
-        org.telegram.ui.Components.q5 q5Var = this.f42963i;
+        org.telegram.ui.Components.q5 q5Var = this.f42965i;
         if (q5Var != null) {
             int dp = AndroidUtilities.dp(14.0f) / 2;
             q5Var.setBounds(getBounds().centerX() - dp, getBounds().centerY() - dp, getBounds().centerX() + dp, getBounds().centerY() + dp);
@@ -125,7 +125,7 @@ public final class vp0 extends Drawable {
     }
 
     public final void e(View view) {
-        org.telegram.ui.Components.q5 q5Var = this.f42963i;
+        org.telegram.ui.Components.q5 q5Var = this.f42965i;
         if (view == null) {
             if (q5Var != null) {
                 q5Var.b();
@@ -141,23 +141,23 @@ public final class vp0 extends Drawable {
     }
 
     public final void f(float f7, int i10) {
-        if (this.f42959c == null) {
+        if (this.f42961c == null) {
             Paint paint = new Paint(1);
-            this.f42959c = paint;
+            this.f42961c = paint;
             paint.setStyle(Paint.Style.STROKE);
         }
-        this.f42959c.setStrokeWidth(f7);
-        this.f42959c.setColor(i10);
+        this.f42961c.setStrokeWidth(f7);
+        this.f42961c.setColor(i10);
     }
 
     @Override
     public final int getIntrinsicHeight() {
-        return (int) (this.f42957a * 2.0f);
+        return (int) (this.f42959a * 2.0f);
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return (int) (this.f42957a * 2.0f);
+        return (int) (this.f42959a * 2.0f);
     }
 
     @Override
@@ -169,18 +169,18 @@ public final class vp0 extends Drawable {
         Paint paint = new Paint(1);
         this.d = paint;
         Paint paint2 = new Paint(1);
-        this.f42960e = paint2;
+        this.f42962e = paint2;
         Paint paint3 = new Paint(1);
-        this.f42961f = paint3;
-        this.f42962g = new Path();
+        this.f42963f = paint3;
+        this.f42964g = new Path();
         this.h = new Path();
-        this.f42958b = i12 != i10;
+        this.f42960b = i12 != i10;
         paint.setColor(i10);
         paint2.setColor(i11);
         paint3.setColor(i12);
         d();
         org.telegram.ui.Components.q5 q5Var = new org.telegram.ui.Components.q5(AndroidUtilities.dp(14.0f), null);
-        this.f42963i = q5Var;
+        this.f42965i = q5Var;
         q5Var.j(j3, false);
     }
 

@@ -11,6 +11,6 @@ public final class uk extends org.telegram.ui.Components.l71 {
 
     @Override
     public final org.telegram.ui.ActionBar.e6 getResourceProvider() {
-        return this.N.f44761ea;
+        return this.N.f44763ea;
     }
 }

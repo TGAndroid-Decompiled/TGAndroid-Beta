@@ -12,17 +12,17 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class q70 extends org.telegram.ui.Components.pm0 {
-    public final Context f41033c;
+    public final Context f41035c;
     public final s70 d;
 
     public q70(s70 s70Var, Context context) {
         this.d = s70Var;
-        this.f41033c = context;
+        this.f41035c = context;
     }
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47660f == 0) {
+        if (d1Var.f47662f == 0) {
             return true;
         }
         return false;
@@ -39,8 +39,8 @@ public final class q70 extends org.telegram.ui.Components.pm0 {
         if ((i10 >= s70Var.E && i10 < s70Var.F) || i10 == s70Var.J) {
             return 0;
         }
-        if (i10 != s70Var.f41601y && i10 != s70Var.H) {
-            if (i10 != s70Var.f41600x && i10 != s70Var.K) {
+        if (i10 != s70Var.f41603y && i10 != s70Var.H) {
+            if (i10 != s70Var.f41602x && i10 != s70Var.K) {
                 if (i10 != s70Var.I) {
                     return 0;
                 }
@@ -60,8 +60,8 @@ public final class q70 extends org.telegram.ui.Components.pm0 {
         int i13;
         s70 s70Var = this.d;
         boolean z11 = s70Var.N;
-        int i14 = d1Var.f47660f;
-        View view = d1Var.f47656a;
+        int i14 = d1Var.f47662f;
+        View view = d1Var.f47658a;
         boolean z12 = true;
         if (i14 != 0) {
             if (i14 != 1) {
@@ -71,10 +71,10 @@ public final class q70 extends org.telegram.ui.Components.pm0 {
                         if (s70Var.J <= 0) {
                             z12 = false;
                         }
-                        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = s70Var.f41597r;
-                        p70Var.f40688b = z12;
-                        org.telegram.ui.Components.ru ruVar = p70Var.f40687a;
-                        o70 o70Var = p70Var.f40691f;
+                        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = s70Var.f41599r;
+                        p70Var.f40690b = z12;
+                        org.telegram.ui.Components.ru ruVar = p70Var.f40689a;
+                        o70 o70Var = p70Var.f40693f;
                         ruVar.removeTextChangedListener(o70Var);
                         if (tL_messages_stickerSet == null) {
                             ruVar.setText("");
@@ -100,7 +100,7 @@ public final class q70 extends org.telegram.ui.Components.pm0 {
                     m4Var.setText(LocaleController.getString(i13));
                     return;
                 }
-            } else if (i10 == s70Var.f41600x) {
+            } else if (i10 == s70Var.f41602x) {
                 if (z11) {
                     i12 = R.string.ChooseEmojiPackMy;
                 } else {
@@ -143,7 +143,7 @@ public final class q70 extends org.telegram.ui.Components.pm0 {
             }
             m8Var.d(tL_messages_stickerSet3, z10, false);
             m8Var.setDeleteAction(null);
-            TLRPC.TL_messages_stickerSet tL_messages_stickerSet4 = s70Var.f41597r;
+            TLRPC.TL_messages_stickerSet tL_messages_stickerSet4 = s70Var.f41599r;
             if (tL_messages_stickerSet4 != null) {
                 j3 = tL_messages_stickerSet4.set.f20065id;
             } else if (s70Var.b0(s70Var.v) != null) {
@@ -158,14 +158,14 @@ public final class q70 extends org.telegram.ui.Components.pm0 {
             return;
         }
         m8Var.b(false, false);
-        m8Var.d(s70Var.f41597r, false, false);
+        m8Var.d(s70Var.f41599r, false, false);
         m8Var.setDeleteAction(new m60(this, 2));
     }
 
     @Override
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
         FrameLayout frameLayout;
-        Context context = this.f41033c;
+        Context context = this.f41035c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 5) {

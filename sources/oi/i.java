@@ -22,7 +22,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.jr;
 import org.telegram.ui.Components.og0;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.Wallet.w4;
+import org.telegram.ui.Wallet.x4;
 import org.telegram.ui.ju0;
 import org.telegram.ui.rj1;
 public final class i extends WebViewClient {
@@ -91,13 +91,13 @@ public final class i extends WebViewClient {
             case 2:
                 super.onPageFinished(webView, str);
                 rj1 rj1Var = (rj1) obj;
-                jr jrVar = rj1Var.f41440c;
+                jr jrVar = rj1Var.f41442c;
                 if (jrVar != null && jrVar.getVisibility() == 0) {
                     AnimatorSet animatorSet = new AnimatorSet();
-                    rj1Var.f41439b.getContentView().setVisibility(0);
-                    rj1Var.f41439b.setEnabled(true);
-                    animatorSet.playTogether(ObjectAnimator.ofFloat(rj1Var.f41440c, "scaleX", 1.0f, 0.1f), ObjectAnimator.ofFloat(rj1Var.f41440c, "scaleY", 1.0f, 0.1f), ObjectAnimator.ofFloat(rj1Var.f41440c, "alpha", 1.0f, 0.0f), ObjectAnimator.ofFloat(rj1Var.f41439b.getContentView(), "scaleX", 0.0f, 1.0f), ObjectAnimator.ofFloat(rj1Var.f41439b.getContentView(), "scaleY", 0.0f, 1.0f), ObjectAnimator.ofFloat(rj1Var.f41439b.getContentView(), "alpha", 0.0f, 1.0f));
-                    animatorSet.addListener(new w4(this, 5));
+                    rj1Var.f41441b.getContentView().setVisibility(0);
+                    rj1Var.f41441b.setEnabled(true);
+                    animatorSet.playTogether(ObjectAnimator.ofFloat(rj1Var.f41442c, "scaleX", 1.0f, 0.1f), ObjectAnimator.ofFloat(rj1Var.f41442c, "scaleY", 1.0f, 0.1f), ObjectAnimator.ofFloat(rj1Var.f41442c, "alpha", 1.0f, 0.0f), ObjectAnimator.ofFloat(rj1Var.f41441b.getContentView(), "scaleX", 0.0f, 1.0f), ObjectAnimator.ofFloat(rj1Var.f41441b.getContentView(), "scaleY", 0.0f, 1.0f), ObjectAnimator.ofFloat(rj1Var.f41441b.getContentView(), "alpha", 0.0f, 1.0f));
+                    animatorSet.addListener(new x4(this, 5));
                     animatorSet.setDuration(150L);
                     animatorSet.start();
                     return;

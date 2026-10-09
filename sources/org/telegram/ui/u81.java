@@ -21,12 +21,12 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class u81 extends org.telegram.ui.Components.pm0 {
-    public final Context f42365c;
+    public final Context f42367c;
     public final SessionsActivity d;
 
     public u81(SessionsActivity sessionsActivity, Context context) {
         this.d = sessionsActivity;
-        this.f42365c = context;
+        this.f42367c = context;
         C(true);
     }
 
@@ -177,14 +177,14 @@ public final class u81 extends org.telegram.ui.Components.pm0 {
         int i11;
         String formatPluralString;
         int i12;
-        int i13 = d1Var.f47660f;
+        int i13 = d1Var.f47662f;
         boolean z10 = false;
         if (i13 != 0) {
             if (i13 != 1) {
                 if (i13 != 2) {
                     if (i13 != 5) {
                         if (i13 != 6) {
-                            org.telegram.ui.Cells.v6 v6Var = (org.telegram.ui.Cells.v6) d1Var.f47656a;
+                            org.telegram.ui.Cells.v6 v6Var = (org.telegram.ui.Cells.v6) d1Var.f47658a;
                             SessionsActivity sessionsActivity = this.d;
                             if (i10 == sessionsActivity.f34483y) {
                                 TLRPC.TL_authorization tL_authorization = sessionsActivity.f34478n;
@@ -250,7 +250,7 @@ public final class u81 extends org.telegram.ui.Components.pm0 {
                             }
                             return;
                         }
-                        org.telegram.ui.Cells.ca caVar = (org.telegram.ui.Cells.ca) d1Var.f47656a;
+                        org.telegram.ui.Cells.ca caVar = (org.telegram.ui.Cells.ca) d1Var.f47658a;
                         int i18 = this.d.v;
                         if (i18 > 30 && i18 <= 183) {
                             formatPluralString = LocaleController.formatPluralString("Months", i18 / 30, new Object[0]);
@@ -264,7 +264,7 @@ public final class u81 extends org.telegram.ui.Components.pm0 {
                     }
                     return;
                 }
-                org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) d1Var.f47656a;
+                org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) d1Var.f47658a;
                 SessionsActivity sessionsActivity3 = this.d;
                 if (i10 == sessionsActivity3.f34482x) {
                     m4Var.setText(LocaleController.getString(R.string.CurrentSession));
@@ -287,7 +287,7 @@ public final class u81 extends org.telegram.ui.Components.pm0 {
                     return;
                 }
             }
-            org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) d1Var.f47656a;
+            org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) d1Var.f47658a;
             e9Var.setFixedSize(0);
             SessionsActivity sessionsActivity4 = this.d;
             if (i10 == sessionsActivity4.E) {
@@ -321,7 +321,7 @@ public final class u81 extends org.telegram.ui.Components.pm0 {
                 return;
             }
         }
-        org.telegram.ui.Cells.r8 r8Var = (org.telegram.ui.Cells.r8) d1Var.f47656a;
+        org.telegram.ui.Cells.r8 r8Var = (org.telegram.ui.Cells.r8) d1Var.f47658a;
         i11 = this.d.terminateAllSessionsRow;
         if (i10 == i11) {
             int i19 = org.telegram.ui.ActionBar.i6.f21018p7;
@@ -367,7 +367,7 @@ public final class u81 extends org.telegram.ui.Components.pm0 {
         int i27;
         int i28;
         int i29;
-        Context context = this.f42365c;
+        Context context = this.f42367c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {

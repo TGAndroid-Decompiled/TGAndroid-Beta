@@ -3,21 +3,21 @@ package org.telegram.ui;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 public final class yv implements MessagesStorage.IntCallback {
-    public final int f44413a;
-    public final ty f44414b;
+    public final int f44415a;
+    public final ty f44416b;
 
     public yv(ty tyVar, int i10) {
-        this.f44413a = i10;
-        this.f44414b = tyVar;
+        this.f44415a = i10;
+        this.f44416b = tyVar;
     }
 
     @Override
     public final void run(int i10) {
         boolean z10;
         boolean z11;
-        switch (this.f44413a) {
+        switch (this.f44415a) {
             case 0:
-                ty tyVar = this.f44414b;
+                ty tyVar = this.f44416b;
                 tyVar.getClass();
                 if (i10 != 0) {
                     z10 = true;
@@ -29,7 +29,7 @@ public final class yv implements MessagesStorage.IntCallback {
                 tyVar.h3(false);
                 return;
             default:
-                ty tyVar2 = this.f44414b;
+                ty tyVar2 = this.f44416b;
                 tyVar2.getClass();
                 if (i10 != 0) {
                     z11 = true;

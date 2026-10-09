@@ -13,7 +13,7 @@ import kotlin.jvm.internal.i;
 import y9.t0;
 import y9.t1;
 public final class c {
-    public static final c f48244a = new Object();
+    public static final c f48246a = new Object();
 
     public static ArrayList a(Context context) {
         ActivityManager activityManager;
@@ -78,7 +78,7 @@ public final class c {
             if (i10 < size) {
                 obj = a2.get(i10);
                 i10++;
-                if (((t0) ((t1) obj)).f52065b == myPid) {
+                if (((t0) ((t1) obj)).f52067b == myPid) {
                     break;
                 }
             } else {

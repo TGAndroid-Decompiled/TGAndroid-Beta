@@ -2,16 +2,16 @@ package org.telegram.ui;
 
 import android.content.Context;
 public final class eg0 extends sg.n {
-    public final int f37252f0;
+    public final int f37254f0;
 
     public eg0(Context context, int i10, int i11, int i12) {
         super(context, i10, i11);
-        this.f37252f0 = i12;
+        this.f37254f0 = i12;
     }
 
     @Override
     public void n() {
-        switch (this.f37252f0) {
+        switch (this.f37254f0) {
             case 4:
                 return;
             default:
@@ -22,7 +22,7 @@ public final class eg0 extends sg.n {
 
     @Override
     public void onAttachedToWindow() {
-        switch (this.f37252f0) {
+        switch (this.f37254f0) {
             case 0:
                 super.onAttachedToWindow();
                 setPaused(false);
@@ -47,7 +47,7 @@ public final class eg0 extends sg.n {
 
     @Override
     public void onDetachedFromWindow() {
-        switch (this.f37252f0) {
+        switch (this.f37254f0) {
             case 0:
                 super.onDetachedFromWindow();
                 setPaused(true);

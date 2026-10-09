@@ -26,7 +26,7 @@ public final class mc extends lc {
         if (tL_mediaAreaSuggestedReaction.dark) {
             pbVar.a();
         }
-        e0Var.f54513i = true;
+        e0Var.f54515i = true;
         e0Var.e(zg.n0.d(tL_mediaAreaSuggestedReaction.reaction));
     }
 
@@ -35,11 +35,11 @@ public final class mc extends lc {
         ImageReceiver imageReceiver;
         int i10;
         zg.e0 e0Var = this.f1435c;
-        org.telegram.ui.Components.s5 s5Var = e0Var.f54508b;
+        org.telegram.ui.Components.s5 s5Var = e0Var.f54510b;
         if (s5Var != null) {
             imageReceiver = s5Var.f30654k;
         } else {
-            imageReceiver = e0Var.f54507a;
+            imageReceiver = e0Var.f54509a;
         }
         if (imageReceiver != null && imageReceiver.hasImageSet() && imageReceiver.hasImageLoaded()) {
             ck0 lottieAnimation = imageReceiver.getLottieAnimation();
@@ -90,15 +90,15 @@ public final class mc extends lc {
     @Override
     public final void c(View view) {
         zg.e0 e0Var = this.f1435c;
-        if (e0Var.f54511f == view) {
+        if (e0Var.f54513f == view) {
             return;
         }
-        if (e0Var.f54512g) {
+        if (e0Var.f54514g) {
             e0Var.b(false);
-            e0Var.f54511f = view;
+            e0Var.f54513f = view;
             e0Var.b(true);
             return;
         }
-        e0Var.f54511f = view;
+        e0Var.f54513f = view;
     }
 }

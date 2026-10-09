@@ -168,7 +168,7 @@ public final class lv0 extends pm0 {
 
     @Override
     public final void v(s4.d1 d1Var, int i10) {
-        View view = d1Var.f47656a;
+        View view = d1Var.f47658a;
         if (!(view instanceof org.telegram.ui.Cells.s2)) {
             return;
         }

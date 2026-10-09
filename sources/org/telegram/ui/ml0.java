@@ -29,7 +29,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public abstract class ml0 {
-    public static org.telegram.ui.ActionBar.f3 f39936a;
+    public static org.telegram.ui.ActionBar.f3 f39938a;
 
     public static org.telegram.ui.Components.ad a() {
         Context context;
@@ -57,7 +57,7 @@ public abstract class ml0 {
                 return new org.telegram.ui.Components.ad(org.telegram.ui.Components.ob.a(context2), null);
             }
         }
-        HashSet hashSet2 = i4.f38469b1;
+        HashSet hashSet2 = i4.f38471b1;
         if (!hashSet2.isEmpty()) {
             Iterator it2 = hashSet2.iterator();
             i4 i4Var = null;
@@ -414,14 +414,14 @@ public abstract class ml0 {
                 }
             });
             i12.setOnDismissListener(new cl0(zArr, inputtonconnectoauthsessionArr, f3VarArr, new org.telegram.ui.ActionBar.f3[1]));
-            org.telegram.ui.ActionBar.f3 f3Var = f39936a;
+            org.telegram.ui.ActionBar.f3 f3Var = f39938a;
             if (f3Var != null) {
                 f3Var.dismiss();
-                f39936a = null;
+                f39938a = null;
             }
             final org.telegram.ui.Components.q51 q51Var = new org.telegram.ui.Components.q51(tL_urlAuthResultRequest2, i12, f3VarArr, context, iArr, e6Var2, zArr, inputtonconnectoauthsessionArr, dbVar);
             if (tL_urlAuthResultRequest2.match_codes_first && !tL_urlAuthResultRequest2.match_codes.isEmpty() && TextUtils.isEmpty(strArr[0])) {
-                f39936a = c(context, i10, tL_urlAuthResultRequest2.match_codes, str5, new Utilities.Callback() {
+                f39938a = c(context, i10, tL_urlAuthResultRequest2.match_codes, str5, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj2) {
                         String str6 = (String) obj2;

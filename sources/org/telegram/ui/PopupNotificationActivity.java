@@ -466,16 +466,16 @@ public class PopupNotificationActivity extends Activity implements NotificationC
                 frameLayout2.addView(textView, w7.x5.e(-1, -2, 17));
                 frameLayout.setTag(2);
                 frameLayout.setOnClickListener(new View.OnClickListener(this) {
-                    public final PopupNotificationActivity f40611b;
+                    public final PopupNotificationActivity f40613b;
 
                     {
-                        this.f40611b = this;
+                        this.f40613b = this;
                     }
 
                     @Override
                     public final void onClick(View view) {
                         int i14 = r2;
-                        PopupNotificationActivity popupNotificationActivity = this.f40611b;
+                        PopupNotificationActivity popupNotificationActivity = this.f40613b;
                         switch (i14) {
                             case 0:
                                 int i15 = PopupNotificationActivity.f34112b0;
@@ -572,16 +572,16 @@ public class PopupNotificationActivity extends Activity implements NotificationC
                 frameLayout5.addView(a0Var);
                 frameLayout3.setTag(3);
                 frameLayout3.setOnClickListener(new View.OnClickListener(this) {
-                    public final PopupNotificationActivity f40611b;
+                    public final PopupNotificationActivity f40613b;
 
                     {
-                        this.f40611b = this;
+                        this.f40613b = this;
                     }
 
                     @Override
                     public final void onClick(View view) {
                         int i142 = r2;
-                        PopupNotificationActivity popupNotificationActivity = this.f40611b;
+                        PopupNotificationActivity popupNotificationActivity = this.f40613b;
                         switch (i142) {
                             case 0:
                                 int i15 = PopupNotificationActivity.f34112b0;
@@ -623,16 +623,16 @@ public class PopupNotificationActivity extends Activity implements NotificationC
                 scrollView.addView(linearLayout, w7.x5.x(-1, -2, 1));
                 linearLayout.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f));
                 linearLayout.setOnClickListener(new View.OnClickListener(this) {
-                    public final PopupNotificationActivity f40611b;
+                    public final PopupNotificationActivity f40613b;
 
                     {
-                        this.f40611b = this;
+                        this.f40613b = this;
                     }
 
                     @Override
                     public final void onClick(View view) {
                         int i142 = r2;
-                        PopupNotificationActivity popupNotificationActivity = this.f40611b;
+                        PopupNotificationActivity popupNotificationActivity = this.f40613b;
                         switch (i142) {
                             case 0:
                                 int i15 = PopupNotificationActivity.f34112b0;

@@ -68,8 +68,8 @@ public final class e4 extends p20 implements NotificationCenter.NotificationCent
         if (tLObject instanceof TL_payments.connectedStarRefBots) {
             TL_payments.connectedStarRefBots connectedstarrefbots = (TL_payments.connectedStarRefBots) tLObject;
             yh.l d = yh.o.g(e4Var.currentAccount).d(j3);
-            ArrayList arrayList = d.f52804e;
-            int i10 = d.f52801a;
+            ArrayList arrayList = d.f52806e;
+            int i10 = d.f52803a;
             MessagesController.getInstance(i10).putUsers(connectedstarrefbots.users, false);
             for (int i11 = 0; i11 < connectedstarrefbots.connected_bots.size(); i11++) {
                 TL_payments.connectedBotStarRef connectedbotstarref = connectedstarrefbots.connected_bots.get(i11);
@@ -80,7 +80,7 @@ public final class e4 extends p20 implements NotificationCenter.NotificationCent
                     } else if (((TL_payments.connectedBotStarRef) arrayList.get(i12)).bot_id == connectedbotstarref.bot_id) {
                         if (connectedbotstarref.revoked) {
                             arrayList.remove(i12);
-                            d.f52803c = Math.max(d.f52803c - 1, 0);
+                            d.f52805c = Math.max(d.f52805c - 1, 0);
                         } else {
                             arrayList.set(i12, connectedbotstarref);
                         }
@@ -89,14 +89,14 @@ public final class e4 extends p20 implements NotificationCenter.NotificationCent
                     }
                 }
             }
-            NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.channelConnectedBotsUpdate, Long.valueOf(d.f52802b));
+            NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.channelConnectedBotsUpdate, Long.valueOf(d.f52804b));
             d.a();
             yh.m e7 = yh.o.g(e4Var.currentAccount).e(j3);
-            e7.f52853c = 0;
+            e7.f52855c = 0;
             e7.d = false;
-            e7.f52857i = false;
-            e7.f52855f = 0L;
-            e7.f52858j = null;
+            e7.f52859i = false;
+            e7.f52857f = 0L;
+            e7.f52860j = null;
             e7.h = false;
             e7.a();
             e4Var.T.N(true);
@@ -496,22 +496,22 @@ public final class e4 extends p20 implements NotificationCenter.NotificationCent
         sg.n nVar = new sg.n(context, 1, 3);
         this.R = nVar;
         nVar.setImportantForAccessibility(4);
-        sg.g gVar = this.R.f48076b;
-        gVar.f48060z = i6.fk;
+        sg.g gVar = this.R.f48078b;
+        gVar.f48062z = i6.fk;
         gVar.A = i6.gk;
         gVar.b();
-        this.R.setStarParticlesView(this.f40639e);
+        this.R.setStarParticlesView(this.f40641e);
         this.Q.addView(this.R, x5.a(190.0f, 0.0f, 32.0f, 0.0f, 12.0f, 190, 17));
         m0(LocaleController.getString(R.string.ChannelAffiliateProgramTitle), AndroidUtilities.replaceTags(LocaleController.getString(R.string.ChannelAffiliateProgramText)), this.Q, null);
-        this.f40638c.setOnItemClickListener(new o6(2, this, context));
-        this.f40638c.setOnItemLongClickListener(new ah.b(11, this, context));
+        this.f40640c.setOnItemClickListener(new o6(2, this, context));
+        this.f40640c.setOnItemLongClickListener(new ah.b(11, this, context));
         s4.j jVar = new s4.j();
-        jVar.f47696m = false;
+        jVar.f47698m = false;
         jVar.C = false;
         jVar.o(hs.h);
         jVar.n(350L);
-        this.f40638c.setItemAnimator(jVar);
-        this.f40638c.setOnScrollListener(new ai.r(this, 4));
+        this.f40640c.setItemAnimator(jVar);
+        this.f40640c.setOnScrollListener(new ai.r(this, 4));
         return this.fragmentView;
     }
 
@@ -535,7 +535,7 @@ public final class e4 extends p20 implements NotificationCenter.NotificationCent
 
     @Override
     public final s4.i0 n0() {
-        w3 w3Var = new w3(this, this.f40638c, getParentActivity(), this.currentAccount, this.classGuid, new bi.v(this, 17), getResourceProvider());
+        w3 w3Var = new w3(this, this.f40640c, getParentActivity(), this.currentAccount, this.classGuid, new bi.v(this, 17), getResourceProvider());
         this.T = w3Var;
         return w3Var;
     }

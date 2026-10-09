@@ -347,16 +347,16 @@ public final class oa0 extends v7.e5 {
                                     ArrayList<TL_iv.pageTableCell> arrayList2 = pagetablerow.cells;
                                     xe.d dVar = (xe.d) pVar3;
                                     TL_iv.pageTableCell pagetablecell = new TL_iv.pageTableCell();
-                                    if (!z11 && !dVar.f51119g) {
+                                    if (!z11 && !dVar.f51121g) {
                                         z10 = false;
                                     } else {
                                         z10 = true;
                                     }
                                     pagetablecell.header = z10;
                                     xe.c cVar = dVar.h;
-                                    if (cVar == xe.c.f51117b) {
+                                    if (cVar == xe.c.f51119b) {
                                         pagetablecell.align_center = true;
-                                    } else if (cVar == xe.c.f51118c) {
+                                    } else if (cVar == xe.c.f51120c) {
                                         pagetablecell.align_right = true;
                                     }
                                     pagetablecell.text = sa0.d(sa0.a(dVar, null));

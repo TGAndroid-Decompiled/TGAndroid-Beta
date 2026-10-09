@@ -12,12 +12,12 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
 import org.telegram.ui.Components.Crop.CropAreaView;
 public final class wt0 extends AnimatorListenerAdapter {
-    public final int f43753a;
-    public final PhotoViewer f43754b;
+    public final int f43755a;
+    public final PhotoViewer f43756b;
 
     public wt0(PhotoViewer photoViewer, int i10) {
-        this.f43754b = photoViewer;
-        this.f43753a = i10;
+        this.f43756b = photoViewer;
+        this.f43755a = i10;
     }
 
     @Override
@@ -27,7 +27,7 @@ public final class wt0 extends AnimatorListenerAdapter {
         cv0 cv0Var;
         int i11;
         boolean z11;
-        PhotoViewer photoViewer = this.f43754b;
+        PhotoViewer photoViewer = this.f43756b;
         int i12 = photoViewer.f34048u4;
         int i13 = 8;
         if (i12 == 1) {
@@ -73,7 +73,7 @@ public final class wt0 extends AnimatorListenerAdapter {
         }
         photoViewer.f34004p6 = null;
         int i14 = photoViewer.f34048u4;
-        photoViewer.f34048u4 = this.f43753a;
+        photoViewer.f34048u4 = this.f43755a;
         ci.h4 h4Var = photoViewer.f1().L;
         if (photoViewer.f34048u4 != 0) {
             z10 = true;
@@ -114,7 +114,7 @@ public final class wt0 extends AnimatorListenerAdapter {
         hv0 hv0Var = photoViewer.f33946i7;
         if (hv0Var != null) {
             PhotoViewer photoViewer2 = hv0Var.d;
-            photoViewer2.d = hv0Var.f38404c;
+            photoViewer2.d = hv0Var.f38406c;
             WindowManager.LayoutParams layoutParams = photoViewer2.f33894d0;
             layoutParams.flags = -2147286784;
             layoutParams.softInputMode = 272;
@@ -122,12 +122,12 @@ public final class wt0 extends AnimatorListenerAdapter {
             photoViewer2.f33904e0.setFocusable(false);
             photoViewer2.L0.setAlpha(255);
             photoViewer2.f33904e0.setAlpha(1.0f);
-            ArrayList arrayList = hv0Var.f38403b;
-            int i15 = hv0Var.f38402a;
-            photoViewer2.Z1(null, null, null, null, arrayList, null, null, i15, hv0Var.f38404c.E((MessageObject) arrayList.get(i15), null, hv0Var.f38402a, true, false));
+            ArrayList arrayList = hv0Var.f38405b;
+            int i15 = hv0Var.f38404a;
+            photoViewer2.Z1(null, null, null, null, arrayList, null, null, i15, hv0Var.f38406c.E((MessageObject) arrayList.get(i15), null, hv0Var.f38404a, true, false));
             photoViewer.f33946i7 = null;
             mu0 mu0Var = new mu0();
-            mu0Var.f39987c = false;
+            mu0Var.f39989c = false;
             photoViewer.k3(false, false, mu0Var);
             photoViewer.k3(true, true, mu0Var);
             return;

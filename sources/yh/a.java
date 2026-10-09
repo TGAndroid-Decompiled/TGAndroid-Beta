@@ -15,25 +15,25 @@ import org.telegram.ui.Components.dt;
 import org.telegram.ui.Components.ea0;
 import org.telegram.ui.Components.er;
 public final class a extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
-    public final int f52232a;
-    public final org.telegram.ui.ActionBar.e6 f52233b;
-    public final TextView f52234c;
+    public final int f52234a;
+    public final org.telegram.ui.ActionBar.e6 f52235b;
+    public final TextView f52236c;
     public final ea0 d;
-    public zf.b f52235e;
-    public final er[] f52236f;
+    public zf.b f52237e;
+    public final er[] f52238f;
 
     public a(Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
-        this(context, i10, zf.b.f54441a, e6Var);
+        this(context, i10, zf.b.f54443a, e6Var);
     }
 
     public final void a() {
-        zf.b bVar = this.f52235e;
-        int i10 = this.f52232a;
+        zf.b bVar = this.f52237e;
+        int i10 = this.f52234a;
         zf.a s10 = m5.x(i10, bVar).s();
-        zf.b bVar2 = this.f52235e;
-        zf.b bVar3 = zf.b.f54441a;
-        TextView textView = this.f52234c;
-        org.telegram.ui.ActionBar.e6 e6Var = this.f52233b;
+        zf.b bVar2 = this.f52237e;
+        zf.b bVar3 = zf.b.f54443a;
+        TextView textView = this.f52236c;
+        org.telegram.ui.ActionBar.e6 e6Var = this.f52235b;
         ea0 ea0Var = this.d;
         if (bVar2 == bVar3) {
             textView.setText(p7.Y0(false, LocaleController.formatString(R.string.Gift2MessageStarsInfo, LocaleController.formatNumber(s10.a(), ',')), 0.6f, null));
@@ -41,9 +41,9 @@ public final class a extends LinearLayout implements NotificationCenter.Notifica
             ea0Var.setTextColor(org.telegram.ui.ActionBar.i6.w0(i11, e6Var));
             ea0Var.setLinkTextColor(org.telegram.ui.ActionBar.i6.w0(i11, e6Var));
             ea0Var.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.Gift2MessageStarsInfoLink), new rg.x1(this, 25)), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.0f)));
-        } else if (bVar2 == zf.b.f54442b) {
+        } else if (bVar2 == zf.b.f54444b) {
             SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2MessageStarsInfoTON, s10.b()));
-            er[] erVarArr = this.f52236f;
+            er[] erVarArr = this.f52238f;
             textView.setText(p7.Y0(true, replaceTags, 0.6f, erVarArr));
             erVarArr[0].setColorKey(org.telegram.ui.ActionBar.i6.Gi);
             StringBuilder sb2 = new StringBuilder(10);
@@ -77,7 +77,7 @@ public final class a extends LinearLayout implements NotificationCenter.Notifica
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         a();
-        int i10 = this.f52232a;
+        int i10 = this.f52234a;
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.starBalanceUpdated);
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.botStarsUpdated);
     }
@@ -85,22 +85,22 @@ public final class a extends LinearLayout implements NotificationCenter.Notifica
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        int i10 = this.f52232a;
+        int i10 = this.f52234a;
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.starBalanceUpdated);
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.botStarsUpdated);
     }
 
     public a(Context context, int i10, zf.b bVar, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
-        this.f52236f = new er[1];
-        this.f52232a = i10;
-        this.f52233b = e6Var;
-        this.f52235e = bVar;
+        this.f52238f = new er[1];
+        this.f52234a = i10;
+        this.f52235b = e6Var;
+        this.f52237e = bVar;
         setOrientation(1);
         setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(9.0f));
         setBackground(org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(24.0f), org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.Fi, e6Var)));
         TextView textView = new TextView(context);
-        this.f52234c = textView;
+        this.f52236c = textView;
         textView.setTextSize(1, 13.0f);
         textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.Hi, e6Var));
         textView.setGravity(17);

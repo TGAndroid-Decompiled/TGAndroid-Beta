@@ -45,7 +45,7 @@ public final class c10 extends pm0 {
     @Override
     public final void v(s4.d1 d1Var, int i10) {
         int i11;
-        org.telegram.ui.ActionBar.y2 y2Var = (org.telegram.ui.ActionBar.y2) d1Var.f47656a;
+        org.telegram.ui.ActionBar.y2 y2Var = (org.telegram.ui.ActionBar.y2) d1Var.f47658a;
         d10 d10Var = this.d;
         ArrayList arrayList = d10Var.v;
         ArrayList arrayList2 = d10Var.f25551s;

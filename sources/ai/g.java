@@ -116,7 +116,7 @@ public final class g implements em0 {
                 ci.c2 c2Var = d2Var.f4896c;
                 if (i10 >= 0) {
                     d2Var.d.getClass();
-                    if (RecyclerView.U(view).f47660f != 4) {
+                    if (RecyclerView.U(view).f47662f != 4) {
                         ArrayList arrayList = c2Var.f4829s;
                         ArrayList arrayList2 = c2Var.v;
                         if (i10 >= arrayList.size()) {
@@ -159,11 +159,11 @@ public final class g implements em0 {
             case 5:
                 ci.nb nbVar = (ci.nb) this.f1045b;
                 pg.k0 k0Var = (pg.k0) pg.k0.c().get(i10);
-                nbVar.l1.setTypeface(k0Var.f45672a);
+                nbVar.l1.setTypeface(k0Var.f45674a);
                 pg.u0 e7 = pg.u0.e(nbVar.F1);
-                String str = k0Var.f45672a;
-                e7.f45805j = str;
-                e7.f45798a.edit().putString("typeface", str).apply();
+                String str = k0Var.f45674a;
+                e7.f45807j = str;
+                e7.f45800a.edit().putString("typeface", str).apply();
                 qg.j jVar = nbVar.J0;
                 if (jVar instanceof qg.w2) {
                     ((qg.w2) jVar).setTypeface(k0Var);
@@ -190,7 +190,7 @@ public final class g implements em0 {
                     if (n4Var.E) {
                         fy fyVar = h0Var.U;
                         if (fyVar != null) {
-                            fyVar.f37715a.K4(n4Var.getDialogId(), view);
+                            fyVar.f37717a.K4(n4Var.getDialogId(), view);
                             return;
                         }
                         return;
@@ -198,9 +198,9 @@ public final class g implements em0 {
                 }
                 fy fyVar2 = h0Var.U;
                 if (fyVar2 != null) {
-                    ty tyVar = fyVar2.f37715a;
+                    ty tyVar = fyVar2.f37717a;
                     long longValue2 = ((Long) view.getTag()).longValue();
-                    if (tyVar.f42208l2) {
+                    if (tyVar.f42210l2) {
                         if (tyVar.e5(longValue2)) {
                             if (!tyVar.I2.isEmpty()) {
                                 tyVar.M3(longValue2, tyVar.f3(longValue2, null));
@@ -221,13 +221,13 @@ public final class g implements em0 {
                         bundle.putLong("chat_id", -longValue2);
                     }
                     tyVar.G3();
-                    if (AndroidUtilities.isTablet() && tyVar.f42172e0 != null) {
+                    if (AndroidUtilities.isTablet() && tyVar.f42174e0 != null) {
                         int i12 = 0;
                         while (true) {
-                            sy[] syVarArr = tyVar.f42172e0;
+                            sy[] syVarArr = tyVar.f42174e0;
                             if (i12 < syVarArr.length) {
                                 ax axVar = syVarArr[i12].d;
-                                tyVar.f42227p2.dialogId = longValue2;
+                                tyVar.f42229p2.dialogId = longValue2;
                                 axVar.f10723s = longValue2;
                                 i12++;
                             } else {
@@ -235,7 +235,7 @@ public final class g implements em0 {
                             }
                         }
                     }
-                    if (tyVar.f42217n2 != null) {
+                    if (tyVar.f42219n2 != null) {
                         if (tyVar.getMessagesController().checkCanOpenChat(bundle, tyVar)) {
                             tyVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
                             tyVar.presentFragment(new zn(bundle));
@@ -338,11 +338,11 @@ public final class g implements em0 {
             case 14:
                 bu0 bu0Var = (bu0) this.f1045b;
                 pg.k0 k0Var2 = (pg.k0) pg.k0.c().get(i10);
-                bu0Var.f46390u1.setTypeface(k0Var2.f45672a);
+                bu0Var.f46392u1.setTypeface(k0Var2.f45674a);
                 pg.u0 e10 = pg.u0.e(bu0Var.P1);
-                String str2 = k0Var2.f45672a;
-                e10.f45805j = str2;
-                e10.f45798a.edit().putString("typeface", str2).apply();
+                String str2 = k0Var2.f45674a;
+                e10.f45807j = str2;
+                e10.f45800a.edit().putString("typeface", str2).apply();
                 qg.j jVar2 = bu0Var.S0;
                 if (jVar2 instanceof qg.w2) {
                     ((qg.w2) jVar2).setTypeface(k0Var2);
@@ -353,8 +353,8 @@ public final class g implements em0 {
                 qg.i1 i1Var = (qg.i1) this.f1045b;
                 i1Var.Z2.accept(Integer.valueOf(i1Var.Y2.b(i10)));
                 pg.u0 u0Var = i1Var.Y2;
-                u0Var.f45800c.put(Integer.valueOf(u0Var.f45802f), Integer.valueOf(u0Var.b(i10)));
-                u0Var.f45801e = true;
+                u0Var.f45802c.put(Integer.valueOf(u0Var.f45804f), Integer.valueOf(u0Var.b(i10)));
+                u0Var.f45803e = true;
                 return;
             case 16:
                 rg.j0.X((rg.j0) this.f1045b, view);
@@ -363,7 +363,7 @@ public final class g implements em0 {
                 rg.s0 s0Var = (rg.s0) this.f1045b;
                 if (view != null) {
                     s0Var.x1(view, true);
-                    s0Var.f47389b3 = false;
+                    s0Var.f47391b3 = false;
                     s0Var.v0(0, view.getTop() - ((s0Var.getMeasuredHeight() - view.getMeasuredHeight()) / 2), AndroidUtilities.overshootInterpolator);
                     return;
                 }
@@ -376,9 +376,9 @@ public final class g implements em0 {
                 return;
             case 20:
                 xh.m4 m4Var = (xh.m4) this.f1045b;
-                ci.d dVar = m4Var.f51377c0;
+                ci.d dVar = m4Var.f51379c0;
                 HashSet hashSet = m4Var.Z;
-                c71 c71Var2 = m4Var.f51379e0;
+                c71 c71Var2 = m4Var.f51381e0;
                 if (c71Var2 != null && (G = c71Var2.G(i10 - 1)) != null) {
                     Object obj = G.G;
                     if (obj instanceof TL_stars.SavedStarGift) {

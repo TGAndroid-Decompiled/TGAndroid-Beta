@@ -51,12 +51,12 @@ public final class pu0 extends pm0 {
     @Override
     public final void v(s4.d1 d1Var, int i10) {
         char c10;
-        if (d1Var.f47660f == 12) {
+        if (d1Var.f47662f == 12) {
             bw0 bw0Var = this.d;
             MessageObject messageObject = (MessageObject) bw0Var.f25162t1[5].f30274a.get(i10);
             TLRPC.Document document = messageObject.getDocument();
             if (document != null) {
-                View view = d1Var.f47656a;
+                View view = d1Var.f47658a;
                 if (view instanceof org.telegram.ui.Cells.f2) {
                     org.telegram.ui.Cells.f2 f2Var = (org.telegram.ui.Cells.f2) view;
                     f2Var.d(messageObject.messageOwner.date, document, messageObject);
@@ -97,7 +97,7 @@ public final class pu0 extends pm0 {
 
     @Override
     public final void y(s4.d1 d1Var) {
-        View view = d1Var.f47656a;
+        View view = d1Var.f47658a;
         if (view instanceof org.telegram.ui.Cells.f2) {
             ImageReceiver photoImage = ((org.telegram.ui.Cells.f2) view).getPhotoImage();
             if (this.d.f25142k0[0].F == 5) {

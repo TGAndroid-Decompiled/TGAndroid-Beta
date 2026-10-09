@@ -7,20 +7,20 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class m8 implements View.OnClickListener {
-    public final int f39782a;
-    public final j9 f39783b;
+    public final int f39784a;
+    public final j9 f39785b;
 
     public m8(j9 j9Var, int i10) {
-        this.f39782a = i10;
-        this.f39783b = j9Var;
+        this.f39784a = i10;
+        this.f39785b = j9Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f39782a) {
+        switch (this.f39784a) {
             case 0:
                 Long l4 = (Long) view.getTag();
-                j9 j9Var = this.f39783b;
+                j9 j9Var = this.f39785b;
                 ChatObject.Call groupCall = j9Var.getMessagesController().getGroupCall(l4.longValue(), false);
                 TLRPC.Chat chat = j9Var.getMessagesController().getChat(l4);
                 j9Var.Q = chat;
@@ -32,10 +32,10 @@ public final class m8 implements View.OnClickListener {
                 j9Var.getMessagesController().loadFullChat(l4.longValue(), 0, true);
                 return;
             case 1:
-                this.f39783b.k0(true);
+                this.f39785b.k0(true);
                 return;
             case 2:
-                j9 j9Var2 = this.f39783b;
+                j9 j9Var2 = this.f39785b;
                 org.telegram.ui.Components.p80 H = org.telegram.ui.Components.p80.H(j9Var2, j9Var2.F);
                 H.f29789s = 8;
                 if (j9Var2.getUserConfig().showCallsTab) {
@@ -46,7 +46,7 @@ public final class m8 implements View.OnClickListener {
                 H.X(-AndroidUtilities.dp(64.0f));
                 return;
             default:
-                j9 j9Var3 = this.f39783b;
+                j9 j9Var3 = this.f39785b;
                 j9Var3.getClass();
                 j9.m0(j9Var3);
                 return;

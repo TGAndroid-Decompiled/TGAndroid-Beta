@@ -16,12 +16,12 @@ import org.telegram.ui.Components.y9;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ty;
 public final class a1 implements Runnable {
-    public final int f52237a;
-    public final s3 f52238b;
+    public final int f52239a;
+    public final s3 f52240b;
 
     public a1(s3 s3Var, int i10) {
-        this.f52237a = i10;
-        this.f52238b = s3Var;
+        this.f52239a = i10;
+        this.f52240b = s3Var;
     }
 
     @Override
@@ -31,8 +31,8 @@ public final class a1 implements Runnable {
         TL_stars.StarGift starGift;
         TLRPC.Document document;
         a3 a3Var;
-        int i10 = this.f52237a;
-        s3 s3Var = this.f52238b;
+        int i10 = this.f52239a;
+        s3 s3Var = this.f52240b;
         switch (i10) {
             case 0:
                 s3.q0(s3Var);
@@ -50,7 +50,7 @@ public final class a1 implements Runnable {
                 s3.Z(s3Var);
                 return;
             case 5:
-                s3Var.f53177k0.setLoading(false);
+                s3Var.f53179k0.setLoading(false);
                 s3Var.s2(0, true, null);
                 return;
             case 6:
@@ -120,7 +120,7 @@ public final class a1 implements Runnable {
                 M.f31130j = 5000;
                 M.f31140t = true;
                 M.j();
-                h10 h10Var = s3Var.f53157a0;
+                h10 h10Var = s3Var.f53159a0;
                 if (h10Var != null) {
                     h10Var.c(true);
                     return;
@@ -133,10 +133,10 @@ public final class a1 implements Runnable {
                 s3Var.getBulletinFactory().Q(R.raw.copy, 36, LocaleController.getString(R.string.WalletAddressCopied)).k(false);
                 return;
             case 23:
-                p3 p3Var = s3Var.f53167f0;
-                ci.d dVar = s3Var.f53177k0;
+                p3 p3Var = s3Var.f53169f0;
+                ci.d dVar = s3Var.f53179k0;
                 b3 b3Var = s3Var.N0.h;
-                if (b3Var != null && (a3Var = b3Var.f52281c) != null) {
+                if (b3Var != null && (a3Var = b3Var.f52283c) != null) {
                     imageReceiver = ((d3) a3Var).d;
                 } else {
                     imageReceiver = null;
@@ -152,9 +152,9 @@ public final class a1 implements Runnable {
                         y9Var.setImageDrawable(lottieAnimation);
                     }
                 }
-                p3Var.f53000b.setAlpha(1.0f);
-                p3Var.f53002c.setAlpha(0.0f);
-                if (s3Var.f53189r0 && s3Var.Z != null && s3Var.E0 != null && s3Var.H1() >= 0 && s3Var.E0.b(s3Var.H1()) >= 0) {
+                p3Var.f53002b.setAlpha(1.0f);
+                p3Var.f53004c.setAlpha(0.0f);
+                if (s3Var.f53191r0 && s3Var.Z != null && s3Var.E0 != null && s3Var.H1() >= 0 && s3Var.E0.b(s3Var.H1()) >= 0) {
                     dVar.setFilled(false);
                     int b10 = s3Var.E0.b(s3Var.H1());
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();

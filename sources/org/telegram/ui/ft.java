@@ -35,14 +35,14 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class ft implements Utilities.Callback {
-    public final int f37683a;
-    public final Object f37684b;
-    public final Object f37685c;
+    public final int f37685a;
+    public final Object f37686b;
+    public final Object f37687c;
 
     public ft(int i10, Object obj, Object obj2) {
-        this.f37683a = i10;
-        this.f37684b = obj;
-        this.f37685c = obj2;
+        this.f37685a = i10;
+        this.f37686b = obj;
+        this.f37687c = obj2;
     }
 
     @Override
@@ -50,12 +50,12 @@ public final class ft implements Utilities.Callback {
         int i10;
         TLRPC.Document document;
         s4.d1 K;
-        int i11 = this.f37683a;
+        int i11 = this.f37685a;
         float f7 = -0.04f;
         float f10 = 0.25f;
         int i12 = 0;
-        Object obj2 = this.f37685c;
-        Object obj3 = this.f37684b;
+        Object obj2 = this.f37687c;
+        Object obj3 = this.f37686b;
         switch (i11) {
             case 0:
                 rt rtVar = (rt) obj3;
@@ -77,7 +77,7 @@ public final class ft implements Utilities.Callback {
                 ntVar.getClass();
                 ((Utilities.Callback) obj2).run(bool);
                 if (bool.booleanValue()) {
-                    ntVar.f40360a.p();
+                    ntVar.f40362a.p();
                     return;
                 }
                 return;
@@ -92,7 +92,7 @@ public final class ft implements Utilities.Callback {
             case 3:
                 xp0 xp0Var = (xp0) obj2;
                 Integer num = (Integer) obj;
-                f10 f10Var = ((c10) obj3).f36491e;
+                f10 f10Var = ((c10) obj3).f36493e;
                 if (!f10Var.getUserConfig().isPremium()) {
                     f10Var.showDialog(new rg.y0((org.telegram.ui.ActionBar.n2) f10Var, 35, true));
                     return;
@@ -119,13 +119,13 @@ public final class ft implements Utilities.Callback {
                     p50Var.getClass();
                     q50Var.setVisibility(0);
                 }
-                p50Var.f40669c = bitmap;
+                p50Var.f40671c = bitmap;
                 Paint paint = new Paint(1);
                 p50Var.d = paint;
-                Bitmap bitmap2 = p50Var.f40669c;
+                Bitmap bitmap2 = p50Var.f40671c;
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                 BitmapShader bitmapShader = new BitmapShader(bitmap2, tileMode, tileMode);
-                p50Var.f40670e = bitmapShader;
+                p50Var.f40672e = bitmapShader;
                 paint.setShader(bitmapShader);
                 ColorMatrix colorMatrix = new ColorMatrix();
                 if (org.telegram.ui.ActionBar.i6.I.q()) {
@@ -156,7 +156,7 @@ public final class ft implements Utilities.Callback {
                 String str = (String) obj2;
                 List<TLRPC.User> list = (List) obj;
                 HashSet hashSet = new HashSet();
-                ArrayList arrayList = sj0Var.f41712f0;
+                ArrayList arrayList = sj0Var.f41714f0;
                 arrayList.clear();
                 if (list != null) {
                     for (TLRPC.User user2 : list) {
@@ -166,7 +166,7 @@ public final class ft implements Utilities.Callback {
                         }
                     }
                 }
-                Boolean bool2 = sj0Var.f41723r0;
+                Boolean bool2 = sj0Var.f41725r0;
                 if (bool2 != null && bool2.booleanValue()) {
                     ft ftVar = new ft(7, sj0Var, hashSet);
                     MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
@@ -191,7 +191,7 @@ public final class ft implements Utilities.Callback {
                 if (list2 != null) {
                     for (TLRPC.User user3 : list2) {
                         if (user3 != null && !hashSet2.contains(Long.valueOf(user3.f20185id)) && sj0Var2.S(user3)) {
-                            sj0Var2.f41712f0.add(user3);
+                            sj0Var2.f41714f0.add(user3);
                             hashSet2.add(Long.valueOf(user3.f20185id));
                         }
                     }
@@ -300,23 +300,23 @@ public final class ft implements Utilities.Callback {
                 TLRPC.Document k10 = k71.k(str4, tL_messages_stickerSet2);
                 if (k10 == null) {
                     StringBuilder w10 = a1.g.w("couldn't find ", str4, " sticker in EmojiAnimations");
-                    String[] strArr = p11.f40627s;
+                    String[] strArr = p11.f40629s;
                     FileLog.e(w10.toString());
                     return;
                 }
                 ?? imageReceiver = new ImageReceiver();
-                m11Var.f39736c = imageReceiver;
-                m11Var.f39737e.add(imageReceiver);
+                m11Var.f39738c = imageReceiver;
+                m11Var.f39739e.add(imageReceiver);
                 int f11 = fz.f();
-                m11Var.f39736c.setAutoRepeat(0);
-                o11 o11Var = m11Var.f39736c;
+                m11Var.f39738c.setAutoRepeat(0);
+                o11 o11Var = m11Var.f39738c;
                 String str5 = f11 + "_" + f11 + "_precache";
                 nz0 nz0Var = new nz0(m11Var, 5);
                 o11Var.getClass();
                 o11Var.setDelegate(new n11(new Runnable[]{nz0Var}));
                 o11Var.setImage(ImageLocation.getForDocument(k10), str5, null, null, tL_messages_stickerSet2, 0);
-                m11Var.f39736c.onAttachedToWindow();
-                m11Var.f39739g[1] = true;
+                m11Var.f39738c.onAttachedToWindow();
+                m11Var.f39741g[1] = true;
                 m11Var.a();
                 return;
             case 15:
@@ -331,10 +331,10 @@ public final class ft implements Utilities.Callback {
                     k51Var.getClass();
                     view.setVisibility(0);
                 }
-                k51Var.f39094f = bitmap3;
+                k51Var.f39096f = bitmap3;
                 Paint paint2 = new Paint(1);
-                k51Var.f39095n = paint2;
-                Bitmap bitmap4 = k51Var.f39094f;
+                k51Var.f39097n = paint2;
+                Bitmap bitmap4 = k51Var.f39096f;
                 Shader.TileMode tileMode2 = Shader.TileMode.CLAMP;
                 BitmapShader bitmapShader2 = new BitmapShader(bitmap4, tileMode2, tileMode2);
                 k51Var.h = bitmapShader2;
@@ -348,8 +348,8 @@ public final class ft implements Utilities.Callback {
                     f7 = -0.02f;
                 }
                 AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix2, f7);
-                k51Var.f39095n.setColorFilter(new ColorMatrixColorFilter(colorMatrix2));
-                k51Var.f39096r = new Matrix();
+                k51Var.f39097n.setColorFilter(new ColorMatrixColorFilter(colorMatrix2));
+                k51Var.f39098r = new Matrix();
                 return;
             case 17:
                 Boolean bool3 = (Boolean) obj;
@@ -383,15 +383,15 @@ public final class ft implements Utilities.Callback {
                 }
             case 20:
                 org.telegram.ui.Wallet.k0 k0Var = (org.telegram.ui.Wallet.k0) obj3;
-                org.telegram.ui.Wallet.g7 g7Var = (org.telegram.ui.Wallet.g7) obj2;
+                org.telegram.ui.Wallet.h7 h7Var = (org.telegram.ui.Wallet.h7) obj2;
                 String str6 = (String) obj;
                 if (str6 != null) {
                     org.telegram.ui.Wallet.k0.i("disableBackupWithoutUpdatingPhrase: ".concat(str6));
-                    g7Var.run(str6);
+                    h7Var.run(str6);
                     return;
                 }
                 org.telegram.ui.Wallet.k0.E("sending disableBackup to server");
-                org.telegram.ui.Wallet.q2.a(k0Var.f35093a, new ei.c(9), null, null, null, new ai.q0(3, k0Var, g7Var), true, true, new ib0((Object) null, 1));
+                org.telegram.ui.Wallet.q2.a(k0Var.f35117a, new ei.c(9), null, null, null, new ai.q0(3, k0Var, h7Var), true, true, new ib0((Object) null, 1));
                 return;
             case 21:
                 org.telegram.ui.Wallet.h0 h0Var = (org.telegram.ui.Wallet.h0) obj3;
@@ -408,20 +408,20 @@ public final class ft implements Utilities.Callback {
                 }
             case 22:
                 ((org.telegram.ui.Wallet.h0) obj3).close();
-                ((org.telegram.ui.Wallet.a7) obj2).run((String) obj);
+                ((org.telegram.ui.Wallet.b7) obj2).run((String) obj);
                 return;
             case 23:
                 org.telegram.ui.Wallet.f0 f0Var = (org.telegram.ui.Wallet.f0) obj3;
-                org.telegram.ui.Wallet.c7 c7Var = (org.telegram.ui.Wallet.c7) obj2;
+                org.telegram.ui.Wallet.d7 d7Var = (org.telegram.ui.Wallet.d7) obj2;
                 String str7 = (String) obj;
                 if (str7 != null) {
                     f0Var.close();
                     org.telegram.ui.Wallet.k0.i("prepare disable backup, failed to save secret phrase to local storage: ".concat(str7));
-                    c7Var.run(null, str7);
+                    d7Var.run(null, str7);
                     return;
                 }
                 org.telegram.ui.Wallet.k0.E("prepare disable backup: done!");
-                c7Var.run(f0Var, null);
+                d7Var.run(f0Var, null);
                 return;
             case 24:
                 ((org.telegram.ui.Wallet.d2) obj3).h = false;
@@ -443,28 +443,28 @@ public final class ft implements Utilities.Callback {
                 ((ft) obj2).run((String) obj);
                 return;
             default:
-                org.telegram.ui.Wallet.z4 z4Var = (org.telegram.ui.Wallet.z4) obj3;
+                org.telegram.ui.Wallet.a5 a5Var = (org.telegram.ui.Wallet.a5) obj3;
                 org.telegram.ui.Wallet.k0 k0Var2 = (org.telegram.ui.Wallet.k0) obj2;
                 String str8 = (String) obj;
-                z4Var.f35744y0.setLoading(false);
+                a5Var.f34648y0.setLoading(false);
                 if ("NO_LOCAL_BACKUP".equalsIgnoreCase(str8)) {
-                    org.telegram.ui.Wallet.z6 z6Var = new org.telegram.ui.Wallet.z6();
-                    z6Var.f35754s = k0Var2.w();
-                    z4Var.presentFragment(z6Var);
+                    org.telegram.ui.Wallet.a7 a7Var = new org.telegram.ui.Wallet.a7();
+                    a7Var.f34658s = k0Var2.w();
+                    a5Var.presentFragment(a7Var);
                     return;
                 } else if (str8 != null) {
-                    org.telegram.ui.Components.ad.a0(z4Var).e0(str8, false);
+                    org.telegram.ui.Components.ad.a0(a5Var).e0(str8, false);
                     return;
                 } else {
-                    z4Var.presentFragment(new org.telegram.ui.Wallet.r8());
+                    a5Var.presentFragment(new org.telegram.ui.Wallet.s8());
                     return;
                 }
         }
     }
 
-    public ft(org.telegram.ui.Wallet.k0 k0Var, org.telegram.ui.Wallet.f0 f0Var, org.telegram.ui.Wallet.c7 c7Var) {
-        this.f37683a = 23;
-        this.f37684b = f0Var;
-        this.f37685c = c7Var;
+    public ft(org.telegram.ui.Wallet.k0 k0Var, org.telegram.ui.Wallet.f0 f0Var, org.telegram.ui.Wallet.d7 d7Var) {
+        this.f37685a = 23;
+        this.f37686b = f0Var;
+        this.f37687c = d7Var;
     }
 }

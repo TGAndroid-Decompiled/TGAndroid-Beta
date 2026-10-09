@@ -33,7 +33,7 @@ public final class cj0 extends org.telegram.ui.Cells.u1 {
                 id2 = getMessageObject().getId();
             }
             if (i14 == id2) {
-                if (!this.Je.f37018w0) {
+                if (!this.Je.f37020w0) {
                     setTranslationY(-(i11 - this.Ge));
                     animate().translationY(0.0f).setDuration(320L).setInterpolator(org.telegram.ui.Components.hs.h).start();
                 }

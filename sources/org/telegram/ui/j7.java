@@ -8,28 +8,28 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class j7 extends FrameLayout {
-    public final org.telegram.ui.Components.dq f38838a;
-    public final FrameLayout f38839b;
-    public final TextView f38840c;
+    public final org.telegram.ui.Components.dq f38840a;
+    public final FrameLayout f38841b;
+    public final TextView f38842c;
     public boolean d;
-    public int f38841e;
-    public final int f38842f;
+    public int f38843e;
+    public final int f38844f;
     public final f7 h;
 
     public j7(f7 f7Var, Context context, int i10) {
         super(context);
-        this.f38842f = i10;
+        this.f38844f = i10;
         this.h = f7Var;
         org.telegram.ui.Components.dq dqVar = new org.telegram.ui.Components.dq(context, 21, null);
-        this.f38838a = dqVar;
+        this.f38840a = dqVar;
         dqVar.setDrawBackgroundAsArc(14);
         dqVar.b(org.telegram.ui.ActionBar.i6.f20889i7, org.telegram.ui.ActionBar.i6.f20854g7, org.telegram.ui.ActionBar.i6.f20926k7);
         View view = new View(getContext());
         view.setOnClickListener(new a(this, 8));
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f38839b = frameLayout;
+        this.f38841b = frameLayout;
         TextView textView = new TextView(context);
-        this.f38840c = textView;
+        this.f38842c = textView;
         textView.setTextSize(1, 16.0f);
         textView.setGravity(5);
         textView.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20982n6, false));

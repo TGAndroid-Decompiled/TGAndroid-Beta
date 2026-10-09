@@ -74,14 +74,14 @@ public final class j0 extends AnimatorListenerAdapter {
                     ((org.telegram.ui.Cells.u1) view2).getTransitionParams().h = false;
                 }
                 ((ViewPropertyAnimator) this.d).setListener(null);
-                if (nVar.f47725y.remove(d1Var2)) {
+                if (nVar.f47727y.remove(d1Var2)) {
                     nVar.u(d1Var2);
                     nVar.G();
                     return;
                 }
                 return;
             case 2:
-                ((s4.d1) this.f10663b).f47656a.setAlpha(1.0f);
+                ((s4.d1) this.f10663b).f47658a.setAlpha(1.0f);
                 ((AnimatorSet) this.f10664c).removeAllListeners();
                 rt rtVar = (rt) this.f10665e;
                 pt ptVar = (pt) this.d;

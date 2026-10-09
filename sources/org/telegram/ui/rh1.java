@@ -9,11 +9,11 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 public final class rh1 extends org.telegram.ui.Components.f71 {
     public ph1 d;
-    public long f41428e;
-    public nh1 f41429f;
+    public long f41430e;
+    public nh1 f41431f;
     public String h;
-    public org.telegram.ui.ActionBar.v0 f41430n;
-    public boolean f41431r;
+    public org.telegram.ui.ActionBar.v0 f41432n;
+    public boolean f41433r;
 
     @Override
     public final void U(java.util.ArrayList r18, org.telegram.ui.Components.c71 r19) {
@@ -27,13 +27,13 @@ public final class rh1 extends org.telegram.ui.Components.f71 {
 
     @Override
     public final void W(org.telegram.ui.Components.p61 p61Var, View view) {
-        nh1 nh1Var = this.f41429f;
+        nh1 nh1Var = this.f41431f;
         int i10 = p61Var.d;
         if (i10 == 1) {
             nh1Var.run(null);
             finishFragment();
         } else if (i10 == 2) {
-            this.f41431r = true;
+            this.f41433r = true;
             SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
             if (!BuildVars.DEBUG_VERSION && globalMainSettings.getBoolean("channel_intro", false)) {
                 presentFragment(new md(org.telegram.ui.Cells.c1.f(0, "step")));
@@ -57,10 +57,10 @@ public final class rh1 extends org.telegram.ui.Components.f71 {
         org.telegram.ui.ActionBar.v0 c10 = this.actionBar.o().c(0, R.drawable.outline_header_search, getResourceProvider());
         c10.F();
         c10.H = new hg.e2(this, 19);
-        this.f41430n = c10;
+        this.f41432n = c10;
         c10.setSearchFieldHint(LocaleController.getString(R.string.Search));
-        this.f41430n.setContentDescription(LocaleController.getString(R.string.Search));
-        this.f41430n.setVisibility(8);
+        this.f41432n.setContentDescription(LocaleController.getString(R.string.Search));
+        this.f41432n.setVisibility(8);
         super.createView(context);
         this.f26290a.p1();
         this.actionBar.setAdaptiveBackground(this.f26290a);
@@ -70,11 +70,11 @@ public final class rh1 extends org.telegram.ui.Components.f71 {
     @Override
     public final void onResume() {
         super.onResume();
-        if (this.f41431r) {
+        if (this.f41433r) {
             ph1 ph1Var = this.d;
-            ph1Var.f40808c = false;
-            ph1Var.f40810f.add(new qh1(this, 0));
-            this.f41431r = false;
+            ph1Var.f40810c = false;
+            ph1Var.f40812f.add(new qh1(this, 0));
+            this.f41433r = false;
         }
     }
 }

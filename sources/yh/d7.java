@@ -19,23 +19,23 @@ import org.telegram.ui.Components.er;
 import org.telegram.ui.Components.ja0;
 import org.telegram.ui.s00;
 public final class d7 extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
-    public long f52397a;
-    public final int f52398b;
-    public final s00 f52399c;
+    public long f52399a;
+    public final int f52400b;
+    public final s00 f52401c;
     public boolean d;
-    public SpannableString f52400e;
-    public long f52401f;
+    public SpannableString f52402e;
+    public long f52403f;
     public final er[] h;
-    public final er[] f52402n;
-    public ValueAnimator f52403r;
+    public final er[] f52404n;
+    public ValueAnimator f52405r;
 
     public d7(Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
-        this.f52401f = -1L;
+        this.f52403f = -1L;
         this.h = new er[1];
-        this.f52402n = new er[1];
-        this.f52398b = i10;
-        this.f52397a = UserConfig.getInstance(i10).getClientUserId();
+        this.f52404n = new er[1];
+        this.f52400b = i10;
+        this.f52399a = UserConfig.getInstance(i10).getClientUserId();
         setOrientation(1);
         setGravity(21);
         TextView textView = new TextView(context);
@@ -46,7 +46,7 @@ public final class d7 extends LinearLayout implements NotificationCenter.Notific
         textView.setTypeface(AndroidUtilities.bold());
         addView(textView, w7.x5.q(-2, -2, 5));
         s00 s00Var = new s00(this, context, context.getResources().getDrawable(R.drawable.star_small_inner).mutate());
-        this.f52399c = s00Var;
+        this.f52401c = s00Var;
         s00Var.f30367n = true;
         s00Var.getDrawable().r(false, true);
         s00Var.setTypeface(AndroidUtilities.bold());
@@ -64,7 +64,7 @@ public final class d7 extends LinearLayout implements NotificationCenter.Notific
         boolean z11;
         boolean z12;
         TLRPC.TL_starsRevenueStatus tL_starsRevenueStatus;
-        int i10 = this.f52398b;
+        int i10 = this.f52400b;
         m5 y3 = m5.y(i10, false);
         if (this.d) {
             m5Var = m5.y(i10, true);
@@ -72,18 +72,18 @@ public final class d7 extends LinearLayout implements NotificationCenter.Notific
             m5Var = null;
         }
         long j3 = 0;
-        zf.a i11 = zf.a.i(0L, zf.b.f54442b);
-        s00 s00Var = this.f52399c;
+        zf.a i11 = zf.a.i(0L, zf.b.f54444b);
+        s00 s00Var = this.f52401c;
         s00Var.a();
-        if (this.f52397a == UserConfig.getInstance(i10).getClientUserId()) {
-            z12 = !y3.f52881e;
+        if (this.f52399a == UserConfig.getInstance(i10).getClientUserId()) {
+            z12 = !y3.f52883e;
             j3 = y3.p().amount;
             if (m5Var != null) {
-                z12 |= !m5Var.f52881e;
+                z12 |= !m5Var.f52883e;
                 i11 = m5Var.s();
             }
         } else {
-            TLRPC.TL_payments_starsRevenueStats h = o.g(i10).h(this.f52397a, false);
+            TLRPC.TL_payments_starsRevenueStats h = o.g(i10).h(this.f52399a, false);
             if (h != null && h.status != null) {
                 z11 = false;
             } else {
@@ -94,35 +94,35 @@ public final class d7 extends LinearLayout implements NotificationCenter.Notific
             }
             z12 = z11;
         }
-        long j10 = this.f52401f;
+        long j10 = this.f52403f;
         if (j3 > j10 && j10 != -1) {
-            ValueAnimator valueAnimator = this.f52403r;
+            ValueAnimator valueAnimator = this.f52405r;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.9f, 1.0f);
-            this.f52403r = ofFloat;
+            this.f52405r = ofFloat;
             ofFloat.addUpdateListener(new org.telegram.ui.Components.voip.r0(this, 25));
-            this.f52403r.addListener(new org.telegram.ui.Wallet.w4(this, 19));
-            this.f52403r.setDuration(320L);
-            this.f52403r.setInterpolator(new OvershootInterpolator());
-            this.f52403r.start();
+            this.f52405r.addListener(new org.telegram.ui.Wallet.x4(this, 19));
+            this.f52405r.setDuration(320L);
+            this.f52405r.setInterpolator(new OvershootInterpolator());
+            this.f52405r.start();
         }
         if (z12) {
-            if (this.f52400e == null) {
+            if (this.f52402e == null) {
                 SpannableString spannableString = new SpannableString("x");
-                this.f52400e = spannableString;
-                spannableString.setSpan(new ja0(AndroidUtilities.dp(48.0f), s00Var), 0, this.f52400e.length(), 33);
+                this.f52402e = spannableString;
+                spannableString.setSpan(new ja0(AndroidUtilities.dp(48.0f), s00Var), 0, this.f52402e.length(), 33);
             }
-            s00Var.c(this.f52400e, z10, true);
-            this.f52401f = -1L;
+            s00Var.c(this.f52402e, z10, true);
+            this.f52403f = -1L;
             return;
         }
         if (this.d) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             if (!i11.k()) {
                 String str = "⭐️" + i11.d();
-                er[] erVarArr = this.f52402n;
+                er[] erVarArr = this.f52404n;
                 spannableStringBuilder.append((CharSequence) p7.Y0(true, str, 0.62f, erVarArr));
                 er erVar = erVarArr[0];
                 if (erVar != null) {
@@ -135,14 +135,14 @@ public final class d7 extends LinearLayout implements NotificationCenter.Notific
         } else {
             s00Var.setText(LocaleController.formatNumber(j3, ' '));
         }
-        this.f52401f = j3;
+        this.f52403f = j3;
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.starBalanceUpdated) {
             a(true);
-        } else if (i10 == NotificationCenter.botStarsUpdated && ((Long) objArr[0]).longValue() == this.f52397a) {
+        } else if (i10 == NotificationCenter.botStarsUpdated && ((Long) objArr[0]).longValue() == this.f52399a) {
             a(true);
         }
     }
@@ -151,7 +151,7 @@ public final class d7 extends LinearLayout implements NotificationCenter.Notific
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         a(false);
-        int i10 = this.f52398b;
+        int i10 = this.f52400b;
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.starBalanceUpdated);
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.botStarsUpdated);
     }
@@ -159,7 +159,7 @@ public final class d7 extends LinearLayout implements NotificationCenter.Notific
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        int i10 = this.f52398b;
+        int i10 = this.f52400b;
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.starBalanceUpdated);
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.botStarsUpdated);
     }
@@ -170,8 +170,8 @@ public final class d7 extends LinearLayout implements NotificationCenter.Notific
     }
 
     public void setDialogId(long j3) {
-        if (this.f52397a != j3) {
-            this.f52397a = j3;
+        if (this.f52399a != j3) {
+            this.f52399a = j3;
             a(true);
         }
     }

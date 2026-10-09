@@ -6,15 +6,15 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class gp extends org.telegram.ui.Components.pm0 {
-    public final hp f38064c;
+    public final hp f38066c;
 
     public gp(hp hpVar) {
-        this.f38064c = hpVar;
+        this.f38066c = hpVar;
     }
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47660f == 1) {
+        if (d1Var.f47662f == 1) {
             return true;
         }
         return false;
@@ -22,7 +22,7 @@ public final class gp extends org.telegram.ui.Components.pm0 {
 
     @Override
     public final int h() {
-        return this.f38064c.Y2.N.size() + 2;
+        return this.f38066c.Y2.N.size() + 2;
     }
 
     @Override
@@ -30,7 +30,7 @@ public final class gp extends org.telegram.ui.Components.pm0 {
         if (i10 == 0) {
             return 0;
         }
-        if (i10 <= this.f38064c.Y2.N.size()) {
+        if (i10 <= this.f38066c.Y2.N.size()) {
             return 1;
         }
         return 2;
@@ -38,10 +38,10 @@ public final class gp extends org.telegram.ui.Components.pm0 {
 
     @Override
     public final void v(s4.d1 d1Var, int i10) {
-        hp hpVar = this.f38064c;
+        hp hpVar = this.f38066c;
         ip ipVar = hpVar.Y2;
-        int i11 = d1Var.f47660f;
-        View view = d1Var.f47656a;
+        int i11 = d1Var.f47662f;
+        View view = d1Var.f47658a;
         if (i11 != 0) {
             boolean z10 = true;
             if (i11 != 1) {
@@ -75,7 +75,7 @@ public final class gp extends org.telegram.ui.Components.pm0 {
 
     @Override
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        hp hpVar = this.f38064c;
+        hp hpVar = this.f38066c;
         org.telegram.ui.ActionBar.e6 e6Var = hpVar.f30216n2;
         if (i10 != 0) {
             if (i10 != 1) {

@@ -43,7 +43,7 @@ public final class v1 extends pm0 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47660f == 2) {
+        if (d1Var.f47662f == 2) {
             return true;
         }
         return false;
@@ -197,8 +197,8 @@ public final class v1 extends pm0 {
 
     @Override
     public final void v(s4.d1 d1Var, int i10) {
-        int i11 = d1Var.f47660f;
-        View view = d1Var.f47656a;
+        int i11 = d1Var.f47662f;
+        View view = d1Var.f47658a;
         if (i11 == 0) {
             view.setTag(34);
             view.setLayoutParams(new s4.q0(-1, (int) this.f6126s.f6346r.f5886n));

@@ -72,14 +72,14 @@ public final class r6 extends View implements me.d {
                 int backgroundSizeY = znVar.X0.getBackgroundSizeY();
                 float x10 = getX();
                 float U8 = znVar.U8(this);
-                xn xnVar = znVar.f44761ea;
+                xn xnVar = znVar.f44763ea;
                 if (xnVar != null) {
                     xnVar.m(x10, U8, measuredWidth, backgroundSizeY);
                 } else {
                     org.telegram.ui.ActionBar.i6.q(x10, U8, measuredWidth, backgroundSizeY);
                 }
                 canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), znVar.getThemedPaint("paintChatActionBackground"));
-                xn xnVar2 = znVar.f44761ea;
+                xn xnVar2 = znVar.f44763ea;
                 if (xnVar2 == null ? org.telegram.ui.ActionBar.i6.b1() : xnVar2.k0()) {
                     canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), znVar.getThemedPaint("paintChatActionBackgroundDarken"));
                 }
@@ -142,9 +142,9 @@ public final class r6 extends View implements me.d {
             case 2:
                 Paint paint3 = (Paint) this.f5907b;
                 md mdVar = (md) this.f5908c;
-                ai.z5 z5Var = mdVar.f39843e;
+                ai.z5 z5Var = mdVar.f39845e;
                 if (z5Var != null && z5Var.getImageReceiver().hasNotThumb()) {
-                    paint3.setAlpha((int) (mdVar.f39858r.getAlpha() * mdVar.f39843e.getImageReceiver().getCurrentAlpha() * 85.0f));
+                    paint3.setAlpha((int) (mdVar.f39860r.getAlpha() * mdVar.f39845e.getImageReceiver().getCurrentAlpha() * 85.0f));
                     canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f, paint3);
                     return;
                 }
@@ -318,9 +318,9 @@ public final class r6 extends View implements me.d {
             case 5:
                 Paint paint6 = (Paint) this.f5907b;
                 uo uoVar = (uo) this.f5908c;
-                ai.z5 z5Var2 = uoVar.f42469e;
+                ai.z5 z5Var2 = uoVar.f42471e;
                 if (z5Var2 != null && z5Var2.getImageReceiver().hasNotThumb()) {
-                    paint6.setAlpha((int) (uoVar.f42469e.getImageReceiver().getCurrentAlpha() * 85.0f));
+                    paint6.setAlpha((int) (uoVar.f42471e.getImageReceiver().getCurrentAlpha() * 85.0f));
                     canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f, paint6);
                     return;
                 }
@@ -375,9 +375,9 @@ public final class r6 extends View implements me.d {
             case 8:
                 Paint paint8 = (Paint) this.f5907b;
                 qs qsVar = (qs) this.f5908c;
-                org.telegram.ui.Components.y9 y9Var2 = qsVar.f41173e;
+                org.telegram.ui.Components.y9 y9Var2 = qsVar.f41175e;
                 if (y9Var2 != null && y9Var2.getImageReceiver().hasNotThumb()) {
-                    paint8.setAlpha((int) (qsVar.f41173e.getImageReceiver().getCurrentAlpha() * 85.0f));
+                    paint8.setAlpha((int) (qsVar.f41175e.getImageReceiver().getCurrentAlpha() * 85.0f));
                     canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f, paint8);
                     return;
                 }
@@ -385,8 +385,8 @@ public final class r6 extends View implements me.d {
             case 9:
                 canvas.drawColor(855638016);
                 a00 a00Var = (a00) this.f5908c;
-                FrameLayout frameLayout2 = a00Var.f43010a;
-                float[] fArr2 = a00Var.f43020y;
+                FrameLayout frameLayout2 = a00Var.f43012a;
+                float[] fArr2 = a00Var.f43022y;
                 vz.a(frameLayout2, (FrameLayout) this.f5907b, fArr2);
                 canvas.save();
                 float y10 = frameLayout2.getY() + ((View) frameLayout2.getParent()).getY();
@@ -400,8 +400,8 @@ public final class r6 extends View implements me.d {
             case 10:
                 Paint paint9 = (Paint) this.f5907b;
                 j70 j70Var = (j70) this.f5908c;
-                if (j70Var.d != null && j70Var.f38848n.getVisibility() == 0 && j70Var.d.getImageReceiver().hasNotThumb()) {
-                    paint9.setAlpha((int) (j70Var.f38848n.getAlpha() * j70Var.d.getImageReceiver().getCurrentAlpha() * 85.0f));
+                if (j70Var.d != null && j70Var.f38850n.getVisibility() == 0 && j70Var.d.getImageReceiver().hasNotThumb()) {
+                    paint9.setAlpha((int) (j70Var.f38850n.getAlpha() * j70Var.d.getImageReceiver().getCurrentAlpha() * 85.0f));
                     canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f, paint9);
                     return;
                 }
@@ -409,8 +409,8 @@ public final class r6 extends View implements me.d {
             case 12:
                 Paint paint10 = (Paint) this.f5907b;
                 gf0 gf0Var = (gf0) this.f5908c;
-                org.telegram.ui.kd kdVar = gf0Var.f38004r;
-                ai.z5 z5Var3 = gf0Var.f38001e;
+                org.telegram.ui.kd kdVar = gf0Var.f38006r;
+                ai.z5 z5Var3 = gf0Var.f38003e;
                 if (z5Var3 != null && kdVar.getVisibility() == 0) {
                     paint10.setAlpha((int) (kdVar.getAlpha() * z5Var3.getImageReceiver().getCurrentAlpha() * 85.0f));
                     canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f, paint10);
@@ -432,7 +432,7 @@ public final class r6 extends View implements me.d {
                 rect.set(0, 0, getMeasuredWidth(), height);
                 Paint paint11 = (Paint) this.f5907b;
                 paint11.setColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21075s8, i91.h0(i91Var)));
-                i91Var.f38580b.J(canvas, 0.0f, rect, paint11, true);
+                i91Var.f38582b.J(canvas, 0.0f, rect, paint11, true);
                 if (i91Var.getParentLayout() != null) {
                     ((ActionBarLayout) i91Var.getParentLayout()).q(canvas, height);
                     return;
@@ -440,7 +440,7 @@ public final class r6 extends View implements me.d {
                 return;
             case 15:
                 xd1 xd1Var = (xd1) this.f5908c;
-                int currentItem = xd1Var.f43966j0.getCurrentItem();
+                int currentItem = xd1Var.f43968j0.getCurrentItem();
                 Paint paint12 = (Paint) this.f5907b;
                 int i13 = org.telegram.ui.ActionBar.i6.Ae;
                 if (xd1Var.d) {

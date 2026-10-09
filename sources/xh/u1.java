@@ -7,30 +7,30 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.rs0;
 import yh.d5;
 public final class u1 implements Runnable {
-    public final int f51533a;
-    public final rs0 f51534b;
+    public final int f51535a;
+    public final rs0 f51536b;
 
     public u1(rs0 rs0Var, int i10) {
-        this.f51533a = i10;
-        this.f51534b = rs0Var;
+        this.f51535a = i10;
+        this.f51536b = rs0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f51533a) {
+        switch (this.f51535a) {
             case 0:
-                this.f51534b.a();
+                this.f51536b.a();
                 return;
             case 1:
-                this.f51534b.setReorderingCollections(true);
+                this.f51536b.setReorderingCollections(true);
                 return;
             default:
-                d5 d5Var = this.f51534b.f51512e;
+                d5 d5Var = this.f51536b.f51514e;
                 d5Var.getClass();
                 TL_stars.reorderStarGiftCollections reorderstargiftcollections = new TL_stars.reorderStarGiftCollections();
-                int i10 = d5Var.f52383a;
-                reorderstargiftcollections.peer = MessagesController.getInstance(i10).getInputPeer(d5Var.f52384b);
-                ArrayList arrayList = d5Var.f52386e;
+                int i10 = d5Var.f52385a;
+                reorderstargiftcollections.peer = MessagesController.getInstance(i10).getInputPeer(d5Var.f52386b);
+                ArrayList arrayList = d5Var.f52388e;
                 int size = arrayList.size();
                 int i11 = 0;
                 while (i11 < size) {

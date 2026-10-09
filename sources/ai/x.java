@@ -156,22 +156,22 @@ public final class x implements ValueAnimator.AnimatorUpdateListener {
                 float floatValue5 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 znVar2.U9 = floatValue5;
                 znVar2.fragmentView.invalidate();
-                znVar2.f44988x0.invalidate();
+                znVar2.f44990x0.invalidate();
                 float f10 = 1.0f - floatValue5;
                 float dp = AndroidUtilities.dp(8.0f) * f10;
-                znVar.f44700a1.setTranslationY(dp);
-                znVar.f44700a1.getAvatarImageView().setTranslationY(-dp);
+                znVar.f44702a1.setTranslationY(dp);
+                znVar.f44702a1.getAvatarImageView().setTranslationY(-dp);
                 float f11 = (-AndroidUtilities.dp(8.0f)) * floatValue5;
-                znVar2.f44700a1.setTranslationY(f11);
-                znVar2.f44700a1.getAvatarImageView().setTranslationY(-f11);
+                znVar2.f44702a1.setTranslationY(f11);
+                znVar2.f44702a1.getAvatarImageView().setTranslationY(-f11);
                 float f12 = (floatValue5 * 0.2f) + 0.8f;
-                znVar.f44700a1.getAvatarImageView().setScaleX(f12);
-                znVar.f44700a1.getAvatarImageView().setScaleY(f12);
-                znVar.f44700a1.getAvatarImageView().setAlpha(floatValue5);
+                znVar.f44702a1.getAvatarImageView().setScaleX(f12);
+                znVar.f44702a1.getAvatarImageView().setScaleY(f12);
+                znVar.f44702a1.getAvatarImageView().setAlpha(floatValue5);
                 float f13 = (0.2f * f10) + 0.8f;
-                znVar2.f44700a1.getAvatarImageView().setScaleX(f13);
-                znVar2.f44700a1.getAvatarImageView().setScaleY(f13);
-                znVar2.f44700a1.getAvatarImageView().setAlpha(f10);
+                znVar2.f44702a1.getAvatarImageView().setScaleX(f13);
+                znVar2.f44702a1.getAvatarImageView().setScaleY(f13);
+                znVar2.f44702a1.getAvatarImageView().setAlpha(f10);
                 fh fhVar = znVar2.M0;
                 if (fhVar != null) {
                     fhVar.setAlpha(f10);
@@ -229,7 +229,7 @@ public final class x implements ValueAnimator.AnimatorUpdateListener {
                 mVar.getClass();
                 ((bv) this.f1891c).f25107b = ((Integer) valueAnimator.getAnimatedValue()).intValue();
                 while (i10 < ((ArrayList) mVar.d).size()) {
-                    if (!zg.d0.f54500b) {
+                    if (!zg.d0.f54502b) {
                         ((View) ((ArrayList) mVar.d).get(i10)).invalidate();
                     }
                     i10++;
@@ -309,26 +309,26 @@ public final class x implements ValueAnimator.AnimatorUpdateListener {
                 e31 e31Var = (e31) this.f1890b;
                 int[] iArr2 = (int[]) this.f1891c;
                 float floatValue10 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                cd0 cd0Var = e31Var.f37138n;
+                cd0 cd0Var = e31Var.f37140n;
                 if (cd0Var != null) {
                     cd0Var.K = 1.0f;
                     cd0Var.i();
-                    e31Var.f37138n.s(1.0f - floatValue10);
+                    e31Var.f37140n.s(1.0f - floatValue10);
                 }
                 cd0 cd0Var2 = e31Var.h;
                 cd0Var2.K = floatValue10;
                 cd0Var2.i();
                 e31Var.h.s(floatValue10);
                 if (iArr2 != null) {
-                    int d = i0.a.d(floatValue10, e31Var.f37136e[0], iArr2[0]);
-                    int d10 = i0.a.d(floatValue10, e31Var.f37136e[1], iArr2[1]);
-                    int d11 = i0.a.d(floatValue10, e31Var.f37136e[2], iArr2[2]);
-                    int d12 = i0.a.d(floatValue10, e31Var.f37136e[3], iArr2[3]);
+                    int d = i0.a.d(floatValue10, e31Var.f37138e[0], iArr2[0]);
+                    int d10 = i0.a.d(floatValue10, e31Var.f37138e[1], iArr2[1]);
+                    int d11 = i0.a.d(floatValue10, e31Var.f37138e[2], iArr2[2]);
+                    int d12 = i0.a.d(floatValue10, e31Var.f37138e[3], iArr2[3]);
                     y21 y21Var = e31Var.E;
-                    y21Var.f44219a.n(d, d10, d11, d12);
+                    y21Var.f44221a.n(d, d10, d11, d12);
                     y21Var.invalidate();
                 }
-                e31Var.f37141w.invalidate();
+                e31Var.f37143w.invalidate();
                 return;
             case 24:
                 a5.a aVar2 = (a5.a) this.f1890b;
@@ -354,17 +354,17 @@ public final class x implements ValueAnimator.AnimatorUpdateListener {
                 if (floatValue11 < 0.5f) {
                     float f16 = floatValue11 / 0.5f;
                     b2Var.setRotationY(90.0f * f16);
-                    b2Var.f46199z0 = ((1.0f - f16) * 0.3f) + 0.7f;
+                    b2Var.f46201z0 = ((1.0f - f16) * 0.3f) + 0.7f;
                     b2Var.invalidate();
                     return;
                 }
                 if (!zArr2[0]) {
                     zArr2[0] = true;
-                    b2Var.f46191r0.b(b2Var.f46198y0, false);
+                    b2Var.f46193r0.b(b2Var.f46200y0, false);
                 }
                 float f17 = (floatValue11 - 0.5f) / 0.5f;
                 b2Var.setRotationY((1.0f - f17) * (-90.0f));
-                b2Var.f46199z0 = (f17 * 0.3f) + 0.7f;
+                b2Var.f46201z0 = (f17 * 0.3f) + 0.7f;
                 b2Var.invalidate();
                 return;
             case 27:

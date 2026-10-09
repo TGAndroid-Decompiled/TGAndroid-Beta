@@ -47,7 +47,7 @@ public final class ir0 extends pm0 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47660f;
+        int i10 = d1Var.f47662f;
         if (i10 != 1 && i10 != 4) {
             return true;
         }
@@ -177,8 +177,8 @@ public final class ir0 extends pm0 {
         org.telegram.ui.ActionBar.e6 e6Var2;
         mr0 mr0Var = this.K;
         a0.i iVar = mr0Var.U;
-        int i12 = d1Var.f47660f;
-        View view = d1Var.f47656a;
+        int i12 = d1Var.f47662f;
+        View view = d1Var.f47658a;
         if (i12 != 0 && i12 != 5) {
             if (i12 == 2) {
                 ((qm0) view).getAdapter().l();

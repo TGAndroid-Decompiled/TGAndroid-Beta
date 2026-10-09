@@ -19,7 +19,7 @@ public final class dw0 extends pm0 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47660f == 0) {
+        if (d1Var.f47662f == 0) {
             return true;
         }
         return false;
@@ -41,7 +41,7 @@ public final class dw0 extends pm0 {
     @Override
     public final void v(s4.d1 d1Var, int i10) {
         TextView textView;
-        int i11 = d1Var.f47660f;
+        int i11 = d1Var.f47662f;
         if (i11 != 0) {
             if (i11 == 1 && (textView = this.d.f26501e) != null) {
                 textView.setText(LocaleController.formatString("SharingLiveLocationTitle", R.string.SharingLiveLocationTitle, LocaleController.formatPluralString("Chats", LocationController.getLocationsCount(), new Object[0])));
@@ -49,7 +49,7 @@ public final class dw0 extends pm0 {
             }
             return;
         }
-        ((org.telegram.ui.Cells.w7) d1Var.f47656a).setDialog(fw0.r(i10 - 1));
+        ((org.telegram.ui.Cells.w7) d1Var.f47658a).setDialog(fw0.r(i10 - 1));
     }
 
     @Override

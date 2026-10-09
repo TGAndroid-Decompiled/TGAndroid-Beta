@@ -141,7 +141,7 @@ public final class q9 implements org.telegram.ui.ActionBar.a2, ChatObject.Call.O
                 return;
             default:
                 g60 g60Var = (g60) this.f5842c;
-                g60Var.d.getMessagesController().addUserToChat(g60Var.j1(), (TLRPC.User) this.d, 0, null, (org.telegram.ui.ActionBar.n2) g60Var.f37821i0.O().getFragmentStack().get(g60Var.f37821i0.O().getFragmentStack().size() - 1), new ai.j(g60Var, this.f5841b, 26));
+                g60Var.d.getMessagesController().addUserToChat(g60Var.j1(), (TLRPC.User) this.d, 0, null, (org.telegram.ui.ActionBar.n2) g60Var.f37823i0.O().getFragmentStack().get(g60Var.f37823i0.O().getFragmentStack().size() - 1), new ai.j(g60Var, this.f5841b, 26));
                 return;
         }
     }

@@ -45,7 +45,7 @@ public final class n1 extends pm0 implements NotificationCenter.NotificationCent
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47660f;
+        int i10 = d1Var.f47662f;
         if (i10 != 0 && i10 != 2) {
             return false;
         }
@@ -135,8 +135,8 @@ public final class n1 extends pm0 implements NotificationCenter.NotificationCent
         boolean z10;
         int i11;
         int i12;
-        int i13 = d1Var.f47660f;
-        View view = d1Var.f47656a;
+        int i13 = d1Var.f47662f;
+        View view = d1Var.f47658a;
         if (i13 == 0) {
             s2 s2Var = (s2) view;
             s2Var.f22857s2 = true;

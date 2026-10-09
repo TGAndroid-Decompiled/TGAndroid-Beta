@@ -87,7 +87,7 @@ public final class xa0 extends sw0 {
             case 2:
                 org.telegram.ui.k0 k0Var = (org.telegram.ui.k0) this.f32794x0;
                 ih1 ih1Var = (ih1) this.f32795y0;
-                if (ih1Var.f38648e0.getVisibility() != 8 && R() >= AndroidUtilities.dp(20.0f)) {
+                if (ih1Var.f38650e0.getVisibility() != 8 && R() >= AndroidUtilities.dp(20.0f)) {
                     if (ih1Var.v0()) {
                         int measuredWidth5 = getMeasuredWidth();
                         measuredHeight2 = R() + (getMeasuredHeight() - AndroidUtilities.dp(230.0f));
@@ -97,7 +97,7 @@ public final class xa0 extends sw0 {
                         measuredHeight2 = getMeasuredHeight();
                         k0Var.layout(0, 0, measuredWidth6, measuredHeight2);
                     }
-                } else if (ih1Var.f38648e0.getVisibility() != 8) {
+                } else if (ih1Var.f38650e0.getVisibility() != 8) {
                     int measuredWidth7 = getMeasuredWidth();
                     measuredHeight2 = getMeasuredHeight() - AndroidUtilities.dp(230.0f);
                     k0Var.layout(0, 0, measuredWidth7, measuredHeight2);
@@ -106,7 +106,7 @@ public final class xa0 extends sw0 {
                     measuredHeight2 = getMeasuredHeight();
                     k0Var.layout(0, 0, measuredWidth8, measuredHeight2);
                 }
-                ih1Var.f38648e0.layout(0, measuredHeight2, getMeasuredWidth(), AndroidUtilities.dp(230.0f) + measuredHeight2);
+                ih1Var.f38650e0.layout(0, measuredHeight2, getMeasuredWidth(), AndroidUtilities.dp(230.0f) + measuredHeight2);
                 return;
             default:
                 super.onLayout(z10, i10, i11, i12, i13);
@@ -173,11 +173,11 @@ public final class xa0 extends sw0 {
                 int size4 = View.MeasureSpec.getSize(i11);
                 setMeasuredDimension(size3, size4);
                 ih1 ih1Var = (ih1) this.f32795y0;
-                if (ih1Var.f38648e0.getVisibility() != 8 && R() < AndroidUtilities.dp(20.0f)) {
+                if (ih1Var.f38650e0.getVisibility() != 8 && R() < AndroidUtilities.dp(20.0f)) {
                     size4 -= AndroidUtilities.dp(230.0f);
                 }
                 ((org.telegram.ui.k0) this.f32794x0).measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), View.MeasureSpec.makeMeasureSpec(size4, 1073741824));
-                ih1Var.f38648e0.measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(230.0f), 1073741824));
+                ih1Var.f38650e0.measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(230.0f), 1073741824));
                 return;
         }
     }

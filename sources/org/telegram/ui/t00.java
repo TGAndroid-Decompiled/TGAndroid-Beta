@@ -6,12 +6,12 @@ import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class t00 extends org.telegram.ui.Cells.m4 {
-    public final TextView f41806r;
-    public final s00 f41807s;
+    public final TextView f41808r;
+    public final s00 f41809s;
     public int v;
-    public final org.telegram.ui.Components.j5 f41808w;
-    public boolean f41809x;
-    public final f10 f41810y;
+    public final org.telegram.ui.Components.j5 f41810w;
+    public boolean f41811x;
+    public final f10 f41812y;
 
     public t00(org.telegram.ui.f10 r13, android.content.Context r14) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.t00.<init>(org.telegram.ui.f10, android.content.Context):void");
@@ -21,14 +21,14 @@ public final class t00 extends org.telegram.ui.Cells.m4 {
         int i11;
         boolean z11;
         float f7;
-        f10 f10Var = this.f41810y;
+        f10 f10Var = this.f41812y;
         if (f10Var.getUserConfig().isPremium()) {
             i11 = R.string.FolderTagNoColor;
         } else {
             i11 = R.string.FolderTagNoColorPremium;
         }
         String string = LocaleController.getString(i11);
-        TextView textView = this.f41806r;
+        TextView textView = this.f41808r;
         textView.setText(string);
         int i12 = 0;
         if (i10 < 0) {
@@ -41,15 +41,15 @@ public final class t00 extends org.telegram.ui.Cells.m4 {
             i12 = f10Var.getThemedColor(iArr[i10 % iArr.length]);
         }
         this.v = i12;
-        s00 s00Var = this.f41807s;
+        s00 s00Var = this.f41809s;
         if (!z11) {
             s00Var.setEmojiColor(i12);
         }
         if (!z10) {
-            this.f41808w.a(this.v, true);
+            this.f41810w.a(this.v, true);
         }
-        if (z11 != this.f41809x) {
-            this.f41809x = z11;
+        if (z11 != this.f41811x) {
+            this.f41811x = z11;
             ViewPropertyAnimator animate = textView.animate();
             float f10 = 0.0f;
             if (z11) {
@@ -76,7 +76,7 @@ public final class t00 extends org.telegram.ui.Cells.m4 {
         if (charSequence.length() > 12) {
             charSequence = charSequence.subSequence(0, 12);
         }
-        s00 s00Var = this.f41807s;
+        s00 s00Var = this.f41809s;
         CharSequence replaceEmoji = Emoji.replaceEmoji(charSequence, s00Var.getPaint().getFontMetricsInt(), false);
         if (z10 && !LocaleController.isRTL) {
             z11 = true;

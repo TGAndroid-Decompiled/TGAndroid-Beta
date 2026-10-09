@@ -308,7 +308,7 @@ public class TL_stars {
 
         @Deprecated
         public long getResellStars() {
-            zf.a resellAmount = getResellAmount(zf.b.f54441a);
+            zf.a resellAmount = getResellAmount(zf.b.f54443a);
             if (resellAmount != null) {
                 return resellAmount.a();
             }
@@ -4383,7 +4383,7 @@ public class TL_stars {
 
         @Override
         public zf.b getCurrency() {
-            return zf.b.f54441a;
+            return zf.b.f54443a;
         }
 
         @Override
@@ -4711,7 +4711,7 @@ public class TL_stars {
 
         @Override
         public zf.b getCurrency() {
-            return zf.b.f54442b;
+            return zf.b.f54444b;
         }
 
         @Override

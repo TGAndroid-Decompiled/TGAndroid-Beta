@@ -5,24 +5,24 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Stories.ProfileStoriesView;
 public final class rz0 extends ProfileStoriesView {
-    public final Context f41544t0;
-    public final ProfileActivity f41545u0;
+    public final Context f41546t0;
+    public final ProfileActivity f41547u0;
 
     public rz0(ProfileActivity profileActivity, Context context, int i10, long j3, boolean z10, k0 k0Var, oz0 oz0Var, org.telegram.ui.ActionBar.e6 e6Var, Context context2) {
         super(context, i10, j3, z10, k0Var, oz0Var, e6Var);
-        this.f41545u0 = profileActivity;
-        this.f41544t0 = context2;
+        this.f41547u0 = profileActivity;
+        this.f41546t0 = context2;
     }
 
     @Override
     public final void e(a6.i iVar) {
         TL_stories.PeerStories peerStories;
         TL_stories.PeerStories peerStories2;
-        ProfileActivity profileActivity = this.f41545u0;
+        ProfileActivity profileActivity = this.f41547u0;
         long a2 = profileActivity.a();
         ai.m9 storiesController = profileActivity.getMessagesController().getStoriesController();
         boolean I = storiesController.I(a2);
-        Context context = this.f41544t0;
+        Context context = this.f41546t0;
         if (!I && !storiesController.K(a2) && !storiesController.N(a2)) {
             TLRPC.UserFull userFull = profileActivity.f34361v2;
             if (userFull != null && (peerStories2 = userFull.stories) != null && !peerStories2.stories.isEmpty() && profileActivity.f34243e1 != profileActivity.getUserConfig().clientUserId) {

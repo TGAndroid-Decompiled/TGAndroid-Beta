@@ -12,7 +12,7 @@ import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.Random;
 import org.telegram.messenger.bi;
-import org.telegram.ui.Wallet.i5;
+import org.telegram.ui.Wallet.j5;
 public class x {
     public final int f15161a;
     public final int f15162b;
@@ -106,7 +106,7 @@ public class x {
                                 arrayList.add(rect);
                             }
                         }
-                        arrayList2.add(new i5(f30, f31, nextFloat3, f28, f29, a2, a10));
+                        arrayList2.add(new j5(f30, f31, nextFloat3, f28, f29, a2, a10));
                         i17++;
                     }
                     i16++;
@@ -215,9 +215,9 @@ public class x {
         while (i12 < size) {
             Object obj = arrayList.get(i12);
             i12++;
-            i5 i5Var = (i5) obj;
-            paint.setShader(i5Var.f35012b);
-            canvas.drawPath(i5Var.f35011a, paint);
+            j5 j5Var = (j5) obj;
+            paint.setShader(j5Var.f35083b);
+            canvas.drawPath(j5Var.f35082a, paint);
         }
     }
 

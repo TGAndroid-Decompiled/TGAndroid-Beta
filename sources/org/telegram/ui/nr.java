@@ -10,18 +10,18 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 public final class nr implements Utilities.Callback2Return, org.telegram.ui.Components.jw0, org.telegram.ui.Components.kw0, LanguageDetector.ExceptionCallback, org.telegram.ui.Components.qd0, org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.sd0 {
-    public final int f40353a;
+    public final int f40355a;
 
     public nr(int i10) {
-        this.f40353a = i10;
+        this.f40355a = i10;
     }
 
     @Override
     public void b(Object obj, float f7) {
         es esVar = (es) obj;
-        switch (this.f40353a) {
+        switch (this.f40355a) {
             case 2:
-                esVar.f37317b = f7;
+                esVar.f37319b = f7;
                 if (esVar.getParent() != null) {
                     ((View) esVar.getParent()).invalidate();
                     return;
@@ -30,14 +30,14 @@ public final class nr implements Utilities.Callback2Return, org.telegram.ui.Comp
             case 3:
             case 5:
             default:
-                esVar.f37319e = f7;
+                esVar.f37321e = f7;
                 if (esVar.getParent() != null) {
                     ((View) esVar.getParent()).invalidate();
                     return;
                 }
                 return;
             case 4:
-                esVar.f37318c = f7;
+                esVar.f37320c = f7;
                 if (esVar.getParent() != null) {
                     ((View) esVar.getParent()).invalidate();
                     return;
@@ -55,7 +55,7 @@ public final class nr implements Utilities.Callback2Return, org.telegram.ui.Comp
 
     @Override
     public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f40353a) {
+        switch (this.f40355a) {
             case 14:
                 b2Var.dismiss();
                 return;
@@ -68,15 +68,15 @@ public final class nr implements Utilities.Callback2Return, org.telegram.ui.Comp
     @Override
     public float get(Object obj) {
         es esVar = (es) obj;
-        switch (this.f40353a) {
+        switch (this.f40355a) {
             case 1:
-                return esVar.f37317b;
+                return esVar.f37319b;
             case 2:
             case 4:
             default:
-                return esVar.f37319e;
+                return esVar.f37321e;
             case 3:
-                return esVar.f37318c;
+                return esVar.f37320c;
             case 5:
                 return esVar.d;
         }
@@ -84,7 +84,7 @@ public final class nr implements Utilities.Callback2Return, org.telegram.ui.Comp
 
     @Override
     public String i(int i10) {
-        switch (this.f40353a) {
+        switch (this.f40355a) {
             case 11:
                 return hg.c.h(i10, "");
             case 12:
@@ -192,7 +192,7 @@ public final class nr implements Utilities.Callback2Return, org.telegram.ui.Comp
 
     @Override
     public void run(Exception exc) {
-        switch (this.f40353a) {
+        switch (this.f40355a) {
             case 9:
                 FileLog.e(exc);
                 return;

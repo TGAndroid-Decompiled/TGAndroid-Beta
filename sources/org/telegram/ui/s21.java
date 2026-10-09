@@ -5,16 +5,16 @@ import java.util.List;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
 public final class s21 implements ResultCallback {
-    public final e31 f41563a;
+    public final e31 f41565a;
 
     public s21(e31 e31Var) {
-        this.f41563a = e31Var;
+        this.f41565a = e31Var;
     }
 
     @Override
     public final void onComplete(Object obj) {
         List list = (List) obj;
-        this.f41563a.b0(list);
+        this.f41565a.b0(list);
         e31.S = list;
     }
 
@@ -25,6 +25,6 @@ public final class s21 implements ResultCallback {
 
     @Override
     public final void onError(TLRPC.TL_error tL_error) {
-        Toast.makeText(this.f41563a.getParentActivity(), tL_error.text, 0).show();
+        Toast.makeText(this.f41565a.getParentActivity(), tL_error.text, 0).show();
     }
 }

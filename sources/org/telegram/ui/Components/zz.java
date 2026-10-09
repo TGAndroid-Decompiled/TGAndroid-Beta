@@ -26,9 +26,9 @@ public class zz extends s4.t0 {
         int i11;
         a00 a00Var = this.f33687c;
         ObjectAnimator[] objectAnimatorArr = a00Var.R0;
-        s4.z0 z0Var = recyclerView.getLayoutManager().f47764e;
+        s4.z0 z0Var = recyclerView.getLayoutManager().f47766e;
         boolean z10 = true;
-        if (z0Var != null && z0Var.f47828e) {
+        if (z0Var != null && z0Var.f47830e) {
             this.f33686b = true;
             return;
         }
@@ -78,7 +78,7 @@ public class zz extends s4.t0 {
                         int dp = AndroidUtilities.dp(f10);
                         s4.d1 K = y3.K(0);
                         if (K != null) {
-                            int bottom = K.f47656a.getBottom();
+                            int bottom = K.f47658a.getBottom();
                             int i14 = iArr[i12];
                             float f12 = (bottom - (dp + i14)) / a00Var.f24397b1;
                             if (f12 > 0.0f || f12 < 1.0f) {

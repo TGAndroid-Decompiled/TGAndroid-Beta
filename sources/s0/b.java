@@ -23,21 +23,21 @@ import u2.d0;
 import u2.o1;
 import u2.y0;
 public final class b implements s5.e, pa.a, q9.d, a2, qd0, d9.e, e2.h, q3.g, Continuation {
-    public final int f47577a;
+    public final int f47579a;
 
     public b(int i10) {
-        this.f47577a = i10;
+        this.f47579a = i10;
     }
 
     @Override
     public void accept(Object obj) {
-        ((y0) obj).f48762b.release();
+        ((y0) obj).f48764b.release();
     }
 
     @Override
     public Object apply(Object obj) {
         byte[] decode;
-        switch (this.f47577a) {
+        switch (this.f47579a) {
             case 3:
                 Cursor rawQuery = ((SQLiteDatabase) obj).rawQuery("SELECT distinct t._id, t.backend_name, t.priority, t.extras FROM transport_contexts AS t, events AS e WHERE e.context_id = t._id", new String[0]);
                 try {
@@ -62,21 +62,21 @@ public final class b implements s5.e, pa.a, q9.d, a2, qd0, d9.e, e2.h, q3.g, Con
             case 14:
                 return ((o) obj).c().getClass().getSimpleName();
             case 15:
-                return i0.v(q.w(((d0) obj).p().f48675b, new b(17)));
+                return i0.v(q.w(((d0) obj).p().f48677b, new b(17)));
             case 17:
                 return Integer.valueOf(((l1) obj).f3417c);
             case 24:
-                return Long.valueOf(((z3.a) obj).f53487b);
+                return Long.valueOf(((z3.a) obj).f53489b);
             case 25:
-                return Long.valueOf(((z3.a) obj).f53488c);
+                return Long.valueOf(((z3.a) obj).f53490c);
             case 26:
                 return (w3.q) obj;
             default:
                 o1 o1Var = (o1) obj;
                 o1Var.getClass();
                 Bundle bundle = new Bundle();
-                String str = o1.f48673e;
-                a1 a1Var = o1Var.f48675b;
+                String str = o1.f48675e;
+                a1 a1Var = o1Var.f48677b;
                 ArrayList<? extends Parcelable> arrayList2 = new ArrayList<>(a1Var.d);
                 g0 listIterator = a1Var.listIterator(0);
                 while (listIterator.hasNext()) {
@@ -103,7 +103,7 @@ public final class b implements s5.e, pa.a, q9.d, a2, qd0, d9.e, e2.h, q3.g, Con
 
     @Override
     public void f(b2 b2Var, int i10) {
-        switch (this.f47577a) {
+        switch (this.f47579a) {
             case 9:
                 return;
             case 12:
@@ -117,7 +117,7 @@ public final class b implements s5.e, pa.a, q9.d, a2, qd0, d9.e, e2.h, q3.g, Con
 
     @Override
     public void g(pa.b bVar) {
-        switch (this.f47577a) {
+        switch (this.f47579a) {
             case 4:
                 if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                     Log.d("FirebaseCrashlytics", "AnalyticsConnector now available.", null);
@@ -132,7 +132,7 @@ public final class b implements s5.e, pa.a, q9.d, a2, qd0, d9.e, e2.h, q3.g, Con
 
     @Override
     public String i(int i10) {
-        switch (this.f47577a) {
+        switch (this.f47579a) {
             case 10:
                 return String.valueOf(i10);
             default:
@@ -146,10 +146,10 @@ public final class b implements s5.e, pa.a, q9.d, a2, qd0, d9.e, e2.h, q3.g, Con
         File file;
         if (task.isSuccessful()) {
             w9.b bVar = (w9.b) task.getResult();
-            t9.b bVar2 = t9.b.f48243a;
-            bVar2.b("Crashlytics report successfully enqueued to DataTransport: " + bVar.f50217b);
+            t9.b bVar2 = t9.b.f48245a;
+            bVar2.b("Crashlytics report successfully enqueued to DataTransport: " + bVar.f50219b);
             z10 = true;
-            if (bVar.f50218c.delete()) {
+            if (bVar.f50220c.delete()) {
                 bVar2.b("Deleted report file: " + file.getPath());
             } else {
                 bVar2.d("Crashlytics could not delete report file: " + file.getPath(), null);
@@ -167,7 +167,7 @@ public final class b implements s5.e, pa.a, q9.d, a2, qd0, d9.e, e2.h, q3.g, Con
     }
 
     public b(Object obj, int i10) {
-        this.f47577a = i10;
+        this.f47579a = i10;
     }
 
     private final void a(b2 b2Var, int i10) {

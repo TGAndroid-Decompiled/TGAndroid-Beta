@@ -66,7 +66,7 @@ public final class ez0 extends org.telegram.ui.Components.qm0 implements ai.t9 {
             org.telegram.ui.Components.rs0 rs0Var = profileActivity.O.V;
             if (rs0Var == null || !rs0Var.g()) {
                 org.telegram.ui.Components.ws0 ws0Var = profileActivity.O.W;
-                if (ws0Var != null && ws0Var.f35812w) {
+                if (ws0Var != null && ws0Var.f35814w) {
                     return false;
                 }
             } else {

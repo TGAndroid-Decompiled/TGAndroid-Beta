@@ -172,8 +172,8 @@ public abstract class x0 extends FrameLayout implements VoIPService.StateListene
         this.f32358a = true;
         c();
         g60 g60Var = ((s40) this).E;
-        boolean z12 = g60Var.f37891z0.v;
-        g60Var.f37891z0 = null;
+        boolean z12 = g60Var.f37893z0.v;
+        g60Var.f37893z0 = null;
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (z11) {
             if (sharedInstance != null) {
@@ -183,9 +183,9 @@ public abstract class x0 extends FrameLayout implements VoIPService.StateListene
                 sharedInstance.setVideoState(false, 0);
             }
             g60Var.O1(true, false);
-            g60Var.f37787a1.sortParticipants();
+            g60Var.f37789a1.sortParticipants();
             g60Var.P0(true);
-            g60Var.f37803e.requestLayout();
+            g60Var.f37805e.requestLayout();
         } else if (sharedInstance != null) {
             sharedInstance.setVideoState(false, 0);
         }

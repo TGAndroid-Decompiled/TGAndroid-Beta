@@ -82,7 +82,7 @@ public final class p1 implements View.OnTouchListener {
                 zyVar.getClass();
                 if (motionEvent.getAction() == 0) {
                     cz czVar = zyVar.d;
-                    czVar.f36753c.r(czVar.f36752b.T(g4Var));
+                    czVar.f36755c.r(czVar.f36754b.T(g4Var));
                     return false;
                 }
                 return false;
@@ -90,7 +90,7 @@ public final class p1 implements View.OnTouchListener {
                 c20 c20Var = (c20) this.f5716b;
                 y10 y10Var = (y10) this.f5717c;
                 if (motionEvent.getAction() == 0) {
-                    FiltersSetupActivity filtersSetupActivity = c20Var.f36499e;
+                    FiltersSetupActivity filtersSetupActivity = c20Var.f36501e;
                     filtersSetupActivity.f33762c.r(filtersSetupActivity.f33760a.T(y10Var));
                     return false;
                 }

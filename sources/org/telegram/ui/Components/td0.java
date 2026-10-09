@@ -75,7 +75,7 @@ public final class td0 implements Runnable {
                 int i13 = this.f31153b;
                 int i14 = this.f31154c;
                 qm0 qm0Var = fzVar.H;
-                if (fzVar.f37722n) {
+                if (fzVar.f37724n) {
                     int i15 = 0;
                     while (true) {
                         if (i15 < qm0Var.getChildCount()) {
@@ -94,7 +94,7 @@ public final class td0 implements Runnable {
                             u1Var = null;
                         }
                     }
-                    if (u1Var != null && (znVar = fzVar.f37717a) != null) {
+                    if (u1Var != null && (znVar = fzVar.f37719a) != null) {
                         znVar.Ra(u1Var);
                         if (!EmojiData.hasEmojiSupportVibration(u1Var.getMessageObject().getStickerEmoji()) && !u1Var.getMessageObject().isPremiumSticker() && !u1Var.getMessageObject().isAnimatedAnimatedEmoji()) {
                             try {

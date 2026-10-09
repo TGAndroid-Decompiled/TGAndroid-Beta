@@ -536,7 +536,7 @@ public final class k4 {
         } else {
             z10 = true;
         }
-        if ((u1Var.f23392u1 || TextUtils.isEmpty(messageObject.caption)) && u1Var.N.f54636s && !u1Var.f23243j9) {
+        if ((u1Var.f23392u1 || TextUtils.isEmpty(messageObject.caption)) && u1Var.N.f54638s && !u1Var.f23243j9) {
             z11 = false;
         } else {
             z11 = true;

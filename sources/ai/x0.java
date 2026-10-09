@@ -18,7 +18,7 @@ public final class x0 extends c71 {
         super.v(d1Var, i10);
         s3 s3Var = this.N;
         if (s3Var.f1522y) {
-            View view = d1Var.f47656a;
+            View view = d1Var.f47658a;
             if ((view instanceof h1) && (m1Var = (h1Var = (h1) view).K) != null && m1Var.f1380a == s3Var.f1521x) {
                 h1Var.c();
                 s3Var.f1522y = false;
@@ -33,7 +33,7 @@ public final class x0 extends c71 {
         super.y(d1Var);
         s3 s3Var = this.N;
         if (s3Var.f1522y) {
-            View view = d1Var.f47656a;
+            View view = d1Var.f47658a;
             if ((view instanceof h1) && (m1Var = (h1Var = (h1) view).K) != null && m1Var.f1380a == s3Var.f1521x) {
                 h1Var.c();
                 s3Var.f1522y = false;

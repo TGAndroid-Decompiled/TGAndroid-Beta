@@ -3,21 +3,21 @@ package q3;
 import j$.util.Objects;
 import java.util.Arrays;
 public final class c extends j {
-    public final String f45932b;
-    public final int f45933c;
+    public final String f45934b;
+    public final int f45935c;
     public final int d;
-    public final long f45934e;
-    public final long f45935f;
-    public final j[] f45936g;
+    public final long f45936e;
+    public final long f45937f;
+    public final j[] f45938g;
 
     public c(String str, int i10, int i11, long j3, long j10, j[] jVarArr) {
         super("CHAP");
-        this.f45932b = str;
-        this.f45933c = i10;
+        this.f45934b = str;
+        this.f45935c = i10;
         this.d = i11;
-        this.f45934e = j3;
-        this.f45935f = j10;
-        this.f45936g = jVarArr;
+        this.f45936e = j3;
+        this.f45937f = j10;
+        this.f45938g = jVarArr;
     }
 
     public final boolean equals(Object obj) {
@@ -26,7 +26,7 @@ public final class c extends j {
         }
         if (obj != null && c.class == obj.getClass()) {
             c cVar = (c) obj;
-            if (this.f45933c == cVar.f45933c && this.d == cVar.d && this.f45934e == cVar.f45934e && this.f45935f == cVar.f45935f && Objects.equals(this.f45932b, cVar.f45932b) && Arrays.equals(this.f45936g, cVar.f45936g)) {
+            if (this.f45935c == cVar.f45935c && this.d == cVar.d && this.f45936e == cVar.f45936e && this.f45937f == cVar.f45937f && Objects.equals(this.f45934b, cVar.f45934b) && Arrays.equals(this.f45938g, cVar.f45938g)) {
                 return true;
             }
         }
@@ -35,8 +35,8 @@ public final class c extends j {
 
     public final int hashCode() {
         int i10;
-        int i11 = (((((((527 + this.f45933c) * 31) + this.d) * 31) + ((int) this.f45934e)) * 31) + ((int) this.f45935f)) * 31;
-        String str = this.f45932b;
+        int i11 = (((((((527 + this.f45935c) * 31) + this.d) * 31) + ((int) this.f45936e)) * 31) + ((int) this.f45937f)) * 31;
+        String str = this.f45934b;
         if (str != null) {
             i10 = str.hashCode();
         } else {

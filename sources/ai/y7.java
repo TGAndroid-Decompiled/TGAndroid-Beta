@@ -67,7 +67,7 @@ public final class y7 extends org.telegram.ui.ActionBar.f3 {
         rg.p0 p0Var = new rg.p0(AndroidUtilities.dp(8.0f), context, e6Var, true);
         this.f1949b = p0Var;
         p0Var.H = false;
-        p0Var.f47380e.getDrawable().D = false;
+        p0Var.f47382e.getDrawable().D = false;
         p0Var.setIcon(R.raw.unlock_icon);
         w7.z5.a(p0Var);
         TLRPC.User currentUser = UserConfig.getInstance(this.currentAccount).getCurrentUser();
@@ -164,7 +164,7 @@ public final class y7 extends org.telegram.ui.ActionBar.f3 {
         if (tL_storiesStealthMode != null && ConnectionsManager.getInstance(this.currentAccount).getCurrentTime() < tL_storiesStealthMode.active_until_date) {
             this.f1950c = true;
             p0Var.b(LocaleController.getString(R.string.StealthModeIsActive), true, z10);
-            p0Var.f47380e.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.Sh, false));
+            p0Var.f47382e.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.Sh, false));
             return;
         }
         if (tL_storiesStealthMode != null) {
@@ -180,7 +180,7 @@ public final class y7 extends org.telegram.ui.ActionBar.f3 {
                 sb2.append(String.format(locale, ":%02d", Integer.valueOf((int) (j3 % 60))));
                 sb2.append(String.format(locale, ":%02d", Integer.valueOf(i11)));
                 p0Var.b(LocaleController.formatString("AvailableIn", R.string.AvailableIn, sb2.toString()), true, z10);
-                p0Var.f47380e.setTextColor(i0.a.k(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.Sh, false), 125));
+                p0Var.f47382e.setTextColor(i0.a.k(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.Sh, false), 125));
                 a3.d dVar = this.f1952f;
                 AndroidUtilities.cancelRunOnUIThread(dVar);
                 AndroidUtilities.runOnUIThread(dVar, 1000L);
@@ -193,6 +193,6 @@ public final class y7 extends org.telegram.ui.ActionBar.f3 {
         } else if (i12 == 1) {
             p0Var.b(LocaleController.getString(R.string.EnableStealthModeAndOpenStory), true, z10);
         }
-        p0Var.f47380e.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.Sh, false));
+        p0Var.f47382e.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.Sh, false));
     }
 }

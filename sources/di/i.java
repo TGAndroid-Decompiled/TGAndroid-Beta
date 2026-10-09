@@ -32,7 +32,7 @@ import org.telegram.ui.Components.h10;
 import org.telegram.ui.Components.hs;
 import org.telegram.ui.Components.p61;
 import org.telegram.ui.Components.r6;
-import org.telegram.ui.Wallet.b6;
+import org.telegram.ui.Wallet.c6;
 import org.telegram.ui.dc1;
 import org.telegram.ui.o20;
 import org.telegram.ui.p20;
@@ -47,7 +47,7 @@ import yh.o7;
 import yh.p7;
 public final class i extends p20 implements NotificationCenter.NotificationCenterDelegate {
     public FrameLayout P;
-    public b6 Q;
+    public c6 Q;
     public o7 R;
     public bb S;
     public final boolean T = C0();
@@ -229,20 +229,20 @@ public final class i extends p20 implements NotificationCenter.NotificationCente
         FrameLayout frameLayout = new FrameLayout(context);
         this.P = frameLayout;
         frameLayout.setClickable(true);
-        b6 b6Var = new b6(170, context, false);
-        this.Q = b6Var;
-        b6Var.setStarParticlesView(this.f40639e);
-        this.P.addView(this.Q, x5.a(170.0f, 0.0f, 32.0f, 0.0f, 24.0f, 170, 17));
+        c6 c6Var = new c6(170, context, false);
+        this.Q = c6Var;
+        c6Var.setStarParticlesView(this.f40641e);
+        this.P.addView(this.Q, x5.a(170.0f, 0.0f, 32.0f, 0.0f, 12.0f, 170, 17));
         m0(LocaleController.getString(R.string.GramEarningsTitle), AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.GramEarningsText), new a(context, 0)), true), this.P, null);
-        this.f40638c.setOverScrollMode(2);
+        this.f40640c.setOverScrollMode(2);
         j jVar = new j();
-        jVar.f47696m = false;
+        jVar.f47698m = false;
         jVar.C = false;
         jVar.o(hs.h);
         jVar.n(350L);
-        this.f40638c.setItemAnimator(jVar);
-        this.f40638c.setOnItemClickListener(new ai.g(this, 6));
-        this.f40643s.addView(new h10(getParentActivity()), x5.d(-1.0f, -1));
+        this.f40640c.setItemAnimator(jVar);
+        this.f40640c.setOnItemClickListener(new ai.g(this, 6));
+        this.f40645s.addView(new h10(getParentActivity()), x5.d(-1.0f, -1));
         m5.y(this.currentAccount, true);
         LinearLayout linearLayout = new LinearLayout(getParentActivity());
         this.U = linearLayout;
@@ -453,7 +453,7 @@ public final class i extends p20 implements NotificationCenter.NotificationCente
 
     @Override
     public final i0 n0() {
-        e eVar = new e(this, this.f40638c, getParentActivity(), this.currentAccount, this.classGuid, new v(this, 10), getResourceProvider());
+        e eVar = new e(this, this.f40640c, getParentActivity(), this.currentAccount, this.classGuid, new v(this, 10), getResourceProvider());
         this.f8389f0 = eVar;
         eVar.f25280r = false;
         return eVar;
@@ -490,18 +490,18 @@ public final class i extends p20 implements NotificationCenter.NotificationCente
     @Override
     public final void onPause() {
         super.onPause();
-        b6 b6Var = this.Q;
-        if (b6Var != null) {
-            b6Var.setPaused(true);
+        c6 c6Var = this.Q;
+        if (c6Var != null) {
+            c6Var.setPaused(true);
         }
     }
 
     @Override
     public final void onResume() {
         super.onResume();
-        b6 b6Var = this.Q;
-        if (b6Var != null) {
-            b6Var.setPaused(false);
+        c6 c6Var = this.Q;
+        if (c6Var != null) {
+            c6Var.setPaused(false);
         }
     }
 
@@ -515,7 +515,7 @@ public final class i extends p20 implements NotificationCenter.NotificationCente
         o7 o7Var = this.R;
         boolean z10 = false;
         if (o7Var != null && (o7Var.getParent() instanceof View)) {
-            if (this.f40638c.getHeight() - ((View) this.R.getParent()).getBottom() >= 0) {
+            if (this.f40640c.getHeight() - ((View) this.R.getParent()).getBottom() >= 0) {
                 z10 = true;
             }
         }
@@ -529,9 +529,9 @@ public final class i extends p20 implements NotificationCenter.NotificationCente
 
     @Override
     public final void s0(float f7) {
-        b6 b6Var = this.Q;
-        if (b6Var != null) {
-            b6Var.setHeaderTilt(f7 * 70.0f);
+        c6 c6Var = this.Q;
+        if (c6Var != null) {
+            c6Var.setHeaderTilt(f7 * 70.0f);
         }
     }
 }

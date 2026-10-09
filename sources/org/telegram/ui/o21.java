@@ -7,24 +7,24 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 public final class o21 implements org.telegram.ui.ActionBar.a2, r0.n {
-    public final e31 f40400a;
+    public final e31 f40402a;
 
     public o21(e31 e31Var) {
-        this.f40400a = e31Var;
+        this.f40402a = e31Var;
     }
 
     @Override
     public r0.k1 M0(View view, r0.k1 k1Var) {
         i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(k1Var, false);
-        e31 e31Var = this.f40400a;
+        e31 e31Var = this.f40402a;
         e31Var.Q = defaultWindowInsets;
         e31Var.fragmentView.requestLayout();
-        return r0.k1.f46774b;
+        return r0.k1.f46776b;
     }
 
     @Override
     public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        e31 e31Var = this.f40400a;
+        e31 e31Var = this.f40402a;
         e31Var.getClass();
         try {
             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");

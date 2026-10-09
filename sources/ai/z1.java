@@ -149,7 +149,7 @@ public final class z1 implements RequestDelegateTimestamp, MessagesStorage.Strin
                 }
                 return;
             default:
-                ((fy) this.f1999c).f37715a.getMediaDataController().removePeer(this.f1998b);
+                ((fy) this.f1999c).f37717a.getMediaDataController().removePeer(this.f1998b);
                 return;
         }
     }
@@ -162,7 +162,7 @@ public final class z1 implements RequestDelegateTimestamp, MessagesStorage.Strin
     @Override
     public void j(int i10, ArrayList arrayList) {
         pf1 pf1Var = (pf1) this.f1999c;
-        org.telegram.ui.ActionBar.n2 n2Var = pf1Var.f40791b;
+        org.telegram.ui.ActionBar.n2 n2Var = pf1Var.f40793b;
         int size = arrayList.size();
         int[] iArr = new int[1];
         TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers = new TLRPC.TL_messages_invitedUsers();

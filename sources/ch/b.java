@@ -13,7 +13,7 @@ import org.telegram.ui.Components.voip.s2;
 import org.telegram.ui.Components.voip.u1;
 import org.telegram.ui.Components.yi;
 import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.Wallet.b5;
+import org.telegram.ui.Wallet.c5;
 import w7.g6;
 public final class b extends ViewOutlineProvider {
     public final int f4663a;
@@ -112,9 +112,9 @@ public final class b extends ViewOutlineProvider {
                 outline.setRoundRect(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f) + PremiumPreviewFragment.e0((PremiumPreviewFragment) obj).getBottom(), view.getWidth() - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(16.0f) + view.getMeasuredHeight(), AndroidUtilities.dp(16.0f));
                 return;
             default:
-                b5 b5Var = (b5) obj;
-                g6.a(b5Var.f34655c, view.getWidth(), view.getHeight());
-                outline.setConvexPath(b5Var.f34655c);
+                c5 c5Var = (c5) obj;
+                g6.a(c5Var.f34726c, view.getWidth(), view.getHeight());
+                outline.setConvexPath(c5Var.f34726c);
                 return;
         }
     }

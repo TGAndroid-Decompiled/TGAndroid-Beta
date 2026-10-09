@@ -736,16 +736,16 @@ public final class oi extends sw0 {
             } else {
                 q12 = yiVar.q1();
             }
-            WeakHashMap weakHashMap = r0.i0.f46764a;
+            WeakHashMap weakHashMap = r0.i0.f46766a;
             r0.k1 a2 = r0.b0.a(oiVar);
             if (a2 != null) {
-                i15 = a2.f46775a.f(8).d;
+                i15 = a2.f46777a.f(8).d;
             } else {
                 i15 = 0;
             }
             r0.k1 a10 = r0.b0.a(oiVar);
             if (a10 != null) {
-                i16 = a10.f46775a.f(527).d;
+                i16 = a10.f46777a.f(527).d;
             } else {
                 i16 = 0;
             }

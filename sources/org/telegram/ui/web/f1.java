@@ -9,7 +9,7 @@ import org.telegram.messenger.bi;
 import org.telegram.ui.ActionBar.g5;
 import org.telegram.ui.Components.e71;
 public final class f1 extends g5 {
-    public final q0 f43300f = new q0(this, 2);
+    public final q0 f43302f = new q0(this, 2);
     public final g1 h;
 
     public f1(g1 g1Var) {
@@ -37,16 +37,16 @@ public final class f1 extends g5 {
     public final void m() {
         int i10;
         g1 g1Var = this.h;
-        g1Var.f43306n = null;
+        g1Var.f43308n = null;
         g1Var.h = false;
-        AndroidUtilities.cancelRunOnUIThread(this.f43300f);
+        AndroidUtilities.cancelRunOnUIThread(this.f43302f);
         e71 e71Var = g1Var.f26290a;
         if (e71Var != null) {
             e71Var.W2.N(true);
             g1Var.f26290a.V2.h1(0, 0);
         }
-        vh.n nVar = g1Var.f43309w.d;
-        if (TextUtils.isEmpty(g1Var.f43306n)) {
+        vh.n nVar = g1Var.f43311w.d;
+        if (TextUtils.isEmpty(g1Var.f43308n)) {
             i10 = R.string.WebNoHistory;
         } else {
             i10 = R.string.WebNoSearchedHistory;
@@ -58,15 +58,15 @@ public final class f1 extends g5 {
     public final void q(EditText editText) {
         int i10;
         g1 g1Var = this.h;
-        boolean z10 = !TextUtils.isEmpty(g1Var.f43306n);
+        boolean z10 = !TextUtils.isEmpty(g1Var.f43308n);
         String obj = editText.getText().toString();
-        if (!TextUtils.equals(g1Var.f43306n, obj)) {
-            g1Var.f43306n = obj;
+        if (!TextUtils.equals(g1Var.f43308n, obj)) {
+            g1Var.f43308n = obj;
             g1Var.h = true;
-            q0 q0Var = this.f43300f;
+            q0 q0Var = this.f43302f;
             AndroidUtilities.cancelRunOnUIThread(q0Var);
             AndroidUtilities.runOnUIThread(q0Var, 500L);
-            vh.n nVar = g1Var.f43309w.d;
+            vh.n nVar = g1Var.f43311w.d;
             if (TextUtils.isEmpty(obj)) {
                 i10 = R.string.WebNoHistory;
             } else {

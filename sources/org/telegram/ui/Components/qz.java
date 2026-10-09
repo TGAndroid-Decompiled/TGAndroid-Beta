@@ -37,7 +37,7 @@ public final class qz extends pm0 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        return d1Var.f47656a instanceof qm0;
+        return d1Var.f47658a instanceof qm0;
     }
 
     public final int E(Object obj) {
@@ -155,8 +155,8 @@ public final class qz extends pm0 {
         int i12;
         a00 a00Var = this.v;
         int i13 = a00Var.f24401c1;
-        int i14 = d1Var.f47660f;
-        View view = d1Var.f47656a;
+        int i14 = d1Var.f47662f;
+        View view = d1Var.f47658a;
         SparseArray sparseArray = this.h;
         if (i14 != 0) {
             ArrayList<TLRPC.Document> arrayList = null;

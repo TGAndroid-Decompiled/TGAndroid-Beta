@@ -29,7 +29,7 @@ public final class n0 extends FrameLayout {
         this.f9234c = keyboardButton;
         vh.n nVar = new vh.n(context);
         this.f9232a = nVar;
-        nVar.f49734r = false;
+        nVar.f49736r = false;
         nVar.setTextSize(1, 14.0f);
         nVar.setTypeface(AndroidUtilities.bold());
         NotificationCenter.listenEmojiLoading(nVar);

@@ -395,7 +395,7 @@ public class qm0 extends RecyclerView implements bh.a {
             s4.p0 layoutManager = getLayoutManager();
             if (layoutManager instanceof s4.d0) {
                 s4.d0 d0Var = (s4.d0) layoutManager;
-                if (d0Var.f47644o == 1) {
+                if (d0Var.f47646o == 1) {
                     if (this.f30198e1 != null) {
                         if (this.f30233w1 == 1) {
                             paddingTop = 0;
@@ -610,7 +610,7 @@ public class qm0 extends RecyclerView implements bh.a {
             org.telegram.ui.bj bjVar = this.f30201f2;
             int[] iArr2 = this.f30211k2;
             org.telegram.ui.zn znVar = bjVar.d;
-            iArr2[0] = (int) znVar.f44932s9;
+            iArr2[0] = (int) znVar.f44934s9;
             iArr2[1] = znVar.Ba;
             View childAt = getChildAt(i10);
             RectF rectF = AndroidUtilities.rectTmp;
@@ -627,11 +627,11 @@ public class qm0 extends RecyclerView implements bh.a {
                     }
                     org.telegram.ui.zn znVar2 = this.f30201f2.d;
                     org.telegram.ui.mm mmVar = znVar2.A0;
-                    ArrayList arrayList = znVar2.f44954u6;
+                    ArrayList arrayList = znVar2.f44956u6;
                     int i13 = S - mmVar.J;
                     if (i13 >= 0 && i13 < arrayList.size()) {
                         MessageObject messageObject = (MessageObject) arrayList.get(i13);
-                        if (messageObject.contentType == 0 && messageObject.hasValidGroupId() && (groupedMessages = (MessageObject.GroupedMessages) znVar2.f44994x6.f(messageObject.getGroupId())) != null) {
+                        if (messageObject.contentType == 0 && messageObject.hasValidGroupId() && (groupedMessages = (MessageObject.GroupedMessages) znVar2.f44996x6.f(messageObject.getGroupId())) != null) {
                             ArrayList<MessageObject> arrayList2 = groupedMessages.messages;
                             if (z10) {
                                 size = 0;
@@ -644,7 +644,7 @@ public class qm0 extends RecyclerView implements bh.a {
                     if (z10) {
                         int i14 = this.f30199e2;
                         if (S > i14) {
-                            if (!this.f30201f2.f36343a) {
+                            if (!this.f30201f2.f36345a) {
                                 for (int i15 = i14 + 1; i15 <= S; i15++) {
                                     if (i15 != this.f30197d2 && this.f30201f2.a(i15)) {
                                         this.f30201f2.b(i15, true, min2, min);
@@ -668,7 +668,7 @@ public class qm0 extends RecyclerView implements bh.a {
                                 }
                                 i16++;
                             }
-                        } else if (!this.f30201f2.f36343a) {
+                        } else if (!this.f30201f2.f36345a) {
                             for (int i17 = i16 - 1; i17 >= S; i17--) {
                                 if (i17 != this.f30197d2 && this.f30201f2.a(i17)) {
                                     this.f30201f2.b(i17, true, min2, min);
@@ -677,7 +677,7 @@ public class qm0 extends RecyclerView implements bh.a {
                         }
                     }
                 }
-                if (!this.f30201f2.f36343a) {
+                if (!this.f30201f2.f36345a) {
                     this.f30199e2 = S;
                     return;
                 }
@@ -1180,7 +1180,7 @@ public class qm0 extends RecyclerView implements bh.a {
         }
         s4.d1 K = K(bm0Var.run());
         if (K != null) {
-            View view = K.f47656a;
+            View view = K.f47658a;
             int c10 = K.c();
             this.f30232v2 = c10;
             i1(c10, view);
@@ -1640,9 +1640,9 @@ public class qm0 extends RecyclerView implements bh.a {
                 org.telegram.ui.bj bjVar = this.f30201f2;
                 int[] iArr = this.f30211k2;
                 org.telegram.ui.zn znVar = bjVar.d;
-                iArr[0] = (int) znVar.f44932s9;
+                iArr[0] = (int) znVar.f44934s9;
                 iArr[1] = znVar.Ba;
-                if (motionEvent.getY() > (getMeasuredHeight() - AndroidUtilities.dp(56.0f)) - this.f30211k2[1] && (this.f30199e2 >= this.f30197d2 || !this.f30201f2.f36343a)) {
+                if (motionEvent.getY() > (getMeasuredHeight() - AndroidUtilities.dp(56.0f)) - this.f30211k2[1] && (this.f30199e2 >= this.f30197d2 || !this.f30201f2.f36345a)) {
                     this.f30205h2 = false;
                     if (!this.f30203g2) {
                         this.f30203g2 = true;
@@ -1650,7 +1650,7 @@ public class qm0 extends RecyclerView implements bh.a {
                         AndroidUtilities.runOnUIThread(t6Var);
                         return true;
                     }
-                } else if (motionEvent.getY() < AndroidUtilities.dp(56.0f) + this.f30211k2[0] && (this.f30199e2 <= this.f30197d2 || !this.f30201f2.f36343a)) {
+                } else if (motionEvent.getY() < AndroidUtilities.dp(56.0f) + this.f30211k2[0] && (this.f30199e2 <= this.f30197d2 || !this.f30201f2.f36345a)) {
                     this.f30205h2 = true;
                     if (!this.f30203g2) {
                         this.f30203g2 = true;
@@ -1721,7 +1721,7 @@ public class qm0 extends RecyclerView implements bh.a {
         s4.i0 adapter = getAdapter();
         gg.o1 o1Var = this.f30224r2;
         if (adapter != null) {
-            adapter.f47710a.unregisterObserver(o1Var);
+            adapter.f47712a.unregisterObserver(o1Var);
         }
         ArrayList arrayList = this.f30215n1;
         if (arrayList != null) {

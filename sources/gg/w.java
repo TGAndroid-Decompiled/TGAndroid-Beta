@@ -50,7 +50,7 @@ public final class w implements f0, gm0 {
         if (fyVar != null) {
             Long l4 = (Long) view.getTag();
             long longValue = l4.longValue();
-            ty tyVar = fyVar.f37715a;
+            ty tyVar = fyVar.f37717a;
             if (tyVar.getParentActivity() != null && (user = tyVar.getMessagesController().getUser(l4)) != null) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(tyVar.getParentActivity());
                 String string = LocaleController.getString(R.string.ChatHintsDeleteAlertTitle);

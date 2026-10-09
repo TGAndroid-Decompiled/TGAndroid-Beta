@@ -7,16 +7,16 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SharedConfig;
 public final class ej extends AnimatorListenerAdapter {
-    public final int f37269a = 1;
-    public final boolean f37270b;
-    public int f37271c;
+    public final int f37271a = 1;
+    public final boolean f37272b;
+    public int f37273c;
     public final Object d;
-    public final NotificationCenter.NotificationCenterDelegate f37272e;
+    public final NotificationCenter.NotificationCenterDelegate f37274e;
 
     public ej(org.telegram.ui.Components.bw0 bw0Var, boolean z10, int i10, org.telegram.ui.Components.uu0 uu0Var) {
-        this.f37272e = bw0Var;
-        this.f37270b = z10;
-        this.f37271c = i10;
+        this.f37274e = bw0Var;
+        this.f37272b = z10;
+        this.f37273c = i10;
         this.d = uu0Var;
     }
 
@@ -26,14 +26,14 @@ public final class ej extends AnimatorListenerAdapter {
         View m10;
         int i10;
         s4.i0 adapter;
-        switch (this.f37269a) {
+        switch (this.f37271a) {
             case 0:
-                zn znVar = (zn) this.f37272e;
+                zn znVar = (zn) this.f37274e;
                 znVar.O5 = true;
                 ((org.telegram.ui.ActionBar.n2) znVar).fragmentBeginToShow = true;
                 znVar.V9 = null;
-                if (this.f37270b) {
-                    znVar.f44834ka = false;
+                if (this.f37272b) {
+                    znVar.f44836ka = false;
                 }
                 kVar = ((org.telegram.ui.ActionBar.n2) znVar).actionBar;
                 kVar.invalidate();
@@ -42,12 +42,12 @@ public final class ej extends AnimatorListenerAdapter {
                 ((Runnable) this.d).run();
                 return;
             default:
-                int i11 = this.f37271c;
-                org.telegram.ui.Components.bw0 bw0Var = (org.telegram.ui.Components.bw0) this.f37272e;
+                int i11 = this.f37273c;
+                org.telegram.ui.Components.bw0 bw0Var = (org.telegram.ui.Components.bw0) this.f37274e;
                 int[] iArr = bw0Var.f25145m1;
                 org.telegram.ui.Components.uu0[] uu0VarArr = bw0Var.f25142k0;
                 bw0Var.f25150o1 = false;
-                boolean z10 = this.f37270b;
+                boolean z10 = this.f37272b;
                 if (z10) {
                     int i12 = bw0Var.f25154q1;
                     iArr[i11] = i12;
@@ -98,11 +98,11 @@ public final class ej extends AnimatorListenerAdapter {
     @Override
     public void onAnimationStart(Animator animator) {
         int i10;
-        switch (this.f37269a) {
+        switch (this.f37271a) {
             case 0:
                 super.onAnimationStart(animator);
-                i10 = ((org.telegram.ui.ActionBar.n2) ((zn) this.f37272e)).currentAccount;
-                this.f37271c = NotificationCenter.getInstance(i10).setAnimationInProgress(this.f37271c, null);
+                i10 = ((org.telegram.ui.ActionBar.n2) ((zn) this.f37274e)).currentAccount;
+                this.f37273c = NotificationCenter.getInstance(i10).setAnimationInProgress(this.f37273c, null);
                 return;
             default:
                 super.onAnimationStart(animator);
@@ -111,8 +111,8 @@ public final class ej extends AnimatorListenerAdapter {
     }
 
     public ej(zn znVar, boolean z10, Runnable runnable) {
-        this.f37272e = znVar;
-        this.f37270b = z10;
+        this.f37274e = znVar;
+        this.f37272b = z10;
         this.d = runnable;
     }
 }

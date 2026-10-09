@@ -52,18 +52,18 @@ public final class ot0 extends no0 {
             return true;
         }
         if (i10 == 12 && (hu0Var = bw0Var.T) != null) {
-            org.telegram.ui.ao aoVar = hu0Var.f36357a;
-            org.telegram.ui.zk zkVar = aoVar.f44873o1;
+            org.telegram.ui.ao aoVar = hu0Var.f36359a;
+            org.telegram.ui.zk zkVar = aoVar.f44875o1;
             if (zkVar != null) {
                 zkVar.e(n0Var, true);
             }
-            if (TextUtils.isEmpty(aoVar.f44939t3) && aoVar.f44899q3 == null) {
+            if (TextUtils.isEmpty(aoVar.f44941t3) && aoVar.f44901q3 == null) {
                 z11 = false;
             } else {
                 z11 = true;
             }
-            aoVar.f44926s3 = z11;
-            aoVar.f44872o0 = z11;
+            aoVar.f44928s3 = z11;
+            aoVar.f44874o0 = z11;
             aoVar.lc(false);
             aoVar.Mc();
         }

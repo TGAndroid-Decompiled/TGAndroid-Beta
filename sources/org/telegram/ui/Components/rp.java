@@ -53,11 +53,11 @@ public final class rp implements wi {
                     loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
                     qp qpVar = new qp(new jj1(file, file, ""), loadBitmap, false, 0);
                     qpVar.V1 = this.f30474b;
-                    qpVar.f43935a.f43920a = this.f30475c;
-                    qpVar.f43979p1 = this.d;
+                    qpVar.f43937a.f43922a = this.f30475c;
+                    qpVar.f43981p1 = this.d;
                     qpVar.F1 = false;
                     qpVar.E1 = false;
-                    qpVar.f43975n1 = 0.2f;
+                    qpVar.f43977n1 = 0.2f;
                     qpVar.c1(this.f30476e);
                     qpVar.I1 = new pp(yiVar, this.f30477f, 0);
                     ?? obj = new Object();
@@ -82,8 +82,8 @@ public final class rp implements wi {
     public final void a1(Object obj) {
         qp qpVar = new qp(obj, null, true, 1);
         qpVar.V1 = this.f30474b;
-        qpVar.f43935a.f43920a = this.f30475c;
-        qpVar.f43979p1 = this.d;
+        qpVar.f43937a.f43922a = this.f30475c;
+        qpVar.f43981p1 = this.d;
         qpVar.c1(this.f30476e);
         qpVar.I1 = new pp(this.f30473a, this.f30477f, 1);
         ?? obj2 = new Object();

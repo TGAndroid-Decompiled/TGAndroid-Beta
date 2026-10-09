@@ -418,10 +418,10 @@ public class MediaDataController extends BaseController {
                             }
                             zg.n0 n0Var = anonymousClass14.val$tag;
                             if (n0Var != null) {
-                                if (!TextUtils.isEmpty(n0Var.f54615f)) {
-                                    j11 = anonymousClass14.val$tag.f54615f.hashCode();
+                                if (!TextUtils.isEmpty(n0Var.f54617f)) {
+                                    j11 = anonymousClass14.val$tag.f54617f.hashCode();
                                 } else {
-                                    j11 = anonymousClass14.val$tag.f54616g;
+                                    j11 = anonymousClass14.val$tag.f54618g;
                                 }
                                 str3 = "INNER JOIN tag_message_id t ON m.mid = t.mid";
                                 anonymousClass1 = str2 + j11 + " AND";
@@ -6336,7 +6336,7 @@ public class MediaDataController extends BaseController {
                 TL_stars.StarsAmount starsAmount2 = suggestedPost2.price;
                 zf.a l4 = zf.a.l(starsAmount);
                 zf.a l10 = zf.a.l(starsAmount2);
-                if (l4 != l10 && ((l4 == null || l10 == null || l4.f54439a != l10.f54439a || l4.f54440b != l10.f54440b) && suggestedPost.schedule_date == suggestedPost2.schedule_date && suggestedPost.accepted == suggestedPost2.accepted && suggestedPost.rejected == suggestedPost2.rejected)) {
+                if (l4 != l10 && ((l4 == null || l10 == null || l4.f54441a != l10.f54441a || l4.f54442b != l10.f54442b) && suggestedPost.schedule_date == suggestedPost2.schedule_date && suggestedPost.accepted == suggestedPost2.accepted && suggestedPost.rejected == suggestedPost2.rejected)) {
                 }
             }
             return false;
@@ -8309,13 +8309,13 @@ public class MediaDataController extends BaseController {
     public void onRingtoneUploaded(String str, TLRPC.Document document, boolean z10) {
         this.ringtoneUploaderHashMap.remove(str);
         vf.c cVar = this.ringtoneDataStore;
-        ArrayList arrayList = cVar.f49556e;
+        ArrayList arrayList = cVar.f49558e;
         boolean z11 = true;
         if (z10) {
             int i10 = 0;
             while (true) {
                 if (i10 < arrayList.size()) {
-                    if (((vf.b) arrayList.get(i10)).d && str.equals(((vf.b) arrayList.get(i10)).f49549b)) {
+                    if (((vf.b) arrayList.get(i10)).d && str.equals(((vf.b) arrayList.get(i10)).f49551b)) {
                         arrayList.remove(i10);
                         break;
                     }
@@ -8329,9 +8329,9 @@ public class MediaDataController extends BaseController {
             int i11 = 0;
             while (true) {
                 if (i11 < arrayList.size()) {
-                    if (((vf.b) arrayList.get(i11)).d && str.equals(((vf.b) arrayList.get(i11)).f49549b)) {
+                    if (((vf.b) arrayList.get(i11)).d && str.equals(((vf.b) arrayList.get(i11)).f49551b)) {
                         ((vf.b) arrayList.get(i11)).d = false;
-                        ((vf.b) arrayList.get(i11)).f49548a = document;
+                        ((vf.b) arrayList.get(i11)).f49550a = document;
                         break;
                     }
                     i11++;
@@ -8345,7 +8345,7 @@ public class MediaDataController extends BaseController {
             }
         }
         if (z11) {
-            NotificationCenter.getInstance(cVar.f49555c).lambda$postNotificationNameOnUIThread$1(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
+            NotificationCenter.getInstance(cVar.f49557c).lambda$postNotificationNameOnUIThread$1(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
         }
     }
 
@@ -9164,12 +9164,12 @@ public class MediaDataController extends BaseController {
         vf.c cVar = this.ringtoneDataStore;
         cVar.getClass();
         ?? obj = new Object();
-        obj.f49549b = str;
+        obj.f49551b = str;
         int i10 = cVar.d;
         cVar.d = i10 + 1;
-        obj.f49550c = i10;
+        obj.f49552c = i10;
         obj.d = true;
-        cVar.f49556e.add(obj);
+        cVar.f49558e.add(obj);
     }
 
     public void verifyAnimatedStickerMessage(TLRPC.Message message) {
@@ -9965,22 +9965,22 @@ public class MediaDataController extends BaseController {
             tL_draftMessage.flags |= 16;
             tL_inputReplyToMessage.reply_to_msg_id = message2.f20059id;
             if (pnVar != null) {
-                String str = pnVar.f40849i;
+                String str = pnVar.f40851i;
                 tL_inputReplyToMessage.quote_text = str;
                 if (str != null) {
                     tL_inputReplyToMessage.flags |= 20;
-                    tL_inputReplyToMessage.quote_offset = pnVar.f40844b;
+                    tL_inputReplyToMessage.quote_offset = pnVar.f40846b;
                 }
-                ArrayList<TLRPC.MessageEntity> arrayList2 = pnVar.f40850j;
+                ArrayList<TLRPC.MessageEntity> arrayList2 = pnVar.f40852j;
                 tL_inputReplyToMessage.quote_entities = arrayList2;
                 if (arrayList2 != null && !arrayList2.isEmpty()) {
                     tL_draftMessage.reply_to.quote_entities = new ArrayList<>(tL_draftMessage.reply_to.quote_entities);
                     tL_draftMessage.reply_to.flags |= 8;
                 }
-                MessageObject messageObject = pnVar.f40843a;
+                MessageObject messageObject = pnVar.f40845a;
                 if (messageObject != null && messageObject.messageOwner != null) {
                     TLRPC.Peer peer = getMessagesController().getPeer(j3);
-                    TLRPC.Peer peer2 = pnVar.f40843a.messageOwner.peer_id;
+                    TLRPC.Peer peer2 = pnVar.f40845a.messageOwner.peer_id;
                     if (peer != null && !MessageObject.peersEqual(peer, peer2)) {
                         TLRPC.InputReplyTo inputReplyTo2 = tL_draftMessage.reply_to;
                         inputReplyTo2.flags |= 2;

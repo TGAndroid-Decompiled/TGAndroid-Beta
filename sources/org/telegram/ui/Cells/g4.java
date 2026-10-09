@@ -157,7 +157,7 @@ public final class g4 extends FrameLayout {
                     this.S = new rg.a1(org.telegram.ui.ActionBar.i6.Lj, org.telegram.ui.ActionBar.i6.Mj, -1, -1, this.M);
                 }
                 this.S.d((int) (width - AndroidUtilities.dp(10.0f)), 0.0f, (int) (height - AndroidUtilities.dp(10.0f)), (int) (AndroidUtilities.dp(10.0f) + width), 0.0f, (int) (AndroidUtilities.dp(10.0f) + height));
-                paint = this.S.f47177f;
+                paint = this.S.f47179f;
             } else {
                 if (this.U == null) {
                     this.U = new Paint();

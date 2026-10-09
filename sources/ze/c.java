@@ -3,29 +3,29 @@ package ze;
 import cf.p;
 import cf.t;
 public final class c extends ef.a {
-    public final int f54374a;
-    public final cf.a f54375b;
+    public final int f54376a;
+    public final cf.a f54377b;
 
     public c(int i10) {
-        this.f54374a = i10;
+        this.f54376a = i10;
         switch (i10) {
             case 1:
-                this.f54375b = new p();
+                this.f54377b = new p();
                 return;
             default:
-                this.f54375b = new p();
+                this.f54377b = new p();
                 return;
         }
     }
 
     @Override
     public void a(CharSequence charSequence) {
-        int i10 = this.f54374a;
+        int i10 = this.f54376a;
     }
 
     @Override
     public boolean b(cf.a aVar) {
-        switch (this.f54374a) {
+        switch (this.f54376a) {
             case 0:
                 return true;
             default:
@@ -35,17 +35,17 @@ public final class c extends ef.a {
 
     @Override
     public final cf.a e() {
-        switch (this.f54374a) {
+        switch (this.f54376a) {
             case 0:
-                return (cf.f) this.f54375b;
+                return (cf.f) this.f54377b;
             default:
-                return (t) this.f54375b;
+                return (t) this.f54377b;
         }
     }
 
     @Override
     public boolean f() {
-        switch (this.f54374a) {
+        switch (this.f54376a) {
             case 0:
                 return true;
             default:
@@ -55,9 +55,9 @@ public final class c extends ef.a {
 
     @Override
     public final q3.h h(d dVar) {
-        switch (this.f54374a) {
+        switch (this.f54376a) {
             case 0:
-                return q3.h.a(dVar.f54379b);
+                return q3.h.a(dVar.f54381b);
             default:
                 return null;
         }

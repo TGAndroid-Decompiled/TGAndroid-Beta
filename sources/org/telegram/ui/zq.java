@@ -10,16 +10,16 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import androidx.recyclerview.widget.RecyclerView;
 public final class zq implements ViewTreeObserver.OnPreDrawListener {
-    public final int f45042a;
-    public final View f45043b;
-    public final int f45044c;
+    public final int f45044a;
+    public final View f45045b;
+    public final int f45046c;
     public final Object d;
 
     public zq(Object obj, org.telegram.ui.Components.j10 j10Var, int i10, int i11) {
-        this.f45042a = i11;
+        this.f45044a = i11;
         this.d = obj;
-        this.f45043b = j10Var;
-        this.f45044c = i10;
+        this.f45045b = j10Var;
+        this.f45046c = i10;
     }
 
     @Override
@@ -28,35 +28,35 @@ public final class zq implements ViewTreeObserver.OnPreDrawListener {
         float f7;
         float f10;
         int i10;
-        int i11 = this.f45042a;
-        int i12 = this.f45044c;
+        int i11 = this.f45044a;
+        int i12 = this.f45046c;
         Object obj = this.d;
-        View view = this.f45043b;
+        View view = this.f45045b;
         float f11 = 0.0f;
         int i13 = 2;
         int i14 = 0;
         switch (i11) {
             case 0:
                 tr trVar = (tr) obj;
-                trVar.f42056c.getViewTreeObserver().removeOnPreDrawListener(this);
-                int childCount = trVar.f42056c.getChildCount();
+                trVar.f42058c.getViewTreeObserver().removeOnPreDrawListener(this);
+                int childCount = trVar.f42058c.getChildCount();
                 AnimatorSet animatorSet = new AnimatorSet();
                 for (int i15 = 0; i15 < childCount; i15++) {
-                    View childAt = trVar.f42056c.getChildAt(i15);
+                    View childAt = trVar.f42058c.getChildAt(i15);
                     if (childAt != view) {
-                        trVar.f42056c.getClass();
+                        trVar.f42058c.getClass();
                         if (RecyclerView.R(childAt) >= i12) {
                             childAt.setAlpha(0.0f);
                             ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt, View.ALPHA, 0.0f, 1.0f);
-                            ofFloat.setStartDelay((int) ((Math.min(trVar.f42056c.getMeasuredHeight(), Math.max(0, childAt.getTop())) / trVar.f42056c.getMeasuredHeight()) * 100.0f));
+                            ofFloat.setStartDelay((int) ((Math.min(trVar.f42058c.getMeasuredHeight(), Math.max(0, childAt.getTop())) / trVar.f42058c.getMeasuredHeight()) * 100.0f));
                             ofFloat.setDuration(200L);
                             animatorSet.playTogether(ofFloat);
                         }
                     }
                 }
                 if (view != null && view.getParent() == null) {
-                    trVar.f42056c.addView(view);
-                    s4.p0 layoutManager = trVar.f42056c.getLayoutManager();
+                    trVar.f42058c.addView(view);
+                    s4.p0 layoutManager = trVar.f42058c.getLayoutManager();
                     if (layoutManager != null) {
                         layoutManager.M(view);
                         z10 = true;
@@ -145,7 +145,7 @@ public final class zq implements ViewTreeObserver.OnPreDrawListener {
             default:
                 w10 w10Var = (w10) obj;
                 w10Var.getViewTreeObserver().removeOnPreDrawListener(this);
-                ai.w0 w0Var = w10Var.f43042b;
+                ai.w0 w0Var = w10Var.f43044b;
                 int childCount4 = w0Var.getChildCount();
                 AnimatorSet animatorSet4 = new AnimatorSet();
                 int i19 = 0;
@@ -186,7 +186,7 @@ public final class zq implements ViewTreeObserver.OnPreDrawListener {
                 float f13 = f11;
                 int i20 = i14;
                 animatorSet4.addListener(new m10(this));
-                w10Var.f43056l0.lock();
+                w10Var.f43058l0.lock();
                 animatorSet4.start();
                 if (view != null && view.getParent() == null) {
                     w0Var.addView(view);

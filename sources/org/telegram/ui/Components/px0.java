@@ -16,7 +16,7 @@ public final class px0 extends pm0 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47660f == 1) {
+        if (d1Var.f47662f == 1) {
             return true;
         }
         return false;
@@ -56,10 +56,10 @@ public final class px0 extends pm0 {
         yx0 yx0Var;
         ux0[] ux0VarArr;
         boolean z10 = true;
-        if (d1Var.f47660f == 1 && (ux0VarArr = (yx0Var = this.d).W2) != null) {
+        if (d1Var.f47662f == 1 && (ux0VarArr = (yx0Var = this.d).W2) != null) {
             int i11 = i10 - 1;
             ux0 ux0Var = ux0VarArr[i11];
-            final tx0 tx0Var = (tx0) d1Var.f47656a;
+            final tx0 tx0Var = (tx0) d1Var.f47658a;
             if (yx0Var.f33392k3 != i11) {
                 z10 = false;
             }
@@ -116,8 +116,8 @@ public final class px0 extends pm0 {
     @Override
     public final void y(s4.d1 d1Var) {
         boolean z10 = true;
-        if (d1Var.f47660f == 1) {
-            tx0 tx0Var = (tx0) d1Var.f47656a;
+        if (d1Var.f47662f == 1) {
+            tx0 tx0Var = (tx0) d1Var.f47658a;
             if (this.d.f33392k3 != d1Var.b() - 1) {
                 z10 = false;
             }

@@ -241,25 +241,25 @@ public class kl0 extends FrameLayout implements NotificationCenter.NotificationC
         boolean z10 = true;
         if (cVar != null) {
             dh.e eVar = kl0Var.f28066a1;
-            org.telegram.ui.b61 b61Var = a0Var.f54457m.f39126f0;
-            b61Var.f44499x = true;
+            org.telegram.ui.b61 b61Var = a0Var.f54459m.f39128f0;
+            b61Var.f44501x = true;
             b61Var.setBackground(null);
             b61Var.e();
             b61Var.invalidate();
-            ch.d c10 = cVar.c(a0Var.f54447a, null, true);
+            ch.d c10 = cVar.c(a0Var.f54449a, null, true);
             c10.o(eVar);
             c10.q(AndroidUtilities.dp(12.0f));
             c10.p(AndroidUtilities.dp(8.0f));
-            a0Var.f54469z = c10;
+            a0Var.f54471z = c10;
         }
         zg.a0 a0Var2 = kl0Var.f28106x0;
         jl0 jl0Var = kl0Var.f28081g0;
         if (jl0Var != null && !jl0Var.o()) {
             z10 = false;
         }
-        a0Var2.f54457m.setLongPressEnabled(z10);
+        a0Var2.f54459m.setLongPressEnabled(z10);
         kl0Var.j();
-        kl0Var.f28106x0.f54460p = new bd0(kl0Var, 16);
+        kl0Var.f28106x0.f54462p = new bd0(kl0Var, 16);
         kl0Var.m();
     }
 
@@ -319,8 +319,8 @@ public class kl0 extends FrameLayout implements NotificationCenter.NotificationC
     public final void d() {
         zg.a0 a0Var = this.f28106x0;
         if (a0Var != null) {
-            if (!a0Var.f54461q) {
-                a0Var.f54461q = true;
+            if (!a0Var.f54463q) {
+                a0Var.f54463q = true;
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                 ofFloat.addUpdateListener(new zg.v(a0Var, 0));
                 ofFloat.addListener(new zg.y(a0Var, 0));
@@ -517,13 +517,13 @@ public class kl0 extends FrameLayout implements NotificationCenter.NotificationC
             return "";
         }
         zg.n0 n0Var = (zg.n0) hashSet.iterator().next();
-        long j3 = n0Var.f54616g;
+        long j3 = n0Var.f54618g;
         String str = null;
         if (j3 != 0 && (f7 = s5.f(this.J, j3)) != null) {
             str = MessageObject.findAnimatedEmojiEmoticon(f7, null);
         }
         if (TextUtils.isEmpty(str)) {
-            str = n0Var.f54615f;
+            str = n0Var.f54617f;
         }
         if (TextUtils.isEmpty(str)) {
             return "👍";
@@ -576,7 +576,7 @@ public class kl0 extends FrameLayout implements NotificationCenter.NotificationC
         if (a0Var == null) {
             return null;
         }
-        return a0Var.f54449c;
+        return a0Var.f54451c;
     }
 
     public final void h(ArrayList arrayList) {
@@ -653,7 +653,7 @@ public class kl0 extends FrameLayout implements NotificationCenter.NotificationC
             } else {
                 for (int i15 = 0; i15 < topReactions.size(); i15++) {
                     zg.n0 d11 = zg.n0.d(topReactions.get(i15));
-                    if (!hashSet.contains(d11) && (i11 == 3 || UserConfig.getInstance(this.J).isPremium() || d11.f54616g == 0)) {
+                    if (!hashSet.contains(d11) && (i11 == 3 || UserConfig.getInstance(this.J).isPremium() || d11.f54618g == 0)) {
                         hashSet.add(d11);
                         arrayList.add(d11);
                     }
@@ -864,7 +864,7 @@ public class kl0 extends FrameLayout implements NotificationCenter.NotificationC
             if (chatFull != null && chatFull.paid_reactions_available) {
                 this.f28071c0 = true;
                 ?? obj = new Object();
-                obj.f54611a = true;
+                obj.f54613a = true;
                 arrayList2.add(obj);
             }
             ArrayList<TLRPC.ReactionCount> arrayList3 = this.H.messageOwner.reactions.results;
@@ -879,7 +879,7 @@ public class kl0 extends FrameLayout implements NotificationCenter.NotificationC
             if (chatFull.paid_reactions_available) {
                 this.f28071c0 = true;
                 ?? obj2 = new Object();
-                obj2.f54611a = true;
+                obj2.f54613a = true;
                 arrayList2.add(obj2);
             }
             TLRPC.ChatReactions chatReactions = chatFull.available_reactions;
@@ -964,7 +964,7 @@ public class kl0 extends FrameLayout implements NotificationCenter.NotificationC
         }
         this.G0 = true;
         for (int i18 = 0; i18 < arrayList5.size(); i18++) {
-            if (((zg.n0) arrayList5.get(i18)).f54616g != 0) {
+            if (((zg.n0) arrayList5.get(i18)).f54618g != 0) {
                 this.G0 = false;
             }
         }
@@ -984,7 +984,7 @@ public class kl0 extends FrameLayout implements NotificationCenter.NotificationC
         arrayList9.clear();
         for (int i19 = 0; i19 < arrayList8.size(); i19++) {
             zg.n0 n0Var = (zg.n0) arrayList8.get(i19);
-            if (n0Var.f54615f == null) {
+            if (n0Var.f54617f == null) {
                 i11 = 3;
             } else {
                 i11 = 0;

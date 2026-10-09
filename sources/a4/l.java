@@ -216,7 +216,7 @@ public final class l implements z3.d, a0, androidx.activity.result.b, s, lg.e, h
                 int i12 = rect.left;
                 int i13 = rect.right;
                 ViewGroup viewGroup2 = rVar.J;
-                WeakHashMap weakHashMap = r0.i0.f46764a;
+                WeakHashMap weakHashMap = r0.i0.f46766a;
                 k1 a2 = b0.a(viewGroup2);
                 if (a2 == null) {
                     b10 = 0;
@@ -510,7 +510,7 @@ public final class l implements z3.d, a0, androidx.activity.result.b, s, lg.e, h
                 com.google.android.gms.common.api.g gVar = new com.google.android.gms.common.api.g(new com.google.android.gms.common.api.h(-1, -1, 0, true));
                 Parcel obtain3 = Parcel.obtain();
                 obtain3.writeInterfaceToken("com.google.android.gms.identitycredentials.internal.IIdentityCredentialService");
-                int i12 = q7.a.f45998a;
+                int i12 = q7.a.f46000a;
                 obtain3.writeStrongBinder(fVar);
                 q7.a.b(obtain3, (g7.f) obj3);
                 q7.a.b(obtain3, gVar);

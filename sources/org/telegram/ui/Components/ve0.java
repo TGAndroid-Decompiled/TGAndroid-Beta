@@ -22,7 +22,7 @@ public final class ve0 extends Dialog {
         FrameLayout frameLayout = new FrameLayout(launchActivity);
         this.f31764a = frameLayout;
         fe0 fe0Var = new fe0(1);
-        WeakHashMap weakHashMap = r0.i0.f46764a;
+        WeakHashMap weakHashMap = r0.i0.f46766a;
         r0.a0.i(frameLayout, fe0Var);
         ue0 ue0Var = new ue0(this, launchActivity);
         this.f31765b = ue0Var;

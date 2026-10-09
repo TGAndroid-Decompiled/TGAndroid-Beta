@@ -21,7 +21,7 @@ import org.telegram.ui.Components.hs;
 import org.telegram.ui.Components.pm0;
 import org.telegram.ui.Components.qm0;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.Wallet.b6;
+import org.telegram.ui.Wallet.c6;
 import org.telegram.ui.ok;
 import org.telegram.ui.zn;
 import s4.j;
@@ -44,7 +44,7 @@ public final class h extends eb implements NotificationCenter.NotificationCenter
         qm0Var.setPadding(i10, 0, i10, 0);
         this.d.setOnItemClickListener(new ai.g(this, 7));
         j jVar = new j();
-        jVar.f47696m = false;
+        jVar.f47698m = false;
         jVar.C = false;
         jVar.o(hs.h);
         jVar.n(350L);
@@ -53,7 +53,7 @@ public final class h extends eb implements NotificationCenter.NotificationCenter
         this.X = aVar;
         d1 d1Var = new d1(context, 1, e6Var);
         this.Y = d1Var;
-        ((TextView) d1Var.f805c).setText(LocaleController.formatString(R.string.TonNeededTitle, zf.a.i(aVar.f54440b - m5.y(this.currentAccount, true).s().f54440b, zf.b.f54442b).d()));
+        ((TextView) d1Var.f805c).setText(LocaleController.formatString(R.string.TonNeededTitle, zf.a.i(aVar.f54442b - m5.y(this.currentAccount, true).s().f54442b, zf.b.f54444b).d()));
         TextView textView = (TextView) d1Var.d;
         textView.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.FragmentAddFunds)));
         textView.setMaxWidth(d4.a(textView.getText(), textView.getPaint()));
@@ -131,12 +131,12 @@ public final class h extends eb implements NotificationCenter.NotificationCenter
             zf.a s10 = m5.y(this.currentAccount, true).s();
             int i12 = R.string.TonNeededTitle;
             zf.a aVar = this.X;
-            ((TextView) this.Y.f805c).setText(LocaleController.formatString(i12, zf.a.i(aVar.f54440b - s10.f54440b, zf.b.f54442b).d()));
+            ((TextView) this.Y.f805c).setText(LocaleController.formatString(i12, zf.a.i(aVar.f54442b - s10.f54442b, zf.b.f54444b).d()));
             ab abVar = this.f26023e;
             if (abVar != null) {
                 abVar.setTitle(B());
             }
-            if (s10.f54440b >= aVar.f54440b && (runnable = this.f8382a0) != null) {
+            if (s10.f54442b >= aVar.f54442b && (runnable = this.f8382a0) != null) {
                 runnable.run();
                 this.f8382a0 = null;
                 dismiss();
@@ -149,7 +149,7 @@ public final class h extends eb implements NotificationCenter.NotificationCenter
         super.dismiss();
         d1 d1Var = this.Y;
         if (d1Var != null) {
-            ((b6) d1Var.f804b).setPaused(true);
+            ((c6) d1Var.f804b).setPaused(true);
         }
     }
 
@@ -163,7 +163,7 @@ public final class h extends eb implements NotificationCenter.NotificationCenter
     @Override
     public final void show() {
         ok okVar;
-        if (m5.y(this.currentAccount, true).s().f54440b >= this.X.f54440b) {
+        if (m5.y(this.currentAccount, true).s().f54442b >= this.X.f54442b) {
             Runnable runnable = this.f8382a0;
             if (runnable != null) {
                 runnable.run();

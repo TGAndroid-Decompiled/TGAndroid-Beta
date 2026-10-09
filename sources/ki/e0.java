@@ -157,7 +157,7 @@ public final class e0 implements Runnable {
                         float f7 = ((float) j15) / max;
                         float f10 = ((float) j16) / max;
                         x60 x60Var = ((s60) tVar.f15972b).f33128b;
-                        if (x60Var != null && (okVar = ((re) x60Var).f41394b.Y) != null && (a91Var = okVar.f23886f1) != null) {
+                        if (x60Var != null && (okVar = ((re) x60Var).f41396b.Y) != null && (a91Var = okVar.f23886f1) != null) {
                             float max2 = Math.max(0.0f, Math.min(1.0f, f7));
                             a91Var.f24630b = max2;
                             a91Var.f24631c = Math.max(max2, Math.min(1.0f, f10));

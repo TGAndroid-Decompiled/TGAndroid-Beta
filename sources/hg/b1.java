@@ -13,7 +13,7 @@ import org.telegram.ui.Components.gl;
 import org.telegram.ui.Components.hs;
 import org.telegram.ui.Components.j5;
 import org.telegram.ui.Components.q6;
-import org.telegram.ui.Wallet.i8;
+import org.telegram.ui.Wallet.j8;
 public final class b1 extends EditTextBoldCursor {
     public final int f11170b = 0;
     public int f11171c;
@@ -75,7 +75,7 @@ public final class b1 extends EditTextBoldCursor {
                 } else {
                     i12 = i6.P5;
                 }
-                int a11 = this.d.a(i6.w0(i12, ((i8) this.f11173f).getResourceProvider()), false);
+                int a11 = this.d.a(i6.w0(i12, ((j8) this.f11173f).getResourceProvider()), false);
                 q6 q6Var3 = this.f11172e;
                 q6Var3.u(a11);
                 int scrollX2 = getScrollX();
@@ -177,9 +177,9 @@ public final class b1 extends EditTextBoldCursor {
         q6Var.setCallback(this);
     }
 
-    public b1(i8 i8Var, Activity activity) {
+    public b1(j8 j8Var, Activity activity) {
         super(activity);
-        this.f11173f = i8Var;
+        this.f11173f = j8Var;
         this.f11171c = 960;
         this.d = new j5(this);
         q6 q6Var = new q6(false, true, true);

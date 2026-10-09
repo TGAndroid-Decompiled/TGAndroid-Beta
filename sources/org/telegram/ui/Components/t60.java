@@ -1321,7 +1321,7 @@ public final class t60 extends y60 implements NotificationCenter.NotificationCen
         float measuredHeight;
         u60 u60Var = this.f33127a;
         if (u60Var != null) {
-            ((org.telegram.ui.re) u60Var).f41394b.f44972vc.a(z10, true);
+            ((org.telegram.ui.re) u60Var).f41396b.f44974vc.a(z10, true);
         }
         AnimatorSet animatorSet = this.f31010e0;
         if (animatorSet != null) {

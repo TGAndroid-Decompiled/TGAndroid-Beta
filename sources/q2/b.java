@@ -12,13 +12,13 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import v7.j7;
 public final class b extends l {
-    public final Context f45920o;
-    public final int f45921p;
+    public final Context f45922o;
+    public final int f45923p;
 
     public b(Context context) {
         super(new h[1], new a[1]);
-        this.f45920o = context;
-        this.f45921p = -1;
+        this.f45922o = context;
+        this.f45923p = -1;
     }
 
     @Override
@@ -55,9 +55,9 @@ public final class b extends l {
         }
         e2.d.b(z11);
         try {
-            int i10 = this.f45921p;
+            int i10 = this.f45923p;
             if (i10 == -1) {
-                Context context = this.f45920o;
+                Context context = this.f45922o;
                 if (context != null) {
                     Point v = d0.v(context);
                     int i11 = v.x;
@@ -78,7 +78,7 @@ public final class b extends l {
                     i10 = 4096;
                 }
             }
-            aVar.f45918a = j7.a(byteBuffer.remaining(), i10, byteBuffer.array());
+            aVar.f45920a = j7.a(byteBuffer.remaining(), i10, byteBuffer.array());
             aVar.timeUs = hVar.f10986e;
             return null;
         } catch (s0 e7) {

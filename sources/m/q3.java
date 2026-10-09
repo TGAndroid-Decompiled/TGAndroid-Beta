@@ -16,7 +16,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Components.p80;
-import org.telegram.ui.Wallet.j5;
+import org.telegram.ui.Wallet.k5;
 import w7.x5;
 public final class q3 implements n5.b {
     public Object f15795a;
@@ -80,11 +80,11 @@ public final class q3 implements n5.b {
         float f11;
         float f12;
         float[] fArr2 = (float[]) this.f15795a;
-        j5.e(fArr2, i10, i11);
+        k5.e(fArr2, i10, i11);
         float[] fArr3 = (float[]) this.f15796b;
         Matrix.setLookAtM(fArr3, 0, 0.0f, 0.0f, 6.7f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
         float[] fArr4 = (float[]) this.f15797c;
-        j5.d(f7, f10, fArr4);
+        k5.d(f7, f10, fArr4);
         float[] fArr5 = (float[]) this.d;
         Matrix.multiplyMM(fArr5, 0, fArr3, 0, fArr4, 0);
         Matrix.multiplyMM((float[]) this.f15798e, 0, fArr2, 0, fArr5, 0);

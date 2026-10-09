@@ -13,20 +13,20 @@ import org.telegram.ui.Components.mr0;
 import org.telegram.ui.Components.rs0;
 import org.telegram.ui.Components.tc;
 public final class z1 extends mr0 {
-    public final org.telegram.ui.ActionBar.n2 f51617b1;
-    public final rs0 f51618c1;
+    public final org.telegram.ui.ActionBar.n2 f51619b1;
+    public final rs0 f51620c1;
 
     public z1(rs0 rs0Var, Context context, String str, String str2, e6 e6Var, org.telegram.ui.ActionBar.n2 n2Var) {
         super(context, null, str, false, str2, false, e6Var);
-        this.f51618c1 = rs0Var;
-        this.f51617b1 = n2Var;
+        this.f51620c1 = rs0Var;
+        this.f51619b1 = n2Var;
     }
 
     @Override
     public final void S0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
         ad a02;
         String str;
-        if (z10 && (a02 = ad.a0(this.f51617b1)) != null) {
+        if (z10 && (a02 = ad.a0(this.f51619b1)) != null) {
             if (iVar.m() == 1) {
                 long j3 = iVar.j(0);
                 if (j3 == UserConfig.getInstance(this.currentAccount).clientUserId) {
@@ -56,7 +56,7 @@ public final class z1 extends mr0 {
                 Q.j();
             }
             try {
-                this.f51618c1.performHapticFeedback(3);
+                this.f51620c1.performHapticFeedback(3);
             } catch (Exception unused) {
             }
         }

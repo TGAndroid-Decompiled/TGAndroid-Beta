@@ -82,7 +82,7 @@ public final class o extends TextView {
                 return;
             case 10:
                 Paint paint3 = (Paint) this.f3908b;
-                paint3.setColor(i6.m1(0.8f, i6.w0(i6.f21199z6, j0.V0(((i0) this.f3909c).f47267e))));
+                paint3.setColor(i6.m1(0.8f, i6.w0(i6.f21199z6, j0.V0(((i0) this.f3909c).f47269e))));
                 paint3.setStyle(Paint.Style.STROKE);
                 paint3.setStrokeWidth(1.0f);
                 float height = getHeight() / 2.0f;
@@ -106,7 +106,7 @@ public final class o extends TextView {
     public void draw(Canvas canvas) {
         switch (this.f3907a) {
             case 4:
-                ((org.telegram.ui.h) this.f3909c).f38152b.draw(canvas);
+                ((org.telegram.ui.h) this.f3909c).f38154b.draw(canvas);
                 super.draw(canvas);
                 return;
             case 9:
@@ -154,7 +154,7 @@ public final class o extends TextView {
                 return;
             case 4:
                 super.onDraw(canvas);
-                if (((org.telegram.ui.h) this.f3909c).f38159w) {
+                if (((org.telegram.ui.h) this.f3909c).f38161w) {
                     RectF rectF = AndroidUtilities.rectTmp;
                     rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                     ((org.telegram.ui.Components.voip.h) this.f3908b).a(getMeasuredHeight() / 2.0f, canvas, rectF, null);
@@ -229,19 +229,19 @@ public final class o extends TextView {
                 v1Var.G = false;
                 v1Var.K = true;
                 v1Var.H = true;
-                v1Var.f47489r = 1;
-                v1Var.f47493w = 0.98f;
+                v1Var.f47491r = 1;
+                v1Var.f47495w = 0.98f;
                 v1Var.v = 0.98f;
-                v1Var.f47492u = 0.98f;
-                v1Var.f47479g = false;
-                v1Var.f47486o = 0.0f;
-                v1Var.f47494x = 750L;
-                v1Var.f47495y = 750;
+                v1Var.f47494u = 0.98f;
+                v1Var.f47481g = false;
+                v1Var.f47488o = 0.0f;
+                v1Var.f47496x = 750L;
+                v1Var.f47497y = 750;
                 v1Var.c();
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                ((v1) this.f3908b).f47474a.set(rectF);
-                ((v1) this.f3908b).f47475b.set(rectF);
+                ((v1) this.f3908b).f47476a.set(rectF);
+                ((v1) this.f3908b).f47477b.set(rectF);
                 ((v1) this.f3908b).f();
                 Path path = (Path) this.f3909c;
                 path.reset();

@@ -63,18 +63,18 @@ public final class cc0 implements View.OnClickListener {
                 TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) obj3;
                 TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj2;
                 p80 p80Var = (p80) obj;
-                rs0 rs0Var = ((xh.o2) frameLayout).f51433a;
+                rs0 rs0Var = ((xh.o2) frameLayout).f51435a;
                 if (!z10) {
-                    yh.d5 d5Var = rs0Var.f51512e;
+                    yh.d5 d5Var = rs0Var.f51514e;
                     int i11 = tL_starGiftCollection.collection_id;
                     d5Var.getClass();
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(savedStarGift);
                     d5Var.a(i11, arrayList);
-                    ad.a0(rs0Var.f51509a).R(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2AddedToCollection, yh.s3.E1(savedStarGift.gift), tL_starGiftCollection.title))).j();
+                    ad.a0(rs0Var.f51511a).R(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2AddedToCollection, yh.s3.E1(savedStarGift.gift), tL_starGiftCollection.title))).j();
                 } else {
-                    rs0Var.f51512e.k(tL_starGiftCollection.collection_id, savedStarGift);
-                    ad.a0(rs0Var.f51509a).R(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2RemovedFromCollection, yh.s3.E1(savedStarGift.gift), tL_starGiftCollection.title))).j();
+                    rs0Var.f51514e.k(tL_starGiftCollection.collection_id, savedStarGift);
+                    ad.a0(rs0Var.f51511a).R(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2RemovedFromCollection, yh.s3.E1(savedStarGift.gift), tL_starGiftCollection.title))).j();
                 }
                 p80Var.u();
                 rs0Var.n();

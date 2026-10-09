@@ -23,7 +23,7 @@ import org.telegram.ui.ha0;
 import org.telegram.ui.ib0;
 public abstract class q2 {
     public static void a(final int i10, final Utilities.CallbackReturn callbackReturn, final Utilities.Callback2 callback2, final TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, final TwoStepVerificationActivity twoStepVerificationActivity, final Utilities.Callback3 callback3, final boolean z10, final boolean z11, final ib0 ib0Var) {
-        if (!ib0Var.f38600b) {
+        if (!ib0Var.f38602b) {
             final org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
             if (U != null && U.getContext() != null) {
                 final Activity parentActivity = U.getParentActivity();
@@ -38,7 +38,7 @@ public abstract class q2 {
                         public final void run(Object obj) {
                             TLMethod tLMethod = (TLMethod) obj;
                             final ib0 ib0Var2 = ib0Var;
-                            boolean z12 = ib0Var2.f38600b;
+                            boolean z12 = ib0Var2.f38602b;
                             final org.telegram.ui.ActionBar.b2 b2Var2 = b2Var;
                             if (!z12 && tLMethod != null) {
                                 final int i11 = i10;
@@ -60,7 +60,7 @@ public abstract class q2 {
                                         final TLRPC.TL_error tL_error = (TLRPC.TL_error) obj4;
                                         b2Var2.dismiss();
                                         final ib0 ib0Var3 = ib0Var2;
-                                        if (ib0Var3.f38600b) {
+                                        if (ib0Var3.f38602b) {
                                             return;
                                         }
                                         final TwoStepVerificationActivity twoStepVerificationActivity3 = twoStepVerificationActivity2;
@@ -85,7 +85,7 @@ public abstract class q2 {
                                                             TL_account.Password password = (TL_account.Password) obj5;
                                                             TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj6;
                                                             ib0 ib0Var4 = ib0.this;
-                                                            if (ib0Var4.f38600b) {
+                                                            if (ib0Var4.f38602b) {
                                                                 return;
                                                             }
                                                             if (tL_error2 == null) {
@@ -123,7 +123,7 @@ public abstract class q2 {
                                                     }, 8);
                                                     return;
                                                 }
-                                                ib0Var3.f38601c = true;
+                                                ib0Var3.f38603c = true;
                                                 if (twoStepVerificationActivity3 != null) {
                                                     try {
                                                         twoStepVerificationActivity3.o0();
@@ -158,7 +158,7 @@ public abstract class q2 {
                                                     TL_account.Password password = (TL_account.Password) obj6;
                                                     TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj7;
                                                     ib0 ib0Var4 = ib0.this;
-                                                    if (ib0Var4.f38600b) {
+                                                    if (ib0Var4.f38602b) {
                                                         return;
                                                     }
                                                     if (tL_error2 == null) {
@@ -310,7 +310,7 @@ public abstract class q2 {
                                             }, 8);
                                             return;
                                         }
-                                        ib0Var3.f38601c = true;
+                                        ib0Var3.f38603c = true;
                                         if (twoStepVerificationActivity3 != null) {
                                             try {
                                                 twoStepVerificationActivity3.o0();

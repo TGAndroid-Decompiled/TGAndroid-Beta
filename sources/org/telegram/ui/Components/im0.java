@@ -35,28 +35,28 @@ public final class im0 implements Runnable {
                 return;
             default:
                 sg.i iVar = (sg.i) obj;
-                sg.n nVar = iVar.f48064b;
+                sg.n nVar = iVar.f48066b;
                 ValueAnimator valueAnimator = nVar.W;
-                sg.h hVar = nVar.f48082e0;
-                sg.h hVar2 = nVar.f48080d0;
+                sg.h hVar = nVar.f48084e0;
+                sg.h hVar2 = nVar.f48082d0;
                 if (valueAnimator != null) {
                     valueAnimator.removeAllListeners();
                     nVar.W.cancel();
                     nVar.W = null;
                 }
-                AnimatorSet animatorSet = nVar.f48075a0;
+                AnimatorSet animatorSet = nVar.f48077a0;
                 if (animatorSet != null) {
                     animatorSet.removeAllListeners();
-                    nVar.f48075a0.cancel();
-                    nVar.f48075a0 = null;
+                    nVar.f48077a0.cancel();
+                    nVar.f48077a0 = null;
                 }
-                if (Math.abs(nVar.f48076b.d) > 10.0f) {
+                if (Math.abs(nVar.f48078b.d) > 10.0f) {
                     nVar.l();
                     return;
                 }
-                AndroidUtilities.cancelRunOnUIThread(nVar.f48077b0);
-                nVar.f48075a0 = new AnimatorSet();
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(nVar.f48076b.d, f10);
+                AndroidUtilities.cancelRunOnUIThread(nVar.f48079b0);
+                nVar.f48077a0 = new AnimatorSet();
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(nVar.f48078b.d, f10);
                 ofFloat.addUpdateListener(hVar2);
                 long j3 = 220;
                 ofFloat.setDuration(j3);
@@ -67,7 +67,7 @@ public final class im0 implements Runnable {
                 ofFloat2.setStartDelay(j3);
                 ofFloat2.setDuration(600L);
                 ofFloat2.setInterpolator(AndroidUtilities.overshootInterpolator);
-                ValueAnimator ofFloat3 = ValueAnimator.ofFloat(nVar.f48076b.f48044i, f7);
+                ValueAnimator ofFloat3 = ValueAnimator.ofFloat(nVar.f48078b.f48046i, f7);
                 ofFloat3.addUpdateListener(hVar);
                 ofFloat3.setDuration(j3);
                 ofFloat3.setInterpolator(hsVar);
@@ -76,9 +76,9 @@ public final class im0 implements Runnable {
                 ofFloat4.setStartDelay(j3);
                 ofFloat4.setDuration(600L);
                 ofFloat4.setInterpolator(AndroidUtilities.overshootInterpolator);
-                nVar.f48075a0.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4);
-                nVar.f48075a0.addListener(new org.telegram.ui.Wallet.w4(iVar, 14));
-                nVar.f48075a0.start();
+                nVar.f48077a0.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4);
+                nVar.f48077a0.addListener(new org.telegram.ui.Wallet.x4(iVar, 14));
+                nVar.f48077a0.start();
                 return;
         }
     }

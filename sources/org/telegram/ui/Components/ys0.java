@@ -66,7 +66,7 @@ public final class ys0 extends d00 {
     public final void U(pf.e eVar, s4.a1 a1Var, View view, s0.d dVar) {
         e.a aVar;
         super.U(eVar, a1Var, view, dVar);
-        AccessibilityNodeInfo accessibilityNodeInfo = dVar.f47585a;
+        AccessibilityNodeInfo accessibilityNodeInfo = dVar.f47587a;
         AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
         if (collectionItemInfo != null) {
             aVar = new e.a(collectionItemInfo);

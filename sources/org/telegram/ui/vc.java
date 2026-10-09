@@ -4,23 +4,23 @@ import android.view.View;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class vc implements Utilities.Callback {
-    public final int f42820a;
-    public final zc f42821b;
+    public final int f42822a;
+    public final zc f42823b;
 
     public vc(zc zcVar, int i10) {
-        this.f42820a = i10;
-        this.f42821b = zcVar;
+        this.f42822a = i10;
+        this.f42823b = zcVar;
     }
 
     @Override
     public final void run(Object obj) {
         TLRPC.WallPaper wallPaper;
         View view = (View) obj;
-        switch (this.f42820a) {
+        switch (this.f42822a) {
             case 0:
-                zc zcVar = this.f42821b;
+                zc zcVar = this.f42823b;
                 zcVar.getClass();
-                ((org.telegram.ui.Components.z21) view).setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20887i5, zcVar.f44538b));
+                ((org.telegram.ui.Components.z21) view).setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20887i5, zcVar.f44540b));
                 return;
             default:
                 if (view instanceof org.telegram.ui.Components.z21) {
@@ -28,7 +28,7 @@ public final class vc implements Utilities.Callback {
                     if (z21Var.G.f25082a.f20506b) {
                         wallPaper = null;
                     } else {
-                        wallPaper = this.f42821b.v;
+                        wallPaper = this.f42823b.v;
                     }
                     z21Var.setFallbackWallpaper(wallPaper);
                     return;

@@ -139,7 +139,7 @@ public final class v3 extends FrameLayout implements org.telegram.ui.ActionBar.z
         FrameLayout.LayoutParams a2 = w7.x5.a(-1.0f, f7, 0.0f, f7, 0.0f, -2, (LocaleController.isRTL ? 3 : 5) | 48);
         this.f23538c = a2;
         addView(u3Var, a2);
-        WeakHashMap weakHashMap = r0.i0.f46764a;
+        WeakHashMap weakHashMap = r0.i0.f46766a;
         new r0.w(2131296684, Boolean.class, 0, 28, 2).d(this, Boolean.TRUE);
     }
 }

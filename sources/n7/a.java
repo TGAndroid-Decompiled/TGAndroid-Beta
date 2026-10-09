@@ -337,8 +337,8 @@ public abstract class a {
                                 TreeMap treeMap = new TreeMap();
                                 while (i10 < i11) {
                                     pf.b bVar = bVarArr[i10];
-                                    if (!treeMap.containsKey((c1) bVar.f45556b)) {
-                                        treeMap.put((c1) bVar.f45556b, (c1) bVar.f45557c);
+                                    if (!treeMap.containsKey((c1) bVar.f45558b)) {
+                                        treeMap.put((c1) bVar.f45558b, (c1) bVar.f45559c);
                                         i10++;
                                     } else {
                                         throw new IOException("Attempted to add duplicate key to canonical CBOR Map.");

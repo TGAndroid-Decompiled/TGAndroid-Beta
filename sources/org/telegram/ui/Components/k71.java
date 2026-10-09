@@ -207,7 +207,7 @@ public class k71 extends qm0 {
             setOnItemLongClickListener(new y2(19, this, callback5Return));
         }
         j71 j71Var = new j71(this);
-        j71Var.f47696m = false;
+        j71Var.f47698m = false;
         j71Var.C = false;
         j71Var.o(hs.h);
         j71Var.n(350L);

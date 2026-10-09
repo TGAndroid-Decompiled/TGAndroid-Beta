@@ -520,7 +520,7 @@ public final class j1 extends pm0 implements NotificationCenter.NotificationCent
                 this.S = j3;
             }
             zn znVar2 = this.G0;
-            if (znVar2 != null && (chat = znVar2.f44751e) != null) {
+            if (znVar2 != null && (chat = znVar2.f44753e) != null) {
                 boolean canSendStickers = ChatObject.canSendStickers(chat);
                 this.f10676h0 = canSendStickers;
                 if (!canSendStickers) {
@@ -646,7 +646,7 @@ public final class j1 extends pm0 implements NotificationCenter.NotificationCent
         TLRPC.Chat chat;
         this.f10673f = UserConfig.selectedAccount;
         this.v = chatFull;
-        if (!this.f10676h0 && this.f10694w0 != null && (znVar = this.G0) != null && (chat = znVar.f44751e) != null) {
+        if (!this.f10676h0 && this.f10694w0 != null && (znVar = this.G0) != null && (chat = znVar.f44753e) != null) {
             boolean canSendStickers = ChatObject.canSendStickers(chat);
             this.f10676h0 = canSendStickers;
             if (canSendStickers) {
@@ -858,8 +858,8 @@ public final class j1 extends pm0 implements NotificationCenter.NotificationCent
         } else {
             i11 = i10;
         }
-        int i12 = d1Var.f47660f;
-        View view = d1Var.f47656a;
+        int i12 = d1Var.f47662f;
+        View view = d1Var.f47658a;
         Boolean bool = null;
         if (i12 == 4) {
             d8 d8Var = (d8) view;
@@ -939,7 +939,7 @@ public final class j1 extends pm0 implements NotificationCenter.NotificationCent
             }
         } else if (i12 == 3) {
             TextView textView = (TextView) view;
-            TLRPC.Chat chat = this.G0.f44751e;
+            TLRPC.Chat chat = this.G0.f44753e;
             if (chat != null) {
                 if (!ChatObject.hasAdminRights(chat) && (tL_chatBannedRights = chat.default_banned_rights) != null && tL_chatBannedRights.send_inline) {
                     textView.setText(LocaleController.getString(R.string.GlobalAttachInlineRestricted));
@@ -1007,7 +1007,7 @@ public final class j1 extends pm0 implements NotificationCenter.NotificationCent
                 }
                 TLRPC.Chat chat2 = this.f10680l0;
                 if (chat2 == null && (znVar = this.G0) != null) {
-                    chat2 = znVar.f44751e;
+                    chat2 = znVar.f44753e;
                 }
                 h1Var.a(i13, str3, chat2);
             } else if (i12 == 7) {

@@ -91,7 +91,7 @@ public final class i0 extends s4.d0 {
         boolean z12;
         switch (this.I) {
             case 2:
-                p80 p80Var = ((sw) ((a10) this.J).J).f41778b.L0;
+                p80 p80Var = ((sw) ((a10) this.J).J).f41780b.L0;
                 if (p80Var != null && p80Var.D()) {
                     i10 = 0;
                 }
@@ -194,12 +194,12 @@ public final class i0 extends s4.d0 {
         switch (this.I) {
             case 2:
                 t00 t00Var = new t00(this, recyclerView.getContext());
-                t00Var.f47825a = i10;
+                t00Var.f47827a = i10;
                 w0(t00Var);
                 return;
             case 6:
                 h91 h91Var = new h91(this, recyclerView.getContext());
-                h91Var.f47825a = i10;
+                h91Var.f47827a = i10;
                 w0(h91Var);
                 return;
             default:

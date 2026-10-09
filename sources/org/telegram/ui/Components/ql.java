@@ -30,7 +30,7 @@ public final class ql extends s4.t0 {
             int dp = AndroidUtilities.dp(13.0f);
             int backgroundPaddingTop = yiVar.getBackgroundPaddingTop();
             if (((yiVar.f33226e2[0] - backgroundPaddingTop) - dp) + backgroundPaddingTop < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (am0Var = (am0) w0Var.K(0)) != null) {
-                View view = am0Var.f47656a;
+                View view = am0Var.f47658a;
                 if (view.getTop() > xlVar.A0 - xlVar.f32934z0) {
                     w0Var.v0(0, view.getTop() - (xlVar.A0 - xlVar.f32934z0), null);
                 }

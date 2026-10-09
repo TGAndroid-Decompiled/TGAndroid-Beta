@@ -46,20 +46,20 @@ public abstract class g71 extends Dialog {
     public ValueAnimator N;
     public boolean O;
     public final k71 P;
-    public final t61 f37900a;
-    public final ImageReceiver f37901b;
-    public final Rect f37902c;
+    public final t61 f37902a;
+    public final ImageReceiver f37903b;
+    public final Rect f37904c;
     public final Rect d;
-    public final Rect f37903e;
-    public final Runnable f37904f;
+    public final Rect f37905e;
+    public final Runnable f37906f;
     public final View h;
-    public Bitmap f37905n;
-    public Paint f37906r;
-    public final k0 f37907s;
+    public Bitmap f37907n;
+    public Paint f37908r;
+    public final k0 f37909s;
     public final ActionBarPopupWindow$ActionBarPopupWindowLayout v;
-    public org.telegram.ui.ActionBar.f3 f37908w;
-    public boolean f37909x;
-    public final int f37910y;
+    public org.telegram.ui.ActionBar.f3 f37910w;
+    public boolean f37911x;
+    public final int f37912y;
 
     public g71(k71 k71Var, Context context, Runnable runnable, View view, t61 t61Var, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
@@ -69,21 +69,21 @@ public abstract class g71 extends Dialog {
         ColorFilter colorFilter;
         this.P = k71Var;
         Rect rect = new Rect();
-        this.f37902c = rect;
+        this.f37904c = rect;
         Rect rect2 = new Rect();
         this.d = rect2;
         Rect rect3 = new Rect();
-        this.f37903e = rect3;
+        this.f37905e = rect3;
         int[] iArr = new int[2];
         this.G = iArr;
         this.H = false;
         this.O = false;
-        this.f37900a = t61Var;
-        this.f37904f = runnable;
+        this.f37902a = t61Var;
+        this.f37906f = runnable;
         this.h = view;
         final z51 z51Var = (z51) this;
         k0 k0Var = new k0(z51Var, context, 23);
-        this.f37907s = k0Var;
+        this.f37909s = k0Var;
         setContentView(k0Var, new ViewGroup.LayoutParams(-1, -1));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
@@ -192,11 +192,11 @@ public abstract class g71 extends Dialog {
             z10 = true;
         }
         if (t61Var != null) {
-            t61Var.f41869b = z10;
+            t61Var.f41871b = z10;
         }
         f();
         ImageReceiver imageReceiver = new ImageReceiver();
-        this.f37901b = imageReceiver;
+        this.f37903b = imageReceiver;
         imageReceiver.setParentView(k0Var);
         imageReceiver.setLayerNum(7);
         TLRPC.Document document = t61Var.d;
@@ -233,7 +233,7 @@ public abstract class g71 extends Dialog {
                         imageReceiver.setColorFilter(colorFilter);
                     }
                 }
-                colorFilter = k71Var.f39137k1;
+                colorFilter = k71Var.f39139k1;
                 imageReceiver.setColorFilter(colorFilter);
             }
         }
@@ -244,7 +244,7 @@ public abstract class g71 extends Dialog {
         rect.bottom = (t61Var.getHeight() + iArr[1]) - t61Var.getPaddingBottom();
         AndroidUtilities.lerp(rect, rect2, this.I, rect3);
         view.getLocationOnScreen(iArr);
-        this.f37910y = iArr[0];
+        this.f37912y = iArr[0];
         int i10 = iArr[1];
         this.E = i10;
         this.F = view.getHeight() + i10;
@@ -253,7 +253,7 @@ public abstract class g71 extends Dialog {
     public static void a(g71 g71Var, Integer num) {
         Runnable runnable;
         z51 z51Var = (z51) g71Var;
-        if (num != null && (runnable = z51Var.S.f35853e.T1) != null) {
+        if (num != null && (runnable = z51Var.S.f35855e.T1) != null) {
             runnable.run();
         }
         try {
@@ -302,7 +302,7 @@ public abstract class g71 extends Dialog {
 
     public final void d(final boolean z10, c71 c71Var, final c71 c71Var2, final boolean z11) {
         float f7;
-        t61 t61Var = this.f37900a;
+        t61 t61Var = this.f37902a;
         if (t61Var == null) {
             if (c71Var != null) {
                 c71Var.run();
@@ -319,7 +319,7 @@ public abstract class g71 extends Dialog {
         }
         this.J = z10;
         if (z10) {
-            t61Var.f41869b = true;
+            t61Var.f41871b = true;
         }
         final boolean[] zArr = new boolean[1];
         float f10 = this.I;
@@ -337,16 +337,16 @@ public abstract class g71 extends Dialog {
                 float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
                 g71 g71Var = g71.this;
                 g71Var.I = floatValue;
-                AndroidUtilities.lerp(g71Var.f37902c, g71Var.d, floatValue, g71Var.f37903e);
-                g71Var.f37907s.invalidate();
+                AndroidUtilities.lerp(g71Var.f37904c, g71Var.d, floatValue, g71Var.f37905e);
+                g71Var.f37909s.invalidate();
                 boolean z12 = z10;
                 if (!z12) {
                     g71Var.v.setAlpha(g71Var.I);
                 }
                 if (g71Var.I < 0.025f && !z12) {
                     if (z11) {
-                        g71Var.f37900a.f41869b = false;
-                        g71Var.P.f39130h0.invalidate();
+                        g71Var.f37902a.f41871b = false;
+                        g71Var.P.f39132h0.invalidate();
                     }
                     NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 4);
                 }
@@ -430,8 +430,8 @@ public abstract class g71 extends Dialog {
             canvas.restore();
         }
         Utilities.stackBlurBitmap(createBitmap, Math.max(10, Math.max(measuredWidth, measuredHeight) / 180));
-        this.f37906r = new Paint(1);
-        this.f37905n = createBitmap;
+        this.f37908r = new Paint(1);
+        this.f37907n = createBitmap;
     }
 
     @Override

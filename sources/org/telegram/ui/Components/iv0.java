@@ -92,8 +92,8 @@ public final class iv0 extends pm0 {
             ArrayList arrayList = this.f27492n;
             if (i10 < arrayList.size()) {
                 MessageObject messageObject = (MessageObject) arrayList.get(i10);
-                int i11 = d1Var.f47660f;
-                View view = d1Var.f47656a;
+                int i11 = d1Var.f47662f;
+                View view = d1Var.f47658a;
                 if (i11 == 0) {
                     ((org.telegram.ui.Cells.u1) view).X3(messageObject, null, false, false, false, false);
                 } else {

@@ -6,22 +6,22 @@ import android.text.TextUtils;
 import android.widget.TextView;
 import org.telegram.messenger.LocaleController;
 public final class fu extends org.telegram.ui.Cells.d5 {
-    public final int f37692e;
-    public final org.telegram.ui.Cells.e9 f37693f;
+    public final int f37694e;
+    public final org.telegram.ui.Cells.e9 f37695f;
     public final org.telegram.ui.Cells.w8[] h;
-    public final AnimatorSet[] f37694n;
-    public final DataAutoDownloadActivity f37695r;
+    public final AnimatorSet[] f37696n;
+    public final DataAutoDownloadActivity f37697r;
 
     public fu(DataAutoDownloadActivity dataAutoDownloadActivity, Activity activity, int i10, org.telegram.ui.Cells.e9 e9Var, org.telegram.ui.Cells.w8[] w8VarArr, AnimatorSet[] animatorSetArr) {
         super(activity);
         int i11;
         int i12;
         int i13;
-        this.f37695r = dataAutoDownloadActivity;
-        this.f37692e = i10;
-        this.f37693f = e9Var;
+        this.f37697r = dataAutoDownloadActivity;
+        this.f37694e = i10;
+        this.f37695f = e9Var;
         this.h = w8VarArr;
-        this.f37694n = animatorSetArr;
+        this.f37696n = animatorSetArr;
         setWillNotDraw(false);
         TextView textView = new TextView(activity);
         this.f21968a = textView;

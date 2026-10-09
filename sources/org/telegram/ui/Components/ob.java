@@ -20,7 +20,7 @@ public final class ob extends Dialog {
         this.f29445a = nbVar;
         setContentView(nbVar, new ViewGroup.LayoutParams(-1, -1));
         s sVar = new s(this, 15);
-        WeakHashMap weakHashMap = r0.i0.f46764a;
+        WeakHashMap weakHashMap = r0.i0.f46766a;
         r0.a0.i(nbVar, sVar);
         int i10 = Build.VERSION.SDK_INT;
         if (i10 >= 30) {

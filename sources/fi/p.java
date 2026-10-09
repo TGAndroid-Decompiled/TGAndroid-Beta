@@ -371,7 +371,7 @@ public final class p extends n2 implements l50, NotificationCenter.NotificationC
         this.f10023c.addView(this.actionBar, x5.e(-1, -2, 48));
         x7 x7Var2 = this.f10023c;
         j jVar = new j(this);
-        WeakHashMap weakHashMap = r0.i0.f46764a;
+        WeakHashMap weakHashMap = r0.i0.f46766a;
         r0.a0.i(x7Var2, jVar);
         x7 x7Var3 = this.f10023c;
         this.fragmentView = x7Var3;

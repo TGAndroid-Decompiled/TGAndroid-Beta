@@ -102,21 +102,21 @@ public final class fi implements TextWatcher {
                 yiVar.f1(true);
                 return;
             default:
-                org.telegram.ui.Wallet.h8 h8Var = (org.telegram.ui.Wallet.h8) this.d;
+                org.telegram.ui.Wallet.i8 i8Var = (org.telegram.ui.Wallet.i8) this.d;
                 if (this.f26371b) {
                     this.f26371b = false;
                     this.f26372c = true;
                     try {
                         editable.append('.');
                         this.f26372c = false;
-                        h8Var.f34984b.setSelection(editable.length());
+                        i8Var.f35047b.setSelection(editable.length());
                         return;
                     } catch (Throwable th2) {
                         this.f26372c = false;
                         throw th2;
                     }
                 }
-                h8Var.f(editable);
+                i8Var.f(editable);
                 return;
         }
     }
@@ -127,10 +127,10 @@ public final class fi implements TextWatcher {
             case 0:
                 return;
             default:
-                org.telegram.ui.Wallet.h8 h8Var = (org.telegram.ui.Wallet.h8) this.d;
-                org.telegram.ui.Wallet.d8 d8Var = h8Var.f34984b;
-                if (charSequence.length() > 0 && i11 == charSequence.length() && i12 == 0 && d8Var.getLayout() != null) {
-                    h8Var.M = d8Var.getLayout().getLineLeft(0) - d8Var.getScrollX();
+                org.telegram.ui.Wallet.i8 i8Var = (org.telegram.ui.Wallet.i8) this.d;
+                org.telegram.ui.Wallet.e8 e8Var = i8Var.f35047b;
+                if (charSequence.length() > 0 && i11 == charSequence.length() && i12 == 0 && e8Var.getLayout() != null) {
+                    i8Var.M = e8Var.getLayout().getLineLeft(0) - e8Var.getScrollX();
                     return;
                 }
                 return;
@@ -165,30 +165,30 @@ public final class fi implements TextWatcher {
                     z10 = false;
                 }
                 this.f26371b = z10;
-                org.telegram.ui.Wallet.h8 h8Var = (org.telegram.ui.Wallet.h8) this.d;
-                if (!h8Var.Q && !this.f26372c) {
+                org.telegram.ui.Wallet.i8 i8Var = (org.telegram.ui.Wallet.i8) this.d;
+                if (!i8Var.Q && !this.f26372c) {
                     if (i11 != 0 || i12 != 0) {
-                        org.telegram.ui.Wallet.b6 b6Var = h8Var.f34985c;
+                        org.telegram.ui.Wallet.c6 c6Var = i8Var.f35048c;
                         if (i12 > 0 && i12 >= i11) {
                             z11 = true;
                         }
-                        if (b6Var.f34679x && b6Var.f34676r && b6Var.f34680y == -1) {
-                            fk0 fk0Var = b6Var.h;
+                        if (c6Var.f34750x && c6Var.f34747r && c6Var.f34751y == -1) {
+                            fk0 fk0Var = c6Var.h;
                             if (fk0Var != null) {
                                 if (!fk0Var.b()) {
-                                    b6Var.h.setProgress(0.0f);
-                                    b6Var.h.d();
+                                    c6Var.h.setProgress(0.0f);
+                                    c6Var.h.d();
                                     return;
                                 }
                                 return;
                             }
-                            float f10 = b6Var.f34664d0;
+                            float f10 = c6Var.f34735d0;
                             if (z11) {
                                 f7 = -160.0f;
                             } else {
                                 f7 = 160.0f;
                             }
-                            b6Var.f34664d0 = Math.max(-360.0f, Math.min(360.0f, f10 + f7));
+                            c6Var.f34735d0 = Math.max(-360.0f, Math.min(360.0f, f10 + f7));
                             return;
                         }
                         return;

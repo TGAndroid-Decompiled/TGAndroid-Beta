@@ -195,7 +195,7 @@ public final class xl extends qi implements NotificationCenter.NotificationCente
         org.telegram.ui.Cells.z j02 = org.telegram.ui.ActionBar.i6.j0(dp, dp, dp, dp, w02, w03, w03);
         w7.z5.a(vlVar);
         vlVar.setTranslationZ(AndroidUtilities.dp(2.0f));
-        ai.l2 l2Var = yf.i0.f52169a;
+        ai.l2 l2Var = yf.i0.f52171a;
         vlVar.setOutlineProvider(l2Var);
         vlVar.setBackground(j02);
         int i14 = org.telegram.ui.ActionBar.i6.vi;
@@ -365,7 +365,7 @@ public final class xl extends qi implements NotificationCenter.NotificationCente
         jVar.n(350L);
         jVar.o(hs.h);
         jVar.C = false;
-        jVar.f47696m = false;
+        jVar.f47698m = false;
         w0Var.setItemAnimator(jVar);
         s0Var2.O(this.f32904a0, this.W);
         w0Var.setVerticalScrollBarEnabled(false);
@@ -1191,7 +1191,7 @@ public final class xl extends qi implements NotificationCenter.NotificationCente
         int i10 = 0;
         am0 am0Var = (am0) w0Var.K(0);
         if (am0Var != null) {
-            i10 = Math.max(((int) am0Var.f47656a.getY()) - this.C0, 0);
+            i10 = Math.max(((int) am0Var.f47658a.getY()) - this.C0, 0);
         }
         return AndroidUtilities.dp(56.0f) + i10;
     }
@@ -1300,7 +1300,7 @@ public final class xl extends qi implements NotificationCenter.NotificationCente
             ai.w0 w0Var = this.P;
             s4.d1 K = w0Var.K(0);
             if (K != null) {
-                i10 = (int) K.f47656a.getY();
+                i10 = (int) K.f47658a.getY();
                 i11 = Math.min(i10, 0) + this.f32934z0;
             } else {
                 i10 = -f0Var.getMeasuredHeight();
@@ -1381,7 +1381,7 @@ public final class xl extends qi implements NotificationCenter.NotificationCente
                     for (int i15 = 1; i15 < h; i15++) {
                         s4.d1 K2 = w0Var.K(i15);
                         if (K2 != null) {
-                            K2.f47656a.setTranslationY(w0Var.getPaddingTop() - i10);
+                            K2.f47658a.setTranslationY(w0Var.getPaddingTop() - i10);
                         }
                     }
                 }

@@ -117,7 +117,7 @@ public final class hp extends org.telegram.ui.Components.qm0 {
                                 oaVar.setLoading(ipVar.P.contains(tL_username2.username));
                                 TLRPC.TL_username tL_username3 = oaVar.v;
                                 if (tL_username3 != null) {
-                                    oaVar.a(tL_username3, oaVar.f40454w, true, oaVar.f40455x);
+                                    oaVar.a(tL_username3, oaVar.f40456w, true, oaVar.f40457x);
                                 }
                             }
                         } else {
@@ -127,7 +127,7 @@ public final class hp extends org.telegram.ui.Components.qm0 {
                     if (i13 >= 0 && i12 != i13) {
                         int i18 = i13 - 1;
                         gp gpVar = this.V2;
-                        ArrayList arrayList2 = gpVar.f38064c.Y2.N;
+                        ArrayList arrayList2 = gpVar.f38066c.Y2.N;
                         if (i11 < arrayList2.size() && i18 < arrayList2.size()) {
                             arrayList2.add(i18, (TLRPC.TL_username) arrayList2.remove(i11));
                             gpVar.p(i12, i13);

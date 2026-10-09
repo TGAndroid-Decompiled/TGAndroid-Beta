@@ -21,7 +21,7 @@ public final class jg1 extends og.b {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47660f;
+        int i10 = d1Var.f47662f;
         if (i10 == 1 || i10 == 2 || i10 == 4) {
             return true;
         }
@@ -43,9 +43,9 @@ public final class jg1 extends og.b {
         lg1 lg1Var = this.d;
         ArrayList arrayList = lg1Var.d;
         if (((kg1) arrayList.get(i10)).f17125a == 2) {
-            org.telegram.ui.Cells.pa paVar = (org.telegram.ui.Cells.pa) d1Var.f47656a;
-            long j3 = lg1Var.f39574c;
-            TLRPC.TL_forumTopic tL_forumTopic = ((kg1) arrayList.get(i10)).f39288c;
+            org.telegram.ui.Cells.pa paVar = (org.telegram.ui.Cells.pa) d1Var.f47658a;
+            long j3 = lg1Var.f39576c;
+            TLRPC.TL_forumTopic tL_forumTopic = ((kg1) arrayList.get(i10)).f39290c;
             org.telegram.ui.Components.y9 y9Var = paVar.f22669b;
             boolean z10 = false;
             ng.d.p(y9Var, tL_forumTopic, false, false, null);

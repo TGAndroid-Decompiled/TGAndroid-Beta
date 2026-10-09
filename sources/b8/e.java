@@ -98,7 +98,7 @@ public final class e extends com.google.android.gms.common.api.internal.e {
             default:
                 h0 h0Var = (h0) ((y0) cVar).u();
                 ?? aVar2 = new y8.a();
-                aVar2.f51842b = this;
+                aVar2.f51844b = this;
                 obtain = Parcel.obtain();
                 obtain.writeInterfaceToken(h0Var.f337c);
                 int i12 = f8.a.f9801a;
@@ -117,7 +117,7 @@ public final class e extends com.google.android.gms.common.api.internal.e {
     }
 
     public e(t0 t0Var, String str, String str2, byte[] bArr) {
-        super(j.f51056a, t0Var);
+        super(j.f51058a, t0Var);
         this.f3783r = str;
         this.f3785t = str2;
         this.f3784s = bArr;

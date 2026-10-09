@@ -36,7 +36,7 @@ public final class bj implements Runnable {
                 kl0 kl0Var = (kl0) this.f17454f;
                 org.telegram.ui.ActionBar.n1 n1Var = znVar.Q8;
                 if (n1Var != null && znVar.fragmentView != null && !n1Var.isShowing() && AndroidUtilities.isActivityRunning(znVar.getParentActivity())) {
-                    znVar.Q8.showAtLocation(znVar.f44988x0, 51, this.f17451b, this.f17452c);
+                    znVar.Q8.showAtLocation(znVar.f44990x0, 51, this.f17451b, this.f17452c);
                     if (this.d && kl0Var != null) {
                         kl0Var.r(true);
                     }
@@ -48,9 +48,9 @@ public final class bj implements Runnable {
                 org.telegram.ui.Components.dc dcVar = (org.telegram.ui.Components.dc) this.f17453e;
                 zg.n0 n0Var = (zg.n0) this.f17454f;
                 org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
-                long j3 = n0Var.f54616g;
+                long j3 = n0Var.f54618g;
                 if (j3 == 0) {
-                    TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(n0Var.f54615f);
+                    TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(n0Var.f54617f);
                     if (tL_availableReaction != null) {
                         f7 = tL_availableReaction.activate_animation;
                     } else {

@@ -54,7 +54,7 @@ public abstract class y60 extends FrameLayout {
         this.f33129c = w60Var;
         if (w60Var != null) {
             boolean z10 = this.d;
-            org.telegram.ui.ok okVar = ((org.telegram.ui.sj) w60Var).f41705a.Y;
+            org.telegram.ui.ok okVar = ((org.telegram.ui.sj) w60Var).f41707a.Y;
             if (okVar != null) {
                 okVar.setRoundVideoUiFrameClockActive(z10);
             }

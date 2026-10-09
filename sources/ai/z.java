@@ -273,18 +273,18 @@ public final class z extends AnimatorListenerAdapter {
                 View view3 = (View) obj;
                 zn znVar = (zn) obj2;
                 znVar.A9 = 0.0f;
-                if (animator == znVar.f44786gb) {
+                if (animator == znVar.f44788gb) {
                     ViewGroup viewGroup = (ViewGroup) view3.getParent();
                     if (viewGroup != null) {
                         viewGroup.removeView(view3);
                     }
                     znVar.Z2 = null;
-                    znVar.f44786gb = null;
+                    znVar.f44788gb = null;
                     return;
                 }
                 return;
             case 14:
-                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) ((gm) obj2).f38047b;
+                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) ((gm) obj2).f38049b;
                 u1Var.setAlpha(1.0f);
                 u1Var.getTransitionParams().f23023x0 = false;
                 org.telegram.ui.t0 t0Var = new org.telegram.ui.t0("alpha", 2);

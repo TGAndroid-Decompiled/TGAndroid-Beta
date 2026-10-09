@@ -16,7 +16,7 @@ public final class x0 implements ToLongFunction {
             case 0:
                 return ((MessageObject) obj).getFromChatId();
             default:
-                MessageObject messageObject = ((ya1) obj).f44304b;
+                MessageObject messageObject = ((ya1) obj).f44306b;
                 if (messageObject == null) {
                     return 0L;
                 }

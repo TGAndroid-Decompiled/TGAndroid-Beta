@@ -44,8 +44,8 @@ public final class nk0 extends s4.i0 {
 
     @Override
     public final void v(s4.d1 d1Var, int i10) {
-        if (d1Var.f47660f == 0) {
-            ((org.telegram.ui.Cells.o6) d1Var.f47656a).setUserReaction((TLRPC.MessagePeerReaction) this.h.f31526n.get(i10));
+        if (d1Var.f47662f == 0) {
+            ((org.telegram.ui.Cells.o6) d1Var.f47658a).setUserReaction((TLRPC.MessagePeerReaction) this.h.f31526n.get(i10));
         }
     }
 

@@ -71,7 +71,7 @@ public final class p3 implements View.OnLongClickListener, View.OnHoverListener,
         this.f15781a = view;
         this.f15782b = charSequence;
         ViewConfiguration viewConfiguration = ViewConfiguration.get(view.getContext());
-        Method method = r0.j0.f46768a;
+        Method method = r0.j0.f46770a;
         if (Build.VERSION.SDK_INT >= 28) {
             scaledTouchSlop = b5.d.o(viewConfiguration);
         } else {
@@ -130,7 +130,7 @@ public final class p3 implements View.OnLongClickListener, View.OnHoverListener,
         long longPressTimeout;
         long j3;
         long j10;
-        WeakHashMap weakHashMap = r0.i0.f46764a;
+        WeakHashMap weakHashMap = r0.i0.f46766a;
         View view = this.f15781a;
         if (!view.isAttachedToWindow()) {
             return;

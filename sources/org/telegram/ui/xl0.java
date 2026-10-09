@@ -6,19 +6,19 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class xl0 implements TextView.OnEditorActionListener {
-    public final int f44059a;
-    public final nn0 f44060b;
+    public final int f44061a;
+    public final nn0 f44062b;
 
     public xl0(nn0 nn0Var, int i10) {
-        this.f44059a = i10;
-        this.f44060b = nn0Var;
+        this.f44061a = i10;
+        this.f44062b = nn0Var;
     }
 
     @Override
     public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
-        switch (this.f44059a) {
+        switch (this.f44061a) {
             case 0:
-                nn0 nn0Var = this.f44060b;
+                nn0 nn0Var = this.f44062b;
                 if (i10 == 5) {
                     nn0Var.Y[2].requestFocus();
                     return true;
@@ -30,7 +30,7 @@ public final class xl0 implements TextView.OnEditorActionListener {
                     return false;
                 }
             case 1:
-                nn0 nn0Var2 = this.f44060b;
+                nn0 nn0Var2 = this.f44062b;
                 nn0Var2.getClass();
                 if (i10 == 5) {
                     int intValue = ((Integer) textView.getTag()).intValue() + 1;
@@ -49,26 +49,26 @@ public final class xl0 implements TextView.OnEditorActionListener {
                 }
                 return false;
             case 2:
-                nn0 nn0Var3 = this.f44060b;
+                nn0 nn0Var3 = this.f44062b;
                 nn0Var3.getClass();
                 if (i10 == 5) {
                     int intValue2 = ((Integer) textView.getTag()).intValue() + 1;
-                    EditTextBoldCursor[] editTextBoldCursorArr2 = nn0Var3.f40239a0;
+                    EditTextBoldCursor[] editTextBoldCursorArr2 = nn0Var3.f40241a0;
                     if (intValue2 >= editTextBoldCursorArr2.length) {
                         return true;
                     }
                     if (editTextBoldCursorArr2[intValue2].isFocusable()) {
-                        nn0Var3.f40239a0[intValue2].requestFocus();
+                        nn0Var3.f40241a0[intValue2].requestFocus();
                         return true;
                     }
-                    nn0Var3.f40239a0[intValue2].dispatchTouchEvent(MotionEvent.obtain(0L, 0L, 1, 0.0f, 0.0f, 0));
+                    nn0Var3.f40241a0[intValue2].dispatchTouchEvent(MotionEvent.obtain(0L, 0L, 1, 0.0f, 0.0f, 0));
                     textView.clearFocus();
                     AndroidUtilities.hideKeyboard(textView);
                     return true;
                 }
                 return false;
             case 3:
-                nn0 nn0Var4 = this.f44060b;
+                nn0 nn0Var4 = this.f44062b;
                 nn0Var4.getClass();
                 if (i10 != 6 && i10 != 5) {
                     return false;
@@ -76,7 +76,7 @@ public final class xl0 implements TextView.OnEditorActionListener {
                 nn0Var4.L.callOnClick();
                 return true;
             case 4:
-                nn0 nn0Var5 = this.f44060b;
+                nn0 nn0Var5 = this.f44062b;
                 nn0Var5.getClass();
                 if (i10 == 5) {
                     int intValue3 = ((Integer) textView.getTag()).intValue() + 1;
@@ -95,7 +95,7 @@ public final class xl0 implements TextView.OnEditorActionListener {
                 }
                 return false;
             case 5:
-                nn0 nn0Var6 = this.f44060b;
+                nn0 nn0Var6 = this.f44062b;
                 nn0Var6.getClass();
                 if (i10 != 5 && i10 != 6) {
                     return false;
@@ -103,7 +103,7 @@ public final class xl0 implements TextView.OnEditorActionListener {
                 nn0Var6.L.callOnClick();
                 return true;
             default:
-                nn0 nn0Var7 = this.f44060b;
+                nn0 nn0Var7 = this.f44062b;
                 nn0Var7.getClass();
                 if (i10 != 6 && i10 != 5) {
                     return false;

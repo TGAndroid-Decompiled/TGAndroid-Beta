@@ -24,7 +24,7 @@ public final class m4 extends ImageReceiver {
     public void invalidate() {
         switch (this.f1390a) {
             case 3:
-                View view = ((co) this.f1391b).f36709b;
+                View view = ((co) this.f1391b).f36711b;
                 if (view != null) {
                     view.invalidate();
                     return;
@@ -99,7 +99,7 @@ public final class m4 extends ImageReceiver {
                 iArr2[2] = dp;
                 qh.g gVar = u1Var.f23129b6;
                 if (gVar != null) {
-                    gVar.f46679b.setRoundRadius(u1Var.R0);
+                    gVar.f46681b.setRoundRadius(u1Var.R0);
                     return;
                 }
                 return;

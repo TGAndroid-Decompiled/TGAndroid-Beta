@@ -96,7 +96,7 @@ public class q5 extends Drawable implements y5 {
         rg rgVar = this.L;
         if (i10 > 0) {
             yh.b8 b8Var = this.E;
-            b8Var.f52308c.set(rect);
+            b8Var.f52310c.set(rect);
             b8Var.e();
             this.E.d();
             yh.b8 b8Var2 = this.E;

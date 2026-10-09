@@ -173,14 +173,14 @@ public final class z5 extends org.telegram.ui.Components.y9 {
     public void invalidate() {
         switch (this.G) {
             case 5:
-                ci.r6 r6Var = ((md) this.H).f39845f;
+                ci.r6 r6Var = ((md) this.H).f39847f;
                 if (r6Var != null) {
                     r6Var.invalidate();
                 }
                 super.invalidate();
                 return;
             case 6:
-                ci.r6 r6Var2 = ((uo) this.H).f42471f;
+                ci.r6 r6Var2 = ((uo) this.H).f42473f;
                 if (r6Var2 != null) {
                     r6Var2.invalidate();
                 }
@@ -198,7 +198,7 @@ public final class z5 extends org.telegram.ui.Components.y9 {
                 ((ow) this.H).f();
                 return;
             case 9:
-                ci.r6 r6Var3 = ((j70) this.H).f38846e;
+                ci.r6 r6Var3 = ((j70) this.H).f38848e;
                 if (r6Var3 != null) {
                     r6Var3.invalidate();
                 }
@@ -221,14 +221,14 @@ public final class z5 extends org.telegram.ui.Components.y9 {
     public void invalidate(int i10, int i11, int i12, int i13) {
         switch (this.G) {
             case 5:
-                ci.r6 r6Var = ((md) this.H).f39845f;
+                ci.r6 r6Var = ((md) this.H).f39847f;
                 if (r6Var != null) {
                     r6Var.invalidate();
                 }
                 super.invalidate(i10, i11, i12, i13);
                 return;
             case 6:
-                ci.r6 r6Var2 = ((uo) this.H).f42471f;
+                ci.r6 r6Var2 = ((uo) this.H).f42473f;
                 if (r6Var2 != null) {
                     r6Var2.invalidate();
                 }
@@ -245,7 +245,7 @@ public final class z5 extends org.telegram.ui.Components.y9 {
                 super.invalidate(i10, i11, i12, i13);
                 return;
             case 9:
-                ci.r6 r6Var3 = ((j70) this.H).f38846e;
+                ci.r6 r6Var3 = ((j70) this.H).f38848e;
                 if (r6Var3 != null) {
                     r6Var3.invalidate();
                 }

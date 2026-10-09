@@ -75,12 +75,12 @@ public abstract class pb0 extends FrameLayout implements NotificationCenter.Noti
         this.d = ib0Var;
         ib0Var.O = new jb0(this);
         s4.j jVar = new s4.j();
-        jVar.f47748c = 150L;
-        jVar.f47749e = 150L;
-        jVar.f47750f = 150L;
-        jVar.f47751g = 150L;
+        jVar.f47750c = 150L;
+        jVar.f47751e = 150L;
+        jVar.f47752f = 150L;
+        jVar.f47753g = 150L;
         jVar.d = 150L;
-        jVar.f47716o = hs.f27118f;
+        jVar.f47718o = hs.f27118f;
         jVar.C = false;
         ob0Var.setItemAnimator(jVar);
         ob0Var.setClipToPadding(false);
@@ -315,7 +315,7 @@ public abstract class pb0 extends FrameLayout implements NotificationCenter.Noti
     public final boolean g() {
         s4.p0 layoutManager = this.f29827b.getLayoutManager();
         gg.i0 i0Var = this.f29828c;
-        if (layoutManager == i0Var && i0Var.f47649t) {
+        if (layoutManager == i0Var && i0Var.f47651t) {
             return true;
         }
         return false;

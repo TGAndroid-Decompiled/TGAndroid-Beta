@@ -5,10 +5,10 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 public final class p10 extends org.telegram.ui.Components.pm0 {
-    public final w10 f40626c;
+    public final w10 f40628c;
 
     public p10(w10 w10Var) {
-        this.f40626c = w10Var;
+        this.f40628c = w10Var;
     }
 
     @Override
@@ -18,16 +18,16 @@ public final class p10 extends org.telegram.ui.Components.pm0 {
 
     @Override
     public final int h() {
-        w10 w10Var = this.f40626c;
-        if (w10Var.f43049f.isEmpty()) {
+        w10 w10Var = this.f40628c;
+        if (w10Var.f43051f.isEmpty()) {
             return 0;
         }
-        return w10Var.f43049f.size() + (!w10Var.N ? 1 : 0);
+        return w10Var.f43051f.size() + (!w10Var.N ? 1 : 0);
     }
 
     @Override
     public final int j(int i10) {
-        if (i10 >= this.f40626c.f43049f.size()) {
+        if (i10 >= this.f40628c.f43051f.size()) {
             return 3;
         }
         return 0;
@@ -37,11 +37,11 @@ public final class p10 extends org.telegram.ui.Components.pm0 {
     public final void v(s4.d1 d1Var, int i10) {
         boolean z10;
         boolean z11;
-        if (d1Var.f47660f == 0) {
-            org.telegram.ui.Cells.s2 s2Var = (org.telegram.ui.Cells.s2) d1Var.f47656a;
-            w10 w10Var = this.f40626c;
-            MessageObject messageObject = (MessageObject) w10Var.f43049f.get(i10);
-            s2Var.O = w10Var.f43060p0;
+        if (d1Var.f47662f == 0) {
+            org.telegram.ui.Cells.s2 s2Var = (org.telegram.ui.Cells.s2) d1Var.f47658a;
+            w10 w10Var = this.f40628c;
+            MessageObject messageObject = (MessageObject) w10Var.f43051f.get(i10);
+            s2Var.O = w10Var.f43062p0;
             s2Var.W(messageObject.getDialogId(), messageObject, messageObject.messageOwner.date, false, false);
             if (i10 != h() - 1) {
                 z10 = true;

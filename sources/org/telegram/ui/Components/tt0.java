@@ -63,7 +63,7 @@ public final class tt0 implements rn0 {
         }
         ws0 ws0Var = bw0Var.W;
         if (ws0Var != null && i10 == 8) {
-            ws0Var.f35809n.f(1.0f, 0);
+            ws0Var.f35811n.f(1.0f, 0);
         }
         uu0 uu0Var = uu0VarArr[1];
         uu0Var.F = i10;

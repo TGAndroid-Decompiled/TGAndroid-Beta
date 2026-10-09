@@ -100,7 +100,7 @@ public class uo extends FrameLayout implements me.d, NotificationCenter.Notifica
             ox0[] ox0VarArr = this.H;
             if (z10) {
                 try {
-                    int intValue = MessagesController.getInstance(this.J).getPrintingStringType(znVar.a(), znVar.f44742d4).intValue();
+                    int intValue = MessagesController.getInstance(this.J).getPrintingStringType(znVar.a(), znVar.f44744d4).intValue();
                     ox0 ox0Var = ox0VarArr[intValue];
                     if (ox0Var != null) {
                         org.telegram.ui.ActionBar.e6 e6Var = this.f31560d0;
@@ -158,7 +158,7 @@ public class uo extends FrameLayout implements me.d, NotificationCenter.Notifica
         org.telegram.ui.zn znVar = this.G;
         if (znVar != null) {
             TLRPC.User i11 = znVar.i();
-            TLRPC.Chat chat = znVar.f44751e;
+            TLRPC.Chat chat = znVar.f44753e;
             if (znVar.R3 == 3) {
                 long N8 = znVar.N8();
                 if (N8 >= 0) {
@@ -701,7 +701,7 @@ public class uo extends FrameLayout implements me.d, NotificationCenter.Notifica
                 return;
             }
             TLRPC.User i19 = znVar.i();
-            TLRPC.Chat chat = znVar.f44751e;
+            TLRPC.Chat chat = znVar.f44753e;
             if (UserObject.isUserSelf(i19) && znVar.R3 == 0 && znVar.getMessagesController().getSavedMessagesController().getAllCount() >= 3 && (this.f31580t0 || MessagesController.getGlobalMainSettings().getInt("savedmsgschatshint", 0) < 3)) {
                 z11 = true;
             } else {
@@ -726,7 +726,7 @@ public class uo extends FrameLayout implements me.d, NotificationCenter.Notifica
                     this.f31580t0 = true;
                 }
             }
-            CharSequence printingString = MessagesController.getInstance(i18).getPrintingString(znVar.a(), znVar.f44742d4, false);
+            CharSequence printingString = MessagesController.getInstance(i18).getPrintingString(znVar.a(), znVar.f44744d4, false);
             if (printingString == null) {
                 UserObject.isBotForum(i19);
             }
@@ -758,7 +758,7 @@ public class uo extends FrameLayout implements me.d, NotificationCenter.Notifica
                         getSubtitleTextView().setAlpha(1.0f);
                     }
                 }
-                Integer printingStringType = MessagesController.getInstance(i18).getPrintingStringType(znVar.a(), znVar.f44742d4);
+                Integer printingStringType = MessagesController.getInstance(i18).getPrintingStringType(znVar.a(), znVar.f44744d4);
                 if (printingStringType != null && printingStringType.intValue() == 5) {
                     charSequence = Emoji.replaceEmoji(printingString, getSubtitlePaint().getFontMetricsInt(), false);
                 } else {
@@ -767,7 +767,7 @@ public class uo extends FrameLayout implements me.d, NotificationCenter.Notifica
                 setTypingAnimation(true);
                 z13 = true;
                 str = charSequence;
-            } else if (znVar.K9() && !znVar.f44791h4) {
+            } else if (znVar.K9() && !znVar.f44793h4) {
                 if (mlVar2.getTag() == null) {
                     mlVar2.setTag(1);
                     AnimatorSet animatorSet3 = this.Q;
@@ -826,7 +826,7 @@ public class uo extends FrameLayout implements me.d, NotificationCenter.Notifica
                     if (i20 == 3) {
                         charSequence2 = LocaleController.formatPluralString("SavedMessagesCount", Math.max(1, znVar.getMessagesController().getSavedMessagesController().getMessagesCount(znVar.N8())), new Object[0]);
                     } else {
-                        if (znVar.f44791h4 && chat != null) {
+                        if (znVar.f44793h4 && chat != null) {
                             TLRPC.TL_forumTopic findTopic2 = MessagesController.getInstance(i18).getTopicsController().findTopic(chat.f20038id, znVar.d());
                             if (findTopic2 != null) {
                                 i13 = 1;

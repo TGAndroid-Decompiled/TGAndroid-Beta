@@ -69,10 +69,10 @@ public abstract class d {
                 if (ChatObject.canManageMonoForum(UserConfig.selectedAccount, chat)) {
                     int i10 = findTopic.read_inbox_max_id;
                     int i11 = findTopic.read_outbox_max_id;
-                    znVar.f44828k4 = i10;
+                    znVar.f44830k4 = i10;
                     znVar.l4 = i11;
-                    znVar.f44851m4 = Math.max(1, i10);
-                    znVar.f44742d4 = DialogObject.getPeerDialogId(findTopic.from_id);
+                    znVar.f44853m4 = Math.max(1, i10);
+                    znVar.f44744d4 = DialogObject.getPeerDialogId(findTopic.from_id);
                     znVar.Dc();
                     znVar.Uc(false);
                     znVar.lc(false);
@@ -400,7 +400,7 @@ public abstract class d {
         }
         if (lastFragment instanceof fg1) {
             fg1 fg1Var = (fg1) lastFragment;
-            long j10 = fg1Var.f37556a;
+            long j10 = fg1Var.f37558a;
             if ((-(-j10)) == j3 && !fg1Var.getMessagesController().getChat(Long.valueOf(j3)).forum) {
                 if (fg1Var.getParentLayout() != null && ((ActionBarLayout) fg1Var.getParentLayout()).j()) {
                     AndroidUtilities.runOnUIThread(new h0(fg1Var, 15), 500L);
@@ -410,7 +410,7 @@ public abstract class d {
                 Bundle bundle = new Bundle();
                 bundle.putLong("chat_id", j10);
                 zn znVar2 = new zn(bundle);
-                znVar2.f44821ja = true;
+                znVar2.f44823ja = true;
                 fg1Var.presentFragment(znVar2);
             }
         }

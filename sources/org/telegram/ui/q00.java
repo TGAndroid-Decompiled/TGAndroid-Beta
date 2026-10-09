@@ -12,13 +12,13 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 public final class q00 extends FrameLayout {
-    public final r00 f40947a;
+    public final r00 f40949a;
 
     public q00(r00 r00Var, Context context) {
         super(context);
         int i10;
         String string;
-        this.f40947a = r00Var;
+        this.f40949a = r00Var;
         ImageView imageView = new ImageView(context);
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
@@ -39,7 +39,7 @@ public final class q00 extends FrameLayout {
         } else {
             i10 = 0;
         }
-        nVar.f49735s = i10;
+        nVar.f49737s = i10;
         addView(nVar, w7.x5.a(-2.0f, 20.0f, 84.0f, 20.0f, 0.0f, -2, 49));
         TextView textView = new TextView(context);
         if (r00Var.Y.isEmpty()) {

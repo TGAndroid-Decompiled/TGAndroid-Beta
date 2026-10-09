@@ -22,7 +22,7 @@ public final class hr0 extends gg.b0 {
         boolean z10;
         String str;
         int i14;
-        org.telegram.ui.Cells.n4 n4Var = (org.telegram.ui.Cells.n4) d1Var.f47656a;
+        org.telegram.ui.Cells.n4 n4Var = (org.telegram.ui.Cells.n4) d1Var.f47658a;
         mr0 mr0Var = this.f27117n.K;
         boolean z11 = false;
         TLRPC.User user = null;

@@ -254,8 +254,8 @@ public final class wu0 extends org.telegram.ui.Components.tw0 {
         }
         lv0 lv0Var = photoViewer.f33942i3;
         if (lv0Var != null) {
-            lv0Var.f39687e = size;
-            lv0Var.f39688f = i17;
+            lv0Var.f39689e = size;
+            lv0Var.f39690f = i17;
         }
         int paddingLeft = size - (wu0Var.getPaddingLeft() + wu0Var.getPaddingRight());
         int paddingBottom = i17 - wu0Var.getPaddingBottom();

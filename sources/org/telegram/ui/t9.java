@@ -8,15 +8,15 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.SendMessagesHelper;
 public final class t9 implements jq0 {
-    public final v9 f41912a;
+    public final v9 f41914a;
 
     public t9(v9 v9Var) {
-        this.f41912a = v9Var;
+        this.f41914a = v9Var;
     }
 
     @Override
     public final void a(ArrayList arrayList) {
-        v9 v9Var = this.f41912a;
+        v9 v9Var = this.f41914a;
         try {
             if (!arrayList.isEmpty()) {
                 SendMessagesHelper.SendingMediaInfo sendingMediaInfo = (SendMessagesHelper.SendingMediaInfo) arrayList.get(0);
@@ -42,7 +42,7 @@ public final class t9 implements jq0 {
         try {
             Intent intent = new Intent("android.intent.action.PICK");
             intent.setType("image/*");
-            this.f41912a.getParentActivity().startActivityForResult(intent, 11);
+            this.f41914a.getParentActivity().startActivityForResult(intent, 11);
         } catch (Exception e7) {
             FileLog.e(e7);
         }

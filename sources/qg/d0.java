@@ -3,22 +3,22 @@ package qg;
 import org.telegram.ui.bu0;
 import org.telegram.ui.ir0;
 public final class d0 implements pg.d1 {
-    public final ir0 f46216a;
-    public final bu0 f46217b;
+    public final ir0 f46218a;
+    public final bu0 f46219b;
 
     public d0(bu0 bu0Var, ir0 ir0Var) {
-        this.f46217b = bu0Var;
-        this.f46216a = ir0Var;
+        this.f46219b = bu0Var;
+        this.f46218a = ir0Var;
     }
 
     @Override
     public final void a() {
-        this.f46216a.run();
+        this.f46218a.run();
     }
 
     @Override
     public final void b() {
-        e0 e0Var = this.f46217b.X0;
+        e0 e0Var = this.f46219b.X0;
         if (e0Var != null) {
             e0Var.invalidate();
         }
@@ -26,19 +26,19 @@ public final class d0 implements pg.d1 {
 
     @Override
     public final void c() {
-        bu0 bu0Var = this.f46217b;
-        if (bu0Var.f46377k1) {
-            bu0Var.f46377k1 = false;
+        bu0 bu0Var = this.f46219b;
+        if (bu0Var.f46379k1) {
+            bu0Var.f46379k1 = false;
             return;
         }
-        bu0Var.f46389t1.b(1);
-        bu0Var.b((pg.m) pg.m.f45686a.get(0));
+        bu0Var.f46391t1.b(1);
+        bu0Var.b((pg.m) pg.m.f45688a.get(0));
     }
 
     @Override
     public final boolean d() {
         boolean z10;
-        bu0 bu0Var = this.f46217b;
+        bu0 bu0Var = this.f46219b;
         if (bu0Var.S0 == null) {
             z10 = true;
         } else {
@@ -52,14 +52,14 @@ public final class d0 implements pg.d1 {
 
     @Override
     public final void e() {
-        bu0 bu0Var = this.f46217b;
-        bu0Var.F0.f45819a.e();
+        bu0 bu0Var = this.f46219b;
+        bu0Var.F0.f45821a.e();
         bu0Var.l1.setViewHidden(false);
     }
 
     @Override
     public final void f() {
-        bu0 bu0Var = this.f46217b;
+        bu0 bu0Var = this.f46219b;
         if (bu0Var.S0 != null) {
             bu0Var.s0(null, true);
         }

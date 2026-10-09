@@ -14,12 +14,12 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.e6;
 public final class u0 extends WebViewClient {
-    public final WebView f43472a;
-    public final v0 f43473b;
+    public final WebView f43474a;
+    public final v0 f43475b;
 
     public u0(v0 v0Var, WebView webView) {
-        this.f43473b = v0Var;
-        this.f43472a = webView;
+        this.f43475b = v0Var;
+        this.f43474a = webView;
     }
 
     @Override
@@ -27,7 +27,7 @@ public final class u0 extends WebViewClient {
         e6 e6Var;
         Integer valueOf;
         Boolean valueOf2;
-        y0 y0Var = this.f43473b.f43518e;
+        y0 y0Var = this.f43475b.f43520e;
         if (Build.VERSION.SDK_INT >= 26) {
             StringBuilder sb2 = new StringBuilder("newWebView.onRenderProcessGone priority=");
             if (renderProcessGoneDetail == null) {
@@ -56,7 +56,7 @@ public final class u0 extends WebViewClient {
             if (b1Var == null) {
                 e6Var = null;
             } else {
-                e6Var = b1Var.f43242e;
+                e6Var = b1Var.f43244e;
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, e6Var);
             alertDialog$Builder.f20374a.R = LocaleController.getString(R.string.ChromeCrashTitle);
@@ -73,10 +73,10 @@ public final class u0 extends WebViewClient {
 
     @Override
     public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
-        b1 b1Var = this.f43473b.f43518e.Q;
+        b1 b1Var = this.f43475b.f43520e.Q;
         if (b1Var != null) {
-            b1Var.G(Uri.parse(str), null, !b1Var.f43254o0, false, false);
-            this.f43472a.destroy();
+            b1Var.G(Uri.parse(str), null, !b1Var.f43256o0, false, false);
+            this.f43474a.destroy();
         }
         return true;
     }

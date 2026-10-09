@@ -507,17 +507,17 @@ public class ThemeActivity extends org.telegram.ui.ActionBar.n2 implements Notif
                         l6Var.setBackground(org.telegram.ui.ActionBar.i6.g0(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20888i6, false), 2, -1));
                         e7.addView(l6Var);
                         l6Var.setOnClickListener(new View.OnClickListener(themeActivity) {
-                            public final ThemeActivity f40163b;
+                            public final ThemeActivity f40165b;
 
                             {
-                                this.f40163b = themeActivity;
+                                this.f40165b = themeActivity;
                             }
 
                             @Override
                             public final void onClick(View view2) {
                                 switch (r4) {
                                     case 0:
-                                        ThemeActivity themeActivity2 = this.f40163b;
+                                        ThemeActivity themeActivity2 = this.f40165b;
                                         themeActivity2.getClass();
                                         SharedConfig.setSearchEngineType(i14);
                                         themeActivity2.P0 = true;
@@ -528,7 +528,7 @@ public class ThemeActivity extends org.telegram.ui.ActionBar.n2 implements Notif
                                         ((Dialog) atomicReference.get()).dismiss();
                                         return;
                                     default:
-                                        ThemeActivity themeActivity3 = this.f40163b;
+                                        ThemeActivity themeActivity3 = this.f40165b;
                                         themeActivity3.getClass();
                                         SharedConfig.setDistanceSystemType(i14);
                                         themeActivity3.O0 = true;
@@ -560,7 +560,7 @@ public class ThemeActivity extends org.telegram.ui.ActionBar.n2 implements Notif
                     CharSequence[] charSequenceArr2 = new CharSequence[size];
                     final int i15 = 0;
                     while (i15 < size) {
-                        charSequenceArr2[i15] = ((org.telegram.ui.web.n1) b10.get(i15)).f43406a;
+                        charSequenceArr2[i15] = ((org.telegram.ui.web.n1) b10.get(i15)).f43408a;
                         org.telegram.ui.Cells.l6 l6Var2 = new org.telegram.ui.Cells.l6(themeActivity.getParentActivity(), null);
                         float f11 = f10;
                         l6Var2.setPadding(AndroidUtilities.dp(f10), 0, AndroidUtilities.dp(f11), 0);
@@ -575,17 +575,17 @@ public class ThemeActivity extends org.telegram.ui.ActionBar.n2 implements Notif
                         l6Var2.setBackground(org.telegram.ui.ActionBar.i6.g0(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20888i6, false), 2, -1));
                         e10.addView(l6Var2);
                         l6Var2.setOnClickListener(new View.OnClickListener(themeActivity) {
-                            public final ThemeActivity f40163b;
+                            public final ThemeActivity f40165b;
 
                             {
-                                this.f40163b = themeActivity;
+                                this.f40165b = themeActivity;
                             }
 
                             @Override
                             public final void onClick(View view2) {
                                 switch (r4) {
                                     case 0:
-                                        ThemeActivity themeActivity2 = this.f40163b;
+                                        ThemeActivity themeActivity2 = this.f40165b;
                                         themeActivity2.getClass();
                                         SharedConfig.setSearchEngineType(i15);
                                         themeActivity2.P0 = true;
@@ -596,7 +596,7 @@ public class ThemeActivity extends org.telegram.ui.ActionBar.n2 implements Notif
                                         ((Dialog) atomicReference2.get()).dismiss();
                                         return;
                                     default:
-                                        ThemeActivity themeActivity3 = this.f40163b;
+                                        ThemeActivity themeActivity3 = this.f40165b;
                                         themeActivity3.getClass();
                                         SharedConfig.setDistanceSystemType(i15);
                                         themeActivity3.O0 = true;
@@ -636,17 +636,17 @@ public class ThemeActivity extends org.telegram.ui.ActionBar.n2 implements Notif
                     l6Var3.setBackground(org.telegram.ui.ActionBar.i6.g0(org.telegram.ui.ActionBar.i6.x0(null, i18, false), 2, -1));
                     e11.addView(l6Var3);
                     l6Var3.setOnClickListener(new View.OnClickListener(themeActivity) {
-                        public final ThemeActivity f40486b;
+                        public final ThemeActivity f40488b;
 
                         {
-                            this.f40486b = themeActivity;
+                            this.f40488b = themeActivity;
                         }
 
                         @Override
                         public final void onClick(View view2) {
                             switch (r3) {
                                 case 0:
-                                    ThemeActivity themeActivity2 = this.f40486b;
+                                    ThemeActivity themeActivity2 = this.f40488b;
                                     themeActivity2.getClass();
                                     SharedConfig.recordViaSco = false;
                                     SharedConfig.saveConfig();
@@ -661,7 +661,7 @@ public class ThemeActivity extends org.telegram.ui.ActionBar.n2 implements Notif
                                 default:
                                     int i19 = R.raw.permission_request_microphone;
                                     int i20 = R.string.PermissionNoBluetoothWithHint;
-                                    ThemeActivity themeActivity3 = this.f40486b;
+                                    ThemeActivity themeActivity3 = this.f40488b;
                                     AtomicReference atomicReference4 = atomicReference3;
                                     org.telegram.ui.Components.ef0.c(i19, i20, new String[]{"android.permission.BLUETOOTH_CONNECT"}, new String[]{"android.permission.BLUETOOTH_CONNECT"}, new ft(18, themeActivity3, atomicReference4));
                                     SharedConfig.recordViaSco = true;
@@ -691,17 +691,17 @@ public class ThemeActivity extends org.telegram.ui.ActionBar.n2 implements Notif
                     l6Var4.setBackground(org.telegram.ui.ActionBar.i6.g0(org.telegram.ui.ActionBar.i6.x0(null, i18, false), 2, -1));
                     e11.addView(l6Var4);
                     l6Var4.setOnClickListener(new View.OnClickListener(themeActivity) {
-                        public final ThemeActivity f40486b;
+                        public final ThemeActivity f40488b;
 
                         {
-                            this.f40486b = themeActivity;
+                            this.f40488b = themeActivity;
                         }
 
                         @Override
                         public final void onClick(View view2) {
                             switch (r3) {
                                 case 0:
-                                    ThemeActivity themeActivity2 = this.f40486b;
+                                    ThemeActivity themeActivity2 = this.f40488b;
                                     themeActivity2.getClass();
                                     SharedConfig.recordViaSco = false;
                                     SharedConfig.saveConfig();
@@ -716,7 +716,7 @@ public class ThemeActivity extends org.telegram.ui.ActionBar.n2 implements Notif
                                 default:
                                     int i19 = R.raw.permission_request_microphone;
                                     int i20 = R.string.PermissionNoBluetoothWithHint;
-                                    ThemeActivity themeActivity3 = this.f40486b;
+                                    ThemeActivity themeActivity3 = this.f40488b;
                                     AtomicReference atomicReference4 = atomicReference3;
                                     org.telegram.ui.Components.ef0.c(i19, i20, new String[]{"android.permission.BLUETOOTH_CONNECT"}, new String[]{"android.permission.BLUETOOTH_CONNECT"}, new ft(18, themeActivity3, atomicReference4));
                                     SharedConfig.recordViaSco = true;
@@ -916,10 +916,10 @@ public class ThemeActivity extends org.telegram.ui.ActionBar.n2 implements Notif
         edit.commit();
         s4.d1 K = themeActivity.f34531b.K(themeActivity.textSizeRow);
         if (K != null) {
-            View view = K.f47656a;
+            View view = K.f47658a;
             if (view instanceof ic1) {
                 ic1 ic1Var = (ic1) view;
-                org.telegram.ui.Cells.u1[] cells = ic1Var.f38604a.getCells();
+                org.telegram.ui.Cells.u1[] cells = ic1Var.f38606a.getCells();
                 for (int i11 = 0; i11 < cells.length; i11++) {
                     cells[i11].getMessageObject().resetLayout();
                     cells[i11].requestLayout();
@@ -929,7 +929,7 @@ public class ThemeActivity extends org.telegram.ui.ActionBar.n2 implements Notif
         }
         s4.d1 K2 = themeActivity.f34531b.K(themeActivity.bubbleRadiusRow);
         if (K2 != null) {
-            View view2 = K2.f47656a;
+            View view2 = K2.f47658a;
             if (view2 instanceof xb1) {
                 xb1 xb1Var = (xb1) view2;
                 if (z10) {
@@ -959,9 +959,9 @@ public class ThemeActivity extends org.telegram.ui.ActionBar.n2 implements Notif
                 org.telegram.ui.ActionBar.i6.P();
                 s4.d1 K = themeActivity.f34531b.K(themeActivity.textSizeRow);
                 if (K != null) {
-                    View view = K.f47656a;
+                    View view = K.f47658a;
                     if (view instanceof ic1) {
-                        org.telegram.ui.Cells.u1[] cells = ((ic1) view).f38604a.getCells();
+                        org.telegram.ui.Cells.u1[] cells = ((ic1) view).f38606a.getCells();
                         for (int i11 = 0; i11 < cells.length; i11++) {
                             cells[i11].getMessageObject().resetLayout();
                             cells[i11].requestLayout();
@@ -1286,7 +1286,7 @@ public class ThemeActivity extends org.telegram.ui.ActionBar.n2 implements Notif
                     for (int i49 = 0; i49 < 4; i49++) {
                         org.telegram.ui.Components.am0 am0Var = (org.telegram.ui.Components.am0) this.f34531b.K(i49);
                         if (am0Var != null) {
-                            View view = am0Var.f47656a;
+                            View view = am0Var.f47658a;
                             if (view instanceof org.telegram.ui.Cells.ha) {
                                 org.telegram.ui.Cells.ha haVar = (org.telegram.ui.Cells.ha) view;
                                 if (i49 == org.telegram.ui.ActionBar.i6.f20993o) {
@@ -1476,7 +1476,7 @@ public class ThemeActivity extends org.telegram.ui.ActionBar.n2 implements Notif
         Utilities.globalQueue.postRunnable(new ub1(this, 1));
         org.telegram.ui.Components.am0 am0Var = (org.telegram.ui.Components.am0) this.f34531b.K(this.Z);
         if (am0Var != null) {
-            View view = am0Var.f47656a;
+            View view = am0Var.f47658a;
             if (view instanceof org.telegram.ui.Cells.e9) {
                 ((org.telegram.ui.Cells.e9) view).setText(y0());
             }
@@ -1544,13 +1544,13 @@ public class ThemeActivity extends org.telegram.ui.ActionBar.n2 implements Notif
             jVar.n(350L);
             jVar.o(org.telegram.ui.Components.hs.h);
             jVar.C = false;
-            jVar.f47696m = false;
+            jVar.f47698m = false;
             this.f34531b.setItemAnimator(jVar);
         }
         if (this.T0) {
             A0(false);
             this.T0 = false;
-            this.f34531b.u0(this.f34529a.f38251e.J0 - 1);
+            this.f34531b.u0(this.f34529a.f38253e.J0 - 1);
             AndroidUtilities.runOnUIThread(new ub1(this, 0), 200L);
         }
         return this.fragmentView;

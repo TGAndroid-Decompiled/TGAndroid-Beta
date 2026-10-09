@@ -5,29 +5,29 @@ import org.json.JSONObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.LaunchActivity;
 public final class s implements Runnable {
-    public final int f43450a;
-    public final b1 f43451b;
+    public final int f43452a;
+    public final b1 f43453b;
 
     public s(b1 b1Var, int i10) {
-        this.f43450a = i10;
-        this.f43451b = b1Var;
+        this.f43452a = i10;
+        this.f43453b = b1Var;
     }
 
     @Override
     public final void run() {
         boolean z10;
-        switch (this.f43450a) {
+        switch (this.f43452a) {
             case 0:
-                g0 g0Var = this.f43451b.f43239c;
+                g0 g0Var = this.f43453b.f43241c;
                 if (g0Var != null) {
                     g0Var.b();
                 }
                 LaunchActivity.L();
                 return;
             case 1:
-                b1 b1Var = this.f43451b;
+                b1 b1Var = this.f43453b;
                 ea eaVar = b1Var.I0;
-                ei.w0 w0Var = b1Var.f43250k0;
+                ei.w0 w0Var = b1Var.f43252k0;
                 w0Var.getClass();
                 JSONObject jSONObject = new JSONObject();
                 try {
@@ -49,10 +49,10 @@ public final class s implements Runnable {
                 b1Var.x(eaVar, "location_checked", jSONObject);
                 return;
             default:
-                b1 b1Var2 = this.f43451b;
+                b1 b1Var2 = this.f43453b;
                 if (b1Var2.S) {
                     b1Var2.S = false;
-                    g0 g0Var2 = b1Var2.f43239c;
+                    g0 g0Var2 = b1Var2.f43241c;
                     if (g0Var2 != null) {
                         g0Var2.t(false);
                     }
@@ -61,10 +61,10 @@ public final class s implements Runnable {
                 b1Var2.N = false;
                 b1Var2.P = 0L;
                 b1Var2.T = false;
-                y0 y0Var = b1Var2.f43235a;
+                y0 y0Var = b1Var2.f43237a;
                 if (y0Var != null) {
                     y0Var.onResume();
-                    b1Var2.f43235a.reload();
+                    b1Var2.f43237a.reload();
                     return;
                 }
                 return;

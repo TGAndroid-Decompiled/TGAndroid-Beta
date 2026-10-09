@@ -12,11 +12,11 @@ import org.telegram.ui.Components.ad;
 import org.telegram.ui.Components.mr0;
 import org.telegram.ui.Components.tc;
 public final class a2 extends mr0 {
-    public final s3 f52239b1;
+    public final s3 f52241b1;
 
     public a2(s3 s3Var, Context context, String str, String str2, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context, null, null, str, null, false, str2, null, false, false, true, null, e6Var);
-        this.f52239b1 = s3Var;
+        this.f52241b1 = s3Var;
         this.f28893a0 = true;
     }
 
@@ -66,6 +66,6 @@ public final class a2 extends mr0 {
 
     @Override
     public final void T0(View view) {
-        s3.l1(this.f52239b1, view);
+        s3.l1(this.f52241b1, view);
     }
 }

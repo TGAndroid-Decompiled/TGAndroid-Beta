@@ -13,26 +13,26 @@ import org.telegram.ui.Components.ClippingImageView;
 import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.PhotoViewer;
 public final class gu0 implements ViewTreeObserver.OnPreDrawListener {
-    public final ClippingImageView[] f38108a;
-    public final ViewGroup.LayoutParams f38109b;
-    public final float f38110c;
+    public final ClippingImageView[] f38110a;
+    public final ViewGroup.LayoutParams f38111b;
+    public final float f38112c;
     public final ev0 d;
-    public final float f38111e;
-    public final cv0 f38112f;
+    public final float f38113e;
+    public final cv0 f38114f;
     public final ArrayList h;
-    public final Integer f38113n;
-    public final PhotoViewer f38114r;
+    public final Integer f38115n;
+    public final PhotoViewer f38116r;
 
     public gu0(PhotoViewer photoViewer, ClippingImageView[] clippingImageViewArr, ViewGroup.LayoutParams layoutParams, float f7, ev0 ev0Var, float f10, cv0 cv0Var, ArrayList arrayList, Integer num) {
-        this.f38114r = photoViewer;
-        this.f38108a = clippingImageViewArr;
-        this.f38109b = layoutParams;
-        this.f38110c = f7;
+        this.f38116r = photoViewer;
+        this.f38110a = clippingImageViewArr;
+        this.f38111b = layoutParams;
+        this.f38112c = f7;
         this.d = ev0Var;
-        this.f38111e = f10;
-        this.f38112f = cv0Var;
+        this.f38113e = f10;
+        this.f38114f = cv0Var;
         this.h = arrayList;
-        this.f38113n = num;
+        this.f38115n = num;
     }
 
     @Override
@@ -50,11 +50,11 @@ public final class gu0 implements ViewTreeObserver.OnPreDrawListener {
         float f10;
         int i16;
         int i17;
-        PhotoViewer photoViewer = this.f38114r;
+        PhotoViewer photoViewer = this.f38116r;
         Rect rect = photoViewer.f34028s2;
         PhotoViewer.BackgroundDrawable backgroundDrawable = photoViewer.L0;
         float[][] fArr = photoViewer.f33960k4;
-        ClippingImageView[] clippingImageViewArr = this.f38108a;
+        ClippingImageView[] clippingImageViewArr = this.f38110a;
         if (clippingImageViewArr.length > 1) {
             clippingImageViewArr[1].setAlpha(1.0f);
             clippingImageViewArr[1].setAdditionalTranslationX(-rect.left);
@@ -63,7 +63,7 @@ public final class gu0 implements ViewTreeObserver.OnPreDrawListener {
         clippingImageView.setTranslationX(clippingImageView.getTranslationX() + rect.left);
         photoViewer.f33921g0.getViewTreeObserver().removeOnPreDrawListener(this);
         int i18 = photoViewer.f33887c2;
-        ViewGroup.LayoutParams layoutParams = this.f38109b;
+        ViewGroup.LayoutParams layoutParams = this.f38111b;
         if (i18 == 1) {
             if (!photoViewer.f34025s) {
                 i16 = AndroidUtilities.statusBarHeight;
@@ -110,22 +110,22 @@ public final class gu0 implements ViewTreeObserver.OnPreDrawListener {
             photoViewer.f33919f6 = 0.0f;
         }
         ev0 ev0Var = this.d;
-        int abs = (int) Math.abs(this.f38110c - ev0Var.f37354a.getImageX());
-        float imageY = ev0Var.f37354a.getImageY();
-        float f16 = this.f38111e;
+        int abs = (int) Math.abs(this.f38112c - ev0Var.f37356a.getImageX());
+        float imageY = ev0Var.f37356a.getImageY();
+        float f16 = this.f38113e;
         int abs2 = (int) Math.abs(f16 - imageY);
-        if (ev0Var.f37354a.isAspectFit()) {
+        if (ev0Var.f37356a.isAspectFit()) {
             abs = i10;
         }
         int[] iArr = new int[2];
         int i21 = 2;
         ev0Var.d.getLocationInWindow(iArr);
-        float f17 = ev0Var.f37356c + f16;
-        int i22 = (int) ((iArr[1] - f17) + ev0Var.f37361j);
+        float f17 = ev0Var.f37358c + f16;
+        int i22 = (int) ((iArr[1] - f17) + ev0Var.f37363j);
         if (i22 < 0) {
             i22 = i10;
         }
-        int height = (int) (((f17 + layoutParams.height) - (ev0Var.d.getHeight() + i13)) + ev0Var.f37360i);
+        int height = (int) (((f17 + layoutParams.height) - (ev0Var.d.getHeight() + i13)) + ev0Var.f37362i);
         if (height < 0) {
             height = i10;
         }
@@ -137,7 +137,7 @@ public final class gu0 implements ViewTreeObserver.OnPreDrawListener {
         fArr[i10][3] = photoViewer.f33930h0.getTranslationY();
         float[] fArr2 = fArr[i10];
         float f18 = abs;
-        float f19 = ev0Var.f37362k;
+        float f19 = ev0Var.f37364k;
         fArr2[4] = f18 * f19;
         fArr2[5] = max * f19;
         char c10 = 6;
@@ -158,7 +158,7 @@ public final class gu0 implements ViewTreeObserver.OnPreDrawListener {
             c10 = c11;
         }
         float[] fArr4 = fArr[i10];
-        float f20 = ev0Var.f37362k;
+        float f20 = ev0Var.f37364k;
         fArr4[11] = abs2 * f20;
         fArr4[12] = f18 * f20;
         float[] fArr5 = fArr[1];
@@ -181,7 +181,7 @@ public final class gu0 implements ViewTreeObserver.OnPreDrawListener {
         backgroundDrawable.setAlpha(i10);
         photoViewer.f33904e0.setAlpha(0.0f);
         photoViewer.f33948j0.setAlpha(0.0f);
-        g90 g90Var = new g90(this, clippingImageViewArr, this.h, this.f38113n, this.f38112f, 15);
+        g90 g90Var = new g90(this, clippingImageViewArr, this.h, this.f38115n, this.f38114f, 15);
         photoViewer.f34003p4 = g90Var;
         if (!photoViewer.f33966l2) {
             AnimatorSet animatorSet = new AnimatorSet();

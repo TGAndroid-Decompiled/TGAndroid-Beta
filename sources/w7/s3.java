@@ -1,6 +1,6 @@
 package w7;
 public final class s3 implements ia.d {
-    public static final s3 f50128a = new Object();
+    public static final s3 f50130a = new Object();
 
     static {
         sc.v.t(sc.v.m(d.class, new a(1)));

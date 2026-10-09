@@ -222,7 +222,7 @@ public abstract class d2 implements l.b0 {
         xVar.setWindowLayoutType(this.f15655n);
         if (xVar.isShowing()) {
             View view2 = this.E;
-            WeakHashMap weakHashMap = r0.i0.f46764a;
+            WeakHashMap weakHashMap = r0.i0.f46766a;
             if (view2.isAttachedToWindow()) {
                 int i20 = this.f15653e;
                 if (i20 == -1) {

@@ -7,30 +7,30 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class ry0 implements Utilities.Callback {
-    public final int f41540a;
-    public final ProfileActivity f41541b;
+    public final int f41542a;
+    public final ProfileActivity f41543b;
 
     public ry0(ProfileActivity profileActivity, int i10) {
-        this.f41540a = i10;
-        this.f41541b = profileActivity;
+        this.f41542a = i10;
+        this.f41543b = profileActivity;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f41540a) {
+        switch (this.f41542a) {
             case 0:
                 View view = (View) obj;
                 if (view instanceof org.telegram.ui.Cells.c9) {
                     org.telegram.ui.Cells.c9 c9Var = (org.telegram.ui.Cells.c9) view;
                     vh.n nVar = c9Var.f21931a;
-                    ProfileActivity profileActivity = this.f41541b;
+                    ProfileActivity profileActivity = this.f41543b;
                     nVar.setLoading(profileActivity.f34276i5);
                     c9Var.f21932b.setLoading(profileActivity.f34276i5);
                     return;
                 }
                 return;
             case 1:
-                ProfileActivity profileActivity2 = this.f41541b;
+                ProfileActivity profileActivity2 = this.f41543b;
                 profileActivity2.getClass();
                 ArrayList arrayList = new ArrayList(1);
                 arrayList.add((TLRPC.InputStickerSet) obj);
@@ -39,7 +39,7 @@ public final class ry0 implements Utilities.Callback {
             case 2:
                 View view2 = (View) obj;
                 boolean z10 = view2 instanceof org.telegram.ui.Cells.m4;
-                ProfileActivity profileActivity3 = this.f41541b;
+                ProfileActivity profileActivity3 = this.f41543b;
                 if (z10) {
                     ((org.telegram.ui.Cells.m4) view2).setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.L6, profileActivity3.f34386z0));
                 } else if (view2 instanceof org.telegram.ui.Cells.c9) {
@@ -76,7 +76,7 @@ public final class ry0 implements Utilities.Callback {
                 profileActivity3.d.getClass();
                 return;
             default:
-                ProfileActivity.e0(this.f41541b, (Boolean) obj);
+                ProfileActivity.e0(this.f41543b, (Boolean) obj);
                 return;
         }
     }

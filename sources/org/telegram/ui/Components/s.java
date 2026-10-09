@@ -47,7 +47,7 @@ public final class s implements org.telegram.ui.ActionBar.a2, fm0, qd0, rd0, sd0
             nbVar.setPadding(defaultWindowInsets.f11576a, defaultWindowInsets.f11577b, defaultWindowInsets.f11578c, defaultWindowInsets.d);
         }
         view.requestLayout();
-        return r0.k1.f46774b;
+        return r0.k1.f46776b;
     }
 
     @Override
@@ -193,12 +193,12 @@ public final class s implements org.telegram.ui.ActionBar.a2, fm0, qd0, rd0, sd0
         int i11 = n0.a.f16456a;
         if (Build.VERSION.SDK_INT >= 25 && (i10 & 1) != 0) {
             try {
-                iVar.f48189a.d();
+                iVar.f48191a.d();
             } catch (Exception unused) {
                 return false;
             }
         }
-        t0.h hVar = iVar.f48189a;
+        t0.h hVar = iVar.f48191a;
         if (!hVar.getDescription().hasMimeType("image/gif") && !SendMessagesHelper.shouldSendWebPAsSticker(null, hVar.c())) {
             pgVar.m(hVar.c(), hVar.getDescription().getMimeType(0));
             return true;

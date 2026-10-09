@@ -42,7 +42,7 @@ public final class tp implements wi {
                     qpVar.V1 = cqVar.f25470f0;
                     qpVar.F1 = false;
                     qpVar.E1 = false;
-                    qpVar.f43975n1 = 0.2f;
+                    qpVar.f43977n1 = 0.2f;
                     qpVar.c1(cqVar.v.a());
                     qpVar.I1 = new sp(this, 0);
                     cq.s(cqVar, qpVar);

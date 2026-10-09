@@ -29,7 +29,7 @@ public final class f7 extends pm0 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47660f == 1) {
+        if (d1Var.f47662f == 1) {
             return true;
         }
         return false;
@@ -138,11 +138,11 @@ public final class f7 extends pm0 {
         TLRPC.Message message2;
         l7 l7Var = this.d;
         int i16 = l7Var.v;
-        if (d1Var.f47660f == 1 && i10 >= 0) {
+        if (d1Var.f47662f == 1 && i10 >= 0) {
             ArrayList arrayList = this.f1030c;
             if (i10 < arrayList.size()) {
                 a7 a7Var = (a7) arrayList.get(i10);
-                org.telegram.ui.Cells.o6 o6Var = (org.telegram.ui.Cells.o6) d1Var.f47656a;
+                org.telegram.ui.Cells.o6 o6Var = (org.telegram.ui.Cells.o6) d1Var.f47658a;
                 TL_stories.StoryView storyView = a7Var.f644b;
                 TL_stories.StoryReaction storyReaction = a7Var.f645c;
                 if (storyView != null) {
@@ -175,7 +175,7 @@ public final class f7 extends pm0 {
                 boolean remove = l7Var.F.f1240p.remove(Long.valueOf(j3));
                 if (storyView != null) {
                     TLRPC.Reaction reaction3 = storyView.reaction;
-                    if (reaction3 != null && (str2 = zg.n0.d(reaction3).f54615f) != null && str2.equals("❤")) {
+                    if (reaction3 != null && (str2 = zg.n0.d(reaction3).f54617f) != null && str2.equals("❤")) {
                         j11 = 0;
                         z11 = true;
                     } else {
@@ -238,7 +238,7 @@ public final class f7 extends pm0 {
                     if (storyReaction instanceof TL_stories.TL_storyReaction) {
                         TL_stories.TL_storyReaction tL_storyReaction = (TL_stories.TL_storyReaction) storyReaction;
                         TLRPC.Reaction reaction4 = tL_storyReaction.reaction;
-                        if (reaction4 != null && (str = zg.n0.d(reaction4).f54615f) != null && str.equals("❤")) {
+                        if (reaction4 != null && (str = zg.n0.d(reaction4).f54617f) != null && str.equals("❤")) {
                             z10 = true;
                         } else {
                             z10 = false;

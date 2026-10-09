@@ -57,7 +57,7 @@ public final class ni0 extends y9 implements pw0 {
         ArrayList arrayList = ti0Var.f31191b1;
         RectF rectF = ti0Var.N0;
         org.telegram.ui.qv0 qv0Var = ti0Var.f31197h1;
-        if (qv0Var == null || !qv0Var.f41203n) {
+        if (qv0Var == null || !qv0Var.f41205n) {
             if (this.H != null) {
                 int k10 = ti0Var.D0.k(this.M);
                 if (ti0Var.f31198i1) {

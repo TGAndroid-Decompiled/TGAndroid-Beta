@@ -50,27 +50,27 @@ import tg.u0;
 import w7.x5;
 import w7.z5;
 public final class f extends eb implements me.d {
-    public static final int f48463r0 = 0;
+    public static final int f48465r0 = 0;
     public final me.e X;
     public final me.b Y;
     public final HashMap Z;
-    public final ArrayList f48464a0;
-    public final ArrayList f48465b0;
-    public String f48466c0;
-    public c71 f48467d0;
-    public final ci.d f48468e0;
-    public final o f48469f0;
-    public final t5 f48470g0;
-    public final w20 f48471h0;
-    public final v3 f48472i0;
-    public final HashMap f48473j0;
-    public t f48474k0;
-    public int f48475l0;
+    public final ArrayList f48466a0;
+    public final ArrayList f48467b0;
+    public String f48468c0;
+    public c71 f48469d0;
+    public final ci.d f48470e0;
+    public final o f48471f0;
+    public final t5 f48472g0;
+    public final w20 f48473h0;
+    public final v3 f48474i0;
+    public final HashMap f48475j0;
+    public t f48476k0;
+    public int f48477l0;
     public final int m0;
-    public final FrameLayout f48476n0;
-    public HashSet f48477o0;
-    public final Rect f48478p0;
-    public d40 f48479q0;
+    public final FrameLayout f48478n0;
+    public HashSet f48479o0;
+    public final Rect f48480p0;
+    public d40 f48481q0;
 
     public f(Context context, e6 e6Var) {
         super(context, e6Var, true);
@@ -79,10 +79,10 @@ public final class f extends eb implements me.d {
         this.X = new me.e(3, this, hsVar, 350L);
         this.Y = new me.b(4, this, hsVar, 320L, false);
         this.Z = new HashMap();
-        this.f48464a0 = new ArrayList();
-        this.f48465b0 = new ArrayList();
-        this.f48473j0 = new HashMap();
-        this.f48478p0 = new Rect();
+        this.f48466a0 = new ArrayList();
+        this.f48467b0 = new ArrayList();
+        this.f48475j0 = new HashMap();
+        this.f48480p0 = new Rect();
         this.occupyNavigationBar = true;
         this.drawNavigationBar = false;
         this.L = false;
@@ -96,13 +96,13 @@ public final class f extends eb implements me.d {
         this.d.j(new mh0(this, 16));
         this.d.setOnItemClickListener(new c(context, e6Var, this));
         ci.d dVar = new ci.d(context, e6Var, true);
-        this.f48468e0 = dVar;
+        this.f48470e0 = dVar;
         dVar.e();
         dVar.setCountFilled(true);
         dVar.setText(LocaleController.getString(R.string.Save));
         dVar.setOnClickListener(new a(this, 0));
         o oVar = new o(this, context);
-        this.f48469f0 = oVar;
+        this.f48471f0 = oVar;
         oVar.setTextColor(getThemedColor(i6.Sh));
         oVar.setText(LocaleController.getString(R.string.Save));
         oVar.setTypeface(AndroidUtilities.bold());
@@ -119,16 +119,16 @@ public final class f extends eb implements me.d {
         g2Var.setHint(string);
         g2Var.addTextChangedListener(new h2(this, 20));
         w20 w20Var = new w20(context, this.currentAccount);
-        this.f48471h0 = w20Var;
+        this.f48473h0 = w20Var;
         w20Var.setDelegate(new b(this));
         t5 t5Var = new t5(context, e6Var, this);
-        this.f48470g0 = t5Var;
+        this.f48472g0 = t5Var;
         int i11 = this.backgroundPaddingLeft;
         t5Var.setPadding(i11, 0, i11, 0);
         t5Var.addView(s20Var, x5.a(40.0f, 10.0f, 0.0f, 10.0f, 0.0f, -1, 48));
         t5Var.addView(w20Var, x5.a(144.0f, -3.0f, 40.0f, -3.0f, 0.0f, -1, 48));
         v3 v3Var = new v3(context, 18, e6Var);
-        this.f48472i0 = v3Var;
+        this.f48474i0 = v3Var;
         v3Var.setTranslationY(AndroidUtilities.dp(48.0f));
         v3Var.c(LocaleController.getString(R.string.SearchCountriesTitle), LocaleController.getString(R.string.DeselectAll), new a(this, 2));
         t5Var.addView(v3Var, x5.e(-1, 32, 48));
@@ -138,14 +138,14 @@ public final class f extends eb implements me.d {
         frameLayout.addView(dVar, x5.d(48.0f, -1));
         this.containerView.addView(frameLayout, x5.e(-1, -2, 80));
         FrameLayout frameLayout2 = new FrameLayout(context);
-        this.f48476n0 = frameLayout2;
+        this.f48478n0 = frameLayout2;
         frameLayout2.setTranslationY((-AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(68.0f));
         this.containerView.addView(frameLayout2, x5.e(-1, 150, 80));
         j jVar = new j();
         jVar.n(350L);
         jVar.o(hsVar);
         jVar.C = false;
-        jVar.f47696m = false;
+        jVar.f47698m = false;
         this.d.setItemAnimator(jVar);
         this.d.i(new d(this, e6Var));
         q1 q1Var = new q1(this, 15);
@@ -162,13 +162,13 @@ public final class f extends eb implements me.d {
     }
 
     public static void Q(f fVar, Pair pair) {
-        HashMap hashMap = fVar.f48473j0;
+        HashMap hashMap = fVar.f48475j0;
         HashMap hashMap2 = fVar.Z;
         hashMap2.putAll((Map) pair.first);
-        ArrayList arrayList = fVar.f48464a0;
+        ArrayList arrayList = fVar.f48466a0;
         arrayList.addAll((Collection) pair.second);
         Map.EL.forEach(hashMap2, new u0(fVar, 1));
-        HashSet hashSet = fVar.f48477o0;
+        HashSet hashSet = fVar.f48479o0;
         if (hashSet != null) {
             Iterator it = hashSet.iterator();
             while (it.hasNext()) {
@@ -192,13 +192,13 @@ public final class f extends eb implements me.d {
                 if (tL_help_country != null) {
                     d40 d40Var = new d40(fVar.getContext(), tL_help_country);
                     d40Var.setOnClickListener(new a(fVar, 3));
-                    fVar.f48471h0.a(d40Var);
+                    fVar.f48473h0.a(d40Var);
                     hashMap.put(tL_help_country.iso2, d40Var);
                 }
             }
         }
-        fVar.f48467d0.N(true);
-        fVar.f48468e0.b(hashMap.size(), true);
+        fVar.f48469d0.N(true);
+        fVar.f48470e0.b(hashMap.size(), true);
     }
 
     @Override
@@ -210,7 +210,7 @@ public final class f extends eb implements me.d {
         boolean z10;
         int dp = AndroidUtilities.dp(56.0f) + k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + ((int) this.X.f16345e);
         int measuredHeight = (this.containerView.getMeasuredHeight() - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(34.0f);
-        Rect rect = this.f48478p0;
+        Rect rect = this.f48480p0;
         if (rect.top == dp && rect.bottom == measuredHeight) {
             z10 = false;
         } else {
@@ -240,7 +240,7 @@ public final class f extends eb implements me.d {
             i10++;
         }
         float max = Math.max(k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight, f7 + AndroidUtilities.dp(8.0f));
-        t5 t5Var = this.f48470g0;
+        t5 t5Var = this.f48472g0;
         if (t5Var.getTranslationY() != max) {
             t5Var.setTranslationY(max);
             qm0Var.invalidate();
@@ -250,20 +250,20 @@ public final class f extends eb implements me.d {
     public final void T(View view) {
         d40 d40Var = (d40) view;
         if (d40Var.f25593y) {
-            this.f48479q0 = null;
-            this.f48471h0.c(d40Var);
+            this.f48481q0 = null;
+            this.f48473h0.c(d40Var);
             String countryIso2 = d40Var.getCountryIso2();
-            HashMap hashMap = this.f48473j0;
+            HashMap hashMap = this.f48475j0;
             hashMap.remove(countryIso2);
-            this.f48468e0.b(hashMap.size(), true);
-            this.f48467d0.N(true);
+            this.f48470e0.b(hashMap.size(), true);
+            this.f48469d0.N(true);
             return;
         }
-        d40 d40Var2 = this.f48479q0;
+        d40 d40Var2 = this.f48481q0;
         if (d40Var2 != null) {
             d40Var2.a();
         }
-        this.f48479q0 = d40Var;
+        this.f48481q0 = d40Var;
         d40Var.b();
     }
 
@@ -271,10 +271,10 @@ public final class f extends eb implements me.d {
     public final void n(int i10, float f7, float f10, me.e eVar) {
         if (i10 == 3) {
             R();
-            this.f48472i0.setTranslationY(AndroidUtilities.dp(48.0f) + f7);
-            this.f48470g0.invalidate();
+            this.f48474i0.setTranslationY(AndroidUtilities.dp(48.0f) + f7);
+            this.f48472g0.invalidate();
         } else if (i10 == 4) {
-            p20.d(this.f48469f0, f7);
+            p20.d(this.f48471f0, f7);
         }
     }
 
@@ -288,7 +288,7 @@ public final class f extends eb implements me.d {
     @Override
     public final pm0 x(qm0 qm0Var) {
         c71 c71Var = new c71(qm0Var, getContext(), this.currentAccount, 0, true, new hi.a(this, 8), this.resourcesProvider);
-        this.f48467d0 = c71Var;
+        this.f48469d0 = c71Var;
         c71Var.f25280r = false;
         return c71Var;
     }

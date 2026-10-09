@@ -416,7 +416,7 @@ public final class t5 extends FrameLayout {
         super.onAttachedToWindow();
         vh.f fVar = this.M;
         if (fVar != null) {
-            if (fVar.f49673i) {
+            if (fVar.f49675i) {
                 this.M = vh.f.e(this);
             } else {
                 fVar.a(this);

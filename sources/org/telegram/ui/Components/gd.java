@@ -284,9 +284,9 @@ public abstract class gd extends View {
         this.J.setLocalMatrix(matrix2);
         rg.v1 v1Var = this.Q;
         if (v1Var != null) {
-            v1Var.f47474a.set(0.0f, 0.0f, AndroidUtilities.dp(140.0f), AndroidUtilities.dp(140.0f));
-            this.Q.f47474a.offset((getMeasuredWidth() - this.Q.f47474a.width()) / 2.0f, (getMeasuredHeight() - this.Q.f47474a.height()) / 2.0f);
-            this.Q.f47475b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+            v1Var.f47476a.set(0.0f, 0.0f, AndroidUtilities.dp(140.0f), AndroidUtilities.dp(140.0f));
+            this.Q.f47476a.offset((getMeasuredWidth() - this.Q.f47476a.width()) / 2.0f, (getMeasuredHeight() - this.Q.f47476a.height()) / 2.0f);
+            this.Q.f47477b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
             this.Q.f();
         }
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(dp, 1073741824));

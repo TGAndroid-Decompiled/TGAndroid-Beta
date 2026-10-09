@@ -120,7 +120,7 @@ public final class y9 extends FrameLayout implements View.OnClickListener, Notif
         t9Var.n(350L);
         t9Var.o(hs.h);
         t9Var.C = false;
-        t9Var.f47696m = false;
+        t9Var.f47698m = false;
         qm0Var.setItemAnimator(t9Var);
         frameLayout.addView(r9Var, w7.x5.e(-1, -2, 55));
         frameLayout.addView(v3Var, w7.x5.e(-1, 32, 55));
@@ -893,7 +893,7 @@ public final class y9 extends FrameLayout implements View.OnClickListener, Notif
             z11 = ((org.telegram.ui.ActionBar.f3) faVar).keyboardVisible;
             if (z11 && c10 + Math.min(AndroidUtilities.dp(150.0f), this.f6369x.J) > qm0Var.getPaddingTop()) {
                 ji.o oVar = new ji.o(getContext(), 2, 0.7f);
-                oVar.f47825a = 1;
+                oVar.f47827a = 1;
                 oVar.f14273p = -AndroidUtilities.dp(56.0f);
                 this.h.w0(oVar);
             }

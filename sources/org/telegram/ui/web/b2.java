@@ -8,42 +8,42 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 public final class b2 implements ValueCallback {
-    public final int f43271a;
-    public final Object f43272b;
-    public final WebView f43273c;
+    public final int f43273a;
+    public final Object f43274b;
+    public final WebView f43275c;
     public final Object d;
-    public final Object f43274e;
+    public final Object f43276e;
 
     public b2(oi.k kVar, gg.t tVar, WebView webView, b5.h hVar) {
-        this.f43271a = 2;
-        this.f43272b = kVar;
+        this.f43273a = 2;
+        this.f43274b = kVar;
         this.d = tVar;
-        this.f43273c = webView;
-        this.f43274e = hVar;
+        this.f43275c = webView;
+        this.f43276e = hVar;
     }
 
     @Override
     public final void onReceiveValue(Object obj) {
-        switch (this.f43271a) {
+        switch (this.f43273a) {
             case 0:
-                i2 i2Var = (i2) this.f43272b;
-                WebView webView = this.f43273c;
+                i2 i2Var = (i2) this.f43274b;
+                WebView webView = this.f43275c;
                 File file = (File) this.d;
                 String str = (String) obj;
-                webView.saveWebArchive(file.getAbsolutePath(), false, new b2(i2Var, webView, file, (a2) this.f43274e, 1));
+                webView.saveWebArchive(file.getAbsolutePath(), false, new b2(i2Var, webView, file, (a2) this.f43276e, 1));
                 return;
             case 1:
-                i2 i2Var2 = (i2) this.f43272b;
-                WebView webView2 = this.f43273c;
+                i2 i2Var2 = (i2) this.f43274b;
+                WebView webView2 = this.f43275c;
                 File file2 = (File) this.d;
-                a2 a2Var = (a2) this.f43274e;
+                a2 a2Var = (a2) this.f43276e;
                 String str2 = (String) obj;
                 webView2.evaluateJavascript(AndroidUtilities.readRes(R.raw.open_collapsed).replace("$OPEN$", "false"), new h0(1));
                 try {
                     oi.f fVar = new oi.f(file2);
-                    i2Var2.f43353b = fVar;
+                    i2Var2.f43355b = fVar;
                     if (!((ArrayList) fVar.f17176b).isEmpty()) {
-                        a2Var.run(((k1) ((ArrayList) i2Var2.f43353b.f17176b).get(0)).a());
+                        a2Var.run(((k1) ((ArrayList) i2Var2.f43355b.f17176b).get(0)).a());
                         return;
                     }
                 } catch (Exception e7) {
@@ -52,9 +52,9 @@ public final class b2 implements ValueCallback {
                 a2Var.run(null);
                 return;
             default:
-                oi.k kVar = (oi.k) this.f43272b;
-                WebView webView3 = this.f43273c;
-                b5.h hVar = (b5.h) this.f43274e;
+                oi.k kVar = (oi.k) this.f43274b;
+                WebView webView3 = this.f43275c;
+                b5.h hVar = (b5.h) this.f43276e;
                 String str3 = (String) obj;
                 AndroidUtilities.cancelRunOnUIThread((gg.t) this.d);
                 synchronized (kVar.f17188a) {
@@ -80,10 +80,10 @@ public final class b2 implements ValueCallback {
     }
 
     public b2(i2 i2Var, WebView webView, File file, a2 a2Var, int i10) {
-        this.f43271a = i10;
-        this.f43272b = i2Var;
-        this.f43273c = webView;
+        this.f43273a = i10;
+        this.f43274b = i2Var;
+        this.f43275c = webView;
         this.d = file;
-        this.f43274e = a2Var;
+        this.f43276e = a2Var;
     }
 }

@@ -13,7 +13,7 @@ public final class qw extends org.telegram.ui.Components.a10 {
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         getParent().requestDisallowInterceptTouchEvent(true);
-        this.B0.f42212m3 = false;
+        this.B0.f42214m3 = false;
         return super.onInterceptTouchEvent(motionEvent);
     }
 }

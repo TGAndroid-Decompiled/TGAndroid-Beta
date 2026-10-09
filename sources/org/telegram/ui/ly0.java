@@ -4,30 +4,30 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class ly0 implements Runnable {
-    public final int f39703a;
-    public final ProfileActivity f39704b;
-    public final TLRPC.TL_error f39705c;
+    public final int f39705a;
+    public final ProfileActivity f39706b;
+    public final TLRPC.TL_error f39707c;
     public final TLObject d;
-    public final TLRPC.TL_channels_getParticipants f39706e;
+    public final TLRPC.TL_channels_getParticipants f39708e;
 
     public ly0(ProfileActivity profileActivity, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_channels_getParticipants tL_channels_getParticipants, int i10) {
-        this.f39703a = i10;
-        this.f39704b = profileActivity;
-        this.f39705c = tL_error;
+        this.f39705a = i10;
+        this.f39706b = profileActivity;
+        this.f39707c = tL_error;
         this.d = tLObject;
-        this.f39706e = tL_channels_getParticipants;
+        this.f39708e = tL_channels_getParticipants;
     }
 
     @Override
     public final void run() {
-        switch (this.f39703a) {
+        switch (this.f39705a) {
             case 0:
-                ProfileActivity profileActivity = this.f39704b;
-                profileActivity.getNotificationCenter().doOnIdle(new ly0(profileActivity, this.f39705c, this.d, this.f39706e, 1));
+                ProfileActivity profileActivity = this.f39706b;
+                profileActivity.getNotificationCenter().doOnIdle(new ly0(profileActivity, this.f39707c, this.d, this.f39708e, 1));
                 return;
             default:
-                ProfileActivity profileActivity2 = this.f39704b;
-                if (this.f39705c == null) {
+                ProfileActivity profileActivity2 = this.f39706b;
+                if (this.f39707c == null) {
                     profileActivity2.getClass();
                     TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) this.d;
                     profileActivity2.getMessagesController().putUsers(tL_channels_channelParticipants.users, false);
@@ -35,7 +35,7 @@ public final class ly0 implements Runnable {
                     if (tL_channels_channelParticipants.users.size() < 200) {
                         profileActivity2.D1 = true;
                     }
-                    if (this.f39706e.offset == 0) {
+                    if (this.f39708e.offset == 0) {
                         profileActivity2.C1.b();
                         profileActivity2.f34354u2.participants = new TLRPC.TL_chatParticipants();
                         profileActivity2.getMessagesStorage().putUsersAndChats(tL_channels_channelParticipants.users, tL_channels_channelParticipants.chats, true, true);

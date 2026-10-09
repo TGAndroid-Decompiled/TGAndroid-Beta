@@ -303,8 +303,8 @@ public class z21 extends FrameLayout implements NotificationCenter.NotificationC
                 }
                 org.telegram.ui.co coVar3 = new org.telegram.ui.co(wallPaper, false, true);
                 this.N = coVar3;
-                coVar3.f36709b = this;
-                cd0 cd0Var3 = coVar3.f36712f;
+                coVar3.f36711b = this;
+                cd0 cd0Var3 = coVar3.f36714f;
                 if (cd0Var3 != null) {
                     cd0Var3.r(this);
                 }

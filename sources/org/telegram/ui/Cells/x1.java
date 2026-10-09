@@ -74,7 +74,7 @@ public final class x1 extends org.telegram.ui.Components.r6 {
                 if (size <= 0) {
                     size = AndroidUtilities.displaySize.x - AndroidUtilities.dp(20.0f);
                 }
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) ((size - kc0Var.d.getPaint().measureText(kc0Var.d.getText().toString())) - kc0Var.f39213f.getPaint().measureText(kc0Var.f39213f.getText().toString())), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824));
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) ((size - kc0Var.d.getPaint().measureText(kc0Var.d.getText().toString())) - kc0Var.f39215f.getPaint().measureText(kc0Var.f39215f.getText().toString())), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824));
                 return;
             default:
                 super.onMeasure(i10, i11);

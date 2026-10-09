@@ -80,8 +80,8 @@ public final class ku0 extends pm0 {
     @Override
     public final void v(s4.d1 d1Var, int i10) {
         org.telegram.ui.Cells.i6 i6Var;
-        int i11 = d1Var.f47660f;
-        View view = d1Var.f47656a;
+        int i11 = d1Var.f47662f;
+        View view = d1Var.f47658a;
         if (i11 == 17) {
             if (view instanceof org.telegram.ui.Cells.i6) {
                 i6Var = (org.telegram.ui.Cells.i6) view;

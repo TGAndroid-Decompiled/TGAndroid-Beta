@@ -303,7 +303,7 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
                 this.f20409a1.setPadding(0, 0, 0, 0);
                 this.f20409a1.setBackground(drawable);
                 z1 z1Var2 = this.f20409a1;
-                ai.l2 l2Var = yf.i0.f52169a;
+                ai.l2 l2Var = yf.i0.f52171a;
                 z1Var2.setOutlineProvider(new yf.h0(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(20.0f)));
                 this.f20409a1.setClipToOutline(true);
                 this.f20422i0 = false;
@@ -473,7 +473,7 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
             this.f20418f = nVar;
             NotificationCenter.listenEmojiLoading(nVar);
             vh.n nVar2 = this.f20418f;
-            nVar2.f49735s = 3;
+            nVar2.f49737s = 3;
             nVar2.setText(this.R);
             this.f20418f.setTextColor(e(i6.f20905j5));
             this.f20418f.setTextSize(1, 20.0f);

@@ -94,7 +94,7 @@ public final class q extends eb implements NotificationCenter.NotificationCenter
         this.v = 0.35f;
         this.O = true;
         p pVar = new p(this);
-        pVar.f47696m = false;
+        pVar.f47698m = false;
         pVar.C = false;
         pVar.o(hs.h);
         pVar.n(350L);

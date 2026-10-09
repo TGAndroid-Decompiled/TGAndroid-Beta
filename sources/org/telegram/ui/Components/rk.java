@@ -174,7 +174,7 @@ public final class rk extends mm0 {
 
     @Override
     public final boolean V(int i10, int i11, s4.d1 d1Var) {
-        int i12 = d1Var.f47660f;
+        int i12 = d1Var.f47662f;
         if (i12 == 1 || i12 == 4) {
             return true;
         }
@@ -186,8 +186,8 @@ public final class rk extends mm0 {
         String formatSectionDate;
         boolean z10;
         int i12 = i11;
-        int i13 = d1Var.f47660f;
-        View view = d1Var.f47656a;
+        int i13 = d1Var.f47662f;
+        View view = d1Var.f47658a;
         if (i13 != 2 && i13 != 3) {
             HashMap hashMap = this.Q;
             ArrayList arrayList = this.P;

@@ -121,26 +121,26 @@ public final class r3 implements View.OnLongClickListener {
                 ka1 ka1Var = (ka1) this.f1651b;
                 kg.f fVar = (kg.f) this.f1652c;
                 la1 la1Var = ka1Var.d;
-                i10 i10Var = ka1Var.f39198a;
+                i10 i10Var = ka1Var.f39200a;
                 boolean z10 = false;
                 if (i10Var.f27183c) {
                     la1Var.f();
-                    ArrayList arrayList = la1Var.f39491n;
-                    ig.g gVar = la1Var.f39488c;
+                    ArrayList arrayList = la1Var.f39493n;
+                    ig.g gVar = la1Var.f39490c;
                     int size = arrayList.size();
                     for (int i10 = 0; i10 < size; i10++) {
-                        ((ka1) arrayList.get(i10)).f39198a.setChecked(false);
-                        ((ka1) arrayList.get(i10)).f39199b.f14852n = false;
-                        if (la1Var.f39492r.f40148c > 0 && i10 < gVar.d.size()) {
+                        ((ka1) arrayList.get(i10)).f39200a.setChecked(false);
+                        ((ka1) arrayList.get(i10)).f39201b.f14852n = false;
+                        if (la1Var.f39494r.f40150c > 0 && i10 < gVar.d.size()) {
                             ((kg.f) gVar.d.get(i10)).f14852n = false;
                         }
                     }
                     z10 = true;
                     i10Var.setChecked(true);
                     fVar.f14852n = true;
-                    la1Var.f39487b.z();
-                    if (la1Var.f39492r.f40148c > 0) {
-                        ((kg.f) gVar.d.get(ka1Var.f39200c)).f14852n = true;
+                    la1Var.f39489b.z();
+                    if (la1Var.f39494r.f40150c > 0) {
+                        ((kg.f) gVar.d.get(ka1Var.f39202c)).f14852n = true;
                         gVar.z();
                     }
                 }

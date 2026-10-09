@@ -60,7 +60,7 @@ public final class vz extends pm0 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47660f == 7) {
+        if (d1Var.f47662f == 7) {
             return true;
         }
         return false;
@@ -303,8 +303,8 @@ public final class vz extends pm0 {
         a00 a00Var = this.Q;
         LongSparseArray longSparseArray = a00Var.f24476z1;
         LongSparseArray longSparseArray2 = a00Var.f24473y1;
-        int i12 = d1Var.f47660f;
-        View view = d1Var.f47656a;
+        int i12 = d1Var.f47662f;
+        View view = d1Var.f47658a;
         SparseArray sparseArray = this.f32481r;
         boolean z11 = true;
         char c10 = 1;

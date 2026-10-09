@@ -70,7 +70,7 @@ public final class u extends FrameLayout {
         nVar.setEllipsize(TextUtils.TruncateAt.END);
         nVar.setTextColor(i6.w0(i12, e6Var));
         nVar.setGravity(LocaleController.isRTL ? 5 : 3);
-        nVar.f49734r = false;
+        nVar.f49736r = false;
         nVar.setUseAlphaForEmoji(false);
         NotificationCenter.listenEmojiLoading(nVar);
         addView(nVar, x5.i(-1.0f, 20.0f, 87, 64.0f, 0.0f, 14.0f, 6.0f));

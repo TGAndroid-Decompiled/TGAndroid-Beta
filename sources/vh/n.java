@@ -51,20 +51,20 @@ public class n extends TextView implements x9 {
     public int O;
     public boolean P;
     public Object Q;
-    public final l f49728a;
-    public final ArrayList f49729b;
-    public final Stack f49730c;
+    public final l f49730a;
+    public final ArrayList f49731b;
+    public final Stack f49732c;
     public boolean d;
-    public boolean f49731e;
-    public boolean f49732f;
+    public boolean f49733e;
+    public boolean f49734f;
     public int h;
-    public final Path f49733n;
-    public boolean f49734r;
-    public int f49735s;
+    public final Path f49735n;
+    public boolean f49736r;
+    public int f49737s;
     public x5 v;
-    public boolean f49736w;
-    public final ba0 f49737x;
-    public final e6 f49738y;
+    public boolean f49738w;
+    public final ba0 f49739x;
+    public final e6 f49740y;
 
     public n(Context context) {
         this(context, null, true);
@@ -91,11 +91,11 @@ public class n extends TextView implements x9 {
     }
 
     public final void b() {
-        ArrayList arrayList = this.f49729b;
+        ArrayList arrayList = this.f49731b;
         if (arrayList == null) {
             return;
         }
-        Stack stack = this.f49730c;
+        Stack stack = this.f49732c;
         stack.addAll(arrayList);
         arrayList.clear();
         if (this.d) {
@@ -115,17 +115,17 @@ public class n extends TextView implements x9 {
     }
 
     public final void c(float f7, float f10) {
-        this.f49731e = false;
-        ArrayList arrayList = this.f49729b;
+        this.f49733e = false;
+        ArrayList arrayList = this.f49731b;
         if (arrayList.isEmpty()) {
             this.d = true;
             b();
             return;
         }
-        this.f49732f = true;
+        this.f49734f = true;
         int i10 = this.h + 1;
         this.h = i10;
-        ((g) arrayList.get(0)).f49692q = new m(this, i10, 0);
+        ((g) arrayList.get(0)).f49694q = new m(this, i10, 0);
         float hypot = (float) Math.hypot(getWidth(), getHeight());
         int size = arrayList.size();
         int i11 = 0;
@@ -146,7 +146,7 @@ public class n extends TextView implements x9 {
         if (!z10 && this.N == getLayout() && this.O == i10) {
             return;
         }
-        this.v = b6.update(this.f49735s, this, this.v, getLayout());
+        this.v = b6.update(this.f49737s, this, this.v, getLayout());
         this.N = getLayout();
         this.O = i10;
     }
@@ -155,13 +155,13 @@ public class n extends TextView implements x9 {
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         CharacterStyle characterStyle;
         float paddingTop;
-        ba0 ba0Var = this.f49737x;
+        ba0 ba0Var = this.f49739x;
         if (ba0Var != null) {
             Layout layout = getLayout();
             ClickableSpan a2 = a((int) motionEvent.getX(), (int) motionEvent.getY());
             if (a2 != null && motionEvent.getAction() == 0) {
-                fa0 fa0Var = new fa0(a2, this.f49738y, motionEvent.getX(), motionEvent.getY(), 0);
-                fa0Var.d(i6.w0(i6.Ld, this.f49738y));
+                fa0 fa0Var = new fa0(a2, this.f49740y, motionEvent.getX(), motionEvent.getY(), 0);
+                fa0Var.d(i6.w0(i6.Ld, this.f49740y));
                 this.H = fa0Var;
                 ba0Var.a(fa0Var, null);
                 SpannableString spannableString = new SpannableString(layout.getText());
@@ -198,7 +198,7 @@ public class n extends TextView implements x9 {
                 this.H = null;
             }
         }
-        if (this.H != null || (this.f49734r && ((GestureDetector) this.f49728a.f49722a.f15668b).onTouchEvent(motionEvent))) {
+        if (this.H != null || (this.f49736r && ((GestureDetector) this.f49730a.f49724a.f15668b).onTouchEvent(motionEvent))) {
             return true;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -276,15 +276,15 @@ public class n extends TextView implements x9 {
             }
             canvas.translate(f7, f10);
         }
-        ba0 ba0Var = this.f49737x;
+        ba0 ba0Var = this.f49739x;
         if (ba0Var != null && ba0Var.f(canvas)) {
             invalidate();
         }
         canvas.restore();
-        ArrayList arrayList2 = this.f49729b;
+        ArrayList arrayList2 = this.f49731b;
         boolean isEmpty = arrayList2.isEmpty();
         boolean z10 = true;
-        Path path = this.f49733n;
+        Path path = this.f49735n;
         if (isEmpty) {
             super.onDraw(canvas);
         } else {
@@ -299,12 +299,12 @@ public class n extends TextView implements x9 {
                 path.addRect(bounds.left + paddingLeft, bounds.top + paddingTop, bounds.right + paddingLeft, bounds.bottom + paddingTop, Path.Direction.CW);
             }
             canvas.clipPath(path, Region.Op.DIFFERENCE);
-            Emoji.emojiDrawingUseAlpha = this.f49736w;
+            Emoji.emojiDrawingUseAlpha = this.f49738w;
             super.onDraw(canvas);
             Emoji.emojiDrawingUseAlpha = true;
             canvas.restore();
             g gVar = (g) arrayList2.get(0);
-            if (gVar.f49688m > 0.0f && gVar.f49689n > 0.0f) {
+            if (gVar.f49690m > 0.0f && gVar.f49691n > 0.0f) {
                 canvas.save();
                 canvas.clipPath(path);
                 path.rewind();
@@ -325,7 +325,7 @@ public class n extends TextView implements x9 {
             arrayList = arrayList2;
         }
         if (!arrayList.isEmpty()) {
-            if (((g) arrayList.get(0)).f49689n == -1.0f) {
+            if (((g) arrayList.get(0)).f49691n == -1.0f) {
                 z10 = false;
             }
             if (z10) {
@@ -358,7 +358,7 @@ public class n extends TextView implements x9 {
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
         b();
-        if (this.f49731e) {
+        if (this.f49733e) {
             c((getWidth() / 2.0f) - getPaddingLeft(), ((getHeight() / 2.0f) - getPaddingTop()) + getScrollY());
         }
     }
@@ -390,12 +390,12 @@ public class n extends TextView implements x9 {
 
     public void setLoading(CharacterStyle characterStyle) {
         if (this.E != characterStyle) {
-            ba0 ba0Var = this.f49737x;
+            ba0 ba0Var = this.f49739x;
             ba0Var.e();
             this.E = characterStyle;
             ia0 i10 = ba0.i(getLayout(), characterStyle, getPaddingTop());
             if (i10 != null) {
-                int w02 = i6.w0(i6.Ld, this.f49738y);
+                int w02 = i6.w0(i6.Ld, this.f49740y);
                 i10.g(i6.m1(0.8f, w02), i6.m1(1.3f, w02), i6.m1(1.0f, w02), i6.m1(4.0f, w02));
                 i10.f27340x.setStrokeWidth(AndroidUtilities.dpf2(1.25f));
                 ba0Var.b(i10, null);
@@ -414,8 +414,8 @@ public class n extends TextView implements x9 {
     @Override
     public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
         this.h++;
-        this.f49731e = false;
-        this.f49732f = false;
+        this.f49733e = false;
+        this.f49734f = false;
         this.d = false;
         super.setText(charSequence, bufferType);
     }
@@ -427,23 +427,23 @@ public class n extends TextView implements x9 {
     }
 
     public void setUseAlphaForEmoji(boolean z10) {
-        this.f49736w = z10;
+        this.f49738w = z10;
     }
 
     public n(Context context, e6 e6Var, boolean z10) {
         super(context);
         ArrayList arrayList = new ArrayList();
-        this.f49729b = arrayList;
-        this.f49730c = new Stack();
-        this.f49733n = new Path();
-        this.f49734r = true;
-        this.f49735s = 0;
-        this.f49736w = true;
+        this.f49731b = arrayList;
+        this.f49732c = new Stack();
+        this.f49735n = new Path();
+        this.f49736r = true;
+        this.f49737s = 0;
+        this.f49738w = true;
         this.J = true;
         this.N = null;
-        this.f49737x = new ba0(this);
-        this.f49738y = e6Var;
-        this.f49728a = new l(this, arrayList, new ai.k(12, this, z10));
+        this.f49739x = new ba0(this);
+        this.f49740y = e6Var;
+        this.f49730a = new l(this, arrayList, new ai.k(12, this, z10));
     }
 
     public void setClearLinkOnLongPress(boolean z10) {

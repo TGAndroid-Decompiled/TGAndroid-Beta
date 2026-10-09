@@ -28,7 +28,7 @@ public final class v1 extends ScrollView {
         switch (this.f21608a) {
             case 3:
                 int action = motionEvent.getAction();
-                float f7 = ((l80) this.f21609b).f39461b.f16345e;
+                float f7 = ((l80) this.f21609b).f39463b.f16345e;
                 float y3 = motionEvent.getY();
                 if (action == 0 && y3 > f7) {
                     return false;
@@ -83,7 +83,7 @@ public final class v1 extends ScrollView {
                 super.onMeasure(i10, i11);
                 return;
             case 5:
-                ((nn0) this.f21609b).f40280s0 = View.MeasureSpec.getSize(i11) - AndroidUtilities.dp(30.0f);
+                ((nn0) this.f21609b).f40282s0 = View.MeasureSpec.getSize(i11) - AndroidUtilities.dp(30.0f);
                 super.onMeasure(i10, i11);
                 return;
         }
@@ -113,7 +113,7 @@ public final class v1 extends ScrollView {
                 rect.bottom = org.telegram.messenger.q.C(50.0f, l80Var.I, rect.bottom);
                 return super.requestChildRectangleOnScreen(view, rect, z10);
             case 4:
-                int i10 = ((wg0) this.f21609b).f43572a;
+                int i10 = ((wg0) this.f21609b).f43574a;
                 if (i10 == 1 || i10 == 2 || i10 == 4) {
                     rect.bottom = AndroidUtilities.dp(40.0f) + rect.bottom;
                 }

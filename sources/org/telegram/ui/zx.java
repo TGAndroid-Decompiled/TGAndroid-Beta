@@ -11,17 +11,17 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
 public final class zx extends uu0 {
-    public final boolean[] f45086a;
-    public final ty f45087b;
+    public final boolean[] f45088a;
+    public final ty f45089b;
 
     public zx(ty tyVar, boolean[] zArr) {
-        this.f45087b = tyVar;
-        this.f45086a = zArr;
+        this.f45089b = tyVar;
+        this.f45088a = zArr;
     }
 
     @Override
     public final CharSequence C(int i10) {
-        ty tyVar = this.f45087b;
+        ty tyVar = this.f45089b;
         if (i10 >= 0 && i10 < tyVar.D2.size() && ((MediaController.PhotoEntry) tyVar.D2.get(i10)).isVideo) {
             return null;
         }
@@ -31,7 +31,7 @@ public final class zx extends uu0 {
     @Override
     public final void D() {
         int i10;
-        ty tyVar = this.f45087b;
+        ty tyVar = this.f45089b;
         org.telegram.ui.Components.rr0 rr0Var = tyVar.G2;
         if (rr0Var != null) {
             i10 = ((org.telegram.ui.ActionBar.n2) tyVar).currentAccount;
@@ -42,7 +42,7 @@ public final class zx extends uu0 {
     @Override
     public final ev0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
         org.telegram.ui.Components.y9 y9Var;
-        ty tyVar = this.f45087b;
+        ty tyVar = this.f45089b;
         org.telegram.ui.Components.rr0 rr0Var = tyVar.G2;
         if (rr0Var != null) {
             y9Var = rr0Var.f(i10);
@@ -55,20 +55,20 @@ public final class zx extends uu0 {
         int[] iArr = new int[2];
         y9Var.getLocationInWindow(iArr);
         ev0 ev0Var = new ev0();
-        ev0Var.f37355b = iArr[0];
-        ev0Var.f37356c = iArr[1];
+        ev0Var.f37357b = iArr[0];
+        ev0Var.f37358c = iArr[1];
         ev0Var.d = tyVar.G2;
         ImageReceiver imageReceiver = y9Var.getImageReceiver();
-        ev0Var.f37354a = imageReceiver;
-        ev0Var.f37357e = imageReceiver.getBitmapSafe();
-        ev0Var.f37362k = y9Var.getScaleX();
+        ev0Var.f37356a = imageReceiver;
+        ev0Var.f37359e = imageReceiver.getBitmapSafe();
+        ev0Var.f37364k = y9Var.getScaleX();
         ev0Var.h = new int[]{AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f)};
         return ev0Var;
     }
 
     @Override
     public final long a() {
-        ty tyVar = this.f45087b;
+        ty tyVar = this.f45089b;
         if (tyVar.I2.isEmpty()) {
             return 0L;
         }
@@ -83,7 +83,7 @@ public final class zx extends uu0 {
     @Override
     public final CharSequence b0(int i10) {
         int i11;
-        ty tyVar = this.f45087b;
+        ty tyVar = this.f45089b;
         ArrayList arrayList = tyVar.D2;
         if (arrayList != null && !arrayList.isEmpty()) {
             int size = tyVar.D2.size();
@@ -122,7 +122,7 @@ public final class zx extends uu0 {
 
     @Override
     public final void e(CharSequence charSequence) {
-        ty tyVar = this.f45087b;
+        ty tyVar = this.f45089b;
         dx dxVar = tyVar.B1;
         if (dxVar != null) {
             dxVar.setFieldText(charSequence);
@@ -147,7 +147,7 @@ public final class zx extends uu0 {
     @Override
     public final ImageReceiver.BitmapHolder j(int i10) {
         org.telegram.ui.Components.y9 y9Var;
-        org.telegram.ui.Components.rr0 rr0Var = this.f45087b.G2;
+        org.telegram.ui.Components.rr0 rr0Var = this.f45089b.G2;
         if (rr0Var != null) {
             y9Var = rr0Var.f(i10);
         } else {
@@ -163,7 +163,7 @@ public final class zx extends uu0 {
     public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
         int i13;
         ArrayList arrayList;
-        ty tyVar = this.f45087b;
+        ty tyVar = this.f45089b;
         ArrayList arrayList2 = tyVar.I2;
         if (tyVar.B1 != null && (arrayList = tyVar.D2) != null && !arrayList.isEmpty()) {
             dx dxVar = tyVar.B1;
@@ -201,7 +201,7 @@ public final class zx extends uu0 {
         if (t12.R1() && (f12 = t12.f1()) != null) {
             charSequence = f12.getText();
         }
-        ty tyVar = this.f45087b;
+        ty tyVar = this.f45089b;
         if (charSequence != null && (dxVar = tyVar.B1) != null) {
             dxVar.setFieldText(charSequence);
         }
@@ -219,7 +219,7 @@ public final class zx extends uu0 {
 
     @Override
     public final boolean x(int i10) {
-        return this.f45086a[i10];
+        return this.f45088a[i10];
     }
 
     @Override

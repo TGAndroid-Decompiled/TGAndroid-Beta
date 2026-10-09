@@ -14,22 +14,22 @@ import org.telegram.ui.Components.dq;
 import rg.x1;
 import w7.x5;
 public final class b extends vg.c {
-    public final dq f51121s;
+    public final dq f51123s;
     public TLRPC.TL_help_country v;
-    public final TextPaint f51122w;
-    public final x1 f51123x;
+    public final TextPaint f51124w;
+    public final x1 f51125x;
 
     public b(Context context, e6 e6Var) {
         super(context, e6Var);
         int i10;
         TextPaint textPaint = new TextPaint();
-        this.f51122w = textPaint;
-        this.f51123x = new x1(this, 15);
+        this.f51124w = textPaint;
+        this.f51125x = new x1(this, 15);
         textPaint.setTextSize(AndroidUtilities.dp(20.0f));
-        this.f49576f.setVisibility(8);
-        this.f49574c.setVisibility(8);
+        this.f49578f.setVisibility(8);
+        this.f49576c.setVisibility(8);
         dq dqVar = new dq(context, 21, e6Var);
-        this.f51121s = dqVar;
+        this.f51123s = dqVar;
         dqVar.b(i6.B5, i6.f20907j7, i6.C5);
         dqVar.setDrawUnchecked(true);
         dqVar.setDrawBackgroundAsArc(10);
@@ -55,7 +55,7 @@ public final class b extends vg.c {
 
     @Override
     public final void c(boolean z10, boolean z11) {
-        dq dqVar = this.f51121s;
+        dq dqVar = this.f51123s;
         if (dqVar.getVisibility() == 0) {
             dqVar.a(z10, z11);
         }
@@ -107,7 +107,7 @@ public final class b extends vg.c {
         } else {
             f12 = 20.0f;
         }
-        this.f49575e.setLayoutParams(x5.a(-2.0f, f11, 0.0f, f12, 0.0f, -1, i14));
+        this.f49577e.setLayoutParams(x5.a(-2.0f, f11, 0.0f, f12, 0.0f, -1, i14));
         boolean z12 = LocaleController.isRTL;
         if (z12) {
             i12 = 5;
@@ -123,13 +123,13 @@ public final class b extends vg.c {
         } else {
             f14 = 15.0f;
         }
-        this.f49576f.setLayoutParams(x5.a(22.0f, f13, 0.0f, f14, 0.0f, 22, i15));
+        this.f49578f.setLayoutParams(x5.a(22.0f, f13, 0.0f, f14, 0.0f, 22, i15));
     }
 
     public final void f() {
         TLRPC.TL_help_country tL_help_country = this.v;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        CharSequence replaceWithRestrictedEmoji = Emoji.replaceWithRestrictedEmoji(LocaleController.getLanguageFlag(tL_help_country.iso2), this.f51122w.getFontMetricsInt(), 0, this.f51123x);
+        CharSequence replaceWithRestrictedEmoji = Emoji.replaceWithRestrictedEmoji(LocaleController.getLanguageFlag(tL_help_country.iso2), this.f51124w.getFontMetricsInt(), 0, this.f51125x);
         if (replaceWithRestrictedEmoji != null) {
             spannableStringBuilder.append(replaceWithRestrictedEmoji).append((CharSequence) " ");
             spannableStringBuilder.setSpan(new a(16), replaceWithRestrictedEmoji.length(), replaceWithRestrictedEmoji.length() + 1, 0);

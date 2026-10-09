@@ -2,28 +2,28 @@ package qg;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class q2 implements Runnable {
-    public final int f46520a;
-    public final u2 f46521b;
+    public final int f46522a;
+    public final u2 f46523b;
 
     public q2(u2 u2Var, int i10) {
-        this.f46520a = i10;
-        this.f46521b = u2Var;
+        this.f46522a = i10;
+        this.f46523b = u2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f46520a) {
+        switch (this.f46522a) {
             case 0:
                 super/*android.app.Dialog*/.dismiss();
                 return;
             case 1:
-                AndroidUtilities.runOnUIThread(new q2(this.f46521b, 0));
+                AndroidUtilities.runOnUIThread(new q2(this.f46523b, 0));
                 return;
             case 2:
-                this.f46521b.dismiss();
+                this.f46523b.dismiss();
                 return;
             default:
-                u2 u2Var = this.f46521b;
+                u2 u2Var = this.f46523b;
                 ai.y1 y1Var = u2Var.H;
                 if (y1Var != null) {
                     y1Var.run(null);

@@ -34,7 +34,7 @@ public final class a extends DataSetObserver {
                 return;
             case 2:
                 b11 b11Var = (b11) this.f10966b;
-                ProfileActivity profileActivity = b11Var.f36093n;
+                ProfileActivity profileActivity = b11Var.f36095n;
                 int realCount = profileActivity.f34303n0.getRealCount();
                 if (profileActivity.A0 == 0 && realCount > 1 && realCount <= 20 && profileActivity.N.E) {
                     profileActivity.A0 = 1;

@@ -1003,7 +1003,7 @@ public abstract class b7 extends FrameLayout {
             c();
             this.f4785w = c2Var;
             if (c2Var != null && (k81Var = this.f4787x) != null) {
-                k81Var.V(c2Var.f46205u0);
+                k81Var.V(c2Var.f46207u0);
             }
             this.F.n(l8Var.f5425o0.getAbsolutePath(), l8Var.f5429q0, l8Var.f5431r0, l8Var.f5433s0, l8Var.f5435t0, l8Var.f5437u0, z10);
             y(true);

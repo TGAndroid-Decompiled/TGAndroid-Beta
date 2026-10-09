@@ -17,7 +17,7 @@ import org.telegram.ui.Components.o61;
 import org.telegram.ui.Components.p61;
 import org.telegram.ui.Components.qm0;
 public final class b7 extends o61 {
-    public static final int f52305a = 0;
+    public static final int f52307a = 0;
 
     static {
         o61.setup(new o61());
@@ -48,21 +48,21 @@ public final class b7 extends o61 {
         int i10 = p61Var.f29747z;
         CharSequence charSequence = p61Var.f29734l;
         CharSequence charSequence2 = p61Var.f29735m;
-        org.telegram.ui.Components.r6 r6Var = c7Var.f52357e;
+        org.telegram.ui.Components.r6 r6Var = c7Var.f52359e;
         TextView textView = c7Var.d;
         boolean equals = TextUtils.equals(textView.getText(), charSequence);
-        c7Var.f52359n = i10;
+        c7Var.f52361n = i10;
         if (!equals) {
-            c7Var.f52360r.d(i10, true);
+            c7Var.f52362r.d(i10, true);
         }
         textView.setText(charSequence);
         if (charSequence2 == null) {
-            if (c7Var.f52358f == null) {
+            if (c7Var.f52360f == null) {
                 SpannableString spannableString = new SpannableString("x");
-                c7Var.f52358f = spannableString;
-                spannableString.setSpan(new ja0(AndroidUtilities.dp(55.0f), r6Var), 0, c7Var.f52358f.length(), 33);
+                c7Var.f52360f = spannableString;
+                spannableString.setSpan(new ja0(AndroidUtilities.dp(55.0f), r6Var), 0, c7Var.f52360f.length(), 33);
             }
-            charSequence2 = c7Var.f52358f;
+            charSequence2 = c7Var.f52360f;
         }
         r6Var.setText(charSequence2);
         if (LocaleController.isRTL) {

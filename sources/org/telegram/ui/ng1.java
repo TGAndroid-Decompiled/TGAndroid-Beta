@@ -9,19 +9,19 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ng1 implements RequestDelegate {
-    public final int f40206a;
-    public final TwoStepVerificationActivity f40207b;
+    public final int f40208a;
+    public final TwoStepVerificationActivity f40209b;
 
     public ng1(TwoStepVerificationActivity twoStepVerificationActivity, int i10) {
-        this.f40206a = i10;
-        this.f40207b = twoStepVerificationActivity;
+        this.f40208a = i10;
+        this.f40209b = twoStepVerificationActivity;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f40206a) {
+        switch (this.f40208a) {
             case 0:
-                final TwoStepVerificationActivity twoStepVerificationActivity = this.f40207b;
+                final TwoStepVerificationActivity twoStepVerificationActivity = this.f40209b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -74,7 +74,7 @@ public final class ng1 implements RequestDelegate {
                 });
                 return;
             case 1:
-                final TwoStepVerificationActivity twoStepVerificationActivity2 = this.f40207b;
+                final TwoStepVerificationActivity twoStepVerificationActivity2 = this.f40209b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -99,7 +99,7 @@ public final class ng1 implements RequestDelegate {
                 });
                 return;
             case 2:
-                final TwoStepVerificationActivity twoStepVerificationActivity3 = this.f40207b;
+                final TwoStepVerificationActivity twoStepVerificationActivity3 = this.f40209b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -152,7 +152,7 @@ public final class ng1 implements RequestDelegate {
                 });
                 return;
             case 3:
-                final TwoStepVerificationActivity twoStepVerificationActivity4 = this.f40207b;
+                final TwoStepVerificationActivity twoStepVerificationActivity4 = this.f40209b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -177,7 +177,7 @@ public final class ng1 implements RequestDelegate {
                 });
                 return;
             case 4:
-                final TwoStepVerificationActivity twoStepVerificationActivity5 = this.f40207b;
+                final TwoStepVerificationActivity twoStepVerificationActivity5 = this.f40209b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -202,7 +202,7 @@ public final class ng1 implements RequestDelegate {
                 });
                 return;
             case 5:
-                final TwoStepVerificationActivity twoStepVerificationActivity6 = this.f40207b;
+                final TwoStepVerificationActivity twoStepVerificationActivity6 = this.f40209b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -227,7 +227,7 @@ public final class ng1 implements RequestDelegate {
                 });
                 return;
             default:
-                final TwoStepVerificationActivity twoStepVerificationActivity7 = this.f40207b;
+                final TwoStepVerificationActivity twoStepVerificationActivity7 = this.f40209b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {

@@ -482,7 +482,7 @@ public class GiftAuctionController extends BaseController {
     }
 
     public void lambda$sendBid$6(Utilities.Callback2 callback2, long j3, xh.n nVar, long j10) {
-        if (!yh.m5.y(this.currentAccount, false).f52881e) {
+        if (!yh.m5.y(this.currentAccount, false).f52883e) {
             if (callback2 != null) {
                 callback2.run(Boolean.FALSE, "NO_BALANCE");
                 return;
@@ -559,9 +559,9 @@ public class GiftAuctionController extends BaseController {
         Auction auction = getAuction(j3);
         qe.c cVar = this.listeners;
         Long valueOf = Long.valueOf(j3);
-        synchronized (cVar.f46130c) {
+        synchronized (cVar.f46132c) {
             try {
-                qe.b bVar = (qe.b) cVar.f46130c.get(valueOf);
+                qe.b bVar = (qe.b) cVar.f46132c.get(valueOf);
                 if (bVar != null) {
                     it = bVar.iterator();
                 } else {
@@ -702,7 +702,7 @@ public class GiftAuctionController extends BaseController {
     public void sendBid(long j3, xh.n nVar, long j10, Utilities.Callback2<Boolean, String> callback2) {
         AuctionInternal auctionInternal = this.auctions.get(j3);
         if (auctionInternal != null && !auctionInternal.pendingBid) {
-            if (!yh.m5.y(this.currentAccount, false).f52881e) {
+            if (!yh.m5.y(this.currentAccount, false).f52883e) {
                 yh.m5.y(this.currentAccount, false).r(new t2(this, callback2, j3, nVar, j10));
                 return;
             }
@@ -714,14 +714,14 @@ public class GiftAuctionController extends BaseController {
             tL_inputInvoiceStarGiftAuctionBid.bid_amount = j10;
             tL_inputInvoiceStarGiftAuctionBid.update_bid = hasBid;
             if (nVar != null) {
-                long j11 = nVar.f51381a;
+                long j11 = nVar.f51383a;
                 if (j11 == 0) {
                     tL_inputInvoiceStarGiftAuctionBid.peer = new TLRPC.TL_inputPeerSelf();
                 } else {
                     tL_inputInvoiceStarGiftAuctionBid.peer = getMessagesController().getInputPeer(j11);
                 }
-                tL_inputInvoiceStarGiftAuctionBid.message = nVar.f51383c;
-                tL_inputInvoiceStarGiftAuctionBid.hide_name = nVar.f51382b;
+                tL_inputInvoiceStarGiftAuctionBid.message = nVar.f51385c;
+                tL_inputInvoiceStarGiftAuctionBid.hide_name = nVar.f51384b;
             } else if (!hasBid) {
                 tL_inputInvoiceStarGiftAuctionBid.peer = new TLRPC.TL_inputPeerSelf();
                 tL_inputInvoiceStarGiftAuctionBid.hide_name = false;
@@ -740,18 +740,18 @@ public class GiftAuctionController extends BaseController {
     public Auction subscribeToGiftAuction(long j3, OnAuctionUpdateListener onAuctionUpdateListener) {
         qe.c cVar = this.listeners;
         Long valueOf = Long.valueOf(j3);
-        synchronized (cVar.f46130c) {
+        synchronized (cVar.f46132c) {
             try {
-                qe.b bVar = (qe.b) cVar.f46130c.get(valueOf);
+                qe.b bVar = (qe.b) cVar.f46132c.get(valueOf);
                 if (bVar == null) {
-                    bVar = cVar.f46129b;
+                    bVar = cVar.f46131b;
                     if (bVar != null) {
-                        cVar.f46129b = bVar.h;
+                        cVar.f46131b = bVar.h;
                         bVar.h = null;
                     } else {
-                        bVar = new qe.b(false, cVar.f46128a);
+                        bVar = new qe.b(false, cVar.f46130a);
                     }
-                    cVar.f46130c.put(valueOf, bVar);
+                    cVar.f46132c.put(valueOf, bVar);
                 }
                 bVar.add(onAuctionUpdateListener);
             } catch (Throwable th2) {
@@ -769,15 +769,15 @@ public class GiftAuctionController extends BaseController {
     public void unsubscribeFromGiftAuction(long j3, OnAuctionUpdateListener onAuctionUpdateListener) {
         qe.c cVar = this.listeners;
         Long valueOf = Long.valueOf(j3);
-        synchronized (cVar.f46130c) {
+        synchronized (cVar.f46132c) {
             try {
-                qe.b bVar = (qe.b) cVar.f46130c.get(valueOf);
+                qe.b bVar = (qe.b) cVar.f46132c.get(valueOf);
                 if (bVar != null) {
                     bVar.remove(onAuctionUpdateListener);
                     if (bVar.isEmpty()) {
-                        cVar.f46130c.remove(valueOf);
-                        bVar.h = cVar.f46129b;
-                        cVar.f46129b = bVar;
+                        cVar.f46132c.remove(valueOf);
+                        bVar.h = cVar.f46131b;
+                        cVar.f46131b = bVar;
                     }
                 }
             } catch (Throwable th2) {

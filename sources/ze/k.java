@@ -2,12 +2,12 @@ package ze;
 
 import cf.o;
 public final class k extends ef.a {
-    public final cf.n f54428a;
-    public boolean f54429b;
-    public int f54430c;
+    public final cf.n f54430a;
+    public boolean f54431b;
+    public int f54432c;
 
     public k(cf.n nVar) {
-        this.f54428a = nVar;
+        this.f54430a = nVar;
     }
 
     @Override
@@ -15,15 +15,15 @@ public final class k extends ef.a {
         if (!(aVar instanceof o)) {
             return false;
         }
-        if (this.f54429b && this.f54430c == 1) {
-            this.f54429b = false;
+        if (this.f54431b && this.f54432c == 1) {
+            this.f54431b = false;
         }
         return true;
     }
 
     @Override
     public final cf.a e() {
-        return this.f54428a;
+        return this.f54430a;
     }
 
     @Override
@@ -34,11 +34,11 @@ public final class k extends ef.a {
     @Override
     public final q3.h h(d dVar) {
         if (dVar.h) {
-            this.f54429b = true;
-            this.f54430c = 0;
-        } else if (this.f54429b) {
-            this.f54430c++;
+            this.f54431b = true;
+            this.f54432c = 0;
+        } else if (this.f54431b) {
+            this.f54432c++;
         }
-        return q3.h.a(dVar.f54379b);
+        return q3.h.a(dVar.f54381b);
     }
 }

@@ -458,7 +458,7 @@ public final class kc implements NotificationCenter.NotificationCenterDelegate, 
         this.f1259c = z14;
         zb zbVar = this.v;
         a1.c cVar = new a1.c(this, 10);
-        WeakHashMap weakHashMap = r0.i0.f46764a;
+        WeakHashMap weakHashMap = r0.i0.f46766a;
         r0.a0.i(zbVar, cVar);
         if (this.f1256b) {
             AndroidUtilities.removeFromParent(this.f1294s);
@@ -794,11 +794,11 @@ public final class kc implements NotificationCenter.NotificationCenterDelegate, 
                     }
                     if (findActivity != null && tf.c.a(findActivity) == 1) {
                         qf.d dVar = new qf.d(findActivity, n2Var2);
-                        dVar.f46151c = "pip-live-story";
-                        dVar.f46152e = 1;
+                        dVar.f46153c = "pip-live-story";
+                        dVar.f46154e = 1;
                         dVar.d = AndroidUtilities.dp(10.0f);
-                        dVar.f46156j = n2Var2.d;
-                        dVar.f46157k = n2Var2.f1450f.getPlaceholderView();
+                        dVar.f46158j = n2Var2.d;
+                        dVar.f46159k = n2Var2.f1450f.getPlaceholderView();
                         n2Var2.L = dVar.a();
                     }
                 }

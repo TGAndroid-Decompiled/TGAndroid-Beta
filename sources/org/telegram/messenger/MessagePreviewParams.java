@@ -547,10 +547,10 @@ public class MessagePreviewParams {
                 TLRPC.TL_messageReplyHeader tL_messageReplyHeader = new TLRPC.TL_messageReplyHeader();
                 tL_message.reply_to = tL_messageReplyHeader;
                 if (pnVar != null) {
-                    tL_messageReplyHeader.quote_text = pnVar.f40849i;
+                    tL_messageReplyHeader.quote_text = pnVar.f40851i;
                     int i13 = tL_messageReplyHeader.flags;
                     tL_messageReplyHeader.flags = i13 | 64;
-                    ArrayList<TLRPC.MessageEntity> arrayList = pnVar.f40850j;
+                    ArrayList<TLRPC.MessageEntity> arrayList = pnVar.f40852j;
                     tL_messageReplyHeader.quote_entities = arrayList;
                     if (arrayList != null) {
                         tL_messageReplyHeader.flags = i13 | 192;
@@ -688,15 +688,15 @@ public class MessagePreviewParams {
         } else {
             MessageObject messageObject3 = messageObject2;
             if (messageObject3 == null) {
-                messageObject3 = pnVar2.f40843a;
+                messageObject3 = pnVar2.f40845a;
             }
             this.replyMessage = new Messages(this, null, 1, messageObject3, j3);
         }
         if (!this.replyMessage.messages.isEmpty()) {
             this.quote = pnVar2;
             if (pnVar2 != null) {
-                this.quoteStart = pnVar2.f40844b;
-                this.quoteEnd = pnVar2.f40845c;
+                this.quoteStart = pnVar2.f40846b;
+                this.quoteEnd = pnVar2.f40847c;
                 return;
             }
             return;

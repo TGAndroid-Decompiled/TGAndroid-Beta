@@ -65,9 +65,9 @@ public final class w5 extends ns {
             final pf.b bVar = new pf.b(2, this, actionBarPopupWindow$ActionBarPopupWindowLayout);
             ?? obj = new Object();
             org.telegram.ui.ActionBar.f1[] f1VarArr = new org.telegram.ui.ActionBar.f1[5];
-            obj.f45048c = f1VarArr;
+            obj.f45050c = f1VarArr;
             ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout2 = new ActionBarPopupWindow$ActionBarPopupWindowLayout(0, 0, context, null);
-            obj.f45046a = actionBarPopupWindow$ActionBarPopupWindowLayout2;
+            obj.f45048a = actionBarPopupWindow$ActionBarPopupWindowLayout2;
             actionBarPopupWindow$ActionBarPopupWindowLayout2.setFitItems(true);
             org.telegram.ui.ActionBar.f1 c10 = org.telegram.ui.ActionBar.v0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout2, R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), false, null);
             c10.setOnClickListener(new ur(swipeBack, 1));
@@ -85,7 +85,7 @@ public final class w5 extends ns {
             layoutParams.height = AndroidUtilities.dp(8.0f);
             x5Var.setLayoutParams(layoutParams);
             org.telegram.ui.ActionBar.b1 b1Var = new org.telegram.ui.ActionBar.b1(context, null);
-            obj.f45047b = b1Var;
+            obj.f45049b = b1Var;
             b1Var.setMinimumWidth(AndroidUtilities.dp(196.0f));
             b1Var.setDrawShadow(false);
             b1Var.setBackgroundColor(-14540254);
@@ -249,7 +249,7 @@ public final class w5 extends ns {
             layoutParams3.width = -1;
             layoutParams3.height = AndroidUtilities.dp(48.0f);
             f6Var.D3.setLayoutParams(layoutParams3);
-            int b10 = actionBarPopupWindow$ActionBarPopupWindowLayout.b(f6Var.C3.f45046a);
+            int b10 = actionBarPopupWindow$ActionBarPopupWindowLayout.b(f6Var.C3.f45048a);
             org.telegram.ui.ActionBar.f1 f1Var2 = f6Var.D3;
             f1Var2.G = new o5(actionBarPopupWindow$ActionBarPopupWindowLayout, b10, 0);
             f1Var2.setOnClickListener(new j5(this, 11));

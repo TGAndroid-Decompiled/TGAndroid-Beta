@@ -3,13 +3,13 @@ package org.telegram.ui;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 public final class y91 implements bh.a {
-    public final RectF f44292a = new RectF();
-    public final v8 f44293b;
-    public final bb1 f44294c;
+    public final RectF f44294a = new RectF();
+    public final v8 f44295b;
+    public final bb1 f44296c;
 
     public y91(bb1 bb1Var, v8 v8Var) {
-        this.f44294c = bb1Var;
-        this.f44293b = v8Var;
+        this.f44296c = bb1Var;
+        this.f44295b = v8Var;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class y91 implements bh.a {
         ah.n nVar;
         cc ccVar;
         cc ccVar2;
-        bb1 bb1Var = this.f44294c;
+        bb1 bb1Var = this.f44296c;
         bb1Var.fragmentView.getMeasuredWidth();
         bb1Var.fragmentView.getMeasuredHeight();
         canvas.drawColor(bb1Var.getThemedColor(org.telegram.ui.ActionBar.i6.f20797d6));
@@ -30,13 +30,13 @@ public final class y91 implements bh.a {
             if (i10 == 0) {
                 nVar = bb1Var.T;
                 ccVar = bb1Var.S;
-            } else if (i10 == 1 && (ccVar2 = bb1Var.f36216j0) != null) {
+            } else if (i10 == 1 && (ccVar2 = bb1Var.f36218j0) != null) {
                 nVar = ccVar2.G;
                 ccVar = ccVar2;
             } else {
-                ke keVar = bb1Var.f36217k0;
+                ke keVar = bb1Var.f36219k0;
                 if (keVar != null) {
-                    nVar = keVar.f39232b1;
+                    nVar = keVar.f39234b1;
                     ccVar = keVar;
                 } else {
                     nVar = null;
@@ -44,8 +44,8 @@ public final class y91 implements bh.a {
                 }
             }
             if (nVar != null && ccVar != null) {
-                v8 v8Var = this.f44293b;
-                RectF rectF2 = this.f44292a;
+                v8 v8Var = this.f44295b;
+                RectF rectF2 = this.f44294a;
                 hh.j.c(ccVar, v8Var, rectF2);
                 if (rectF2.right > 0.0f) {
                     bb1Var.fragmentView.getMeasuredWidth();

@@ -2,5 +2,5 @@ package y9;
 
 import java.nio.charset.Charset;
 public abstract class e2 {
-    public static final Charset f51921a = Charset.forName("UTF-8");
+    public static final Charset f51923a = Charset.forName("UTF-8");
 }

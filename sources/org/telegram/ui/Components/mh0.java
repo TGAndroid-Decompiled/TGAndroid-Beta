@@ -30,7 +30,7 @@ public final class mh0 extends s4.t0 {
                     lh0Var.getChildAt(0);
                     am0 am0Var2 = (am0) lh0Var.K(0);
                     if (am0Var2 != null) {
-                        View view = am0Var2.f47656a;
+                        View view = am0Var2.f47658a;
                         if (view.getTop() > AndroidUtilities.dp(7.0f)) {
                             lh0Var.v0(0, view.getTop() - AndroidUtilities.dp(7.0f), null);
                             return;
@@ -93,7 +93,7 @@ public final class mh0 extends s4.t0 {
                 t71 t71Var = (t71) obj;
                 ai.w0 w0Var = t71Var.d;
                 if (i10 == 0 && t71Var.G && AndroidUtilities.dp(13.0f) + t71.o(t71Var) + t71Var.f31084y < AndroidUtilities.statusBarHeight * 2 && w0Var.canScrollVertically(1) && (am0Var = (am0) w0Var.K(0)) != null) {
-                    View view3 = am0Var.f47656a;
+                    View view3 = am0Var.f47658a;
                     if (view3.getTop() > 0) {
                         w0Var.v0(0, view3.getTop(), null);
                         return;
@@ -104,24 +104,24 @@ public final class mh0 extends s4.t0 {
             case 14:
                 rg.s0 s0Var = (rg.s0) obj;
                 if (i10 == 1) {
-                    s0Var.f47389b3 = true;
+                    s0Var.f47391b3 = true;
                 }
                 if (i10 == 0) {
                     for (int i12 = 0; i12 < recyclerView.getChildCount(); i12++) {
                         rg.o1 o1Var2 = (rg.o1) s0Var.getChildAt(i12);
-                        if (o1Var == null || o1Var2.f47366a > o1Var.f47366a) {
+                        if (o1Var == null || o1Var2.f47368a > o1Var.f47368a) {
                             o1Var = o1Var2;
                         }
                     }
                     if (o1Var != null) {
                         s0Var.x1(o1Var, true);
-                        s0Var.f47389b3 = false;
+                        s0Var.f47391b3 = false;
                         s0Var.v0(0, o1Var.getTop() - ((s0Var.getMeasuredHeight() - o1Var.getMeasuredHeight()) / 2), AndroidUtilities.overshootInterpolator);
                     }
                     s0Var.y1();
                     return;
                 }
-                AndroidUtilities.cancelRunOnUIThread(s0Var.f47390c3);
+                AndroidUtilities.cancelRunOnUIThread(s0Var.f47392c3);
                 return;
             case 15:
                 if (i10 == 1) {

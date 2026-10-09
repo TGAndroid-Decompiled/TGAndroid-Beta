@@ -82,7 +82,7 @@ public final class fa extends AnimatorListenerAdapter {
                 }
                 return;
             case 26:
-                ((org.telegram.ui.qs) this.f26322c).f41178w = null;
+                ((org.telegram.ui.qs) this.f26322c).f41180w = null;
                 return;
             default:
                 super.onAnimationCancel(animator);
@@ -309,7 +309,7 @@ public final class fa extends AnimatorListenerAdapter {
                 }
                 boolean z12 = this.f26321b;
                 org.telegram.ui.jl jlVar = (org.telegram.ui.jl) vc0Var;
-                MessagePreviewParams messagePreviewParams = jlVar.H.f44769f5;
+                MessagePreviewParams messagePreviewParams = jlVar.H.f44771f5;
                 if (messagePreviewParams != null) {
                     messagePreviewParams.attach(null);
                 }
@@ -456,12 +456,12 @@ public final class fa extends AnimatorListenerAdapter {
                 return;
             case 26:
                 org.telegram.ui.qs qsVar = (org.telegram.ui.qs) this.f26322c;
-                if (qsVar.f41178w != null && (radialProgressView = qsVar.f41177s) != null) {
+                if (qsVar.f41180w != null && (radialProgressView = qsVar.f41179s) != null) {
                     if (!this.f26321b) {
                         radialProgressView.setVisibility(4);
                         qsVar.v.setVisibility(4);
                     }
-                    qsVar.f41178w = null;
+                    qsVar.f41180w = null;
                     return;
                 }
                 return;
@@ -472,17 +472,17 @@ public final class fa extends AnimatorListenerAdapter {
                 } else {
                     f20 = 0.0f;
                 }
-                kzVar.f39376r = f20;
-                y9 y9Var2 = kzVar.f39372c;
+                kzVar.f39378r = f20;
+                y9 y9Var2 = kzVar.f39374c;
                 int i11 = org.telegram.ui.ActionBar.i6.C6;
-                int w02 = org.telegram.ui.ActionBar.i6.w0(i11, kzVar.f39370a);
+                int w02 = org.telegram.ui.ActionBar.i6.w0(i11, kzVar.f39372a);
                 int i12 = org.telegram.ui.ActionBar.i6.Oh;
-                int d = i0.a.d(kzVar.f39376r, w02, org.telegram.ui.ActionBar.i6.w0(i12, kzVar.f39370a));
+                int d = i0.a.d(kzVar.f39378r, w02, org.telegram.ui.ActionBar.i6.w0(i12, kzVar.f39372a));
                 PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
                 y9Var2.setColorFilter(new PorterDuffColorFilter(d, mode));
-                kzVar.f39372c.invalidate();
-                kzVar.f39374f.setColorFilter(new PorterDuffColorFilter(i0.a.d(1.0f - kzVar.f39376r, org.telegram.ui.ActionBar.i6.w0(i11, kzVar.f39370a), org.telegram.ui.ActionBar.i6.w0(i12, kzVar.f39370a)), mode));
-                kzVar.f39374f.invalidate();
+                kzVar.f39374c.invalidate();
+                kzVar.f39376f.setColorFilter(new PorterDuffColorFilter(i0.a.d(1.0f - kzVar.f39378r, org.telegram.ui.ActionBar.i6.w0(i11, kzVar.f39372a), org.telegram.ui.ActionBar.i6.w0(i12, kzVar.f39372a)), mode));
+                kzVar.f39376f.invalidate();
                 return;
             case 28:
                 org.telegram.ui.y00 y00Var = (org.telegram.ui.y00) this.f26322c;
@@ -491,7 +491,7 @@ public final class fa extends AnimatorListenerAdapter {
                 } else {
                     f21 = 0.0f;
                 }
-                y00Var.f44184s = f21;
+                y00Var.f44186s = f21;
                 y00Var.invalidate();
                 return;
             default:

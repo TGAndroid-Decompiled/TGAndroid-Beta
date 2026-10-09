@@ -31,13 +31,13 @@ public class WearAuthListenerService extends x8.k {
                 return;
             }
             FileLog.d("wear-auth: cancel from " + str2);
-            BigInteger bigInteger = nj1.f40225a;
+            BigInteger bigInteger = nj1.f40227a;
             FileLog.d("wear-auth: cancel received; dropping session and dismissing sheet");
             nj1.d = null;
-            org.telegram.ui.ActionBar.f3 f3Var = nj1.f40227c;
+            org.telegram.ui.ActionBar.f3 f3Var = nj1.f40229c;
             if (f3Var != null) {
                 f3Var.dismiss();
-                nj1.f40227c = null;
+                nj1.f40229c = null;
                 return;
             }
             return;
@@ -46,7 +46,7 @@ public class WearAuthListenerService extends x8.k {
         w10.append(bArr.length);
         w10.append(" bytes)");
         FileLog.d(w10.toString());
-        BigInteger bigInteger2 = nj1.f40225a;
+        BigInteger bigInteger2 = nj1.f40227a;
         if (bArr.length != 272) {
             FileLog.d("wear-auth: malformed offer (" + bArr.length + ")");
             return;
@@ -75,10 +75,10 @@ public class WearAuthListenerService extends x8.k {
             } else {
                 e6Var = null;
             }
-            org.telegram.ui.ActionBar.f3 f3Var2 = nj1.f40227c;
+            org.telegram.ui.ActionBar.f3 f3Var2 = nj1.f40229c;
             if (f3Var2 != null) {
                 f3Var2.dismiss();
-                nj1.f40227c = null;
+                nj1.f40229c = null;
             }
             org.telegram.ui.ActionBar.f3 i10 = bi.i(1, context, e6Var, false);
             FrameLayout frameLayout = new FrameLayout(context);
@@ -145,7 +145,7 @@ public class WearAuthListenerService extends x8.k {
             i10.fixNavigationBar(org.telegram.ui.ActionBar.i6.w0(i15, e6Var));
             frameLayout2.setOnClickListener(new org.telegram.ui.Components.m0(i10, frameLayout3, arrayList, iArr, j9Var, y9Var, 4));
             f7.setOnClickListener(new vy0(17, f7, iArr));
-            nj1.f40227c = i10;
+            nj1.f40229c = i10;
             i10.show();
         }
     }
@@ -153,9 +153,9 @@ public class WearAuthListenerService extends x8.k {
     @Override
     public void onMessageReceived(x8.g gVar) {
         y8.k0 k0Var = (y8.k0) gVar;
-        String str = k0Var.f51789b;
+        String str = k0Var.f51791b;
         String str2 = k0Var.d;
-        byte[] bArr = k0Var.f51790c;
+        byte[] bArr = k0Var.f51792c;
         if ("/tg-wear-auth/offer".equals(str)) {
             try {
                 Intent intent = new Intent(this, LaunchActivity.class);

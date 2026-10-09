@@ -53,7 +53,7 @@ public final class ez extends pm0 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47660f == 0) {
+        if (d1Var.f47662f == 0) {
             return true;
         }
         return false;
@@ -392,10 +392,10 @@ public final class ez extends pm0 {
 
     @Override
     public final void v(s4.d1 d1Var, int i10) {
-        if (d1Var.f47660f != 0) {
+        if (d1Var.f47662f != 0) {
             return;
         }
-        org.telegram.ui.Cells.f2 f2Var = (org.telegram.ui.Cells.f2) d1Var.f47656a;
+        org.telegram.ui.Cells.f2 f2Var = (org.telegram.ui.Cells.f2) d1Var.f47658a;
         int i11 = this.J;
         if (i11 >= 0 && i10 >= i11) {
             f2Var.e((TLRPC.BotInlineResult) this.f26187x.get(i10 - i11), this.f26183n, true, false, false, true);

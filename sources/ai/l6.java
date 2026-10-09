@@ -121,20 +121,20 @@ public final class l6 implements ValueAnimator.AnimatorUpdateListener {
                 u1Var.J = floatValue;
                 org.telegram.ui.Components.voip.t1 t1Var = u1Var.f32303i0;
                 if (t1Var != null) {
-                    ((di1) t1Var).f36985b.f43633d0.d(floatValue, u1Var.P);
+                    ((di1) t1Var).f36987b.f43635d0.d(floatValue, u1Var.P);
                 }
                 u1Var.invalidate();
                 return;
             case 11:
                 rg.p0 p0Var = (rg.p0) this.f1333b;
-                p0Var.f47382n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                p0Var.f47384n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 p0Var.e();
                 return;
             case 12:
                 ((rg.n0) this.f1333b).setOffset(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             default:
-                ((s4.u) this.f1333b).f47792x = valueAnimator.getAnimatedFraction();
+                ((s4.u) this.f1333b).f47794x = valueAnimator.getAnimatedFraction();
                 return;
         }
     }

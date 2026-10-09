@@ -59,9 +59,9 @@ public final class h30 implements ValueAnimator.AnimatorUpdateListener {
                 yh.e8 e8Var = (yh.e8) view;
                 e8Var.getClass();
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                e8Var.f52473r = i0.a.d(floatValue2, i14, i13);
-                e8Var.f52474s = i0.a.d(floatValue2, i12, i11);
-                e8Var.f52477y = new LinearGradient(0.0f, 0.0f, 255.0f, 0.0f, new int[]{e8Var.f52473r, e8Var.f52474s}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                e8Var.f52475r = i0.a.d(floatValue2, i14, i13);
+                e8Var.f52476s = i0.a.d(floatValue2, i12, i11);
+                e8Var.f52479y = new LinearGradient(0.0f, 0.0f, 255.0f, 0.0f, new int[]{e8Var.f52475r, e8Var.f52476s}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
                 e8Var.invalidate();
                 return;
         }

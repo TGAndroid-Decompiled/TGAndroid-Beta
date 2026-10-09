@@ -79,7 +79,7 @@ public final class a8 extends org.telegram.ui.ActionBar.k {
             case 3:
                 org.telegram.ui.ty tyVar = (org.telegram.ui.ty) this.f24622v1;
                 org.telegram.ui.jy jyVar = tyVar.X;
-                if (jyVar != null && jyVar.getAlpha() > 0.0f && tyVar.f42154b.f16338f) {
+                if (jyVar != null && jyVar.getAlpha() > 0.0f && tyVar.f42156b.f16338f) {
                     return false;
                 }
                 return super.dispatchTouchEvent(motionEvent);
@@ -253,7 +253,7 @@ public final class a8 extends org.telegram.ui.ActionBar.k {
                     AndroidUtilities.setLightStatusBar(y0Var, z10);
                     return;
                 }
-                org.telegram.ui.ActionBar.n2 n2Var = y0Var.f47519b;
+                org.telegram.ui.ActionBar.n2 n2Var = y0Var.f47521b;
                 if (n2Var != null) {
                     AndroidUtilities.setLightStatusBar(y0Var, n2Var.isLightStatusBar());
                     return;

@@ -25,7 +25,7 @@ public final class c0 extends eb {
     public final TLRPC.TL_payments_checkedGiftCode X;
     public final boolean Y;
     public b0 Z;
-    public final String f48299a0;
+    public final String f48301a0;
 
     public c0(n2 n2Var, TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode, String str) {
         super(n2Var, true);
@@ -37,7 +37,7 @@ public final class c0 extends eb {
         }
         this.Y = z10;
         this.X = tL_payments_checkedGiftCode;
-        this.f48299a0 = str;
+        this.f48301a0 = str;
         setApplyTopPadding(false);
         setApplyBottomPadding(false);
         fixNavigationBar();
@@ -46,10 +46,10 @@ public final class c0 extends eb {
         d3 d3Var = this.container;
         b0Var.getClass();
         b0Var.d = tL_payments_checkedGiftCode.used_date == 0;
-        b0Var.f48921e = n2Var;
-        b0Var.f48922f = tL_payments_checkedGiftCode;
+        b0Var.f48923e = n2Var;
+        b0Var.f48924f = tL_payments_checkedGiftCode;
         b0Var.h = str;
-        b0Var.f48923n = d3Var;
+        b0Var.f48925n = d3Var;
     }
 
     public static e6 Q(c0 c0Var) {

@@ -132,7 +132,7 @@ public final class ba0 {
             ((View) obj).invalidate();
         } else if (obj instanceof org.telegram.ui.b3) {
             org.telegram.ui.b3 b3Var = (org.telegram.ui.b3) obj;
-            if (!b3Var.f36110c && (view2 = b3Var.f36109b) != null) {
+            if (!b3Var.f36112c && (view2 = b3Var.f36111b) != null) {
                 view2.invalidate();
             }
         } else if (z10 && (view = this.f24954a) != null) {

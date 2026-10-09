@@ -10,18 +10,18 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class aq extends s4.i0 {
-    public final Context f35976c;
+    public final Context f35978c;
     public final bq d;
 
     public aq(bq bqVar, Context context) {
         this.d = bqVar;
-        this.f35976c = context;
+        this.f35978c = context;
     }
 
     @Override
     public final int h() {
         bq bqVar = this.d;
-        ArrayList arrayList = bqVar.f36375r;
+        ArrayList arrayList = bqVar.f36377r;
         int i10 = 0;
         if (bqVar.G) {
             if (!bqVar.d.isEmpty()) {
@@ -62,7 +62,7 @@ public final class aq extends s4.i0 {
     public final void v(s4.d1 d1Var, int i10) {
         String string;
         int i11;
-        View view = d1Var.f47656a;
+        View view = d1Var.f47658a;
         int j3 = j(i10);
         int i12 = 2;
         bq bqVar = this.d;
@@ -70,7 +70,7 @@ public final class aq extends s4.i0 {
             if (j3 != 1) {
                 if (j3 == 2) {
                     org.telegram.ui.Cells.y yVar = (org.telegram.ui.Cells.y) view;
-                    ArrayList arrayList = bqVar.f36375r;
+                    ArrayList arrayList = bqVar.f36377r;
                     if (!bqVar.G) {
                         i12 = 3;
                     }
@@ -90,7 +90,7 @@ public final class aq extends s4.i0 {
         org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
         e9Var.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.B6, false));
         if (bqVar.G) {
-            if (ChatObject.isChannelAndNotMegaGroup(bqVar.f36369a)) {
+            if (ChatObject.isChannelAndNotMegaGroup(bqVar.f36371a)) {
                 string = LocaleController.getString(R.string.EnableReactionsChannelInfo);
             } else {
                 string = LocaleController.getString(R.string.EnableReactionsGroupInfo);
@@ -110,7 +110,7 @@ public final class aq extends s4.i0 {
 
     @Override
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        Context context = this.f35976c;
+        Context context = this.f35978c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 3) {
@@ -118,10 +118,10 @@ public final class aq extends s4.i0 {
                 }
                 FrameLayout frameLayout = new FrameLayout(context);
                 bq bqVar = this.d;
-                if (bqVar.f36376s.getParent() != null) {
-                    ((ViewGroup) bqVar.f36376s.getParent()).removeView(bqVar.f36376s);
+                if (bqVar.f36378s.getParent() != null) {
+                    ((ViewGroup) bqVar.f36378s.getParent()).removeView(bqVar.f36378s);
                 }
-                frameLayout.addView(bqVar.f36376s);
+                frameLayout.addView(bqVar.f36378s);
                 frameLayout.setLayoutParams(new s4.q0(-1, -2));
                 return new s4.d1(frameLayout);
             }

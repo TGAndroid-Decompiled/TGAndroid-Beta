@@ -19,29 +19,29 @@ import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Components.g5;
 import org.telegram.ui.Components.ud0;
-import org.telegram.ui.Wallet.y6;
+import org.telegram.ui.Wallet.z6;
 import w7.x5;
 import yh.d7;
 import yh.e5;
 import yh.p7;
 public final class a implements View.OnClickListener {
-    public final int f51159a;
-    public final Object f51160b;
-    public final Object f51161c;
+    public final int f51161a;
+    public final Object f51162b;
+    public final Object f51163c;
 
     public a(int i10, Object obj, Object obj2) {
-        this.f51159a = i10;
-        this.f51160b = obj;
-        this.f51161c = obj2;
+        this.f51161a = i10;
+        this.f51162b = obj;
+        this.f51163c = obj2;
     }
 
     @Override
     public final void onClick(View view) {
         TL_stars.SavedStarGift savedStarGift;
-        int i10 = this.f51159a;
+        int i10 = this.f51161a;
         yh.n0 n0Var = null;
-        Object obj = this.f51161c;
-        Object obj2 = this.f51160b;
+        Object obj = this.f51163c;
+        Object obj2 = this.f51162b;
         switch (i10) {
             case 0:
                 d.Q((d) obj2, (TL_stars.TL_StarGiftAuctionAcquiredGift) obj);
@@ -49,7 +49,7 @@ public final class a implements View.OnClickListener {
             case 1:
                 i4 i4Var = (i4) obj2;
                 i4Var.getClass();
-                if (((d7) obj).f52401f > 0) {
+                if (((d7) obj).f52403f > 0) {
                     i4Var.presentFragment(new p7());
                     return;
                 }
@@ -66,7 +66,7 @@ public final class a implements View.OnClickListener {
                     Iterator it = hashSet.iterator();
                     while (it.hasNext()) {
                         long longValue = ((Long) it.next()).longValue();
-                        ArrayList arrayList2 = m4Var.Y.f52440l;
+                        ArrayList arrayList2 = m4Var.Y.f52442l;
                         int size = arrayList2.size();
                         int i11 = 0;
                         while (true) {
@@ -95,8 +95,8 @@ public final class a implements View.OnClickListener {
                 }
                 return;
             case 4:
-                e5 e5Var = ((j4) obj2).f51319c.Y;
-                e5Var.f52434e = !e5Var.f52434e;
+                e5 e5Var = ((j4) obj2).f51321c.Y;
+                e5Var.f52436e = !e5Var.f52436e;
                 ((zj) obj).run();
                 e5Var.i(true);
                 return;
@@ -110,10 +110,10 @@ public final class a implements View.OnClickListener {
                 int i13 = 0;
                 int i14 = 0;
                 while (true) {
-                    int[] iArr = yh.y.f53380w0;
+                    int[] iArr = yh.y.f53382w0;
                     if (i13 < 6) {
                         strArr[i13] = LocaleController.formatPluralString("GiftOfferHours", iArr[i13] / 3600, new Object[0]);
-                        if (iArr[i13] == yVar.f53393n0) {
+                        if (iArr[i13] == yVar.f53395n0) {
                             i14 = i13;
                         }
                         i13++;
@@ -179,19 +179,19 @@ public final class a implements View.OnClickListener {
                 }
             case 7:
                 yh.h0 h0Var = (yh.h0) obj2;
-                y6 y6Var = (y6) obj;
-                ci.d dVar2 = h0Var.f52603f;
+                z6 z6Var = (z6) obj;
+                ci.d dVar2 = h0Var.f52605f;
                 if (dVar2.W && !dVar2.N) {
-                    AndroidUtilities.hideKeyboard(h0Var.f52601c);
+                    AndroidUtilities.hideKeyboard(h0Var.f52603c);
                     dVar2.setLoading(true);
-                    y6Var.run(h0Var.E);
+                    z6Var.run(h0Var.E);
                     return;
                 }
                 return;
             case 8:
                 yh.r0 r0Var = (yh.r0) obj2;
                 ArrayList<TL_stars.StarGiftAttribute> arrayList3 = (ArrayList) obj;
-                yh.l0 l0Var = r0Var.f53102o0;
+                yh.l0 l0Var = r0Var.f53104o0;
                 int i15 = r0Var.C0;
                 if (i15 == 2) {
                     l0Var.setPreviewingAttributes(arrayList3);
@@ -199,7 +199,7 @@ public final class a implements View.OnClickListener {
                     return;
                 } else if (i15 == 1) {
                     yh.n0 n0Var2 = new yh.n0(l0Var.getUpgradeBackdropAttribute(), l0Var.getUpgradePatternAttribute(), l0Var.getUpgradeImageViewAttribute());
-                    r0Var.f53109v0 = n0Var2;
+                    r0Var.f53111v0 = n0Var2;
                     l0Var.setPreviewAttributes(n0Var2);
                     r0Var.T(2);
                     return;
@@ -210,26 +210,26 @@ public final class a implements View.OnClickListener {
                 yh.n0 n0Var3 = (yh.n0) obj;
                 yh.r0 r0Var2 = ((yh.m0) obj2).N;
                 int i16 = r0Var2.C0;
-                yh.l0 l0Var2 = r0Var2.f53102o0;
+                yh.l0 l0Var2 = r0Var2.f53104o0;
                 if (i16 == 1) {
-                    r0Var2.f53109v0 = new yh.n0(l0Var2.getUpgradeBackdropAttribute(), l0Var2.getUpgradePatternAttribute(), l0Var2.getUpgradeImageViewAttribute());
+                    r0Var2.f53111v0 = new yh.n0(l0Var2.getUpgradeBackdropAttribute(), l0Var2.getUpgradePatternAttribute(), l0Var2.getUpgradeImageViewAttribute());
                     r0Var2.T(2);
                 }
-                int i17 = r0Var2.f53098j0.f53054r;
-                yh.n0 n0Var4 = r0Var2.f53109v0;
+                int i17 = r0Var2.f53100j0.f53056r;
+                yh.n0 n0Var4 = r0Var2.f53111v0;
                 if (n0Var4 != null) {
-                    TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = n0Var4.f52912a;
-                    TL_stars.starGiftAttributeModel stargiftattributemodel = n0Var4.f52914c;
-                    TL_stars.starGiftAttributePattern stargiftattributepattern = n0Var4.f52913b;
+                    TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = n0Var4.f52914a;
+                    TL_stars.starGiftAttributeModel stargiftattributemodel = n0Var4.f52916c;
+                    TL_stars.starGiftAttributePattern stargiftattributepattern = n0Var4.f52915b;
                     if (i17 == 1) {
-                        n0Var = new yh.n0(n0Var3.f52912a, stargiftattributepattern, stargiftattributemodel);
+                        n0Var = new yh.n0(n0Var3.f52914a, stargiftattributepattern, stargiftattributemodel);
                     } else if (i17 == 2) {
-                        n0Var = new yh.n0(stargiftattributebackdrop, n0Var3.f52913b, stargiftattributemodel);
+                        n0Var = new yh.n0(stargiftattributebackdrop, n0Var3.f52915b, stargiftattributemodel);
                     } else if (i17 == 0) {
-                        n0Var = new yh.n0(stargiftattributebackdrop, stargiftattributepattern, n0Var3.f52914c);
+                        n0Var = new yh.n0(stargiftattributebackdrop, stargiftattributepattern, n0Var3.f52916c);
                     }
                 }
-                r0Var2.f53109v0 = n0Var;
+                r0Var2.f53111v0 = n0Var;
                 l0Var2.setPreviewAttributes(n0Var);
                 r0Var2.V();
                 return;
@@ -242,8 +242,8 @@ public final class a implements View.OnClickListener {
             case 12:
                 yh.t2 t2Var = (yh.t2) obj2;
                 e6 e6Var = (e6) obj;
-                if (t2Var.E.getAlpha() >= 1.0f && !t2Var.f53228h0 && !t2Var.f53230j0 && t2Var.f53222d0 != null) {
-                    new yh.r0(t2Var.getContext(), e6Var, t2Var.W, t2Var.f53221c0, t2Var.f53222d0, true).show();
+                if (t2Var.E.getAlpha() >= 1.0f && !t2Var.f53230h0 && !t2Var.f53232j0 && t2Var.f53224d0 != null) {
+                    new yh.r0(t2Var.getContext(), e6Var, t2Var.W, t2Var.f53223c0, t2Var.f53224d0, true).show();
                     return;
                 }
                 return;

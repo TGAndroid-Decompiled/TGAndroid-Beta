@@ -57,8 +57,8 @@ public final class k30 extends AnimatorListenerAdapter {
                 chatActivityEnterView.setTextTransitionIsRunning(false);
                 chatActivityEnterView.getEditField().setAlpha(1.0f);
                 org.telegram.ui.zn znVar = (org.telegram.ui.zn) this.f27832e;
-                ((gp[]) znVar.f44699a0.f933b)[0].f26828c.setAlpha(1.0f);
-                ((gp[]) znVar.f44699a0.f933b)[0].d.setAlpha(1.0f);
+                ((gp[]) znVar.f44701a0.f933b)[0].f26828c.setAlpha(1.0f);
+                ((gp[]) znVar.f44701a0.f933b)[0].d.setAlpha(1.0f);
                 b6.release((View) null, lb1Var.H);
                 return;
         }

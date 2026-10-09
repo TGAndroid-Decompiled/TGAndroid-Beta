@@ -12,12 +12,12 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class t11 extends org.telegram.ui.Components.pm0 {
-    public final Context f41824c;
+    public final Context f41826c;
     public final v11 d;
 
     public t11(v11 v11Var, Context context) {
         this.d = v11Var;
-        this.f41824c = context;
+        this.f41826c = context;
     }
 
     @Override
@@ -25,12 +25,12 @@ public final class t11 extends org.telegram.ui.Components.pm0 {
         int b10 = d1Var.b();
         v11 v11Var = this.d;
         if (b10 == v11Var.E) {
-            return v11Var.f42606n;
+            return v11Var.f42608n;
         }
         if (d1Var.b() == v11Var.W) {
             return true;
         }
-        switch (d1Var.f47660f) {
+        switch (d1Var.f47662f) {
             case 0:
             case 2:
             case 5:
@@ -39,7 +39,7 @@ public final class t11 extends org.telegram.ui.Components.pm0 {
             case 1:
             case 3:
             case 4:
-                return v11Var.f42606n;
+                return v11Var.f42608n;
             default:
                 return true;
         }
@@ -62,11 +62,11 @@ public final class t11 extends org.telegram.ui.Components.pm0 {
                     return 3;
                 }
                 if (i10 != v11Var.L && i10 != v11Var.M) {
-                    if (i10 == v11Var.f42609w) {
+                    if (i10 == v11Var.f42611w) {
                         return 5;
                     }
-                    if (i10 != v11Var.f42610x && i10 != v11Var.X) {
-                        if (i10 != v11Var.f42611y && i10 != v11Var.E && i10 != v11Var.O) {
+                    if (i10 != v11Var.f42612x && i10 != v11Var.X) {
+                        if (i10 != v11Var.f42613y && i10 != v11Var.E && i10 != v11Var.O) {
                             return 0;
                         }
                         return 7;
@@ -93,10 +93,10 @@ public final class t11 extends org.telegram.ui.Components.pm0 {
         boolean z10;
         int i17;
         v11 v11Var = this.d;
-        long j3 = v11Var.f42605f;
-        long j10 = v11Var.f42604e;
-        int i18 = d1Var.f47660f;
-        View view = d1Var.f47656a;
+        long j3 = v11Var.f42607f;
+        long j10 = v11Var.f42606e;
+        int i18 = d1Var.f47662f;
+        View view = d1Var.f47658a;
         boolean z11 = true;
         boolean z12 = false;
         switch (i18) {
@@ -374,8 +374,8 @@ public final class t11 extends org.telegram.ui.Components.pm0 {
                 org.telegram.ui.Cells.w8 w8Var = (org.telegram.ui.Cells.w8) view;
                 i17 = ((org.telegram.ui.ActionBar.n2) v11Var).currentAccount;
                 SharedPreferences notificationsSettings4 = MessagesController.getNotificationsSettings(i17);
-                if (i10 == v11Var.f42611y) {
-                    w8Var.f(LocaleController.getString(R.string.Notifications), v11Var.f42606n, true);
+                if (i10 == v11Var.f42613y) {
+                    w8Var.f(LocaleController.getString(R.string.Notifications), v11Var.f42608n, true);
                     return;
                 } else if (i10 == v11Var.E) {
                     String sharedPrefKey3 = NotificationsController.getSharedPrefKey(j10, j3);
@@ -401,7 +401,7 @@ public final class t11 extends org.telegram.ui.Components.pm0 {
         View m4Var;
         v11 v11Var = this.d;
         org.telegram.ui.ActionBar.e6 e6Var = v11Var.d;
-        Context context = this.f41824c;
+        Context context = this.f41826c;
         switch (i10) {
             case 0:
                 m4Var = new org.telegram.ui.Cells.m4(context, e6Var);
@@ -439,8 +439,8 @@ public final class t11 extends org.telegram.ui.Components.pm0 {
 
     @Override
     public final void y(s4.d1 d1Var) {
-        int i10 = d1Var.f47660f;
-        View view = d1Var.f47656a;
+        int i10 = d1Var.f47662f;
+        View view = d1Var.f47658a;
         v11 v11Var = this.d;
         if (i10 != 0) {
             if (i10 != 1) {
@@ -452,23 +452,23 @@ public final class t11 extends org.telegram.ui.Components.pm0 {
                             }
                             org.telegram.ui.Cells.w8 w8Var = (org.telegram.ui.Cells.w8) view;
                             if (d1Var.b() == v11Var.E) {
-                                w8Var.e(null, v11Var.f42606n);
+                                w8Var.e(null, v11Var.f42608n);
                                 return;
                             } else if (d1Var.b() == v11Var.O) {
-                                w8Var.e(null, v11Var.f42606n);
+                                w8Var.e(null, v11Var.f42608n);
                                 return;
                             } else {
                                 w8Var.e(null, true);
                                 return;
                             }
                         }
-                        ((org.telegram.ui.Cells.k6) view).b(null, v11Var.f42606n);
+                        ((org.telegram.ui.Cells.k6) view).b(null, v11Var.f42608n);
                         return;
                     }
-                    ((org.telegram.ui.Cells.y8) view).a(null, v11Var.f42606n);
+                    ((org.telegram.ui.Cells.y8) view).a(null, v11Var.f42608n);
                     return;
                 }
-                ((org.telegram.ui.Cells.e9) view).c(null, v11Var.f42606n);
+                ((org.telegram.ui.Cells.e9) view).c(null, v11Var.f42608n);
                 return;
             }
             org.telegram.ui.Cells.ca caVar = (org.telegram.ui.Cells.ca) view;
@@ -476,10 +476,10 @@ public final class t11 extends org.telegram.ui.Components.pm0 {
                 caVar.a(null, true);
                 return;
             } else {
-                caVar.a(null, v11Var.f42606n);
+                caVar.a(null, v11Var.f42608n);
                 return;
             }
         }
-        ((org.telegram.ui.Cells.m4) view).a(null, v11Var.f42606n);
+        ((org.telegram.ui.Cells.m4) view).a(null, v11Var.f42608n);
     }
 }

@@ -56,21 +56,21 @@ public final class d implements ServiceConnection {
                 pf.b bVar = d0Var.h;
                 bVar.getClass();
                 try {
-                    bVar.e0(c10, (p3) bVar.f45556b);
+                    bVar.e0(c10, (p3) bVar.f45558b);
                     return;
                 } catch (Throwable th2) {
                     com.google.android.gms.internal.play_billing.u.i("BillingLogger", "Unable to log.", th2);
                     return;
                 }
             case 2:
-                int i12 = wf.d.f50337a;
+                int i12 = wf.d.f50339a;
                 if (iBinder != null) {
                     IInterface queryLocalInterface2 = iBinder.queryLocalInterface("android.support.customtabs.ICustomTabsService");
                     if (queryLocalInterface2 != null && (queryLocalInterface2 instanceof wf.e)) {
                         eVar = (wf.e) queryLocalInterface2;
                     } else {
                         ?? obj = new Object();
-                        obj.f50336a = iBinder;
+                        obj.f50338a = iBinder;
                         eVar = obj;
                     }
                 }

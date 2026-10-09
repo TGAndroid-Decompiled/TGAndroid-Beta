@@ -17,23 +17,23 @@ import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.bu0;
 import org.telegram.ui.tf0;
 public final class r implements Runnable {
-    public final int f35400a;
-    public final int f35401b;
-    public final Object f35402c;
+    public final int f35434a;
+    public final int f35435b;
+    public final Object f35436c;
 
     public r(int i10, Object obj, int i11) {
-        this.f35400a = i11;
-        this.f35401b = i10;
-        this.f35402c = obj;
+        this.f35434a = i11;
+        this.f35435b = i10;
+        this.f35436c = obj;
     }
 
     @Override
     public final void run() {
         CharSequence text;
-        int i10 = this.f35400a;
+        int i10 = this.f35434a;
         boolean z10 = false;
-        int i11 = this.f35401b;
-        Object obj = this.f35402c;
+        int i11 = this.f35435b;
+        Object obj = this.f35436c;
         switch (i10) {
             case 0:
                 k0 v = k0.v(i11);
@@ -41,31 +41,31 @@ public final class r implements Runnable {
                 z zVar = new z(notificationCenter, (tf0) obj, v);
                 notificationCenter.addObserver(zVar, NotificationCenter.walletUpdate);
                 AndroidUtilities.runOnUIThread(zVar, 10000L);
-                if (v.f35096e == null && v.f35112w < 0) {
+                if (v.f35120e == null && v.f35136w < 0) {
                     v.U();
                 }
                 v.S();
                 zVar.a();
                 return;
             case 1:
-                b6 b6Var = (b6) obj;
-                if (b6Var.f34676r && !b6Var.f34679x && i11 == b6Var.f34673k0) {
-                    b6Var.postDelayed(b6Var.f34674l0, 500L);
+                c6 c6Var = (c6) obj;
+                if (c6Var.f34747r && !c6Var.f34750x && i11 == c6Var.f34744k0) {
+                    c6Var.postDelayed(c6Var.f34745l0, 500L);
                     return;
                 }
                 return;
             case 2:
-                z6 z6Var = (z6) obj;
-                ArrayList arrayList = z6Var.v;
+                a7 a7Var = (a7) obj;
+                ArrayList arrayList = a7Var.v;
                 try {
-                    ClipboardManager clipboardManager = (ClipboardManager) z6Var.getParentActivity().getSystemService("clipboard");
+                    ClipboardManager clipboardManager = (ClipboardManager) a7Var.getParentActivity().getSystemService("clipboard");
                     if (clipboardManager != null && clipboardManager.getPrimaryClip() != null && clipboardManager.getPrimaryClip().getItemCount() != 0 && (text = clipboardManager.getPrimaryClip().getItemAt(0).getText()) != null) {
                         String[] split = text.toString().trim().toLowerCase().split("\\s+");
                         for (int i12 = 0; i11 < arrayList.size() && i12 < split.length; i12++) {
-                            ((g9) arrayList.get(i11)).setText(split[i12]);
+                            ((h9) arrayList.get(i11)).setText(split[i12]);
                             i11++;
                         }
-                        z6Var.Y();
+                        a7Var.Y();
                         return;
                     }
                     return;
@@ -73,10 +73,10 @@ public final class r implements Runnable {
                     return;
                 }
             case 3:
-                r8 r8Var = (r8) obj;
-                if (!r8Var.f35426n && i11 == r8Var.I) {
-                    r8Var.K = false;
-                    r8Var.f26290a.W2.N(true);
+                s8 s8Var = (s8) obj;
+                if (!s8Var.f35492n && i11 == s8Var.I) {
+                    s8Var.K = false;
+                    s8Var.f26290a.W2.N(true);
                     return;
                 }
                 return;
@@ -107,7 +107,7 @@ public final class r implements Runnable {
                 bu0 bu0Var = (bu0) obj;
                 pg.s1 s1Var = bu0Var.K1;
                 bu0Var.t0(s1Var, null);
-                pg.u0.e(i11).j(s1Var.f45778c);
+                pg.u0.e(i11).j(s1Var.f45780c);
                 return;
             case 6:
                 qg.o2 o2Var = (qg.o2) obj;
@@ -116,7 +116,7 @@ public final class r implements Runnable {
                 o2Var.h();
                 return;
             case 7:
-                ea0 ea0Var = ((tg.r0) obj).f48403e;
+                ea0 ea0Var = ((tg.r0) obj).f48405e;
                 try {
                     if (ea0Var.getLayout().getLineForOffset(i11) == 0) {
                         ea0Var.getEditableText().insert(i11, "\n");
@@ -136,11 +136,11 @@ public final class r implements Runnable {
                 of.f.s(((yh.g) obj).getParentActivity(), LocaleController.getString(i11));
                 return;
             case 10:
-                ConnectionsManager.getInstance(((yh.m5) obj).f52878a).cancelRequest(i11, true);
+                ConnectionsManager.getInstance(((yh.m5) obj).f52880a).cancelRequest(i11, true);
                 return;
             default:
                 zg.f fVar = (zg.f) obj;
-                if (fVar.f54518b) {
+                if (fVar.f54520b) {
                     Utilities.Callback callback = fVar.d;
                     if (callback != null) {
                         if (i11 < 300) {
@@ -148,11 +148,11 @@ public final class r implements Runnable {
                         }
                         callback.run(Boolean.valueOf(z10));
                         try {
-                            fVar.f54517a.performHapticFeedback(3);
+                            fVar.f54519a.performHapticFeedback(3);
                         } catch (Exception unused3) {
                         }
                     }
-                    fVar.f54519c = true;
+                    fVar.f54521c = true;
                     int max = Math.max(50, i11 - 100);
                     AndroidUtilities.runOnUIThread(new r(fVar, max, 11), max);
                     return;
@@ -162,8 +162,8 @@ public final class r implements Runnable {
     }
 
     public r(Object obj, int i10, int i11) {
-        this.f35400a = i11;
-        this.f35402c = obj;
-        this.f35401b = i10;
+        this.f35434a = i11;
+        this.f35436c = obj;
+        this.f35435b = i10;
     }
 }

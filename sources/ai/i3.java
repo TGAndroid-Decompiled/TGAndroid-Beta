@@ -198,7 +198,7 @@ public final class i3 implements Runnable {
                 TLObject tLObject2 = (TLObject) obj2;
                 String str3 = (String) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj3;
-                int i11 = ec0Var.f37220b;
+                int i11 = ec0Var.f37222b;
                 ec0Var.c();
                 if (tLObject2 instanceof TLRPC.TL_contacts_resolvedPeer) {
                     TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject2;
@@ -206,12 +206,12 @@ public final class i3 implements Runnable {
                     MessagesController.getInstance(i11).putChats(tL_contacts_resolvedPeer.chats, false);
                     TLRPC.User user = MessagesController.getInstance(i11).getUser(Long.valueOf(tL_contacts_resolvedPeer.peer.user_id));
                     if (user != null) {
-                        org.telegram.ui.Wallet.i8 i8Var = new org.telegram.ui.Wallet.i8(user);
-                        i8Var.f35037r = j3;
-                        i8Var.f35021d0 = str3;
-                        i8Var.f35023e0 = z10;
-                        i8Var.f35020c0 = true;
-                        ec0Var.u(i8Var, false);
+                        org.telegram.ui.Wallet.j8 j8Var = new org.telegram.ui.Wallet.j8(user);
+                        j8Var.f35108r = j3;
+                        j8Var.f35092d0 = str3;
+                        j8Var.f35094e0 = z10;
+                        j8Var.f35091c0 = true;
+                        ec0Var.u(j8Var, false);
                         return;
                     }
                     return;
@@ -223,7 +223,7 @@ public final class i3 implements Runnable {
                 }
             case 5:
                 g01 g01Var = (g01) obj4;
-                ProfileActivity profileActivity = g01Var.f37736b;
+                ProfileActivity profileActivity = g01Var.f37738b;
                 nq nqVar = new nq(profileActivity.f34243e1, -j3, (TLRPC.TL_chatAdminRights) obj3, null, null, (String) obj, 2, true, !z10, null);
                 nqVar.X0 = new f01(g01Var, (ty) obj2);
                 profileActivity.presentFragment(nqVar);

@@ -884,7 +884,7 @@ public final class i6 extends a0 implements NotificationCenter.NotificationCente
             q5Var.j(DialogObject.getEmojiStatusDocumentId(chat.emoji_status), z11);
             q5Var.k(Integer.valueOf(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21202z9, e6Var)));
         } else if (this.H0 && user != null && !this.L && MessagesController.getInstance(this.N).isPremiumUser(user)) {
-            q5Var.g(rg.b1.d().f47207e, z11);
+            q5Var.g(rg.b1.d().f47209e, z11);
             q5Var.k(Integer.valueOf(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21202z9, e6Var)));
         } else {
             q5Var.g(null, z11);

@@ -14,12 +14,12 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class yx0 extends org.telegram.ui.Components.pm0 {
-    public final Context f44424c;
+    public final Context f44426c;
     public final PrivacyControlActivity d;
 
     public yx0(PrivacyControlActivity privacyControlActivity, Context context) {
         this.d = privacyControlActivity;
-        this.f44424c = context;
+        this.f44426c = context;
     }
 
     @Override
@@ -172,7 +172,7 @@ public final class yx0 extends org.telegram.ui.Components.pm0 {
         org.telegram.ui.ActionBar.e6 e6Var2;
         org.telegram.ui.ActionBar.e6 e6Var3;
         View view;
-        Context context = this.f44424c;
+        Context context = this.f44426c;
         PrivacyControlActivity privacyControlActivity = this.d;
         switch (i10) {
             case 0:

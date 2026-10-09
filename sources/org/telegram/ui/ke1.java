@@ -44,7 +44,7 @@ public final class ke1 extends org.telegram.ui.Cells.u1 {
         path.addRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), Path.Direction.CW);
         Paint paint = this.He;
         paint.setColor(0);
-        paint.setShadowLayer(AndroidUtilities.dp(2.0f), 0.0f, AndroidUtilities.dp(0.66f), org.telegram.ui.ActionBar.i6.m1(this.Le.f39890x * 0.2f, -16777216));
+        paint.setShadowLayer(AndroidUtilities.dp(2.0f), 0.0f, AndroidUtilities.dp(0.66f), org.telegram.ui.ActionBar.i6.m1(this.Le.f39892x * 0.2f, -16777216));
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
         canvas.clipPath(path);
         S1(canvas);

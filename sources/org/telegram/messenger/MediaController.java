@@ -4336,7 +4336,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             }
             zn znVar4 = this.raiseChat;
             if (znVar4 != null) {
-                messageSuggestionParams = znVar4.f44781g5;
+                messageSuggestionParams = znVar4.f44783g5;
             }
             startRecording(currentAccount, a2, null, messageObject, null, classGuid, false, sendMessageChatArguments, j3, messageSuggestionParams);
         } else {
@@ -5973,7 +5973,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             }
             zn znVar4 = this.raiseChat;
             if (znVar4 != null) {
-                messageSuggestionParams = znVar4.f44781g5;
+                messageSuggestionParams = znVar4.f44783g5;
             }
             startRecording(currentAccount, a2, null, messageObject, null, classGuid, false, sendMessageChatArguments, j3, messageSuggestionParams);
             this.ignoreOnPause = true;

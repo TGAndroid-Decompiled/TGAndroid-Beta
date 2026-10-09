@@ -146,10 +146,10 @@ public abstract class xb extends FrameLayout {
                 this.blurVisibilityDrawable = new uh.b(new s(this, 16));
             }
             uh.b bVar = this.blurVisibilityDrawable;
-            if (bVar.f48949c == null) {
+            if (bVar.f48951c == null) {
                 bVar.a(getMeasuredWidth(), getMeasuredHeight(), 6.0f, AndroidUtilities.dp(10.0f));
             }
-            this.blurVisibilityDrawable.f48953i = w7.o.b((int) org.telegram.messenger.bi.y(this.inOutOffset, getMeasuredHeight(), 1.0f, 255.0f), 0, 255);
+            this.blurVisibilityDrawable.f48955i = w7.o.b((int) org.telegram.messenger.bi.y(this.inOutOffset, getMeasuredHeight(), 1.0f, 255.0f), 0, 255);
             this.blurVisibilityDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
             this.blurVisibilityDrawable.draw(canvas);
             return;
@@ -325,9 +325,9 @@ public abstract class xb extends FrameLayout {
             this.callbacks.get(i10).b();
         }
         uh.b bVar = this.blurVisibilityDrawable;
-        if (bVar != null && (bitmap = bVar.f48949c) != null) {
+        if (bVar != null && (bitmap = bVar.f48951c) != null) {
             bitmap.recycle();
-            bVar.f48949c = null;
+            bVar.f48951c = null;
         }
     }
 

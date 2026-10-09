@@ -40,7 +40,7 @@ public final class x80 extends pm0 {
         TLObject chat;
         String str;
         int i12;
-        View view = d1Var.f47656a;
+        View view = d1Var.f47658a;
         y80 y80Var = this.d;
         long peerId = MessageObject.getPeerId((TLRPC.Peer) y80Var.h.get(i10));
         if (peerId > 0) {
@@ -92,7 +92,7 @@ public final class x80 extends pm0 {
         long j3;
         d1Var.b();
         long peerId = MessageObject.getPeerId(this.d.v);
-        View view = d1Var.f47656a;
+        View view = d1Var.f47658a;
         boolean z10 = true;
         if (view instanceof org.telegram.ui.Cells.g4) {
             org.telegram.ui.Cells.g4 g4Var = (org.telegram.ui.Cells.g4) view;

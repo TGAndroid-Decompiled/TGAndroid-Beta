@@ -61,16 +61,16 @@ public final class oc extends lc {
         if (z10) {
             ncVar.K = true;
             if (ncVar.L) {
-                ncVar.f46548s.onAttachedToWindow();
+                ncVar.f46550s.onAttachedToWindow();
                 return;
             } else {
-                ncVar.f46547r.onAttachedToWindow();
+                ncVar.f46549r.onAttachedToWindow();
                 return;
             }
         }
         ncVar.K = false;
-        ncVar.f46547r.onDetachedFromWindow();
-        ncVar.f46548s.onDetachedFromWindow();
+        ncVar.f46549r.onDetachedFromWindow();
+        ncVar.f46550s.onDetachedFromWindow();
     }
 
     @Override

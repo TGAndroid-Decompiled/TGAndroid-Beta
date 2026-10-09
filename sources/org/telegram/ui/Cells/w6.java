@@ -21,7 +21,7 @@ public final class w6 extends o61 {
         Object obj = p61Var.G;
         if (obj instanceof h11) {
             h11 h11Var = (h11) obj;
-            ((y6) view).b(p61Var.f29734l, h11Var.d, h11Var.f38191e, z10);
+            ((y6) view).b(p61Var.f29734l, h11Var.d, h11Var.f38193e, z10);
         } else if (obj instanceof MessagesController.FaqSearchResult) {
             ((y6) view).a(p61Var.f29734l, ((MessagesController.FaqSearchResult) obj).path, true, z10);
         }

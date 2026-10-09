@@ -17,7 +17,7 @@ import org.telegram.ui.Components.hs;
 import org.telegram.ui.Components.j9;
 import org.telegram.ui.Components.n61;
 import org.telegram.ui.Components.o91;
-import org.telegram.ui.Wallet.b4;
+import org.telegram.ui.Wallet.c4;
 import yf.p;
 public final class a extends View {
     public final int f10893a = 1;
@@ -114,14 +114,14 @@ public final class a extends View {
                 }
                 return;
             case 2:
-                b4 b4Var = (b4) this.f10896e;
-                b4Var.getClass();
-                int themedColor = b4Var.getThemedColor(i6.f20797d6);
+                c4 c4Var = (c4) this.f10896e;
+                c4Var.getClass();
+                int themedColor = c4Var.getThemedColor(i6.f20797d6);
                 Paint paint2 = this.f10894b;
                 paint2.setColor(themedColor);
-                b4Var.f34650b0.getLocationInWindow((int[]) this.f10895c);
+                c4Var.f34721b0.getLocationInWindow((int[]) this.f10895c);
                 getLocationInWindow((int[]) this.d);
-                for (View view : ((o91) b4Var.f34650b0).getViewPages()) {
+                for (View view : ((o91) c4Var.f34721b0).getViewPages()) {
                     if (view != null && view.getVisibility() == 0) {
                         canvas.save();
                         canvas.translate(view.getLeft() + (iArr[0] - iArr2[0]), view.getTop() + (iArr[1] - iArr2[1]));
@@ -201,9 +201,9 @@ public final class a extends View {
         paint3.setColor(i6.w0(i6.wj, e6Var));
     }
 
-    public a(b4 b4Var, Context context) {
+    public a(c4 c4Var, Context context) {
         super(context);
-        this.f10896e = b4Var;
+        this.f10896e = c4Var;
         this.f10894b = new Paint(1);
         this.f10895c = new int[2];
         this.d = new int[2];

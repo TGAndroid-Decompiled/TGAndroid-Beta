@@ -11,7 +11,7 @@ public final class mx extends s4.d0 {
     @Override
     public final int R0() {
         sy syVar = this.I;
-        if (syVar.f41795s == 0 && this.J.W.W3() && syVar.v == 2) {
+        if (syVar.f41797s == 0 && this.J.W.W3() && syVar.v == 2) {
             return 1;
         }
         return 0;

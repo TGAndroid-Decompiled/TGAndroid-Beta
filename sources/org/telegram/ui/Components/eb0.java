@@ -16,7 +16,7 @@ public final class eb0 extends wh.l {
             case 0:
                 wh.b bVar = (wh.b) this.F;
                 ay0 ay0Var = bVar.W;
-                if (this.f50429e.isEmpty()) {
+                if (this.f50431e.isEmpty()) {
                     if (ay0Var.getVisibility() != 4) {
                         ay0Var.setVisibility(4);
                         return;

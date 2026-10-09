@@ -5,19 +5,19 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class nh1 implements Utilities.Callback {
-    public final int f40213a;
-    public final UserInfoActivity f40214b;
+    public final int f40215a;
+    public final UserInfoActivity f40216b;
 
     public nh1(UserInfoActivity userInfoActivity, int i10) {
-        this.f40213a = i10;
-        this.f40214b = userInfoActivity;
+        this.f40215a = i10;
+        this.f40216b = userInfoActivity;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f40213a) {
+        switch (this.f40215a) {
             case 0:
-                UserInfoActivity userInfoActivity = this.f40214b;
+                UserInfoActivity userInfoActivity = this.f40216b;
                 userInfoActivity.J = (TL_account.TL_birthday) obj;
                 org.telegram.ui.Components.e71 e71Var = userInfoActivity.f34590x;
                 if (e71Var != null) {
@@ -27,7 +27,7 @@ public final class nh1 implements Utilities.Callback {
                 return;
             default:
                 TLRPC.Chat chat = (TLRPC.Chat) obj;
-                UserInfoActivity userInfoActivity2 = this.f40214b;
+                UserInfoActivity userInfoActivity2 = this.f40216b;
                 if (userInfoActivity2.K != chat) {
                     userInfoActivity2.K = chat;
                     if (chat != null) {

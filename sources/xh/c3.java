@@ -3,28 +3,28 @@ package xh;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class c3 extends AnimatorListenerAdapter {
-    public final int f51194a;
-    public final boolean f51195b;
-    public final i4 f51196c;
+    public final int f51196a;
+    public final boolean f51197b;
+    public final i4 f51198c;
 
     public c3(i4 i4Var, boolean z10, int i10) {
-        this.f51194a = i10;
-        this.f51196c = i4Var;
-        this.f51195b = z10;
+        this.f51196a = i10;
+        this.f51198c = i4Var;
+        this.f51197b = z10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f51194a) {
+        switch (this.f51196a) {
             case 0:
-                if (!this.f51195b) {
-                    this.f51196c.f51290y.setVisibility(8);
+                if (!this.f51197b) {
+                    this.f51198c.f51292y.setVisibility(8);
                     return;
                 }
                 return;
             default:
-                if (!this.f51195b) {
-                    this.f51196c.f51288w.setVisibility(8);
+                if (!this.f51197b) {
+                    this.f51198c.f51290w.setVisibility(8);
                     return;
                 }
                 return;

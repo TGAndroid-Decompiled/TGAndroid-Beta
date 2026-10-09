@@ -119,7 +119,7 @@ public final class b implements hh.h, h9, a2, OnFailureListener, q9.d, fm0, OnCo
 
     @Override
     public p80 a(i1 i1Var) {
-        r rVar = (r) ((pf.b) this.f539b).f45557c;
+        r rVar = (r) ((pf.b) this.f539b).f45559c;
         p80 p80Var = new p80(rVar, (e6) this.f540c, i1Var, false, false, true);
         rVar.H = p80Var;
         return p80Var;
@@ -723,7 +723,7 @@ public final class b implements hh.h, h9, a2, OnFailureListener, q9.d, fm0, OnCo
         q9.a aVar = (q9.a) this.f540c;
         try {
             Trace.beginSection(str);
-            return aVar.f46009f.y0(u5Var);
+            return aVar.f46011f.y0(u5Var);
         } finally {
             Trace.endSection();
         }

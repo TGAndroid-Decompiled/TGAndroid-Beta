@@ -55,7 +55,7 @@ public final class cp0 extends f91 {
             if (cVar != null) {
                 w10Var.setBlurredBackgroundDrawableFactory(cVar);
             }
-            ai.w0 w0Var = w10Var.f43042b;
+            ai.w0 w0Var = w10Var.f43044b;
             w0Var.setClipToPadding(false);
             w0Var.j(new ap0(this, 1));
             w0Var.C0(new bd0(dyVar, 23));
@@ -137,7 +137,7 @@ public final class cp0 extends f91 {
                 bp0 bp0Var = new bp0(3);
                 bp0Var.f25081b = 0;
                 arrayList.add(bp0Var);
-                org.telegram.ui.nx nxVar = dyVar.f37107b1.F3;
+                org.telegram.ui.nx nxVar = dyVar.f37109b1.F3;
                 if (nxVar == null || !nxVar.c()) {
                     arrayList.add(new bp0(2));
                 }

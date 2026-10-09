@@ -176,7 +176,7 @@ public final class x0 implements Runnable {
             default:
                 ci.d dVar = (ci.d) obj7;
                 org.telegram.ui.Wallet.k0 k0Var = (org.telegram.ui.Wallet.k0) obj6;
-                org.telegram.ui.Wallet.d2 d2Var = k0Var.f35098g;
+                org.telegram.ui.Wallet.d2 d2Var = k0Var.f35122g;
                 TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) obj5;
                 org.telegram.ui.Wallet.y1 y1Var = (org.telegram.ui.Wallet.y1) obj4;
                 TextView textView2 = (TextView) obj3;
@@ -198,7 +198,7 @@ public final class x0 implements Runnable {
                         r16 = 0;
                         ArrayList arrayList2 = arrayList;
                         if (tonconnectsession2.f20299id == tonconnectsession.f20299id) {
-                            y1Var.f35649e = tonconnectsession2;
+                            y1Var.f35686e = tonconnectsession2;
                         } else {
                             textView3 = textView;
                             arrayList = arrayList2;
@@ -208,13 +208,13 @@ public final class x0 implements Runnable {
                         r16 = 0;
                     }
                 }
-                TL_wallet.tonConnectSession tonconnectsession3 = y1Var.f35649e;
+                TL_wallet.tonConnectSession tonconnectsession3 = y1Var.f35686e;
                 if (tonconnectsession3.manifest != null && tonconnectsession3.manifest_error == null && !tonconnectsession3.closed && !tonconnectsession3.closing) {
                     z12 = true;
                 } else {
                     z12 = r16;
                 }
-                if (z12 && !y1Var.f35650f) {
+                if (z12 && !y1Var.f35687f) {
                     z13 = true;
                 } else {
                     z13 = r16;

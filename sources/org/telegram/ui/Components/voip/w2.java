@@ -44,25 +44,25 @@ public abstract class w2 extends FrameLayout {
     public final void c(long j3) {
         if (!this.f32351f) {
             this.f32351f = true;
-            if (wi1.f43623n1 != null) {
+            if (wi1.f43625n1 != null) {
                 if (VoIPService.getSharedInstance() != null) {
-                    int measuredHeight = wi1.f43623n1.f43663u0.getMeasuredHeight();
-                    if (wi1.f43623n1.D0 && !VoIPService.getSharedInstance().isConverting()) {
-                        wi1 wi1Var = wi1.f43623n1;
-                        m2.l(wi1Var.f43627b, wi1Var.f43624a, wi1Var.f43663u0.getMeasuredWidth(), measuredHeight, 0);
-                        WindowInsets windowInsets = wi1.f43623n1.f43659r0;
+                    int measuredHeight = wi1.f43625n1.f43665u0.getMeasuredHeight();
+                    if (wi1.f43625n1.D0 && !VoIPService.getSharedInstance().isConverting()) {
+                        wi1 wi1Var = wi1.f43625n1;
+                        m2.l(wi1Var.f43629b, wi1Var.f43626a, wi1Var.f43665u0.getMeasuredWidth(), measuredHeight, 0);
+                        WindowInsets windowInsets = wi1.f43625n1.f43661r0;
                         if (windowInsets != null) {
                             m2.X = windowInsets.getSystemWindowInsetTop();
-                            wi1.f43623n1.f43659r0.getSystemWindowInsetBottom();
+                            wi1.f43625n1.f43661r0.getSystemWindowInsetBottom();
                         }
                     }
                 }
-                wi1.f43623n1.f43631c0.d.release();
-                wi1.f43623n1.f43633d0.d.release();
-                wi1.f43623n1.f43628b0.release();
-                wi1.f43623n1.k();
+                wi1.f43625n1.f43633c0.d.release();
+                wi1.f43625n1.f43635d0.d.release();
+                wi1.f43625n1.f43630b0.release();
+                wi1.f43625n1.k();
             }
-            wi1.f43623n1 = null;
+            wi1.f43625n1 = null;
             if (this.f32348b) {
                 try {
                     ((WindowManager) this.f32347a.getSystemService("window")).removeView(this);

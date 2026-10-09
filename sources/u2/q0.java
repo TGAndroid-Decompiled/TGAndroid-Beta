@@ -1,14 +1,14 @@
 package u2;
 public final class q0 extends c3.v {
-    public final u0 f48688b;
+    public final u0 f48690b;
 
     public q0(u0 u0Var, c3.b0 b0Var) {
         super(b0Var);
-        this.f48688b = u0Var;
+        this.f48690b = u0Var;
     }
 
     @Override
     public final long l() {
-        return this.f48688b.S;
+        return this.f48690b.S;
     }
 }

@@ -47,72 +47,72 @@ public class o0 extends View {
     public boolean U;
     public int V;
     public n0 W;
-    public int f46432a;
-    public float f46433a0;
-    public int f46434b;
-    public float f46435b0;
-    public boolean f46436c;
-    public float f46437c0;
+    public int f46434a;
+    public float f46435a0;
+    public int f46436b;
+    public float f46437b0;
+    public boolean f46438c;
+    public float f46439c0;
     public boolean d;
-    public float f46438d0;
-    public final float f46439e;
-    public int f46440e0;
-    public final int f46441f;
-    public final RectF f46442f0;
-    public final RectF f46443g0;
+    public float f46440d0;
+    public final float f46441e;
+    public int f46442e0;
+    public final int f46443f;
+    public final RectF f46444f0;
+    public final RectF f46445g0;
     public final int h;
-    public final Path f46444h0;
-    public final Path f46445i0;
-    public final RectF f46446j0;
-    public final RectF f46447k0;
-    public final g6 f46448l0;
+    public final Path f46446h0;
+    public final Path f46447i0;
+    public final RectF f46448j0;
+    public final RectF f46449k0;
+    public final g6 f46450l0;
     public final g6 m0;
-    public float f46449n;
-    public final g6 f46450n0;
-    public final g6 f46451o0;
-    public final g6 f46452p0;
-    public final g6 f46453q0;
-    public final TextPaint f46454r;
-    public final g6 f46455r0;
-    public StaticLayout f46456s;
-    public final g6 f46457s0;
+    public float f46451n;
+    public final g6 f46452n0;
+    public final g6 f46453o0;
+    public final g6 f46454p0;
+    public final g6 f46455q0;
+    public final TextPaint f46456r;
+    public final g6 f46457r0;
+    public StaticLayout f46458s;
+    public final g6 f46459s0;
     public float v;
-    public float f46458w;
-    public final RectF f46459x;
-    public final Drawable f46460y;
+    public float f46460w;
+    public final RectF f46461x;
+    public final Drawable f46462y;
 
     public o0(Context context, float f7) {
         super(context);
-        this.f46436c = true;
-        this.f46449n = 1.0f;
+        this.f46438c = true;
+        this.f46451n = 1.0f;
         TextPaint textPaint = new TextPaint(1);
-        this.f46454r = textPaint;
-        this.f46459x = new RectF(4.0f, 4.33f, 7.66f, 3.0f);
+        this.f46456r = textPaint;
+        this.f46461x = new RectF(4.0f, 4.33f, 7.66f, 3.0f);
         this.E = new Paint(1);
         this.H = new Paint(1);
         this.N = new TextPaint(1);
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.T = imageReceiver;
-        this.f46442f0 = new RectF();
-        this.f46443g0 = new RectF();
-        this.f46444h0 = new Path();
-        this.f46445i0 = new Path();
-        this.f46446j0 = new RectF();
-        this.f46447k0 = new RectF();
+        this.f46444f0 = new RectF();
+        this.f46445g0 = new RectF();
+        this.f46446h0 = new Path();
+        this.f46447i0 = new Path();
+        this.f46448j0 = new RectF();
+        this.f46449k0 = new RectF();
         hs hsVar = hs.h;
-        this.f46448l0 = new g6(this, 0L, 350L, hsVar);
+        this.f46450l0 = new g6(this, 0L, 350L, hsVar);
         this.m0 = new g6(this, 0L, 350L, hsVar);
-        this.f46450n0 = new g6(this, 0L, 350L, hsVar);
-        this.f46451o0 = new g6(this, 0L, 350L, hsVar);
-        this.f46452p0 = new g6(this, 0L, 350L, hsVar);
-        this.f46453q0 = new g6(this, 0L, 350L, hsVar);
-        this.f46455r0 = new g6(this, 0L, 350L, hsVar);
-        this.f46457s0 = new g6(this, 0L, 350L, hsVar);
-        this.f46439e = f7;
+        this.f46452n0 = new g6(this, 0L, 350L, hsVar);
+        this.f46453o0 = new g6(this, 0L, 350L, hsVar);
+        this.f46454p0 = new g6(this, 0L, 350L, hsVar);
+        this.f46455q0 = new g6(this, 0L, 350L, hsVar);
+        this.f46457r0 = new g6(this, 0L, 350L, hsVar);
+        this.f46459s0 = new g6(this, 0L, 350L, hsVar);
+        this.f46441e = f7;
         imageReceiver.setInvalidateAll(true);
-        this.f46441f = (int) (f7 * 3.0f);
+        this.f46443f = (int) (f7 * 3.0f);
         this.h = (int) (f7 * 1.0f);
-        this.f46460y = context.getResources().getDrawable(R.drawable.story_link).mutate();
+        this.f46462y = context.getResources().getDrawable(R.drawable.story_link).mutate();
         textPaint.setTextSize(24.0f * f7);
         textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
     }
@@ -122,37 +122,37 @@ public class o0 extends View {
     }
 
     public final void b(int i10, n0 n0Var, boolean z10) {
-        this.f46432a = i10;
+        this.f46434a = i10;
         if (this.W == n0Var && !z10) {
             return;
         }
         this.W = n0Var;
-        this.f46436c = true;
+        this.f46438c = true;
         this.d = z10;
         requestLayout();
     }
 
     public final void c(int i10, int i11) {
         int i12 = -16777216;
-        Drawable drawable = this.f46460y;
-        TextPaint textPaint = this.f46454r;
+        Drawable drawable = this.f46462y;
+        TextPaint textPaint = this.f46456r;
         if (i10 == 0) {
-            this.f46440e0 = i11;
+            this.f46442e0 = i11;
             if (AndroidUtilities.computePerceivedBrightness(i11) < 0.721f) {
                 i12 = -1;
             }
             textPaint.setColor(i12);
             drawable.setColorFilter(new PorterDuffColorFilter(i12, PorterDuff.Mode.SRC_IN));
         } else if (i10 == 1) {
-            this.f46440e0 = -16777216;
+            this.f46442e0 = -16777216;
             textPaint.setColor(-1);
             drawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         } else if (i10 == 2) {
-            this.f46440e0 = 1275068416;
+            this.f46442e0 = 1275068416;
             textPaint.setColor(-1);
             drawable.setColorFilter(null);
         } else {
-            this.f46440e0 = -1;
+            this.f46442e0 = -1;
             textPaint.setColor(-13397548);
             drawable.setColorFilter(new PorterDuffColorFilter(-13397548, PorterDuff.Mode.SRC_IN));
         }
@@ -183,23 +183,23 @@ public class o0 extends View {
         float f16;
         float f17;
         ImageLocation forPhoto;
-        if (this.f46436c && this.W != null) {
+        if (this.f46438c && this.W != null) {
             boolean e7 = e();
-            int i15 = this.f46441f;
-            float f18 = this.f46439e;
+            int i15 = this.f46443f;
+            float f18 = this.f46441e;
             if (e7) {
-                if (TextUtils.isEmpty(this.W.f46419b)) {
-                    str2 = this.W.f46420c;
+                if (TextUtils.isEmpty(this.W.f46421b)) {
+                    str2 = this.W.f46422c;
                 } else {
-                    str2 = this.W.f46419b;
+                    str2 = this.W.f46421b;
                 }
                 TLRPC.WebPage webPage = this.W.d;
-                float f19 = (this.f46434b - i15) - i15;
-                this.f46435b0 = 0.0f;
-                this.f46433a0 = 0.0f;
-                this.f46437c0 = 0.0f;
-                int colorId = UserObject.getColorId(UserConfig.getInstance(this.f46432a).getCurrentUser());
-                MessagesController.PeerColors peerColors = MessagesController.getInstance(this.f46432a).peerColors;
+                float f19 = (this.f46436b - i15) - i15;
+                this.f46437b0 = 0.0f;
+                this.f46435a0 = 0.0f;
+                this.f46439c0 = 0.0f;
+                int colorId = UserObject.getColorId(UserConfig.getInstance(this.f46434a).getCurrentUser());
+                MessagesController.PeerColors peerColors = MessagesController.getInstance(this.f46434a).peerColors;
                 String str3 = null;
                 if (peerColors != null && colorId >= 7) {
                     peerColor = peerColors.getColor(colorId);
@@ -213,16 +213,16 @@ public class o0 extends View {
                     color1 = peerColor.getColor1();
                 }
                 this.H.setColor(color1);
-                this.f46435b0 = (7.33f * f18) + this.f46435b0;
-                this.F = this.W.f46422f;
+                this.f46437b0 = (7.33f * f18) + this.f46437b0;
+                this.F = this.W.f46424f;
                 l11 l11Var = new l11(str2, 16.0f, null);
                 l11Var.f28220a.setTextSize(16.0f * f18);
                 float f20 = 20.0f * f18;
                 l11Var.q(f19 - f20);
                 this.G = l11Var;
-                this.f46433a0 = Math.max(this.f46433a0, Math.min(f20 + l11Var.f28222c, f19));
+                this.f46435a0 = Math.max(this.f46435a0, Math.min(f20 + l11Var.f28222c, f19));
                 float f21 = 7.0f * f18;
-                this.f46435b0 = this.G.j() + this.f46435b0 + f21;
+                this.f46437b0 = this.G.j() + this.f46437b0 + f21;
                 if (webPage.photo == null && !MessageObject.isVideoDocument(webPage.document)) {
                     z10 = false;
                 } else {
@@ -230,10 +230,10 @@ public class o0 extends View {
                 }
                 this.R = z10;
                 n0 n0Var = this.W;
-                boolean z12 = n0Var.f46421e;
+                boolean z12 = n0Var.f46423e;
                 this.S = !z12;
-                if (this.U && (n0Var.f46418a & 4) != 0) {
-                    i10 = n0Var.f46423i;
+                if (this.U && (n0Var.f46420a & 4) != 0) {
+                    i10 = n0Var.f46425i;
                 } else {
                     if (!z12) {
                         f7 = 48.0f;
@@ -296,7 +296,7 @@ public class o0 extends View {
                         i12 = 0;
                     }
                 }
-                this.f46437c0 = (5.66f * f18) + this.f46437c0;
+                this.f46439c0 = (5.66f * f18) + this.f46439c0;
                 boolean isEmpty = TextUtils.isEmpty(webPage.site_name);
                 this.K = !isEmpty;
                 if (!isEmpty) {
@@ -311,15 +311,15 @@ public class o0 extends View {
                     }
                     l11Var2.q((int) Math.ceil(f23 - f16));
                     this.L = l11Var2;
-                    float f24 = this.f46433a0;
+                    float f24 = this.f46435a0;
                     float f25 = f22 + l11Var2.f28222c;
                     if (this.R && this.S) {
                         f17 = f18 * 60.0f;
                     } else {
                         f17 = 0.0f;
                     }
-                    this.f46433a0 = Math.max(f24, Math.min(f25 + f17, f19));
-                    this.f46437c0 = (f18 * 2.66f) + this.L.j() + this.f46437c0;
+                    this.f46435a0 = Math.max(f24, Math.min(f25 + f17, f19));
+                    this.f46439c0 = (f18 * 2.66f) + this.L.j() + this.f46439c0;
                     i13 = this.L.f28221b.getLineCount();
                 } else {
                     i13 = 0;
@@ -340,15 +340,15 @@ public class o0 extends View {
                     f12 = f18;
                     l11Var3.q((int) Math.ceil(f27 - f14));
                     this.J = l11Var3;
-                    float f28 = this.f46433a0;
+                    float f28 = this.f46435a0;
                     float f29 = f26 + l11Var3.f28222c;
                     if (this.R && this.S) {
                         f15 = 60.0f * f12;
                     } else {
                         f15 = 0.0f;
                     }
-                    this.f46433a0 = Math.max(f28, Math.min(f29 + f15, f19));
-                    this.f46437c0 = (f12 * 2.66f) + this.J.j() + this.f46437c0;
+                    this.f46435a0 = Math.max(f28, Math.min(f29 + f15, f19));
+                    this.f46439c0 = (f12 * 2.66f) + this.J.j() + this.f46439c0;
                     i13 += this.J.f28221b.getLineCount();
                 } else {
                     f11 = 2.66f;
@@ -387,59 +387,59 @@ public class o0 extends View {
                         this.P = Math.max(f31, lineWidth + f13);
                         this.Q = Math.min(this.Q, this.O.getLineLeft(i17));
                     }
-                    this.f46433a0 = Math.max(this.f46433a0, Math.min(f30 + this.P, f19));
-                    this.f46437c0 = (f12 * f11) + this.f46437c0 + this.O.getHeight();
+                    this.f46435a0 = Math.max(this.f46435a0, Math.min(f30 + this.P, f19));
+                    this.f46439c0 = (f12 * f11) + this.f46439c0 + this.O.getHeight();
                 }
                 if (this.R && !this.S) {
                     if (i12 > 0 && i11 > 0) {
-                        this.f46438d0 = Math.min((Math.max(0.0f, this.f46433a0 - (f12 * 40.0f)) / i12) * i11, f12 * 200.0f);
+                        this.f46440d0 = Math.min((Math.max(0.0f, this.f46435a0 - (f12 * 40.0f)) / i12) * i11, f12 * 200.0f);
                     } else {
-                        this.f46438d0 = f12 * 120.0f;
+                        this.f46440d0 = f12 * 120.0f;
                     }
-                    this.f46437c0 = (f12 * f11) + this.f46437c0 + this.f46438d0;
+                    this.f46439c0 = (f12 * f11) + this.f46439c0 + this.f46440d0;
                 }
-                float f32 = f21 + this.f46437c0;
-                this.f46437c0 = f32;
-                this.f46435b0 = (f12 * 11.0f) + this.f46435b0 + f32;
+                float f32 = f21 + this.f46439c0;
+                this.f46439c0 = f32;
+                this.f46437b0 = (f12 * 11.0f) + this.f46437b0 + f32;
             } else {
-                if (TextUtils.isEmpty(this.W.f46419b)) {
-                    String str5 = this.W.f46420c;
+                if (TextUtils.isEmpty(this.W.f46421b)) {
+                    String str5 = this.W.f46422c;
                     if (str5.startsWith("https://")) {
                         str5 = str5.substring(8);
                     }
                     str = str5.toUpperCase();
                 } else {
-                    str = this.W.f46419b;
+                    str = this.W.f46421b;
                 }
-                RectF rectF = this.f46459x;
-                float f33 = ((this.f46434b - i15) - i15) - ((((rectF.left + 30.0f) + 3.25f) + rectF.right) * f18);
-                this.f46449n = 1.0f;
+                RectF rectF = this.f46461x;
+                float f33 = ((this.f46436b - i15) - i15) - ((((rectF.left + 30.0f) + 3.25f) + rectF.right) * f18);
+                this.f46451n = 1.0f;
                 TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-                TextPaint textPaint2 = this.f46454r;
-                this.f46456s = new StaticLayout(TextUtils.ellipsize(str, textPaint2, (int) Math.ceil(d), truncateAt), textPaint2, (int) Math.ceil(f33), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                TextPaint textPaint2 = this.f46456r;
+                this.f46458s = new StaticLayout(TextUtils.ellipsize(str, textPaint2, (int) Math.ceil(d), truncateAt), textPaint2, (int) Math.ceil(f33), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                 this.v = 0.0f;
-                this.f46458w = Float.MAX_VALUE;
-                for (int i18 = 0; i18 < this.f46456s.getLineCount(); i18++) {
-                    this.v = Math.max(this.v, this.f46456s.getLineWidth(i18));
-                    this.f46458w = Math.min(this.f46458w, this.f46456s.getLineLeft(i18));
+                this.f46460w = Float.MAX_VALUE;
+                for (int i18 = 0; i18 < this.f46458s.getLineCount(); i18++) {
+                    this.v = Math.max(this.v, this.f46458s.getLineWidth(i18));
+                    this.f46460w = Math.min(this.f46460w, this.f46458s.getLineLeft(i18));
                 }
-                if (this.f46456s.getLineCount() > 2) {
-                    this.f46449n = 0.3f;
+                if (this.f46458s.getLineCount() > 2) {
+                    this.f46451n = 0.3f;
                 } else {
-                    this.f46449n = Math.min(1.0f, f33 / this.v);
+                    this.f46451n = Math.min(1.0f, f33 / this.v);
                 }
-                this.f46433a0 = (this.v * this.f46449n) + ((rectF.left + 30.0f + 3.25f + rectF.right) * f18);
-                this.f46435b0 = Math.max(f18 * 30.0f, this.f46456s.getHeight() * this.f46449n) + ((rectF.top + rectF.bottom) * f18);
+                this.f46435a0 = (this.v * this.f46451n) + ((rectF.left + 30.0f + 3.25f + rectF.right) * f18);
+                this.f46437b0 = Math.max(f18 * 30.0f, this.f46458s.getHeight() * this.f46451n) + ((rectF.top + rectF.bottom) * f18);
             }
             if (!this.d) {
-                this.f46448l0.f(this.F, true);
-                this.f46450n0.f(this.S, true);
+                this.f46450l0.f(this.F, true);
+                this.f46452n0.f(this.S, true);
                 this.m0.f(this.R, true);
-                this.f46453q0.d(this.f46437c0, true);
+                this.f46455q0.d(this.f46439c0, true);
             } else {
                 invalidate();
             }
-            this.f46436c = false;
+            this.f46438c = false;
         }
     }
 
@@ -461,9 +461,9 @@ public class o0 extends View {
         if (this.S) {
             f7 = 48.0f;
         } else {
-            int i10 = this.f46434b;
-            int i11 = this.f46441f;
-            f7 = (((i10 - i11) - i11) / this.f46439e) - 40.0f;
+            int i10 = this.f46436b;
+            int i11 = this.f46443f;
+            f7 = (((i10 - i11) - i11) / this.f46441e) - 40.0f;
         }
         return ((int) f7) * 2;
     }
@@ -477,10 +477,10 @@ public class o0 extends View {
         float f10;
         if (e()) {
             f7 = 16.66f;
-            f10 = this.f46439e;
+            f10 = this.f46441e;
         } else {
             f7 = 0.2f;
-            f10 = this.f46435b0;
+            f10 = this.f46437b0;
         }
         return f10 * f7;
     }
@@ -500,16 +500,16 @@ public class o0 extends View {
     @Override
     public final void onMeasure(int i10, int i11) {
         d();
-        int i12 = this.f46441f;
-        int ceil = ((int) Math.ceil(this.f46433a0)) + i12 + i12;
-        int ceil2 = (int) Math.ceil(this.f46435b0);
+        int i12 = this.f46443f;
+        int ceil = ((int) Math.ceil(this.f46435a0)) + i12 + i12;
+        int ceil2 = (int) Math.ceil(this.f46437b0);
         int i13 = this.h;
         setMeasuredDimension(ceil, ceil2 + i13 + i13);
     }
 
     public void setMaxWidth(int i10) {
-        this.f46434b = i10;
-        this.f46436c = true;
+        this.f46436b = i10;
+        this.f46438c = true;
     }
 
     public void setPreviewType(int i10) {

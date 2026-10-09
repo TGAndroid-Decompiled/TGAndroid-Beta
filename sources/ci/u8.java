@@ -93,7 +93,7 @@ public final class u8 extends org.telegram.ui.Components.eb implements Notificat
         this.smoothKeyboardAnimationEnabled = true;
         this.smoothKeyboardByBottom = true;
         p8 p8Var = new p8(this);
-        p8Var.f47696m = false;
+        p8Var.f47698m = false;
         p8Var.C = false;
         p8Var.o(hs.h);
         p8Var.n(350L);
@@ -119,17 +119,17 @@ public final class u8 extends org.telegram.ui.Components.eb implements Notificat
             if (G.G(s8.class) && (webPage = u8Var.f6085g0) != null && !X(webPage)) {
                 qg.u2 u2Var = new qg.u2(context, u8Var.currentAccount);
                 qg.n0 n0Var = new qg.n0();
-                n0Var.f46420c = j3Var2.f22297b.getText().toString();
+                n0Var.f46422c = j3Var2.f22297b.getText().toString();
                 if (u8Var.m0) {
                     str = j3Var.f22297b.getText().toString();
                 } else {
                     str = null;
                 }
-                n0Var.f46419b = str;
+                n0Var.f46421b = str;
                 TLRPC.WebPage webPage2 = u8Var.f6085g0;
                 n0Var.d = webPage2;
-                n0Var.f46421e = u8Var.f6092o0;
-                n0Var.f46422f = u8Var.f6091n0;
+                n0Var.f46423e = u8Var.f6092o0;
+                n0Var.f46424f = u8Var.f6091n0;
                 ai.y1 y1Var = new ai.y1(u8Var, 15);
                 u2Var.G = n0Var;
                 if (webPage2 != null && (webPage2.photo != null || MessageObject.isVideoDocument(webPage2.document))) {
@@ -137,13 +137,13 @@ public final class u8 extends org.telegram.ui.Components.eb implements Notificat
                 } else {
                     i11 = 8;
                 }
-                uc0 uc0Var = u2Var.f46579x;
+                uc0 uc0Var = u2Var.f46581x;
                 uc0Var.setVisibility(i11);
-                u2Var.f46574f.b(u2Var.f46570a, n0Var, false);
-                u2Var.f46578w.a(!n0Var.f46422f, false);
-                uc0Var.a(!n0Var.f46421e, false);
+                u2Var.f46576f.b(u2Var.f46572a, n0Var, false);
+                u2Var.f46580w.a(!n0Var.f46424f, false);
+                uc0Var.a(!n0Var.f46423e, false);
                 u2Var.H = y1Var;
-                u2Var.f46573e.setImageDrawable(new c4(b7Var, 7));
+                u2Var.f46575e.setImageDrawable(new c4(b7Var, 7));
                 u2Var.show();
             } else if (G.d == 2 && (view instanceof org.telegram.ui.Cells.w8)) {
                 boolean z10 = !u8Var.m0;
@@ -247,16 +247,16 @@ public final class u8 extends org.telegram.ui.Components.eb implements Notificat
         }
         if (this.f6083e0 != null) {
             qg.n0 n0Var = new qg.n0();
-            n0Var.f46420c = this.Y.f22297b.getText().toString();
+            n0Var.f46422c = this.Y.f22297b.getText().toString();
             if (this.m0) {
                 str = this.Z.f22297b.getText().toString();
             } else {
                 str = null;
             }
-            n0Var.f46419b = str;
+            n0Var.f46421b = str;
             n0Var.d = this.f6085g0;
-            n0Var.f46421e = this.f6092o0;
-            n0Var.f46422f = this.f6091n0;
+            n0Var.f46423e = this.f6092o0;
+            n0Var.f46424f = this.f6091n0;
             this.f6083e0.run(n0Var);
             this.f6083e0 = null;
         }

@@ -58,8 +58,8 @@ public final class q4 implements Utilities.Callback {
                 xh.s2 s2Var = (xh.s2) this.f9313c;
                 int i11 = this.f9312b;
                 ArrayList arrayList = (ArrayList) obj;
-                org.telegram.ui.ActionBar.n2 n2Var2 = s2Var.f51509a;
-                yh.d5 d5Var = s2Var.f51512e;
+                org.telegram.ui.ActionBar.n2 n2Var2 = s2Var.f51511a;
+                yh.d5 d5Var = s2Var.f51514e;
                 d5Var.a(i11, arrayList);
                 ((xh.o2) this.d).f(true);
                 s2Var.f(true);

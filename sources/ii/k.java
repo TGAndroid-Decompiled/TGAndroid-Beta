@@ -83,13 +83,13 @@ public final class k implements Runnable {
                 String str6 = (String) this.f12531f;
                 String str7 = (String) this.h;
                 String str8 = (String) this.f12532n;
-                org.telegram.ui.Wallet.d2 d2Var = ((org.telegram.ui.Wallet.k0) this.f12529c).f35098g;
+                org.telegram.ui.Wallet.d2 d2Var = ((org.telegram.ui.Wallet.k0) this.f12529c).f35122g;
                 wb0 wb0Var = new wb0((ec0) this.f12528b, (String) this.f12533r, 1);
                 d2Var.getClass();
                 TL_wallet.tonConnectCreateSession tonconnectcreatesession = new TL_wallet.tonConnectCreateSession();
                 tonconnectcreatesession.dapp_client_id = (String) this.d;
                 tonconnectcreatesession.manifest_url = str5;
-                d2Var.f34791f.sendRequestTyped(tonconnectcreatesession, new Object(), new org.telegram.ui.Wallet.g1(d2Var, wb0Var, str6, str5, str7, str8));
+                d2Var.f34771f.sendRequestTyped(tonconnectcreatesession, new Object(), new org.telegram.ui.Wallet.g1(d2Var, wb0Var, str6, str5, str7, str8));
                 return;
             case 3:
                 UserInfoActivity.Y((UserInfoActivity) this.f12528b, (TLRPC.TL_error) this.f12529c, (TLObject) this.d, (TL_account.TL_birthday) this.f12530e, (TLRPC.UserFull) this.f12531f, (TLObject) this.h, (int[]) this.f12533r, (ArrayList) this.f12532n);
@@ -105,7 +105,7 @@ public final class k implements Runnable {
                 ft ftVar = (ft) this.f12533r;
                 d2Var2.getClass();
                 try {
-                    AndroidUtilities.runOnUIThread(new ze((Object) d2Var2, (Object) y1Var, (Object) tonconnectsession, str9, (Object) bArr, (Object) org.telegram.ui.Wallet.d2.p(h0Var, tonconnectsession, str9, bArr, y1Var.f35646a, y1Var.f35647b, y1Var.d, tonconnectchallenge, d2Var2.f34791f.getCurrentTime()), (Object) ftVar, 8));
+                    AndroidUtilities.runOnUIThread(new ze((Object) d2Var2, (Object) y1Var, (Object) tonconnectsession, str9, (Object) bArr, (Object) org.telegram.ui.Wallet.d2.p(h0Var, tonconnectsession, str9, bArr, y1Var.f35683a, y1Var.f35684b, y1Var.d, tonconnectchallenge, d2Var2.f34771f.getCurrentTime()), (Object) ftVar, 8));
                     return;
                 } catch (Exception e7) {
                     AndroidUtilities.runOnUIThread(new org.telegram.ui.Wallet.b1(ftVar, org.telegram.ui.Wallet.d2.h("prepare connect challenge", e7), 0));
@@ -122,7 +122,7 @@ public final class k implements Runnable {
                 ai.m0 m0Var = (ai.m0) this.f12533r;
                 d2Var3.getClass();
                 try {
-                    AndroidUtilities.runOnUIThread(new q51(d2Var3, str10, bArr2, tonconnectsession2, org.telegram.ui.Wallet.d2.q(h0Var2, tonconnectsession2, str10, bArr2, jSONArray, tL_urlAuthResultRequest.domain, null, null, d2Var3.f34791f.getCurrentTime()), m0Var, h0Var2, jSONArray, tL_urlAuthResultRequest));
+                    AndroidUtilities.runOnUIThread(new q51(d2Var3, str10, bArr2, tonconnectsession2, org.telegram.ui.Wallet.d2.q(h0Var2, tonconnectsession2, str10, bArr2, jSONArray, tL_urlAuthResultRequest.domain, null, null, d2Var3.f34771f.getCurrentTime()), m0Var, h0Var2, jSONArray, tL_urlAuthResultRequest));
                     return;
                 } catch (Exception e10) {
                     m0Var.run(null, org.telegram.ui.Wallet.d2.h("prepare OAuth identity", e10));
@@ -137,11 +137,11 @@ public final class k implements Runnable {
                 String str12 = ((org.telegram.ui.Wallet.a2) this.h).f34610a;
                 ft ftVar2 = (ft) this.f12532n;
                 org.telegram.ui.Wallet.h0 h0Var3 = (org.telegram.ui.Wallet.h0) this.f12533r;
-                if (d2Var4.c(y1Var2, tonconnectsession3, str11, bArr3) && ((str = y1Var2.f35649e.client_id) == null || str12.equalsIgnoreCase(str))) {
+                if (d2Var4.c(y1Var2, tonconnectsession3, str11, bArr3) && ((str = y1Var2.f35686e.client_id) == null || str12.equalsIgnoreCase(str))) {
                     TL_wallet.tonConnectRegisterKey tonconnectregisterkey = new TL_wallet.tonConnectRegisterKey();
                     tonconnectregisterkey.session_id = tonconnectsession3.f20299id;
                     tonconnectregisterkey.client_id = str12;
-                    d2Var4.f34791f.sendRequestTyped(tonconnectregisterkey, new Object(), new pr(d2Var4, ftVar2, h0Var3, tonconnectsession3, str11, bArr3, y1Var2));
+                    d2Var4.f34771f.sendRequestTyped(tonconnectregisterkey, new Object(), new pr(d2Var4, ftVar2, h0Var3, tonconnectsession3, str11, bArr3, y1Var2));
                     return;
                 }
                 ftVar2.run("Wallet or TON Connect session changed. Open the request again.");

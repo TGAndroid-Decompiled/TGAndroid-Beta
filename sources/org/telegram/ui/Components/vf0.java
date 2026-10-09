@@ -152,7 +152,7 @@ public final class vf0 extends FrameLayout {
             int dp = AndroidUtilities.dp(32.0f);
             org.telegram.ui.ts0 ts0Var = (org.telegram.ui.ts0) this.f31767a;
             ts0Var.getClass();
-            PhotoViewer photoViewer = ts0Var.f42117a;
+            PhotoViewer photoViewer = ts0Var.f42119a;
             float measuredWidth = (photoViewer.S7.getMeasuredWidth() - AndroidUtilities.dp(32.0f)) * photoViewer.f34071w8;
             int i10 = dp / 2;
             int dp2 = AndroidUtilities.dp(2.0f) + (((int) (measuredWidth + AndroidUtilities.dp(16.0f))) - i10);

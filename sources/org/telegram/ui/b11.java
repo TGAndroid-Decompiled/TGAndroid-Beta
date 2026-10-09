@@ -10,31 +10,31 @@ import android.text.TextPaint;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class b11 extends View {
-    public final RectF f36088a;
-    public final TextPaint f36089b;
-    public final Paint f36090c;
+    public final RectF f36090a;
+    public final TextPaint f36091b;
+    public final Paint f36092c;
     public final ValueAnimator d;
-    public final float[] f36091e;
-    public final z4.a f36092f;
+    public final float[] f36093e;
+    public final z4.a f36094f;
     public boolean h;
-    public final ProfileActivity f36093n;
+    public final ProfileActivity f36095n;
 
     public b11(ProfileActivity profileActivity, Context context) {
         super(context);
-        this.f36093n = profileActivity;
-        this.f36088a = new RectF();
-        this.f36091e = new float[]{0.0f, 1.0f};
+        this.f36095n = profileActivity;
+        this.f36090a = new RectF();
+        this.f36093e = new float[]{0.0f, 1.0f};
         z4.a adapter = profileActivity.f34303n0.getAdapter();
-        this.f36092f = adapter;
+        this.f36094f = adapter;
         setVisibility(8);
         TextPaint textPaint = new TextPaint(1);
-        this.f36089b = textPaint;
+        this.f36091b = textPaint;
         textPaint.setColor(-1);
         textPaint.setTypeface(Typeface.SANS_SERIF);
         textPaint.setTextAlign(Paint.Align.CENTER);
         textPaint.setTextSize(AndroidUtilities.dpf2(15.0f));
         Paint paint = new Paint(1);
-        this.f36090c = paint;
+        this.f36092c = paint;
         paint.setColor(637534208);
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         this.d = ofFloat;
@@ -42,14 +42,14 @@ public final class b11 extends View {
         ofFloat.addUpdateListener(new c3(this, 29));
         ofFloat.addListener(new f70(5, this, profileActivity.f34304n1));
         profileActivity.f34303n0.b(new a11(this));
-        adapter.f53516a.registerObserver(new h1.a(this, 2));
+        adapter.f53518a.registerObserver(new h1.a(this, 2));
     }
 
     public final void a(boolean z10) {
         org.telegram.ui.ActionBar.k kVar;
         int i10;
         org.telegram.ui.ActionBar.k kVar2;
-        ProfileActivity profileActivity = this.f36093n;
+        ProfileActivity profileActivity = this.f36095n;
         if (z10) {
             z01 z01Var = profileActivity.N;
             z01Var.J = z01Var.L;
@@ -58,9 +58,9 @@ public final class b11 extends View {
             z01Var.O = 1;
         }
         profileActivity.N.invalidate();
-        float measureText = this.f36089b.measureText(((String) this.f36092f.d(profileActivity.f34303n0.getCurrentItem())).toString());
+        float measureText = this.f36091b.measureText(((String) this.f36094f.d(profileActivity.f34303n0.getCurrentItem())).toString());
         float measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(54.0f);
-        RectF rectF = this.f36088a;
+        RectF rectF = this.f36090a;
         rectF.right = measuredWidth;
         rectF.left = measuredWidth - (AndroidUtilities.dpf2(16.0f) + measureText);
         kVar = ((org.telegram.ui.ActionBar.n2) profileActivity).actionBar;
@@ -87,7 +87,7 @@ public final class b11 extends View {
 
     public final void b(float f7) {
         boolean z10;
-        ProfileActivity profileActivity = this.f36093n;
+        ProfileActivity profileActivity = this.f36095n;
         if (profileActivity.f34319p2 && profileActivity.f34303n0.getRealCount() > 20) {
             z10 = true;
         } else {
@@ -98,7 +98,7 @@ public final class b11 extends View {
             ValueAnimator valueAnimator = this.d;
             valueAnimator.cancel();
             float animatedFraction = valueAnimator.getAnimatedFraction();
-            float[] fArr = this.f36091e;
+            float[] fArr = this.f36093e;
             float lerp = AndroidUtilities.lerp(fArr, animatedFraction);
             float f10 = 0.0f;
             if (f7 <= 0.0f) {
@@ -119,7 +119,7 @@ public final class b11 extends View {
 
     public final void c() {
         pz0 pz0Var;
-        ProfileActivity profileActivity = this.f36093n;
+        ProfileActivity profileActivity = this.f36095n;
         if (profileActivity.T0 != null && (pz0Var = profileActivity.f34303n0) != null && profileActivity.f34319p2) {
             if (pz0Var.getRealPosition() == 0) {
                 profileActivity.T0.r(33);
@@ -134,10 +134,10 @@ public final class b11 extends View {
     @Override
     public final void onDraw(Canvas canvas) {
         float dpf2 = AndroidUtilities.dpf2(12.0f);
-        Paint paint = this.f36090c;
-        RectF rectF = this.f36088a;
+        Paint paint = this.f36092c;
+        RectF rectF = this.f36090a;
         canvas.drawRoundRect(rectF, dpf2, dpf2, paint);
-        canvas.drawText(((String) this.f36092f.d(this.f36093n.f34303n0.getCurrentItem())).toString(), rectF.centerX(), AndroidUtilities.dpf2(18.5f) + rectF.top, this.f36089b);
+        canvas.drawText(((String) this.f36094f.d(this.f36095n.f34303n0.getCurrentItem())).toString(), rectF.centerX(), AndroidUtilities.dpf2(18.5f) + rectF.top, this.f36091b);
     }
 
     @Override

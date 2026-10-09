@@ -34,7 +34,7 @@ public final class o1 implements Runnable {
                 ty tyVar = (ty) this.f18699e;
                 Activity activity = (Activity) this.f18700f;
                 if (tyVar.getParentActivity() != null) {
-                    tyVar.f42249t2 = false;
+                    tyVar.f42251t2 = false;
                     boolean z10 = this.f18697b;
                     boolean z11 = this.f18698c;
                     boolean z12 = this.d;

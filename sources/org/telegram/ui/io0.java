@@ -13,7 +13,7 @@ public final class io0 extends JSONObject {
                 }
                 JSONObject jSONObject = new JSONObject();
                 jSONObject.put("gateway", "stripe");
-                jSONObject.put("stripe:publishableKey", vo0Var.f42931j0);
+                jSONObject.put("stripe:publishableKey", vo0Var.f42933j0);
                 jSONObject.put("stripe:version", "3.5.0");
                 put("parameters", jSONObject);
                 return;

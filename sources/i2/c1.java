@@ -103,7 +103,7 @@ public final class c1 implements Runnable {
                 if (tL_error != null) {
                     if (!"PASSWORD_MISSING".equals(tL_error.text) && !tL_error.text.startsWith("PASSWORD_TOO_FRESH_") && !tL_error.text.startsWith("SESSION_TOO_FRESH_")) {
                         if ("SRP_ID_INVALID".equals(tL_error.text)) {
-                            ConnectionsManager.getInstance(keVar.f39255y0).sendRequest(new TL_account.getPassword(), new u1(keVar, twoStepVerificationActivity, z10, 2), 8);
+                            ConnectionsManager.getInstance(keVar.f39257y0).sendRequest(new TL_account.getPassword(), new u1(keVar, twoStepVerificationActivity, z10, 2), 8);
                             return;
                         }
                         if (twoStepVerificationActivity != null) {
@@ -228,7 +228,7 @@ public final class c1 implements Runnable {
                         twoStepVerificationActivity.showDialog(alertDialog$Builder.f20374a);
                         return;
                     } else {
-                        keVar.f39252w0.showDialog(alertDialog$Builder.f20374a);
+                        keVar.f39254w0.showDialog(alertDialog$Builder.f20374a);
                         return;
                     }
                 }
@@ -261,7 +261,7 @@ public final class c1 implements Runnable {
                         return;
                     }
                     try {
-                        AndroidUtilities.openForView(messageObject, znVar.getParentActivity(), znVar.f44761ea, false);
+                        AndroidUtilities.openForView(messageObject, znVar.getParentActivity(), znVar.f44763ea, false);
                         return;
                     } catch (Exception e10) {
                         FileLog.e(e10);
@@ -274,7 +274,7 @@ public final class c1 implements Runnable {
                 fp fpVar = (fp) this.f11623c;
                 TLRPC.TL_username tL_username = (TLRPC.TL_username) this.f11625f;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.h;
-                hp hpVar = fpVar.f37653a;
+                hp hpVar = fpVar.f37655a;
                 ip ipVar = hpVar.Y2;
                 ipVar.P.remove(((TLRPC.TL_channels_toggleUsername) this.d).username);
                 boolean z11 = ((TLObject) this.f11624e) instanceof TLRPC.TL_boolTrue;

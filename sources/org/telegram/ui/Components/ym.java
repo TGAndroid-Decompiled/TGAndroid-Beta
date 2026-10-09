@@ -265,8 +265,8 @@ public final class ym extends yl0 {
         boolean z14;
         ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.v;
         yi yiVar = chatAttachAlertPhotoLayout.f30173b;
-        int i11 = d1Var.f47660f;
-        View view = d1Var.f47656a;
+        int i11 = d1Var.f47662f;
+        View view = d1Var.f47658a;
         boolean z15 = this.d;
         int i12 = 0;
         if (i11 != 0) {
@@ -302,7 +302,7 @@ public final class ym extends yl0 {
         if (this == chatAttachAlertPhotoLayout.G) {
             t5Var.setItemSize(chatAttachAlertPhotoLayout.K0);
         } else {
-            if (chatAttachAlertPhotoLayout.f24060s.f47644o == 1) {
+            if (chatAttachAlertPhotoLayout.f24060s.f47646o == 1) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -436,7 +436,7 @@ public final class ym extends yl0 {
 
     @Override
     public final void y(s4.d1 d1Var) {
-        if (d1Var.f47656a instanceof org.telegram.ui.Cells.m5) {
+        if (d1Var.f47658a instanceof org.telegram.ui.Cells.m5) {
             this.v.Q.g();
         }
     }

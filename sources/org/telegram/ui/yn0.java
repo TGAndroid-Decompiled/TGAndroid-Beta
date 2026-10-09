@@ -6,15 +6,15 @@ import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class yn0 extends LinearLayout {
-    public boolean f44374a;
-    public final int f44375b;
-    public final int[] f44376c;
+    public boolean f44376a;
+    public final int f44377b;
+    public final int[] f44378c;
     public final int[] d;
 
     public yn0(Context context, int i10, int[] iArr, int[] iArr2) {
         super(context);
-        this.f44375b = i10;
-        this.f44376c = iArr;
+        this.f44377b = i10;
+        this.f44378c = iArr;
         this.d = iArr2;
     }
 
@@ -22,11 +22,11 @@ public final class yn0 extends LinearLayout {
     public final void onMeasure(int i10, int i11) {
         View childAt;
         int size = View.MeasureSpec.getSize(i10);
-        this.f44374a = true;
+        this.f44376a = true;
         int dp = AndroidUtilities.dp(9.0f);
-        int i12 = this.f44375b;
+        int i12 = this.f44377b;
         int i13 = (i12 - 1) * dp;
-        int[] iArr = this.f44376c;
+        int[] iArr = this.f44378c;
         float f7 = 1.0f;
         if ((iArr[0] * i12) + i13 <= size) {
             setWeightSum(1.0f);
@@ -65,13 +65,13 @@ public final class yn0 extends LinearLayout {
                 ((LinearLayout.LayoutParams) getChildAt(i18).getLayoutParams()).weight = 0.0f;
             }
         }
-        this.f44374a = false;
+        this.f44376a = false;
         super.onMeasure(i10, i11);
     }
 
     @Override
     public final void requestLayout() {
-        if (this.f44374a) {
+        if (this.f44376a) {
             return;
         }
         super.requestLayout();

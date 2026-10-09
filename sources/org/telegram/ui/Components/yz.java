@@ -52,7 +52,7 @@ public final class yz extends pm0 {
         ImageLocation forSticker;
         int i11;
         String str;
-        y9 y9Var = (y9) d1Var.f47656a;
+        y9 y9Var = (y9) d1Var.f47658a;
         a00 a00Var = this.d;
         boolean z10 = this.f33405c;
         if (z10) {

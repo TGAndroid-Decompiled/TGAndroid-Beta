@@ -16,18 +16,18 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class jy0 implements org.telegram.ui.ActionBar.a2, MessagesStorage.BooleanCallback, r0.n, org.telegram.ui.Components.hi0, org.telegram.ui.Components.gm0, FlagSecureReason.FlagSecureCondition, me.d, x60, org.telegram.ui.Components.kx0 {
-    public final int f39041a;
-    public final ProfileActivity f39042b;
+    public final int f39043a;
+    public final ProfileActivity f39044b;
 
     public jy0(ProfileActivity profileActivity, int i10) {
-        this.f39041a = i10;
-        this.f39042b = profileActivity;
+        this.f39043a = i10;
+        this.f39044b = profileActivity;
     }
 
     @Override
     public r0.k1 M0(View view, r0.k1 k1Var) {
-        int i10 = k1Var.f46775a.f(519).d;
-        ProfileActivity profileActivity = this.f39042b;
+        int i10 = k1Var.f46777a.f(519).d;
+        ProfileActivity profileActivity = this.f39044b;
         profileActivity.f34295l6 = i10;
         FrameLayout frameLayout = profileActivity.f34343s5;
         if (frameLayout != null) {
@@ -46,14 +46,14 @@ public final class jy0 implements org.telegram.ui.ActionBar.a2, MessagesStorage.
                 rs0Var.setButtonOffset(profileActivity.f34295l6 + profileActivity.f34290k6);
             }
         }
-        return r0.k1.f46774b;
+        return r0.k1.f46776b;
     }
 
     @Override
     public boolean d(int i10, View view) {
-        ProfileActivity profileActivity = this.f39042b;
+        ProfileActivity profileActivity = this.f39044b;
         i11 i11Var = profileActivity.f34241e;
-        if (i11Var.f38447w || i11Var.v.isEmpty()) {
+        if (i11Var.f38449w || i11Var.v.isEmpty()) {
             return false;
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(profileActivity.getParentActivity(), 0, profileActivity.f34386z0);
@@ -73,9 +73,9 @@ public final class jy0 implements org.telegram.ui.ActionBar.a2, MessagesStorage.
 
     @Override
     public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f39041a) {
+        switch (this.f39043a) {
             case 0:
-                ProfileActivity profileActivity = this.f39042b;
+                ProfileActivity profileActivity = this.f39044b;
                 profileActivity.getMessagesController().blockPeer(profileActivity.f34243e1);
                 if (org.telegram.ui.Components.ad.a(profileActivity)) {
                     org.telegram.ui.Components.ad.d(profileActivity, true).j();
@@ -83,13 +83,13 @@ public final class jy0 implements org.telegram.ui.ActionBar.a2, MessagesStorage.
                 }
                 return;
             case 5:
-                i11 i11Var = this.f39042b.f34241e;
+                i11 i11Var = this.f39044b.f34241e;
                 i11Var.v.clear();
                 MessagesController.getGlobalMainSettings().edit().remove("settingsSearchRecent2").commit();
                 i11Var.l();
                 return;
             default:
-                ProfileActivity profileActivity2 = this.f39042b;
+                ProfileActivity profileActivity2 = this.f39044b;
                 profileActivity2.getClass();
                 SharedConfig.pushAuthKey = null;
                 SharedConfig.pushAuthKeyId = null;
@@ -104,7 +104,7 @@ public final class jy0 implements org.telegram.ui.ActionBar.a2, MessagesStorage.
         TLRPC.ChatParticipants chatParticipants;
         HashSet hashSet = new HashSet();
         ArrayList arrayList2 = new ArrayList();
-        ProfileActivity profileActivity = this.f39042b;
+        ProfileActivity profileActivity = this.f39044b;
         TLRPC.ChatFull chatFull = profileActivity.f34354u2;
         if (chatFull != null && (chatParticipants = chatFull.participants) != null && chatParticipants.participants != null) {
             for (int i11 = 0; i11 < profileActivity.f34354u2.participants.participants.size(); i11++) {
@@ -116,18 +116,18 @@ public final class jy0 implements org.telegram.ui.ActionBar.a2, MessagesStorage.
 
     @Override
     public void n(int i10, float f7, float f10, me.e eVar) {
-        this.f39042b.U4();
+        this.f39044b.U4();
     }
 
     @Override
     public boolean run() {
-        ProfileActivity profileActivity = this.f39042b;
+        ProfileActivity profileActivity = this.f39044b;
         return profileActivity.D2 != null || profileActivity.g4();
     }
 
     @Override
     public void run(boolean z10) {
-        ProfileActivity profileActivity = this.f39042b;
+        ProfileActivity profileActivity = this.f39044b;
         profileActivity.J1 = 0;
         NotificationCenter notificationCenter = profileActivity.getNotificationCenter();
         int i10 = NotificationCenter.closeChats;

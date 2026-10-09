@@ -1,21 +1,21 @@
 package org.telegram.ui;
 public final class oq implements Runnable {
-    public final int f40586a;
-    public final tr f40587b;
+    public final int f40588a;
+    public final tr f40589b;
 
     public oq(tr trVar, int i10) {
-        this.f40586a = i10;
-        this.f40587b = trVar;
+        this.f40588a = i10;
+        this.f40589b = trVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f40586a) {
+        switch (this.f40588a) {
             case 0:
-                this.f40587b.r0();
+                this.f40589b.r0();
                 return;
             default:
-                tr trVar = this.f40587b;
+                tr trVar = this.f40589b;
                 trVar.getMessagesController().loadFullChat(trVar.N, 0, true);
                 return;
         }

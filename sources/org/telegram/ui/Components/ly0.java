@@ -29,7 +29,7 @@ public final class ly0 implements TextWatcher {
             default:
                 org.telegram.ui.nn0 nn0Var = (org.telegram.ui.nn0) this.f28630e;
                 String str = (String) this.f28629c;
-                if (((HashMap) this.d) == nn0Var.f40283t1) {
+                if (((HashMap) this.d) == nn0Var.f40285t1) {
                     z10 = true;
                 } else {
                     z10 = false;

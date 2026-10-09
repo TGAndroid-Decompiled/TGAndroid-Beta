@@ -88,8 +88,8 @@ public final class db implements Runnable {
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) this.d;
                 TLObject tLObject = (TLObject) this.f863c;
                 org.telegram.ui.d1 d1Var = (org.telegram.ui.d1) this.h;
-                t70Var.f41888r = false;
-                if (!((org.telegram.ui.g4) this.f865f).f37765e.isEmpty()) {
+                t70Var.f41890r = false;
+                if (!((org.telegram.ui.g4) this.f865f).f37767e.isEmpty()) {
                     if (tL_error == null) {
                         TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject;
                         if (!tL_contacts_resolvedPeer.chats.isEmpty()) {
@@ -98,7 +98,7 @@ public final class db implements Runnable {
                             MessagesController.getInstance(i11).putChats(tL_contacts_resolvedPeer.chats, false);
                             MessagesStorage.getInstance(i11).putUsersAndChats(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, false, true);
                             TLRPC.Chat chat = tL_contacts_resolvedPeer.chats.get(0);
-                            t70Var.f41887n = chat;
+                            t70Var.f41889n = chat;
                             if (chat.left && !chat.kicked) {
                                 d1Var.a(0, false);
                                 return;

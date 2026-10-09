@@ -344,7 +344,7 @@ public class PrivacySettingsActivity extends org.telegram.ui.ActionBar.n2 implem
     public static SpannableStringBuilder u0(PrivacySettingsActivity privacySettingsActivity, String str) {
         if (privacySettingsActivity.f34202c0 == null) {
             privacySettingsActivity.f34202c0 = new SpannableString("★");
-            org.telegram.ui.Components.r5 r5Var = new org.telegram.ui.Components.r5(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), rg.b1.d().f47208f);
+            org.telegram.ui.Components.r5 r5Var = new org.telegram.ui.Components.r5(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), rg.b1.d().f47210f);
             r5Var.setBounds(0, 0, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f));
             privacySettingsActivity.f34202c0.setSpan(new ImageSpan(r5Var, 2), 0, privacySettingsActivity.f34202c0.length(), 17);
         }

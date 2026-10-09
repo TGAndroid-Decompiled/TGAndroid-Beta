@@ -8,20 +8,20 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class d implements NotificationCenter.NotificationCenterDelegate {
-    public final int f49558a;
-    public final String f49559b;
-    public boolean f49560c;
+    public final int f49560a;
+    public final String f49561b;
+    public boolean f49562c;
 
     public d(String str, int i10) {
-        this.f49558a = i10;
-        this.f49559b = str;
+        this.f49560a = i10;
+        this.f49561b = str;
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileUploaded);
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileUploadFailed);
         FileLoader.getInstance(i10).uploadFile(str, false, true, 50331648);
     }
 
     public final void a() {
-        int i10 = this.f49558a;
+        int i10 = this.f49560a;
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.fileUploaded);
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.fileUploadFailed);
     }
@@ -30,7 +30,7 @@ public final class d implements NotificationCenter.NotificationCenterDelegate {
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.fileUploaded) {
             String str = (String) objArr[0];
-            if (!this.f49560c && str.equals(this.f49559b)) {
+            if (!this.f49562c && str.equals(this.f49561b)) {
                 TLRPC.InputFile inputFile = (TLRPC.InputFile) objArr[1];
                 TL_account.uploadRingtone uploadringtone = new TL_account.uploadRingtone();
                 uploadringtone.file = inputFile;
@@ -42,7 +42,7 @@ public final class d implements NotificationCenter.NotificationCenterDelegate {
                 } else {
                     uploadringtone.mime_type = "audio/mpeg";
                 }
-                ConnectionsManager.getInstance(this.f49558a).sendRequest(uploadringtone, new o8(this, 23));
+                ConnectionsManager.getInstance(this.f49560a).sendRequest(uploadringtone, new o8(this, 23));
             }
         }
     }

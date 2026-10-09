@@ -43,7 +43,7 @@ public final class qo extends y9 {
             } else {
                 org.telegram.ui.ActionBar.n2 n2Var = this.H;
                 if (n2Var instanceof fg1) {
-                    j3 = -((fg1) n2Var).f37556a;
+                    j3 = -((fg1) n2Var).f37558a;
                 } else {
                     j3 = 0;
                 }

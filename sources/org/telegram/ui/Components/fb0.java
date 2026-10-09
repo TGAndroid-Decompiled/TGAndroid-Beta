@@ -33,13 +33,13 @@ public abstract class fb0 extends t71 {
         eb0Var.B = false;
         setDimBehindAlpha(75);
         this.f31082w.J.setHint(LocaleController.getString(R.string.SearchMemberRequests));
-        wh.g gVar = eb0Var.f50430f;
+        wh.g gVar = eb0Var.f50432f;
         this.f31078f = gVar;
         this.f31077e = gVar;
         this.d.setAdapter(gVar);
         this.d.p1();
         ai.w0 w0Var = this.d;
-        eb0Var.f50439p = w0Var;
+        eb0Var.f50441p = w0Var;
         w0Var.setOnItemClickListener(new ai.g(eb0Var, 18));
         s4.t0 onScrollListener = w0Var.getOnScrollListener();
         if (onScrollListener == null) {
@@ -136,7 +136,7 @@ public abstract class fb0 extends t71 {
 
     @Override
     public final void onBackPressed() {
-        wh.k kVar = this.U.f50442s;
+        wh.k kVar = this.U.f50444s;
         if (kVar != null) {
             kVar.e(false);
         } else {
@@ -147,10 +147,10 @@ public abstract class fb0 extends t71 {
     @Override
     public final void show() {
         eb0 eb0Var = this.U;
-        if (eb0Var.f50427b && this.f31084y == 0) {
+        if (eb0Var.f50429b && this.f31084y == 0) {
             this.f31084y = AndroidUtilities.dp(8.0f);
         }
         super.show();
-        eb0Var.f50427b = false;
+        eb0Var.f50429b = false;
     }
 }

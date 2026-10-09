@@ -9,12 +9,12 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 public final class it0 extends AnimatorListenerAdapter {
-    public final int f38752a;
-    public final PhotoViewer f38753b;
+    public final int f38754a;
+    public final PhotoViewer f38755b;
 
     public it0(PhotoViewer photoViewer, int i10) {
-        this.f38752a = i10;
-        this.f38753b = photoViewer;
+        this.f38754a = i10;
+        this.f38755b = photoViewer;
     }
 
     @Override
@@ -22,8 +22,8 @@ public final class it0 extends AnimatorListenerAdapter {
         boolean z10;
         boolean z11;
         org.telegram.ui.Components.yi yiVar;
-        int i10 = this.f38752a;
-        PhotoViewer photoViewer = this.f38753b;
+        int i10 = this.f38754a;
+        PhotoViewer photoViewer = this.f38755b;
         switch (i10) {
             case 0:
                 photoViewer.f34004p6 = null;
@@ -49,7 +49,7 @@ public final class it0 extends AnimatorListenerAdapter {
             case 3:
                 photoViewer.L1.o0(false);
                 bu0 bu0Var = photoViewer.L1;
-                bu0Var.f46390u1.setTypeface(pg.u0.e(bu0Var.P1).f45805j);
+                bu0Var.f46392u1.setTypeface(pg.u0.e(bu0Var.P1).f45807j);
                 bu0Var.Z0.setVisibility(0);
                 bu0Var.W0.setVisibility(0);
                 bu0Var.X0.setVisibility(0);

@@ -23,7 +23,7 @@ public final class iy implements Runnable {
                 a00 a00Var = ((jy) this.d).F;
                 try {
                     ji.o oVar = new ji.o(a00Var.P.getContext(), 0, f7);
-                    oVar.f47825a = i10;
+                    oVar.f47827a = i10;
                     a00Var.Q.w0(oVar);
                     return;
                 } catch (Exception e7) {
@@ -35,9 +35,9 @@ public final class iy implements Runnable {
                 float f10 = this.f27513b;
                 int i11 = this.f27514c;
                 try {
-                    ji.o oVar2 = new ji.o(k71Var.f39130h0.getContext(), 0, f10);
-                    oVar2.f47825a = i11;
-                    k71Var.f39150r0.w0(oVar2);
+                    ji.o oVar2 = new ji.o(k71Var.f39132h0.getContext(), 0, f10);
+                    oVar2.f47827a = i11;
+                    k71Var.f39152r0.w0(oVar2);
                     return;
                 } catch (Exception e10) {
                     FileLog.e(e10);

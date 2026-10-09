@@ -146,7 +146,7 @@ public final class y2 implements org.telegram.ui.ActionBar.a2, f5, org.telegram.
                     boolean z12 = !containsKey;
                     int i12 = 2;
                     if (!containsKey && yiVar.V1 >= 0 && hashMap.size() >= yiVar.V1) {
-                        if (yiVar.W1 && (n2Var instanceof org.telegram.ui.zn) && (chat = ((org.telegram.ui.zn) n2Var).f44751e) != null && !ChatObject.hasAdminRights(chat) && chat.slowmode_enabled && chatAttachAlertPhotoLayout.L != 2) {
+                        if (yiVar.W1 && (n2Var instanceof org.telegram.ui.zn) && (chat = ((org.telegram.ui.zn) n2Var).f44753e) != null && !ChatObject.hasAdminRights(chat) && chat.slowmode_enabled && chatAttachAlertPhotoLayout.L != 2) {
                             g5.N(chatAttachAlertPhotoLayout.getContext(), LocaleController.getString(R.string.Slowmode), LocaleController.getString(R.string.SlowmodeSelectSendError), null, null, chatAttachAlertPhotoLayout.f30172a).o();
                             if (chatAttachAlertPhotoLayout.L == 1) {
                                 chatAttachAlertPhotoLayout.L = 2;

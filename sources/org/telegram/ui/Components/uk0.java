@@ -128,7 +128,7 @@ public final class uk0 extends FrameLayout {
                     i12++;
                 }
                 zg.n0 d = zg.n0.d(tL_messages_messageReactionsList.reactions.get(i11).reaction);
-                if (d.f54616g != 0) {
+                if (d.f54618g != 0) {
                     hashSet.add(d);
                 }
                 arrayList3.add(tL_messages_messageReactionsList.reactions.get(i11));
@@ -279,7 +279,7 @@ public final class uk0 extends FrameLayout {
             if (i11 >= size) {
                 break;
             }
-            TLRPC.InputStickerSet inputStickerSet = MessageObject.getInputStickerSet(s5.f(i10, ((zg.n0) arrayList3.get(i11)).f54616g));
+            TLRPC.InputStickerSet inputStickerSet = MessageObject.getInputStickerSet(s5.f(i10, ((zg.n0) arrayList3.get(i11)).f54618g));
             if (inputStickerSet != null && !hashSet.contains(Long.valueOf(inputStickerSet.f20058id))) {
                 arrayList2.add(inputStickerSet);
                 hashSet.add(Long.valueOf(inputStickerSet.f20058id));

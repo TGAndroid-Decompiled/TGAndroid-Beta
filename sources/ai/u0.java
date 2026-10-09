@@ -59,12 +59,12 @@ public final class u0 implements em0 {
                 Context context = (Context) obj;
                 org.telegram.ui.Cells.s sVar = (org.telegram.ui.Cells.s) view;
                 jb0 jb0Var = (jb0) tVar.V2.get(i10);
-                if (jb0Var.f38900e && !UserConfig.hasPremiumOnAccounts()) {
+                if (jb0Var.f38902e && !UserConfig.hasPremiumOnAccounts()) {
                     n2Var.showDialog(new rg.y0(n2Var, 10, true));
                     return;
                 } else if (!w7.e6.a(jb0Var)) {
                     s4.e0 e0Var = new s4.e0(context);
-                    e0Var.f47825a = i10;
+                    e0Var.f47827a = i10;
                     tVar.W2.w0(e0Var);
                     w7.e6.b(jb0Var);
                     int i12 = org.telegram.ui.Cells.s.f22736f;

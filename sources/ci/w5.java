@@ -131,8 +131,8 @@ public final class w5 extends LinearLayout {
         switch (this.f6207a) {
             case 8:
                 super.onAttachedToWindow();
-                getViewTreeObserver().addOnPreDrawListener((org.telegram.ui.Wallet.k4) this.f6208b);
-                getViewTreeObserver().addOnWindowFocusChangeListener(((org.telegram.ui.Wallet.i8) this.f6209c).H);
+                getViewTreeObserver().addOnPreDrawListener((org.telegram.ui.Wallet.l4) this.f6208b);
+                getViewTreeObserver().addOnWindowFocusChangeListener(((org.telegram.ui.Wallet.j8) this.f6209c).H);
                 return;
             default:
                 super.onAttachedToWindow();
@@ -144,8 +144,8 @@ public final class w5 extends LinearLayout {
     public void onDetachedFromWindow() {
         switch (this.f6207a) {
             case 8:
-                getViewTreeObserver().removeOnPreDrawListener((org.telegram.ui.Wallet.k4) this.f6208b);
-                getViewTreeObserver().removeOnWindowFocusChangeListener(((org.telegram.ui.Wallet.i8) this.f6209c).H);
+                getViewTreeObserver().removeOnPreDrawListener((org.telegram.ui.Wallet.l4) this.f6208b);
+                getViewTreeObserver().removeOnWindowFocusChangeListener(((org.telegram.ui.Wallet.j8) this.f6209c).H);
                 super.onDetachedFromWindow();
                 return;
             default:
@@ -211,8 +211,8 @@ public final class w5 extends LinearLayout {
                 Paint paint2 = (Paint) this.f6208b;
                 super.onDraw(canvas);
                 qg.m0 m0Var = (qg.m0) this.f6209c;
-                TextView textView4 = (TextView) getChildAt(m0Var.f46369g1);
-                int i11 = m0Var.f46371h1;
+                TextView textView4 = (TextView) getChildAt(m0Var.f46371g1);
+                int i11 = m0Var.f46373h1;
                 Layout layout3 = null;
                 if (i11 != -1) {
                     textView2 = (TextView) getChildAt(i11);
@@ -229,7 +229,7 @@ public final class w5 extends LinearLayout {
                 if (layout3 == null) {
                     interpolation2 = 0.0f;
                 } else {
-                    interpolation2 = hs.f27118f.getInterpolation(m0Var.f46373i1);
+                    interpolation2 = hs.f27118f.getInterpolation(m0Var.f46375i1);
                 }
                 float primaryHorizontal3 = layout4.getPrimaryHorizontal(layout4.getLineStart(0)) + textView4.getX();
                 if (textView2 != null) {
@@ -308,11 +308,11 @@ public final class w5 extends LinearLayout {
         this.f6208b = view;
     }
 
-    public w5(org.telegram.ui.Wallet.i8 i8Var, Context context) {
+    public w5(org.telegram.ui.Wallet.j8 j8Var, Context context) {
         super(context);
         this.f6207a = 8;
-        this.f6209c = i8Var;
-        this.f6208b = new org.telegram.ui.Wallet.k4(this, 2);
+        this.f6209c = j8Var;
+        this.f6208b = new org.telegram.ui.Wallet.l4(this, 2);
     }
 
     public w5(b41 b41Var, Context context) {

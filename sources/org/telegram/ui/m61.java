@@ -22,19 +22,19 @@ public abstract class m61 extends org.telegram.ui.Components.qm0 {
     public final ArrayList X2;
     public final ArrayList Y2;
     public final ArrayList Z2;
-    public boolean f39776a3;
-    public final LongSparseArray f39777b3;
-    public final k71 f39778c3;
+    public boolean f39778a3;
+    public final LongSparseArray f39779b3;
+    public final k71 f39780c3;
 
     public m61(k71 k71Var, Context context) {
         super(context, null);
-        this.f39778c3 = k71Var;
+        this.f39780c3 = k71Var;
         this.V2 = new SparseArray();
         this.W2 = new ArrayList();
         this.X2 = new ArrayList();
         this.Y2 = new ArrayList();
         this.Z2 = new ArrayList();
-        this.f39777b3 = new LongSparseArray();
+        this.f39779b3 = new LongSparseArray();
         setDrawSelectorBehind(true);
         setClipToPadding(false);
         setSelectorRadius(AndroidUtilities.dp(4.0f));
@@ -75,9 +75,9 @@ public abstract class m61 extends org.telegram.ui.Components.qm0 {
         float f12;
         Canvas canvas2 = canvas;
         if (getVisibility() == 0) {
-            this.f39776a3 = false;
+            this.f39778a3 = false;
             int saveCount = canvas2.getSaveCount();
-            k71 k71Var = this.f39778c3;
+            k71 k71Var = this.f39780c3;
             int i11 = k71Var.W;
             int i12 = 14;
             if (i11 != 6 && i11 != 14 && i11 != 13) {
@@ -112,7 +112,7 @@ public abstract class m61 extends org.telegram.ui.Components.qm0 {
             } else {
                 z10 = false;
             }
-            if (this.f39777b3 != null) {
+            if (this.f39779b3 != null) {
                 int i14 = 0;
                 boolean z12 = false;
                 while (i14 < getChildCount()) {
@@ -128,8 +128,8 @@ public abstract class m61 extends org.telegram.ui.Components.qm0 {
                                 t61Var.invalidate();
                             }
                         }
-                        int i16 = t61Var.f41870c;
-                        if (k71Var.f39163w1) {
+                        int i16 = t61Var.f41872c;
+                        if (k71Var.f39165w1) {
                             top = (int) childAt.getY();
                         } else {
                             top = childAt.getTop();
@@ -137,7 +137,7 @@ public abstract class m61 extends org.telegram.ui.Components.qm0 {
                         ArrayList arrayList5 = (ArrayList) sparseArray.get(top);
                         canvas2.save();
                         canvas2.translate(t61Var.getX(), t61Var.getY());
-                        if (t61Var.f41876w != null) {
+                        if (t61Var.f41878w != null) {
                             yh.b8 collectionParticles = k71Var.getCollectionParticles();
                             i10 = i14;
                             boolean z13 = z12;
@@ -164,7 +164,7 @@ public abstract class m61 extends org.telegram.ui.Components.qm0 {
                             view = childAt;
                             canvas2.scale(f11, f12, t61Var.getWidth() / 2.0f, t61Var.getHeight() / 2.0f);
                             canvas2.rotate((i16 % 4) * 90, t61Var.getWidth() / 2.0f, t61Var.getHeight() / 2.0f);
-                            collectionParticles.a(canvas2, t61Var.f41876w.intValue());
+                            collectionParticles.a(canvas2, t61Var.f41878w.intValue());
                             canvas2.restore();
                             z12 = z14;
                         } else {
@@ -172,7 +172,7 @@ public abstract class m61 extends org.telegram.ui.Components.qm0 {
                             view = childAt;
                         }
                         boolean z15 = t61Var.L;
-                        if ((z15 || t61Var.M || t61Var.S > 0.0f) && !t61Var.f41869b) {
+                        if ((z15 || t61Var.M || t61Var.S > 0.0f) && !t61Var.f41871b) {
                             if (z15 || t61Var.M) {
                                 float f14 = t61Var.R;
                                 if (f14 < 1.0f) {
@@ -209,7 +209,7 @@ public abstract class m61 extends org.telegram.ui.Components.qm0 {
                             rectF.set(0.0f, 0.0f, t61Var.getMeasuredWidth(), t61Var.getMeasuredHeight());
                             float f16 = dp;
                             rectF.inset(f16, f16);
-                            if (!t61Var.f41868a) {
+                            if (!t61Var.f41870a) {
                                 Drawable drawable = t61Var.E;
                                 if (!(drawable instanceof org.telegram.ui.Components.s5) || !((org.telegram.ui.Components.s5) drawable).c()) {
                                     paint = k71Var2.L;
@@ -246,7 +246,7 @@ public abstract class m61 extends org.telegram.ui.Components.qm0 {
                         }
                         arrayList3.add(t61Var);
                         s61 s61Var = t61Var.J;
-                        if (s61Var != null && s61Var.getVisibility() == 0 && t61Var.J.getImageReceiver() == null && (imageReceiver2 = t61Var.f41874r) != null) {
+                        if (s61Var != null && s61Var.getVisibility() == 0 && t61Var.J.getImageReceiver() == null && (imageReceiver2 = t61Var.f41876r) != null) {
                             t61Var.J.setImageReceiver(imageReceiver2);
                         }
                     } else {
@@ -382,10 +382,10 @@ public abstract class m61 extends org.telegram.ui.Components.qm0 {
                 }
             }
             canvas2.restoreToCount(saveCount);
-            Runnable runnable = zg.d0.f54501c;
+            Runnable runnable = zg.d0.f54503c;
             if (runnable != null) {
                 runnable.run();
-                zg.d0.f54501c = null;
+                zg.d0.f54503c = null;
             }
         }
     }
@@ -400,18 +400,18 @@ public abstract class m61 extends org.telegram.ui.Components.qm0 {
 
     @Override
     public final void invalidate() {
-        if (zg.d0.b(this) || this.f39776a3) {
+        if (zg.d0.b(this) || this.f39778a3) {
             return;
         }
-        this.f39776a3 = true;
+        this.f39778a3 = true;
         super.invalidate();
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        k71 k71Var = this.f39778c3;
-        if (this == k71Var.f39130h0) {
+        k71 k71Var = this.f39780c3;
+        if (this == k71Var.f39132h0) {
             k71Var.V0.onAttachedToWindow();
         }
     }
@@ -419,8 +419,8 @@ public abstract class m61 extends org.telegram.ui.Components.qm0 {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        k71 k71Var = this.f39778c3;
-        if (this == k71Var.f39130h0) {
+        k71 k71Var = this.f39780c3;
+        if (this == k71Var.f39132h0) {
             k71Var.V0.onDetachedFromWindow();
         }
         x1(this.X2);

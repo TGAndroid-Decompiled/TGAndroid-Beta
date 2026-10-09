@@ -175,7 +175,7 @@ public final class c80 extends ViewGroup {
             d80Var.f25633o0 = b10;
             if (w0Var.getAdapter() != null && w0Var.getAdapter().h() > 0 && (K = w0Var.K(0)) != null) {
                 w0Var.getAdapter().m(0);
-                d80Var.R.h1(0, K.f47656a.getTop() - w0Var.getPaddingTop());
+                d80Var.R.h1(0, K.f47658a.getTop() - w0Var.getPaddingTop());
                 if (w0Var.getItemAnimator() != null) {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                     ofFloat.addUpdateListener(new ai.l6(this, 8));

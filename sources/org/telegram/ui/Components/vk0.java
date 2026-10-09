@@ -71,12 +71,12 @@ public final class vk0 extends FrameLayout {
         this.f31809f.setText(formatShortNumber);
         zg.n0 d = zg.n0.d(reactionCount.reaction);
         this.v = d;
-        String str = d.f54615f;
+        String str = d.f54617f;
         ImageView imageView = this.f31808e;
         y9 y9Var = this.d;
         if (str != null) {
             for (TLRPC.TL_availableReaction tL_availableReaction : MediaDataController.getInstance(i10).getReactionsList()) {
-                if (tL_availableReaction.reaction.equals(this.v.f54615f)) {
+                if (tL_availableReaction.reaction.equals(this.v.f54617f)) {
                     y9Var.i(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_lastreactframe", "webp", DocumentObject.getSvgThumb(tL_availableReaction.static_icon, org.telegram.ui.ActionBar.i6.f20741a7, 1.0f), tL_availableReaction);
                     y9Var.setVisibility(0);
                     imageView.setVisibility(8);
@@ -85,7 +85,7 @@ public final class vk0 extends FrameLayout {
             }
             return;
         }
-        y9Var.setAnimatedEmojiDrawable(new s5(0, i10, this.v.f54616g));
+        y9Var.setAnimatedEmojiDrawable(new s5(0, i10, this.v.f54618g));
         y9Var.setVisibility(0);
         imageView.setVisibility(8);
     }

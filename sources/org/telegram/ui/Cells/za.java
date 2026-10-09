@@ -453,7 +453,7 @@ public final class za extends View implements NotificationCenter.NotificationCen
         } else if (motionEvent.getAction() == 1) {
             if (bdVar2.f24977i) {
                 org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
-                if ((U instanceof zn) && (qjVar = ((zn) U).f44700a1) != null) {
+                if ((U instanceof zn) && (qjVar = ((zn) U).f44702a1) != null) {
                     qjVar.e(true, false);
                 }
             } else if (bdVar.f24977i) {

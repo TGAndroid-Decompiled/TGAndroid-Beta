@@ -187,7 +187,7 @@ public final class n5 implements Utilities.CallbackReturn {
                 return Boolean.FALSE;
             case 2:
                 View view = (View) obj;
-                MessageObject messageObject = ((rh.g) this.d).f47559b;
+                MessageObject messageObject = ((rh.g) this.d).f47561b;
                 return rh.c.d(view, (String) this.f5635b, (String) this.f5636c, messageObject.getDocument(), messageObject);
             default:
                 qm0 qm0Var = (qm0) this.f5635b;
@@ -202,7 +202,7 @@ public final class n5 implements Utilities.CallbackReturn {
                     boolean booleanValue = bool.booleanValue();
                     s4.d1 T = qm0Var.T(view2);
                     if (T != null) {
-                        sparseIntArray.put(T.f47660f, booleanValue ? 1 : 0);
+                        sparseIntArray.put(T.f47662f, booleanValue ? 1 : 0);
                     }
                     return bool;
                 } catch (Exception unused2) {

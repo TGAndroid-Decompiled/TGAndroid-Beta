@@ -33,7 +33,7 @@ public final class f7 extends eb implements NotificationCenter.NotificationCente
         qm0Var.setPadding(i10, 0, i10, 0);
         this.d.setOnItemClickListener(new ai.g(this, 24));
         s4.j jVar = new s4.j();
-        jVar.f47696m = false;
+        jVar.f47698m = false;
         jVar.C = false;
         jVar.o(hs.h);
         jVar.n(350L);
@@ -130,7 +130,7 @@ public final class f7 extends eb implements NotificationCenter.NotificationCente
                     i10 = R.string.NotifyMoreOptions;
                 }
                 String string = LocaleController.getString(i10);
-                int i14 = x6.f53377a;
+                int i14 = x6.f53379a;
                 p61 J = p61.J(x6.class);
                 J.d = -1;
                 J.f29734l = string;

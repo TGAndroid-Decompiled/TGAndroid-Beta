@@ -5,23 +5,23 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 public final class j0 extends of.e {
     public final int d = 0;
-    public final Object f38782e;
-    public final Object f38783f;
-    public final Object f38784g;
+    public final Object f38784e;
+    public final Object f38785f;
+    public final Object f38786g;
 
     public j0(i4 i4Var, b3 b3Var, org.telegram.ui.Components.fa0 fa0Var) {
-        this.f38782e = i4Var;
-        this.f38783f = b3Var;
-        this.f38784g = fa0Var;
+        this.f38784e = i4Var;
+        this.f38785f = b3Var;
+        this.f38786g = fa0Var;
     }
 
     @Override
     public void b() {
         switch (this.d) {
             case 0:
-                i4 i4Var = (i4) this.f38782e;
-                i4Var.f41884c.l(i4Var.v, true);
-                View view = i4Var.f41889s;
+                i4 i4Var = (i4) this.f38784e;
+                i4Var.f41886c.l(i4Var.v, true);
+                View view = i4Var.f41891s;
                 if (view != null) {
                     view.invalidate();
                 }
@@ -38,7 +38,7 @@ public final class j0 extends of.e {
         switch (this.d) {
             case 1:
                 if (!z10) {
-                    AndroidUtilities.runOnUIThread(new ck(((ln) this.f38784g).f39634a, 10), 250L);
+                    AndroidUtilities.runOnUIThread(new ck(((ln) this.f38786g).f39636a, 10), 250L);
                     return;
                 }
                 return;
@@ -53,16 +53,16 @@ public final class j0 extends of.e {
         View view;
         switch (this.d) {
             case 0:
-                org.telegram.ui.Components.fa0 fa0Var = (org.telegram.ui.Components.fa0) this.f38784g;
-                i4 i4Var = (i4) this.f38782e;
-                org.telegram.ui.Components.ba0 ba0Var = i4Var.f41884c;
-                b3 b3Var = (b3) this.f38783f;
+                org.telegram.ui.Components.fa0 fa0Var = (org.telegram.ui.Components.fa0) this.f38786g;
+                i4 i4Var = (i4) this.f38784e;
+                org.telegram.ui.Components.ba0 ba0Var = i4Var.f41886c;
+                b3 b3Var = (b3) this.f38785f;
                 if (b3Var != null) {
-                    view = b3Var.f36109b;
+                    view = b3Var.f36111b;
                 } else {
                     view = null;
                 }
-                i4Var.f41889s = view;
+                i4Var.f41891s = view;
                 org.telegram.ui.Components.p11 p11Var = (org.telegram.ui.Components.p11) fa0Var.f26330i;
                 ba0Var.l(i4Var.v, true);
                 if (b3Var != null) {
@@ -72,26 +72,26 @@ public final class j0 extends of.e {
                     i4Var.v.f27340x.setStrokeWidth(AndroidUtilities.dpf2(1.25f));
                     ba0Var.b(i4Var.v, b3Var);
                 }
-                View view2 = i4Var.f41889s;
+                View view2 = i4Var.f41891s;
                 if (view2 != null) {
                     view2.invalidate();
                 }
                 super.d();
                 return;
             default:
-                ln lnVar = (ln) this.f38784g;
-                lnVar.f39634a.f44985wb = ((MessageObject) this.f38782e).getId();
-                zn znVar = lnVar.f39634a;
-                znVar.f44999xb = 0;
-                znVar.f45011yb = null;
-                ((org.telegram.ui.Cells.u1) this.f38783f).invalidate();
+                ln lnVar = (ln) this.f38786g;
+                lnVar.f39636a.f44987wb = ((MessageObject) this.f38784e).getId();
+                zn znVar = lnVar.f39636a;
+                znVar.f45001xb = 0;
+                znVar.f45013yb = null;
+                ((org.telegram.ui.Cells.u1) this.f38785f).invalidate();
                 return;
         }
     }
 
     public j0(ln lnVar, MessageObject messageObject, org.telegram.ui.Cells.u1 u1Var) {
-        this.f38784g = lnVar;
-        this.f38782e = messageObject;
-        this.f38783f = u1Var;
+        this.f38786g = lnVar;
+        this.f38784e = messageObject;
+        this.f38785f = u1Var;
     }
 }

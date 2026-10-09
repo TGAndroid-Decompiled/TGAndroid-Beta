@@ -369,9 +369,9 @@ public final class zr implements Runnable {
                             bundle.putParcelable("photoUri", uri);
                         }
                         ?? n2Var = new org.telegram.ui.ActionBar.n2(bundle);
-                        n2Var.f40351e = false;
-                        n2Var.f40352f = false;
-                        n2Var.f40350c = m50Var;
+                        n2Var.f40353e = false;
+                        n2Var.f40354f = false;
+                        n2Var.f40352c = m50Var;
                         launchActivity.p0(n2Var);
                         return;
                     }
@@ -458,8 +458,8 @@ public final class zr implements Runnable {
                 n70 n70Var = (n70) obj2;
                 if (((TLRPC.TL_error) obj) == null && (ibVar = (t70Var = n70Var.f29062a.f29404c).f31066j0) != null) {
                     TLRPC.TL_chatInviteExported tL_chatInviteExported = t70Var.f31054b;
-                    org.telegram.ui.vb vbVar = ibVar.f38598a;
-                    ArrayList arrayList9 = vbVar.f42785o0;
+                    org.telegram.ui.vb vbVar = ibVar.f38600a;
+                    ArrayList arrayList9 = vbVar.f42787o0;
                     int size = arrayList9.size();
                     int i16 = vbVar.E.h;
                     TLRPC.TL_channelAdminLogEvent tL_channelAdminLogEvent = new TLRPC.TL_channelAdminLogEvent();
@@ -468,7 +468,7 @@ public final class zr implements Runnable {
                     tL_channelAdminLogEvent.action = tL_channelAdminLogEventActionExportedInviteDelete;
                     tL_channelAdminLogEvent.date = (int) (System.currentTimeMillis() / 1000);
                     tL_channelAdminLogEvent.user_id = vbVar.getAccountInstance().getUserConfig().clientUserId;
-                    if (new MessageObject(org.telegram.ui.vb.L0(vbVar), tL_channelAdminLogEvent, (ArrayList<MessageObject>) vbVar.f42784n0, (HashMap<String, ArrayList<MessageObject>>) vbVar.m0, vbVar.f42775f, vbVar.T, true).contentType >= 0) {
+                    if (new MessageObject(org.telegram.ui.vb.L0(vbVar), tL_channelAdminLogEvent, (ArrayList<MessageObject>) vbVar.f42786n0, (HashMap<String, ArrayList<MessageObject>>) vbVar.m0, vbVar.f42777f, vbVar.T, true).contentType >= 0) {
                         vbVar.R0();
                         int size2 = arrayList9.size() - size;
                         if (size2 > 0) {
@@ -477,7 +477,7 @@ public final class zr implements Runnable {
                             rbVar.s(rbVar.h, size2);
                             org.telegram.ui.vb.K0(vbVar);
                         }
-                        vbVar.f42800y0.remove(tL_chatInviteExported.link);
+                        vbVar.f42802y0.remove(tL_chatInviteExported.link);
                         return;
                     }
                     return;

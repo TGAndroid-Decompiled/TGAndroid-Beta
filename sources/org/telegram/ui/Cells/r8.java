@@ -27,6 +27,7 @@ import org.telegram.ui.Components.qc0;
 import org.telegram.ui.d10;
 import org.telegram.ui.jp0;
 public class r8 extends FrameLayout {
+    public static final int Q = 0;
     public final org.telegram.ui.ActionBar.e6 E;
     public boolean F;
     public int G;
@@ -58,11 +59,11 @@ public class r8 extends FrameLayout {
         this(20, context, null, false, false);
     }
 
-    public static SpannableStringBuilder a(String str) {
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
+    public static SpannableStringBuilder a(CharSequence charSequence) {
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
         spannableStringBuilder.append((CharSequence) "  d");
         d10 d10Var = new d10();
-        d10Var.f36787f = org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.Lj, false);
+        d10Var.f36789f = org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.Lj, false);
         spannableStringBuilder.setSpan(d10Var, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
         return spannableStringBuilder;
     }

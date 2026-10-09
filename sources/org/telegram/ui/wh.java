@@ -8,15 +8,15 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.FlagSecureReason;
 public final class wh implements FlagSecureReason.FlagSecureCondition, nv0, r0.n, yf.a0, org.telegram.ui.ActionBar.a2 {
-    public final zn f43603a;
+    public final zn f43605a;
 
     public wh(zn znVar) {
-        this.f43603a = znVar;
+        this.f43605a = znVar;
     }
 
     @Override
     public r0.k1 M0(View view, r0.k1 k1Var) {
-        zn znVar = this.f43603a;
+        zn znVar = this.f43605a;
         r0.k1 z82 = znVar.z8(k1Var);
         i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(z82, false);
         int i10 = defaultWindowInsets.f11576a;
@@ -34,33 +34,33 @@ public final class wh implements FlagSecureReason.FlagSecureCondition, nv0, r0.n
         znVar.q7();
         znVar.u7();
         znVar.u9();
-        boolean p5 = z82.f46775a.p(8);
+        boolean p5 = z82.f46777a.p(8);
         if (znVar.Ta != p5) {
             znVar.Ta = p5;
             znVar.X0.S();
         }
-        ci.h1 h1Var = znVar.f44897q1;
+        ci.h1 h1Var = znVar.f44899q1;
         if (h1Var != null) {
             r0.i0.b(h1Var, z82);
         }
-        return r0.k1.f46774b;
+        return r0.k1.f46776b;
     }
 
     @Override
     public void a(int i10) {
-        zn.X0(this.f43603a, i10);
+        zn.X0(this.f43605a, i10);
     }
 
     @Override
     public void b(float[] fArr) {
-        zn znVar = this.f43603a;
-        fArr[1] = znVar.f44988x0.getBottom() - znVar.Ba;
-        fArr[0] = (znVar.f44988x0.getTop() + znVar.f44932s9) - AndroidUtilities.dp(4.0f);
+        zn znVar = this.f43605a;
+        fArr[1] = znVar.f44990x0.getBottom() - znVar.Ba;
+        fArr[0] = (znVar.f44990x0.getTop() + znVar.f44934s9) - AndroidUtilities.dp(4.0f);
     }
 
     @Override
     public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        zn znVar = this.f43603a;
+        zn znVar = this.f43605a;
         znVar.getClass();
         try {
             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
@@ -73,7 +73,7 @@ public final class wh implements FlagSecureReason.FlagSecureCondition, nv0, r0.n
 
     @Override
     public boolean run() {
-        zn znVar = this.f43603a;
+        zn znVar = this.f43605a;
         if (znVar.h == null && !znVar.D9()) {
             return false;
         }

@@ -1,27 +1,52 @@
 package org.telegram.ui.Wallet;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.at;
-public final class h4 extends at {
-    public final ii.d2 G;
+import android.view.View;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_wallet;
+public final class h4 implements View.OnAttachStateChangeListener {
+    public final n3 f34986a;
+    public final TL_wallet.walletTransaction[] f34987b;
+    public final NotificationCenter.NotificationCenterDelegate f34988c;
+    public final int d;
+    public final Utilities.Callback2 f34989e;
+    public final i2[] f34990f;
+    public final String[] h;
+    public final boolean[] f34991n;
 
-    public h4(z4 z4Var, Context context) {
-        super(context);
-        this.G = new ii.d2(org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(22.0f), z4Var.getThemedColor(org.telegram.ui.ActionBar.i6.f20797d6)), AndroidUtilities.dpf2(2.67f), AndroidUtilities.dpf2(0.67f));
+    public h4(n3 n3Var, TL_wallet.walletTransaction[] wallettransactionArr, g4 g4Var, int i10, Utilities.Callback2 callback2, i2[] i2VarArr, String[] strArr, boolean[] zArr) {
+        this.f34986a = n3Var;
+        this.f34987b = wallettransactionArr;
+        this.f34988c = g4Var;
+        this.d = i10;
+        this.f34989e = callback2;
+        this.f34990f = i2VarArr;
+        this.h = strArr;
+        this.f34991n = zArr;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int ceil = (int) Math.ceil(getMetadata().f16358g.f16365a);
-        if (ceil > 0) {
-            int width = getWidth();
-            ii.d2 d2Var = this.G;
-            d2Var.setBounds(0, 0, width, ceil);
-            d2Var.setAlpha((int) (getMetadata().f16355c.f16365a * 255.0f));
-            d2Var.draw(canvas);
+    public final void onViewAttachedToWindow(View view) {
+        this.f34986a.run(this.f34987b[0]);
+        NotificationCenter.NotificationCenterDelegate notificationCenterDelegate = this.f34988c;
+        if (notificationCenterDelegate != null) {
+            int i10 = this.d;
+            NotificationCenter.getInstance(i10).addObserver(notificationCenterDelegate, NotificationCenter.walletUpdate);
+            NotificationCenter.getInstance(i10).addObserver(notificationCenterDelegate, NotificationCenter.walletTransactionsUpdate);
         }
-        super.dispatchDraw(canvas);
+        Utilities.Callback2 callback2 = this.f34989e;
+        if (callback2 != null) {
+            this.f34990f[0].setOnDismissListener(new k(callback2, this.h, this.f34991n, 11));
+        }
+    }
+
+    @Override
+    public final void onViewDetachedFromWindow(View view) {
+        NotificationCenter.NotificationCenterDelegate notificationCenterDelegate = this.f34988c;
+        if (notificationCenterDelegate != null) {
+            int i10 = this.d;
+            NotificationCenter.getInstance(i10).removeObserver(notificationCenterDelegate, NotificationCenter.walletUpdate);
+            NotificationCenter.getInstance(i10).removeObserver(notificationCenterDelegate, NotificationCenter.walletTransactionsUpdate);
+        }
     }
 }

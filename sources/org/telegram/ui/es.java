@@ -22,19 +22,19 @@ public abstract class es extends EditTextBoldCursor {
     public ValueAnimator F;
     public ValueAnimator G;
     public boolean H;
-    public float f37317b;
-    public float f37318c;
+    public float f37319b;
+    public float f37320c;
     public float d;
-    public float f37319e;
-    public o1.k f37320f;
+    public float f37321e;
+    public o1.k f37322f;
     public o1.k h;
-    public o1.k f37321n;
-    public o1.k f37322r;
-    public boolean f37323s;
+    public o1.k f37323n;
+    public o1.k f37324r;
+    public boolean f37325s;
     public float v;
-    public float f37324w;
-    public boolean f37325x;
-    public Bitmap f37326y;
+    public float f37326w;
+    public boolean f37327x;
+    public Bitmap f37328y;
 
     static {
         org.telegram.ui.Components.lw0 lw0Var = new org.telegram.ui.Components.lw0(new nr(1), new nr(2));
@@ -66,11 +66,11 @@ public abstract class es extends EditTextBoldCursor {
     }
 
     public float getErrorProgress() {
-        return this.f37318c;
+        return this.f37320c;
     }
 
     public float getFocusedProgress() {
-        return this.f37317b;
+        return this.f37319b;
     }
 
     public float getSuccessProgress() {
@@ -78,7 +78,7 @@ public abstract class es extends EditTextBoldCursor {
     }
 
     public float getSuccessScaleProgress() {
-        return this.f37319e;
+        return this.f37321e;
     }
 
     public final void i(float f7) {
@@ -86,12 +86,12 @@ public abstract class es extends EditTextBoldCursor {
     }
 
     public final void j(float f7) {
-        k(this.f37320f, f7 * 100.0f);
+        k(this.f37322f, f7 * 100.0f);
     }
 
     public final void l(float f7) {
-        k(this.f37321n, f7 * 100.0f);
-        o1.k kVar = this.f37322r;
+        k(this.f37323n, f7 * 100.0f);
+        o1.k kVar = this.f37324r;
         kVar.c();
         if (f7 != 0.0f) {
             o1.l j3 = org.telegram.ui.Cells.c1.j(1.0f, 500.0f, 0.75f);
@@ -103,28 +103,28 @@ public abstract class es extends EditTextBoldCursor {
             kVar.h();
             return;
         }
-        this.f37319e = 1.0f;
+        this.f37321e = 1.0f;
     }
 
     public final void m() {
         if (getMeasuredHeight() != 0 && getMeasuredWidth() != 0 && getLayout() != null) {
-            Bitmap bitmap = this.f37326y;
-            if (bitmap == null || bitmap.getHeight() != getMeasuredHeight() || this.f37326y.getWidth() != getMeasuredWidth()) {
-                Bitmap bitmap2 = this.f37326y;
+            Bitmap bitmap = this.f37328y;
+            if (bitmap == null || bitmap.getHeight() != getMeasuredHeight() || this.f37328y.getWidth() != getMeasuredWidth()) {
+                Bitmap bitmap2 = this.f37328y;
                 if (bitmap2 != null) {
                     bitmap2.recycle();
                 }
-                this.f37326y = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-                this.E = new Canvas(this.f37326y);
+                this.f37328y = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+                this.E = new Canvas(this.f37328y);
             }
-            this.f37326y.eraseColor(0);
+            this.f37328y.eraseColor(0);
             CharSequence transformation = getTransformationMethod().getTransformation(getText(), this);
             StaticLayout staticLayout = new StaticLayout(transformation, getLayout().getPaint(), (int) Math.ceil(getLayout().getPaint().measureText(transformation, 0, transformation.length())), Layout.Alignment.ALIGN_NORMAL, getLineSpacingMultiplier(), getLineSpacingExtra(), getIncludeFontPadding());
             this.E.save();
             this.E.translate((getMeasuredWidth() - staticLayout.getWidth()) / 2.0f, (getMeasuredHeight() - staticLayout.getHeight()) / 2.0f);
             staticLayout.draw(this.E);
             this.E.restore();
-            this.f37324w = 0.0f;
+            this.f37326w = 0.0f;
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             this.G = ofFloat;
             ofFloat.addUpdateListener(new c3(this, 8));
@@ -136,7 +136,7 @@ public abstract class es extends EditTextBoldCursor {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f37320f.c();
+        this.f37322f.c();
         this.h.c();
     }
 
@@ -190,7 +190,7 @@ public abstract class es extends EditTextBoldCursor {
                     requestFocus();
                 }
                 setSelection(0);
-                if (this.f37323s) {
+                if (this.f37325s) {
                     AndroidUtilities.showKeyboard(this);
                 }
             }
@@ -206,7 +206,7 @@ public abstract class es extends EditTextBoldCursor {
     }
 
     public void setShowSoftInputOnFocusCompat(boolean z10) {
-        this.f37323s = z10;
+        this.f37325s = z10;
         setShowSoftInputOnFocus(z10);
     }
 }

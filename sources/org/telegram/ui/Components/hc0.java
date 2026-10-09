@@ -28,7 +28,7 @@ public final class hc0 extends org.telegram.ui.Cells.p9 {
         messagePreviewParams.quoteStart = hc0Var.f21884u;
         messagePreviewParams.quoteEnd = hc0Var.v;
         MessageObject c10 = pc0Var.c(messageObject);
-        if (c10 != null && ((pnVar = vc0Var.d.quote) == null || (messageObject2 = pnVar.f40843a) == null || messageObject2.getId() != c10.getId())) {
+        if (c10 != null && ((pnVar = vc0Var.d.quote) == null || (messageObject2 = pnVar.f40845a) == null || messageObject2.getId() != c10.getId())) {
             vc0Var.d.quote = org.telegram.ui.pn.b(i10, i11, c10);
         }
         vc0Var.b();

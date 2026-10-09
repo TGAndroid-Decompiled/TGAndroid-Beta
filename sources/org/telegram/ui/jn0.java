@@ -39,20 +39,20 @@ public final class jn0 extends org.telegram.ui.Components.xw0 implements Notific
     public int O;
     public int P;
     public final nn0 Q;
-    public String f38986a;
-    public String f38987b;
-    public final LinearLayout f38988c;
+    public String f38988a;
+    public String f38989b;
+    public final LinearLayout f38990c;
     public EditTextBoldCursor[] d;
-    public final TextView f38989e;
-    public final TextView f38990f;
+    public final TextView f38991e;
+    public final TextView f38992f;
     public final ImageView h;
-    public final gn0 f38991n;
-    public final gn0 f38992r;
-    public final kn0 f38993s;
+    public final gn0 f38993n;
+    public final gn0 f38994r;
+    public final kn0 f38995s;
     public Timer v;
-    public Timer f38994w;
-    public final Object f38995x;
-    public int f38996y;
+    public Timer f38996w;
+    public final Object f38997x;
+    public int f38998y;
 
     public jn0(nn0 nn0Var, Context context, int i10) {
         super(context);
@@ -64,21 +64,21 @@ public final class jn0 extends org.telegram.ui.Components.xw0 implements Notific
         int i16;
         int i17;
         this.Q = nn0Var;
-        this.f38995x = new Object();
-        this.f38996y = 60000;
+        this.f38997x = new Object();
+        this.f38998y = 60000;
         this.E = 15000;
         this.K = "";
         this.N = "*";
         this.L = i10;
         setOrientation(1);
         TextView textView = new TextView(context);
-        this.f38989e = textView;
+        this.f38991e = textView;
         int i18 = org.telegram.ui.ActionBar.i6.D6;
         textView.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, i18, false));
         textView.setTextSize(1, 14.0f);
         textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         TextView textView2 = new TextView(context);
-        this.f38990f = textView2;
+        this.f38992f = textView2;
         int i19 = org.telegram.ui.ActionBar.i6.G6;
         org.telegram.messenger.q.m(18.0f, org.telegram.ui.ActionBar.i6.x0(null, i19, false), 1, textView2);
         if (LocaleController.isRTL) {
@@ -152,14 +152,14 @@ public final class jn0 extends org.telegram.ui.Components.xw0 implements Notific
             addView(textView, w7.x5.t(-2, -2, 49, 0, 17, 0, 0));
         }
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f38988c = linearLayout;
+        this.f38990c = linearLayout;
         linearLayout.setOrientation(0);
         addView(linearLayout, w7.x5.q(-2, 36, 1));
         if (i10 == 3) {
             linearLayout.setVisibility(8);
         }
         gn0 gn0Var = new gn0(context, 0);
-        this.f38991n = gn0Var;
+        this.f38993n = gn0Var;
         gn0Var.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, i18, false));
         gn0Var.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         if (i10 == 3) {
@@ -172,12 +172,12 @@ public final class jn0 extends org.telegram.ui.Components.xw0 implements Notific
             addView(gn0Var, w7.x5.q(-2, -2, i12));
             ?? view = new View(context);
             Paint paint = new Paint();
-            view.f39316a = paint;
+            view.f39318a = paint;
             Paint paint2 = new Paint();
-            view.f39317b = paint2;
+            view.f39319b = paint2;
             paint.setColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20862gi, false));
             paint2.setColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20880hi, false));
-            this.f38993s = view;
+            this.f38995s = view;
             if (LocaleController.isRTL) {
                 i13 = 5;
             } else {
@@ -192,7 +192,7 @@ public final class jn0 extends org.telegram.ui.Components.xw0 implements Notific
             addView(gn0Var, w7.x5.q(-2, -2, 49));
         }
         gn0 gn0Var2 = new gn0(context, 1);
-        this.f38992r = gn0Var2;
+        this.f38994r = gn0Var2;
         gn0Var2.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.q6, false));
         gn0Var2.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         gn0Var2.setPadding(0, AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(10.0f));
@@ -243,8 +243,8 @@ public final class jn0 extends org.telegram.ui.Components.xw0 implements Notific
             return false;
         }
         TLRPC.TL_auth_cancelCode tL_auth_cancelCode = new TLRPC.TL_auth_cancelCode();
-        tL_auth_cancelCode.phone_number = this.f38986a;
-        tL_auth_cancelCode.phone_code_hash = this.f38987b;
+        tL_auth_cancelCode.phone_number = this.f38988a;
+        tL_auth_cancelCode.phone_code_hash = this.f38989b;
         i10 = ((org.telegram.ui.ActionBar.n2) nn0Var).currentAccount;
         ConnectionsManager.getInstance(i10).sendRequest(tL_auth_cancelCode, new ai.v7(19), 2);
         s();
@@ -308,7 +308,7 @@ public final class jn0 extends org.telegram.ui.Components.xw0 implements Notific
         }
         String code = getCode();
         if (TextUtils.isEmpty(code)) {
-            AndroidUtilities.shakeView(this.f38988c);
+            AndroidUtilities.shakeView(this.f38990c);
             return;
         }
         this.J = true;
@@ -324,9 +324,9 @@ public final class jn0 extends org.telegram.ui.Components.xw0 implements Notific
         nn0 nn0Var = this.Q;
         nn0Var.M1(true, true);
         TL_account.verifyPhone verifyphone = new TL_account.verifyPhone();
-        verifyphone.phone_number = this.f38986a;
+        verifyphone.phone_number = this.f38988a;
         verifyphone.phone_code = code;
-        verifyphone.phone_code_hash = this.f38987b;
+        verifyphone.phone_code_hash = this.f38989b;
         s();
         nn0Var.x1();
         i10 = ((org.telegram.ui.ActionBar.n2) nn0Var).currentAccount;
@@ -335,7 +335,7 @@ public final class jn0 extends org.telegram.ui.Components.xw0 implements Notific
 
     @Override
     public final void j() {
-        LinearLayout linearLayout = this.f38988c;
+        LinearLayout linearLayout = this.f38990c;
         if (linearLayout != null && linearLayout.getVisibility() == 0) {
             for (int length = this.d.length - 1; length >= 0; length--) {
                 if (length == 0 || this.d[length].length() != 0) {
@@ -368,10 +368,10 @@ public final class jn0 extends org.telegram.ui.Components.xw0 implements Notific
                 AndroidUtilities.setWaitingForCall(true);
                 NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.didReceiveCall);
             }
-            this.f38986a = bundle.getString("phone");
-            this.f38987b = bundle.getString("phoneHash");
+            this.f38988a = bundle.getString("phone");
+            this.f38989b = bundle.getString("phoneHash");
             int i18 = bundle.getInt("timeout");
-            this.f38996y = i18;
+            this.f38998y = i18;
             this.P = i18;
             this.M = bundle.getInt("nextType");
             this.N = bundle.getString("pattern");
@@ -424,7 +424,7 @@ public final class jn0 extends org.telegram.ui.Components.xw0 implements Notific
                     } else {
                         i10 = 0;
                     }
-                    this.f38988c.addView(editTextBoldCursor2, w7.x5.t(34, 36, 1, 0, 0, i10, 0));
+                    this.f38990c.addView(editTextBoldCursor2, w7.x5.t(34, 36, 1, 0, 0, i10, 0));
                     this.d[i21].addTextChangedListener(new hn0(this, i21));
                     this.d[i21].setOnKeyListener(new View.OnKeyListener() {
                         @Override
@@ -450,7 +450,7 @@ public final class jn0 extends org.telegram.ui.Components.xw0 implements Notific
                     this.d[i21].setOnEditorActionListener(new ja(this, 9));
                 }
             }
-            kn0 kn0Var = this.f38993s;
+            kn0 kn0Var = this.f38995s;
             if (kn0Var != null) {
                 if (this.M != 0) {
                     i15 = 0;
@@ -459,10 +459,10 @@ public final class jn0 extends org.telegram.ui.Components.xw0 implements Notific
                 }
                 kn0Var.setVisibility(i15);
             }
-            if (this.f38986a == null) {
+            if (this.f38988a == null) {
                 return;
             }
-            String g10 = org.telegram.messenger.bi.g(new StringBuilder("+"), this.f38986a, hf.b.c());
+            String g10 = org.telegram.messenger.bi.g(new StringBuilder("+"), this.f38988a, hf.b.c());
             if (i17 == 2) {
                 charSequence = AndroidUtilities.replaceTags(LocaleController.formatString("SentSmsCode", R.string.SentSmsCode, LocaleController.addNbsp(g10)));
             } else if (i17 == 3) {
@@ -470,7 +470,7 @@ public final class jn0 extends org.telegram.ui.Components.xw0 implements Notific
             } else if (i17 == 4) {
                 charSequence = AndroidUtilities.replaceTags(LocaleController.formatString("SentCallOnly", R.string.SentCallOnly, LocaleController.addNbsp(g10)));
             }
-            this.f38989e.setText(charSequence);
+            this.f38991e.setText(charSequence);
             if (i17 != 3) {
                 AndroidUtilities.showKeyboard(this.d[0]);
                 this.d[0].requestFocus();
@@ -480,8 +480,8 @@ public final class jn0 extends org.telegram.ui.Components.xw0 implements Notific
             s();
             r();
             this.F = System.currentTimeMillis();
-            gn0 gn0Var = this.f38992r;
-            gn0 gn0Var2 = this.f38991n;
+            gn0 gn0Var = this.f38994r;
+            gn0 gn0Var2 = this.f38993n;
             if (i17 == 3) {
                 int i23 = this.M;
                 i11 = 2;
@@ -506,26 +506,26 @@ public final class jn0 extends org.telegram.ui.Components.xw0 implements Notific
                 objArr[0] = 2;
                 objArr[1] = 0;
                 gn0Var2.setText(LocaleController.formatString("CallText", i25, objArr));
-                if (this.f38996y < 1000) {
+                if (this.f38998y < 1000) {
                     i14 = 0;
                 } else {
                     i14 = 8;
                 }
                 gn0Var.setVisibility(i14);
-                if (this.f38996y < 1000) {
+                if (this.f38998y < 1000) {
                     i16 = 8;
                 }
                 gn0Var2.setVisibility(i16);
                 q();
             } else if (i17 == 4 && this.M == 2) {
                 gn0Var2.setText(LocaleController.formatString("SmsText", R.string.SmsText, 2, 0));
-                if (this.f38996y < 1000) {
+                if (this.f38998y < 1000) {
                     i12 = 0;
                 } else {
                     i12 = 8;
                 }
                 gn0Var.setVisibility(i12);
-                if (this.f38996y < 1000) {
+                if (this.f38998y < 1000) {
                     i16 = 8;
                 }
                 gn0Var2.setVisibility(i16);
@@ -543,15 +543,15 @@ public final class jn0 extends org.telegram.ui.Components.xw0 implements Notific
         int i14;
         super.onLayout(z10, i10, i11, i12, i13);
         if (this.L != 3 && this.h != null) {
-            int bottom = this.f38989e.getBottom();
+            int bottom = this.f38991e.getBottom();
             int measuredHeight = getMeasuredHeight() - bottom;
-            gn0 gn0Var = this.f38992r;
+            gn0 gn0Var = this.f38994r;
             if (gn0Var.getVisibility() == 0) {
                 int measuredHeight2 = gn0Var.getMeasuredHeight();
                 i14 = (measuredHeight + bottom) - measuredHeight2;
                 gn0Var.layout(gn0Var.getLeft(), i14, gn0Var.getRight(), measuredHeight2 + i14);
             } else {
-                gn0 gn0Var2 = this.f38991n;
+                gn0 gn0Var2 = this.f38993n;
                 if (gn0Var2.getVisibility() == 0) {
                     int measuredHeight3 = gn0Var2.getMeasuredHeight();
                     i14 = (measuredHeight + bottom) - measuredHeight3;
@@ -560,7 +560,7 @@ public final class jn0 extends org.telegram.ui.Components.xw0 implements Notific
                     i14 = measuredHeight + bottom;
                 }
             }
-            LinearLayout linearLayout = this.f38988c;
+            LinearLayout linearLayout = this.f38990c;
             int measuredHeight4 = linearLayout.getMeasuredHeight();
             int z11 = hg.c.z(i14 - bottom, measuredHeight4, 2, bottom);
             linearLayout.layout(linearLayout.getLeft(), z11, linearLayout.getRight(), measuredHeight4 + z11);
@@ -572,26 +572,26 @@ public final class jn0 extends org.telegram.ui.Components.xw0 implements Notific
         ImageView imageView;
         super.onMeasure(i10, i11);
         if (this.L != 3 && (imageView = this.h) != null) {
-            int dp = AndroidUtilities.dp(35.0f) + this.f38989e.getMeasuredHeight() + this.f38990f.getMeasuredHeight() + imageView.getMeasuredHeight();
+            int dp = AndroidUtilities.dp(35.0f) + this.f38991e.getMeasuredHeight() + this.f38992f.getMeasuredHeight() + imageView.getMeasuredHeight();
             int dp2 = AndroidUtilities.dp(80.0f);
             int dp3 = AndroidUtilities.dp(291.0f);
             nn0 nn0Var = this.Q;
-            if (nn0Var.f40280s0 - dp < dp2) {
+            if (nn0Var.f40282s0 - dp < dp2) {
                 setMeasuredDimension(getMeasuredWidth(), dp + dp2);
             } else {
-                setMeasuredDimension(getMeasuredWidth(), Math.min(nn0Var.f40280s0, dp3));
+                setMeasuredDimension(getMeasuredWidth(), Math.min(nn0Var.f40282s0, dp3));
             }
         }
     }
 
     public final void p() {
-        if (this.f38994w != null) {
+        if (this.f38996w != null) {
             return;
         }
         this.E = 15000;
-        this.f38994w = new Timer();
+        this.f38996w = new Timer();
         this.G = System.currentTimeMillis();
-        this.f38994w.schedule(new ci.n2(this, 4), 0L, 1000L);
+        this.f38996w.schedule(new ci.n2(this, 4), 0L, 1000L);
     }
 
     public final void q() {
@@ -605,11 +605,11 @@ public final class jn0 extends org.telegram.ui.Components.xw0 implements Notific
 
     public final void r() {
         try {
-            synchronized (this.f38995x) {
-                Timer timer = this.f38994w;
+            synchronized (this.f38997x) {
+                Timer timer = this.f38996w;
                 if (timer != null) {
                     timer.cancel();
-                    this.f38994w = null;
+                    this.f38996w = null;
                 }
             }
         } catch (Exception e7) {
@@ -619,7 +619,7 @@ public final class jn0 extends org.telegram.ui.Components.xw0 implements Notific
 
     public final void s() {
         try {
-            synchronized (this.f38995x) {
+            synchronized (this.f38997x) {
                 Timer timer = this.v;
                 if (timer != null) {
                     timer.cancel();
@@ -634,13 +634,13 @@ public final class jn0 extends org.telegram.ui.Components.xw0 implements Notific
     public final void t() {
         int i10;
         Bundle bundle = new Bundle();
-        bundle.putString("phone", this.f38986a);
+        bundle.putString("phone", this.f38988a);
         this.J = true;
         nn0 nn0Var = this.Q;
         nn0Var.x1();
         TLRPC.TL_auth_resendCode tL_auth_resendCode = new TLRPC.TL_auth_resendCode();
-        tL_auth_resendCode.phone_number = this.f38986a;
-        tL_auth_resendCode.phone_code_hash = this.f38987b;
+        tL_auth_resendCode.phone_number = this.f38988a;
+        tL_auth_resendCode.phone_code_hash = this.f38989b;
         i10 = ((org.telegram.ui.ActionBar.n2) nn0Var).currentAccount;
         ConnectionsManager.getInstance(i10).sendRequest(tL_auth_resendCode, new ba(this, bundle, tL_auth_resendCode, 27), 2);
     }

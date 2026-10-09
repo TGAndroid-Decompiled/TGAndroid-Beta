@@ -101,7 +101,7 @@ public abstract class eb extends org.telegram.ui.ActionBar.f3 {
                 s4.d1 K = qm0Var.K(0);
                 int i13 = -AndroidUtilities.dp(16.0f);
                 if (K != null) {
-                    View view2 = K.f47656a;
+                    View view2 = K.f47658a;
                     i13 = view2.getBottom() - AndroidUtilities.dp(16.0f);
                     if (this.O) {
                         i10 = ((int) view2.getTranslationY()) + i13;

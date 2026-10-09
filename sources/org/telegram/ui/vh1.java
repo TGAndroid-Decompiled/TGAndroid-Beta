@@ -5,23 +5,23 @@ import android.text.TextWatcher;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class vh1 implements TextWatcher {
-    public final UsersSelectActivity f42863a;
+    public final UsersSelectActivity f42865a;
 
     public vh1(UsersSelectActivity usersSelectActivity) {
-        this.f42863a = usersSelectActivity;
+        this.f42865a = usersSelectActivity;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        UsersSelectActivity usersSelectActivity = this.f42863a;
+        UsersSelectActivity usersSelectActivity = this.f42865a;
         if (usersSelectActivity.f34594c.length() != 0) {
             yh1 yh1Var = usersSelectActivity.h;
-            boolean z10 = yh1Var.f44349n;
+            boolean z10 = yh1Var.f44351n;
             if (!z10) {
                 usersSelectActivity.M = true;
                 usersSelectActivity.L = true;
                 if (!z10) {
-                    yh1Var.f44349n = true;
+                    yh1Var.f44351n = true;
                     yh1Var.l();
                 }
                 usersSelectActivity.d.setFastScrollVisible(false);
@@ -35,8 +35,8 @@ public final class vh1 implements TextWatcher {
         usersSelectActivity.M = false;
         usersSelectActivity.L = false;
         yh1 yh1Var2 = usersSelectActivity.h;
-        if (yh1Var2.f44349n) {
-            yh1Var2.f44349n = false;
+        if (yh1Var2.f44351n) {
+            yh1Var2.f44351n = false;
             yh1Var2.l();
         }
         usersSelectActivity.h.L(null);

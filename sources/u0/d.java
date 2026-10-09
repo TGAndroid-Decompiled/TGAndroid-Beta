@@ -6,45 +6,45 @@ import android.view.ViewConfiguration;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AnimationUtils;
 import m.r1;
-import org.telegram.ui.Wallet.m5;
+import org.telegram.ui.Wallet.n5;
 public final class d implements View.OnTouchListener {
     public static final int H = ViewConfiguration.getTapTimeout();
     public boolean E;
     public boolean F;
     public final r1 G;
-    public final a f48487a;
-    public final AccelerateInterpolator f48488b;
-    public final r1 f48489c;
-    public m5 d;
-    public final float[] f48490e;
-    public final float[] f48491f;
+    public final a f48489a;
+    public final AccelerateInterpolator f48490b;
+    public final r1 f48491c;
+    public n5 d;
+    public final float[] f48492e;
+    public final float[] f48493f;
     public final int h;
-    public final int f48492n;
-    public final float[] f48493r;
-    public final float[] f48494s;
+    public final int f48494n;
+    public final float[] f48495r;
+    public final float[] f48496s;
     public final float[] v;
-    public boolean f48495w;
-    public boolean f48496x;
-    public boolean f48497y;
+    public boolean f48497w;
+    public boolean f48498x;
+    public boolean f48499y;
 
     public d(r1 r1Var) {
         ?? obj = new Object();
-        obj.f48483e = Long.MIN_VALUE;
-        obj.f48485g = -1L;
-        obj.f48484f = 0L;
-        this.f48487a = obj;
-        this.f48488b = new AccelerateInterpolator();
+        obj.f48485e = Long.MIN_VALUE;
+        obj.f48487g = -1L;
+        obj.f48486f = 0L;
+        this.f48489a = obj;
+        this.f48490b = new AccelerateInterpolator();
         float[] fArr = {0.0f, 0.0f};
-        this.f48490e = fArr;
+        this.f48492e = fArr;
         float[] fArr2 = {Float.MAX_VALUE, Float.MAX_VALUE};
-        this.f48491f = fArr2;
+        this.f48493f = fArr2;
         float[] fArr3 = {0.0f, 0.0f};
-        this.f48493r = fArr3;
+        this.f48495r = fArr3;
         float[] fArr4 = {0.0f, 0.0f};
-        this.f48494s = fArr4;
+        this.f48496s = fArr4;
         float[] fArr5 = {Float.MAX_VALUE, Float.MAX_VALUE};
         this.v = fArr5;
-        this.f48489c = r1Var;
+        this.f48491c = r1Var;
         float f7 = Resources.getSystem().getDisplayMetrics().density;
         float f10 = ((int) ((1575.0f * f7) + 0.5f)) / 1000.0f;
         fArr5[0] = f10;
@@ -59,9 +59,9 @@ public final class d implements View.OnTouchListener {
         fArr[1] = 0.2f;
         fArr3[0] = 0.001f;
         fArr3[1] = 0.001f;
-        this.f48492n = H;
-        obj.f48480a = 500;
-        obj.f48481b = 500;
+        this.f48494n = H;
+        obj.f48482a = 500;
+        obj.f48483b = 500;
         this.G = r1Var;
     }
 
@@ -100,31 +100,31 @@ public final class d implements View.OnTouchListener {
 
     public final void d() {
         int i10 = 0;
-        if (this.f48496x) {
+        if (this.f48498x) {
             this.E = false;
             return;
         }
         long currentAnimationTimeMillis = AnimationUtils.currentAnimationTimeMillis();
-        a aVar = this.f48487a;
-        int i11 = (int) (currentAnimationTimeMillis - aVar.f48483e);
-        int i12 = aVar.f48481b;
+        a aVar = this.f48489a;
+        int i11 = (int) (currentAnimationTimeMillis - aVar.f48485e);
+        int i12 = aVar.f48483b;
         if (i11 > i12) {
             i10 = i12;
         } else if (i11 >= 0) {
             i10 = i11;
         }
-        aVar.f48486i = i10;
+        aVar.f48488i = i10;
         aVar.h = aVar.a(currentAnimationTimeMillis);
-        aVar.f48485g = currentAnimationTimeMillis;
+        aVar.f48487g = currentAnimationTimeMillis;
     }
 
     public final boolean e() {
         r1 r1Var;
         int count;
-        a aVar = this.f48487a;
+        a aVar = this.f48489a;
         float f7 = aVar.d;
         int abs = (int) (f7 / Math.abs(f7));
-        Math.abs(aVar.f48482c);
+        Math.abs(aVar.f48484c);
         if (abs != 0 && (count = (r1Var = this.G).getCount()) != 0) {
             int childCount = r1Var.getChildCount();
             int firstVisiblePosition = r1Var.getFirstVisiblePosition();

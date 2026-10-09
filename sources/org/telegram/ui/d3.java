@@ -11,28 +11,28 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 public final class d3 extends FrameLayout {
-    public final LinearLayout f36808a;
-    public boolean f36809b;
-    public final org.telegram.ui.Components.y9 f36810c;
+    public final LinearLayout f36810a;
+    public boolean f36811b;
+    public final org.telegram.ui.Components.y9 f36812c;
     public final TextView d;
-    public final TextView f36811e;
-    public final TextView f36812f;
+    public final TextView f36813e;
+    public final TextView f36814f;
     public final ci.d h;
-    public ValueAnimator f36813n;
-    public boolean f36814r;
+    public ValueAnimator f36815n;
+    public boolean f36816r;
 
     public d3(Context context) {
         super(context);
-        this.f36814r = true;
+        this.f36816r = true;
         setVisibility(8);
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f36808a = linearLayout;
+        this.f36810a = linearLayout;
         linearLayout.setPadding(AndroidUtilities.dp(32.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(32.0f), AndroidUtilities.dp(24.0f));
         linearLayout.setOrientation(1);
         linearLayout.setGravity(3);
         addView(linearLayout, w7.x5.e(-2, -2, 17));
         org.telegram.ui.Components.y9 y9Var = new org.telegram.ui.Components.y9(context);
-        this.f36810c = y9Var;
+        this.f36812c = y9Var;
         linearLayout.addView(y9Var, w7.x5.n(100, 100));
         TextView textView = new TextView(context);
         this.d = textView;
@@ -40,13 +40,13 @@ public final class d3 extends FrameLayout {
         textView.setTypeface(AndroidUtilities.bold());
         textView.setTextColor(-1);
         TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, w7.x5.t(-2, -2, 3, 0, 4, 0, 2), context);
-        this.f36811e = h;
+        this.f36813e = h;
         h.setTextSize(1, 15.0f);
         h.setTextColor(-1);
         h.setSingleLine(false);
         h.setMaxLines(3);
         TextView h10 = com.google.android.gms.internal.vision.e2.h(linearLayout, h, w7.x5.t(-2, -2, 3, 0, 0, 0, 1), context);
-        this.f36812f = h10;
+        this.f36814f = h10;
         h10.setTextSize(1, 12.0f);
         h10.setTextColor(-1);
         h10.setAlpha(0.4f);
@@ -60,19 +60,19 @@ public final class d3 extends FrameLayout {
 
     public final void a(String str, String str2) {
         this.d.setText(LocaleController.getString(R.string.WebErrorTitle));
-        org.telegram.messenger.bi.r(R.string.WebErrorInfoBot, new Object[]{str}, this.f36811e);
-        this.f36812f.setText(str2);
+        org.telegram.messenger.bi.r(R.string.WebErrorInfoBot, new Object[]{str}, this.f36813e);
+        this.f36814f.setText(str2);
     }
 
     public final void b(boolean z10, boolean z11) {
         int i10;
         int i11;
         float f7;
-        if (this.f36814r == z10) {
+        if (this.f36816r == z10) {
             return;
         }
-        this.f36814r = z10;
-        ValueAnimator valueAnimator = this.f36813n;
+        this.f36816r = z10;
+        ValueAnimator valueAnimator = this.f36815n;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
@@ -87,9 +87,9 @@ public final class d3 extends FrameLayout {
                 f10 = 0.0f;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, f10);
-            this.f36813n = ofFloat;
+            this.f36815n = ofFloat;
             ofFloat.addUpdateListener(new c3(this, 0));
-            this.f36813n.start();
+            this.f36815n.start();
             return;
         }
         int i12 = -1;
@@ -104,19 +104,19 @@ public final class d3 extends FrameLayout {
         } else {
             i11 = -1;
         }
-        this.f36811e.setTextColor(i11);
+        this.f36813e.setTextColor(i11);
         if (!z10) {
             i12 = -16777216;
         }
-        this.f36812f.setTextColor(i12);
+        this.f36814f.setTextColor(i12);
     }
 
     @Override
     public void setVisibility(int i10) {
         super.setVisibility(i10);
-        if (i10 == 0 && !this.f36809b) {
-            this.f36809b = true;
-            MediaDataController.getInstance(UserConfig.selectedAccount).setPlaceholderImage(this.f36810c, "tg_placeholders_android", "🧐", "100_100");
+        if (i10 == 0 && !this.f36811b) {
+            this.f36811b = true;
+            MediaDataController.getInstance(UserConfig.selectedAccount).setPlaceholderImage(this.f36812c, "tg_placeholders_android", "🧐", "100_100");
         }
     }
 }

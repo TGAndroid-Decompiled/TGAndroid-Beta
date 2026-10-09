@@ -43,16 +43,16 @@ public class bx0 extends s4.e0 {
 
     @Override
     public final void q(s4.y0 y0Var) {
-        PointF a2 = a(this.f47825a);
+        PointF a2 = a(this.f47827a);
         if (a2 != null && (a2.x != 0.0f || a2.y != 0.0f)) {
             s4.z0.b(a2);
-            this.f47680k = a2;
-            this.f47684o = (int) (a2.x * 10000.0f);
-            this.f47685p = (int) (a2.y * 10000.0f);
-            y0Var.b((int) (this.f47684o * 1.2f), (int) (this.f47685p * 1.2f), (int) (n(10000) * 1.2f), this.f25179r);
+            this.f47682k = a2;
+            this.f47686o = (int) (a2.x * 10000.0f);
+            this.f47687p = (int) (a2.y * 10000.0f);
+            y0Var.b((int) (this.f47686o * 1.2f), (int) (this.f47687p * 1.2f), (int) (n(10000) * 1.2f), this.f25179r);
             return;
         }
-        y0Var.d = this.f47825a;
+        y0Var.d = this.f47827a;
         h();
     }
 }

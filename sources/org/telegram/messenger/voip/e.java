@@ -64,7 +64,7 @@ public final class e implements Runnable {
                 MessageObject messageObject = (MessageObject) this.f19545n;
                 c41 c41Var = new c41(activity, e6Var, this.f19541b, bArr);
                 c41Var.P((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) ((TLObject) this.f19543e));
-                c41Var.f36516s = new u31((zn) this.h, activity, e6Var, messageObject);
+                c41Var.f36518s = new u31((zn) this.h, activity, e6Var, messageObject);
                 c41Var.show();
                 return;
             default:

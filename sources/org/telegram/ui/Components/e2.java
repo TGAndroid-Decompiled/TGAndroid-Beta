@@ -52,31 +52,31 @@ public final class e2 implements sd0, MediaDataController.KeywordResultCallback,
                 Context context = (Context) this.d;
                 org.telegram.ui.ActionBar.e6 e6Var = (org.telegram.ui.ActionBar.e6) this.f25925e;
                 Utilities.Callback2 callback2 = (Utilities.Callback2) this.f25926f;
-                yh.w2 w2Var = (yh.w2) y2Var.f53419o.get(y2Var.f53421q);
+                yh.w2 w2Var = (yh.w2) y2Var.f53421o.get(y2Var.f53423q);
                 if (w2Var != null) {
-                    zf.a aVar2 = w2Var.f53328c;
-                    yh.m5 x10 = yh.m5.x(this.f25923b, y2Var.f53421q);
-                    if (x10.f52881e) {
+                    zf.a aVar2 = w2Var.f53330c;
+                    yh.m5 x10 = yh.m5.x(this.f25923b, y2Var.f53423q);
+                    if (x10.f52883e) {
                         aVar = zf.a.l(x10.p());
                     } else {
                         aVar = null;
                     }
-                    if (aVar != null && aVar2.f54440b > aVar.f54440b) {
-                        zf.b bVar = y2Var.f53421q;
-                        if (bVar == zf.b.f54441a) {
+                    if (aVar != null && aVar2.f54442b > aVar.f54442b) {
+                        zf.b bVar = y2Var.f53423q;
+                        if (bVar == zf.b.f54443a) {
                             new yh.e7(context, e6Var, aVar2.a(), 14, null, null, 0L).show();
                             return;
-                        } else if (bVar == zf.b.f54442b) {
-                            new di.h(context, e6Var, w2Var.f53328c, true, null).show();
+                        } else if (bVar == zf.b.f54444b) {
+                            new di.h(context, e6Var, w2Var.f53330c, true, null).show();
                             return;
                         } else {
                             return;
                         }
                     }
-                    of.e eVar = y2Var.f53418n;
+                    of.e eVar = y2Var.f53420n;
                     if (eVar != null) {
                         eVar.a(false);
-                        y2Var.f53418n = null;
+                        y2Var.f53420n = null;
                     }
                     callback2.run(w2Var, b2Var.g(i10, true, true));
                     return;
@@ -92,7 +92,7 @@ public final class e2 implements sd0, MediaDataController.KeywordResultCallback,
         int i10 = this.f25923b;
         org.telegram.ui.or0 or0Var = (org.telegram.ui.or0) this.f25925e;
         ei.q4 q4Var = (ei.q4) this.f25926f;
-        o2Var.f46496x = false;
+        o2Var.f46498x = false;
         FileLog.e(exc);
         if ((exc instanceof mb.a) && exc.getMessage() != null && exc.getMessage().contains("segmentation optional module to be downloaded") && o2Var.isAttachedToWindow()) {
             AndroidUtilities.runOnUIThread(new x21(o2Var, bitmap, i10, or0Var), 2000L);
@@ -203,7 +203,7 @@ public final class e2 implements sd0, MediaDataController.KeywordResultCallback,
         org.telegram.ui.ActionBar.e6 e6Var = (org.telegram.ui.ActionBar.e6) this.f25926f;
         Integer num = (Integer) obj;
         View view = (View) obj2;
-        yh.d5 d5Var = rs0Var.f51512e;
+        yh.d5 d5Var = rs0Var.f51514e;
         if (num.intValue() != -1 && num.intValue() != -2 && num.intValue() != 0 && !rs0Var.L) {
             int i10 = 0;
             while (true) {
@@ -221,7 +221,7 @@ public final class e2 implements sd0, MediaDataController.KeywordResultCallback,
             TL_stars.TL_starGiftCollection tL_starGiftCollection2 = tL_starGiftCollection;
             int i11 = i10;
             int i12 = this.f25923b;
-            String publicUsername = DialogObject.getPublicUsername(MessagesController.getInstance(i12).getUserOrChat(rs0Var.f51511c));
+            String publicUsername = DialogObject.getPublicUsername(MessagesController.getInstance(i12).getUserOrChat(rs0Var.f51513c));
             boolean h = d5Var.h();
             if (TextUtils.isEmpty(publicUsername) && !h) {
                 return Boolean.FALSE;

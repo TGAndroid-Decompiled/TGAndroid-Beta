@@ -22,7 +22,7 @@ public final class e40 extends pm0 {
 
     @Override
     public final void A(s4.d1 d1Var) {
-        View view = d1Var.f47656a;
+        View view = d1Var.f47658a;
         if (view instanceof org.telegram.ui.Cells.b5) {
             ((org.telegram.ui.Cells.b5) view).a();
         }
@@ -30,9 +30,9 @@ public final class e40 extends pm0 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        View view = d1Var.f47656a;
+        View view = d1Var.f47658a;
         if (!(view instanceof org.telegram.ui.Cells.b5) || !this.d.f27226f0.contains(Long.valueOf(((org.telegram.ui.Cells.b5) view).getUserId()))) {
-            int i10 = d1Var.f47660f;
+            int i10 = d1Var.f47662f;
             if (i10 == 0 || i10 == 1) {
                 return true;
             }
@@ -79,8 +79,8 @@ public final class e40 extends pm0 {
         int i12;
         i40 i40Var = this.d;
         ArrayList arrayList = i40Var.X;
-        int i13 = d1Var.f47660f;
-        View view = d1Var.f47656a;
+        int i13 = d1Var.f47662f;
+        View view = d1Var.f47658a;
         boolean z10 = false;
         if (i13 != 0) {
             if (i13 != 1) {

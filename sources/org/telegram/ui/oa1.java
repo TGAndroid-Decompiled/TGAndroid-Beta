@@ -3,39 +3,39 @@ package org.telegram.ui;
 import android.util.SparseIntArray;
 import android.view.View;
 public final class oa1 extends s4.o {
-    public int f40460b;
-    public final ga1 f40461c;
+    public int f40462b;
+    public final ga1 f40463c;
     public final s4.d0 d;
-    public final SparseIntArray f40462e = new SparseIntArray();
-    public int f40463f = -1;
-    public int f40464g = -1;
+    public final SparseIntArray f40464e = new SparseIntArray();
+    public int f40465f = -1;
+    public int f40466g = -1;
     public int h = -1;
-    public int f40465i = -1;
-    public int f40466j = -1;
-    public int f40467k = -1;
-    public int f40468l = -1;
-    public int f40469m = -1;
-    public int f40470n = -1;
-    public int f40471o = -1;
-    public int f40472p = -1;
-    public int f40473q = -1;
-    public int f40474r = -1;
-    public int f40475s = -1;
-    public int f40476t = -1;
-    public int f40477u = -1;
+    public int f40467i = -1;
+    public int f40468j = -1;
+    public int f40469k = -1;
+    public int f40470l = -1;
+    public int f40471m = -1;
+    public int f40472n = -1;
+    public int f40473o = -1;
+    public int f40474p = -1;
+    public int f40475q = -1;
+    public int f40476r = -1;
+    public int f40477s = -1;
+    public int f40478t = -1;
+    public int f40479u = -1;
     public int v = -1;
-    public int f40478w = -1;
-    public int f40479x = -1;
-    public int f40480y = -1;
+    public int f40480w = -1;
+    public int f40481x = -1;
+    public int f40482y = -1;
 
     public oa1(ga1 ga1Var, s4.d0 d0Var) {
-        this.f40461c = ga1Var;
+        this.f40463c = ga1Var;
         this.d = d0Var;
     }
 
     @Override
     public final boolean a(int i10, int i11) {
-        if (this.f40462e.get(i10) == this.f40461c.j(i11)) {
+        if (this.f40464e.get(i10) == this.f40463c.j(i11)) {
             return true;
         }
         return false;
@@ -43,73 +43,73 @@ public final class oa1 extends s4.o {
 
     @Override
     public final boolean b(int i10, int i11) {
-        SparseIntArray sparseIntArray = this.f40462e;
+        SparseIntArray sparseIntArray = this.f40464e;
         int i12 = sparseIntArray.get(i10);
-        ga1 ga1Var = this.f40461c;
+        ga1 ga1Var = this.f40463c;
         if (i12 == 13 && ga1Var.j(i11) == 13) {
             return true;
         }
         if (sparseIntArray.get(i10) == 10 && ga1Var.j(i11) == 10) {
             return true;
         }
-        int i13 = this.f40479x;
-        if (i10 >= i13 && i10 <= this.f40480y) {
+        int i13 = this.f40481x;
+        if (i10 >= i13 && i10 <= this.f40482y) {
             if (i10 - i13 == i11 - ga1Var.I) {
                 return true;
             }
             return false;
-        } else if (i10 == this.f40463f && i11 == ga1Var.f37957e) {
+        } else if (i10 == this.f40465f && i11 == ga1Var.f37959e) {
             return true;
         } else {
-            if (i10 == this.f40464g && i11 == ga1Var.h) {
+            if (i10 == this.f40466g && i11 == ga1Var.h) {
                 return true;
             }
-            if (i10 == this.h && i11 == ga1Var.f37960r) {
+            if (i10 == this.h && i11 == ga1Var.f37962r) {
                 return true;
             }
-            if (i10 == this.f40465i && i11 == ga1Var.f37961s) {
+            if (i10 == this.f40467i && i11 == ga1Var.f37963s) {
                 return true;
             }
-            if (i10 == this.f40466j && i11 == ga1Var.v) {
+            if (i10 == this.f40468j && i11 == ga1Var.v) {
                 return true;
             }
-            if (i10 == this.f40467k && i11 == ga1Var.f37962w) {
+            if (i10 == this.f40469k && i11 == ga1Var.f37964w) {
                 return true;
             }
-            if (i10 == this.f40468l && i11 == ga1Var.f37963x) {
+            if (i10 == this.f40470l && i11 == ga1Var.f37965x) {
                 return true;
             }
-            if (i10 == this.f40469m && i11 == ga1Var.f37959n) {
+            if (i10 == this.f40471m && i11 == ga1Var.f37961n) {
                 return true;
             }
-            if (i10 == this.f40470n && i11 == ga1Var.f37964y) {
+            if (i10 == this.f40472n && i11 == ga1Var.f37966y) {
                 return true;
             }
-            if (i10 == this.f40474r && i11 == ga1Var.K) {
+            if (i10 == this.f40476r && i11 == ga1Var.K) {
                 return true;
             }
-            if (i10 == this.f40475s && i11 == ga1Var.L) {
+            if (i10 == this.f40477s && i11 == ga1Var.L) {
                 return true;
             }
-            if (i10 == this.f40476t && i11 == ga1Var.M) {
+            if (i10 == this.f40478t && i11 == ga1Var.M) {
                 return true;
             }
-            if (i10 == this.f40477u && i11 == ga1Var.N) {
+            if (i10 == this.f40479u && i11 == ga1Var.N) {
                 return true;
             }
             if (i10 == this.v && i11 == ga1Var.O) {
                 return true;
             }
-            if (i10 == this.f40478w && i11 == ga1Var.P) {
+            if (i10 == this.f40480w && i11 == ga1Var.P) {
                 return true;
             }
-            if (i10 == this.f40471o && i11 == ga1Var.E) {
+            if (i10 == this.f40473o && i11 == ga1Var.E) {
                 return true;
             }
-            if (i10 == this.f40472p && i11 == ga1Var.F) {
+            if (i10 == this.f40474p && i11 == ga1Var.F) {
                 return true;
             }
-            if (i10 == this.f40473q && i11 == ga1Var.G) {
+            if (i10 == this.f40475q && i11 == ga1Var.G) {
                 return true;
             }
             return false;
@@ -118,46 +118,46 @@ public final class oa1 extends s4.o {
 
     @Override
     public final int d() {
-        return this.f40461c.f37955c0;
+        return this.f40463c.f37957c0;
     }
 
     @Override
     public final int e() {
-        return this.f40460b;
+        return this.f40462b;
     }
 
     public final void f() {
         int i10;
         long j3;
         View m10;
-        SparseIntArray sparseIntArray = this.f40462e;
+        SparseIntArray sparseIntArray = this.f40464e;
         sparseIntArray.clear();
-        ga1 ga1Var = this.f40461c;
-        this.f40460b = ga1Var.f37955c0;
+        ga1 ga1Var = this.f40463c;
+        this.f40462b = ga1Var.f37957c0;
         int i11 = 0;
-        for (int i12 = 0; i12 < this.f40460b; i12++) {
+        for (int i12 = 0; i12 < this.f40462b; i12++) {
             sparseIntArray.put(i12, ga1Var.j(i12));
         }
-        this.f40463f = ga1Var.f37957e;
-        this.f40464g = ga1Var.h;
-        this.h = ga1Var.f37960r;
-        this.f40465i = ga1Var.f37961s;
-        this.f40466j = ga1Var.v;
-        this.f40467k = ga1Var.f37962w;
-        this.f40468l = ga1Var.f37963x;
-        this.f40469m = ga1Var.f37959n;
-        this.f40470n = ga1Var.f37964y;
-        this.f40479x = ga1Var.I;
-        this.f40480y = ga1Var.J;
-        this.f40471o = ga1Var.E;
-        this.f40472p = ga1Var.F;
-        this.f40473q = ga1Var.G;
-        this.f40474r = ga1Var.K;
-        this.f40475s = ga1Var.L;
-        this.f40476t = ga1Var.M;
-        this.f40477u = ga1Var.N;
+        this.f40465f = ga1Var.f37959e;
+        this.f40466g = ga1Var.h;
+        this.h = ga1Var.f37962r;
+        this.f40467i = ga1Var.f37963s;
+        this.f40468j = ga1Var.v;
+        this.f40469k = ga1Var.f37964w;
+        this.f40470l = ga1Var.f37965x;
+        this.f40471m = ga1Var.f37961n;
+        this.f40472n = ga1Var.f37966y;
+        this.f40481x = ga1Var.I;
+        this.f40482y = ga1Var.J;
+        this.f40473o = ga1Var.E;
+        this.f40474p = ga1Var.F;
+        this.f40475q = ga1Var.G;
+        this.f40476r = ga1Var.K;
+        this.f40477s = ga1Var.L;
+        this.f40478t = ga1Var.M;
+        this.f40479u = ga1Var.N;
         this.v = ga1Var.O;
-        this.f40478w = ga1Var.P;
+        this.f40480w = ga1Var.P;
         ga1Var.E();
         s4.d0 d0Var = this.d;
         int L0 = d0Var.L0();
@@ -179,7 +179,7 @@ public final class oa1 extends s4.o {
         s4.o.c(this, true).b(ga1Var);
         if (j3 != -1) {
             while (true) {
-                if (i11 < ga1Var.f37955c0) {
+                if (i11 < ga1Var.f37957c0) {
                     if (ga1Var.i(i11) == j3) {
                         break;
                     }

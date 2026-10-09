@@ -8,25 +8,25 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class l6 implements Utilities.Callback2 {
-    public final int f39438a;
-    public final Object f39439b;
-    public final Object f39440c;
+    public final int f39440a;
+    public final Object f39441b;
+    public final Object f39442c;
     public final Object d;
 
     public l6(Object obj, Object obj2, Object obj3, int i10) {
-        this.f39438a = i10;
-        this.f39439b = obj;
-        this.f39440c = obj2;
+        this.f39440a = i10;
+        this.f39441b = obj;
+        this.f39442c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        int i10 = this.f39438a;
+        int i10 = this.f39440a;
         int i11 = 0;
         Object obj3 = this.d;
-        Object obj4 = this.f39440c;
-        Object obj5 = this.f39439b;
+        Object obj4 = this.f39442c;
+        Object obj5 = this.f39441b;
         switch (i10) {
             case 0:
                 org.telegram.ui.ActionBar.n5 n5Var = (org.telegram.ui.ActionBar.n5) obj3;
@@ -42,12 +42,12 @@ public final class l6 implements Utilities.Callback2 {
                 Boolean bool = (Boolean) obj;
                 TLRPC.WebPage webPage = (TLRPC.WebPage) obj2;
                 if (bool.booleanValue() && !(webPage instanceof TLRPC.TL_webPagePending)) {
-                    Iterator it = znVar.f44858mb.keySet().iterator();
-                    while (it.hasNext() && znVar.f44858mb.size() > 5) {
+                    Iterator it = znVar.f44860mb.keySet().iterator();
+                    while (it.hasNext() && znVar.f44860mb.size() > 5) {
                         it.next();
                         it.remove();
                     }
-                    znVar.f44858mb.put(getwebpagepreview.message, webPage);
+                    znVar.f44860mb.put(getwebpagepreview.message, webPage);
                 }
                 kgVar.run(bool, webPage);
                 return;

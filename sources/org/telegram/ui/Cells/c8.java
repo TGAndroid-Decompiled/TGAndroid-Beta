@@ -196,15 +196,15 @@ public abstract class c8 extends FrameLayout {
     }
 
     public void setData(ua1 ua1Var) {
-        TLRPC.User user = ua1Var.f42385a;
+        TLRPC.User user = ua1Var.f42387a;
         org.telegram.ui.Components.j9 j9Var = this.f21926n;
         j9Var.r(user);
-        TLRPC.User user2 = ua1Var.f42385a;
+        TLRPC.User user2 = ua1Var.f42387a;
         a8 a8Var = this.f21921a;
         a8Var.e(user2, j9Var);
         a8Var.setRoundRadius(AndroidUtilities.dp(46.0f) >> 1);
-        this.f21922b.k(ua1Var.f42385a.first_name);
-        this.f21924e.setText(ua1Var.f42386b);
+        this.f21922b.k(ua1Var.f42387a.first_name);
+        this.f21924e.setText(ua1Var.f42388b);
         this.f21923c.setVisibility(8);
         this.d.setVisibility(8);
         this.f21925f.setVisibility(8);

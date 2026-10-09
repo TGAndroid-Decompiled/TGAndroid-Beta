@@ -24,7 +24,7 @@ public class a implements Closeable {
     public int f15476w = 1;
 
     static {
-        rb.a.f47141b = new rb.a(12);
+        rb.a.f47143b = new rb.a(12);
     }
 
     public a(Reader reader) {

@@ -9,17 +9,17 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class p extends org.telegram.ui.Components.pm0 {
-    public final Context f40622c;
+    public final Context f40624c;
     public final q d;
 
     public p(q qVar, Context context) {
         this.d = qVar;
-        this.f40622c = context;
+        this.f40624c = context;
     }
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47660f == 0) {
+        if (d1Var.f47662f == 0) {
             return true;
         }
         return false;
@@ -33,13 +33,13 @@ public final class p extends org.telegram.ui.Components.pm0 {
     @Override
     public final int j(int i10) {
         q qVar = this.d;
-        if (i10 >= qVar.f40945x && i10 < qVar.f40946y) {
+        if (i10 >= qVar.f40947x && i10 < qVar.f40948y) {
             return 0;
         }
         if (i10 == qVar.E) {
             return 1;
         }
-        if (i10 != qVar.F && i10 != qVar.f40944w) {
+        if (i10 != qVar.F && i10 != qVar.f40946w) {
             return 0;
         }
         return 2;
@@ -49,12 +49,12 @@ public final class p extends org.telegram.ui.Components.pm0 {
     public final void v(s4.d1 d1Var, int i10) {
         int i11;
         boolean z10;
-        View view = d1Var.f47656a;
+        View view = d1Var.f47658a;
         q qVar = this.d;
-        a0.i iVar = qVar.f40936a;
+        a0.i iVar = qVar.f40938a;
         ArrayList arrayList = qVar.h;
         if (j(i10) == 0) {
-            int i12 = i10 - qVar.f40945x;
+            int i12 = i10 - qVar.f40947x;
             org.telegram.ui.Cells.w wVar = (org.telegram.ui.Cells.w) view;
             TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(i12);
             boolean z11 = true;
@@ -83,7 +83,7 @@ public final class p extends org.telegram.ui.Components.pm0 {
             wVar.setOnCheckedChangeListener(new o(0, this, stickerSetCovered));
         } else if (j(i10) == 2) {
             org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
-            if (i10 == qVar.f40944w) {
+            if (i10 == qVar.f40946w) {
                 e9Var.setTopPadding(17);
                 e9Var.setBottomPadding(10);
                 if (qVar.H == 5) {
@@ -102,7 +102,7 @@ public final class p extends org.telegram.ui.Components.pm0 {
 
     @Override
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        Context context = this.f40622c;
+        Context context = this.f40624c;
         View view = null;
         if (i10 != 0) {
             if (i10 != 1) {

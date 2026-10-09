@@ -490,21 +490,21 @@ public class h implements jl0, ar0, n5.b, t0.h {
         g0 g0Var = (g0) this.f15462b;
         d1 U = RecyclerView.U(view);
         if (U != null) {
-            View view2 = U.f47656a;
+            View view2 = U.f47658a;
             RecyclerView recyclerView = (RecyclerView) g0Var.f14470b;
-            int i10 = U.f47672s;
+            int i10 = U.f47674s;
             if (i10 != -1) {
-                U.f47671r = i10;
+                U.f47673r = i10;
             } else {
-                WeakHashMap weakHashMap = i0.f46764a;
-                U.f47671r = view2.getImportantForAccessibility();
+                WeakHashMap weakHashMap = i0.f46766a;
+                U.f47673r = view2.getImportantForAccessibility();
             }
             if (recyclerView.b0()) {
-                U.f47672s = 4;
+                U.f47674s = 4;
                 recyclerView.K0.add(U);
                 return;
             }
-            WeakHashMap weakHashMap2 = i0.f46764a;
+            WeakHashMap weakHashMap2 = i0.f46766a;
             view2.setImportantForAccessibility(4);
         }
     }
@@ -539,16 +539,16 @@ public class h implements jl0, ar0, n5.b, t0.h {
             }
             d1 U = RecyclerView.U((View) arrayList.get(size));
             if (U != null) {
-                int i11 = U.f47671r;
+                int i11 = U.f47673r;
                 if (recyclerView.b0()) {
-                    U.f47672s = i11;
+                    U.f47674s = i11;
                     recyclerView.K0.add(U);
                 } else {
-                    View view = U.f47656a;
-                    WeakHashMap weakHashMap = i0.f46764a;
+                    View view = U.f47658a;
+                    WeakHashMap weakHashMap = i0.f46766a;
                     view.setImportantForAccessibility(i11);
                 }
-                U.f47671r = 0;
+                U.f47673r = 0;
             }
             arrayList.remove(size);
         }
@@ -563,7 +563,7 @@ public class h implements jl0, ar0, n5.b, t0.h {
 
     public void U(pf.g gVar) {
         if (((pf.d) this.f15462b) != null) {
-            for (int i10 = 0; i10 < gVar.f45580a.size(); i10++) {
+            for (int i10 = 0; i10 < gVar.f45582a.size(); i10++) {
                 pf.d dVar = (pf.d) this.f15462b;
                 dVar.h.remove(gVar.a(i10).d);
                 dVar.h();
@@ -618,16 +618,16 @@ public class h implements jl0, ar0, n5.b, t0.h {
             long longValue = l4.longValue();
             JobInfo.Builder builder = new JobInfo.Builder(value, componentName);
             builder.setMinimumLatency(aVar.a(dVar, longValue, i10));
-            Set set = ((r5.b) aVar.f46977b.get(dVar)).f46980c;
-            if (set.contains(r5.c.f46981a)) {
+            Set set = ((r5.b) aVar.f46979b.get(dVar)).f46982c;
+            if (set.contains(r5.c.f46983a)) {
                 builder.setRequiredNetworkType(2);
             } else {
                 builder.setRequiredNetworkType(1);
             }
-            if (set.contains(r5.c.f46983c)) {
+            if (set.contains(r5.c.f46985c)) {
                 builder.setRequiresCharging(true);
             }
-            if (set.contains(r5.c.f46982b)) {
+            if (set.contains(r5.c.f46984b)) {
                 builder.setRequiresDeviceIdle(true);
             }
             PersistableBundle persistableBundle = new PersistableBundle();
@@ -672,16 +672,16 @@ public class h implements jl0, ar0, n5.b, t0.h {
         }
         pf.a aVar2 = (pf.a) this.d;
         if (aVar2 != null) {
-            e6.h hVar = aVar2.f45549a;
+            e6.h hVar = aVar2.f45551a;
             n6.l.e("Must be called from the main thread.");
             hVar.f8677i.remove(aVar2);
         }
         if (aVar != null) {
-            aVar.f45549a.p(aVar);
+            aVar.f45551a.p(aVar);
             pf.g gVar3 = (pf.g) this.f15463c;
             if (gVar3 != null) {
                 aVar.d = gVar3;
-                aVar.f45554g = 0;
+                aVar.f45556g = 0;
                 aVar.h = 0;
                 aVar.p();
             }
@@ -715,16 +715,16 @@ public class h implements jl0, ar0, n5.b, t0.h {
             d1 U = RecyclerView.U(view);
             if (U != null) {
                 RecyclerView recyclerView = (RecyclerView) g0Var.f14470b;
-                int i10 = U.f47671r;
+                int i10 = U.f47673r;
                 if (recyclerView.b0()) {
-                    U.f47672s = i10;
+                    U.f47674s = i10;
                     recyclerView.K0.add(U);
                 } else {
-                    View view2 = U.f47656a;
-                    WeakHashMap weakHashMap = i0.f46764a;
+                    View view2 = U.f47658a;
+                    WeakHashMap weakHashMap = i0.f46766a;
                     view2.setImportantForAccessibility(i10);
                 }
-                U.f47671r = 0;
+                U.f47673r = 0;
             }
         }
     }
@@ -820,7 +820,7 @@ public class h implements jl0, ar0, n5.b, t0.h {
         if (((pf.d) this.f15462b) == null) {
             this.f15462b = new pf.d();
         }
-        for (int i10 = 0; i10 < gVar.f45580a.size(); i10++) {
+        for (int i10 = 0; i10 < gVar.f45582a.size(); i10++) {
             pf.d dVar = (pf.d) this.f15462b;
             pf.f a2 = gVar.a(i10);
             dVar.h.put(a2.d, a2);
@@ -882,7 +882,7 @@ public class h implements jl0, ar0, n5.b, t0.h {
             if (!U.l() && !U.r()) {
                 throw new IllegalArgumentException("Called attach on a child which is not detached: " + U + recyclerView.C());
             }
-            U.f47665l &= -257;
+            U.f47667l &= -257;
         }
         RecyclerView.c(recyclerView, view, K, layoutParams);
     }
@@ -958,7 +958,7 @@ public class h implements jl0, ar0, n5.b, t0.h {
     public void u() {
         android.support.v4.media.session.a0 a0Var = (android.support.v4.media.session.a0) this.f15462b;
         if (a0Var != null) {
-            int i10 = ((p4.e) this.d).f45336n.d;
+            int i10 = ((p4.e) this.d).f45338n.d;
             v vVar = a0Var.f2071a;
             vVar.getClass();
             AudioAttributes.Builder builder = new AudioAttributes.Builder();

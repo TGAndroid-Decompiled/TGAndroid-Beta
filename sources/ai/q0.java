@@ -168,7 +168,7 @@ public final class q0 implements Utilities.Callback3 {
                 return;
             case 3:
                 org.telegram.ui.Wallet.k0 k0Var = (org.telegram.ui.Wallet.k0) this.f1604b;
-                org.telegram.ui.Wallet.g7 g7Var = (org.telegram.ui.Wallet.g7) this.f1605c;
+                org.telegram.ui.Wallet.h7 h7Var = (org.telegram.ui.Wallet.h7) this.f1605c;
                 TL_wallet.WalletState walletState = (TL_wallet.WalletState) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP = (TLRPC.InputCheckPasswordSRP) obj3;
@@ -183,11 +183,11 @@ public final class q0 implements Utilities.Callback3 {
                     if (str6 != null) {
                         str5 = str6;
                     }
-                    g7Var.run(str5);
+                    h7Var.run(str5);
                     return;
                 }
                 k0Var.g0(walletState);
-                g7Var.run(null);
+                h7Var.run(null);
                 return;
             case 4:
                 final org.telegram.ui.Wallet.k0 k0Var2 = (org.telegram.ui.Wallet.k0) this.f1604b;
@@ -224,7 +224,7 @@ public final class q0 implements Utilities.Callback3 {
                     TL_wallet.fetchEncryptedSecretPhrasePart fetchencryptedsecretphrasepart = new TL_wallet.fetchEncryptedSecretPhrasePart();
                     fetchencryptedsecretphrasepart.token = secretphraseparts.token;
                     fetchencryptedsecretphrasepart.public_key = key_to_public_key;
-                    ConnectionsManager.getInstance(k0Var2.f35093a).sendRequestTyped(fetchencryptedsecretphrasepart, new Object(), new Utilities.Callback2() {
+                    ConnectionsManager.getInstance(k0Var2.f35117a).sendRequestTyped(fetchencryptedsecretphrasepart, new Object(), new Utilities.Callback2() {
                         @Override
                         public final void run(Object obj4, Object obj5) {
                             k0 k0Var3 = k0.this;
@@ -285,7 +285,7 @@ public final class q0 implements Utilities.Callback3 {
                 return;
             default:
                 org.telegram.ui.Wallet.k0 k0Var3 = (org.telegram.ui.Wallet.k0) this.f1604b;
-                org.telegram.ui.Wallet.y6 y6Var = (org.telegram.ui.Wallet.y6) this.f1605c;
+                org.telegram.ui.Wallet.z6 z6Var = (org.telegram.ui.Wallet.z6) this.f1605c;
                 TL_wallet.WalletState walletState2 = (TL_wallet.WalletState) obj;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
                 TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP3 = (TLRPC.InputCheckPasswordSRP) obj3;
@@ -294,12 +294,12 @@ public final class q0 implements Utilities.Callback3 {
                     if (str8 == null) {
                         str8 = "NULL_ERROR";
                     }
-                    y6Var.run(str8);
+                    z6Var.run(str8);
                     return;
                 }
                 k0Var3.g0(walletState2);
                 k0Var3.O();
-                y6Var.run(null);
+                z6Var.run(null);
                 return;
         }
     }

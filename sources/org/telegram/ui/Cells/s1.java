@@ -113,8 +113,8 @@ public final class s1 {
         }
         sh.b bVar = this.f22763x;
         if (bVar != null) {
-            bVar.f48164b.a();
-            bVar.f48165c.onAttachedToWindow();
+            bVar.f48166b.a();
+            bVar.f48167c.onAttachedToWindow();
             bVar.E.e();
         }
     }
@@ -126,8 +126,8 @@ public final class s1 {
         }
         sh.b bVar = this.f22763x;
         if (bVar != null) {
-            bVar.f48164b.b();
-            bVar.f48165c.onDetachedFromWindow();
+            bVar.f48166b.b();
+            bVar.f48167c.onDetachedFromWindow();
             bVar.E.f();
         }
     }

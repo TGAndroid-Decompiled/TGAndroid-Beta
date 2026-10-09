@@ -28,7 +28,7 @@ public final class h61 implements ValueAnimator.AnimatorUpdateListener {
                 this.f26981b = floatValue;
                 return;
             default:
-                ((org.telegram.ui.cv) this.d).f36741c.d.setColorFilter(new PorterDuffColorFilter(i0.a.d(((Float) valueAnimator.getAnimatedValue()).floatValue(), this.f26981b, this.f26982c), PorterDuff.Mode.SRC_IN));
+                ((org.telegram.ui.cv) this.d).f36743c.d.setColorFilter(new PorterDuffColorFilter(i0.a.d(((Float) valueAnimator.getAnimatedValue()).floatValue(), this.f26981b, this.f26982c), PorterDuff.Mode.SRC_IN));
                 return;
         }
     }

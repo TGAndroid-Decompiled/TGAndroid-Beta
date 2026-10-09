@@ -87,7 +87,7 @@ public final class m51 extends eb {
         this.d.p1();
         this.d.setOnItemClickListener(new ai.o6(14, this, e6Var));
         s4.j jVar = new s4.j();
-        jVar.f47696m = false;
+        jVar.f47698m = false;
         jVar.C = false;
         jVar.o(hs.h);
         jVar.n(350L);

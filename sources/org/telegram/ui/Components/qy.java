@@ -56,7 +56,7 @@ public final class qy implements View.OnClickListener {
                 } else if (textView != null && textView.getVisibility() == 0 && textView.isEnabled()) {
                     textView.performClick();
                     return;
-                } else if (p0Var != null && p0Var.getVisibility() == 0 && p0Var.f47383r.isEnabled()) {
+                } else if (p0Var != null && p0Var.getVisibility() == 0 && p0Var.f47385r.isEnabled()) {
                     p0Var.performClick();
                     return;
                 } else {

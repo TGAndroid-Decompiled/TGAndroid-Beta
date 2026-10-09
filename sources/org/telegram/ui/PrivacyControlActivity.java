@@ -437,8 +437,8 @@ public class PrivacyControlActivity extends org.telegram.ui.ActionBar.n2 impleme
                                 z12 = true;
                             }
                             c70Var.p0(arrayList, z11, z12);
-                            c70Var.f36568w = new ch.a(i10, privacyControlActivity, z10);
-                            c70Var.f36548e0 = true;
+                            c70Var.f36570w = new ch.a(i10, privacyControlActivity, z10);
+                            c70Var.f36550e0 = true;
                             privacyControlActivity.presentFragment(c70Var);
                             return;
                         }
@@ -448,8 +448,8 @@ public class PrivacyControlActivity extends org.telegram.ui.ActionBar.n2 impleme
                         z12 = true;
                     }
                     c70Var.p0(arrayList, z11, z12);
-                    c70Var.f36568w = new ch.a(i10, privacyControlActivity, z10);
-                    c70Var.f36548e0 = true;
+                    c70Var.f36570w = new ch.a(i10, privacyControlActivity, z10);
+                    c70Var.f36550e0 = true;
                     privacyControlActivity.presentFragment(c70Var);
                     return;
                 }
@@ -520,19 +520,19 @@ public class PrivacyControlActivity extends org.telegram.ui.ActionBar.n2 impleme
     public final void A0() {
         zx0 zx0Var = this.f34168e;
         if (zx0Var != null) {
-            zx0Var.f45092f.messageOwner.fwd_from.from_id = new TLRPC.TL_peerUser();
+            zx0Var.f45094f.messageOwner.fwd_from.from_id = new TLRPC.TL_peerUser();
             int i10 = this.I;
             if (i10 == 0) {
-                this.f34168e.f45091e.setOverrideText(LocaleController.getString(R.string.PrivacyForwardsEverybody));
-                this.f34168e.f45092f.messageOwner.fwd_from.from_id.user_id = 1L;
+                this.f34168e.f45093e.setOverrideText(LocaleController.getString(R.string.PrivacyForwardsEverybody));
+                this.f34168e.f45094f.messageOwner.fwd_from.from_id.user_id = 1L;
             } else if (i10 == 1) {
-                this.f34168e.f45091e.setOverrideText(LocaleController.getString(R.string.PrivacyForwardsNobody));
-                this.f34168e.f45092f.messageOwner.fwd_from.from_id.user_id = 0L;
+                this.f34168e.f45093e.setOverrideText(LocaleController.getString(R.string.PrivacyForwardsNobody));
+                this.f34168e.f45094f.messageOwner.fwd_from.from_id.user_id = 0L;
             } else {
-                this.f34168e.f45091e.setOverrideText(LocaleController.getString(R.string.PrivacyForwardsContacts));
-                this.f34168e.f45092f.messageOwner.fwd_from.from_id.user_id = 1L;
+                this.f34168e.f45093e.setOverrideText(LocaleController.getString(R.string.PrivacyForwardsContacts));
+                this.f34168e.f45094f.messageOwner.fwd_from.from_id.user_id = 1L;
             }
-            this.f34168e.f45089b.t2();
+            this.f34168e.f45091b.t2();
         }
     }
 
@@ -611,8 +611,8 @@ public class PrivacyControlActivity extends org.telegram.ui.ActionBar.n2 impleme
         TLRPC.UserFull userFull;
         if (z10) {
             ux0Var = new ux0(this);
-            ux0Var.f(ux0Var.f42576c);
-            ux0Var.f42575b = this.f34184r0;
+            ux0Var.f(ux0Var.f42578c);
+            ux0Var.f42577b = this.f34184r0;
         } else {
             ux0Var = null;
         }
@@ -926,18 +926,18 @@ public class PrivacyControlActivity extends org.telegram.ui.ActionBar.n2 impleme
             tL_message.peer_id = tL_peerUser;
             tL_peerUser.user_id = UserConfig.getInstance(this.currentAccount).getClientUserId();
             MessageObject messageObject = new MessageObject(this.currentAccount, tL_message, true, false);
-            frameLayout.f45092f = messageObject;
+            frameLayout.f45094f = messageObject;
             messageObject.eventId = 1L;
             messageObject.resetLayout();
             org.telegram.ui.Cells.u1 u1Var = new org.telegram.ui.Cells.u1(context, this.currentAccount);
-            frameLayout.f45089b = u1Var;
+            frameLayout.f45091b = u1Var;
             u1Var.setDelegate(new rb.a(17));
             u1Var.N7 = false;
             u1Var.setFullyDraw(true);
             u1Var.X3(messageObject, null, false, false, false, false);
             frameLayout.addView(u1Var, w7.x5.n(-1, -2));
             org.telegram.ui.Components.z40 z40Var = new org.telegram.ui.Components.z40(1, context, null, true);
-            frameLayout.f45091e = z40Var;
+            frameLayout.f45093e = z40Var;
             frameLayout.addView(z40Var, w7.x5.a(-2.0f, 19.0f, 0.0f, 19.0f, 0.0f, -2, 51));
             this.f34168e = frameLayout;
         }
@@ -1251,17 +1251,17 @@ public class PrivacyControlActivity extends org.telegram.ui.ActionBar.n2 impleme
                 }
                 atomicInteger2.incrementAndGet();
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(setprivacy3, new RequestDelegate(this) {
-                    public final PrivacyControlActivity f40375b;
+                    public final PrivacyControlActivity f40377b;
 
                     {
-                        this.f40375b = this;
+                        this.f40377b = this;
                     }
 
                     @Override
                     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
                         switch (r3) {
                             case 0:
-                                final PrivacyControlActivity privacyControlActivity = this.f40375b;
+                                final PrivacyControlActivity privacyControlActivity = this.f40377b;
                                 final AtomicInteger atomicInteger3 = atomicInteger2;
                                 AndroidUtilities.runOnUIThread(new Runnable() {
                                     @Override
@@ -1278,7 +1278,7 @@ public class PrivacyControlActivity extends org.telegram.ui.ActionBar.n2 impleme
                                 });
                                 return;
                             default:
-                                final PrivacyControlActivity privacyControlActivity2 = this.f40375b;
+                                final PrivacyControlActivity privacyControlActivity2 = this.f40377b;
                                 final AtomicInteger atomicInteger4 = atomicInteger2;
                                 AndroidUtilities.runOnUIThread(new Runnable() {
                                     @Override
@@ -1384,17 +1384,17 @@ public class PrivacyControlActivity extends org.telegram.ui.ActionBar.n2 impleme
         }
         atomicInteger2.incrementAndGet();
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(setprivacy2, new RequestDelegate(this) {
-            public final PrivacyControlActivity f40375b;
+            public final PrivacyControlActivity f40377b;
 
             {
-                this.f40375b = this;
+                this.f40377b = this;
             }
 
             @Override
             public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
                 switch (r3) {
                     case 0:
-                        final PrivacyControlActivity privacyControlActivity = this.f40375b;
+                        final PrivacyControlActivity privacyControlActivity = this.f40377b;
                         final AtomicInteger atomicInteger3 = atomicInteger2;
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
@@ -1411,7 +1411,7 @@ public class PrivacyControlActivity extends org.telegram.ui.ActionBar.n2 impleme
                         });
                         return;
                     default:
-                        final PrivacyControlActivity privacyControlActivity2 = this.f40375b;
+                        final PrivacyControlActivity privacyControlActivity2 = this.f40377b;
                         final AtomicInteger atomicInteger4 = atomicInteger2;
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
@@ -1445,17 +1445,17 @@ public class PrivacyControlActivity extends org.telegram.ui.ActionBar.n2 impleme
             globalPrivacySettings6.display_gifts_button = globalPrivacySettings5.display_gifts_button;
             atomicInteger = atomicInteger2;
             getConnectionsManager().sendRequest(setglobalprivacysettings2, new RequestDelegate(this) {
-                public final PrivacyControlActivity f40615b;
+                public final PrivacyControlActivity f40617b;
 
                 {
-                    this.f40615b = this;
+                    this.f40617b = this;
                 }
 
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                     switch (r5) {
                         case 0:
-                            final PrivacyControlActivity privacyControlActivity = this.f40615b;
+                            final PrivacyControlActivity privacyControlActivity = this.f40617b;
                             final TLRPC.GlobalPrivacySettings globalPrivacySettings7 = globalPrivacySettings5;
                             final TL_account.setGlobalPrivacySettings setglobalprivacysettings3 = setglobalprivacysettings2;
                             final AtomicInteger atomicInteger3 = atomicInteger;
@@ -1521,7 +1521,7 @@ public class PrivacyControlActivity extends org.telegram.ui.ActionBar.n2 impleme
                             });
                             return;
                         default:
-                            final PrivacyControlActivity privacyControlActivity2 = this.f40615b;
+                            final PrivacyControlActivity privacyControlActivity2 = this.f40617b;
                             final TLRPC.GlobalPrivacySettings globalPrivacySettings8 = globalPrivacySettings5;
                             final TL_account.setGlobalPrivacySettings setglobalprivacysettings4 = setglobalprivacysettings2;
                             final AtomicInteger atomicInteger4 = atomicInteger;
@@ -1616,17 +1616,17 @@ public class PrivacyControlActivity extends org.telegram.ui.ActionBar.n2 impleme
                 disallowedGiftsSettings.disallow_premium_gifts = !this.N0;
             }
             getConnectionsManager().sendRequest(setglobalprivacysettings3, new RequestDelegate(this) {
-                public final PrivacyControlActivity f40615b;
+                public final PrivacyControlActivity f40617b;
 
                 {
-                    this.f40615b = this;
+                    this.f40617b = this;
                 }
 
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                     switch (r5) {
                         case 0:
-                            final PrivacyControlActivity privacyControlActivity = this.f40615b;
+                            final PrivacyControlActivity privacyControlActivity = this.f40617b;
                             final TLRPC.GlobalPrivacySettings globalPrivacySettings72 = globalPrivacySettings7;
                             final TL_account.setGlobalPrivacySettings setglobalprivacysettings32 = setglobalprivacysettings3;
                             final AtomicInteger atomicInteger3 = atomicInteger;
@@ -1692,7 +1692,7 @@ public class PrivacyControlActivity extends org.telegram.ui.ActionBar.n2 impleme
                             });
                             return;
                         default:
-                            final PrivacyControlActivity privacyControlActivity2 = this.f40615b;
+                            final PrivacyControlActivity privacyControlActivity2 = this.f40617b;
                             final TLRPC.GlobalPrivacySettings globalPrivacySettings82 = globalPrivacySettings7;
                             final TL_account.setGlobalPrivacySettings setglobalprivacysettings4 = setglobalprivacysettings3;
                             final AtomicInteger atomicInteger4 = atomicInteger;

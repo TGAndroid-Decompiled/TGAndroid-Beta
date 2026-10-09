@@ -9,20 +9,20 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class z80 implements Runnable {
-    public final int f44509a = 0;
-    public final LaunchActivity f44510b;
-    public final TLRPC.TL_error f44511c;
+    public final int f44511a = 0;
+    public final LaunchActivity f44512b;
+    public final TLRPC.TL_error f44513c;
     public final TLObject d;
-    public final int f44512e;
-    public final String f44513f;
+    public final int f44514e;
+    public final String f44515f;
     public final m70 h;
 
     public z80(LaunchActivity launchActivity, TLObject tLObject, int i10, String str, TLRPC.TL_error tL_error, m70 m70Var) {
-        this.f44510b = launchActivity;
+        this.f44512b = launchActivity;
         this.d = tLObject;
-        this.f44512e = i10;
-        this.f44513f = str;
-        this.f44511c = tL_error;
+        this.f44514e = i10;
+        this.f44515f = str;
+        this.f44513c = tL_error;
         this.h = m70Var;
     }
 
@@ -32,19 +32,19 @@ public final class z80 implements Runnable {
         org.telegram.ui.Components.ad a02;
         int i10;
         int i11;
-        int i12 = this.f44509a;
+        int i12 = this.f44511a;
         m70 m70Var = this.h;
-        String str2 = this.f44513f;
+        String str2 = this.f44515f;
         TLObject tLObject = this.d;
-        TLRPC.TL_error tL_error = this.f44511c;
+        TLRPC.TL_error tL_error = this.f44513c;
         switch (i12) {
             case 0:
                 Pattern pattern = LaunchActivity.B1;
                 boolean z10 = tLObject instanceof TLRPC.User;
-                LaunchActivity launchActivity = this.f44510b;
+                LaunchActivity launchActivity = this.f44512b;
                 if (z10) {
                     TLRPC.User user = (TLRPC.User) tLObject;
-                    MessagesController.getInstance(this.f44512e).putUser(user, false);
+                    MessagesController.getInstance(this.f44514e).putUser(user, false);
                     Bundle bundle = new Bundle();
                     bundle.putLong("user_id", user.f20185id);
                     launchActivity.p0(new zn(bundle));
@@ -86,13 +86,13 @@ public final class z80 implements Runnable {
                     }
                 } else if (tLObject instanceof TL_stars.TL_payments_uniqueStarGift) {
                     TL_stars.TL_payments_uniqueStarGift tL_payments_uniqueStarGift = (TL_stars.TL_payments_uniqueStarGift) tLObject;
-                    LaunchActivity launchActivity2 = this.f44510b;
+                    LaunchActivity launchActivity2 = this.f44512b;
                     MessagesController.getInstance(launchActivity2.O).putUsers(tL_payments_uniqueStarGift.users, false);
                     MessagesController.getInstance(launchActivity2.O).putChats(tL_payments_uniqueStarGift.chats, false);
                     org.telegram.ui.ActionBar.n2 U2 = LaunchActivity.U();
                     TL_stars.StarGift starGift = tL_payments_uniqueStarGift.gift;
                     if (starGift instanceof TL_stars.TL_starGiftUnique) {
-                        yh.s3 s3Var = new yh.s3(launchActivity2, this.f44512e, 0L, null, null);
+                        yh.s3 s3Var = new yh.s3(launchActivity2, this.f44514e, 0L, null, null);
                         s3Var.j2(str2, (TL_stars.TL_starGiftUnique) starGift, null);
                         if (U2 != null) {
                             if (U2.getLastStoryViewer() != null && U2.getLastStoryViewer().K0) {
@@ -116,11 +116,11 @@ public final class z80 implements Runnable {
     }
 
     public z80(LaunchActivity launchActivity, TLRPC.TL_error tL_error, TLObject tLObject, int i10, String str, m70 m70Var) {
-        this.f44510b = launchActivity;
-        this.f44511c = tL_error;
+        this.f44512b = launchActivity;
+        this.f44513c = tL_error;
         this.d = tLObject;
-        this.f44512e = i10;
-        this.f44513f = str;
+        this.f44514e = i10;
+        this.f44515f = str;
         this.h = m70Var;
     }
 }

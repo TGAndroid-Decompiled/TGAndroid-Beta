@@ -3,33 +3,33 @@ package y2;
 import e2.d0;
 import java.util.Arrays;
 public final class d {
-    public int f51661c;
+    public int f51663c;
     public int d;
-    public final boolean f51659a = true;
-    public final int f51660b = 65536;
-    public int f51662e = 0;
-    public a[] f51663f = new a[100];
+    public final boolean f51661a = true;
+    public final int f51662b = 65536;
+    public int f51664e = 0;
+    public a[] f51665f = new a[100];
 
     public final synchronized void a(int i10) {
         boolean z10;
-        if (i10 < this.f51661c) {
+        if (i10 < this.f51663c) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f51661c = i10;
+        this.f51663c = i10;
         if (z10) {
             b();
         }
     }
 
     public final synchronized void b() {
-        int max = Math.max(0, d0.f(this.f51661c, this.f51660b) - this.d);
-        int i10 = this.f51662e;
+        int max = Math.max(0, d0.f(this.f51663c, this.f51662b) - this.d);
+        int i10 = this.f51664e;
         if (max >= i10) {
             return;
         }
-        Arrays.fill(this.f51663f, max, i10, (Object) null);
-        this.f51662e = max;
+        Arrays.fill(this.f51665f, max, i10, (Object) null);
+        this.f51664e = max;
     }
 }

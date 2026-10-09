@@ -653,7 +653,7 @@ public class TextureRenderer {
             o0Var.c(mediaEntity.subType, mediaEntity.color);
         }
         int i10 = mediaEntity.viewWidth;
-        int i11 = o0Var.f46441f;
+        int i11 = o0Var.f46443f;
         o0Var.setMaxWidth(i10 + i11 + i11);
         o0Var.measure(View.MeasureSpec.makeMeasureSpec(mediaEntity.viewWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(mediaEntity.viewHeight, 1073741824));
         o0Var.layout(0, 0, mediaEntity.viewWidth, mediaEntity.viewHeight);
@@ -684,8 +684,8 @@ public class TextureRenderer {
         }
         s0Var.setMaxWidth(mediaEntity.viewWidth);
         if (mediaEntity.entities.size() == 1) {
-            s0Var.f46550x = true;
-            s0Var.f46543c = true;
+            s0Var.f46552x = true;
+            s0Var.f46545c = true;
             s0Var.requestLayout();
         }
         s0Var.measure(View.MeasureSpec.makeMeasureSpec(mediaEntity.viewWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(mediaEntity.viewHeight, 1073741824));
@@ -711,7 +711,7 @@ public class TextureRenderer {
             RectF rectF = new RectF();
             float f16 = s0Var.I;
             float f17 = s0Var.d.left + 2.25f;
-            float f18 = s0Var.f46551y;
+            float f18 = s0Var.f46553y;
             float f19 = s0Var.J;
             float f20 = s0Var.N;
             float f21 = f18 * 21.33f;

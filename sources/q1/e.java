@@ -7,30 +7,30 @@ import android.view.KeyEvent;
 import android.view.View;
 import n4.x;
 public final class e implements KeyListener {
-    public final KeyListener f45907a;
-    public final ob.a f45908b;
+    public final KeyListener f45909a;
+    public final ob.a f45910b;
 
     public e(KeyListener keyListener) {
         ob.a aVar = new ob.a(19);
-        this.f45907a = keyListener;
-        this.f45908b = aVar;
+        this.f45909a = keyListener;
+        this.f45910b = aVar;
     }
 
     @Override
     public final void clearMetaKeyState(View view, Editable editable, int i10) {
-        this.f45907a.clearMetaKeyState(view, editable, i10);
+        this.f45909a.clearMetaKeyState(view, editable, i10);
     }
 
     @Override
     public final int getInputType() {
-        return this.f45907a.getInputType();
+        return this.f45909a.getInputType();
     }
 
     @Override
     public final boolean onKeyDown(View view, Editable editable, int i10, KeyEvent keyEvent) {
         boolean v;
         boolean z10;
-        this.f45908b.getClass();
+        this.f45910b.getClass();
         if (i10 != 67) {
             if (i10 != 112) {
                 v = false;
@@ -46,7 +46,7 @@ public final class e implements KeyListener {
         } else {
             z10 = false;
         }
-        if (z10 || this.f45907a.onKeyDown(view, editable, i10, keyEvent)) {
+        if (z10 || this.f45909a.onKeyDown(view, editable, i10, keyEvent)) {
             return true;
         }
         return false;
@@ -54,11 +54,11 @@ public final class e implements KeyListener {
 
     @Override
     public final boolean onKeyOther(View view, Editable editable, KeyEvent keyEvent) {
-        return this.f45907a.onKeyOther(view, editable, keyEvent);
+        return this.f45909a.onKeyOther(view, editable, keyEvent);
     }
 
     @Override
     public final boolean onKeyUp(View view, Editable editable, int i10, KeyEvent keyEvent) {
-        return this.f45907a.onKeyUp(view, editable, i10, keyEvent);
+        return this.f45909a.onKeyUp(view, editable, i10, keyEvent);
     }
 }

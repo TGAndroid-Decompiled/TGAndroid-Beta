@@ -60,7 +60,7 @@ public class c71 extends og.b {
 
     @Override
     public boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47660f;
+        int i10 = d1Var.f47662f;
         p61 G = G(d1Var.b());
         if (i10 >= 10000) {
             o61 F = p61.F(i10);
@@ -156,10 +156,10 @@ public class c71 extends og.b {
 
     public final void O(s4.d1 d1Var) {
         int i10;
-        View view = d1Var.f47656a;
+        View view = d1Var.f47658a;
         if (view instanceof org.telegram.ui.ActionBar.z5) {
             ((org.telegram.ui.ActionBar.z5) view).e();
-            int i11 = d1Var.f47660f;
+            int i11 = d1Var.f47662f;
             if (this.f25280r) {
                 if (i11 < 10000) {
                     switch (i11) {
@@ -252,8 +252,8 @@ public class c71 extends og.b {
 
     public final void Q(s4.d1 d1Var, boolean z10) {
         if (d1Var != null) {
-            View view = d1Var.f47656a;
-            int i10 = d1Var.f47660f;
+            View view = d1Var.f47658a;
+            int i10 = d1Var.f47662f;
             if (i10 >= 10000) {
                 o61 F = p61.F(i10);
                 if (F != null) {

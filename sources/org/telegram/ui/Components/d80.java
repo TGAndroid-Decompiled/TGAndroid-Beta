@@ -95,9 +95,9 @@ public class d80 extends t71 implements NotificationCenter.NotificationCenterDel
         this.d.setOnItemClickListener(new org.telegram.ui.wb(this, j3, n2Var, iVar, context));
         ai.w0 w0Var2 = this.d;
         s4.j jVar = new s4.j();
-        jVar.f47716o = hs.f27118f;
-        jVar.f47749e = 150L;
-        jVar.f47748c = 150L;
+        jVar.f47718o = hs.f27118f;
+        jVar.f47751e = 150L;
+        jVar.f47750c = 150L;
         jVar.d = 150L;
         setShowWithoutAnimation(false);
         w0Var2.setItemAnimator(jVar);
@@ -135,12 +135,12 @@ public class d80 extends t71 implements NotificationCenter.NotificationCenterDel
             for (int i10 = 0; i10 < iVar.m(); i10++) {
                 arrayList.add(Long.valueOf(iVar.j(i10)));
             }
-            org.telegram.ui.cz czVar = (org.telegram.ui.cz) d80Var.m0.f38107b;
-            ArrayList arrayList2 = czVar.f36754e;
+            org.telegram.ui.cz czVar = (org.telegram.ui.cz) d80Var.m0.f38109b;
+            ArrayList arrayList2 = czVar.f36756e;
             arrayList2.clear();
             arrayList2.addAll(arrayList);
             czVar.Z();
-            org.telegram.ui.bz bzVar = czVar.f36755f;
+            org.telegram.ui.bz bzVar = czVar.f36757f;
             if (bzVar != null) {
                 bzVar.a();
             }

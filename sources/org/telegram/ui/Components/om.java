@@ -58,14 +58,14 @@ public final class om extends tm {
                 iArr[0] = iArr[0] - yiVar.getLeftInset();
             }
             org.telegram.ui.ev0 ev0Var = new org.telegram.ui.ev0();
-            ev0Var.f37355b = iArr[0];
-            ev0Var.f37356c = iArr[1];
+            ev0Var.f37357b = iArr[0];
+            ev0Var.f37358c = iArr[1];
             ev0Var.d = chatAttachAlertPhotoLayout.E;
             ImageReceiver imageReceiver = N.getImageView().getImageReceiver();
-            ev0Var.f37354a = imageReceiver;
-            ev0Var.f37357e = imageReceiver.getBitmapSafe();
-            ev0Var.f37362k = N.getScale();
-            ev0Var.f37360i = (int) yiVar.n1();
+            ev0Var.f37356a = imageReceiver;
+            ev0Var.f37359e = imageReceiver.getBitmapSafe();
+            ev0Var.f37364k = N.getScale();
+            ev0Var.f37362i = (int) yiVar.n1();
             N.g(false);
             return ev0Var;
         }

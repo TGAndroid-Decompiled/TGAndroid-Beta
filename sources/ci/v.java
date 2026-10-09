@@ -52,7 +52,7 @@ public final class v extends qm0 {
                 canvas.restore();
                 return;
             case 1:
-                HashSet hashSet = org.telegram.ui.i4.f38469b1;
+                HashSet hashSet = org.telegram.ui.i4.f38471b1;
                 ((org.telegram.ui.i4) obj).n();
                 super.dispatchDraw(canvas);
                 return;
@@ -114,7 +114,7 @@ public final class v extends qm0 {
         switch (this.V2) {
             case 1:
                 org.telegram.ui.v3 v3Var = ((org.telegram.ui.i4) this.W2).K;
-                if (v3Var != null && (u3Var = v3Var.f42624c) != null) {
+                if (v3Var != null && (u3Var = v3Var.f42626c) != null) {
                     u3Var.invalidate();
                     return;
                 }
@@ -156,13 +156,13 @@ public final class v extends qm0 {
                 return false;
             case 1:
                 org.telegram.ui.i4 i4Var = (org.telegram.ui.i4) this.W2;
-                if (i4Var.d != null && i4Var.f41883b == null && (((n1Var = i4Var.H) == null || !n1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
-                    i4Var.f41883b = null;
+                if (i4Var.d != null && i4Var.f41885b == null && (((n1Var = i4Var.H) == null || !n1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
+                    i4Var.f41885b = null;
                     i4Var.d = null;
-                    i4Var.f41886f = null;
-                } else if (i4Var.d != null && i4Var.f41883b != null && motionEvent.getAction() == 1 && (getAdapter() instanceof org.telegram.ui.g4)) {
+                    i4Var.f41888f = null;
+                } else if (i4Var.d != null && i4Var.f41885b != null && motionEvent.getAction() == 1 && (getAdapter() instanceof org.telegram.ui.g4)) {
                     motionEvent2 = motionEvent;
-                    org.telegram.ui.i4.l(i4Var, (org.telegram.ui.g4) getAdapter(), motionEvent2, i4Var.f41886f, i4Var.d, 0, 0);
+                    org.telegram.ui.i4.l(i4Var, (org.telegram.ui.g4) getAdapter(), motionEvent2, i4Var.f41888f, i4Var.d, 0, 0);
                     return super.onInterceptTouchEvent(motionEvent2);
                 }
                 motionEvent2 = motionEvent;
@@ -215,10 +215,10 @@ public final class v extends qm0 {
         switch (this.V2) {
             case 1:
                 org.telegram.ui.i4 i4Var = (org.telegram.ui.i4) this.W2;
-                if (i4Var.d != null && i4Var.f41883b == null && (((n1Var = i4Var.H) == null || !n1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
-                    i4Var.f41883b = null;
+                if (i4Var.d != null && i4Var.f41885b == null && (((n1Var = i4Var.H) == null || !n1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
+                    i4Var.f41885b = null;
                     i4Var.d = null;
-                    i4Var.f41886f = null;
+                    i4Var.f41888f = null;
                 }
                 return super.onTouchEvent(motionEvent);
             default:

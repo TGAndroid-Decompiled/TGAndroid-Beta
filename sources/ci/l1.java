@@ -29,7 +29,7 @@ public final class l1 extends ji.o {
             default:
                 return;
             case 4:
-                ((k71) this.f5378r).f39163w1 = true;
+                ((k71) this.f5378r).f39165w1 = true;
                 return;
         }
     }
@@ -47,13 +47,13 @@ public final class l1 extends ji.o {
                 ((zx) this.f5378r).Q.f24411f0 = false;
                 return;
             case 3:
-                ((y51) this.f5378r).R.f39163w1 = false;
+                ((y51) this.f5378r).R.f39165w1 = false;
                 return;
             case 4:
-                ((k71) this.f5378r).f39163w1 = false;
+                ((k71) this.f5378r).f39165w1 = false;
                 return;
             default:
-                ((y51) this.f5378r).R.f39163w1 = false;
+                ((y51) this.f5378r).R.f39165w1 = false;
                 return;
         }
     }

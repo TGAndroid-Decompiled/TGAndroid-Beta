@@ -85,32 +85,32 @@ public final class m5 {
     public int F;
     public long G;
     public i5 N;
-    public final int f52878a;
-    public final boolean f52879b;
-    public long f52880c;
+    public final int f52880a;
+    public final boolean f52881b;
+    public long f52882c;
     public boolean d;
-    public boolean f52881e;
-    public long f52883g;
+    public boolean f52883e;
+    public long f52885g;
     public boolean h;
-    public boolean f52884i;
-    public ArrayList f52885j;
-    public boolean f52886k;
-    public boolean f52887l;
-    public ArrayList f52888m;
-    public boolean f52889n;
-    public boolean f52890o;
-    public ArrayList f52891p;
-    public String f52897w;
-    public boolean f52898x;
-    public boolean f52899y;
-    public TL_stars.StarsAmount f52882f = TL_stars.StarsAmount.ofStars(0);
-    public final ArrayList[] f52892q = {new ArrayList(), new ArrayList(), new ArrayList()};
-    public final boolean[] f52893r = new boolean[3];
-    public final String[] f52894s = new String[3];
-    public final boolean[] f52895t = new boolean[3];
-    public final boolean[] f52896u = new boolean[3];
+    public boolean f52886i;
+    public ArrayList f52887j;
+    public boolean f52888k;
+    public boolean f52889l;
+    public ArrayList f52890m;
+    public boolean f52891n;
+    public boolean f52892o;
+    public ArrayList f52893p;
+    public String f52899w;
+    public boolean f52900x;
+    public boolean f52901y;
+    public TL_stars.StarsAmount f52884f = TL_stars.StarsAmount.ofStars(0);
+    public final ArrayList[] f52894q = {new ArrayList(), new ArrayList(), new ArrayList()};
+    public final boolean[] f52895r = new boolean[3];
+    public final String[] f52896s = new String[3];
+    public final boolean[] f52897t = new boolean[3];
+    public final boolean[] f52898u = new boolean[3];
     public final ArrayList v = new ArrayList();
-    public final ArrayList f52900z = new ArrayList();
+    public final ArrayList f52902z = new ArrayList();
     public final ArrayList H = new ArrayList();
     public final ArrayList I = new ArrayList();
     public final ArrayList J = new ArrayList();
@@ -131,8 +131,8 @@ public final class m5 {
     }
 
     public m5(int i10, boolean z10) {
-        this.f52878a = i10;
-        this.f52879b = z10;
+        this.f52880a = i10;
+        this.f52881b = z10;
     }
 
     public static org.telegram.ui.ActionBar.e6 I() {
@@ -148,7 +148,7 @@ public final class m5 {
     }
 
     public static boolean U(int i10, zf.a aVar) {
-        if (aVar == null || x(i10, aVar.f54439a).s().f54440b >= aVar.f54440b) {
+        if (aVar == null || x(i10, aVar.f54441a).s().f54442b >= aVar.f54442b) {
             return true;
         }
         return false;
@@ -157,7 +157,7 @@ public final class m5 {
     public static void a(m5 m5Var, TL_stars.StarGifts starGifts) {
         ArrayList arrayList = m5Var.I;
         ArrayList arrayList2 = m5Var.J;
-        int i10 = m5Var.f52878a;
+        int i10 = m5Var.f52880a;
         ArrayList arrayList3 = m5Var.H;
         m5Var.C = false;
         m5Var.D = true;
@@ -187,7 +187,7 @@ public final class m5 {
     }
 
     public static void b(m5 m5Var, ArrayList arrayList, Integer num, Long l4, ArrayList arrayList2, ArrayList arrayList3) {
-        int i10 = m5Var.f52878a;
+        int i10 = m5Var.f52880a;
         MessagesController.getInstance(i10).putUsers(arrayList2, true);
         MessagesController.getInstance(i10).putChats(arrayList3, true);
         m5Var.E = true;
@@ -310,7 +310,7 @@ public final class m5 {
 
     public static m5 x(int i10, zf.b bVar) {
         boolean z10;
-        if (bVar == zf.b.f54442b) {
+        if (bVar == zf.b.f54444b) {
             z10 = true;
         } else {
             z10 = false;
@@ -344,7 +344,7 @@ public final class m5 {
         Long myPaidReactionPeer;
         Long l4;
         l5 l5Var = this.B;
-        if (l5Var != null && l5Var.f52833a.equals(g5.b(messageObject)) && (l4 = this.B.f52844n) != null) {
+        if (l5Var != null && l5Var.f52835a.equals(g5.b(messageObject)) && (l4 = this.B.f52846n) != null) {
             return l4.longValue();
         }
         if (messageObject == null) {
@@ -355,7 +355,7 @@ public final class m5 {
         if (myPaidReactionPeer != null) {
             return myPaidReactionPeer.longValue();
         }
-        Long paidReactionsDialogId = MessagesController.getInstance(this.f52878a).getPaidReactionsDialogId();
+        Long paidReactionsDialogId = MessagesController.getInstance(this.f52880a).getPaidReactionsDialogId();
         if (paidReactionsDialogId != null) {
             return paidReactionsDialogId.longValue();
         }
@@ -365,14 +365,14 @@ public final class m5 {
     public final long B(g5 g5Var, TLRPC.TL_messageReactions tL_messageReactions) {
         Long l4;
         l5 l5Var = this.B;
-        if (l5Var != null && l5Var.f52833a.equals(g5Var) && (l4 = this.B.f52844n) != null) {
+        if (l5Var != null && l5Var.f52835a.equals(g5Var) && (l4 = this.B.f52846n) != null) {
             return l4.longValue();
         }
         Long myPaidReactionPeer = MessageObject.getMyPaidReactionPeer(tL_messageReactions);
         if (myPaidReactionPeer != null) {
             return myPaidReactionPeer.longValue();
         }
-        Long paidReactionsDialogId = MessagesController.getInstance(this.f52878a).getPaidReactionsDialogId();
+        Long paidReactionsDialogId = MessagesController.getInstance(this.f52880a).getPaidReactionsDialogId();
         if (paidReactionsDialogId != null) {
             return paidReactionsDialogId.longValue();
         }
@@ -381,7 +381,7 @@ public final class m5 {
 
     public final void C(long j3, long j10, Utilities.Callback callback) {
         TL_account.getPaidMessagesRevenue getpaidmessagesrevenue = new TL_account.getPaidMessagesRevenue();
-        int i10 = this.f52878a;
+        int i10 = this.f52880a;
         getpaidmessagesrevenue.user_id = MessagesController.getInstance(i10).getInputUser(j3);
         if (j10 != 0) {
             getpaidmessagesrevenue.parent_peer = MessagesController.getInstance(i10).getInputPeer(j10);
@@ -392,8 +392,8 @@ public final class m5 {
     public final long D(int i10, long j3) {
         l5 l5Var = this.B;
         if (l5Var != null) {
-            g5 g5Var = l5Var.f52833a;
-            if (g5Var.f52582a == j3 && g5Var.f52583b == i10 && l5Var.f52842l) {
+            g5 g5Var = l5Var.f52835a;
+            if (g5Var.f52584a == j3 && g5Var.f52585b == i10 && l5Var.f52844l) {
                 return l5Var.h;
             }
             return 0L;
@@ -416,7 +416,7 @@ public final class m5 {
         LongSparseArray longSparseArray = this.K;
         d5 d5Var = (d5) longSparseArray.get(j3);
         if (d5Var == null && z10) {
-            d5 d5Var2 = new d5(this.f52878a, j3);
+            d5 d5Var2 = new d5(this.f52880a, j3);
             longSparseArray.put(j3, d5Var2);
             return d5Var2;
         }
@@ -427,7 +427,7 @@ public final class m5 {
         LongSparseArray longSparseArray = this.L;
         e5 e5Var = (e5) longSparseArray.get(j3);
         if (e5Var == null && z10) {
-            e5 e5Var2 = new e5(this.f52878a, j3, true);
+            e5 e5Var2 = new e5(this.f52880a, j3, true);
             longSparseArray.put(j3, e5Var2);
             return e5Var2;
         }
@@ -441,14 +441,14 @@ public final class m5 {
         }
         org.telegram.ui.ActionBar.e6 I = I();
         if (starGift != null && context != null) {
-            if (!this.f52881e) {
+            if (!this.f52883e) {
                 r(new o31(this, callback, starGift, j3, 14));
                 return;
             }
             TLRPC.TL_inputInvoiceStarGiftResale tL_inputInvoiceStarGiftResale = new TLRPC.TL_inputInvoiceStarGiftResale();
             tL_inputInvoiceStarGiftResale.slug = starGift.slug;
-            tL_inputInvoiceStarGiftResale.to_id = MessagesController.getInstance(this.f52878a).getInputPeer(j3);
-            tL_inputInvoiceStarGiftResale.ton = this.f52879b;
+            tL_inputInvoiceStarGiftResale.to_id = MessagesController.getInstance(this.f52880a).getInputPeer(j3);
+            tL_inputInvoiceStarGiftResale.ton = this.f52881b;
             tL_inputInvoiceStarGiftResale.message = tL_textWithEntities;
             tL_inputInvoiceStarGiftResale.show_name = !z10;
             TLRPC.TL_payments_getPaymentForm tL_payments_getPaymentForm = new TLRPC.TL_payments_getPaymentForm();
@@ -460,7 +460,7 @@ public final class m5 {
                 tL_payments_getPaymentForm.flags |= 1;
             }
             tL_payments_getPaymentForm.invoice = tL_inputInvoiceStarGiftResale;
-            ConnectionsManager.getInstance(this.f52878a).sendRequest(tL_payments_getPaymentForm, new ej1(10, this, callback));
+            ConnectionsManager.getInstance(this.f52880a).sendRequest(tL_payments_getPaymentForm, new ej1(10, this, callback));
         }
     }
 
@@ -489,7 +489,7 @@ public final class m5 {
         }
         TL_stars.getStarGiftUpgradePreview getstargiftupgradepreview = new TL_stars.getStarGiftUpgradePreview();
         getstargiftupgradepreview.gift_id = j3;
-        ConnectionsManager.getInstance(this.f52878a).sendRequest(getstargiftupgradepreview, new ai.u1(this, j3, callback, 5));
+        ConnectionsManager.getInstance(this.f52880a).sendRequest(getstargiftupgradepreview, new ai.u1(this, j3, callback, 5));
     }
 
     public final void M(TL_stars.InputSavedStarGift inputSavedStarGift, Utilities.Callback callback) {
@@ -497,7 +497,7 @@ public final class m5 {
         b2Var.q(200L);
         TL_stars.getSavedStarGift getsavedstargift = new TL_stars.getSavedStarGift();
         getsavedstargift.stargift.add(inputSavedStarGift);
-        ConnectionsManager.getInstance(this.f52878a).sendRequest(getsavedstargift, new ai.q3(this, b2Var, inputSavedStarGift, callback, 18));
+        ConnectionsManager.getInstance(this.f52880a).sendRequest(getsavedstargift, new ai.q3(this, b2Var, inputSavedStarGift, callback, 18));
     }
 
     public final boolean N() {
@@ -505,16 +505,16 @@ public final class m5 {
     }
 
     public final boolean O(int i10) {
-        if (this.f52881e && !this.f52892q[i10].isEmpty()) {
+        if (this.f52883e && !this.f52894q[i10].isEmpty()) {
             return true;
         }
         return false;
     }
 
     public final void P() {
-        this.f52881e = false;
+        this.f52883e = false;
         p();
-        this.f52881e = true;
+        this.f52883e = true;
     }
 
     public final void Q(long j3) {
@@ -531,7 +531,7 @@ public final class m5 {
     public final void R(TLRPC.UserFull userFull) {
         long j3 = userFull.f20186id;
         e5 G = G(j3, false);
-        if (G != null && G.f52442n != userFull.stargifts_count) {
+        if (G != null && G.f52444n != userFull.stargifts_count) {
             G.i(false);
         }
         d5 d5Var = (d5) this.K.get(j3);
@@ -541,24 +541,24 @@ public final class m5 {
     }
 
     public final void S() {
-        if (this.f52898x) {
+        if (this.f52900x) {
             return;
         }
         this.v.clear();
-        this.f52897w = null;
-        this.f52898x = false;
-        this.f52899y = false;
+        this.f52899w = null;
+        this.f52900x = false;
+        this.f52901y = false;
         W();
     }
 
     public final void T(boolean z10) {
         for (int i10 = 0; i10 < 3; i10++) {
-            boolean[] zArr = this.f52895t;
+            boolean[] zArr = this.f52897t;
             if (!zArr[i10]) {
-                this.f52892q[i10].clear();
-                this.f52894s[i10] = null;
+                this.f52894q[i10].clear();
+                this.f52896s[i10] = null;
                 zArr[i10] = false;
-                this.f52896u[i10] = false;
+                this.f52898u[i10] = false;
                 if (z10) {
                     X(i10);
                 }
@@ -571,14 +571,14 @@ public final class m5 {
             if (!this.D || System.currentTimeMillis() - this.G >= 60000) {
                 this.C = true;
                 boolean z10 = this.E;
-                int i10 = this.f52878a;
+                int i10 = this.f52880a;
                 if (!z10) {
                     r5.d dVar = new r5.d(this, 23);
                     ArrayList arrayList = new ArrayList();
                     ArrayList arrayList2 = new ArrayList();
                     ArrayList arrayList3 = new ArrayList();
                     MessagesStorage messagesStorage = MessagesStorage.getInstance(i10);
-                    messagesStorage.getStorageQueue().postRunnable(new org.telegram.ui.Wallet.p6(messagesStorage, arrayList3, arrayList2, arrayList, dVar, 10));
+                    messagesStorage.getStorageQueue().postRunnable(new org.telegram.ui.Wallet.q6(messagesStorage, arrayList3, arrayList2, arrayList, dVar, 10));
                     return;
                 }
                 int i11 = this.F;
@@ -591,27 +591,27 @@ public final class m5 {
     }
 
     public final void W() {
-        if (!this.f52879b && !this.f52898x && !this.f52899y) {
-            this.f52898x = true;
+        if (!this.f52881b && !this.f52900x && !this.f52901y) {
+            this.f52900x = true;
             TL_stars.TL_getStarsSubscriptions tL_getStarsSubscriptions = new TL_stars.TL_getStarsSubscriptions();
             tL_getStarsSubscriptions.peer = new TLRPC.TL_inputPeerSelf();
-            String str = this.f52897w;
+            String str = this.f52899w;
             tL_getStarsSubscriptions.offset = str;
             if (str == null) {
                 tL_getStarsSubscriptions.offset = "";
             }
-            ConnectionsManager.getInstance(this.f52878a).sendRequest(tL_getStarsSubscriptions, new p4(this, 1));
+            ConnectionsManager.getInstance(this.f52880a).sendRequest(tL_getStarsSubscriptions, new p4(this, 1));
         }
     }
 
     public final void X(int i10) {
         boolean z10;
-        boolean[] zArr = this.f52895t;
-        if (!zArr[i10] && !this.f52896u[i10]) {
+        boolean[] zArr = this.f52897t;
+        if (!zArr[i10] && !this.f52898u[i10]) {
             boolean z11 = true;
             zArr[i10] = true;
             TL_stars.TL_payments_getStarsTransactions tL_payments_getStarsTransactions = new TL_stars.TL_payments_getStarsTransactions();
-            tL_payments_getStarsTransactions.ton = this.f52879b;
+            tL_payments_getStarsTransactions.ton = this.f52881b;
             tL_payments_getStarsTransactions.peer = new TLRPC.TL_inputPeerSelf();
             if (i10 == 1) {
                 z10 = true;
@@ -623,12 +623,12 @@ public final class m5 {
                 z11 = false;
             }
             tL_payments_getStarsTransactions.outbound = z11;
-            String str = this.f52894s[i10];
+            String str = this.f52896s[i10];
             tL_payments_getStarsTransactions.offset = str;
             if (str == null) {
                 tL_payments_getStarsTransactions.offset = "";
             }
-            ConnectionsManager.getInstance(this.f52878a).sendRequest(tL_payments_getStarsTransactions, new ai.j8(this, i10, 9));
+            ConnectionsManager.getInstance(this.f52880a).sendRequest(tL_payments_getStarsTransactions, new ai.j8(this, i10, 9));
         }
     }
 
@@ -648,7 +648,7 @@ public final class m5 {
                 TL_stars.TL_payments_sendStarsForm tL_payments_sendStarsForm = new TL_stars.TL_payments_sendStarsForm();
                 tL_payments_sendStarsForm.form_id = chatInvite.subscription_form_id;
                 tL_payments_sendStarsForm.invoice = tL_inputInvoiceChatInviteSubscription;
-                ConnectionsManager.getInstance(this.f52878a).sendRequest(tL_payments_sendStarsForm, new RequestDelegate() {
+                ConnectionsManager.getInstance(this.f52880a).sendRequest(tL_payments_sendStarsForm, new RequestDelegate() {
                     @Override
                     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
                         final m5 m5Var = m5.this;
@@ -710,13 +710,13 @@ public final class m5 {
                                     m5Var2.T(true);
                                     m5Var2.S();
                                 } else if (tL_error2 != null && "BALANCE_TOO_LOW".equals(tL_error2.text)) {
-                                    if (!MessagesController.getInstance(m5Var2.f52878a).starsPurchaseAvailable()) {
+                                    if (!MessagesController.getInstance(m5Var2.f52880a).starsPurchaseAvailable()) {
                                         callback23.run(0L, Boolean.FALSE);
                                         m5.e0(context3, e6Var2);
                                         return;
                                     }
                                     boolean[] zArr = {false};
-                                    e7 e7Var = new e7(context3, e6Var2, j12, 1, chatInvite3.title, new org.telegram.ui.Wallet.p6(m5Var2, zArr, str7, chatInvite3, callback23), 0L);
+                                    e7 e7Var = new e7(context3, e6Var2, j12, 1, chatInvite3.title, new org.telegram.ui.Wallet.q6(m5Var2, zArr, str7, chatInvite3, callback23), 0L);
                                     e7Var.setOnDismissListener(new n4(callback23, zArr, 0));
                                     e7Var.show();
                                 } else {
@@ -766,7 +766,7 @@ public final class m5 {
                 } else {
                     j3 = messageObject.getDialogId();
                 }
-                if (j3 < 0 && messageObject.getFromChatId() > 0 && (user = MessagesController.getInstance(this.f52878a).getUser(Long.valueOf(messageObject.getFromChatId()))) != null && user.bot) {
+                if (j3 < 0 && messageObject.getFromChatId() > 0 && (user = MessagesController.getInstance(this.f52880a).getUser(Long.valueOf(messageObject.getFromChatId()))) != null && user.bot) {
                     j3 = user.f20185id;
                 }
             } else {
@@ -774,9 +774,9 @@ public final class m5 {
             }
             final long j11 = j3;
             if (j11 >= 0) {
-                str = UserObject.getUserName(MessagesController.getInstance(this.f52878a).getUser(Long.valueOf(j11)));
+                str = UserObject.getUserName(MessagesController.getInstance(this.f52880a).getUser(Long.valueOf(j11)));
             } else {
-                TLRPC.Chat chat = MessagesController.getInstance(this.f52878a).getChat(Long.valueOf(-j11));
+                TLRPC.Chat chat = MessagesController.getInstance(this.f52880a).getChat(Long.valueOf(-j11));
                 if (chat == null) {
                     str = "";
                 } else {
@@ -789,7 +789,7 @@ public final class m5 {
             TL_stars.TL_payments_sendStarsForm tL_payments_sendStarsForm = new TL_stars.TL_payments_sendStarsForm();
             tL_payments_sendStarsForm.form_id = tL_payments_paymentFormStars.form_id;
             tL_payments_sendStarsForm.invoice = inputInvoice;
-            ConnectionsManager.getInstance(this.f52878a).sendRequest(tL_payments_sendStarsForm, new RequestDelegate() {
+            ConnectionsManager.getInstance(this.f52880a).sendRequest(tL_payments_sendStarsForm, new RequestDelegate() {
                 @Override
                 public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
                     final m5 m5Var = m5.this;
@@ -816,7 +816,7 @@ public final class m5 {
     }
 
     public final void b0(long j3, long j10, boolean z10) {
-        int i10 = this.f52878a;
+        int i10 = this.f52880a;
         TopicsController topicsController = MessagesController.getInstance(i10).getTopicsController();
         TLRPC.TL_forumTopic findTopic = topicsController.findTopic(j3, j10);
         if (findTopic != null) {
@@ -848,7 +848,7 @@ public final class m5 {
     }
 
     public final void c0(int i10, long j3, ArrayList arrayList) {
-        MessagesStorage messagesStorage = MessagesStorage.getInstance(this.f52878a);
+        MessagesStorage messagesStorage = MessagesStorage.getInstance(this.f52880a);
         messagesStorage.getStorageQueue().postRunnable(new bg(messagesStorage, j3, arrayList, i10));
     }
 
@@ -862,14 +862,14 @@ public final class m5 {
         boolean z12;
         String str;
         g5 b10 = g5.b(messageObject);
-        int i10 = this.f52878a;
+        int i10 = this.f52880a;
         m5 y3 = y(i10, false);
         Context t10 = t(znVar);
         if (t10 == null) {
             return null;
         }
         String str2 = "";
-        if (z11 && y3.f52881e && y3.q(false, false, null).amount <= 0) {
+        if (z11 && y3.f52883e && y3.q(false, false, null).amount <= 0) {
             long a2 = znVar.a();
             if (a2 >= 0) {
                 str2 = UserObject.getForcedFirstName(znVar.getMessagesController().getUser(Long.valueOf(a2)));
@@ -880,20 +880,20 @@ public final class m5 {
                 }
             }
             new e7(t10, znVar.getResourceProvider(), j3, 5, str2, new Runnable(this) {
-                public final m5 f53126b;
+                public final m5 f53128b;
 
                 {
-                    this.f53126b = this;
+                    this.f53128b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r7) {
                         case 0:
-                            this.f53126b.d0(messageObject, znVar, j3, true, true, l4);
+                            this.f53128b.d0(messageObject, znVar, j3, true, true, l4);
                             return;
                         default:
-                            this.f53126b.d0(messageObject, znVar, j3, true, true, l4);
+                            this.f53128b.d0(messageObject, znVar, j3, true, true, l4);
                             return;
                     }
                 }
@@ -901,7 +901,7 @@ public final class m5 {
             return null;
         }
         l5 l5Var = this.B;
-        if (l5Var != null && l5Var.f52833a.equals(b10)) {
+        if (l5Var != null && l5Var.f52835a.equals(b10)) {
             j10 = 0;
             m5Var = this;
         } else {
@@ -914,7 +914,7 @@ public final class m5 {
             m5Var = this;
             l5 l5Var3 = new l5(m5Var, b10, messageObject, znVar, z10);
             m5Var.B = l5Var3;
-            l5Var3.f52844n = l4;
+            l5Var3.f52846n = l4;
         }
         if (m5Var.B.h + j3 > MessagesController.getInstance(i10).starsPaidReactionAmountMax) {
             m5Var.B.b();
@@ -922,7 +922,7 @@ public final class m5 {
             m5Var.B = new l5(m5Var, b10, messageObject, znVar, z10);
         }
         final long j11 = m5Var.B.h + j3;
-        if (z11 && y3.f52881e && y3.q(false, false, null).amount < j11) {
+        if (z11 && y3.f52883e && y3.q(false, false, null).amount < j11) {
             m5Var.B.a();
             long a10 = znVar.a();
             if (a10 >= j10) {
@@ -935,20 +935,20 @@ public final class m5 {
                 str = str2;
             }
             new e7(t10, znVar.getResourceProvider(), j11, 5, str, new Runnable(m5Var) {
-                public final m5 f53126b;
+                public final m5 f53128b;
 
                 {
-                    this.f53126b = m5Var;
+                    this.f53128b = m5Var;
                 }
 
                 @Override
                 public final void run() {
                     switch (r7) {
                         case 0:
-                            this.f53126b.d0(messageObject, znVar, j11, true, true, l4);
+                            this.f53128b.d0(messageObject, znVar, j11, true, true, l4);
                             return;
                         default:
-                            this.f53126b.d0(messageObject, znVar, j11, true, true, l4);
+                            this.f53128b.d0(messageObject, znVar, j11, true, true, l4);
                             return;
                     }
                 }
@@ -961,41 +961,41 @@ public final class m5 {
         } else {
             z12 = false;
         }
-        j5 j5Var = l5Var4.f52846p;
-        m5 m5Var2 = l5Var4.f52847q;
-        int i11 = m5Var2.f52878a;
-        nc ncVar = l5Var4.f52836e;
-        MessageObject messageObject2 = l5Var4.f52834b;
-        if (!l5Var4.f52839i && !l5Var4.f52840j) {
+        j5 j5Var = l5Var4.f52848p;
+        m5 m5Var2 = l5Var4.f52849q;
+        int i11 = m5Var2.f52880a;
+        nc ncVar = l5Var4.f52838e;
+        MessageObject messageObject2 = l5Var4.f52836b;
+        if (!l5Var4.f52841i && !l5Var4.f52842j) {
             l5Var4.h += j3;
             System.currentTimeMillis();
             ncVar.f29141c.a();
             ncVar.f29141c.c(AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsSentText", (int) l5Var4.h, new Object[0])), true, true);
-            if (l5Var4.f52843m) {
-                l5Var4.f52837f.f28806b = 5000L;
+            if (l5Var4.f52845m) {
+                l5Var4.f52839f.f28806b = 5000L;
                 AndroidUtilities.cancelRunOnUIThread(j5Var);
                 AndroidUtilities.runOnUIThread(j5Var, 5000L);
             }
             if (z12) {
-                l5Var4.f52842l = true;
+                l5Var4.f52844l = true;
                 messageObject2.addPaidReactions((int) j3, true, l5Var4.c());
-                m5Var2.f52883g += j3;
+                m5Var2.f52885g += j3;
                 NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didUpdateReactions, Long.valueOf(messageObject2.getDialogId()), Integer.valueOf(messageObject2.getId()), messageObject2.messageOwner.reactions);
                 NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starBalanceUpdated, new Object[0]);
             } else {
-                l5Var4.f52842l = false;
+                l5Var4.f52844l = false;
                 if (messageObject2.ensurePaidReactionsExist(true)) {
-                    l5Var4.f52841k--;
+                    l5Var4.f52843k--;
                 }
                 NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didUpdateReactions, Long.valueOf(messageObject2.getDialogId()), Integer.valueOf(messageObject2.getId()), messageObject2.messageOwner.reactions);
-                l5Var4.f52841k += j3;
+                l5Var4.f52843k += j3;
             }
             ncVar.f29140b.setText(l5Var4.d());
         } else if (BuildVars.DEBUG_PRIVATE_VERSION) {
             throw new RuntimeException("adding more amount to committed reactions");
         }
         l5 l5Var5 = m5Var.B;
-        l5Var5.f52844n = l4;
+        l5Var5.f52846n = l4;
         return l5Var5;
     }
 
@@ -1004,7 +1004,7 @@ public final class m5 {
         if (activity == null) {
             return;
         }
-        int i10 = this.f52878a;
+        int i10 = this.f52880a;
         if (!MessagesController.getInstance(i10).starsPurchaseAvailable()) {
             org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
             if (R != null && R.getContext() != null) {
@@ -1059,7 +1059,7 @@ public final class m5 {
             MessageObject messageObject = (MessageObject) list.get(0);
             long dialogId = messageObject.getDialogId();
             int i10 = (dialogId > 0L ? 1 : (dialogId == 0L ? 0 : -1));
-            int i11 = this.f52878a;
+            int i11 = this.f52880a;
             if (i10 >= 0) {
                 MessagesController.getInstance(i11).loadFullUser(MessagesController.getInstance(i11).getUser(Long.valueOf(dialogId)), 0, true);
             } else {
@@ -1079,7 +1079,7 @@ public final class m5 {
         final org.telegram.ui.ActionBar.e6 I = I();
         boolean z10 = tLObject instanceof TLRPC.TL_premiumGiftOption;
         if ((z10 || (tLObject instanceof TLRPC.TL_premiumGiftCodeOption)) && context2 != null) {
-            if (!this.f52881e) {
+            if (!this.f52883e) {
                 r(new org.telegram.messenger.voip.f(this, callback2, j3, tLObject, tL_textWithEntities));
                 return;
             }
@@ -1090,9 +1090,9 @@ public final class m5 {
             } else {
                 return;
             }
-            final String name = DialogObject.getName(this.f52878a, j3);
+            final String name = DialogObject.getName(this.f52880a, j3);
             final TLRPC.TL_inputInvoicePremiumGiftStars tL_inputInvoicePremiumGiftStars = new TLRPC.TL_inputInvoicePremiumGiftStars();
-            tL_inputInvoicePremiumGiftStars.user_id = MessagesController.getInstance(this.f52878a).getInputUser(j3);
+            tL_inputInvoicePremiumGiftStars.user_id = MessagesController.getInstance(this.f52880a).getInputUser(j3);
             tL_inputInvoicePremiumGiftStars.months = i10;
             if (tL_textWithEntities != null && !TextUtils.isEmpty(tL_textWithEntities.text)) {
                 tL_inputInvoicePremiumGiftStars.flags |= 1;
@@ -1107,7 +1107,7 @@ public final class m5 {
                 tL_payments_getPaymentForm.flags |= 1;
             }
             tL_payments_getPaymentForm.invoice = tL_inputInvoicePremiumGiftStars;
-            ConnectionsManager.getInstance(this.f52878a).sendRequest(tL_payments_getPaymentForm, new RequestDelegate() {
+            ConnectionsManager.getInstance(this.f52880a).sendRequest(tL_payments_getPaymentForm, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
                     AndroidUtilities.runOnUIThread(new org.telegram.ui.Wallet.p(m5.this, tLObject2, tL_error, callback2, tL_inputInvoicePremiumGiftStars, context2, I, name, j3, tLObject, tL_textWithEntities));
@@ -1117,7 +1117,7 @@ public final class m5 {
     }
 
     public final void g0(LaunchActivity launchActivity, long j3, String str) {
-        if (!this.f52881e) {
+        if (!this.f52883e) {
             r(new o31(this, launchActivity, j3, str, 16));
         } else {
             h0(launchActivity, j3, str);
@@ -1132,15 +1132,15 @@ public final class m5 {
         Context context2 = context;
         org.telegram.ui.ActionBar.e6 I = I();
         if (starGift != null && context2 != null) {
-            if (!this.f52881e) {
+            if (!this.f52883e) {
                 r(new org.telegram.messenger.voip.f(this, callback2, tL_payments_paymentFormStarGift, starGift, j3, 12));
                 return;
             }
-            String name = DialogObject.getName(this.f52878a, j3);
+            String name = DialogObject.getName(this.f52880a, j3);
             TLRPC.TL_inputInvoiceStarGiftResale tL_inputInvoiceStarGiftResale = new TLRPC.TL_inputInvoiceStarGiftResale();
             tL_inputInvoiceStarGiftResale.slug = starGift.slug;
-            tL_inputInvoiceStarGiftResale.to_id = MessagesController.getInstance(this.f52878a).getInputPeer(j3);
-            tL_inputInvoiceStarGiftResale.ton = this.f52879b;
+            tL_inputInvoiceStarGiftResale.to_id = MessagesController.getInstance(this.f52880a).getInputPeer(j3);
+            tL_inputInvoiceStarGiftResale.ton = this.f52881b;
             tL_inputInvoiceStarGiftResale.message = tL_textWithEntities;
             tL_inputInvoiceStarGiftResale.show_name = !z10;
             TLRPC.TL_payments_getPaymentForm tL_payments_getPaymentForm = new TLRPC.TL_payments_getPaymentForm();
@@ -1166,7 +1166,7 @@ public final class m5 {
                 size = size;
                 context2 = context2;
             }
-            ConnectionsManager.getInstance(this.f52878a).sendRequest(tL_payments_sendStarsForm, new k4(this, callback2, context2, I, j10, name, tL_payments_paymentFormStarGift, starGift, j3));
+            ConnectionsManager.getInstance(this.f52880a).sendRequest(tL_payments_sendStarsForm, new k4(this, callback2, context2, I, j10, name, tL_payments_paymentFormStarGift, starGift, j3));
         }
     }
 
@@ -1192,12 +1192,12 @@ public final class m5 {
         final Context context2 = context;
         final org.telegram.ui.ActionBar.e6 I = I();
         if (starGift != null && context2 != null) {
-            if (!this.f52881e) {
+            if (!this.f52883e) {
                 r(new Runnable() {
                     @Override
                     public final void run() {
                         m5 m5Var = m5.this;
-                        boolean z12 = m5Var.f52881e;
+                        boolean z12 = m5Var.f52883e;
                         xh.n4 n4Var2 = n4Var;
                         if (!z12) {
                             m5.e("NO_BALANCE");
@@ -1209,10 +1209,10 @@ public final class m5 {
                 });
                 return;
             }
-            final String name = DialogObject.getName(this.f52878a, j3);
+            final String name = DialogObject.getName(this.f52880a, j3);
             final TLRPC.TL_inputInvoiceStarGift tL_inputInvoiceStarGift = new TLRPC.TL_inputInvoiceStarGift();
             tL_inputInvoiceStarGift.hide_name = z10;
-            tL_inputInvoiceStarGift.peer = MessagesController.getInstance(this.f52878a).getInputPeer(j3);
+            tL_inputInvoiceStarGift.peer = MessagesController.getInstance(this.f52880a).getInputPeer(j3);
             tL_inputInvoiceStarGift.gift_id = starGift.f20265id;
             tL_inputInvoiceStarGift.include_upgrade = z11;
             if (tL_textWithEntities != null && !TextUtils.isEmpty(tL_textWithEntities.text)) {
@@ -1228,7 +1228,7 @@ public final class m5 {
                 tL_payments_getPaymentForm.flags |= 1;
             }
             tL_payments_getPaymentForm.invoice = tL_inputInvoiceStarGift;
-            ConnectionsManager.getInstance(this.f52878a).sendRequest(tL_payments_getPaymentForm, new RequestDelegate() {
+            ConnectionsManager.getInstance(this.f52880a).sendRequest(tL_payments_getPaymentForm, new RequestDelegate() {
                 @Override
                 public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
                     final m5 m5Var = m5.this;
@@ -1274,7 +1274,7 @@ public final class m5 {
                                 j11 += tL_labeledPrice.amount;
                             }
                             final m5 m5Var2 = m5.this;
-                            ConnectionsManager connectionsManager = ConnectionsManager.getInstance(m5Var2.f52878a);
+                            ConnectionsManager connectionsManager = ConnectionsManager.getInstance(m5Var2.f52880a);
                             final Context context4 = context3;
                             final org.telegram.ui.ActionBar.e6 e6Var2 = e6Var;
                             final String str3 = str;
@@ -1327,7 +1327,7 @@ public final class m5 {
                                             }
                                             if (!(tLObject4 instanceof TLRPC.TL_payments_paymentResult)) {
                                                 if (tL_error4 != null && "BALANCE_TOO_LOW".equals(tL_error4.text)) {
-                                                    if (!MessagesController.getInstance(m5Var4.f52878a).starsPurchaseAvailable()) {
+                                                    if (!MessagesController.getInstance(m5Var4.f52880a).starsPurchaseAvailable()) {
                                                         n4Var5.run(Boolean.FALSE, null);
                                                         m5.e0(context6, e6Var4);
                                                         return;
@@ -1364,9 +1364,9 @@ public final class m5 {
                                             m5Var4.Q(j16);
                                             m5Var4.T(true);
                                             n4Var5.run(Boolean.TRUE, null);
-                                            if (BirthdayController.getInstance(m5Var4.f52878a).contains(j16)) {
+                                            if (BirthdayController.getInstance(m5Var4.f52880a).contains(j16)) {
                                                 i11 = 0;
-                                                MessagesController.getInstance(m5Var4.f52878a).getMainSettings().edit().putBoolean(Calendar.getInstance().get(1) + "bdayhint_" + j16, false).apply();
+                                                MessagesController.getInstance(m5Var4.f52880a).getMainSettings().edit().putBoolean(Calendar.getInstance().get(1) + "bdayhint_" + j16, false).apply();
                                             } else {
                                                 i11 = 0;
                                             }
@@ -1381,11 +1381,11 @@ public final class m5 {
                                             }
                                             if (j16 < 0) {
                                                 long j17 = -j16;
-                                                TLRPC.ChatFull chatFull = MessagesController.getInstance(m5Var4.f52878a).getChatFull(j17);
+                                                TLRPC.ChatFull chatFull = MessagesController.getInstance(m5Var4.f52880a).getChatFull(j17);
                                                 if (chatFull != null) {
                                                     chatFull.stargifts_count++;
                                                     chatFull.flags2 |= 262144;
-                                                    MessagesController.getInstance(m5Var4.f52878a).putChatFull(chatFull);
+                                                    MessagesController.getInstance(m5Var4.f52880a).putChatFull(chatFull);
                                                 }
                                                 if (R instanceof ProfileActivity) {
                                                     ProfileActivity profileActivity = (ProfileActivity) R;
@@ -1420,17 +1420,17 @@ public final class m5 {
                                                 }
                                                 a03.s(document2, string2, spannableStringBuilder).k(true);
                                             } else {
-                                                NotificationCenter notificationCenter = NotificationCenter.getInstance(m5Var4.f52878a);
+                                                NotificationCenter notificationCenter = NotificationCenter.getInstance(m5Var4.f52880a);
                                                 int i15 = NotificationCenter.closeProfileActivity;
                                                 Long valueOf = Long.valueOf(j16);
                                                 Boolean bool = Boolean.FALSE;
                                                 notificationCenter.lambda$postNotificationNameOnUIThread$1(i15, valueOf, bool);
-                                                NotificationCenter.getInstance(m5Var4.f52878a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChatActivity, Long.valueOf(j16), bool);
+                                                NotificationCenter.getInstance(m5Var4.f52880a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChatActivity, Long.valueOf(j16), bool);
                                                 zn W9 = zn.W9(j16);
                                                 W9.whenFullyVisible(new o31(W9, starGift5, spannableStringBuilder, j15, 15));
                                                 R.presentFragment(W9);
                                             }
-                                            MessagesController.getInstance(m5Var4.f52878a).getMainSettings().edit().putBoolean("show_gift_for_" + j16, true).putBoolean(Calendar.getInstance().get(1) + "show_gift_for_" + j16, true).apply();
+                                            MessagesController.getInstance(m5Var4.f52880a).getMainSettings().edit().putBoolean("show_gift_for_" + j16, true).putBoolean(Calendar.getInstance().get(1) + "show_gift_for_" + j16, true).apply();
                                             LaunchActivity launchActivity = LaunchActivity.G1;
                                             if (launchActivity != null && (eb0Var = launchActivity.f33821x0) != null) {
                                                 eb0Var.c(true);
@@ -1448,7 +1448,7 @@ public final class m5 {
 
     public final void i0(final long j3, final long j10, boolean z10, final boolean z11) {
         TL_account.toggleNoPaidMessagesException togglenopaidmessagesexception = new TL_account.toggleNoPaidMessagesException();
-        int i10 = this.f52878a;
+        int i10 = this.f52880a;
         togglenopaidmessagesexception.user_id = MessagesController.getInstance(i10).getInputUser(j3);
         if (j10 != 0) {
             togglenopaidmessagesexception.parent_peer = MessagesController.getInstance(i10).getInputPeer(j10);
@@ -1464,7 +1464,7 @@ public final class m5 {
     }
 
     public final boolean j() {
-        if (!this.f52879b) {
+        if (!this.f52881b) {
             return false;
         }
         if (di.i.C0()) {
@@ -1591,14 +1591,14 @@ public final class m5 {
     }
 
     public final void k0(TL_stars.StarsAmount starsAmount) {
-        boolean equals = this.f52882f.equals(starsAmount);
-        int i10 = this.f52878a;
+        boolean equals = this.f52884f.equals(starsAmount);
+        int i10 = this.f52880a;
         if (!equals) {
-            this.f52882f = starsAmount;
-            this.f52883g = 0L;
+            this.f52884f = starsAmount;
+            this.f52885g = 0L;
             NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starBalanceUpdated, new Object[0]);
-        } else if (this.f52883g != 0) {
-            this.f52883g = 0L;
+        } else if (this.f52885g != 0) {
+            this.f52885g = 0L;
             NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starBalanceUpdated, new Object[0]);
         }
     }
@@ -1613,7 +1613,7 @@ public final class m5 {
         final int id2 = messageObject.getId();
         TLRPC.TL_messageMediaPaidMedia tL_messageMediaPaidMedia2 = (TLRPC.TL_messageMediaPaidMedia) messageObject.messageOwner.media;
         TLRPC.TL_messages_editMessage tL_messages_editMessage = new TLRPC.TL_messages_editMessage();
-        int i10 = this.f52878a;
+        int i10 = this.f52880a;
         tL_messages_editMessage.peer = MessagesController.getInstance(i10).getInputPeer(dialogId);
         int i11 = tL_messages_editMessage.flags;
         tL_messages_editMessage.flags = 32768 | i11;
@@ -1672,8 +1672,8 @@ public final class m5 {
             LongSparseArray longSparseArray = this.L;
             if (i10 < longSparseArray.size()) {
                 e5 e5Var = (e5) longSparseArray.valueAt(i10);
-                for (int i11 = 0; i11 < e5Var.f52440l.size(); i11++) {
-                    TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) e5Var.f52440l.get(i11);
+                for (int i11 = 0; i11 < e5Var.f52442l.size(); i11++) {
+                    TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) e5Var.f52442l.get(i11);
                     if (savedStarGift != null && (starGift = savedStarGift.gift) != null && starGift.f20265id == j3) {
                         return savedStarGift;
                     }
@@ -1690,18 +1690,18 @@ public final class m5 {
     }
 
     public final TL_stars.StarsAmount q(boolean z10, boolean z11, Runnable runnable) {
-        if (((!this.f52881e || System.currentTimeMillis() - this.f52880c > 60000) && !this.d) || z11) {
+        if (((!this.f52883e || System.currentTimeMillis() - this.f52882c > 60000) && !this.d) || z11) {
             this.d = true;
             TL_stars.TL_payments_getStarsStatus tL_payments_getStarsStatus = new TL_stars.TL_payments_getStarsStatus();
-            tL_payments_getStarsStatus.ton = this.f52879b;
+            tL_payments_getStarsStatus.ton = this.f52881b;
             tL_payments_getStarsStatus.peer = new TLRPC.TL_inputPeerSelf();
-            ConnectionsManager.getInstance(this.f52878a).sendRequest(tL_payments_getStarsStatus, new ej1(11, this, runnable));
+            ConnectionsManager.getInstance(this.f52880a).sendRequest(tL_payments_getStarsStatus, new ej1(11, this, runnable));
         }
-        if (z10 && this.f52883g > 0) {
-            zf.a m10 = zf.a.m(this.f52882f);
-            return zf.a.g(Math.max(0L, m10.a() - this.f52883g), m10.f54439a).o();
+        if (z10 && this.f52885g > 0) {
+            zf.a m10 = zf.a.m(this.f52884f);
+            return zf.a.g(Math.max(0L, m10.a() - this.f52885g), m10.f54441a).o();
         }
-        return this.f52882f;
+        return this.f52884f;
     }
 
     public final void r(Runnable runnable) {
@@ -1712,10 +1712,10 @@ public final class m5 {
         zf.b bVar;
         zf.a l4 = zf.a.l(p());
         if (l4 == null) {
-            if (this.f52879b) {
-                bVar = zf.b.f54442b;
+            if (this.f52881b) {
+                bVar = zf.b.f54444b;
             } else {
-                bVar = zf.b.f54441a;
+                bVar = zf.b.f54443a;
             }
             return zf.a.i(0L, bVar);
         }
@@ -1723,29 +1723,29 @@ public final class m5 {
     }
 
     public final ArrayList u() {
-        if (!this.f52886k && !this.f52887l) {
-            this.f52886k = true;
-            ConnectionsManager.getInstance(this.f52878a).sendRequest(new TL_stars.TL_payments_getStarsGiftOptions(), new p4(this, 3));
-            return this.f52888m;
+        if (!this.f52888k && !this.f52889l) {
+            this.f52888k = true;
+            ConnectionsManager.getInstance(this.f52880a).sendRequest(new TL_stars.TL_payments_getStarsGiftOptions(), new p4(this, 3));
+            return this.f52890m;
         }
-        return this.f52888m;
+        return this.f52890m;
     }
 
     public final ArrayList v() {
-        if (!this.f52889n && !this.f52890o) {
-            this.f52889n = true;
-            ConnectionsManager.getInstance(this.f52878a).sendRequest(new TL_stars.TL_payments_getStarsGiveawayOptions(), new p4(this, 4));
-            return this.f52891p;
+        if (!this.f52891n && !this.f52892o) {
+            this.f52891n = true;
+            ConnectionsManager.getInstance(this.f52880a).sendRequest(new TL_stars.TL_payments_getStarsGiveawayOptions(), new p4(this, 4));
+            return this.f52893p;
         }
-        return this.f52891p;
+        return this.f52893p;
     }
 
     public final ArrayList z() {
-        if (!this.h && !this.f52884i) {
+        if (!this.h && !this.f52886i) {
             this.h = true;
-            ConnectionsManager.getInstance(this.f52878a).sendRequest(new TL_stars.TL_payments_getStarsTopupOptions(), new p4(this, 2));
-            return this.f52885j;
+            ConnectionsManager.getInstance(this.f52880a).sendRequest(new TL_stars.TL_payments_getStarsTopupOptions(), new p4(this, 2));
+            return this.f52887j;
         }
-        return this.f52885j;
+        return this.f52887j;
     }
 }

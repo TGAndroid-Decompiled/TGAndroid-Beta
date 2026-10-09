@@ -13,12 +13,12 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class d21 extends org.telegram.ui.ActionBar.j {
-    public final Context f36806a;
-    public final ProxyListActivity f36807b;
+    public final Context f36808a;
+    public final ProxyListActivity f36809b;
 
     public d21(ProxyListActivity proxyListActivity, Context context) {
-        this.f36807b = proxyListActivity;
-        this.f36806a = context;
+        this.f36809b = proxyListActivity;
+        this.f36808a = context;
     }
 
     @Override
@@ -27,7 +27,7 @@ public final class d21 extends org.telegram.ui.ActionBar.j {
         int i12;
         StringBuilder sb2;
         boolean z10;
-        ProxyListActivity proxyListActivity = this.f36807b;
+        ProxyListActivity proxyListActivity = this.f36809b;
         ArrayList arrayList = proxyListActivity.F;
         if (i10 != -1) {
             int i13 = 1;
@@ -112,7 +112,7 @@ public final class d21 extends org.telegram.ui.ActionBar.j {
                     }
                     Intent createChooser = Intent.createChooser(intent, LocaleController.getString(i12));
                     createChooser.setFlags(268435456);
-                    this.f36806a.startActivity(createChooser);
+                    this.f36808a.startActivity(createChooser);
                     e21 e21Var = proxyListActivity.f34392a;
                     if (e21Var != null) {
                         e21Var.F();

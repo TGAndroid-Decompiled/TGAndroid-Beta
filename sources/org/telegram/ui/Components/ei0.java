@@ -77,7 +77,7 @@ public class ei0 extends AccessibilityNodeProvider {
                 if (o9 == null) {
                     return null;
                 }
-                return o9.f47585a;
+                return o9.f47587a;
         }
     }
 
@@ -100,7 +100,7 @@ public class ei0 extends AccessibilityNodeProvider {
                 if (p5 == null) {
                     return null;
                 }
-                return p5.f47585a;
+                return p5.f47587a;
             default:
                 return super.findFocus(i10);
         }
@@ -141,7 +141,7 @@ public class ei0 extends AccessibilityNodeProvider {
                     } else if (i11 == 16) {
                         hi0 hi0Var = ii0Var.F;
                         if (hi0Var != null) {
-                            ProfileActivity.Y(((org.telegram.ui.jy0) hi0Var).f39042b, i10, 0.0f, 0.0f);
+                            ProfileActivity.Y(((org.telegram.ui.jy0) hi0Var).f39044b, i10, 0.0f, 0.0f);
                         }
                     }
                     return true;

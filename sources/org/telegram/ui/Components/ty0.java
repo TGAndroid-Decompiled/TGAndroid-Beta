@@ -151,11 +151,11 @@ public final class ty0 extends pm0 {
 
     @Override
     public final void v(s4.d1 d1Var, int i10) {
-        View view = d1Var.f47656a;
+        View view = d1Var.f47658a;
         xy0 xy0Var = this.f31309r;
         ArrayList arrayList = xy0Var.W;
         if (arrayList != null) {
-            int i11 = d1Var.f47660f;
+            int i11 = d1Var.f47662f;
             SparseArray sparseArray = this.f31306e;
             if (i11 != 0) {
                 if (i11 != 1) {
@@ -171,7 +171,7 @@ public final class ty0 extends pm0 {
             ((org.telegram.ui.Cells.f8) view).d((TLRPC.Document) sparseArray.get(i10), null, this.f31307f.get(i10), null, false, false);
         } else if (xy0Var.X != null) {
             ((org.telegram.ui.Cells.f8) view).setSticker((SendMessagesHelper.ImportingSticker) xy0Var.Y.get(i10));
-        } else if (d1Var.f47660f != 3) {
+        } else if (d1Var.f47662f != 3) {
             org.telegram.ui.Cells.f8 f8Var = (org.telegram.ui.Cells.f8) view;
             TLRPC.TL_messages_stickerSet tL_messages_stickerSet = xy0Var.S;
             if (tL_messages_stickerSet != null) {

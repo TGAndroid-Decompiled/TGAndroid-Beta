@@ -179,8 +179,8 @@ public final class b90 implements View.OnClickListener {
                 ((b51) this.f24951b).dismiss();
                 return;
             case 23:
-                org.telegram.ui.zn znVar = ((org.telegram.ui.al) this.f24951b).f35950s;
-                if (!znVar.getUserConfig().isPremium() && ((chat = znVar.f44751e) == null || !chat.autotranslation)) {
+                org.telegram.ui.zn znVar = ((org.telegram.ui.al) this.f24951b).f35952s;
+                if (!znVar.getUserConfig().isPremium() && ((chat = znVar.f44753e) == null || !chat.autotranslation)) {
                     i10 = ((org.telegram.ui.ActionBar.n2) znVar).currentAccount;
                     SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(i10).edit();
                     edit.putInt("dialog_show_translate_count" + znVar.a(), 14).commit();

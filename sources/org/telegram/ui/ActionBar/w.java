@@ -71,7 +71,7 @@ public final class w extends FrameLayout {
     @Override
     public final void addView(View view, int i10, ViewGroup.LayoutParams layoutParams) {
         super.addView(view, i10, layoutParams);
-        WeakHashMap weakHashMap = r0.i0.f46764a;
+        WeakHashMap weakHashMap = r0.i0.f46766a;
         r0.y.c(this);
     }
 
@@ -424,7 +424,7 @@ public final class w extends FrameLayout {
                 z10 = false;
             }
             this.f21641x = z10;
-            WeakHashMap weakHashMap = r0.i0.f46764a;
+            WeakHashMap weakHashMap = r0.i0.f46766a;
             r0.y.c((View) getParent());
         }
     }

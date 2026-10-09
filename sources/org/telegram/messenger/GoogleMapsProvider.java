@@ -284,7 +284,7 @@ public class GoogleMapsProvider implements IMapsProvider {
                     s7.i iVar = (s7.i) fVar.f14082a;
                     Parcel M0 = iVar.M0(iVar.N0(), 4);
                     Parcelable.Creator<LatLng> creator = LatLng.CREATOR;
-                    int i10 = s7.b.f47858a;
+                    int i10 = s7.b.f47860a;
                     if (M0.readInt() == 0) {
                         createFromParcel = null;
                     } else {
@@ -421,7 +421,7 @@ public class GoogleMapsProvider implements IMapsProvider {
                 s7.b.b(N0, bVar);
                 Parcel M0 = fVar.M0(N0, 35);
                 IBinder readStrongBinder = M0.readStrongBinder();
-                int i10 = s7.g.f47860b;
+                int i10 = s7.g.f47862b;
                 if (readStrongBinder == null) {
                     hVar = 0;
                 } else {
@@ -456,7 +456,7 @@ public class GoogleMapsProvider implements IMapsProvider {
                 s7.b.b(N0, gVar);
                 Parcel M0 = fVar2.M0(N0, 11);
                 IBinder readStrongBinder = M0.readStrongBinder();
-                int i10 = s7.j.f47861b;
+                int i10 = s7.j.f47863b;
                 if (readStrongBinder == null) {
                     aVar = 0;
                 } else {
@@ -507,7 +507,7 @@ public class GoogleMapsProvider implements IMapsProvider {
                 i8.f fVar = cVar.f11034a;
                 Parcel M0 = fVar.M0(fVar.N0(), 1);
                 Parcelable.Creator<CameraPosition> creator = CameraPosition.CREATOR;
-                int i10 = s7.b.f47858a;
+                int i10 = s7.b.f47860a;
                 if (M0.readInt() == 0) {
                     createFromParcel = null;
                 } else {
@@ -669,7 +669,7 @@ public class GoogleMapsProvider implements IMapsProvider {
             try {
                 i8.f fVar = cVar.f11034a;
                 Parcel N0 = fVar.N0();
-                int i10 = s7.b.f47858a;
+                int i10 = s7.b.f47860a;
                 N0.writeInt(z10 ? 1 : 0);
                 fVar.R0(N0, 22);
             } catch (RemoteException e7) {
@@ -1098,7 +1098,7 @@ public class GoogleMapsProvider implements IMapsProvider {
             try {
                 i8.c cVar = hVar.f11039a;
                 Parcel N0 = cVar.N0();
-                int i10 = s7.b.f47858a;
+                int i10 = s7.b.f47860a;
                 N0.writeInt(z10 ? 1 : 0);
                 cVar.R0(N0, 2);
             } catch (RemoteException e7) {
@@ -1113,7 +1113,7 @@ public class GoogleMapsProvider implements IMapsProvider {
             try {
                 i8.c cVar = hVar.f11039a;
                 Parcel N0 = cVar.N0();
-                int i10 = s7.b.f47858a;
+                int i10 = s7.b.f47860a;
                 N0.writeInt(z10 ? 1 : 0);
                 cVar.R0(N0, 3);
             } catch (RemoteException e7) {
@@ -1128,7 +1128,7 @@ public class GoogleMapsProvider implements IMapsProvider {
             try {
                 i8.c cVar = hVar.f11039a;
                 Parcel N0 = cVar.N0();
-                int i10 = s7.b.f47858a;
+                int i10 = s7.b.f47860a;
                 N0.writeInt(z10 ? 1 : 0);
                 cVar.R0(N0, 1);
             } catch (RemoteException e7) {
@@ -1184,7 +1184,7 @@ public class GoogleMapsProvider implements IMapsProvider {
     public IMapsProvider.ICameraUpdate newCameraUpdateLatLng(IMapsProvider.LatLng latLng) {
         LatLng latLng2 = new LatLng(latLng.latitude, latLng.longitude);
         try {
-            i8.a aVar = v7.u7.f49323a;
+            i8.a aVar = v7.u7.f49325a;
             n6.l.i(aVar, "CameraUpdateFactory is not initialized");
             Parcel N0 = aVar.N0();
             s7.b.b(N0, latLng2);
@@ -1202,7 +1202,7 @@ public class GoogleMapsProvider implements IMapsProvider {
         LatLngBounds latLngBounds = ((GoogleLatLngBounds) iLatLngBounds).bounds;
         n6.l.i(latLngBounds, "bounds must not be null");
         try {
-            i8.a aVar = v7.u7.f49323a;
+            i8.a aVar = v7.u7.f49325a;
             n6.l.i(aVar, "CameraUpdateFactory is not initialized");
             Parcel N0 = aVar.N0();
             s7.b.b(N0, latLngBounds);
@@ -1220,7 +1220,7 @@ public class GoogleMapsProvider implements IMapsProvider {
     public IMapsProvider.ICameraUpdate newCameraUpdateLatLngZoom(IMapsProvider.LatLng latLng, float f7) {
         LatLng latLng2 = new LatLng(latLng.latitude, latLng.longitude);
         try {
-            i8.a aVar = v7.u7.f49323a;
+            i8.a aVar = v7.u7.f49325a;
             n6.l.i(aVar, "CameraUpdateFactory is not initialized");
             Parcel N0 = aVar.N0();
             s7.b.b(N0, latLng2);

@@ -346,7 +346,7 @@ public abstract class j extends FrameLayout {
             if (!url.startsWith("@") && !url.startsWith("#") && !url.startsWith("$") && !url.startsWith("/")) {
                 return;
             }
-            ((t01) this).f41811c0.f44189e.B4(url, this.F);
+            ((t01) this).f41813c0.f44191e.B4(url, this.F);
         } else if (clickableSpan instanceof URLSpan) {
             String url2 = ((URLSpan) clickableSpan).getURL();
             if (AndroidUtilities.shouldShowUrlInAlert(url2)) {

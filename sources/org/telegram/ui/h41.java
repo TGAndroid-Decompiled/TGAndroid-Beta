@@ -110,27 +110,27 @@ public final class h41 extends org.telegram.ui.Components.eb {
         String formatString = LocaleController.formatString(i14, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).channelRestrictSponsoredLevelMin));
         int i21 = org.telegram.ui.ActionBar.i6.gc;
         linearLayout.addView(new ai.x5(this, context, R.drawable.menu_feature_noads, LocaleController.getString(R.string.RevenueSharingAdsInfo3Title), AndroidUtilities.replaceSingleTag(formatString, i21, 0, new Runnable(this) {
-            public final h41 f37774b;
+            public final h41 f37776b;
 
             {
-                this.f37774b = this;
+                this.f37776b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        h41 h41Var = this.f37774b;
+                        h41 h41Var = this.f37776b;
                         h41Var.getClass();
                         org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                         if (U != null) {
-                            U.presentFragment(new PremiumPreviewFragment(0, PremiumPreviewFragment.m0(3)));
+                            U.presentFragment(new PremiumPreviewFragment(0, PremiumPreviewFragment.l0(3)));
                             h41Var.dismiss();
                             return;
                         }
                         return;
                     default:
-                        h41 h41Var2 = this.f37774b;
+                        h41 h41Var2 = this.f37776b;
                         h41Var2.dismiss();
                         of.f.s(h41Var2.getContext(), LocaleController.getString(R.string.PromoteUrl));
                         return;
@@ -162,27 +162,27 @@ public final class h41 extends org.telegram.ui.Components.eb {
         }
         SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.getString(i16));
         SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.RevenueSharingAdsInfo4SubtitleLearnMore), i21, 0, new Runnable(this) {
-            public final h41 f37774b;
+            public final h41 f37776b;
 
             {
-                this.f37774b = this;
+                this.f37776b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        h41 h41Var = this.f37774b;
+                        h41 h41Var = this.f37776b;
                         h41Var.getClass();
                         org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                         if (U != null) {
-                            U.presentFragment(new PremiumPreviewFragment(0, PremiumPreviewFragment.m0(3)));
+                            U.presentFragment(new PremiumPreviewFragment(0, PremiumPreviewFragment.l0(3)));
                             h41Var.dismiss();
                             return;
                         }
                         return;
                     default:
-                        h41 h41Var2 = this.f37774b;
+                        h41 h41Var2 = this.f37776b;
                         h41Var2.dismiss();
                         of.f.s(h41Var2.getContext(), LocaleController.getString(R.string.PromoteUrl));
                         return;

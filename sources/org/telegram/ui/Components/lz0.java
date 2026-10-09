@@ -41,7 +41,7 @@ public final class lz0 extends pm0 {
     @Override
     public final void v(s4.d1 d1Var, int i10) {
         String str;
-        nz0 nz0Var = (nz0) d1Var.f47656a;
+        nz0 nz0Var = (nz0) d1Var.f47658a;
         oz0 oz0Var = this.f28632c;
         ArrayList arrayList = oz0Var.f29613w;
         if (arrayList == null) {

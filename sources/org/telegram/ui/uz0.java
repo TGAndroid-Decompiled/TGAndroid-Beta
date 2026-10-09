@@ -8,20 +8,20 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class uz0 extends k71 {
-    public final b71[] f42586d2;
-    public final ProfileActivity f42587e2;
+    public final b71[] f42588d2;
+    public final ProfileActivity f42589e2;
 
     public uz0(ProfileActivity profileActivity, ProfileActivity profileActivity2, Activity activity, Integer num, int i10, org.telegram.ui.ActionBar.e6 e6Var, int i11, b71[] b71VarArr) {
         super(profileActivity2, activity, true, num, i10, true, e6Var, i11);
-        this.f42587e2 = profileActivity;
-        this.f42586d2 = b71VarArr;
+        this.f42589e2 = profileActivity;
+        this.f42588d2 = b71VarArr;
     }
 
     @Override
     public final boolean F(TL_stars.TL_starGiftUnique tL_starGiftUnique) {
         int i10;
         if (tL_starGiftUnique != null) {
-            i10 = ((org.telegram.ui.ActionBar.n2) this.f42587e2).currentAccount;
+            i10 = ((org.telegram.ui.ActionBar.n2) this.f42589e2).currentAccount;
             if (yh.m5.y(i10, false).n(tL_starGiftUnique.f20265id) != null && MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) < 2) {
                 return false;
             }
@@ -32,7 +32,7 @@ public final class uz0 extends k71 {
 
     @Override
     public final long getDialogId() {
-        return this.f42587e2.a();
+        return this.f42589e2.a();
     }
 
     @Override
@@ -44,9 +44,9 @@ public final class uz0 extends k71 {
         int i10;
         int i11;
         int i12;
-        ProfileActivity profileActivity = this.f42587e2;
+        ProfileActivity profileActivity = this.f42589e2;
         org.telegram.ui.Components.q5[] q5VarArr = profileActivity.G;
-        b71[] b71VarArr = this.f42586d2;
+        b71[] b71VarArr = this.f42588d2;
         if (tL_starGiftUnique != null) {
             i10 = ((org.telegram.ui.ActionBar.n2) profileActivity).currentAccount;
             TL_stars.SavedStarGift n10 = yh.m5.y(i10, false).n(tL_starGiftUnique.f20265id);
@@ -124,7 +124,7 @@ public final class uz0 extends k71 {
             org.telegram.ui.Cells.o oVar = profileActivity.f34234d0;
             ?? obj = new Object();
             long longValue = l4.longValue();
-            obj.f54616g = longValue;
+            obj.f54618g = longValue;
             obj.h = longValue;
             oVar.a(obj);
         }

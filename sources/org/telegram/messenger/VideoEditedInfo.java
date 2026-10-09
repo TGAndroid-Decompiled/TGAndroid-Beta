@@ -768,7 +768,7 @@ public class VideoEditedInfo {
                     str = "";
                 }
             } else {
-                str = k0Var.f45672a;
+                str = k0Var.f45674a;
             }
             abstractSerializedData.writeString(str);
             abstractSerializedData.writeFloat(this.scale);
@@ -867,13 +867,13 @@ public class VideoEditedInfo {
             this.textAlign = abstractSerializedData.readInt32(z11);
             String readString = abstractSerializedData.readString(z11);
             this.textTypefaceKey = readString;
-            pg.k0 k0Var2 = pg.k0.f45668e;
+            pg.k0 k0Var2 = pg.k0.f45670e;
             qg.n0 n0Var = null;
             if (readString != null && !TextUtils.isEmpty(readString)) {
                 List c10 = pg.k0.c();
                 for (int i11 = 0; i11 < c10.size(); i11++) {
                     k0Var = (pg.k0) c10.get(i11);
-                    if (k0Var != null && TextUtils.equals(readString, k0Var.f45672a)) {
+                    if (k0Var != null && TextUtils.equals(readString, k0Var.f45674a)) {
                         break;
                     }
                 }
@@ -911,7 +911,7 @@ public class VideoEditedInfo {
                 this.mediaArea = TL_stories.MediaArea.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z11), z11);
                 int readInt323 = abstractSerializedData.readInt32(z11);
                 if (-625858389 != readInt323) {
-                    int i12 = qg.n0.f46417j;
+                    int i12 = qg.n0.f46419j;
                 } else {
                     n0Var = new qg.n0();
                 }

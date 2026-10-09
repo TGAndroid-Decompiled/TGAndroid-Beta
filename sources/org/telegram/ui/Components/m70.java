@@ -23,10 +23,10 @@ public final class m70 implements org.telegram.ui.ub0 {
             tL_channelAdminLogEventActionExportedInviteEdit.prev_invite = tL_chatInviteExported;
             tL_channelAdminLogEvent.action = tL_channelAdminLogEventActionExportedInviteEdit;
             tL_channelAdminLogEvent.date = (int) (System.currentTimeMillis() / 1000);
-            org.telegram.ui.vb vbVar = ibVar.f38598a;
+            org.telegram.ui.vb vbVar = ibVar.f38600a;
             tL_channelAdminLogEvent.user_id = vbVar.getAccountInstance().getUserConfig().clientUserId;
             i10 = ((org.telegram.ui.ActionBar.n2) vbVar).currentAccount;
-            if (new MessageObject(i10, tL_channelAdminLogEvent, (ArrayList<MessageObject>) vbVar.f42784n0, (HashMap<String, ArrayList<MessageObject>>) vbVar.m0, vbVar.f42775f, vbVar.T, true).contentType >= 0) {
+            if (new MessageObject(i10, tL_channelAdminLogEvent, (ArrayList<MessageObject>) vbVar.f42786n0, (HashMap<String, ArrayList<MessageObject>>) vbVar.m0, vbVar.f42777f, vbVar.T, true).contentType >= 0) {
                 vbVar.R0();
                 vbVar.E.l();
                 org.telegram.ui.vb.K0(vbVar);

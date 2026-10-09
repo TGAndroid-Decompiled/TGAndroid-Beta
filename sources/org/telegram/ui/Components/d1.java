@@ -60,7 +60,7 @@ public final class d1 implements org.telegram.ui.ActionBar.a2, BillingController
                 return;
             default:
                 org.telegram.ui.vm0 vm0Var = (org.telegram.ui.vm0) this.f25540b;
-                org.telegram.ui.nn0 nn0Var = vm0Var.f42903a;
+                org.telegram.ui.nn0 nn0Var = vm0Var.f42905a;
                 nn0Var.Y[0].setText((String) this.f25541c);
                 nn0Var.Y[1].setText((String) this.d);
                 nn0Var.Y[2].setText((String) this.f25542e);

@@ -33,56 +33,56 @@ import org.telegram.ui.Components.qm0;
 import org.telegram.ui.Components.ti0;
 import org.telegram.ui.Components.y9;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.Wallet.c8;
+import org.telegram.ui.Wallet.d8;
 import org.telegram.ui.q4;
 import org.telegram.ui.zn;
 import rg.x1;
 public final class k extends Dialog {
     public final l E;
-    public final int f50415a;
-    public final int f50416b;
-    public final Drawable f50417c;
+    public final int f50417a;
+    public final int f50418b;
+    public final Drawable f50419c;
     public final TextView d;
-    public final TextView f50418e;
-    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f50419f;
+    public final TextView f50420e;
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f50421f;
     public final ti0 h;
-    public final i f50420n;
-    public TLRPC.TL_chatInviteImporter f50421r;
-    public ValueAnimator f50422s;
+    public final i f50422n;
+    public TLRPC.TL_chatInviteImporter f50423r;
+    public ValueAnimator f50424s;
     public y9 v;
-    public BitmapDrawable f50423w;
-    public float f50424x;
-    public final j f50425y;
+    public BitmapDrawable f50425w;
+    public float f50426x;
+    public final j f50427y;
 
     public k(l lVar, Activity activity, qm0 qm0Var, e6 e6Var, boolean z10) {
         super(activity, R.style.TransparentDialog2);
         int i10;
         this.E = lVar;
         Drawable mutate = getContext().getResources().getDrawable(R.drawable.popup_fixed_alert2).mutate();
-        this.f50417c = mutate;
+        this.f50419c = mutate;
         TextView textView = new TextView(getContext());
         this.d = textView;
         TextView textView2 = new TextView(getContext());
-        this.f50418e = textView2;
+        this.f50420e = textView2;
         j jVar = new j(this, getContext());
-        this.f50425y = jVar;
+        this.f50427y = jVar;
         setCancelable(true);
         jVar.setVisibility(4);
         int i11 = i6.G8;
-        n2 n2Var = lVar.f50431g;
+        n2 n2Var = lVar.f50433g;
         int w02 = i6.w0(i11, n2Var.getResourceProvider());
         mutate.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.MULTIPLY));
         mutate.setCallback(jVar);
         Rect rect = new Rect();
         mutate.getPadding(rect);
-        this.f50415a = rect.top;
-        this.f50416b = rect.left;
+        this.f50417a = rect.top;
+        this.f50418b = rect.left;
         ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(activity, e6Var);
-        this.f50419f = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        this.f50421f = actionBarPopupWindow$ActionBarPopupWindowLayout;
         actionBarPopupWindow$ActionBarPopupWindowLayout.setBackgroundColor(w02);
         jVar.addView(actionBarPopupWindow$ActionBarPopupWindowLayout);
         ?? q4Var = new q4(getContext());
-        this.f50420n = q4Var;
+        this.f50422n = q4Var;
         ti0 ti0Var = new ti0(activity, n2Var.getActionBar(), qm0Var, q4Var);
         this.h = ti0Var;
         ti0Var.setCreateThumbFromParent(true);
@@ -111,37 +111,37 @@ public final class k extends Dialog {
         }
         f1Var.g(LocaleController.getString(i10), R.drawable.msg_requests, null);
         f1Var.setOnClickListener(new View.OnClickListener(this) {
-            public final k f50410b;
+            public final k f50412b;
 
             {
-                this.f50410b = this;
+                this.f50412b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        k kVar = this.f50410b;
+                        k kVar = this.f50412b;
                         l lVar2 = kVar.E;
-                        TLRPC.TL_chatInviteImporter tL_chatInviteImporter = kVar.f50421r;
+                        TLRPC.TL_chatInviteImporter tL_chatInviteImporter = kVar.f50423r;
                         if (tL_chatInviteImporter != null) {
                             lVar2.d(tL_chatInviteImporter, true);
                         }
-                        lVar2.f50442s.e(false);
-                        lVar2.f50441r = null;
+                        lVar2.f50444s.e(false);
+                        lVar2.f50443r = null;
                         return;
                     case 1:
-                        k.a(this.f50410b);
+                        k.a(this.f50412b);
                         return;
                     default:
-                        k kVar2 = this.f50410b;
+                        k kVar2 = this.f50412b;
                         l lVar3 = kVar2.E;
-                        TLRPC.TL_chatInviteImporter tL_chatInviteImporter2 = kVar2.f50421r;
+                        TLRPC.TL_chatInviteImporter tL_chatInviteImporter2 = kVar2.f50423r;
                         if (tL_chatInviteImporter2 != null) {
                             lVar3.d(tL_chatInviteImporter2, false);
                         }
-                        lVar3.f50442s.e(false);
-                        lVar3.f50441r = null;
+                        lVar3.f50444s.e(false);
+                        lVar3.f50443r = null;
                         return;
                 }
             }
@@ -152,37 +152,37 @@ public final class k extends Dialog {
         f1Var2.setSelectorColor(i6.w0(i14, e6Var));
         f1Var2.g(LocaleController.getString(R.string.SendMessage), R.drawable.msg_msgbubble3, null);
         f1Var2.setOnClickListener(new View.OnClickListener(this) {
-            public final k f50410b;
+            public final k f50412b;
 
             {
-                this.f50410b = this;
+                this.f50412b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        k kVar = this.f50410b;
+                        k kVar = this.f50412b;
                         l lVar2 = kVar.E;
-                        TLRPC.TL_chatInviteImporter tL_chatInviteImporter = kVar.f50421r;
+                        TLRPC.TL_chatInviteImporter tL_chatInviteImporter = kVar.f50423r;
                         if (tL_chatInviteImporter != null) {
                             lVar2.d(tL_chatInviteImporter, true);
                         }
-                        lVar2.f50442s.e(false);
-                        lVar2.f50441r = null;
+                        lVar2.f50444s.e(false);
+                        lVar2.f50443r = null;
                         return;
                     case 1:
-                        k.a(this.f50410b);
+                        k.a(this.f50412b);
                         return;
                     default:
-                        k kVar2 = this.f50410b;
+                        k kVar2 = this.f50412b;
                         l lVar3 = kVar2.E;
-                        TLRPC.TL_chatInviteImporter tL_chatInviteImporter2 = kVar2.f50421r;
+                        TLRPC.TL_chatInviteImporter tL_chatInviteImporter2 = kVar2.f50423r;
                         if (tL_chatInviteImporter2 != null) {
                             lVar3.d(tL_chatInviteImporter2, false);
                         }
-                        lVar3.f50442s.e(false);
-                        lVar3.f50441r = null;
+                        lVar3.f50444s.e(false);
+                        lVar3.f50443r = null;
                         return;
                 }
             }
@@ -193,37 +193,37 @@ public final class k extends Dialog {
         f1Var3.setSelectorColor(i6.w0(i14, e6Var));
         f1Var3.g(LocaleController.getString(R.string.DismissRequest), R.drawable.msg_remove, null);
         f1Var3.setOnClickListener(new View.OnClickListener(this) {
-            public final k f50410b;
+            public final k f50412b;
 
             {
-                this.f50410b = this;
+                this.f50412b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        k kVar = this.f50410b;
+                        k kVar = this.f50412b;
                         l lVar2 = kVar.E;
-                        TLRPC.TL_chatInviteImporter tL_chatInviteImporter = kVar.f50421r;
+                        TLRPC.TL_chatInviteImporter tL_chatInviteImporter = kVar.f50423r;
                         if (tL_chatInviteImporter != null) {
                             lVar2.d(tL_chatInviteImporter, true);
                         }
-                        lVar2.f50442s.e(false);
-                        lVar2.f50441r = null;
+                        lVar2.f50444s.e(false);
+                        lVar2.f50443r = null;
                         return;
                     case 1:
-                        k.a(this.f50410b);
+                        k.a(this.f50412b);
                         return;
                     default:
-                        k kVar2 = this.f50410b;
+                        k kVar2 = this.f50412b;
                         l lVar3 = kVar2.E;
-                        TLRPC.TL_chatInviteImporter tL_chatInviteImporter2 = kVar2.f50421r;
+                        TLRPC.TL_chatInviteImporter tL_chatInviteImporter2 = kVar2.f50423r;
                         if (tL_chatInviteImporter2 != null) {
                             lVar3.d(tL_chatInviteImporter2, false);
                         }
-                        lVar3.f50442s.e(false);
-                        lVar3.f50441r = null;
+                        lVar3.f50444s.e(false);
+                        lVar3.f50443r = null;
                         return;
                 }
             }
@@ -233,24 +233,24 @@ public final class k extends Dialog {
 
     public static void a(k kVar) {
         l lVar = kVar.E;
-        if (kVar.f50421r != null) {
-            lVar.f50427b = true;
-            n2 n2Var = lVar.f50431g;
+        if (kVar.f50423r != null) {
+            lVar.f50429b = true;
+            n2 n2Var = lVar.f50433g;
             super.dismiss();
             n2Var.dismissCurrentDialog();
             Bundle bundle = new Bundle();
-            bundle.putLong("user_id", kVar.f50421r.user_id);
+            bundle.putLong("user_id", kVar.f50423r.user_id);
             n2Var.presentFragment(new zn(bundle));
         }
     }
 
     public final int d() {
         int measuredHeight = this.d.getMeasuredHeight() + AndroidUtilities.dp(12.0f) + this.h.getMeasuredHeight();
-        TextView textView = this.f50418e;
+        TextView textView = this.f50420e;
         if (textView.getVisibility() != 8) {
             measuredHeight += textView.getMeasuredHeight() + AndroidUtilities.dp(4.0f);
         }
-        return this.f50419f.getMeasuredHeight() + AndroidUtilities.dp(12.0f) + measuredHeight;
+        return this.f50421f.getMeasuredHeight() + AndroidUtilities.dp(12.0f) + measuredHeight;
     }
 
     @Override
@@ -260,7 +260,7 @@ public final class k extends Dialog {
 
     public final void e(boolean z10) {
         float f7;
-        ValueAnimator valueAnimator = this.f50422s;
+        ValueAnimator valueAnimator = this.f50424s;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
@@ -273,7 +273,7 @@ public final class k extends Dialog {
         float f11 = 1.0f - width;
         float left = iArr[0] - (ti0Var.getLeft() + ((int) ((ti0Var.getMeasuredWidth() * f11) / 2.0f)));
         float top = iArr[1] - (ti0Var.getTop() + ((int) ((d() * f11) / 2.0f)));
-        int i10 = (-this.f50419f.getTop()) / 2;
+        int i10 = (-this.f50421f.getTop()) / 2;
         if (z10) {
             f7 = 0.0f;
         } else {
@@ -283,31 +283,31 @@ public final class k extends Dialog {
             f10 = 0.0f;
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, f10);
-        this.f50422s = ofFloat;
-        ofFloat.addUpdateListener(new c8(this, width, left, top, width2, i10, 1));
-        this.f50422s.addListener(new ln0(this, z10, width, 1));
-        this.f50422s.setDuration(220L);
-        this.f50422s.setInterpolator(hs.f27118f);
-        this.f50422s.start();
+        this.f50424s = ofFloat;
+        ofFloat.addUpdateListener(new d8(this, width, left, top, width2, i10, 1));
+        this.f50424s.addListener(new ln0(this, z10, width, 1));
+        this.f50424s.setDuration(220L);
+        this.f50424s.setInterpolator(hs.f27118f);
+        this.f50424s.start();
     }
 
     public final void f() {
         int i10;
-        BitmapDrawable bitmapDrawable = this.f50423w;
+        BitmapDrawable bitmapDrawable = this.f50425w;
         if (bitmapDrawable != null) {
             i10 = bitmapDrawable.getAlpha();
         } else {
             i10 = 255;
         }
         Resources resources = getContext().getResources();
-        j jVar = this.f50425y;
+        j jVar = this.f50427y;
         int measuredWidth = (int) (jVar.getMeasuredWidth() / 6.0f);
         int measuredHeight = (int) (jVar.getMeasuredHeight() / 6.0f);
         Bitmap createBitmap = Bitmap.createBitmap(measuredWidth, measuredHeight, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(createBitmap);
         canvas.scale(0.16666667f, 0.16666667f);
         canvas.save();
-        n2 n2Var = this.E.f50431g;
+        n2 n2Var = this.E.f50433g;
         ((LaunchActivity) n2Var.getParentActivity()).O().getView().draw(canvas);
         canvas.drawColor(i0.a.k(-16777216, 76));
         Dialog visibleDialog = n2Var.getVisibleDialog();
@@ -316,16 +316,16 @@ public final class k extends Dialog {
         }
         Utilities.stackBlurBitmap(createBitmap, Math.max(7, Math.max(measuredWidth, measuredHeight) / 180));
         BitmapDrawable bitmapDrawable2 = new BitmapDrawable(resources, createBitmap);
-        this.f50423w = bitmapDrawable2;
+        this.f50425w = bitmapDrawable2;
         bitmapDrawable2.setAlpha(i10);
-        getWindow().setBackgroundDrawable(this.f50423w);
+        getWindow().setBackgroundDrawable(this.f50425w);
     }
 
     @Override
     public final void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         getWindow().setWindowAnimations(R.style.DialogNoAnimation);
-        setContentView(this.f50425y, new ViewGroup.LayoutParams(-1, -1));
+        setContentView(this.f50427y, new ViewGroup.LayoutParams(-1, -1));
         WindowManager.LayoutParams attributes = getWindow().getAttributes();
         attributes.width = -1;
         attributes.height = -1;

@@ -74,7 +74,7 @@ public final class j extends rv0 {
     @Override
     public final yl0 getMovingAdapter() {
         u uVar = this.f3904o3;
-        if (uVar.G.f47824y == 0 && !uVar.W.G.C1) {
+        if (uVar.G.f47826y == 0 && !uVar.W.G.C1) {
             return uVar.v;
         }
         return null;

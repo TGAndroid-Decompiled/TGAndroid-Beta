@@ -887,8 +887,8 @@ public final class u5 implements jl0, z3.d, me.d, n5.b, q9.b {
         byte[] bArr2 = (byte[]) this.f6065a;
         SecureRandom secureRandom = new SecureRandom();
         BigInteger bigInteger = new BigInteger(2048, secureRandom);
-        BigInteger bigInteger2 = nj1.f40226b;
-        BigInteger bigInteger3 = nj1.f40225a;
+        BigInteger bigInteger2 = nj1.f40228b;
+        BigInteger bigInteger3 = nj1.f40227a;
         BigInteger modPow = bigInteger2.modPow(bigInteger, bigInteger3);
         BigInteger bigInteger4 = BigInteger.ONE;
         if (modPow.compareTo(bigInteger4) > 0 && modPow.compareTo(bigInteger3.subtract(bigInteger4)) < 0) {
@@ -1127,7 +1127,7 @@ public final class u5 implements jl0, z3.d, me.d, n5.b, q9.b {
         }
         if (z10) {
             if (((org.telegram.ui.Components.qa) this.f6065a) == null) {
-                this.f6065a = new org.telegram.ui.Components.qa(q6Var.f5798e2, q6Var.Z1.getReactionsWindow().f54449c, 0, false);
+                this.f6065a = new org.telegram.ui.Components.qa(q6Var.f5798e2, q6Var.Z1.getReactionsWindow().f54451c, 0, false);
             }
             float f12 = -f10;
             float f13 = -f11;

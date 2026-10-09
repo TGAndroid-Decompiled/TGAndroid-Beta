@@ -47,7 +47,7 @@ public final class hv extends org.telegram.ui.Components.ez0 {
         y6 y6Var = (y6) tVar.f16718c;
         y6Var.T.dismiss();
         Bundle bundle = new Bundle();
-        long j3 = ((r6) tVar.f16717b).f41279a;
+        long j3 = ((r6) tVar.f16717b).f41281a;
         if (j3 > 0) {
             bundle.putLong("user_id", j3);
         } else {

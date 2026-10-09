@@ -25,7 +25,7 @@ public final class d5 extends org.telegram.ui.ActionBar.n2 implements Notificati
 
     public final void U(ArrayList arrayList, c71 c71Var) {
         yh.m e7 = yh.o.g(this.currentAccount).e(this.f9017a);
-        ArrayList arrayList2 = e7.f52854e;
+        ArrayList arrayList2 = e7.f52856e;
         for (int i10 = 0; i10 < arrayList2.size(); i10++) {
             Object obj = arrayList2.get(i10);
             int i11 = a4.f8942a;

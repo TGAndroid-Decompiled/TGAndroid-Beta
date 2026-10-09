@@ -459,7 +459,7 @@ public class z0 extends TextView implements u0.k {
 
     public void setTextMetricsParamsCompat(p0.c cVar) {
         TextDirectionHeuristic textDirectionHeuristic;
-        TextDirectionHeuristic textDirectionHeuristic2 = cVar.f45151b;
+        TextDirectionHeuristic textDirectionHeuristic2 = cVar.f45153b;
         TextDirectionHeuristic textDirectionHeuristic3 = TextDirectionHeuristics.FIRSTSTRONG_RTL;
         int i10 = 1;
         if (textDirectionHeuristic2 != textDirectionHeuristic3 && textDirectionHeuristic2 != (textDirectionHeuristic = TextDirectionHeuristics.FIRSTSTRONG_LTR)) {
@@ -478,8 +478,8 @@ public class z0 extends TextView implements u0.k {
             }
         }
         setTextDirection(i10);
-        getPaint().set(cVar.f45150a);
-        setBreakStrategy(cVar.f45152c);
+        getPaint().set(cVar.f45152a);
+        setBreakStrategy(cVar.f45154c);
         setHyphenationFrequency(cVar.d);
     }
 

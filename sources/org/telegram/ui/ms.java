@@ -6,10 +6,10 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 public final class ms extends org.telegram.ui.ActionBar.j {
-    public final qs f39977a;
+    public final qs f39979a;
 
     public ms(qs qsVar) {
-        this.f39977a = qsVar;
+        this.f39979a = qsVar;
     }
 
     @Override
@@ -17,14 +17,14 @@ public final class ms extends org.telegram.ui.ActionBar.j {
         boolean z10;
         int i11;
         int i12;
-        qs qsVar = this.f39977a;
+        qs qsVar = this.f39979a;
         if (i10 == -1) {
             qsVar.finishFragment();
-        } else if (i10 == 1 && qsVar.f41171b.getText().length() != 0) {
+        } else if (i10 == 1 && qsVar.f41173b.getText().length() != 0) {
             TLRPC.User user = qsVar.getMessagesController().getUser(Long.valueOf(qsVar.H));
             TLRPC.UserFull userFull = qsVar.getMessagesController().getUserFull(qsVar.H);
-            user.first_name = qsVar.f41171b.getText().toString();
-            user.last_name = qsVar.f41172c.getText().toString();
+            user.first_name = qsVar.f41173b.getText().toString();
+            user.last_name = qsVar.f41174c.getText().toString();
             user.contact = true;
             TLRPC.TL_textWithEntities textWithEntities = qsVar.d.getTextWithEntities();
             qsVar.getMessagesController().putUser(user, false);

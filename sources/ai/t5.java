@@ -83,10 +83,10 @@ public final class t5 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.web.a0((org.telegram.ui.web.b1) this.f1734b, tLObject, (String[]) this.f1735c, tL_error, (org.telegram.ui.ActionBar.b2) this.d));
                 return;
             case 16:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Wallet.p6(tL_error, (Utilities.Callback) this.d, tLObject, (MessagesController) this.f1734b, (Utilities.Callback) this.f1735c, 1));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Wallet.q6(tL_error, (Utilities.Callback) this.d, tLObject, (MessagesController) this.f1734b, (Utilities.Callback) this.f1735c, 1));
                 return;
             case 17:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Wallet.p6(tL_error, (org.telegram.messenger.w) this.f1734b, tLObject, (MessagesController) this.f1735c, (org.telegram.messenger.g2) this.d, 2));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Wallet.q6(tL_error, (org.telegram.messenger.w) this.f1734b, tLObject, (MessagesController) this.f1735c, (org.telegram.messenger.g2) this.d, 2));
                 return;
             case 18:
                 tg.v vVar = (tg.v) this.f1734b;
@@ -103,13 +103,13 @@ public final class t5 implements RequestDelegate {
                     return;
                 }
             case 19:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Wallet.p6(tLObject, (MessagesController) this.f1734b, (f4) this.f1735c, (tg.f) this.d, tL_error, 3));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Wallet.q6(tLObject, (MessagesController) this.f1734b, (f4) this.f1735c, (tg.f) this.d, tL_error, 3));
                 return;
             case 20:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Wallet.p6((tg.m1) this.f1734b, tLObject, (TLRPC.UserFull) this.f1735c, (TL_account.TL_birthday) this.d, tL_error, 4));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Wallet.q6((tg.m1) this.f1734b, tLObject, (TLRPC.UserFull) this.f1735c, (TL_account.TL_birthday) this.d, tL_error, 4));
                 return;
             case 21:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Wallet.p6((xh.z4) this.f1734b, tLObject, (TLRPC.TL_inputStorePaymentGiftPremium) this.f1735c, tL_error, (TLRPC.TL_payments_canPurchaseStore) this.d, 5));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Wallet.q6((xh.z4) this.f1734b, tLObject, (TLRPC.TL_inputStorePaymentGiftPremium) this.f1735c, tL_error, (TLRPC.TL_payments_canPurchaseStore) this.d, 5));
                 return;
             case 22:
                 yh.s3.r0((yh.s3) this.f1734b, (of.e) this.f1735c, (TL_stars.TL_starGiftUnique) this.d, tLObject, tL_error);
@@ -118,13 +118,13 @@ public final class t5 implements RequestDelegate {
                 yh.s3.f1((yh.s3) this.f1734b, (TLRPC.TL_messageActionStarGift) this.f1735c, (org.telegram.ui.ActionBar.b2) this.d, tLObject);
                 return;
             case 24:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Wallet.p6((yh.m5) this.f1734b, tL_error, (f90) this.f1735c, tLObject, (TLRPC.TL_inputInvoiceStars) this.d, 8));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Wallet.q6((yh.m5) this.f1734b, tL_error, (f90) this.f1735c, tLObject, (TLRPC.TL_inputInvoiceStars) this.d, 8));
                 return;
             case 25:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Wallet.p6((yh.m5) this.f1734b, tL_error, (Utilities.Callback2) this.f1735c, tLObject, (TLRPC.TL_inputInvoiceStars) this.d, 12));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Wallet.q6((yh.m5) this.f1734b, tL_error, (Utilities.Callback2) this.f1735c, tLObject, (TLRPC.TL_inputInvoiceStars) this.d, 12));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Wallet.p6((yh.m5) this.f1734b, tL_error, (qh.r) this.f1735c, tLObject, (TLRPC.TL_inputInvoiceStars) this.d, 7));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Wallet.q6((yh.m5) this.f1734b, tL_error, (qh.r) this.f1735c, tLObject, (TLRPC.TL_inputInvoiceStars) this.d, 7));
                 return;
         }
     }

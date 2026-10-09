@@ -401,8 +401,8 @@ public final class bb extends View {
                                     }
                                     if (drawable instanceof co) {
                                         co coVar = (co) drawable;
-                                        coVar.f36709b = this;
-                                        cd0 cd0Var2 = coVar.f36712f;
+                                        coVar.f36711b = this;
+                                        cd0 cd0Var2 = coVar.f36714f;
                                         if (cd0Var2 != null) {
                                             cd0Var2.r(this);
                                         }
@@ -545,8 +545,8 @@ public final class bb extends View {
                     i12 = (di.i.z0(iVar).getMeasuredHeight() + iVar.I) - AndroidUtilities.dp(16.0f);
                 } else {
                     int dp = AndroidUtilities.dp(140.0f) + iVar.I;
-                    if (AndroidUtilities.dp(24.0f) + iVar.f40646y.getMeasuredHeight() > dp) {
-                        dp = AndroidUtilities.dp(24.0f) + iVar.f40646y.getMeasuredHeight();
+                    if (AndroidUtilities.dp(24.0f) + iVar.f40648y.getMeasuredHeight() > dp) {
+                        dp = AndroidUtilities.dp(24.0f) + iVar.f40648y.getMeasuredHeight();
                     }
                     i12 = dp;
                 }
@@ -558,8 +558,8 @@ public final class bb extends View {
                     i13 = (ei.l.C0(lVar).getMeasuredHeight() + lVar.I) - AndroidUtilities.dp(16.0f);
                 } else {
                     int dp2 = AndroidUtilities.dp(140.0f) + lVar.I;
-                    if (AndroidUtilities.dp(24.0f) + lVar.f40646y.getMeasuredHeight() > dp2) {
-                        dp2 = AndroidUtilities.dp(24.0f) + lVar.f40646y.getMeasuredHeight();
+                    if (AndroidUtilities.dp(24.0f) + lVar.f40648y.getMeasuredHeight() > dp2) {
+                        dp2 = AndroidUtilities.dp(24.0f) + lVar.f40648y.getMeasuredHeight();
                     }
                     i13 = dp2;
                 }
@@ -673,8 +673,8 @@ public final class bb extends View {
                     p20Var.J = (p20.U(p20Var).getMeasuredHeight() + p20Var.I) - AndroidUtilities.dp(16.0f);
                 } else {
                     int dp4 = AndroidUtilities.dp(140.0f) + p20Var.I;
-                    if (AndroidUtilities.dp(24.0f) + p20Var.f40646y.getMeasuredHeight() > dp4) {
-                        dp4 = Math.max(dp4, (AndroidUtilities.dp(24.0f) + p20Var.f40646y.getMeasuredHeight()) - p20Var.L);
+                    if (AndroidUtilities.dp(24.0f) + p20Var.f40648y.getMeasuredHeight() > dp4) {
+                        dp4 = Math.max(dp4, (AndroidUtilities.dp(24.0f) + p20Var.f40648y.getMeasuredHeight()) - p20Var.L);
                     }
                     p20Var.J = dp4;
                 }
@@ -703,7 +703,7 @@ public final class bb extends View {
         switch (this.f4802a) {
             case 10:
                 super.setAlpha(f7);
-                View view = ((org.telegram.ui.b8) this.f4803b).f36157b.f36888x.fragmentView;
+                View view = ((org.telegram.ui.b8) this.f4803b).f36159b.f36890x.fragmentView;
                 if (view != null) {
                     view.invalidate();
                     return;

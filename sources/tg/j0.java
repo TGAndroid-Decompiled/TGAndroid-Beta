@@ -41,7 +41,7 @@ public final class j0 extends rg.l1 {
         int i11 = this.backgroundPaddingLeft;
         qm0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(64.0f));
         Context context = getContext();
-        int i12 = i0.f48329f;
+        int i12 = i0.f48331f;
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.setClipChildren(false);
         FrameLayout frameLayout2 = new FrameLayout(context);
@@ -51,9 +51,9 @@ public final class j0 extends rg.l1 {
             i0 i0Var = new i0(context, 47.0f);
             i0Var.d = false;
             TLRPC.User user = (TLRPC.User) arrayList2.get(0);
-            j9 j9Var = i0Var.f48333e;
+            j9 j9Var = i0Var.f48335e;
             j9Var.r(user);
-            i0Var.f48330a.e(user, j9Var);
+            i0Var.f48332a.e(user, j9Var);
             frameLayout2.addView(i0Var, 0, x5.e(94, 94, 17));
         } else {
             frameLayout.addView(frameLayout2, x5.a(83.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 0));
@@ -61,15 +61,15 @@ public final class j0 extends rg.l1 {
             for (int i14 = 0; i14 < arrayList2.size(); i14++) {
                 TLRPC.User user2 = (TLRPC.User) arrayList2.get(i14);
                 i0 i0Var2 = new i0(context, 41.5f);
-                j9 j9Var2 = i0Var2.f48333e;
+                j9 j9Var2 = i0Var2.f48335e;
                 j9Var2.r(user2);
-                i0Var2.f48330a.e(user2, j9Var2);
+                i0Var2.f48332a.e(user2, j9Var2);
                 frameLayout2.addView(i0Var2, 0, x5.e(83, 83, 17));
                 i0Var2.setTranslationX(AndroidUtilities.dp(29.0f) * (-i14));
                 if (i14 == 0 && arrayList2.size() > 3) {
-                    h0 h0Var = i0Var2.f48331b;
+                    h0 h0Var = i0Var2.f48333b;
                     h0Var.setAlpha(1.0f);
-                    h0Var.f48328b = arrayList2.size() - 3;
+                    h0Var.f48330b = arrayList2.size() - 3;
                 }
                 i13++;
                 if (i14 == 2) {
@@ -167,13 +167,13 @@ public final class j0 extends rg.l1 {
 
     @Override
     public final void c0() {
-        this.f47324f0 = 1;
-        this.f47325g0 = 0;
-        this.f47328j0 = 1;
+        this.f47326f0 = 1;
+        this.f47327g0 = 0;
+        this.f47330j0 = 1;
         int size = this.X.size();
         int i10 = 1 + size;
-        this.f47329k0 = i10;
-        this.f47324f0 = size + 2;
-        this.f47331n0 = i10;
+        this.f47331k0 = i10;
+        this.f47326f0 = size + 2;
+        this.f47333n0 = i10;
     }
 }

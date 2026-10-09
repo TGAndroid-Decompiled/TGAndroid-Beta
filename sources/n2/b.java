@@ -126,20 +126,20 @@ public final class b implements g {
                 eVar.H = null;
             }
             pf.b bVar = eVar.f16506n;
-            HashSet hashSet = (HashSet) bVar.f45556b;
+            HashSet hashSet = (HashSet) bVar.f45558b;
             hashSet.remove(this);
-            if (((b) bVar.f45557c) == this) {
-                bVar.f45557c = null;
+            if (((b) bVar.f45559c) == this) {
+                bVar.f45559c = null;
                 if (!hashSet.isEmpty()) {
                     b bVar2 = (b) hashSet.iterator().next();
-                    bVar.f45557c = bVar2;
+                    bVar.f45559c = bVar2;
                     p l4 = bVar2.f16478b.l();
                     bVar2.f16497x = l4;
                     android.support.v4.media.session.f fVar2 = bVar2.f16492r;
                     String str2 = d0.f8532a;
                     l4.getClass();
                     fVar2.getClass();
-                    fVar2.obtainMessage(1, new a(u2.t.f48706b.getAndIncrement(), true, SystemClock.elapsedRealtime(), l4)).sendToTarget();
+                    fVar2.obtainMessage(1, new a(u2.t.f48708b.getAndIncrement(), true, SystemClock.elapsedRealtime(), l4)).sendToTarget();
                 }
             }
             if (eVar.v != -9223372036854775807L) {
@@ -351,7 +351,7 @@ public final class b implements g {
             String str = d0.f8532a;
             J.getClass();
             fVar.getClass();
-            fVar.obtainMessage(2, new a(u2.t.f48706b.getAndIncrement(), z10, SystemClock.elapsedRealtime(), J)).sendToTarget();
+            fVar.obtainMessage(2, new a(u2.t.f48708b.getAndIncrement(), z10, SystemClock.elapsedRealtime(), J)).sendToTarget();
         } catch (Exception | NoSuchMethodError e7) {
             m(e7, true);
         }

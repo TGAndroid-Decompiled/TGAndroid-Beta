@@ -14,18 +14,18 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.tgnet.TLRPC;
 public final class v81 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    public final org.telegram.ui.Components.y9 f42706a;
-    public final tk f42707b;
-    public final org.telegram.ui.Components.voip.h f42708c;
+    public final org.telegram.ui.Components.y9 f42708a;
+    public final tk f42709b;
+    public final org.telegram.ui.Components.voip.h f42710c;
     public final SessionsActivity d;
 
     public v81(SessionsActivity sessionsActivity, Context context) {
         super(context);
         this.d = sessionsActivity;
         org.telegram.ui.Components.voip.h hVar = new org.telegram.ui.Components.voip.h();
-        this.f42708c = hVar;
+        this.f42710c = hVar;
         org.telegram.ui.Components.y9 y9Var = new org.telegram.ui.Components.y9(context);
-        this.f42706a = y9Var;
+        this.f42708a = y9Var;
         addView(y9Var, w7.x5.a(120.0f, 0.0f, 16.0f, 0.0f, 0.0f, 120, 1));
         hVar.f31958j = false;
         hVar.f31962n = 1.2f;
@@ -67,7 +67,7 @@ public final class v81 extends FrameLayout implements NotificationCenter.Notific
         }
         ea0Var.setText(spannableStringBuilder);
         tk tkVar = new tk(this, context, 3);
-        this.f42707b = tkVar;
+        this.f42709b = tkVar;
         tkVar.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
         tkVar.setGravity(17);
         tkVar.setTextSize(1, 14.0f);
@@ -125,7 +125,7 @@ public final class v81 extends FrameLayout implements NotificationCenter.Notific
             return;
         }
         ImageLocation forDocument = ImageLocation.getForDocument(document);
-        org.telegram.ui.Components.y9 y9Var = this.f42706a;
+        org.telegram.ui.Components.y9 y9Var = this.f42708a;
         y9Var.i(forDocument, "130_130", "tgs", svgDrawable2, tL_messages_stickerSet);
         y9Var.getImageReceiver().setAutoRepeat(2);
     }

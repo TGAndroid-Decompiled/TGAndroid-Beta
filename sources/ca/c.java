@@ -60,7 +60,7 @@ public final class c {
 
     public final void b(w9.b bVar, TaskCompletionSource taskCompletionSource) {
         boolean z10;
-        String str = "Sending report through Google DataTransport: " + bVar.f50217b;
+        String str = "Sending report through Google DataTransport: " + bVar.f50219b;
         if (Log.isLoggable("FirebaseCrashlytics", 3)) {
             Log.d("FirebaseCrashlytics", str, null);
         }
@@ -69,6 +69,6 @@ public final class c {
         } else {
             z10 = false;
         }
-        this.h.a(new i5.a(null, bVar.f50216a, d.f12016c, null), new b(this, taskCompletionSource, z10, bVar, 0));
+        this.h.a(new i5.a(null, bVar.f50218a, d.f12016c, null), new b(this, taskCompletionSource, z10, bVar, 0));
     }
 }

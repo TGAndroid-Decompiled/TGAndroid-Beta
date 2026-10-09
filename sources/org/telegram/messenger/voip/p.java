@@ -2,7 +2,7 @@ package org.telegram.messenger.voip;
 
 import android.content.Context;
 import org.telegram.messenger.FileLog;
-import org.telegram.ui.Wallet.e5;
+import org.telegram.ui.Wallet.f5;
 public final class p implements Runnable {
     public final int f19604a;
     public final Context f19605b;
@@ -24,7 +24,7 @@ public final class p implements Runnable {
                 return;
             default:
                 try {
-                    e5.f(this.f19605b, this.f19606c, this.d);
+                    f5.f(this.f19605b, this.f19606c, this.d);
                     return;
                 } catch (RuntimeException e7) {
                     FileLog.e(e7);

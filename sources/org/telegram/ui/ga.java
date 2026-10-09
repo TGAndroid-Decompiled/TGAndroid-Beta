@@ -6,10 +6,10 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ga implements org.telegram.ui.Components.em0 {
-    public final ra f37949a;
+    public final ra f37951a;
 
     public ga(ra raVar) {
-        this.f37949a = raVar;
+        this.f37951a = raVar;
     }
 
     @Override
@@ -18,13 +18,13 @@ public final class ga implements org.telegram.ui.Components.em0 {
         int i12;
         int i13;
         boolean z10 = view instanceof oa;
-        ra raVar = this.f37949a;
+        ra raVar = this.f37951a;
         if (z10) {
             oa oaVar = (oa) view;
             TLRPC.TL_username tL_username = oaVar.v;
-            if (tL_username != null && !oaVar.f40452r) {
-                if (tL_username.editable && raVar.f41325x == 0) {
-                    raVar.f41317b.x0(0);
+            if (tL_username != null && !oaVar.f40454r) {
+                if (tL_username.editable && raVar.f41327x == 0) {
+                    raVar.f41319b.x0(0);
                     raVar.e0(true);
                     return;
                 }

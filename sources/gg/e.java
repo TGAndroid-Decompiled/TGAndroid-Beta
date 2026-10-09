@@ -296,8 +296,8 @@ public abstract class e extends mm0 {
         int i12;
         ArrayList<TLRPC.TL_contact> arrayList2;
         float f7;
-        int i13 = d1Var.f47660f;
-        View view = d1Var.f47656a;
+        int i13 = d1Var.f47662f;
+        View view = d1Var.f47658a;
         int i14 = 7;
         boolean z10 = this.E;
         int i15 = this.f10576r;

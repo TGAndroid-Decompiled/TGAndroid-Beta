@@ -34,10 +34,10 @@ public final class f implements Drawable.Callback {
                 ((i41) this.f11573b).invalidateSelf();
                 return;
             case 6:
-                ((wg.a) this.f11573b).f50340c.invalidate();
+                ((wg.a) this.f11573b).f50342c.invalidate();
                 return;
             case 7:
-                ((wg.c) this.f11573b).f50366c.invalidate();
+                ((wg.c) this.f11573b).f50368c.invalidate();
                 return;
             case 8:
                 ((x4.d) this.f11573b).invalidateSelf();
@@ -83,10 +83,10 @@ public final class f implements Drawable.Callback {
             case 5:
                 return;
             case 6:
-                ((wg.a) this.f11573b).f50340c.invalidate();
+                ((wg.a) this.f11573b).f50342c.invalidate();
                 return;
             case 7:
-                ((wg.c) this.f11573b).f50366c.invalidate();
+                ((wg.c) this.f11573b).f50368c.invalidate();
                 return;
             case 8:
                 ((x4.d) this.f11573b).scheduleSelf(runnable, j3);
@@ -126,10 +126,10 @@ public final class f implements Drawable.Callback {
             case 5:
                 return;
             case 6:
-                ((wg.a) this.f11573b).f50340c.invalidate();
+                ((wg.a) this.f11573b).f50342c.invalidate();
                 return;
             case 7:
-                ((wg.c) this.f11573b).f50366c.invalidate();
+                ((wg.c) this.f11573b).f50368c.invalidate();
                 return;
             case 8:
                 ((x4.d) this.f11573b).unscheduleSelf(runnable);

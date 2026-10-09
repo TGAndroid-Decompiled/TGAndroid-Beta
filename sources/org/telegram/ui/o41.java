@@ -9,10 +9,10 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SaveToGallerySettingsHelper;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public final class o41 implements org.telegram.ui.Components.fm0, org.telegram.ui.Components.hm0, ny {
-    public final SaveToGallerySettingsActivity f40412a;
+    public final SaveToGallerySettingsActivity f40414a;
 
     public o41(SaveToGallerySettingsActivity saveToGallerySettingsActivity) {
-        this.f40412a = saveToGallerySettingsActivity;
+        this.f40414a = saveToGallerySettingsActivity;
     }
 
     @Override
@@ -32,7 +32,7 @@ public final class o41 implements org.telegram.ui.Components.fm0, org.telegram.u
 
     @Override
     public void c(float f7, float f10, int i10, View view) {
-        SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.f40412a;
+        SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.f40414a;
         ArrayList arrayList = saveToGallerySettingsActivity.f34410s;
         if (i10 == saveToGallerySettingsActivity.f34406e) {
             SaveToGallerySettingsHelper.Settings X = saveToGallerySettingsActivity.X();
@@ -62,7 +62,7 @@ public final class o41 implements org.telegram.ui.Components.fm0, org.telegram.u
             saveToGallerySettingsActivity.presentFragment(tyVar);
         } else if (((s41) arrayList.get(i10)).f17125a == 2) {
             Bundle bundle2 = new Bundle();
-            bundle2.putLong("dialog_id", ((s41) arrayList.get(i10)).f41577c.dialogId);
+            bundle2.putLong("dialog_id", ((s41) arrayList.get(i10)).f41579c.dialogId);
             bundle2.putInt("type", saveToGallerySettingsActivity.f34403a);
             saveToGallerySettingsActivity.presentFragment(new SaveToGallerySettingsActivity(bundle2));
         } else if (((s41) arrayList.get(i10)).f17125a == 4) {
@@ -76,7 +76,7 @@ public final class o41 implements org.telegram.ui.Components.fm0, org.telegram.u
     public boolean w(ty tyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, fg1 fg1Var) {
         Bundle bundle = new Bundle();
         bundle.putLong("dialog_id", ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId);
-        SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.f40412a;
+        SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.f40414a;
         bundle.putInt("type", saveToGallerySettingsActivity.f34403a);
         saveToGallerySettingsActivity.presentFragment(new SaveToGallerySettingsActivity(bundle), true);
         return true;
@@ -92,10 +92,10 @@ public final class o41 implements org.telegram.ui.Components.fm0, org.telegram.u
 
     @Override
     public boolean mo17c(float f7, float f10, int i10, View view) {
-        SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.f40412a;
+        SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.f40414a;
         ArrayList arrayList = saveToGallerySettingsActivity.f34410s;
         if (((s41) arrayList.get(i10)).f17125a == 2) {
-            SaveToGallerySettingsHelper.DialogException dialogException = ((s41) arrayList.get(i10)).f41577c;
+            SaveToGallerySettingsHelper.DialogException dialogException = ((s41) arrayList.get(i10)).f41579c;
             ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(saveToGallerySettingsActivity.getParentActivity(), null);
             org.telegram.ui.ActionBar.f1 c10 = org.telegram.ui.ActionBar.v0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, R.drawable.msg_customize, LocaleController.getString(R.string.EditException), false, null);
             org.telegram.ui.ActionBar.f1 c11 = org.telegram.ui.ActionBar.v0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, R.drawable.msg_delete, LocaleController.getString(R.string.DeleteException), false, null);

@@ -57,7 +57,7 @@ import org.telegram.ui.Components.yi;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.NotificationsCustomSettingsActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.Wallet.p6;
+import org.telegram.ui.Wallet.q6;
 import org.telegram.ui.df1;
 import org.telegram.ui.dk0;
 import org.telegram.ui.fg1;
@@ -186,7 +186,7 @@ public final class d implements OnFailureListener, ny, a2, f5, sd0, MediaDataCon
                     } else {
                         dk0Var.K = str3;
                     }
-                    yd0 yd0Var2 = dk0Var.f37034e;
+                    yd0 yd0Var2 = dk0Var.f37036e;
                     if (yd0Var2 != null) {
                         yd0Var2.getEditText().setText(str);
                     } else {
@@ -243,7 +243,7 @@ public final class d implements OnFailureListener, ny, a2, f5, sd0, MediaDataCon
     public void onProductDetailsResponse(c5.h hVar, List list) {
         switch (this.f42a) {
             case 21:
-                AndroidUtilities.runOnUIThread(new p6(list, (Utilities.Callback2) this.f45e, (TLRPC.TL_inputStorePaymentStarsTopup) this.f43b, (TL_stars.TL_starsTopupOption) this.f44c, (Activity) this.d, 13));
+                AndroidUtilities.runOnUIThread(new q6(list, (Utilities.Callback2) this.f45e, (TLRPC.TL_inputStorePaymentStarsTopup) this.f43b, (TL_stars.TL_starsTopupOption) this.f44c, (Activity) this.d, 13));
                 return;
             default:
                 AndroidUtilities.runOnUIThread(new a9((m5) this.f45e, list, (r) this.f43b, (TLRPC.TL_inputStorePaymentStarsGiveaway) this.f44c, hVar, (Activity) this.d, 23));

@@ -21,7 +21,7 @@ public final class c11 extends ReplacementSpan {
     public void a(int i10) {
         org.telegram.ui.vp0 vp0Var = (org.telegram.ui.vp0) this.f25207c;
         if (vp0Var != null) {
-            vp0Var.f42957a = i10 / 2.0f;
+            vp0Var.f42959a = i10 / 2.0f;
             vp0Var.d();
             this.f25206b = i10;
         }

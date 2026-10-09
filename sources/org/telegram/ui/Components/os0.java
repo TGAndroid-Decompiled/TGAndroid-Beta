@@ -15,7 +15,7 @@ public final class os0 extends s4.w {
     @Override
     public final void a(RecyclerView recyclerView, s4.d1 d1Var) {
         super.a(recyclerView, d1Var);
-        d1Var.f47656a.setPressed(false);
+        d1Var.f47658a.setPressed(false);
     }
 
     @Override
@@ -47,7 +47,7 @@ public final class os0 extends s4.w {
         bw0 bw0Var = this.f29566e;
         if (!bw0Var.C1) {
             ws0 ws0Var = bw0Var.W;
-            if (ws0Var == null || !ws0Var.f35812w) {
+            if (ws0Var == null || !ws0Var.f35814w) {
                 return false;
             }
             return true;
@@ -155,7 +155,7 @@ public final class os0 extends s4.w {
             tu0Var4.I0(false);
         }
         if (d1Var != null) {
-            d1Var.f47656a.setPressed(true);
+            d1Var.f47658a.setPressed(true);
         }
     }
 

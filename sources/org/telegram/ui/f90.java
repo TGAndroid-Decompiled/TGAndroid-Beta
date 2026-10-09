@@ -9,19 +9,19 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class f90 implements Runnable {
-    public final int f37488a;
-    public final LaunchActivity f37489b;
+    public final int f37490a;
+    public final LaunchActivity f37491b;
 
     public f90(LaunchActivity launchActivity, int i10) {
-        this.f37488a = i10;
-        this.f37489b = launchActivity;
+        this.f37490a = i10;
+        this.f37491b = launchActivity;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f37488a;
+        int i10 = this.f37490a;
         org.telegram.ui.ActionBar.n2 n2Var = null;
-        LaunchActivity launchActivity = this.f37489b;
+        LaunchActivity launchActivity = this.f37491b;
         switch (i10) {
             case 0:
                 Pattern pattern = LaunchActivity.B1;

@@ -9,8 +9,8 @@ import java.util.Arrays;
 import n6.t;
 import u2.x0;
 public final class c extends i {
-    public u f50556n;
-    public x0 f50557o;
+    public u f50558n;
+    public x0 f50559o;
 
     @Override
     public final long b(v vVar) {
@@ -31,10 +31,10 @@ public final class c extends i {
     @Override
     public final boolean c(v vVar, long j3, t tVar) {
         byte[] bArr = vVar.f8584a;
-        u uVar = this.f50556n;
+        u uVar = this.f50558n;
         if (uVar == null) {
             u uVar2 = new u(bArr, 17);
-            this.f50556n = uVar2;
+            this.f50558n = uVar2;
             r a2 = uVar2.c(Arrays.copyOfRange(bArr, 9, vVar.f8586c), null).a();
             a2.f3584p = r0.n("audio/ogg");
             tVar.f16717b = new s(a2);
@@ -44,20 +44,20 @@ public final class c extends i {
         if ((b10 & Byte.MAX_VALUE) == 3) {
             pf.b u10 = c3.b.u(vVar);
             u uVar3 = new u(uVar.f4154a, uVar.f4155b, uVar.f4156c, uVar.d, uVar.f4157e, uVar.f4159g, uVar.h, uVar.f4161j, u10, uVar.f4163l);
-            this.f50556n = uVar3;
+            this.f50558n = uVar3;
             ?? obj = new Object();
-            obj.f48758c = uVar3;
+            obj.f48760c = uVar3;
             obj.d = u10;
-            obj.f48756a = -1L;
-            obj.f48757b = -1L;
-            this.f50557o = obj;
+            obj.f48758a = -1L;
+            obj.f48759b = -1L;
+            this.f50559o = obj;
             return true;
         } else if (b10 != -1) {
             return true;
         } else {
-            x0 x0Var = this.f50557o;
+            x0 x0Var = this.f50559o;
             if (x0Var != null) {
-                x0Var.f48756a = j3;
+                x0Var.f48758a = j3;
                 tVar.f16718c = x0Var;
             }
             ((s) tVar.f16717b).getClass();
@@ -69,8 +69,8 @@ public final class c extends i {
     public final void d(boolean z10) {
         super.d(z10);
         if (z10) {
-            this.f50556n = null;
-            this.f50557o = null;
+            this.f50558n = null;
+            this.f50559o = null;
         }
     }
 }

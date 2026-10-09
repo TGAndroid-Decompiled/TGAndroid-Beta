@@ -69,7 +69,7 @@ public final class s9 extends s4.t0 {
                     int i12 = dp + i11;
                     int backgroundPaddingTop = yiVar.getBackgroundPaddingTop();
                     if (((yiVar.f33226e2[0] - backgroundPaddingTop) - i12) + backgroundPaddingTop < (yiVar.R0.getAlpha() * yiVar.R0.getMeasuredHeight()) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (am0Var = (am0) kmVar.K(0)) != null) {
-                        View view = am0Var.f47656a;
+                        View view = am0Var.f47658a;
                         int top = view.getTop();
                         topScrollOffset = chatAttachAlertPhotoLayout.getTopScrollOffset();
                         if (top > topScrollOffset) {
@@ -86,7 +86,7 @@ public final class s9 extends s4.t0 {
             case 3:
                 if (i10 == 0 && this.f5960b) {
                     this.f5960b = false;
-                    ((org.telegram.ui.Wallet.u4) this.f5961c).e();
+                    ((org.telegram.ui.Wallet.v4) this.f5961c).e();
                     return;
                 }
                 return;
@@ -125,7 +125,7 @@ public final class s9 extends s4.t0 {
                 return;
             case 1:
                 org.telegram.ui.y6 y6Var = (org.telegram.ui.y6) this.f5961c;
-                if (y6Var.f44249c.L0() <= 0 && !org.telegram.ui.y6.a0(y6Var).t()) {
+                if (y6Var.f44251c.L0() <= 0 && !org.telegram.ui.y6.a0(y6Var).t()) {
                     z10 = false;
                 } else {
                     z10 = true;
@@ -174,9 +174,9 @@ public final class s9 extends s4.t0 {
         }
     }
 
-    public s9(org.telegram.ui.Wallet.u4 u4Var) {
+    public s9(org.telegram.ui.Wallet.v4 v4Var) {
         this.f5959a = 3;
-        this.f5961c = u4Var;
+        this.f5961c = v4Var;
         this.f5960b = false;
     }
 }

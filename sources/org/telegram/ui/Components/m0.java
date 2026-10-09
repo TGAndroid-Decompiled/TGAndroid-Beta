@@ -71,8 +71,8 @@ public final class m0 implements View.OnClickListener {
                     calendar2.set(14, 0);
                 }
                 int timeInMillis = (int) (calendar2.getTimeInMillis() / 1000);
-                ((boolean[]) ls0Var.f39670c)[0] = true;
-                ((org.telegram.ui.z51) ls0Var.f39669b).e(Integer.valueOf(timeInMillis));
+                ((boolean[]) ls0Var.f39672c)[0] = true;
+                ((org.telegram.ui.z51) ls0Var.f39671b).e(Integer.valueOf(timeInMillis));
                 runnable2 = a3Var.f20380a.dismissRunnable;
                 runnable2.run();
                 return;

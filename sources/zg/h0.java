@@ -67,7 +67,7 @@ public final class h0 extends y9 {
         }
         if (!this.G && getImageReceiver().getLottieAnimation() != null && !getImageReceiver().getLottieAnimation().f25409k0) {
             j0 j0Var = this.K;
-            if (j0Var.f54550a == 2 && !j0Var.f54572z) {
+            if (j0Var.f54552a == 2 && !j0Var.f54574z) {
                 getImageReceiver().getLottieAnimation().N(getImageReceiver().getLottieAnimation().f25401e[0] - 1, false, false);
             } else {
                 getImageReceiver().getLottieAnimation().N(0, false, false);

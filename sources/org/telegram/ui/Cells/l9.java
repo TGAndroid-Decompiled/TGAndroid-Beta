@@ -77,7 +77,7 @@ public final class l9 implements ActionMode.Callback {
                     CharSequence r11 = baVar.r();
                     String str = this.f22429a;
                     g gVar2 = new g(this, 8);
-                    org.telegram.ui.i4 i4Var = uVar.f42284a;
+                    org.telegram.ui.i4 i4Var = uVar.f42286a;
                     b51.L(i4Var.L, i4Var.M, str, language, r11, null, gVar2);
                 }
                 baVar.u();

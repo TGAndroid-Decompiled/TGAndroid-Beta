@@ -816,12 +816,12 @@ public class RichMessageLayout {
                     float f7 = 0.0f;
                     if (vj0Var.g(this)) {
                         if (vj0Var.g(this)) {
-                            i10 = vj0Var.f42884e;
+                            i10 = vj0Var.f42886e;
                         } else {
                             i10 = -1;
                         }
                         if (vj0Var.g(this)) {
-                            f7 = vj0Var.f42885f;
+                            f7 = vj0Var.f42887f;
                         }
                         draw(canvas, i10, f7);
                         return;
@@ -5359,12 +5359,12 @@ public class RichMessageLayout {
                         canvas.translate(d.b(), d.c());
                         Text text = (Text) d.f25888b;
                         if (vj0Var.g(cellBlock)) {
-                            i12 = vj0Var.f42884e;
+                            i12 = vj0Var.f42886e;
                         } else {
                             i12 = -1;
                         }
                         if (vj0Var.g(cellBlock)) {
-                            f10 = vj0Var.f42885f;
+                            f10 = vj0Var.f42887f;
                         } else {
                             f10 = 0.0f;
                         }
@@ -7513,7 +7513,7 @@ public class RichMessageLayout {
                 float height = this.layout.getHeight();
                 float sqrt = (float) Math.sqrt((height * height) + (width * width));
                 View view = this.view;
-                this.pressedSpoiler.f49692q = new xh(this, view, this.root);
+                this.pressedSpoiler.f49694q = new xh(this, view, this.root);
                 for (vh.g gVar : this.spoilers) {
                     gVar.j(i10, i11, sqrt, false);
                 }
@@ -10077,7 +10077,7 @@ public class RichMessageLayout {
             return null;
         }
         vh.f fVar = this.spoilerEffect2;
-        if (fVar != null && fVar.f49673i) {
+        if (fVar != null && fVar.f49675i) {
             this.spoilerEffect2 = null;
         }
         if (this.spoilerEffect2 == null) {

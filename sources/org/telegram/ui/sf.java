@@ -26,14 +26,14 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.UndoView;
 public final class sf implements View.OnClickListener {
-    public final int f41684a;
-    public final Object f41685b;
-    public final Object f41686c;
+    public final int f41686a;
+    public final Object f41687b;
+    public final Object f41688c;
 
     public sf(int i10, Object obj, Object obj2) {
-        this.f41684a = i10;
-        this.f41685b = obj;
-        this.f41686c = obj2;
+        this.f41686a = i10;
+        this.f41687b = obj;
+        this.f41688c = obj2;
     }
 
     @Override
@@ -49,10 +49,10 @@ public final class sf implements View.OnClickListener {
         int length;
         View view2;
         org.telegram.ui.Components.vs vsVar;
-        int i11 = this.f41684a;
+        int i11 = this.f41686a;
         s4.d1 d1Var = null;
-        Object obj = this.f41686c;
-        Object obj2 = this.f41685b;
+        Object obj = this.f41688c;
+        Object obj2 = this.f41687b;
         switch (i11) {
             case 0:
                 zn znVar = (zn) obj2;
@@ -105,7 +105,7 @@ public final class sf implements View.OnClickListener {
                     j6VarArr[i13].setBackgroundDrawable(org.telegram.ui.ActionBar.i6.L0(false));
                     if (i13 == 0) {
                         j6VarArr[i13].b(LocaleController.getString("ChatHistoryVisible", R.string.ChatHistoryVisible), LocaleController.getString("ChatHistoryVisibleInfo", R.string.ChatHistoryVisibleInfo), true, !uoVar.J0);
-                    } else if (ChatObject.isChannel(uoVar.f42494x0)) {
+                    } else if (ChatObject.isChannel(uoVar.f42496x0)) {
                         j6VarArr[i13].b(LocaleController.getString("ChatHistoryHidden", R.string.ChatHistoryHidden), LocaleController.getString("ChatHistoryHiddenInfo", R.string.ChatHistoryHiddenInfo), false, uoVar.J0);
                     } else {
                         j6VarArr[i13].b(LocaleController.getString("ChatHistoryHidden", R.string.ChatHistoryHidden), LocaleController.getString("ChatHistoryHiddenInfo2", R.string.ChatHistoryHiddenInfo2), false, uoVar.J0);
@@ -180,9 +180,9 @@ public final class sf implements View.OnClickListener {
                     if (launchActivity.O().getLastFragment() instanceof ty) {
                         ty tyVar = (ty) launchActivity.O().getLastFragment();
                         int totalDialogsCount = tyVar.getMessagesController().getTotalDialogsCount();
-                        if (!tyVar.f42208l2 && (totalDialogsCount > 10 || tyVar.K)) {
-                            if (!tyVar.f42200j2) {
-                                tyVar.f42267x = 3;
+                        if (!tyVar.f42210l2 && (totalDialogsCount > 10 || tyVar.K)) {
+                            if (!tyVar.f42202j2) {
+                                tyVar.f42269x = 3;
                                 tyVar.X.f30614r.setText(charSequence);
                                 tyVar.X.f30614r.setSelection(charSequence.length());
                             } else {
@@ -198,8 +198,8 @@ public final class sf implements View.OnClickListener {
                         }
                     }
                     ty tyVar2 = new ty(null);
-                    tyVar2.f42217n2 = charSequence;
-                    tyVar2.f42267x = 3;
+                    tyVar2.f42219n2 = charSequence;
+                    tyVar2.f42269x = 3;
                     launchActivity.q0(tyVar2, false, false);
                     l8Var2.dismiss();
                     return;
@@ -305,16 +305,16 @@ public final class sf implements View.OnClickListener {
                 }
                 org.telegram.ui.Components.qo qoVar = uoVar2.f31561e;
                 if (znVar3.getParentActivity() != null) {
-                    TLRPC.Chat chat = znVar3.f44751e;
+                    TLRPC.Chat chat = znVar3.f44753e;
                     if (chat != null && !ChatObject.canUserDoAdminAction(chat, 13)) {
                         if (uoVar2.f31554a.f16338f && znVar3.getParentActivity() != null && znVar3.fragmentView != null && znVar3.Z7 != null) {
-                            if (znVar3.f44874o2 == null) {
-                                org.telegram.ui.Components.z40 z40Var = new org.telegram.ui.Components.z40(7, znVar3.getParentActivity(), znVar3.f44761ea, true);
-                                znVar3.f44874o2 = z40Var;
+                            if (znVar3.f44876o2 == null) {
+                                org.telegram.ui.Components.z40 z40Var = new org.telegram.ui.Components.z40(7, znVar3.getParentActivity(), znVar3.f44763ea, true);
+                                znVar3.f44876o2 = z40Var;
                                 z40Var.setAlpha(0.0f);
-                                znVar3.f44874o2.setVisibility(4);
-                                znVar3.f44874o2.setShowingDuration(4000L);
-                                znVar3.X0.addView(znVar3.f44874o2, w7.x5.a(-2.0f, 19.0f, 0.0f, 19.0f, 0.0f, -2, 51));
+                                znVar3.f44876o2.setVisibility(4);
+                                znVar3.f44876o2.setShowingDuration(4000L);
+                                znVar3.X0.addView(znVar3.f44876o2, w7.x5.a(-2.0f, 19.0f, 0.0f, 19.0f, 0.0f, -2, 51));
                             }
                             int i16 = znVar3.Z7.ttl_period;
                             if (i16 > 86400) {
@@ -326,14 +326,14 @@ public final class sf implements View.OnClickListener {
                             } else {
                                 formatPluralString2 = LocaleController.formatPluralString("Seconds", i16, new Object[0]);
                             }
-                            znVar3.f44874o2.setText(LocaleController.formatString("AutoDeleteSetInfo", R.string.AutoDeleteSetInfo, formatPluralString2));
-                            znVar3.f44874o2.f(znVar3.f44700a1.getTimeItem(), true);
+                            znVar3.f44876o2.setText(LocaleController.formatString("AutoDeleteSetInfo", R.string.AutoDeleteSetInfo, formatPluralString2));
+                            znVar3.f44876o2.f(znVar3.f44702a1.getTimeItem(), true);
                             return;
                         }
                         return;
                     }
                     TLRPC.ChatFull chatFull = znVar3.Z7;
-                    TLRPC.UserFull userFull = znVar3.f44706a8;
+                    TLRPC.UserFull userFull = znVar3.f44708a8;
                     if (userFull != null) {
                         i10 = userFull.ttl_period;
                     } else if (chatFull != null) {
@@ -427,8 +427,8 @@ public final class sf implements View.OnClickListener {
     }
 
     public sf(org.telegram.ui.Components.cq cqVar, zn znVar) {
-        this.f41684a = 25;
-        this.f41686c = cqVar;
-        this.f41685b = znVar;
+        this.f41686a = 25;
+        this.f41688c = cqVar;
+        this.f41687b = znVar;
     }
 }

@@ -28,9 +28,9 @@ public final class s0 extends eb {
     public final ArrayList X;
     public final ArrayList Y;
     public final TLRPC.Chat Z;
-    public final d0 f48405a0;
-    public r0 f48406b0;
-    public l0 f48407c0;
+    public final d0 f48407a0;
+    public r0 f48408b0;
+    public l0 f48409c0;
 
     public s0(n2 n2Var, TL_stories.TL_premium_myBoosts tL_premium_myBoosts, TLRPC.Chat chat) {
         super(n2Var, false);
@@ -56,7 +56,7 @@ public final class s0 extends eb {
         m20Var.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
         m20Var.setBackgroundColor(i6.w0(i6.f20868h5, this.resourcesProvider));
         d0 d0Var = new d0(getContext(), this.resourcesProvider);
-        this.f48405a0 = d0Var;
+        this.f48407a0 = d0Var;
         d0Var.k();
         d0Var.setCounterColor(-6785796);
         d0Var.setOnClickListener(new vy0(23, this, chat));
@@ -89,7 +89,7 @@ public final class s0 extends eb {
             }
             lVar.c(arrayList.contains(lVar.getBoost()), true);
             s0Var.T(true);
-            s0Var.f48406b0.a(arrayList, chat);
+            s0Var.f48408b0.a(arrayList, chat);
         }
     }
 
@@ -103,7 +103,7 @@ public final class s0 extends eb {
     }
 
     public final void T(boolean z10) {
-        d0 d0Var = this.f48405a0;
+        d0 d0Var = this.f48407a0;
         boolean z11 = false;
         d0Var.setShowZero(false);
         ArrayList arrayList = this.X;
@@ -122,18 +122,18 @@ public final class s0 extends eb {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f48407c0 = new l0(this);
+        this.f48409c0 = new l0(this);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f48407c0.cancel();
+        this.f48409c0.cancel();
     }
 
     @Override
     public final void onOpenAnimationEnd() {
-        this.f48407c0.start();
+        this.f48409c0.start();
     }
 
     @Override

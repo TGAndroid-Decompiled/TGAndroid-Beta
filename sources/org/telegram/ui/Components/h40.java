@@ -27,7 +27,7 @@ public final class h40 extends pm0 {
 
     @Override
     public final void A(s4.d1 d1Var) {
-        View view = d1Var.f47656a;
+        View view = d1Var.f47658a;
         if (view instanceof org.telegram.ui.Cells.b5) {
             ((org.telegram.ui.Cells.b5) view).a();
         }
@@ -35,8 +35,8 @@ public final class h40 extends pm0 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        View view = d1Var.f47656a;
-        if ((!(view instanceof org.telegram.ui.Cells.b5) || !this.f26959w.f27226f0.contains(Long.valueOf(((org.telegram.ui.Cells.b5) view).getUserId()))) && d1Var.f47660f == 0) {
+        View view = d1Var.f47658a;
+        if ((!(view instanceof org.telegram.ui.Cells.b5) || !this.f26959w.f27226f0.contains(Long.valueOf(((org.telegram.ui.Cells.b5) view).getUserId()))) && d1Var.f47662f == 0) {
             return true;
         }
         return false;

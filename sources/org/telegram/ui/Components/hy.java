@@ -159,7 +159,7 @@ public class hy extends on0 {
         if (getScrollX() == 0 && translationX == 0.0f) {
             if (!this.f27151v0 && this.f27152w0 - motionEvent.getX() < 0.0f) {
                 if (!oxVar.M) {
-                    oxVar.f53541e0 = true;
+                    oxVar.f53543e0 = true;
                     oxVar.setScrollState(1);
                     oxVar.R = 0.0f;
                     oxVar.T = 0.0f;
@@ -176,7 +176,7 @@ public class hy extends on0 {
                     this.f27151v0 = true;
                     getTranslationX();
                 }
-            } else if (this.f27151v0 && this.f27152w0 - motionEvent.getX() > 0.0f && oxVar.f53541e0) {
+            } else if (this.f27151v0 && this.f27152w0 - motionEvent.getX() > 0.0f && oxVar.f53543e0) {
                 oxVar.i();
                 this.f27151v0 = false;
             }

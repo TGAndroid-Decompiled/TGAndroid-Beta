@@ -460,7 +460,7 @@ public final class ii0 extends View {
                         if (i12 == 0) {
                             int i13 = fi0Var5.f26373a;
                             RectF rectF = fi0Var5.d;
-                            ProfileActivity.Y(((org.telegram.ui.jy0) hi0Var).f39042b, i13, rectF.left, rectF.top);
+                            ProfileActivity.Y(((org.telegram.ui.jy0) hi0Var).f39044b, i13, rectF.left, rectF.top);
                         } else {
                             postDelayed(new ci0(2, this, fi0Var5), i12);
                         }

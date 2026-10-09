@@ -1159,8 +1159,8 @@ public class k81 implements b2.z0, b2.w1, j2.b, NotificationCenter.NotificationC
                 str5 = queryParameter;
             }
             pf.e eVar = new pf.e(this.Q, str5, i10);
-            eVar.f45572e = str2;
-            eVar.f45573f = str3;
+            eVar.f45574e = str2;
+            eVar.f45575f = str3;
             return new pf.g(new pf.f(eVar));
         }
         ArrayList arrayList = new ArrayList();
@@ -1191,12 +1191,12 @@ public class k81 implements b2.z0, b2.w1, j2.b, NotificationCenter.NotificationC
                     str4 = "video/mp4";
                 }
                 pf.e eVar2 = new pf.e(i81Var.d, str4, sb3);
-                eVar2.f45572e = str2;
-                eVar2.f45573f = str3;
+                eVar2.f45574e = str2;
+                eVar2.f45575f = str3;
                 int i13 = i81Var.f27274i;
                 int i14 = i81Var.f27275j;
-                eVar2.f45569a = i13;
-                eVar2.f45570b = i14;
+                eVar2.f45571a = i13;
+                eVar2.f45572b = i14;
                 arrayList.add(new pf.f(eVar2));
                 arrayList2 = arrayList4;
             }
@@ -1383,7 +1383,7 @@ public class k81 implements b2.z0, b2.w1, j2.b, NotificationCenter.NotificationC
         try {
             i2.f0 f0Var = this.d;
             f0Var.D1();
-            MediaFormat mediaFormat = ((r2.s) f0Var.f11665g[0]).f46914d0;
+            MediaFormat mediaFormat = ((r2.s) f0Var.f11665g[0]).f46916d0;
             ByteBuffer byteBuffer = mediaFormat.getByteBuffer("hdr-static-info");
             byteBuffer.order(ByteOrder.LITTLE_ENDIAN);
             if (byteBuffer.get() == 0) {

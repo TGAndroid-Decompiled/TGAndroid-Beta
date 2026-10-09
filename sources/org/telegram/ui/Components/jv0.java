@@ -14,7 +14,7 @@ public final class jv0 extends s4.w {
     @Override
     public final void a(RecyclerView recyclerView, s4.d1 d1Var) {
         super.a(recyclerView, d1Var);
-        d1Var.f47656a.setPressed(false);
+        d1Var.f47658a.setPressed(false);
     }
 
     @Override

@@ -98,9 +98,9 @@ public final class yb extends sw0 {
                 f7 += view.getX();
                 f10 += view.getY();
             }
-            if (currentPeerView.f1002r3.getReactionsWindow() != null && currentPeerView.f1002r3.getReactionsWindow().f54449c != null) {
-                motionEvent.offsetLocation(-f7, (-f10) - currentPeerView.f1002r3.getReactionsWindow().f54449c.getTranslationY());
-                currentPeerView.f1002r3.getReactionsWindow().f54449c.dispatchTouchEvent(motionEvent);
+            if (currentPeerView.f1002r3.getReactionsWindow() != null && currentPeerView.f1002r3.getReactionsWindow().f54451c != null) {
+                motionEvent.offsetLocation(-f7, (-f10) - currentPeerView.f1002r3.getReactionsWindow().f54451c.getTranslationY());
+                currentPeerView.f1002r3.getReactionsWindow().f54451c.dispatchTouchEvent(motionEvent);
                 return true;
             }
             Rect rect = AndroidUtilities.rectTmp2;

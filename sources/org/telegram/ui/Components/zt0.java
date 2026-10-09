@@ -38,13 +38,13 @@ public final class zt0 extends org.telegram.ui.ActionBar.g5 {
         }
         hu0 hu0Var = bw0Var.T;
         if (hu0Var != null) {
-            org.telegram.ui.ao aoVar = hu0Var.f36357a;
-            org.telegram.ui.rn rnVar = aoVar.f44883oc;
+            org.telegram.ui.ao aoVar = hu0Var.f36359a;
+            org.telegram.ui.rn rnVar = aoVar.f44885oc;
             if (rnVar != null) {
                 rnVar.m();
             }
-            aoVar.f44926s3 = false;
-            aoVar.f44872o0 = false;
+            aoVar.f44928s3 = false;
+            aoVar.f44874o0 = false;
             aoVar.lc(false);
             aoVar.Mc();
         }
@@ -104,7 +104,7 @@ public final class zt0 extends org.telegram.ui.ActionBar.g5 {
     public final void p(ci.g2 g2Var) {
         hu0 hu0Var = this.f33648f.T;
         if (hu0Var != null) {
-            hu0Var.f36357a.r9();
+            hu0Var.f36359a.r9();
         }
     }
 
@@ -116,20 +116,20 @@ public final class zt0 extends org.telegram.ui.ActionBar.g5 {
         bw0 bw0Var = this.f33648f;
         hu0 hu0Var = bw0Var.T;
         if (hu0Var != null) {
-            org.telegram.ui.ao aoVar = hu0Var.f36357a;
-            org.telegram.ui.ActionBar.v0 v0Var = aoVar.f44812j0;
+            org.telegram.ui.ao aoVar = hu0Var.f36359a;
+            org.telegram.ui.ActionBar.v0 v0Var = aoVar.f44814j0;
             if (v0Var != null) {
-                aoVar.f44939t3 = obj;
+                aoVar.f44941t3 = obj;
                 v0Var.H(obj, false);
             }
             if (TextUtils.isEmpty(obj) && bw0Var.W0 == null) {
-                org.telegram.ui.ao aoVar2 = hu0Var.f36357a;
-                org.telegram.ui.rn rnVar = aoVar2.f44883oc;
+                org.telegram.ui.ao aoVar2 = hu0Var.f36359a;
+                org.telegram.ui.rn rnVar = aoVar2.f44885oc;
                 if (rnVar != null) {
                     rnVar.m();
                 }
-                aoVar2.f44926s3 = false;
-                aoVar2.f44872o0 = false;
+                aoVar2.f44928s3 = false;
+                aoVar2.f44874o0 = false;
                 aoVar2.lc(false);
                 aoVar2.Mc();
             }

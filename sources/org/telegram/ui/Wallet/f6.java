@@ -2,40 +2,30 @@ package org.telegram.ui.Wallet;
 
 import org.telegram.messenger.Utilities;
 public final class f6 implements Runnable {
-    public final int f34900a;
-    public final Utilities.Callback2 f34901b;
+    public final int f34927a;
+    public final WalletEngine2 f34928b;
+    public final byte[] f34929c;
+    public final c2 d;
+    public final String f34930e;
+    public final Utilities.Callback2 f34931f;
 
-    public f6(int i10, Utilities.Callback2 callback2) {
-        this.f34900a = i10;
-        this.f34901b = callback2;
+    public f6(WalletEngine2 walletEngine2, byte[] bArr, c2 c2Var, String str, Utilities.Callback2 callback2, int i10) {
+        this.f34927a = i10;
+        this.f34928b = walletEngine2;
+        this.f34929c = bArr;
+        this.d = c2Var;
+        this.f34930e = str;
+        this.f34931f = callback2;
     }
 
     @Override
     public final void run() {
-        switch (this.f34900a) {
+        switch (this.f34927a) {
             case 0:
-                this.f34901b.run(null, "Wallet engine is closed");
-                return;
-            case 1:
-                this.f34901b.run(null, "NO_WALLET_ENGINE");
-                return;
-            case 2:
-                this.f34901b.run(null, "NO_WALLET_ENGINE");
-                return;
-            case 3:
-                this.f34901b.run(null, "Recovery phrase is required");
-                return;
-            case 4:
-                this.f34901b.run(null, "Transaction hash is required");
-                return;
-            case 5:
-                this.f34901b.run(null, "NO_WALLET_ENGINE");
-                return;
-            case 6:
-                this.f34901b.run(null, "NO_WALLET_ENGINE");
+                this.f34928b.lambda$signMessage$11(this.f34929c, this.d, this.f34930e, this.f34931f);
                 return;
             default:
-                this.f34901b.run(null, "NO_WALLET_ENGINE");
+                this.f34928b.lambda$prepareTonConnectTransfer$5(this.f34929c, this.d, this.f34930e, this.f34931f);
                 return;
         }
     }

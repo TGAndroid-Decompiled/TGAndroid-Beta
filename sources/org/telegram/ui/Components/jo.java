@@ -90,8 +90,8 @@ public final class jo extends pm0 {
         c2.a aVar2 = loVar.N0;
         org.telegram.ui.ActionBar.e6 e6Var = loVar.f30172a;
         boolean z13 = loVar.f28518n;
-        int i15 = d1Var.f47660f;
-        View view = d1Var.f47656a;
+        int i15 = d1Var.f47662f;
+        View view = d1Var.f47658a;
         int i16 = 3;
         if (i15 != 0) {
             boolean z14 = true;
@@ -456,8 +456,8 @@ public final class jo extends pm0 {
         lo loVar = this.d;
         qh.f fVar = loVar.l1;
         boolean z10 = loVar.f28518n;
-        int i12 = d1Var.f47660f;
-        View view = d1Var.f47656a;
+        int i12 = d1Var.f47662f;
+        View view = d1Var.f47658a;
         CharSequence charSequence = "";
         if (i12 == 4) {
             org.telegram.ui.Cells.d6 d6Var = (org.telegram.ui.Cells.d6) view;
@@ -527,9 +527,9 @@ public final class jo extends pm0 {
 
     @Override
     public final void z(s4.d1 d1Var) {
-        int i10 = d1Var.f47660f;
+        int i10 = d1Var.f47662f;
         if (i10 == 4 || i10 == 11 || i10 == 5) {
-            EditTextBoldCursor textView = ((org.telegram.ui.Cells.d6) d1Var.f47656a).getTextView();
+            EditTextBoldCursor textView = ((org.telegram.ui.Cells.d6) d1Var.f47658a).getTextView();
             if (textView.isFocused()) {
                 lo loVar = this.d;
                 if (loVar.I) {

@@ -39,11 +39,11 @@ public final class d2 extends z1 {
         o1Var.setOnItemClickListener(new ai.g(this, 4));
         o1Var.setOnScrollListener(new ai.r(this, 2));
         s4.j jVar = new s4.j();
-        jVar.f47748c = 220L;
-        jVar.f47749e = 220L;
-        jVar.f47750f = 160L;
-        jVar.f47751g = 160L;
-        jVar.f47752i = hs.f27119g;
+        jVar.f47750c = 220L;
+        jVar.f47751e = 220L;
+        jVar.f47752f = 160L;
+        jVar.f47753g = 160L;
+        jVar.f47754i = hs.f27119g;
         o1Var.setItemAnimator(jVar);
         addView(o1Var, w7.x5.d(-1.0f, -1));
         e6Var = ((org.telegram.ui.ActionBar.f3) r2Var).resourcesProvider;

@@ -16297,9 +16297,9 @@ public class MessagesController extends BaseController implements NotificationCe
                 break;
             }
             Pair<yh.g5, AtomicBoolean> next = it.next();
-            Pair pair = (Pair) iVar.f(((yh.g5) next.first).f52582a);
+            Pair pair = (Pair) iVar.f(((yh.g5) next.first).f52584a);
             if (pair == null) {
-                long j3 = ((yh.g5) next.first).f52582a;
+                long j3 = ((yh.g5) next.first).f52584a;
                 Pair pair2 = new Pair(new HashSet(), (AtomicBoolean) next.second);
                 iVar.k(pair2, j3);
                 pair = pair2;
@@ -16307,7 +16307,7 @@ public class MessagesController extends BaseController implements NotificationCe
             if (!((AtomicBoolean) next.second).get()) {
                 ((AtomicBoolean) pair.second).set(false);
             }
-            ((HashSet) pair.first).add(Integer.valueOf(((yh.g5) next.first).f52583b));
+            ((HashSet) pair.first).add(Integer.valueOf(((yh.g5) next.first).f52585b));
         }
         this.pendingReportMessageDelivery.clear();
         for (i10 = 0; i10 < iVar.m(); i10++) {
@@ -17234,7 +17234,7 @@ public class MessagesController extends BaseController implements NotificationCe
             if (messageAction instanceof TLRPC.TL_messageActionWalletTonConnectRequest) {
                 TLRPC.TL_messageActionWalletTonConnectRequest tL_messageActionWalletTonConnectRequest = (TLRPC.TL_messageActionWalletTonConnectRequest) messageAction;
                 if (tL_messageActionWalletTonConnectRequest.accepted || tL_messageActionWalletTonConnectRequest.declined) {
-                    org.telegram.ui.Wallet.k0.v(this.currentAccount).f35098g.m(message.f20059id, tL_messageActionWalletTonConnectRequest.session_id);
+                    org.telegram.ui.Wallet.k0.v(this.currentAccount).f35122g.m(message.f20059id, tL_messageActionWalletTonConnectRequest.session_id);
                 }
             }
         }
@@ -17261,8 +17261,8 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$processUpdateArray$402(r rVar) {
-        a0.i iVar = rVar.f52187c;
-        a0.i iVar2 = rVar.f52187c;
+        a0.i iVar = rVar.f52189c;
+        a0.i iVar2 = rVar.f52189c;
         if (!iVar.i()) {
             int m10 = iVar2.m();
             for (int i10 = 0; i10 < m10; i10++) {
@@ -17277,12 +17277,12 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$processUpdateArray$404(r rVar, ConcurrentHashMap concurrentHashMap, ConcurrentHashMap concurrentHashMap2) {
-        getMessagesStorage().processEphemeralMessages(rVar.f52185a, new oc(this, rVar, concurrentHashMap, concurrentHashMap2, 2));
+        getMessagesStorage().processEphemeralMessages(rVar.f52187a, new oc(this, rVar, concurrentHashMap, concurrentHashMap2, 2));
     }
 
     public void lambda$processUpdateArray$405(r rVar) {
-        a0.i iVar = rVar.f52187c;
-        a0.i iVar2 = rVar.f52187c;
+        a0.i iVar = rVar.f52189c;
+        a0.i iVar2 = rVar.f52189c;
         int m10 = iVar.m();
         for (int i10 = 0; i10 < m10; i10++) {
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.replaceMessagesObjects, Long.valueOf(iVar2.j(i10)), iVar2.n(i10), Boolean.FALSE);
@@ -17295,8 +17295,8 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$processUpdateArray$407(r rVar) {
-        a0.i iVar = rVar.f52187c;
-        a0.i iVar2 = rVar.f52187c;
+        a0.i iVar = rVar.f52189c;
+        a0.i iVar2 = rVar.f52189c;
         int m10 = iVar.m();
         for (int i10 = 0; i10 < m10; i10++) {
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.replaceMessagesObjects, Long.valueOf(iVar2.j(i10)), iVar2.n(i10), Boolean.FALSE);
@@ -21027,41 +21027,41 @@ public class MessagesController extends BaseController implements NotificationCe
             org.telegram.ui.Wallet.p0.z(k0Var.F);
             k0Var.C.clear();
             k0Var.J.clear();
-            WalletEngine2 walletEngine2 = k0Var.f35094b;
+            WalletEngine2 walletEngine2 = k0Var.f35118b;
             if (walletEngine2 != null) {
                 walletEngine2.close();
-                k0Var.f35094b = null;
+                k0Var.f35118b = null;
                 k0Var.d = null;
             }
-            org.telegram.ui.Wallet.c0 c0Var = k0Var.f35105o;
+            org.telegram.ui.Wallet.c0 c0Var = k0Var.f35129o;
             if (c0Var != null) {
                 c0Var.c();
             }
-            int i10 = k0Var.f35093a;
-            if (k0Var.f35112w >= 0) {
-                ConnectionsManager.getInstance(i10).cancelRequest(k0Var.f35112w, true);
-                k0Var.f35112w = -1;
+            int i10 = k0Var.f35117a;
+            if (k0Var.f35136w >= 0) {
+                ConnectionsManager.getInstance(i10).cancelRequest(k0Var.f35136w, true);
+                k0Var.f35136w = -1;
             }
-            if (k0Var.f35113x >= 0) {
-                ConnectionsManager.getInstance(i10).cancelRequest(k0Var.f35113x, true);
-                k0Var.f35113x = -1;
+            if (k0Var.f35137x >= 0) {
+                ConnectionsManager.getInstance(i10).cancelRequest(k0Var.f35137x, true);
+                k0Var.f35137x = -1;
             }
-            if (k0Var.f35114y >= 0) {
-                ConnectionsManager.getInstance(i10).cancelRequest(k0Var.f35114y, true);
-                k0Var.f35114y = -1;
+            if (k0Var.f35138y >= 0) {
+                ConnectionsManager.getInstance(i10).cancelRequest(k0Var.f35138y, true);
+                k0Var.f35138y = -1;
             }
             k0Var.b0();
             k0Var.A.clear();
-            org.telegram.ui.Wallet.z0 z0Var = k0Var.f35108r;
+            org.telegram.ui.Wallet.z0 z0Var = k0Var.f35132r;
             if (z0Var != null) {
                 z0Var.h();
-                k0Var.f35108r = null;
+                k0Var.f35132r = null;
             }
             AndroidUtilities.cancelRunOnUIThread(k0Var.B);
             synchronized (org.telegram.ui.Wallet.k0.class) {
                 try {
-                    if (org.telegram.ui.Wallet.k0.K[k0Var.f35093a] == k0Var) {
-                        org.telegram.ui.Wallet.k0.K[k0Var.f35093a] = null;
+                    if (org.telegram.ui.Wallet.k0.K[k0Var.f35117a] == k0Var) {
+                        org.telegram.ui.Wallet.k0.K[k0Var.f35117a] = null;
                     }
                 } finally {
                 }
@@ -21076,7 +21076,7 @@ public class MessagesController extends BaseController implements NotificationCe
             unconfirmedAuthController.cleanup();
         }
         this.showFiltersTooltip = false;
-        ty.f42146x4[this.currentAccount] = false;
+        ty.f42148x4[this.currentAccount] = false;
         this.notificationsPreferences.edit().clear().commit();
         this.emojiPreferences.edit().putLong("lastGifLoadTime", 0L).putLong("lastStickersLoadTime", 0L).putLong("lastStickersLoadTimeMask", 0L).putLong("lastStickersLoadTimeFavs", 0L).commit();
         q.d(this.mainPreferences.edit().remove("archivehint").remove("proximityhint").remove("archivehint_l").remove("gifhint"), "reminderhint", "soundHint", "dcDomainName2", "webFileDatacenterId").remove("themehint").remove("showFiltersTooltip").remove("transcribeButtonPressed").commit();
@@ -24099,13 +24099,13 @@ public class MessagesController extends BaseController implements NotificationCe
             n2Var.presentFragment(new ProfileActivity(bundle, null));
         } else if (i10 == 2) {
             if (ChatObject.isForum(chat)) {
-                HashSet hashSet = fg1.f37555n1;
+                HashSet hashSet = fg1.f37557n1;
                 n2Var.presentFragment(fg1.E0(n2Var.getMessagesController(), n2Var.getMessagesStorage(), bundle), !z11, true);
                 return;
             }
             n2Var.presentFragment(new zn(bundle), !z11, true);
         } else if (ChatObject.isForum(chat)) {
-            HashSet hashSet2 = fg1.f37555n1;
+            HashSet hashSet2 = fg1.f37557n1;
             org.telegram.ui.ActionBar.n2 E0 = fg1.E0(n2Var.getMessagesController(), n2Var.getMessagesStorage(), bundle);
             if (!z10 || z11) {
                 z12 = false;
@@ -24127,9 +24127,9 @@ public class MessagesController extends BaseController implements NotificationCe
             int i11 = this.currentAccount;
             long clientUserId = getUserConfig().getClientUserId();
             if (clientUserId == 0) {
-                Object obj = org.telegram.ui.Wallet.p0.f35342f;
+                Object obj = org.telegram.ui.Wallet.p0.f35370f;
             } else {
-                synchronized (org.telegram.ui.Wallet.p0.f35342f) {
+                synchronized (org.telegram.ui.Wallet.p0.f35370f) {
                     try {
                         ArrayList n10 = org.telegram.ui.Wallet.p0.n(context, clientUserId);
                         int size = n10.size();

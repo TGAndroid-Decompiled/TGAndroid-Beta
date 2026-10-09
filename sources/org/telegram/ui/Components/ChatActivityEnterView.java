@@ -973,7 +973,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                     MediaDataController mediaDataController = MediaDataController.getInstance(chatActivityEnterView.Q);
                     long j10 = chatActivityEnterView.Q2;
                     org.telegram.ui.zn znVar = chatActivityEnterView.P2;
-                    if (znVar != null && znVar.f44791h4) {
+                    if (znVar != null && znVar.f44793h4) {
                         j3 = znVar.d();
                     }
                     mediaDataController.pushDraftVoiceMessage(j10, j3, null);
@@ -1510,7 +1510,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         boolean z10;
         MessageObject messageObject;
         org.telegram.ui.zn znVar;
-        if (chatActivityEnterView.T2 != null && (znVar = chatActivityEnterView.P2) != null && znVar.f44791h4 && znVar.d() == chatActivityEnterView.T2.getId()) {
+        if (chatActivityEnterView.T2 != null && (znVar = chatActivityEnterView.P2) != null && znVar.f44793h4 && znVar.d() == chatActivityEnterView.T2.getId()) {
             z10 = true;
         } else {
             z10 = false;
@@ -1566,7 +1566,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
 
     private String getTopicKeyString() {
         org.telegram.ui.zn znVar = this.P2;
-        if (znVar != null && znVar.f44791h4) {
+        if (znVar != null && znVar.f44793h4) {
             return this.Q2 + "_" + znVar.d();
         }
         return "" + this.Q2;
@@ -1865,7 +1865,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
     public final void B() {
         ef efVar;
         org.telegram.ui.zn znVar;
-        if (this.L == null && (efVar = this.K1) != null && efVar.getRight() != 0 && (znVar = this.P2) != null && BirthdayController.isToday(znVar.f44706a8)) {
+        if (this.L == null && (efVar = this.K1) != null && efVar.getRight() != 0 && (znVar = this.P2) != null && BirthdayController.isToday(znVar.f44708a8)) {
             SharedPreferences mainSettings = MessagesController.getInstance(this.Q).getMainSettings();
             if (mainSettings.getBoolean(Calendar.getInstance().get(1) + "bdayhint_" + znVar.a(), true)) {
                 SharedPreferences.Editor edit = MessagesController.getInstance(this.Q).getMainSettings().edit();
@@ -1996,7 +1996,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         if (znVar == null) {
             return;
         }
-        I1(znVar.f44751e, znVar.f44706a8);
+        I1(znVar.f44753e, znVar.f44708a8);
     }
 
     public final boolean D0(android.view.View r28) {
@@ -2178,7 +2178,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                             this.E0.setHintText(LocaleController.formatString(R.string.TypeMessageIn, str2), z10);
                             return;
                         }
-                        TLRPC.TL_forumTopic findTopic = MessagesController.getInstance(this.Q).getTopicsController().findTopic(znVar.f44751e.f20038id, 1L);
+                        TLRPC.TL_forumTopic findTopic = MessagesController.getInstance(this.Q).getTopicsController().findTopic(znVar.f44753e.f20038id, 1L);
                         if (findTopic != null && (str = findTopic.title) != null) {
                             this.E0.setHintText(LocaleController.formatString(R.string.TypeMessageIn, str), z10);
                         } else {
@@ -2201,10 +2201,10 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                             return;
                         }
                         TLRPC.User user = this.R.getMessagesController().getUser(Long.valueOf(this.Q2));
-                        if (user != null && user.bot_forum_view && !user.bot_forum_can_manage_topics && znVar != null && !znVar.f44791h4) {
+                        if (user != null && user.bot_forum_view && !user.bot_forum_can_manage_topics && znVar != null && !znVar.f44793h4) {
                             this.E0.setHintText(LocaleController.getString(R.string.SendBotNoThread));
-                        } else if (znVar != null && znVar.K9() && !znVar.f44791h4) {
-                            if (znVar.X3 != null && znVar.f44780g4) {
+                        } else if (znVar != null && znVar.K9() && !znVar.f44793h4) {
+                            if (znVar.X3 != null && znVar.f44782g4) {
                                 this.E0.setHintText(LocaleController.getString(R.string.Comment));
                             } else {
                                 this.E0.setHintText(LocaleController.getString("Reply", R.string.Reply));
@@ -2799,7 +2799,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 long j11 = this.Q2;
                 org.telegram.ui.zn znVar = this.P2;
                 property = property3;
-                mediaDataController.toggleDraftVoiceOnce(j11, (znVar == null || !znVar.f44791h4) ? 0L : znVar.d(), this.O);
+                mediaDataController.toggleDraftVoiceOnce(j11, (znVar == null || !znVar.f44793h4) ? 0L : znVar.d(), this.O);
                 this.f23904i1 = 0L;
             }
             V();
@@ -3737,7 +3737,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
     public final void M() {
         org.telegram.ui.zn znVar = this.P2;
         if (znVar != null) {
-            MediaDataController.getInstance(this.Q).saveDraft(znVar.a(), znVar.E7(znVar.f44866n5), "", null, null, null, null, 0L, false, true, null);
+            MediaDataController.getInstance(this.Q).saveDraft(znVar.a(), znVar.E7(znVar.f44868n5), "", null, null, null, null, 0L, false, true, null);
         }
         setRichDraftPreview(null);
     }
@@ -3986,7 +3986,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
     public final void O0(TL_iv.RichMessage richMessage) {
         org.telegram.ui.zn znVar = this.P2;
         if (znVar != null) {
-            MediaDataController.getInstance(this.Q).saveDraft(znVar.a(), znVar.E7(znVar.f44866n5), "", null, null, null, null, 0L, false, false, richMessage);
+            MediaDataController.getInstance(this.Q).saveDraft(znVar.a(), znVar.E7(znVar.f44868n5), "", null, null, null, null, 0L, false, false, richMessage);
         }
         setRichDraftPreview(richMessage);
     }
@@ -5077,14 +5077,14 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                             Boolean bool2 = tL_requestPeerTypeUser.bot;
                             Boolean bool3 = tL_requestPeerTypeUser.premium;
                             ke keVar = new ke(this, messageObject2, tL_buttonTypeRequestPeer);
-                            org.telegram.ui.sj0 sj0Var = org.telegram.ui.sj0.f41706u0;
+                            org.telegram.ui.sj0 sj0Var = org.telegram.ui.sj0.f41708u0;
                             org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
-                            if (R == null || org.telegram.ui.sj0.f41706u0 != null) {
+                            if (R == null || org.telegram.ui.sj0.f41708u0 != null) {
                                 return false;
                             }
                             org.telegram.ui.sj0 sj0Var2 = new org.telegram.ui.sj0(R, i10, bool2, bool3, keVar);
                             sj0Var2.show();
-                            org.telegram.ui.sj0.f41706u0 = sj0Var2;
+                            org.telegram.ui.sj0.f41708u0 = sj0Var2;
                             return false;
                         } else {
                             Bundle d10 = org.telegram.messenger.bi.d(15, "onlySelect", "dialogsType", true);
@@ -5146,7 +5146,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             boolean needResendWhenEdit = messageObject.needResendWhenEdit();
             org.telegram.ui.zn znVar = this.P2;
             if (needResendWhenEdit && !ChatObject.canManageMonoForum(this.Q, this.Z1.getDialogId())) {
-                if (znVar == null || (of3 = znVar.f44781g5) == null) {
+                if (znVar == null || (of3 = znVar.f44783g5) == null) {
                     of3 = MessageSuggestionParams.of(this.Z1.messageOwner.suggested_post);
                 }
                 if (!yh.m5.U(this.Q, of3.amount)) {
@@ -5206,13 +5206,13 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 messageObject3.editingMessage = charSequenceArr[0];
                 messageObject3.editingMessageEntities = entities;
                 messageObject3.editingMessageSearchWebPage = this.Y2;
-                if (znVar != null && (chat = znVar.f44751e) != null && (((i10 = messageObject3.type) == 0 || i10 == 19) && !ChatObject.canSendEmbed(chat))) {
+                if (znVar != null && (chat = znVar.f44753e) != null && (((i10 = messageObject3.type) == 0 || i10 == 19) && !ChatObject.canSendEmbed(chat))) {
                     MessageObject messageObject4 = this.Z1;
                     messageObject4.editingMessageSearchWebPage = false;
                     TLRPC.Message message = messageObject4.messageOwner;
                     message.flags &= -513;
                     message.media = null;
-                } else if (znVar != null && (messagePreviewParams = znVar.f44769f5) != null) {
+                } else if (znVar != null && (messagePreviewParams = znVar.f44771f5) != null) {
                     if (znVar.G5 instanceof TLRPC.TL_webPagePending) {
                         MessageObject messageObject5 = this.Z1;
                         messageObject5.editingMessageSearchWebPage = false;
@@ -5227,7 +5227,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                         TLRPC.Message message2 = messageObject6.messageOwner;
                         message2.flags |= 512;
                         message2.media = new TLRPC.TL_messageMediaWebPage();
-                        this.Z1.messageOwner.media.webpage = znVar.f44769f5.webpage;
+                        this.Z1.messageOwner.media.webpage = znVar.f44771f5.webpage;
                     } else {
                         MessageObject messageObject7 = this.Z1;
                         messageObject7.editingMessageSearchWebPage = false;
@@ -5239,7 +5239,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                         }
                     }
                     TLRPC.Message message4 = this.Z1.messageOwner;
-                    MessagePreviewParams messagePreviewParams2 = znVar.f44769f5;
+                    MessagePreviewParams messagePreviewParams2 = znVar.f44771f5;
                     message4.invert_media = messagePreviewParams2.webpageTop;
                     if (messagePreviewParams2.hasMedia) {
                         TLRPC.MessageMedia messageMedia2 = message4.media;
@@ -5261,7 +5261,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 }
                 if (this.Z1.needResendWhenEdit()) {
                     SendMessagesHelper.SendMessageParams of4 = SendMessagesHelper.SendMessageParams.of(this.Z1.editingMessage.toString(), this.Z1.getDialogId());
-                    if (znVar == null || (of2 = znVar.f44781g5) == null) {
+                    if (znVar == null || (of2 = znVar.f44783g5) == null) {
                         of2 = MessageSuggestionParams.of(this.Z1.messageOwner.suggested_post);
                     }
                     of4.suggestionParams = of2;
@@ -5421,7 +5421,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
         org.telegram.ui.pn pnVar = this.V2;
         org.telegram.ui.zn znVar = this.P2;
-        if (pnVar != null && znVar != null && pnVar.f40847f) {
+        if (pnVar != null && znVar != null && pnVar.f40849f) {
             znVar.Vb();
         } else if (c() && i10 == 0) {
             g5.L(this.O2, znVar.a(), new org.telegram.messenger.hk(this, document, str, obj, sendAnimationData, z10), this.W3);
@@ -6280,7 +6280,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
     public MessageSuggestionParams getSendMessageSuggestionParams() {
         org.telegram.ui.zn znVar = this.P2;
         if (znVar != null) {
-            return znVar.f44781g5;
+            return znVar.f44783g5;
         }
         return null;
     }
@@ -6482,7 +6482,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             this.T2 = messageObject;
             this.V2 = pnVar;
             this.U2 = messageObject2;
-            if (znVar == null || !znVar.f44791h4 || znVar.X3 != messageObject) {
+            if (znVar == null || !znVar.f44793h4 || znVar.X3 != messageObject) {
                 X0(messageObject, true, true);
             }
         } else if (this.T2 == this.f23925m2) {
@@ -7256,7 +7256,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
 
     public final void o1() {
         org.telegram.ui.zn znVar = this.P2;
-        if (znVar != null && ChatObject.isChannelAndNotMegaGroup(znVar.f44751e)) {
+        if (znVar != null && ChatObject.isChannelAndNotMegaGroup(znVar.f44753e)) {
             ad.a0(znVar).f(MessagesController.getInstance(this.Q).captionLengthLimitPremium, new vd(this, 0)).j();
         }
     }
@@ -8420,7 +8420,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             MediaDataController mediaDataController = MediaDataController.getInstance(this.Q);
             long j10 = this.Q2;
             org.telegram.ui.zn znVar = this.P2;
-            if (znVar != null && znVar.f44791h4) {
+            if (znVar != null && znVar.f44793h4) {
                 j3 = znVar.d();
             } else {
                 j3 = 0;

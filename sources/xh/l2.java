@@ -11,23 +11,23 @@ import org.telegram.ui.ProfileActivity;
 import yh.e5;
 public final class l2 extends s4.w {
     public final rs0 d;
-    public final o2 f51341e;
+    public final o2 f51343e;
 
     public l2(o2 o2Var, rs0 rs0Var) {
-        this.f51341e = o2Var;
+        this.f51343e = o2Var;
         this.d = rs0Var;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, s4.d1 d1Var) {
         super.a(recyclerView, d1Var);
-        d1Var.f47656a.setPressed(false);
+        d1Var.f47658a.setPressed(false);
     }
 
     @Override
     public final int e(RecyclerView recyclerView, s4.d1 d1Var) {
         TL_stars.SavedStarGift savedStarGift;
-        View view = d1Var.f47656a;
+        View view = d1Var.f47658a;
         if (view instanceof j1) {
             savedStarGift = ((j1) view).getSavedGift();
         } else {
@@ -41,22 +41,22 @@ public final class l2 extends s4.w {
 
     @Override
     public final boolean j() {
-        return this.f51341e.f51438n;
+        return this.f51343e.f51440n;
     }
 
     @Override
     public final boolean k() {
-        return this.f51341e.f51438n;
+        return this.f51343e.f51440n;
     }
 
     @Override
     public final boolean n(RecyclerView recyclerView, s4.d1 d1Var, s4.d1 d1Var2) {
         TL_stars.SavedStarGift savedStarGift;
         yh.e0 e0Var;
-        o2 o2Var = this.f51341e;
-        j2 j2Var = o2Var.f51437f;
-        if (o2Var.f51436e != null && o2Var.f51438n) {
-            View view = d1Var.f47656a;
+        o2 o2Var = this.f51343e;
+        j2 j2Var = o2Var.f51439f;
+        if (o2Var.f51438e != null && o2Var.f51440n) {
+            View view = d1Var.f47658a;
             TL_stars.SavedStarGift savedStarGift2 = null;
             if (view instanceof j1) {
                 savedStarGift = ((j1) view).getSavedGift();
@@ -64,7 +64,7 @@ public final class l2 extends s4.w {
                 savedStarGift = null;
             }
             if (r(savedStarGift)) {
-                View view2 = d1Var2.f47656a;
+                View view2 = d1Var2.f47658a;
                 if (view2 instanceof j1) {
                     savedStarGift2 = ((j1) view2).getSavedGift();
                 }
@@ -74,12 +74,12 @@ public final class l2 extends s4.w {
                     boolean z10 = o2Var.d;
                     rs0 rs0Var = this.d;
                     if (z10) {
-                        o2Var.f51436e.k(b10, b11);
-                        rs0Var.f51512e.n(o2Var.f51436e.d);
+                        o2Var.f51438e.k(b10, b11);
+                        rs0Var.f51514e.n(o2Var.f51438e.d);
                     } else {
-                        e5 e5Var = o2Var.f51436e;
-                        if (e5Var.f52445q == null) {
-                            e5Var.f52445q = e5Var.h();
+                        e5 e5Var = o2Var.f51438e;
+                        if (e5Var.f52447q == null) {
+                            e5Var.f52447q = e5Var.h();
                         }
                         e5Var.k(b10, b11);
                     }
@@ -104,11 +104,11 @@ public final class l2 extends s4.w {
 
     @Override
     public final void p(s4.d1 d1Var, int i10) {
-        o2 o2Var = this.f51341e;
+        o2 o2Var = this.f51343e;
         if (i10 == 0) {
-            e5 e5Var = o2Var.f51436e;
+            e5 e5Var = o2Var.f51438e;
             if (e5Var != null) {
-                ArrayList arrayList = e5Var.f52445q;
+                ArrayList arrayList = e5Var.f52447q;
                 if (arrayList != null) {
                     ArrayList h = e5Var.h();
                     if (arrayList.size() == h.size()) {
@@ -118,27 +118,27 @@ public final class l2 extends s4.w {
                         }
                     }
                     e5Var.l();
-                    e5Var.f52445q = null;
+                    e5Var.f52447q = null;
                     return;
                 }
-                e5Var.f52445q = null;
+                e5Var.f52447q = null;
                 return;
             }
             return;
         }
-        j2 j2Var = o2Var.f51437f;
+        j2 j2Var = o2Var.f51439f;
         if (j2Var != null) {
             j2Var.I0(false);
         }
         if (d1Var != null) {
-            d1Var.f47656a.setPressed(true);
+            d1Var.f47658a.setPressed(true);
         }
     }
 
     public final boolean r(TL_stars.SavedStarGift savedStarGift) {
-        o2 o2Var = this.f51341e;
-        if (o2Var.f51438n) {
-            if (o2Var.f51436e == this.d.d) {
+        o2 o2Var = this.f51343e;
+        if (o2Var.f51440n) {
+            if (o2Var.f51438e == this.d.d) {
                 if (savedStarGift == null || !savedStarGift.pinned_to_top) {
                     return false;
                 }

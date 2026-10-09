@@ -7,18 +7,18 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_account;
 public final class ul0 implements Utilities.Callback2 {
-    public final int f42451a;
-    public final PasskeysActivity f42452b;
+    public final int f42453a;
+    public final PasskeysActivity f42454b;
 
     public ul0(PasskeysActivity passkeysActivity, int i10) {
-        this.f42451a = i10;
-        this.f42452b = passkeysActivity;
+        this.f42453a = i10;
+        this.f42454b = passkeysActivity;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        int i10 = this.f42451a;
-        PasskeysActivity passkeysActivity = this.f42452b;
+        int i10 = this.f42453a;
+        PasskeysActivity passkeysActivity = this.f42454b;
         switch (i10) {
             case 0:
                 ArrayList arrayList = (ArrayList) obj;
@@ -33,7 +33,7 @@ public final class ul0 implements Utilities.Callback2 {
                 arrayList.add(p61Var);
                 for (int i12 = 0; i12 < arrayList2.size(); i12++) {
                     m60 m60Var = new m60(passkeysActivity, 14);
-                    int i13 = vl0.f42899a;
+                    int i13 = vl0.f42901a;
                     org.telegram.ui.Components.p61 J = org.telegram.ui.Components.p61.J(vl0.class);
                     J.G = (TL_account.Passkey) arrayList2.get(i12);
                     J.D = m60Var;

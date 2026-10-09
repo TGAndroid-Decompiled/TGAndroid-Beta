@@ -9,19 +9,19 @@ import android.widget.ViewSwitcher;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class rg0 implements ViewSwitcher.ViewFactory {
-    public final int f41414a;
-    public final Object f41415b;
+    public final int f41416a;
+    public final Object f41417b;
 
     public rg0(Object obj, int i10) {
-        this.f41414a = i10;
-        this.f41415b = obj;
+        this.f41416a = i10;
+        this.f41417b = obj;
     }
 
     @Override
     public final View makeView() {
         int i10;
-        int i11 = this.f41414a;
-        Object obj = this.f41415b;
+        int i11 = this.f41416a;
+        Object obj = this.f41417b;
         switch (i11) {
             case 0:
                 TextView textView = new TextView((Context) obj);

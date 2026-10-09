@@ -5,19 +5,19 @@ import android.view.View;
 import android.widget.ImageView;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class ug implements View.OnKeyListener {
-    public final int f42425a;
-    public final Object f42426b;
+    public final int f42427a;
+    public final Object f42428b;
 
     public ug(Object obj, int i10) {
-        this.f42425a = i10;
-        this.f42426b = obj;
+        this.f42427a = i10;
+        this.f42428b = obj;
     }
 
     @Override
     public final boolean onKey(View view, int i10, KeyEvent keyEvent) {
-        switch (this.f42425a) {
+        switch (this.f42427a) {
             case 0:
-                zn znVar = (zn) this.f42426b;
+                zn znVar = (zn) this.f42428b;
                 znVar.getClass();
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) view;
                 if (i10 == 67 && keyEvent.getAction() == 0 && editTextBoldCursor.length() == 0) {
@@ -26,7 +26,7 @@ public final class ug implements View.OnKeyListener {
                 }
                 return false;
             case 1:
-                nn0 nn0Var = (nn0) this.f42426b;
+                nn0 nn0Var = (nn0) this.f42428b;
                 if (i10 == 67) {
                     if (nn0Var.Y[2].length() == 0) {
                         nn0Var.Y[1].requestFocus();
@@ -40,7 +40,7 @@ public final class ug implements View.OnKeyListener {
                 }
                 return false;
             default:
-                xv0 xv0Var = (xv0) this.f42426b;
+                xv0 xv0Var = (xv0) this.f42428b;
                 EditTextBoldCursor editTextBoldCursor3 = (EditTextBoldCursor) view;
                 if (i10 == 67 && keyEvent.getAction() == 0 && editTextBoldCursor3.length() == 0) {
                     ImageView imageView = xv0Var.f21975f;

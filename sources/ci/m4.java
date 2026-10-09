@@ -214,17 +214,17 @@ public final class m4 implements View.OnClickListener {
             case 18:
                 p80 p80Var = (p80) obj;
                 p80Var.Q.dismiss();
-                int i14 = p80Var.f40696c0;
+                int i14 = p80Var.f40698c0;
                 if (i14 >= 0) {
-                    p80Var.f40697d0.setKeepMedia(i14, i12);
-                    n80 n80Var = p80Var.f40698e0;
+                    p80Var.f40699d0.setKeepMedia(i14, i12);
+                    n80 n80Var = p80Var.f40700e0;
                     if (n80Var != null) {
                         n80Var.a(i12);
                         return;
                     }
                     return;
                 }
-                n80 n80Var2 = p80Var.f40698e0;
+                n80 n80Var2 = p80Var.f40700e0;
                 if (n80Var2 != null) {
                     n80Var2.a(i12);
                     return;
@@ -232,9 +232,9 @@ public final class m4 implements View.OnClickListener {
                 return;
             case 19:
                 fh0 fh0Var = (fh0) obj;
-                ValueAnimator valueAnimator = fh0Var.f36685c.Q;
+                ValueAnimator valueAnimator = fh0Var.f36687c.Q;
                 if (valueAnimator == null || !valueAnimator.isRunning()) {
-                    bi1 bi1Var = fh0Var.f36685c;
+                    bi1 bi1Var = fh0Var.f36687c;
                     if (!bi1Var.H) {
                         if (bi1Var.getCurrentPosition() == i12) {
                             org.telegram.ui.ActionBar.n2 X = fh0Var.X();
@@ -245,7 +245,7 @@ public final class m4 implements View.OnClickListener {
                             return;
                         }
                         fh0Var.m0(i12, true);
-                        fh0Var.f36685c.D(i12);
+                        fh0Var.f36687c.D(i12);
                         return;
                     }
                     return;
@@ -256,21 +256,21 @@ public final class m4 implements View.OnClickListener {
                 mm0 mm0Var = nn0Var.D1;
                 nn0Var.S0 = i12;
                 if (i12 == 1) {
-                    nn0Var.f40259i0 = nn0Var.f40255g0;
+                    nn0Var.f40261i0 = nn0Var.f40257g0;
                 } else if (i12 == 4) {
-                    nn0Var.f40259i0 = nn0Var.f40257h0;
+                    nn0Var.f40261i0 = nn0Var.f40259h0;
                 } else if (i12 == 2) {
-                    nn0Var.f40259i0 = nn0Var.f40250e0;
+                    nn0Var.f40261i0 = nn0Var.f40252e0;
                 } else if (i12 == 3) {
-                    nn0Var.f40259i0 = nn0Var.f40253f0;
+                    nn0Var.f40261i0 = nn0Var.f40255f0;
                 } else {
-                    nn0Var.f40259i0 = nn0Var.f40247d0;
+                    nn0Var.f40261i0 = nn0Var.f40249d0;
                 }
                 SecureDocument secureDocument = (SecureDocument) view.getTag();
                 PhotoViewer.t1().K2(null, nn0Var, null);
                 if (i12 == 1) {
                     ArrayList arrayList = new ArrayList();
-                    arrayList.add(nn0Var.f40262j1);
+                    arrayList.add(nn0Var.f40264j1);
                     PhotoViewer.t1().c2(arrayList, 0, mm0Var);
                     return;
                 } else if (i12 == 2) {
@@ -280,17 +280,17 @@ public final class m4 implements View.OnClickListener {
                     return;
                 } else if (i12 == 3) {
                     ArrayList arrayList3 = new ArrayList();
-                    arrayList3.add(nn0Var.f40266m1);
+                    arrayList3.add(nn0Var.f40268m1);
                     PhotoViewer.t1().c2(arrayList3, 0, mm0Var);
                     return;
                 } else if (i12 == 0) {
                     PhotoViewer t12 = PhotoViewer.t1();
-                    ArrayList arrayList4 = nn0Var.f40260i1;
+                    ArrayList arrayList4 = nn0Var.f40262i1;
                     t12.c2(arrayList4, arrayList4.indexOf(secureDocument), mm0Var);
                     return;
                 } else {
                     PhotoViewer t13 = PhotoViewer.t1();
-                    ArrayList arrayList5 = nn0Var.f40264k1;
+                    ArrayList arrayList5 = nn0Var.f40266k1;
                     t13.c2(arrayList5, arrayList5.indexOf(secureDocument), mm0Var);
                     return;
                 }
@@ -304,7 +304,7 @@ public final class m4 implements View.OnClickListener {
                     org.telegram.ui.Components.g5.K(kq0Var.getParentActivity(), kq0Var.F.a(), new bq0(kq0Var, 2));
                     return;
                 }
-                kq0Var.V(kq0Var.f39328b, kq0Var.f39329c, true, 0);
+                kq0Var.V(kq0Var.f39330b, kq0Var.f39331c, true, 0);
                 kq0Var.finishFragment();
                 return;
             case 22:
@@ -433,21 +433,21 @@ public final class m4 implements View.OnClickListener {
                 return;
             case 25:
                 bb1 bb1Var = (bb1) obj;
-                bb1Var.f36215i0.D(i12);
+                bb1Var.f36217i0.D(i12);
                 bb1Var.m0(i12, true);
                 return;
             case 26:
-                org.telegram.ui.Wallet.g9 g9Var = (org.telegram.ui.Wallet.g9) obj;
-                EditText editText = g9Var.f34945a;
-                TextView[] textViewArr = g9Var.N;
+                org.telegram.ui.Wallet.h9 h9Var = (org.telegram.ui.Wallet.h9) obj;
+                EditText editText = h9Var.f35005a;
+                TextView[] textViewArr = h9Var.N;
                 TextView textView = textViewArr[i12];
                 if (textView != null && !TextUtils.isEmpty(textView.getText())) {
                     String charSequence = textViewArr[i12].getText().toString();
                     editText.setText(charSequence);
                     editText.setSelection(charSequence.length());
-                    g9Var.a();
-                    g9Var.a();
-                    Runnable runnable = g9Var.f34951r;
+                    h9Var.a();
+                    h9Var.a();
+                    Runnable runnable = h9Var.f35011r;
                     if (runnable != null) {
                         editText.post(runnable);
                         return;
@@ -456,8 +456,8 @@ public final class m4 implements View.OnClickListener {
                 }
                 return;
             case 27:
-                yh.q0 q0Var = ((yh.r0) obj).f53098j0;
-                int i19 = yh.q0.f53051s;
+                yh.q0 q0Var = ((yh.r0) obj).f53100j0;
+                int i19 = yh.q0.f53053s;
                 q0Var.a(i12);
                 return;
             default:

@@ -12,7 +12,7 @@ import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Components.er;
 import w7.z5;
 public final class m3 extends TextView {
-    public final er f51374a;
+    public final er f51376a;
 
     public m3(Context context, e6 e6Var) {
         super(context);
@@ -24,7 +24,7 @@ public final class m3 extends TextView {
         setTypeface(AndroidUtilities.bold());
         z5.a(this);
         er erVar = new er(R.drawable.arrows_select, 0);
-        this.f51374a = erVar;
+        this.f51376a = erVar;
         erVar.spaceScaleX = 0.8f;
         erVar.translate(0.0f, AndroidUtilities.dp(1.0f));
     }
@@ -61,7 +61,7 @@ public final class m3 extends TextView {
     public void setValue(CharSequence charSequence) {
         SpannableStringBuilder append = new SpannableStringBuilder(charSequence).append((CharSequence) " v");
         int length = append.length();
-        append.setSpan(this.f51374a, append.length() - 1, length, 33);
+        append.setSpan(this.f51376a, append.length() - 1, length, 33);
         setText(append);
     }
 }

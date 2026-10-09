@@ -241,7 +241,7 @@ public class UserInfoActivity extends org.telegram.ui.Components.f71 implements 
             this.addAccountRow = arrayList.size();
             int i13 = R.drawable.outline_add_account;
             String string2 = LocaleController.getString(R.string.AddAccount);
-            int i14 = sh1.f41701a;
+            int i14 = sh1.f41703a;
             org.telegram.ui.Components.p61 J = org.telegram.ui.Components.p61.J(sh1.class);
             J.d = 10;
             J.f29733k = i13;
@@ -257,7 +257,7 @@ public class UserInfoActivity extends org.telegram.ui.Components.f71 implements 
             }
             for (int i15 = 0; i15 < arrayList2.size(); i15++) {
                 int intValue = ((Integer) arrayList2.get(i15)).intValue();
-                int i16 = c91.f36591a;
+                int i16 = c91.f36593a;
                 org.telegram.ui.Components.p61 J2 = org.telegram.ui.Components.p61.J(c91.class);
                 J2.d = i15;
                 J2.f29747z = intValue;
@@ -277,7 +277,7 @@ public class UserInfoActivity extends org.telegram.ui.Components.f71 implements 
         this.logoutRow = arrayList.size();
         int i17 = R.drawable.msg_leave;
         String string3 = LocaleController.getString(R.string.LogOut);
-        int i18 = sh1.f41701a;
+        int i18 = sh1.f41703a;
         org.telegram.ui.Components.p61 J3 = org.telegram.ui.Components.p61.J(sh1.class);
         J3.d = 11;
         J3.f29733k = i17;
@@ -343,16 +343,16 @@ public class UserInfoActivity extends org.telegram.ui.Components.f71 implements 
                     }
                     nh1 nh1Var = new nh1(this, 1);
                     ?? f71Var = new org.telegram.ui.Components.f71();
-                    f71Var.f41431r = false;
+                    f71Var.f41433r = false;
                     ph1 ph1Var = this.N;
                     f71Var.d = ph1Var;
-                    f71Var.f41428e = j3;
-                    f71Var.f41429f = nh1Var;
+                    f71Var.f41430e = j3;
+                    f71Var.f41431f = nh1Var;
                     qh1 qh1Var = new qh1(f71Var, 1);
-                    if (ph1Var.f40808c) {
+                    if (ph1Var.f40810c) {
                         qh1Var.run();
                     } else {
-                        ph1Var.f40810f.add(qh1Var);
+                        ph1Var.f40812f.add(qh1Var);
                     }
                     presentFragment((org.telegram.ui.ActionBar.n2) f71Var);
                     return;
@@ -672,13 +672,13 @@ public class UserInfoActivity extends org.telegram.ui.Components.f71 implements 
     public final void onResume() {
         super.onResume();
         ph1 ph1Var = this.N;
-        ph1Var.f40808c = false;
-        ph1Var.f40810f.add(new lh1(this, 1));
-        if (!ph1Var.f40808c && !ph1Var.d) {
+        ph1Var.f40810c = false;
+        ph1Var.f40812f.add(new lh1(this, 1));
+        if (!ph1Var.f40810c && !ph1Var.d) {
             ph1Var.d = true;
             TLRPC.TL_channels_getAdminedPublicChannels tL_channels_getAdminedPublicChannels = new TLRPC.TL_channels_getAdminedPublicChannels();
-            tL_channels_getAdminedPublicChannels.for_personal = ph1Var.f40807b;
-            ConnectionsManager.getInstance(ph1Var.f40806a).sendRequest(tL_channels_getAdminedPublicChannels, new m(ph1Var, 23));
+            tL_channels_getAdminedPublicChannels.for_personal = ph1Var.f40809b;
+            ConnectionsManager.getInstance(ph1Var.f40808a).sendRequest(tL_channels_getAdminedPublicChannels, new m(ph1Var, 23));
         }
         this.f34587r = null;
         org.telegram.ui.Components.e71 e71Var = this.f34590x;

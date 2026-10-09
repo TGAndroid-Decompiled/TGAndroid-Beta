@@ -2,42 +2,42 @@ package t7;
 
 import w7.o7;
 public final class c extends d {
-    public final transient int f48203c;
+    public final transient int f48205c;
     public final transient int d;
-    public final d f48204e;
+    public final d f48206e;
 
     public c(d dVar, int i10, int i11) {
-        this.f48204e = dVar;
-        this.f48203c = i10;
+        this.f48206e = dVar;
+        this.f48205c = i10;
         this.d = i11;
     }
 
     @Override
     public final Object get(int i10) {
         o7.a(i10, this.d);
-        return this.f48204e.get(i10 + this.f48203c);
+        return this.f48206e.get(i10 + this.f48205c);
     }
 
     @Override
     public final int n() {
-        return this.f48204e.o() + this.f48203c + this.d;
+        return this.f48206e.o() + this.f48205c + this.d;
     }
 
     @Override
     public final int o() {
-        return this.f48204e.o() + this.f48203c;
+        return this.f48206e.o() + this.f48205c;
     }
 
     @Override
     public final Object[] p() {
-        return this.f48204e.p();
+        return this.f48206e.p();
     }
 
     @Override
     public final d subList(int i10, int i11) {
         o7.c(i10, i11, this.d);
-        int i12 = this.f48203c;
-        return this.f48204e.subList(i10 + i12, i11 + i12);
+        int i12 = this.f48205c;
+        return this.f48206e.subList(i10 + i12, i11 + i12);
     }
 
     @Override

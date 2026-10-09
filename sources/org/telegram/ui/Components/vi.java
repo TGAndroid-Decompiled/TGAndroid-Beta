@@ -158,7 +158,7 @@ public final class vi extends pm0 {
         } else {
             TLRPC.User i27 = ((org.telegram.ui.zn) n2Var).i();
             if (n2Var instanceof org.telegram.ui.zn) {
-                chat = ((org.telegram.ui.zn) n2Var).f44751e;
+                chat = ((org.telegram.ui.zn) n2Var).f44753e;
             } else {
                 chat = null;
             }
@@ -221,7 +221,7 @@ public final class vi extends pm0 {
                         i10++;
                         TLRPC.TL_attachMenuBot tL_attachMenuBot2 = tL_attachMenuBot;
                         if (tL_attachMenuBot2.show_in_attach_menu) {
-                            TLObject tLObject = znVar.f44751e;
+                            TLObject tLObject = znVar.f44753e;
                             if (tLObject == null) {
                                 tLObject = znVar.i();
                             }

@@ -13,37 +13,37 @@ import ci.m6;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Components.hs;
-import org.telegram.ui.Wallet.w4;
+import org.telegram.ui.Wallet.x4;
 import w7.x5;
 public final class l0 extends LinearLayout {
-    public final TextView f46328a;
-    public final m6 f46329b;
-    public ImageView f46330c;
+    public final TextView f46330a;
+    public final m6 f46331b;
+    public ImageView f46332c;
     public ImageView d;
-    public float f46331e;
-    public boolean f46332f;
+    public float f46333e;
+    public boolean f46334f;
     public ValueAnimator h;
-    public final ImageView f46333n;
-    public final m0 f46334r;
+    public final ImageView f46335n;
+    public final m0 f46336r;
 
     public l0(m0 m0Var, Context context) {
         super(context);
-        this.f46334r = m0Var;
+        this.f46336r = m0Var;
         setOrientation(0);
         int i10 = i6.f20888i6;
         eh.a aVar = m0Var.Q1;
         setBackground(i6.g0(i6.w0(i10, aVar), 2, -1));
         m6 m6Var = new m6(this, context);
-        this.f46329b = m6Var;
+        this.f46331b = m6Var;
         addView(m6Var, x5.t(-2, -2, 19, 16, 0, 16, 0));
         ImageView imageView = new ImageView(context);
-        this.f46330c = imageView;
+        this.f46332c = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
-        ImageView imageView2 = this.f46330c;
+        ImageView imageView2 = this.f46332c;
         int i11 = i6.E8;
         imageView2.setColorFilter(i6.w0(i11, aVar));
-        m6Var.addView(this.f46330c, x5.e(-2, -2, 17));
+        m6Var.addView(this.f46332c, x5.e(-2, -2, 17));
         ImageView imageView3 = new ImageView(context);
         this.d = imageView3;
         imageView3.setScaleType(scaleType);
@@ -51,12 +51,12 @@ public final class l0 extends LinearLayout {
         this.d.setVisibility(8);
         m6Var.addView(this.d, x5.e(-2, -2, 17));
         TextView textView = new TextView(context);
-        this.f46328a = textView;
+        this.f46330a = textView;
         textView.setTextColor(i6.w0(i11, aVar));
         textView.setTextSize(1, 16.0f);
         addView(textView, x5.t(-2, -2, 19, 0, 0, 16, 0));
         ImageView imageView4 = new ImageView(context);
-        this.f46333n = imageView4;
+        this.f46335n = imageView4;
         imageView4.setImageResource(R.drawable.msg_text_check);
         imageView4.setScaleType(scaleType);
         imageView4.setColorFilter(new PorterDuffColorFilter(i6.w0(i6.f20870h7, aVar), PorterDuff.Mode.MULTIPLY));
@@ -73,20 +73,20 @@ public final class l0 extends LinearLayout {
                 a(i10, false, false);
                 return;
             }
-            this.f46332f = z10;
+            this.f46334f = z10;
             this.d.setImageResource(i10);
             this.d.setVisibility(0);
             this.d.setAlpha(1.0f);
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             this.h = ofFloat;
             ofFloat.addUpdateListener(new cb(11, this, z10));
-            this.h.addListener(new w4(this, 8));
+            this.h.addListener(new x4(this, 8));
             this.h.setInterpolator(hs.h);
             this.h.setDuration(420L);
             this.h.start();
             return;
         }
-        this.f46330c.setImageResource(i10);
+        this.f46332c.setImageResource(i10);
     }
 
     @Override
@@ -96,7 +96,7 @@ public final class l0 extends LinearLayout {
 
     @Override
     public final boolean performClick() {
-        m0 m0Var = this.f46334r;
+        m0 m0Var = this.f46336r;
         org.telegram.ui.ActionBar.n1 n1Var = m0Var.R1;
         if (n1Var != null && n1Var.isShowing()) {
             m0Var.R1.d(true);
@@ -116,10 +116,10 @@ public final class l0 extends LinearLayout {
         } else {
             i10 = 8;
         }
-        this.f46333n.setVisibility(i10);
+        this.f46335n.setVisibility(i10);
     }
 
     public void setText(CharSequence charSequence) {
-        this.f46328a.setText(charSequence);
+        this.f46330a.setText(charSequence);
     }
 }

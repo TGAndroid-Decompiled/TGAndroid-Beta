@@ -131,9 +131,9 @@ public final class d implements TextureView.SurfaceTextureListener {
                 return;
             default:
                 vh.f fVar = (vh.f) this.f14912b;
-                if (fVar.f49671f == null) {
+                if (fVar.f49673f == null) {
                     vh.e eVar = new vh.e(fVar, surfaceTexture, i10, i11, new vh.d(fVar, 1));
-                    fVar.f49671f = eVar;
+                    fVar.f49673f = eVar;
                     eVar.start();
                     return;
                 }
@@ -205,10 +205,10 @@ public final class d implements TextureView.SurfaceTextureListener {
                 }
                 return true;
             default:
-                vh.e eVar = ((vh.f) this.f14912b).f49671f;
+                vh.e eVar = ((vh.f) this.f14912b).f49673f;
                 if (eVar != null) {
-                    eVar.f49655a = false;
-                    ((vh.f) this.f14912b).f49671f = null;
+                    eVar.f49657a = false;
+                    ((vh.f) this.f14912b).f49673f = null;
                     return true;
                 }
                 return true;
@@ -246,12 +246,12 @@ public final class d implements TextureView.SurfaceTextureListener {
             case 4:
                 return;
             default:
-                vh.e eVar = ((vh.f) this.f14912b).f49671f;
+                vh.e eVar = ((vh.f) this.f14912b).f49673f;
                 if (eVar != null) {
-                    synchronized (eVar.f49658e) {
-                        eVar.f49659f = true;
+                    synchronized (eVar.f49660e) {
+                        eVar.f49661f = true;
                         eVar.h = i10;
-                        eVar.f49660n = i11;
+                        eVar.f49662n = i11;
                     }
                     return;
                 }
@@ -281,7 +281,7 @@ public final class d implements TextureView.SurfaceTextureListener {
                     sb2.append(", totalElapsedMs=");
                     sb2.append(j.s(((j) this.f14912b).f15001v0));
                     nVar.b(sb2.toString());
-                    t0 t0Var = (t0) ((j) this.f14912b).f14980k.f51105b;
+                    t0 t0Var = (t0) ((j) this.f14912b).f14980k.f51107b;
                     Handler handler = t0Var.f15119i;
                     m2.t tVar = t0Var.d;
                     Objects.requireNonNull(tVar);

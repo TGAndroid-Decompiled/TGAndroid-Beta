@@ -1,10 +1,10 @@
 package v7;
 public final class u3 implements ia.d {
-    public static final u3 f49320a = new Object();
-    public static final ia.c f49321b = new ia.c("identifiedLanguage", hg.c.m(sc.v.l(h.class, new e(1))));
+    public static final u3 f49322a = new Object();
+    public static final ia.c f49323b = new ia.c("identifiedLanguage", hg.c.m(sc.v.l(h.class, new e(1))));
 
     @Override
     public final void a(Object obj, Object obj2) {
-        ((ia.e) obj2).a(f49321b, ((f7) obj).f49179a);
+        ((ia.e) obj2).a(f49323b, ((f7) obj).f49181a);
     }
 }

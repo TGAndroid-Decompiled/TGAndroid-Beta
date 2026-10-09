@@ -430,12 +430,12 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         }
         currentView.setScrollX(0);
         cu0 cu0Var2 = this.f34413a0;
-        cu0Var2.f40893l0 = false;
+        cu0Var2.f40895l0 = false;
         if (z10) {
             TransitionManager.endTransitions(cu0Var2);
             TransitionSet duration = new TransitionSet().addTransition(new z41(this, isEmpty2, isEmpty, 1)).addTransition(new z41(this, isEmpty2, isEmpty, 0)).setDuration(200L);
             if (!isEmpty2) {
-                this.f34413a0.f40893l0 = true;
+                this.f34413a0.f40895l0 = true;
                 duration.addTransition(new org.telegram.ui.Components.kn0(this, 3));
             }
             if (isEmpty2 && !isEmpty) {
@@ -609,7 +609,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
             }
             arrayList.add(ObjectAnimator.ofFloat(a8Var, property, f12));
             e51 e51Var = this.U;
-            t0 t0Var = e51Var.f37160n;
+            t0 t0Var = e51Var.f37162n;
             if (z10) {
                 f13 = 1.0f;
             } else {

@@ -10,19 +10,19 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 public final class xt0 extends AnimatorListenerAdapter {
-    public final int f44147a;
-    public final PhotoViewer f44148b;
+    public final int f44149a;
+    public final PhotoViewer f44150b;
 
     public xt0(PhotoViewer photoViewer, int i10) {
-        this.f44148b = photoViewer;
-        this.f44147a = i10;
+        this.f44150b = photoViewer;
+        this.f44149a = i10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         boolean z10;
         int i10;
-        PhotoViewer photoViewer = this.f44148b;
+        PhotoViewer photoViewer = this.f44150b;
         tu0 tu0Var = photoViewer.X4;
         org.telegram.ui.Components.z71 z71Var = null;
         photoViewer.q6 = null;
@@ -67,11 +67,11 @@ public final class xt0 extends AnimatorListenerAdapter {
             if (photoViewer.f34017r1) {
                 z71Var = (org.telegram.ui.Components.z71) photoViewer.B2;
             }
-            vf0Var.b(bitmap, orientation, z10, false, gVar, z71Var, tu0Var.f42124c);
+            vf0Var.b(bitmap, orientation, z10, false, gVar, z71Var, tu0Var.f42126c);
             photoViewer.C1.a();
             int bitmapWidth = photoViewer.C4.getBitmapWidth();
             int bitmapHeight = photoViewer.C4.getBitmapHeight();
-            MediaController.CropState cropState = tu0Var.f42124c;
+            MediaController.CropState cropState = tu0Var.f42126c;
             if (cropState != null) {
                 int i12 = cropState.transformRotation;
                 if (i12 == 90 || i12 == 270) {

@@ -5,30 +5,30 @@ import java.util.List;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.c71;
 public final class r0 implements Utilities.Callback {
-    public final int f51474a;
-    public final r1 f51475b;
+    public final int f51476a;
+    public final r1 f51477b;
 
     public r0(r1 r1Var, int i10) {
-        this.f51474a = i10;
-        this.f51475b = r1Var;
+        this.f51476a = i10;
+        this.f51477b = r1Var;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f51474a) {
+        switch (this.f51476a) {
             case 0:
                 int intValue = ((Integer) obj).intValue();
-                r1 r1Var = this.f51475b;
-                if (r1Var.f51494s0 != intValue) {
-                    r1Var.f51494s0 = intValue;
-                    r1Var.f51487k0.g();
+                r1 r1Var = this.f51477b;
+                if (r1Var.f51496s0 != intValue) {
+                    r1Var.f51496s0 = intValue;
+                    r1Var.f51489k0.g();
                     r1Var.Y.N(true);
                     return;
                 }
                 return;
             default:
                 List list = (List) obj;
-                r1 r1Var2 = this.f51475b;
+                r1 r1Var2 = this.f51477b;
                 if (r1Var2.getContext() != null && r1Var2.isShown()) {
                     ArrayList b10 = tg.s.b(1, list);
                     r1Var2.Z = b10;

@@ -6,17 +6,17 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class fy {
-    public final ty f37715a;
+    public final ty f37717a;
 
     public fy(ty tyVar) {
-        this.f37715a = tyVar;
+        this.f37717a = tyVar;
     }
 
     public final long a() {
-        ty tyVar = this.f37715a;
+        ty tyVar = this.f37717a;
         nx nxVar = tyVar.F3;
         if (nxVar != null && (nxVar.getFragment() instanceof fg1)) {
-            return -((fg1) tyVar.F3.getFragment()).f37556a;
+            return -((fg1) tyVar.F3.getFragment()).f37558a;
         }
         return 0L;
     }
@@ -24,7 +24,7 @@ public final class fy {
     public final void b() {
         ArrayList arrayList;
         int i10;
-        ty tyVar = this.f37715a;
+        ty tyVar = this.f37717a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(tyVar.getParentActivity());
         org.telegram.ui.Components.wo0 wo0Var = tyVar.C0.f25766b0;
         if (wo0Var.N && wo0Var.P()) {
@@ -42,20 +42,20 @@ public final class fy {
             }
             alertDialog$Builder.f20374a.T = LocaleController.formatPluralString("ClearSearchAlertPartial", i10, new Object[0]);
             alertDialog$Builder.k(LocaleController.getString(R.string.Clear), new org.telegram.ui.ActionBar.a2(this) {
-                public final fy f37382b;
+                public final fy f37384b;
 
                 {
-                    this.f37382b = this;
+                    this.f37384b = this;
                 }
 
                 @Override
                 public final void f(org.telegram.ui.ActionBar.b2 b2Var, int i11) {
                     switch (r2) {
                         case 0:
-                            this.f37382b.f37715a.C0.f25766b0.E();
+                            this.f37384b.f37717a.C0.f25766b0.E();
                             return;
                         default:
-                            ty tyVar2 = this.f37382b.f37715a;
+                            ty tyVar2 = this.f37384b.f37717a;
                             if (tyVar2.C0.f25766b0.P()) {
                                 tyVar2.C0.f25766b0.E();
                                 return;
@@ -72,20 +72,20 @@ public final class fy {
             alertDialog$Builder.f20374a.R = LocaleController.getString(R.string.ClearSearchAlertTitle);
             alertDialog$Builder.f20374a.T = LocaleController.getString(R.string.ClearSearchAlert);
             alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new org.telegram.ui.ActionBar.a2(this) {
-                public final fy f37382b;
+                public final fy f37384b;
 
                 {
-                    this.f37382b = this;
+                    this.f37384b = this;
                 }
 
                 @Override
                 public final void f(org.telegram.ui.ActionBar.b2 b2Var, int i11) {
                     switch (r2) {
                         case 0:
-                            this.f37382b.f37715a.C0.f25766b0.E();
+                            this.f37384b.f37717a.C0.f25766b0.E();
                             return;
                         default:
-                            ty tyVar2 = this.f37382b.f37715a;
+                            ty tyVar2 = this.f37384b.f37717a;
                             if (tyVar2.C0.f25766b0.P()) {
                                 tyVar2.C0.f25766b0.E();
                                 return;
@@ -110,7 +110,7 @@ public final class fy {
 
     public final void c() {
         int i10;
-        dy dyVar = this.f37715a.C0;
+        dy dyVar = this.f37717a.C0;
         if (dyVar != null) {
             org.telegram.ui.Components.vl0 vl0Var = dyVar.f25768d0;
             int i11 = dyVar.S0;
@@ -125,11 +125,11 @@ public final class fy {
     }
 
     public final void d(boolean z10, boolean z11) {
-        ty tyVar = this.f37715a;
+        ty tyVar = this.f37717a;
         if (tyVar.C0.W.getVisibility() == 0) {
             z11 = true;
         }
-        if (tyVar.f42200j2 && tyVar.f42204k2) {
+        if (tyVar.f42202j2 && tyVar.f42206k2) {
             dy dyVar = tyVar.C0;
             if (dyVar.W != null) {
                 if (!z10 && dyVar.f25766b0.h() == 0) {

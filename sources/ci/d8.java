@@ -198,7 +198,7 @@ public final class d8 extends org.telegram.ui.Components.eb implements Notificat
         qm0Var.setPadding(i11, 0, i11, 0);
         this.d.p1();
         s4.j jVar = new s4.j();
-        jVar.f47696m = false;
+        jVar.f47698m = false;
         jVar.C = false;
         jVar.o(hsVar);
         jVar.n(350L);

@@ -20,18 +20,18 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 public final class w6 extends og.b {
     public final Context d;
-    public final y6 f43092e;
+    public final y6 f43094e;
 
     public w6(y6 y6Var, Context context) {
-        this.f43092e = y6Var;
+        this.f43094e = y6Var;
         this.d = context;
     }
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        y6 y6Var = this.f43092e;
+        y6 y6Var = this.f43094e;
         if (d1Var.b() != y6Var.K) {
-            int i10 = d1Var.f47660f;
+            int i10 = d1Var.f47662f;
             if ((i10 != 2 || y6Var.H <= 0 || y6Var.L) && i10 != 5 && i10 != 7 && i10 != 11) {
                 return false;
             }
@@ -42,12 +42,12 @@ public final class w6 extends og.b {
 
     @Override
     public final int h() {
-        return this.f43092e.f44246a0.size();
+        return this.f43094e.f44248a0.size();
     }
 
     @Override
     public final int j(int i10) {
-        return ((t6) this.f43092e.f44246a0.get(i10)).f17125a;
+        return ((t6) this.f43094e.f44248a0.get(i10)).f17125a;
     }
 
     @Override
@@ -59,11 +59,11 @@ public final class w6 extends og.b {
         String format;
         boolean z11;
         Boolean bool;
-        y6 y6Var = this.f43092e;
-        ArrayList arrayList = y6Var.f44246a0;
+        y6 y6Var = this.f43094e;
+        ArrayList arrayList = y6Var.f44248a0;
         t6 t6Var = (t6) arrayList.get(i10);
-        int i12 = d1Var.f47660f;
-        View view = d1Var.f47656a;
+        int i12 = d1Var.f47662f;
+        View view = d1Var.f47658a;
         String str = null;
         boolean z12 = false;
         if (i12 != 0) {
@@ -101,16 +101,16 @@ public final class w6 extends og.b {
                                     return;
                                 case 11:
                                     org.telegram.ui.Cells.a2 a2Var = (org.telegram.ui.Cells.a2) view;
-                                    int i14 = t6Var.f41862f;
+                                    int i14 = t6Var.f41864f;
                                     if (i14 < 0) {
                                         z10 = y6Var.r0();
                                     } else {
-                                        z10 = y6Var.f44252e[i14];
+                                        z10 = y6Var.f44254e[i14];
                                     }
                                     boolean z13 = z10;
                                     CharSequence charSequence = t6Var.d;
                                     int[] iArr = y6Var.O;
-                                    int i15 = t6Var.f41862f;
+                                    int i15 = t6Var.f41864f;
                                     if (i15 < 0) {
                                         i15 = 9;
                                     }
@@ -126,8 +126,8 @@ public final class w6 extends og.b {
                                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
                                     spannableStringBuilder.append((CharSequence) "  ");
                                     spannableStringBuilder.append((CharSequence) spannableString);
-                                    String formatFileSize = AndroidUtilities.formatFileSize(t6Var.f41863g);
-                                    if (t6Var.f41862f >= 0 ? !t6Var.f41865j : !y6Var.M) {
+                                    String formatFileSize = AndroidUtilities.formatFileSize(t6Var.f41865g);
+                                    if (t6Var.f41864f >= 0 ? !t6Var.f41867j : !y6Var.M) {
                                         z11 = true;
                                     } else {
                                         z11 = false;
@@ -139,18 +139,18 @@ public final class w6 extends og.b {
                                     if (dqVar != null) {
                                         dqVar.b(i17, i17, i18);
                                     }
-                                    if (t6Var.f41862f < 0) {
+                                    if (t6Var.f41864f < 0) {
                                         bool = Boolean.valueOf(y6Var.M);
                                     } else {
                                         bool = null;
                                     }
                                     a2Var.setCollapsed(bool);
-                                    if (t6Var.f41862f == -1) {
+                                    if (t6Var.f41864f == -1) {
                                         a2Var.d(new a(this, 7), new ai.f2(25, this, a2Var));
                                     } else {
                                         a2Var.d(null, null);
                                     }
-                                    a2Var.setPad(t6Var.f41864i ? 1 : 0);
+                                    a2Var.setPad(t6Var.f41866i ? 1 : 0);
                                     return;
                                 default:
                                     return;
@@ -158,19 +158,19 @@ public final class w6 extends og.b {
                         }
                         org.telegram.ui.Cells.r8 r8Var = (org.telegram.ui.Cells.r8) view;
                         CacheByChatsController cacheByChatsController = y6Var.getMessagesController().getCacheByChatsController();
-                        int i19 = t6Var.f41860c;
-                        int size = cacheByChatsController.getKeepMediaExceptions(((t6) arrayList.get(i10)).f41860c).size();
+                        int i19 = t6Var.f41862c;
+                        int size = cacheByChatsController.getKeepMediaExceptions(((t6) arrayList.get(i10)).f41862c).size();
                         if (size > 0) {
                             str = LocaleController.formatPluralString("ExceptionShort", size, Integer.valueOf(size));
                         }
                         String keepMediaString = CacheByChatsController.getKeepMediaString(cacheByChatsController.getKeepMedia(i19));
-                        if (((t6) arrayList.get(i10)).f41860c == 0) {
+                        if (((t6) arrayList.get(i10)).f41862c == 0) {
                             r8Var.p(LocaleController.getString(R.string.PrivateChats), keepMediaString, true, R.drawable.msg_filled_menu_users, -11565578, -13276952, true);
-                        } else if (((t6) arrayList.get(i10)).f41860c == 1) {
+                        } else if (((t6) arrayList.get(i10)).f41862c == 1) {
                             r8Var.p(LocaleController.getString(R.string.GroupChats), keepMediaString, true, R.drawable.msg_filled_menu_groups, -11154873, -14175180, true);
-                        } else if (((t6) arrayList.get(i10)).f41860c == 2) {
+                        } else if (((t6) arrayList.get(i10)).f41862c == 2) {
                             r8Var.p(LocaleController.getString(R.string.CacheChannels), keepMediaString, true, R.drawable.msg_filled_menu_channels, -1007845, -1996271, true);
-                        } else if (((t6) arrayList.get(i10)).f41860c == 3) {
+                        } else if (((t6) arrayList.get(i10)).f41862c == 3) {
                             r8Var.p(LocaleController.getString(R.string.CacheStories), keepMediaString, false, R.drawable.msg_filled_stories, -765355, -2148011, false);
                         }
                         r8Var.setSubtitle(str);
@@ -186,7 +186,7 @@ public final class w6 extends og.b {
                 }
                 final org.telegram.ui.Components.gz0 gz0Var = (org.telegram.ui.Components.gz0) view;
                 boolean z14 = y6Var.L;
-                long j12 = y6Var.f44254f;
+                long j12 = y6Var.f44256f;
                 long j13 = y6Var.H;
                 long j14 = y6Var.J;
                 long j15 = y6Var.I;
@@ -302,7 +302,7 @@ public final class w6 extends og.b {
                 gz0Var.requestLayout();
                 return;
             }
-            ((org.telegram.ui.Cells.e9) view).setText(AndroidUtilities.replaceTags(t6Var.f41861e));
+            ((org.telegram.ui.Cells.e9) view).setText(AndroidUtilities.replaceTags(t6Var.f41863e));
             return;
         }
         org.telegram.ui.Cells.ca caVar2 = (org.telegram.ui.Cells.ca) view;
@@ -318,7 +318,7 @@ public final class w6 extends og.b {
         j6 j6Var;
         Context context = this.d;
         if (i10 != 0) {
-            y6 y6Var = this.f43092e;
+            y6 y6Var = this.f43094e;
             switch (i10) {
                 case 2:
                     ?? frameLayout = new FrameLayout(context);

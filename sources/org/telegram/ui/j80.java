@@ -16,24 +16,24 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class j80 extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
-    public final Paint f38855a;
-    public final Path f38856b;
-    public final ImageView f38857c;
+    public final Paint f38857a;
+    public final Path f38858b;
+    public final ImageView f38859c;
     public final ci.g2 d;
-    public GradientDrawable f38858e;
-    public final l80 f38859f;
+    public GradientDrawable f38860e;
+    public final l80 f38861f;
 
     public j80(l80 l80Var, Context context, org.telegram.ui.ActionBar.v1 v1Var) {
         super(context);
         int i10;
-        this.f38859f = l80Var;
-        this.f38855a = new Paint(1);
-        this.f38856b = new Path();
+        this.f38861f = l80Var;
+        this.f38857a = new Paint(1);
+        this.f38858b = new Path();
         setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.0f));
         setClipChildren(false);
         setClipToPadding(false);
         ImageView imageView = new ImageView(context);
-        this.f38857c = imageView;
+        this.f38859c = imageView;
         imageView.setImageResource(R.drawable.outline_search_1_24);
         int i11 = org.telegram.ui.ActionBar.i6.G6;
         imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.m1(0.6f, l80Var.getThemedColor(i11)), PorterDuff.Mode.SRC_IN));
@@ -74,20 +74,20 @@ public final class j80 extends FrameLayout implements org.telegram.ui.ActionBar.
     public final void dispatchDraw(Canvas canvas) {
         float dpf2 = AndroidUtilities.dpf2(2.0f);
         float dpf22 = AndroidUtilities.dpf2(0.33f);
-        Paint paint = this.f38855a;
+        Paint paint = this.f38857a;
         paint.setShadowLayer(dpf2, 0.0f, dpf22, 285212672);
         int i10 = org.telegram.ui.ActionBar.i6.f20797d6;
-        l80 l80Var = this.f38859f;
+        l80 l80Var = this.f38861f;
         paint.setColor(l80Var.getThemedColor(i10));
         RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.0f), getWidth() - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.0f) + l80Var.f39461b.f16345e + AndroidUtilities.dp(3.0f));
-        Path path = this.f38856b;
+        rectF.set(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.0f), getWidth() - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.0f) + l80Var.f39463b.f16345e + AndroidUtilities.dp(3.0f));
+        Path path = this.f38858b;
         path.rewind();
         path.addRoundRect(rectF, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), Path.Direction.CW);
-        GradientDrawable gradientDrawable = this.f38858e;
+        GradientDrawable gradientDrawable = this.f38860e;
         if (gradientDrawable != null) {
-            gradientDrawable.setBounds(0, 0, getWidth(), Math.min(getHeight(), AndroidUtilities.dp(24.0f) + ((int) l80Var.f39461b.f16345e)));
-            this.f38858e.draw(canvas);
+            gradientDrawable.setBounds(0, 0, getWidth(), Math.min(getHeight(), AndroidUtilities.dp(24.0f) + ((int) l80Var.f39463b.f16345e)));
+            this.f38860e.draw(canvas);
         }
         canvas.save();
         canvas.drawPath(path, paint);
@@ -98,7 +98,7 @@ public final class j80 extends FrameLayout implements org.telegram.ui.ActionBar.
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == this.f38859f.f39463e) {
+        if (view == this.f38861f.f39465e) {
             canvas.save();
             canvas.clipRect(view.getX(), view.getY(), view.getX() + view.getWidth(), view.getY() + view.getHeight());
             boolean drawChild = super.drawChild(canvas, view, j3);
@@ -110,8 +110,8 @@ public final class j80 extends FrameLayout implements org.telegram.ui.ActionBar.
 
     @Override
     public final void e() {
-        int themedColor = this.f38859f.getThemedColor(org.telegram.ui.ActionBar.i6.f20741a7);
-        this.f38858e = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{org.telegram.ui.ActionBar.i6.m1(1.0f, themedColor), org.telegram.ui.ActionBar.i6.m1(0.0f, themedColor)});
+        int themedColor = this.f38861f.getThemedColor(org.telegram.ui.ActionBar.i6.f20741a7);
+        this.f38860e = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{org.telegram.ui.ActionBar.i6.m1(1.0f, themedColor), org.telegram.ui.ActionBar.i6.m1(0.0f, themedColor)});
     }
 
     @Override

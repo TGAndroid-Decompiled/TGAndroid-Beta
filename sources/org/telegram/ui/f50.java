@@ -16,14 +16,14 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class f50 extends org.telegram.ui.Components.c40 {
-    public final j50 f37450n;
+    public final j50 f37452n;
 
     public f50(j50 j50Var, Context context, TLRPC.Chat chat, boolean z10) {
         super(context, false);
         int i10;
         int i11;
         int i12;
-        this.f37450n = j50Var;
+        this.f37452n = j50Var;
         int x02 = org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20843fg, false);
         this.shadowDrawable.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.MULTIPLY));
         org.telegram.ui.Components.x30 x30Var = new org.telegram.ui.Components.x30(this, context);
@@ -137,25 +137,25 @@ public final class f50 extends org.telegram.ui.Components.c40 {
         int i13;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext());
         alertDialog$Builder.f20374a.I = org.telegram.ui.ActionBar.i6.f21027pg;
-        g60 g60Var = this.f37450n.f38824b;
-        g60Var.f37878w0 = false;
+        g60 g60Var = this.f37452n.f38826b;
+        g60Var.f37880w0 = false;
         alertDialog$Builder.f20374a.R = LocaleController.getString(R.string.VoipGroupStartRecordingTitle);
         if (i10 == 0) {
-            if (g60Var.f37787a1.call.rtmp_stream) {
+            if (g60Var.f37789a1.call.rtmp_stream) {
                 i13 = R.string.VoipGroupStartRecordingRtmpText;
             } else {
                 i13 = R.string.VoipGroupStartRecordingText;
             }
             alertDialog$Builder.f20374a.T = LocaleController.getString(i13);
         } else if (ChatObject.isChannelOrGiga(g60Var.Z0)) {
-            if (g60Var.f37787a1.call.rtmp_stream) {
+            if (g60Var.f37789a1.call.rtmp_stream) {
                 i12 = R.string.VoipGroupStartRecordingRtmpVideoText;
             } else {
                 i12 = R.string.VoipChannelStartRecordingVideoText;
             }
             alertDialog$Builder.f20374a.T = LocaleController.getString(i12);
         } else {
-            if (g60Var.f37787a1.call.rtmp_stream) {
+            if (g60Var.f37789a1.call.rtmp_stream) {
                 i11 = R.string.VoipGroupStartRecordingRtmpVideoText;
             } else {
                 i11 = R.string.VoipGroupStartRecordingVideoText;

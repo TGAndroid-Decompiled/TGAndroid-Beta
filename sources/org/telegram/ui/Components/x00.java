@@ -37,7 +37,7 @@ public final class x00 extends AnimatorListenerAdapter {
                 return;
             default:
                 yh.e8 e8Var = (yh.e8) this.d;
-                e8Var.f52460c0 = this.f32704c;
+                e8Var.f52462c0 = this.f32704c;
                 if (e8Var.getValue() != this.f32703b) {
                     e8Var.e(e8Var.getValue());
                 }

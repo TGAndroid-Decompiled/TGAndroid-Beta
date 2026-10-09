@@ -52,33 +52,33 @@ public abstract class n extends s4.j {
         this.R = e6Var;
         this.F = znVar;
         this.G = qm0Var;
-        this.f47716o = V;
-        this.f47697n = true;
-        this.f47696m = false;
+        this.f47718o = V;
+        this.f47699n = true;
+        this.f47698m = false;
     }
 
     @Override
     public final void B(s4.h hVar) {
         View view;
         s4.h hVar2;
-        d1 d1Var = hVar.f47698a;
+        d1 d1Var = hVar.f47700a;
         View view2 = null;
         if (d1Var == null) {
             view = null;
         } else {
-            view = d1Var.f47656a;
+            view = d1Var.f47658a;
         }
-        d1 d1Var2 = hVar.f47699b;
+        d1 d1Var2 = hVar.f47701b;
         if (d1Var2 != null) {
-            view2 = d1Var2.f47656a;
+            view2 = d1Var2.f47658a;
         }
         View view3 = view2;
         ArrayList arrayList = this.B;
         if (view != null) {
             ViewPropertyAnimator duration = view.animate().setDuration(250L);
-            arrayList.add(hVar.f47698a);
-            duration.translationX(hVar.f47701e - hVar.f47700c);
-            duration.translationY(hVar.f47702f - hVar.d);
+            arrayList.add(hVar.f47700a);
+            duration.translationX(hVar.f47703e - hVar.f47702c);
+            duration.translationY(hVar.f47704f - hVar.d);
             hVar2 = hVar;
             duration.alpha(0.0f).setListener(new k(this, hVar2, duration, view, 0)).start();
         } else {
@@ -86,7 +86,7 @@ public abstract class n extends s4.j {
         }
         if (view3 != null) {
             ViewPropertyAnimator animate = view3.animate();
-            arrayList.add(hVar2.f47699b);
+            arrayList.add(hVar2.f47701b);
             animate.translationX(0.0f).translationY(0.0f).setDuration(250L).alpha(1.0f).setListener(new k(this, hVar2, animate, view3, 1)).start();
         }
     }
@@ -106,14 +106,14 @@ public abstract class n extends s4.j {
         if (animator != null) {
             animator.cancel();
         }
-        View view = d1Var.f47656a;
+        View view = d1Var.f47658a;
         if (this.K.contains(view) && (c21Var = (c21) this.U.run()) != null) {
             c21Var.a(view);
         }
-        if (hVar.f47699b == d1Var) {
-            hVar.f47699b = null;
-        } else if (hVar.f47698a == d1Var) {
-            hVar.f47698a = null;
+        if (hVar.f47701b == d1Var) {
+            hVar.f47701b = null;
+        } else if (hVar.f47700a == d1Var) {
+            hVar.f47700a = null;
         } else {
             return false;
         }
@@ -275,7 +275,7 @@ public abstract class n extends s4.j {
     public final boolean Z(View view) {
         d1 T;
         if (!this.N && (T = this.G.T(view)) != null) {
-            if (this.f47718q.contains(T) || this.f47725y.contains(T)) {
+            if (this.f47720q.contains(T) || this.f47727y.contains(T)) {
                 return true;
             }
             return false;
@@ -292,7 +292,7 @@ public abstract class n extends s4.j {
             int i11 = 0;
             boolean z10 = false;
             while (true) {
-                arrayList = this.f47718q;
+                arrayList = this.f47720q;
                 if (i11 >= arrayList.size()) {
                     break;
                 }
@@ -304,13 +304,13 @@ public abstract class n extends s4.j {
             if (z10) {
                 i10 = 0;
                 for (int i12 = 0; i12 < arrayList.size(); i12++) {
-                    i10 += ((d1) arrayList.get(i12)).f47656a.getHeight();
+                    i10 += ((d1) arrayList.get(i12)).f47658a.getHeight();
                 }
             } else {
                 i10 = 0;
             }
             for (int i13 = 0; i13 < arrayList.size(); i13++) {
-                ((d1) arrayList.get(i13)).f47656a.setTranslationY(i10);
+                ((d1) arrayList.get(i13)).f47658a.setTranslationY(i10);
             }
         }
         return a2;
@@ -319,7 +319,7 @@ public abstract class n extends s4.j {
     public final boolean a0(View view) {
         d1 T = this.G.T(view);
         if (T != null) {
-            if (this.f47717p.contains(T) || this.A.contains(T)) {
+            if (this.f47719p.contains(T) || this.A.contains(T)) {
                 return true;
             }
             return false;
@@ -334,7 +334,7 @@ public abstract class n extends s4.j {
         if (animator != null) {
             animator.cancel();
         }
-        View view = d1Var.f47656a;
+        View view = d1Var.f47658a;
         if (this.K.contains(view) && (c21Var = (c21) this.U.run()) != null) {
             c21Var.a(view);
         }
@@ -363,28 +363,28 @@ public abstract class n extends s4.j {
         }
         this.O = null;
         this.P = null;
-        ArrayList arrayList2 = this.f47719r;
+        ArrayList arrayList2 = this.f47721r;
         for (int size2 = arrayList2.size() - 1; size2 >= 0; size2--) {
             s4.i iVar = (s4.i) arrayList2.get(size2);
-            X(iVar.f47706a.f47656a);
-            v(iVar.f47706a);
+            X(iVar.f47708a.f47658a);
+            v(iVar.f47708a);
             arrayList2.remove(size2);
         }
-        ArrayList arrayList3 = this.f47717p;
+        ArrayList arrayList3 = this.f47719p;
         for (int size3 = arrayList3.size() - 1; size3 >= 0; size3--) {
             d1 d1Var = (d1) arrayList3.get(size3);
-            X(d1Var.f47656a);
+            X(d1Var.f47658a);
             d(d1Var);
             arrayList3.remove(size3);
         }
-        ArrayList arrayList4 = this.f47718q;
+        ArrayList arrayList4 = this.f47720q;
         for (int size4 = arrayList4.size() - 1; size4 >= 0; size4--) {
             d1 d1Var2 = (d1) arrayList4.get(size4);
-            X(d1Var2.f47656a);
+            X(d1Var2.f47658a);
             u(d1Var2);
             arrayList4.remove(size4);
         }
-        ArrayList arrayList5 = this.f47720s;
+        ArrayList arrayList5 = this.f47722s;
         for (int size5 = arrayList5.size() - 1; size5 >= 0; size5--) {
             I((s4.h) arrayList5.get(size5));
         }
@@ -392,25 +392,25 @@ public abstract class n extends s4.j {
         if (!k()) {
             return;
         }
-        ArrayList arrayList6 = this.f47722u;
+        ArrayList arrayList6 = this.f47724u;
         for (int size6 = arrayList6.size() - 1; size6 >= 0; size6--) {
             ArrayList arrayList7 = (ArrayList) arrayList6.get(size6);
             for (int size7 = arrayList7.size() - 1; size7 >= 0; size7--) {
                 s4.i iVar2 = (s4.i) arrayList7.get(size7);
-                X(iVar2.f47706a.f47656a);
-                v(iVar2.f47706a);
+                X(iVar2.f47708a.f47658a);
+                v(iVar2.f47708a);
                 arrayList7.remove(size7);
                 if (arrayList7.isEmpty()) {
                     arrayList6.remove(arrayList7);
                 }
             }
         }
-        ArrayList arrayList8 = this.f47721t;
+        ArrayList arrayList8 = this.f47723t;
         for (int size8 = arrayList8.size() - 1; size8 >= 0; size8--) {
             ArrayList arrayList9 = (ArrayList) arrayList8.get(size8);
             for (int size9 = arrayList9.size() - 1; size9 >= 0; size9--) {
                 d1 d1Var3 = (d1) arrayList9.get(size9);
-                X(d1Var3.f47656a);
+                X(d1Var3.f47658a);
                 u(d1Var3);
                 arrayList9.remove(size9);
                 if (arrayList9.isEmpty()) {
@@ -429,8 +429,8 @@ public abstract class n extends s4.j {
             }
         }
         E(this.A);
-        E(this.f47726z);
-        E(this.f47725y);
+        E(this.f47728z);
+        E(this.f47727y);
         E(this.B);
         e();
     }
@@ -448,7 +448,7 @@ public abstract class n extends s4.j {
     @Override
     public final q0 l(a1 a1Var, d1 d1Var, int i10, List list) {
         q0 l4 = super.l(a1Var, d1Var, i10, list);
-        View view = d1Var.f47656a;
+        View view = d1Var.f47658a;
         if (view instanceof u1) {
             ?? obj = new Object();
             obj.f3533a = l4.f3533a;
@@ -471,7 +471,7 @@ public abstract class n extends s4.j {
     @Override
     public final void p(d1 d1Var) {
         R(d1Var);
-        View view = d1Var.f47656a;
+        View view = d1Var.f47658a;
         view.setAlpha(0.0f);
         if (!this.N) {
             view.setScaleX(0.9f);
@@ -479,7 +479,7 @@ public abstract class n extends s4.j {
         } else if (view instanceof u1) {
             ((u1) view).getTransitionParams().h = true;
         }
-        this.f47718q.add(d1Var);
+        this.f47720q.add(d1Var);
     }
 
     @Override
@@ -488,7 +488,7 @@ public abstract class n extends s4.j {
         if (d1Var == d1Var2) {
             return r(d1Var, q0Var, i10, i11, i12, i13);
         }
-        View view = d1Var.f47656a;
+        View view = d1Var.f47658a;
         if (view instanceof u1) {
             translationX = ((u1) view).getAnimationOffsetX();
         } else {
@@ -506,7 +506,7 @@ public abstract class n extends s4.j {
         }
         view.setTranslationY(translationY);
         view.setAlpha(alpha);
-        View view2 = d1Var2.f47656a;
+        View view2 = d1Var2.f47658a;
         R(d1Var2);
         if (view2 instanceof u1) {
             ((u1) view2).setAnimationOffsetX(-i14);
@@ -515,7 +515,7 @@ public abstract class n extends s4.j {
         }
         view2.setTranslationY(-i15);
         view2.setAlpha(0.0f);
-        this.f47720s.add(new s4.h(d1Var, d1Var2, i10, i11, i12, i13));
+        this.f47722s.add(new s4.h(d1Var, d1Var2, i10, i11, i12, i13));
         F();
         return true;
     }
@@ -545,7 +545,7 @@ public abstract class n extends s4.j {
         boolean z13;
         boolean isOutOwner;
         float f16;
-        View view2 = d1Var.f47656a;
+        View view2 = d1Var.f47658a;
         if (view2 instanceof u1) {
             u1 u1Var2 = (u1) view2;
             translationX = i10 + ((int) u1Var2.getAnimationOffsetX());
@@ -876,7 +876,7 @@ public abstract class n extends s4.j {
         } else if (i20 != 0) {
             view2.setTranslationX(-i20);
         }
-        this.f47719r.add(iVar);
+        this.f47721r.add(iVar);
         F();
         return true;
     }
@@ -887,7 +887,7 @@ public abstract class n extends s4.j {
             FileLog.d("animate remove");
         }
         super.s(d1Var, q0Var);
-        View view = d1Var.f47656a;
+        View view = d1Var.f47658a;
         if (q0Var != null) {
             int i10 = q0Var.f3534b;
             int top = view.getTop();

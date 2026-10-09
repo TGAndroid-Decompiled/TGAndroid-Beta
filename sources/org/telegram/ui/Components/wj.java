@@ -99,8 +99,8 @@ public final class wj extends mm0 {
     @Override
     public final void W(int i10, int i11, s4.d1 d1Var) {
         TLRPC.User user;
-        if (d1Var.f47660f == 0) {
-            bk bkVar = (bk) d1Var.f47656a;
+        if (d1Var.f47662f == 0) {
+            bk bkVar = (bk) d1Var.f47658a;
             Object O = O(i10, i11);
             boolean z10 = true;
             if (i10 == R() - 2 && i11 == M(i10) - 1) {

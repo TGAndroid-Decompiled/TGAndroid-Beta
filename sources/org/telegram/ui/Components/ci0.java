@@ -179,7 +179,7 @@ public final class ci0 implements Runnable {
                 hi0 hi0Var = ((ii0) this.f25380b).F;
                 int i16 = fi0Var2.f26373a;
                 RectF rectF3 = fi0Var2.d;
-                ProfileActivity.Y(((org.telegram.ui.jy0) hi0Var).f39042b, i16, rectF3.left, rectF3.top);
+                ProfileActivity.Y(((org.telegram.ui.jy0) hi0Var).f39044b, i16, rectF3.left, rectF3.top);
                 return;
             case 3:
                 ViewParent viewParent = (ViewParent) this.f25381c;
@@ -294,7 +294,7 @@ public final class ci0 implements Runnable {
                 ws0 ws0Var = ((bw0) this.f25380b).W;
                 if (ws0Var != null) {
                     int i19 = f9Var.f1033a;
-                    ws0Var.f35809n.d(i19, ws0Var.f35811s.i(i19));
+                    ws0Var.f35811n.d(i19, ws0Var.f35813s.i(i19));
                     return;
                 }
                 return;

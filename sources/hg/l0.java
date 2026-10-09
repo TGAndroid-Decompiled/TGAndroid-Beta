@@ -122,7 +122,7 @@ public final class l0 extends eb {
         e7.rightMargin += i13;
         this.containerView.addView(frameLayout, e7);
         s4.j jVar = new s4.j();
-        jVar.f47696m = false;
+        jVar.f47698m = false;
         jVar.C = false;
         jVar.o(hs.h);
         jVar.n(350L);

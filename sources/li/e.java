@@ -48,15 +48,15 @@ public final class e {
         if (view2 != view) {
             a aVar = this.f15608b;
             if (view2 != null && (dVar = (uf.d) view2.getTag(R.id.tag_view_on_post_draw_state)) != null) {
-                ArrayList arrayList = dVar.f48897a;
+                ArrayList arrayList = dVar.f48899a;
                 if (arrayList.remove(aVar)) {
-                    uf.b bVar = dVar.f48898b;
+                    uf.b bVar = dVar.f48900b;
                     if (bVar != null) {
-                        ((qe.b) bVar.f48896a.f1526b).remove(aVar);
+                        ((qe.b) bVar.f48898a.f1526b).remove(aVar);
                     }
                     if (arrayList.isEmpty()) {
-                        dVar.f48898b = null;
-                        view2.removeOnAttachStateChangeListener(dVar.f48899c);
+                        dVar.f48900b = null;
+                        view2.removeOnAttachStateChangeListener(dVar.f48901c);
                         view2.setTag(R.id.tag_view_on_post_draw_state, null);
                     }
                 }
@@ -69,13 +69,13 @@ public final class e {
                 if (dVar2 == null) {
                     dVar2 = new uf.d();
                     view.setTag(R.id.tag_view_on_post_draw_state, dVar2);
-                    view.addOnAttachStateChangeListener(dVar2.f48899c);
+                    view.addOnAttachStateChangeListener(dVar2.f48901c);
                 }
-                ArrayList arrayList2 = dVar2.f48897a;
+                ArrayList arrayList2 = dVar2.f48899a;
                 if (!arrayList2.contains(aVar)) {
                     arrayList2.add(aVar);
                     if (view.isAttachedToWindow() && (a2 = uf.e.a(view, dVar2)) != null) {
-                        ((qe.b) a2.f48896a.f1526b).add(aVar);
+                        ((qe.b) a2.f48898a.f1526b).add(aVar);
                     }
                 }
             }

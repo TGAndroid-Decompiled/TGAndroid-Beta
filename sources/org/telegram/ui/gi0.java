@@ -16,33 +16,33 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class gi0 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    public static final org.telegram.ui.Components.ad0 f38020n;
-    public static final org.telegram.ui.Components.ad0 f38021r;
-    public final int f38022a;
-    public final org.telegram.ui.Components.y9 f38023b;
-    public final org.telegram.ui.ActionBar.j5 f38024c;
+    public static final org.telegram.ui.Components.ad0 f38022n;
+    public static final org.telegram.ui.Components.ad0 f38023r;
+    public final int f38024a;
+    public final org.telegram.ui.Components.y9 f38025b;
+    public final org.telegram.ui.ActionBar.j5 f38026c;
     public final TextView d;
-    public final org.telegram.ui.Components.j9 f38025e;
-    public final org.telegram.ui.Components.nx0 f38026f;
+    public final org.telegram.ui.Components.j9 f38027e;
+    public final org.telegram.ui.Components.nx0 f38028f;
     public TLObject h;
 
     static {
         int i10 = R.drawable.msg_mini_checks;
         int i11 = org.telegram.ui.ActionBar.i6.f21181y6;
-        f38020n = new org.telegram.ui.Components.ad0(i10, i11);
-        f38021r = new org.telegram.ui.Components.ad0(R.drawable.mini_checklist_done_outline, i11);
+        f38022n = new org.telegram.ui.Components.ad0(i10, i11);
+        f38023r = new org.telegram.ui.Components.ad0(R.drawable.mini_checklist_done_outline, i11);
     }
 
     public gi0(Context context) {
         super(context);
         int i10;
-        this.f38022a = UserConfig.selectedAccount;
-        this.f38025e = new org.telegram.ui.Components.j9((org.telegram.ui.ActionBar.e6) null);
+        this.f38024a = UserConfig.selectedAccount;
+        this.f38027e = new org.telegram.ui.Components.j9((org.telegram.ui.ActionBar.e6) null);
         org.telegram.ui.Components.y9 y9Var = new org.telegram.ui.Components.y9(context);
-        this.f38023b = y9Var;
+        this.f38025b = y9Var;
         y9Var.setRoundRadius(AndroidUtilities.dp(18.0f));
         org.telegram.ui.ActionBar.j5 j5Var = new org.telegram.ui.ActionBar.j5(context);
-        this.f38024c = j5Var;
+        this.f38026c = j5Var;
         j5Var.setTextSize(16);
         j5Var.setEllipsizeByGradient(!LocaleController.isRTL);
         j5Var.setImportantForAccessibility(2);
@@ -53,7 +53,7 @@ public final class gi0 extends FrameLayout implements NotificationCenter.Notific
             i10 = 3;
         }
         j5Var.setGravity(i10);
-        this.f38026f = new org.telegram.ui.Components.nx0(this);
+        this.f38028f = new org.telegram.ui.Components.nx0(this);
         j5Var.setDrawablePadding(AndroidUtilities.dp(3.0f));
         TextView textView = new TextView(context);
         this.d = textView;
@@ -80,7 +80,7 @@ public final class gi0 extends FrameLayout implements NotificationCenter.Notific
         this.h = tLObject;
         int x02 = org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f21202z9, false);
         boolean z11 = tLObject instanceof TLRPC.User;
-        org.telegram.ui.Components.nx0 nx0Var = this.f38026f;
+        org.telegram.ui.Components.nx0 nx0Var = this.f38028f;
         if (z11) {
             a2 = nx0Var.a((TLRPC.User) tLObject, null, x02, false);
         } else if (tLObject instanceof TLRPC.Chat) {
@@ -88,13 +88,13 @@ public final class gi0 extends FrameLayout implements NotificationCenter.Notific
         } else {
             a2 = nx0Var.a(null, null, x02, false);
         }
-        org.telegram.ui.ActionBar.j5 j5Var = this.f38024c;
+        org.telegram.ui.ActionBar.j5 j5Var = this.f38026c;
         j5Var.i(a2);
         if (tLObject != null) {
-            org.telegram.ui.Components.j9 j9Var = this.f38025e;
-            int i11 = this.f38022a;
+            org.telegram.ui.Components.j9 j9Var = this.f38027e;
+            int i11 = this.f38024a;
             j9Var.j(i11, tLObject);
-            this.f38023b.h(ImageLocation.getForUserOrChat(i11, tLObject, 1), "50_50", j9Var, tLObject);
+            this.f38025b.h(ImageLocation.getForUserOrChat(i11, tLObject, 1), "50_50", j9Var, tLObject);
             j5Var.l(ContactsController.formatName(tLObject), false);
         }
         TextView textView = this.d;
@@ -104,9 +104,9 @@ public final class gi0 extends FrameLayout implements NotificationCenter.Notific
             return;
         }
         if (z10) {
-            ad0Var = f38021r;
+            ad0Var = f38023r;
         } else {
-            ad0Var = f38020n;
+            ad0Var = f38022n;
         }
         textView.setText(TextUtils.concat(ad0Var.a(getContext(), null), LocaleController.formatSeenDate(i10)));
         textView.setVisibility(0);
@@ -129,13 +129,13 @@ public final class gi0 extends FrameLayout implements NotificationCenter.Notific
                 this.h = user2;
                 int x02 = org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f21202z9, false);
                 boolean z10 = user2 instanceof TLRPC.User;
-                org.telegram.ui.Components.nx0 nx0Var = this.f38026f;
+                org.telegram.ui.Components.nx0 nx0Var = this.f38028f;
                 if (z10) {
                     a2 = nx0Var.a(user2, null, x02, true);
                 } else {
                     a2 = nx0Var.a(null, null, x02, true);
                 }
-                this.f38024c.i(a2);
+                this.f38026c.i(a2);
             }
         }
     }
@@ -143,21 +143,21 @@ public final class gi0 extends FrameLayout implements NotificationCenter.Notific
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f38026f.f29298a.a();
-        NotificationCenter.getInstance(this.f38022a).addObserver(this, NotificationCenter.userEmojiStatusUpdated);
+        this.f38028f.f29298a.a();
+        NotificationCenter.getInstance(this.f38024a).addObserver(this, NotificationCenter.userEmojiStatusUpdated);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f38026f.f29298a.b();
-        NotificationCenter.getInstance(this.f38022a).removeObserver(this, NotificationCenter.userEmojiStatusUpdated);
+        this.f38028f.f29298a.b();
+        NotificationCenter.getInstance(this.f38024a).removeObserver(this, NotificationCenter.userEmojiStatusUpdated);
     }
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        String formatString = LocaleController.formatString("AccDescrPersonHasSeen", R.string.AccDescrPersonHasSeen, this.f38024c.getText());
+        String formatString = LocaleController.formatString("AccDescrPersonHasSeen", R.string.AccDescrPersonHasSeen, this.f38026c.getText());
         TextView textView = this.d;
         if (textView.getVisibility() == 0) {
             StringBuilder j3 = sc.v.j(formatString, " ");

@@ -26,10 +26,10 @@ public final class m0 implements Runnable {
             default:
                 long j3 = this.f18472b;
                 long j10 = this.f18473c;
-                org.telegram.ui.y6.f44243n0 = Long.valueOf(j3 * j10);
+                org.telegram.ui.y6.f44245n0 = Long.valueOf(j3 * j10);
                 Long valueOf = Long.valueOf(this.d * j10);
-                org.telegram.ui.y6.f44244o0 = valueOf;
-                ((org.telegram.ui.b5) this.f18474e).run(org.telegram.ui.y6.f44243n0, valueOf);
+                org.telegram.ui.y6.f44246o0 = valueOf;
+                ((org.telegram.ui.b5) this.f18474e).run(org.telegram.ui.y6.f44245n0, valueOf);
                 return;
         }
     }

@@ -10,26 +10,26 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 public final class k7 extends f7 {
-    public final ArrayList f39106n;
-    public final r7 f39107r;
+    public final ArrayList f39108n;
+    public final r7 f39109r;
 
     public k7(r7 r7Var) {
         super(r7Var, 2);
-        this.f39107r = r7Var;
-        this.f39106n = new ArrayList();
+        this.f39109r = r7Var;
+        this.f39108n = new ArrayList();
     }
 
     @Override
     public final void F() {
         boolean z10;
         super.F();
-        ArrayList arrayList = this.f39106n;
+        ArrayList arrayList = this.f39108n;
         arrayList.clear();
         int i10 = 0;
         while (true) {
-            ArrayList arrayList2 = this.f37173e;
+            ArrayList arrayList2 = this.f37175e;
             if (i10 < arrayList2.size()) {
-                String path = ((l7) arrayList2.get(i10)).d.f54692a.getPath();
+                String path = ((l7) arrayList2.get(i10)).d.f54694a.getPath();
                 if (((l7) arrayList2.get(i10)).d.d == 1) {
                     z10 = true;
                 } else {
@@ -49,10 +49,10 @@ public final class k7 extends f7 {
         boolean z11;
         String name;
         float f7;
-        View view = d1Var.f47656a;
+        View view = d1Var.f47658a;
         j7 j7Var = (j7) view;
-        org.telegram.ui.Cells.k7 k7Var = (org.telegram.ui.Cells.k7) j7Var.f38839b.getChildAt(0);
-        ArrayList arrayList = this.f37173e;
+        org.telegram.ui.Cells.k7 k7Var = (org.telegram.ui.Cells.k7) j7Var.f38841b.getChildAt(0);
+        ArrayList arrayList = this.f37175e;
         zh.a aVar = ((l7) arrayList.get(i10)).d;
         if (aVar == view.getTag()) {
             z10 = true;
@@ -65,7 +65,7 @@ public final class k7 extends f7 {
             z11 = false;
         }
         view.setTag(aVar);
-        File file = aVar.f54692a;
+        File file = aVar.f54694a;
         long lastModified = file.lastModified();
         if (aVar.h == 5) {
             name = LocaleController.getString(R.string.AttachRound);
@@ -84,15 +84,15 @@ public final class k7 extends f7 {
         }
         imageView.setRoundRadius(AndroidUtilities.dp(f7));
         j7Var.d = z11;
-        j7Var.f38840c.setText(AndroidUtilities.formatFileSize(aVar.f54694c));
-        j7Var.f38838a.a(this.f39107r.f41290f.f54705j.contains(aVar), z10);
+        j7Var.f38842c.setText(AndroidUtilities.formatFileSize(aVar.f54696c));
+        j7Var.f38840a.a(this.f39109r.f41292f.f54707j.contains(aVar), z10);
     }
 
     @Override
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
         j7 j7Var = new j7(this, viewGroup.getContext(), 0);
-        j7Var.f38841e = 2;
-        j7Var.f38839b.addView(new org.telegram.ui.Cells.k7(viewGroup.getContext(), 3, null));
+        j7Var.f38843e = 2;
+        j7Var.f38841b.addView(new org.telegram.ui.Cells.k7(viewGroup.getContext(), 3, null));
         return new s4.d1(j7Var);
     }
 }

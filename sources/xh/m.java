@@ -17,31 +17,31 @@ import org.telegram.ui.Components.r6;
 import org.telegram.ui.Components.tc;
 import w7.x5;
 public final class m extends FrameLayout {
-    public final int f51344a = 1;
-    public Object f51345b;
-    public Object f51346c;
+    public final int f51346a = 1;
+    public Object f51347b;
+    public Object f51348c;
 
     public m(Context context) {
         super(context);
     }
 
     public void b(int i10, CharSequence charSequence, boolean z10) {
-        ImageView imageView = (ImageView) this.f51346c;
+        ImageView imageView = (ImageView) this.f51348c;
         if (z10) {
             AndroidUtilities.updateImageViewImageAnimated(imageView, i10);
         } else {
             imageView.setImageResource(i10);
         }
-        ((TextView) this.f51345b).setText(charSequence);
+        ((TextView) this.f51347b).setText(charSequence);
     }
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        switch (this.f51344a) {
+        switch (this.f51346a) {
             case 3:
                 if (keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 4) {
-                    zg.a0 a0Var = (zg.a0) this.f51345b;
-                    if (!a0Var.f54455k) {
+                    zg.a0 a0Var = (zg.a0) this.f51347b;
+                    if (!a0Var.f54457k) {
                         return true;
                     }
                     a0Var.d();
@@ -55,7 +55,7 @@ public final class m extends FrameLayout {
 
     @Override
     public void dispatchSetPressed(boolean z10) {
-        switch (this.f51344a) {
+        switch (this.f51346a) {
             case 3:
                 return;
             default:
@@ -66,25 +66,25 @@ public final class m extends FrameLayout {
 
     @Override
     public boolean fitSystemWindows(Rect rect) {
-        switch (this.f51344a) {
+        switch (this.f51346a) {
             case 3:
-                zg.a0 a0Var = (zg.a0) this.f51345b;
-                float f7 = a0Var.f54465u;
+                zg.a0 a0Var = (zg.a0) this.f51347b;
+                float f7 = a0Var.f54467u;
                 float f10 = rect.bottom;
                 if (f7 != f10 && a0Var.v) {
-                    a0Var.f54465u = f10;
-                    m mVar = a0Var.f54449c;
-                    zg.z zVar = a0Var.f54447a;
-                    if (!a0Var.f54461q) {
-                        float f11 = a0Var.f54464t;
+                    a0Var.f54467u = f10;
+                    m mVar = a0Var.f54451c;
+                    zg.z zVar = a0Var.f54449a;
+                    if (!a0Var.f54463q) {
+                        float f11 = a0Var.f54466t;
                         int dp = AndroidUtilities.dp(32.0f);
-                        int i10 = a0Var.f54468y;
+                        int i10 = a0Var.f54470y;
                         if (i10 == 1 || i10 == 2) {
                             dp = AndroidUtilities.dp(24.0f);
                         }
                         float f12 = dp;
-                        if (zVar.getMeasuredHeight() + f11 > (mVar.getMeasuredHeight() - a0Var.f54465u) - f12) {
-                            f11 = ((mVar.getMeasuredHeight() - a0Var.f54465u) - zVar.getMeasuredHeight()) - f12;
+                        if (zVar.getMeasuredHeight() + f11 > (mVar.getMeasuredHeight() - a0Var.f54467u) - f12) {
+                            f11 = ((mVar.getMeasuredHeight() - a0Var.f54467u) - zVar.getMeasuredHeight()) - f12;
                         }
                         if (f11 < 0.0f) {
                             f11 = 0.0f;
@@ -100,14 +100,14 @@ public final class m extends FrameLayout {
 
     @Override
     public void onAttachedToWindow() {
-        switch (this.f51344a) {
+        switch (this.f51346a) {
             case 2:
                 super.onAttachedToWindow();
-                ((zg.n) this.f51346c).c();
+                ((zg.n) this.f51348c).c();
                 return;
             case 3:
                 super.onAttachedToWindow();
-                tc.a(this, (ai.x4) this.f51346c);
+                tc.a(this, (ai.x4) this.f51348c);
                 return;
             default:
                 super.onAttachedToWindow();
@@ -117,10 +117,10 @@ public final class m extends FrameLayout {
 
     @Override
     public void onDetachedFromWindow() {
-        switch (this.f51344a) {
+        switch (this.f51346a) {
             case 2:
                 super.onDetachedFromWindow();
-                ((zg.n) this.f51346c).d();
+                ((zg.n) this.f51348c).d();
                 return;
             case 3:
                 super.onDetachedFromWindow();
@@ -134,28 +134,28 @@ public final class m extends FrameLayout {
 
     public m(zg.a0 a0Var, Context context) {
         super(context);
-        this.f51345b = a0Var;
-        this.f51346c = new ai.x4(this, 11);
+        this.f51347b = a0Var;
+        this.f51348c = new ai.x4(this, 11);
     }
 
     public m(zg.q qVar, Context context) {
         super(context);
-        this.f51345b = qVar;
-        this.f51346c = new zg.n(this, this);
+        this.f51347b = qVar;
+        this.f51348c = new zg.n(this, this);
     }
 
     public m(Context context, e6 e6Var) {
         super(context);
         LinearLayout e7 = bi.e(context, 1);
         r6 r6Var = new r6(context, false, false, false);
-        this.f51346c = r6Var;
+        this.f51348c = r6Var;
         int i10 = i6.G6;
         r6Var.setTextColor(i6.w0(i10, e6Var));
         r6Var.setTextSize(AndroidUtilities.dp(17.0f));
         r6Var.setTypeface(AndroidUtilities.bold());
         e7.addView(r6Var, x5.q(-2, 23, 1));
         TextView textView = new TextView(context);
-        this.f51345b = textView;
+        this.f51347b = textView;
         textView.setTextSize(1, 11.0f);
         textView.setTextColor(i6.w0(i10, e6Var));
         textView.setSingleLine();

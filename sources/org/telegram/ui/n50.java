@@ -5,21 +5,21 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.tgnet.TLRPC;
 public final class n50 implements org.telegram.ui.Components.l50 {
-    public float f40074a;
-    public TLRPC.FileLocation f40075b;
-    public TLRPC.FileLocation f40076c;
+    public float f40076a;
+    public TLRPC.FileLocation f40077b;
+    public TLRPC.FileLocation f40078c;
     public ImageLocation d;
-    public final long f40077e;
-    public final g60 f40078f;
+    public final long f40079e;
+    public final g60 f40080f;
 
     public n50(g60 g60Var, long j3) {
-        this.f40078f = g60Var;
-        this.f40077e = j3;
+        this.f40080f = g60Var;
+        this.f40079e = j3;
     }
 
     @Override
     public final void D(float f7) {
-        this.f40078f.f37789b.O(this.d, f7);
+        this.f40080f.f37791b.O(this.d, f7);
         a(f7);
     }
 
@@ -29,8 +29,8 @@ public final class n50 implements org.telegram.ui.Components.l50 {
     }
 
     public final void a(float f7) {
-        this.f40074a = f7;
-        m50 m50Var = this.f40078f.Q;
+        this.f40076a = f7;
+        m50 m50Var = this.f40080f.Q;
         if (m50Var != null) {
             for (int i10 = 0; i10 < m50Var.getChildCount(); i10++) {
                 View childAt = m50Var.getChildAt(i10);

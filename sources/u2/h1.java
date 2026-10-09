@@ -4,19 +4,19 @@ import android.net.Uri;
 import java.util.Collections;
 import java.util.List;
 public final class h1 extends b2.k1 {
-    public static final Object f48589q = new Object();
-    public final long f48590e;
-    public final long f48591f;
-    public final long f48592g;
+    public static final Object f48591q = new Object();
+    public final long f48592e;
+    public final long f48593f;
+    public final long f48594g;
     public final long h;
-    public final long f48593i;
-    public final long f48594j;
-    public final boolean f48595k;
-    public final boolean f48596l;
-    public final boolean f48597m;
-    public final Object f48598n;
-    public final b2.k0 f48599o;
-    public final b2.e0 f48600p;
+    public final long f48595i;
+    public final long f48596j;
+    public final boolean f48597k;
+    public final boolean f48598l;
+    public final boolean f48599m;
+    public final Object f48600n;
+    public final b2.k0 f48601o;
+    public final b2.e0 f48602p;
 
     static {
         boolean z10;
@@ -48,24 +48,24 @@ public final class h1 extends b2.k1 {
     }
 
     public h1(long j3, long j10, long j11, long j12, long j13, long j14, boolean z10, boolean z11, boolean z12, t7.t tVar, b2.k0 k0Var, b2.e0 e0Var) {
-        this.f48590e = j3;
-        this.f48591f = j10;
-        this.f48592g = j11;
+        this.f48592e = j3;
+        this.f48593f = j10;
+        this.f48594g = j11;
         this.h = j12;
-        this.f48593i = j13;
-        this.f48594j = j14;
-        this.f48595k = z10;
-        this.f48596l = z11;
-        this.f48597m = z12;
-        this.f48598n = tVar;
+        this.f48595i = j13;
+        this.f48596j = j14;
+        this.f48597k = z10;
+        this.f48598l = z11;
+        this.f48599m = z12;
+        this.f48600n = tVar;
         k0Var.getClass();
-        this.f48599o = k0Var;
-        this.f48600p = e0Var;
+        this.f48601o = k0Var;
+        this.f48602p = e0Var;
     }
 
     @Override
     public final int b(Object obj) {
-        if (f48589q.equals(obj)) {
+        if (f48591q.equals(obj)) {
             return 0;
         }
         return -1;
@@ -76,14 +76,14 @@ public final class h1 extends b2.k1 {
         Object obj;
         e2.d.c(i10, 1);
         if (z10) {
-            obj = f48589q;
+            obj = f48591q;
         } else {
             obj = null;
         }
         Object obj2 = obj;
         h1Var.getClass();
         b2.b bVar = b2.b.f3239c;
-        h1Var.h(null, obj2, 0, this.f48592g, -this.f48593i, bVar, false);
+        h1Var.h(null, obj2, 0, this.f48594g, -this.f48595i, bVar, false);
         return h1Var;
     }
 
@@ -95,7 +95,7 @@ public final class h1 extends b2.k1 {
     @Override
     public final Object l(int i10) {
         e2.d.c(i10, 1);
-        return f48589q;
+        return f48591q;
     }
 
     @Override

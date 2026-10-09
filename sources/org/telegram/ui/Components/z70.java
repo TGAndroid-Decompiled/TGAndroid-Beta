@@ -28,7 +28,7 @@ public final class z70 extends pm0 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47660f == 1) {
+        if (d1Var.f47662f == 1) {
             return true;
         }
         return false;

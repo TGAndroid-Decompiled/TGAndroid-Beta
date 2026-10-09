@@ -49,12 +49,12 @@ public final class l extends s4.s {
         switch (this.Q) {
             case 1:
                 lj ljVar = new lj(this, recyclerView.getContext());
-                ljVar.f47825a = i10;
+                ljVar.f47827a = i10;
                 w0(ljVar);
                 return;
             case 2:
                 qm qmVar = new qm(this, recyclerView.getContext());
-                qmVar.f47825a = i10;
+                qmVar.f47827a = i10;
                 w0(qmVar);
                 return;
             default:

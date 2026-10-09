@@ -1,51 +1,36 @@
 package org.telegram.ui.Wallet;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class q4 extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
-    public final org.telegram.ui.ActionBar.e6 f35387a;
-    public final ImageView f35388b;
-    public final TextView f35389c;
-    public final TextView d;
+import android.view.View;
+import org.telegram.ui.Components.c71;
+import org.telegram.ui.Components.k71;
+import org.telegram.ui.Components.o61;
+import org.telegram.ui.Components.p61;
+import org.telegram.ui.Components.qm0;
+public final class q4 extends o61 {
+    public static final int f35414a = 0;
 
-    public q4(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context);
-        this.f35387a = e6Var;
-        setPadding(AndroidUtilities.dp(36.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(36.0f), AndroidUtilities.dp(8.0f));
-        ImageView imageView = new ImageView(context);
-        this.f35388b = imageView;
-        addView(imageView, w7.x5.a(28.0f, 0.0f, 2.0f, 0.0f, 0.0f, 28, 51));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        addView(linearLayout, w7.x5.a(-2.0f, 42.0f, 0.0f, 0.0f, 0.0f, -1, 55));
-        TextView textView = new TextView(context);
-        this.f35389c = textView;
-        com.google.android.gms.internal.vision.e2.l(14.0f, 1, textView);
-        TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, w7.x5.t(-1, -2, 55, 0, 0, 0, 2), context);
-        this.d = h;
-        h.setTextSize(1, 14.0f);
-        linearLayout.addView(h, w7.x5.t(-1, -2, 55, 0, 0, 0, 2));
-        e();
-    }
-
-    public final void a(CharSequence charSequence, CharSequence charSequence2, int i10) {
-        this.f35388b.setImageResource(i10);
-        this.f35389c.setText(charSequence);
-        this.d.setText(charSequence2);
+    static {
+        o61.setup(new o61());
     }
 
     @Override
-    public final void e() {
-        int i10 = org.telegram.ui.ActionBar.i6.G6;
-        org.telegram.ui.ActionBar.e6 e6Var = this.f35387a;
-        this.f35388b.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(i10, e6Var), PorterDuff.Mode.SRC_IN));
-        this.f35389c.setTextColor(org.telegram.ui.ActionBar.i6.w0(i10, e6Var));
-        this.d.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21199z6, e6Var));
+    public final void bindView(View view, p61 p61Var, boolean z10, c71 c71Var, k71 k71Var) {
+        ((r4) view).a(p61Var.f29734l, p61Var.f29735m, p61Var.f29733k);
+    }
+
+    @Override
+    public final View createView(Context context, qm0 qm0Var, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var) {
+        return new r4(context, e6Var);
+    }
+
+    @Override
+    public final boolean isClickable() {
+        return false;
+    }
+
+    @Override
+    public final boolean isShadow() {
+        return true;
     }
 }

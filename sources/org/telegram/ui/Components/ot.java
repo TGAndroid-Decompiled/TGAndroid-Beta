@@ -35,7 +35,7 @@ public final class ot extends AnimatorListenerAdapter {
                 if (this.f29570e != 0) {
                     view.setTranslationY(0.0f);
                 }
-                View view2 = this.f29568b.f47656a;
+                View view2 = this.f29568b.f47658a;
                 if (view2 instanceof org.telegram.ui.Cells.s2) {
                     ((org.telegram.ui.Cells.s2) view2).setMoving(false);
                     return;
@@ -69,7 +69,7 @@ public final class ot extends AnimatorListenerAdapter {
                 rtVar.v(d1Var);
                 rtVar.f30507w.remove(d1Var);
                 rtVar.A();
-                View view = d1Var.f47656a;
+                View view = d1Var.f47658a;
                 if (view instanceof org.telegram.ui.Cells.s2) {
                     ((org.telegram.ui.Cells.s2) view).setMoving(false);
                 } else if (view instanceof gg.l) {
@@ -85,7 +85,7 @@ public final class ot extends AnimatorListenerAdapter {
                 s4.d1 d1Var2 = this.f29568b;
                 jVar.P(d1Var2);
                 jVar.v(d1Var2);
-                jVar.f47726z.remove(d1Var2);
+                jVar.f47728z.remove(d1Var2);
                 jVar.G();
                 jVar.z(d1Var2);
                 return;

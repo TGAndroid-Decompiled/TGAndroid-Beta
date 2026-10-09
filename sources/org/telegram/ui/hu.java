@@ -8,12 +8,12 @@ import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class hu extends org.telegram.ui.Components.pm0 {
-    public final Context f38400c;
+    public final Context f38402c;
     public final DataAutoDownloadActivity d;
 
     public hu(DataAutoDownloadActivity dataAutoDownloadActivity, Context context) {
         this.d = dataAutoDownloadActivity;
-        this.f38400c = context;
+        this.f38402c = context;
     }
 
     @Override
@@ -115,8 +115,8 @@ public final class hu extends org.telegram.ui.Components.pm0 {
         DataAutoDownloadActivity dataAutoDownloadActivity = this.d;
         int i24 = dataAutoDownloadActivity.f33731f;
         DownloadController.Preset preset = dataAutoDownloadActivity.G;
-        int i25 = d1Var.f47660f;
-        View view = d1Var.f47656a;
+        int i25 = d1Var.f47662f;
+        View view = d1Var.f47658a;
         int i26 = 0;
         if (i25 != 0) {
             if (i25 != 2) {
@@ -305,7 +305,7 @@ public final class hu extends org.telegram.ui.Components.pm0 {
     @Override
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
         org.telegram.ui.Components.ww0 ww0Var;
-        Context context = this.f38400c;
+        Context context = this.f38402c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {

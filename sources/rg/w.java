@@ -13,18 +13,18 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.q50;
 public final class w implements Runnable {
-    public final int f47497a;
-    public final j0 f47498b;
+    public final int f47499a;
+    public final j0 f47500b;
 
     public w(j0 j0Var, int i10) {
-        this.f47497a = i10;
-        this.f47498b = j0Var;
+        this.f47499a = i10;
+        this.f47500b = j0Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f47497a;
-        j0 j0Var = this.f47498b;
+        int i10 = this.f47499a;
+        j0 j0Var = this.f47500b;
         switch (i10) {
             case 0:
                 if (LaunchActivity.R() != null) {
@@ -35,11 +35,11 @@ public final class w implements Runnable {
                 }
                 return;
             case 1:
-                j0Var.f47294x0.e(j0Var.f47273b0, false);
+                j0Var.f47296x0.e(j0Var.f47275b0, false);
                 j0Var.A1();
                 return;
             case 2:
-                HashSet hashSet = j0Var.f47295y0;
+                HashSet hashSet = j0Var.f47297y0;
                 ad X = ad.X();
                 if (X != null) {
                     if (hashSet.size() == 1) {

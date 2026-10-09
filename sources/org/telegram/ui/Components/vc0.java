@@ -117,35 +117,35 @@ public abstract class vc0 extends FrameLayout {
             org.telegram.ui.zn znVar = jlVar.H;
             znVar.Fa = null;
             znVar.g7();
-            MessagePreviewParams messagePreviewParams = znVar.f44769f5;
+            MessagePreviewParams messagePreviewParams = znVar.f44771f5;
             if (messagePreviewParams != null) {
-                if (znVar.f44840l5 == null) {
-                    znVar.f44840l5 = messagePreviewParams.quote;
+                if (znVar.f44842l5 == null) {
+                    znVar.f44842l5 = messagePreviewParams.quote;
                 }
                 if (messagePreviewParams.quote == null) {
-                    znVar.f44840l5 = null;
+                    znVar.f44842l5 = null;
                 }
-                org.telegram.ui.pn pnVar = znVar.f44840l5;
+                org.telegram.ui.pn pnVar = znVar.f44842l5;
                 if (pnVar != null) {
-                    pnVar.f40847f = false;
-                    pnVar.f40844b = messagePreviewParams.quoteStart;
-                    pnVar.f40845c = messagePreviewParams.quoteEnd;
+                    pnVar.f40849f = false;
+                    pnVar.f40846b = messagePreviewParams.quoteStart;
+                    pnVar.f40847c = messagePreviewParams.quoteEnd;
                     pnVar.e();
-                    if (znVar.f44882ob == 2) {
-                        znVar.Gb(znVar.f44866n5, znVar.f44840l5);
+                    if (znVar.f44884ob == 2) {
+                        znVar.Gb(znVar.f44868n5, znVar.f44842l5);
                     }
                 } else {
                     ArrayList<MessageObject> arrayList = new ArrayList<>();
-                    MessagePreviewParams.Messages messages = znVar.f44769f5.forwardMessages;
+                    MessagePreviewParams.Messages messages = znVar.f44771f5.forwardMessages;
                     if (messages != null) {
                         messages.getSelectedMessages(arrayList);
                     }
                     znVar.m8();
                 }
             }
-            if (znVar.f44762eb && z10) {
+            if (znVar.f44764eb && z10) {
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.il(jlVar, 1), 50L);
-                znVar.f44762eb = false;
+                znVar.f44764eb = false;
             }
             Activity parentActivity = znVar.getParentActivity();
             i10 = ((org.telegram.ui.ActionBar.n2) znVar).classGuid;

@@ -514,12 +514,12 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
     public static SpannableStringBuilder G3(int i10, String str) {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
         d10 d10Var = new d10(9);
-        d10Var.f36788n = str;
-        if (d10Var.f36785c != null) {
-            d10Var.f36785c = null;
+        d10Var.f36790n = str;
+        if (d10Var.f36787c != null) {
+            d10Var.f36787c = null;
             d10Var.a();
         }
-        d10Var.f36787f = i10;
+        d10Var.f36789f = i10;
         spannableStringBuilder.setSpan(d10Var, 0, spannableStringBuilder.length(), 0);
         return spannableStringBuilder;
     }
@@ -713,18 +713,18 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
         }
         rg.l1 l1Var = new rg.l1(profileActivity, profileActivity.currentAccount, user, null, null, profileActivity.f34386z0);
         j5Var.getLocationOnScreen(new int[2]);
-        l1Var.f47339v0 = j5Var.f21231h0;
-        l1Var.f47340w0 = j5Var.f21232i0;
-        l1Var.f47343z0 = j5Var.getScaleX();
-        l1Var.f47341x0 = j5Var.getLeft();
-        l1Var.f47342y0 = j5Var.getTop();
+        l1Var.f47341v0 = j5Var.f21231h0;
+        l1Var.f47342w0 = j5Var.f21232i0;
+        l1Var.f47345z0 = j5Var.getScaleX();
+        l1Var.f47343x0 = j5Var.getLeft();
+        l1Var.f47344y0 = j5Var.getTop();
         l1Var.A0 = j5Var;
         Drawable rightDrawable = j5Var.getRightDrawable();
         org.telegram.ui.Components.q5 q5Var = q5VarArr[1];
         if (rightDrawable == q5Var && q5Var != null) {
             Drawable drawable = q5Var.f30046f[0];
             if (drawable instanceof org.telegram.ui.Components.s5) {
-                l1Var.f47343z0 *= 0.98f;
+                l1Var.f47345z0 *= 0.98f;
                 TLRPC.Document document = ((org.telegram.ui.Components.s5) drawable).f30649e;
                 if (document != null) {
                     org.telegram.ui.Components.y9 y9Var = new org.telegram.ui.Components.y9(profileActivity.getParentActivity());
@@ -1167,8 +1167,8 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
         } else if (i10 == profileActivity.I3) {
             if (profileActivity.f34354u2.location instanceof TLRPC.TL_channelLocation) {
                 hd0 hd0Var = new hd0(5);
-                hd0Var.f38261e0 = -profileActivity.f34251f1;
-                hd0Var.f38288z0 = (TLRPC.TL_channelLocation) profileActivity.f34354u2.location;
+                hd0Var.f38263e0 = -profileActivity.f34251f1;
+                hd0Var.f38290z0 = (TLRPC.TL_channelLocation) profileActivity.f34354u2.location;
                 profileActivity.presentFragment(hd0Var);
             }
         } else if (i10 == profileActivity.L4) {
@@ -1680,28 +1680,28 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
             textView5.setTextColor(org.telegram.ui.ActionBar.i6.w0(i18, profileActivity.f34386z0));
             linearLayout.addView(textView5, w7.x5.t(-1, -2, 17, 20, 0, 20, 12));
             uw0 uw0Var = new uw0(parentActivity, profileActivity.f34386z0);
-            uw0Var.f42569a.l(LocaleController.getString(R.string.StarRatingTitle1), false);
+            uw0Var.f42571a.l(LocaleController.getString(R.string.StarRatingTitle1), false);
             int i19 = R.string.StarRatingDescription1;
             String string = LocaleController.getString(R.string.StarRatingAdded);
             int i20 = org.telegram.ui.ActionBar.i6.Oh;
-            uw0Var.f42570b.setText(LocaleController.formatSpannable(i19, G3(org.telegram.ui.ActionBar.i6.w0(i20, profileActivity.f34386z0), string)));
+            uw0Var.f42572b.setText(LocaleController.formatSpannable(i19, G3(org.telegram.ui.ActionBar.i6.w0(i20, profileActivity.f34386z0), string)));
             uw0Var.d.setVisibility(8);
             int i21 = R.drawable.menu_gift;
-            ImageView imageView = uw0Var.f42571c;
+            ImageView imageView = uw0Var.f42573c;
             imageView.setImageResource(i21);
             imageView.setColorFilter(org.telegram.ui.ActionBar.i6.w0(i18, profileActivity.f34386z0));
             linearLayout.addView(uw0Var, w7.x5.k(6.0f, 0.0f, 6.0f, -2.0f, -1, -2));
             uw0 uw0Var2 = new uw0(parentActivity, profileActivity.f34386z0);
-            uw0Var2.f42569a.l(LocaleController.getString(R.string.StarRatingTitle2), false);
-            uw0Var2.f42570b.setText(LocaleController.formatSpannable(R.string.StarRatingDescription2, G3(org.telegram.ui.ActionBar.i6.w0(i20, profileActivity.f34386z0), LocaleController.getString(R.string.StarRatingAdded))));
+            uw0Var2.f42571a.l(LocaleController.getString(R.string.StarRatingTitle2), false);
+            uw0Var2.f42572b.setText(LocaleController.formatSpannable(R.string.StarRatingDescription2, G3(org.telegram.ui.ActionBar.i6.w0(i20, profileActivity.f34386z0), LocaleController.getString(R.string.StarRatingAdded))));
             uw0Var2.d.setVisibility(8);
             int i22 = R.drawable.menu_stars_gift;
-            ImageView imageView2 = uw0Var2.f42571c;
+            ImageView imageView2 = uw0Var2.f42573c;
             imageView2.setImageResource(i22);
             imageView2.setColorFilter(org.telegram.ui.ActionBar.i6.w0(i18, profileActivity.f34386z0));
             linearLayout.addView(uw0Var2, w7.x5.k(6.0f, 0.0f, 6.0f, -2.0f, -1, -2));
             uw0 uw0Var3 = new uw0(parentActivity, profileActivity.f34386z0);
-            uw0Var3.f42569a.l(LocaleController.getString(R.string.StarRatingTitle3), false);
+            uw0Var3.f42571a.l(LocaleController.getString(R.string.StarRatingTitle3), false);
             int i23 = R.string.StarRatingDescription3;
             String string2 = LocaleController.getString(R.string.StarRatingDeduces);
             if (org.telegram.ui.ActionBar.i6.I.q()) {
@@ -1709,10 +1709,10 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
             } else {
                 w02 = org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21181y6, profileActivity.f34386z0);
             }
-            uw0Var3.f42570b.setText(LocaleController.formatSpannable(i23, G3(w02, string2)));
+            uw0Var3.f42572b.setText(LocaleController.formatSpannable(i23, G3(w02, string2)));
             uw0Var3.d.setVisibility(8);
             int i24 = R.drawable.menu_refund;
-            ImageView imageView3 = uw0Var3.f42571c;
+            ImageView imageView3 = uw0Var3.f42573c;
             imageView3.setImageResource(i24);
             imageView3.setColorFilter(org.telegram.ui.ActionBar.i6.w0(i18, profileActivity.f34386z0));
             linearLayout.addView(uw0Var3, w7.x5.k(6.0f, 0.0f, 6.0f, 8.0f, -1, -2));
@@ -1750,11 +1750,11 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
                 int i13 = 0;
                 while (true) {
                     y01 y01Var = profileActivity.d;
-                    if (i12 >= y01Var.f44189e.N2) {
+                    if (i12 >= y01Var.f44191e.N2) {
                         break;
                     }
                     s4.d1 e7 = y01Var.e(null, y01Var.j(i12));
-                    View view = e7.f47656a;
+                    View view = e7.f47658a;
                     profileActivity.d.v(e7, i12);
                     view.measure(makeMeasureSpec, makeMeasureSpec2);
                     i13 += view.getMeasuredHeight();
@@ -2109,7 +2109,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
                 int i12 = this.J4;
                 if (i12 != -1 && !z10) {
                     org.telegram.ui.Components.am0 am0Var = (org.telegram.ui.Components.am0) this.f34211a.K(i12);
-                    if (am0Var != null && am0Var.f47656a.getTop() <= 0) {
+                    if (am0Var != null && am0Var.f47658a.getTop() <= 0) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -2355,7 +2355,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
                     this.Z.invalidate();
                     j11 j11Var = this.f34225b6;
                     if (j11Var != null) {
-                        j11Var.f38804e = 1.0f - this.f34286k2;
+                        j11Var.f38806e = 1.0f - this.f34286k2;
                         j11Var.invalidateSelf();
                         return;
                     }
@@ -2370,7 +2370,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
             }
             j11 j11Var2 = this.f34225b6;
             if (j11Var2 != null) {
-                j11Var2.f38804e = 1.0f;
+                j11Var2.f38806e = 1.0f;
                 j11Var2.invalidateSelf();
             }
         } else if (this.f34328q5) {
@@ -2380,7 +2380,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
             }
             j11 j11Var3 = this.f34225b6;
             if (j11Var3 != null) {
-                j11Var3.f38804e = 1.0f - this.Y5;
+                j11Var3.f38806e = 1.0f - this.Y5;
                 j11Var3.invalidateSelf();
             }
         } else {
@@ -2390,7 +2390,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
             }
             j11 j11Var4 = this.f34225b6;
             if (j11Var4 != null) {
-                j11Var4.f38804e = 1.0f;
+                j11Var4.f38806e = 1.0f;
                 j11Var4.invalidateSelf();
             }
         }
@@ -2409,7 +2409,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
             }
         } else {
             ty tyVar = new ty(null);
-            tyVar.f42217n2 = str;
+            tyVar.f42219n2 = str;
             presentFragment(tyVar);
         }
     }
@@ -2569,7 +2569,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
         if (i10 >= 0) {
             if (z10) {
                 ji.o oVar = new ji.o(getParentActivity(), 2, 0.6f);
-                oVar.f47825a = this.J4;
+                oVar.f47827a = this.J4;
                 oVar.f14273p = -this.f34211a.getPaddingTop();
                 this.f34226c.w0(oVar);
                 return;
@@ -2712,17 +2712,17 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
                 if (i10 == this.O3) {
                     H.c(R.drawable.msg_edit, LocaleController.getString(R.string.ProfileHoursEdit), new xb0(this, 8), false);
                     H.c(R.drawable.msg_delete, LocaleController.getString(R.string.ProfileHoursRemove), new Runnable(this) {
-                        public final ProfileActivity f40378b;
+                        public final ProfileActivity f40380b;
 
                         {
-                            this.f40378b = this;
+                            this.f40380b = this;
                         }
 
                         @Override
                         public final void run() {
                             switch (r4) {
                                 case 0:
-                                    final ProfileActivity profileActivity = this.f40378b;
+                                    final ProfileActivity profileActivity = this.f40380b;
                                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(profileActivity.getParentActivity());
                                     alertDialog$Builder.f20374a.R = LocaleController.getString(R.string.BusinessHoursClearTitle);
                                     alertDialog$Builder.f20374a.T = LocaleController.getString(R.string.BusinessHoursClearMessage);
@@ -2762,7 +2762,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
                                     profileActivity.showDialog(alertDialog$Builder.f20374a);
                                     return;
                                 default:
-                                    final ProfileActivity profileActivity2 = this.f40378b;
+                                    final ProfileActivity profileActivity2 = this.f40380b;
                                     AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(profileActivity2.getParentActivity());
                                     alertDialog$Builder2.f20374a.R = LocaleController.getString(R.string.BusinessLocationClearTitle);
                                     alertDialog$Builder2.f20374a.T = LocaleController.getString(R.string.BusinessLocationClearMessage);
@@ -2807,17 +2807,17 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
                 } else if (i10 == this.P3) {
                     H.c(R.drawable.msg_edit, LocaleController.getString(R.string.ProfileLocationEdit), new xb0(this, 9), false);
                     H.c(R.drawable.msg_delete, LocaleController.getString(R.string.ProfileLocationRemove), new Runnable(this) {
-                        public final ProfileActivity f40378b;
+                        public final ProfileActivity f40380b;
 
                         {
-                            this.f40378b = this;
+                            this.f40380b = this;
                         }
 
                         @Override
                         public final void run() {
                             switch (r4) {
                                 case 0:
-                                    final ProfileActivity profileActivity = this.f40378b;
+                                    final ProfileActivity profileActivity = this.f40380b;
                                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(profileActivity.getParentActivity());
                                     alertDialog$Builder.f20374a.R = LocaleController.getString(R.string.BusinessHoursClearTitle);
                                     alertDialog$Builder.f20374a.T = LocaleController.getString(R.string.BusinessHoursClearMessage);
@@ -2857,7 +2857,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
                                     profileActivity.showDialog(alertDialog$Builder.f20374a);
                                     return;
                                 default:
-                                    final ProfileActivity profileActivity2 = this.f40378b;
+                                    final ProfileActivity profileActivity2 = this.f40380b;
                                     AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(profileActivity2.getParentActivity());
                                     alertDialog$Builder2.f20374a.R = LocaleController.getString(R.string.BusinessLocationClearTitle);
                                     alertDialog$Builder2.f20374a.T = LocaleController.getString(R.string.BusinessLocationClearMessage);
@@ -2906,17 +2906,17 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
                         H.c(R.drawable.menu_storage_path, LocaleController.getString(R.string.ProfilePhoneEdit), new xb0(this, 12), false);
                     } else if (i10 == this.U2) {
                         H.c(R.drawable.msg_edit, LocaleController.getString(R.string.ProfileBirthdayChange), new Runnable(this) {
-                            public final ProfileActivity f40026b;
+                            public final ProfileActivity f40028b;
 
                             {
-                                this.f40026b = this;
+                                this.f40028b = this;
                             }
 
                             @Override
                             public final void run() {
                                 switch (r3) {
                                     case 0:
-                                        ProfileActivity profileActivity = this.f40026b;
+                                        ProfileActivity profileActivity = this.f40028b;
                                         Activity parentActivity = profileActivity.getParentActivity();
                                         String string2 = LocaleController.getString(R.string.EditProfileBirthdayTitle);
                                         String string3 = LocaleController.getString(R.string.EditProfileBirthdayButton);
@@ -2924,7 +2924,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
                                         profileActivity.showDialog(org.telegram.ui.Components.g5.l(parentActivity, string2, string3, userFull2.birthday, new ft(12, profileActivity, userFull2), new xb0(profileActivity, 13), false, false, profileActivity.f34386z0).f20380a);
                                         return;
                                     case 1:
-                                        final ProfileActivity profileActivity2 = this.f40026b;
+                                        final ProfileActivity profileActivity2 = this.f40028b;
                                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(profileActivity2.getParentActivity());
                                         alertDialog$Builder.f20374a.R = LocaleController.getString(R.string.BirthdayClearTitle);
                                         alertDialog$Builder.f20374a.T = LocaleController.getString(R.string.BirthdayClearMessage);
@@ -2964,7 +2964,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
                                         profileActivity2.showDialog(alertDialog$Builder.f20374a);
                                         return;
                                     default:
-                                        final ProfileActivity profileActivity3 = this.f40026b;
+                                        final ProfileActivity profileActivity3 = this.f40028b;
                                         AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(profileActivity3.getParentActivity());
                                         alertDialog$Builder2.f20374a.R = LocaleController.getString(R.string.ProfileChannelClearTitle);
                                         alertDialog$Builder2.f20374a.T = LocaleController.getString(R.string.ProfileChannelClearMessage);
@@ -3007,17 +3007,17 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
                             }
                         }, false);
                         H.c(R.drawable.msg_delete, LocaleController.getString(R.string.Remove), new Runnable(this) {
-                            public final ProfileActivity f40026b;
+                            public final ProfileActivity f40028b;
 
                             {
-                                this.f40026b = this;
+                                this.f40028b = this;
                             }
 
                             @Override
                             public final void run() {
                                 switch (r3) {
                                     case 0:
-                                        ProfileActivity profileActivity = this.f40026b;
+                                        ProfileActivity profileActivity = this.f40028b;
                                         Activity parentActivity = profileActivity.getParentActivity();
                                         String string2 = LocaleController.getString(R.string.EditProfileBirthdayTitle);
                                         String string3 = LocaleController.getString(R.string.EditProfileBirthdayButton);
@@ -3025,7 +3025,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
                                         profileActivity.showDialog(org.telegram.ui.Components.g5.l(parentActivity, string2, string3, userFull2.birthday, new ft(12, profileActivity, userFull2), new xb0(profileActivity, 13), false, false, profileActivity.f34386z0).f20380a);
                                         return;
                                     case 1:
-                                        final ProfileActivity profileActivity2 = this.f40026b;
+                                        final ProfileActivity profileActivity2 = this.f40028b;
                                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(profileActivity2.getParentActivity());
                                         alertDialog$Builder.f20374a.R = LocaleController.getString(R.string.BirthdayClearTitle);
                                         alertDialog$Builder.f20374a.T = LocaleController.getString(R.string.BirthdayClearMessage);
@@ -3065,7 +3065,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
                                         profileActivity2.showDialog(alertDialog$Builder.f20374a);
                                         return;
                                     default:
-                                        final ProfileActivity profileActivity3 = this.f40026b;
+                                        final ProfileActivity profileActivity3 = this.f40028b;
                                         AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(profileActivity3.getParentActivity());
                                         alertDialog$Builder2.f20374a.R = LocaleController.getString(R.string.ProfileChannelClearTitle);
                                         alertDialog$Builder2.f20374a.T = LocaleController.getString(R.string.ProfileChannelClearMessage);
@@ -3114,17 +3114,17 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
                         }
                         H.c(R.drawable.msg_edit, LocaleController.getString(R.string.ProfileChannelChange), new xb0(this, 6), false);
                         H.c(R.drawable.msg_delete, LocaleController.getString(R.string.Remove), new Runnable(this) {
-                            public final ProfileActivity f40026b;
+                            public final ProfileActivity f40028b;
 
                             {
-                                this.f40026b = this;
+                                this.f40028b = this;
                             }
 
                             @Override
                             public final void run() {
                                 switch (r3) {
                                     case 0:
-                                        ProfileActivity profileActivity = this.f40026b;
+                                        ProfileActivity profileActivity = this.f40028b;
                                         Activity parentActivity = profileActivity.getParentActivity();
                                         String string2 = LocaleController.getString(R.string.EditProfileBirthdayTitle);
                                         String string3 = LocaleController.getString(R.string.EditProfileBirthdayButton);
@@ -3132,7 +3132,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
                                         profileActivity.showDialog(org.telegram.ui.Components.g5.l(parentActivity, string2, string3, userFull2.birthday, new ft(12, profileActivity, userFull2), new xb0(profileActivity, 13), false, false, profileActivity.f34386z0).f20380a);
                                         return;
                                     case 1:
-                                        final ProfileActivity profileActivity2 = this.f40026b;
+                                        final ProfileActivity profileActivity2 = this.f40028b;
                                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(profileActivity2.getParentActivity());
                                         alertDialog$Builder.f20374a.R = LocaleController.getString(R.string.BirthdayClearTitle);
                                         alertDialog$Builder.f20374a.T = LocaleController.getString(R.string.BirthdayClearMessage);
@@ -3172,7 +3172,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
                                         profileActivity2.showDialog(alertDialog$Builder.f20374a);
                                         return;
                                     default:
-                                        final ProfileActivity profileActivity3 = this.f40026b;
+                                        final ProfileActivity profileActivity3 = this.f40028b;
                                         AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(profileActivity3.getParentActivity());
                                         alertDialog$Builder2.f20374a.R = LocaleController.getString(R.string.ProfileChannelClearTitle);
                                         alertDialog$Builder2.f20374a.T = LocaleController.getString(R.string.ProfileChannelClearMessage);
@@ -3542,7 +3542,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
         m11 m11Var3 = this.f34383y2;
         if (m11Var3 != null) {
             xb0 xb0Var2 = new xb0(this, 16);
-            if (m11Var3.f39735b) {
+            if (m11Var3.f39737b) {
                 xb0Var2.run();
             } else {
                 m11Var3.h.add(xb0Var2);
@@ -4236,9 +4236,9 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
         }
         l11 l11Var = this.f34235d1;
         if (l11Var != null) {
-            l11Var.E.setTranslate(0.0f, this.a2 - l11Var.f39403x);
+            l11Var.E.setTranslate(0.0f, this.a2 - l11Var.f39405x);
             l11 l11Var2 = this.f34235d1;
-            RadialGradient radialGradient = l11Var2.f39404y;
+            RadialGradient radialGradient = l11Var2.f39406y;
             if (radialGradient != null) {
                 radialGradient.setLocalMatrix(l11Var2.E);
             }
@@ -4652,7 +4652,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
                             this.f34376x2 = z10;
                             if (c10 != null) {
                                 xb0 xb0Var2 = new xb0(this, 16);
-                                if (c10.f39735b) {
+                                if (c10.f39737b) {
                                     xb0Var2.run();
                                 } else {
                                     c10.h.add(xb0Var2);
@@ -4716,11 +4716,11 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
                     } else if (i10 == NotificationCenter.updateSearchSettings) {
                         i11 i11Var = this.f34241e;
                         if (i11Var != null) {
-                            i11Var.f38441c = i11.H(this);
+                            i11Var.f38443c = i11.H(this);
                             this.f34241e.v.clear();
                             this.f34241e.J();
                             i11 i11Var2 = this.f34241e;
-                            i11Var2.I(i11Var2.f38449y);
+                            i11Var2.I(i11Var2.f38451y);
                         }
                     } else if (i10 == NotificationCenter.reloadDialogPhotos) {
                         i5(false);
@@ -4911,13 +4911,13 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
             ez0Var.post(new org.telegram.ui.Components.ds0(10, this, z10));
         } else {
             m01 m01Var = new m01(this);
-            m01Var.f39721b = this.N2;
-            m01Var.f(m01Var.f39722c);
-            m01Var.f39723e.clear();
-            m01Var.f39724f.clear();
-            m01Var.f39723e.addAll(this.Q4);
-            m01Var.f39724f.addAll(this.R4);
-            m01Var.f39725g = this.f34356u4;
+            m01Var.f39723b = this.N2;
+            m01Var.f(m01Var.f39724c);
+            m01Var.f39725e.clear();
+            m01Var.f39726f.clear();
+            m01Var.f39725e.addAll(this.Q4);
+            m01Var.f39726f.addAll(this.R4);
+            m01Var.f39727g = this.f34356u4;
             m01Var.h = this.f34363v4;
             if (z10) {
                 h5(false);
@@ -5373,14 +5373,14 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
             if (e0Var != null) {
                 float z14 = com.google.android.gms.internal.vision.e2.z(this.actionBar.getHeight(), f7, 2.0f, f7);
                 int U3 = U3();
-                z12 = (Math.abs(f10 - e0Var.f52416r) > 0.1f || Math.abs(width - e0Var.f52417s) > 0.1f || Math.abs(z14 - e0Var.v) > 0.1f) ? true : true;
-                e0Var.f52416r = f10;
-                e0Var.f52417s = width;
+                z12 = (Math.abs(f10 - e0Var.f52418r) > 0.1f || Math.abs(width - e0Var.f52419s) > 0.1f || Math.abs(z14 - e0Var.v) > 0.1f) ? true : true;
+                e0Var.f52418r = f10;
+                e0Var.f52419s = width;
                 if (z10) {
-                    e0Var.f52420y.d(width, true);
+                    e0Var.f52422y.d(width, true);
                 }
                 e0Var.v = z14;
-                e0Var.f52419x = U3 + z14;
+                e0Var.f52421x = U3 + z14;
                 if (z12) {
                     e0Var.invalidate();
                 }
@@ -5884,9 +5884,9 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
         }
         k01 k01Var = this.O;
         if (k01Var != null && (hu0Var = k01Var.T) != null) {
-            hu0Var.f36360e = false;
-            if (hu0Var.f36359c != null) {
-                hu0Var.f36357a.onPause();
+            hu0Var.f36362e = false;
+            if (hu0Var.f36361c != null) {
+                hu0Var.f36359a.onPause();
             }
         }
     }
@@ -5993,9 +5993,9 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
             }
             org.telegram.ui.Components.hu0 hu0Var = k01Var.T;
             if (hu0Var != null) {
-                hu0Var.f36360e = true;
-                if (hu0Var.f36359c != null) {
-                    hu0Var.f36357a.onResume();
+                hu0Var.f36362e = true;
+                if (hu0Var.f36361c != null) {
+                    hu0Var.f36359a.onResume();
                 }
             }
         }
@@ -6144,8 +6144,8 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
                 yh.e0 e0Var = this.f34359v0;
                 if (e0Var != null) {
                     float[] fArr = this.J5;
-                    fArr[4] = e0Var.f52413e;
-                    fArr[5] = e0Var.f52414f;
+                    fArr[4] = e0Var.f52415e;
+                    fArr[5] = e0Var.f52416f;
                 }
                 if (this.f34225b6 != null) {
                     this.J5[6] = j11Var.getAlpha();
@@ -6652,7 +6652,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
             }
             c70Var.J = iVar;
         }
-        c70Var.f36569x = new jy0(this, 9);
+        c70Var.f36571x = new jy0(this, 9);
         presentFragment(c70Var);
     }
 
@@ -6747,8 +6747,8 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.n2 implements Not
                 }
                 yh.e0 e0Var = this.f34359v0;
                 if (e0Var != null) {
-                    e0Var.f52413e = AndroidUtilities.lerp(0.0f, this.J5[4], f7);
-                    this.f34359v0.f52414f = AndroidUtilities.lerp(0.0f, this.J5[5], clamp01);
+                    e0Var.f52415e = AndroidUtilities.lerp(0.0f, this.J5[4], f7);
+                    this.f34359v0.f52416f = AndroidUtilities.lerp(0.0f, this.J5[5], clamp01);
                     yh.e0 e0Var2 = this.f34359v0;
                     e0Var2.h = true;
                     e0Var2.invalidate();

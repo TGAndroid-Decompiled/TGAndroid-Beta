@@ -30,7 +30,7 @@ public abstract class md0 extends sw0 implements r0.m, View.OnLayoutChangeListen
                     if (L0 != -1) {
                         s4.d1 K = listView.K(L0);
                         if (K != null) {
-                            i13 = K.f47656a.getTop();
+                            i13 = K.f47658a.getTop();
                         }
                         int paddingTop = listView.getPaddingTop();
                         if (i13 != paddingTop || L0 != 0) {

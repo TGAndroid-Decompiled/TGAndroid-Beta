@@ -53,12 +53,12 @@ public final class hf1 extends s4.d0 {
 
     @Override
     public final void v0(RecyclerView recyclerView, s4.a1 a1Var, int i10) {
-        if (this.J.f37599x > 0 && i10 == 1) {
+        if (this.J.f37601x > 0 && i10 == 1) {
             super.v0(recyclerView, a1Var, i10);
             return;
         }
         ji.o oVar = new ji.o(recyclerView.getContext(), 0);
-        oVar.f47825a = i10;
+        oVar.f47827a = i10;
         w0(oVar);
     }
 }

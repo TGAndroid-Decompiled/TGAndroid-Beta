@@ -244,11 +244,11 @@ public final class j1 implements NotificationCenter.NotificationCenterDelegate, 
             }
             if (activity != null && tf.c.a(activity) == 1) {
                 qf.d dVar = new qf.d(activity, j1Var);
-                dVar.f46151c = "pip-rtmp-video";
-                dVar.f46152e = 1;
+                dVar.f46153c = "pip-rtmp-video";
+                dVar.f46154e = 1;
                 dVar.d = AndroidUtilities.dp(10.0f);
-                dVar.f46156j = j1Var.d;
-                dVar.f46157k = j1Var.f32003f.getPlaceholderView();
+                dVar.f46158j = j1Var.d;
+                dVar.f46159k = j1Var.f32003f.getPlaceholderView();
                 j1Var.O = dVar.a();
             }
         }
@@ -273,11 +273,11 @@ public final class j1 implements NotificationCenter.NotificationCenterDelegate, 
         qf.e eVar = this.O;
         if (eVar != null && eVar.h.b()) {
             WindowManager.LayoutParams layoutParams = this.f32001c;
-            int width = this.O.h.f48256a.width();
+            int width = this.O.h.f48258a.width();
             this.M = width;
             layoutParams.width = width;
             WindowManager.LayoutParams layoutParams2 = this.f32001c;
-            int height = this.O.h.f48256a.height();
+            int height = this.O.h.f48258a.height();
             this.N = height;
             layoutParams2.height = height;
         }

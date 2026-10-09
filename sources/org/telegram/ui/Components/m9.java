@@ -47,7 +47,7 @@ public class m9 extends View {
             rectF.set(getWidth() - AndroidUtilities.dp(22.0f), getHeight() - AndroidUtilities.dp(22.0f), getWidth() - AndroidUtilities.dp(0.0f), getHeight() - AndroidUtilities.dp(0.0f));
             this.f28777b.e(rectF);
             canvas.drawCircle(rectF.centerX(), rectF.centerY(), (rectF.width() / 2.0f) + AndroidUtilities.dp(1.33f), this.d);
-            canvas.drawCircle(rectF.centerX(), rectF.centerY(), rectF.width() / 2.0f, this.f28777b.f47177f);
+            canvas.drawCircle(rectF.centerX(), rectF.centerY(), rectF.width() / 2.0f, this.f28777b.f47179f);
             this.f28778c.c(rectF.centerX() - (this.f28778c.f28222c / 2.0f), rectF.centerY(), 1.0f, -1, canvas);
         }
     }

@@ -93,11 +93,11 @@ public abstract class pg extends ru {
             chatActivityEnterView.L0 = null;
         }
         org.telegram.ui.pn pnVar = chatActivityEnterView.V2;
-        if (pnVar != null && znVar != null && pnVar.f40847f) {
+        if (pnVar != null && znVar != null && pnVar.f40849f) {
             znVar.Vb();
             return;
         }
-        t0.h hVar = iVar.f48189a;
+        t0.h hVar = iVar.f48191a;
         if (hVar.getDescription().hasMimeType("image/gif")) {
             AccountInstance accountInstance = chatActivityEnterView.R;
             Uri c10 = hVar.c();

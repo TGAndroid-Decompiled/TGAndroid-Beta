@@ -17,8 +17,8 @@ import org.xmlpull.v1.XmlPullParser;
 import v7.q8;
 public final class d extends hr implements Animatable {
     public final Context d;
-    public final i.f f50604e = new i.f(this, 8);
-    public final b f50603c = new Drawable.ConstantState();
+    public final i.f f50606e = new i.f(this, 8);
+    public final b f50605c = new Drawable.ConstantState();
 
     public d(Context context) {
         this.d = context;
@@ -48,9 +48,9 @@ public final class d extends hr implements Animatable {
             drawable.draw(canvas);
             return;
         }
-        b bVar = this.f50603c;
-        bVar.f50599a.draw(canvas);
-        if (bVar.f50600b.isStarted()) {
+        b bVar = this.f50605c;
+        bVar.f50601a.draw(canvas);
+        if (bVar.f50602b.isStarted()) {
             invalidateSelf();
         }
     }
@@ -61,7 +61,7 @@ public final class d extends hr implements Animatable {
         if (drawable != null) {
             return drawable.getAlpha();
         }
-        return this.f50603c.f50599a.getAlpha();
+        return this.f50605c.f50601a.getAlpha();
     }
 
     @Override
@@ -71,7 +71,7 @@ public final class d extends hr implements Animatable {
             return drawable.getChangingConfigurations();
         }
         int changingConfigurations = super.getChangingConfigurations();
-        this.f50603c.getClass();
+        this.f50605c.getClass();
         return changingConfigurations;
     }
 
@@ -81,7 +81,7 @@ public final class d extends hr implements Animatable {
         if (drawable != null) {
             return drawable.getColorFilter();
         }
-        return this.f50603c.f50599a.getColorFilter();
+        return this.f50605c.f50601a.getColorFilter();
     }
 
     @Override
@@ -98,7 +98,7 @@ public final class d extends hr implements Animatable {
         if (drawable != null) {
             return drawable.getIntrinsicHeight();
         }
-        return this.f50603c.f50599a.getIntrinsicHeight();
+        return this.f50605c.f50601a.getIntrinsicHeight();
     }
 
     @Override
@@ -107,7 +107,7 @@ public final class d extends hr implements Animatable {
         if (drawable != null) {
             return drawable.getIntrinsicWidth();
         }
-        return this.f50603c.f50599a.getIntrinsicWidth();
+        return this.f50605c.f50601a.getIntrinsicWidth();
     }
 
     @Override
@@ -116,7 +116,7 @@ public final class d extends hr implements Animatable {
         if (drawable != null) {
             return drawable.getOpacity();
         }
-        return this.f50603c.f50599a.getOpacity();
+        return this.f50605c.f50601a.getOpacity();
     }
 
     @Override
@@ -130,7 +130,7 @@ public final class d extends hr implements Animatable {
         if (drawable != null) {
             return drawable.isAutoMirrored();
         }
-        return this.f50603c.f50599a.isAutoMirrored();
+        return this.f50605c.f50601a.isAutoMirrored();
     }
 
     @Override
@@ -139,7 +139,7 @@ public final class d extends hr implements Animatable {
         if (drawable != null) {
             return ((AnimatedVectorDrawable) drawable).isRunning();
         }
-        return this.f50603c.f50600b.isRunning();
+        return this.f50605c.f50602b.isRunning();
     }
 
     @Override
@@ -148,7 +148,7 @@ public final class d extends hr implements Animatable {
         if (drawable != null) {
             return drawable.isStateful();
         }
-        return this.f50603c.f50599a.isStateful();
+        return this.f50605c.f50601a.isStateful();
     }
 
     @Override
@@ -166,7 +166,7 @@ public final class d extends hr implements Animatable {
         if (drawable != null) {
             drawable.setBounds(rect);
         } else {
-            this.f50603c.f50599a.setBounds(rect);
+            this.f50605c.f50601a.setBounds(rect);
         }
     }
 
@@ -176,7 +176,7 @@ public final class d extends hr implements Animatable {
         if (drawable != null) {
             return drawable.setLevel(i10);
         }
-        return this.f50603c.f50599a.setLevel(i10);
+        return this.f50605c.f50601a.setLevel(i10);
     }
 
     @Override
@@ -185,7 +185,7 @@ public final class d extends hr implements Animatable {
         if (drawable != null) {
             return drawable.setState(iArr);
         }
-        return this.f50603c.f50599a.setState(iArr);
+        return this.f50605c.f50601a.setState(iArr);
     }
 
     @Override
@@ -194,7 +194,7 @@ public final class d extends hr implements Animatable {
         if (drawable != null) {
             drawable.setAlpha(i10);
         } else {
-            this.f50603c.f50599a.setAlpha(i10);
+            this.f50605c.f50601a.setAlpha(i10);
         }
     }
 
@@ -204,7 +204,7 @@ public final class d extends hr implements Animatable {
         if (drawable != null) {
             drawable.setAutoMirrored(z10);
         } else {
-            this.f50603c.f50599a.setAutoMirrored(z10);
+            this.f50605c.f50601a.setAutoMirrored(z10);
         }
     }
 
@@ -214,7 +214,7 @@ public final class d extends hr implements Animatable {
         if (drawable != null) {
             drawable.setColorFilter(colorFilter);
         } else {
-            this.f50603c.f50599a.setColorFilter(colorFilter);
+            this.f50605c.f50601a.setColorFilter(colorFilter);
         }
     }
 
@@ -224,7 +224,7 @@ public final class d extends hr implements Animatable {
         if (drawable != null) {
             q8.a(i10, drawable);
         } else {
-            this.f50603c.f50599a.setTint(i10);
+            this.f50605c.f50601a.setTint(i10);
         }
     }
 
@@ -234,7 +234,7 @@ public final class d extends hr implements Animatable {
         if (drawable != null) {
             drawable.setTintList(colorStateList);
         } else {
-            this.f50603c.f50599a.setTintList(colorStateList);
+            this.f50605c.f50601a.setTintList(colorStateList);
         }
     }
 
@@ -244,7 +244,7 @@ public final class d extends hr implements Animatable {
         if (drawable != null) {
             drawable.setTintMode(mode);
         } else {
-            this.f50603c.f50599a.setTintMode(mode);
+            this.f50605c.f50601a.setTintMode(mode);
         }
     }
 
@@ -254,7 +254,7 @@ public final class d extends hr implements Animatable {
         if (drawable != null) {
             return drawable.setVisible(z10, z11);
         }
-        this.f50603c.f50599a.setVisible(z10, z11);
+        this.f50605c.f50601a.setVisible(z10, z11);
         return super.setVisible(z10, z11);
     }
 
@@ -265,11 +265,11 @@ public final class d extends hr implements Animatable {
             ((AnimatedVectorDrawable) drawable).start();
             return;
         }
-        b bVar = this.f50603c;
-        if (bVar.f50600b.isStarted()) {
+        b bVar = this.f50605c;
+        if (bVar.f50602b.isStarted()) {
             return;
         }
-        bVar.f50600b.start();
+        bVar.f50602b.start();
         invalidateSelf();
     }
 
@@ -279,7 +279,7 @@ public final class d extends hr implements Animatable {
         if (drawable != null) {
             ((AnimatedVectorDrawable) drawable).stop();
         } else {
-            this.f50603c.f50600b.end();
+            this.f50605c.f50602b.end();
         }
     }
 

@@ -467,10 +467,10 @@ public class StickersActivity extends org.telegram.ui.ActionBar.n2 implements No
                 org.telegram.ui.Components.p61 J = org.telegram.ui.Components.p61.J(org.telegram.ui.Cells.l8.class);
                 J.G = tL_messages_stickerSet;
                 J.D = new View.OnClickListener(stickersActivity) {
-                    public final StickersActivity f36922b;
+                    public final StickersActivity f36924b;
 
                     {
-                        this.f36922b = stickersActivity;
+                        this.f36924b = stickersActivity;
                     }
 
                     @Override
@@ -480,7 +480,7 @@ public class StickersActivity extends org.telegram.ui.ActionBar.n2 implements No
                                 if (view != null && (view.getParent() instanceof org.telegram.ui.Cells.m8)) {
                                     org.telegram.ui.Cells.m8 m8Var = (org.telegram.ui.Cells.m8) view.getParent();
                                     final TLRPC.TL_messages_stickerSet stickersSet = m8Var.getStickersSet();
-                                    final StickersActivity stickersActivity2 = this.f36922b;
+                                    final StickersActivity stickersActivity2 = this.f36924b;
                                     org.telegram.ui.Components.p80 H = org.telegram.ui.Components.p80.H(stickersActivity2, m8Var);
                                     H.c(R.drawable.msg_archive, LocaleController.getString(R.string.StickersHide), new Runnable() {
                                         @Override
@@ -637,19 +637,19 @@ public class StickersActivity extends org.telegram.ui.ActionBar.n2 implements No
                                 }
                                 return;
                             case 1:
-                                StickersActivity.Z(this.f36922b, view);
+                                StickersActivity.Z(this.f36924b, view);
                                 return;
                             default:
-                                StickersActivity.X(this.f36922b, view);
+                                StickersActivity.X(this.f36924b, view);
                                 return;
                         }
                     }
                 };
                 J.E = new View.OnClickListener(stickersActivity) {
-                    public final StickersActivity f36922b;
+                    public final StickersActivity f36924b;
 
                     {
-                        this.f36922b = stickersActivity;
+                        this.f36924b = stickersActivity;
                     }
 
                     @Override
@@ -659,7 +659,7 @@ public class StickersActivity extends org.telegram.ui.ActionBar.n2 implements No
                                 if (view != null && (view.getParent() instanceof org.telegram.ui.Cells.m8)) {
                                     org.telegram.ui.Cells.m8 m8Var = (org.telegram.ui.Cells.m8) view.getParent();
                                     final TLRPC.TL_messages_stickerSet stickersSet = m8Var.getStickersSet();
-                                    final StickersActivity stickersActivity2 = this.f36922b;
+                                    final StickersActivity stickersActivity2 = this.f36924b;
                                     org.telegram.ui.Components.p80 H = org.telegram.ui.Components.p80.H(stickersActivity2, m8Var);
                                     H.c(R.drawable.msg_archive, LocaleController.getString(R.string.StickersHide), new Runnable() {
                                         @Override
@@ -816,10 +816,10 @@ public class StickersActivity extends org.telegram.ui.ActionBar.n2 implements No
                                 }
                                 return;
                             case 1:
-                                StickersActivity.Z(this.f36922b, view);
+                                StickersActivity.Z(this.f36924b, view);
                                 return;
                             default:
-                                StickersActivity.X(this.f36922b, view);
+                                StickersActivity.X(this.f36924b, view);
                                 return;
                         }
                     }
@@ -864,10 +864,10 @@ public class StickersActivity extends org.telegram.ui.ActionBar.n2 implements No
                 org.telegram.ui.Components.p61 J2 = org.telegram.ui.Components.p61.J(org.telegram.ui.Cells.o3.class);
                 J2.G = stickerSetCovered;
                 J2.D = new View.OnClickListener(stickersActivity) {
-                    public final StickersActivity f36922b;
+                    public final StickersActivity f36924b;
 
                     {
-                        this.f36922b = stickersActivity;
+                        this.f36924b = stickersActivity;
                     }
 
                     @Override
@@ -877,7 +877,7 @@ public class StickersActivity extends org.telegram.ui.ActionBar.n2 implements No
                                 if (view != null && (view.getParent() instanceof org.telegram.ui.Cells.m8)) {
                                     org.telegram.ui.Cells.m8 m8Var = (org.telegram.ui.Cells.m8) view.getParent();
                                     final TLRPC.TL_messages_stickerSet stickersSet = m8Var.getStickersSet();
-                                    final StickersActivity stickersActivity2 = this.f36922b;
+                                    final StickersActivity stickersActivity2 = this.f36924b;
                                     org.telegram.ui.Components.p80 H = org.telegram.ui.Components.p80.H(stickersActivity2, m8Var);
                                     H.c(R.drawable.msg_archive, LocaleController.getString(R.string.StickersHide), new Runnable() {
                                         @Override
@@ -1034,10 +1034,10 @@ public class StickersActivity extends org.telegram.ui.ActionBar.n2 implements No
                                 }
                                 return;
                             case 1:
-                                StickersActivity.Z(this.f36922b, view);
+                                StickersActivity.Z(this.f36924b, view);
                                 return;
                             default:
-                                StickersActivity.X(this.f36922b, view);
+                                StickersActivity.X(this.f36924b, view);
                                 return;
                         }
                     }
@@ -1209,21 +1209,21 @@ public class StickersActivity extends org.telegram.ui.ActionBar.n2 implements No
         this.fragmentView = frameLayout;
         frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20741a7, false));
         org.telegram.ui.Components.k71 k71Var = new org.telegram.ui.Components.k71(this, new Utilities.Callback2(this) {
-            public final StickersActivity f37507b;
+            public final StickersActivity f37509b;
 
             {
-                this.f37507b = this;
+                this.f37509b = this;
             }
 
             @Override
             public final void run(Object obj, Object obj2) {
                 switch (r2) {
                     case 0:
-                        StickersActivity.c0(this.f37507b, (ArrayList) obj, (org.telegram.ui.Components.c71) obj2);
+                        StickersActivity.c0(this.f37509b, (ArrayList) obj, (org.telegram.ui.Components.c71) obj2);
                         return;
                     default:
                         ((Integer) obj).getClass();
-                        StickersActivity.V(this.f37507b, (ArrayList) obj2);
+                        StickersActivity.V(this.f37509b, (ArrayList) obj2);
                         return;
                 }
             }
@@ -1234,21 +1234,21 @@ public class StickersActivity extends org.telegram.ui.ActionBar.n2 implements No
         this.f34486a.setFocusable(true);
         this.f34486a.setTag(7);
         this.f34486a.C1(new Utilities.Callback2(this) {
-            public final StickersActivity f37507b;
+            public final StickersActivity f37509b;
 
             {
-                this.f37507b = this;
+                this.f37509b = this;
             }
 
             @Override
             public final void run(Object obj, Object obj2) {
                 switch (r2) {
                     case 0:
-                        StickersActivity.c0(this.f37507b, (ArrayList) obj, (org.telegram.ui.Components.c71) obj2);
+                        StickersActivity.c0(this.f37509b, (ArrayList) obj, (org.telegram.ui.Components.c71) obj2);
                         return;
                     default:
                         ((Integer) obj).getClass();
-                        StickersActivity.V(this.f37507b, (ArrayList) obj2);
+                        StickersActivity.V(this.f37509b, (ArrayList) obj2);
                         return;
                 }
             }

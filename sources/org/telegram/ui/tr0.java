@@ -10,20 +10,20 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 public final class tr0 implements Runnable {
-    public final int f42111a = 0;
-    public final boolean f42112b;
-    public final boolean f42113c;
+    public final int f42113a = 0;
+    public final boolean f42114b;
+    public final boolean f42115c;
     public final boolean d;
-    public final Object f42114e;
-    public final Serializable f42115f;
+    public final Object f42116e;
+    public final Serializable f42117f;
     public final Object h;
 
     public tr0(ss0 ss0Var, int[] iArr, int[] iArr2, boolean z10, boolean z11, boolean z12) {
-        this.f42114e = ss0Var;
-        this.f42115f = iArr;
+        this.f42116e = ss0Var;
+        this.f42117f = iArr;
         this.h = iArr2;
-        this.f42112b = z10;
-        this.f42113c = z11;
+        this.f42114b = z10;
+        this.f42115c = z11;
         this.d = z12;
     }
 
@@ -34,10 +34,10 @@ public final class tr0 implements Runnable {
         float f10;
         org.telegram.ui.Components.a8 a8Var;
         org.telegram.ui.Components.zc zcVar;
-        int i10 = this.f42111a;
+        int i10 = this.f42113a;
         Object obj = this.h;
-        Serializable serializable = this.f42115f;
-        Object obj2 = this.f42114e;
+        Serializable serializable = this.f42117f;
+        Object obj2 = this.f42116e;
         switch (i10) {
             case 0:
                 PhotoViewer photoViewer = (PhotoViewer) obj2;
@@ -48,7 +48,7 @@ public final class tr0 implements Runnable {
                 int i11 = photoViewer.V3;
                 photoViewer.V3 = i11 - 1;
                 String absolutePath = file.getAbsolutePath();
-                boolean z10 = this.f42112b;
+                boolean z10 = this.f42114b;
                 if (z10) {
                     intValue = 0;
                 } else {
@@ -57,7 +57,7 @@ public final class tr0 implements Runnable {
                 MediaController.PhotoEntry orientation = new MediaController.PhotoEntry(0, i11, 0L, absolutePath, intValue, z10, 0, 0, 0L).setOrientation(imageOrientation);
                 photoViewer.f33887c2 = 2;
                 photoViewer.f34046u2 = false;
-                photoViewer.d = new fu0(photoViewer, photoViewer.d, messageObject, orientation, this.f42113c, this.d);
+                photoViewer.d = new fu0(photoViewer, photoViewer.d, messageObject, orientation, this.f42115c, this.d);
                 photoViewer.f34000p1.l();
                 if (photoViewer.U6 == null) {
                     photoViewer.U6 = VelocityTracker.obtain();
@@ -106,9 +106,9 @@ public final class tr0 implements Runnable {
                 iArr[0] = i12;
                 int i13 = ((int[]) obj)[0];
                 if (i12 == i13) {
-                    wu0 wu0Var = ss0Var.f41765b.f33904e0;
-                    boolean z11 = this.f42112b;
-                    boolean z12 = this.f42113c;
+                    wu0 wu0Var = ss0Var.f41767b.f33904e0;
+                    boolean z11 = this.f42114b;
+                    boolean z12 = this.f42115c;
                     int i14 = z11 ? 1 : 0;
                     boolean z13 = this.d;
                     if ((z12 ? 1 : 0) + i14 + (z13 ? 1 : 0) > 1) {
@@ -138,11 +138,11 @@ public final class tr0 implements Runnable {
     }
 
     public tr0(PhotoViewer photoViewer, File file, boolean z10, MessageObject messageObject, boolean z11, boolean z12) {
-        this.f42114e = photoViewer;
-        this.f42115f = file;
-        this.f42112b = z10;
+        this.f42116e = photoViewer;
+        this.f42117f = file;
+        this.f42114b = z10;
         this.h = messageObject;
-        this.f42113c = z11;
+        this.f42115c = z11;
         this.d = z12;
     }
 }

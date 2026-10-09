@@ -43,7 +43,7 @@ public final class a extends o91 {
                 }
                 return;
             default:
-                ((vs0) this.U).d.J0(((ws0) this.V).f35809n.getAnimatingIndicatorProgress());
+                ((vs0) this.U).d.J0(((ws0) this.V).f35811n.getAnimatingIndicatorProgress());
                 return;
         }
     }
@@ -69,7 +69,7 @@ public final class a extends o91 {
     public void y(int i10, boolean z10) {
         switch (this.T) {
             case 1:
-                int i11 = ((ws0) this.V).f35809n.f29098b0.get(i10, -1);
+                int i11 = ((ws0) this.V).f35811n.f29098b0.get(i10, -1);
                 bw0 bw0Var = ((vs0) this.U).d;
                 if (i11 <= 0) {
                     bw0.t(bw0Var, 8, z10);
@@ -97,7 +97,7 @@ public final class a extends o91 {
                 }
                 return;
             default:
-                ((ws0) this.V).f35809n.f29098b0.get(i10, -1);
+                ((ws0) this.V).f35811n.f29098b0.get(i10, -1);
                 ((vs0) this.U).d.J0(1.0f);
                 return;
         }

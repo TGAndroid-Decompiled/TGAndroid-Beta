@@ -4,17 +4,17 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.ImageReceiver;
 public final class sz0 extends AnimatorListenerAdapter {
-    public final ProfileActivity f41802a;
+    public final ProfileActivity f41804a;
 
     public sz0(ProfileActivity profileActivity) {
-        this.f41802a = profileActivity;
+        this.f41804a = profileActivity;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         org.telegram.ui.ActionBar.k kVar;
         int w02;
-        ProfileActivity profileActivity = this.f41802a;
+        ProfileActivity profileActivity = this.f41804a;
         kVar = ((org.telegram.ui.ActionBar.n2) profileActivity).actionBar;
         if (profileActivity.f34319p2) {
             w02 = 1090519039;

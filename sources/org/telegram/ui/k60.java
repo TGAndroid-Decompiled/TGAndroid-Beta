@@ -3,12 +3,12 @@ package org.telegram.ui;
 import java.util.ArrayList;
 import org.telegram.messenger.ChatObject;
 public final class k60 extends s4.o {
-    public final ArrayList f39104b;
-    public final l60 f39105c;
+    public final ArrayList f39106b;
+    public final l60 f39107c;
 
     public k60(l60 l60Var, ArrayList arrayList) {
-        this.f39105c = l60Var;
-        this.f39104b = arrayList;
+        this.f39107c = l60Var;
+        this.f39106b = arrayList;
     }
 
     @Override
@@ -18,11 +18,11 @@ public final class k60 extends s4.o {
 
     @Override
     public final boolean b(int i10, int i11) {
-        ArrayList arrayList = this.f39104b;
+        ArrayList arrayList = this.f39106b;
         if (i10 < arrayList.size()) {
-            l60 l60Var = this.f39105c;
-            if (i11 < l60Var.f39442e.size()) {
-                return ((ChatObject.VideoParticipant) arrayList.get(i10)).equals(l60Var.f39442e.get(i11));
+            l60 l60Var = this.f39107c;
+            if (i11 < l60Var.f39444e.size()) {
+                return ((ChatObject.VideoParticipant) arrayList.get(i10)).equals(l60Var.f39444e.get(i11));
             }
             return false;
         }
@@ -31,11 +31,11 @@ public final class k60 extends s4.o {
 
     @Override
     public final int d() {
-        return this.f39105c.f39442e.size();
+        return this.f39107c.f39444e.size();
     }
 
     @Override
     public final int e() {
-        return this.f39104b.size();
+        return this.f39106b.size();
     }
 }

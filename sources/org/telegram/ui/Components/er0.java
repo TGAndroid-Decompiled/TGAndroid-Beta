@@ -24,7 +24,7 @@ public final class er0 extends pm0 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47660f != 1) {
+        if (d1Var.f47662f != 1) {
             return true;
         }
         return false;
@@ -90,7 +90,7 @@ public final class er0 extends pm0 {
         arrayList.addAll(arrayList2);
         org.telegram.ui.zn znVar = mr0Var.f28902f0;
         if (znVar != null) {
-            int i16 = znVar.f44698a;
+            int i16 = znVar.f44700a;
             if (i16 != 1) {
                 if (i16 == 2) {
                     while (!arrayList.isEmpty() && arrayList.size() < 80) {

@@ -7,23 +7,23 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class mi extends ci0 {
-    public final zn f39925e;
+    public final zn f39927e;
 
     public mi(zn znVar, Context context, int i10, MessageObject messageObject) {
         super(context);
-        this.f39925e = znVar;
-        this.f36680a = null;
+        this.f39927e = znVar;
+        this.f36682a = null;
         if (!messageObject.isRoundVideo()) {
             messageObject.isVoice();
         }
         org.telegram.ui.Components.j10 j10Var = new org.telegram.ui.Components.j10(context, null);
-        this.f36682c = j10Var;
+        this.f36684c = j10Var;
         j10Var.f(org.telegram.ui.ActionBar.i6.G8, org.telegram.ui.ActionBar.i6.f20888i6, -1);
         j10Var.setViewType(13);
         j10Var.setIsSingleCell(false);
         addView(j10Var, w7.x5.d(-1.0f, -2));
         org.telegram.ui.Components.ea0 ea0Var = new org.telegram.ui.Components.ea0(context, null);
-        this.f36681b = ea0Var;
+        this.f36683b = ea0Var;
         ea0Var.setTextSize(1, 14.0f);
         ea0Var.setGravity(19);
         ea0Var.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.E8, false));

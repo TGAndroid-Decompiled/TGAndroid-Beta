@@ -87,12 +87,12 @@ import org.telegram.ui.dj0;
 import org.telegram.ui.fy;
 import qg.c2;
 public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, h81, OnSuccessListener, n, f6.a, fb.n, w, a2, f5, k0 {
-    public static volatile d f51103c;
-    public final int f51104a;
-    public Object f51105b;
+    public static volatile d f51105c;
+    public final int f51106a;
+    public Object f51107b;
 
     public d(int i10, boolean z10) {
-        this.f51104a = i10;
+        this.f51106a = i10;
     }
 
     public static void D(CharSequence charSequence, ByteBuffer byteBuffer) {
@@ -328,7 +328,7 @@ public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, 
 
     @Override
     public void A(CharSequence charSequence) {
-        o4 o4Var = ((q4) this.f51105b).G;
+        o4 o4Var = ((q4) this.f51107b).G;
         if (o4Var != null) {
             t3 t3Var = (t3) o4Var;
             t3Var.getClass();
@@ -344,7 +344,7 @@ public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, 
 
     @Override
     public n9 C() {
-        return (q4) this.f51105b;
+        return (q4) this.f51107b;
     }
 
     public void E(long j3) {
@@ -357,12 +357,12 @@ public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, 
 
     @Override
     public ii.a F() {
-        return ((q4) this.f51105b).f12251a;
+        return ((q4) this.f51107b).f12251a;
     }
 
     @Override
     public boolean G() {
-        q4 q4Var = (q4) this.f51105b;
+        q4 q4Var = (q4) this.f51107b;
         o4 o4Var = q4Var.G;
         if (o4Var != null) {
             ii.a aVar = q4Var.f12251a;
@@ -376,7 +376,7 @@ public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, 
 
     @Override
     public void I(int i10, int i11) {
-        q4 q4Var = (q4) this.f51105b;
+        q4 q4Var = (q4) this.f51107b;
         o4 o4Var = q4Var.G;
         if (o4Var != null) {
             ii.a aVar = q4Var.f12251a;
@@ -389,15 +389,15 @@ public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, 
 
     @Override
     public void I0() {
-        ((l0) this.f51105b).h.k();
+        ((l0) this.f51107b).h.k();
     }
 
     @Override
     public void J(int i10, int i11, boolean z10) {
-        switch (this.f51104a) {
+        switch (this.f51106a) {
             case 24:
-                ((r) this.f51105b).K(i10, z10, i11, false, 0L);
-                r rVar = (r) this.f51105b;
+                ((r) this.f51107b).K(i10, z10, i11, false, 0L);
+                r rVar = (r) this.f51107b;
                 dj0 dj0Var = rVar.O;
                 if (dj0Var != null) {
                     dj0Var.i();
@@ -406,7 +406,7 @@ public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, 
                 }
                 return;
             default:
-                e2 e2Var = (e2) this.f51105b;
+                e2 e2Var = (e2) this.f51107b;
                 e2Var.s0(i10, i11, z10);
                 dj0 dj0Var2 = e2Var.O0;
                 if (dj0Var2 != null) {
@@ -420,17 +420,17 @@ public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, 
 
     @Override
     public void K() {
-        ((l0) this.f51105b).h.o();
+        ((l0) this.f51107b).h.o();
     }
 
     @Override
     public void K0(float f7) {
-        ((l0) this.f51105b).h.setRotation(f7);
+        ((l0) this.f51107b).h.setRotation(f7);
     }
 
     @Override
     public void M() {
-        q4 q4Var = (q4) this.f51105b;
+        q4 q4Var = (q4) this.f51107b;
         o4 o4Var = q4Var.G;
         if (o4Var != null) {
             ii.a aVar = q4Var.f12251a;
@@ -445,7 +445,7 @@ public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, 
 
     @Override
     public void Q() {
-        q4 q4Var = (q4) this.f51105b;
+        q4 q4Var = (q4) this.f51107b;
         o4 o4Var = q4Var.G;
         if (o4Var != null) {
             ii.a aVar = q4Var.f12251a;
@@ -464,7 +464,7 @@ public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, 
     }
 
     public void a(j jVar) {
-        LinkedHashMap linkedHashMap = (LinkedHashMap) this.f51105b;
+        LinkedHashMap linkedHashMap = (LinkedHashMap) this.f51107b;
         long[] jArr = jVar.f4128e;
         if (jArr.length > 0 && !linkedHashMap.containsKey(Long.valueOf(jArr[0]))) {
             linkedHashMap.put(Long.valueOf(jVar.f4128e[0]), jVar);
@@ -473,12 +473,12 @@ public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, 
 
     @Override
     public void a0() {
-        ((l0) this.f51105b).h.f15572a.g(1, true);
+        ((l0) this.f51107b).h.f15572a.g(1, true);
     }
 
     @Override
     public void accept(Object obj, Object obj2) {
-        switch (this.f51104a) {
+        switch (this.f51106a) {
             case 1:
                 a8.e eVar = new a8.e(0, (TaskCompletionSource) obj2);
                 Parcel obtain = Parcel.obtain();
@@ -486,7 +486,7 @@ public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, 
                 int i10 = a8.a.f329a;
                 obtain.writeStrongBinder(eVar);
                 obtain.writeInt(1);
-                ((l8.a) this.f51105b).writeToParcel(obtain, 0);
+                ((l8.a) this.f51107b).writeToParcel(obtain, 0);
                 ((a8.c) ((g) obj).u()).F0(obtain, 2);
                 return;
             case 19:
@@ -494,7 +494,7 @@ public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, 
                 g6.i iVar = (g6.i) ((g6.s) obj).u();
                 Parcel N0 = iVar.N0();
                 v.d(N0, qVar);
-                N0.writeStringArray((String[]) this.f51105b);
+                N0.writeStringArray((String[]) this.f51107b);
                 iVar.S0(N0, 5);
                 return;
             default:
@@ -503,7 +503,7 @@ public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, 
                 Parcel J0 = iVar2.J0();
                 int i11 = f.f12041a;
                 J0.writeStrongBinder(lVar);
-                f.c(J0, (x5.e) this.f51105b);
+                f.c(J0, (x5.e) this.f51107b);
                 iVar2.K0(J0, 1);
                 return;
         }
@@ -515,7 +515,7 @@ public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, 
 
     @Override
     public void c(i1 i1Var) {
-        o4 o4Var = ((q4) this.f51105b).G;
+        o4 o4Var = ((q4) this.f51107b).G;
         if (o4Var != null) {
             x3 x3Var = ((t3) o4Var).f12705a;
             x3.N1(x3Var, i1Var);
@@ -525,7 +525,7 @@ public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, 
 
     @Override
     public void d(k kVar, boolean z10) {
-        ((g.r) this.f51105b).g(kVar);
+        ((g.r) this.f51107b).g(kVar);
     }
 
     @Override
@@ -535,12 +535,12 @@ public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, 
 
     @Override
     public Paint.FontMetricsInt f() {
-        return ((m) this.f51105b).f5555f.getEditText().getPaint().getFontMetricsInt();
+        return ((m) this.f51107b).f5555f.getEditText().getPaint().getFontMetricsInt();
     }
 
     @Override
     public void g() {
-        q4 q4Var = (q4) this.f51105b;
+        q4 q4Var = (q4) this.f51107b;
         o4 o4Var = q4Var.G;
         if (o4Var != null) {
             x3.Q1(((t3) o4Var).f12705a, q4Var.f12251a);
@@ -550,7 +550,7 @@ public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, 
     @Override
     public void h(int i10) {
         boolean z10;
-        wo0 wo0Var = (wo0) this.f51105b;
+        wo0 wo0Var = (wo0) this.f51107b;
         wo0Var.D0--;
         wo0Var.f10621e0 = i10;
         if (wo0Var.f10623f0 != i10) {
@@ -578,7 +578,7 @@ public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, 
 
     @Override
     public boolean i0() {
-        l0 l0Var = (l0) this.f51105b;
+        l0 l0Var = (l0) this.f51107b;
         g0 g0Var = l0Var.h;
         boolean m10 = g0Var.m(-90.0f);
         g0Var.i();
@@ -589,7 +589,7 @@ public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, 
     @Override
     public void j(Object obj) {
         Bundle extras;
-        ProxyBillingActivityV2 proxyBillingActivityV2 = (ProxyBillingActivityV2) this.f51105b;
+        ProxyBillingActivityV2 proxyBillingActivityV2 = (ProxyBillingActivityV2) this.f51107b;
         androidx.activity.result.a aVar = (androidx.activity.result.a) obj;
         proxyBillingActivityV2.getClass();
         Intent intent = aVar.f2161b;
@@ -612,7 +612,7 @@ public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, 
 
     @Override
     public void k(int i10, int i11, CharSequence charSequence, boolean z10) {
-        ci.g gVar = ((m) this.f51105b).f5555f;
+        ci.g gVar = ((m) this.f51107b).f5555f;
         if (gVar == null) {
             return;
         }
@@ -631,15 +631,15 @@ public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, 
 
     public Set l() {
         Set unmodifiableSet;
-        synchronized (((HashSet) this.f51105b)) {
-            unmodifiableSet = DesugarCollections.unmodifiableSet((HashSet) this.f51105b);
+        synchronized (((HashSet) this.f51107b)) {
+            unmodifiableSet = DesugarCollections.unmodifiableSet((HashSet) this.f51107b);
         }
         return unmodifiableSet;
     }
 
     @Override
     public void n(String str, long j3, long j10, long j11) {
-        p pVar = (p) this.f51105b;
+        p pVar = (p) this.f51107b;
         try {
             pVar.a(new o(new Status(2103, null, null, null), 1));
         } catch (IllegalStateException e7) {
@@ -653,7 +653,7 @@ public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, 
     }
 
     public void o() {
-        ((androidx.fragment.app.u) this.f51105b).d.R();
+        ((androidx.fragment.app.u) this.f51107b).d.R();
     }
 
     @Override
@@ -662,7 +662,7 @@ public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, 
 
     @Override
     public void onStateChanged(boolean z10, int i10) {
-        b7 b7Var = (b7) this.f51105b;
+        b7 b7Var = (b7) this.f51107b;
         z6 z6Var = b7Var.M;
         k81 k81Var = b7Var.f4787x;
         if (k81Var == null) {
@@ -681,7 +681,7 @@ public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, 
         int i11;
         d2 d2Var;
         d1 b10;
-        d6.a aVar = (d6.a) this.f51105b;
+        d6.a aVar = (d6.a) this.f51107b;
         Bundle bundle = (Bundle) obj;
         if (p0.f6959j) {
             Context context = aVar.f8156a;
@@ -802,11 +802,11 @@ public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, 
 
     @Override
     public void onVideoSizeChanged(int i10, int i11, int i12, float f7) {
-        c2 c2Var = ((b7) this.f51105b).f4785w;
+        c2 c2Var = ((b7) this.f51107b).f4785w;
         if (c2Var != null) {
             float f10 = i10 / i11;
-            if (Math.abs(c2Var.f46209y0 - f10) >= 1.0E-4f) {
-                c2Var.f46209y0 = f10;
+            if (Math.abs(c2Var.f46211y0 - f10) >= 1.0E-4f) {
+                c2Var.f46211y0 = f10;
                 c2Var.requestLayout();
             }
         }
@@ -814,18 +814,18 @@ public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, 
 
     @Override
     public boolean q() {
-        l0 l0Var = (l0) this.f51105b;
+        l0 l0Var = (l0) this.f51107b;
         l0Var.f5369e.invalidate();
         return l0Var.h.j();
     }
 
     @Override
     public void q0() {
-        f6.j0((f6) this.f51105b);
+        f6.j0((f6) this.f51107b);
     }
 
     public void r(int i10, String str) {
-        ByteBuffer byteBuffer = (ByteBuffer) this.f51105b;
+        ByteBuffer byteBuffer = (ByteBuffer) this.f51107b;
         B(i10, 2);
         try {
             int N = N(str.length());
@@ -853,12 +853,12 @@ public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, 
 
     @Override
     public void s(Bitmap bitmap) {
-        ((f6.i) this.f51105b).e(bitmap, 3);
+        ((f6.i) this.f51107b).e(bitmap, 3);
     }
 
     @Override
     public boolean s0(int i10) {
-        if (i10 == ((wo0) this.f51105b).f10619d0) {
+        if (i10 == ((wo0) this.f51107b).f10619d0) {
             return true;
         }
         return false;
@@ -868,7 +868,7 @@ public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, 
         B(i10, 2);
         x(bArr.length);
         int length = bArr.length;
-        ByteBuffer byteBuffer = (ByteBuffer) this.f51105b;
+        ByteBuffer byteBuffer = (ByteBuffer) this.f51107b;
         if (byteBuffer.remaining() >= length) {
             byteBuffer.put(bArr, 0, length);
             return;
@@ -878,7 +878,7 @@ public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, 
 
     public void u(int i10) {
         byte b10 = (byte) i10;
-        ByteBuffer byteBuffer = (ByteBuffer) this.f51105b;
+        ByteBuffer byteBuffer = (ByteBuffer) this.f51107b;
         if (byteBuffer.hasRemaining()) {
             byteBuffer.put(b10);
             return;
@@ -888,7 +888,7 @@ public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, 
 
     @Override
     public boolean v(k kVar) {
-        Window.Callback callback = ((g.r) this.f51105b).f10173f.getCallback();
+        Window.Callback callback = ((g.r) this.f51107b).f10173f.getCallback();
         if (callback != null) {
             callback.onMenuOpened(108, kVar);
             return true;
@@ -898,7 +898,7 @@ public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, 
 
     @Override
     public Object v2() {
-        Type type = (Type) this.f51105b;
+        Type type = (Type) this.f51107b;
         if (type instanceof ParameterizedType) {
             Type type2 = ((ParameterizedType) type).getActualTypeArguments()[0];
             if (type2 instanceof Class) {
@@ -925,7 +925,7 @@ public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, 
     @Override
     public void x0(ArrayList arrayList) {
         boolean z10;
-        wo0 wo0Var = (wo0) this.f51105b;
+        wo0 wo0Var = (wo0) this.f51107b;
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
             wo0Var.J.add(((z1) arrayList.get(i10)).f10879a);
         }
@@ -943,7 +943,7 @@ public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, 
 
     @Override
     public o9 y() {
-        o4 o4Var = ((q4) this.f51105b).G;
+        o4 o4Var = ((q4) this.f51107b).G;
         if (o4Var != null) {
             return ((t3) o4Var).f12705a.getTextSelectionHelper();
         }
@@ -951,8 +951,8 @@ public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, 
     }
 
     public d(com.google.android.gms.common.api.j jVar, Object obj, int i10) {
-        this.f51104a = i10;
-        this.f51105b = obj;
+        this.f51106a = i10;
+        this.f51107b = obj;
     }
 
     @Override
@@ -960,34 +960,34 @@ public final class d implements s, br0, a0, androidx.activity.result.b, mb0, e, 
     }
 
     public d(Object obj, int i10) {
-        this.f51104a = i10;
-        this.f51105b = obj;
+        this.f51106a = i10;
+        this.f51107b = obj;
     }
 
     public d(byte[] bArr, int i10) {
-        this.f51104a = 13;
+        this.f51106a = 13;
         ByteBuffer wrap = ByteBuffer.wrap(bArr, 0, i10);
-        this.f51105b = wrap;
+        this.f51107b = wrap;
         wrap.order(ByteOrder.LITTLE_ENDIAN);
     }
 
     public d(x6.a aVar) {
-        this.f51104a = 27;
+        this.f51106a = 27;
         n6.l.h(aVar);
-        this.f51105b = aVar;
+        this.f51107b = aVar;
     }
 
     public d(int i10) {
-        this.f51104a = i10;
+        this.f51106a = i10;
         switch (i10) {
             case 7:
-                this.f51105b = new LinkedHashMap();
+                this.f51107b = new LinkedHashMap();
                 return;
             case 21:
-                this.f51105b = new pb.c(fc.a.h, 19);
+                this.f51107b = new pb.c(fc.a.h, 19);
                 return;
             default:
-                this.f51105b = new HashSet();
+                this.f51107b = new HashSet();
                 return;
         }
     }

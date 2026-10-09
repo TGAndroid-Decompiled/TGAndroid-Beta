@@ -40,7 +40,7 @@ public final class af extends xg {
         switch (this.f24677l0) {
             case 0:
                 pf pfVar = this.m0.L0;
-                if ((pfVar != null && !pfVar.f37009q0) || this.f32845r > 0) {
+                if ((pfVar != null && !pfVar.f37011q0) || this.f32845r > 0) {
                     return true;
                 }
                 return false;

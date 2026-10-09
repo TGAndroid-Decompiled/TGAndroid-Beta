@@ -11,10 +11,10 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 public final class ql implements org.telegram.ui.Components.wi {
-    public final zn f41141a;
+    public final zn f41143a;
 
     public ql(zn znVar) {
-        this.f41141a = znVar;
+        this.f41143a = znVar;
     }
 
     @Override
@@ -34,7 +34,7 @@ public final class ql implements org.telegram.ui.Components.wi {
         boolean z19;
         String str2;
         TLRPC.Message message;
-        zn znVar = this.f41141a;
+        zn znVar = this.f41143a;
         if (znVar.getParentActivity() != null && (h4Var = znVar.J1) != null) {
             boolean z20 = h4Var.G;
             MessageObject messageObject = h4Var.K1;
@@ -138,7 +138,7 @@ public final class ql implements org.telegram.ui.Components.wi {
                     }
                     MessageObject messageObject2 = znVar.p5;
                     if (messageObject2 != null && messageObject2.needResendWhenEdit()) {
-                        MessageSuggestionParams messageSuggestionParams = znVar.f44781g5;
+                        MessageSuggestionParams messageSuggestionParams = znVar.f44783g5;
                         if (messageSuggestionParams == null) {
                             messageSuggestionParams = MessageSuggestionParams.of(znVar.p5.messageOwner.suggested_post);
                         }
@@ -149,7 +149,7 @@ public final class ql implements org.telegram.ui.Components.wi {
                         MessageObject messageObject3 = znVar.p5;
                         int i20 = i15;
                         MessageObject messageObject4 = znVar.X3;
-                        pn pnVar = znVar.f44840l5;
+                        pn pnVar = znVar.f44842l5;
                         if (i10 != 4 && !z13) {
                             z16 = true;
                             arrayList = arrayList2;
@@ -167,15 +167,15 @@ public final class ql implements org.telegram.ui.Components.wi {
                         i14 = i15;
                         AccountInstance accountInstance2 = znVar.getAccountInstance();
                         long j12 = znVar.T5;
-                        MessageObject messageObject5 = znVar.f44866n5;
+                        MessageObject messageObject5 = znVar.f44868n5;
                         MessageObject messageObject6 = znVar.X3;
-                        pn pnVar2 = znVar.f44840l5;
+                        pn pnVar2 = znVar.f44842l5;
                         if (i10 != 4 && !z13) {
                             z15 = false;
                         } else {
                             z15 = true;
                         }
-                        SendMessagesHelper.prepareSendingMedia(accountInstance2, arrayList2, j12, messageObject5, messageObject6, null, pnVar2, z15, z10, znVar.p5, z11, i11, i12, znVar.R3, z14, null, znVar.H8(), j3, z12, j10, znVar.S8(), znVar.f44781g5);
+                        SendMessagesHelper.prepareSendingMedia(accountInstance2, arrayList2, j12, messageObject5, messageObject6, null, pnVar2, z15, z10, znVar.p5, z11, i11, i12, znVar.R3, z14, null, znVar.H8(), j3, z12, j10, znVar.S8(), znVar.f44783g5);
                     }
                     i15 = i14 + 1;
                     ceil = i13;
@@ -200,7 +200,7 @@ public final class ql implements org.telegram.ui.Components.wi {
 
     @Override
     public final void P0() {
-        this.f41141a.Y.N();
+        this.f41143a.Y.N();
     }
 
     @Override
@@ -210,18 +210,18 @@ public final class ql implements org.telegram.ui.Components.wi {
 
     @Override
     public final void f0(org.telegram.ui.Components.jh jhVar) {
-        this.f41141a.k8(jhVar);
+        this.f41143a.k8(jhVar);
     }
 
     @Override
     public final boolean i0() {
-        return this.f41141a.U9();
+        return this.f41143a.U9();
     }
 
     @Override
     public final void p1(TLRPC.User user) {
         String publicUsername = UserObject.getPublicUsername(user);
-        zn znVar = this.f41141a;
+        zn znVar = this.f41143a;
         if (znVar.Y != null && user != null && !TextUtils.isEmpty(publicUsername)) {
             ok okVar = znVar.Y;
             okVar.setFieldText("@" + publicUsername + " ");

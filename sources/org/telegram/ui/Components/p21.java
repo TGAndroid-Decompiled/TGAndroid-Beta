@@ -34,7 +34,7 @@ public final class p21 extends pm0 {
     @Override
     public final void v(s4.d1 d1Var, int i10) {
         int c10;
-        if (d1Var.f47660f == 0) {
+        if (d1Var.f47662f == 0) {
             boolean z10 = true;
             org.telegram.ui.ActionBar.k6 k6Var = (org.telegram.ui.ActionBar.k6) ((ArrayList) this.d.get(i10 - 1)).get(0);
             if (k6Var.f21345f == org.telegram.ui.ActionBar.i6.Nd) {
@@ -42,7 +42,7 @@ public final class p21 extends pm0 {
             } else {
                 c10 = k6Var.c();
             }
-            org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) d1Var.f47656a;
+            org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) d1Var.f47658a;
             z8Var.f23818a.setText(org.telegram.ui.ActionBar.g5.i(k6Var.f21345f));
             z8Var.f23819b = c10;
             if (c10 != 0) {

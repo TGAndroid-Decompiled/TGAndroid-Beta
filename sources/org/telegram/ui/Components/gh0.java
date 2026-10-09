@@ -160,17 +160,17 @@ public final class gh0 implements sf.a {
         }
         if (k81Var != null && tf.c.a(photoViewer.f34082y) == 1) {
             qf.d dVar = new qf.d(photoViewer.f34082y, gh0Var);
-            dVar.f46151c = "photo-viewer-pip-" + k81Var.f27878a;
-            dVar.f46152e = 1;
+            dVar.f46153c = "photo-viewer-pip-" + k81Var.f27878a;
+            dVar.f46154e = 1;
             dVar.d = AndroidUtilities.dp(10.0f);
-            dVar.f46156j = gh0Var.d;
-            dVar.f46157k = gh0Var.f26716k0;
+            dVar.f46158j = gh0Var.d;
+            dVar.f46159k = gh0Var.f26716k0;
             int i10 = gh0Var.S;
             int i11 = gh0Var.T;
             dVar.h = i10;
-            dVar.f46155i = i11;
-            dVar.f46154g = k81Var.d;
-            dVar.f46153f = true;
+            dVar.f46157i = i11;
+            dVar.f46156g = k81Var.d;
+            dVar.f46155f = true;
             gh0Var.W = dVar.a();
         }
         gh0Var.z();
@@ -197,11 +197,11 @@ public final class gh0 implements sf.a {
         qf.e eVar = this.W;
         if (eVar != null && eVar.h.b()) {
             WindowManager.LayoutParams layoutParams = this.f26705c;
-            int width = this.W.h.f48256a.width();
+            int width = this.W.h.f48258a.width();
             this.H = width;
             layoutParams.width = width;
             WindowManager.LayoutParams layoutParams2 = this.f26705c;
-            int height = this.W.h.f48256a.height();
+            int height = this.W.h.f48258a.height();
             this.I = height;
             layoutParams2.height = height;
         }

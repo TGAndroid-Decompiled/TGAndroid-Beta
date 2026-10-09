@@ -2,14 +2,14 @@ package yh;
 
 import android.view.View;
 public final class d1 implements View.OnClickListener {
-    public final int f52376a;
-    public final s3 f52377b;
-    public final int f52378c;
+    public final int f52378a;
+    public final s3 f52379b;
+    public final int f52380c;
 
     public d1(s3 s3Var, int i10, int i11) {
-        this.f52376a = i11;
-        this.f52377b = s3Var;
-        this.f52378c = i10;
+        this.f52378a = i11;
+        this.f52379b = s3Var;
+        this.f52380c = i10;
     }
 
     @Override
@@ -18,10 +18,10 @@ public final class d1 implements View.OnClickListener {
         int i11;
         int i12;
         int i13;
-        switch (this.f52376a) {
+        switch (this.f52378a) {
             case 0:
-                s3 s3Var = this.f52377b;
-                int i14 = this.f52378c;
+                s3 s3Var = this.f52379b;
+                int i14 = this.f52380c;
                 s3Var.S0 = i14;
                 d2 d2Var = s3Var.Z;
                 int currentPosition = d2Var.getCurrentPosition();
@@ -33,8 +33,8 @@ public final class d1 implements View.OnClickListener {
                 d2Var.D(currentPosition + i10);
                 return;
             case 1:
-                s3 s3Var2 = this.f52377b;
-                int i15 = this.f52378c;
+                s3 s3Var2 = this.f52379b;
+                int i15 = this.f52380c;
                 s3Var2.S0 = i15;
                 d2 d2Var2 = s3Var2.Z;
                 int currentPosition2 = d2Var2.getCurrentPosition();
@@ -46,8 +46,8 @@ public final class d1 implements View.OnClickListener {
                 d2Var2.D(currentPosition2 + i11);
                 return;
             case 2:
-                s3 s3Var3 = this.f52377b;
-                int i16 = this.f52378c;
+                s3 s3Var3 = this.f52379b;
+                int i16 = this.f52380c;
                 s3Var3.S0 = i16;
                 d2 d2Var3 = s3Var3.Z;
                 int currentPosition3 = d2Var3.getCurrentPosition();
@@ -59,8 +59,8 @@ public final class d1 implements View.OnClickListener {
                 d2Var3.D(currentPosition3 + i12);
                 return;
             default:
-                s3 s3Var4 = this.f52377b;
-                int i17 = this.f52378c;
+                s3 s3Var4 = this.f52379b;
+                int i17 = this.f52380c;
                 s3Var4.S0 = i17;
                 d2 d2Var4 = s3Var4.Z;
                 int currentPosition4 = d2Var4.getCurrentPosition();

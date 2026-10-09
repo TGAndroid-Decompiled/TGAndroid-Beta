@@ -335,7 +335,7 @@ public final class u1 extends FrameLayout {
         }
         t1 t1Var = this.f32303i0;
         if (t1Var != null) {
-            ((di1) t1Var).f36985b.f43633d0.d(this.J, this.P);
+            ((di1) t1Var).f36987b.f43635d0.d(this.J, this.P);
         }
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
         if (getMeasuredHeight() != this.f32299f && getMeasuredWidth() != this.h) {

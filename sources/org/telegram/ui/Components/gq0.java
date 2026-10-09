@@ -17,12 +17,12 @@ public final class gq0 implements r0.n, org.telegram.ui.ActionBar.l1 {
         WindowInsets g10 = k1Var.g();
         mr0 mr0Var = this.f26861b;
         mr0Var.processLegacyContainerInsets(g10);
-        i0.b f7 = k1Var.f46775a.f(519);
+        i0.b f7 = k1Var.f46777a.f(519);
         if (!mr0Var.G0.equals(f7)) {
             mr0Var.G0 = f7;
             mr0Var.container.requestLayout();
         }
-        return r0.k1.f46774b;
+        return r0.k1.f46776b;
     }
 
     @Override

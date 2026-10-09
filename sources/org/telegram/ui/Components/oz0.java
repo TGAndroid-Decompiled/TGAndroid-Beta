@@ -98,7 +98,7 @@ public class oz0 extends FrameLayout implements NotificationCenter.NotificationC
             this.f29608e.setLayoutManager(d0Var);
             s4.j jVar = new s4.j();
             jVar.n(45L);
-            jVar.f47716o = hsVar;
+            jVar.f47718o = hsVar;
             this.f29608e.setItemAnimator(jVar);
             this.f29608e.setSelectorDrawableColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20888i6, this.f29603b));
             kz0 kz0Var2 = this.f29608e;

@@ -22,7 +22,7 @@ public final class u30 extends org.telegram.ui.Components.qm0 {
             i30Var.setTranslationX(0.0f);
             i30Var.setTranslationY(0.0f);
         }
-        u30 u30Var = g60Var.f37836m2;
+        u30 u30Var = g60Var.f37838m2;
         i30Var.getClass();
         u30Var.getClass();
         if (RecyclerView.R(i30Var) == -1 && i30Var.getRenderer() != null) {

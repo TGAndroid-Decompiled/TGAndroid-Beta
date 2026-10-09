@@ -138,7 +138,7 @@ public final class xl0 extends View {
         if (layoutManager instanceof s4.d0) {
             s4.d0 d0Var = (s4.d0) layoutManager;
             boolean z11 = true;
-            if (d0Var.f47644o == 1) {
+            if (d0Var.f47646o == 1) {
                 s4.i0 adapter = qm0Var.getAdapter();
                 if (adapter instanceof yl0) {
                     yl0 yl0Var = (yl0) adapter;

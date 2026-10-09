@@ -375,8 +375,8 @@ public final class sk extends qi {
                         z11 = false;
                     }
                     org.telegram.ui.br0 br0Var = new org.telegram.ui.br0(0, albumEntry, hashMap, arrayList, 0, z11, znVar2, false);
-                    br0Var.f36403l0 = true;
-                    br0Var.f36412s0 = new la.h(skVar, hashMap, arrayList, false, 14);
+                    br0Var.f36405l0 = true;
+                    br0Var.f36414s0 = new la.h(skVar, hashMap, arrayList, false, 14);
                     br0Var.f0(skVar.V, false);
                     org.telegram.ui.ActionBar.n2 n2Var2 = yiVar.f33228f0;
                     if (n2Var2 != null) {
@@ -555,7 +555,7 @@ public final class sk extends qi {
         } else {
             str = null;
         }
-        if (file.length() != 0 && str != null && vf.c.f49552i.contains(str)) {
+        if (file.length() != 0 && str != null && vf.c.f49554i.contains(str)) {
             if (file.length() > MessagesController.getInstance(UserConfig.selectedAccount).ringtoneSizeMax) {
                 new ad(this.f30173b.getContainer(), null).u(LocaleController.formatString("TooLargeError", R.string.TooLargeError, new Object[0]), LocaleController.formatString("ErrorRingtoneSizeTooBig", R.string.ErrorRingtoneSizeTooBig, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).ringtoneSizeMax / 1024)), null).j();
                 return false;

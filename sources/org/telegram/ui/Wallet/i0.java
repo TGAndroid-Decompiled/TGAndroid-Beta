@@ -9,27 +9,27 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class i0 implements Utilities.Callback2 {
-    public final int f34997a;
-    public final j0 f34998b;
-    public final TL_wallet.getTransactions f34999c;
+    public final int f35019a;
+    public final j0 f35020b;
+    public final TL_wallet.getTransactions f35021c;
 
     public i0(j0 j0Var, TL_wallet.getTransactions gettransactions, int i10) {
-        this.f34997a = i10;
-        this.f34998b = j0Var;
-        this.f34999c = gettransactions;
+        this.f35019a = i10;
+        this.f35020b = j0Var;
+        this.f35021c = gettransactions;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
         TL_wallet.walletTransactions wallettransactions = (TL_wallet.walletTransactions) obj;
         TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-        switch (this.f34997a) {
+        switch (this.f35019a) {
             case 0:
-                j0 j0Var = this.f34998b;
-                HashMap hashMap = j0Var.f35048e;
-                int i10 = j0Var.f35052j.f35093a;
+                j0 j0Var = this.f35020b;
+                HashMap hashMap = j0Var.f35062e;
+                int i10 = j0Var.f35066j.f35117a;
                 HashSet hashSet = j0Var.d;
-                ArrayList arrayList = j0Var.f35046b;
+                ArrayList arrayList = j0Var.f35060b;
                 j0Var.h = -1;
                 boolean z10 = false;
                 if (wallettransactions != null) {
@@ -93,11 +93,11 @@ public final class i0 implements Utilities.Callback2 {
                                     j0Var.c(wallettransaction6);
                                 }
                             }
-                            j0Var.f35049f = wallettransactions.next_offset;
-                            if (wallettransactions.transactions.size() < this.f34999c.limit) {
+                            j0Var.f35063f = wallettransactions.next_offset;
+                            if (wallettransactions.transactions.size() < this.f35021c.limit) {
                                 z10 = true;
                             }
-                            j0Var.f35050g = z10;
+                            j0Var.f35064g = z10;
                             z10 = true;
                         }
                     }
@@ -109,9 +109,9 @@ public final class i0 implements Utilities.Callback2 {
                 }
                 return;
             default:
-                j0 j0Var2 = this.f34998b;
-                int i15 = j0Var2.f35052j.f35093a;
-                j0Var2.f35051i = -1;
+                j0 j0Var2 = this.f35020b;
+                int i15 = j0Var2.f35066j.f35117a;
+                j0Var2.f35065i = -1;
                 if (wallettransactions != null) {
                     MessagesController.getInstance(i15).putUsers(wallettransactions.users, false);
                     MessagesController.getInstance(i15).putChats(wallettransactions.chats, false);
@@ -122,7 +122,7 @@ public final class i0 implements Utilities.Callback2 {
                         TL_wallet.walletTransaction wallettransaction7 = arrayList5.get(i16);
                         i16++;
                         TL_wallet.walletTransaction wallettransaction8 = wallettransaction7;
-                        ArrayList arrayList6 = j0Var2.f35046b;
+                        ArrayList arrayList6 = j0Var2.f35060b;
                         if (wallettransaction8 != null) {
                             int i17 = 0;
                             while (true) {
@@ -130,7 +130,7 @@ public final class i0 implements Utilities.Callback2 {
                                     TL_wallet.walletTransaction wallettransaction9 = (TL_wallet.walletTransaction) arrayList6.get(i17);
                                     if (TextUtils.equals(wallettransaction9.f20300id, wallettransaction8.f20300id)) {
                                         j0Var2.d.remove(wallettransaction8.f20300id);
-                                        j0Var2.f35048e.remove(wallettransaction8.f20300id);
+                                        j0Var2.f35062e.remove(wallettransaction8.f20300id);
                                         wallettransaction9.set(wallettransaction8);
                                     } else {
                                         i17++;
@@ -141,12 +141,12 @@ public final class i0 implements Utilities.Callback2 {
                             }
                         }
                     }
-                    j0Var2.f35049f = wallettransactions.next_offset;
-                    if (wallettransactions.transactions.size() < this.f34999c.limit) {
-                        j0Var2.f35050g = true;
+                    j0Var2.f35063f = wallettransactions.next_offset;
+                    if (wallettransactions.transactions.size() < this.f35021c.limit) {
+                        j0Var2.f35064g = true;
                     }
                 } else {
-                    j0Var2.f35050g = true;
+                    j0Var2.f35064g = true;
                 }
                 j0Var2.h();
                 j0Var2.f();

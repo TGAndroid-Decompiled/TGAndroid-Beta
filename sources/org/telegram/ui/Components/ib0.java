@@ -31,7 +31,7 @@ public final class ib0 extends d00 {
         mw0Var.f28965c = false;
         pb0 pb0Var = this.Y;
         if (i10 == 0) {
-            mw0Var.f28963a = this.f47771m;
+            mw0Var.f28963a = this.f47773m;
             mw0Var.f28964b = pb0Var.f29829e.h;
             mw0Var.f28965c = true;
             return mw0Var;

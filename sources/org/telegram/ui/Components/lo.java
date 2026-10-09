@@ -182,7 +182,7 @@ public final class lo extends qi implements rw0, NotificationCenter.Notification
         this.v = xnVar;
         fc1Var.setItemAnimator(xnVar);
         arrayList.clear();
-        xnVar.f47696m = false;
+        xnVar.f47698m = false;
         xnVar.C = false;
         xnVar.o(hs.h);
         xnVar.n(350L);
@@ -224,7 +224,7 @@ public final class lo extends qi implements rw0, NotificationCenter.Notification
         z40 z40Var = loVar.f28534y;
         s4.d1 K = loVar.f28525s.K(loVar.f28527t0 + i10);
         if (K != null) {
-            View view = K.f47656a;
+            View view = K.f47658a;
             if (view instanceof org.telegram.ui.Cells.d6) {
                 org.telegram.ui.Cells.d6 d6Var = (org.telegram.ui.Cells.d6) view;
                 if (d6Var.getTop() > AndroidUtilities.dp(40.0f)) {
@@ -270,7 +270,7 @@ public final class lo extends qi implements rw0, NotificationCenter.Notification
             if (znVar != null) {
                 znVar.f();
                 if (T != null) {
-                    View view = T.f47656a;
+                    View view = T.f47658a;
                     if ((view instanceof org.telegram.ui.Cells.d6) && znVar.getDelegate() != view) {
                         znVar.setDelegate((org.telegram.ui.Cells.d6) view);
                     }
@@ -309,7 +309,7 @@ public final class lo extends qi implements rw0, NotificationCenter.Notification
                 Activity parentActivity = n2Var.getParentActivity();
                 if (b10 instanceof rh.d) {
                     ArrayList arrayList = new ArrayList(1);
-                    arrayList.add(((rh.d) b10).f47549b);
+                    arrayList.add(((rh.d) b10).f47551b);
                     PhotoViewer.t1().K2(parentActivity, null, null);
                     PhotoViewer.t1().g2(arrayList, 0, 14, false, new pn(loVar, i10), null);
                     return;
@@ -318,22 +318,22 @@ public final class lo extends qi implements rw0, NotificationCenter.Notification
                     org.telegram.ui.rt.q().w(parentActivity);
                     org.telegram.ui.rt.q().v(new rn(loVar, i10));
                     org.telegram.ui.rt q6 = org.telegram.ui.rt.q();
-                    TLRPC.Document document = hVar.f47561b;
+                    TLRPC.Document document = hVar.f47563b;
                     if (MessageObject.isAnimatedEmoji(document)) {
                         i11 = 2;
                     } else {
                         i11 = 0;
                     }
-                    q6.t(document, null, "", null, null, i11, false, hVar.f47562c, loVar.f30172a, 200);
+                    q6.t(document, null, "", null, null, i11, false, hVar.f47564c, loVar.f30172a, 200);
                     return;
                 } else if (b10 instanceof rh.c) {
                     rh.c cVar = (rh.c) b10;
                     String str = cVar.d;
-                    loVar.j0(i10, new org.telegram.ui.wf(1, str, AndroidUtilities.formatFileSize(cVar.f47546e, true, true) + " " + cVar.f47547f), AndroidUtilities.dp(240.0f), AndroidUtilities.dp(60.0f));
+                    loVar.j0(i10, new org.telegram.ui.wf(1, str, AndroidUtilities.formatFileSize(cVar.f47548e, true, true) + " " + cVar.f47549f), AndroidUtilities.dp(240.0f), AndroidUtilities.dp(60.0f));
                     return;
                 } else if (b10 instanceof rh.g) {
                     rh.g gVar = (rh.g) b10;
-                    TLRPC.Document document2 = gVar.f47559b.getDocument();
+                    TLRPC.Document document2 = gVar.f47561b.getDocument();
                     String musicTitle = MessageObject.getMusicTitle(document2, true);
                     loVar.j0(i10, new ci.n5(musicTitle, MessageObject.getMusicAuthor(document2, true) + " - " + LocaleController.formatShortDuration((int) MessageObject.getDocumentDuration(document2)), gVar, 2), AndroidUtilities.dp(240.0f), AndroidUtilities.dp(60.0f));
                     return;
@@ -342,7 +342,7 @@ public final class lo extends qi implements rw0, NotificationCenter.Notification
                     return;
                 } else if (b10 instanceof rh.e) {
                     rh.e eVar = (rh.e) b10;
-                    g5.f0(loVar.getContext(), loVar.f30172a, eVar.f47551b, eVar.f47555n, new in(loVar, i10, 1), new jn(loVar, i10, 0));
+                    g5.f0(loVar.getContext(), loVar.f30172a, eVar.f47553b, eVar.f47557n, new in(loVar, i10, 1), new jn(loVar, i10, 0));
                     return;
                 } else {
                     loVar.e0(i10);
@@ -588,7 +588,7 @@ public final class lo extends qi implements rw0, NotificationCenter.Notification
             this.f28523r.m(this.C0);
             return;
         }
-        org.telegram.ui.Cells.a6 a6Var = (org.telegram.ui.Cells.a6) K.f47656a;
+        org.telegram.ui.Cells.a6 a6Var = (org.telegram.ui.Cells.a6) K.f47658a;
         if (!z10) {
             a6Var.setChecked(false);
         }
@@ -599,7 +599,7 @@ public final class lo extends qi implements rw0, NotificationCenter.Notification
         boolean z10;
         int i10;
         int i11;
-        if (TextUtils.isEmpty(b0(this.N)) && TextUtils.isEmpty(b0(this.O)) && TextUtils.isEmpty(b0(this.P)) && this.l1.f46676a.size() == 0) {
+        if (TextUtils.isEmpty(b0(this.N)) && TextUtils.isEmpty(b0(this.O)) && TextUtils.isEmpty(b0(this.P)) && this.l1.f46678a.size() == 0) {
             z10 = true;
         } else {
             z10 = false;
@@ -689,7 +689,7 @@ public final class lo extends qi implements rw0, NotificationCenter.Notification
         if (i15 < 1 || (this.f28499c0 && i10 < 1)) {
             z10 = false;
         }
-        if (TextUtils.isEmpty(this.P) && TextUtils.isEmpty(this.N) && TextUtils.isEmpty(this.O) && !z13 && this.l1.f46676a.size() <= 0) {
+        if (TextUtils.isEmpty(this.P) && TextUtils.isEmpty(this.N) && TextUtils.isEmpty(this.O) && !z13 && this.l1.f46678a.size() <= 0) {
             this.f28509h0 = true;
         } else {
             this.f28509h0 = false;
@@ -714,19 +714,19 @@ public final class lo extends qi implements rw0, NotificationCenter.Notification
     public final void Y(rh.e eVar, boolean z10) {
         boolean z11;
         TLRPC.Photo photo;
-        String str = eVar.f47551b;
+        String str = eVar.f47553b;
         qh.s sVar = this.Q;
-        boolean containsKey = sVar.f46724c.containsKey(str);
-        TLRPC.WebPage webPage = (TLRPC.WebPage) sVar.f46723b.get(eVar.f47551b);
-        me.b bVar = eVar.f47557s;
-        ImageReceiver imageReceiver = eVar.f46675a;
+        boolean containsKey = sVar.f46726c.containsKey(str);
+        TLRPC.WebPage webPage = (TLRPC.WebPage) sVar.f46725b.get(eVar.f47553b);
+        me.b bVar = eVar.f47559s;
+        ImageReceiver imageReceiver = eVar.f46677a;
         if (!containsKey && !(webPage instanceof TLRPC.TL_webPagePending)) {
             z11 = false;
         } else {
             z11 = true;
         }
-        eVar.f47556r.a(z11, z10);
-        eVar.f47555n = webPage;
+        eVar.f47558r.a(z11, z10);
+        eVar.f47557n = webPage;
         if (webPage != null && (photo = webPage.photo) != null) {
             TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 40);
             imageReceiver.setImage(ImageLocation.getForObject(FileLoader.getClosestPhotoSizeWithSize(webPage.photo.sizes, AndroidUtilities.dp(36.0f), false, closestPhotoSizeWithSize, true), webPage.photo), "48_48", ImageLocation.getForObject(closestPhotoSizeWithSize, webPage.photo), "48_48_b", 0L, null, webPage, 1);
@@ -808,15 +808,15 @@ public final class lo extends qi implements rw0, NotificationCenter.Notification
         TLRPC.WebPage webPage;
         if (i10 == NotificationCenter.didReceivedWebpagesInUpdates) {
             a0.i iVar = (a0.i) objArr[0];
-            for (Map.Entry entry : this.Q.f46723b.entrySet()) {
+            for (Map.Entry entry : this.Q.f46725b.entrySet()) {
                 if (entry.getValue() != null && (webPage = (TLRPC.WebPage) iVar.f(((TLRPC.WebPage) entry.getValue()).f20191id)) != null) {
                     entry.setValue(webPage);
                 }
             }
             qh.f fVar = this.l1;
-            int size = fVar.f46676a.size();
+            int size = fVar.f46678a.size();
             for (int i12 = 0; i12 < size; i12++) {
-                qh.e eVar = (qh.e) fVar.f46676a.get(i12);
+                qh.e eVar = (qh.e) fVar.f46678a.get(i12);
                 if (eVar instanceof rh.e) {
                     Y((rh.e) eVar, true);
                 }
@@ -969,9 +969,9 @@ public final class lo extends qi implements rw0, NotificationCenter.Notification
         int i11;
         qh.f fVar = this.l1;
         if (eVar != null) {
-            fVar.f46676a.put(i10, eVar);
+            fVar.f46678a.put(i10, eVar);
         } else {
-            fVar.f46676a.remove(i10);
+            fVar.f46678a.remove(i10);
         }
         if (i10 == -2) {
             i11 = this.f28519n0;
@@ -988,7 +988,7 @@ public final class lo extends qi implements rw0, NotificationCenter.Notification
         if (i11 >= 0) {
             s4.d1 K = this.f28525s.K(i11);
             if (K != null) {
-                View view = K.f47656a;
+                View view = K.f47658a;
                 if (view instanceof org.telegram.ui.Cells.d6) {
                     ((org.telegram.ui.Cells.d6) view).f21974e.a(eVar, true);
                 }
@@ -997,11 +997,11 @@ public final class lo extends qi implements rw0, NotificationCenter.Notification
         }
         if (eVar instanceof rh.e) {
             rh.e eVar2 = (rh.e) eVar;
-            String str = eVar2.f47551b;
+            String str = eVar2.f47553b;
             ai.m0 m0Var = new ai.m0(10, this, eVar);
             qh.s sVar = this.Q;
-            HashMap hashMap = sVar.f46724c;
-            HashMap hashMap2 = sVar.f46723b;
+            HashMap hashMap = sVar.f46726c;
+            HashMap hashMap2 = sVar.f46725b;
             if (hashMap2.containsKey(str)) {
                 m0Var.run((TLRPC.WebPage) hashMap2.get(str), null);
             } else {
@@ -1015,7 +1015,7 @@ public final class lo extends qi implements rw0, NotificationCenter.Notification
                 if (!containsKey) {
                     TL_account.getWebPagePreview getwebpagepreview = new TL_account.getWebPagePreview();
                     getwebpagepreview.message = str;
-                    ConnectionsManager.getInstance(sVar.f46722a).sendRequestTyped(getwebpagepreview, new Object(), new qh.r(0, sVar, str));
+                    ConnectionsManager.getInstance(sVar.f46724a).sendRequestTyped(getwebpagepreview, new Object(), new qh.r(0, sVar, str));
                 }
             }
             Y(eVar2, false);
@@ -1244,7 +1244,7 @@ public final class lo extends qi implements rw0, NotificationCenter.Notification
                 this.f28535y0 = i17;
             }
         } else {
-            TLRPC.Chat chat = ((org.telegram.ui.zn) this.f30173b.f33228f0).f44751e;
+            TLRPC.Chat chat = ((org.telegram.ui.zn) this.f30173b.f33228f0).f44753e;
             if (ChatObject.isChannel(chat) && !chat.megagroup) {
                 z10 = true;
             } else {
@@ -1438,7 +1438,7 @@ public final class lo extends qi implements rw0, NotificationCenter.Notification
                     for (int i19 = this.f28527t0; i19 < this.f28527t0 + this.M; i19++) {
                         s4.d1 K = fc1Var.K(i19);
                         if (K != null) {
-                            View view = K.f47656a;
+                            View view = K.f47658a;
                             if (view instanceof org.telegram.ui.Cells.d6) {
                                 org.telegram.ui.Cells.d6 d6Var = (org.telegram.ui.Cells.d6) view;
                                 if (d6Var.getTop() > AndroidUtilities.dp(40.0f)) {

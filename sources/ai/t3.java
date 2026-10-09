@@ -41,15 +41,15 @@ public final class t3 extends w7.h0 {
                 return;
             case 2:
                 zn znVar = (zn) this.f1728b;
-                znVar.f44870n9 = !z10;
+                znVar.f44872n9 = !z10;
                 if (z10) {
-                    if (znVar.f44747d9 != null) {
+                    if (znVar.f44749d9 != null) {
                         zn.W1(znVar, 0.0f);
-                        znVar.f44747d9 = null;
+                        znVar.f44749d9 = null;
                     }
-                    znVar.f44760e9 = false;
-                    znVar.f44772f9 = false;
-                    rl rlVar = znVar.f44796h9;
+                    znVar.f44762e9 = false;
+                    znVar.f44774f9 = false;
+                    rl rlVar = znVar.f44798h9;
                     if (rlVar != null) {
                         AndroidUtilities.cancelRunOnUIThread(rlVar.H);
                         rlVar.a();

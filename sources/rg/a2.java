@@ -43,72 +43,72 @@ public final class a2 extends FrameLayout implements l0, NotificationCenter.Noti
     public final TLRPC.Document R;
     public int S;
     public long T;
-    public final SvgHelper.SvgDrawable f47188a;
-    public final Paint f47189b;
-    public final Paint f47190c;
+    public final SvgHelper.SvgDrawable f47190a;
+    public final Paint f47191b;
+    public final Paint f47192c;
     public final boolean d;
-    public File f47191e;
-    public float f47192f;
+    public File f47193e;
+    public float f47194f;
     public final String h;
-    public final ImageReceiver f47193n;
-    public x1 f47194r;
-    public final int f47195s;
+    public final ImageReceiver f47195n;
+    public x1 f47196r;
+    public final int f47197s;
     public final int v;
-    public boolean f47196w;
-    public boolean f47197x;
-    public boolean f47198y;
+    public boolean f47198w;
+    public boolean f47199x;
+    public boolean f47200y;
 
     public a2(android.content.Context r18, org.telegram.messenger.SvgHelper.SvgDrawable r19, int r20, int r21, org.telegram.ui.ActionBar.e6 r22) {
         throw new UnsupportedOperationException("Method not decompiled: rg.a2.<init>(android.content.Context, org.telegram.messenger.SvgHelper$SvgDrawable, int, int, org.telegram.ui.ActionBar.e6):void");
     }
 
     public final void a() {
-        File file = this.f47191e;
+        File file = this.f47193e;
         if ((file != null && file.exists()) || SharedConfig.streamMedia) {
-            File file2 = this.f47191e;
+            File file2 = this.f47193e;
             if (file2 != null && file2.exists()) {
                 if ((NotificationCenter.getGlobalInstance().getCurrentHeavyOperationFlags() & 512) != 0) {
-                    x1 x1Var = this.f47194r;
+                    x1 x1Var = this.f47196r;
                     if (x1Var != null) {
                         AndroidUtilities.cancelRunOnUIThread(x1Var);
                     }
                     x1 x1Var2 = new x1(this, 0);
-                    this.f47194r = x1Var2;
+                    this.f47196r = x1Var2;
                     AndroidUtilities.runOnUIThread(x1Var2, 300L);
                     return;
                 }
                 try {
                     MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
-                    mediaMetadataRetriever.setDataSource(ApplicationLoader.applicationContext, Uri.fromFile(this.f47191e));
+                    mediaMetadataRetriever.setDataSource(ApplicationLoader.applicationContext, Uri.fromFile(this.f47193e));
                     int parseInt = Integer.parseInt(mediaMetadataRetriever.extractMetadata(18));
                     int parseInt2 = Integer.parseInt(mediaMetadataRetriever.extractMetadata(19));
                     mediaMetadataRetriever.release();
-                    this.f47192f = parseInt / parseInt2;
+                    this.f47194f = parseInt / parseInt2;
                 } catch (Exception unused) {
-                    this.f47192f = 0.671f;
+                    this.f47194f = 0.671f;
                 }
             } else {
-                this.f47192f = 0.671f;
+                this.f47194f = 0.671f;
             }
             if (this.E) {
                 b();
             }
         }
-        this.f47194r = null;
+        this.f47196r = null;
     }
 
     public final void b() {
         Uri uri;
-        int i10 = this.f47195s;
-        if ((this.f47191e != null || SharedConfig.streamMedia) && this.H == null) {
-            this.I.a(this.f47192f, 0);
+        int i10 = this.f47197s;
+        if ((this.f47193e != null || SharedConfig.streamMedia) && this.H == null) {
+            this.I.a(this.f47194f, 0);
             ci.c0 c0Var = new ci.c0(this, 1);
             this.H = c0Var;
             TextureView textureView = this.J;
             c0Var.with(textureView);
-            File file = this.f47191e;
+            File file = this.f47193e;
             if (file != null && file.exists()) {
-                uri = Uri.fromFile(this.f47191e);
+                uri = Uri.fromFile(this.f47193e);
             } else {
                 try {
                     StringBuilder sb2 = new StringBuilder("?account=");
@@ -144,7 +144,7 @@ public final class a2 extends FrameLayout implements l0, NotificationCenter.Noti
             }
             this.H.preparePlayer(uri, false, 1.0f);
             if (!this.F) {
-                this.f47193n.stopAnimation();
+                this.f47195n.stopAnimation();
                 textureView.setAlpha(0.0f);
             }
             this.H.seekTo(this.T + 60);
@@ -154,14 +154,14 @@ public final class a2 extends FrameLayout implements l0, NotificationCenter.Noti
 
     public final void c() {
         boolean z10;
-        if (this.f47196w && this.f47197x) {
+        if (this.f47198w && this.f47199x) {
             z10 = true;
         } else {
             z10 = false;
         }
-        if (this.f47198y != z10) {
-            this.f47198y = z10;
-            ImageReceiver imageReceiver = this.f47193n;
+        if (this.f47200y != z10) {
+            this.f47200y = z10;
+            ImageReceiver imageReceiver = this.f47195n;
             if (z10) {
                 imageReceiver.onAttachedToWindow();
             } else {
@@ -176,7 +176,7 @@ public final class a2 extends FrameLayout implements l0, NotificationCenter.Noti
             String str = (String) objArr[0];
             String str2 = this.h;
             if (str2 != null && str2.equals(str)) {
-                this.f47191e = (File) objArr[1];
+                this.f47193e = (File) objArr[1];
                 a();
             }
         }
@@ -190,20 +190,20 @@ public final class a2 extends FrameLayout implements l0, NotificationCenter.Noti
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f47197x = true;
+        this.f47199x = true;
         c();
         if (!this.F) {
             a();
         }
-        NotificationCenter.getInstance(this.f47195s).addObserver(this, NotificationCenter.fileLoaded);
+        NotificationCenter.getInstance(this.f47197s).addObserver(this, NotificationCenter.fileLoaded);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f47197x = false;
+        this.f47199x = false;
         c();
-        NotificationCenter.getInstance(this.f47195s).removeObserver(this, NotificationCenter.fileLoaded);
+        NotificationCenter.getInstance(this.f47197s).removeObserver(this, NotificationCenter.fileLoaded);
         org.telegram.ui.Cells.u0 u0Var = this.P;
         if (u0Var != null) {
             HashMap hashMap = (HashMap) u0Var.f23106f;
@@ -236,21 +236,21 @@ public final class a2 extends FrameLayout implements l0, NotificationCenter.Noti
             this.S = measuredWidth;
             ra.a aVar = this.Q;
             if (aVar != null) {
-                RectF rectF = (RectF) aVar.f47128c;
-                ((Rect) aVar.f47129e).set(0, 0, getMeasuredWidth(), getMeasuredHeight());
+                RectF rectF = (RectF) aVar.f47130c;
+                ((Rect) aVar.f47131e).set(0, 0, getMeasuredWidth(), getMeasuredHeight());
                 rectF.set(AndroidUtilities.rectTmp);
                 rectF.inset(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
             }
             v1 v1Var = this.N;
             if (v1Var != null) {
-                RectF rectF2 = v1Var.f47476c;
-                RectF rectF3 = v1Var.f47474a;
+                RectF rectF2 = v1Var.f47478c;
+                RectF rectF3 = v1Var.f47476a;
                 int i14 = this.v;
                 if (i14 != 6 && i14 != 9 && i14 != 3 && i14 != 7 && i14 != 24 && i14 != 43 && i14 != 11 && i14 != 4) {
                     RectF rectF4 = AndroidUtilities.rectTmp;
                     float width = (int) (rectF4.width() * 0.4f);
                     rectF3.set(rectF4.centerX() - width, rectF4.centerY() - width, rectF4.centerX() + width, rectF4.centerY() + width);
-                    v1Var.f47475b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                    v1Var.f47477b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 } else {
                     rectF3.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                     rectF3.inset(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f));
@@ -261,12 +261,12 @@ public final class a2 extends FrameLayout implements l0, NotificationCenter.Noti
             }
             t1 t1Var = this.O;
             if (t1Var != null) {
-                RectF rectF5 = t1Var.f47441a;
+                RectF rectF5 = t1Var.f47443a;
                 rectF5.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                t1Var.f47442b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                t1Var.f47444b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 rectF5.inset(AndroidUtilities.dp(100.0f), AndroidUtilities.dp(100.0f));
                 rectF5.offset(0.0f, getMeasuredHeight() * 0.1f);
-                ArrayList arrayList = t1Var.f47444e;
+                ArrayList arrayList = t1Var.f47446e;
                 long currentTimeMillis = System.currentTimeMillis();
                 for (int i15 = 0; i15 < arrayList.size(); i15++) {
                     ((s1) arrayList.get(i15)).a(currentTimeMillis, true);
@@ -355,13 +355,13 @@ public final class a2 extends FrameLayout implements l0, NotificationCenter.Noti
             }
             this.G = Math.abs(measuredWidth2);
         }
-        if (z10 != this.f47196w) {
-            this.f47196w = z10;
+        if (z10 != this.f47198w) {
+            this.f47198w = z10;
             c();
         }
         if (z12 != this.E) {
             this.E = z12;
-            ImageReceiver imageReceiver = this.f47193n;
+            ImageReceiver imageReceiver = this.f47195n;
             imageReceiver.setAllowStartAnimation(z12);
             if (this.E) {
                 imageReceiver.startAnimation();

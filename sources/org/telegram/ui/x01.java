@@ -105,7 +105,7 @@ public final class x01 extends org.telegram.ui.Cells.a7 {
                             default:
                                 x01 x01Var2 = this.f23807b;
                                 int i17 = x01Var2.f21806e;
-                                ProfileActivity profileActivity = x01Var2.h.f44189e;
+                                ProfileActivity profileActivity = x01Var2.h.f44191e;
                                 if (i17 == 0) {
                                     profileActivity.presentFragment(new org.telegram.ui.h(3));
                                     return;
@@ -135,7 +135,7 @@ public final class x01 extends org.telegram.ui.Cells.a7 {
                             default:
                                 x01 x01Var2 = this.f23807b;
                                 int i17 = x01Var2.f21806e;
-                                ProfileActivity profileActivity = x01Var2.h.f44189e;
+                                ProfileActivity profileActivity = x01Var2.h.f44191e;
                                 if (i17 == 0) {
                                     profileActivity.presentFragment(new org.telegram.ui.h(3));
                                     return;

@@ -324,7 +324,7 @@ public final class lc implements NotificationCenter.NotificationCenterDelegate {
         kc kcVar = new kc(this, activity);
         this.f5499n = kcVar;
         qa qaVar = new qa(this, 1);
-        WeakHashMap weakHashMap = r0.i0.f46764a;
+        WeakHashMap weakHashMap = r0.i0.f46766a;
         r0.a0.i(kcVar, qaVar);
         this.f5499n.setFocusable(true);
         this.f5499n.setImportantForAccessibility(2);
@@ -379,7 +379,7 @@ public final class lc implements NotificationCenter.NotificationCenterDelegate {
         }
         xbVar2.setBackgroundColor(i11);
         xb xbVar3 = this.f5483h0;
-        ai.l2 l2Var = yf.i0.f52169a;
+        ai.l2 l2Var = yf.i0.f52171a;
         xbVar3.setOutlineProvider(new yf.h0(0, AndroidUtilities.dp(12.0f)));
         this.f5483h0.setClipToOutline(true);
         ha haVar = new ha(this, 14);
@@ -1699,7 +1699,7 @@ public final class lc implements NotificationCenter.NotificationCenterDelegate {
         }
         nb nbVar = this.f5527v1;
         if (nbVar != null && (c1Var = nbVar.O0.d) != null) {
-            c1Var.postRunnable(c1Var.f45604w);
+            c1Var.postRunnable(c1Var.f45606w);
         }
         zb zbVar = this.X0;
         if (zbVar != null) {
@@ -2180,10 +2180,10 @@ public final class lc implements NotificationCenter.NotificationCenterDelegate {
                 nb nbVar2 = this.f5527v1;
                 nbVar2.I0 = true;
                 j6 j6Var = nbVar2.R0;
-                j6Var.f46211a = true;
+                j6Var.f46213a = true;
                 j6Var.draw(canvas);
                 nb nbVar3 = this.f5527v1;
-                nbVar3.R0.f46211a = false;
+                nbVar3.R0.f46213a = false;
                 nbVar3.I0 = false;
                 canvas.restore();
             }

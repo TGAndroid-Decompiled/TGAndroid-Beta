@@ -40,14 +40,14 @@ public final class cc extends kl0 {
                 super.j();
                 org.telegram.ui.rt rtVar = (org.telegram.ui.rt) this.f25321m1;
                 if (getReactionsWindow() != null) {
-                    WindowManager.LayoutParams layoutParams = rtVar.f41507x;
+                    WindowManager.LayoutParams layoutParams = rtVar.f41509x;
                     layoutParams.flags &= -131073;
                     layoutParams.softInputMode = 16;
                 } else {
-                    rtVar.f41507x.flags |= 131072;
+                    rtVar.f41509x.flags |= 131072;
                 }
                 try {
-                    ((WindowManager) rtVar.f41506w.getSystemService("window")).updateViewLayout(rtVar.f41508y, rtVar.f41507x);
+                    ((WindowManager) rtVar.f41508w.getSystemService("window")).updateViewLayout(rtVar.f41510y, rtVar.f41509x);
                     return;
                 } catch (Exception e7) {
                     FileLog.e(e7);
@@ -67,7 +67,7 @@ public final class cc extends kl0 {
                 if (tcVar != null) {
                     tcVar.i(false);
                 }
-                ((ec) this.f25321m1).d.getReactionsWindow().f54449c.setOnClickListener(new f0(this, 4));
+                ((ec) this.f25321m1).d.getReactionsWindow().f54451c.setOnClickListener(new f0(this, 4));
                 return;
             default:
                 return;

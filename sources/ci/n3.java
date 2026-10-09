@@ -21,7 +21,7 @@ public final class n3 extends yl0 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47660f == 2) {
+        if (d1Var.f47662f == 2) {
             return true;
         }
         return false;
@@ -121,8 +121,8 @@ public final class n3 extends yl0 {
         v3 v3Var = this.f5632c;
         ArrayList arrayList = v3Var.f6140h0;
         ArrayList arrayList2 = v3Var.f6131b0;
-        int i11 = d1Var.f47660f;
-        View view = d1Var.f47656a;
+        int i11 = d1Var.f47662f;
+        View view = d1Var.f47658a;
         int i12 = -1;
         if (i11 == 0) {
             r3 r3Var = (r3) view;
@@ -245,8 +245,8 @@ public final class n3 extends yl0 {
         boolean z10;
         v3 v3Var = this.f5632c;
         ArrayList arrayList = v3Var.f6140h0;
-        if (d1Var.f47660f == 2) {
-            q3 q3Var = (q3) d1Var.f47656a;
+        if (d1Var.f47662f == 2) {
+            q3 q3Var = (q3) d1Var.f47658a;
             Object obj = q3Var.S;
             if (obj instanceof MediaController.PhotoEntry) {
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;

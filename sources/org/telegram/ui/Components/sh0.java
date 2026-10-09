@@ -146,14 +146,14 @@ public final class sh0 extends org.telegram.ui.ActionBar.f3 {
         this.f30796b = lh0Var;
         lh0Var.setSections(false);
         s4.j jVar = new s4.j();
-        jVar.f47748c = 150L;
-        jVar.f47749e = 350L;
-        jVar.f47750f = 0L;
-        jVar.f47751g = 0L;
+        jVar.f47750c = 150L;
+        jVar.f47751e = 350L;
+        jVar.f47752f = 0L;
+        jVar.f47753g = 0L;
         jVar.d = 0L;
         jVar.C = false;
-        jVar.f47752i = new OvershootInterpolator(1.1f);
-        jVar.f47716o = hs.h;
+        jVar.f47754i = new OvershootInterpolator(1.1f);
+        jVar.f47718o = hs.h;
         lh0Var.setItemAnimator(jVar);
         lh0Var.setClipToPadding(false);
         getContext();
@@ -417,7 +417,7 @@ public final class sh0 extends org.telegram.ui.ActionBar.f3 {
                                     }
                                     profileActivity.N4(i11);
                                 } else {
-                                    TLRPC.Chat chat = ((org.telegram.ui.zn) U).f44751e;
+                                    TLRPC.Chat chat = ((org.telegram.ui.zn) U).f44753e;
                                     if (chat != null && chat.f20038id == pollVotesAlert$UserCell.f24228n.f20038id) {
                                         i11 = 1;
                                     }

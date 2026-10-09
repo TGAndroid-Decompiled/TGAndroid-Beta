@@ -76,7 +76,7 @@ public final class lf implements Runnable {
                         max = Math.max(i12 - 1, 0);
                     }
                     wp wpVar = cqVar.H;
-                    wpVar.f47825a = max;
+                    wpVar.f47827a = max;
                     layoutManager.w0(wpVar);
                 }
                 cqVar.Q = i12;

@@ -21,34 +21,34 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class co extends Drawable {
-    public final boolean f36708a;
-    public View f36709b;
-    public int f36710c = 255;
+    public final boolean f36710a;
+    public View f36711b;
+    public int f36712c = 255;
     public final float d;
-    public final ai.m4 f36711e;
-    public final org.telegram.ui.Components.cd0 f36712f;
-    public final TLRPC.WallPaper f36713g;
+    public final ai.m4 f36713e;
+    public final org.telegram.ui.Components.cd0 f36714f;
+    public final TLRPC.WallPaper f36715g;
     public boolean h;
-    public boolean f36714i;
-    public final ArrayList f36715j;
+    public boolean f36716i;
+    public final ArrayList f36717j;
 
     public co(TLRPC.WallPaper wallPaper, boolean z10, boolean z11) {
         TLRPC.WallPaperSettings wallPaperSettings;
         String o9;
         TLRPC.WallPaperSettings wallPaperSettings2;
         ai.m4 m4Var = new ai.m4(this, 3);
-        this.f36711e = m4Var;
-        this.f36715j = new ArrayList();
+        this.f36713e = m4Var;
+        this.f36717j = new ArrayList();
         m4Var.setInvalidateAll(true);
         boolean z12 = wallPaper.pattern;
-        this.f36713g = wallPaper;
-        this.f36708a = z10;
+        this.f36715g = wallPaper;
+        this.f36710a = z10;
         if (z10 && ((wallPaper.document != null || wallPaper.uploadingImage != null) && !z12 && (wallPaperSettings2 = wallPaper.settings) != null)) {
             this.d = wallPaperSettings2.intensity / 100.0f;
         }
         if ((z12 || wallPaper.document == null) && (wallPaperSettings = wallPaper.settings) != null && wallPaperSettings.second_background_color != 0 && wallPaperSettings.third_background_color != 0) {
             org.telegram.ui.Components.cd0 cd0Var = new org.telegram.ui.Components.cd0();
-            this.f36712f = cd0Var;
+            this.f36714f = cd0Var;
             TLRPC.WallPaperSettings wallPaperSettings3 = wallPaper.settings;
             cd0Var.n(wallPaperSettings3.background_color, wallPaperSettings3.second_background_color, wallPaperSettings3.third_background_color, wallPaperSettings3.fourth_background_color);
             int i10 = UserConfig.selectedAccount;
@@ -151,8 +151,8 @@ public final class co extends Drawable {
         TLRPC.WallPaperSettings wallPaperSettings2;
         if (drawable instanceof co) {
             co coVar = (co) drawable;
-            boolean z11 = coVar.f36708a;
-            TLRPC.WallPaper wallPaper2 = coVar.f36713g;
+            boolean z11 = coVar.f36710a;
+            TLRPC.WallPaper wallPaper2 = coVar.f36715g;
             String str = wallPaper.uploadingImage;
             if (str == null ? !(wallPaper.f20190id != wallPaper2.f20190id || !TextUtils.equals(e(wallPaper.settings), e(wallPaper2.settings)) || (wallPaper.document != null && !wallPaper.pattern && (wallPaperSettings = wallPaper.settings) != null && wallPaperSettings.intensity > 0 && z11 != z10)) : !(!str.equals(wallPaper2.uploadingImage) || ((wallPaperSettings2 = wallPaper.settings) != null && wallPaper2.settings != null && wallPaperSettings2.intensity > 0 && z11 != z10))) {
                 return coVar;
@@ -169,11 +169,11 @@ public final class co extends Drawable {
     }
 
     public final Drawable c(boolean z10) {
-        org.telegram.ui.Components.cd0 cd0Var = this.f36712f;
+        org.telegram.ui.Components.cd0 cd0Var = this.f36714f;
         if (cd0Var != null) {
             return cd0Var;
         }
-        ai.m4 m4Var = this.f36711e;
+        ai.m4 m4Var = this.f36713e;
         if (z10 && m4Var.getStaticThumb() != null) {
             return m4Var.getStaticThumb();
         }
@@ -188,14 +188,14 @@ public final class co extends Drawable {
 
     @Override
     public final void draw(Canvas canvas) {
-        org.telegram.ui.Components.cd0 cd0Var = this.f36712f;
+        org.telegram.ui.Components.cd0 cd0Var = this.f36714f;
         if (cd0Var != null) {
             cd0Var.setBounds(getBounds());
-            cd0Var.setAlpha(this.f36710c);
+            cd0Var.setAlpha(this.f36712c);
             cd0Var.draw(canvas);
             return;
         }
-        ai.m4 m4Var = this.f36711e;
+        ai.m4 m4Var = this.f36713e;
         boolean hasImageLoaded = m4Var.hasImageLoaded();
         float f7 = this.d;
         boolean z10 = true;
@@ -207,7 +207,7 @@ public final class co extends Drawable {
             z10 = false;
         }
         m4Var.setImageCoords(getBounds());
-        m4Var.setAlpha(this.f36710c / 255.0f);
+        m4Var.setAlpha(this.f36712c / 255.0f);
         m4Var.draw(canvas);
         if (z10 && f7 != 0.0f) {
             canvas.drawColor(i0.a.k(-16777216, (int) (f7 * 255.0f)));
@@ -215,40 +215,40 @@ public final class co extends Drawable {
     }
 
     public final void f(View view) {
-        ArrayList arrayList = this.f36715j;
+        ArrayList arrayList = this.f36717j;
         if (!arrayList.contains(view)) {
             arrayList.add(view);
         }
         int size = arrayList.size();
-        ai.m4 m4Var = this.f36711e;
-        if (size > 0 && !this.f36714i) {
-            this.f36714i = true;
+        ai.m4 m4Var = this.f36713e;
+        if (size > 0 && !this.f36716i) {
+            this.f36716i = true;
             m4Var.onAttachedToWindow();
-        } else if (arrayList.size() <= 0 && this.f36714i) {
-            this.f36714i = false;
+        } else if (arrayList.size() <= 0 && this.f36716i) {
+            this.f36716i = false;
             m4Var.onDetachedFromWindow();
         }
-        org.telegram.ui.Components.cd0 cd0Var = this.f36712f;
+        org.telegram.ui.Components.cd0 cd0Var = this.f36714f;
         if (cd0Var != null) {
             cd0Var.k();
         }
     }
 
     public final void g(View view) {
-        ArrayList arrayList = this.f36715j;
+        ArrayList arrayList = this.f36717j;
         if (!arrayList.contains(view)) {
             arrayList.remove(view);
         }
         int size = arrayList.size();
-        ai.m4 m4Var = this.f36711e;
-        if (size > 0 && !this.f36714i) {
-            this.f36714i = true;
+        ai.m4 m4Var = this.f36713e;
+        if (size > 0 && !this.f36716i) {
+            this.f36716i = true;
             m4Var.onAttachedToWindow();
-        } else if (arrayList.size() <= 0 && this.f36714i) {
-            this.f36714i = false;
+        } else if (arrayList.size() <= 0 && this.f36716i) {
+            this.f36716i = false;
             m4Var.onDetachedFromWindow();
         }
-        org.telegram.ui.Components.cd0 cd0Var = this.f36712f;
+        org.telegram.ui.Components.cd0 cd0Var = this.f36714f;
         if (cd0Var != null) {
             cd0Var.l();
         }
@@ -261,8 +261,8 @@ public final class co extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        if (this.f36710c != i10) {
-            this.f36710c = i10;
+        if (this.f36712c != i10) {
+            this.f36712c = i10;
             invalidateSelf();
         }
     }

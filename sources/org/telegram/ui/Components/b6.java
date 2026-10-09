@@ -461,7 +461,7 @@ public class b6 extends ReplacementSpan {
                             float f15 = b6Var.lastDrawnCx;
                             float f16 = b6Var.lastDrawnCy;
                             w5Var.f32548e.set((int) (f15 - f14), (int) (f16 - f14), (int) (f15 + f14), (int) (f16 + f14));
-                            float max = (list == null || list.isEmpty() || !w5Var.v) ? 1.0f : Math.max(0.0f, list.get(i10).f49689n);
+                            float max = (list == null || list.isEmpty() || !w5Var.v) ? 1.0f : Math.max(0.0f, list.get(i10).f49691n);
                             w5Var.f32551r = f12;
                             w5Var.f32552s = max;
                             w5Var.getClass();

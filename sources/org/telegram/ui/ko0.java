@@ -3,14 +3,14 @@ package org.telegram.ui;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class ko0 {
-    public final vo0 f39321a;
+    public final vo0 f39323a;
 
     public ko0(vo0 vo0Var) {
-        this.f39321a = vo0Var;
+        this.f39323a = vo0Var;
     }
 
     public final void a(Exception exc) {
-        vo0 vo0Var = this.f39321a;
+        vo0 vo0Var = this.f39323a;
         if (vo0Var.Q0) {
             return;
         }

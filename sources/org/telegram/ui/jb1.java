@@ -9,7 +9,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 public final class jb1 extends org.telegram.ui.ActionBar.f3 {
-    public static jb1 f38902b;
+    public static jb1 f38904b;
 
     public static void o(jb1 jb1Var, ty tyVar) {
         if (tyVar.getParentActivity() == null) {
@@ -20,7 +20,7 @@ public final class jb1 extends org.telegram.ui.ActionBar.f3 {
     }
 
     public static void p(ty tyVar) {
-        if (f38902b == null) {
+        if (f38904b == null) {
             ?? f3Var = new org.telegram.ui.ActionBar.f3(tyVar.getParentActivity(), false);
             Activity parentActivity = tyVar.getParentActivity();
             LinearLayout e7 = org.telegram.messenger.q.e(parentActivity, 1);
@@ -56,7 +56,7 @@ public final class jb1 extends org.telegram.ui.ActionBar.f3 {
             ScrollView scrollView = new ScrollView(parentActivity);
             scrollView.addView(e7);
             f3Var.setCustomView(scrollView);
-            f38902b = f3Var;
+            f38904b = f3Var;
             f3Var.show();
         }
     }
@@ -64,6 +64,6 @@ public final class jb1 extends org.telegram.ui.ActionBar.f3 {
     @Override
     public final void dismiss() {
         super.dismiss();
-        f38902b = null;
+        f38904b = null;
     }
 }

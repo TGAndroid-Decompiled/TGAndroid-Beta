@@ -84,7 +84,7 @@ public final class db0 extends org.telegram.ui.ActionBar.n2 implements uv0, mg.b
     public final List B() {
         String str;
         Activity parentActivity = getParentActivity();
-        DispatchQueue dispatchQueue = pg.m1.f45690m;
+        DispatchQueue dispatchQueue = pg.m1.f45692m;
         if (parentActivity.getSharedPreferences("shapedetector_conf", 0).getBoolean("learning", false)) {
             str = "Disable";
         } else {

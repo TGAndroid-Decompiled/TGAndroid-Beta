@@ -16,11 +16,11 @@ public final class x0 extends qm0 {
     public final ArrayList X2;
     public final ArrayList Y2;
     public final ArrayList Z2;
-    public final b6 f46617a3;
+    public final b6 f46619a3;
 
     public x0(b6 b6Var, Context context, com.google.firebase.messaging.n nVar) {
         super(context, nVar);
-        this.f46617a3 = b6Var;
+        this.f46619a3 = b6Var;
         this.V2 = new ArrayList();
         this.W2 = new ArrayList();
         this.X2 = new ArrayList();

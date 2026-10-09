@@ -18,7 +18,7 @@ public final class y5 extends og.b {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47660f;
+        int i10 = d1Var.f47662f;
         if (i10 == 1 || i10 == 2 || i10 == 4) {
             return true;
         }
@@ -27,22 +27,22 @@ public final class y5 extends og.b {
 
     @Override
     public final int h() {
-        return this.d.f35839c.size();
+        return this.d.f35841c.size();
     }
 
     @Override
     public final int j(int i10) {
-        return ((z5) this.d.f35839c.get(i10)).f17125a;
+        return ((z5) this.d.f35841c.get(i10)).f17125a;
     }
 
     @Override
     public final void v(s4.d1 d1Var, int i10) {
         String str;
         a6 a6Var = this.d;
-        ArrayList arrayList = a6Var.f35839c;
+        ArrayList arrayList = a6Var.f35841c;
         if (((z5) arrayList.get(i10)).f17125a == 2) {
-            org.telegram.ui.Cells.xa xaVar = (org.telegram.ui.Cells.xa) d1Var.f47656a;
-            CacheByChatsController.KeepMediaException keepMediaException = ((z5) arrayList.get(i10)).f44484c;
+            org.telegram.ui.Cells.xa xaVar = (org.telegram.ui.Cells.xa) d1Var.f47658a;
+            CacheByChatsController.KeepMediaException keepMediaException = ((z5) arrayList.get(i10)).f44486c;
             TLObject userOrChat = a6Var.getMessagesController().getUserOrChat(keepMediaException.dialogId);
             if (userOrChat instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) userOrChat;

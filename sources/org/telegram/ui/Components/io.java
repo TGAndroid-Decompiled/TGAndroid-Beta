@@ -77,7 +77,7 @@ public final class io extends org.telegram.ui.Cells.d6 {
             for (int i10 = loVar.f28527t0; i10 < loVar.f28527t0 + loVar.M; i10++) {
                 s4.d1 K = loVar.f28525s.K(i10);
                 if (K != null) {
-                    View view = K.f47656a;
+                    View view = K.f47658a;
                     if (view instanceof org.telegram.ui.Cells.d6) {
                         ((org.telegram.ui.Cells.d6) view).f21977r.a(false, true);
                     }

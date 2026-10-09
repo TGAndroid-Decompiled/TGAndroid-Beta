@@ -180,10 +180,10 @@ public class vv0 extends yl0 {
         bw0 bw0Var = this.f32465f;
         int[] iArr = bw0Var.f25145m1;
         qv0[] qv0VarArr = bw0Var.f25162t1;
-        if (d1Var.f47660f == 0) {
+        if (d1Var.f47662f == 0) {
             ArrayList c11 = qv0VarArr[0].c();
             int d = i10 - qv0VarArr[0].d();
-            View view = d1Var.f47656a;
+            View view = d1Var.f47658a;
             if (view instanceof org.telegram.ui.Cells.t7) {
                 org.telegram.ui.Cells.t7 t7Var = (org.telegram.ui.Cells.t7) view;
                 int messageId = t7Var.getMessageId();

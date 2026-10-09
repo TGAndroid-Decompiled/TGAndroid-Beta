@@ -9,25 +9,25 @@ import org.telegram.ui.Components.g6;
 import org.telegram.ui.Components.hs;
 import org.telegram.ui.Components.ml0;
 public abstract class i extends FrameLayout {
-    public final Paint f46266a;
-    public final Paint f46267b;
-    public final Paint f46268c;
+    public final Paint f46268a;
+    public final Paint f46269b;
+    public final Paint f46270c;
     public int d;
-    public final g6 f46269e;
-    public boolean f46270f;
+    public final g6 f46271e;
+    public boolean f46272f;
     public final j h;
 
     public i(j jVar, Context context) {
         super(context);
         this.h = jVar;
         Paint paint = new Paint(1);
-        this.f46266a = paint;
+        this.f46268a = paint;
         Paint paint2 = new Paint(1);
-        this.f46267b = paint2;
+        this.f46269b = paint2;
         Paint paint3 = new Paint(1);
-        this.f46268c = paint3;
-        this.f46269e = new g6(this, 0L, 250L, hs.h);
-        this.f46270f = true;
+        this.f46270c = paint3;
+        this.f46271e = new g6(this, 0L, 250L, hs.h);
+        this.f46272f = true;
         setWillNotDraw(false);
         paint.setColor(-1);
         Paint.Style style = Paint.Style.STROKE;
@@ -58,7 +58,7 @@ public abstract class i extends FrameLayout {
     }
 
     public float getShowAlpha() {
-        return this.f46269e.e(this.f46270f);
+        return this.f46271e.e(this.f46272f);
     }
 
     @Override

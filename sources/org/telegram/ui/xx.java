@@ -5,20 +5,20 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.UndoView;
 public final class xx extends UndoView {
-    public final ty f44157f0;
+    public final ty f44159f0;
 
     public xx(ty tyVar, Activity activity) {
         super(activity);
-        this.f44157f0 = tyVar;
+        this.f44159f0 = tyVar;
     }
 
     @Override
     public final boolean a() {
         int i10 = 0;
         while (true) {
-            sy[] syVarArr = this.f44157f0.f42172e0;
+            sy[] syVarArr = this.f44159f0.f42174e0;
             if (i10 < syVarArr.length) {
-                if (syVarArr[i10].f41797x.k()) {
+                if (syVarArr[i10].f41799x.k()) {
                     return false;
                 }
                 i10++;
@@ -33,7 +33,7 @@ public final class xx extends UndoView {
         if (i10 != 1 && i10 != 27) {
             return;
         }
-        ty tyVar = this.f44157f0;
+        ty tyVar = this.f44159f0;
         tyVar.y3 = 1;
         tyVar.x4(true, true);
         if (tyVar.R1 != null) {
@@ -50,7 +50,7 @@ public final class xx extends UndoView {
                 }
             }
             if (i11 >= 0) {
-                tyVar.f42172e0[0].d.l();
+                tyVar.f42174e0[0].d.l();
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.zk(this, i11, (TLRPC.Dialog) tyVar.R1.remove(i11), 26));
             } else {
                 tyVar.x4(false, true);
@@ -62,12 +62,12 @@ public final class xx extends UndoView {
     @Override
     public final void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        ty tyVar = this.f44157f0;
-        UndoView[] undoViewArr = tyVar.f42273y0;
+        ty tyVar = this.f44159f0;
+        UndoView[] undoViewArr = tyVar.f42275y0;
         if (this == undoViewArr[0]) {
             UndoView undoView = undoViewArr[1];
             if (undoView == null || undoView.getVisibility() != 0) {
-                tyVar.f42253u1 = Math.max(0.0f, (AndroidUtilities.dp(8.0f) + getMeasuredHeight()) - f7);
+                tyVar.f42255u1 = Math.max(0.0f, (AndroidUtilities.dp(8.0f) + getMeasuredHeight()) - f7);
                 tyVar.U4();
             }
         }

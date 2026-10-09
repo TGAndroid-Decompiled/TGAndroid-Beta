@@ -29,29 +29,29 @@ public final class ra extends org.telegram.ui.ActionBar.n2 {
     public oa E;
     public qa F;
     public org.telegram.ui.Cells.y1 G;
-    public org.telegram.ui.ActionBar.v0 f41316a;
-    public org.telegram.ui.Components.qm0 f41317b;
-    public ia f41318c;
+    public org.telegram.ui.ActionBar.v0 f41318a;
+    public org.telegram.ui.Components.qm0 f41319b;
+    public ia f41320c;
     public boolean d;
-    public int f41319e;
-    public String f41320f;
+    public int f41321e;
+    public String f41322f;
     public org.telegram.ui.ActionBar.p h;
-    public boolean f41321n;
-    public String f41322r;
-    public final ArrayList f41323s;
+    public boolean f41323n;
+    public String f41324r;
+    public final ArrayList f41325s;
     public final ArrayList v;
-    public final ArrayList f41324w;
-    public final long f41325x;
-    public la f41326y;
+    public final ArrayList f41326w;
+    public final long f41327x;
+    public la f41328y;
 
     public ra(Bundle bundle) {
         super(bundle);
-        this.f41322r = "";
-        this.f41323s = new ArrayList();
+        this.f41324r = "";
+        this.f41325s = new ArrayList();
         this.v = new ArrayList();
-        this.f41324w = new ArrayList();
+        this.f41326w = new ArrayList();
         if (bundle != null) {
-            this.f41325x = bundle.getLong("bot_id");
+            this.f41327x = bundle.getLong("bot_id");
         }
     }
 
@@ -72,7 +72,7 @@ public final class ra extends org.telegram.ui.ActionBar.n2 {
     public static void W(ra raVar, String str) {
         TL_account.checkUsername checkusername = new TL_account.checkUsername();
         checkusername.username = str;
-        raVar.f41319e = ConnectionsManager.getInstance(raVar.currentAccount).sendRequest(checkusername, new ba(raVar, str, checkusername, 0), 2);
+        raVar.f41321e = ConnectionsManager.getInstance(raVar.currentAccount).sendRequest(checkusername, new ba(raVar, str, checkusername, 0), 2);
     }
 
     public static void X(ra raVar, org.telegram.ui.ActionBar.b2 b2Var, TLRPC.User user) {
@@ -91,9 +91,9 @@ public final class ra extends org.telegram.ui.ActionBar.n2 {
 
     public static void Y(ra raVar) {
         TL_bots.reorderUsernames reorderusernames;
-        long j3 = raVar.f41325x;
+        long j3 = raVar.f41327x;
         ArrayList arrayList = raVar.v;
-        ArrayList arrayList2 = raVar.f41323s;
+        ArrayList arrayList2 = raVar.f41325s;
         if (!raVar.d) {
             return;
         }
@@ -129,14 +129,14 @@ public final class ra extends org.telegram.ui.ActionBar.n2 {
     }
 
     public static void Z(ra raVar) {
-        if (raVar.f41325x != 0) {
+        if (raVar.f41327x != 0) {
             raVar.finishFragment();
             return;
         }
-        if (raVar.f41322r.startsWith("@")) {
-            raVar.f41322r = raVar.f41322r.substring(1);
+        if (raVar.f41324r.startsWith("@")) {
+            raVar.f41324r = raVar.f41324r.substring(1);
         }
-        if (!raVar.f41322r.isEmpty() && !raVar.d0(raVar.f41322r)) {
+        if (!raVar.f41324r.isEmpty() && !raVar.d0(raVar.f41324r)) {
             raVar.h0();
             return;
         }
@@ -146,13 +146,13 @@ public final class ra extends org.telegram.ui.ActionBar.n2 {
             if (publicUsername == null) {
                 publicUsername = "";
             }
-            if (publicUsername.equals(raVar.f41322r)) {
+            if (publicUsername.equals(raVar.f41324r)) {
                 raVar.finishFragment();
                 return;
             }
             org.telegram.ui.ActionBar.b2 b2Var = new org.telegram.ui.ActionBar.b2(raVar.getParentActivity(), 3, null);
             TL_account.updateUsername updateusername = new TL_account.updateUsername();
-            updateusername.username = raVar.f41322r;
+            updateusername.username = raVar.f41324r;
             NotificationCenter.getInstance(raVar.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_NAME));
             int sendRequest = ConnectionsManager.getInstance(raVar.currentAccount).sendRequest(updateusername, new ba(raVar, b2Var, updateusername, 1), 2);
             ConnectionsManager.getInstance(raVar.currentAccount).bindRequestToGuid(sendRequest, raVar.classGuid);
@@ -176,13 +176,13 @@ public final class ra extends org.telegram.ui.ActionBar.n2 {
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setTitle(LocaleController.getString(R.string.Username));
         this.actionBar.setActionBarMenuOnItemClick(new ei.t(this, 27));
-        this.f41316a = this.actionBar.o().h(1, R.drawable.ic_ab_done, LocaleController.getString(R.string.Done), AndroidUtilities.dp(56.0f));
+        this.f41318a = this.actionBar.o().h(1, R.drawable.ic_ab_done, LocaleController.getString(R.string.Done), AndroidUtilities.dp(56.0f));
         TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(g0()));
         if (user == null) {
             user = f0();
         }
         if (user != null) {
-            this.f41322r = null;
+            this.f41324r = null;
             if (user.usernames != null) {
                 int i10 = 0;
                 while (true) {
@@ -191,19 +191,19 @@ public final class ra extends org.telegram.ui.ActionBar.n2 {
                     }
                     TLRPC.TL_username tL_username = user.usernames.get(i10);
                     if (tL_username != null && tL_username.editable) {
-                        this.f41322r = tL_username.username;
+                        this.f41324r = tL_username.username;
                         break;
                     }
                     i10++;
                 }
             }
-            if (this.f41322r == null && (str = user.username) != null) {
-                this.f41322r = str;
+            if (this.f41324r == null && (str = user.username) != null) {
+                this.f41324r = str;
             }
-            if (this.f41322r == null) {
-                this.f41322r = "";
+            if (this.f41324r == null) {
+                this.f41324r = "";
             }
-            this.f41323s.clear();
+            this.f41325s.clear();
             ArrayList arrayList = this.v;
             arrayList.clear();
             for (int i11 = 0; i11 < user.usernames.size(); i11++) {
@@ -219,20 +219,20 @@ public final class ra extends org.telegram.ui.ActionBar.n2 {
         }
         this.fragmentView = new FrameLayout(context);
         org.telegram.ui.Components.qm0 qm0Var = new org.telegram.ui.Components.qm0(context, null);
-        this.f41317b = qm0Var;
+        this.f41319b = qm0Var;
         qm0Var.p1();
-        this.actionBar.setAdaptiveBackground(this.f41317b);
+        this.actionBar.setAdaptiveBackground(this.f41319b);
         this.fragmentView.setBackgroundColor(getThemedColor(org.telegram.ui.ActionBar.i6.f20741a7));
-        this.f41317b.setLayoutManager(new s4.d0());
-        org.telegram.ui.Components.qm0 qm0Var2 = this.f41317b;
+        this.f41319b.setLayoutManager(new s4.d0());
+        org.telegram.ui.Components.qm0 qm0Var2 = this.f41319b;
         ia iaVar = new ia(this);
-        this.f41318c = iaVar;
+        this.f41320c = iaVar;
         qm0Var2.setAdapter(iaVar);
-        this.f41317b.setSelectorDrawableColor(getThemedColor(org.telegram.ui.ActionBar.i6.f20888i6));
-        new s4.z(new ma(this)).e(this.f41317b);
-        ((FrameLayout) this.fragmentView).addView(this.f41317b, w7.x5.d(-1.0f, -1));
+        this.f41319b.setSelectorDrawableColor(getThemedColor(org.telegram.ui.ActionBar.i6.f20888i6));
+        new s4.z(new ma(this)).e(this.f41319b);
+        ((FrameLayout) this.fragmentView).addView(this.f41319b, w7.x5.d(-1.0f, -1));
         this.fragmentView.setOnTouchListener(new bi.d(6));
-        this.f41317b.setOnItemClickListener(new ga(this));
+        this.f41319b.setOnItemClickListener(new ga(this));
         AndroidUtilities.runOnUIThread(new nu0(this, 19), 40L);
         return this.fragmentView;
     }
@@ -259,9 +259,9 @@ public final class ra extends org.telegram.ui.ActionBar.n2 {
         if (pVar != null) {
             AndroidUtilities.cancelRunOnUIThread(pVar);
             this.h = null;
-            this.f41320f = null;
-            if (this.f41319e != 0) {
-                ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.f41319e, true);
+            this.f41322f = null;
+            if (this.f41321e != 0) {
+                ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.f41321e, true);
             }
         }
         if (str != null) {
@@ -362,7 +362,7 @@ public final class ra extends org.telegram.ui.ActionBar.n2 {
                         qa.a(qaVar7);
                     }
                 }
-                this.f41320f = str;
+                this.f41322f = str;
                 org.telegram.ui.ActionBar.p pVar2 = new org.telegram.ui.ActionBar.p(16, this, str);
                 this.h = pVar2;
                 AndroidUtilities.runOnUIThread(pVar2, 300L);
@@ -386,21 +386,21 @@ public final class ra extends org.telegram.ui.ActionBar.n2 {
     }
 
     public final void e0(boolean z10) {
-        la laVar = this.f41326y;
+        la laVar = this.f41328y;
         if (laVar != null) {
-            if (!laVar.f39480a.isFocused()) {
-                EditTextBoldCursor editTextBoldCursor = this.f41326y.f39480a;
+            if (!laVar.f39482a.isFocused()) {
+                EditTextBoldCursor editTextBoldCursor = this.f41328y.f39482a;
                 editTextBoldCursor.setSelection(editTextBoldCursor.length());
             }
-            this.f41326y.f39480a.requestFocus();
+            this.f41328y.f39482a.requestFocus();
             if (z10) {
-                AndroidUtilities.showKeyboard(this.f41326y.f39480a);
+                AndroidUtilities.showKeyboard(this.f41328y.f39482a);
             }
         }
     }
 
     public final TLRPC.User f0() {
-        long j3 = this.f41325x;
+        long j3 = this.f41327x;
         if (j3 != 0) {
             return MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j3));
         }
@@ -408,7 +408,7 @@ public final class ra extends org.telegram.ui.ActionBar.n2 {
     }
 
     public final long g0() {
-        long j3 = this.f41325x;
+        long j3 = this.f41327x;
         if (j3 != 0) {
             return j3;
         }
@@ -426,19 +426,19 @@ public final class ra extends org.telegram.ui.ActionBar.n2 {
     }
 
     public final void h0() {
-        if (this.f41317b == null) {
+        if (this.f41319b == null) {
             return;
         }
-        for (int i10 = 0; i10 < this.f41317b.getChildCount(); i10++) {
-            View childAt = this.f41317b.getChildAt(i10);
+        for (int i10 = 0; i10 < this.f41319b.getChildCount(); i10++) {
+            View childAt = this.f41319b.getChildAt(i10);
             if ((childAt instanceof org.telegram.ui.Cells.m4) && i10 == 0) {
                 AndroidUtilities.shakeViewSpring(((org.telegram.ui.Cells.m4) childAt).getTextView());
             } else if (childAt instanceof qa) {
                 AndroidUtilities.shakeViewSpring(childAt);
             } else if (childAt instanceof la) {
                 la laVar = (la) childAt;
-                AndroidUtilities.shakeViewSpring(laVar.f39480a);
-                AndroidUtilities.shakeViewSpring(laVar.f39481b);
+                AndroidUtilities.shakeViewSpring(laVar.f39482a);
+                AndroidUtilities.shakeViewSpring(laVar.f39483b);
             }
         }
         BotWebViewVibrationEffect.APP_ERROR.vibrate();

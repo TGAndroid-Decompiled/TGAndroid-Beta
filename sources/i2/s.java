@@ -261,7 +261,7 @@ public final class s implements e2.m, e2.h, MessagesStorage.BooleanCallback, qd0
                 wg0Var.finishFragment();
                 return;
             case 16:
-                nn0 nn0Var = ((vm0) this.f11885c).f42903a;
+                nn0 nn0Var = ((vm0) this.f11885c).f42905a;
                 nn0Var.y1(nn0Var.Y[this.f11884b]);
                 return;
             case 17:
@@ -315,7 +315,7 @@ public final class s implements e2.m, e2.h, MessagesStorage.BooleanCallback, qd0
 
     @Override
     public int run() {
-        s4.d0 d0Var = ((mc0) this.f11885c).f39828c;
+        s4.d0 d0Var = ((mc0) this.f11885c).f39830c;
         int dp = AndroidUtilities.dp(60.0f);
         int i10 = this.f11884b;
         d0Var.h1(i10, dp);
@@ -331,8 +331,8 @@ public final class s implements e2.m, e2.h, MessagesStorage.BooleanCallback, qd0
     @Override
     public boolean mo17c(float f7, float f10, int i10, View view) {
         tg.m1 m1Var = (tg.m1) this.f11885c;
-        m20 m20Var = m1Var.f48356d0;
-        HashSet hashSet = m1Var.f48360h0;
+        m20 m20Var = m1Var.f48358d0;
+        HashSet hashSet = m1Var.f48362h0;
         if (view instanceof xg.l) {
             xg.l lVar = (xg.l) view;
             TLRPC.User user = lVar.getUser();
@@ -343,7 +343,7 @@ public final class s implements e2.m, e2.h, MessagesStorage.BooleanCallback, qd0
                 hashSet.remove(Long.valueOf(j3));
             } else {
                 hashSet.add(Long.valueOf(j3));
-                m1Var.f48365n0.put(Long.valueOf(j3), user);
+                m1Var.f48367n0.put(Long.valueOf(j3), user);
             }
             if (hashSet.size() == m1Var.a0() + 1) {
                 hashSet.remove(Long.valueOf(j3));
@@ -354,11 +354,11 @@ public final class s implements e2.m, e2.h, MessagesStorage.BooleanCallback, qd0
             if (z10 != z11) {
                 m20Var.setVisibility(0);
                 m20Var.animate().alpha(z11 ? 1.0f : 0.0f).translationY(z11 ? 0.0f : AndroidUtilities.dp(12.0f)).setInterpolator(hs.h).setDuration(320L).withEndAction(!z11 ? new tg.a1(m1Var, 7) : null).start();
-                ug.h hVar = m1Var.f48367p0;
+                ug.h hVar = m1Var.f48369p0;
                 boolean z12 = !z11;
-                if (hVar.f48946y != z12) {
-                    hVar.f48946y = z12;
-                    AndroidUtilities.forEachViews((RecyclerView) hVar.f48940f, (Utilities.Callback<View>) new ug.f(z12));
+                if (hVar.f48948y != z12) {
+                    hVar.f48948y = z12;
+                    AndroidUtilities.forEachViews((RecyclerView) hVar.f48942f, (Utilities.Callback<View>) new ug.f(z12));
                 }
             }
             m1Var.X();
@@ -372,10 +372,10 @@ public final class s implements e2.m, e2.h, MessagesStorage.BooleanCallback, qd0
 
     @Override
     public void run(boolean z10) {
-        zn znVar = ((oj) this.f11885c).f40543b;
+        zn znVar = ((oj) this.f11885c).f40545b;
         int i10 = this.f11884b;
-        if (i10 == 15 && ChatObject.isChannel(znVar.f44751e)) {
-            TLRPC.Chat chat = znVar.f44751e;
+        if (i10 == 15 && ChatObject.isChannel(znVar.f44753e)) {
+            TLRPC.Chat chat = znVar.f44753e;
             if (!chat.megagroup || ChatObject.isPublic(chat)) {
                 znVar.getMessagesController().deleteDialog(znVar.T5, 2, z10);
                 return;
@@ -387,10 +387,10 @@ public final class s implements e2.m, e2.h, MessagesStorage.BooleanCallback, qd0
             notificationCenter.removeObserver(znVar, i11);
             znVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i11, new Object[0]);
             znVar.finishFragment();
-            znVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(znVar.T5), znVar.f44763f, znVar.f44751e, Boolean.valueOf(z10));
+            znVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(znVar.T5), znVar.f44765f, znVar.f44753e, Boolean.valueOf(z10));
             return;
         }
-        znVar.va(znVar.f44742d4, z10);
+        znVar.va(znVar.f44744d4, z10);
     }
 
     public s(Object obj, int i10, int i11) {

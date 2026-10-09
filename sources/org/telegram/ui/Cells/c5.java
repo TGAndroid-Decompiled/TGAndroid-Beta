@@ -41,11 +41,11 @@ public final class c5 implements jp0 {
         fuVar.f21969b.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j3)));
         fuVar.d = j3;
         w8[] w8VarArr = fuVar.h;
-        AnimatorSet[] animatorSetArr = fuVar.f37694n;
-        int i12 = fuVar.f37692e;
-        i10 = fuVar.f37695r.videosRow;
+        AnimatorSet[] animatorSetArr = fuVar.f37696n;
+        int i12 = fuVar.f37694e;
+        i10 = fuVar.f37697r.videosRow;
         if (i12 == i10) {
-            fuVar.f37693f.setText(LocaleController.formatString("AutoDownloadPreloadVideoInfo", R.string.AutoDownloadPreloadVideoInfo, AndroidUtilities.formatFileSize(j3)));
+            fuVar.f37695f.setText(LocaleController.formatString("AutoDownloadPreloadVideoInfo", R.string.AutoDownloadPreloadVideoInfo, AndroidUtilities.formatFileSize(j3)));
             if (i11 <= 2097152) {
                 z11 = false;
             }

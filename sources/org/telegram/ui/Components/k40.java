@@ -38,7 +38,7 @@ public final class k40 extends AnimatorListenerAdapter {
             case 1:
                 l40 l40Var = this.f27839b.W;
                 if (l40Var != null) {
-                    ((org.telegram.ui.vs0) l40Var).f42975a.f33904e0.requestLayout();
+                    ((org.telegram.ui.vs0) l40Var).f42977a.f33904e0.requestLayout();
                     return;
                 }
                 return;

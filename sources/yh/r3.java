@@ -17,8 +17,8 @@ import org.telegram.ui.Components.qm0;
 import org.telegram.ui.Components.r01;
 import org.telegram.ui.Components.xa;
 public final class r3 extends xa {
-    public final ArrayList f53123a0;
-    public final LimitPreviewView f53124b0;
+    public final ArrayList f53125a0;
+    public final LimitPreviewView f53126b0;
 
     public r3(Context context, long j3, ArrayList arrayList, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context, e6Var);
@@ -26,10 +26,10 @@ public final class r3 extends xa {
         TL_stars.StarGiftUpgradePrice starGiftUpgradePrice;
         float f10;
         int i10;
-        this.f53123a0 = arrayList;
+        this.f53125a0 = arrayList;
         float f11 = this.backgroundPaddingLeft / AndroidUtilities.density;
         LimitPreviewView limitPreviewView = new LimitPreviewView(getContext(), R.drawable.star, 0, e6Var, 0);
-        this.f53124b0 = limitPreviewView;
+        this.f53126b0 = limitPreviewView;
         float f12 = 14.0f;
         limitPreviewView.setTranslationY(-AndroidUtilities.dp(14.0f));
         limitPreviewView.setIconScale(1.8f);
@@ -105,11 +105,11 @@ public final class r3 extends xa {
 
     public final void Q(long j3) {
         int w02;
-        ArrayList arrayList = this.f53123a0;
+        ArrayList arrayList = this.f53125a0;
         if (arrayList != null && !arrayList.isEmpty()) {
             TL_stars.StarGiftUpgradePrice starGiftUpgradePrice = (TL_stars.StarGiftUpgradePrice) arrayList.get(0);
             TL_stars.StarGiftUpgradePrice starGiftUpgradePrice2 = (TL_stars.StarGiftUpgradePrice) hg.c.g(1, arrayList);
-            LimitPreviewView limitPreviewView = this.f53124b0;
+            LimitPreviewView limitPreviewView = this.f53126b0;
             limitPreviewView.M = true;
             Paint paint = limitPreviewView.K;
             int i10 = org.telegram.ui.ActionBar.i6.Oh;

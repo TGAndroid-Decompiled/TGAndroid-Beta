@@ -22,7 +22,7 @@ public final class d1 extends Property {
             case 2:
                 return Float.valueOf(((kl0) obj).v);
             default:
-                return Float.valueOf(((lv0) obj).f39684a);
+                return Float.valueOf(((lv0) obj).f39686a);
         }
     }
 

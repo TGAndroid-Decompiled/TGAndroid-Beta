@@ -368,7 +368,7 @@ public final class t6 implements Runnable {
                 bj bjVar = qm0Var.f30201f2;
                 int[] iArr = qm0Var.f30211k2;
                 zn znVar = bjVar.d;
-                iArr[0] = (int) znVar.f44932s9;
+                iArr[0] = (int) znVar.f44934s9;
                 iArr[1] = znVar.Ba;
                 if (qm0Var.f30205h2) {
                     dp = -AndroidUtilities.dp(12.0f);
@@ -377,7 +377,7 @@ public final class t6 implements Runnable {
                     dp = AndroidUtilities.dp(12.0f);
                     qm0Var.M0(0.0f, qm0Var.getMeasuredHeight() - qm0Var.f30211k2[1]);
                 }
-                qm0Var.f30201f2.d.f44988x0.scrollBy(0, dp);
+                qm0Var.f30201f2.d.f44990x0.scrollBy(0, dp);
                 if (qm0Var.f30203g2) {
                     AndroidUtilities.runOnUIThread(qm0Var.B2);
                     return;
@@ -578,7 +578,7 @@ public final class t6 implements Runnable {
                 return;
             case 26:
                 y30 y30Var = (y30) obj;
-                if (y30Var.f32055b && y30Var.Q0.f37891z0 == null) {
+                if (y30Var.f32055b && y30Var.Q0.f37893z0 == null) {
                     y30Var.f32064g0 = false;
                     org.telegram.ui.Components.voip.m0.a(y30Var);
                     return;
@@ -587,52 +587,52 @@ public final class t6 implements Runnable {
                 return;
             case 27:
                 org.telegram.ui.Wallet.z0 z0Var = (org.telegram.ui.Wallet.z0) obj;
-                if (z0Var.d && z0Var.f35682e && z0Var.f35687k != null) {
-                    if (SystemClock.elapsedRealtime() - z0Var.f35688l >= 30000) {
+                if (z0Var.d && z0Var.f35709e && z0Var.f35714k != null) {
+                    if (SystemClock.elapsedRealtime() - z0Var.f35715l >= 30000) {
                         z0Var.f("heartbeat timed out");
                         return;
                     }
-                    z0Var.d("sending ping; last pong " + (SystemClock.elapsedRealtime() - z0Var.f35688l) + " ms ago");
+                    z0Var.d("sending ping; last pong " + (SystemClock.elapsedRealtime() - z0Var.f35715l) + " ms ago");
                     z0Var.g("{\"operation\":\"ping\",\"id\":\"heartbeat\"}");
                     AndroidUtilities.runOnUIThread(this, 15000L);
                     return;
                 }
                 return;
             case 28:
-                org.telegram.ui.Wallet.z4 z4Var = (org.telegram.ui.Wallet.z4) obj;
-                if (z4Var.f26290a != null && z4Var.d != null) {
-                    z4Var.E0();
-                    if (z4Var.f35732r) {
-                        z4Var.f26290a.postOnAnimation(this);
+                org.telegram.ui.Wallet.a5 a5Var = (org.telegram.ui.Wallet.a5) obj;
+                if (a5Var.f26290a != null && a5Var.d != null) {
+                    a5Var.E0();
+                    if (a5Var.f34636r) {
+                        a5Var.f26290a.postOnAnimation(this);
                         return;
                     }
                     return;
                 }
                 return;
             default:
-                org.telegram.ui.Wallet.c5 c5Var = (org.telegram.ui.Wallet.c5) obj;
-                org.telegram.ui.Wallet.l5 l5Var = c5Var.f34758x;
-                if (c5Var.isAttachedToWindow()) {
-                    l5Var.b(System.nanoTime());
-                    if (l5Var.f35175a) {
-                        f11 = Math.max(-15.0f, Math.min(15.0f, l5Var.f35176b - l5Var.d));
+                org.telegram.ui.Wallet.d5 d5Var = (org.telegram.ui.Wallet.d5) obj;
+                org.telegram.ui.Wallet.m5 m5Var = d5Var.f34823x;
+                if (d5Var.isAttachedToWindow()) {
+                    m5Var.b(System.nanoTime());
+                    if (m5Var.f35239a) {
+                        f11 = Math.max(-15.0f, Math.min(15.0f, m5Var.f35240b - m5Var.d));
                     } else {
                         f11 = 0.0f;
                     }
-                    c5Var.G = f11;
-                    if (l5Var.f35175a) {
-                        f12 = Math.max(-15.0f, Math.min(15.0f, l5Var.f35177c - l5Var.f35178e));
+                    d5Var.G = f11;
+                    if (m5Var.f35239a) {
+                        f12 = Math.max(-15.0f, Math.min(15.0f, m5Var.f35241c - m5Var.f35242e));
                     }
-                    float f18 = c5Var.G;
-                    float f19 = c5Var.H;
+                    float f18 = d5Var.G;
+                    float f19 = d5Var.H;
                     float y3 = com.google.android.gms.internal.vision.e2.y(f18, f19, 1.0f, f19);
-                    c5Var.H = y3;
-                    float f20 = c5Var.I;
+                    d5Var.H = y3;
+                    float f20 = d5Var.I;
                     float y10 = com.google.android.gms.internal.vision.e2.y(f12, f20, 1.0f, f20);
-                    c5Var.I = y10;
-                    float f21 = c5Var.U;
-                    c5Var.b((y3 * f21) + c5Var.J + c5Var.T, (y10 * f21) + c5Var.K);
-                    c5Var.postOnAnimation(this);
+                    d5Var.I = y10;
+                    float f21 = d5Var.U;
+                    d5Var.b((y3 * f21) + d5Var.J + d5Var.T, (y10 * f21) + d5Var.K);
+                    d5Var.postOnAnimation(this);
                     return;
                 }
                 return;

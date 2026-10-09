@@ -2634,7 +2634,7 @@ public class ImageLoader {
         if (imageReceiver == null) {
             return;
         }
-        HashMap hashMap = org.telegram.ui.web.i2.f43351f;
+        HashMap hashMap = org.telegram.ui.web.i2.f43353f;
         if (hashMap != null) {
             Iterator it = hashMap.entrySet().iterator();
             while (true) {
@@ -2656,7 +2656,7 @@ public class ImageLoader {
                     }
                 }
                 if (arrayList.isEmpty()) {
-                    org.telegram.ui.web.i2.f43351f.remove(str);
+                    org.telegram.ui.web.i2.f43353f.remove(str);
                     break;
                 }
             }

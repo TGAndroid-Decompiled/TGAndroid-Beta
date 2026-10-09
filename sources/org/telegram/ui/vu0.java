@@ -4,28 +4,28 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.widget.ImageView;
 public final class vu0 extends ImageView {
-    public int f42981a;
-    public boolean f42982b;
-    public boolean f42983c;
+    public int f42983a;
+    public boolean f42984b;
+    public boolean f42985c;
     public boolean d;
-    public org.telegram.ui.Components.k81 f42984e;
-    public final org.telegram.ui.Components.hs f42985f;
+    public org.telegram.ui.Components.k81 f42986e;
+    public final org.telegram.ui.Components.hs f42987f;
     public ValueAnimator h;
-    public final PhotoViewer f42986n;
+    public final PhotoViewer f42988n;
 
     public vu0(Context context, PhotoViewer photoViewer) {
         super(context);
-        this.f42986n = photoViewer;
-        this.f42981a = 0;
-        this.f42982b = false;
-        this.f42983c = false;
+        this.f42988n = photoViewer;
+        this.f42983a = 0;
+        this.f42984b = false;
+        this.f42985c = false;
         this.d = false;
-        this.f42985f = org.telegram.ui.Components.hs.f27120i;
+        this.f42987f = org.telegram.ui.Components.hs.f27120i;
         setAlpha(0.0f);
     }
 
     public static void a(vu0 vu0Var) {
-        PhotoViewer photoViewer = vu0Var.f42986n;
+        PhotoViewer photoViewer = vu0Var.f42988n;
         org.telegram.ui.Components.k81 k81Var = photoViewer.F2;
         if (k81Var != null && k81Var.p() != -9223372036854775807L) {
             long max = Math.max(0L, photoViewer.F2.p() - photoViewer.F2.n());
@@ -44,7 +44,7 @@ public final class vu0 extends ImageView {
                     vu0Var.h = ofFloat;
                     ofFloat.addUpdateListener(new c3(vu0Var, 24));
                     vu0Var.h.setDuration(max);
-                    vu0Var.h.setInterpolator(vu0Var.f42985f);
+                    vu0Var.h.setInterpolator(vu0Var.f42987f);
                     vu0Var.h.start();
                     vu0Var.setAlpha(max2);
                     return;

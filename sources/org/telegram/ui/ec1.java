@@ -7,12 +7,12 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ec1 extends org.telegram.ui.Cells.na {
-    public final int f37227h3 = 1;
-    public final Object f37228i3;
+    public final int f37229h3 = 1;
+    public final Object f37230i3;
 
     public ec1(Context context, org.telegram.ui.ActionBar.n2 n2Var, ArrayList arrayList, ArrayList arrayList2, org.telegram.ui.ActionBar.a3 a3Var) {
         super(context, n2Var, 2, arrayList, arrayList2);
-        this.f37228i3 = a3Var;
+        this.f37230i3 = a3Var;
     }
 
     @Override
@@ -24,10 +24,10 @@ public final class ec1 extends org.telegram.ui.Cells.na {
         CharSequence[] charSequenceArr;
         boolean z11;
         int[] iArr;
-        switch (this.f37227h3) {
+        switch (this.f37229h3) {
             case 0:
-                hc1 hc1Var = ((hc1) this.f37228i3).f38251e.f34529a;
-                ThemeActivity themeActivity = hc1Var.f38251e;
+                hc1 hc1Var = ((hc1) this.f37230i3).f38253e.f34529a;
+                ThemeActivity themeActivity = hc1Var.f38253e;
                 if (themeActivity.getParentActivity() != null) {
                     if ((h6Var.F == null || h6Var.U) && themeActivity.f34538f != 1) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(themeActivity.getParentActivity());
@@ -89,12 +89,12 @@ public final class ec1 extends org.telegram.ui.Cells.na {
     @Override
     public final void B1() {
         Runnable runnable;
-        switch (this.f37227h3) {
+        switch (this.f37229h3) {
             case 0:
-                ((hc1) this.f37228i3).f38251e.A0(false);
+                ((hc1) this.f37230i3).f38253e.A0(false);
                 return;
             default:
-                runnable = ((org.telegram.ui.ActionBar.a3) this.f37228i3).f20380a.dismissRunnable;
+                runnable = ((org.telegram.ui.ActionBar.a3) this.f37230i3).f20380a.dismissRunnable;
                 runnable.run();
                 return;
         }
@@ -102,6 +102,6 @@ public final class ec1 extends org.telegram.ui.Cells.na {
 
     public ec1(hc1 hc1Var, Context context, org.telegram.ui.ActionBar.n2 n2Var, int i10, ArrayList arrayList, ArrayList arrayList2) {
         super(context, n2Var, i10, arrayList, arrayList2);
-        this.f37228i3 = hc1Var;
+        this.f37230i3 = hc1Var;
     }
 }

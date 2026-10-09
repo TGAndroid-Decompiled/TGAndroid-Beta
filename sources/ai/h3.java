@@ -49,27 +49,27 @@ public final class h3 implements Utilities.Callback {
         Integer num = (Integer) obj;
         org.telegram.ui.v3 v3Var = i4Var.K;
         org.telegram.ui.k0[] k0VarArr = i4Var.S0;
-        if ((!i4Var.f38513u0[0].c() || i4Var.f38513u0[0].f39751c.E != null) && i4Var.L != null) {
+        if ((!i4Var.f38515u0[0].c() || i4Var.f38515u0[0].f39753c.E != null) && i4Var.L != null) {
             if (num.intValue() == 1) {
-                org.telegram.ui.l0 l0Var = i4Var.f38501h0;
+                org.telegram.ui.l0 l0Var = i4Var.f38503h0;
                 int dp = AndroidUtilities.dp(56.0f);
                 i4Var.I0 = dp;
                 l0Var.setHeight(dp);
-                i4Var.f38501h0.h(true);
+                i4Var.f38503h0.h(true);
                 return;
             }
             org.telegram.ui.b0 b0Var = null;
             d dVar = null;
             org.telegram.ui.b0 b0Var2 = null;
             if (num.intValue() == 2) {
-                if (i4Var.f38513u0[0].f()) {
-                    if (i4Var.f38513u0[0].getWebView() != null) {
-                        str4 = i4Var.f38513u0[0].getWebView().getUrl();
+                if (i4Var.f38515u0[0].f()) {
+                    if (i4Var.f38515u0[0].getWebView() != null) {
+                        str4 = i4Var.f38515u0[0].getWebView().getUrl();
                     } else {
                         return;
                     }
                 } else {
-                    TLRPC.WebPage webPage = i4Var.f38513u0[0].f39751c.E;
+                    TLRPC.WebPage webPage = i4Var.f38515u0[0].f39753c.E;
                     if (webPage != null) {
                         str4 = webPage.url;
                     } else {
@@ -78,21 +78,21 @@ public final class h3 implements Utilities.Callback {
                 }
                 String u10 = org.telegram.ui.web.b1.u(str4);
                 Activity activity2 = i4Var.L;
-                if (AndroidUtilities.computePerceivedBrightness(i4Var.f38501h0.getBackgroundColor()) < 0.721f) {
+                if (AndroidUtilities.computePerceivedBrightness(i4Var.f38503h0.getBackgroundColor()) < 0.721f) {
                     dVar = new d();
                 }
                 i4Var.a0(new mr0(activity2, null, u10, false, u10, false, dVar));
             } else if (num.intValue() == 6) {
-                if (i4Var.f38513u0[0].f()) {
-                    if (i4Var.f38513u0[0].getWebView() != null) {
-                        str3 = i4Var.f38513u0[0].getWebView().getUrl();
-                        frameLayout = i4Var.f38513u0[0].f39753f;
+                if (i4Var.f38515u0[0].f()) {
+                    if (i4Var.f38515u0[0].getWebView() != null) {
+                        str3 = i4Var.f38515u0[0].getWebView().getUrl();
+                        frameLayout = i4Var.f38515u0[0].f39755f;
                     } else {
                         return;
                     }
                 } else {
-                    org.telegram.ui.m3 m3Var = i4Var.f38513u0[0];
-                    TLRPC.WebPage webPage2 = m3Var.f39751c.E;
+                    org.telegram.ui.m3 m3Var = i4Var.f38515u0[0];
+                    TLRPC.WebPage webPage2 = m3Var.f39753c.E;
                     if (webPage2 != null) {
                         str3 = webPage2.url;
                         frameLayout = m3Var;
@@ -122,20 +122,20 @@ public final class h3 implements Utilities.Callback {
                     U2.showAsSheet(new org.telegram.ui.web.g1(b0Var, new org.telegram.ui.s(i4Var, 3)), obj3);
                 }
             } else if (num.intValue() == 9) {
-                if (i4Var.f38513u0[0].getWebView() != null) {
-                    i4Var.f38513u0[0].getWebView().goForward();
+                if (i4Var.f38515u0[0].getWebView() != null) {
+                    i4Var.f38515u0[0].getWebView().goForward();
                 }
             } else if (num.intValue() == 3) {
-                if (i4Var.f38513u0[0].f()) {
-                    if (i4Var.f38513u0[0].getWebView() != null) {
-                        str = i4Var.f38513u0[0].getWebView().getUrl();
-                        str2 = i4Var.f38513u0[0].getWebView().getOpenURL();
+                if (i4Var.f38515u0[0].f()) {
+                    if (i4Var.f38515u0[0].getWebView() != null) {
+                        str = i4Var.f38515u0[0].getWebView().getUrl();
+                        str2 = i4Var.f38515u0[0].getWebView().getOpenURL();
                         file = null;
                     } else {
                         return;
                     }
                 } else {
-                    TLRPC.WebPage webPage3 = i4Var.f38513u0[0].f39751c.E;
+                    TLRPC.WebPage webPage3 = i4Var.f38515u0[0].f39753c.E;
                     if (webPage3 != null) {
                         String str5 = webPage3.url;
                         TL_iv.Page page = webPage3.cached_page;
@@ -161,7 +161,7 @@ public final class h3 implements Utilities.Callback {
                         String hostAuthority2 = AndroidUtilities.getHostAuthority(str, true);
                         org.telegram.ui.y yVar = new org.telegram.ui.y(i4Var, str, 1);
                         org.telegram.ui.z zVar = new org.telegram.ui.z(i4Var, hostAuthority2, hostAuthority, 1);
-                        if (i4Var.f38513u0[0].f() && MessagesController.getInstance(i4Var.X).isWebBrowserOpenInApp(hostAuthority2) && !MessagesController.getInstance(i4Var.X).isWebBrowserExceptionsLimitReached(true)) {
+                        if (i4Var.f38515u0[0].f() && MessagesController.getInstance(i4Var.X).isWebBrowserOpenInApp(hostAuthority2) && !MessagesController.getInstance(i4Var.X).isWebBrowserExceptionsLimitReached(true)) {
                             org.telegram.ui.Components.g5.n0(activity, null, str, true, new m0(4, zVar, yVar));
                         } else {
                             yVar.run();
@@ -169,7 +169,7 @@ public final class h3 implements Utilities.Callback {
                     }
                 }
             } else if (num.intValue() == 4) {
-                if (i4Var.f38513u0[0].f()) {
+                if (i4Var.f38515u0[0].f()) {
                     org.telegram.ui.ActionBar.n2 U3 = LaunchActivity.U();
                     if (U3 != 0) {
                         ?? obj4 = new Object();
@@ -198,7 +198,7 @@ public final class h3 implements Utilities.Callback {
                     org.telegram.ui.k0 k0Var = new org.telegram.ui.k0(activity4);
                     k0Var.setBackgroundDrawable(org.telegram.ui.ActionBar.i6.g0(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20888i6, false), i17, -1));
                     RadioButton radioButton = new RadioButton(activity4);
-                    k0Var.f39046b = radioButton;
+                    k0Var.f39048b = radioButton;
                     radioButton.setSize(AndroidUtilities.dp(20.0f));
                     radioButton.b(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.D5, false), org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.E5, false));
                     boolean z11 = LocaleController.isRTL;
@@ -266,12 +266,12 @@ public final class h3 implements Utilities.Callback {
                         k0Var.invalidate();
                     }
                     org.telegram.ui.k0 k0Var2 = k0VarArr[i16];
-                    if (i16 == i4Var.f41882a) {
+                    if (i16 == i4Var.f41884a) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    ((RadioButton) k0Var2.f39046b).a(z10, false);
+                    ((RadioButton) k0Var2.f39048b).a(z10, false);
                     k0VarArr[i16].setTag(Integer.valueOf(i16));
                     k0VarArr[i16].setOnClickListener(new org.telegram.ui.t(i4Var, 4));
                     linearLayout.addView(k0VarArr[i16], w7.x5.n(-1, 50));
@@ -281,10 +281,10 @@ public final class h3 implements Utilities.Callback {
                 i4Var.I = f3Var;
                 i4Var.a0(f3Var);
             } else if (num.intValue() == 5) {
-                if (i4Var.f38513u0[0].f() && i4Var.f38513u0[0].getWebView() != null) {
-                    i4Var.f38513u0[0].getWebView().reload();
+                if (i4Var.f38515u0[0].f() && i4Var.f38515u0[0].getWebView() != null) {
+                    i4Var.f38515u0[0].getWebView().reload();
                 }
-            } else if (num.intValue() == 10 && (g2Var = i4Var.f38513u0[0].f39759y) != null && g2Var.b() != null) {
+            } else if (num.intValue() == 10 && (g2Var = i4Var.f38515u0[0].f39761y) != null && g2Var.b() != null) {
                 i4Var.h(g2Var.b(), null, 1);
             }
         }

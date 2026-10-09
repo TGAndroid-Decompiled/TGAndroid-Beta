@@ -38,7 +38,7 @@ public final class v91 {
                 }
             }
             org.telegram.ui.kq0 kq0Var = new org.telegram.ui.kq0(2, false, false, null);
-            kq0Var.f39336x = false;
+            kq0Var.f39338x = false;
             kq0Var.V = new t91(this);
             n2Var.presentFragment(kq0Var);
             return;

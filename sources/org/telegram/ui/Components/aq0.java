@@ -72,7 +72,7 @@ public abstract class aq0 extends org.telegram.ui.ActionBar.n1 {
                 }
                 if (znVar != null) {
                     xp0 xp0Var = hfVar.B;
-                    org.telegram.ui.xn xnVar = znVar.f44761ea;
+                    org.telegram.ui.xn xnVar = znVar.f44763ea;
                     ci0 ci0Var2 = new ci0(9, hfVar, znVar);
                     fc fcVar = new fc(context, xnVar);
                     Drawable drawable = context.getDrawable(R.drawable.msg_premium_prolfilestar);

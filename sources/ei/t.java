@@ -326,7 +326,7 @@ public final class t extends org.telegram.ui.ActionBar.j {
                 if (i10 == -1) {
                     aaVar.finishFragment();
                     return;
-                } else if (i10 == 1 && aaVar.f35880a.getText().length() != 0) {
+                } else if (i10 == 1 && aaVar.f35882a.getText().length() != 0) {
                     aa.U(aaVar);
                     aaVar.finishFragment();
                     return;
@@ -354,7 +354,7 @@ public final class t extends org.telegram.ui.ActionBar.j {
             default:
                 bd bdVar = (bd) obj;
                 if (i10 == -1) {
-                    if (bdVar.f36247b >= bdVar.S0() && bdVar.Q0()) {
+                    if (bdVar.f36249b >= bdVar.S0() && bdVar.Q0()) {
                         bdVar.V0();
                         return;
                     } else {
@@ -382,14 +382,14 @@ public final class t extends org.telegram.ui.ActionBar.j {
                     lc lcVar = new lc(bdVar, bdVar.getParentActivity(), canvas, (bdVar.L.getMeasuredWidth() / 2.0f) + f7, (bdVar.L.getMeasuredHeight() / 2.0f) + f10, Math.max(createBitmap.getHeight(), createBitmap.getWidth()) + AndroidUtilities.navigationBarHeight, paint, createBitmap, paint2, f7, f10, 0);
                     bdVar.m0 = lcVar;
                     lcVar.setOnTouchListener(new bi.d(2));
-                    bdVar.f36263n0 = 0.0f;
+                    bdVar.f36265n0 = 0.0f;
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    bdVar.f36264o0 = ofFloat;
+                    bdVar.f36266o0 = ofFloat;
                     ofFloat.addUpdateListener(new ub(bdVar, 1));
-                    bdVar.f36264o0.addListener(new org.telegram.ui.t4(bdVar, 17));
-                    bdVar.f36264o0.setDuration(400L);
-                    bdVar.f36264o0.setInterpolator(au.f24775e);
-                    bdVar.f36264o0.start();
+                    bdVar.f36266o0.addListener(new org.telegram.ui.t4(bdVar, 17));
+                    bdVar.f36266o0.setDuration(400L);
+                    bdVar.f36266o0.setInterpolator(au.f24775e);
+                    bdVar.f36266o0.start();
                     frameLayout.addView(bdVar.m0, new ViewGroup.LayoutParams(-1, -1));
                     AndroidUtilities.runOnUIThread(new gc(bdVar, 0));
                     return;

@@ -17,7 +17,7 @@ public final class zd extends org.telegram.ui.Components.zd0 {
         switch (this.L) {
             case 0:
                 ke keVar = (ke) this.M;
-                org.telegram.ui.Components.k71 k71Var = keVar.f39231a1;
+                org.telegram.ui.Components.k71 k71Var = keVar.f39233a1;
                 fi.o oVar = keVar.Y0;
                 if (oVar != null && !oVar.isFocusable()) {
                     oVar.setFocusable(true);
@@ -36,10 +36,10 @@ public final class zd extends org.telegram.ui.Components.zd0 {
                 if (oVar2 != null && !oVar2.isFocusable()) {
                     gVar.Q.setFocusable(true);
                     gVar.Q.setFocusableInTouchMode(true);
-                    int y13 = gVar.f52555e.y1(1);
-                    if (y13 >= 0 && y13 < gVar.f52555e.W2.f25283x.size()) {
-                        gVar.f52555e.B0();
-                        gVar.f52555e.x0(y13);
+                    int y13 = gVar.f52557e.y1(1);
+                    if (y13 >= 0 && y13 < gVar.f52557e.W2.f25283x.size()) {
+                        gVar.f52557e.B0();
+                        gVar.f52557e.x0(y13);
                     }
                     gVar.Q.requestFocus();
                 }

@@ -177,11 +177,11 @@ public final class mv0 extends pm0 {
                         String string = LocaleController.getString(R.string.NoResultFoundForTag);
                         zg.n0 n0Var = this.f28961x;
                         Paint.FontMetricsInt fontMetricsInt = uu0VarArr[i12].f31627w.d.getPaint().getFontMetricsInt();
-                        if (!TextUtils.isEmpty(n0Var.f54615f)) {
-                            charSequence = n0Var.f54615f;
+                        if (!TextUtils.isEmpty(n0Var.f54617f)) {
+                            charSequence = n0Var.f54617f;
                         } else {
                             SpannableString spannableString = new SpannableString("😀");
-                            spannableString.setSpan(new b6(n0Var.f54616g, fontMetricsInt), 0, spannableString.length(), 17);
+                            spannableString.setSpan(new b6(n0Var.f54618g, fontMetricsInt), 0, spannableString.length(), 17);
                             charSequence = spannableString;
                         }
                         formatString = AndroidUtilities.replaceCharSequence("%s", string, charSequence);
@@ -232,7 +232,7 @@ public final class mv0 extends pm0 {
     public final void v(s4.d1 d1Var, int i10) {
         boolean z10;
         if (i10 >= 0) {
-            View view = d1Var.f47656a;
+            View view = d1Var.f47658a;
             if (view instanceof org.telegram.ui.Cells.s2) {
                 org.telegram.ui.Cells.s2 s2Var = (org.telegram.ui.Cells.s2) view;
                 if (i10 + 1 < h()) {

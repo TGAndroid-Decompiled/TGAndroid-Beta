@@ -43,7 +43,7 @@ public final class ma extends pm0 {
         float f7;
         org.telegram.ui.ActionBar.h6 h6Var;
         TLRPC.TL_theme tL_theme;
-        ThemesHorizontalListCell$InnerThemeView themesHorizontalListCell$InnerThemeView = (ThemesHorizontalListCell$InnerThemeView) d1Var.f47656a;
+        ThemesHorizontalListCell$InnerThemeView themesHorizontalListCell$InnerThemeView = (ThemesHorizontalListCell$InnerThemeView) d1Var.f47658a;
         na naVar = this.d;
         ArrayList arrayList = naVar.f22552c3;
         if (i10 < arrayList.size()) {

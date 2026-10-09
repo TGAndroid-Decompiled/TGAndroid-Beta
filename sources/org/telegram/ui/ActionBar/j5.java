@@ -1421,7 +1421,7 @@ public class j5 extends View implements Drawable.Callback {
                 getParent().requestDisallowInterceptTouchEvent(true);
                 Drawable drawable = this.f21248w;
                 if (drawable instanceof i5) {
-                    ((j11) ((i5) drawable)).f38805f.c(true);
+                    ((j11) ((i5) drawable)).f38807f.c(true);
                 }
             } else if (motionEvent.getAction() == 2 && this.E0) {
                 if (Math.abs(motionEvent.getX() - this.F0) >= AndroidUtilities.touchSlop || Math.abs(motionEvent.getY() - this.G0) >= AndroidUtilities.touchSlop) {
@@ -1429,7 +1429,7 @@ public class j5 extends View implements Drawable.Callback {
                     getParent().requestDisallowInterceptTouchEvent(false);
                     Drawable drawable2 = this.f21248w;
                     if (drawable2 instanceof i5) {
-                        ((j11) ((i5) drawable2)).f38805f.c(false);
+                        ((j11) ((i5) drawable2)).f38807f.c(false);
                     }
                 }
             } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
@@ -1437,7 +1437,7 @@ public class j5 extends View implements Drawable.Callback {
                     this.D0.onClick(this);
                     Drawable drawable3 = this.f21248w;
                     if (drawable3 instanceof i5) {
-                        ((j11) ((i5) drawable3)).f38805f.c(false);
+                        ((j11) ((i5) drawable3)).f38807f.c(false);
                     }
                 }
                 this.E0 = false;

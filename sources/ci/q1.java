@@ -113,7 +113,7 @@ public final class q1 extends s4.o0 {
                 return;
             case 5:
                 recyclerView.getClass();
-                if (RecyclerView.R(view) == ((hi0) this.f5757b).f38351c.size() - 1) {
+                if (RecyclerView.R(view) == ((hi0) this.f5757b).f38353c.size() - 1) {
                     rect.bottom = AndroidUtilities.dp(4.0f);
                     return;
                 }
@@ -123,8 +123,8 @@ public final class q1 extends s4.o0 {
                 recyclerView.getClass();
                 int R = RecyclerView.R(view);
                 sj0 sj0Var = (sj0) this.f5757b;
-                if (R == sj0Var.f41709c0.size()) {
-                    rect.bottom = sj0Var.f41718l0;
+                if (R == sj0Var.f41711c0.size()) {
+                    rect.bottom = sj0Var.f41720l0;
                     return;
                 }
                 return;
@@ -132,9 +132,9 @@ public final class q1 extends s4.o0 {
                 recyclerView.getClass();
                 int R2 = RecyclerView.R(view);
                 up0 up0Var = (up0) this.f5757b;
-                int i13 = up0Var.f42513b0;
+                int i13 = up0Var.f42515b0;
                 if (R2 >= i13) {
-                    int i14 = up0Var.f42520f0;
+                    int i14 = up0Var.f42522f0;
                     if (R2 < i13 + i14) {
                         int i15 = R2 - i13;
                         int i16 = i15 / 3;
@@ -191,8 +191,8 @@ public final class q1 extends s4.o0 {
                 recyclerView.getClass();
                 int R3 = RecyclerView.R(view);
                 tg.z0 z0Var = (tg.z0) this.f5757b;
-                if (R3 == z0Var.f48435d0.size()) {
-                    rect.bottom = z0Var.f48446p0;
+                if (R3 == z0Var.f48437d0.size()) {
+                    rect.bottom = z0Var.f48448p0;
                     return;
                 }
                 return;

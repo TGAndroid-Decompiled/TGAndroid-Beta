@@ -14,60 +14,60 @@ import org.telegram.ui.Components.hs;
 import org.telegram.ui.jb0;
 import w7.x5;
 public final class n0 extends FrameLayout implements l0 {
-    public final e6 f47356a;
-    public final ArrayList f47357b;
-    public final m0 f47358c;
+    public final e6 f47358a;
+    public final ArrayList f47359b;
+    public final m0 f47360c;
     public final m0 d;
-    public final m0 f47359e;
-    public final boolean f47360f;
+    public final m0 f47361e;
+    public final boolean f47362f;
 
     public n0(Context context, e6 e6Var) {
         super(context);
         jb0[] values;
-        this.f47357b = new ArrayList();
-        this.f47356a = e6Var;
+        this.f47359b = new ArrayList();
+        this.f47358a = e6Var;
         for (jb0 jb0Var : jb0.values()) {
-            if (jb0Var.f38900e) {
-                this.f47357b.add(jb0Var);
+            if (jb0Var.f38902e) {
+                this.f47359b.add(jb0Var);
             }
-            if (this.f47357b.size() == 3) {
+            if (this.f47359b.size() == 3) {
                 break;
             }
         }
-        if (this.f47357b.size() < 3) {
+        if (this.f47359b.size() < 3) {
             FileLog.e(new IllegalArgumentException("There should be at least 3 premium icons!"));
-            this.f47360f = true;
+            this.f47362f = true;
             return;
         }
-        this.f47358c = a(context, 0);
+        this.f47360c = a(context, 0);
         this.d = a(context, 1);
-        this.f47359e = a(context, 2);
+        this.f47361e = a(context, 2);
         setClipChildren(false);
     }
 
     public final m0 a(Context context, int i10) {
-        jb0 jb0Var = (jb0) this.f47357b.get(i10);
+        jb0 jb0Var = (jb0) this.f47359b.get(i10);
         ?? qVar = new org.telegram.ui.Cells.q(context);
         v1 v1Var = new v1(20);
-        qVar.f47345e = v1Var;
+        qVar.f47347e = v1Var;
         Paint paint = new Paint(1);
-        qVar.f47346f = paint;
-        v1Var.f47489r = 12;
-        v1Var.f47490s = 8;
-        v1Var.f47491t = 6;
+        qVar.f47348f = paint;
+        v1Var.f47491r = 12;
+        v1Var.f47492s = 8;
+        v1Var.f47493t = 6;
         if (i10 == 1) {
             v1Var.N = 1001;
         }
         if (i10 == 0) {
             v1Var.N = 1002;
         }
-        v1Var.O = this.f47356a;
+        v1Var.O = this.f47358a;
         v1Var.P = i6.Zj;
         v1Var.c();
         paint.setColor(-1);
         qVar.setLayoutParams(x5.a(-2.0f, 0.0f, 52.0f, 0.0f, 0.0f, -2, 17));
-        qVar.setForeground(jb0Var.f38899c);
-        qVar.setBackgroundResource(jb0Var.f38898b);
+        qVar.setForeground(jb0Var.f38901c);
+        qVar.setBackgroundResource(jb0Var.f38900b);
         qVar.setPadding(AndroidUtilities.dp(8.0f));
         qVar.setBackgroundOuterPadding(AndroidUtilities.dp(32.0f));
         addView(qVar);
@@ -77,12 +77,12 @@ public final class n0 extends FrameLayout implements l0 {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        if (this.f47360f) {
+        if (this.f47362f) {
             return;
         }
         int min = Math.min(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11));
         int dp = AndroidUtilities.dp(76.0f);
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f47358c.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f47360c.getLayoutParams();
         layoutParams.height = dp;
         layoutParams.width = dp;
         float f7 = dp;
@@ -92,7 +92,7 @@ public final class n0 extends FrameLayout implements l0 {
         layoutParams2.width = dp;
         int i12 = (int) (f7 * 0.95f);
         layoutParams2.rightMargin = i12;
-        FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) this.f47359e.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) this.f47361e.getLayoutParams();
         layoutParams3.height = dp;
         layoutParams3.width = dp;
         layoutParams3.leftMargin = i12;
@@ -100,13 +100,13 @@ public final class n0 extends FrameLayout implements l0 {
 
     @Override
     public void setOffset(float f7) {
-        if (this.f47360f) {
+        if (this.f47362f) {
             return;
         }
         float abs = Math.abs(f7 / getMeasuredWidth());
         float interpolation = hs.f27120i.getInterpolation(abs);
         int right = getRight();
-        m0 m0Var = this.f47359e;
+        m0 m0Var = this.f47361e;
         m0Var.setTranslationX(((m0Var.getWidth() * 1.5f) + (right - m0Var.getRight()) + AndroidUtilities.dp(32.0f)) * interpolation);
         m0Var.setTranslationY(AndroidUtilities.dp(16.0f) * interpolation);
         float f10 = 1.0f;
@@ -114,7 +114,7 @@ public final class n0 extends FrameLayout implements l0 {
         m0Var.setScaleX(clamp);
         m0Var.setScaleY(clamp);
         int top = getTop();
-        m0 m0Var2 = this.f47358c;
+        m0 m0Var2 = this.f47360c;
         m0Var2.setTranslationY((((top - m0Var2.getTop()) - (m0Var2.getHeight() * 1.8f)) - AndroidUtilities.dp(32.0f)) * abs);
         m0Var2.setTranslationX(AndroidUtilities.dp(16.0f) * abs);
         float clamp2 = Utilities.clamp(AndroidUtilities.lerp(1.0f, 1.8f, abs), 1.0f, 0.0f);

@@ -166,7 +166,7 @@ public final class y extends eb {
         this.smoothKeyboardAnimationEnabled = true;
         this.O = true;
         v vVar = new v(this);
-        vVar.f47696m = false;
+        vVar.f47698m = false;
         vVar.C = false;
         vVar.o(hs.h);
         vVar.n(350L);

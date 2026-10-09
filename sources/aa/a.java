@@ -96,9 +96,9 @@ public final class a implements s, h81, d, a0, OnCompleteListener, n5.b {
     public static final URL c(a aVar) {
         Uri.Builder appendPath = new Uri.Builder().scheme("https").authority((String) aVar.f384b).appendPath("spi").appendPath("v2").appendPath("platforms").appendPath("android").appendPath("gmp");
         za.b bVar = (za.b) aVar.f385c;
-        Uri.Builder appendPath2 = appendPath.appendPath(bVar.f54189a).appendPath("settings");
-        za.a aVar2 = bVar.f54190b;
-        return new URL(appendPath2.appendQueryParameter("build_version", aVar2.f54182c).appendQueryParameter("display_version", aVar2.f54181b).build().toString());
+        Uri.Builder appendPath2 = appendPath.appendPath(bVar.f54191a).appendPath("settings");
+        za.a aVar2 = bVar.f54192b;
+        return new URL(appendPath2.appendQueryParameter("build_version", aVar2.f54184c).appendQueryParameter("display_version", aVar2.f54183b).build().toString());
     }
 
     public static String h(String str, HashMap hashMap) {
@@ -800,7 +800,7 @@ public final class a implements s, h81, d, a0, OnCompleteListener, n5.b {
     }
 
     public a(t0 store, s0 s0Var) {
-        this(store, s0Var, v1.a.f49027b);
+        this(store, s0Var, v1.a.f49029b);
         this.f383a = 3;
         kotlin.jvm.internal.i.e(store, "store");
     }

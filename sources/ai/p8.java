@@ -207,7 +207,7 @@ public final class p8 implements Runnable {
                 MessagesController.getInstance(i13).loadFullChat(((TLRPC.Chat) obj).f20038id, 0, true);
                 return;
             case 16:
-                ((org.telegram.ui.p4) ((org.telegram.ui.g) obj).f37729b).V(i13, true);
+                ((org.telegram.ui.p4) ((org.telegram.ui.g) obj).f37731b).V(i13, true);
                 return;
             case 17:
                 org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) obj;
@@ -238,52 +238,52 @@ public final class p8 implements Runnable {
                 }
                 return;
             case 18:
-                ((fe) obj).f37522f.c(i13);
+                ((fe) obj).f37524f.c(i13);
                 return;
             case 19:
-                zn znVar = ((zi) obj).f44668g;
-                if (znVar.f44985wb == i13) {
+                zn znVar = ((zi) obj).f44670g;
+                if (znVar.f44987wb == i13) {
                     znVar.Qa();
                     return;
                 }
                 return;
             case 20:
-                zn znVar2 = ((aj) obj).f35943g;
-                if (znVar2.f44985wb == i13) {
+                zn znVar2 = ((aj) obj).f35945g;
+                if (znVar2.f44987wb == i13) {
                     znVar2.Qa();
                     return;
                 }
                 return;
             case 21:
-                ((ij) obj).f38672a.F(this.f1577b, 0, 0, 0, true, true);
+                ((ij) obj).f38674a.F(this.f1577b, 0, 0, 0, true, true);
                 return;
             case 22:
-                zn znVar3 = ((zi) obj).f44668g;
-                if (znVar3.f44985wb == i13) {
+                zn znVar3 = ((zi) obj).f44670g;
+                if (znVar3.f44987wb == i13) {
                     znVar3.Qa();
                     return;
                 }
                 return;
             case 23:
-                zn znVar4 = ((aj) obj).f35943g;
-                if (znVar4.f44985wb == i13) {
+                zn znVar4 = ((aj) obj).f35945g;
+                if (znVar4.f44987wb == i13) {
                     znVar4.Qa();
                     return;
                 }
                 return;
             case 24:
-                zn znVar5 = ((aj) obj).f35943g;
-                if (znVar5.f44985wb == i13) {
+                zn znVar5 = ((aj) obj).f35945g;
+                if (znVar5.f44987wb == i13) {
                     znVar5.Qa();
                     return;
                 }
                 return;
             case 25:
                 zn znVar6 = ((sm) obj).J0;
-                znVar6.f45012z0.h1(i13, znVar6.f45004y4);
+                znVar6.f45014z0.h1(i13, znVar6.f45006y4);
                 return;
             case 26:
-                i11 = ((org.telegram.ui.ActionBar.n2) ((ln) obj).f39634a).currentAccount;
+                i11 = ((org.telegram.ui.ActionBar.n2) ((ln) obj).f39636a).currentAccount;
                 ConnectionsManager.getInstance(i11).cancelRequest(i13, true);
                 return;
             case 27:

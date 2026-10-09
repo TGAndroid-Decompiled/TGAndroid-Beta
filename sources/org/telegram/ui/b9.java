@@ -8,11 +8,11 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class b9 extends org.telegram.ui.Components.mr0 {
-    public final org.telegram.ui.ActionBar.f3 f36171b1;
+    public final org.telegram.ui.ActionBar.f3 f36173b1;
 
     public b9(Context context, String str, String str2, org.telegram.ui.ActionBar.e6 e6Var, org.telegram.ui.ActionBar.f3 f3Var) {
         super(context, null, str, false, str2, false, e6Var);
-        this.f36171b1 = f3Var;
+        this.f36173b1 = f3Var;
     }
 
     @Override
@@ -38,7 +38,7 @@ public final class b9 extends org.telegram.ui.Components.mr0 {
             }
             formatString = LocaleController.formatString(i11, LocaleController.formatPluralString("Chats", m10, new Object[0]));
         }
-        org.telegram.ui.Components.tc Q = new org.telegram.ui.Components.ad(this.f36171b1.topBulletinContainer, this.resourcesProvider).Q(R.raw.forward, 36, AndroidUtilities.replaceTags(formatString));
+        org.telegram.ui.Components.tc Q = new org.telegram.ui.Components.ad(this.f36173b1.topBulletinContainer, this.resourcesProvider).Q(R.raw.forward, 36, AndroidUtilities.replaceTags(formatString));
         Q.f31138r = false;
         Q.j();
     }

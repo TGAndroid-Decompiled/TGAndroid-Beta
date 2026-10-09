@@ -8,18 +8,18 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class g61 extends org.telegram.ui.Components.sw {
-    public final int f37895g0;
-    public final k71 f37896h0;
+    public final int f37897g0;
+    public final k71 f37898h0;
 
     public g61(k71 k71Var, Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10, boolean z11, int i10, n31 n31Var, int i11, int i12) {
         super(context, e6Var, z10, z11, false, true, i10, n31Var, i11, false);
-        this.f37896h0 = k71Var;
-        this.f37895g0 = i12;
+        this.f37898h0 = k71Var;
+        this.f37897g0 = i12;
     }
 
     @Override
     public final ColorFilter getEmojiColorFilter() {
-        return this.f37896h0.f39137k1;
+        return this.f37898h0.f39139k1;
     }
 
     @Override
@@ -29,20 +29,20 @@ public final class g61 extends org.telegram.ui.Components.sw {
         y61 y61Var;
         int i13;
         int i14;
-        k71 k71Var = this.f37896h0;
-        SparseIntArray sparseIntArray = k71Var.f39165x0;
+        k71 k71Var = this.f37898h0;
+        SparseIntArray sparseIntArray = k71Var.f39167x0;
         int i15 = 0;
-        if (k71Var.f39163w1) {
+        if (k71Var.f39165w1) {
             return false;
         }
-        int i16 = this.f37895g0;
+        int i16 = this.f37897g0;
         if (i16 == 4 && i10 == 0) {
             k71Var.Q = !k71Var.Q;
-            k71Var.f39120d0.setVisibility(8);
-            org.telegram.ui.Components.sw swVar = k71Var.f39118c0[k71Var.Q ? 1 : 0];
-            k71Var.f39120d0 = swVar;
+            k71Var.f39122d0.setVisibility(8);
+            org.telegram.ui.Components.sw swVar = k71Var.f39120c0[k71Var.Q ? 1 : 0];
+            k71Var.f39122d0 = swVar;
             swVar.setVisibility(0);
-            org.telegram.ui.Components.ow owVar = k71Var.f39120d0.f30912x;
+            org.telegram.ui.Components.ow owVar = k71Var.f39122d0.f30912x;
             Context context = getContext();
             if (k71Var.Q) {
                 i13 = R.drawable.msg_emoji_stickers;
@@ -50,7 +50,7 @@ public final class g61 extends org.telegram.ui.Components.sw {
                 i13 = R.drawable.msg_emoji_smiles;
             }
             owVar.setDrawable(context.getDrawable(i13));
-            org.telegram.ui.Components.ow owVar2 = k71Var.f39120d0.f30912x;
+            org.telegram.ui.Components.ow owVar2 = k71Var.f39122d0.f30912x;
             if (k71Var.Q) {
                 i14 = R.string.AccDescrStickers;
             } else {
@@ -58,7 +58,7 @@ public final class g61 extends org.telegram.ui.Components.sw {
             }
             owVar2.setContentDescription(LocaleController.getString(i14));
             k71Var.B(true, false, false);
-            k71Var.f39150r0.h1(0, 0);
+            k71Var.f39152r0.h1(0, 0);
             return true;
         }
         org.telegram.ui.Components.ow owVar3 = this.E;
@@ -69,7 +69,7 @@ public final class g61 extends org.telegram.ui.Components.sw {
         }
         int i17 = i11 + 1;
         if (owVar3 != null && this.f30905b0 && i10 == 1) {
-            i12 = k71Var.f39140n;
+            i12 = k71Var.f39142n;
         } else {
             if ((i16 != 4 || i10 != 0) && i10 > 0) {
                 int i18 = i10 - i17;
@@ -83,11 +83,11 @@ public final class g61 extends org.telegram.ui.Components.sw {
             i15 = 7;
         }
         k71.a(k71Var, i12, AndroidUtilities.dp(i15 - 2));
-        k71Var.f39120d0.j(i10, true);
-        k71Var.f39130h0.J1 = true;
+        k71Var.f39122d0.j(i10, true);
+        k71Var.f39132h0.J1 = true;
         k71Var.v(null, true, true);
-        b61 b61Var = k71Var.f39126f0;
-        if (b61Var != null && (y61Var = b61Var.f44495n) != null) {
+        b61 b61Var = k71Var.f39128f0;
+        if (b61Var != null && (y61Var = b61Var.f44497n) != null) {
             y61Var.G1(null);
         }
         return true;
@@ -95,7 +95,7 @@ public final class g61 extends org.telegram.ui.Components.sw {
 
     @Override
     public final void i(org.telegram.ui.Components.ow owVar) {
-        ValueAnimator valueAnimator = this.f37896h0.U1;
+        ValueAnimator valueAnimator = this.f37898h0.U1;
         if (valueAnimator != null && !valueAnimator.isRunning()) {
             return;
         }
