@@ -1,75 +1,147 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.graphics.Canvas;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
+import android.os.SystemClock;
+import android.view.animation.OvershootInterpolator;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class ky implements View.OnClickListener {
-    public final ny f28304a;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.SharedConfig;
+public final class ky extends yt {
+    public int M;
+    public int N;
+    public ArrayList O;
+    public final ArrayList P = new ArrayList();
+    public final OvershootInterpolator Q = new OvershootInterpolator(3.0f);
+    public final my R;
 
-    public ky(ny nyVar) {
-        this.f28304a = nyVar;
+    public ky(my myVar) {
+        this.R = myVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        int i10;
-        int i11;
-        boolean[] zArr = new boolean[1];
-        ny nyVar = this.f28304a;
-        nz nzVar = nyVar.F;
-        org.telegram.ui.ActionBar.a3 a3Var = new org.telegram.ui.ActionBar.a3(nzVar.getContext(), null);
-        LinearLayout linearLayout = new LinearLayout(nzVar.getContext());
-        linearLayout.setOrientation(1);
-        linearLayout.setPadding(AndroidUtilities.dp(21.0f), 0, AndroidUtilities.dp(21.0f), 0);
-        ImageView imageView = new ImageView(nzVar.getContext());
-        imageView.setImageResource(R.drawable.smiles_info);
-        linearLayout.addView(imageView, w7.z5.t(-2, -2, 49, 0, 15, 0, 0));
-        TextView textView = new TextView(nzVar.getContext());
-        textView.setText(LocaleController.getString(R.string.EmojiSuggestions));
-        textView.setTextSize(1, 15.0f);
-        int i12 = org.telegram.ui.ActionBar.i6.f21012n5;
-        int i13 = nz.M2;
-        textView.setTextColor(nzVar.z(i12));
-        int i14 = 3;
-        if (LocaleController.isRTL) {
-            i10 = 5;
+    public final void a(Canvas canvas, long j3, int i10, int i11, float f7) {
+        boolean z10;
+        boolean z11;
+        int i12;
+        my myVar = this.R;
+        a00 a00Var = myVar.f28970d3;
+        ArrayList arrayList = this.O;
+        if (arrayList == null) {
+            return;
+        }
+        boolean z12 = true;
+        if (arrayList.size() > 4 && SharedConfig.getDevicePerformanceClass() != 0 && LiteMode.isEnabled(16388)) {
+            z10 = false;
         } else {
-            i10 = 3;
+            z10 = true;
         }
-        textView.setGravity(i10);
-        textView.setTypeface(AndroidUtilities.bold());
-        linearLayout.addView(textView, w7.z5.t(-2, -2, 51, 0, 24, 0, 0));
-        TextView textView2 = new TextView(nzVar.getContext());
-        textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.EmojiSuggestionsInfo)));
-        textView2.setTextSize(1, 15.0f);
-        textView2.setTextColor(nzVar.z(org.telegram.ui.ActionBar.i6.f20935j5));
-        if (LocaleController.isRTL) {
-            i11 = 5;
-        } else {
-            i11 = 3;
+        if (!z10) {
+            if (a00Var.f24459u2 > 0 && SystemClock.elapsedRealtime() - a00Var.f24459u2 < myVar.x1()) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            for (int i13 = 0; i13 < this.O.size(); i13++) {
+                iz izVar = (iz) this.O.get(i13);
+                if (izVar.h != 0.0f || izVar.f27522n != null || ((i12 = izVar.f27517a) > a00Var.f24453s2 && i12 < a00Var.f24456t2 && z11)) {
+                    break;
+                }
+            }
         }
-        textView2.setGravity(i11);
-        linearLayout.addView(textView2, w7.z5.t(-2, -2, 51, 0, 11, 0, 0));
-        TextView textView3 = new TextView(nzVar.getContext());
-        int i15 = R.string.EmojiSuggestionsUrl;
-        Object obj = nyVar.f29177w;
-        if (obj == null) {
-            obj = nzVar.W0;
+        z12 = z10;
+        if (z12) {
+            i(System.currentTimeMillis());
+            d(canvas, 1.0f);
+            k();
+            return;
         }
-        textView3.setText(LocaleController.formatString("EmojiSuggestionsUrl", i15, obj));
-        textView3.setTextSize(1, 15.0f);
-        textView3.setTextColor(nzVar.z(org.telegram.ui.ActionBar.i6.f20955k5));
-        if (LocaleController.isRTL) {
-            i14 = 5;
+        super.a(canvas, j3, i10, i11, 1.0f);
+    }
+
+    @Override
+    public final void c(Canvas canvas) {
+        int i10 = 0;
+        while (true) {
+            ArrayList arrayList = this.P;
+            if (i10 < arrayList.size()) {
+                iz izVar = (iz) arrayList.get(i10);
+                s5 s5Var = izVar.f27518b;
+                if (s5Var != null) {
+                    ImageReceiver.BackgroundThreadDrawHolder backgroundThreadDrawHolder = izVar.f27521f[this.K];
+                    ai.m4 m4Var = s5Var.f30654k;
+                    if (m4Var != null) {
+                        m4Var.setAlpha(s5Var.f30655l);
+                        s5Var.f30654k.draw(canvas, backgroundThreadDrawHolder);
+                    }
+                }
+                i10++;
+            } else {
+                return;
+            }
         }
-        textView3.setGravity(i14);
-        linearLayout.addView(textView3, w7.z5.t(-2, -2, 51, 0, 18, 0, 16));
-        textView3.setOnClickListener(new jy(this, zArr, a3Var));
-        a3Var.b(linearLayout);
-        a3Var.f20383a.show();
+    }
+
+    @Override
+    public final void d(android.graphics.Canvas r20, float r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ky.d(android.graphics.Canvas, float):void");
+    }
+
+    @Override
+    public final void g() {
+        int i10 = 0;
+        while (true) {
+            ArrayList arrayList = this.P;
+            if (i10 < arrayList.size()) {
+                ImageReceiver.BackgroundThreadDrawHolder[] backgroundThreadDrawHolderArr = ((iz) arrayList.get(i10)).f27521f;
+                if (backgroundThreadDrawHolderArr != null) {
+                    backgroundThreadDrawHolderArr[this.K].release();
+                }
+                i10++;
+            } else {
+                this.R.f28970d3.P.invalidate();
+                return;
+            }
+        }
+    }
+
+    @Override
+    public final void i(long j3) {
+        s5 s5Var;
+        PorterDuffColorFilter porterDuffColorFilter;
+        a00 a00Var = this.R.f28970d3;
+        ArrayList arrayList = this.P;
+        arrayList.clear();
+        for (int i10 = 0; i10 < this.O.size(); i10++) {
+            iz izVar = (iz) this.O.get(i10);
+            b6 span = izVar.getSpan();
+            ImageReceiver.BackgroundThreadDrawHolder[] backgroundThreadDrawHolderArr = izVar.f27521f;
+            if (span != null && (s5Var = (s5) a00Var.f24405d2.get(izVar.d.getDocumentId())) != null && s5Var.f30654k != null) {
+                s5Var.t(j3);
+                ai.m4 m4Var = s5Var.f30654k;
+                int i11 = this.K;
+                ImageReceiver.BackgroundThreadDrawHolder drawInBackgroundThread = m4Var.setDrawInBackgroundThread(backgroundThreadDrawHolderArr[i11], i11);
+                backgroundThreadDrawHolderArr[i11] = drawInBackgroundThread;
+                drawInBackgroundThread.time = j3;
+                drawInBackgroundThread.overrideAlpha = 1.0f;
+                s5Var.setAlpha(255);
+                int height = (int) (izVar.getHeight() * 0.03f);
+                Rect rect = AndroidUtilities.rectTmp2;
+                rect.set((izVar.getPaddingLeft() + izVar.getLeft()) - this.N, height, (izVar.getRight() - izVar.getPaddingRight()) - this.N, ((izVar.getMeasuredHeight() + height) - izVar.getPaddingTop()) - izVar.getPaddingBottom());
+                backgroundThreadDrawHolderArr[i11].setBounds(rect);
+                izVar.f27518b = s5Var;
+                ImageReceiver.BackgroundThreadDrawHolder backgroundThreadDrawHolder = backgroundThreadDrawHolderArr[i11];
+                if (s5Var.c()) {
+                    porterDuffColorFilter = a00Var.f24409e2;
+                } else {
+                    porterDuffColorFilter = null;
+                }
+                backgroundThreadDrawHolder.colorFilter = porterDuffColorFilter;
+                arrayList.add(izVar);
+            }
+        }
     }
 }

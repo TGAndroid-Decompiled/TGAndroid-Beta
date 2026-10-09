@@ -1,0 +1,198 @@
+package fe;
+
+import java.util.concurrent.atomic.AtomicLongFieldUpdater;
+import java.util.concurrent.atomic.AtomicReferenceArray;
+import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
+public final class n {
+    public static final AtomicReferenceFieldUpdater f9907e = AtomicReferenceFieldUpdater.newUpdater(n.class, Object.class, "_next$volatile");
+    public static final AtomicLongFieldUpdater f9908f = AtomicLongFieldUpdater.newUpdater(n.class, "_state$volatile");
+    public static final da.a f9909g = new da.a("REMOVE_FROZEN");
+    private volatile Object _next$volatile;
+    private volatile long _state$volatile;
+    public final int f9910a;
+    public final boolean f9911b;
+    public final int f9912c;
+    public final AtomicReferenceArray d;
+
+    public n(int i10, boolean z10) {
+        this.f9910a = i10;
+        this.f9911b = z10;
+        int i11 = i10 - 1;
+        this.f9912c = i11;
+        this.d = new AtomicReferenceArray(i10);
+        if (i11 <= 1073741823) {
+            if ((i10 & i11) == 0) {
+                return;
+            }
+            throw new IllegalStateException("Check failed.");
+        }
+        throw new IllegalStateException("Check failed.");
+    }
+
+    public final int a(Object obj) {
+        while (true) {
+            AtomicLongFieldUpdater atomicLongFieldUpdater = f9908f;
+            long j3 = atomicLongFieldUpdater.get(this);
+            if ((3458764513820540928L & j3) != 0) {
+                if ((2305843009213693952L & j3) != 0) {
+                    return 2;
+                }
+                return 1;
+            }
+            int i10 = (int) (1073741823 & j3);
+            int i11 = (int) ((1152921503533105152L & j3) >> 30);
+            int i12 = this.f9912c;
+            if (((i11 + 2) & i12) != (i10 & i12)) {
+                boolean z10 = this.f9911b;
+                AtomicReferenceArray atomicReferenceArray = this.d;
+                if (!z10 && atomicReferenceArray.get(i11 & i12) != null) {
+                    int i13 = this.f9910a;
+                    if (i13 < 1024 || ((i11 - i10) & 1073741823) > (i13 >> 1)) {
+                        return 1;
+                    }
+                } else {
+                    if (f9908f.compareAndSet(this, j3, ((-1152921503533105153L) & j3) | (((i11 + 1) & 1073741823) << 30))) {
+                        atomicReferenceArray.set(i11 & i12, obj);
+                        n nVar = this;
+                        while ((atomicLongFieldUpdater.get(nVar) & 1152921504606846976L) != 0) {
+                            nVar = nVar.c();
+                            AtomicReferenceArray atomicReferenceArray2 = nVar.d;
+                            int i14 = nVar.f9912c & i11;
+                            Object obj2 = atomicReferenceArray2.get(i14);
+                            if ((obj2 instanceof m) && ((m) obj2).f9906a == i11) {
+                                atomicReferenceArray2.set(i14, obj);
+                                continue;
+                            } else {
+                                nVar = null;
+                                continue;
+                            }
+                            if (nVar == null) {
+                                return 0;
+                            }
+                        }
+                        return 0;
+                    }
+                }
+            } else {
+                return 1;
+            }
+        }
+    }
+
+    public final boolean b() {
+        AtomicLongFieldUpdater atomicLongFieldUpdater;
+        long j3;
+        do {
+            atomicLongFieldUpdater = f9908f;
+            j3 = atomicLongFieldUpdater.get(this);
+            if ((j3 & 2305843009213693952L) != 0) {
+                return true;
+            }
+            if ((1152921504606846976L & j3) != 0) {
+                return false;
+            }
+        } while (!atomicLongFieldUpdater.compareAndSet(this, j3, 2305843009213693952L | j3));
+        return true;
+    }
+
+    public final n c() {
+        AtomicLongFieldUpdater atomicLongFieldUpdater;
+        long j3;
+        n nVar;
+        while (true) {
+            atomicLongFieldUpdater = f9908f;
+            j3 = atomicLongFieldUpdater.get(this);
+            if ((j3 & 1152921504606846976L) != 0) {
+                nVar = this;
+                break;
+            }
+            long j10 = 1152921504606846976L | j3;
+            nVar = this;
+            if (atomicLongFieldUpdater.compareAndSet(nVar, j3, j10)) {
+                j3 = j10;
+                break;
+            }
+        }
+        while (true) {
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f9907e;
+            n nVar2 = (n) atomicReferenceFieldUpdater.get(this);
+            if (nVar2 != null) {
+                return nVar2;
+            }
+            n nVar3 = new n(nVar.f9910a * 2, nVar.f9911b);
+            int i10 = (int) (1073741823 & j3);
+            int i11 = (int) ((1152921503533105152L & j3) >> 30);
+            while (true) {
+                int i12 = nVar.f9912c;
+                int i13 = i10 & i12;
+                if (i13 == (i12 & i11)) {
+                    break;
+                }
+                Object obj = nVar.d.get(i13);
+                if (obj == null) {
+                    obj = new m(i10);
+                }
+                nVar3.d.set(nVar3.f9912c & i10, obj);
+                i10++;
+            }
+            atomicLongFieldUpdater.set(nVar3, (-1152921504606846977L) & j3);
+            while (!atomicReferenceFieldUpdater.compareAndSet(this, null, nVar3) && atomicReferenceFieldUpdater.get(this) == null) {
+            }
+        }
+    }
+
+    public final Object d() {
+        n nVar = this;
+        while (true) {
+            AtomicLongFieldUpdater atomicLongFieldUpdater = f9908f;
+            long j3 = atomicLongFieldUpdater.get(nVar);
+            if ((j3 & 1152921504606846976L) != 0) {
+                return f9909g;
+            }
+            int i10 = (int) (j3 & 1073741823);
+            int i11 = nVar.f9912c;
+            int i12 = i10 & i11;
+            if ((((int) ((1152921503533105152L & j3) >> 30)) & i11) == i12) {
+                break;
+            }
+            AtomicReferenceArray atomicReferenceArray = nVar.d;
+            Object obj = atomicReferenceArray.get(i12);
+            boolean z10 = nVar.f9911b;
+            if (obj == null) {
+                if (z10) {
+                    break;
+                }
+            } else if (obj instanceof m) {
+                break;
+            } else {
+                long j10 = (i10 + 1) & 1073741823;
+                if (f9908f.compareAndSet(nVar, j3, (j3 & (-1073741824)) | j10)) {
+                    atomicReferenceArray.set(i12, null);
+                    return obj;
+                }
+                nVar = this;
+                if (z10) {
+                    while (true) {
+                        long j11 = atomicLongFieldUpdater.get(nVar);
+                        int i13 = (int) (j11 & 1073741823);
+                        if ((j11 & 1152921504606846976L) != 0) {
+                            nVar = nVar.c();
+                        } else {
+                            n nVar2 = nVar;
+                            if (f9908f.compareAndSet(nVar2, j11, (j11 & (-1073741824)) | j10)) {
+                                nVar2.d.set(i13 & nVar2.f9912c, null);
+                                nVar = null;
+                            } else {
+                                nVar = nVar2;
+                            }
+                        }
+                        if (nVar == null) {
+                            return obj;
+                        }
+                    }
+                }
+            }
+        }
+        return null;
+    }
+}

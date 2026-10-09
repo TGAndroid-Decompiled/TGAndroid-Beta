@@ -1,4 +1,10 @@
 package za;
-public abstract class v {
-    public static final n1.d f53178a = new n1.d("session_id");
+public final class v {
+    public static final wd.g[] f54289a;
+
+    static {
+        kotlin.jvm.internal.l lVar = new kotlin.jvm.internal.l(v.class);
+        kotlin.jvm.internal.q.f15181a.getClass();
+        f54289a = new wd.g[]{lVar};
+    }
 }

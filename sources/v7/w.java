@@ -1,6 +1,12 @@
 package v7;
+
+import android.content.Context;
+import android.content.res.TypedArray;
 public abstract class w {
-    public static androidx.emoji2.text.q a(android.content.Context r8) {
-        throw new UnsupportedOperationException("Method not decompiled: v7.w.a(android.content.Context):androidx.emoji2.text.q");
+    public static int a(Context context, int i10) {
+        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(16973825, new int[]{i10});
+        int resourceId = obtainStyledAttributes.getResourceId(0, -1);
+        obtainStyledAttributes.recycle();
+        return resourceId;
     }
 }

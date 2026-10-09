@@ -10,13 +10,12 @@ import android.util.Log;
 import java.io.Closeable;
 import java.io.IOException;
 import k6.h;
-import v0.k;
 public abstract class b {
-    public static final char[] f47558a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
-    public static Boolean f47559b;
-    public static Boolean f47560c;
+    public static final char[] f48851a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+    public static Boolean f48852b;
+    public static Boolean f48853c;
     public static Boolean d;
-    public static Boolean f47561e;
+    public static Boolean f48854e;
 
     public static void a(Closeable closeable) {
         if (closeable != null) {
@@ -52,12 +51,12 @@ public abstract class b {
         if (g(context, "com.google.android.gms", i10)) {
             try {
                 PackageInfo packageInfo = context.getPackageManager().getPackageInfo("com.google.android.gms", 64);
-                h b10 = h.b(context);
-                b10.getClass();
+                h c10 = h.c(context);
+                c10.getClass();
                 if (packageInfo != null) {
-                    if (!h.d(packageInfo, false)) {
-                        if (h.d(packageInfo, true)) {
-                            if (!k6.g.a(b10.f14682a)) {
+                    if (!h.f(packageInfo, false)) {
+                        if (h.f(packageInfo, true)) {
+                            if (!k6.g.a(c10.f14714a)) {
                                 Log.w("GoogleSignatureVerifier", "Test-keys aren't accepted on this build.");
                             }
                         }
@@ -76,14 +75,14 @@ public abstract class b {
 
     public static boolean f(Context context) {
         PackageManager packageManager = context.getPackageManager();
-        if (f47559b == null) {
-            f47559b = Boolean.valueOf(packageManager.hasSystemFeature("android.hardware.type.watch"));
+        if (f48852b == null) {
+            f48852b = Boolean.valueOf(packageManager.hasSystemFeature("android.hardware.type.watch"));
         }
-        if (!f47559b.booleanValue() || Build.VERSION.SDK_INT >= 24) {
-            if (f47560c == null) {
-                f47560c = Boolean.valueOf(context.getPackageManager().hasSystemFeature("cn.google"));
+        if (!f48852b.booleanValue() || Build.VERSION.SDK_INT >= 24) {
+            if (f48853c == null) {
+                f48853c = Boolean.valueOf(context.getPackageManager().hasSystemFeature("cn.google"));
             }
-            if (f47560c.booleanValue()) {
+            if (f48853c.booleanValue()) {
                 if (!d() || Build.VERSION.SDK_INT >= 30) {
                     return true;
                 }
@@ -95,10 +94,10 @@ public abstract class b {
     }
 
     public static boolean g(Context context, String str, int i10) {
-        k a2 = w6.b.a(context);
+        h a2 = w6.b.a(context);
         a2.getClass();
         try {
-            AppOpsManager appOpsManager = (AppOpsManager) a2.f47762a.getSystemService("appops");
+            AppOpsManager appOpsManager = (AppOpsManager) a2.f14714a.getSystemService("appops");
             if (appOpsManager != null) {
                 appOpsManager.checkPackage(i10, str);
                 return true;

@@ -2,14 +2,14 @@ package z7;
 
 import java.util.Arrays;
 public final class i1 {
-    public final gb f52801a;
-    public final Boolean f52802b;
-    public final ve f52803c;
+    public final gb f53905a;
+    public final Boolean f53906b;
+    public final ve f53907c;
 
     public i1(v7.k kVar) {
-        this.f52801a = (gb) kVar.f47993b;
-        this.f52802b = (Boolean) kVar.f47994c;
-        this.f52803c = (ve) kVar.d;
+        this.f53905a = (gb) kVar.f49244b;
+        this.f53906b = (Boolean) kVar.f49245c;
+        this.f53907c = (ve) kVar.d;
     }
 
     public final boolean equals(Object obj) {
@@ -20,13 +20,13 @@ public final class i1 {
             return false;
         }
         i1 i1Var = (i1) obj;
-        if (n6.l.l(this.f52801a, i1Var.f52801a) && n6.l.l(this.f52802b, i1Var.f52802b) && n6.l.l(null, null) && n6.l.l(this.f52803c, i1Var.f52803c)) {
+        if (n6.l.l(this.f53905a, i1Var.f53905a) && n6.l.l(this.f53906b, i1Var.f53906b) && n6.l.l(null, null) && n6.l.l(this.f53907c, i1Var.f53907c)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f52801a, this.f52802b, null, this.f52803c});
+        return Arrays.hashCode(new Object[]{this.f53905a, this.f53906b, null, this.f53907c});
     }
 }

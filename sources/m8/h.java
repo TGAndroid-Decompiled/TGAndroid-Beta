@@ -4,55 +4,53 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import com.google.android.gms.common.internal.BinderWrapper;
 import n4.e0;
-import n4.h0;
-import n4.i0;
+import n4.f0;
+import n4.g0;
 import n4.l;
 import n4.m;
+import n4.u;
 import n4.v;
 import n4.w;
-import n4.x;
-import n6.f0;
 import n6.j;
 import n6.n;
 import n6.o;
-import n6.u;
-import w7.g0;
+import w7.d0;
 public final class h implements Parcelable.Creator {
-    public final int f16347a;
+    public final int f16281a;
 
     public h(int i10) {
-        this.f16347a = i10;
+        this.f16281a = i10;
     }
 
     public static void a(n6.f fVar, Parcel parcel, int i10) {
-        int q6 = g0.q(parcel, 20293);
-        int i11 = fVar.f16673a;
-        g0.s(parcel, 1, 4);
+        int q6 = d0.q(parcel, 20293);
+        int i11 = fVar.f16637a;
+        d0.s(parcel, 1, 4);
         parcel.writeInt(i11);
-        int i12 = fVar.f16674b;
-        g0.s(parcel, 2, 4);
+        int i12 = fVar.f16638b;
+        d0.s(parcel, 2, 4);
         parcel.writeInt(i12);
-        int i13 = fVar.f16675c;
-        g0.s(parcel, 3, 4);
+        int i13 = fVar.f16639c;
+        d0.s(parcel, 3, 4);
         parcel.writeInt(i13);
-        g0.l(parcel, 4, fVar.d);
-        g0.f(parcel, 5, fVar.f16676e);
-        g0.o(parcel, 6, fVar.f16677f, i10);
-        g0.b(parcel, 7, fVar.h);
-        g0.k(parcel, 8, fVar.f16678n, i10);
-        g0.o(parcel, 10, fVar.f16679r, i10);
-        g0.o(parcel, 11, fVar.f16680s, i10);
+        d0.l(parcel, 4, fVar.d);
+        d0.f(parcel, 5, fVar.f16640e);
+        d0.o(parcel, 6, fVar.f16641f, i10);
+        d0.b(parcel, 7, fVar.h);
+        d0.k(parcel, 8, fVar.f16642n, i10);
+        d0.o(parcel, 10, fVar.f16643r, i10);
+        d0.o(parcel, 11, fVar.f16644s, i10);
         boolean z10 = fVar.v;
-        g0.s(parcel, 12, 4);
+        d0.s(parcel, 12, 4);
         parcel.writeInt(z10 ? 1 : 0);
-        int i14 = fVar.f16681w;
-        g0.s(parcel, 13, 4);
+        int i14 = fVar.f16645w;
+        d0.s(parcel, 13, 4);
         parcel.writeInt(i14);
-        boolean z11 = fVar.f16682x;
-        g0.s(parcel, 14, 4);
+        boolean z11 = fVar.f16646x;
+        d0.s(parcel, 14, 4);
         parcel.writeInt(z11 ? 1 : 0);
-        g0.l(parcel, 15, fVar.f16683y);
-        g0.r(parcel, q6);
+        d0.l(parcel, 15, fVar.f16647y);
+        d0.r(parcel, q6);
     }
 
     @Override
@@ -62,7 +60,7 @@ public final class h implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i10) {
-        switch (this.f16347a) {
+        switch (this.f16281a) {
             case 0:
                 return new g[i10];
             case 1:
@@ -74,19 +72,19 @@ public final class h implements Parcelable.Creator {
             case 4:
                 return new m[i10];
             case 5:
-                return new v[i10];
+                return new u[i10];
             case 6:
-                return new w[i10];
+                return new v[i10];
             case 7:
-                return new x[i10];
+                return new w[i10];
             case 8:
-                return new e0[i10];
+                return new n4.d0[i10];
             case 9:
-                return new h0[i10];
+                return new f0[i10];
             case 10:
-                return new n4.g0[i10];
+                return new e0[i10];
             case 11:
-                return new i0[i10];
+                return new g0[i10];
             case 12:
                 return new n6.d[i10];
             case 13:
@@ -94,15 +92,15 @@ public final class h implements Parcelable.Creator {
             case 14:
                 return new j[i10];
             case 15:
-                return new u[i10];
-            case 16:
                 return new n6.v[i10];
+            case 16:
+                return new n6.w[i10];
             case 17:
                 return new n[i10];
             case 18:
                 return new BinderWrapper[i10];
             case 19:
-                return new f0[i10];
+                return new n6.g0[i10];
             case 20:
                 return new n6.e[i10];
             case 21:

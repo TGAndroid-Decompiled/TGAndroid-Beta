@@ -1,34 +1,34 @@
 package org.telegram.ui.Components;
+public final class sp0 implements o1.f {
+    public final int f30866a;
+    public final aq0 f30867b;
+    public final o1.k f30868c;
 
-import android.graphics.Canvas;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class sp0 {
-    public final qu f30919a;
-    public final long f30920b;
-    public final float f30921c;
-    public final float d;
-    public final float f30922e;
-
-    public sp0(View view) {
-        qu quVar = new qu(1, view);
-        this.f30920b = System.currentTimeMillis();
-        this.f30919a = quVar;
-        this.f30921c = AndroidUtilities.lerp(5.0f, 9.0f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
-        this.d = AndroidUtilities.lerp(2.5f, 5.0f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
-        this.f30922e = AndroidUtilities.lerp(2.5f, 5.2f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
+    public sp0(aq0 aq0Var, o1.k kVar, int i10) {
+        this.f30866a = i10;
+        this.f30867b = aq0Var;
+        this.f30868c = kVar;
     }
 
-    public final void a(Canvas canvas, float f7) {
-        qu quVar;
-        float currentTimeMillis = ((float) (System.currentTimeMillis() - this.f30920b)) / 1000.0f;
-        canvas.translate(0.0f, 0.0f);
-        canvas.rotate(((float) Math.sin(this.f30921c * currentTimeMillis * 3.141592653589793d)) * 1.0f * f7);
-        canvas.translate(((float) Math.cos(this.d * currentTimeMillis * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f7, ((float) Math.sin(currentTimeMillis * this.f30922e * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f7);
-        canvas.translate(-0.0f, -0.0f);
-        if (f7 > 0.0f && (quVar = this.f30919a) != null) {
-            quVar.run();
+    @Override
+    public final void a(o1.h hVar, boolean z10, float f7, float f10) {
+        switch (this.f30866a) {
+            case 0:
+                if (!z10) {
+                    this.f30867b.f24748z.remove(this.f30868c);
+                    hVar.c();
+                    return;
+                }
+                return;
+            default:
+                aq0 aq0Var = this.f30867b;
+                if (!z10) {
+                    aq0Var.f24748z.remove(this.f30868c);
+                    hVar.c();
+                    return;
+                }
+                aq0Var.getClass();
+                return;
         }
     }
 }

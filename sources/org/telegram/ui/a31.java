@@ -1,56 +1,7 @@
 package org.telegram.ui;
-
-import android.app.Activity;
-import android.view.View;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class a31 extends a71 {
-    public final c31 f34668d2;
-    public final r61[] f34669e2;
-    public final d31 f34670f2;
-
-    public a31(d31 d31Var, d31 d31Var2, Activity activity, Integer num, c31 c31Var, r61[] r61VarArr) {
-        super(d31Var2, activity, false, num, 2, null);
-        this.f34670f2 = d31Var;
-        this.f34668d2 = c31Var;
-        this.f34669e2 = r61VarArr;
-    }
-
+public final class a31 extends s4.e0 {
     @Override
-    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
-        int i10;
-        if (l4 != null) {
-            d31 d31Var = this.f34670f2;
-            i10 = ((org.telegram.ui.ActionBar.n2) d31Var).currentAccount;
-            MediaDataController mediaDataController = MediaDataController.getInstance(i10);
-            mediaDataController.setDoubleTapReaction("animated_" + l4);
-            c31 c31Var = this.f34668d2;
-            if (c31Var != null) {
-                c31Var.a(true);
-            }
-            r61 r61Var = this.f34669e2[0];
-            if (r61Var != null) {
-                d31Var.f35634n = null;
-                r61Var.dismiss();
-            }
-        }
-    }
-
-    @Override
-    public final void r(j61 j61Var, zg.m0 m0Var) {
-        int i10;
-        d31 d31Var = this.f34670f2;
-        i10 = ((org.telegram.ui.ActionBar.n2) d31Var).currentAccount;
-        MediaDataController.getInstance(i10).setDoubleTapReaction(m0Var.f53471f);
-        c31 c31Var = this.f34668d2;
-        if (c31Var != null) {
-            c31Var.a(true);
-        }
-        r61 r61Var = this.f34669e2[0];
-        if (r61Var != null) {
-            d31Var.f35634n = null;
-            r61Var.dismiss();
-        }
+    public final int n(int i10) {
+        return super.n(i10) * 6;
     }
 }

@@ -1,30 +1,70 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class he1 extends AnimatorListenerAdapter {
-    public final int f37074a;
-    public final le1 f37075b;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class he1 implements View.OnClickListener {
+    public final hi0 f38301a;
+    public final zn f38302b;
+    public final org.telegram.ui.Components.qm0 f38303c;
+    public final LinearLayout d;
+    public final org.telegram.ui.Components.p80 f38304e;
+    public final org.telegram.ui.Components.p80 f38305f;
+    public final me1 h;
 
-    public he1(le1 le1Var, int i10) {
-        this.f37074a = i10;
-        this.f37075b = le1Var;
+    public he1(me1 me1Var, hi0 hi0Var, zn znVar, org.telegram.ui.Components.qm0 qm0Var, LinearLayout linearLayout, org.telegram.ui.Components.p80 p80Var, org.telegram.ui.Components.p80 p80Var2) {
+        this.h = me1Var;
+        this.f38301a = hi0Var;
+        this.f38302b = znVar;
+        this.f38303c = qm0Var;
+        this.d = linearLayout;
+        this.f38304e = p80Var;
+        this.f38305f = p80Var2;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f37074a) {
-            case 0:
-                le1 le1Var = this.f37075b;
-                le1Var.v = 0;
-                le1Var.f38302n.setVisibility(8);
+    public final void onClick(View view) {
+        hi0 hi0Var = this.f38301a;
+        ArrayList arrayList = hi0Var.f38350b;
+        ArrayList arrayList2 = hi0Var.f38351c;
+        if (!arrayList2.isEmpty()) {
+            int size = arrayList2.size();
+            me1 me1Var = this.h;
+            zn znVar = this.f38302b;
+            if (size == 1 && (arrayList.size() <= 0 || ((Integer) arrayList.get(0)).intValue() <= 0)) {
+                TLObject tLObject = (TLObject) arrayList2.get(0);
+                if (tLObject == null) {
+                    return;
+                }
+                Bundle bundle = new Bundle();
+                if (tLObject instanceof TLRPC.User) {
+                    bundle.putLong("user_id", ((TLRPC.User) tLObject).f20185id);
+                } else if (tLObject instanceof TLRPC.Chat) {
+                    bundle.putLong("chat_id", ((TLRPC.Chat) tLObject).f20038id);
+                }
+                znVar.presentFragment(new ProfileActivity(bundle, null));
+                me1Var.c(false);
                 return;
-            case 1:
-                this.f37075b.v = 0;
-                return;
-            default:
-                this.f37075b.F.setVisibility(8);
-                return;
+            }
+            if (SharedConfig.messageSeenHintCount > 0 && znVar.X0.getKeyboardHeight() < AndroidUtilities.dp(20.0f)) {
+                org.telegram.ui.Components.tc t10 = new org.telegram.ui.Components.ad(org.telegram.ui.Components.ob.a(me1Var.getContext()), me1Var.f39876a).t(AndroidUtilities.replaceTags(LocaleController.getString(R.string.MessageSeenTooltipMessage)), null);
+                znVar.f44862n1 = t10;
+                t10.f31130j = 4000;
+                t10.j();
+                SharedConfig.updateMessageSeenHintCount(SharedConfig.messageSeenHintCount - 1);
+            }
+            org.telegram.ui.Components.qm0 qm0Var = this.f38303c;
+            qm0Var.requestLayout();
+            this.d.requestLayout();
+            qm0Var.getAdapter().l();
+            this.f38304e.K(this.f38305f);
         }
     }
 }

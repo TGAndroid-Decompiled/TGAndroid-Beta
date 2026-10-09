@@ -1,44 +1,190 @@
 package u2;
 
-import java.util.Arrays;
-import v7.m7;
-public final class k1 implements y2.i {
-    public final g2.m f47320a;
-    public final g2.b0 f47321b;
-    public byte[] f47322c;
+import android.net.Uri;
+import i2.q1;
+import java.util.ArrayList;
+public final class k1 implements d0, y2.g {
+    public final g2.m f48619a;
+    public final g2.g f48620b;
+    public final g2.c0 f48621c;
+    public final rb.a d;
+    public final a5.a f48622e;
+    public final o1 f48623f;
+    public final ArrayList h = new ArrayList();
+    public final long f48624n;
+    public final y2.l f48625r;
+    public final b2.s f48626s;
+    public final boolean v;
+    public boolean f48627w;
+    public byte[] f48628x;
+    public int f48629y;
 
-    public k1(g2.h hVar, g2.m mVar) {
-        t.f47408b.getAndIncrement();
-        this.f47320a = mVar;
-        this.f47321b = new g2.b0(hVar);
+    public k1(g2.m mVar, g2.g gVar, g2.c0 c0Var, b2.s sVar, long j3, rb.a aVar, a5.a aVar2, boolean z10, z2.a aVar3) {
+        y2.l lVar;
+        this.f48619a = mVar;
+        this.f48620b = gVar;
+        this.f48621c = c0Var;
+        this.f48626s = sVar;
+        this.f48624n = j3;
+        this.d = aVar;
+        this.f48622e = aVar2;
+        this.v = z10;
+        this.f48623f = new o1(new b2.l1("", sVar));
+        if (aVar3 != null) {
+            lVar = new y2.l(aVar3);
+        } else {
+            lVar = new y2.l("SingleSampleMediaPeriod");
+        }
+        this.f48625r = lVar;
     }
 
     @Override
-    public final void a() {
-        g2.b0 b0Var = this.f47321b;
-        b0Var.f10161b = 0L;
-        try {
-            b0Var.open(this.f47320a);
-            int i10 = 0;
-            while (i10 != -1) {
-                int i11 = (int) b0Var.f10161b;
-                byte[] bArr = this.f47322c;
-                if (bArr == null) {
-                    this.f47322c = new byte[1024];
-                } else if (i11 == bArr.length) {
-                    this.f47322c = Arrays.copyOf(bArr, bArr.length * 2);
+    public final void C(y2.i iVar, long j3, long j10, int i10) {
+        t tVar;
+        j1 j1Var = (j1) iVar;
+        g2.b0 b0Var = j1Var.f48612b;
+        if (i10 == 0) {
+            tVar = new t(j1Var.f48611a);
+        } else {
+            Uri uri = b0Var.f10235c;
+            tVar = new t(j10);
+        }
+        this.f48622e.u(tVar, 1, -1, this.f48626s, 0, null, 0L, this.f48624n, i10);
+    }
+
+    @Override
+    public final void F(y2.i iVar, long j3, long j10) {
+        j1 j1Var = (j1) iVar;
+        this.f48629y = (int) j1Var.f48612b.f10234b;
+        byte[] bArr = j1Var.f48613c;
+        bArr.getClass();
+        this.f48628x = bArr;
+        this.f48627w = true;
+        Uri uri = j1Var.f48612b.f10235c;
+        t tVar = new t(j10);
+        this.d.getClass();
+        this.f48622e.q(tVar, 1, -1, this.f48626s, 0, null, 0L, this.f48624n);
+    }
+
+    @Override
+    public final void O0(y2.i iVar, long j3, long j10, boolean z10) {
+        Uri uri = ((j1) iVar).f48612b.f10235c;
+        t tVar = new t(j10);
+        this.d.getClass();
+        this.f48622e.p(tVar, 1, -1, null, 0, null, 0L, this.f48624n);
+    }
+
+    @Override
+    public final boolean c() {
+        return this.f48625r.d();
+    }
+
+    @Override
+    public final long d() {
+        if (!this.f48627w && !this.f48625r.d()) {
+            return 0L;
+        }
+        return Long.MIN_VALUE;
+    }
+
+    @Override
+    public final long h(long j3) {
+        int i10 = 0;
+        while (true) {
+            ArrayList arrayList = this.h;
+            if (i10 < arrayList.size()) {
+                i1 i1Var = (i1) arrayList.get(i10);
+                if (i1Var.f48605a == 2) {
+                    i1Var.f48605a = 1;
                 }
-                byte[] bArr2 = this.f47322c;
-                i10 = b0Var.read(bArr2, i11, bArr2.length - i11);
+                i10++;
+            } else {
+                return j3;
             }
-            m7.a(b0Var);
-        } catch (Throwable th2) {
-            m7.a(b0Var);
-            throw th2;
         }
     }
 
     @Override
-    public final void q() {
+    public final void k(c0 c0Var, long j3) {
+        c0Var.m(this);
+    }
+
+    @Override
+    public final long l() {
+        return -9223372036854775807L;
+    }
+
+    @Override
+    public final boolean n(i2.s0 s0Var) {
+        if (!this.f48627w) {
+            y2.l lVar = this.f48625r;
+            if (!lVar.d() && !lVar.c()) {
+                g2.h createDataSource = this.f48620b.createDataSource();
+                g2.c0 c0Var = this.f48621c;
+                if (c0Var != null) {
+                    createDataSource.addTransferListener(c0Var);
+                }
+                j1 j1Var = new j1(createDataSource, this.f48619a);
+                this.d.getClass();
+                lVar.f(j1Var, this, 3);
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public final long o(x2.r[] rVarArr, boolean[] zArr, b1[] b1VarArr, boolean[] zArr2, long j3) {
+        for (int i10 = 0; i10 < rVarArr.length; i10++) {
+            b1 b1Var = b1VarArr[i10];
+            ArrayList arrayList = this.h;
+            if (b1Var != null && (rVarArr[i10] == null || !zArr[i10])) {
+                arrayList.remove(b1Var);
+                b1VarArr[i10] = null;
+            }
+            if (b1VarArr[i10] == null && rVarArr[i10] != null) {
+                i1 i1Var = new i1(this);
+                arrayList.add(i1Var);
+                b1VarArr[i10] = i1Var;
+                zArr2[i10] = true;
+            }
+        }
+        return j3;
+    }
+
+    @Override
+    public final o1 p() {
+        return this.f48623f;
+    }
+
+    @Override
+    public final long q() {
+        if (this.f48627w) {
+            return Long.MIN_VALUE;
+        }
+        return 0L;
+    }
+
+    @Override
+    public final k4.d y(y2.i r14, long r15, long r17, java.io.IOException r19, int r20) {
+        throw new UnsupportedOperationException("Method not decompiled: u2.k1.y(y2.i, long, long, java.io.IOException, int):k4.d");
+    }
+
+    @Override
+    public final void g() {
+    }
+
+    @Override
+    public final void i(long j3) {
+    }
+
+    @Override
+    public final void s(long j3) {
+    }
+
+    @Override
+    public final long r(long j3, q1 q1Var) {
+        return j3;
     }
 }

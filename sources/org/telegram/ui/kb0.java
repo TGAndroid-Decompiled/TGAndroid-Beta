@@ -4,29 +4,29 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class kb0 implements Runnable {
-    public final int f37946a;
-    public final vb0 f37947b;
+    public final int f39201a;
+    public final vb0 f39202b;
 
     public kb0(vb0 vb0Var, int i10) {
-        this.f37946a = i10;
-        this.f37947b = vb0Var;
+        this.f39201a = i10;
+        this.f39202b = vb0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f37946a) {
+        switch (this.f39201a) {
             case 0:
-                vb0 vb0Var = this.f37947b;
-                vb0Var.f41699r.f22315b.requestFocus();
-                AndroidUtilities.showKeyboard(vb0Var.f41699r.f22315b);
+                vb0 vb0Var = this.f39202b;
+                vb0Var.f42808r.f22297b.requestFocus();
+                AndroidUtilities.showKeyboard(vb0Var.f42808r.f22297b);
                 return;
             case 1:
-                vb0 vb0Var2 = this.f37947b;
-                vb0Var2.f41699r.f22315b.clearFocus();
-                AndroidUtilities.hideKeyboard(vb0Var2.f41699r.f22315b);
+                vb0 vb0Var2 = this.f39202b;
+                vb0Var2.f42808r.f22297b.clearFocus();
+                AndroidUtilities.hideKeyboard(vb0Var2.f42808r.f22297b);
                 return;
             default:
-                nf.f.s(this.f37947b.getParentActivity(), LocaleController.getString(R.string.RequireMonthlyFeeInfoLink));
+                of.f.s(this.f39202b.getParentActivity(), LocaleController.getString(R.string.RequireMonthlyFeeInfoLink));
                 return;
         }
     }

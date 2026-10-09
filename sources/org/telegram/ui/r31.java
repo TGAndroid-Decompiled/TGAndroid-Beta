@@ -1,28 +1,39 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.text.Editable;
-import android.text.TextUtils;
-public final class r31 extends org.telegram.ui.Cells.j3 {
-    public final s31 f39967x;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class r31 implements Runnable {
+    public final int f41258a;
+    public final org.telegram.messenger.video.a f41259b;
+    public final org.telegram.ui.Components.ad f41260c;
+    public final Context d;
+    public final ai.a1 f41261e;
 
-    public r31(s31 s31Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, "", true, false, 1024, d6Var);
-        this.f39967x = s31Var;
+    public r31(org.telegram.messenger.video.a aVar, org.telegram.ui.Components.ad adVar, Context context, ai.a1 a1Var, int i10) {
+        this.f41258a = i10;
+        this.f41259b = aVar;
+        this.f41260c = adVar;
+        this.d = context;
+        this.f41261e = a1Var;
     }
 
     @Override
-    public final void b(Editable editable) {
-        boolean z10;
-        s31 s31Var = this.f39967x;
-        ci.d dVar = s31Var.f40332s;
-        if (dVar != null) {
-            if (!s31Var.d.optional && TextUtils.isEmpty(s31Var.f40330n.getText())) {
-                z10 = false;
-            } else {
-                z10 = true;
-            }
-            dVar.setEnabled(z10);
+    public final void run() {
+        switch (this.f41258a) {
+            case 0:
+                this.f41259b.run();
+                this.f41260c.c(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new nv(this.d, 2), this.f41261e)).j();
+                return;
+            case 1:
+                this.f41259b.run();
+                this.f41260c.c(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new nv(this.d, 5), this.f41261e)).j();
+                return;
+            default:
+                this.f41259b.run();
+                this.f41260c.c(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new nv(this.d, 6), this.f41261e)).j();
+                return;
         }
     }
 }

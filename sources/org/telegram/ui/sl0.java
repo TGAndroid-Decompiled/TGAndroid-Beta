@@ -1,93 +1,111 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.text.TextUtils;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class sl0 extends FrameLayout {
-    public final int f40540a;
-    public final org.telegram.ui.ActionBar.d6 f40541b;
-    public final FrameLayout f40542c;
-    public final org.telegram.ui.Components.w9 d;
-    public final TextView f40543e;
-    public final TextView f40544f;
-    public final ImageView h;
-    public boolean f40545n;
-    public String f40546r;
+import android.view.ViewGroup;
+public final class sl0 extends org.telegram.ui.Components.pm0 {
+    public final Context f41728c;
+    public final PasscodeActivity d;
 
-    public sl0(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context);
-        this.f40540a = i10;
-        this.f40541b = d6Var;
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.f40542c = frameLayout;
-        addView(frameLayout, w7.z5.d(36, 36.0f, 19, 18.5f, 0.0f, 0.0f, 0.0f));
-        org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-        this.d = w9Var;
-        w9Var.setImageResource(R.drawable.msg2_permissions);
-        int i11 = org.telegram.ui.ActionBar.i6.G6;
-        int l1 = org.telegram.ui.ActionBar.i6.l1(0.3f, org.telegram.ui.ActionBar.i6.v0(i11, d6Var));
-        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        w9Var.setColorFilter(new PorterDuffColorFilter(l1, mode));
-        frameLayout.addView(w9Var, w7.z5.e(36, 36, 17));
-        TextView b10 = w7.d6.b(context, 15.0f, i11, true, null);
-        this.f40543e = b10;
-        b10.setSingleLine();
-        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-        b10.setEllipsize(truncateAt);
-        addView(b10, w7.z5.d(-1, -2.0f, 55, 72.0f, 8.0f, 46.0f, 0.0f));
-        int i12 = org.telegram.ui.ActionBar.i6.f21214y6;
-        TextView b11 = w7.d6.b(context, 13.0f, i12, false, null);
-        this.f40544f = b11;
-        b11.setSingleLine();
-        b11.setEllipsize(truncateAt);
-        addView(b11, w7.z5.d(-1, -2.0f, 55, 72.0f, 31.0f, 46.0f, 0.0f));
-        ImageView imageView = new ImageView(context);
-        this.h = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setImageResource(R.drawable.ic_ab_other);
-        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(null, i12, false), mode));
-        imageView.setBackground(org.telegram.ui.ActionBar.i6.f0(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20918i6, d6Var), 1, -1));
-        addView(imageView, w7.z5.d(32, 32.0f, 21, 0.0f, 0.0f, 13.0f, 0.0f));
+    public sl0(PasscodeActivity passcodeActivity, Context context) {
+        this.d = passcodeActivity;
+        this.f41728c = context;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float f7;
-        super.onDraw(canvas);
-        if (this.f40545n) {
-            Paint T0 = org.telegram.ui.ActionBar.i6.T0("paintDivider", this.f40541b);
-            if (T0 == null) {
-                T0 = org.telegram.ui.ActionBar.i6.f20950k0;
+    public final boolean D(s4.d1 d1Var) {
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        int b10 = d1Var.b();
+        PasscodeActivity passcodeActivity = this.d;
+        i10 = passcodeActivity.fingerprintRow;
+        if (b10 != i10) {
+            i11 = passcodeActivity.autoLockRow;
+            if (b10 != i11 && b10 != passcodeActivity.N) {
+                i12 = passcodeActivity.changePasscodeRow;
+                if (b10 != i12) {
+                    i13 = passcodeActivity.disablePasscodeRow;
+                    if (b10 != i13 && b10 != passcodeActivity.J && b10 != passcodeActivity.K) {
+                        return false;
+                    }
+                    return true;
+                }
+                return true;
             }
-            Paint paint = T0;
-            float f10 = 72.0f;
-            if (LocaleController.isRTL) {
-                f7 = 0.0f;
-            } else {
-                f7 = 72.0f;
-            }
-            float dp = AndroidUtilities.dp(f7);
-            float measuredHeight = getMeasuredHeight() - 1;
-            int width = getWidth();
-            if (!LocaleController.isRTL) {
-                f10 = 0.0f;
-            }
-            canvas.drawRect(dp, measuredHeight, width - AndroidUtilities.dp(f10), getMeasuredHeight(), paint);
+            return true;
         }
+        return true;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
+    public final int h() {
+        return this.d.P;
+    }
+
+    @Override
+    public final int j(int i10) {
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        PasscodeActivity passcodeActivity = this.d;
+        i11 = passcodeActivity.fingerprintRow;
+        if (i10 != i11 && i10 != passcodeActivity.N && i10 != passcodeActivity.K && i10 != passcodeActivity.J) {
+            i12 = passcodeActivity.changePasscodeRow;
+            if (i10 != i12) {
+                i13 = passcodeActivity.autoLockRow;
+                if (i10 != i13) {
+                    i14 = passcodeActivity.disablePasscodeRow;
+                    if (i10 != i14) {
+                        if (i10 != passcodeActivity.H && i10 != passcodeActivity.O && i10 != passcodeActivity.G && i10 != passcodeActivity.L) {
+                            if (i10 != passcodeActivity.M && i10 != passcodeActivity.I) {
+                                if (i10 == 0) {
+                                    return 4;
+                                }
+                                return 0;
+                            }
+                            return 3;
+                        }
+                        return 2;
+                    }
+                    return 1;
+                }
+                return 1;
+            }
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.d1 r8, int r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.sl0.v(s4.d1, int):void");
+    }
+
+    @Override
+    public final s4.d1 x(ViewGroup viewGroup, int i10) {
+        View w8Var;
+        Context context = this.f41728c;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 3) {
+                    if (i10 != 4) {
+                        w8Var = new org.telegram.ui.Cells.e9(context);
+                    } else {
+                        w8Var = new tl0(context);
+                        w8Var.setTag(-33024);
+                    }
+                } else {
+                    w8Var = new org.telegram.ui.Cells.m4(context);
+                }
+            } else {
+                w8Var = new org.telegram.ui.Cells.ca(context);
+            }
+        } else {
+            w8Var = new org.telegram.ui.Cells.w8(context);
+        }
+        return new s4.d1(w8Var);
     }
 }

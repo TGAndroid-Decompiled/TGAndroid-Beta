@@ -1,16 +1,15 @@
 package w7;
-public abstract class e0 {
-    public static boolean a(int i10, int i11) {
-        if ((i10 & i11) != 0) {
-            return true;
-        }
-        return false;
-    }
 
-    public static int b(int i10, int i11, boolean z10) {
-        if (z10) {
-            return i10 | i11;
-        }
-        return i10 & (~i11);
+import android.os.Parcel;
+import android.os.Parcelable;
+public abstract class e0 {
+    public static o6.b a(byte[] bArr, Parcelable.Creator creator) {
+        n6.l.h(creator);
+        Parcel obtain = Parcel.obtain();
+        obtain.unmarshall(bArr, 0, bArr.length);
+        obtain.setDataPosition(0);
+        o6.b bVar = (o6.b) creator.createFromParcel(obtain);
+        obtain.recycle();
+        return bVar;
     }
 }

@@ -1,37 +1,49 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.Utilities;
-public final class x8 implements Utilities.Callback5, Utilities.Callback5Return, r0.n {
-    public final m9 f42828a;
+import android.content.Context;
+import android.widget.FrameLayout;
+import org.telegram.ui.Components.FragmentContextView;
+public final class x8 extends FragmentContextView {
+    public final int R0 = 1;
+    public final org.telegram.ui.ActionBar.n2 S0;
 
-    @Override
-    public r0.l1 Q0(View view, r0.l1 l1Var) {
-        return this.f42828a.onInsetsInternal(view, l1Var);
+    public x8(j9 j9Var, Context context, j9 j9Var2, v8 v8Var, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, j9Var2, v8Var, false, e6Var);
+        this.S0 = j9Var;
     }
 
     @Override
-    public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        m9.U(this.f42828a, (org.telegram.ui.Components.h61) obj, (View) obj2);
-    }
-
-    @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+    public final void setVisibility(int i10) {
         boolean z10;
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        Object obj6 = ((org.telegram.ui.Components.h61) obj).G;
-        if (obj6 instanceof i9) {
-            this.f42828a.Z(((i9) obj6).f37323c, (h9) view);
-            z10 = true;
-        } else {
-            z10 = false;
+        boolean z11;
+        switch (this.R0) {
+            case 0:
+                j9 j9Var = (j9) this.S0;
+                org.telegram.ui.Components.at atVar = j9Var.M;
+                FrameLayout frameLayout = j9Var.N;
+                if (i10 == 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                atVar.i(frameLayout, z10, true);
+                return;
+            default:
+                fg1 fg1Var = (fg1) this.S0;
+                org.telegram.ui.Components.at atVar2 = fg1Var.U0;
+                FrameLayout frameLayout2 = fg1Var.F0;
+                if (i10 == 0) {
+                    z11 = true;
+                } else {
+                    z11 = false;
+                }
+                atVar2.i(frameLayout2, z11, true);
+                return;
         }
-        return Boolean.valueOf(z10);
+    }
+
+    public x8(fg1 fg1Var, Context context, fg1 fg1Var2) {
+        super(context, fg1Var2, null, false, null);
+        this.S0 = fg1Var;
     }
 }

@@ -8,19 +8,19 @@ import e2.d0;
 import e2.v;
 import java.io.EOFException;
 public final class n implements h0 {
-    public final h0 f52405a;
-    public final k f52406b;
-    public m f52410g;
+    public final h0 f53509a;
+    public final k f53510b;
+    public m f53514g;
     public s h;
-    public boolean f52411i;
+    public boolean f53515i;
     public int d = 0;
-    public int f52408e = 0;
-    public byte[] f52409f = d0.f8539b;
-    public final v f52407c = new v();
+    public int f53512e = 0;
+    public byte[] f53513f = d0.f8533b;
+    public final v f53511c = new v();
 
     public n(h0 h0Var, k kVar) {
-        this.f52405a = h0Var;
-        this.f52406b = kVar;
+        this.f53509a = h0Var;
+        this.f53510b = kVar;
     }
 
     @Override
@@ -32,8 +32,8 @@ public final class n implements h0 {
     public final void b(s sVar) {
         boolean z10;
         m mVar;
-        sVar.f3564r.getClass();
-        String str = sVar.f3564r;
+        sVar.f3643r.getClass();
+        String str = sVar.f3643r;
         if (r0.h(str) == 3) {
             z10 = true;
         } else {
@@ -41,27 +41,27 @@ public final class n implements h0 {
         }
         e2.d.b(z10);
         boolean equals = sVar.equals(this.h);
-        k kVar = this.f52406b;
+        k kVar = this.f53510b;
         if (!equals) {
             this.h = sVar;
-            if (kVar.V(sVar)) {
-                mVar = kVar.v(sVar);
+            if (kVar.D1(sVar)) {
+                mVar = kVar.s0(sVar);
             } else {
                 mVar = null;
             }
-            this.f52410g = mVar;
+            this.f53514g = mVar;
         }
-        m mVar2 = this.f52410g;
-        h0 h0Var = this.f52405a;
+        m mVar2 = this.f53514g;
+        h0 h0Var = this.f53509a;
         if (mVar2 == null) {
             h0Var.b(sVar);
             return;
         }
         r a2 = sVar.a();
-        a2.f3506q = r0.n("application/x-media3-cues");
-        a2.f3499j = str;
+        a2.f3585q = r0.n("application/x-media3-cues");
+        a2.f3578j = str;
         a2.v = Long.MAX_VALUE;
-        a2.O = kVar.D(sVar);
+        a2.O = kVar.U0(sVar);
         hg.c.s(a2, h0Var);
     }
 
@@ -72,47 +72,47 @@ public final class n implements h0 {
 
     @Override
     public final void d(int i10, v vVar) {
-        a4.a.a(this, vVar, i10);
+        a1.g.a(this, vVar, i10);
     }
 
     @Override
     public final int e(b2.k kVar, int i10, boolean z10) {
-        if (this.f52410g == null) {
-            return this.f52405a.e(kVar, i10, z10);
+        if (this.f53514g == null) {
+            return this.f53509a.e(kVar, i10, z10);
         }
         g(i10);
-        int read = kVar.read(this.f52409f, this.f52408e, i10);
+        int read = kVar.read(this.f53513f, this.f53512e, i10);
         if (read == -1) {
             if (z10) {
                 return -1;
             }
             throw new EOFException();
         }
-        this.f52408e += read;
+        this.f53512e += read;
         return read;
     }
 
     @Override
     public final void f(v vVar, int i10, int i11) {
-        if (this.f52410g == null) {
-            this.f52405a.f(vVar, i10, i11);
+        if (this.f53514g == null) {
+            this.f53509a.f(vVar, i10, i11);
             return;
         }
         g(i10);
-        vVar.h(this.f52408e, i10, this.f52409f);
-        this.f52408e += i10;
+        vVar.h(this.f53512e, i10, this.f53513f);
+        this.f53512e += i10;
     }
 
     public final void g(int i10) {
         byte[] bArr;
-        int length = this.f52409f.length;
-        int i11 = this.f52408e;
+        int length = this.f53513f.length;
+        int i11 = this.f53512e;
         if (length - i11 >= i10) {
             return;
         }
         int i12 = i11 - this.d;
         int max = Math.max(i12 * 2, i10 + i12);
-        byte[] bArr2 = this.f52409f;
+        byte[] bArr2 = this.f53513f;
         if (max <= bArr2.length) {
             bArr = bArr2;
         } else {
@@ -120,7 +120,7 @@ public final class n implements h0 {
         }
         System.arraycopy(bArr2, this.d, bArr, 0, i12);
         this.d = 0;
-        this.f52408e = i12;
-        this.f52409f = bArr;
+        this.f53512e = i12;
+        this.f53513f = bArr;
     }
 }

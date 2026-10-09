@@ -1,72 +1,182 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.fg0;
+import org.telegram.ui.m70;
+import org.telegram.ui.nn0;
+import org.telegram.ui.wg0;
 public final class lb implements Runnable {
-    public final int f18460a;
-    public final MessagesController f18461b;
-    public final long f18462c;
-    public final long d;
-    public final int f18463e;
-    public final ArrayList f18464f;
+    public final int f18426a;
+    public final int f18427b;
+    public final Object f18428c;
+    public final Object d;
+    public final Object f18429e;
+    public final Object f18430f;
+    public final Object h;
+    public final Object f18431n;
+    public final Object f18432r;
+    public final Object f18433s;
 
-    public lb(MessagesController messagesController, long j3, int i10, long j10, ArrayList arrayList, int i11) {
-        this.f18460a = i11;
-        this.f18461b = messagesController;
-        this.f18462c = j3;
-        this.f18463e = i10;
-        this.d = j10;
-        this.f18464f = arrayList;
+    public lb(MessagesController messagesController, TLRPC.messages_Dialogs messages_dialogs, ArrayList arrayList, TLRPC.messages_Dialogs messages_dialogs2, int i10, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, Runnable runnable) {
+        this.f18426a = 0;
+        this.f18428c = messagesController;
+        this.d = messages_dialogs;
+        this.f18430f = arrayList;
+        this.f18429e = messages_dialogs2;
+        this.f18427b = i10;
+        this.h = arrayList2;
+        this.f18431n = arrayList3;
+        this.f18432r = arrayList4;
+        this.f18433s = runnable;
     }
 
     @Override
     public final void run() {
-        switch (this.f18460a) {
+        String formatPluralStringComma;
+        int i10 = this.f18426a;
+        int i11 = this.f18427b;
+        Object obj = this.f18433s;
+        Object obj2 = this.f18432r;
+        Object obj3 = this.f18431n;
+        Object obj4 = this.h;
+        Object obj5 = this.f18430f;
+        Object obj6 = this.f18429e;
+        Object obj7 = this.d;
+        Object obj8 = this.f18428c;
+        switch (i10) {
             case 0:
-                int i10 = this.f18463e;
-                ArrayList arrayList = this.f18464f;
-                this.f18461b.lambda$checkUnreadReactionsInternal2$424(this.f18462c, this.d, i10, arrayList);
+                ((MessagesController) obj8).lambda$processLoadedDialogFilters$23((TLRPC.messages_Dialogs) obj7, (ArrayList) obj5, (TLRPC.messages_Dialogs) obj6, this.f18427b, (ArrayList) obj4, (ArrayList) obj3, (ArrayList) obj2, (Runnable) obj);
                 return;
             case 1:
-                int i11 = this.f18463e;
-                ArrayList arrayList2 = this.f18464f;
-                this.f18461b.lambda$checkUnreadPollVotesInternal2$435(this.f18462c, this.d, i11, arrayList2);
+                LaunchActivity launchActivity = (LaunchActivity) obj8;
+                m70 m70Var = (m70) obj7;
+                TLObject tLObject = (TLObject) obj6;
+                TL_account.authorizationForm authorizationform = (TL_account.authorizationForm) obj5;
+                TL_account.getAuthorizationForm getauthorizationform = (TL_account.getAuthorizationForm) obj4;
+                String str = (String) obj3;
+                String str2 = (String) obj2;
+                String str3 = (String) obj;
+                Pattern pattern = LaunchActivity.B1;
+                try {
+                    m70Var.run();
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                }
+                if (tLObject != null) {
+                    MessagesController.getInstance(i11).putUsers(authorizationform.users, false);
+                    launchActivity.p0(new nn0(5, getauthorizationform.bot_id, getauthorizationform.scope, getauthorizationform.public_key, str, str2, str3, authorizationform, (TL_account.Password) tLObject));
+                    return;
+                }
                 return;
             case 2:
-                int i12 = this.f18463e;
-                ArrayList arrayList3 = this.f18464f;
-                this.f18461b.lambda$checkUnreadReactionsInternal2$426(this.f18462c, this.d, i12, arrayList3);
+                LaunchActivity launchActivity2 = (LaunchActivity) obj8;
+                TLObject tLObject2 = (TLObject) obj7;
+                int[] iArr = (int[]) obj6;
+                m70 m70Var2 = (m70) obj5;
+                Integer num = (Integer) obj4;
+                Integer num2 = (Integer) obj3;
+                Long l4 = (Long) obj2;
+                Integer num3 = (Integer) obj;
+                Pattern pattern2 = LaunchActivity.B1;
+                if (tLObject2 instanceof TLRPC.TL_messages_chats) {
+                    TLRPC.TL_messages_chats tL_messages_chats = (TLRPC.TL_messages_chats) tLObject2;
+                    if (!tL_messages_chats.chats.isEmpty()) {
+                        MessagesController.getInstance(launchActivity2.O).putChats(tL_messages_chats.chats, false);
+                        iArr[0] = launchActivity2.v0(this.f18427b, m70Var2, num, num2, l4, num3, null, tL_messages_chats.chats.get(0), null, null, 0, -1);
+                        return;
+                    }
+                }
+                try {
+                    m70Var2.run();
+                } catch (Exception e10) {
+                    FileLog.e(e10);
+                }
+                launchActivity2.B0(org.telegram.ui.Components.g5.G(launchActivity2, LocaleController.getString(R.string.DialogNotAvailable), LocaleController.getString(R.string.LinkNotFound)));
                 return;
             case 3:
-                int i13 = this.f18463e;
-                ArrayList arrayList4 = this.f18464f;
-                this.f18461b.lambda$checkUnreadPollVotesInternal2$433(this.f18462c, this.d, i13, arrayList4);
-                return;
-            case 4:
-                int i14 = this.f18463e;
-                ArrayList arrayList5 = this.f18464f;
-                this.f18461b.lambda$checkUnreadReactionsInternal2$428(this.f18462c, this.d, i14, arrayList5);
-                return;
-            case 5:
-                long j3 = this.d;
-                ArrayList arrayList6 = this.f18464f;
-                int i15 = this.f18463e;
-                this.f18461b.lambda$checkUnreadReactionsInternal2$422(this.f18462c, i15, j3, arrayList6);
-                return;
+                fg0 fg0Var = (fg0) obj8;
+                TLObject tLObject3 = (TLObject) obj7;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj6;
+                c5.k kVar = (c5.k) obj5;
+                c5.o oVar = (c5.o) obj4;
+                TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode = (TLRPC.TL_inputStorePaymentAuthCode) obj3;
+                String str4 = (String) obj2;
+                TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = (TLRPC.TL_payments_canPurchaseStore) obj;
+                wg0 wg0Var = fg0Var.v;
+                ci.d dVar = fg0Var.f37548b;
+                FileLog.d("LoginBilling canPurchaseStore returned " + tLObject3 + " " + tL_error);
+                if (tLObject3 instanceof TLRPC.TL_boolTrue) {
+                    dVar.g(LocaleController.formatString(R.string.SMSFeePurchaseTitle, kVar.f4265a), false, true);
+                    if (i11 == 7) {
+                        formatPluralStringComma = LocaleController.getString(R.string.SMSFeePurchaseText);
+                    } else {
+                        formatPluralStringComma = LocaleController.formatPluralStringComma("SMSFeePurchaseTextDays", i11);
+                    }
+                    dVar.f(formatPluralStringComma, false);
+                    dVar.setLoading(false);
+                    dVar.setOnClickListener(new ai.s0(fg0Var, oVar, tL_inputStorePaymentAuthCode, str4, tL_payments_canPurchaseStore, 14));
+                    return;
+                } else if (tLObject3 instanceof TLRPC.TL_boolFalse) {
+                    fg0Var.f37550e = "RESPONSE_FALSE";
+                    new org.telegram.ui.Components.ad(wg0Var.Z, null).H(R.raw.error, LocaleController.formatString(R.string.UnknownErrorCode, "RESPONSE_FALSE"));
+                    return;
+                } else if (tL_error != null) {
+                    fg0Var.f37550e = tL_error.text;
+                    new org.telegram.ui.Components.ad(wg0Var.Z, null).f0(tL_error, false);
+                    return;
+                } else {
+                    return;
+                }
             default:
-                long j10 = this.d;
-                ArrayList arrayList7 = this.f18464f;
-                int i16 = this.f18463e;
-                this.f18461b.lambda$checkUnreadPollVotesInternal2$429(this.f18462c, i16, j10, arrayList7);
+                yh.m5 m5Var = (yh.m5) obj8;
+                ((boolean[]) obj7)[0] = true;
+                m5Var.a0((MessageObject) obj6, (TLRPC.InputInvoice) obj5, (TLRPC.TL_payments_paymentFormStars) obj4, new yh.u4(m5Var, (boolean[]) obj3, this.f18427b, (Utilities.Callback) obj2, (Utilities.Callback) obj));
                 return;
         }
     }
 
-    public lb(MessagesController messagesController, long j3, long j10, int i10, ArrayList arrayList, int i11) {
-        this.f18460a = i11;
-        this.f18461b = messagesController;
-        this.f18462c = j3;
-        this.d = j10;
-        this.f18463e = i10;
-        this.f18464f = arrayList;
+    public lb(LaunchActivity launchActivity, Object obj, Object obj2, int i10, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, int i11) {
+        this.f18426a = i11;
+        this.f18428c = launchActivity;
+        this.d = obj;
+        this.f18429e = obj2;
+        this.f18427b = i10;
+        this.f18430f = obj3;
+        this.h = obj4;
+        this.f18431n = obj5;
+        this.f18432r = obj6;
+        this.f18433s = obj7;
+    }
+
+    public lb(fg0 fg0Var, TLObject tLObject, TLRPC.TL_error tL_error, c5.k kVar, int i10, c5.o oVar, TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode, String str, TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore) {
+        this.f18426a = 3;
+        this.f18428c = fg0Var;
+        this.d = tLObject;
+        this.f18429e = tL_error;
+        this.f18430f = kVar;
+        this.f18427b = i10;
+        this.h = oVar;
+        this.f18431n = tL_inputStorePaymentAuthCode;
+        this.f18432r = str;
+        this.f18433s = tL_payments_canPurchaseStore;
+    }
+
+    public lb(yh.m5 m5Var, boolean[] zArr, MessageObject messageObject, TLRPC.InputInvoice inputInvoice, TLRPC.TL_payments_paymentFormStars tL_payments_paymentFormStars, boolean[] zArr2, int i10, Utilities.Callback callback, Utilities.Callback callback2) {
+        this.f18426a = 4;
+        this.f18428c = m5Var;
+        this.d = zArr;
+        this.f18429e = messageObject;
+        this.f18430f = inputInvoice;
+        this.h = tL_payments_paymentFormStars;
+        this.f18431n = zArr2;
+        this.f18427b = i10;
+        this.f18432r = callback;
+        this.f18433s = callback2;
     }
 }

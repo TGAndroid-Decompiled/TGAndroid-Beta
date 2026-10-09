@@ -2,49 +2,32 @@ package ci;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.view.ViewGroup;
 public final class ib extends AnimatorListenerAdapter {
-    public final int f5181a;
-    public final kc f5182b;
+    public final int f5211a;
+    public final int f5212b;
+    public final int f5213c;
+    public final lc d;
 
-    public ib(kc kcVar, int i10) {
-        this.f5181a = i10;
-        this.f5182b = kcVar;
+    public ib(lc lcVar, int i10, int i11, int i12) {
+        this.f5211a = i12;
+        this.d = lcVar;
+        this.f5212b = i10;
+        this.f5213c = i11;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f5181a) {
+        switch (this.f5211a) {
             case 0:
-                kc kcVar = this.f5182b;
-                kcVar.f5407j2 = null;
-                kcVar.f5428r.setTranslationY(0.0f);
-                kcVar.f5428r.b(0.0f);
-                return;
-            case 1:
-                kc kcVar2 = this.f5182b;
-                kcVar2.f5415n.removeView(kcVar2.M0);
-                kcVar2.M0 = null;
-                kcVar2.f5418n2 = null;
-                kcVar2.f5424p2 = null;
-                i4 i4Var = kcVar2.f5383c1.L;
-                boolean z10 = true;
-                if (kcVar2.f5393f0 == 1) {
-                    z10 = false;
-                }
-                i4Var.b(z10);
+                this.d.M(this.f5212b, this.f5213c);
                 return;
             default:
-                kc kcVar3 = this.f5182b;
-                sb sbVar = kcVar3.C2;
-                if (sbVar != null) {
-                    if (sbVar.getParent() != null) {
-                        ((ViewGroup) kcVar3.C2.getParent()).removeView(kcVar3.C2);
-                    }
-                    kcVar3.C2 = null;
+                int i10 = this.f5212b;
+                int i11 = this.f5213c;
+                if (i10 != i11) {
+                    this.d.P(i10, i11);
+                    return;
                 }
-                kcVar3.E2 = null;
-                super.onAnimationEnd(animator);
                 return;
         }
     }

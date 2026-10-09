@@ -1,138 +1,67 @@
 package ci;
 
-import android.graphics.drawable.Drawable;
-import android.widget.FrameLayout;
-import org.telegram.ui.Components.ff0;
-import org.telegram.ui.Components.gf0;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.os0;
-public final class h0 implements lg.e {
-    public final int f5127a;
-    public final FrameLayout f5128b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.BubbleActivity;
+public final class h0 extends View {
+    public final Paint f5147a;
+    public final Path f5148b;
+    public final RectF f5149c;
+    public final Matrix d;
+    public final Matrix f5150e;
+    public final Matrix f5151f;
+    public final Matrix h;
+    public final Matrix f5152n;
+    public final Matrix f5153r;
+    public final i0 f5154s;
 
-    public h0(int i10, FrameLayout frameLayout) {
-        this.f5127a = i10;
-        this.f5128b = frameLayout;
+    public h0(i0 i0Var, Context context) {
+        super(context);
+        this.f5154s = i0Var;
+        this.f5147a = new Paint(1);
+        this.f5148b = new Path();
+        this.f5149c = new RectF();
+        this.d = new Matrix();
+        this.f5150e = new Matrix();
+        this.f5151f = new Matrix();
+        this.h = new Matrix();
+        this.f5152n = new Matrix();
+        this.f5153r = new Matrix();
+    }
+
+    private float getContainerHeight() {
+        float f7;
+        if (!(getContext() instanceof BubbleActivity)) {
+            f7 = AndroidUtilities.statusBarHeight;
+        } else {
+            f7 = 0.0f;
+        }
+        return ((getHeight() - f7) - this.f5154s.f5184f.f15582y) - AndroidUtilities.dp(32.0f);
+    }
+
+    private float getContainerWidth() {
+        return getWidth() - AndroidUtilities.dp(32.0f);
+    }
+
+    public final void a(android.graphics.Matrix r14, boolean r15) {
+        throw new UnsupportedOperationException("Method not decompiled: ci.h0.a(android.graphics.Matrix, boolean):void");
+    }
+
+    public final void b(android.graphics.Canvas r19, boolean r20) {
+        throw new UnsupportedOperationException("Method not decompiled: ci.h0.b(android.graphics.Canvas, boolean):void");
     }
 
     @Override
-    public final boolean a() {
-        int i10 = this.f5127a;
-        FrameLayout frameLayout = this.f5128b;
-        switch (i10) {
-            case 0:
-                j0 j0Var = (j0) frameLayout;
-                j0Var.d.invalidate();
-                return j0Var.f5193f.j();
-            case 1:
-                m0 m0Var = (m0) frameLayout;
-                m0Var.f5548e.invalidate();
-                return m0Var.h.j();
-            default:
-                ff0 ff0Var = ((gf0) frameLayout).f26904a;
-                if (ff0Var != null) {
-                    PhotoViewer photoViewer = ((os0) ff0Var).f39287a;
-                    Drawable[] drawableArr = PhotoViewer.U8;
-                    return photoViewer.N0();
-                }
-                return false;
+    public final void dispatchDraw(Canvas canvas) {
+        if (this.f5154s.f5189x == null) {
+            return;
         }
-    }
-
-    @Override
-    public final void b() {
-        switch (this.f5127a) {
-            case 0:
-                ((j0) this.f5128b).f5193f.o();
-                return;
-            case 1:
-                ((m0) this.f5128b).h.o();
-                return;
-            default:
-                ((gf0) this.f5128b).f26905b.o();
-                return;
-        }
-    }
-
-    @Override
-    public final void c() {
-        switch (this.f5127a) {
-            case 0:
-                ((j0) this.f5128b).f5193f.f15576a.g(1, true);
-                return;
-            case 1:
-                ((m0) this.f5128b).h.f15576a.g(1, true);
-                return;
-            default:
-                ((gf0) this.f5128b).f26905b.f15576a.g(1, true);
-                return;
-        }
-    }
-
-    @Override
-    public final boolean d() {
-        int i10 = this.f5127a;
-        FrameLayout frameLayout = this.f5128b;
-        switch (i10) {
-            case 0:
-                j0 j0Var = (j0) frameLayout;
-                g0 g0Var = j0Var.f5193f;
-                boolean m10 = g0Var.m(-90.0f);
-                g0Var.i();
-                j0Var.d.invalidate();
-                return m10;
-            case 1:
-                m0 m0Var = (m0) frameLayout;
-                g0 g0Var2 = m0Var.h;
-                boolean m11 = g0Var2.m(-90.0f);
-                g0Var2.i();
-                m0Var.f5548e.invalidate();
-                return m11;
-            default:
-                ff0 ff0Var = ((gf0) frameLayout).f26904a;
-                if (ff0Var == null) {
-                    return false;
-                }
-                PhotoViewer photoViewer = ((os0) ff0Var).f39287a;
-                Drawable[] drawableArr = PhotoViewer.U8;
-                return photoViewer.O0(-90.0f, false, null);
-        }
-    }
-
-    @Override
-    public final void e() {
-        switch (this.f5127a) {
-            case 0:
-                ((j0) this.f5128b).f5193f.k();
-                return;
-            case 1:
-                ((m0) this.f5128b).h.k();
-                return;
-            default:
-                ((gf0) this.f5128b).f26905b.k();
-                return;
-        }
-    }
-
-    @Override
-    public final void f(float f7) {
-        switch (this.f5127a) {
-            case 0:
-                ((j0) this.f5128b).f5193f.setRotation(f7);
-                return;
-            case 1:
-                ((m0) this.f5128b).h.setRotation(f7);
-                return;
-            default:
-                gf0 gf0Var = (gf0) this.f5128b;
-                gf0Var.f26905b.setRotation(f7);
-                gf0Var.getClass();
-                ff0 ff0Var = gf0Var.f26904a;
-                if (ff0Var != null) {
-                    ((os0) ff0Var).a(false);
-                    return;
-                }
-                return;
-        }
+        b(canvas, false);
     }
 }

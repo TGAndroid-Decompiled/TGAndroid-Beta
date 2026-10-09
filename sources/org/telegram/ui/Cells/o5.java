@@ -11,11 +11,11 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaController;
 public final class o5 extends FrameLayout {
-    public final t5 f22602a;
+    public final t5 f22589a;
 
     public o5(t5 t5Var, Context context) {
         super(context);
-        this.f22602a = t5Var;
+        this.f22589a = t5Var;
     }
 
     @Override
@@ -23,24 +23,24 @@ public final class o5 extends FrameLayout {
         float measuredWidth;
         float measuredHeight;
         int i10;
-        t5 t5Var = this.f22602a;
-        p5 p5Var = t5Var.f23062a;
+        t5 t5Var = this.f22589a;
+        p5 p5Var = t5Var.f23048a;
         if (t5Var.M != null && view == p5Var) {
             boolean drawChild = super.drawChild(canvas, view, j3);
             if (t5Var.N) {
-                Rect rect = t5.f23061a0;
+                Rect rect = t5.f23047a0;
                 MediaController.PhotoEntry photoEntry = t5Var.G;
                 if (photoEntry == null || !photoEntry.isAttachSpoilerRevealed) {
-                    t5Var.M.c(canvas, t5Var.f23063b, p5Var.getMeasuredWidth(), p5Var.getMeasuredHeight(), 1.0f, false);
+                    t5Var.M.c(canvas, t5Var.f23049b, p5Var.getMeasuredWidth(), p5Var.getMeasuredHeight(), 1.0f, false);
                     MediaController.PhotoEntry photoEntry2 = t5Var.G;
-                    if (photoEntry2 != null && photoEntry2.starsAmount > 0 && p5Var.f32574y != null) {
+                    if (photoEntry2 != null && photoEntry2.starsAmount > 0 && p5Var.f33166y != null) {
                         Path path = p5Var.E;
                         if (path == null) {
                             p5Var.E = new Path();
                         } else {
                             path.rewind();
                         }
-                        int i11 = p5Var.f32566c;
+                        int i11 = p5Var.f33158c;
                         if (i11 != -1 && (i10 = p5Var.d) != -1) {
                             measuredWidth = i11;
                             measuredHeight = i10;
@@ -48,7 +48,7 @@ public final class o5 extends FrameLayout {
                             measuredWidth = p5Var.getMeasuredWidth();
                             measuredHeight = p5Var.getMeasuredHeight();
                         }
-                        float dp = p5Var.f32574y.f26266c + AndroidUtilities.dp(18.0f);
+                        float dp = p5Var.f33166y.f28222c + AndroidUtilities.dp(18.0f);
                         float f7 = (measuredWidth - dp) / 2.0f;
                         float f10 = measuredHeight / 2.0f;
                         RectF rectF = AndroidUtilities.rectTmp;
@@ -57,16 +57,16 @@ public final class o5 extends FrameLayout {
                         p5Var.E.addRoundRect(rectF, dp2, dp2, Path.Direction.CW);
                         canvas.save();
                         canvas.clipPath(p5Var.E);
-                        ImageReceiver imageReceiver = p5Var.f32565b;
-                        if (imageReceiver != null && p5Var.f32571s) {
+                        ImageReceiver imageReceiver = p5Var.f33157b;
+                        if (imageReceiver != null && p5Var.f33163s) {
                             imageReceiver.setColorFilter(p5Var.F);
-                            float alpha = p5Var.f32565b.getAlpha();
-                            p5Var.f32565b.setAlpha(1.0f);
-                            p5Var.f32565b.draw(canvas);
-                            p5Var.f32565b.setAlpha(alpha);
-                            p5Var.f32565b.setColorFilter(null);
+                            float alpha = p5Var.f33157b.getAlpha();
+                            p5Var.f33157b.setAlpha(1.0f);
+                            p5Var.f33157b.draw(canvas);
+                            p5Var.f33157b.setAlpha(alpha);
+                            p5Var.f33157b.setColorFilter(null);
                         }
-                        p5Var.f32574y.c(f7 + AndroidUtilities.dp(9.0f), f10, 1.0f, -1, canvas);
+                        p5Var.f33166y.c(f7 + AndroidUtilities.dp(9.0f), f10, 1.0f, -1, canvas);
                         canvas.restore();
                     }
                 }

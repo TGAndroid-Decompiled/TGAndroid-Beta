@@ -1,31 +1,87 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.widget.FrameLayout;
-public final class qc1 extends FrameLayout {
-    public final int f39763a;
-    public final Rect f39764b;
-    public final pd1 f39765c;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class qc1 implements RequestDelegate {
+    public final int f41082a;
+    public final xd1 f41083b;
 
-    public qc1(pd1 pd1Var, Context context, int i10, Rect rect) {
-        super(context);
-        this.f39765c = pd1Var;
-        this.f39763a = i10;
-        this.f39764b = rect;
+    public qc1(xd1 xd1Var, int i10) {
+        this.f41082a = i10;
+        this.f41083b = xd1Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int i10 = this.f39763a;
-        Rect rect = this.f39764b;
-        pd1 pd1Var = this.f39765c;
-        if (i10 == 0) {
-            pd1Var.f39534r.setBounds(pd1Var.V.getLeft() - rect.left, 0, pd1Var.V.getRight() + rect.right, getMeasuredHeight());
-        } else {
-            pd1Var.f39534r.setBounds(-rect.left, 0, getMeasuredWidth() + rect.right, getMeasuredHeight());
+    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f41082a) {
+            case 0:
+                final xd1 xd1Var = this.f41083b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                xd1.W(xd1Var, tLObject);
+                                return;
+                            default:
+                                TLObject tLObject2 = tLObject;
+                                if (tLObject2 instanceof TLRPC.TL_wallPaper) {
+                                    TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) tLObject2;
+                                    if (tL_wallPaper.pattern) {
+                                        xd1 xd1Var2 = xd1Var;
+                                        xd1Var2.W0 = tL_wallPaper;
+                                        xd1Var2.b1(false);
+                                        xd1Var2.j1();
+                                        xd1Var2.U0.add(0, xd1Var2.W0);
+                                        vd1 vd1Var = xd1Var2.Q0;
+                                        if (vd1Var != null) {
+                                            vd1Var.l();
+                                            return;
+                                        }
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+                return;
+            default:
+                final xd1 xd1Var2 = this.f41083b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                xd1.W(xd1Var2, tLObject);
+                                return;
+                            default:
+                                TLObject tLObject2 = tLObject;
+                                if (tLObject2 instanceof TLRPC.TL_wallPaper) {
+                                    TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) tLObject2;
+                                    if (tL_wallPaper.pattern) {
+                                        xd1 xd1Var22 = xd1Var2;
+                                        xd1Var22.W0 = tL_wallPaper;
+                                        xd1Var22.b1(false);
+                                        xd1Var22.j1();
+                                        xd1Var22.U0.add(0, xd1Var22.W0);
+                                        vd1 vd1Var = xd1Var22.Q0;
+                                        if (vd1Var != null) {
+                                            vd1Var.l();
+                                            return;
+                                        }
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+                return;
         }
-        pd1Var.f39534r.draw(canvas);
     }
 }

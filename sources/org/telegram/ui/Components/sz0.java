@@ -1,47 +1,23 @@
 package org.telegram.ui.Components;
-public final class sz0 {
-    public final int f30988a;
 
-    public sz0(int i10) {
-        this.f30988a = i10;
+import org.telegram.messenger.SharedConfig;
+public final class sz0 implements qd0, sd0 {
+    public final uz0 f30954a;
+
+    @Override
+    public String i(int i10) {
+        return this.f30954a.h[i10];
     }
 
-    public final int a(zz0 zz0Var, int i10) {
-        switch (this.f30988a) {
-            case 0:
-                return Integer.MIN_VALUE;
-            case 1:
-                return 0;
-            case 2:
-                return i10;
-            case 3:
-                return Integer.MIN_VALUE;
-            default:
-                return Integer.MIN_VALUE;
-        }
-    }
-
-    public final int b(zz0 zz0Var, int i10) {
-        switch (this.f30988a) {
-            case 0:
-                return Integer.MIN_VALUE;
-            case 1:
-                return 0;
-            case 2:
-                return i10;
-            case 3:
-                return 0;
-            default:
-                return 0;
-        }
-    }
-
-    public int c(int i10, int i11) {
-        switch (this.f30988a) {
-            case 4:
-                return i11;
-            default:
-                return i10;
+    @Override
+    public void r(ud0 ud0Var, int i10) {
+        uz0 uz0Var = this.f30954a;
+        uz0Var.b();
+        SharedConfig.updateChatListSwipeSetting(i10);
+        uz0Var.invalidate();
+        try {
+            ud0Var.performHapticFeedback(3, 2);
+        } catch (Exception unused) {
         }
     }
 }

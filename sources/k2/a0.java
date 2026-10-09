@@ -1,38 +1,28 @@
 package k2;
 
-import android.media.AudioDeviceInfo;
-import android.media.AudioRouting;
-import android.media.AudioTrack;
 import android.os.Handler;
-import android.os.Looper;
-import ci.e7;
-public final class a0 {
-    public final AudioTrack f14371a;
-    public final e7 f14372b;
-    public z f14373c = new AudioRouting.OnRoutingChangedListener() {
-        @Override
-        public final void onRoutingChanged(AudioRouting audioRouting) {
-            a0.a(a0.this, audioRouting);
-        }
-    };
+import java.util.concurrent.Executor;
+public final class a0 implements Executor {
+    public final int f14407a;
+    public final Object f14408b;
 
-    public a0(AudioTrack audioTrack, e7 e7Var) {
-        this.f14371a = audioTrack;
-        this.f14372b = e7Var;
-        audioTrack.addOnRoutingChangedListener(this.f14373c, new Handler(Looper.myLooper()));
+    public a0(Object obj, int i10) {
+        this.f14407a = i10;
+        this.f14408b = obj;
     }
 
-    public static void a(a0 a0Var, AudioRouting audioRouting) {
-        AudioDeviceInfo routedDevice;
-        if (a0Var.f14373c != null && (routedDevice = audioRouting.getRoutedDevice()) != null) {
-            a0Var.f14372b.c(routedDevice);
+    @Override
+    public final void execute(Runnable runnable) {
+        switch (this.f14407a) {
+            case 0:
+                ((Handler) this.f14408b).post(runnable);
+                return;
+            case 1:
+                e2.d0.T(((m4.b0) this.f14408b).f15989l, runnable);
+                return;
+            default:
+                ((p4.b) this.f14408b).post(runnable);
+                return;
         }
-    }
-
-    public final void b() {
-        z zVar = this.f14373c;
-        zVar.getClass();
-        this.f14371a.removeOnRoutingChangedListener(zVar);
-        this.f14373c = null;
     }
 }

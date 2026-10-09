@@ -1,44 +1,39 @@
 package xh;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.widget.FrameLayout;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class w extends FrameLayout {
-    public final RectF f50307a;
-    public final RectF f50308b;
-    public final c0 f50309c;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.Components.mr0;
+public final class w extends org.telegram.ui.ActionBar.j {
+    public final TL_stars.StarGift f51569a;
+    public final Context f51570b;
+    public final e6 f51571c;
 
-    public w(c0 c0Var, Context context) {
-        super(context);
-        this.f50309c = c0Var;
-        this.f50307a = new RectF();
-        this.f50308b = new RectF();
+    public w(Context context, TL_stars.StarGift starGift, e6 e6Var) {
+        this.f51569a = starGift;
+        this.f51570b = context;
+        this.f51571c = e6Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        c0 c0Var = this.f50309c;
-        x xVar = c0Var.f49914a0;
-        FrameLayout frameLayout = xVar.f52129b;
-        RectF rectF = this.f50307a;
-        if (hh.k.c(frameLayout, this, rectF)) {
-            TextView textView = c0Var.f49915b0;
-            RectF rectF2 = this.f50308b;
-            if (hh.k.c(textView, this, rectF2)) {
-                float dp = rectF2.right - AndroidUtilities.dp(32.0f);
-                float centerY = rectF2.centerY() - AndroidUtilities.dp(16.0f);
-                if (!rectF.isEmpty()) {
-                    canvas.save();
-                    canvas.translate(dp, centerY);
-                    canvas.scale(AndroidUtilities.dp(32.0f) / rectF.width(), AndroidUtilities.dp(32.0f) / rectF.height());
-                    xVar.f52129b.draw(canvas);
-                    canvas.restore();
-                }
+    public final void b(int i10) {
+        Context context = this.f51570b;
+        TL_stars.StarGift starGift = this.f51569a;
+        if (i10 != 3 && i10 != 2) {
+            if (i10 == 4) {
+                x.V(context, starGift, this.f51571c);
+                return;
             }
+            return;
+        }
+        String str = MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix + "/auction/" + starGift.auction_slug;
+        if (i10 == 3) {
+            AndroidUtilities.addToClipboard(str);
+        } else {
+            mr0.O0(context, null, str, false, str).show();
         }
     }
 }

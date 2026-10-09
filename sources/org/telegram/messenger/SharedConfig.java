@@ -153,6 +153,7 @@ public class SharedConfig {
     public static String searchEngineCustomURLQuery;
     public static int searchEngineType;
     public static boolean searchMessagesAsListUsed;
+    public static boolean shadowsInSections;
     public static boolean showNotificationsForAllAccounts;
     public static boolean shuffleMusic;
     public static boolean sortContactsByName;
@@ -179,6 +180,7 @@ public class SharedConfig {
     public static boolean useSystemBoldFont;
     public static boolean useSystemEmoji;
     public static boolean useThreeLinesLayout;
+    public static boolean walletUseFingerprintLock;
 
     public static class BackgroundActivityPrefs {
         private static SharedPreferences prefs;
@@ -213,24 +215,24 @@ public class SharedConfig {
         public long availableCheckTime;
         public boolean checking;
         public long ping;
-        public qi.b settings;
+        public oi.b settings;
 
-        public ProxyInfo(qi.b bVar) {
+        public ProxyInfo(oi.b bVar) {
             this.settings = bVar;
         }
 
         public static ProxyInfo fromSerializedData(int i10, InputSerializedData inputSerializedData) {
             long j3;
             long j10;
-            qi.a a2 = qi.b.a();
+            oi.a a2 = oi.b.a();
             boolean z10 = false;
             String readString = inputSerializedData.readString(false);
             String str = "";
             if (readString == null) {
                 readString = "";
             }
-            a2.f45521b = readString;
-            a2.f45522c = inputSerializedData.readInt32(false);
+            a2.f17155b = readString;
+            a2.f17156c = inputSerializedData.readInt32(false);
             String readString2 = inputSerializedData.readString(false);
             if (readString2 == null) {
                 readString2 = "";
@@ -240,12 +242,12 @@ public class SharedConfig {
             if (readString3 == null) {
                 readString3 = "";
             }
-            a2.f45523e = readString3;
+            a2.f17157e = readString3;
             String readString4 = inputSerializedData.readString(false);
             if (readString4 != null) {
                 str = readString4;
             }
-            a2.f45524f = str;
+            a2.f17158f = str;
             int i11 = 2;
             if (i10 >= 2) {
                 j3 = inputSerializedData.readInt64(false);
@@ -255,16 +257,16 @@ public class SharedConfig {
                 j10 = 0;
             }
             if (i10 >= 3) {
-                int e7 = qi.b.e(inputSerializedData.readInt32(false));
+                int e7 = oi.b.e(inputSerializedData.readInt32(false));
                 if (e7 == 0) {
                     e7 = 1;
                 }
-                a2.f45520a = e7;
+                a2.f17154a = e7;
             } else {
                 if (TextUtils.isEmpty(readString4)) {
                     i11 = 1;
                 }
-                a2.f45520a = i11;
+                a2.f17154a = i11;
             }
             ProxyInfo proxyInfo = new ProxyInfo(a2.a());
             proxyInfo.availableCheckTime = j10;
@@ -277,14 +279,14 @@ public class SharedConfig {
         }
 
         public void toSerializedData(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeString(this.settings.f45528b);
-            outputSerializedData.writeInt32(this.settings.f45529c);
+            outputSerializedData.writeString(this.settings.f17162b);
+            outputSerializedData.writeInt32(this.settings.f17163c);
             outputSerializedData.writeString(this.settings.d);
-            outputSerializedData.writeString(this.settings.f45530e);
-            outputSerializedData.writeString(this.settings.f45531f);
+            outputSerializedData.writeString(this.settings.f17164e);
+            outputSerializedData.writeString(this.settings.f17165f);
             outputSerializedData.writeInt64(this.ping);
             outputSerializedData.writeInt64(this.availableCheckTime);
-            int c10 = m1.j.c(this.settings.f45527a);
+            int c10 = m1.j.c(this.settings.f17161a);
             int i10 = 1;
             if (c10 != 1) {
                 i10 = 2;
@@ -315,6 +317,7 @@ public class SharedConfig {
         photoViewerBlur = true;
         stealthModeSendMessageConfirm = 2;
         lastLocalId = -210000;
+        walletUseFingerprintLock = true;
         passportConfigJson = "";
         sync = new Object();
         localIdSync = new Object();
@@ -371,12 +374,9 @@ public class SharedConfig {
     }
 
     public static boolean allowPreparingHevcPlayers() {
-        boolean z10 = false;
-        if (Build.VERSION.SDK_INT < 23) {
-            return false;
-        }
         if (allowPreparingHevcPlayers == null) {
             int codecCount = MediaCodecList.getCodecCount();
+            boolean z10 = false;
             int i10 = 0;
             for (int i11 = 0; i11 < codecCount; i11++) {
                 MediaCodecInfo codecInfoAt = MediaCodecList.getCodecInfoAt(i11);
@@ -448,7 +448,7 @@ public class SharedConfig {
                 return;
             }
             lastLogsCheckTime = currentTimeMillis;
-            Utilities.cacheClearQueue.postRunnable(new ei.s2(currentTimeMillis, 6));
+            Utilities.cacheClearQueue.postRunnable(new ei.r2(currentTimeMillis, 7));
         }
     }
 
@@ -510,6 +510,7 @@ public class SharedConfig {
         autoLockIn = 3600;
         lastPauseTime = 0;
         useFingerprintLock = true;
+        walletUseFingerprintLock = true;
         isWaitingForPasscodeEnter = false;
         allowScreenCapture = false;
         textSelectionHintShows = 0;
@@ -697,7 +698,7 @@ public class SharedConfig {
             } else {
                 ceil = (int) Math.ceil(i13 / i12);
             }
-            if (i11 > 2 && memoryClass > 100 && ((i11 > 4 || ceil == -1 || ceil > 1250) && ((i11 > 4 || ceil > 1600 || memoryClass > 128 || i10 > 21) && (i11 > 4 || ceil > 1300 || memoryClass > 128 || i10 > 24)))) {
+            if (i11 > 2 && memoryClass > 100 && ((i11 > 4 || ceil == -1 || ceil > 1250) && (i11 > 4 || ceil > 1300 || memoryClass > 128 || i10 > 24))) {
                 if (i11 >= 8 && memoryClass > 160 && ((ceil == -1 || ceil > 2050) && (ceil != -1 || i11 != 8 || i10 > 23))) {
                     legacyDevicePerformanceClass = 2;
                 } else {
@@ -910,10 +911,10 @@ public class SharedConfig {
             ImageLoader.getInstance().checkMediaPaths(new w1(21));
             readOnlyStorageDirAlertShowed = true;
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(R.getParentActivity());
-            alertDialog$Builder.f20377a.R = LocaleController.getString(R.string.SdCardError);
-            alertDialog$Builder.f20377a.S = LocaleController.getString(R.string.SdCardErrorDescription);
+            alertDialog$Builder.f20374a.R = LocaleController.getString(R.string.SdCardError);
+            alertDialog$Builder.f20374a.S = LocaleController.getString(R.string.SdCardErrorDescription);
             alertDialog$Builder.k(LocaleController.getString(R.string.DoNotUseSDCard), new Object());
-            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20377a;
+            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20374a;
             b2Var.setCanceledOnTouchOutside(false);
             b2Var.show();
         }
@@ -951,7 +952,7 @@ public class SharedConfig {
     public static void loadProxyList() {
         if (!proxyListLoaded) {
             SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0);
-            qi.b c10 = qi.b.c(sharedPreferences);
+            oi.b c10 = oi.b.c(sharedPreferences);
             proxyListLoaded = true;
             proxyList.clear();
             currentProxy = null;
@@ -1045,12 +1046,12 @@ public class SharedConfig {
         } catch (Exception unused2) {
             j3 = -1;
         }
-        if (i11 > 2 && memoryClass > 100 && ((i11 > 4 || ceil == -1 || ceil > 1250) && ((i11 > 4 || ceil > 1600 || memoryClass > 128 || i10 > 21) && ((i11 > 4 || ceil > 1300 || memoryClass > 128 || i10 > 24) && (j3 == -1 || j3 >= 2147483648L))))) {
+        if (i11 > 2 && memoryClass > 100 && ((i11 > 4 || ceil == -1 || ceil > 1250) && ((i11 > 4 || ceil > 1300 || memoryClass > 128 || i10 > 24) && (j3 == -1 || j3 >= 2147483648L)))) {
             i12 = (i11 < 8 || memoryClass <= 160 || (ceil != -1 && ceil <= 2055) || (ceil == -1 && i11 == 8 && i10 <= 23)) ? 1 : 2;
         }
         if (BuildVars.LOGS_ENABLED) {
             StringBuilder k10 = hg.c.k("device performance info selected_class = ", i12, " (cpu_count = ", i11, ", freq = ");
-            hg.c.t(k10, ceil, ", memoryClass = ", memoryClass, ", android version ");
+            hg.c.u(k10, ceil, ", memoryClass = ", memoryClass, ", android version ");
             k10.append(i10);
             k10.append(", manufacture ");
             k10.append(Build.MANUFACTURER);
@@ -1142,6 +1143,7 @@ public class SharedConfig {
                     edit.putInt("autoLockIn", autoLockIn);
                     edit.putInt("lastPauseTime", lastPauseTime);
                     edit.putBoolean("useFingerprint", useFingerprintLock);
+                    edit.putBoolean("walletUseFingerprintLock", walletUseFingerprintLock);
                     edit.putBoolean("allowScreenCapture", allowScreenCapture);
                     edit.putString("pushString2", pushString);
                     edit.putInt("pushType", pushType);

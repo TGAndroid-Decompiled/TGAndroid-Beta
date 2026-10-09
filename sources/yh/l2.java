@@ -1,181 +1,166 @@
 package yh;
 
+import android.animation.ValueAnimator;
+import android.graphics.RectF;
+import android.opengl.Matrix;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ft;
-public final class l2 implements View.OnClickListener {
-    public final int f51573a;
-    public final y2 f51574b;
+import org.telegram.ui.Components.hs;
+public final class l2 {
+    public final m2 f52812a;
+    public i1 d;
+    public int f52816f;
+    public int f52817g;
+    public float f52819j;
+    public float f52820k;
+    public final ArrayList f52813b = new ArrayList();
+    public int f52814c = 0;
+    public boolean f52815e = false;
+    public final float[] h = new float[16];
+    public float[] f52818i = new float[16];
+    public boolean f52821l = false;
 
-    public l2(y2 y2Var, int i10) {
-        this.f51573a = i10;
-        this.f51574b = y2Var;
+    public l2(m2 m2Var) {
+        this.f52812a = m2Var;
     }
 
-    @Override
-    public final void onClick(View view) {
-        TL_stars.StarGift starGift;
-        TL_stars.StarGift starGift2;
-        TL_stars.StarGift starGift3;
-        w2 w2Var;
-        int i10 = this.f51573a;
-        boolean z10 = true;
-        y2 y2Var = this.f51574b;
-        switch (i10) {
-            case 0:
-                if (y2Var.P.getAlpha() >= 1.0f) {
-                    y2Var.f52267g0.run();
-                    return;
-                }
-                return;
-            case 1:
-                if (y2Var.P.getAlpha() >= 1.0f) {
-                    y2Var.f52267g0.run();
-                    return;
-                }
-                return;
-            case 2:
-                y2Var.getClass();
-                y2Var.b((m2) view);
-                return;
-            case 3:
-                y2Var.getClass();
-                y2Var.b((m2) view);
-                return;
-            case 4:
-                y2 y2Var2 = this.f51574b;
-                LinearLayout linearLayout = y2Var2.G;
-                w2[] w2VarArr = y2Var2.f52273n;
-                if (y2Var2.getAlpha() >= 1.0f && !y2Var2.f52268h0) {
-                    if (y2Var2.f52270j0) {
-                        y2Var2.a(y2Var2.W, y2Var2.f52257a0, y2Var2.f52259b0, y2Var2.f52261c0);
-                        return;
-                    }
-                    ArrayList arrayList = new ArrayList();
-                    for (w2 w2Var2 : w2VarArr) {
-                        if (w2Var2 != null) {
-                            TL_stars.StarGift starGift4 = w2Var2.h;
-                            if (starGift4 != null) {
-                                starGift3 = starGift4;
-                            } else {
-                                starGift3 = null;
-                            }
-                            if (starGift3 != null) {
-                                if (starGift4 == null) {
-                                    starGift4 = null;
-                                }
-                                arrayList.add(starGift4);
-                            }
-                        }
-                    }
-                    if (!arrayList.isEmpty() && y2Var2.f52264e0 != null) {
-                        TextView textView = y2Var2.K;
-                        y2Var2.f52268h0 = true;
-                        y2Var2.f52270j0 = false;
-                        ci.e4 e4Var = y2Var2.T;
-                        if (e4Var != null) {
-                            e4Var.e(true);
-                            y2Var2.T = null;
-                        }
-                        textView.setText("");
-                        y2Var2.L.setText(LocaleController.formatString(R.string.GiftCraftProgressSuccessChance, ei.m.L0(y2Var2.getGiftsSuccessChance())));
-                        for (int i11 = 0; i11 < w2VarArr.length; i11++) {
-                            w2 w2Var3 = w2VarArr[i11];
-                            if (w2Var3 != null) {
-                                w2Var3.setClickable(false);
-                                w2 w2Var4 = w2VarArr[i11];
-                                TL_stars.StarGift starGift5 = w2Var4.h;
-                                if (starGift5 == null) {
-                                    starGift5 = null;
-                                }
-                                if (starGift5 == null) {
-                                    w2Var4.animate().alpha(0.0f).start();
-                                }
-                            }
-                        }
-                        int i12 = 0;
-                        while (true) {
-                            if (i12 < w2VarArr.length) {
-                                w2 w2Var5 = w2VarArr[i12];
-                                if (w2Var5 != null) {
-                                    TL_stars.StarGift starGift6 = w2Var5.h;
-                                    if (starGift6 != null) {
-                                        starGift2 = starGift6;
-                                    } else {
-                                        starGift2 = null;
-                                    }
-                                    if (starGift2 != null) {
-                                        if (starGift6 == null) {
-                                            starGift6 = null;
+    public final void a(int i10) {
+        this.f52813b.add(new k2(3, 0.0f, 0.0f, i10, -1, 0.0f, null, null));
+    }
+
+    public final void b() {
+        i1 i1Var;
+        boolean z10 = this.f52815e;
+        m2 m2Var = this.f52812a;
+        if (!z10) {
+            int i10 = this.f52814c;
+            ArrayList arrayList = this.f52813b;
+            if (i10 < arrayList.size()) {
+                k2 k2Var = (k2) arrayList.get(this.f52814c);
+                boolean z11 = true;
+                this.f52814c++;
+                int i11 = k2Var.f52764a;
+                int i12 = k2Var.f52767e;
+                float f7 = k2Var.f52765b;
+                int i13 = k2Var.d;
+                int c10 = m1.j.c(i11);
+                if (c10 != 0) {
+                    if (c10 != 1) {
+                        if (c10 != 2) {
+                            if (c10 != 3) {
+                                if (c10 != 4) {
+                                    if (c10 == 5) {
+                                        if (f7 <= 0.0f) {
+                                            z11 = false;
                                         }
-                                        textView.setText(starGift6.title + " #" + LocaleController.formatNumber(starGift6.num, ','));
+                                        m2Var.f52866f = z11;
+                                        b();
+                                        return;
                                     }
+                                    return;
                                 }
-                                i12++;
+                                this.f52821l = true;
+                                View view = k2Var.f52769g;
+                                ValueAnimator valueAnimator = m2Var.G;
+                                if (valueAnimator != null) {
+                                    valueAnimator.cancel();
+                                    m2Var.G = null;
+                                }
+                                RectF rectF = new RectF();
+                                rectF.left = view.getX() - m2Var.getX();
+                                rectF.top = view.getY() - m2Var.getY();
+                                rectF.right = rectF.left + view.getWidth();
+                                rectF.bottom = rectF.top + view.getHeight();
+                                AndroidUtilities.removeFromParent(view);
+                                int childCount = m2Var.getChildCount();
+                                m2Var.addView(view, w7.x5.e(64, 64, 17));
+                                m2Var.v.add(Integer.valueOf(i12));
+                                m2Var.f52870w.put(Integer.valueOf(childCount), Integer.valueOf(i12));
+                                m2Var.f52871x.put(Integer.valueOf(childCount), rectF);
+                                m2Var.F = childCount;
+                                m2Var.E = 0.0f;
+                                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                                m2Var.G = ofFloat;
+                                ofFloat.addUpdateListener(new org.telegram.ui.Components.voip.r0(m2Var, 22));
+                                m2Var.G.addListener(new org.telegram.ui.Wallet.w4(m2Var, 18));
+                                m2Var.G.setDuration(i13 * 16);
+                                m2Var.G.setInterpolator(hs.h);
+                                m2Var.G.start();
+                                return;
                             }
-                        }
-                        y2Var2.Q.animate().alpha(0.0f).start();
-                        linearLayout.animate().alpha(0.0f).start();
-                        y2Var2.R.animate().alpha(1.0f).start();
-                        y2Var2.P.animate().alpha(0.25f).start();
-                        y2Var2.J.d();
-                        ArrayList arrayList2 = new ArrayList();
-                        for (w2 w2Var6 : w2VarArr) {
-                            TL_stars.StarGift starGift7 = w2Var6.h;
-                            if (starGift7 != null) {
-                                starGift = starGift7;
+                            System.arraycopy(m2Var.f52864c, 0, this.h, 0, 16);
+                            float f10 = k2Var.f52768f;
+                            float[] fArr = new float[16];
+                            Matrix.setIdentityM(fArr, 0);
+                            if (f10 != 0.0f) {
+                                Matrix.rotateM(fArr, 0, -f10, 0.0f, 0.0f, 1.0f);
+                            }
+                            if (i12 != 0) {
+                                if (i12 != 1) {
+                                    if (i12 != 2) {
+                                        if (i12 != 3) {
+                                            if (i12 == 4) {
+                                                Matrix.rotateM(fArr, 0, 180.0f, 0.0f, 1.0f, 0.0f);
+                                            }
+                                        } else {
+                                            Matrix.rotateM(fArr, 0, -90.0f, 1.0f, 0.0f, 0.0f);
+                                        }
+                                    } else {
+                                        Matrix.rotateM(fArr, 0, 90.0f, 1.0f, 0.0f, 0.0f);
+                                    }
+                                } else {
+                                    Matrix.rotateM(fArr, 0, -90.0f, 0.0f, 1.0f, 0.0f);
+                                }
                             } else {
-                                starGift = null;
+                                Matrix.rotateM(fArr, 0, 90.0f, 0.0f, 1.0f, 0.0f);
                             }
-                            if (starGift != null) {
-                                if (starGift7 == null) {
-                                    starGift7 = null;
-                                }
-                                arrayList2.add(starGift7);
-                            }
+                            this.f52818i = fArr;
+                            this.f52817g = i13;
+                            this.f52816f = i13;
+                            this.f52819j = m2Var.d;
+                            this.f52820k = m2Var.f52865e;
+                            return;
                         }
-                        y2Var2.f52264e0.run(arrayList2, new ai.m0(23, y2Var2, arrayList2), new rg.s1(y2Var2, 28));
+                        this.f52816f = i13;
+                        this.f52817g = i13;
                         return;
                     }
-                    AndroidUtilities.shakeViewSpring(linearLayout);
+                    m2Var.d = (k2Var.f52766c * 0.01f) + m2Var.d;
+                    m2Var.f52865e = (f7 * 0.01f) + m2Var.f52865e;
+                    this.f52816f = 1;
+                    this.f52817g = 1;
                     return;
                 }
+                Runnable runnable = k2Var.h;
+                if (runnable != null) {
+                    runnable.run();
+                }
+                b();
                 return;
-            default:
-                w2 w2Var7 = (w2) view;
-                TL_stars.StarGift starGift8 = w2Var7.h;
-                if (starGift8 == null) {
-                    starGift8 = null;
-                }
-                if (starGift8 != null && !w2Var7.f52193n) {
-                    w2Var7.a(null, true);
-                    y2Var.d(true);
-                    return;
-                }
-                int i13 = 0;
-                while (true) {
-                    w2[] w2VarArr2 = y2Var.f52273n;
-                    if (i13 < w2VarArr2.length && (w2Var = w2VarArr2[i13]) != view) {
-                        if (w2Var != null) {
-                            TL_stars.StarGift starGift9 = w2Var.h;
-                            if (starGift9 == null) {
-                                starGift9 = null;
-                            }
-                            if (starGift9 != null) {
-                                z10 = false;
-                            }
-                        }
-                        i13++;
-                    }
-                }
-                y2Var.f52266f0.run(new ft(28, y2Var, w2Var7), Boolean.valueOf(z10));
-                return;
+            }
         }
+        m2Var.H = null;
+        if (!this.f52815e && (i1Var = this.d) != null) {
+            i1Var.run();
+        }
+    }
+
+    public final void c(float f7, float f10) {
+        this.f52813b.add(new k2(2, f7, f10, 0, -1, 0.0f, null, null));
+    }
+
+    public final void d(boolean z10) {
+        float f7;
+        if (z10) {
+            f7 = 1.0f;
+        } else {
+            f7 = -1.0f;
+        }
+        this.f52813b.add(new k2(6, f7, 0.0f, 0, -1, 0.0f, null, null));
+    }
+
+    public final void e(r2 r2Var, int i10, float f7) {
+        this.f52813b.add(new k2(5, 0.0f, 0.0f, 32, i10, f7, r2Var, null));
     }
 }

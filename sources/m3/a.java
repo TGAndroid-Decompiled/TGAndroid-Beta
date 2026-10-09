@@ -1,15 +1,16 @@
 package m3;
 
+import a1.g;
 import b2.m0;
 import b2.o0;
 import b2.s;
 public final class a implements o0 {
-    public final int f16041a;
-    public final String f16042b;
+    public final int f15973a;
+    public final String f15974b;
 
     public a(int i10, String str) {
-        this.f16041a = i10;
-        this.f16042b = str;
+        this.f15973a = i10;
+        this.f15974b = str;
     }
 
     @Override
@@ -24,9 +25,9 @@ public final class a implements o0 {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("Ait(controlCode=");
-        sb2.append(this.f16041a);
+        sb2.append(this.f15973a);
         sb2.append(",url=");
-        return a4.a.t(sb2, this.f16042b, ")");
+        return g.t(sb2, this.f15974b, ")");
     }
 
     @Override

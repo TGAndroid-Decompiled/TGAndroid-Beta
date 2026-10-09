@@ -1,32 +1,84 @@
 package org.telegram.ui;
 
-import java.io.File;
-import java.util.List;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-public interface su0 {
-    boolean a(int i10);
+import android.content.Context;
+import android.widget.FrameLayout;
+import androidx.core.widget.NestedScrollView;
+public final class su0 extends org.telegram.ui.Components.v11 {
+    public boolean f41770a;
+    public float f41771b;
+    public NestedScrollView f41772c;
+    public FrameLayout d;
 
-    File b(int i10);
+    public su0(Context context) {
+        super(context);
+        this.f41770a = false;
+        this.f41771b = 1.0f;
+    }
 
-    String c(int i10);
+    public final void b(int i10, boolean z10) {
+        super.setVisibility(i10);
+        if (this.f41770a && z10) {
+            this.f41772c.setVisibility(i10);
+        }
+    }
 
-    TLObject d(int i10);
+    @Override
+    public float getAlpha() {
+        if (this.f41770a) {
+            return this.f41771b;
+        }
+        return super.getAlpha();
+    }
 
-    boolean e(int i10);
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (this.d != null && getParent() == this.d) {
+            this.f41770a = true;
+            this.f41772c.setVisibility(getVisibility());
+            this.f41772c.setAlpha(this.f41771b);
+            super.setAlpha(1.0f);
+        }
+    }
 
-    TLRPC.PhotoSize f(TLObject tLObject, int[] iArr);
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if (this.f41770a) {
+            this.f41770a = false;
+            this.f41772c.setVisibility(8);
+            super.setAlpha(this.f41771b);
+        }
+    }
 
-    Object g();
+    @Override
+    public void setAlpha(float f7) {
+        this.f41771b = f7;
+        if (this.f41770a) {
+            this.f41772c.setAlpha(f7);
+        } else {
+            super.setAlpha(f7);
+        }
+    }
 
-    TL_iv.PageBlock get(int i10);
+    public void setContainer(FrameLayout frameLayout) {
+        this.d = frameLayout;
+    }
 
-    List getAll();
+    public void setScrollView(NestedScrollView nestedScrollView) {
+        this.f41772c = nestedScrollView;
+    }
 
-    void h(TL_iv.PageBlock pageBlock);
+    @Override
+    public void setTranslationY(float f7) {
+        super.setTranslationY(f7);
+        if (this.f41770a) {
+            this.f41772c.invalidate();
+        }
+    }
 
-    CharSequence i(int i10);
-
-    int j();
+    @Override
+    public void setVisibility(int i10) {
+        b(i10, true);
+    }
 }

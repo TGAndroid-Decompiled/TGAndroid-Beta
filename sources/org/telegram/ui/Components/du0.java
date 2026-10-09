@@ -1,53 +1,67 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-public final class du0 extends LinearLayout {
-    public final TextView f25870a;
-    public final ImageView f25871b;
-    public boolean f25872c;
+public final class du0 implements View.OnClickListener {
+    public final int f25815a;
+    public final org.telegram.ui.ActionBar.f1 f25816b;
+    public final org.telegram.ui.ActionBar.f1 f25817c;
+    public final fu0 d;
 
-    public du0(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context);
-        TextView textView = new TextView(context);
-        this.f25870a = textView;
-        ImageView imageView = new ImageView(context);
-        this.f25871b = imageView;
-        setOrientation(1);
-        setGravity(17);
-        addView(imageView, w7.z5.n(-2, -2));
-        textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21233z6, d6Var));
-        textView.setGravity(17);
-        textView.setTextSize(1, 17.0f);
-        textView.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(128.0f));
-        addView(textView, w7.z5.t(-2, -2, 17, 0, 24, 0, 0));
+    public du0(fu0 fu0Var, org.telegram.ui.ActionBar.f1 f1Var, org.telegram.ui.ActionBar.f1 f1Var2, int i10) {
+        this.f25815a = i10;
+        this.d = fu0Var;
+        this.f25816b = f1Var;
+        this.f25817c = f1Var2;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int rotation = ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getRotation();
-        this.f25872c = true;
-        if (AndroidUtilities.isTablet()) {
-            this.f25870a.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(128.0f));
-        } else if (rotation != 3 && rotation != 1) {
-            this.f25870a.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(128.0f));
-        } else {
-            this.f25870a.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), 0);
+    public final void onClick(View view) {
+        switch (this.f25815a) {
+            case 0:
+                bw0 bw0Var = this.d.d;
+                if (!bw0Var.H1) {
+                    org.telegram.ui.ActionBar.f1 f1Var = this.f25816b;
+                    boolean z10 = f1Var.getCheckView().f25790a.f24097q;
+                    org.telegram.ui.ActionBar.f1 f1Var2 = this.f25817c;
+                    if (!z10 && f1Var2.getCheckView().f25790a.f24097q) {
+                        float f7 = -bw0Var.f25160s1;
+                        bw0Var.f25160s1 = f7;
+                        AndroidUtilities.shakeViewSpring(f1Var2, f7);
+                        return;
+                    }
+                    f1Var2.setChecked(!f1Var2.getCheckView().f25790a.f24097q);
+                    if (f1Var2.getCheckView().f25790a.f24097q && f1Var.getCheckView().f25790a.f24097q) {
+                        bw0Var.f25162t1[0].f30288q = 0;
+                    } else {
+                        bw0Var.f25162t1[0].f30288q = 2;
+                    }
+                    bw0.s(bw0Var);
+                    return;
+                }
+                return;
+            default:
+                bw0 bw0Var2 = this.d.d;
+                if (!bw0Var2.H1) {
+                    org.telegram.ui.ActionBar.f1 f1Var3 = this.f25816b;
+                    boolean z11 = f1Var3.getCheckView().f25790a.f24097q;
+                    org.telegram.ui.ActionBar.f1 f1Var4 = this.f25817c;
+                    if (!z11 && f1Var4.getCheckView().f25790a.f24097q) {
+                        float f10 = -bw0Var2.f25160s1;
+                        bw0Var2.f25160s1 = f10;
+                        AndroidUtilities.shakeViewSpring(f1Var4, f10);
+                        return;
+                    }
+                    f1Var4.setChecked(!f1Var4.getCheckView().f25790a.f24097q);
+                    if (f1Var3.getCheckView().f25790a.f24097q && f1Var4.getCheckView().f25790a.f24097q) {
+                        bw0Var2.f25162t1[0].f30288q = 0;
+                    } else {
+                        bw0Var2.f25162t1[0].f30288q = 1;
+                    }
+                    bw0.s(bw0Var2);
+                    return;
+                }
+                return;
         }
-        this.f25872c = false;
-        super.onMeasure(i10, i11);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f25872c) {
-            return;
-        }
-        super.requestLayout();
     }
 }

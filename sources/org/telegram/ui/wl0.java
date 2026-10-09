@@ -1,68 +1,93 @@
 package org.telegram.ui;
 
-import android.view.MotionEvent;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class wl0 implements View.OnTouchListener {
-    public final int f42600a;
-    public final kn0 f42601b;
+public final class wl0 extends FrameLayout {
+    public final int f43704a;
+    public final org.telegram.ui.ActionBar.e6 f43705b;
+    public final FrameLayout f43706c;
+    public final org.telegram.ui.Components.y9 d;
+    public final TextView f43707e;
+    public final TextView f43708f;
+    public final ImageView h;
+    public boolean f43709n;
+    public String f43710r;
 
-    public wl0(kn0 kn0Var, int i10) {
-        this.f42600a = i10;
-        this.f42601b = kn0Var;
+    public wl0(Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context);
+        this.f43704a = i10;
+        this.f43705b = e6Var;
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.f43706c = frameLayout;
+        addView(frameLayout, w7.x5.a(36.0f, 18.5f, 0.0f, 0.0f, 0.0f, 36, 19));
+        org.telegram.ui.Components.y9 y9Var = new org.telegram.ui.Components.y9(context);
+        this.d = y9Var;
+        y9Var.setImageResource(R.drawable.msg2_permissions);
+        int i11 = org.telegram.ui.ActionBar.i6.G6;
+        int m12 = org.telegram.ui.ActionBar.i6.m1(0.3f, org.telegram.ui.ActionBar.i6.w0(i11, e6Var));
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        y9Var.setColorFilter(new PorterDuffColorFilter(m12, mode));
+        frameLayout.addView(y9Var, w7.x5.e(36, 36, 17));
+        TextView b10 = w7.b6.b(context, 15.0f, i11, true, null);
+        this.f43707e = b10;
+        b10.setSingleLine();
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        b10.setEllipsize(truncateAt);
+        addView(b10, w7.x5.a(-2.0f, 72.0f, 8.0f, 46.0f, 0.0f, -1, 55));
+        int i12 = org.telegram.ui.ActionBar.i6.f21181y6;
+        TextView b11 = w7.b6.b(context, 13.0f, i12, false, null);
+        this.f43708f = b11;
+        b11.setSingleLine();
+        b11.setEllipsize(truncateAt);
+        addView(b11, w7.x5.a(-2.0f, 72.0f, 31.0f, 46.0f, 0.0f, -1, 55));
+        ImageView imageView = new ImageView(context);
+        this.h = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setImageResource(R.drawable.ic_ab_other);
+        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.x0(null, i12, false), mode));
+        imageView.setBackground(org.telegram.ui.ActionBar.i6.g0(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20888i6, e6Var), 1, -1));
+        addView(imageView, w7.x5.a(32.0f, 0.0f, 0.0f, 13.0f, 0.0f, 32, 21));
     }
 
     @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        int i10 = this.f42600a;
-        kn0 kn0Var = this.f42601b;
-        switch (i10) {
-            case 0:
-                if (kn0Var.getParentActivity() == null) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    zt ztVar = new zt(null, false);
-                    ztVar.f43899r = new pw(25, kn0Var, view);
-                    kn0Var.presentFragment(ztVar);
-                }
-                return true;
-            case 1:
-                if (kn0Var.getParentActivity() == null) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(kn0Var.getParentActivity());
-                    String string = LocaleController.getString(R.string.PassportSelectGender);
-                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20377a;
-                    b2Var.R = string;
-                    alertDialog$Builder.f(new CharSequence[]{LocaleController.getString(R.string.PassportMale), LocaleController.getString(R.string.PassportFemale)}, new vv(kn0Var, 2));
-                    alertDialog$Builder.k(LocaleController.getString(R.string.Cancel), null);
-                    kn0Var.showDialog(b2Var);
-                }
-                return true;
-            case 2:
-                if (kn0Var.getParentActivity() == null) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    zt ztVar2 = new zt(null, false);
-                    ztVar2.f43899r = new xl0(kn0Var, 2);
-                    kn0Var.presentFragment(ztVar2);
-                }
-                return true;
-            default:
-                if (kn0Var.getParentActivity() == null) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    zt ztVar3 = new zt(null, false);
-                    ztVar3.f43899r = new xl0(kn0Var, 3);
-                    kn0Var.presentFragment(ztVar3);
-                }
-                return true;
+    public final void onDraw(Canvas canvas) {
+        float f7;
+        super.onDraw(canvas);
+        if (this.f43709n) {
+            Paint U0 = org.telegram.ui.ActionBar.i6.U0("paintDivider", this.f43705b);
+            if (U0 == null) {
+                U0 = org.telegram.ui.ActionBar.i6.f20919k0;
+            }
+            Paint paint = U0;
+            float f10 = 72.0f;
+            if (LocaleController.isRTL) {
+                f7 = 0.0f;
+            } else {
+                f7 = 72.0f;
+            }
+            float dp = AndroidUtilities.dp(f7);
+            float measuredHeight = getMeasuredHeight() - 1;
+            int width = getWidth();
+            if (!LocaleController.isRTL) {
+                f10 = 0.0f;
+            }
+            canvas.drawRect(dp, measuredHeight, width - AndroidUtilities.dp(f10), getMeasuredHeight(), paint);
         }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
     }
 }

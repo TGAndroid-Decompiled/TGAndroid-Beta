@@ -8,7 +8,6 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.view.Display;
 import android.view.WindowManager;
-import com.google.android.gms.internal.vision.e2;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
@@ -60,7 +59,7 @@ public class VideoCapturerDevice {
     public VideoCapturerDevice(boolean z10) {
         Logging.enableLogToDebugOutput(Logging.Severity.LS_VERBOSE);
         Logging.d("VideoCapturerDevice", "device model = " + Build.MANUFACTURER + Build.MODEL);
-        AndroidUtilities.runOnUIThread(new bi.f(15, this, z10));
+        AndroidUtilities.runOnUIThread(new bi.f(16, this, z10));
     }
 
     public static void checkScreenCapturerSize() {
@@ -74,7 +73,7 @@ public class VideoCapturerDevice {
             }
             videoCapturerDevice.currentWidth = i11;
             videoCapturerDevice.currentHeight = screenCaptureSize.y;
-            videoCapturerDevice.handler.post(new ki.h0(16, videoCapturerDevice, screenCaptureSize));
+            videoCapturerDevice.handler.post(new ki.i0(19, videoCapturerDevice, screenCaptureSize));
         }
     }
 
@@ -109,7 +108,7 @@ public class VideoCapturerDevice {
     }
 
     private void init(long j3, String str) {
-        AndroidUtilities.runOnUIThread(new a3.h0(this, j3, str, 11));
+        AndroidUtilities.runOnUIThread(new a3.h0(this, j3, str, 12));
     }
 
     public static void lambda$checkScreenCapturerSize$1(VideoCapturerDevice videoCapturerDevice, Point point) {
@@ -160,7 +159,7 @@ public class VideoCapturerDevice {
                     this.currentWidth = screenCaptureSize.x;
                     this.currentHeight = screenCaptureSize.y;
                     this.videoCapturerSurfaceTextureHelper = SurfaceTextureHelper.create("ScreenCapturerThread", eglBase.getEglBaseContext());
-                    this.handler.post(new a3.h0(this, j3, screenCaptureSize, 12));
+                    this.handler.post(new a3.h0(this, j3, screenCaptureSize, 13));
                 }
             } else {
                 if (Camera2Enumerator.isSupported(ApplicationLoader.applicationContext)) {
@@ -188,11 +187,11 @@ public class VideoCapturerDevice {
                 if (this.videoCapturer == null) {
                     this.videoCapturer = camera1Enumerator.createCapturer(str2, new AnonymousClass2());
                     this.videoCapturerSurfaceTextureHelper = SurfaceTextureHelper.create("VideoCapturerThread", eglBase.getEglBaseContext());
-                    this.handler.post(new ai.j(this, j3, 16));
+                    this.handler.post(new ai.j(this, j3, 17));
                     return;
                 }
                 FileLog.d("VideoCapturerDevice init(" + j3 + "): videoCapturer.switchCamera CAMERA");
-                this.handler.post(new ki.h0(17, this, str2));
+                this.handler.post(new ki.i0(20, this, str2));
             }
         }
     }
@@ -260,7 +259,7 @@ public class VideoCapturerDevice {
             sb2.append(j3);
             sb2.append(", ");
             sb2.append(i10);
-            e2.t("): videoCapturer.startCapture", sb2);
+            hg.c.t("): videoCapturer.startCapture", sb2);
             this.videoCapturer.startCapture(1280, 720, 30);
             return;
         }

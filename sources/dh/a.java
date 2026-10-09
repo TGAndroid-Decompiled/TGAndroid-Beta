@@ -1,10 +1,10 @@
 package dh;
 public interface a {
-    int B();
+    int d();
 
-    int H();
+    int m();
 
-    int a();
+    int q();
 
-    int c();
+    int x();
 }

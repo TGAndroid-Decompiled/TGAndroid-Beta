@@ -1,6 +1,6 @@
 package w2;
 
-import ii.n4;
+import m2.t;
 public interface d {
-    public static final n4 C = new n4(29);
+    public static final t C = new t(20);
 }

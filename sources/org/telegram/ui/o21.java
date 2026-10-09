@@ -1,43 +1,37 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
+import android.content.Intent;
+import android.net.Uri;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MrzRecognizer;
-public final class o21 implements v9 {
-    public final int f39088a;
-    public final org.telegram.ui.ActionBar.n2 f39089b;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+public final class o21 implements org.telegram.ui.ActionBar.a2, r0.n {
+    public final e31 f40400a;
 
-    public o21(int i10, org.telegram.ui.ActionBar.n2 n2Var) {
-        this.f39088a = i10;
-        this.f39089b = n2Var;
+    public o21(e31 e31Var) {
+        this.f40400a = e31Var;
     }
 
     @Override
-    public final String J0() {
-        return null;
+    public r0.k1 M0(View view, r0.k1 k1Var) {
+        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(k1Var, false);
+        e31 e31Var = this.f40400a;
+        e31Var.Q = defaultWindowInsets;
+        e31Var.fragmentView.requestLayout();
+        return r0.k1.f46774b;
     }
 
     @Override
-    public final void L(String str) {
-        String b10 = nf.f.b(str);
-        if (!TextUtils.isEmpty(b10)) {
-            MessagesController.getInstance(this.f39088a).getUserNameResolver().resolve(b10, new t3(this.f39089b, 21));
-        } else {
-            AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.uh(29));
+    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        e31 e31Var = this.f40400a;
+        e31Var.getClass();
+        try {
+            Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+            intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+            e31Var.getParentActivity().startActivity(intent);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
-    }
-
-    @Override
-    public final boolean g1(String str, n9 n9Var) {
-        return false;
-    }
-
-    @Override
-    public final void T0(MrzRecognizer.Result result) {
-    }
-
-    @Override
-    public final void onDismiss() {
     }
 }

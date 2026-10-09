@@ -1,43 +1,60 @@
 package f0;
 
-import android.net.Uri;
-import androidx.core.content.FileProvider;
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
+import android.content.LocusId;
+import android.os.Build;
+import android.text.TextUtils;
 public final class f {
-    public final String f9540a;
-    public final HashMap f9541b = new HashMap();
+    public final String f9552a;
+    public final LocusId f9553b;
 
     public f(String str) {
-        this.f9540a = str;
+        if (!TextUtils.isEmpty(str)) {
+            this.f9552a = str;
+            if (Build.VERSION.SDK_INT >= 29) {
+                this.f9553b = e.a(str);
+                return;
+            } else {
+                this.f9553b = null;
+                return;
+            }
+        }
+        throw new IllegalArgumentException("id cannot be empty");
     }
 
-    public final File a(Uri uri) {
-        String encodedPath = uri.getEncodedPath();
-        int indexOf = encodedPath.indexOf(47, 1);
-        if (indexOf != -1) {
-            String decode = Uri.decode(encodedPath.substring(1, indexOf));
-            String decode2 = Uri.decode(encodedPath.substring(indexOf + 1));
-            File file = (File) this.f9541b.get(decode);
-            if (file != null) {
-                File file2 = new File(file, decode2);
-                try {
-                    File canonicalFile = file2.getCanonicalFile();
-                    String path = canonicalFile.getPath();
-                    String path2 = file.getPath();
-                    String a2 = FileProvider.a(path);
-                    String a10 = FileProvider.a(path2);
-                    if (a2.startsWith(a10 + '/')) {
-                        return canonicalFile;
-                    }
-                    throw new SecurityException("Resolved path jumped beyond configured root");
-                } catch (IOException unused) {
-                    throw new IllegalArgumentException("Failed to resolve canonical path for " + file2);
-                }
-            }
-            throw new IllegalArgumentException("Unable to find configured root for " + uri);
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        throw new IllegalArgumentException("Unable to find path from root: " + uri);
+        if (obj == null || f.class != obj.getClass()) {
+            return false;
+        }
+        String str = ((f) obj).f9552a;
+        String str2 = this.f9552a;
+        if (str2 == null) {
+            if (str == null) {
+                return true;
+            }
+            return false;
+        }
+        return str2.equals(str);
+    }
+
+    public final int hashCode() {
+        int hashCode;
+        String str = this.f9552a;
+        if (str == null) {
+            hashCode = 0;
+        } else {
+            hashCode = str.hashCode();
+        }
+        return 31 + hashCode;
+    }
+
+    public final String toString() {
+        StringBuilder sb2 = new StringBuilder("LocusIdCompat[");
+        int length = this.f9552a.length();
+        sb2.append(length + "_chars");
+        sb2.append("]");
+        return sb2.toString();
     }
 }

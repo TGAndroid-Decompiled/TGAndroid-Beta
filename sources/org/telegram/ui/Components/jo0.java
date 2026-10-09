@@ -1,31 +1,33 @@
 package org.telegram.ui.Components;
+public final class jo0 extends s4.o {
+    public final no0 f27750b;
 
-import android.content.Context;
-public final class jo0 extends gg.i0 {
-    public final org.telegram.ui.uy I0;
-    public final Context J0;
-    public final org.telegram.ui.dy K0;
-
-    public jo0(org.telegram.ui.dy dyVar, Context context, org.telegram.ui.uy uyVar, int i10, int i11, s4.j jVar, boolean z10, org.telegram.ui.uy uyVar2, Context context2) {
-        super(context, uyVar, i10, i11, jVar, z10);
-        this.K0 = dyVar;
-        this.I0 = uyVar2;
-        this.J0 = context2;
+    public jo0(no0 no0Var) {
+        this.f27750b = no0Var;
     }
 
     @Override
-    public final void l() {
-        ai.w0 w0Var;
-        int i10 = this.B0;
-        super.l();
-        org.telegram.ui.dy dyVar = this.K0;
-        if (!dyVar.K0 && (w0Var = dyVar.f30144a0) != null) {
-            w0Var.v0(0);
-            dyVar.K0 = true;
+    public final boolean a(int i10, int i11) {
+        no0 no0Var = this.f27750b;
+        return ((ko0) no0Var.f29224n.get(i10)).equals(no0Var.f29225r.get(i11));
+    }
+
+    @Override
+    public final boolean b(int i10, int i11) {
+        no0 no0Var = this.f27750b;
+        if (((ko0) no0Var.f29224n.get(i10)).f28115a.h == ((ko0) no0Var.f29225r.get(i11)).f28115a.h) {
+            return true;
         }
-        if (h() != 0 || i10 == 0 || this.D0 > 0) {
-            return;
-        }
-        dyVar.f30145b0.e(false, false);
+        return false;
+    }
+
+    @Override
+    public final int d() {
+        return this.f27750b.f29225r.size();
+    }
+
+    @Override
+    public final int e() {
+        return this.f27750b.f29224n.size();
     }
 }

@@ -3,24 +3,25 @@ package org.telegram.ui;
 import android.view.View;
 import android.view.Window;
 import java.lang.ref.WeakReference;
-public final class ib0 implements yf.g0 {
-    public final int f37372a = 0;
-    public boolean f37373b;
-    public boolean f37374c;
+public final class ib0 implements yf.j0 {
+    public final int f38599a;
+    public boolean f38600b;
+    public boolean f38601c;
     public final Object d;
 
-    public ib0(yf.h0 h0Var) {
-        this.d = h0Var;
+    public ib0(Object obj, int i10) {
+        this.f38599a = i10;
+        this.d = obj;
     }
 
     @Override
-    public final void a(boolean z10) {
+    public void a(boolean z10) {
         int i10;
         int i11;
-        switch (this.f37372a) {
+        switch (this.f38599a) {
             case 0:
-                if (this.f37373b != z10 && !this.f37374c) {
-                    this.f37373b = z10;
+                if (this.f38600b != z10 && !this.f38601c) {
+                    this.f38600b = z10;
                     LaunchActivity launchActivity = (LaunchActivity) ((WeakReference) this.d).get();
                     if (launchActivity != null) {
                         int i12 = launchActivity.A1;
@@ -31,7 +32,7 @@ public final class ib0 implements yf.g0 {
                         }
                         int i13 = i12 + i10;
                         launchActivity.A1 = i13;
-                        k0 k0Var = launchActivity.f33829w0;
+                        k0 k0Var = launchActivity.f33819w0;
                         if (k0Var != null) {
                             if (i13 > 0) {
                                 i11 = 8;
@@ -47,22 +48,22 @@ public final class ib0 implements yf.g0 {
                 }
                 return;
             default:
-                yf.h0 h0Var = (yf.h0) this.d;
-                if (this.f37373b != z10 && !this.f37374c) {
-                    this.f37373b = z10;
+                yf.k0 k0Var2 = (yf.k0) this.d;
+                if (this.f38600b != z10 && !this.f38601c) {
+                    this.f38600b = z10;
                     boolean z11 = true;
                     if (z10) {
-                        h0Var.f51005a++;
+                        k0Var2.f52178a++;
                     } else {
-                        h0Var.f51005a--;
+                        k0Var2.f52178a--;
                     }
                     int i14 = 0;
-                    if (h0Var.f51005a <= 0) {
+                    if (k0Var2.f52178a <= 0) {
                         z11 = false;
                     }
-                    if (h0Var.f51006b != z11) {
-                        h0Var.f51006b = z11;
-                        Window window = (Window) ((WeakReference) h0Var.f51007c.f45787b).get();
+                    if (k0Var2.f52179b != z11) {
+                        k0Var2.f52179b = z11;
+                        Window window = (Window) ((WeakReference) k0Var2.f52180c.f46985b).get();
                         if (window != null) {
                             View decorView = window.getDecorView();
                             if (z11) {
@@ -79,21 +80,32 @@ public final class ib0 implements yf.g0 {
         }
     }
 
+    public void b() {
+        if (!this.f38600b) {
+            this.f38600b = true;
+            Runnable runnable = (Runnable) this.d;
+            if (runnable != null) {
+                runnable.run();
+            }
+        }
+    }
+
     @Override
-    public final void destroy() {
-        switch (this.f37372a) {
+    public void destroy() {
+        switch (this.f38599a) {
             case 0:
                 a(false);
-                this.f37374c = true;
+                this.f38601c = true;
                 return;
             default:
                 a(false);
-                this.f37374c = true;
+                this.f38601c = true;
                 return;
         }
     }
 
     public ib0(LaunchActivity launchActivity, boolean z10) {
+        this.f38599a = 0;
         this.d = new WeakReference(launchActivity);
     }
 }

@@ -1,56 +1,29 @@
 package r2;
 
-import android.media.LoudnessCodecController;
-import android.media.MediaCodec;
-import java.util.HashSet;
-import java.util.Iterator;
-public final class j {
-    public final HashSet f45740a;
-    public final i f45741b;
-    public LoudnessCodecController f45742c;
+import android.media.MediaCodecInfo;
+import android.os.Build;
+import java.util.List;
+public final class j implements w {
+    public static final j f46888a = new Object();
+    public static final j f46889b = new Object();
 
-    public j() {
-        i iVar = i.f45738a;
-        this.f45740a = new HashSet();
-        this.f45741b = iVar;
+    public static MediaCodecInfo.VideoCapabilities.PerformancePoint c(Object obj) {
+        return (MediaCodecInfo.VideoCapabilities.PerformancePoint) obj;
     }
 
-    public final void a(MediaCodec mediaCodec) {
-        LoudnessCodecController loudnessCodecController = this.f45742c;
-        if (loudnessCodecController != null && !loudnessCodecController.addMediaCodec(mediaCodec)) {
-            return;
-        }
-        e2.d.g(this.f45740a.add(mediaCodec));
+    public List a(String str, boolean z10, boolean z11) {
+        return x.d(str, z10, z11);
     }
 
-    public final void b() {
-        this.f45740a.clear();
-        LoudnessCodecController loudnessCodecController = this.f45742c;
-        if (loudnessCodecController != null) {
-            loudnessCodecController.close();
-        }
-    }
-
-    public final void c(MediaCodec mediaCodec) {
-        LoudnessCodecController loudnessCodecController;
-        if (this.f45740a.remove(mediaCodec) && (loudnessCodecController = this.f45742c) != null) {
-            loudnessCodecController.removeMediaCodec(mediaCodec);
-        }
-    }
-
-    public final void d(int i10) {
-        LoudnessCodecController loudnessCodecController = this.f45742c;
-        if (loudnessCodecController != null) {
-            loudnessCodecController.close();
-            this.f45742c = null;
-        }
-        LoudnessCodecController create = LoudnessCodecController.create(i10, i9.q.f12025a, new h(this));
-        this.f45742c = create;
-        Iterator it = this.f45740a.iterator();
-        while (it.hasNext()) {
-            if (!create.addMediaCodec((MediaCodec) it.next())) {
-                it.remove();
+    @Override
+    public int b(Object obj) {
+        String str = ((p) obj).f46894a;
+        if (!str.startsWith("OMX.google") && !str.startsWith("c2.android")) {
+            if (Build.VERSION.SDK_INT < 26 && str.equals("OMX.MTK.AUDIO.DECODER.RAW")) {
+                return -1;
             }
+            return 0;
         }
+        return 1;
     }
 }

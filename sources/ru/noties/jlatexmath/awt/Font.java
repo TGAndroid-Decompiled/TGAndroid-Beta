@@ -21,9 +21,9 @@ public class Font {
         boolean isBold = typeface.isBold();
         int i13 = 0;
         if (typeface.isItalic()) {
-            i11 = 2;
+            i11 = true;
         } else {
-            i11 = 0;
+            i11 = false;
         }
         if ((isBold | i11) != i10) {
             if ((i10 & 1) != 0) {

@@ -11,61 +11,61 @@ import java.util.regex.Pattern;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.telegram.messenger.SegmentTree;
-import org.telegram.ui.ActionBar.f5;
+import org.telegram.ui.ActionBar.g5;
 public class b {
-    public long[] f14122a;
-    public float[] f14123b;
-    public String[] f14124c;
+    public long[] f14158a;
+    public float[] f14159b;
+    public String[] f14160c;
     public ArrayList d = new ArrayList();
-    public long f14125e = 0;
-    public long f14126f = Long.MAX_VALUE;
-    public float f14127g = 0.0f;
+    public long f14161e = 0;
+    public long f14162f = Long.MAX_VALUE;
+    public float f14163g = 0.0f;
     public float h = 0.0f;
-    public int f14128i;
-    public int f14129j;
-    public long f14130k;
+    public int f14164i;
+    public int f14165j;
+    public long f14166k;
 
     public b(JSONObject jSONObject) {
-        this.f14128i = 0;
-        this.f14129j = 0;
+        this.f14164i = 0;
+        this.f14165j = 0;
         JSONArray jSONArray = jSONObject.getJSONArray("columns");
         jSONArray.length();
         for (int i10 = 0; i10 < jSONArray.length(); i10++) {
             JSONArray jSONArray2 = jSONArray.getJSONArray(i10);
             if (jSONArray2.getString(0).equals("x")) {
                 int length = jSONArray2.length() - 1;
-                this.f14122a = new long[length];
+                this.f14158a = new long[length];
                 int i11 = 0;
                 while (i11 < length) {
                     int i12 = i11 + 1;
-                    this.f14122a[i11] = jSONArray2.getLong(i12);
+                    this.f14158a[i11] = jSONArray2.getLong(i12);
                     i11 = i12;
                 }
             } else {
                 a aVar = new a();
                 this.d.add(aVar);
                 int length2 = jSONArray2.length() - 1;
-                aVar.f14117c = jSONArray2.getString(0);
-                aVar.f14115a = new long[length2];
+                aVar.f14153c = jSONArray2.getString(0);
+                aVar.f14151a = new long[length2];
                 int i13 = 0;
                 while (i13 < length2) {
                     int i14 = i13 + 1;
-                    aVar.f14115a[i13] = jSONArray2.getLong(i14);
-                    long j3 = aVar.f14115a[i13];
-                    if (j3 > aVar.f14118e) {
-                        aVar.f14118e = j3;
+                    aVar.f14151a[i13] = jSONArray2.getLong(i14);
+                    long j3 = aVar.f14151a[i13];
+                    if (j3 > aVar.f14154e) {
+                        aVar.f14154e = j3;
                     }
-                    if (j3 < aVar.f14119f) {
-                        aVar.f14119f = j3;
+                    if (j3 < aVar.f14155f) {
+                        aVar.f14155f = j3;
                     }
                     i13 = i14;
                 }
             }
-            long[] jArr = this.f14122a;
+            long[] jArr = this.f14158a;
             if (jArr.length > 1) {
-                this.f14130k = jArr[1] - jArr[0];
+                this.f14166k = jArr[1] - jArr[0];
             } else {
-                this.f14130k = 86400000L;
+                this.f14166k = 86400000L;
             }
             e();
         }
@@ -73,27 +73,27 @@ public class b {
         JSONObject optJSONObject2 = jSONObject.optJSONObject("names");
         try {
             d(jSONObject.getString("xTickFormatter"));
-            this.f14128i = d(jSONObject.getString("yTickFormatter"));
+            this.f14164i = d(jSONObject.getString("yTickFormatter"));
             d(jSONObject.getString("xTooltipFormatter"));
-            this.f14129j = d(jSONObject.getString("yTooltipFormatter"));
+            this.f14165j = d(jSONObject.getString("yTooltipFormatter"));
         } catch (Exception unused) {
         }
         Pattern compile = Pattern.compile("(.*)(#.*)");
         for (int i15 = 0; i15 < this.d.size(); i15++) {
             a aVar2 = (a) this.d.get(i15);
             if (optJSONObject != null) {
-                Matcher matcher = compile.matcher(optJSONObject.getString(aVar2.f14117c));
+                Matcher matcher = compile.matcher(optJSONObject.getString(aVar2.f14153c));
                 if (matcher.matches()) {
                     if (!TextUtils.isEmpty(matcher.group(1))) {
-                        aVar2.f14120g = f5.s("statisticChartLine_" + matcher.group(1).toLowerCase());
+                        aVar2.f14156g = g5.s("statisticChartLine_" + matcher.group(1).toLowerCase());
                     }
                     int parseColor = Color.parseColor(matcher.group(2));
                     aVar2.h = parseColor;
-                    aVar2.f14121i = i0.a.d(0.85f, -1, parseColor);
+                    aVar2.f14157i = i0.a.d(0.85f, -1, parseColor);
                 }
             }
             if (optJSONObject2 != null) {
-                aVar2.d = optJSONObject2.getString(aVar2.f14117c);
+                aVar2.d = optJSONObject2.getString(aVar2.f14153c);
             }
         }
     }
@@ -112,7 +112,7 @@ public class b {
     }
 
     public final int a(float f7, int i10) {
-        int length = this.f14123b.length;
+        int length = this.f14159b.length;
         if (f7 == 1.0f) {
             return length - 1;
         }
@@ -120,7 +120,7 @@ public class b {
         int i12 = i11;
         while (i10 <= i12) {
             int i13 = (i12 + i10) >> 1;
-            float[] fArr = this.f14123b;
+            float[] fArr = this.f14159b;
             float f10 = fArr[i13];
             if ((f7 > f10 && (i13 == i11 || f7 < fArr[i13 + 1])) || f7 == f10) {
                 return i13;
@@ -135,7 +135,7 @@ public class b {
     }
 
     public final int b(float f7, int i10, int i11) {
-        float[] fArr = this.f14123b;
+        float[] fArr = this.f14159b;
         int length = fArr.length;
         if (f7 <= fArr[i10]) {
             return i10;
@@ -145,7 +145,7 @@ public class b {
         }
         while (i10 <= i11) {
             int i12 = (i11 + i10) >> 1;
-            float[] fArr2 = this.f14123b;
+            float[] fArr2 = this.f14159b;
             float f10 = fArr2[i12];
             if ((f7 > f10 && (i12 == length - 1 || f7 < fArr2[i12 + 1])) || f7 == f10) {
                 return i12;
@@ -162,13 +162,13 @@ public class b {
     public final int c(float f7) {
         int length;
         int i10 = 0;
-        if (f7 == 0.0f || (length = this.f14123b.length) < 2) {
+        if (f7 == 0.0f || (length = this.f14159b.length) < 2) {
             return 0;
         }
         int i11 = length - 1;
         while (i10 <= i11) {
             int i12 = (i11 + i10) >> 1;
-            float[] fArr = this.f14123b;
+            float[] fArr = this.f14159b;
             float f10 = fArr[i12];
             if ((f7 < f10 && (i12 == 0 || f7 > fArr[i12 - 1])) || f7 == f10) {
                 return i12;
@@ -184,7 +184,7 @@ public class b {
 
     public void e() {
         SimpleDateFormat simpleDateFormat;
-        long[] jArr = this.f14122a;
+        long[] jArr = this.f14158a;
         int length = jArr.length;
         if (length == 0) {
             return;
@@ -192,25 +192,25 @@ public class b {
         long j3 = jArr[0];
         long j10 = jArr[length - 1];
         float[] fArr = new float[length];
-        this.f14123b = fArr;
+        this.f14159b = fArr;
         if (length == 1) {
             fArr[0] = 1.0f;
         } else {
             for (int i10 = 0; i10 < length; i10++) {
-                this.f14123b[i10] = ((float) (this.f14122a[i10] - j3)) / ((float) (j10 - j3));
+                this.f14159b[i10] = ((float) (this.f14158a[i10] - j3)) / ((float) (j10 - j3));
             }
         }
         for (int i11 = 0; i11 < this.d.size(); i11++) {
-            if (((a) this.d.get(i11)).f14118e > this.f14125e) {
-                this.f14125e = ((a) this.d.get(i11)).f14118e;
+            if (((a) this.d.get(i11)).f14154e > this.f14161e) {
+                this.f14161e = ((a) this.d.get(i11)).f14154e;
             }
-            if (((a) this.d.get(i11)).f14119f < this.f14126f) {
-                this.f14126f = ((a) this.d.get(i11)).f14119f;
+            if (((a) this.d.get(i11)).f14155f < this.f14162f) {
+                this.f14162f = ((a) this.d.get(i11)).f14155f;
             }
-            ((a) this.d.get(i11)).f14116b = new SegmentTree(((a) this.d.get(i11)).f14115a);
+            ((a) this.d.get(i11)).f14152b = new SegmentTree(((a) this.d.get(i11)).f14151a);
         }
-        long j11 = this.f14130k;
-        this.f14124c = new String[((int) ((j10 - j3) / j11)) + 10];
+        long j11 = this.f14166k;
+        this.f14160c = new String[((int) ((j10 - j3) / j11)) + 10];
         if (j11 == 1) {
             simpleDateFormat = null;
         } else if (j11 < 86400000) {
@@ -220,17 +220,17 @@ public class b {
         }
         int i12 = 0;
         while (true) {
-            String[] strArr = this.f14124c;
+            String[] strArr = this.f14160c;
             if (i12 < strArr.length) {
-                if (this.f14130k == 1) {
+                if (this.f14166k == 1) {
                     strArr[i12] = String.format(Locale.ENGLISH, "%02d:00", Integer.valueOf(i12));
                 } else {
-                    strArr[i12] = simpleDateFormat.format(new Date((i12 * this.f14130k) + j3));
+                    strArr[i12] = simpleDateFormat.format(new Date((i12 * this.f14166k) + j3));
                 }
                 i12++;
             } else {
-                long[] jArr2 = this.f14122a;
-                this.f14127g = ((float) this.f14130k) / ((float) (jArr2[jArr2.length - 1] - jArr2[0]));
+                long[] jArr2 = this.f14158a;
+                this.f14163g = ((float) this.f14166k) / ((float) (jArr2[jArr2.length - 1] - jArr2[0]));
                 return;
             }
         }

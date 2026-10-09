@@ -1,20 +1,24 @@
 package org.telegram.ui;
+public final class dv extends g.o {
+    public final int f37088c;
 
-import android.content.Context;
-import android.view.View;
-public final class dv implements View.OnClickListener {
-    public final Context f35884a;
-    public final org.telegram.ui.ActionBar.n2 f35885b;
-    public final fv f35886c;
-
-    public dv(fv fvVar, Context context, org.telegram.ui.ActionBar.n2 n2Var) {
-        this.f35886c = fvVar;
-        this.f35884a = context;
-        this.f35885b = n2Var;
+    @Override
+    public int h(int i10, int i11) {
+        switch (this.f37088c) {
+            case 1:
+                return i10 % i11;
+            default:
+                return super.h(i10, i11);
+        }
     }
 
     @Override
-    public final void onClick(android.view.View r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.dv.onClick(android.view.View):void");
+    public final int i(int i10) {
+        switch (this.f37088c) {
+            case 0:
+                return 1;
+            default:
+                return 1;
+        }
     }
 }

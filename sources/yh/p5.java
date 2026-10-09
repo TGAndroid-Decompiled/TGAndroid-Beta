@@ -1,167 +1,107 @@
 package yh;
 
-import android.content.Context;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.kc;
-import org.telegram.ui.Components.lc;
-import org.telegram.ui.Components.pc;
-import org.telegram.ui.Components.rc;
-import org.telegram.ui.Components.yc;
-public final class p5 {
-    public final org.telegram.ui.ActionBar.n2 f51805a;
-    public final long f51806b;
-    public final rc f51807c;
-    public final lc d;
-    public final pc f51808e;
-    public final kc f51809f;
-    public int f51810g;
-    public long h;
-    public ai.i3 f51811i;
-    public final ArrayList f51812j = new ArrayList();
-    public final HashSet f51813k = new HashSet();
-    public final long f51814l = System.currentTimeMillis();
-    public boolean f51815m = true;
-    public boolean f51816n;
-    public boolean f51817o;
-    public final o5 f51818p;
+import android.os.Bundle;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.zn;
+public final class p5 implements Runnable {
+    public final int f53036a;
+    public final org.telegram.ui.ActionBar.f3[] f53037b;
+    public final TL_stars.StarsTransaction f53038c;
+    public final long d;
 
-    public p5(org.telegram.ui.ActionBar.n2 n2Var, long j3) {
-        ?? r22 = new Runnable(this) {
-            public final p5 f51737b;
-
-            {
-                this.f51737b = this;
-            }
-
-            @Override
-            public final void run() {
-                switch (r2) {
-                    case 0:
-                        this.f51737b.a();
-                        return;
-                    default:
-                        p5 p5Var = this.f51737b;
-                        if (!p5Var.f51816n && !p5Var.f51817o && p5Var.f51815m) {
-                            p5Var.f51816n = true;
-                            ai.i3 i3Var = p5Var.f51811i;
-                            if (i3Var != null) {
-                                i3Var.run(p5Var.f51813k);
-                            }
-                            if (p5Var.f51808e != null) {
-                                p5Var.f51807c.b();
-                                return;
-                            }
-                            return;
-                        }
-                        return;
-                }
-            }
-        };
-        this.f51818p = r22;
-        this.f51805a = n2Var;
-        this.f51806b = j3;
-        Context t10 = u5.t(n2Var);
-        lc lcVar = new lc(t10, n2Var.getResourceProvider());
-        this.d = lcVar;
-        lcVar.c(R.raw.stars_topup, new String[0]);
-        kc kcVar = new kc(t10, n2Var.getResourceProvider());
-        this.f51809f = kcVar;
-        kcVar.f28155b = 3000L;
-        kcVar.setColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Gi, n2Var.getResourceProvider()));
-        pc pcVar = new pc(t10, n2Var.getResourceProvider(), true, false);
-        this.f51808e = pcVar;
-        pcVar.e(LocaleController.getString(R.string.StarsSentUndo));
-        pcVar.f29693a = new Runnable(this) {
-            public final p5 f51737b;
-
-            {
-                this.f51737b = this;
-            }
-
-            @Override
-            public final void run() {
-                switch (r2) {
-                    case 0:
-                        this.f51737b.a();
-                        return;
-                    default:
-                        p5 p5Var = this.f51737b;
-                        if (!p5Var.f51816n && !p5Var.f51817o && p5Var.f51815m) {
-                            p5Var.f51816n = true;
-                            ai.i3 i3Var = p5Var.f51811i;
-                            if (i3Var != null) {
-                                i3Var.run(p5Var.f51813k);
-                            }
-                            if (p5Var.f51808e != null) {
-                                p5Var.f51807c.b();
-                                return;
-                            }
-                            return;
-                        }
-                        return;
-                }
-            }
-        };
-        pcVar.addView(kcVar, w7.z5.d(20, 20.0f, 21, 0.0f, 0.0f, 12.0f, 0.0f));
-        pcVar.d.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(30.0f), AndroidUtilities.dp(8.0f));
-        lcVar.setButton(pcVar);
-        rc b10 = yc.a0(n2Var).b(lcVar, -1);
-        this.f51807c = b10;
-        b10.f30435r = false;
-        b10.k(true);
-        b10.v = new Runnable(this) {
-            public final p5 f51737b;
-
-            {
-                this.f51737b = this;
-            }
-
-            @Override
-            public final void run() {
-                switch (r2) {
-                    case 0:
-                        this.f51737b.a();
-                        return;
-                    default:
-                        p5 p5Var = this.f51737b;
-                        if (!p5Var.f51816n && !p5Var.f51817o && p5Var.f51815m) {
-                            p5Var.f51816n = true;
-                            ai.i3 i3Var = p5Var.f51811i;
-                            if (i3Var != null) {
-                                i3Var.run(p5Var.f51813k);
-                            }
-                            if (p5Var.f51808e != null) {
-                                p5Var.f51807c.b();
-                                return;
-                            }
-                            return;
-                        }
-                        return;
-                }
-            }
-        };
-        AndroidUtilities.cancelRunOnUIThread(r22);
-        AndroidUtilities.runOnUIThread(r22, 3000L);
+    public p5(org.telegram.ui.ActionBar.f3[] f3VarArr, long j3, TL_stars.StarsTransaction starsTransaction) {
+        this.f53036a = 2;
+        this.f53037b = f3VarArr;
+        this.d = j3;
+        this.f53038c = starsTransaction;
     }
 
-    public final void a() {
-        if (!this.f51816n && !this.f51817o) {
-            this.f51817o = true;
-            ArrayList arrayList = this.f51812j;
-            int size = arrayList.size();
-            int i10 = 0;
-            while (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                ((Runnable) obj).run();
-            }
-            if (this.f51808e != null) {
-                this.f51807c.b();
-            }
+    @Override
+    public final void run() {
+        switch (this.f53036a) {
+            case 0:
+                this.f53037b[0].dismiss();
+                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+                if (U != null) {
+                    TL_stars.StarsTransaction starsTransaction = this.f53038c;
+                    int i10 = starsTransaction.flags & 8192;
+                    long j3 = this.d;
+                    if (i10 != 0) {
+                        U.presentFragment(zn.V9(starsTransaction.giveaway_post_id, j3));
+                        return;
+                    } else {
+                        U.presentFragment(zn.W9(j3));
+                        return;
+                    }
+                }
+                return;
+            case 1:
+                this.f53037b[0].dismiss();
+                org.telegram.ui.ActionBar.n2 U2 = LaunchActivity.U();
+                if (U2 != null) {
+                    TL_stars.StarsTransaction starsTransaction2 = this.f53038c;
+                    int i11 = starsTransaction2.flags & 8192;
+                    long j10 = this.d;
+                    if (i11 != 0) {
+                        U2.presentFragment(zn.V9(starsTransaction2.giveaway_post_id, j10));
+                        return;
+                    } else {
+                        U2.presentFragment(zn.W9(j10));
+                        return;
+                    }
+                }
+                return;
+            case 2:
+                this.f53037b[0].dismiss();
+                org.telegram.ui.ActionBar.n2 U3 = LaunchActivity.U();
+                if (U3 != null) {
+                    Bundle bundle = new Bundle();
+                    bundle.putLong("chat_id", -this.d);
+                    bundle.putInt("message_id", this.f53038c.msg_id);
+                    U3.presentFragment(new zn(bundle));
+                    return;
+                }
+                return;
+            case 3:
+                this.f53037b[0].dismiss();
+                org.telegram.ui.ActionBar.n2 U4 = LaunchActivity.U();
+                if (U4 != null) {
+                    TL_stars.StarsTransaction starsTransaction3 = this.f53038c;
+                    int i12 = starsTransaction3.flags & 8192;
+                    long j11 = this.d;
+                    if (i12 != 0) {
+                        U4.presentFragment(zn.V9(starsTransaction3.giveaway_post_id, j11));
+                        return;
+                    } else {
+                        U4.presentFragment(zn.W9(j11));
+                        return;
+                    }
+                }
+                return;
+            default:
+                this.f53037b[0].dismiss();
+                org.telegram.ui.ActionBar.n2 U5 = LaunchActivity.U();
+                if (U5 != null) {
+                    TL_stars.StarsTransaction starsTransaction4 = this.f53038c;
+                    int i13 = starsTransaction4.flags & 8192;
+                    long j12 = this.d;
+                    if (i13 != 0) {
+                        U5.presentFragment(zn.V9(starsTransaction4.giveaway_post_id, j12));
+                        return;
+                    } else {
+                        U5.presentFragment(zn.W9(j12));
+                        return;
+                    }
+                }
+                return;
         }
+    }
+
+    public p5(org.telegram.ui.ActionBar.f3[] f3VarArr, TL_stars.StarsTransaction starsTransaction, long j3, int i10) {
+        this.f53036a = i10;
+        this.f53037b = f3VarArr;
+        this.f53038c = starsTransaction;
+        this.d = j3;
     }
 }

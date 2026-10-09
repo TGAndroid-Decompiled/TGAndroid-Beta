@@ -1,96 +1,96 @@
 package org.telegram.ui;
 
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-public final class lf1 extends og.b {
-    public final wf1 d;
+import android.content.SharedPreferences;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+public final class lf1 implements org.telegram.ui.Components.ep {
+    public final TLRPC.TL_forumTopic f39565a;
+    public final fg1 f39566b;
 
-    public lf1(wf1 wf1Var) {
-        this.d = wf1Var;
+    public lf1(fg1 fg1Var, TLRPC.TL_forumTopic tL_forumTopic) {
+        this.f39566b = fg1Var;
+        this.f39565a = tL_forumTopic;
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f46542f;
-        if (i10 != 0 && i10 != 3) {
-            return false;
-        }
-        return true;
-    }
-
-    public final ArrayList F() {
-        wf1 wf1Var = this.d;
-        wf1Var.getClass();
-        return wf1Var.f42470b;
+    public final void dismiss() {
+        this.f39566b.finishPreviewFragment();
     }
 
     @Override
-    public final int h() {
-        return F().size() + 1;
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 == h() - 1) {
-            return 2;
-        }
-        return ((nf1) this.d.f42470b.get(i10)).f17192a;
-    }
-
-    @Override
-    public final void l() {
-        this.d.f42473c = h();
-        super.l();
-    }
-
-    @Override
-    public final void v(s4.c1 r21, int r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.lf1.v(s4.c1, int):void");
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        boolean z10;
+    public final void o() {
+        int i10;
         int i11;
-        int i12;
-        int i13;
-        wf1 wf1Var = this.d;
-        if (i10 != 0 && i10 != 3) {
-            if (i10 == 2) {
-                kf1 kf1Var = new kf1(this, wf1Var.getParentActivity());
-                wf1Var.E0 = kf1Var;
-                return new s4.c1(kf1Var);
-            }
-            org.telegram.ui.Components.w00 w00Var = new org.telegram.ui.Components.w00(viewGroup.getContext(), null);
-            w00Var.setViewType(24);
-            w00Var.setIsSingleCell(true);
-            w00Var.f32460w = true;
-            return new s4.c1(w00Var);
-        }
-        tf1 tf1Var = new tf1(wf1Var, viewGroup.getContext(), false);
-        if (i10 == 3) {
-            i11 = ((org.telegram.ui.ActionBar.n2) wf1Var).currentAccount;
-            boolean isBotForumWithEditableTopics = UserObject.isBotForumWithEditableTopics(i11, -wf1Var.f42467a);
-            tf1Var.setForumIcon(ng.d.d(ng.a.f16894k[0], ""));
-            if (!isBotForumWithEditableTopics) {
-                i12 = R.string.BotForumAskForStartOffNewChatTitle;
+        fg1 fg1Var = this.f39566b;
+        fg1Var.finishPreviewFragment();
+        MessagesController messagesController = fg1Var.getMessagesController();
+        long j3 = fg1Var.f37556a;
+        TLRPC.TL_forumTopic tL_forumTopic = this.f39565a;
+        boolean isDialogMuted = messagesController.isDialogMuted(-j3, tL_forumTopic.f20090id);
+        fg1Var.getNotificationsController().muteDialog(-j3, tL_forumTopic.f20090id, !isDialogMuted);
+        if (org.telegram.ui.Components.ad.a(fg1Var)) {
+            if (!isDialogMuted) {
+                i10 = 3;
             } else {
-                i12 = R.string.BotForumAskForStartNewChatTitle;
+                i10 = 4;
             }
-            tf1Var.setTitleOverride(LocaleController.getString(i12));
-            if (!isBotForumWithEditableTopics) {
-                i13 = R.string.BotForumAskForStartOffNewChatForward;
+            if (!isDialogMuted) {
+                i11 = Integer.MAX_VALUE;
             } else {
-                i13 = R.string.BotForumAskForStartNewChatForward;
+                i11 = 0;
             }
-            tf1Var.setCustomMessage(LocaleController.getString(i13));
+            org.telegram.ui.Components.ad.z(fg1Var, i10, i11, fg1Var.getResourceProvider()).j();
         }
-        z10 = ((org.telegram.ui.ActionBar.n2) wf1Var).inPreviewMode;
-        tf1Var.f22826k0 = z10;
-        tf1Var.setArchivedPullAnimation(wf1Var.f42508w);
-        return new s4.c1(tf1Var);
+    }
+
+    @Override
+    public final void p() {
+        this.f39566b.finishPreviewFragment();
+        AndroidUtilities.runOnUIThread(new n31(20, this, this.f39565a), 500L);
+    }
+
+    @Override
+    public final void s() {
+        int i10;
+        fg1 fg1Var = this.f39566b;
+        i10 = ((org.telegram.ui.ActionBar.n2) fg1Var).currentAccount;
+        SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(i10);
+        StringBuilder sb2 = new StringBuilder("sound_enabled_");
+        long j3 = fg1Var.f37556a;
+        TLRPC.TL_forumTopic tL_forumTopic = this.f39565a;
+        boolean z10 = notificationsSettings.getBoolean(org.telegram.messenger.q.i(-j3, tL_forumTopic.f20090id, sb2), true);
+        boolean z11 = !z10 ? 1 : 0;
+        notificationsSettings.edit().putBoolean(org.telegram.messenger.q.i(-j3, tL_forumTopic.f20090id, new StringBuilder("sound_enabled_")), z11).apply();
+        fg1Var.finishPreviewFragment();
+        if (org.telegram.ui.Components.ad.a(fg1Var)) {
+            org.telegram.ui.Components.ad.S(z10 ? 1 : 0, fg1Var, fg1Var.getResourceProvider()).j();
+        }
+    }
+
+    @Override
+    public final void x(int i10) {
+        fg1 fg1Var = this.f39566b;
+        long j3 = fg1Var.f37556a;
+        fg1Var.finishPreviewFragment();
+        TLRPC.TL_forumTopic tL_forumTopic = this.f39565a;
+        if (i10 == 0) {
+            if (fg1Var.getMessagesController().isDialogMuted(-j3, tL_forumTopic.f20090id)) {
+                fg1Var.getNotificationsController().muteDialog(-j3, tL_forumTopic.f20090id, false);
+            }
+            if (org.telegram.ui.Components.ad.a(fg1Var)) {
+                org.telegram.ui.Components.ad.z(fg1Var, 4, i10, fg1Var.getResourceProvider()).j();
+                return;
+            }
+            return;
+        }
+        fg1Var.getNotificationsController().muteUntil(-j3, tL_forumTopic.f20090id, i10);
+        if (org.telegram.ui.Components.ad.a(fg1Var)) {
+            org.telegram.ui.Components.ad.z(fg1Var, 5, i10, fg1Var.getResourceProvider()).j();
+        }
+    }
+
+    @Override
+    public final void m() {
     }
 }

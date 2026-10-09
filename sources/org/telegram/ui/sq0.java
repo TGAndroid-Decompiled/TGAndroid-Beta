@@ -1,45 +1,55 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
+import android.widget.EditText;
 import org.telegram.messenger.AndroidUtilities;
-public final class sq0 extends org.telegram.ui.Components.w00 {
-    public final int U;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.ConnectionsManager;
+public final class sq0 extends org.telegram.ui.ActionBar.g5 {
+    public final tk0 f41748f = new tk0(this, 12);
+    public final br0 h;
 
-    public sq0(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, d6Var);
-        this.U = i10;
+    public sq0(br0 br0Var) {
+        this.h = br0Var;
     }
 
     @Override
-    public int getColumnsCount() {
-        switch (this.U) {
-            case 0:
-                return 3;
-            default:
-                return super.getColumnsCount();
-        }
+    public final boolean b() {
+        this.h.finishFragment();
+        return false;
     }
 
     @Override
-    public int getViewType() {
-        switch (this.U) {
-            case 0:
-                return 2;
-            default:
-                return super.getViewType();
-        }
+    public final void p(ci.g2 g2Var) {
+        this.h.b0(g2Var);
     }
 
     @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.U) {
-            case 1:
-                setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(104.0f));
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
+    public final void q(EditText editText) {
+        int i10;
+        if (editText.getText().length() == 0) {
+            br0 br0Var = this.h;
+            br0Var.f36396f.clear();
+            br0Var.h.clear();
+            br0Var.v = null;
+            br0Var.f36411s = true;
+            br0Var.f36409r = false;
+            if (br0Var.f36418x != 0) {
+                i10 = ((org.telegram.ui.ActionBar.n2) br0Var).currentAccount;
+                ConnectionsManager.getInstance(i10).cancelRequest(br0Var.f36418x, true);
+                br0Var.f36418x = 0;
+            }
+            br0Var.N.d.setText(LocaleController.getString(R.string.NoRecentSearches));
+            br0Var.N.e(false, true);
+            br0Var.j0();
+            return;
         }
+        tk0 tk0Var = this.f41748f;
+        AndroidUtilities.cancelRunOnUIThread(tk0Var);
+        AndroidUtilities.runOnUIThread(tk0Var, 1200L);
+    }
+
+    @Override
+    public final void n() {
     }
 }

@@ -1,39 +1,33 @@
 package org.telegram.ui.Components;
+public final class pn extends org.telegram.ui.uu0 {
+    public boolean f29891a;
+    public final int f29892b;
+    public final lo f29893c;
 
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.ImageView;
-public final class pn implements View.OnKeyListener {
-    public final int f29765a;
-    public final Object f29766b;
-
-    public pn(Object obj, int i10) {
-        this.f29765a = i10;
-        this.f29766b = obj;
+    public pn(lo loVar, int i10) {
+        this.f29893c = loVar;
+        this.f29892b = i10;
     }
 
     @Override
-    public final boolean onKey(View view, int i10, KeyEvent keyEvent) {
-        switch (this.f29765a) {
-            case 0:
-                un unVar = (un) this.f29766b;
-                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) view;
-                if (i10 == 67 && keyEvent.getAction() == 0 && editTextBoldCursor.length() == 0) {
-                    ImageView imageView = unVar.f21931f;
-                    if (imageView != null) {
-                        imageView.callOnClick();
-                    }
-                    return true;
-                }
-                return false;
-            default:
-                bv bvVar = (bv) this.f29766b;
-                bvVar.getClass();
-                if (i10 == 82 && keyEvent.getRepeatCount() == 0 && keyEvent.getAction() == 1 && bvVar.isShowing()) {
-                    bvVar.dismiss();
-                    return true;
-                }
-                return false;
+    public final void D() {
+        if (this.f29891a) {
+            this.f29893c.e0(this.f29892b);
         }
+    }
+
+    @Override
+    public final void I() {
+        this.f29893c.h0(this.f29892b, null);
+    }
+
+    @Override
+    public final void V() {
+        this.f29891a = true;
+    }
+
+    @Override
+    public final boolean z() {
+        return false;
     }
 }

@@ -1,35 +1,35 @@
 package bi;
 
-import ai.u8;
+import ai.v8;
 import android.view.View;
-import org.telegram.ui.Components.es0;
+import org.telegram.ui.Components.qs0;
 public final class e implements View.OnClickListener {
-    public final int f3848a;
-    public final u f3849b;
+    public final int f3897a;
+    public final u f3898b;
 
     public e(u uVar, int i10) {
-        this.f3848a = i10;
-        this.f3849b = uVar;
+        this.f3897a = i10;
+        this.f3898b = uVar;
     }
 
     @Override
     public final void onClick(View view) {
         String str;
-        switch (this.f3848a) {
+        switch (this.f3897a) {
             case 0:
-                u uVar = this.f3849b;
-                es0 es0Var = uVar.W;
-                u8 u8Var = uVar.f3874a;
-                if (u8Var == null) {
+                u uVar = this.f3898b;
+                qs0 qs0Var = uVar.W;
+                v8 v8Var = uVar.f3923a;
+                if (v8Var == null) {
                     str = "";
                 } else {
-                    str = u8Var.E;
+                    str = v8Var.E;
                 }
-                es0Var.a(str);
+                qs0Var.a(str);
                 return;
             default:
-                u uVar2 = this.f3849b;
-                uVar2.W.b(uVar2.f3874a.E);
+                u uVar2 = this.f3898b;
+                uVar2.W.b(uVar2.f3923a.E);
                 return;
         }
     }

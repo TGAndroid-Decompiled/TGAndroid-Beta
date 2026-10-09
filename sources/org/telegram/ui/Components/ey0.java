@@ -1,33 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-public final class ey0 extends br0 {
-    public final ry0 X0;
+import android.animation.ValueAnimator;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class ey0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f26177a;
+    public final View f26178b;
+    public final FrameLayout f26179c;
 
-    public ey0(ry0 ry0Var, Context context, String str, String str2, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, null, str, false, str2, false, d6Var);
-        this.X0 = ry0Var;
+    public ey0(FrameLayout frameLayout, View view, int i10) {
+        this.f26177a = i10;
+        this.f26179c = frameLayout;
+        this.f26178b = view;
     }
 
     @Override
-    public final void O0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        if (!z10) {
-            return;
-        }
-        AndroidUtilities.runOnUIThread(new zm(this, iVar, i10, 20), 100L);
-    }
-
-    @Override
-    public final void dismissInternal() {
-        super.dismissInternal();
-        org.telegram.ui.ActionBar.n2 n2Var = this.X0.L;
-        if (n2Var instanceof org.telegram.ui.yn) {
-            AndroidUtilities.requestAdjustResize(n2Var.getParentActivity(), n2Var.getClassGuid());
-            if (((org.telegram.ui.yn) n2Var).W.getVisibility() == 0) {
-                n2Var.getFragmentView().requestLayout();
-            }
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f26177a) {
+            case 0:
+                fy0 fy0Var = (fy0) this.f26179c;
+                fy0Var.f26508b = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                fy0Var.invalidate();
+                ((on0) this.f26178b).invalidate();
+                return;
+            default:
+                ((o91) this.f26179c).E(this.f26178b, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
         }
     }
 }

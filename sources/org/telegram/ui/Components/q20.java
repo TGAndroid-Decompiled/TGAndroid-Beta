@@ -1,18 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class q20 extends FrameLayout {
-    public TextView f29903a;
+import android.transition.Transition;
+public final class q20 implements Transition.TransitionListener {
+    public final s20 f30001a;
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
+    public q20(s20 s20Var) {
+        this.f30001a = s20Var;
     }
 
-    public void setText(CharSequence charSequence) {
-        this.f29903a.setText(charSequence);
+    @Override
+    public final void onTransitionCancel(Transition transition) {
+        this.f30001a.E.unlock();
+    }
+
+    @Override
+    public final void onTransitionEnd(Transition transition) {
+        this.f30001a.E.unlock();
+    }
+
+    @Override
+    public final void onTransitionStart(Transition transition) {
+        this.f30001a.E.lock();
+    }
+
+    @Override
+    public final void onTransitionPause(Transition transition) {
+    }
+
+    @Override
+    public final void onTransitionResume(Transition transition) {
     }
 }

@@ -1,186 +1,89 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class hs {
-    public final int f27314a;
-    public String f27315b;
-    public final ArrayList f27316c;
-    public final boolean[] d;
-    public boolean[] f27317e;
-    public boolean f27318f;
-    public final int f27319g;
-    public int h;
-    public int f27320i;
-    public final is f27321j;
+import android.graphics.PointF;
+import android.view.animation.Interpolator;
+import android.view.animation.PathInterpolator;
+public final class hs implements Interpolator {
+    public static final hs f27118f = new hs(0.25d, 0.1d, 0.25d, 1.0d);
+    public static final hs f27119g = new hs(0.0d, 0.0d, 0.58d, 1.0d);
+    public static final hs h = new hs(0.23d, 1.0d, 0.32d, 1.0d);
+    public static final hs f27120i = new hs(0.42d, 0.0d, 1.0d, 1.0d);
+    public static final hs f27121j = new hs(0.42d, 0.0d, 0.58d, 1.0d);
+    public static final hs f27122k = new hs(0.34d, 1.56d, 0.64d, 1.0d);
+    public static final PathInterpolator f27123l;
+    public final PointF f27124a;
+    public final PointF f27125b;
+    public final PointF f27126c;
+    public final PointF d;
+    public final PointF f27127e;
 
-    public hs(is isVar, int i10, ArrayList arrayList) {
-        this.f27321j = isVar;
-        this.f27314a = i10;
-        int size = arrayList.size();
-        this.f27319g = size;
-        this.f27320i = 0;
-        if (size > 0) {
-            this.f27316c = arrayList;
-            this.d = new boolean[size];
-            this.f27318f = true;
-            g();
-        }
+    static {
+        new PathInterpolator(v7.c8.d("M 0,0 C 0.05, 0, 0.133333, 0.06, 0.166666, 0.4 C 0.208333, 0.82, 0.25, 1, 1, 1"));
+        new PathInterpolator(0.05f, 0.7f, 0.1f, 1.0f);
+        new PathInterpolator(0.3f, 0.0f, 0.8f, 0.15f);
+        f27123l = new PathInterpolator(0.0f, 0.0f, 0.0f, 1.0f);
     }
 
-    public final boolean a() {
-        boolean[] zArr;
-        for (int i10 = 0; i10 < this.f27319g; i10++) {
-            if (!this.d[i10] || ((zArr = this.f27317e) != null && !zArr[i10])) {
-                return false;
+    public hs(float f7, float f10, float f11, float f12) {
+        PointF pointF = new PointF(f7, f10);
+        PointF pointF2 = new PointF(f11, f12);
+        this.f27126c = new PointF();
+        this.d = new PointF();
+        this.f27127e = new PointF();
+        float f13 = pointF.x;
+        if (f13 >= 0.0f && f13 <= 1.0f) {
+            float f14 = pointF2.x;
+            if (f14 >= 0.0f && f14 <= 1.0f) {
+                this.f27124a = pointF;
+                this.f27125b = pointF2;
+                return;
             }
+            throw new IllegalArgumentException("endX value must be in the range [0, 1]");
         }
-        return true;
+        throw new IllegalArgumentException("startX value must be in the range [0, 1]");
     }
 
-    public final boolean b() {
-        int i10;
-        if (this.f27317e != null) {
-            i10 = this.h;
-        } else {
-            i10 = this.f27319g;
-        }
-        if (i10 > 1) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean c() {
-        int i10;
-        if (this.f27317e != null) {
-            i10 = this.h;
-        } else {
-            i10 = this.f27319g;
-        }
-        if (i10 > 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void d() {
-        boolean[] zArr;
-        boolean[] zArr2;
-        boolean z10 = false;
-        int i10 = 0;
+    @Override
+    public final float getInterpolation(float f7) {
+        PointF pointF;
+        PointF pointF2;
+        PointF pointF3;
+        PointF pointF4;
+        PointF pointF5;
+        int i10 = 1;
+        float f10 = f7;
         while (true) {
-            int i11 = this.f27319g;
-            zArr = this.d;
-            if (i10 >= i11) {
+            pointF = this.f27125b;
+            pointF2 = this.f27124a;
+            pointF3 = this.f27126c;
+            pointF4 = this.d;
+            pointF5 = this.f27127e;
+            if (i10 >= 14) {
                 break;
-            } else if (!zArr[i10] || ((zArr2 = this.f27317e) != null && !zArr2[i10])) {
-                i10++;
             }
+            float f11 = pointF2.x * 3.0f;
+            pointF5.x = f11;
+            float f12 = ((pointF.x - pointF2.x) * 3.0f) - f11;
+            pointF4.x = f12;
+            float f13 = (1.0f - pointF5.x) - f12;
+            pointF3.x = f13;
+            float f14 = (((((f13 * f10) + pointF4.x) * f10) + pointF5.x) * f10) - f7;
+            if (Math.abs(f14) < 0.001d) {
+                break;
+            }
+            f10 -= f14 / (((((pointF3.x * 3.0f) * f10) + (pointF4.x * 2.0f)) * f10) + pointF5.x);
+            i10++;
         }
-        z10 = true;
-        Arrays.fill(zArr, !z10);
-        f();
-        this.f27321j.X.N(true);
+        float f15 = pointF2.y * 3.0f;
+        pointF5.y = f15;
+        float f16 = ((pointF.y - pointF2.y) * 3.0f) - f15;
+        pointF4.y = f16;
+        float f17 = (1.0f - pointF5.y) - f16;
+        pointF3.y = f17;
+        return ((((f17 * f10) + pointF4.y) * f10) + pointF5.y) * f10;
     }
 
-    public final void e(int i10) {
-        boolean[] zArr = this.f27317e;
-        if (zArr != null && !zArr[i10]) {
-            return;
-        }
-        boolean[] zArr2 = this.d;
-        boolean z10 = zArr2[i10];
-        zArr2[i10] = !z10;
-        if (!z10) {
-            this.f27320i++;
-        } else {
-            this.f27320i--;
-        }
-        this.f27321j.X.N(true);
-    }
-
-    public final void f() {
-        this.f27320i = 0;
-        this.h = 0;
-        for (int i10 = 0; i10 < this.f27319g; i10++) {
-            boolean[] zArr = this.f27317e;
-            boolean[] zArr2 = this.d;
-            if (zArr == null) {
-                if (zArr2[i10]) {
-                    this.f27320i++;
-                }
-            } else if (zArr[i10]) {
-                this.h++;
-                if (zArr2[i10]) {
-                    this.f27320i++;
-                }
-            }
-        }
-    }
-
-    public final void g() {
-        TLObject tLObject;
-        String formatName;
-        String formatString;
-        String formatString2;
-        String formatString3;
-        String formatString4;
-        int i10 = this.f27319g;
-        if (i10 != 0) {
-            for (int i11 = 0; i11 < i10; i11++) {
-                boolean[] zArr = this.f27317e;
-                if (zArr == null || zArr[i11]) {
-                    tLObject = (TLObject) this.f27316c.get(i11);
-                    break;
-                }
-            }
-            tLObject = null;
-            if (tLObject instanceof TLRPC.User) {
-                formatName = UserObject.getForcedFirstName((TLRPC.User) tLObject);
-            } else {
-                formatName = ContactsController.formatName(tLObject);
-            }
-            int i12 = this.f27314a;
-            if (i12 == 0) {
-                this.f27315b = LocaleController.getString(R.string.DeleteReportSpam);
-            } else if (i12 == 1) {
-                if (b()) {
-                    formatString4 = LocaleController.getString(R.string.DeleteAllMessagesFromUsers);
-                } else {
-                    formatString4 = LocaleController.formatString(R.string.DeleteAllFrom, formatName);
-                }
-                this.f27315b = formatString4;
-            } else if (i12 == 3) {
-                if (b()) {
-                    formatString3 = LocaleController.getString(R.string.DeleteAllReactionsFromUsers);
-                } else {
-                    formatString3 = LocaleController.formatString(R.string.DeleteAllReactionsFrom, formatName);
-                }
-                this.f27315b = formatString3;
-            } else if (i12 == 2) {
-                if (this.f27321j.f27576g0) {
-                    if (b()) {
-                        formatString2 = LocaleController.getString(R.string.DeleteRestrictUsers);
-                    } else {
-                        formatString2 = LocaleController.formatString(R.string.DeleteRestrict, formatName);
-                    }
-                    this.f27315b = formatString2;
-                    return;
-                }
-                if (b()) {
-                    formatString = LocaleController.getString(R.string.DeleteBanUsers);
-                } else {
-                    formatString = LocaleController.formatString(R.string.DeleteBan, formatName);
-                }
-                this.f27315b = formatString;
-            }
-        }
+    public hs(double d, double d10, double d11, double d12) {
+        this((float) d, (float) d10, (float) d11, (float) d12);
     }
 }

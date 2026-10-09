@@ -1,53 +1,29 @@
 package org.telegram.ui;
+public final class w21 implements Runnable {
+    public final int f43075a;
+    public final y21 f43076b;
+    public final int f43077c;
+    public final int d;
 
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import java.util.ArrayList;
-public final class w21 implements org.telegram.ui.ActionBar.j6 {
-    public boolean f41899a = false;
-    public final x21 f41900b;
-
-    public w21(x21 x21Var) {
-        this.f41900b = x21Var;
+    public w21(y21 y21Var, int i10, int i11, int i12) {
+        this.f43075a = i12;
+        this.f43076b = y21Var;
+        this.f43077c = i10;
+        this.d = i11;
     }
 
     @Override
-    public final void a(float f7) {
-        ArrayList arrayList;
-        x21 x21Var = this.f41900b;
-        if (f7 == 0.0f && !this.f41899a) {
-            org.telegram.ui.Components.np npVar = x21Var.f42799b;
-            if (npVar != null && (arrayList = npVar.d) != null) {
-                int size = arrayList.size();
-                int i10 = 0;
-                while (i10 < size) {
-                    Object obj = arrayList.get(i10);
-                    i10++;
-                    ((org.telegram.ui.Components.op) obj).f29530c = x21Var.M ? 1 : 0;
-                }
-            }
-            if (!x21Var.Q) {
-                org.telegram.ui.Components.np npVar2 = x21Var.f42799b;
-                for (int i11 = 0; i11 < npVar2.h(); i11++) {
-                    ((org.telegram.ui.Components.op) npVar2.d.get(i11)).getClass();
-                }
-            }
-            this.f41899a = true;
+    public final void run() {
+        switch (this.f43075a) {
+            case 0:
+                this.f43076b.b(this.f43077c, this.d);
+                return;
+            case 1:
+                this.f43076b.b(this.f43077c, this.d);
+                return;
+            default:
+                this.f43076b.b(this.f43077c, this.d);
+                return;
         }
-        x21Var.E.setColorFilter(new PorterDuffColorFilter(x21Var.d.getThemedColor(org.telegram.ui.ActionBar.i6.Oh), PorterDuff.Mode.SRC_IN));
-        if (x21Var.Q) {
-            org.telegram.ui.Components.np npVar3 = x21Var.f42799b;
-            for (int i12 = 0; i12 < npVar3.h(); i12++) {
-                ((org.telegram.ui.Components.op) npVar3.d.get(i12)).getClass();
-            }
-        }
-        if (f7 == 1.0f && this.f41899a) {
-            x21Var.Q = false;
-            this.f41899a = false;
-        }
-    }
-
-    @Override
-    public final void b() {
     }
 }

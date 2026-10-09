@@ -1,67 +1,67 @@
 package ei;
 
-import android.os.Bundle;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PrivacyControlActivity;
-import org.telegram.ui.nw0;
-import org.telegram.ui.rr;
-import org.telegram.ui.yn;
-public final class c2 implements Runnable {
-    public final int f8956a;
-    public final long f8957b;
-    public final int f8958c;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.util.SparseIntArray;
+import android.widget.ImageView;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.i6;
+public final class c2 {
+    public final SparseIntArray f8992a = new SparseIntArray();
+    public final SparseIntArray f8993b = new SparseIntArray();
+    public final int[] f8994c = {i6.G6, i6.f21112u8, i6.G8, i6.E8, i6.F8, i6.I5, i6.Ii};
+    public float d;
 
-    public c2(int i10, long j3) {
-        this.f8956a = 0;
-        this.f8958c = i10;
-        this.f8957b = j3;
+    public final int a(int i10) {
+        return i0.a.d(this.d, this.f8992a.get(i10), this.f8993b.get(i10));
     }
 
-    @Override
-    public final void run() {
-        switch (this.f8956a) {
-            case 0:
-                SendMessagesHelper.getInstance(this.f8958c).sendMessage(SendMessagesHelper.SendMessageParams.of("/privacy", this.f8957b, null, null, null, false, null, null, null, true, 0, 0, null, false));
-                return;
-            case 1:
-                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
-                if (U != null) {
-                    U.presentFragment(yn.P9(this.f8958c, this.f8957b));
-                    return;
-                }
-                return;
-            default:
-                org.telegram.ui.ActionBar.n2 U2 = LaunchActivity.U();
-                if (U2 != null) {
-                    long j3 = this.f8957b;
-                    if (j3 >= 0) {
-                        U2.presentFragment(new PrivacyControlActivity(10, false));
-                        return;
-                    }
-                    int i10 = this.f8958c;
-                    long j10 = -j3;
-                    if (ChatObject.isChannelAndNotMegaGroup(MessagesController.getInstance(i10).getChat(Long.valueOf(j10)))) {
-                        U2.presentFragment(new nw0(j10));
-                        return;
-                    }
-                    Bundle bundle = new Bundle();
-                    bundle.putLong("chat_id", j10);
-                    bundle.putInt("type", 3);
-                    rr rrVar = new rr(bundle);
-                    rrVar.x0(MessagesController.getInstance(i10).getChatFull(j10));
-                    U2.presentFragment(rrVar);
-                    return;
-                }
-                return;
+    public final void b(org.telegram.ui.ActionBar.k kVar, float f7) {
+        this.d = f7;
+        int i10 = i6.G6;
+        kVar.setTitleColor(a(i10));
+        kVar.setSubtitleColor(i6.m1(0.45f, a(i10)));
+        kVar.D(a(i10), false);
+        ImageView imageView = kVar.f21266e;
+        if (imageView != null) {
+            imageView.setColorFilter(new PorterDuffColorFilter(a(i10), PorterDuff.Mode.SRC_IN));
         }
+        kVar.C(a(i6.f21112u8), false);
     }
 
-    public c2(long j3, int i10, int i11) {
-        this.f8956a = i11;
-        this.f8957b = j3;
-        this.f8958c = i10;
+    public final void c(SparseIntArray sparseIntArray, int i10, e6 e6Var) {
+        int i11;
+        int i12;
+        int[] iArr = this.f8994c;
+        int i13 = 0;
+        if (i10 == 0) {
+            while (i13 < iArr.length) {
+                int i14 = iArr[i13];
+                sparseIntArray.put(i14, i6.w0(i14, e6Var));
+                i13++;
+            }
+            return;
+        }
+        if (i0.a.f(i10) < 0.5d) {
+            i11 = -1;
+        } else {
+            i11 = -16777216;
+        }
+        int k10 = i0.a.k(i11, 60);
+        while (i13 < iArr.length) {
+            int i15 = iArr[i13];
+            if (i15 != i6.G8 && i15 != i6.E8 && i15 != i6.F8 && i15 != (i12 = i6.I5)) {
+                if (i15 == i6.Ii) {
+                    sparseIntArray.put(i15, i0.a.d(0.5f, i10, i11));
+                } else if (i15 != i6.f21112u8 && i15 != i12) {
+                    sparseIntArray.put(i15, i11);
+                } else {
+                    sparseIntArray.put(i15, k10);
+                }
+            } else {
+                sparseIntArray.put(i15, i6.w0(i15, e6Var));
+            }
+            i13++;
+        }
     }
 }

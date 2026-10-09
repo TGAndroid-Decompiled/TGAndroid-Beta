@@ -1,12 +1,19 @@
 package de;
+public final class f extends ld.c {
+    public g f8321a;
+    public Object f8322b;
+    public final g f8323c;
+    public int d;
 
-import rd.p;
-public final class f extends kotlin.jvm.internal.j implements p {
-    public static final f f8329b = new kotlin.jvm.internal.j(2);
+    public f(g gVar, ld.c cVar) {
+        super(cVar);
+        this.f8323c = gVar;
+    }
 
     @Override
-    public final Object invoke(Object obj, Object obj2) {
-        id.f fVar = (id.f) obj2;
-        return Integer.valueOf(((Number) obj).intValue() + 1);
+    public final Object invokeSuspend(Object obj) {
+        this.f8322b = obj;
+        this.d |= Integer.MIN_VALUE;
+        return this.f8323c.b(null, this);
     }
 }

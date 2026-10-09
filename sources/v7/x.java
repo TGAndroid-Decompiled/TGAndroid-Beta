@@ -1,6 +1,8 @@
 package v7;
-public abstract class x {
-    public abstract void a(Throwable th2);
 
-    public abstract void b(com.google.firebase.messaging.s sVar);
+import android.view.View;
+public abstract class x {
+    public abstract View b(int i10);
+
+    public abstract boolean c();
 }

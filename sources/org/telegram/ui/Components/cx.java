@@ -1,64 +1,57 @@
 package org.telegram.ui.Components;
 
-import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.view.MotionEvent;
-import android.view.ViewGroup;
-public final class cx extends z4.g {
-    public final nz f25544w0;
+public final class cx extends qm0 {
+    public boolean V2;
+    public boolean W2;
+    public final a00 X2;
 
-    public cx(nz nzVar, Context context) {
-        super(context);
-        this.f25544w0 = nzVar;
+    public cx(a00 a00Var, Context context) {
+        super(context, null);
+        this.X2 = a00Var;
     }
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.f25544w0.f29203f) {
+        org.telegram.ui.rt q6 = org.telegram.ui.rt.q();
+        a00 a00Var = this.X2;
+        boolean r10 = q6.r(motionEvent, a00Var.f24417h0, a00Var.f24416g2, this.f30216n2);
+        if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
             return false;
         }
-        if (getParent() != null) {
-            getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
+        return true;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        a00 a00Var = this.X2;
+        if (a00Var.f24443q0 && a00Var.f24434n0.G > 1) {
+            this.V2 = true;
+            a00Var.f24420i0.h1(0, 0);
+            a00Var.f24437o0.setVisibility(0);
+            a00Var.f24440p0.k(0, 0);
+            a00Var.f24443q0 = false;
+            this.V2 = false;
         }
-        try {
-            return super.onInterceptTouchEvent(motionEvent);
-        } catch (IllegalArgumentException unused) {
-            return false;
+        super.onLayout(z10, i10, i11, i12, i13);
+        a00.f(a00Var, true);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        if (!this.W2) {
+            this.X2.f24434n0.l();
+            this.W2 = true;
         }
     }
 
     @Override
-    public final void x(int i10, boolean z10) {
-        boolean z11;
-        nz nzVar = this.f25544w0;
-        rx rxVar = nzVar.I;
-        if (i10 == 1) {
-            z11 = true;
-        } else {
-            z11 = false;
+    public final void requestLayout() {
+        if (this.V2) {
+            return;
         }
-        nz.a(nzVar, z11);
-        if (i10 == getCurrentItem()) {
-            if (i10 == 0) {
-                nzVar.Q0[1] = 0;
-                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(rxVar, ViewGroup.TRANSLATION_Y, 0.0f);
-                ofFloat.setDuration(150L);
-                ofFloat.setInterpolator(tr.h);
-                ofFloat.start();
-                nzVar.E(1, 0);
-                if (rxVar != null) {
-                    rxVar.j(0, true);
-                    return;
-                }
-                return;
-            } else if (i10 == 1) {
-                nzVar.f29210h0.y0(0);
-                return;
-            } else {
-                nzVar.D0.y0(1);
-                return;
-            }
-        }
-        super.x(i10, z10);
+        super.requestLayout();
     }
 }

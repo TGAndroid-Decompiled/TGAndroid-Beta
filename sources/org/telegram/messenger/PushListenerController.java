@@ -44,13 +44,13 @@ public class PushListenerController {
             try {
                 SharedConfig.pushStringGetTimeStart = SystemClock.elapsedRealtime();
                 k9.h.f(ApplicationLoader.applicationContext);
-                com.google.firebase.messaging.u uVar = FirebaseMessaging.f7837l;
+                com.google.firebase.messaging.u uVar = FirebaseMessaging.f7886l;
                 synchronized (FirebaseMessaging.class) {
                     firebaseMessaging = FirebaseMessaging.getInstance(k9.h.c());
                 }
                 firebaseMessaging.getClass();
                 TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-                firebaseMessaging.f7844f.execute(new ci.x8(5, firebaseMessaging, taskCompletionSource));
+                firebaseMessaging.f7893f.execute(new ci.y8(5, firebaseMessaging, taskCompletionSource));
                 taskCompletionSource.getTask().addOnCompleteListener(new d0(this, 11));
             } catch (Throwable th2) {
                 FileLog.e(th2);
@@ -72,7 +72,7 @@ public class PushListenerController {
             boolean z10;
             if (this.hasServices == null) {
                 try {
-                    if (k6.d.d.d(ApplicationLoader.applicationContext, k6.e.f14674a) == 0) {
+                    if (k6.d.d.d(ApplicationLoader.applicationContext, k6.e.f14706a) == 0) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -705,7 +705,7 @@ public class PushListenerController {
     }
 
     public static void lambda$processRemoteMessage$2(int i10, TLRPC.TL_updates tL_updates) {
-        MessagesController.getInstance(i10).processUpdates(tL_updates, false);
+        MessagesController.getInstance(i10).lambda$processUpdates$377(tL_updates, false);
     }
 
     public static void lambda$processRemoteMessage$3(int i10) {
@@ -723,7 +723,7 @@ public class PushListenerController {
         MessagesController.getInstance(i10).reportMessageDelivery(j3, i11, true);
     }
 
-    public static void lambda$processRemoteMessage$6(java.lang.String r73, java.lang.String r74, long r75) {
+    public static void lambda$processRemoteMessage$6(java.lang.String r74, java.lang.String r75, long r76) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.PushListenerController.lambda$processRemoteMessage$6(java.lang.String, java.lang.String, long):void");
     }
 
@@ -784,7 +784,7 @@ public class PushListenerController {
                         ConnectionsManager.getInstance(i11).sendRequest(tL_help_saveAppLog, null);
                         z10 = false;
                     }
-                    AndroidUtilities.runOnUIThread(new q6(i11, i10, str));
+                    AndroidUtilities.runOnUIThread(new r6(i11, i10, str));
                 }
             }
         }
@@ -818,13 +818,13 @@ public class PushListenerController {
         } catch (Throwable unused) {
         }
         if (BuildVars.DEBUG_VERSION) {
-            StringBuilder w10 = a4.a.w("finished ", str3, " service, time = ");
+            StringBuilder w10 = a1.g.w("finished ", str3, " service, time = ");
             w10.append(SystemClock.elapsedRealtime() - elapsedRealtime);
             FileLog.d(w10.toString());
         }
     }
 
     public static void sendRegistrationToServer(int i10, String str) {
-        Utilities.stageQueue.postRunnable(new o6(str, i10, 8));
+        Utilities.stageQueue.postRunnable(new p6(str, i10, 8));
     }
 }

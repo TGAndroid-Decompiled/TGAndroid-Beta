@@ -23,14 +23,14 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import w7.v6;
+import w7.t6;
 public class MP4Builder {
     private boolean splitMdat;
     private boolean wasFirstVideoFrame;
     private InterleaveChunkMdat mdat = null;
     private Mp4Movie currentMp4Movie = null;
     private FileOutputStream fos = null;
-    private FileChannel f19440fc = null;
+    private FileChannel f19446fc = null;
     private long dataOffset = 0;
     private long wroteSinceLastMdat = 0;
     private boolean writeNewMdat = true;
@@ -39,10 +39,10 @@ public class MP4Builder {
     private boolean allowSyncFiles = true;
 
     private void flushCurrentMdat() {
-        long position = this.f19440fc.position();
-        this.f19440fc.position(this.mdat.getOffset());
-        this.mdat.getBox(this.f19440fc);
-        this.f19440fc.position(position);
+        long position = this.f19446fc.position();
+        this.f19446fc.position(this.mdat.getOffset());
+        this.mdat.getBox(this.f19446fc);
+        this.f19446fc.position(position);
         this.mdat.setDataOffset(0L);
         this.mdat.setContentSize(0L);
         this.fos.flush();
@@ -70,17 +70,17 @@ public class MP4Builder {
         ArrayList arrayList = new ArrayList();
         f5.d dVar = null;
         for (int i10 : sampleCompositions) {
-            if (dVar != null && dVar.f9672b == i10) {
-                dVar.f9671a++;
+            if (dVar != null && dVar.f9683b == i10) {
+                dVar.f9682a++;
             } else {
                 dVar = new f5.d(1, i10);
                 arrayList.add(dVar);
             }
         }
         ?? aVar = new com.googlecode.mp4parser.a("ctts");
-        aVar.f9674e = Collections.EMPTY_LIST;
-        e2.q(re.a.c(f5.e.f9673f, aVar, aVar, arrayList));
-        aVar.f9674e = arrayList;
+        aVar.f9685e = Collections.EMPTY_LIST;
+        e2.q(se.a.c(f5.e.f9684f, aVar, aVar, arrayList));
+        aVar.f9685e = arrayList;
         pVar.a(aVar);
     }
 
@@ -98,9 +98,9 @@ public class MP4Builder {
         linkedList.add("mp41");
         ?? aVar = new com.googlecode.mp4parser.a("ftyp");
         List list = Collections.EMPTY_LIST;
-        aVar.f9678a = "isom";
-        aVar.f9679b = 512L;
-        aVar.f9680c = linkedList;
+        aVar.f9689a = "isom";
+        aVar.f9690b = 512L;
+        aVar.f9691c = linkedList;
         return aVar;
     }
 
@@ -108,9 +108,9 @@ public class MP4Builder {
         this.currentMp4Movie = mp4Movie;
         FileOutputStream fileOutputStream = new FileOutputStream(mp4Movie.getCacheFile());
         this.fos = fileOutputStream;
-        this.f19440fc = fileOutputStream.getChannel();
+        this.f19446fc = fileOutputStream.getChannel();
         f5.i createFileTypeBox = createFileTypeBox(z11);
-        createFileTypeBox.getBox(this.f19440fc);
+        createFileTypeBox.getBox(this.f19446fc);
         long size = createFileTypeBox.getSize() + this.dataOffset;
         this.dataOffset = size;
         this.wroteSinceLastMdat += size;
@@ -123,24 +123,24 @@ public class MP4Builder {
     public f5.l createMovieBox(Mp4Movie mp4Movie) {
         ?? bVar = new com.googlecode.mp4parser.b("moov");
         ?? aVar = new com.googlecode.mp4parser.a("mvhd");
-        aVar.f9700r = 1.0d;
-        aVar.f9701s = 1.0f;
-        qc.d dVar = qc.d.f44953j;
+        aVar.f9711r = 1.0d;
+        aVar.f9712s = 1.0f;
+        qc.d dVar = qc.d.f46108j;
         aVar.v = dVar;
         Date date = new Date();
-        e2.q(re.a.c(f5.m.Q, aVar, aVar, date));
-        aVar.f9697e = date;
+        e2.q(se.a.c(f5.m.Q, aVar, aVar, date));
+        aVar.f9708e = date;
         long j3 = 4294967296L;
-        if (v6.a(date) >= 4294967296L) {
+        if (t6.a(date) >= 4294967296L) {
             aVar.h();
         }
         Date date2 = new Date();
-        e2.q(re.a.c(f5.m.R, aVar, aVar, date2));
-        aVar.f9698f = date2;
-        if (v6.a(date2) >= 4294967296L) {
+        e2.q(se.a.c(f5.m.R, aVar, aVar, date2));
+        aVar.f9709f = date2;
+        if (t6.a(date2) >= 4294967296L) {
             aVar.h();
         }
-        e2.q(re.a.c(f5.m.U, aVar, aVar, dVar));
+        e2.q(se.a.c(f5.m.U, aVar, aVar, dVar));
         aVar.v = dVar;
         long timescale = getTimescale(mp4Movie);
         ArrayList<Track> tracks = mp4Movie.getTracks();
@@ -161,16 +161,16 @@ public class MP4Builder {
             j3 = j11;
         }
         long j12 = j3;
-        e2.q(re.a.c(f5.m.T, aVar, aVar, new Long(j10)));
-        aVar.f9699n = j10;
+        e2.q(se.a.c(f5.m.T, aVar, aVar, new Long(j10)));
+        aVar.f9710n = j10;
         if (j10 >= j12) {
             aVar.h();
         }
-        e2.q(re.a.c(f5.m.S, aVar, aVar, new Long(timescale)));
+        e2.q(se.a.c(f5.m.S, aVar, aVar, new Long(timescale)));
         aVar.h = timescale;
         long size2 = mp4Movie.getTracks().size() + 1;
-        e2.q(re.a.c(f5.m.V, aVar, aVar, new Long(size2)));
-        aVar.f9702w = size2;
+        e2.q(se.a.c(f5.m.V, aVar, aVar, new Long(size2)));
+        aVar.f9713w = size2;
         bVar.a(aVar);
         ArrayList<Track> tracks2 = mp4Movie.getTracks();
         int size3 = tracks2.size();
@@ -218,34 +218,34 @@ public class MP4Builder {
             jArr[i11] = ((Long) arrayList.get(i11)).longValue();
         }
         ?? aVar = new com.googlecode.mp4parser.a("stco");
-        aVar.f9719f = new long[0];
-        e2.q(re.a.c(t.f9718n, aVar, aVar, jArr));
-        aVar.f9719f = jArr;
+        aVar.f9730f = new long[0];
+        e2.q(se.a.c(t.f9729n, aVar, aVar, jArr));
+        aVar.f9730f = jArr;
         pVar.a(aVar);
     }
 
     public void createStsc(Track track, f5.p pVar) {
         ?? aVar = new com.googlecode.mp4parser.a("stsc");
-        aVar.f9715e = Collections.EMPTY_LIST;
+        aVar.f9726e = Collections.EMPTY_LIST;
         LinkedList linkedList = new LinkedList();
-        e2.q(re.a.c(f5.r.h, aVar, aVar, linkedList));
-        aVar.f9715e = linkedList;
+        e2.q(se.a.c(f5.r.h, aVar, aVar, linkedList));
+        aVar.f9726e = linkedList;
         int size = track.getSamples().size();
         int i10 = -1;
-        int i11 = 0;
-        int i12 = 1;
+        int i11 = 1;
+        int i12 = 0;
         for (int i13 = 0; i13 < size; i13++) {
             Sample sample = track.getSamples().get(i13);
             long size2 = sample.getSize() + sample.getOffset();
-            i11++;
+            i12++;
             if (i13 == size - 1 || size2 != track.getSamples().get(i13 + 1).getOffset()) {
-                if (i10 != i11) {
-                    e2.q(re.a.b(f5.r.f9713f, aVar, aVar));
-                    aVar.f9715e.add(new f5.q(i12, i11, 1L));
-                    i10 = i11;
+                if (i10 != i12) {
+                    e2.q(se.a.b(f5.r.f9724f, aVar, aVar));
+                    aVar.f9726e.add(new f5.q(i11, i12, 1L));
+                    i10 = i12;
                 }
-                i12++;
-                i11 = 0;
+                i11++;
+                i12 = 0;
             }
         }
         pVar.a(aVar);
@@ -259,18 +259,18 @@ public class MP4Builder {
         long[] syncSamples = track.getSyncSamples();
         if (syncSamples != null && syncSamples.length > 0) {
             ?? aVar = new com.googlecode.mp4parser.a("stss");
-            e2.q(re.a.c(u.h, aVar, aVar, syncSamples));
-            aVar.f9721e = syncSamples;
+            e2.q(se.a.c(u.h, aVar, aVar, syncSamples));
+            aVar.f9732e = syncSamples;
             pVar.a(aVar);
         }
     }
 
     public void createStsz(Track track, f5.p pVar) {
         ?? aVar = new com.googlecode.mp4parser.a("stsz");
-        aVar.f9709f = new long[0];
+        aVar.f9720f = new long[0];
         long[] jArr = this.track2SampleSizes.get(track);
-        e2.q(re.a.c(f5.o.f9707s, aVar, aVar, jArr));
-        aVar.f9709f = jArr;
+        e2.q(se.a.c(f5.o.f9718s, aVar, aVar, jArr));
+        aVar.f9720f = jArr;
         pVar.a(aVar);
     }
 
@@ -279,17 +279,17 @@ public class MP4Builder {
         ArrayList arrayList = new ArrayList();
         v vVar = null;
         for (long j3 : track.getSampleDurations()) {
-            if (vVar != null && vVar.f9723b == j3) {
-                vVar.f9722a++;
+            if (vVar != null && vVar.f9734b == j3) {
+                vVar.f9733a++;
             } else {
                 vVar = new v(1L, j3);
                 arrayList.add(vVar);
             }
         }
         ?? aVar = new com.googlecode.mp4parser.a("stts");
-        aVar.f9725e = Collections.EMPTY_LIST;
-        e2.q(re.a.c(w.f9724f, aVar, aVar, arrayList));
-        aVar.f9725e = arrayList;
+        aVar.f9736e = Collections.EMPTY_LIST;
+        e2.q(se.a.c(w.f9735f, aVar, aVar, arrayList));
+        aVar.f9736e = arrayList;
         pVar.a(aVar);
     }
 
@@ -297,94 +297,94 @@ public class MP4Builder {
         String str;
         ?? bVar = new com.googlecode.mp4parser.b("trak");
         ?? aVar = new com.googlecode.mp4parser.a("tkhd");
-        qc.d dVar = qc.d.f44953j;
-        aVar.f9733w = dVar;
-        s c10 = re.a.c(y.Z, aVar, aVar, new Boolean(true));
+        qc.d dVar = qc.d.f46108j;
+        aVar.f9744w = dVar;
+        s c10 = se.a.c(y.Z, aVar, aVar, new Boolean(true));
         com.googlecode.mp4parser.g.a().getClass();
         com.googlecode.mp4parser.g.b(c10);
         aVar.g(aVar.d() | 1);
-        s c11 = re.a.c(y.f9726a0, aVar, aVar, new Boolean(true));
+        s c11 = se.a.c(y.f9737a0, aVar, aVar, new Boolean(true));
         com.googlecode.mp4parser.g.a().getClass();
         com.googlecode.mp4parser.g.b(c11);
         aVar.g(aVar.d() | 2);
-        s c12 = re.a.c(y.f9727b0, aVar, aVar, new Boolean(true));
+        s c12 = se.a.c(y.f9738b0, aVar, aVar, new Boolean(true));
         com.googlecode.mp4parser.g.a().getClass();
         com.googlecode.mp4parser.g.b(c12);
         aVar.g(aVar.d() | 4);
         if (track.isAudio()) {
-            e2.q(re.a.c(y.W, aVar, aVar, dVar));
-            aVar.f9733w = dVar;
+            e2.q(se.a.c(y.W, aVar, aVar, dVar));
+            aVar.f9744w = dVar;
         } else {
             qc.d matrix = mp4Movie.getMatrix();
-            e2.q(re.a.c(y.W, aVar, aVar, matrix));
-            aVar.f9733w = matrix;
+            e2.q(se.a.c(y.W, aVar, aVar, matrix));
+            aVar.f9744w = matrix;
         }
-        e2.q(re.a.c(y.U, aVar, aVar, new Integer(0)));
-        aVar.f9732s = 0;
+        e2.q(se.a.c(y.U, aVar, aVar, new Integer(0)));
+        aVar.f9743s = 0;
         Date creationTime = track.getCreationTime();
-        e2.q(re.a.c(y.P, aVar, aVar, creationTime));
-        aVar.f9728e = creationTime;
-        if (v6.a(creationTime) >= 4294967296L) {
+        e2.q(se.a.c(y.P, aVar, aVar, creationTime));
+        aVar.f9739e = creationTime;
+        if (t6.a(creationTime) >= 4294967296L) {
             aVar.h();
         }
         long timescale = (getTimescale(mp4Movie) * track.getDuration()) / track.getTimeScale();
-        e2.q(re.a.c(y.S, aVar, aVar, new Long(timescale)));
-        aVar.f9730n = timescale;
+        e2.q(se.a.c(y.S, aVar, aVar, new Long(timescale)));
+        aVar.f9741n = timescale;
         if (timescale >= 4294967296L) {
             aVar.g(1);
         }
         double height = track.getHeight();
-        e2.q(re.a.c(y.Y, aVar, aVar, new Double(height)));
-        aVar.f9735y = height;
+        e2.q(se.a.c(y.Y, aVar, aVar, new Double(height)));
+        aVar.f9746y = height;
         double width = track.getWidth();
-        e2.q(re.a.c(y.X, aVar, aVar, new Double(width)));
-        aVar.f9734x = width;
-        e2.q(re.a.c(y.T, aVar, aVar, new Integer(0)));
-        aVar.f9731r = 0;
+        e2.q(se.a.c(y.X, aVar, aVar, new Double(width)));
+        aVar.f9745x = width;
+        e2.q(se.a.c(y.T, aVar, aVar, new Integer(0)));
+        aVar.f9742r = 0;
         Date date = new Date();
-        e2.q(re.a.c(y.Q, aVar, aVar, date));
-        aVar.f9729f = date;
-        if (v6.a(date) >= 4294967296L) {
+        e2.q(se.a.c(y.Q, aVar, aVar, date));
+        aVar.f9740f = date;
+        if (t6.a(date) >= 4294967296L) {
             aVar.h();
         }
         long trackId = track.getTrackId() + 1;
-        e2.q(re.a.c(y.R, aVar, aVar, new Long(trackId)));
+        e2.q(se.a.c(y.R, aVar, aVar, new Long(trackId)));
         aVar.h = trackId;
         float volume = track.getVolume();
-        e2.q(re.a.c(y.V, aVar, aVar, new Float(volume)));
+        e2.q(se.a.c(y.V, aVar, aVar, new Float(volume)));
         aVar.v = volume;
         bVar.a(aVar);
         f5.h hVar = new f5.h("mdia", 2);
         bVar.a(hVar);
         ?? aVar2 = new com.googlecode.mp4parser.a("mdhd");
-        aVar2.f9693e = new Date();
-        aVar2.f9694f = new Date();
-        aVar2.f9696r = "eng";
+        aVar2.f9704e = new Date();
+        aVar2.f9705f = new Date();
+        aVar2.f9707r = "eng";
         Date creationTime2 = track.getCreationTime();
-        e2.q(re.a.c(f5.k.E, aVar2, aVar2, creationTime2));
-        aVar2.f9693e = creationTime2;
+        e2.q(se.a.c(f5.k.E, aVar2, aVar2, creationTime2));
+        aVar2.f9704e = creationTime2;
         long duration = track.getDuration();
-        e2.q(re.a.c(f5.k.G, aVar2, aVar2, new Long(duration)));
-        aVar2.f9695n = duration;
+        e2.q(se.a.c(f5.k.G, aVar2, aVar2, new Long(duration)));
+        aVar2.f9706n = duration;
         long timeScale = track.getTimeScale();
-        e2.q(re.a.c(f5.k.F, aVar2, aVar2, new Long(timeScale)));
+        e2.q(se.a.c(f5.k.F, aVar2, aVar2, new Long(timeScale)));
         aVar2.h = timeScale;
-        e2.q(re.a.c(f5.k.H, aVar2, aVar2, "eng"));
-        aVar2.f9696r = "eng";
+        e2.q(se.a.c(f5.k.H, aVar2, aVar2, "eng"));
+        aVar2.f9707r = "eng";
         hVar.a(aVar2);
         ?? aVar3 = new com.googlecode.mp4parser.a("hdlr");
-        aVar3.f9685f = null;
-        aVar3.f9688s = true;
+        aVar3.f9696f = null;
+        aVar3.f9699s = true;
         if (track.isAudio()) {
             str = "SoundHandle";
         } else {
             str = "VideoHandle";
         }
-        e2.q(re.a.c(f5.j.f9682x, aVar3, aVar3, str));
-        aVar3.f9685f = str;
+        e2.q(se.a.c(f5.j.f9693x, aVar3, aVar3, str));
+        aVar3.f9696f = str;
         String handler = track.getHandler();
-        e2.q(re.a.c(f5.j.f9683y, aVar3, aVar3, handler));
-        aVar3.f9684e = handler;
+        e2.q(se.a.c(f5.j.f9694y, aVar3, aVar3, handler));
+        aVar3.f9695e = handler;
         hVar.a(aVar3);
         f5.h hVar2 = new f5.h("minf", 3);
         hVar2.a(track.getMediaHeaderBox());
@@ -419,12 +419,12 @@ public class MP4Builder {
             }
             this.track2SampleSizes.put(track2, jArr);
         }
-        createMovieBox(this.currentMp4Movie).getBox(this.f19440fc);
+        createMovieBox(this.currentMp4Movie).getBox(this.f19446fc);
         this.fos.flush();
         if (this.allowSyncFiles) {
             this.fos.getFD().sync();
         }
-        this.f19440fc.close();
+        this.f19446fc.close();
         this.fos.close();
     }
 
@@ -458,7 +458,7 @@ public class MP4Builder {
         boolean z11;
         if (this.writeNewMdat) {
             this.mdat.setContentSize(0L);
-            this.mdat.getBox(this.f19440fc);
+            this.mdat.getBox(this.f19446fc);
             this.mdat.setDataOffset(this.dataOffset);
             this.dataOffset += 16;
             this.wroteSinceLastMdat += 16;
@@ -483,13 +483,13 @@ public class MP4Builder {
             this.sizeBuffer.position(0);
             this.sizeBuffer.putInt(bufferInfo.size - 4);
             this.sizeBuffer.position(0);
-            this.f19440fc.write(this.sizeBuffer);
+            this.f19446fc.write(this.sizeBuffer);
             byteBuffer.position(bufferInfo.offset + 4);
         } else {
             byteBuffer.position(bufferInfo.offset);
         }
         byteBuffer.limit(bufferInfo.offset + bufferInfo.size);
-        this.f19440fc.write(byteBuffer);
+        this.f19446fc.write(byteBuffer);
         this.dataOffset += bufferInfo.size;
         if (!z11) {
             return 0L;
@@ -498,7 +498,7 @@ public class MP4Builder {
         if (this.allowSyncFiles) {
             this.fos.getFD().sync();
         }
-        return this.f19440fc.position();
+        return this.f19446fc.position();
     }
 
     public void finishMovie(File file) {
@@ -507,7 +507,7 @@ public class MP4Builder {
             return;
         }
         this.fos.flush();
-        long position = this.f19440fc.position();
+        long position = this.f19446fc.position();
         if (this.allowSyncFiles) {
             this.fos.getFD().sync();
         }

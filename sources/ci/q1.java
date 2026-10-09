@@ -1,150 +1,201 @@
 package ci;
 
-import android.content.Context;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
+import android.graphics.Rect;
 import android.view.View;
-import java.util.Calendar;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.jz0;
-import org.telegram.ui.Components.wv;
-import org.telegram.ui.Components.ym;
-import org.telegram.ui.FiltersSetupActivity;
-import org.telegram.ui.az;
-import org.telegram.ui.d20;
-import org.telegram.ui.dz;
-import org.telegram.ui.kn0;
-import org.telegram.ui.pw;
-import org.telegram.ui.rt;
-import org.telegram.ui.z10;
-public final class q1 implements View.OnTouchListener {
-    public final int f5733a;
-    public final Object f5734b;
-    public final Object f5735c;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.bi;
+import org.telegram.ui.Components.a00;
+import org.telegram.ui.Components.hw;
+import org.telegram.ui.Components.iw;
+import org.telegram.ui.Components.my;
+import org.telegram.ui.Components.qm0;
+import org.telegram.ui.Components.ry;
+import org.telegram.ui.hi0;
+import org.telegram.ui.sj0;
+import org.telegram.ui.up0;
+public final class q1 extends s4.o0 {
+    public final int f5756a;
+    public final Object f5757b;
 
-    public q1(int i10, Object obj, Object obj2) {
-        this.f5733a = i10;
-        this.f5734b = obj;
-        this.f5735c = obj2;
+    public q1(Object obj, int i10) {
+        this.f5756a = i10;
+        this.f5757b = obj;
     }
 
     @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
+    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.a1 a1Var) {
+        int dp;
+        boolean z10;
+        boolean z11;
+        boolean z12;
         int i10;
-        String string;
         int i11;
         int i12;
-        int i13;
-        int i14;
-        switch (this.f5733a) {
+        switch (this.f5756a) {
             case 0:
-                z1 z1Var = (z1) this.f5734b;
-                return rt.q().s(motionEvent, z1Var.f6361b, (ai.g) this.f5735c, z1Var.f6364f, s2.G(z1Var.f6366r));
+                x1 x1Var = ((y1) this.f5757b).f6343e;
+                recyclerView.getClass();
+                if (x1Var.E1(RecyclerView.R(view))) {
+                    dp = 0;
+                } else {
+                    dp = AndroidUtilities.dp(4.0f);
+                }
+                rect.right = dp;
+                rect.bottom = AndroidUtilities.dp(4.0f);
+                return;
             case 1:
-                org.telegram.ui.ActionBar.n1 n1Var = (org.telegram.ui.ActionBar.n1) this.f5734b;
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f5735c;
-                if (motionEvent.getAction() == 0) {
-                    Drawable backgroundDrawable = actionBarPopupWindow$ActionBarPopupWindowLayout.getBackgroundDrawable();
-                    RectF rectF = AndroidUtilities.rectTmp;
-                    rectF.set(backgroundDrawable.getBounds());
-                    rectF.offset(actionBarPopupWindow$ActionBarPopupWindowLayout.getX(), actionBarPopupWindow$ActionBarPopupWindowLayout.getY());
-                    if (!rectF.contains(motionEvent.getX(), motionEvent.getY())) {
-                        n1Var.dismiss();
-                        return true;
-                    }
+                org.telegram.ui.Cells.t tVar = (org.telegram.ui.Cells.t) this.f5757b;
+                int b10 = recyclerView.T(view).b();
+                if (b10 == 0) {
+                    rect.left = AndroidUtilities.dp(18.0f);
                 }
-                return false;
+                if (b10 == tVar.getAdapter().h() - 1) {
+                    rect.right = AndroidUtilities.dp(18.0f);
+                    return;
+                }
+                int h = tVar.getAdapter().h();
+                if (h == 4) {
+                    rect.right = bi.B(58.0f, h, tVar.getWidth() - AndroidUtilities.dp(36.0f)) / (h - 1);
+                    return;
+                } else {
+                    rect.right = AndroidUtilities.dp(24.0f);
+                    return;
+                }
             case 2:
-                org.telegram.ui.Components.i8 i8Var = (org.telegram.ui.Components.i8) this.f5734b;
-                org.telegram.ui.Cells.x xVar = (org.telegram.ui.Cells.x) this.f5735c;
-                if (motionEvent.getAction() == 0) {
-                    org.telegram.ui.Components.j8 j8Var = i8Var.f27421n;
-                    j8Var.H.r(j8Var.f27716n.T(xVar));
-                    return false;
+                v vVar = ((iw) this.f5757b).h;
+                if (view instanceof hw) {
+                    rect.left = -vVar.getPaddingLeft();
+                    rect.right = -vVar.getPaddingRight();
+                    return;
                 }
-                return false;
+                vVar.getClass();
+                if (RecyclerView.R(view) == 1) {
+                    rect.top = AndroidUtilities.dp(14.0f);
+                    return;
+                }
+                return;
             case 3:
-                return wv.m((wv) this.f5734b, (ym) this.f5735c, motionEvent);
-            case 4:
-                return jz0.a((jz0) this.f5734b, (org.telegram.ui.Components.j) this.f5735c, motionEvent);
-            case 5:
-                az azVar = (az) this.f5734b;
-                org.telegram.ui.Cells.g4 g4Var = (org.telegram.ui.Cells.g4) this.f5735c;
-                azVar.getClass();
-                if (motionEvent.getAction() == 0) {
-                    dz dzVar = azVar.d;
-                    dzVar.f35908c.r(dzVar.f35907b.T(g4Var));
-                    return false;
-                }
-                return false;
-            case 6:
-                d20 d20Var = (d20) this.f5734b;
-                z10 z10Var = (z10) this.f5735c;
-                if (motionEvent.getAction() == 0) {
-                    FiltersSetupActivity filtersSetupActivity = d20Var.f35619e;
-                    filtersSetupActivity.f33772c.r(filtersSetupActivity.f33770a.T(z10Var));
-                    return false;
-                }
-                return false;
-            default:
-                kn0 kn0Var = (kn0) this.f5734b;
-                Context context = (Context) this.f5735c;
-                int i15 = 0;
-                if (kn0Var.getParentActivity() == null) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    Calendar calendar = Calendar.getInstance();
-                    calendar.get(1);
-                    calendar.get(2);
-                    calendar.get(5);
-                    try {
-                        EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) view;
-                        int intValue = ((Integer) editTextBoldCursor.getTag()).intValue();
-                        if (intValue == 8) {
-                            string = LocaleController.getString(R.string.PassportSelectExpiredDate);
-                            i15 = 20;
-                            i11 = 0;
-                            i10 = 0;
-                        } else {
-                            i10 = -120;
-                            string = LocaleController.getString(R.string.PassportSelectBithdayDate);
-                            i11 = -18;
-                        }
-                        boolean z10 = false;
-                        String[] split = editTextBoldCursor.getText().toString().split("\\.");
-                        if (split.length == 3) {
-                            i12 = Utilities.parseInt((CharSequence) split[0]).intValue();
-                            i14 = Utilities.parseInt((CharSequence) split[1]).intValue();
-                            i13 = Utilities.parseInt((CharSequence) split[2]).intValue();
-                        } else {
-                            i12 = -1;
-                            i13 = -1;
-                            i14 = -1;
-                        }
-                        if (intValue == 8) {
-                            z10 = true;
-                        }
-                        int i16 = i10;
-                        int i17 = i12;
-                        AlertDialog$Builder x10 = org.telegram.ui.Components.e5.x(context, i16, i15, i11, i17, i14, i13, string, z10, new gg.d2(kn0Var, intValue, editTextBoldCursor, 15));
-                        if (intValue == 8) {
-                            x10.h(LocaleController.getString(R.string.PassportSelectNotExpire), new pw(24, kn0Var, editTextBoldCursor));
-                        }
-                        kn0Var.showDialog(x10.f20377a);
-                    } catch (Exception e7) {
-                        FileLog.e(e7);
+                a00 a00Var = (a00) this.f5757b;
+                my myVar = a00Var.P;
+                if (view instanceof org.telegram.ui.Cells.o8) {
+                    rect.left = AndroidUtilities.dp(5.0f);
+                    rect.right = AndroidUtilities.dp(5.0f);
+                    recyclerView.getClass();
+                    if (RecyclerView.R(view) + 1 > a00Var.R.E && !UserConfig.getInstance(a00Var.f24401c1).isPremium() && !a00Var.U0) {
+                        rect.top = AndroidUtilities.dp(10.0f);
+                        return;
                     }
+                    return;
+                } else if (!(view instanceof qm0) && !(view instanceof ry)) {
+                    if (view instanceof org.telegram.ui.Components.y9) {
+                        rect.bottom = AndroidUtilities.dp(12.0f);
+                        return;
+                    }
+                    return;
+                } else {
+                    rect.left = -myVar.getPaddingLeft();
+                    rect.right = -myVar.getPaddingRight();
+                    if (view instanceof ry) {
+                        rect.top = AndroidUtilities.dp(8.0f);
+                        return;
+                    }
+                    return;
                 }
-                return true;
+            case 4:
+                recyclerView.getClass();
+                if (RecyclerView.R(view) == ((ArrayList) this.f5757b).size() - 1) {
+                    rect.bottom = AndroidUtilities.dp(4.0f);
+                    return;
+                }
+                return;
+            case 5:
+                recyclerView.getClass();
+                if (RecyclerView.R(view) == ((hi0) this.f5757b).f38351c.size() - 1) {
+                    rect.bottom = AndroidUtilities.dp(4.0f);
+                    return;
+                }
+                return;
+            case 6:
+                super.a(rect, view, recyclerView, a1Var);
+                recyclerView.getClass();
+                int R = RecyclerView.R(view);
+                sj0 sj0Var = (sj0) this.f5757b;
+                if (R == sj0Var.f41709c0.size()) {
+                    rect.bottom = sj0Var.f41718l0;
+                    return;
+                }
+                return;
+            case 7:
+                recyclerView.getClass();
+                int R2 = RecyclerView.R(view);
+                up0 up0Var = (up0) this.f5757b;
+                int i13 = up0Var.f42513b0;
+                if (R2 >= i13) {
+                    int i14 = up0Var.f42520f0;
+                    if (R2 < i13 + i14) {
+                        int i15 = R2 - i13;
+                        int i16 = i15 / 3;
+                        boolean z13 = true;
+                        int i17 = 0;
+                        if (i16 == 0) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        if (i16 == (i14 - 1) / 3) {
+                            z11 = true;
+                        } else {
+                            z11 = false;
+                        }
+                        int i18 = i15 % 3;
+                        if (i18 == 0) {
+                            z12 = true;
+                        } else {
+                            z12 = false;
+                        }
+                        if (i18 != 2) {
+                            z13 = false;
+                        }
+                        if (z10) {
+                            i10 = AndroidUtilities.dp(8.0f);
+                        } else {
+                            i10 = 0;
+                        }
+                        rect.top = i10;
+                        if (z11) {
+                            i11 = AndroidUtilities.dp(8.0f);
+                        } else {
+                            i11 = 0;
+                        }
+                        rect.bottom = i11;
+                        if (z12) {
+                            i12 = AndroidUtilities.dp(10.0f);
+                        } else {
+                            i12 = 0;
+                        }
+                        rect.left = i12;
+                        if (z13) {
+                            i17 = AndroidUtilities.dp(10.0f);
+                        }
+                        rect.right = i17;
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                super.a(rect, view, recyclerView, a1Var);
+                recyclerView.getClass();
+                int R3 = RecyclerView.R(view);
+                tg.z0 z0Var = (tg.z0) this.f5757b;
+                if (R3 == z0Var.f48435d0.size()) {
+                    rect.bottom = z0Var.f48446p0;
+                    return;
+                }
+                return;
         }
     }
 }

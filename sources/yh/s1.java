@@ -1,38 +1,50 @@
 package yh;
 
-import org.telegram.messenger.BillingController;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.ad;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.tc;
 public final class s1 implements Runnable {
-    public final int f51955a;
-    public final org.telegram.tgnet.e f51956b;
-    public final ad[] f51957c;
-    public final TL_stars.UniqueStarGiftValueInfo d;
-    public final String f51958e;
+    public final int f53146a;
+    public final s3 f53147b;
+    public final String f53148c;
 
-    public s1(org.telegram.tgnet.e eVar, ad[] adVarArr, TL_stars.UniqueStarGiftValueInfo uniqueStarGiftValueInfo, String str, int i10) {
-        this.f51955a = i10;
-        this.f51956b = eVar;
-        this.f51957c = adVarArr;
-        this.d = uniqueStarGiftValueInfo;
-        this.f51958e = str;
+    public s1(s3 s3Var, String str, int i10) {
+        this.f53146a = i10;
+        this.f53147b = s3Var;
+        this.f53148c = str;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f51955a;
-        String str = this.f51958e;
-        TL_stars.UniqueStarGiftValueInfo uniqueStarGiftValueInfo = this.d;
-        ad[] adVarArr = this.f51957c;
-        org.telegram.tgnet.e eVar = this.f51956b;
-        switch (i10) {
+        switch (this.f53146a) {
             case 0:
-                eVar.run(adVarArr[0], LocaleController.formatString(R.string.GiftValueMinPriceInfo, BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.floor_price, uniqueStarGiftValueInfo.currency), str));
+                s3.j1(this.f53147b, this.f53148c);
+                return;
+            case 1:
+                s3.i1(this.f53147b, this.f53148c);
+                return;
+            case 2:
+                s3.v0(this.f53147b, this.f53148c);
+                return;
+            case 3:
+                s3.R0(this.f53147b, this.f53148c);
+                return;
+            case 4:
+                s3.E0(this.f53147b, this.f53148c);
+                return;
+            case 5:
+                s3.R(this.f53147b, this.f53148c);
+                return;
+            case 6:
+                s3.y0(this.f53147b, this.f53148c);
+                return;
+            case 7:
+                AndroidUtilities.addToClipboard(this.f53148c);
+                tc k10 = this.f53147b.getBulletinFactory().k(false);
+                k10.f31140t = true;
+                k10.j();
                 return;
             default:
-                eVar.run(adVarArr[0], LocaleController.formatString(R.string.GiftValueAveragePriceInfo, BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.average_price, uniqueStarGiftValueInfo.currency), str));
+                s3.p0(this.f53147b, this.f53148c);
                 return;
         }
     }

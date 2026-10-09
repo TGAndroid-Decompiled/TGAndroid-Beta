@@ -1,106 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.ViewTreeObserver;
-import android.widget.PopupWindow;
-import java.lang.reflect.Field;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-public final class bv extends PopupWindow {
-    public static Field f25101f;
-    public static final org.telegram.ui.ActionBar.g1 f25102g = new org.telegram.ui.ActionBar.g1(1);
-    public ViewTreeObserver.OnScrollChangedListener f25103a;
-    public ViewTreeObserver f25104b;
-    public final av f25105c;
-    public boolean d;
-    public final int f25106e;
+import android.text.TextPaint;
+import android.text.style.CharacterStyle;
+public final class bv extends CharacterStyle {
+    public final int f25106a;
+    public int f25107b;
 
-    public bv(av avVar) {
-        super(avVar);
-        float f7;
-        if (AndroidUtilities.isTablet()) {
-            f7 = 40.0f;
-        } else {
-            f7 = 32.0f;
-        }
-        this.f25106e = AndroidUtilities.dp(f7);
-        this.f25105c = avVar;
-        setOutsideTouchable(true);
-        setClippingEnabled(true);
-        setInputMethodMode(2);
-        setSoftInputMode(0);
-        avVar.setFocusableInTouchMode(true);
-        avVar.setOnKeyListener(new pn(this, 1));
-    }
-
-    public final void a(View view) {
-        ViewTreeObserver viewTreeObserver;
-        if (this.f25103a != null) {
-            if (view.getWindowToken() != null) {
-                viewTreeObserver = view.getViewTreeObserver();
-            } else {
-                viewTreeObserver = null;
-            }
-            ViewTreeObserver viewTreeObserver2 = this.f25104b;
-            if (viewTreeObserver != viewTreeObserver2) {
-                if (viewTreeObserver2 != null && viewTreeObserver2.isAlive()) {
-                    this.f25104b.removeOnScrollChangedListener(this.f25103a);
-                }
-                this.f25104b = viewTreeObserver;
-                if (viewTreeObserver != null) {
-                    viewTreeObserver.addOnScrollChangedListener(this.f25103a);
-                }
-            }
-        }
+    public bv(int i10, int i11) {
+        this.f25106a = i11;
+        this.f25107b = i10;
     }
 
     @Override
-    public final void dismiss() {
-        ViewTreeObserver viewTreeObserver;
-        setFocusable(false);
-        try {
-            super.dismiss();
-        } catch (Exception unused) {
-        }
-        if (this.f25103a != null && (viewTreeObserver = this.f25104b) != null) {
-            if (viewTreeObserver.isAlive()) {
-                this.f25104b.removeOnScrollChangedListener(this.f25103a);
-            }
-            this.f25104b = null;
+    public final void updateDrawState(TextPaint textPaint) {
+        switch (this.f25106a) {
+            case 0:
+                textPaint.setAlpha((int) ((this.f25107b / 255.0f) * textPaint.getAlpha()));
+                return;
+            default:
+                textPaint.setColor(org.telegram.ui.ActionBar.i6.m1(textPaint.getAlpha() / 255.0f, this.f25107b));
+                return;
         }
     }
 
-    @Override
-    public final void showAsDropDown(View view, int i10, int i11) {
-        try {
-            super.showAsDropDown(view, i10, i11);
-            a(view);
-        } catch (Exception e7) {
-            FileLog.e(e7);
-        }
+    public bv(boolean z10) {
+        this.f25106a = 0;
     }
 
-    @Override
-    public final void showAtLocation(View view, int i10, int i11, int i12) {
-        ViewTreeObserver viewTreeObserver;
-        super.showAtLocation(view, i10, i11, i12);
-        if (this.f25103a != null && (viewTreeObserver = this.f25104b) != null) {
-            if (viewTreeObserver.isAlive()) {
-                this.f25104b.removeOnScrollChangedListener(this.f25103a);
-            }
-            this.f25104b = null;
-        }
-    }
-
-    @Override
-    public final void update(View view, int i10, int i11, int i12, int i13) {
-        super.update(view, i10, i11, i12, i13);
-        a(view);
-    }
-
-    @Override
-    public final void update(View view, int i10, int i11) {
-        super.update(view, i10, i11);
-        a(view);
+    public bv() {
+        this.f25106a = 0;
+        this.f25107b = 0;
     }
 }

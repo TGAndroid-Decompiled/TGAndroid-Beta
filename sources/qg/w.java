@@ -1,7 +1,7 @@
 package qg;
-public final class w extends ci.s2 {
+public final class w extends ci.r2 {
     @Override
-    public final boolean m0(Integer num) {
+    public final boolean n0(Integer num) {
         if (num.intValue() == 2) {
             return true;
         }

@@ -1,6 +1,6 @@
 package org.telegram.ui.ActionBar;
 public interface z2 {
-    boolean g();
+    boolean h();
 
     void onOpenAnimationEnd();
 }

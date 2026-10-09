@@ -1,142 +1,90 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
-import android.os.Build;
+import android.app.Activity;
 import android.view.View;
-import android.widget.FrameLayout;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.TLRPC;
-public abstract class d9 extends FrameLayout {
-    public float E;
-    public final e9 F;
-    public long f25717a;
-    public TLRPC.Document f25718b;
-    public final ai.y5 f25719c;
-    public final s20 d;
-    public final s20 f25720e;
-    public float f25721f;
-    public a9 h;
-    public boolean f25722n;
-    public final PorterDuffColorFilter f25723r;
-    public final e6 f25724s;
-    public boolean v;
-    public float f25725w;
-    public float f25726x;
-    public float f25727y;
+public final class d9 extends qm0 {
+    public final ArrayList V2;
+    public final int W2;
+    public int X2;
+    public final org.telegram.ui.v7 Y2;
+    public c9 Z2;
+    public final g9 f25645a3;
 
-    public d9(e9 e9Var, Context context) {
-        super(context);
-        this.F = e9Var;
-        this.d = new s20();
-        this.f25720e = new s20();
-        this.f25721f = 1.0f;
-        this.f25723r = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
-        this.f25724s = new e6(this, 200L, tr.f31216g);
-        this.f25725w = -1.0f;
-        ai.y5 y5Var = new ai.y5(this, context, 7);
-        this.f25719c = y5Var;
-        y5Var.getImageReceiver().setAutoRepeatCount(1);
-        y5Var.getImageReceiver().setAspectFit(true);
-        setClipChildren(false);
-        addView(y5Var, w7.z5.e(70, 70, 17));
-    }
-
-    public final void a(Canvas canvas, float f7, float f10, float f11, float f12, Paint paint) {
-        float f13 = this.f25724s.f25987c;
-        if (f13 == 0.0f) {
-            canvas.drawCircle(f7, f10, f12, paint);
-            return;
+    public d9(g9 g9Var, Activity activity) {
+        super(activity, null);
+        this.f25645a3 = g9Var;
+        this.V2 = new ArrayList();
+        this.W2 = 200;
+        this.X2 = -1;
+        s4.d0 d0Var = new s4.d0();
+        d0Var.j1(0);
+        setLayoutManager(d0Var);
+        for (int i10 = 0; i10 < 7; i10++) {
+            ?? obj = new Object();
+            int i11 = this.W2;
+            this.W2 = i11 + 1;
+            obj.f25292a = i11;
+            int[] iArr = g9.f26621c0[i10];
+            obj.f25294c = iArr[0];
+            obj.d = iArr[1];
+            obj.f25295e = iArr[2];
+            obj.f25296f = iArr[3];
+            this.V2.add(obj);
         }
-        float lerp = AndroidUtilities.lerp(f11, 0.0f, f13);
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(f7 - f12, f10 - f12, f7 + f12, f10 + f12);
-        canvas.drawRoundRect(rectF, lerp, lerp, paint);
-    }
-
-    public final void b(a9 a9Var, boolean z10) {
-        a9 a9Var2 = this.h;
-        if (a9Var2 != null) {
-            this.f25720e.d(a9Var2.f24517c, a9Var2.d, a9Var2.f24518e, a9Var2.f24519f);
-            this.f25721f = 0.0f;
-            this.F.f26077n = true;
+        for (int i12 = 0; i12 < 30; i12++) {
+            ?? obj2 = new Object();
+            int i13 = this.W2;
+            this.W2 = i13 + 1;
+            obj2.f25292a = i13;
+            int[] iArr2 = g9.f26622d0[i12];
+            obj2.f25294c = iArr2[0];
+            obj2.d = iArr2[1];
+            obj2.f25295e = 0;
+            obj2.f25296f = 0;
+            obj2.f25293b = true;
+            this.V2.add(obj2);
         }
-        this.h = a9Var;
-        this.f25722n = z10;
-        if (Build.VERSION.SDK_INT >= 23) {
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
-        }
-        invalidate();
-    }
-
-    @Override
-    public final void dispatchDraw(android.graphics.Canvas r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.d9.dispatchDraw(android.graphics.Canvas):void");
-    }
-
-    public long getDuration() {
-        ai.y5 y5Var = this.f25719c;
-        ImageReceiver imageReceiver = y5Var.getImageReceiver();
-        q5 q5Var = y5Var.f32567e;
-        if (q5Var != null) {
-            imageReceiver = q5Var.f29935k;
-        }
-        if (imageReceiver != null && imageReceiver.getLottieAnimation() != null) {
-            return imageReceiver.getLottieAnimation().r();
-        }
-        return 5000L;
-    }
-
-    public ImageReceiver getImageReceiver() {
-        ai.y5 y5Var = this.f25719c;
-        ImageReceiver imageReceiver = y5Var.getImageReceiver();
-        q5 q5Var = y5Var.f32567e;
-        if (q5Var != null) {
-            ai.l4 l4Var = q5Var.f29935k;
-            q5Var.setColorFilter(this.f25723r);
-            return l4Var;
-        }
-        return imageReceiver;
-    }
-
-    @Override
-    public void invalidate() {
-        super.invalidate();
-        this.F.fragmentView.invalidate();
+        setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
+        setClipToPadding(false);
+        this.f30200f1 = true;
+        setOnItemClickListener(new j(this, 2));
+        org.telegram.ui.v7 v7Var = new org.telegram.ui.v7(this, 2);
+        this.Y2 = v7Var;
+        setAdapter(v7Var);
+        setOverScrollMode(1);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        if (this.F.U) {
-            super.onMeasure(i10, i11);
-        } else {
-            super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(140.0f), 1073741824));
+        int size = View.MeasureSpec.getSize(i10) / this.Y2.h();
+        g9 g9Var = this.f25645a3;
+        g9Var.P = size;
+        if (size < AndroidUtilities.dp(39.0f)) {
+            g9Var.P = AndroidUtilities.dp(39.0f);
+        } else if (g9Var.P > AndroidUtilities.dp(150.0f)) {
+            g9Var.P = AndroidUtilities.dp(48.0f);
         }
+        super.onMeasure(i10, i11);
     }
 
-    public void setExpanded(boolean z10) {
-        ai.l4 l4Var;
-        if (this.v == z10) {
-            return;
-        }
-        this.v = z10;
-        if (z10) {
-            ai.y5 y5Var = this.f25719c;
-            q5 q5Var = y5Var.f32567e;
-            if (q5Var != null && (l4Var = q5Var.f29935k) != null) {
-                l4Var.startAnimation();
+    public final void x1(c9 c9Var) {
+        int i10 = 0;
+        while (true) {
+            ArrayList arrayList = this.V2;
+            if (i10 < arrayList.size()) {
+                if (((c9) arrayList.get(i10)).equals(c9Var)) {
+                    this.X2 = ((c9) arrayList.get(i10)).f25292a;
+                    break;
+                }
+                i10++;
+            } else {
+                this.Z2 = c9Var;
+                this.X2 = 1;
+                break;
             }
-            y5Var.f32564a.startAnimation();
         }
-        if (Build.VERSION.SDK_INT >= 23) {
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
-        }
-        invalidate();
+        this.Y2.l();
     }
 }

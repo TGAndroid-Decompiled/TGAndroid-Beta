@@ -1,6 +1,6 @@
 package x7;
 public abstract class y {
-    public static final int f49759a = 0;
+    public static final int f51035a = 0;
 
     static {
         y.class.getClassLoader();

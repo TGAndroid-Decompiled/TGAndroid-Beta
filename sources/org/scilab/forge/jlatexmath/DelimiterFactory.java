@@ -4,7 +4,10 @@ public class DelimiterFactory {
 
     public static Box create(String str, TeXEnvironment teXEnvironment, float f7) {
         float f10;
-        float min = Math.min((Float.isInfinite(f7) || Float.isNaN(f7) || f7 < 0.0f) ? 0.0f : 0.0f, 4096.0f);
+        if (Float.isInfinite(f7) || Float.isNaN(f7) || f7 < 0.0f) {
+            f7 = 0.0f;
+        }
+        float min = Math.min(f7, 4096.0f);
         TeXFont teXFont = teXEnvironment.getTeXFont();
         int style = teXEnvironment.getStyle();
         Char r42 = teXFont.getChar(str, style);

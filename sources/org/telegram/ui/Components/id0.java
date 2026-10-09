@@ -1,3 +1,14 @@
 package org.telegram.ui.Components;
-public interface id0 {
+
+import android.graphics.drawable.Drawable;
+public final class id0 extends Drawable.ConstantState {
+    @Override
+    public final int getChangingConfigurations() {
+        return 0;
+    }
+
+    @Override
+    public final Drawable newDrawable() {
+        return new jd0();
+    }
 }

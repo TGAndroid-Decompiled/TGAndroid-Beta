@@ -7,14 +7,14 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
 public final class l2 {
-    public final int f15793a;
+    public final int f15721a;
 
     public l2(int i10) {
-        this.f15793a = i10;
+        this.f15721a = i10;
     }
 
     public final Drawable a(Context context, XmlResourceParser xmlResourceParser, AttributeSet attributeSet, Resources.Theme theme) {
-        switch (this.f15793a) {
+        switch (this.f15721a) {
             case 0:
                 String classAttribute = attributeSet.getClassAttribute();
                 if (classAttribute == null) {
@@ -30,7 +30,7 @@ public final class l2 {
                 }
             case 1:
                 try {
-                    return i.e.e(context, context.getResources(), xmlResourceParser, attributeSet, theme);
+                    return i.e.c(context, context.getResources(), xmlResourceParser, attributeSet, theme);
                 } catch (Exception e10) {
                     Log.e("AsldcInflateDelegate", "Exception while inflating <animated-selector>", e10);
                     return null;
@@ -48,9 +48,9 @@ public final class l2 {
             default:
                 try {
                     Resources resources2 = context.getResources();
-                    x4.p pVar = new x4.p();
-                    pVar.inflate(resources2, xmlResourceParser, attributeSet, theme);
-                    return pVar;
+                    x4.o oVar = new x4.o();
+                    oVar.inflate(resources2, xmlResourceParser, attributeSet, theme);
+                    return oVar;
                 } catch (Exception e12) {
                     Log.e("VdcInflateDelegate", "Exception while inflating <vector>", e12);
                     return null;

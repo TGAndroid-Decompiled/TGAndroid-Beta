@@ -1,6 +1,6 @@
 package tg;
 
-import ai.k2;
+import ai.l2;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,64 +12,64 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.q90;
-import org.telegram.ui.Components.zl0;
+import org.telegram.ui.Components.ea0;
+import org.telegram.ui.Components.j9;
+import org.telegram.ui.Components.qm0;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.vb1;
-import w7.z5;
-public final class j0 extends rg.m1 {
+import org.telegram.ui.dc1;
+import w7.x5;
+public final class j0 extends rg.l1 {
     public final ArrayList Q0;
 
-    public j0(n2 n2Var, int i10, ArrayList arrayList, d6 d6Var) {
-        super(n2Var, i10, null, null, null, d6Var);
+    public j0(n2 n2Var, int i10, ArrayList arrayList, e6 e6Var) {
+        super(n2Var, i10, null, null, null, e6Var);
         ArrayList arrayList2 = new ArrayList();
         this.Q0 = arrayList2;
         arrayList2.addAll(arrayList);
-        b0();
+        c0();
         this.useBackgroundTopPadding = false;
         setApplyTopPadding(false);
         this.backgroundPaddingTop = 0;
         vg.a aVar = new vg.a(getContext(), this.resourcesProvider);
         aVar.setOnClickListener(new org.telegram.ui.Components.voip.o(this, 12));
         aVar.setCloseStyle(true);
-        this.containerView.addView(aVar, z5.d(-1, 64.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
-        zl0 zl0Var = this.d;
+        this.containerView.addView(aVar, x5.a(64.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 80));
+        qm0 qm0Var = this.d;
         int i11 = this.backgroundPaddingLeft;
-        zl0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(64.0f));
+        qm0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(64.0f));
         Context context = getContext();
-        int i12 = i0.f47030f;
+        int i12 = i0.f48329f;
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.setClipChildren(false);
         FrameLayout frameLayout2 = new FrameLayout(context);
         frameLayout2.setClipChildren(false);
         if (arrayList2.size() == 1) {
-            frameLayout.addView(frameLayout2, z5.d(-1, 94.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
+            frameLayout.addView(frameLayout2, x5.a(94.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 0));
             i0 i0Var = new i0(context, 47.0f);
             i0Var.d = false;
             TLRPC.User user = (TLRPC.User) arrayList2.get(0);
-            h9 h9Var = i0Var.f47034e;
-            h9Var.r(user);
-            i0Var.f47031a.e(user, h9Var);
-            frameLayout2.addView(i0Var, 0, z5.e(94, 94, 17));
+            j9 j9Var = i0Var.f48333e;
+            j9Var.r(user);
+            i0Var.f48330a.e(user, j9Var);
+            frameLayout2.addView(i0Var, 0, x5.e(94, 94, 17));
         } else {
-            frameLayout.addView(frameLayout2, z5.d(-1, 83.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
+            frameLayout.addView(frameLayout2, x5.a(83.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 0));
             int i13 = 0;
             for (int i14 = 0; i14 < arrayList2.size(); i14++) {
                 TLRPC.User user2 = (TLRPC.User) arrayList2.get(i14);
                 i0 i0Var2 = new i0(context, 41.5f);
-                h9 h9Var2 = i0Var2.f47034e;
-                h9Var2.r(user2);
-                i0Var2.f47031a.e(user2, h9Var2);
-                frameLayout2.addView(i0Var2, 0, z5.e(83, 83, 17));
+                j9 j9Var2 = i0Var2.f48333e;
+                j9Var2.r(user2);
+                i0Var2.f48330a.e(user2, j9Var2);
+                frameLayout2.addView(i0Var2, 0, x5.e(83, 83, 17));
                 i0Var2.setTranslationX(AndroidUtilities.dp(29.0f) * (-i14));
                 if (i14 == 0 && arrayList2.size() > 3) {
-                    h0 h0Var = i0Var2.f47032b;
+                    h0 h0Var = i0Var2.f48331b;
                     h0Var.setAlpha(1.0f);
-                    h0Var.f47029b = arrayList2.size() - 3;
+                    h0Var.f48328b = arrayList2.size() - 3;
                 }
                 i13++;
                 if (i14 == 2) {
@@ -82,7 +82,7 @@ public final class j0 extends rg.m1 {
         fixNavigationBar();
     }
 
-    public static void c0(ArrayList arrayList) {
+    public static void d0(ArrayList arrayList) {
         n2 R = LaunchActivity.R();
         if (R == null) {
             return;
@@ -94,17 +94,17 @@ public final class j0 extends rg.m1 {
     }
 
     @Override
-    public final void T(int i10, View view) {
+    public final void W(int i10, View view) {
         if (i10 == 0) {
-            view.setOutlineProvider(new k2(21));
+            view.setOutlineProvider(new l2(21));
             view.setClipToOutline(true);
-            view.setBackgroundColor(i6.v0(i6.f20771a7, this.resourcesProvider));
+            view.setBackgroundColor(i6.w0(i6.f20741a7, this.resourcesProvider));
             ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).topMargin = -AndroidUtilities.dp(6.0f);
         }
     }
 
     @Override
-    public final void U(vb1 vb1Var) {
+    public final void X(dc1 dc1Var) {
         int i10;
         float f7;
         float f10;
@@ -115,28 +115,30 @@ public final class j0 extends rg.m1 {
         } else {
             i10 = 83;
         }
+        int i11 = i10;
         if (arrayList.size() == 1) {
             f7 = 28.0f;
         } else {
             f7 = 34.0f;
         }
+        float f11 = f7;
         if (arrayList.size() == 1) {
             f10 = 9.0f;
         } else {
             f10 = 14.0f;
         }
-        vb1Var.addView(view, z5.k(0.0f, f7, 0.0f, f10, -1, i10));
+        dc1Var.addView(view, x5.k(0.0f, f11, 0.0f, f10, -1, i11));
     }
 
     @Override
-    public final void Z(boolean z10) {
+    public final void b0(boolean z10) {
         String formatString;
         this.O0[0].setTextSize(1, 20.0f);
         this.P0.setPadding(AndroidUtilities.dp(30.0f), 0, AndroidUtilities.dp(30.0f), 0);
         this.P0.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        q90 q90Var = this.O0[0];
+        ea0 ea0Var = this.O0[0];
         ArrayList arrayList = this.Q0;
-        q90Var.setText(LocaleController.getPluralString("GiftPremiumGiftsSent", arrayList.size()));
+        ea0Var.setText(LocaleController.getPluralString("GiftPremiumGiftsSent", arrayList.size()));
         ((ViewGroup.MarginLayoutParams) this.P0.getLayoutParams()).bottomMargin = AndroidUtilities.dp(16.0f);
         ((ViewGroup.MarginLayoutParams) this.P0.getLayoutParams()).topMargin = AndroidUtilities.dp(4.0f);
         int size = arrayList.size();
@@ -164,14 +166,14 @@ public final class j0 extends rg.m1 {
     }
 
     @Override
-    public final void b0() {
-        this.f46205f0 = 1;
-        this.f46206g0 = 0;
-        this.f46209j0 = 1;
+    public final void c0() {
+        this.f47324f0 = 1;
+        this.f47325g0 = 0;
+        this.f47328j0 = 1;
         int size = this.X.size();
         int i10 = 1 + size;
-        this.f46210k0 = i10;
-        this.f46205f0 = size + 2;
-        this.f46212n0 = i10;
+        this.f47329k0 = i10;
+        this.f47324f0 = size + 2;
+        this.f47331n0 = i10;
     }
 }

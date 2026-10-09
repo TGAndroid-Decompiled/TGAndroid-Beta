@@ -12,41 +12,41 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 public final class e0 extends com.google.android.gms.common.api.j implements f0 {
     public static final g6.b G = new g6.b("CastClient", null);
-    public static final com.google.android.gms.common.api.e H = new com.google.android.gms.common.api.e("Cast.API_CXLESS", new a8.d(1), g6.j.f10259a);
+    public static final com.google.android.gms.common.api.e H = new com.google.android.gms.common.api.e("Cast.API_CXLESS", new a8.d(1), g6.j.f10332a);
     public final CastDevice A;
     public final HashMap B;
     public final HashMap C;
     public final d6.d0 D;
     public final List E;
     public int F;
-    public final d0 f4297k;
-    public com.google.android.gms.internal.cast.c0 f4298l;
-    public boolean f4299m;
-    public boolean f4300n;
-    public TaskCompletionSource f4301o;
-    public TaskCompletionSource f4302p;
-    public final AtomicLong f4303q;
-    public final Object f4304r;
-    public final Object f4305s;
-    public d f4306t;
-    public String f4307u;
+    public final d0 f4347k;
+    public com.google.android.gms.internal.cast.a0 f4348l;
+    public boolean f4349m;
+    public boolean f4350n;
+    public TaskCompletionSource f4351o;
+    public TaskCompletionSource f4352p;
+    public final AtomicLong f4353q;
+    public final Object f4354r;
+    public final Object f4355s;
+    public d f4356t;
+    public String f4357u;
     public double v;
-    public boolean f4308w;
-    public int f4309x;
-    public int f4310y;
-    public x f4311z;
+    public boolean f4358w;
+    public int f4359x;
+    public int f4360y;
+    public x f4361z;
 
     public e0(Context context, e eVar) {
-        super(context, H, eVar, com.google.android.gms.common.api.i.f6485c);
-        this.f4297k = new d0(this);
-        this.f4304r = new Object();
-        this.f4305s = new Object();
+        super(context, H, eVar, com.google.android.gms.common.api.i.f6537c);
+        this.f4347k = new d0(this);
+        this.f4354r = new Object();
+        this.f4355s = new Object();
         this.E = DesugarCollections.synchronizedList(new ArrayList());
-        this.D = eVar.f4295b;
-        this.A = eVar.f4294a;
+        this.D = eVar.f4345b;
+        this.A = eVar.f4344a;
         this.B = new HashMap();
         this.C = new HashMap();
-        this.f4303q = new AtomicLong(0L);
+        this.f4353q = new AtomicLong(0L);
         this.F = 1;
         j();
     }
@@ -69,9 +69,9 @@ public final class e0 extends com.google.android.gms.common.api.j implements f0 
     }
 
     public static void g(e0 e0Var, int i10) {
-        synchronized (e0Var.f4305s) {
+        synchronized (e0Var.f4355s) {
             try {
-                TaskCompletionSource taskCompletionSource = e0Var.f4302p;
+                TaskCompletionSource taskCompletionSource = e0Var.f4352p;
                 if (taskCompletionSource == null) {
                     return;
                 }
@@ -80,7 +80,7 @@ public final class e0 extends com.google.android.gms.common.api.j implements f0 
                 } else {
                     taskCompletionSource.setException(n6.l.m(new Status(i10, null, null, null)));
                 }
-                e0Var.f4302p = null;
+                e0Var.f4352p = null;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -88,10 +88,10 @@ public final class e0 extends com.google.android.gms.common.api.j implements f0 
     }
 
     public static Handler k(e0 e0Var) {
-        if (e0Var.f4298l == null) {
-            e0Var.f4298l = new com.google.android.gms.internal.cast.c0(e0Var.f6676f, 0);
+        if (e0Var.f4348l == null) {
+            e0Var.f4348l = new com.google.android.gms.internal.cast.a0(e0Var.f6728f, 0);
         }
-        return e0Var.f4298l;
+        return e0Var.f4348l;
     }
 
     public final void h() {
@@ -102,13 +102,13 @@ public final class e0 extends com.google.android.gms.common.api.j implements f0 
     }
 
     public final void i(int i10) {
-        synchronized (this.f4304r) {
+        synchronized (this.f4354r) {
             try {
-                TaskCompletionSource taskCompletionSource = this.f4301o;
+                TaskCompletionSource taskCompletionSource = this.f4351o;
                 if (taskCompletionSource != null) {
                     taskCompletionSource.setException(n6.l.m(new Status(i10, null, null, null)));
                 }
-                this.f4301o = null;
+                this.f4351o = null;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -118,7 +118,7 @@ public final class e0 extends com.google.android.gms.common.api.j implements f0 
     public final void j() {
         CastDevice castDevice = this.A;
         if (!castDevice.c(2048) && castDevice.c(4) && !castDevice.c(1)) {
-            "Chromecast Audio".equals(castDevice.f6425e);
+            "Chromecast Audio".equals(castDevice.f6477e);
         }
     }
 }

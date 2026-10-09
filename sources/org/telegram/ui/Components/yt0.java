@@ -1,32 +1,44 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class yt0 extends nv0 {
-    public final qv0 G;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class yt0 implements org.telegram.ui.Cells.m7 {
+    public final bw0 f33353a;
 
-    public yt0(qv0 qv0Var, Context context) {
-        super(qv0Var, context, 0, false);
-        this.G = qv0Var;
+    public yt0(bw0 bw0Var) {
+        this.f33353a = bw0Var;
     }
 
     @Override
-    public final void l() {
-        boolean z10;
-        super.l();
-        qv0 qv0Var = this.G;
-        ju0 W = qv0Var.W(8);
-        if (W != null && W.f27977r.getVisibility() == 0) {
-            qv0Var.f30223d0.l();
+    public final void a(String str, boolean z10) {
+        bw0 bw0Var = this.f33353a;
+        org.telegram.ui.ActionBar.n2 n2Var = bw0Var.f25166v1;
+        if (z10) {
+            org.telegram.ui.ActionBar.f3 f3Var = new org.telegram.ui.ActionBar.f3(1, (Context) n2Var.getParentActivity(), (org.telegram.ui.ActionBar.e6) null, false);
+            f3Var.fixNavigationBar();
+            f3Var.title = str;
+            f3Var.bigTitle = false;
+            CharSequence[] charSequenceArr = {LocaleController.getString("Open", R.string.Open), LocaleController.getString("Copy", R.string.Copy)};
+            lg.j jVar = new lg.j(6, this, str);
+            f3Var.items = charSequenceArr;
+            f3Var.onClickListener = jVar;
+            n2Var.showDialog(f3Var);
+            return;
         }
-        if (W != null) {
-            at0 at0Var = W.f27979w;
-            ai.d9 d9Var = this.f29158s;
-            if (d9Var != null && (d9Var.k() || (qv0Var.i0() && this.f29158s.g() > 0))) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            at0Var.e(z10, true);
-        }
+        bw0Var.R0(str);
+    }
+
+    @Override
+    public final void b(TLRPC.WebPage webPage, MessageObject messageObject) {
+        bw0 bw0Var = this.f33353a;
+        lv.J(bw0Var.f25166v1, messageObject, bw0Var.f25157r1, webPage.site_name, webPage.description, webPage.url, webPage.embed_url, webPage.embed_width, webPage.embed_height, -1, false);
+    }
+
+    @Override
+    public final boolean e() {
+        return !this.f33353a.C1;
     }
 }

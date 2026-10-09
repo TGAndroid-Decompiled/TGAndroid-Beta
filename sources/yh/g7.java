@@ -1,67 +1,176 @@
 package yh;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewPropertyAnimator;
-import android.widget.ImageView;
-import org.telegram.ui.Components.e71;
-import org.telegram.ui.Components.g61;
-import org.telegram.ui.Components.h61;
-import org.telegram.ui.Components.tr;
-import org.telegram.ui.Components.w61;
-import org.telegram.ui.Components.zl0;
-public final class g7 extends g61 {
-    public static final int f51360a = 0;
+import android.widget.TextView;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
+import org.telegram.messenger.WebFile;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.c71;
+import org.telegram.ui.Components.j9;
+import org.telegram.ui.Components.k71;
+import org.telegram.ui.Components.o61;
+import org.telegram.ui.Components.p61;
+import org.telegram.ui.Components.qm0;
+import org.telegram.ui.Components.y9;
+import org.telegram.ui.w70;
+public final class g7 extends o61 {
+    public static final int f52589a = 0;
 
     static {
-        g61.setup(new g61());
+        o61.setup(new o61());
     }
 
     @Override
-    public final void bindView(View view, h61 h61Var, boolean z10, w61 w61Var, e71 e71Var) {
+    public final void bindView(View view, p61 p61Var, boolean z10, c71 c71Var, k71 k71Var) {
+        String userName;
         boolean z11;
+        boolean z12;
+        float f7;
         int i10;
+        int i11;
+        org.telegram.ui.ActionBar.j5 j5Var;
         h7 h7Var = (h7) view;
-        org.telegram.ui.Components.p6 p6Var = h7Var.f51438a;
-        ImageView imageView = h7Var.f51439b;
-        int i11 = h7Var.f51440c;
-        int i12 = h61Var.d;
-        if (i11 == i12) {
-            z11 = true;
-        } else {
+        TL_stars.StarsSubscription starsSubscription = (TL_stars.StarsSubscription) p61Var.G;
+        org.telegram.ui.ActionBar.j5 j5Var2 = h7Var.d;
+        y9 y9Var = h7Var.f52640c;
+        org.telegram.ui.ActionBar.e6 e6Var = h7Var.f52639b;
+        TextView textView = h7Var.h;
+        TextView textView2 = h7Var.f52642f;
+        TextView textView3 = h7Var.f52641e;
+        int i12 = h7Var.f52638a;
+        TextView textView4 = h7Var.f52643n;
+        long peerDialogId = DialogObject.getPeerDialogId(starsSubscription.peer);
+        h7Var.f52644r = !TextUtils.isEmpty(starsSubscription.title);
+        if (peerDialogId < 0) {
+            TLRPC.Chat chat = MessagesController.getInstance(i12).getChat(Long.valueOf(-peerDialogId));
+            j9 j9Var = new j9((org.telegram.ui.ActionBar.e6) null);
+            j9Var.q(chat);
+            y9Var.e(chat, j9Var);
+            if (chat != null) {
+                userName = chat.title;
+            } else {
+                userName = null;
+            }
             z11 = false;
-        }
-        h7Var.f51440c = i12;
-        p6Var.c(h61Var.f27093l, z11, true);
-        if (h61Var.f27098q) {
-            i10 = org.telegram.ui.ActionBar.i6.f21030o6;
         } else {
-            i10 = org.telegram.ui.ActionBar.i6.G6;
+            TLRPC.User user = MessagesController.getInstance(i12).getUser(Long.valueOf(peerDialogId));
+            j9 j9Var2 = new j9((org.telegram.ui.ActionBar.e6) null);
+            j9Var2.r(user);
+            y9Var.e(user, j9Var2);
+            userName = UserObject.getUserName(user);
+            z11 = !UserObject.isBot(user);
         }
-        int w02 = org.telegram.ui.ActionBar.i6.w0(null, i10, false);
-        p6Var.setTextColor(w02);
-        imageView.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
-        float f7 = 180.0f;
-        if (z11) {
-            ViewPropertyAnimator animate = imageView.animate();
-            if (h61Var.f27088f) {
-                f7 = 0.0f;
+        long currentTime = ConnectionsManager.getInstance(i12).getCurrentTime();
+        j5Var2.l(Emoji.replaceEmoji(userName, j5Var2.getPaint().getFontMetricsInt(), false), false);
+        if (!TextUtils.isEmpty(starsSubscription.title)) {
+            textView3.setVisibility(0);
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+            if (starsSubscription.photo != null) {
+                w70 w70Var = new w70(textView3, 14.0f, i12);
+                w70Var.a(4.0f);
+                w70Var.f43105f = false;
+                SpannableString spannableString = new SpannableString("x");
+                j5Var = j5Var2;
+                z12 = z11;
+                spannableString.setSpan(w70Var, 0, 1, 33);
+                w70Var.f43102b.setImage(ImageLocation.getForWebFile(WebFile.createWithWebDocument(starsSubscription.photo)), "14_14", null, null, 0, 0);
+                spannableStringBuilder.append((CharSequence) spannableString).append((CharSequence) " ");
+            } else {
+                j5Var = j5Var2;
+                z12 = z11;
             }
-            animate.rotation(f7).setDuration(340L).setInterpolator(tr.h);
+            spannableStringBuilder.append(Emoji.replaceEmoji(starsSubscription.title, j5Var.getPaint().getFontMetricsInt(), false));
+            textView3.setText(spannableStringBuilder);
         } else {
-            if (h61Var.f27088f) {
-                f7 = 0.0f;
-            }
-            imageView.setRotation(f7);
+            z12 = z11;
+            textView3.setVisibility(8);
         }
-        h7Var.d = z10;
+        if (h7Var.f52644r) {
+            f7 = 13.0f;
+        } else {
+            f7 = 14.0f;
+        }
+        textView2.setTextSize(1, f7);
+        if (!starsSubscription.canceled && !starsSubscription.bot_canceled) {
+            long j3 = starsSubscription.until_date;
+            if (j3 < currentTime) {
+                textView2.setText(LocaleController.formatString(R.string.StarsSubscriptionExpired, LocaleController.formatDateChat(j3)));
+                textView.setVisibility(8);
+                textView4.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.wj, e6Var));
+                textView4.setText(LocaleController.getString(R.string.StarsSubscriptionStatusExpired));
+            } else {
+                textView2.setText(LocaleController.formatString(R.string.StarsSubscriptionRenews, LocaleController.formatDateChat(j3)));
+                textView.setVisibility(0);
+                textView.setText(p7.Y0(false, "⭐️ " + Long.toString(starsSubscription.pricing.amount), 0.8f, null));
+                textView4.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21199z6, e6Var));
+                int i13 = starsSubscription.pricing.period;
+                if (i13 == 2592000) {
+                    textView4.setText(LocaleController.getString(R.string.StarsParticipantSubscriptionPerMonth));
+                } else if (i13 == 60) {
+                    textView4.setText("per minute");
+                } else if (i13 == 300) {
+                    textView4.setText("per 5 minutes");
+                }
+            }
+        } else {
+            long j10 = starsSubscription.until_date;
+            if (j10 < currentTime) {
+                i10 = R.string.StarsSubscriptionExpired;
+            } else {
+                i10 = R.string.StarsSubscriptionExpires;
+            }
+            textView2.setText(LocaleController.formatString(i10, LocaleController.formatDateChat(j10)));
+            textView.setVisibility(8);
+            textView4.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.wj, e6Var));
+            if (starsSubscription.bot_canceled) {
+                if (z12) {
+                    i11 = R.string.StarsSubscriptionStatusBizCancelled;
+                } else {
+                    i11 = R.string.StarsSubscriptionStatusBotCancelled;
+                }
+            } else {
+                i11 = R.string.StarsSubscriptionStatusCancelled;
+            }
+            textView4.setText(LocaleController.getString(i11));
+        }
+        h7Var.f52645s = z10;
         h7Var.setWillNotDraw(!z10);
     }
 
     @Override
-    public final View createView(Context context, zl0 zl0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
-        return new h7(context);
+    public final View createView(Context context, qm0 qm0Var, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var) {
+        h7 h7Var = (h7) getCached();
+        if (h7Var != null) {
+            return h7Var;
+        }
+        return new h7(context, i10, e6Var);
+    }
+
+    @Override
+    public final boolean equals(p61 p61Var, p61 p61Var2) {
+        if (p61Var2 != null) {
+            Object obj = p61Var.G;
+            if (obj instanceof TL_stars.StarsSubscription) {
+                Object obj2 = p61Var2.G;
+                if (obj2 instanceof TL_stars.StarsSubscription) {
+                    return TextUtils.equals(((TL_stars.StarsSubscription) obj).f20266id, ((TL_stars.StarsSubscription) obj2).f20266id);
+                }
+                return false;
+            }
+            return false;
+        }
+        return false;
     }
 }

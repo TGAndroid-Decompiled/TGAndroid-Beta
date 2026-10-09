@@ -1,40 +1,28 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class ln extends s4.d0 {
-    public final hg.f0 f28506r;
+import android.animation.ValueAnimator;
+public final class ln implements ValueAnimator.AnimatorUpdateListener {
+    public final int f28489a;
+    public final lo f28490b;
 
-    public ln(hg.f0 f0Var, Context context) {
-        super(context);
-        this.f28506r = f0Var;
+    public ln(lo loVar, int i10) {
+        this.f28489a = i10;
+        this.f28490b = loVar;
     }
 
     @Override
-    public final int k(int i10, View view) {
-        int i11;
-        xn xnVar = (xn) this.f28506r.V;
-        if (xnVar.V0) {
-            i10 = -1;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f28489a) {
+            case 0:
+                lo loVar = this.f28490b;
+                loVar.getClass();
+                loVar.E.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            default:
+                lo loVar2 = this.f28490b;
+                loVar2.getClass();
+                loVar2.E.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
         }
-        int k10 = super.k(i10, view);
-        if (xnVar.V0) {
-            k10 += AndroidUtilities.dp(160.0f);
-        }
-        if (!xnVar.V0) {
-            k10 = org.telegram.messenger.q.A(7.0f, xnVar.R0 - AndroidUtilities.statusBarHeight, k10);
-        }
-        if (xnVar.V0 && k10 == 0 && (i11 = xnVar.W0) >= 0) {
-            xn.I(xnVar, i11);
-            xnVar.W0 = -1;
-        }
-        xnVar.V0 = false;
-        return k10;
-    }
-
-    @Override
-    public final int m(int i10) {
-        return super.m(i10) * 2;
     }
 }

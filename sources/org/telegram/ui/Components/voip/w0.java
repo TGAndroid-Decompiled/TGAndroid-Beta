@@ -12,13 +12,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.pc0;
-import w7.z5;
+import org.telegram.ui.Components.cd0;
+import w7.x5;
 public final class w0 extends z4.a {
-    public final x0 f32318c;
+    public final x0 f32339c;
 
     public w0(x0 x0Var) {
-        this.f32318c = x0Var;
+        this.f32339c = x0Var;
     }
 
     @Override
@@ -28,29 +28,29 @@ public final class w0 extends z4.a {
 
     @Override
     public final int b() {
-        return this.f32318c.f32349f.length;
+        return this.f32339c.f32362f.length;
     }
 
     @Override
     public final Object e(z4.g gVar, int i10) {
         Bitmap bitmap;
         ImageView imageView;
-        x0 x0Var = this.f32318c;
-        boolean z10 = x0Var.f32355y;
+        x0 x0Var = this.f32339c;
+        boolean z10 = x0Var.f32368y;
         int i11 = 1;
         if (z10 && i10 == 0) {
             ?? frameLayout = new FrameLayout(x0Var.getContext());
-            frameLayout.setBackground(new pc0(true, -14602694, -13935795, -14395293, -14203560));
+            frameLayout.setBackground(new cd0(true, -14602694, -13935795, -14395293, -14203560));
             ImageView imageView2 = new ImageView(x0Var.getContext());
             imageView2.setScaleType(ImageView.ScaleType.CENTER);
             imageView2.setImageResource(R.drawable.screencast_big);
-            frameLayout.addView(imageView2, z5.d(82, 82.0f, 17, 0.0f, 0.0f, 0.0f, 60.0f));
+            frameLayout.addView(imageView2, x5.a(82.0f, 0.0f, 0.0f, 0.0f, 60.0f, 82, 17));
             TextView textView = new TextView(x0Var.getContext());
             textView.setText(LocaleController.getString(R.string.VoipVideoPrivateScreenSharing));
             textView.setGravity(17);
             textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-            org.telegram.messenger.q.q(textView, -1, 1, 15.0f);
-            frameLayout.addView(textView, z5.d(-1, -2.0f, 17, 21.0f, 28.0f, 21.0f, 0.0f));
+            org.telegram.messenger.q.m(15.0f, -1, 1, textView);
+            frameLayout.addView(textView, x5.a(-2.0f, 21.0f, 28.0f, 21.0f, 0.0f, -1, 17));
             imageView = frameLayout;
         } else {
             ImageView imageView3 = new ImageView(x0Var.getContext());

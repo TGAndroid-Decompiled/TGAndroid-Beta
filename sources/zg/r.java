@@ -1,102 +1,77 @@
 package zg;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.widget.FrameLayout;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.voip.r0;
-import org.telegram.ui.Components.xb0;
-import org.telegram.ui.yn;
-public final class r extends FrameLayout {
-    public final yn f53515a;
-    public q f53516b;
-    public List f53517c;
-    public boolean d;
-    public MessageObject f53518e;
-    public final int f53519f;
-    public final int h;
-    public float f53520n;
-    public float f53521r;
-    public float f53522s;
-    public long v;
-    public boolean f53523w;
-    public boolean f53524x;
-    public final int[] f53525y;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.ui.Components.kl0;
+import org.telegram.ui.zn;
+import w7.x5;
+public final class r implements Runnable {
+    public final int f54657a;
+    public final t f54658b;
 
-    public r(yn ynVar, Context context) {
-        super(context);
-        this.f53517c = Collections.EMPTY_LIST;
-        this.f53519f = 22;
-        this.h = 24;
-        this.f53525y = new int[2];
-        setVisibility(8);
-        this.f53515a = ynVar;
-        setClipToPadding(false);
-        setClipChildren(false);
-        ynVar.f43526v0.j(new xb0(this, 24));
+    public r(t tVar, int i10) {
+        this.f54657a = i10;
+        this.f54658b = tVar;
     }
 
-    public final void a(boolean z10) {
-        if (z10) {
-            setVisibility(0);
-            post(new p(this, 1));
-            return;
-        }
-        this.f53524x = false;
-        ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(150L);
-        duration.addUpdateListener(new r0(this, 27));
-        duration.addListener(new pg.d0(this, 14));
-        duration.start();
-    }
-
-    public final MessageObject b() {
-        MessageObject.GroupedMessages z82;
-        ArrayList<MessageObject> arrayList;
-        TLRPC.TL_messageReactions tL_messageReactions;
-        ArrayList<TLRPC.ReactionCount> arrayList2;
-        if (this.d && !this.f53517c.isEmpty()) {
-            int i10 = 0;
-            MessageObject messageObject = (MessageObject) this.f53517c.get(0);
-            if (messageObject.getGroupId() != 0 && (z82 = this.f53515a.z8(messageObject.getGroupId())) != null && (arrayList = z82.messages) != null) {
-                int size = arrayList.size();
-                while (i10 < size) {
-                    MessageObject messageObject2 = arrayList.get(i10);
-                    i10++;
-                    MessageObject messageObject3 = messageObject2;
-                    TLRPC.Message message = messageObject3.messageOwner;
-                    if (message != null && (tL_messageReactions = message.reactions) != null && (arrayList2 = tL_messageReactions.results) != null && !arrayList2.isEmpty()) {
-                        return messageObject3;
+    @Override
+    public final void run() {
+        boolean z10;
+        int i10;
+        int i11;
+        switch (this.f54657a) {
+            case 0:
+                this.f54658b.c(true);
+                return;
+            default:
+                t tVar = this.f54658b;
+                tVar.f54663e = tVar.b();
+                int i12 = tVar.f54664f;
+                int i13 = tVar.h;
+                zn znVar = tVar.f54660a;
+                if (tVar.f54661b == null) {
+                    if (znVar.getUserConfig().getClientUserId() == znVar.a()) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
                     }
+                    if (z10) {
+                        i10 = 3;
+                    } else {
+                        i10 = 0;
+                    }
+                    ?? kl0Var = new kl0(i10, znVar.getCurrentAccount(), tVar.getContext(), tVar.f54660a, znVar.getResourceProvider());
+                    kl0Var.l1 = 1.0f;
+                    kl0Var.setWillNotDraw(false);
+                    tVar.f54661b = kl0Var;
+                    int dp = AndroidUtilities.dp(4.0f);
+                    if (LocaleController.isRTL) {
+                        i11 = 0;
+                    } else {
+                        i11 = i13;
+                    }
+                    int i14 = dp + i11;
+                    int dp2 = AndroidUtilities.dp(4.0f);
+                    int dp3 = AndroidUtilities.dp(4.0f);
+                    if (!LocaleController.isRTL) {
+                        i13 = 0;
+                    }
+                    kl0Var.setPadding(i14, dp2, dp3 + i13, AndroidUtilities.dp(i12));
+                    tVar.f54661b.setDelegate(new m2.t(tVar, 25));
+                    tVar.f54661b.setClipChildren(false);
+                    tVar.f54661b.setClipToPadding(false);
+                    tVar.addView(tVar.f54661b, x5.e(-2, i12 + 70, 5));
                 }
-            }
-            return messageObject;
+                tVar.c(false);
+                if (tVar.f54661b.isEnabled()) {
+                    tVar.f54669x = true;
+                    tVar.f54661b.p(tVar.f54663e, znVar.Z7, true);
+                    tVar.f54661b.r(false);
+                    return;
+                }
+                tVar.f54669x = false;
+                tVar.f54661b.setTransitionProgress(1.0f);
+                return;
         }
-        return null;
-    }
-
-    public final void c(boolean r15) {
-        throw new UnsupportedOperationException("Method not decompiled: zg.r.c(boolean):void");
-    }
-
-    public final boolean d() {
-        if (this.d && !this.f53523w) {
-            return true;
-        }
-        return false;
-    }
-
-    public void setHiddenByScroll(boolean z10) {
-        this.f53523w = z10;
-        if (z10) {
-            a(false);
-        }
-    }
-
-    public void setSelectedMessages(java.util.List<org.telegram.messenger.MessageObject> r11) {
-        throw new UnsupportedOperationException("Method not decompiled: zg.r.setSelectedMessages(java.util.List):void");
     }
 }

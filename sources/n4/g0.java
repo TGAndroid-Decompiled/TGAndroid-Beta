@@ -1,41 +1,88 @@
 package n4;
 
-import android.os.Bundle;
+import android.media.Rating;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.text.TextUtils;
+import android.util.Log;
 public final class g0 implements Parcelable {
-    public static final Parcelable.Creator<g0> CREATOR = new m8.h(10);
-    public final String f16591a;
-    public final CharSequence f16592b;
-    public final int f16593c;
-    public final Bundle d;
+    public static final Parcelable.Creator<g0> CREATOR = new m8.h(11);
+    public final int f16567a;
+    public final float f16568b;
+    public Rating f16569c;
 
-    public g0(Parcel parcel) {
-        String readString = parcel.readString();
-        readString.getClass();
-        this.f16591a = readString;
-        CharSequence charSequence = (CharSequence) TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(parcel);
-        charSequence.getClass();
-        this.f16592b = charSequence;
-        this.f16593c = parcel.readInt();
-        this.d = parcel.readBundle(y.class.getClassLoader());
+    public g0(int i10, float f7) {
+        this.f16567a = i10;
+        this.f16568b = f7;
+    }
+
+    public static g0 c(float f7) {
+        if (f7 >= 0.0f && f7 <= 100.0f) {
+            return new g0(6, f7);
+        }
+        Log.e("Rating", "Invalid percentage-based rating value");
+        return null;
+    }
+
+    public static g0 d(float f7, int i10) {
+        float f10;
+        if (i10 != 3) {
+            if (i10 != 4) {
+                if (i10 != 5) {
+                    Log.e("Rating", "Invalid rating style (" + i10 + ") for a star rating");
+                    return null;
+                }
+                f10 = 5.0f;
+            } else {
+                f10 = 4.0f;
+            }
+        } else {
+            f10 = 3.0f;
+        }
+        if (f7 >= 0.0f && f7 <= f10) {
+            return new g0(i10, f7);
+        }
+        Log.e("Rating", "Trying to set out of range star-based rating");
+        return null;
+    }
+
+    public final float a() {
+        int i10 = this.f16567a;
+        if ((i10 == 3 || i10 == 4 || i10 == 5) && b()) {
+            return this.f16568b;
+        }
+        return -1.0f;
+    }
+
+    public final boolean b() {
+        if (this.f16568b >= 0.0f) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public final int describeContents() {
-        return 0;
+        return this.f16567a;
     }
 
     public final String toString() {
-        return "Action:mName='" + ((Object) this.f16592b) + ", mIcon=" + this.f16593c + ", mExtras=" + this.d;
+        String valueOf;
+        StringBuilder sb2 = new StringBuilder("Rating:style=");
+        sb2.append(this.f16567a);
+        sb2.append(" rating=");
+        float f7 = this.f16568b;
+        if (f7 < 0.0f) {
+            valueOf = "unrated";
+        } else {
+            valueOf = String.valueOf(f7);
+        }
+        sb2.append(valueOf);
+        return sb2.toString();
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeString(this.f16591a);
-        TextUtils.writeToParcel(this.f16592b, parcel, i10);
-        parcel.writeInt(this.f16593c);
-        parcel.writeBundle(this.d);
+        parcel.writeInt(this.f16567a);
+        parcel.writeFloat(this.f16568b);
     }
 }

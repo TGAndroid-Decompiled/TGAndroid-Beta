@@ -1,141 +1,106 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.text.TextPaint;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class v00 extends View {
-    public int E;
-    public RectF F;
-    public float G;
-    public ValueAnimator H;
-    public boolean f31579a;
-    public boolean f31580b;
-    public boolean f31581c;
-    public String d;
-    public TextPaint f31582e;
-    public Paint f31583f;
-    public Paint h;
-    public Paint f31584n;
-    public int f31585r;
-    public int f31586s;
-    public int v;
-    public int f31587w;
-    public int f31588x;
-    public int f31589y;
+import android.content.Context;
+import android.view.ViewGroup;
+public final class v00 extends pm0 {
+    public final Context f31657c;
+    public final a10 d;
 
-    public final void a(boolean z10, boolean z11) {
-        this.f31580b = z10;
-        float f7 = 0.0f;
-        if (this.f31579a && z11) {
-            ValueAnimator valueAnimator = this.H;
-            if (valueAnimator != null) {
-                valueAnimator.removeAllListeners();
-                this.H.cancel();
-            }
-            float f10 = this.G;
-            if (z10) {
-                f7 = 1.0f;
-            }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-            this.H = ofFloat;
-            ofFloat.addUpdateListener(new k6(this, 24));
-            this.H.setDuration(300L);
-            this.H.start();
-            return;
-        }
-        if (z10) {
-            f7 = 1.0f;
-        }
-        this.G = f7;
+    public v00(a10 a10Var, Context context) {
+        this.d = a10Var;
+        this.f31657c = context;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
+    public final boolean D(s4.d1 d1Var) {
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        return this.d.h.size();
+    }
+
+    @Override
+    public final long i(int i10) {
+        return this.d.f24513k0.get(i10);
+    }
+
+    @Override
+    public final int j(int i10) {
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.d1 d1Var, int i10) {
+        int i11;
+        boolean z10;
         float f7;
-        Canvas canvas2;
-        int i10 = this.f31587w;
-        RectF rectF = this.F;
-        Paint paint = this.h;
-        Paint paint2 = this.f31584n;
-        Paint paint3 = this.f31583f;
-        TextPaint textPaint = this.f31582e;
-        super.draw(canvas);
-        float f10 = this.G;
-        if (f10 <= 0.5f) {
-            f7 = f10 / 0.5f;
-            paint3.setColor(Color.rgb(Color.red(this.f31585r) + ((int) ((Color.red(this.f31586s) - Color.red(this.f31585r)) * f7)), Color.green(this.f31585r) + ((int) ((Color.green(this.f31586s) - Color.green(this.f31585r)) * f7)), Color.blue(this.f31585r) + ((int) ((Color.blue(this.f31586s) - Color.blue(this.f31585r)) * f7))));
-            textPaint.setColor(Color.rgb(Color.red(this.f31586s) + ((int) ((Color.red(this.v) - Color.red(this.f31586s)) * f7)), Color.green(this.f31586s) + ((int) ((Color.green(this.v) - Color.green(this.f31586s)) * f7)), Color.blue(this.f31586s) + ((int) ((Color.blue(this.v) - Color.blue(this.f31586s)) * f7))));
+        int i12;
+        int i13;
+        int i14;
+        y00 y00Var = (y00) d1Var.f47656a;
+        if (y00Var.f33067b != null) {
+            i11 = y00Var.getId();
         } else {
-            textPaint.setColor(this.v);
-            paint3.setColor(this.f31586s);
-            f7 = 1.0f;
+            i11 = -1;
         }
-        int measuredHeight = getMeasuredHeight() >> 1;
-        paint.setColor(this.f31586s);
-        canvas.drawRoundRect(rectF, i10 / 2.0f, i10 / 2.0f, paint3);
-        canvas.drawRoundRect(rectF, i10 / 2.0f, i10 / 2.0f, paint);
-        String str = this.d;
-        if (str != null) {
-            canvas.drawText(str, (f7 * this.f31589y) + (getMeasuredWidth() >> 1), (textPaint.getTextSize() * 0.35f) + measuredHeight, textPaint);
-        }
-        float f11 = 2.0f - (this.G / 0.5f);
-        canvas.save();
-        canvas.scale(0.9f, 0.9f, AndroidUtilities.dpf2(7.0f), measuredHeight);
-        canvas.translate(AndroidUtilities.dp(12.0f), measuredHeight - AndroidUtilities.dp(9.0f));
-        if (this.G > 0.5f) {
-            paint2.setColor(this.v);
-            float f12 = 1.0f - f11;
-            canvas2 = canvas;
-            canvas2.drawLine(AndroidUtilities.dpf2(7.0f), (int) AndroidUtilities.dpf2(13.0f), (int) (AndroidUtilities.dpf2(7.0f) - (AndroidUtilities.dp(4.0f) * f12)), (int) (AndroidUtilities.dpf2(13.0f) - (AndroidUtilities.dp(4.0f) * f12)), paint2);
-            canvas2.drawLine((int) AndroidUtilities.dpf2(7.0f), (int) AndroidUtilities.dpf2(13.0f), (int) ((AndroidUtilities.dp(8.0f) * f12) + AndroidUtilities.dpf2(7.0f)), (int) (AndroidUtilities.dpf2(13.0f) - (AndroidUtilities.dp(8.0f) * f12)), paint2);
+        w00 w00Var = (w00) this.d.h.get(i10);
+        y00Var.f33067b = w00Var;
+        y00Var.f33072e = i10;
+        y00Var.setContentDescription(w00Var.f32499b);
+        y00Var.requestLayout();
+        boolean z11 = y00Var.f33082n;
+        w00 w00Var2 = y00Var.f33067b;
+        if (w00Var2 != null && w00Var2.f32503g) {
+            z10 = true;
         } else {
-            canvas2 = canvas;
+            z10 = false;
         }
-        canvas2.restore();
+        if (z11 != z10) {
+            b6.release(y00Var, y00Var.f33083r);
+            b6.release(y00Var, y00Var.O);
+            b6.release(y00Var, y00Var.Q);
+            b6.release(y00Var, y00Var.S);
+            if (y00Var.f33081l0) {
+                int i15 = 26;
+                if (y00Var.f33067b.f32503g) {
+                    i12 = 26;
+                } else {
+                    i12 = 0;
+                }
+                y00Var.f33083r = b6.update(i12, y00Var, y00Var.f33083r, y00Var.f33084s);
+                if (y00Var.f33067b.f32503g) {
+                    i13 = 26;
+                } else {
+                    i13 = 0;
+                }
+                y00Var.O = b6.update(i13, y00Var, y00Var.O, y00Var.P);
+                if (y00Var.f33067b.f32503g) {
+                    i14 = 26;
+                } else {
+                    i14 = 0;
+                }
+                y00Var.Q = b6.update(i14, y00Var, y00Var.Q, y00Var.R);
+                if (!y00Var.f33067b.f32503g) {
+                    i15 = 0;
+                }
+                y00Var.S = b6.update(i15, y00Var, y00Var.S, y00Var.T);
+            }
+            y00Var.f33082n = y00Var.f33067b.f32503g;
+        }
+        if (i11 != y00Var.getId()) {
+            if (y00Var.f33067b.f32502f) {
+                f7 = 1.0f;
+            } else {
+                f7 = 0.0f;
+            }
+            y00Var.f33080k0 = f7;
+        }
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f31579a = true;
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f31579a = false;
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int measureText;
-        Paint paint = this.h;
-        RectF rectF = this.F;
-        int i12 = this.E;
-        String str = this.d;
-        if (str == null) {
-            measureText = 0;
-        } else {
-            measureText = (int) this.f31582e.measureText(str);
-        }
-        setMeasuredDimension((i12 * 2) + measureText + (this.f31588x << 1), AndroidUtilities.dp(4.0f) + this.f31587w);
-        if (getMeasuredWidth() != 0) {
-            rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            rectF.inset((paint.getStrokeWidth() / 2.0f) + i12, (paint.getStrokeWidth() / 2.0f) + i12);
-        }
-    }
-
-    public void setChecked(boolean z10) {
-        a(z10, true);
-    }
-
-    public void setText(String str) {
-        this.d = str;
-        requestLayout();
+    public final s4.d1 x(ViewGroup viewGroup, int i10) {
+        return new s4.d1(new y00(this.d, this.f31657c));
     }
 }

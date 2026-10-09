@@ -1,74 +1,24 @@
 package org.telegram.ui.ActionBar;
+public enum a6 {
+    DEFAULT(i6.Af, i6.Bf, i6.Cf, i6.Pf, i6.Qf, i6.Rf),
+    PRIMARY(i6.Df, i6.Ef, i6.Ff, i6.Sf, i6.Tf, i6.Uf),
+    DANGER(i6.Gf, i6.Hf, i6.If, i6.Vf, i6.Wf, i6.Xf),
+    SUCCESS(i6.Jf, i6.Kf, i6.Lf, i6.Yf, i6.Zf, i6.f20750ag),
+    DEFAULT_IN_TEXT(i6.Mf, i6.Nf, i6.Of, i6.f20770bg, i6.f20788cg, i6.f20807dg);
+    
+    public final int f20395a;
+    public final int f20396b;
+    public final int f20397c;
+    public final int d;
+    public final int f20398e;
+    public final int f20399f;
 
-import android.content.SharedPreferences;
-import java.io.File;
-import java.util.ArrayList;
-import org.json.JSONObject;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.tgnet.TLRPC;
-public final class a6 {
-    public String f20394a = "";
-    public String f20395b = "";
-    public String f20396c = "";
-    public int d;
-    public int f20397e;
-    public int f20398f;
-    public int f20399g;
-    public int h;
-    public boolean f20400i;
-    public boolean f20401j;
-    public float f20402k;
-    public long f20403l;
-    public long f20404m;
-    public long f20405n;
-    public boolean f20406o;
-    public h6 f20407p;
-    public f6 f20408q;
-    public float f20409r;
-    public ArrayList f20410s;
-    public TLRPC.WallPaper f20411t;
-
-    public static void a(a6 a6Var) {
-        ApplicationLoader.applicationContext.getSharedPreferences("themeconfig", 0).edit().remove(a6Var.b()).commit();
-        new File(ApplicationLoader.getFilesDirFixed(), a6Var.f20394a).delete();
-        new File(ApplicationLoader.getFilesDirFixed(), a6Var.f20395b).delete();
-    }
-
-    public final String b() {
-        if (this.f20408q != null) {
-            StringBuilder sb2 = new StringBuilder();
-            sb2.append(this.f20407p.f20697a);
-            sb2.append("_");
-            return a4.a.o(this.f20408q.f20620a, "_owp", sb2);
-        }
-        return a4.a.t(new StringBuilder(), this.f20407p.f20697a, "_owp");
-    }
-
-    public final void c() {
-        try {
-            String b10 = b();
-            SharedPreferences.Editor edit = ApplicationLoader.applicationContext.getSharedPreferences("themeconfig", 0).edit();
-            JSONObject jSONObject = new JSONObject();
-            jSONObject.put("wall", this.f20394a);
-            jSONObject.put("owall", this.f20395b);
-            jSONObject.put("pColor", this.d);
-            jSONObject.put("pGrColor", this.f20397e);
-            jSONObject.put("pGrColor2", this.f20398f);
-            jSONObject.put("pGrColor3", this.f20399g);
-            jSONObject.put("pGrAngle", this.h);
-            String str = this.f20396c;
-            if (str == null) {
-                str = "";
-            }
-            jSONObject.put("wallSlug", str);
-            jSONObject.put("wBlur", this.f20400i);
-            jSONObject.put("wMotion", this.f20401j);
-            jSONObject.put("pIntensity", this.f20402k);
-            edit.putString(b10, jSONObject.toString());
-            edit.commit();
-        } catch (Throwable th2) {
-            FileLog.e(th2);
-        }
+    a6(int i10, int i11, int i12, int i13, int i14, int i15) {
+        this.f20395a = i10;
+        this.f20396b = i11;
+        this.f20397c = i12;
+        this.d = i13;
+        this.f20398e = i14;
+        this.f20399f = i15;
     }
 }

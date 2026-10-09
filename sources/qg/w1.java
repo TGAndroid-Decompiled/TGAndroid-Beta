@@ -8,46 +8,47 @@ import android.graphics.RectF;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import m.f3;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.e6;
+import org.telegram.ui.Components.g6;
 public final class w1 extends View {
-    public pg.f1 E;
+    public pg.e1 E;
     public float F;
     public float G;
-    public pg.t1 H;
+    public pg.s1 H;
     public Runnable I;
     public boolean J;
     public v1 K;
-    public final Paint f45401a;
-    public final Paint f45402b;
-    public final Path f45403c;
-    public final k2.e d;
-    public final RectF f45404e;
-    public boolean f45405f;
+    public final Paint f46596a;
+    public final Paint f46597b;
+    public final Path f46598c;
+    public final f3 d;
+    public final RectF f46599e;
+    public boolean f46600f;
     public boolean h;
-    public float f45406n;
-    public float f45407r;
-    public long f45408s;
+    public float f46601n;
+    public float f46602r;
+    public long f46603s;
     public boolean v;
-    public final e6 f45409w;
-    public final e6 f45410x;
-    public final e6 f45411y;
+    public final g6 f46604w;
+    public final g6 f46605x;
+    public final g6 f46606y;
 
     public w1(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f45401a = paint;
+        this.f46596a = paint;
         Paint paint2 = new Paint(1);
-        this.f45402b = paint2;
-        this.f45403c = new Path();
-        this.f45404e = new RectF();
+        this.f46597b = paint2;
+        this.f46598c = new Path();
+        this.f46599e = new RectF();
         this.v = true;
-        this.f45409w = new e6(this);
-        this.f45410x = new e6(this);
-        this.f45411y = new e6(this);
-        this.H = new pg.t1(1.0f, 0.016773745f, -1);
+        this.f46604w = new g6(this);
+        this.f46605x = new g6(this);
+        this.f46606y = new g6(this);
+        this.H = new pg.s1(1.0f, 0.016773745f, -1);
         this.J = true;
-        this.d = new k2.e(context, new u1(this));
+        this.d = new f3(context, new u1(this));
         paint2.setColor(-1);
         paint2.setShadowLayer(AndroidUtilities.dp(4.0f), 0.0f, AndroidUtilities.dp(2.0f), 1342177280);
         paint.setColor(1090519039);
@@ -58,9 +59,9 @@ public final class w1 extends View {
         if (z10) {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set((f7 - f11) - AndroidUtilities.dp(6.0f), (f10 - f11) - AndroidUtilities.dp(6.0f), f7 + f11 + AndroidUtilities.dp(6.0f), f10 + f11 + AndroidUtilities.dp(6.0f));
-            canvas.saveLayerAlpha(rectF, (int) (this.f45407r * 255.0f), 31);
+            canvas.saveLayerAlpha(rectF, (int) (this.f46602r * 255.0f), 31);
         }
-        canvas.drawCircle(f7, f10, f11, this.f45402b);
+        canvas.drawCircle(f7, f10, f11, this.f46597b);
         if (z10) {
             canvas.restore();
         }
@@ -81,27 +82,27 @@ public final class w1 extends View {
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
         super.onSizeChanged(i10, i11, i12, i13);
         int height = (int) (getHeight() * 0.3f);
-        this.f45404e.set(0.0f, (getHeight() - height) / 2.0f, AndroidUtilities.dp(32.0f), (getHeight() + height) / 2.0f);
+        this.f46599e.set(0.0f, (getHeight() - height) / 2.0f, AndroidUtilities.dp(32.0f), (getHeight() + height) / 2.0f);
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean onTouchEvent = ((GestureDetector) this.d.f14389b).onTouchEvent(motionEvent);
+        boolean onTouchEvent = ((GestureDetector) this.d.f15668b).onTouchEvent(motionEvent);
         if (motionEvent.getActionMasked() != 1 && motionEvent.getActionMasked() != 3) {
             return onTouchEvent;
         }
-        this.f45405f = false;
+        this.f46600f = false;
         invalidate();
         return onTouchEvent;
     }
 
     public void setBrushWeight(float f7) {
-        this.H.f44647c = f7;
+        this.H.f45778c = f7;
         invalidate();
     }
 
-    public void setColorSwatch(pg.t1 t1Var) {
-        this.H = t1Var;
+    public void setColorSwatch(pg.s1 s1Var) {
+        this.H = s1Var;
         invalidate();
     }
 
@@ -114,8 +115,8 @@ public final class w1 extends View {
         this.I = runnable;
     }
 
-    public void setRenderView(pg.f1 f1Var) {
-        this.E = f1Var;
+    public void setRenderView(pg.e1 e1Var) {
+        this.E = e1Var;
     }
 
     public void setShowPreview(boolean z10) {

@@ -1,81 +1,90 @@
 package org.telegram.ui;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.widget.FrameLayout;
-import android.widget.TextView;
+import android.content.Intent;
+import android.net.Uri;
+import android.webkit.RenderProcessGoneDetail;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
-public final class oo0 extends FrameLayout {
-    public final Paint f39266a;
-    public float f39267b;
-    public o1.k f39268c;
-    public final so0 d;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class oo0 extends WebViewClient {
+    public final Context f40582a;
+    public final vo0 f40583b;
 
-    public oo0(so0 so0Var, Context context) {
-        super(context);
-        this.d = so0Var;
-        this.f39266a = new Paint(1);
-        setWillNotDraw(false);
-    }
-
-    public final void a(boolean z10, boolean z11) {
-        float f7;
-        float f10;
-        o1.k kVar = this.f39268c;
-        if (kVar != null) {
-            kVar.c();
-        }
-        if (z10) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        if (z11) {
-            float f11 = this.f39267b;
-            if (f11 == f7) {
-                return;
-            }
-            o1.k kVar2 = new o1.k(new o1.j(f11 * 100.0f));
-            o1.l lVar = new o1.l(f7 * 100.0f);
-            if (z10) {
-                f10 = 500.0f;
-            } else {
-                f10 = 650.0f;
-            }
-            lVar.b(f10);
-            lVar.a(1.0f);
-            kVar2.f16993u = lVar;
-            this.f39268c = kVar2;
-            kVar2.b(new rd0(this, 1));
-            this.f39268c.a(new p9(this, 1));
-            this.f39268c.f();
-            return;
-        }
-        this.f39267b = f7;
-        TextView textView = this.d.U;
-        if (textView != null) {
-            textView.setAlpha((f7 * 0.2f) + 0.8f);
-        }
-        invalidate();
+    public oo0(vo0 vo0Var, Context context) {
+        this.f40583b = vo0Var;
+        this.f40582a = context;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int dp;
-        super.onDraw(canvas);
-        int i10 = org.telegram.ui.ActionBar.i6.O6;
-        so0 so0Var = this.d;
-        canvas.drawColor(so0Var.getThemedColor(i10));
-        int themedColor = so0Var.getThemedColor(org.telegram.ui.ActionBar.i6.f20856ei);
-        Paint paint = this.f39266a;
-        paint.setColor(themedColor);
-        if (LocaleController.isRTL) {
-            dp = getWidth() - AndroidUtilities.dp(28.0f);
-        } else {
-            dp = AndroidUtilities.dp(28.0f);
+    public final void onPageFinished(WebView webView, String str) {
+        super.onPageFinished(webView, str);
+        vo0 vo0Var = this.f40583b;
+        vo0Var.f42952z0 = false;
+        vo0Var.H0(true, false);
+        vo0Var.K0();
+    }
+
+    @Override
+    public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
+        vo0 vo0Var = this.f40583b;
+        try {
+            if (!AndroidUtilities.isSafeToShow(vo0Var.getParentActivity())) {
+                return true;
+            }
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(vo0Var.getParentActivity(), 0, vo0Var.Y0);
+            alertDialog$Builder.f20374a.R = LocaleController.getString(R.string.ChromeCrashTitle);
+            alertDialog$Builder.f20374a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new tk0(this, 10));
+            alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
+            alertDialog$Builder.o();
+            return true;
+        } catch (Exception e7) {
+            FileLog.e(e7);
+            return false;
         }
-        canvas.drawCircle(dp, -AndroidUtilities.dp(28.0f), Math.max(getWidth(), getHeight()) * this.f39267b, paint);
+    }
+
+    @Override
+    public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
+        Uri parse;
+        boolean z10;
+        vo0 vo0Var = this.f40583b;
+        vo0Var.f42950y = !str.equals(vo0Var.f42948x);
+        try {
+            parse = Uri.parse(str);
+        } catch (Exception unused) {
+        }
+        if ("t.me".equals(parse.getHost())) {
+            vo0Var.t0();
+            return true;
+        }
+        if (!vo0.f42910h1.contains(parse.getScheme())) {
+            if (!vo0.f42909g1.contains(parse.getScheme())) {
+                try {
+                    if (vo0Var.getParentActivity() != null) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    if (z10) {
+                        vo0Var.getParentActivity().startActivityForResult(new Intent("android.intent.action.VIEW", parse), 210);
+                        return true;
+                    }
+                } catch (ActivityNotFoundException unused2) {
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f40582a);
+                    alertDialog$Builder.f20374a.R = vo0Var.f42937p0;
+                    alertDialog$Builder.f20374a.T = LocaleController.getString(R.string.PaymentAppNotFoundForDeeplink);
+                    alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
+                    alertDialog$Builder.o();
+                }
+            }
+            return super.shouldOverrideUrlLoading(webView, str);
+        }
+        return true;
     }
 }

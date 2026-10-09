@@ -8,25 +8,25 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 public final class d implements db.v {
-    public final int f10374a;
-    public final of.b f10375b;
+    public final int f10446a;
+    public final n4.x f10447b;
 
-    public d(of.b bVar, int i10) {
-        this.f10374a = i10;
-        this.f10375b = bVar;
+    public d(int i10, n4.x xVar) {
+        this.f10446a = i10;
+        this.f10447b = xVar;
     }
 
     @Override
     public final db.u create(db.g gVar, kb.a aVar) {
         Type[] actualTypeArguments;
         db.u uVar;
-        int i10 = this.f10374a;
-        of.b bVar = this.f10375b;
+        int i10 = this.f10446a;
+        n4.x xVar = this.f10447b;
         Type type = Object.class;
         switch (i10) {
             case 0:
-                Type type2 = aVar.f14748b;
-                Class cls = aVar.f14747a;
+                Type type2 = aVar.f14780b;
+                Class cls = aVar.f14779a;
                 if (!Collection.class.isAssignableFrom(cls)) {
                     return null;
                 }
@@ -38,10 +38,10 @@ public final class d implements db.v {
                 if (j3 instanceof ParameterizedType) {
                     type = ((ParameterizedType) j3).getActualTypeArguments()[0];
                 }
-                return new c(gVar, type, gVar.b(new kb.a(type)), bVar.z(aVar));
+                return new c(gVar, type, gVar.b(new kb.a(type)), xVar.S(aVar));
             default:
-                Type type3 = aVar.f14748b;
-                Class cls2 = aVar.f14747a;
+                Type type3 = aVar.f14780b;
+                Class cls2 = aVar.f14779a;
                 if (!Map.class.isAssignableFrom(cls2)) {
                     return null;
                 }
@@ -59,12 +59,12 @@ public final class d implements db.v {
                 if (type4 != Boolean.TYPE && type4 != Boolean.class) {
                     uVar = gVar.b(new kb.a(type4));
                 } else {
-                    uVar = h1.f10383c;
+                    uVar = h1.f10455c;
                 }
                 db.u b10 = gVar.b(new kb.a(actualTypeArguments[1]));
-                fb.n z10 = bVar.z(aVar);
+                fb.n S = xVar.S(aVar);
                 Type[] typeArr = actualTypeArguments;
-                return new o(this, gVar, typeArr[0], uVar, typeArr[1], b10, z10);
+                return new o(this, gVar, typeArr[0], uVar, typeArr[1], b10, S);
         }
     }
 }

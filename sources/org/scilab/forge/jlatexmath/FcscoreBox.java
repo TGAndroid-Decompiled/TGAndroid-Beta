@@ -41,28 +41,32 @@ public class FcscoreBox extends Box {
         }
         int i10 = 0;
         graphics2D.setStroke(new BasicStroke((float) (this.thickness * scaleX), 0, 0));
-        float f11 = this.thickness / 2.0f;
+        float f11 = 2.0f;
+        float f12 = this.thickness / 2.0f;
         Line2D.Float r10 = new Line2D.Float();
-        float f12 = this.space;
-        float f13 = (float) (((f12 / 2.0f) * scaleX) + ((f7 + f12) * scaleX));
-        int round = (int) Math.round((f12 + this.thickness) * scaleX);
+        float f13 = this.space;
+        float f14 = (float) (((f13 / 2.0f) * scaleX) + ((f7 + f13) * scaleX));
+        int round = (int) Math.round((f13 + this.thickness) * scaleX);
         while (i10 < this.N) {
-            double d = (f11 * scaleX) + f13;
+            float f15 = f11;
+            double d = (f12 * scaleX) + f14;
             double d10 = scaleX;
             int i11 = round;
             r10.setLine(d, (f10 - this.height) * scaleX, d, f10 * d10);
             graphics2D.draw(r10);
-            f13 += i11;
+            f14 += i11;
             i10++;
             round = i11;
+            f11 = f15;
             scaleX = d10;
         }
         double d11 = scaleX;
-        float f14 = f13;
+        float f16 = f11;
+        float f17 = f14;
         if (this.strike) {
-            float f15 = this.space;
-            float f16 = this.height;
-            r10.setLine((f7 + f15) * d11, (f10 - (f16 / 2.0f)) * d11, f14 - ((f15 * d11) / 2.0d), (f10 - (f16 / 2.0f)) * d11);
+            float f18 = this.space;
+            float f19 = this.height;
+            r10.setLine((f7 + f18) * d11, (f10 - (f19 / f16)) * d11, f17 - ((f18 * d11) / 2.0d), (f10 - (f19 / f16)) * d11);
             graphics2D.draw(r10);
         }
         graphics2D.setTransform(transform);

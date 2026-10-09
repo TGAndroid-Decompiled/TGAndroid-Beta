@@ -1,19 +1,28 @@
 package org.telegram.ui;
+public final class c40 implements z4.e {
+    public final g60 f36509a;
 
-import android.view.ViewGroup;
-public final class c40 extends org.telegram.ui.Components.bi0 {
-    public final h60 f35303s1;
-
-    public c40(h60 h60Var, LaunchActivity launchActivity, e50 e50Var, o50 o50Var, b40 b40Var) {
-        super(launchActivity, e50Var, o50Var, b40Var);
-        this.f35303s1 = h60Var;
+    public c40(g60 g60Var) {
+        this.f36509a = g60Var;
     }
 
     @Override
-    public final void invalidate() {
-        ViewGroup viewGroup;
-        super.invalidate();
-        viewGroup = ((org.telegram.ui.ActionBar.f3) this.f35303s1).containerView;
-        viewGroup.invalidate();
+    public final void a(int i10) {
+        g60 g60Var = this.f36509a;
+        g60Var.f37789b.D0.k(i10);
+        z30 z30Var = g60Var.D2;
+        z30Var.J = z30Var.L;
+        z30Var.K = z30Var.M;
+        z30Var.N = 0.0f;
+        z30Var.O = 1;
+        z30Var.invalidate();
+    }
+
+    @Override
+    public final void c(int i10) {
+    }
+
+    @Override
+    public final void b(float f7, int i10, int i11) {
     }
 }

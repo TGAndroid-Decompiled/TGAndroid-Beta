@@ -6,10 +6,10 @@ import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
 public final class ds implements ActionMode.Callback {
-    public final es f35874a;
+    public final es f37069a;
 
     public ds(es esVar) {
-        this.f35874a = esVar;
+        this.f37069a = esVar;
     }
 
     @Override
@@ -21,13 +21,13 @@ public final class ds implements ActionMode.Callback {
         if (menuItem.getItemId() != 16908322) {
             return true;
         }
-        es esVar = this.f35874a;
+        es esVar = this.f37069a;
         if (esVar.getParent() instanceof cs) {
             csVar = (cs) esVar.getParent();
         } else {
             csVar = null;
         }
-        if (csVar != null && (clipboardManager = (ClipboardManager) f0.e.f(esVar.getContext(), ClipboardManager.class)) != null && (primaryClip = clipboardManager.getPrimaryClip()) != null) {
+        if (csVar != null && (clipboardManager = (ClipboardManager) esVar.getContext().getSystemService(ClipboardManager.class)) != null && (primaryClip = clipboardManager.getPrimaryClip()) != null) {
             String charSequence = primaryClip.getItemAt(0).getText().toString();
             try {
                 i10 = Integer.parseInt(charSequence);

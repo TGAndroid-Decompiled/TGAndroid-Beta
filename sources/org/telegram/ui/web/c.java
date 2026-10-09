@@ -1,19 +1,20 @@
 package org.telegram.ui.web;
 
 import android.content.Context;
-import org.telegram.ui.Components.e71;
-public final class c extends e71 {
-    public final k f42133m3;
+import org.telegram.ui.ActionBar.b5;
+import org.telegram.ui.Components.k71;
+public final class c extends k71 {
+    public final k f43275d3;
 
-    public c(k kVar, Context context, int i10, hi.a aVar, a aVar2, o0.a aVar3) {
-        super(context, i10, 0, false, aVar, aVar2, null, aVar3);
-        this.f42133m3 = kVar;
+    public c(k kVar, Context context, int i10, hi.a aVar, a aVar2, b5 b5Var) {
+        super(context, i10, 0, false, aVar, aVar2, null, b5Var);
+        this.f43275d3 = kVar;
     }
 
     @Override
-    public final void l0(int i10) {
+    public final void k0(int i10, int i11) {
         i iVar;
-        if (!canScrollVertically(1) && (iVar = this.f42133m3.f42273y) != null && iVar.h) {
+        if (!canScrollVertically(1) && (iVar = this.f43275d3.f43374y) != null && iVar.h) {
             iVar.d();
         }
     }

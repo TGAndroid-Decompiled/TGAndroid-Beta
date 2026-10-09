@@ -8,68 +8,68 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.GiftAuctionController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.f3;
-import org.telegram.ui.Components.b80;
-import org.telegram.ui.Components.gs0;
+import org.telegram.ui.Components.p80;
+import org.telegram.ui.Components.rs0;
 import xh.g2;
-import xh.m;
+import xh.o;
 import xh.o2;
 import xh.s2;
-import xh.v;
-import yh.b0;
-import yh.g5;
-import yh.p7;
-import yh.x4;
+import xh.x;
+import yh.f7;
+import yh.q4;
+import yh.y;
+import yh.z4;
 public final class e implements View.OnClickListener {
-    public final int f49856a;
-    public final Object f49857b;
-    public final Object f49858c;
+    public final int f51131a;
+    public final Object f51132b;
+    public final Object f51133c;
     public final Object d;
 
     public e(Object obj, Object obj2, Object obj3, int i10) {
-        this.f49856a = i10;
-        this.f49857b = obj;
-        this.f49858c = obj2;
+        this.f51131a = i10;
+        this.f51132b = obj;
+        this.f51133c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void onClick(View view) {
-        int i10 = this.f49856a;
+        int i10 = this.f51131a;
         Object obj = this.d;
-        Object obj2 = this.f49858c;
-        Object obj3 = this.f49857b;
+        Object obj2 = this.f51133c;
+        Object obj3 = this.f51132b;
         switch (i10) {
             case 0:
                 ((i) obj3).a(view, (HashSet) obj2, (Runnable) obj);
                 return;
             case 1:
-                new m((Context) obj2, null, null, (GiftAuctionController.Auction) obj).show();
-                ((xh.e) obj3).dismiss();
+                new o((Context) obj2, null, null, (GiftAuctionController.Auction) obj).show();
+                ((xh.f) obj3).dismiss();
                 return;
             case 2:
-                m.P((m) obj3, (boolean[]) obj2, (d6) obj);
+                o.S((o) obj3, (boolean[]) obj2, (e6) obj);
                 return;
             case 3:
-                v.P((v) obj3, (Context) obj2, (d6) obj);
+                x.S((x) obj3, (Context) obj2, (e6) obj);
                 return;
             case 4:
-                v.N((v) obj3, (boolean[]) obj2, (d6) obj);
+                x.Q((x) obj3, (boolean[]) obj2, (e6) obj);
                 return;
             case 5:
                 o2 o2Var = (o2) obj3;
-                ((b80) obj2).u();
-                gs0 gs0Var = o2Var.f50159a;
+                ((p80) obj2).u();
+                rs0 rs0Var = o2Var.f51433a;
                 g2 g2Var = new g2(o2Var, (TL_stars.SavedStarGift) obj, 0);
                 HashMap hashMap = s2.T;
-                gs0Var.h(null, g2Var);
+                rs0Var.h(null, g2Var);
                 return;
             case 6:
                 Context context = (Context) obj2;
-                d6 d6Var = (d6) obj;
-                if (((b0) obj3).m0.f53321a == zf.b.f53323a) {
-                    new p7(context, d6Var).show();
+                e6 e6Var = (e6) obj;
+                if (((y) obj3).m0.f54439a == zf.b.f54441a) {
+                    new f7(context, e6Var).show();
                     return;
                 }
                 return;
@@ -78,7 +78,7 @@ public final class e implements View.OnClickListener {
                 final ci.d dVar = (ci.d) obj;
                 f3Var.setCanDismissWithSwipe(false);
                 dVar.setLoading(true);
-                ((x4) obj3).run(new Utilities.Callback() {
+                ((q4) obj3).run(new Utilities.Callback() {
                     @Override
                     public final void run(Object obj4) {
                         Boolean bool = (Boolean) obj4;
@@ -140,7 +140,7 @@ public final class e implements View.OnClickListener {
                 final ci.d dVar2 = (ci.d) obj;
                 f3Var2.setCanDismissWithSwipe(false);
                 dVar2.setLoading(true);
-                ((g5) obj3).run(new Utilities.Callback() {
+                ((z4) obj3).run(new Utilities.Callback() {
                     @Override
                     public final void run(Object obj4) {
                         Boolean bool = (Boolean) obj4;

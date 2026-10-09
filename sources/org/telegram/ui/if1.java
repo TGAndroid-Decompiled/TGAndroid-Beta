@@ -1,31 +1,61 @@
 package org.telegram.ui;
-public final class if1 implements Runnable {
-    public final int f37406a;
-    public final jf1 f37407b;
 
-    public if1(jf1 jf1Var, int i10) {
-        this.f37406a = i10;
-        this.f37407b = jf1Var;
+import android.os.Build;
+import androidx.recyclerview.widget.RecyclerView;
+public final class if1 extends s4.t0 {
+    public final int f38626a;
+    public final fg1 f38627b;
+
+    public if1(fg1 fg1Var, int i10) {
+        this.f38626a = i10;
+        this.f38627b = fg1Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f37406a) {
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        int i12;
+        boolean z10;
+        fg1 fg1Var;
+        ah.h hVar;
+        switch (this.f38626a) {
             case 0:
-                jf1 jf1Var = this.f37407b;
-                jf1Var.F = null;
-                if (jf1Var.G != -1) {
-                    jf1Var.H.getNotificationCenter().onAnimationFinish(jf1Var.G);
-                    jf1Var.G = -1;
+                fg1 fg1Var2 = this.f38627b;
+                int L0 = fg1Var2.F.L0();
+                if (L0 != -1) {
+                    s4.d1 K = recyclerView.K(L0);
+                    boolean z11 = false;
+                    if (K != null) {
+                        i12 = K.f47656a.getTop();
+                    } else {
+                        i12 = 0;
+                    }
+                    if (L0 == 0) {
+                        int i13 = 0 - i12;
+                        if (i12 < 0) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        Math.abs(i13);
+                    } else if (L0 > 0) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    if (z10 || !fg1Var2.K) {
+                        z11 = true;
+                    }
+                    fg1Var2.G0(z11, true);
                     return;
                 }
                 return;
+            case 1:
+                this.f38627b.y0();
+                return;
             default:
-                jf1 jf1Var2 = this.f37407b;
-                jf1Var2.F = null;
-                if (jf1Var2.G != -1) {
-                    jf1Var2.H.getNotificationCenter().onAnimationFinish(jf1Var2.G);
-                    jf1Var2.G = -1;
+                if (Build.VERSION.SDK_INT >= 31 && (hVar = (fg1Var = this.f38627b).f37572f1) != null) {
+                    hVar.f(i10, i11);
+                    fg1Var.x0();
                     return;
                 }
                 return;

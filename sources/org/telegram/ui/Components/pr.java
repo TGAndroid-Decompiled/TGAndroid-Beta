@@ -1,240 +1,111 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
+import org.json.JSONArray;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class pr extends cb {
-    public final boolean X;
-    public final i80 Y;
-    public TLRPC.InputPeer Z;
-    public final boolean f29828a0;
-    public String f29829b0;
-    public String f29830c0;
-    public SpannableStringBuilder f29831d0;
-    public w61 f29832e0;
-    public final boolean f29833f0;
-    public or f29834g0;
+import org.telegram.tgnet.tl.TL_wallet;
+public final class pr implements Utilities.Callback2 {
+    public final int f29924a;
+    public final String f29925b;
+    public final Object f29926c;
+    public final Object d;
+    public final Object f29927e;
+    public final Object f29928f;
+    public final Object f29929g;
+    public final Object h;
 
-    public pr(Context context, int i10, TL_phone.getGroupCallStreamRtmpUrl getgroupcallstreamrtmpurl, TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl, ai.g3 g3Var, ai.d dVar) {
-        int i11;
-        pr cbVar = new cb(context, null, false, false, dVar);
-        cbVar.X = true;
-        cbVar.v = 0.126f;
-        cbVar.Y = null;
-        cbVar.f29828a0 = false;
-        long peerDialogId = DialogObject.getPeerDialogId(getgroupcallstreamrtmpurl.peer);
-        boolean z10 = g3Var != null && (peerDialogId >= 0 || ChatObject.isCreator(MessagesController.getInstance(i10).getChat(Long.valueOf(-peerDialogId))));
-        if (g3Var != null) {
-            cbVar.f29833f0 = true;
-            ci.d dVar2 = new ci.d(context, dVar, true);
-            dVar2.g(LocaleController.getString(R.string.LiveStoryRTMPEnable), false, true);
-            cbVar.containerView.addView(dVar2, w7.z5.d(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, (z10 ? 52 : 0) + 12));
-            dVar2.setOnClickListener(new ai.d0(cbVar, g3Var, dVar2, 18));
-            if (z10) {
-                ci.d dVar3 = new ci.d(context, dVar, false);
-                dVar3.setColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21088r7, false));
-                dVar3.d.u(AndroidUtilities.bold());
-                dVar3.g(LocaleController.getString(R.string.LiveStoryRTMPRevoke), false, true);
-                cbVar = this;
-                dVar3.setOnClickListener(new ei.n3(this, context, dVar, dVar3, getgroupcallstreamrtmpurl, i10));
-                cbVar.containerView.addView(dVar3, w7.z5.d(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 12.0f));
-            }
-        }
-        s4.j jVar = new s4.j();
-        jVar.f46577m = false;
-        jVar.C = false;
-        jVar.o(tr.h);
-        jVar.n(350L);
-        cbVar.d.setItemAnimator(jVar);
-        zl0 zl0Var = cbVar.d;
-        int i12 = cbVar.backgroundPaddingLeft;
-        if (cbVar.f29833f0) {
-            i11 = AndroidUtilities.dp(z10 ? 124.0f : 72.0f);
-        } else {
-            i11 = 0;
-        }
-        zl0Var.setPadding(i12, 0, i12, i11);
-        cbVar.fixNavigationBar();
-        cbVar.L();
-        cbVar.f29829b0 = groupcallstreamrtmpurl.url;
-        cbVar.f29830c0 = groupcallstreamrtmpurl.key;
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(cbVar.f29830c0);
-        cbVar.f29831d0 = spannableStringBuilder;
-        ?? obj = new Object();
-        obj.f28925a |= 256;
-        obj.f28926b = 0;
-        obj.f28927c = spannableStringBuilder.length();
-        cbVar.f29831d0.setSpan(new o11(obj, 0), 0, cbVar.f29831d0.length(), 0);
-        cbVar.f29832e0.N(false);
-    }
-
-    public static void N(pr prVar, TLRPC.Peer peer) {
-        prVar.Z = MessagesController.getInstance(prVar.currentAccount).getInputPeer(MessageObject.getPeerId(peer));
-        prVar.dismiss();
-    }
-
-    public static void O(pr prVar, ci.d dVar, long j3) {
-        if (dVar.N) {
-            return;
-        }
-        dVar.setLoading(true);
-        TL_phone.getGroupCallStreamRtmpUrl getgroupcallstreamrtmpurl = new TL_phone.getGroupCallStreamRtmpUrl();
-        getgroupcallstreamrtmpurl.peer = MessagesController.getInstance(prVar.currentAccount).getInputPeer(j3);
-        getgroupcallstreamrtmpurl.revoke = true;
-        ConnectionsManager.getInstance(prVar.currentAccount).sendRequest(getgroupcallstreamrtmpurl, new kr(prVar, dVar, 0));
-    }
-
-    public static void P(pr prVar, ArrayList arrayList) {
-        int i10;
-        String str = null;
-        if (prVar.f29834g0 == null) {
-            Context context = prVar.getContext();
-            org.telegram.ui.ActionBar.d6 d6Var = prVar.resourcesProvider;
-            ?? linearLayout = new LinearLayout(context);
-            linearLayout.setOrientation(1);
-            ?? imageView = new ImageView(context);
-            imageView.setAutoRepeat(true);
-            imageView.f(R.raw.utyan_streaming, 112, 112, null);
-            imageView.d();
-            linearLayout.addView(imageView, w7.z5.t(112, 112, 49, 0, 24, 0, 0));
-            TextView textView = new TextView(context);
-            textView.setTypeface(AndroidUtilities.bold());
-            textView.setText(LocaleController.formatString(R.string.Streaming, new Object[0]));
-            textView.setTextSize(1, 20.0f);
-            textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.G6, d6Var));
-            linearLayout.addView(textView, w7.z5.t(-2, -2, 1, 0, 14, 0, 7));
-            TextView textView2 = new TextView(context);
-            textView2.setTextSize(1, 14.0f);
-            textView2.setGravity(1);
-            textView2.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20935j5, d6Var));
-            textView2.setText(LocaleController.formatString(R.string.VoipStreamStart, new Object[0]));
-            textView2.setLineSpacing(textView2.getLineSpacingExtra(), textView2.getLineSpacingMultiplier() * 1.1f);
-            linearLayout.addView(textView2, w7.z5.t(-2, -2, 1, 28, 0, 28, 17));
-            prVar.f29834g0 = linearLayout;
-        }
-        arrayList.add(h61.k(prVar.f29834g0));
-        arrayList.add(h61.C(null));
-        com.google.android.gms.internal.vision.e2.n(R.string.VoipChatStreamSettings, arrayList);
-        String str2 = prVar.f29829b0;
-        String string = LocaleController.getString(R.string.VoipChatStreamServerUrl);
-        int i11 = nr.f29138a;
-        h61 K = h61.K(nr.class);
-        K.f27093l = str2;
-        K.f27095n = string;
-        K.f27091j = false;
-        K.f27089g = false;
-        arrayList.add(K);
-        SpannableStringBuilder spannableStringBuilder = prVar.f29831d0;
-        String string2 = LocaleController.getString(R.string.VoipChatStreamKey);
-        h61 K2 = h61.K(nr.class);
-        K2.f27093l = spannableStringBuilder;
-        K2.f27095n = string2;
-        K2.f27091j = true;
-        K2.f27089g = false;
-        arrayList.add(K2);
-        if (prVar.f29833f0) {
-            if (prVar.X) {
-                i10 = R.string.VoipChatStreamWithAnotherAppDescriptionStory;
-            } else {
-                i10 = R.string.VoipChatStreamWithAnotherAppDescription;
-            }
-            str = LocaleController.getString(i10);
-        }
-        arrayList.add(h61.C(str));
-    }
-
-    public static void Q(pr prVar, Context context, ci.d dVar, long j3) {
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, prVar.resourcesProvider);
-        alertDialog$Builder.f20377a.R = LocaleController.getString(R.string.LiveStoryRTMPRevokeTitle);
-        alertDialog$Builder.f20377a.T = LocaleController.getString(R.string.LiveStoryRTMPRevokeText);
-        alertDialog$Builder.k(LocaleController.getString(R.string.RevokeButton), new ci.p9(prVar, dVar, j3, 3));
-        alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-        alertDialog$Builder.d(-1);
-        alertDialog$Builder.o();
+    public pr(Object obj, Object obj2, Object obj3, String str, Object obj4, Object obj5, Object obj6, int i10) {
+        this.f29924a = i10;
+        this.f29926c = obj;
+        this.d = obj2;
+        this.f29927e = obj3;
+        this.f29925b = str;
+        this.f29928f = obj4;
+        this.f29929g = obj5;
+        this.h = obj6;
     }
 
     @Override
-    public final void dismissInternal() {
-        TLRPC.InputPeer inputPeer;
-        super.dismissInternal();
-        i80 i80Var = this.Y;
-        if (i80Var != null && (inputPeer = this.Z) != null) {
-            i80Var.a(inputPeer, this.f29828a0, false, true);
+    public final void run(Object obj, Object obj2) {
+        switch (this.f29924a) {
+            case 0:
+                ci.d dVar = (ci.d) this.f29926c;
+                String[] strArr = (String[]) this.f29927e;
+                String str = this.f29925b;
+                org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) this.f29928f;
+                org.telegram.ui.ActionBar.e6 e6Var = (org.telegram.ui.ActionBar.e6) this.f29929g;
+                int[] iArr = (int[]) this.h;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                dVar.setLoading(false);
+                ((String[]) this.d)[0] = null;
+                if (((TLRPC.Bool) obj) instanceof TLRPC.TL_boolTrue) {
+                    strArr[0] = str;
+                    dVar.setEnabled(true);
+                    e9Var.setText(LocaleController.formatString(R.string.UsernameAvailable, sc.v.i("@", str)));
+                    e9Var.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21146w6, e6Var));
+                    return;
+                }
+                strArr[0] = null;
+                dVar.setEnabled(false);
+                e9Var.setText(LocaleController.getString(R.string.UsernameInUse));
+                e9Var.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21037q7, e6Var));
+                int i10 = -iArr[0];
+                iArr[0] = i10;
+                AndroidUtilities.shakeViewSpring(e9Var, i10);
+                return;
+            case 1:
+                org.telegram.ui.Wallet.d2 d2Var = (org.telegram.ui.Wallet.d2) this.f29926c;
+                org.telegram.ui.ft ftVar = (org.telegram.ui.ft) this.d;
+                org.telegram.ui.Wallet.h0 h0Var = (org.telegram.ui.Wallet.h0) this.f29927e;
+                TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) this.f29928f;
+                String str2 = this.f29925b;
+                byte[] bArr = (byte[]) this.f29929g;
+                org.telegram.ui.Wallet.y1 y1Var = (org.telegram.ui.Wallet.y1) this.h;
+                TL_wallet.tonConnectChallenge tonconnectchallenge = (TL_wallet.tonConnectChallenge) obj;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
+                d2Var.getClass();
+                if (tL_error2 == null && tonconnectchallenge != null) {
+                    Utilities.globalQueue.postRunnable(new ii.k(d2Var, h0Var, tonconnectsession, str2, bArr, y1Var, tonconnectchallenge, ftVar, 4));
+                    return;
+                } else {
+                    ftVar.run(org.telegram.ui.Wallet.d2.x(tL_error2, "registerKey"));
+                    return;
+                }
+            default:
+                org.telegram.ui.Wallet.d2 d2Var2 = (org.telegram.ui.Wallet.d2) this.f29926c;
+                ai.m0 m0Var = (ai.m0) this.d;
+                TL_wallet.tonConnectSession tonconnectsession2 = (TL_wallet.tonConnectSession) this.f29927e;
+                String str3 = this.f29925b;
+                byte[] bArr2 = (byte[]) this.f29928f;
+                JSONArray jSONArray = (JSONArray) this.f29929g;
+                TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest = (TLRPC.TL_urlAuthResultRequest) this.h;
+                org.telegram.ui.Wallet.h0 h0Var2 = (org.telegram.ui.Wallet.h0) obj;
+                String str4 = (String) obj2;
+                d2Var2.getClass();
+                if (str4 == null && h0Var2 != null) {
+                    org.telegram.ui.Wallet.h0 b10 = h0Var2.b();
+                    Utilities.globalQueue.postRunnable(new ii.k(d2Var2, b10, tonconnectsession2, str3, bArr2, jSONArray, tL_urlAuthResultRequest, new ai.m0(26, b10, m0Var), 5));
+                    return;
+                }
+                if (str4 == null) {
+                    str4 = "Recovery phrase is unavailable";
+                }
+                m0Var.run(null, str4);
+                return;
         }
     }
 
-    @Override
-    public final yl0 v(zl0 zl0Var) {
-        w61 w61Var = new w61(zl0Var, getContext(), this.currentAccount, 0, true, new d(this, 7), this.resourcesProvider);
-        this.f29832e0 = w61Var;
-        return w61Var;
-    }
-
-    @Override
-    public final CharSequence y() {
-        return LocaleController.getString(R.string.Streaming);
-    }
-
-    public pr(org.telegram.ui.ActionBar.n2 n2Var, TLRPC.Peer peer, long j3, boolean z10, i80 i80Var) {
-        super(n2Var, false);
-        this.X = false;
-        this.v = 0.26f;
-        this.Y = i80Var;
-        this.f29828a0 = z10;
-        Context context = this.containerView.getContext();
-        boolean isCreator = ChatObject.isCreator(MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j3)));
-        this.f29833f0 = true;
-        TextView textView = new TextView(context);
-        textView.setGravity(17);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setSingleLine(true);
-        textView.setTextSize(1, 14.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setText(LocaleController.getString(R.string.VoipChannelStartStreaming));
-        textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Sh, this.resourcesProvider));
-        int dp = AndroidUtilities.dp(8.0f);
-        int v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Oh, this.resourcesProvider);
-        int k10 = i0.a.k(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20827d6, false), 120);
-        textView.setBackground(org.telegram.ui.ActionBar.i6.i0(dp, dp, dp, dp, v02, k10, k10));
-        this.containerView.addView(textView, w7.z5.d(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, (isCreator ? 52 : 0) + 12));
-        textView.setOnClickListener(new org.telegram.ui.qf(26, this, peer));
-        if (isCreator) {
-            ci.d dVar = new ci.d(context, this.resourcesProvider, false);
-            dVar.setColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21088r7, false));
-            dVar.d.u(AndroidUtilities.bold());
-            dVar.g(LocaleController.getString(R.string.LiveStoryRTMPRevoke), false, true);
-            dVar.setOnClickListener(new mr(this, context, dVar, j3, 0));
-            this.containerView.addView(dVar, w7.z5.d(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 12.0f));
-        }
-        zl0 zl0Var = this.d;
-        int i10 = this.backgroundPaddingLeft;
-        zl0Var.setPadding(i10, 0, i10, AndroidUtilities.dp((isCreator ? 52 : 0) + 72));
-        s4.j jVar = new s4.j();
-        jVar.f46577m = false;
-        jVar.C = false;
-        jVar.o(tr.h);
-        jVar.n(350L);
-        this.d.setItemAnimator(jVar);
-        fixNavigationBar();
-        L();
-        TL_phone.getGroupCallStreamRtmpUrl getgroupcallstreamrtmpurl = new TL_phone.getGroupCallStreamRtmpUrl();
-        getgroupcallstreamrtmpurl.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(j3);
-        getgroupcallstreamrtmpurl.revoke = false;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(getgroupcallstreamrtmpurl, new y1(this, 2));
+    public pr(org.telegram.ui.Wallet.d2 d2Var, org.telegram.ui.ft ftVar, org.telegram.ui.Wallet.h0 h0Var, TL_wallet.tonConnectSession tonconnectsession, String str, byte[] bArr, org.telegram.ui.Wallet.y1 y1Var) {
+        this.f29924a = 1;
+        this.f29926c = d2Var;
+        this.d = ftVar;
+        this.f29927e = h0Var;
+        this.f29928f = tonconnectsession;
+        this.f29925b = str;
+        this.f29929g = bArr;
+        this.h = y1Var;
     }
 }

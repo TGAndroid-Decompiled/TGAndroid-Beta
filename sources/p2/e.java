@@ -4,25 +4,25 @@ import android.net.Uri;
 import java.util.ArrayList;
 import java.util.HashMap;
 public final class e {
-    public final String f44020a;
-    public Uri f44022c;
+    public final String f45184a;
+    public Uri f45186c;
     public Uri d;
-    public boolean f44027j;
-    public Boolean f44032o;
-    public String f44033p;
-    public String f44034q;
-    public final HashMap f44021b = new HashMap();
-    public long f44023e = -9223372036854775807L;
-    public long f44024f = -9223372036854775807L;
-    public long f44025g = -9223372036854775807L;
+    public boolean f45191j;
+    public Boolean f45196o;
+    public String f45197p;
+    public String f45198q;
+    public final HashMap f45185b = new HashMap();
+    public long f45187e = -9223372036854775807L;
+    public long f45188f = -9223372036854775807L;
+    public long f45189g = -9223372036854775807L;
     public long h = -9223372036854775807L;
-    public ArrayList f44026i = new ArrayList();
-    public long f44028k = -9223372036854775807L;
-    public long f44029l = -9223372036854775807L;
-    public ArrayList f44030m = new ArrayList();
-    public ArrayList f44031n = new ArrayList();
+    public ArrayList f45190i = new ArrayList();
+    public long f45192k = -9223372036854775807L;
+    public long f45193l = -9223372036854775807L;
+    public ArrayList f45194m = new ArrayList();
+    public ArrayList f45195n = new ArrayList();
 
     public e(String str) {
-        this.f44020a = str;
+        this.f45184a = str;
     }
 }

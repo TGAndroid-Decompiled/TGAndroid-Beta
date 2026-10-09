@@ -1,9 +1,9 @@
 package u2;
 public final class f extends r {
-    public final long f47267f;
-    public final long f47268g;
+    public final long f48567f;
+    public final long f48568g;
     public final long h;
-    public final boolean f47269i;
+    public final boolean f48569i;
 
     public f(b2.k1 k1Var, long j3, long j10, boolean z10) {
         super(k1Var);
@@ -17,23 +17,23 @@ public final class f extends r {
         if (k1Var.h() == 1) {
             b2.j1 m10 = k1Var.m(0, new b2.j1(), 0L);
             long max2 = Math.max(0L, j3);
-            if (!z10 && !m10.f3308k && max2 != 0 && !m10.h) {
+            if (!z10 && !m10.f3387k && max2 != 0 && !m10.h) {
                 throw new g(1);
             }
             if (i10 == 0) {
-                max = m10.f3310m;
+                max = m10.f3389m;
             } else {
                 max = Math.max(0L, j10);
             }
-            long j12 = m10.f3310m;
+            long j12 = m10.f3389m;
             if (j12 != -9223372036854775807L) {
                 max = max > j12 ? j12 : max;
                 if (max2 > max) {
                     max2 = max;
                 }
             }
-            this.f47267f = max2;
-            this.f47268g = max;
+            this.f48567f = max2;
+            this.f48568g = max;
             int i11 = (max > (-9223372036854775807L) ? 1 : (max == (-9223372036854775807L) ? 0 : -1));
             if (i11 == 0) {
                 j11 = -9223372036854775807L;
@@ -41,10 +41,10 @@ public final class f extends r {
                 j11 = max - max2;
             }
             this.h = j11;
-            if (m10.f3306i && (i11 == 0 || (j12 != -9223372036854775807L && max == j12))) {
+            if (m10.f3385i && (i11 == 0 || (j12 != -9223372036854775807L && max == j12))) {
                 z11 = true;
             }
-            this.f47269i = z11;
+            this.f48569i = z11;
             return;
         }
         throw new g(0);
@@ -52,43 +52,43 @@ public final class f extends r {
 
     @Override
     public final b2.h1 f(int i10, b2.h1 h1Var, boolean z10) {
-        this.f47392e.f(0, h1Var, z10);
-        long j3 = h1Var.f3251e - this.f47267f;
+        this.f48689e.f(0, h1Var, z10);
+        long j3 = h1Var.f3330e - this.f48567f;
         long j10 = this.h;
         long j11 = -9223372036854775807L;
         if (j10 != -9223372036854775807L) {
             j11 = j10 - j3;
         }
-        h1Var.h(h1Var.f3248a, h1Var.f3249b, 0, j11, j3, b2.b.f3160c, false);
+        h1Var.h(h1Var.f3327a, h1Var.f3328b, 0, j11, j3, b2.b.f3239c, false);
         return h1Var;
     }
 
     @Override
     public final b2.j1 m(int i10, b2.j1 j1Var, long j3) {
-        this.f47392e.m(0, j1Var, 0L);
-        long j10 = j1Var.f3313p;
-        long j11 = this.f47267f;
-        j1Var.f3313p = j10 + j11;
-        j1Var.f3310m = this.h;
-        j1Var.f3306i = this.f47269i;
-        long j12 = j1Var.f3309l;
+        this.f48689e.m(0, j1Var, 0L);
+        long j10 = j1Var.f3392p;
+        long j11 = this.f48567f;
+        j1Var.f3392p = j10 + j11;
+        j1Var.f3389m = this.h;
+        j1Var.f3385i = this.f48569i;
+        long j12 = j1Var.f3388l;
         if (j12 != -9223372036854775807L) {
             long max = Math.max(j12, j11);
-            j1Var.f3309l = max;
-            long j13 = this.f47268g;
+            j1Var.f3388l = max;
+            long j13 = this.f48568g;
             if (j13 != -9223372036854775807L) {
                 max = Math.min(max, j13);
             }
-            j1Var.f3309l = max - j11;
+            j1Var.f3388l = max - j11;
         }
-        long e02 = e2.d0.e0(j11);
-        long j14 = j1Var.f3303e;
+        long d02 = e2.d0.d0(j11);
+        long j14 = j1Var.f3382e;
         if (j14 != -9223372036854775807L) {
-            j1Var.f3303e = j14 + e02;
+            j1Var.f3382e = j14 + d02;
         }
-        long j15 = j1Var.f3304f;
+        long j15 = j1Var.f3383f;
         if (j15 != -9223372036854775807L) {
-            j1Var.f3304f = j15 + e02;
+            j1Var.f3383f = j15 + d02;
         }
         return j1Var;
     }

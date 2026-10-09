@@ -67,6 +67,9 @@ public class AppGlobalConfig {
     public final ConfigLong tonStarGiftResaleAmountMin;
     public final ConfigInt tonStarGiftResaleCommissionPermille;
     public final ConfigDouble tonUsdRate;
+    public final ConfigBoolean walletAvailable;
+    public final ConfigLong walletGaslessMinNanos;
+    public final ConfigLong walletTransferMinNanos;
     private final HashMap<String, ConfigInternal> map = new HashMap<>();
     public final ConfigInt starsPaidMessagesChannelAmountDefault = ofInt("stars_paid_messages_channel_amount_default", 10);
     public final ConfigInt starsSuggestedPostCommissionPermille = ofInt("stars_suggested_post_commission_permille", 850);
@@ -426,6 +429,9 @@ public class AppGlobalConfig {
         this.roundVideoRecorder2Allowed = ofBoolean("round_video_recorder_2_allowed", true);
         this.starsSpendTopUpInvoiceDisabled = ofBoolean("stars_spend_topup_invoice_disabled", false);
         this.botAllowedSuffixes = ofStringSet("bot_allowed_suffixes", Collections.singleton("bot"));
+        this.walletAvailable = ofBoolean("wallet_available", BuildVars.DEBUG_VERSION);
+        this.walletTransferMinNanos = ofLong("wallet_transfer_min_nanos", 100000000L);
+        this.walletGaslessMinNanos = ofLong("wallet_gasless_min_nanos", 100000000L);
     }
 
     public static AppGlobalConfig getInstance(int i10) {

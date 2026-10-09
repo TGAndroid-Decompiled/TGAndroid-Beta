@@ -1,18 +1,18 @@
 package org.telegram.ui.ActionBar;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.tr;
+import org.telegram.ui.Components.hs;
 public final class t implements Runnable {
-    public final boolean f21510a;
-    public final boolean f21511b;
-    public final boolean f21512c;
+    public final boolean f21511a;
+    public final boolean f21512b;
+    public final boolean f21513c;
     public final ActionBarLayout d;
 
     public t(ActionBarLayout actionBarLayout, boolean z10, boolean z11, boolean z12) {
         this.d = actionBarLayout;
-        this.f21510a = z10;
-        this.f21511b = z11;
-        this.f21512c = z12;
+        this.f21511a = z10;
+        this.f21512b = z11;
+        this.f21513c = z12;
     }
 
     @Override
@@ -26,9 +26,9 @@ public final class t implements Runnable {
         }
         Integer num2 = null;
         actionBarLayout.D0 = null;
-        boolean z10 = this.f21510a;
+        boolean z10 = this.f21511a;
         if (z10) {
-            actionBarLayout.f20358v0 = System.currentTimeMillis();
+            actionBarLayout.f20355v0 = System.currentTimeMillis();
         }
         long nanoTime = System.nanoTime() / 1000000;
         long j3 = nanoTime - actionBarLayout.F0;
@@ -38,8 +38,8 @@ public final class t implements Runnable {
             j3 = 18;
         }
         actionBarLayout.F0 = nanoTime;
-        boolean z11 = this.f21512c;
-        boolean z12 = this.f21511b;
+        boolean z11 = this.f21513c;
+        boolean z12 = this.f21512b;
         if (z12 && z11) {
             f7 = 190.0f;
         } else {
@@ -77,7 +77,7 @@ public final class t implements Runnable {
             num2 = num;
         }
         if (actionBarLayout.H != null && num != null && num2 != null) {
-            int d = i0.a.d(w7.q.a(actionBarLayout.E0 * 4.0f, 0.0f, 1.0f), num.intValue(), num2.intValue());
+            int d = i0.a.d(w7.o.a(actionBarLayout.E0 * 4.0f, 0.0f, 1.0f), num.intValue(), num2.intValue());
             s sVar = actionBarLayout.G;
             if (sVar != null && sVar.sheetsStack != null) {
                 for (int i10 = 0; i10 < actionBarLayout.G.sheetsStack.size(); i10++) {
@@ -93,46 +93,46 @@ public final class t implements Runnable {
             if (z11) {
                 interpolation = actionBarLayout.M.getInterpolation(actionBarLayout.E0);
             } else {
-                interpolation = tr.h.getInterpolation(actionBarLayout.E0);
+                interpolation = hs.h.getInterpolation(actionBarLayout.E0);
             }
         } else {
             interpolation = actionBarLayout.L.getInterpolation(actionBarLayout.E0);
         }
         if (z11) {
-            float a2 = w7.q.a(interpolation, 0.0f, 1.0f);
-            actionBarLayout.f20354s.setAlpha(a2);
+            float a2 = w7.o.a(interpolation, 0.0f, 1.0f);
+            actionBarLayout.f20351s.setAlpha(a2);
             if (z12) {
                 float f11 = (0.3f * interpolation) + 0.7f;
-                actionBarLayout.f20354s.setScaleX(f11);
-                actionBarLayout.f20354s.setScaleY(f11);
+                actionBarLayout.f20351s.setScaleX(f11);
+                actionBarLayout.f20351s.setScaleY(f11);
                 if (actionBarLayout.J != null) {
                     float f12 = 1.0f - interpolation;
-                    actionBarLayout.f20354s.setTranslationY(AndroidUtilities.dp(40.0f) * f12);
+                    actionBarLayout.f20351s.setTranslationY(AndroidUtilities.dp(40.0f) * f12);
                     actionBarLayout.J.setTranslationY((-AndroidUtilities.dp(70.0f)) * f12);
                     float f13 = (interpolation * 0.05f) + 0.95f;
                     actionBarLayout.J.setScaleX(f13);
                     actionBarLayout.J.setScaleY(f13);
                 }
-                actionBarLayout.f20352r.setAlpha((int) (46.0f * a2));
-                i6.f21101s0.setAlpha((int) (a2 * 255.0f));
-                actionBarLayout.f20354s.invalidate();
+                actionBarLayout.f20349r.setAlpha((int) (46.0f * a2));
+                i6.f21067s0.setAlpha((int) (a2 * 255.0f));
+                actionBarLayout.f20351s.invalidate();
                 actionBarLayout.invalidate();
             } else {
-                actionBarLayout.f20354s.setTranslationX((1.0f - interpolation) * AndroidUtilities.dp(48.0f));
+                actionBarLayout.f20351s.setTranslationX((1.0f - interpolation) * AndroidUtilities.dp(48.0f));
             }
         } else {
             float f14 = 1.0f - interpolation;
-            float a10 = w7.q.a(f14, 0.0f, 1.0f);
+            float a10 = w7.o.a(f14, 0.0f, 1.0f);
             actionBarLayout.v.setAlpha(a10);
             if (z12) {
                 float f15 = (f14 * 0.1f) + 0.9f;
                 actionBarLayout.v.setScaleX(f15);
                 actionBarLayout.v.setScaleY(f15);
-                actionBarLayout.f20352r.setAlpha((int) (46.0f * a10));
+                actionBarLayout.f20349r.setAlpha((int) (46.0f * a10));
                 if (actionBarLayout.J == null) {
-                    i6.f21101s0.setAlpha((int) (a10 * 255.0f));
+                    i6.f21067s0.setAlpha((int) (a10 * 255.0f));
                 }
-                actionBarLayout.f20354s.invalidate();
+                actionBarLayout.f20351s.invalidate();
                 actionBarLayout.invalidate();
             } else {
                 actionBarLayout.v.setTranslationX(AndroidUtilities.dp(48.0f) * interpolation);

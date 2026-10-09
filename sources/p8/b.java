@@ -1,4 +1,4 @@
 package p8;
 public final class b {
-    public int f44362a;
+    public int f45526a;
 }

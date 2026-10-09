@@ -1,24 +1,65 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import org.telegram.messenger.Utilities;
-public final class gw implements Utilities.Callback {
-    public final int f36769a;
-    public final Activity f36770b;
+import android.text.SpannableStringBuilder;
+import java.util.Collections;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class gw implements Runnable {
+    public final int f38124a;
+    public final ty f38125b;
+    public final long f38126c;
+    public final boolean d;
 
-    public gw(Activity activity, int i10) {
-        this.f36769a = i10;
-        this.f36770b = activity;
+    public gw(ty tyVar, long j3, boolean z10, int i10) {
+        this.f38124a = i10;
+        this.f38125b = tyVar;
+        this.f38126c = j3;
+        this.d = z10;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f36769a) {
+    public final void run() {
+        String str;
+        TLRPC.Chat chat;
+        SpannableStringBuilder replaceTags;
+        int i10 = this.f38124a;
+        boolean z10 = this.d;
+        long j3 = this.f38126c;
+        ty tyVar = this.f38125b;
+        switch (i10) {
             case 0:
-                uy.B0(this.f36770b, (Boolean) obj);
+                ty tyVar2 = this.f38125b;
+                ai.m9 storiesController = tyVar2.getMessagesController().getStoriesController();
+                long j10 = this.f38126c;
+                boolean z11 = this.d;
+                storiesController.i0(j10, z11, false);
+                n6.t tVar = new n6.t(4);
+                tVar.f16717b = new gw(tyVar2, j10, z11, 1);
+                tVar.f16718c = new gw(tyVar2, j10, z11, 2);
+                if (j10 >= 0) {
+                    TLRPC.User user = tyVar2.getMessagesController().getUser(Long.valueOf(j10));
+                    str = ContactsController.formatName(user.first_name, null, 15);
+                    chat = user;
+                } else {
+                    TLRPC.Chat chat2 = tyVar2.getMessagesController().getChat(Long.valueOf(-j10));
+                    str = chat2.title;
+                    chat = chat2;
+                }
+                if (tyVar2.b4()) {
+                    replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("StoriesMovedToDialogs", R.string.StoriesMovedToDialogs, str));
+                } else {
+                    replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("StoriesMovedToContacts", R.string.StoriesMovedToContacts, ContactsController.formatName(str, null, 15)));
+                }
+                tyVar2.S = org.telegram.ui.Components.ad.X().V(Collections.singletonList(chat), replaceTags, null, tVar).j();
+                return;
+            case 1:
+                tyVar.getMessagesController().getStoriesController().i0(j3, !z10, false);
                 return;
             default:
-                uy.s0(this.f36770b, (Boolean) obj);
+                tyVar.getMessagesController().getStoriesController().i0(j3, z10, true);
                 return;
         }
     }

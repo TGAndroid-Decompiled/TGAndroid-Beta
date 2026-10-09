@@ -1,36 +1,37 @@
 package org.telegram.ui;
+public final class h0 extends org.telegram.ui.ActionBar.g5 {
+    public final int f38162f;
+    public final Object h;
 
-import org.telegram.messenger.NotificationCenter;
-public final class h0 extends org.telegram.ui.ActionBar.f5 {
-    public final int f36831f;
-    public final NotificationCenter.NotificationCenterDelegate h;
-
-    public h0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f36831f = i10;
-        this.h = notificationCenterDelegate;
+    public h0(Object obj, int i10) {
+        this.f38162f = i10;
+        this.h = obj;
     }
 
     @Override
-    public boolean g() {
-        switch (this.f36831f) {
+    public boolean h() {
+        switch (this.f38162f) {
             case 0:
                 i4 i4Var = (i4) this.h;
-                org.telegram.ui.Cells.q9 q9Var = i4Var.P0;
-                if (q9Var != null && q9Var.y()) {
+                org.telegram.ui.Cells.o9 o9Var = i4Var.P0;
+                if (o9Var != null && o9Var.x()) {
                     i4Var.P0.f(false);
                     return false;
                 }
                 return true;
+            case 1:
             default:
-                return super.g();
+                return super.h();
+            case 2:
+                return !((org.telegram.ui.Wallet.z1) this.h).f35703m;
         }
     }
 
     @Override
     public void onOpenAnimationEnd() {
-        switch (this.f36831f) {
+        switch (this.f38162f) {
             case 1:
-                ((org.telegram.ui.Components.br0) this.h).Y = true;
+                ((org.telegram.ui.Components.mr0) this.h).Y = true;
                 return;
             default:
                 return;

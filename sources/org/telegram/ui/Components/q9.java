@@ -1,37 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import org.telegram.messenger.Utilities;
-public final class q9 implements u9 {
-    public final v9 f29984a;
-    public final w7.w5[] f29985b;
-    public final Runnable[] f29986c;
-    public final m60[] d;
-
-    public q9(v9 v9Var, w7.w5[] w5VarArr, Runnable[] runnableArr, m60[] m60VarArr) {
-        this.f29984a = v9Var;
-        this.f29985b = w5VarArr;
-        this.f29986c = runnableArr;
-        this.d = m60VarArr;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public abstract class q9 {
+    public static void a(org.telegram.ui.zn znVar, int i10, TLRPC.Chat chat, TLRPC.User user, TLRPC.TL_forumTopic tL_forumTopic, long j3, int i11, int i12) {
+        org.telegram.ui.ActionBar.d5 parentLayout;
+        TLRPC.TL_forumTopic tL_forumTopic2;
+        if ((chat != null || user != null) && (parentLayout = znVar.getParentLayout()) != null) {
+            if (parentLayout.getPulledDialogs() == null) {
+                parentLayout.setPulledDialogs(new ArrayList());
+            }
+            for (p9 p9Var : parentLayout.getPulledDialogs()) {
+                if (tL_forumTopic != null || p9Var.f29801f != j3) {
+                    if (tL_forumTopic != null && (tL_forumTopic2 = p9Var.f29800e) != null && tL_forumTopic2.f20090id == tL_forumTopic.f20090id) {
+                        return;
+                    }
+                } else {
+                    return;
+                }
+            }
+            ?? obj = new Object();
+            obj.f29797a = org.telegram.ui.zn.class;
+            obj.f29798b = i10;
+            obj.f29801f = j3;
+            obj.h = i12;
+            obj.f29802g = i11;
+            obj.f29799c = chat;
+            obj.d = user;
+            obj.f29800e = tL_forumTopic;
+            parentLayout.getPulledDialogs().add(obj);
+        }
     }
 
-    @Override
-    public final void dispose() {
-        v9 v9Var = this.f29984a;
-        w7.w5[] w5VarArr = this.f29985b;
-        Runnable[] runnableArr = this.f29986c;
-        m60[] m60VarArr = this.d;
-        w5VarArr[0] = null;
-        if (v9Var.f31688e.contains(runnableArr)) {
-            Utilities.globalQueue.cancelRunnables(runnableArr);
-            v9Var.f31688e.remove(runnableArr);
-        }
-        for (m60 m60Var : m60VarArr) {
-            Bitmap bitmap = (Bitmap) v9Var.f31686b.remove(m60Var);
-            v9Var.f31687c.remove(m60Var);
-            if (bitmap != null) {
-                bitmap.recycle();
-            }
-        }
+    public static org.telegram.ui.ActionBar.n1 b(org.telegram.ui.ActionBar.n2 r37, android.view.View r38, long r39, long r41, org.telegram.ui.ActionBar.e6 r43) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.q9.b(org.telegram.ui.ActionBar.n2, android.view.View, long, long, org.telegram.ui.ActionBar.e6):org.telegram.ui.ActionBar.n1");
     }
 }

@@ -18,60 +18,60 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.sj;
-import w7.q;
+import org.telegram.ui.wj;
+import w7.o;
 public final class e extends View implements ViewTreeObserver.OnPreDrawListener, ViewTreeObserver.OnScrollChangedListener, ViewTreeObserver.OnGlobalLayoutListener {
     public static final RectF H = new RectF();
     public ViewTreeObserver E;
     public boolean F;
     public TextPaint G;
-    public final boolean f11440a;
-    public final RectF f11441b;
-    public final RectF f11442c;
+    public final boolean f11489a;
+    public final RectF f11490b;
+    public final RectF f11491c;
     public long d;
-    public int f11443e;
-    public ViewGroup f11444f;
+    public int f11492e;
+    public ViewGroup f11493f;
     public ViewGroup h;
-    public long f11445n;
-    public c f11446r;
-    public long f11447s;
+    public long f11494n;
+    public c f11495r;
+    public long f11496s;
     public final ArrayList v;
-    public final LongSparseArray f11448w;
-    public final LongSparseArray f11449x;
-    public final c f11450y;
+    public final LongSparseArray f11497w;
+    public final LongSparseArray f11498x;
+    public final c f11499y;
 
     public e(Context context) {
         super(context);
-        this.f11441b = new RectF();
-        this.f11442c = new RectF();
+        this.f11490b = new RectF();
+        this.f11491c = new RectF();
         this.v = new ArrayList();
-        this.f11448w = new LongSparseArray();
-        this.f11449x = new LongSparseArray();
-        this.f11450y = new c(this, 1);
-        this.f11440a = SharedConfig.debugViewMetrics;
+        this.f11497w = new LongSparseArray();
+        this.f11498x = new LongSparseArray();
+        this.f11499y = new c(this, 1);
+        this.f11489a = SharedConfig.debugViewMetrics;
     }
 
     public final void a() {
-        c cVar = this.f11446r;
+        c cVar = this.f11495r;
         if (cVar != null) {
             AndroidUtilities.cancelRunOnUIThread(cVar);
-            this.f11446r = null;
+            this.f11495r = null;
         }
         ArrayList arrayList = this.v;
         if (!arrayList.isEmpty()) {
             TLRPC.TL_messages_reportReadMetrics tL_messages_reportReadMetrics = new TLRPC.TL_messages_reportReadMetrics();
-            tL_messages_reportReadMetrics.peer = MessagesController.getInstance(this.f11443e).getInputPeer(this.d);
+            tL_messages_reportReadMetrics.peer = MessagesController.getInstance(this.f11492e).getInputPeer(this.d);
             tL_messages_reportReadMetrics.metrics = new ArrayList<>(arrayList);
-            ConnectionsManager.getInstance(this.f11443e).sendRequestTyped(tL_messages_reportReadMetrics, null, new b(0));
+            ConnectionsManager.getInstance(this.f11492e).sendRequestTyped(tL_messages_reportReadMetrics, null, new b(0));
             arrayList.clear();
         }
     }
 
-    public final void b(int i10, long j3, ViewGroup viewGroup, sj sjVar) {
+    public final void b(int i10, long j3, ViewGroup viewGroup, wj wjVar) {
         this.d = j3;
-        this.f11443e = i10;
-        this.f11444f = viewGroup;
-        this.h = sjVar;
+        this.f11492e = i10;
+        this.f11493f = viewGroup;
+        this.h = wjVar;
     }
 
     public final void c() {
@@ -81,13 +81,13 @@ public final class e extends View implements ViewTreeObserver.OnPreDrawListener,
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f11447s = 0L;
+        this.f11496s = 0L;
         ViewTreeObserver viewTreeObserver = getViewTreeObserver();
         this.E = viewTreeObserver;
         viewTreeObserver.addOnPreDrawListener(this);
         this.E.addOnGlobalLayoutListener(this);
         this.E.addOnScrollChangedListener(this);
-        AndroidUtilities.runOnUIThread(this.f11450y, 400L);
+        AndroidUtilities.runOnUIThread(this.f11499y, 400L);
         if (BuildVars.LOGS_ENABLED) {
             Log.d("ViewMetrics", "attach");
         }
@@ -102,8 +102,8 @@ public final class e extends View implements ViewTreeObserver.OnPreDrawListener,
             this.E.removeOnScrollChangedListener(this);
         }
         this.E = null;
-        this.f11447s = 0L;
-        AndroidUtilities.cancelRunOnUIThread(this.f11450y);
+        this.f11496s = 0L;
+        AndroidUtilities.cancelRunOnUIThread(this.f11499y);
         if (BuildVars.LOGS_ENABLED) {
             Log.d("ViewMetrics", "detach");
         }
@@ -113,7 +113,7 @@ public final class e extends View implements ViewTreeObserver.OnPreDrawListener,
     @Override
     public final void onDraw(Canvas canvas) {
         int round;
-        if (this.f11440a) {
+        if (this.f11489a) {
             if (this.G == null) {
                 TextPaint textPaint = new TextPaint(1);
                 this.G = textPaint;
@@ -121,32 +121,32 @@ public final class e extends View implements ViewTreeObserver.OnPreDrawListener,
                 this.G.setTextSize(AndroidUtilities.dp(10.0f));
             }
             super.onDraw(canvas);
-            Paint paint = i6.Ml;
-            RectF rectF = this.f11442c;
+            Paint paint = i6.Ol;
+            RectF rectF = this.f11491c;
             canvas.drawRect(rectF, paint);
-            LongSparseArray longSparseArray = this.f11448w;
+            LongSparseArray longSparseArray = this.f11497w;
             int size = longSparseArray.size();
             for (int i10 = 0; i10 < size; i10++) {
                 d dVar = (d) longSparseArray.valueAt(i10);
-                RectF rectF2 = dVar.f11431c;
-                canvas.drawRect(rectF2, i6.Nl);
+                RectF rectF2 = dVar.f11480c;
+                canvas.drawRect(rectF2, i6.Pl);
                 canvas.save();
-                canvas.translate(rectF2.left, q.a(q.a(rectF2.centerY() - AndroidUtilities.dp(20.0f), rectF.top - AndroidUtilities.dp(40.0f), rectF.bottom), rectF2.top, rectF2.bottom - AndroidUtilities.dp(40.0f)));
-                canvas.drawRect(0.0f, 0.0f, rectF2.width(), AndroidUtilities.dp(40.0f), i6.Ll);
+                canvas.translate(rectF2.left, o.a(o.a(rectF2.centerY() - AndroidUtilities.dp(20.0f), rectF.top - AndroidUtilities.dp(40.0f), rectF.bottom), rectF2.top, rectF2.bottom - AndroidUtilities.dp(40.0f)));
+                canvas.drawRect(0.0f, 0.0f, rectF2.width(), AndroidUtilities.dp(40.0f), i6.Nl);
                 canvas.translate(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(16.0f));
                 canvas.save();
-                canvas.drawText("time_in_view_ms: " + dVar.f11434g, 0.0f, 0.0f, this.G);
+                canvas.drawText("time_in_view_ms: " + dVar.f11483g, 0.0f, 0.0f, this.G);
                 canvas.translate(0.0f, (float) AndroidUtilities.dp(16.0f));
                 canvas.drawText("active_time_in_view_ms: " + dVar.h, 0.0f, 0.0f, this.G);
                 canvas.restore();
                 canvas.save();
                 canvas.translate(getWidth() / 2.0f, 0.0f);
                 StringBuilder sb2 = new StringBuilder("height_to_viewport_ratio_permille: ");
-                float f7 = dVar.f11437k;
+                float f7 = dVar.f11486k;
                 if (f7 == 0.0f) {
                     round = 1000;
                 } else {
-                    round = Math.round((dVar.f11436j / f7) * 1000.0f);
+                    round = Math.round((dVar.f11485j / f7) * 1000.0f);
                 }
                 sb2.append(round);
                 canvas.drawText(sb2.toString(), 0.0f, 0.0f, this.G);
@@ -166,8 +166,8 @@ public final class e extends View implements ViewTreeObserver.OnPreDrawListener,
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        RectF rectF = this.f11441b;
-        this.f11442c.set(rectF.left, rectF.top, getMeasuredWidth() - rectF.right, getMeasuredHeight() - rectF.bottom);
+        RectF rectF = this.f11490b;
+        this.f11491c.set(rectF.left, rectF.top, getMeasuredWidth() - rectF.right, getMeasuredHeight() - rectF.bottom);
     }
 
     @Override

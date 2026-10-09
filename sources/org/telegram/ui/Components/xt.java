@@ -1,25 +1,17 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import org.telegram.messenger.Utilities;
-public final class xt implements Utilities.Callback {
-    public final eu f33087a;
-    public final int f33088b;
-    public final int f33089c;
+import android.graphics.LinearGradient;
+import android.graphics.Shader;
+public final class xt {
+    public int f33004a;
+    public Object f33005b;
 
-    public xt(eu euVar, int i10, int i11) {
-        this.f33087a = euVar;
-        this.f33088b = i10;
-        this.f33089c = i11;
-    }
-
-    @Override
-    public final void run(Object obj) {
-        CharSequence charSequence = (CharSequence) obj;
-        eu euVar = this.f33087a;
-        Editable text = euVar.getText();
-        int i10 = this.f33088b;
-        text.replace(i10, this.f33089c, charSequence);
-        euVar.setSelection(i10, charSequence.length() + i10);
+    public boolean a(int i10) {
+        if (((yf.i) this.f33005b) != null && this.f33004a == i10) {
+            return false;
+        }
+        this.f33004a = i10;
+        this.f33005b = new LinearGradient(0.0f, 0.0f, 1.0f, 0.0f, new int[]{i10, i10}, (float[]) null, Shader.TileMode.CLAMP);
+        return true;
     }
 }

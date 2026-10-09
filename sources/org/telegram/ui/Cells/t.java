@@ -6,12 +6,12 @@ import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.zl0;
+import org.telegram.ui.Components.qm0;
 import org.telegram.ui.jb0;
-public final class t extends zl0 implements NotificationCenter.NotificationCenterDelegate {
-    public ArrayList f22934e3;
-    public s4.c0 f22935f3;
-    public int f22936g3;
+public final class t extends qm0 implements NotificationCenter.NotificationCenterDelegate {
+    public ArrayList V2;
+    public s4.d0 W2;
+    public int X2;
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
@@ -44,13 +44,13 @@ public final class t extends zl0 implements NotificationCenter.NotificationCente
     }
 
     public final void x1() {
-        ArrayList arrayList = this.f22934e3;
+        ArrayList arrayList = this.V2;
         arrayList.clear();
         arrayList.addAll(Arrays.asList(jb0.values()));
-        if (MessagesController.getInstance(this.f22936g3).premiumFeaturesBlocked()) {
+        if (MessagesController.getInstance(this.X2).premiumFeaturesBlocked()) {
             int i10 = 0;
             while (i10 < arrayList.size()) {
-                if (((jb0) arrayList.get(i10)).f37638e) {
+                if (((jb0) arrayList.get(i10)).f38900e) {
                     arrayList.remove(i10);
                     i10--;
                 }
@@ -60,8 +60,8 @@ public final class t extends zl0 implements NotificationCenter.NotificationCente
         getAdapter().l();
         a0();
         for (int i11 = 0; i11 < arrayList.size(); i11++) {
-            if (w7.g6.a((jb0) arrayList.get(i11))) {
-                this.f22935f3.h1(i11, AndroidUtilities.dp(16.0f));
+            if (w7.e6.a((jb0) arrayList.get(i11))) {
+                this.W2.h1(i11, AndroidUtilities.dp(16.0f));
                 return;
             }
         }

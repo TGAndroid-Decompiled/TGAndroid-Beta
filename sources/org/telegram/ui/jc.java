@@ -1,16 +1,44 @@
 package org.telegram.ui;
 
 import android.app.Activity;
-public final class jc extends rg.k0 {
-    public final int W0;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class jc extends k71 {
+    public final ec f38903d2;
+    public final b71[] f38904e2;
+    public final bd f38905f2;
 
-    public jc(cd cdVar, Activity activity, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var, int i12) {
-        super(i10, i11, activity, cdVar, d6Var);
-        this.W0 = i12;
+    public jc(bd bdVar, bd bdVar2, Activity activity, Integer num, int i10, org.telegram.ui.ActionBar.e6 e6Var, int i11, int i12, ec ecVar, b71[] b71VarArr) {
+        super(bdVar2, activity, true, num, i10, true, e6Var, i11, i12);
+        this.f38905f2 = bdVar;
+        this.f38903d2 = ecVar;
+        this.f38904e2 = b71VarArr;
     }
 
     @Override
-    public final int o1() {
-        return this.W0;
+    public final long getDialogId() {
+        return this.f38905f2.f36245a;
+    }
+
+    @Override
+    public final float getScrimDrawableTranslationY() {
+        return 0.0f;
+    }
+
+    @Override
+    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+        long longValue;
+        if (l4 == null) {
+            longValue = 0;
+        } else {
+            longValue = l4.longValue();
+        }
+        this.f38903d2.run(Long.valueOf(longValue), num, tL_starGiftUnique);
+        b71 b71Var = this.f38904e2[0];
+        if (b71Var != null) {
+            this.f38905f2.Q = null;
+            b71Var.dismiss();
+        }
     }
 }

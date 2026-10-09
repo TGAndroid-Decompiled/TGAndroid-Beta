@@ -1,26 +1,16 @@
 package org.telegram.ui;
 
-import android.view.ViewTreeObserver;
-public final class yk implements ViewTreeObserver.OnPreDrawListener {
-    public final int f43246a;
-    public final Object f43247b;
+import android.widget.FrameLayout;
+public final class yk extends fz {
+    public final zn N;
 
-    public yk(Object obj, int i10) {
-        this.f43246a = i10;
-        this.f43247b = obj;
+    public yk(zn znVar, zn znVar2, FrameLayout frameLayout, wj wjVar, int i10, long j3, long j10) {
+        super(znVar2, frameLayout, wjVar, i10, j3, j10);
+        this.N = znVar;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        org.telegram.ui.ActionBar.k kVar;
-        switch (this.f43246a) {
-            case 0:
-                kVar = ((org.telegram.ui.ActionBar.n2) ((zk) this.f43247b).d).actionBar;
-                kVar.invalidate();
-                return true;
-            default:
-                ((ta1) this.f43247b).n0();
-                return true;
-        }
+    public final void h() {
+        this.N.yc();
     }
 }

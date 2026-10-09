@@ -1,34 +1,30 @@
 package v7;
 
-import android.os.Build;
+import android.content.Context;
+import android.util.Log;
 public abstract class n {
-    public static boolean a(int i10) {
-        if ((i10 & 32768) != 0) {
-            return true;
+    public static String a(Context context, int i10) {
+        if (context == null) {
+            return "";
         }
-        return false;
-    }
-
-    public static boolean b(int i10) {
-        if (i10 != 15 && i10 != 255) {
-            if (i10 != 32768) {
-                if (i10 != 32783) {
-                    if (i10 != 33023 && i10 != 0) {
-                        return false;
-                    }
-                    return true;
+        if (i10 != 1) {
+            if (i10 != 7) {
+                switch (i10) {
+                    case 9:
+                        break;
+                    case 10:
+                        return context.getString(2131689612);
+                    case 11:
+                        return context.getString(2131689611);
+                    case 12:
+                        return context.getString(2131689609);
+                    default:
+                        Log.e("BiometricUtils", "Unknown error code: " + i10);
+                        return context.getString(2131689577);
                 }
-                int i11 = Build.VERSION.SDK_INT;
-                if (i11 >= 28 && i11 <= 29) {
-                    return false;
-                }
-                return true;
-            } else if (Build.VERSION.SDK_INT < 30) {
-                return false;
-            } else {
-                return true;
             }
+            return context.getString(2131689610);
         }
-        return true;
+        return context.getString(2131689608);
     }
 }

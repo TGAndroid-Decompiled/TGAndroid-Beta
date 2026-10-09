@@ -1,1021 +1,249 @@
 package gg;
 
-import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
-import android.view.View;
+import android.animation.ValueAnimator;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import ci.x8;
-import java.util.ArrayList;
-import java.util.HashSet;
+import androidx.recyclerview.widget.RecyclerView;
+import ci.m6;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.UserObject;
-import org.telegram.messenger.bi;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Cells.i6;
-import org.telegram.ui.Cells.r8;
-import org.telegram.ui.Cells.sa;
-import org.telegram.ui.Cells.v3;
-import org.telegram.ui.Components.jo0;
-import org.telegram.ui.Components.kj0;
-import org.telegram.ui.Components.rq;
-import org.telegram.ui.Components.w00;
-import org.telegram.ui.Components.w9;
-import org.telegram.ui.Components.yl0;
-import org.telegram.ui.fy;
-import org.telegram.ui.o10;
-import org.telegram.ui.uy;
-import org.telegram.ui.xb1;
-import w7.z5;
-public abstract class i0 extends yl0 {
-    public o10 A0;
-    public int B0;
-    public int C0;
-    public int D0;
-    public e0 E0;
-    public int F0;
-    public boolean G0;
-    public boolean H0;
-    public String M;
-    public boolean N;
-    public int P;
-    public String R;
-    public int S;
-    public int T;
-    public fy U;
-    public final int V;
-    public boolean W;
-    public boolean X;
-    public String Z;
-    public int f10610a0;
-    public String f10611b0;
-    public int f10613c0;
-    public boolean d;
-    public int f10614d0;
-    public final Context f10615e;
-    public int f10616e0;
-    public v f10617f;
-    public int f10618f0;
-    public int f10619g0;
-    public v h;
-    public final int f10620h0;
-    public final s4.j f10621i0;
-    public final z f10622j0;
-    public xb1 f10623k0;
-    public final long f10624l0;
-    public long f10626n0;
-    public View f10627o0;
-    public x8 f10628p0;
-    public ArrayList f10629q0;
-    public ai.s1 f10630r;
-    public final uy f10631r0;
-    public final int f10633s0;
-    public ArrayList f10634t0;
-    public final ArrayList f10635u0;
-    public int v;
-    public final ArrayList f10636v0;
-    public int f10637w;
-    public String f10638w0;
-    public a0.i f10640x0;
-    public String f10641y;
-    public final ArrayList f10642y0;
-    public boolean f10643z0;
-    public f0 f10612c = f0.All;
-    public int f10625n = -1;
-    public ArrayList f10632s = new ArrayList();
-    public final ArrayList f10639x = new ArrayList();
-    public final ArrayList E = new ArrayList();
-    public final ArrayList F = new ArrayList();
-    public ArrayList G = new ArrayList();
-    public final ArrayList H = new ArrayList();
-    public final ArrayList I = new ArrayList();
-    public final ArrayList J = new ArrayList();
-    public final ArrayList K = new ArrayList();
-    public final HashSet L = new HashSet();
-    public int O = 0;
-    public int Q = 0;
-    public int Y = -1;
-    public boolean m0 = false;
+import org.telegram.ui.Components.a10;
+import org.telegram.ui.Components.h91;
+import org.telegram.ui.Components.kl0;
+import org.telegram.ui.Components.n91;
+import org.telegram.ui.Components.ob0;
+import org.telegram.ui.Components.p80;
+import org.telegram.ui.Components.pb0;
+import org.telegram.ui.Components.q31;
+import org.telegram.ui.Components.t00;
+import org.telegram.ui.StickersActivity;
+import org.telegram.ui.sw;
+import org.telegram.ui.tr;
+public final class i0 extends s4.d0 {
+    public final int I;
+    public final Object J;
 
-    public i0(Context context, uy uyVar, int i10, int i11, s4.j jVar, boolean z10) {
-        int i12 = UserConfig.selectedAccount;
-        this.f10633s0 = i12;
-        this.f10634t0 = new ArrayList();
-        this.f10635u0 = new ArrayList();
-        this.f10636v0 = new ArrayList();
-        this.f10638w0 = null;
-        this.f10640x0 = new a0.i();
-        this.f10642y0 = new ArrayList();
-        this.F0 = -1;
-        this.G0 = true;
-        this.H0 = true;
-        this.f10621i0 = jVar;
-        this.f10631r0 = uyVar;
-        jo0 jo0Var = (jo0) this;
-        z zVar = new z(jo0Var);
-        this.f10622j0 = zVar;
-        zVar.f10532a = new xa.c(jo0Var, 23);
-        zVar.f10545p = z10;
-        this.f10615e = context;
-        this.V = i10;
-        this.f10620h0 = i11;
-        this.f10624l0 = UserConfig.getInstance(i12).getClientUserId();
-        if (i11 != 15) {
-            MessagesStorage.getInstance(i12).getStorageQueue().postRunnable(new n(i12, i11, new y(this), 0));
-        }
-        MediaDataController.getInstance(i12).loadHints(true);
-    }
-
-    public static boolean Y(String str, String str2) {
-        if (str2 != null && str != null) {
-            String[] split = str.toLowerCase().split(" ");
-            for (int i10 = 0; i10 < split.length; i10++) {
-                String str3 = split[i10];
-                if (str3 != null && (str3.startsWith(str2) || str2.startsWith(split[i10]))) {
-                    return true;
-                }
-            }
-        }
-        return false;
+    public i0(ViewGroup viewGroup, int i10) {
+        super(0, false);
+        this.I = i10;
+        this.J = viewGroup;
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f46542f;
-        if (i10 != 1 && i10 != 4 && i10 != 10) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void E() {
-        StringBuilder sb2;
-        boolean z10 = this.N;
-        ArrayList arrayList = this.f10635u0;
-        ArrayList arrayList2 = this.f10636v0;
-        String str = null;
-        if (z10) {
-            sb2 = null;
-            while (arrayList2.size() > 0) {
-                h0 h0Var = (h0) arrayList2.remove(0);
-                this.f10634t0.remove(h0Var);
-                arrayList.remove(h0Var);
-                this.f10640x0.l(h0Var.f10604c);
-                if (sb2 == null) {
-                    sb2 = new StringBuilder("did IN (");
-                    sb2.append(h0Var.f10604c);
-                } else {
-                    sb2.append(", ");
-                    sb2.append(h0Var.f10604c);
-                }
-            }
-            if (sb2 == null) {
-                sb2 = new StringBuilder("1");
-            } else {
-                sb2.append(")");
-            }
-        } else {
-            arrayList2.clear();
-            arrayList.clear();
-            this.f10634t0.clear();
-            this.f10640x0.b();
-            sb2 = new StringBuilder("1");
-        }
-        String str2 = this.M;
-        if (str2 != null) {
-            str = str2.trim();
-        }
-        G(str);
-        l();
-        MessagesStorage.getInstance(this.f10633s0).getStorageQueue().postRunnable(new x8(28, (jo0) this, sb2));
-    }
-
-    public final boolean F(Object obj) {
-        if (this.f10620h0 != 14) {
-            return true;
-        }
-        boolean z10 = obj instanceof TLRPC.User;
-        uy uyVar = this.f10631r0;
-        if (z10) {
-            if (((TLRPC.User) obj).bot) {
-                return uyVar.A2;
-            }
-            return uyVar.f41540z2;
-        } else if (!(obj instanceof TLRPC.Chat)) {
-            return false;
-        } else {
-            TLRPC.Chat chat = (TLRPC.Chat) obj;
-            if (ChatObject.isChannel(chat)) {
-                return uyVar.f41537y2;
-            }
-            if (ChatObject.isMegagroup(chat)) {
-                if (uyVar.f41522v2 || uyVar.f41527w2) {
-                    return true;
-                }
-                return false;
-            } else if (uyVar.f41522v2 || uyVar.f41532x2) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-    }
-
-    public final void G(String str) {
-        fy fyVar;
-        String str2;
-        String str3;
-        this.f10638w0 = str;
-        ArrayList arrayList = this.f10636v0;
-        arrayList.clear();
-        if (TextUtils.isEmpty(str)) {
-            ArrayList arrayList2 = this.f10635u0;
-            arrayList2.clear();
-            int size = this.f10634t0.size();
-            for (int i10 = 0; i10 < size; i10++) {
-                fy fyVar2 = this.U;
-                if ((fyVar2 == null || fyVar2.a() != ((h0) this.f10634t0.get(i10)).f10604c) && F(((h0) this.f10634t0.get(i10)).f10602a)) {
-                    arrayList2.add((h0) this.f10634t0.get(i10));
-                }
-            }
-            return;
-        }
-        String lowerCase = str.toLowerCase();
-        int size2 = this.f10634t0.size();
-        for (int i11 = 0; i11 < size2; i11++) {
-            h0 h0Var = (h0) this.f10634t0.get(i11);
-            if (h0Var != null && h0Var.f10602a != null && (((fyVar = this.U) == null || fyVar.a() != h0Var.f10604c) && F(((h0) this.f10634t0.get(i11)).f10602a))) {
-                TLObject tLObject = h0Var.f10602a;
-                if (tLObject instanceof TLRPC.Chat) {
-                    TLRPC.Chat chat = (TLRPC.Chat) tLObject;
-                    if (chat.monoforum) {
-                        str2 = ng.d.i(chat, this.f10633s0, false);
-                    } else {
-                        str2 = chat.title;
-                    }
-                    str3 = ((TLRPC.Chat) h0Var.f10602a).username;
-                } else if (tLObject instanceof TLRPC.User) {
-                    str2 = UserObject.getUserName((TLRPC.User) tLObject);
-                    str3 = ((TLRPC.User) h0Var.f10602a).username;
-                } else if (tLObject instanceof TLRPC.ChatInvite) {
-                    str2 = ((TLRPC.ChatInvite) tLObject).title;
-                    str3 = null;
-                } else {
-                    str2 = null;
-                    str3 = null;
-                }
-                if ((str2 != null && Y(str2.toLowerCase(), lowerCase)) || (str3 != null && Y(str3.toLowerCase(), lowerCase))) {
-                    arrayList.add(h0Var);
-                }
-                if (arrayList.size() >= 5) {
+    public void S(pf.e eVar, s4.a1 a1Var, s0.d dVar) {
+        switch (this.I) {
+            case 0:
+                super.S(eVar, a1Var, dVar);
+                if (!((r0) this.J).isEnabled()) {
+                    dVar.p(false);
                     return;
                 }
-            }
-        }
-    }
-
-    public final SpannableStringBuilder H(f0 f0Var) {
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString(f0Var.f10578c));
-        spannableStringBuilder.append((CharSequence) "v");
-        spannableStringBuilder.setSpan(new rq(R.drawable.arrows_select, 0), spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
-        return spannableStringBuilder;
-    }
-
-    public final xb1 I() {
-        return this.f10623k0;
-    }
-
-    public final Object J(int i10) {
-        int size;
-        int i11;
-        int size2;
-        ArrayList arrayList;
-        int i12;
-        TLRPC.Chat chat;
-        int i13;
-        ArrayList arrayList2 = this.f10639x;
-        if (!arrayList2.isEmpty()) {
-            if (i10 > 0 && i10 - 1 < arrayList2.size()) {
-                return arrayList2.get(i13);
-            }
-            i10 = com.google.android.gms.internal.vision.e2.f(1, i10, arrayList2);
-        }
-        ArrayList arrayList3 = this.J;
-        if (!arrayList3.isEmpty()) {
-            if (i10 > 0) {
-                return arrayList3.get(i10 - 1);
-            }
-            return null;
-        }
-        if (P()) {
-            ?? M = M();
-            if (this.N) {
-                arrayList = this.f10636v0;
-            } else {
-                arrayList = this.f10635u0;
-            }
-            if (i10 > M && (i12 = (i10 - 1) - (M == true ? 1 : 0)) < arrayList.size()) {
-                TLObject tLObject = ((h0) arrayList.get(i12)).f10602a;
-                boolean z10 = tLObject instanceof TLRPC.User;
-                int i14 = this.f10633s0;
-                if (z10) {
-                    TLRPC.User user = MessagesController.getInstance(i14).getUser(Long.valueOf(((TLRPC.User) tLObject).f20194id));
-                    if (user != null) {
-                        return user;
-                    }
-                    return tLObject;
-                } else if ((tLObject instanceof TLRPC.Chat) && (chat = MessagesController.getInstance(i14).getChat(Long.valueOf(((TLRPC.Chat) tLObject).f20047id))) != null) {
-                    return chat;
-                } else {
-                    return tLObject;
+                return;
+            case 6:
+                super.S(eVar, a1Var, dVar);
+                if (((n91) this.J).V) {
+                    dVar.p(false);
+                    return;
                 }
-            }
-            i10 -= K();
+                return;
+            default:
+                super.S(eVar, a1Var, dVar);
+                return;
         }
-        ArrayList arrayList4 = this.F;
-        if (!arrayList4.isEmpty()) {
-            if (i10 > 0 && i10 <= arrayList4.size()) {
-                return arrayList4.get(i10 - 1);
-            }
-            i10 = com.google.android.gms.internal.vision.e2.f(1, i10, arrayList4);
-        }
-        ArrayList arrayList5 = this.E;
-        if (!arrayList5.isEmpty()) {
-            if (i10 > 0 && i10 <= arrayList5.size()) {
-                return arrayList5.get(i10 - 1);
-            }
-            i10 = com.google.android.gms.internal.vision.e2.f(1, i10, arrayList5);
-        }
-        z zVar = this.f10622j0;
-        ArrayList arrayList6 = zVar.f10535e;
-        ArrayList arrayList7 = zVar.d;
-        ArrayList arrayList8 = zVar.f10539j;
-        int size3 = this.f10632s.size();
-        int size4 = arrayList7.size();
-        if (size3 + size4 > 0 && (K() > 0 || !arrayList4.isEmpty() || !arrayList2.isEmpty())) {
-            if (i10 != 0) {
-                i10--;
-            } else {
-                return null;
-            }
-        }
-        int size5 = arrayList8.size();
-        int i15 = 3;
-        if (size5 > 3 && this.H0) {
-            size5 = 3;
-        }
-        int size6 = arrayList6.size();
-        if (size6 <= 3 || !this.G0) {
-            i15 = size6;
-        }
-        boolean isEmpty = arrayList6.isEmpty();
-        int i16 = 0;
-        ArrayList arrayList9 = this.K;
-        if (isEmpty && arrayList9.isEmpty()) {
-            size = 0;
-        } else {
-            size = arrayList9.size() + i15 + 1;
-        }
-        if (i10 >= 0 && i10 < size3) {
-            return this.f10632s.get(i10);
-        }
-        int i17 = i10 - size3;
-        if (i17 >= 0 && i17 < size4) {
-            return arrayList7.get(i17);
-        }
-        int i18 = i17 - size4;
-        if (i18 >= 0 && i18 < size5) {
-            return arrayList8.get(i18);
-        }
-        int i19 = i18 - size5;
-        if (i19 > 0 && i19 < size) {
-            int i20 = i19 - 1;
-            if (i20 >= 0 && i20 < arrayList9.size()) {
-                return arrayList9.get(i20);
-            }
-            i11 = i20 - arrayList9.size();
-            if (i11 >= 0 && i11 < arrayList6.size()) {
-                return arrayList6.get(i11);
-            }
-        } else {
-            i11 = i19 - size;
-        }
-        ArrayList arrayList10 = this.H;
-        if (arrayList10.isEmpty()) {
-            size2 = 0;
-        } else {
-            size2 = arrayList10.size() + 1;
-        }
-        if (i11 > 0 && i11 <= arrayList10.size()) {
-            return arrayList10.get(i11 - 1);
-        }
-        if (!this.X && !arrayList10.isEmpty()) {
-            i16 = 1;
-        }
-        int i21 = i11 - (size2 + i16);
-        ArrayList arrayList11 = this.I;
-        if (!arrayList11.isEmpty()) {
-            arrayList11.size();
-        }
-        if (i21 > 0 && i21 <= arrayList11.size()) {
-            return arrayList11.get(i21 - 1);
-        }
-        return null;
     }
 
-    public final int K() {
-        ArrayList arrayList;
+    @Override
+    public int W0(s4.a1 a1Var) {
+        switch (this.I) {
+            case 5:
+                if (((q31) this.J).Y2) {
+                    return AndroidUtilities.displaySize.y;
+                }
+                return super.W0(a1Var);
+            default:
+                return super.W0(a1Var);
+        }
+    }
+
+    @Override
+    public void k1(boolean z10) {
         int i10;
-        if (this.N) {
-            arrayList = this.f10636v0;
-        } else {
-            arrayList = this.f10635u0;
-        }
-        if (!arrayList.isEmpty()) {
-            i10 = arrayList.size() + 1;
-        } else {
-            i10 = 0;
-        }
-        return (M() ? 1 : 0) + i10;
-    }
-
-    public final int L() {
-        int i10 = 0;
-        if (this.D0 == 3) {
-            return 0;
-        }
-        ArrayList arrayList = this.f10639x;
-        if (!arrayList.isEmpty()) {
-            i10 = arrayList.size() + 1;
-        }
-        ArrayList arrayList2 = this.J;
-        if (!arrayList2.isEmpty()) {
-            return arrayList2.size() + 1 + i10;
-        }
-        if (P()) {
-            i10 += K();
-            if (!this.N) {
-                return i10;
-            }
-        }
-        ArrayList arrayList3 = this.F;
-        if (!arrayList3.isEmpty()) {
-            i10 = i10 + 1 + arrayList3.size();
-        }
-        ArrayList arrayList4 = this.E;
-        if (!arrayList4.isEmpty()) {
-            i10 += arrayList4.size() + 1;
-        }
-        int size = this.f10632s.size();
-        int size2 = this.f10622j0.d.size();
-        int i11 = i10 + size + size2;
-        if (size + size2 > 0) {
-            if (K() > 0 || !arrayList3.isEmpty() || !arrayList.isEmpty()) {
-                return i11 + 1;
-            }
-            return i11;
-        }
-        return i11;
-    }
-
-    public final boolean M() {
-        if (!this.N && !MediaDataController.getInstance(this.f10633s0).hints.isEmpty()) {
-            if (this.f10620h0 != 14 || this.f10631r0.f41540z2) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public final boolean N() {
-        if (S() && K() > 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean O(int i10) {
-        int size;
-        int i11;
-        int i12;
-        int size2;
-        ArrayList arrayList;
-        if (this.N && this.J.isEmpty()) {
-            ArrayList arrayList2 = this.f10639x;
-            if (!arrayList2.isEmpty()) {
-                i10 = com.google.android.gms.internal.vision.e2.f(1, i10, arrayList2);
-            }
-            if (P()) {
-                ?? M = M();
-                if (this.N) {
-                    arrayList = this.f10636v0;
+        switch (this.I) {
+            case 3:
+                super.k1(z10);
+                ob0 ob0Var = ((pb0) this.J).f29827b;
+                if (z10) {
+                    i10 = -1;
                 } else {
-                    arrayList = this.f10635u0;
+                    i10 = 1;
                 }
-                if (i10 <= M || (i10 - 1) - (M == true ? 1 : 0) >= arrayList.size()) {
-                    i10 -= K();
-                }
-            }
-            z zVar = this.f10622j0;
-            ArrayList arrayList3 = zVar.f10535e;
-            ArrayList arrayList4 = zVar.d;
-            int size3 = this.f10632s.size();
-            int size4 = arrayList4.size();
-            int size5 = zVar.f10539j.size();
-            int i13 = 3;
-            if (size5 > 3 && this.H0) {
-                size5 = 3;
-            }
-            int size6 = arrayList3.size();
-            if (size6 <= 3 || !this.G0) {
-                i13 = size6;
-            }
-            boolean isEmpty = arrayList3.isEmpty();
-            ArrayList arrayList5 = this.K;
-            if (isEmpty && arrayList5.isEmpty()) {
-                size = 0;
-            } else {
-                size = arrayList5.size() + i13 + 1;
-            }
-            int size7 = this.E.size();
-            if (size7 > 0) {
-                if (i10 < 0 || i10 >= size7) {
-                    i10 -= size7 + 1;
-                }
-            }
-            if (size3 + size4 > 0 && (K() > 0 || !this.F.isEmpty() || !arrayList2.isEmpty())) {
-                if (i10 != 0) {
-                    i10--;
-                }
-            }
-            if ((i10 < 0 || i10 >= size3) && (((i11 = i10 - size3) < 0 || i11 >= size4) && ((i12 = i11 - size4) <= 0 || i12 >= size5))) {
-                int i14 = i12 - size5;
-                if (i14 > 0 && i14 < size) {
-                    return true;
-                }
-                int i15 = i14 - size;
-                ArrayList arrayList6 = this.H;
-                if (arrayList6.isEmpty()) {
-                    size2 = 0;
-                } else {
-                    size2 = arrayList6.size() + 1;
-                }
-                if (i15 <= 0 || i15 >= size2) {
-                    ArrayList arrayList7 = this.I;
-                    if (!arrayList7.isEmpty()) {
-                        arrayList7.size();
-                    }
-                    if (this.f10612c != f0.All || this.d) {
-                        arrayList7.isEmpty();
-                        return false;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
-    public final boolean P() {
-        if (this.V != 2 && N()) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void Q() {
-        if ((this.Q != 0 && this.O != 0) || this.f10619g0 != this.f10614d0) {
-            return;
-        }
-        fy fyVar = this.U;
-        if (fyVar != null && fyVar.a() != 0 && !this.X) {
-            V(this.f10619g0, this.Z);
-            return;
-        }
-        W(this.f10619g0, this.Z);
-    }
-
-    public final void R(long j3, TLObject tLObject) {
-        h0 h0Var;
-        String str;
-        h0 h0Var2 = (h0) this.f10640x0.f(j3);
-        if (h0Var2 == null) {
-            Object obj = new Object();
-            this.f10640x0.k(obj, j3);
-            h0Var = obj;
-        } else {
-            this.f10634t0.remove(h0Var2);
-            h0Var = h0Var2;
-        }
-        this.f10634t0.add(0, h0Var);
-        h0Var.f10604c = j3;
-        h0Var.f10602a = tLObject;
-        h0Var.f10603b = (int) (System.currentTimeMillis() / 1000);
-        String str2 = this.M;
-        if (str2 != null) {
-            str = str2.trim();
-        } else {
-            str = null;
-        }
-        G(str);
-        l();
-        MessagesStorage.getInstance(this.f10633s0).getStorageQueue().postRunnable(new q((jo0) this, j3, 1));
-    }
-
-    public final boolean S() {
-        int i10 = this.f10620h0;
-        if (i10 != 2 && i10 != 4 && i10 != 5 && i10 != 6 && i10 != 1 && i10 != 11 && i10 != 15) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void T() {
-        int L;
-        ArrayList arrayList = this.K;
-        if (!arrayList.isEmpty() && (L = L()) < h()) {
-            int size = arrayList.size();
-            arrayList.clear();
-            t(L + 1, size);
-            int size2 = this.f10622j0.f10535e.size();
-            if (this.G0) {
-                size2 = Math.min(3, size2);
-            }
-            if (size2 <= 0) {
-                u(L);
-            }
+                ob0Var.setTranslationY(AndroidUtilities.dp(6.0f) * i10);
+                return;
+            default:
+                super.k1(z10);
+                return;
         }
     }
 
-    public final void U(int r24, java.lang.String r25) {
-        throw new UnsupportedOperationException("Method not decompiled: gg.i0.U(int, java.lang.String):void");
-    }
-
-    public final void V(int i10, String str) {
-        fy fyVar = this.U;
-        if (fyVar != null && fyVar.a() != 0 && this.V != 0) {
-            if (!TextUtils.isEmpty(this.Z) || !TextUtils.isEmpty(str)) {
-                int i11 = this.Q;
-                int i12 = this.f10633s0;
-                if (i11 != 0) {
-                    ConnectionsManager.getInstance(i12).cancelRequest(this.Q, true);
-                    this.Q = 0;
-                }
-                boolean isEmpty = TextUtils.isEmpty(str);
-                ArrayList arrayList = this.H;
-                if (isEmpty) {
-                    this.f10638w0 = null;
-                    this.I.clear();
-                    arrayList.clear();
-                    this.T = 0;
-                    this.Z = null;
-                    this.N = false;
-                    l();
-                } else if (this.f10620h0 != 15) {
-                    long a2 = this.U.a();
-                    TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
-                    tL_messages_search.limit = 20;
-                    tL_messages_search.f20156q = str;
-                    tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterEmpty();
-                    tL_messages_search.peer = MessagesController.getInstance(i12).getInputPeer(a2);
-                    if (str.equals(this.Z) && !arrayList.isEmpty()) {
-                        tL_messages_search.add_offset = arrayList.size();
-                    }
-                    this.Z = str;
-                    int i13 = 1 + this.T;
-                    this.T = i13;
-                    this.Q = ConnectionsManager.getInstance(i12).sendRequest(tL_messages_search, new r(this, str, i13, i10, tL_messages_search, 0), 2);
-                }
-            }
-        }
-    }
-
-    public final void W(int i10, String str) {
+    @Override
+    public int m0(int i10, pf.e eVar, s4.a1 a1Var) {
+        float f7;
         boolean z10;
         boolean z11;
         boolean z12;
-        if (this.V != 0 && (!TextUtils.isEmpty(this.Z) || !TextUtils.isEmpty(str))) {
-            int i11 = this.O;
-            int i12 = this.f10633s0;
-            boolean z13 = false;
-            if (i11 != 0) {
-                ConnectionsManager.getInstance(i12).cancelRequest(this.O, true);
-                this.O = 0;
-            }
-            boolean isEmpty = TextUtils.isEmpty(str);
-            ArrayList arrayList = this.I;
-            if (!isEmpty && this.U.a() == 0) {
-                G(str);
-                this.f10622j0.f(this.f10632s, this.f10636v0);
-                if (this.f10620h0 == 15) {
-                    int i13 = this.D0 - 1;
-                    this.D0 = i13;
-                    fy fyVar = this.U;
-                    if (fyVar != null) {
-                        if (i13 > 0) {
-                            z13 = true;
-                        }
-                        fyVar.d(z13, true);
-                        this.U.c();
-                    }
-                } else {
-                    TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal = new TLRPC.TL_messages_searchGlobal();
-                    int i14 = this.f10612c.f10576a;
-                    if ((i14 & 2) != 0) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    tL_messages_searchGlobal.broadcasts_only = z10;
-                    if ((i14 & 4) != 0) {
+        switch (this.I) {
+            case 2:
+                p80 p80Var = ((sw) ((a10) this.J).J).f41778b.L0;
+                if (p80Var != null && p80Var.D()) {
+                    i10 = 0;
+                }
+                return super.m0(i10, eVar, a1Var);
+            case 3:
+            default:
+                return super.m0(i10, eVar, a1Var);
+            case 4:
+                kl0 kl0Var = (kl0) this.J;
+                ai.w0 w0Var = kl0Var.f28067b;
+                boolean z13 = false;
+                if (i10 < 0 && kl0Var.B0 != 0.0f) {
+                    float pullingLeftProgress = kl0Var.getPullingLeftProgress();
+                    kl0Var.B0 += i10;
+                    float pullingLeftProgress2 = kl0Var.getPullingLeftProgress();
+                    if (pullingLeftProgress > 1.0f) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
-                    tL_messages_searchGlobal.groups_only = z11;
-                    if ((i14 & 8) != 0) {
+                    if (pullingLeftProgress2 > 1.0f) {
                         z12 = true;
                     } else {
                         z12 = false;
                     }
-                    tL_messages_searchGlobal.users_only = z12;
-                    tL_messages_searchGlobal.limit = 20;
-                    tL_messages_searchGlobal.f20158q = str;
-                    tL_messages_searchGlobal.filter = new TLRPC.TL_inputMessagesFilterEmpty();
-                    tL_messages_searchGlobal.flags |= 1;
-                    tL_messages_searchGlobal.folder_id = this.C0;
-                    if (!str.equals(this.Z)) {
-                        this.d = false;
+                    if (z11 != z12) {
+                        try {
+                            w0Var.performHapticFeedback(3);
+                        } catch (Exception unused) {
+                        }
                     }
-                    if (str.equals(this.Z) && this.f10610a0 == this.f10612c.f10576a && !arrayList.isEmpty() && this.f10619g0 == this.f10614d0) {
-                        MessageObject messageObject = (MessageObject) hg.c.g(1, arrayList);
-                        tL_messages_searchGlobal.offset_id = messageObject.getId();
-                        tL_messages_searchGlobal.offset_rate = this.f10613c0;
-                        tL_messages_searchGlobal.offset_peer = MessagesController.getInstance(i12).getInputPeer(MessageObject.getPeerId(messageObject.messageOwner.peer_id));
+                    float f10 = kl0Var.B0;
+                    if (f10 < 0.0f) {
+                        i10 = (int) f10;
+                        kl0Var.B0 = 0.0f;
                     } else {
-                        tL_messages_searchGlobal.offset_rate = 0;
-                        tL_messages_searchGlobal.offset_id = 0;
-                        tL_messages_searchGlobal.offset_peer = new TLRPC.TL_inputPeerEmpty();
+                        i10 = 0;
                     }
-                    this.Z = str;
-                    this.f10610a0 = this.f10612c.f10576a;
-                    int i15 = this.P + 1;
-                    this.P = i15;
-                    this.O = ConnectionsManager.getInstance(i12).sendRequest(tL_messages_searchGlobal, new r(this, str, i15, i10, tL_messages_searchGlobal, 1), 2);
-                }
-            } else {
-                this.f10638w0 = null;
-                arrayList.clear();
-                this.H.clear();
-                this.P = 0;
-                this.Z = null;
-                this.f10610a0 = 0;
-                this.N = false;
-                l();
-            }
-        }
-    }
-
-    public final void X(String str) {
-        ArrayList arrayList = this.F;
-        arrayList.clear();
-        fy fyVar = this.U;
-        if (fyVar != null && fyVar.a() != 0) {
-            if (!TextUtils.isEmpty(str)) {
-                ArrayList<TLRPC.TL_forumTopic> topics = MessagesController.getInstance(this.f10633s0).getTopicsController().getTopics(-this.U.a());
-                String trim = str.trim();
-                for (int i10 = 0; i10 < topics.size(); i10++) {
-                    if (topics.get(i10) != null && topics.get(i10).title.toLowerCase().contains(trim)) {
-                        arrayList.add(topics.get(i10));
-                        topics.get(i10).searchQuery = trim;
+                    m6 m6Var = kl0Var.S;
+                    if (m6Var != null) {
+                        m6Var.invalidate();
                     }
+                    w0Var.invalidate();
                 }
-            }
-            l();
-        }
-    }
-
-    @Override
-    public final int h() {
-        int i10;
-        int i11 = 0;
-        int i12 = 3;
-        if (this.D0 == 3) {
-            return 0;
-        }
-        ArrayList arrayList = this.f10639x;
-        if (!arrayList.isEmpty()) {
-            i10 = arrayList.size() + 1;
-        } else {
-            i10 = 0;
-        }
-        ArrayList arrayList2 = this.J;
-        if (!arrayList2.isEmpty()) {
-            return arrayList2.size() + 1 + i10;
-        }
-        if (P()) {
-            i10 += K();
-            if (!this.N) {
-                return i10;
-            }
-        }
-        ArrayList arrayList3 = this.F;
-        if (!arrayList3.isEmpty()) {
-            i10 = i10 + 1 + arrayList3.size();
-        }
-        ArrayList arrayList4 = this.E;
-        if (!arrayList4.isEmpty()) {
-            i10 += arrayList4.size() + 1;
-        }
-        int size = this.f10632s.size();
-        z zVar = this.f10622j0;
-        int size2 = zVar.d.size();
-        int i13 = i10 + size + size2;
-        int size3 = zVar.f10535e.size();
-        if (size3 > 3 && this.G0) {
-            size3 = 3;
-        }
-        int size4 = this.K.size() + size3;
-        int size5 = zVar.f10539j.size();
-        if (size5 > 3 && this.H0) {
-            size5 = 3;
-        }
-        if (size + size2 > 0 && (K() > 0 || !arrayList3.isEmpty() || !arrayList.isEmpty())) {
-            i13++;
-        }
-        if (size4 != 0) {
-            i13 += size4 + 1;
-        }
-        if (size5 != 0) {
-            i13 += size5;
-        }
-        ArrayList arrayList5 = this.H;
-        int size6 = arrayList5.size();
-        if (size6 != 0) {
-            i13 += size6 + 1 + (!this.X ? 1 : 0);
-        }
-        if (!this.X) {
-            this.Y = i13;
-        }
-        ArrayList arrayList6 = this.I;
-        int size7 = arrayList6.size();
-        if ((this.f10612c != f0.All || this.d) && arrayList6.isEmpty()) {
-            if (!this.d) {
-                i12 = 1;
-            }
-            size7 = i12;
-        }
-        if (arrayList5.isEmpty() || this.X) {
-            i11 = size7;
-        }
-        if (i11 != 0) {
-            i13 += i11 + 1 + (!this.W ? 1 : 0);
-        }
-        if (this.X) {
-            this.Y = i13;
-        }
-        this.B0 = i13;
-        return i13;
-    }
-
-    @Override
-    public final long i(int i10) {
-        return i10;
-    }
-
-    @Override
-    public final int j(int r14) {
-        throw new UnsupportedOperationException("Method not decompiled: gg.i0.j(int):int");
-    }
-
-    @Override
-    public final void v(s4.c1 r29, int r30) {
-        throw new UnsupportedOperationException("Method not decompiled: gg.i0.v(s4.c1, int):void");
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        xb1 xb1Var;
-        TextView textView;
-        boolean z10;
-        int i11 = this.f10620h0;
-        boolean z11 = true;
-        Context context = this.f10615e;
-        switch (i10) {
-            case 0:
-                i6 i6Var = new i6(context, null);
-                if (i11 != 3) {
-                    z11 = false;
+                int m0 = super.m0(i10, eVar, a1Var);
+                if (i10 > 0 && m0 == 0 && w0Var.getScrollState() == 1 && kl0Var.q()) {
+                    ValueAnimator valueAnimator = kl0Var.f28108y0;
+                    if (valueAnimator != null) {
+                        valueAnimator.removeAllListeners();
+                        kl0Var.f28108y0.cancel();
+                    }
+                    int i11 = (kl0Var.getPullingLeftProgress() > 1.0f ? 1 : (kl0Var.getPullingLeftProgress() == 1.0f ? 0 : -1));
+                    if (i11 > 0) {
+                        f7 = 0.05f;
+                    } else {
+                        f7 = 0.6f;
+                    }
+                    kl0Var.B0 = (i10 * f7) + kl0Var.B0;
+                    float pullingLeftProgress3 = kl0Var.getPullingLeftProgress();
+                    if (i11 > 0) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    if (pullingLeftProgress3 > 1.0f) {
+                        z13 = true;
+                    }
+                    if (z10 != z13) {
+                        try {
+                            w0Var.performHapticFeedback(3);
+                        } catch (Exception unused2) {
+                        }
+                    }
+                    m6 m6Var2 = kl0Var.S;
+                    if (m6Var2 != null) {
+                        m6Var2.invalidate();
+                    }
+                    w0Var.invalidate();
                 }
-                i6Var.f22264l0 = z11;
-                xb1Var = i6Var;
-                textView = xb1Var;
-                break;
+                return m0;
+        }
+    }
+
+    @Override
+    public int o0(int i10, pf.e eVar, s4.a1 a1Var) {
+        switch (this.I) {
             case 1:
-                textView = new v3(context, null);
-                break;
-            case 2:
-            case 9:
-                textView = new a0(0, context, true);
-                break;
-            case 3:
-                textView = new sa(context);
-                break;
-            case 4:
-                w00 w00Var = new w00(context, null);
-                w00Var.setViewType(1);
-                w00Var.setIsSingleCell(true);
-                textView = w00Var;
-                break;
-            case 5:
-                TextView textView2 = new TextView(context);
-                textView2.setGravity(16);
-                textView2.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
-                textView2.setTextSize(1, 17.0f);
-                textView2.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.G6, false));
-                textView = textView2;
-                break;
-            case 6:
-                xb1 xb1Var2 = new xb1(context, 2, null);
-                xb1Var2.setSelectorDrawableColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20918i6, false));
-                xb1Var2.setTag(9);
-                xb1Var2.setItemAnimator(null);
-                xb1Var2.setLayoutAnimation(null);
-                b0 b0Var = new b0(0);
-                b0Var.j1(0);
-                xb1Var2.setLayoutManager(b0Var);
-                if (i11 == 3) {
-                    z10 = true;
-                } else {
-                    z10 = false;
+                tr trVar = (tr) this.J;
+                if (!trVar.R && trVar.O == 0 && trVar.F.size() == 0) {
+                    return 0;
                 }
-                xb1Var2.setAdapter(new c0(this.f10633s0, this.f10615e, null, false, z10));
-                xb1Var2.setOnItemClickListener(new ai.g(this, 9));
-                xb1Var2.setOnItemLongClickListener(new y(this));
-                this.f10623k0 = xb1Var2;
-                xb1Var = xb1Var2;
-                textView = xb1Var;
-                break;
-            case 7:
+                return super.o0(i10, eVar, a1Var);
             default:
-                textView = new r8(16, context, false);
-                break;
-            case 8:
-                textView = new i6(context, null);
-                break;
-            case 10:
-                w wVar = new w(this, 1);
-                ?? linearLayout = new LinearLayout(context);
-                linearLayout.setOrientation(1);
-                w9 w9Var = new w9(context);
-                w9Var.setImageDrawable(new kj0(R.raw.utyan_empty, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f)));
-                linearLayout.addView(w9Var, z5.t(120, 120, 1, 0, 27, 0, 0));
-                TextView textView3 = new TextView(context);
-                textView3.setTextSize(1, 17.0f);
-                int i12 = org.telegram.ui.ActionBar.i6.G6;
-                textView3.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i12, false));
-                textView3.setTypeface(AndroidUtilities.bold());
-                bi.k(R.string.SearchMessagesFilterEmptyTitle, textView3, 17);
-                linearLayout.addView(textView3, z5.t(-1, -2, 1, 0, 8, 0, 9));
-                TextView textView4 = new TextView(context);
-                linearLayout.f10565a = textView4;
-                textView4.setTextSize(1, 14.0f);
-                textView4.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i12, false));
-                textView4.setText(LocaleController.formatString(R.string.SearchMessagesFilterEmptyText, ""));
-                textView4.setGravity(17);
-                linearLayout.addView(textView4, z5.t(-1, -2, 1, 0, 0, 0, 14));
-                TextView textView5 = new TextView(context);
-                textView5.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(4.0f));
-                textView5.setTextSize(1, 14.0f);
-                textView5.setText(LocaleController.getString(R.string.SearchMessagesFilterEmptySearchAll));
-                int i13 = org.telegram.ui.ActionBar.i6.Oh;
-                textView5.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i13, false));
-                int l1 = org.telegram.ui.ActionBar.i6.l1(0.15f, org.telegram.ui.ActionBar.i6.w0(null, i13, false));
-                textView5.setBackground(org.telegram.ui.ActionBar.i6.i0(6, 6, 6, 6, 0, l1, l1));
-                textView5.setOnClickListener(new ai.v0(wVar, 21));
-                linearLayout.addView(textView5, z5.t(-2, -2, 1, 0, 0, 0, 38));
-                this.E0 = linearLayout;
-                textView4.setText(LocaleController.formatString(R.string.SearchMessagesFilterEmptyText, this.Z));
-                textView = linearLayout;
-                break;
+                return super.o0(i10, eVar, a1Var);
         }
-        if (i10 == 5) {
-            textView.setLayoutParams(new s4.p0(-1, AndroidUtilities.dp(86.0f)));
-        } else {
-            textView.setLayoutParams(new s4.p0(-1, -2));
+    }
+
+    @Override
+    public void v0(RecyclerView recyclerView, s4.a1 a1Var, int i10) {
+        switch (this.I) {
+            case 2:
+                t00 t00Var = new t00(this, recyclerView.getContext());
+                t00Var.f47825a = i10;
+                w0(t00Var);
+                return;
+            case 6:
+                h91 h91Var = new h91(this, recyclerView.getContext());
+                h91Var.f47825a = i10;
+                w0(h91Var);
+                return;
+            default:
+                super.v0(recyclerView, a1Var, i10);
+                return;
         }
-        return new s4.c1(textView);
+    }
+
+    @Override
+    public boolean y0() {
+        switch (this.I) {
+            case 0:
+                return false;
+            case 2:
+                return true;
+            case 3:
+                return false;
+            case 7:
+                return false;
+            default:
+                return super.y0();
+        }
+    }
+
+    @Override
+    public void z0(s4.a1 a1Var, int[] iArr) {
+        switch (this.I) {
+            case 7:
+                iArr[1] = ((StickersActivity) this.J).f34486a.getHeight();
+                return;
+            default:
+                super.z0(a1Var, iArr);
+                return;
+        }
+    }
+
+    public i0(Object obj, int i10) {
+        this.I = i10;
+        this.J = obj;
+    }
+
+    public i0(tr trVar) {
+        super(1, false);
+        this.I = 1;
+        this.J = trVar;
     }
 }

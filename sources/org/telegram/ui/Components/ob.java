@@ -1,70 +1,68 @@
 package org.telegram.ui.Components;
 
+import android.app.Dialog;
 import android.content.Context;
-import android.view.View;
+import android.os.Build;
 import android.view.ViewGroup;
-public abstract class ob extends vb {
-    private nb button;
-    private int childrenMeasuredWidth;
-    org.telegram.ui.ActionBar.d6 resourcesProvider;
-    public kc timerView;
-    private boolean wrapWidth;
+import android.view.Window;
+import android.view.WindowManager;
+import java.util.WeakHashMap;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+public final class ob extends Dialog {
+    public final nb f29445a;
+    public final WindowManager.LayoutParams f29446b;
 
-    public ob(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, d6Var);
-        this.resourcesProvider = d6Var;
+    public ob(Context context, ci.a9 a9Var) {
+        super(context);
+        AndroidUtilities.enableEdgeToEdge(getWindow());
+        nb nbVar = new nb(this, context);
+        this.f29445a = nbVar;
+        setContentView(nbVar, new ViewGroup.LayoutParams(-1, -1));
+        s sVar = new s(this, 15);
+        WeakHashMap weakHashMap = r0.i0.f46764a;
+        r0.a0.i(nbVar, sVar);
+        int i10 = Build.VERSION.SDK_INT;
+        if (i10 >= 30) {
+            nbVar.setSystemUiVisibility(1792);
+        } else {
+            nbVar.setSystemUiVisibility(1280);
+        }
+        tc.a(nbVar, new ai.x4(a9Var, 6));
+        try {
+            Window window = getWindow();
+            window.setWindowAnimations(R.style.DialogNoAnimation);
+            window.setBackgroundDrawable(null);
+            WindowManager.LayoutParams attributes = window.getAttributes();
+            this.f29446b = attributes;
+            attributes.width = -1;
+            attributes.height = -1;
+            attributes.gravity = 51;
+            attributes.dimAmount = 0.0f;
+            attributes.format = -3;
+            attributes.flags = (((-3) & attributes.flags) | (-1946091240)) & (-1025);
+            boolean z10 = true;
+            if (i10 >= 28) {
+                attributes.layoutInDisplayCutoutMode = 1;
+            }
+            window.setAttributes(attributes);
+            if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20741a7, false)) <= 0.721f) {
+                z10 = false;
+            }
+            AndroidUtilities.setLightNavigationBar(this, z10);
+        } catch (Exception unused) {
+        }
     }
 
-    public nb getButton() {
-        return this.button;
+    public static nb a(Context context) {
+        return new ob(context, null).f29445a;
     }
 
     @Override
-    public void measureChildWithMargins(View view, int i10, int i11, int i12, int i13) {
-        nb nbVar = this.button;
-        if (nbVar != null && view != nbVar) {
-            i11 = org.telegram.messenger.bi.D(12.0f, nbVar.getMeasuredWidth(), i11);
+    public final void show() {
+        if (!AndroidUtilities.isSafeToShow(getContext())) {
+            return;
         }
-        super.measureChildWithMargins(view, i10, i11, i12, i13);
-        if (view != this.button) {
-            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
-            this.childrenMeasuredWidth = Math.max(this.childrenMeasuredWidth, view.getMeasuredWidth() + marginLayoutParams.leftMargin + marginLayoutParams.rightMargin);
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        this.childrenMeasuredWidth = 0;
-        if (this.wrapWidth) {
-            i10 = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), Integer.MIN_VALUE);
-        }
-        super.onMeasure(i10, i11);
-        if (this.button != null && View.MeasureSpec.getMode(i10) == Integer.MIN_VALUE) {
-            setMeasuredDimension(this.button.getMeasuredWidth() + this.childrenMeasuredWidth, getMeasuredHeight());
-        }
-    }
-
-    public void setButton(nb nbVar) {
-        nb nbVar2 = this.button;
-        if (nbVar2 != null) {
-            removeCallback(nbVar2);
-            removeView(this.button);
-        }
-        this.button = nbVar;
-        if (nbVar != null) {
-            addCallback(nbVar);
-            addView(nbVar, 0, w7.z5.h(-2.0f, -2.0f, 8388629));
-        }
-    }
-
-    public void setTimer() {
-        kc kcVar = new kc(getContext(), this.resourcesProvider);
-        this.timerView = kcVar;
-        kcVar.f28155b = 5000L;
-        addView(kcVar, w7.z5.i(20.0f, 20.0f, 8388627, 21.0f, 0.0f, 21.0f, 0.0f));
-    }
-
-    public void setWrapWidth() {
-        this.wrapWidth = true;
+        super.show();
     }
 }

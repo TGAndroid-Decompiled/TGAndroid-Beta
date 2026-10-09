@@ -1,184 +1,152 @@
 package ai;
 
-import android.view.GestureDetector;
-import android.view.MotionEvent;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.SurfaceView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class tb implements GestureDetector.OnGestureListener {
-    public final jc f1704a;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.ui.Components.gk0;
+public final class tb extends AnimatorListenerAdapter {
+    public final int f1774a;
+    public final kc f1775b;
 
-    public tb(jc jcVar) {
-        this.f1704a = jcVar;
+    public tb(kc kcVar, int i10) {
+        this.f1774a = i10;
+        this.f1775b = kcVar;
     }
 
     @Override
-    public final boolean onDown(MotionEvent motionEvent) {
-        jc jcVar = this.f1704a;
-        jcVar.f1162g1 = false;
-        if (jc.i(jcVar, jcVar.f1185s, motionEvent.getX(), motionEvent.getY(), false)) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        boolean z10;
-        jc jcVar = this.f1704a;
-        if (jcVar.Z != 0.0f && jcVar.f1191u1 == null && f10 < -1000.0f && !jcVar.f1145a0) {
-            jcVar.f1145a0 = true;
-            try {
-                jcVar.f1185s.performHapticFeedback(3);
-            } catch (Exception unused) {
-            }
-            jc.j(jcVar);
-        }
-        if (jcVar.f1156e0 != 0.0f) {
-            if (f10 < -1000.0f) {
-                jcVar.n(true);
-            } else if (f10 > 1000.0f) {
-                jcVar.n(false);
-            } else {
-                if (jcVar.f1194w.f1635f > 0.5f) {
-                    z10 = true;
-                } else {
-                    z10 = false;
+    public final void onAnimationEnd(Animator animator) {
+        f6 t10;
+        gk0 gk0Var;
+        switch (this.f1774a) {
+            case 0:
+                super.onAnimationEnd(animator);
+                kc kcVar = this.f1775b;
+                hc hcVar = kcVar.f1295s0;
+                zb zbVar = kcVar.v;
+                if (zbVar != null) {
+                    zbVar.a(true);
                 }
-                jcVar.n(z10);
-            }
-        }
-        jcVar.f1162g1 = true;
-        return false;
-    }
-
-    @Override
-    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        float f11;
-        org.telegram.ui.Components.rc rcVar;
-        jc jcVar = this.f1704a;
-        if (!jcVar.f1167j0) {
-            return false;
-        }
-        if (jcVar.f1171l0) {
-            jcVar.Z += f10;
-            float dp = AndroidUtilities.dp(200.0f);
-            if (jcVar.Z > dp && !jcVar.f1145a0) {
-                jcVar.f1145a0 = true;
-                jc.j(jcVar);
+                kcVar.o();
+                kcVar.J0.unlock();
+                q9 q9Var = kcVar.f1300u1;
+                if (q9Var != null) {
+                    q9Var.b();
+                    AndroidUtilities.removeFromParent(kcVar.f1300u1);
+                    kcVar.f1300u1 = null;
+                }
+                ImageReceiver imageReceiver = hcVar.f1106b;
+                if (imageReceiver != null) {
+                    imageReceiver.setVisible(true, true);
+                    hcVar.f1106b = null;
+                }
+                ImageReceiver imageReceiver2 = hcVar.f1107c;
+                if (imageReceiver2 != null) {
+                    imageReceiver2.setAlpha(1.0f);
+                    hcVar.f1107c.setVisible(true, true);
+                }
+                if (hcVar.d != null && (t10 = kcVar.t()) != null && (gk0Var = t10.f991o1.d) != null) {
+                    gk0 gk0Var2 = hcVar.d;
+                    gk0Var2.getClass();
+                    gk0Var2.f26747c = gk0Var.f26747c;
+                    gk0Var2.f26749f = gk0Var.f26749f;
+                    gk0Var2.f26746b = gk0Var.f26746b;
+                    gk0Var2.f26745a = System.currentTimeMillis();
+                    gk0Var2.c();
+                }
+                e6 e6Var = kcVar.G0;
+                if (e6Var != null) {
+                    e6Var.b();
+                }
+                SurfaceView surfaceView = kcVar.C0;
+                if (surfaceView != null) {
+                    surfaceView.setVisibility(4);
+                }
+                kcVar.I();
                 try {
-                    jcVar.f1185s.performHapticFeedback(3);
+                    AndroidUtilities.runOnUIThread(new a3.d(this, 22));
                 } catch (Exception unused) {
                 }
-            }
-            jcVar.f1153d0 = Utilities.clamp(jcVar.Z / dp, 1.0f, 0.0f);
-            if (jcVar.f1174n0.getCurrentPeerView() != null) {
-                jcVar.f1174n0.getCurrentPeerView().invalidate();
-            }
-            if (jcVar.Z < 0.0f) {
-                jcVar.Z = 0.0f;
-                jcVar.f1171l0 = false;
-            }
-            return true;
-        }
-        if (jcVar.f1151c0) {
-            float f12 = jcVar.f1156e0;
-            if (f12 > jcVar.f1194w.f1633c && f10 > 0.0f) {
-                jcVar.f1156e0 = (0.05f * f10) + f12;
-            } else {
-                jcVar.f1156e0 = f12 + f10;
-            }
-            xb xbVar = jcVar.f1185s;
-            org.telegram.ui.Components.rc rcVar2 = org.telegram.ui.Components.rc.f30419w;
-            if (rcVar2 != null && rcVar2.h == xbVar) {
-                rcVar2.b();
-            }
-            if (jcVar.f1174n0.getCurrentPeerView() != null) {
-                jcVar.f1174n0.getCurrentPeerView().invalidate();
-            }
-            jcVar.v.invalidate();
-            if (jcVar.f1156e0 < 0.0f) {
-                jcVar.f1156e0 = 0.0f;
-                jcVar.f1151c0 = false;
-            }
-            return true;
-        }
-        if (jcVar.V > 0.8f) {
-            float f13 = -f10;
-            if ((f13 > 0.0f && jcVar.W > 0.0f) || (f13 < 0.0f && jcVar.W < 0.0f)) {
-                f11 = 0.3f;
-                jcVar.W -= f10 * f11;
-                xb xbVar2 = jcVar.f1185s;
-                rcVar = org.telegram.ui.Components.rc.f30419w;
-                if (rcVar != null && rcVar.h == xbVar2) {
-                    rcVar.b();
+                kcVar.m0 = false;
+                kcVar.d = false;
+                e5 e5Var = kcVar.f1286o1;
+                if (e5Var != null) {
+                    e5Var.run();
+                    kcVar.f1286o1 = null;
+                    return;
                 }
-                jc.k(jcVar);
-                return true;
-            }
-        }
-        f11 = 0.6f;
-        jcVar.W -= f10 * f11;
-        xb xbVar22 = jcVar.f1185s;
-        rcVar = org.telegram.ui.Components.rc.f30419w;
-        if (rcVar != null) {
-            rcVar.b();
-        }
-        jc.k(jcVar);
-        return true;
-    }
-
-    @Override
-    public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        e6 currentPeerView;
-        boolean z10;
-        jc jcVar = this.f1704a;
-        if (jcVar.f1156e0 == 0.0f && jcVar.f1159f0) {
-            if (!jcVar.f1197x && !jcVar.L0 && !jcVar.f1172m1 && !jcVar.f1166i1 && !jcVar.f1168j1) {
-                e6 t10 = jcVar.t();
-                if (t10 == null || !t10.O1.f700f) {
-                    if (motionEvent.getX() > jcVar.v.getMeasuredWidth() * 0.33f) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
+                return;
+            case 1:
+                kc kcVar2 = this.f1775b;
+                f6 f6Var = null;
+                kcVar2.H = null;
+                kcVar2.Z = 0.0f;
+                kcVar2.f1262d0 = 0.0f;
+                ac acVar = kcVar2.f1283n0;
+                if (acVar != null) {
+                    f6Var = acVar.getCurrentPeerView();
+                }
+                if (f6Var != null) {
+                    f6Var.invalidate();
+                    return;
+                }
+                return;
+            default:
+                kc kcVar3 = this.f1775b;
+                hc hcVar2 = kcVar3.f1295s0;
+                kcVar3.U = 1.0f;
+                kcVar3.o();
+                kc.f1250x1 = false;
+                zb zbVar2 = kcVar3.v;
+                if (zbVar2 != null) {
+                    zbVar2.a(true);
+                }
+                yb ybVar = kcVar3.f1294s;
+                if (ybVar != null) {
+                    ybVar.invalidate();
+                }
+                ImageReceiver imageReceiver3 = hcVar2.f1106b;
+                if (imageReceiver3 != null && !kcVar3.d) {
+                    imageReceiver3.setVisible(true, true);
+                    hcVar2.f1106b = null;
+                }
+                ImageReceiver imageReceiver4 = hcVar2.f1107c;
+                if (imageReceiver4 != null && !kcVar3.d) {
+                    imageReceiver4.setAlpha(1.0f);
+                    hcVar2.f1107c.setVisible(true, true);
+                    hcVar2.f1107c = null;
+                }
+                f6 t11 = kcVar3.t();
+                if (t11 != null) {
+                    t11.f1(false);
+                }
+                d2 d2Var = kcVar3.A0;
+                if (d2Var != null) {
+                    d2Var.v((1.0f - kcVar3.V) * kcVar3.U);
+                }
+                if (kcVar3.f1305w1) {
+                    kcVar3.f1305w1 = false;
+                    kcVar3.p();
+                    AndroidUtilities.runOnUIThread(new e5(kcVar3, 1), 30L);
+                } else if (!SharedConfig.storiesIntroShown) {
+                    if (kcVar3.f1300u1 == null && kcVar3.v != null) {
+                        q9 q9Var2 = new q9(kcVar3.v.getContext(), kcVar3.f1294s);
+                        kcVar3.f1300u1 = q9Var2;
+                        q9Var2.setAlpha(0.0f);
+                        kcVar3.v.addView(kcVar3.f1300u1);
                     }
-                    e6 currentPeerView2 = jcVar.f1174n0.getCurrentPeerView();
-                    if (currentPeerView2 != null && !currentPeerView2.d1(z10)) {
-                        if (!jcVar.f1174n0.E(z10)) {
-                            if (z10) {
-                                jcVar.q(true);
-                                return false;
-                            }
-                            ic icVar = jcVar.f1201z0;
-                            if (icVar != null) {
-                                icVar.loopBack();
-                                return false;
-                            }
-                        } else {
-                            zb zbVar = jcVar.f1174n0;
-                            zbVar.L0 = true;
-                            zbVar.onTouchEvent(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
-                            q4 q4Var = zbVar.M0;
-                            AndroidUtilities.cancelRunOnUIThread(q4Var);
-                            AndroidUtilities.runOnUIThread(q4Var, 150L);
-                            return false;
-                        }
+                    q9 q9Var3 = kcVar3.f1300u1;
+                    if (q9Var3 != null) {
+                        q9Var3.setOnClickListener(new v0(this, 4));
+                        kcVar3.f1300u1.animate().alpha(1.0f).setDuration(150L).setListener(new dc(this, 1)).start();
                     }
+                    SharedConfig.setStoriesIntroShown(true);
                 }
-            } else {
-                zb zbVar2 = jcVar.f1174n0;
-                if (zbVar2 != null && (currentPeerView = zbVar2.getCurrentPeerView()) != null) {
-                    currentPeerView.s0();
-                }
-            }
+                kcVar3.P();
+                kcVar3.J0.unlock();
+                return;
         }
-        return false;
-    }
-
-    @Override
-    public final void onLongPress(MotionEvent motionEvent) {
-    }
-
-    @Override
-    public final void onShowPress(MotionEvent motionEvent) {
     }
 }

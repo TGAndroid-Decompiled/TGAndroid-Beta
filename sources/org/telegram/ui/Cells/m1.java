@@ -2,13 +2,13 @@ package org.telegram.ui.Cells;
 
 import android.graphics.RectF;
 import android.text.StaticLayout;
-import org.telegram.ui.Components.zc;
+import org.telegram.ui.Components.bd;
 public final class m1 {
-    public int f22458a;
-    public float f22459b;
-    public float f22460c;
+    public int f22442a;
+    public float f22443b;
+    public float f22444c;
     public StaticLayout d;
-    public final RectF f22461e = new RectF();
-    public zc f22462f;
-    public z f22463g;
+    public final RectF f22445e = new RectF();
+    public bd f22446f;
+    public z f22447g;
 }

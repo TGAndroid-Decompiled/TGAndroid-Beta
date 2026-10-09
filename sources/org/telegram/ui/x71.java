@@ -1,36 +1,104 @@
 package org.telegram.ui;
 
+import android.view.View;
+import java.util.HashMap;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class x71 extends org.telegram.ui.ActionBar.f3 {
-    public static final int f42825e = 0;
-    public TLRPC.TL_authorization f42826b;
-    public SessionsActivity f42827c;
-    public org.telegram.ui.Components.nj0 d;
+public final class x71 extends org.telegram.ui.Components.eb implements NotificationCenter.NotificationCenterDelegate {
+    public final org.telegram.ui.Components.d00 X;
+    public final ci.d Y;
+    public final ai.e9 Z;
+    public final HashMap f43841a0;
+    public final int f43842b0;
+    public int f43843c0;
+    public org.telegram.ui.Components.c71 f43844d0;
 
-    public static void m(x71 x71Var, String str) {
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(x71Var.getContext());
-        alertDialog$Builder.f(new CharSequence[]{LocaleController.getString(R.string.Copy)}, new lg.j(12, x71Var, str));
-        alertDialog$Builder.o();
-    }
-
-    public static void n(x71 x71Var) {
-        TL_account.changeAuthorizationSettings changeauthorizationsettings = new TL_account.changeAuthorizationSettings();
-        TLRPC.TL_authorization tL_authorization = x71Var.f42826b;
-        changeauthorizationsettings.encrypted_requests_disabled = tL_authorization.encrypted_requests_disabled;
-        changeauthorizationsettings.call_requests_disabled = tL_authorization.call_requests_disabled;
-        changeauthorizationsettings.flags = 3;
-        changeauthorizationsettings.hash = tL_authorization.hash;
-        ConnectionsManager.getInstance(x71Var.currentAccount).sendRequest(changeauthorizationsettings, new ai.u7(21));
+    public x71(org.telegram.ui.ActionBar.n2 r17, long r18, int r20, org.telegram.ui.Components.wc r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.x71.<init>(org.telegram.ui.ActionBar.n2, long, int, org.telegram.ui.Components.wc):void");
     }
 
     @Override
-    public final void show() {
-        super.show();
-        this.d.d();
+    public final CharSequence B() {
+        return LocaleController.getString(R.string.StoriesAlbumMenuAddStories);
+    }
+
+    public final void Q() {
+        int abs;
+        org.telegram.ui.Components.d00 d00Var = this.X;
+        int L0 = d00Var.L0();
+        if (L0 == -1) {
+            abs = 0;
+        } else {
+            abs = Math.abs(d00Var.N0() - L0) + 1;
+        }
+        ai.e9 e9Var = this.Z;
+        if (e9Var != null) {
+            int i10 = L0 + abs;
+            int i11 = e9Var.i();
+            int i12 = this.f43842b0;
+            if (i10 > i11 - i12) {
+                e9Var.p(Math.min(100, Math.max(1, i12 / 2) * i12 * i12), false);
+            }
+        }
+    }
+
+    public final boolean R(int i10, View view) {
+        org.telegram.ui.Components.p61 G;
+        org.telegram.ui.Components.c71 c71Var = this.f43844d0;
+        if (c71Var == null || i10 == 0 || (G = c71Var.G(i10 - 1)) == null) {
+            return false;
+        }
+        Object obj = G.G;
+        if (obj instanceof MessageObject) {
+            MessageObject messageObject = (MessageObject) obj;
+            int id2 = messageObject.getId();
+            Integer valueOf = Integer.valueOf(id2);
+            HashMap hashMap = this.f43841a0;
+            if (hashMap.containsKey(valueOf)) {
+                hashMap.remove(Integer.valueOf(id2));
+                G.f29728e = false;
+                ((org.telegram.ui.Cells.t7) view).i(false, true);
+            } else {
+                hashMap.put(Integer.valueOf(id2), messageObject.storyItem);
+                G.f29728e = true;
+                ((org.telegram.ui.Cells.t7) view).i(true, true);
+            }
+            ci.d dVar = this.Y;
+            dVar.setEnabled(!hashMap.isEmpty());
+            dVar.b(hashMap.size(), true);
+        }
+        return true;
+    }
+
+    @Override
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.storiesListUpdated && ((ai.e9) objArr[0]) == this.Z) {
+            this.f43844d0.N(false);
+            Q();
+        }
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f43843c0 = this.Z.o();
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesListUpdated);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.Z.z(this.f43843c0);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.storiesListUpdated);
+    }
+
+    @Override
+    public final org.telegram.ui.Components.pm0 x(org.telegram.ui.Components.qm0 qm0Var) {
+        org.telegram.ui.Components.c71 c71Var = new org.telegram.ui.Components.c71(qm0Var, getContext(), this.currentAccount, 0, false, new b5(this, 25), this.resourcesProvider);
+        this.f43844d0 = c71Var;
+        c71Var.f25280r = false;
+        return c71Var;
     }
 }

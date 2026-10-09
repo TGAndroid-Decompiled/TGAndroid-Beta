@@ -1,9 +1,10 @@
 package uf;
 
-import org.telegram.tgnet.TLRPC;
+import ai.o4;
 public final class b {
-    public TLRPC.Document f47631a;
-    public String f47632b;
-    public int f47633c;
-    public boolean d;
+    public final o4 f48896a;
+
+    public b(o4 o4Var) {
+        this.f48896a = o4Var;
+    }
 }

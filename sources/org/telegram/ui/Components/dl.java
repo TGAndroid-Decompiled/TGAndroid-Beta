@@ -1,30 +1,10 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class dl extends gg.u0 {
-    public final jl N;
-
-    public dl(jl jlVar, Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
-        super(context, d6Var, z10, false);
-        this.N = jlVar;
-    }
-
+import android.view.View;
+import android.widget.LinearLayout;
+public final class dl extends LinearLayout {
     @Override
-    public final void l() {
-        jl jlVar = this.N;
-        dl dlVar = jlVar.R;
-        org.telegram.ui.ActionBar.v0 v0Var = jlVar.E;
-        if (v0Var != null) {
-            v0Var.setShowSearchProgress(dlVar.J);
-        }
-        TextView textView = jlVar.f27904y;
-        if (textView != null) {
-            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, dlVar.f10525x)));
-        }
-        super.l();
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(0, 0));
     }
 }

@@ -4,19 +4,19 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import java.util.ArrayList;
 import v8.r;
-import w7.g0;
+import w7.d0;
 public final class b extends o6.a {
     public static final Parcelable.Creator<b> CREATOR = new r(18);
-    public String f48909a;
-    public String f48910b;
-    public ArrayList f48911c;
+    public String f50189a;
+    public String f50190b;
+    public ArrayList f50191c;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = g0.q(parcel, 20293);
-        g0.l(parcel, 2, this.f48909a);
-        g0.l(parcel, 3, this.f48910b);
-        g0.p(parcel, 4, this.f48911c);
-        g0.r(parcel, q6);
+        int q6 = d0.q(parcel, 20293);
+        d0.l(parcel, 2, this.f50189a);
+        d0.l(parcel, 3, this.f50190b);
+        d0.p(parcel, 4, this.f50191c);
+        d0.r(parcel, q6);
     }
 }

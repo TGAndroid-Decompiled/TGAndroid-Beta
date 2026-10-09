@@ -3,22 +3,22 @@ package qh;
 import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.g61;
-import org.telegram.ui.Components.w00;
-import org.telegram.ui.Components.zl0;
-public final class n extends g61 {
-    public static final int f45504a = 0;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.Components.j10;
+import org.telegram.ui.Components.o61;
+import org.telegram.ui.Components.qm0;
+public final class n extends o61 {
+    public static final int f46706a = 0;
 
     static {
-        g61.setup(new g61());
+        o61.setup(new o61());
     }
 
     @Override
-    public final View createView(Context context, zl0 zl0Var, int i10, int i11, d6 d6Var) {
-        w00 w00Var = new w00(context, null);
-        w00Var.setViewType(16);
-        w00Var.setMinimumHeight(AndroidUtilities.dp(48.0f));
-        return w00Var;
+    public final View createView(Context context, qm0 qm0Var, int i10, int i11, e6 e6Var) {
+        j10 j10Var = new j10(context, null);
+        j10Var.setViewType(16);
+        j10Var.setMinimumHeight(AndroidUtilities.dp(48.0f));
+        return j10Var;
     }
 }

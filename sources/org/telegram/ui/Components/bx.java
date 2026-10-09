@@ -2,53 +2,27 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
+import android.view.View;
 import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
 public final class bx extends FrameLayout {
-    public final Paint f25139a;
-    public final nz f25140b;
+    public final a00 f25178a;
 
-    public bx(nz nzVar, Context context) {
+    public bx(a00 a00Var, Context context) {
         super(context);
-        this.f25140b = nzVar;
-        this.f25139a = new Paint();
+        this.f25178a = a00Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        nz nzVar = this.f25140b;
-        ax axVar = nzVar.B0;
-        float dp = AndroidUtilities.dp(50.0f) * nzVar.f29248t1.p();
-        if (dp > getMeasuredHeight()) {
-            return;
-        }
-        canvas.save();
-        if (dp != 0.0f) {
-            canvas.clipRect(0.0f, dp, getMeasuredWidth(), getMeasuredHeight());
-        }
-        int z10 = nzVar.z(org.telegram.ui.ActionBar.i6.He);
-        Paint paint = this.f25139a;
-        paint.setColor(z10);
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), axVar.getExpandedOffset() + AndroidUtilities.dp(36.0f), paint);
-        super.dispatchDraw(canvas);
-        if (axVar.f24673s != null) {
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        a00 a00Var = this.f25178a;
+        fx fxVar = a00Var.f24437o0;
+        if (view == a00Var.f24417h0) {
             canvas.save();
-            float f7 = axVar.f24654c0 - axVar.f24655d0;
-            float f10 = axVar.v;
-            if (f10 > 0.0f) {
-                f7 = ((axVar.f24673s.getX() - axVar.getScrollX()) * axVar.v) + ((1.0f - f10) * f7);
-            }
-            canvas.translate(f7, 0.0f);
-            axVar.f24673s.draw(canvas);
+            canvas.clipRect(0.0f, fxVar.getY() + fxVar.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight());
+            boolean drawChild = super.drawChild(canvas, view, j3);
             canvas.restore();
+            return drawChild;
         }
-        canvas.restore();
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        this.f25140b.X();
+        return super.drawChild(canvas, view, j3);
     }
 }

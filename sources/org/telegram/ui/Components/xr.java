@@ -1,208 +1,103 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewConfiguration;
-import android.view.ViewGroup;
-import android.widget.EditText;
+import android.text.SpannableStringBuilder;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class xr extends ViewGroup {
-    public static final int f33071s = 0;
-    public final vr f33072a;
-    public EditText f33073b;
-    public final View[] f33074c;
-    public View d;
-    public boolean f33075e;
-    public boolean f33076f;
-    public final ur h;
-    public boolean f33077n;
-    public final ur f33078r;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_phone;
+public final class xr implements RequestDelegate {
+    public final int f32996a;
+    public final ds f32997b;
+    public final ci.d f32998c;
 
-    public xr(Context context) {
-        super(context);
-        String str;
-        int i10;
-        this.f33074c = new View[12];
-        this.h = new ur(this, 0);
-        this.f33078r = new ur(this, 1);
-        int i11 = 0;
-        for (int i12 = 0; i12 < 11; i12++) {
-            if (i12 != 9) {
-                switch (i12) {
-                    case 1:
-                        str = "ABC";
-                        break;
-                    case 2:
-                        str = "DEF";
-                        break;
-                    case 3:
-                        str = "GHI";
-                        break;
-                    case 4:
-                        str = "JKL";
-                        break;
-                    case 5:
-                        str = "MNO";
-                        break;
-                    case 6:
-                        str = "PQRS";
-                        break;
-                    case 7:
-                        str = "TUV";
-                        break;
-                    case 8:
-                        str = "WXYZ";
-                        break;
-                    case 9:
-                    default:
-                        str = "";
-                        break;
-                    case 10:
-                        str = "+";
-                        break;
-                }
-                if (i12 != 10) {
-                    i10 = i12 + 1;
-                } else {
-                    i10 = 0;
-                }
-                String valueOf = String.valueOf(i10);
-                this.f33074c[i12] = new wr(context, valueOf, str);
-                this.f33074c[i12].setOnClickListener(new org.telegram.ui.qf(27, this, valueOf));
-                addView(this.f33074c[i12]);
-            }
-        }
-        vr vrVar = new vr(this, context, new k2.e(context, new ei.o4(this, ViewConfiguration.get(context).getScaledTouchSlop(), 1)));
-        this.f33072a = vrVar;
-        vrVar.setImageResource(R.drawable.msg_clear_input);
-        vrVar.setColorFilter(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.G6, false));
-        int dp = AndroidUtilities.dp(11.0f);
-        vrVar.setPadding(dp, dp, dp, dp);
-        vrVar.setOnClickListener(new ai.e2(10));
-        this.f33074c[11] = vrVar;
-        addView(vrVar);
-        while (true) {
-            View[] viewArr = this.f33074c;
-            if (i11 < viewArr.length) {
-                View view = viewArr[i11];
-                if (view != null) {
-                    w7.b6.b(view, 0.02f, 1.2f);
-                    view.setBackground(a(i11));
-                }
-                i11++;
-            } else {
+    public xr(ds dsVar, ci.d dVar, int i10) {
+        this.f32996a = i10;
+        this.f32997b = dsVar;
+        this.f32998c = dVar;
+    }
+
+    @Override
+    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f32996a) {
+            case 0:
+                final ds dsVar = this.f32997b;
+                final ci.d dVar = this.f32998c;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                ds dsVar2 = dsVar;
+                                dsVar2.getClass();
+                                dVar.setLoading(false);
+                                TLObject tLObject2 = tLObject;
+                                if (tLObject2 != null && (tLObject2 instanceof TL_phone.groupCallStreamRtmpUrl)) {
+                                    TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl = (TL_phone.groupCallStreamRtmpUrl) tLObject2;
+                                    dsVar2.f25798b0 = groupcallstreamrtmpurl.url;
+                                    dsVar2.f25799c0 = groupcallstreamrtmpurl.key;
+                                    dsVar2.f25800d0 = new SpannableStringBuilder(dsVar2.f25799c0);
+                                    dsVar2.f25801e0.N(true);
+                                    return;
+                                }
+                                return;
+                            default:
+                                ds dsVar3 = dsVar;
+                                dsVar3.getClass();
+                                dVar.setLoading(false);
+                                TLObject tLObject3 = tLObject;
+                                if (tLObject3 instanceof TL_phone.groupCallStreamRtmpUrl) {
+                                    TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl2 = (TL_phone.groupCallStreamRtmpUrl) tLObject3;
+                                    dsVar3.f25798b0 = groupcallstreamrtmpurl2.url;
+                                    dsVar3.f25799c0 = groupcallstreamrtmpurl2.key;
+                                    dsVar3.f25800d0 = new SpannableStringBuilder(dsVar3.f25799c0);
+                                    dsVar3.f25801e0.N(true);
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
                 return;
-            }
-        }
-    }
-
-    public static org.telegram.ui.Cells.z a(int i10) {
-        boolean z10;
-        boolean z11;
-        boolean z12;
-        float f7;
-        float f10;
-        float f11;
-        boolean z13 = true;
-        if (i10 < 3) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        int i11 = i10 % 3;
-        if (i11 == 0) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        if (i11 == 2) {
-            z12 = true;
-        } else {
-            z12 = false;
-        }
-        if (i10 <= 8) {
-            z13 = false;
-        }
-        int i12 = org.telegram.ui.ActionBar.i6.f20918i6;
-        int w02 = org.telegram.ui.ActionBar.i6.w0(null, i12, false);
-        int k10 = i0.a.k(org.telegram.ui.ActionBar.i6.w0(null, i12, false), 30);
-        float f12 = 12.0f;
-        if (z11 && z10) {
-            f7 = 24.0f;
-        } else {
-            f7 = 12.0f;
-        }
-        int dp = AndroidUtilities.dp(f7);
-        if (z12 && z10) {
-            f10 = 24.0f;
-        } else {
-            f10 = 12.0f;
-        }
-        int dp2 = AndroidUtilities.dp(f10);
-        if (z12 && z13) {
-            f11 = 24.0f;
-        } else {
-            f11 = 12.0f;
-        }
-        int dp3 = AndroidUtilities.dp(f11);
-        if (z11 && z13) {
-            f12 = 24.0f;
-        }
-        return org.telegram.ui.ActionBar.i6.i0(dp, dp2, dp3, AndroidUtilities.dp(f12), w02, k10, k10);
-    }
-
-    @Override
-    public final boolean canScrollHorizontally(int i10) {
-        return true;
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int z11 = org.telegram.messenger.bi.z(32.0f, getWidth(), 3);
-        int z12 = org.telegram.messenger.bi.z(42.0f, getHeight(), 4);
-        int i14 = 0;
-        while (true) {
-            View[] viewArr = this.f33074c;
-            if (i14 < viewArr.length) {
-                int dp = AndroidUtilities.dp(6.0f) + z11;
-                int dp2 = AndroidUtilities.dp(10.0f) + (dp * (i14 % 3));
-                int dp3 = AndroidUtilities.dp(6.0f) + z12;
-                int dp4 = AndroidUtilities.dp(10.0f) + (dp3 * (i14 / 3));
-                View view = viewArr[i14];
-                if (view != null) {
-                    view.layout(dp2, dp4, dp2 + z11, dp4 + z12);
-                }
-                i14++;
-            } else {
+            default:
+                final ds dsVar2 = this.f32997b;
+                final ci.d dVar2 = this.f32998c;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                ds dsVar22 = dsVar2;
+                                dsVar22.getClass();
+                                dVar2.setLoading(false);
+                                TLObject tLObject2 = tLObject;
+                                if (tLObject2 != null && (tLObject2 instanceof TL_phone.groupCallStreamRtmpUrl)) {
+                                    TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl = (TL_phone.groupCallStreamRtmpUrl) tLObject2;
+                                    dsVar22.f25798b0 = groupcallstreamrtmpurl.url;
+                                    dsVar22.f25799c0 = groupcallstreamrtmpurl.key;
+                                    dsVar22.f25800d0 = new SpannableStringBuilder(dsVar22.f25799c0);
+                                    dsVar22.f25801e0.N(true);
+                                    return;
+                                }
+                                return;
+                            default:
+                                ds dsVar3 = dsVar2;
+                                dsVar3.getClass();
+                                dVar2.setLoading(false);
+                                TLObject tLObject3 = tLObject;
+                                if (tLObject3 instanceof TL_phone.groupCallStreamRtmpUrl) {
+                                    TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl2 = (TL_phone.groupCallStreamRtmpUrl) tLObject3;
+                                    dsVar3.f25798b0 = groupcallstreamrtmpurl2.url;
+                                    dsVar3.f25799c0 = groupcallstreamrtmpurl2.key;
+                                    dsVar3.f25800d0 = new SpannableStringBuilder(dsVar3.f25799c0);
+                                    dsVar3.f25801e0.N(true);
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
                 return;
-            }
         }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        View[] viewArr;
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11));
-        int z10 = org.telegram.messenger.bi.z(32.0f, getWidth(), 3);
-        int z11 = org.telegram.messenger.bi.z(42.0f, getHeight(), 4);
-        for (View view : this.f33074c) {
-            if (view != null) {
-                view.measure(View.MeasureSpec.makeMeasureSpec(z10, 1073741824), View.MeasureSpec.makeMeasureSpec(z11, 1073741824));
-            }
-        }
-    }
-
-    public void setDispatchBackWhenEmpty(boolean z10) {
-        this.f33075e = z10;
-    }
-
-    public void setEditText(EditText editText) {
-        this.f33073b = editText;
-        this.f33075e = false;
-    }
-
-    public void setViewToFindFocus(View view) {
-        this.d = view;
     }
 }

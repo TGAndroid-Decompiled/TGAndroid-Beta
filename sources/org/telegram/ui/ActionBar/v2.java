@@ -31,9 +31,9 @@ public final class v2 implements Runnable {
                 return;
             case 2:
                 p1 p1Var = (p1) this.f21611b;
-                ValueAnimator valueAnimator = p1Var.f21463m;
+                ValueAnimator valueAnimator = p1Var.f21466m;
                 if (valueAnimator != null && !valueAnimator.isRunning()) {
-                    p1Var.f21463m.start();
+                    p1Var.f21466m.start();
                     return;
                 }
                 return;
@@ -41,7 +41,7 @@ public final class v2 implements Runnable {
                 u4 u4Var = (u4) this.f21611b;
                 u4Var.k();
                 u4Var.j();
-                u4Var.f21550f.setAlpha(1.0f);
+                u4Var.f21554f.setAlpha(1.0f);
                 return;
         }
     }

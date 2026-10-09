@@ -1,51 +1,55 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import java.util.ArrayList;
-public final class qy0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f30295a;
-    public final com.google.firebase.messaging.n f30296b;
-    public final int f30297c;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.tgnet.TLRPC;
+public final class qy0 extends s4.y {
+    public int f30302e;
+    public final xy0 f30303f;
 
-    public qy0(com.google.firebase.messaging.n nVar, int i10, int i11) {
-        this.f30295a = i11;
-        this.f30296b = nVar;
-        this.f30297c = i10;
+    public qy0(xy0 xy0Var) {
+        this.f30303f = xy0Var;
+        this.d = 15;
+        this.f30302e = -1;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f30295a) {
-            case 0:
-                Float f7 = (Float) valueAnimator.getAnimatedValue();
-                f7.getClass();
-                ((ArrayList) this.f30296b.d).set(this.f30297c, f7);
-                return;
-            case 1:
-                Float f10 = (Float) valueAnimator.getAnimatedValue();
-                f10.getClass();
-                ((ArrayList) this.f30296b.f7908e).set(this.f30297c, f10);
-                return;
-            case 2:
-                Float f11 = (Float) valueAnimator.getAnimatedValue();
-                f11.getClass();
-                ((ArrayList) this.f30296b.f7909f).set(this.f30297c, f11);
-                return;
-            case 3:
-                Float f12 = (Float) valueAnimator.getAnimatedValue();
-                f12.getClass();
-                ((ArrayList) this.f30296b.d).set(this.f30297c, f12);
-                return;
-            case 4:
-                Float f13 = (Float) valueAnimator.getAnimatedValue();
-                f13.getClass();
-                ((ArrayList) this.f30296b.f7908e).set(this.f30297c, f13);
-                return;
-            default:
-                Float f14 = (Float) valueAnimator.getAnimatedValue();
-                f14.getClass();
-                ((ArrayList) this.f30296b.f7909f).set(this.f30297c, f14);
-                return;
+    public final boolean n(RecyclerView recyclerView, s4.d1 d1Var, s4.d1 d1Var2) {
+        int i10 = d1Var.f47660f;
+        if (i10 != 3 && i10 == d1Var2.f47660f) {
+            xy0 xy0Var = this.f30303f;
+            if (xy0Var.S == null) {
+                return false;
+            }
+            int b10 = d1Var.b();
+            int b11 = d1Var2.b();
+            xy0Var.S.documents.add(b11, xy0Var.S.documents.remove(b10));
+            xy0Var.d.p(b10, b11);
+            this.f30302e = b11;
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public final void p(s4.d1 d1Var, int i10) {
+        xy0 xy0Var = this.f30303f;
+        if (i10 == 0 && xy0Var.f33030f != null && this.f30302e > 0) {
+            TLRPC.TL_stickers_changeStickerPosition tL_stickers_changeStickerPosition = new TLRPC.TL_stickers_changeStickerPosition();
+            tL_stickers_changeStickerPosition.position = this.f30302e;
+            tL_stickers_changeStickerPosition.sticker = MediaDataController.getInputStickerSetItem(xy0Var.f33030f, "").document;
+            this.f30302e = -1;
+            xy0Var.f33030f = null;
+        } else if (i10 == 2) {
+            xy0Var.f33030f = ((org.telegram.ui.Cells.f8) d1Var.f47656a).getSticker();
+        }
+    }
+
+    @Override
+    public final void q(s4.d1 d1Var) {
+    }
+
+    @Override
+    public final void o(RecyclerView recyclerView, s4.d1 d1Var, s4.d1 d1Var2, int i10, int i11, int i12) {
     }
 }

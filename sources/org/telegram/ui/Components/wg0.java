@@ -1,60 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.os.SystemClock;
-import org.telegram.messenger.AndroidUtilities;
-public final class wg0 extends zl0 {
-    public final yf.y f32642e3;
-    public long f32643f3;
-    public final ch0 f32644g3;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class wg0 extends AnimatorListenerAdapter {
+    public final int f32618a;
+    public final xg0 f32619b;
 
-    public wg0(ch0 ch0Var, Context context) {
-        super(context, null);
-        this.f32644g3 = ch0Var;
-        this.f32642e3 = new yf.y(8);
+    public wg0(xg0 xg0Var, int i10) {
+        this.f32618a = i10;
+        this.f32619b = xg0Var;
     }
 
     @Override
-    public final boolean F0(float f7) {
-        if (f7 >= this.f32644g3.E + AndroidUtilities.statusBarHeight) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f7;
-        ch0 ch0Var = this.f32644g3;
-        if (ch0Var.L) {
-            long elapsedRealtime = SystemClock.elapsedRealtime();
-            long abs = Math.abs(this.f32643f3 - elapsedRealtime);
-            if (abs > 17) {
-                abs = 16;
-            }
-            this.f32643f3 = elapsedRealtime;
-            ch0Var.J += (((float) abs) * ch0Var.K) / 1800.0f;
-            while (true) {
-                f7 = ch0Var.J;
-                float f10 = ch0Var.K * 2.0f;
-                if (f7 < f10) {
-                    break;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f32618a) {
+            case 0:
+                xg0 xg0Var = this.f32619b;
+                xg0Var.h = false;
+                xg0Var.f32850a = xg0Var.f32852c;
+                xg0Var.invalidate();
+                int i10 = xg0Var.J;
+                if (i10 >= 0) {
+                    xg0Var.b(i10);
+                    xg0Var.J = -1;
+                    return;
                 }
-                ch0Var.J = f7 - f10;
-            }
-            ch0Var.I.setTranslate(f7, 0.0f);
-            ch0Var.H.setLocalMatrix(ch0Var.I);
-            g1();
-            invalidate();
+                return;
+            default:
+                xg0 xg0Var2 = this.f32619b;
+                xg0Var2.f32855n = false;
+                xg0Var2.h = false;
+                xg0Var2.invalidate();
+                int i11 = xg0Var2.J;
+                if (i11 >= 0) {
+                    xg0Var2.b(i11);
+                    xg0Var2.J = -1;
+                }
+                xg0Var2.a();
+                return;
         }
-        super.dispatchDraw(canvas);
-        int measuredHeight = getMeasuredHeight() - AndroidUtilities.navigationBarHeight;
-        int measuredWidth = getMeasuredWidth();
-        int measuredHeight2 = getMeasuredHeight();
-        yf.y yVar = this.f32642e3;
-        yVar.setBounds(0, measuredHeight, measuredWidth, measuredHeight2);
-        yVar.b(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20917i5, this.f33560p2));
-        yVar.draw(canvas);
     }
 }

@@ -1,37 +1,28 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
+import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class nk0 implements Runnable {
-    public final int f38997a;
-    public final ok0 f38998b;
-    public final String f38999c;
+import org.telegram.messenger.LocaleController;
+public final class nk0 extends org.telegram.ui.Cells.r8 {
+    public ImageView Q;
 
-    public nk0(ok0 ok0Var, String str, int i10) {
-        this.f38997a = i10;
-        this.f38998b = ok0Var;
-        this.f38999c = str;
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int dp;
+        super.onLayout(z10, i10, i11, i12, i13);
+        int i14 = i12 - i10;
+        if (LocaleController.isRTL) {
+            dp = AndroidUtilities.dp(17.0f);
+        } else {
+            dp = i14 - AndroidUtilities.dp(41.0f);
+        }
+        int A = org.telegram.messenger.bi.A(24.0f, i13 - i11, 2);
+        this.Q.layout(dp, A, AndroidUtilities.dp(24.0f) + dp, AndroidUtilities.dp(24.0f) + A);
     }
 
     @Override
-    public final void run() {
-        switch (this.f38997a) {
-            case 0:
-                ok0 ok0Var = this.f38998b;
-                String str = this.f38999c;
-                ok0Var.getClass();
-                AndroidUtilities.runOnUIThread(new nk0(ok0Var, str, 1));
-                return;
-            default:
-                ok0 ok0Var2 = this.f38998b;
-                String str2 = this.f38999c;
-                gg.c2 c2Var = ok0Var2.h;
-                int i10 = ok0Var2.f39243n.f33844s;
-                boolean z10 = true;
-                c2Var.g(str2, true, (i10 == 1 || i10 == 3) ? false : false, true, false, 0L, false, 0, 0);
-                Utilities.searchQueue.postRunnable(new nf0(ok0Var2, str2, new ArrayList(ok0Var2.f39243n.f33845w), 8));
-                return;
-        }
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        this.Q.measure(i10, i11);
     }
 }

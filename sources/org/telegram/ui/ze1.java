@@ -1,61 +1,53 @@
 package org.telegram.ui;
 
-import android.os.Build;
-import androidx.recyclerview.widget.RecyclerView;
-public final class ze1 extends s4.s0 {
-    public final int f43764a;
-    public final wf1 f43765b;
+import android.animation.ValueAnimator;
+import android.graphics.Canvas;
+import android.widget.FrameLayout;
+import org.telegram.messenger.Utilities;
+public final class ze1 extends FrameLayout {
+    public ValueAnimator f44574a;
+    public boolean f44575b;
+    public float f44576c;
 
-    public ze1(wf1 wf1Var, int i10) {
-        this.f43764a = i10;
-        this.f43765b = wf1Var;
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        float f7 = ((1.0f - this.f44576c) * 0.2f) + 0.8f;
+        canvas.save();
+        canvas.scale(f7, f7, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f);
+        super.dispatchDraw(canvas);
+        canvas.restore();
+        if (isPressed()) {
+            float f10 = this.f44576c;
+            if (f10 != 1.0f) {
+                this.f44576c = Utilities.clamp(f10 + 0.16f, 1.0f, 0.0f);
+                invalidate();
+            }
+        }
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        int i12;
-        boolean z10;
-        wf1 wf1Var;
-        ah.i iVar;
-        switch (this.f43764a) {
-            case 0:
-                wf1 wf1Var2 = this.f43765b;
-                int L0 = wf1Var2.F.L0();
-                if (L0 != -1) {
-                    s4.c1 K = recyclerView.K(L0);
-                    boolean z11 = false;
-                    if (K != null) {
-                        i12 = K.f46538a.getTop();
-                    } else {
-                        i12 = 0;
-                    }
-                    if (L0 == 0) {
-                        int i13 = 0 - i12;
-                        if (i12 < 0) {
-                            z10 = true;
-                        } else {
-                            z10 = false;
-                        }
-                        Math.abs(i13);
-                    } else if (L0 > 0) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    wf1Var2.G0((z10 || !wf1Var2.K) ? true : true, true);
-                    return;
+    public final void setPressed(boolean z10) {
+        ValueAnimator valueAnimator;
+        super.setPressed(z10);
+        if (this.f44575b != z10) {
+            this.f44575b = z10;
+            invalidate();
+            if (z10 && (valueAnimator = this.f44574a) != null) {
+                valueAnimator.removeAllListeners();
+                this.f44574a.cancel();
+            }
+            if (!z10) {
+                float f7 = this.f44576c;
+                if (f7 != 0.0f) {
+                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, 0.0f);
+                    this.f44574a = ofFloat;
+                    ofFloat.addUpdateListener(new y11(this, 16));
+                    this.f44574a.addListener(new ep0(this, 24));
+                    org.telegram.messenger.bi.l(5.0f, this.f44574a);
+                    this.f44574a.setDuration(350L);
+                    this.f44574a.start();
                 }
-                return;
-            case 1:
-                this.f43765b.y0();
-                return;
-            default:
-                if (Build.VERSION.SDK_INT >= 31 && (iVar = (wf1Var = this.f43765b).f42483f1) != null) {
-                    iVar.f(i10, i11);
-                    wf1Var.x0();
-                    return;
-                }
-                return;
+            }
         }
     }
 }

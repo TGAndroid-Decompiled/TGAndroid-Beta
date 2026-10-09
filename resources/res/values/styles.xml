@@ -74,8 +74,6 @@
     </style>
     <style name="Base.TextAppearance.AppCompat.Body2" parent="@android:style/TextAppearance.Material.Body2">
     </style>
-    <style name="Base.TextAppearance.AppCompat.Button" parent="@android:style/TextAppearance.Material.Button">
-    </style>
     <style name="Base.TextAppearance.AppCompat.SearchResult.Subtitle" parent="@android:style/TextAppearance.Material.SearchResult.Subtitle">
     </style>
     <style name="Base.TextAppearance.AppCompat.SearchResult.Title" parent="@android:style/TextAppearance.Material.SearchResult.Title">
@@ -84,9 +82,7 @@
     </style>
     <style name="Base.TextAppearance.AppCompat.Title" parent="@android:style/TextAppearance.Material.Title">
     </style>
-    <style name="Base.TextAppearance.AppCompat.Widget.ActionBar.Menu" parent="@style/TextAppearance.AppCompat.Button">
-        <item name="android:textColor">?attr/actionMenuTextColor</item>
-        <item name="textAllCaps">@bool/abc_config_actionMenuItemAllCaps</item>
+    <style name="Base.TextAppearance.AppCompat.Widget.ActionBar.Menu" parent="@android:style/TextAppearance.Material.Widget.ActionBar.Menu">
     </style>
     <style name="Base.TextAppearance.AppCompat.Widget.ActionBar.Subtitle" parent="@android:style/TextAppearance.Material.Widget.ActionBar.Subtitle">
     </style>
@@ -113,14 +109,14 @@
     </style>
     <style name="Base.TextAppearance.Widget.AppCompat.Toolbar.Title" parent="@android:style/TextAppearance.Material.Widget.ActionBar.Title">
     </style>
-    <style name="Base.Theme.AppCompat" parent="@style/Base.V21.Theme.AppCompat">
+    <style name="Base.Theme.AppCompat" parent="@style/Base.V23.Theme.AppCompat">
     </style>
     <style name="Base.Theme.AppCompat.CompactMenu" parent="">
         <item name="android:listViewStyle">@style/Widget.AppCompat.ListView.Menu</item>
         <item name="android:windowAnimationStyle">@style/Animation.AppCompat.DropDownUp</item>
         <item name="android:itemTextAppearance">?android:attr/textAppearanceMedium</item>
     </style>
-    <style name="Base.Theme.AppCompat.Light" parent="@style/Base.V21.Theme.AppCompat.Light">
+    <style name="Base.Theme.AppCompat.Light" parent="@style/Base.V23.Theme.AppCompat.Light">
     </style>
     <style name="Base.Theme.TMessages.AppWidget" parent="@style/Theme.TMessages">
     </style>
@@ -253,6 +249,32 @@
     </style>
     <style name="Base.V21.ThemeOverlay.AppCompat.Dialog" parent="@style/Base.V7.ThemeOverlay.AppCompat.Dialog">
         <item name="android:windowElevation">@dimen/abc_floating_window_z</item>
+    </style>
+    <style name="Base.V22.Theme.AppCompat" parent="@style/Base.V21.Theme.AppCompat">
+        <item name="actionModeShareDrawable">?android:attr/actionModeShareDrawable</item>
+        <item name="editTextBackground">?android:attr/editTextBackground</item>
+    </style>
+    <style name="Base.V22.Theme.AppCompat.Light" parent="@style/Base.V21.Theme.AppCompat.Light">
+        <item name="actionModeShareDrawable">?android:attr/actionModeShareDrawable</item>
+        <item name="editTextBackground">?android:attr/editTextBackground</item>
+    </style>
+    <style name="Base.V23.Theme.AppCompat" parent="@style/Base.V22.Theme.AppCompat">
+        <item name="actionBarItemBackground">?android:attr/actionBarItemBackground</item>
+        <item name="actionMenuTextAppearance">?android:attr/actionMenuTextAppearance</item>
+        <item name="actionMenuTextColor">?android:attr/actionMenuTextColor</item>
+        <item name="actionOverflowButtonStyle">?android:attr/actionOverflowButtonStyle</item>
+        <item name="controlBackground">@drawable/abc_control_background_material</item>
+        <item name="ratingBarStyleIndicator">?android:attr/ratingBarStyleIndicator</item>
+        <item name="ratingBarStyleSmall">?android:attr/ratingBarStyleSmall</item>
+    </style>
+    <style name="Base.V23.Theme.AppCompat.Light" parent="@style/Base.V22.Theme.AppCompat.Light">
+        <item name="actionBarItemBackground">?android:attr/actionBarItemBackground</item>
+        <item name="actionMenuTextAppearance">?android:attr/actionMenuTextAppearance</item>
+        <item name="actionMenuTextColor">?android:attr/actionMenuTextColor</item>
+        <item name="actionOverflowButtonStyle">?android:attr/actionOverflowButtonStyle</item>
+        <item name="controlBackground">@drawable/abc_control_background_material</item>
+        <item name="ratingBarStyleIndicator">?android:attr/ratingBarStyleIndicator</item>
+        <item name="ratingBarStyleSmall">?android:attr/ratingBarStyleSmall</item>
     </style>
     <style name="Base.V7.Theme.AppCompat" parent="@style/Platform.AppCompat">
         <item name="android:panelBackground">@android:color/transparent</item>
@@ -582,8 +604,6 @@
         <item name="android:minWidth">56dp</item>
     </style>
     <style name="Base.Widget.AppCompat.ActionButton.Overflow" parent="@android:style/Widget.Material.ActionButton.Overflow">
-        <item name="android:src">@null</item>
-        <item name="srcCompat">@drawable/abc_ic_menu_overflow_material</item>
     </style>
     <style name="Base.Widget.AppCompat.ActionMode" parent="">
         <item name="android:paddingLeft">@dimen/abc_action_bar_default_padding_start_material</item>
@@ -618,7 +638,6 @@
     <style name="Base.Widget.AppCompat.Button.Borderless" parent="@android:style/Widget.Material.Button.Borderless">
     </style>
     <style name="Base.Widget.AppCompat.Button.Borderless.Colored" parent="@android:style/Widget.Material.Button.Borderless.Colored">
-        <item name="android:textColor">@color/abc_btn_colored_borderless_text_material</item>
     </style>
     <style name="Base.Widget.AppCompat.Button.ButtonBar.AlertDialog" parent="@style/Widget.AppCompat.Button.Borderless.Colored">
         <item name="android:minWidth">64dp</item>
@@ -659,7 +678,8 @@
     <style name="Base.Widget.AppCompat.DropDownItem.Spinner" parent="@android:style/Widget.Material.DropDownItem.Spinner">
     </style>
     <style name="Base.Widget.AppCompat.EditText" parent="@android:style/Widget.Material.EditText">
-        <item name="android:background">?attr/editTextBackground</item>
+        <item name="android:breakStrategy">simple</item>
+        <item name="android:hyphenationFrequency">none</item>
     </style>
     <style name="Base.Widget.AppCompat.ImageButton" parent="@android:style/Widget.Material.ImageButton">
     </style>
@@ -703,21 +723,9 @@
     </style>
     <style name="Base.Widget.AppCompat.RatingBar" parent="@android:style/Widget.Material.RatingBar">
     </style>
-    <style name="Base.Widget.AppCompat.RatingBar.Indicator" parent="@android:style/Widget.RatingBar">
-        <item name="android:maxHeight">36dp</item>
-        <item name="android:indeterminateDrawable">@drawable/abc_ratingbar_indicator_material</item>
-        <item name="android:progressDrawable">@drawable/abc_ratingbar_indicator_material</item>
-        <item name="android:minHeight">36dp</item>
-        <item name="android:thumb">@null</item>
-        <item name="android:isIndicator">true</item>
+    <style name="Base.Widget.AppCompat.RatingBar.Indicator" parent="@android:style/Widget.Material.RatingBar.Indicator">
     </style>
-    <style name="Base.Widget.AppCompat.RatingBar.Small" parent="@android:style/Widget.RatingBar">
-        <item name="android:maxHeight">16dp</item>
-        <item name="android:indeterminateDrawable">@drawable/abc_ratingbar_small_material</item>
-        <item name="android:progressDrawable">@drawable/abc_ratingbar_small_material</item>
-        <item name="android:minHeight">16dp</item>
-        <item name="android:thumb">@null</item>
-        <item name="android:isIndicator">true</item>
+    <style name="Base.Widget.AppCompat.RatingBar.Small" parent="@android:style/Widget.Material.RatingBar.Small">
     </style>
     <style name="Base.Widget.AppCompat.SearchView" parent="@android:style/Widget">
         <item name="closeIcon">@drawable/abc_ic_clear_material</item>
@@ -742,6 +750,8 @@
     <style name="Base.Widget.AppCompat.Spinner" parent="@android:style/Widget.Material.Spinner">
     </style>
     <style name="Base.Widget.AppCompat.TextView" parent="@android:style/Widget.Material.TextView">
+        <item name="android:breakStrategy">high_quality</item>
+        <item name="android:hyphenationFrequency">none</item>
     </style>
     <style name="Base.Widget.AppCompat.TextView.SpinnerItem" parent="@android:style/Widget.Material.TextView.SpinnerItem">
     </style>
@@ -757,6 +767,7 @@
         <item name="android:background">@null</item>
     </style>
     <style name="MyTextViewStyle" parent="@android:style/Widget.Material.Light.TextView">
+        <item name="android:hyphenationFrequency">none</item>
     </style>
     <style name="Platform.AppCompat" parent="@style/Platform.V21.AppCompat">
     </style>
@@ -861,8 +872,6 @@
     <style name="TextAppearance.AppCompat.Body1" parent="@style/Base.TextAppearance.AppCompat.Body1">
     </style>
     <style name="TextAppearance.AppCompat.Body2" parent="@style/Base.TextAppearance.AppCompat.Body2">
-    </style>
-    <style name="TextAppearance.AppCompat.Button" parent="@style/Base.TextAppearance.AppCompat.Button">
     </style>
     <style name="TextAppearance.AppCompat.Light.Widget.PopupMenu.Large" parent="@style/TextAppearance.AppCompat.Widget.PopupMenu.Large">
     </style>

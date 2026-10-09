@@ -1,40 +1,50 @@
 package org.telegram.ui;
 
+import android.content.Context;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.voip.VoIPService;
-public final class th1 implements View.OnClickListener {
-    public final int f40914a;
-    public final ki1 f40915b;
-    public final VoIPService f40916c;
+public final class th1 extends LinearLayout {
+    public final org.telegram.ui.ActionBar.e6 f42013a;
+    public final ImageView f42014b;
+    public final LinearLayout f42015c;
+    public final TextView d;
+    public final TextView f42016e;
+    public final ImageView f42017f;
+    public boolean h;
+    public boolean f42018n;
 
-    public th1(ki1 ki1Var, VoIPService voIPService, int i10) {
-        this.f40914a = i10;
-        this.f40915b = ki1Var;
-        this.f40916c = voIPService;
+    public th1(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context);
+        setOrientation(0);
+        this.f42013a = e6Var;
+        ImageView imageView = new ImageView(context);
+        this.f42014b = imageView;
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView.setScaleType(scaleType);
+        addView(imageView, w7.x5.t(40, 40, 19, 12, 0, 12, 0));
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.f42015c = linearLayout;
+        linearLayout.setOrientation(1);
+        linearLayout.setPadding(0, AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f));
+        addView(linearLayout, w7.x5.p(0, -2, 1.0f, 23, 0, 0, 32, 0));
+        TextView textView = new TextView(context);
+        this.d = textView;
+        textView.setTextSize(1, 16.0f);
+        TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, w7.x5.t(-1, -2, 7, 0, 0, 0, 0), context);
+        this.f42016e = h;
+        h.setTextSize(1, 13.0f);
+        linearLayout.addView(h, w7.x5.r(-1, -2, 7, 0.0f, 4.33f, 0.0f, 0.0f));
+        ImageView imageView2 = new ImageView(context);
+        this.f42017f = imageView2;
+        imageView2.setScaleType(scaleType);
+        addView(imageView2, w7.x5.t(40, 40, 21, 12, 0, 12, 0));
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f40914a) {
-            case 0:
-                ki1 ki1Var = this.f40915b;
-                AndroidUtilities.runOnUIThread(new uh1(ki1Var, 8));
-                int i10 = ki1Var.L;
-                if (i10 > 0) {
-                    this.f40916c.sendCallRating(i10);
-                    return;
-                }
-                return;
-            default:
-                ki1 ki1Var2 = this.f40915b;
-                AndroidUtilities.runOnUIThread(new uh1(ki1Var2, 10));
-                int i11 = ki1Var2.L;
-                if (i11 > 0) {
-                    this.f40916c.sendCallRating(i11);
-                    return;
-                }
-                return;
-        }
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
     }
 }

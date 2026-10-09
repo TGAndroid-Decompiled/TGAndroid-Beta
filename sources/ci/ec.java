@@ -1,39 +1,60 @@
 package ci;
 
-import android.graphics.Canvas;
-import org.telegram.ui.LaunchActivity;
-public final class ec extends fc {
-    public final ai.a0 f5063g;
-    public final float h;
+import org.telegram.ui.l01;
+public final class ec extends gc {
+    public final int f5056g;
+    public final Object h;
 
-    public ec(ai.a0 a0Var, float f7) {
-        this.f5063g = a0Var;
-        this.h = f7;
-    }
-
-    @Override
-    public final void a(Canvas canvas, float f7) {
-        float pow = (float) Math.pow(f7, 16.0d);
-        ai.a0 a0Var = this.f5063g;
-        float f10 = this.h;
-        a0Var.c(canvas, f10, f10, pow);
+    public ec(Object obj, int i10) {
+        this.f5056g = i10;
+        this.h = obj;
     }
 
     @Override
     public final void e() {
-        ai.a0 a0Var = this.f5063g;
-        a0Var.post(new ai.y(a0Var, 1));
+        switch (this.f5056g) {
+            case 0:
+                l01 l01Var = (l01) this.h;
+                l01Var.Q = false;
+                l01Var.invalidate();
+                return;
+            case 1:
+                ai.f6 t10 = ((ai.kc) this.h).t();
+                if (t10 != null) {
+                    t10.m0(true);
+                    return;
+                }
+                return;
+            default:
+                org.telegram.ui.Components.y9 y9Var = (org.telegram.ui.Components.y9) this.h;
+                y9Var.post(new androidx.fragment.app.a0(y9Var, 27));
+                return;
+        }
     }
 
     @Override
     public final void f(boolean z10) {
-        ai.a0 a0Var = this.f5063g;
-        a0Var.f547w = true;
-        a0Var.invalidate();
-        if (z10) {
-            int[] iArr = new int[2];
-            a0Var.getLocationInWindow(iArr);
-            LaunchActivity.b0((a0Var.getWidth() / 2.0f) + iArr[0], (a0Var.getHeight() / 2.0f) + iArr[1], 1.0f);
+        switch (this.f5056g) {
+            case 0:
+                l01 l01Var = (l01) this.h;
+                l01Var.Q = true;
+                l01Var.invalidate();
+                return;
+            case 1:
+                ai.f6 t10 = ((ai.kc) this.h).t();
+                if (t10 != null) {
+                    t10.m0(false);
+                }
+                ai.b5 b5Var = this.f5137f;
+                if (b5Var != null) {
+                    b5Var.setTranslationX(0.0f);
+                    this.f5137f.setTranslationY(0.0f);
+                    return;
+                }
+                return;
+            default:
+                ((org.telegram.ui.Components.y9) this.h).setVisibility(0);
+                return;
         }
     }
 }

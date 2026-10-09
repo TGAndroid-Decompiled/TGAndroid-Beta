@@ -2,41 +2,41 @@ package org.telegram.ui;
 
 import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
-public final class lb0 implements org.telegram.ui.Components.d5, org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.pw0 {
-    public final int f38270a;
-    public final vb0 f38271b;
+public final class lb0 implements org.telegram.ui.Components.f5, org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.vw0 {
+    public final int f39494a;
+    public final vb0 f39495b;
 
     public lb0(vb0 vb0Var, int i10) {
-        this.f38270a = i10;
-        this.f38271b = vb0Var;
+        this.f39494a = i10;
+        this.f39495b = vb0Var;
     }
 
     @Override
-    public void K(int i10, int i11, boolean z10) {
-        this.f38271b.T(i10);
+    public void J(int i10, int i11, boolean z10) {
+        this.f39495b.V(i10);
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        vb0 vb0Var = this.f38271b;
-        vb0Var.T.a(vb0Var.f41696e);
+    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        vb0 vb0Var = this.f39495b;
+        vb0Var.T.a(vb0Var.f42805e);
         vb0Var.finishFragment();
     }
 
     @Override
-    public void j(int i10) {
-        switch (this.f38270a) {
+    public void g(int i10) {
+        switch (this.f39494a) {
             case 2:
-                vb0 vb0Var = this.f38271b;
+                vb0 vb0Var = this.f39495b;
                 ArrayList arrayList = vb0Var.P;
                 if (i10 < arrayList.size()) {
-                    vb0Var.f41701w.setText(LocaleController.formatDateAudio(vb0Var.getConnectionsManager().getCurrentTime() + ((Integer) arrayList.get(i10)).intValue(), false));
+                    vb0Var.f42810w.setText(LocaleController.formatDateAudio(vb0Var.getConnectionsManager().getCurrentTime() + ((Integer) arrayList.get(i10)).intValue(), false));
                     return;
                 }
-                vb0Var.f41701w.setText("");
+                vb0Var.f42810w.setText("");
                 return;
             default:
-                vb0 vb0Var2 = this.f38271b;
+                vb0 vb0Var2 = this.f39495b;
                 vb0Var2.F.clearFocus();
                 vb0Var2.O = true;
                 ArrayList arrayList2 = vb0Var2.R;
@@ -52,7 +52,7 @@ public final class lb0 implements org.telegram.ui.Components.d5, org.telegram.ui
 
     @Override
     public void l() {
-        int i10 = this.f38270a;
+        int i10 = this.f39494a;
     }
 
     private final void a() {

@@ -1,15 +1,8 @@
 package ae;
+public final class b implements z1 {
+    public static final b f426a = new Object();
 
-import zd.b0;
-public final class b extends id.a implements id.f {
-    private volatile Object _preHandler;
-
-    public b() {
-        super(b0.f53220a);
-        this._preHandler = this;
-    }
-
-    public final void c(java.lang.Throwable r4) {
-        throw new UnsupportedOperationException("Method not decompiled: ae.b.c(java.lang.Throwable):void");
+    public final String toString() {
+        return "Active";
     }
 }

@@ -1,3 +1,5 @@
 package db;
-public final class j extends androidx.car.app.j {
+
+import ae.x;
+public final class j extends x {
 }

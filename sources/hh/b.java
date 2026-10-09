@@ -5,17 +5,17 @@ import java.util.HashSet;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.vs;
 public final class b implements Utilities.Callback2 {
-    public final int f11426a;
+    public final int f11475a;
 
     public b(int i10) {
-        this.f11426a = i10;
+        this.f11475a = i10;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        switch (this.f11426a) {
+        switch (this.f11475a) {
             case 0:
                 TLRPC.Bool bool = (TLRPC.Bool) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
@@ -24,7 +24,7 @@ public final class b implements Utilities.Callback2 {
             case 1:
                 TLRPC.Bool bool2 = (TLRPC.Bool) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                int i10 = is.G0;
+                int i10 = vs.G0;
                 return;
             default:
                 Boolean bool3 = (Boolean) obj;

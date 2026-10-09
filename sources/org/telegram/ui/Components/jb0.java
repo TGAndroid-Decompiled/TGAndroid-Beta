@@ -1,63 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.view.View;
-public final class jb0 extends h91 {
-    public final ic0 V;
+import org.telegram.tgnet.TLRPC;
+public final class jb0 extends g.o {
+    public final pb0 f27688c;
 
-    public jb0(ic0 ic0Var, Context context, ec0 ec0Var) {
-        super(context, ec0Var);
-        this.V = ic0Var;
+    public jb0(pb0 pb0Var) {
+        this.f27688c = pb0Var;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean z10;
-        int i10 = 0;
-        while (true) {
-            View[] viewArr = this.V.f27460f.f27168e;
-            if (i10 < viewArr.length) {
-                View view = viewArr[i10];
-                if (view != null) {
-                    cc0 cc0Var = (cc0) view;
-                    if (cc0Var.f25369a == 0) {
-                        z10 = cc0Var.f25375e.f21965i;
-                        break;
-                    }
-                }
-                i10++;
-            } else {
-                z10 = false;
-                break;
+    public final int i(int i10) {
+        pb0 pb0Var = this.f27688c;
+        gg.j1 j1Var = pb0Var.f29830f;
+        if (i10 != 0) {
+            int i11 = i10 - 1;
+            Object J = j1Var.J(i11);
+            if (J instanceof TLRPC.TL_inlineBotSwitchPM) {
+                return 100;
             }
+            if (J instanceof TLRPC.Document) {
+                return 20;
+            }
+            if (j1Var.I() != null || j1Var.U != null) {
+                i10 = i11;
+            }
+            ib0 ib0Var = pb0Var.d;
+            ib0Var.B1();
+            return ib0Var.R.get(i10);
         }
-        if (z10) {
-            return false;
-        }
-        return B(motionEvent);
-    }
-
-    @Override
-    public final void u() {
-        View view = this.f27168e[0];
-        if (view instanceof cc0) {
-            ((cc0) view).f25375e.W();
-        }
-    }
-
-    @Override
-    public final void w(boolean z10) {
-        ic0 ic0Var = this.V;
-        ic0Var.f27459e.setSelectedTab(ic0Var.f27460f.getPositionAnimated());
-        View[] viewArr = this.f27168e;
-        View view = viewArr[0];
-        if (view instanceof cc0) {
-            ((cc0) view).f25375e.H();
-        }
-        View view2 = viewArr[1];
-        if (view2 instanceof cc0) {
-            ((cc0) view2).f25375e.H();
-        }
+        return 100;
     }
 }

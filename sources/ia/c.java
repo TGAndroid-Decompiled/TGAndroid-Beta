@@ -3,18 +3,18 @@ package ia;
 import java.lang.annotation.Annotation;
 import java.util.Collections;
 import java.util.Map;
-import n4.y;
+import n4.x;
 public final class c {
-    public final String f12037a;
-    public final Map f12038b;
+    public final String f12087a;
+    public final Map f12088b;
 
     public c(String str, Map map) {
-        this.f12037a = str;
-        this.f12038b = map;
+        this.f12087a = str;
+        this.f12088b = map;
     }
 
-    public static y a(String str) {
-        return new y(str);
+    public static x a(String str) {
+        return new x(str, 20);
     }
 
     public static c c(String str) {
@@ -22,7 +22,7 @@ public final class c {
     }
 
     public final Annotation b(Class cls) {
-        return (Annotation) this.f12038b.get(cls);
+        return (Annotation) this.f12088b.get(cls);
     }
 
     public final boolean equals(Object obj) {
@@ -33,17 +33,17 @@ public final class c {
             return false;
         }
         c cVar = (c) obj;
-        if (this.f12037a.equals(cVar.f12037a) && this.f12038b.equals(cVar.f12038b)) {
+        if (this.f12087a.equals(cVar.f12087a) && this.f12088b.equals(cVar.f12088b)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f12038b.hashCode() + (this.f12037a.hashCode() * 31);
+        return this.f12088b.hashCode() + (this.f12087a.hashCode() * 31);
     }
 
     public final String toString() {
-        return "FieldDescriptor{name=" + this.f12037a + ", properties=" + this.f12038b.values() + "}";
+        return "FieldDescriptor{name=" + this.f12087a + ", properties=" + this.f12088b.values() + "}";
     }
 }

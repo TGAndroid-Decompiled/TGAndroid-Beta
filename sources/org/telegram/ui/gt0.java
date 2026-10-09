@@ -1,44 +1,44 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class gt0 extends org.telegram.ui.Components.x00 {
-    public final os0 f36753e;
-    public final PhotoViewer f36754f;
+import android.content.Context;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.tgnet.TLRPC;
+public final class gt0 extends org.telegram.ui.Components.mr0 {
+    public final FrameLayout f38103b1;
+    public final boolean f38104c1;
+    public final PhotoViewer f38105d1;
 
-    public gt0(PhotoViewer photoViewer, os0 os0Var) {
-        super(false);
-        this.f36754f = photoViewer;
-        this.f36753e = os0Var;
+    public gt0(PhotoViewer photoViewer, Context context, zn znVar, ArrayList arrayList, String str, Integer num, FrameLayout frameLayout, boolean z10) {
+        super(context, znVar, arrayList, null, null, false, str, null, false, true, false, num, null);
+        this.f38105d1 = photoViewer;
+        this.f38103b1 = frameLayout;
+        this.f38104c1 = z10;
     }
 
     @Override
-    public final CharSequence d() {
-        StringBuilder sb2 = new StringBuilder();
-        PhotoViewer photoViewer = this.f36754f;
-        int[] iArr = photoViewer.f33984m3;
-        sb2.append(LocaleController.formatPluralString("Minutes", iArr[0], new Object[0]));
-        sb2.append(' ');
-        sb2.append(LocaleController.formatPluralString("Seconds", iArr[1], new Object[0]));
-        String sb3 = sb2.toString();
-        StringBuilder sb4 = new StringBuilder();
-        int[] iArr2 = photoViewer.f33994n3;
-        sb4.append(LocaleController.formatPluralString("Minutes", iArr2[0], new Object[0]));
-        sb4.append(' ');
-        sb4.append(LocaleController.formatPluralString("Seconds", iArr2[1], new Object[0]));
-        return LocaleController.formatString("AccDescrPlayerDuration", R.string.AccDescrPlayerDuration, sb3, sb4.toString());
+    public final void S0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        if (!z10) {
+            return;
+        }
+        AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.x21(this, this.f38103b1, iVar, i10, 9), 250L);
     }
 
     @Override
-    public final float k() {
-        return this.f36754f.f34020q3.c();
-    }
-
-    @Override
-    public final void l(float f7) {
-        this.f36753e.b(f7);
-        PhotoViewer photoViewer = this.f36754f;
-        photoViewer.f34020q3.h(f7, false);
-        photoViewer.f34029r3.invalidate();
+    public final void dismissInternal() {
+        super.dismissInternal();
+        if (this.f38104c1) {
+            AndroidUtilities.runOnUIThread(new tk0(this, 17), 50L);
+        }
+        PhotoViewer photoViewer = this.f38105d1;
+        photoViewer.f33894d0.softInputMode = 272;
+        try {
+            ((WindowManager) photoViewer.f34082y.getSystemService("window")).updateViewLayout(photoViewer.f33921g0, photoViewer.f33894d0);
+        } catch (Exception e7) {
+            FileLog.e(e7);
+        }
     }
 }

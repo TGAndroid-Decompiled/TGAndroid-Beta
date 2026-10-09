@@ -1,89 +1,101 @@
 package v7;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Typeface;
-import j$.util.concurrent.ConcurrentHashMap;
-import java.io.File;
-import java.io.InputStream;
-import java.util.List;
+import android.content.pm.PackageManager;
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Parcel;
+import android.os.RemoteException;
+import android.util.Log;
+import java.util.concurrent.atomic.AtomicBoolean;
 public abstract class h8 {
-    public h8() {
-        new ConcurrentHashMap();
+    public static Context f49207a;
+    public static i8.e f49208b;
+
+    public static i8.e a(Context context) {
+        Class cls;
+        Class cls2;
+        i8.e aVar;
+        n6.l.h(context);
+        Log.d("h8", "preferredRenderer: ".concat("null"));
+        i8.e eVar = f49208b;
+        if (eVar == null) {
+            AtomicBoolean atomicBoolean = k6.g.f14709a;
+            int b10 = k6.g.b(context, 13400000);
+            if (b10 == 0) {
+                Log.i("h8", "Making Creator dynamically");
+                ClassLoader classLoader = b(context).getClassLoader();
+                try {
+                    n6.l.h(classLoader);
+                    try {
+                        IBinder iBinder = (IBinder) classLoader.loadClass("com.google.android.gms.maps.internal.CreatorImpl").newInstance();
+                        if (iBinder == null) {
+                            aVar = 0;
+                        } else {
+                            IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.maps.internal.ICreator");
+                            if (queryLocalInterface instanceof i8.e) {
+                                aVar = (i8.e) queryLocalInterface;
+                            } else {
+                                aVar = new a9.a(iBinder, "com.google.android.gms.maps.internal.ICreator", 9);
+                            }
+                        }
+                        f49208b = aVar;
+                        try {
+                            Context b11 = b(context);
+                            b11.getClass();
+                            x6.b bVar = new x6.b(b11.getResources());
+                            Parcel N0 = aVar.N0();
+                            s7.b.c(N0, bVar);
+                            N0.writeInt(12451000);
+                            aVar.R0(N0, 6);
+                            return f49208b;
+                        } catch (RemoteException e7) {
+                            throw new RuntimeException(e7);
+                        }
+                    } catch (IllegalAccessException unused) {
+                        throw new IllegalStateException("Unable to call the default constructor of ".concat(cls2.getName()));
+                    } catch (InstantiationException unused2) {
+                        throw new IllegalStateException("Unable to instantiate the dynamic class ".concat(cls.getName()));
+                    }
+                } catch (ClassNotFoundException unused3) {
+                    throw new IllegalStateException("Unable to find dynamic class com.google.android.gms.maps.internal.CreatorImpl");
+                }
+            }
+            throw new k6.f(b10);
+        }
+        return eVar;
     }
 
-    public abstract Typeface a(Context context, h0.e eVar, Resources resources, int i10);
-
-    public abstract Typeface b(Context context, o0.i[] iVarArr, int i10);
-
-    public Typeface c(Context context, List list, int i10) {
-        throw new IllegalStateException("createFromFontInfoWithFallback must only be called on API 29+");
-    }
-
-    public Typeface d(Context context, InputStream inputStream) {
-        File d = i8.d(context);
-        if (d == null) {
-            return null;
-        }
-        try {
-            if (!i8.c(inputStream, d)) {
-                return null;
+    public static Context b(Context context) {
+        Context context2;
+        Context context3 = f49207a;
+        if (context3 == null) {
+            context.getApplicationContext();
+            try {
+                context2 = y6.e.c(context, y6.e.f51721b, "com.google.android.gms.maps_dynamite").f51731a;
+            } catch (Exception e7) {
+                try {
+                    if (!"com.google.android.gms.maps_dynamite".equals("com.google.android.gms.maps_dynamite")) {
+                        try {
+                            Log.d("h8", "Attempting to load maps_dynamite again.");
+                            context2 = y6.e.c(context, y6.e.f51721b, "com.google.android.gms.maps_dynamite").f51731a;
+                        } catch (Exception e10) {
+                            Log.e("h8", "Failed to load maps module, use pre-Chimera", e10);
+                            AtomicBoolean atomicBoolean = k6.g.f14709a;
+                            context2 = context.createPackageContext("com.google.android.gms", 3);
+                        }
+                    } else {
+                        Log.e("h8", "Failed to load maps module, use pre-Chimera", e7);
+                        AtomicBoolean atomicBoolean2 = k6.g.f14709a;
+                        context2 = context.createPackageContext("com.google.android.gms", 3);
+                    }
+                } catch (PackageManager.NameNotFoundException unused) {
+                    context2 = null;
+                }
             }
-            return Typeface.createFromFile(d.getPath());
-        } catch (RuntimeException unused) {
-            return null;
-        } finally {
-            d.delete();
+            f49207a = context2;
+            return context2;
         }
-    }
-
-    public Typeface e(Context context, Resources resources, int i10, String str, int i11) {
-        File d = i8.d(context);
-        if (d == null) {
-            return null;
-        }
-        try {
-            if (!i8.b(d, resources, i10)) {
-                return null;
-            }
-            return Typeface.createFromFile(d.getPath());
-        } catch (RuntimeException unused) {
-            return null;
-        } finally {
-            d.delete();
-        }
-    }
-
-    public o0.i f(o0.i[] iVarArr, int i10) {
-        int i11;
-        boolean z10;
-        int i12;
-        new ob.a(10);
-        if ((i10 & 1) == 0) {
-            i11 = 400;
-        } else {
-            i11 = 700;
-        }
-        if ((i10 & 2) != 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        o0.i iVar = null;
-        int i13 = Integer.MAX_VALUE;
-        for (o0.i iVar2 : iVarArr) {
-            int abs = Math.abs(iVar2.f16959c - i11) * 2;
-            if (iVar2.d == z10) {
-                i12 = 0;
-            } else {
-                i12 = 1;
-            }
-            int i14 = abs + i12;
-            if (iVar == null || i13 > i14) {
-                iVar = iVar2;
-                i13 = i14;
-            }
-        }
-        return iVar;
+        return context3;
     }
 }

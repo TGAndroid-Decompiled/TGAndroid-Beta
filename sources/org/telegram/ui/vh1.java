@@ -1,102 +1,55 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.voip.VoIPService;
-public final class vh1 implements View.OnClickListener {
-    public final int f41758a;
-    public final ki1 f41759b;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class vh1 implements TextWatcher {
+    public final UsersSelectActivity f42863a;
 
-    public vh1(ki1 ki1Var, int i10) {
-        this.f41758a = i10;
-        this.f41759b = ki1Var;
+    public vh1(UsersSelectActivity usersSelectActivity) {
+        this.f42863a = usersSelectActivity;
     }
 
     @Override
-    public final void onClick(View view) {
-        VoIPService sharedInstance;
-        int i10;
-        switch (this.f41758a) {
-            case 0:
-                if (VoIPService.getSharedInstance() != null) {
-                    ki1 ki1Var = this.f41759b;
-                    AndroidUtilities.cancelRunOnUIThread(ki1Var.S0);
-                    ki1Var.R0 = false;
-                    VoIPService.getSharedInstance().hangUp();
-                    return;
+    public final void afterTextChanged(Editable editable) {
+        UsersSelectActivity usersSelectActivity = this.f42863a;
+        if (usersSelectActivity.f34594c.length() != 0) {
+            yh1 yh1Var = usersSelectActivity.h;
+            boolean z10 = yh1Var.f44349n;
+            if (!z10) {
+                usersSelectActivity.M = true;
+                usersSelectActivity.L = true;
+                if (!z10) {
+                    yh1Var.f44349n = true;
+                    yh1Var.l();
                 }
-                return;
-            case 1:
-                ki1 ki1Var2 = this.f41759b;
-                if (ki1Var2.f38048n0 && ki1Var2.m0 && System.currentTimeMillis() - ki1Var2.K0 > 500) {
-                    AndroidUtilities.cancelRunOnUIThread(ki1Var2.S0);
-                    ki1Var2.R0 = false;
-                    ki1Var2.K0 = System.currentTimeMillis();
-                    ki1Var2.Z.setRelativePosition(ki1Var2.Y);
-                    ki1Var2.f38019a0 = true;
-                    ki1Var2.H0 = true;
-                    ki1Var2.f38051q0 = ki1Var2.f38050p0;
-                    ki1Var2.H();
-                    return;
-                }
-                return;
-            case 2:
-                ki1 ki1Var3 = this.f41759b;
-                if (ki1Var3.H0 && System.currentTimeMillis() - ki1Var3.K0 > 500) {
-                    AndroidUtilities.cancelRunOnUIThread(ki1Var3.S0);
-                    ki1Var3.R0 = false;
-                    ki1Var3.K0 = System.currentTimeMillis();
-                    ki1Var3.Y.setRelativePosition(ki1Var3.Z);
-                    ki1Var3.f38019a0 = false;
-                    ki1Var3.H0 = false;
-                    ki1Var3.f38051q0 = ki1Var3.f38050p0;
-                    ki1Var3.H();
-                    return;
-                }
-                return;
-            case 3:
-                long currentTimeMillis = System.currentTimeMillis();
-                ki1 ki1Var4 = this.f41759b;
-                if (currentTimeMillis - ki1Var4.K0 >= 500) {
-                    ki1Var4.K0 = System.currentTimeMillis();
-                    boolean z10 = ki1Var4.C0;
-                    if (!z10 && ki1Var4.B0) {
-                        ki1Var4.m(!z10);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 4:
-                long currentTimeMillis2 = System.currentTimeMillis();
-                ki1 ki1Var5 = this.f41759b;
-                if (currentTimeMillis2 - ki1Var5.K0 >= 500) {
-                    ki1Var5.K0 = System.currentTimeMillis();
-                    if (ki1Var5.B0) {
-                        ki1Var5.m(!ki1Var5.C0);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 5:
-                ki1 ki1Var6 = this.f41759b;
-                if (ki1Var6.K.getTag() != null && (sharedInstance = VoIPService.getSharedInstance()) != null) {
-                    ki1Var6.B();
-                    if (sharedInstance.isBluetoothOn()) {
-                        i10 = 2;
-                    } else if (sharedInstance.isSpeakerphoneOn()) {
-                        i10 = 0;
-                    } else {
-                        i10 = 1;
-                    }
-                    sharedInstance.toggleSpeakerphoneOrShowRouteSheet(ki1Var6.f38021b, false, Integer.valueOf(i10));
-                    return;
-                }
-                return;
-            default:
-                this.f41759b.p();
-                return;
+                usersSelectActivity.d.setFastScrollVisible(false);
+                usersSelectActivity.d.setVerticalScrollBarEnabled(true);
+                usersSelectActivity.f34596f.d.setText(LocaleController.getString(R.string.NoResult));
+            }
+            usersSelectActivity.f34596f.e(true, true);
+            usersSelectActivity.h.L(usersSelectActivity.f34594c.getText().toString());
+            return;
         }
+        usersSelectActivity.M = false;
+        usersSelectActivity.L = false;
+        yh1 yh1Var2 = usersSelectActivity.h;
+        if (yh1Var2.f44349n) {
+            yh1Var2.f44349n = false;
+            yh1Var2.l();
+        }
+        usersSelectActivity.h.L(null);
+        usersSelectActivity.d.setFastScrollVisible(true);
+        usersSelectActivity.d.setVerticalScrollBarEnabled(false);
+        usersSelectActivity.f34596f.d.setText(LocaleController.getString(R.string.NoContacts));
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

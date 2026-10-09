@@ -12,14 +12,14 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.d61;
-import org.telegram.ui.Components.oy;
-import org.telegram.ui.Components.z5;
-public final class b0 implements oy {
-    public final m0 f44990a;
+import org.telegram.ui.Components.az;
+import org.telegram.ui.Components.b6;
+import org.telegram.ui.Components.l61;
+public final class b0 implements az {
+    public final m0 f46189a;
 
     public b0(m0 m0Var) {
-        this.f44990a = m0Var;
+        this.f46189a = m0Var;
     }
 
     @Override
@@ -59,7 +59,7 @@ public final class b0 implements oy {
 
     @Override
     public final boolean k() {
-        b editText = ((v2) this.f44990a.S0).getEditText();
+        b editText = ((w2) this.f46189a.S0).getEditText();
         if (editText == null || editText.length() == 0) {
             return false;
         }
@@ -69,17 +69,17 @@ public final class b0 implements oy {
 
     @Override
     public final void l(String str) {
-        v2 v2Var;
+        w2 w2Var;
         b editText;
         Emoji.EmojiSpan[] emojiSpanArr;
-        j jVar = this.f44990a.S0;
-        if ((jVar instanceof v2) && (editText = (v2Var = (v2) jVar).getEditText()) != null) {
+        j jVar = this.f46189a.S0;
+        if ((jVar instanceof w2) && (editText = (w2Var = (w2) jVar).getEditText()) != null) {
             int selectionEnd = editText.getSelectionEnd();
             if (selectionEnd < 0) {
                 selectionEnd = 0;
             }
             try {
-                CharSequence replaceEmoji = Emoji.replaceEmoji(str, v2Var.getFontMetricsInt(), false);
+                CharSequence replaceEmoji = Emoji.replaceEmoji(str, w2Var.getFontMetricsInt(), false);
                 if ((replaceEmoji instanceof Spanned) && (emojiSpanArr = (Emoji.EmojiSpan[]) ((Spanned) replaceEmoji).getSpans(0, replaceEmoji.length(), Emoji.EmojiSpan.class)) != null) {
                     for (Emoji.EmojiSpan emojiSpan : emojiSpanArr) {
                         emojiSpan.scale = 0.85f;
@@ -98,11 +98,11 @@ public final class b0 implements oy {
 
     @Override
     public final void n() {
-        m0 m0Var = this.f44990a;
+        m0 m0Var = this.f46189a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(m0Var.getContext(), 0, m0Var.Q1);
-        alertDialog$Builder.f20377a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f20377a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
-        alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new k2.v(this, 22));
+        alertDialog$Builder.f20374a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f20374a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
+        alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new m4.w(this, 21));
         hg.c.p(R.string.Cancel, alertDialog$Builder, null);
     }
 
@@ -113,8 +113,8 @@ public final class b0 implements oy {
 
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
-        z5 z5Var;
-        b editText = ((v2) this.f44990a.S0).getEditText();
+        b6 b6Var;
+        b editText = ((w2) this.f46189a.S0).getEditText();
         if (editText != null) {
             int selectionEnd = editText.getSelectionEnd();
             if (selectionEnd < 0) {
@@ -123,11 +123,11 @@ public final class b0 implements oy {
             try {
                 SpannableString spannableString = new SpannableString(str);
                 if (document != null) {
-                    z5Var = new z5(document, editText.getPaint().getFontMetricsInt());
+                    b6Var = new b6(document, editText.getPaint().getFontMetricsInt());
                 } else {
-                    z5Var = new z5(j3, editText.getPaint().getFontMetricsInt());
+                    b6Var = new b6(j3, editText.getPaint().getFontMetricsInt());
                 }
-                spannableString.setSpan(z5Var, 0, spannableString.length(), 33);
+                spannableString.setSpan(b6Var, 0, spannableString.length(), 33);
                 editText.setText(editText.getText().insert(selectionEnd, spannableString));
                 int length = selectionEnd + spannableString.length();
                 editText.setSelection(length, length);
@@ -153,7 +153,7 @@ public final class b0 implements oy {
     }
 
     @Override
-    public final void o(d61 d61Var) {
+    public final void o(l61 l61Var) {
     }
 
     @Override

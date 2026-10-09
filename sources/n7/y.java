@@ -2,36 +2,36 @@ package n7;
 
 import java.util.Iterator;
 public final class y extends o {
-    public static final Object[] f16848r;
-    public static final y f16849s;
+    public static final Object[] f16813r;
+    public static final y f16814s;
     public final transient Object[] d;
-    public final transient int f16850e;
-    public final transient Object[] f16851f;
+    public final transient int f16815e;
+    public final transient Object[] f16816f;
     public final transient int h;
-    public final transient int f16852n;
+    public final transient int f16817n;
 
     static {
         Object[] objArr = new Object[0];
-        f16848r = objArr;
-        f16849s = new y(0, 0, 0, objArr, objArr);
+        f16813r = objArr;
+        f16814s = new y(0, 0, 0, objArr, objArr);
     }
 
     public y(int i10, int i11, int i12, Object[] objArr, Object[] objArr2) {
         this.d = objArr;
-        this.f16850e = i10;
-        this.f16851f = objArr2;
+        this.f16815e = i10;
+        this.f16816f = objArr2;
         this.h = i11;
-        this.f16852n = i12;
+        this.f16817n = i12;
     }
 
     @Override
     public final boolean contains(Object obj) {
         if (obj != null) {
-            Object[] objArr = this.f16851f;
+            Object[] objArr = this.f16816f;
             if (objArr.length != 0) {
                 int rotateLeft = (int) (Integer.rotateLeft((int) (obj.hashCode() * (-862048943)), 15) * 461845907);
                 while (true) {
-                    int i10 = this.h & rotateLeft;
+                    int i10 = rotateLeft & this.h;
                     Object obj2 = objArr[i10];
                     if (obj2 != null) {
                         if (obj2.equals(obj)) {
@@ -52,13 +52,13 @@ public final class y extends o {
 
     @Override
     public final int hashCode() {
-        return this.f16850e;
+        return this.f16815e;
     }
 
     @Override
     public final int i(Object[] objArr) {
         Object[] objArr2 = this.d;
-        int i10 = this.f16852n;
+        int i10 = this.f16817n;
         System.arraycopy(objArr2, 0, objArr, 0, i10);
         return i10;
     }
@@ -70,7 +70,7 @@ public final class y extends o {
 
     @Override
     public final int n() {
-        return this.f16852n;
+        return this.f16817n;
     }
 
     @Override
@@ -90,11 +90,11 @@ public final class y extends o {
 
     @Override
     public final int size() {
-        return this.f16852n;
+        return this.f16817n;
     }
 
     @Override
     public final m u() {
-        return m.t(this.f16852n, this.d);
+        return m.t(this.f16817n, this.d);
     }
 }

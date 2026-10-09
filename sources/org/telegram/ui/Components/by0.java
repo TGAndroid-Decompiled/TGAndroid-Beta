@@ -1,20 +1,52 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MessagesStorage;
-public final class by0 implements org.telegram.ui.ActionBar.r0, MessagesStorage.StringCallback {
-    public final ry0 f25141a;
+import android.content.Context;
+import org.telegram.messenger.NotificationCenter;
+public final class by0 extends y9 implements NotificationCenter.NotificationCenterDelegate {
+    public final int G;
+    public int H;
+    public String I;
 
-    public by0(ry0 ry0Var) {
-        this.f25141a = ry0Var;
+    public by0(Context context, int i10) {
+        super(context);
+        this.I = "tg_placeholders_android";
+        this.G = i10;
     }
 
     @Override
-    public void m(int i10) {
-        ry0.B(this.f25141a, i10);
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.diceStickersDidLoad) {
+            if (this.I.equals((String) objArr[0])) {
+                t();
+            }
+        }
     }
 
     @Override
-    public void run(String str) {
-        new a50(r1.getContext(), r1.f30625o0, null, this.f25141a.resourcesProvider).show();
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        t();
+        NotificationCenter.getInstance(this.G).addObserver(this, NotificationCenter.diceStickersDidLoad);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        NotificationCenter.getInstance(this.G).removeObserver(this, NotificationCenter.diceStickersDidLoad);
+    }
+
+    public void setStickerNum(int i10) {
+        if (this.H != i10) {
+            this.H = i10;
+            t();
+        }
+    }
+
+    public void setStickerPackName(String str) {
+        this.I = str;
+    }
+
+    public final void t() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.by0.t():void");
     }
 }

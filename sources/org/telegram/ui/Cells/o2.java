@@ -8,7 +8,7 @@ public interface o2 {
 
     void d(s2 s2Var);
 
-    void e(s2 s2Var);
-
     void f(s2 s2Var);
+
+    void g(s2 s2Var);
 }

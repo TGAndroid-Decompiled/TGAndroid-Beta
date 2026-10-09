@@ -1,47 +1,21 @@
 package org.telegram.ui;
-public final class pi extends org.telegram.ui.ActionBar.n1 {
-    public final org.telegram.ui.Components.sk0 f39593o;
-    public final yn f39594p;
+public final class pi implements org.telegram.ui.Components.hm0 {
+    public final zn f40811a;
 
-    public pi(yn ynVar, fb fbVar, org.telegram.ui.Components.sk0 sk0Var) {
-        super(fbVar, -2, -2);
-        this.f39594p = ynVar;
-        this.f39593o = sk0Var;
+    public pi(zn znVar) {
+        this.f40811a = znVar;
     }
 
     @Override
-    public final void d(boolean z10) {
-        super.d(true);
-        org.telegram.ui.Components.sk0 sk0Var = this.f39593o;
-        if (sk0Var != null) {
-            sk0Var.d();
-        }
+    public final boolean mo17c(float r11, float r12, int r13, android.view.View r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.pi.mo17c(float, float, int, android.view.View):boolean");
     }
 
     @Override
-    public final void dismiss() {
-        d(true);
-        yn ynVar = this.f39594p;
-        if (ynVar.O8 == this) {
-            org.telegram.ui.Components.rc rcVar = org.telegram.ui.Components.rc.f30419w;
-            org.telegram.ui.Components.rc rcVar2 = ynVar.l1;
-            if (rcVar == rcVar2 && rcVar2 != null) {
-                rcVar2.b();
-                ynVar.l1 = null;
-            }
-            ynVar.O8 = null;
-            ynVar.R8 = null;
-            ynVar.Q8 = null;
-            ynVar.f43552x0.R = true;
-            if (ynVar.P8) {
-                ynVar.g8(false, true, 0.0f);
-            } else {
-                ynVar.P8 = true;
-            }
-            jk jkVar = ynVar.W;
-            if (jkVar != null && jkVar.getEditField() != null) {
-                ynVar.W.getEditField().setAllowDrawCursor(true);
-            }
-        }
+    public final void h() {
+    }
+
+    @Override
+    public final void q(float f7) {
     }
 }

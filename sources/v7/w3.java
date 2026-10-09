@@ -1,9 +1,9 @@
 package v7;
 public final class w3 implements ia.d {
-    public static final w3 f48147a = new Object();
+    public static final w3 f49335a = new Object();
 
     static {
-        sa.e.t(sa.e.l(h.class, sa.e.p(6, sa.e.l(h.class, sa.e.p(5, sa.e.l(h.class, sa.e.p(4, sa.e.l(h.class, sa.e.p(3, sa.e.l(h.class, sa.e.p(2, sa.e.l(h.class, new e(1)))))))))))));
+        sc.v.t(sc.v.l(h.class, sc.v.p(2, sc.v.l(h.class, new e(1)))));
     }
 
     @Override

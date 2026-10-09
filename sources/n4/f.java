@@ -6,7 +6,5 @@ public interface f extends IInterface {
 
     void onRepeatModeChanged(int i10);
 
-    void t(h0 h0Var);
-
-    void t0(String str);
+    void t(f0 f0Var);
 }

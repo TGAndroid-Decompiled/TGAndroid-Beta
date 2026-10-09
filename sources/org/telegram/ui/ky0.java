@@ -1,0 +1,41 @@
+package org.telegram.ui;
+
+import java.util.List;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+public final class ky0 implements MessagesStorage.BooleanCallback, ps {
+    public final ProfileActivity f39368a;
+    public final TLRPC.User f39369b;
+
+    public ky0(ProfileActivity profileActivity, TLRPC.User user) {
+        this.f39368a = profileActivity;
+        this.f39369b = user;
+    }
+
+    @Override
+    public void b() {
+        ProfileActivity.j0(this.f39368a, this.f39369b);
+    }
+
+    @Override
+    public void run(boolean z10) {
+        org.telegram.ui.ActionBar.n2 n2Var;
+        ProfileActivity profileActivity = this.f39368a;
+        if (profileActivity.getParentLayout() != null) {
+            List fragmentStack = profileActivity.getParentLayout().getFragmentStack();
+            if (fragmentStack != null && fragmentStack.size() >= 2) {
+                n2Var = (org.telegram.ui.ActionBar.n2) sc.v.h(2, fragmentStack);
+            } else {
+                n2Var = null;
+            }
+            if (n2Var instanceof zn) {
+                ((ActionBarLayout) profileActivity.getParentLayout()).Y(fragmentStack.size() - 2);
+            }
+        }
+        profileActivity.N1 = true;
+        profileActivity.finishFragment();
+        profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(profileActivity.f34272i1), this.f39369b, profileActivity.E2, Boolean.valueOf(z10));
+    }
+}

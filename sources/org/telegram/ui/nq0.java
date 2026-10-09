@@ -1,55 +1,87 @@
 package org.telegram.ui;
 
-import android.widget.EditText;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Point;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
-public final class nq0 extends org.telegram.ui.ActionBar.f5 {
-    public final nl0 f39022f = new nl0(this, 12);
-    public final wq0 h;
+public final class nq0 extends org.telegram.ui.ActionBar.n2 {
+    public Bitmap f40348a;
+    public BitmapDrawable f40349b;
+    public mq0 f40350c;
+    public lq0 d;
+    public boolean f40351e;
+    public boolean f40352f;
 
-    public nq0(wq0 wq0Var) {
-        this.h = wq0Var;
+    @Override
+    public final View createView(Context context) {
+        this.actionBar.setBackgroundColor(-13421773);
+        this.actionBar.C(-12763843, false);
+        this.actionBar.setTitleColor(-1);
+        this.actionBar.D(-1, false);
+        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
+        this.actionBar.setAllowOverlayTitle(true);
+        this.actionBar.setTitle(LocaleController.getString(R.string.CropImage));
+        this.actionBar.setActionBarMenuOnItemClick(new u70(this, 14));
+        this.actionBar.o().h(1, R.drawable.ic_ab_done, LocaleController.getString(R.string.Done), AndroidUtilities.dp(56.0f));
+        lq0 lq0Var = new lq0(this, context);
+        this.d = lq0Var;
+        this.fragmentView = lq0Var;
+        lq0Var.G = getArguments().getBoolean("freeform", false);
+        this.fragmentView.setLayoutParams(new FrameLayout.LayoutParams(-1, -1));
+        return this.fragmentView;
     }
 
     @Override
-    public final boolean b() {
-        this.h.finishFragment();
+    public final boolean isSwipeBackEnabled(MotionEvent motionEvent) {
         return false;
     }
 
     @Override
-    public final void p(ci.h2 h2Var) {
-        this.h.b0(h2Var);
-    }
-
-    @Override
-    public final void q(EditText editText) {
-        int i10;
-        if (editText.getText().length() == 0) {
-            wq0 wq0Var = this.h;
-            wq0Var.f42676f.clear();
-            wq0Var.h.clear();
-            wq0Var.v = null;
-            wq0Var.f42691s = true;
-            wq0Var.f42689r = false;
-            if (wq0Var.f42698x != 0) {
-                i10 = ((org.telegram.ui.ActionBar.n2) wq0Var).currentAccount;
-                ConnectionsManager.getInstance(i10).cancelRequest(wq0Var.f42698x, true);
-                wq0Var.f42698x = 0;
+    public final boolean onFragmentCreate() {
+        int max;
+        if (this.f40348a == null) {
+            String string = getArguments().getString("photoPath");
+            Uri uri = (Uri) getArguments().getParcelable("photoUri");
+            if (string == null && uri == null) {
+                return false;
             }
-            wq0Var.N.d.setText(LocaleController.getString(R.string.NoRecentSearches));
-            wq0Var.N.e(false, true);
-            wq0Var.j0();
-            return;
+            if (string != null && !sc.v.u(string)) {
+                return false;
+            }
+            if (AndroidUtilities.isTablet()) {
+                max = AndroidUtilities.dp(520.0f);
+            } else {
+                Point point = AndroidUtilities.displaySize;
+                max = Math.max(point.x, point.y);
+            }
+            float f7 = max;
+            Bitmap loadBitmap = ImageLoader.loadBitmap(string, uri, f7, f7, true);
+            this.f40348a = loadBitmap;
+            if (loadBitmap == null) {
+                return false;
+            }
         }
-        nl0 nl0Var = this.f39022f;
-        AndroidUtilities.cancelRunOnUIThread(nl0Var);
-        AndroidUtilities.runOnUIThread(nl0Var, 1200L);
+        this.f40349b = new BitmapDrawable(this.f40348a);
+        super.onFragmentCreate();
+        return true;
     }
 
     @Override
-    public final void n() {
+    public final void onFragmentDestroy() {
+        super.onFragmentDestroy();
+        Bitmap bitmap = this.f40348a;
+        if (bitmap != null && !this.f40351e) {
+            bitmap.recycle();
+            this.f40348a = null;
+        }
+        this.f40349b = null;
     }
 }

@@ -14,10 +14,10 @@ public final class p extends o7 {
     @Override
     public final void c() {
         AndroidUtilities.cancelRunOnUIThread(this.h);
-        if (this.f5658c <= 0) {
+        if (this.f5682c <= 0) {
             a(true);
         } else {
-            CameraController.getInstance().stopVideoRecording(this.f5656a.getCameraSessionRecording(), false, false);
+            CameraController.getInstance().stopVideoRecording(this.f5680a.getCameraSessionRecording(), false, false);
         }
         r rVar = this.F;
         if (rVar.O1) {

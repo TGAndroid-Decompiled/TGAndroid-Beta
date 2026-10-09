@@ -1,30 +1,68 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.View;
-public final class x81 extends AnimatorListenerAdapter {
-    public boolean f32832a;
-    public final View f32833b;
-    public final float f32834c;
-    public final h91 d;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.os.AsyncTask;
+import org.telegram.messenger.FileLog;
+public final class x81 extends AsyncTask {
+    public int f32772a = 0;
+    public final a91 f32773b;
 
-    public x81(h91 h91Var, View view, float f7) {
-        this.d = h91Var;
-        this.f32833b = view;
-        this.f32834c = f7;
+    public x81(a91 a91Var) {
+        this.f32773b = a91Var;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        super.onAnimationCancel(animator);
-        this.f32832a = true;
+    public final Object doInBackground(Object[] objArr) {
+        Bitmap frameAtTime;
+        a91 a91Var = this.f32773b;
+        this.f32772a = ((Integer[]) objArr)[0].intValue();
+        Bitmap bitmap = null;
+        if (!isCancelled()) {
+            try {
+                frameAtTime = a91Var.f24635r.getFrameAtTime(a91Var.f24638x * this.f32772a * 1000, 2);
+            } catch (Exception e7) {
+                e = e7;
+            }
+            try {
+                if (!isCancelled()) {
+                    if (frameAtTime != null) {
+                        Bitmap createBitmap = Bitmap.createBitmap(a91Var.f24639y, a91Var.E, frameAtTime.getConfig());
+                        Canvas canvas = new Canvas(createBitmap);
+                        float max = Math.max(a91Var.f24639y / frameAtTime.getWidth(), a91Var.E / frameAtTime.getHeight());
+                        int width = (int) (frameAtTime.getWidth() * max);
+                        int height = (int) (frameAtTime.getHeight() * max);
+                        canvas.drawBitmap(frameAtTime, new Rect(0, 0, frameAtTime.getWidth(), frameAtTime.getHeight()), new Rect((a91Var.f24639y - width) / 2, (a91Var.E - height) / 2, width, height), (Paint) null);
+                        frameAtTime.recycle();
+                        return createBitmap;
+                    }
+                    return frameAtTime;
+                }
+            } catch (Exception e10) {
+                e = e10;
+                bitmap = frameAtTime;
+                FileLog.e(e);
+                return bitmap;
+            }
+        }
+        return null;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        if (!this.f32832a) {
-            this.d.F(this.f32833b, this.f32834c);
+    public final void onPostExecute(Object obj) {
+        Bitmap bitmap = (Bitmap) obj;
+        if (!isCancelled()) {
+            a91 a91Var = this.f32773b;
+            a91Var.v.add(bitmap);
+            a91Var.invalidate();
+            int i10 = this.f32772a;
+            if (i10 < a91Var.F) {
+                a91Var.b(i10 + 1);
+            } else {
+                a91Var.O = true;
+            }
         }
     }
 }

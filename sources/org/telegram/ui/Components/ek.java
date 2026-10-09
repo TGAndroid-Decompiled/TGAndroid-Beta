@@ -1,57 +1,57 @@
 package org.telegram.ui.Components;
 
-import java.io.File;
-import java.util.Comparator;
-public final class ek implements Comparator {
-    public final int f26149a;
-    public final rk f26150b;
+import android.animation.ValueAnimator;
+import android.widget.FrameLayout;
+public final class ek implements ValueAnimator.AnimatorUpdateListener {
+    public final int f26099a;
+    public final int f26100b;
+    public final float f26101c;
+    public final FrameLayout d;
 
-    public ek(rk rkVar, int i10) {
-        this.f26149a = i10;
-        this.f26150b = rkVar;
+    public ek(FrameLayout frameLayout, int i10, float f7, int i11) {
+        this.f26099a = i11;
+        this.d = frameLayout;
+        this.f26100b = i10;
+        this.f26101c = f7;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        lk lkVar = (lk) obj;
-        lk lkVar2 = (lk) obj2;
-        switch (this.f26149a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f26099a) {
             case 0:
-                rk rkVar = this.f26150b;
-                rkVar.getClass();
-                File file = lkVar.f28497f;
-                if (file != null) {
-                    if (lkVar2.f28497f != null) {
-                        boolean isDirectory = file.isDirectory();
-                        if (isDirectory != lkVar2.f28497f.isDirectory()) {
-                            if (isDirectory) {
-                            }
-                        } else if (!isDirectory && !rkVar.f30516c0) {
-                            int i10 = (lkVar.f28497f.lastModified() > lkVar2.f28497f.lastModified() ? 1 : (lkVar.f28497f.lastModified() == lkVar2.f28497f.lastModified() ? 0 : -1));
-                            if (i10 == 0) {
-                                return 0;
-                            }
-                            if (i10 > 0) {
-                            }
-                        } else {
-                            return lkVar.f28497f.getName().compareToIgnoreCase(lkVar2.f28497f.getName());
-                        }
-                    }
-                    return 1;
+                sk skVar = (sk) this.d;
+                hk hkVar = skVar.f30837r;
+                hk hkVar2 = skVar.f30838s;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                int i10 = this.f26100b;
+                float f7 = this.f26101c;
+                if (i10 == 1) {
+                    hkVar.setTranslationX(f7 * floatValue);
+                    hkVar.setAlpha(1.0f - floatValue);
+                    hkVar.invalidate();
+                    hkVar2.setAlpha(floatValue);
+                    float f10 = (floatValue * 0.05f) + 0.95f;
+                    hkVar2.setScaleX(f10);
+                    hkVar2.setScaleY(f10);
+                    return;
                 }
-                return -1;
+                hkVar2.setTranslationX(f7 * floatValue);
+                hkVar2.setAlpha(Math.max(0.0f, 1.0f - floatValue));
+                hkVar2.invalidate();
+                hkVar.setAlpha(floatValue);
+                float f11 = (floatValue * 0.05f) + 0.95f;
+                hkVar.setScaleX(f11);
+                hkVar.setScaleY(f11);
+                hkVar2.invalidate();
+                return;
             default:
-                if (this.f26150b.f30516c0) {
-                    return lkVar.f28497f.getName().compareToIgnoreCase(lkVar2.f28497f.getName());
-                }
-                int i11 = (lkVar.f28497f.lastModified() > lkVar2.f28497f.lastModified() ? 1 : (lkVar.f28497f.lastModified() == lkVar2.f28497f.lastModified() ? 0 : -1));
-                if (i11 == 0) {
-                    return 0;
-                }
-                if (i11 > 0) {
-                    return -1;
-                }
-                return 1;
+                pc0 pc0Var = (pc0) this.d;
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                float f12 = 1.0f - floatValue2;
+                int i11 = (int) ((pc0Var.R * floatValue2) + (this.f26100b * f12));
+                pc0Var.T = i11;
+                pc0Var.e((pc0Var.S * floatValue2) + (this.f26101c * f12), i11);
+                return;
         }
     }
 }

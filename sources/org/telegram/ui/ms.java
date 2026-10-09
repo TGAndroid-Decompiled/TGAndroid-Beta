@@ -6,10 +6,10 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 public final class ms extends org.telegram.ui.ActionBar.j {
-    public final qs f38742a;
+    public final qs f39977a;
 
     public ms(qs qsVar) {
-        this.f38742a = qsVar;
+        this.f39977a = qsVar;
     }
 
     @Override
@@ -17,14 +17,14 @@ public final class ms extends org.telegram.ui.ActionBar.j {
         boolean z10;
         int i11;
         int i12;
-        qs qsVar = this.f38742a;
+        qs qsVar = this.f39977a;
         if (i10 == -1) {
             qsVar.finishFragment();
-        } else if (i10 == 1 && qsVar.f39870b.getText().length() != 0) {
+        } else if (i10 == 1 && qsVar.f41171b.getText().length() != 0) {
             TLRPC.User user = qsVar.getMessagesController().getUser(Long.valueOf(qsVar.H));
             TLRPC.UserFull userFull = qsVar.getMessagesController().getUserFull(qsVar.H);
-            user.first_name = qsVar.f39870b.getText().toString();
-            user.last_name = qsVar.f39871c.getText().toString();
+            user.first_name = qsVar.f41171b.getText().toString();
+            user.last_name = qsVar.f41172c.getText().toString();
             user.contact = true;
             TLRPC.TL_textWithEntities textWithEntities = qsVar.d.getTextWithEntities();
             qsVar.getMessagesController().putUser(user, false);
@@ -49,12 +49,12 @@ public final class ms extends org.telegram.ui.ActionBar.j {
                 }
                 i12 = ((org.telegram.ui.ActionBar.n2) qsVar).currentAccount;
                 MessagesStorage.getInstance(i12).updateUserInfo(userFull, true);
-                qsVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(userFull.f20195id), userFull);
+                qsVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(userFull.f20186id), userFull);
             }
             qsVar.finishFragment();
             ps psVar = qsVar.O;
             if (psVar != null) {
-                psVar.a();
+                psVar.b();
             }
         }
     }

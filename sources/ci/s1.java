@@ -1,205 +1,78 @@
 package ci;
 
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.SendMessagesHelper;
+import android.app.Activity;
+import java.util.HashSet;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.b80;
-import org.telegram.ui.ft;
-import org.telegram.ui.pt;
-public final class s1 implements pt {
-    @Override
-    public final MessageObject A() {
-        return null;
+import org.telegram.ui.Components.hz;
+import org.telegram.ui.TwoStepVerificationActivity;
+import org.telegram.ui.bu;
+import org.telegram.ui.df;
+import org.telegram.ui.fp;
+import org.telegram.ui.ke;
+import org.telegram.ui.zn;
+public final class s1 implements RequestDelegate {
+    public final int f5931a;
+    public final boolean f5932b;
+    public final Object f5933c;
+    public final Object d;
+    public final Object f5934e;
+
+    public s1(v1 v1Var, boolean z10, TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults, String str) {
+        this.f5931a = 0;
+        this.f5933c = v1Var;
+        this.f5932b = z10;
+        this.d = tL_messages_getInlineBotResults;
+        this.f5934e = str;
     }
 
     @Override
-    public final boolean B() {
-        return false;
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f5931a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new t1((v1) this.f5933c, tLObject, this.f5932b, (TLRPC.TL_messages_getInlineBotResults) this.d, (String) this.f5934e, 0));
+                return;
+            case 1:
+                AndroidUtilities.runOnUIThread(new i2.c1((ke) this.f5933c, tL_error, (TwoStepVerificationActivity) this.d, (Activity) this.f5934e, this.f5932b, tLObject, 6));
+                return;
+            case 2:
+                AndroidUtilities.runOnUIThread(new t1((Object) ((zn) this.f5933c), (Object) ((of.e) this.d), tLObject, (Object) ((df) this.f5934e), this.f5932b, 15));
+                return;
+            case 3:
+                AndroidUtilities.runOnUIThread(new i2.c1((fp) this.f5933c, (TLRPC.TL_channels_toggleUsername) this.d, tLObject, (TLRPC.TL_username) this.f5934e, this.f5932b, tL_error, 9));
+                return;
+            case 4:
+                AndroidUtilities.runOnUIThread(new t1((hz) this.f5933c, (String) this.f5934e, this.f5932b, (String) this.d, tLObject));
+                return;
+            default:
+                AndroidUtilities.runOnUIThread(new i2.c1((bu) this.f5933c, tLObject, (d) this.d, this.f5932b, (HashSet) this.f5934e, tL_error, 11));
+                return;
+        }
     }
 
-    @Override
-    public final boolean D() {
-        return false;
+    public s1(Object obj, Object obj2, Object obj3, boolean z10, int i10) {
+        this.f5931a = i10;
+        this.f5933c = obj;
+        this.d = obj2;
+        this.f5934e = obj3;
+        this.f5932b = z10;
     }
 
-    @Override
-    public final boolean E(TLRPC.Document document) {
-        return false;
+    public s1(hz hzVar, String str, boolean z10, String str2) {
+        this.f5931a = 4;
+        this.f5933c = hzVar;
+        this.f5934e = str;
+        this.f5932b = z10;
+        this.d = str2;
     }
 
-    @Override
-    public final String G(boolean z10) {
-        return null;
-    }
-
-    @Override
-    public final boolean I() {
-        return false;
-    }
-
-    @Override
-    public final boolean J() {
-        return false;
-    }
-
-    @Override
-    public final boolean N(TLRPC.Document document) {
-        return false;
-    }
-
-    @Override
-    public final Boolean P(TLRPC.Document document) {
-        return null;
-    }
-
-    @Override
-    public final boolean Q() {
-        return true;
-    }
-
-    @Override
-    public final long a() {
-        return 0L;
-    }
-
-    @Override
-    public final boolean b() {
-        return false;
-    }
-
-    @Override
-    public final boolean c() {
-        return false;
-    }
-
-    @Override
-    public final TLRPC.TL_messageMediaPoll d() {
-        return null;
-    }
-
-    @Override
-    public final boolean e(TLRPC.Document document) {
-        return false;
-    }
-
-    @Override
-    public final boolean g() {
-        return false;
-    }
-
-    @Override
-    public final TLRPC.PollAnswer h() {
-        return null;
-    }
-
-    @Override
-    public final boolean i() {
-        return true;
-    }
-
-    @Override
-    public final b80 j(m6 m6Var) {
-        return null;
-    }
-
-    @Override
-    public final boolean l() {
-        return true;
-    }
-
-    @Override
-    public final boolean m(int i10) {
-        return false;
-    }
-
-    @Override
-    public final boolean q() {
-        return false;
-    }
-
-    @Override
-    public final boolean y() {
-        return true;
-    }
-
-    @Override
-    public final void C(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void F(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void H(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void O(String str) {
-    }
-
-    @Override
-    public final void k(SendMessagesHelper.ImportingSticker importingSticker) {
-    }
-
-    @Override
-    public final void o(String str) {
-    }
-
-    @Override
-    public final void p(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void r(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void v(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void z(String str) {
-    }
-
-    @Override
-    public final void K() {
-    }
-
-    @Override
-    public final void L() {
-    }
-
-    @Override
-    public final void s() {
-    }
-
-    @Override
-    public final void u() {
-    }
-
-    @Override
-    public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
-    }
-
-    @Override
-    public final void w(TLRPC.StickerSet stickerSet, String str) {
-    }
-
-    @Override
-    public final void x(TLObject tLObject, Object obj) {
-    }
-
-    @Override
-    public final void f(CharSequence charSequence, String str, ft ftVar) {
-    }
-
-    @Override
-    public final void t(int i10, int i11, Object obj, TLObject tLObject, boolean z10) {
-    }
-
-    @Override
-    public final void n(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
+    public s1(bu buVar, d dVar, boolean z10, HashSet hashSet) {
+        this.f5931a = 5;
+        this.f5933c = buVar;
+        this.d = dVar;
+        this.f5932b = z10;
+        this.f5934e = hashSet;
     }
 }

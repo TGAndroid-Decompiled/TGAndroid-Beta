@@ -1,30 +1,77 @@
 package org.telegram.messenger;
 
+import java.util.HashSet;
+import java.util.Set;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.TranslateController;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-public final class ra implements Runnable {
-    public final int f19073a;
-    public final MessagesController f19074b;
-    public final TLObject f19075c;
-    public final org.telegram.ui.ActionBar.h6 d;
-    public final org.telegram.ui.ActionBar.f6 f19076e;
+import org.telegram.tgnet.TLRPC;
+public final class ra implements RequestDelegate {
+    public final int f19028a;
+    public final boolean f19029b;
+    public final long f19030c;
+    public final BaseController d;
+    public final Object f19031e;
+    public final Object f19032f;
 
-    public ra(MessagesController messagesController, TLObject tLObject, org.telegram.ui.ActionBar.h6 h6Var, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
-        this.f19073a = i10;
-        this.f19074b = messagesController;
-        this.f19075c = tLObject;
-        this.d = h6Var;
-        this.f19076e = f6Var;
+    public ra(BaseController baseController, Object obj, boolean z10, long j3, Object obj2, int i10) {
+        this.f19028a = i10;
+        this.d = baseController;
+        this.f19031e = obj;
+        this.f19029b = z10;
+        this.f19030c = j3;
+        this.f19032f = obj2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f19073a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f19028a) {
             case 0:
-                this.f19074b.lambda$didReceivedNotification$46(this.f19075c, this.d, this.f19076e);
+                boolean z10 = this.f19029b;
+                ((MessagesController) this.d).lambda$getSendAsPeers$446((a0.i) this.f19031e, this.f19030c, (MessagesController.SendAsPeersInfo) this.f19032f, z10, tLObject, tL_error);
+                return;
+            case 1:
+                long j3 = this.f19030c;
+                ((TranslateController) this.d).lambda$pushToTranslate$23((TranslateController.PendingTranslation) this.f19031e, this.f19029b, j3, (Set) this.f19032f, tLObject, tL_error);
+                return;
+            case 2:
+                ((ChatThemeController) this.d).lambda$setWallpaperToPeer$17(this.f19030c, this.f19029b, (String) this.f19031e, (Runnable) this.f19032f, tLObject, tL_error);
+                return;
+            case 3:
+                long j10 = this.f19030c;
+                ((MemberRequestsController) this.d).lambda$getImporters$1((TLRPC.TL_chatInviteImporter) this.f19031e, this.f19029b, j10, (RequestDelegate) this.f19032f, tLObject, tL_error);
                 return;
             default:
-                this.f19074b.lambda$didReceivedNotification$48(this.f19075c, this.d, this.f19076e);
+                ((TopicsController) this.d).lambda$reloadTopics$16(this.f19029b, this.f19030c, (HashSet) this.f19031e, (Runnable) this.f19032f, tLObject, tL_error);
                 return;
         }
+    }
+
+    public ra(ChatThemeController chatThemeController, long j3, boolean z10, String str, Runnable runnable) {
+        this.f19028a = 2;
+        this.d = chatThemeController;
+        this.f19030c = j3;
+        this.f19029b = z10;
+        this.f19031e = str;
+        this.f19032f = runnable;
+    }
+
+    public ra(MessagesController messagesController, a0.i iVar, long j3, MessagesController.SendAsPeersInfo sendAsPeersInfo, boolean z10) {
+        this.f19028a = 0;
+        this.d = messagesController;
+        this.f19031e = iVar;
+        this.f19030c = j3;
+        this.f19032f = sendAsPeersInfo;
+        this.f19029b = z10;
+    }
+
+    public ra(TopicsController topicsController, boolean z10, long j3, HashSet hashSet, Runnable runnable) {
+        this.f19028a = 4;
+        this.d = topicsController;
+        this.f19029b = z10;
+        this.f19030c = j3;
+        this.f19031e = hashSet;
+        this.f19032f = runnable;
     }
 }

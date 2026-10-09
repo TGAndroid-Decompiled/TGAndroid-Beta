@@ -1,31 +1,41 @@
 package org.telegram.ui.Components.voip;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class g3 implements Runnable {
-    public final int f31941a;
-    public final l3 f31942b;
-    public final int f31943c;
+import android.animation.ValueAnimator;
+public final class g3 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f31949a;
+    public final j3 f31950b;
 
-    public g3(l3 l3Var, int i10, int i11) {
-        this.f31941a = i11;
-        this.f31942b = l3Var;
-        this.f31943c = i10;
+    public g3(j3 j3Var, int i10) {
+        this.f31949a = i10;
+        this.f31950b = j3Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f31941a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f31949a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new g3(this.f31942b, this.f31943c, 2));
+                j3 j3Var = this.f31950b;
+                j3Var.getClass();
+                j3Var.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                j3Var.invalidate();
                 return;
             case 1:
-                AndroidUtilities.runOnUIThread(new g3(this.f31942b, this.f31943c, 3));
+                j3 j3Var2 = this.f31950b;
+                j3Var2.getClass();
+                j3Var2.f32019w = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                j3Var2.invalidate();
                 return;
             case 2:
-                this.f31942b.c(this.f31943c);
+                j3 j3Var3 = this.f31950b;
+                j3Var3.getClass();
+                j3Var3.f32018s = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                j3Var3.invalidate();
                 return;
             default:
-                this.f31942b.a(this.f31943c);
+                j3 j3Var4 = this.f31950b;
+                j3Var4.getClass();
+                j3Var4.f32017r = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                j3Var4.invalidate();
                 return;
         }
     }

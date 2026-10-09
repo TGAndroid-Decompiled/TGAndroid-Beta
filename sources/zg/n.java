@@ -1,37 +1,52 @@
 package zg;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
+import android.view.ViewPropertyAnimator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.z5;
-public final class n extends z5 {
-    public final Bitmap f53473a;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.ActionBar.d5;
+import org.telegram.ui.ActionBar.p1;
+import org.telegram.ui.Components.ds0;
+public final class n extends p1 {
+    public final xh.m f54610x;
 
-    public n(o oVar) {
-        super(-1L, (Paint.FontMetricsInt) null);
-        Bitmap createBitmap = Bitmap.createBitmap(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), Bitmap.Config.ARGB_8888);
-        this.f53473a = createBitmap;
-        Drawable mutate = oVar.getParentActivity().getResources().getDrawable(R.drawable.star_small_inner).mutate();
-        mutate.setBounds(0, 0, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
-        mutate.draw(new Canvas(createBitmap));
+    public n(xh.m mVar, xh.m mVar2) {
+        super(mVar2);
+        this.f54610x = mVar;
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        super.draw(canvas, charSequence, i10, i11, f7, i12, i13, i14, paint);
-        canvas.save();
-        canvas.translate(f7, ((i12 + i14) / 2.0f) - AndroidUtilities.dp(12.0f));
-        float f10 = this.extraScale;
-        canvas.scale(f10, f10, f7 + AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
-        canvas.drawBitmap(this.f53473a, 0.0f, 0.0f, (Paint) null);
-        canvas.restore();
+    public final boolean b() {
+        q qVar = (q) this.f54610x.f51345b;
+        d5 parentLayout = qVar.getParentLayout();
+        if (!q.U(qVar) && !AndroidUtilities.isTablet() && !q.V(qVar) && !AndroidUtilities.isInMultiwindow && parentLayout != null) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        return AndroidUtilities.dp(5.0f) + super.getSize(paint, charSequence, i10, i11, fontMetricsInt);
+    public final void e(float f7, float f10, boolean z10) {
+        q qVar = (q) this.f54610x.f51345b;
+        if (qVar.getParentLayout() != null) {
+            boolean z11 = ((ActionBarLayout) qVar.getParentLayout()).f20342n;
+        }
+    }
+
+    @Override
+    public final void g(int i10, boolean z10) {
+        float f7;
+        q qVar = (q) this.f54610x.f51345b;
+        qVar.f54653w.setVisibility(0);
+        ViewPropertyAnimator animate = qVar.f54653w.animate();
+        if (!z10) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
+        }
+        animate.alpha(f7).withEndAction(new ds0(19, this, z10)).start();
+    }
+
+    @Override
+    public final void f() {
     }
 }

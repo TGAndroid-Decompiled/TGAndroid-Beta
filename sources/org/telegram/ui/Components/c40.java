@@ -1,63 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.util.SparseArray;
-public final class c40 extends qv0 {
-    public final f40 f25259f2;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+public abstract class c40 extends org.telegram.ui.ActionBar.f3 {
+    public z4.g f25230b;
+    public z30 f25231c;
+    public LinearLayout d;
+    public TextView[] f25232e;
+    public float f25233f;
+    public int h;
 
-    public c40(f40 f40Var, Context context, iv0 iv0Var, f40 f40Var2, b40 b40Var, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, 0L, iv0Var, 0, null, null, null, 8, 0, f40Var2, b40Var, 0, d6Var, null);
-        this.f25259f2 = f40Var;
-    }
-
-    @Override
-    public final int getInitialTab() {
-        return 8;
-    }
-
-    @Override
-    public final String getStoriesHashtag() {
-        return this.f25259f2.f26311b;
-    }
-
-    @Override
-    public final String getStoriesHashtagUsername() {
-        return this.f25259f2.f26312c;
-    }
-
-    @Override
-    public final boolean t0() {
-        return true;
-    }
-
-    @Override
-    public final void D0(SparseArray sparseArray) {
-    }
-
-    @Override
-    public final void K0(boolean z10) {
-    }
-
-    @Override
-    public final void M0(float f7) {
-    }
-
-    @Override
-    public final void N0(boolean z10) {
-    }
-
-    @Override
-    public final void b1(boolean z10) {
-    }
-
-    @Override
-    public final void o0() {
-    }
-
-    @Override
-    public final void P(Canvas canvas, float f7, Rect rect, Paint paint) {
+    public static void o(org.telegram.ui.f50 f50Var) {
+        TextView textView;
+        TextView[] textViewArr = f50Var.f25232e;
+        int i10 = f50Var.h;
+        TextView textView2 = textViewArr[i10];
+        if (i10 < textViewArr.length - 1) {
+            textView = textViewArr[i10 + 1];
+        } else {
+            textView = null;
+        }
+        f50Var.containerView.getMeasuredWidth();
+        float measuredWidth = (textView2.getMeasuredWidth() / 2) + textView2.getLeft();
+        float measuredWidth2 = (f50Var.containerView.getMeasuredWidth() / 2) - measuredWidth;
+        if (textView != null) {
+            measuredWidth2 -= (((textView.getMeasuredWidth() / 2) + textView.getLeft()) - measuredWidth) * f50Var.f25233f;
+        }
+        for (int i11 = 0; i11 < textViewArr.length; i11++) {
+            int i12 = f50Var.h;
+            float f7 = 0.9f;
+            float f10 = 0.7f;
+            if (i11 >= i12 && i11 <= i12 + 1) {
+                if (i11 == i12) {
+                    float f11 = f50Var.f25233f;
+                    f10 = 1.0f - (0.3f * f11);
+                    f7 = 1.0f - (f11 * 0.1f);
+                } else {
+                    float f12 = f50Var.f25233f;
+                    f10 = 0.7f + (0.3f * f12);
+                    f7 = 0.9f + (f12 * 0.1f);
+                }
+            }
+            textViewArr[i11].setAlpha(f10);
+            textViewArr[i11].setScaleX(f7);
+            textViewArr[i11].setScaleY(f7);
+        }
+        f50Var.d.setTranslationX(measuredWidth2);
+        f50Var.f25231c.invalidate();
     }
 }

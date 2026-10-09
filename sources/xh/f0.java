@@ -1,64 +1,41 @@
 package xh;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import org.telegram.ui.Components.mw0;
-import org.telegram.ui.Components.pc0;
-public final class f0 extends mw0 {
-    public final j0 f49943w0;
+import org.telegram.ui.Components.r6;
+public final class f0 implements Runnable {
+    public final int f51219a;
+    public final l0 f51220b;
 
-    public f0(j0 j0Var, Context context) {
-        super(context, null);
-        this.f49943w0 = j0Var;
+    public f0(l0 l0Var, int i10) {
+        this.f51219a = i10;
+        this.f51220b = l0Var;
     }
 
     @Override
-    public final boolean P() {
-        return false;
-    }
-
-    @Override
-    public final boolean Q() {
-        return false;
-    }
-
-    @Override
-    public final void U(Drawable drawable) {
-        if (drawable instanceof pc0) {
-            ((pc0) drawable).p();
+    public final void run() {
+        switch (this.f51219a) {
+            case 0:
+                l0 l0Var = this.f51220b;
+                ph.i iVar = l0Var.h;
+                hh.f fVar = l0Var.f51333f;
+                if (fVar != null) {
+                    fVar.d();
+                }
+                k0 k0Var = l0Var.H;
+                if (k0Var != null) {
+                    k0Var.setTranslationY(-iVar.d());
+                }
+                r6 r6Var = l0Var.f51337w;
+                if (r6Var != null) {
+                    r6Var.setTranslationY(-iVar.d());
+                }
+                l0Var.q();
+                return;
+            case 1:
+                this.f51220b.H.performClick();
+                return;
+            default:
+                this.f51220b.dismiss();
+                return;
         }
-        j0 j0Var = this.f49943w0;
-        j0Var.d.f9867a = j0Var.f50038c.c(drawable);
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == this.L) {
-            j0 j0Var = this.f49943w0;
-            fh.a aVar = j0Var.d.f9867a;
-            if (aVar instanceof fh.b) {
-                ((fh.b) aVar).c(getWidth(), getHeight());
-            }
-            j0Var.d.v(canvas, 0.0f, 0.0f, getWidth(), getHeight());
-            return false;
-        }
-        return super.drawChild(canvas, view, j3);
-    }
-
-    @Override
-    public final Drawable getNewDrawable() {
-        Drawable drawable = this.f49943w0.f50046y;
-        if (drawable != null) {
-            return drawable;
-        }
-        return super.getNewDrawable();
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        this.f49943w0.o();
     }
 }

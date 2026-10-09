@@ -9,30 +9,30 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.ui.LaunchActivity;
 public class AlertDialog$Builder {
-    public final b2 f20377a;
-    public final boolean[] f20378b;
+    public final b2 f20374a;
+    public final boolean[] f20375b;
 
     public AlertDialog$Builder(Context context) {
         this(context, 0, null);
     }
 
     public final b2 a() {
-        return this.f20377a;
+        return this.f20374a;
     }
 
-    public b2 b(Context context, int i10, d6 d6Var) {
-        return new b2(context, i10, d6Var);
+    public b2 b(Context context, int i10, e6 e6Var) {
+        return new b2(context, i10, e6Var);
     }
 
     public final void c() {
-        int i10 = b2.f20418c1;
-        this.f20377a.getClass();
+        int i10 = b2.f20406c1;
+        this.f20374a.getClass();
     }
 
     public final void d(int i10) {
         int i11 = (-i10) - 1;
         if (i11 >= 0) {
-            boolean[] zArr = this.f20378b;
+            boolean[] zArr = this.f20375b;
             if (i11 < zArr.length) {
                 zArr[i11] = true;
             }
@@ -40,70 +40,70 @@ public class AlertDialog$Builder {
     }
 
     public final void e() {
-        this.f20377a.Q0 = 0.5f;
+        this.f20374a.Q0 = 0.5f;
     }
 
     public final void f(CharSequence[] charSequenceArr, DialogInterface.OnClickListener onClickListener) {
-        b2 b2Var = this.f20377a;
+        b2 b2Var = this.f20374a;
         b2Var.P = charSequenceArr;
         b2Var.M = onClickListener;
     }
 
     public final void g(CharSequence charSequence) {
-        this.f20377a.T = charSequence;
+        this.f20374a.T = charSequence;
     }
 
     public final void h(String str, a2 a2Var) {
-        b2 b2Var = this.f20377a;
-        b2Var.f20439n0 = str;
-        b2Var.f20440o0 = a2Var;
+        b2 b2Var = this.f20374a;
+        b2Var.f20427n0 = str;
+        b2Var.f20428o0 = a2Var;
     }
 
     public final void i(String str, a2 a2Var) {
-        b2 b2Var = this.f20377a;
-        b2Var.f20444r0 = str;
-        b2Var.f20446s0 = a2Var;
+        b2 b2Var = this.f20374a;
+        b2Var.f20432r0 = str;
+        b2Var.f20434s0 = a2Var;
     }
 
     public final void j(DialogInterface.OnDismissListener onDismissListener) {
-        this.f20377a.setOnDismissListener(onDismissListener);
+        this.f20374a.setOnDismissListener(onDismissListener);
     }
 
     public final void k(CharSequence charSequence, a2 a2Var) {
-        b2 b2Var = this.f20377a;
-        b2Var.f20437l0 = charSequence;
+        b2 b2Var = this.f20374a;
+        b2Var.f20425l0 = charSequence;
         b2Var.m0 = a2Var;
     }
 
     public final void l(CharSequence charSequence) {
-        this.f20377a.R = charSequence;
+        this.f20374a.R = charSequence;
     }
 
     public final void m(int i10, int i11, int i12, HashMap hashMap) {
-        b2 b2Var = this.f20377a;
+        b2 b2Var = this.f20374a;
         b2Var.X = i10;
         b2Var.Y = i11;
         b2Var.S0 = false;
-        b2Var.f20426c0 = i12;
+        b2Var.f20414c0 = i12;
         b2Var.Z = hashMap;
     }
 
     public final void n(View view) {
-        b2 b2Var = this.f20377a;
-        b2Var.f20422b = view;
-        b2Var.f20428e = -2;
+        b2 b2Var = this.f20374a;
+        b2Var.f20410b = view;
+        b2Var.f20416e = -2;
     }
 
     public final b2 o() {
         TextView textView;
-        b2 b2Var = this.f20377a;
+        b2 b2Var = this.f20374a;
         b2Var.show();
         int i10 = 0;
         while (true) {
-            boolean[] zArr = this.f20378b;
+            boolean[] zArr = this.f20375b;
             if (i10 < zArr.length) {
                 if (zArr[i10] && (textView = (TextView) b2Var.d(-(i10 + 1))) != null) {
-                    textView.setTextColor(b2Var.e(i6.f21068q7));
+                    textView.setTextColor(b2Var.e(i6.f21037q7));
                 }
                 i10++;
             } else {
@@ -113,21 +113,21 @@ public class AlertDialog$Builder {
     }
 
     public AlertDialog$Builder setTopImage(int i10, int i11) {
-        b2 b2Var = this.f20377a;
+        b2 b2Var = this.f20374a;
         b2Var.U = i10;
-        b2Var.f20426c0 = i11;
+        b2Var.f20414c0 = i11;
         return this;
     }
 
-    public AlertDialog$Builder(Context context, d6 d6Var) {
-        this(context, 0, d6Var);
+    public AlertDialog$Builder(Context context, e6 e6Var) {
+        this(context, 0, e6Var);
     }
 
-    public AlertDialog$Builder(Context context, int i10, d6 d6Var) {
-        this.f20378b = new boolean[3];
+    public AlertDialog$Builder(Context context, int i10, e6 e6Var) {
+        this.f20375b = new boolean[3];
         if (context == null && (context = AndroidUtilities.findActivity(LaunchActivity.G1)) == null) {
             context = ApplicationLoader.applicationContext;
         }
-        this.f20377a = b(context, i10, d6Var);
+        this.f20374a = b(context, i10, e6Var);
     }
 }

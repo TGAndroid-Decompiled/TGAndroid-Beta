@@ -4,54 +4,54 @@ import android.content.Context;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.wp;
-import org.telegram.ui.Components.zq;
-import w7.z5;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.Components.jq;
+import org.telegram.ui.Components.mr;
+import w7.x5;
 public final class b extends FrameLayout {
-    public final d6 f12182a;
-    public a f12183b;
-    public zq f12184c;
+    public final e6 f12229a;
+    public a f12230b;
+    public mr f12231c;
     public boolean d;
 
-    public b(Context context, d6 d6Var) {
+    public b(Context context, e6 e6Var) {
         super(context);
-        this.f12182a = d6Var;
+        this.f12229a = e6Var;
     }
 
     public final void a(int i10, boolean z10) {
-        if (this.f12184c == null) {
-            zq zqVar = new zq(getContext(), this.f12182a);
-            this.f12184c = zqVar;
-            zqVar.setReverse(this.d);
-            addView(this.f12184c, z5.e(-1, 28, 48));
+        if (this.f12231c == null) {
+            mr mrVar = new mr(getContext(), this.f12229a);
+            this.f12231c = mrVar;
+            mrVar.setReverse(this.d);
+            addView(this.f12231c, x5.e(-1, 28, 48));
         }
-        this.f12184c.f33626a.c(i10, z10);
+        this.f12231c.f28891a.c(i10, z10);
     }
 
     public final void b(boolean z10, boolean z11) {
         super.setEnabled(z10);
-        this.f12183b.e(z10, z11);
+        this.f12230b.e(z10, z11);
     }
 
     public final void c(boolean z10, boolean z11) {
-        a aVar = this.f12183b;
+        a aVar = this.f12230b;
         if (aVar.d == null) {
             if (!z10) {
                 return;
             }
-            wp wpVar = new wp(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(1.7f), -9079435);
-            aVar.f12179e = wpVar;
-            wpVar.f32684f = 90.0f;
+            jq jqVar = new jq(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(1.7f), -9079435);
+            aVar.f12226e = jqVar;
+            jqVar.f27759f = 90.0f;
             ImageView imageView = new ImageView(aVar.getContext());
             aVar.d = imageView;
-            imageView.setBackground(aVar.f12179e);
+            imageView.setBackground(aVar.f12226e);
             aVar.d.setVisibility(8);
-            aVar.addView(aVar.d, z5.e(46, 46, 17));
+            aVar.addView(aVar.d, x5.e(46, 46, 17));
         }
-        le.b bVar = aVar.f12176a;
-        if (!bVar.f15437f && bVar.f15436e == 0.0f) {
-            aVar.f12179e.f32682c = -1L;
+        me.b bVar = aVar.f12223a;
+        if (!bVar.f16338f && bVar.f16337e == 0.0f) {
+            aVar.f12226e.f27757c = -1L;
         }
         bVar.a(z10, z11);
     }

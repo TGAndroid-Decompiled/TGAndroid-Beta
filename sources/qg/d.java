@@ -9,21 +9,21 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import v7.z6;
 public abstract class d extends FrameLayout {
-    public boolean f45008a;
-    public final c f45009b;
-    public boolean f45010c;
+    public boolean f46211a;
+    public final c f46212b;
+    public boolean f46213c;
     public float d;
-    public float f45011e;
-    public boolean f45012f;
+    public float f46214e;
+    public boolean f46215f;
 
     public d(Context context, c cVar) {
         super(context);
-        this.f45009b = cVar;
+        this.f46212b = cVar;
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (this.f45008a && (view instanceof a2)) {
+        if (this.f46211a && (view instanceof b2)) {
             return true;
         }
         return super.drawChild(canvas, view, j3);
@@ -31,7 +31,7 @@ public abstract class d extends FrameLayout {
 
     @Override
     public final void measureChildWithMargins(View view, int i10, int i11, int i12, int i13) {
-        if (view instanceof v2) {
+        if (view instanceof w2) {
             ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
             view.measure(ViewGroup.getChildMeasureSpec(i10, getPaddingRight() + getPaddingLeft() + marginLayoutParams.leftMargin + marginLayoutParams.rightMargin + i11, marginLayoutParams.width), View.MeasureSpec.makeMeasureSpec(0, 0));
             return;
@@ -41,7 +41,7 @@ public abstract class d extends FrameLayout {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        c cVar = this.f45009b;
+        c cVar = this.f46212b;
         j b10 = cVar.b();
         if (b10 == null) {
             return false;
@@ -49,29 +49,29 @@ public abstract class d extends FrameLayout {
         if (motionEvent.getPointerCount() == 1) {
             int actionMasked = motionEvent.getActionMasked();
             if (actionMasked == 0) {
-                this.f45010c = false;
-                b10.f45100n = false;
-                b10.f45103r = false;
+                this.f46213c = false;
+                b10.f46297n = false;
+                b10.f46300r = false;
                 this.d = motionEvent.getX();
-                this.f45011e = motionEvent.getY();
-                this.f45012f = false;
+                this.f46214e = motionEvent.getY();
+                this.f46215f = false;
                 return true;
             }
-            if (!this.f45012f && actionMasked == 2) {
+            if (!this.f46215f && actionMasked == 2) {
                 float x10 = motionEvent.getX();
                 float y3 = motionEvent.getY();
-                if (this.f45010c || z6.a(x10, y3, this.d, this.f45011e) > AndroidUtilities.touchSlop) {
-                    this.f45010c = true;
-                    b10.f45100n = true;
-                    b10.e(x10 - this.d, y3 - this.f45011e);
+                if (this.f46213c || z6.a(x10, y3, this.d, this.f46214e) > AndroidUtilities.touchSlop) {
+                    this.f46213c = true;
+                    b10.f46297n = true;
+                    b10.e(x10 - this.d, y3 - this.f46214e);
                     this.d = x10;
-                    this.f45011e = y3;
+                    this.f46214e = y3;
                     return true;
                 }
             } else if (actionMasked == 1 || actionMasked == 3) {
-                b10.f45100n = false;
-                b10.f45103r = true;
-                if (!this.f45010c) {
+                b10.f46297n = false;
+                b10.f46300r = true;
+                if (!this.f46213c) {
                     cVar.a();
                 }
                 invalidate();
@@ -79,10 +79,10 @@ public abstract class d extends FrameLayout {
             }
             return true;
         }
-        b10.f45100n = false;
-        b10.f45103r = true;
-        this.f45010c = false;
-        this.f45012f = true;
+        b10.f46297n = false;
+        b10.f46300r = true;
+        this.f46213c = false;
+        this.f46215f = true;
         invalidate();
         return true;
     }

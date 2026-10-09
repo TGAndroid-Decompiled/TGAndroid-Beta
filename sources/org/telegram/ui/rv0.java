@@ -1,141 +1,28 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import java.util.Arrays;
-public final class rv0 extends org.telegram.ui.Cells.d6 {
-    public final sv0 F;
+import android.animation.ValueAnimator;
+public final class rv0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f41523a;
+    public final aw0 f41524b;
 
-    public rv0(sv0 sv0Var, Context context, int i10, j60 j60Var) {
-        super(context, i10, j60Var, null);
-        this.F = sv0Var;
+    public rv0(aw0 aw0Var, int i10) {
+        this.f41523a = i10;
+        this.f41524b = aw0Var;
     }
 
     @Override
-    public final boolean e() {
-        s4.c1 T;
-        uv0 uv0Var = this.F.d;
-        xb1 xb1Var = uv0Var.f41370c;
-        View F = xb1Var.F(this);
-        if (F == null) {
-            T = null;
-        } else {
-            T = xb1Var.T(F);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f41523a) {
+            case 0:
+                aw0 aw0Var = this.f41524b;
+                aw0Var.getClass();
+                aw0Var.R.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            default:
+                aw0 aw0Var2 = this.f41524b;
+                aw0Var2.getClass();
+                aw0Var2.R.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
         }
-        if (T != null) {
-            int b10 = T.b();
-            int i10 = uv0Var.f41399y;
-            if (i10 == uv0Var.f41383n && b10 == (uv0Var.f41384n0 + i10) - 1) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public final boolean f(org.telegram.ui.Cells.d6 d6Var) {
-        s4.c1 T;
-        int b10;
-        uv0 uv0Var = this.F.d;
-        xb1 xb1Var = uv0Var.f41370c;
-        View F = xb1Var.F(d6Var);
-        if (F == null) {
-            T = null;
-        } else {
-            T = xb1Var.T(F);
-        }
-        if (T != null && (b10 = T.b()) != -1) {
-            return uv0Var.f41395w[b10 - uv0Var.f41384n0];
-        }
-        return false;
-    }
-
-    @Override
-    public final void g(org.telegram.ui.Cells.c6 c6Var, ActionMode actionMode) {
-        if (c6Var.isFocused() && c6Var.hasSelection()) {
-            Menu menu = actionMode.getMenu();
-            if (menu.findItem(16908321) != null) {
-                yn.k8(menu, this.F.d.f41375f.h, false, true, true, true);
-            }
-        }
-    }
-
-    @Override
-    public final void h(org.telegram.ui.Cells.d6 d6Var, boolean z10) {
-        s4.c1 T;
-        int b10;
-        uv0 uv0Var = this.F.d;
-        if (z10 && uv0Var.L) {
-            Arrays.fill(uv0Var.f41395w, false);
-            uv0Var.f41370c.getChildCount();
-            for (int i10 = uv0Var.f41384n0; i10 < uv0Var.f41384n0 + uv0Var.f41399y; i10++) {
-                s4.c1 K = uv0Var.f41370c.K(i10);
-                if (K != null) {
-                    View view = K.f46538a;
-                    if (view instanceof org.telegram.ui.Cells.d6) {
-                        ((org.telegram.ui.Cells.d6) view).f21933r.a(false, true);
-                    }
-                }
-            }
-        }
-        super.h(d6Var, z10);
-        xb1 xb1Var = uv0Var.f41370c;
-        View F = xb1Var.F(d6Var);
-        if (F == null) {
-            T = null;
-        } else {
-            T = xb1Var.T(F);
-        }
-        if (T != null && (b10 = T.b()) != -1) {
-            uv0Var.f41395w[b10 - uv0Var.f41384n0] = z10;
-        }
-        uv0Var.i0();
-    }
-
-    @Override
-    public final void i(boolean z10) {
-        uv0.d0(this.F.d, this, z10);
-    }
-
-    @Override
-    public final void j(org.telegram.ui.Cells.d6 d6Var) {
-        uv0.e0(this.F.d, d6Var);
-    }
-
-    @Override
-    public final boolean l(ArrayList arrayList) {
-        uv0 uv0Var = this.F.d;
-        if (!arrayList.isEmpty()) {
-            uv0Var.f41370c.getClass();
-            int R = RecyclerView.R(this) - uv0Var.f41384n0;
-            if (R >= 0) {
-                org.telegram.ui.Cells.c6 c6Var = this.d;
-                c6Var.getText().replace(c6Var.getSelectionStart(), c6Var.getSelectionEnd(), (CharSequence) arrayList.remove(0));
-                int i10 = R + 1;
-                while (!arrayList.isEmpty() && i10 < uv0Var.f41383n) {
-                    for (int length = uv0Var.v.length - 1; length > i10; length--) {
-                        CharSequence[] charSequenceArr = uv0Var.v;
-                        charSequenceArr[length] = charSequenceArr[length - 1];
-                    }
-                    uv0Var.v[i10] = (CharSequence) arrayList.remove(0);
-                    uv0Var.f41399y++;
-                    i10++;
-                }
-                uv0Var.r0();
-                uv0Var.f41377g0 = (uv0Var.f41384n0 + i10) - 1;
-                uv0Var.f41368b.l();
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean o() {
-        return this.F.d.L;
     }
 }

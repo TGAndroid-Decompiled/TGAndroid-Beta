@@ -1,9 +1,16 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessageObject;
-public final class id1 extends MessageObject {
+import android.widget.EditText;
+public final class id1 extends org.telegram.ui.ActionBar.g5 {
     @Override
-    public final boolean needDrawAvatar() {
-        return false;
+    public final void m() {
+    }
+
+    @Override
+    public final void n() {
+    }
+
+    @Override
+    public final void q(EditText editText) {
     }
 }

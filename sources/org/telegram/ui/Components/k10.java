@@ -1,92 +1,74 @@
 package org.telegram.ui.Components;
 
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.TextPaint;
-import android.text.style.URLSpan;
+import android.os.Bundle;
 import android.view.View;
-import org.telegram.messenger.LocaleController;
-import org.telegram.tgnet.TLRPC;
-public final class k10 extends URLSpan {
-    public static final int f28026e = 0;
-    public final String f28027a;
-    public final TLRPC.TL_messageEntityFormattedDate f28028b;
-    public final n11 f28029c;
+import android.view.accessibility.AccessibilityNodeInfo;
+public abstract class k10 extends hp0 {
     public final boolean d;
 
-    public k10(String str, n11 n11Var, TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate) {
-        super(str);
-        this.f28027a = str;
-        this.f28028b = tL_messageEntityFormattedDate;
-        this.f28029c = n11Var;
-        this.d = false;
-    }
-
-    public static CharSequence a(CharSequence charSequence, boolean z10) {
-        String str;
-        if (charSequence instanceof Spanned) {
-            Spanned spanned = (Spanned) charSequence;
-            int i10 = 0;
-            k10[] k10VarArr = (k10[]) spanned.getSpans(0, spanned.length(), k10.class);
-            int length = k10VarArr.length;
-            ?? r42 = 0;
-            while (i10 < length) {
-                k10 k10Var = k10VarArr[i10];
-                TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = k10Var.f28028b;
-                if (tL_messageEntityFormattedDate.flags != 0 && (k10Var.d != z10 || (z10 && tL_messageEntityFormattedDate.relative))) {
-                    if (r42 == 0) {
-                        charSequence = new SpannableStringBuilder(spanned);
-                        r42 = charSequence;
-                    }
-                    int spanStart = r42.getSpanStart(k10Var);
-                    int spanEnd = r42.getSpanEnd(k10Var);
-                    if (z10) {
-                        str = LocaleController.formatEntityFormattedDate(k10Var.f28028b);
-                    } else {
-                        str = k10Var.f28027a;
-                    }
-                    r42.removeSpan(k10Var);
-                    r42.replace(spanStart, spanEnd, str);
-                    r42.setSpan(new k10(k10Var, z10), spanStart, str.length() + spanStart, 33);
-                }
-                i10++;
-                r42 = r42;
-            }
-        }
-        return charSequence;
-    }
-
-    public static CharSequence b(SpannableStringBuilder spannableStringBuilder) {
-        return a(spannableStringBuilder, false);
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        boolean z10;
-        int i10 = textPaint.linkColor;
-        int color = textPaint.getColor();
-        super.updateDrawState(textPaint);
-        n11 n11Var = this.f28029c;
-        if (n11Var != null) {
-            n11Var.a(textPaint);
-        }
-        if (i10 == color) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        textPaint.setUnderlineText(z10);
-    }
-
-    public k10(k10 k10Var, boolean z10) {
-        super(k10Var.f28027a);
-        this.f28027a = k10Var.f28027a;
-        this.f28028b = k10Var.f28028b;
-        this.f28029c = k10Var.f28029c;
+    public k10(boolean z10) {
         this.d = z10;
     }
 
     @Override
-    public final void onClick(View view) {
+    public final boolean a() {
+        if (k() > j()) {
+            return true;
+        }
+        return false;
     }
+
+    @Override
+    public final boolean b() {
+        if (k() < i()) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void c(boolean z10) {
+        float h = h();
+        if (z10) {
+            h *= -1.0f;
+        }
+        l(Math.min(i(), Math.max(j(), k() + h)));
+    }
+
+    @Override
+    public final void e(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.e(view, accessibilityNodeInfo);
+        if (this.d) {
+            accessibilityNodeInfo.addAction((AccessibilityNodeInfo.AccessibilityAction) s0.c.h.f47582a);
+            accessibilityNodeInfo.setRangeInfo(AccessibilityNodeInfo.RangeInfo.obtain(1, j(), i(), k()));
+        }
+    }
+
+    @Override
+    public final boolean g(View view, int i10, Bundle bundle) {
+        if (super.g(view, i10, bundle)) {
+            return true;
+        }
+        if (i10 == ((AccessibilityNodeInfo.AccessibilityAction) s0.c.h.f47582a).getId()) {
+            l(bundle.getFloat("android.view.accessibility.action.ARGUMENT_PROGRESS_VALUE"));
+            return true;
+        }
+        return false;
+    }
+
+    public float h() {
+        return 0.05f;
+    }
+
+    public float i() {
+        return 1.0f;
+    }
+
+    public float j() {
+        return 0.0f;
+    }
+
+    public abstract float k();
+
+    public abstract void l(float f7);
 }

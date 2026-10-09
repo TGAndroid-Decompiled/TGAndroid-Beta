@@ -1,65 +1,111 @@
 package org.telegram.ui;
 
-import android.text.SpannableStringBuilder;
-import java.util.Collections;
+import android.content.SharedPreferences;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.ui.Components.UndoView;
 public final class hw implements Runnable {
-    public final int f37184a;
-    public final uy f37185b;
-    public final long f37186c;
-    public final boolean d;
+    public final int f38405a;
+    public final ty f38406b;
 
-    public hw(uy uyVar, long j3, boolean z10, int i10) {
-        this.f37184a = i10;
-        this.f37185b = uyVar;
-        this.f37186c = j3;
-        this.d = z10;
+    public hw(ty tyVar, int i10) {
+        this.f38405a = i10;
+        this.f38406b = tyVar;
     }
 
     @Override
     public final void run() {
-        String str;
-        TLRPC.Chat chat;
-        SpannableStringBuilder replaceTags;
-        int i10 = this.f37184a;
-        boolean z10 = this.d;
-        long j3 = this.f37186c;
-        uy uyVar = this.f37185b;
-        switch (i10) {
+        switch (this.f38405a) {
             case 0:
-                uy uyVar2 = this.f37185b;
-                ai.l9 storiesController = uyVar2.getMessagesController().getStoriesController();
-                long j10 = this.f37186c;
-                boolean z11 = this.d;
-                storiesController.i0(j10, z11, false);
-                o0.a aVar = new o0.a(3, (byte) 0);
-                aVar.f16937b = new hw(uyVar2, j10, z11, 1);
-                aVar.f16938c = new hw(uyVar2, j10, z11, 2);
-                if (j10 >= 0) {
-                    TLRPC.User user = uyVar2.getMessagesController().getUser(Long.valueOf(j10));
-                    str = ContactsController.formatName(user.first_name, null, 15);
-                    chat = user;
-                } else {
-                    TLRPC.Chat chat2 = uyVar2.getMessagesController().getChat(Long.valueOf(-j10));
-                    str = chat2.title;
-                    chat = chat2;
+                ty tyVar = this.f38406b;
+                dy dyVar = tyVar.C0;
+                if (dyVar != null && dyVar.f25788y0) {
+                    dyVar.Q(false);
+                    return;
                 }
-                if (uyVar2.n4()) {
-                    replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("StoriesMovedToDialogs", R.string.StoriesMovedToDialogs, str));
-                } else {
-                    replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("StoriesMovedToContacts", R.string.StoriesMovedToContacts, ContactsController.formatName(str, null, 15)));
-                }
-                uyVar2.S = org.telegram.ui.Components.yc.X().V(Collections.singletonList(chat), replaceTags, null, aVar).j();
+                tyVar.X.f30614r.getText().clear();
+                AndroidUtilities.hideKeyboard(tyVar.X.f30614r);
+                tyVar.X.f30614r.clearFocus();
+                tyVar.Y.b(false);
                 return;
             case 1:
-                uyVar.getMessagesController().getStoriesController().i0(j3, !z10, false);
+                ty tyVar2 = this.f38406b;
+                if (tyVar2.R0 != 10) {
+                    tyVar2.Z3(false);
+                }
+                if (tyVar2.L && tyVar2.U3().G()) {
+                    tyVar2.E0.h();
+                    return;
+                } else {
+                    tyVar2.u4(true, true);
+                    return;
+                }
+            case 2:
+                ty tyVar3 = this.f38406b;
+                hh.f fVar = tyVar3.f42274y1;
+                if (fVar != null) {
+                    fVar.d();
+                }
+                tyVar3.p3();
+                tyVar3.j3();
+                tyVar3.q3();
+                ii.z1 z1Var = tyVar3.C1;
+                if (z1Var != null) {
+                    z1Var.setTranslationY(-tyVar3.v.d());
+                    return;
+                }
+                return;
+            case 3:
+                this.f38406b.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.forceImportContactsStart, new Object[0]);
+                return;
+            case 4:
+                this.f38406b.J3();
+                return;
+            case 5:
+                this.f38406b.R4();
+                return;
+            case 6:
+                ty.C0(this.f38406b);
+                return;
+            case 7:
+                this.f38406b.getMessagesController().removeSuggestion(0L, "SETUP_LOGIN_EMAIL");
+                return;
+            case 8:
+                ty tyVar4 = this.f38406b;
+                ci.d4 d4Var = tyVar4.f42230q0;
+                if (d4Var != null) {
+                    d4Var.e(true);
+                }
+                tyVar4.presentFragment(new PremiumPreviewFragment(0, "stories"));
+                return;
+            case 9:
+                this.f38406b.f42172e0[0].d.l();
+                return;
+            case 10:
+                ty tyVar5 = this.f38406b;
+                UndoView V3 = tyVar5.V3();
+                if (V3 != null) {
+                    V3.l(0L, 15, null, new ov(tyVar5, 26));
+                    return;
+                }
+                return;
+            case 11:
+                ty tyVar6 = this.f38406b;
+                tyVar6.getClass();
+                SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
+                long j3 = globalMainSettings.getLong("cache_hint_period", 604800000L);
+                if (j3 <= 604800000) {
+                    j3 = 2592000000L;
+                }
+                globalMainSettings.edit().putLong("cache_hint_showafter", System.currentTimeMillis() + j3).putLong("cache_hint_period", j3).apply();
+                tyVar6.R4();
+                return;
+            case 12:
+                MessagesController.getInstance(this.f38406b.currentAccount).getMainSettings().edit().putBoolean("storyhint", false).commit();
                 return;
             default:
-                uyVar.getMessagesController().getStoriesController().i0(j3, z10, true);
+                this.f38406b.X4();
                 return;
         }
     }

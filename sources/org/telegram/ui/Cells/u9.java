@@ -1,12 +1,8 @@
 package org.telegram.ui.Cells;
+public final class u9 {
+    public final CharSequence f23521a;
 
-import android.graphics.Path;
-import org.telegram.ui.Components.xq;
-public final class u9 extends Path {
-    public xq f23541a;
-
-    @Override
-    public final void addRect(float f7, float f10, float f11, float f12, Path.Direction direction) {
-        this.f23541a.addRect(f7, f10, f11, f12, direction);
+    public u9(String str) {
+        this.f23521a = str;
     }
 }

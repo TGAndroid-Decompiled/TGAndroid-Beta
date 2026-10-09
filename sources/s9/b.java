@@ -4,29 +4,29 @@ import com.google.android.gms.tasks.TaskCompletionSource;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import tg.q;
-import u4.g;
-import w9.p;
-import w9.x;
+import u4.f;
+import w9.o;
+import w9.w;
 public final class b implements Callable {
-    public final boolean f46762a;
-    public final p f46763b;
-    public final da.b f46764c;
+    public final boolean f47866a;
+    public final o f47867b;
+    public final da.c f47868c;
 
-    public b(boolean z10, p pVar, da.b bVar) {
-        this.f46762a = z10;
-        this.f46763b = pVar;
-        this.f46764c = bVar;
+    public b(boolean z10, o oVar, da.c cVar) {
+        this.f47866a = z10;
+        this.f47867b = oVar;
+        this.f47868c = cVar;
     }
 
     @Override
     public final Object call() {
-        if (this.f46762a) {
-            p pVar = this.f46763b;
-            ExecutorService executorService = pVar.f48989k;
-            g gVar = new g(3, pVar, this.f46764c);
-            ExecutorService executorService2 = x.f49021a;
+        if (this.f47866a) {
+            o oVar = this.f47867b;
+            ExecutorService executorService = oVar.f50268k;
+            f fVar = new f(3, oVar, this.f47868c);
+            ExecutorService executorService2 = w.f50300a;
             TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-            executorService.execute(new q(gVar, executorService, taskCompletionSource, 4));
+            executorService.execute(new q(fVar, executorService, taskCompletionSource, 5));
             taskCompletionSource.getTask();
             return null;
         }

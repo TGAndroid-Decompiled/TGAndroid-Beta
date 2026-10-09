@@ -1,61 +1,69 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
+import android.os.Bundle;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class tw extends FrameLayout {
-    public final boolean f31247a;
-    public final nz f31248b;
+import org.telegram.messenger.EmojiData;
+import org.telegram.messenger.UserConfig;
+public final class tw implements Runnable {
+    public final int f31292a;
+    public final a00 f31293b;
 
-    public tw(nz nzVar, Context context, boolean z10) {
-        super(context);
-        this.f31248b = nzVar;
-        this.f31247a = z10;
+    public tw(a00 a00Var, int i10) {
+        this.f31292a = i10;
+        this.f31293b = a00Var;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        nz nzVar = this.f31248b;
-        ax axVar = nzVar.B0;
-        vw vwVar = nzVar.D0;
-        zw zwVar = nzVar.G0;
-        if (!this.f31247a && (view == vwVar || view == zwVar)) {
-            canvas.save();
-            float y3 = axVar.getY() + axVar.getMeasuredHeight() + 1.0f;
-            if (view == vwVar) {
-                y3 = Math.max(y3, zwVar.getY() + zwVar.getMeasuredHeight() + 1.0f);
-            }
-            canvas.clipRect(0.0f, y3 - (AndroidUtilities.dp(16.0f) * nzVar.f29185a.f15436e), getMeasuredWidth(), getMeasuredHeight());
-            boolean drawChild = super.drawChild(canvas, view, j3);
-            canvas.restore();
-            return drawChild;
-        }
-        return super.drawChild(canvas, view, j3);
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        nz nzVar = this.f31248b;
-        nzVar.K0 = true;
-        nzVar.X();
-        gg.g1 g1Var = nzVar.T0;
-        if (g1Var != null) {
-            g1Var.a();
-        }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        nz nzVar = this.f31248b;
-        nzVar.K0 = false;
-        nzVar.X();
-        gg.g1 g1Var = nzVar.T0;
-        if (g1Var != null) {
-            g1Var.a();
+    public final void run() {
+        switch (this.f31292a) {
+            case 0:
+                a00 a00Var = this.f31293b;
+                a00Var.X(false);
+                a00Var.E();
+                return;
+            case 1:
+                jy jyVar = this.f31293b.R;
+                if (jyVar != null) {
+                    jyVar.F(true);
+                    return;
+                }
+                return;
+            case 2:
+                a00 a00Var2 = this.f31293b;
+                az azVar = a00Var2.f24455t1;
+                if (azVar != null) {
+                    azVar.t(a00Var2.R.h);
+                    return;
+                }
+                return;
+            case 3:
+                az azVar2 = this.f31293b.f24455t1;
+                if (azVar2 != null) {
+                    azVar2.q();
+                    return;
+                }
+                return;
+            case 4:
+                a00 a00Var3 = this.f31293b;
+                a00Var3.getClass();
+                Bundle bundle = new Bundle();
+                bundle.putLong("user_id", UserConfig.getInstance(a00Var3.f24401c1).getClientUserId());
+                a00Var3.Y1.presentFragment(new org.telegram.ui.zn(bundle));
+                return;
+            default:
+                a00 a00Var4 = this.f31293b;
+                ArrayList<ny> emojipacks = a00Var4.getEmojipacks();
+                for (int i10 = 0; i10 < emojipacks.size(); i10++) {
+                    if (emojipacks.get(i10).f29306i) {
+                        int i11 = a00Var4.R.f27798s.get(EmojiData.dataColored.length + i10);
+                        a00Var4.P.B0();
+                        a00Var4.U(i11);
+                        a00Var4.G(i11, AndroidUtilities.dp(-9.0f));
+                        a00Var4.o(0, null);
+                    }
+                }
+                return;
         }
     }
 }

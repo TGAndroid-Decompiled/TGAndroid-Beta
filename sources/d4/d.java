@@ -2,30 +2,30 @@ package d4;
 
 import android.graphics.Color;
 import com.google.android.gms.internal.vision.e2;
-import v7.y7;
+import v7.v7;
 public final class d {
-    public final String f8094a;
-    public final int f8095b;
-    public final Integer f8096c;
+    public final String f8143a;
+    public final int f8144b;
+    public final Integer f8145c;
     public final Integer d;
-    public final float f8097e;
-    public final boolean f8098f;
-    public final boolean f8099g;
+    public final float f8146e;
+    public final boolean f8147f;
+    public final boolean f8148g;
     public final boolean h;
-    public final boolean f8100i;
-    public final int f8101j;
+    public final boolean f8149i;
+    public final int f8150j;
 
     public d(String str, int i10, Integer num, Integer num2, float f7, boolean z10, boolean z11, boolean z12, boolean z13, int i11) {
-        this.f8094a = str;
-        this.f8095b = i10;
-        this.f8096c = num;
+        this.f8143a = str;
+        this.f8144b = i10;
+        this.f8145c = num;
         this.d = num2;
-        this.f8097e = f7;
-        this.f8098f = z10;
-        this.f8099g = z11;
+        this.f8146e = f7;
+        this.f8147f = z10;
+        this.f8148g = z11;
         this.h = z12;
-        this.f8100i = z13;
-        this.f8101j = i11;
+        this.f8149i = z13;
+        this.f8150j = i11;
     }
 
     public static int a(String str) {
@@ -85,9 +85,9 @@ public final class d {
                 z10 = false;
             }
             e2.d.b(z10);
-            int b10 = y7.b(((parseLong >> 24) & 255) ^ 255);
-            int b11 = y7.b((parseLong >> 16) & 255);
-            return Integer.valueOf(Color.argb(b10, y7.b(parseLong & 255), y7.b((parseLong >> 8) & 255), b11));
+            int b10 = v7.b(((parseLong >> 24) & 255) ^ 255);
+            int b11 = v7.b((parseLong >> 16) & 255);
+            return Integer.valueOf(Color.argb(b10, v7.b(parseLong & 255), v7.b((parseLong >> 8) & 255), b11));
         } catch (IllegalArgumentException e7) {
             e2.a.o("SsaStyle", "Failed to parse color expression: '" + str + "'", e7);
             return null;

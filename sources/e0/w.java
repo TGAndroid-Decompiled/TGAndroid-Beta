@@ -2,12 +2,13 @@ package e0;
 
 import android.app.Notification;
 import android.app.Person;
+import android.os.Parcelable;
 public abstract class w {
-    public static Notification.MessagingStyle a(Person person) {
-        return new Notification.MessagingStyle(person);
+    public static Parcelable a(Person person) {
+        return person;
     }
 
-    public static Notification.MessagingStyle b(Notification.MessagingStyle messagingStyle, boolean z10) {
-        return messagingStyle.setGroupConversation(z10);
+    public static Notification.MessagingStyle.Message b(CharSequence charSequence, long j3, Person person) {
+        return new Notification.MessagingStyle.Message(charSequence, j3, person);
     }
 }

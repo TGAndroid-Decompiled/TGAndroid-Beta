@@ -1,202 +1,87 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Shader;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class xh extends zl0 {
-    public final int f32883e3;
-    public final Paint f32884f3;
-    public final Paint f32885g3;
-    public boolean f32886h3;
-    public boolean f32887i3;
-    public final Object j3;
-    public final Object f32888k3;
+import android.text.Editable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.tgnet.TLRPC;
+public final class xh implements org.telegram.ui.ar0 {
+    public boolean f32861a;
+    public final HashMap f32862b;
+    public final ArrayList f32863c;
+    public final yi d;
 
-    public xh(Context context, int i10) {
-        super(context, null);
-        this.f32883e3 = i10;
-        switch (i10) {
-            case 1:
-                super(context, null);
-                Paint paint = new Paint(1);
-                this.f32884f3 = paint;
-                Paint paint2 = new Paint(1);
-                this.f32885g3 = paint2;
-                this.j3 = new e6(this);
-                this.f32888k3 = new e6(this);
-                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{-16777216, 0}, new float[]{0.0f, 1.0f}, tileMode));
-                paint2.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{0, -16777216}, new float[]{0.0f, 1.0f}, tileMode));
-                return;
-            default:
-                tr trVar = tr.h;
-                this.j3 = new le.b(this, trVar, 320L);
-                this.f32888k3 = new le.b(this, trVar, 320L);
-                Shader.TileMode tileMode2 = Shader.TileMode.CLAMP;
-                LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(8.0f), 0.0f, new int[]{0, -16777216}, (float[]) null, tileMode2);
-                LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(8.0f), 0.0f, new int[]{-16777216, 0}, (float[]) null, tileMode2);
-                Paint paint3 = new Paint(1);
-                this.f32884f3 = paint3;
-                Paint paint4 = new Paint(1);
-                this.f32885g3 = paint4;
-                paint3.setShader(linearGradient);
-                PorterDuff.Mode mode = PorterDuff.Mode.DST_IN;
-                paint3.setXfermode(new PorterDuffXfermode(mode));
-                paint4.setShader(linearGradient2);
-                paint4.setXfermode(new PorterDuffXfermode(mode));
-                return;
-        }
+    public xh(yi yiVar, HashMap hashMap, ArrayList arrayList) {
+        this.d = yiVar;
+        this.f32862b = hashMap;
+        this.f32863c = arrayList;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f7;
-        switch (this.f32883e3) {
-            case 0:
-                this.f32887i3 = false;
-                this.f32886h3 = false;
-                super.dispatchDraw(canvas);
-                ((le.b) this.j3).a(this.f32886h3, true);
-                ((le.b) this.f32888k3).a(this.f32887i3, true);
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                e6 e6Var = (e6) this.j3;
-                float f10 = 1.0f;
-                if (this.f32886h3) {
-                    f7 = 1.0f;
-                } else {
-                    f7 = 0.0f;
-                }
-                Paint paint = this.f32884f3;
-                paint.setAlpha((int) (e6Var.d(f7, false) * 255.0f));
-                canvas.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(8.0f), paint);
-                e6 e6Var2 = (e6) this.f32888k3;
-                if (!this.f32887i3) {
-                    f10 = 0.0f;
-                }
-                int d = (int) (e6Var2.d(f10, false) * 255.0f);
-                Paint paint2 = this.f32885g3;
-                paint2.setAlpha(d);
-                canvas.save();
-                canvas.translate(0.0f, getHeight() - AndroidUtilities.dp(8.0f));
-                canvas.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(8.0f), paint2);
-                canvas.restore();
-                return;
-        }
+    public final boolean e() {
+        return true;
     }
 
     @Override
-    public boolean drawChild(Canvas canvas, View view, long j3) {
-        boolean z10;
-        boolean z11;
-        switch (this.f32883e3) {
-            case 0:
-                float x10 = view.getX();
-                float width = view.getWidth() + x10;
-                boolean z12 = true;
-                if (x10 < AndroidUtilities.dp(10.0f)) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                if (width > getMeasuredWidth() - AndroidUtilities.dp(10.0f)) {
-                    z11 = true;
-                } else {
-                    z11 = false;
-                }
-                if (!z10 && !z11) {
-                    z12 = false;
-                }
-                this.f32886h3 |= z10;
-                this.f32887i3 |= z11;
-                canvas.save();
-                if (z12) {
-                    canvas.clipRect(AndroidUtilities.dp(19.0f), 0, getMeasuredWidth() - AndroidUtilities.dp(19.0f), getMeasuredHeight());
-                }
-                boolean drawChild = super.drawChild(canvas, view, j3);
-                canvas.restore();
-                if (z10) {
-                    float dp = AndroidUtilities.dp(11.0f);
-                    canvas.saveLayer(dp, getPaddingTop(), AndroidUtilities.dp(19.0f), getMeasuredHeight() - getPaddingBottom(), null);
-                    super.drawChild(canvas, view, j3);
-                    canvas.save();
-                    canvas.translate(com.google.android.gms.internal.vision.e2.b(1.0f, ((le.b) this.j3).f15436e, AndroidUtilities.dp(8.0f), dp), 0.0f);
-                    canvas.drawPaint(this.f32884f3);
-                    canvas.restore();
-                    canvas.restore();
-                }
-                if (z11) {
-                    float measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(19.0f);
-                    canvas.saveLayer(measuredWidth, getPaddingTop(), getMeasuredWidth() - AndroidUtilities.dp(11.0f), getMeasuredHeight() - getPaddingBottom(), null);
-                    super.drawChild(canvas, view, j3);
-                    canvas.save();
-                    canvas.translate(com.google.android.gms.internal.vision.e2.z(1.0f, ((le.b) this.f32888k3).f15436e, AndroidUtilities.dp(8.0f), measuredWidth), 0.0f);
-                    canvas.drawPaint(this.f32885g3);
-                    canvas.restore();
-                    canvas.restore();
-                }
-                return drawChild;
-            default:
-                return super.drawChild(canvas, view, j3);
-        }
-    }
-
-    @Override
-    public void l0(int i10) {
-        switch (this.f32883e3) {
-            case 1:
-                boolean canScrollVertically = canScrollVertically(-1);
-                boolean canScrollVertically2 = canScrollVertically(1);
-                if (canScrollVertically != this.f32886h3 || canScrollVertically2 != this.f32887i3) {
-                    this.f32886h3 = canScrollVertically;
-                    this.f32887i3 = canScrollVertically2;
-                    invalidate();
-                    return;
-                }
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        float f7;
-        int i12;
-        switch (this.f32883e3) {
-            case 0:
-                int childCount = getChildCount();
-                int size = (View.MeasureSpec.getSize(i10) - getPaddingLeft()) - getPaddingRight();
-                float f10 = 0.0f;
-                for (int i13 = 0; i13 < childCount; i13++) {
-                    View childAt = getChildAt(i13);
-                    if (childAt instanceof si) {
-                        f10 = ((si) childAt).f30794a.c() + f10;
+    public final void h(int i10, boolean z10, boolean z11) {
+        String str;
+        if (!z10) {
+            HashMap hashMap = this.f32862b;
+            if (!hashMap.isEmpty() && !this.f32861a) {
+                this.f32861a = true;
+                ArrayList arrayList = new ArrayList();
+                int i11 = 0;
+                while (true) {
+                    ArrayList arrayList2 = this.f32863c;
+                    if (i11 < arrayList2.size()) {
+                        Object obj = hashMap.get(arrayList2.get(i11));
+                        SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
+                        arrayList.add(sendingMediaInfo);
+                        MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
+                        String str2 = searchImage.imagePath;
+                        if (str2 != null) {
+                            sendingMediaInfo.path = str2;
+                        } else {
+                            sendingMediaInfo.searchImage = searchImage;
+                        }
+                        sendingMediaInfo.thumbPath = searchImage.thumbPath;
+                        sendingMediaInfo.videoEditedInfo = searchImage.editedInfo;
+                        CharSequence charSequence = searchImage.caption;
+                        if (charSequence != null) {
+                            str = charSequence.toString();
+                        } else {
+                            str = null;
+                        }
+                        sendingMediaInfo.caption = str;
+                        sendingMediaInfo.entities = searchImage.entities;
+                        sendingMediaInfo.masks = searchImage.stickers;
+                        sendingMediaInfo.ttl = searchImage.ttl;
+                        TLRPC.BotInlineResult botInlineResult = searchImage.inlineResult;
+                        if (botInlineResult != null && searchImage.type == 1) {
+                            sendingMediaInfo.inlineResult = botInlineResult;
+                            sendingMediaInfo.params = searchImage.params;
+                        }
+                        searchImage.date = (int) (System.currentTimeMillis() / 1000);
+                        i11++;
+                    } else {
+                        ((org.telegram.ui.zn) this.d.f33228f0).g8(i10, arrayList, z11);
+                        return;
                     }
                 }
-                if (size > f10 && childCount > 0) {
-                    i12 = (int) Math.floor((f7 - f10) / childCount);
-                } else {
-                    i12 = 0;
-                }
-                for (int i14 = 0; i14 < childCount; i14++) {
-                    View childAt2 = getChildAt(i14);
-                    if (childAt2 instanceof si) {
-                        ((si) childAt2).f30794a.setAdditionalWidth(i12);
-                    }
-                }
-                super.onMeasure(i10, i11);
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
+            }
         }
+    }
+
+    @Override
+    public final void a() {
+    }
+
+    @Override
+    public final void b(Editable editable) {
+    }
+
+    @Override
+    public final void g() {
     }
 }

@@ -1,92 +1,78 @@
 package yh;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.view.View;
-import android.widget.TextView;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.e71;
-import org.telegram.ui.Components.g61;
-import org.telegram.ui.Components.h61;
-import org.telegram.ui.Components.w61;
-import org.telegram.ui.Components.w9;
-import org.telegram.ui.Components.zl0;
-public final class q0 extends g61 {
-    static {
-        g61.setup(new g61());
+import android.graphics.Rect;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.hs;
+public final class q0 extends oh.c implements me.d {
+    public static final int f53051s = 0;
+    public final me.e f53052f;
+    public final ii.q1 h;
+    public final oh.b[] f53053n;
+    public int f53054r;
+
+    public q0(Context context, org.telegram.ui.ActionBar.e6 e6Var, ii.q1 q1Var) {
+        super(context);
+        this.f53052f = new me.e(0, this, hs.h, 1600L);
+        this.h = q1Var;
+        int i10 = org.telegram.ui.ActionBar.i6.Wk;
+        int m12 = org.telegram.ui.ActionBar.i6.m1(0.09411765f, org.telegram.ui.ActionBar.i6.w0(i10, e6Var));
+        org.telegram.ui.ActionBar.i6.m1(0.1254902f, org.telegram.ui.ActionBar.i6.w0(i10, e6Var));
+        this.f17153e.setColor(m12);
+        this.f53053n = new oh.b[]{oh.b.b(context, e6Var, oh.a.G, R.string.GiftPreviewModels), oh.b.b(context, e6Var, oh.a.v, R.string.GiftPreviewBackdrops), oh.b.b(context, e6Var, oh.a.J, R.string.GiftPreviewSymbols)};
+        int i11 = 0;
+        while (true) {
+            oh.b[] bVarArr = this.f53053n;
+            if (i11 < bVarArr.length) {
+                this.f17150a.addView(bVarArr[i11], w7.x5.l(1.0f, 0, -1));
+                this.f53053n[i11].setOnClickListener(new ci.m4(this, i11, 28));
+                i11++;
+            } else {
+                bVarArr[0].e(true, false);
+                return;
+            }
+        }
     }
 
-    public static h61 a(int i10, p0 p0Var) {
-        h61 K = h61.K(q0.class);
-        K.f27102u = 1;
-        K.f27106z = i10;
-        K.G = p0Var;
-        return K;
+    public final void a(int i10) {
+        int i11 = this.f53054r;
+        if (i11 != i10) {
+            oh.b[] bVarArr = this.f53053n;
+            bVarArr[i11].e(false, true);
+            bVarArr[i10].e(true, true);
+            this.f53054r = i10;
+            this.f53052f.a(i10);
+            this.h.run(Integer.valueOf(i10));
+        }
     }
 
-    @Override
-    public final void bindView(View view, h61 h61Var, boolean z10, w61 w61Var, e71 e71Var) {
-        boolean z11;
-        String str;
-        r0 r0Var = (r0) view;
-        p0 p0Var = (p0) h61Var.G;
-        int i10 = h61Var.f27106z;
-        Integer[] numArr = new Integer[1];
-        if (i10 == 0) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        r0Var.f51897s = z11;
-        w9 w9Var = r0Var.d;
-        TextView textView = r0Var.f51893e;
-        xh.f1 f1Var = r0Var.f51892c;
-        r0Var.v = p0Var;
-        int i11 = -1;
-        if (i10 == 0) {
-            f1Var.d(null);
-            f1Var.e(null);
-            TL_stars.starGiftAttributeModel stargiftattributemodel = p0Var.f51780c;
-            textView.setText(stargiftattributemodel.name);
-            r0.a(r0Var, stargiftattributemodel.document, 80, h61Var.G, true);
-            w9Var.setColorFilter(null);
-            f1Var.f49963w = org.telegram.ui.ActionBar.i6.Oh;
-            str = y3.J1(stargiftattributemodel.rarity, numArr);
-        } else if (i10 == 1) {
-            TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = p0Var.f51778a;
-            TL_stars.starGiftAttributePattern stargiftattributepattern = p0Var.f51779b;
-            f1Var.d(stargiftattributebackdrop);
-            f1Var.e(stargiftattributepattern);
-            f1Var.f49963w = org.telegram.ui.ActionBar.i6.f20827d6;
-            textView.setText(stargiftattributebackdrop.name);
-            r0.a(r0Var, stargiftattributepattern.document, 48, h61Var.G, false);
-            w9Var.setColorFilter(new PorterDuffColorFilter(i0.a.k(stargiftattributebackdrop.pattern_color, 64), PorterDuff.Mode.SRC_IN));
-            str = y3.J1(stargiftattributebackdrop.rarity, numArr);
-        } else if (i10 == 2) {
-            TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop2 = p0Var.f51778a;
-            TL_stars.starGiftAttributePattern stargiftattributepattern2 = p0Var.f51779b;
-            f1Var.d(stargiftattributebackdrop2);
-            f1Var.e(stargiftattributepattern2);
-            f1Var.f49963w = org.telegram.ui.ActionBar.i6.f20827d6;
-            textView.setText(stargiftattributepattern2.name);
-            r0.a(r0Var, stargiftattributepattern2.document, 64, h61Var.G, false);
-            w9Var.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-            str = y3.J1(stargiftattributepattern2.rarity, numArr);
-        } else {
-            str = "";
-        }
-        if (i10 == 0) {
-            i11 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20935j5, r0Var.f51890a);
-        }
-        textView.setTextColor(i11);
-        r0Var.f51894f.setText(str);
-        r0Var.h = numArr[0];
-        r0Var.b();
+    public final void b() {
+        float f7 = this.f53052f.f16345e;
+        int measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(8.0f);
+        Rect rect = this.f17152c;
+        rect.set(AndroidUtilities.lerp(AndroidUtilities.dp(8.0f), getMeasuredWidth() - AndroidUtilities.dp(8.0f), f7 / 3.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.lerp(AndroidUtilities.dp(8.0f), getMeasuredWidth() - AndroidUtilities.dp(8.0f), (f7 + 1.0f) / 3.0f), measuredHeight);
+        int dp = AndroidUtilities.dp(this.f17151b * 7.0f);
+        Rect rect2 = this.d;
+        rect2.set(rect);
+        int i10 = -dp;
+        rect2.inset(i10, i10);
+        Math.abs(f7 - 1.0f);
     }
 
     @Override
-    public final View createView(Context context, zl0 zl0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
-        return new r0(context, d6Var);
+    public final void n(int i10, float f7, float f10, me.e eVar) {
+        b();
+        invalidate();
+    }
+
+    @Override
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        super.onSizeChanged(i10, i11, i12, i13);
+        b();
+    }
+
+    @Override
+    public final void A(float f7, int i10) {
     }
 }

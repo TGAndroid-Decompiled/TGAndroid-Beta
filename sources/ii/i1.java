@@ -3,7 +3,6 @@ package ii;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.os.Build;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Layout;
@@ -19,13 +18,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.RichMessageLayout;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.eu;
-import org.telegram.ui.Components.k90;
-import org.telegram.ui.Components.n61;
-import org.telegram.ui.Components.o11;
-public final class i1 extends eu {
+import org.telegram.ui.Components.ru;
+import org.telegram.ui.Components.u11;
+import org.telegram.ui.Components.v61;
+import org.telegram.ui.Components.y90;
+public final class i1 extends ru {
     public boolean E;
-    public k90 F;
+    public y90 F;
     public Paint G;
     public Layout H;
     public int I;
@@ -37,25 +36,25 @@ public final class i1 extends eu {
     public float O;
     public long P;
     public int Q;
-    public l4 R;
+    public m4 R;
     public boolean S;
     public final c1 T;
-    public h1 f12426c;
+    public h1 f12473c;
     public g1 d;
-    public final org.telegram.ui.ActionBar.d6 f12427e;
-    public int f12428f;
+    public final org.telegram.ui.ActionBar.e6 f12474e;
+    public int f12475f;
     public boolean h;
-    public boolean f12429n;
-    public boolean f12430r;
-    public boolean f12431s;
+    public boolean f12476n;
+    public boolean f12477r;
+    public boolean f12478s;
     public boolean v;
-    public boolean f12432w;
-    public boolean f12433x;
-    public boolean f12434y;
+    public boolean f12479w;
+    public boolean f12480x;
+    public boolean f12481y;
 
-    public i1(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, d6Var);
-        this.f12428f = UserConfig.selectedAccount;
+    public i1(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, e6Var);
+        this.f12475f = UserConfig.selectedAccount;
         this.I = -1;
         this.J = true;
         this.K = new InputFilter() {
@@ -65,16 +64,16 @@ public final class i1 extends eu {
                 if (!i1Var.v || i1Var.h) {
                     return null;
                 }
-                h1 h1Var = i1Var.f12426c;
+                h1 h1Var = i1Var.f12473c;
                 if (h1Var != null && charSequence != null && i11 > i10 && i12 == i13) {
-                    h1Var.w(charSequence.subSequence(i10, i11));
+                    h1Var.E(charSequence.subSequence(i10, i11));
                 }
                 return spanned.subSequence(i12, i13);
             }
         };
         this.M = org.telegram.ui.ActionBar.i6.G6;
         this.T = new c1(this, 0);
-        this.f12427e = d6Var;
+        this.f12474e = e6Var;
         this.adaptiveCreateLinkDialog = true;
         setBackground(null);
         setCursorWidth(1.5f);
@@ -84,10 +83,8 @@ public final class i1 extends eu {
         d1 d1Var = new d1(0);
         e1 e1Var = new e1(this);
         setCustomSelectionActionModeCallback(d1Var);
-        if (Build.VERSION.SDK_INT >= 23) {
-            setCustomInsertionActionModeCallback(e1Var);
-        }
-        setOnLongClickListener(new ci.m5(this, 2));
+        setCustomInsertionActionModeCallback(e1Var);
+        setOnLongClickListener(new ci.l5(this, 2));
         setLongClickable(length() == 0);
         setOnEditorActionListener(new hg.t0(this, 1));
         addTextChangedListener(new f1(this));
@@ -108,7 +105,7 @@ public final class i1 extends eu {
     }
 
     @Override
-    public final n61 createUrlSpan(String str) {
+    public final v61 createUrlSpan(String str) {
         return h6.k(str);
     }
 
@@ -117,24 +114,24 @@ public final class i1 extends eu {
         boolean z10;
         h1 h1Var;
         if (keyEvent.getKeyCode() == 61) {
-            if (keyEvent.getAction() == 0 && (h1Var = this.f12426c) != null) {
-                h1Var.C(keyEvent.isShiftPressed());
+            if (keyEvent.getAction() == 0 && (h1Var = this.f12473c) != null) {
+                h1Var.N(keyEvent.isShiftPressed());
                 return true;
             }
         } else {
             int keyCode = keyEvent.getKeyCode();
-            if ((keyCode == 66 || keyCode == 160) && this.f12426c != null && !this.f12432w) {
+            if ((keyCode == 66 || keyCode == 160) && this.f12473c != null && !this.f12479w) {
                 if (keyEvent.getAction() == 0) {
                     if ((keyEvent.getFlags() & 2) != 0) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    if (this.f12430r && (z10 || keyEvent.isShiftPressed())) {
+                    if (this.f12477r && (z10 || keyEvent.isShiftPressed())) {
                         p();
                         return true;
                     }
-                    this.f12426c.l(this);
+                    this.f12473c.k(this);
                 }
             } else {
                 return super.dispatchKeyEvent(keyEvent);
@@ -155,19 +152,19 @@ public final class i1 extends eu {
     }
 
     @Override
-    public org.telegram.ui.ActionBar.d6 getResourcesProvider() {
-        return this.f12427e;
+    public org.telegram.ui.ActionBar.e6 getResourcesProvider() {
+        return this.f12474e;
     }
 
     public final void m() {
         Editable text = getText();
         if (text != null) {
-            l4[] l4VarArr = (l4[]) text.getSpans(0, text.length(), l4.class);
-            for (l4 l4Var : l4VarArr) {
-                l4Var.d(text);
+            m4[] m4VarArr = (m4[]) text.getSpans(0, text.length(), m4.class);
+            for (m4 m4Var : m4VarArr) {
+                m4Var.d(text);
             }
-            for (l4 l4Var2 : l4VarArr) {
-                l4Var2.a(this.f12428f, this, this.f12427e);
+            for (m4 m4Var2 : m4VarArr) {
+                m4Var2.a(this.f12475f, this, this.f12474e);
             }
         }
     }
@@ -189,22 +186,22 @@ public final class i1 extends eu {
         invalidate();
     }
 
-    public final l4 o(float f7, float f10) {
+    public final m4 o(float f7, float f10) {
         int totalPaddingTop;
-        l4[] l4VarArr;
+        m4[] m4VarArr;
         Layout layout = getLayout();
         Editable text = getText();
         if (layout != null && text != null && text.length() != 0 && (totalPaddingTop = (int) ((f10 - getTotalPaddingTop()) + getScrollY())) >= 0 && totalPaddingTop <= layout.getHeight()) {
             int lineForVertical = layout.getLineForVertical(totalPaddingTop);
             float totalPaddingLeft = (f7 - getTotalPaddingLeft()) + getScrollX();
-            for (l4 l4Var : (l4[]) text.getSpans(layout.getLineStart(lineForVertical), layout.getLineEnd(lineForVertical), l4.class)) {
-                int spanStart = text.getSpanStart(l4Var);
-                int spanEnd = text.getSpanEnd(l4Var);
+            for (m4 m4Var : (m4[]) text.getSpans(layout.getLineStart(lineForVertical), layout.getLineEnd(lineForVertical), m4.class)) {
+                int spanStart = text.getSpanStart(m4Var);
+                int spanEnd = text.getSpanEnd(m4Var);
                 if (spanStart >= 0 && spanEnd > spanStart) {
                     float primaryHorizontal = layout.getPrimaryHorizontal(spanStart);
                     float primaryHorizontal2 = layout.getPrimaryHorizontal(spanEnd);
                     if (totalPaddingLeft >= Math.min(primaryHorizontal, primaryHorizontal2) - AndroidUtilities.dp(2.0f) && totalPaddingLeft <= Math.max(primaryHorizontal, primaryHorizontal2) + AndroidUtilities.dp(2.0f)) {
-                        return l4Var;
+                        return m4Var;
                     }
                 }
             }
@@ -220,17 +217,17 @@ public final class i1 extends eu {
 
     @Override
     public final void onDetachedFromWindow() {
-        l4[] l4VarArr;
+        m4[] m4VarArr;
         AndroidUtilities.cancelRunOnUIThread(this.T);
         this.R = null;
         this.S = false;
         Editable text = getText();
         if (text != null) {
-            for (l4 l4Var : (l4[]) text.getSpans(0, text.length(), l4.class)) {
-                RichMessageLayout.RichButtonSpan richButtonSpan = l4Var.f12510b;
-                if (richButtonSpan != null && l4Var.f12511c == this) {
+            for (m4 m4Var : (m4[]) text.getSpans(0, text.length(), m4.class)) {
+                RichMessageLayout.RichButtonSpan richButtonSpan = m4Var.f12571b;
+                if (richButtonSpan != null && m4Var.f12572c == this) {
                     richButtonSpan.detach(this);
-                    l4Var.f12511c = null;
+                    m4Var.f12572c = null;
                 }
             }
         }
@@ -239,12 +236,12 @@ public final class i1 extends eu {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        o11[] o11VarArr;
+        u11[] u11VarArr;
         int i10;
         int i11;
         float f7;
         Layout layout = getLayout();
-        k90 k90Var = null;
+        y90 y90Var = null;
         if (layout == null) {
             this.F = null;
             this.H = null;
@@ -258,17 +255,17 @@ public final class i1 extends eu {
                 this.F = null;
                 if (text instanceof Spanned) {
                     Spanned spanned = (Spanned) text;
-                    for (o11 o11Var : (o11[]) spanned.getSpans(0, spanned.length(), o11.class)) {
-                        int i12 = o11Var.f29298b.f28925a;
+                    for (u11 u11Var : (u11[]) spanned.getSpans(0, spanned.length(), u11.class)) {
+                        int i12 = u11Var.f31339b.f30974a;
                         if ((65536 & i12) != 0) {
-                            int spanStart = spanned.getSpanStart(o11Var);
-                            int spanEnd = spanned.getSpanEnd(o11Var);
+                            int spanStart = spanned.getSpanStart(u11Var);
+                            int spanEnd = spanned.getSpanEnd(u11Var);
                             if (spanStart >= 0 && spanEnd > spanStart) {
-                                if (k90Var == null) {
-                                    k90Var = new k90(0);
-                                    k90Var.f28122n = false;
+                                if (y90Var == null) {
+                                    y90Var = new y90(0);
+                                    y90Var.f33174n = false;
                                 }
-                                k90Var.d(layout, spanStart, 0.0f);
+                                y90Var.d(layout, spanStart, 0.0f);
                                 if ((32768 & i12) != 0) {
                                     i10 = -AndroidUtilities.dp(6.0f);
                                 } else if ((i12 & 16384) != 0) {
@@ -286,15 +283,15 @@ public final class i1 extends eu {
                                 } else {
                                     i11 = 0;
                                 }
-                                k90Var.f28123o = i11;
-                                layout.getSelectionPath(spanStart, spanEnd, k90Var);
+                                y90Var.f33175o = i11;
+                                layout.getSelectionPath(spanStart, spanEnd, y90Var);
                             }
                         }
                     }
-                    if (k90Var != null) {
-                        k90Var.f28122n = true;
+                    if (y90Var != null) {
+                        y90Var.f33174n = true;
                     }
-                    this.F = k90Var;
+                    this.F = y90Var;
                 }
             }
         }
@@ -302,9 +299,9 @@ public final class i1 extends eu {
             if (this.G == null) {
                 Paint paint = new Paint(1);
                 this.G = paint;
-                paint.setPathEffect(k90.c());
+                paint.setPathEffect(y90.c());
             }
-            this.G.setColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.K6, this.f12427e) & 872415231);
+            this.G.setColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.K6, this.f12474e) & 872415231);
             canvas.save();
             canvas.translate(getPaddingLeft(), this.offsetY);
             canvas.drawPath(this.F, this.G);
@@ -315,11 +312,11 @@ public final class i1 extends eu {
 
     @Override
     public final boolean onKeyDown(int i10, KeyEvent keyEvent) {
-        if (i10 == 67 && this.f12426c != null) {
+        if (i10 == 67 && this.f12473c != null) {
             if (length() == 0) {
-                this.f12426c.r();
+                this.f12473c.t();
                 return true;
-            } else if (getSelectionStart() == 0 && getSelectionEnd() == 0 && this.f12426c.p(this)) {
+            } else if (getSelectionStart() == 0 && getSelectionEnd() == 0 && this.f12473c.r(this)) {
                 return true;
             }
         }
@@ -329,9 +326,9 @@ public final class i1 extends eu {
     @Override
     public final void onSelectionChanged(int i10, int i11) {
         super.onSelectionChanged(i10, i11);
-        h1 h1Var = this.f12426c;
+        h1 h1Var = this.f12473c;
         if (h1Var != null) {
-            h1Var.t(this, i10, i11);
+            h1Var.x(this, i10, i11);
         }
     }
 
@@ -345,8 +342,8 @@ public final class i1 extends eu {
     public final boolean onTextContextMenuItem(int i10) {
         h1 h1Var;
         h1 h1Var2;
-        if (i10 != 16908319 || (h1Var2 = this.f12426c) == null || !h1Var2.e()) {
-            if (i10 == 16908322 && (h1Var = this.f12426c) != null && h1Var.n(this)) {
+        if (i10 != 16908319 || (h1Var2 = this.f12473c) == null || !h1Var2.f()) {
+            if (i10 == 16908322 && (h1Var = this.f12473c) != null && h1Var.m(this)) {
                 return true;
             }
             return super.onTextContextMenuItem(i10);
@@ -359,8 +356,8 @@ public final class i1 extends eu {
         float f7;
         boolean z10;
         boolean z11;
-        if (motionEvent.getAction() == 0 && this.f12426c != null && isEnabled() && isFocusable()) {
-            this.f12426c.b(this);
+        if (motionEvent.getAction() == 0 && this.f12473c != null && isEnabled() && isFocusable()) {
+            this.f12473c.c(this);
         }
         if (!this.v) {
             int action = motionEvent.getAction();
@@ -371,7 +368,7 @@ public final class i1 extends eu {
                 this.N = motionEvent.getX();
                 this.O = motionEvent.getY();
                 this.P = motionEvent.getEventTime();
-                l4 o9 = o(motionEvent.getX(), motionEvent.getY());
+                m4 o9 = o(motionEvent.getX(), motionEvent.getY());
                 this.R = o9;
                 if (o9 != null && this.d != null) {
                     this.S = false;
@@ -382,26 +379,26 @@ public final class i1 extends eu {
                 }
                 this.R = null;
             } else {
-                l4 l4Var = this.R;
-                if (l4Var != null) {
+                m4 m4Var = this.R;
+                if (m4Var != null) {
                     if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
                         z10 = false;
                     } else {
                         z10 = true;
                     }
-                    if (motionEvent.getAction() != 3 && o(motionEvent.getX(), motionEvent.getY()) == l4Var) {
+                    if (motionEvent.getAction() != 3 && o(motionEvent.getX(), motionEvent.getY()) == m4Var) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
                     if (!z11 || z10) {
-                        l4Var.b().setPressed(false);
+                        m4Var.b().setPressed(false);
                         AndroidUtilities.cancelRunOnUIThread(c1Var);
                     }
                     if (z10) {
                         this.R = null;
                         if (!this.S && z11 && motionEvent.getAction() == 1) {
-                            ((u2) this.d).a(this, l4Var, false);
+                            ((u2) this.d).a(this, m4Var, false);
                         }
                         this.S = false;
                     }
@@ -450,7 +447,7 @@ public final class i1 extends eu {
                             }
                         }
                         if (tVar != null) {
-                            r.S(getContext(), tVar.f12649a, new ai.g3(20, this, tVar), this.f12427e);
+                            r.X(getContext(), tVar.f12696a, new ai.h3(20, this, tVar), this.f12474e);
                             return true;
                         }
                     }
@@ -467,17 +464,17 @@ public final class i1 extends eu {
             max2 = max;
             max = max2;
         }
-        this.f12429n = true;
+        this.f12476n = true;
         getText().replace(max, max2, "\n");
-        this.f12429n = false;
+        this.f12476n = false;
         setSelection(max + 1);
     }
 
     public final void q() {
-        if (!this.f12433x) {
+        if (!this.f12480x) {
             return;
         }
-        this.f12434y = true;
+        this.f12481y = true;
         int dp = AndroidUtilities.dp(2.0f);
         CharSequence hint = getHint();
         if (length() == 0 && getWidth() > 0 && !TextUtils.isEmpty(hint)) {
@@ -488,13 +485,13 @@ public final class i1 extends eu {
             super.setGravity(17);
             setPadding(dp, getPaddingTop(), dp, getPaddingBottom());
         }
-        this.f12434y = false;
+        this.f12481y = false;
     }
 
     public final void r() {
-        h1 h1Var = this.f12426c;
+        h1 h1Var = this.f12473c;
         if (h1Var != null) {
-            h1Var.b(this);
+            h1Var.c(this);
         }
         requestFocus();
         AndroidUtilities.showKeyboard(this);
@@ -527,15 +524,15 @@ public final class i1 extends eu {
     }
 
     public void setAccentHint(boolean z10) {
-        if (this.f12431s == z10) {
+        if (this.f12478s == z10) {
             return;
         }
-        this.f12431s = z10;
+        this.f12478s = z10;
         t();
     }
 
     public void setAllowNewlines(boolean z10) {
-        this.f12432w = z10;
+        this.f12479w = z10;
     }
 
     public void setAutoBold(boolean z10) {
@@ -547,10 +544,10 @@ public final class i1 extends eu {
     }
 
     public void setCenterEmptyHint(boolean z10) {
-        if (this.f12433x == z10) {
+        if (this.f12480x == z10) {
             return;
         }
-        this.f12433x = z10;
+        this.f12480x = z10;
         if (z10) {
             q();
             return;
@@ -561,8 +558,8 @@ public final class i1 extends eu {
 
     @Override
     public void setGravity(int i10) {
-        if (!this.f12434y) {
-            this.f12433x = false;
+        if (!this.f12481y) {
+            this.f12480x = false;
         }
         super.setGravity(i10);
     }
@@ -572,7 +569,7 @@ public final class i1 extends eu {
     }
 
     public void setInlineButtonContext(int i10) {
-        this.f12428f = i10;
+        this.f12475f = i10;
         m();
     }
 
@@ -592,7 +589,7 @@ public final class i1 extends eu {
     }
 
     public void setListener(h1 h1Var) {
-        this.f12426c = h1Var;
+        this.f12473c = h1Var;
     }
 
     public void setLocked(boolean z10) {
@@ -630,7 +627,7 @@ public final class i1 extends eu {
     }
 
     public void setSoftEnterNewline(boolean z10) {
-        this.f12430r = z10;
+        this.f12477r = z10;
     }
 
     public void setTextColorKey(int i10) {
@@ -647,19 +644,19 @@ public final class i1 extends eu {
     }
 
     public final void t() {
-        int v02;
+        int w02;
         int i10 = this.M;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f12427e;
-        setTextColor(org.telegram.ui.ActionBar.i6.v0(i10, d6Var));
-        setLinkTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.gc, d6Var));
-        if (this.f12431s) {
-            v02 = org.telegram.ui.ActionBar.i6.l1(0.5f, org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Oh, d6Var));
+        org.telegram.ui.ActionBar.e6 e6Var = this.f12474e;
+        setTextColor(org.telegram.ui.ActionBar.i6.w0(i10, e6Var));
+        setLinkTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.gc, e6Var));
+        if (this.f12478s) {
+            w02 = org.telegram.ui.ActionBar.i6.m1(0.5f, org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.Oh, e6Var));
         } else {
-            v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.H6, d6Var);
+            w02 = org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.H6, e6Var);
         }
-        setHintTextColor(v02);
-        setCursorColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.G6, d6Var));
-        setHandlesColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20974l6, d6Var));
+        setHintTextColor(w02);
+        setCursorColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.G6, e6Var));
+        setHandlesColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20943l6, e6Var));
         m();
     }
 

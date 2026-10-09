@@ -9,33 +9,33 @@ import android.graphics.drawable.Drawable;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
-import le.e;
+import me.e;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.tr;
+import org.telegram.ui.Components.hs;
 import yf.p;
-public final class a extends c implements le.d {
-    public final le.b d;
-    public final int[] f46864e;
-    public final Drawable f46865f;
+public final class a extends c implements me.d {
+    public final me.b d;
+    public final int[] f48158e;
+    public final Drawable f48159f;
     public final TextPaint h;
-    public StaticLayout f46866n;
-    public int f46867r;
-    public int f46868s;
+    public StaticLayout f48160n;
+    public int f48161r;
+    public int f48162s;
 
-    public a(Context context, d6 d6Var) {
-        super(d6Var);
-        this.d = new le.b(0, this, tr.h, 320L, false);
-        this.f46864e = new int[]{16842910, 16842919};
-        this.f46865f = context.getResources().getDrawable(R.drawable.outline_poll_add_24).mutate();
+    public a(Context context, e6 e6Var) {
+        super(e6Var);
+        this.d = new me.b(0, this, hs.h, 320L, false);
+        this.f48158e = new int[]{16842910, 16842919};
+        this.f48159f = context.getResources().getDrawable(R.drawable.outline_poll_add_24).mutate();
         this.h = new TextPaint(i6.P2);
-        int v02 = i6.v0(i6.f20918i6, d6Var);
-        if (this.f46881b != v02) {
-            i6.B1(this.f46880a, v02, false);
-            this.f46881b = v02;
+        int w02 = i6.w0(i6.f20888i6, e6Var);
+        if (this.f48175b != w02) {
+            i6.C1(this.f48174a, w02, false);
+            this.f48175b = w02;
         }
         b();
         c();
@@ -43,26 +43,19 @@ public final class a extends c implements le.d {
 
     @Override
     public final void a(int i10) {
-        this.f46880a.setAlpha(i10);
+        this.f48174a.setAlpha(i10);
         b();
         c();
-    }
-
-    @Override
-    public final void a0(int i10, float f7, float f10, e eVar) {
-        b();
-        c();
-        invalidateSelf();
     }
 
     public final void b() {
-        Drawable drawable = this.f46865f;
-        drawable.setAlpha((int) ((1.0f - this.d.f15436e) * this.f46882c));
+        Drawable drawable = this.f48159f;
+        drawable.setAlpha((int) ((1.0f - this.d.f16337e) * this.f48176c));
     }
 
     public final void c() {
         TextPaint textPaint = this.h;
-        textPaint.setAlpha((int) ((1.0f - this.d.f15436e) * this.f46882c));
+        textPaint.setAlpha((int) ((1.0f - this.d.f16337e) * this.f48176c));
     }
 
     public final void d(boolean z10, boolean z11) {
@@ -72,23 +65,30 @@ public final class a extends c implements le.d {
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
-        this.f46880a.draw(canvas);
-        p.b(canvas, this.f46865f, 1.0f - this.d.f15436e);
-        if (this.f46866n != null) {
+        this.f48174a.draw(canvas);
+        p.b(canvas, this.f48159f, 1.0f - this.d.f16337e);
+        if (this.f48160n != null) {
             canvas.save();
             canvas.translate(AndroidUtilities.dp(44.0f) + bounds.left, AndroidUtilities.dp(13.66f) + bounds.top);
-            this.f46866n.draw(canvas);
+            this.f48160n.draw(canvas);
             canvas.restore();
         }
     }
 
     public final void e(int i10) {
-        if (this.f46868s != i10) {
-            this.f46868s = i10;
+        if (this.f48162s != i10) {
+            this.f48162s = i10;
             this.h.setColor(i10);
-            this.f46865f.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
+            this.f48159f.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
             c();
         }
+    }
+
+    @Override
+    public final void n(int i10, float f7, float f10, e eVar) {
+        b();
+        c();
+        invalidateSelf();
     }
 
     @Override
@@ -98,16 +98,16 @@ public final class a extends c implements le.d {
         float dp = AndroidUtilities.dp(22.33f) + rect.left;
         AndroidUtilities.dp(27.0f);
         AndroidUtilities.dp(44.0f);
-        p.d(this.f46865f, dp, exactCenterY, 17);
+        p.d(this.f48159f, dp, exactCenterY, 17);
         int width = rect.width() - AndroidUtilities.dp(56.0f);
-        if (this.f46866n != null && this.f46867r == width) {
+        if (this.f48160n != null && this.f48161r == width) {
             return;
         }
-        this.f46867r = width;
-        this.f46866n = new StaticLayout(LocaleController.getString(R.string.PollAddAnOption), this.h, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        this.f48161r = width;
+        this.f48160n = new StaticLayout(LocaleController.getString(R.string.PollAddAnOption), this.h, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
     }
 
     @Override
-    public final void V(float f7, int i10) {
+    public final void A(float f7, int i10) {
     }
 }

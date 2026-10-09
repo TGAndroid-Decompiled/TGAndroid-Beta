@@ -1,34 +1,276 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
+import android.graphics.Paint;
+import android.media.MediaCodec;
+import android.os.Build;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
-public final class mp0 extends FrameLayout {
-    public final gf f28759a;
+public final class mp0 {
+    public final int f28881a;
+    public long f28882b;
+    public final Object f28883c;
+    public final Object d;
+    public Object f28884e;
+    public Object f28885f;
+    public Object f28886g;
 
-    public mp0(gf gfVar, Context context) {
-        super(context);
-        this.f28759a = gfVar;
+    public mp0(y2.d dVar) {
+        this.f28883c = dVar;
+        int i10 = dVar.f51660b;
+        this.f28881a = i10;
+        this.d = new e2.v(32);
+        u2.x0 x0Var = new u2.x0(0L, i10);
+        this.f28884e = x0Var;
+        this.f28885f = x0Var;
+        this.f28886g = x0Var;
     }
 
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        gf gfVar = this.f28759a;
-        View contentView = gfVar.getContentView();
-        contentView.getLocationInWindow(r3);
-        int[] iArr = {iArr[0] + gfVar.E, iArr[1] + gfVar.F};
-        int[] iArr2 = new int[2];
-        getLocationInWindow(iArr2);
-        if ((motionEvent.getAction() != 0 || motionEvent.getX() > iArr[0]) && motionEvent.getX() < contentView.getWidth() + iArr[0] && motionEvent.getY() > iArr[1] && motionEvent.getY() < contentView.getHeight() + iArr[1]) {
-            motionEvent.offsetLocation(iArr2[0] - iArr[0], (AndroidUtilities.statusBarHeight + iArr2[1]) - iArr[1]);
-            return contentView.dispatchTouchEvent(motionEvent);
+    public static u2.x0 d(u2.x0 x0Var, long j3, ByteBuffer byteBuffer, int i10) {
+        while (j3 >= x0Var.f48757b) {
+            x0Var = (u2.x0) x0Var.d;
         }
-        if (!gfVar.A && !gfVar.D) {
-            gfVar.D = true;
-            gfVar.l(new o1.k[0]);
+        while (i10 > 0) {
+            int min = Math.min(i10, (int) (x0Var.f48757b - j3));
+            y2.a aVar = (y2.a) x0Var.f48758c;
+            byteBuffer.put(aVar.f51654a, ((int) (j3 - x0Var.f48756a)) + aVar.f51655b, min);
+            i10 -= min;
+            j3 += min;
+            if (j3 == x0Var.f48757b) {
+                x0Var = (u2.x0) x0Var.d;
+            }
         }
-        return true;
+        return x0Var;
+    }
+
+    public static u2.x0 e(u2.x0 x0Var, long j3, byte[] bArr, int i10) {
+        while (j3 >= x0Var.f48757b) {
+            x0Var = (u2.x0) x0Var.d;
+        }
+        int i11 = i10;
+        while (i11 > 0) {
+            int min = Math.min(i11, (int) (x0Var.f48757b - j3));
+            y2.a aVar = (y2.a) x0Var.f48758c;
+            System.arraycopy(aVar.f51654a, ((int) (j3 - x0Var.f48756a)) + aVar.f51655b, bArr, i10 - i11, min);
+            i11 -= min;
+            j3 += min;
+            if (j3 == x0Var.f48757b) {
+                x0Var = (u2.x0) x0Var.d;
+            }
+        }
+        return x0Var;
+    }
+
+    public static u2.x0 f(u2.x0 x0Var, h2.h hVar, ii.b0 b0Var, e2.v vVar) {
+        boolean z10;
+        if (hVar.getFlag(1073741824)) {
+            long j3 = b0Var.f12282b;
+            int i10 = 1;
+            vVar.G(1);
+            u2.x0 e7 = e(x0Var, j3, vVar.f8584a, 1);
+            long j10 = j3 + 1;
+            byte b10 = vVar.f8584a[0];
+            if ((b10 & 128) != 0) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int i11 = b10 & Byte.MAX_VALUE;
+            h2.d dVar = hVar.f10984b;
+            byte[] bArr = dVar.f10975a;
+            if (bArr == null) {
+                dVar.f10975a = new byte[16];
+            } else {
+                Arrays.fill(bArr, (byte) 0);
+            }
+            x0Var = e(e7, j10, dVar.f10975a, i11);
+            long j11 = j10 + i11;
+            if (z10) {
+                vVar.G(2);
+                x0Var = e(x0Var, j11, vVar.f8584a, 2);
+                j11 += 2;
+                i10 = vVar.D();
+            }
+            int[] iArr = dVar.d;
+            if (iArr == null || iArr.length < i10) {
+                iArr = new int[i10];
+            }
+            int[] iArr2 = dVar.f10978e;
+            if (iArr2 == null || iArr2.length < i10) {
+                iArr2 = new int[i10];
+            }
+            if (z10) {
+                int i12 = i10 * 6;
+                vVar.G(i12);
+                x0Var = e(x0Var, j11, vVar.f8584a, i12);
+                j11 += i12;
+                vVar.J(0);
+                for (int i13 = 0; i13 < i10; i13++) {
+                    iArr[i13] = vVar.D();
+                    iArr2[i13] = vVar.B();
+                }
+            } else {
+                iArr[0] = 0;
+                iArr2[0] = b0Var.f12281a - ((int) (j11 - b0Var.f12282b));
+            }
+            c3.g0 g0Var = (c3.g0) b0Var.f12283c;
+            String str = e2.d0.f8532a;
+            byte[] bArr2 = g0Var.f4114b;
+            byte[] bArr3 = dVar.f10975a;
+            int i14 = g0Var.f4113a;
+            int i15 = g0Var.f4115c;
+            int i16 = g0Var.d;
+            dVar.f10979f = i10;
+            dVar.d = iArr;
+            dVar.f10978e = iArr2;
+            dVar.f10976b = bArr2;
+            dVar.f10975a = bArr3;
+            dVar.f10977c = i14;
+            dVar.f10980g = i15;
+            dVar.h = i16;
+            MediaCodec.CryptoInfo cryptoInfo = dVar.f10981i;
+            cryptoInfo.numSubSamples = i10;
+            cryptoInfo.numBytesOfClearData = iArr;
+            cryptoInfo.numBytesOfEncryptedData = iArr2;
+            cryptoInfo.key = bArr2;
+            cryptoInfo.iv = bArr3;
+            cryptoInfo.mode = i14;
+            if (Build.VERSION.SDK_INT >= 24) {
+                h2.c cVar = dVar.f10982j;
+                cVar.getClass();
+                h2.c.a(cVar, i15, i16);
+            }
+            long j12 = b0Var.f12282b;
+            int i17 = (int) (j11 - j12);
+            b0Var.f12282b = j12 + i17;
+            b0Var.f12281a -= i17;
+        }
+        if (hVar.hasSupplementalData()) {
+            vVar.G(4);
+            u2.x0 e10 = e(x0Var, b0Var.f12282b, vVar.f8584a, 4);
+            int B = vVar.B();
+            b0Var.f12282b += 4;
+            b0Var.f12281a -= 4;
+            hVar.b(B);
+            u2.x0 d = d(e10, b0Var.f12282b, hVar.f10985c, B);
+            b0Var.f12282b += B;
+            int i18 = b0Var.f12281a - B;
+            b0Var.f12281a = i18;
+            ByteBuffer byteBuffer = hVar.f10987f;
+            if (byteBuffer != null && byteBuffer.capacity() >= i18) {
+                hVar.f10987f.clear();
+            } else {
+                hVar.f10987f = ByteBuffer.allocate(i18);
+            }
+            return d(d, b0Var.f12282b, hVar.f10987f, b0Var.f12281a);
+        }
+        hVar.b(b0Var.f12281a);
+        return d(x0Var, b0Var.f12282b, hVar.f10985c, b0Var.f12281a);
+    }
+
+    public void a(u2.x0 x0Var) {
+        if (((y2.a) x0Var.f48758c) == null) {
+            return;
+        }
+        y2.d dVar = (y2.d) this.f28883c;
+        synchronized (dVar) {
+            u2.x0 x0Var2 = x0Var;
+            while (x0Var2 != null) {
+                try {
+                    y2.a[] aVarArr = dVar.f51663f;
+                    int i10 = dVar.f51662e;
+                    dVar.f51662e = i10 + 1;
+                    y2.a aVar = (y2.a) x0Var2.f48758c;
+                    aVar.getClass();
+                    aVarArr[i10] = aVar;
+                    dVar.d--;
+                    x0Var2 = (u2.x0) x0Var2.d;
+                    if (x0Var2 == null || ((y2.a) x0Var2.f48758c) == null) {
+                        x0Var2 = null;
+                    }
+                } catch (Throwable th2) {
+                    throw th2;
+                }
+            }
+            dVar.notifyAll();
+        }
+        x0Var.f48758c = null;
+        x0Var.d = null;
+    }
+
+    public void b(long j3) {
+        u2.x0 x0Var;
+        if (j3 != -1) {
+            while (true) {
+                x0Var = (u2.x0) this.f28884e;
+                if (j3 < x0Var.f48757b) {
+                    break;
+                }
+                y2.d dVar = (y2.d) this.f28883c;
+                y2.a aVar = (y2.a) x0Var.f48758c;
+                synchronized (dVar) {
+                    y2.a[] aVarArr = dVar.f51663f;
+                    int i10 = dVar.f51662e;
+                    dVar.f51662e = i10 + 1;
+                    aVarArr[i10] = aVar;
+                    dVar.d--;
+                    dVar.notifyAll();
+                }
+                u2.x0 x0Var2 = (u2.x0) this.f28884e;
+                x0Var2.f48758c = null;
+                x0Var2.d = null;
+                this.f28884e = (u2.x0) x0Var2.d;
+            }
+            if (((u2.x0) this.f28885f).f48756a < x0Var.f48756a) {
+                this.f28885f = x0Var;
+            }
+        }
+    }
+
+    public int c(int i10) {
+        y2.a aVar;
+        u2.x0 x0Var = (u2.x0) this.f28886g;
+        if (((y2.a) x0Var.f48758c) == null) {
+            y2.d dVar = (y2.d) this.f28883c;
+            synchronized (dVar) {
+                try {
+                    int i11 = dVar.d + 1;
+                    dVar.d = i11;
+                    int i12 = dVar.f51662e;
+                    if (i12 > 0) {
+                        y2.a[] aVarArr = dVar.f51663f;
+                        int i13 = i12 - 1;
+                        dVar.f51662e = i13;
+                        aVar = aVarArr[i13];
+                        aVar.getClass();
+                        dVar.f51663f[dVar.f51662e] = null;
+                    } else {
+                        y2.a aVar2 = new y2.a(new byte[dVar.f51660b], 0);
+                        y2.a[] aVarArr2 = dVar.f51663f;
+                        if (i11 > aVarArr2.length) {
+                            dVar.f51663f = (y2.a[]) Arrays.copyOf(aVarArr2, aVarArr2.length * 2);
+                        }
+                        aVar = aVar2;
+                    }
+                } catch (Throwable th2) {
+                    throw th2;
+                }
+            }
+            u2.x0 x0Var2 = new u2.x0(((u2.x0) this.f28886g).f48757b, this.f28881a);
+            x0Var.f48758c = aVar;
+            x0Var.d = x0Var2;
+        }
+        return Math.min(i10, (int) (((u2.x0) this.f28886g).f48757b - this.f28882b));
+    }
+
+    public mp0(bd0 bd0Var) {
+        this.d = new ArrayList(50);
+        this.f28884e = new ArrayList(50);
+        Paint paint = new Paint(1);
+        this.f28885f = paint;
+        this.f28881a = 250;
+        this.f28883c = bd0Var;
+        paint.setStrokeWidth(AndroidUtilities.dp(1.33f));
     }
 }

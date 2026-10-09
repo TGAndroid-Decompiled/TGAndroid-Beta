@@ -1,37 +1,64 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Path;
-import android.graphics.RectF;
-import org.telegram.messenger.AndroidUtilities;
-public final class cf0 extends Path {
-    public int f25412a;
-    public int f25413b;
-    public int f25414c;
+import android.app.Activity;
+import org.telegram.messenger.Utilities;
+public final class cf0 implements Utilities.Callback {
+    public final int f25361a;
+    public final String[] f25362b;
+    public final Activity f25363c;
+    public final Utilities.Callback d;
 
-    public final void a(int i10, int i11, int i12) {
-        if (this.f25412a == i10 && this.f25413b == i11 && this.f25414c == i12) {
-            return;
+    public cf0(String[] strArr, Activity activity, Utilities.Callback callback, int i10) {
+        this.f25361a = i10;
+        this.f25362b = strArr;
+        this.f25363c = activity;
+        this.d = callback;
+    }
+
+    @Override
+    public final void run(Object obj) {
+        int[] iArr = (int[]) obj;
+        switch (this.f25361a) {
+            case 0:
+                String[] strArr = this.f25362b;
+                int length = strArr.length;
+                boolean z10 = false;
+                int i10 = 0;
+                while (true) {
+                    if (i10 < length) {
+                        if (this.f25363c.checkSelfPermission(strArr[i10]) == 0) {
+                            z10 = true;
+                        } else {
+                            i10++;
+                        }
+                    }
+                }
+                Utilities.Callback callback = this.d;
+                if (callback != null) {
+                    callback.run(Boolean.valueOf(z10));
+                    return;
+                }
+                return;
+            default:
+                String[] strArr2 = this.f25362b;
+                int length2 = strArr2.length;
+                boolean z11 = false;
+                int i11 = 0;
+                while (true) {
+                    if (i11 < length2) {
+                        if (this.f25363c.checkSelfPermission(strArr2[i11]) == 0) {
+                            i11++;
+                        }
+                    } else {
+                        z11 = true;
+                    }
+                }
+                Utilities.Callback callback2 = this.d;
+                if (callback2 != null) {
+                    callback2.run(Boolean.valueOf(z11));
+                    return;
+                }
+                return;
         }
-        rewind();
-        RectF rectF = AndroidUtilities.rectTmp;
-        float f7 = i10 - i12;
-        float f10 = i11 + i12;
-        rectF.set(f7, i11 - i12, i10 + i12, f10);
-        arcTo(rectF, -180.0f, 270.0f, false);
-        float f11 = i12 / 81.0f;
-        float f12 = i10;
-        float f13 = f10 - (3.0f * f11);
-        cubicTo(f12 - (13.0f * f11), f10, f12 - (25.0f * f11), f13, f12 - (36.0f * f11), f10 - (8.42f * f11));
-        float f14 = f10 - f11;
-        cubicTo(f12 - (52.0f * f11), f14, f12 - (56.5f * f11), f14, f12 - (78.02f * f11), f14);
-        cubicTo(f12 - (80.0f * f11), f14, f12 - (81.0f * f11), f13, f12 - (79.52f * f11), f10 - (4.5f * f11));
-        float f15 = f12 - (63.73f * f11);
-        cubicTo(f12 - (78.0f * f11), f10 - (6.0f * f11), f15, f10 - (15.0f * f11), f15, f10 - (31.0f * f11));
-        float f16 = i11;
-        cubicTo(f12 - (74.5f * f11), f10 - (44.75f * f11), f7, (f11 * 18.87f) + f16, f7, f16);
-        close();
-        this.f25412a = i10;
-        this.f25413b = i11;
-        this.f25414c = i12;
     }
 }

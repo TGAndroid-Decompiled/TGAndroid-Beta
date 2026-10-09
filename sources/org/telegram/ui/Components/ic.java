@@ -1,52 +1,122 @@
 package org.telegram.ui.Components;
 
-import android.view.ViewPropertyAnimator;
-public final class ic extends ob {
-    public float f27452a;
-    public hc f27453b;
-    public w9 f27454c;
-    public p6 d;
-    public boolean f27455e;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class ic extends GestureDetector.SimpleOnGestureListener {
+    public final xb f27345a;
+    public final lb f27346b;
+
+    public ic(lb lbVar, xb xbVar) {
+        this.f27346b = lbVar;
+        this.f27345a = xbVar;
+    }
 
     @Override
-    public CharSequence getAccessibilityText() {
-        return this.d.getText();
+    public final boolean onDown(MotionEvent motionEvent) {
+        lb lbVar = this.f27346b;
+        if (lbVar.f28413s) {
+            return false;
+        }
+        xb xbVar = this.f27345a;
+        lbVar.v = xb.access$1400(xbVar, true);
+        lbVar.f28414w = xb.access$1400(xbVar, false);
+        return true;
     }
 
-    public void setProgress(float f7) {
-        boolean z10;
-        float f10;
-        boolean z11 = this.f27455e;
-        boolean z12 = false;
-        float f11 = 1.0f;
-        int i10 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
-        if (i10 < 0) {
+    @Override
+    public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
+        boolean z10 = false;
+        if (Math.abs(f7) <= 2000.0f) {
+            return false;
+        }
+        int i10 = (f7 > 0.0f ? 1 : (f7 == 0.0f ? 0 : -1));
+        lb lbVar = this.f27346b;
+        if ((i10 < 0 && lbVar.v) || (f7 > 0.0f && lbVar.f28414w)) {
             z10 = true;
-        } else {
-            z10 = false;
         }
-        if (z11 != z10) {
-            if (i10 < 0) {
-                z12 = true;
-            }
-            this.f27455e = z12;
-            ViewPropertyAnimator animate = this.f27454c.animate();
-            if (this.f27455e) {
-                f10 = 0.78f;
-            } else {
-                f10 = 1.0f;
-            }
-            ViewPropertyAnimator scaleX = animate.scaleX(f10);
-            if (this.f27455e) {
-                f11 = 0.78f;
-            }
-            scaleX.scaleY(f11).setDuration(320L).setInterpolator(tr.h).start();
+        float signum = Math.signum(f7);
+        xb xbVar = this.f27345a;
+        o1.k kVar = new o1.k(xbVar, o1.h.f16919m, signum * xbVar.getWidth() * 2.0f);
+        if (!z10) {
+            kVar.a(new o1.f(this) {
+                public final ic f26664b;
+
+                {
+                    this.f26664b = this;
+                }
+
+                @Override
+                public final void a(o1.h hVar, boolean z11, float f11, float f12) {
+                    switch (r2) {
+                        case 0:
+                            this.f26664b.f27346b.f28416y.b();
+                            return;
+                        default:
+                            this.f26664b.f27346b.f28416y.b();
+                            return;
+                    }
+                }
+            });
+            kVar.b(new m7(xbVar, 2));
         }
-        this.f27452a = f7;
-        this.f27453b.invalidate();
+        kVar.f16938u.a(1.0f);
+        kVar.f16938u.b(100.0f);
+        kVar.f16927a = f7;
+        kVar.h();
+        if (z10) {
+            o1.k kVar2 = new o1.k(xbVar, o1.h.f16926t, 0.0f);
+            kVar2.a(new o1.f(this) {
+                public final ic f26664b;
+
+                {
+                    this.f26664b = this;
+                }
+
+                @Override
+                public final void a(o1.h hVar, boolean z11, float f11, float f12) {
+                    switch (r2) {
+                        case 0:
+                            this.f26664b.f27346b.f28416y.b();
+                            return;
+                        default:
+                            this.f26664b.f27346b.f28416y.b();
+                            return;
+                    }
+                }
+            });
+            kVar2.b(new Object());
+            kVar.f16938u.a(1.0f);
+            kVar.f16938u.b(10.0f);
+            kVar.f16927a = f7;
+            kVar2.h();
+        }
+        lbVar.f28413s = true;
+        return true;
     }
 
-    public void setTextColor(int i10) {
-        this.d.setTextColor(i10);
+    @Override
+    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
+        lb lbVar = this.f27346b;
+        float f11 = lbVar.h + f7;
+        lbVar.h = f11;
+        float f12 = lbVar.f28411n + f10;
+        lbVar.f28411n = f12;
+        if (Utilities.dist(0.0f, 0.0f, f11, f12) > AndroidUtilities.touchSlop) {
+            lbVar.f28412r = true;
+        }
+        if (!lbVar.d) {
+            return false;
+        }
+        float f13 = lbVar.f28410f - f7;
+        lbVar.f28410f = f13;
+        xb xbVar = this.f27345a;
+        xbVar.setTranslationX(f13);
+        float f14 = lbVar.f28410f;
+        if (f14 == 0.0f || ((f14 < 0.0f && lbVar.v) || (f14 > 0.0f && lbVar.f28414w))) {
+            xbVar.setAlpha(1.0f - (Math.abs(f14) / xbVar.getWidth()));
+        }
+        return true;
     }
 }

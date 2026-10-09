@@ -1,57 +1,37 @@
 package org.telegram.ui.Components;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-public final class rf0 {
-    public final sf0 f30456a = new sf0();
-    public final sf0 f30457b = new sf0();
-    public final sf0 f30458c = new sf0();
-    public final sf0 d = new sf0();
-    public final ByteBuffer f30459e;
-    public int f30460f;
+import android.graphics.Path;
+import android.graphics.RectF;
+import org.telegram.messenger.AndroidUtilities;
+public final class rf0 extends Path {
+    public int f30435a;
+    public int f30436b;
+    public int f30437c;
 
-    public rf0() {
-        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(800);
-        this.f30459e = allocateDirect;
-        allocateDirect.order(ByteOrder.LITTLE_ENDIAN);
-    }
-
-    public final void a() {
-        ByteBuffer byteBuffer = this.f30459e;
-        byteBuffer.position(0);
-        sf0 sf0Var = this.f30456a;
-        if (sf0Var.f30770f == null) {
-            sf0Var.a();
+    public final void a(int i10, int i11, int i12) {
+        if (this.f30435a == i10 && this.f30436b == i11 && this.f30437c == i12) {
+            return;
         }
-        float[] fArr = sf0Var.f30770f;
-        sf0 sf0Var2 = this.f30457b;
-        if (sf0Var2.f30770f == null) {
-            sf0Var2.a();
-        }
-        float[] fArr2 = sf0Var2.f30770f;
-        sf0 sf0Var3 = this.f30458c;
-        if (sf0Var3.f30770f == null) {
-            sf0Var3.a();
-        }
-        float[] fArr3 = sf0Var3.f30770f;
-        sf0 sf0Var4 = this.d;
-        if (sf0Var4.f30770f == null) {
-            sf0Var4.a();
-        }
-        float[] fArr4 = sf0Var4.f30770f;
-        for (int i10 = 0; i10 < 200; i10++) {
-            byteBuffer.put((byte) (fArr2[i10] * 255.0f));
-            byteBuffer.put((byte) (fArr3[i10] * 255.0f));
-            byteBuffer.put((byte) (fArr4[i10] * 255.0f));
-            byteBuffer.put((byte) (fArr[i10] * 255.0f));
-        }
-        byteBuffer.position(0);
-    }
-
-    public final boolean b() {
-        if (this.f30456a.b() && this.f30457b.b() && this.f30458c.b() && this.d.b()) {
-            return true;
-        }
-        return false;
+        rewind();
+        RectF rectF = AndroidUtilities.rectTmp;
+        float f7 = i10 - i12;
+        float f10 = i11 + i12;
+        rectF.set(f7, i11 - i12, i10 + i12, f10);
+        arcTo(rectF, -180.0f, 270.0f, false);
+        float f11 = i12 / 81.0f;
+        float f12 = i10;
+        float f13 = f10 - (3.0f * f11);
+        cubicTo(f12 - (13.0f * f11), f10, f12 - (25.0f * f11), f13, f12 - (36.0f * f11), f10 - (8.42f * f11));
+        float f14 = f10 - f11;
+        cubicTo(f12 - (52.0f * f11), f14, f12 - (56.5f * f11), f14, f12 - (78.02f * f11), f14);
+        cubicTo(f12 - (80.0f * f11), f14, f12 - (81.0f * f11), f13, f12 - (79.52f * f11), f10 - (4.5f * f11));
+        float f15 = f12 - (63.73f * f11);
+        cubicTo(f12 - (78.0f * f11), f10 - (6.0f * f11), f15, f10 - (15.0f * f11), f15, f10 - (31.0f * f11));
+        float f16 = i11;
+        cubicTo(f12 - (74.5f * f11), f10 - (44.75f * f11), f7, (f11 * 18.87f) + f16, f7, f16);
+        close();
+        this.f30435a = i10;
+        this.f30436b = i11;
+        this.f30437c = i12;
     }
 }

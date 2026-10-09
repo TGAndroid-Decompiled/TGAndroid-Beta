@@ -1,253 +1,144 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.content.Context;
-import android.view.View;
 import android.view.ViewGroup;
-import java.util.ArrayList;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class o70 extends ViewGroup {
-    public boolean f29384a;
-    public final ArrayList f29385b;
-    public q30 f29386c;
-    public boolean d;
-    public final p70 f29387e;
+import org.telegram.messenger.UserConfig;
+public final class o70 extends pm0 {
+    public final t70 f29404c;
 
-    public o70(p70 p70Var, Context context) {
-        super(context);
-        this.f29387e = p70Var;
-        this.f29385b = new ArrayList();
-    }
-
-    public final void a(q30 q30Var, boolean z10) {
-        this.d = true;
-        p70 p70Var = this.f29387e;
-        p70Var.f29622f0.k(q30Var, q30Var.getUid());
-        AnimatorSet animatorSet = p70Var.f29620d0;
-        if (animatorSet != null) {
-            animatorSet.setupEndValues();
-            p70Var.f29620d0.cancel();
-        }
-        this.f29384a = false;
-        if (z10) {
-            AnimatorSet animatorSet2 = new AnimatorSet();
-            p70Var.f29620d0 = animatorSet2;
-            animatorSet2.addListener(new n70(this, 1));
-            p70Var.f29620d0.setDuration(150L);
-            p70Var.f29620d0.setInterpolator(tr.f31215f);
-            ArrayList arrayList = this.f29385b;
-            arrayList.clear();
-            arrayList.add(ObjectAnimator.ofFloat(q30Var, View.SCALE_X, 0.01f, 1.0f));
-            arrayList.add(ObjectAnimator.ofFloat(q30Var, View.SCALE_Y, 0.01f, 1.0f));
-            arrayList.add(ObjectAnimator.ofFloat(q30Var, View.ALPHA, 0.0f, 1.0f));
-        }
-        addView(q30Var);
-    }
-
-    public final void b(q30 q30Var) {
-        this.d = false;
-        p70 p70Var = this.f29387e;
-        p70Var.f29622f0.l(q30Var.getUid());
-        q30Var.setOnClickListener(null);
-        AnimatorSet animatorSet = p70Var.f29620d0;
-        if (animatorSet != null) {
-            animatorSet.setupEndValues();
-            p70Var.f29620d0.cancel();
-        }
-        this.f29384a = false;
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        p70Var.f29620d0 = animatorSet2;
-        animatorSet2.addListener(new ai.z(27, this, q30Var));
-        p70Var.f29620d0.setDuration(150L);
-        this.f29386c = q30Var;
-        ArrayList arrayList = this.f29385b;
-        arrayList.clear();
-        arrayList.add(ObjectAnimator.ofFloat(this.f29386c, View.SCALE_X, 1.0f, 0.01f));
-        arrayList.add(ObjectAnimator.ofFloat(this.f29386c, View.SCALE_Y, 1.0f, 0.01f));
-        arrayList.add(ObjectAnimator.ofFloat(this.f29386c, View.ALPHA, 1.0f, 0.0f));
-        requestLayout();
+    public o70(t70 t70Var) {
+        this.f29404c = t70Var;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int childCount = getChildCount();
-        for (int i14 = 0; i14 < childCount; i14++) {
-            View childAt = getChildAt(i14);
-            childAt.layout(0, 0, childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
+    public final boolean D(s4.d1 d1Var) {
+        int b10 = d1Var.b();
+        t70 t70Var = this.f29404c;
+        if (b10 == t70Var.f31069n) {
+            if (t70Var.f31054b.admin_id != UserConfig.getInstance(t70.N(t70Var)).clientUserId) {
+                return true;
+            }
+            return false;
+        } else if (b10 < t70Var.f31073x || b10 >= t70Var.f31074y) {
+            if (b10 >= t70Var.O && b10 < t70Var.P) {
+                return true;
+            }
+            return false;
+        } else {
+            return true;
         }
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        ArrayList arrayList;
-        int b10;
-        int i12;
-        s4.c1 K;
-        ViewGroup viewGroup;
-        AnimatorSet animatorSet;
-        org.telegram.ui.ActionBar.v1 v1Var;
-        int i13;
-        p70 p70Var = this.f29387e;
-        org.telegram.ui.ActionBar.v1 v1Var2 = p70Var.V;
-        ai.w0 w0Var = p70Var.d;
-        int childCount = getChildCount();
-        int size = View.MeasureSpec.getSize(i10);
-        int dp = size - AndroidUtilities.dp(26.0f);
-        int dp2 = AndroidUtilities.dp(10.0f);
-        int dp3 = AndroidUtilities.dp(10.0f);
-        int i14 = 0;
-        int i15 = 0;
-        int i16 = 0;
-        while (true) {
-            arrayList = this.f29385b;
-            if (i14 >= childCount) {
+    public final int h() {
+        return this.f29404c.S;
+    }
+
+    @Override
+    public final int j(int i10) {
+        t70 t70Var = this.f29404c;
+        if (i10 == t70Var.h || i10 == t70Var.N || i10 == t70Var.f31072w || i10 == t70Var.f31059e) {
+            return 0;
+        }
+        if (i10 != t70Var.f31069n) {
+            if (i10 < t70Var.O || i10 >= t70Var.P) {
+                if (i10 < t70Var.f31073x || i10 >= t70Var.f31074y) {
+                    if (i10 != t70Var.f31070r && i10 != t70Var.f31071s) {
+                        if (i10 == t70Var.H) {
+                            return 3;
+                        }
+                        if (i10 == t70Var.I) {
+                            return 4;
+                        }
+                        if (i10 == t70Var.J) {
+                            return 5;
+                        }
+                        t70Var.getClass();
+                        if (i10 != 0 && i10 != t70Var.K && i10 != t70Var.L) {
+                            if (i10 == t70Var.v) {
+                                return 7;
+                            }
+                            if (i10 == t70Var.M) {
+                                return 8;
+                            }
+                            if (i10 != t70Var.f31061f) {
+                                return 0;
+                            }
+                            return 9;
+                        }
+                        return 6;
+                    }
+                    return 2;
+                }
+                return 1;
+            }
+            return 1;
+        }
+        return 1;
+    }
+
+    @Override
+    public final void v(s4.d1 r25, int r26) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.o70.v(s4.d1, int):void");
+    }
+
+    @Override
+    public final s4.d1 x(ViewGroup viewGroup, int i10) {
+        j10 j10Var;
+        j10 j10Var2;
+        Context context = viewGroup.getContext();
+        t70 t70Var = this.f29404c;
+        switch (i10) {
+            case 1:
+                j10Var2 = new r70(context);
                 break;
-            }
-            View childAt = getChildAt(i14);
-            if (!(childAt instanceof q30)) {
-                v1Var = v1Var2;
-            } else {
-                v1Var = v1Var2;
-                childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
-                if (childAt != this.f29386c && childAt.getMeasuredWidth() + i15 > dp) {
-                    dp2 = org.telegram.messenger.q.C(8.0f, childAt.getMeasuredHeight(), dp2);
-                    i15 = 0;
-                }
-                if (childAt.getMeasuredWidth() + i16 > dp) {
-                    dp3 = org.telegram.messenger.q.C(8.0f, childAt.getMeasuredHeight(), dp3);
-                    i16 = 0;
-                }
-                int dp4 = AndroidUtilities.dp(13.0f) + i15;
-                if (!this.f29384a) {
-                    q30 q30Var = this.f29386c;
-                    if (childAt == q30Var) {
-                        childAt.setTranslationX(AndroidUtilities.dp(13.0f) + i16);
-                        childAt.setTranslationY(dp3);
-                    } else if (q30Var != null) {
-                        float f7 = dp4;
-                        if (childAt.getTranslationX() != f7) {
-                            i13 = 1;
-                            arrayList.add(ObjectAnimator.ofFloat(childAt, View.TRANSLATION_X, f7));
-                        } else {
-                            i13 = 1;
-                        }
-                        float f10 = dp2;
-                        if (childAt.getTranslationY() != f10) {
-                            float[] fArr = new float[i13];
-                            fArr[0] = f10;
-                            arrayList.add(ObjectAnimator.ofFloat(childAt, View.TRANSLATION_Y, fArr));
-                        }
-                    } else {
-                        childAt.setTranslationX(dp4);
-                        childAt.setTranslationY(dp2);
-                    }
-                }
-                if (childAt != this.f29386c) {
-                    i15 = org.telegram.messenger.q.C(9.0f, childAt.getMeasuredWidth(), i15);
-                }
-                i16 = org.telegram.messenger.q.C(9.0f, childAt.getMeasuredWidth(), i16);
-            }
-            i14++;
-            v1Var2 = v1Var;
+            case 2:
+                j10Var2 = new org.telegram.ui.Cells.b7(context, org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20741a7, false), 0);
+                break;
+            case 3:
+                k70 k70Var = new k70(this, context, t70Var.U, t70Var, t70Var.f31064h0);
+                k70Var.setDelegate(new n70(this));
+                k70Var.setLayoutParams(new s4.q0(-1, -2));
+                j10Var2 = k70Var;
+                break;
+            case 4:
+                j10Var2 = new s70(t70Var, context);
+                break;
+            case 5:
+                j10 j10Var3 = new j10(context, null);
+                j10Var3.setIsSingleCell(true);
+                j10Var3.setViewType(10);
+                j10Var3.f27555w = false;
+                j10Var3.setPaddingLeft(AndroidUtilities.dp(10.0f));
+                j10Var = j10Var3;
+                j10Var2 = j10Var;
+                break;
+            case 6:
+                j10Var2 = new ao(context, 12);
+                break;
+            case 7:
+                j10Var2 = new org.telegram.ui.Cells.b7(context, (org.telegram.ui.Cells.c1) null);
+                break;
+            case 8:
+                ?? frameLayout = new FrameLayout(context);
+                TextView textView = new TextView(context);
+                frameLayout.f29751a = textView;
+                textView.setTextSize(1, 14.0f);
+                com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.i6.f21181y6, null, false, textView, 1);
+                frameLayout.addView(textView, w7.x5.a(-2.0f, 60.0f, 0.0f, 60.0f, 0.0f, -1, 16));
+                j10Var = frameLayout;
+                j10Var2 = j10Var;
+                break;
+            case 9:
+                j10Var2 = new q70(t70Var, context);
+                break;
+            default:
+                j10Var2 = new org.telegram.ui.Cells.v3(context, t70.B(t70Var));
+                break;
         }
-        org.telegram.ui.ActionBar.v1 v1Var3 = v1Var2;
-        int dp5 = AndroidUtilities.dp(42.0f) + dp3;
-        final int dp6 = AndroidUtilities.dp(42.0f) + dp2;
-        if (p70Var.m0 != null) {
-            if (p70Var.f29623g0) {
-                b10 = Math.min(p70Var.f29634s0, dp6);
-            } else {
-                b10 = 0;
-            }
-        } else {
-            b10 = org.telegram.messenger.q.b(52.0f, Math.min(p70Var.f29634s0, dp6), 0);
-        }
-        int i17 = p70Var.f29636u0;
-        if (p70Var.m0 == null && p70Var.f29622f0.m() > 0) {
-            i12 = AndroidUtilities.dp(56.0f);
-        } else {
-            i12 = 0;
-        }
-        p70Var.f29636u0 = i12;
-        if (b10 != p70Var.f29630o0 || i17 != i12) {
-            p70Var.f29630o0 = b10;
-            if (w0Var.getAdapter() != null && w0Var.getAdapter().h() > 0 && (K = w0Var.K(0)) != null) {
-                w0Var.getAdapter().m(0);
-                p70Var.R.h1(0, K.f46538a.getTop() - w0Var.getPaddingTop());
-                if (w0Var.getItemAnimator() != null) {
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    ofFloat.addUpdateListener(new ai.k6(this, 8));
-                    ofFloat.setDuration(w0Var.getItemAnimator().i()).start();
-                }
-            }
-        }
-        int min = Math.min(p70Var.f29634s0, dp6);
-        int i18 = p70Var.f29627k0;
-        if (i18 != min) {
-            ValueAnimator ofInt = ValueAnimator.ofInt(i18, min);
-            ofInt.addUpdateListener(new k6(this, 28));
-            arrayList.add(ofInt);
-        }
-        boolean z10 = this.d;
-        if (z10 && dp6 > p70Var.f29634s0) {
-            AndroidUtilities.runOnUIThread(new Runnable(this) {
-                public final o70 f28619b;
-
-                {
-                    this.f28619b = this;
-                }
-
-                @Override
-                public final void run() {
-                    switch (r3) {
-                        case 0:
-                            p70 p70Var2 = this.f28619b.f29387e;
-                            p70Var2.V.smoothScrollTo(0, dp6 - p70Var2.f29634s0);
-                            return;
-                        default:
-                            p70 p70Var3 = this.f28619b.f29387e;
-                            p70Var3.V.smoothScrollTo(0, dp6 - p70Var3.f29634s0);
-                            return;
-                    }
-                }
-            });
-        } else if (!z10 && v1Var3.getMeasuredHeight() + v1Var3.getScrollY() > dp6) {
-            AndroidUtilities.runOnUIThread(new Runnable(this) {
-                public final o70 f28619b;
-
-                {
-                    this.f28619b = this;
-                }
-
-                @Override
-                public final void run() {
-                    switch (r3) {
-                        case 0:
-                            p70 p70Var2 = this.f28619b.f29387e;
-                            p70Var2.V.smoothScrollTo(0, dp6 - p70Var2.f29634s0);
-                            return;
-                        default:
-                            p70 p70Var3 = this.f28619b.f29387e;
-                            p70Var3.V.smoothScrollTo(0, dp6 - p70Var3.f29634s0);
-                            return;
-                    }
-                }
-            });
-        }
-        if (!this.f29384a && (animatorSet = p70Var.f29620d0) != null) {
-            animatorSet.playTogether(arrayList);
-            p70Var.f29620d0.addListener(new n70(this, 0));
-            p70Var.f29620d0.start();
-            this.f29384a = true;
-        }
-        if (p70Var.f29620d0 == null) {
-            p70Var.f29627k0 = min;
-            viewGroup = ((org.telegram.ui.ActionBar.f3) p70Var).containerView;
-            viewGroup.invalidate();
-        }
-        setMeasuredDimension(size, Math.max(dp6, dp5));
-        w0Var.setTranslationY(0.0f);
+        return com.google.android.gms.internal.vision.e2.k(j10Var2, j10Var2, -1, -2);
     }
 }

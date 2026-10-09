@@ -1,111 +1,170 @@
 package org.telegram.ui.Components;
 
-import android.net.Uri;
-import android.util.Log;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URI;
-import org.json.JSONArray;
-import org.json.JSONTokener;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class k41 extends Thread {
-    public final String f28054a;
-    public final String f28055b;
-    public final String f28056c;
-    public final Utilities.Callback2 d;
+public final class k41 extends View {
+    public float f27840a;
+    public final Paint f27841b;
+    public final Paint f27842c;
+    public Drawable d;
+    public boolean f27843e;
+    public int f27844f;
+    public final RectF h;
 
-    public k41(String str, String str2, String str3, Utilities.Callback2 callback2) {
-        this.f28054a = str;
-        this.f28055b = str2;
-        this.f28056c = str3;
-        this.d = callback2;
+    public k41(Context context) {
+        super(context);
+        Paint paint = new Paint(1);
+        this.f27841b = paint;
+        Paint paint2 = new Paint(1);
+        this.f27842c = paint2;
+        this.f27843e = true;
+        this.f27844f = 0;
+        this.h = new RectF();
+        paint.setColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.P9, false));
+        paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        paint2.setStyle(Paint.Style.STROKE);
+        paint2.setStrokeCap(Paint.Cap.ROUND);
     }
 
     @Override
-    public final void run() {
-        HttpURLConnection httpURLConnection;
-        Integer num;
-        String str;
-        Utilities.Callback2 callback2 = this.d;
-        String str2 = this.f28056c;
-        boolean z10 = false;
-        String str3 = null;
-        try {
-            httpURLConnection = (HttpURLConnection) new URI(("https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + Uri.encode(this.f28054a) + "&tl=" + Uri.encode(this.f28055b) + "&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=7&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&q=") + str2).toURL().openConnection();
-        } catch (Exception e7) {
-            e = e7;
-            httpURLConnection = null;
+    public final void drawableHotspotChanged(float f7, float f10) {
+        super.drawableHotspotChanged(f7, f10);
+        Drawable drawable = this.d;
+        if (drawable != null) {
+            drawable.setHotspot(f7, f10);
         }
-        try {
-            httpURLConnection.setRequestMethod("GET");
-            httpURLConnection.setRequestProperty("User-Agent", u41.R[(int) Math.round(Math.random() * 5)]);
-            httpURLConnection.setRequestProperty("Content-Type", "application/json");
-            StringBuilder sb2 = new StringBuilder();
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream(), d9.d.f8162a));
-            while (true) {
-                int read = bufferedReader.read();
-                if (read == -1) {
-                    break;
-                }
-                sb2.append((char) read);
-            }
-            bufferedReader.close();
-            JSONArray jSONArray = new JSONArray(new JSONTokener(sb2.toString()));
-            JSONArray jSONArray2 = jSONArray.getJSONArray(0);
-            try {
-                str = jSONArray.getString(2);
-            } catch (Exception unused) {
-                str = null;
-            }
-            if (str != null && str.contains("-")) {
-                str.substring(0, str.indexOf("-"));
-            }
-            String str4 = "";
-            for (int i10 = 0; i10 < jSONArray2.length(); i10++) {
-                String string = jSONArray2.getJSONArray(i10).getString(0);
-                if (string != null && !string.equals("null")) {
-                    str4 = str4 + string;
-                }
-            }
-            if (str2.length() > 0 && str2.charAt(0) == '\n') {
-                str4 = "\n" + str4;
-            }
-            AndroidUtilities.runOnUIThread(new vo0(15, callback2, str4));
-        } catch (Exception e10) {
-            e = e10;
-            try {
-                StringBuilder sb3 = new StringBuilder();
-                sb3.append("failed to translate a text ");
-                if (httpURLConnection != null) {
-                    num = Integer.valueOf(httpURLConnection.getResponseCode());
-                } else {
-                    num = null;
-                }
-                sb3.append(num);
-                sb3.append(" ");
-                if (httpURLConnection != null) {
-                    str3 = httpURLConnection.getResponseMessage();
-                }
-                sb3.append(str3);
-                Log.e("translate", sb3.toString());
-            } catch (IOException e11) {
-                e11.printStackTrace();
-            }
-            e.printStackTrace();
-            if (httpURLConnection != null) {
-                try {
-                    if (httpURLConnection.getResponseCode() == 429) {
-                        z10 = true;
-                    }
-                } catch (Exception unused2) {
-                    AndroidUtilities.runOnUIThread(new gq0(callback2, 24));
-                    return;
-                }
-            }
-            AndroidUtilities.runOnUIThread(new fs0(4, callback2, z10));
+    }
+
+    @Override
+    public final void drawableStateChanged() {
+        super.drawableStateChanged();
+        Drawable drawable = this.d;
+        if (drawable != null) {
+            drawable.setState(getDrawableState());
+            invalidate();
         }
+    }
+
+    @Override
+    public final void jumpDrawablesToCurrentState() {
+        super.jumpDrawablesToCurrentState();
+        Drawable drawable = this.d;
+        if (drawable != null) {
+            drawable.jumpToCurrentState();
+        }
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        boolean z10;
+        float f7;
+        Canvas canvas2 = canvas;
+        if (this.f27843e) {
+            if (this.f27844f == 0) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            if (z10) {
+                f7 = this.f27840a;
+            } else {
+                f7 = 1.0f;
+            }
+            float dp = AndroidUtilities.dp((f7 * 26.0f) + 6.0f);
+            RectF rectF = this.h;
+            rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+            canvas2.drawRoundRect(rectF, dp, dp, this.f27841b);
+        }
+        int i10 = this.f27844f;
+        Paint paint = this.f27842c;
+        if (i10 != 0) {
+            if (i10 == 1) {
+                float dp2 = AndroidUtilities.dp(21.0f);
+                float width = getWidth() - AndroidUtilities.dp(21.0f);
+                float height = getHeight() / 2.0f;
+                canvas2.save();
+                canvas2.translate((-AndroidUtilities.dp(2.0f)) * this.f27840a, 0.0f);
+                canvas2.rotate(this.f27840a * 90.0f, getWidth() / 2.0f, getHeight() / 2.0f);
+                canvas2.drawLine(dp2 + ((width - dp2) * this.f27840a), height, width, height, paint);
+                int dp3 = AndroidUtilities.dp((this.f27840a * (-1.0f)) + 9.0f);
+                int dp4 = AndroidUtilities.dp((this.f27840a * 7.0f) + 9.0f);
+                double d = width;
+                double d10 = dp3;
+                double d11 = height;
+                canvas.drawLine(width, height, (float) (d - (Math.cos(0.7853981633974483d) * d10)), (float) ((Math.sin(0.7853981633974483d) * d10) + d11), paint);
+                double d12 = dp4;
+                canvas2 = canvas;
+                canvas2.drawLine(width, height, (float) (d - (Math.cos(0.7853981633974483d) * d12)), (float) (d11 - (Math.sin(0.7853981633974483d) * d12)), paint);
+                canvas.restore();
+            }
+        } else {
+            float max = (Math.max(0.4f, this.f27840a) - 0.4f) / 0.6f;
+            if (max != 0.0f) {
+                float B = (org.telegram.messenger.bi.B(21.0f, 2, getWidth()) * max) + AndroidUtilities.dp(21.0f);
+                float height2 = getHeight() / 2.0f;
+                canvas.drawLine(AndroidUtilities.dp(21.0f), height2, B, height2, paint);
+                double dp5 = AndroidUtilities.dp(9.0f) * max;
+                float cos = (float) (B - (Math.cos(0.7853981633974483d) * dp5));
+                float sin = (float) (Math.sin(0.7853981633974483d) * dp5);
+                canvas2 = canvas;
+                canvas2.drawLine(B, height2, cos, height2 - sin, paint);
+                canvas2.drawLine(B, height2, cos, height2 + sin, paint);
+            } else {
+                canvas2 = canvas;
+            }
+        }
+        Drawable drawable = this.d;
+        if (drawable != null) {
+            drawable.setBounds(0, 0, getWidth(), getHeight());
+            this.d.setHotspotBounds(0, 0, getWidth(), getHeight());
+            this.d.draw(canvas2);
+        }
+    }
+
+    @Override
+    public void setBackgroundColor(int i10) {
+        this.f27841b.setColor(i10);
+        invalidate();
+    }
+
+    public void setColor(int i10) {
+        this.f27842c.setColor(i10);
+        invalidate();
+    }
+
+    public void setDrawBackground(boolean z10) {
+        this.f27843e = z10;
+    }
+
+    public void setProgress(float f7) {
+        this.f27840a = f7;
+        invalidate();
+    }
+
+    public void setRippleDrawable(Drawable drawable) {
+        this.d = drawable;
+        invalidate();
+    }
+
+    public void setTransformType(int i10) {
+        this.f27844f = i10;
+        invalidate();
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (!super.verifyDrawable(drawable)) {
+            Drawable drawable2 = this.d;
+            if (drawable2 == null || drawable != drawable2) {
+                return false;
+            }
+            return true;
+        }
+        return true;
     }
 }

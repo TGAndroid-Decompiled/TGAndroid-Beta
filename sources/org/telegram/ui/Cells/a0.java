@@ -4,26 +4,26 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import org.telegram.ui.Components.jw0;
-public abstract class a0 extends ViewGroup implements jw0 {
-    public boolean f21778a;
-    public androidx.emoji2.text.j f21779b;
-    public int f21780c;
-    public ai.q4 d;
-    public Runnable f21781e;
+import org.telegram.ui.Components.pw0;
+public abstract class a0 extends ViewGroup implements pw0 {
+    public boolean f21775a;
+    public androidx.emoji2.text.j f21776b;
+    public int f21777c;
+    public ai.r4 d;
+    public Runnable f21778e;
 
     public a0(Context context) {
         super(context);
-        this.f21778a = false;
-        this.f21779b = null;
-        this.f21780c = 0;
+        this.f21775a = false;
+        this.f21776b = null;
+        this.f21777c = 0;
         this.d = null;
         setWillNotDraw(false);
         setFocusable(true);
         setHapticFeedbackEnabled(true);
     }
 
-    public static float n(Drawable drawable, float f7, float f10, float f11) {
+    public static float o(Drawable drawable, float f7, float f10, float f11) {
         float intrinsicWidth = (drawable.getIntrinsicWidth() * f11) / drawable.getIntrinsicHeight();
         int i10 = (int) f7;
         int i11 = (int) f10;
@@ -31,11 +31,11 @@ public abstract class a0 extends ViewGroup implements jw0 {
         return intrinsicWidth;
     }
 
-    public static void o(int i10, int i11, Drawable drawable) {
+    public static void p(int i10, int i11, Drawable drawable) {
         drawable.setBounds(i10, i11, drawable.getIntrinsicWidth() + i10, drawable.getIntrinsicHeight() + i11);
     }
 
-    public static void p(Drawable drawable, float f7, float f10) {
+    public static void q(Drawable drawable, float f7, float f10) {
         int i10 = (int) f7;
         int i11 = (int) f10;
         drawable.setBounds(i10, i11, drawable.getIntrinsicWidth() + i10, drawable.getIntrinsicHeight() + i11);
@@ -43,7 +43,7 @@ public abstract class a0 extends ViewGroup implements jw0 {
 
     @Override
     public final void g(Runnable runnable) {
-        this.f21781e = runnable;
+        this.f21778e = runnable;
     }
 
     public int getBoundsLeft() {
@@ -61,7 +61,7 @@ public abstract class a0 extends ViewGroup implements jw0 {
 
     @Override
     public void invalidate() {
-        Runnable runnable = this.f21781e;
+        Runnable runnable = this.f21778e;
         if (runnable != null) {
             runnable.run();
         }
@@ -69,14 +69,14 @@ public abstract class a0 extends ViewGroup implements jw0 {
     }
 
     public final void k() {
-        this.f21778a = false;
-        androidx.emoji2.text.j jVar = this.f21779b;
+        this.f21775a = false;
+        androidx.emoji2.text.j jVar = this.f21776b;
         if (jVar != null) {
             removeCallbacks(jVar);
         }
-        ai.q4 q4Var = this.d;
-        if (q4Var != null) {
-            removeCallbacks(q4Var);
+        ai.r4 r4Var = this.d;
+        if (r4Var != null) {
+            removeCallbacks(r4Var);
         }
     }
 
@@ -88,13 +88,13 @@ public abstract class a0 extends ViewGroup implements jw0 {
         return true;
     }
 
-    public final void q() {
-        if (this.f21778a) {
+    public final void r() {
+        if (this.f21775a) {
             return;
         }
-        this.f21778a = true;
+        this.f21775a = true;
         if (this.d == null) {
-            this.d = new ai.q4(this, 28);
+            this.d = new ai.r4(this, 28);
         }
         postDelayed(this.d, ViewConfiguration.getTapTimeout());
     }

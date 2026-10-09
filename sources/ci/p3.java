@@ -1,39 +1,15 @@
 package ci;
 
-import android.content.Context;
-import android.view.ViewGroup;
-import org.telegram.ui.Components.qp;
-public final class p3 extends qp {
-    public final int d;
-    public final ViewGroup f5698e;
-
-    public p3(ViewGroup viewGroup, Context context, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
-        super(context, 21, d6Var);
-        this.d = i10;
-        this.f5698e = viewGroup;
-    }
-
+import android.graphics.Bitmap;
+import android.util.LruCache;
+public final class p3 extends LruCache {
     @Override
-    public final void invalidate() {
-        switch (this.d) {
-            case 0:
-                super.invalidate();
-                ((r3) this.f5698e).invalidate();
-                return;
-            case 1:
-                super.invalidate();
-                ((org.telegram.ui.Cells.s2) this.f5698e).invalidate();
-                return;
-            default:
-                super.invalidate();
-                ((org.telegram.ui.web.h) this.f5698e).invalidate();
-                return;
+    public final void entryRemoved(boolean z10, Object obj, Object obj2, Object obj3) {
+        String str = (String) obj;
+        Bitmap bitmap = (Bitmap) obj2;
+        Bitmap bitmap2 = (Bitmap) obj3;
+        if (!bitmap.isRecycled() && !q3.f5771e0.containsKey(str)) {
+            bitmap.recycle();
         }
-    }
-
-    public p3(r3 r3Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, 24, d6Var);
-        this.d = 0;
-        this.f5698e = r3Var;
     }
 }

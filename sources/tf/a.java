@@ -1,40 +1,37 @@
 package tf;
 
-import ai.n4;
-import android.os.Trace;
-import android.view.View;
-import android.view.ViewTreeObserver;
-import java.util.Iterator;
-import li.h;
-import yf.x;
-public final class a implements ViewTreeObserver.OnDrawListener {
-    public final int f46954a;
-    public final View f46955b;
+import android.content.SharedPreferences;
+import android.os.SystemClock;
+import org.telegram.messenger.ApplicationLoader;
+import w7.o;
+public final class a {
+    public final SharedPreferences f48253a;
+    public long f48254b;
+    public long f48255c;
+    public int d;
 
-    public a(int i10, View view) {
-        this.f46954a = i10;
-        this.f46955b = view;
+    public a(String str) {
+        SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("pip_duration_".concat(str), 0);
+        this.f48253a = sharedPreferences;
+        this.f48254b = sharedPreferences.getLong("estimated", 400L);
+        this.d = sharedPreferences.getInt("count", 0);
     }
 
-    @Override
-    public final void onDraw() {
-        switch (this.f46954a) {
-            case 0:
-                n4 n4Var = (n4) this.f46955b;
-                Trace.beginSection("OnDraw");
-                try {
-                    Iterator it = ((pe.b) n4Var.f1400b).iterator();
-                    while (it.hasNext()) {
-                        ((h) it.next()).a();
-                    }
-                    return;
-                } finally {
-                    Trace.endSection();
-                    n4Var.forceLayout();
-                }
-            default:
-                ((x) this.f46955b).f51034e.incrementAndGet();
-                return;
+    public final void a() {
+        int b10;
+        if (this.f48255c == 0) {
+            return;
         }
+        this.f48254b = (((SystemClock.uptimeMillis() - this.f48255c) * (10 - b10)) / 10) + ((this.f48254b * o.b(this.d, 0, 9)) / 10);
+        this.f48255c = 0L;
+        this.d++;
+        this.f48253a.edit().putLong("estimated", this.f48254b).putInt("count", this.d).apply();
+    }
+
+    public final float b() {
+        if (this.f48254b > 0) {
+            return o.a(((float) (SystemClock.uptimeMillis() - this.f48255c)) / ((float) this.f48254b), 0.0f, 1.0f);
+        }
+        return 0.5f;
     }
 }

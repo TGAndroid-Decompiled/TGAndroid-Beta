@@ -1,99 +1,26 @@
 package org.telegram.ui;
+public final class ww0 implements Runnable {
+    public final int f43760a;
+    public final PremiumPreviewFragment f43761b;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-public final class ww0 extends org.telegram.ui.Components.yl0 {
-    public final PremiumPreviewFragment f42717c;
-
-    public ww0(PremiumPreviewFragment premiumPreviewFragment) {
-        this.f42717c = premiumPreviewFragment;
+    public ww0(PremiumPreviewFragment premiumPreviewFragment, int i10) {
+        this.f43760a = i10;
+        this.f43761b = premiumPreviewFragment;
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f46542f;
-        if (i10 == 1 || i10 == 8) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final int h() {
-        return this.f42717c.h;
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 != 0) {
-            PremiumPreviewFragment premiumPreviewFragment = this.f42717c;
-            if (i10 < premiumPreviewFragment.f34152n || i10 >= premiumPreviewFragment.f34157r) {
-                if (i10 >= premiumPreviewFragment.v && i10 < premiumPreviewFragment.f34164w) {
-                    return 1;
-                }
-                if (i10 == 0) {
-                    return 4;
-                }
-                if (i10 != premiumPreviewFragment.f34166x && i10 != premiumPreviewFragment.f34168y && i10 != premiumPreviewFragment.E && i10 != premiumPreviewFragment.H) {
-                    if (i10 == premiumPreviewFragment.F) {
-                        return 6;
-                    }
-                    if (i10 != premiumPreviewFragment.f34159s && i10 != premiumPreviewFragment.G) {
-                        if (i10 == premiumPreviewFragment.showAdsRow) {
-                            return 8;
-                        }
-                        return 0;
-                    }
-                    return 7;
-                }
-                return 5;
-            }
-            return 1;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.c1 r18, int r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ww0.v(s4.c1, int):void");
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        View vw0Var;
-        org.telegram.ui.ActionBar.d6 d6Var;
-        Context context = viewGroup.getContext();
-        switch (i10) {
+    public final void run() {
+        switch (this.f43760a) {
+            case 0:
+                this.f43761b.k0();
+                return;
             case 1:
-                vw0Var = new vw0(this, context);
-                break;
-            case 2:
-                vw0Var = new org.telegram.ui.Cells.b7(context, 0, 0);
-                break;
-            case 3:
+                PremiumPreviewFragment premiumPreviewFragment = this.f43761b;
+                premiumPreviewFragment.f34125a.postOnAnimation(new ww0(premiumPreviewFragment, 0));
+                return;
             default:
-                vw0Var = new n20(this, context, 6);
-                vw0Var.setTag(-33024);
-                break;
-            case 4:
-                vw0Var = new rg.a(context);
-                break;
-            case 5:
-                vw0Var = new org.telegram.ui.Cells.e9(context);
-                break;
-            case 6:
-                vw0Var = new View(context);
-                vw0Var.setTag(-33024);
-                break;
-            case 7:
-                vw0Var = new org.telegram.ui.Cells.m4(context);
-                break;
-            case 8:
-                d6Var = ((org.telegram.ui.ActionBar.n2) this.f42717c).resourceProvider;
-                vw0Var = new org.telegram.ui.Cells.r8(23, context, d6Var, false, true);
-                break;
+                this.f43761b.getMediaDataController().loadPremiumPromo(false);
+                return;
         }
-        return com.google.android.gms.internal.vision.e2.k(vw0Var, vw0Var, -1, -2);
     }
 }

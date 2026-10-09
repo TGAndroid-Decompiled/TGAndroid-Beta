@@ -1,72 +1,67 @@
 package org.telegram.ui;
 
-import android.graphics.Rect;
-import android.view.MotionEvent;
+import android.os.Bundle;
 import android.view.View;
-public final class li implements View.OnTouchListener {
-    public final int f38326a;
-    public final int[] f38327b;
-    public final Rect f38328c;
-    public final Object d;
+import android.widget.LinearLayout;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class li implements View.OnClickListener {
+    public final hi0 f39583a;
+    public final org.telegram.ui.Components.qm0 f39584b;
+    public final LinearLayout f39585c;
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout d;
+    public final int[] f39586e;
+    public final zn f39587f;
 
-    public li(h60 h60Var, Rect rect) {
-        this.f38326a = 1;
-        this.d = h60Var;
-        this.f38328c = rect;
-        this.f38327b = new int[2];
+    public li(zn znVar, hi0 hi0Var, org.telegram.ui.Components.qm0 qm0Var, LinearLayout linearLayout, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, int[] iArr) {
+        this.f39587f = znVar;
+        this.f39583a = hi0Var;
+        this.f39584b = qm0Var;
+        this.f39585c = linearLayout;
+        this.d = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        this.f39586e = iArr;
     }
 
     @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        i50 i50Var;
-        switch (this.f38326a) {
-            case 0:
-                yn ynVar = (yn) this.d;
-                if (motionEvent.getActionMasked() == 0) {
-                    org.telegram.ui.ActionBar.n1 n1Var = ynVar.O8;
-                    if (n1Var != null && n1Var.isShowing()) {
-                        View contentView = ynVar.O8.getContentView();
-                        int[] iArr = this.f38327b;
-                        contentView.getLocationInWindow(iArr);
-                        int i10 = iArr[0];
-                        int measuredHeight = contentView.getMeasuredHeight() + iArr[1];
-                        Rect rect = this.f38328c;
-                        rect.set(i10, iArr[1], contentView.getMeasuredWidth() + i10, measuredHeight);
-                        if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                            ynVar.A7(true);
-                        }
+    public final void onClick(View view) {
+        hi0 hi0Var = this.f39583a;
+        ArrayList arrayList = hi0Var.f38350b;
+        ArrayList arrayList2 = hi0Var.f38351c;
+        zn znVar = this.f39587f;
+        if (znVar.Q8 != null && !arrayList2.isEmpty()) {
+            if (arrayList2.size() == 1 && (arrayList.size() <= 0 || ((Integer) arrayList.get(0)).intValue() <= 0)) {
+                TLObject tLObject = (TLObject) arrayList2.get(0);
+                if (tLObject != null) {
+                    Bundle bundle = new Bundle();
+                    if (tLObject instanceof TLRPC.User) {
+                        bundle.putLong("user_id", ((TLRPC.User) tLObject).f20185id);
+                    } else if (tLObject instanceof TLRPC.Chat) {
+                        bundle.putLong("chat_id", ((TLRPC.Chat) tLObject).f20038id);
                     }
-                } else if (motionEvent.getActionMasked() == 4) {
-                    ynVar.A7(true);
+                    znVar.presentFragment(new ProfileActivity(bundle, null));
+                    znVar.D7(true);
+                    return;
                 }
-                return false;
-            default:
-                h60 h60Var = (h60) this.d;
-                if (motionEvent.getActionMasked() == 0) {
-                    i50 i50Var2 = h60Var.f36931f3;
-                    if (i50Var2 != null && i50Var2.isShowing()) {
-                        View contentView2 = h60Var.f36931f3.getContentView();
-                        int[] iArr2 = this.f38327b;
-                        contentView2.getLocationInWindow(iArr2);
-                        int i11 = iArr2[0];
-                        int measuredHeight2 = contentView2.getMeasuredHeight() + iArr2[1];
-                        Rect rect2 = this.f38328c;
-                        rect2.set(i11, iArr2[1], contentView2.getMeasuredWidth() + i11, measuredHeight2);
-                        if (!rect2.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                            h60Var.f36931f3.dismiss();
-                        }
-                    }
-                } else if (motionEvent.getActionMasked() == 4 && (i50Var = h60Var.f36931f3) != null && i50Var.isShowing()) {
-                    h60Var.f36931f3.dismiss();
-                }
-                return false;
+                return;
+            }
+            if (SharedConfig.messageSeenHintCount > 0 && znVar.X0.getKeyboardHeight() < AndroidUtilities.dp(20.0f)) {
+                org.telegram.ui.Components.tc t10 = new org.telegram.ui.Components.ad(org.telegram.ui.Components.ob.a(znVar.getParentActivity()), znVar.f44761ea).t(AndroidUtilities.replaceTags(LocaleController.getString(R.string.MessageSeenTooltipMessage)), null);
+                znVar.f44862n1 = t10;
+                t10.f31130j = 4000;
+                t10.j();
+                SharedConfig.updateMessageSeenHintCount(SharedConfig.messageSeenHintCount - 1);
+            }
+            org.telegram.ui.Components.qm0 qm0Var = this.f39584b;
+            qm0Var.requestLayout();
+            this.f39585c.requestLayout();
+            qm0Var.getAdapter().l();
+            this.d.getSwipeBack().e(this.f39586e[0]);
         }
-    }
-
-    public li(yn ynVar, Rect rect) {
-        this.f38326a = 0;
-        this.d = ynVar;
-        this.f38328c = rect;
-        this.f38327b = new int[2];
     }
 }

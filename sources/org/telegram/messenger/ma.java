@@ -1,34 +1,75 @@
 package org.telegram.messenger;
 
-import j$.util.concurrent.ConcurrentHashMap;
-import yf.r;
-public final class ma implements Runnable {
-    public final int f18566a;
-    public final MessagesController f18567b;
-    public final r f18568c;
-    public final ConcurrentHashMap d;
-    public final ConcurrentHashMap f18569e;
+import java.util.ArrayList;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class ma implements RequestDelegate {
+    public final int f18510a;
+    public final Object f18511b;
+    public final long f18512c;
+    public final Object d;
+    public final Object f18513e;
 
-    public ma(MessagesController messagesController, r rVar, ConcurrentHashMap concurrentHashMap, ConcurrentHashMap concurrentHashMap2, int i10) {
-        this.f18566a = i10;
-        this.f18567b = messagesController;
-        this.f18568c = rVar;
-        this.d = concurrentHashMap;
-        this.f18569e = concurrentHashMap2;
+    public ma(Object obj, Object obj2, long j3, Object obj3, int i10) {
+        this.f18510a = i10;
+        this.f18511b = obj;
+        this.d = obj2;
+        this.f18512c = j3;
+        this.f18513e = obj3;
     }
 
     @Override
-    public final void run() {
-        switch (this.f18566a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f18510a) {
             case 0:
-                this.f18567b.lambda$processUpdateArray$400(this.f18568c, this.d, this.f18569e);
+                ((MessagesController) this.f18511b).lambda$getSavedReactionTags$489(this.f18512c, (TLRPC.messages_SavedReactionTags) this.d, (TLRPC.TL_messages_getSavedReactionTags) this.f18513e, tLObject, tL_error);
                 return;
             case 1:
-                this.f18567b.lambda$processUpdateArray$401(this.f18568c, this.d, this.f18569e);
+                ((MessagesController) this.f18511b).lambda$deleteSavedDialog$142(this.f18512c, (int[]) this.d, (TLRPC.InputPeer) this.f18513e, tLObject, tL_error);
+                return;
+            case 2:
+                ((MessagesController) this.f18511b).lambda$addUsersToChannel$273((org.telegram.ui.ActionBar.n2) this.d, (TLRPC.TL_channels_inviteToChannel) this.f18513e, this.f18512c, tLObject, tL_error);
+                return;
+            case 3:
+                ((TopicsController) this.f18511b).lambda$pinTopic$20((org.telegram.ui.ActionBar.n2) this.d, this.f18512c, (ArrayList) this.f18513e, tLObject, tL_error);
+                return;
+            case 4:
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.f((org.telegram.ui.ActionBar.b2) this.f18511b, tLObject, this.f18512c, (AccountInstance) this.d, (MessagesStorage.BooleanCallback) this.f18513e, 5));
+                return;
+            case 5:
+                AndroidUtilities.runOnUIThread(new ai.ha((org.telegram.ui.ActionBar.n2) this.f18511b, tLObject, (MessagesController.DialogFilter) this.d, tL_error, (Runnable) this.f18513e, this.f18512c, 3));
+                return;
+            case 6:
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.f((yh.o) this.f18511b, (org.telegram.ui.ActionBar.b2) this.d, tLObject, this.f18512c, (Utilities.Callback) this.f18513e));
+                return;
+            case 7:
+                AndroidUtilities.runOnUIThread(new ai.ha((yh.s3) this.f18511b, tLObject, (String) this.d, (TL_stars.InputSavedStarGift) this.f18513e, tL_error, this.f18512c, 4));
                 return;
             default:
-                this.f18567b.lambda$processUpdateArray$405(this.f18568c, this.d, this.f18569e);
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.f((yh.m5) this.f18511b, tLObject, (MessageObject) this.d, this.f18512c, (Runnable) this.f18513e, 10));
                 return;
         }
+    }
+
+    public ma(Object obj, Object obj2, Object obj3, long j3, int i10) {
+        this.f18510a = i10;
+        this.f18511b = obj;
+        this.d = obj2;
+        this.f18513e = obj3;
+        this.f18512c = j3;
+    }
+
+    public ma(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, long j3, Object obj, Object obj2, int i10) {
+        this.f18510a = i10;
+        this.f18511b = notificationCenterDelegate;
+        this.f18512c = j3;
+        this.d = obj;
+        this.f18513e = obj2;
     }
 }

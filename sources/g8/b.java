@@ -3,21 +3,21 @@ package g8;
 import android.os.Parcel;
 import android.os.Parcelable;
 import java.util.Arrays;
-import w7.g0;
+import w7.d0;
 public final class b extends o6.a {
     public static final Parcelable.Creator<b> CREATOR = new j(3);
-    public final long f10335a;
-    public final int f10336b;
-    public final boolean f10337c;
+    public final long f10408a;
+    public final int f10409b;
+    public final boolean f10410c;
     public final String d;
-    public final r7.j f10338e;
+    public final r7.j f10411e;
 
     public b(long j3, int i10, boolean z10, String str, r7.j jVar) {
-        this.f10335a = j3;
-        this.f10336b = i10;
-        this.f10337c = z10;
+        this.f10408a = j3;
+        this.f10409b = i10;
+        this.f10410c = z10;
         this.d = str;
-        this.f10338e = jVar;
+        this.f10411e = jVar;
     }
 
     public final boolean equals(Object obj) {
@@ -25,25 +25,25 @@ public final class b extends o6.a {
             return false;
         }
         b bVar = (b) obj;
-        if (this.f10335a != bVar.f10335a || this.f10336b != bVar.f10336b || this.f10337c != bVar.f10337c || !n6.l.l(this.d, bVar.d) || !n6.l.l(this.f10338e, bVar.f10338e)) {
+        if (this.f10408a != bVar.f10408a || this.f10409b != bVar.f10409b || this.f10410c != bVar.f10410c || !n6.l.l(this.d, bVar.d) || !n6.l.l(this.f10411e, bVar.f10411e)) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Long.valueOf(this.f10335a), Integer.valueOf(this.f10336b), Boolean.valueOf(this.f10337c)});
+        return Arrays.hashCode(new Object[]{Long.valueOf(this.f10408a), Integer.valueOf(this.f10409b), Boolean.valueOf(this.f10410c)});
     }
 
     public final String toString() {
         String str;
-        StringBuilder v = a4.a.v("LastLocationRequest[");
-        long j3 = this.f10335a;
+        StringBuilder v = a1.g.v("LastLocationRequest[");
+        long j3 = this.f10408a;
         if (j3 != Long.MAX_VALUE) {
             v.append("maxAge=");
             r7.p.a(v, j3);
         }
-        int i10 = this.f10336b;
+        int i10 = this.f10409b;
         if (i10 != 0) {
             v.append(", ");
             if (i10 != 0) {
@@ -61,7 +61,7 @@ public final class b extends o6.a {
             }
             v.append(str);
         }
-        if (this.f10337c) {
+        if (this.f10410c) {
             v.append(", bypass");
         }
         String str2 = this.d;
@@ -69,7 +69,7 @@ public final class b extends o6.a {
             v.append(", moduleId=");
             v.append(str2);
         }
-        r7.j jVar = this.f10338e;
+        r7.j jVar = this.f10411e;
         if (jVar != null) {
             v.append(", impersonation=");
             v.append(jVar);
@@ -80,15 +80,15 @@ public final class b extends o6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = g0.q(parcel, 20293);
-        g0.s(parcel, 1, 8);
-        parcel.writeLong(this.f10335a);
-        g0.s(parcel, 2, 4);
-        parcel.writeInt(this.f10336b);
-        g0.s(parcel, 3, 4);
-        parcel.writeInt(this.f10337c ? 1 : 0);
-        g0.l(parcel, 4, this.d);
-        g0.k(parcel, 5, this.f10338e, i10);
-        g0.r(parcel, q6);
+        int q6 = d0.q(parcel, 20293);
+        d0.s(parcel, 1, 8);
+        parcel.writeLong(this.f10408a);
+        d0.s(parcel, 2, 4);
+        parcel.writeInt(this.f10409b);
+        d0.s(parcel, 3, 4);
+        parcel.writeInt(this.f10410c ? 1 : 0);
+        d0.l(parcel, 4, this.d);
+        d0.k(parcel, 5, this.f10411e, i10);
+        d0.r(parcel, q6);
     }
 }

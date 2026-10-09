@@ -1,15 +1,24 @@
 package org.telegram.ui;
-public final class b31 extends r61 {
-    public final d31 f35042e;
 
-    public b31(d31 d31Var, a31 a31Var) {
-        super(a31Var);
-        this.f35042e = d31Var;
+import android.app.Activity;
+import android.view.accessibility.AccessibilityNodeInfo;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class b31 extends org.telegram.ui.Components.fk0 {
+    public final d31 f36121r;
+
+    public b31(d31 d31Var, Activity activity) {
+        super(activity);
+        this.f36121r = d31Var;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.f35042e.f35634n = null;
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        if (this.f36121r.S.K) {
+            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrSwitchToDayTheme));
+        } else {
+            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrSwitchToNightTheme));
+        }
     }
 }

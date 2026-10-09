@@ -1,29 +1,27 @@
 package ai;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class vb extends AnimatorListenerAdapter {
-    public final int f1783a;
-    public final xb f1784b;
+import android.animation.ValueAnimator;
+public final class vb implements ValueAnimator.AnimatorUpdateListener {
+    public final int f1839a;
+    public final yb f1840b;
 
-    public vb(xb xbVar, int i10) {
-        this.f1783a = i10;
-        this.f1784b = xbVar;
+    public vb(yb ybVar, int i10) {
+        this.f1839a = i10;
+        this.f1840b = ybVar;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f1783a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f1839a) {
             case 0:
-                jc jcVar = this.f1784b.I0;
-                jcVar.X = 0.0f;
-                jc.k(jcVar);
+                kc kcVar = this.f1840b.I0;
+                kcVar.X = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                kc.k(kcVar);
                 return;
             default:
-                jc jcVar2 = this.f1784b.I0;
-                jcVar2.W = 0.0f;
-                jcVar2.Z = 0.0f;
-                jc.k(jcVar2);
+                kc kcVar2 = this.f1840b.I0;
+                kcVar2.W = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                kc.k(kcVar2);
                 return;
         }
     }

@@ -13,9 +13,9 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.SortedSet;
 import v7.t6;
-import v7.y7;
+import v7.v7;
 public abstract class q {
-    public final int f8794a = 2;
+    public final int f8788a = 2;
 
     public static int c(int i10) {
         if (i10 < 3) {
@@ -87,24 +87,24 @@ public abstract class q {
         return true;
     }
 
-    public static j1 j(Set set, d9.f fVar) {
+    public static j1 j(Set set, d9.g gVar) {
         if (set instanceof SortedSet) {
             SortedSet sortedSet = (SortedSet) set;
             if (sortedSet instanceof j1) {
                 j1 j1Var = (j1) sortedSet;
-                d9.f fVar2 = j1Var.f8765b;
-                fVar2.getClass();
-                return new j1((SortedSet) j1Var.f8764a, new d9.g(Arrays.asList(fVar2, fVar)));
+                d9.g gVar2 = j1Var.f8759b;
+                gVar2.getClass();
+                return new j1((SortedSet) j1Var.f8758a, new d9.h(Arrays.asList(gVar2, gVar)));
             }
-            return new j1(sortedSet, fVar);
+            return new j1(sortedSet, gVar);
         } else if (set instanceof j1) {
             j1 j1Var2 = (j1) set;
-            d9.f fVar3 = j1Var2.f8765b;
-            fVar3.getClass();
-            return new j1(j1Var2.f8764a, new d9.g(Arrays.asList(fVar3, fVar)));
+            d9.g gVar3 = j1Var2.f8759b;
+            gVar3.getClass();
+            return new j1(j1Var2.f8758a, new d9.h(Arrays.asList(gVar3, gVar)));
         } else {
             set.getClass();
-            return new j1(set, fVar);
+            return new j1(set, gVar);
         }
     }
 
@@ -121,7 +121,7 @@ public abstract class q {
         if (iterable instanceof List) {
             List list = (List) iterable;
             if (!list.isEmpty()) {
-                return sa.e.h(1, list);
+                return sc.v.h(1, list);
             }
             throw new NoSuchElementException();
         }
@@ -159,7 +159,7 @@ public abstract class q {
     public static ArrayList p(Object... objArr) {
         int length = objArr.length;
         e(length, "arraySize");
-        ArrayList arrayList = new ArrayList(y7.e(length + 5 + (length / 10)));
+        ArrayList arrayList = new ArrayList(v7.e(length + 5 + (length / 10)));
         Collections.addAll(arrayList, objArr);
         return arrayList;
     }
@@ -168,9 +168,9 @@ public abstract class q {
         throw new UnsupportedOperationException("Method not decompiled: e9.q.q(java.lang.Object, java.lang.Object, int, java.lang.Object, int[], java.lang.Object[], java.lang.Object[]):int");
     }
 
-    public static void r(List list, d9.f fVar, int i10, int i11) {
+    public static void r(List list, d9.g gVar, int i10, int i11) {
         for (int size = list.size() - 1; size > i11; size--) {
-            if (fVar.apply(list.get(size))) {
+            if (gVar.apply(list.get(size))) {
                 list.remove(size);
             }
         }
@@ -214,7 +214,7 @@ public abstract class q {
     }
 
     public static AbstractList w(List list, d9.e eVar) {
-        if (e2.u(list)) {
+        if (e2.t(list)) {
             return new r0(list, eVar);
         }
         return new s0(list, eVar);
@@ -223,7 +223,7 @@ public abstract class q {
     public abstract Object g();
 
     public String toString() {
-        switch (this.f8794a) {
+        switch (this.f8788a) {
             case 2:
                 return g().toString();
             default:

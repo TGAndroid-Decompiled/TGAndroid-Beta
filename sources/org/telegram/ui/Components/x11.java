@@ -1,27 +1,27 @@
 package org.telegram.ui.Components;
+public final class x11 implements Runnable {
+    public final int f32717a;
+    public final a21 f32718b;
+    public final z11 f32719c;
 
-import android.app.Activity;
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
-public final class x11 extends FrameLayout {
-    public static final int f32795e = 0;
-    public float f32796a;
-    public float f32797b;
-    public boolean f32798c;
-    public final ThemeEditorView d;
-
-    public x11(ThemeEditorView themeEditorView, Activity activity) {
-        super(activity);
-        this.d = themeEditorView;
+    public x11(a21 a21Var, z11 z11Var, int i10) {
+        this.f32717a = i10;
+        this.f32718b = a21Var;
+        this.f32719c = z11Var;
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        return true;
-    }
-
-    @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r23) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.x11.onTouchEvent(android.view.MotionEvent):boolean");
+    public final void run() {
+        switch (this.f32717a) {
+            case 0:
+                this.f32718b.b(this.f32719c);
+                return;
+            case 1:
+                this.f32718b.b(this.f32719c);
+                return;
+            default:
+                this.f32718b.b(this.f32719c);
+                return;
+        }
     }
 }

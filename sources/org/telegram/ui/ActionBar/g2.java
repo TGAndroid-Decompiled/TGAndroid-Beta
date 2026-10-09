@@ -7,63 +7,63 @@ import android.graphics.drawable.Drawable;
 import android.view.animation.DecelerateInterpolator;
 import org.telegram.messenger.AndroidUtilities;
 public final class g2 extends Drawable {
-    public final Paint f20650a;
-    public boolean f20651b;
-    public long f20652c;
+    public final Paint f20632a;
+    public boolean f20633b;
+    public long f20634c;
     public float d;
-    public float f20653e;
-    public int f20654f;
-    public final boolean f20655g;
+    public float f20635e;
+    public int f20636f;
+    public final boolean f20637g;
     public final DecelerateInterpolator h;
-    public int f20656i;
-    public int f20657j;
-    public float f20658k;
-    public int f20659l;
+    public int f20638i;
+    public int f20639j;
+    public float f20640k;
+    public int f20641l;
 
     public g2(boolean z10) {
         Paint paint = new Paint(1);
-        this.f20650a = paint;
+        this.f20632a = paint;
         Paint paint2 = new Paint(1);
         this.h = new DecelerateInterpolator();
-        this.f20656i = -1;
-        this.f20657j = -9079435;
-        this.f20658k = 300.0f;
+        this.f20638i = -1;
+        this.f20639j = -9079435;
+        this.f20640k = 300.0f;
         paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
         paint2.setColor(-65536);
-        this.f20655g = z10;
+        this.f20637g = z10;
     }
 
     public final void a(int i10) {
-        this.f20656i = i10;
+        this.f20638i = i10;
         invalidateSelf();
     }
 
     public final void b(int i10) {
-        this.f20657j = i10;
+        this.f20639j = i10;
         invalidateSelf();
     }
 
     public final void c(float f7, boolean z10) {
-        this.f20652c = 0L;
-        float f10 = this.f20653e;
+        this.f20634c = 0L;
+        float f10 = this.f20635e;
         if (f10 == 1.0f) {
-            this.f20651b = true;
+            this.f20633b = true;
         } else if (f10 == 0.0f) {
-            this.f20651b = false;
+            this.f20633b = false;
         }
-        this.f20652c = 0L;
+        this.f20634c = 0L;
         if (z10) {
             if (f10 < f7) {
-                this.f20654f = (int) (f10 * this.f20658k);
+                this.f20636f = (int) (f10 * this.f20640k);
             } else {
-                this.f20654f = (int) ((1.0f - f10) * this.f20658k);
+                this.f20636f = (int) ((1.0f - f10) * this.f20640k);
             }
-            this.f20652c = System.currentTimeMillis();
+            this.f20634c = System.currentTimeMillis();
             this.d = f7;
         } else {
-            this.f20653e = f7;
+            this.f20635e = f7;
             this.d = f7;
         }
         invalidateSelf();
@@ -73,62 +73,61 @@ public final class g2 extends Drawable {
     public final void draw(Canvas canvas) {
         int i10;
         int i11;
-        if (this.f20653e != this.d) {
-            if (this.f20652c != 0) {
-                int currentTimeMillis = this.f20654f + ((int) (System.currentTimeMillis() - this.f20652c));
-                this.f20654f = currentTimeMillis;
+        if (this.f20635e != this.d) {
+            if (this.f20634c != 0) {
+                int currentTimeMillis = this.f20636f + ((int) (System.currentTimeMillis() - this.f20634c));
+                this.f20636f = currentTimeMillis;
                 float f7 = currentTimeMillis;
-                float f10 = this.f20658k;
+                float f10 = this.f20640k;
                 if (f7 >= f10) {
-                    this.f20653e = this.d;
+                    this.f20635e = this.d;
                 } else {
-                    float f11 = this.f20653e;
-                    float f12 = this.d;
+                    int i12 = (this.f20635e > this.d ? 1 : (this.f20635e == this.d ? 0 : -1));
                     DecelerateInterpolator decelerateInterpolator = this.h;
-                    if (f11 < f12) {
-                        this.f20653e = decelerateInterpolator.getInterpolation(f7 / f10) * this.d;
+                    if (i12 < 0) {
+                        this.f20635e = decelerateInterpolator.getInterpolation(f7 / f10) * this.d;
                     } else {
-                        this.f20653e = 1.0f - decelerateInterpolator.getInterpolation(f7 / f10);
+                        this.f20635e = 1.0f - decelerateInterpolator.getInterpolation(f7 / f10);
                     }
                 }
             }
-            this.f20652c = System.currentTimeMillis();
+            this.f20634c = System.currentTimeMillis();
             invalidateSelf();
         }
-        int d = i0.a.d(this.f20653e, this.f20656i, this.f20657j);
-        Paint paint = this.f20650a;
+        int d = i0.a.d(this.f20635e, this.f20638i, this.f20639j);
+        Paint paint = this.f20632a;
         paint.setColor(d);
         canvas.save();
         canvas.translate(AndroidUtilities.dp(24.0f) / 2.0f, AndroidUtilities.dp(24.0f) / 2.0f);
-        int i12 = this.f20659l;
-        if (i12 != 0) {
-            canvas.rotate(i12);
+        int i13 = this.f20641l;
+        if (i13 != 0) {
+            canvas.rotate(i13);
         }
-        float f13 = this.f20653e;
+        float f11 = this.f20635e;
         canvas.translate(-AndroidUtilities.dp(0.66f), 0.0f);
-        if (!this.f20655g) {
-            float f14 = this.f20653e;
-            if (this.f20651b) {
+        if (!this.f20637g) {
+            float f12 = this.f20635e;
+            if (this.f20633b) {
                 i11 = -225;
             } else {
                 i11 = 135;
             }
-            canvas.rotate(f14 * i11);
+            canvas.rotate(f12 * i11);
         } else {
-            float f15 = this.f20653e;
-            if (this.f20651b) {
+            float f13 = this.f20635e;
+            if (this.f20633b) {
                 i10 = -180;
             } else {
                 i10 = 180;
             }
-            canvas.rotate((f15 * i10) + 135.0f);
-            f13 = 1.0f;
+            canvas.rotate((f13 * i10) + 135.0f);
+            f11 = 1.0f;
         }
-        float f16 = 1.0f - f13;
-        canvas.drawLine(AndroidUtilities.dp(AndroidUtilities.lerp(-6.75f, -8.0f, f13)), 0.0f, AndroidUtilities.dp(8.0f) - ((paint.getStrokeWidth() / 2.0f) * f16), 0.0f, paint);
+        float f14 = 1.0f - f11;
+        canvas.drawLine(AndroidUtilities.dp(AndroidUtilities.lerp(-6.75f, -8.0f, f11)), 0.0f, AndroidUtilities.dp(8.0f) - ((paint.getStrokeWidth() / 2.0f) * f14), 0.0f, paint);
         float dp = AndroidUtilities.dp(-0.25f);
-        float dp2 = AndroidUtilities.dp(AndroidUtilities.lerp(7.0f, 8.0f, f13)) - ((paint.getStrokeWidth() / 4.0f) * f16);
-        float dp3 = AndroidUtilities.dp(AndroidUtilities.lerp(-7.25f, 0.0f, f13));
+        float dp2 = AndroidUtilities.dp(AndroidUtilities.lerp(7.0f, 8.0f, f11)) - ((paint.getStrokeWidth() / 4.0f) * f14);
+        float dp3 = AndroidUtilities.dp(AndroidUtilities.lerp(-7.25f, 0.0f, f11));
         canvas.drawLine(dp3, -dp, 0.0f, -dp2, paint);
         canvas.drawLine(dp3, dp, 0.0f, dp2, paint);
         canvas.restore();
@@ -151,11 +150,11 @@ public final class g2 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f20650a.setAlpha(i10);
+        this.f20632a.setAlpha(i10);
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f20650a.setColorFilter(colorFilter);
+        this.f20632a.setColorFilter(colorFilter);
     }
 }

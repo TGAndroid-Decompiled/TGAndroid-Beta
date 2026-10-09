@@ -10,26 +10,26 @@ import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
 import org.telegram.messenger.q;
-import org.telegram.ui.me;
-import yh.z7;
+import org.telegram.ui.ke;
+import yh.p7;
 public final class d {
-    public final long[] f14777a;
-    public final CharSequence[] f14778b;
-    public final CharSequence[] f14779c;
+    public final long[] f14824a;
+    public final CharSequence[] f14825b;
+    public final CharSequence[] f14826c;
     public final StaticLayout[] d;
-    public final StaticLayout[] f14780e;
-    public int f14781f;
-    public int f14782g;
+    public final StaticLayout[] f14827e;
+    public int f14828f;
+    public int f14829g;
     public DecimalFormat h;
 
-    public d(long r25, long r27, boolean r29, float r30, int r31, android.text.TextPaint r32, android.text.TextPaint r33) {
+    public d(long r24, long r26, boolean r28, float r29, int r30, android.text.TextPaint r31, android.text.TextPaint r32) {
         throw new UnsupportedOperationException("Method not decompiled: kg.d.<init>(long, long, boolean, float, int, android.text.TextPaint, android.text.TextPaint):void");
     }
 
     public final void a(Canvas canvas, int i10, int i11, float f7, float f10, TextPaint textPaint) {
         StaticLayout[] staticLayoutArr;
         CharSequence[] charSequenceArr;
-        StaticLayout[] staticLayoutArr2 = this.f14780e;
+        StaticLayout[] staticLayoutArr2 = this.f14827e;
         StaticLayout[] staticLayoutArr3 = this.d;
         if (i10 == 0) {
             staticLayoutArr = staticLayoutArr3;
@@ -39,9 +39,9 @@ public final class d {
         StaticLayout staticLayout = staticLayoutArr[i11];
         if (staticLayout == null) {
             if (i10 == 0) {
-                charSequenceArr = this.f14778b;
+                charSequenceArr = this.f14825b;
             } else {
-                charSequenceArr = this.f14779c;
+                charSequenceArr = this.f14826c;
             }
             CharSequence charSequence = charSequenceArr[i11];
             if (i10 == 0) {
@@ -77,12 +77,12 @@ public final class d {
                 i12 = 6;
             }
             decimalFormat2.setMaximumFractionDigits(i12);
-            return me.K("TON " + this.h.format(j3 / 1.0E9d), textPaint, 0.8f, -AndroidUtilities.dp(0.66f), false);
+            return ke.f0("TON " + this.h.format(j3 / 1.0E9d), textPaint, 0.8f, -AndroidUtilities.dp(0.66f), false);
         } else if (i11 == 2) {
             if (i10 == 1) {
                 return "≈" + BillingController.getInstance().formatCurrency(j3, "USD");
             }
-            return z7.d1(false, q.h(j3, ' ', new StringBuilder("XTR ")), 0.65f, null);
+            return p7.Y0(false, q.h(j3, ' ', new StringBuilder("XTR ")), 0.65f, null);
         } else {
             return AndroidUtilities.formatWholeNumber((int) j3, 0);
         }

@@ -1,183 +1,76 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.text.TextUtils;
-import java.io.IOException;
-import java.io.RandomAccessFile;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DispatchQueuePoolBackground;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-public class ij0 extends kj0 {
-    public volatile RLottieNative U0;
-    public boolean V0;
-    public boolean W0;
-    public volatile boolean X0;
-    public boolean Y0;
-    public final int Z0;
-    public int f27533a1;
+import org.telegram.messenger.NotificationCenter;
+public final class ij0 extends AnimatorListenerAdapter {
+    public final int f27410a;
+    public final jj0 f27411b;
 
-    public ij0(String str, int i10, int i11) {
-        super(i10, i11);
-        String str2;
-        this.Z0 = -1;
-        this.J = 1;
-        if ("🎲".equals(str)) {
-            str2 = AndroidUtilities.readRes(R.raw.diceloop);
-            this.Z0 = 60;
-        } else if ("🎯".equals(str)) {
-            str2 = AndroidUtilities.readRes(R.raw.dartloop);
-        } else {
-            str2 = null;
-        }
-        getPaint().setFlags(2);
-        if (TextUtils.isEmpty(str2)) {
-            return;
-        }
-        this.m0 = RLottieNative.b(str2, this.f28216e, null, null);
+    public ij0(jj0 jj0Var, int i10) {
+        this.f27410a = i10;
+        this.f27411b = jj0Var;
     }
 
     @Override
-    public int B(Bitmap bitmap, boolean z10) {
-        RLottieNative rLottieNative;
-        int i10 = this.J;
-        if (i10 == 1) {
-            rLottieNative = this.m0;
-        } else if (i10 == 2) {
-            rLottieNative = this.U0;
-            if (this.X0) {
-                this.f28210a0 = this.f27533a1 - 1;
-            }
-        } else {
-            rLottieNative = this.m0;
-        }
-        if (rLottieNative.c(this.f28210a0, bitmap, z10) < 0) {
-            return 2;
-        }
-        return 1;
-    }
-
-    @Override
-    public void C(boolean z10) {
-        this.f28224k0 = false;
-        this.f28225l0 = true;
-        n();
-        l();
-        if (!this.Y0 && !this.V0) {
-            if (this.P == null && !this.f28241x0) {
-                D(z10);
-                yf.e eVar = this.B0;
-                if (eVar != null) {
-                    RandomAccessFile randomAccessFile = eVar.f50983s;
-                    if (randomAccessFile != null) {
-                        try {
-                            randomAccessFile.close();
-                        } catch (IOException e7) {
-                            e7.printStackTrace();
-                        }
-                        eVar.f50983s = null;
-                    }
-                    eVar.f50982r = true;
-                    this.B0 = null;
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f27410a) {
+            case 1:
+                jj0 jj0Var = this.f27411b;
+                AnimatorSet animatorSet = jj0Var.f27730s;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    jj0Var.f27730s = null;
+                    jj0Var.getClass();
+                    return;
                 }
-                E();
                 return;
-            }
-            this.V = true;
-            return;
-        }
-        this.W0 = true;
-    }
-
-    @Override
-    public final void D(boolean z10) {
-        RLottieNative rLottieNative = this.m0;
-        RLottieNative rLottieNative2 = this.U0;
-        this.m0 = null;
-        this.U0 = null;
-        if (rLottieNative == null && rLottieNative2 == null) {
-            return;
-        }
-        yw ywVar = new yw(26, rLottieNative, rLottieNative2);
-        if (z10) {
-            DispatchQueuePoolBackground.execute(ywVar);
-        } else {
-            Utilities.globalQueue.postRunnable(ywVar);
-        }
-    }
-
-    @Override
-    public void i() {
-        int i10 = this.J;
-        if (i10 == 1) {
-            int i11 = this.f28210a0 + 1;
-            int i12 = this.Z0;
-            if (i12 == -1) {
-                i12 = this.f28216e[0];
-            }
-            if (i11 < i12) {
-                this.f28210a0 = i11;
+            case 2:
+                jj0 jj0Var2 = this.f27411b;
+                AnimatorSet animatorSet2 = jj0Var2.f27730s;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    jj0Var2.f27730s = null;
+                    jj0Var2.getClass();
+                    return;
+                }
                 return;
-            }
-            this.f28210a0 = 0;
-            this.N = false;
-            if (this.U0 != null) {
-                this.J = 2;
-            }
-            if (this.f28242y) {
-                this.f28240x = null;
-                this.f28242y = false;
-            }
-        } else if (i10 == 2) {
-            int i13 = this.f28210a0 + 1;
-            if (i13 < this.f27533a1) {
-                this.f28210a0 = i13;
+            default:
+                super.onAnimationCancel(animator);
                 return;
-            }
-            this.N = true;
-            this.M++;
         }
     }
 
     @Override
-    public int j() {
-        if (this.f28225l0) {
-            return 3;
+    public final void onAnimationEnd(Animator animator) {
+        int i10 = this.f27410a;
+        jj0 jj0Var = this.f27411b;
+        switch (i10) {
+            case 0:
+                AnimatorSet animatorSet = jj0Var.h;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    jj0Var.h = null;
+                }
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
+                return;
+            case 1:
+                AnimatorSet animatorSet2 = jj0Var.f27730s;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    jj0Var.f27730s = null;
+                    if (jj0Var.f27731w) {
+                        jj0Var.setLayerType(0, null);
+                    }
+                }
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
+                return;
+            default:
+                AnimatorSet animatorSet3 = jj0Var.f27730s;
+                if (animatorSet3 != null && animatorSet3.equals(animator)) {
+                    jj0Var.f27730s = null;
+                    AndroidUtilities.runOnUIThread(new bd0(this, 14));
+                }
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
+                return;
         }
-        if (this.m0 == null || (this.J == 2 && this.U0 == null)) {
-            return 2;
-        }
-        return 1;
-    }
-
-    @Override
-    public void p() {
-        if (this.V) {
-            n();
-            if (this.P == null && this.m0 != null) {
-                D(true);
-            }
-        }
-        if (this.m0 == null && this.U0 == null && this.B0 == null) {
-            E();
-            return;
-        }
-        this.T = true;
-        if (!v()) {
-            stop();
-        }
-        if (this.f28224k0) {
-            I();
-        }
-    }
-
-    @Override
-    public final boolean w() {
-        return this.Y0;
-    }
-
-    @Override
-    public final boolean z() {
-        return false;
     }
 }

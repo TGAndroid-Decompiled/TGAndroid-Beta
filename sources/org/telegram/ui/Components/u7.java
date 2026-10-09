@@ -1,50 +1,30 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class u7 extends zl0 {
-    public boolean f31363e3;
-    public final j8 f31364f3;
+import android.view.accessibility.AccessibilityNodeInfo;
+public final class u7 extends fk0 {
+    public float f31384r;
+    public float f31385s;
+    public boolean v;
+    public final org.telegram.ui.Cells.t6 f31386w;
+    public final float f31387x;
+    public final l8 f31388y;
 
-    public u7(j8 j8Var, Context context) {
-        super(context, null);
-        this.f31364f3 = j8Var;
+    public u7(l8 l8Var, Context context, float f7) {
+        super(context);
+        this.f31388y = l8Var;
+        this.f31387x = f7;
+        this.f31386w = new org.telegram.ui.Cells.t6(this, 3);
     }
 
     @Override
-    public final boolean F0(float f7) {
-        j8 j8Var = this.f31364f3;
-        if (f7 < j8Var.E.getY() - j8Var.f27716n.getTop()) {
-            return true;
-        }
-        return false;
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.addAction(16);
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        j8 j8Var = this.f31364f3;
-        int i14 = j8Var.f27724s0;
-        if (i14 != -1 && !j8Var.f27703c.f21286n0) {
-            this.f31363e3 = true;
-            j8Var.f27721r.h1(i14, j8Var.f27725t0 - j8Var.f27716n.getPaddingTop());
-            super.onLayout(false, i10, i11, i12, i13);
-            this.f31363e3 = false;
-            j8Var.f27724s0 = -1;
-        } else if (j8Var.f27722r0) {
-            j8Var.f27722r0 = false;
-            this.f31363e3 = true;
-            if (j8Var.w0(true)) {
-                super.onLayout(false, i10, i11, i12, i13);
-            }
-            this.f31363e3 = false;
-        }
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f31363e3) {
-            return;
-        }
-        super.requestLayout();
+    public final boolean onTouchEvent(android.view.MotionEvent r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.u7.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

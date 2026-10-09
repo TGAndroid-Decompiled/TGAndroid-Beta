@@ -1,31 +1,34 @@
 package ei;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class e3 implements RequestDelegate {
-    public final int f9015a;
-    public final g3 f9016b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.ad;
+import org.telegram.ui.Components.tc;
+import org.telegram.ui.LaunchActivity;
+public final class e3 implements Runnable {
+    public final int f9034a;
+    public final org.telegram.ui.ActionBar.b2 f9035b;
 
-    public e3(g3 g3Var, int i10) {
-        this.f9015a = i10;
-        this.f9016b = g3Var;
+    public e3(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        this.f9034a = i10;
+        this.f9035b = b2Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f9015a) {
+    public final void run() {
+        switch (this.f9034a) {
             case 0:
-                l3 l3Var = this.f9016b.d;
-                if (tLObject instanceof TLRPC.TL_updates) {
-                    MessagesController.getInstance(l3Var.G).processUpdates((TLRPC.TL_updates) tLObject, false);
-                }
-                AndroidUtilities.runOnUIThread(new f2(l3Var, 17));
+                this.f9035b.dismiss();
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new a3.k0(this.f9016b, tLObject, tL_error, 26));
+                this.f9035b.dismiss();
+                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+                if (U != null) {
+                    tc Q = ad.a0(U).Q(R.raw.error, 36, LocaleController.getString(R.string.MessageNotFound));
+                    Q.f31140t = true;
+                    Q.j();
+                    return;
+                }
                 return;
         }
     }

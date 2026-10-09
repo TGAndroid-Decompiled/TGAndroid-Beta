@@ -2,7 +2,7 @@ package c3;
 
 import java.util.List;
 public interface o {
-    boolean b(p pVar);
+    boolean a(p pVar);
 
     o c();
 

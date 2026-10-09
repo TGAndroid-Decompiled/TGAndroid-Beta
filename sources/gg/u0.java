@@ -1,150 +1,64 @@
 package gg;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
+import java.io.File;
 import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MediaDataController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Cells.u4;
-import org.telegram.ui.Cells.v3;
-import org.telegram.ui.Components.w00;
-public abstract class u0 extends c {
-    public final Context K;
-    public final d6 L;
-    public boolean M;
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.i6;
+public final class u0 implements Runnable {
+    public final int f10825a = 0;
+    public final boolean f10826b;
+    public final int f10827c;
+    public final boolean d;
+    public final Object f10828e;
+    public final Object f10829f;
+    public final Object h;
 
-    public u0(Context context, d6 d6Var, boolean z10, boolean z11) {
-        super(z10, z11);
-        this.M = false;
-        this.K = context;
-        this.L = d6Var;
-        new w00(context, null).setIsSingleCell(true);
+    public u0(j1 j1Var, CharSequence charSequence, int i10, ArrayList arrayList, boolean z10, boolean z11) {
+        this.f10828e = j1Var;
+        this.f10829f = charSequence;
+        this.f10827c = i10;
+        this.h = arrayList;
+        this.f10826b = z10;
+        this.d = z11;
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
-        return true;
-    }
-
-    public final TLRPC.TL_messageMediaVenue I(int i10) {
-        ArrayList arrayList = this.f10522r;
-        if (!arrayList.isEmpty()) {
-            i10--;
-        }
-        if (i10 >= 0 && i10 < arrayList.size()) {
-            return (TLRPC.TL_messageMediaVenue) arrayList.get(i10);
-        }
-        if (!this.J) {
-            int size = i10 - arrayList.size();
-            if (!arrayList.isEmpty()) {
-                size--;
-            }
-            if (size >= 0) {
-                ArrayList arrayList2 = this.f10523s;
-                if (size < arrayList2.size()) {
-                    return (TLRPC.TL_messageMediaVenue) arrayList2.get(size);
-                }
-                return null;
-            }
-            return null;
-        }
-        return null;
-    }
-
-    @Override
-    public final int h() {
-        int i10;
-        ArrayList arrayList = this.f10522r;
-        if (!arrayList.isEmpty()) {
-            i10 = arrayList.size() + 1;
-        } else {
-            i10 = 0;
-        }
-        if (!this.M) {
-            if (this.J) {
-                return i10 + 3;
-            }
-            boolean isEmpty = arrayList.isEmpty();
-            ArrayList arrayList2 = this.f10523s;
-            if (!isEmpty && !arrayList2.isEmpty()) {
-                i10++;
-            }
-            return arrayList2.size() + i10;
-        }
-        return i10;
-    }
-
-    @Override
-    public final int j(int i10) {
-        ArrayList arrayList = this.f10522r;
-        if ((i10 == 0 || i10 == arrayList.size() + 1) && !arrayList.isEmpty()) {
-            return 1;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        int i11;
-        TLRPC.TL_messageMediaVenue tL_messageMediaVenue;
-        int i12;
-        int i13 = c1Var.f46542f;
-        View view = c1Var.f46538a;
-        boolean z10 = true;
-        ArrayList arrayList = this.f10522r;
-        if (i13 == 0) {
-            if (!arrayList.isEmpty()) {
-                i11 = i10 - 1;
-            } else {
-                i11 = i10;
-            }
-            if (i11 >= 0 && i11 < arrayList.size()) {
-                tL_messageMediaVenue = (TLRPC.TL_messageMediaVenue) arrayList.get(i11);
-                i12 = 2;
-            } else {
-                if (!this.J) {
-                    int size = i11 - arrayList.size();
-                    if (!this.f10521n && !arrayList.isEmpty()) {
-                        size--;
-                    }
-                    i12 = size;
-                    if (i12 >= 0) {
-                        ArrayList arrayList2 = this.f10523s;
-                        if (i12 < arrayList2.size()) {
-                            tL_messageMediaVenue = (TLRPC.TL_messageMediaVenue) arrayList2.get(i12);
-                        }
-                    }
-                }
-                tL_messageMediaVenue = null;
-                i12 = i10;
-            }
-            u4 u4Var = (u4) view;
-            if (i10 == h() - 1 || (!this.f10521n && !arrayList.isEmpty() && i10 == arrayList.size())) {
-                z10 = false;
-            }
-            u4Var.b(tL_messageMediaVenue, i12, z10, false);
-        } else if (i13 == 1) {
-            if (i10 == 0 && !arrayList.isEmpty()) {
-                ((v3) view).setText(LocaleController.getString(R.string.LocationOnMap));
-            } else {
-                ((v3) view).setText(LocaleController.getString(R.string.NearbyVenue));
-            }
+    public final void run() {
+        switch (this.f10825a) {
+            case 0:
+                boolean z10 = this.f10826b;
+                boolean z11 = this.d;
+                ((j1) this.f10828e).U((CharSequence) this.f10829f, this.f10827c, (ArrayList) this.h, z10, z11);
+                return;
+            case 1:
+                boolean z12 = this.d;
+                ((MediaDataController) this.f10828e).lambda$processLoadedDiceStickers$89(this.f10826b, (TLRPC.TL_messages_stickerSet) this.f10829f, this.f10827c, (String) this.h, z12);
+                return;
+            default:
+                boolean z13 = this.d;
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.q(i6.l1((b6) this.f10828e, (File) this.f10829f, this.f10827c, this.f10826b, (TLRPC.Document) this.h, z13), 15));
+                return;
         }
     }
 
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        View v3Var;
-        d6 d6Var = this.L;
-        Context context = this.K;
-        if (i10 == 0) {
-            v3Var = new u4(context, d6Var);
-        } else {
-            v3Var = new v3(context, d6Var);
-        }
-        return new s4.c1(v3Var);
+    public u0(MediaDataController mediaDataController, boolean z10, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, int i10, String str, boolean z11) {
+        this.f10828e = mediaDataController;
+        this.f10826b = z10;
+        this.f10829f = tL_messages_stickerSet;
+        this.f10827c = i10;
+        this.h = str;
+        this.d = z11;
+    }
+
+    public u0(b6 b6Var, File file, int i10, boolean z10, TLRPC.Document document, boolean z11) {
+        this.f10828e = b6Var;
+        this.f10829f = file;
+        this.f10827c = i10;
+        this.f10826b = z10;
+        this.h = document;
+        this.d = z11;
     }
 }

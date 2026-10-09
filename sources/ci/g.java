@@ -15,25 +15,25 @@ import android.view.ViewParent;
 import android.view.WindowInsets;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.eu;
-import org.telegram.ui.Components.iu;
-import org.telegram.ui.Components.md;
-import org.telegram.ui.Components.mu;
-import org.telegram.ui.Components.mw0;
-import org.telegram.ui.Components.nz;
-import org.telegram.ui.Components.tr;
-public final class g extends mu {
-    public org.telegram.ui.Components.oa V;
+import org.telegram.ui.Components.a00;
+import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.od;
+import org.telegram.ui.Components.ru;
+import org.telegram.ui.Components.sw0;
+import org.telegram.ui.Components.vu;
+import org.telegram.ui.Components.zu;
+public final class g extends zu {
+    public org.telegram.ui.Components.qa V;
     public ch.d W;
-    public final org.telegram.ui.ActionBar.d6 f5102a0;
-    public final org.telegram.ui.Components.ka f5103b0;
-    public final m f5104c0;
+    public final org.telegram.ui.ActionBar.e6 f5112a0;
+    public final org.telegram.ui.Components.ma f5113b0;
+    public final m f5114c0;
 
-    public g(m mVar, Context context, mw0 mw0Var, int i10, ai.d dVar, org.telegram.ui.ActionBar.d6 d6Var, org.telegram.ui.Components.ka kaVar) {
-        super(context, mw0Var, null, i10, true, dVar);
-        this.f5104c0 = mVar;
-        this.f5102a0 = d6Var;
-        this.f5103b0 = kaVar;
+    public g(m mVar, Context context, sw0 sw0Var, int i10, ai.d dVar, org.telegram.ui.ActionBar.e6 e6Var, org.telegram.ui.Components.ma maVar) {
+        super(context, sw0Var, null, i10, true, dVar);
+        this.f5114c0 = mVar;
+        this.f5112a0 = e6Var;
+        this.f5113b0 = maVar;
     }
 
     @Override
@@ -43,7 +43,7 @@ public final class g extends mu {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        m mVar = this.f5104c0;
+        m mVar = this.f5114c0;
         if ((mVar instanceof r) && ((r) mVar).O1) {
             return false;
         }
@@ -53,41 +53,41 @@ public final class g extends mu {
     @Override
     public final void f() {
         super.f();
-        nz emojiView = getEmojiView();
+        a00 emojiView = getEmojiView();
         if (emojiView != null) {
-            m mVar = this.f5104c0;
+            m mVar = this.f5114c0;
             if (mVar.getEditTextStyle() == 2 || mVar.getEditTextStyle() == 3) {
-                emojiView.f29257w0 = false;
-                emojiView.f29259w2 = false;
+                emojiView.f24464w0 = false;
+                emojiView.f24466w2 = false;
                 emojiView.setShouldDrawBackground(false);
-                if (mVar instanceof md) {
+                if (mVar instanceof od) {
                     emojiView.setPadding(0, 0, 0, AndroidUtilities.navigationBarHeight);
-                    emojiView.f29192c = 3;
+                    emojiView.f24399c = 3;
                 }
-                emojiView.Q();
+                emojiView.S();
             }
         }
         if (emojiView != null) {
-            emojiView.F2 = true;
+            emojiView.H2 = true;
             emojiView.setClipToOutline(true);
-            emojiView.setOutlineProvider(new ai.k2(1));
+            emojiView.setOutlineProvider(new ai.l2(1));
         }
     }
 
     @Override
-    public final void g(Canvas canvas, iu iuVar) {
+    public final void g(Canvas canvas, vu vuVar) {
         float lerp;
         Bitmap bitmap;
         ?? r14;
         int i10;
         int i11;
         WindowInsets rootWindowInsets;
-        m mVar = this.f5104c0;
+        m mVar = this.f5114c0;
         ah.l lVar = mVar.d;
-        RectF rectF = mVar.f5544z0;
-        rectF.set(0.0f, 0.0f, iuVar.getWidth(), AndroidUtilities.dp(29.0f) + iuVar.getHeight());
+        RectF rectF = mVar.f5581z0;
+        rectF.set(0.0f, 0.0f, vuVar.getWidth(), AndroidUtilities.dp(29.0f) + vuVar.getHeight());
         int i12 = 0;
-        if (mVar.f5521h0 != null) {
+        if (mVar.f5558h0 != null) {
             if (this.W == null) {
                 if (Build.VERSION.SDK_INT >= 31 && (rootWindowInsets = getRootWindowInsets()) != null) {
                     RoundedCorner roundedCorner = rootWindowInsets.getRoundedCorner(3);
@@ -106,16 +106,16 @@ public final class g extends mu {
                     i10 = 0;
                     i11 = 0;
                 }
-                ch.d c10 = mVar.f5521h0.c(iuVar, null, false);
-                c10.w(eh.b.i(this.f5102a0));
+                ch.d c10 = mVar.f5558h0.c(vuVar, null, false);
+                c10.o(eh.b.i(this.f5112a0));
                 this.W = c10;
-                c10.A(AndroidUtilities.dp(29.0f), AndroidUtilities.dp(29.0f), i10, i11);
+                c10.s(AndroidUtilities.dp(29.0f), AndroidUtilities.dp(29.0f), i10, i11);
                 ch.d dVar = this.W;
-                dVar.f4635n = true;
-                dVar.B(AndroidUtilities.dp(32.0f));
+                dVar.f4688m = true;
+                dVar.u(AndroidUtilities.dp(32.0f));
                 ch.d dVar2 = this.W;
-                dVar2.f4633l.f4619g = 0.4f;
-                dVar2.u();
+                dVar2.f4685j.f4670g = 0.4f;
+                dVar2.k();
             }
             Rect rect = AndroidUtilities.rectTmp2;
             rectF.round(rect);
@@ -123,42 +123,42 @@ public final class g extends mu {
             this.W.draw(canvas);
         } else if (mVar.g()) {
             if (this.V == null) {
-                this.V = new org.telegram.ui.Components.oa(this.f5103b0, iuVar, 7, false);
+                this.V = new org.telegram.ui.Components.qa(this.f5113b0, vuVar, 7, false);
             }
-            mVar.h(this.V, canvas, mVar.f5544z0, AndroidUtilities.dp(29.0f), false, 0.0f, -iuVar.getY(), false);
-            lVar.f529k = AndroidUtilities.dp(29.0f);
+            mVar.h(this.V, canvas, mVar.f5581z0, AndroidUtilities.dp(29.0f), false, 0.0f, -vuVar.getY(), false);
+            lVar.f612k = AndroidUtilities.dp(29.0f);
             lVar.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, AndroidUtilities.dp(29.0f) + ((int) rectF.bottom));
             lVar.draw(canvas);
         } else {
-            Paint paint = mVar.f5516e;
+            Paint paint = mVar.f5553e;
             FrameLayout frameLayout = mVar.J;
-            if (mVar.f5528o0 > 0.0f && mVar.f5536u0 != null && mVar.f5534s0 != null && (bitmap = mVar.f5532r0) != null && !bitmap.isRecycled()) {
-                mVar.f5535t0.reset();
-                mVar.f5535t0.postScale(frameLayout.getWidth() / mVar.f5532r0.getWidth(), frameLayout.getHeight() / mVar.f5532r0.getHeight());
+            if (mVar.f5565o0 > 0.0f && mVar.f5573u0 != null && mVar.f5571s0 != null && (bitmap = mVar.f5569r0) != null && !bitmap.isRecycled()) {
+                mVar.f5572t0.reset();
+                mVar.f5572t0.postScale(frameLayout.getWidth() / mVar.f5569r0.getWidth(), frameLayout.getHeight() / mVar.f5569r0.getHeight());
                 float f7 = 0.0f;
                 float f10 = 0.0f;
-                iu iuVar2 = iuVar;
-                while (i12 < 8 && iuVar2 != null) {
-                    f7 += iuVar2.getX();
-                    f10 += iuVar2.getY();
-                    ViewParent parent = iuVar2.getParent();
+                vu vuVar2 = vuVar;
+                while (i12 < 8 && vuVar2 != null) {
+                    f7 += vuVar2.getX();
+                    f10 += vuVar2.getY();
+                    ViewParent parent = vuVar2.getParent();
                     if (parent instanceof View) {
                         r14 = (View) parent;
                     } else {
                         r14 = 0;
                     }
                     i12++;
-                    iuVar2 = r14;
+                    vuVar2 = r14;
                 }
-                mVar.f5535t0.postTranslate(-f7, -f10);
-                mVar.f5534s0.setLocalMatrix(mVar.f5535t0);
-                mVar.f5536u0.setAlpha((int) (mVar.f5528o0 * 255.0f * 0.95f));
-                canvas.drawRoundRect(rectF, 0.0f, 0.0f, mVar.f5536u0);
+                mVar.f5572t0.postTranslate(-f7, -f10);
+                mVar.f5571s0.setLocalMatrix(mVar.f5572t0);
+                mVar.f5573u0.setAlpha((int) (mVar.f5565o0 * 255.0f * 0.95f));
+                canvas.drawRoundRect(rectF, 0.0f, 0.0f, mVar.f5573u0);
             }
-            if (mVar.f5536u0 == null) {
+            if (mVar.f5573u0 == null) {
                 lerp = 128.0f;
             } else {
-                lerp = AndroidUtilities.lerp(128, 153, mVar.f5528o0) * 0.95f;
+                lerp = AndroidUtilities.lerp(128, 153, mVar.f5565o0) * 0.95f;
             }
             paint.setAlpha((int) lerp);
             canvas.drawRoundRect(rectF, 0.0f, 0.0f, paint);
@@ -167,42 +167,42 @@ public final class g extends mu {
 
     @Override
     public final void p() {
-        this.f5104c0.L.a();
+        this.f5114c0.L.a();
     }
 
     @Override
     public final void q(int i10, int i11) {
-        this.f5104c0.s(i10, i11);
+        this.f5114c0.s(i10, i11);
     }
 
     @Override
     public final boolean t(int i10) {
-        m mVar = this.f5104c0;
-        g gVar = mVar.f5518f;
-        ObjectAnimator objectAnimator = mVar.f5520g0;
-        if (objectAnimator != null && objectAnimator.isRunning() && i10 == mVar.f5512b0) {
+        m mVar = this.f5114c0;
+        g gVar = mVar.f5555f;
+        ObjectAnimator objectAnimator = mVar.f5557g0;
+        if (objectAnimator != null && objectAnimator.isRunning() && i10 == mVar.f5549b0) {
             return false;
         }
         mVar.invalidate();
         if (mVar.W) {
             mVar.W = false;
-            if (mVar.f5510a0 != i10) {
-                ObjectAnimator objectAnimator2 = mVar.f5520g0;
-                if (objectAnimator2 == null || !objectAnimator2.isRunning() || i10 != mVar.f5512b0) {
-                    ObjectAnimator objectAnimator3 = mVar.f5520g0;
+            if (mVar.f5547a0 != i10) {
+                ObjectAnimator objectAnimator2 = mVar.f5557g0;
+                if (objectAnimator2 == null || !objectAnimator2.isRunning() || i10 != mVar.f5549b0) {
+                    ObjectAnimator objectAnimator3 = mVar.f5557g0;
                     if (objectAnimator3 != null) {
                         objectAnimator3.cancel();
                     }
-                    gVar.getEditText().setScrollY(mVar.f5510a0);
-                    eu editText = gVar.getEditText();
-                    int i11 = mVar.f5510a0;
-                    mVar.f5512b0 = i10;
+                    gVar.getEditText().setScrollY(mVar.f5547a0);
+                    ru editText = gVar.getEditText();
+                    int i11 = mVar.f5547a0;
+                    mVar.f5549b0 = i10;
                     ObjectAnimator ofInt = ObjectAnimator.ofInt(editText, "scrollY", i11, i10);
-                    mVar.f5520g0 = ofInt;
+                    mVar.f5557g0 = ofInt;
                     ofInt.setDuration(240L);
-                    mVar.f5520g0.setInterpolator(tr.h);
-                    mVar.f5520g0.addListener(new ai.b(this, 11));
-                    mVar.f5520g0.start();
+                    mVar.f5557g0.setInterpolator(hs.h);
+                    mVar.f5557g0.addListener(new ai.b(this, 11));
+                    mVar.f5557g0.start();
                     return false;
                 }
                 return true;
@@ -214,11 +214,11 @@ public final class g extends mu {
 
     @Override
     public final void u() {
-        this.f5104c0.L.f5162e = true;
+        this.f5114c0.L.f5161e = true;
     }
 
     @Override
     public final void y() {
-        this.f5104c0.L.a();
+        this.f5114c0.L.a();
     }
 }

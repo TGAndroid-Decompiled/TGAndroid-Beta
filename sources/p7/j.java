@@ -3,12 +3,12 @@ package p7;
 import android.os.Parcelable;
 import com.google.android.gms.vision.face.internal.client.FaceParcel;
 import com.google.android.gms.vision.face.internal.client.LandmarkParcel;
-import s4.b0;
+import s4.c0;
 public final class j implements Parcelable.Creator {
-    public final int f44330a;
+    public final int f45494a;
 
     public j(int i10) {
-        this.f44330a = i10;
+        this.f45494a = i10;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class j implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i10) {
-        switch (this.f44330a) {
+        switch (this.f45494a) {
             case 0:
                 return new i[i10];
             case 1:
@@ -64,7 +64,7 @@ public final class j implements Parcelable.Creator {
             case 21:
                 return new r8.k[i10];
             case 22:
-                return new b0[i10];
+                return new c0[i10];
             case 23:
                 return new u0.h[i10];
             case 24:

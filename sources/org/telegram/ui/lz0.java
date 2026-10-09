@@ -1,43 +1,78 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Stories.ProfileStoriesView;
-public final class lz0 extends ProfileStoriesView {
-    public final Context f38430t0;
-    public final ProfileActivity f38431u0;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+public final class lz0 extends s4.t0 {
+    public final int f39712a;
+    public final ProfileActivity f39713b;
 
-    public lz0(ProfileActivity profileActivity, Context context, int i10, long j3, boolean z10, k0 k0Var, iz0 iz0Var, org.telegram.ui.ActionBar.d6 d6Var, Context context2) {
-        super(context, i10, j3, z10, k0Var, iz0Var, d6Var);
-        this.f38431u0 = profileActivity;
-        this.f38430t0 = context2;
+    public lz0(ProfileActivity profileActivity, int i10) {
+        this.f39712a = i10;
+        this.f39713b = profileActivity;
     }
 
     @Override
-    public final void e(a6.i iVar) {
-        TL_stories.PeerStories peerStories;
-        TL_stories.PeerStories peerStories2;
-        ProfileActivity profileActivity = this.f38431u0;
-        long a2 = profileActivity.a();
-        ai.l9 storiesController = profileActivity.getMessagesController().getStoriesController();
-        boolean I = storiesController.I(a2);
-        Context context = this.f38430t0;
-        if (!I && !storiesController.K(a2) && !storiesController.N(a2)) {
-            TLRPC.UserFull userFull = profileActivity.f34371v2;
-            if (userFull != null && (peerStories2 = userFull.stories) != null && !peerStories2.stories.isEmpty() && profileActivity.f34253e1 != profileActivity.getUserConfig().clientUserId) {
-                profileActivity.getOrCreateStoryViewer().E(context, profileActivity.f34371v2.stories, iVar);
+    public final void a(RecyclerView recyclerView, int i10) {
+        boolean z10;
+        switch (this.f39712a) {
+            case 0:
+                if (i10 == 1) {
+                    AndroidUtilities.hideKeyboard(this.f39713b.getParentActivity().getCurrentFocus());
+                    return;
+                }
                 return;
-            }
-            TLRPC.ChatFull chatFull = profileActivity.f34364u2;
-            if (chatFull != null && (peerStories = chatFull.stories) != null && !peerStories.stories.isEmpty()) {
-                profileActivity.getOrCreateStoryViewer().E(context, profileActivity.f34364u2.stories, iVar);
+            default:
+                ProfileActivity profileActivity = this.f39713b;
+                boolean z11 = true;
+                if (i10 == 1) {
+                    AndroidUtilities.hideKeyboard(profileActivity.getParentActivity().getCurrentFocus());
+                }
+                if (profileActivity.F0 && i10 != 2) {
+                    profileActivity.F0 = false;
+                }
+                org.telegram.ui.ActionBar.v0 v0Var = profileActivity.U0;
+                if (v0Var != null) {
+                    if (i10 != 0) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    profileActivity.f34387z1 = z10;
+                    if (z10 || profileActivity.f34319p2) {
+                        z11 = false;
+                    }
+                    v0Var.setEnabled(z11);
+                }
+                k01 k01Var = profileActivity.O;
+                boolean z12 = profileActivity.f34211a.I1;
+                k01Var.getClass();
                 return;
-            } else {
-                profileActivity.K3();
-                return;
-            }
         }
-        profileActivity.getOrCreateStoryViewer().D(context, a2, iVar);
+    }
+
+    @Override
+    public void b(RecyclerView recyclerView, int i10, int i11) {
+        switch (this.f39712a) {
+            case 1:
+                ProfileActivity profileActivity = this.f39713b;
+                org.telegram.ui.Components.z40 z40Var = profileActivity.X;
+                boolean z10 = true;
+                if (z40Var != null) {
+                    z40Var.b(true);
+                }
+                profileActivity.A3();
+                if (profileActivity.C1 != null && !profileActivity.D1 && profileActivity.f34226c.N0() > profileActivity.f34363v4 - 8) {
+                    profileActivity.R3(false);
+                }
+                k01 k01Var = profileActivity.O;
+                if (k01Var.getY() > 0.0f) {
+                    z10 = false;
+                }
+                k01Var.setPinnedToTop(z10);
+                profileActivity.U4();
+                return;
+            default:
+                return;
+        }
     }
 }

@@ -3,21 +3,17 @@ package org.telegram.ui.Cells;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Random;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.bw0;
-import org.telegram.ui.Components.q90;
-import org.telegram.ui.Components.w00;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.ad;
+import org.telegram.ui.Components.ea0;
+import org.telegram.ui.Components.j10;
 public abstract class c1 {
     public static boolean a(MessageObject messageObject) {
         if (messageObject != null && messageObject.getDialogId() == 1271266957) {
@@ -26,128 +22,112 @@ public abstract class c1 {
         return false;
     }
 
-    public static void b(RecyclerView recyclerView) {
-        recyclerView.C0();
-        s4.o0 layoutManager = recyclerView.getLayoutManager();
-        if (layoutManager instanceof s4.c0) {
-            ((s4.c0) layoutManager).h1(0, 0);
-        } else {
-            recyclerView.v0(0);
-        }
-    }
-
-    public static float c(RecyclerView recyclerView) {
-        int i10 = bw0.f25116l0;
-        s4.o0 layoutManager = recyclerView.getLayoutManager();
-        if (layoutManager == null || !recyclerView.canScrollVertically(-1)) {
-            return 0.0f;
-        }
-        View m10 = layoutManager.m(0);
-        if (m10 == null) {
-            return Float.POSITIVE_INFINITY;
-        }
-        return Math.max(0.0f, (recyclerView.getPaddingTop() - s4.o0.z(m10)) + ((ViewGroup.MarginLayoutParams) ((s4.p0) m10.getLayoutParams())).topMargin);
-    }
-
-    public static int d(float f7, int i10, TextView textView) {
+    public static int b(float f7, int i10, TextView textView) {
         textView.setText(LocaleController.getString(i10));
         return AndroidUtilities.dp(f7);
     }
 
-    public static int e(int i10, int i11, Drawable drawable) {
+    public static int c(int i10, int i11, Drawable drawable) {
         return i11 - (drawable.getIntrinsicHeight() / i10);
     }
 
-    public static int f(Random random, int i10) {
+    public static int d(Random random, int i10) {
         return Math.abs(random.nextInt() % i10);
     }
 
-    public static int g(w00 w00Var, int i10) {
-        return w00Var.c(w00Var.getMeasuredWidth()) + i10;
+    public static int e(j10 j10Var, int i10) {
+        return j10Var.c(j10Var.getMeasuredWidth()) + i10;
     }
 
-    public static Bundle h(int i10, String str) {
+    public static Bundle f(int i10, String str) {
         Bundle bundle = new Bundle();
         bundle.putInt(str, i10);
         return bundle;
     }
 
-    public static TextView i(FrameLayout frameLayout, TextView textView, FrameLayout.LayoutParams layoutParams, Context context) {
+    public static TextView g(FrameLayout frameLayout, TextView textView, FrameLayout.LayoutParams layoutParams, Context context) {
         frameLayout.addView(textView, layoutParams);
         return new TextView(context);
     }
 
-    public static String j(long j3, String str, String str2) {
+    public static String h(long j3, String str, String str2) {
         return str + j3 + str2;
     }
 
-    public static String k(String str, String str2, String str3, String str4, String str5) {
+    public static String i(String str, String str2, String str3, String str4, String str5) {
         return str + str2 + str3 + str4 + str5;
     }
 
-    public static o1.l l(float f7, float f10, float f11) {
+    public static o1.l j(float f7, float f10, float f11) {
         o1.l lVar = new o1.l(f7);
         lVar.b(f10);
         lVar.a(f11);
         return lVar;
     }
 
-    public static void m(int i10, int i11, ArrayList arrayList, ArrayList arrayList2) {
+    public static void k(int i10, int i11, ArrayList arrayList, ArrayList arrayList2) {
         arrayList.add(Integer.valueOf(i10));
         arrayList2.add(Integer.valueOf(i11));
     }
 
-    public static void n(int i10, String str, StringBuilder sb2) {
+    public static void l(int i10, String str, StringBuilder sb2) {
         sb2.append(LocaleController.getString(i10));
         sb2.append(str);
     }
 
-    public static void o(int i10, ArrayList arrayList, ArrayList arrayList2, Integer num) {
+    public static void m(int i10, ArrayList arrayList, ArrayList arrayList2, Integer num) {
         arrayList.add(Integer.valueOf(i10));
         arrayList2.add(num);
     }
 
-    public static void p(int i10, org.telegram.ui.ActionBar.d6 d6Var, TextView textView, int i11, float f7) {
-        textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(i10, d6Var));
+    public static void n(int i10, org.telegram.ui.ActionBar.e6 e6Var, TextView textView, int i11, float f7) {
+        textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(i10, e6Var));
         textView.setTextSize(i11, f7);
         textView.setTypeface(AndroidUtilities.bold());
     }
 
-    public static void q(int i10, q90 q90Var) {
-        q90Var.setText(AndroidUtilities.replaceTags(LocaleController.getString(i10)));
+    public static void o(int i10, ea0 ea0Var) {
+        ea0Var.setText(AndroidUtilities.replaceTags(LocaleController.getString(i10)));
     }
 
-    public static void r(FrameLayout frameLayout, org.telegram.ui.ActionBar.d6 d6Var, TLRPC.TL_error tL_error, boolean z10) {
-        new yc(frameLayout, d6Var).d0(tL_error, z10);
+    public static void p(FrameLayout frameLayout, org.telegram.ui.ActionBar.e6 e6Var, TLRPC.TL_error tL_error, boolean z10) {
+        new ad(frameLayout, e6Var).f0(tL_error, z10);
     }
 
-    public static void s(String str, int i10, ArrayList arrayList) {
+    public static void q(String str, int i10, ArrayList arrayList) {
         arrayList.add(new s6(str, i10));
     }
 
-    public static int t(int i10, int i11, Drawable drawable) {
+    public static boolean r(TLRPC.TL_game tL_game) {
+        if (tL_game != null) {
+            return true;
+        }
+        return false;
+    }
+
+    public static int s(int i10, int i11, Drawable drawable) {
         return i11 - (drawable.getIntrinsicWidth() / i10);
     }
 
-    public static void u(int i10, int i11, ArrayList arrayList, ArrayList arrayList2) {
+    public static void t(int i10, int i11, ArrayList arrayList, ArrayList arrayList2) {
         arrayList.add(LocaleController.getString(i10));
         arrayList2.add(Integer.valueOf(i11));
     }
 
-    public static void v(int i10, ArrayList arrayList, ArrayList arrayList2, Integer num) {
+    public static void u(int i10, ArrayList arrayList, ArrayList arrayList2, Integer num) {
         arrayList.add(LocaleController.getString(i10));
         arrayList2.add(num);
     }
 
-    public static int w(int i10, int i11, Drawable drawable) {
+    public static int v(int i10, int i11, Drawable drawable) {
         return (drawable.getIntrinsicHeight() / i10) + i11;
     }
 
-    public static int x(int i10, int i11, Drawable drawable) {
+    public static int w(int i10, int i11, Drawable drawable) {
         return (drawable.getIntrinsicWidth() / i10) + i11;
     }
 
-    public static String y(int i10) {
+    public static String x(int i10) {
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 3) {

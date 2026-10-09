@@ -2,46 +2,64 @@ package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.Rect;
+import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 public final class mj0 extends Drawable {
-    public final int f28718a;
-    public final int f28719b;
-    public final nj0 f28720c;
+    public Path f28843a;
+    public Paint f28844b;
+    public float f28845c;
 
-    public mj0(nj0 nj0Var, int i10, int i11) {
-        this.f28720c = nj0Var;
-        this.f28718a = i10;
-        this.f28719b = i11;
+    public final void a() {
+        int dp = AndroidUtilities.dp(18.0f);
+        Path path = this.f28843a;
+        path.reset();
+        float f7 = dp >> 1;
+        path.moveTo(f7, AndroidUtilities.dpf2(4.98f));
+        path.lineTo(AndroidUtilities.dpf2(4.95f), AndroidUtilities.dpf2(9.0f));
+        path.lineTo(dp - AndroidUtilities.dpf2(4.95f), AndroidUtilities.dpf2(9.0f));
+        path.lineTo(f7, AndroidUtilities.dpf2(4.98f));
+        Paint paint = this.f28844b;
+        paint.setStyle(Paint.Style.FILL_AND_STROKE);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        paint.setStrokeWidth(AndroidUtilities.dpf2(1.0f));
+        this.f28845c = AndroidUtilities.density;
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        Rect rect = AndroidUtilities.rectTmp2;
-        int centerX = getBounds().centerX();
-        float f7 = this.f28718a;
-        int dp = centerX - (AndroidUtilities.dp(f7) / 2);
-        int centerY = getBounds().centerY();
-        float f10 = this.f28719b;
-        rect.set(dp, centerY - (AndroidUtilities.dp(f10) / 2), (AndroidUtilities.dp(f7) / 2) + getBounds().centerX(), (AndroidUtilities.dp(f10) / 2) + getBounds().centerY());
-        nj0 nj0Var = this.f28720c;
-        nj0Var.f29089c.setImageCoords(rect);
-        nj0Var.f29089c.draw(canvas);
+        Paint paint = this.f28844b;
+        if (this.f28845c != AndroidUtilities.density) {
+            a();
+        }
+        canvas.save();
+        canvas.translate(getBounds().left, getBounds().top);
+        canvas.drawPath(this.f28843a, paint);
+        canvas.drawRect(AndroidUtilities.dpf2(7.56f), AndroidUtilities.dpf2(8.0f), AndroidUtilities.dp(18.0f) - AndroidUtilities.dpf2(7.56f), AndroidUtilities.dpf2(11.1f), paint);
+        canvas.restore();
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(18.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(18.0f);
     }
 
     @Override
     public final int getOpacity() {
-        return -2;
+        return 0;
     }
 
     @Override
     public final void setAlpha(int i10) {
-        this.f28720c.f29089c.setAlpha(i10 / 255.0f);
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f28720c.f29089c.setColorFilter(colorFilter);
     }
 }

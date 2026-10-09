@@ -1,7 +1,26 @@
 package m4;
-public final class u0 implements d {
+
+import gg.c2;
+public final class u0 implements a1 {
+    public final int f16238a;
+    public final a1 f16239b;
+
+    public u0(a1 a1Var, int i10) {
+        this.f16238a = i10;
+        this.f16239b = a1Var;
+    }
+
     @Override
-    public final i9.w run() {
-        return i9.u.f12030b;
+    public final Object h(b0 b0Var, r rVar, int i10) {
+        switch (this.f16238a) {
+            case 0:
+                if (b0Var == null) {
+                    b1.H0(null, rVar, i10, this.f16239b, new i2.s(rVar, i10, 3));
+                    throw null;
+                }
+                throw new ClassCastException();
+            default:
+                return b1.H0(b0Var, rVar, i10, this.f16239b, new c2(b0Var, rVar, i10, 4));
+        }
     }
 }

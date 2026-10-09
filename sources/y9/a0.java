@@ -1,46 +1,46 @@
 package y9;
 
-import v7.d8;
+import v7.e8;
 public final class a0 extends e2 {
-    public final String f50580b;
-    public final String f50581c;
+    public final String f51859b;
+    public final String f51860c;
     public final int d;
-    public final String f50582e;
-    public final String f50583f;
-    public final String f50584g;
+    public final String f51861e;
+    public final String f51862f;
+    public final String f51863g;
     public final String h;
-    public final String f50585i;
-    public final d2 f50586j;
-    public final j1 f50587k;
-    public final g1 f50588l;
+    public final String f51864i;
+    public final d2 f51865j;
+    public final j1 f51866k;
+    public final g1 f51867l;
 
     public a0(String str, String str2, int i10, String str3, String str4, String str5, String str6, String str7, d2 d2Var, j1 j1Var, g1 g1Var) {
-        this.f50580b = str;
-        this.f50581c = str2;
+        this.f51859b = str;
+        this.f51860c = str2;
         this.d = i10;
-        this.f50582e = str3;
-        this.f50583f = str4;
-        this.f50584g = str5;
+        this.f51861e = str3;
+        this.f51862f = str4;
+        this.f51863g = str5;
         this.h = str6;
-        this.f50585i = str7;
-        this.f50586j = d2Var;
-        this.f50587k = j1Var;
-        this.f50588l = g1Var;
+        this.f51864i = str7;
+        this.f51865j = d2Var;
+        this.f51866k = j1Var;
+        this.f51867l = g1Var;
     }
 
-    public final d8 a() {
+    public final e8 a() {
         ?? obj = new Object();
-        obj.f47907a = this.f50580b;
-        obj.f47908b = this.f50581c;
-        obj.f47913i = Integer.valueOf(this.d);
-        obj.f47909c = this.f50582e;
-        obj.d = this.f50583f;
-        obj.f47910e = this.f50584g;
-        obj.f47915k = this.h;
-        obj.f47911f = this.f50585i;
-        obj.f47912g = this.f50586j;
-        obj.h = this.f50587k;
-        obj.f47914j = this.f50588l;
+        obj.f49165a = this.f51859b;
+        obj.f49166b = this.f51860c;
+        obj.f49171i = Integer.valueOf(this.d);
+        obj.f49167c = this.f51861e;
+        obj.d = this.f51862f;
+        obj.f49168e = this.f51863g;
+        obj.f49173k = this.h;
+        obj.f49169f = this.f51864i;
+        obj.f49170g = this.f51865j;
+        obj.h = this.f51866k;
+        obj.f49172j = this.f51867l;
         return obj;
     }
 
@@ -55,12 +55,12 @@ public final class a0 extends e2 {
         }
         if (obj instanceof e2) {
             a0 a0Var = (a0) ((e2) obj);
-            g1 g1Var2 = a0Var.f50588l;
-            j1 j1Var2 = a0Var.f50587k;
-            d2 d2Var2 = a0Var.f50586j;
-            String str3 = a0Var.f50584g;
-            String str4 = a0Var.f50583f;
-            if (this.f50580b.equals(a0Var.f50580b) && this.f50581c.equals(a0Var.f50581c) && this.d == a0Var.d && this.f50582e.equals(a0Var.f50582e) && ((str = this.f50583f) != null ? str.equals(str4) : str4 == null) && ((str2 = this.f50584g) != null ? str2.equals(str3) : str3 == null) && this.h.equals(a0Var.h) && this.f50585i.equals(a0Var.f50585i) && ((d2Var = this.f50586j) != null ? d2Var.equals(d2Var2) : d2Var2 == null) && ((j1Var = this.f50587k) != null ? j1Var.equals(j1Var2) : j1Var2 == null) && ((g1Var = this.f50588l) != null ? g1Var.equals(g1Var2) : g1Var2 == null)) {
+            g1 g1Var2 = a0Var.f51867l;
+            j1 j1Var2 = a0Var.f51866k;
+            d2 d2Var2 = a0Var.f51865j;
+            String str3 = a0Var.f51863g;
+            String str4 = a0Var.f51862f;
+            if (this.f51859b.equals(a0Var.f51859b) && this.f51860c.equals(a0Var.f51860c) && this.d == a0Var.d && this.f51861e.equals(a0Var.f51861e) && ((str = this.f51862f) != null ? str.equals(str4) : str4 == null) && ((str2 = this.f51863g) != null ? str2.equals(str3) : str3 == null) && this.h.equals(a0Var.h) && this.f51864i.equals(a0Var.f51864i) && ((d2Var = this.f51865j) != null ? d2Var.equals(d2Var2) : d2Var2 == null) && ((j1Var = this.f51866k) != null ? j1Var.equals(j1Var2) : j1Var2 == null) && ((g1Var = this.f51867l) != null ? g1Var.equals(g1Var2) : g1Var2 == null)) {
                 return true;
             }
         }
@@ -72,37 +72,37 @@ public final class a0 extends e2 {
         int hashCode2;
         int hashCode3;
         int hashCode4;
-        int hashCode5 = (((((((this.f50580b.hashCode() ^ 1000003) * 1000003) ^ this.f50581c.hashCode()) * 1000003) ^ this.d) * 1000003) ^ this.f50582e.hashCode()) * 1000003;
+        int hashCode5 = (((((((this.f51859b.hashCode() ^ 1000003) * 1000003) ^ this.f51860c.hashCode()) * 1000003) ^ this.d) * 1000003) ^ this.f51861e.hashCode()) * 1000003;
         int i10 = 0;
-        String str = this.f50583f;
+        String str = this.f51862f;
         if (str == null) {
             hashCode = 0;
         } else {
             hashCode = str.hashCode();
         }
         int i11 = (hashCode5 ^ hashCode) * 1000003;
-        String str2 = this.f50584g;
+        String str2 = this.f51863g;
         if (str2 == null) {
             hashCode2 = 0;
         } else {
             hashCode2 = str2.hashCode();
         }
-        int hashCode6 = (((((i11 ^ hashCode2) * 1000003) ^ this.h.hashCode()) * 1000003) ^ this.f50585i.hashCode()) * 1000003;
-        d2 d2Var = this.f50586j;
+        int hashCode6 = (((((i11 ^ hashCode2) * 1000003) ^ this.h.hashCode()) * 1000003) ^ this.f51864i.hashCode()) * 1000003;
+        d2 d2Var = this.f51865j;
         if (d2Var == null) {
             hashCode3 = 0;
         } else {
             hashCode3 = d2Var.hashCode();
         }
         int i12 = (hashCode6 ^ hashCode3) * 1000003;
-        j1 j1Var = this.f50587k;
+        j1 j1Var = this.f51866k;
         if (j1Var == null) {
             hashCode4 = 0;
         } else {
             hashCode4 = j1Var.hashCode();
         }
         int i13 = (i12 ^ hashCode4) * 1000003;
-        g1 g1Var = this.f50588l;
+        g1 g1Var = this.f51867l;
         if (g1Var != null) {
             i10 = g1Var.hashCode();
         }
@@ -110,6 +110,6 @@ public final class a0 extends e2 {
     }
 
     public final String toString() {
-        return "CrashlyticsReport{sdkVersion=" + this.f50580b + ", gmpAppId=" + this.f50581c + ", platform=" + this.d + ", installationUuid=" + this.f50582e + ", firebaseInstallationId=" + this.f50583f + ", appQualitySessionId=" + this.f50584g + ", buildVersion=" + this.h + ", displayVersion=" + this.f50585i + ", session=" + this.f50586j + ", ndkPayload=" + this.f50587k + ", appExitInfo=" + this.f50588l + "}";
+        return "CrashlyticsReport{sdkVersion=" + this.f51859b + ", gmpAppId=" + this.f51860c + ", platform=" + this.d + ", installationUuid=" + this.f51861e + ", firebaseInstallationId=" + this.f51862f + ", appQualitySessionId=" + this.f51863g + ", buildVersion=" + this.h + ", displayVersion=" + this.f51864i + ", session=" + this.f51865j + ", ndkPayload=" + this.f51866k + ", appExitInfo=" + this.f51867l + "}";
     }
 }

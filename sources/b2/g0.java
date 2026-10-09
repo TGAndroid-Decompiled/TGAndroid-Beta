@@ -5,24 +5,24 @@ import android.os.Bundle;
 import j$.util.Objects;
 public final class g0 {
     public static final g0 d = new g0(new aa.a(4));
-    public static final String f3236e;
-    public static final String f3237f;
-    public static final String f3238g;
-    public final Uri f3239a;
-    public final String f3240b;
-    public final Bundle f3241c;
+    public static final String f3315e;
+    public static final String f3316f;
+    public static final String f3317g;
+    public final Uri f3318a;
+    public final String f3319b;
+    public final Bundle f3320c;
 
     static {
-        String str = e2.d0.f8538a;
-        f3236e = Integer.toString(0, 36);
-        f3237f = Integer.toString(1, 36);
-        f3238g = Integer.toString(2, 36);
+        String str = e2.d0.f8532a;
+        f3315e = Integer.toString(0, 36);
+        f3316f = Integer.toString(1, 36);
+        f3317g = Integer.toString(2, 36);
     }
 
     public g0(aa.a aVar) {
-        this.f3239a = (Uri) aVar.f387c;
-        this.f3240b = (String) aVar.f386b;
-        this.f3241c = (Bundle) aVar.d;
+        this.f3318a = (Uri) aVar.f385c;
+        this.f3319b = (String) aVar.f384b;
+        this.f3320c = (Bundle) aVar.d;
     }
 
     public final boolean equals(Object obj) {
@@ -35,13 +35,13 @@ public final class g0 {
             return false;
         }
         g0 g0Var = (g0) obj;
-        if (Objects.equals(this.f3239a, g0Var.f3239a) && Objects.equals(this.f3240b, g0Var.f3240b)) {
-            if (this.f3241c == null) {
+        if (Objects.equals(this.f3318a, g0Var.f3318a) && Objects.equals(this.f3319b, g0Var.f3319b)) {
+            if (this.f3320c == null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            if (g0Var.f3241c == null) {
+            if (g0Var.f3320c == null) {
                 z11 = true;
             } else {
                 z11 = false;
@@ -57,21 +57,21 @@ public final class g0 {
         int hashCode;
         int hashCode2;
         int i10 = 0;
-        Uri uri = this.f3239a;
+        Uri uri = this.f3318a;
         if (uri == null) {
             hashCode = 0;
         } else {
             hashCode = uri.hashCode();
         }
         int i11 = hashCode * 31;
-        String str = this.f3240b;
+        String str = this.f3319b;
         if (str == null) {
             hashCode2 = 0;
         } else {
             hashCode2 = str.hashCode();
         }
         int i12 = (i11 + hashCode2) * 31;
-        if (this.f3241c != null) {
+        if (this.f3320c != null) {
             i10 = 1;
         }
         return i12 + i10;

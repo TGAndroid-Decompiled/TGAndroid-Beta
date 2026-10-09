@@ -1,97 +1,78 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Point;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.xi1;
-public final class gp implements vi {
-    public final pp f26957a;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+public final class gp extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
+    public final org.telegram.ui.ActionBar.e6 f26826a;
+    public final ImageView f26827b;
+    public final org.telegram.ui.ActionBar.j5 f26828c;
+    public final org.telegram.ui.ActionBar.j5 d;
+    public final org.telegram.ui.ActionBar.j5 f26829e;
+    public final org.telegram.ui.nl f26830f;
+    public boolean h;
+    public boolean f26831n;
 
-    public gp(pp ppVar) {
-        this.f26957a = ppVar;
+    public gp(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context);
+        this.f26826a = e6Var;
+        ImageView imageView = new ImageView(context);
+        this.f26827b = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        addView(imageView, w7.x5.e(52, 46, 51));
+        org.telegram.ui.ActionBar.j5 j5Var = new org.telegram.ui.ActionBar.j5(context);
+        this.f26828c = j5Var;
+        j5Var.setTextSize(14);
+        j5Var.setTypeface(AndroidUtilities.bold());
+        addView(j5Var, w7.x5.a(18.0f, 52.0f, 6.0f, 0.0f, 0.0f, -1, 51));
+        org.telegram.ui.ActionBar.j5 j5Var2 = new org.telegram.ui.ActionBar.j5(context);
+        this.d = j5Var2;
+        j5Var2.setTextSize(14);
+        NotificationCenter.listenEmojiLoading(j5Var2);
+        addView(j5Var2, w7.x5.a(18.0f, 52.0f, 24.0f, 0.0f, 0.0f, -1, 51));
+        org.telegram.ui.ActionBar.j5 j5Var3 = new org.telegram.ui.ActionBar.j5(context);
+        this.f26829e = j5Var3;
+        j5Var3.setTextSize(14);
+        j5Var3.l(LocaleController.getString(R.string.TapForForwardingOptions), false);
+        j5Var3.setAlpha(0.0f);
+        addView(j5Var3, w7.x5.a(18.0f, 52.0f, 24.0f, 0.0f, 0.0f, -1, 51));
+        org.telegram.ui.nl nlVar = new org.telegram.ui.nl(this, context, new vh.g());
+        this.f26830f = nlVar;
+        nlVar.setRoundRadius(AndroidUtilities.dp(6.0f));
+        addView(nlVar, w7.x5.a(34.0f, 52.0f, 6.0f, 0.0f, 0.0f, 34, 51));
+        e();
     }
 
     @Override
-    public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
-        pp ppVar = this.f26957a;
-        try {
-            HashMap<Object, Object> selectedPhotos = ppVar.Y.f32922j0.getSelectedPhotos();
-            if (!selectedPhotos.isEmpty()) {
-                MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.values().iterator().next();
-                String str = photoEntry.imagePath;
-                if (str == null) {
-                    str = photoEntry.path;
-                }
-                if (str != null) {
-                    File directory = FileLoader.getDirectory(4);
-                    File file = new File(directory, Utilities.random.nextInt() + ".jpg");
-                    Point realScreenSize = AndroidUtilities.getRealScreenSize();
-                    Bitmap loadBitmap = ImageLoader.loadBitmap(str, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
-                    loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
-                    dp dpVar = new dp(new xi1(file, file, ""), loadBitmap, false, 2);
-                    dpVar.V1 = ppVar.f29789f0;
-                    dpVar.F1 = false;
-                    dpVar.E1 = false;
-                    dpVar.f39527n1 = 0.2f;
-                    dpVar.c1(ppVar.v.a());
-                    dpVar.I1 = new fp(this, 0);
-                    pp.q(ppVar, dpVar);
-                }
-            }
-        } catch (Throwable th2) {
-            FileLog.e(th2);
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (!this.f26831n) {
+            return false;
         }
+        return super.dispatchTouchEvent(motionEvent);
     }
 
     @Override
-    public final boolean S1() {
-        System.currentTimeMillis();
-        return true;
+    public final void e() {
+        int i10 = org.telegram.ui.ActionBar.i6.f21099te;
+        org.telegram.ui.ActionBar.e6 e6Var = this.f26826a;
+        this.f26827b.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(i10, e6Var), PorterDuff.Mode.MULTIPLY));
+        this.f26828c.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21135ve, e6Var));
+        int i11 = org.telegram.ui.ActionBar.i6.Xk;
+        int w02 = org.telegram.ui.ActionBar.i6.w0(i11, e6Var);
+        org.telegram.ui.ActionBar.j5 j5Var = this.d;
+        j5Var.setTextColor(w02);
+        j5Var.setLinkTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.gc, e6Var));
+        this.f26829e.setTextColor(org.telegram.ui.ActionBar.i6.w0(i11, e6Var));
     }
 
-    @Override
-    public final void U0(Object obj) {
-        dp dpVar = new dp(obj, null, true, 3);
-        pp ppVar = this.f26957a;
-        dpVar.V1 = ppVar.f29789f0;
-        dpVar.c1(ppVar.v.a());
-        dpVar.I1 = new fp(this, 1);
-        pp.q(ppVar, dpVar);
-    }
-
-    @Override
-    public final boolean a0() {
-        return false;
-    }
-
-    @Override
-    public final void x0(ih ihVar) {
-        ihVar.run();
-    }
-
-    @Override
-    public final void K0() {
-    }
-
-    @Override
-    public final void j1(TLRPC.User user) {
-    }
-
-    @Override
-    public final void u0() {
-    }
-
-    @Override
-    public final void W1(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j3, boolean z11, long j10) {
+    public int[] getColorKeys() {
+        return null;
     }
 }

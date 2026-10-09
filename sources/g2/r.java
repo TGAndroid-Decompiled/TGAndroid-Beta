@@ -14,32 +14,32 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 public final class r extends c {
-    public final boolean f10215a;
-    public final int f10216b;
-    public final int f10217c;
+    public final boolean f10288a;
+    public final int f10289b;
+    public final int f10290c;
     public final String d;
-    public final n4.y f10218e;
-    public final n4.y f10219f;
+    public final n4.x f10291e;
+    public final n4.x f10292f;
     public m h;
-    public HttpURLConnection f10220n;
-    public InputStream f10221r;
-    public boolean f10222s;
+    public HttpURLConnection f10293n;
+    public InputStream f10294r;
+    public boolean f10295s;
     public int v;
-    public long f10223w;
-    public long f10224x;
+    public long f10296w;
+    public long f10297x;
 
-    public r(String str, int i10, int i11, boolean z10, n4.y yVar) {
+    public r(String str, int i10, int i11, boolean z10, n4.x xVar) {
         super(true);
         this.d = str;
-        this.f10216b = i10;
-        this.f10217c = i11;
-        this.f10215a = z10;
-        this.f10218e = yVar;
-        this.f10219f = new n4.y(15);
+        this.f10289b = i10;
+        this.f10290c = i11;
+        this.f10288a = z10;
+        this.f10291e = xVar;
+        this.f10292f = new n4.x(17);
     }
 
-    public final void a() {
-        HttpURLConnection httpURLConnection = this.f10220n;
+    public final void b() {
+        HttpURLConnection httpURLConnection = this.f10293n;
         if (httpURLConnection != null) {
             try {
                 httpURLConnection.disconnect();
@@ -52,58 +52,36 @@ public final class r extends c {
     @Override
     public final void close() {
         try {
-            InputStream inputStream = this.f10221r;
+            InputStream inputStream = this.f10294r;
             if (inputStream != null) {
                 try {
                     inputStream.close();
                 } catch (IOException e7) {
-                    String str = e2.d0.f8538a;
+                    String str = e2.d0.f8532a;
                     throw new v(e7, 2000, 3);
                 }
             }
         } finally {
-            this.f10221r = null;
-            a();
-            if (this.f10222s) {
-                this.f10222s = false;
+            this.f10294r = null;
+            b();
+            if (this.f10295s) {
+                this.f10295s = false;
                 transferEnded();
             }
-            this.f10220n = null;
+            this.f10293n = null;
             this.h = null;
         }
     }
 
-    @Override
-    public final Map getResponseHeaders() {
-        HttpURLConnection httpURLConnection = this.f10220n;
-        if (httpURLConnection == null) {
-            return f1.h;
-        }
-        return new q(httpURLConnection.getHeaderFields());
-    }
-
-    @Override
-    public final Uri getUri() {
-        HttpURLConnection httpURLConnection = this.f10220n;
-        if (httpURLConnection != null) {
-            return Uri.parse(httpURLConnection.getURL().toString());
-        }
-        m mVar = this.h;
-        if (mVar != null) {
-            return mVar.f10194a;
-        }
-        return null;
-    }
-
-    public final URL i(URL url, String str) {
+    public final URL d(URL url, String str) {
         if (str != null) {
             try {
                 URL url2 = new URL(url, str);
                 String protocol = url2.getProtocol();
                 if (!"https".equals(protocol) && !"http".equals(protocol)) {
-                    throw new v(sa.e.i("Unsupported protocol redirect: ", protocol), 2001);
+                    throw new v(sc.v.i("Unsupported protocol redirect: ", protocol), 2001);
                 }
-                if (!this.f10215a && !protocol.equals(url.getProtocol())) {
+                if (!this.f10288a && !protocol.equals(url.getProtocol())) {
                     throw new v("Disallowed cross-protocol redirect (" + url.getProtocol() + " to " + protocol + ")", 2001);
                 }
                 return url2;
@@ -114,74 +92,96 @@ public final class r extends c {
         throw new v("Null location redirect", 2001);
     }
 
-    public final HttpURLConnection j(m mVar) {
+    public final HttpURLConnection f(m mVar) {
         boolean z10;
-        HttpURLConnection k10;
-        URL url = new URL(mVar.f10194a.toString());
-        int i10 = mVar.f10195b;
-        byte[] bArr = mVar.f10196c;
-        long j3 = mVar.f10197e;
-        long j10 = mVar.f10198f;
-        int i11 = 1;
-        int i12 = 0;
+        HttpURLConnection i10;
+        URL url = new URL(mVar.f10267a.toString());
+        int i11 = mVar.f10268b;
+        byte[] bArr = mVar.f10269c;
+        long j3 = mVar.f10270e;
+        long j10 = mVar.f10271f;
+        int i12 = 1;
+        int i13 = 0;
         if ((mVar.h & 1) == 1) {
             z10 = true;
         } else {
             z10 = false;
         }
-        if (!this.f10215a) {
-            return k(url, i10, bArr, j3, j10, z10, true, mVar.d);
+        if (!this.f10288a) {
+            return i(url, i11, bArr, j3, j10, z10, true, mVar.d);
         }
         while (true) {
-            int i13 = i12 + 1;
-            if (i12 <= 20) {
-                k10 = k(url, i10, bArr, j3, j10, z10, false, mVar.d);
-                int responseCode = k10.getResponseCode();
-                String headerField = k10.getHeaderField("Location");
-                if ((i10 != i11 && i10 != 3) || (responseCode != 300 && responseCode != 301 && responseCode != 302 && responseCode != 303 && responseCode != 307 && responseCode != 308)) {
-                    if (i10 != 2 || (responseCode != 300 && responseCode != 301 && responseCode != 302 && responseCode != 303)) {
+            int i14 = i13 + 1;
+            if (i13 <= 20) {
+                i10 = i(url, i11, bArr, j3, j10, z10, false, mVar.d);
+                int responseCode = i10.getResponseCode();
+                String headerField = i10.getHeaderField("Location");
+                if ((i11 != i12 && i11 != 3) || (responseCode != 300 && responseCode != 301 && responseCode != 302 && responseCode != 303 && responseCode != 307 && responseCode != 308)) {
+                    if (i11 != 2 || (responseCode != 300 && responseCode != 301 && responseCode != 302 && responseCode != 303)) {
                         break;
                     }
-                    k10.disconnect();
-                    url = i(url, headerField);
+                    i10.disconnect();
+                    url = d(url, headerField);
                     bArr = null;
-                    i10 = 1;
+                    i11 = 1;
                 } else {
-                    k10.disconnect();
-                    url = i(url, headerField);
+                    i10.disconnect();
+                    url = d(url, headerField);
                 }
-                i12 = i13;
-                i11 = 1;
+                i13 = i14;
+                i12 = 1;
             } else {
-                throw new v(new NoRouteToHostException(hg.c.h(i13, "Too many redirects: ")), 2001, 1);
+                throw new v(new NoRouteToHostException(hg.c.h(i14, "Too many redirects: ")), 2001, 1);
             }
         }
-        return k10;
+        return i10;
     }
 
-    public final HttpURLConnection k(URL url, int i10, byte[] bArr, long j3, long j10, boolean z10, boolean z11, Map map) {
+    @Override
+    public final Map getResponseHeaders() {
+        HttpURLConnection httpURLConnection = this.f10293n;
+        if (httpURLConnection == null) {
+            return f1.h;
+        }
+        return new q(httpURLConnection.getHeaderFields());
+    }
+
+    @Override
+    public final Uri getUri() {
+        HttpURLConnection httpURLConnection = this.f10293n;
+        if (httpURLConnection != null) {
+            return Uri.parse(httpURLConnection.getURL().toString());
+        }
+        m mVar = this.h;
+        if (mVar != null) {
+            return mVar.f10267a;
+        }
+        return null;
+    }
+
+    public final HttpURLConnection i(URL url, int i10, byte[] bArr, long j3, long j10, boolean z10, boolean z11, Map map) {
         String sb2;
         String str;
         boolean z12;
         String str2;
         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-        httpURLConnection.setConnectTimeout(this.f10216b);
-        httpURLConnection.setReadTimeout(this.f10217c);
+        httpURLConnection.setConnectTimeout(this.f10289b);
+        httpURLConnection.setReadTimeout(this.f10290c);
         HashMap hashMap = new HashMap();
-        n4.y yVar = this.f10218e;
-        if (yVar != null) {
-            hashMap.putAll(yVar.S());
+        n4.x xVar = this.f10291e;
+        if (xVar != null) {
+            hashMap.putAll(xVar.U());
         }
-        hashMap.putAll(this.f10219f.S());
+        hashMap.putAll(this.f10292f.U());
         hashMap.putAll(map);
         for (Map.Entry entry : hashMap.entrySet()) {
             httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
         }
-        Pattern pattern = y.f10230a;
+        Pattern pattern = y.f10303a;
         if (j3 == 0 && j10 == -1) {
             sb2 = null;
         } else {
-            StringBuilder u10 = a4.a.u(j3, "bytes=", "-");
+            StringBuilder u10 = a1.g.u(j3, "bytes=", "-");
             if (j10 != -1) {
                 u10.append((j3 + j10) - 1);
             }
@@ -207,7 +207,7 @@ public final class r extends c {
             z12 = false;
         }
         httpURLConnection.setDoOutput(z12);
-        int i11 = m.f10193i;
+        int i11 = m.f10266i;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 == 3) {
@@ -234,14 +234,13 @@ public final class r extends c {
         return httpURLConnection;
     }
 
-    public final void l(long j3) {
+    public final void k(long j3) {
         if (j3 != 0) {
             byte[] bArr = new byte[4096];
             while (j3 > 0) {
-                int min = (int) Math.min(j3, 4096);
-                InputStream inputStream = this.f10221r;
-                String str = e2.d0.f8538a;
-                int read = inputStream.read(bArr, 0, min);
+                InputStream inputStream = this.f10294r;
+                String str = e2.d0.f8532a;
+                int read = inputStream.read(bArr, 0, (int) Math.min(j3, 4096));
                 if (!Thread.currentThread().isInterrupted()) {
                     if (read != -1) {
                         j3 -= read;
@@ -267,25 +266,25 @@ public final class r extends c {
             return 0;
         }
         try {
-            long j3 = this.f10223w;
+            long j3 = this.f10296w;
             if (j3 != -1) {
-                long j10 = j3 - this.f10224x;
+                long j10 = j3 - this.f10297x;
                 if (j10 == 0) {
                     return -1;
                 }
                 i11 = (int) Math.min(i11, j10);
             }
-            InputStream inputStream = this.f10221r;
-            String str = e2.d0.f8538a;
+            InputStream inputStream = this.f10294r;
+            String str = e2.d0.f8532a;
             int read = inputStream.read(bArr, i10, i11);
             if (read != -1) {
-                this.f10224x += read;
+                this.f10297x += read;
                 bytesTransferred(read);
                 return read;
             }
             return -1;
         } catch (IOException e7) {
-            String str2 = e2.d0.f8538a;
+            String str2 = e2.d0.f8532a;
             throw v.a(e7, 2);
         }
     }

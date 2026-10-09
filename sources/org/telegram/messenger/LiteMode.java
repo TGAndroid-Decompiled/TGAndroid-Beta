@@ -199,19 +199,15 @@ public class LiteMode {
     private static void onFlagsUpdate(int i10, int i11) {
         int i12 = (~i10) & i11;
         if ((i12 & 28700) > 0) {
-            org.telegram.ui.Components.q5.u();
+            org.telegram.ui.Components.s5.u();
         }
         int i13 = i12 & 32;
         if (i13 > 0) {
             SvgHelper.SvgDrawable.updateLiteValues();
         }
         if (i13 > 0) {
-            org.telegram.ui.ActionBar.i6.o1(true);
+            org.telegram.ui.ActionBar.i6.p1(true);
         }
-        if (!w7.e0.a(i12, 256) && !w7.e0.a(i12, 262144)) {
-            return;
-        }
-        li.p.f();
     }
 
     private static void onPowerSaverApplied(boolean z10) {
@@ -221,7 +217,7 @@ public class LiteMode {
             onFlagsUpdate(PRESET_POWER_SAVER, getValue(true));
         }
         if (onPowerSaverAppliedListeners != null) {
-            AndroidUtilities.runOnUIThread(new x3(2, z10));
+            AndroidUtilities.runOnUIThread(new y3(2, z10));
         }
     }
 
@@ -276,7 +272,7 @@ public class LiteMode {
     }
 
     public static void setPowerSaverLevel(int i10) {
-        powerSaverLevel = w7.q.b(i10, 0, 100);
+        powerSaverLevel = w7.o.b(i10, 0, 100);
         savePreference();
         getValue(false);
     }

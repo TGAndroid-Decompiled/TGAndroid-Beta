@@ -1,14 +1,13 @@
 package n4;
 
-import android.os.Bundle;
 import android.os.IBinder;
 import android.os.Parcel;
 public final class e implements f {
-    public IBinder f16585a;
+    public IBinder f16553a;
 
     @Override
     public final IBinder asBinder() {
-        return this.f16585a;
+        return this.f16553a;
     }
 
     @Override
@@ -17,8 +16,8 @@ public final class e implements f {
         try {
             obtain.writeInterfaceToken("android.support.v4.media.session.IMediaControllerCallback");
             obtain.writeInt(i10);
-            if (!this.f16585a.transact(12, obtain, null, 1)) {
-                int i11 = i.f16603b;
+            if (!this.f16553a.transact(12, obtain, null, 1)) {
+                int i11 = i.f16570b;
             }
         } finally {
             obtain.recycle();
@@ -31,8 +30,8 @@ public final class e implements f {
         try {
             obtain.writeInterfaceToken("android.support.v4.media.session.IMediaControllerCallback");
             obtain.writeInt(i10);
-            if (!this.f16585a.transact(9, obtain, null, 1)) {
-                int i11 = i.f16603b;
+            if (!this.f16553a.transact(9, obtain, null, 1)) {
+                int i11 = i.f16570b;
             }
         } finally {
             obtain.recycle();
@@ -40,40 +39,17 @@ public final class e implements f {
     }
 
     @Override
-    public final void t(h0 h0Var) {
+    public final void t(f0 f0Var) {
         Parcel obtain = Parcel.obtain();
         try {
             obtain.writeInterfaceToken("android.support.v4.media.session.IMediaControllerCallback");
             obtain.writeInt(1);
-            h0Var.writeToParcel(obtain, 0);
-            if (!this.f16585a.transact(3, obtain, null, 1)) {
-                int i10 = i.f16603b;
+            f0Var.writeToParcel(obtain, 0);
+            if (!this.f16553a.transact(3, obtain, null, 1)) {
+                int i10 = i.f16570b;
             }
         } finally {
             obtain.recycle();
-        }
-    }
-
-    @Override
-    public final void t0(String str) {
-        Bundle bundle = Bundle.EMPTY;
-        Parcel obtain = Parcel.obtain();
-        try {
-            obtain.writeInterfaceToken("android.support.v4.media.session.IMediaControllerCallback");
-            obtain.writeString(str);
-            if (bundle != null) {
-                obtain.writeInt(1);
-                bundle.writeToParcel(obtain, 0);
-            } else {
-                obtain.writeInt(0);
-            }
-            if (!this.f16585a.transact(1, obtain, null, 1)) {
-                int i10 = i.f16603b;
-            }
-            obtain.recycle();
-        } catch (Throwable th2) {
-            obtain.recycle();
-            throw th2;
         }
     }
 }

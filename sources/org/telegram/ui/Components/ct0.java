@@ -1,26 +1,22 @@
 package org.telegram.ui.Components;
+public final class ct0 extends s4.s {
+    public final bw0 Q;
 
-import android.content.Context;
-import android.widget.FrameLayout;
-public final class ct0 extends FragmentContextView {
-    public final qv0 Q0;
-
-    public ct0(qv0 qv0Var, Context context, org.telegram.ui.ActionBar.n2 n2Var, qv0 qv0Var2, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, n2Var, qv0Var2, false, d6Var);
-        this.Q0 = qv0Var;
+    public ct0(bw0 bw0Var) {
+        super(3);
+        this.Q = bw0Var;
     }
 
     @Override
-    public final void setVisibility(int i10) {
-        boolean z10;
-        qv0 qv0Var = this.Q0;
-        ns nsVar = qv0Var.P0;
-        FrameLayout frameLayout = qv0Var.Q0;
-        if (i10 == 0) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final int o0(int i10, pf.e eVar, s4.a1 a1Var) {
+        if (this.Q.f25150o1) {
+            i10 = 0;
         }
-        nsVar.i(frameLayout, z10, true);
+        return super.o0(i10, eVar, a1Var);
+    }
+
+    @Override
+    public final boolean y0() {
+        return false;
     }
 }

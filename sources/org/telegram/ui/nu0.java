@@ -1,13 +1,15 @@
 package org.telegram.ui;
+public final class nu0 implements Runnable {
+    public final int f40366a;
+    public final Object f40367b;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MediaController;
-public final class nu0 {
-    public String f39033a;
-    public String f39034b;
-    public MediaController.CropState f39035c;
-    public MediaController.SavedFilterState d;
-    public ArrayList f39036e;
-    public ArrayList f39037f;
-    public long f39038g;
+    public nu0(Object obj, int i10) {
+        this.f40366a = i10;
+        this.f40367b = obj;
+    }
+
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.nu0.run():void");
+    }
 }

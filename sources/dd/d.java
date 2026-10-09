@@ -1,15 +1,22 @@
 package dd;
-public class d extends k {
-    public String f8291c;
 
-    @Override
-    public final k b() {
-        this.f8291c = null;
-        return this;
-    }
+import java.lang.reflect.Field;
+import java.util.Collections;
+import java.util.Map;
+public abstract class d {
+    public static final Map f8310a;
 
-    @Override
-    public String toString() {
-        return this.f8291c;
+    static {
+        Map map;
+        try {
+            Field declaredField = bf.b.class.getDeclaredField("a");
+            declaredField.setAccessible(true);
+            map = (Map) declaredField.get(null);
+        } catch (Throwable th2) {
+            Map map2 = Collections.EMPTY_MAP;
+            th2.printStackTrace();
+            map = map2;
+        }
+        f8310a = map;
     }
 }

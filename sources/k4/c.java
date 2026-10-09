@@ -9,24 +9,24 @@ import e9.g0;
 import e9.i0;
 import java.util.List;
 public final class c implements o {
-    public q f14584a;
-    public h0 f14585b;
-    public int f14586c;
+    public q f14616a;
+    public h0 f14617b;
+    public int f14618c;
     public long d;
-    public b f14587e;
-    public int f14588f;
-    public long f14589g;
+    public b f14619e;
+    public int f14620f;
+    public long f14621g;
 
     @Override
-    public final boolean b(p pVar) {
+    public final boolean a(p pVar) {
         return e.a(pVar);
     }
 
     @Override
     public final void g(q qVar) {
-        this.f14584a = qVar;
-        this.f14585b = qVar.Z1(0, 1);
-        qVar.e1();
+        this.f14616a = qVar;
+        this.f14617b = qVar.f2(0, 1);
+        qVar.k1();
     }
 
     @Override
@@ -37,8 +37,8 @@ public final class c implements o {
         } else {
             i10 = 4;
         }
-        this.f14586c = i10;
-        b bVar = this.f14587e;
+        this.f14618c = i10;
+        b bVar = this.f14619e;
         if (bVar != null) {
             bVar.a(j10);
         }
@@ -46,8 +46,8 @@ public final class c implements o {
 
     @Override
     public final List i() {
-        g0 g0Var = i0.f8758b;
-        return a1.f8721e;
+        g0 g0Var = i0.f8752b;
+        return a1.f8715e;
     }
 
     @Override

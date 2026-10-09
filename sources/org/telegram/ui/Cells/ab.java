@@ -1,17 +1,33 @@
 package org.telegram.ui.Cells;
 
-import android.graphics.RectF;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.f11;
-public final class ab {
-    public final f11 f21814a;
-    public f11 f21815b;
-    public final boolean f21816c;
-    public final RectF d = new RectF();
+import android.view.View;
+public final class ab implements View.OnLongClickListener {
+    public final int f21817a = 0;
+    public final int f21818b;
+    public final Object f21819c;
+    public final Object d;
 
-    public ab(CharSequence charSequence, CharSequence charSequence2, boolean z10) {
-        this.f21814a = new f11(charSequence, 12.0f, null);
-        this.f21815b = new f11(charSequence2, 12.0f, AndroidUtilities.bold());
-        this.f21816c = z10;
+    public ab(cb cbVar, bb bbVar, int i10) {
+        this.f21819c = cbVar;
+        this.d = bbVar;
+        this.f21818b = i10;
+    }
+
+    @Override
+    public final boolean onLongClick(View view) {
+        switch (this.f21817a) {
+            case 0:
+                return ((cb) this.f21819c).b(((bb) this.d).h, this.f21818b);
+            default:
+                ((yh.e5) this.f21819c).f(this.f21818b, true);
+                ((Runnable) this.d).run();
+                return true;
+        }
+    }
+
+    public ab(yh.e5 e5Var, int i10, Runnable runnable) {
+        this.f21819c = e5Var;
+        this.f21818b = i10;
+        this.d = runnable;
     }
 }

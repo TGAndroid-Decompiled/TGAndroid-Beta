@@ -1,23 +1,31 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
-import org.telegram.messenger.Utilities;
-public final class x61 implements Utilities.Callback5, Utilities.Callback5Return {
-    public final z61 f32822a;
+public final class x61 implements View.OnClickListener {
+    public final int f32760a;
+    public final UndoView f32761b;
 
-    @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        return Boolean.valueOf(this.f32822a.W((h61) obj, (View) obj2));
+    public x61(UndoView undoView, int i10) {
+        this.f32760a = i10;
+        this.f32761b = undoView;
     }
 
     @Override
-    public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        this.f32822a.U((h61) obj, (View) obj2);
+    public final void onClick(View view) {
+        int i10 = this.f32760a;
+        UndoView undoView = this.f32761b;
+        switch (i10) {
+            case 0:
+                int i11 = UndoView.f24370e0;
+                if (undoView.a()) {
+                    undoView.e(1, false);
+                    return;
+                }
+                return;
+            default:
+                int i12 = UndoView.f24370e0;
+                undoView.e(1, false);
+                return;
+        }
     }
 }

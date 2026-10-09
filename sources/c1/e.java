@@ -1,7 +1,6 @@
 package c1;
 
-import a1.g;
-import a4.m;
+import a1.h;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.CancellationSignal;
@@ -16,29 +15,29 @@ import java.util.concurrent.Executor;
 import org.json.JSONException;
 import org.json.JSONObject;
 import v0.i;
-import v0.o;
-import v0.q;
+import v0.n;
+import v0.p;
 import v7.o6;
-import w7.i8;
+import w7.g8;
 public final class e extends b1.d {
-    public final Context f3940e;
-    public i f3941f;
-    public Executor f3942g;
+    public final Context f3989e;
+    public i f3990f;
+    public Executor f3991g;
     public CancellationSignal h;
-    public final d f3943i;
+    public final d f3992i;
 
     public e(Context context) {
         kotlin.jvm.internal.i.e(context, "context");
-        this.f3940e = context;
-        this.f3943i = new d(this, new Handler(Looper.getMainLooper()), 0);
+        this.f3989e = context;
+        this.f3992i = new d(this, new Handler(Looper.getMainLooper()), 0);
     }
 
-    public final v0.p d(x5.g r14) {
-        throw new UnsupportedOperationException("Method not decompiled: c1.e.d(x5.g):v0.p");
+    public final v0.o d(x5.g r14) {
+        throw new UnsupportedOperationException("Method not decompiled: c1.e.d(x5.g):v0.o");
     }
 
     public final i e() {
-        i iVar = this.f3941f;
+        i iVar = this.f3990f;
         if (iVar != null) {
             return iVar;
         }
@@ -47,7 +46,7 @@ public final class e extends b1.d {
     }
 
     public final Executor f() {
-        Executor executor = this.f3942g;
+        Executor executor = this.f3991g;
         if (executor != null) {
             return executor;
         }
@@ -55,19 +54,19 @@ public final class e extends b1.d {
         throw null;
     }
 
-    public final void g(o request, CancellationSignal cancellationSignal, Executor executor, i callback) {
+    public final void g(n request, CancellationSignal cancellationSignal, Executor executor, i callback) {
         boolean z10;
         kotlin.jvm.internal.i.e(request, "request");
         kotlin.jvm.internal.i.e(callback, "callback");
         kotlin.jvm.internal.i.e(executor, "executor");
         this.h = cancellationSignal;
-        this.f3941f = callback;
-        this.f3942g = executor;
+        this.f3990f = callback;
+        this.f3991g = executor;
         CredentialProviderPlayServicesImpl.Companion.getClass();
-        if (g.a(cancellationSignal)) {
+        if (h.a(cancellationSignal)) {
             return;
         }
-        Context context = this.f3940e;
+        Context context = this.f3989e;
         kotlin.jvm.internal.i.e(context, "context");
         x5.d dVar = new x5.d(false);
         x5.a aVar = new x5.a(false, null, null, true, null, null, false);
@@ -78,14 +77,14 @@ public final class e extends b1.d {
         long j3 = packageManager.getPackageInfo("com.google.android.gms", 0).versionCode;
         x5.b bVar2 = bVar;
         boolean z11 = false;
-        for (q qVar : request.f47766a) {
-            if ((qVar instanceof q) && !z11) {
+        for (p pVar : request.f49021a) {
+            if ((pVar instanceof p) && !z11) {
                 if (j3 >= 231815000) {
-                    LinkedHashMap linkedHashMap = f.f7999a;
-                    bVar2 = new x5.b(qVar.d, true);
+                    LinkedHashMap linkedHashMap = f.f8048a;
+                    bVar2 = new x5.b(pVar.d, true);
                 } else {
-                    LinkedHashMap linkedHashMap2 = f.f7999a;
-                    JSONObject jSONObject = new JSONObject(qVar.d);
+                    LinkedHashMap linkedHashMap2 = f.f8048a;
+                    JSONObject jSONObject = new JSONObject(pVar.d);
                     String optString = jSONObject.optString("rpId", "");
                     kotlin.jvm.internal.i.b(optString);
                     if (optString.length() != 0) {
@@ -98,18 +97,18 @@ public final class e extends b1.d {
             }
         }
         if (j3 > 241217000) {
-            z10 = request.f47767b;
+            z10 = request.f49022b;
         } else {
             z10 = false;
         }
-        i7.b a2 = i8.a(context);
+        i7.b a2 = g8.a(context);
         new x5.a(false, null, null, true, null, null, false);
-        x5.e eVar = new x5.e(dVar, aVar, a2.f11987k, false, 0, cVar, bVar2, z10);
+        x5.e eVar = new x5.e(dVar, aVar, a2.f12037k, false, 0, cVar, bVar2, z10);
         v e7 = w.e();
         e7.d = new k6.c[]{new k6.c("auth_api_credentials_begin_sign_in", 8L)};
-        e7.f6644c = new m(a2, eVar, 20);
-        e7.f6643b = false;
-        e7.f6642a = 1553;
+        e7.f6696c = new xa.d(a2, eVar, 23);
+        e7.f6695b = false;
+        e7.f6694a = 1553;
         a2.e(0, e7.a()).addOnSuccessListener(new a1.c(new b1.f(1, cancellationSignal, this), 13)).addOnFailureListener(new ah.b(4, this, cancellationSignal));
     }
 }

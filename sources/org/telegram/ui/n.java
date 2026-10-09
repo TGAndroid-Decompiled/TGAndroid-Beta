@@ -2,25 +2,25 @@ package org.telegram.ui;
 
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
-public final class n implements org.telegram.ui.Components.py0 {
-    public final View f38778a;
-    public final TLRPC.StickerSetCovered f38779b;
-    public final q f38780c;
+public final class n implements org.telegram.ui.Components.vy0 {
+    public final View f40036a;
+    public final TLRPC.StickerSetCovered f40037b;
+    public final q f40038c;
 
     public n(q qVar, View view, TLRPC.StickerSetCovered stickerSetCovered) {
-        this.f38780c = qVar;
-        this.f38778a = view;
-        this.f38779b = stickerSetCovered;
+        this.f40038c = qVar;
+        this.f40036a = view;
+        this.f40037b = stickerSetCovered;
     }
 
     @Override
     public final void a() {
-        org.telegram.ui.Components.ki0 ki0Var = ((org.telegram.ui.Cells.w) this.f38778a).f23593f;
-        if (ki0Var != null) {
-            ki0Var.a(true, true);
+        org.telegram.ui.Components.cj0 cj0Var = ((org.telegram.ui.Cells.w) this.f40036a).f23574f;
+        if (cj0Var != null) {
+            cj0Var.a(true, true);
         }
-        a0.i iVar = this.f38780c.f39650a;
-        TLRPC.StickerSetCovered stickerSetCovered = this.f38779b;
-        iVar.k(stickerSetCovered, stickerSetCovered.set.f20074id);
+        a0.i iVar = this.f40038c.f40936a;
+        TLRPC.StickerSetCovered stickerSetCovered = this.f40037b;
+        iVar.k(stickerSetCovered, stickerSetCovered.set.f20065id);
     }
 }

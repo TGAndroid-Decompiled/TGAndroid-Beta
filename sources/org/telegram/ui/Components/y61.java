@@ -1,15 +1,38 @@
 package org.telegram.ui.Components;
-public final class y61 extends e71 {
-    public final z61 f33226m3;
 
-    public y61(z61 z61Var, z61 z61Var2, d dVar, x61 x61Var, x61 x61Var2) {
-        super(z61Var2, dVar, x61Var, x61Var2);
-        this.f33226m3 = z61Var;
+import android.text.Selection;
+import android.text.Spannable;
+import android.text.method.LinkMovementMethod;
+import android.text.style.CharacterStyle;
+import android.view.MotionEvent;
+import android.widget.TextView;
+import org.telegram.messenger.FileLog;
+public final class y61 extends LinkMovementMethod {
+    public final UndoView f33130a;
+
+    public y61(UndoView undoView) {
+        this.f33130a = undoView;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        this.f33226m3.f33440c = -1;
+    public final boolean onTouchEvent(TextView textView, Spannable spannable, MotionEvent motionEvent) {
+        CharacterStyle[] characterStyleArr;
+        try {
+            if (motionEvent.getAction() != 0 || ((characterStyleArr = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class)) != null && characterStyleArr.length != 0)) {
+                if (motionEvent.getAction() == 1) {
+                    CharacterStyle[] characterStyleArr2 = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class);
+                    if (characterStyleArr2 != null && characterStyleArr2.length > 0) {
+                        this.f33130a.b(characterStyleArr2[0]);
+                    }
+                    Selection.removeSelection(spannable);
+                    return true;
+                }
+                return super.onTouchEvent(textView, spannable, motionEvent);
+            }
+            return false;
+        } catch (Exception e7) {
+            FileLog.e(e7);
+            return false;
+        }
     }
 }

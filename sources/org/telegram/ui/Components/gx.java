@@ -1,36 +1,61 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class gx extends wv {
-    public final TLRPC.StickerSet W;
-    public final nz X;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class gx extends FrameLayout {
+    public final boolean f26889a;
+    public final a00 f26890b;
 
-    public gx(nz nzVar, org.telegram.ui.ActionBar.n2 n2Var, Context context, org.telegram.ui.ActionBar.d6 d6Var, ArrayList arrayList, TLRPC.StickerSet stickerSet) {
-        super(n2Var, context, d6Var, arrayList);
-        this.X = nzVar;
-        this.W = stickerSet;
+    public gx(a00 a00Var, Context context, boolean z10) {
+        super(context);
+        this.f26890b = a00Var;
+        this.f26889a = z10;
     }
 
     @Override
-    public final void W(boolean z10) {
-        nz nzVar = this.X;
-        ArrayList arrayList = nzVar.f29234p1;
-        TLRPC.StickerSet stickerSet = this.W;
-        if (z10) {
-            if (!arrayList.contains(Long.valueOf(stickerSet.f20074id))) {
-                arrayList.add(Long.valueOf(stickerSet.f20074id));
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        a00 a00Var = this.f26890b;
+        mx mxVar = a00Var.B0;
+        ix ixVar = a00Var.D0;
+        lx lxVar = a00Var.G0;
+        if (!this.f26889a && (view == ixVar || view == lxVar)) {
+            canvas.save();
+            float y3 = mxVar.getY() + mxVar.getMeasuredHeight() + 1.0f;
+            if (view == ixVar) {
+                y3 = Math.max(y3, lxVar.getY() + lxVar.getMeasuredHeight() + 1.0f);
             }
-        } else {
-            arrayList.remove(Long.valueOf(stickerSet.f20074id));
+            canvas.clipRect(0.0f, y3 - (AndroidUtilities.dp(16.0f) * a00Var.f24392a.f16337e), getMeasuredWidth(), getMeasuredHeight());
+            boolean drawChild = super.drawChild(canvas, view, j3);
+            canvas.restore();
+            return drawChild;
         }
-        nzVar.R();
+        return super.drawChild(canvas, view, j3);
     }
 
     @Override
-    public final void dismiss() {
-        this.X.f29255v2 = false;
-        super.dismiss();
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        a00 a00Var = this.f26890b;
+        a00Var.K0 = true;
+        a00Var.Y();
+        gg.f1 f1Var = a00Var.T0;
+        if (f1Var != null) {
+            f1Var.a();
+        }
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        a00 a00Var = this.f26890b;
+        a00Var.K0 = false;
+        a00Var.Y();
+        gg.f1 f1Var = a00Var.T0;
+        if (f1Var != null) {
+            f1Var.a();
+        }
     }
 }

@@ -1,34 +1,54 @@
 package org.telegram.ui;
 
-import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
-public final class m31 implements p31 {
-    public final org.telegram.messenger.video.a f38464a;
-    public final org.telegram.ui.Components.yc f38465b;
-    public final Context f38466c;
-    public final ai.a1 d;
-    public final org.telegram.messenger.video.d f38467e;
+import org.telegram.messenger.Utilities;
+public final class m31 implements Runnable {
+    public final int f39761a;
+    public final boolean[] f39762b;
+    public final Utilities.Callback f39763c;
 
-    public m31(org.telegram.messenger.video.a aVar, org.telegram.ui.Components.yc ycVar, Context context, ai.a1 a1Var, org.telegram.messenger.video.d dVar) {
-        this.f38464a = aVar;
-        this.f38465b = ycVar;
-        this.f38466c = context;
-        this.d = a1Var;
-        this.f38467e = dVar;
+    public m31(int i10, Utilities.Callback callback, boolean[] zArr) {
+        this.f39761a = i10;
+        this.f39762b = zArr;
+        this.f39763c = callback;
     }
 
     @Override
-    public final void a() {
-        AndroidUtilities.runOnUIThread(new i31(this.f38464a, this.f38465b, this.f38466c, this.d, 2), 200L);
+    public final void run() {
+        Utilities.Callback callback;
+        Utilities.Callback callback2;
+        Utilities.Callback callback3;
+        switch (this.f39761a) {
+            case 0:
+                boolean[] zArr = this.f39762b;
+                if (!zArr[0] && (callback = this.f39763c) != null) {
+                    zArr[0] = true;
+                    callback.run(Boolean.TRUE);
+                }
+                AndroidUtilities.runOnUIThread(new t21(1), 220L);
+                return;
+            case 1:
+                boolean[] zArr2 = this.f39762b;
+                if (!zArr2[0] && (callback2 = this.f39763c) != null) {
+                    zArr2[0] = true;
+                    callback2.run(Boolean.FALSE);
+                    return;
+                }
+                return;
+            default:
+                boolean[] zArr3 = this.f39762b;
+                if (!zArr3[0] && (callback3 = this.f39763c) != null) {
+                    callback3.run("cancelled");
+                    zArr3[0] = true;
+                    return;
+                }
+                return;
+        }
     }
 
-    @Override
-    public final void b() {
-        AndroidUtilities.runOnUIThread(new wx0(22, this.f38464a, this.f38465b), 200L);
-    }
-
-    @Override
-    public final void c() {
-        this.f38467e.run();
+    public m31(yh.m5 m5Var, boolean[] zArr, Utilities.Callback callback) {
+        this.f39761a = 2;
+        this.f39762b = zArr;
+        this.f39763c = callback;
     }
 }

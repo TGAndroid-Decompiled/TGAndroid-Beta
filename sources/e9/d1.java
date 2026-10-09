@@ -1,11 +1,11 @@
 package e9;
 public final class d1 extends m0 {
     public final transient k0 d;
-    public final transient e1 f8735e;
+    public final transient e1 f8729e;
 
     public d1(k0 k0Var, e1 e1Var) {
         this.d = k0Var;
-        this.f8735e = e1Var;
+        this.f8729e = e1Var;
     }
 
     @Override
@@ -18,12 +18,12 @@ public final class d1 extends m0 {
 
     @Override
     public final i0 i() {
-        return this.f8735e;
+        return this.f8729e;
     }
 
     @Override
     public final int n(int i10, Object[] objArr) {
-        return this.f8735e.n(i10, objArr);
+        return this.f8729e.n(i10, objArr);
     }
 
     @Override
@@ -33,7 +33,7 @@ public final class d1 extends m0 {
 
     @Override
     public final o1 s() {
-        return this.f8735e.listIterator(0);
+        return this.f8729e.listIterator(0);
     }
 
     @Override

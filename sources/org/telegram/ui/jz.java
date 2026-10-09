@@ -1,11 +1,24 @@
 package org.telegram.ui;
-public final class jz extends org.telegram.ui.Components.e71 {
+
+import android.content.Context;
+import android.view.View;
+public final class jz extends org.telegram.ui.Components.o61 {
+    public static final int f39043a = 0;
+
+    static {
+        org.telegram.ui.Components.o61.setup(new org.telegram.ui.Components.o61());
+    }
+
     @Override
-    public final Integer W0(int i10) {
-        org.telegram.ui.Components.h61 G = this.f26034f3.G(i10);
-        if (G != null && G.d == 2) {
-            return 0;
-        }
-        return super.W0(i10);
+    public final void bindView(View view, org.telegram.ui.Components.p61 p61Var, boolean z10, org.telegram.ui.Components.c71 c71Var, org.telegram.ui.Components.k71 k71Var) {
+        kz kzVar = (kz) view;
+        kzVar.f39371b.setOnClickListener((View.OnClickListener) p61Var.G);
+        kzVar.f39373e.setOnClickListener((View.OnClickListener) p61Var.H);
+        kzVar.a(p61Var.f29728e, false);
+    }
+
+    @Override
+    public final View createView(Context context, org.telegram.ui.Components.qm0 qm0Var, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var) {
+        return new kz(context, e6Var);
     }
 }

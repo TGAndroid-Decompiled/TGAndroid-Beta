@@ -2,66 +2,289 @@ package ci;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.BubbleActivity;
-public final class i0 extends View {
-    public final Paint f5148a;
-    public final Path f5149b;
-    public final RectF f5150c;
-    public final Matrix d;
-    public final Matrix f5151e;
-    public final Matrix f5152f;
-    public final Matrix h;
-    public final Matrix f5153n;
-    public final Matrix f5154r;
-    public final j0 f5155s;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.Crop.CropAreaView;
+import org.telegram.ui.Components.hs;
+public abstract class i0 extends FrameLayout {
+    public final b7 f5180a;
+    public final org.telegram.ui.Components.g6 f5181b;
+    public final org.telegram.ui.Components.g6 f5182c;
+    public final h0 d;
+    public final FrameLayout f5183e;
+    public final g0 f5184f;
+    public final lg.f h;
+    public final FrameLayout f5185n;
+    public float f5186r;
+    public final int[] f5187s;
+    public final int[] v;
+    public final lg.g f5188w;
+    public l8 f5189x;
+    public boolean f5190y;
 
-    public i0(j0 j0Var, Context context) {
+    public i0(Context context, b7 b7Var) {
         super(context);
-        this.f5155s = j0Var;
-        this.f5148a = new Paint(1);
-        this.f5149b = new Path();
-        this.f5150c = new RectF();
-        this.d = new Matrix();
-        this.f5151e = new Matrix();
-        this.f5152f = new Matrix();
-        this.h = new Matrix();
-        this.f5153n = new Matrix();
-        this.f5154r = new Matrix();
+        this.f5186r = 0.0f;
+        this.f5187s = new int[2];
+        this.v = new int[2];
+        this.f5188w = new Object();
+        this.f5180a = b7Var;
+        h0 h0Var = new h0(this, context);
+        this.d = h0Var;
+        hs hsVar = hs.h;
+        this.f5181b = new org.telegram.ui.Components.g6(h0Var, 0L, 320L, hsVar);
+        this.f5182c = new org.telegram.ui.Components.g6(this, 0L, 360L, hsVar);
+        g0 g0Var = new g0(this, context, 0);
+        this.f5184f = g0Var;
+        g0Var.setListener(new a6.i(this, 11));
+        addView(g0Var);
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.f5183e = frameLayout;
+        addView(frameLayout, w7.x5.e(-1, -1, 119));
+        lg.f fVar = new lg.f(context);
+        this.h = fVar;
+        fVar.setListener(new a4.l(this, 8));
+        frameLayout.addView(fVar, w7.x5.a(-2.0f, 0.0f, 0.0f, 0.0f, 52.0f, -1, 81));
+        FrameLayout frameLayout2 = new FrameLayout(context);
+        this.f5185n = frameLayout2;
+        frameLayout.addView(frameLayout2, w7.x5.a(52.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 80));
+        TextView textView = new TextView(context);
+        com.google.android.gms.internal.vision.e2.l(14.0f, 1, textView);
+        textView.setBackground(org.telegram.ui.ActionBar.i6.g0(-12763843, 0, -1));
+        textView.setTextColor(-1);
+        textView.setPadding(org.telegram.ui.Cells.c1.b(12.0f, R.string.Cancel, textView), 0, AndroidUtilities.dp(12.0f), 0);
+        frameLayout2.addView(textView, w7.x5.e(-2, -1, 115));
+        textView.setOnClickListener(new View.OnClickListener(this) {
+            public final i0 f5062b;
+
+            {
+                this.f5062b = this;
+            }
+
+            @Override
+            public final void onClick(View view) {
+                switch (r2) {
+                    case 0:
+                        ((vb) this.f5062b).E.k0(-1, false, true);
+                        return;
+                    case 1:
+                        i0 i0Var = this.f5062b;
+                        i0Var.f5184f.l(true);
+                        lg.f fVar2 = i0Var.h;
+                        fVar2.setRotated(false);
+                        fVar2.setMirrored(false);
+                        fVar2.b(0.0f);
+                        i0Var.d.invalidate();
+                        return;
+                    default:
+                        i0 i0Var2 = this.f5062b;
+                        l8 l8Var = i0Var2.f5189x;
+                        if (l8Var != null) {
+                            l8Var.m0 = new MediaController.CropState();
+                            i0Var2.f5184f.b(i0Var2.f5189x.m0);
+                            l8 l8Var2 = i0Var2.f5189x;
+                            l8Var2.m0.orientation = l8Var2.Q;
+                        }
+                        ((vb) i0Var2).E.k0(-1, false, true);
+                        return;
+                }
+            }
+        });
+        TextView textView2 = new TextView(context);
+        textView2.setTextSize(1, 14.0f);
+        textView2.setTypeface(AndroidUtilities.bold());
+        textView2.setBackground(org.telegram.ui.ActionBar.i6.g0(-12763843, 0, -1));
+        textView2.setTextColor(-1);
+        textView2.setPadding(org.telegram.ui.Cells.c1.b(12.0f, R.string.CropReset, textView2), 0, AndroidUtilities.dp(12.0f), 0);
+        frameLayout2.addView(textView2, w7.x5.e(-2, -1, 113));
+        textView2.setOnClickListener(new View.OnClickListener(this) {
+            public final i0 f5062b;
+
+            {
+                this.f5062b = this;
+            }
+
+            @Override
+            public final void onClick(View view) {
+                switch (r2) {
+                    case 0:
+                        ((vb) this.f5062b).E.k0(-1, false, true);
+                        return;
+                    case 1:
+                        i0 i0Var = this.f5062b;
+                        i0Var.f5184f.l(true);
+                        lg.f fVar2 = i0Var.h;
+                        fVar2.setRotated(false);
+                        fVar2.setMirrored(false);
+                        fVar2.b(0.0f);
+                        i0Var.d.invalidate();
+                        return;
+                    default:
+                        i0 i0Var2 = this.f5062b;
+                        l8 l8Var = i0Var2.f5189x;
+                        if (l8Var != null) {
+                            l8Var.m0 = new MediaController.CropState();
+                            i0Var2.f5184f.b(i0Var2.f5189x.m0);
+                            l8 l8Var2 = i0Var2.f5189x;
+                            l8Var2.m0.orientation = l8Var2.Q;
+                        }
+                        ((vb) i0Var2).E.k0(-1, false, true);
+                        return;
+                }
+            }
+        });
+        TextView textView3 = new TextView(context);
+        textView3.setTextSize(1, 14.0f);
+        textView3.setTypeface(AndroidUtilities.bold());
+        textView3.setBackground(org.telegram.ui.ActionBar.i6.g0(-12763843, 0, -1));
+        textView3.setTextColor(-15098625);
+        textView3.setPadding(org.telegram.ui.Cells.c1.b(12.0f, R.string.StoryCrop, textView3), 0, AndroidUtilities.dp(12.0f), 0);
+        frameLayout2.addView(textView3, w7.x5.e(-2, -1, 117));
+        textView3.setOnClickListener(new View.OnClickListener(this) {
+            public final i0 f5062b;
+
+            {
+                this.f5062b = this;
+            }
+
+            @Override
+            public final void onClick(View view) {
+                switch (r2) {
+                    case 0:
+                        ((vb) this.f5062b).E.k0(-1, false, true);
+                        return;
+                    case 1:
+                        i0 i0Var = this.f5062b;
+                        i0Var.f5184f.l(true);
+                        lg.f fVar2 = i0Var.h;
+                        fVar2.setRotated(false);
+                        fVar2.setMirrored(false);
+                        fVar2.b(0.0f);
+                        i0Var.d.invalidate();
+                        return;
+                    default:
+                        i0 i0Var2 = this.f5062b;
+                        l8 l8Var = i0Var2.f5189x;
+                        if (l8Var != null) {
+                            l8Var.m0 = new MediaController.CropState();
+                            i0Var2.f5184f.b(i0Var2.f5189x.m0);
+                            l8 l8Var2 = i0Var2.f5189x;
+                            l8Var2.m0.orientation = l8Var2.Q;
+                        }
+                        ((vb) i0Var2).E.k0(-1, false, true);
+                        return;
+                }
+            }
+        });
     }
 
-    private float getContainerHeight() {
-        float f7;
-        if (!(getContext() instanceof BubbleActivity)) {
-            f7 = AndroidUtilities.statusBarHeight;
-        } else {
-            f7 = 0.0f;
+    public int getCurrentHeight() {
+        l8 l8Var = this.f5189x;
+        if (l8Var == null) {
+            return 1;
         }
-        return ((getHeight() - f7) - this.f5155s.f5193f.f15586y) - AndroidUtilities.dp(32.0f);
+        int i10 = l8Var.Q;
+        b7 b7Var = this.f5180a;
+        if (i10 != 90 && i10 != 270) {
+            return b7Var.getContentHeight();
+        }
+        return b7Var.getContentWidth();
     }
 
-    private float getContainerWidth() {
-        return getWidth() - AndroidUtilities.dp(32.0f);
-    }
-
-    public final void a(android.graphics.Matrix r14, boolean r15) {
-        throw new UnsupportedOperationException("Method not decompiled: ci.i0.a(android.graphics.Matrix, boolean):void");
-    }
-
-    public final void b(android.graphics.Canvas r19, boolean r20) {
-        throw new UnsupportedOperationException("Method not decompiled: ci.i0.b(android.graphics.Canvas, boolean):void");
+    public int getCurrentWidth() {
+        l8 l8Var = this.f5189x;
+        if (l8Var == null) {
+            return 1;
+        }
+        int i10 = l8Var.Q;
+        b7 b7Var = this.f5180a;
+        if (i10 != 90 && i10 != 270) {
+            return b7Var.getContentWidth();
+        }
+        return b7Var.getContentHeight();
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        if (this.f5155s.f5198x == null) {
+        super.dispatchDraw(canvas);
+    }
+
+    public float getAppearProgress() {
+        return this.f5186r;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        this.f5184f.setBottomPadding(AndroidUtilities.dp(116.0f) + this.f5183e.getPaddingBottom());
+        super.onLayout(z10, i10, i11, i12, i13);
+    }
+
+    public void setAppearProgress(float f7) {
+        if (Math.abs(this.f5186r - f7) < 0.001f) {
             return;
         }
-        b(canvas, false);
+        this.f5186r = f7;
+        h0 h0Var = this.d;
+        h0Var.setAlpha(f7);
+        h0Var.invalidate();
+        g0 g0Var = this.f5184f;
+        CropAreaView cropAreaView = g0Var.f15572a;
+        CropAreaView cropAreaView2 = g0Var.f15572a;
+        cropAreaView.setDimAlpha(0.5f * f7);
+        cropAreaView2.setFrameAlpha(f7);
+        cropAreaView2.invalidate();
+        this.f5180a.invalidate();
+    }
+
+    public void setEntry(l8 l8Var) {
+        lg.g gVar;
+        boolean z10;
+        if (l8Var == null) {
+            return;
+        }
+        this.f5189x = l8Var;
+        this.f5190y = false;
+        g0 g0Var = this.f5184f;
+        g0Var.J = true;
+        getLocationOnScreen(this.f5187s);
+        int[] iArr = this.v;
+        b7 b7Var = this.f5180a;
+        b7Var.getLocationOnScreen(iArr);
+        MediaController.CropState cropState = l8Var.m0;
+        if (cropState == null) {
+            cropState = null;
+        }
+        g0Var.p(l8Var.Q, this.f5188w, cropState);
+        float rotation = g0Var.getRotation();
+        lg.f fVar = this.h;
+        fVar.setRotation(rotation);
+        org.telegram.ui.Components.g6 g6Var = this.f5181b;
+        if (cropState != null) {
+            fVar.b(cropState.cropRotate);
+            if (cropState.transformRotation != 0) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            fVar.setRotated(z10);
+            fVar.setMirrored(cropState.mirrored);
+            g6Var.f(cropState.mirrored, false);
+        } else {
+            fVar.b(0.0f);
+            fVar.setRotated(false);
+            fVar.setMirrored(false);
+            g6Var.getClass();
+            g6Var.d(0.0f, false);
+        }
+        g0Var.r(false);
+        this.f5182c.d(gVar.f15533i, true);
+        h0 h0Var = this.d;
+        h0Var.setVisibility(0);
+        h0Var.invalidate();
+        b7Var.setCropEditorDrawing(this);
     }
 }

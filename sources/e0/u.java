@@ -1,16 +1,13 @@
 package e0;
 
 import android.app.Notification;
+import android.app.Person;
 public abstract class u {
-    public static Notification.MessagingStyle a(Notification.MessagingStyle messagingStyle, Notification.MessagingStyle.Message message) {
-        return messagingStyle.addMessage(message);
+    public static Notification.MessagingStyle a(Person person) {
+        return new Notification.MessagingStyle(person);
     }
 
-    public static Notification.MessagingStyle b(CharSequence charSequence) {
-        return new Notification.MessagingStyle(charSequence);
-    }
-
-    public static Notification.MessagingStyle c(Notification.MessagingStyle messagingStyle, CharSequence charSequence) {
-        return messagingStyle.setConversationTitle(charSequence);
+    public static Notification.MessagingStyle b(Notification.MessagingStyle messagingStyle, boolean z10) {
+        return messagingStyle.setGroupConversation(z10);
     }
 }

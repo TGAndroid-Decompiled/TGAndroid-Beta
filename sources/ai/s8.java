@@ -1,23 +1,23 @@
 package ai;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.sa0;
 public final class s8 implements RequestDelegate {
-    public final long f1642a;
-    public final Utilities.Callback f1643b;
-    public final l9 f1644c;
+    public final long f1710a;
+    public final sa0 f1711b;
+    public final m9 f1712c;
 
-    public s8(l9 l9Var, long j3, Utilities.Callback callback) {
-        this.f1644c = l9Var;
-        this.f1642a = j3;
-        this.f1643b = callback;
+    public s8(m9 m9Var, long j3, sa0 sa0Var) {
+        this.f1712c = m9Var;
+        this.f1710a = j3;
+        this.f1711b = sa0Var;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new q8(this, tLObject, this.f1642a, this.f1643b, 2));
+        AndroidUtilities.runOnUIThread(new r8(this, tLObject, this.f1710a, this.f1711b, 1));
     }
 }

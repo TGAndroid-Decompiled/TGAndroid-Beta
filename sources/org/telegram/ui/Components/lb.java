@@ -1,49 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import android.view.WindowManager;
+import android.graphics.Rect;
+import android.view.GestureDetector;
 import android.widget.FrameLayout;
 public final class lb extends FrameLayout {
-    public final mb f28434a;
+    public final xb f28406a;
+    public final Rect f28407b;
+    public final GestureDetector f28408c;
+    public boolean d;
+    public boolean f28409e;
+    public float f28410f;
+    public float h;
+    public float f28411n;
+    public boolean f28412r;
+    public boolean f28413s;
+    public boolean v;
+    public boolean f28414w;
+    public final FrameLayout f28415x;
+    public final tc f28416y;
 
-    public lb(mb mbVar, Context context) {
-        super(context);
-        this.f28434a = mbVar;
+    public lb(tc tcVar, xb xbVar, FrameLayout frameLayout) {
+        super(xbVar.getContext());
+        this.f28416y = tcVar;
+        this.f28415x = frameLayout;
+        this.f28407b = new Rect();
+        this.f28406a = xbVar;
+        GestureDetector gestureDetector = new GestureDetector(xbVar.getContext(), new ic(this, xbVar));
+        this.f28408c = gestureDetector;
+        gestureDetector.setIsLongpressEnabled(false);
+        addView(xbVar);
     }
 
     @Override
-    public final void addView(View view) {
-        super.addView(view);
-        this.f28434a.show();
-    }
-
-    public WindowManager.LayoutParams getLayout() {
-        return this.f28434a.f28651b;
-    }
-
-    @Override
-    public final void removeView(View view) {
-        mb mbVar = this.f28434a;
-        super.removeView(view);
-        try {
-            mbVar.dismiss();
-        } catch (Exception unused) {
-        }
-        rc.h(mbVar.f28650a);
-    }
-
-    public void setTouchable(boolean z10) {
-        mb mbVar = this.f28434a;
-        WindowManager.LayoutParams layoutParams = mbVar.f28651b;
-        if (layoutParams == null) {
-            return;
-        }
-        if (!z10) {
-            layoutParams.flags |= 16;
-        } else {
-            layoutParams.flags &= -17;
-        }
-        mbVar.getWindow().setAttributes(mbVar.f28651b);
+    public final boolean onTouchEvent(android.view.MotionEvent r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.lb.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

@@ -1,32 +1,44 @@
 package org.telegram.ui;
-public final class t60 implements Runnable {
-    public final int f40720a;
-    public final d70 f40721b;
 
-    public t60(d70 d70Var, int i10) {
-        this.f40720a = i10;
-        this.f40721b = d70Var;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class t60 implements View.OnClickListener {
+    public final int f41866a;
+    public final c70 f41867b;
+
+    public t60(c70 c70Var, int i10) {
+        this.f41866a = i10;
+        this.f41867b = c70Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f40720a) {
+    public final void onClick(View view) {
+        switch (this.f41866a) {
             case 0:
-                this.f40721b.finishFragment();
+                c70 c70Var = this.f41867b;
+                c70Var.f36549f.f30614r.clearFocus();
+                c70Var.f36549f.f30614r.requestFocus();
+                AndroidUtilities.showKeyboard(c70Var.f36549f.f30614r);
                 return;
             case 1:
-                d70 d70Var = this.f40721b;
-                d70Var.i0();
-                d70Var.e0();
+                this.f41867b.o0();
                 return;
             case 2:
-                d70 d70Var2 = this.f40721b;
-                d70Var2.getClass();
-                d70Var2.presentFragment(new PremiumPreviewFragment(0, "noncontacts"));
+                c70 c70Var2 = this.f41867b;
+                c70Var2.n0(c70Var2.l0());
+                return;
+            case 3:
+                c70 c70Var3 = this.f41867b;
+                c70Var3.n0(c70Var3.l0());
                 return;
             default:
-                d70 d70Var3 = this.f40721b;
-                d70Var3.f35694n.postOnAnimation(new t60(d70Var3, 1));
+                c70 c70Var4 = this.f41867b;
+                c70Var4.X = null;
+                c70Var4.Z.b();
+                c70Var4.h.b();
+                c70Var4.k0();
+                c70Var4.r0();
+                c70Var4.s0();
                 return;
         }
     }

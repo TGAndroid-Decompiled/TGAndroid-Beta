@@ -1,6 +1,6 @@
 package db;
 public final class k extends i {
-    public static final k f8211a = new Object();
+    public static final k f8263a = new Object();
 
     public final boolean equals(Object obj) {
         return obj instanceof k;

@@ -1,36 +1,82 @@
 package org.telegram.ui;
-public final class b01 implements Runnable {
-    public final int f35001a;
-    public final c01 f35002b;
 
-    public b01(c01 c01Var, int i10) {
-        this.f35001a = i10;
-        this.f35002b = c01Var;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+public final class b01 extends AnimatorListenerAdapter {
+    public final int f36081a;
+    public final ProfileActivity f36082b;
+
+    public b01(ProfileActivity profileActivity, int i10) {
+        this.f36081a = i10;
+        this.f36082b = profileActivity;
     }
 
     @Override
-    public final void run() {
-        switch (this.f35001a) {
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f36081a) {
+            case 2:
+                ProfileActivity profileActivity = this.f36082b;
+                profileActivity.O1 = false;
+                profileActivity.f34211a.O0 = true;
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
+        }
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f36081a) {
             case 0:
-                ProfileActivity profileActivity = this.f35002b.D0;
-                pz0 pz0Var = profileActivity.B5;
-                if (pz0Var != null) {
-                    pz0Var.dismiss();
-                    profileActivity.B5 = null;
+                super.onAnimationEnd(animator);
+                this.f36082b.k4(true);
+                return;
+            case 1:
+                ProfileActivity profileActivity = this.f36082b;
+                AnimatorSet animatorSet = profileActivity.f34366w;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    profileActivity.f34366w = null;
                     return;
                 }
                 return;
+            case 2:
+                ProfileActivity profileActivity2 = this.f36082b;
+                profileActivity2.O1 = false;
+                profileActivity2.f34211a.O0 = true;
+                profileActivity2.f34280j2.removeListener(this);
+                profileActivity2.f34235d1.setBackgroundColor(-16777216);
+                profileActivity2.Y.setVisibility(8);
+                profileActivity2.f34303n0.setVisibility(0);
+                profileActivity2.f34303n0.setAlpha(1.0f);
+                return;
+            case 3:
+                ProfileActivity profileActivity3 = this.f36082b;
+                profileActivity3.f34280j2.removeListener(this);
+                profileActivity3.f34303n0.setVisibility(8);
+                profileActivity3.f34303n0.setAlpha(1.0f);
+                return;
             default:
-                try {
-                    org.telegram.ui.Components.zl0 currentListView = this.f35002b.f35265x0.O.getCurrentListView();
-                    if (currentListView != null && currentListView.getAdapter() != null) {
-                        currentListView.getAdapter().l();
-                        return;
-                    }
-                    return;
-                } catch (Throwable unused) {
-                    return;
-                }
+                ProfileActivity profileActivity4 = this.f36082b;
+                profileActivity4.f34367w0 = null;
+                profileActivity4.fragmentView.invalidate();
+                return;
+        }
+    }
+
+    @Override
+    public void onAnimationStart(Animator animator) {
+        switch (this.f36081a) {
+            case 2:
+                ProfileActivity profileActivity = this.f36082b;
+                ProfileActivity.s3(profileActivity, false);
+                profileActivity.f34303n0.setAnimatedFileMaybe(profileActivity.f34242e0.getImageReceiver().getAnimation());
+                profileActivity.f34303n0.L();
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
         }
     }
 }

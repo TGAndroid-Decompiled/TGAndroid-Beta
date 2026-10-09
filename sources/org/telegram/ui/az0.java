@@ -1,49 +1,28 @@
 package org.telegram.ui;
 
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class az0 extends s4.c0 {
-    public final ProfileActivity I;
+public final class az0 implements View.OnClickListener {
+    public final int f36075a;
+    public final Runnable f36076b;
 
-    public az0(ProfileActivity profileActivity) {
-        this.I = profileActivity;
+    public az0(int i10, Runnable runnable) {
+        this.f36075a = i10;
+        this.f36076b = runnable;
     }
 
     @Override
-    public final int o0(int i10, of.e eVar, s4.z0 z0Var) {
-        ProfileActivity profileActivity = this.I;
-        View m10 = profileActivity.f34236c.m(0);
-        if (m10 != null && !profileActivity.F0) {
-            int top = m10.getTop() - profileActivity.T3();
-            boolean z10 = profileActivity.f34322o2;
-            boolean z11 = true;
-            if (!z10 && top > i10) {
-                if (!profileActivity.f34313n0.X0.isEmpty() && profileActivity.f34252e0.getImageReceiver().hasNotThumb() && !AndroidUtilities.isAccessibilityScreenReaderEnabled() && ((!profileActivity.f34315n2 && !AndroidUtilities.isTablet()) || profileActivity.I0)) {
-                    if (profileActivity.J2 != null) {
-                        z11 = false;
-                    }
-                    profileActivity.f34322o2 = z11;
+    public final void onClick(View view) {
+        switch (this.f36075a) {
+            case 0:
+                this.f36076b.run();
+                return;
+            default:
+                Runnable runnable = this.f36076b;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
                 }
-            } else if (z10) {
-                if (i10 >= top) {
-                    profileActivity.f34322o2 = false;
-                } else if (profileActivity.f34221a.getScrollState() == 1 && !profileActivity.f34329p2) {
-                    i10 /= 2;
-                }
-            }
-            i10 = top;
+                return;
         }
-        if (profileActivity.O1 && !profileActivity.f34221a.O0) {
-            return 0;
-        }
-        return super.o0(i10, eVar, z0Var);
-    }
-
-    @Override
-    public final boolean y0() {
-        if (this.I.f34333q0 != null) {
-            return true;
-        }
-        return false;
     }
 }

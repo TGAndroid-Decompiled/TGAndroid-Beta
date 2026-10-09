@@ -1,14 +1,11 @@
 package pg;
 public final class k1 {
-    public double f44531a;
-    public double f44532b;
+    public double f45675a;
+    public double f45676b;
+    public double f45677c;
+    public double d;
 
-    public k1(double d, double d10) {
-        this.f44531a = d;
-        this.f44532b = d10;
-    }
-
-    public final double a(double d, double d10) {
-        return Math.sqrt(Math.pow(d10 - this.f44532b, 2.0d) + Math.pow(d - this.f44531a, 2.0d));
+    public final String toString() {
+        return "RectD{left=" + this.f45675a + ", top=" + this.f45676b + ", right=" + this.f45677c + ", bottom=" + this.d + '}';
     }
 }

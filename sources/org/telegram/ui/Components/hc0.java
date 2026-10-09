@@ -1,153 +1,90 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
-import android.view.MotionEvent;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class hc0 extends View {
-    public final o6 f27201a;
-    public final dc0 f27202b;
-    public boolean f27203c;
-    public boolean d;
-    public final String f27204e;
-    public final String f27205f;
-    public final int h;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagePreviewParams;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+public final class hc0 extends org.telegram.ui.Cells.p9 {
+    public final pc0 f27036w0;
 
-    public hc0(Context context, int i10, String str, int i11, String str2, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context);
-        this.f27203c = true;
-        this.f27204e = str;
-        this.f27205f = str2;
-        setBackground(org.telegram.ui.ActionBar.i6.f0(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20918i6, d6Var), 2, -1));
-        o6 o6Var = new o6(true, true, true, false);
-        this.f27201a = o6Var;
-        o6Var.k(0.35f, 300L, tr.h);
-        o6Var.t(AndroidUtilities.dp(16.0f));
-        o6Var.r(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.E8, d6Var));
-        o6Var.setCallback(this);
-        o6Var.n(!LocaleController.isRTL);
-        if (LocaleController.isRTL) {
-            o6Var.f29354b = 5;
-        }
-        TextPaint textPaint = o6Var.f29353a;
-        int max = (int) (Math.max(textPaint.measureText(str), textPaint.measureText(str2)) + AndroidUtilities.dp(77.0f));
-        this.h = max;
-        o6Var.G = max;
-        dc0 dc0Var = new dc0(0);
-        kj0 kj0Var = new kj0(i10, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
-        dc0Var.f25755c = kj0Var;
-        kj0Var.R(this);
-        kj0Var.J(true);
-        kj0Var.h = true;
-        kj0Var.K(0);
-        kj0 kj0Var2 = new kj0(i11, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
-        dc0Var.d = kj0Var2;
-        kj0Var2.R(this);
-        kj0Var2.J(true);
-        kj0Var2.h = true;
-        kj0Var2.K(0);
-        dc0Var.f25756e = kj0Var;
-        this.f27202b = dc0Var;
-        dc0Var.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.F8, d6Var), PorterDuff.Mode.SRC_IN));
+    public hc0(pc0 pc0Var) {
+        this.f27036w0 = pc0Var;
+        this.f21864g0 = pc0Var.f29845c0.F;
     }
 
-    public final void a(boolean z10, boolean z11) {
-        String str;
-        boolean z12;
-        kj0 kj0Var;
-        if (!this.f27203c && z10 == this.d) {
+    @Override
+    public final void I(int i10, int i11, MessageObject messageObject) {
+        org.telegram.ui.pn pnVar;
+        MessageObject messageObject2;
+        pc0 pc0Var = this.f27036w0;
+        hc0 hc0Var = pc0Var.f29846e;
+        int i12 = hc0Var.v - hc0Var.f21884u;
+        vc0 vc0Var = pc0Var.f29845c0;
+        if (i12 > MessagesController.getInstance(vc0Var.f31755w).quoteLengthMax) {
+            pc0Var.f();
             return;
         }
-        this.d = z10;
-        if (z10) {
-            str = this.f27204e;
-        } else {
-            str = this.f27205f;
+        MessagePreviewParams messagePreviewParams = vc0Var.d;
+        messagePreviewParams.quoteStart = hc0Var.f21884u;
+        messagePreviewParams.quoteEnd = hc0Var.v;
+        MessageObject c10 = pc0Var.c(messageObject);
+        if (c10 != null && ((pnVar = vc0Var.d.quote) == null || (messageObject2 = pnVar.f40843a) == null || messageObject2.getId() != c10.getId())) {
+            vc0Var.d.quote = org.telegram.ui.pn.b(i10, i11, c10);
         }
-        if (z11 && !LocaleController.isRTL) {
-            z12 = true;
-        } else {
-            z12 = false;
+        vc0Var.b();
+        vc0Var.a(true);
+    }
+
+    @Override
+    public final boolean b() {
+        MessageObject c10;
+        TLRPC.Message message;
+        pc0 pc0Var = this.f27036w0;
+        if (pc0Var.f29840a == 0 && (c10 = pc0Var.c(null)) != null && (message = c10.messageOwner) != null && message.rich_message != null) {
+            return false;
         }
-        o6 o6Var = this.f27201a;
-        o6Var.q(str, z12, true);
-        dc0 dc0Var = this.f27202b;
-        kj0 kj0Var2 = (kj0) dc0Var.d;
-        kj0 kj0Var3 = (kj0) dc0Var.f25755c;
-        dc0Var.f25754b = z10;
-        if (z11) {
-            if (z10) {
-                kj0Var = kj0Var3;
-            } else {
-                kj0Var = kj0Var2;
+        MessagePreviewParams messagePreviewParams = pc0Var.f29845c0.d;
+        if (messagePreviewParams != null && messagePreviewParams.noforwards) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean e() {
+        MessageObject c10;
+        TLRPC.Message message;
+        pc0 pc0Var = this.f27036w0;
+        int i10 = pc0Var.f29840a;
+        if (i10 == 0 && !pc0Var.f29845c0.d.isSecret) {
+            if (i10 != 0 || (c10 = pc0Var.c(null)) == null || (message = c10.messageOwner) == null || message.rich_message == null) {
+                return true;
             }
-            dc0Var.f25756e = kj0Var;
-            kj0Var3.M(0);
-            kj0Var2.M(0);
-            ((kj0) dc0Var.f25756e).start();
-        } else {
-            if (z10) {
-                kj0Var2 = kj0Var3;
-            }
-            dc0Var.f25756e = kj0Var2;
-            kj0Var2.M(kj0Var2.f28216e[0] - 1);
-        }
-        this.f27203c = false;
-        setContentDescription(o6Var.f29358g);
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        boolean z10 = LocaleController.isRTL;
-        o6 o6Var = this.f27201a;
-        dc0 dc0Var = this.f27202b;
-        if (z10) {
-            dc0Var.setBounds(getMeasuredWidth() - AndroidUtilities.dp(41.0f), org.telegram.messenger.bi.z(24.0f, getMeasuredHeight(), 2), getMeasuredWidth() - AndroidUtilities.dp(17.0f), (AndroidUtilities.dp(24.0f) + getMeasuredHeight()) / 2);
-            o6Var.setBounds(0, 0, getMeasuredWidth() - AndroidUtilities.dp(59.0f), getMeasuredHeight());
-        } else {
-            dc0Var.setBounds(AndroidUtilities.dp(17.0f), org.telegram.messenger.bi.z(24.0f, getMeasuredHeight(), 2), AndroidUtilities.dp(41.0f), (AndroidUtilities.dp(24.0f) + getMeasuredHeight()) / 2);
-            o6Var.setBounds(AndroidUtilities.dp(59.0f), 0, getMeasuredWidth(), getMeasuredHeight());
-        }
-        o6Var.draw(canvas);
-        dc0Var.draw(canvas);
-    }
-
-    public boolean getState() {
-        return this.d;
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int min;
-        int mode = View.MeasureSpec.getMode(i10);
-        int i12 = this.h;
-        if (mode == 1073741824) {
-            min = Math.max(View.MeasureSpec.getSize(i10), i12);
-        } else {
-            min = Math.min(View.MeasureSpec.getSize(i10), i12);
-        }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(min, mode), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (getVisibility() == 0 && getAlpha() >= 0.5f) {
-            return super.onTouchEvent(motionEvent);
+            return false;
         }
         return false;
     }
 
     @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f27201a && !super.verifyDrawable(drawable)) {
-            return false;
+    public final org.telegram.ui.ActionBar.e6 q() {
+        return this.f21864g0;
+    }
+
+    @Override
+    public final void w() {
+        super.w();
+        ic0 ic0Var = this.f27036w0.f29847f;
+        if (ic0Var != null) {
+            ic0Var.invalidate();
         }
-        return true;
+    }
+
+    @Override
+    public final boolean z(MessageObject messageObject) {
+        pc0 pc0Var = this.f27036w0;
+        if (pc0Var.f29840a == 0 && !pc0Var.f29845c0.d.isSecret && x()) {
+            return true;
+        }
+        return false;
     }
 }

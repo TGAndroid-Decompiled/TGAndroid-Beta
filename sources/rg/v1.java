@@ -1,18 +1,128 @@
 package rg;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class v1 {
-    public int f46341i;
-    public final RectF f46335a = new RectF();
-    public final RectF f46336b = new RectF();
-    public final Paint f46337c = new Paint();
-    public final ArrayList f46338e = new ArrayList();
-    public float f46339f = 1.0f;
-    public final long h = 2000;
-    public final float f46342j = 1000.0f / AndroidUtilities.screenRefreshRate;
-    public final int f46340g = 200;
-    public final float[] d = new float[800];
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.i6;
+public class v1 {
+    public boolean B;
+    public Matrix[] C;
+    public float[][] D;
+    public int[] E;
+    public float[] F;
+    public boolean G;
+    public e6 O;
+    public long Q;
+    public long R;
+    public boolean f47479g;
+    public boolean h;
+    public Utilities.CallbackReturn f47483l;
+    public boolean f47484m;
+    public final int f47487p;
+    public boolean f47488q;
+    public int f47496z;
+    public final RectF f47474a = new RectF();
+    public final RectF f47475b = new RectF();
+    public final RectF f47476c = new RectF();
+    public Bitmap[] d = new Bitmap[3];
+    public boolean[] f47477e = new boolean[3];
+    public boolean[] f47478f = new boolean[3];
+    public final Paint f47480i = new Paint();
+    public float f47481j = 0.0f;
+    public float f47482k = 0.0f;
+    public final ArrayList f47485n = new ArrayList();
+    public float f47486o = 1.0f;
+    public int f47489r = 14;
+    public int f47490s = 12;
+    public int f47491t = 10;
+    public float f47492u = 0.85f;
+    public float v = 0.85f;
+    public float f47493w = 0.9f;
+    public long f47494x = 2000;
+    public int f47495y = 1000;
+    public final float A = 1000.0f / AndroidUtilities.screenRefreshRate;
+    public boolean H = false;
+    public boolean I = true;
+    public boolean J = true;
+    public boolean K = false;
+    public boolean L = false;
+    public boolean M = true;
+    public int N = -1;
+    public int P = i6.Uj;
+    public int S = 0;
+
+    public v1(int i10) {
+        this.f47487p = i10;
+        this.B = i10 < 50;
+    }
+
+    public final void a() {
+        throw new UnsupportedOperationException("Method not decompiled: rg.v1.a():void");
+    }
+
+    public int b() {
+        if (this.N == 100) {
+            return i0.a.k(i6.w0(this.P, this.O), 200);
+        }
+        return i6.w0(this.P, this.O);
+    }
+
+    public final void c() {
+        a();
+        boolean z10 = this.G;
+        int i10 = this.f47487p;
+        if (z10) {
+            int length = this.d.length;
+            this.C = new Matrix[length];
+            this.D = new float[length];
+            this.E = new int[length];
+            this.F = new float[length];
+            for (int i11 = 0; i11 < length; i11++) {
+                this.C[i11] = new Matrix();
+                this.D[i11] = new float[i10 * 2];
+            }
+        }
+        ArrayList arrayList = this.f47485n;
+        if (arrayList.isEmpty()) {
+            for (int i12 = 0; i12 < i10; i12++) {
+                arrayList.add(new u1(this));
+            }
+        }
+    }
+
+    public final void d(Canvas canvas) {
+        e(canvas, 1.0f);
+    }
+
+    public final void e(android.graphics.Canvas r19, float r20) {
+        throw new UnsupportedOperationException("Method not decompiled: rg.v1.e(android.graphics.Canvas, float):void");
+    }
+
+    public final void f() {
+        long currentTimeMillis = System.currentTimeMillis();
+        int i10 = 0;
+        while (true) {
+            ArrayList arrayList = this.f47485n;
+            if (i10 < arrayList.size()) {
+                ((u1) arrayList.get(i10)).b(currentTimeMillis);
+                i10++;
+            } else {
+                return;
+            }
+        }
+    }
+
+    public final void g() {
+        int w02 = i6.w0(this.P, this.O);
+        if (this.f47496z != w02) {
+            this.f47496z = w02;
+            a();
+        }
+    }
 }

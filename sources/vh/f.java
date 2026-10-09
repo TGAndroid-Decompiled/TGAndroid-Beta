@@ -11,46 +11,46 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.Components.b60;
-import org.telegram.ui.l41;
+import org.telegram.ui.Components.p60;
+import org.telegram.ui.w51;
 public final class f {
-    public static HashMap f48386n;
-    public final double f48387a;
-    public final double f48388b;
-    public final int f48389c;
-    public final l41 d;
-    public final b60 f48390e;
-    public e f48391f;
-    public final int f48392g;
+    public static HashMap f49666n;
+    public final double f49667a;
+    public final double f49668b;
+    public final int f49669c;
+    public final w51 d;
+    public final p60 f49670e;
+    public e f49671f;
+    public final int f49672g;
     public final int h;
-    public boolean f48393i;
-    public final ArrayList f48394j = new ArrayList();
-    public final HashMap f48395k = new HashMap();
-    public int f48396l = 0;
-    public final d f48397m = new d(this, 0);
+    public boolean f49673i;
+    public final ArrayList f49674j = new ArrayList();
+    public final HashMap f49675k = new HashMap();
+    public int f49676l = 0;
+    public final d f49677m = new d(this, 0);
 
-    public f(int i10, l41 l41Var, int i11, int i12) {
+    public f(int i10, w51 w51Var, int i11, int i12) {
         double d = 1.0d / ((int) AndroidUtilities.screenRefreshRate);
-        this.f48387a = d;
-        this.f48388b = d * 4.0d;
-        this.f48389c = i10;
-        this.f48392g = i11;
+        this.f49667a = d;
+        this.f49668b = d * 4.0d;
+        this.f49669c = i10;
+        this.f49672g = i11;
         this.h = i12;
-        this.d = l41Var;
-        b60 b60Var = new b60(this, l41Var.getContext(), 1);
-        this.f48390e = b60Var;
-        b60Var.setSurfaceTextureListener(new ki.d(this, 5));
-        b60Var.setOpaque(false);
-        l41Var.addView(b60Var);
+        this.d = w51Var;
+        p60 p60Var = new p60(this, w51Var.getContext(), 1);
+        this.f49670e = p60Var;
+        p60Var.setSurfaceTextureListener(new ki.d(this, 5));
+        p60Var.setOpaque(false);
+        w51Var.addView(p60Var);
     }
 
     public static f d(int i10, View view, ViewGroup viewGroup) {
         int min;
         if (view != null) {
-            if (f48386n == null) {
-                f48386n = new HashMap();
+            if (f49666n == null) {
+                f49666n = new HashMap();
             }
-            f fVar = (f) f48386n.get(Integer.valueOf(i10));
+            f fVar = (f) f49666n.get(Integer.valueOf(i10));
             if (fVar == null) {
                 int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
                 if (devicePerformanceClass != 1) {
@@ -66,11 +66,11 @@ public final class f {
                     min = Math.min(900, (int) (((point3.x + point3.y) / 2.0f) * 0.8f));
                 }
                 if (viewGroup != null) {
-                    HashMap hashMap = f48386n;
+                    HashMap hashMap = f49666n;
                     Integer valueOf = Integer.valueOf(i10);
-                    l41 l41Var = new l41(viewGroup.getContext(), 12);
-                    viewGroup.addView(l41Var);
-                    f fVar2 = new f(i10, l41Var, min, min);
+                    w51 w51Var = new w51(viewGroup.getContext(), 11);
+                    viewGroup.addView(w51Var);
+                    f fVar2 = new f(i10, w51Var, min, min);
                     hashMap.put(valueOf, fVar2);
                     fVar = fVar2;
                 } else {
@@ -97,33 +97,33 @@ public final class f {
 
     public static void f(boolean z10) {
         e eVar;
-        HashMap hashMap = f48386n;
+        HashMap hashMap = f49666n;
         if (hashMap != null) {
             for (f fVar : hashMap.values()) {
-                if (fVar.f48389c == 0 && (eVar = fVar.f48391f) != null) {
-                    eVar.f48376b = z10;
+                if (fVar.f49669c == 0 && (eVar = fVar.f49671f) != null) {
+                    eVar.f49656b = z10;
                 }
             }
         }
     }
 
     public final void a(View view) {
-        if (!this.f48393i) {
-            ArrayList arrayList = this.f48394j;
+        if (!this.f49673i) {
+            ArrayList arrayList = this.f49674j;
             if (!arrayList.contains(view)) {
                 arrayList.add(view);
-                int i10 = this.f48396l;
-                this.f48396l = i10 + 1;
-                this.f48395k.put(view, Integer.valueOf(i10));
+                int i10 = this.f49676l;
+                this.f49676l = i10 + 1;
+                this.f49675k.put(view, Integer.valueOf(i10));
             }
         }
     }
 
     public final void b(View view) {
-        this.f48394j.remove(view);
-        this.f48395k.remove(view);
-        if (!this.f48393i) {
-            d dVar = this.f48397m;
+        this.f49674j.remove(view);
+        this.f49675k.remove(view);
+        if (!this.f49673i) {
+            d dVar = this.f49677m;
             AndroidUtilities.cancelRunOnUIThread(dVar);
             AndroidUtilities.runOnUIThread(dVar, 30L);
         }
@@ -132,11 +132,11 @@ public final class f {
     public final void c(Canvas canvas, View view, int i10, int i11, float f7, boolean z10) {
         if (canvas != null && view != null) {
             canvas.save();
-            Integer num = (Integer) this.f48395k.get(view);
+            Integer num = (Integer) this.f49675k.get(view);
             if (num == null) {
                 num = 0;
             }
-            int i12 = this.f48392g;
+            int i12 = this.f49672g;
             int i13 = this.h;
             if (i10 > i12 || i11 > i13) {
                 float max = Math.max(i10 / i12, i11 / i13);
@@ -151,9 +151,9 @@ public final class f {
             if (num.intValue() % 4 == 3) {
                 canvas.scale(1.0f, -1.0f, i12 / 2.0f, i13 / 2.0f);
             }
-            b60 b60Var = this.f48390e;
+            p60 p60Var = this.f49670e;
             if (z10) {
-                Bitmap bitmap = b60Var.getBitmap();
+                Bitmap bitmap = p60Var.getBitmap();
                 if (bitmap != null) {
                     Paint paint = new Paint(7);
                     paint.setColor(-1);
@@ -161,8 +161,8 @@ public final class f {
                     bitmap.recycle();
                 }
             } else {
-                b60Var.setAlpha(f7);
-                b60Var.draw(canvas);
+                p60Var.setAlpha(f7);
+                p60Var.draw(canvas);
             }
             canvas.restore();
         }

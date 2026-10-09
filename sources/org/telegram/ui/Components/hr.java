@@ -1,164 +1,296 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.Rect;
+import android.graphics.Region;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class hr extends yl0 {
-    public final jr f27313c;
+public abstract class hr extends Drawable {
+    public final int f27115a;
+    public Object f27116b;
 
-    public hr(jr jrVar) {
-        this.f27313c = jrVar;
+    public hr() {
+        this.f27115a = 1;
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f46542f == 3) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final int h() {
-        jr jrVar = this.f27313c;
-        if (jrVar.Z) {
-            return jrVar.Y.size() + 3;
-        }
-        if (jrVar.f27950a0) {
-            return 2;
-        }
-        return 1;
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 != 0) {
-            int i11 = 1;
-            if (i10 != 1) {
-                i11 = 2;
-                if (i10 != 2) {
-                    return 3;
+    public void applyTheme(Resources.Theme theme) {
+        switch (this.f27115a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f27116b;
+                if (drawable != null) {
+                    drawable.applyTheme(theme);
+                    return;
                 }
-            }
-            return i11;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        int i11;
-        TLObject chat;
-        String str;
-        boolean z10;
-        int i12;
-        int i13 = c1Var.f46542f;
-        View view = c1Var.f46538a;
-        boolean z11 = true;
-        if (i13 == 3) {
-            jr jrVar = this.f27313c;
-            TLRPC.Peer peer = (TLRPC.Peer) jrVar.Y.get(i10 - 3);
-            long peerId = MessageObject.getPeerId(peer);
-            if (peerId > 0) {
-                i12 = ((org.telegram.ui.ActionBar.f3) jrVar).currentAccount;
-                chat = MessagesController.getInstance(i12).getUser(Long.valueOf(peerId));
-                str = LocaleController.getString(R.string.VoipGroupPersonalAccount);
-            } else {
-                i11 = ((org.telegram.ui.ActionBar.f3) jrVar).currentAccount;
-                chat = MessagesController.getInstance(i11).getChat(Long.valueOf(-peerId));
-                str = null;
-            }
-            org.telegram.ui.Cells.g4 g4Var = (org.telegram.ui.Cells.g4) view;
-            if (i10 != h() - 1) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            g4Var.e(chat, null, str, z10);
-            if (peer != jrVar.f27953d0) {
-                z11 = false;
-            }
-            g4Var.c(z11, false);
-        } else if (i13 == 2) {
-            org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) view;
-            m4Var.setTextSize(15.0f);
-            m4Var.setPadding(0, 0, 0, AndroidUtilities.dp(2.0f));
-            m4Var.setText(LocaleController.getString(R.string.VoipChatDisplayedAs).replace(":", ""));
-        } else if (i13 == 1) {
-            ((org.telegram.ui.Cells.e9) view).setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.VoipChatStreamWithAnotherApp), org.telegram.ui.ActionBar.i6.L6, 0, new aq(this, 3)), true, AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f)));
+                return;
+            default:
+                super.applyTheme(theme);
+                return;
         }
     }
 
     @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        org.telegram.ui.ActionBar.d6 d6Var;
-        FrameLayout frameLayout;
-        String formatString;
-        String formatString2;
-        Context context = viewGroup.getContext();
-        jr jrVar = this.f27313c;
-        if (i10 != 1) {
-            if (i10 != 2) {
-                if (i10 != 3) {
-                    boolean z10 = jrVar.f27951b0;
-                    LinearLayout linearLayout = new LinearLayout(context);
-                    linearLayout.setOrientation(1);
-                    ?? imageView = new ImageView(context);
-                    imageView.setAutoRepeat(true);
-                    imageView.f(R.raw.utyan_schedule, 112, 112, null);
-                    imageView.d();
-                    linearLayout.addView((View) imageView, w7.z5.t(112, 112, 49, 0, 24, 0, 0));
-                    TextView textView = new TextView(context);
-                    textView.setTypeface(AndroidUtilities.bold());
-                    if (z10) {
-                        formatString = LocaleController.formatString(R.string.StartVoipChannelTitle, new Object[0]);
-                    } else {
-                        formatString = LocaleController.formatString(R.string.StartVoipChatTitle, new Object[0]);
-                    }
-                    textView.setText(formatString);
-                    textView.setTextSize(1, 20.0f);
-                    textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.G6, false));
-                    linearLayout.addView(textView, w7.z5.t(-2, -2, 1, 0, 14, 0, 7));
-                    TextView textView2 = new TextView(context);
-                    textView2.setTextSize(1, 14.0f);
-                    textView2.setGravity(1);
-                    textView2.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20935j5, false));
-                    if (z10) {
-                        formatString2 = LocaleController.formatString(R.string.VoipChannelStart2, new Object[0]);
-                    } else {
-                        formatString2 = LocaleController.formatString(R.string.VoipGroupStart2, new Object[0]);
-                    }
-                    textView2.setText(formatString2);
-                    textView2.setLineSpacing(textView2.getLineSpacingExtra(), textView2.getLineSpacingMultiplier() * 1.1f);
-                    linearLayout.addView(textView2, w7.z5.t(-2, -2, 1, 28, 0, 28, 17));
-                    frameLayout = linearLayout;
+    public void clearColorFilter() {
+        switch (this.f27115a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f27116b;
+                if (drawable != null) {
+                    drawable.clearColorFilter();
+                    return;
                 } else {
-                    frameLayout = new org.telegram.ui.Cells.g4(context, 1, 0, false);
+                    super.clearColorFilter();
+                    return;
                 }
-            } else {
-                frameLayout = new org.telegram.ui.Cells.m4(context, 22);
-            }
-        } else {
-            org.telegram.ui.Cells.e9 e9Var = new org.telegram.ui.Cells.e9(context);
-            int i11 = org.telegram.ui.ActionBar.i6.f20771a7;
-            d6Var = ((org.telegram.ui.ActionBar.f3) jrVar).resourcesProvider;
-            e9Var.setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(i11, d6Var));
-            e9Var.setTopPadding(17);
-            e9Var.setBottomPadding(17);
-            frameLayout = e9Var;
+            default:
+                super.clearColorFilter();
+                return;
         }
-        frameLayout.setLayoutParams(new s4.p0(-1, -2));
-        return new s4.c1(frameLayout);
+    }
+
+    @Override
+    public Drawable getCurrent() {
+        switch (this.f27115a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f27116b;
+                if (drawable != null) {
+                    return drawable.getCurrent();
+                }
+                return super.getCurrent();
+            default:
+                return super.getCurrent();
+        }
+    }
+
+    @Override
+    public int getMinimumHeight() {
+        switch (this.f27115a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f27116b;
+                if (drawable != null) {
+                    return drawable.getMinimumHeight();
+                }
+                return super.getMinimumHeight();
+            default:
+                return super.getMinimumHeight();
+        }
+    }
+
+    @Override
+    public int getMinimumWidth() {
+        switch (this.f27115a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f27116b;
+                if (drawable != null) {
+                    return drawable.getMinimumWidth();
+                }
+                return super.getMinimumWidth();
+            default:
+                return super.getMinimumWidth();
+        }
+    }
+
+    @Override
+    public int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public boolean getPadding(Rect rect) {
+        switch (this.f27115a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f27116b;
+                if (drawable != null) {
+                    return drawable.getPadding(rect);
+                }
+                return super.getPadding(rect);
+            default:
+                return super.getPadding(rect);
+        }
+    }
+
+    @Override
+    public int[] getState() {
+        switch (this.f27115a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f27116b;
+                if (drawable != null) {
+                    return drawable.getState();
+                }
+                return super.getState();
+            default:
+                return super.getState();
+        }
+    }
+
+    @Override
+    public Region getTransparentRegion() {
+        switch (this.f27115a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f27116b;
+                if (drawable != null) {
+                    return drawable.getTransparentRegion();
+                }
+                return super.getTransparentRegion();
+            default:
+                return super.getTransparentRegion();
+        }
+    }
+
+    @Override
+    public void jumpToCurrentState() {
+        switch (this.f27115a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f27116b;
+                if (drawable != null) {
+                    drawable.jumpToCurrentState();
+                    return;
+                }
+                return;
+            default:
+                super.jumpToCurrentState();
+                return;
+        }
+    }
+
+    @Override
+    public boolean onLevelChange(int i10) {
+        switch (this.f27115a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f27116b;
+                if (drawable != null) {
+                    return drawable.setLevel(i10);
+                }
+                return super.onLevelChange(i10);
+            default:
+                return super.onLevelChange(i10);
+        }
+    }
+
+    @Override
+    public void setAlpha(int i10) {
+        ((Paint) this.f27116b).setAlpha(i10);
+    }
+
+    @Override
+    public void setChangingConfigurations(int i10) {
+        switch (this.f27115a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f27116b;
+                if (drawable != null) {
+                    drawable.setChangingConfigurations(i10);
+                    return;
+                } else {
+                    super.setChangingConfigurations(i10);
+                    return;
+                }
+            default:
+                super.setChangingConfigurations(i10);
+                return;
+        }
+    }
+
+    @Override
+    public void setColorFilter(int i10, PorterDuff.Mode mode) {
+        switch (this.f27115a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f27116b;
+                if (drawable != null) {
+                    drawable.setColorFilter(i10, mode);
+                    return;
+                } else {
+                    super.setColorFilter(i10, mode);
+                    return;
+                }
+            default:
+                super.setColorFilter(i10, mode);
+                return;
+        }
+    }
+
+    @Override
+    public void setFilterBitmap(boolean z10) {
+        switch (this.f27115a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f27116b;
+                if (drawable != null) {
+                    drawable.setFilterBitmap(z10);
+                    return;
+                }
+                return;
+            default:
+                super.setFilterBitmap(z10);
+                return;
+        }
+    }
+
+    @Override
+    public void setHotspot(float f7, float f10) {
+        switch (this.f27115a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f27116b;
+                if (drawable != null) {
+                    drawable.setHotspot(f7, f10);
+                    return;
+                }
+                return;
+            default:
+                super.setHotspot(f7, f10);
+                return;
+        }
+    }
+
+    @Override
+    public void setHotspotBounds(int i10, int i11, int i12, int i13) {
+        switch (this.f27115a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f27116b;
+                if (drawable != null) {
+                    drawable.setHotspotBounds(i10, i11, i12, i13);
+                    return;
+                }
+                return;
+            default:
+                super.setHotspotBounds(i10, i11, i12, i13);
+                return;
+        }
+    }
+
+    @Override
+    public boolean setState(int[] iArr) {
+        switch (this.f27115a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f27116b;
+                if (drawable != null) {
+                    return drawable.setState(iArr);
+                }
+                return super.setState(iArr);
+            default:
+                return super.setState(iArr);
+        }
+    }
+
+    public hr(View view) {
+        this.f27115a = 0;
+        this.f27116b = new Paint(1);
+        if (view != null) {
+            view.addOnAttachStateChangeListener(new ai.v2(this, 7));
+            if (view.isAttachedToWindow()) {
+                view.post(new nq(this, 1));
+            }
+        }
+    }
+
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
+        ((Paint) this.f27116b).setColorFilter(colorFilter);
+    }
+
+    public void a() {
+    }
+
+    public void b() {
     }
 }

@@ -14,10 +14,10 @@ import org.telegram.messenger.WebFile;
 import org.telegram.messenger.bi;
 import org.telegram.tgnet.TLRPC;
 public final class l5 extends FrameLayout {
-    public final TextView f22438a;
-    public final TextView f22439b;
-    public final TextView f22440c;
-    public final org.telegram.ui.Components.w9 d;
+    public final TextView f22420a;
+    public final TextView f22421b;
+    public final TextView f22422c;
+    public final org.telegram.ui.Components.y9 d;
 
     public l5(Context context) {
         super(context);
@@ -33,19 +33,19 @@ public final class l5 extends FrameLayout {
         int i15;
         float f13;
         float f14;
-        org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-        this.d = w9Var;
-        w9Var.getImageReceiver().setRoundRadius(AndroidUtilities.dp(8.0f));
+        org.telegram.ui.Components.y9 y9Var = new org.telegram.ui.Components.y9(context);
+        this.d = y9Var;
+        y9Var.getImageReceiver().setRoundRadius(AndroidUtilities.dp(8.0f));
         if (LocaleController.isRTL) {
             i10 = 5;
         } else {
             i10 = 3;
         }
-        addView(w9Var, w7.z5.d(100, 100.0f, i10, 10.0f, 10.0f, 10.0f, 0.0f));
+        addView(y9Var, w7.x5.a(100.0f, 10.0f, 10.0f, 10.0f, 0.0f, 100, i10));
         TextView textView = new TextView(context);
-        this.f22438a = textView;
+        this.f22420a = textView;
         int i16 = org.telegram.ui.ActionBar.i6.G6;
-        textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i16, false));
+        textView.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, i16, false));
         textView.setTextSize(1, 16.0f);
         textView.setLines(1);
         textView.setTypeface(AndroidUtilities.bold());
@@ -76,10 +76,10 @@ public final class l5 extends FrameLayout {
         } else {
             f10 = 10.0f;
         }
-        addView(textView, w7.z5.d(-1, -2.0f, i17, f7, 9.0f, f10, 0.0f));
+        addView(textView, w7.x5.a(-2.0f, f7, 9.0f, f10, 0.0f, -1, i17));
         TextView textView2 = new TextView(context);
-        this.f22439b = textView2;
-        textView2.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i16, false));
+        this.f22421b = textView2;
+        textView2.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, i16, false));
         textView2.setTextSize(1, 14.0f);
         textView2.setMaxLines(3);
         textView2.setEllipsize(truncateAt);
@@ -106,10 +106,10 @@ public final class l5 extends FrameLayout {
         } else {
             f12 = 10.0f;
         }
-        addView(textView2, w7.z5.d(-1, -2.0f, i18, f11, 33.0f, f12, 0.0f));
+        addView(textView2, w7.x5.a(-2.0f, f11, 33.0f, f12, 0.0f, -1, i18));
         TextView textView3 = new TextView(context);
-        this.f22440c = textView3;
-        bi.s(textView3, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21233z6, false), 1, 14.0f, 1);
+        this.f22422c = textView3;
+        bi.u(textView3, org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f21199z6, false), 1, 14.0f, 1);
         textView3.setMaxLines(1);
         textView3.setSingleLine(true);
         textView3.setEllipsize(truncateAt);
@@ -131,7 +131,7 @@ public final class l5 extends FrameLayout {
         } else {
             f14 = 10.0f;
         }
-        addView(textView3, w7.z5.d(-1, -2.0f, i19, f13, 90.0f, f14, 9.0f));
+        addView(textView3, w7.x5.a(-2.0f, f13, 90.0f, f14, 9.0f, -1, i19));
     }
 
     public final void a(String str, String str2, TLRPC.WebDocument webDocument, String str3, Object obj) {
@@ -146,11 +146,11 @@ public final class l5 extends FrameLayout {
         float f12;
         float f13;
         float f14;
-        TextView textView = this.f22438a;
+        TextView textView = this.f22420a;
         textView.setText(str);
-        TextView textView2 = this.f22439b;
+        TextView textView2 = this.f22421b;
         textView2.setText(str2);
-        TextView textView3 = this.f22440c;
+        TextView textView3 = this.f22422c;
         textView3.setText(str3);
         if (AndroidUtilities.isTablet()) {
             min = AndroidUtilities.getMinTabletSide();
@@ -162,7 +162,7 @@ public final class l5 extends FrameLayout {
         float dp = f15 / (((int) (min * 0.7f)) - AndroidUtilities.dp(2.0f));
         int i14 = (int) (f15 / dp);
         int i15 = (int) (360 / dp);
-        org.telegram.ui.Components.w9 w9Var = this.d;
+        org.telegram.ui.Components.y9 y9Var = this.d;
         int i16 = 3;
         if (webDocument != null && webDocument.mime_type.startsWith("image/")) {
             boolean z10 = LocaleController.isRTL;
@@ -182,7 +182,7 @@ public final class l5 extends FrameLayout {
             } else {
                 f10 = 10.0f;
             }
-            textView.setLayoutParams(w7.z5.d(-1, -2.0f, i17, f7, 9.0f, f10, 0.0f));
+            textView.setLayoutParams(w7.x5.a(-2.0f, f7, 9.0f, f10, 0.0f, -1, i17));
             boolean z11 = LocaleController.isRTL;
             if (z11) {
                 i13 = 5;
@@ -200,7 +200,7 @@ public final class l5 extends FrameLayout {
             } else {
                 f12 = 10.0f;
             }
-            textView2.setLayoutParams(w7.z5.d(-1, -2.0f, i18, f11, 33.0f, f12, 0.0f));
+            textView2.setLayoutParams(w7.x5.a(-2.0f, f11, 33.0f, f12, 0.0f, -1, i18));
             boolean z12 = LocaleController.isRTL;
             if (z12) {
                 i16 = 5;
@@ -216,10 +216,10 @@ public final class l5 extends FrameLayout {
             } else {
                 f14 = 10.0f;
             }
-            textView3.setLayoutParams(w7.z5.d(-1, -2.0f, i19, f13, 90.0f, f14, 0.0f));
-            w9Var.setVisibility(0);
+            textView3.setLayoutParams(w7.x5.a(-2.0f, f13, 90.0f, f14, 0.0f, -1, i19));
+            y9Var.setVisibility(0);
             Locale locale = Locale.US;
-            w9Var.getImageReceiver().setImage(ImageLocation.getForWebFile(WebFile.createWithWebDocument(webDocument)), a4.a.l(i14, i15, "_"), null, null, -1L, null, obj, 1);
+            y9Var.getImageReceiver().setImage(ImageLocation.getForWebFile(WebFile.createWithWebDocument(webDocument)), a1.g.l(i14, i15, "_"), null, null, -1L, null, obj, 1);
             return;
         }
         if (LocaleController.isRTL) {
@@ -227,18 +227,18 @@ public final class l5 extends FrameLayout {
         } else {
             i10 = 3;
         }
-        textView.setLayoutParams(w7.z5.d(-1, -2.0f, i10 | 48, 17.0f, 9.0f, 17.0f, 0.0f));
+        textView.setLayoutParams(w7.x5.a(-2.0f, 17.0f, 9.0f, 17.0f, 0.0f, -1, i10 | 48));
         if (LocaleController.isRTL) {
             i11 = 5;
         } else {
             i11 = 3;
         }
-        textView2.setLayoutParams(w7.z5.d(-1, -2.0f, i11 | 48, 17.0f, 33.0f, 17.0f, 0.0f));
+        textView2.setLayoutParams(w7.x5.a(-2.0f, 17.0f, 33.0f, 17.0f, 0.0f, -1, i11 | 48));
         if (LocaleController.isRTL) {
             i16 = 5;
         }
-        textView3.setLayoutParams(w7.z5.d(-1, -2.0f, i16 | 48, 17.0f, 90.0f, 17.0f, 9.0f));
-        w9Var.setVisibility(8);
+        textView3.setLayoutParams(w7.x5.a(-2.0f, 17.0f, 90.0f, 17.0f, 9.0f, -1, i16 | 48));
+        y9Var.setVisibility(8);
     }
 
     public final void b(TLRPC.TL_messageMediaInvoice tL_messageMediaInvoice, String str) {
@@ -258,10 +258,10 @@ public final class l5 extends FrameLayout {
             i12 = i10;
         } else {
             int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
-            TextView textView = this.f22439b;
+            TextView textView = this.f22421b;
             i12 = i10;
             measureChildWithMargins(textView, i12, 0, i11, 0);
-            ((FrameLayout.LayoutParams) this.f22440c.getLayoutParams()).topMargin = AndroidUtilities.dp(3.0f) + textView.getMeasuredHeight() + AndroidUtilities.dp(33.0f);
+            ((FrameLayout.LayoutParams) this.f22422c.getLayoutParams()).topMargin = AndroidUtilities.dp(3.0f) + textView.getMeasuredHeight() + AndroidUtilities.dp(33.0f);
             i13 = makeMeasureSpec;
         }
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i12), 1073741824), i13);

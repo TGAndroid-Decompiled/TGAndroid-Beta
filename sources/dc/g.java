@@ -2,26 +2,26 @@ package dc;
 
 import com.google.android.gms.internal.vision.e2;
 public final class g {
-    public final float f8239a;
-    public final float f8240b;
-    public final float f8241c;
-    public final float d;
-    public final float f8242e;
-    public final float f8243f;
-    public final float f8244g;
-    public final float h;
-    public final float f8245i;
+    public float f8291a;
+    public float f8292b;
+    public float f8293c;
+    public float d;
+    public float f8294e;
+    public float f8295f;
+    public float f8296g;
+    public float h;
+    public float f8297i;
 
     public g(float f7, float f10, float f11, float f12, float f13, float f14, float f15, float f16, float f17) {
-        this.f8239a = f7;
-        this.f8240b = f12;
-        this.f8241c = f15;
+        this.f8291a = f7;
+        this.f8292b = f12;
+        this.f8293c = f15;
         this.d = f10;
-        this.f8242e = f13;
-        this.f8243f = f16;
-        this.f8244g = f11;
+        this.f8294e = f13;
+        this.f8295f = f16;
+        this.f8296g = f11;
         this.h = f14;
-        this.f8245i = f17;
+        this.f8297i = f17;
     }
 
     public static g a(float f7, float f10, float f11, float f12, float f13, float f14, float f15, float f16) {
@@ -35,8 +35,8 @@ public final class g {
         float f21 = f12 - f14;
         float f22 = f16 - f14;
         float f23 = (f19 * f22) - (f20 * f21);
-        float v = e2.v(f20, f18, f22 * f17, f23);
-        float v9 = e2.v(f17, f21, f19 * f18, f23);
-        return new g((v * f11) + (f11 - f7), (v9 * f15) + (f15 - f7), f7, (v * f12) + (f12 - f10), (v9 * f16) + (f16 - f10), f10, v, v9, 1.0f);
+        float u10 = e2.u(f20, f18, f22 * f17, f23);
+        float u11 = e2.u(f17, f21, f19 * f18, f23);
+        return new g((u10 * f11) + (f11 - f7), (u11 * f15) + (f15 - f7), f7, (u10 * f12) + (f12 - f10), (u11 * f16) + (f16 - f10), f10, u10, u11, 1.0f);
     }
 }

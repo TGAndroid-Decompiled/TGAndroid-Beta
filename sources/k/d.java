@@ -5,18 +5,18 @@ import android.view.MenuItem;
 import android.view.View;
 import androidx.appcompat.widget.ActionBarContextView;
 import java.lang.ref.WeakReference;
-import n4.y;
+import n4.x;
 public final class d extends a implements l.i {
-    public Context f14243c;
+    public Context f14279c;
     public ActionBarContextView d;
-    public y f14244e;
-    public WeakReference f14245f;
+    public x f14280e;
+    public WeakReference f14281f;
     public boolean h;
-    public l.k f14246n;
+    public l.k f14282n;
 
     @Override
-    public final boolean M(l.k kVar, MenuItem menuItem) {
-        return ((qi.f) this.f14244e.f16649b).G(this, menuItem);
+    public final boolean A(l.k kVar, MenuItem menuItem) {
+        return ((oi.f) this.f14280e.f16612b).G(this, menuItem);
     }
 
     @Override
@@ -25,12 +25,12 @@ public final class d extends a implements l.i {
             return;
         }
         this.h = true;
-        this.f14244e.V(this);
+        this.f14280e.X(this);
     }
 
     @Override
     public final View b() {
-        WeakReference weakReference = this.f14245f;
+        WeakReference weakReference = this.f14281f;
         if (weakReference != null) {
             return (View) weakReference.get();
         }
@@ -39,7 +39,7 @@ public final class d extends a implements l.i {
 
     @Override
     public final l.k c() {
-        return this.f14246n;
+        return this.f14282n;
     }
 
     @Override
@@ -59,7 +59,7 @@ public final class d extends a implements l.i {
 
     @Override
     public final void g() {
-        this.f14244e.W(this, this.f14246n);
+        this.f14280e.Y(this, this.f14282n);
     }
 
     @Override
@@ -76,12 +76,12 @@ public final class d extends a implements l.i {
         } else {
             weakReference = null;
         }
-        this.f14245f = weakReference;
+        this.f14281f = weakReference;
     }
 
     @Override
     public final void j(int i10) {
-        k(this.f14243c.getString(i10));
+        k(this.f14279c.getString(i10));
     }
 
     @Override
@@ -91,7 +91,7 @@ public final class d extends a implements l.i {
 
     @Override
     public final void l(int i10) {
-        m(this.f14243c.getString(i10));
+        m(this.f14279c.getString(i10));
     }
 
     @Override
@@ -100,17 +100,17 @@ public final class d extends a implements l.i {
     }
 
     @Override
-    public final void n(boolean z10) {
-        this.f14239b = z10;
-        this.d.setTitleOptional(z10);
-    }
-
-    @Override
-    public final void w(l.k kVar) {
+    public final void n(l.k kVar) {
         g();
         m.h hVar = this.d.d;
         if (hVar != null) {
             hVar.l();
         }
+    }
+
+    @Override
+    public final void o(boolean z10) {
+        this.f14275b = z10;
+        this.d.setTitleOptional(z10);
     }
 }

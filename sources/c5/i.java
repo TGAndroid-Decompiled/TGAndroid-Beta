@@ -1,113 +1,51 @@
 package c5;
 
-import android.text.TextUtils;
+import android.content.ContentResolver;
+import android.net.Uri;
 import android.util.Log;
+import com.google.android.gms.internal.clearcut.e2;
 import java.util.HashMap;
-import org.json.JSONObject;
-public final class i implements fb.n {
-    public String f4210a;
+import org.telegram.ui.Cells.c1;
+public final class i implements com.google.android.gms.internal.clearcut.g {
+    public String f4260a;
 
     public i(String str) {
-        this.f4210a = str;
-    }
-
-    public static void a(aa.a aVar, da.d dVar) {
-        String str = dVar.f8187a;
-        if (str != null) {
-            aVar.q("X-CRASHLYTICS-GOOGLE-APP-ID", str);
-        }
-        aVar.q("X-CRASHLYTICS-API-CLIENT-TYPE", "android");
-        aVar.q("X-CRASHLYTICS-API-CLIENT-VERSION", "18.6.0");
-        aVar.q("Accept", "application/json");
-        String str2 = dVar.f8188b;
-        if (str2 != null) {
-            aVar.q("X-CRASHLYTICS-DEVICE-MODEL", str2);
-        }
-        String str3 = dVar.f8189c;
-        if (str3 != null) {
-            aVar.q("X-CRASHLYTICS-OS-BUILD-VERSION", str3);
-        }
-        String str4 = dVar.d;
-        if (str4 != null) {
-            aVar.q("X-CRASHLYTICS-OS-DISPLAY-VERSION", str4);
-        }
-        String str5 = dVar.f8190e.b().f48939a;
-        if (str5 != null) {
-            aVar.q("X-CRASHLYTICS-INSTALLATION-ID", str5);
-        }
-    }
-
-    public static HashMap b(da.d dVar) {
-        HashMap hashMap = new HashMap();
-        hashMap.put("build_version", dVar.h);
-        hashMap.put("display_version", dVar.f8192g);
-        hashMap.put("source", Integer.toString(dVar.f8193i));
-        String str = dVar.f8191f;
-        if (!TextUtils.isEmpty(str)) {
-            hashMap.put("instance", str);
-        }
-        return hashMap;
-    }
-
-    public static i d(e2.v vVar) {
-        String str;
-        String str2;
-        vVar.K(2);
-        int x10 = vVar.x();
-        int i10 = x10 >> 1;
-        int x11 = ((vVar.x() >> 3) & 31) | ((x10 & 1) << 5);
-        if (i10 != 4 && i10 != 5 && i10 != 7 && i10 != 8) {
-            if (i10 == 9) {
-                str = "dvav";
-            } else if (i10 == 10) {
-                str = "dav1";
-            } else {
-                return null;
-            }
-        } else {
-            str = "dvhe";
-        }
-        StringBuilder v = a4.a.v(str);
-        String str3 = ".";
-        if (i10 >= 10) {
-            str2 = ".";
-        } else {
-            str2 = ".0";
-        }
-        v.append(str2);
-        v.append(i10);
-        if (x11 < 10) {
-            str3 = ".0";
-        }
-        v.append(str3);
-        v.append(x11);
-        return new i(v.toString());
-    }
-
-    public JSONObject c(aa.b bVar) {
-        String str = this.f4210a;
-        int i10 = bVar.f390c;
-        t9.b bVar2 = t9.b.f46951a;
-        bVar2.c("Settings response code was: " + i10);
-        if (i10 != 200 && i10 != 201 && i10 != 202 && i10 != 203) {
-            String str2 = "Settings request failed; (status: " + i10 + ") from " + str;
-            if (bVar2.a(6)) {
-                Log.e("FirebaseCrashlytics", str2, null);
-            }
-            return null;
-        }
-        String str3 = bVar.f389b;
-        try {
-            return new JSONObject(str3);
-        } catch (Exception e7) {
-            bVar2.d("Failed to parse settings JSON from " + str, e7);
-            bVar2.d("Settings response " + str3, null);
-            return null;
-        }
+        this.f4260a = str;
     }
 
     @Override
-    public Object p2() {
-        throw new RuntimeException(this.f4210a);
+    public Object zzp() {
+        Object obj;
+        boolean z10;
+        String str = this.f4260a;
+        ContentResolver contentResolver = com.google.android.gms.internal.clearcut.d.f7147g.getContentResolver();
+        Uri uri = e2.f7164a;
+        synchronized (e2.class) {
+            e2.c(contentResolver);
+            obj = e2.f7172k;
+        }
+        HashMap hashMap = e2.f7169g;
+        Boolean bool = Boolean.FALSE;
+        Boolean bool2 = (Boolean) e2.a(hashMap, str, bool);
+        if (bool2 != null) {
+            z10 = bool2.booleanValue();
+        } else {
+            String b10 = e2.b(contentResolver, str);
+            boolean z11 = false;
+            if (b10 != null && !b10.equals("")) {
+                if (e2.f7166c.matcher(b10).matches()) {
+                    bool = Boolean.TRUE;
+                    z11 = true;
+                } else if (!e2.d.matcher(b10).matches()) {
+                    Log.w("Gservices", c1.i("attempt to read gservices key ", str, " (value \"", b10, "\") as boolean"));
+                }
+                e2.e(obj, hashMap, str, bool);
+                z10 = z11;
+            }
+            bool = bool2;
+            e2.e(obj, hashMap, str, bool);
+            z10 = z11;
+        }
+        return Boolean.valueOf(z10);
     }
 }

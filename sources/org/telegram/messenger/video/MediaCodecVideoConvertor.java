@@ -5,7 +5,7 @@ import android.media.MediaExtractor;
 import android.media.MediaFormat;
 import android.media.MediaMuxer;
 import android.os.Build;
-import ci.j8;
+import ci.k8;
 import ci.t;
 import java.io.File;
 import java.nio.ByteBuffer;
@@ -53,7 +53,7 @@ public class MediaCodecVideoConvertor {
         int framerate;
         Integer gradientBottomColor;
         Integer gradientTopColor;
-        j8 hdrInfo;
+        k8 hdrInfo;
         boolean isDark;
         boolean isPhoto;
         boolean isRound;
@@ -147,8 +147,8 @@ public class MediaCodecVideoConvertor {
                 MixedSoundInfo mixedSoundInfo = arrayList.get(i10);
                 try {
                     ag.c cVar = new ag.c(mixedSoundInfo.audioFile);
-                    AudioDecoder audioDecoder = cVar.f443b;
-                    cVar.f440a = Math.max(0.0f, Math.min(mixedSoundInfo.volume, 1.0f));
+                    AudioDecoder audioDecoder = cVar.f529b;
+                    cVar.f526a = Math.max(0.0f, Math.min(mixedSoundInfo.volume, 1.0f));
                     long j3 = mixedSoundInfo.startTime;
                     int i11 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
                     if (i11 > 0) {
@@ -182,7 +182,7 @@ public class MediaCodecVideoConvertor {
         }
     }
 
-    private boolean convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor.ConvertVideoParams r129, boolean r130, int r131) {
+    private boolean convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor.ConvertVideoParams r127, boolean r128, int r129) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.MediaCodecVideoConvertor.convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor$ConvertVideoParams, boolean, int):boolean");
     }
 
@@ -247,7 +247,7 @@ public class MediaCodecVideoConvertor {
             f16 += 0.01f;
         }
         StringBuilder k10 = hg.c.k("source size ", i10, "x", i11, "    dest size ");
-        hg.c.t(k10, i12, "x", i13, "   rotated ");
+        hg.c.u(k10, i12, "x", i13, "   rotated ");
         k10.append(z11);
         k10.append("   ratio ");
         k10.append(f10);
@@ -280,8 +280,8 @@ public class MediaCodecVideoConvertor {
         sb2.append(glslFloat);
         sb2.append(";\nconst float offsetY = ");
         sb2.append(glslFloat2);
-        a4.a.A(sb2, ";\nconst float kernelScaleX = ", glslFloat3, ";\nconst float kernelScaleY = ", glslFloat4);
-        a4.a.A(sb2, ";\nconst float weightsum = ", glslFloat5, ";\nconst float pixelSizeX = ", glslFloat6);
+        a1.g.A(sb2, ";\nconst float kernelScaleX = ", glslFloat3, ";\nconst float kernelScaleY = ", glslFloat4);
+        a1.g.A(sb2, ";\nconst float weightsum = ", glslFloat5, ";\nconst float pixelSizeX = ", glslFloat6);
         sb2.append(";\nconst float pixelSizeY = ");
         sb2.append(glslFloat7);
         sb2.append(";\nvoid main() {\n    vec3 accumulation = vec3(0.0);\n    for (int i = 0; i < ");
@@ -369,7 +369,7 @@ public class MediaCodecVideoConvertor {
         return sb2.toString();
     }
 
-    private static String hdrFragmentShader(int i10, int i11, int i12, int i13, boolean z10, j8 j8Var, int i14, boolean z11) {
+    private static String hdrFragmentShader(int i10, int i11, int i12, int i13, boolean z10, k8 k8Var, int i14, boolean z11) {
         int i15;
         int i16;
         String readRes;
@@ -409,7 +409,7 @@ public class MediaCodecVideoConvertor {
             f16 += 0.01f;
         }
         StringBuilder k10 = hg.c.k("HDR source size ", i10, "x", i11, "    dest size ");
-        hg.c.t(k10, i12, "x", i13, "   rotated ");
+        hg.c.u(k10, i12, "x", i13, "   rotated ");
         k10.append(z11);
         k10.append("   ratio ");
         k10.append(f10);
@@ -431,7 +431,7 @@ public class MediaCodecVideoConvertor {
         String glslFloat5 = glslFloat(min * min2);
         String glslFloat6 = glslFloat(1.0f / f7);
         String glslFloat7 = glslFloat(1.0f / f11);
-        if (j8Var.a() == 1) {
+        if (k8Var.a() == 1) {
             readRes = AndroidUtilities.readRes(R.raw.hdr2sdr_hlg);
         } else {
             readRes = AndroidUtilities.readRes(R.raw.hdr2sdr_pq);
@@ -442,8 +442,8 @@ public class MediaCodecVideoConvertor {
         sb2.append(glslFloat);
         sb2.append(";\nconst float offsetY = ");
         sb2.append(glslFloat2);
-        a4.a.A(sb2, ";\nconst float kernelScaleX = ", glslFloat3, ";\nconst float kernelScaleY = ", glslFloat4);
-        a4.a.A(sb2, ";\nconst float weightsum = ", glslFloat5, ";\nconst float pixelSizeX = ", glslFloat6);
+        a1.g.A(sb2, ";\nconst float kernelScaleX = ", glslFloat3, ";\nconst float kernelScaleY = ", glslFloat4);
+        a1.g.A(sb2, ";\nconst float weightsum = ", glslFloat5, ";\nconst float pixelSizeX = ", glslFloat6);
         sb2.append(";\nconst float pixelSizeY = ");
         sb2.append(glslFloat7);
         sb2.append(";\nvoid main() {\n    vec3 accumulation = vec3(0.0);\n    for (int i = 0; i < ");
@@ -458,7 +458,7 @@ public class MediaCodecVideoConvertor {
         return mediaCodec.getName().equals("c2.mtk.avc.encoder");
     }
 
-    private long readAndWriteTracks(android.media.MediaExtractor r30, org.telegram.messenger.video.MediaCodecVideoConvertor.Muxer r31, android.media.MediaCodec.BufferInfo r32, long r33, long r35, long r37, java.io.File r39, boolean r40) {
+    private long readAndWriteTracks(android.media.MediaExtractor r29, org.telegram.messenger.video.MediaCodecVideoConvertor.Muxer r30, android.media.MediaCodec.BufferInfo r31, long r32, long r34, long r36, java.io.File r38, boolean r39) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.MediaCodecVideoConvertor.readAndWriteTracks(android.media.MediaExtractor, org.telegram.messenger.video.MediaCodecVideoConvertor$Muxer, android.media.MediaCodec$BufferInfo, long, long, long, java.io.File, boolean):long");
     }
 

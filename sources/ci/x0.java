@@ -1,76 +1,35 @@
 package ci;
 
-import java.io.File;
-import java.util.ArrayList;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.Utilities;
-public final class x0 implements Utilities.Callback {
-    public final int f6262a;
-    public final b1 f6263b;
+import org.telegram.messenger.MessagesStorage;
+public final class x0 implements Runnable {
+    public final int f6289a;
+    public final boolean f6290b;
+    public final Object f6291c;
+    public final Object d;
 
-    public x0(b1 b1Var, int i10) {
-        this.f6262a = i10;
-        this.f6263b = b1Var;
+    public x0(hg.z zVar, MessagesStorage messagesStorage, boolean z10) {
+        this.f6289a = 2;
+        this.d = zVar;
+        this.f6291c = messagesStorage;
+        this.f6290b = z10;
     }
 
     @Override
-    public final void run(Object obj) {
-        File file;
-        File file2;
-        ArrayList arrayList = (ArrayList) obj;
-        switch (this.f6262a) {
-            case 0:
-                b1 b1Var = this.f6263b;
-                b1Var.getClass();
-                long currentTimeMillis = System.currentTimeMillis();
-                ArrayList arrayList2 = new ArrayList();
-                ArrayList arrayList3 = new ArrayList();
-                ArrayList arrayList4 = new ArrayList();
-                for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                    k8 a2 = ((a1) arrayList.get(i10)).a();
-                    if ((!a2.v() && ((file = a2.L) == null || !file.exists())) || currentTimeMillis - a2.d > 604800000) {
-                        arrayList3.add(a2);
-                    } else {
-                        arrayList4.add(a2);
-                        arrayList2.add(Long.valueOf(a2.f5313b));
-                    }
-                }
-                b1Var.c(arrayList3);
-                b1Var.f4731f = false;
-                b1Var.f4730e = true;
-                ai.l9 storiesController = MessagesController.getInstance(b1Var.f4727a).getStoriesController();
-                storiesController.getClass();
-                int size = arrayList4.size();
-                int i11 = 0;
-                while (i11 < size) {
-                    Object obj2 = arrayList4.get(i11);
-                    i11++;
-                    ai.k9 k9Var = new ai.k9(storiesController, (k8) obj2);
-                    storiesController.d(k9Var.J, k9Var, storiesController.f1291b, false);
-                }
-                NotificationCenter.getInstance(storiesController.f1290a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
-                return;
-            default:
-                b1 b1Var2 = this.f6263b;
-                b1Var2.getClass();
-                long currentTimeMillis2 = System.currentTimeMillis();
-                ArrayList arrayList5 = new ArrayList();
-                ArrayList arrayList6 = new ArrayList();
-                for (int i12 = 0; i12 < arrayList.size(); i12++) {
-                    k8 a10 = ((a1) arrayList.get(i12)).a();
-                    if ((!a10.v() && ((file2 = a10.L) == null || !file2.exists())) || (!a10.f5326g ? currentTimeMillis2 - a10.d > 604800000 : currentTimeMillis2 > a10.J)) {
-                        arrayList6.add(a10);
-                    } else {
-                        b1Var2.f4728b.add(a10);
-                        arrayList5.add(Long.valueOf(a10.f5313b));
-                    }
-                }
-                b1Var2.c(arrayList6);
-                b1Var2.d = false;
-                b1Var2.f4729c = true;
-                NotificationCenter.getInstance(b1Var2.f4727a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesDraftsUpdated, new Object[0]);
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: ci.x0.run():void");
+    }
+
+    public x0(Object obj, Object obj2, boolean z10, int i10) {
+        this.f6289a = i10;
+        this.f6291c = obj;
+        this.d = obj2;
+        this.f6290b = z10;
+    }
+
+    public x0(Object obj, boolean z10, Object obj2, int i10) {
+        this.f6289a = i10;
+        this.f6291c = obj;
+        this.f6290b = z10;
+        this.d = obj2;
     }
 }

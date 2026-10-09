@@ -8,11 +8,11 @@ import android.view.View;
 import android.widget.ScrollView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.p70;
+import org.telegram.ui.Components.d80;
 import org.telegram.ui.UsersSelectActivity;
-import org.telegram.ui.k80;
-import org.telegram.ui.kn0;
-import org.telegram.ui.ug0;
+import org.telegram.ui.l80;
+import org.telegram.ui.nn0;
+import org.telegram.ui.wg0;
 public final class v1 extends ScrollView {
     public final int f21608a;
     public final Object f21609b;
@@ -28,7 +28,7 @@ public final class v1 extends ScrollView {
         switch (this.f21608a) {
             case 3:
                 int action = motionEvent.getAction();
-                float f7 = ((k80) this.f21609b).f37907b.f15444e;
+                float f7 = ((l80) this.f21609b).f39461b.f16345e;
                 float y3 = motionEvent.getY();
                 if (action == 0 && y3 > f7) {
                     return false;
@@ -45,13 +45,13 @@ public final class v1 extends ScrollView {
             case 0:
                 boolean drawChild = super.drawChild(canvas, view, j3);
                 b2 b2Var = (b2) this.f21609b;
-                if (b2Var.f20454y[0].getPaint().getAlpha() != 0) {
-                    b2Var.f20454y[0].setBounds(0, getScrollY(), getMeasuredWidth(), AndroidUtilities.dp(3.0f) + getScrollY());
-                    b2Var.f20454y[0].draw(canvas);
+                if (b2Var.f20442y[0].getPaint().getAlpha() != 0) {
+                    b2Var.f20442y[0].setBounds(0, getScrollY(), getMeasuredWidth(), AndroidUtilities.dp(3.0f) + getScrollY());
+                    b2Var.f20442y[0].draw(canvas);
                 }
-                if (b2Var.f20454y[1].getPaint().getAlpha() != 0) {
-                    b2Var.f20454y[1].setBounds(0, (getMeasuredHeight() + getScrollY()) - AndroidUtilities.dp(3.0f), getMeasuredWidth(), getMeasuredHeight() + getScrollY());
-                    b2Var.f20454y[1].draw(canvas);
+                if (b2Var.f20442y[1].getPaint().getAlpha() != 0) {
+                    b2Var.f20442y[1].setBounds(0, (getMeasuredHeight() + getScrollY()) - AndroidUtilities.dp(3.0f), getMeasuredWidth(), getMeasuredHeight() + getScrollY());
+                    b2Var.f20442y[1].draw(canvas);
                 }
                 return drawChild;
             default:
@@ -63,15 +63,15 @@ public final class v1 extends ScrollView {
     public void onMeasure(int i10, int i11) {
         switch (this.f21608a) {
             case 1:
-                p70 p70Var = (p70) this.f21609b;
+                d80 d80Var = (d80) this.f21609b;
                 int size = View.MeasureSpec.getSize(i10);
                 int size2 = View.MeasureSpec.getSize(i11);
                 if (!AndroidUtilities.isTablet() && size2 <= size) {
-                    p70Var.f29634s0 = AndroidUtilities.dp(56.0f);
+                    d80Var.f25637s0 = AndroidUtilities.dp(56.0f);
                 } else {
-                    p70Var.f29634s0 = AndroidUtilities.dp(144.0f);
+                    d80Var.f25637s0 = AndroidUtilities.dp(144.0f);
                 }
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(p70Var.f29634s0, Integer.MIN_VALUE));
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(d80Var.f25637s0, Integer.MIN_VALUE));
                 return;
             case 2:
                 super.onMeasure(i10, i11);
@@ -83,7 +83,7 @@ public final class v1 extends ScrollView {
                 super.onMeasure(i10, i11);
                 return;
             case 5:
-                ((kn0) this.f21609b).f38119s0 = View.MeasureSpec.getSize(i11) - AndroidUtilities.dp(30.0f);
+                ((nn0) this.f21609b).f40280s0 = View.MeasureSpec.getSize(i11) - AndroidUtilities.dp(30.0f);
                 super.onMeasure(i10, i11);
                 return;
         }
@@ -103,23 +103,23 @@ public final class v1 extends ScrollView {
     public boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
         switch (this.f21608a) {
             case 3:
-                k80 k80Var = (k80) this.f21609b;
-                if (k80Var.v) {
-                    k80Var.v = false;
+                l80 l80Var = (l80) this.f21609b;
+                if (l80Var.v) {
+                    l80Var.v = false;
                     return false;
                 }
                 rect.offset(view.getLeft() - view.getScrollX(), view.getTop() - view.getScrollY());
-                rect.top = org.telegram.messenger.q.C(20.0f, k80Var.I, rect.top);
-                rect.bottom = org.telegram.messenger.q.C(50.0f, k80Var.I, rect.bottom);
+                rect.top = org.telegram.messenger.q.C(20.0f, l80Var.I, rect.top);
+                rect.bottom = org.telegram.messenger.q.C(50.0f, l80Var.I, rect.bottom);
                 return super.requestChildRectangleOnScreen(view, rect, z10);
             case 4:
-                int i10 = ((ug0) this.f21609b).f41236a;
+                int i10 = ((wg0) this.f21609b).f43572a;
                 if (i10 == 1 || i10 == 2 || i10 == 4) {
                     rect.bottom = AndroidUtilities.dp(40.0f) + rect.bottom;
                 }
                 return super.requestChildRectangleOnScreen(view, rect, z10);
             case 5:
-                int i11 = ((kn0) this.f21609b).I1;
+                int i11 = ((nn0) this.f21609b).I1;
                 if (i11 == 1 || i11 == 2 || i11 == 4) {
                     rect.bottom = AndroidUtilities.dp(40.0f) + rect.bottom;
                 }

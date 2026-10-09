@@ -146,7 +146,7 @@ public class DatabaseMigrationHelper {
                     byteBufferValue2.reuse();
                     if (TLdeserialize != null) {
                         TLRPC.TL_chatFull tL_chatFull = new TLRPC.TL_chatFull();
-                        tL_chatFull.f20048id = intValue2;
+                        tL_chatFull.f20039id = intValue2;
                         tL_chatFull.chat_photo = new TLRPC.TL_photoEmpty();
                         tL_chatFull.notify_settings = new TLRPC.TL_peerNotifySettingsEmpty_layer77();
                         tL_chatFull.exported_invite = null;
@@ -722,9 +722,9 @@ public class DatabaseMigrationHelper {
                             nativeByteBuffer.reuse();
                         }
                         byteBufferValue6.reuse();
+                        i14 = 6;
                         sQLiteCursor2 = sQLiteCursor3;
                         i12 = 4;
-                        i14 = 6;
                         i15 = 2;
                         i16 = 1;
                         i19 = 3;

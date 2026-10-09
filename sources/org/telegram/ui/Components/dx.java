@@ -1,36 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.widget.ImageView;
+import android.graphics.Rect;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-public final class dx extends ImageView {
-    public final nz f25884a;
+public final class dx extends s4.o0 {
+    public final a00 f25831a;
 
-    public dx(nz nzVar, Context context) {
-        super(context);
-        this.f25884a = nzVar;
+    public dx(a00 a00Var) {
+        this.f25831a = a00Var;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        oy oyVar;
-        int action = motionEvent.getAction();
-        nz nzVar = this.f25884a;
-        if (action == 0) {
-            nzVar.P1 = true;
-            nzVar.Q1 = false;
-            AndroidUtilities.runOnUIThread(new ld(nzVar, 350, 3), 350);
-        } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
-            nzVar.P1 = false;
-            if (!nzVar.Q1 && (oyVar = nzVar.f29248t1) != null && oyVar.k()) {
-                try {
-                    nzVar.f29260x.performHapticFeedback(3);
-                } catch (Exception unused) {
-                }
-            }
+    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.a1 a1Var) {
+        recyclerView.getClass();
+        int R = RecyclerView.R(view);
+        a00 a00Var = this.f25831a;
+        s4.i0 adapter = a00Var.f24417h0.getAdapter();
+        ez ezVar = a00Var.f24434n0;
+        int i10 = 0;
+        if (adapter == ezVar && R == ezVar.I) {
+            rect.set(0, 0, 0, 0);
+            return;
         }
-        super.onTouchEvent(motionEvent);
-        return true;
+        if (R == 0) {
+            ezVar.getClass();
+        }
+        rect.left = 0;
+        rect.bottom = 0;
+        rect.top = AndroidUtilities.dp(2.0f);
+        fz fzVar = a00Var.f24420i0;
+        ezVar.getClass();
+        if (!fzVar.E1(R)) {
+            i10 = AndroidUtilities.dp(2.0f);
+        }
+        rect.right = i10;
     }
 }

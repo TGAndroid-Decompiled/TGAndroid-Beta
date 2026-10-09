@@ -1,28 +1,82 @@
 package org.telegram.ui;
-public final class zc1 implements gd1 {
-    public boolean f43745a;
-    public final yn f43746b;
 
-    public zc1(yn ynVar, boolean z10) {
-        this.f43746b = ynVar;
-        this.f43745a = z10;
+import android.view.MotionEvent;
+import android.widget.Scroller;
+import org.telegram.messenger.Utilities;
+public final class zc1 implements org.telegram.ui.Components.jp0, org.telegram.ui.Components.z20 {
+    public final xd1 f44548a;
+
+    public zc1(xd1 xd1Var) {
+        this.f44548a = xd1Var;
     }
 
     @Override
-    public final boolean a() {
-        return this.f43745a;
+    public void X(float f7, boolean z10) {
+        xd1 xd1Var = this.f44548a;
+        xd1Var.l1 = f7;
+        xd1Var.k1();
     }
 
     @Override
-    public final boolean a1() {
+    public CharSequence getContentDescription() {
+        return null;
+    }
+
+    @Override
+    public int i0() {
+        return 0;
+    }
+
+    @Override
+    public boolean onDown(MotionEvent motionEvent) {
+        Scroller scroller = this.f44548a.f43942c;
+        if (scroller != null) {
+            scroller.abortAnimation();
+            return true;
+        }
         return true;
     }
 
     @Override
-    public final void q1(boolean z10) {
-        boolean z11 = !this.f43745a;
-        this.f43745a = z11;
-        wn wnVar = this.f43746b.f43300ca;
-        wnVar.i(wnVar.f42613f, wnVar.h, z10, Boolean.valueOf(z11), false);
+    public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
+        xd1 xd1Var = this.f44548a;
+        Scroller scroller = xd1Var.f43942c;
+        if (scroller != null) {
+            scroller.abortAnimation();
+            xd1Var.f43942c.fling((int) xd1Var.X1, 0, Math.round(-f7), Math.round(f10), 0, (int) xd1Var.W1, 0, Integer.MAX_VALUE);
+            xd1Var.f43998x0.postInvalidate();
+            return true;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
+        xd1 xd1Var = this.f44548a;
+        Scroller scroller = xd1Var.f43942c;
+        if (scroller != null) {
+            scroller.abortAnimation();
+        }
+        xd1Var.X1 = Utilities.clamp(xd1Var.X1 + f7, xd1Var.W1, 0.0f);
+        xd1Var.V0();
+        xd1Var.f43998x0.invalidate();
+        return true;
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public void W0() {
+    }
+
+    @Override
+    public void onLongPress(MotionEvent motionEvent) {
+    }
+
+    @Override
+    public void z() {
     }
 }

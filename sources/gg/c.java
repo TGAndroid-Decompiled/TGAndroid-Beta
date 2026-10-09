@@ -1,7 +1,7 @@
 package gg;
 
-import ai.n8;
-import ai.z8;
+import ai.a9;
+import ai.o8;
 import android.location.Location;
 import android.text.TextUtils;
 import java.util.ArrayList;
@@ -23,21 +23,21 @@ public abstract class c extends og.b {
     public boolean I;
     public boolean J;
     public final boolean d;
-    public final boolean f10519e;
+    public final boolean f10549e;
     public boolean h;
-    public boolean f10521n;
+    public boolean f10551n;
     public Location v;
-    public String f10524w;
-    public String f10525x;
-    public b f10526y;
-    public boolean f10520f = false;
-    public final ArrayList f10522r = new ArrayList();
-    public final ArrayList f10523s = new ArrayList();
+    public String f10554w;
+    public String f10555x;
+    public b f10556y;
+    public boolean f10550f = false;
+    public final ArrayList f10552r = new ArrayList();
+    public final ArrayList f10553s = new ArrayList();
     public final int G = UserConfig.selectedAccount;
 
     public c(boolean z10, boolean z11) {
         this.d = z10;
-        this.f10519e = z11;
+        this.f10549e = z11;
     }
 
     public final void F() {
@@ -55,13 +55,13 @@ public abstract class c extends og.b {
             }
             this.J = true;
             DispatchQueue dispatchQueue = Utilities.searchQueue;
-            a aVar = new a((u0) this, str, location, 0);
+            a aVar = new a((t0) this, str, location, 0);
             this.E = aVar;
             dispatchQueue.postRunnable(aVar, 400L);
             return;
         }
-        this.f10523s.clear();
-        this.f10522r.clear();
+        this.f10553s.clear();
+        this.f10552r.clear();
         this.J = false;
         l();
     }
@@ -84,7 +84,7 @@ public abstract class c extends og.b {
                 location3 = new Location(location);
             }
             this.v = location3;
-            this.f10524w = str;
+            this.f10554w = str;
             if (this.h) {
                 this.h = false;
                 if (this.F != 0) {
@@ -94,7 +94,7 @@ public abstract class c extends og.b {
             }
             h();
             this.h = true;
-            this.f10520f = true;
+            this.f10550f = true;
             MessagesController messagesController = MessagesController.getInstance(this.G);
             if (this.d) {
                 str2 = MessagesController.getInstance(this.G).storyVenueSearchBot;
@@ -114,7 +114,7 @@ public abstract class c extends og.b {
                             str5 = MessagesController.getInstance(i10).venueSearchBot;
                         }
                         tL_contacts_resolveUsername.username = str5;
-                        ConnectionsManager.getInstance(i10).sendRequest(tL_contacts_resolveUsername, new n8(this, 8));
+                        ConnectionsManager.getInstance(i10).sendRequest(tL_contacts_resolveUsername, new o8(this, 8));
                     }
                 }
             } else {
@@ -140,13 +140,13 @@ public abstract class c extends og.b {
                 } else {
                     tL_messages_getInlineBotResults.peer = MessagesController.getInstance(this.G).getInputPeer(this.H);
                 }
-                if (TextUtils.isEmpty(str) || (!this.d && !this.f10519e)) {
+                if (TextUtils.isEmpty(str) || (!this.d && !this.f10549e)) {
                     cVar = this;
                     str4 = str;
                     location4 = location;
-                    cVar.f10521n = false;
+                    cVar.f10551n = false;
                 } else {
-                    this.f10521n = true;
+                    this.f10551n = true;
                     Locale currentLocale = LocaleController.getInstance().getCurrentLocale();
                     if (this.d) {
                         if (currentLocale.getLanguage().contains("en")) {
@@ -154,7 +154,7 @@ public abstract class c extends og.b {
                             cVar = this;
                             str4 = str;
                             location4 = location;
-                            Utilities.globalQueue.postRunnable(new z8(cVar, currentLocale, str4, locale, location4, str, 2));
+                            Utilities.globalQueue.postRunnable(new a9(cVar, currentLocale, str4, locale, location4, str, 2));
                         } else {
                             locale2 = Locale.US;
                         }
@@ -163,7 +163,7 @@ public abstract class c extends og.b {
                     cVar = this;
                     str4 = str;
                     location4 = location;
-                    Utilities.globalQueue.postRunnable(new z8(cVar, currentLocale, str4, locale, location4, str, 2));
+                    Utilities.globalQueue.postRunnable(new a9(cVar, currentLocale, str4, locale, location4, str, 2));
                 }
                 if (location4 == null) {
                     return;

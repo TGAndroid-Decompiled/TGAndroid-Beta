@@ -11,56 +11,56 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.ca;
-import org.telegram.ui.Components.h9;
+import org.telegram.ui.Components.da;
+import org.telegram.ui.Components.j9;
+import org.telegram.ui.f60;
 import org.telegram.ui.g60;
-import org.telegram.ui.h60;
 public final class t extends View {
-    public g60 E;
+    public f60 E;
     public int F;
     public float G;
     public final u H;
-    public final ImageReceiver f32208a;
-    public final ImageReceiver f32209b;
-    public final h9 f32210c;
-    public final ca d;
-    public final ca f32211e;
-    public final Paint f32212f;
+    public final ImageReceiver f32227a;
+    public final ImageReceiver f32228b;
+    public final j9 f32229c;
+    public final da d;
+    public final da f32230e;
+    public final Paint f32231f;
     public final Paint h;
-    public float f32213n;
-    public float f32214r;
-    public float f32215s;
+    public float f32232n;
+    public float f32233r;
+    public float f32234s;
     public float v;
-    public float f32216w;
-    public final g60[] f32217x;
-    public g60 f32218y;
+    public float f32235w;
+    public final f60[] f32236x;
+    public f60 f32237y;
 
     public t(u uVar, Context context) {
         super(context);
         this.H = uVar;
-        this.f32208a = new ImageReceiver();
-        this.f32209b = new ImageReceiver();
-        this.f32210c = new h9((d6) null);
+        this.f32227a = new ImageReceiver();
+        this.f32228b = new ImageReceiver();
+        this.f32229c = new j9((e6) null);
         Paint paint = new Paint(1);
-        this.f32212f = paint;
+        this.f32231f = paint;
         Paint paint2 = new Paint(1);
         this.h = paint2;
-        this.f32217x = new g60[3];
+        this.f32236x = new f60[3];
         this.F = -1;
         this.G = 1.0f;
-        ca caVar = new ca(9);
-        this.d = caVar;
-        ca caVar2 = new ca(12);
-        this.f32211e = caVar2;
-        caVar.f25322a = AndroidUtilities.dp(76.0f);
-        caVar.f25323b = AndroidUtilities.dp(92.0f);
-        caVar.b();
-        caVar2.f25322a = AndroidUtilities.dp(80.0f);
-        caVar2.f25323b = AndroidUtilities.dp(95.0f);
-        caVar2.b();
-        paint.setColor(i0.a.d(0.0f, i6.w0(null, i6.f21058pg, false), i6.w0(null, i6.f21077qg, false)));
+        da daVar = new da(9);
+        this.d = daVar;
+        da daVar2 = new da(12);
+        this.f32230e = daVar2;
+        daVar.f25650a = AndroidUtilities.dp(76.0f);
+        daVar.f25651b = AndroidUtilities.dp(92.0f);
+        daVar.b();
+        daVar2.f25650a = AndroidUtilities.dp(80.0f);
+        daVar2.f25651b = AndroidUtilities.dp(95.0f);
+        daVar2.b();
+        paint.setColor(i0.a.d(0.0f, i6.x0(null, i6.f21027pg, false), i6.x0(null, i6.f21046qg, false)));
         paint.setAlpha(102);
         paint2.setColor(i0.a.k(-16777216, 127));
     }
@@ -68,10 +68,10 @@ public final class t extends View {
     public static void a(t tVar, boolean z10) {
         int i10;
         TLRPC.GroupCallParticipant groupCallParticipant;
-        g60[] g60VarArr = tVar.f32217x;
-        p0 p0Var = tVar.H.f32262n0;
-        if (!p0Var.f32138k && ((groupCallParticipant = p0Var.h) == null || !groupCallParticipant.muted || groupCallParticipant.can_self_unmute)) {
-            if (p0Var.f32133e) {
+        f60[] f60VarArr = tVar.f32236x;
+        p0 p0Var = tVar.H.f32269n0;
+        if (!p0Var.f32158k && ((groupCallParticipant = p0Var.h) == null || !groupCallParticipant.muted || groupCallParticipant.can_self_unmute)) {
+            if (p0Var.f32153e) {
                 i10 = 1;
             } else {
                 i10 = 0;
@@ -83,23 +83,23 @@ public final class t extends View {
             return;
         }
         tVar.F = i10;
-        if (g60VarArr[i10] == null) {
-            g60VarArr[i10] = new g60(i10);
+        if (f60VarArr[i10] == null) {
+            f60VarArr[i10] = new f60(i10);
             int i11 = tVar.F;
             if (i11 == 2) {
-                g60VarArr[i11].f36529g = new LinearGradient(0.0f, 400.0f, 400.0f, 0.0f, new int[]{i6.w0(null, i6.f20928ih, false), i6.w0(null, i6.f20967kh, false), i6.w0(null, i6.f20947jh, false)}, (float[]) null, Shader.TileMode.CLAMP);
+                f60VarArr[i11].f37461g = new LinearGradient(0.0f, 400.0f, 400.0f, 0.0f, new int[]{i6.x0(null, i6.f20898ih, false), i6.x0(null, i6.f20936kh, false), i6.x0(null, i6.f20916jh, false)}, (float[]) null, Shader.TileMode.CLAMP);
             } else if (i11 == 1) {
-                g60VarArr[i11].f36529g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{i6.w0(null, i6.Fg, false), i6.w0(null, i6.Hg, false)}, (float[]) null, Shader.TileMode.CLAMP);
+                f60VarArr[i11].f37461g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{i6.x0(null, i6.Fg, false), i6.x0(null, i6.Hg, false)}, (float[]) null, Shader.TileMode.CLAMP);
             } else {
-                g60VarArr[i11].f36529g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{i6.w0(null, i6.Jg, false), i6.w0(null, i6.Ig, false)}, (float[]) null, Shader.TileMode.CLAMP);
+                f60VarArr[i11].f37461g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{i6.x0(null, i6.Jg, false), i6.x0(null, i6.Ig, false)}, (float[]) null, Shader.TileMode.CLAMP);
             }
         }
-        g60 g60Var = g60VarArr[tVar.F];
-        g60 g60Var2 = tVar.f32218y;
-        if (g60Var != g60Var2) {
-            tVar.E = g60Var2;
-            tVar.f32218y = g60Var;
-            if (g60Var2 != null && z10) {
+        f60 f60Var = f60VarArr[tVar.F];
+        f60 f60Var2 = tVar.f32237y;
+        if (f60Var != f60Var2) {
+            tVar.E = f60Var2;
+            tVar.f32237y = f60Var;
+            if (f60Var2 != null && z10) {
                 tVar.G = 0.0f;
             } else {
                 tVar.G = 1.0f;
@@ -112,48 +112,48 @@ public final class t extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f32208a.onAttachedToWindow();
-        this.f32209b.onAttachedToWindow();
+        this.f32227a.onAttachedToWindow();
+        this.f32228b.onAttachedToWindow();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f32208a.onDetachedFromWindow();
-        this.f32209b.onDetachedFromWindow();
+        this.f32227a.onDetachedFromWindow();
+        this.f32228b.onDetachedFromWindow();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        g60 g60Var;
+        f60 f60Var;
         float f7;
-        g60 g60Var2;
+        f60 f60Var2;
         super.onDraw(canvas);
         RectF rectF = AndroidUtilities.rectTmp;
-        p pVar = this.H.f32244a;
+        p pVar = this.H.f32251a;
         rectF.set(pVar.getX() + pVar.O, pVar.getY() + pVar.N, (pVar.getX() + pVar.getMeasuredWidth()) - pVar.O, pVar.getY() + pVar.getMeasuredHeight() + pVar.N);
         float f10 = rectF.left;
         float f11 = rectF.top;
         float width = rectF.width();
         float height = rectF.height();
-        ImageReceiver imageReceiver = this.f32209b;
+        ImageReceiver imageReceiver = this.f32228b;
         imageReceiver.setImageCoords(f10, f11, width, height);
-        imageReceiver.setRoundRadius((int) pVar.f32229b);
+        imageReceiver.setRoundRadius((int) pVar.f32212b);
         imageReceiver.draw(canvas);
-        float f12 = pVar.f32229b;
+        float f12 = pVar.f32212b;
         canvas.drawRoundRect(rectF, f12, f12, this.h);
-        float f13 = this.f32214r;
-        float f14 = this.f32213n;
+        float f13 = this.f32233r;
+        float f14 = this.f32232n;
         if (f13 != f14) {
-            float f15 = this.f32215s;
+            float f15 = this.f32234s;
             float f16 = (16.0f * f15) + f14;
-            this.f32213n = f16;
+            this.f32232n = f16;
             if (f15 > 0.0f) {
                 if (f16 > f13) {
-                    this.f32213n = f13;
+                    this.f32232n = f13;
                 }
             } else if (f16 < f13) {
-                this.f32213n = f13;
+                this.f32232n = f13;
             }
         }
         float f17 = this.G;
@@ -166,39 +166,39 @@ public final class t extends View {
                 this.E = null;
             }
         }
-        float f18 = (this.f32213n * 0.8f) + 1.0f;
+        float f18 = (this.f32232n * 0.8f) + 1.0f;
         canvas.save();
-        canvas.scale(f18, f18, this.v, this.f32216w);
-        g60 g60Var3 = this.f32218y;
-        if (g60Var3 != null) {
-            g60Var3.b((int) (this.f32216w - AndroidUtilities.dp(100.0f)), (int) (this.v - AndroidUtilities.dp(100.0f)), AndroidUtilities.dp(200.0f), 16L, this.f32213n);
+        canvas.scale(f18, f18, this.v, this.f32235w);
+        f60 f60Var3 = this.f32237y;
+        if (f60Var3 != null) {
+            f60Var3.b((int) (this.f32235w - AndroidUtilities.dp(100.0f)), (int) (this.v - AndroidUtilities.dp(100.0f)), AndroidUtilities.dp(200.0f), 16L, this.f32232n);
         }
-        float f19 = this.f32213n;
-        ca caVar = this.f32211e;
-        caVar.e(f19, 1.0f);
-        float f20 = this.f32213n;
-        ca caVar2 = this.d;
-        caVar2.e(f20, 1.0f);
+        float f19 = this.f32232n;
+        da daVar = this.f32230e;
+        daVar.e(f19, 1.0f);
+        float f20 = this.f32232n;
+        da daVar2 = this.d;
+        daVar2.e(f20, 1.0f);
         for (int i10 = 0; i10 < 2; i10++) {
-            Paint paint = this.f32212f;
-            if (i10 == 0 && (g60Var2 = this.E) != null) {
-                paint.setShader(g60Var2.f36529g);
+            Paint paint = this.f32231f;
+            if (i10 == 0 && (f60Var2 = this.E) != null) {
+                paint.setShader(f60Var2.f37461g);
                 f7 = 1.0f - this.G;
             } else {
-                if (i10 == 1 && (g60Var = this.f32218y) != null) {
-                    paint.setShader(g60Var.f36529g);
+                if (i10 == 1 && (f60Var = this.f32237y) != null) {
+                    paint.setShader(f60Var.f37461g);
                     f7 = this.G;
                 }
             }
             paint.setAlpha((int) (f7 * 76.0f));
-            caVar.a(this.v, this.f32216w, canvas, paint);
-            caVar2.a(this.v, this.f32216w, canvas, paint);
+            daVar.a(this.v, this.f32235w, canvas, paint);
+            daVar2.a(this.v, this.f32235w, canvas, paint);
         }
         canvas.restore();
-        float f21 = (this.f32213n * 0.2f) + 1.0f;
+        float f21 = (this.f32232n * 0.2f) + 1.0f;
         canvas.save();
-        canvas.scale(f21, f21, this.v, this.f32216w);
-        this.f32208a.draw(canvas);
+        canvas.scale(f21, f21, this.v, this.f32235w);
+        this.f32227a.draw(canvas);
         canvas.restore();
         invalidate();
     }
@@ -210,15 +210,15 @@ public final class t extends View {
         float dp = AndroidUtilities.dp(157.0f);
         this.v = getMeasuredWidth() >> 1;
         float measuredHeight = getMeasuredHeight() >> 1;
-        if (h60.F3) {
+        if (g60.F3) {
             f7 = 0.0f;
         } else {
             f7 = (-getMeasuredHeight()) * 0.12f;
         }
-        this.f32216w = measuredHeight + f7;
+        this.f32235w = measuredHeight + f7;
         float f10 = dp / 2.0f;
-        ImageReceiver imageReceiver = this.f32208a;
+        ImageReceiver imageReceiver = this.f32227a;
         imageReceiver.setRoundRadius((int) f10);
-        imageReceiver.setImageCoords(this.v - f10, this.f32216w - f10, dp, dp);
+        imageReceiver.setImageCoords(this.v - f10, this.f32235w - f10, dp, dp);
     }
 }

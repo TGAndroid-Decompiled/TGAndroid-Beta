@@ -5,34 +5,72 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
-public final class d6 implements org.telegram.ui.ActionBar.d6 {
-    public PorterDuffColorFilter f4909a;
-    public final org.telegram.ui.ActionBar.d6 f4910b;
+public final class d6 implements org.telegram.ui.ActionBar.e6 {
+    public PorterDuffColorFilter f4941a;
+    public final org.telegram.ui.ActionBar.e6 f4942b;
 
-    public d6(org.telegram.ui.ActionBar.d6 d6Var) {
-        this.f4910b = d6Var;
+    public d6(org.telegram.ui.ActionBar.e6 e6Var) {
+        this.f4942b = e6Var;
     }
 
     @Override
-    public final Paint H(String str) {
-        return this.f4910b.H(str);
+    public final Paint F(String str) {
+        return this.f4942b.F(str);
     }
 
     @Override
-    public final int H0(int i10) {
+    public final boolean a() {
+        return org.telegram.ui.ActionBar.i6.I.q();
+    }
+
+    @Override
+    public final int a1(int i10) {
+        return x0(i10);
+    }
+
+    @Override
+    public final int c0(int i10) {
+        return x0(i10);
+    }
+
+    @Override
+    public final Drawable getDrawable(String str) {
+        return null;
+    }
+
+    @Override
+    public final boolean k0() {
+        return false;
+    }
+
+    @Override
+    public final void m(float f7, float f10, int i10, int i11) {
+        org.telegram.ui.ActionBar.i6.q(f7, f10, i10, i11);
+    }
+
+    @Override
+    public final ColorFilter x() {
+        if (this.f4941a == null) {
+            this.f4941a = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
+        }
+        return this.f4941a;
+    }
+
+    @Override
+    public final int x0(int i10) {
         if (i10 == org.telegram.ui.ActionBar.i6.G8) {
             return -14145495;
         }
         if (i10 == org.telegram.ui.ActionBar.i6.E8) {
             return -1;
         }
-        if (i10 == org.telegram.ui.ActionBar.i6.f20899h5) {
+        if (i10 == org.telegram.ui.ActionBar.i6.f20868h5) {
             return -14737633;
         }
-        if (i10 == org.telegram.ui.ActionBar.i6.f20935j5) {
+        if (i10 == org.telegram.ui.ActionBar.i6.f20905j5) {
             return -592138;
         }
-        if (i10 == org.telegram.ui.ActionBar.i6.f21086r5) {
+        if (i10 == org.telegram.ui.ActionBar.i6.f21054r5) {
             return -8553091;
         }
         if (i10 == org.telegram.ui.ActionBar.i6.He) {
@@ -51,7 +89,7 @@ public final class d6 implements org.telegram.ui.ActionBar.d6 {
         if (i10 == i11) {
             return -11754001;
         }
-        if (i10 == org.telegram.ui.ActionBar.i6.f20918i6) {
+        if (i10 == org.telegram.ui.ActionBar.i6.f20888i6) {
             return 536870911;
         }
         if (i10 == org.telegram.ui.ActionBar.i6.Fh || i10 == org.telegram.ui.ActionBar.i6.Eh || i10 == org.telegram.ui.ActionBar.i6.Gh) {
@@ -64,57 +102,19 @@ public final class d6 implements org.telegram.ui.ActionBar.d6 {
             if (i10 == org.telegram.ui.ActionBar.i6.Ie) {
                 return 780633991;
             }
-            if (i10 == org.telegram.ui.ActionBar.i6.f20771a7) {
+            if (i10 == org.telegram.ui.ActionBar.i6.f20741a7) {
                 return -15921907;
             }
-            org.telegram.ui.ActionBar.d6 d6Var = this.f4910b;
-            if (d6Var != null) {
-                return d6Var.H0(i10);
+            org.telegram.ui.ActionBar.e6 e6Var = this.f4942b;
+            if (e6Var != null) {
+                return e6Var.x0(i10);
             }
-            return org.telegram.ui.ActionBar.i6.w0(null, i10, false);
+            return org.telegram.ui.ActionBar.i6.x0(null, i10, false);
         }
         return -7895161;
     }
 
     @Override
-    public final boolean a() {
-        return org.telegram.ui.ActionBar.i6.I.q();
-    }
-
-    @Override
-    public final Drawable getDrawable(String str) {
-        return null;
-    }
-
-    @Override
-    public final int j0(int i10) {
-        return H0(i10);
-    }
-
-    @Override
-    public final int j1(int i10) {
-        return H0(i10);
-    }
-
-    @Override
-    public final void m(float f7, float f10, int i10, int i11) {
-        org.telegram.ui.ActionBar.i6.q(f7, f10, i10, i11);
-    }
-
-    @Override
-    public final boolean r0() {
-        return false;
-    }
-
-    @Override
-    public final ColorFilter x() {
-        if (this.f4909a == null) {
-            this.f4909a = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
-        }
-        return this.f4909a;
-    }
-
-    @Override
-    public final void L0(int i10, int i11) {
+    public final void I0(int i10, int i11) {
     }
 }

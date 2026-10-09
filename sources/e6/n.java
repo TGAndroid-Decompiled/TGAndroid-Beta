@@ -11,420 +11,421 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
+import n6.t;
 import org.telegram.messenger.MessagesController;
 import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Components.ro;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.ad;
+import org.telegram.ui.Components.ep;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.p11;
-import v7.z8;
-public final class n implements OnFailureListener, c3.p, c3.q, l2.i, ro {
-    public final int f8694a;
-    public long f8695b;
-    public Object f8696c;
+import org.telegram.ui.v11;
+import x7.ga;
+public final class n implements OnFailureListener, c3.p, c3.q, l2.i, ep {
+    public final int f8688a;
+    public long f8689b;
+    public Object f8690c;
 
     public n(long j3, Object obj, int i10) {
-        this.f8694a = i10;
-        this.f8695b = j3;
-        this.f8696c = obj;
+        this.f8688a = i10;
+        this.f8689b = j3;
+        this.f8690c = obj;
     }
 
-    public boolean A(int i10) {
-        boolean z10;
-        if (i10 >= 64) {
-            w();
-            return ((n) this.f8696c).A(i10 - 64);
-        }
-        long j3 = 1 << i10;
-        long j10 = this.f8695b;
-        if ((j10 & j3) != 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        long j11 = j10 & (~j3);
-        this.f8695b = j11;
-        long j12 = j3 - 1;
-        this.f8695b = (j11 & j12) | Long.rotateRight((~j12) & j11, 1);
-        n nVar = (n) this.f8696c;
-        if (nVar != null) {
-            if (nVar.y(0)) {
-                C(63);
+    public int A(int i10) {
+        n nVar = (n) this.f8690c;
+        if (nVar == null) {
+            if (i10 >= 64) {
+                return Long.bitCount(this.f8689b);
             }
-            ((n) this.f8696c).A(0);
+            return Long.bitCount(this.f8689b & ((1 << i10) - 1));
+        } else if (i10 < 64) {
+            return Long.bitCount(this.f8689b & ((1 << i10) - 1));
+        } else {
+            return Long.bitCount(this.f8689b) + nVar.A(i10 - 64);
         }
-        return z10;
     }
 
     public void B() {
-        this.f8695b = 0L;
-        n nVar = (n) this.f8696c;
-        if (nVar != null) {
-            nVar.B();
+        if (((n) this.f8690c) == null) {
+            this.f8690c = new n(6);
         }
     }
 
-    public void C(int i10) {
-        if (i10 >= 64) {
-            w();
-            ((n) this.f8696c).C(i10 - 64);
-            return;
-        }
-        this.f8695b |= 1 << i10;
-    }
-
-    @Override
-    public long H(long j3, long j10) {
-        return d0.e(((c3.j) this.f8696c).f4079e, j3 + this.f8695b, true);
-    }
-
-    @Override
-    public void X1(b0 b0Var) {
-        ((c3.q) this.f8696c).X1(new k3.d(this, b0Var, b0Var));
-    }
-
-    @Override
-    public h0 Z1(int i10, int i11) {
-        return ((c3.q) this.f8696c).Z1(i10, i11);
-    }
-
-    @Override
-    public long a(long j3) {
-        return ((c3.j) this.f8696c).f4079e[(int) j3] - this.f8695b;
-    }
-
-    @Override
-    public void b(int i10, int i11, byte[] bArr) {
-        ((c3.p) this.f8696c).b(i10, i11, bArr);
-    }
-
-    @Override
-    public boolean c(byte[] bArr, int i10, int i11, boolean z10) {
-        return ((c3.p) this.f8696c).c(bArr, 0, i11, z10);
-    }
-
-    @Override
-    public int d(int i10, int i11, byte[] bArr) {
-        return ((c3.p) this.f8696c).d(i10, i11, bArr);
-    }
-
-    @Override
-    public boolean e(int i10, boolean z10) {
-        return ((c3.p) this.f8696c).e(i10, true);
-    }
-
-    @Override
-    public boolean e0() {
-        return true;
-    }
-
-    @Override
-    public void e1() {
-        ((c3.q) this.f8696c).e1();
-    }
-
-    @Override
-    public boolean f(byte[] bArr, int i10, int i11, boolean z10) {
-        return ((c3.p) this.f8696c).f(bArr, i10, i11, z10);
-    }
-
-    @Override
-    public long g() {
-        return ((c3.p) this.f8696c).g() - this.f8695b;
-    }
-
-    @Override
-    public long getLength() {
-        return ((c3.p) this.f8696c).getLength() - this.f8695b;
-    }
-
-    @Override
-    public long getPosition() {
-        return ((c3.p) this.f8696c).getPosition() - this.f8695b;
-    }
-
-    @Override
-    public void h(int i10) {
-        ((c3.p) this.f8696c).h(i10);
-    }
-
-    @Override
-    public long i(long j3, long j10) {
-        return ((c3.j) this.f8696c).d[(int) j3];
-    }
-
-    @Override
-    public void j() {
-        Bundle bundle = new Bundle();
-        bundle.putLong("dialog_id", this.f8695b);
-        ?? n2Var = new n2(bundle);
-        n2Var.d = new ArrayList();
-        n2Var.f35455e = new HashSet();
-        ProfileActivity profileActivity = (ProfileActivity) this.f8696c;
-        n2Var.f35455e = profileActivity.f34279h5;
-        profileActivity.presentFragment((n2) n2Var);
-    }
-
-    @Override
-    public long j0() {
-        return 0L;
-    }
-
-    @Override
-    public void k() {
-        ProfileActivity profileActivity = (ProfileActivity) this.f8696c;
-        boolean z10 = !profileActivity.getMessagesController().isDialogMuted(this.f8695b, profileActivity.f34268g1);
-        profileActivity.getNotificationsController().muteDialog(this.f8695b, profileActivity.f34268g1, z10);
-        if (profileActivity.fragmentView != null) {
-            yc.A(profileActivity, z10, null).j();
-        }
-        profileActivity.a5();
-        profileActivity.g5(true);
-    }
-
-    @Override
-    public void l() {
-        ProfileActivity profileActivity = (ProfileActivity) this.f8696c;
-        long j3 = this.f8695b;
-        if (j3 != 0) {
-            Bundle bundle = new Bundle();
-            bundle.putLong("dialog_id", j3);
-            bundle.putLong("topic_id", profileActivity.f34268g1);
-            profileActivity.presentFragment(new p11(bundle, profileActivity.f34396z0));
-        }
-    }
-
-    @Override
-    public void m() {
-        ((c3.p) this.f8696c).m();
-    }
-
-    @Override
-    public long n(long j3, long j10) {
-        return 0L;
-    }
-
-    @Override
-    public void o(int i10) {
-        ((c3.p) this.f8696c).o(i10);
-    }
-
-    @Override
-    public void onFailure(Exception exc) {
-        int i10;
-        switch (this.f8694a) {
-            case 0:
-                if (exc instanceof com.google.android.gms.common.api.f) {
-                    i10 = ((com.google.android.gms.common.api.f) exc).getStatusCode();
-                } else {
-                    i10 = 13;
-                }
-                long j3 = this.f8695b;
-                for (g6.o oVar : ((h) ((aa.a) this.f8696c).d).f8679c.d) {
-                    oVar.b(j3, i10, null);
-                }
-                return;
-            case 7:
-                ((z8) this.f8696c).f48177b.set(this.f8695b);
-                return;
-            case 8:
-                ((AtomicLong) ((o0.a) this.f8696c).f16938c).set(this.f8695b);
-                return;
-            default:
-                ((z8) this.f8696c).f48177b.set(this.f8695b);
-                return;
-        }
-    }
-
-    @Override
-    public long p(long j3, long j10) {
-        return -9223372036854775807L;
-    }
-
-    @Override
-    public long p0(long j3) {
-        return ((c3.j) this.f8696c).f4076a;
-    }
-
-    @Override
-    public m2.j q(long j3) {
-        c3.j jVar = (c3.j) this.f8696c;
-        int i10 = (int) j3;
-        return new m2.j(jVar.f4078c[i10], jVar.f4077b[i10], null);
-    }
-
-    @Override
-    public long q0(long j3, long j10) {
-        return ((c3.j) this.f8696c).f4076a;
-    }
-
-    @Override
-    public void r() {
-        ProfileActivity profileActivity = (ProfileActivity) this.f8696c;
-        SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(ProfileActivity.c1(profileActivity));
-        StringBuilder sb2 = new StringBuilder("sound_enabled_");
-        long j3 = this.f8695b;
-        boolean z10 = notificationsSettings.getBoolean(org.telegram.messenger.q.i(j3, profileActivity.f34268g1, sb2), true);
-        boolean z11 = !z10 ? 1 : 0;
-        notificationsSettings.edit().putBoolean(org.telegram.messenger.q.i(j3, profileActivity.f34268g1, new StringBuilder("sound_enabled_")), z11).apply();
-        if (yc.a(profileActivity)) {
-            yc.S(z10 ? 1 : 0, profileActivity, profileActivity.f34396z0).j();
-        }
-    }
-
-    @Override
-    public int read(byte[] bArr, int i10, int i11) {
-        return ((c3.p) this.f8696c).read(bArr, i10, i11);
-    }
-
-    @Override
-    public void readFully(byte[] bArr, int i10, int i11) {
-        ((c3.p) this.f8696c).readFully(bArr, i10, i11);
-    }
-
-    @Override
-    public boolean s(int i10, boolean z10) {
-        return ((c3.p) this.f8696c).s(i10, true);
-    }
-
-    @Override
-    public int skip(int i10) {
-        return ((c3.p) this.f8696c).skip(i10);
-    }
-
-    @Override
-    public void t(int i10) {
-        ProfileActivity profileActivity = (ProfileActivity) this.f8696c;
-        if (i10 == 0) {
-            if (profileActivity.getMessagesController().isDialogMuted(this.f8695b, profileActivity.f34268g1)) {
-                k();
-            }
-            if (yc.a(profileActivity)) {
-                yc.z(profileActivity, 4, i10, profileActivity.f34396z0).j();
-                return;
-            }
-            return;
-        }
-        profileActivity.getNotificationsController().muteUntil(this.f8695b, profileActivity.f34268g1, i10);
-        if (yc.a(profileActivity)) {
-            yc.z(profileActivity, 5, i10, profileActivity.f34396z0).j();
-        }
-        profileActivity.a5();
-        profileActivity.g5(true);
-    }
-
-    public String toString() {
-        switch (this.f8694a) {
-            case 6:
-                if (((n) this.f8696c) == null) {
-                    return Long.toBinaryString(this.f8695b);
-                }
-                return ((n) this.f8696c).toString() + "xx" + Long.toBinaryString(this.f8695b);
-            default:
-                return super.toString();
-        }
-    }
-
-    public void u(int i10) {
-        if (i10 >= 64) {
-            n nVar = (n) this.f8696c;
-            if (nVar != null) {
-                nVar.u(i10 - 64);
-                return;
-            }
-            return;
-        }
-        this.f8695b &= ~(1 << i10);
-    }
-
-    public int v(int i10) {
-        n nVar = (n) this.f8696c;
-        if (nVar == null) {
-            if (i10 >= 64) {
-                return Long.bitCount(this.f8695b);
-            }
-            return Long.bitCount(this.f8695b & ((1 << i10) - 1));
-        } else if (i10 < 64) {
-            return Long.bitCount(this.f8695b & ((1 << i10) - 1));
-        } else {
-            return Long.bitCount(this.f8695b) + nVar.v(i10 - 64);
-        }
-    }
-
-    public void w() {
-        if (((n) this.f8696c) == null) {
-            this.f8696c = new n(6);
-        }
-    }
-
-    public void x(yc.a aVar) {
-        this.f8695b++;
+    public void C(zc.a aVar) {
+        this.f8689b++;
         Thread thread = new Thread(aVar);
         thread.setDaemon(true);
-        thread.setName("NanoHttpd Request Processor (#" + this.f8695b + ")");
-        ((List) this.f8696c).add(aVar);
+        thread.setName("NanoHttpd Request Processor (#" + this.f8689b + ")");
+        ((List) this.f8690c).add(aVar);
         thread.start();
     }
 
-    public boolean y(int i10) {
+    public boolean D(int i10) {
         if (i10 >= 64) {
-            w();
-            return ((n) this.f8696c).y(i10 - 64);
-        } else if ((this.f8695b & (1 << i10)) != 0) {
+            B();
+            return ((n) this.f8690c).D(i10 - 64);
+        } else if ((this.f8689b & (1 << i10)) != 0) {
             return true;
         } else {
             return false;
         }
     }
 
-    public void z(int i10, boolean z10) {
+    public void E(int i10, boolean z10) {
         boolean z11;
         if (i10 >= 64) {
-            w();
-            ((n) this.f8696c).z(i10 - 64, z10);
+            B();
+            ((n) this.f8690c).E(i10 - 64, z10);
             return;
         }
-        long j3 = this.f8695b;
+        long j3 = this.f8689b;
         if ((Long.MIN_VALUE & j3) != 0) {
             z11 = true;
         } else {
             z11 = false;
         }
         long j10 = (1 << i10) - 1;
-        this.f8695b = ((j3 & (~j10)) << 1) | (j3 & j10);
+        this.f8689b = ((j3 & (~j10)) << 1) | (j3 & j10);
         if (z10) {
-            C(i10);
+            H(i10);
         } else {
-            u(i10);
+            z(i10);
         }
-        if (!z11 && ((n) this.f8696c) == null) {
+        if (!z11 && ((n) this.f8690c) == null) {
             return;
         }
-        w();
-        ((n) this.f8696c).z(0, z11);
+        B();
+        ((n) this.f8690c).E(0, z11);
+    }
+
+    public boolean F(int i10) {
+        boolean z10;
+        if (i10 >= 64) {
+            B();
+            return ((n) this.f8690c).F(i10 - 64);
+        }
+        long j3 = 1 << i10;
+        long j10 = this.f8689b;
+        if ((j10 & j3) != 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        long j11 = j10 & (~j3);
+        this.f8689b = j11;
+        long j12 = j3 - 1;
+        this.f8689b = (j11 & j12) | Long.rotateRight((~j12) & j11, 1);
+        n nVar = (n) this.f8690c;
+        if (nVar != null) {
+            if (nVar.D(0)) {
+                H(63);
+            }
+            ((n) this.f8690c).F(0);
+        }
+        return z10;
+    }
+
+    public void G() {
+        this.f8689b = 0L;
+        n nVar = (n) this.f8690c;
+        if (nVar != null) {
+            nVar.G();
+        }
+    }
+
+    public void H(int i10) {
+        if (i10 >= 64) {
+            B();
+            ((n) this.f8690c).H(i10 - 64);
+            return;
+        }
+        this.f8689b |= 1 << i10;
+    }
+
+    @Override
+    public void a(int i10, int i11, byte[] bArr) {
+        ((c3.p) this.f8690c).a(i10, i11, bArr);
+    }
+
+    @Override
+    public long b(long j3) {
+        return ((c3.j) this.f8690c).f4128e[(int) j3] - this.f8689b;
+    }
+
+    @Override
+    public boolean c(byte[] bArr, int i10, int i11, boolean z10) {
+        return ((c3.p) this.f8690c).c(bArr, 0, i11, z10);
+    }
+
+    @Override
+    public long d(long j3, long j10) {
+        return ((c3.j) this.f8690c).d[(int) j3];
+    }
+
+    @Override
+    public void d2(b0 b0Var) {
+        ((c3.q) this.f8690c).d2(new k3.d(this, b0Var, b0Var));
+    }
+
+    @Override
+    public int e(int i10, int i11, byte[] bArr) {
+        return ((c3.p) this.f8690c).e(i10, i11, bArr);
+    }
+
+    @Override
+    public long f(long j3, long j10) {
+        return 0L;
+    }
+
+    @Override
+    public h0 f2(int i10, int i11) {
+        return ((c3.q) this.f8690c).f2(i10, i11);
+    }
+
+    @Override
+    public boolean g(int i10, boolean z10) {
+        return ((c3.p) this.f8690c).g(i10, true);
+    }
+
+    @Override
+    public long getLength() {
+        return ((c3.p) this.f8690c).getLength() - this.f8689b;
+    }
+
+    @Override
+    public long getPosition() {
+        return ((c3.p) this.f8690c).getPosition() - this.f8689b;
+    }
+
+    @Override
+    public boolean h(byte[] bArr, int i10, int i11, boolean z10) {
+        return ((c3.p) this.f8690c).h(bArr, i10, i11, z10);
+    }
+
+    @Override
+    public long i(long j3, long j10) {
+        return -9223372036854775807L;
+    }
+
+    @Override
+    public long j() {
+        return ((c3.p) this.f8690c).j() - this.f8689b;
+    }
+
+    @Override
+    public m2.j k(long j3) {
+        c3.j jVar = (c3.j) this.f8690c;
+        int i10 = (int) j3;
+        return new m2.j(jVar.f4127c[i10], jVar.f4126b[i10], null);
+    }
+
+    @Override
+    public void k1() {
+        ((c3.q) this.f8690c).k1();
+    }
+
+    @Override
+    public void l(int i10) {
+        ((c3.p) this.f8690c).l(i10);
+    }
+
+    @Override
+    public void m() {
+        Bundle bundle = new Bundle();
+        bundle.putLong("dialog_id", this.f8689b);
+        ?? n2Var = new n2(bundle);
+        n2Var.d = new ArrayList();
+        n2Var.f39575e = new HashSet();
+        ProfileActivity profileActivity = (ProfileActivity) this.f8690c;
+        n2Var.f39575e = profileActivity.f34269h5;
+        profileActivity.presentFragment((n2) n2Var);
+    }
+
+    @Override
+    public long n(long j3, long j10) {
+        return d0.e(((c3.j) this.f8690c).f4128e, j3 + this.f8689b, true);
+    }
+
+    @Override
+    public void o() {
+        ProfileActivity profileActivity = (ProfileActivity) this.f8690c;
+        boolean z10 = !profileActivity.getMessagesController().isDialogMuted(this.f8689b, profileActivity.f34258g1);
+        profileActivity.getNotificationsController().muteDialog(this.f8689b, profileActivity.f34258g1, z10);
+        if (profileActivity.fragmentView != null) {
+            ad.A(profileActivity, z10, null).j();
+        }
+        profileActivity.a5();
+        profileActivity.g5(true);
+    }
+
+    @Override
+    public void onFailure(Exception exc) {
+        int i10;
+        switch (this.f8688a) {
+            case 0:
+                if (exc instanceof com.google.android.gms.common.api.f) {
+                    i10 = ((com.google.android.gms.common.api.f) exc).getStatusCode();
+                } else {
+                    i10 = 13;
+                }
+                long j3 = this.f8689b;
+                for (g6.o oVar : ((h) ((aa.a) this.f8690c).d).f8673c.d) {
+                    oVar.b(j3, i10, null);
+                }
+                return;
+            case 7:
+                ((AtomicLong) ((t) this.f8690c).f16718c).set(this.f8689b);
+                return;
+            case 8:
+                ((ga) this.f8690c).f50784b.set(this.f8689b);
+                return;
+            default:
+                ((ga) this.f8690c).f50784b.set(this.f8689b);
+                return;
+        }
+    }
+
+    @Override
+    public void p() {
+        ProfileActivity profileActivity = (ProfileActivity) this.f8690c;
+        long j3 = this.f8689b;
+        if (j3 != 0) {
+            Bundle bundle = new Bundle();
+            bundle.putLong("dialog_id", j3);
+            bundle.putLong("topic_id", profileActivity.f34258g1);
+            profileActivity.presentFragment(new v11(bundle, profileActivity.f34386z0));
+        }
+    }
+
+    @Override
+    public void q() {
+        ((c3.p) this.f8690c).q();
+    }
+
+    @Override
+    public void r(int i10) {
+        ((c3.p) this.f8690c).r(i10);
+    }
+
+    @Override
+    public int read(byte[] bArr, int i10, int i11) {
+        return ((c3.p) this.f8690c).read(bArr, i10, i11);
+    }
+
+    @Override
+    public void readFully(byte[] bArr, int i10, int i11) {
+        ((c3.p) this.f8690c).readFully(bArr, i10, i11);
+    }
+
+    @Override
+    public void s() {
+        ProfileActivity profileActivity = (ProfileActivity) this.f8690c;
+        SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(ProfileActivity.c1(profileActivity));
+        StringBuilder sb2 = new StringBuilder("sound_enabled_");
+        long j3 = this.f8689b;
+        boolean z10 = notificationsSettings.getBoolean(org.telegram.messenger.q.i(j3, profileActivity.f34258g1, sb2), true);
+        boolean z11 = !z10 ? 1 : 0;
+        notificationsSettings.edit().putBoolean(org.telegram.messenger.q.i(j3, profileActivity.f34258g1, new StringBuilder("sound_enabled_")), z11).apply();
+        if (ad.a(profileActivity)) {
+            ad.S(z10 ? 1 : 0, profileActivity, profileActivity.f34386z0).j();
+        }
+    }
+
+    @Override
+    public int skip(int i10) {
+        return ((c3.p) this.f8690c).skip(i10);
+    }
+
+    @Override
+    public boolean t() {
+        return true;
+    }
+
+    public String toString() {
+        switch (this.f8688a) {
+            case 6:
+                if (((n) this.f8690c) == null) {
+                    return Long.toBinaryString(this.f8689b);
+                }
+                return ((n) this.f8690c).toString() + "xx" + Long.toBinaryString(this.f8689b);
+            default:
+                return super.toString();
+        }
+    }
+
+    @Override
+    public long u() {
+        return 0L;
+    }
+
+    @Override
+    public boolean v(int i10, boolean z10) {
+        return ((c3.p) this.f8690c).v(i10, true);
+    }
+
+    @Override
+    public long w(long j3) {
+        return ((c3.j) this.f8690c).f4125a;
+    }
+
+    @Override
+    public void x(int i10) {
+        ProfileActivity profileActivity = (ProfileActivity) this.f8690c;
+        if (i10 == 0) {
+            if (profileActivity.getMessagesController().isDialogMuted(this.f8689b, profileActivity.f34258g1)) {
+                o();
+            }
+            if (ad.a(profileActivity)) {
+                ad.z(profileActivity, 4, i10, profileActivity.f34386z0).j();
+                return;
+            }
+            return;
+        }
+        profileActivity.getNotificationsController().muteUntil(this.f8689b, profileActivity.f34258g1, i10);
+        if (ad.a(profileActivity)) {
+            ad.z(profileActivity, 5, i10, profileActivity.f34386z0).j();
+        }
+        profileActivity.a5();
+        profileActivity.g5(true);
+    }
+
+    @Override
+    public long y(long j3, long j10) {
+        return ((c3.j) this.f8690c).f4125a;
+    }
+
+    public void z(int i10) {
+        if (i10 >= 64) {
+            n nVar = (n) this.f8690c;
+            if (nVar != null) {
+                nVar.z(i10 - 64);
+                return;
+            }
+            return;
+        }
+        this.f8689b &= ~(1 << i10);
     }
 
     public n(Object obj, long j3, int i10) {
-        this.f8694a = i10;
-        this.f8696c = obj;
-        this.f8695b = j3;
+        this.f8688a = i10;
+        this.f8690c = obj;
+        this.f8689b = j3;
     }
 
     public n(c3.p pVar, long j3) {
-        this.f8694a = 2;
-        this.f8696c = pVar;
+        this.f8688a = 2;
+        this.f8690c = pVar;
         e2.d.b(pVar.getPosition() >= j3);
-        this.f8695b = j3;
+        this.f8689b = j3;
     }
 
     public n(int i10) {
-        this.f8694a = i10;
+        this.f8688a = i10;
         switch (i10) {
-            case 9:
-                this.f8696c = DesugarCollections.synchronizedList(new ArrayList());
+            case 10:
+                this.f8690c = DesugarCollections.synchronizedList(new ArrayList());
                 return;
             default:
-                this.f8695b = 0L;
+                this.f8689b = 0L;
                 return;
         }
     }

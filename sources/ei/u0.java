@@ -1,100 +1,26 @@
 package ei;
 
-import ai.da;
-import android.app.Activity;
-import android.content.DialogInterface;
-import java.util.Iterator;
-import java.util.concurrent.atomic.AtomicBoolean;
-import org.json.JSONObject;
-import org.telegram.messenger.AndroidUtilities;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Cells.c6;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class u0 implements DialogInterface.OnDismissListener {
-    public final int f9359a;
-    public final Object f9360b;
-    public final Object f9361c;
-    public final Object d;
+public final class u0 implements LocationListener {
+    public final LocationManager f9386a;
+    public final LocationListener[] f9387b;
+    public final Utilities.Callback f9388c;
+    public final w0 d;
 
-    public u0(Object obj, Object obj2, Object obj3, int i10) {
-        this.f9359a = i10;
-        this.f9361c = obj;
-        this.f9360b = obj2;
-        this.d = obj3;
+    public u0(w0 w0Var, LocationManager locationManager, LocationListener[] locationListenerArr, Utilities.Callback callback) {
+        this.d = w0Var;
+        this.f9386a = locationManager;
+        this.f9387b = locationListenerArr;
+        this.f9388c = callback;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f9359a) {
-            case 0:
-                x0 x0Var = (x0) this.f9361c;
-                boolean[] zArr = (boolean[]) this.f9360b;
-                org.telegram.ui.web.q qVar = (org.telegram.ui.web.q) this.d;
-                x0Var.getClass();
-                if (!zArr[0]) {
-                    x0Var.d = true;
-                    x0Var.f9452e = false;
-                    x0Var.l();
-                    Iterator it = x0Var.f9453f.iterator();
-                    while (it.hasNext()) {
-                        ((Runnable) it.next()).run();
-                    }
-                    zArr[0] = true;
-                    qVar.run(Boolean.TRUE, Boolean.FALSE);
-                    return;
-                }
-                return;
-            case 1:
-                boolean[] zArr2 = (boolean[]) this.f9361c;
-                Utilities.Callback callback = (Utilities.Callback) this.d;
-                if (!((boolean[]) this.f9360b)[0] && !zArr2[0]) {
-                    zArr2[0] = true;
-                    callback.run("USER_DECLINED");
-                    return;
-                }
-                return;
-            case 2:
-                org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.f9360b;
-                Activity activity = (Activity) this.d;
-                AndroidUtilities.hideKeyboard((EditTextBoldCursor) this.f9361c);
-                if (n2Var != null) {
-                    AndroidUtilities.requestAdjustResize(activity, n2Var.getClassGuid());
-                    return;
-                }
-                return;
-            case 3:
-                ((Utilities.Callback) this.f9361c).run(Integer.valueOf(((org.telegram.ui.Components.s3) this.d).getValue() + (((org.telegram.ui.Components.q3) this.f9360b).getValue() * 60)));
-                return;
-            case 4:
-                org.telegram.ui.web.c1 c1Var = (org.telegram.ui.web.c1) this.f9361c;
-                da daVar = (da) this.d;
-                c1Var.getClass();
-                if (!((AtomicBoolean) this.f9360b).get()) {
-                    c1Var.y(daVar, "popup_closed", new JSONObject());
-                }
-                c1Var.f42143c0 = null;
-                c1Var.f42146e0 = System.currentTimeMillis();
-                return;
-            case 5:
-                org.telegram.ui.ActionBar.n2 n2Var2 = (org.telegram.ui.ActionBar.n2) this.f9360b;
-                Activity activity2 = (Activity) this.d;
-                AndroidUtilities.hideKeyboard((c6) this.f9361c);
-                if (n2Var2 != null) {
-                    AndroidUtilities.requestAdjustResize(activity2, n2Var2.getClassGuid());
-                    return;
-                }
-                return;
-            default:
-                AndroidUtilities.hideKeyboard((xh.a2) this.f9360b);
-                AndroidUtilities.requestAdjustResize((Activity) this.d, ((xh.s2) this.f9361c).f50232a.getClassGuid());
-                return;
-        }
-    }
-
-    public u0(boolean[] zArr, boolean[] zArr2, Utilities.Callback callback) {
-        this.f9359a = 1;
-        this.f9360b = zArr;
-        this.f9361c = zArr2;
-        this.d = callback;
+    public final void onLocationChanged(Location location) {
+        this.f9386a.removeUpdates(this.f9387b[0]);
+        this.d.getClass();
+        this.f9388c.run(w0.h(location));
     }
 }

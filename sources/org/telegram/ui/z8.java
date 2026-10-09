@@ -1,41 +1,37 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.text.Layout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class z8 extends s4.s0 {
-    public boolean f43714a;
-    public final m9 f43715b;
+public final class z8 extends TextView {
+    public final Paint f44507a;
+    public final org.telegram.ui.ActionBar.e6 f44508b;
 
-    public z8(m9 m9Var) {
-        this.f43715b = m9Var;
+    public z8(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context);
+        this.f44508b = e6Var;
+        this.f44507a = new Paint(1);
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        int abs;
-        m9 m9Var = this.f43715b;
-        ArrayList arrayList = m9Var.F;
-        int L0 = m9Var.f38511b.L0();
-        boolean z10 = false;
-        if (L0 == -1) {
-            abs = 0;
-        } else {
-            abs = Math.abs(m9Var.f38511b.N0() - L0) + 1;
+    public final void dispatchDraw(Canvas canvas) {
+        int m12 = org.telegram.ui.ActionBar.i6.m1(0.8f, org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21199z6, this.f44508b));
+        Paint paint = this.f44507a;
+        paint.setColor(m12);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(1.0f);
+        float height = getHeight() / 2.0f;
+        Layout layout = getLayout();
+        int i10 = 0;
+        for (int i11 = 0; i11 < layout.getLineCount(); i11++) {
+            i10 = Math.max(i10, (int) layout.getLineWidth(i11));
         }
-        if (abs > 0) {
-            int size = m9Var.f38512c.f26034f3.f32534x.size();
-            if (!m9Var.I && !m9Var.G && !arrayList.isEmpty() && L0 + abs >= size - 5) {
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.g6(9, this, (i9) hg.c.g(1, arrayList)));
-            }
-        }
-        if (i11 != 0 && this.f43714a) {
-            org.telegram.ui.Components.c20 c20Var = m9Var.f38514f;
-            if (i11 < 0) {
-                z10 = true;
-            }
-            c20Var.e(z10, true);
-        }
-        this.f43714a = true;
+        float f7 = i10 / 2.0f;
+        canvas.drawLine(0.0f, height, ((getWidth() / 2.0f) - f7) - AndroidUtilities.dp(8.0f), height, paint);
+        canvas.drawLine((getWidth() / 2.0f) + f7 + AndroidUtilities.dp(8.0f), height, getWidth(), height, paint);
+        super.dispatchDraw(canvas);
     }
 }

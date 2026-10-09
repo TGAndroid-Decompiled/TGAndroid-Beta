@@ -6,12 +6,13 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
-public final class d1 extends s4.n0 {
+public final class d1 extends s4.o0 {
     @Override
-    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.z0 z0Var) {
+    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.a1 a1Var) {
         org.telegram.ui.Cells.u1 u1Var;
         MessageObject.GroupedMessages currentMessagesGroup;
         MessageObject.GroupedMessagePosition currentPosition;
+        float[] fArr;
         int i10 = 0;
         rect.bottom = 0;
         if ((view instanceof org.telegram.ui.Cells.u1) && (currentMessagesGroup = (u1Var = (org.telegram.ui.Cells.u1) view).getCurrentMessagesGroup()) != null && (currentPosition = u1Var.getCurrentPosition()) != null && currentPosition.siblingHeights != null) {
@@ -20,8 +21,7 @@ public final class d1 extends s4.n0 {
             int extraInsetHeight = u1Var.getExtraInsetHeight();
             int i11 = 0;
             while (true) {
-                float[] fArr = currentPosition.siblingHeights;
-                if (i11 >= fArr.length) {
+                if (i11 >= currentPosition.siblingHeights.length) {
                     break;
                 }
                 extraInsetHeight += (int) Math.ceil(fArr[i11] * max);
@@ -35,7 +35,7 @@ public final class d1 extends s4.n0 {
                     byte b10 = groupedMessagePosition.minY;
                     byte b11 = currentPosition.minY;
                     if (b10 == b11 && ((groupedMessagePosition.minX != currentPosition.minX || groupedMessagePosition.maxX != currentPosition.maxX || b10 != b11 || groupedMessagePosition.maxY != currentPosition.maxY) && b10 == b11)) {
-                        round = org.telegram.messenger.q.A(4.0f, (int) Math.ceil(max * groupedMessagePosition.f17263ph), round);
+                        round = org.telegram.messenger.q.A(4.0f, (int) Math.ceil(max * groupedMessagePosition.f17249ph), round);
                         break;
                     }
                     i10++;

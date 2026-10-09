@@ -1,23 +1,19 @@
 package ai;
 
-import java.util.List;
-import org.telegram.messenger.Utilities;
-public final class b9 implements Utilities.CallbackReturn {
-    public final d9 f662a;
-    public final boolean f663b;
-    public final int f664c;
-    public final List d;
+import org.telegram.messenger.MessagesStorage;
+public final class b9 implements Runnable {
+    public final int f724a;
+    public final e9 f725b;
+    public final MessagesStorage f726c;
 
-    public b9(d9 d9Var, boolean z10, int i10, List list) {
-        this.f662a = d9Var;
-        this.f663b = z10;
-        this.f664c = i10;
-        this.d = list;
+    public b9(e9 e9Var, MessagesStorage messagesStorage, int i10) {
+        this.f724a = i10;
+        this.f725b = e9Var;
+        this.f726c = messagesStorage;
     }
 
     @Override
-    public final Object run(Object obj) {
-        Integer num = (Integer) obj;
-        return Boolean.valueOf(this.f662a.q(this.f664c, this.d, this.f663b));
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: ai.b9.run():void");
     }
 }

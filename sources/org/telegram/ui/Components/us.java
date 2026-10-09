@@ -1,87 +1,186 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.text.TextUtils;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
+import java.util.Arrays;
+import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
-public class us extends w61 {
-    public final int N;
-    public final int O;
-    public final boolean P;
-    public final ts Q;
-    public final ArrayList R;
-    public final ArrayList S;
-    public final ArrayList T;
-    public boolean U;
-    public boolean V;
-    public final CharSequence W;
-    public int X;
-    public int Y;
-    public boolean Z;
-    public boolean f31509a0;
-    public boolean f31510b0;
-    public int f31511c0;
-    public int f31512d0;
-    public String f31513e0;
-    public final ps f31514f0;
-    public boolean f31515g0;
-    public final y2 f31516h0;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class us {
+    public final int f31601a;
+    public String f31602b;
+    public final ArrayList f31603c;
+    public final boolean[] d;
+    public boolean[] f31604e;
+    public boolean f31605f;
+    public final int f31606g;
+    public int h;
+    public int f31607i;
+    public final vs f31608j;
 
-    public us(zl0 zl0Var, Context context, int i10, int i11, boolean z10, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(zl0Var, context, i10, 0, true, null, d6Var);
-        this.R = new ArrayList();
-        this.S = new ArrayList();
-        this.T = new ArrayList();
-        this.f31514f0 = new ps(this, 0);
-        this.f31515g0 = true;
-        this.f31516h0 = new y2(this, 3);
-        this.f32532s = new d(this, 8);
-        this.N = i10;
-        this.O = i11;
-        this.P = z10;
-        this.Q = new ts(i10, new ps(this, 1));
-        this.W = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AppsTabInfo), new qs(this, d6Var, context)), true);
-        N(false);
-        MediaDataController.getInstance(i10).loadHints(true);
-    }
-
-    public final void V() {
-        boolean isEmpty = TextUtils.isEmpty(this.f31513e0);
-        zl0 zl0Var = this.d;
-        if (!isEmpty) {
-            if (this.f31510b0 && !this.Z && zl0Var != null) {
-                int i10 = 0;
-                while (true) {
-                    if (i10 >= zl0Var.getChildCount()) {
-                        break;
-                    } else if (zl0Var.getChildAt(i10) instanceof w00) {
-                        if (this.f31510b0 && !this.Z && !TextUtils.isEmpty(this.f31513e0)) {
-                            W(true);
-                        }
-                    } else {
-                        i10++;
-                    }
-                }
-            }
-        } else {
-            if (!this.f31515g0) {
-                if (zl0Var != null) {
-                    for (int i11 = 0; i11 < zl0Var.getChildCount(); i11++) {
-                        if (!(zl0Var.getChildAt(i11) instanceof w00)) {
-                        }
-                    }
-                }
-            }
-            this.Q.a();
-            break;
+    public us(vs vsVar, int i10, ArrayList arrayList) {
+        this.f31608j = vsVar;
+        this.f31601a = i10;
+        int size = arrayList.size();
+        this.f31606g = size;
+        this.f31607i = 0;
+        if (size > 0) {
+            this.f31603c = arrayList;
+            this.d = new boolean[size];
+            this.f31605f = true;
+            g();
         }
-        this.f31515g0 = false;
     }
 
-    public final void W(boolean r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.us.W(boolean):void");
+    public final boolean a() {
+        boolean[] zArr;
+        for (int i10 = 0; i10 < this.f31606g; i10++) {
+            if (!this.d[i10] || ((zArr = this.f31604e) != null && !zArr[i10])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public final boolean b() {
+        int i10;
+        if (this.f31604e != null) {
+            i10 = this.h;
+        } else {
+            i10 = this.f31606g;
+        }
+        if (i10 > 1) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean c() {
+        int i10;
+        if (this.f31604e != null) {
+            i10 = this.h;
+        } else {
+            i10 = this.f31606g;
+        }
+        if (i10 > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void d() {
+        boolean[] zArr;
+        boolean[] zArr2;
+        boolean z10 = false;
+        int i10 = 0;
+        while (true) {
+            int i11 = this.f31606g;
+            zArr = this.d;
+            if (i10 >= i11) {
+                break;
+            } else if (!zArr[i10] || ((zArr2 = this.f31604e) != null && !zArr2[i10])) {
+                i10++;
+            }
+        }
+        z10 = true;
+        Arrays.fill(zArr, !z10);
+        f();
+        this.f31608j.X.N(true);
+    }
+
+    public final void e(int i10) {
+        boolean[] zArr = this.f31604e;
+        if (zArr != null && !zArr[i10]) {
+            return;
+        }
+        boolean[] zArr2 = this.d;
+        boolean z10 = zArr2[i10];
+        zArr2[i10] = !z10;
+        if (!z10) {
+            this.f31607i++;
+        } else {
+            this.f31607i--;
+        }
+        this.f31608j.X.N(true);
+    }
+
+    public final void f() {
+        this.f31607i = 0;
+        this.h = 0;
+        for (int i10 = 0; i10 < this.f31606g; i10++) {
+            boolean[] zArr = this.f31604e;
+            boolean[] zArr2 = this.d;
+            if (zArr == null) {
+                if (zArr2[i10]) {
+                    this.f31607i++;
+                }
+            } else if (zArr[i10]) {
+                this.h++;
+                if (zArr2[i10]) {
+                    this.f31607i++;
+                }
+            }
+        }
+    }
+
+    public final void g() {
+        TLObject tLObject;
+        String formatName;
+        String formatString;
+        String formatString2;
+        String formatString3;
+        String formatString4;
+        int i10 = this.f31606g;
+        if (i10 != 0) {
+            for (int i11 = 0; i11 < i10; i11++) {
+                boolean[] zArr = this.f31604e;
+                if (zArr == null || zArr[i11]) {
+                    tLObject = (TLObject) this.f31603c.get(i11);
+                    break;
+                }
+            }
+            tLObject = null;
+            if (tLObject instanceof TLRPC.User) {
+                formatName = UserObject.getForcedFirstName((TLRPC.User) tLObject);
+            } else {
+                formatName = ContactsController.formatName(tLObject);
+            }
+            int i12 = this.f31601a;
+            if (i12 == 0) {
+                this.f31602b = LocaleController.getString(R.string.DeleteReportSpam);
+            } else if (i12 == 1) {
+                if (b()) {
+                    formatString4 = LocaleController.getString(R.string.DeleteAllMessagesFromUsers);
+                } else {
+                    formatString4 = LocaleController.formatString(R.string.DeleteAllFrom, formatName);
+                }
+                this.f31602b = formatString4;
+            } else if (i12 == 3) {
+                if (b()) {
+                    formatString3 = LocaleController.getString(R.string.DeleteAllReactionsFromUsers);
+                } else {
+                    formatString3 = LocaleController.formatString(R.string.DeleteAllReactionsFrom, formatName);
+                }
+                this.f31602b = formatString3;
+            } else if (i12 == 2) {
+                if (this.f31608j.f32435g0) {
+                    if (b()) {
+                        formatString2 = LocaleController.getString(R.string.DeleteRestrictUsers);
+                    } else {
+                        formatString2 = LocaleController.formatString(R.string.DeleteRestrict, formatName);
+                    }
+                    this.f31602b = formatString2;
+                    return;
+                }
+                if (b()) {
+                    formatString = LocaleController.getString(R.string.DeleteBanUsers);
+                } else {
+                    formatString = LocaleController.formatString(R.string.DeleteBan, formatName);
+                }
+                this.f31602b = formatString;
+            }
+        }
     }
 }

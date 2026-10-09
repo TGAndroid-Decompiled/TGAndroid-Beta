@@ -8,47 +8,47 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Collections;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.zl0;
-import org.telegram.ui.jx;
-public final class q extends zl0 {
-    public final int f1530e3;
-    public final jx f1531f3;
+import org.telegram.ui.Components.qm0;
+import org.telegram.ui.kx;
+public final class q extends qm0 {
+    public final int V2;
+    public final kx W2;
 
-    public q(jx jxVar, Context context, int i10) {
+    public q(kx kxVar, Context context, int i10) {
         super(context, null);
-        this.f1530e3 = i10;
-        this.f1531f3 = jxVar;
+        this.V2 = i10;
+        this.W2 = kxVar;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
         boolean z10;
-        switch (this.f1530e3) {
+        switch (this.V2) {
             case 1:
-                jx jxVar = this.f1531f3;
-                ArrayList arrayList = jxVar.P;
+                kx kxVar = this.W2;
+                ArrayList arrayList = kxVar.P;
                 arrayList.clear();
                 int i10 = 0;
                 for (int i11 = 0; i11 < getChildCount(); i11++) {
                     a0 a0Var = (a0) getChildAt(i11);
                     int R = RecyclerView.R(a0Var);
-                    a0Var.f539b = R;
+                    a0Var.f622b = R;
                     boolean z11 = true;
-                    a0Var.f537a = true;
+                    a0Var.f620a = true;
                     if (R == 0) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
                     a0Var.d = z10;
-                    if (R != jxVar.f626y.size() - 1) {
+                    if (R != kxVar.f693y.size() - 1) {
                         z11 = false;
                     }
-                    a0Var.f541c = z11;
+                    a0Var.f624c = z11;
                     arrayList.add(a0Var);
                 }
-                Collections.sort(arrayList, jxVar.f623w0);
+                Collections.sort(arrayList, kxVar.f690w0);
                 while (i10 < arrayList.size()) {
                     a0 a0Var2 = (a0) arrayList.get(i10);
                     int save = canvas.save();
@@ -74,11 +74,11 @@ public final class q extends zl0 {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f1530e3) {
+        switch (this.V2) {
             case 0:
                 if (motionEvent.getAction() == 0) {
-                    jx jxVar = this.f1531f3;
-                    if (jxVar.f598c0 > 0.2f || jxVar.getAlpha() == 0.0f) {
+                    kx kxVar = this.W2;
+                    if (kxVar.f665c0 > 0.2f || kxVar.getAlpha() == 0.0f) {
                         return false;
                     }
                 }
@@ -90,9 +90,9 @@ public final class q extends zl0 {
 
     @Override
     public boolean drawChild(Canvas canvas, View view, long j3) {
-        switch (this.f1530e3) {
+        switch (this.V2) {
             case 0:
-                if (this.f1531f3.P.contains(view)) {
+                if (this.W2.P.contains(view)) {
                     return true;
                 }
                 return super.drawChild(canvas, view, j3);
@@ -102,12 +102,12 @@ public final class q extends zl0 {
     }
 
     @Override
-    public void l0(int i10) {
-        switch (this.f1530e3) {
+    public void k0(int i10, int i11) {
+        switch (this.V2) {
             case 1:
-                ci.e4 e4Var = this.f1531f3.J;
-                if (e4Var != null) {
-                    e4Var.e(true);
+                ci.d4 d4Var = this.W2.J;
+                if (d4Var != null) {
+                    d4Var.e(true);
                     return;
                 }
                 return;
@@ -118,7 +118,7 @@ public final class q extends zl0 {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        switch (this.f1530e3) {
+        switch (this.V2) {
             case 1:
                 return false;
             default:
@@ -128,9 +128,9 @@ public final class q extends zl0 {
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f1530e3) {
+        switch (this.V2) {
             case 0:
-                ArrayList arrayList = this.f1531f3.f596b0;
+                ArrayList arrayList = this.W2.f663b0;
                 super.onLayout(z10, i10, i11, i12, i13);
                 for (int i14 = 0; i14 < arrayList.size(); i14++) {
                     ((Runnable) arrayList.get(i14)).run();
@@ -145,7 +145,7 @@ public final class q extends zl0 {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f1530e3) {
+        switch (this.V2) {
             case 1:
                 return false;
             default:

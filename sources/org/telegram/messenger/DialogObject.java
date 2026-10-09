@@ -55,7 +55,7 @@ public class DialogObject {
         return findUsername(str, user.usernames);
     }
 
-    public static TL_bots.botVerification getBotVerification(TLObject tLObject) {
+    public static TL_bots.BotVerification getBotVerification(TLObject tLObject) {
         if (tLObject instanceof TLRPC.UserFull) {
             return ((TLRPC.UserFull) tLObject).bot_verification;
         }
@@ -77,10 +77,10 @@ public class DialogObject {
 
     public static long getDialogId(TLObject tLObject) {
         if (tLObject instanceof TLRPC.User) {
-            return ((TLRPC.User) tLObject).f20194id;
+            return ((TLRPC.User) tLObject).f20185id;
         }
         if (tLObject instanceof TLRPC.Chat) {
-            return -((TLRPC.Chat) tLObject).f20047id;
+            return -((TLRPC.Chat) tLObject).f20038id;
         }
         return 0L;
     }
@@ -248,26 +248,26 @@ public class DialogObject {
     }
 
     public static void initDialog(TLRPC.Dialog dialog) {
-        if (dialog != null && dialog.f20051id == 0) {
+        if (dialog != null && dialog.f20042id == 0) {
             if (dialog instanceof TLRPC.TL_dialog) {
                 TLRPC.Peer peer = dialog.peer;
                 if (peer != null) {
                     long j3 = peer.user_id;
                     if (j3 != 0) {
-                        dialog.f20051id = j3;
+                        dialog.f20042id = j3;
                         return;
                     }
                     long j10 = peer.chat_id;
                     if (j10 != 0) {
-                        dialog.f20051id = -j10;
+                        dialog.f20042id = -j10;
                     } else {
-                        dialog.f20051id = -peer.channel_id;
+                        dialog.f20042id = -peer.channel_id;
                     }
                 }
             } else if (dialog instanceof TLRPC.TL_dialogFolder) {
-                dialog.f20051id = makeFolderDialogId(((TLRPC.TL_dialogFolder) dialog).folder.f20098id);
+                dialog.f20042id = makeFolderDialogId(((TLRPC.TL_dialogFolder) dialog).folder.f20089id);
             } else if (dialog instanceof TLRPC.TL_dialogCommunity) {
-                dialog.f20051id = -dialog.community_id;
+                dialog.f20042id = -dialog.community_id;
             }
         }
     }
@@ -341,45 +341,45 @@ public class DialogObject {
         return 2305843009213693952L | i10;
     }
 
-    public static String setDialogPhotoTitle(ImageReceiver imageReceiver, org.telegram.ui.Components.h9 h9Var, TLObject tLObject) {
+    public static String setDialogPhotoTitle(ImageReceiver imageReceiver, org.telegram.ui.Components.j9 j9Var, TLObject tLObject) {
         if (tLObject instanceof TLRPC.User) {
             TLRPC.User user = (TLRPC.User) tLObject;
             if (UserObject.isReplyUser(user)) {
                 String string = LocaleController.getString(R.string.RepliesTitle);
-                if (h9Var != null) {
-                    h9Var.g(12);
+                if (j9Var != null) {
+                    j9Var.g(12);
                 }
                 if (imageReceiver != null) {
-                    imageReceiver.setForUserOrChat(null, h9Var);
+                    imageReceiver.setForUserOrChat(null, j9Var);
                 }
                 return string;
             } else if (UserObject.isUserSelf(user)) {
                 String string2 = LocaleController.getString(R.string.SavedMessages);
-                if (h9Var != null) {
-                    h9Var.g(1);
+                if (j9Var != null) {
+                    j9Var.g(1);
                 }
                 if (imageReceiver != null) {
-                    imageReceiver.setForUserOrChat(null, h9Var);
+                    imageReceiver.setForUserOrChat(null, j9Var);
                 }
                 return string2;
             } else {
                 String userName = UserObject.getUserName(user);
-                if (h9Var != null) {
-                    h9Var.r(user);
+                if (j9Var != null) {
+                    j9Var.r(user);
                 }
                 if (imageReceiver != null) {
-                    imageReceiver.setForUserOrChat(tLObject, h9Var);
+                    imageReceiver.setForUserOrChat(tLObject, j9Var);
                 }
                 return userName;
             }
         } else if (tLObject instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) tLObject;
             String str = chat.title;
-            if (h9Var != null) {
-                h9Var.q(chat);
+            if (j9Var != null) {
+                j9Var.q(chat);
             }
             if (imageReceiver != null) {
-                imageReceiver.setForUserOrChat(tLObject, h9Var);
+                imageReceiver.setForUserOrChat(tLObject, j9Var);
             }
             return str;
         } else {
@@ -545,9 +545,9 @@ public class DialogObject {
         return str;
     }
 
-    public static String setDialogPhotoTitle(org.telegram.ui.Components.w9 w9Var, TLObject tLObject) {
-        if (w9Var != null) {
-            return setDialogPhotoTitle(w9Var.getImageReceiver(), w9Var.getAvatarDrawable(), tLObject);
+    public static String setDialogPhotoTitle(org.telegram.ui.Components.y9 y9Var, TLObject tLObject) {
+        if (y9Var != null) {
+            return setDialogPhotoTitle(y9Var.getImageReceiver(), y9Var.getAvatarDrawable(), tLObject);
         }
         return setDialogPhotoTitle(null, null, tLObject);
     }

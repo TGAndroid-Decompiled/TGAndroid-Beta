@@ -1,58 +1,15 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Matrix;
-import android.graphics.Shader;
-import android.os.Build;
-import java.lang.ref.WeakReference;
+import android.graphics.RectF;
+import org.telegram.messenger.AndroidUtilities;
 public final class sc0 {
-    public final Shader.TileMode f30744a;
-    public final Matrix f30745b = new Matrix();
-    public boolean f30746c;
-    public BitmapShader d;
-    public WeakReference f30747e;
+    public final int f30766a;
+    public final l11 f30767b;
+    public final RectF f30768c = new RectF();
+    public final RectF d = new RectF();
 
-    public sc0(Shader.TileMode tileMode) {
-        this.f30744a = tileMode;
-    }
-
-    public final void a(boolean z10) {
-        BitmapShader bitmapShader;
-        int i10;
-        if (this.f30746c != z10) {
-            this.f30746c = z10;
-            if (Build.VERSION.SDK_INT >= 33 && (bitmapShader = this.d) != null) {
-                if (z10) {
-                    i10 = 1;
-                } else {
-                    i10 = 2;
-                }
-                bitmapShader.setFilterMode(i10);
-            }
-        }
-    }
-
-    public final boolean b(Bitmap bitmap) {
-        int i10;
-        WeakReference weakReference = this.f30747e;
-        if (weakReference != null && weakReference.get() == bitmap) {
-            return false;
-        }
-        this.f30747e = new WeakReference(bitmap);
-        Shader.TileMode tileMode = this.f30744a;
-        BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
-        this.d = bitmapShader;
-        bitmapShader.setLocalMatrix(this.f30745b);
-        if (Build.VERSION.SDK_INT >= 33) {
-            BitmapShader bitmapShader2 = this.d;
-            if (this.f30746c) {
-                i10 = 1;
-            } else {
-                i10 = 2;
-            }
-            bitmapShader2.setFilterMode(i10);
-        }
-        return true;
+    public sc0(int i10, String str) {
+        this.f30766a = i10;
+        this.f30767b = new l11(str, 14.0f, AndroidUtilities.bold());
     }
 }

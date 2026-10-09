@@ -1,28 +1,19 @@
 package xh;
+public final class g implements me.d, yf.m {
+    public final o f51223a;
 
-import android.view.View;
-public final class g implements View.OnClickListener {
-    public final int f49969a;
-    public final m f49970b;
-
-    public g(m mVar, int i10) {
-        this.f49969a = i10;
-        this.f49970b = mVar;
+    @Override
+    public void e(long j3) {
+        o oVar = this.f51223a;
+        oVar.c0(j3, oVar.f51419w0);
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f49969a) {
-            case 0:
-                this.f49970b.dismiss();
-                return;
-            case 1:
-                m.O(this.f49970b);
-                return;
-            default:
-                m mVar = this.f49970b;
-                mVar.f50093c0.setValueAnimated((int) mVar.f50102l0.getMinimumBid());
-                return;
-        }
+    public void n(int i10, float f7, float f10, me.e eVar) {
+        this.f51223a.b0();
+    }
+
+    @Override
+    public void A(float f7, int i10) {
     }
 }

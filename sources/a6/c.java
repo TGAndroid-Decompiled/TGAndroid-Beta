@@ -27,11 +27,11 @@ public final class c implements Runnable {
             httpURLConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             int responseCode = httpURLConnection.getResponseCode();
             if (responseCode == 200) {
-                status = Status.f6469e;
+                status = Status.f6521e;
             } else {
                 Log.e((String) aVar.f300c, ((String) aVar.d).concat("Unable to revoke access!"));
             }
-            aVar.i("Response Code: " + responseCode, new Object[0]);
+            aVar.j("Response Code: " + responseCode, new Object[0]);
         } catch (IOException e7) {
             Log.e((String) aVar.f300c, ((String) aVar.d).concat("IOException when revoking access: ".concat(String.valueOf(e7.toString()))));
         } catch (Exception e10) {

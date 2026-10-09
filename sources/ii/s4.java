@@ -16,25 +16,25 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Cells.p9;
-import org.telegram.ui.Cells.q9;
-import v7.p8;
-public final class s4 extends a0 implements org.telegram.ui.ActionBar.y5, p9 {
+import org.telegram.ui.Cells.n9;
+import org.telegram.ui.Cells.o9;
+import v7.o8;
+public final class s4 extends a0 implements org.telegram.ui.ActionBar.z5, n9 {
     public final int[] E;
-    public final org.telegram.ui.ActionBar.d6 f12632n;
-    public final Paint f12633r;
-    public final HorizontalScrollView f12634s;
+    public final org.telegram.ui.ActionBar.e6 f12679n;
+    public final Paint f12680r;
+    public final HorizontalScrollView f12681s;
     public final ImageView v;
-    public Bitmap f12635w;
-    public int f12636x;
-    public b3 f12637y;
+    public Bitmap f12682w;
+    public int f12683x;
+    public b3 f12684y;
 
-    public s4(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+    public s4(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
-        this.f12633r = new Paint(1);
-        this.f12636x = 0;
+        this.f12680r = new Paint(1);
+        this.f12683x = 0;
         this.E = new int[4];
-        this.f12632n = d6Var;
+        this.f12679n = e6Var;
         setWillNotDraw(false);
         g(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(6.0f));
         ImageView imageView = new ImageView(context);
@@ -42,20 +42,20 @@ public final class s4 extends a0 implements org.telegram.ui.ActionBar.y5, p9 {
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.addView(imageView, new FrameLayout.LayoutParams(-2, -2, 17));
         HorizontalScrollView horizontalScrollView = new HorizontalScrollView(context);
-        this.f12634s = horizontalScrollView;
+        this.f12681s = horizontalScrollView;
         horizontalScrollView.setHorizontalScrollBarEnabled(false);
         horizontalScrollView.setClipToPadding(false);
         horizontalScrollView.setPadding(0, 0, 0, 0);
         horizontalScrollView.setFillViewport(true);
         horizontalScrollView.addView(frameLayout, new FrameLayout.LayoutParams(-2, -2));
-        addView(horizontalScrollView, w7.z5.e(-1, -2, 16));
+        addView(horizontalScrollView, w7.x5.e(-1, -2, 16));
         e();
     }
 
     private String getSource() {
-        a aVar = this.f12204a;
+        a aVar = this.f12251a;
         if (aVar != null) {
-            TL_iv.PageBlock pageBlock = aVar.f12187b;
+            TL_iv.PageBlock pageBlock = aVar.f12234b;
             if (pageBlock instanceof TL_iv.pageBlockMath) {
                 return ((TL_iv.pageBlockMath) pageBlock).source;
             }
@@ -66,11 +66,11 @@ public final class s4 extends a0 implements org.telegram.ui.ActionBar.y5, p9 {
 
     @Override
     public final void e() {
-        int i10 = org.telegram.ui.ActionBar.i6.f21153uf;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f12632n;
-        this.f12633r.setColor(org.telegram.ui.ActionBar.i6.v0(i10, d6Var));
-        this.f12636x = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.G6, d6Var);
-        this.v.setColorFilter(new PorterDuffColorFilter(this.f12636x, PorterDuff.Mode.SRC_IN));
+        int i10 = org.telegram.ui.ActionBar.i6.f21119uf;
+        org.telegram.ui.ActionBar.e6 e6Var = this.f12679n;
+        this.f12680r.setColor(org.telegram.ui.ActionBar.i6.w0(i10, e6Var));
+        this.f12683x = org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.G6, e6Var);
+        this.v.setColorFilter(new PorterDuffColorFilter(this.f12683x, PorterDuff.Mode.SRC_IN));
         invalidate();
     }
 
@@ -78,7 +78,7 @@ public final class s4 extends a0 implements org.telegram.ui.ActionBar.y5, p9 {
     public final void fillTextLayoutBlocks(ArrayList arrayList) {
         int[] iArr = this.E;
         i(iArr);
-        arrayList.add(p8.a(iArr[0], iArr[1], iArr[2], iArr[3]));
+        arrayList.add(o8.a(iArr[0], iArr[1], iArr[2], iArr[3]));
     }
 
     public int[] getColorKeys() {
@@ -86,21 +86,21 @@ public final class s4 extends a0 implements org.telegram.ui.ActionBar.y5, p9 {
     }
 
     public a getRow() {
-        return this.f12204a;
+        return this.f12251a;
     }
 
     public final void h(a aVar, b3 b3Var) {
         s a2;
-        this.f12204a = aVar;
-        this.f12637y = b3Var;
+        this.f12251a = aVar;
+        this.f12684y = b3Var;
         c(aVar);
-        this.f12635w = null;
-        this.f12634s.scrollTo(0, 0);
+        this.f12682w = null;
+        this.f12681s.scrollTo(0, 0);
         String source = getSource();
         if (!TextUtils.isEmpty(source) && (a2 = s.a(source, AndroidUtilities.dp(SharedConfig.fontSize + 4), false)) != null) {
-            this.f12635w = a2.f12618a;
+            this.f12682w = a2.f12665a;
         }
-        this.v.setImageBitmap(this.f12635w);
+        this.v.setImageBitmap(this.f12682w);
         invalidate();
     }
 
@@ -108,14 +108,14 @@ public final class s4 extends a0 implements org.telegram.ui.ActionBar.y5, p9 {
         int max;
         int paddingTop = getPaddingTop();
         int height = getHeight() - getPaddingBottom();
-        if (this.f12635w != null && this.v.getWidth() > this.f12634s.getWidth()) {
+        if (this.f12682w != null && this.v.getWidth() > this.f12681s.getWidth()) {
             iArr[0] = getPaddingLeft();
             iArr[1] = paddingTop;
             iArr[2] = getWidth() - getPaddingRight();
             iArr[3] = height;
             return;
         }
-        Bitmap bitmap = this.f12635w;
+        Bitmap bitmap = this.f12682w;
         if (bitmap != null) {
             max = bitmap.getWidth();
         } else {
@@ -131,17 +131,17 @@ public final class s4 extends a0 implements org.telegram.ui.ActionBar.y5, p9 {
     @Override
     public final void onDraw(Canvas canvas) {
         b3 b3Var;
-        q9 textSelectionHelper;
-        if (this.f12636x != org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.G6, this.f12632n)) {
+        o9 textSelectionHelper;
+        if (this.f12683x != org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.G6, this.f12679n)) {
             e();
         }
-        if (this.f12635w != null && (b3Var = this.f12637y) != null && (textSelectionHelper = b3Var.f12241a.getTextSelectionHelper()) != null && textSelectionHelper.y() && (getParent() instanceof RecyclerView)) {
+        if (this.f12682w != null && (b3Var = this.f12684y) != null && (textSelectionHelper = b3Var.f12288a.getTextSelectionHelper()) != null && textSelectionHelper.x() && (getParent() instanceof RecyclerView)) {
             ((RecyclerView) getParent()).getClass();
             int R = RecyclerView.R(this);
-            if (R >= 0 && R >= textSelectionHelper.f22702u0 && R <= textSelectionHelper.f22705x0) {
+            if (R >= 0 && R >= textSelectionHelper.f22609p0 && R <= textSelectionHelper.f22612s0) {
                 int[] iArr = this.E;
                 i(iArr);
-                canvas.drawRoundRect(iArr[0], iArr[1], iArr[2], iArr[3], AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.f12633r);
+                canvas.drawRoundRect(iArr[0], iArr[1], iArr[2], iArr[3], AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.f12680r);
             }
         }
     }

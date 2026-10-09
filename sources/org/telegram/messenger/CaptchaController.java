@@ -94,7 +94,7 @@ public class CaptchaController {
     }
 
     public static void lambda$request$0(String str, String str2, Request request, String str3) {
-        com.google.android.gms.internal.vision.e2.t(str3, a4.a.x("CaptchaController: got token for {action=", str, ", key_id=", str2, "}: "));
+        hg.c.t(str3, a1.g.x("CaptchaController: got token for {action=", str, ", key_id=", str2, "}: "));
         if (str3 == null) {
             request.done("RECAPTCHA_FAILED_TOKEN_NULL");
         } else {

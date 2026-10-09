@@ -9,18 +9,18 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.bi;
 public final class t2 extends FrameLayout {
-    public final int f21526a;
-    public final Dialog f21527b;
+    public final int f21528a;
+    public final Dialog f21529b;
 
     public t2(Dialog dialog, Context context, int i10) {
         super(context);
-        this.f21526a = i10;
-        this.f21527b = dialog;
+        this.f21528a = i10;
+        this.f21529b = dialog;
     }
 
     @Override
     public boolean hasOverlappingRendering() {
-        switch (this.f21526a) {
+        switch (this.f21528a) {
             case 0:
                 return false;
             default:
@@ -36,12 +36,12 @@ public final class t2 extends FrameLayout {
         int left;
         int measuredWidth;
         int i16;
-        switch (this.f21526a) {
+        switch (this.f21528a) {
             case 1:
                 int childCount = getChildCount();
                 int i17 = i12 - i10;
                 int i18 = -1;
-                if (((b2) this.f21527b).K0) {
+                if (((b2) this.f21529b).K0) {
                     View findViewWithTag = findViewWithTag(-3);
                     View findViewWithTag2 = findViewWithTag(-4);
                     View findViewWithTag3 = findViewWithTag(-2);
@@ -98,7 +98,7 @@ public final class t2 extends FrameLayout {
                             } else {
                                 int paddingRight2 = (i17 - getPaddingRight()) - childAt.getMeasuredWidth();
                                 if (view != null) {
-                                    paddingRight2 = bi.y(8.0f, view.getMeasuredWidth(), paddingRight2);
+                                    paddingRight2 = bi.z(8.0f, view.getMeasuredWidth(), paddingRight2);
                                 }
                                 childAt.layout(paddingRight2, getPaddingTop(), childAt.getMeasuredWidth() + paddingRight2, childAt.getMeasuredHeight() + getPaddingTop());
                             }
@@ -153,13 +153,13 @@ public final class t2 extends FrameLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f21526a) {
+        switch (this.f21528a) {
             case 1:
                 super.onMeasure(i10, i11);
                 int measuredWidth = (getMeasuredWidth() - getPaddingLeft()) - getPaddingRight();
                 int childCount = getChildCount();
                 int i12 = 0;
-                if (((b2) this.f21527b).K0) {
+                if (((b2) this.f21529b).K0) {
                     int max = Math.max(0, (measuredWidth - AndroidUtilities.dp(8.0f)) / 2);
                     while (i12 < childCount) {
                         View childAt = getChildAt(i12);
@@ -211,10 +211,10 @@ public final class t2 extends FrameLayout {
 
     @Override
     public void setTranslationY(float f7) {
-        switch (this.f21526a) {
+        switch (this.f21528a) {
             case 0:
                 super.setTranslationY(f7);
-                f3 f3Var = (f3) this.f21527b;
+                f3 f3Var = (f3) this.f21529b;
                 FrameLayout frameLayout = f3Var.topBulletinContainer;
                 if (frameLayout != null) {
                     frameLayout.setTranslationY((-(f3Var.container.getHeight() - f3Var.containerView.getY())) + f3Var.backgroundPaddingTop);

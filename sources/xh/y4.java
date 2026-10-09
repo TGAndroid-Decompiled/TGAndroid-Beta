@@ -3,29 +3,29 @@ package xh;
 import android.graphics.Canvas;
 import android.graphics.PointF;
 import androidx.recyclerview.widget.RecyclerView;
-import ci.ab;
+import ci.bb;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.zl0;
-public final class y4 extends s4.n0 {
-    public final PointF f50334a = new PointF();
-    public final z4 f50335b;
+import org.telegram.ui.Components.qm0;
+public final class y4 extends s4.o0 {
+    public final PointF f51614a = new PointF();
+    public final z4 f51615b;
 
     public y4(z4 z4Var) {
-        this.f50335b = z4Var;
+        this.f51615b = z4Var;
     }
 
     @Override
     public final void c(Canvas canvas, RecyclerView recyclerView) {
         float f7;
         float f10;
-        ab abVar;
+        bb bbVar;
         float height = recyclerView.getHeight();
-        z4 z4Var = this.f50335b;
-        u4 u4Var = z4Var.f50360s0;
-        t4 t4Var = z4Var.f50350h0;
-        zl0 zl0Var = z4Var.d;
-        PointF pointF = this.f50334a;
-        if (hh.k.b(t4Var, zl0Var, pointF)) {
+        z4 z4Var = this.f51615b;
+        u4 u4Var = z4Var.f51639s0;
+        t4 t4Var = z4Var.f51629h0;
+        qm0 qm0Var = z4Var.d;
+        PointF pointF = this.f51614a;
+        if (hh.j.b(t4Var, qm0Var, pointF)) {
             f7 = pointF.x;
             height = Math.min(height, pointF.y);
             f10 = Math.max(0.0f, pointF.y + t4Var.getMeasuredHeight());
@@ -33,12 +33,12 @@ public final class y4 extends s4.n0 {
             f7 = 0.0f;
             f10 = 0.0f;
         }
-        if (hh.k.b(u4Var, zl0Var, pointF)) {
+        if (hh.j.b(u4Var, qm0Var, pointF)) {
             height = Math.min(height, pointF.y);
             f10 = Math.max(f10, pointF.y + u4Var.getMeasuredHeight() + AndroidUtilities.dp(12.0f));
         }
-        if (height < f10 && (abVar = t4Var.L) != null) {
-            float height2 = (f10 - height) / abVar.getHeight();
+        if (height < f10 && (bbVar = t4Var.L) != null) {
+            float height2 = (f10 - height) / bbVar.getHeight();
             canvas.save();
             canvas.clipRect(0.0f, height, recyclerView.getWidth(), f10);
             canvas.translate(f7, height);

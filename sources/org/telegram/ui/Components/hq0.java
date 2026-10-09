@@ -1,47 +1,38 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class hq0 implements gg.g0 {
-    public final br0 f27312a;
+import org.telegram.messenger.AndroidUtilities;
+public final class hq0 implements Runnable {
+    public final int f27113a;
+    public final mr0 f27114b;
 
-    public hq0(br0 br0Var) {
-        this.f27312a = br0Var;
+    public hq0(mr0 mr0Var, int i10) {
+        this.f27113a = i10;
+        this.f27114b = mr0Var;
     }
 
     @Override
-    public final void a(a0.i iVar, ArrayList arrayList) {
-        int i10;
-        int i11;
-        int i12;
-        int i13 = 0;
-        while (i13 < arrayList.size()) {
-            TLObject tLObject = ((gg.h0) arrayList.get(i13)).f10602a;
-            if ((tLObject instanceof TLRPC.Chat) && !ChatObject.canWriteToChat((TLRPC.Chat) tLObject)) {
-                arrayList.remove(i13);
-                i13--;
-            }
-            i13++;
+    public final void run() {
+        switch (this.f27113a) {
+            case 0:
+                mr0 mr0Var = this.f27114b;
+                mr0Var.A0 = true;
+                s20 s20Var = mr0Var.f28926y0;
+                s20Var.f30614r.setText("");
+                AndroidUtilities.showKeyboard(s20Var.f30614r);
+                return;
+            default:
+                vh vhVar = new vh(9);
+                mr0 mr0Var2 = this.f27114b;
+                if (mr0Var2.isKeyboardVisible()) {
+                    s20 s20Var2 = mr0Var2.f28926y0;
+                    if (s20Var2 != null) {
+                        AndroidUtilities.hideKeyboard(s20Var2.f30614r);
+                    }
+                    AndroidUtilities.runOnUIThread(vhVar, 300L);
+                    return;
+                }
+                vhVar.run();
+                return;
         }
-        br0 br0Var = this.f27312a;
-        br0Var.E0 = arrayList;
-        for (int i14 = 0; i14 < br0Var.E0.size(); i14++) {
-            gg.h0 h0Var = (gg.h0) br0Var.E0.get(i14);
-            TLObject tLObject2 = h0Var.f10602a;
-            if (tLObject2 instanceof TLRPC.User) {
-                i12 = ((org.telegram.ui.ActionBar.f3) br0Var).currentAccount;
-                MessagesController.getInstance(i12).putUser((TLRPC.User) h0Var.f10602a, true);
-            } else if (tLObject2 instanceof TLRPC.Chat) {
-                i11 = ((org.telegram.ui.ActionBar.f3) br0Var).currentAccount;
-                MessagesController.getInstance(i11).putChat((TLRPC.Chat) h0Var.f10602a, true);
-            } else if (tLObject2 instanceof TLRPC.EncryptedChat) {
-                i10 = ((org.telegram.ui.ActionBar.f3) br0Var).currentAccount;
-                MessagesController.getInstance(i10).putEncryptedChat((TLRPC.EncryptedChat) h0Var.f10602a, true);
-            }
-        }
-        br0Var.M.l();
     }
 }

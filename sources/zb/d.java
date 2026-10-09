@@ -1,16 +1,16 @@
 package zb;
 
 import x7.fa;
-import x7.ha;
+import x7.ia;
 public final class d {
-    public final e f53201a;
-    public final qb.d f53202b;
-    public final fa f53203c;
+    public final e f54307a;
+    public final qb.d f54308b;
+    public final fa f54309c;
 
     public d(e eVar, qb.d dVar) {
-        fa b10 = ha.b();
-        this.f53201a = eVar;
-        this.f53202b = dVar;
-        this.f53203c = b10;
+        fa b10 = ia.b();
+        this.f54307a = eVar;
+        this.f54308b = dVar;
+        this.f54309c = b10;
     }
 }

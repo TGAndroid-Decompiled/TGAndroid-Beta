@@ -1,24 +1,57 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.content.Context;
-import android.graphics.Bitmap;
-import java.util.ArrayList;
-import org.telegram.messenger.MediaController;
-public final class vt0 extends qg.m0 {
-    public final PhotoViewer f41820o2;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class vt0 extends AnimatorListenerAdapter {
+    public final int f42978a;
+    public final wt0 f42979b;
 
-    public vt0(PhotoViewer photoViewer, Context context, Activity activity, int i10, Bitmap bitmap, Bitmap bitmap2, int i11, ArrayList arrayList, MediaController.CropState cropState, dr0 dr0Var, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, activity, i10, bitmap, bitmap2, i11, arrayList, cropState, dr0Var, d6Var);
-        this.f41820o2 = photoViewer;
+    public vt0(wt0 wt0Var, int i10) {
+        this.f42979b = wt0Var;
+        this.f42978a = i10;
     }
 
     @Override
-    public final int getPKeyboardHeight() {
-        ci.i4 i4Var = this.f41820o2.K1;
-        if (i4Var != null) {
-            return i4Var.f5168l;
+    public final void onAnimationEnd(Animator animator) {
+        if (this.f42979b.f43754b.f33964k8) {
+            PhotoViewer photoViewer = this.f42979b.f43754b;
+            if (photoViewer.f34017r1) {
+                photoViewer.B3();
+            }
         }
-        return 0;
+        if (this.f42978a == 3) {
+            PhotoViewer photoViewer2 = this.f42979b.f43754b;
+            photoViewer2.G2(photoViewer2.P4, false, true, true);
+        }
+    }
+
+    @Override
+    public final void onAnimationStart(Animator animator) {
+        int i10;
+        PhotoViewer photoViewer = this.f42979b.f43754b;
+        photoViewer.P0.setVisibility(0);
+        if (photoViewer.E3()) {
+            photoViewer.f33981n0.setVisibility(0);
+        } else {
+            photoViewer.S0.setVisibility(0);
+        }
+        photoViewer.F.setVisibility(0);
+        if (photoViewer.f33941i2) {
+            su0 su0Var = photoViewer.Q1;
+            if (su0Var.getTag() != null) {
+                i10 = 0;
+            } else {
+                i10 = 4;
+            }
+            su0Var.setVisibility(i10);
+        }
+        if (!photoViewer.f33896d2 && !photoViewer.f33906e2) {
+            int i11 = photoViewer.f33887c2;
+            if ((i11 == 0 || i11 == 4 || ((i11 == 2 || i11 == 5) && photoViewer.f33928g7.size() > 1)) && !photoViewer.f33917f4) {
+                photoViewer.N0.setVisibility(0);
+                photoViewer.O0.setVisibility(0);
+                photoViewer.s3();
+            }
+        }
     }
 }

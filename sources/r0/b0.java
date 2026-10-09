@@ -3,15 +3,15 @@ package r0;
 import android.view.View;
 import android.view.WindowInsets;
 public abstract class b0 {
-    public static l1 a(View view) {
+    public static k1 a(View view) {
         WindowInsets rootWindowInsets = view.getRootWindowInsets();
         if (rootWindowInsets == null) {
             return null;
         }
-        l1 h = l1.h(null, rootWindowInsets);
-        i1 i1Var = h.f45624a;
-        i1Var.r(h);
-        i1Var.d(view.getRootView());
+        k1 h = k1.h(null, rootWindowInsets);
+        h1 h1Var = h.f46775a;
+        h1Var.r(h);
+        h1Var.d(view.getRootView());
         return h;
     }
 

@@ -10,15 +10,15 @@ import h2.j;
 import h2.l;
 import java.io.IOException;
 import java.nio.ByteBuffer;
-import v7.l7;
+import v7.j7;
 public final class b extends l {
-    public final Context f44766o;
-    public final int f44767p;
+    public final Context f45920o;
+    public final int f45921p;
 
     public b(Context context) {
         super(new h[1], new a[1]);
-        this.f44766o = context;
-        this.f44767p = -1;
+        this.f45920o = context;
+        this.f45921p = -1;
     }
 
     @Override
@@ -45,7 +45,7 @@ public final class b extends l {
     public final h2.f i(h hVar, j jVar, boolean z10) {
         boolean z11;
         a aVar = (a) jVar;
-        ByteBuffer byteBuffer = hVar.f10980c;
+        ByteBuffer byteBuffer = hVar.f10985c;
         byteBuffer.getClass();
         e2.d.g(byteBuffer.hasArray());
         if (byteBuffer.arrayOffset() == 0) {
@@ -55,14 +55,14 @@ public final class b extends l {
         }
         e2.d.b(z11);
         try {
-            int i10 = this.f44767p;
+            int i10 = this.f45921p;
             if (i10 == -1) {
-                Context context = this.f44766o;
+                Context context = this.f45920o;
                 if (context != null) {
-                    Point w10 = d0.w(context);
-                    int i11 = w10.x;
-                    int i12 = w10.y;
-                    s sVar = hVar.f10978a;
+                    Point v = d0.v(context);
+                    int i11 = v.x;
+                    int i12 = v.y;
+                    s sVar = hVar.f10983a;
                     if (sVar != null) {
                         int i13 = sVar.Q;
                         if (i13 != -1) {
@@ -78,8 +78,8 @@ public final class b extends l {
                     i10 = 4096;
                 }
             }
-            aVar.f44764a = l7.a(byteBuffer.remaining(), i10, byteBuffer.array());
-            aVar.timeUs = hVar.f10981e;
+            aVar.f45918a = j7.a(byteBuffer.remaining(), i10, byteBuffer.array());
+            aVar.timeUs = hVar.f10986e;
             return null;
         } catch (s0 e7) {
             return new Exception("Could not decode image data with BitmapFactory.", e7);

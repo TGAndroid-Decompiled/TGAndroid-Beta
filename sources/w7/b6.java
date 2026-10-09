@@ -1,34 +1,28 @@
 package w7;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.StateListAnimator;
-import android.util.Property;
-import android.view.View;
-import android.view.animation.OvershootInterpolator;
+import android.content.Context;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.ea0;
 public abstract class b6 {
-    public static void a(View view) {
-        b(view, 0.1f, 1.5f);
+    public static ea0 a(Context context, float f7, int i10, boolean z10, org.telegram.ui.ActionBar.e6 e6Var) {
+        int i11 = org.telegram.ui.ActionBar.i6.gc;
+        ea0 ea0Var = new ea0(context, null);
+        ea0Var.setTextSize(1, f7);
+        ea0Var.setTextColor(org.telegram.ui.ActionBar.i6.w0(i10, e6Var));
+        ea0Var.setLinkTextColor(org.telegram.ui.ActionBar.i6.w0(i11, e6Var));
+        if (z10) {
+            ea0Var.setTypeface(AndroidUtilities.bold());
+        }
+        return ea0Var;
     }
 
-    public static void b(View view, float f7, float f10) {
-        if (view == null) {
-            return;
+    public static TextView b(Context context, float f7, int i10, boolean z10, org.telegram.ui.ActionBar.e6 e6Var) {
+        TextView f10 = org.telegram.messenger.q.f(context, 1, f7);
+        f10.setTextColor(org.telegram.ui.ActionBar.i6.w0(i10, e6Var));
+        if (z10) {
+            f10.setTypeface(AndroidUtilities.bold());
         }
-        AnimatorSet animatorSet = new AnimatorSet();
-        Property property = View.SCALE_X;
-        float f11 = 1.0f - f7;
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(view, property, f11);
-        Property property2 = View.SCALE_Y;
-        animatorSet.playTogether(ofFloat, ObjectAnimator.ofFloat(view, property2, f11));
-        animatorSet.setDuration(80L);
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        animatorSet2.playTogether(ObjectAnimator.ofFloat(view, property, 1.0f), ObjectAnimator.ofFloat(view, property2, 1.0f));
-        animatorSet2.setInterpolator(new OvershootInterpolator(f10));
-        animatorSet2.setDuration(350L);
-        StateListAnimator stateListAnimator = new StateListAnimator();
-        stateListAnimator.addState(new int[]{16842919}, animatorSet);
-        stateListAnimator.addState(new int[0], animatorSet2);
-        view.setStateListAnimator(stateListAnimator);
+        return f10;
     }
 }

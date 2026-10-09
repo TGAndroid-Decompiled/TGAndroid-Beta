@@ -1,69 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.text.style.ReplacementSpan;
-import org.telegram.messenger.AndroidUtilities;
-public final class w01 extends ReplacementSpan {
-    public final int f32463a;
-    public int f32464b;
-    public final Object f32465c;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.Utilities;
+public final class w01 implements TextWatcher {
+    public final d11 f32504a;
 
-    public w01(int i10) {
-        this.f32463a = 0;
-        Paint paint = new Paint(1);
-        this.f32465c = paint;
-        this.f32464b = i10;
-        paint.setColor(org.telegram.ui.ActionBar.i6.l1(0.3f, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21018nd, false)));
+    public w01(d11 d11Var) {
+        this.f32504a = d11Var;
     }
 
-    public void a(int i10) {
-        org.telegram.ui.rp0 rp0Var = (org.telegram.ui.rp0) this.f32465c;
-        if (rp0Var != null) {
-            rp0Var.f40153a = i10 / 2.0f;
-            rp0Var.d();
-            this.f32464b = i10;
+    @Override
+    public final void afterTextChanged(Editable editable) {
+        d11 d11Var = this.f32504a;
+        r6 r6Var = d11Var.f25557n;
+        if (!d11Var.f25561x) {
+            String trim = editable.toString().trim();
+            if (trim.length() > 16) {
+                r6Var.setText("-" + (trim.length() - 16));
+                trim = trim.substring(0, 16);
+            } else {
+                r6Var.setText("");
+            }
+            Utilities.Callback callback = d11Var.f25560w;
+            if (callback != null) {
+                callback.run(trim);
+            }
+            MessageObject messageObject = d11Var.f25558r;
+            if (messageObject != null) {
+                messageObject.forceUpdate = true;
+                d11Var.d.X3(messageObject, null, false, false, false, false);
+            }
         }
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        switch (this.f32463a) {
-            case 0:
-                float dp = ((i12 + i14) / 2.0f) + AndroidUtilities.dp(1.33f);
-                RectF rectF = AndroidUtilities.rectTmp;
-                float dp2 = AndroidUtilities.dp(6.66f) / 2.0f;
-                rectF.set(f7, dp - dp2, this.f32464b + f7, dp + dp2);
-                canvas.drawRoundRect(rectF, dp2, dp2, (Paint) this.f32465c);
-                return;
-            default:
-                org.telegram.ui.rp0 rp0Var = (org.telegram.ui.rp0) this.f32465c;
-                if (rp0Var != null) {
-                    int i15 = (i12 + i14) / 2;
-                    float dp3 = f7 + AndroidUtilities.dp(5.0f);
-                    int i16 = this.f32464b;
-                    rp0Var.setBounds((int) (AndroidUtilities.dp(3.0f) + f7), i15 - this.f32464b, (int) (dp3 + i16), i15 + i16);
-                    rp0Var.draw(canvas);
-                    return;
-                }
-                return;
-        }
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 
     @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        switch (this.f32463a) {
-            case 0:
-                return this.f32464b;
-            default:
-                return AndroidUtilities.dp(3.0f) + AndroidUtilities.dp(3.0f) + this.f32464b;
-        }
-    }
-
-    public w01(boolean z10, int i10, int i11) {
-        this.f32463a = 1;
-        this.f32464b = AndroidUtilities.dp(21.0f);
-        this.f32465c = z10 ? org.telegram.ui.rp0.c(i10, i11) : org.telegram.ui.rp0.a(i10, i11);
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

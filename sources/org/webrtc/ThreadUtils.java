@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 public class ThreadUtils {
 
     public class C1CaughtException {
-        Exception f43942e;
+        Exception f45106e;
     }
 
     public class C1Result {
@@ -93,17 +93,17 @@ public class ThreadUtils {
                 try {
                     C1Result.this.value = callable.call();
                 } catch (Exception e10) {
-                    c1CaughtException.f43942e = e10;
+                    c1CaughtException.f45106e = e10;
                 }
                 countDownLatch.countDown();
             }
         });
         awaitUninterruptibly(countDownLatch);
-        if (c1CaughtException.f43942e == null) {
+        if (c1CaughtException.f45106e == null) {
             return c1Result.value;
         }
-        RuntimeException runtimeException = new RuntimeException(c1CaughtException.f43942e);
-        runtimeException.setStackTrace(concatStackTraces(c1CaughtException.f43942e.getStackTrace(), runtimeException.getStackTrace()));
+        RuntimeException runtimeException = new RuntimeException(c1CaughtException.f45106e);
+        runtimeException.setStackTrace(concatStackTraces(c1CaughtException.f45106e.getStackTrace(), runtimeException.getStackTrace()));
         throw runtimeException;
     }
 
@@ -131,17 +131,19 @@ public class ThreadUtils {
         boolean z10 = false;
         long j10 = j3;
         boolean z11 = false;
-        do {
+        while (true) {
             try {
                 z10 = countDownLatch.await(j10, TimeUnit.MILLISECONDS);
                 break;
             } catch (InterruptedException unused) {
                 j10 = j3 - (SystemClock.elapsedRealtime() - elapsedRealtime);
-                z11 = true;
                 if (j10 <= 0) {
+                    z11 = true;
+                    break;
                 }
+                z11 = true;
             }
-        } while (j10 <= 0);
+        }
         if (z11) {
             Thread.currentThread().interrupt();
         }

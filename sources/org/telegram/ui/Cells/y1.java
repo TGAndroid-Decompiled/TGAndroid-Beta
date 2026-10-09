@@ -4,16 +4,16 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.text.style.ForegroundColorSpan;
 import android.widget.TextView;
-import ci.zb;
+import ci.ac;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.UndoView;
-import org.telegram.ui.Components.e61;
-import org.telegram.ui.Components.n90;
-import org.telegram.ui.Components.q90;
-import org.telegram.ui.nd;
-public final class y1 extends q90 {
+import org.telegram.ui.Components.ba0;
+import org.telegram.ui.Components.ea0;
+import org.telegram.ui.Components.m61;
+import org.telegram.ui.md;
+public final class y1 extends ea0 {
     public final int L;
     public final Object M;
 
@@ -27,7 +27,7 @@ public final class y1 extends q90 {
     public int a() {
         switch (this.L) {
             case 4:
-                return ((UndoView) this.M).f24376a;
+                return ((UndoView) this.M).f24371a;
             default:
                 return super.a();
         }
@@ -83,35 +83,35 @@ public final class y1 extends q90 {
                     int indexOf = charSequence.toString().indexOf(10);
                     if (indexOf >= 0) {
                         charSequence.replace(indexOf, indexOf + 1, " ");
-                        charSequence.setSpan(new ForegroundColorSpan(((org.telegram.ui.ra) this.M).f40021e.getThemedColor(org.telegram.ui.ActionBar.i6.f21049p7)), 0, indexOf, 33);
+                        charSequence.setSpan(new ForegroundColorSpan(((org.telegram.ui.qa) this.M).f41061e.getThemedColor(org.telegram.ui.ActionBar.i6.f21018p7)), 0, indexOf, 33);
                     }
-                    e61[] e61VarArr = (e61[]) charSequence.getSpans(0, charSequence.length(), e61.class);
-                    for (int i10 = 0; i10 < e61VarArr.length; i10++) {
-                        charSequence.setSpan(new zb(this, 2), charSequence.getSpanStart(e61VarArr[i10]), charSequence.getSpanEnd(e61VarArr[i10]), 33);
-                        charSequence.removeSpan(e61VarArr[i10]);
+                    m61[] m61VarArr = (m61[]) charSequence.getSpans(0, charSequence.length(), m61.class);
+                    for (int i10 = 0; i10 < m61VarArr.length; i10++) {
+                        charSequence.setSpan(new ac(this, 2), charSequence.getSpanStart(m61VarArr[i10]), charSequence.getSpanEnd(m61VarArr[i10]), 33);
+                        charSequence.removeSpan(m61VarArr[i10]);
                     }
                 }
                 super.setText(charSequence, bufferType);
                 return;
             case 3:
-                nd ndVar = (nd) this.M;
+                md mdVar = (md) this.M;
                 if (charSequence != 0) {
                     charSequence = AndroidUtilities.replaceTags(charSequence.toString());
                     int indexOf2 = charSequence.toString().indexOf(10);
                     if (indexOf2 >= 0) {
                         charSequence.replace(indexOf2, indexOf2 + 1, " ");
-                        charSequence.setSpan(new ForegroundColorSpan(ndVar.getThemedColor(org.telegram.ui.ActionBar.i6.f21049p7)), 0, indexOf2, 33);
+                        charSequence.setSpan(new ForegroundColorSpan(mdVar.getThemedColor(org.telegram.ui.ActionBar.i6.f21018p7)), 0, indexOf2, 33);
                     }
-                    e61[] e61VarArr2 = (e61[]) charSequence.getSpans(0, charSequence.length(), e61.class);
-                    EditTextBoldCursor editTextBoldCursor = ndVar.f38928w;
+                    m61[] m61VarArr2 = (m61[]) charSequence.getSpans(0, charSequence.length(), m61.class);
+                    EditTextBoldCursor editTextBoldCursor = mdVar.f39865w;
                     if (editTextBoldCursor != null && editTextBoldCursor.getText() != null) {
-                        str = ndVar.f38928w.getText().toString();
+                        str = mdVar.f39865w.getText().toString();
                     } else {
                         str = "";
                     }
-                    for (int i11 = 0; i11 < e61VarArr2.length; i11++) {
-                        charSequence.setSpan(new i(4, (Object) this, str), charSequence.getSpanStart(e61VarArr2[i11]), charSequence.getSpanEnd(e61VarArr2[i11]), 33);
-                        charSequence.removeSpan(e61VarArr2[i11]);
+                    for (int i11 = 0; i11 < m61VarArr2.length; i11++) {
+                        charSequence.setSpan(new i(4, (Object) this, str), charSequence.getSpanStart(m61VarArr2[i11]), charSequence.getSpanEnd(m61VarArr2[i11]), 33);
+                        charSequence.removeSpan(m61VarArr2[i11]);
                     }
                 }
                 super.setText(charSequence, bufferType);
@@ -119,14 +119,14 @@ public final class y1 extends q90 {
         }
     }
 
-    public y1(e9 e9Var, Context context, n90 n90Var, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, n90Var, d6Var);
+    public y1(e9 e9Var, Context context, ba0 ba0Var, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, ba0Var, e6Var);
         this.L = 1;
         this.M = e9Var;
     }
 
-    public y1(UndoView undoView, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, d6Var);
+    public y1(UndoView undoView, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, e6Var);
         this.L = 4;
         this.M = undoView;
     }

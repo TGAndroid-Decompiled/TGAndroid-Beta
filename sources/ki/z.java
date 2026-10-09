@@ -1,20 +1,12 @@
 package ki;
+public final class z extends x {
+    public final int f15166e;
+    public final int f15167f;
+    public final int f15168g;
+    public final int h;
+    public final int f15169i;
 
-import java.nio.ByteBuffer;
-public final class z {
-    public final int f15101a;
-    public final int f15102b;
-    public final int f15103c;
-    public final int d;
-    public final int f15104e;
-    public final ByteBuffer f15105f;
-
-    public z(int i10, int i11, int i12, int i13, int i14, ByteBuffer byteBuffer) {
-        this.f15101a = i10;
-        this.f15102b = i11;
-        this.f15103c = i12;
-        this.d = i13;
-        this.f15104e = i14;
-        this.f15105f = byteBuffer;
+    public z(boolean r8, boolean r9) {
+        throw new UnsupportedOperationException("Method not decompiled: ki.z.<init>(boolean, boolean):void");
     }
 }

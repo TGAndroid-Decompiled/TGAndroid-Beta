@@ -1,35 +1,40 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import org.telegram.messenger.ChatObject;
-public final class ap implements org.telegram.ui.Components.i90 {
-    public final Context f34927a;
-    public final hp f34928b;
+import android.graphics.Rect;
+import android.view.MotionEvent;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class ap extends org.telegram.ui.Components.ep0 {
+    public final ip f35970r;
 
-    public ap(hp hpVar, Context context) {
-        this.f34928b = hpVar;
-        this.f34927a = context;
+    public ap(ip ipVar, Context context, yd ydVar, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, ydVar, e6Var, false);
+        this.f35970r = ipVar;
     }
 
     @Override
-    public final void c() {
-        this.f34928b.W(true);
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (!this.f35970r.L && super.onInterceptTouchEvent(motionEvent)) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final void h() {
-        hp hpVar = this.f34928b;
-        org.telegram.ui.Components.f70 f70Var = new org.telegram.ui.Components.f70(this.f34927a, hpVar.m0, hpVar.Z, hpVar.f37150p0, hpVar, hpVar.f37131a0, true, ChatObject.isChannel(hpVar.Y));
-        hp hpVar2 = this.f34928b;
-        hpVar2.f37151q0 = f70Var;
-        hpVar2.f37151q0.show();
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() != 0) {
+            return super.onTouchEvent(motionEvent);
+        }
+        if (!this.f35970r.L && super.onTouchEvent(motionEvent)) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final void b() {
-    }
-
-    @Override
-    public final void i() {
+    public final boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
+        rect.bottom = AndroidUtilities.dp(60.0f) + rect.bottom;
+        return super.requestChildRectangleOnScreen(view, rect, z10);
     }
 }

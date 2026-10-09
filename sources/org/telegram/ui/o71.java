@@ -1,19 +1,11 @@
 package org.telegram.ui;
 
 import android.view.View;
-public final class o71 implements View.OnClickListener {
-    public final x71 f39110a;
-
-    public o71(x71 x71Var) {
-        this.f39110a = x71Var;
-    }
-
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class o71 extends FrameLayout {
     @Override
-    public final void onClick(View view) {
-        org.telegram.ui.Components.nj0 nj0Var = this.f39110a.d;
-        if (!nj0Var.b() && nj0Var.getAnimatedDrawable() != null) {
-            nj0Var.getAnimatedDrawable().M(40);
-            nj0Var.d();
-        }
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(240.0f), 1073741824));
     }
 }

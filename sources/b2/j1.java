@@ -10,32 +10,32 @@ public final class j1 {
     public static final String C;
     public static final String D;
     public static final String E;
-    public static final Object f3291q = new Object();
-    public static final k0 f3292r;
-    public static final String f3293s;
-    public static final String f3294t;
-    public static final String f3295u;
+    public static final Object f3370q = new Object();
+    public static final k0 f3371r;
+    public static final String f3372s;
+    public static final String f3373t;
+    public static final String f3374u;
     public static final String v;
-    public static final String f3296w;
-    public static final String f3297x;
-    public static final String f3298y;
-    public static final String f3299z;
-    public Object f3301b;
+    public static final String f3375w;
+    public static final String f3376x;
+    public static final String f3377y;
+    public static final String f3378z;
+    public Object f3380b;
     public Object d;
-    public long f3303e;
-    public long f3304f;
-    public long f3305g;
+    public long f3382e;
+    public long f3383f;
+    public long f3384g;
     public boolean h;
-    public boolean f3306i;
-    public e0 f3307j;
-    public boolean f3308k;
-    public long f3309l;
-    public long f3310m;
-    public int f3311n;
-    public int f3312o;
-    public long f3313p;
-    public Object f3300a = f3291q;
-    public k0 f3302c = f3292r;
+    public boolean f3385i;
+    public e0 f3386j;
+    public boolean f3387k;
+    public long f3388l;
+    public long f3389m;
+    public int f3390n;
+    public int f3391o;
+    public long f3392p;
+    public Object f3379a = f3370q;
+    public k0 f3381c = f3371r;
 
     static {
         boolean z10;
@@ -43,11 +43,11 @@ public final class j1 {
         y yVar = new y();
         b0 b0Var = new b0();
         List list = Collections.EMPTY_LIST;
-        e9.a1 a1Var = e9.a1.f8721e;
+        e9.a1 a1Var = e9.a1.f8715e;
         d0 d0Var = new d0();
         g0 g0Var = g0.d;
         Uri uri = Uri.EMPTY;
-        if (b0Var.f3165b != null && b0Var.f3164a == null) {
+        if (b0Var.f3244b != null && b0Var.f3243a == null) {
             z10 = false;
         } else {
             z10 = true;
@@ -55,22 +55,22 @@ public final class j1 {
         e2.d.g(z10);
         c0 c0Var = null;
         if (uri != null) {
-            if (b0Var.f3164a != null) {
+            if (b0Var.f3243a != null) {
                 c0Var = new c0(b0Var);
             }
             f0Var = new f0(uri, null, c0Var, null, list, null, a1Var, -9223372036854775807L);
         } else {
             f0Var = null;
         }
-        f3292r = new k0("androidx.media3.common.Timeline", new z(yVar), f0Var, new e0(d0Var), n0.K, g0Var);
-        f3293s = Integer.toString(1, 36);
-        f3294t = Integer.toString(2, 36);
-        f3295u = Integer.toString(3, 36);
+        f3371r = new k0("androidx.media3.common.Timeline", new z(yVar), f0Var, new e0(d0Var), n0.K, g0Var);
+        f3372s = Integer.toString(1, 36);
+        f3373t = Integer.toString(2, 36);
+        f3374u = Integer.toString(3, 36);
         v = Integer.toString(4, 36);
-        f3296w = Integer.toString(5, 36);
-        f3297x = Integer.toString(6, 36);
-        f3298y = Integer.toString(7, 36);
-        f3299z = Integer.toString(8, 36);
+        f3375w = Integer.toString(5, 36);
+        f3376x = Integer.toString(6, 36);
+        f3377y = Integer.toString(7, 36);
+        f3378z = Integer.toString(8, 36);
         A = Integer.toString(9, 36);
         B = Integer.toString(10, 36);
         C = Integer.toString(11, 36);
@@ -79,7 +79,7 @@ public final class j1 {
     }
 
     public final boolean a() {
-        if (this.f3307j != null) {
+        if (this.f3386j != null) {
             return true;
         }
         return false;
@@ -87,30 +87,30 @@ public final class j1 {
 
     public final void b(Object obj, k0 k0Var, Object obj2, long j3, long j10, long j11, boolean z10, boolean z11, e0 e0Var, long j12, long j13, int i10, int i11, long j14) {
         k0 k0Var2;
-        this.f3300a = obj;
+        this.f3379a = obj;
         if (k0Var != null) {
             k0Var2 = k0Var;
         } else {
-            k0Var2 = f3292r;
+            k0Var2 = f3371r;
         }
-        this.f3302c = k0Var2;
+        this.f3381c = k0Var2;
         if (k0Var != null) {
-            f0 f0Var = k0Var.f3321b;
+            f0 f0Var = k0Var.f3400b;
         }
-        this.f3301b = null;
+        this.f3380b = null;
         this.d = obj2;
-        this.f3303e = j3;
-        this.f3304f = j10;
-        this.f3305g = j11;
+        this.f3382e = j3;
+        this.f3383f = j10;
+        this.f3384g = j11;
         this.h = z10;
-        this.f3306i = z11;
-        this.f3307j = e0Var;
-        this.f3309l = j12;
-        this.f3310m = j13;
-        this.f3311n = i10;
-        this.f3312o = i11;
-        this.f3313p = j14;
-        this.f3308k = false;
+        this.f3385i = z11;
+        this.f3386j = e0Var;
+        this.f3388l = j12;
+        this.f3389m = j13;
+        this.f3390n = i10;
+        this.f3391o = i11;
+        this.f3392p = j14;
+        this.f3387k = false;
     }
 
     public final boolean equals(Object obj) {
@@ -119,7 +119,7 @@ public final class j1 {
         }
         if (obj != null && j1.class.equals(obj.getClass())) {
             j1 j1Var = (j1) obj;
-            if (Objects.equals(this.f3300a, j1Var.f3300a) && Objects.equals(this.f3302c, j1Var.f3302c) && Objects.equals(this.d, j1Var.d) && Objects.equals(this.f3307j, j1Var.f3307j) && this.f3303e == j1Var.f3303e && this.f3304f == j1Var.f3304f && this.f3305g == j1Var.f3305g && this.h == j1Var.h && this.f3306i == j1Var.f3306i && this.f3308k == j1Var.f3308k && this.f3309l == j1Var.f3309l && this.f3310m == j1Var.f3310m && this.f3311n == j1Var.f3311n && this.f3312o == j1Var.f3312o && this.f3313p == j1Var.f3313p) {
+            if (Objects.equals(this.f3379a, j1Var.f3379a) && Objects.equals(this.f3381c, j1Var.f3381c) && Objects.equals(this.d, j1Var.d) && Objects.equals(this.f3386j, j1Var.f3386j) && this.f3382e == j1Var.f3382e && this.f3383f == j1Var.f3383f && this.f3384g == j1Var.f3384g && this.h == j1Var.h && this.f3385i == j1Var.f3385i && this.f3387k == j1Var.f3387k && this.f3388l == j1Var.f3388l && this.f3389m == j1Var.f3389m && this.f3390n == j1Var.f3390n && this.f3391o == j1Var.f3391o && this.f3392p == j1Var.f3392p) {
                 return true;
             }
         }
@@ -128,7 +128,7 @@ public final class j1 {
 
     public final int hashCode() {
         int hashCode;
-        int hashCode2 = (this.f3302c.hashCode() + ((this.f3300a.hashCode() + 217) * 31)) * 31;
+        int hashCode2 = (this.f3381c.hashCode() + ((this.f3379a.hashCode() + 217) * 31)) * 31;
         Object obj = this.d;
         int i10 = 0;
         if (obj == null) {
@@ -137,16 +137,16 @@ public final class j1 {
             hashCode = obj.hashCode();
         }
         int i11 = (hashCode2 + hashCode) * 31;
-        e0 e0Var = this.f3307j;
+        e0 e0Var = this.f3386j;
         if (e0Var != null) {
             i10 = e0Var.hashCode();
         }
-        long j3 = this.f3303e;
-        long j10 = this.f3304f;
-        long j11 = this.f3305g;
-        long j12 = this.f3309l;
-        long j13 = this.f3310m;
-        long j14 = this.f3313p;
-        return ((((((((((((((((((((((i11 + i10) * 31) + ((int) (j3 ^ (j3 >>> 32)))) * 31) + ((int) (j10 ^ (j10 >>> 32)))) * 31) + ((int) (j11 ^ (j11 >>> 32)))) * 31) + (this.h ? 1 : 0)) * 31) + (this.f3306i ? 1 : 0)) * 31) + (this.f3308k ? 1 : 0)) * 31) + ((int) (j12 ^ (j12 >>> 32)))) * 31) + ((int) (j13 ^ (j13 >>> 32)))) * 31) + this.f3311n) * 31) + this.f3312o) * 31) + ((int) (j14 ^ (j14 >>> 32)));
+        long j3 = this.f3382e;
+        long j10 = this.f3383f;
+        long j11 = this.f3384g;
+        long j12 = this.f3388l;
+        long j13 = this.f3389m;
+        long j14 = this.f3392p;
+        return ((((((((((((((((((((((i11 + i10) * 31) + ((int) (j3 ^ (j3 >>> 32)))) * 31) + ((int) (j10 ^ (j10 >>> 32)))) * 31) + ((int) (j11 ^ (j11 >>> 32)))) * 31) + (this.h ? 1 : 0)) * 31) + (this.f3385i ? 1 : 0)) * 31) + (this.f3387k ? 1 : 0)) * 31) + ((int) (j12 ^ (j12 >>> 32)))) * 31) + ((int) (j13 ^ (j13 >>> 32)))) * 31) + this.f3390n) * 31) + this.f3391o) * 31) + ((int) (j14 ^ (j14 >>> 32)));
     }
 }

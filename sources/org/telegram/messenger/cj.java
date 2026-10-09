@@ -1,113 +1,31 @@
 package org.telegram.messenger;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class cj implements Runnable {
-    public final int f17599a = 0;
-    public final int f17600b;
-    public final boolean f17601c;
+    public final int f17585a;
+    public final SendMessagesHelper f17586b;
+    public final TLRPC.Message f17587c;
     public final boolean d;
-    public final Object f17602e;
-    public final Serializable f17603f;
-    public final Object h;
-    public final Object f17604n;
-    public final TLObject f17605r;
 
-    public cj(SendMessagesHelper sendMessagesHelper, ArrayList arrayList, boolean z10, boolean z11, TLRPC.Message message, ArrayList arrayList2, ArrayList arrayList3, int i10) {
-        this.f17602e = sendMessagesHelper;
-        this.f17603f = arrayList;
-        this.f17601c = z10;
-        this.d = z11;
-        this.f17605r = message;
-        this.h = arrayList2;
-        this.f17604n = arrayList3;
-        this.f17600b = i10;
+    public cj(SendMessagesHelper sendMessagesHelper, TLRPC.Message message, boolean z10, int i10) {
+        this.f17585a = i10;
+        this.f17586b = sendMessagesHelper;
+        this.f17587c = message;
+        this.d = z10;
     }
 
     @Override
     public final void run() {
-        int i10;
-        TLRPC.TL_username tL_username;
-        switch (this.f17599a) {
+        switch (this.f17585a) {
             case 0:
-                int i11 = this.f17600b;
-                ((SendMessagesHelper) this.f17602e).lambda$performSendMessageRequest$96((ArrayList) this.f17603f, this.f17601c, this.d, (TLRPC.Message) this.f17605r, (ArrayList) this.h, (ArrayList) this.f17604n, i11);
+                this.f17586b.lambda$putToSendingMessages$64(this.f17587c, this.d);
+                return;
+            case 1:
+                this.f17586b.lambda$performSendMessageRequest$90(this.f17587c, this.d);
                 return;
             default:
-                org.telegram.ui.ha haVar = (org.telegram.ui.ha) this.f17602e;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f17604n;
-                TLRPC.TL_username tL_username2 = (TLRPC.TL_username) this.f17605r;
-                org.telegram.ui.sa saVar = haVar.f37045a;
-                ArrayList arrayList = saVar.f40419w;
-                ArrayList arrayList2 = saVar.v;
-                arrayList.remove((String) this.f17603f);
-                boolean z10 = ((TLObject) this.h) instanceof TLRPC.TL_boolTrue;
-                int i12 = this.f17600b;
-                boolean z11 = this.f17601c;
-                if (z10) {
-                    saVar.i0(i12, z11, false);
-                } else {
-                    boolean z12 = this.d;
-                    if (tL_error != null && "USERNAMES_ACTIVE_TOO_MUCH".equals(tL_error.text)) {
-                        tL_username2.active = z11;
-                        saVar.i0(i12, z11, false);
-                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(saVar.getParentActivity(), 0, saVar.getResourceProvider());
-                        alertDialog$Builder.f20377a.R = LocaleController.getString(R.string.UsernameActivateErrorTitle);
-                        alertDialog$Builder.f20377a.T = LocaleController.getString(R.string.UsernameActivateErrorMessage);
-                        alertDialog$Builder.k(LocaleController.getString(R.string.OK), new com.google.firebase.messaging.i(haVar, tL_username2, z12, 4));
-                        alertDialog$Builder.o();
-                    } else {
-                        saVar.j0(tL_username2, z12, true);
-                    }
-                }
-                i10 = ((org.telegram.ui.ActionBar.n2) saVar).currentAccount;
-                TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(saVar.g0()));
-                saVar.getMessagesController().updateUsernameActiveness(user, tL_username2.username, tL_username2.active);
-                if (saVar.f40420x != 0 && arrayList2 != null) {
-                    int size = arrayList2.size();
-                    int i13 = 0;
-                    while (i13 < size) {
-                        Object obj = arrayList2.get(i13);
-                        i13++;
-                        if (((TLRPC.TL_username) obj).active) {
-                            return;
-                        }
-                    }
-                    int size2 = arrayList2.size();
-                    int i14 = 0;
-                    while (true) {
-                        if (i14 < size2) {
-                            Object obj2 = arrayList2.get(i14);
-                            i14++;
-                            tL_username = (TLRPC.TL_username) obj2;
-                            if (tL_username.editable) {
-                            }
-                        } else {
-                            tL_username = null;
-                        }
-                    }
-                    if (tL_username != null) {
-                        saVar.j0(tL_username, true, false);
-                        saVar.getMessagesController().updateUsernameActiveness(user, tL_username.username, tL_username.active);
-                        return;
-                    }
-                    return;
-                }
+                this.f17586b.lambda$performSendMessageRequest$87(this.f17587c, this.d);
                 return;
         }
-    }
-
-    public cj(org.telegram.ui.ha haVar, String str, TLObject tLObject, int i10, boolean z10, TLRPC.TL_error tL_error, TLRPC.TL_username tL_username, boolean z11) {
-        this.f17602e = haVar;
-        this.f17603f = str;
-        this.h = tLObject;
-        this.f17600b = i10;
-        this.f17601c = z10;
-        this.f17604n = tL_error;
-        this.f17605r = tL_username;
-        this.d = z11;
     }
 }

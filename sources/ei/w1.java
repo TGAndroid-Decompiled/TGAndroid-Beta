@@ -1,73 +1,39 @@
 package ei;
 
-import android.text.SpannableStringBuilder;
-import java.util.Arrays;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.yc;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.uy;
-import org.telegram.ui.wf1;
-public final class w1 implements Utilities.Callback {
-    public final wf1 f9422a;
-    public final uy f9423b;
-    public final long f9424c;
-    public final int d;
+import android.text.TextUtils;
+import android.view.View;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.zd0;
+import org.telegram.ui.PasscodeActivity;
+import org.telegram.ui.es;
+public final class w1 implements View.OnFocusChangeListener {
+    public final int f9457a;
+    public final Object f9458b;
+    public final EditTextBoldCursor f9459c;
 
-    public w1(wf1 wf1Var, uy uyVar, long j3, int i10) {
-        this.f9422a = wf1Var;
-        this.f9423b = uyVar;
-        this.f9424c = j3;
-        this.d = i10;
+    public w1(Object obj, EditTextBoldCursor editTextBoldCursor, int i10) {
+        this.f9457a = i10;
+        this.f9458b = obj;
+        this.f9459c = editTextBoldCursor;
     }
 
     @Override
-    public final void run(Object obj) {
-        String str;
-        TLRPC.User user;
-        int i10;
-        Boolean bool = (Boolean) obj;
-        wf1 wf1Var = this.f9422a;
-        uy uyVar = this.f9423b;
-        if (wf1Var != null) {
-            wf1Var.finishFragment();
-            uyVar.removeSelfFromStack();
-        } else {
-            uyVar.finishFragment();
+    public final void onFocusChange(View view, boolean z10) {
+        switch (this.f9457a) {
+            case 0:
+                ((zd0) this.f9458b).c(z10, !TextUtils.isEmpty(this.f9459c.getText()));
+                return;
+            case 1:
+                ((zd0) this.f9458b).c(z10, !TextUtils.isEmpty(this.f9459c.getText()));
+                return;
+            case 2:
+                ((zd0) this.f9458b).c(z10, !TextUtils.isEmpty(this.f9459c.getText()));
+                return;
+            default:
+                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f9458b;
+                passcodeActivity.v.setEditText((es) this.f9459c);
+                passcodeActivity.v.setDispatchBackWhenEmpty(true);
+                return;
         }
-        org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
-        if (U == null) {
-            return;
-        }
-        long j3 = this.f9424c;
-        int i11 = this.d;
-        if (j3 >= 0) {
-            TLRPC.User user2 = MessagesController.getInstance(i11).getUser(Long.valueOf(j3));
-            str = UserObject.getForcedFirstName(user2);
-            user = user2;
-        } else {
-            TLRPC.Chat chat = MessagesController.getInstance(i11).getChat(Long.valueOf(-j3));
-            if (chat == null) {
-                str = "";
-                user = chat;
-            } else {
-                str = chat.title;
-                user = chat;
-            }
-        }
-        yc a02 = yc.a0(U);
-        if (bool.booleanValue()) {
-            i10 = R.string.BotSentRevokeVerifyRequest;
-        } else {
-            i10 = R.string.BotSentVerifyRequest;
-        }
-        SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(i10, str));
-        a02.getClass();
-        a02.V(Arrays.asList(user), replaceTags, null, null).k(false);
     }
 }

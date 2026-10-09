@@ -1,108 +1,162 @@
 package ai;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
+import android.text.TextPaint;
 import android.view.View;
-import org.telegram.messenger.DocumentObject;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-public final class q9 extends View {
-    public final b6 f1558a;
-    public boolean f1559b;
-    public final org.telegram.ui.Components.e6 f1560c;
-    public final ImageReceiver d;
-    public final ImageReceiver f1561e;
-    public org.telegram.ui.Components.q5 f1562f;
-    public boolean h;
-    public boolean f1563n;
-    public boolean f1564r;
-    public boolean f1565s;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.bi;
+import org.telegram.ui.Components.ck0;
+public final class q9 extends FrameLayout {
+    public final ArrayList f1625a;
+    public ValueAnimator f1626b;
+    public int f1627c;
+    public int d;
+    public final a3.d f1628e;
 
-    public q9(Context context, b6 b6Var) {
+    public q9(Context context, yb ybVar) {
         super(context);
-        this.f1560c = new org.telegram.ui.Components.e6(this);
-        ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.d = imageReceiver;
-        this.f1561e = new ImageReceiver(this);
-        this.h = true;
-        this.f1558a = b6Var;
-        imageReceiver.setAllowLoadingOnAttachedOnly(true);
-        imageReceiver.ignoreNotifications = true;
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.d.onAttachedToWindow();
-        this.f1561e.onAttachedToWindow();
-        this.f1565s = true;
-        org.telegram.ui.Components.q5 q5Var = this.f1562f;
-        if (q5Var != null) {
-            q5Var.a(this);
-        }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.d.onDetachedFromWindow();
-        this.f1561e.onDetachedFromWindow();
-        this.f1565s = false;
-        org.telegram.ui.Components.q5 q5Var = this.f1562f;
-        if (q5Var != null) {
-            q5Var.o(this);
-        }
-    }
-
-    @Override
-    public final void onDraw(android.graphics.Canvas r11) {
-        throw new UnsupportedOperationException("Method not decompiled: ai.q9.onDraw(android.graphics.Canvas):void");
-    }
-
-    public void setAllowDrawReaction(boolean z10) {
-        if (this.h == z10) {
-            return;
-        }
-        this.h = z10;
-        invalidate();
-    }
-
-    public void setReaction(zg.m0 m0Var) {
-        boolean z10;
-        String str;
-        String str2;
-        if (m0Var != null && ((str2 = m0Var.f53471f) == null || !str2.equals("❤"))) {
-            z10 = false;
-        } else {
-            z10 = true;
-        }
-        this.f1563n = z10;
-        if (m0Var != null && (str = m0Var.f53471f) != null && str.equals("❤")) {
-            this.f1559b = true;
-        } else {
-            this.f1559b = false;
-        }
-        org.telegram.ui.Components.q5 q5Var = this.f1562f;
-        if (q5Var != null) {
-            q5Var.o(this);
-        }
-        this.f1562f = null;
-        if (m0Var != null) {
-            if (m0Var.f53472g != 0) {
-                org.telegram.ui.Components.q5 q5Var2 = new org.telegram.ui.Components.q5(3, UserConfig.selectedAccount, m0Var.f53472g);
-                this.f1562f = q5Var2;
-                if (this.f1565s) {
-                    q5Var2.a(this);
-                }
-            } else {
-                TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(m0Var.f53471f);
-                if (tL_availableReaction != null) {
-                    this.d.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_lastreactframe", DocumentObject.getSvgThumb(tL_availableReaction.static_icon, org.telegram.ui.ActionBar.i6.f20771a7, 1.0f), "webp", tL_availableReaction, 1);
-                }
+        this.f1627c = -1;
+        int i10 = 0;
+        this.d = 0;
+        this.f1628e = new a3.d(this, 14);
+        ImageView imageView = new ImageView(context);
+        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        addView(imageView, -1, -1);
+        View view = new View(context);
+        view.setBackgroundColor(1677721600);
+        addView(view, -1, -1);
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        linearLayout.setPadding(0, AndroidUtilities.dp(48.0f), 0, AndroidUtilities.dp(48.0f));
+        linearLayout.setGravity(1);
+        TextView textView = new TextView(context);
+        textView.setTextColor(-1);
+        textView.setTypeface(AndroidUtilities.bold());
+        bi.j(20.0f, R.string.StoriesIntroHeader, 1, textView);
+        linearLayout.addView(textView, w7.x5.n(-2, -2));
+        TextView textView2 = new TextView(context);
+        textView2.setTextColor(-1761607681);
+        textView2.setText(LocaleController.getString(R.string.StoriesIntroSubHeader));
+        textView2.setTextSize(1, 14.0f);
+        textView2.setGravity(1);
+        linearLayout.addView(textView2, w7.x5.k(68.0f, 8.0f, 68.0f, 36.0f, -2, -2));
+        ArrayList arrayList = new ArrayList(4);
+        this.f1625a = arrayList;
+        arrayList.add(new p9(context, R.raw.stories_intro_go_forward, LocaleController.getString(R.string.StoriesIntroGoForwardHeader), LocaleController.getString(R.string.StoriesIntroGoForwardSubHeader)));
+        arrayList.add(new p9(context, R.raw.stories_intro_pause, LocaleController.getString(R.string.StoriesIntroPauseAndSeekHeader), LocaleController.getString(R.string.StoriesIntroPauseAndSeekSubHeader)));
+        arrayList.add(new p9(context, R.raw.stories_intro_go_back, LocaleController.getString(R.string.StoriesIntroGoBackHeader), LocaleController.getString(R.string.StoriesIntroGoBackSubHeader)));
+        arrayList.add(new p9(context, R.raw.stories_intro_go_to_next, LocaleController.getString(R.string.StoriesIntroGoToNextAuthorHeader), LocaleController.getString(R.string.StoriesIntroGoToNextAuthorSubHeader)));
+        int measuredWidth = ybVar.getMeasuredWidth() - AndroidUtilities.dp(100.0f);
+        int size = arrayList.size();
+        int i11 = 0;
+        while (i11 < size) {
+            Object obj = arrayList.get(i11);
+            i11++;
+            p9 p9Var = (p9) obj;
+            TextPaint textPaint = p9Var.f1582e;
+            String str = p9Var.f1579a;
+            int length = str.length();
+            Rect rect = p9Var.f1585r;
+            textPaint.getTextBounds(str, 0, length, rect);
+            int width = rect.width();
+            TextPaint textPaint2 = p9Var.f1583f;
+            String str2 = p9Var.f1580b;
+            textPaint2.getTextBounds(str2, 0, str2.length(), rect);
+            int max = Math.max(width, rect.width()) + AndroidUtilities.dp(8.0f) + AndroidUtilities.dp(88.0f);
+            if (max > measuredWidth) {
+                measuredWidth = max;
             }
         }
-        invalidate();
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(AndroidUtilities.dp(8.0f) + measuredWidth > ybVar.getMeasuredWidth() ? ybVar.getMeasuredWidth() - AndroidUtilities.dp(8.0f) : measuredWidth, AndroidUtilities.dp(64.0f));
+        layoutParams.setMargins(0, AndroidUtilities.dp(5.0f), 0, AndroidUtilities.dp(5.0f));
+        ArrayList arrayList2 = this.f1625a;
+        int size2 = arrayList2.size();
+        while (i10 < size2) {
+            Object obj2 = arrayList2.get(i10);
+            i10++;
+            linearLayout.addView((p9) obj2, layoutParams);
+        }
+        TextView textView3 = new TextView(context);
+        textView3.setTextColor(-1);
+        textView3.setTypeface(AndroidUtilities.bold());
+        bi.j(14.0f, R.string.StoriesIntroDismiss, 1, textView3);
+        linearLayout.addView(textView3, w7.x5.k(0.0f, 73.0f, 0.0f, 0.0f, -2, -2));
+        addView(linearLayout, w7.x5.e(-1, -2, 17));
+        BitmapDrawable bitmapDrawable = new BitmapDrawable(getContext().getResources(), AndroidUtilities.makeBlurBitmap(ybVar, 12.0f, 10));
+        bitmapDrawable.setColorFilter(new PorterDuffColorFilter(-587202560, PorterDuff.Mode.DST_OVER));
+        imageView.setImageDrawable(bitmapDrawable);
+        getViewTreeObserver().addOnGlobalLayoutListener(new o9(this, textView3, ybVar, textView2));
+    }
+
+    public final void a(boolean z10) {
+        ValueAnimator valueAnimator = this.f1626b;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.f1626b = ofFloat;
+        if (z10) {
+            ofFloat.setStartDelay(50L);
+        }
+        this.f1626b.setDuration(350L);
+        this.f1626b.setInterpolator(new AccelerateDecelerateInterpolator());
+        this.f1626b.getCurrentPlayTime();
+        this.f1626b.addListener(new b(this, 9));
+        this.f1626b.addUpdateListener(new a(this, 12));
+        this.f1626b.start();
+        AndroidUtilities.runOnUIThread(this.f1628e, (((p9) this.f1625a.get(this.d)).f1581c.r() * 2) + 100);
+    }
+
+    public final void b() {
+        AndroidUtilities.cancelRunOnUIThread(this.f1628e);
+        ValueAnimator valueAnimator = this.f1626b;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.f1626b = null;
+        }
+        int i10 = this.f1627c;
+        ArrayList arrayList = this.f1625a;
+        if (i10 != -1) {
+            p9 p9Var = (p9) arrayList.get(i10);
+            ck0 ck0Var = p9Var.f1581c;
+            ck0Var.M(0);
+            ck0Var.stop();
+            p9Var.f1584n = 0.0f;
+            p9Var.invalidate();
+        }
+        p9 p9Var2 = (p9) arrayList.get(this.d);
+        ck0 ck0Var2 = p9Var2.f1581c;
+        ck0Var2.M(0);
+        ck0Var2.stop();
+        p9Var2.f1584n = 0.0f;
+        p9Var2.invalidate();
+        c();
+    }
+
+    public final void c() {
+        int i10 = this.d + 1;
+        this.d = i10;
+        ArrayList arrayList = this.f1625a;
+        if (i10 >= arrayList.size()) {
+            this.d = 0;
+        }
+        int i11 = this.f1627c + 1;
+        this.f1627c = i11;
+        if (i11 >= arrayList.size()) {
+            this.f1627c = 0;
+        }
     }
 }

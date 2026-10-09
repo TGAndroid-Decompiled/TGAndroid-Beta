@@ -6,36 +6,36 @@ import g2.b0;
 import java.io.IOException;
 import u2.t;
 public final class o implements i {
-    public final long f50418a = t.f47408b.getAndIncrement();
-    public final g2.m f50419b;
-    public final int f50420c;
+    public final long f51697a = t.f48706b.getAndIncrement();
+    public final g2.m f51698b;
+    public final int f51699c;
     public final b0 d;
-    public final n f50421e;
-    public volatile Object f50422f;
+    public final n f51700e;
+    public volatile Object f51701f;
 
     public o(g2.h hVar, g2.m mVar, int i10, n nVar) {
         this.d = new b0(hVar);
-        this.f50419b = mVar;
-        this.f50420c = i10;
-        this.f50421e = nVar;
+        this.f51698b = mVar;
+        this.f51699c = i10;
+        this.f51700e = nVar;
     }
 
     @Override
     public final void a() {
-        this.d.f10161b = 0L;
-        g2.k kVar = new g2.k(this.d, this.f50419b);
+        this.d.f10234b = 0L;
+        g2.k kVar = new g2.k(this.d, this.f51698b);
         try {
-            kVar.f10183a.open(kVar.f10184b);
+            kVar.f10256a.open(kVar.f10257b);
             kVar.d = true;
-            Uri uri = this.d.f10160a.getUri();
+            Uri uri = this.d.f10233a.getUri();
             uri.getClass();
-            this.f50422f = this.f50421e.n2(uri, kVar);
+            this.f51701f = this.f51700e.t2(uri, kVar);
             try {
                 kVar.close();
             } catch (IOException unused) {
             }
         } finally {
-            String str = d0.f8538a;
+            String str = d0.f8532a;
             try {
                 kVar.close();
             } catch (IOException unused2) {
@@ -44,6 +44,6 @@ public final class o implements i {
     }
 
     @Override
-    public final void q() {
+    public final void v() {
     }
 }

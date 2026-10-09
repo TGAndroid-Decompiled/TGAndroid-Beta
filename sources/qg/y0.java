@@ -8,61 +8,61 @@ import android.text.TextPaint;
 import ci.b6;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.Components.oa;
+import org.telegram.ui.Components.qa;
 public final class y0 extends org.telegram.ui.Cells.w0 {
-    public final oa f45434l2;
-    public final TextPaint f45435m2;
-    public final a1 f45436n2;
+    public final qa f46628t2;
+    public final TextPaint f46629u2;
+    public final a1 f46630v2;
 
     public y0(a1 a1Var, Context context, com.google.firebase.messaging.n nVar) {
         super(context, nVar, false);
-        this.f45436n2 = a1Var;
-        this.f45434l2 = new oa(a1Var.d, this, 10, false);
+        this.f46630v2 = a1Var;
+        this.f46628t2 = new qa(a1Var.d, this, 10, false);
         TextPaint textPaint = new TextPaint(1);
-        this.f45435m2 = textPaint;
+        this.f46629u2 = textPaint;
         textPaint.setTypeface(AndroidUtilities.bold());
         textPaint.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
         textPaint.setColor(-1);
     }
 
     @Override
-    public final Paint F(String str) {
+    public final Paint I(String str) {
         float f7;
         float f10;
         if (!"paintChatActionText".equals(str) && !"paintChatActionText2".equals(str)) {
             if ("paintChatActionBackground".equals(str)) {
-                b6 b6Var = this.f45436n2.h;
-                b6Var.f45025v0 = true;
+                b6 b6Var = this.f46630v2.h;
+                b6Var.f46232v0 = true;
                 boolean z10 = b6Var.B0;
-                oa oaVar = this.f45434l2;
-                if (oaVar.f29424r != z10) {
-                    oaVar.f29424r = z10;
-                    if (oaVar.f29415i == 10) {
+                qa qaVar = this.f46628t2;
+                if (qaVar.f30132r != z10) {
+                    qaVar.f30132r = z10;
+                    if (qaVar.f30123i == 10) {
                         ColorMatrix colorMatrix = new ColorMatrix();
                         colorMatrix.setSaturation(1.6f);
-                        if (oaVar.f29424r) {
+                        if (qaVar.f30132r) {
                             f7 = 0.97f;
                         } else {
                             f7 = 0.92f;
                         }
                         AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, f7);
-                        if (oaVar.f29424r) {
+                        if (qaVar.f30132r) {
                             f10 = 0.12f;
                         } else {
                             f10 = -0.06f;
                         }
                         AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, f10);
-                        oaVar.h.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-                        oaVar.f29414g.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+                        qaVar.h.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+                        qaVar.f30122g.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
                     }
                 }
-                Paint c10 = oaVar.c(1.0f);
+                Paint c10 = qaVar.c(1.0f);
                 if (c10 != null) {
                     return c10;
                 }
             }
-            return super.F(str);
+            return super.I(str);
         }
-        return this.f45435m2;
+        return this.f46629u2;
     }
 }

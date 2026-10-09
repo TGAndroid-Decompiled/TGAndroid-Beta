@@ -2,8 +2,8 @@ package t;
 
 import java.util.HashSet;
 public final class a {
-    public static final a f46885b = new a(new int[]{0, 1, 2, 3, 4, 5, 6, 7});
-    public final HashSet f46886a = new HashSet();
+    public static final a f48179b = new a(new int[]{0, 1, 2, 3, 4, 5, 6, 7});
+    public final HashSet f48180a = new HashSet();
 
     static {
         new a(new int[]{1, 2, 3, 4, 5, 6, 7});
@@ -11,7 +11,7 @@ public final class a {
 
     public a(int[] iArr) {
         for (int i10 : iArr) {
-            this.f46886a.add(Integer.valueOf(i10));
+            this.f48180a.add(Integer.valueOf(i10));
         }
     }
 }

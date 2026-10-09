@@ -5,7 +5,6 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.widget.RemoteViews;
 import org.telegram.ui.LaunchActivity;
@@ -29,9 +28,7 @@ public class FeedWidgetProvider extends AppWidgetProvider {
     public void onDeleted(Context context, int[] iArr) {
         super.onDeleted(context, iArr);
         for (int i10 = 0; i10 < iArr.length; i10++) {
-            SharedPreferences.Editor edit = context.getSharedPreferences("shortcut_widget", 0).edit();
-            SharedPreferences.Editor remove = edit.remove("account" + iArr[i10]);
-            remove.remove("dialogId" + iArr[i10]).commit();
+            context.getSharedPreferences("shortcut_widget", 0).edit().remove("account" + iArr[i10]).remove("dialogId" + iArr[i10]).commit();
         }
     }
 

@@ -79,7 +79,7 @@ public class BirthdayController {
                         if (i21 < contactbirthdays.users.size()) {
                             arrayList2 = arrayList3;
                             i10 = i17;
-                            if (contactbirthdays.users.get(i21).f20194id == tL_contactBirthday2.contact_id) {
+                            if (contactbirthdays.users.get(i21).f20185id == tL_contactBirthday2.contact_id) {
                                 user = contactbirthdays.users.get(i21);
                                 break;
                             }
@@ -112,7 +112,7 @@ public class BirthdayController {
             while (i10 < size) {
                 TLRPC.User user = arrayList.get(i10);
                 i10++;
-                if (user.f20194id == j3) {
+                if (user.f20185id == j3) {
                     return true;
                 }
             }
@@ -122,7 +122,7 @@ public class BirthdayController {
             while (i11 < size2) {
                 TLRPC.User user2 = arrayList2.get(i11);
                 i11++;
-                if (user2.f20194id == j3) {
+                if (user2.f20185id == j3) {
                     return true;
                 }
             }
@@ -132,7 +132,7 @@ public class BirthdayController {
             while (i12 < size3) {
                 TLRPC.User user3 = arrayList3.get(i12);
                 i12++;
-                if (user3.f20194id == j3) {
+                if (user3.f20185id == j3) {
                     return true;
                 }
             }
@@ -326,7 +326,10 @@ public class BirthdayController {
                 calendar.setTimeInMillis(this.lastCheckDate);
                 Calendar calendar2 = Calendar.getInstance();
                 calendar2.setTimeInMillis(currentTimeMillis);
-                z10 = (calendar.get(5) == calendar2.get(5) && calendar.get(2) == calendar2.get(2) && calendar.get(1) == calendar2.get(1)) ? true : true;
+                if (calendar.get(5) != calendar2.get(5) || calendar.get(2) != calendar2.get(2) || calendar.get(1) != calendar2.get(1)) {
+                    z11 = true;
+                }
+                z10 = z11;
             }
             if (!z10) {
                 return;

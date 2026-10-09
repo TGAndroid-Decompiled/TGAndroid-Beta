@@ -1,19 +1,13 @@
 package xh;
 
-import android.view.View;
-public final class y0 implements View.OnAttachStateChangeListener {
-    public final org.telegram.messenger.voip.f f50325a;
-
-    public y0(org.telegram.messenger.voip.f fVar) {
-        this.f50325a = fVar;
-    }
-
+import android.view.MotionEvent;
+import org.telegram.ui.Components.ea0;
+public final class y0 extends ea0 {
     @Override
-    public final void onViewAttachedToWindow(View view) {
-        this.f50325a.run();
-    }
-
-    @Override
-    public final void onViewDetachedFromWindow(View view) {
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (getAlpha() < 0.95f) {
+            return false;
+        }
+        return super.dispatchTouchEvent(motionEvent);
     }
 }

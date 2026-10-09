@@ -1,44 +1,26 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.text.TextUtils;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
-public final class ki extends yh0 {
-    public final yn f38014e;
+public final class ki extends uu0 {
+    public final zn f39298a;
 
-    public ki(yn ynVar, Context context, int i10, MessageObject messageObject) {
-        super(context);
-        this.f38014e = ynVar;
-        this.f43234a = null;
-        if (!messageObject.isRoundVideo()) {
-            messageObject.isVoice();
+    public ki(zn znVar) {
+        this.f39298a = znVar;
+    }
+
+    @Override
+    public final org.telegram.ui.ev0 E(org.telegram.messenger.MessageObject r5, org.telegram.tgnet.TLRPC.FileLocation r6, int r7, boolean r8, boolean r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ki.E(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.ev0");
+    }
+
+    @Override
+    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
+        if (i10 >= 0) {
+            zn znVar = this.f39298a;
+            if (i10 < znVar.Ia.size()) {
+                znVar.gb((TLRPC.BotInlineResult) znVar.Ia.get(i10), z10, i11, 0L);
+            }
         }
-        org.telegram.ui.Components.w00 w00Var = new org.telegram.ui.Components.w00(context, null);
-        this.f43236c = w00Var;
-        w00Var.f(org.telegram.ui.ActionBar.i6.G8, org.telegram.ui.ActionBar.i6.f20918i6, -1);
-        w00Var.setViewType(13);
-        w00Var.setIsSingleCell(false);
-        addView(w00Var, w7.z5.c(-1.0f, -2));
-        org.telegram.ui.Components.q90 q90Var = new org.telegram.ui.Components.q90(context, null);
-        this.f43235b = q90Var;
-        q90Var.setTextSize(1, 14.0f);
-        q90Var.setGravity(19);
-        q90Var.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.E8, false));
-        q90Var.setLinkTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.gc, false));
-        q90Var.setEllipsize(TextUtils.TruncateAt.END);
-        q90Var.setSingleLine();
-        q90Var.setLines(1);
-        q90Var.setMaxLines(1);
-        addView(q90Var, w7.z5.d(-1, -2.0f, 19, 12.0f, 0.0f, 12.0f, 0.0f));
-        TLRPC.TL_channels_getMessageAuthor tL_channels_getMessageAuthor = new TLRPC.TL_channels_getMessageAuthor();
-        tL_channels_getMessageAuthor.channel = MessagesController.getInstance(i10).getInputChannel(-messageObject.getDialogId());
-        tL_channels_getMessageAuthor.f20084id = messageObject.getId();
-        q90Var.setAlpha(0.0f);
-        ConnectionsManager.getInstance(i10).sendRequest(tL_channels_getMessageAuthor, new ai.i8(this, i10, 6));
-        setBackground(org.telegram.ui.ActionBar.i6.Y(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.I5, false), 6, 0));
-        setEnabled(false);
     }
 }

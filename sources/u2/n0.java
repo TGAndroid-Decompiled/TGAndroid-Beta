@@ -1,326 +1,204 @@
 package u2;
 
-import java.util.AbstractList;
+import com.google.android.gms.internal.cast.z4;
+import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.IdentityHashMap;
-public final class n0 implements d0, c0 {
-    public final d0[] f47351a;
-    public final boolean[] f47352b;
-    public final IdentityHashMap f47353c;
-    public final ob.a d;
-    public final ArrayList f47354e = new ArrayList();
-    public final HashMap f47355f = new HashMap();
-    public c0 h;
-    public p1 f47356n;
-    public d0[] f47357r;
-    public n f47358s;
+import java.util.List;
+public final class n0 extends l {
+    public static final b2.k0 f48656s;
+    public final a[] f48657k;
+    public final ArrayList f48658l;
+    public final b2.k1[] f48659m;
+    public final ArrayList f48660n;
+    public final t7.t f48661o;
+    public int f48662p;
+    public long[][] f48663q;
+    public z4 f48664r;
 
-    public n0(ob.a aVar, long[] jArr, d0... d0VarArr) {
-        this.d = aVar;
-        this.f47351a = d0VarArr;
-        aVar.getClass();
-        e9.g0 g0Var = e9.i0.f8758b;
-        e9.a1 a1Var = e9.a1.f8721e;
-        this.f47358s = new n(a1Var, a1Var);
-        this.f47353c = new IdentityHashMap();
-        this.f47357r = new d0[0];
-        this.f47352b = new boolean[d0VarArr.length];
-        for (int i10 = 0; i10 < d0VarArr.length; i10++) {
-            long j3 = jArr[i10];
-            if (j3 != 0) {
-                this.f47352b[i10] = true;
-                this.f47351a[i10] = new o1(d0VarArr[i10], j3);
-            }
+    static {
+        b2.y yVar = new b2.y();
+        e9.g0 g0Var = e9.i0.f8752b;
+        e9.a1 a1Var = e9.a1.f8715e;
+        List list = Collections.EMPTY_LIST;
+        e9.a1 a1Var2 = e9.a1.f8715e;
+        b2.d0 d0Var = new b2.d0();
+        f48656s = new b2.k0("MergingMediaSource", new b2.z(yVar), null, new b2.e0(d0Var), b2.n0.K, b2.g0.d);
+    }
+
+    public n0(a... aVarArr) {
+        ?? obj = new Object();
+        this.f48657k = aVarArr;
+        this.f48661o = obj;
+        this.f48660n = new ArrayList(Arrays.asList(aVarArr));
+        this.f48662p = -1;
+        this.f48658l = new ArrayList(aVarArr.length);
+        for (int i10 = 0; i10 < aVarArr.length; i10++) {
+            this.f48658l.add(new ArrayList());
         }
+        this.f48659m = new b2.k1[aVarArr.length];
+        this.f48663q = new long[0];
+        new HashMap();
+        e9.q.e(8, "expectedKeys");
+        e9.q.e(2, "expectedValuesPerKey");
+        new e9.v0(e9.v.a(8)).f8815f = new e9.u0();
     }
 
     @Override
-    public final void b(d0 d0Var) {
-        ArrayList arrayList = this.f47354e;
-        arrayList.remove(d0Var);
-        if (!arrayList.isEmpty()) {
-            return;
-        }
-        d0[] d0VarArr = this.f47351a;
-        int i10 = 0;
-        for (d0 d0Var2 : d0VarArr) {
-            i10 += d0Var2.o().f47386a;
-        }
-        b2.l1[] l1VarArr = new b2.l1[i10];
-        int i11 = 0;
-        for (int i12 = 0; i12 < d0VarArr.length; i12++) {
-            p1 o9 = d0VarArr[i12].o();
-            int i13 = o9.f47386a;
-            int i14 = 0;
-            while (i14 < i13) {
-                b2.l1 a2 = o9.a(i14);
-                int i15 = a2.f3336a;
-                b2.s[] sVarArr = new b2.s[i15];
-                for (int i16 = 0; i16 < i15; i16++) {
-                    b2.s sVar = a2.d[i16];
-                    b2.r a10 = sVar.a();
-                    StringBuilder sb2 = new StringBuilder();
-                    sb2.append(i12);
-                    sb2.append(":");
-                    String str = sVar.f3549a;
-                    if (str == null) {
-                        str = "";
-                    }
-                    sb2.append(str);
-                    a10.f3492a = sb2.toString();
-                    sVarArr[i16] = new b2.s(a10);
-                }
-                b2.l1 l1Var = new b2.l1(i12 + ":" + a2.f3337b, sVarArr);
-                this.f47355f.put(l1Var, a2);
-                l1VarArr[i11] = l1Var;
-                i14++;
-                i11++;
-            }
-        }
-        this.f47356n = new p1(l1VarArr);
-        c0 c0Var = this.h;
-        c0Var.getClass();
-        c0Var.b(this);
-    }
-
-    @Override
-    public final boolean c() {
-        return this.f47358s.c();
-    }
-
-    @Override
-    public final long d() {
-        return this.f47358s.d();
-    }
-
-    @Override
-    public final void f(e1 e1Var) {
-        d0 d0Var = (d0) e1Var;
-        c0 c0Var = this.h;
-        c0Var.getClass();
-        c0Var.f(this);
-    }
-
-    @Override
-    public final void g() {
-        for (d0 d0Var : this.f47351a) {
-            d0Var.g();
-        }
-    }
-
-    @Override
-    public final long h(long j3) {
-        long h = this.f47357r[0].h(j3);
-        int i10 = 1;
-        while (true) {
-            d0[] d0VarArr = this.f47357r;
-            if (i10 < d0VarArr.length) {
-                if (d0VarArr[i10].h(h) == h) {
-                    i10++;
-                } else {
-                    throw new IllegalStateException("Unexpected child seekToUs result.");
-                }
-            } else {
-                return h;
-            }
-        }
-    }
-
-    @Override
-    public final void i(long j3) {
-        for (d0 d0Var : this.f47357r) {
-            d0Var.i(j3);
-        }
-    }
-
-    @Override
-    public final void k(c0 c0Var, long j3) {
-        this.h = c0Var;
-        ArrayList arrayList = this.f47354e;
-        d0[] d0VarArr = this.f47351a;
-        Collections.addAll(arrayList, d0VarArr);
-        for (d0 d0Var : d0VarArr) {
-            d0Var.k(this, j3);
-        }
-    }
-
-    @Override
-    public final long l() {
-        d0[] d0VarArr;
-        d0[] d0VarArr2;
-        long j3 = -9223372036854775807L;
-        for (d0 d0Var : this.f47357r) {
-            long l4 = d0Var.l();
-            if (l4 != -9223372036854775807L) {
-                if (j3 == -9223372036854775807L) {
-                    for (d0 d0Var2 : this.f47357r) {
-                        if (d0Var2 == d0Var) {
-                            break;
-                        } else if (d0Var2.h(l4) != l4) {
-                            throw new IllegalStateException("Unexpected child seekToUs result.");
-                        }
-                    }
-                    j3 = l4;
-                } else if (l4 != j3) {
-                    throw new IllegalStateException("Conflicting discontinuities.");
-                }
-            } else if (j3 != -9223372036854775807L && d0Var.h(j3) != j3) {
-                throw new IllegalStateException("Unexpected child seekToUs result.");
-            }
-        }
-        return j3;
-    }
-
-    @Override
-    public final boolean m(i2.s0 s0Var) {
-        ArrayList arrayList = this.f47354e;
-        if (!arrayList.isEmpty()) {
-            int size = arrayList.size();
-            for (int i10 = 0; i10 < size; i10++) {
-                ((d0) arrayList.get(i10)).m(s0Var);
-            }
+    public final boolean a(b2.k0 k0Var) {
+        a[] aVarArr = this.f48657k;
+        if (aVarArr.length <= 0 || !aVarArr[0].a(k0Var)) {
             return false;
         }
-        return this.f47358s.m(s0Var);
+        return true;
     }
 
     @Override
-    public final long n(x2.r[] rVarArr, boolean[] zArr, c1[] c1VarArr, boolean[] zArr2, long j3) {
-        IdentityHashMap identityHashMap;
-        c1 c1Var;
-        int[] iArr;
-        Integer num;
-        int intValue;
-        int[] iArr2 = new int[rVarArr.length];
-        int[] iArr3 = new int[rVarArr.length];
+    public final d0 c(f0 f0Var, y2.d dVar, long j3) {
+        a[] aVarArr = this.f48657k;
+        int length = aVarArr.length;
+        d0[] d0VarArr = new d0[length];
+        b2.k1[] k1VarArr = this.f48659m;
+        int b10 = k1VarArr[0].b(f0Var.f48570a);
+        for (int i10 = 0; i10 < length; i10++) {
+            f0 a2 = f0Var.a(k1VarArr[i10].l(b10));
+            d0VarArr[i10] = aVarArr[i10].c(a2, dVar, j3 - this.f48663q[b10][i10]);
+            ((List) this.f48658l.get(i10)).add(new m0(a2, d0VarArr[i10]));
+        }
+        return new l0(this.f48661o, this.f48663q[b10], d0VarArr);
+    }
+
+    @Override
+    public final b2.k0 i() {
+        a[] aVarArr = this.f48657k;
+        if (aVarArr.length > 0) {
+            return aVarArr[0].i();
+        }
+        return f48656s;
+    }
+
+    @Override
+    public final void k() {
+        z4 z4Var = this.f48664r;
+        if (z4Var == null) {
+            super.k();
+            return;
+        }
+        throw z4Var;
+    }
+
+    @Override
+    public final void m(g2.c0 c0Var) {
+        this.f48631j = c0Var;
+        this.f48630i = e2.d0.o(null);
         int i10 = 0;
         while (true) {
-            int length = rVarArr.length;
-            identityHashMap = this.f47353c;
-            if (i10 >= length) {
-                break;
-            }
-            c1 c1Var2 = c1VarArr[i10];
-            if (c1Var2 == null) {
-                num = null;
+            a[] aVarArr = this.f48657k;
+            if (i10 < aVarArr.length) {
+                y(Integer.valueOf(i10), aVarArr[i10]);
+                i10++;
             } else {
-                num = (Integer) identityHashMap.get(c1Var2);
+                return;
             }
-            if (num == null) {
-                intValue = -1;
-            } else {
-                intValue = num.intValue();
-            }
-            iArr2[i10] = intValue;
-            x2.r rVar = rVarArr[i10];
-            if (rVar != null) {
-                String str = rVar.b().f3337b;
-                iArr3[i10] = Integer.parseInt(str.substring(0, str.indexOf(":")));
-            } else {
-                iArr3[i10] = -1;
-            }
-            i10++;
         }
-        identityHashMap.clear();
-        int length2 = rVarArr.length;
-        c1[] c1VarArr2 = new c1[length2];
-        c1[] c1VarArr3 = new c1[rVarArr.length];
-        x2.r[] rVarArr2 = new x2.r[rVarArr.length];
-        d0[] d0VarArr = this.f47351a;
-        ArrayList arrayList = new ArrayList(d0VarArr.length);
-        long j10 = j3;
-        int i11 = 0;
-        while (i11 < d0VarArr.length) {
-            int i12 = 0;
-            while (i12 < rVarArr.length) {
-                if (iArr2[i12] == i11) {
-                    c1Var = c1VarArr[i12];
+    }
+
+    @Override
+    public final void o(d0 d0Var) {
+        d0 d0Var2;
+        d0 d0Var3;
+        l0 l0Var = (l0) d0Var;
+        int i10 = 0;
+        while (true) {
+            a[] aVarArr = this.f48657k;
+            if (i10 < aVarArr.length) {
+                List list = (List) this.f48658l.get(i10);
+                d0[] d0VarArr = l0Var.f48632a;
+                boolean[] zArr = l0Var.f48633b;
+                if (zArr[i10]) {
+                    d0Var2 = ((n1) d0VarArr[i10]).f48665a;
                 } else {
-                    c1Var = null;
+                    d0Var2 = d0VarArr[i10];
                 }
-                c1VarArr3[i12] = c1Var;
-                if (iArr3[i12] == i11) {
-                    x2.r rVar2 = rVarArr[i12];
-                    rVar2.getClass();
-                    iArr = iArr2;
-                    b2.l1 l1Var = (b2.l1) this.f47355f.get(rVar2.b());
-                    l1Var.getClass();
-                    rVarArr2[i12] = new m0(rVar2, l1Var);
-                } else {
-                    iArr = iArr2;
-                    rVarArr2[i12] = null;
-                }
-                i12++;
-                iArr2 = iArr;
-            }
-            int[] iArr4 = iArr2;
-            d0[] d0VarArr2 = d0VarArr;
-            int i13 = i11;
-            long n10 = d0VarArr2[i11].n(rVarArr2, zArr, c1VarArr3, zArr2, j10);
-            if (i13 == 0) {
-                j10 = n10;
-            } else if (n10 != j10) {
-                throw new IllegalStateException("Children enabled at different positions.");
-            }
-            boolean z10 = false;
-            for (int i14 = 0; i14 < rVarArr.length; i14++) {
-                boolean z11 = true;
-                if (iArr3[i14] == i13) {
-                    c1 c1Var3 = c1VarArr3[i14];
-                    c1Var3.getClass();
-                    c1VarArr2[i14] = c1VarArr3[i14];
-                    identityHashMap.put(c1Var3, Integer.valueOf(i13));
-                    z10 = true;
-                } else if (iArr4[i14] == i13) {
-                    if (c1VarArr3[i14] != null) {
-                        z11 = false;
+                int i11 = 0;
+                while (true) {
+                    if (i11 >= list.size()) {
+                        break;
+                    } else if (((m0) list.get(i11)).f48651b.equals(d0Var2)) {
+                        list.remove(i11);
+                        break;
+                    } else {
+                        i11++;
                     }
-                    e2.d.g(z11);
                 }
+                a aVar = aVarArr[i10];
+                d0[] d0VarArr2 = l0Var.f48632a;
+                if (zArr[i10]) {
+                    d0Var3 = ((n1) d0VarArr2[i10]).f48665a;
+                } else {
+                    d0Var3 = d0VarArr2[i10];
+                }
+                aVar.o(d0Var3);
+                i10++;
+            } else {
+                return;
             }
-            if (z10) {
-                arrayList.add(d0VarArr2[i13]);
+        }
+    }
+
+    @Override
+    public final void q() {
+        super.q();
+        Arrays.fill(this.f48659m, (Object) null);
+        this.f48662p = -1;
+        this.f48664r = null;
+        ArrayList arrayList = this.f48660n;
+        arrayList.clear();
+        Collections.addAll(arrayList, this.f48657k);
+    }
+
+    @Override
+    public final void t(b2.k0 k0Var) {
+        this.f48657k[0].t(k0Var);
+    }
+
+    @Override
+    public final f0 u(Object obj, f0 f0Var) {
+        int intValue = ((Integer) obj).intValue();
+        ArrayList arrayList = this.f48658l;
+        List list = (List) arrayList.get(intValue);
+        for (int i10 = 0; i10 < list.size(); i10++) {
+            if (((m0) list.get(i10)).f48650a.equals(f0Var)) {
+                return ((m0) ((List) arrayList.get(0)).get(i10)).f48650a;
             }
-            i11 = i13 + 1;
-            d0VarArr = d0VarArr2;
-            iArr2 = iArr4;
         }
-        System.arraycopy(c1VarArr2, 0, c1VarArr, 0, length2);
-        this.f47357r = (d0[]) arrayList.toArray(new d0[0]);
-        AbstractList w10 = e9.q.w(arrayList, new l0(0));
-        this.d.getClass();
-        this.f47358s = new n(arrayList, w10);
-        return j10;
+        return null;
     }
 
     @Override
-    public final p1 o() {
-        p1 p1Var = this.f47356n;
-        p1Var.getClass();
-        return p1Var;
-    }
-
-    @Override
-    public final long p() {
-        return this.f47358s.p();
-    }
-
-    @Override
-    public final long q(long j3, i2.q1 q1Var) {
-        d0 d0Var;
-        d0[] d0VarArr = this.f47357r;
-        if (d0VarArr.length > 0) {
-            d0Var = d0VarArr[0];
-        } else {
-            d0Var = this.f47351a[0];
+    public final void x(Object obj, a aVar, b2.k1 k1Var) {
+        Integer num = (Integer) obj;
+        if (this.f48664r == null) {
+            if (this.f48662p == -1) {
+                this.f48662p = k1Var.h();
+            } else if (k1Var.h() != this.f48662p) {
+                this.f48664r = new IOException();
+                return;
+            }
+            int length = this.f48663q.length;
+            b2.k1[] k1VarArr = this.f48659m;
+            if (length == 0) {
+                this.f48663q = (long[][]) Array.newInstance(Long.TYPE, this.f48662p, k1VarArr.length);
+            }
+            ArrayList arrayList = this.f48660n;
+            arrayList.remove(aVar);
+            k1VarArr[num.intValue()] = k1Var;
+            if (arrayList.isEmpty()) {
+                n(k1VarArr[0]);
+            }
         }
-        return d0Var.q(j3, q1Var);
-    }
-
-    @Override
-    public final void r(long j3) {
-        this.f47358s.r(j3);
     }
 }

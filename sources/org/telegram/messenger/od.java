@@ -4,88 +4,108 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class od implements RequestDelegate {
-    public final int f18779a;
-    public final MessagesController f18780b;
-    public final int f18781c;
+    public final int f18731a = 1;
+    public final MessagesController f18732b;
+    public final int f18733c;
     public final int d;
-    public final int f18782e;
-    public final int f18783f;
-    public final int f18784g;
-    public final long h;
-    public final long f18785i;
-    public final int f18786j;
-    public final int f18787k;
-    public final int f18788l;
-    public final int f18789m;
-    public final int f18790n;
-    public final long f18791o;
-    public final int f18792p;
-    public final boolean f18793q;
-    public final int f18794r;
-    public final boolean f18795s;
-    public final boolean f18796t;
-    public final TLObject f18797u;
+    public final long f18734e;
+    public final long f18735f;
+    public final int f18736g;
+    public final int h;
+    public final int f18737i;
+    public final int f18738j;
+    public final int f18739k;
+    public final int f18740l;
+    public final int f18741m;
+    public final int f18742n;
+    public final long f18743o;
+    public final int f18744p;
+    public final boolean f18745q;
+    public final int f18746r;
+    public final boolean f18747s;
+    public final boolean f18748t;
 
-    public od(MessagesController messagesController, int i10, int i11, int i12, int i13, int i14, long j3, long j10, int i15, int i16, int i17, int i18, int i19, long j11, int i20, boolean z10, int i21, boolean z11, boolean z12, TLRPC.TL_messages_getReplies tL_messages_getReplies) {
-        this.f18779a = 1;
-        this.f18780b = messagesController;
-        this.f18781c = i10;
+    public od(MessagesController messagesController, int i10, int i11, long j3, long j10, int i12, int i13, int i14, int i15, int i16, int i17, int i18, int i19, long j11, int i20, boolean z10, int i21, boolean z11, boolean z12) {
+        this.f18732b = messagesController;
+        this.f18733c = i10;
         this.d = i11;
-        this.f18782e = i12;
-        this.f18783f = i13;
-        this.f18784g = i14;
-        this.h = j3;
-        this.f18785i = j10;
-        this.f18786j = i15;
-        this.f18787k = i16;
-        this.f18788l = i17;
-        this.f18789m = i18;
-        this.f18790n = i19;
-        this.f18791o = j11;
-        this.f18792p = i20;
-        this.f18793q = z10;
-        this.f18794r = i21;
-        this.f18795s = z11;
-        this.f18796t = z12;
-        this.f18797u = tL_messages_getReplies;
+        this.f18734e = j3;
+        this.f18735f = j10;
+        this.f18736g = i12;
+        this.h = i13;
+        this.f18737i = i14;
+        this.f18738j = i15;
+        this.f18739k = i16;
+        this.f18740l = i17;
+        this.f18741m = i18;
+        this.f18742n = i19;
+        this.f18743o = j11;
+        this.f18744p = i20;
+        this.f18745q = z10;
+        this.f18746r = i21;
+        this.f18747s = z11;
+        this.f18748t = z12;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f18779a) {
+        switch (this.f18731a) {
             case 0:
-                this.f18780b.lambda$loadMessagesInternal$178(this.h, this.f18781c, this.d, this.f18782e, this.f18785i, this.f18783f, this.f18784g, this.f18786j, this.f18787k, this.f18788l, this.f18789m, this.f18790n, this.f18791o, this.f18792p, this.f18793q, this.f18794r, this.f18795s, this.f18796t, (TLRPC.TL_messages_getSavedHistory) this.f18797u, tLObject, tL_error);
-                return;
-            case 1:
-                this.f18780b.lambda$loadMessagesInternal$180(this.f18781c, this.d, this.f18782e, this.f18783f, this.f18784g, this.h, this.f18785i, this.f18786j, this.f18787k, this.f18788l, this.f18789m, this.f18790n, this.f18791o, this.f18792p, this.f18793q, this.f18794r, this.f18795s, this.f18796t, (TLRPC.TL_messages_getReplies) this.f18797u, tLObject, tL_error);
+                boolean z10 = this.f18747s;
+                boolean z11 = this.f18748t;
+                int i10 = this.f18733c;
+                int i11 = this.d;
+                int i12 = this.f18736g;
+                int i13 = this.h;
+                int i14 = this.f18737i;
+                int i15 = this.f18738j;
+                int i16 = this.f18739k;
+                int i17 = this.f18740l;
+                int i18 = this.f18741m;
+                int i19 = this.f18742n;
+                int i20 = this.f18744p;
+                int i21 = this.f18746r;
+                this.f18732b.lambda$loadMessagesInternal$175(this.f18734e, this.f18735f, i10, i11, i12, i13, i14, i15, i16, i17, i18, i19, this.f18743o, i20, this.f18745q, i21, z10, z11, tLObject, tL_error);
                 return;
             default:
-                this.f18780b.lambda$loadMessagesInternal$185(this.h, this.f18781c, this.d, this.f18782e, this.f18785i, this.f18783f, this.f18784g, this.f18786j, this.f18787k, this.f18788l, this.f18789m, this.f18790n, this.f18791o, this.f18792p, this.f18793q, this.f18794r, this.f18795s, this.f18796t, (TLRPC.TL_messages_getHistory) this.f18797u, tLObject, tL_error);
+                boolean z12 = this.f18747s;
+                boolean z13 = this.f18748t;
+                int i22 = this.f18733c;
+                int i23 = this.d;
+                int i24 = this.f18736g;
+                int i25 = this.h;
+                int i26 = this.f18737i;
+                int i27 = this.f18738j;
+                int i28 = this.f18739k;
+                int i29 = this.f18740l;
+                int i30 = this.f18741m;
+                int i31 = this.f18742n;
+                int i32 = this.f18744p;
+                int i33 = this.f18746r;
+                this.f18732b.lambda$loadMessagesInternal$180(i22, i23, this.f18734e, this.f18735f, i24, i25, i26, i27, i28, i29, i30, i31, this.f18743o, i32, this.f18745q, i33, z12, z13, tLObject, tL_error);
                 return;
         }
     }
 
-    public od(MessagesController messagesController, long j3, int i10, int i11, int i12, long j10, int i13, int i14, int i15, int i16, int i17, int i18, int i19, long j11, int i20, boolean z10, int i21, boolean z11, boolean z12, TLObject tLObject, int i22) {
-        this.f18779a = i22;
-        this.f18780b = messagesController;
-        this.h = j3;
-        this.f18781c = i10;
+    public od(MessagesController messagesController, long j3, long j10, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18, int i19, long j11, int i20, boolean z10, int i21, boolean z11, boolean z12) {
+        this.f18732b = messagesController;
+        this.f18734e = j3;
+        this.f18735f = j10;
+        this.f18733c = i10;
         this.d = i11;
-        this.f18782e = i12;
-        this.f18785i = j10;
-        this.f18783f = i13;
-        this.f18784g = i14;
-        this.f18786j = i15;
-        this.f18787k = i16;
-        this.f18788l = i17;
-        this.f18789m = i18;
-        this.f18790n = i19;
-        this.f18791o = j11;
-        this.f18792p = i20;
-        this.f18793q = z10;
-        this.f18794r = i21;
-        this.f18795s = z11;
-        this.f18796t = z12;
-        this.f18797u = tLObject;
+        this.f18736g = i12;
+        this.h = i13;
+        this.f18737i = i14;
+        this.f18738j = i15;
+        this.f18739k = i16;
+        this.f18740l = i17;
+        this.f18741m = i18;
+        this.f18742n = i19;
+        this.f18743o = j11;
+        this.f18744p = i20;
+        this.f18745q = z10;
+        this.f18746r = i21;
+        this.f18747s = z11;
+        this.f18748t = z12;
     }
 }

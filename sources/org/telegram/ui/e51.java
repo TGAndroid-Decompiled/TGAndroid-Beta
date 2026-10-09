@@ -1,65 +1,80 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.concurrent.CountDownLatch;
+import android.app.Activity;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.NotificationCenter;
-public final class e51 implements Runnable {
-    public final int f35957a;
-    public final a71 f35958b;
+public final class e51 extends FrameLayout {
+    public float f37155a;
+    public final boolean f37156b;
+    public final boolean f37157c;
+    public boolean d;
+    public int f37158e;
+    public final o1.j f37159f;
+    public final o1.k h;
+    public final t0 f37160n;
+    public final SecretMediaViewer f37161r;
 
-    public e51(a71 a71Var, int i10) {
-        this.f35957a = i10;
-        this.f35958b = a71Var;
+    public e51(SecretMediaViewer secretMediaViewer, Activity activity) {
+        super(activity);
+        this.f37161r = secretMediaViewer;
+        this.f37155a = 1.0f;
+        this.f37156b = true;
+        this.f37157c = true;
+        o1.j jVar = new o1.j(0.0f);
+        this.f37159f = jVar;
+        o1.k kVar = new o1.k(jVar);
+        kVar.f16938u = org.telegram.ui.Cells.c1.j(0.0f, 750.0f, 1.0f);
+        kVar.b(new sd0(this, 5));
+        this.h = kVar;
+        this.f37160n = new t0("progress", 6);
+        setWillNotDraw(false);
     }
 
     @Override
-    public final void run() {
-        switch (this.f35957a) {
-            case 0:
-                a71 a71Var = this.f35958b;
-                a71Var.getClass();
-                HashSet hashSet = zg.c0.f53347a;
-                ff.c cacheOutQueue = ImageLoader.getInstance().getCacheOutQueue();
-                if (cacheOutQueue.f9848b == null) {
-                    cacheOutQueue.f9848b = new CountDownLatch(1);
-                }
-                zg.c0.f53348b = true;
-                zg.c0.f53350e = false;
-                zg.c0.f53352g = false;
-                AndroidUtilities.runOnUIThread(new e51(a71Var, 2), 0L);
-                return;
-            case 1:
-                a71 a71Var2 = this.f35958b;
-                ArrayList arrayList = a71Var2.A1;
-                if (arrayList != null) {
-                    arrayList.clear();
-                }
-                ArrayList arrayList2 = a71Var2.B1;
-                if (arrayList2 != null) {
-                    arrayList2.clear();
-                }
-                ArrayList arrayList3 = a71Var2.D1;
-                if (arrayList3 != null) {
-                    arrayList3.clear();
-                }
-                a71Var2.f34756q0.E(true);
-                return;
-            case 2:
-                this.f35958b.U1.start();
-                return;
-            case 3:
-                this.f35958b.B(true, true, true);
-                return;
-            default:
-                a71 a71Var3 = this.f35958b;
-                NotificationCenter globalInstance = NotificationCenter.getGlobalInstance();
-                e51 e51Var = a71Var3.R1;
-                globalInstance.removeDelayed(e51Var);
-                NotificationCenter.getGlobalInstance().doOnIdle(e51Var);
-                return;
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f37159f.f16937a = 0.0f;
+        this.f37158e = 0;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        float f7;
+        super.onLayout(z10, i10, i11, i12, i13);
+        SecretMediaViewer secretMediaViewer = this.f37161r;
+        c51 c51Var = secretMediaViewer.f34467y;
+        if (c51Var != null) {
+            f7 = ((float) c51Var.n()) / ((float) secretMediaViewer.f34467y.p());
+        } else {
+            f7 = 0.0f;
         }
+        secretMediaViewer.Q.h(f7, false);
+    }
+
+    @Override
+    public final void onMeasure(int r12, int r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.e51.onMeasure(int, int):void");
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (this.f37155a < 1.0f) {
+            return false;
+        }
+        SecretMediaViewer secretMediaViewer = this.f37161r;
+        if (secretMediaViewer.Q.e(motionEvent.getX() - AndroidUtilities.dp(2.0f), motionEvent.getY(), motionEvent.getAction())) {
+            getParent().requestDisallowInterceptTouchEvent(true);
+            secretMediaViewer.R.invalidate();
+        }
+        return true;
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.d) {
+            return;
+        }
+        super.requestLayout();
     }
 }

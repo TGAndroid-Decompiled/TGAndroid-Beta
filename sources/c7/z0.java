@@ -5,28 +5,28 @@ import android.os.Parcelable;
 import java.util.Arrays;
 public final class z0 extends o6.a {
     public static final Parcelable.Creator<z0> CREATOR = new w.a(17);
-    public final boolean f4510a;
+    public final boolean f4560a;
 
     public z0(boolean z10) {
-        this.f4510a = Boolean.valueOf(z10).booleanValue();
+        this.f4560a = Boolean.valueOf(z10).booleanValue();
     }
 
     public final boolean equals(Object obj) {
-        if (!(obj instanceof z0) || this.f4510a != ((z0) obj).f4510a) {
+        if (!(obj instanceof z0) || this.f4560a != ((z0) obj).f4560a) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f4510a)});
+        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f4560a)});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = w7.g0.q(parcel, 20293);
-        w7.g0.s(parcel, 1, 4);
-        parcel.writeInt(this.f4510a ? 1 : 0);
-        w7.g0.r(parcel, q6);
+        int q6 = w7.d0.q(parcel, 20293);
+        w7.d0.s(parcel, 1, 4);
+        parcel.writeInt(this.f4560a ? 1 : 0);
+        w7.d0.r(parcel, q6);
     }
 }

@@ -2,50 +2,50 @@ package h2;
 
 import java.util.ArrayDeque;
 public abstract class l implements e {
-    public final k f10986a;
-    public final h[] f10989e;
-    public final j[] f10990f;
-    public int f10991g;
+    public final k f10990a;
+    public final h[] f10993e;
+    public final j[] f10994f;
+    public int f10995g;
     public int h;
-    public h f10992i;
-    public f f10993j;
-    public boolean f10994k;
-    public boolean f10995l;
-    public int f10996m;
-    public final Object f10987b = new Object();
-    public long f10997n = -9223372036854775807L;
-    public final ArrayDeque f10988c = new ArrayDeque();
+    public h f10996i;
+    public f f10997j;
+    public boolean f10998k;
+    public boolean f10999l;
+    public int f11000m;
+    public final Object f10991b = new Object();
+    public long f11001n = -9223372036854775807L;
+    public final ArrayDeque f10992c = new ArrayDeque();
     public final ArrayDeque d = new ArrayDeque();
 
     public l(h[] hVarArr, j[] jVarArr) {
-        this.f10989e = hVarArr;
-        this.f10991g = hVarArr.length;
-        for (int i10 = 0; i10 < this.f10991g; i10++) {
-            this.f10989e[i10] = f();
+        this.f10993e = hVarArr;
+        this.f10995g = hVarArr.length;
+        for (int i10 = 0; i10 < this.f10995g; i10++) {
+            this.f10993e[i10] = f();
         }
-        this.f10990f = jVarArr;
+        this.f10994f = jVarArr;
         this.h = jVarArr.length;
         for (int i11 = 0; i11 < this.h; i11++) {
-            this.f10990f[i11] = g();
+            this.f10994f[i11] = g();
         }
         k kVar = new k(this);
-        this.f10986a = kVar;
+        this.f10990a = kVar;
         kVar.start();
     }
 
     @Override
     public final void a(long j3) {
         boolean z10;
-        synchronized (this.f10987b) {
+        synchronized (this.f10991b) {
             try {
-                if (this.f10991g != this.f10989e.length && !this.f10994k) {
+                if (this.f10995g != this.f10993e.length && !this.f10998k) {
                     z10 = false;
                     e2.d.g(z10);
-                    this.f10997n = j3;
+                    this.f11001n = j3;
                 }
                 z10 = true;
                 e2.d.g(z10);
-                this.f10997n = j3;
+                this.f11001n = j3;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -56,26 +56,26 @@ public abstract class l implements e {
     public final Object d() {
         boolean z10;
         h hVar;
-        synchronized (this.f10987b) {
+        synchronized (this.f10991b) {
             try {
-                f fVar = this.f10993j;
+                f fVar = this.f10997j;
                 if (fVar == null) {
-                    if (this.f10992i == null) {
+                    if (this.f10996i == null) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
                     e2.d.g(z10);
-                    int i10 = this.f10991g;
+                    int i10 = this.f10995g;
                     if (i10 == 0) {
                         hVar = null;
                     } else {
-                        h[] hVarArr = this.f10989e;
+                        h[] hVarArr = this.f10993e;
                         int i11 = i10 - 1;
-                        this.f10991g = i11;
+                        this.f10995g = i11;
                         hVar = hVarArr[i11];
                     }
-                    this.f10992i = hVar;
+                    this.f10996i = hVar;
                 } else {
                     throw fVar;
                 }
@@ -90,25 +90,25 @@ public abstract class l implements e {
 
     @Override
     public final void flush() {
-        synchronized (this.f10987b) {
+        synchronized (this.f10991b) {
             try {
-                this.f10994k = true;
-                this.f10996m = 0;
-                h hVar = this.f10992i;
+                this.f10998k = true;
+                this.f11000m = 0;
+                h hVar = this.f10996i;
                 if (hVar != null) {
                     hVar.clear();
-                    h[] hVarArr = this.f10989e;
-                    int i10 = this.f10991g;
-                    this.f10991g = i10 + 1;
+                    h[] hVarArr = this.f10993e;
+                    int i10 = this.f10995g;
+                    this.f10995g = i10 + 1;
                     hVarArr[i10] = hVar;
-                    this.f10992i = null;
+                    this.f10996i = null;
                 }
-                while (!this.f10988c.isEmpty()) {
-                    h hVar2 = (h) this.f10988c.removeFirst();
+                while (!this.f10992c.isEmpty()) {
+                    h hVar2 = (h) this.f10992c.removeFirst();
                     hVar2.clear();
-                    h[] hVarArr2 = this.f10989e;
-                    int i11 = this.f10991g;
-                    this.f10991g = i11 + 1;
+                    h[] hVarArr2 = this.f10993e;
+                    int i11 = this.f10995g;
+                    this.f10995g = i11 + 1;
                     hVarArr2[i11] = hVar2;
                 }
                 while (!this.d.isEmpty()) {
@@ -129,10 +129,10 @@ public abstract class l implements e {
     public final boolean j() {
         f h;
         boolean z10;
-        synchronized (this.f10987b) {
-            while (!this.f10995l) {
+        synchronized (this.f10991b) {
+            while (!this.f10999l) {
                 try {
-                    if (!this.f10988c.isEmpty() && this.h > 0) {
+                    if (!this.f10992c.isEmpty() && this.h > 0) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -140,28 +140,28 @@ public abstract class l implements e {
                     if (z10) {
                         break;
                     }
-                    this.f10987b.wait();
+                    this.f10991b.wait();
                 } finally {
                 }
             }
-            if (this.f10995l) {
+            if (this.f10999l) {
                 return false;
             }
-            h hVar = (h) this.f10988c.removeFirst();
-            j[] jVarArr = this.f10990f;
+            h hVar = (h) this.f10992c.removeFirst();
+            j[] jVarArr = this.f10994f;
             int i10 = this.h - 1;
             this.h = i10;
             j jVar = jVarArr[i10];
-            boolean z11 = this.f10994k;
-            this.f10994k = false;
+            boolean z11 = this.f10998k;
+            this.f10998k = false;
             if (hVar.isEndOfStream()) {
                 jVar.addFlag(4);
             } else {
-                jVar.timeUs = hVar.f10981e;
+                jVar.timeUs = hVar.f10986e;
                 if (hVar.isFirstSample()) {
                     jVar.addFlag(134217728);
                 }
-                if (!l(hVar.f10981e)) {
+                if (!l(hVar.f10986e)) {
                     jVar.shouldBeSkipped = true;
                 }
                 try {
@@ -172,28 +172,28 @@ public abstract class l implements e {
                     h = h(e10);
                 }
                 if (h != null) {
-                    synchronized (this.f10987b) {
-                        this.f10993j = h;
+                    synchronized (this.f10991b) {
+                        this.f10997j = h;
                     }
                     return false;
                 }
             }
-            synchronized (this.f10987b) {
+            synchronized (this.f10991b) {
                 try {
-                    if (this.f10994k) {
+                    if (this.f10998k) {
                         jVar.release();
                     } else if (jVar.shouldBeSkipped) {
-                        this.f10996m++;
+                        this.f11000m++;
                         jVar.release();
                     } else {
-                        jVar.skippedOutputBufferCount = this.f10996m;
-                        this.f10996m = 0;
+                        jVar.skippedOutputBufferCount = this.f11000m;
+                        this.f11000m = 0;
                         this.d.addLast(jVar);
                     }
                     hVar.clear();
-                    h[] hVarArr = this.f10989e;
-                    int i11 = this.f10991g;
-                    this.f10991g = i11 + 1;
+                    h[] hVarArr = this.f10993e;
+                    int i11 = this.f10995g;
+                    this.f10995g = i11 + 1;
                     hVarArr[i11] = hVar;
                 } finally {
                 }
@@ -204,9 +204,9 @@ public abstract class l implements e {
 
     @Override
     public final j c() {
-        synchronized (this.f10987b) {
+        synchronized (this.f10991b) {
             try {
-                f fVar = this.f10993j;
+                f fVar = this.f10997j;
                 if (fVar == null) {
                     if (this.d.isEmpty()) {
                         return null;
@@ -222,8 +222,8 @@ public abstract class l implements e {
 
     public final boolean l(long j3) {
         boolean z10;
-        synchronized (this.f10987b) {
-            long j10 = this.f10997n;
+        synchronized (this.f10991b) {
+            long j10 = this.f11001n;
             if (j10 != -9223372036854775807L && j3 < j10) {
                 z10 = false;
             }
@@ -235,21 +235,21 @@ public abstract class l implements e {
     @Override
     public final void e(h hVar) {
         boolean z10;
-        synchronized (this.f10987b) {
+        synchronized (this.f10991b) {
             try {
-                f fVar = this.f10993j;
+                f fVar = this.f10997j;
                 if (fVar == null) {
-                    if (hVar == this.f10992i) {
+                    if (hVar == this.f10996i) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
                     e2.d.b(z10);
-                    this.f10988c.addLast(hVar);
-                    if (!this.f10988c.isEmpty() && this.h > 0) {
-                        this.f10987b.notify();
+                    this.f10992c.addLast(hVar);
+                    if (!this.f10992c.isEmpty() && this.h > 0) {
+                        this.f10991b.notify();
                     }
-                    this.f10992i = null;
+                    this.f10996i = null;
                 } else {
                     throw fVar;
                 }
@@ -260,22 +260,22 @@ public abstract class l implements e {
     }
 
     public final void n(j jVar) {
-        synchronized (this.f10987b) {
+        synchronized (this.f10991b) {
             jVar.clear();
-            j[] jVarArr = this.f10990f;
+            j[] jVarArr = this.f10994f;
             int i10 = this.h;
             this.h = i10 + 1;
             jVarArr[i10] = jVar;
-            if (!this.f10988c.isEmpty() && this.h > 0) {
-                this.f10987b.notify();
+            if (!this.f10992c.isEmpty() && this.h > 0) {
+                this.f10991b.notify();
             }
         }
     }
 
     public final void o(int i10) {
         boolean z10;
-        int i11 = this.f10991g;
-        h[] hVarArr = this.f10989e;
+        int i11 = this.f10995g;
+        h[] hVarArr = this.f10993e;
         if (i11 == hVarArr.length) {
             z10 = true;
         } else {
@@ -289,12 +289,12 @@ public abstract class l implements e {
 
     @Override
     public void release() {
-        synchronized (this.f10987b) {
-            this.f10995l = true;
-            this.f10987b.notify();
+        synchronized (this.f10991b) {
+            this.f10999l = true;
+            this.f10991b.notify();
         }
         try {
-            this.f10986a.join();
+            this.f10990a.join();
         } catch (InterruptedException unused) {
             Thread.currentThread().interrupt();
         }

@@ -1,26 +1,267 @@
 package zg;
 
 import android.animation.ValueAnimator;
-public final class t implements ValueAnimator.AnimatorUpdateListener {
-    public final int f53528a;
-    public final z f53529b;
+import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Cells.u1;
+import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.mh0;
+import org.telegram.ui.Components.voip.r0;
+import org.telegram.ui.Wallet.w4;
+import org.telegram.ui.ik;
+import org.telegram.ui.wj;
+import org.telegram.ui.zn;
+public final class t extends FrameLayout {
+    public final zn f54660a;
+    public s f54661b;
+    public List f54662c;
+    public boolean d;
+    public MessageObject f54663e;
+    public final int f54664f;
+    public final int h;
+    public float f54665n;
+    public float f54666r;
+    public float f54667s;
+    public long v;
+    public boolean f54668w;
+    public boolean f54669x;
+    public final int[] f54670y;
 
-    public t(z zVar, int i10) {
-        this.f53528a = i10;
-        this.f53529b = zVar;
+    public t(zn znVar, Context context) {
+        super(context);
+        this.f54662c = Collections.EMPTY_LIST;
+        this.f54664f = 22;
+        this.h = 24;
+        this.f54670y = new int[2];
+        setVisibility(8);
+        this.f54660a = znVar;
+        setClipToPadding(false);
+        setClipChildren(false);
+        znVar.f44988x0.j(new mh0(this, 24));
     }
 
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f53528a) {
-            case 0:
-                z zVar = this.f53529b;
-                zVar.getClass();
-                zVar.f53550a.setAlpha(1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            default:
-                this.f53529b.f53550a.invalidate();
-                return;
+    public final void a(boolean z10) {
+        if (z10) {
+            setVisibility(0);
+            post(new r(this, 1));
+            return;
         }
+        this.f54669x = false;
+        ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(150L);
+        duration.addUpdateListener(new r0(this, 27));
+        duration.addListener(new w4(this, 21));
+        duration.start();
+    }
+
+    public final MessageObject b() {
+        MessageObject.GroupedMessages D8;
+        ArrayList<MessageObject> arrayList;
+        TLRPC.TL_messageReactions tL_messageReactions;
+        ArrayList<TLRPC.ReactionCount> arrayList2;
+        if (this.d && !this.f54662c.isEmpty()) {
+            int i10 = 0;
+            MessageObject messageObject = (MessageObject) this.f54662c.get(0);
+            if (messageObject.getGroupId() != 0 && (D8 = this.f54660a.D8(messageObject.getGroupId())) != null && (arrayList = D8.messages) != null) {
+                int size = arrayList.size();
+                while (i10 < size) {
+                    MessageObject messageObject2 = arrayList.get(i10);
+                    i10++;
+                    MessageObject messageObject3 = messageObject2;
+                    TLRPC.Message message = messageObject3.messageOwner;
+                    if (message != null && (tL_messageReactions = message.reactions) != null && (arrayList2 = tL_messageReactions.results) != null && !arrayList2.isEmpty()) {
+                        return messageObject3;
+                    }
+                }
+            }
+            return messageObject;
+        }
+        return null;
+    }
+
+    public final void c(boolean z10) {
+        int height;
+        int height2;
+        boolean z11;
+        boolean z12;
+        int i10;
+        int i11;
+        if (this.d && this.f54663e != null && this.f54661b != null) {
+            long min = Math.min(16L, System.currentTimeMillis() - this.v);
+            this.v = System.currentTimeMillis();
+            float f7 = this.f54665n;
+            float f10 = this.f54666r;
+            if (f7 != f10) {
+                float f11 = ((float) min) / 220.0f;
+                if (f10 > f7) {
+                    this.f54665n = Math.min(f7 + f11, f10);
+                } else if (f10 < f7) {
+                    this.f54665n = Math.max(f7 - f11, f10);
+                }
+                AndroidUtilities.runOnUIThread(new r(this, 0));
+            }
+            zn znVar = this.f54660a;
+            wj wjVar = znVar.f44988x0;
+            int[] iArr = this.f54670y;
+            wjVar.getLocationInWindow(iArr);
+            boolean z13 = true;
+            getLocationInWindow(iArr);
+            float f12 = (iArr[1] - iArr[1]) - znVar.N9;
+            boolean z14 = false;
+            for (int i12 = 0; i12 < wjVar.getChildCount(); i12++) {
+                View childAt = wjVar.getChildAt(i12);
+                if (childAt instanceof u1) {
+                    u1 u1Var = (u1) childAt;
+                    MessageObject messageObject = u1Var.getMessageObject();
+                    if (messageObject.getId() == this.f54663e.getId()) {
+                        boolean isOutOwner = messageObject.isOutOwner();
+                        s sVar = this.f54661b;
+                        if (sVar != null) {
+                            sVar.setMirrorX(isOutOwner);
+                            s sVar2 = this.f54661b;
+                            int dp = AndroidUtilities.dp(4.0f);
+                            boolean z15 = LocaleController.isRTL;
+                            int i13 = this.h;
+                            if (!z15 && !isOutOwner) {
+                                i11 = i13;
+                            } else {
+                                i11 = 0;
+                            }
+                            int i14 = dp + i11;
+                            float f13 = this.f54664f;
+                            int dp2 = AndroidUtilities.dp(f13);
+                            int dp3 = AndroidUtilities.dp(4.0f);
+                            if (!LocaleController.isRTL && !isOutOwner) {
+                                i13 = 0;
+                            }
+                            sVar2.setPadding(i14, dp2, dp3 + i13, AndroidUtilities.dp(f13));
+                        }
+                        if (getHeight() != 0) {
+                            height = getHeight();
+                        } else {
+                            height = wjVar.getHeight();
+                        }
+                        if (u1Var.getCurrentMessagesGroup() != null) {
+                            MessageObject.GroupedMessages.TransitionParams transitionParams = u1Var.getCurrentMessagesGroup().transitionParams;
+                            height2 = transitionParams.bottom - transitionParams.top;
+                        } else {
+                            height2 = u1Var.getHeight();
+                        }
+                        float y3 = (u1Var.getY() + f12) - AndroidUtilities.dp(74.0f);
+                        float dp4 = AndroidUtilities.dp(14.0f);
+                        float dp5 = height - AndroidUtilities.dp(218.0f);
+                        ik ikVar = znVar.X1;
+                        if (ikVar != null && ikVar.getVisibility() == 0) {
+                            dp4 += ikVar.getHeight();
+                        }
+                        float f14 = height2;
+                        if (y3 > dp4 - (f14 / 2.0f) && y3 < dp5) {
+                            this.f54666r = 0.0f;
+                            z11 = false;
+                            z12 = true;
+                        } else {
+                            if (y3 >= (dp4 - f14) - AndroidUtilities.dp(92.0f) && y3 <= dp5) {
+                                this.f54667s = AndroidUtilities.dp(56.0f) + height2;
+                                this.f54666r = 1.0f;
+                                z11 = true;
+                            } else {
+                                z11 = false;
+                            }
+                            z12 = z11;
+                        }
+                        if (!z10) {
+                            this.f54665n = this.f54666r;
+                        }
+                        float interpolation = (hs.f27118f.getInterpolation(this.f54665n) * this.f54667s) + y3;
+                        s sVar3 = this.f54661b;
+                        if (sVar3 != null) {
+                            if (z11 != sVar3.N) {
+                                sVar3.setFlippedVertically(z11);
+                                AndroidUtilities.runOnUIThread(new r(this, 0));
+                            }
+                            if (z12 != this.f54661b.isEnabled()) {
+                                this.f54661b.setEnabled(z12);
+                                this.f54661b.invalidate();
+                                if (z12) {
+                                    this.f54661b.setVisibility(0);
+                                    if (!this.f54669x) {
+                                        this.f54669x = true;
+                                        this.f54661b.p(this.f54663e, znVar.Z7, true);
+                                    }
+                                }
+                            }
+                            this.f54661b.setTranslationY(w7.o.a(interpolation, dp4, dp5));
+                            this.f54661b.setTranslationX(u1Var.E2(true));
+                            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f54661b.getLayoutParams();
+                            int b10 = org.telegram.messenger.q.b(32.0f, u1Var.getBackgroundDrawableLeft(), 0);
+                            int b11 = org.telegram.messenger.q.b(32.0f, u1Var.getWidth() - u1Var.getBackgroundDrawableRight(), (int) u1Var.E2(true));
+                            int dp6 = AndroidUtilities.dp(40.0f) * 8;
+                            if ((getWidth() - b11) - b10 < dp6) {
+                                if (isOutOwner) {
+                                    b10 = Math.min(b10, getWidth() - dp6);
+                                    b11 = 0;
+                                } else {
+                                    b11 = Math.min(b11, getWidth() - dp6);
+                                    b10 = 0;
+                                }
+                            }
+                            if (isOutOwner) {
+                                i10 = 5;
+                            } else {
+                                i10 = 3;
+                            }
+                            if (i10 != layoutParams.gravity) {
+                                layoutParams.gravity = i10;
+                                z14 = true;
+                            }
+                            if (b10 != layoutParams.leftMargin) {
+                                layoutParams.leftMargin = b10;
+                                z14 = true;
+                            }
+                            if (b11 != layoutParams.rightMargin) {
+                                layoutParams.rightMargin = b11;
+                            } else {
+                                z13 = z14;
+                            }
+                            if (z13) {
+                                this.f54661b.requestLayout();
+                                return;
+                            }
+                            return;
+                        }
+                        return;
+                    }
+                }
+            }
+            s sVar4 = this.f54661b;
+            if (sVar4 != null && sVar4.isEnabled()) {
+                this.f54661b.setEnabled(false);
+            }
+        }
+    }
+
+    public final boolean d() {
+        if (this.d && !this.f54668w) {
+            return true;
+        }
+        return false;
+    }
+
+    public void setHiddenByScroll(boolean z10) {
+        this.f54668w = z10;
+        if (z10) {
+            a(false);
+        }
+    }
+
+    public void setSelectedMessages(java.util.List<org.telegram.messenger.MessageObject> r10) {
+        throw new UnsupportedOperationException("Method not decompiled: zg.t.setSelectedMessages(java.util.List):void");
     }
 }

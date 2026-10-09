@@ -77,6 +77,6 @@ public class GlTextureFrameBuffer {
             }
             throw new IllegalStateException(hg.c.h(glCheckFramebufferStatus, "Framebuffer not complete, status: "));
         }
-        throw new IllegalArgumentException(a4.a.m(i10, i11, "Invalid size: ", "x"));
+        throw new IllegalArgumentException(a1.g.m(i10, i11, "Invalid size: ", "x"));
     }
 }

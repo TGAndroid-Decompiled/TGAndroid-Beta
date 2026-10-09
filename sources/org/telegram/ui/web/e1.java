@@ -1,56 +1,31 @@
 package org.telegram.ui.web;
 
-import android.util.LongSparseArray;
-import java.util.ArrayList;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.n21;
-public abstract class e1 {
-    public static boolean f42192a;
-    public static boolean f42193b;
-    public static ArrayList f42194c;
-    public static LongSparseArray d;
-    public static ArrayList f42195e;
+public final class e1 extends org.telegram.ui.ActionBar.j {
+    public final g1 f43296a;
 
-    public static ArrayList a(Utilities.Callback callback) {
-        boolean z10;
-        if (callback != null && !f42193b) {
-            if (f42195e == null) {
-                f42195e = new ArrayList();
-            }
-            f42195e.add(callback);
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        b();
-        if (z10) {
-            return null;
-        }
-        return f42194c;
+    public e1(g1 g1Var) {
+        this.f43296a = g1Var;
     }
 
-    public static void b() {
-        if (!f42192a && !f42193b) {
-            f42192a = true;
-            f42194c = new ArrayList();
-            d = new LongSparseArray();
-            Utilities.globalQueue.postRunnable(new n21(7));
-        }
-    }
-
-    public static void c(d1 d1Var) {
-        if (d1Var != null && d1Var.d != null) {
-            b();
-            d1 d1Var2 = (d1) d.get(d1Var.f42183a);
-            if (d1Var2 != null) {
-                d1Var2.d = d1Var.d;
-            } else {
-                f42194c.add(d1Var);
-                d.put(d1Var.f42183a, d1Var);
+    @Override
+    public final void b(int i10) {
+        org.telegram.ui.ActionBar.k kVar;
+        org.telegram.ui.ActionBar.k kVar2;
+        if (i10 == -1) {
+            g1 g1Var = this.f43296a;
+            kVar = ((org.telegram.ui.ActionBar.n2) g1Var).actionBar;
+            if (kVar.t()) {
+                kVar2 = ((org.telegram.ui.ActionBar.n2) g1Var).actionBar;
+                kVar2.s();
+                g1Var.f43308s.clear();
+                AndroidUtilities.forEachViews((RecyclerView) g1Var.f26290a, (Utilities.Callback<View>) new ai.i(23));
+                return;
             }
-            AndroidUtilities.cancelRunOnUIThread(new n21(6));
-            AndroidUtilities.runOnUIThread(new n21(6), 1000L);
+            g1Var.finishFragment();
         }
     }
 }

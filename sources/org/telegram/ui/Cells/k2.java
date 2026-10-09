@@ -2,8 +2,8 @@ package org.telegram.ui.Cells;
 
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.uy;
-public final class k2 extends ai.ca {
+import org.telegram.ui.ty;
+public final class k2 extends ai.da {
     public final s2 S;
 
     public k2(s2 s2Var) {
@@ -23,19 +23,19 @@ public final class k2 extends ai.ca {
     public final boolean d(long j3) {
         s2 s2Var = this.S;
         int i10 = s2Var.F0;
-        uy uyVar = s2Var.f22907z4;
-        if (uyVar != null && !s2Var.O0) {
+        ty tyVar = s2Var.D4;
+        if (tyVar != null && !s2Var.O0) {
             if (j3 > 0) {
                 TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(j3));
                 if (user != null && user.linked_community_id != 0) {
-                    uyVar.showDialog(new fi.k0(uyVar, user.linked_community_id));
+                    tyVar.showDialog(new fi.k0(tyVar, user.linked_community_id));
                     return true;
                 }
                 return false;
             }
             TLRPC.Chat chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-j3));
             if (chat != null && chat.linked_community_id != 0) {
-                uyVar.showDialog(new fi.k0(uyVar, chat.linked_community_id));
+                tyVar.showDialog(new fi.k0(tyVar, chat.linked_community_id));
                 return true;
             }
             return false;
@@ -46,24 +46,24 @@ public final class k2 extends ai.ca {
     @Override
     public final void e() {
         s2 s2Var = this.S;
-        o2 o2Var = s2Var.f22791d0;
+        o2 o2Var = s2Var.f22780d0;
         if (o2Var == null) {
             return;
         }
-        o2Var.f(s2Var);
+        o2Var.g(s2Var);
     }
 
     @Override
     public final void f(long j3) {
         s2 s2Var = this.S;
-        o2 o2Var = s2Var.f22791d0;
+        o2 o2Var = s2Var.f22780d0;
         if (o2Var == null) {
             return;
         }
         if (s2Var.J0 != 0) {
             o2Var.c();
         } else {
-            o2Var.e(s2Var);
+            o2Var.f(s2Var);
         }
     }
 }

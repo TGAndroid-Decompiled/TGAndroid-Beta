@@ -1,184 +1,357 @@
 package gg;
 
+import ai.za;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.text.TextUtils;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.List;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.voip.NativeInstance;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.pq0;
-public class c2 {
-    public b2 f10532a;
-    public ArrayList f10540k;
-    public ArrayList f10541l;
-    public String f10543n;
-    public final boolean f10544o;
-    public ArrayList f10546q;
-    public HashMap f10547r;
-    public final ArrayList f10533b = new ArrayList();
-    public String f10534c = null;
-    public final ArrayList d = new ArrayList();
-    public final ArrayList f10535e = new ArrayList();
-    public final a0.i f10536f = new a0.i();
-    public final ArrayList f10537g = new ArrayList();
-    public final a0.i h = new a0.i();
-    public final a0.i f10538i = new a0.i();
-    public final ArrayList f10539j = new ArrayList();
-    public final int f10542m = UserConfig.selectedAccount;
-    public boolean f10545p = true;
-    public boolean f10548s = false;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.UndoView;
+import org.telegram.ui.Components.ad;
+import org.telegram.ui.Components.ho0;
+import org.telegram.ui.Components.tc;
+import org.telegram.ui.Components.ud0;
+import org.telegram.ui.Components.xb;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PasscodeActivity;
+import org.telegram.ui.SessionsActivity;
+import org.telegram.ui.StickersActivity;
+import org.telegram.ui.f50;
+import org.telegram.ui.hd0;
+import org.telegram.ui.j50;
+import org.telegram.ui.nh;
+import org.telegram.ui.zn;
+public final class c2 implements MediaDataController.KeywordResultCallback, org.telegram.ui.ActionBar.a2, e2.m, m4.k0, e2.h, NativeInstance.PayloadCallback, Utilities.Callback3Return, t5.b {
+    public final int f10562a;
+    public final int f10563b;
+    public final Object f10564c;
+    public final Object d;
 
-    public c2(boolean z10) {
-        this.f10544o = z10;
+    public c2(int i10, Object obj, Object obj2, int i11) {
+        this.f10562a = i11;
+        this.f10563b = i10;
+        this.f10564c = obj;
+        this.d = obj2;
     }
 
-    public final void a(CharSequence charSequence) {
-        if (charSequence != null) {
-            Matcher matcher = Pattern.compile("(^|\\s)#[^0-9][\\w@.]+").matcher(charSequence);
-            boolean z10 = false;
-            while (matcher.find()) {
-                int start = matcher.start();
-                int end = matcher.end();
-                if (charSequence.charAt(start) != '@' && charSequence.charAt(start) != '#') {
-                    start++;
+    @Override
+    public void accept(java.lang.Object r5) {
+        throw new UnsupportedOperationException("Method not decompiled: gg.c2.accept(java.lang.Object):void");
+    }
+
+    @Override
+    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        int i11;
+        switch (this.f10562a) {
+            case 1:
+                hg.t tVar = (hg.t) this.f10564c;
+                TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) this.d;
+                String obj = tVar.getText().toString();
+                if (obj.length() > 32) {
+                    AndroidUtilities.shakeView(tVar);
+                    return;
                 }
-                String charSequence2 = charSequence.subSequence(start, end).toString();
-                if (this.f10547r == null) {
-                    this.f10547r = new HashMap();
-                    this.f10546q = new ArrayList();
+                hg.z d = hg.z.d(this.f10563b);
+                TL_account.TL_businessChatLink c10 = d.c(tL_businessChatLink.link);
+                if (c10 != null) {
+                    TL_account.TL_inputBusinessChatLink tL_inputBusinessChatLink = new TL_account.TL_inputBusinessChatLink();
+                    tL_inputBusinessChatLink.message = c10.message;
+                    tL_inputBusinessChatLink.entities = c10.entities;
+                    tL_inputBusinessChatLink.title = obj;
+                    d.b(c10, tL_inputBusinessChatLink, null);
                 }
-                a2 a2Var = (a2) this.f10547r.get(charSequence2);
-                if (a2Var == 0) {
-                    a2Var = new Object();
-                    a2Var.f10513a = charSequence2;
-                    this.f10547r.put(charSequence2, a2Var);
+                b2Var.dismiss();
+                return;
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 10:
+            case 15:
+            default:
+                StickersActivity.a0((StickersActivity) this.f10564c, (ArrayList) this.d, this.f10563b);
+                return;
+            case 6:
+                zn znVar = (zn) this.f10564c;
+                boolean[] zArr = (boolean[]) this.d;
+                znVar.getMessagesController().pinMessage(znVar.f44751e, znVar.f44763f, this.f10563b, false, !zArr[1], zArr[0]);
+                tc B = ad.B(znVar, true, null, null, znVar.f44761ea);
+                B.j();
+                xb xbVar = B.f31126e;
+                xbVar.postDelayed(new nh(0, xbVar), 550L);
+                return;
+            case 7:
+                zn.s0((zn) this.f10564c, this.f10563b, (MessageObject) this.d);
+                return;
+            case 8:
+                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.f10564c;
+                MessagesStorage.StringCallback stringCallback = (MessagesStorage.StringCallback) this.d;
+                String trim = editTextBoldCursor.getText().toString().trim();
+                if (trim.length() <= this.f10563b && !trim.isEmpty()) {
+                    stringCallback.run(trim);
+                    b2Var.dismiss();
+                    return;
+                }
+                AndroidUtilities.shakeView(editTextBoldCursor);
+                return;
+            case 9:
+                ho0 ho0Var = (ho0) this.f10564c;
+                TLRPC.Reaction reaction = (TLRPC.Reaction) this.d;
+                String obj2 = ho0Var.getText().toString();
+                if (obj2.length() > 12) {
+                    AndroidUtilities.shakeView(ho0Var);
+                    return;
+                }
+                MessagesController.getInstance(this.f10563b).renameSavedReactionTag(zg.n0.d(reaction), obj2);
+                b2Var.dismiss();
+                return;
+            case 11:
+                EditTextBoldCursor editTextBoldCursor2 = (EditTextBoldCursor) this.d;
+                j50 j50Var = ((f50) this.f10564c).f37450n;
+                ChatObject.Call call = j50Var.f38824b.f37787a1;
+                String obj3 = editTextBoldCursor2.getText().toString();
+                int i12 = this.f10563b;
+                call.toggleRecord(obj3, i12);
+                AndroidUtilities.hideKeyboard(editTextBoldCursor2);
+                UndoView l1 = j50Var.f38824b.l1();
+                if (i12 == 0) {
+                    i11 = 39;
                 } else {
-                    this.f10546q.remove((Object) a2Var);
+                    i11 = 100;
                 }
-                a2Var.f10514b = (int) (System.currentTimeMillis() / 1000);
-                this.f10546q.add(0, a2Var);
-                z10 = true;
-            }
-            if (z10) {
-                MessagesStorage.getInstance(this.f10542m).getStorageQueue().postRunnable(new x1(0, this, this.f10546q));
-            }
+                l1.j(i11, 0L, null);
+                if (VoIPService.getSharedInstance() != null) {
+                    VoIPService.getSharedInstance().playStartRecordSound();
+                    return;
+                }
+                return;
+            case 12:
+                LaunchActivity launchActivity = (LaunchActivity) this.f10564c;
+                HashMap hashMap = (HashMap) this.d;
+                ArrayList arrayList = launchActivity.f33783d0;
+                if (!arrayList.isEmpty() && AndroidUtilities.isMapsInstalled((n2) hg.c.g(1, arrayList))) {
+                    hd0 hd0Var = new hd0(0);
+                    hd0Var.F0 = new i2.s(hashMap, this.f10563b, 12);
+                    launchActivity.p0(hd0Var);
+                    return;
+                }
+                return;
+            case 13:
+                ((hd0) this.f10564c).v0(900, (TLRPC.User) this.d, this.f10563b);
+                return;
+            case 14:
+                PasscodeActivity.U((PasscodeActivity) this.f10564c, (ud0) this.d, this.f10563b);
+                return;
+            case 16:
+                SessionsActivity.X((SessionsActivity) this.f10564c, this.f10563b, (boolean[]) this.d);
+                return;
         }
     }
 
-    public final void b() {
-        this.f10535e.clear();
-        this.f10536f.b();
-        this.d.clear();
-    }
-
-    public final void c() {
-        this.f10546q = new ArrayList();
-        this.f10547r = new HashMap();
-        MessagesStorage.getInstance(this.f10542m).getStorageQueue().postRunnable(new z1(this, 0));
-    }
-
-    public boolean d(TLObject tLObject) {
-        return true;
-    }
-
-    public final boolean e() {
-        if (this.f10533b.size() > 0) {
-            return true;
+    @Override
+    public void g(m4.r rVar) {
+        byte[] bArr;
+        byte[] bArr2;
+        int i10;
+        m4.l0 l0Var = (m4.l0) this.f10564c;
+        n4.l lVar = (n4.l) this.d;
+        if (TextUtils.isEmpty(lVar.f16576a)) {
+            e2.a.n("MediaSessionLegacyStub", "onAddQueueItem(): Media ID shouldn't be empty");
+            return;
         }
-        return false;
+        int i11 = m4.k.f16128a;
+        String str = lVar.f16576a;
+        b2.y yVar = new b2.y();
+        e9.g0 g0Var = e9.i0.f8752b;
+        e9.a1 a1Var = e9.a1.f8715e;
+        List list = Collections.EMPTY_LIST;
+        b2.d0 d0Var = new b2.d0();
+        b2.g0 g0Var2 = b2.g0.d;
+        if (str == null) {
+            str = "";
+        }
+        String str2 = str;
+        aa.a aVar = new aa.a(4);
+        aVar.f385c = lVar.f16581n;
+        b2.g0 g0Var3 = new b2.g0(aVar);
+        CharSequence charSequence = lVar.f16577b;
+        b2.m0 m0Var = new b2.m0();
+        m0Var.f3424f = lVar.f16578c;
+        m0Var.f3425g = lVar.d;
+        m0Var.f3430m = lVar.f16580f;
+        Bundle bundle = null;
+        m0Var.f3426i = m4.k.c(null);
+        Bitmap bitmap = lVar.f16579e;
+        if (bitmap != null) {
+            try {
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 0, byteArrayOutputStream);
+                bArr = byteArrayOutputStream.toByteArray();
+                byteArrayOutputStream.close();
+            } catch (IOException e7) {
+                e2.a.o("LegacyConversions", "Failed to convert iconBitmap to artworkData", e7);
+                bArr = null;
+            }
+            if (bArr == null) {
+                bArr2 = null;
+            } else {
+                bArr2 = (byte[]) bArr.clone();
+            }
+            m0Var.f3428k = bArr2;
+            m0Var.f3429l = 3;
+        }
+        Bundle bundle2 = lVar.h;
+        if (bundle2 != null) {
+            bundle = new Bundle(bundle2);
+        }
+        if (bundle != null && bundle.containsKey("android.media.extra.BT_FOLDER_TYPE")) {
+            long j3 = bundle.getLong("android.media.extra.BT_FOLDER_TYPE");
+            if (j3 != 0) {
+                if (j3 == 1) {
+                    i10 = 1;
+                } else if (j3 == 2) {
+                    i10 = 2;
+                } else if (j3 == 3) {
+                    i10 = 3;
+                } else if (j3 == 4) {
+                    i10 = 4;
+                } else if (j3 == 5) {
+                    i10 = 5;
+                } else if (j3 == 6) {
+                    i10 = 6;
+                }
+                m0Var.f3433p = Integer.valueOf(i10);
+                bundle.remove("android.media.extra.BT_FOLDER_TYPE");
+            }
+            i10 = 0;
+            m0Var.f3433p = Integer.valueOf(i10);
+            bundle.remove("android.media.extra.BT_FOLDER_TYPE");
+        }
+        m0Var.f3434q = Boolean.FALSE;
+        if (bundle != null && bundle.containsKey("androidx.media3.session.EXTRAS_KEY_MEDIA_TYPE_COMPAT")) {
+            m0Var.G = Integer.valueOf((int) bundle.getLong("androidx.media3.session.EXTRAS_KEY_MEDIA_TYPE_COMPAT"));
+            bundle.remove("androidx.media3.session.EXTRAS_KEY_MEDIA_TYPE_COMPAT");
+        }
+        if (bundle != null && bundle.containsKey("androidx.media.utils.extras.CUSTOM_BROWSER_ACTION_ID_LIST")) {
+            ArrayList<String> stringArrayList = bundle.getStringArrayList("androidx.media.utils.extras.CUSTOM_BROWSER_ACTION_ID_LIST");
+            stringArrayList.getClass();
+            m0Var.I = e9.i0.v(e9.i0.v(stringArrayList));
+        }
+        if (bundle != null && bundle.containsKey("androidx.media3.mediadescriptioncompat.title")) {
+            m0Var.f3420a = bundle.getCharSequence("androidx.media3.mediadescriptioncompat.title");
+            m0Var.f3423e = charSequence;
+            bundle.remove("androidx.media3.mediadescriptioncompat.title");
+        } else {
+            m0Var.f3420a = charSequence;
+        }
+        if (bundle != null && !bundle.isEmpty()) {
+            m0Var.H = bundle;
+        }
+        m0Var.f3435r = Boolean.TRUE;
+        i9.w l4 = l0Var.f16156g.l(rVar, e9.i0.z(new b2.k0(str2, new b2.z(yVar), null, new b2.e0(d0Var), new b2.n0(m0Var), g0Var3)));
+        l4.a(new i9.s(0, l4, new a5.a(l0Var, rVar, this.f10563b)), i9.q.f12075a);
     }
 
-    public final void f(ArrayList arrayList, ArrayList arrayList2) {
-        int size;
-        int size2;
-        Object obj;
-        TLRPC.Chat chat;
-        this.f10540k = arrayList;
-        this.f10541l = arrayList2;
-        a0.i iVar = this.f10536f;
-        if (iVar.m() != 0) {
-            if (arrayList != null || arrayList2 != null) {
-                if (arrayList == null) {
-                    size = 0;
-                } else {
-                    size = arrayList.size();
-                }
-                if (arrayList2 == null) {
-                    size2 = 0;
-                } else {
-                    size2 = arrayList2.size();
-                }
-                int i10 = size2 + size;
-                for (int i11 = 0; i11 < i10; i11++) {
-                    if (i11 < size) {
-                        obj = arrayList.get(i11);
-                    } else {
-                        obj = arrayList2.get(i11 - size);
-                    }
-                    if (obj instanceof h0) {
-                        obj = ((h0) obj).f10602a;
-                    }
-                    if (obj instanceof pq0) {
-                        obj = ((pq0) obj).f29826b;
-                    }
-                    boolean z10 = obj instanceof TLRPC.User;
-                    ArrayList arrayList3 = this.d;
-                    ArrayList arrayList4 = this.f10535e;
-                    if (z10) {
-                        TLRPC.User user = (TLRPC.User) obj;
-                        TLRPC.User user2 = (TLRPC.User) iVar.f(user.f20194id);
-                        if (user2 != null) {
-                            arrayList4.remove(user2);
-                            arrayList3.remove(user2);
-                            iVar.l(user2.f20194id);
-                        }
-                        long j3 = user.f20194id;
-                        a0.i iVar2 = this.h;
-                        TLObject tLObject = (TLObject) iVar2.f(j3);
-                        if (tLObject != null) {
-                            this.f10537g.remove(tLObject);
-                            iVar2.l(user.f20194id);
-                        }
-                        long j10 = user.f20194id;
-                        a0.i iVar3 = this.f10538i;
-                        Object f7 = iVar3.f(j10);
-                        if (f7 != null) {
-                            this.f10539j.remove(f7);
-                            iVar3.l(user.f20194id);
-                        }
-                    } else if ((obj instanceof TLRPC.Chat) && (chat = (TLRPC.Chat) iVar.f(-((TLRPC.Chat) obj).f20047id)) != null) {
-                        arrayList4.remove(chat);
-                        arrayList3.remove(chat);
-                        iVar.l(-chat.f20047id);
-                    }
+    @Override
+    public Object i() {
+        ((la.h) ((da.c) this.f10564c).d).W((l5.i) this.d, this.f10563b + 1, false);
+        return null;
+    }
+
+    @Override
+    public void invoke(Object obj) {
+        b2.z0 z0Var = (b2.z0) obj;
+        int i10 = this.f10563b;
+        z0Var.onPositionDiscontinuity(i10);
+        z0Var.onPositionDiscontinuity((b2.a1) this.f10564c, (b2.a1) this.d, i10);
+    }
+
+    @Override
+    public void run(int i10, String str) {
+        ((VoIPService) this.f10564c).lambda$createGroupInstance$66(this.f10563b, (boolean[]) this.d, i10, str);
+    }
+
+    public c2(Object obj, int i10, Object obj2, int i11) {
+        this.f10562a = i11;
+        this.f10564c = obj;
+        this.f10563b = i10;
+        this.d = obj2;
+    }
+
+    @Override
+    public void run(ArrayList arrayList, String str) {
+        d2 d2Var = (d2) this.f10564c;
+        HashMap hashMap = (HashMap) this.d;
+        f2 f2Var = d2Var.f10575a;
+        int i10 = f2Var.P;
+        HashMap hashMap2 = f2Var.I;
+        if (this.f10563b != i10) {
+            return;
+        }
+        int size = arrayList.size();
+        boolean z10 = false;
+        for (int i11 = 0; i11 < size; i11++) {
+            String str2 = ((MediaDataController.KeywordResult) arrayList.get(i11)).emoji;
+            ArrayList arrayList2 = hashMap != null ? (ArrayList) hashMap.get(str2) : null;
+            if (arrayList2 != null && !arrayList2.isEmpty()) {
+                d2Var.a();
+                if (!hashMap2.containsKey(arrayList2)) {
+                    hashMap2.put(arrayList2, str2);
+                    f2Var.J.add(arrayList2);
+                    z10 = true;
                 }
             }
         }
-    }
-
-    public final void g(String str, boolean z10, boolean z11, boolean z12, boolean z13, long j3, boolean z14, int i10, int i11) {
-        h(str, z10, z11, z12, z13, false, j3, z14, i10, i11, 0L, null);
-    }
-
-    public final void h(final java.lang.String r22, boolean r23, final boolean r24, final boolean r25, boolean r26, final boolean r27, long r28, boolean r30, int r31, final int r32, final long r33, final org.telegram.ui.ActionBar.m5 r35) {
-        throw new UnsupportedOperationException("Method not decompiled: gg.c2.h(java.lang.String, boolean, boolean, boolean, boolean, boolean, long, boolean, int, int, long, org.telegram.ui.ActionBar.m5):void");
-    }
-
-    public final void i() {
-        a0.i iVar = this.f10536f;
-        if (iVar.m() != 0) {
-            a0.i iVar2 = this.h;
-            int m10 = iVar2.m();
-            for (int i10 = 0; i10 < m10; i10++) {
-                TLRPC.User user = (TLRPC.User) iVar.f(iVar2.j(i10));
-                if (user != null) {
-                    this.f10535e.remove(user);
-                    this.d.remove(user);
-                    iVar.l(user.f20194id);
-                }
-            }
+        if (z10) {
+            f2Var.l();
         }
+    }
+
+    public c2(Object obj, Object obj2, int i10, int i11) {
+        this.f10562a = i11;
+        this.f10564c = obj;
+        this.d = obj2;
+        this.f10563b = i10;
+    }
+
+    @Override
+    public Object run(Object obj, Object obj2, Object obj3) {
+        Context context = (Context) this.f10564c;
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) this.d;
+        TLRPC.Document document = (TLRPC.Document) obj2;
+        Boolean bool = (Boolean) obj3;
+        int i10 = this.f10563b;
+        String findAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(document, "😀", Integer.valueOf(i10));
+        String str = TextUtils.isEmpty(findAnimatedEmojiEmoticon) ? "😀" : findAnimatedEmojiEmoticon;
+        org.telegram.ui.ActionBar.b2 b2Var = new org.telegram.ui.ActionBar.b2(context, 3, null);
+        TLRPC.TL_stickers_addStickerToSet tL_stickers_addStickerToSet = new TLRPC.TL_stickers_addStickerToSet();
+        tL_stickers_addStickerToSet.stickerset = MediaDataController.getInputStickerSet(tL_messages_stickerSet.set);
+        tL_stickers_addStickerToSet.sticker = MediaDataController.getInputStickerSetItem(document, str);
+        ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tL_stickers_addStickerToSet, new za(b2Var, i10, document, obj, tL_stickers_addStickerToSet, 6));
+        try {
+            b2Var.q(350L);
+        } catch (Exception unused) {
+        }
+        return Boolean.TRUE;
     }
 }

@@ -1,32 +1,29 @@
 package org.telegram.ui.Components;
+public final class te implements f5 {
+    public final int f31155a;
+    public final ChatActivityEnterView f31156b;
 
-import android.view.View;
-public final class te implements d5, ol0 {
-    public final ChatActivityEnterView f31119a;
-
-    public te(ChatActivityEnterView chatActivityEnterView) {
-        this.f31119a = chatActivityEnterView;
+    public te(ChatActivityEnterView chatActivityEnterView, int i10) {
+        this.f31155a = i10;
+        this.f31156b = chatActivityEnterView;
     }
 
     @Override
-    public void K(int i10, int i11, boolean z10) {
-        ChatActivityEnterView chatActivityEnterView = this.f31119a;
-        boolean T0 = chatActivityEnterView.T0(i10, z10, i11, true, 0L);
-        of ofVar = chatActivityEnterView.L0;
-        if (ofVar != null) {
-            ofVar.h(!T0);
-            chatActivityEnterView.L0 = null;
+    public final void J(int i10, int i11, boolean z10) {
+        switch (this.f31155a) {
+            case 0:
+                this.f31156b.R0(i10, z10, i11, true, 0L);
+                return;
+            default:
+                ChatActivityEnterView chatActivityEnterView = this.f31156b;
+                chatActivityEnterView.R0(i10, z10, i11, true, 0L);
+                pf pfVar = chatActivityEnterView.L0;
+                if (pfVar != null) {
+                    pfVar.i();
+                    chatActivityEnterView.L0 = null;
+                    return;
+                }
+                return;
         }
-    }
-
-    @Override
-    public boolean d(int i10, View view) {
-        if (view instanceof ei.b0) {
-            ChatActivityEnterView chatActivityEnterView = this.f31119a;
-            chatActivityEnterView.setFieldText(((ei.b0) view).getCommand() + " ");
-            chatActivityEnterView.m0.c();
-            return true;
-        }
-        return false;
     }
 }

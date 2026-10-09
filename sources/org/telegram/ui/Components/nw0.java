@@ -1,80 +1,66 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.content.Context;
-import android.graphics.Point;
-import android.graphics.Rect;
-import android.view.View;
+import android.animation.ValueAnimator;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Paint;
+import android.graphics.Shader;
 import org.telegram.messenger.AndroidUtilities;
-public abstract class nw0 extends mw0 {
-    public Activity f29162w0;
-    public final Rect f29163x0;
-    public int f29164y0;
-    public boolean f29165z0;
+public final class nw0 implements Runnable {
+    public final int f29294a;
+    public final androidx.activity.g f29295b;
 
-    public nw0(Context context, Activity activity) {
-        super(context, null);
-        this.f29163x0 = new Rect();
-        setActivity(activity);
+    public nw0(androidx.activity.g gVar, int i10) {
+        this.f29294a = i10;
+        this.f29295b = gVar;
     }
 
     @Override
-    public int R() {
-        View rootView = getRootView();
-        Rect rect = this.f29163x0;
-        getWindowVisibleDisplayFrame(rect);
-        int i10 = 0;
-        if (this.f29165z0) {
-            int height = rootView.getHeight();
-            if (rect.top != 0) {
-                i10 = AndroidUtilities.statusBarHeight;
-            }
-            return ((height - i10) - AndroidUtilities.getViewInset(rootView)) - (rect.bottom - rect.top);
+    public final void run() {
+        int i10 = this.f29294a;
+        androidx.activity.g gVar = this.f29295b;
+        switch (i10) {
+            case 0:
+                sw0 sw0Var = (sw0) gVar.f2128c;
+                boolean z10 = sw0Var.O;
+                Paint paint = sw0Var.f30919b0;
+                Paint paint2 = sw0Var.W;
+                if (!z10) {
+                    ow0 ow0Var = (ow0) gVar.d;
+                    if (ow0Var != null) {
+                        ow0Var.f29596c.recycle();
+                    }
+                    sw0Var.P = false;
+                    return;
+                }
+                ow0 ow0Var2 = sw0Var.Q;
+                sw0Var.R = ow0Var2;
+                sw0Var.f30917a0.setShader(paint2.getShader());
+                sw0Var.f30921c0.setShader(paint.getShader());
+                Bitmap bitmap = ((ow0) gVar.d).f29596c;
+                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                paint2.setShader(new BitmapShader(bitmap, tileMode, tileMode));
+                ((ow0) gVar.d).getClass();
+                ValueAnimator valueAnimator = sw0Var.f30927g0;
+                if (valueAnimator != null) {
+                    valueAnimator.cancel();
+                }
+                sw0Var.f30926f0 = 0.0f;
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                sw0Var.f30927g0 = ofFloat;
+                ofFloat.addUpdateListener(new j80(gVar, 23));
+                sw0Var.f30927g0.addListener(new ul0(2, gVar, ow0Var2));
+                sw0Var.f30927g0.setDuration(50L);
+                sw0Var.f30927g0.start();
+                sw0Var.N();
+                sw0Var.Q = (ow0) gVar.d;
+                AndroidUtilities.runOnUIThread(new nw0(gVar, 1), 16L);
+                return;
+            default:
+                sw0 sw0Var2 = (sw0) gVar.f2128c;
+                sw0Var2.P = false;
+                sw0Var2.W();
+                return;
         }
-        int height2 = (this.f29162w0.getWindow().getDecorView().getHeight() - AndroidUtilities.getViewInset(rootView)) - rootView.getBottom();
-        if (height2 <= Math.max(AndroidUtilities.dp(10.0f), AndroidUtilities.statusBarHeight)) {
-            return 0;
-        }
-        return height2;
-    }
-
-    @Override
-    public void S() {
-        boolean z10;
-        if (this.f28845n == null && this.f28850r.isEmpty()) {
-            return;
-        }
-        this.f29164y0 = R();
-        Point point = AndroidUtilities.displaySize;
-        if (point.x > point.y) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        post(new fs0(3, this, z10));
-    }
-
-    @Override
-    public int[] getColorKeys() {
-        return null;
-    }
-
-    @Override
-    public int getKeyboardHeight() {
-        return this.f29164y0;
-    }
-
-    @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        S();
-    }
-
-    public void setActivity(Activity activity) {
-        this.f29162w0 = activity;
-    }
-
-    public void setWithoutWindow(boolean z10) {
-        this.f29165z0 = z10;
     }
 }

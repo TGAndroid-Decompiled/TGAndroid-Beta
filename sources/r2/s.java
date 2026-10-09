@@ -1,400 +1,1139 @@
 package r2;
 
-import ai.m0;
-import ai.m8;
-import android.content.ClipData;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Canvas;
-import android.graphics.RectF;
+import android.media.MediaCodec;
+import android.media.MediaCrypto;
+import android.media.MediaCryptoException;
+import android.media.MediaFormat;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Log;
-import android.view.View;
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.Task;
-import e9.a1;
-import e9.i0;
+import android.os.SystemClock;
+import e2.a0;
+import e2.d0;
+import i2.j0;
+import i2.n1;
+import j$.util.Objects;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BillingController;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.t2;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.a2;
-import org.telegram.ui.ActionBar.b2;
-import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Cells.w0;
-import org.telegram.ui.Components.d5;
-import org.telegram.ui.Components.h61;
-import org.telegram.ui.Components.nl0;
-import org.telegram.ui.Components.r80;
-import org.telegram.ui.Components.v50;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ro0;
-import r0.l1;
-import rg.s1;
-import tg.c0;
-import tg.t0;
-import tg.z0;
-import xh.j0;
-import xh.q1;
-import yh.a4;
-import yh.f0;
-import yh.m3;
-import yh.u5;
-import yh.z7;
-public final class s implements w, t5.b, t0.e, pa.a, a2, nl0, uh.a, Continuation, x2.m, yf.m, r0.n, BillingController.ProductDetailsResponseListenerLegacy, Utilities.Callback5, d5, le.d, ro0 {
-    public final int f45786a;
-    public final Object f45787b;
+import k2.i0;
+import v7.x7;
+public abstract class s extends i2.f {
+    public static final byte[] V0 = {0, 0, 1, 103, 66, -64, 11, -38, 37, -112, 0, 0, 1, 104, -50, 15, 19, 32, 0, 0, 1, 101, -120, -124, 13, -50, 113, 24, -96, 0, 47, -65, 28, 49, -61, 39, 93, 120};
+    public int A0;
+    public int B0;
+    public int C0;
+    public boolean D0;
+    public boolean E0;
+    public boolean F0;
+    public long G0;
+    public long H0;
+    public final l I;
+    public boolean I0;
+    public final j J;
+    public boolean J0;
+    public final float K;
+    public boolean K0;
+    public final h2.h L;
+    public boolean L0;
+    public final h2.h M;
+    public i2.n M0;
+    public final h2.h N;
+    public i2.g N0;
+    public final g O;
+    public r O0;
+    public final MediaCodec.BufferInfo P;
+    public long P0;
+    public final ArrayDeque Q;
+    public boolean Q0;
+    public final i0 R;
+    public boolean R0;
+    public b2.s S;
+    public boolean S0;
+    public b2.s T;
+    public long T0;
+    public n2.g U;
+    public long U0;
+    public n2.g V;
+    public j0 W;
+    public MediaCrypto X;
+    public final long Y;
+    public float Z;
+    public float f46911a0;
+    public m f46912b0;
+    public b2.s f46913c0;
+    public MediaFormat f46914d0;
+    public boolean f46915e0;
+    public float f46916f0;
+    public ArrayDeque f46917g0;
+    public q f46918h0;
+    public p f46919i0;
+    public int f46920j0;
+    public boolean f46921k0;
+    public boolean f46922l0;
+    public boolean m0;
+    public boolean f46923n0;
+    public boolean f46924o0;
+    public long f46925p0;
+    public long f46926q0;
+    public int f46927r0;
+    public int f46928s0;
+    public ByteBuffer f46929t0;
+    public boolean f46930u0;
+    public boolean f46931v0;
+    public boolean f46932w0;
+    public boolean f46933x0;
+    public boolean f46934y0;
+    public boolean f46935z0;
 
-    public s(Object obj, int i10) {
-        this.f45786a = i10;
-        this.f45787b = obj;
+    public s(int i10, l lVar, float f7) {
+        super(i10);
+        j jVar = j.f46889b;
+        this.I = lVar;
+        this.J = jVar;
+        this.K = f7;
+        this.L = new h2.h(0, 0);
+        this.M = new h2.h(0, 0);
+        this.N = new h2.h(2, 0);
+        ?? hVar = new h2.h(2, 0);
+        hVar.v = 32;
+        this.O = hVar;
+        this.P = new MediaCodec.BufferInfo();
+        this.Z = 1.0f;
+        this.f46911a0 = 1.0f;
+        this.Y = -9223372036854775807L;
+        this.Q = new ArrayDeque();
+        this.O0 = r.f46907e;
+        hVar.b(0);
+        hVar.f10985c.order(ByteOrder.nativeOrder());
+        ?? obj = new Object();
+        obj.f14490a = c2.h.f4011a;
+        obj.f14492c = 0;
+        obj.f14491b = 2;
+        this.R = obj;
+        this.f46916f0 = -1.0f;
+        this.f46920j0 = 0;
+        this.A0 = 0;
+        this.f46927r0 = -1;
+        this.f46928s0 = -1;
+        this.f46926q0 = -9223372036854775807L;
+        this.G0 = -9223372036854775807L;
+        this.H0 = -9223372036854775807L;
+        this.P0 = -9223372036854775807L;
+        this.f46925p0 = -9223372036854775807L;
+        this.B0 = 0;
+        this.C0 = 0;
+        this.N0 = new Object();
+        this.T0 = -9223372036854775807L;
+        this.U0 = -9223372036854775807L;
     }
 
     @Override
-    public void K(int i10, int i11, boolean z10) {
-        f0 f0Var = (f0) this.f45787b;
-        if (z10) {
-            long j3 = i10;
-            if (f0Var.I != j3) {
-                f0Var.I = j3;
-                f0Var.f51279r.setText(f0.o(j3));
+    public final int A(b2.s sVar) {
+        try {
+            return u0(this.J, sVar);
+        } catch (u e7) {
+            throw d(e7, sVar, false, 4002);
+        }
+    }
+
+    @Override
+    public final int B() {
+        return 8;
+    }
+
+    public final boolean C(long j3, long j10) {
+        g gVar;
+        int i10;
+        int i11;
+        int i12;
+        byte b10;
+        e2.d.g(!this.J0);
+        g gVar2 = this.O;
+        if (gVar2.f()) {
+            ByteBuffer byteBuffer = gVar2.f10985c;
+            int i13 = this.f46928s0;
+            int i14 = gVar2.f46885s;
+            long j11 = gVar2.f10986e;
+            boolean S = S(this.f11652w, gVar2.f46884r);
+            boolean isEndOfStream = gVar2.isEndOfStream();
+            b2.s sVar = this.T;
+            sVar.getClass();
+            gVar = gVar2;
+            if (g0(j3, j10, null, byteBuffer, i13, 0, i14, j11, S, isEndOfStream, sVar)) {
+                c0(gVar.f46884r);
+                gVar.clear();
             }
-            f0Var.n(true);
+            return false;
         }
-    }
-
-    @Override
-    public l1 Q0(View view, l1 l1Var) {
-        ((j0) this.f45787b).h.i(l1Var);
-        return l1.f45623b;
-    }
-
-    @Override
-    public void a(int i10) {
-        switch (this.f45786a) {
-            case 27:
-                Utilities.Callback2 callback2 = (Utilities.Callback2) this.f45787b;
-                if (i10 == 1) {
-                    callback2.run(Boolean.TRUE, null);
-                    return;
-                } else if (i10 != 3) {
-                    callback2.run(Boolean.FALSE, null);
-                    return;
-                } else {
-                    return;
-                }
-            case 28:
-                m0 m0Var = (m0) this.f45787b;
-                if (i10 == 1) {
-                    m0Var.run(Boolean.TRUE, null);
-                    return;
-                } else if (i10 != 3) {
-                    m0Var.run(Boolean.FALSE, null);
-                    return;
-                } else {
-                    return;
-                }
-            default:
-                r80 r80Var = (r80) this.f45787b;
-                if (i10 == 1) {
-                    r80Var.run(Boolean.TRUE, null);
-                    return;
-                } else if (i10 != 3) {
-                    r80Var.run(Boolean.FALSE, null);
-                    return;
-                } else {
-                    return;
-                }
+        gVar = gVar2;
+        if (this.I0) {
+            this.J0 = true;
+            return false;
         }
-    }
-
-    @Override
-    public void a0(int i10, float f7, float f10, le.e eVar) {
-        View view = ((a4) this.f45787b).f51083b;
-        if (view instanceof w0) {
-            ((w0) view).I();
-        } else {
-            view.invalidate();
+        ?? r12 = 0;
+        boolean z10 = this.f46933x0;
+        h2.h hVar = this.N;
+        if (z10) {
+            e2.d.g(gVar.d(hVar));
+            this.f46933x0 = false;
         }
-    }
-
-    @Override
-    public a1 b(int i10, b2.l1 l1Var, int[] iArr) {
-        x2.i iVar = (x2.i) this.f45787b;
-        e9.f0 u10 = i0.u();
-        for (int i11 = 0; i11 < l1Var.f3336a; i11++) {
-            u10.b(new x2.f(i10, l1Var, i11, iVar, iArr[i11]));
-        }
-        return u10.i();
-    }
-
-    @Override
-    public void c(float f7, float f10, int i10, View view) {
-        z0.O((z0) this.f45787b, view);
-    }
-
-    @Override
-    public int d(Object obj) {
-        b2.s sVar = (b2.s) this.f45787b;
-        o oVar = (o) obj;
-        String str = oVar.f45745b;
-        if ((!str.equals(sVar.f3564r) && !str.equals(x.b(sVar))) || !oVar.c(sVar, false) || !oVar.d(sVar)) {
-            return 0;
-        }
-        return 1;
-    }
-
-    @Override
-    public void e(long j3) {
-        switch (this.f45786a) {
-            case 16:
-                ((xh.d) this.f45787b).a(j3, true);
-                return;
-            default:
-                ((m3) this.f45787b).h();
-                return;
-        }
-    }
-
-    @Override
-    public void f(pa.b bVar) {
-        t9.a aVar = (t9.a) this.f45787b;
-        if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-            Log.d("FirebaseCrashlytics", "Crashlytics native component now available.", null);
-        }
-        aVar.f46950b.set((t9.a) bVar.get());
-    }
-
-    @Override
-    public boolean f1(View view) {
-        return false;
-    }
-
-    @Override
-    public void g(b2 b2Var, int i10) {
-        switch (this.f45786a) {
-            case 7:
-                ((t0) this.f45787b).run();
-                return;
-            case 8:
-                TLRPC.TL_payments_giveawayInfoResults tL_payments_giveawayInfoResults = (TLRPC.TL_payments_giveawayInfoResults) this.f45787b;
-                n2 R = LaunchActivity.R();
-                if (R != null) {
-                    c0.R(R, tL_payments_giveawayInfoResults.gift_code_slug, null);
-                    return;
-                }
-                return;
-            case 9:
-                ((t2) this.f45787b).run();
-                return;
-            case 10:
-                ((t0) this.f45787b).run();
-                return;
-            case 17:
-                ((m8) this.f45787b).run();
-                return;
-            default:
-                ((Utilities.Callback) this.f45787b).run(b2Var.g(i10, true, true));
-                return;
-        }
-    }
-
-    @Override
-    public Object h() {
-        SQLiteDatabase a2;
-        int i10 = this.f45786a;
-        Object obj = this.f45787b;
-        switch (i10) {
-            case 1:
-                s5.g gVar = (s5.g) ((s5.c) obj);
-                gVar.getClass();
-                int i11 = o5.a.f17125e;
-                com.google.firebase.messaging.s sVar = new com.google.firebase.messaging.s(7, false);
-                sVar.f7923c = null;
-                sVar.d = new ArrayList();
-                sVar.f7924e = null;
-                sVar.f7922b = "";
-                HashMap hashMap = new HashMap();
-                a2 = gVar.a();
-                a2.beginTransaction();
-                try {
-                    o5.a aVar = (o5.a) s5.g.h(a2.rawQuery("SELECT log_source, reason, events_dropped_count FROM log_event_dropped", new String[0]), new v50(gVar, hashMap, sVar, 9));
-                    a2.setTransactionSuccessful();
-                    return aVar;
-                } finally {
-                }
-            case 2:
-                s5.g gVar2 = (s5.g) ((s5.d) obj);
-                long q6 = gVar2.f46739b.q() - gVar2.d.d;
-                a2 = gVar2.a();
-                a2.beginTransaction();
-                try {
-                    String[] strArr = {String.valueOf(q6)};
-                    Cursor rawQuery = a2.rawQuery("SELECT COUNT(*), transport_name FROM events WHERE timestamp_ms < ? GROUP BY transport_name", strArr);
-                    while (rawQuery.moveToNext()) {
-                        int i12 = rawQuery.getInt(0);
-                        gVar2.e(i12, o5.c.MESSAGE_TOO_OLD, rawQuery.getString(1));
-                    }
-                    rawQuery.close();
-                    int delete = a2.delete("events", "timestamp_ms < ?", strArr);
-                    a2.setTransactionSuccessful();
-                    a2.endTransaction();
-                    return Integer.valueOf(delete);
-                } finally {
-                }
-            case 3:
-                s5.g gVar3 = (s5.g) ((s5.c) ((da.b) obj).f8186i);
-                a2 = gVar3.a();
-                a2.beginTransaction();
-                try {
-                    a2.compileStatement("DELETE FROM log_event_dropped").execute();
-                    a2.compileStatement("UPDATE global_log_event_state SET last_metrics_upload_ms=" + gVar3.f46739b.q()).execute();
-                    a2.setTransactionSuccessful();
-                    return null;
-                } finally {
-                }
-            default:
-                com.google.firebase.messaging.s sVar2 = (com.google.firebase.messaging.s) obj;
-                for (l5.i iVar : (Iterable) ((s5.g) ((s5.d) sVar2.f7923c)).c(new s0.b(18))) {
-                    ((la.h) sVar2.d).V(iVar, 1, false);
-                }
-                return null;
-        }
-    }
-
-    @Override
-    public boolean l(t0.i iVar, int i10, Bundle bundle) {
-        r0.d dVar;
-        m.s sVar = (m.s) this.f45787b;
-        int i11 = Build.VERSION.SDK_INT;
-        if (i11 >= 25 && (i10 & 1) != 0) {
-            try {
-                iVar.f46895a.d();
-                Parcelable parcelable = (Parcelable) iVar.f46895a.j();
-                if (bundle == null) {
-                    bundle = new Bundle();
-                } else {
-                    bundle = new Bundle(bundle);
-                }
-                bundle.putParcelable("androidx.core.view.extra.INPUT_CONTENT_INFO", parcelable);
-            } catch (Exception e7) {
-                Log.w("InputConnectionCompat", "Can't insert content from IME; requestPermission() failed", e7);
+        if (this.f46934y0) {
+            if (gVar.f()) {
+                return true;
+            }
+            this.f46932w0 = false;
+            k0();
+            this.f46934y0 = false;
+            T();
+            if (!this.f46932w0) {
                 return false;
             }
         }
-        t0.h hVar = iVar.f46895a;
-        ClipData clipData = new ClipData(hVar.getDescription(), new ClipData.Item(hVar.c()));
-        if (i11 >= 31) {
-            dVar = new j2.j(clipData, 2);
-        } else {
-            r0.e eVar = new r0.e();
-            eVar.f45590b = clipData;
-            eVar.f45591c = 2;
-            dVar = eVar;
+        e2.d.g(!this.I0);
+        n4.x xVar = this.f11646c;
+        xVar.u();
+        hVar.clear();
+        while (true) {
+            hVar.clear();
+            int w10 = w(xVar, hVar, r12);
+            if (w10 != -5) {
+                if (w10 != -4) {
+                    if (w10 == -3) {
+                        if (k()) {
+                            this.H0 = this.G0;
+                        }
+                    } else {
+                        throw new IllegalStateException();
+                    }
+                } else if (hVar.isEndOfStream()) {
+                    this.I0 = true;
+                    this.H0 = this.G0;
+                    break;
+                } else {
+                    this.G0 = Math.max(this.G0, hVar.f10986e);
+                    if (k() || this.M.isLastSample()) {
+                        this.H0 = this.G0;
+                    }
+                    byte[] bArr = null;
+                    if (this.K0) {
+                        b2.s sVar2 = this.S;
+                        sVar2.getClass();
+                        this.T = sVar2;
+                        if (Objects.equals(sVar2.f3643r, "audio/opus") && !this.T.f3646u.isEmpty()) {
+                            byte[] bArr2 = (byte[]) this.T.f3646u.get(r12);
+                            int i15 = (bArr2[10] & 255) | ((bArr2[11] & 255) << 8);
+                            b2.r a2 = this.T.a();
+                            a2.L = i15;
+                            this.T = new b2.s(a2);
+                        }
+                        a0(this.T, null);
+                        this.K0 = r12;
+                    }
+                    hVar.c();
+                    b2.s sVar3 = this.T;
+                    if (sVar3 != null && Objects.equals(sVar3.f3643r, "audio/opus")) {
+                        if (hVar.hasSupplementalData()) {
+                            hVar.f10983a = this.T;
+                            Q(hVar);
+                        }
+                        if (this.f11652w - hVar.f10986e <= 80000) {
+                            List list = this.T.f3646u;
+                            i0 i0Var = this.R;
+                            i0Var.getClass();
+                            hVar.f10985c.getClass();
+                            if (hVar.f10985c.limit() - hVar.f10985c.position() != 0) {
+                                if (i0Var.f14491b == 2 && (list.size() == 1 || list.size() == 3)) {
+                                    bArr = (byte[]) list.get(r12);
+                                }
+                                ByteBuffer byteBuffer2 = hVar.f10985c;
+                                int position = byteBuffer2.position();
+                                int limit = byteBuffer2.limit();
+                                int i16 = limit - position;
+                                int i17 = (i16 + 255) / 255;
+                                int i18 = i17 + 27 + i16;
+                                if (i0Var.f14491b == 2) {
+                                    if (bArr != null) {
+                                        i10 = bArr.length + 28;
+                                    } else {
+                                        i10 = 47;
+                                    }
+                                    i18 = i10 + 44 + i18;
+                                } else {
+                                    i10 = r12;
+                                }
+                                if (i0Var.f14490a.capacity() < i18) {
+                                    i0Var.f14490a = ByteBuffer.allocate(i18).order(ByteOrder.LITTLE_ENDIAN);
+                                } else {
+                                    i0Var.f14490a.clear();
+                                }
+                                ByteBuffer byteBuffer3 = i0Var.f14490a;
+                                if (i0Var.f14491b == 2) {
+                                    if (bArr != null) {
+                                        i0.a(byteBuffer3, 0L, 0, 1, true);
+                                        i12 = limit;
+                                        byteBuffer3.put(x7.a(bArr.length));
+                                        byteBuffer3.put(bArr);
+                                        i11 = position;
+                                        byteBuffer3.putInt(22, d0.n(byteBuffer3.arrayOffset(), bArr.length + 28, 0, byteBuffer3.array()));
+                                        byteBuffer3.position(bArr.length + 28);
+                                    } else {
+                                        i11 = position;
+                                        i12 = limit;
+                                        byteBuffer3.put(i0.d);
+                                    }
+                                    byteBuffer3.put(i0.f14489e);
+                                } else {
+                                    i11 = position;
+                                    i12 = limit;
+                                }
+                                byte b11 = byteBuffer2.get(0);
+                                if (byteBuffer2.limit() > 1) {
+                                    b10 = byteBuffer2.get(1);
+                                } else {
+                                    b10 = 0;
+                                }
+                                int k10 = i0Var.f14492c + ((int) ((c3.b.k(b11, b10) * 48000) / 1000000));
+                                i0Var.f14492c = k10;
+                                i0.a(byteBuffer3, k10, i0Var.f14491b, i17, false);
+                                for (int i19 = 0; i19 < i17; i19++) {
+                                    if (i16 >= 255) {
+                                        byteBuffer3.put((byte) -1);
+                                        i16 -= 255;
+                                    } else {
+                                        byteBuffer3.put((byte) i16);
+                                        i16 = 0;
+                                    }
+                                }
+                                int i20 = i12;
+                                for (int i21 = i11; i21 < i20; i21++) {
+                                    byteBuffer3.put(byteBuffer2.get(i21));
+                                }
+                                byteBuffer2.position(byteBuffer2.limit());
+                                byteBuffer3.flip();
+                                if (i0Var.f14491b == 2) {
+                                    byteBuffer3.putInt(i10 + 66, d0.n(byteBuffer3.arrayOffset() + i10 + 44, byteBuffer3.limit() - byteBuffer3.position(), 0, byteBuffer3.array()));
+                                } else {
+                                    byteBuffer3.putInt(22, d0.n(byteBuffer3.arrayOffset(), byteBuffer3.limit() - byteBuffer3.position(), 0, byteBuffer3.array()));
+                                }
+                                i0Var.f14491b++;
+                                i0Var.f14490a = byteBuffer3;
+                                hVar.clear();
+                                hVar.b(i0Var.f14490a.remaining());
+                                hVar.f10985c.put(i0Var.f14490a);
+                                hVar.c();
+                            }
+                        }
+                    }
+                    if (gVar.f()) {
+                        long j12 = this.f11652w;
+                        if (S(j12, gVar.f46884r) != S(j12, hVar.f10986e)) {
+                            break;
+                        }
+                    }
+                    if (!gVar.d(hVar)) {
+                        break;
+                    }
+                    r12 = 0;
+                }
+            } else {
+                Z(xVar);
+                break;
+            }
         }
-        dVar.b(hVar.f());
-        dVar.setExtras(bundle);
-        if (r0.i0.i(sVar, dVar.build()) != null) {
+        this.f46933x0 = true;
+        if (gVar.f()) {
+            gVar.c();
+        }
+        if (!gVar.f() && !this.I0 && !this.f46934y0) {
             return false;
         }
         return true;
     }
 
-    @Override
-    public void onProductDetailsResponse(c5.h hVar, List list) {
-        int i10;
-        q1 q1Var = (q1) this.f45787b;
-        ArrayList arrayList = q1Var.f50207n0;
-        Iterator it = list.iterator();
-        long j3 = 0;
-        while (true) {
-            i10 = 0;
-            if (!it.hasNext()) {
-                break;
+    public abstract i2.h D(p pVar, b2.s sVar, b2.s sVar2);
+
+    public o E(IllegalStateException illegalStateException, p pVar) {
+        return new o(illegalStateException, pVar);
+    }
+
+    public final boolean F() {
+        if (this.D0) {
+            this.B0 = 1;
+            if (this.f46922l0) {
+                this.C0 = 3;
+                return false;
             }
-            c5.o oVar = (c5.o) it.next();
-            int size = arrayList.size();
-            while (true) {
-                if (i10 < size) {
-                    Object obj = arrayList.get(i10);
-                    i10++;
-                    rg.k kVar = (rg.k) obj;
-                    if (kVar.h() != null && kVar.h().equals(oVar.f4229c)) {
-                        kVar.h = oVar;
-                        if (kVar.f() > j3) {
-                            j3 = kVar.f();
+            this.C0 = 2;
+            return true;
+        }
+        w0();
+        return true;
+    }
+
+    public final boolean G(long j3, long j10) {
+        boolean z10;
+        boolean z11;
+        boolean z12;
+        m mVar = this.f46912b0;
+        mVar.getClass();
+        int i10 = this.f46928s0;
+        MediaCodec.BufferInfo bufferInfo = this.P;
+        if (i10 < 0) {
+            int h = mVar.h(bufferInfo);
+            if (h < 0) {
+                if (h == -2) {
+                    this.F0 = true;
+                    m mVar2 = this.f46912b0;
+                    mVar2.getClass();
+                    MediaFormat outputFormat = mVar2.getOutputFormat();
+                    if (this.f46920j0 != 0 && outputFormat.getInteger("width") == 32 && outputFormat.getInteger("height") == 32) {
+                        this.f46923n0 = true;
+                        return true;
+                    }
+                    this.f46914d0 = outputFormat;
+                    this.f46915e0 = true;
+                    return true;
+                }
+                if (this.f46924o0 && (this.I0 || this.B0 == 2)) {
+                    f0();
+                }
+                long j11 = this.f46925p0;
+                if (j11 != -9223372036854775807L) {
+                    this.h.getClass();
+                    if (j11 + 100 < System.currentTimeMillis()) {
+                        f0();
+                        return false;
+                    }
+                }
+                return false;
+            } else if (this.f46923n0) {
+                this.f46923n0 = false;
+                mVar.c(h);
+                return true;
+            } else if (bufferInfo.size == 0 && (bufferInfo.flags & 4) != 0) {
+                f0();
+                return false;
+            } else {
+                this.f46928s0 = h;
+                ByteBuffer outputBuffer = mVar.getOutputBuffer(h);
+                this.f46929t0 = outputBuffer;
+                if (outputBuffer != null) {
+                    outputBuffer.position(bufferInfo.offset);
+                    this.f46929t0.limit(bufferInfo.offset + bufferInfo.size);
+                }
+                x0(bufferInfo.presentationTimeUs);
+            }
+        }
+        long j12 = bufferInfo.presentationTimeUs;
+        if (j12 < this.f11652w) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.f46930u0 = z10;
+        long j13 = this.H0;
+        if (j13 != -9223372036854775807L && j13 <= j12) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        this.f46931v0 = z11;
+        if (this.S0) {
+            long j14 = this.T0;
+            if (j14 != -9223372036854775807L && j12 <= j14) {
+                this.S0 = false;
+                this.T0 = -9223372036854775807L;
+            } else {
+                this.T0 = j12;
+                this.f46930u0 = true;
+                this.f46931v0 = false;
+            }
+        }
+        ByteBuffer byteBuffer = this.f46929t0;
+        int i11 = this.f46928s0;
+        int i12 = bufferInfo.flags;
+        boolean z13 = this.f46930u0;
+        boolean z14 = this.f46931v0;
+        b2.s sVar = this.T;
+        sVar.getClass();
+        if (!g0(j3, j10, mVar, byteBuffer, i11, i12, 1, j12, z13, z14, sVar)) {
+            return false;
+        }
+        c0(bufferInfo.presentationTimeUs);
+        if ((bufferInfo.flags & 4) != 0) {
+            z12 = true;
+        } else {
+            z12 = false;
+        }
+        if (!z12 && this.E0 && this.f46931v0) {
+            this.h.getClass();
+            this.f46925p0 = System.currentTimeMillis();
+        }
+        this.f46928s0 = -1;
+        this.f46929t0 = null;
+        if (!z12) {
+            return true;
+        }
+        f0();
+        return false;
+    }
+
+    public final boolean H() {
+        m mVar = this.f46912b0;
+        if (mVar != null && this.B0 != 2 && !this.I0) {
+            int i10 = this.f46927r0;
+            h2.h hVar = this.M;
+            if (i10 < 0) {
+                int g10 = mVar.g();
+                this.f46927r0 = g10;
+                if (g10 >= 0) {
+                    hVar.f10985c = mVar.getInputBuffer(g10);
+                    hVar.clear();
+                }
+            }
+            if (this.B0 == 1) {
+                if (!this.f46924o0) {
+                    this.E0 = true;
+                    mVar.a(0L, this.f46927r0, 0, 4);
+                    this.f46927r0 = -1;
+                    hVar.f10985c = null;
+                }
+                this.B0 = 2;
+                return false;
+            } else if (this.m0) {
+                this.m0 = false;
+                ByteBuffer byteBuffer = hVar.f10985c;
+                byteBuffer.getClass();
+                byteBuffer.put(V0);
+                mVar.a(0L, this.f46927r0, 38, 0);
+                this.f46927r0 = -1;
+                hVar.f10985c = null;
+                this.D0 = true;
+                return true;
+            } else {
+                if (this.A0 == 1) {
+                    int i11 = 0;
+                    while (true) {
+                        b2.s sVar = this.f46913c0;
+                        sVar.getClass();
+                        if (i11 >= sVar.f3646u.size()) {
+                            break;
                         }
+                        ByteBuffer byteBuffer2 = hVar.f10985c;
+                        byteBuffer2.getClass();
+                        byteBuffer2.put((byte[]) this.f46913c0.f3646u.get(i11));
+                        i11++;
+                    }
+                    this.A0 = 2;
+                }
+                ByteBuffer byteBuffer3 = hVar.f10985c;
+                byteBuffer3.getClass();
+                int position = byteBuffer3.position();
+                n4.x xVar = this.f11646c;
+                xVar.u();
+                try {
+                    int w10 = w(xVar, hVar, 0);
+                    if (w10 == -3) {
+                        if (k()) {
+                            this.H0 = this.G0;
+                            return false;
+                        }
+                    } else if (w10 == -5) {
+                        if (this.A0 == 2) {
+                            hVar.clear();
+                            this.A0 = 1;
+                        }
+                        Z(xVar);
+                        return true;
+                    } else if (hVar.isEndOfStream()) {
+                        this.H0 = this.G0;
+                        if (this.A0 == 2) {
+                            hVar.clear();
+                            this.A0 = 1;
+                        }
+                        this.I0 = true;
+                        if (!this.D0) {
+                            f0();
+                            return false;
+                        } else if (!this.f46924o0) {
+                            this.E0 = true;
+                            mVar.a(0L, this.f46927r0, 0, 4);
+                            this.f46927r0 = -1;
+                            hVar.f10985c = null;
+                            return false;
+                        }
+                    } else {
+                        if (!this.D0 && !hVar.isKeyFrame()) {
+                            hVar.clear();
+                            if (this.A0 == 2) {
+                                this.A0 = 1;
+                                return true;
+                            }
+                        } else if (!p0(hVar)) {
+                            boolean flag = hVar.getFlag(1073741824);
+                            if (flag) {
+                                h2.d dVar = hVar.f10984b;
+                                if (position == 0) {
+                                    dVar.getClass();
+                                } else {
+                                    if (dVar.d == null) {
+                                        int[] iArr = new int[1];
+                                        dVar.d = iArr;
+                                        dVar.f10981i.numBytesOfClearData = iArr;
+                                    }
+                                    int[] iArr2 = dVar.d;
+                                    iArr2[0] = iArr2[0] + position;
+                                }
+                            }
+                            long j3 = hVar.f10986e;
+                            if (this.K0) {
+                                ArrayDeque arrayDeque = this.Q;
+                                if (!arrayDeque.isEmpty()) {
+                                    a0 a0Var = ((r) arrayDeque.peekLast()).d;
+                                    b2.s sVar2 = this.S;
+                                    sVar2.getClass();
+                                    a0Var.a(sVar2, j3);
+                                } else {
+                                    a0 a0Var2 = this.O0.d;
+                                    b2.s sVar3 = this.S;
+                                    sVar3.getClass();
+                                    a0Var2.a(sVar3, j3);
+                                }
+                                this.K0 = false;
+                            }
+                            this.G0 = Math.max(this.G0, j3);
+                            if (k() || hVar.isLastSample()) {
+                                this.H0 = this.G0;
+                            }
+                            hVar.c();
+                            if (hVar.hasSupplementalData()) {
+                                Q(hVar);
+                            }
+                            e0(hVar);
+                            int L = L(hVar);
+                            if (Build.VERSION.SDK_INT < 34 || (L & 32) == 0) {
+                                n1 n1Var = this.d;
+                                n1Var.getClass();
+                                if (!n1Var.f11804b) {
+                                    this.U0 = Math.max(this.U0, hVar.f10986e);
+                                }
+                            }
+                            if (flag) {
+                                mVar.b(this.f46927r0, hVar.f10984b, j3, L);
+                            } else {
+                                int i12 = this.f46927r0;
+                                ByteBuffer byteBuffer4 = hVar.f10985c;
+                                byteBuffer4.getClass();
+                                mVar.a(j3, i12, byteBuffer4.limit(), L);
+                            }
+                            this.f46927r0 = -1;
+                            hVar.f10985c = null;
+                            this.D0 = true;
+                            this.A0 = 0;
+                            this.N0.f11696c++;
+                            return true;
+                        }
+                        return true;
+                    }
+                } catch (h2.g e7) {
+                    W(e7);
+                    h0(0);
+                    I();
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public final void I() {
+        try {
+            m mVar = this.f46912b0;
+            e2.d.h(mVar);
+            mVar.flush();
+        } finally {
+            l0();
+        }
+    }
+
+    public final boolean J() {
+        if (this.f46912b0 != null) {
+            if (s0()) {
+                i0();
+                return true;
+            } else if (q0()) {
+                I();
+                return false;
+            } else {
+                long j3 = this.U0;
+                if (j3 != -9223372036854775807L && this.f11652w <= j3 && this.P0 < j3) {
+                    this.S0 = true;
+                    this.U0 = -9223372036854775807L;
+                }
+            }
+        }
+        return false;
+    }
+
+    public final List K(boolean z10) {
+        b2.s sVar = this.S;
+        sVar.getClass();
+        j jVar = this.J;
+        ArrayList N = N(jVar, sVar, z10);
+        if (N.isEmpty() && z10) {
+            ArrayList N2 = N(jVar, sVar, false);
+            if (!N2.isEmpty()) {
+                e2.a.n("MediaCodecRenderer", "Drm session requires secure decoder for " + sVar.f3643r + ", but no secure decoder available. Trying to proceed with " + N2 + ".");
+            }
+            return N2;
+        }
+        return N;
+    }
+
+    public int L(h2.h hVar) {
+        return 0;
+    }
+
+    public abstract float M(float f7, b2.s sVar, b2.s[] sVarArr);
+
+    public abstract ArrayList N(j jVar, b2.s sVar, boolean z10);
+
+    public long O(long j3, long j10) {
+        return super.g(j3, j10);
+    }
+
+    public abstract com.google.firebase.messaging.n P(p pVar, b2.s sVar, MediaCrypto mediaCrypto, float f7);
+
+    public abstract void Q(h2.h hVar);
+
+    public final void R(r2.p r12, android.media.MediaCrypto r13) {
+        throw new UnsupportedOperationException("Method not decompiled: r2.s.R(r2.p, android.media.MediaCrypto):void");
+    }
+
+    public final boolean S(long j3, long j10) {
+        if (j10 < j3) {
+            b2.s sVar = this.T;
+            if (sVar == null || !Objects.equals(sVar.f3643r, "audio/opus") || j3 - j10 > 80000) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final void T() {
+        throw new UnsupportedOperationException("Method not decompiled: r2.s.T():void");
+    }
+
+    public final void U(MediaCrypto mediaCrypto, boolean z10) {
+        String str;
+        b2.s sVar = this.S;
+        sVar.getClass();
+        if (this.f46917g0 == null) {
+            try {
+                List K = K(z10);
+                this.f46917g0 = new ArrayDeque();
+                ArrayList arrayList = (ArrayList) K;
+                if (!arrayList.isEmpty()) {
+                    this.f46917g0.add((p) arrayList.get(0));
+                }
+                this.f46918h0 = null;
+            } catch (u e7) {
+                throw new q(sVar, e7, z10, -49998);
+            }
+        }
+        if (!this.f46917g0.isEmpty()) {
+            ArrayDeque arrayDeque = this.f46917g0;
+            arrayDeque.getClass();
+            while (this.f46912b0 == null) {
+                p pVar = (p) arrayDeque.peekFirst();
+                pVar.getClass();
+                if (!V(sVar) || !r0(pVar)) {
+                    return;
+                }
+                try {
+                    R(pVar, mediaCrypto);
+                } catch (Exception e10) {
+                    e2.a.o("MediaCodecRenderer", "Failed to initialize decoder: " + pVar, e10);
+                    arrayDeque.removeFirst();
+                    String str2 = "Decoder init failed: " + pVar.f46894a + ", " + sVar;
+                    String str3 = sVar.f3643r;
+                    if (e10 instanceof MediaCodec.CodecException) {
+                        str = ((MediaCodec.CodecException) e10).getDiagnosticInfo();
+                    } else {
+                        str = null;
+                    }
+                    q qVar = new q(str2, e10, str3, z10, pVar, str);
+                    W(qVar);
+                    q qVar2 = this.f46918h0;
+                    if (qVar2 == null) {
+                        this.f46918h0 = qVar;
+                    } else {
+                        this.f46918h0 = new q(qVar2.getMessage(), qVar2.getCause(), qVar2.f46904a, qVar2.f46905b, qVar2.f46906c, qVar2.d);
+                    }
+                    if (arrayDeque.isEmpty()) {
+                        throw this.f46918h0;
                     }
                 }
             }
+            this.f46917g0 = null;
+            return;
         }
-        int size2 = arrayList.size();
-        while (i10 < size2) {
-            Object obj2 = arrayList.get(i10);
-            i10++;
-            ((rg.k) obj2).f46157g = j3;
-        }
-        AndroidUtilities.runOnUIThread(new s1(q1Var, 15));
+        throw new q(sVar, null, z10, -49999);
     }
 
-    @Override
-    public void p(Canvas canvas, int i10) {
-        uh.h hVar = (uh.h) this.f45787b;
-        hVar.getClass();
-        canvas.save();
-        RectF rectF = hVar.f47749r;
-        canvas.translate(-rectF.left, (-rectF.top) + AndroidUtilities.dp(30.0f));
-        hVar.e(canvas, true, i10);
-        canvas.restore();
+    public boolean V(b2.s sVar) {
+        return true;
     }
 
-    @Override
-    public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        switch (this.f45786a) {
-            case 21:
-                yh.g gVar = (yh.g) this.f45787b;
-                h61 h61Var = (h61) obj;
-                View view = (View) obj2;
-                Integer num = (Integer) obj3;
-                Float f7 = (Float) obj4;
-                Float f10 = (Float) obj5;
-                yh.h hVar = gVar.f51316r;
-                if (h61Var.G instanceof TL_stars.StarsTransaction) {
-                    z7.n1(gVar.getContext(), true, hVar.f51368b, yh.h.k0(hVar), (TL_stars.StarsTransaction) h61Var.G, yh.h.l0(hVar));
-                    return;
-                } else if (gVar.h) {
-                    gVar.h = false;
-                    gVar.a();
-                    return;
-                } else {
+    public abstract void W(Exception exc);
+
+    public abstract void X(long j3, long j10, String str);
+
+    public abstract void Y(String str);
+
+    public i2.h Z(n4.x r13) {
+        throw new UnsupportedOperationException("Method not decompiled: r2.s.Z(n4.x):i2.h");
+    }
+
+    public abstract void a0(b2.s sVar, MediaFormat mediaFormat);
+
+    public void c0(long j3) {
+        this.P0 = j3;
+        while (true) {
+            ArrayDeque arrayDeque = this.Q;
+            if (!arrayDeque.isEmpty() && j3 >= ((r) arrayDeque.peek()).f46908a) {
+                r rVar = (r) arrayDeque.poll();
+                rVar.getClass();
+                o0(rVar);
+                d0();
+            } else {
+                return;
+            }
+        }
+    }
+
+    public abstract void d0();
+
+    public final void f0() {
+        int i10 = this.C0;
+        if (i10 != 1) {
+            if (i10 != 2) {
+                if (i10 != 3) {
+                    this.J0 = true;
+                    j0();
                     return;
                 }
-            default:
-                u5.b((u5) this.f45787b, (ArrayList) obj, (Integer) obj2, (Long) obj3, (ArrayList) obj4, (ArrayList) obj5);
+                i0();
+                T();
                 return;
+            }
+            I();
+            w0();
+            return;
+        }
+        I();
+    }
+
+    @Override
+    public final long g(long j3, long j10) {
+        return O(j3, j10);
+    }
+
+    public abstract boolean g0(long j3, long j10, m mVar, ByteBuffer byteBuffer, int i10, int i11, int i12, long j11, boolean z10, boolean z11, b2.s sVar);
+
+    public final boolean h0(int i10) {
+        n4.x xVar = this.f11646c;
+        xVar.u();
+        h2.h hVar = this.L;
+        hVar.clear();
+        int w10 = w(xVar, hVar, i10 | 4);
+        if (w10 == -5) {
+            Z(xVar);
+            return true;
+        } else if (w10 == -4 && hVar.isEndOfStream()) {
+            this.I0 = true;
+            f0();
+            return false;
+        } else {
+            return false;
         }
     }
 
-    @Override
-    public Object then(Task task) {
-        ((CountDownLatch) this.f45787b).countDown();
-        return null;
+    public final void i0() {
+        try {
+            m mVar = this.f46912b0;
+            if (mVar != null) {
+                mVar.release();
+                this.N0.f11695b++;
+                p pVar = this.f46919i0;
+                pVar.getClass();
+                Y(pVar.f46894a);
+            }
+            this.f46912b0 = null;
+            try {
+                MediaCrypto mediaCrypto = this.X;
+                if (mediaCrypto != null) {
+                    mediaCrypto.release();
+                }
+            } finally {
+            }
+        } catch (Throwable th2) {
+            this.f46912b0 = null;
+            try {
+                MediaCrypto mediaCrypto2 = this.X;
+                if (mediaCrypto2 != null) {
+                    mediaCrypto2.release();
+                }
+                throw th2;
+            } finally {
+            }
+        }
+    }
+
+    public abstract void j0();
+
+    public final void k0() {
+        this.G0 = -9223372036854775807L;
+        this.H0 = -9223372036854775807L;
+        this.P0 = -9223372036854775807L;
+        this.f46934y0 = false;
+        this.O.clear();
+        this.N.clear();
+        this.f46933x0 = false;
+        i0 i0Var = this.R;
+        i0Var.getClass();
+        i0Var.f14490a = c2.h.f4011a;
+        i0Var.f14492c = 0;
+        i0Var.f14491b = 2;
+    }
+
+    public void l0() {
+        this.f46927r0 = -1;
+        this.M.f10985c = null;
+        this.f46928s0 = -1;
+        this.f46929t0 = null;
+        this.G0 = -9223372036854775807L;
+        this.H0 = -9223372036854775807L;
+        this.P0 = -9223372036854775807L;
+        this.f46926q0 = -9223372036854775807L;
+        this.E0 = false;
+        this.f46925p0 = -9223372036854775807L;
+        this.D0 = false;
+        this.m0 = false;
+        this.f46923n0 = false;
+        this.f46930u0 = false;
+        this.f46931v0 = false;
+        this.B0 = 0;
+        this.C0 = 0;
+        this.A0 = this.f46935z0 ? 1 : 0;
+        this.S0 = false;
+        this.T0 = -9223372036854775807L;
+        this.U0 = -9223372036854775807L;
     }
 
     @Override
-    public void V(float f7, int i10) {
+    public boolean m() {
+        if (this.S != null) {
+            if (!n() && this.f46928s0 < 0) {
+                if (this.f46926q0 != -9223372036854775807L) {
+                    this.h.getClass();
+                    if (SystemClock.elapsedRealtime() < this.f46926q0) {
+                        return true;
+                    }
+                    return false;
+                }
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public final void m0() {
+        l0();
+        this.M0 = null;
+        this.f46917g0 = null;
+        this.f46919i0 = null;
+        this.f46913c0 = null;
+        this.f46914d0 = null;
+        this.f46915e0 = false;
+        this.F0 = false;
+        this.f46916f0 = -1.0f;
+        this.f46920j0 = 0;
+        this.f46921k0 = false;
+        this.f46922l0 = false;
+        this.f46924o0 = false;
+        this.f46935z0 = false;
+        this.A0 = 0;
+    }
+
+    public final void n0(n2.g gVar) {
+        hg.c.A(this.U, gVar);
+        this.U = gVar;
     }
 
     @Override
-    public void s0(View view, float f7, float f10) {
+    public void o() {
+        this.S = null;
+        o0(r.f46907e);
+        this.Q.clear();
+        if (this.f46932w0) {
+            this.f46932w0 = false;
+            k0();
+            return;
+        }
+        J();
+    }
+
+    public final void o0(r rVar) {
+        this.O0 = rVar;
+        if (rVar.f46910c != -9223372036854775807L) {
+            this.Q0 = true;
+            b0();
+        }
+    }
+
+    public boolean p0(h2.h hVar) {
+        return false;
+    }
+
+    @Override
+    public void q(long j3, boolean z10) {
+        this.I0 = false;
+        this.J0 = false;
+        this.L0 = false;
+        if (this.f46932w0) {
+            k0();
+        } else if (J()) {
+            T();
+        }
+        if (this.O0.d.m() > 0) {
+            this.K0 = true;
+        }
+        this.O0.d.c();
+        this.Q.clear();
+    }
+
+    public boolean q0() {
+        return true;
+    }
+
+    public boolean r0(p pVar) {
+        return true;
+    }
+
+    public boolean s0() {
+        int i10 = this.C0;
+        if (i10 == 3 || ((this.f46921k0 && !this.F0) || (this.f46922l0 && this.E0))) {
+            return true;
+        }
+        if (i10 == 2) {
+            try {
+                w0();
+                return false;
+            } catch (i2.n e7) {
+                e2.a.o("MediaCodecRenderer", "Failed to update the DRM session, releasing the codec instead.", e7);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean t0(b2.s sVar) {
+        return false;
+    }
+
+    public abstract int u0(j jVar, b2.s sVar);
+
+    @Override
+    public void v(b2.s[] r12, long r13, long r15, u2.f0 r17) {
+        throw new UnsupportedOperationException("Method not decompiled: r2.s.v(b2.s[], long, long, u2.f0):void");
+    }
+
+    public final boolean v0(b2.s sVar) {
+        if (this.f46912b0 != null && this.C0 != 3 && this.f11649n != 0) {
+            float f7 = this.f46911a0;
+            sVar.getClass();
+            b2.s[] sVarArr = this.f11651s;
+            sVarArr.getClass();
+            float M = M(f7, sVar, sVarArr);
+            float f10 = this.f46916f0;
+            if (f10 != M) {
+                if (M == -1.0f) {
+                    if (this.D0) {
+                        this.B0 = 1;
+                        this.C0 = 3;
+                        return false;
+                    }
+                    i0();
+                    T();
+                    return false;
+                } else if (f10 != -1.0f || M > this.K) {
+                    Bundle bundle = new Bundle();
+                    bundle.putFloat("operating-rate", M);
+                    m mVar = this.f46912b0;
+                    mVar.getClass();
+                    mVar.setParameters(bundle);
+                    this.f46916f0 = M;
+                }
+            }
+        }
+        return true;
+    }
+
+    public final void w0() {
+        n2.g gVar = this.V;
+        gVar.getClass();
+        h2.b h = gVar.h();
+        if (h instanceof n2.r) {
+            try {
+                MediaCrypto mediaCrypto = this.X;
+                mediaCrypto.getClass();
+                mediaCrypto.setMediaDrmSession(((n2.r) h).f16530b);
+            } catch (MediaCryptoException e7) {
+                throw d(e7, this.S, false, 6006);
+            }
+        }
+        n0(this.V);
+        this.B0 = 0;
+        this.C0 = 0;
+    }
+
+    @Override
+    public void x(long r12, long r14) {
+        throw new UnsupportedOperationException("Method not decompiled: r2.s.x(long, long):void");
+    }
+
+    public final void x0(long j3) {
+        b2.s sVar = (b2.s) this.O0.d.i(j3);
+        if (sVar == null && this.Q0 && this.f46914d0 != null) {
+            sVar = (b2.s) this.O0.d.h();
+        }
+        if (sVar != null) {
+            this.T = sVar;
+        } else if (!this.f46915e0 || this.T == null) {
+            return;
+        }
+        b2.s sVar2 = this.T;
+        sVar2.getClass();
+        a0(sVar2, this.f46914d0);
+        this.f46915e0 = false;
+        this.Q0 = false;
+    }
+
+    @Override
+    public void z(float f7, float f10) {
+        this.Z = f7;
+        this.f46911a0 = f10;
+        v0(this.f46913c0);
+    }
+
+    public void b0() {
+    }
+
+    public void e0(h2.h hVar) {
     }
 }

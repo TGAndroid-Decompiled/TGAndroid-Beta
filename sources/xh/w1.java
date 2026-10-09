@@ -1,32 +1,32 @@
 package xh;
 
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.gs0;
-public final class w1 implements le.d, Utilities.Callback2Return {
-    public final gs0 f50310a;
+import org.telegram.ui.Components.rs0;
+public final class w1 implements me.d, Utilities.Callback2Return {
+    public final rs0 f51572a;
 
-    public w1(gs0 gs0Var) {
-        this.f50310a = gs0Var;
+    public w1(rs0 rs0Var) {
+        this.f51572a = rs0Var;
     }
 
     @Override
-    public void a0(int i10, float f7, float f10, le.e eVar) {
-        this.f50310a.l();
+    public void n(int i10, float f7, float f10, me.e eVar) {
+        this.f51572a.l();
     }
 
     @Override
     public Object run(Object obj, Object obj2) {
         Integer num = (Integer) obj2;
-        gs0 gs0Var = this.f50310a;
-        gs0Var.i();
+        rs0 rs0Var = this.f51572a;
+        rs0Var.i();
         if (((Integer) obj).intValue() == -1) {
-            gs0Var.h(null, new t1(gs0Var, 0));
+            rs0Var.h(null, new t1(rs0Var, 0));
             return Boolean.TRUE;
         }
         return Boolean.FALSE;
     }
 
     @Override
-    public void V(float f7, int i10) {
+    public void A(float f7, int i10) {
     }
 }

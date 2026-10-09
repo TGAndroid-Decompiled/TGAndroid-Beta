@@ -1,9 +1,9 @@
 package v7;
 public abstract class t5 {
-    public static String a(com.google.android.gms.internal.cast.z4 z4Var) {
-        StringBuilder sb2 = new StringBuilder(z4Var.o());
-        for (int i10 = 0; i10 < z4Var.o(); i10++) {
-            byte i11 = z4Var.i(i10);
+    public static String a(com.google.android.gms.internal.cast.x4 x4Var) {
+        StringBuilder sb2 = new StringBuilder(x4Var.o());
+        for (int i10 = 0; i10 < x4Var.o(); i10++) {
+            byte i11 = x4Var.i(i10);
             if (i11 != 34) {
                 if (i11 != 39) {
                     if (i11 != 92) {

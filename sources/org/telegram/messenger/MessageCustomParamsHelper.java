@@ -17,10 +17,21 @@ public class MessageCustomParamsHelper {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             boolean z11;
-            boolean z12 = true;
+            boolean z12;
+            boolean z13 = true;
             int readInt32 = inputSerializedData.readInt32(true);
             this.flags = readInt32;
-            if ((readInt32 & 1) != 0) {
+            TLRPC.MessageAction messageAction = this.message.action;
+            if (messageAction instanceof TLRPC.TL_messageActionGramTransfer) {
+                TLRPC.TL_messageActionGramTransfer tL_messageActionGramTransfer = (TLRPC.TL_messageActionGramTransfer) messageAction;
+                if (!tL_messageActionGramTransfer.comment_encrypted && TLObject.hasFlag(readInt32, 16384)) {
+                    z12 = true;
+                } else {
+                    z12 = false;
+                }
+                tL_messageActionGramTransfer.comment_encrypted_preparing = z12;
+            }
+            if ((this.flags & 1) != 0) {
                 this.message.voiceTranscription = inputSerializedData.readString(z10);
             }
             TLRPC.Message message = this.message;
@@ -32,9 +43,9 @@ public class MessageCustomParamsHelper {
             }
             message.voiceTranscriptionForce = z11;
             if ((i10 & 512) == 0) {
-                z12 = false;
+                z13 = false;
             }
-            message.summarizedOpen = z12;
+            message.summarizedOpen = z13;
             message.voiceTranscriptionOpen = inputSerializedData.readBool(z10);
             this.message.voiceTranscriptionFinal = inputSerializedData.readBool(z10);
             this.message.voiceTranscriptionRated = inputSerializedData.readBool(z10);
@@ -164,7 +175,9 @@ public class MessageCustomParamsHelper {
             this.flags = flag2;
             int flag3 = TLObject.setFlag(flag2, 4096, message.translatedSummaryLanguage != null);
             this.flags = flag3;
-            this.flags = TLObject.setFlag(flag3, 8192, message.translatedRichMessage != null);
+            int flag4 = TLObject.setFlag(flag3, 8192, message.translatedRichMessage != null);
+            this.flags = flag4;
+            this.flags = TLObject.setFlag(flag4, 16384, MessageCustomParamsHelper.isCommentEncryptionPreparing(message));
         }
     }
 
@@ -190,8 +203,16 @@ public class MessageCustomParamsHelper {
         message2.translatedSummaryLanguage = message.translatedSummaryLanguage;
     }
 
+    public static boolean isCommentEncryptionPreparing(TLRPC.Message message) {
+        TLRPC.MessageAction messageAction = message.action;
+        if ((messageAction instanceof TLRPC.TL_messageActionGramTransfer) && ((TLRPC.TL_messageActionGramTransfer) messageAction).comment_encrypted_preparing) {
+            return true;
+        }
+        return false;
+    }
+
     public static boolean isEmpty(TLRPC.Message message) {
-        if (message.voiceTranscription == null && message.translatedVoiceTranscription == null && !message.voiceTranscriptionOpen && !message.summarizedOpen && message.summaryText == null && message.translatedSummaryLanguage == null && message.translatedSummaryText == null && !message.voiceTranscriptionFinal && !message.voiceTranscriptionRated && !message.voiceTranscriptionForce && message.voiceTranscriptionId == 0 && !message.premiumEffectWasPlayed && message.originalLanguage == null && message.translatedToLanguage == null && message.translatedPoll == null && message.translatedText == null && message.translatedRichMessage == null && message.errorAllowedPriceStars == 0 && message.errorNewPriceStars == 0) {
+        if (!isCommentEncryptionPreparing(message) && message.voiceTranscription == null && message.translatedVoiceTranscription == null && !message.voiceTranscriptionOpen && !message.summarizedOpen && message.summaryText == null && message.translatedSummaryLanguage == null && message.translatedSummaryText == null && !message.voiceTranscriptionFinal && !message.voiceTranscriptionRated && !message.voiceTranscriptionForce && message.voiceTranscriptionId == 0 && !message.premiumEffectWasPlayed && message.originalLanguage == null && message.translatedToLanguage == null && message.translatedPoll == null && message.translatedText == null && message.translatedRichMessage == null && message.errorAllowedPriceStars == 0 && message.errorNewPriceStars == 0) {
             return true;
         }
         return false;

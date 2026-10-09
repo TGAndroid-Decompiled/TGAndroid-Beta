@@ -15,7 +15,7 @@ public class w0 extends db.u {
                 if (c10 == 7) {
                     z10 = aVar.n();
                 } else {
-                    throw new RuntimeException("Invalid bitset value type: " + hg.c.C(x10) + "; at path " + aVar.h());
+                    throw new RuntimeException("Invalid bitset value type: " + hg.c.D(x10) + "; at path " + aVar.h());
                 }
             } else {
                 int p5 = aVar.p();

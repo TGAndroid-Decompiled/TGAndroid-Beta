@@ -1,12 +1,10 @@
 package org.webrtc;
 
 import android.content.Context;
-import android.graphics.Rect;
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.params.StreamConfigurationMap;
-import android.os.Build;
 import android.os.SystemClock;
 import android.util.AndroidException;
 import android.util.Range;
@@ -65,19 +63,8 @@ public class Camera2Enumerator implements CameraEnumerator {
     }
 
     public static List<Size> getSupportedSizes(CameraCharacteristics cameraCharacteristics) {
-        int intValue = ((Integer) cameraCharacteristics.get(CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL)).intValue();
-        List<Size> convertSizes = convertSizes(((StreamConfigurationMap) cameraCharacteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP)).getOutputSizes(SurfaceTexture.class));
-        if (Build.VERSION.SDK_INT < 22 && intValue == 2) {
-            Rect rect = (Rect) cameraCharacteristics.get(CameraCharacteristics.SENSOR_INFO_ACTIVE_ARRAY_SIZE);
-            ArrayList arrayList = new ArrayList();
-            for (Size size : convertSizes) {
-                if (rect.width() * size.height == rect.height() * size.width) {
-                    arrayList.add(size);
-                }
-            }
-            return arrayList;
-        }
-        return convertSizes;
+        ((Integer) cameraCharacteristics.get(CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL)).intValue();
+        return convertSizes(((StreamConfigurationMap) cameraCharacteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP)).getOutputSizes(SurfaceTexture.class));
     }
 
     public static boolean isSupported(Context context) {

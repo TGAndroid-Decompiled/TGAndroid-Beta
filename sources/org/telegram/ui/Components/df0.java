@@ -1,45 +1,32 @@
 package org.telegram.ui.Components;
-public final class df0 extends r6 {
-    public final int f25768b;
-    public final gf0 f25769c;
 
-    public df0(gf0 gf0Var, int i10) {
-        super("thumbAnimationProgress", 0);
-        this.f25768b = i10;
-        switch (i10) {
-            case 1:
-                this.f25769c = gf0Var;
-                super("thumbImageVisibleProgress", 0);
-                return;
-            default:
-                this.f25769c = gf0Var;
-                return;
-        }
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.Utilities;
+public final class df0 implements NotificationCenter.NotificationCenterDelegate {
+    public final int f25698a;
+    public final Utilities.Callback f25699b;
+    public final NotificationCenter.NotificationCenterDelegate[] f25700c;
+
+    public df0(int i10, Utilities.Callback callback, NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr) {
+        this.f25698a = i10;
+        this.f25699b = callback;
+        this.f25700c = notificationCenterDelegateArr;
     }
 
     @Override
-    public final void c(Object obj, float f7) {
-        switch (this.f25768b) {
-            case 0:
-                this.f25769c.f26910r = f7;
-                ((gf0) obj).invalidate();
-                return;
-            default:
-                this.f25769c.f26909n = f7;
-                ((gf0) obj).invalidate();
-                return;
-        }
-    }
-
-    @Override
-    public final Object get(Object obj) {
-        switch (this.f25768b) {
-            case 0:
-                gf0 gf0Var = (gf0) obj;
-                return Float.valueOf(this.f25769c.f26910r);
-            default:
-                gf0 gf0Var2 = (gf0) obj;
-                return Float.valueOf(this.f25769c.f26909n);
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        int i12 = NotificationCenter.activityPermissionsGranted;
+        if (i10 == i12) {
+            int intValue = ((Integer) objArr[0]).intValue();
+            String[] strArr = (String[]) objArr[1];
+            int[] iArr = (int[]) objArr[2];
+            if (intValue == this.f25698a) {
+                Utilities.Callback callback = this.f25699b;
+                if (callback != null) {
+                    callback.run(iArr);
+                }
+                NotificationCenter.getGlobalInstance().removeObserver(this.f25700c[0], i12);
+            }
         }
     }
 }

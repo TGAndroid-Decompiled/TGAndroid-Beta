@@ -3,8 +3,9 @@ package v2;
 import b2.s;
 import c3.h0;
 import g2.b0;
-import u2.b1;
-import v7.m7;
+import org.telegram.ui.ActionBar.b5;
+import u2.a1;
+import v7.k7;
 public final class m extends a {
     public final int E;
     public final s F;
@@ -19,32 +20,32 @@ public final class m extends a {
 
     @Override
     public final void a() {
-        b1[] b1VarArr;
-        b0 b0Var = this.f47799r;
-        o0.a aVar = this.f47775x;
-        e2.d.h(aVar);
-        for (b1 b1Var : (b1[]) aVar.f16938c) {
-            if (b1Var.F != 0) {
-                b1Var.F = 0L;
-                b1Var.f47252z = true;
+        a1[] a1VarArr;
+        b0 b0Var = this.f49054r;
+        b5 b5Var = this.f49030x;
+        e2.d.h(b5Var);
+        for (a1 a1Var : (a1[]) b5Var.f20461b) {
+            if (a1Var.F != 0) {
+                a1Var.F = 0L;
+                a1Var.f48543z = true;
             }
         }
-        h0 K = aVar.K(this.E);
-        K.b(this.F);
+        h0 w10 = b5Var.w(this.E);
+        w10.b(this.F);
         try {
-            long open = b0Var.open(this.f47794b.b(this.G));
+            long open = b0Var.open(this.f49049b.b(this.G));
             if (open != -1) {
                 open += this.G;
             }
-            c3.l lVar = new c3.l(this.f47799r, this.G, open);
-            for (int i10 = 0; i10 != -1; i10 = K.a(lVar, Integer.MAX_VALUE, true)) {
+            c3.l lVar = new c3.l(this.f49054r, this.G, open);
+            for (int i10 = 0; i10 != -1; i10 = w10.a(lVar, Integer.MAX_VALUE, true)) {
                 this.G += i10;
             }
-            K.c(this.h, 1, (int) this.G, 0, null);
-            m7.a(b0Var);
+            w10.c(this.h, 1, (int) this.G, 0, null);
+            k7.a(b0Var);
             this.H = true;
         } catch (Throwable th2) {
-            m7.a(b0Var);
+            k7.a(b0Var);
             throw th2;
         }
     }
@@ -55,6 +56,6 @@ public final class m extends a {
     }
 
     @Override
-    public final void q() {
+    public final void v() {
     }
 }

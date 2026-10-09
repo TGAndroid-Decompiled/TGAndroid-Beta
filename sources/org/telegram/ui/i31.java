@@ -1,39 +1,56 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class i31 implements Runnable {
-    public final int f37235a;
-    public final org.telegram.messenger.video.a f37236b;
-    public final org.telegram.ui.Components.yc f37237c;
-    public final Context d;
-    public final ai.a1 f37238e;
+import android.app.Activity;
+import android.view.View;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class i31 extends k71 {
+    public final k31 f38466d2;
+    public final b71[] f38467e2;
+    public final l31 f38468f2;
 
-    public i31(org.telegram.messenger.video.a aVar, org.telegram.ui.Components.yc ycVar, Context context, ai.a1 a1Var, int i10) {
-        this.f37235a = i10;
-        this.f37236b = aVar;
-        this.f37237c = ycVar;
-        this.d = context;
-        this.f37238e = a1Var;
+    public i31(l31 l31Var, l31 l31Var2, Activity activity, Integer num, k31 k31Var, b71[] b71VarArr) {
+        super(l31Var2, activity, false, num, 2, null);
+        this.f38468f2 = l31Var;
+        this.f38466d2 = k31Var;
+        this.f38467e2 = b71VarArr;
     }
 
     @Override
-    public final void run() {
-        switch (this.f37235a) {
-            case 0:
-                this.f37236b.run();
-                this.f37237c.c(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new ov(this.d, 2), this.f37238e)).j();
-                return;
-            case 1:
-                this.f37236b.run();
-                this.f37237c.c(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new ov(this.d, 5), this.f37238e)).j();
-                return;
-            default:
-                this.f37236b.run();
-                this.f37237c.c(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new ov(this.d, 6), this.f37238e)).j();
-                return;
+    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+        int i10;
+        if (l4 != null) {
+            l31 l31Var = this.f38468f2;
+            i10 = ((org.telegram.ui.ActionBar.n2) l31Var).currentAccount;
+            MediaDataController mediaDataController = MediaDataController.getInstance(i10);
+            mediaDataController.setDoubleTapReaction("animated_" + l4);
+            k31 k31Var = this.f38466d2;
+            if (k31Var != null) {
+                k31Var.a(true);
+            }
+            b71 b71Var = this.f38467e2[0];
+            if (b71Var != null) {
+                l31Var.f39417n = null;
+                b71Var.dismiss();
+            }
+        }
+    }
+
+    @Override
+    public final void r(t61 t61Var, zg.n0 n0Var) {
+        int i10;
+        l31 l31Var = this.f38468f2;
+        i10 = ((org.telegram.ui.ActionBar.n2) l31Var).currentAccount;
+        MediaDataController.getInstance(i10).setDoubleTapReaction(n0Var.f54615f);
+        k31 k31Var = this.f38466d2;
+        if (k31Var != null) {
+            k31Var.a(true);
+        }
+        b71 b71Var = this.f38467e2[0];
+        if (b71Var != null) {
+            l31Var.f39417n = null;
+            b71Var.dismiss();
         }
     }
 }

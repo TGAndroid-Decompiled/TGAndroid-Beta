@@ -1,88 +1,60 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.content.Context;
+import android.graphics.Rect;
+import android.view.View;
+import android.widget.ScrollView;
 import org.telegram.messenger.AndroidUtilities;
-public final class vx extends AnimatorListenerAdapter {
-    public final int f41853a;
-    public final float f41854b;
-    public final uy f41855c;
+public final class vx extends ScrollView {
+    public final int f42993a;
 
-    public vx(uy uyVar, float f7, int i10) {
-        this.f41853a = i10;
-        this.f41855c = uyVar;
-        this.f41854b = f7;
+    public vx(Context context, int i10) {
+        super(context);
+        this.f42993a = i10;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10;
-        int i11;
-        switch (this.f41853a) {
+    public void onMeasure(int i10, int i11) {
+        switch (this.f42993a) {
             case 0:
-                super.onAnimationEnd(animator);
-                uy uyVar = this.f41855c;
-                uyVar.f41518u3 = null;
-                int i12 = 0;
-                uyVar.O = false;
-                uyVar.Q = true;
-                uyVar.R = true;
-                uyVar.fragmentView.invalidate();
-                if (uyVar.K) {
-                    i10 = 81;
-                } else {
-                    i10 = 0;
-                }
-                uyVar.f41533x3 = -(AndroidUtilities.dp(i10 + 48) - this.f41854b);
-                uyVar.f41435e0[0].setTranslationY(0.0f);
-                while (true) {
-                    ty[] tyVarArr = uyVar.f41435e0;
-                    if (i12 < tyVarArr.length) {
-                        ty tyVar = tyVarArr[i12];
-                        if (tyVar != null) {
-                            tyVar.f41046a.requestLayout();
-                        }
-                        i12++;
-                    } else {
-                        uyVar.fragmentView.requestLayout();
-                        iy iyVar = uyVar.X;
-                        if (iyVar != null && uyVar.f41417b.f15437f) {
-                            iyVar.f26295r.requestFocus();
-                            AndroidUtilities.showKeyboard(uyVar.X.f26295r);
-                            return;
-                        }
-                        return;
-                    }
-                }
-                break;
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec((int) Math.min(View.MeasureSpec.getSize(i11), Math.min(AndroidUtilities.displaySize.y * 0.35f, AndroidUtilities.dp(400.0f))), View.MeasureSpec.getMode(i11)));
+                return;
+            case 1:
             default:
-                super.onAnimationEnd(animator);
-                uy uyVar2 = this.f41855c;
-                uyVar2.f41518u3 = null;
-                uyVar2.P = 0;
-                uyVar2.O = true;
-                if (uyVar2.K) {
-                    i11 = 81;
-                } else {
-                    i11 = 0;
-                }
-                uyVar2.f41533x3 = AndroidUtilities.dp(i11 + 48) - this.f41854b;
-                uyVar2.f41435e0[0].setTranslationY(0.0f);
-                int i13 = 0;
-                while (true) {
-                    ty[] tyVarArr2 = uyVar2.f41435e0;
-                    if (i13 < tyVarArr2.length) {
-                        ty tyVar2 = tyVarArr2[i13];
-                        if (tyVar2 != null) {
-                            tyVar2.f41046a.requestLayout();
-                        }
-                        i13++;
-                    } else {
-                        uyVar2.E0.l(1.0f, false);
-                        uyVar2.fragmentView.requestLayout();
-                        return;
-                    }
-                }
+                super.onMeasure(i10, i11);
+                return;
+            case 2:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i11), AndroidUtilities.dp(320.0f)), Integer.MIN_VALUE));
+                return;
+            case 3:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i11), AndroidUtilities.dp(360.0f)), Integer.MIN_VALUE));
+                return;
+            case 4:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(260.0f), View.MeasureSpec.getSize(i11)), View.MeasureSpec.getMode(i11)));
+                return;
+        }
+    }
+
+    @Override
+    public boolean onRequestFocusInDescendants(int i10, Rect rect) {
+        switch (this.f42993a) {
+            case 1:
+                return false;
+            default:
+                return super.onRequestFocusInDescendants(i10, rect);
+        }
+    }
+
+    @Override
+    public boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
+        switch (this.f42993a) {
+            case 1:
+                rect.offset(view.getLeft() - view.getScrollX(), view.getTop() - view.getScrollY());
+                rect.top = AndroidUtilities.dp(20.0f) + rect.top;
+                rect.bottom = AndroidUtilities.dp(50.0f) + rect.bottom;
+                return super.requestChildRectangleOnScreen(view, rect, z10);
+            default:
+                return super.requestChildRectangleOnScreen(view, rect, z10);
         }
     }
 }

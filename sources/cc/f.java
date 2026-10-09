@@ -1,17 +1,17 @@
 package cc;
 public final class f extends d {
-    public final int f4542c;
+    public final int f4592c;
     public final int d;
-    public final int f4543e;
-    public final int f4544f;
+    public final int f4593e;
+    public final int f4594f;
 
     public f(int i10, int i11, int i12, int i13, int i14, int i15) {
         super(i14, i15);
         if (i14 + i12 <= i10 && i15 + i13 <= i11) {
-            this.f4542c = i10;
+            this.f4592c = i10;
             this.d = i11;
-            this.f4543e = i12;
-            this.f4544f = i13;
+            this.f4593e = i12;
+            this.f4594f = i13;
             return;
         }
         throw new IllegalArgumentException("Crop rectangle does not fit within image data.");
@@ -19,15 +19,15 @@ public final class f extends d {
 
     @Override
     public final byte[] a() {
-        int i10 = this.f4539a;
-        int i11 = this.f4540b;
-        int i12 = this.f4542c;
+        int i10 = this.f4589a;
+        int i11 = this.f4590b;
+        int i12 = this.f4592c;
         if (i10 == i12 && i11 == this.d) {
             return null;
         }
         int i13 = i10 * i11;
         byte[] bArr = new byte[i13];
-        int i14 = (this.f4544f * i12) + this.f4543e;
+        int i14 = (this.f4594f * i12) + this.f4593e;
         if (i10 == i12) {
             System.arraycopy(null, i14, bArr, 0, i13);
             return bArr;
@@ -41,12 +41,12 @@ public final class f extends d {
 
     @Override
     public final byte[] b(int i10, byte[] bArr) {
-        if (i10 >= 0 && i10 < this.f4540b) {
-            int i11 = this.f4539a;
+        if (i10 >= 0 && i10 < this.f4590b) {
+            int i11 = this.f4589a;
             if (bArr == null || bArr.length < i11) {
                 bArr = new byte[i11];
             }
-            System.arraycopy(null, ((i10 + this.f4544f) * this.f4542c) + this.f4543e, bArr, 0, i11);
+            System.arraycopy(null, ((i10 + this.f4594f) * this.f4592c) + this.f4593e, bArr, 0, i11);
             return bArr;
         }
         throw new IllegalArgumentException(hg.c.h(i10, "Requested row is outside the image: "));

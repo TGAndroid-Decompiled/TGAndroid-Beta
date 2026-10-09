@@ -1,12 +1,12 @@
 package u2;
-public final class q implements c1 {
+public final class q implements b1 {
     @Override
     public final boolean e() {
         return true;
     }
 
     @Override
-    public final int f(n4.y yVar, h2.h hVar, int i10) {
+    public final int f(n4.x xVar, h2.h hVar, int i10) {
         hVar.setFlags(4);
         return -4;
     }

@@ -1,32 +1,23 @@
 package ci;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class m8 implements Runnable {
-    public final int f5577a;
-    public final t8 f5578b;
+import android.view.View;
+public final class m8 implements View.OnClickListener {
+    public final int f5607a;
+    public final u8 f5608b;
 
-    public m8(t8 t8Var, int i10) {
-        this.f5577a = i10;
-        this.f5578b = t8Var;
+    public m8(u8 u8Var, int i10) {
+        this.f5607a = i10;
+        this.f5608b = u8Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f5577a) {
+    public final void onClick(View view) {
+        switch (this.f5607a) {
             case 0:
-                t8.O(this.f5578b);
-                return;
-            case 1:
-                this.f5578b.W();
+                this.f5608b.V();
                 return;
             default:
-                t8 t8Var = this.f5578b;
-                org.telegram.ui.Cells.j3 j3Var = t8Var.Y;
-                if (t8Var.isShowing()) {
-                    j3Var.f22315b.requestFocus();
-                    AndroidUtilities.showKeyboard(j3Var.f22315b);
-                    return;
-                }
+                this.f5608b.Y();
                 return;
         }
     }

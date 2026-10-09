@@ -1,27 +1,45 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.view.View;
-import android.view.ViewGroup;
-public final class w70 extends org.telegram.ui.ActionBar.n1 {
-    public final ViewGroup f32538o;
-    public final b80 f32539p;
+public final class w70 extends ay0 {
+    public final int K;
 
-    public w70(b80 b80Var, View view, ViewGroup viewGroup) {
-        super(view, -2, -2);
-        this.f32539p = b80Var;
-        this.f32538o = viewGroup;
+    public w70(Context context, View view, int i10, org.telegram.ui.ActionBar.e6 e6Var, int i11) {
+        super(context, view, i10, e6Var);
+        this.K = i11;
     }
 
     @Override
-    public final void dismiss() {
-        d(true);
-        ViewGroup viewGroup = this.f32538o;
-        b80 b80Var = this.f32539p;
-        b80.a(b80Var, viewGroup);
-        Runnable runnable = b80Var.f24880p;
-        if (runnable != null) {
-            runnable.run();
-            b80Var.f24880p = null;
+    public void onAttachedToWindow() {
+        switch (this.K) {
+            case 0:
+                super.onAttachedToWindow();
+                this.f24800b.getImageReceiver().startAnimation();
+                return;
+            case 1:
+                super.onAttachedToWindow();
+                this.f24800b.getImageReceiver().startAnimation();
+                return;
+            default:
+                super.onAttachedToWindow();
+                return;
+        }
+    }
+
+    @Override
+    public void setVisibility(int i10) {
+        switch (this.K) {
+            case 2:
+                super.setVisibility(i10);
+                if (i10 != 0) {
+                    e(false, false);
+                    return;
+                }
+                return;
+            default:
+                super.setVisibility(i10);
+                return;
         }
     }
 }

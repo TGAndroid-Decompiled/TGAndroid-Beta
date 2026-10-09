@@ -1,54 +1,91 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class oq0 implements TextWatcher {
-    public final br0 f29535a;
+import android.content.Context;
+import android.graphics.Canvas;
+import org.telegram.messenger.AndroidUtilities;
+public final class oq0 extends qm0 {
+    public final int V2;
+    public final mr0 W2;
 
-    public oq0(br0 br0Var) {
-        this.f29535a = br0Var;
+    public oq0(mr0 mr0Var, Context context, org.telegram.ui.ActionBar.e6 e6Var, int i10) {
+        super(context, e6Var);
+        this.V2 = i10;
+        this.W2 = mr0Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        br0 br0Var = this.f29535a;
-        tq0 tq0Var = br0Var.K;
-        ux0 ux0Var = br0Var.Q;
-        f20 f20Var = br0Var.f25084y0;
-        if (!TextUtils.isEmpty(f20Var.f26295r.getText())) {
-            br0Var.H0(false);
-        }
-        if (br0Var.A0) {
-            String obj = f20Var.f26295r.getText().toString();
-            if (obj.length() != 0) {
-                if (ux0Var != null) {
-                    ux0Var.d.setText(LocaleController.getString(R.string.NoResult));
+    public final boolean E0(float f7) {
+        float f10;
+        float f11;
+        switch (this.V2) {
+            case 0:
+                mr0 mr0Var = this.W2;
+                if (mr0Var.f28904h0 && mr0Var.f28911o0[1] != null) {
+                    f10 = 111.0f;
+                } else {
+                    f10 = 58.0f;
                 }
-            } else if (br0Var.F.getAdapter() != tq0Var) {
-                int s02 = br0.s0(br0Var);
-                ux0Var.d.setText(LocaleController.getString(R.string.NoResult));
-                ux0Var.e(false, true);
-                br0Var.H0(false);
-                tq0Var.l();
-                if (s02 > 0) {
-                    br0Var.H.h1(0, -s02);
+                if (f7 >= AndroidUtilities.dp(f10) + mr0Var.G0.f11577b) {
+                    return true;
                 }
-            }
-            xq0 xq0Var = br0Var.M;
-            if (xq0Var != null) {
-                xq0Var.E(obj);
-            }
+                return false;
+            default:
+                mr0 mr0Var2 = this.W2;
+                if (mr0Var2.f28904h0 && mr0Var2.f28911o0[1] != null) {
+                    f11 = 111.0f;
+                } else {
+                    f11 = 58.0f;
+                }
+                if (f7 >= AndroidUtilities.dp(f11) + mr0Var2.G0.f11577b) {
+                    return true;
+                }
+                return false;
         }
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void draw(Canvas canvas) {
+        float f7;
+        float f10;
+        switch (this.V2) {
+            case 0:
+                mr0 mr0Var = this.W2;
+                qm0 qm0Var = mr0Var.E;
+                if (qm0Var.getVisibility() != 8) {
+                    canvas.save();
+                    int i10 = mr0Var.f28912p0;
+                    if (mr0Var.f28904h0 && mr0Var.f28911o0[1] != null) {
+                        f7 = 111.0f;
+                    } else {
+                        f7 = 58.0f;
+                    }
+                    canvas.clipRect(0, AndroidUtilities.dp(f7) + i10, getWidth(), getHeight());
+                }
+                super.draw(canvas);
+                if (qm0Var.getVisibility() != 8) {
+                    canvas.restore();
+                    return;
+                }
+                return;
+            default:
+                mr0 mr0Var2 = this.W2;
+                qm0 qm0Var2 = mr0Var2.E;
+                if (qm0Var2.getVisibility() != 8) {
+                    canvas.save();
+                    int i11 = mr0Var2.f28912p0;
+                    if (mr0Var2.f28904h0 && mr0Var2.f28911o0[1] != null) {
+                        f10 = 111.0f;
+                    } else {
+                        f10 = 58.0f;
+                    }
+                    canvas.clipRect(0, AndroidUtilities.dp(f10) + i11, getWidth(), getHeight());
+                }
+                super.draw(canvas);
+                if (qm0Var2.getVisibility() != 8) {
+                    canvas.restore();
+                    return;
+                }
+                return;
+        }
     }
 }

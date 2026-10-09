@@ -4,11 +4,11 @@ import android.os.Bundle;
 public final class n extends b2.u0 {
     public final u2.f0 E;
     public final boolean F;
-    public final int f11743s;
+    public final int f11793s;
     public final String v;
-    public final int f11744w;
-    public final b2.s f11745x;
-    public final int f11746y;
+    public final int f11794w;
+    public final b2.s f11795x;
+    public final int f11796y;
 
     public n(int i10, Exception exc, int i11) {
         this(i10, exc, i11, null, -1, null, 4, null, false);
@@ -16,8 +16,8 @@ public final class n extends b2.u0 {
 
     public final n a(u2.f0 f0Var) {
         String message = getMessage();
-        String str = e2.d0.f8538a;
-        return new n(message, getCause(), this.f3589a, this.f11743s, this.v, this.f11744w, this.f11745x, this.f11746y, f0Var, this.f3590b, this.F);
+        String str = e2.d0.f8532a;
+        return new n(message, getCause(), this.f3668a, this.f11793s, this.v, this.f11794w, this.f11795x, this.f11796y, f0Var, this.f3669b, this.F);
     }
 
     public n(String str, Throwable th2, int i10, int i11, String str2, int i12, b2.s sVar, int i13, u2.f0 f0Var, long j3, boolean z10) {
@@ -25,12 +25,12 @@ public final class n extends b2.u0 {
         Bundle bundle = Bundle.EMPTY;
         boolean z11 = false;
         e2.d.b(!z10 || i11 == 1);
-        e2.d.b((th2 != null || i11 == 3) ? true : true);
-        this.f11743s = i11;
+        e2.d.b((th2 != null || i11 == 3) ? true : z11);
+        this.f11793s = i11;
         this.v = str2;
-        this.f11744w = i12;
-        this.f11745x = sVar;
-        this.f11746y = i13;
+        this.f11794w = i12;
+        this.f11795x = sVar;
+        this.f11796y = i13;
         this.E = f0Var;
         this.F = z10;
     }

@@ -1,6 +1,6 @@
 package r4;
 public interface c {
-    void C();
+    void H();
 
-    void D(int i10, Object obj);
+    void J(int i10, Object obj);
 }

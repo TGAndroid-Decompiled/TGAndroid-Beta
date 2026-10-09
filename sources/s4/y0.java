@@ -1,114 +1,50 @@
 package s4;
 
-import android.graphics.PointF;
 import android.util.Log;
-import android.view.View;
+import android.view.animation.Interpolator;
 import androidx.recyclerview.widget.RecyclerView;
-public abstract class y0 {
-    public int f46706a = -1;
-    public RecyclerView f46707b;
-    public o0 f46708c;
-    public boolean d;
-    public boolean f46709e;
-    public View f46710f;
-    public final x0 f46711g;
-    public boolean h;
+public final class y0 {
+    public int f47808a;
+    public int f47809b;
+    public int f47810c;
+    public int d;
+    public Interpolator f47811e;
+    public boolean f47812f;
+    public int f47813g;
 
-    public y0() {
-        ?? obj = new Object();
-        obj.d = -1;
-        obj.f46693f = false;
-        obj.f46694g = 0;
-        obj.f46689a = 0;
-        obj.f46690b = 0;
-        obj.f46691c = Integer.MIN_VALUE;
-        obj.f46692e = null;
-        this.f46711g = obj;
-    }
-
-    public static void b(PointF pointF) {
-        float f7 = pointF.x;
-        float f10 = pointF.y;
-        float sqrt = (float) Math.sqrt((f10 * f10) + (f7 * f7));
-        pointF.x /= sqrt;
-        pointF.y /= sqrt;
-    }
-
-    public PointF a(int i10) {
-        o0 o0Var = this.f46708c;
-        if (o0Var instanceof c0) {
-            return ((c0) o0Var).E0(i10);
-        }
-        Log.w("RecyclerView", "You should override computeScrollVectorForPosition when the LayoutManager does not implement " + c0.class.getCanonicalName());
-        return null;
-    }
-
-    public final void c(int i10, int i11) {
-        PointF a2;
-        RecyclerView recyclerView = this.f46707b;
-        if (this.f46706a == -1 || recyclerView == null) {
-            h();
-        }
-        if (this.d && this.f46710f == null && this.f46708c != null && (a2 = a(this.f46706a)) != null) {
-            float f7 = a2.x;
-            if (f7 != 0.0f || a2.y != 0.0f) {
-                recyclerView.u0((int) Math.signum(f7), (int) Math.signum(a2.y), null);
+    public final void a(RecyclerView recyclerView) {
+        int i10 = this.d;
+        if (i10 >= 0) {
+            this.d = -1;
+            recyclerView.c0(i10);
+            this.f47812f = false;
+        } else if (this.f47812f) {
+            Interpolator interpolator = this.f47811e;
+            if (interpolator != null && this.f47810c < 1) {
+                throw new IllegalStateException("If you provide an interpolator, you must set a positive duration");
             }
-        }
-        boolean z10 = false;
-        this.d = false;
-        View view = this.f46710f;
-        x0 x0Var = this.f46711g;
-        if (view != null) {
-            this.f46707b.getClass();
-            if (RecyclerView.S(view) == this.f46706a) {
-                View view2 = this.f46710f;
-                z0 z0Var = recyclerView.f3085t0;
-                g(view2, x0Var);
-                x0Var.a(recyclerView);
-                h();
-            } else {
-                Log.e("RecyclerView", "Passed over target position while smooth scrolling.");
-                this.f46710f = null;
+            int i11 = this.f47810c;
+            if (i11 >= 1) {
+                recyclerView.f3161r0.b(this.f47808a, this.f47809b, i11, interpolator);
+                int i12 = this.f47813g + 1;
+                this.f47813g = i12;
+                if (i12 > 10) {
+                    Log.e("RecyclerView", "Smooth Scroll action is being updated too frequently. Make sure you are not changing it unless necessary");
+                }
+                this.f47812f = false;
+                return;
             }
-        }
-        if (this.f46709e) {
-            z0 z0Var2 = recyclerView.f3085t0;
-            d(i10, i11, x0Var);
-            if (x0Var.d >= 0) {
-                z10 = true;
-            }
-            x0Var.a(recyclerView);
-            if (z10 && this.f46709e) {
-                this.d = true;
-                recyclerView.f3080q0.a();
-            }
+            throw new IllegalStateException("Scroll duration must be a positive number");
+        } else {
+            this.f47813g = 0;
         }
     }
 
-    public abstract void d(int i10, int i11, x0 x0Var);
-
-    public abstract void e();
-
-    public abstract void f();
-
-    public abstract void g(View view, x0 x0Var);
-
-    public final void h() {
-        if (!this.f46709e) {
-            return;
-        }
-        this.f46709e = false;
-        f();
-        this.f46707b.f3085t0.f46715a = -1;
-        this.f46710f = null;
-        this.f46706a = -1;
-        this.d = false;
-        o0 o0Var = this.f46708c;
-        if (o0Var.f46644e == this) {
-            o0Var.f46644e = null;
-        }
-        this.f46708c = null;
-        this.f46707b = null;
+    public final void b(int i10, int i11, int i12, Interpolator interpolator) {
+        this.f47808a = i10;
+        this.f47809b = i11;
+        this.f47810c = i12;
+        this.f47811e = interpolator;
+        this.f47812f = true;
     }
 }

@@ -1,42 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class go extends AnimatorListenerAdapter {
-    public final int f26955a;
-    public final ho f26956b;
+import android.content.Context;
+import android.view.ActionMode;
+import android.view.Menu;
+public final class go extends org.telegram.ui.Cells.d6 {
+    public final jo F;
 
-    public go(ho hoVar, int i10) {
-        this.f26955a = i10;
-        this.f26956b = hoVar;
+    public go(jo joVar, Context context, int i10) {
+        super(context, i10, null, null);
+        this.F = joVar;
     }
 
     @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f26955a) {
-            case 0:
-                this.f26956b.Q = null;
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
+    public final void g(org.telegram.ui.Cells.c6 c6Var, ActionMode actionMode) {
+        if (c6Var.isFocused() && c6Var.hasSelection()) {
+            Menu menu = actionMode.getMenu();
+            if (menu.findItem(16908321) != null) {
+                org.telegram.ui.zn.n8(menu, ((org.telegram.ui.zn) this.F.d.f30173b.f33228f0).h, false, true, true, true);
+            }
         }
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f26955a) {
-            case 0:
-                ho hoVar = this.f26956b;
-                if (hoVar.Q == animator) {
-                    hoVar.getSubtitleTextView().setVisibility(4);
-                    hoVar.Q = null;
-                    return;
-                }
-                return;
-            default:
-                this.f26956b.Q = null;
-                return;
-        }
+    public final void i(boolean z10) {
+        lo.P(this.F.d, this, z10);
+    }
+
+    @Override
+    public final void j(org.telegram.ui.Cells.d6 d6Var) {
+        lo.Q(this.F.d, d6Var);
+    }
+
+    @Override
+    public final void k(org.telegram.ui.Cells.c6 c6Var) {
+        this.F.d.f30173b.w1(c6Var, true);
     }
 }

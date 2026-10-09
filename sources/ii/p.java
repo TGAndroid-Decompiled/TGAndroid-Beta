@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.d61;
-import org.telegram.ui.Components.oy;
-public final class p implements oy {
-    public final r f12562a;
+import org.telegram.ui.Components.az;
+import org.telegram.ui.Components.l61;
+public final class p implements az {
+    public final r f12609a;
 
     public p(r rVar) {
-        this.f12562a = rVar;
+        this.f12609a = rVar;
     }
 
     @Override
@@ -50,16 +50,16 @@ public final class p implements oy {
     public final void i(int i10) {
         i1 focusedEditTextOrNull;
         boolean z10 = false;
-        r rVar = this.f12562a;
-        if (i10 != 0 && (focusedEditTextOrNull = rVar.f12603r.getFocusedEditTextOrNull()) != null) {
+        r rVar = this.f12609a;
+        if (i10 != 0 && (focusedEditTextOrNull = rVar.f12650r.getFocusedEditTextOrNull()) != null) {
             rVar.F = focusedEditTextOrNull;
             rVar.G = Math.max(0, focusedEditTextOrNull.getSelectionEnd());
         }
         if (i10 != 0) {
             z10 = true;
         }
-        rVar.f12607y = z10;
-        rVar.Q();
+        rVar.f12654y = z10;
+        rVar.V();
     }
 
     @Override
@@ -69,26 +69,26 @@ public final class p implements oy {
 
     @Override
     public final boolean k() {
-        i1 K = r.K(this.f12562a);
-        if (K == null || K.length() == 0) {
+        i1 P = r.P(this.f12609a);
+        if (P == null || P.length() == 0) {
             return false;
         }
-        K.dispatchKeyEvent(new KeyEvent(0, 67));
+        P.dispatchKeyEvent(new KeyEvent(0, 67));
         return true;
     }
 
     @Override
     public final void l(String str) {
-        r rVar = this.f12562a;
-        i1 K = r.K(rVar);
-        if (K != null) {
-            int L = r.L(rVar, K);
+        r rVar = this.f12609a;
+        i1 P = r.P(rVar);
+        if (P != null) {
+            int Q = r.Q(rVar, P);
             try {
-                CharSequence replaceEmoji = Emoji.replaceEmoji((CharSequence) str, K.getPaint().getFontMetricsInt(), false, (int[]) null);
-                K.setText(K.getText().insert(L, replaceEmoji));
-                int length = L + replaceEmoji.length();
-                K.setSelection(length, length);
-                if (K == rVar.F) {
+                CharSequence replaceEmoji = Emoji.replaceEmoji((CharSequence) str, P.getPaint().getFontMetricsInt(), false, (int[]) null);
+                P.setText(P.getText().insert(Q, replaceEmoji));
+                int length = Q + replaceEmoji.length();
+                P.setSelection(length, length);
+                if (P == rVar.F) {
                     rVar.G = length;
                 }
             } catch (Exception unused) {
@@ -103,27 +103,27 @@ public final class p implements oy {
 
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
-        org.telegram.ui.Components.z5 z5Var;
-        r rVar = this.f12562a;
-        i1 K = r.K(rVar);
-        if (K != null) {
-            int L = r.L(rVar, K);
+        org.telegram.ui.Components.b6 b6Var;
+        r rVar = this.f12609a;
+        i1 P = r.P(rVar);
+        if (P != null) {
+            int Q = r.Q(rVar, P);
             try {
                 if (str == null) {
                     str = "😀";
                 }
                 SpannableString spannableString = new SpannableString(str);
                 if (document != null) {
-                    z5Var = new org.telegram.ui.Components.z5(document, K.getPaint().getFontMetricsInt());
+                    b6Var = new org.telegram.ui.Components.b6(document, P.getPaint().getFontMetricsInt());
                 } else {
-                    z5Var = new org.telegram.ui.Components.z5(j3, K.getPaint().getFontMetricsInt());
+                    b6Var = new org.telegram.ui.Components.b6(j3, P.getPaint().getFontMetricsInt());
                 }
-                z5Var.cacheType = org.telegram.ui.Components.q5.g();
-                spannableString.setSpan(z5Var, 0, spannableString.length(), 33);
-                K.setText(K.getText().insert(L, spannableString));
-                int length = L + spannableString.length();
-                K.setSelection(length, length);
-                if (K == rVar.F) {
+                b6Var.cacheType = org.telegram.ui.Components.s5.g();
+                spannableString.setSpan(b6Var, 0, spannableString.length(), 33);
+                P.setText(P.getText().insert(Q, spannableString));
+                int length = Q + spannableString.length();
+                P.setSelection(length, length);
+                if (P == rVar.F) {
                     rVar.G = length;
                 }
             } catch (Exception unused) {
@@ -133,7 +133,7 @@ public final class p implements oy {
 
     @Override
     public final boolean z() {
-        return this.f12562a.f12607y;
+        return this.f12609a.f12654y;
     }
 
     @Override
@@ -141,7 +141,7 @@ public final class p implements oy {
     }
 
     @Override
-    public final void o(d61 d61Var) {
+    public final void o(l61 l61Var) {
     }
 
     @Override

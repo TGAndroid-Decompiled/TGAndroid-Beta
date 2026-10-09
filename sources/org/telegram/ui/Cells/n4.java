@@ -15,113 +15,113 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.qp;
-import org.telegram.ui.Components.tr;
-import org.telegram.ui.Components.yq;
-import org.telegram.ui.Components.zq;
+import org.telegram.ui.Components.dq;
+import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.lr;
+import org.telegram.ui.Components.mr;
 public final class n4 extends FrameLayout {
     public boolean E;
-    public final org.telegram.ui.Components.e6 F;
+    public final org.telegram.ui.Components.g6 F;
     public long G;
     public int H;
     public rg.a1 I;
     public Drawable J;
-    public final org.telegram.ui.Components.w9 f22525a;
-    public final ai.p4 f22526b;
-    public final org.telegram.ui.Components.h9 f22527c;
+    public final org.telegram.ui.Components.y9 f22510a;
+    public final ai.q4 f22511b;
+    public final org.telegram.ui.Components.j9 f22512c;
     public int d;
-    public TLRPC.User f22528e;
-    public long f22529f;
+    public TLRPC.User f22513e;
+    public long f22514f;
     public final int h;
-    public float f22530n;
-    public boolean f22531r;
-    public final zq f22532s;
-    public final qp v;
-    public final boolean f22533w;
-    public boolean f22534x;
-    public final org.telegram.ui.Components.e6 f22535y;
+    public float f22515n;
+    public boolean f22516r;
+    public final mr f22517s;
+    public final dq v;
+    public final boolean f22518w;
+    public boolean f22519x;
+    public final org.telegram.ui.Components.g6 f22520y;
 
-    public n4(Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
+    public n4(Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
         super(context);
-        this.f22527c = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
+        this.f22512c = new org.telegram.ui.Components.j9((org.telegram.ui.ActionBar.e6) null);
         new RectF();
         this.h = UserConfig.selectedAccount;
-        tr trVar = tr.h;
-        this.f22535y = new org.telegram.ui.Components.e6(this, 0L, 350L, trVar);
-        this.F = new org.telegram.ui.Components.e6(this, 0L, 350L, trVar);
-        this.H = org.telegram.ui.ActionBar.i6.f20827d6;
-        this.f22533w = z10;
-        org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-        this.f22525a = w9Var;
-        w9Var.setRoundRadius(AndroidUtilities.dp(27.0f));
-        addView(w9Var, w7.z5.d(54, 54.0f, 49, 0.0f, 7.0f, 0.0f, 0.0f));
-        ai.p4 p4Var = new ai.p4(context, 5);
-        this.f22526b = p4Var;
-        NotificationCenter.listenEmojiLoading(p4Var);
-        p4Var.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.G6, d6Var));
-        p4Var.setTextSize(1, 12.0f);
-        p4Var.setMaxLines(1);
-        p4Var.setGravity(49);
-        p4Var.setLines(1);
-        p4Var.setEllipsize(TextUtils.TruncateAt.END);
-        addView(p4Var, w7.z5.d(-1, -2.0f, 51, 6.0f, 64.0f, 6.0f, 0.0f));
-        zq zqVar = new zq(context, d6Var);
-        this.f22532s = zqVar;
-        addView(zqVar, w7.z5.d(-1, 28.0f, 48, 0.0f, 4.0f, 0.0f, 0.0f));
+        hs hsVar = hs.h;
+        this.f22520y = new org.telegram.ui.Components.g6(this, 0L, 350L, hsVar);
+        this.F = new org.telegram.ui.Components.g6(this, 0L, 350L, hsVar);
+        this.H = org.telegram.ui.ActionBar.i6.f20797d6;
+        this.f22518w = z10;
+        org.telegram.ui.Components.y9 y9Var = new org.telegram.ui.Components.y9(context);
+        this.f22510a = y9Var;
+        y9Var.setRoundRadius(AndroidUtilities.dp(27.0f));
+        addView(y9Var, w7.x5.a(54.0f, 0.0f, 7.0f, 0.0f, 0.0f, 54, 49));
+        ai.q4 q4Var = new ai.q4(context, 5);
+        this.f22511b = q4Var;
+        NotificationCenter.listenEmojiLoading(q4Var);
+        q4Var.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.G6, e6Var));
+        q4Var.setTextSize(1, 12.0f);
+        q4Var.setMaxLines(1);
+        q4Var.setGravity(49);
+        q4Var.setLines(1);
+        q4Var.setEllipsize(TextUtils.TruncateAt.END);
+        addView(q4Var, w7.x5.a(-2.0f, 6.0f, 64.0f, 6.0f, 0.0f, -1, 51));
+        mr mrVar = new mr(context, e6Var);
+        this.f22517s = mrVar;
+        addView(mrVar, w7.x5.a(28.0f, 0.0f, 4.0f, 0.0f, 0.0f, -1, 48));
         int i10 = org.telegram.ui.ActionBar.i6.W8;
         int i11 = org.telegram.ui.ActionBar.i6.U8;
-        yq yqVar = zqVar.f33626a;
-        yqVar.v = i10;
-        yqVar.f33330w = i11;
-        zqVar.setGravity(5);
+        lr lrVar = mrVar.f28891a;
+        lrVar.v = i10;
+        lrVar.f28569w = i11;
+        mrVar.setGravity(5);
         if (z10) {
-            qp qpVar = new qp(context, 21, d6Var);
-            this.v = qpVar;
-            qpVar.b(org.telegram.ui.ActionBar.i6.B5, org.telegram.ui.ActionBar.i6.f20899h5, org.telegram.ui.ActionBar.i6.C5);
-            qpVar.setDrawUnchecked(false);
-            qpVar.setDrawBackgroundAsArc(4);
-            qpVar.setProgressDelegate(new la(this, 4));
-            addView(qpVar, w7.z5.d(24, 24.0f, 49, 19.0f, 42.0f, 0.0f, 0.0f));
-            qpVar.a(false, false);
+            dq dqVar = new dq(context, 21, e6Var);
+            this.v = dqVar;
+            dqVar.b(org.telegram.ui.ActionBar.i6.B5, org.telegram.ui.ActionBar.i6.f20868h5, org.telegram.ui.ActionBar.i6.C5);
+            dqVar.setDrawUnchecked(false);
+            dqVar.setDrawBackgroundAsArc(4);
+            dqVar.setProgressDelegate(new ja(this, 4));
+            addView(dqVar, w7.x5.a(24.0f, 19.0f, 42.0f, 0.0f, 0.0f, 24, 49));
+            dqVar.a(false, false);
             setWillNotDraw(false);
         }
     }
 
     public final void a(long j3, String str) {
-        if (this.f22529f != j3) {
-            this.f22531r = false;
+        if (this.f22514f != j3) {
+            this.f22516r = false;
             invalidate();
         }
-        this.f22529f = j3;
+        this.f22514f = j3;
         boolean isUserDialog = DialogObject.isUserDialog(j3);
-        org.telegram.ui.Components.w9 w9Var = this.f22525a;
-        org.telegram.ui.Components.h9 h9Var = this.f22527c;
+        org.telegram.ui.Components.y9 y9Var = this.f22510a;
+        org.telegram.ui.Components.j9 j9Var = this.f22512c;
         int i10 = this.h;
-        ai.p4 p4Var = this.f22526b;
+        ai.q4 q4Var = this.f22511b;
         if (isUserDialog) {
             TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(j3));
-            this.f22528e = user;
+            this.f22513e = user;
             if (str != null) {
-                p4Var.setText(str);
+                q4Var.setText(str);
             } else if (user != null) {
-                p4Var.setText(UserObject.getFirstName(user));
+                q4Var.setText(UserObject.getFirstName(user));
             } else {
-                p4Var.setText("");
+                q4Var.setText("");
             }
-            h9Var.m(i10, this.f22528e);
-            w9Var.e(this.f22528e, h9Var);
+            j9Var.m(i10, this.f22513e);
+            y9Var.e(this.f22513e, j9Var);
         } else {
             TLRPC.Chat chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-j3));
             if (str != null) {
-                p4Var.setText(str);
+                q4Var.setText(str);
             } else if (chat != null) {
-                p4Var.setText(chat.title);
+                q4Var.setText(chat.title);
             } else {
-                p4Var.setText("");
+                q4Var.setText("");
             }
-            h9Var.k(i10, chat);
-            this.f22528e = null;
-            w9Var.e(chat, h9Var);
+            j9Var.k(i10, chat);
+            this.f22513e = null;
+            y9Var.e(chat, j9Var);
         }
         c(false);
         b(0);
@@ -131,32 +131,32 @@ public final class n4 extends FrameLayout {
         int i11;
         int i12 = MessagesController.UPDATE_MASK_STATUS & i10;
         int i13 = this.h;
-        if (i12 != 0 && this.f22528e != null) {
-            this.f22528e = MessagesController.getInstance(i13).getUser(Long.valueOf(this.f22528e.f20194id));
-            this.f22525a.invalidate();
+        if (i12 != 0 && this.f22513e != null) {
+            this.f22513e = MessagesController.getInstance(i13).getUser(Long.valueOf(this.f22513e.f20185id));
+            this.f22510a.invalidate();
             invalidate();
         }
         if (i10 == 0 || (MessagesController.UPDATE_MASK_READ_DIALOG_MESSAGE & i10) != 0 || (i10 & MessagesController.UPDATE_MASK_NEW_MESSAGE) != 0) {
-            TLRPC.Dialog dialog = (TLRPC.Dialog) MessagesController.getInstance(i13).dialogs_dict.f(this.f22529f);
-            zq zqVar = this.f22532s;
+            TLRPC.Dialog dialog = (TLRPC.Dialog) MessagesController.getInstance(i13).dialogs_dict.f(this.f22514f);
+            mr mrVar = this.f22517s;
             if (dialog != null && (i11 = dialog.unread_count) != 0) {
                 if (this.d != i11) {
                     this.d = i11;
-                    zqVar.f33626a.c(i11, this.f22531r);
+                    mrVar.f28891a.c(i11, this.f22516r);
                     return;
                 }
                 return;
             }
             this.d = 0;
-            zqVar.f33626a.c(0, this.f22531r);
+            mrVar.f28891a.c(0, this.f22516r);
         }
     }
 
     public final void c(boolean z10) {
         TL_account.RequirementToContact requirementToContact;
         boolean z11;
-        if (this.f22534x && this.f22528e != null) {
-            requirementToContact = MessagesController.getInstance(this.h).isUserContactBlocked(this.f22528e.f20194id);
+        if (this.f22519x && this.f22513e != null) {
+            requirementToContact = MessagesController.getInstance(this.h).isUserContactBlocked(this.f22513e.f20185id);
         } else {
             requirementToContact = null;
         }
@@ -166,7 +166,7 @@ public final class n4 extends FrameLayout {
         this.E = DialogObject.isPremiumBlocked(requirementToContact);
         this.G = DialogObject.getMessagesStarsPrice(requirementToContact);
         if (!z10) {
-            this.f22535y.f(this.E, true);
+            this.f22520y.f(this.E, true);
             if (this.G > 0) {
                 z11 = true;
             } else {
@@ -183,24 +183,24 @@ public final class n4 extends FrameLayout {
     }
 
     public long getDialogId() {
-        return this.f22529f;
+        return this.f22514f;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (this.f22533w) {
-            org.telegram.ui.Components.w9 w9Var = this.f22525a;
-            int measuredWidth = (w9Var.getMeasuredWidth() / 2) + w9Var.getLeft();
-            int measuredHeight = (w9Var.getMeasuredHeight() / 2) + w9Var.getTop();
-            org.telegram.ui.ActionBar.i6.f21024o0.setColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.B5, false));
-            org.telegram.ui.ActionBar.i6.f21024o0.setAlpha((int) (this.v.getProgress() * 255.0f));
-            canvas.drawCircle(measuredWidth, measuredHeight, AndroidUtilities.dp(28.0f), org.telegram.ui.ActionBar.i6.f21024o0);
+        if (this.f22518w) {
+            org.telegram.ui.Components.y9 y9Var = this.f22510a;
+            int measuredWidth = (y9Var.getMeasuredWidth() / 2) + y9Var.getLeft();
+            int measuredHeight = (y9Var.getMeasuredHeight() / 2) + y9Var.getTop();
+            org.telegram.ui.ActionBar.i6.f20994o0.setColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.B5, false));
+            org.telegram.ui.ActionBar.i6.f20994o0.setAlpha((int) (this.v.getProgress() * 255.0f));
+            canvas.drawCircle(measuredWidth, measuredHeight, AndroidUtilities.dp(28.0f), org.telegram.ui.ActionBar.i6.f20994o0);
         }
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(86.0f), 1073741824));
-        this.f22532s.f33626a.E = AndroidUtilities.dp(13.0f);
+        this.f22517s.f28891a.E = AndroidUtilities.dp(13.0f);
     }
 }

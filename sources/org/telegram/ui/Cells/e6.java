@@ -4,16 +4,16 @@ import android.content.Context;
 import java.util.ArrayList;
 import org.telegram.messenger.DialogObject;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.j01;
+import org.telegram.ui.p01;
 public final class e6 implements o2 {
-    public final org.telegram.ui.ActionBar.n2 f22043a;
-    public final Context f22044b;
-    public final j01 f22045c;
+    public final org.telegram.ui.ActionBar.n2 f22041a;
+    public final Context f22042b;
+    public final p01 f22043c;
 
-    public e6(j01 j01Var, org.telegram.ui.ActionBar.n2 n2Var, Context context) {
-        this.f22045c = j01Var;
-        this.f22043a = n2Var;
-        this.f22044b = context;
+    public e6(p01 p01Var, org.telegram.ui.ActionBar.n2 n2Var, Context context) {
+        this.f22043c = p01Var;
+        this.f22041a = n2Var;
+        this.f22042b = context;
     }
 
     @Override
@@ -24,8 +24,8 @@ public final class e6 implements o2 {
     @Override
     public final void c() {
         boolean z10;
-        org.telegram.ui.ActionBar.n2 n2Var = this.f22043a;
-        ai.l9 storiesController = n2Var.getMessagesController().getStoriesController();
+        org.telegram.ui.ActionBar.n2 n2Var = this.f22041a;
+        ai.m9 storiesController = n2Var.getMessagesController().getStoriesController();
         ArrayList arrayList = storiesController.h;
         if (arrayList.isEmpty()) {
             return;
@@ -42,15 +42,15 @@ public final class e6 implements o2 {
                 arrayList2.add(Long.valueOf(peerDialogId));
             }
         }
-        n2Var.getOrCreateStoryViewer().G(this.f22044b, null, arrayList2, 0, null, null, new ai.u9(this.f22045c), false);
+        n2Var.getOrCreateStoryViewer().G(this.f22042b, null, arrayList2, 0, null, null, new ai.v9(this.f22043c), false);
     }
 
     @Override
-    public final void e(s2 s2Var) {
-        org.telegram.ui.ActionBar.n2 n2Var = this.f22043a;
+    public final void f(s2 s2Var) {
+        org.telegram.ui.ActionBar.n2 n2Var = this.f22041a;
         if (n2Var.getMessagesController().getStoriesController().I(s2Var.getDialogId())) {
             n2Var.getOrCreateStoryViewer().getClass();
-            n2Var.getOrCreateStoryViewer().D(n2Var.getContext(), s2Var.getDialogId(), new ai.u9(this.f22045c));
+            n2Var.getOrCreateStoryViewer().D(n2Var.getContext(), s2Var.getDialogId(), new ai.v9(this.f22043c));
         }
     }
 
@@ -63,6 +63,6 @@ public final class e6 implements o2 {
     }
 
     @Override
-    public final void f(s2 s2Var) {
+    public final void g(s2 s2Var) {
     }
 }

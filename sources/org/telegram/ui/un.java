@@ -1,17 +1,8 @@
 package org.telegram.ui;
+public final class un {
+    public final xn f42458a;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class un extends AnimatorListenerAdapter {
-    public final org.telegram.ui.Components.pc0 f41299a;
-
-    public un(org.telegram.ui.Components.pc0 pc0Var) {
-        this.f41299a = pc0Var;
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        super.onAnimationEnd(animator);
-        this.f41299a.s(1.0f);
+    public un(xn xnVar) {
+        this.f42458a = xnVar;
     }
 }

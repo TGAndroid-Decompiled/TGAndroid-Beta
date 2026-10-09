@@ -1,45 +1,80 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-public final class tj implements Runnable {
-    public final int f40926a;
-    public final uj f40927b;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationsController;
+public final class tj implements org.telegram.ui.Components.ep {
+    public final zn f42021a;
 
-    public tj(uj ujVar, int i10) {
-        this.f40926a = i10;
-        this.f40927b = ujVar;
+    public tj(zn znVar) {
+        this.f42021a = znVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f40926a) {
-            case 0:
-                uj ujVar = this.f40927b;
-                ujVar.W = null;
-                yn ynVar = ujVar.X;
-                if (ynVar.F9 != -1) {
-                    ynVar.getNotificationCenter().onAnimationFinish(ynVar.F9);
-                    ynVar.F9 = -1;
-                }
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.d("chatItemAnimator enable notifications");
-                    return;
-                }
-                return;
-            default:
-                uj ujVar2 = this.f40927b;
-                ujVar2.W = null;
-                yn ynVar2 = ujVar2.X;
-                if (ynVar2.F9 != -1) {
-                    ynVar2.getNotificationCenter().onAnimationFinish(ynVar2.F9);
-                    ynVar2.F9 = -1;
-                }
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.d("chatItemAnimator enable notifications");
-                    return;
-                }
-                return;
+    public final void dismiss() {
+        this.f42021a.f44787h0.M(null, null);
+    }
+
+    @Override
+    public final void o() {
+        zn znVar = this.f42021a;
+        znVar.fc(true);
+        org.telegram.ui.Components.ad.A(znVar, znVar.getMessagesController().isDialogMuted(znVar.T5, znVar.d()), znVar.f44761ea).j();
+    }
+
+    @Override
+    public final void p() {
+        zn znVar = this.f42021a;
+        if (znVar.T5 != 0 && znVar.R3 != 3) {
+            if (znVar.f44763f != null) {
+                znVar.getMessagesController().putUser(znVar.f44763f, true);
+            }
+            Bundle bundle = new Bundle();
+            bundle.putLong("dialog_id", znVar.T5);
+            if (znVar.d() != 0) {
+                bundle.putLong("topic_id", znVar.d());
+            }
+            znVar.presentFragment(new v11(bundle, znVar.f44761ea));
         }
+    }
+
+    @Override
+    public final void s() {
+        int i10;
+        zn znVar = this.f42021a;
+        i10 = ((org.telegram.ui.ActionBar.n2) znVar).currentAccount;
+        SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(i10);
+        boolean z10 = notificationsSettings.getBoolean("sound_enabled_" + NotificationsController.getSharedPrefKey(znVar.T5, znVar.d()), true);
+        boolean z11 = !z10 ? 1 : 0;
+        SharedPreferences.Editor edit = notificationsSettings.edit();
+        edit.putBoolean("sound_enabled_" + NotificationsController.getSharedPrefKey(znVar.T5, znVar.d()), z11).apply();
+        if (org.telegram.ui.Components.ad.a(znVar)) {
+            org.telegram.ui.Components.ad.S(z10 ? 1 : 0, znVar, znVar.getResourceProvider()).j();
+        }
+        znVar.Tc(false);
+    }
+
+    @Override
+    public final void x(int i10) {
+        zn znVar = this.f42021a;
+        if (i10 == 0) {
+            if (znVar.getMessagesController().isDialogMuted(znVar.T5, znVar.d())) {
+                znVar.fc(true);
+            }
+            if (org.telegram.ui.Components.ad.a(znVar)) {
+                org.telegram.ui.Components.ad.z(znVar, 4, i10, znVar.getResourceProvider()).j();
+                return;
+            }
+            return;
+        }
+        znVar.getNotificationsController().muteUntil(znVar.T5, znVar.d(), i10);
+        if (org.telegram.ui.Components.ad.a(znVar)) {
+            org.telegram.ui.Components.ad.z(znVar, 5, i10, znVar.getResourceProvider()).j();
+        }
+    }
+
+    @Override
+    public final void m() {
     }
 }

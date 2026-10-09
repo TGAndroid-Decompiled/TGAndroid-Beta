@@ -1,21 +1,48 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-public final class sz0 extends org.telegram.ui.Components.br0 {
-    public final ProfileActivity X0;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.ImageReceiver;
+public final class sz0 extends AnimatorListenerAdapter {
+    public final ProfileActivity f41802a;
 
-    public sz0(ProfileActivity profileActivity, Activity activity, String str, String str2) {
-        super(activity, null, str, false, str2, false, null);
-        this.X0 = profileActivity;
+    public sz0(ProfileActivity profileActivity) {
+        this.f41802a = profileActivity;
     }
 
     @Override
-    public final void O0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        if (!z10) {
-            return;
+    public final void onAnimationEnd(Animator animator) {
+        org.telegram.ui.ActionBar.k kVar;
+        int w02;
+        ProfileActivity profileActivity = this.f41802a;
+        kVar = ((org.telegram.ui.ActionBar.n2) profileActivity).actionBar;
+        if (profileActivity.f34319p2) {
+            w02 = 1090519039;
+        } else if (profileActivity.Q5 != null) {
+            w02 = 553648127;
+        } else {
+            w02 = org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20835f8, profileActivity.f34386z0);
         }
-        AndroidUtilities.runOnUIThread(new wx0(this, iVar, i10, 11), 250L);
+        kVar.C(w02, false);
+        oz0 oz0Var = profileActivity.f34242e0;
+        ImageReceiver imageReceiver = oz0Var.U;
+        org.telegram.ui.Components.f6 animation = imageReceiver.getAnimation();
+        if (animation != null) {
+            animation.w(oz0Var);
+        }
+        imageReceiver.clearImage();
+        ImageReceiver.BitmapHolder bitmapHolder = oz0Var.W;
+        if (bitmapHolder != null) {
+            bitmapHolder.release();
+            oz0Var.W = null;
+        }
+        oz0Var.V = 0.0f;
+        oz0Var.invalidate();
+        profileActivity.H0 = false;
+        profileActivity.l5(false);
+    }
+
+    @Override
+    public final void onAnimationStart(Animator animator) {
     }
 }

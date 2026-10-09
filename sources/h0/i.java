@@ -1,22 +1,30 @@
 package h0;
 
-import android.content.res.ColorStateList;
-import android.content.res.Configuration;
 import android.content.res.Resources;
+import j$.util.Objects;
 public final class i {
-    public final ColorStateList f10943a;
-    public final Configuration f10944b;
-    public final int f10945c;
+    public final Resources f10951a;
+    public final Resources.Theme f10952b;
 
-    public i(ColorStateList colorStateList, Configuration configuration, Resources.Theme theme) {
-        int hashCode;
-        this.f10943a = colorStateList;
-        this.f10944b = configuration;
-        if (theme == null) {
-            hashCode = 0;
-        } else {
-            hashCode = theme.hashCode();
+    public i(Resources resources, Resources.Theme theme) {
+        this.f10951a = resources;
+        this.f10952b = theme;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        this.f10945c = hashCode;
+        if (obj != null && i.class == obj.getClass()) {
+            i iVar = (i) obj;
+            if (this.f10951a.equals(iVar.f10951a) && Objects.equals(this.f10952b, iVar.f10952b)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Objects.hash(this.f10951a, this.f10952b);
     }
 }

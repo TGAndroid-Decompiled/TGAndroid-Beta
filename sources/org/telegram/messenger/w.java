@@ -5,27 +5,27 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class w implements Utilities.Callback {
-    public final int f19643a;
-    public final Object f19644b;
-    public final Object f19645c;
+    public final int f19649a;
+    public final Object f19650b;
+    public final Object f19651c;
 
     public w(int i10, Object obj, Object obj2) {
-        this.f19643a = i10;
-        this.f19644b = obj;
-        this.f19645c = obj2;
+        this.f19649a = i10;
+        this.f19650b = obj;
+        this.f19651c = obj2;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f19643a) {
+        switch (this.f19649a) {
             case 0:
-                ((BetaUpdaterController) this.f19644b).lambda$checkForUpdate$2((Runnable) this.f19645c, (String) obj);
+                ((BetaUpdaterController) this.f19650b).lambda$checkForUpdate$2((Runnable) this.f19651c, (String) obj);
                 return;
             case 1:
-                ChannelBoostsController.lambda$userCanBoostChannel$3((ChannelBoostsController.CanApplyBoost) this.f19644b, (Utilities.Callback) this.f19645c, (TLRPC.TL_error) obj);
+                ChannelBoostsController.lambda$userCanBoostChannel$3((ChannelBoostsController.CanApplyBoost) this.f19650b, (Utilities.Callback) this.f19651c, (TLRPC.TL_error) obj);
                 return;
             default:
-                ((SendMessagesHelper) this.f19644b).lambda$sendMessage$48((SendMessagesHelper.SendMessageParams) this.f19645c, (Long) obj);
+                ((SendMessagesHelper) this.f19650b).lambda$sendMessage$51((SendMessagesHelper.SendMessageParams) this.f19651c, (Long) obj);
                 return;
         }
     }

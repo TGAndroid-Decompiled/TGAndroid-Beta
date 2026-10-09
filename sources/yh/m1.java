@@ -1,42 +1,38 @@
 package yh;
 
-import android.os.Bundle;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.ta1;
+import org.telegram.tgnet.TLRPC;
 public final class m1 implements Runnable {
-    public final int f51625a = 0;
-    public final org.telegram.ui.ActionBar.n2 f51626b;
-    public final long f51627c;
+    public final int f52859a;
+    public final s3 f52860b;
+    public final TLRPC.TL_error f52861c;
+    public final Runnable d;
 
-    public m1(long j3, org.telegram.ui.ActionBar.n2 n2Var) {
-        this.f51627c = j3;
-        this.f51626b = n2Var;
+    public m1(s3 s3Var, TLRPC.TL_error tL_error, Runnable runnable, int i10) {
+        this.f52859a = i10;
+        this.f52860b = s3Var;
+        this.f52861c = tL_error;
+        this.d = runnable;
     }
 
     @Override
     public final void run() {
-        switch (this.f51625a) {
+        switch (this.f52859a) {
             case 0:
-                Bundle bundle = new Bundle();
-                long j3 = this.f51627c;
-                if (j3 >= 0) {
-                    bundle.putLong("user_id", j3);
-                } else {
-                    bundle.putLong("chat_id", -j3);
+                this.f52860b.getBulletinFactory().f0(this.f52861c, false);
+                Runnable runnable = this.d;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
                 }
-                bundle.putBoolean("my_profile", true);
-                bundle.putBoolean("open_gifts", true);
-                this.f51626b.presentFragment(new ProfileActivity(bundle, null));
                 return;
             default:
-                org.telegram.ui.ActionBar.n2 n2Var = this.f51626b;
-                n2Var.presentFragment(ta1.b0(n2Var.getMessagesController().getChat(Long.valueOf(-this.f51627c)), true));
+                this.f52860b.getBulletinFactory().f0(this.f52861c, false);
+                Runnable runnable2 = this.d;
+                if (runnable2 != null) {
+                    runnable2.run();
+                    return;
+                }
                 return;
         }
-    }
-
-    public m1(org.telegram.ui.ActionBar.n2 n2Var, long j3) {
-        this.f51626b = n2Var;
-        this.f51627c = j3;
     }
 }

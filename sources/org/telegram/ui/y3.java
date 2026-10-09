@@ -2,12 +2,12 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.tl.TL_iv;
 public final class y3 extends TL_iv.PageBlock {
-    public boolean f43097a;
-    public boolean f43098b;
-    public z3 f43099c;
+    public boolean f44230a;
+    public boolean f44231b;
+    public z3 f44232c;
     public TL_iv.PageBlock d;
-    public TL_iv.RichText f43100e;
-    public String f43101f;
-    public b3 f43102i;
-    public int f43103j = Integer.MAX_VALUE;
+    public TL_iv.RichText f44233e;
+    public String f44234f;
+    public b3 f44235i;
+    public int f44236j = Integer.MAX_VALUE;
 }

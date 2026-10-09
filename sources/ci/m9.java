@@ -1,70 +1,52 @@
 package ci;
+public final class m9 implements Runnable {
+    public final int f5609a;
+    public final y9 f5610b;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class m9 implements Utilities.Callback {
-    public final int f5579a;
-    public final x9 f5580b;
-
-    public m9(x9 x9Var, int i10) {
-        this.f5579a = i10;
-        this.f5580b = x9Var;
+    public m9(y9 y9Var, int i10) {
+        this.f5609a = i10;
+        this.f5610b = y9Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        int i10;
-        switch (this.f5579a) {
+    public final void run() {
+        switch (this.f5609a) {
             case 0:
-                x9 x9Var = this.f5580b;
-                ea eaVar = x9Var.W;
-                eaVar.f5050c = (TLRPC.InputPeer) obj;
-                HashSet hashSet = eaVar.v;
-                hashSet.clear();
-                if (eaVar.K && eaVar.G) {
-                    eaVar.G = false;
-                }
-                Utilities.Callback callback = eaVar.W;
-                if (callback != null) {
-                    callback.run(eaVar.f5050c);
-                }
-                ha haVar = eaVar.X;
-                if (haVar != null) {
-                    haVar.run(new HashSet(hashSet));
-                }
-                x9Var.g(true);
+                fa faVar = this.f5610b.W;
+                org.telegram.ui.Components.tc.h(faVar.container);
+                fa.F(faVar);
                 return;
             case 1:
-                ea eaVar2 = this.f5580b.W;
-                i10 = ((org.telegram.ui.ActionBar.f3) eaVar2).currentAccount;
-                eaVar2.g1(new ca(5, i10, (ArrayList) obj), new ai.r5(eaVar2, 1), false);
+                y9 y9Var = this.f5610b;
+                y9Var.v.setLoading(false);
+                fa faVar2 = y9Var.W;
+                faVar2.g1();
+                faVar2.f5094b.D(0);
                 return;
             case 2:
-                x9 x9Var2 = this.f5580b;
-                ea eaVar3 = x9Var2.W;
-                HashSet hashSet2 = eaVar3.v;
-                hashSet2.add(Integer.valueOf(((ai.e9) obj).f922a));
-                x9Var2.g(true);
-                ha haVar2 = eaVar3.X;
-                if (haVar2 != null) {
-                    haVar2.run(new HashSet(hashSet2));
-                    return;
-                }
+                this.f5610b.U = false;
+                return;
+            case 3:
+                fa faVar3 = this.f5610b.W;
+                faVar3.M = 6;
+                faVar3.f5094b.D(1);
+                return;
+            case 4:
+                y9 y9Var2 = this.f5610b;
+                y9Var2.f6365n.m(2);
+                y9Var2.f6364f.forceLayout();
+                y9Var2.j();
                 return;
             default:
-                String str = (String) obj;
-                x9 x9Var3 = this.f5580b;
-                if (str != null) {
-                    x9Var3.getClass();
-                    if (str.isEmpty()) {
-                        str = null;
-                    }
+                y9 y9Var3 = this.f5610b;
+                fa faVar4 = y9Var3.W;
+                if (y9Var3.f6360a == 0) {
+                    faVar4.dismiss();
+                    return;
+                } else {
+                    faVar4.onBackPressed();
+                    return;
                 }
-                x9Var3.I = str;
-                x9Var3.g(false);
-                return;
         }
     }
 }

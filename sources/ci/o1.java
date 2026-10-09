@@ -2,204 +2,218 @@ package ci;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
+import android.util.SparseArray;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-public final class o1 extends View {
-    public boolean f5641a;
-    public final int f5642b;
-    public org.telegram.ui.Components.q5 f5643c;
-    public final p1 d;
-    public ImageReceiver f5644e;
-    public long f5645f;
-    public final ImageReceiver.BackgroundThreadDrawHolder[] h;
-    public ImageReceiver f5646n;
-    public final org.telegram.ui.Components.zc f5647r;
-    public boolean f5648s;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.ui.Components.qm0;
+import org.telegram.ui.Components.tl0;
+public final class o1 extends qm0 {
+    public tl0 V2;
+    public boolean W2;
+    public float X2;
+    public float Y2;
+    public boolean Z2;
+    public final SparseArray f5661a3;
+    public final ArrayList f5662b3;
+    public final ArrayList f5663c3;
+    public final ArrayList f5664d3;
+    public final ArrayList f5665e3;
+    public final PorterDuffColorFilter f5666f3;
 
-    public o1(Context context, p1 p1Var) {
-        super(context);
-        this.f5642b = UserConfig.selectedAccount;
-        this.h = new ImageReceiver.BackgroundThreadDrawHolder[2];
-        this.f5647r = new org.telegram.ui.Components.zc(this);
-        setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
-        this.d = p1Var;
+    public o1(Context context) {
+        super(context, null);
+        this.Z2 = false;
+        this.f5661a3 = new SparseArray();
+        this.f5662b3 = new ArrayList();
+        this.f5663c3 = new ArrayList();
+        this.f5664d3 = new ArrayList();
+        this.f5665e3 = new ArrayList();
+        this.f5666f3 = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
     }
 
-    public final void a(TLRPC.Document document, boolean z10) {
-        long j3;
-        int i10;
-        long j10 = this.f5645f;
-        if (document == null) {
-            j3 = 0;
-        } else {
-            j3 = document.f20053id;
-        }
-        if (j10 != j3) {
-            org.telegram.ui.Components.q5 q5Var = this.f5643c;
-            if (q5Var != null) {
-                q5Var.o(this);
-            }
-            if (document != null) {
-                int i11 = 1;
-                this.f5641a = true;
-                this.f5645f = document.f20053id;
-                int i12 = s2.G;
-                if (!z10) {
-                    i11 = 16388;
-                }
-                if (LiteMode.isEnabled(i11)) {
-                    i10 = 3;
+    public static void x1(o1 o1Var, int i10, int i11) {
+        int i12;
+        if (o1Var.V2 != null && (o1Var.getLayoutManager() instanceof s4.s)) {
+            s4.s sVar = (s4.s) o1Var.getLayoutManager();
+            View m10 = sVar.m(i10);
+            int L0 = sVar.L0();
+            if ((m10 == null && Math.abs(i10 - L0) > sVar.J * 9.0f) || !SharedConfig.animationsEnabled()) {
+                tl0 tl0Var = o1Var.V2;
+                if (sVar.L0() < i10) {
+                    i12 = 0;
                 } else {
-                    i10 = 13;
+                    i12 = 1;
                 }
-                org.telegram.ui.Components.q5 m10 = org.telegram.ui.Components.q5.m(this.f5642b, i10, document);
-                this.f5643c = m10;
-                if (this.f5648s) {
-                    m10.a(this);
-                    return;
-                }
+                tl0Var.f31224b = i12;
+                o1Var.V2.c(i10, i11, false, false);
                 return;
             }
-            this.f5641a = false;
-            this.f5645f = 0L;
-            this.f5643c = null;
-        }
-    }
-
-    public float getScale() {
-        return this.f5647r.a(0.15f);
-    }
-
-    @Override
-    public final void invalidate() {
-        this.d.invalidate();
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f5648s = true;
-        org.telegram.ui.Components.q5 q5Var = this.f5643c;
-        if (q5Var != null) {
-            q5Var.a(this);
-        }
-        ImageReceiver imageReceiver = this.f5644e;
-        if (imageReceiver != null) {
-            imageReceiver.onAttachedToWindow();
+            l1 l1Var = new l1(o1Var, o1Var.getContext(), 0);
+            l1Var.f47825a = i10;
+            l1Var.f14273p = i11;
+            sVar.w0(l1Var);
         }
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f5648s = false;
-        org.telegram.ui.Components.q5 q5Var = this.f5643c;
-        if (q5Var != null) {
-            q5Var.o(this);
-        }
-        ImageReceiver imageReceiver = this.f5644e;
-        if (imageReceiver != null) {
-            imageReceiver.onDetachedFromWindow();
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        ImageReceiver imageReceiver = this.f5644e;
-        if (imageReceiver != null) {
-            imageReceiver.setImageCoords(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
-            this.f5644e.draw(canvas);
+    public final void dispatchDraw(Canvas canvas) {
+        SparseArray sparseArray;
+        ArrayList arrayList;
+        ArrayList arrayList2;
+        m1 m1Var;
+        int top;
+        if (getVisibility() != 0) {
             return;
         }
-        org.telegram.ui.Components.q5 q5Var = this.f5643c;
-        if (q5Var != null) {
-            q5Var.setBounds(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
-            this.f5643c.draw(canvas);
+        int saveCount = canvas.getSaveCount();
+        canvas.save();
+        canvas.clipRect(0.0f, this.X2, getWidth(), this.Y2);
+        if (!this.W2) {
+            super.dispatchDraw(canvas);
+            canvas.restore();
+            return;
         }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824);
-        super.onMeasure(makeMeasureSpec, makeMeasureSpec);
-    }
-
-    public void setDrawable(Drawable drawable) {
-        org.telegram.ui.Components.q5 q5Var = this.f5643c;
-        if (q5Var != null) {
-            q5Var.o(this);
-        }
-        this.f5643c = null;
-        this.f5645f = 0L;
-        this.f5641a = false;
-        if (this.f5644e == null) {
-            ImageReceiver imageReceiver = new ImageReceiver();
-            this.f5644e = imageReceiver;
-            imageReceiver.setLayerNum(7);
-            this.f5644e.setAspectFit(true);
-            if (this.f5648s) {
-                this.f5644e.onAttachedToWindow();
+        Rect rect = this.E1;
+        if (!rect.isEmpty()) {
+            this.B1.setBounds(rect);
+            canvas.save();
+            q0.a aVar = this.f30214m2;
+            if (aVar != null) {
+                aVar.accept(canvas);
             }
+            this.B1.draw(canvas);
+            canvas.restore();
         }
-        this.f5644e.setImageBitmap(drawable);
-    }
-
-    @Override
-    public void setPressed(boolean z10) {
-        super.setPressed(z10);
-        this.f5647r.c(z10);
-    }
-
-    public void setSticker(TLRPC.Document document) {
-        View view;
-        String str;
-        this.f5641a = false;
-        if (document != null) {
-            long j3 = this.f5645f;
-            long j10 = document.f20053id;
-            if (j3 != j10) {
-                this.f5645f = j10;
-                if (this.f5644e == null) {
-                    ImageReceiver imageReceiver = new ImageReceiver();
-                    this.f5644e = imageReceiver;
-                    imageReceiver.setLayerNum(7);
-                    this.f5644e.setAspectFit(true);
-                    if (this.f5648s) {
-                        this.f5644e.onAttachedToWindow();
+        int i10 = 0;
+        int i11 = 0;
+        while (true) {
+            sparseArray = this.f5661a3;
+            int size = sparseArray.size();
+            arrayList = this.f5662b3;
+            if (i11 >= size) {
+                break;
+            }
+            ArrayList arrayList3 = (ArrayList) sparseArray.valueAt(i11);
+            arrayList3.clear();
+            arrayList.add(arrayList3);
+            i11++;
+        }
+        sparseArray.clear();
+        for (int i12 = 0; i12 < getChildCount(); i12++) {
+            View childAt = getChildAt(i12);
+            if (childAt instanceof n1) {
+                n1 n1Var = (n1) childAt;
+                if (n1Var.getY() < this.Y2 && n1Var.getY() + n1Var.getHeight() > this.X2) {
+                    if (this.Z2) {
+                        top = (int) n1Var.getY();
+                    } else {
+                        top = n1Var.getTop();
                     }
+                    ArrayList arrayList4 = (ArrayList) sparseArray.get(top);
+                    if (arrayList4 == null) {
+                        if (!arrayList.isEmpty()) {
+                            arrayList4 = (ArrayList) hg.c.x(1, arrayList);
+                        } else {
+                            arrayList4 = new ArrayList();
+                        }
+                        sparseArray.put(top, arrayList4);
+                    }
+                    arrayList4.add(n1Var);
                 }
-                ImageReceiver imageReceiver2 = this.f5644e;
-                if (!this.f5641a) {
-                    view = this;
-                } else {
-                    view = this.d;
-                }
-                imageReceiver2.setParentView(view);
-                TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
-                if ("video/webm".equals(document.mime_type)) {
-                    str = "80_80_g";
-                } else {
-                    str = "80_80";
-                }
-                if (!LiteMode.isEnabled(1)) {
-                    str = str.concat("_firstframe");
-                }
-                this.f5644e.setImage(ImageLocation.getForDocument(document), str, ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "80_80", null, 0L, null, document, 0);
-                return;
             }
-            return;
         }
-        ImageReceiver imageReceiver3 = this.f5644e;
-        if (imageReceiver3 != null) {
-            this.f5645f = 0L;
-            imageReceiver3.clearImage();
+        ArrayList arrayList5 = this.f5665e3;
+        arrayList5.clear();
+        ArrayList arrayList6 = this.f5664d3;
+        arrayList5.addAll(arrayList6);
+        arrayList6.clear();
+        canvas.save();
+        canvas.clipRect(0, getPaddingTop(), getWidth(), getHeight() - getPaddingBottom());
+        long currentTimeMillis = System.currentTimeMillis();
+        int i13 = 0;
+        while (true) {
+            int size2 = sparseArray.size();
+            arrayList2 = this.f5663c3;
+            if (i13 >= size2) {
+                break;
+            }
+            ArrayList arrayList7 = (ArrayList) sparseArray.valueAt(i13);
+            n1 n1Var2 = (n1) arrayList7.get(i10);
+            int R = RecyclerView.R(n1Var2);
+            while (true) {
+                if (i10 < arrayList5.size()) {
+                    if (((m1) arrayList5.get(i10)).M == R) {
+                        m1Var = (m1) arrayList5.get(i10);
+                        arrayList5.remove(i10);
+                        break;
+                    }
+                    i10++;
+                } else {
+                    m1Var = null;
+                    break;
+                }
+            }
+            if (m1Var == null) {
+                if (!arrayList2.isEmpty()) {
+                    m1Var = (m1) hg.c.x(1, arrayList2);
+                } else {
+                    m1Var = new m1(this);
+                    m1Var.l(7);
+                }
+                m1Var.M = R;
+                m1Var.e();
+            }
+            arrayList6.add(m1Var);
+            m1Var.O = arrayList7;
+            canvas.save();
+            canvas.translate(n1Var2.getLeft(), n1Var2.getY());
+            m1Var.N = n1Var2.getLeft();
+            int measuredWidth = getMeasuredWidth() - (n1Var2.getLeft() * 2);
+            int measuredHeight = n1Var2.getMeasuredHeight();
+            if (measuredWidth > 0 && measuredHeight > 0) {
+                m1Var.a(canvas, currentTimeMillis, measuredWidth, measuredHeight, getAlpha());
+            }
+            canvas.restore();
+            i13++;
+            i10 = 0;
+        }
+        for (int i14 = 0; i14 < arrayList5.size(); i14++) {
+            if (arrayList2.size() < 3) {
+                arrayList2.add((m1) arrayList5.get(i14));
+                ((m1) arrayList5.get(i14)).O = null;
+                ((m1) arrayList5.get(i14)).k();
+            } else {
+                ((m1) arrayList5.get(i14)).f();
+            }
+        }
+        arrayList5.clear();
+        for (int i15 = 0; i15 < getChildCount(); i15++) {
+            View childAt2 = getChildAt(i15);
+            if (childAt2 != null && !(childAt2 instanceof n1) && childAt2.getY() <= getHeight() - getPaddingBottom() && childAt2.getY() + childAt2.getHeight() >= getPaddingTop()) {
+                canvas.save();
+                canvas.translate((int) childAt2.getX(), (int) childAt2.getY());
+                childAt2.draw(canvas);
+                canvas.restore();
+            }
+        }
+        canvas.restore();
+        canvas.restoreToCount(saveCount);
+    }
+
+    @Override
+    public final void setLayoutManager(s4.p0 p0Var) {
+        super.setLayoutManager(p0Var);
+        this.V2 = null;
+        if (p0Var instanceof s4.d0) {
+            tl0 tl0Var = new tl0(this, (s4.d0) p0Var);
+            this.V2 = tl0Var;
+            tl0Var.f31229i = new k1(this, 0);
+            tl0Var.h = new a1.c(this, 15);
         }
     }
 }

@@ -1,152 +1,51 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.text.TextUtils;
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.UserConfig;
-import org.telegram.ui.Components.ld;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.r01;
-import org.telegram.ui.zg1;
-public final class r01 extends org.telegram.ui.Cells.a7 {
-    public final s01 h;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_fragment;
+public final class r01 extends ClickableSpan {
+    public final TLRPC.TL_username f41236a;
+    public final String f41237b;
+    public final y01 f41238c;
 
-    public r01(s01 s01Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context);
-        int i10;
-        int i11;
-        int i12;
-        int i13;
-        int i14;
-        int i15;
-        this.h = s01Var;
-        this.f21810f = UserConfig.selectedAccount;
-        setOrientation(1);
-        TextView textView = new TextView(context);
-        this.f21806a = textView;
-        com.google.android.gms.internal.vision.e2.l(15.0f, 1, textView);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        if (LocaleController.isRTL) {
-            i10 = 5;
-        } else {
-            i10 = 3;
-        }
-        textView.setGravity(i10 | 16);
-        textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.L6, d6Var));
-        if (LocaleController.isRTL) {
-            i11 = 5;
-        } else {
-            i11 = 3;
-        }
-        addView(textView, w7.z5.t(-1, -2, i11 | 48, 21, 15, 21, 0));
-        org.telegram.ui.Components.q90 q90Var = new org.telegram.ui.Components.q90(context, d6Var);
-        this.f21807b = q90Var;
-        q90Var.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.G6, d6Var));
-        q90Var.setTextSize(1, 14.0f);
-        q90Var.setLinkTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.J6, d6Var));
-        q90Var.setHighlightColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.K6, d6Var));
-        q90Var.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
-        if (LocaleController.isRTL) {
-            i12 = 5;
-        } else {
-            i12 = 3;
-        }
-        q90Var.setGravity(i12);
-        if (LocaleController.isRTL) {
-            i13 = 5;
-        } else {
-            i13 = 3;
-        }
-        addView(q90Var, w7.z5.t(-2, -2, i13, 21, 14, 21, 0));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(0);
-        addView(linearLayout, w7.z5.k(21.0f, 16.0f, 21.0f, 15.0f, -1, 44));
-        for (int i16 = 0; i16 < 2; i16++) {
-            TextView textView2 = new TextView(context);
-            textView2.setBackground(org.telegram.ui.ActionBar.x5.f(new float[]{8.0f}, org.telegram.ui.ActionBar.i6.Oh));
-            w7.b6.b(textView2, 0.02f, 1.5f);
-            textView2.setLines(1);
-            textView2.setSingleLine(true);
-            textView2.setGravity(1);
-            textView2.setEllipsize(TextUtils.TruncateAt.END);
-            textView2.setGravity(17);
-            org.telegram.ui.Cells.c1.p(org.telegram.ui.ActionBar.i6.Sh, d6Var, textView2, 1, 14.0f);
-            if (i16 == 0) {
-                i14 = 0;
-            } else {
-                i14 = 4;
+    public r01(y01 y01Var, TLRPC.TL_username tL_username, String str) {
+        this.f41238c = y01Var;
+        this.f41236a = tL_username;
+        this.f41237b = str;
+    }
+
+    @Override
+    public final void onClick(View view) {
+        ProfileActivity profileActivity = this.f41238c.f44189e;
+        TLRPC.TL_username tL_username = this.f41236a;
+        if (!tL_username.editable) {
+            if (profileActivity.f34276i5 != this) {
+                profileActivity.M4(this);
+                TL_fragment.TL_getCollectibleInfo tL_getCollectibleInfo = new TL_fragment.TL_getCollectibleInfo();
+                TL_fragment.TL_inputCollectibleUsername tL_inputCollectibleUsername = new TL_fragment.TL_inputCollectibleUsername();
+                tL_inputCollectibleUsername.username = tL_username.username;
+                tL_getCollectibleInfo.collectible = tL_inputCollectibleUsername;
+                profileActivity.getConnectionsManager().bindRequestToGuid(profileActivity.getConnectionsManager().sendRequest(tL_getCollectibleInfo, new ac0(18, this, tL_username)), profileActivity.getClassGuid());
+                return;
             }
-            if (i16 == 0) {
-                i15 = 4;
-            } else {
-                i15 = 0;
-            }
-            linearLayout.addView(textView2, w7.z5.m(0.5f, 0, 44, i14, i15, 0));
-            if (i16 == 0) {
-                this.f21808c = textView2;
-                textView2.setOnClickListener(new View.OnClickListener(this) {
-                    public final r01 f23811b;
-
-                    {
-                        this.f23811b = this;
-                    }
-
-                    @Override
-                    public final void onClick(View view) {
-                        switch (r2) {
-                            case 0:
-                                r01 r01Var = this.f23811b;
-                                AndroidUtilities.runOnUIThread(new ld(r01Var, r01Var.f21809e, 23));
-                                return;
-                            default:
-                                r01 r01Var2 = this.f23811b;
-                                int i17 = r01Var2.f21809e;
-                                ProfileActivity profileActivity = r01Var2.h.f40298e;
-                                if (i17 == 0) {
-                                    profileActivity.presentFragment(new org.telegram.ui.h(3));
-                                    return;
-                                } else {
-                                    profileActivity.presentFragment(new zg1(8, null));
-                                    return;
-                                }
-                        }
-                    }
-                });
-            } else {
-                this.d = textView2;
-                textView2.setOnClickListener(new View.OnClickListener(this) {
-                    public final r01 f23811b;
-
-                    {
-                        this.f23811b = this;
-                    }
-
-                    @Override
-                    public final void onClick(View view) {
-                        switch (r2) {
-                            case 0:
-                                r01 r01Var = this.f23811b;
-                                AndroidUtilities.runOnUIThread(new ld(r01Var, r01Var.f21809e, 23));
-                                return;
-                            default:
-                                r01 r01Var2 = this.f23811b;
-                                int i17 = r01Var2.f21809e;
-                                ProfileActivity profileActivity = r01Var2.h.f40298e;
-                                if (i17 == 0) {
-                                    profileActivity.presentFragment(new org.telegram.ui.h(3));
-                                    return;
-                                } else {
-                                    profileActivity.presentFragment(new zg1(8, null));
-                                    return;
-                                }
-                        }
-                    }
-                });
-            }
+            return;
         }
+        profileActivity.M4(null);
+        String str = profileActivity.getMessagesController().linkPrefix + "/" + this.f41237b;
+        TLRPC.Chat chat = profileActivity.E2;
+        if (chat != null && chat.noforwards) {
+            return;
+        }
+        AndroidUtilities.addToClipboard(str);
+        profileActivity.M.j(56, 0L, null);
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        textPaint.setUnderlineText(false);
+        textPaint.setColor(textPaint.linkColor);
     }
 }

@@ -1,47 +1,111 @@
 package ci;
 
-import android.content.Context;
-import android.view.View;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class s3 extends View {
-    public int f5901a;
-    public final w3 f5902b;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_update;
+import org.telegram.ui.Components.bf0;
+import org.telegram.ui.WallpapersListActivity;
+import org.telegram.ui.br0;
+import org.telegram.ui.ha0;
+import org.telegram.ui.ih1;
+import org.telegram.ui.ip;
+import org.telegram.ui.l70;
+import org.telegram.ui.ln;
+import org.telegram.ui.mo;
+import org.telegram.ui.uo;
+import org.telegram.ui.vo0;
+import org.telegram.ui.zm0;
+public final class s3 implements RequestDelegate {
+    public final int f5938a;
+    public final boolean f5939b;
+    public final Object f5940c;
 
-    public s3(w3 w3Var, Context context) {
-        super(context);
-        this.f5902b = w3Var;
+    public s3(int i10, Object obj, boolean z10) {
+        this.f5938a = i10;
+        this.f5940c = obj;
+        this.f5939b = z10;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12;
-        int i13;
-        w3 w3Var = this.f5902b;
-        f3 f3Var = w3Var.f6215e;
-        ArrayList arrayList = w3Var.f6211b0;
-        int size = View.MeasureSpec.getSize(i10);
-        int i14 = this.f5901a;
-        if (i14 == -1) {
-            if (w3Var.f6216e0 == w3.f6207j0) {
-                i12 = arrayList.size();
-            } else {
-                ArrayList arrayList2 = w3Var.f6218f0;
-                if (arrayList2 != null) {
-                    int size2 = arrayList2.size() + (w3Var.f6213c0 ? 1 : 0);
-                    if (w3Var.f6214d0) {
-                        i13 = arrayList.size();
-                    } else {
-                        i13 = 0;
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        int i10 = this.f5938a;
+        boolean z10 = this.f5939b;
+        Object obj = this.f5940c;
+        switch (i10) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new x0((u3) obj, tLObject, z10, 1));
+                return;
+            case 1:
+                ((MessagesController) obj).lambda$updateTimerProc$155(z10, tLObject, tL_error);
+                return;
+            case 2:
+                ((VoIPService) obj).lambda$acknowledgeCall$13(z10, tLObject, tL_error);
+                return;
+            case 3:
+                org.telegram.ui.j9 j9Var = (org.telegram.ui.j9) obj;
+                if (tLObject != null) {
+                    TLRPC.TL_messages_affectedFoundMessages tL_messages_affectedFoundMessages = (TLRPC.TL_messages_affectedFoundMessages) tLObject;
+                    TL_update.TL_updateDeleteMessages tL_updateDeleteMessages = new TL_update.TL_updateDeleteMessages();
+                    tL_updateDeleteMessages.messages = tL_messages_affectedFoundMessages.messages;
+                    tL_updateDeleteMessages.pts = tL_messages_affectedFoundMessages.pts;
+                    tL_updateDeleteMessages.pts_count = tL_messages_affectedFoundMessages.pts_count;
+                    TLRPC.TL_updates tL_updates = new TLRPC.TL_updates();
+                    tL_updates.updates.add(tL_updateDeleteMessages);
+                    j9Var.getMessagesController().lambda$processUpdates$377(tL_updates, false);
+                    if (tL_messages_affectedFoundMessages.offset != 0) {
+                        TLRPC.TL_messages_deletePhoneCallHistory tL_messages_deletePhoneCallHistory = new TLRPC.TL_messages_deletePhoneCallHistory();
+                        tL_messages_deletePhoneCallHistory.revoke = z10;
+                        j9Var.getConnectionsManager().sendRequest(tL_messages_deletePhoneCallHistory, new s3(3, j9Var, z10));
+                        return;
                     }
-                    i12 = i13 + size2;
-                } else {
-                    i12 = 0;
+                    return;
                 }
-            }
-            setMeasuredDimension(size, Math.max(0, (AndroidUtilities.displaySize.y - AndroidUtilities.dp(62.0f)) - (((int) (((int) (size / f3Var.J)) * w3Var.O)) * ((int) Math.ceil(i12 / f3Var.J)))));
-            return;
+                return;
+            case 4:
+                AndroidUtilities.runOnUIThread(new x0((ln) obj, tLObject, z10, 14));
+                return;
+            case 5:
+                uo uoVar = (uo) obj;
+                if (tLObject instanceof TLRPC.Updates) {
+                    uoVar.getMessagesController().lambda$processUpdates$377((TLRPC.Updates) tLObject, false);
+                    AndroidUtilities.runOnUIThread(new bi.f(22, uoVar, z10));
+                    return;
+                }
+                AndroidUtilities.runOnUIThread(new mo(uoVar, 3));
+                return;
+            case 6:
+                AndroidUtilities.runOnUIThread(new ai.t4((ip) obj, tL_error, tLObject, this.f5939b, 14));
+                return;
+            case 7:
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.video.f((bf0) obj, tL_error, tLObject, z10));
+                return;
+            case 8:
+                AndroidUtilities.runOnUIThread(new ai.t4((l70) obj, tL_error, tLObject, this.f5939b, 23));
+                return;
+            case 9:
+                AndroidUtilities.runOnUIThread(new ai.t4((zm0) obj, tL_error, tLObject, this.f5939b, 24));
+                return;
+            case 10:
+                AndroidUtilities.runOnUIThread(new ai.t4((vo0) obj, tL_error, tLObject, this.f5939b, 27));
+                return;
+            case 11:
+                br0 br0Var = (br0) obj;
+                if (tLObject != null) {
+                    AndroidUtilities.runOnUIThread(new ha0(br0Var, tLObject, z10, 3));
+                    return;
+                }
+                return;
+            case 12:
+                AndroidUtilities.runOnUIThread(new ai.t4((ih1) obj, tL_error, tLObject, this.f5939b, 29));
+                return;
+            default:
+                int[][] iArr = WallpapersListActivity.f35759k0;
+                AndroidUtilities.runOnUIThread(new ha0((WallpapersListActivity) obj, tLObject, z10, 12));
+                return;
         }
-        setMeasuredDimension(size, i14);
     }
 }

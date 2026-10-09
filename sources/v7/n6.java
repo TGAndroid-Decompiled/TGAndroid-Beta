@@ -55,7 +55,7 @@ public abstract class n6 {
                     Log.w("FirebaseMessaging", "Error while parsing use_device_time in GCM event", e10);
                 }
             }
-            if (a6.i.N(bundle)) {
+            if (android.support.v4.media.c.f(bundle)) {
                 str2 = "display";
             } else {
                 str2 = "data";

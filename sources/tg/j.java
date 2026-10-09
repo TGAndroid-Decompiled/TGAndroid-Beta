@@ -1,21 +1,21 @@
 package tg;
 public final class j implements Runnable {
-    public final int f47036a;
-    public final m f47037b;
+    public final int f48335a;
+    public final m f48336b;
 
     public j(m mVar, int i10) {
-        this.f47036a = i10;
-        this.f47037b = mVar;
+        this.f48335a = i10;
+        this.f48336b = mVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f47036a) {
+        switch (this.f48335a) {
             case 0:
-                this.f47037b.dismiss();
+                this.f48336b.dismiss();
                 return;
             default:
-                this.f47037b.onBackPressed();
+                this.f48336b.onBackPressed();
                 return;
         }
     }

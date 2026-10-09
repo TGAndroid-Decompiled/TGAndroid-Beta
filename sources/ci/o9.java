@@ -1,72 +1,99 @@
 package ci;
 
-import android.util.Pair;
+import java.util.ArrayList;
 import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ResultCallback;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.sx0;
-public final class o9 implements Utilities.Callback {
-    public final int f5667a;
-    public final long f5668b;
-    public final Object f5669c;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationsController;
+import org.telegram.messenger.TopicsController;
+import org.telegram.tgnet.tl.TL_communities;
+import org.telegram.ui.zn;
+public final class o9 implements Runnable {
+    public final int f5693a;
+    public final long f5694b;
+    public final boolean f5695c;
+    public final Object d;
 
-    public o9(Object obj, long j3, int i10) {
-        this.f5667a = i10;
-        this.f5669c = obj;
-        this.f5668b = j3;
+    public o9(Object obj, long j3, boolean z10, int i10) {
+        this.f5693a = i10;
+        this.d = obj;
+        this.f5694b = j3;
+        this.f5695c = z10;
     }
 
     @Override
-    public final void run(Object obj) {
-        long j3;
-        switch (this.f5667a) {
+    public final void run() {
+        switch (this.f5693a) {
             case 0:
-                x9 x9Var = (x9) this.f5669c;
-                TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) obj;
-                org.telegram.ui.ActionBar.b2 b2Var = x9Var.G;
-                if (b2Var != null) {
-                    b2Var.c(350L);
-                    x9Var.G = null;
-                }
-                if (tL_channels_channelParticipants != null && !tL_channels_channelParticipants.participants.isEmpty()) {
-                    TLRPC.TL_chatParticipants tL_chatParticipants = new TLRPC.TL_chatParticipants();
-                    for (int i10 = 0; i10 < tL_channels_channelParticipants.participants.size(); i10++) {
-                        TLRPC.ChannelParticipant channelParticipant = tL_channels_channelParticipants.participants.get(i10);
-                        TLRPC.TL_chatParticipant tL_chatParticipant = new TLRPC.TL_chatParticipant();
-                        TLRPC.Peer peer = channelParticipant.peer;
-                        if (peer != null) {
-                            j3 = DialogObject.getPeerDialogId(peer);
-                            if (j3 < 0) {
-                            }
-                        } else {
-                            j3 = channelParticipant.user_id;
-                        }
-                        tL_chatParticipant.user_id = j3;
-                        tL_chatParticipants.participants.add(tL_chatParticipant);
-                    }
-                    x9Var.d(this.f5668b, tL_chatParticipants);
+                y9 y9Var = (y9) this.d;
+                fa faVar = y9Var.W;
+                boolean z10 = this.f5695c;
+                long j3 = this.f5694b;
+                if (z10) {
+                    MessagesController.getInstance(fa.a0(faVar)).loadChannelParticipants(Long.valueOf(j3), new p9(y9Var, j3, 0), 200);
+                    return;
+                } else {
+                    MessagesController.getInstance(fa.c0(faVar)).loadFullChat(j3, 0, true);
                     return;
                 }
-                return;
             case 1:
-                ResultCallback resultCallback = (ResultCallback) this.f5669c;
-                dg.a aVar = (dg.a) obj;
-                if (resultCallback != null) {
-                    resultCallback.onComplete(new Pair(Long.valueOf(this.f5668b), aVar));
-                    return;
+                fi.t0 t0Var = (fi.t0) this.d;
+                t0Var.f10056i = null;
+                a0.i iVar = t0Var.f10055g;
+                long j10 = this.f5694b;
+                iVar.l(j10);
+                ArrayList arrayList = t0Var.f10057j;
+                if (arrayList != null) {
+                    for (int size = arrayList.size() - 1; size >= 0; size--) {
+                        if (DialogObject.getPeerDialogId(((TL_communities.CommunityPeerRequest) t0Var.f10057j.get(size)).peer) == j10) {
+                            t0Var.f10057j.remove(size);
+                        }
+                    }
                 }
+                t0Var.a();
+                fi.s0 s0Var = t0Var.h;
+                if (s0Var != null) {
+                    s0Var.n();
+                }
+                MessagesController.getInstance(t0Var.d).resolveCommunityJoinPendingRequest(t0Var.f10053e, j10, !this.f5695c, new fi.r0(t0Var, 2));
+                return;
+            case 2:
+                ((MediaDataController) this.d).lambda$markFeaturedStickersByIdAsRead$67(this.f5695c, this.f5694b);
+                return;
+            case 3:
+                ((NotificationsController) this.d).lambda$setOpenedInBubble$5(this.f5695c, this.f5694b);
+                return;
+            case 4:
+                ((TopicsController) this.d).lambda$reloadTopics$24(this.f5694b, this.f5695c);
+                return;
+            case 5:
+                zn.z0((zn) this.d, this.f5694b, this.f5695c);
                 return;
             default:
-                sx0 sx0Var = (sx0) this.f5669c;
-                TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups = (TLRPC.TL_messages_emojiGroups) obj;
-                if (tL_messages_emojiGroups != null) {
-                    NotificationCenter.getInstance(UserConfig.selectedAccount).doOnIdle(new a3.h0(sx0Var, tL_messages_emojiGroups, this.f5668b, 22));
+                yh.h8 h8Var = (yh.h8) this.d;
+                long j11 = this.f5694b;
+                h8Var.F = j11;
+                h8Var.E = j11;
+                if (this.f5695c) {
+                    ai.m1 m1Var = h8Var.G;
+                    m1Var.f1382c = j11;
+                    h8Var.H.set(m1Var);
+                }
+                h8Var.t();
+                h8Var.J.a(true, true);
+                yh.g8 g8Var = h8Var.f52655y;
+                if (g8Var != null) {
+                    g8Var.setMyPrivacy(h8Var.E);
                     return;
                 }
                 return;
         }
+    }
+
+    public o9(Object obj, boolean z10, long j3, int i10) {
+        this.f5693a = i10;
+        this.d = obj;
+        this.f5695c = z10;
+        this.f5694b = j3;
     }
 }

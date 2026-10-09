@@ -1,100 +1,52 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaController;
+import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
 public final class kb extends tb {
-    public final hh.l f37944x0;
-    public final wb f37945y0;
+    public final vb V2;
 
-    public kb(wb wbVar, Context context) {
-        super(wbVar, context);
-        this.f37945y0 = wbVar;
-        this.f37944x0 = new hh.l();
+    public kb(vb vbVar, Context context) {
+        super(context, null);
+        this.V2 = vbVar;
     }
 
     @Override
-    public final void U(Drawable drawable) {
-        if (drawable instanceof org.telegram.ui.Components.pc0) {
-            ((org.telegram.ui.Components.pc0) drawable).p();
-        }
-        hh.l lVar = this.f37944x0;
-        fh.a c10 = lVar.c(drawable);
-        AndroidUtilities.computePerceivedBrightness(lVar.a(c10));
-        wb wbVar = this.f37945y0;
-        wbVar.f42036a.f9867a = c10;
-        jh.f fVar = wbVar.W;
-        if (fVar != null) {
-            fVar.invalidate();
-        }
+    public final boolean drawChild(android.graphics.Canvas r12, android.view.View r13, long r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.kb.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        com.google.firebase.messaging.m mVar = com.google.firebase.messaging.m.f7901e;
-        if (mVar != null && mVar.f7902a) {
-            s4 s4Var = (s4) com.google.firebase.messaging.m.k().d;
-            if (s4Var != null) {
-                s4Var.onTouchEvent(motionEvent);
-                return true;
-            }
-            return true;
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
-        if (playingMessageObject != null && playingMessageObject.isRoundVideo() && playingMessageObject.eventId != 0) {
-            long dialogId = playingMessageObject.getDialogId();
-            wb wbVar = this.f37945y0;
-            if (dialogId == (-wbVar.f42045f.f20047id)) {
-                MediaController.getInstance().setTextureView(wbVar.Q0(false), wbVar.f42044e0, wbVar.f42042d0, true);
-            }
-        }
-    }
-
-    @Override
-    public final void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.kb.onLayout(boolean, int, int, int, int):void");
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10);
-        int size2 = View.MeasureSpec.getSize(i11);
-        wb wbVar = this.f37945y0;
-        fh.a aVar = wbVar.f42036a.f9867a;
-        if (aVar instanceof fh.b) {
-            ((fh.b) aVar).c(size, size2);
-        }
-        setMeasuredDimension(size, size2);
-        int paddingTop = size2 - getPaddingTop();
-        measureChildWithMargins(((org.telegram.ui.ActionBar.n2) wbVar).actionBar, i10, 0, i11, 0);
-        int measuredHeight = ((org.telegram.ui.ActionBar.n2) wbVar).actionBar.getMeasuredHeight();
-        if (((org.telegram.ui.ActionBar.n2) wbVar).actionBar.getVisibility() == 0) {
-            paddingTop -= measuredHeight;
-        }
-        int childCount = getChildCount();
-        for (int i12 = 0; i12 < childCount; i12++) {
-            View childAt = getChildAt(i12);
-            if (childAt != null && childAt.getVisibility() != 8 && childAt != ((org.telegram.ui.ActionBar.n2) wbVar).actionBar) {
-                if (childAt != wbVar.v && childAt != wbVar.f42053n) {
-                    if (childAt == wbVar.H) {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(paddingTop, 1073741824));
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int i14;
+        MessageObject messageObject;
+        vb vbVar = this.V2;
+        if (vbVar.v != null && vbVar.f42797x != null && (i14 = vbVar.N0) >= 0) {
+            if (vbVar.M0 != 0) {
+                int i15 = 0;
+                while (true) {
+                    rb rbVar = vbVar.E;
+                    if (i15 < rbVar.d) {
+                        if (i15 >= rbVar.f41365f && i15 < rbVar.h) {
+                            ArrayList arrayList = rbVar.f41366n.f42785o0;
+                            messageObject = (MessageObject) arrayList.get((arrayList.size() - (i15 - rbVar.f41365f)) - 1);
+                        } else {
+                            messageObject = null;
+                        }
+                        if (messageObject != null && messageObject.eventId == vbVar.M0) {
+                            i14 = i15;
+                            break;
+                        }
+                        i15++;
                     } else {
-                        measureChildWithMargins(childAt, i10, 0, i11, 0);
+                        break;
                     }
-                } else {
-                    childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.max(AndroidUtilities.dp(10.0f), View.MeasureSpec.getSize(i11)) + (wbVar.f42043e * 2), 1073741824));
                 }
             }
+            vbVar.f42797x.i1(i14, vbVar.O0, true);
+            vbVar.N0 = -1;
+            vbVar.M0 = 0L;
         }
+        super.onLayout(z10, i10, i11, i12, i13);
     }
 }

@@ -1,137 +1,245 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.view.KeyEvent;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import java.util.ArrayList;
-public final class oi0 implements Runnable {
-    public final int f39214a;
-    public final org.telegram.ui.ActionBar.n2 f39215b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageLoader;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.TLRPC;
+public final class oi0 extends FrameLayout {
+    public final int f40538a;
+    public final dj0 f40539b;
 
-    public oi0(int i10, org.telegram.ui.ActionBar.n2 n2Var) {
-        this.f39214a = i10;
-        this.f39215b = n2Var;
+    public oi0(dj0 dj0Var, Context context, int i10) {
+        super(context);
+        this.f40538a = i10;
+        this.f40539b = dj0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f39214a) {
+    public final void dispatchDraw(Canvas canvas) {
+        Canvas canvas2;
+        boolean z10;
+        switch (this.f40538a) {
             case 0:
-                ?? obj = new Object();
-                obj.f21358a = true;
-                this.f39215b.showAsSheet(new PremiumPreviewFragment(0, "effect"), obj);
-                return;
-            case 1:
-                org.telegram.ui.ActionBar.n2 n2Var = this.f39215b;
-                if (n2Var instanceof PremiumPreviewFragment) {
-                    PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) n2Var;
-                    premiumPreviewFragment.f34155p0 = true;
-                    premiumPreviewFragment.getMediaDataController().loadPremiumPromo(false);
-                    premiumPreviewFragment.f34135a.y0(0);
-                } else {
-                    PremiumPreviewFragment premiumPreviewFragment2 = new PremiumPreviewFragment(0, null);
-                    premiumPreviewFragment2.f34155p0 = true;
-                    if (n2Var != null) {
-                        n2Var.presentFragment(premiumPreviewFragment2);
-                    } else {
-                        org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
-                        if (U != null) {
-                            U.presentFragment(premiumPreviewFragment2);
+                super.dispatchDraw(canvas);
+                dj0 dj0Var = this.f40539b;
+                pi0 pi0Var = dj0Var.f36989a0;
+                pi0Var.e(canvas);
+                ArrayList arrayList = pi0Var.F;
+                boolean z11 = true;
+                float f7 = -1.0f;
+                if (!arrayList.isEmpty()) {
+                    ez ezVar = (ez) hg.c.g(1, arrayList);
+                    ImageReceiver imageReceiver = ezVar.f37400r;
+                    ImageLocation mediaLocation = imageReceiver.getMediaLocation();
+                    if (mediaLocation == null) {
+                        mediaLocation = imageReceiver.getImageLocation();
+                    }
+                    if (mediaLocation == null) {
+                        mediaLocation = imageReceiver.getThumbLocation();
+                    }
+                    if (mediaLocation != null) {
+                        if (ezVar.f37401s == null) {
+                            TLRPC.Document document = mediaLocation.document;
+                            if (document != null) {
+                                ezVar.f37401s = FileLoader.getAttachFileName(document, "tgs");
+                            } else {
+                                ezVar.f37401s = FileLoader.getAttachFileName(mediaLocation.location, "tgs");
+                            }
+                        }
+                        if (ezVar.f37401s != null) {
+                            Float fileProgress = ImageLoader.getInstance().getFileProgress(ezVar.f37401s);
+                            if (fileProgress == null) {
+                                fileProgress = Float.valueOf(1.0f);
+                            }
+                            f7 = (fileProgress.floatValue() * 0.55f) + 0.15f + (fileProgress.floatValue() * 0.3f);
                         }
                     }
                 }
-                if (n2Var != null && (n2Var.getParentActivity() instanceof LaunchActivity)) {
-                    try {
-                        n2Var.getFragmentView().performHapticFeedback(3, 2);
-                    } catch (Exception unused) {
-                    }
-                    ((LaunchActivity) n2Var.getParentActivity()).f33831x0.c(false);
+                if (f7 != -2.0f) {
+                    dj0Var.X.h((f7 < 0.0f || f7 >= 1.0f) ? false : false);
+                }
+                if (!pi0Var.F.isEmpty()) {
+                    invalidate();
                     return;
                 }
                 return;
-            case 2:
-                this.f39215b.presentFragment(new DataSettingsActivity());
+            default:
+                dj0 dj0Var2 = this.f40539b;
+                ib0 ib0Var = dj0Var2.d;
+                if (ib0Var != null) {
+                    if (dj0Var2.E == 1.0f && dj0Var2.f37005n != null) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    ib0Var.a(z10);
+                }
+                if (dj0Var2.E > 0.0f && dj0Var2.f37005n != null) {
+                    dj0Var2.f37010r.reset();
+                    float width = getWidth() / dj0Var2.f36997f.getWidth();
+                    dj0Var2.f37010r.postScale(width, width);
+                    dj0Var2.h.setLocalMatrix(dj0Var2.f37010r);
+                    dj0Var2.f37005n.setAlpha((int) (dj0Var2.E * 255.0f));
+                    canvas2 = canvas;
+                    canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), dj0Var2.f37005n);
+                } else {
+                    canvas2 = canvas;
+                }
+                super.dispatchDraw(canvas2);
                 return;
-            case 3:
-                org.telegram.messenger.bi.l(0, this.f39215b);
-                return;
-            case 4:
-                org.telegram.messenger.bi.l(0, this.f39215b);
-                return;
-            case 5:
-                this.f39215b.presentFragment(new WallpapersListActivity(0));
-                return;
-            case 6:
-                this.f39215b.presentFragment(new WallpapersListActivity(1));
-                return;
-            case 7:
-                this.f39215b.presentFragment(new NotificationsCustomSettingsActivity(2, new ArrayList(), null, true));
-                return;
-            case 8:
-                this.f39215b.presentFragment(new WallpapersListActivity(0));
-                return;
-            case 9:
-                org.telegram.messenger.bi.l(0, this.f39215b);
-                return;
-            case 10:
-                org.telegram.messenger.bi.l(3, this.f39215b);
-                return;
-            case 11:
-                org.telegram.messenger.bi.l(3, this.f39215b);
-                return;
-            case 12:
-                org.telegram.ui.ActionBar.n2 n2Var2 = this.f39215b;
-                rg.y0 y0Var = new rg.y0(n2Var2, 5, false);
-                y0Var.B();
-                n2Var2.showDialog(y0Var);
-                return;
-            case 13:
-                org.telegram.messenger.bi.l(0, this.f39215b);
-                return;
-            case 14:
-                org.telegram.messenger.bi.l(0, this.f39215b);
-                return;
-            case 15:
-                org.telegram.messenger.bi.l(0, this.f39215b);
-                return;
-            case 16:
-                org.telegram.messenger.bi.l(0, this.f39215b);
-                return;
-            case 17:
-                org.telegram.messenger.bi.l(1, this.f39215b);
-                return;
-            case 18:
-                org.telegram.messenger.bi.l(0, this.f39215b);
-                return;
-            case 19:
-                this.f39215b.presentFragment(new NotificationsSettingsActivity());
-                return;
-            case 20:
-                org.telegram.messenger.bi.l(0, this.f39215b);
-                return;
-            case 21:
-                org.telegram.messenger.bi.l(0, this.f39215b);
-                return;
-            case 22:
-                org.telegram.messenger.bi.l(0, this.f39215b);
-                return;
-            case 23:
-                this.f39215b.presentFragment(new NotificationsSettingsActivity());
-                return;
-            case 24:
-                org.telegram.messenger.bi.l(0, this.f39215b);
-                return;
-            case 25:
-                org.telegram.messenger.bi.l(0, this.f39215b);
-                return;
-            case 26:
-                org.telegram.messenger.bi.l(0, this.f39215b);
-                return;
-            case 27:
-                org.telegram.messenger.bi.l(0, this.f39215b);
-                return;
-            case 28:
-                this.f39215b.presentFragment(new StickersActivity(0, null));
+        }
+    }
+
+    @Override
+    public boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
+        switch (this.f40538a) {
+            case 1:
+                if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
+                    this.f40539b.onBackPressed();
+                    return true;
+                }
+                return super.dispatchKeyEventPreIme(keyEvent);
+            default:
+                return super.dispatchKeyEventPreIme(keyEvent);
+        }
+    }
+
+    @Override
+    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int i14;
+        float f7;
+        int measuredHeight;
+        qi0 qi0Var;
+        int height;
+        switch (this.f40538a) {
+            case 1:
+                super.onLayout(z10, i10, i11, i12, i13);
+                dj0 dj0Var = this.f40539b;
+                if (!dj0Var.f36999g0 || dj0Var.f37000h0) {
+                    ArrayList arrayList = dj0Var.N;
+                    wi0 wi0Var = dj0Var.K;
+                    if (dj0Var.F.getWidth() > 0) {
+                        dj0Var.W.getLocationOnScreen(r13);
+                        int[] iArr = {org.telegram.messenger.bi.D(6.0f, dj0Var.W.getWidth() - dj0Var.W.l(), iArr[0])};
+                        dj0Var.X.setScaleX(dj0Var.W.getScaleX());
+                        dj0Var.X.setScaleY(dj0Var.W.getScaleY());
+                        int[] iArr2 = dj0Var.f37007o0;
+                        iArr2[0] = iArr[0];
+                        iArr2[1] = iArr[1];
+                        int measuredHeight2 = wi0Var.getMeasuredHeight() - dj0Var.X.getHeight();
+                        if (dj0Var.f36996e0 != null) {
+                            i14 = AndroidUtilities.dp(320.0f);
+                        } else {
+                            i14 = 0;
+                        }
+                        int i15 = measuredHeight2 + i14;
+                        int dp = AndroidUtilities.dp(8.0f) + dj0Var.f36995e.f11577b;
+                        if (arrayList.isEmpty()) {
+                            f7 = -6.0f;
+                        } else {
+                            f7 = 48.0f;
+                        }
+                        int dp2 = AndroidUtilities.dp(f7);
+                        ViewGroup viewGroup = dj0Var.Z;
+                        if (viewGroup == null) {
+                            measuredHeight = 0;
+                        } else {
+                            measuredHeight = viewGroup.getMeasuredHeight();
+                        }
+                        int i16 = dp2 + measuredHeight;
+                        int measuredHeight3 = (dj0Var.G.getMeasuredHeight() - AndroidUtilities.dp(8.0f)) - dj0Var.f36995e.d;
+                        if (iArr[1] + i16 > measuredHeight3) {
+                            iArr[1] = measuredHeight3 - i16;
+                        }
+                        if (iArr[1] - i15 < dp) {
+                            iArr[1] = dp + i15;
+                        }
+                        if (dj0Var.W.getHeight() + iArr[1] + i16 > measuredHeight3) {
+                            iArr[1] = (measuredHeight3 - i16) - dj0Var.W.getHeight();
+                        }
+                        dj0Var.X.setX(AndroidUtilities.dp(6.0f) + (iArr[0] - (qi0Var.getWidth() - dj0Var.X.l())));
+                        dj0Var.X.setY(iArr[1]);
+                        if (dj0Var.m0) {
+                            iArr[0] = iArr[0] - (dj0Var.Y - dj0Var.W.l());
+                        }
+                        wi0Var.setX((AndroidUtilities.dp(7.0f) + iArr[0]) - wi0Var.getMeasuredWidth());
+                        if (dj0Var.f36999g0) {
+                            org.telegram.messenger.bi.t(wi0Var.animate().translationY(((dj0Var.X.getHeight() + iArr[1]) - wi0Var.getMeasuredHeight()) - wi0Var.getTop()), ji.n.V, 250L);
+                        } else {
+                            wi0Var.setY((dj0Var.X.getHeight() + iArr[1]) - wi0Var.getMeasuredHeight());
+                        }
+                        ViewGroup viewGroup2 = dj0Var.Z;
+                        if (viewGroup2 != null) {
+                            viewGroup2.setX((AndroidUtilities.dp(7.0f) + iArr[0]) - dj0Var.Z.getMeasuredWidth());
+                            ViewGroup viewGroup3 = dj0Var.Z;
+                            int i17 = iArr[1];
+                            if (arrayList.isEmpty()) {
+                                height = -AndroidUtilities.dp(6.0f);
+                            } else {
+                                height = dj0Var.X.getHeight();
+                            }
+                            viewGroup3.setY(i17 + height);
+                        }
+                        FrameLayout frameLayout = dj0Var.f36994d0;
+                        if (frameLayout != null) {
+                            frameLayout.setX(org.telegram.messenger.q.b(6.0f, (dj0Var.X.l() + iArr[0]) - dj0Var.f36994d0.getMeasuredWidth(), 0));
+                            RectF rectF = dj0Var.f37004l0;
+                            if (rectF != null) {
+                                FrameLayout frameLayout2 = dj0Var.f36994d0;
+                                float max = Math.max(dj0Var.f36995e.f11577b, rectF.top - frameLayout2.getMeasuredWidth());
+                                dj0Var.f36993c0 = max;
+                                frameLayout2.setY(max);
+                                ri0 ri0Var = dj0Var.f36996e0;
+                                if (ri0Var != null) {
+                                    ri0Var.setY(Math.max(dj0Var.f36995e.f11577b, (dj0Var.f37004l0.top - AndroidUtilities.dp(24.0f)) - dj0Var.f36996e0.getMeasuredHeight()));
+                                }
+                            } else {
+                                float height2 = (dj0Var.X.getHeight() + iArr[1]) - wi0Var.getMeasuredHeight();
+                                FrameLayout frameLayout3 = dj0Var.f36994d0;
+                                float max2 = Math.max(dj0Var.f36995e.f11577b, height2 - frameLayout3.getMeasuredHeight()) + AndroidUtilities.dp(24.0f);
+                                dj0Var.f36993c0 = max2;
+                                frameLayout3.setY(max2);
+                                ri0 ri0Var2 = dj0Var.f36996e0;
+                                if (ri0Var2 != null) {
+                                    ri0Var2.setY(Math.max(0.0f, (height2 - ri0Var2.getMeasuredHeight()) - dj0Var.f36993c0));
+                                }
+                            }
+                        }
+                    }
+                    dj0Var.f36999g0 = true;
+                    return;
+                }
                 return;
             default:
-                this.f39215b.presentFragment(new StickersActivity(0, null));
+                super.onLayout(z10, i10, i11, i12, i13);
+                return;
+        }
+    }
+
+    @Override
+    public void onSizeChanged(int i10, int i11, int i12, int i13) {
+        switch (this.f40538a) {
+            case 1:
+                super.onSizeChanged(i10, i11, i12, i13);
+                dj0 dj0Var = this.f40539b;
+                gh.d.c(dj0Var.f37002j0, dj0Var.F);
+                ViewGroup viewGroup = dj0Var.Z;
+                if (viewGroup != null) {
+                    viewGroup.invalidate();
+                    return;
+                }
+                return;
+            default:
+                super.onSizeChanged(i10, i11, i12, i13);
                 return;
         }
     }

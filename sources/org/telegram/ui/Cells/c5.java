@@ -5,47 +5,47 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.b91;
-import org.telegram.ui.Components.yo0;
-import org.telegram.ui.hu;
-public final class c5 implements yo0 {
-    public final hu f21883a;
+import org.telegram.ui.Components.i91;
+import org.telegram.ui.Components.jp0;
+import org.telegram.ui.fu;
+public final class c5 implements jp0 {
+    public final fu f21918a;
 
-    public c5(hu huVar) {
-        this.f21883a = huVar;
+    public c5(fu fuVar) {
+        this.f21918a = fuVar;
     }
 
     @Override
-    public final void Y(float f7, boolean z10) {
+    public final void X(float f7, boolean z10) {
         float e7;
         int i10;
         if (f7 <= 0.25f) {
-            e7 = a4.a.e(f7, 0.25f, 536576.0f, 512000);
+            e7 = a1.g.e(f7, 0.25f, 536576.0f, 512000);
         } else {
             float f10 = f7 - 0.25f;
             if (f10 < 0.25f) {
-                e7 = a4.a.e(f10, 0.25f, 9437184.0f, 1048576);
+                e7 = a1.g.e(f10, 0.25f, 9437184.0f, 1048576);
             } else {
                 float f11 = f10 - 0.25f;
                 if (f11 <= 0.25f) {
-                    e7 = a4.a.e(f11, 0.25f, 9.437184E7f, 10485760);
+                    e7 = a1.g.e(f11, 0.25f, 9.437184E7f, 10485760);
                 } else {
-                    e7 = a4.a.e(f11 - 0.25f, 0.25f, (float) (2097152000 - 104857600), 104857600);
+                    e7 = a1.g.e(f11 - 0.25f, 0.25f, (float) (2097152000 - 104857600), 104857600);
                 }
             }
         }
         int i11 = (int) e7;
-        hu huVar = this.f21883a;
+        fu fuVar = this.f21918a;
         long j3 = i11;
         boolean z11 = true;
-        huVar.f21925b.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j3)));
-        huVar.d = j3;
-        w8[] w8VarArr = huVar.h;
-        AnimatorSet[] animatorSetArr = huVar.f37179n;
-        int i12 = huVar.f37177e;
-        i10 = huVar.f37180r.videosRow;
+        fuVar.f21969b.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j3)));
+        fuVar.d = j3;
+        w8[] w8VarArr = fuVar.h;
+        AnimatorSet[] animatorSetArr = fuVar.f37694n;
+        int i12 = fuVar.f37692e;
+        i10 = fuVar.f37695r.videosRow;
         if (i12 == i10) {
-            huVar.f37178f.setText(LocaleController.formatString("AutoDownloadPreloadVideoInfo", R.string.AutoDownloadPreloadVideoInfo, AndroidUtilities.formatFileSize(j3)));
+            fuVar.f37693f.setText(LocaleController.formatString("AutoDownloadPreloadVideoInfo", R.string.AutoDownloadPreloadVideoInfo, AndroidUtilities.formatFileSize(j3)));
             if (i11 <= 2097152) {
                 z11 = false;
             }
@@ -60,7 +60,7 @@ public final class c5 implements yo0 {
                 AnimatorSet animatorSet2 = new AnimatorSet();
                 animatorSetArr[0] = animatorSet2;
                 animatorSet2.playTogether(arrayList);
-                animatorSetArr[0].addListener(new b91(huVar, 15));
+                animatorSetArr[0].addListener(new i91(fuVar, 15));
                 animatorSetArr[0].setDuration(150L);
                 animatorSetArr[0].start();
             }
@@ -70,19 +70,19 @@ public final class c5 implements yo0 {
     @Override
     public final CharSequence getContentDescription() {
         StringBuilder sb2 = new StringBuilder();
-        hu huVar = this.f21883a;
-        sb2.append((Object) huVar.f21924a.getText());
+        fu fuVar = this.f21918a;
+        sb2.append((Object) fuVar.f21968a.getText());
         sb2.append(" ");
-        sb2.append((Object) huVar.f21925b.getText());
+        sb2.append((Object) fuVar.f21969b.getText());
         return sb2.toString();
     }
 
     @Override
-    public final int p0() {
+    public final int i0() {
         return 0;
     }
 
     @Override
-    public final void B() {
+    public final void z() {
     }
 }

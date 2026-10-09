@@ -1,6 +1,6 @@
 package org.scilab.forge.jlatexmath;
 
-import a4.a;
+import a1.g;
 import hg.c;
 import java.lang.Character;
 import java.util.HashSet;
@@ -238,7 +238,7 @@ public class TeXParser {
                 if (this.isPartial) {
                     return new ColorAtom(new RomanAtom(new TeXFormula("\\backslash ".concat(command)).root), (Color) null, Color.RED);
                 }
-                throw new ParseException(a.q("Unknown symbol or command or predefined TeXFormula: '", command, "'"));
+                throw new ParseException(g.q("Unknown symbol or command or predefined TeXFormula: '", command, "'"));
             }
         } catch (FormulaNotFoundException unused2) {
             return SymbolAtom.get(command);
@@ -580,8 +580,8 @@ public class TeXParser {
             return null;
         }
         char c10 = 0;
-        int i12 = 1;
         char c11 = 0;
+        int i12 = 1;
         while (true) {
             i10 = this.pos;
             if (i10 >= this.len || i12 == 0) {
@@ -795,8 +795,8 @@ public class TeXParser {
                                                 if (!this.ignoreWhiteSpace) {
                                                     if (this.parseString.charAt(i15) == '$') {
                                                         this.pos++;
-                                                        i10 = 0;
                                                         z10 = true;
+                                                        i10 = 0;
                                                     } else {
                                                         i10 = 2;
                                                         z10 = false;

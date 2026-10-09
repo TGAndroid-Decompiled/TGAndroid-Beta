@@ -3,15 +3,15 @@ package g7;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
-import w7.g0;
+import w7.d0;
 public final class h extends o6.a {
     public static final Parcelable.Creator<h> CREATOR = new e6.i(19);
-    public final String f10325a;
-    public final Bundle f10326b;
-    public final Bundle f10327c;
+    public final String f10398a;
+    public final Bundle f10399b;
+    public final Bundle f10400c;
     public final String d;
-    public final String f10328e;
-    public final String f10329f;
+    public final String f10401e;
+    public final String f10402f;
 
     public h(String type, Bundle credentialRetrievalData, Bundle candidateQueryData, String requestMatcher, String requestType, String protocolType) {
         boolean z10;
@@ -21,36 +21,36 @@ public final class h extends o6.a {
         kotlin.jvm.internal.i.e(requestMatcher, "requestMatcher");
         kotlin.jvm.internal.i.e(requestType, "requestType");
         kotlin.jvm.internal.i.e(protocolType, "protocolType");
-        this.f10325a = type;
-        this.f10326b = credentialRetrievalData;
-        this.f10327c = candidateQueryData;
+        this.f10398a = type;
+        this.f10399b = credentialRetrievalData;
+        this.f10400c = candidateQueryData;
         this.d = requestMatcher;
-        this.f10328e = requestType;
-        this.f10329f = protocolType;
+        this.f10401e = requestType;
+        this.f10402f = protocolType;
         boolean z11 = true;
-        if (!xd.j.e(requestType) && !xd.j.e(protocolType)) {
+        if (!yd.j.e(requestType) && !yd.j.e(protocolType)) {
             z10 = true;
         } else {
             z10 = false;
         }
-        z11 = (!xd.j.e(type) && requestType.length() == 0 && protocolType.length() == 0) ? false : false;
+        z11 = (!yd.j.e(type) && requestType.length() == 0 && protocolType.length() == 0) ? z11 : false;
         if (!z10 && !z11) {
             StringBuilder sb2 = new StringBuilder(protocolType.length() + requestType.length() + type.length() + 31 + 19 + 69);
-            a4.a.A(sb2, "Either type: ", type, ", or requestType: ", requestType);
-            throw new IllegalArgumentException(a4.a.r(" and protocolType: ", protocolType, " must be specified, but at least one contains an invalid blank value.", sb2));
+            a1.g.A(sb2, "Either type: ", type, ", or requestType: ", requestType);
+            throw new IllegalArgumentException(a1.g.r(" and protocolType: ", protocolType, " must be specified, but at least one contains an invalid blank value.", sb2));
         }
     }
 
     @Override
     public final void writeToParcel(Parcel dest, int i10) {
         kotlin.jvm.internal.i.e(dest, "dest");
-        int q6 = g0.q(dest, 20293);
-        g0.l(dest, 1, this.f10325a);
-        g0.b(dest, 2, this.f10326b);
-        g0.b(dest, 3, this.f10327c);
-        g0.l(dest, 4, this.d);
-        g0.l(dest, 5, this.f10328e);
-        g0.l(dest, 6, this.f10329f);
-        g0.r(dest, q6);
+        int q6 = d0.q(dest, 20293);
+        d0.l(dest, 1, this.f10398a);
+        d0.b(dest, 2, this.f10399b);
+        d0.b(dest, 3, this.f10400c);
+        d0.l(dest, 4, this.d);
+        d0.l(dest, 5, this.f10401e);
+        d0.l(dest, 6, this.f10402f);
+        d0.r(dest, q6);
     }
 }

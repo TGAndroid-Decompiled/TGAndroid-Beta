@@ -1,41 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.view.View;
-import java.util.ArrayList;
-public abstract class z61 extends org.telegram.ui.ActionBar.n2 {
-    public y61 f33438a;
-    public hg.q1 f33439b;
-    public int f33440c;
-    public int d;
-
-    public z61() {
-        super(null);
-        this.f33440c = -1;
-    }
-
-    public abstract void S(ArrayList arrayList, w61 w61Var);
-
-    public abstract CharSequence T();
-
-    public abstract void U(h61 h61Var, View view);
-
-    public abstract boolean W(h61 h61Var, View view);
+import android.widget.FrameLayout;
+public final class z61 extends FrameLayout {
+    public int f33480a;
+    public boolean f33481b;
 
     @Override
-    public View createView(Context context) {
-        hg.c.u(false, this.actionBar);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(T());
-        this.actionBar.setActionBarMenuOnItemClick(new org.telegram.ui.qo(this, 13));
-        hg.q1 q1Var = new hg.q1(context, null, 1);
-        this.f33439b = q1Var;
-        q1Var.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20771a7, false));
-        y61 y61Var = new y61(this, this, new d(this, 22), new x61(this), new x61(this));
-        this.f33438a = y61Var;
-        this.f33439b.addView(y61Var, w7.z5.c(-1.0f, -1));
-        hg.q1 q1Var2 = this.f33439b;
-        this.fragmentView = q1Var2;
-        return q1Var2;
+    public final void onMeasure(int i10, int i11) {
+        View view;
+        int i12 = this.f33480a;
+        if (getParent() instanceof View) {
+            view = (View) getParent();
+        } else {
+            view = null;
+        }
+        if (this.f33481b && view != null) {
+            i12 = view.getPaddingBottom() + view.getPaddingTop() + i12;
+        }
+        if (view != null && view.getMeasuredHeight() > 0) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(view.getMeasuredHeight() - i12, 1073741824));
+        } else if (View.MeasureSpec.getMode(i11) != 0) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11) - i12, 1073741824));
+        } else {
+            int size = View.MeasureSpec.getSize(i11);
+            int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824);
+            measureChildren(makeMeasureSpec, i11);
+            int i13 = 0;
+            for (int i14 = 0; i14 < getChildCount(); i14++) {
+                i13 = Math.max(i13, getChildAt(i14).getMeasuredHeight());
+            }
+            if (size > 0) {
+                i13 = Math.min(i13, size - i12);
+            }
+            super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(i13, 1073741824));
+        }
     }
 }

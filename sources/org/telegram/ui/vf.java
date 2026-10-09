@@ -1,72 +1,46 @@
 package org.telegram.ui;
 
 import android.view.View;
-import java.io.Serializable;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-public final class vf implements View.OnClickListener {
-    public final int f41737a;
-    public final yn f41738b;
-    public final int f41739c;
-    public final ArrayList d;
-    public final String f41740e;
-    public final String f41741f;
-    public final Serializable h;
-    public final TLRPC.InputPeer f41742n;
-    public final int[] f41743r;
-    public final boolean f41744s;
-    public final uf v;
-    public final Object f41745w;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessageObject;
+public final class vf implements View.OnLongClickListener {
+    public final int f42839a;
+    public final zn f42840b;
 
-    public vf(yn ynVar, int i10, ArrayList arrayList, String str, String str2, String str3, TLRPC.InputPeer inputPeer, int[] iArr, Object obj, boolean z10, uf ufVar, int i11) {
-        this.f41737a = i11;
-        this.f41738b = ynVar;
-        this.f41739c = i10;
-        this.d = arrayList;
-        this.f41740e = str;
-        this.f41741f = str2;
-        this.h = str3;
-        this.f41742n = inputPeer;
-        this.f41743r = iArr;
-        this.f41745w = obj;
-        this.f41744s = z10;
-        this.v = ufVar;
+    public vf(zn znVar, int i10) {
+        this.f42839a = i10;
+        this.f42840b = znVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f41737a) {
+    public final boolean onLongClick(View view) {
+        MessageObject messageObject;
+        MessageObject messageObject2;
+        switch (this.f42839a) {
             case 0:
-                boolean z10 = this.f41744s;
-                uf ufVar = this.v;
-                yn.S0(this.f41738b, this.f41739c, this.d, this.f41740e, this.f41741f, (String) this.h, this.f41742n, this.f41743r, (TL_iv.RichMessage) this.f41745w, z10, ufVar);
-                return;
+                zn znVar = this.f42840b;
+                MessageObject messageObject3 = znVar.f44743d5;
+                if (messageObject3 == null) {
+                    return false;
+                }
+                if (AndroidUtilities.addToClipboard(messageObject3.sponsoredUrl)) {
+                    new org.telegram.ui.Components.ad(org.telegram.ui.Components.ob.a(znVar.getParentActivity()), znVar.f44761ea).k(false).j();
+                }
+                return true;
             case 1:
-                boolean z11 = this.f41744s;
-                uf ufVar2 = this.v;
-                yn.f0(this.f41738b, this.f41739c, this.d, this.f41740e, this.f41741f, (String) this.h, this.f41742n, this.f41743r, (CharSequence) this.f41745w, z11, ufVar2);
-                return;
+                return zn.W(this.f42840b);
             default:
-                boolean z12 = this.f41744s;
-                uf ufVar3 = this.v;
-                yn.x0(this.f41738b, this.f41739c, this.d, (String[]) this.h, this.f41740e, this.f41741f, this.f41742n, this.f41743r, (CharSequence) this.f41745w, z12, ufVar3);
-                return;
+                zn znVar2 = this.f42840b;
+                int i10 = znVar2.f44882ob;
+                if (i10 == 1 && (messageObject2 = znVar2.p5) != null) {
+                    znVar2.F(messageObject2.getId(), 0, 0, 0, true, true);
+                    return true;
+                } else if (znVar2.f44769f5 != null && i10 == 2 && (messageObject = znVar2.f44866n5) != null) {
+                    znVar2.F(messageObject.getId(), 0, 0, 0, true, true);
+                    return true;
+                } else {
+                    return false;
+                }
         }
-    }
-
-    public vf(yn ynVar, int i10, ArrayList arrayList, String[] strArr, String str, String str2, TLRPC.InputPeer inputPeer, int[] iArr, CharSequence charSequence, boolean z10, uf ufVar) {
-        this.f41737a = 2;
-        this.f41738b = ynVar;
-        this.f41739c = i10;
-        this.d = arrayList;
-        this.h = strArr;
-        this.f41740e = str;
-        this.f41741f = str2;
-        this.f41742n = inputPeer;
-        this.f41743r = iArr;
-        this.f41745w = charSequence;
-        this.f41744s = z10;
-        this.v = ufVar;
     }
 }

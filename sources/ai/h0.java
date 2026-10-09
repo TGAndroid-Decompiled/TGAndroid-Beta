@@ -3,20 +3,20 @@ package ai;
 import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class h0 extends org.telegram.ui.Components.k9 {
-    public final int f1004e;
+public final class h0 extends org.telegram.ui.Components.m9 {
+    public final int f1069e;
 
     public h0(int i10, Context context, boolean z10) {
         super(context, z10);
-        this.f1004e = i10;
+        this.f1069e = i10;
     }
 
     @Override
     public void invalidate() {
-        switch (this.f1004e) {
+        switch (this.f1069e) {
             case 0:
-                if (i0.f1058c) {
-                    i0.f1057b.add(this);
+                if (i0.f1120c) {
+                    i0.f1119b.add(this);
                     return;
                 } else {
                     super.invalidate();
@@ -31,9 +31,9 @@ public final class h0 extends org.telegram.ui.Components.k9 {
     @Override
     public void onMeasure(int i10, int i11) {
         int f7;
-        switch (this.f1004e) {
+        switch (this.f1069e) {
             case 1:
-                int i12 = this.f28112a.f27750n;
+                int i12 = this.f28776a.f28379n;
                 if (i12 == 0) {
                     f7 = 0;
                 } else {
@@ -49,10 +49,10 @@ public final class h0 extends org.telegram.ui.Components.k9 {
 
     @Override
     public void invalidate(int i10, int i11, int i12, int i13) {
-        switch (this.f1004e) {
+        switch (this.f1069e) {
             case 0:
-                if (i0.f1058c) {
-                    i0.f1057b.add(this);
+                if (i0.f1120c) {
+                    i0.f1119b.add(this);
                     return;
                 } else {
                     super.invalidate(i10, i11, i12, i13);

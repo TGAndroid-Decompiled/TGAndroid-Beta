@@ -1,49 +1,27 @@
 package org.telegram.ui.Components;
+public final class jn implements Runnable {
+    public final int f27744a;
+    public final lo f27745b;
+    public final int f27746c;
 
-import android.content.Intent;
-import java.util.ArrayList;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.Utilities;
-public final class jn implements ik {
-    public final Utilities.Callback f27930a;
-    public final fn f27931b;
-    public final org.telegram.ui.ActionBar.n2 f27932c;
-
-    public jn(Utilities.Callback callback, org.telegram.ui.ActionBar.n2 n2Var, fn fnVar) {
-        this.f27930a = callback;
-        this.f27931b = fnVar;
-        this.f27932c = n2Var;
+    public jn(lo loVar, int i10, int i11) {
+        this.f27744a = i11;
+        this.f27745b = loVar;
+        this.f27746c = i10;
     }
 
     @Override
-    public final void k(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i10, long j3, boolean z11, long j10) {
-        if (!arrayList.isEmpty()) {
-            this.f27930a.run(new rh.c((String) arrayList.get(0)));
+    public final void run() {
+        switch (this.f27744a) {
+            case 0:
+                this.f27745b.h0(this.f27746c, null);
+                return;
+            case 1:
+                this.f27745b.e0(this.f27746c);
+                return;
+            default:
+                this.f27745b.h0(this.f27746c, null);
+                return;
         }
-        this.f27931b.dismiss(true);
-    }
-
-    @Override
-    public final void l(long j3, ArrayList arrayList, boolean z10, int i10) {
-        if (!arrayList.isEmpty()) {
-            this.f27930a.run(new rh.d((SendMessagesHelper.SendingMediaInfo) arrayList.get(0)));
-        }
-        this.f27931b.dismiss(true);
-    }
-
-    @Override
-    public final void w() {
-        try {
-            Intent intent = new Intent("android.intent.action.GET_CONTENT");
-            intent.setType("*/*");
-            this.f27932c.getParentActivity().startActivityForResult(intent, 28);
-        } catch (Exception e7) {
-            FileLog.e(e7);
-        }
-    }
-
-    @Override
-    public final void M() {
     }
 }

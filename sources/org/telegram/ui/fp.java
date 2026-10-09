@@ -1,93 +1,58 @@
 package org.telegram.ui;
 
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.ScrollView;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class fp extends org.telegram.ui.Components.yl0 {
-    public final gp f36369c;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class fp implements org.telegram.ui.Components.em0 {
+    public final hp f37653a;
 
-    public fp(gp gpVar) {
-        this.f36369c = gpVar;
+    public fp(hp hpVar) {
+        this.f37653a = hpVar;
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f46542f == 1) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final int h() {
-        return this.f36369c.f36725h3.O.size() + 2;
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 == 0) {
-            return 0;
-        }
-        if (i10 <= this.f36369c.f36725h3.O.size()) {
-            return 1;
-        }
-        return 2;
-    }
-
-    @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        boolean z10;
-        gp gpVar = this.f36369c;
-        hp hpVar = gpVar.f36725h3;
-        int i11 = c1Var.f46542f;
-        View view = c1Var.f46538a;
-        if (i11 != 0) {
-            if (i11 != 1) {
-                if (i11 == 2) {
-                    org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
-                    e9Var.setText(LocaleController.getString(R.string.UsernamesChannelHelp));
-                    e9Var.setBackground(org.telegram.ui.ActionBar.i6.V0(gpVar.getContext(), R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.i6.f20791b7));
-                    return;
+    public final void d(int i10, View view) {
+        TLRPC.TL_username tL_username;
+        int i11;
+        int i12;
+        int i13;
+        hp hpVar = this.f37653a;
+        ip ipVar = hpVar.Y2;
+        if ((view instanceof oa) && (tL_username = ((oa) view).v) != null) {
+            if (tL_username.editable) {
+                View view2 = ipVar.fragmentView;
+                if (view2 instanceof ScrollView) {
+                    ((ScrollView) view2).smoothScrollTo(0, ipVar.f38735y.getTop() - AndroidUtilities.dp(128.0f));
                 }
+                ipVar.f38706a.requestFocus();
+                AndroidUtilities.showKeyboard(ipVar.f38706a);
                 return;
             }
-            TLRPC.TL_username tL_username = (TLRPC.TL_username) hpVar.O.get(i10 - 1);
-            pa paVar = (pa) view;
-            if (paVar.H) {
-                hpVar.P = null;
-            }
-            if (i10 < hpVar.O.size()) {
-                z10 = true;
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(hpVar.getContext(), 0, ipVar.getResourceProvider());
+            if (tL_username.active) {
+                i11 = R.string.UsernameDeactivateLink;
             } else {
-                z10 = false;
+                i11 = R.string.UsernameActivateLink;
             }
-            paVar.a(tL_username, z10, false, 0L);
-            if (tL_username != null && tL_username.editable) {
-                hpVar.P = paVar;
-                return;
+            alertDialog$Builder.f20374a.R = LocaleController.getString(i11);
+            if (tL_username.active) {
+                i12 = R.string.UsernameDeactivateLinkChannelMessage;
+            } else {
+                i12 = R.string.UsernameActivateLinkChannelMessage;
             }
-            return;
+            alertDialog$Builder.f20374a.T = LocaleController.getString(i12);
+            if (tL_username.active) {
+                i13 = R.string.Hide;
+            } else {
+                i13 = R.string.Show;
+            }
+            alertDialog$Builder.k(LocaleController.getString(i13), new a7(this, tL_username, view, 8));
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new m4.q0(29));
+            alertDialog$Builder.o();
         }
-        org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) view;
-        m4Var.setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20827d6, gpVar.f33560p2));
-        m4Var.setText(LocaleController.getString(R.string.UsernamesChannelHeader));
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        gp gpVar = this.f36369c;
-        org.telegram.ui.ActionBar.d6 d6Var = gpVar.f33560p2;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    return null;
-                }
-                return new s4.c1(new org.telegram.ui.Cells.e9(gpVar.getContext(), 12, d6Var));
-            }
-            return new s4.c1(new ia(this, gpVar.getContext(), d6Var));
-        }
-        return new s4.c1(new org.telegram.ui.Cells.m4(gpVar.getContext(), d6Var));
     }
 }

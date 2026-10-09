@@ -1,150 +1,59 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class dc0 extends Drawable {
-    public final int f25753a;
-    public boolean f25754b;
-    public Object f25755c;
-    public Object d;
-    public Object f25756e;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MessageObject;
+public final class dc0 extends s4.t {
+    public final pc0 S;
 
-    public dc0(int i10) {
-        this.f25753a = i10;
-        switch (i10) {
-            case 1:
-                this.f25755c = new Paint(1);
-                Paint paint = new Paint(1);
-                this.d = paint;
-                this.f25756e = new Matrix();
-                paint.setStyle(Paint.Style.STROKE);
-                paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(28.0f), new int[]{1308622847, 0, 452984831}, new float[]{0.0f, 0.5f, 1.0f}, Shader.TileMode.CLAMP));
-                return;
-            default:
-                return;
-        }
-    }
-
-    public void b(int i10, int i11) {
-        ((Paint) this.f25755c).setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(28.0f), new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+    public dc0(pc0 pc0Var) {
+        super(true);
+        this.S = pc0Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        kj0 kj0Var;
-        switch (this.f25753a) {
-            case 0:
-                kj0 kj0Var2 = (kj0) this.d;
-                kj0 kj0Var3 = (kj0) this.f25755c;
-                Rect rect = AndroidUtilities.rectTmp2;
-                rect.set(getBounds().centerX() - AndroidUtilities.dp(12.0f), getBounds().centerY() - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f) + getBounds().centerX(), AndroidUtilities.dp(12.0f) + getBounds().centerY());
-                if (((kj0) this.f25756e).A()) {
-                    kj0 kj0Var4 = (kj0) this.f25756e;
-                    boolean z10 = this.f25754b;
-                    if (z10) {
-                        kj0Var = kj0Var3;
-                    } else {
-                        kj0Var = kj0Var2;
-                    }
-                    if (kj0Var4 != kj0Var) {
-                        if (z10) {
-                            kj0Var2 = kj0Var3;
+    public final boolean B1(int i10) {
+        byte b10;
+        pc0 pc0Var = this.S;
+        MessageObject messageObject = pc0Var.f29849r.previewMessages.get(i10);
+        MessageObject.GroupedMessages a2 = pc0.a(pc0Var, messageObject);
+        if (a2 != null) {
+            MessageObject.GroupedMessagePosition position = a2.getPosition(messageObject);
+            if (position.minX != position.maxX && (b10 = position.minY) == position.maxY && b10 != 0) {
+                int size = a2.posArray.size();
+                for (int i11 = 0; i11 < size; i11++) {
+                    MessageObject.GroupedMessagePosition groupedMessagePosition = a2.posArray.get(i11);
+                    if (groupedMessagePosition != position) {
+                        byte b11 = groupedMessagePosition.minY;
+                        byte b12 = position.minY;
+                        if (b11 <= b12 && groupedMessagePosition.maxY >= b12) {
+                            return true;
                         }
-                        this.f25756e = kj0Var2;
-                        kj0Var2.M(kj0Var2.f28216e[0] - 1);
                     }
                 }
-                ((kj0) this.f25756e).setBounds(rect);
-                ((kj0) this.f25756e).draw(canvas);
-                return;
-            default:
-                Paint paint = (Paint) this.d;
-                float dp = AndroidUtilities.dp(10.0f);
-                RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(getBounds());
-                Matrix matrix = (Matrix) this.f25756e;
-                matrix.reset();
-                matrix.postTranslate(rectF.left, rectF.top);
-                canvas.drawRoundRect(rectF, dp, dp, (Paint) this.f25755c);
-                if (this.f25754b) {
-                    float dp2 = AndroidUtilities.dp(1.0f);
-                    paint.setStrokeWidth(dp2);
-                    matrix.reset();
-                    matrix.postTranslate(rectF.left, rectF.top);
-                    float f7 = dp2 / 2.0f;
-                    rectF.inset(f7, f7);
-                    canvas.drawRoundRect(rectF, dp, dp, paint);
-                    return;
-                }
-                return;
+            }
         }
+        return false;
     }
 
     @Override
-    public int getIntrinsicHeight() {
-        switch (this.f25753a) {
-            case 0:
-                return AndroidUtilities.dp(24.0f);
-            default:
-                return super.getIntrinsicHeight();
-        }
+    public final boolean C1(View view) {
+        return false;
     }
 
     @Override
-    public int getIntrinsicWidth() {
-        switch (this.f25753a) {
-            case 0:
-                return AndroidUtilities.dp(24.0f);
-            default:
-                return super.getIntrinsicWidth();
+    public final void b0(pf.e eVar, s4.a1 a1Var) {
+        if (BuildVars.DEBUG_PRIVATE_VERSION) {
+            super.b0(eVar, a1Var);
+            return;
         }
-    }
-
-    @Override
-    public final int getOpacity() {
-        switch (this.f25753a) {
-            case 0:
-                return -2;
-            default:
-                return -2;
+        try {
+            super.b0(eVar, a1Var);
+        } catch (Exception e7) {
+            FileLog.e(e7);
+            AndroidUtilities.runOnUIThread(new nq(this, 28));
         }
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        switch (this.f25753a) {
-            case 0:
-                ((kj0) this.f25755c).setAlpha(i10);
-                ((kj0) this.d).setAlpha(i10);
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        switch (this.f25753a) {
-            case 0:
-                ((kj0) this.f25755c).setColorFilter(colorFilter);
-                ((kj0) this.d).setColorFilter(colorFilter);
-                return;
-            default:
-                return;
-        }
-    }
-
-    private final void a(int i10) {
-    }
-
-    private final void c(ColorFilter colorFilter) {
     }
 }

@@ -78,6 +78,42 @@ public class TL_bots {
         }
     }
 
+    public static class BotVerification extends TLObject {
+        public static final int constructor = -147976487;
+        public long bot_id;
+        public TLRPC.TL_textWithEntities description;
+        public long icon;
+
+        public static BotVerification TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            TLObject botVerification;
+            if (i10 != -147976487) {
+                if (i10 != -113453988) {
+                    botVerification = null;
+                } else {
+                    botVerification = new botVerification_layer229();
+                }
+            } else {
+                botVerification = new BotVerification();
+            }
+            return (BotVerification) TLObject.TLdeserialize(BotVerification.class, botVerification, inputSerializedData, i10, z10);
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.bot_id = inputSerializedData.readInt64(z10);
+            this.icon = inputSerializedData.readInt64(z10);
+            this.description = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-147976487);
+            outputSerializedData.writeInt64(this.bot_id);
+            outputSerializedData.writeInt64(this.icon);
+            this.description.serializeToStream(outputSerializedData);
+        }
+    }
+
     public static class TL_botInfo extends BotInfo {
         public static final int constructor = 1300890265;
 
@@ -611,35 +647,31 @@ public class TL_bots {
         }
     }
 
-    public static class botVerification extends TLObject {
+    public static class botVerification_layer229 extends BotVerification {
         public static final int constructor = -113453988;
-        public long bot_id;
-        public String description;
-        public long icon;
-
-        public static botVerification TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            botVerification botverification;
-            if (-113453988 != i10) {
-                botverification = null;
-            } else {
-                botverification = new botVerification();
-            }
-            return (botVerification) TLObject.TLdeserialize(botVerification.class, botverification, inputSerializedData, i10, z10);
-        }
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.bot_id = inputSerializedData.readInt64(z10);
             this.icon = inputSerializedData.readInt64(z10);
-            this.description = inputSerializedData.readString(z10);
+            TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
+            this.description = tL_textWithEntities;
+            tL_textWithEntities.text = inputSerializedData.readString(z10);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            String str;
             outputSerializedData.writeInt32(-113453988);
             outputSerializedData.writeInt64(this.bot_id);
             outputSerializedData.writeInt64(this.icon);
-            outputSerializedData.writeString(this.description);
+            TLRPC.TL_textWithEntities tL_textWithEntities = this.description;
+            if (tL_textWithEntities == null) {
+                str = "";
+            } else {
+                str = tL_textWithEntities.text;
+            }
+            outputSerializedData.writeString(str);
         }
     }
 

@@ -1,94 +1,159 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
+import android.animation.ValueAnimator;
+import android.app.Dialog;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
+import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
-public final class gn0 implements Runnable {
-    public final int f26951a = 1;
-    public final on0 f26952b;
-    public final String f26953c;
-    public final ArrayList d;
-    public final ArrayList f26954e;
+import org.telegram.messenger.Utilities;
+public final class gn0 extends Dialog {
+    public static final int O = 0;
+    public Drawable E;
+    public ch.d F;
+    public float G;
+    public float H;
+    public float I;
+    public float J;
+    public float K;
+    public boolean L;
+    public boolean M;
+    public ValueAnimator N;
+    public final Context f26815a;
+    public final org.telegram.ui.ActionBar.e6 f26816b;
+    public Bitmap f26817c;
+    public BitmapShader d;
+    public Paint f26818e;
+    public Matrix f26819f;
+    public final fh.b h;
+    public final ah.c f26820n;
+    public float f26821r;
+    public final ai.f0 f26822s;
+    public final sw0 v;
+    public p80 f26823w;
+    public FrameLayout f26824x;
+    public ViewGroup f26825y;
 
-    public gn0(on0 on0Var, String str, ArrayList arrayList, ArrayList arrayList2) {
-        this.f26952b = on0Var;
-        this.f26953c = str;
-        this.d = arrayList;
-        this.f26954e = arrayList2;
+    public gn0(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, R.style.TransparentDialog);
+        this.J = 1.0f;
+        this.K = 1.0f;
+        this.M = false;
+        this.f26815a = context;
+        this.f26816b = e6Var;
+        ai.f0 f0Var = new ai.f0(this, context, 17);
+        this.f26822s = f0Var;
+        f0Var.setOnClickListener(new b90(this, 9));
+        sw0 sw0Var = new sw0(context, null);
+        this.v = sw0Var;
+        sw0Var.setClipToPadding(false);
+        f0Var.addView(sw0Var, w7.x5.e(-1, -1, 119));
+        fh.b bVar = new fh.b();
+        this.h = bVar;
+        ah.c cVar = new ah.c(bVar);
+        this.f26820n = cVar;
+        cVar.f545f = new hh.j(f0Var);
+        cVar.f546g = f0Var;
+        m.f3 f3Var = new m.f3(this, 9);
+        WeakHashMap weakHashMap = r0.i0.f46764a;
+        r0.a0.i(f0Var, f3Var);
+    }
+
+    public static void d(Utilities.Callback2 callback2) {
+        AndroidUtilities.makeGlobalBlurBitmap(new a3(callback2, 11), 15.0f);
+    }
+
+    public final void c(Runnable runnable, boolean z10) {
+        float f7;
+        ValueAnimator valueAnimator = this.N;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        float f10 = this.f26821r;
+        if (z10) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
+        this.N = ofFloat;
+        ofFloat.addUpdateListener(new j80(this, 12));
+        this.N.addListener(new androidx.fragment.app.g(this, z10, runnable, 5));
+        this.N.setInterpolator(hs.h);
+        this.N.setDuration(350L);
+        this.N.start();
     }
 
     @Override
-    public final void run() {
-        switch (this.f26951a) {
-            case 0:
-                on0 on0Var = this.f26952b;
-                int i10 = on0Var.d;
-                ArrayList arrayList = new ArrayList();
-                ArrayList arrayList2 = new ArrayList();
-                int i11 = 0;
-                while (true) {
-                    ArrayList arrayList3 = this.d;
-                    int size = arrayList3.size();
-                    String str = this.f26953c;
-                    if (i11 < size) {
-                        String documentFileName = FileLoader.getDocumentFileName(((MessageObject) arrayList3.get(i11)).getDocument());
-                        if (documentFileName != null && documentFileName.toLowerCase().contains(str)) {
-                            MessageObject messageObject = new MessageObject(i10, ((MessageObject) arrayList3.get(i11)).messageOwner, false, false);
-                            messageObject.mediaExists = ((MessageObject) arrayList3.get(i11)).mediaExists;
-                            messageObject.setQuery(on0Var.K);
-                            arrayList.add(messageObject);
-                        }
-                        i11++;
-                    } else {
-                        int i12 = 0;
-                        while (true) {
-                            ArrayList arrayList4 = this.f26954e;
-                            if (i12 < arrayList4.size()) {
-                                String documentFileName2 = FileLoader.getDocumentFileName(((MessageObject) arrayList4.get(i12)).getDocument());
-                                if (documentFileName2 != null && documentFileName2.toLowerCase().contains(str)) {
-                                    MessageObject messageObject2 = new MessageObject(i10, ((MessageObject) arrayList4.get(i12)).messageOwner, false, false);
-                                    messageObject2.mediaExists = ((MessageObject) arrayList4.get(i12)).mediaExists;
-                                    messageObject2.setQuery(on0Var.K);
-                                    arrayList2.add(messageObject2);
-                                }
-                                i12++;
-                            } else {
-                                AndroidUtilities.runOnUIThread(new gn0(on0Var, str, arrayList, arrayList2));
-                                return;
-                            }
-                        }
-                    }
-                }
-                break;
-            default:
-                on0 on0Var2 = this.f26952b;
-                ux0 ux0Var = on0Var2.f29512a;
-                if (this.f26953c.equals(on0Var2.L)) {
-                    if (on0Var2.f29518r == 0) {
-                        on0Var2.N.b(0);
-                    }
-                    on0Var2.e(this.d, this.f26954e, true);
-                    if (on0Var2.f29518r == 0) {
-                        ux0Var.e(false, true);
-                        q90 q90Var = ux0Var.f31551e;
-                        ux0Var.d.setText(LocaleController.getString(R.string.SearchEmptyViewTitle2));
-                        q90Var.setVisibility(0);
-                        q90Var.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public final void dismiss() {
+        if (this.M) {
+            return;
         }
+        this.M = true;
+        c(new en0(this, 1), false);
+        this.f26822s.invalidate();
     }
 
-    public gn0(on0 on0Var, ArrayList arrayList, String str, ArrayList arrayList2) {
-        this.f26952b = on0Var;
-        this.d = arrayList;
-        this.f26953c = str;
-        this.f26954e = arrayList2;
+    public final void e(p80 p80Var) {
+        int i10 = org.telegram.ui.ActionBar.i6.E8;
+        org.telegram.ui.ActionBar.e6 e6Var = this.f26816b;
+        p80Var.T(org.telegram.ui.ActionBar.i6.m1(0.06f, org.telegram.ui.ActionBar.i6.w0(i10, e6Var)));
+        p80Var.Q(this.f26820n, eh.b.k(e6Var), false);
+        this.f26823w = p80Var;
+        this.f26825y = p80Var.A;
+        FrameLayout frameLayout = new FrameLayout(this.f26815a);
+        this.f26824x = frameLayout;
+        frameLayout.addView(this.f26825y, w7.x5.d(-2.0f, -2));
+        this.v.addView(this.f26824x, w7.x5.d(-2.0f, -2));
+    }
+
+    public final void f(org.telegram.ui.Cells.u1 r30, android.text.style.CharacterStyle r31, java.lang.CharSequence r32, boolean r33) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.gn0.f(org.telegram.ui.Cells.u1, android.text.style.CharacterStyle, java.lang.CharSequence, boolean):void");
+    }
+
+    @Override
+    public final boolean isShowing() {
+        return !this.M;
+    }
+
+    @Override
+    public final void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        Window window = getWindow();
+        window.setWindowAnimations(R.style.DialogNoAnimation);
+        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(-1, -1);
+        ai.f0 f0Var = this.f26822s;
+        setContentView(f0Var, layoutParams);
+        WindowManager.LayoutParams attributes = window.getAttributes();
+        attributes.width = -1;
+        attributes.height = -1;
+        attributes.gravity = 119;
+        attributes.dimAmount = 0.0f;
+        attributes.softInputMode = 16;
+        attributes.flags = (attributes.flags & (-3)) | (-1945959040);
+        AndroidUtilities.applyEdgeToEdgeLayoutParams(attributes);
+        window.setAttributes(attributes);
+        f0Var.setSystemUiVisibility(256);
+        AndroidUtilities.setLightNavigationBar(f0Var, !org.telegram.ui.ActionBar.i6.I.q());
+    }
+
+    @Override
+    public final void show() {
+        if (!AndroidUtilities.isSafeToShow(getContext())) {
+            return;
+        }
+        super.show();
+        d(new d(this, 19));
+        c(null, true);
     }
 }

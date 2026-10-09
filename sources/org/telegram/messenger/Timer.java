@@ -47,7 +47,7 @@ public class Timer {
             if (this.endTime < 0) {
                 s10 = "not done";
             } else {
-                s10 = a4.a.s(new StringBuilder(), this.endTime - this.startTime, "ms");
+                s10 = a1.g.s(new StringBuilder(), this.endTime - this.startTime, "ms");
             }
             sb2.append(s10);
             return sb2.toString();

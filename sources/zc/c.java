@@ -1,25 +1,34 @@
 package zc;
 
-import bf.p;
-import com.google.android.gms.internal.vision.e2;
-import ed.h;
-import java.util.regex.Pattern;
-public final class c extends h {
-    public static final Pattern f53215e = Pattern.compile("(\\${2})([\\s\\S]+?)\\1");
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+public final class c implements Iterable {
+    public final HashMap f54325a = new HashMap();
+    public final ArrayList f54326b = new ArrayList();
 
-    @Override
-    public final p b() {
-        String a2 = a(f53215e);
-        if (a2 == null) {
-            return null;
+    public c(HashMap hashMap) {
+        String str = (String) hashMap.get("cookie");
+        if (str != null) {
+            for (String str2 : str.split(";")) {
+                String[] split = str2.trim().split("=");
+                if (split.length == 2) {
+                    this.f54325a.put(split[0], split[1]);
+                }
+            }
         }
-        ?? pVar = new p();
-        pVar.f53216g = e2.i(2, 2, a2);
-        return pVar;
+    }
+
+    public final void i() {
+        Iterator it = this.f54326b.iterator();
+        if (!it.hasNext()) {
+            return;
+        }
+        throw a1.g.k(it);
     }
 
     @Override
-    public final char d() {
-        return '$';
+    public final Iterator iterator() {
+        return this.f54325a.keySet().iterator();
     }
 }

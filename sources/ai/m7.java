@@ -1,84 +1,52 @@
 package ai;
 
 import android.content.Context;
-import android.view.MotionEvent;
-import org.telegram.messenger.AndroidUtilities;
-public final class m7 extends z4.g {
-    public boolean f1362w0;
-    public final s7 f1363x0;
-    public final s7 f1364y0;
+import android.graphics.drawable.GradientDrawable;
+import android.view.GestureDetector;
+import android.view.animation.OvershootInterpolator;
+import android.widget.Scroller;
+import java.util.ArrayList;
+import org.telegram.messenger.FileLog;
+public final class m7 extends n6 {
+    public final kc N;
+    public final t7 O;
 
-    public m7(s7 s7Var, Context context) {
+    public m7(t7 t7Var, kc kcVar, Context context) {
         super(context);
-        this.f1364y0 = s7Var;
-        this.f1363x0 = s7Var;
-    }
-
-    public final boolean A(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            this.f1362w0 = true;
-        }
-        if (this.f1362w0 && this.f1363x0.f1640x <= 0) {
-            try {
-                return super.onInterceptTouchEvent(motionEvent);
-            } catch (Exception unused) {
-            }
-        }
-        return false;
-    }
-
-    public final boolean B(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            this.f1362w0 = true;
-        }
-        if (this.f1362w0 && this.f1363x0.f1640x <= 0) {
-            return super.onTouchEvent(motionEvent);
-        }
-        return false;
+        this.O = t7Var;
+        this.N = kcVar;
+        this.f1474w = -1;
+        this.E = new ArrayList();
+        this.F = new ArrayList();
+        this.G = new ArrayList();
+        this.I = new GestureDetector(new k6(this));
+        this.d = new Scroller(context, new OvershootInterpolator());
+        this.H = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{0, i0.a.k(-16777216, 160)});
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        float currentTopOffset;
-        float y3 = motionEvent.getY();
-        currentTopOffset = this.f1364y0.getCurrentTopOffset();
-        if (y3 < currentTopOffset && motionEvent.getAction() == 0) {
-            return false;
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        float currentTopOffset;
-        float currentTopOffset2;
-        float y3 = motionEvent.getY();
-        s7 s7Var = this.f1364y0;
-        currentTopOffset = s7Var.getCurrentTopOffset();
-        if (y3 >= currentTopOffset) {
-            currentTopOffset2 = s7Var.getCurrentTopOffset();
-            if (Math.abs(currentTopOffset2 - s7Var.d) > AndroidUtilities.dp(1.0f)) {
-                return false;
+    public final void b(int i10) {
+        gc gcVar;
+        t7 t7Var = this.O;
+        n7 n7Var = t7Var.E;
+        if (!t7Var.f1746w) {
+            if (n7Var.getCurrentItem() != i10) {
+                try {
+                    n7Var.x(i10, false);
+                } catch (Throwable th2) {
+                    FileLog.e(th2);
+                    n7Var.getAdapter().g();
+                    n7Var.x(i10, false);
+                }
             }
-            return A(motionEvent);
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        float currentTopOffset;
-        float currentTopOffset2;
-        float y3 = motionEvent.getY();
-        s7 s7Var = this.f1364y0;
-        currentTopOffset = s7Var.getCurrentTopOffset();
-        if (y3 >= currentTopOffset) {
-            currentTopOffset2 = s7Var.getCurrentTopOffset();
-            if (Math.abs(currentTopOffset2 - s7Var.d) > AndroidUtilities.dp(1.0f)) {
-                return false;
+            kc kcVar = this.N;
+            if (kcVar.O0 != null && (gcVar = kcVar.f1297t0) != null) {
+                if (i10 < 10) {
+                    gcVar.b(false);
+                } else if (i10 >= this.E.size() - 10) {
+                    kcVar.f1297t0.b(true);
+                }
             }
-            return B(motionEvent);
         }
-        return false;
     }
 }

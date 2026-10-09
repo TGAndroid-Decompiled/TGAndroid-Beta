@@ -1,26 +1,26 @@
 package ci;
 public final class i6 implements qg.c {
-    public final mb f5171a;
+    public final nb f5202a;
 
-    public i6(mb mbVar) {
-        this.f5171a = mbVar;
+    public i6(nb nbVar) {
+        this.f5202a = nbVar;
     }
 
     @Override
     public final void a() {
-        mb mbVar = this.f5171a;
-        mbVar.D0(null, true);
-        if (mbVar.M0) {
-            kc kcVar = mbVar.A2;
-            kcVar.f5383c1.f5518f.d();
-            kcVar.l0(-1, false, true);
-            mbVar.M0 = false;
+        nb nbVar = this.f5202a;
+        nbVar.C0(null, true);
+        if (nbVar.M0) {
+            lc lcVar = nbVar.A2;
+            lcVar.f5467c1.f5555f.d();
+            lcVar.k0(-1, false, true);
+            nbVar.M0 = false;
         }
-        mbVar.O0(false);
+        nbVar.N0(false);
     }
 
     @Override
     public final qg.j b() {
-        return this.f5171a.J0;
+        return this.f5202a.J0;
     }
 }

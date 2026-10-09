@@ -1,26 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class kx extends s4.d0 {
-    public final int f28301r;
+import org.telegram.tgnet.TLRPC;
+public final class kx extends g.o {
+    public final a00 f28180c;
 
-    public kx(Context context, int i10) {
-        super(context);
-        this.f28301r = i10;
+    public kx(a00 a00Var) {
+        this.f28180c = a00Var;
     }
 
     @Override
-    public final int i(int i10, int i11, int i12, int i13, int i14) {
-        return super.i(i10, i11, i12, i13, i14) + this.f28301r;
-    }
-
-    @Override
-    public final int m(int i10) {
-        return super.m(i10) * 16;
-    }
-
-    @Override
-    public final int p() {
-        return -1;
+    public final int i(int i10) {
+        a00 a00Var = this.f28180c;
+        vz vzVar = a00Var.f24475z0;
+        s4.i0 adapter = a00Var.D0.getAdapter();
+        qz qzVar = a00Var.f24472y0;
+        if (adapter == qzVar) {
+            if (i10 == 0) {
+                return qzVar.d;
+            }
+            if (i10 == qzVar.f30309s || (qzVar.h.get(i10) != null && !(qzVar.h.get(i10) instanceof TLRPC.Document))) {
+                return qzVar.d;
+            }
+            return 1;
+        } else if (i10 != vzVar.f32484x && (vzVar.f32481r.get(i10) == null || (vzVar.f32481r.get(i10) instanceof TLRPC.Document))) {
+            return 1;
+        } else {
+            return qzVar.d;
+        }
     }
 }

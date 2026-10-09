@@ -1,172 +1,130 @@
 package ai;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.AccountInstance;
-import org.telegram.messenger.MediaController;
+import android.app.Activity;
+import android.content.Context;
+import java.util.WeakHashMap;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.ih;
-import org.telegram.ui.Components.vi;
-public final class h4 implements vi {
-    public final e6 f1021a;
+import org.telegram.ui.Components.yi;
+import org.telegram.ui.ok;
+import org.telegram.ui.sm;
+import org.telegram.ui.zn;
+public final class h4 extends yi {
+    public final int S2;
+    public final NotificationCenter.NotificationCenterDelegate T2;
 
-    public h4(e6 e6Var) {
-        this.f1021a = e6Var;
+    public h4(org.telegram.ui.ActionBar.n2 n2Var, Activity activity, org.telegram.ui.ActionBar.n2 n2Var2, org.telegram.ui.ActionBar.e6 e6Var, int i10) {
+        super(activity, n2Var2, false, false, true, e6Var);
+        this.S2 = i10;
+        this.T2 = (NotificationCenter.NotificationCenterDelegate) n2Var;
     }
 
     @Override
-    public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
-        TL_stories.StoryItem storyItem;
-        boolean z14;
-        boolean z15;
-        AccountInstance accountInstance;
-        boolean z16;
-        String str;
-        String str2;
-        e6 e6Var = this.f1021a;
-        if (e6Var.J0.m0 && (storyItem = e6Var.O1.f696a) != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
-            if (i10 != 8 && i10 != 7 && (i10 != 4 || e6Var.I2.f32922j0.getSelectedPhotos().isEmpty())) {
-                g4 g4Var = e6Var.I2;
-                if (g4Var != null) {
-                    g4Var.dismissWithButtonClick(i10);
+    public void dismissInternal() {
+        int i10;
+        int i11 = this.S2;
+        NotificationCenter.NotificationCenterDelegate notificationCenterDelegate = this.T2;
+        switch (i11) {
+            case 1:
+                hg.n nVar = (hg.n) notificationCenterDelegate;
+                h4 h4Var = nVar.L;
+                if (h4Var != null && h4Var.isShowing()) {
+                    AndroidUtilities.requestAdjustResize(nVar.getParentActivity(), hg.n.c0(nVar));
+                }
+                super.dismissInternal();
+                return;
+            case 2:
+                zn znVar = (zn) notificationCenterDelegate;
+                h4 h4Var2 = znVar.J1;
+                if (h4Var2 != null && (h4Var2.isShowing() || this.f33285x0)) {
+                    Activity parentActivity = znVar.getParentActivity();
+                    i10 = ((org.telegram.ui.ActionBar.n2) znVar).classGuid;
+                    AndroidUtilities.requestAdjustResize(parentActivity, i10);
+                }
+                super.dismissInternal();
+                znVar.Y9(false, true);
+                sm smVar = znVar.X0;
+                if (smVar != null) {
+                    WeakHashMap weakHashMap = r0.i0.f46764a;
+                    r0.y.c(smVar);
                     return;
                 }
                 return;
-            }
-            if (i10 != 8) {
-                e6Var.I2.dismiss(true);
-            }
-            HashMap<Object, Object> selectedPhotos = e6Var.I2.f32922j0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = e6Var.I2.f32922j0.getSelectedPhotosOrder();
-            if (!selectedPhotos.isEmpty()) {
-                int i13 = 0;
-                int i14 = 0;
-                while (i14 < Math.ceil(selectedPhotos.size() / 10.0f)) {
-                    int i15 = i14 * 10;
-                    int min = Math.min(10, selectedPhotos.size() - i15);
-                    ArrayList arrayList = new ArrayList();
-                    for (int i16 = 0; i16 < min; i16++) {
-                        int i17 = i15 + i16;
-                        if (i17 < selectedPhotosOrder.size()) {
-                            MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.get(selectedPhotosOrder.get(i17));
-                            SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
-                            boolean z17 = photoEntry.isVideo;
-                            if (!z17 && (str2 = photoEntry.imagePath) != null) {
-                                sendingMediaInfo.path = str2;
-                            } else {
-                                String str3 = photoEntry.path;
-                                if (str3 != null) {
-                                    sendingMediaInfo.path = str3;
-                                }
-                            }
-                            sendingMediaInfo.thumbPath = photoEntry.thumbPath;
-                            sendingMediaInfo.coverPath = photoEntry.coverPath;
-                            sendingMediaInfo.isVideo = z17;
-                            CharSequence charSequence = photoEntry.caption;
-                            if (charSequence != null) {
-                                str = charSequence.toString();
-                            } else {
-                                str = null;
-                            }
-                            sendingMediaInfo.caption = str;
-                            sendingMediaInfo.entities = photoEntry.entities;
-                            sendingMediaInfo.masks = photoEntry.stickers;
-                            sendingMediaInfo.ttl = photoEntry.ttl;
-                            sendingMediaInfo.videoEditedInfo = photoEntry.editedInfo;
-                            sendingMediaInfo.canDeleteAfter = photoEntry.canDeleteAfter;
-                            sendingMediaInfo.updateStickersOrder = SendMessagesHelper.checkUpdateStickersOrder(photoEntry.caption);
-                            sendingMediaInfo.hasMediaSpoilers = photoEntry.hasSpoiler;
-                            arrayList.add(sendingMediaInfo);
-                            photoEntry.reset();
+            default:
+                super.dismissInternal();
+                return;
+        }
+    }
+
+    @Override
+    public final void onDismissAnimationStart() {
+        int i10;
+        ok okVar;
+        switch (this.S2) {
+            case 0:
+                f6 f6Var = (f6) this.T2;
+                h4 h4Var = f6Var.I2;
+                if (h4Var != null) {
+                    h4Var.setFocusable(false);
+                }
+                b4 b4Var = f6Var.f952b2;
+                if (b4Var != null && b4Var.getEditField() != null) {
+                    f6Var.f952b2.getEditField().requestFocus();
+                    return;
+                }
+                return;
+            case 1:
+                hg.n nVar = (hg.n) this.T2;
+                h4 h4Var2 = nVar.L;
+                if (h4Var2 != null) {
+                    h4Var2.setFocusable(false);
+                }
+                h4 h4Var3 = nVar.L;
+                if (h4Var3 != null && h4Var3.isShowing()) {
+                    AndroidUtilities.requestAdjustResize(nVar.getParentActivity(), hg.n.d0(nVar));
+                    return;
+                }
+                return;
+            default:
+                zn znVar = (zn) this.T2;
+                boolean z10 = this.f33285x0;
+                boolean M = this.B0.M();
+                if (!M) {
+                    znVar.D3 = false;
+                    ok okVar2 = znVar.Y;
+                    if (okVar2 != null) {
+                        if (!z10) {
+                            okVar2.N();
+                        }
+                        if (znVar.Y.getEditField() != null) {
+                            znVar.Y.getEditField().clearFocus();
                         }
                     }
-                    if (i14 == 0) {
-                        z15 = ((SendMessagesHelper.SendingMediaInfo) arrayList.get(i13)).updateStickersOrder;
-                    } else {
-                        z15 = false;
-                    }
-                    HashMap<Object, Object> hashMap = selectedPhotos;
-                    accountInstance = e6Var.getAccountInstance();
-                    ArrayList<Object> arrayList2 = selectedPhotosOrder;
-                    long j11 = e6Var.B1;
-                    if (i10 != 4 && !z13) {
-                        z16 = false;
-                    } else {
-                        z16 = true;
-                    }
-                    SendMessagesHelper.prepareSendingMedia(accountInstance, arrayList, j11, null, null, storyItem, null, z16, z10, null, z11, i11, i12, 0, z15, null, null, 0L, false, 0L, e6Var.f841b2.getSendMonoForumPeerId(), e6Var.f841b2.getSendMessageSuggestionParams());
-                    i14++;
-                    selectedPhotos = hashMap;
-                    selectedPhotosOrder = arrayList2;
-                    i13 = 0;
                 }
-                e6Var.f841b2.setFieldText("");
-                if (j10 <= 0) {
-                    z14 = true;
-                } else {
-                    z14 = false;
+                if (!z10) {
+                    h4 h4Var4 = znVar.J1;
+                    if (h4Var4 != null) {
+                        h4Var4.setFocusable(false);
+                    }
+                    if (M && (okVar = znVar.Y) != null && okVar.getEditField() != null) {
+                        znVar.Y.getEditField().requestFocus();
+                    }
+                    h4 h4Var5 = znVar.J1;
+                    if (h4Var5 != null && h4Var5.isShowing()) {
+                        Activity parentActivity = znVar.getParentActivity();
+                        i10 = ((org.telegram.ui.ActionBar.n2) znVar).classGuid;
+                        AndroidUtilities.requestAdjustResize(parentActivity, i10);
+                    }
+                    znVar.Y9(false, false);
+                    return;
                 }
-                e6Var.k0(z14);
-            }
+                return;
         }
     }
 
-    @Override
-    public final void K0() {
-        this.f1021a.f841b2.N();
-    }
-
-    @Override
-    public final boolean S1() {
-        return false;
-    }
-
-    @Override
-    public final void W1(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j3, boolean z11, long j10) {
-        AccountInstance accountInstance;
-        CharSequence charSequence2;
-        boolean z12;
-        e6 e6Var = this.f1021a;
-        TL_stories.StoryItem storyItem = e6Var.O1.f696a;
-        if (storyItem != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
-            accountInstance = e6Var.getAccountInstance();
-            if (charSequence != null) {
-                charSequence2 = charSequence;
-            } else {
-                charSequence2 = null;
-            }
-            SendMessagesHelper.prepareSendingAudioDocuments(accountInstance, arrayList, charSequence2, e6Var.B1, null, null, storyItem, z10, i10, i11, null, null, j3, z11, j10);
-            if (j10 <= 0) {
-                z12 = true;
-            } else {
-                z12 = false;
-            }
-            e6Var.k0(z12);
-        }
-    }
-
-    @Override
-    public final boolean a0() {
-        return this.f1021a.N0();
-    }
-
-    @Override
-    public final void x0(ih ihVar) {
-        NotificationCenter.getInstance(this.f1021a.C2).doOnIdle(ihVar);
-    }
-
-    @Override
-    public final void U0(Object obj) {
-    }
-
-    @Override
-    public final void j1(TLRPC.User user) {
-    }
-
-    @Override
-    public final void u0() {
+    public h4(f6 f6Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, null, false, false, true, e6Var);
+        this.S2 = 0;
+        this.T2 = f6Var;
     }
 }

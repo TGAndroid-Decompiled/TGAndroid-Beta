@@ -3,29 +3,29 @@ package rg;
 import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
 public final class g1 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f46131a;
-    public final m1 f46132b;
+    public final int f47255a;
+    public final l1 f47256b;
 
-    public g1(m1 m1Var, int i10) {
-        this.f46131a = i10;
-        this.f46132b = m1Var;
+    public g1(l1 l1Var, int i10) {
+        this.f47255a = i10;
+        this.f47256b = l1Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f46131a) {
+        switch (this.f47255a) {
             case 0:
-                m1 m1Var = this.f46132b;
-                m1Var.getClass();
-                m1Var.G0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                m1Var.container.invalidate();
+                l1 l1Var = this.f47256b;
+                l1Var.getClass();
+                l1Var.G0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                l1Var.container.invalidate();
                 return;
             default:
-                m1 m1Var2 = this.f46132b;
-                m1Var2.getClass();
+                l1 l1Var2 = this.f47256b;
+                l1Var2.getClass();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                m1Var2.N0.getLayoutParams().height = AndroidUtilities.lerp(m1Var2.O0[0].getHeight(), m1Var2.O0[1].getHeight(), floatValue);
-                m1Var2.N0.requestLayout();
+                l1Var2.N0.getLayoutParams().height = AndroidUtilities.lerp(l1Var2.O0[0].getHeight(), l1Var2.O0[1].getHeight(), floatValue);
+                l1Var2.N0.requestLayout();
                 return;
         }
     }

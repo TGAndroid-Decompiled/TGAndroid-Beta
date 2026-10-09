@@ -7,21 +7,21 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 public final class b extends l1 {
-    public final d f8723b;
+    public final d f8717b;
 
     public b(d dVar) {
         super(0);
-        this.f8723b = dVar;
+        this.f8717b = dVar;
     }
 
     @Override
     public final void clear() {
-        this.f8723b.clear();
+        this.f8717b.clear();
     }
 
     @Override
     public final boolean contains(Object obj) {
-        Set entrySet = this.f8723b.f8731b.entrySet();
+        Set entrySet = this.f8717b.f8725b.entrySet();
         entrySet.getClass();
         try {
             return entrySet.contains(obj);
@@ -32,12 +32,12 @@ public final class b extends l1 {
 
     @Override
     public final boolean isEmpty() {
-        return this.f8723b.isEmpty();
+        return this.f8717b.isEmpty();
     }
 
     @Override
     public final Iterator iterator() {
-        return new c(this.f8723b);
+        return new c(this.f8717b);
     }
 
     @Override
@@ -48,7 +48,7 @@ public final class b extends l1 {
         }
         Map.Entry entry = (Map.Entry) obj;
         Objects.requireNonNull(entry);
-        v0 v0Var = (v0) this.f8723b.f8733e;
+        v0 v0Var = (v0) this.f8717b.f8727e;
         Object key = entry.getKey();
         Map map = v0Var.d;
         map.getClass();
@@ -61,7 +61,7 @@ public final class b extends l1 {
         if (collection != null) {
             int size = collection.size();
             collection.clear();
-            v0Var.f8820e -= size;
+            v0Var.f8814e -= size;
             return true;
         }
         return true;
@@ -93,12 +93,12 @@ public final class b extends l1 {
                     hashSet.add(((Map.Entry) obj).getKey());
                 }
             }
-            return this.f8723b.keySet().retainAll(hashSet);
+            return this.f8717b.keySet().retainAll(hashSet);
         }
     }
 
     @Override
     public final int size() {
-        return this.f8723b.f8731b.size();
+        return this.f8717b.f8725b.size();
     }
 }

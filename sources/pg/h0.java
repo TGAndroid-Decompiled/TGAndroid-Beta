@@ -2,7 +2,7 @@ package pg;
 
 import android.graphics.fonts.Font;
 public final class h0 {
-    public Font f44505a;
-    public String f44506b;
-    public String f44507c;
+    public Font f45648a;
+    public String f45649b;
+    public String f45650c;
 }

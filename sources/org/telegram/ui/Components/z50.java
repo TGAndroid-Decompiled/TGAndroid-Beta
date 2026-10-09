@@ -2,33 +2,32 @@ package org.telegram.ui.Components;
 
 import android.animation.ValueAnimator;
 public final class z50 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f33430a;
-    public final e60 f33431b;
+    public final boolean[] f33475a;
+    public final v50 f33476b;
+    public final t60 f33477c;
 
-    public z50(e60 e60Var, int i10) {
-        this.f33430a = i10;
-        this.f33431b = e60Var;
+    public z50(t60 t60Var, boolean[] zArr, v50 v50Var) {
+        this.f33477c = t60Var;
+        this.f33475a = zArr;
+        this.f33476b = v50Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f33430a) {
-            case 0:
-                e60 e60Var = this.f33431b;
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue() * e60Var.getMeasuredHeight() * 0.5f;
-                e60Var.f26010p0 = floatValue;
-                e60Var.v.setTranslationY(floatValue + e60Var.f26009o0);
-                return;
-            default:
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                e60 e60Var2 = this.f33431b;
-                e60Var2.f26013r0 = floatValue2;
-                ki.s0 s0Var = e60Var2.P;
-                if (s0Var != null) {
-                    s0Var.w(floatValue2);
-                    return;
-                }
-                return;
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        if (floatValue > 0.5f) {
+            boolean[] zArr = this.f33475a;
+            if (!zArr[0]) {
+                zArr[0] = true;
+                this.f33476b.run();
+            }
         }
+        if (floatValue >= 0.5f) {
+            floatValue -= 1.0f;
+        }
+        float f7 = floatValue * 180.0f;
+        t60 t60Var = this.f33477c;
+        t60Var.h.setRotationY(f7);
+        t60Var.f31032r0.setRotationY(f7);
     }
 }

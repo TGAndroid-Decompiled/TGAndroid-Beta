@@ -12,35 +12,35 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 public final class q00 extends FrameLayout {
-    public final r00 f39661a;
+    public final r00 f40947a;
 
     public q00(r00 r00Var, Context context) {
         super(context);
         int i10;
         String string;
-        this.f39661a = r00Var;
+        this.f40947a = r00Var;
         ImageView imageView = new ImageView(context);
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         imageView.setImageResource(R.drawable.msg_limit_links);
         imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        imageView.setBackground(org.telegram.ui.ActionBar.i6.b0(AndroidUtilities.dp(22.0f), org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Oh, false)));
-        addView(imageView, w7.z5.d(54, 44.0f, 49, 0.0f, 22.0f, 0.0f, 0.0f));
+        imageView.setBackground(org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(22.0f), org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.Oh, false)));
+        addView(imageView, w7.x5.a(44.0f, 0.0f, 22.0f, 0.0f, 0.0f, 54, 49));
         vh.n nVar = new vh.n(context);
         nVar.setTypeface(AndroidUtilities.bold());
         nVar.setTextSize(1, 20.0f);
-        int i11 = org.telegram.ui.ActionBar.i6.f20935j5;
-        nVar.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i11, false));
+        int i11 = org.telegram.ui.ActionBar.i6.f20905j5;
+        nVar.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, i11, false));
         nVar.setGravity(1);
-        nVar.setText(r00Var.P(nVar));
+        nVar.setText(r00Var.S(nVar));
         MessagesController.DialogFilter dialogFilter = r00Var.X;
         if (dialogFilter != null && dialogFilter.title_noanimate) {
             i10 = 26;
         } else {
             i10 = 0;
         }
-        nVar.h = i10;
-        addView(nVar, w7.z5.d(-2, -2.0f, 49, 20.0f, 84.0f, 20.0f, 0.0f));
+        nVar.f49735s = i10;
+        addView(nVar, w7.x5.a(-2.0f, 20.0f, 84.0f, 20.0f, 0.0f, -2, 49));
         TextView textView = new TextView(context);
         if (r00Var.Y.isEmpty()) {
             string = LocaleController.getString(R.string.FolderLinkShareSubtitleEmpty);
@@ -51,14 +51,14 @@ public final class q00 extends FrameLayout {
         textView.setLines(2);
         textView.setGravity(1);
         textView.setTextSize(1, 14.0f);
-        textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i11, false));
-        addView(textView, w7.z5.d(-2, -2.0f, 49, 30.0f, 117.0f, 30.0f, 0.0f));
+        textView.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, i11, false));
+        addView(textView, w7.x5.a(-2.0f, 30.0f, 117.0f, 30.0f, 0.0f, -2, 49));
         ImageView imageView2 = new ImageView(context);
         imageView2.setScaleType(scaleType);
         imageView2.setImageResource(R.drawable.msg_close);
-        imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.C6, false), PorterDuff.Mode.MULTIPLY));
-        imageView2.setOnClickListener(new a(this, 23));
-        addView(imageView2, w7.z5.d(48, 48.0f, 53, 0.0f, -4.0f, 2.0f, 0.0f));
+        imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.C6, false), PorterDuff.Mode.MULTIPLY));
+        imageView2.setOnClickListener(new a(this, 22));
+        addView(imageView2, w7.x5.a(48.0f, 0.0f, -4.0f, 2.0f, 0.0f, 48, 53));
     }
 
     @Override

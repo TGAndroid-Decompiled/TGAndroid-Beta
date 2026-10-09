@@ -1,37 +1,7 @@
 package ei;
 
-import org.telegram.messenger.FileLog;
-public final class q extends v7.o {
-    public final s f9259a;
-
-    public q(s sVar) {
-        this.f9259a = sVar;
-    }
-
-    @Override
-    public final void a(int i10, CharSequence charSequence) {
-        FileLog.d("BotBiometry onAuthenticationError " + i10 + " \"" + ((Object) charSequence) + "\"");
-        s sVar = this.f9259a;
-        ai.m0 m0Var = sVar.f9322j;
-        if (m0Var != null) {
-            sVar.f9322j = null;
-            m0Var.run(Boolean.FALSE, null);
-        }
-    }
-
-    @Override
-    public final void b() {
-        FileLog.d("BotBiometry onAuthenticationFailed");
-    }
-
-    @Override
-    public final void c(androidx.biometric.s sVar) {
-        FileLog.d("BotBiometry onAuthenticationSucceeded");
-        s sVar2 = this.f9259a;
-        ai.m0 m0Var = sVar2.f9322j;
-        if (m0Var != null) {
-            sVar2.f9322j = null;
-            m0Var.run(Boolean.TRUE, sVar);
-        }
-    }
+import org.telegram.tgnet.TLRPC;
+public final class q {
+    public TLRPC.User f9298a;
+    public boolean f9299b;
 }

@@ -9,44 +9,44 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.f11;
+import org.telegram.ui.Components.l11;
 public final class c1 extends Drawable {
-    public final float f687a = 0.75f;
-    public final Drawable f688b;
-    public final f11 f689c;
+    public final float f749a = 0.75f;
+    public final Drawable f750b;
+    public final l11 f751c;
 
     public c1(Context context, int i10) {
-        this.f688b = context.getResources().getDrawable(R.drawable.filled_stream_crown).mutate();
-        f11 f11Var = new f11(hg.c.h(i10, ""), 8.0f, AndroidUtilities.getTypeface("fonts/num.otf"));
-        this.f689c = f11Var;
-        f11Var.f26264a.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        this.f750b = context.getResources().getDrawable(R.drawable.filled_stream_crown).mutate();
+        l11 l11Var = new l11(hg.c.h(i10, ""), 8.0f, AndroidUtilities.getTypeface("fonts/num.otf"));
+        this.f751c = l11Var;
+        l11Var.f28220a.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
         canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
-        Drawable drawable = this.f688b;
+        Drawable drawable = this.f750b;
         drawable.setBounds(bounds);
         drawable.draw(canvas);
         int centerY = bounds.centerY();
-        this.f689c.c(bounds.centerX() - (this.f689c.f26266c / 2.0f), AndroidUtilities.dp(0.15f) + centerY, drawable.getAlpha() / 255.0f, -1, canvas);
+        this.f751c.c(bounds.centerX() - (this.f751c.f28222c / 2.0f), AndroidUtilities.dp(0.15f) + centerY, drawable.getAlpha() / 255.0f, -1, canvas);
         canvas.restore();
     }
 
     @Override
     public final int getAlpha() {
-        return this.f688b.getAlpha();
+        return this.f750b.getAlpha();
     }
 
     @Override
     public final int getIntrinsicHeight() {
-        return (int) (this.f688b.getIntrinsicHeight() * this.f687a);
+        return (int) (this.f750b.getIntrinsicHeight() * this.f749a);
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return (int) (this.f688b.getIntrinsicWidth() * this.f687a);
+        return (int) (this.f750b.getIntrinsicWidth() * this.f749a);
     }
 
     @Override
@@ -56,11 +56,11 @@ public final class c1 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f688b.setAlpha(i10);
+        this.f750b.setAlpha(i10);
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f688b.setColorFilter(colorFilter);
+        this.f750b.setColorFilter(colorFilter);
     }
 }

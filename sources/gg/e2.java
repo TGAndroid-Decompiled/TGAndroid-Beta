@@ -1,27 +1,33 @@
 package gg;
-public final class e2 implements Runnable {
-    public final g2 f10572a;
 
-    public e2(g2 g2Var) {
-        this.f10572a = g2Var;
-    }
+import android.content.Context;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.Cells.f8;
+public final class e2 extends f8 {
+    public final int O;
 
-    public final void a() {
-        g2 g2Var = this.f10572a;
-        if (g2Var.Q) {
-            return;
-        }
-        g2Var.Q = true;
-        g2Var.I.clear();
-        g2Var.J.clear();
-        g2Var.F.clear();
-        g2Var.E.clear();
-        g2Var.G.clear();
-        g2Var.H.clear();
+    public e2(int i10, Context context, e6 e6Var, boolean z10) {
+        super(context, e6Var, z10);
+        this.O = i10;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: gg.e2.run():void");
+    public final void onMeasure(int i10, int i11) {
+        switch (this.O) {
+            case 0:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(82.0f), 1073741824));
+                return;
+            case 1:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(82.0f), 1073741824));
+                return;
+            case 2:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(82.0f), 1073741824));
+                return;
+            default:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(82.0f), 1073741824));
+                return;
+        }
     }
 }

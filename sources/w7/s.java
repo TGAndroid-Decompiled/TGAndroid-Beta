@@ -1,14 +1,40 @@
 package w7;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import android.util.SparseBooleanArray;
 public abstract class s {
-    public static void a(Parcel parcel, Parcelable parcelable) {
-        if (parcelable != null) {
-            parcel.writeInt(1);
-            parcelable.writeToParcel(parcel, 0);
-            return;
+    public static b2.x0 a(b2.x0 x0Var, b2.x0 x0Var2) {
+        if (x0Var != null) {
+            b2.q qVar = x0Var.f3686a;
+            if (x0Var2 != null) {
+                SparseBooleanArray sparseBooleanArray = new SparseBooleanArray();
+                for (int i10 = 0; i10 < qVar.f3532a.size(); i10++) {
+                    if (x0Var2.a(qVar.a(i10))) {
+                        int a2 = qVar.a(i10);
+                        e2.d.g(!false);
+                        sparseBooleanArray.append(a2, true);
+                    }
+                }
+                e2.d.g(!false);
+                return new b2.x0(new b2.q(sparseBooleanArray));
+            }
         }
-        parcel.writeInt(0);
+        return b2.x0.f3684b;
+    }
+
+    public static void b(b2.b1 b1Var, m4.s sVar) {
+        int i10 = sVar.f16224b;
+        long j3 = sVar.f16225c;
+        e9.i0 i0Var = sVar.f16223a;
+        if (i10 == -1) {
+            if (b1Var.m0(20)) {
+                b1Var.I0(i0Var);
+            } else if (!i0Var.isEmpty()) {
+                b1Var.p0((b2.k0) i0Var.get(0));
+            }
+        } else if (b1Var.m0(20)) {
+            b1Var.T(j3, sVar.f16224b, i0Var);
+        } else if (!i0Var.isEmpty()) {
+            b1Var.k((b2.k0) i0Var.get(0), j3);
+        }
     }
 }

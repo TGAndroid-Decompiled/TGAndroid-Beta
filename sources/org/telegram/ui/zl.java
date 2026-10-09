@@ -1,49 +1,47 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.tgnet.TLRPC;
-public final class zl extends ou0 {
-    public final MessageObject f43862a;
-    public final MediaController.PhotoEntry f43863b;
-    public final am f43864c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.widget.ImageView;
+import org.telegram.ui.Components.RadialProgressView;
+public final class zl extends AnimatorListenerAdapter {
+    public final boolean f44686a;
+    public final boolean f44687b;
+    public final boolean f44688c;
+    public final zn d;
 
-    public zl(am amVar, MessageObject messageObject, MediaController.PhotoEntry photoEntry) {
-        this.f43864c = amVar;
-        this.f43862a = messageObject;
-        this.f43863b = photoEntry;
+    public zl(zn znVar, boolean z10, boolean z11, boolean z12) {
+        this.d = znVar;
+        this.f44686a = z10;
+        this.f44687b = z11;
+        this.f44688c = z12;
     }
 
     @Override
-    public final yu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        return this.f43864c.f34918a.Q.Da.E(this.f43862a, fileLocation, i10, z10, false);
-    }
-
-    @Override
-    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        jm jmVar = this.f43864c.f34918a;
-        MessageObject messageObject = this.f43862a;
-        messageObject.settingAvatar = true;
-        MediaController.PhotoEntry photoEntry = this.f43863b;
-        if (photoEntry.imagePath == null && !photoEntry.isVideo) {
-            TLRPC.TL_photos_updateProfilePhoto tL_photos_updateProfilePhoto = new TLRPC.TL_photos_updateProfilePhoto();
-            TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
-            tL_photos_updateProfilePhoto.f20179id = tL_inputPhoto;
-            TLRPC.Photo photo = messageObject.messageOwner.action.photo;
-            tL_inputPhoto.f20066id = photo.f20071id;
-            tL_inputPhoto.access_hash = photo.access_hash;
-            tL_inputPhoto.file_reference = photo.file_reference;
-            jmVar.Q.getConnectionsManager().sendRequest(tL_photos_updateProfilePhoto, new ai.v1(29, this, messageObject));
-            return;
+    public final void onAnimationEnd(Animator animator) {
+        int i10;
+        int i11;
+        zn znVar = this.d;
+        znVar.M2 = null;
+        ImageView imageView = znVar.J2;
+        int i12 = 4;
+        if (this.f44686a) {
+            i10 = 0;
+        } else {
+            i10 = 4;
         }
-        yn ynVar = jmVar.Q;
-        bj bjVar = new bj(messageObject, 4);
-        org.telegram.ui.ActionBar.c5 parentLayout = ynVar.getParentLayout();
-        int currentAccount = ynVar.getCurrentAccount();
-        org.telegram.ui.Components.y40 y40Var = new org.telegram.ui.Components.y40(0, true, true);
-        y40Var.f33170a = ynVar;
-        y40Var.t(photoEntry);
-        y40Var.f33171b = new fa(currentAccount, bjVar, parentLayout, y40Var);
+        imageView.setVisibility(i10);
+        ImageView imageView2 = znVar.L2;
+        if (this.f44687b) {
+            i11 = 0;
+        } else {
+            i11 = 4;
+        }
+        imageView2.setVisibility(i11);
+        RadialProgressView radialProgressView = znVar.K2;
+        if (this.f44688c) {
+            i12 = 0;
+        }
+        radialProgressView.setVisibility(i12);
     }
 }

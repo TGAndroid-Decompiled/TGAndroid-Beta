@@ -1,70 +1,52 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.view.ViewGroup;
-import android.webkit.WebView;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Point;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class t91 extends WebView {
-    public final int f31090a = 0;
-    public final Object f31091b;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageLoader;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.Utilities;
+public final class t91 implements org.telegram.ui.jq0 {
+    public final v91 f31098a;
 
-    public t91(org.telegram.ui.so0 so0Var, Context context) {
-        super(context);
-        this.f31091b = so0Var;
+    public t91(v91 v91Var) {
+        this.f31098a = v91Var;
     }
 
     @Override
-    public void onAttachedToWindow() {
-        switch (this.f31090a) {
-            case 0:
-                AndroidUtilities.checkAndroidTheme((Context) this.f31091b, true);
-                super.onAttachedToWindow();
-                return;
-            default:
-                super.onAttachedToWindow();
-                return;
+    public final void a(ArrayList arrayList) {
+        v91 v91Var = this.f31098a;
+        try {
+            if (!arrayList.isEmpty()) {
+                SendMessagesHelper.SendingMediaInfo sendingMediaInfo = (SendMessagesHelper.SendingMediaInfo) arrayList.get(0);
+                if (sendingMediaInfo.path != null) {
+                    File directory = FileLoader.getDirectory(4);
+                    v91Var.f31720e = new File(directory, Utilities.random.nextInt() + ".jpg");
+                    Point realScreenSize = AndroidUtilities.getRealScreenSize();
+                    Bitmap loadBitmap = ImageLoader.loadBitmap(sendingMediaInfo.path, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
+                    loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(v91Var.f31720e));
+                    v91Var.d.b(v91Var.f31720e, loadBitmap, true);
+                }
+            }
+        } catch (Throwable th2) {
+            FileLog.e(th2);
         }
     }
 
     @Override
-    public void onDetachedFromWindow() {
-        switch (this.f31090a) {
-            case 0:
-                AndroidUtilities.checkAndroidTheme((Context) this.f31091b, false);
-                super.onDetachedFromWindow();
-                return;
-            default:
-                super.onDetachedFromWindow();
-                return;
+    public final void b() {
+        try {
+            Intent intent = new Intent("android.intent.action.PICK");
+            intent.setType("image/*");
+            this.f31098a.f31718b.startActivityForResult(intent, 11);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f31090a) {
-            case 1:
-                super.onMeasure(i10, i11);
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
-        }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f31090a) {
-            case 1:
-                ((ViewGroup) ((org.telegram.ui.so0) this.f31091b).fragmentView).requestDisallowInterceptTouchEvent(true);
-                return super.onTouchEvent(motionEvent);
-            default:
-                return super.onTouchEvent(motionEvent);
-        }
-    }
-
-    public t91(Context context, Context context2) {
-        super(context);
-        this.f31091b = context2;
     }
 }

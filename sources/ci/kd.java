@@ -1,22 +1,25 @@
 package ci;
 
-import java.util.TimeZone;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.pe0;
-public abstract class kd {
-    public static String f5460a;
-    public static jd f5461b;
+import org.telegram.tgnet.OutputSerializedData;
+import org.telegram.tgnet.TLObject;
+public final class kd extends TLObject {
+    public double f5350a;
+    public double f5351b;
+    public String f5352c;
+    public float d;
 
-    public static void a(boolean z10, Utilities.Callback callback) {
-        pe0.e(R.raw.permission_request_location, R.string.PermissionNoLocationStory, new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new String[]{"android.permission.ACCESS_COARSE_LOCATION"}, new ai.i3(2, new ai.i3(1, callback, z10), z10));
+    public final String a() {
+        if (ld.b()) {
+            return Math.round(this.d) + "°C";
+        }
+        return a1.g.o((int) Math.round(((this.d * 9.0d) / 5.0d) + 32.0d), "°F", new StringBuilder());
     }
 
-    public static boolean b() {
-        String id2 = TimeZone.getDefault().getID();
-        if (!id2.startsWith("US/") && !"America/Nassau".equals(id2) && !"America/Belize".equals(id2) && !"America/Cayman".equals(id2) && !"Pacific/Palau".equals(id2)) {
-            return true;
-        }
-        return false;
+    @Override
+    public final void serializeToStream(OutputSerializedData outputSerializedData) {
+        outputSerializedData.writeDouble(this.f5350a);
+        outputSerializedData.writeDouble(this.f5351b);
+        outputSerializedData.writeString(this.f5352c);
+        outputSerializedData.writeFloat(this.d);
     }
 }

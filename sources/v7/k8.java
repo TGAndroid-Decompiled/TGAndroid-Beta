@@ -1,16 +1,14 @@
 package v7;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 public abstract class k8 {
-    public abstract boolean a(i9.o oVar, i9.c cVar, i9.c cVar2);
+    public abstract Method a(Class cls, Field field);
 
-    public abstract boolean b(i9.o oVar, Object obj, Object obj2);
+    public abstract Constructor b(Class cls);
 
-    public abstract boolean c(i9.o oVar, i9.n nVar, i9.n nVar2);
+    public abstract String[] c(Class cls);
 
-    public abstract i9.c d(i9.o oVar);
-
-    public abstract i9.n e(i9.o oVar);
-
-    public abstract void f(i9.n nVar, i9.n nVar2);
-
-    public abstract void g(i9.n nVar, Thread thread);
+    public abstract boolean d(Class cls);
 }

@@ -22,7 +22,7 @@ public final class o3 implements ValueAnimator.AnimatorUpdateListener {
             case 1:
                 w3 w3Var2 = this.f21446b;
                 w3Var2.getClass();
-                w3Var2.f21655e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                w3Var2.f21654e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 w3Var2.invalidate();
                 return;
             default:

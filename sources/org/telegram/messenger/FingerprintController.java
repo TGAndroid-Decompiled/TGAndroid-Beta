@@ -1,6 +1,5 @@
 package org.telegram.messenger;
 
-import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.security.keystore.KeyGenParameterSpec;
@@ -59,7 +58,7 @@ public class FingerprintController {
                 keyPairGenerator2.initialize(new KeyGenParameterSpec.Builder("tmessages_passcode", 3).setDigests("SHA-256", "SHA-512").setEncryptionPaddings("OAEPPadding").setUserAuthenticationRequired(true).build());
                 keyPairGenerator2.generateKeyPair();
                 setLocale(locale);
-                AndroidUtilities.runOnUIThread(new x3(1, z10));
+                AndroidUtilities.runOnUIThread(new y3(1, z10));
             } catch (InvalidAlgorithmParameterException e7) {
                 FileLog.e(e7);
             } catch (Exception e10) {
@@ -122,14 +121,7 @@ public class FingerprintController {
         resources.updateConfiguration(configuration, resources.getDisplayMetrics());
     }
 
-    public static void checkKeyReady(boolean z10) {
-        if (isKeyReady() || !AndroidUtilities.isKeyguardSecure()) {
-            return;
-        }
-        Context context = ApplicationLoader.applicationContext;
-        xf.a aVar = xf.b.f49844a;
-        if (aVar.H0(context) && aVar.c(ApplicationLoader.applicationContext)) {
-            Utilities.globalQueue.postRunnable(new x3(0, z10));
-        }
+    public static void checkKeyReady(boolean r3) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FingerprintController.checkKeyReady(boolean):void");
     }
 }

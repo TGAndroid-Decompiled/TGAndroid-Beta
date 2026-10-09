@@ -7,37 +7,37 @@ import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 public class q extends ImageView {
-    public Drawable f22678a;
-    public final Path f22679b;
-    public int f22680c;
+    public Drawable f22671a;
+    public final Path f22672b;
+    public int f22673c;
     public int d;
 
     public q(Context context) {
         super(context);
-        this.f22679b = new Path();
-        this.f22680c = AndroidUtilities.dp(5.0f);
+        this.f22672b = new Path();
+        this.f22673c = AndroidUtilities.dp(5.0f);
         this.d = AndroidUtilities.dp(42.0f);
     }
 
     @Override
     public void draw(Canvas canvas) {
         canvas.save();
-        canvas.clipPath(this.f22679b);
+        canvas.clipPath(this.f22672b);
         canvas.scale((this.d / getWidth()) + 1.0f, (this.d / getHeight()) + 1.0f, getWidth() / 2.0f, getHeight() / 2.0f);
         super.draw(canvas);
         canvas.restore();
-        Drawable drawable = this.f22678a;
+        Drawable drawable = this.f22671a;
         if (drawable != null) {
-            int i10 = this.f22680c;
-            drawable.setBounds(-i10, -i10, getWidth() + this.f22680c, getHeight() + this.f22680c);
-            this.f22678a.draw(canvas);
+            int i10 = this.f22673c;
+            drawable.setBounds(-i10, -i10, getWidth() + this.f22673c, getHeight() + this.f22673c);
+            this.f22671a.draw(canvas);
         }
     }
 
     @Override
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
         super.onSizeChanged(i10, i11, i12, i13);
-        Path path = this.f22679b;
+        Path path = this.f22672b;
         path.rewind();
         path.addCircle(getWidth() / 2.0f, getHeight() / 2.0f, Math.min((getWidth() - getPaddingLeft()) - getPaddingRight(), (getHeight() - getPaddingTop()) - getPaddingBottom()) / 2.0f, Path.Direction.CW);
     }
@@ -47,12 +47,12 @@ public class q extends ImageView {
     }
 
     public void setForeground(int i10) {
-        this.f22678a = getContext().getDrawable(i10);
+        this.f22671a = getContext().getDrawable(i10);
         invalidate();
     }
 
     public void setOuterPadding(int i10) {
-        this.f22680c = i10;
+        this.f22673c = i10;
     }
 
     public void setPadding(int i10) {

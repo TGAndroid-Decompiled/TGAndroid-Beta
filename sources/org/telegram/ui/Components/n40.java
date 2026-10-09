@@ -1,86 +1,98 @@
 package org.telegram.ui.Components;
 
-import android.content.SharedPreferences;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.Utilities;
-public final class n40 {
-    public static final n40 d;
-    public static final n40 f28961e;
-    public static final n40 f28962f;
-    public static final n40 h;
-    public static final n40 f28963n;
-    public static final n40 f28964r;
-    public static final n40 f28965s;
-    public static final n40 v;
-    public static final n40 f28966w;
-    public static final n40[] f28967x;
-    public final String f28968a;
-    public final int f28969b;
-    public final float f28970c;
+import android.app.Activity;
+import android.content.Context;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class n40 extends eb {
+    public final LinearLayout X;
+    public c71 Y;
 
-    static {
-        n40 n40Var = new n40("RoundHint2", 0, "needShowRoundHint2", 3, 0.2f);
-        d = n40Var;
-        n40 n40Var2 = new n40("RoundHintChannel2", 1, "needShowRoundHintChannel2", 3, 0.2f);
-        f28961e = n40Var2;
-        n40 n40Var3 = new n40("ChannelSuggestHint", 2, "channelsuggesthint", 3, 0.2f);
-        f28962f = n40Var3;
-        n40 n40Var4 = new n40("ChannelGiftHint", 3, "channelgifthint", 3, 0.2f);
-        h = n40Var4;
-        n40 n40Var5 = new n40("GroupEmojiPackHintShown", 4, "groupEmojiPackShownHint", 1, 1.0f);
-        f28963n = n40Var5;
-        n40 n40Var6 = new n40("AccountSwitchHint", 5, "accountswitchhint", 3, 1.0f);
-        f28964r = n40Var6;
-        n40 n40Var7 = new n40("GiftMessageHint", 6, "giftMessaheHint", 3, 1.0f);
-        f28965s = n40Var7;
-        n40 n40Var8 = new n40("PlaybackSpeedHint", 7, "playbackspeedhint", 3, 0.2f);
-        v = n40Var8;
-        n40 n40Var9 = new n40();
-        f28966w = n40Var9;
-        f28967x = new n40[]{n40Var, n40Var2, n40Var3, n40Var4, n40Var5, n40Var6, n40Var7, n40Var8, n40Var9};
+    public n40(Activity activity, org.telegram.ui.ActionBar.e6 e6Var, TLRPC.User user, TLObject tLObject, org.telegram.ui.dq dqVar) {
+        super(activity, null, false, false, 1, e6Var);
+        fixNavigationBar();
+        LinearLayout linearLayout = new LinearLayout(activity);
+        this.X = linearLayout;
+        linearLayout.setOrientation(1);
+        linearLayout.setClipChildren(false);
+        linearLayout.setClipToPadding(false);
+        FrameLayout frameLayout = new FrameLayout(activity);
+        org.telegram.ui.l01 Q = Q(activity, AndroidUtilities.dp(60.0f), user);
+        org.telegram.ui.l01 Q2 = Q(activity, AndroidUtilities.dp(60.0f), tLObject);
+        ImageView imageView = new ImageView(activity);
+        imageView.setImageResource(R.drawable.msg_arrow_avatar);
+        imageView.setColorFilter(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21199z6, e6Var));
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        LinearLayout linearLayout2 = new LinearLayout(activity);
+        linearLayout2.setOrientation(0);
+        linearLayout2.setGravity(16);
+        linearLayout2.setClipChildren(false);
+        linearLayout2.addView(Q, w7.x5.n(60, 60));
+        linearLayout2.addView(imageView, w7.x5.t(24, 24, 16, 7, 0, 7, 0));
+        linearLayout2.addView(Q2, w7.x5.n(60, 60));
+        frameLayout.addView(linearLayout2, w7.x5.e(-2, -2, 17));
+        linearLayout.addView(frameLayout, w7.x5.t(-1, -2, 1, 0, 23, 0, 19));
+        TextView textView = new TextView(activity);
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setGravity(17);
+        org.telegram.messenger.bi.j(20.0f, R.string.GuardBotReplaceTitle, 1, textView);
+        int i10 = org.telegram.ui.ActionBar.i6.G6;
+        textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(i10, e6Var));
+        linearLayout.addView(textView, w7.x5.t(-1, -2, 17, 20, 0, 20, 6));
+        String shortName = DialogObject.getShortName(user);
+        String shortName2 = DialogObject.getShortName(tLObject);
+        TextView textView2 = new TextView(activity);
+        textView2.setGravity(17);
+        textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GuardBotReplaceMessage, shortName, shortName2)));
+        textView2.setTextSize(1, 14.0f);
+        textView2.setTextColor(org.telegram.ui.ActionBar.i6.w0(i10, e6Var));
+        textView2.setLineSpacing(AndroidUtilities.dp(2.66f), 1.0f);
+        linearLayout.addView(textView2, w7.x5.t(-1, -2, 17, 24, 0, 24, 29));
+        ci.d dVar = new ci.d(activity, e6Var, true);
+        dVar.e();
+        dVar.g(LocaleController.formatString(R.string.GuardBotReplaceUseNew, shortName2), false, true);
+        dVar.setOnClickListener(new ut(6, this, dqVar));
+        linearLayout.addView(dVar, w7.x5.k(14.0f, 0.0f, 14.0f, 10.0f, -1, 48));
+        ci.d dVar2 = new ci.d(activity, e6Var, true);
+        dVar2.e();
+        dVar2.d();
+        dVar2.g(LocaleController.formatString(R.string.GuardBotReplaceKeepCurrent, shortName), false, true);
+        dVar2.setOnClickListener(new f0(this, 23));
+        linearLayout.addView(dVar2, w7.x5.k(14.0f, 0.0f, 14.0f, 14.0f, -1, 48));
+        qm0 qm0Var = this.d;
+        int i11 = this.backgroundPaddingLeft;
+        qm0Var.setPadding(i11, 0, i11, 0);
+        this.Y.N(false);
     }
 
-    public n40() {
-        this.f28968a = "hints_controller_" + this;
-        this.f28969b = 3;
-        this.f28970c = 1.0f;
+    public static org.telegram.ui.l01 Q(Context context, int i10, TLObject tLObject) {
+        org.telegram.ui.l01 l01Var = new org.telegram.ui.l01(context);
+        l01Var.setRoundRadius(i10 / 2);
+        j9 j9Var = new j9((org.telegram.ui.ActionBar.e6) null);
+        j9Var.p(tLObject);
+        l01Var.setImageDrawable(j9Var);
+        l01Var.setLayoutParams(new FrameLayout.LayoutParams(i10, i10));
+        return l01Var;
     }
 
-    public static n40 valueOf(String str) {
-        return (n40) Enum.valueOf(n40.class, str);
+    @Override
+    public final CharSequence B() {
+        return "";
     }
 
-    public static n40[] values() {
-        return (n40[]) f28967x.clone();
-    }
-
-    public final void a() {
-        MessagesController.getGlobalMainSettings().edit().putInt(this.f28968a, this.f28969b).apply();
-    }
-
-    public final void b() {
-        SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
-        String str = this.f28968a;
-        MessagesController.getGlobalMainSettings().edit().putInt(str, globalMainSettings.getInt(str, 0) + 1).apply();
-    }
-
-    public final boolean c() {
-        if (MessagesController.getGlobalMainSettings().getInt(this.f28968a, 0) < this.f28969b) {
-            float f7 = this.f28970c;
-            if (f7 < 1.0f) {
-                if (f7 > 0.0f && Utilities.fastRandom.nextFloat() < f7) {
-                    return true;
-                }
-            } else {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public n40(String str, int i10, String str2, int i11, float f7) {
-        this.f28968a = str2;
-        this.f28969b = i11;
-        this.f28970c = f7;
+    @Override
+    public final pm0 x(qm0 qm0Var) {
+        c71 c71Var = new c71(this.d, getContext(), this.currentAccount, 0, true, new d(this, 14), this.resourcesProvider);
+        this.Y = c71Var;
+        c71Var.f25280r = false;
+        return c71Var;
     }
 }

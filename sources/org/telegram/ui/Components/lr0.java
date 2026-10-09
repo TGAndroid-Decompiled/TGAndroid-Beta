@@ -1,73 +1,69 @@
 package org.telegram.ui.Components;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.view.View;
-public final class lr0 implements View.OnClickListener {
-    public final int f28518a;
-    public final qv0 f28519b;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public abstract class lr0 extends FrameLayout {
+    public View f28573a;
+    public org.telegram.ui.ActionBar.j5 f28574b;
+    public org.telegram.ui.ActionBar.j5 f28575c;
+    public ci.bb d;
+    public int f28576e;
+    public AnimatorSet f28577f;
+    public Paint h;
+    public RectF f28578n;
 
-    public lr0(qv0 qv0Var, int i10) {
-        this.f28518a = i10;
-        this.f28519b = qv0Var;
+    public final void a(int i10) {
+        float measuredWidth;
+        if (this.f28576e == i10) {
+            return;
+        }
+        this.f28576e = i10;
+        AnimatorSet animatorSet = this.f28577f;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+        }
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        this.f28577f = animatorSet2;
+        ci.bb bbVar = this.d;
+        if (this.f28576e == 0) {
+            measuredWidth = 0.0f;
+        } else {
+            measuredWidth = bbVar.getMeasuredWidth();
+        }
+        animatorSet2.playTogether(ObjectAnimator.ofFloat(bbVar, View.TRANSLATION_X, measuredWidth));
+        this.f28577f.setDuration(180L);
+        this.f28577f.setInterpolator(hs.f27119g);
+        this.f28577f.addListener(new vd0(this, 13));
+        this.f28577f.start();
+        ((yq0) this).f33330r.a1();
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f28518a) {
-            case 0:
-                this.f28519b.L(true);
-                return;
-            case 1:
-                this.f28519b.C0(102, view);
-                return;
-            case 2:
-                this.f28519b.C0(100, view);
-                return;
-            case 3:
-                this.f28519b.C0(103, view);
-                return;
-            case 4:
-                this.f28519b.C0(104, view);
-                return;
-            case 5:
-                this.f28519b.C0(101, view);
-                return;
-            case 6:
-                qv0 qv0Var = this.f28519b;
-                ls0 ls0Var = qv0Var.W;
-                gs0 gs0Var = qv0Var.V;
-                if (qv0Var.f30250q0.getAlpha() >= 0.1f) {
-                    if (gs0Var != null && gs0Var.g()) {
-                        gs0Var.i();
-                    }
-                    if (ls0Var != null && ls0Var.f40689w) {
-                        pv0 i12 = qv0Var.i1(qv0Var.h1(qv0Var.getClosestTab()));
-                        ju0 W = qv0Var.W(i12.f29850a);
-                        if (W != null) {
-                            ls0Var.setReorderingAlbums(false);
-                            ps0 ps0Var = W.h;
-                            for (int i10 = 0; i10 < ps0Var.getChildCount(); i10++) {
-                                View childAt = ps0Var.getChildAt(i10);
-                                if (childAt instanceof org.telegram.ui.Cells.t7) {
-                                    ((org.telegram.ui.Cells.t7) childAt).l(false, true);
-                                }
-                            }
-                            ov0 ov0Var = i12.f29852c;
-                            if (ov0Var != null && ov0Var.f29160x) {
-                                ov0Var.f29160x = false;
-                                return;
-                            }
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                org.telegram.ui.ActionBar.n2 n2Var = this.f28519b.f30263v1;
-                n2Var.getMessagesController().getMainSettings().edit().putBoolean("story_keep", true).apply();
-                ci.kc.E(n2Var.getParentActivity(), n2Var.getCurrentAccount()).R(null);
-                return;
+    public final void onMeasure(int i10, int i11) {
+        float f7;
+        int size = (View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(28.0f)) / 2;
+        ((FrameLayout.LayoutParams) this.f28575c.getLayoutParams()).width = size;
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f28574b.getLayoutParams();
+        layoutParams.width = size;
+        layoutParams.leftMargin = AndroidUtilities.dp(14.0f) + size;
+        ci.bb bbVar = this.d;
+        FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) bbVar.getLayoutParams();
+        layoutParams2.width = size;
+        AnimatorSet animatorSet = this.f28577f;
+        if (animatorSet != null) {
+            animatorSet.cancel();
         }
+        if (this.f28576e == 0) {
+            f7 = 0.0f;
+        } else {
+            f7 = layoutParams2.width;
+        }
+        bbVar.setTranslationX(f7);
+        super.onMeasure(i10, i11);
     }
 }

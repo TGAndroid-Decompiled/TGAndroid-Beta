@@ -1,45 +1,20 @@
 package w7;
+
+import android.content.Context;
 public abstract class o8 {
-    public static void a(int i10, int i11) {
-        String a2;
-        if (i10 >= 0 && i10 < i11) {
-            return;
-        }
-        if (i10 >= 0) {
-            if (i11 < 0) {
-                throw new IllegalArgumentException(hg.c.h(i11, "negative size: "));
-            }
-            a2 = p8.a("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i10), Integer.valueOf(i11));
-        } else {
-            a2 = p8.a("%s (%s) must not be negative", "index", Integer.valueOf(i10));
-        }
-        throw new IndexOutOfBoundsException(a2);
+    public static q9.a a(String str, String str2) {
+        xa.a aVar = new xa.a(str, str2);
+        b2.i0 a2 = q9.a.a(xa.a.class);
+        a2.f3338b = 1;
+        a2.f3341f = new m4.w(aVar, 18);
+        return a2.b();
     }
 
-    public static void b(int i10, int i11, int i12) {
-        String c10;
-        if (i10 >= 0 && i11 >= i10 && i11 <= i12) {
-            return;
-        }
-        if (i10 >= 0 && i10 <= i12) {
-            if (i11 >= 0 && i11 <= i12) {
-                c10 = p8.a("end index (%s) must not be less than start index (%s)", Integer.valueOf(i11), Integer.valueOf(i10));
-            } else {
-                c10 = c(i11, i12, "end index");
-            }
-        } else {
-            c10 = c(i10, i12, "start index");
-        }
-        throw new IndexOutOfBoundsException(c10);
-    }
-
-    public static String c(int i10, int i11, String str) {
-        if (i10 < 0) {
-            return p8.a("%s (%s) must not be negative", str, Integer.valueOf(i10));
-        }
-        if (i11 >= 0) {
-            return p8.a("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i10), Integer.valueOf(i11));
-        }
-        throw new IllegalArgumentException(hg.c.h(i11, "negative size: "));
+    public static q9.a b(String str, j2.e eVar) {
+        b2.i0 a2 = q9.a.a(xa.a.class);
+        a2.f3338b = 1;
+        a2.a(q9.j.a(Context.class));
+        a2.f3341f = new qg.x1(14, str, eVar);
+        return a2.b();
     }
 }

@@ -6,14 +6,14 @@ import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Parcel;
 public abstract class b extends Binder implements IInterface {
-    public final int f3700a;
+    public final int f3779a;
 
     public b(int i10) {
-        this.f3700a = i10;
+        this.f3779a = i10;
     }
 
-    public static void G0(Parcel parcel) {
-        int i10 = q7.a.f44844a;
+    public static void F0(Parcel parcel) {
+        int i10 = q7.a.f45998a;
         int dataAvail = parcel.dataAvail();
         if (dataAvail <= 0) {
             return;
@@ -24,19 +24,19 @@ public abstract class b extends Binder implements IInterface {
         throw new BadParcelableException(sb2.toString());
     }
 
+    public abstract boolean G0(int i10, Parcel parcel, Parcel parcel2);
+
     public abstract boolean H0(int i10, Parcel parcel, Parcel parcel2);
 
-    public abstract boolean I0(int i10, Parcel parcel, Parcel parcel2);
-
-    public boolean J0(int i10, Parcel parcel, Parcel parcel2) {
+    public boolean I0(int i10, Parcel parcel, Parcel parcel2) {
         return false;
     }
 
-    public abstract boolean K0(Parcel parcel, int i10);
+    public abstract boolean J0(Parcel parcel, int i10);
 
     @Override
     public IBinder asBinder() {
-        int i10 = this.f3700a;
+        int i10 = this.f3779a;
         return this;
     }
 
@@ -46,7 +46,7 @@ public abstract class b extends Binder implements IInterface {
     }
 
     public b(String str, int i10) {
-        this.f3700a = i10;
+        this.f3779a = i10;
         switch (i10) {
             case 4:
                 attachInterface(this, str);

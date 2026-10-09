@@ -1,67 +1,52 @@
 package e0;
 
 import android.app.Activity;
-import android.app.Application;
 import android.os.Bundle;
-import android.util.Log;
-public final class f implements Application.ActivityLifecycleCallbacks {
-    public Object f8406a;
-    public Activity f8407b;
-    public final int f8408c;
-    public boolean d = false;
-    public boolean f8409e = false;
-    public boolean f8410f = false;
-
-    public f(Activity activity) {
-        this.f8407b = activity;
-        this.f8408c = activity.hashCode();
-    }
+import android.view.KeyEvent;
+import android.view.View;
+import w7.x6;
+public abstract class f extends Activity implements androidx.lifecycle.t, r0.j {
+    public final androidx.lifecycle.v f8410a = new androidx.lifecycle.v(this);
 
     @Override
-    public final void onActivityDestroyed(Activity activity) {
-        if (this.f8407b == activity) {
-            this.f8407b = null;
-            this.f8409e = true;
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        kotlin.jvm.internal.i.e(event, "event");
+        View decorView = getWindow().getDecorView();
+        kotlin.jvm.internal.i.d(decorView, "window.decorView");
+        if (x6.a(decorView, event)) {
+            return true;
         }
+        return x6.b(this, decorView, this, event);
     }
 
     @Override
-    public final void onActivityPaused(Activity activity) {
-        if (this.f8409e && !this.f8410f && !this.d) {
-            Object obj = this.f8406a;
-            try {
-                Object obj2 = g.f8413c.get(activity);
-                if (obj2 == obj && activity.hashCode() == this.f8408c) {
-                    g.f8416g.postAtFrontOfQueue(new i9.s(12, g.f8412b.get(activity), obj2));
-                    this.f8410f = true;
-                    this.f8406a = null;
-                }
-            } catch (Throwable th2) {
-                Log.e("ActivityRecreator", "Exception while fetching field values", th2);
-            }
+    public final boolean dispatchKeyShortcutEvent(KeyEvent event) {
+        kotlin.jvm.internal.i.e(event, "event");
+        View decorView = getWindow().getDecorView();
+        kotlin.jvm.internal.i.d(decorView, "window.decorView");
+        if (x6.a(decorView, event)) {
+            return true;
         }
+        return super.dispatchKeyShortcutEvent(event);
     }
 
     @Override
-    public final void onActivityStarted(Activity activity) {
-        if (this.f8407b == activity) {
-            this.d = true;
-        }
+    public final boolean i(KeyEvent event) {
+        kotlin.jvm.internal.i.e(event, "event");
+        return super.dispatchKeyEvent(event);
     }
 
     @Override
-    public final void onActivityResumed(Activity activity) {
+    public void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        int i10 = androidx.lifecycle.h0.f2856b;
+        androidx.lifecycle.f0.b(this);
     }
 
     @Override
-    public final void onActivityStopped(Activity activity) {
-    }
-
-    @Override
-    public final void onActivityCreated(Activity activity, Bundle bundle) {
-    }
-
-    @Override
-    public final void onActivitySaveInstanceState(Activity activity, Bundle bundle) {
+    public void onSaveInstanceState(Bundle outState) {
+        kotlin.jvm.internal.i.e(outState, "outState");
+        this.f8410a.g();
+        super.onSaveInstanceState(outState);
     }
 }

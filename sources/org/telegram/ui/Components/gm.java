@@ -1,85 +1,77 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.camera.CameraView;
-public final class gm extends CameraView {
-    public final ai.w4 f26939a;
-    public boolean f26940b;
-    public final ChatAttachAlertPhotoLayout f26941c;
+import java.util.HashMap;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.PhotoViewer;
+public final class gm implements Utilities.Callback {
+    public final int f26800a = 1;
+    public final boolean f26801b;
+    public final boolean f26802c;
+    public final int d;
+    public final tm f26803e;
 
-    public gm(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, Context context, boolean z10, boolean z11) {
-        super(context, z10, z11);
-        this.f26941c = chatAttachAlertPhotoLayout;
-        this.f26939a = new ai.w4(this, 7);
+    public gm(lm lmVar, boolean z10, boolean z11, int i10) {
+        this.f26803e = lmVar;
+        this.f26801b = z10;
+        this.f26802c = z11;
+        this.d = i10;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f7;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f26941c;
-        xi xiVar = chatAttachAlertPhotoLayout.f29741b;
-        if (AndroidUtilities.makingGlobalBlurBitmap) {
-            return;
-        }
-        if (!this.f26940b && (chatAttachAlertPhotoLayout.f24036d0 || !chatAttachAlertPhotoLayout.f24032b0)) {
-            float translationY = (xiVar.getContainerView().getTranslationY() + (xiVar.G0[1] + chatAttachAlertPhotoLayout.W0)) - chatAttachAlertPhotoLayout.P.getTranslationY();
-            ci.i iVar = xiVar.B2;
-            if (iVar != null) {
-                f7 = iVar.d() + AndroidUtilities.dp(8.0f);
-            } else {
-                f7 = 0.0f;
-            }
-            int min = (int) Math.min(translationY - f7, getMeasuredHeight());
-            boolean z10 = chatAttachAlertPhotoLayout.f24036d0;
-            if (z10) {
-                RectF rectF = AndroidUtilities.rectTmp;
-                float f10 = chatAttachAlertPhotoLayout.f24056n1;
-                boolean z11 = ChatAttachAlertPhotoLayout.f24025q1;
-                float f11 = 1.0f - chatAttachAlertPhotoLayout.f24038e0;
-                rectF.set((0.0f * f11) + f10, (f11 * chatAttachAlertPhotoLayout.W) + chatAttachAlertPhotoLayout.f24051k1, chatAttachAlertPhotoLayout.f24053m1, AndroidUtilities.lerp(Math.min(min, chatAttachAlertPhotoLayout.l1), getMeasuredHeight(), chatAttachAlertPhotoLayout.f24038e0));
-            } else if (!z10 && !chatAttachAlertPhotoLayout.f24032b0) {
-                RectF rectF2 = AndroidUtilities.rectTmp;
-                boolean z12 = ChatAttachAlertPhotoLayout.f24025q1;
-                rectF2.set(0.0f, chatAttachAlertPhotoLayout.W, getMeasuredWidth(), Math.min(min, getMeasuredHeight()));
+    public final void run(Object obj) {
+        int i10;
+        switch (this.f26800a) {
+            case 0:
+                Long l4 = (Long) obj;
+                yi yiVar = ((om) this.f26803e).f29513b.f30173b;
+                if (yiVar != null) {
+                    yiVar.L1 = true;
+                }
+                yiVar.f33219c2.I1(7, true, this.f26801b, this.d, 0, 0L, yiVar.u1(), this.f26802c, l4.longValue());
+                HashMap hashMap = ChatAttachAlertPhotoLayout.f24023s1;
+                hashMap.clear();
+                ChatAttachAlertPhotoLayout.f24022r1.clear();
+                ChatAttachAlertPhotoLayout.f24024t1.clear();
+                hashMap.clear();
+                PhotoViewer.t1();
+                PhotoViewer.t1().G0(PhotoViewer.t1().P, false);
+                PhotoViewer.t1().f34046u2 = true;
                 return;
-            } else {
-                AndroidUtilities.rectTmp.set(0.0f, 0.0f, getMeasuredWidth(), Math.min(min, getMeasuredHeight()));
-            }
-            canvas.save();
-            canvas.clipRect(AndroidUtilities.rectTmp);
-            super.dispatchDraw(canvas);
-            canvas.restore();
-            return;
+            default:
+                Long l10 = (Long) obj;
+                PhotoViewer.t1();
+                PhotoViewer.t1().O = false;
+                PhotoViewer.t1().f34046u2 = false;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((lm) this.f26803e).f28486c;
+                yi yiVar2 = chatAttachAlertPhotoLayout.f30173b;
+                yiVar2.f33279v2 = true;
+                yiVar2.L1 = true;
+                chatAttachAlertPhotoLayout.a0(false);
+                wi wiVar = yiVar2.f33219c2;
+                boolean z10 = this.f26801b;
+                if (z10) {
+                    i10 = 4;
+                } else {
+                    i10 = 8;
+                }
+                wiVar.I1(i10, true, this.f26802c, this.d, 0, 0L, yiVar2.u1(), z10, l10.longValue());
+                ChatAttachAlertPhotoLayout.f24022r1.clear();
+                ChatAttachAlertPhotoLayout.f24024t1.clear();
+                ChatAttachAlertPhotoLayout.f24023s1.clear();
+                chatAttachAlertPhotoLayout.G.l();
+                chatAttachAlertPhotoLayout.v.l();
+                yiVar2.dismiss(true);
+                PhotoViewer.t1();
+                PhotoViewer.t1().G0(PhotoViewer.t1().P, false);
+                PhotoViewer.t1().f34046u2 = true;
+                return;
         }
-        super.dispatchDraw(canvas);
     }
 
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f26941c;
-        rc.a(chatAttachAlertPhotoLayout.P, this.f26939a);
-        chatAttachAlertPhotoLayout.E.invalidate();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        rc.h(this.f26941c.P);
-    }
-
-    @Override
-    public void setVisibility(int i10) {
-        super.setVisibility(i10);
-        this.f26941c.E.invalidate();
-    }
-
-    @Override
-    public final void showTexture(boolean z10, boolean z11) {
-        super.showTexture(z10, z11);
-        this.f26941c.E.invalidate();
+    public gm(om omVar, boolean z10, int i10, boolean z11) {
+        this.f26803e = omVar;
+        this.f26801b = z10;
+        this.d = i10;
+        this.f26802c = z11;
     }
 }

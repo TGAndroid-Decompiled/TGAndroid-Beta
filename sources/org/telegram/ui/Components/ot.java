@@ -1,30 +1,105 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-public final class ot implements pt {
-    public final int f29545a;
-    public final Object f29546b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+public final class ot extends AnimatorListenerAdapter {
+    public final int f29567a;
+    public final s4.d1 f29568b;
+    public final int f29569c;
+    public final View d;
+    public final int f29570e;
+    public final ViewPropertyAnimator f29571f;
+    public final s4.g1 h;
 
-    public ot(Object obj, int i10) {
-        this.f29545a = i10;
-        this.f29546b = obj;
+    public ot(s4.g1 g1Var, s4.d1 d1Var, int i10, View view, int i11, ViewPropertyAnimator viewPropertyAnimator, int i12) {
+        this.f29567a = i12;
+        this.h = g1Var;
+        this.f29568b = d1Var;
+        this.f29569c = i10;
+        this.d = view;
+        this.f29570e = i11;
+        this.f29571f = viewPropertyAnimator;
     }
 
     @Override
-    public final void a(int i10, boolean z10) {
-        switch (this.f29545a) {
+    public final void onAnimationCancel(Animator animator) {
+        switch (this.f29567a) {
             case 0:
-                ArrayList arrayList = ((rt) this.f29546b).f30580b;
-                int size = arrayList.size();
-                int i11 = 0;
-                while (i11 < size) {
-                    Object obj = arrayList.get(i11);
-                    i11++;
-                    ((pt) obj).a(i10, z10);
+                int i10 = this.f29569c;
+                View view = this.d;
+                if (i10 != 0) {
+                    view.setTranslationX(0.0f);
+                }
+                if (this.f29570e != 0) {
+                    view.setTranslationY(0.0f);
+                }
+                View view2 = this.f29568b.f47656a;
+                if (view2 instanceof org.telegram.ui.Cells.s2) {
+                    ((org.telegram.ui.Cells.s2) view2).setMoving(false);
+                    return;
+                } else if (view2 instanceof gg.l) {
+                    ((gg.l) view2).f10711a = false;
+                    return;
+                } else {
+                    return;
+                }
+            default:
+                int i11 = this.f29569c;
+                View view3 = this.d;
+                if (i11 != 0) {
+                    view3.setTranslationX(0.0f);
+                }
+                if (this.f29570e != 0) {
+                    view3.setTranslationY(0.0f);
+                    return;
                 }
                 return;
+        }
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f29567a) {
+            case 0:
+                this.f29571f.setListener(null);
+                rt rtVar = (rt) this.h;
+                s4.d1 d1Var = this.f29568b;
+                rtVar.v(d1Var);
+                rtVar.f30507w.remove(d1Var);
+                rtVar.A();
+                View view = d1Var.f47656a;
+                if (view instanceof org.telegram.ui.Cells.s2) {
+                    ((org.telegram.ui.Cells.s2) view).setMoving(false);
+                } else if (view instanceof gg.l) {
+                    ((gg.l) view).f10711a = false;
+                }
+                View view2 = this.d;
+                view2.setTranslationX(0.0f);
+                view2.setTranslationY(0.0f);
+                return;
             default:
-                ((Runnable) this.f29546b).run();
+                this.f29571f.setListener(null);
+                s4.j jVar = (s4.j) this.h;
+                s4.d1 d1Var2 = this.f29568b;
+                jVar.P(d1Var2);
+                jVar.v(d1Var2);
+                jVar.f47726z.remove(d1Var2);
+                jVar.G();
+                jVar.z(d1Var2);
+                return;
+        }
+    }
+
+    @Override
+    public final void onAnimationStart(Animator animator) {
+        switch (this.f29567a) {
+            case 0:
+                ((rt) this.h).getClass();
+                return;
+            default:
+                ((s4.j) this.h).getClass();
                 return;
         }
     }

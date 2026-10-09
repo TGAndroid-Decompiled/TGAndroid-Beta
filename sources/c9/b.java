@@ -9,15 +9,15 @@ import android.os.IInterface;
 import android.os.Parcel;
 import android.util.Log;
 public final class b implements ServiceConnection {
-    public b9.c f4512a;
-    public final c f4513b;
+    public b9.c f4562a;
+    public final c f4563b;
 
     public b(c cVar) {
-        this.f4513b = cVar;
+        this.f4563b = cVar;
     }
 
     public static boolean a(b bVar) {
-        if (bVar.f4512a != null) {
+        if (bVar.f4562a != null) {
             return true;
         }
         return false;
@@ -25,12 +25,12 @@ public final class b implements ServiceConnection {
 
     public final boolean b(Intent intent, Bundle bundle) {
         boolean z10;
-        b9.c cVar = this.f4512a;
+        b9.c cVar = this.f4562a;
         if (cVar != null) {
             b9.a aVar = (b9.a) cVar;
             Parcel obtain = Parcel.obtain();
             obtain.writeInterfaceToken("com.google.android.search.verification.api.ISearchActionVerificationService");
-            int i10 = h5.a.f11020a;
+            int i10 = h5.a.f11024a;
             if (intent == null) {
                 obtain.writeInt(0);
             } else {
@@ -39,13 +39,13 @@ public final class b implements ServiceConnection {
             }
             obtain.writeInt(1);
             bundle.writeToParcel(obtain, 0);
-            Parcel G0 = aVar.G0(obtain, 1);
-            if (G0.readInt() != 0) {
+            Parcel F0 = aVar.F0(obtain, 1);
+            if (F0.readInt() != 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            G0.recycle();
+            F0.recycle();
             if (z10) {
                 return true;
             }
@@ -57,11 +57,11 @@ public final class b implements ServiceConnection {
     public final void onServiceConnected(ComponentName componentName, IBinder iBinder) {
         boolean z10;
         b9.c aVar;
-        z10 = this.f4513b.dbg;
+        z10 = this.f4563b.dbg;
         if (z10) {
             Log.d("SAVerificationClientS", "onServiceConnected");
         }
-        int i10 = b9.b.f3711a;
+        int i10 = b9.b.f3790a;
         if (iBinder == null) {
             aVar = null;
         } else {
@@ -72,14 +72,14 @@ public final class b implements ServiceConnection {
                 aVar = new b9.a(iBinder);
             }
         }
-        this.f4512a = aVar;
+        this.f4562a = aVar;
     }
 
     @Override
     public final void onServiceDisconnected(ComponentName componentName) {
         boolean z10;
-        this.f4512a = null;
-        z10 = this.f4513b.dbg;
+        this.f4562a = null;
+        z10 = this.f4563b.dbg;
         if (z10) {
             Log.d("SAVerificationClientS", "onServiceDisconnected");
         }

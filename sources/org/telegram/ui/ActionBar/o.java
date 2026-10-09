@@ -23,25 +23,25 @@ public final class o implements Runnable {
                 return;
             case 1:
                 actionBarLayout.requestLayout();
-                actionBarLayout.f20354s.requestLayout();
+                actionBarLayout.f20351s.requestLayout();
                 actionBarLayout.v.requestLayout();
-                actionBarLayout.f20359w.requestLayout();
+                actionBarLayout.f20356w.requestLayout();
                 return;
             case 2:
-                if (actionBarLayout.f20316a && actionBarLayout.getLastFragment() != null && actionBarLayout.f20354s.getChildCount() == 0) {
+                if (actionBarLayout.f20313a && actionBarLayout.getLastFragment() != null && actionBarLayout.f20351s.getChildCount() == 0) {
                     if (BuildVars.DEBUG_VERSION) {
-                        FileLog.e(new RuntimeException(TextUtils.join(", ", actionBarLayout.f20338i1)));
+                        FileLog.e(new RuntimeException(TextUtils.join(", ", actionBarLayout.f20335i1)));
                     }
                     actionBarLayout.U(true, true);
                     return;
                 }
                 return;
             case 3:
-                Drawable drawable = ActionBarLayout.f20313p1;
+                Drawable drawable = ActionBarLayout.f20310p1;
                 actionBarLayout.F(false);
                 return;
             case 4:
-                Drawable drawable2 = ActionBarLayout.f20313p1;
+                Drawable drawable2 = ActionBarLayout.f20310p1;
                 actionBarLayout.F(false);
                 return;
             default:

@@ -5,20 +5,20 @@ import android.os.Parcelable;
 import java.util.List;
 public final class o extends o6.a {
     public static final Parcelable.Creator<o> CREATOR = new m8.h(13);
-    public final int f16735a;
-    public List f16736b;
+    public final int f16700a;
+    public List f16701b;
 
     public o(int i10, List list) {
-        this.f16735a = i10;
-        this.f16736b = list;
+        this.f16700a = i10;
+        this.f16701b = list;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = w7.g0.q(parcel, 20293);
-        w7.g0.s(parcel, 1, 4);
-        parcel.writeInt(this.f16735a);
-        w7.g0.p(parcel, 2, this.f16736b);
-        w7.g0.r(parcel, q6);
+        int q6 = w7.d0.q(parcel, 20293);
+        w7.d0.s(parcel, 1, 4);
+        parcel.writeInt(this.f16700a);
+        w7.d0.p(parcel, 2, this.f16701b);
+        w7.d0.r(parcel, q6);
     }
 }

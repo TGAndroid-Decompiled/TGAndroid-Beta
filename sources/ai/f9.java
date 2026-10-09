@@ -1,37 +1,19 @@
 package ai;
 
-import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
 public final class f9 {
-    public int f951a;
-    public long f952b;
-    public int f953c;
+    public int f1033a;
+    public String f1034b;
+    public TLRPC.Photo f1035c;
+    public TLRPC.Document d;
 
-    public f9(int i10, int i11, long j3) {
-        this.f953c = i10;
-        this.f952b = j3;
-        this.f951a = i11;
-    }
-
-    public boolean a(int i10, int i11) {
-        int i12 = this.f953c;
-        if (i12 != 1) {
-            if ((i12 == 2 || i12 == 3) && ConnectionsManager.getInstance(i10).getCurrentTime() >= this.f952b) {
-                return false;
-            }
-        } else if (this.f951a >= i11) {
-            return false;
-        }
-        return true;
-    }
-
-    public int b() {
-        int i10 = this.f953c;
-        if (i10 != 2) {
-            if (i10 != 3) {
-                return 14;
-            }
-            return 16;
-        }
-        return 15;
+    public static f9 a(TL_stories.TL_storyAlbum tL_storyAlbum) {
+        ?? obj = new Object();
+        obj.f1033a = tL_storyAlbum.album_id;
+        obj.f1034b = tL_storyAlbum.title;
+        obj.f1035c = tL_storyAlbum.icon_photo;
+        obj.d = tL_storyAlbum.icon_video;
+        return obj;
     }
 }

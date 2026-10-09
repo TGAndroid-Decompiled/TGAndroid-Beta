@@ -1,71 +1,27 @@
 package v7;
 
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.os.Build;
+import android.os.CancellationSignal;
+import androidx.credentials.playservices.CredentialProviderPlayServicesImpl;
 public abstract class c0 {
-    public static Boolean f47887a;
-    public static Boolean f47888b;
-    public static Boolean f47889c;
-    public static Boolean d;
-    public static Boolean f47890e;
-    public static Boolean f47891f;
-    public static Boolean f47892g;
-
-    public static boolean a(Context context) {
-        boolean z10;
-        PackageManager packageManager = context.getPackageManager();
-        if (f47891f == null) {
-            if (Build.VERSION.SDK_INT >= 26 && packageManager.hasSystemFeature("android.hardware.type.automotive")) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            f47891f = Boolean.valueOf(z10);
+    public static void a(CancellationSignal cancellationSignal, sd.a onResultOrException) {
+        kotlin.jvm.internal.i.e(onResultOrException, "onResultOrException");
+        CredentialProviderPlayServicesImpl.Companion.getClass();
+        if (a1.h.a(cancellationSignal)) {
+            return;
         }
-        return f47891f.booleanValue();
+        onResultOrException.invoke();
     }
 
-    public static boolean b(Resources resources) {
-        boolean z10 = false;
-        if (resources == null) {
-            return false;
-        }
-        if (d == null) {
-            Configuration configuration = resources.getConfiguration();
-            if ((configuration.screenLayout & 15) <= 3 && configuration.smallestScreenWidthDp >= 600) {
-                z10 = true;
+    public static boolean b(int i10, sd.p pVar, sd.l lVar, CancellationSignal cancellationSignal) {
+        if (i10 != -1) {
+            ?? obj = new Object();
+            obj.f15180a = new w0.h(hg.c.i(i10, "activity with result code: ", " indicating not RESULT_OK"), 2);
+            if (i10 == 0) {
+                obj.f15180a = new w0.g("activity is cancelled by the user.");
             }
-            d = Boolean.valueOf(z10);
+            pVar.invoke(cancellationSignal, new b1.c(lVar, obj, 1));
+            return true;
         }
-        return d.booleanValue();
-    }
-
-    public static boolean c(Context context) {
-        Resources resources = context.getResources();
-        boolean z10 = false;
-        if (resources == null) {
-            return false;
-        }
-        if (f47888b == null) {
-            f47888b = Boolean.valueOf(((resources.getConfiguration().screenLayout & 15) > 3 || b(resources)) ? true : true);
-        }
-        return f47888b.booleanValue();
-    }
-
-    public static boolean d(Context context) {
-        boolean z10;
-        PackageManager packageManager = context.getPackageManager();
-        if (f47892g == null) {
-            if (!packageManager.hasSystemFeature("com.google.android.tv") && !packageManager.hasSystemFeature("android.hardware.type.television") && !packageManager.hasSystemFeature("android.software.leanback")) {
-                z10 = false;
-            } else {
-                z10 = true;
-            }
-            f47892g = Boolean.valueOf(z10);
-        }
-        return f47892g.booleanValue();
+        return false;
     }
 }

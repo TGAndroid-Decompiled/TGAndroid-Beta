@@ -1,14 +1,35 @@
 package w3;
-public final class d {
-    public final int f48486a;
-    public final int f48487b;
-    public final int f48488c;
-    public final int d;
 
-    public d(int i10, int i11, int i12, int i13) {
-        this.f48486a = i10;
-        this.f48487b = i11;
-        this.f48488c = i12;
-        this.d = i13;
+import org.telegram.ui.Components.br0;
+import org.telegram.ui.Components.tc;
+import yh.s3;
+public final class d implements br0 {
+    public final Object f49767a;
+
+    public d(Object obj) {
+        this.f49767a = obj;
+    }
+
+    public StringBuilder a() {
+        ef.a aVar = (ef.a) this.f49767a;
+        if (aVar instanceof ze.m) {
+            StringBuilder sb2 = ((ze.m) aVar).f54435b.f54420b;
+            if (sb2.length() != 0) {
+                return sb2;
+            }
+            return null;
+        }
+        return null;
+    }
+
+    @Override
+    public void q0() {
+        tc k10 = ((s3) this.f49767a).getBulletinFactory().k(false);
+        k10.f31140t = true;
+        k10.j();
+    }
+
+    @Override
+    public void P() {
     }
 }

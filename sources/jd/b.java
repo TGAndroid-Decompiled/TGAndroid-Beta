@@ -1,37 +1,135 @@
 package jd;
 
-import kd.h;
-import kotlin.jvm.internal.i;
-import kotlin.jvm.internal.s;
-import rd.p;
-import v7.t7;
-public final class b extends h {
-    public int f14090a;
-    public final p f14091b;
-    public final id.c f14092c;
+import java.io.Serializable;
+import sd.p;
+public final class b implements h, Serializable {
+    public final h f14126a;
+    public final f f14127b;
 
-    public b(id.c cVar, id.c cVar2, p pVar) {
-        super(cVar);
-        this.f14091b = pVar;
-        this.f14092c = cVar2;
+    public b(f element, h left) {
+        kotlin.jvm.internal.i.e(left, "left");
+        kotlin.jvm.internal.i.e(element, "element");
+        this.f14126a = left;
+        this.f14127b = element;
+    }
+
+    public final boolean equals(Object obj) {
+        boolean z10;
+        if (this != obj) {
+            if (obj instanceof b) {
+                b bVar = (b) obj;
+                int i10 = 2;
+                b bVar2 = bVar;
+                int i11 = 2;
+                while (true) {
+                    h hVar = bVar2.f14126a;
+                    if (hVar instanceof b) {
+                        bVar2 = (b) hVar;
+                    } else {
+                        bVar2 = null;
+                    }
+                    if (bVar2 == null) {
+                        break;
+                    }
+                    i11++;
+                }
+                b bVar3 = this;
+                while (true) {
+                    h hVar2 = bVar3.f14126a;
+                    if (hVar2 instanceof b) {
+                        bVar3 = (b) hVar2;
+                    } else {
+                        bVar3 = null;
+                    }
+                    if (bVar3 == null) {
+                        break;
+                    }
+                    i10++;
+                }
+                if (i11 == i10) {
+                    b bVar4 = this;
+                    while (true) {
+                        f fVar = bVar4.f14127b;
+                        if (!kotlin.jvm.internal.i.a(bVar.get(fVar.getKey()), fVar)) {
+                            z10 = false;
+                            break;
+                        }
+                        h hVar3 = bVar4.f14126a;
+                        if (hVar3 instanceof b) {
+                            bVar4 = (b) hVar3;
+                        } else {
+                            kotlin.jvm.internal.i.c(hVar3, "null cannot be cast to non-null type kotlin.coroutines.CoroutineContext.Element");
+                            f fVar2 = (f) hVar3;
+                            z10 = kotlin.jvm.internal.i.a(bVar.get(fVar2.getKey()), fVar2);
+                            break;
+                        }
+                    }
+                    if (z10) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public final Object invokeSuspend(Object obj) {
-        int i10 = this.f14090a;
-        if (i10 != 0) {
-            if (i10 == 1) {
-                this.f14090a = 2;
-                t7.b(obj);
-                return obj;
+    public final Object fold(Object obj, p pVar) {
+        return pVar.invoke(this.f14126a.fold(obj, pVar), this.f14127b);
+    }
+
+    @Override
+    public final f get(g key) {
+        kotlin.jvm.internal.i.e(key, "key");
+        b bVar = this;
+        while (true) {
+            f fVar = bVar.f14127b.get(key);
+            if (fVar != null) {
+                return fVar;
             }
-            throw new IllegalStateException("This coroutine had already completed");
+            h hVar = bVar.f14126a;
+            if (hVar instanceof b) {
+                bVar = (b) hVar;
+            } else {
+                return hVar.get(key);
+            }
         }
-        this.f14090a = 1;
-        t7.b(obj);
-        p pVar = this.f14091b;
-        i.c(pVar, "null cannot be cast to non-null type kotlin.Function2<R of kotlin.coroutines.intrinsics.IntrinsicsKt__IntrinsicsJvmKt.createCoroutineUnintercepted, kotlin.coroutines.Continuation<T of kotlin.coroutines.intrinsics.IntrinsicsKt__IntrinsicsJvmKt.createCoroutineUnintercepted>, kotlin.Any?>");
-        s.a(2, pVar);
-        return pVar.invoke(this.f14092c, this);
+    }
+
+    public final int hashCode() {
+        return this.f14127b.hashCode() + this.f14126a.hashCode();
+    }
+
+    @Override
+    public final h minusKey(g key) {
+        kotlin.jvm.internal.i.e(key, "key");
+        f fVar = this.f14127b;
+        f fVar2 = fVar.get(key);
+        h hVar = this.f14126a;
+        if (fVar2 != null) {
+            return hVar;
+        }
+        h minusKey = hVar.minusKey(key);
+        if (minusKey == hVar) {
+            return this;
+        }
+        if (minusKey == i.f14129a) {
+            return fVar;
+        }
+        return new b(fVar, minusKey);
+    }
+
+    @Override
+    public final h plus(h context) {
+        kotlin.jvm.internal.i.e(context, "context");
+        if (context == i.f14129a) {
+            return this;
+        }
+        return (h) context.fold(this, new b1.e(5));
+    }
+
+    public final String toString() {
+        return "[" + ((String) fold("", new b1.e(4))) + ']';
     }
 }

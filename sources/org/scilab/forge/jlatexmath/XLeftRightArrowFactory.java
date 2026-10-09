@@ -5,8 +5,12 @@ public class XLeftRightArrowFactory {
     private static final Atom RIGHT = SymbolAtom.get("rightarrow");
 
     public static Box create(TeXEnvironment teXEnvironment, float f7) {
-        float f10 = 0.0f;
-        float min = Math.min((Float.isInfinite(f7) || Float.isNaN(f7) || f7 < 0.0f) ? 0.0f : 0.0f, 4096.0f);
+        float f10;
+        float f11 = 0.0f;
+        if (Float.isInfinite(f7) || Float.isNaN(f7) || f7 < 0.0f) {
+            f7 = 0.0f;
+        }
+        float min = Math.min(f7, 4096.0f);
         Box createBox = LEFT.createBox(teXEnvironment);
         Box createBox2 = RIGHT.createBox(teXEnvironment);
         float width = createBox2.getWidth() + createBox.getWidth();
@@ -22,13 +26,12 @@ public class XLeftRightArrowFactory {
         float width3 = (createBox4.getWidth() * 2.0f) + width;
         HorizontalBox horizontalBox2 = new HorizontalBox();
         while (true) {
-            float f11 = min - width3;
-            if (f10 < f11 - width2) {
+            if (f11 < (min - width3) - width2) {
                 horizontalBox2.add(createBox3);
                 horizontalBox2.add(createBox4);
-                f10 += width2;
+                f11 += width2;
             } else {
-                horizontalBox2.add(new ScaleBox(createBox3, (f11 - f10) / createBox3.getWidth(), 1.0d));
+                horizontalBox2.add(new ScaleBox(createBox3, (f10 - f11) / createBox3.getWidth(), 1.0d));
                 horizontalBox2.add(0, createBox4);
                 horizontalBox2.add(0, createBox);
                 horizontalBox2.add(createBox4);

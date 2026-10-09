@@ -1,81 +1,24 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-import org.telegram.messenger.AndroidUtilities;
-public final class ak extends org.telegram.ui.Cells.w0 {
-    public final yn f34894l2;
+import org.telegram.messenger.MessageObject;
+public final class ak extends g.o {
+    public final zn f35948c;
 
-    public ak(Context context, org.telegram.ui.ActionBar.d6 d6Var, yn ynVar) {
-        super(context, d6Var, false);
-        this.f34894l2 = ynVar;
+    public ak(zn znVar) {
+        this.f35948c = znVar;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        yn ynVar = this.f34894l2;
-        if (ynVar.f43585z8 == null) {
-            float y3 = ((ynVar.f43526v0.getY() + ynVar.f43469q9) - getY()) - AndroidUtilities.dp(4.0f);
-            if (y3 > 0.0f) {
-                if (y3 < getMeasuredHeight()) {
-                    canvas.save();
-                    canvas.clipRect(0.0f, y3, getMeasuredWidth(), getMeasuredHeight());
-                    super.onDraw(canvas);
-                    canvas.restore();
-                    return;
-                }
-                return;
-            }
-            super.onDraw(canvas);
+    public final int i(int i10) {
+        int i11;
+        MessageObject messageObject;
+        MessageObject.GroupedMessages c92;
+        zn znVar = this.f35948c;
+        mm mmVar = znVar.A0;
+        int i12 = mmVar.J;
+        if (i10 >= i12 && i10 < mmVar.K && (i11 = i10 - i12) >= 0 && i11 < mmVar.L().size() && (c92 = znVar.c9((messageObject = (MessageObject) znVar.A0.L().get(i11)))) != null) {
+            return c92.getPosition(messageObject).spanSize;
         }
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.ActionBar.k kVar;
-        if (getAlpha() != 0.0f) {
-            yn ynVar = this.f34894l2;
-            kVar = ((org.telegram.ui.ActionBar.n2) ynVar).actionBar;
-            if (!kVar.s() && !ynVar.z9()) {
-                return super.onInterceptTouchEvent(motionEvent);
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.ActionBar.k kVar;
-        if (getAlpha() != 0.0f) {
-            yn ynVar = this.f34894l2;
-            kVar = ((org.telegram.ui.ActionBar.n2) ynVar).actionBar;
-            if (!kVar.s() && !ynVar.z9()) {
-                return super.onTouchEvent(motionEvent);
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final void setAlpha(float f7) {
-        int i10;
-        super.setAlpha(f7);
-        if (f7 > 0.0f) {
-            i10 = 0;
-        } else {
-            i10 = 4;
-        }
-        setVisibility(i10);
-    }
-
-    @Override
-    public final void setTranslationY(float f7) {
-        if (getTranslationY() != f7) {
-            invalidate();
-        }
-        super.setTranslationY(f7);
+        return 1000;
     }
 }

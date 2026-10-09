@@ -1,35 +1,35 @@
 package di;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.widget.FrameLayout;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.ui.Components.aw0;
-import org.telegram.ui.Components.zl0;
-public final class e implements aw0 {
-    public final int f8367a;
-    public final FrameLayout f8368b;
+import android.app.Activity;
+import android.view.ViewGroup;
+import bi.v;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.Cells.m4;
+import org.telegram.ui.Components.c71;
+import org.telegram.ui.Components.qm0;
+import s4.d1;
+public final class e extends c71 {
+    public final i N;
 
-    public e(int i10, FrameLayout frameLayout) {
-        this.f8367a = i10;
-        this.f8368b = frameLayout;
+    public e(i iVar, qm0 qm0Var, Activity activity, int i10, int i11, v vVar, e6 e6Var) {
+        super(qm0Var, activity, i10, i11, true, vVar, e6Var);
+        this.N = iVar;
     }
 
     @Override
-    public final void a(Canvas canvas, RectF rectF, RecyclerView recyclerView) {
-        switch (this.f8367a) {
-            case 0:
-                zl0 zl0Var = (zl0) recyclerView;
-                gh.d.a(zl0Var, canvas, rectF, zl0Var, this.f8368b);
-                return;
-            case 1:
-                zl0 zl0Var2 = (zl0) recyclerView;
-                gh.d.a(zl0Var2, canvas, rectF, zl0Var2, this.f8368b);
-                return;
-            default:
-                zl0 zl0Var3 = (zl0) recyclerView;
-                gh.d.a(zl0Var3, canvas, rectF, zl0Var3, this.f8368b);
-                return;
+    public final d1 x(ViewGroup viewGroup, int i10) {
+        e6 e6Var;
+        if (i10 == 42) {
+            i iVar = this.N;
+            Activity parentActivity = iVar.getParentActivity();
+            int i11 = i6.L6;
+            e6Var = ((n2) iVar).resourceProvider;
+            m4 m4Var = new m4(parentActivity, i11, 21, 0, false, e6Var);
+            m4Var.setHeight(25);
+            return new d1(m4Var);
         }
+        return super.x(viewGroup, i10);
     }
 }

@@ -1,20 +1,20 @@
 package z7;
 public final class ib {
-    public final we f52811a;
-    public final hb f52812b;
-    public final fb f52813c;
+    public final we f53915a;
+    public final hb f53916b;
+    public final fb f53917c;
     public final ce d;
-    public final fe f52814e;
-    public final ee f52815f;
-    public final j1 f52816g;
+    public final fe f53918e;
+    public final ee f53919f;
+    public final j1 f53920g;
 
-    public ib(m.p3 p3Var) {
-        this.f52811a = (we) p3Var.f15859a;
-        this.f52812b = (hb) p3Var.f15860b;
-        this.f52813c = (fb) p3Var.f15861c;
-        this.d = (ce) p3Var.d;
-        this.f52814e = (fe) p3Var.f15862e;
-        this.f52815f = (ee) p3Var.f15863f;
-        this.f52816g = (j1) p3Var.h;
+    public ib(m.q3 q3Var) {
+        this.f53915a = (we) q3Var.f15795a;
+        this.f53916b = (hb) q3Var.f15796b;
+        this.f53917c = (fb) q3Var.f15797c;
+        this.d = (ce) q3Var.d;
+        this.f53918e = (fe) q3Var.f15798e;
+        this.f53919f = (ee) q3Var.f15799f;
+        this.f53920g = (j1) q3Var.h;
     }
 }

@@ -3,32 +3,32 @@ package c3;
 import b2.s0;
 import java.util.ArrayList;
 public final class d {
-    public final ArrayList f4037a;
-    public final int f4038b;
-    public final int f4039c;
+    public final ArrayList f4086a;
+    public final int f4087b;
+    public final int f4088c;
     public final int d;
-    public final int f4040e;
-    public final int f4041f;
-    public final int f4042g;
+    public final int f4089e;
+    public final int f4090f;
+    public final int f4091g;
     public final int h;
-    public final int f4043i;
-    public final int f4044j;
-    public final float f4045k;
-    public final String f4046l;
+    public final int f4092i;
+    public final int f4093j;
+    public final float f4094k;
+    public final String f4095l;
 
     public d(ArrayList arrayList, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18, float f7, String str) {
-        this.f4037a = arrayList;
-        this.f4038b = i10;
-        this.f4039c = i11;
+        this.f4086a = arrayList;
+        this.f4087b = i10;
+        this.f4088c = i11;
         this.d = i12;
-        this.f4040e = i13;
-        this.f4041f = i14;
-        this.f4042g = i15;
+        this.f4089e = i13;
+        this.f4090f = i14;
+        this.f4091g = i15;
         this.h = i16;
-        this.f4043i = i17;
-        this.f4044j = i18;
-        this.f4045k = f7;
-        this.f4046l = str;
+        this.f4092i = i17;
+        this.f4093j = i18;
+        this.f4094k = f7;
+        this.f4095l = str;
     }
 
     public static d a(e2.v vVar) {
@@ -39,9 +39,9 @@ public final class d {
         int i13;
         int i14;
         int i15;
+        float f7;
         int i16;
         int i17;
-        float f7;
         try {
             vVar.K(4);
             int x10 = (vVar.x() & 3) + 1;
@@ -50,44 +50,44 @@ public final class d {
                 int x11 = vVar.x() & 31;
                 for (int i18 = 0; i18 < x11; i18++) {
                     int D = vVar.D();
-                    int i19 = vVar.f8591b;
+                    int i19 = vVar.f8585b;
                     vVar.K(D);
-                    byte[] bArr = vVar.f8590a;
+                    byte[] bArr = vVar.f8584a;
                     byte[] bArr2 = new byte[D + 4];
-                    System.arraycopy(e2.e.f8548a, 0, bArr2, 0, 4);
+                    System.arraycopy(e2.e.f8542a, 0, bArr2, 0, 4);
                     System.arraycopy(bArr, i19, bArr2, 4, D);
                     arrayList.add(bArr2);
                 }
                 int x12 = vVar.x();
                 for (int i20 = 0; i20 < x12; i20++) {
                     int D2 = vVar.D();
-                    int i21 = vVar.f8591b;
+                    int i21 = vVar.f8585b;
                     vVar.K(D2);
-                    byte[] bArr3 = vVar.f8590a;
+                    byte[] bArr3 = vVar.f8584a;
                     byte[] bArr4 = new byte[D2 + 4];
-                    System.arraycopy(e2.e.f8548a, 0, bArr4, 0, 4);
+                    System.arraycopy(e2.e.f8542a, 0, bArr4, 0, 4);
                     System.arraycopy(bArr3, i21, bArr4, 4, D2);
                     arrayList.add(bArr4);
                 }
                 if (x11 > 0) {
-                    f2.n j3 = f2.o.j(4, ((byte[]) arrayList.get(0)).length, (byte[]) arrayList.get(0));
-                    int i22 = j3.f9592e;
-                    int i23 = j3.f9593f;
-                    int i24 = j3.f9602p;
-                    int i25 = j3.f9603q;
-                    int i26 = j3.f9604r;
-                    int i27 = j3.f9605s;
-                    float f10 = j3.f9594g;
-                    int i28 = j3.f9589a;
-                    int i29 = j3.f9590b;
-                    int i30 = j3.f9591c;
-                    byte[] bArr5 = e2.e.f8548a;
+                    f2.o j3 = f2.p.j(4, ((byte[]) arrayList.get(0)).length, (byte[]) arrayList.get(0));
+                    int i22 = j3.f9603e;
+                    int i23 = j3.f9604f;
+                    int i24 = j3.f9613p;
+                    int i25 = j3.f9614q;
+                    int i26 = j3.f9615r;
+                    int i27 = j3.f9616s;
+                    float f10 = j3.f9605g;
+                    int i28 = j3.f9600a;
+                    int i29 = j3.f9601b;
+                    int i30 = j3.f9602c;
+                    byte[] bArr5 = e2.e.f8542a;
                     str = String.format("avc1.%02X%02X%02X", Integer.valueOf(i28), Integer.valueOf(i29), Integer.valueOf(i30));
-                    i17 = i27;
+                    i15 = i27;
                     f7 = f10;
-                    i15 = i25;
-                    i16 = i26;
-                    i13 = j3.f9595i + 8;
+                    i16 = i25;
+                    i17 = i26;
+                    i13 = j3.f9606i + 8;
                     i14 = i24;
                     i11 = i23;
                     i12 = j3.h + 8;
@@ -99,12 +99,12 @@ public final class d {
                     i12 = -1;
                     i13 = -1;
                     i14 = -1;
-                    i15 = -1;
-                    i16 = -1;
-                    i17 = 16;
+                    i15 = 16;
                     f7 = 1.0f;
+                    i16 = -1;
+                    i17 = -1;
                 }
-                return new d(arrayList, x10, i10, i11, i12, i13, i14, i15, i16, i17, f7, str);
+                return new d(arrayList, x10, i10, i11, i12, i13, i14, i16, i17, i15, f7, str);
             }
             throw new IllegalStateException();
         } catch (ArrayIndexOutOfBoundsException e7) {

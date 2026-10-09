@@ -9,23 +9,23 @@ import android.view.TextureView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class c7 implements Runnable {
-    public final int f4809a;
-    public final f7 f4810b;
+    public final int f4839a;
+    public final f7 f4840b;
 
     public c7(f7 f7Var, int i10) {
-        this.f4809a = i10;
-        this.f4810b = f7Var;
+        this.f4839a = i10;
+        this.f4840b = f7Var;
     }
 
     @Override
     public final void run() {
         boolean z10;
         r8.n nVar;
-        switch (this.f4809a) {
+        switch (this.f4839a) {
             case 0:
-                f7 f7Var = this.f4810b;
-                if (f7Var.f5076a.get() != null && f7Var.f5080f != null && !f7Var.f5077b.get()) {
-                    TextureView textureView = f7Var.f5080f.getTextureView();
+                f7 f7Var = this.f4840b;
+                if (f7Var.f5070a.get() != null && f7Var.f5074f != null && !f7Var.f5071b.get()) {
+                    TextureView textureView = f7Var.f5074f.getTextureView();
                     if (textureView != null) {
                         int width = textureView.getWidth();
                         int height = textureView.getHeight();
@@ -39,29 +39,29 @@ public final class c7 implements Runnable {
                         boolean z11 = true;
                         int max = Math.max(1, width);
                         int max2 = Math.max(1, height);
-                        Bitmap bitmap = f7Var.f5081g;
-                        if (bitmap == null || max != bitmap.getWidth() || max2 != f7Var.f5081g.getHeight()) {
-                            f7Var.f5081g = Bitmap.createBitmap(max, max2, Bitmap.Config.ARGB_8888);
+                        Bitmap bitmap = f7Var.f5075g;
+                        if (bitmap == null || max != bitmap.getWidth() || max2 != f7Var.f5075g.getHeight()) {
+                            f7Var.f5075g = Bitmap.createBitmap(max, max2, Bitmap.Config.ARGB_8888);
                         }
-                        textureView.getBitmap(f7Var.f5081g);
-                        Bitmap bitmap2 = f7Var.f5081g;
-                        String str = f7Var.f5079e;
+                        textureView.getBitmap(f7Var.f5075g);
+                        Bitmap bitmap2 = f7Var.f5075g;
+                        String str = f7Var.f5073e;
                         d7 d7Var = null;
-                        if (bitmap2 != null && (nVar = (r8.n) f7Var.f5076a.get()) != null && nVar.f45945b.k()) {
+                        if (bitmap2 != null && (nVar = (r8.n) f7Var.f5070a.get()) != null && nVar.f47095b.k()) {
                             int width2 = bitmap2.getWidth();
                             int height2 = bitmap2.getHeight();
-                            la.h hVar = new la.h(22);
+                            la.h hVar = new la.h(24);
                             int width3 = bitmap2.getWidth();
                             int height3 = bitmap2.getHeight();
                             hVar.d = bitmap2;
-                            a3.l lVar = (a3.l) hVar.f15399b;
+                            a3.l lVar = (a3.l) hVar.f15462b;
                             lVar.f155a = width3;
                             lVar.f156b = height3;
-                            SparseArray Z0 = nVar.Z0(hVar);
-                            for (int i10 = 0; i10 < Z0.size(); i10++) {
-                                r8.m mVar = (r8.m) Z0.valueAt(i10);
-                                String str2 = mVar.f45935b;
-                                Point[] pointArr = mVar.f45937e;
+                            SparseArray b12 = nVar.b1(hVar);
+                            for (int i10 = 0; i10 < b12.size(); i10++) {
+                                r8.m mVar = (r8.m) b12.valueAt(i10);
+                                String str2 = mVar.f47085b;
+                                Point[] pointArr = mVar.f47087e;
                                 if (str2 != null) {
                                     String trim = str2.trim();
                                     if (!trim.startsWith(str)) {
@@ -90,9 +90,9 @@ public final class c7 implements Runnable {
                         }
                         if (z10 == z11) {
                             if (d7Var != null && d7Var2 != null) {
-                                PointF[] pointFArr2 = d7Var.f4912b;
-                                PointF[] pointFArr3 = d7Var2.f4912b;
-                                if (TextUtils.equals(d7Var.f4911a, d7Var2.f4911a)) {
+                                PointF[] pointFArr2 = d7Var.f4944b;
+                                PointF[] pointFArr3 = d7Var2.f4944b;
+                                if (TextUtils.equals(d7Var.f4943a, d7Var2.f4943a)) {
                                     if (pointFArr2 != pointFArr3) {
                                         if (pointFArr2.length == pointFArr3.length) {
                                             for (int i12 = 0; i12 < pointFArr2.length; i12++) {
@@ -105,9 +105,9 @@ public final class c7 implements Runnable {
                             }
                         }
                         f7Var.d = d7Var;
-                        AndroidUtilities.runOnUIThread(new ai.ba(23, f7Var, d7Var));
+                        AndroidUtilities.runOnUIThread(new ai.ca(23, f7Var, d7Var));
                     }
-                    if (!f7Var.f5077b.get()) {
+                    if (!f7Var.f5071b.get()) {
                         Utilities.globalQueue.cancelRunnable(f7Var.h);
                         Utilities.globalQueue.postRunnable(f7Var.h, f7Var.b());
                         return;
@@ -116,7 +116,7 @@ public final class c7 implements Runnable {
                 }
                 return;
             default:
-                this.f4810b.f5078c.run(null);
+                this.f4840b.f5072c.run(null);
                 return;
         }
     }

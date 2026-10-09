@@ -1,44 +1,80 @@
 package af;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import t7.u;
-public abstract class a {
-    public static final Pattern f435a = Pattern.compile("[\\\\&]");
-    public static final Pattern f436b = Pattern.compile("\\\\[!\"#$%&'()*+,./:;<=>?@\\[\\\\\\]^_`{|}~-]|&(?:#x[a-f0-9]{1,6}|#[0-9]{1,7}|[a-z][a-z0-9]{1,31});", 2);
-    public static final Pattern f437c;
-    public static final u d;
+import cf.g;
+import cf.p;
+import cf.s;
+import ze.b;
+public final class a implements ff.a {
+    public final char f525a;
 
-    static {
-        Pattern.compile("(%[a-fA-F0-9]{0,2}|[^:/?#@!$&'()*+,;=a-zA-Z0-9\\-._~])");
-        f437c = Pattern.compile("[ \t\r\n]+");
-        d = new Object();
+    public a(int i10) {
+        this('*');
+        switch (i10) {
+            case 1:
+                this('_');
+                return;
+            default:
+                return;
+        }
     }
 
-    public static String a(String str) {
-        if (f435a.matcher(str).find()) {
-            Matcher matcher = f436b.matcher(str);
-            if (matcher.find()) {
-                StringBuilder sb2 = new StringBuilder(str.length() + 16);
-                int i10 = 0;
-                do {
-                    sb2.append((CharSequence) str, i10, matcher.start());
-                    String group = matcher.group();
-                    d.getClass();
-                    if (group.charAt(0) == '\\') {
-                        sb2.append((CharSequence) group, 1, group.length());
-                    } else {
-                        sb2.append(b.a(group));
-                    }
-                    i10 = matcher.end();
-                } while (matcher.find());
-                if (i10 != str.length()) {
-                    sb2.append((CharSequence) str, i10, str.length());
-                }
-                return sb2.toString();
+    @Override
+    public final int a(b bVar, b bVar2) {
+        if (bVar.d || bVar2.f54370c) {
+            int i10 = bVar2.h;
+            if (i10 % 3 != 0 && (bVar.h + i10) % 3 == 0) {
+                return 0;
             }
-            return str;
         }
-        return str;
+        if (bVar.f54373g >= 2 && bVar2.f54373g >= 2) {
+            return 2;
+        }
+        return 1;
+    }
+
+    @Override
+    public final void b(s sVar, s sVar2, int i10) {
+        g gVar;
+        String.valueOf(this.f525a);
+        if (i10 == 1) {
+            gVar = new g(0);
+        } else {
+            gVar = new g(3);
+        }
+        for (p pVar = (p) sVar.f4655f; pVar != null && pVar != sVar2; pVar = (p) pVar.f4655f) {
+            gVar.b(pVar);
+        }
+        gVar.g();
+        p pVar2 = (p) sVar.f4655f;
+        gVar.f4655f = pVar2;
+        if (pVar2 != null) {
+            pVar2.f4654e = gVar;
+        }
+        gVar.f4654e = sVar;
+        sVar.f4655f = gVar;
+        p pVar3 = (p) sVar.f4652b;
+        gVar.f4652b = pVar3;
+        if (((p) gVar.f4655f) == null) {
+            pVar3.d = gVar;
+        }
+    }
+
+    @Override
+    public final char c() {
+        return this.f525a;
+    }
+
+    @Override
+    public final int d() {
+        return 1;
+    }
+
+    @Override
+    public final char e() {
+        return this.f525a;
+    }
+
+    public a(char c10) {
+        this.f525a = c10;
     }
 }

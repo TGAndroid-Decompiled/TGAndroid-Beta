@@ -1,52 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.messenger.NotificationCenter;
-public final class vx0 extends w9 implements NotificationCenter.NotificationCenterDelegate {
-    public final int G;
-    public int H;
-    public String I;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class vx0 implements RequestDelegate {
+    public final int f32472a;
+    public final Utilities.Callback4 f32473b;
 
-    public vx0(Context context, int i10) {
-        super(context);
-        this.I = "tg_placeholders_android";
-        this.G = i10;
+    public vx0(Utilities.Callback4 callback4, int i10) {
+        this.f32472a = i10;
+        this.f32473b = callback4;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.diceStickersDidLoad) {
-            if (this.I.equals((String) objArr[0])) {
-                t();
-            }
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f32472a) {
+            case 0:
+                boolean z10 = tLObject instanceof TLRPC.TL_messages_emojiGroupsNotModified;
+                Utilities.Callback4 callback4 = this.f32473b;
+                if (z10) {
+                    Boolean bool = Boolean.TRUE;
+                    callback4.run(bool, null, 0L, bool);
+                    return;
+                } else if (tLObject instanceof TLRPC.TL_messages_emojiGroups) {
+                    TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups = (TLRPC.TL_messages_emojiGroups) tLObject;
+                    callback4.run(Boolean.FALSE, tL_messages_emojiGroups, Long.valueOf(tL_messages_emojiGroups.hash), Boolean.TRUE);
+                    return;
+                } else {
+                    callback4.run(Boolean.FALSE, null, 0L, Boolean.TRUE);
+                    return;
+                }
+            default:
+                boolean z11 = tLObject instanceof TLRPC.TL_emojiListNotModified;
+                Utilities.Callback4 callback42 = this.f32473b;
+                if (z11) {
+                    Boolean bool2 = Boolean.TRUE;
+                    callback42.run(bool2, null, 0L, bool2);
+                    return;
+                } else if (tLObject instanceof TLRPC.TL_emojiList) {
+                    TLRPC.TL_emojiList tL_emojiList = (TLRPC.TL_emojiList) tLObject;
+                    callback42.run(Boolean.FALSE, tL_emojiList, Long.valueOf(tL_emojiList.hash), Boolean.TRUE);
+                    return;
+                } else {
+                    callback42.run(Boolean.FALSE, null, 0L, Boolean.TRUE);
+                    return;
+                }
         }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        t();
-        NotificationCenter.getInstance(this.G).addObserver(this, NotificationCenter.diceStickersDidLoad);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        NotificationCenter.getInstance(this.G).removeObserver(this, NotificationCenter.diceStickersDidLoad);
-    }
-
-    public void setStickerNum(int i10) {
-        if (this.H != i10) {
-            this.H = i10;
-            t();
-        }
-    }
-
-    public void setStickerPackName(String str) {
-        this.I = str;
-    }
-
-    public final void t() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.vx0.t():void");
     }
 }

@@ -1,15 +1,24 @@
 package org.telegram.ui;
-public final class k11 implements org.telegram.ui.ActionBar.a2 {
-    public final p11 f37822a;
-    public final String f37823b;
 
-    public k11(p11 p11Var, String str) {
-        this.f37822a = p11Var;
-        this.f37823b = str;
+import android.content.Context;
+import android.view.View;
+import android.widget.TextView;
+public final class k11 extends TextView implements org.telegram.ui.ActionBar.z5 {
+    public final ProfileActivity f39063a;
+
+    public k11(ProfileActivity profileActivity, Context context) {
+        super(context);
+        this.f39063a = profileActivity;
+        e();
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        p11.U(this.f37822a, this.f37823b);
+    public final void e() {
+        setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.G6, this.f39063a.f34386z0));
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
     }
 }

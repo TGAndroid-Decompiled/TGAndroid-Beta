@@ -2,30 +2,31 @@ package v2;
 
 import b2.s;
 import g2.b0;
-import v7.m7;
+import org.telegram.ui.ActionBar.b5;
+import v7.k7;
 public final class j extends e {
-    public final d f47815s;
-    public o0.a v;
-    public long f47816w;
-    public volatile boolean f47817x;
+    public final d f49070s;
+    public b5 v;
+    public long f49071w;
+    public volatile boolean f49072x;
 
     public j(g2.h hVar, g2.m mVar, s sVar, int i10, Object obj, d dVar) {
         super(hVar, mVar, 2, sVar, i10, obj, -9223372036854775807L, -9223372036854775807L);
-        this.f47815s = dVar;
+        this.f49070s = dVar;
     }
 
     @Override
     public final void a() {
         boolean z10;
-        if (this.f47816w == 0) {
-            this.f47815s.a(this.v, -9223372036854775807L, -9223372036854775807L);
+        if (this.f49071w == 0) {
+            this.f49070s.a(this.v, -9223372036854775807L, -9223372036854775807L);
         }
         try {
-            g2.m b10 = this.f47794b.b(this.f47816w);
-            b0 b0Var = this.f47799r;
-            c3.l lVar = new c3.l(b0Var, b10.f10197e, b0Var.open(b10));
-            while (!this.f47817x) {
-                int m10 = this.f47815s.f47786a.m(lVar, d.f47785s);
+            g2.m b10 = this.f49049b.b(this.f49071w);
+            b0 b0Var = this.f49054r;
+            c3.l lVar = new c3.l(b0Var, b10.f10270e, b0Var.open(b10));
+            while (!this.f49072x) {
+                int m10 = this.f49070s.f49041a.m(lVar, d.f49040s);
                 boolean z11 = false;
                 if (m10 != 1) {
                     z10 = true;
@@ -41,15 +42,15 @@ public final class j extends e {
                     break;
                 }
             }
-            this.f47816w = lVar.d - this.f47794b.f10197e;
-            c3.b0 b0Var2 = this.f47815s.f47791n;
+            this.f49071w = lVar.d - this.f49049b.f10270e;
+            c3.b0 b0Var2 = this.f49070s.f49046n;
         } finally {
-            m7.a(this.f47799r);
+            k7.a(this.f49054r);
         }
     }
 
     @Override
-    public final void q() {
-        this.f47817x = true;
+    public final void v() {
+        this.f49072x = true;
     }
 }

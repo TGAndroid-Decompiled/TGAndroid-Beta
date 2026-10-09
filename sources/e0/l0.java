@@ -1,15 +1,84 @@
 package e0;
 
-import android.content.ComponentName;
-import java.util.ArrayDeque;
+import android.app.AppOpsManager;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.os.Build;
+import android.os.Bundle;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.HashSet;
 public final class l0 {
-    public final ComponentName f8448a;
-    public b.c f8450c;
-    public boolean f8449b = false;
-    public final ArrayDeque d = new ArrayDeque();
-    public int f8451e = 0;
+    public static String d;
+    public static k0 f8447g;
+    public final Context f8448a;
+    public final NotificationManager f8449b;
+    public static final Object f8444c = new Object();
+    public static HashSet f8445e = new HashSet();
+    public static final Object f8446f = new Object();
 
-    public l0(ComponentName componentName) {
-        this.f8448a = componentName;
+    public l0(Context context) {
+        this.f8448a = context;
+        this.f8449b = (NotificationManager) context.getSystemService("notification");
+    }
+
+    public static l0 c(Context context) {
+        return new l0(context);
+    }
+
+    public final boolean a() {
+        Method method;
+        Integer num;
+        if (Build.VERSION.SDK_INT >= 24) {
+            return androidx.emoji2.text.v.a(this.f8449b);
+        }
+        Context context = this.f8448a;
+        AppOpsManager appOpsManager = (AppOpsManager) context.getSystemService("appops");
+        ApplicationInfo applicationInfo = context.getApplicationInfo();
+        String packageName = context.getApplicationContext().getPackageName();
+        int i10 = applicationInfo.uid;
+        try {
+            Class<?> cls = Class.forName(AppOpsManager.class.getName());
+            Class<?> cls2 = Integer.TYPE;
+            method = cls.getMethod("checkOpNoThrow", cls2, cls2, String.class);
+            num = (Integer) cls.getDeclaredField("OP_POST_NOTIFICATION").get(Integer.class);
+            num.getClass();
+        } catch (ClassNotFoundException | IllegalAccessException | NoSuchFieldException | NoSuchMethodException | RuntimeException | InvocationTargetException unused) {
+        }
+        if (((Integer) method.invoke(appOpsManager, num, Integer.valueOf(i10), packageName)).intValue() == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void b(int i10, String str) {
+        this.f8449b.cancel(str, i10);
+    }
+
+    public final void d(int i10, Notification notification) {
+        e(null, i10, notification);
+    }
+
+    public final void e(String str, int i10, Notification notification) {
+        NotificationManager notificationManager = this.f8449b;
+        Bundle bundle = notification.extras;
+        if (bundle != null && bundle.getBoolean("android.support.useSideChannel")) {
+            h0 h0Var = new h0(this.f8448a.getPackageName(), i10, str, notification);
+            synchronized (f8446f) {
+                try {
+                    if (f8447g == null) {
+                        f8447g = new k0(this.f8448a.getApplicationContext());
+                    }
+                    f8447g.f8439b.obtainMessage(0, h0Var).sendToTarget();
+                } catch (Throwable th2) {
+                    throw th2;
+                }
+            }
+            notificationManager.cancel(str, i10);
+            return;
+        }
+        notificationManager.notify(str, i10, notification);
     }
 }

@@ -1,48 +1,51 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationsController;
-import org.telegram.messenger.Utilities;
-public final class no implements Utilities.Callback {
-    public final b80 f29121a;
-    public final int f29122b;
-    public final long f29123c;
-    public final long d;
-    public final org.telegram.ui.ActionBar.n2 f29124e;
-    public final org.telegram.ui.ActionBar.d6 f29125f;
+import java.util.concurrent.atomic.AtomicReference;
+public final class no implements Runnable {
+    public final int f29217a;
+    public final uo f29218b;
 
-    public no(b80 b80Var, int i10, long j3, long j10, org.telegram.ui.yn ynVar, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.f29121a = b80Var;
-        this.f29122b = i10;
-        this.f29123c = j3;
-        this.d = j10;
-        this.f29124e = ynVar;
-        this.f29125f = d6Var;
+    public no(uo uoVar, int i10) {
+        this.f29217a = i10;
+        this.f29218b = uoVar;
     }
 
     @Override
-    public final void run(Object obj) {
-        Integer num = (Integer) obj;
-        this.f29121a.u();
-        int intValue = num.intValue();
-        int i10 = this.f29122b;
-        long j3 = this.f29123c;
-        long j10 = this.d;
-        org.telegram.ui.ActionBar.n2 n2Var = this.f29124e;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f29125f;
-        if (intValue == 0) {
-            if (MessagesController.getInstance(i10).isDialogMuted(j3, j10)) {
-                NotificationsController.getInstance(i10).muteDialog(j3, j10, false);
-            }
-            if (yc.a(n2Var)) {
-                yc.z(n2Var, 4, num.intValue(), d6Var).j();
+    public final void run() {
+        switch (this.f29217a) {
+            case 0:
+                uo uoVar = this.f29218b;
+                AtomicReference atomicReference = uoVar.f31571n;
+                org.telegram.ui.ActionBar.j5 j5Var = (org.telegram.ui.ActionBar.j5) atomicReference.get();
+                if (j5Var != null) {
+                    uoVar.removeView(j5Var);
+                    atomicReference.set(null);
+                    return;
+                }
                 return;
-            }
-            return;
-        }
-        NotificationsController.getInstance(i10).muteUntil(j3, j10, num.intValue());
-        if (yc.a(n2Var)) {
-            yc.z(n2Var, 5, num.intValue(), d6Var).j();
+            case 1:
+                uo uoVar2 = this.f29218b;
+                AtomicReference atomicReference2 = uoVar2.v;
+                org.telegram.ui.ActionBar.j5 j5Var2 = (org.telegram.ui.ActionBar.j5) atomicReference2.get();
+                if (j5Var2 != null) {
+                    uoVar2.removeView(j5Var2);
+                    atomicReference2.set(null);
+                    if (!uoVar2.f31556b) {
+                        uoVar2.setClipChildren(true);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                uo uoVar3 = this.f29218b;
+                uoVar3.f31568j0 = false;
+                uoVar3.f31566h0.c(false);
+                if (uoVar3.a()) {
+                    uoVar3.f();
+                    return;
+                }
+                return;
         }
     }
 }

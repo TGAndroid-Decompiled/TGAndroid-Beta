@@ -1,120 +1,60 @@
 package ci;
 
-import android.content.Context;
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
+import android.app.Activity;
+import android.graphics.Matrix;
 import android.view.View;
-import org.telegram.messenger.voip.GroupCallMessage;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.ff0;
-import org.telegram.ui.h40;
-public final class zb extends ClickableSpan {
-    public final int f6381a;
-    public final Object f6382b;
+public final class zb extends b7 {
+    public final lc C0;
 
-    public zb(Object obj, int i10) {
-        this.f6381a = i10;
-        this.f6382b = obj;
+    public zb(lc lcVar, Activity activity, org.telegram.ui.Components.ma maVar, a7 a7Var) {
+        super(activity, maVar, a7Var);
+        this.C0 = lcVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        GroupCallMessage groupCallMessage;
-        switch (this.f6381a) {
-            case 0:
-                ((ac) this.f6382b).S1.T();
-                return;
-            case 1:
-                lh.c cVar = (lh.c) this.f6382b;
-                lh.a aVar = cVar.I;
-                if (aVar != null && (groupCallMessage = cVar.H) != null) {
-                    ((h40) aVar).a(groupCallMessage);
-                    return;
+    public final void b() {
+        l8 l8Var = this.d;
+        if (l8Var != null && !l8Var.f5436u) {
+            if (this.f4773n != null) {
+                Matrix matrix = l8Var.f5423n0;
+                Matrix matrix2 = this.W;
+                matrix2.set(matrix);
+                float width = 1.0f / getWidth();
+                int i10 = this.d.f5418k0;
+                if (i10 < 0) {
+                    i10 = this.f4765f;
                 }
-                return;
-            case 2:
-                org.telegram.ui.Cells.y1 y1Var = (org.telegram.ui.Cells.y1) this.f6382b;
-                Context context = y1Var.getContext();
-                nf.f.s(context, "https://fragment.com/username/" + ((org.telegram.ui.ra) y1Var.M).f40021e.f40417r);
-                return;
-            case 3:
-                ((org.telegram.ui.wb) this.f6382b).finishFragment();
-                return;
-            case 4:
-                ((org.telegram.ui.r1) this.f6382b).run();
-                return;
-            case 5:
-                ((org.telegram.ui.Components.yc) this.f6382b).f33252a.presentFragment(new PremiumPreviewFragment(0, "settings"));
-                return;
-            case 6:
-                ((ActionBarLayout) ((LaunchActivity) this.f6382b).O()).P(new PremiumPreviewFragment(0, "gift"));
-                return;
-            case 7:
-                ((ff0) this.f6382b).q(false);
-                return;
-            case 8:
-                rg.k0 k0Var = ((rg.d0) this.f6382b).f46106c;
-                tg.m.m(k0Var.f25357n, rg.k0.i1(k0Var), k0Var.f46158a0, null);
-                return;
-            default:
-                return;
+                float f7 = width * i10;
+                float height = 1.0f / getHeight();
+                int i11 = this.d.f5420l0;
+                if (i11 < 0) {
+                    i11 = this.h;
+                }
+                matrix2.preScale(f7, height * i11);
+                matrix2.postScale(getWidth() / this.d.f5414i0, getHeight() / this.d.f5416j0);
+                Matrix matrix3 = this.f4770j0;
+                matrix3.reset();
+                this.f4769i0.invert(matrix3);
+                this.f4773n.setTransform(matrix2);
+                this.f4773n.invalidate();
+            }
+            invalidate();
         }
+        this.C0.i();
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        switch (this.f6381a) {
-            case 0:
-                textPaint.setUnderlineText(false);
-                return;
-            case 1:
-                return;
-            case 2:
-                super.updateDrawState(textPaint);
-                textPaint.setUnderlineText(false);
-                return;
-            case 3:
-                super.updateDrawState(textPaint);
-                textPaint.setUnderlineText(false);
-                return;
-            case 4:
-                super.updateDrawState(textPaint);
-                textPaint.setUnderlineText(false);
-                return;
-            case 5:
-                super.updateDrawState(textPaint);
-                textPaint.setUnderlineText(false);
-                return;
-            case 6:
-                super.updateDrawState(textPaint);
-                textPaint.setUnderlineText(false);
-                return;
-            case 7:
-                super.updateDrawState(textPaint);
-                textPaint.setUnderlineText(false);
-                return;
-            case 8:
-                super.updateDrawState(textPaint);
-                textPaint.setUnderlineText(false);
-                textPaint.setColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.gc, rg.k0.R0(((rg.d0) this.f6382b).f46106c)));
-                return;
-            default:
-                super.updateDrawState(textPaint);
-                textPaint.setUnderlineText(false);
-                Integer num = ((rg.m1) this.f6382b).f46219u0;
-                if (num != null) {
-                    textPaint.setColor(num.intValue());
-                    return;
+    public final void i() {
+        nb nbVar;
+        lc lcVar = this.C0;
+        l8 l8Var = lcVar.K1;
+        if (l8Var != null && l8Var.f5436u && l8Var.K && (nbVar = lcVar.f5527v1) != null && nbVar.R0 != null) {
+            for (int i10 = 0; i10 < lcVar.f5527v1.R0.getChildCount(); i10++) {
+                View childAt = lcVar.f5527v1.R0.getChildAt(i10);
+                if (childAt instanceof qg.e1) {
+                    ((qg.e1) childAt).s();
                 }
-                return;
+            }
         }
-    }
-
-    private final void a(View view) {
-    }
-
-    private final void b(TextPaint textPaint) {
     }
 }

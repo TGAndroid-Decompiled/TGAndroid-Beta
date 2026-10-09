@@ -30,9 +30,9 @@ public final class l extends g {
         getMeasuredHeight();
         ArrayList arrayList3 = this.d;
         int size = arrayList3.size();
-        jg.b bVar = this.f12128h0;
+        jg.b bVar = this.f12175h0;
         if (bVar != null) {
-            float[] fArr = bVar.f14123b;
+            float[] fArr = bVar.f14159b;
             if (fArr.length < 2) {
                 f7 = 1.0f;
             } else {
@@ -41,18 +41,19 @@ public final class l extends g {
             int i12 = 0;
             while (i12 < size) {
                 kg.f fVar = (kg.f) arrayList3.get(i12);
-                boolean z11 = fVar.f14805n;
-                Paint paint = fVar.f14795b;
-                float[] fArr2 = fVar.f14803l;
-                Path path = fVar.f14797e;
-                if (!z11 && fVar.f14806o == 0.0f) {
+                boolean z11 = fVar.f14852n;
+                Paint paint = fVar.f14842b;
+                float[] fArr2 = fVar.f14850l;
+                Path path = fVar.f14844e;
+                float f13 = 0.0f;
+                if (!z11 && fVar.f14853o == 0.0f) {
                     arrayList = arrayList3;
                     i10 = size;
                 } else {
                     path.reset();
-                    int length = this.f12128h0.f14123b.length;
-                    long[] jArr = fVar.f14794a.f14115a;
-                    fVar.f14798f.reset();
+                    int length = this.f12175h0.f14159b.length;
+                    long[] jArr = fVar.f14841a.f14151a;
+                    fVar.f14845f.reset();
                     int i13 = 0;
                     int i14 = 0;
                     while (true) {
@@ -60,95 +61,98 @@ public final class l extends g {
                         if (i14 >= length) {
                             break;
                         }
+                        float f14 = f13;
                         long[] jArr2 = jArr;
                         long j3 = jArr2[i14];
                         if (j3 < 0) {
                             arrayList2 = arrayList3;
                             i11 = size;
                         } else {
-                            jg.b bVar2 = this.f12128h0;
+                            jg.b bVar2 = this.f12175h0;
                             arrayList2 = arrayList3;
-                            float f13 = this.C0 * bVar2.f14123b[i14];
+                            float f15 = this.C0 * bVar2.f14159b[i14];
                             boolean z12 = g.B1;
                             if (z12) {
-                                f10 = this.f12132j0;
+                                f10 = this.f12179j0;
                                 i11 = size;
                             } else {
                                 i11 = size;
-                                f10 = (float) bVar2.f14125e;
+                                f10 = (float) bVar2.f14161e;
                             }
                             if (z12) {
-                                f12 = this.f12134k0;
+                                f12 = this.f12181k0;
                                 f11 = f10;
                             } else {
                                 f11 = f10;
-                                f12 = (float) bVar2.f14126f;
+                                f12 = (float) bVar2.f14162f;
                             }
-                            float f14 = (1.0f - ((((float) j3) - f12) / (f11 - f12))) * this.B0;
+                            float f16 = (1.0f - ((((float) j3) - f12) / (f11 - f12))) * this.B0;
                             if (z10) {
                                 if (i13 == 0) {
-                                    float f15 = f7 / 2.0f;
-                                    fArr2[i13] = f13 - f15;
-                                    fArr2[i13 + 1] = f14;
-                                    float f16 = f13 + f15;
-                                    fArr2[i13 + 2] = f16;
-                                    fArr2[i13 + 3] = f14;
-                                    int i15 = i13 + 5;
-                                    fArr2[i13 + 4] = f16;
-                                    i13 += 6;
-                                    fArr2[i15] = f14;
-                                } else if (i14 == length - 1) {
                                     float f17 = f7 / 2.0f;
-                                    float f18 = f13 - f17;
-                                    fArr2[i13] = f18;
-                                    fArr2[i13 + 1] = f14;
+                                    fArr2[i13] = f15 - f17;
+                                    fArr2[i13 + 1] = f16;
+                                    float f18 = f15 + f17;
                                     fArr2[i13 + 2] = f18;
-                                    fArr2[i13 + 3] = f14;
-                                    float f19 = f13 + f17;
-                                    fArr2[i13 + 4] = f19;
-                                    fArr2[i13 + 5] = f14;
-                                    fArr2[i13 + 6] = f19;
-                                    fArr2[i13 + 7] = f14;
+                                    fArr2[i13 + 3] = f16;
+                                    int i15 = i13 + 5;
+                                    fArr2[i13 + 4] = f18;
+                                    i13 += 6;
+                                    fArr2[i15] = f16;
+                                } else if (i14 == length - 1) {
+                                    float f19 = f7 / 2.0f;
+                                    float f20 = f15 - f19;
+                                    fArr2[i13] = f20;
+                                    fArr2[i13 + 1] = f16;
+                                    fArr2[i13 + 2] = f20;
+                                    fArr2[i13 + 3] = f16;
+                                    float f21 = f15 + f19;
+                                    fArr2[i13 + 4] = f21;
+                                    fArr2[i13 + 5] = f16;
+                                    fArr2[i13 + 6] = f21;
+                                    fArr2[i13 + 7] = f16;
                                     int i16 = i13 + 9;
-                                    fArr2[i13 + 8] = f19;
+                                    fArr2[i13 + 8] = f21;
                                     i13 += 10;
-                                    fArr2[i16] = 0.0f;
+                                    fArr2[i16] = f14;
                                 } else {
-                                    float f20 = f7 / 2.0f;
-                                    float f21 = f13 - f20;
-                                    fArr2[i13] = f21;
-                                    fArr2[i13 + 1] = f14;
-                                    fArr2[i13 + 2] = f21;
-                                    fArr2[i13 + 3] = f14;
-                                    float f22 = f13 + f20;
-                                    fArr2[i13 + 4] = f22;
-                                    fArr2[i13 + 5] = f14;
+                                    float f22 = f7 / 2.0f;
+                                    float f23 = f15 - f22;
+                                    fArr2[i13] = f23;
+                                    fArr2[i13 + 1] = f16;
+                                    fArr2[i13 + 2] = f23;
+                                    fArr2[i13 + 3] = f16;
+                                    float f24 = f15 + f22;
+                                    fArr2[i13 + 4] = f24;
+                                    fArr2[i13 + 5] = f16;
                                     int i17 = i13 + 7;
-                                    fArr2[i13 + 6] = f22;
+                                    fArr2[i13 + 6] = f24;
                                     i13 += 8;
-                                    fArr2[i17] = f14;
+                                    fArr2[i17] = f16;
                                 }
                             } else {
                                 if (i14 == 0) {
-                                    path.moveTo(f13 - (f7 / 2.0f), f14);
+                                    path.moveTo(f15 - (f7 / 2.0f), f16);
                                 } else {
-                                    path.lineTo(f13 - (f7 / 2.0f), f14);
+                                    path.lineTo(f15 - (f7 / 2.0f), f16);
                                 }
-                                path.lineTo((f7 / 2.0f) + f13, f14);
+                                path.lineTo((f7 / 2.0f) + f15, f16);
                             }
                         }
                         i14++;
+                        f13 = f14;
                         jArr = jArr2;
                         arrayList3 = arrayList2;
                         size = i11;
                     }
                     arrayList = arrayList3;
                     i10 = size;
-                    fVar.f14801j = i13;
-                    if (fVar.f14805n || fVar.f14806o != 0.0f) {
-                        paint.setAlpha((int) (fVar.f14806o * 255.0f));
+                    float f25 = f13;
+                    fVar.f14848j = i13;
+                    if (fVar.f14852n || fVar.f14853o != f25) {
+                        paint.setAlpha((int) (fVar.f14853o * 255.0f));
                         if (z10) {
-                            canvas.drawLines(fArr2, 0, fVar.f14801j, paint);
+                            canvas.drawLines(fArr2, 0, fVar.f14848j, paint);
                         } else {
                             canvas.drawPath(path, paint);
                         }

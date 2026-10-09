@@ -2,26 +2,26 @@ package tg;
 
 import android.content.DialogInterface;
 public final class w implements DialogInterface.OnDismissListener {
-    public final int f47122a;
-    public final a0 f47123b;
+    public final int f48419a;
+    public final a0 f48420b;
 
     public w(a0 a0Var, int i10) {
-        this.f47122a = i10;
-        this.f47123b = a0Var;
+        this.f48419a = i10;
+        this.f48420b = a0Var;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f47122a) {
+        switch (this.f48419a) {
             case 0:
-                vg.r rVar = this.f47123b.f46971g0.f47656r;
+                vg.r rVar = this.f48420b.f48270g0.f48912r;
                 if (rVar != null) {
                     rVar.setPaused(false);
                     return;
                 }
                 return;
             default:
-                vg.r rVar2 = this.f47123b.f46971g0.f47656r;
+                vg.r rVar2 = this.f48420b.f48270g0.f48912r;
                 if (rVar2 != null) {
                     rVar2.setPaused(false);
                     return;

@@ -1,32 +1,30 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public final class uj implements zj {
-    public final int f31443a;
-    public final TLRPC.User f31444b;
+import org.telegram.messenger.ContactsController;
+public final class uj implements ak {
+    public final int f31512a;
+    public final ContactsController.Contact f31513b;
 
-    public uj(int i10, TLRPC.User user) {
-        this.f31443a = i10;
-        this.f31444b = user;
+    public uj(ContactsController.Contact contact, int i10) {
+        this.f31512a = i10;
+        this.f31513b = contact;
     }
 
     @Override
     public final String run() {
-        gf.b c10;
-        StringBuilder sb2;
-        String str;
-        switch (this.f31443a) {
+        switch (this.f31512a) {
             case 0:
-                c10 = gf.b.c();
-                sb2 = new StringBuilder("+");
-                str = this.f31444b.phone;
-                break;
+                ContactsController.Contact contact = this.f31513b;
+                if (contact.phones.isEmpty()) {
+                    return "";
+                }
+                return hf.b.c().b(contact.phones.get(0));
             default:
-                c10 = gf.b.c();
-                sb2 = new StringBuilder("+");
-                str = this.f31444b.phone;
-                break;
+                ContactsController.Contact contact2 = this.f31513b;
+                if (contact2.phones.isEmpty()) {
+                    return "";
+                }
+                return hf.b.c().b(contact2.phones.get(0));
         }
-        return org.telegram.messenger.bi.g(sb2, str, c10);
     }
 }

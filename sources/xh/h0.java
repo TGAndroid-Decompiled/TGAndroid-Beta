@@ -1,262 +1,64 @@
 package xh;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.p6;
-import org.telegram.ui.Components.pg;
-import org.telegram.ui.on;
-public final class h0 implements pg {
-    public final TL_stars.TL_starGiftUnique f49982a;
-    public final j0 f49983b;
+import org.telegram.ui.Components.cd0;
+import org.telegram.ui.Components.sw0;
+public final class h0 extends sw0 {
+    public final l0 f51258w0;
 
-    public h0(j0 j0Var, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        this.f49983b = j0Var;
-        this.f49982a = tL_starGiftUnique;
+    public h0(l0 l0Var, Context context) {
+        super(context, null);
+        this.f51258w0 = l0Var;
     }
 
     @Override
-    public final boolean C0() {
-        return true;
+    public final boolean P() {
+        return false;
     }
 
     @Override
-    public final TLRPC.TL_channels_sendAsPeers I() {
-        return null;
+    public final boolean Q() {
+        return false;
     }
 
-    public final void a(CharSequence charSequence) {
-        int i10;
-        int i11;
-        boolean z10;
-        j0 j0Var = this.f49983b;
-        p6 p6Var = j0Var.f50044w;
-        a5 a5Var = j0Var.f50037b;
-        i10 = ((org.telegram.ui.ActionBar.f3) j0Var).currentAccount;
-        a5Var.a(this.f49982a, UserConfig.getInstance(i10).getClientUserId(), j0Var.f50041n.getTextWithEntities(), LocaleController.getString(R.string.GiftMessageSendNow), true);
-        int codePointCount = Character.codePointCount(charSequence, 0, charSequence.length());
-        j0Var.F = codePointCount;
-        int i12 = j0Var.E;
-        if (i12 > 0 && (i11 = i12 - codePointCount) <= 15) {
-            if (i11 < -9999) {
-                i11 = -9999;
-            }
-            String formatNumber = LocaleController.formatNumber(i11, ',');
-            if (p6Var.getVisibility() == 0) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            p6Var.c(formatNumber, z10, true);
-            if (p6Var.getVisibility() != 0) {
-                p6Var.setVisibility(0);
-                p6Var.setAlpha(0.0f);
-                p6Var.setScaleX(0.5f);
-                p6Var.setScaleY(0.5f);
-            }
-            p6Var.animate().setListener(null).cancel();
-            p6Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
-            if (i11 < 0) {
-                p6Var.setTextColor(j0Var.getThemedColor(i6.f21049p7));
-                return;
-            } else {
-                p6Var.setTextColor(j0Var.getThemedColor(i6.f21214y6));
-                return;
-            }
+    @Override
+    public final void U(Drawable drawable) {
+        if (drawable instanceof cd0) {
+            ((cd0) drawable).p();
         }
-        p6Var.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(100L).setListener(new pg.d0(this, 9));
+        l0 l0Var = this.f51258w0;
+        l0Var.d.f9942a = l0Var.f51331c.c(drawable);
     }
 
     @Override
-    public final int b1() {
-        return 0;
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        if (view == this.L) {
+            l0 l0Var = this.f51258w0;
+            fh.a aVar = l0Var.d.f9942a;
+            if (aVar instanceof fh.b) {
+                ((fh.b) aVar).b(getWidth(), getHeight());
+            }
+            l0Var.d.v(canvas, 0.0f, 0.0f, getWidth(), getHeight());
+            return false;
+        }
+        return super.drawChild(canvas, view, j3);
     }
 
     @Override
-    public final TL_stories.StoryItem d1() {
-        return null;
+    public final Drawable getNewDrawable() {
+        Drawable drawable = this.f51258w0.f51339y;
+        if (drawable != null) {
+            return drawable;
+        }
+        return super.getNewDrawable();
     }
 
     @Override
-    public final boolean f1(long j3) {
-        return false;
-    }
-
-    @Override
-    public final boolean i1() {
-        return false;
-    }
-
-    @Override
-    public final void l1(CharSequence charSequence, boolean z10, boolean z11) {
-        a(charSequence);
-    }
-
-    @Override
-    public final boolean m() {
-        return false;
-    }
-
-    @Override
-    public final boolean o1() {
-        return false;
-    }
-
-    @Override
-    public final on p0() {
-        return null;
-    }
-
-    @Override
-    public final int q() {
-        return 0;
-    }
-
-    @Override
-    public final TLRPC.Peer v() {
-        return null;
-    }
-
-    @Override
-    public final void v1(CharSequence charSequence) {
-        a(charSequence);
-    }
-
-    @Override
-    public final boolean w1() {
-        return false;
-    }
-
-    @Override
-    public final void A2() {
-    }
-
-    @Override
-    public final void D() {
-    }
-
-    @Override
-    public final void E1() {
-    }
-
-    @Override
-    public final void G0() {
-    }
-
-    @Override
-    public final void J0() {
-    }
-
-    @Override
-    public final void T0() {
-    }
-
-    @Override
-    public final void V() {
-    }
-
-    @Override
-    public final void d2() {
-    }
-
-    @Override
-    public final void f() {
-    }
-
-    @Override
-    public final void i() {
-    }
-
-    @Override
-    public final void i2() {
-    }
-
-    @Override
-    public final void m0() {
-    }
-
-    @Override
-    public final void n1() {
-    }
-
-    @Override
-    public final void o2() {
-    }
-
-    @Override
-    public final void q1() {
-    }
-
-    @Override
-    public final void r1() {
-    }
-
-    @Override
-    public final void s0() {
-    }
-
-    @Override
-    public final void s1() {
-    }
-
-    @Override
-    public final void w2() {
-    }
-
-    @Override
-    public final void x() {
-    }
-
-    @Override
-    public final void z1() {
-    }
-
-    @Override
-    public final void B(boolean z10) {
-    }
-
-    @Override
-    public final void X(boolean z10) {
-    }
-
-    @Override
-    public final void a1(int i10) {
-    }
-
-    @Override
-    public final void f2(int i10) {
-    }
-
-    @Override
-    public final void j2(boolean z10) {
-    }
-
-    @Override
-    public final void y(float f7) {
-    }
-
-    @Override
-    public final void E0(int i10, int i11) {
-    }
-
-    @Override
-    public final void K(float f7, int i10) {
-    }
-
-    @Override
-    public final void t1(View view, CharSequence charSequence, boolean z10) {
-    }
-
-    @Override
-    public final void H(CharSequence charSequence, boolean z10, int i10, int i11, long j3) {
-    }
-
-    @Override
-    public final void k2(int i10, int i11, int i12, long j3, long j10, boolean z10) {
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        this.f51258w0.q();
     }
 }

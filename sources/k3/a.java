@@ -14,22 +14,22 @@ import e9.g0;
 import e9.i0;
 import java.util.List;
 public final class a implements o {
-    public final int f14554a = 0;
-    public final Object f14555b;
+    public final int f14586a = 0;
+    public final Object f14587b;
 
     public a(int i10) {
         if ((i10 & 1) != 0) {
-            this.f14555b = new d0(65496, 2, "image/jpeg");
+            this.f14587b = new d0(65496, 2, "image/jpeg");
         } else {
-            this.f14555b = new b();
+            this.f14587b = new b();
         }
     }
 
     @Override
-    public final boolean b(p pVar) {
-        switch (this.f14554a) {
+    public final boolean a(p pVar) {
+        switch (this.f14586a) {
             case 0:
-                return ((o) this.f14555b).b(pVar);
+                return ((o) this.f14587b).a(pVar);
             default:
                 return true;
         }
@@ -37,34 +37,34 @@ public final class a implements o {
 
     @Override
     public final o c() {
-        int i10 = this.f14554a;
+        int i10 = this.f14586a;
         return this;
     }
 
     @Override
     public final void g(q qVar) {
-        switch (this.f14554a) {
+        switch (this.f14586a) {
             case 0:
-                ((o) this.f14555b).g(qVar);
+                ((o) this.f14587b).g(qVar);
                 return;
             default:
-                h0 Z1 = qVar.Z1(0, 3);
-                qVar.X1(new t(-9223372036854775807L));
-                qVar.e1();
-                s sVar = (s) this.f14555b;
+                h0 f22 = qVar.f2(0, 3);
+                qVar.d2(new t(-9223372036854775807L));
+                qVar.k1();
+                s sVar = (s) this.f14587b;
                 r a2 = sVar.a();
-                a2.f3506q = r0.n("text/x-unknown");
-                a2.f3499j = sVar.f3564r;
-                hg.c.s(a2, Z1);
+                a2.f3585q = r0.n("text/x-unknown");
+                a2.f3578j = sVar.f3643r;
+                hg.c.s(a2, f22);
                 return;
         }
     }
 
     @Override
     public final void h(long j3, long j10) {
-        switch (this.f14554a) {
+        switch (this.f14586a) {
             case 0:
-                ((o) this.f14555b).h(j3, j10);
+                ((o) this.f14587b).h(j3, j10);
                 return;
             default:
                 return;
@@ -73,19 +73,19 @@ public final class a implements o {
 
     @Override
     public final List i() {
-        switch (this.f14554a) {
+        switch (this.f14586a) {
             case 0:
             default:
-                g0 g0Var = i0.f8758b;
-                return a1.f8721e;
+                g0 g0Var = i0.f8752b;
+                return a1.f8715e;
         }
     }
 
     @Override
     public final int m(p pVar, c3.s sVar) {
-        switch (this.f14554a) {
+        switch (this.f14586a) {
             case 0:
-                return ((o) this.f14555b).m(pVar, sVar);
+                return ((o) this.f14587b).m(pVar, sVar);
             default:
                 if (pVar.skip(Integer.MAX_VALUE) == -1) {
                     return -1;
@@ -96,9 +96,9 @@ public final class a implements o {
 
     @Override
     public final void release() {
-        switch (this.f14554a) {
+        switch (this.f14586a) {
             case 0:
-                ((o) this.f14555b).release();
+                ((o) this.f14587b).release();
                 return;
             default:
                 return;
@@ -106,10 +106,10 @@ public final class a implements o {
     }
 
     public a(s sVar) {
-        this.f14555b = sVar;
+        this.f14587b = sVar;
     }
 
-    private final void a() {
+    private final void b() {
     }
 
     private final void d(long j3, long j10) {

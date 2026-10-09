@@ -10,8 +10,8 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import e0.t;
-import v7.e5;
+import e0.r;
+import v7.k0;
 public abstract class c extends IntentService {
     private static final int CONNECTION_TIMEOUT_IN_MS = 1000;
     public static final String EXTRA_INTENT = "SearchActionVerificationClientExtraIntent";
@@ -87,11 +87,11 @@ public abstract class c extends IntentService {
         }
         super.onCreate();
         this.searchActionVerificationServiceConnection = new b(this);
-        if (b("com.google.android.googlequicksearchbox") && (a() || e5.a(this, "com.google.android.googlequicksearchbox"))) {
+        if (b("com.google.android.googlequicksearchbox") && (a() || k0.a(this, "com.google.android.googlequicksearchbox"))) {
             bindService(this.gsaServiceIntent, this.searchActionVerificationServiceConnection, 1);
         }
         this.assistantGoVerificationServiceConnection = new b(this);
-        if (b("com.google.android.apps.assistant") && (a() || e5.a(this, "com.google.android.apps.assistant"))) {
+        if (b("com.google.android.apps.assistant") && (a() || k0.a(this, "com.google.android.apps.assistant"))) {
             bindService(this.assistantGoServiceIntent, this.assistantGoVerificationServiceConnection, 1);
         }
         if (Build.VERSION.SDK_INT >= 26) {
@@ -136,16 +136,14 @@ public abstract class c extends IntentService {
                 z10 = true;
             }
             if (this.dbg) {
-                boolean a2 = b.a(this.searchActionVerificationServiceConnection);
-                Log.d("SAVerificationClientS", "GSA app com.google.android.googlequicksearchbox installed: " + b10 + " connected " + a2);
+                Log.d("SAVerificationClientS", "GSA app com.google.android.googlequicksearchbox installed: " + b10 + " connected " + b.a(this.searchActionVerificationServiceConnection));
             }
             boolean b11 = b("com.google.android.apps.assistant");
             if (b11 && !b.a(this.assistantGoVerificationServiceConnection)) {
                 z11 = false;
             }
             if (this.dbg) {
-                boolean a10 = b.a(this.assistantGoVerificationServiceConnection);
-                Log.d("SAVerificationClientS", "AssistantGo app com.google.android.apps.assistant installed: " + b11 + " connected " + a10);
+                Log.d("SAVerificationClientS", "AssistantGo app com.google.android.apps.assistant installed: " + b11 + " connected " + b.a(this.assistantGoVerificationServiceConnection));
             }
             if ((!z10 || !z11) && System.nanoTime() - nanoTime < this.connectionTimeout * 1000000) {
                 try {
@@ -181,12 +179,12 @@ public abstract class c extends IntentService {
         notificationChannel.enableLights(false);
         notificationChannel.setShowBadge(false);
         ((NotificationManager) getApplicationContext().getSystemService(NotificationManager.class)).createNotificationChannel(notificationChannel);
-        t tVar = new t(getApplicationContext(), "Assistant_verifier");
-        tVar.f8494q = "Assistant_verifier";
-        tVar.f8483e = t.d(getApplicationContext().getResources().getString(2131230721));
-        tVar.E.icon = 17301545;
-        tVar.f8487j = -2;
-        tVar.f8500x = 1;
-        startForeground(10000, tVar.b());
+        r rVar = new r(getApplicationContext(), "Assistant_verifier");
+        rVar.f8480q = "Assistant_verifier";
+        rVar.f8469e = r.d(getApplicationContext().getResources().getString(2131230721));
+        rVar.E.icon = 17301545;
+        rVar.f8473j = -2;
+        rVar.f8486x = 1;
+        startForeground(10000, rVar.b());
     }
 }

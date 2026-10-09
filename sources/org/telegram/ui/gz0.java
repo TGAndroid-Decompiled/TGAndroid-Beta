@@ -1,51 +1,49 @@
 package org.telegram.ui;
 
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.UndoView;
-public final class gz0 implements jq {
-    public final TLRPC.Chat f36817a;
-    public final mq f36818b;
-    public final ProfileActivity f36819c;
+public final class gz0 extends s4.d0 {
+    public final ProfileActivity I;
 
-    public gz0(ProfileActivity profileActivity, TLRPC.Chat chat, mq mqVar) {
-        this.f36819c = profileActivity;
-        this.f36817a = chat;
-        this.f36818b = mqVar;
+    public gz0(ProfileActivity profileActivity) {
+        this.I = profileActivity;
     }
 
     @Override
-    public final void a(TLRPC.User user) {
-        int i10;
-        ProfileActivity profileActivity = this.f36819c;
-        UndoView undoView = profileActivity.M;
-        long j3 = -profileActivity.f34261f1;
-        if (profileActivity.E2.megagroup) {
-            i10 = 10;
-        } else {
-            i10 = 9;
-        }
-        undoView.m(j3, user, i10);
-    }
-
-    @Override
-    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        TLRPC.Chat chat;
-        ProfileActivity profileActivity = this.f36819c;
-        profileActivity.removeSelfFromStack();
-        TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(profileActivity.f34253e1));
-        if (user != null && (chat = this.f36817a) != null && profileActivity.f34253e1 != 0) {
-            mq mqVar = this.f36818b;
-            if (mqVar.Q && mqVar.getParentLayout() != null) {
-                for (org.telegram.ui.ActionBar.n2 n2Var : mqVar.getParentLayout().getFragmentStack()) {
-                    if (n2Var instanceof wb) {
-                        wb wbVar = (wb) n2Var;
-                        wbVar.V0();
-                        AndroidUtilities.runOnUIThread(new nf0(wbVar, user, chat, 25));
-                        return;
+    public final int o0(int i10, pf.e eVar, s4.a1 a1Var) {
+        ProfileActivity profileActivity = this.I;
+        View m10 = profileActivity.f34226c.m(0);
+        if (m10 != null && !profileActivity.F0) {
+            int top = m10.getTop() - profileActivity.T3();
+            boolean z10 = profileActivity.f34312o2;
+            boolean z11 = true;
+            if (!z10 && top > i10) {
+                if (!profileActivity.f34303n0.X0.isEmpty() && profileActivity.f34242e0.getImageReceiver().hasNotThumb() && !AndroidUtilities.isAccessibilityScreenReaderEnabled() && ((!profileActivity.f34305n2 && !AndroidUtilities.isTablet()) || profileActivity.I0)) {
+                    if (profileActivity.J2 != null) {
+                        z11 = false;
                     }
+                    profileActivity.f34312o2 = z11;
+                }
+            } else if (z10) {
+                if (i10 >= top) {
+                    profileActivity.f34312o2 = false;
+                } else if (profileActivity.f34211a.getScrollState() == 1 && !profileActivity.f34319p2) {
+                    i10 /= 2;
                 }
             }
+            i10 = top;
         }
+        if (profileActivity.O1 && !profileActivity.f34211a.P0) {
+            return 0;
+        }
+        return super.o0(i10, eVar, a1Var);
+    }
+
+    @Override
+    public final boolean y0() {
+        if (this.I.f34323q0 != null) {
+            return true;
+        }
+        return false;
     }
 }

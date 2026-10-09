@@ -2,29 +2,29 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class dr implements jq {
-    public final TLObject f35870a;
-    public final rr f35871b;
+public final class dr implements kq {
+    public final TLObject f37063a;
+    public final tr f37064b;
 
-    public dr(rr rrVar, TLObject tLObject) {
-        this.f35871b = rrVar;
-        this.f35870a = tLObject;
+    public dr(tr trVar, TLObject tLObject) {
+        this.f37064b = trVar;
+        this.f37063a = tLObject;
     }
 
     @Override
     public final void a(TLRPC.User user) {
-        rr.c0(this.f35871b, user);
+        tr.c0(this.f37064b, user);
     }
 
     @Override
     public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        TLObject tLObject = this.f35870a;
+        TLObject tLObject = this.f37063a;
         if (tLObject instanceof TLRPC.ChannelParticipant) {
             TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) tLObject;
             channelParticipant.admin_rights = tL_chatAdminRights;
             channelParticipant.banned_rights = tL_chatBannedRights;
             channelParticipant.rank = str;
-            rr.U(this.f35871b, channelParticipant, tL_chatAdminRights, tL_chatBannedRights);
+            tr.W(this.f37064b, channelParticipant, tL_chatAdminRights, tL_chatBannedRights);
         }
     }
 }

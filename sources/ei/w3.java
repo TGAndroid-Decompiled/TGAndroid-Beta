@@ -1,162 +1,31 @@
 package ei;
 
-import android.content.Context;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_payments;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.x01;
-import org.telegram.ui.LaunchActivity;
-public final class w3 implements View.OnClickListener {
-    public final int f9428a = 1;
-    public final ci.d f9429b;
-    public final long f9430c;
-    public final TLRPC.User d;
-    public final int f9431e;
-    public final org.telegram.ui.ActionBar.f3 f9432f;
-    public final boolean h;
-    public final d6 f9433n;
-    public final Object f9434r;
-    public final Object f9435s;
-    public final Object v;
+import android.app.Activity;
+import android.view.ViewGroup;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Components.c71;
+import org.telegram.ui.Components.qm0;
+public final class w3 extends c71 {
+    public final e4 N;
 
-    public w3(ci.d dVar, x01 x01Var, MessagesController messagesController, long j3, TLRPC.User user, String[] strArr, int i10, org.telegram.ui.ActionBar.f3 f3Var, boolean z10, d6 d6Var) {
-        this.f9429b = dVar;
-        this.f9434r = x01Var;
-        this.f9435s = messagesController;
-        this.f9430c = j3;
-        this.d = user;
-        this.v = strArr;
-        this.f9431e = i10;
-        this.f9432f = f3Var;
-        this.h = z10;
-        this.f9433n = d6Var;
+    public w3(e4 e4Var, qm0 qm0Var, Activity activity, int i10, int i11, bi.v vVar, e6 e6Var) {
+        super(qm0Var, activity, i10, i11, true, vVar, e6Var);
+        this.N = e4Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f9428a) {
-            case 0:
-                long[] jArr = (long[]) this.f9434r;
-                final TL_payments.starRefProgram starrefprogram = (TL_payments.starRefProgram) this.f9435s;
-                final Context context = (Context) this.v;
-                final ci.d dVar = this.f9429b;
-                if (!dVar.N) {
-                    dVar.setLoading(true);
-                    final long j3 = jArr[0];
-                    TL_payments.connectStarRefBot connectstarrefbot = new TL_payments.connectStarRefBot();
-                    final int i10 = this.f9431e;
-                    connectstarrefbot.bot = MessagesController.getInstance(i10).getInputUser(starrefprogram.bot_id);
-                    connectstarrefbot.peer = MessagesController.getInstance(i10).getInputPeer(j3);
-                    ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i10);
-                    final org.telegram.ui.ActionBar.f3 f3Var = this.f9432f;
-                    final long j10 = this.f9430c;
-                    final boolean z10 = this.h;
-                    final d6 d6Var = this.f9433n;
-                    final TLRPC.User user = this.d;
-                    connectionsManager.sendRequest(connectstarrefbot, new RequestDelegate() {
-                        @Override
-                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                            AndroidUtilities.runOnUIThread(new u3(ci.d.this, tLObject, i10, j3, f3Var, starrefprogram, j10, z10, context, d6Var, user, tL_error));
-                        }
-                    });
-                    return;
-                }
-                return;
-            default:
-                x01 x01Var = (x01) this.f9434r;
-                org.telegram.ui.Cells.d6 d6Var2 = x01Var.h;
-                final MessagesController messagesController = (MessagesController) this.f9435s;
-                String[] strArr = (String[]) this.v;
-                final ci.d dVar2 = this.f9429b;
-                if (!dVar2.N) {
-                    EditTextBoldCursor textView = d6Var2.getTextView();
-                    if (textView.getText().toString().trim().length() <= 16) {
-                        dVar2.setLoading(true);
-                        AndroidUtilities.hideKeyboard(d6Var2);
-                        final TLRPC.TL_messages_editChatParticipantRank tL_messages_editChatParticipantRank = new TLRPC.TL_messages_editChatParticipantRank();
-                        final long j11 = this.f9430c;
-                        tL_messages_editChatParticipantRank.peer = messagesController.getInputPeer(j11);
-                        final TLRPC.User user2 = this.d;
-                        tL_messages_editChatParticipantRank.participant = MessagesController.getInputPeer(user2);
-                        tL_messages_editChatParticipantRank.rank = strArr[0];
-                        ConnectionsManager connectionsManager2 = ConnectionsManager.getInstance(this.f9431e);
-                        ?? obj = new Object();
-                        final org.telegram.ui.ActionBar.f3 f3Var2 = this.f9432f;
-                        final boolean z11 = this.h;
-                        final d6 d6Var3 = this.f9433n;
-                        connectionsManager2.sendRequestTyped(tL_messages_editChatParticipantRank, obj, new Utilities.Callback2() {
-                            @Override
-                            public final void run(Object obj2, Object obj3) {
-                                int i11;
-                                TLRPC.Updates updates = (TLRPC.Updates) obj2;
-                                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj3;
-                                org.telegram.ui.ActionBar.f3 f3Var3 = f3Var2;
-                                if (updates != null) {
-                                    long j12 = user2.f20194id;
-                                    TLRPC.TL_messages_editChatParticipantRank tL_messages_editChatParticipantRank2 = tL_messages_editChatParticipantRank;
-                                    String str = tL_messages_editChatParticipantRank2.rank;
-                                    MessagesController messagesController2 = MessagesController.this;
-                                    messagesController2.updateRank(-j11, j12, str);
-                                    messagesController2.processUpdates(updates, false);
-                                    f3Var3.dismiss();
-                                    org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
-                                    if (!TextUtils.isEmpty(tL_messages_editChatParticipantRank2.rank) && U != null) {
-                                        yc a02 = yc.a0(U);
-                                        int i12 = R.raw.contact_check;
-                                        if (z11) {
-                                            i11 = R.string.TagAdded;
-                                        } else {
-                                            i11 = R.string.TagEdited;
-                                        }
-                                        rc M = a02.M(LocaleController.getString(i11), tL_messages_editChatParticipantRank2.rank, i12);
-                                        vb vbVar = M.f30423e;
-                                        if (vbVar.getLayoutParams() instanceof FrameLayout.LayoutParams) {
-                                            ((FrameLayout.LayoutParams) vbVar.getLayoutParams()).width = -2;
-                                            ((FrameLayout.LayoutParams) vbVar.getLayoutParams()).gravity |= 1;
-                                        }
-                                        M.j();
-                                    }
-                                } else if (tL_error != null) {
-                                    org.telegram.ui.Cells.c1.r(f3Var3.topBulletinContainer, d6Var3, tL_error, false);
-                                    dVar2.setLoading(false);
-                                }
-                            }
-                        });
-                        return;
-                    }
-                    float f7 = -x01Var.f32786y;
-                    x01Var.f32786y = f7;
-                    AndroidUtilities.shakeViewSpring(textView, f7);
-                    BotWebViewVibrationEffect.APP_ERROR.vibrate();
-                    return;
-                }
-                return;
+    public final s4.d1 x(ViewGroup viewGroup, int i10) {
+        e6 e6Var;
+        if (i10 == 42) {
+            e4 e4Var = this.N;
+            Activity parentActivity = e4Var.getParentActivity();
+            int i11 = i6.L6;
+            e6Var = ((org.telegram.ui.ActionBar.n2) e4Var).resourceProvider;
+            org.telegram.ui.Cells.m4 m4Var = new org.telegram.ui.Cells.m4(parentActivity, i11, 21, 0, false, e6Var);
+            m4Var.setHeight(25);
+            return new s4.d1(m4Var);
         }
-    }
-
-    public w3(ci.d dVar, long[] jArr, int i10, TL_payments.starRefProgram starrefprogram, org.telegram.ui.ActionBar.f3 f3Var, long j3, boolean z10, Context context, d6 d6Var, TLRPC.User user) {
-        this.f9429b = dVar;
-        this.f9434r = jArr;
-        this.f9431e = i10;
-        this.f9435s = starrefprogram;
-        this.f9432f = f3Var;
-        this.f9430c = j3;
-        this.h = z10;
-        this.v = context;
-        this.f9433n = d6Var;
-        this.d = user;
+        return super.x(viewGroup, i10);
     }
 }

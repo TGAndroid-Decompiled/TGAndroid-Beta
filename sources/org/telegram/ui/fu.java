@@ -2,72 +2,66 @@ package org.telegram.ui;
 
 import android.animation.AnimatorSet;
 import android.app.Activity;
-import android.net.Uri;
-import android.view.KeyEvent;
-import android.view.View;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class fu implements View.OnClickListener {
-    public final int f36402a = 1;
-    public final int f36403b;
-    public final Object f36404c;
-    public final Object d;
-    public final KeyEvent.Callback[] f36405e;
-    public final Object f36406f;
-    public final Object h;
-    public final Object f36407n;
+import android.text.TextUtils;
+import android.widget.TextView;
+import org.telegram.messenger.LocaleController;
+public final class fu extends org.telegram.ui.Cells.d5 {
+    public final int f37692e;
+    public final org.telegram.ui.Cells.e9 f37693f;
+    public final org.telegram.ui.Cells.w8[] h;
+    public final AnimatorSet[] f37694n;
+    public final DataAutoDownloadActivity f37695r;
 
-    public fu(ci.d dVar, TL_stars.StarsSubscription starsSubscription, int i10, org.telegram.ui.ActionBar.f3[] f3VarArr, org.telegram.ui.ActionBar.d6 d6Var, boolean[] zArr, Activity activity) {
-        this.f36404c = dVar;
-        this.d = starsSubscription;
-        this.f36403b = i10;
-        this.f36405e = f3VarArr;
-        this.f36406f = d6Var;
-        this.h = zArr;
-        this.f36407n = activity;
-    }
-
-    @Override
-    public final void onClick(View view) {
-        switch (this.f36402a) {
-            case 0:
-                DataAutoDownloadActivity.S((DataAutoDownloadActivity) this.f36404c, (org.telegram.ui.Cells.s8) this.d, (org.telegram.ui.Cells.s8[]) this.f36405e, this.f36403b, (org.telegram.ui.Cells.d5[]) this.f36406f, (org.telegram.ui.Cells.w8[]) this.h, (AnimatorSet[]) this.f36407n, view);
-                return;
-            default:
-                ci.d dVar = (ci.d) this.f36404c;
-                TL_stars.StarsSubscription starsSubscription = (TL_stars.StarsSubscription) this.d;
-                org.telegram.ui.ActionBar.f3[] f3VarArr = (org.telegram.ui.ActionBar.f3[]) this.f36405e;
-                org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) this.f36406f;
-                boolean[] zArr = (boolean[]) this.h;
-                Activity activity = (Activity) this.f36407n;
-                if (!dVar.N) {
-                    dVar.setLoading(true);
-                    if (starsSubscription.chat_invite_hash != null) {
-                        TLRPC.TL_messages_checkChatInvite tL_messages_checkChatInvite = new TLRPC.TL_messages_checkChatInvite();
-                        tL_messages_checkChatInvite.hash = starsSubscription.chat_invite_hash;
-                        int i10 = this.f36403b;
-                        ConnectionsManager.getInstance(i10).sendRequest(tL_messages_checkChatInvite, new ai.ya(dVar, f3VarArr, d6Var, i10, tL_messages_checkChatInvite, 13));
-                        return;
-                    } else if (starsSubscription.invoice_slug != null) {
-                        zArr[0] = true;
-                        nf.f.r(activity, Uri.parse("https://t.me/$" + starsSubscription.invoice_slug), true, false, false, new yh.z6(dVar), null, false, true, false);
-                        return;
-                    } else {
-                        return;
-                    }
-                }
-                return;
-        }
-    }
-
-    public fu(DataAutoDownloadActivity dataAutoDownloadActivity, org.telegram.ui.Cells.s8 s8Var, org.telegram.ui.Cells.s8[] s8VarArr, int i10, org.telegram.ui.Cells.d5[] d5VarArr, org.telegram.ui.Cells.w8[] w8VarArr, AnimatorSet[] animatorSetArr) {
-        this.f36404c = dataAutoDownloadActivity;
-        this.d = s8Var;
-        this.f36405e = s8VarArr;
-        this.f36403b = i10;
-        this.f36406f = d5VarArr;
+    public fu(DataAutoDownloadActivity dataAutoDownloadActivity, Activity activity, int i10, org.telegram.ui.Cells.e9 e9Var, org.telegram.ui.Cells.w8[] w8VarArr, AnimatorSet[] animatorSetArr) {
+        super(activity);
+        int i11;
+        int i12;
+        int i13;
+        this.f37695r = dataAutoDownloadActivity;
+        this.f37692e = i10;
+        this.f37693f = e9Var;
         this.h = w8VarArr;
-        this.f36407n = animatorSetArr;
+        this.f37694n = animatorSetArr;
+        setWillNotDraw(false);
+        TextView textView = new TextView(activity);
+        this.f21968a = textView;
+        org.telegram.messenger.bi.u(textView, org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20905j5, false), 1, 16.0f, 1);
+        textView.setMaxLines(1);
+        textView.setSingleLine(true);
+        if (LocaleController.isRTL) {
+            i11 = 5;
+        } else {
+            i11 = 3;
+        }
+        textView.setGravity(i11 | 48);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        textView.setImportantForAccessibility(2);
+        if (LocaleController.isRTL) {
+            i12 = 5;
+        } else {
+            i12 = 3;
+        }
+        addView(textView, w7.x5.a(-1.0f, 21.0f, 13.0f, 21.0f, 0.0f, -1, i12 | 48));
+        TextView textView2 = new TextView(activity);
+        this.f21969b = textView2;
+        org.telegram.messenger.bi.u(textView2, org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20981n5, false), 1, 16.0f, 1);
+        textView2.setMaxLines(1);
+        textView2.setSingleLine(true);
+        if (LocaleController.isRTL) {
+            i13 = 3;
+        } else {
+            i13 = 5;
+        }
+        textView2.setGravity(i13 | 48);
+        textView2.setImportantForAccessibility(2);
+        addView(textView2, w7.x5.a(-1.0f, 21.0f, 13.0f, 21.0f, 0.0f, -2, (LocaleController.isRTL ? 3 : 5) | 48));
+        org.telegram.ui.Cells.j0 j0Var = new org.telegram.ui.Cells.j0(activity);
+        this.f21970c = j0Var;
+        j0Var.setReportChanges(true);
+        j0Var.setDelegate(new org.telegram.ui.Cells.c5(this));
+        j0Var.setImportantForAccessibility(2);
+        addView(j0Var, w7.x5.a(38.0f, 6.0f, 36.0f, 6.0f, 0.0f, -1, 51));
+        setImportantForAccessibility(1);
+        setAccessibilityDelegate(j0Var.getSeekBarAccessibilityDelegate());
     }
 }

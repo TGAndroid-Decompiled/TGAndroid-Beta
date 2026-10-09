@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
 import androidx.sharetarget.ShortcutInfoCompatSaverImpl;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
@@ -16,29 +15,29 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicInteger;
-import n7.z0;
-import org.telegram.ui.Components.og;
+import m.f3;
+import org.telegram.ui.Components.pg;
 import w7.la;
 import y8.k0;
 public final class v implements Runnable {
-    public final int f4244a;
-    public Object f4245b;
-    public Object f4246c;
+    public final int f4294a;
+    public Object f4295b;
+    public Object f4296c;
     public Object d;
 
     public v() {
-        this.f4244a = 8;
+        this.f4294a = 7;
     }
 
     private final void a() {
         c6.f fVar;
-        synchronized (((g6.v) this.f4245b).X) {
-            fVar = (c6.f) ((g6.v) this.f4245b).X.get((String) this.f4246c);
+        synchronized (((g6.v) this.f4295b).X) {
+            fVar = (c6.f) ((g6.v) this.f4295b).X.get((String) this.f4296c);
         }
         if (fVar != null) {
             ((e6.h) fVar).o((String) this.d);
         } else {
-            g6.v.f10295n0.b("Discarded message for unknown namespace '%s'", (String) this.f4246c);
+            g6.v.f10368n0.b("Discarded message for unknown namespace '%s'", (String) this.f4296c);
         }
     }
 
@@ -52,24 +51,24 @@ public final class v implements Runnable {
         w9.b bVar;
         Bundle bundle = null;
         Object obj = null;
-        switch (this.f4244a) {
+        switch (this.f4294a) {
             case 0:
-                h hVar = g0.f4196i;
-                ((c) this.f4245b).y(24, 4, hVar);
-                ((j) this.f4246c).a(hVar, ((i) this.d).f4210a);
+                h hVar = g0.f4246i;
+                ((c) this.f4295b).y(24, 4, hVar);
+                ((j) this.f4296c).a(hVar, ((i) this.d).f4260a);
                 return;
             case 1:
-                d0.I((d0) this.f4245b, (a4.m) this.f4246c, (org.telegram.messenger.d0) this.d);
+                d0.I((d0) this.f4295b, (a4.l) this.f4296c, (org.telegram.messenger.d0) this.d);
                 return;
             case 2:
-                d0.H((d0) this.f4245b, (i) this.d, (j) this.f4246c);
+                d0.H((d0) this.f4295b, (i) this.d, (j) this.f4296c);
                 return;
             case 3:
-                c6.d0 d0Var = (c6.d0) this.f4245b;
-                HashMap hashMap = d0Var.f4293b.C;
-                String str = (String) this.f4246c;
+                c6.d0 d0Var = (c6.d0) this.f4295b;
+                HashMap hashMap = d0Var.f4343b.C;
+                String str = (String) this.f4296c;
                 synchronized (hashMap) {
-                    fVar = (c6.f) d0Var.f4293b.C.get(str);
+                    fVar = (c6.f) d0Var.f4343b.C.get(str);
                 }
                 if (fVar != null) {
                     ((e6.h) fVar).o((String) this.d);
@@ -80,10 +79,10 @@ public final class v implements Runnable {
                 }
             case 4:
                 ca.c cVar = (ca.c) this.d;
-                cVar.b((w9.b) this.f4245b, (TaskCompletionSource) this.f4246c);
-                ((AtomicInteger) cVar.f4528i.f16938c).set(0);
-                double min = Math.min(3600000.0d, Math.pow(cVar.f4523b, cVar.a()) * (60000.0d / cVar.f4522a));
-                String str2 = "Delay for: " + String.format(Locale.US, "%.2f", Double.valueOf(min / 1000.0d)) + " s for report: " + bVar.f48937b;
+                cVar.b((w9.b) this.f4295b, (TaskCompletionSource) this.f4296c);
+                ((AtomicInteger) cVar.f4578i.f20462c).set(0);
+                double min = Math.min(3600000.0d, Math.pow(cVar.f4573b, cVar.a()) * (60000.0d / cVar.f4572a));
+                String str2 = "Delay for: " + String.format(Locale.US, "%.2f", Double.valueOf(min / 1000.0d)) + " s for report: " + bVar.f50217b;
                 if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                     Log.d("FirebaseCrashlytics", str2, null);
                 }
@@ -94,12 +93,12 @@ public final class v implements Runnable {
                     return;
                 }
             case 5:
-                com.google.android.gms.common.api.internal.l lVar = (com.google.android.gms.common.api.internal.l) this.f4245b;
+                com.google.android.gms.common.api.internal.l lVar = (com.google.android.gms.common.api.internal.l) this.f4295b;
                 a5.a aVar = (a5.a) this.d;
                 if (aVar.f299b > 0) {
                     Bundle bundle2 = (Bundle) aVar.d;
                     if (bundle2 != null) {
-                        bundle = bundle2.getBundle((String) this.f4246c);
+                        bundle = bundle2.getBundle((String) this.f4296c);
                     }
                     lVar.onCreate(bundle);
                 }
@@ -118,38 +117,35 @@ public final class v implements Runnable {
                 }
                 return;
             case 6:
-                g.f.b(((g.f) this.d).f10043e, (View) this.f4245b, (View) this.f4246c);
-                return;
-            case 7:
                 a();
                 return;
-            case 8:
+            case 7:
                 try {
-                    obj = ((o0.f) this.f4245b).call();
+                    obj = ((o0.e) this.f4295b).call();
                 } catch (Exception unused2) {
                 }
-                ((Handler) this.d).post(new i9.s(20, (z) this.f4246c, obj));
+                ((Handler) this.d).post(new i9.s(21, (z) this.f4296c, obj));
+                return;
+            case 8:
+                ((pg) this.d).n((File) this.f4296c, (ArrayList) this.f4295b);
                 return;
             case 9:
-                ((og) this.d).n((File) this.f4246c, (ArrayList) this.f4245b);
-                return;
-            case 10:
-                u4.f fVar2 = (u4.f) this.d;
-                fVar2.d.f3099c.remove((String) this.f4245b);
-                c0.l lVar2 = (c0.l) this.f4246c;
-                if (!(lVar2.f3923a instanceof c0.a)) {
+                u4.e eVar = (u4.e) this.d;
+                eVar.d.f3178c.remove((String) this.f4295b);
+                c0.l lVar2 = (c0.l) this.f4296c;
+                if (!(lVar2.f3972a instanceof c0.a)) {
                     try {
                         lVar2.get();
                         return;
                     } catch (Exception e7) {
-                        fVar2.f47550c.l(e7);
+                        eVar.f48843c.l(e7);
                         return;
                     }
                 }
                 return;
-            case 11:
-                Bitmap bitmap = (Bitmap) this.f4245b;
-                String str3 = (String) this.f4246c;
+            case 10:
+                Bitmap bitmap = (Bitmap) this.f4295b;
+                String str3 = (String) this.f4296c;
                 ((ShortcutInfoCompatSaverImpl) this.d).getClass();
                 if (bitmap != null) {
                     if (!TextUtils.isEmpty(str3)) {
@@ -172,54 +168,54 @@ public final class v implements Runnable {
                             }
                         } catch (IOException | OutOfMemoryError | RuntimeException e10) {
                             Log.wtf("ShortcutInfoCompatSaver", "Unable to write bitmap to file", e10);
-                            throw new RuntimeException(sa.e.i("Unable to write bitmap to file ", str3), e10);
+                            throw new RuntimeException(sc.v.i("Unable to write bitmap to file ", str3), e10);
                         }
                     }
                     throw new IllegalArgumentException("path is empty");
                 }
                 throw new IllegalArgumentException("bitmap is null");
-            case 12:
+            case 11:
                 b();
                 return;
             default:
-                k0 k0Var = (k0) this.f4246c;
+                k0 k0Var = (k0) this.f4296c;
                 y8.e0 e0Var = (y8.e0) this.d;
-                Task<byte[]> onRequest = ((x8.m) this.f4245b).f49783c.onRequest(k0Var.d, k0Var.f50510b, k0Var.f50511c);
+                Task<byte[]> onRequest = ((x8.m) this.f4295b).f51059c.onRequest(k0Var.d, k0Var.f51789b, k0Var.f51790c);
                 if (onRequest == null) {
-                    x8.m.M0(e0Var, false, null);
+                    x8.m.L0(e0Var, false, null);
                     return;
                 } else {
-                    onRequest.addOnCompleteListener(new l2.g(e0Var, 22));
+                    onRequest.addOnCompleteListener(new f3(e0Var, 24));
                     return;
                 }
         }
     }
 
     public v(d0 d0Var, i iVar, j jVar) {
-        this.f4244a = 2;
-        this.f4245b = d0Var;
+        this.f4294a = 2;
+        this.f4295b = d0Var;
         this.d = iVar;
-        this.f4246c = jVar;
+        this.f4296c = jVar;
     }
 
     public v(Object obj, Object obj2, Object obj3, int i10) {
-        this.f4244a = i10;
-        this.f4245b = obj;
-        this.f4246c = obj2;
+        this.f4294a = i10;
+        this.f4295b = obj;
+        this.f4296c = obj2;
         this.d = obj3;
     }
 
     public v(Object obj, Object obj2, Object obj3, boolean z10, int i10) {
-        this.f4244a = i10;
+        this.f4294a = i10;
         this.d = obj;
-        this.f4245b = obj2;
-        this.f4246c = obj3;
+        this.f4295b = obj2;
+        this.f4296c = obj3;
     }
 
-    public v(la laVar, z0 z0Var, String str) {
-        this.f4244a = 12;
-        this.f4245b = laVar;
-        this.f4246c = z0Var;
+    public v(la laVar, n6.t tVar, String str) {
+        this.f4294a = 11;
+        this.f4295b = laVar;
+        this.f4296c = tVar;
         this.d = str;
     }
 }

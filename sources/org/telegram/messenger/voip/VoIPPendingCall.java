@@ -9,7 +9,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.voip.g2;
+import org.telegram.ui.Components.voip.f2;
 public final class VoIPPendingCall {
     private AccountInstance accountInstance;
     private final Activity activity;
@@ -29,8 +29,8 @@ public final class VoIPPendingCall {
             }
         };
         this.observer = notificationCenterDelegate;
-        s0 s0Var = new s0(this, 2);
-        this.releaseRunnable = s0Var;
+        t0 t0Var = new t0(this, 2);
+        this.releaseRunnable = t0Var;
         this.activity = activity;
         this.userId = j3;
         this.video = z10;
@@ -41,7 +41,7 @@ public final class VoIPPendingCall {
             notificationCenter.addObserver(notificationCenterDelegate, NotificationCenter.didUpdateConnectionState);
             Handler handler = new Handler(Looper.myLooper());
             this.handler = handler;
-            handler.postDelayed(s0Var, j10);
+            handler.postDelayed(t0Var, j10);
         }
     }
 
@@ -77,16 +77,16 @@ public final class VoIPPendingCall {
         MessagesController messagesController = this.accountInstance.getMessagesController();
         TLRPC.User user = messagesController.getUser(Long.valueOf(this.userId));
         if (user != null) {
-            TLRPC.UserFull userFull = messagesController.getUserFull(user.f20194id);
+            TLRPC.UserFull userFull = messagesController.getUserFull(user.f20185id);
             boolean z12 = this.video;
             if (userFull != null && userFull.video_calls_available) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            g2.m(user, z12, z11, this.activity, userFull, this.accountInstance);
+            f2.m(user, z12, z11, this.activity, userFull, this.accountInstance);
         } else if (isAirplaneMode()) {
-            g2.m(null, this.video, false, this.activity, null, this.accountInstance);
+            f2.m(null, this.video, false, this.activity, null, this.accountInstance);
         }
         release();
         return true;

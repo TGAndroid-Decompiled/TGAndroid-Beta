@@ -1,29 +1,23 @@
 package org.telegram.ui;
+public final class zz0 extends uu0 {
+    public final ProfileActivity f45100a;
 
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.TLRPC;
-public final class zz0 implements jq {
-    public final uy f43935a;
-    public final a01 f43936b;
-
-    public zz0(a01 a01Var, uy uyVar) {
-        this.f43936b = a01Var;
-        this.f43935a = uyVar;
+    public zz0(ProfileActivity profileActivity) {
+        this.f45100a = profileActivity;
     }
 
     @Override
-    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        a01 a01Var = this.f43936b;
-        a01Var.f34642b.N1 = true;
-        this.f43935a.removeSelfFromStack();
-        NotificationCenter notificationCenter = a01Var.f34642b.getNotificationCenter();
-        ProfileActivity profileActivity = a01Var.f34642b;
-        int i11 = NotificationCenter.closeChats;
-        notificationCenter.removeObserver(profileActivity, i11);
-        a01Var.f34642b.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i11, new Object[0]);
+    public final org.telegram.ui.ev0 E(org.telegram.messenger.MessageObject r17, org.telegram.tgnet.TLRPC.FileLocation r18, int r19, boolean r20, boolean r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.zz0.E(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.ev0");
     }
 
     @Override
-    public final void a(TLRPC.User user) {
+    public final void G() {
+        this.f45100a.f34242e0.getImageReceiver().setVisible(true, true);
+    }
+
+    @Override
+    public final void f(String str, String str2, boolean z10) {
+        this.f45100a.f34323q0.p(str, str2, z10);
     }
 }

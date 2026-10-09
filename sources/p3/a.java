@@ -8,17 +8,17 @@ import java.nio.charset.StandardCharsets;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import v7.r6;
-import w7.m;
-public final class a extends m {
-    public static final Pattern f44142c = Pattern.compile("(.+?)='(.*?)';", 32);
-    public final CharsetDecoder f44143a = StandardCharsets.UTF_8.newDecoder();
-    public final CharsetDecoder f44144b = StandardCharsets.ISO_8859_1.newDecoder();
+import w7.l;
+public final class a extends l {
+    public static final Pattern f45306c = Pattern.compile("(.+?)='(.*?)';", 32);
+    public final CharsetDecoder f45307a = StandardCharsets.UTF_8.newDecoder();
+    public final CharsetDecoder f45308b = StandardCharsets.ISO_8859_1.newDecoder();
 
     @Override
     public final p0 b(l3.a aVar, ByteBuffer byteBuffer) {
         String str;
-        CharsetDecoder charsetDecoder = this.f44144b;
-        CharsetDecoder charsetDecoder2 = this.f44143a;
+        CharsetDecoder charsetDecoder = this.f45308b;
+        CharsetDecoder charsetDecoder2 = this.f45307a;
         String str2 = null;
         try {
             str = charsetDecoder2.decode(byteBuffer).toString();
@@ -46,7 +46,7 @@ public final class a extends m {
         if (str == null) {
             return new p0(new c(null, null, bArr));
         }
-        Matcher matcher = f44142c.matcher(str);
+        Matcher matcher = f45306c.matcher(str);
         String str3 = null;
         for (int i10 = 0; matcher.find(i10); i10 = matcher.end()) {
             String group = matcher.group(1);

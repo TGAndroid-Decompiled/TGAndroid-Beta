@@ -1,58 +1,30 @@
 package ai;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class wb implements org.telegram.ui.Components.pb {
-    public final float[] f1822a = new float[2];
-    public final xb f1823b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class wb extends AnimatorListenerAdapter {
+    public final int f1887a;
+    public final yb f1888b;
 
-    public wb(xb xbVar) {
-        this.f1823b = xbVar;
+    public wb(yb ybVar, int i10) {
+        this.f1887a = i10;
+        this.f1888b = ybVar;
     }
 
     @Override
-    public final boolean a() {
-        return true;
-    }
-
-    @Override
-    public final boolean e() {
-        return true;
-    }
-
-    @Override
-    public final int f(int i10) {
-        xb xbVar = this.f1823b;
-        jc jcVar = xbVar.I0;
-        e6 t10 = jcVar.t();
-        if (t10 == null) {
-            return 0;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f1887a) {
+            case 0:
+                kc kcVar = this.f1888b.I0;
+                kcVar.X = 0.0f;
+                kc.k(kcVar);
+                return;
+            default:
+                kc kcVar2 = this.f1888b.I0;
+                kcVar2.W = 0.0f;
+                kcVar2.Z = 0.0f;
+                kc.k(kcVar2);
+                return;
         }
-        a5 a5Var = t10.f844c1;
-        xb xbVar2 = jcVar.f1185s;
-        float[] fArr = this.f1822a;
-        AndroidUtilities.getViewPositionInParent(a5Var, xbVar2, fArr);
-        return (int) (xbVar.getMeasuredHeight() - (fArr[1] + a5Var.getMeasuredHeight()));
-    }
-
-    @Override
-    public final boolean g(int i10) {
-        return false;
-    }
-
-    @Override
-    public final int h(int i10) {
-        return 0;
-    }
-
-    @Override
-    public final void b(org.telegram.ui.Components.rc rcVar) {
-    }
-
-    @Override
-    public final void c(float f7) {
-    }
-
-    @Override
-    public final void d(org.telegram.ui.Components.rc rcVar) {
     }
 }

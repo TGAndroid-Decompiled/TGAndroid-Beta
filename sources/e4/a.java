@@ -11,16 +11,15 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import sa.e;
 import z3.d;
 import z3.l;
 import z3.m;
 public final class a implements m {
     public static final Pattern d = Pattern.compile("\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d{3}))?)\\s*-->\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d{3}))?)\\s*");
-    public static final Pattern f8638e = Pattern.compile("\\{\\\\.*?\\}");
-    public final StringBuilder f8639a = new StringBuilder();
-    public final ArrayList f8640b = new ArrayList();
-    public final v f8641c = new v();
+    public static final Pattern f8632e = Pattern.compile("\\{\\\\.*?\\}");
+    public final StringBuilder f8633a = new StringBuilder();
+    public final ArrayList f8634b = new ArrayList();
+    public final v f8635c = new v();
 
     public static d2.b a(android.text.Spanned r21, java.lang.String r22) {
         throw new UnsupportedOperationException("Method not decompiled: e4.a.a(android.text.Spanned, java.lang.String):d2.b");
@@ -48,13 +47,18 @@ public final class a implements m {
     }
 
     @Override
-    public final void E(byte[] bArr, int i10, int i11, l lVar, h hVar) {
+    public final int O() {
+        return 1;
+    }
+
+    @Override
+    public final void P(byte[] bArr, int i10, int i11, l lVar, h hVar) {
         ArrayList arrayList;
         String k10;
         String str;
         a aVar = this;
-        long j3 = lVar.f52403a;
-        v vVar = aVar.f8641c;
+        long j3 = lVar.f53507a;
+        v vVar = aVar.f8635c;
         vVar.H(i10 + i11, bArr);
         vVar.J(i10);
         Charset F = vVar.F();
@@ -62,7 +66,7 @@ public final class a implements m {
             F = StandardCharsets.UTF_8;
         }
         long j10 = -9223372036854775807L;
-        if (j3 != -9223372036854775807L && lVar.f52404b) {
+        if (j3 != -9223372036854775807L && lVar.f53508b) {
             arrayList = new ArrayList();
         } else {
             arrayList = null;
@@ -86,19 +90,18 @@ public final class a implements m {
                 if (matcher.matches()) {
                     long b10 = b(matcher, 1);
                     long b11 = b(matcher, 6);
-                    StringBuilder sb2 = aVar.f8639a;
+                    StringBuilder sb2 = aVar.f8633a;
                     sb2.setLength(0);
-                    ArrayList arrayList2 = aVar.f8640b;
+                    long j11 = j10;
+                    ArrayList arrayList2 = aVar.f8634b;
                     arrayList2.clear();
-                    String k12 = vVar.k(F);
-                    while (!TextUtils.isEmpty(k12)) {
-                        long j11 = j10;
+                    for (String k12 = vVar.k(F); !TextUtils.isEmpty(k12); k12 = vVar.k(F)) {
                         if (sb2.length() > 0) {
                             sb2.append("<br>");
                         }
                         String trim = k12.trim();
                         StringBuilder sb3 = new StringBuilder(trim);
-                        Matcher matcher2 = f8638e.matcher(trim);
+                        Matcher matcher2 = f8632e.matcher(trim);
                         int i12 = 0;
                         while (matcher2.find()) {
                             String group = matcher2.group();
@@ -110,11 +113,8 @@ public final class a implements m {
                             j3 = j3;
                         }
                         sb2.append(sb3.toString());
-                        k12 = vVar.k(F);
-                        j10 = j11;
                     }
                     long j12 = j3;
-                    long j13 = j10;
                     Spanned fromHtml = Html.fromHtml(sb2.toString());
                     int i13 = 0;
                     while (true) {
@@ -129,7 +129,7 @@ public final class a implements m {
                             break;
                         }
                     }
-                    if (j12 != j13 && b11 < j12) {
+                    if (j12 != j11 && b11 < j12) {
                         if (arrayList != null) {
                             arrayList.add(new z3.a(b10, b11 - b10, i0.z(a(fromHtml, str))));
                         }
@@ -137,7 +137,7 @@ public final class a implements m {
                         hVar.accept(new z3.a(b10, b11 - b10, i0.z(a(fromHtml, str))));
                     }
                     aVar = this;
-                    j10 = j13;
+                    j10 = j11;
                     j3 = j12;
                 } else {
                     e2.a.n("SubripParser", "Skipping invalid timing: ".concat(k10));
@@ -157,13 +157,8 @@ public final class a implements m {
     }
 
     @Override
-    public final d h(int i10, int i11, byte[] bArr) {
-        return e.a(this, bArr, i11);
-    }
-
-    @Override
-    public final int y() {
-        return 1;
+    public final d s(int i10, int i11, byte[] bArr) {
+        return sc.v.a(this, bArr, i11);
     }
 
     @Override

@@ -4,24 +4,24 @@ import e9.i0;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 public final class e {
-    public final i0 f3955a;
-    public final ArrayList f3956b = new ArrayList();
-    public ByteBuffer[] f3957c = new ByteBuffer[0];
+    public final i0 f4004a;
+    public final ArrayList f4005b = new ArrayList();
+    public ByteBuffer[] f4006c = new ByteBuffer[0];
     public boolean d;
 
     public e(i0 i0Var) {
-        this.f3955a = i0Var;
-        f fVar = f.f3958e;
+        this.f4004a = i0Var;
+        f fVar = f.f4007e;
         this.d = false;
     }
 
     public final void a() {
-        ArrayList arrayList = this.f3956b;
+        ArrayList arrayList = this.f4005b;
         arrayList.clear();
         this.d = false;
         int i10 = 0;
         while (true) {
-            i0 i0Var = this.f3955a;
+            i0 i0Var = this.f4004a;
             if (i10 >= i0Var.size()) {
                 break;
             }
@@ -32,25 +32,25 @@ public final class e {
             }
             i10++;
         }
-        this.f3957c = new ByteBuffer[arrayList.size()];
+        this.f4006c = new ByteBuffer[arrayList.size()];
         for (int i11 = 0; i11 <= b(); i11++) {
-            this.f3957c[i11] = ((h) arrayList.get(i11)).a();
+            this.f4006c[i11] = ((h) arrayList.get(i11)).a();
         }
     }
 
     public final int b() {
-        return this.f3957c.length - 1;
+        return this.f4006c.length - 1;
     }
 
     public final boolean c() {
-        if (this.d && ((h) this.f3956b.get(b())).b() && !this.f3957c[b()].hasRemaining()) {
+        if (this.d && ((h) this.f4005b.get(b())).b() && !this.f4006c[b()].hasRemaining()) {
             return true;
         }
         return false;
     }
 
     public final boolean d() {
-        return !this.f3956b.isEmpty();
+        return !this.f4005b.isEmpty();
     }
 
     public final void e(ByteBuffer byteBuffer) {
@@ -60,24 +60,24 @@ public final class e {
         for (boolean z12 = true; z12; z12 = z10) {
             z10 = false;
             for (int i10 = 0; i10 <= b(); i10++) {
-                if (!this.f3957c[i10].hasRemaining()) {
-                    ArrayList arrayList = this.f3956b;
+                if (!this.f4006c[i10].hasRemaining()) {
+                    ArrayList arrayList = this.f4005b;
                     h hVar = (h) arrayList.get(i10);
                     if (hVar.b()) {
-                        if (!this.f3957c[i10].hasRemaining() && i10 < b()) {
+                        if (!this.f4006c[i10].hasRemaining() && i10 < b()) {
                             ((h) arrayList.get(i10 + 1)).e();
                         }
                     } else {
                         if (i10 > 0) {
-                            byteBuffer2 = this.f3957c[i10 - 1];
+                            byteBuffer2 = this.f4006c[i10 - 1];
                         } else if (byteBuffer.hasRemaining()) {
                             byteBuffer2 = byteBuffer;
                         } else {
-                            byteBuffer2 = h.f3962a;
+                            byteBuffer2 = h.f4011a;
                         }
                         hVar.c(byteBuffer2);
-                        this.f3957c[i10] = hVar.a();
-                        if (byteBuffer2.remaining() - byteBuffer2.remaining() <= 0 && !this.f3957c[i10].hasRemaining()) {
+                        this.f4006c[i10] = hVar.a();
+                        if (byteBuffer2.remaining() - byteBuffer2.remaining() <= 0 && !this.f4006c[i10].hasRemaining()) {
                             z11 = false;
                         } else {
                             z11 = true;
@@ -96,8 +96,8 @@ public final class e {
         if (!(obj instanceof e)) {
             return false;
         }
-        i0 i0Var = ((e) obj).f3955a;
-        i0 i0Var2 = this.f3955a;
+        i0 i0Var = ((e) obj).f4004a;
+        i0 i0Var2 = this.f4004a;
         if (i0Var2.size() != i0Var.size()) {
             return false;
         }
@@ -110,6 +110,6 @@ public final class e {
     }
 
     public final int hashCode() {
-        return this.f3955a.hashCode();
+        return this.f4004a.hashCode();
     }
 }

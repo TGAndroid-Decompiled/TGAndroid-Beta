@@ -1,30 +1,36 @@
 package hd;
-
-import java.util.RandomAccess;
-import v7.b8;
-public final class b extends c implements RandomAccess {
-    public final c f11077a;
-    public final int f11078b;
-    public final int f11079c;
-
-    public b(c cVar, int i10, int i11) {
-        this.f11077a = cVar;
-        this.f11078b = i10;
-        b8.a(i10, i11, cVar.i());
-        this.f11079c = i11 - i10;
-    }
+public final class b implements Comparable {
+    public static final b f11082b = new b();
+    public final int f11083a = 131348;
 
     @Override
-    public final Object get(int i10) {
-        int i11 = this.f11079c;
-        if (i10 >= 0 && i10 < i11) {
-            return this.f11077a.get(this.f11078b + i10);
+    public final int compareTo(Object obj) {
+        b other = (b) obj;
+        kotlin.jvm.internal.i.e(other, "other");
+        return this.f11083a - other.f11083a;
+    }
+
+    public final boolean equals(Object obj) {
+        b bVar;
+        if (this == obj) {
+            return true;
         }
-        throw new IndexOutOfBoundsException(a4.a.m(i10, i11, "index: ", ", size: "));
+        if (obj instanceof b) {
+            bVar = (b) obj;
+        } else {
+            bVar = null;
+        }
+        if (bVar != null && this.f11083a == bVar.f11083a) {
+            return true;
+        }
+        return false;
     }
 
-    @Override
-    public final int i() {
-        return this.f11079c;
+    public final int hashCode() {
+        return this.f11083a;
+    }
+
+    public final String toString() {
+        return "2.1.20";
     }
 }

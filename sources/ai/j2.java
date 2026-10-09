@@ -1,31 +1,144 @@
 package ai;
 
+import android.content.Context;
+import android.content.res.Configuration;
 import android.graphics.Canvas;
-import android.view.View;
-import android.view.ViewGroup;
-public final class j2 extends ViewGroup {
-    @Override
-    public final void draw(Canvas canvas) {
-        if (m2.Z.W) {
-            return;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class j2 extends FrameLayout {
+    public final int f1176a;
+    public Path f1177b;
+
+    public j2(Context context, int i10) {
+        super(context);
+        this.f1176a = i10;
+        switch (i10) {
+            case 1:
+                super(context);
+                this.f1177b = new Path();
+                return;
+            default:
+                return;
         }
-        super.draw(canvas);
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        m2 m2Var = m2.Z;
-        if (m2Var.f1334e.getParent() == this) {
-            m2Var.f1334e.layout(0, 0, m2Var.J, m2Var.K);
+    public void dispatchDraw(Canvas canvas) {
+        switch (this.f1176a) {
+            case 1:
+                int save = canvas.save();
+                Path path = this.f1177b;
+                w7.g6.a(path, getWidth(), getHeight());
+                canvas.clipPath(path);
+                super.dispatchDraw(canvas);
+                canvas.restoreToCount(save);
+                return;
+            default:
+                super.dispatchDraw(canvas);
+                return;
         }
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11));
-        m2 m2Var = m2.Z;
-        if (m2Var.f1334e.getParent() == this) {
-            m2Var.f1334e.measure(View.MeasureSpec.makeMeasureSpec(m2Var.J, 1073741824), View.MeasureSpec.makeMeasureSpec(m2Var.K, 1073741824));
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        boolean z10;
+        float f7;
+        int dp;
+        switch (this.f1176a) {
+            case 0:
+                int action = motionEvent.getAction();
+                n2 n2Var = n2.Z;
+                if (n2Var.G != null) {
+                    MotionEvent obtain = MotionEvent.obtain(motionEvent);
+                    obtain.offsetLocation(n2Var.G.getX(), n2Var.G.getY());
+                    boolean dispatchTouchEvent = n2Var.G.dispatchTouchEvent(motionEvent);
+                    obtain.recycle();
+                    if (action == 1 || action == 3) {
+                        n2Var.G = null;
+                    }
+                    if (dispatchTouchEvent) {
+                        return true;
+                    }
+                }
+                MotionEvent obtain2 = MotionEvent.obtain(motionEvent);
+                obtain2.offsetLocation(motionEvent.getRawX() - motionEvent.getX(), motionEvent.getRawY() - motionEvent.getY());
+                boolean onTouchEvent = n2Var.f1455x.onTouchEvent(obtain2);
+                obtain2.recycle();
+                if (!n2Var.f1455x.isInProgress() && ((GestureDetector) n2Var.f1456y.f15668b).onTouchEvent(motionEvent)) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                if (action == 1 || action == 3) {
+                    n2Var.E = false;
+                    n2Var.F = false;
+                    o1.k kVar = n2Var.P;
+                    if (!kVar.f16931f) {
+                        float f10 = n2Var.N;
+                        kVar.f16928b = f10;
+                        kVar.f16929c = true;
+                        o1.l lVar = kVar.f16938u;
+                        int i10 = n2Var.J;
+                        float f11 = (i10 / 2.0f) + f10;
+                        int i11 = AndroidUtilities.displaySize.x;
+                        if (f11 >= i11 / 2.0f) {
+                            dp = (i11 - i10) - AndroidUtilities.dp(16.0f);
+                        } else {
+                            dp = AndroidUtilities.dp(16.0f);
+                        }
+                        lVar.f16945i = dp;
+                        n2Var.P.h();
+                    }
+                    o1.k kVar2 = n2Var.Q;
+                    if (!kVar2.f16931f) {
+                        kVar2.f16928b = n2Var.O;
+                        kVar2.f16929c = true;
+                        kVar2.f16938u.f16945i = w7.o.a(f7, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - n2Var.K) - AndroidUtilities.dp(16.0f));
+                        n2Var.Q.h();
+                    }
+                }
+                if (onTouchEvent || z10) {
+                    return true;
+                }
+                return false;
+            default:
+                return super.dispatchTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration configuration) {
+        switch (this.f1176a) {
+            case 0:
+                AndroidUtilities.checkDisplaySize(getContext(), configuration);
+                n2 n2Var = n2.Z;
+                AndroidUtilities.setPreferredMaxRefreshRate(n2Var.f1447b, n2Var.d, n2Var.f1448c);
+                n2Var.i();
+                return;
+            default:
+                super.onConfigurationChanged(configuration);
+                return;
+        }
+    }
+
+    @Override
+    public void onSizeChanged(int i10, int i11, int i12, int i13) {
+        switch (this.f1176a) {
+            case 0:
+                super.onSizeChanged(i10, i11, i12, i13);
+                Path path = this.f1177b;
+                path.rewind();
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(0.0f, 0.0f, i10, i11);
+                path.addRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), Path.Direction.CW);
+                return;
+            default:
+                super.onSizeChanged(i10, i11, i12, i13);
+                return;
         }
     }
 }

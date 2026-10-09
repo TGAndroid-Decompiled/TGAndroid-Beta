@@ -1,117 +1,41 @@
 package g;
 
-import android.content.Context;
-import android.content.IntentFilter;
-import android.util.SparseIntArray;
-import android.view.MenuItem;
-public abstract class p {
-    public Object f10077a;
-    public Object f10078b;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import androidx.appcompat.widget.ContentFrameLayout;
+import v7.s7;
+public final class p extends ContentFrameLayout {
+    public final r f10149r;
 
-    public p(Context context) {
-        this.f10077a = context;
+    public p(r rVar, k.c cVar) {
+        super(cVar);
+        this.f10149r = rVar;
     }
 
-    public void c() {
-        androidx.mediarouter.app.g gVar = (androidx.mediarouter.app.g) this.f10077a;
-        if (gVar != null) {
-            try {
-                ((s) this.f10078b).f10101e.unregisterReceiver(gVar);
-            } catch (IllegalArgumentException unused) {
-            }
-            this.f10077a = null;
+    @Override
+    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
+        if (!this.f10149r.i(keyEvent) && !super.dispatchKeyEvent(keyEvent)) {
+            return false;
         }
+        return true;
     }
 
-    public abstract IntentFilter d();
-
-    public abstract int e();
-
-    public MenuItem f(MenuItem menuItem) {
-        if (menuItem instanceof l0.a) {
-            l0.a aVar = (l0.a) menuItem;
-            if (((a0.m) this.f10078b) == null) {
-                this.f10078b = new a0.m(0);
-            }
-            MenuItem menuItem2 = (MenuItem) ((a0.m) this.f10078b).get(aVar);
-            if (menuItem2 == null) {
-                l.r rVar = new l.r((Context) this.f10077a, aVar);
-                ((a0.m) this.f10078b).put(aVar, rVar);
-                return rVar;
-            }
-            return menuItem2;
-        }
-        return menuItem;
-    }
-
-    public int g(int i10, int i11) {
-        int i12 = i(i10);
-        int i13 = 0;
-        int i14 = 0;
-        for (int i15 = 0; i15 < i10; i15++) {
-            int i16 = i(i15);
-            i13 += i16;
-            if (i13 == i11) {
-                i14++;
-                i13 = 0;
-            } else if (i13 > i11) {
-                i14++;
-                i13 = i16;
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            int x10 = (int) motionEvent.getX();
+            int y3 = (int) motionEvent.getY();
+            if (x10 < -5 || y3 < -5 || x10 > getWidth() + 5 || y3 > getHeight() + 5) {
+                r rVar = this.f10149r;
+                rVar.h(rVar.p(0), true);
+                return true;
             }
         }
-        if (i13 + i12 > i11) {
-            return i14 + 1;
-        }
-        return i14;
+        return super.onInterceptTouchEvent(motionEvent);
     }
 
-    public int h(int i10, int i11) {
-        int i12 = i(i10);
-        if (i12 == i11) {
-            return 0;
-        }
-        int i13 = 0;
-        for (int i14 = 0; i14 < i10; i14++) {
-            int i15 = i(i14);
-            i13 += i15;
-            if (i13 == i11) {
-                i13 = 0;
-            } else if (i13 > i11) {
-                i13 = i15;
-            }
-        }
-        if (i12 + i13 > i11) {
-            return 0;
-        }
-        return i13;
-    }
-
-    public abstract int i(int i10);
-
-    public void j() {
-        ((SparseIntArray) this.f10077a).clear();
-    }
-
-    public abstract void k();
-
-    public void l() {
-        c();
-        IntentFilter d = d();
-        if (d.countActions() == 0) {
-            return;
-        }
-        if (((androidx.mediarouter.app.g) this.f10077a) == null) {
-            this.f10077a = new androidx.mediarouter.app.g(this, 3);
-        }
-        ((s) this.f10078b).f10101e.registerReceiver((androidx.mediarouter.app.g) this.f10077a, d);
-    }
-
-    public p() {
-        this.f10077a = new SparseIntArray();
-        this.f10078b = new SparseIntArray();
-    }
-
-    public p(s sVar) {
-        this.f10078b = sVar;
+    @Override
+    public final void setBackgroundResource(int i10) {
+        setBackgroundDrawable(s7.b(getContext(), i10));
     }
 }

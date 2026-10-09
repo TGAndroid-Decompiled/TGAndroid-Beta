@@ -7,7 +7,7 @@ public abstract class x extends b8.b implements y {
     }
 
     @Override
-    public final boolean K0(Parcel parcel, int i10) {
+    public final boolean J0(Parcel parcel, int i10) {
         if (i10 != 1) {
             if (i10 != 2) {
                 return false;

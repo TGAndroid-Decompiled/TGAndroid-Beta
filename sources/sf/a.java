@@ -1,37 +1,23 @@
 package sf;
 
-import android.content.SharedPreferences;
-import android.os.SystemClock;
-import org.telegram.messenger.ApplicationLoader;
-import w7.q;
-public final class a {
-    public final SharedPreferences f46790a;
-    public long f46791b;
-    public long f46792c;
-    public int d;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.view.View;
+import com.google.android.gms.internal.cast.p;
+public interface a {
+    void a(p pVar);
 
-    public a(String str) {
-        SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("pip_duration_".concat(str), 0);
-        this.f46790a = sharedPreferences;
-        this.f46791b = sharedPreferences.getLong("estimated", 400L);
-        this.d = sharedPreferences.getInt("count", 0);
-    }
+    void b(p pVar);
 
-    public final void a() {
-        int b10;
-        if (this.f46792c == 0) {
-            return;
-        }
-        this.f46791b = (((SystemClock.uptimeMillis() - this.f46792c) * (10 - b10)) / 10) + ((this.f46791b * q.b(this.d, 0, 9)) / 10);
-        this.f46792c = 0L;
-        this.d++;
-        this.f46790a.edit().putLong("estimated", this.f46791b).putInt("count", this.d).apply();
-    }
+    Bitmap c();
 
-    public final float b() {
-        if (this.f46791b > 0) {
-            return q.a(((float) (SystemClock.uptimeMillis() - this.f46792c)) / ((float) this.f46791b), 0.0f, 1.0f);
-        }
-        return 0.5f;
-    }
+    void d(Canvas canvas);
+
+    Bitmap e();
+
+    void f(Canvas canvas);
+
+    boolean g();
+
+    View h();
 }

@@ -1,25 +1,30 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.LinearLayout;
-public class ro0 extends LinearLayout {
-    public ro0(Context context) {
-        super(context);
-        setWillNotDraw(false);
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class ro0 extends ht {
+    public final org.telegram.ui.dy f30472i0;
+
+    public ro0(org.telegram.ui.dy dyVar, qm0 qm0Var, Context context, int i10, int i11) {
+        super(qm0Var, context, i10, i11, false, null);
+        this.f30472i0 = dyVar;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        return super.drawChild(canvas, view, j3);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        if (getParent() instanceof so0) {
-            ((so0) getParent()).invalidate();
+    public final void N(boolean z10) {
+        boolean z11;
+        ArrayList arrayList;
+        super.N(z10);
+        qo0 qo0Var = this.f30472i0.f25776l0;
+        if (!this.Z && !this.f27131a0 && (arrayList = this.T) != null && arrayList.isEmpty()) {
+            z11 = false;
+        } else {
+            z11 = true;
         }
+        qo0Var.e(z11, z10);
+        qo0Var.d.setText(LocaleController.getString(R.string.NoResult));
+        qo0Var.f24802e.setVisibility(8);
     }
 }

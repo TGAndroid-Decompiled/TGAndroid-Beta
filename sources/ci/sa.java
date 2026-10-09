@@ -1,40 +1,60 @@
 package ci;
 
-import android.animation.ValueAnimator;
-public final class sa implements ValueAnimator.AnimatorUpdateListener {
-    public final int f5924a;
-    public final kc f5925b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.eh0;
+import org.telegram.ui.Components.gh0;
+public final class sa implements o1.f {
+    public final int f5962a;
+    public final float f5963b;
+    public final Object f5964c;
 
-    public sa(kc kcVar, int i10) {
-        this.f5924a = i10;
-        this.f5925b = kcVar;
+    public sa(Object obj, float f7, int i10) {
+        this.f5962a = i10;
+        this.f5964c = obj;
+        this.f5963b = f7;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f5924a) {
+    public final void a(o1.h hVar, boolean z10, float f7, float f10) {
+        float dp;
+        switch (this.f5962a) {
             case 0:
-                this.f5925b.M0.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                lc lcVar = (lc) this.f5964c;
+                if (!z10) {
+                    lcVar.M0.setTranslationY(this.f5963b);
+                    lcVar.M0.K = false;
+                    lcVar.f5505o2 = null;
+                    lcVar.f5508p2 = null;
+                    return;
+                }
                 return;
             case 1:
-                this.f5925b.f5430r1.setAppearProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 2:
-                this.f5925b.f5430r1.setAppearProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 3:
-                this.f5925b.f5434s1.setAppearProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 4:
-                this.f5925b.f5434s1.setAppearProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                ei.o4 o4Var = (ei.o4) this.f5964c;
+                o4Var.v = null;
+                float f11 = this.f5963b;
+                if (!z10) {
+                    o4Var.f9263f = f11;
+                    o4Var.c();
+                    return;
+                }
+                o4Var.h = f11;
                 return;
             default:
-                kc kcVar = this.f5925b;
-                kcVar.getClass();
-                kcVar.I = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                kcVar.o();
-                kcVar.f5428r.invalidate();
-                kcVar.f5415n.invalidate();
+                eh0 eh0Var = (eh0) this.f5964c;
+                if (!z10) {
+                    gh0 gh0Var = eh0Var.d;
+                    o1.l lVar = gh0Var.M.f16938u;
+                    int i10 = gh0Var.H;
+                    float f12 = (i10 / 2.0f) + this.f5963b;
+                    int i11 = AndroidUtilities.displaySize.x;
+                    if (f12 >= i11 / 2.0f) {
+                        dp = (i11 - i10) - AndroidUtilities.dp(16.0f);
+                    } else {
+                        dp = AndroidUtilities.dp(16.0f);
+                    }
+                    lVar.f16945i = dp;
+                    return;
+                }
                 return;
         }
     }

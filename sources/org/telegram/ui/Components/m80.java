@@ -1,18 +1,11 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
+import android.widget.ScrollView;
 import org.telegram.messenger.AndroidUtilities;
-public final class m80 extends FrameLayout {
-    public TextView f28628a;
-
+public final class m80 extends ScrollView {
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
-    }
-
-    public void setText(CharSequence charSequence) {
-        this.f28628a.setText(charSequence);
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(260.0f), View.MeasureSpec.getSize(i11)), View.MeasureSpec.getMode(i11)));
     }
 }

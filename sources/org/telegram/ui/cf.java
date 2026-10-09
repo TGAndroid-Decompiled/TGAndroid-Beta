@@ -1,52 +1,128 @@
 package org.telegram.ui;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Shader;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.ChannelBoostsController;
+import org.telegram.messenger.MessageSuggestionParams;
 import org.telegram.messenger.Utilities;
-public final class cf implements Utilities.Callback2 {
-    public final int f35439a;
-    public final yn f35440b;
+import org.telegram.tgnet.tl.TL_stories;
+public final class cf implements Utilities.Callback {
+    public final int f36643a;
+    public final zn f36644b;
 
-    public cf(yn ynVar, int i10) {
-        this.f35439a = i10;
-        this.f35440b = ynVar;
+    public cf(zn znVar, int i10) {
+        this.f36643a = i10;
+        this.f36644b = znVar;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f35439a) {
+    public final void run(Object obj) {
+        int i10 = this.f36643a;
+        zn znVar = this.f36644b;
+        switch (i10) {
             case 0:
-                yn.U(this.f35440b, (Integer) obj, (Boolean) obj2);
+                MessageSuggestionParams messageSuggestionParams = (MessageSuggestionParams) obj;
+                zn znVar2 = this.f36644b;
+                znVar2.f44781g5 = messageSuggestionParams;
+                znVar2.p5.messageOwner.suggested_post = messageSuggestionParams.toTl();
+                znVar2.Cb(true, null, znVar2.p5, null, null, true, 0, null, false, 0L, null, true);
                 return;
             case 1:
-                yn.i1(this.f35440b, (Long) obj, (Boolean) obj2);
+                znVar.zb(true, false);
+                if (((Boolean) obj).booleanValue()) {
+                    znVar.finishFragment();
+                    return;
+                }
                 return;
             case 2:
-                Bitmap bitmap = (Bitmap) obj;
-                yn ynVar = this.f35440b;
-                fh.b bVar = ynVar.f43560x8;
-                bVar.a((Bitmap) obj2);
-                gh.d.c(bVar, ynVar.fragmentView);
-                ynVar.f43572y8.d();
+                znVar.ia((String) obj, false);
+                return;
+            case 3:
+                znVar.E1 = (ChannelBoostsController.CanApplyBoost) obj;
+                return;
+            case 4:
+                znVar.Hb((MessageSuggestionParams) obj);
+                return;
+            case 5:
+                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
+                if (tL_premium_boostsStatus != null) {
+                    znVar.D1 = tL_premium_boostsStatus;
+                    znVar.getMessagesController().getBoostsController().userCanBoostChannel(znVar.T5, tL_premium_boostsStatus, new cf(znVar, 3));
+                    return;
+                }
+                return;
+            case 6:
+                View view = (View) obj;
+                if (view instanceof org.telegram.ui.Cells.u1) {
+                    org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) view;
+                    u1Var.E8 = znVar.y9();
+                    u1Var.F8 = znVar.H9();
+                    boolean G9 = znVar.G9();
+                    if (u1Var.G8 != G9) {
+                        u1Var.G8 = G9;
+                        znVar.f44988x0.getClass();
+                        int R = RecyclerView.R(view);
+                        u1Var.f23300n8 = true;
+                        u1Var.forceLayout();
+                        if (R >= 0) {
+                            znVar.A0.m(R);
+                        }
+                    }
+                    u1Var.H8 = znVar.V8();
+                    int W8 = znVar.W8();
+                    if (u1Var.I8 != W8) {
+                        u1Var.I8 = W8;
+                        u1Var.y4();
+                        u1Var.invalidate();
+                        return;
+                    }
+                    return;
+                } else if (view instanceof org.telegram.ui.Cells.w0) {
+                    org.telegram.ui.Cells.w0 w0Var = (org.telegram.ui.Cells.w0) view;
+                    w0Var.f23591e0 = znVar.y9();
+                    w0Var.f23604i0 = znVar.H9();
+                    znVar.G9();
+                    znVar.V8();
+                    int W82 = znVar.W8();
+                    if (w0Var.f23607j0 != W82) {
+                        w0Var.f23607j0 = W82;
+                        w0Var.invalidate();
+                        return;
+                    }
+                    return;
+                } else if (view instanceof org.telegram.ui.Cells.w1) {
+                    ((org.telegram.ui.Cells.w1) view).getTextView().setTranslationX(znVar.W8() / 2.0f);
+                    return;
+                } else if (view instanceof org.telegram.ui.Cells.b0) {
+                    view.invalidate();
+                    return;
+                } else if (view instanceof org.telegram.ui.Cells.h0) {
+                    view.invalidate();
+                    return;
+                } else {
+                    return;
+                }
+            case 7:
+                Long l4 = (Long) obj;
+                org.telegram.ui.Components.c41 c41Var = znVar.R1;
+                if (c41Var != null) {
+                    c41Var.m(l4.longValue(), true);
+                    return;
+                }
+                return;
+            case 8:
+                fs fsVar = znVar.f44738d0;
+                fsVar.f37671c.add(((org.telegram.ui.ActionBar.v0) obj).getIconView());
+                return;
+            case 9:
+                int intValue = ((Integer) obj).intValue();
+                int i11 = zn.Hc;
+                znVar.Fa(intValue);
                 return;
             default:
-                yn ynVar2 = this.f35440b;
-                ynVar2.f43585z8 = (Bitmap) obj;
-                Paint paint = new Paint(1);
-                ynVar2.B8 = paint;
-                Bitmap bitmap2 = ynVar2.f43585z8;
-                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                BitmapShader bitmapShader = new BitmapShader(bitmap2, tileMode, tileMode);
-                ynVar2.A8 = bitmapShader;
-                paint.setShader(bitmapShader);
-                ynVar2.C8 = new Matrix();
-                fh.b bVar2 = ynVar2.f43560x8;
-                bVar2.a((Bitmap) obj2);
-                gh.d.c(bVar2, ynVar2.fragmentView);
-                ynVar2.f43572y8.d();
+                int intValue2 = ((Integer) obj).intValue();
+                int i12 = zn.Hc;
+                znVar.Fa(intValue2);
                 return;
         }
     }

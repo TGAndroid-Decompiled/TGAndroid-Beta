@@ -1,54 +1,80 @@
 package ei;
 
 import java.util.regex.Pattern;
-import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.voip.VoIPGroupNotification;
-import org.telegram.messenger.voip.VoIPPreNotificationService;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.l5;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.NotificationRepeat;
+import org.telegram.messenger.PushListenerController;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.LaunchActivity;
-public final class r2 implements RequestDelegate {
-    public final int f9300a;
-    public final int f9301b;
+public final class r2 implements Runnable {
+    public final int f9330a;
+    public final int f9331b;
 
     public r2(int i10, int i11) {
-        this.f9300a = i11;
-        this.f9301b = i10;
+        this.f9330a = i11;
+        this.f9331b = i10;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f9300a;
-        int i11 = this.f9301b;
-        switch (i10) {
+    public final void run() {
+        switch (this.f9330a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new s2(i11, 0));
+                MediaDataController.getInstance(this.f9331b).loadAttachMenuBots(false, true);
                 return;
             case 1:
-                VoIPGroupNotification.a(i11, tLObject, tL_error);
-                return;
-            case 2:
-                VoIPPreNotificationService.lambda$decline$4(i11, tLObject, tL_error);
-                return;
-            case 3:
-                AndroidUtilities.runOnUIThread(new l5(i11, tLObject));
-                return;
-            case 4:
-                if (tLObject instanceof TLRPC.TL_updates) {
-                    MessagesController.getInstance(i11).processUpdates((TLRPC.TL_updates) tLObject, false);
+                try {
+                    MessagesStorage.getInstance(this.f9331b).getDatabase().executeFast("DELETE FROM search_recent WHERE 1").stepThis().dispose();
+                    return;
+                } catch (Exception e7) {
+                    FileLog.e(e7);
                     return;
                 }
+            case 2:
+                MediaController.lambda$loadGalleryPhotosAlbums$57(this.f9331b);
+                return;
+            case 3:
+                MediaController.lambda$checkGallery$1(this.f9331b);
+                return;
+            case 4:
+                NotificationRepeat.a(this.f9331b);
                 return;
             case 5:
-                Pattern pattern = LaunchActivity.B1;
-                AndroidUtilities.runOnUIThread(new l5(i11, tLObject, 2));
+                PushListenerController.lambda$processRemoteMessage$3(this.f9331b);
+                return;
+            case 6:
+                PushListenerController.lambda$processRemoteMessage$4(this.f9331b);
+                return;
+            case 7:
+                SharedConfig.lambda$checkLogsToDelete$3(this.f9331b);
+                return;
+            case 8:
+                ConnectionsManager.lambda$onUpdate$13(this.f9331b);
+                return;
+            case 9:
+                ConnectionsManager.lambda$onSessionCreated$14(this.f9331b);
+                return;
+            case 10:
+                ConnectionsManager.lambda$onLogout$16(this.f9331b);
+                return;
+            case 11:
+                MediaDataController.getInstance(this.f9331b).checkStickers(5);
                 return;
             default:
-                Pattern pattern2 = LaunchActivity.B1;
-                AndroidUtilities.runOnUIThread(new l5(i11, tLObject, 1));
+                int i10 = this.f9331b;
+                Pattern pattern = LaunchActivity.B1;
+                ApplicationLoader.mainInterfacePausedStageQueue = true;
+                ApplicationLoader.mainInterfacePausedStageQueueTime = 0L;
+                if (VoIPService.getSharedInstance() == null) {
+                    MessagesController.getInstance(i10).ignoreSetOnline = false;
+                    return;
+                }
                 return;
         }
     }

@@ -1,35 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-public final class kb0 extends y81 {
-    public final Context f28152a;
-    public final ic0 f28153b;
+import org.telegram.messenger.AndroidUtilities;
+public final class kb0 {
+    public final org.telegram.ui.ActionBar.n2 f27927a;
+    public final pb0 f27928b;
 
-    public kb0(ic0 ic0Var, Context context) {
-        this.f28153b = ic0Var;
-        this.f28152a = context;
+    public kb0(pb0 pb0Var, org.telegram.ui.ActionBar.n2 n2Var) {
+        this.f27928b = pb0Var;
+        this.f27927a = n2Var;
     }
 
-    @Override
-    public final void b(View view, int i10, int i11) {
-        cc0 cc0Var = (cc0) view;
-        cc0Var.h();
-        cc0Var.k(false);
+    public final void a(boolean z10) {
+        pb0 pb0Var = this.f27928b;
+        boolean z11 = false;
+        if (pb0Var.getNeededLayoutManager() != pb0Var.getCurrentLayoutManager() && pb0Var.a()) {
+            if (pb0Var.f29830f.M0 > 0) {
+                pb0Var.N = true;
+                pb0Var.o(false);
+                return;
+            }
+            pb0Var.f29827b.setLayoutManager(pb0Var.getNeededLayoutManager());
+        }
+        if (z10 && !pb0Var.a()) {
+            z10 = false;
+        }
+        if (!z10 || pb0Var.f29830f.K() > 0) {
+            z11 = z10;
+        }
+        pb0Var.o(z11);
     }
 
-    @Override
-    public final View d(int i10) {
-        return new cc0(this.f28153b, this.f28152a, i10);
+    public final void b(boolean z10) {
+        this.f27928b.l(z10);
     }
 
-    @Override
-    public final int e() {
-        return this.f28153b.f27459e.f26845a.size();
-    }
-
-    @Override
-    public final int h(int i10) {
-        return ((fc0) this.f28153b.f27459e.f26845a.get(i10)).f26448a;
+    public final void c() {
+        long j3;
+        pb0 pb0Var = this.f27928b;
+        nq nqVar = pb0Var.J;
+        if (pb0Var.f29827b.getLayoutManager() != pb0Var.d && pb0Var.I) {
+            AndroidUtilities.cancelRunOnUIThread(nqVar);
+            if (this.f27927a.getFragmentBeginToShow()) {
+                j3 = 0;
+            } else {
+                j3 = 100;
+            }
+            AndroidUtilities.runOnUIThread(nqVar, j3);
+        }
     }
 }

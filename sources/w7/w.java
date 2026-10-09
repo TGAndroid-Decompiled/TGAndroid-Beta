@@ -1,57 +1,88 @@
 package w7;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.view.GestureDetector;
+import android.view.View;
+import android.view.ViewConfiguration;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.ui.Components.qm0;
+import org.telegram.ui.LaunchActivity;
 public abstract class w {
-    public static String a(Object... objArr) {
-        int length;
-        int length2;
-        int indexOf;
-        String k10;
-        int i10 = 0;
-        int i11 = 0;
-        while (true) {
-            length = objArr.length;
-            if (i11 >= length) {
-                break;
-            }
-            Object obj = objArr[i11];
-            if (obj == null) {
-                k10 = "null";
+    public static mg.i f50154a;
+
+    public static void a(LaunchActivity launchActivity, boolean z10, boolean z11) {
+        boolean z12;
+        mg.i iVar = f50154a;
+        if (iVar != null) {
+            z12 = true;
+        } else {
+            z12 = false;
+        }
+        if (z10 != z12) {
+            if (z10) {
+                ?? frameLayout = new FrameLayout(launchActivity);
+                frameLayout.f16439r = new mg.c(frameLayout, 3);
+                frameLayout.E = new ArrayList();
+                mg.f fVar = new mg.f(frameLayout);
+                frameLayout.f16436e = launchActivity.getSharedPreferences("floating_debug", 0);
+                frameLayout.F = ViewConfiguration.get(launchActivity).getScaledTouchSlop();
+                m.f3 f3Var = new m.f3(launchActivity, fVar);
+                ((GestureDetector) f3Var.f15668b).setIsLongpressEnabled(false);
+                ci.m6 m6Var = new ci.m6(frameLayout, launchActivity, f3Var, 2);
+                frameLayout.f16433a = m6Var;
+                ImageView imageView = new ImageView(launchActivity);
+                imageView.setImageResource(R.drawable.device_phone_android);
+                imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.O9, false), PorterDuff.Mode.SRC_IN));
+                m6Var.addView(imageView);
+                m6Var.setVisibility(8);
+                frameLayout.addView(m6Var, x5.d(56.0f, 56));
+                LinearLayout linearLayout = new LinearLayout(launchActivity);
+                frameLayout.f16441w = linearLayout;
+                linearLayout.setOrientation(1);
+                linearLayout.setVisibility(8);
+                TextView textView = new TextView(launchActivity);
+                frameLayout.f16442x = textView;
+                textView.setTextSize(1, 20.0f);
+                textView.setText(LocaleController.getString(R.string.DebugMenu));
+                textView.setTypeface(AndroidUtilities.bold());
+                textView.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(19.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(19.0f));
+                linearLayout.addView(textView, x5.n(-1, -2));
+                qm0 qm0Var = new qm0(launchActivity, null);
+                frameLayout.f16443y = qm0Var;
+                qm0Var.setLayoutManager(new s4.d0());
+                qm0Var.setAdapter(new mg.g((mg.i) frameLayout, launchActivity));
+                qm0Var.setOnItemClickListener(new ai.g(frameLayout, 13));
+                linearLayout.addView(qm0Var, x5.l(1.0f, -1, 0));
+                frameLayout.addView(linearLayout, x5.a(-1.0f, 8.0f, 8.0f, 8.0f, 8.0f, -1, 0));
+                frameLayout.d();
+                frameLayout.setFitsSystemWindows(true);
+                frameLayout.setWillNotDraw(false);
+                f50154a = frameLayout;
+                launchActivity.f33819w0.addView((View) frameLayout, new FrameLayout.LayoutParams(-1, -1));
+                mg.i iVar2 = f50154a;
+                iVar2.f16433a.setVisibility(0);
+                o1.k kVar = new o1.k(new o1.j(0.0f));
+                kVar.f16938u = org.telegram.ui.Cells.c1.j(1000.0f, 750.0f, 0.75f);
+                kVar.b(new ai.ra(2, iVar2));
+                kVar.h();
             } else {
-                try {
-                    k10 = obj.toString();
-                } catch (Exception e7) {
-                    String D = a4.a.D(obj.getClass().getName(), "@", Integer.toHexString(System.identityHashCode(obj)));
-                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(D), (Throwable) e7);
-                    k10 = org.telegram.ui.Cells.c1.k("<", D, " threw ", e7.getClass().getName(), ">");
-                }
+                iVar.getClass();
+                launchActivity.f33819w0.removeView(f50154a);
+                f50154a = null;
             }
-            objArr[i11] = k10;
-            i11++;
-        }
-        StringBuilder sb2 = new StringBuilder((length * 16) + 29);
-        int i12 = 0;
-        while (true) {
-            length2 = objArr.length;
-            if (i10 >= length2 || (indexOf = "expected a non-null reference".indexOf("%s", i12)) == -1) {
-                break;
+            if (z11) {
+                SharedConfig.isFloatingDebugActive = z10;
+                SharedConfig.saveConfig();
             }
-            sb2.append((CharSequence) "expected a non-null reference", i12, indexOf);
-            sb2.append(objArr[i10]);
-            i10++;
-            i12 = indexOf + 2;
         }
-        sb2.append((CharSequence) "expected a non-null reference", i12, 29);
-        if (i10 < length2) {
-            sb2.append(" [");
-            sb2.append(objArr[i10]);
-            for (int i13 = i10 + 1; i13 < objArr.length; i13++) {
-                sb2.append(", ");
-                sb2.append(objArr[i13]);
-            }
-            sb2.append(']');
-        }
-        return sb2.toString();
     }
 }

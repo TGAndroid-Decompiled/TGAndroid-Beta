@@ -38,56 +38,56 @@ public abstract class FourierTransform {
 
     public void fillSpectrum() {
         float[] fArr;
+        int i10;
         float pow;
-        int i10 = 0;
+        int i11 = 0;
         while (true) {
             fArr = this.spectrum;
-            if (i10 >= fArr.length) {
+            if (i11 >= fArr.length) {
                 break;
             }
-            float f7 = this.real[i10];
-            float f10 = this.imag[i10];
-            fArr[i10] = (float) Math.sqrt((f10 * f10) + (f7 * f7));
-            i10++;
+            float f7 = this.real[i11];
+            float f10 = this.imag[i11];
+            fArr[i11] = (float) Math.sqrt((f10 * f10) + (f7 * f7));
+            i11++;
         }
-        int i11 = this.whichAverage;
-        if (i11 == 1) {
+        int i12 = this.whichAverage;
+        if (i12 == 1) {
             int length = fArr.length / this.averages.length;
-            for (int i12 = 0; i12 < this.averages.length; i12++) {
-                int i13 = 0;
+            for (int i13 = 0; i13 < this.averages.length; i13++) {
+                int i14 = 0;
                 float f11 = 0.0f;
-                while (i13 < length) {
-                    int i14 = (i12 * length) + i13;
+                while (i14 < length) {
+                    int i15 = (i13 * length) + i14;
                     float[] fArr2 = this.spectrum;
-                    if (i14 < fArr2.length) {
-                        f11 += fArr2[i14];
-                        i13++;
+                    if (i15 < fArr2.length) {
+                        f11 += fArr2[i15];
+                        i14++;
                     }
                 }
-                this.averages[i12] = f11 / (i13 + 1);
+                this.averages[i13] = f11 / (i14 + 1);
             }
-        } else if (i11 == 2) {
-            int i15 = 0;
+        } else if (i12 == 2) {
+            int i16 = 0;
             while (true) {
-                int i16 = this.octaves;
-                if (i15 < i16) {
-                    if (i15 == 0) {
+                if (i16 < this.octaves) {
+                    if (i16 == 0) {
                         pow = 0.0f;
                     } else {
-                        pow = (this.sampleRate / 2) / ((float) Math.pow(2.0d, i16 - i15));
+                        pow = (this.sampleRate / 2) / ((float) Math.pow(2.0d, i10 - i16));
                     }
-                    float pow2 = (((this.sampleRate / 2) / ((float) Math.pow(2.0d, (this.octaves - i15) - 1))) - pow) / this.avgPerOctave;
+                    float pow2 = (((this.sampleRate / 2) / ((float) Math.pow(2.0d, (this.octaves - i16) - 1))) - pow) / this.avgPerOctave;
                     int i17 = 0;
                     while (true) {
                         int i18 = this.avgPerOctave;
                         if (i17 < i18) {
                             float f12 = pow + pow2;
-                            this.averages[(i18 * i15) + i17] = calcAvg(pow, f12);
+                            this.averages[(i18 * i16) + i17] = calcAvg(pow, f12);
                             i17++;
                             pow = f12;
                         }
                     }
-                    i15++;
+                    i16++;
                 } else {
                     return;
                 }
@@ -338,16 +338,16 @@ public abstract class FourierTransform {
 
         @Override
         public void inverse(float[] fArr) {
+            float[] fArr2;
             if (fArr.length <= this.real.length) {
                 for (int i10 = 0; i10 < this.timeSize; i10++) {
-                    float[] fArr2 = this.imag;
-                    fArr2[i10] = fArr2[i10] * (-1.0f);
+                    float[] fArr3 = this.imag;
+                    fArr3[i10] = fArr3[i10] * (-1.0f);
                 }
                 bitReverseComplex();
                 fft();
                 for (int i11 = 0; i11 < fArr.length; i11++) {
-                    float[] fArr3 = this.real;
-                    fArr[i11] = fArr3[i11] / fArr3.length;
+                    fArr[i11] = this.real[i11] / fArr2.length;
                 }
             }
         }

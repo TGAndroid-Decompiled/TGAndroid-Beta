@@ -1,87 +1,85 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.os.Bundle;
+import android.text.TextPaint;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class ic1 implements RequestDelegate {
-    public final int f37382a;
-    public final pd1 f37383b;
+import org.telegram.messenger.SharedConfig;
+public final class ic1 extends FrameLayout {
+    public final org.telegram.ui.Cells.ga f38604a;
+    public final org.telegram.ui.Components.kp0 f38605b;
+    public final int f38606c;
+    public final int d;
+    public final TextPaint f38607e;
+    public int f38608f;
+    public final ThemeActivity h;
 
-    public ic1(pd1 pd1Var, int i10) {
-        this.f37382a = i10;
-        this.f37383b = pd1Var;
+    public ic1(ThemeActivity themeActivity, Context context) {
+        super(context);
+        org.telegram.ui.ActionBar.d5 d5Var;
+        this.h = themeActivity;
+        this.f38606c = 12;
+        this.d = 30;
+        setWillNotDraw(false);
+        TextPaint textPaint = new TextPaint(1);
+        this.f38607e = textPaint;
+        textPaint.setTextSize(AndroidUtilities.dp(16.0f));
+        org.telegram.ui.Components.kp0 kp0Var = new org.telegram.ui.Components.kp0(context);
+        this.f38605b = kp0Var;
+        kp0Var.setReportChanges(true);
+        kp0Var.setSeparatorsCount(19);
+        kp0Var.setDelegate(new jw0(this, 4));
+        kp0Var.setImportantForAccessibility(2);
+        addView(kp0Var, w7.x5.a(38.0f, 5.0f, 5.0f, 39.0f, 0.0f, -1, 51));
+        d5Var = ((org.telegram.ui.ActionBar.n2) themeActivity).parentLayout;
+        org.telegram.ui.Cells.ga gaVar = new org.telegram.ui.Cells.ga(context, d5Var, 0);
+        this.f38604a = gaVar;
+        gaVar.setImportantForAccessibility(4);
+        addView(gaVar, w7.x5.a(-2.0f, 0.0f, 53.0f, 0.0f, 0.0f, -1, 51));
     }
 
     @Override
-    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f37382a) {
-            case 0:
-                final pd1 pd1Var = this.f37383b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r3) {
-                            case 0:
-                                pd1.U(pd1Var, tLObject);
-                                return;
-                            default:
-                                TLObject tLObject2 = tLObject;
-                                if (tLObject2 instanceof TLRPC.TL_wallPaper) {
-                                    TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) tLObject2;
-                                    if (tL_wallPaper.pattern) {
-                                        pd1 pd1Var2 = pd1Var;
-                                        pd1Var2.W0 = tL_wallPaper;
-                                        pd1Var2.b1(false);
-                                        pd1Var2.j1();
-                                        pd1Var2.U0.add(0, pd1Var2.W0);
-                                        nd1 nd1Var = pd1Var2.Q0;
-                                        if (nd1Var != null) {
-                                            nd1Var.l();
-                                            return;
-                                        }
-                                        return;
-                                    }
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
-                return;
-            default:
-                final pd1 pd1Var2 = this.f37383b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r3) {
-                            case 0:
-                                pd1.U(pd1Var2, tLObject);
-                                return;
-                            default:
-                                TLObject tLObject2 = tLObject;
-                                if (tLObject2 instanceof TLRPC.TL_wallPaper) {
-                                    TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) tLObject2;
-                                    if (tL_wallPaper.pattern) {
-                                        pd1 pd1Var22 = pd1Var2;
-                                        pd1Var22.W0 = tL_wallPaper;
-                                        pd1Var22.b1(false);
-                                        pd1Var22.j1();
-                                        pd1Var22.U0.add(0, pd1Var22.W0);
-                                        nd1 nd1Var = pd1Var22.Q0;
-                                        if (nd1Var != null) {
-                                            nd1Var.l();
-                                            return;
-                                        }
-                                        return;
-                                    }
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
-                return;
+    public final void invalidate() {
+        super.invalidate();
+        this.f38604a.invalidate();
+        this.f38605b.invalidate();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        int x02 = org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.I6, false);
+        TextPaint textPaint = this.f38607e;
+        textPaint.setColor(x02);
+        canvas.drawText("" + SharedConfig.fontSize, getMeasuredWidth() - AndroidUtilities.dp(39.0f), AndroidUtilities.dp(28.0f), textPaint);
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        this.f38605b.getSeekBarAccessibilityDelegate().e(this, accessibilityNodeInfo);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        int size = View.MeasureSpec.getSize(i10);
+        if (this.f38608f != size) {
+            int i12 = SharedConfig.fontSize;
+            int i13 = this.f38606c;
+            this.f38605b.setProgress((i12 - i13) / (this.d - i13));
+            this.f38608f = size;
         }
+    }
+
+    @Override
+    public final boolean performAccessibilityAction(int i10, Bundle bundle) {
+        if (!super.performAccessibilityAction(i10, bundle) && !this.f38605b.getSeekBarAccessibilityDelegate().g(this, i10, bundle)) {
+            return false;
+        }
+        return true;
     }
 }

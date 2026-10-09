@@ -1,6 +1,5 @@
 package b2;
 
-import android.app.AppOpsManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.RemoteInput;
@@ -57,7 +56,7 @@ public abstract class c {
             while (true) {
                 z10 = true;
                 if (i13 < supportedPerformancePoints.size()) {
-                    if (r2.i.b(supportedPerformancePoints.get(i13)).covers(performancePoint)) {
+                    if (r2.j.c(supportedPerformancePoints.get(i13)).covers(performancePoint)) {
                         i12 = 2;
                         break;
                     }
@@ -67,7 +66,7 @@ public abstract class c {
                     break;
                 }
             }
-            if (i12 == 1 && b7.f48623a == null) {
+            if (i12 == 1 && b7.f49908a == null) {
                 if (Build.VERSION.SDK_INT < 35) {
                     int c10 = c(false);
                     int c11 = c(true);
@@ -75,12 +74,12 @@ public abstract class c {
                         if (c11 == 0) {
                         }
                     }
-                    b7.f48623a = Boolean.valueOf(z10);
+                    b7.f49908a = Boolean.valueOf(z10);
                     if (!z10) {
                     }
                 }
                 z10 = false;
-                b7.f48623a = Boolean.valueOf(z10);
+                b7.f49908a = Boolean.valueOf(z10);
                 if (!z10) {
                 }
             }
@@ -95,14 +94,14 @@ public abstract class c {
         List<MediaCodecInfo.VideoCapabilities.PerformancePoint> supportedPerformancePoints;
         try {
             r rVar = new r();
-            rVar.f3506q = r0.n("video/avc");
+            rVar.f3585q = r0.n("video/avc");
             s sVar = new s(rVar);
-            String str = sVar.f3564r;
+            String str = sVar.f3643r;
             if (str != null) {
                 List d10 = r2.x.d(str, z10, false);
                 String b10 = r2.x.b(sVar);
                 if (b10 == null) {
-                    d = e9.a1.f8721e;
+                    d = e9.a1.f8715e;
                 } else {
                     d = r2.x.d(b10, z10, false);
                 }
@@ -111,10 +110,10 @@ public abstract class c {
                 u10.d(d);
                 e9.a1 i10 = u10.i();
                 for (int i11 = 0; i11 < i10.d; i11++) {
-                    if (((r2.o) i10.get(i11)).d != null && (videoCapabilities = ((r2.o) i10.get(i11)).d.getVideoCapabilities()) != null && (supportedPerformancePoints = videoCapabilities.getSupportedPerformancePoints()) != null && !supportedPerformancePoints.isEmpty()) {
+                    if (((r2.p) i10.get(i11)).d != null && (videoCapabilities = ((r2.p) i10.get(i11)).d.getVideoCapabilities()) != null && (supportedPerformancePoints = videoCapabilities.getSupportedPerformancePoints()) != null && !supportedPerformancePoints.isEmpty()) {
                         MediaCodecInfo.VideoCapabilities.PerformancePoint performancePoint = new MediaCodecInfo.VideoCapabilities.PerformancePoint(1280, 720, 60);
                         for (int i12 = 0; i12 < supportedPerformancePoints.size(); i12++) {
-                            if (r2.i.b(supportedPerformancePoints.get(i12)).covers(performancePoint)) {
+                            if (r2.j.c(supportedPerformancePoints.get(i12)).covers(performancePoint)) {
                                 return 2;
                             }
                         }
@@ -129,17 +128,17 @@ public abstract class c {
 
     public static e9.a1 d(e eVar) {
         e9.f0 u10 = e9.i0.u();
-        e9.k0 k0Var = k2.b.f14375e;
-        e9.m0 m0Var = k0Var.f8768b;
+        e9.k0 k0Var = k2.b.f14410e;
+        e9.m0 m0Var = k0Var.f8762b;
         if (m0Var == null) {
             m0Var = k0Var.c();
-            k0Var.f8768b = m0Var;
+            k0Var.f8762b = m0Var;
         }
         e9.o1 it = m0Var.iterator();
         while (it.hasNext()) {
             Integer num = (Integer) it.next();
             int intValue = num.intValue();
-            if (Build.VERSION.SDK_INT >= e2.d0.q(intValue) && AudioTrack.isDirectPlaybackSupported(new AudioFormat.Builder().setChannelMask(12).setEncoding(intValue).setSampleRate(48000).build(), (AudioAttributes) eVar.b().f3602a)) {
+            if (Build.VERSION.SDK_INT >= e2.d0.q(intValue) && AudioTrack.isDirectPlaybackSupported(new AudioFormat.Builder().setChannelMask(12).setEncoding(intValue).setSampleRate(48000).build(), (AudioAttributes) eVar.b().f3681a)) {
                 u10.b(num);
             }
         }
@@ -149,21 +148,21 @@ public abstract class c {
 
     public static int e(int i10, int i11, e eVar) {
         for (int i12 = 10; i12 > 0; i12--) {
-            int s10 = e2.d0.s(i12);
-            if (s10 != 0 && AudioTrack.isDirectPlaybackSupported(new AudioFormat.Builder().setEncoding(i10).setSampleRate(i11).setChannelMask(s10).build(), (AudioAttributes) eVar.b().f3602a)) {
+            int r10 = e2.d0.r(i12);
+            if (r10 != 0 && AudioTrack.isDirectPlaybackSupported(new AudioFormat.Builder().setEncoding(i10).setSampleRate(i11).setChannelMask(r10).build(), (AudioAttributes) eVar.b().f3681a)) {
                 return i12;
             }
         }
         return 0;
     }
 
-    public static k2.f f(AudioFormat audioFormat, AudioAttributes audioAttributes, boolean z10) {
+    public static k2.e f(AudioFormat audioFormat, AudioAttributes audioAttributes, boolean z10) {
         if (!AudioManager.isOffloadedPlaybackSupported(audioFormat, audioAttributes)) {
-            return k2.f.d;
+            return k2.e.d;
         }
         ?? obj = new Object();
-        obj.f411a = true;
-        obj.f413c = z10;
+        obj.f409a = true;
+        obj.f411c = z10;
         return obj.a();
     }
 
@@ -171,35 +170,31 @@ public abstract class c {
         return context.getOpPackageName();
     }
 
-    public static AppOpsManager h(Context context) {
-        return (AppOpsManager) context.getSystemService(AppOpsManager.class);
-    }
-
-    public static Insets i(int i10, int i11, int i12, int i13) {
+    public static Insets h(int i10, int i11, int i12, int i13) {
         return Insets.of(i10, i11, i12, i13);
     }
 
-    public static void j(Notification.Builder builder, boolean z10) {
+    public static void i(Notification.Builder builder, boolean z10) {
         builder.setAllowSystemGeneratedContextualActions(z10);
     }
 
-    public static void k(AudioAttributes.Builder builder, int i10) {
+    public static void j(AudioAttributes.Builder builder, int i10) {
         builder.setAllowedCapturePolicy(i10);
     }
 
-    public static void l(Notification.Builder builder, Notification.BubbleMetadata bubbleMetadata) {
+    public static void k(Notification.Builder builder, Notification.BubbleMetadata bubbleMetadata) {
         builder.setBubbleMetadata(bubbleMetadata);
     }
 
-    public static void m(Notification.Action.Builder builder) {
+    public static void l(Notification.Action.Builder builder) {
         builder.setContextual(false);
     }
 
-    public static void n(RemoteInput.Builder builder) {
+    public static void m(RemoteInput.Builder builder) {
         builder.setEditChoicesBeforeSending(0);
     }
 
-    public static void o(Notification.Builder builder, Object obj) {
+    public static void n(Notification.Builder builder, Object obj) {
         builder.setLocusId((LocusId) obj);
     }
 }

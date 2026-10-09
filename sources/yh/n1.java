@@ -1,78 +1,51 @@
 package yh;
 
-import java.util.ArrayList;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 public final class n1 implements Runnable {
-    public final int f51674a;
-    public final y3 f51675b;
-    public final TL_stars.TL_starGiftUnique f51676c;
-    public final zf.a d;
-    public final Runnable f51677e;
+    public final int f52915a = 1;
+    public final s3 f52916b;
+    public final TLObject f52917c;
+    public final long d;
+    public final long f52918e;
+    public final TLRPC.TL_error f52919f;
+    public final long h;
+    public final Object f52920n;
 
-    public n1(y3 y3Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, zf.a aVar, Runnable runnable, int i10) {
-        this.f51674a = i10;
-        this.f51675b = y3Var;
-        this.f51676c = tL_starGiftUnique;
-        this.d = aVar;
-        this.f51677e = runnable;
+    public n1(s3 s3Var, TLObject tLObject, long j3, long j10, Utilities.Callback callback, TLRPC.TL_error tL_error, long j11) {
+        this.f52916b = s3Var;
+        this.f52917c = tLObject;
+        this.d = j3;
+        this.f52918e = j10;
+        this.f52920n = callback;
+        this.f52919f = tL_error;
+        this.h = j11;
     }
 
     @Override
     public final void run() {
-        boolean z10;
-        int i10 = this.f51674a;
-        zf.b bVar = zf.b.f53323a;
-        zf.b bVar2 = zf.b.f53324b;
-        Runnable runnable = this.f51677e;
-        zf.a aVar = this.d;
-        TL_stars.TL_starGiftUnique tL_starGiftUnique = this.f51676c;
-        y3 y3Var = this.f51675b;
-        boolean z11 = false;
-        switch (i10) {
+        switch (this.f52915a) {
             case 0:
-                y3Var.getClass();
-                tL_starGiftUnique.flags |= 16;
-                if (aVar.f53321a == bVar2) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                tL_starGiftUnique.resale_ton_only = z10;
-                ArrayList<TL_stars.StarsAmount> arrayList = new ArrayList<>();
-                tL_starGiftUnique.resell_amount = arrayList;
-                arrayList.add(aVar.e(bVar).o());
-                tL_starGiftUnique.resell_amount.add(aVar.e(bVar2).o());
-                y3Var.f52288e0.setResellPrice(aVar);
-                xh.d2 d2Var = y3Var.f52287d1;
-                if (d2Var != null) {
-                    d2Var.run();
-                }
-                if (runnable != null) {
-                    runnable.run();
-                }
-                hg.c.q(R.string.Gift2ResaleEnable, new Object[]{y3Var.C1()}, y3Var.getBulletinFactory(), R.raw.contact_check, 36);
+                long j3 = this.h;
+                TLRPC.TL_error tL_error = this.f52919f;
+                s3.I0(this.f52916b, (org.telegram.ui.ActionBar.b2) this.f52920n, this.f52917c, this.d, this.f52918e, j3, tL_error);
                 return;
             default:
-                tL_starGiftUnique.flags |= 16;
-                if (aVar.f53321a == bVar2) {
-                    z11 = true;
-                }
-                tL_starGiftUnique.resale_ton_only = z11;
-                ArrayList<TL_stars.StarsAmount> arrayList2 = new ArrayList<>();
-                tL_starGiftUnique.resell_amount = arrayList2;
-                arrayList2.add(aVar.e(bVar).o());
-                tL_starGiftUnique.resell_amount.add(aVar.e(bVar2).o());
-                y3Var.f52288e0.setResellPrice(aVar);
-                xh.d2 d2Var2 = y3Var.f52287d1;
-                if (d2Var2 != null) {
-                    d2Var2.run();
-                }
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
+                TLRPC.TL_error tL_error2 = this.f52919f;
+                long j10 = this.h;
+                s3.g0(this.f52916b, this.f52917c, this.d, this.f52918e, (Utilities.Callback) this.f52920n, tL_error2, j10);
                 return;
         }
+    }
+
+    public n1(s3 s3Var, org.telegram.ui.ActionBar.b2 b2Var, TLObject tLObject, long j3, long j10, long j11, TLRPC.TL_error tL_error) {
+        this.f52916b = s3Var;
+        this.f52920n = b2Var;
+        this.f52917c = tLObject;
+        this.d = j3;
+        this.f52918e = j10;
+        this.h = j11;
+        this.f52919f = tL_error;
     }
 }

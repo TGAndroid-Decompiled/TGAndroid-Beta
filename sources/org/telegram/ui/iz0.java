@@ -1,34 +1,37 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.accessibility.AccessibilityNodeInfo;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class iz0 extends f01 {
-    public iz0(Context context) {
-        super(context);
+import android.content.DialogInterface;
+import org.telegram.messenger.SharedConfig;
+public final class iz0 implements DialogInterface.OnClickListener {
+    public final int f38779a;
+    public final int f38780b;
+
+    public iz0(int i10, int i11) {
+        this.f38779a = i11;
+        this.f38780b = i10;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        ai.l4 l4Var;
-        super.dispatchDraw(canvas);
-        org.telegram.ui.Components.q5 q5Var = this.f32567e;
-        if (q5Var != null && (l4Var = q5Var.f29935k) != null) {
-            l4Var.startAnimation();
+    public final void onClick(DialogInterface dialogInterface, int i10) {
+        switch (this.f38779a) {
+            case 0:
+                int i11 = 2 - i10;
+                if (i11 == this.f38780b) {
+                    SharedConfig.overrideDevicePerformanceClass(-1);
+                    return;
+                } else {
+                    SharedConfig.overrideDevicePerformanceClass(i11);
+                    return;
+                }
+            default:
+                int i12 = 2 - i10;
+                if (i12 == this.f38780b) {
+                    SharedConfig.overrideDevicePerformanceClass(-1);
+                    return;
+                } else {
+                    SharedConfig.overrideDevicePerformanceClass(i12);
+                    return;
+                }
         }
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (getImageReceiver().hasNotThumb()) {
-            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrProfilePicture));
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString(R.string.Open)));
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, LocaleController.getString(R.string.AccDescrOpenInPhotoViewer)));
-            return;
-        }
-        accessibilityNodeInfo.setVisibleToUser(false);
     }
 }

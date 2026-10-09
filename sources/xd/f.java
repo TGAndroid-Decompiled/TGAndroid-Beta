@@ -1,3 +1,5 @@
 package xd;
-public abstract class f extends e {
+
+import w7.p8;
+public abstract class f extends p8 {
 }

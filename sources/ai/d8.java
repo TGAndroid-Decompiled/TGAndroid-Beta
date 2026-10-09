@@ -1,46 +1,54 @@
 package ai;
 
-import android.app.Activity;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
+import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.LocationController;
+import org.telegram.messenger.SavedMessagesController;
+import org.telegram.messenger.SecretChatHelper;
+import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.g31;
-import org.telegram.ui.TwoStepVerificationActivity;
+import org.telegram.ui.hd0;
 public final class d8 implements RequestDelegate {
-    public final int f778a = 0;
-    public final boolean f779b;
-    public final long f780c;
-    public final Object d;
-    public final Object f781e;
-    public final Object f782f;
+    public final int f831a;
+    public final long f832b;
+    public final Object f833c;
 
-    public d8(l9 l9Var, boolean z10, long j3, Utilities.Callback callback, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.d = l9Var;
-        this.f779b = z10;
-        this.f780c = j3;
-        this.f781e = callback;
-        this.f782f = d6Var;
+    public d8(Object obj, long j3, int i10) {
+        this.f831a = i10;
+        this.f833c = obj;
+        this.f832b = j3;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f778a) {
+        switch (this.f831a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new h3((l9) this.d, tL_error, this.f779b, this.f780c, (Utilities.Callback) this.f781e, (org.telegram.ui.ActionBar.d6) this.f782f));
+                AndroidUtilities.runOnUIThread(new a3.h0((m9) this.f833c, this.f832b, tLObject, 2));
+                return;
+            case 1:
+                ((ContactsController) this.f833c).lambda$loadContacts$28(this.f832b, tLObject, tL_error);
+                return;
+            case 2:
+                ((LocationController) this.f833c).lambda$loadLiveLocations$26(this.f832b, tLObject, tL_error);
+                return;
+            case 3:
+                ((SavedMessagesController) this.f833c).lambda$hasSavedMessages$15(this.f832b, tLObject, tL_error);
+                return;
+            case 4:
+                ((SecretChatHelper) this.f833c).lambda$declineSecretChat$20(this.f832b, tLObject, tL_error);
+                return;
+            case 5:
+                ((SendMessagesHelper) this.f833c).lambda$sendGame$50(this.f832b, tLObject, tL_error);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new g31((yh.h) this.d, tL_error, (TwoStepVerificationActivity) this.f781e, (Activity) this.f782f, this.f779b, this.f780c, tLObject));
+                hd0 hd0Var = (hd0) this.f833c;
+                if (tLObject != null) {
+                    AndroidUtilities.runOnUIThread(new a3.h0(hd0Var, tLObject, this.f832b, 28));
+                    return;
+                }
                 return;
         }
-    }
-
-    public d8(yh.h hVar, TwoStepVerificationActivity twoStepVerificationActivity, Activity activity, boolean z10, long j3) {
-        this.d = hVar;
-        this.f781e = twoStepVerificationActivity;
-        this.f782f = activity;
-        this.f779b = z10;
-        this.f780c = j3;
     }
 }

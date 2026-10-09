@@ -1,18 +1,12 @@
 package org.telegram.ui.Components;
-public interface pb {
-    boolean a();
 
-    void b(rc rcVar);
+import android.widget.FrameLayout;
+public abstract class pb extends FrameLayout implements ub {
+    @Override
+    public final void c() {
+    }
 
-    void c(float f7);
-
-    void d(rc rcVar);
-
-    boolean e();
-
-    int f(int i10);
-
-    boolean g(int i10);
-
-    int h(int i10);
+    @Override
+    public final void d() {
+    }
 }

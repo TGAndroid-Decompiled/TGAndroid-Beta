@@ -1,19 +1,19 @@
 package i9;
 
-import ai.z9;
+import ai.aa;
 import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.locks.LockSupport;
 public final class d0 extends AtomicReference implements Runnable {
-    public static final z9 f12006c = new z9(2);
-    public static final z9 d = new z9(2);
-    public final Callable f12007a;
-    public final e0 f12008b;
+    public static final aa f12056c = new aa(2);
+    public static final aa d = new aa(2);
+    public final Callable f12057a;
+    public final e0 f12058b;
 
     public d0(e0 e0Var, Callable callable) {
-        this.f12008b = e0Var;
+        this.f12058b = e0Var;
         callable.getClass();
-        this.f12007a = callable;
+        this.f12057a = callable;
     }
 
     public final void a(Thread thread) {
@@ -23,8 +23,8 @@ public final class d0 extends AtomicReference implements Runnable {
         int i10 = 0;
         while (true) {
             boolean z11 = runnable instanceof v;
-            z9 z9Var = d;
-            if (!z11 && runnable != z9Var) {
+            aa aaVar = d;
+            if (!z11 && runnable != aaVar) {
                 break;
             }
             if (z11) {
@@ -32,7 +32,7 @@ public final class d0 extends AtomicReference implements Runnable {
             }
             i10++;
             if (i10 > 1000) {
-                if (runnable == z9Var || compareAndSet(runnable, z9Var)) {
+                if (runnable == aaVar || compareAndSet(runnable, aaVar)) {
                     if (!Thread.interrupted() && !z10) {
                         z10 = false;
                     } else {
@@ -55,18 +55,18 @@ public final class d0 extends AtomicReference implements Runnable {
         Thread currentThread = Thread.currentThread();
         Object obj = null;
         if (compareAndSet(null, currentThread)) {
-            e0 e0Var = this.f12008b;
+            e0 e0Var = this.f12058b;
             boolean isDone = e0Var.isDone();
-            z9 z9Var = f12006c;
+            aa aaVar = f12056c;
             if (!isDone) {
                 try {
-                    obj = this.f12007a.call();
+                    obj = this.f12057a.call();
                 } catch (Throwable th2) {
                     try {
                         if (th2 instanceof InterruptedException) {
                             Thread.currentThread().interrupt();
                         }
-                        if (!compareAndSet(currentThread, z9Var)) {
+                        if (!compareAndSet(currentThread, aaVar)) {
                             a(currentThread);
                         }
                         if (!isDone) {
@@ -75,7 +75,7 @@ public final class d0 extends AtomicReference implements Runnable {
                         }
                         return;
                     } finally {
-                        if (!compareAndSet(currentThread, z9Var)) {
+                        if (!compareAndSet(currentThread, aaVar)) {
                             a(currentThread);
                         }
                         if (!isDone) {
@@ -91,7 +91,7 @@ public final class d0 extends AtomicReference implements Runnable {
     public final String toString() {
         String str;
         Runnable runnable = (Runnable) get();
-        if (runnable == f12006c) {
+        if (runnable == f12056c) {
             str = "running=[DONE]";
         } else if (runnable instanceof v) {
             str = "running=[INTERRUPTED]";
@@ -100,8 +100,8 @@ public final class d0 extends AtomicReference implements Runnable {
         } else {
             str = "running=[NOT STARTED YET]";
         }
-        StringBuilder j3 = sa.e.j(str, ", ");
-        j3.append(this.f12007a.toString());
+        StringBuilder j3 = sc.v.j(str, ", ");
+        j3.append(this.f12057a.toString());
         return j3.toString();
     }
 }

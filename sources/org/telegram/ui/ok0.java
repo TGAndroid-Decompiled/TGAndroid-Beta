@@ -1,138 +1,63 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.messenger.DispatchQueue;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
-public final class ok0 extends org.telegram.ui.Components.yl0 {
-    public final Context f39240c;
-    public ArrayList d = new ArrayList();
-    public ArrayList f39241e = new ArrayList();
-    public nk0 f39242f;
-    public final gg.c2 h;
-    public final NotificationsCustomSettingsActivity f39243n;
+import j$.util.Objects;
+public final class ok0 extends og.a {
+    public int f40550c;
+    public int d;
+    public CharSequence f40551e;
+    public CharSequence f40552f;
+    public vk0 f40553g;
+    public int h;
+    public boolean f40554i;
 
-    public ok0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, Context context) {
-        this.f39243n = notificationsCustomSettingsActivity;
-        this.f39240c = context;
-        gg.c2 c2Var = new gg.c2(true);
-        this.h = c2Var;
-        c2Var.f10532a = new bu(this, 26);
+    public static ok0 b(int i10, String str, boolean z10) {
+        ?? aVar = new og.a(1, true);
+        aVar.f40550c = i10;
+        aVar.f40551e = str;
+        aVar.f40554i = z10;
+        return aVar;
+    }
+
+    public static ok0 c(int i10, String str, String str2) {
+        ?? aVar = new og.a(5, true);
+        aVar.f40550c = i10;
+        aVar.f40551e = str;
+        aVar.f40552f = str2;
+        return aVar;
+    }
+
+    public static ok0 d(int i10, String str) {
+        ?? aVar = new og.a(4, true);
+        aVar.f40550c = i10;
+        aVar.f40551e = str;
+        return aVar;
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
+    public final boolean a(og.a aVar) {
+        if (this != aVar) {
+            if (ok0.class == aVar.getClass()) {
+                ok0 ok0Var = (ok0) aVar;
+                if (this.f40550c == ok0Var.f40550c && this.d == ok0Var.d && this.h == ok0Var.h && this.f40554i == ok0Var.f40554i && Objects.equals(this.f40551e, ok0Var.f40551e) && Objects.equals(this.f40552f, ok0Var.f40552f) && this.f40553g == ok0Var.f40553g) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
         return true;
     }
 
-    public final Object E(int i10) {
-        if (i10 >= 0 && i10 < this.d.size()) {
-            return this.d.get(i10);
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        int f7 = com.google.android.gms.internal.vision.e2.f(1, i10, this.d);
-        gg.c2 c2Var = this.h;
-        ArrayList arrayList = c2Var.f10535e;
-        if (f7 >= 0 && f7 < arrayList.size()) {
-            return c2Var.f10535e.get(f7);
-        }
-        return null;
-    }
-
-    public final void F(String str) {
-        boolean z10;
-        if (this.f39242f != null) {
-            Utilities.searchQueue.cancelRunnable(this.f39242f);
-            this.f39242f = null;
-        }
-        if (str == null) {
-            this.d.clear();
-            this.f39241e.clear();
-            this.h.f(null, null);
-            gg.c2 c2Var = this.h;
-            int i10 = this.f39243n.f33844s;
-            if (i10 != 1 && i10 != 3) {
-                z10 = true;
-            } else {
-                z10 = false;
+        if (obj != null && ok0.class == obj.getClass()) {
+            ok0 ok0Var = (ok0) obj;
+            if (this.f40550c == ok0Var.f40550c && this.h == ok0Var.h && ((this.f17125a == 8 || (this.d == ok0Var.d && Objects.equals(this.f40551e, ok0Var.f40551e) && (this.f17125a == 6 || Objects.equals(this.f40552f, ok0Var.f40552f)))) && this.f40553g == ok0Var.f40553g)) {
+                return true;
             }
-            c2Var.g(null, true, z10, true, false, 0L, false, 0, 0);
-            l();
-            return;
         }
-        DispatchQueue dispatchQueue = Utilities.searchQueue;
-        nk0 nk0Var = new nk0(this, str, 0);
-        this.f39242f = nk0Var;
-        dispatchQueue.postRunnable(nk0Var, 300L);
-    }
-
-    @Override
-    public final int h() {
-        int size = this.d.size();
-        ArrayList arrayList = this.h.f10535e;
-        if (!arrayList.isEmpty()) {
-            return arrayList.size() + 1 + size;
-        }
-        return size;
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 == this.d.size()) {
-            return 1;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        int i11 = c1Var.f46542f;
-        View view = c1Var.f46538a;
-        boolean z10 = true;
-        if (i11 != 0) {
-            if (i11 != 1) {
-                return;
-            }
-            ((org.telegram.ui.Cells.v3) view).setText(LocaleController.getString("AddToExceptions", R.string.AddToExceptions));
-            return;
-        }
-        org.telegram.ui.Cells.za zaVar = (org.telegram.ui.Cells.za) view;
-        boolean z11 = false;
-        if (i10 < this.d.size()) {
-            rk0 rk0Var = (rk0) this.d.get(i10);
-            CharSequence charSequence = (CharSequence) this.f39241e.get(i10);
-            if (i10 == this.d.size() - 1) {
-                z10 = false;
-            }
-            zaVar.g(rk0Var, charSequence, z10);
-            zaVar.setAddButtonVisible(false);
-            return;
-        }
-        int f7 = com.google.android.gms.internal.vision.e2.f(1, i10, this.d);
-        ArrayList arrayList = this.h.f10535e;
-        TLObject tLObject = (TLObject) arrayList.get(f7);
-        String string = LocaleController.getString("NotificationsOn", R.string.NotificationsOn);
-        if (f7 != arrayList.size() - 1) {
-            z11 = true;
-        }
-        zaVar.d(tLObject, null, string, z11);
-        zaVar.setAddButtonVisible(true);
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        View zaVar;
-        if (i10 != 0) {
-            zaVar = new org.telegram.ui.Cells.v3(this.f39240c, null);
-            zaVar.setBackgroundColor(0);
-            zaVar.setTag(-33024);
-        } else {
-            zaVar = new org.telegram.ui.Cells.za(4, 0, this.f39240c, null, false, true);
-        }
-        return new s4.c1(zaVar);
+        return false;
     }
 }

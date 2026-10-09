@@ -1,38 +1,200 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.view.ViewGroup;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public abstract class o9 {
-    public static void a(org.telegram.ui.yn ynVar, int i10, TLRPC.Chat chat, TLRPC.User user, TLRPC.TL_forumTopic tL_forumTopic, long j3, int i11, int i12) {
-        org.telegram.ui.ActionBar.c5 parentLayout;
-        TLRPC.TL_forumTopic tL_forumTopic2;
-        if ((chat != null || user != null) && (parentLayout = ynVar.getParentLayout()) != null) {
-            if (parentLayout.getPulledDialogs() == null) {
-                parentLayout.setPulledDialogs(new ArrayList());
-            }
-            for (n9 n9Var : parentLayout.getPulledDialogs()) {
-                if (tL_forumTopic != null || n9Var.f29001f != j3) {
-                    if (tL_forumTopic != null && (tL_forumTopic2 = n9Var.f29000e) != null && tL_forumTopic2.f20099id == tL_forumTopic.f20099id) {
-                        return;
-                    }
-                } else {
-                    return;
+public final class o9 extends Drawable {
+    public final ViewGroup f29410a;
+    public final int f29411b;
+    public boolean d;
+    public final int f29413e;
+    public final int f29414f;
+    public final float f29415g;
+    public final me.j f29412c = new me.j(new m2.t(this, 6), hs.h, 380);
+    public final ArrayList h = new ArrayList();
+    public int f29416i = 255;
+
+    public o9(int i10, ViewGroup viewGroup, int i11, int i12, float f7) {
+        this.f29411b = i10;
+        this.f29410a = viewGroup;
+        this.f29413e = i11;
+        this.f29414f = i12;
+        this.f29415g = f7;
+    }
+
+    public final void a() {
+        if (!this.d) {
+            this.d = true;
+            ArrayList arrayList = this.h;
+            int size = arrayList.size();
+            int i10 = 0;
+            while (i10 < size) {
+                Object obj = arrayList.get(i10);
+                i10++;
+                n9 n9Var = (n9) obj;
+                if (n9Var.f29081c != 0 && !n9Var.d) {
+                    n9Var.d = true;
+                    n9Var.f29079a.onAttachedToWindow();
                 }
             }
-            ?? obj = new Object();
-            obj.f28997a = org.telegram.ui.yn.class;
-            obj.f28998b = i10;
-            obj.f29001f = j3;
-            obj.h = i12;
-            obj.f29002g = i11;
-            obj.f28999c = chat;
-            obj.d = user;
-            obj.f29000e = tL_forumTopic;
-            parentLayout.getPulledDialogs().add(obj);
         }
     }
 
-    public static org.telegram.ui.ActionBar.n1 b(org.telegram.ui.ActionBar.n2 r37, android.view.View r38, long r39, long r41, org.telegram.ui.ActionBar.d6 r43) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.o9.b(org.telegram.ui.ActionBar.n2, android.view.View, long, long, org.telegram.ui.ActionBar.d6):org.telegram.ui.ActionBar.n1");
+    public final void b() {
+        if (this.d) {
+            this.d = false;
+            ArrayList arrayList = this.h;
+            int size = arrayList.size();
+            int i10 = 0;
+            while (i10 < size) {
+                Object obj = arrayList.get(i10);
+                i10++;
+                n9 n9Var = (n9) obj;
+                if (n9Var.d) {
+                    n9Var.d = false;
+                    n9Var.f29079a.onDetachedFromWindow();
+                }
+            }
+        }
+    }
+
+    public final void c(Canvas canvas) {
+        Rect bounds = getBounds();
+        if (!bounds.isEmpty() && this.f29416i != 0) {
+            float f7 = bounds.left;
+            float f10 = bounds.top;
+            me.j jVar = this.f29412c;
+            canvas.saveLayer(f7, f10, f7 + jVar.d.f16357f.f16365a, f10 + this.f29413e, null);
+            for (int size = jVar.f16360b.size() - 1; size >= 0; size--) {
+                me.g n10 = jVar.n(size);
+                RectF b10 = n10.b();
+                Object obj = n10.f16348a;
+                float f11 = n10.f16352f.f16365a;
+                float c10 = n10.c();
+                float width = b10.width() - f11;
+                float f12 = f7 + b10.left + f11;
+                float f13 = width / 2.0f;
+                float f14 = f12 + f13;
+                float f15 = f10 + f13;
+                canvas.save();
+                canvas.scale(c10, c10, f14, f15);
+                canvas.drawCircle(f14, f15, f13 + this.f29415g, org.telegram.ui.ActionBar.i6.Ll);
+                n9 n9Var = (n9) obj;
+                n9Var.f29079a.setImageCoords(f12, f10, width, width);
+                n9Var.f29079a.setAlpha((this.f29416i / 255.0f) * n10.c());
+                n9Var.f29079a.draw(canvas);
+                canvas.restore();
+            }
+            canvas.restore();
+        }
+    }
+
+    public final void d(List list, boolean z10) {
+        n9 n9Var;
+        me.j jVar = this.f29412c;
+        if (list != null && !list.isEmpty()) {
+            if (!z10) {
+                jVar.r(null, false);
+            }
+            ArrayList arrayList = new ArrayList(list.size());
+            Iterator it = list.iterator();
+            while (it.hasNext()) {
+                long peerDialogId = DialogObject.getPeerDialogId((TLRPC.Peer) it.next());
+                ArrayList arrayList2 = this.h;
+                int size = arrayList2.size();
+                int i10 = 0;
+                while (true) {
+                    if (i10 < size) {
+                        Object obj = arrayList2.get(i10);
+                        i10++;
+                        n9Var = (n9) obj;
+                        if (n9Var.f29081c == peerDialogId) {
+                            break;
+                        }
+                    } else {
+                        n9Var = null;
+                        break;
+                    }
+                }
+                if (n9Var == null) {
+                    int size2 = arrayList2.size();
+                    int i11 = 0;
+                    while (true) {
+                        if (i11 < size2) {
+                            Object obj2 = arrayList2.get(i11);
+                            i11++;
+                            n9Var = (n9) obj2;
+                            if (n9Var.f29081c == 0) {
+                                break;
+                            }
+                        } else {
+                            n9Var = null;
+                            break;
+                        }
+                    }
+                }
+                if (n9Var == null) {
+                    n9Var = new n9(this, this.f29410a);
+                    arrayList2.add(n9Var);
+                }
+                ImageReceiver imageReceiver = n9Var.f29079a;
+                j9 j9Var = n9Var.f29080b;
+                if (n9Var.f29081c != peerDialogId) {
+                    n9Var.f29081c = peerDialogId;
+                    int i12 = this.f29411b;
+                    TLObject userOrChat = MessagesController.getInstance(i12).getUserOrChat(peerDialogId);
+                    if (userOrChat != null) {
+                        j9Var.j(i12, userOrChat);
+                        imageReceiver.setForUserOrChat(userOrChat, j9Var);
+                    } else {
+                        j9Var.n(peerDialogId, "", "");
+                        imageReceiver.clearImage();
+                    }
+                }
+                arrayList.add(n9Var);
+                if (this.d && !n9Var.d) {
+                    n9Var.d = true;
+                    imageReceiver.onAttachedToWindow();
+                }
+            }
+            jVar.r(arrayList, z10);
+            return;
+        }
+        jVar.r(null, z10);
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        c(canvas);
+    }
+
+    @Override
+    public final int getAlpha() {
+        return this.f29416i;
+    }
+
+    @Override
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f29416i = i10;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

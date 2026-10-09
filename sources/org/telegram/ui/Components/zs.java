@@ -1,79 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Shader;
 import android.view.View;
-import android.view.ViewPropertyAnimator;
-public final class zs extends AnimatorListenerAdapter {
-    public final int f33632a = 1;
-    public final s4.c1 f33633b;
-    public final View f33634c;
-    public final ViewPropertyAnimator d;
-    public final dt f33635e;
+public final class zs extends View {
+    public final Paint f33631a;
+    public final Matrix f33632b;
+    public LinearGradient f33633c;
+    public int d;
+    public float f33634e;
+    public float f33635f;
 
-    public zs(dt dtVar, s4.c1 c1Var, ViewPropertyAnimator viewPropertyAnimator, View view) {
-        this.f33635e = dtVar;
-        this.f33633b = c1Var;
-        this.d = viewPropertyAnimator;
-        this.f33634c = view;
+    public zs(Context context) {
+        super(context);
+        this.f33631a = new Paint(1);
+        this.f33632b = new Matrix();
     }
 
     @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f33632a) {
-            case 1:
-                this.f33634c.setAlpha(1.0f);
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
-        }
+    public final void onDraw(Canvas canvas) {
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), this.f33634e + this.f33635f, this.f33631a);
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f33632a) {
-            case 0:
-                this.d.setListener(null);
-                this.f33634c.setAlpha(1.0f);
-                dt dtVar = this.f33635e;
-                s4.c1 c1Var = this.f33633b;
-                dtVar.d(c1Var);
-                dtVar.f25867x.remove(c1Var);
-                dtVar.A();
-                return;
-            default:
-                this.d.setListener(null);
-                dt dtVar2 = this.f33635e;
-                s4.c1 c1Var2 = this.f33633b;
-                dtVar2.u(c1Var2);
-                dtVar2.v.remove(c1Var2);
-                dtVar2.A();
-                View view = c1Var2.f46538a;
-                if (view instanceof org.telegram.ui.Cells.s2) {
-                    ((org.telegram.ui.Cells.s2) view).setMoving(false);
-                    return;
-                }
-                return;
+    public void setColor(int i10) {
+        if (this.d != i10) {
+            this.d = i10;
+            int alpha = Color.alpha(i10);
+            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, 1.0f, new int[]{i0.a.k(i10, (alpha * 232) / 255), i0.a.k(i10, (alpha * 192) / 255), i0.a.k(i10, (alpha * 144) / 255), i0.a.k(i10, 0)}, (float[]) null, Shader.TileMode.CLAMP);
+            this.f33633c = linearGradient;
+            this.f33631a.setShader(linearGradient);
+            this.f33633c.setLocalMatrix(this.f33632b);
+            invalidate();
         }
-    }
-
-    @Override
-    public final void onAnimationStart(Animator animator) {
-        switch (this.f33632a) {
-            case 0:
-                this.f33635e.y();
-                return;
-            default:
-                this.f33635e.getClass();
-                return;
-        }
-    }
-
-    public zs(dt dtVar, s4.c1 c1Var, View view, ViewPropertyAnimator viewPropertyAnimator) {
-        this.f33635e = dtVar;
-        this.f33633b = c1Var;
-        this.f33634c = view;
-        this.d = viewPropertyAnimator;
     }
 }

@@ -1,20 +1,20 @@
 package w7;
 public final class e7 {
-    public final Long f48649a;
-    public final d7 f48650b;
-    public final y6 f48651c;
+    public final Long f49932a;
+    public final d7 f49933b;
+    public final y6 f49934c;
     public final Integer d;
-    public final Integer f48652e;
-    public final Integer f48653f;
-    public final Integer f48654g;
+    public final Integer f49935e;
+    public final Integer f49936f;
+    public final Integer f49937g;
 
-    public e7(m.p3 p3Var) {
-        this.f48649a = (Long) p3Var.f15859a;
-        this.f48650b = (d7) p3Var.f15860b;
-        this.f48651c = (y6) p3Var.f15861c;
-        this.d = (Integer) p3Var.d;
-        this.f48652e = (Integer) p3Var.f15862e;
-        this.f48653f = (Integer) p3Var.f15863f;
-        this.f48654g = (Integer) p3Var.h;
+    public e7(m.q3 q3Var) {
+        this.f49932a = (Long) q3Var.f15795a;
+        this.f49933b = (d7) q3Var.f15796b;
+        this.f49934c = (y6) q3Var.f15797c;
+        this.d = (Integer) q3Var.d;
+        this.f49935e = (Integer) q3Var.f15798e;
+        this.f49936f = (Integer) q3Var.f15799f;
+        this.f49937g = (Integer) q3Var.h;
     }
 }

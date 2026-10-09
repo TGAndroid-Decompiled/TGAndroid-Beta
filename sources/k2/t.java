@@ -1,175 +1,139 @@
 package k2;
 
-import android.media.AudioTrack;
-import android.os.Build;
-import android.os.SystemClock;
-import java.lang.reflect.Method;
-import java.math.RoundingMode;
-public final class t {
-    public long A;
-    public long B;
-    public long C;
-    public boolean D;
-    public long E;
-    public long F;
-    public boolean G;
-    public long H;
-    public e2.x I;
-    public final a4.m f14512a;
-    public final long[] f14513b;
-    public AudioTrack f14514c;
-    public int d;
-    public s f14515e;
-    public int f14516f;
-    public boolean f14517g;
-    public long h;
-    public float f14518i;
-    public boolean f14519j;
-    public long f14520k;
-    public int f14521l;
-    public long f14522m;
-    public long f14523n;
-    public Method f14524o;
-    public long f14525p;
-    public boolean f14526q;
-    public boolean f14527r;
-    public long f14528s;
-    public long f14529t;
-    public long f14530u;
-    public long v;
-    public long f14531w;
-    public int f14532x;
-    public int f14533y;
-    public long f14534z;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.util.Arrays;
+public final class t extends c2.i {
+    public int[] f14563i;
+    public int[] f14564j;
 
-    public t(a4.m mVar) {
-        this.f14512a = mVar;
-        try {
-            this.f14524o = AudioTrack.class.getMethod("getLatency", null);
-        } catch (NoSuchMethodException unused) {
-        }
-        this.f14513b = new long[10];
-        this.F = -9223372036854775807L;
-        this.E = -9223372036854775807L;
-        this.I = e2.x.f8596a;
-    }
-
-    public final long a() {
-        throw new UnsupportedOperationException("Method not decompiled: k2.t.a():long");
-    }
-
-    public final long b() {
-        if (this.f14534z != -9223372036854775807L) {
-            return Math.min(this.C, d());
-        }
-        this.I.getClass();
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        if (elapsedRealtime - this.f14529t >= 5) {
-            AudioTrack audioTrack = this.f14514c;
-            audioTrack.getClass();
-            int playState = audioTrack.getPlayState();
-            if (playState != 1) {
-                long playbackHeadPosition = audioTrack.getPlaybackHeadPosition() & 4294967295L;
-                if (this.f14517g) {
-                    if (playState == 2 && playbackHeadPosition == 0) {
-                        this.f14531w = this.f14530u;
-                    }
-                    playbackHeadPosition += this.f14531w;
-                }
-                if (Build.VERSION.SDK_INT <= 29) {
-                    if (playbackHeadPosition == 0 && this.f14530u > 0 && playState == 3) {
-                        if (this.A == -9223372036854775807L) {
-                            this.A = elapsedRealtime;
+    @Override
+    public final void c(ByteBuffer byteBuffer) {
+        int i10;
+        boolean z10;
+        int i11;
+        int i12;
+        int[] iArr = this.f14564j;
+        iArr.getClass();
+        int position = byteBuffer.position();
+        int limit = byteBuffer.limit();
+        ByteBuffer j3 = j(((limit - position) / this.f4012b.d) * this.f4013c.d);
+        while (position < limit) {
+            for (int i13 : iArr) {
+                int s10 = (e2.d0.s(this.f4012b.f4010c) * i13) + position;
+                int i14 = this.f4012b.f4010c;
+                if (i14 != 2) {
+                    if (i14 != 3) {
+                        if (i14 != 4) {
+                            if (i14 != 21) {
+                                if (i14 != 22) {
+                                    if (i14 != 268435456) {
+                                        if (i14 != 1342177280) {
+                                            if (i14 != 1610612736) {
+                                                throw new IllegalStateException("Unexpected encoding: " + this.f4012b.f4010c);
+                                            }
+                                        }
+                                    }
+                                }
+                                j3.putInt(byteBuffer.getInt(s10));
+                            }
+                            ByteOrder order = byteBuffer.order();
+                            ByteOrder byteOrder = ByteOrder.BIG_ENDIAN;
+                            if (order == byteOrder) {
+                                i10 = s10;
+                            } else {
+                                i10 = s10 + 2;
+                            }
+                            byte b10 = byteBuffer.get(i10);
+                            byte b11 = byteBuffer.get(s10 + 1);
+                            if (byteBuffer.order() == byteOrder) {
+                                s10 += 2;
+                            }
+                            int i15 = ((((b10 << 24) & (-16777216)) | ((b11 << 16) & 16711680)) | ((byteBuffer.get(s10) << 8) & 65280)) >> 8;
+                            boolean z11 = true;
+                            if ((i15 & (-16777216)) != 0 && (i15 & (-8388608)) != -8388608) {
+                                z10 = false;
+                            } else {
+                                z10 = true;
+                            }
+                            e2.d.a("Value out of range of 24-bit integer: " + Integer.toHexString(i15), z10);
+                            if (j3.remaining() < 3) {
+                                z11 = false;
+                            }
+                            e2.d.b(z11);
+                            if (j3.order() == byteOrder) {
+                                i11 = (i15 & 16711680) >> 16;
+                            } else {
+                                i11 = i15 & 255;
+                            }
+                            byte b12 = (byte) i11;
+                            byte b13 = (byte) ((i15 & 65280) >> 8);
+                            if (j3.order() == byteOrder) {
+                                i12 = i15 & 255;
+                            } else {
+                                i12 = (i15 & 16711680) >> 16;
+                            }
+                            j3.put(b12).put(b13).put((byte) i12);
+                        } else {
+                            j3.putFloat(byteBuffer.getFloat(s10));
                         }
                     } else {
-                        this.A = -9223372036854775807L;
+                        j3.put(byteBuffer.get(s10));
                     }
                 }
-                long j3 = this.f14530u;
-                if (j3 > playbackHeadPosition) {
-                    if (this.G) {
-                        this.H += j3;
-                        this.G = false;
-                    } else {
-                        this.v++;
-                    }
-                }
-                this.f14530u = playbackHeadPosition;
+                j3.putShort(byteBuffer.getShort(s10));
             }
-            this.f14529t = elapsedRealtime;
+            position += this.f4012b.d;
         }
-        return this.f14530u + this.H + (this.v << 32);
+        byteBuffer.position(limit);
+        j3.flip();
     }
 
-    public final long c(long j3) {
-        long z10;
-        if (this.f14533y == 0) {
-            if (this.f14534z != -9223372036854775807L) {
-                z10 = e2.d0.W(this.f14516f, d());
+    @Override
+    public final c2.f f(c2.f fVar) {
+        boolean z10;
+        boolean z11;
+        int i10 = fVar.f4010c;
+        int[] iArr = this.f14563i;
+        if (iArr == null) {
+            return c2.f.f4007e;
+        }
+        int i11 = fVar.f4009b;
+        if (e2.d0.J(i10)) {
+            if (i11 != iArr.length) {
+                z10 = true;
             } else {
-                z10 = e2.d0.W(this.f14516f, b());
+                z10 = false;
             }
-        } else {
-            z10 = e2.d0.z(j3 + this.f14522m, this.f14518i);
-        }
-        long max = Math.max(0L, z10 - this.f14525p);
-        if (this.f14534z != -9223372036854775807L) {
-            return Math.min(e2.d0.W(this.f14516f, this.C), max);
-        }
-        return max;
-    }
-
-    public final long d() {
-        AudioTrack audioTrack = this.f14514c;
-        audioTrack.getClass();
-        if (audioTrack.getPlayState() == 2) {
-            return this.B;
-        }
-        this.I.getClass();
-        return this.B + e2.d0.Y(e2.d0.z(e2.d0.Q(SystemClock.elapsedRealtime()) - this.f14534z, this.f14518i), this.f14516f, 1000000L, RoundingMode.UP);
-    }
-
-    public final boolean e(long j3) {
-        long a2 = a();
-        int i10 = this.f14516f;
-        String str = e2.d0.f8538a;
-        if (j3 <= e2.d0.Y(a2, i10, 1000000L, RoundingMode.UP)) {
-            if (this.f14517g) {
-                AudioTrack audioTrack = this.f14514c;
-                audioTrack.getClass();
-                if (audioTrack.getPlayState() != 2 || b() != 0) {
-                    return false;
-                }
-                return true;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    public final void f(long j3) {
-        if (this.D) {
-            long j10 = this.f14520k;
-            if (j10 != -9223372036854775807L && j3 >= j10) {
-                long D = e2.d0.D(j3 - j10, this.f14518i);
-                this.I.getClass();
-                long currentTimeMillis = System.currentTimeMillis() - e2.d0.e0(D);
-                this.f14520k = -9223372036854775807L;
-                o oVar = ((f0) this.f14512a.f297b).f14429t;
-                if (oVar != null) {
-                    oVar.d(currentTimeMillis);
+            for (int i12 = 0; i12 < iArr.length; i12++) {
+                int i13 = iArr[i12];
+                if (i13 < i11) {
+                    if (i13 != i12) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    z10 |= z11;
+                } else {
+                    throw new c2.g("Channel map (" + Arrays.toString(iArr) + ") trying to access non-existent input channel.", fVar);
                 }
             }
+            if (z10) {
+                return new c2.f(fVar.f4008a, iArr.length, i10);
+            }
+            return c2.f.f4007e;
         }
+        throw new c2.g(fVar);
     }
 
+    @Override
     public final void g() {
-        this.f14522m = 0L;
-        this.f14533y = 0;
-        this.f14532x = 0;
-        this.f14523n = 0L;
-        this.E = -9223372036854775807L;
-        this.F = -9223372036854775807L;
-        this.f14519j = false;
+        this.f14564j = this.f14563i;
+    }
+
+    @Override
+    public final void i() {
+        this.f14564j = null;
+        this.f14563i = null;
     }
 }

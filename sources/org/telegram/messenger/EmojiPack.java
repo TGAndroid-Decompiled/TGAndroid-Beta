@@ -57,7 +57,7 @@ public final class EmojiPack {
     }
 
     private static IllegalStateException damaged(String str) {
-        return new IllegalStateException(sa.e.i("Damaged emoji.pack: ", str));
+        return new IllegalStateException(sc.v.i("Damaged emoji.pack: ", str));
     }
 
     private Bitmap decode(int i10) {
@@ -171,8 +171,8 @@ public final class EmojiPack {
                         i23 += 4;
                         i11 = bArr[i27] & 255;
                     } else {
-                        i23 = i27;
                         i11 = 255;
+                        i23 = i27;
                     }
                     this.palette[i24] = (i11 << 24) | (i25 << 16) | (i26 << 8) | i28;
                 }

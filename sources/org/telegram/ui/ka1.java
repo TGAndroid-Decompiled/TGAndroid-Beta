@@ -1,25 +1,47 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public final class ka1 extends mq {
-    public final boolean[] f37941d1;
-    public final ta1 f37942e1;
-    public final ma1 f37943f1;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.Typeface;
+import android.text.TextPaint;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class ka1 {
+    public final org.telegram.ui.Components.i10 f39198a;
+    public kg.f f39199b;
+    public final int f39200c;
+    public final la1 d;
 
-    public ka1(ma1 ma1Var, long j3, long j10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str, boolean z10, boolean[] zArr, ta1 ta1Var) {
-        super(j3, j10, tL_chatAdminRights, null, tL_chatBannedRights, str, 0, true, z10, null);
-        this.f37943f1 = ma1Var;
-        this.f37941d1 = zArr;
-        this.f37942e1 = ta1Var;
-    }
-
-    @Override
-    public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
-        if (!z10 && z11 && this.f37941d1[0]) {
-            ta1 ta1Var = this.f37942e1;
-            if (org.telegram.ui.Components.yc.a(ta1Var)) {
-                org.telegram.ui.Components.yc.C(ta1Var, this.f37943f1.f38555a.first_name).j();
-            }
-        }
+    public ka1(la1 la1Var, int i10) {
+        this.d = la1Var;
+        this.f39200c = i10;
+        ?? view = new View(la1Var.getContext());
+        view.f27183c = true;
+        TextPaint textPaint = new TextPaint(1);
+        view.f27184e = textPaint;
+        view.f27185f = new Paint(1);
+        Paint paint = new Paint(1);
+        view.h = paint;
+        Paint paint2 = new Paint(1);
+        view.f27186n = paint2;
+        view.f27189w = AndroidUtilities.dp(35.0f);
+        view.f27190x = AndroidUtilities.dp(22.0f);
+        view.f27191y = AndroidUtilities.dp(8.0f);
+        view.E = AndroidUtilities.dp(3.5f);
+        view.F = new RectF();
+        view.G = 0.0f;
+        textPaint.setTextSize(AndroidUtilities.dp(14.0f));
+        textPaint.setTextAlign(Paint.Align.CENTER);
+        textPaint.setTypeface(Typeface.create("sans-serif-medium", 0));
+        paint.setStrokeWidth(AndroidUtilities.dpf2(1.5f));
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
+        paint2.setStyle(style);
+        paint2.setStrokeCap(Paint.Cap.ROUND);
+        paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        this.f39198a = view;
+        view.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
+        la1Var.h.addView(view);
+        la1Var.f39491n.add(this);
     }
 }

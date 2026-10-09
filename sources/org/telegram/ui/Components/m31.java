@@ -1,88 +1,88 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
+import android.app.Activity;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-public final class m31 extends e71 {
-    public final org.telegram.ui.k20 f28590m3;
-    public final e6 f28591n3;
-    public Drawable f28592o3;
-    public int f28593p3;
-    public final Paint f28594q3;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.TwoStepVerificationActivity;
+public final class m31 implements Runnable {
+    public final int f28659a = 0;
+    public final boolean f28660b;
+    public final long f28661c;
+    public final NotificationCenter.NotificationCenterDelegate d;
+    public final Object f28662e;
+    public final Object f28663f;
+    public final Object h;
+    public final TLObject f28664n;
 
-    public m31(Context context, int i10, j31 j31Var, b31 b31Var, b31 b31Var2, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, i10, 0, false, j31Var, b31Var, b31Var2, d6Var);
-        this.f28590m3 = new org.telegram.ui.k20();
-        this.f28591n3 = new e6(this, 320L, tr.h);
-        this.f28594q3 = new Paint(1);
+    public m31(c41 c41Var, boolean z10, org.telegram.ui.ActionBar.f1 f1Var, p80 p80Var, long j3, TLRPC.User user, TLRPC.Chat chat) {
+        this.d = c41Var;
+        this.f28660b = z10;
+        this.f28662e = f1Var;
+        this.f28663f = p80Var;
+        this.f28661c = j3;
+        this.h = user;
+        this.f28664n = chat;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        float e7 = this.f28591n3.e(canScrollVertically(-1));
-        int i10 = (e7 > 0.0f ? 1 : (e7 == 0.0f ? 0 : -1));
-        if (i10 > 0) {
-            canvas2 = canvas;
-            canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-        } else {
-            canvas2 = canvas;
-        }
-        float height = getHeight();
-        float f7 = 0.0f;
-        for (int i11 = 0; i11 < getChildCount(); i11++) {
-            View childAt = getChildAt(i11);
-            if (childAt instanceof v31) {
-                v31 v31Var = (v31) childAt;
-                if (v31Var.f31655y) {
-                    if (height > v31Var.getY()) {
-                        height = v31Var.getY();
-                        RecyclerView.R(v31Var);
-                    }
-                    if (f7 < v31Var.getY() + v31Var.getHeight()) {
-                        f7 = v31Var.getY() + v31Var.getHeight();
-                        RecyclerView.R(v31Var);
-                    }
+    public final void run() {
+        int i10;
+        switch (this.f28659a) {
+            case 0:
+                final c41 c41Var = (c41) this.d;
+                org.telegram.ui.ActionBar.f1 f1Var = (org.telegram.ui.ActionBar.f1) this.f28662e;
+                final p80 p80Var = (p80) this.f28663f;
+                final TLRPC.User user = (TLRPC.User) this.h;
+                final TLRPC.Chat chat = (TLRPC.Chat) this.f28664n;
+                boolean z10 = this.f28660b;
+                final boolean z11 = !z10;
+                f1Var.setVisibility(0);
+                if (!z10) {
+                    i10 = R.string.UnbanUserMonoforum;
+                } else {
+                    i10 = R.string.BanUserMonoforum;
                 }
-            }
+                f1Var.setText(LocaleController.getString(i10));
+                final long j3 = this.f28661c;
+                f1Var.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view) {
+                        c41 c41Var2 = c41.this;
+                        int i11 = c41Var2.f25237b;
+                        p80Var.u();
+                        boolean z12 = z11;
+                        TLRPC.User user2 = user;
+                        if (!z12) {
+                            MessagesController.getInstance(i11).deleteParticipantFromChat(j3, user2, (TLRPC.Chat) null, false, false);
+                            return;
+                        }
+                        TLRPC.TL_channels_editBanned tL_channels_editBanned = new TLRPC.TL_channels_editBanned();
+                        tL_channels_editBanned.participant = MessagesController.getInputPeer(user2);
+                        tL_channels_editBanned.channel = MessagesController.getInputChannel(chat);
+                        tL_channels_editBanned.banned_rights = new TLRPC.TL_chatBannedRights();
+                        ConnectionsManager.getInstance(i11).sendRequest(tL_channels_editBanned, new y1(c41Var2, 15));
+                    }
+                });
+                return;
+            default:
+                yh.g.Z((yh.g) this.d, (TLRPC.TL_error) this.f28662e, (TwoStepVerificationActivity) this.f28663f, (Activity) this.h, this.f28660b, this.f28661c, this.f28664n);
+                return;
         }
-        if (f7 > height) {
-            int i12 = org.telegram.ui.ActionBar.i6.f21110s9;
-            org.telegram.ui.ActionBar.d6 d6Var = this.f33560p2;
-            int v02 = org.telegram.ui.ActionBar.i6.v0(i12, d6Var);
-            Paint paint = this.f28594q3;
-            paint.setColor(v02);
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set((getWidth() - AndroidUtilities.dp(56.0f)) / 2.0f, height, (AndroidUtilities.dp(56.0f) + getWidth()) / 2.0f, f7);
-            canvas2.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paint);
-            if (this.f28592o3 == null) {
-                this.f28592o3 = getContext().getResources().getDrawable(R.drawable.msg_limit_pin).mutate();
-            }
-            int v03 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20793b9, d6Var);
-            if (this.f28593p3 != v03) {
-                Drawable drawable = this.f28592o3;
-                this.f28593p3 = v03;
-                drawable.setColorFilter(new PorterDuffColorFilter(v03, PorterDuff.Mode.SRC_IN));
-            }
-            this.f28592o3.setBounds((int) (rectF.left + AndroidUtilities.dp(4.0f)), (int) (rectF.top + AndroidUtilities.dp(2.66f)), (int) (rectF.left + AndroidUtilities.dp(13.66f)), (int) (rectF.top + AndroidUtilities.dp(12.32f)));
-            this.f28592o3.draw(canvas2);
-        }
-        super.dispatchDraw(canvas2);
-        if (i10 > 0) {
-            canvas2.save();
-            RectF rectF2 = AndroidUtilities.rectTmp;
-            rectF2.set(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(12.0f));
-            this.f28590m3.b(canvas2, rectF2, 1, e7);
-            canvas2.restore();
-            canvas2.restore();
-        }
+    }
+
+    public m31(yh.g gVar, TLRPC.TL_error tL_error, TwoStepVerificationActivity twoStepVerificationActivity, Activity activity, boolean z10, long j3, TLObject tLObject) {
+        this.d = gVar;
+        this.f28662e = tL_error;
+        this.f28663f = twoStepVerificationActivity;
+        this.h = activity;
+        this.f28660b = z10;
+        this.f28661c = j3;
+        this.f28664n = tLObject;
     }
 }

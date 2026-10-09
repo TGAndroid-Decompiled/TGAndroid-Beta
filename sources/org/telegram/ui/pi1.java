@@ -1,21 +1,19 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public final class pi1 implements org.telegram.ui.ActionBar.a2, od1 {
-    public final WallpapersListActivity f39597a;
+import android.content.Context;
+public final class pi1 extends org.telegram.ui.Components.voip.d1 {
+    public final wi1 V;
 
-    public pi1(WallpapersListActivity wallpapersListActivity) {
-        this.f39597a = wallpapersListActivity;
+    public pi1(wi1 wi1Var, Context context, float f7, float f10) {
+        super(context, f7, f10);
+        this.V = wi1Var;
     }
 
     @Override
-    public void a(TLRPC.TL_wallPaper tL_wallPaper) {
-        int[][] iArr = WallpapersListActivity.f34613i0;
-        this.f39597a.removeSelfFromStack();
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        WallpapersListActivity.S(this.f39597a);
+    public final int[] getFloatingViewLocation() {
+        int[] iArr = new int[2];
+        wi1 wi1Var = this.V;
+        wi1Var.Y.getLocationOnScreen(iArr);
+        return new int[]{iArr[0], iArr[1], wi1Var.Y.getMeasuredWidth()};
     }
 }

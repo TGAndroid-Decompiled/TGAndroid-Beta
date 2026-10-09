@@ -5,31 +5,31 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.fw0;
+import org.telegram.ui.Components.lw0;
 public final class i2 extends GestureDetector.SimpleOnGestureListener {
-    public float f1065a;
-    public float f1066b;
-    public final int f1067c;
+    public float f1127a;
+    public float f1128b;
+    public final int f1129c;
 
     public i2(int i10) {
-        fw0 fw0Var = m2.X;
-        this.f1067c = i10;
+        lw0 lw0Var = n2.X;
+        this.f1129c = i10;
     }
 
     @Override
     public final boolean onDown(MotionEvent motionEvent) {
-        m2 m2Var = m2.Z;
-        if (m2Var.H) {
-            for (int i10 = 1; i10 < m2Var.f1334e.getChildCount(); i10++) {
-                View childAt = m2Var.f1334e.getChildAt(i10);
+        n2 n2Var = n2.Z;
+        if (n2Var.H) {
+            for (int i10 = 1; i10 < n2Var.f1449e.getChildCount(); i10++) {
+                View childAt = n2Var.f1449e.getChildAt(i10);
                 if (childAt.dispatchTouchEvent(motionEvent)) {
-                    m2Var.G = childAt;
+                    n2Var.G = childAt;
                     return true;
                 }
             }
         }
-        this.f1065a = m2Var.N;
-        this.f1066b = m2Var.O;
+        this.f1127a = n2Var.N;
+        this.f1128b = n2Var.O;
         return true;
     }
 
@@ -37,15 +37,15 @@ public final class i2 extends GestureDetector.SimpleOnGestureListener {
     public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
         float dp;
         float f11;
-        m2 m2Var = m2.Z;
-        if (m2Var.E && !m2Var.F) {
-            o1.k kVar = m2Var.P;
-            kVar.f16982a = f7;
-            float f12 = m2Var.N;
-            kVar.f16983b = f12;
-            kVar.f16984c = true;
-            o1.l lVar = kVar.f16993u;
-            int i10 = m2Var.J;
+        n2 n2Var = n2.Z;
+        if (n2Var.E && !n2Var.F) {
+            o1.k kVar = n2Var.P;
+            kVar.f16927a = f7;
+            float f12 = n2Var.N;
+            kVar.f16928b = f12;
+            kVar.f16929c = true;
+            o1.l lVar = kVar.f16938u;
+            int i10 = n2Var.J;
             float f13 = (f7 / 7.0f) + (i10 / 2.0f) + f12;
             int i11 = AndroidUtilities.displaySize.x;
             if (f13 >= i11 / 2.0f) {
@@ -53,14 +53,14 @@ public final class i2 extends GestureDetector.SimpleOnGestureListener {
             } else {
                 dp = AndroidUtilities.dp(16.0f);
             }
-            lVar.f17000i = dp;
-            m2Var.P.f();
-            o1.k kVar2 = m2Var.Q;
-            kVar2.f16982a = f7;
-            kVar2.f16983b = m2Var.O;
-            kVar2.f16984c = true;
-            kVar2.f16993u.f17000i = w7.q.a((f10 / 10.0f) + f11, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - m2Var.K) - AndroidUtilities.dp(16.0f));
-            m2Var.Q.f();
+            lVar.f16945i = dp;
+            n2Var.P.h();
+            o1.k kVar2 = n2Var.Q;
+            kVar2.f16927a = f7;
+            kVar2.f16928b = n2Var.O;
+            kVar2.f16929c = true;
+            kVar2.f16938u.f16945i = w7.o.a((f10 / 10.0f) + f11, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - n2Var.K) - AndroidUtilities.dp(16.0f));
+            n2Var.Q.h();
             return true;
         }
         return false;
@@ -68,45 +68,45 @@ public final class i2 extends GestureDetector.SimpleOnGestureListener {
 
     @Override
     public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        m2 m2Var = m2.Z;
-        if (!m2Var.E && m2Var.I == null && !m2Var.F) {
+        n2 n2Var = n2.Z;
+        if (!n2Var.E && n2Var.I == null && !n2Var.F) {
             float abs = Math.abs(f7);
-            float f11 = this.f1067c;
+            float f11 = this.f1129c;
             if (abs >= f11 || Math.abs(f10) >= f11) {
-                m2Var.E = true;
-                m2Var.P.c();
-                m2Var.Q.c();
+                n2Var.E = true;
+                n2Var.P.c();
+                n2Var.Q.c();
             }
         }
-        if (m2Var.E) {
-            WindowManager.LayoutParams layoutParams = m2Var.f1333c;
-            float rawX = (motionEvent2.getRawX() + this.f1065a) - motionEvent.getRawX();
-            m2Var.N = rawX;
+        if (n2Var.E) {
+            WindowManager.LayoutParams layoutParams = n2Var.f1448c;
+            float rawX = (motionEvent2.getRawX() + this.f1127a) - motionEvent.getRawX();
+            n2Var.N = rawX;
             layoutParams.x = (int) rawX;
-            WindowManager.LayoutParams layoutParams2 = m2Var.f1333c;
-            float rawY = (motionEvent2.getRawY() + this.f1066b) - motionEvent.getRawY();
-            m2Var.O = rawY;
+            WindowManager.LayoutParams layoutParams2 = n2Var.f1448c;
+            float rawY = (motionEvent2.getRawY() + this.f1128b) - motionEvent.getRawY();
+            n2Var.O = rawY;
             layoutParams2.y = (int) rawY;
-            AndroidUtilities.updateViewLayout(m2Var.f1332b, m2Var.d, m2Var.f1333c);
+            AndroidUtilities.updateViewLayout(n2Var.f1447b, n2Var.d, n2Var.f1448c);
         }
         return true;
     }
 
     @Override
     public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        m2 m2Var = m2.Z;
-        a3.d dVar = m2Var.U;
-        if (m2Var.I == null) {
-            if (m2Var.T) {
+        n2 n2Var = n2.Z;
+        a3.d dVar = n2Var.U;
+        if (n2Var.I == null) {
+            if (n2Var.T) {
                 AndroidUtilities.cancelRunOnUIThread(dVar);
-                m2Var.T = false;
+                n2Var.T = false;
             }
-            boolean z10 = !m2Var.H;
-            m2Var.H = z10;
-            m2Var.p(z10);
-            if (m2Var.H && !m2Var.T) {
+            boolean z10 = !n2Var.H;
+            n2Var.H = z10;
+            n2Var.o(z10);
+            if (n2Var.H && !n2Var.T) {
                 AndroidUtilities.runOnUIThread(dVar, 2500L);
-                m2Var.T = true;
+                n2Var.T = true;
             }
         }
         return true;

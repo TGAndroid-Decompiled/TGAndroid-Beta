@@ -2,53 +2,53 @@ package xh;
 
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.ConnectionsManager;
-import yh.l5;
+import yh.e5;
 public final class g4 implements NotificationCenter.NotificationCenterDelegate {
-    public final int f49978a;
-    public final l5 f49979b;
-    public final v3 f49980c;
+    public final int f51252a;
+    public final e5 f51253b;
+    public final v3 f51254c;
     public z3 d;
-    public boolean f49981e;
+    public boolean f51255e;
 
     public g4(int i10, long j3) {
-        this.f49978a = i10;
-        l5 l5Var = new l5(i10, 0L, false);
-        this.f49979b = l5Var;
-        l5Var.f51594p = j3;
+        this.f51252a = i10;
+        e5 e5Var = new e5(i10, 0L, false);
+        this.f51253b = e5Var;
+        e5Var.f52444p = j3;
         v3 v3Var = new v3(j3, i10, new ii.q1(this, 22));
-        v3Var.f50304s = true;
-        this.f49980c = v3Var;
+        v3Var.f51566s = true;
+        this.f51254c = v3Var;
     }
 
     public final void a() {
-        if (this.f49981e) {
+        if (this.f51255e) {
             return;
         }
-        NotificationCenter.getInstance(this.f49978a).addObserver(this, NotificationCenter.starUserGiftsLoaded);
-        this.f49979b.a();
-        this.f49980c.g(false);
-        this.f49981e = true;
+        NotificationCenter.getInstance(this.f51252a).addObserver(this, NotificationCenter.starUserGiftsLoaded);
+        this.f51253b.a();
+        this.f51254c.g(false);
+        this.f51255e = true;
     }
 
     public final void b() {
-        if (!this.f49981e) {
+        if (!this.f51255e) {
             return;
         }
-        NotificationCenter.getInstance(this.f49978a).removeObserver(this, NotificationCenter.starUserGiftsLoaded);
-        l5 l5Var = this.f49979b;
-        if (l5Var.f51591m != -1) {
-            ConnectionsManager.getInstance(l5Var.f51581a).cancelRequest(l5Var.f51591m, true);
-            l5Var.f51591m = -1;
+        NotificationCenter.getInstance(this.f51252a).removeObserver(this, NotificationCenter.starUserGiftsLoaded);
+        e5 e5Var = this.f51253b;
+        if (e5Var.f52441m != -1) {
+            ConnectionsManager.getInstance(e5Var.f52431a).cancelRequest(e5Var.f52441m, true);
+            e5Var.f52441m = -1;
         }
-        l5Var.f51587i = false;
-        this.f49980c.f();
-        this.f49981e = false;
+        e5Var.f52437i = false;
+        this.f51254c.f();
+        this.f51255e = false;
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         z3 z3Var;
-        if (i10 == NotificationCenter.starUserGiftsLoaded && objArr[1] == this.f49979b && (z3Var = this.d) != null) {
+        if (i10 == NotificationCenter.starUserGiftsLoaded && objArr[1] == this.f51253b && (z3Var = this.d) != null) {
             z3Var.run();
         }
     }

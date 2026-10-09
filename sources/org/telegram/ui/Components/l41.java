@@ -1,44 +1,25 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.text.style.URLSpan;
-import android.view.View;
+import org.telegram.messenger.LanguageDetector;
 import org.telegram.messenger.Utilities;
-public final class l41 extends ClickableSpan {
-    public final URLSpan f28361a;
-    public final u41 f28362b;
+public final class l41 implements LanguageDetector.StringCallback, LanguageDetector.ExceptionCallback {
+    public final String f28250a;
+    public final String f28251b;
+    public final Utilities.Callback2 f28252c;
 
-    public l41(u41 u41Var, URLSpan uRLSpan) {
-        this.f28362b = u41Var;
-        this.f28361a = uRLSpan;
+    public l41(String str, String str2, Utilities.Callback2 callback2) {
+        this.f28250a = str;
+        this.f28251b = str2;
+        this.f28252c = callback2;
     }
 
     @Override
-    public final void onClick(View view) {
-        u41 u41Var = this.f28362b;
-        Utilities.CallbackReturn callbackReturn = u41Var.N;
-        URLSpan uRLSpan = this.f28361a;
-        if (callbackReturn != null) {
-            if (((Boolean) callbackReturn.run(uRLSpan)).booleanValue()) {
-                u41Var.dismiss();
-                return;
-            }
-            return;
-        }
-        org.telegram.ui.ActionBar.n2 n2Var = u41Var.M;
-        if (n2Var != null) {
-            e5.q0(n2Var, uRLSpan.getURL(), false, false);
-        }
+    public void run(String str) {
+        b51.z(this.f28250a, str, this.f28251b, this.f28252c);
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        int min = Math.min(textPaint.getAlpha(), (textPaint.getColor() >> 24) & 255);
-        if (!(this.f28361a instanceof l61)) {
-            textPaint.setUnderlineText(true);
-        }
-        textPaint.setColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20955k5, false));
-        textPaint.setAlpha(min);
+    public void run(Exception exc) {
+        b51.z(this.f28250a, "en", this.f28251b, this.f28252c);
     }
 }

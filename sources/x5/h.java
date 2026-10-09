@@ -7,28 +7,32 @@ import androidx.versionedparcelable.ParcelImpl;
 import c7.u;
 import com.google.android.gms.wearable.ConnectionConfiguration;
 import java.util.ArrayList;
-import w7.f0;
+import w7.c0;
 public final class h implements Parcelable.Creator {
-    public final int f49410a;
+    public final int f50684a;
+
+    public h(int i10) {
+        this.f50684a = i10;
+    }
 
     @Override
     public final Object createFromParcel(Parcel parcel) {
-        switch (this.f49410a) {
+        switch (this.f50684a) {
             case 0:
-                int z10 = f0.z(parcel);
+                int z10 = c0.z(parcel);
                 boolean z11 = false;
                 while (parcel.dataPosition() < z10) {
                     int readInt = parcel.readInt();
                     if (((char) readInt) != 1) {
-                        f0.y(parcel, readInt);
+                        c0.y(parcel, readInt);
                     } else {
-                        z11 = f0.n(parcel, readInt);
+                        z11 = c0.n(parcel, readInt);
                     }
                 }
-                f0.m(parcel, z10);
+                c0.m(parcel, z10);
                 return new d(z11);
             case 1:
-                int z12 = f0.z(parcel);
+                int z12 = c0.z(parcel);
                 String str = null;
                 String str2 = null;
                 String str3 = null;
@@ -42,41 +46,41 @@ public final class h implements Parcelable.Creator {
                     int readInt2 = parcel.readInt();
                     switch ((char) readInt2) {
                         case 1:
-                            str = f0.h(parcel, readInt2);
+                            str = c0.h(parcel, readInt2);
                             break;
                         case 2:
-                            str2 = f0.h(parcel, readInt2);
+                            str2 = c0.h(parcel, readInt2);
                             break;
                         case 3:
-                            str3 = f0.h(parcel, readInt2);
+                            str3 = c0.h(parcel, readInt2);
                             break;
                         case 4:
-                            str4 = f0.h(parcel, readInt2);
+                            str4 = c0.h(parcel, readInt2);
                             break;
                         case 5:
-                            uri = (Uri) f0.g(parcel, readInt2, Uri.CREATOR);
+                            uri = (Uri) c0.g(parcel, readInt2, Uri.CREATOR);
                             break;
                         case 6:
-                            str5 = f0.h(parcel, readInt2);
+                            str5 = c0.h(parcel, readInt2);
                             break;
                         case 7:
-                            str6 = f0.h(parcel, readInt2);
+                            str6 = c0.h(parcel, readInt2);
                             break;
                         case '\b':
-                            str7 = f0.h(parcel, readInt2);
+                            str7 = c0.h(parcel, readInt2);
                             break;
                         case '\t':
-                            uVar = (u) f0.g(parcel, readInt2, u.CREATOR);
+                            uVar = (u) c0.g(parcel, readInt2, u.CREATOR);
                             break;
                         default:
-                            f0.y(parcel, readInt2);
+                            c0.y(parcel, readInt2);
                             break;
                     }
                 }
-                f0.m(parcel, z12);
+                c0.m(parcel, z12);
                 return new g(str, str2, str3, str4, uri, str5, str6, str7, uVar);
             case 2:
-                int z13 = f0.z(parcel);
+                int z13 = c0.z(parcel);
                 String str8 = null;
                 String str9 = null;
                 String str10 = null;
@@ -93,47 +97,47 @@ public final class h implements Parcelable.Creator {
                     int readInt3 = parcel.readInt();
                     switch ((char) readInt3) {
                         case 2:
-                            str8 = f0.h(parcel, readInt3);
+                            str8 = c0.h(parcel, readInt3);
                             break;
                         case 3:
-                            str9 = f0.h(parcel, readInt3);
+                            str9 = c0.h(parcel, readInt3);
                             break;
                         case 4:
-                            i10 = f0.u(parcel, readInt3);
+                            i10 = c0.u(parcel, readInt3);
                             break;
                         case 5:
-                            i11 = f0.u(parcel, readInt3);
+                            i11 = c0.u(parcel, readInt3);
                             break;
                         case 6:
-                            z14 = f0.n(parcel, readInt3);
+                            z14 = c0.n(parcel, readInt3);
                             break;
                         case 7:
-                            z15 = f0.n(parcel, readInt3);
+                            z15 = c0.n(parcel, readInt3);
                             break;
                         case '\b':
-                            str10 = f0.h(parcel, readInt3);
+                            str10 = c0.h(parcel, readInt3);
                             break;
                         case '\t':
-                            z16 = f0.n(parcel, readInt3);
+                            z16 = c0.n(parcel, readInt3);
                             break;
                         case '\n':
-                            str11 = f0.h(parcel, readInt3);
+                            str11 = c0.h(parcel, readInt3);
                             break;
                         case 11:
-                            str12 = f0.h(parcel, readInt3);
+                            str12 = c0.h(parcel, readInt3);
                             break;
                         case '\f':
-                            i12 = f0.u(parcel, readInt3);
+                            i12 = c0.u(parcel, readInt3);
                             break;
                         case '\r':
-                            arrayList = f0.j(parcel, readInt3);
+                            arrayList = c0.j(parcel, readInt3);
                             break;
                         default:
-                            f0.y(parcel, readInt3);
+                            c0.y(parcel, readInt3);
                             break;
                     }
                 }
-                f0.m(parcel, z13);
+                c0.m(parcel, z13);
                 return new ConnectionConfiguration(str8, str9, i10, i11, z14, z15, str10, z16, str11, str12, i12, arrayList);
             default:
                 return new ParcelImpl(parcel);
@@ -142,7 +146,7 @@ public final class h implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i10) {
-        switch (this.f49410a) {
+        switch (this.f50684a) {
             case 0:
                 return new d[i10];
             case 1:

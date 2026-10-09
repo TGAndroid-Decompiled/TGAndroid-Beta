@@ -1,181 +1,117 @@
 package ci;
 
-import android.app.Activity;
-import android.net.Uri;
-import android.os.Build;
-import android.view.ViewPropertyAnimator;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import java.io.File;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.CornerPathEffect;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.text.TextUtils;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.wp;
-public final class u0 extends ImageView {
-    public int f6043a;
-    public FrameLayout f6044b;
-    public boolean f6045c;
-    public boolean d;
-    public boolean f6046e;
-    public wp f6047f;
-    public ha h;
-    public t0 f6048n;
-    public k8 f6049r;
-    public r0 f6050s;
-    public Uri v;
-    public boolean f6051w;
-    public boolean f6052x;
+import org.telegram.ui.Components.hs;
+public final class u0 extends View {
+    public final Paint f6046a;
+    public final TextPaint f6047b;
+    public final StaticLayout f6048c;
+    public final float d;
+    public final float f6049e;
+    public final Path f6050f;
+    public androidx.fragment.app.a0 h;
+    public boolean f6051n;
+    public final org.telegram.ui.Components.g6 f6052r;
 
-    public static void a(u0 u0Var) {
-        ha haVar = u0Var.h;
-        int i10 = Build.VERSION.SDK_INT;
-        if (i10 >= 23 && ((i10 <= 28 || BuildVars.NO_SCOPED_STORAGE) && u0Var.getContext().checkSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE") != 0)) {
-            Activity findActivity = AndroidUtilities.findActivity(u0Var.getContext());
-            if (findActivity != null) {
-                findActivity.requestPermissions(new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"}, 113);
-            }
-        } else if (!u0Var.f6045c && u0Var.f6049r != null) {
-            if (u0Var.v != null) {
-                if (i10 >= 30) {
-                    u0Var.getContext().getContentResolver().delete(u0Var.v, null);
-                    u0Var.v = null;
-                } else if (i10 < 29) {
-                    try {
-                        new File(u0Var.v.toString()).delete();
-                    } catch (Exception e7) {
-                        FileLog.e(e7);
-                    }
-                    u0Var.v = null;
-                }
-            }
-            u0Var.f6045c = true;
-            t0 t0Var = u0Var.f6048n;
-            if (t0Var != null) {
-                t0Var.a();
-                u0Var.f6048n = null;
-            }
-            r0 r0Var = u0Var.f6050s;
-            if (r0Var != null) {
-                r0Var.a(true);
-                u0Var.f6050s = null;
-            }
-            if (haVar != null) {
-                u0Var.f6046e = true;
-                haVar.run(new o0(u0Var, 0));
-            }
-            u0Var.d();
-            if (haVar == null) {
-                u0Var.b();
-            }
-        }
-    }
-
-    public final void b() {
-        k8 k8Var;
-        if (this.f6046e && (k8Var = this.f6049r) != null) {
-            this.f6046e = false;
-            if (k8Var.E()) {
-                this.d = true;
-                t0 t0Var = new t0(getContext());
-                this.f6048n = t0Var;
-                t0Var.setOnCancelListener(new o0(this, 1));
-                this.f6044b.addView(this.f6048n);
-                File generateVideoPath = AndroidUtilities.generateVideoPath();
-                this.f6050s = new r0(this.f6043a, this.f6049r, generateVideoPath, new p0(this, generateVideoPath, 0), new q0(this, 0), new o0(this, 2));
-            } else {
-                this.d = false;
-                File generatePicturePath = AndroidUtilities.generatePicturePath(false, "png");
-                if (generatePicturePath == null) {
-                    this.f6048n.b(R.raw.error, 3500, LocaleController.getString("UnknownError"));
-                    this.f6045c = false;
-                    d();
-                    return;
-                }
-                Utilities.themeQueue.postRunnable(new p0(this, generatePicturePath, 1));
-            }
-            d();
-        }
-    }
-
-    public final void c(int i10, String str) {
-        t0 t0Var = this.f6048n;
-        if (t0Var != null) {
-            t0Var.a();
-            this.f6048n = null;
-        }
-        t0 t0Var2 = new t0(getContext());
-        this.f6048n = t0Var2;
-        t0Var2.b(i10, 3500, str);
-        this.f6044b.addView(this.f6048n);
-    }
-
-    public final void d() {
-        boolean z10;
-        boolean z11;
+    public u0(Context context) {
+        super(context);
         float f7;
-        boolean z12;
-        boolean z13 = this.f6051w;
-        boolean z14 = this.f6045c;
-        boolean z15 = false;
-        if (z14 && !this.d) {
-            z10 = true;
+        float f10;
+        Paint paint = new Paint(1);
+        this.f6046a = paint;
+        TextPaint textPaint = new TextPaint(1);
+        this.f6047b = textPaint;
+        this.f6050f = new Path();
+        org.telegram.ui.Components.g6 g6Var = new org.telegram.ui.Components.g6(this);
+        this.f6052r = g6Var;
+        paint.setColor(-869783512);
+        paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(6.0f)));
+        textPaint.setTextSize(AndroidUtilities.dp(14.0f));
+        textPaint.setColor(-1);
+        StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(LocaleController.getString("StoryDraftSaved"), textPaint, AndroidUtilities.displaySize.x, TextUtils.TruncateAt.END), textPaint, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        this.f6048c = staticLayout;
+        if (staticLayout.getLineCount() > 0) {
+            f7 = staticLayout.getLineWidth(0);
         } else {
-            z10 = false;
+            f7 = 0.0f;
         }
-        if (z13 != z10) {
-            if (z14 && !this.d) {
-                z12 = true;
-            } else {
-                z12 = false;
-            }
-            this.f6051w = z12;
-            if (z12) {
-                AndroidUtilities.updateImageViewImageAnimated(this, this.f6047f);
-            } else {
-                AndroidUtilities.updateImageViewImageAnimated(this, R.drawable.media_download);
-            }
-        }
-        boolean z16 = this.f6052x;
-        if (this.f6045c && this.d) {
-            z11 = true;
+        this.d = f7;
+        if (staticLayout.getLineCount() > 0) {
+            f10 = staticLayout.getLineLeft(0);
         } else {
-            z11 = false;
+            f10 = 0.0f;
         }
-        if (z16 != z11) {
-            clearAnimation();
-            ViewPropertyAnimator animate = animate();
-            if (this.f6045c && this.d) {
-                z15 = true;
-            }
-            this.f6052x = z15;
-            if (z15) {
-                f7 = 0.4f;
-            } else {
-                f7 = 1.0f;
-            }
-            animate.alpha(f7).start();
-        }
+        this.f6049e = f10;
+        g6Var.d(0.0f, true);
     }
 
-    public void setEntry(k8 k8Var) {
-        this.v = null;
-        this.f6049r = k8Var;
-        r0 r0Var = this.f6050s;
-        if (r0Var != null) {
-            r0Var.a(true);
-            this.f6050s = null;
+    public final void a(boolean z10) {
+        androidx.fragment.app.a0 a0Var;
+        if (!z10 && (a0Var = this.h) != null) {
+            AndroidUtilities.cancelRunOnUIThread(a0Var);
+            this.h = null;
         }
-        t0 t0Var = this.f6048n;
-        if (t0Var != null) {
-            t0Var.a();
-            this.f6048n = null;
+        this.f6051n = z10;
+        invalidate();
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        float f7;
+        float e7 = this.f6052r.e(this.f6051n);
+        if (e7 <= 0.0f) {
+            return;
         }
-        if (k8Var == null) {
-            this.f6045c = false;
-            d();
+        canvas.save();
+        if (this.f6051n) {
+            f7 = hs.f27122k.getInterpolation(e7);
+        } else {
+            f7 = 1.0f;
         }
+        canvas.translate(0.0f, f7 * AndroidUtilities.dp(12.0f));
+        float interpolation = hs.h.getInterpolation(e7);
+        float measuredWidth = getMeasuredWidth();
+        float measuredHeight = getMeasuredHeight();
+        float dp = AndroidUtilities.dp(22.0f) + this.d;
+        float min = (measuredWidth / 2.0f) - Math.min(AndroidUtilities.dp(135.0f), 0.35f * measuredWidth);
+        float max = Math.max(AndroidUtilities.dp(8.0f), min - (dp / 2.0f));
+        Path path = this.f6050f;
+        path.rewind();
+        path.moveTo(max, 0.0f);
+        float f10 = dp + max;
+        path.lineTo(f10, 0.0f);
+        path.lineTo(f10, measuredHeight - AndroidUtilities.dp(18.0f));
+        path.lineTo(AndroidUtilities.dp(7.0f) + min, measuredHeight - AndroidUtilities.dp(18.0f));
+        path.lineTo(AndroidUtilities.dp(1.0f) + min, measuredHeight - AndroidUtilities.dp(12.0f));
+        path.lineTo(min - AndroidUtilities.dp(1.0f), measuredHeight - AndroidUtilities.dp(12.0f));
+        path.lineTo(min - AndroidUtilities.dp(7.0f), measuredHeight - AndroidUtilities.dp(18.0f));
+        path.lineTo(max, measuredHeight - AndroidUtilities.dp(18.0f));
+        path.close();
+        Paint paint = this.f6046a;
+        paint.setAlpha((int) (204.0f * interpolation));
+        canvas.drawPath(path, paint);
+        canvas.save();
+        StaticLayout staticLayout = this.f6048c;
+        canvas.translate((max + AndroidUtilities.dp(11.0f)) - this.f6049e, ((measuredHeight - AndroidUtilities.dp(18.0f)) - staticLayout.getHeight()) / 2.0f);
+        this.f6047b.setAlpha((int) (interpolation * 255.0f));
+        staticLayout.draw(canvas);
+        canvas.restore();
+        canvas.restore();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(50.0f));
     }
 }

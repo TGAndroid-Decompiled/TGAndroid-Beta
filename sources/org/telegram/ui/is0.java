@@ -1,99 +1,26 @@
 package org.telegram.ui;
 
-import android.widget.Toast;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.UserConfig;
+import android.net.Uri;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.tgnet.tl.TL_stats;
-public final class is0 implements RequestDelegate {
-    public final int f37487a;
-    public final Object f37488b;
-    public final Object f37489c;
-    public final Object d;
+public final class is0 implements Utilities.Callback {
+    public final int f38750a;
+    public final ss0 f38751b;
 
-    public is0(Object obj, Object obj2, Object obj3, int i10) {
-        this.f37487a = i10;
-        this.f37488b = obj;
-        this.f37489c = obj2;
-        this.d = obj3;
+    public is0(ss0 ss0Var, int i10) {
+        this.f38750a = i10;
+        this.f38751b = ss0Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f37487a) {
+    public final void run(Object obj) {
+        Uri uri = (Uri) obj;
+        switch (this.f38750a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new zr0((ns0) this.f37488b, tLObject, (UserConfig) this.f37489c, (TLRPC.Photo) this.d, 1));
-                return;
-            case 1:
-                AndroidUtilities.runOnUIThread(new f90((Object) ((sx0) this.f37488b), tLObject, (Object) ((TLRPC.UserFull) this.f37489c), (Object) ((TL_account.TL_birthday) this.d), tL_error, 17));
-                return;
-            case 2:
-                AndroidUtilities.runOnUIThread(new zr0((PrivacySettingsActivity) this.f37488b, (org.telegram.ui.ActionBar.b2) this.f37489c, tLObject, (TL_account.setAccountTTL) this.d, 4));
-                return;
-            case 3:
-                AndroidUtilities.runOnUIThread(new f90((Object) ((ProfileActivity) this.f37488b), tLObject, (Object) ((TLRPC.UserFull) this.f37489c), (Object) ((TL_account.TL_birthday) this.d), tL_error, 21));
-                return;
-            case 4:
-                AndroidUtilities.runOnUIThread(new f90((Object) ((ProfileActivity) this.f37488b), tLObject, (Object) ((TLRPC.TL_username) this.f37489c), (Object) ((sz0) this.d), tL_error, 19));
-                return;
-            case 5:
-                AndroidUtilities.runOnUIThread(new f90((Object) ((ProfileActivity) this.f37488b), tLObject, (Object) ((String) this.f37489c), (Object) ((TLRPC.User) this.d), tL_error, 20));
-                return;
-            case 6:
-                AndroidUtilities.runOnUIThread(new zr0((a01) this.f37488b, tLObject, (UserConfig) this.f37489c, (TLRPC.Photo) this.d, 10));
-                return;
-            case 7:
-                AndroidUtilities.runOnUIThread(new f90((Object) ((k71) this.f37488b), tL_error, tLObject, (Object) ((TwoStepVerificationActivity) this.f37489c), (Object) ((TLRPC.User) this.d), 24));
-                return;
-            case 8:
-                AndroidUtilities.runOnUIThread(new zr0((SessionsActivity) this.f37488b, (org.telegram.ui.ActionBar.b2) this.f37489c, tL_error, (TLRPC.TL_authorization) this.d, 13));
-                return;
-            case 9:
-                AndroidUtilities.runOnUIThread(new zr0((SessionsActivity) this.f37488b, (org.telegram.ui.ActionBar.b2) this.f37489c, tL_error, (TLRPC.TL_webAuthorization) this.d, 12));
-                return;
-            case 10:
-                ea1 ea1Var = (ea1) this.f37488b;
-                String str = (String) this.f37489c;
-                sa1 sa1Var = (sa1) this.d;
-                boolean z10 = true;
-                jg.b bVar = null;
-                if (tLObject instanceof TL_stats.TL_statsGraph) {
-                    try {
-                        JSONObject jSONObject = new JSONObject(((TL_stats.TL_statsGraph) tLObject).json.data);
-                        fa1 fa1Var = ea1Var.f35738r;
-                        int i10 = fa1Var.f36250i;
-                        if (fa1Var != ea1Var.f35995w.f40831w) {
-                            z10 = false;
-                        }
-                        bVar = ta1.c0(jSONObject, i10, z10);
-                    } catch (JSONException e7) {
-                        e7.printStackTrace();
-                    }
-                } else if (tLObject instanceof TL_stats.TL_statsGraphError) {
-                    Toast.makeText(ea1Var.getContext(), ((TL_stats.TL_statsGraphError) tLObject).error, 1).show();
-                }
-                AndroidUtilities.runOnUIThread(new zr0(ea1Var, bVar, str, sa1Var, 16));
-                return;
-            case 11:
-                AndroidUtilities.runOnUIThread(new zr0((oe1) this.f37488b, tLObject, (String) this.f37489c, (org.telegram.ui.ActionBar.b2) this.d, 18));
+                new org.telegram.ui.Components.ad(this.f38751b.f41765b.f33904e0, null).m(org.telegram.ui.Components.zc.f33519r, 1, -115203550, -1, null).j();
                 return;
             default:
-                TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f37488b;
-                byte[] bArr = (byte[]) this.f37489c;
-                byte[] bArr2 = (byte[]) this.d;
-                if (tL_error == null) {
-                    Utilities.globalQueue.postRunnable(new zr0(twoStepVerificationActivity, bArr, tLObject, bArr2, 19));
-                    return;
-                } else {
-                    AndroidUtilities.runOnUIThread(new e91(14, twoStepVerificationActivity, tL_error));
-                    return;
-                }
+                new org.telegram.ui.Components.ad(this.f38751b.f41765b.f33904e0, null).m(org.telegram.ui.Components.zc.f33519r, 1, -115203550, -1, null).j();
+                return;
         }
     }
 }

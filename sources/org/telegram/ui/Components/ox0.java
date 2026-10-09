@@ -1,7 +1,19 @@
 package org.telegram.ui.Components;
-public final class ox0 {
-    public String f29557a;
-    public boolean f29558b;
-    public long f29559c;
-    public String d;
+
+import android.graphics.drawable.Drawable;
+public abstract class ox0 extends Drawable {
+    public final void a() {
+        yf.h d = yf.h.d();
+        d.getClass();
+        yf.h.c();
+        d.f52163e.add(this);
+    }
+
+    public abstract void b(int i10);
+
+    public abstract void c(boolean z10);
+
+    public abstract void d();
+
+    public abstract void e();
 }

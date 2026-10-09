@@ -1,66 +1,106 @@
 package fh;
 
-import ah.f;
-import ah.i;
+import ah.h;
+import ah.j;
 import ah.k;
 import android.graphics.Canvas;
 import android.graphics.RecordingCanvas;
+import android.graphics.RectF;
 import android.graphics.RenderEffect;
 import android.graphics.RenderNode;
 import android.graphics.Shader;
 import android.os.Build;
+import java.util.Iterator;
+import java.util.List;
 public final class d implements a {
-    public final a f9859a;
-    public final RenderNode f9860b = f.c();
-    public k f9861c;
-    public i d;
-    public int f9862e;
-    public a f9863f;
-    public li.c h;
-    public boolean f9864n;
-    public boolean f9865r;
-    public RecordingCanvas f9866s;
+    public final a f9934a;
+    public k f9936c;
+    public h d;
+    public int f9937e;
+    public a f9938f;
+    public boolean h;
+    public boolean f9939n;
+    public RecordingCanvas f9940r;
+    public Runnable v;
+    public final qe.b f9941s = new qe.b();
+    public final RenderNode f9935b = ah.e.c();
 
     public d(a aVar) {
-        this.f9859a = aVar;
+        this.f9934a = aVar;
     }
 
     public final RecordingCanvas a(int i10, int i11) {
-        if (!this.f9865r) {
-            this.f9865r = true;
-            this.f9860b.setPosition(0, 0, i10, i11);
-            RecordingCanvas beginRecording = this.f9860b.beginRecording(i10, i11);
-            this.f9866s = beginRecording;
+        if (!this.f9939n) {
+            this.f9939n = true;
+            this.f9935b.setPosition(0, 0, i10, i11);
+            RecordingCanvas beginRecording = this.f9935b.beginRecording(i10, i11);
+            this.f9940r = beginRecording;
             return beginRecording;
         }
         throw new IllegalStateException();
     }
 
-    @Override
-    public final ch.d b() {
-        return new ch.e(this);
-    }
-
-    public final void c() {
-        if (this.f9865r) {
-            this.f9860b.endRecording();
-            this.f9865r = false;
-            this.f9866s = null;
+    public final void b() {
+        if (this.f9939n) {
+            this.f9935b.endRecording();
+            this.f9939n = false;
+            this.f9940r = null;
             return;
         }
         throw new IllegalStateException();
     }
 
-    public final boolean d(int i10, int i11) {
-        if (this.f9860b.hasDisplayList() && this.f9860b.getWidth() == i10 && this.f9860b.getHeight() == i11) {
+    public final int c(int i10, int i11, List list) {
+        RectF rectF;
+        Iterator it = this.f9941s.iterator();
+        int i12 = 0;
+        while (it.hasNext()) {
+            ch.e eVar = (ch.e) it.next();
+            boolean j3 = eVar.j();
+            ch.c cVar = eVar.f4685j;
+            if (j3 && eVar.f4687l > 0 && !cVar.f4675m.isEmpty()) {
+                if (i10 < list.size()) {
+                    rectF = (RectF) list.get(i10);
+                } else {
+                    rectF = new RectF();
+                    list.add(rectF);
+                }
+                rectF.set(cVar.f4675m);
+                rectF.offset(eVar.f4678a, eVar.f4679b);
+                float f7 = -i11;
+                rectF.inset(f7, f7);
+                i10++;
+                i12++;
+            }
+        }
+        return i12;
+    }
+
+    @Override
+    public final void d() {
+        Runnable runnable = this.v;
+        if (runnable != null) {
+            runnable.run();
+        }
+    }
+
+    public final void e() {
+        Iterator it = this.f9941s.iterator();
+        while (it.hasNext()) {
+            ((ch.e) it.next()).O = true;
+        }
+    }
+
+    public final boolean f(int i10, int i11) {
+        if (this.f9935b.hasDisplayList() && this.f9935b.getWidth() == i10 && this.f9935b.getHeight() == i11) {
             return false;
         }
         return true;
     }
 
-    public final void e(float f7) {
+    public final void g(float f7) {
         RenderEffect renderEffect;
-        RenderNode renderNode = this.f9860b;
+        RenderNode renderNode = this.f9935b;
         if (f7 > 0.0f) {
             renderEffect = RenderEffect.createBlurEffect(f7, f7, Shader.TileMode.CLAMP);
         } else {
@@ -69,39 +109,52 @@ public final class d implements a {
         renderNode.setRenderEffect(renderEffect);
     }
 
-    public final void f(float f7, RenderEffect renderEffect) {
-        this.f9860b.setRenderEffect(RenderEffect.createChainEffect(RenderEffect.createBlurEffect(f7, f7, Shader.TileMode.CLAMP), renderEffect));
+    public final void h(float f7, RenderEffect renderEffect) {
+        this.f9935b.setRenderEffect(RenderEffect.createChainEffect(RenderEffect.createBlurEffect(f7, f7, Shader.TileMode.CLAMP), renderEffect));
     }
 
-    public final void g(int i10, int i11) {
-        this.f9860b.setPosition(0, 0, i10, i11);
+    public final void i(int i10, int i11) {
+        this.f9935b.setPosition(0, 0, i10, i11);
+    }
+
+    public final void j(j jVar) {
+        if (this.f9936c == null) {
+            this.f9936c = new k(this.f9935b, jVar);
+        }
+    }
+
+    public final void k() {
+        this.f9936c.a();
+    }
+
+    @Override
+    public final ch.d l() {
+        ch.e eVar = new ch.e(this);
+        this.f9941s.add(eVar);
+        return eVar;
     }
 
     @Override
     public final void v(Canvas canvas, float f7, float f10, float f11, float f12) {
-        i iVar;
-        li.c cVar;
+        h hVar;
         if (!canvas.isHardwareAccelerated()) {
-            a aVar = this.f9859a;
+            a aVar = this.f9934a;
             if (aVar != null) {
                 aVar.v(canvas, f7, f10, f11, f12);
             }
-        } else if (!this.f9865r) {
-            a aVar2 = this.f9863f;
+        } else if (!this.f9939n) {
+            a aVar2 = this.f9938f;
             if (aVar2 != null) {
                 aVar2.v(canvas, f7, f10, f11, f12);
             }
             canvas.save();
-            if (!this.f9864n) {
+            if (!this.h) {
                 canvas.clipRect(f7, f10, f11, f12);
             }
-            int i10 = Build.VERSION.SDK_INT;
-            if (i10 >= 31 && (cVar = this.h) != null) {
-                cVar.v(canvas, f7, f10, f11, f12);
-            } else if (i10 >= 31 && (iVar = this.d) != null) {
-                iVar.c(canvas, this.f9862e);
+            if (Build.VERSION.SDK_INT >= 31 && (hVar = this.d) != null) {
+                hVar.c(canvas, this.f9937e);
             } else {
-                canvas.drawRenderNode(this.f9860b);
+                canvas.drawRenderNode(this.f9935b);
             }
             canvas.restore();
         } else {

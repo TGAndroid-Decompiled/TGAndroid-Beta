@@ -1,24 +1,79 @@
 package v7;
-
-import android.os.Build;
-import android.webkit.WebView;
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 public abstract class i0 {
-    public static InvocationHandler a() {
-        ClassLoader classLoader;
-        if (Build.VERSION.SDK_INT >= 28) {
-            classLoader = b5.d.t();
-        } else {
-            try {
-                Method declaredMethod = WebView.class.getDeclaredMethod("getFactory", null);
-                declaredMethod.setAccessible(true);
-                classLoader = declaredMethod.invoke(null, null).getClass().getClassLoader();
-            } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException e7) {
-                throw new RuntimeException(e7);
+    public static boolean a(int i10, CharSequence charSequence) {
+        if (i10 < charSequence.length()) {
+            char charAt = charSequence.charAt(i10);
+            switch (charAt) {
+                case '!':
+                case '\"':
+                case '#':
+                case '$':
+                case '%':
+                case '&':
+                case '\'':
+                case '(':
+                case ')':
+                case '*':
+                case '+':
+                case ',':
+                case '-':
+                case '.':
+                case '/':
+                    return true;
+                default:
+                    switch (charAt) {
+                        case ':':
+                        case ';':
+                        case '<':
+                        case '=':
+                        case '>':
+                        case '?':
+                        case '@':
+                            return true;
+                        default:
+                            switch (charAt) {
+                                case '[':
+                                case '\\':
+                                case ']':
+                                case '^':
+                                case '_':
+                                case '`':
+                                    return true;
+                                default:
+                                    switch (charAt) {
+                                        case '{':
+                                        case '|':
+                                        case '}':
+                                        case '~':
+                                            return true;
+                                        default:
+                                            return false;
+                                    }
+                            }
+                    }
             }
         }
-        return (InvocationHandler) Class.forName("org.chromium.support_lib_glue.SupportLibReflectionUtil", false, classLoader).getDeclaredMethod("createWebViewProviderFactory", null).invoke(null, null);
+        return false;
+    }
+
+    public static int b(char c10, CharSequence charSequence, int i10, int i11) {
+        while (i10 < i11) {
+            if (charSequence.charAt(i10) != c10) {
+                return i10;
+            }
+            i10++;
+        }
+        return i11;
+    }
+
+    public static int c(int i10, int i11, CharSequence charSequence) {
+        while (i10 < i11) {
+            char charAt = charSequence.charAt(i10);
+            if (charAt != '\t' && charAt != ' ') {
+                return i10;
+            }
+            i10++;
+        }
+        return i11;
     }
 }

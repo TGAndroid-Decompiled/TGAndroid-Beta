@@ -1,34 +1,51 @@
 package org.telegram.ui.Components;
-public final class ah {
-    public static final ah f24595a;
-    public static final ah f24596b;
-    public static final ah f24597c;
-    public static final ah d;
-    public static final ah f24598e;
-    public static final ah f24599f;
-    public static final ah[] h;
 
-    static {
-        ?? r02 = new Enum("VOICE", 0);
-        f24595a = r02;
-        ?? r12 = new Enum("VIDEO", 1);
-        f24596b = r12;
-        ?? r32 = new Enum("STICKER", 2);
-        f24597c = r32;
-        ?? r52 = new Enum("KEYBOARD", 3);
-        d = r52;
-        ?? r72 = new Enum("SMILE", 4);
-        f24598e = r72;
-        ?? r92 = new Enum("GIF", 5);
-        f24599f = r92;
-        h = new ah[]{r02, r12, r32, r52, r72, r92};
+import java.util.HashMap;
+import org.telegram.messenger.AndroidUtilities;
+public final class ah extends HashMap {
+    public final int f24686a;
+    public final Object f24687b;
+
+    public ah(Object obj, int i10) {
+        this.f24686a = i10;
+        this.f24687b = obj;
     }
 
-    public static ah valueOf(String str) {
-        return (ah) Enum.valueOf(ah.class, str);
+    @Override
+    public Object get(Object obj) {
+        switch (this.f24686a) {
+            case 0:
+                int i10 = ((dh) this.f24687b).v;
+                ck0 ck0Var = (ck0) super.get(obj);
+                if (ck0Var == null) {
+                    ch chVar = (ch) obj;
+                    ck0 ck0Var2 = new ck0(chVar.f25374c, AndroidUtilities.dp(i10), AndroidUtilities.dp(i10));
+                    put(chVar, ck0Var2);
+                    return ck0Var2;
+                }
+                return ck0Var;
+            default:
+                return super.get(obj);
+        }
     }
 
-    public static ah[] values() {
-        return (ah[]) h.clone();
+    @Override
+    public Object put(Object obj, Object obj2) {
+        String lowerCase;
+        switch (this.f24686a) {
+            case 1:
+                String str = (String) obj;
+                String str2 = (String) obj2;
+                HashMap hashMap = ((zc.g) this.f24687b).f54349f;
+                if (str == null) {
+                    lowerCase = str;
+                } else {
+                    lowerCase = str.toLowerCase();
+                }
+                hashMap.put(lowerCase, str2);
+                return (String) super.put(str, str2);
+            default:
+                return super.put(obj, obj2);
+        }
     }
 }

@@ -197,7 +197,7 @@ public class SurfaceTextureHelper {
         if (i10 > 0) {
             if (i11 > 0) {
                 this.surfaceTexture.setDefaultBufferSize(i10, i11);
-                this.handler.post(new gg.n(this, i10, i11, 12));
+                this.handler.post(new gg.n(this, i10, i11, 11));
                 return;
             }
             throw new IllegalArgumentException(hg.c.h(i11, "Texture height must be positive, but was "));

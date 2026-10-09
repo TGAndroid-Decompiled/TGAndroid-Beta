@@ -1,30 +1,19 @@
 package org.telegram.ui.Components;
-public final class jk0 extends og.a {
-    public final zg.m0 f27875c;
 
-    public jk0(int i10, zg.m0 m0Var) {
-        super(i10, false);
-        this.f27875c = m0Var;
-    }
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class jk0 {
+    public final TLObject f27734a;
+    public final long f27735b;
+    public int f27736c;
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    public jk0(int i10, TLObject tLObject) {
+        this.f27734a = tLObject;
+        this.f27736c = i10;
+        if (tLObject instanceof TLRPC.User) {
+            this.f27735b = ((TLRPC.User) tLObject).f20185id;
+        } else if (tLObject instanceof TLRPC.Chat) {
+            this.f27735b = -((TLRPC.Chat) tLObject).f20038id;
         }
-        if (obj != null && jk0.class == obj.getClass()) {
-            jk0 jk0Var = (jk0) obj;
-            int i10 = this.f17192a;
-            int i11 = jk0Var.f17192a;
-            if (i10 == i11 && (i10 == 0 || i10 == 3)) {
-                zg.m0 m0Var = this.f27875c;
-                if (m0Var != null && m0Var.equals(jk0Var.f27875c)) {
-                    return true;
-                }
-                return false;
-            } else if (i10 == i11) {
-                return true;
-            }
-        }
-        return false;
     }
 }

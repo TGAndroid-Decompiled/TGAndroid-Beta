@@ -1,17 +1,17 @@
 package bb;
 public final class e {
-    public final Boolean f3738a;
-    public final Double f3739b;
-    public final Integer f3740c;
+    public final Boolean f3817a;
+    public final Double f3818b;
+    public final Integer f3819c;
     public final Integer d;
-    public final Long f3741e;
+    public final Long f3820e;
 
     public e(Boolean bool, Double d, Integer num, Integer num2, Long l4) {
-        this.f3738a = bool;
-        this.f3739b = d;
-        this.f3740c = num;
+        this.f3817a = bool;
+        this.f3818b = d;
+        this.f3819c = num;
         this.d = num2;
-        this.f3741e = l4;
+        this.f3820e = l4;
     }
 
     public final boolean equals(Object obj) {
@@ -22,7 +22,7 @@ public final class e {
             return false;
         }
         e eVar = (e) obj;
-        if (kotlin.jvm.internal.i.a(this.f3738a, eVar.f3738a) && kotlin.jvm.internal.i.a(this.f3739b, eVar.f3739b) && kotlin.jvm.internal.i.a(this.f3740c, eVar.f3740c) && kotlin.jvm.internal.i.a(this.d, eVar.d) && kotlin.jvm.internal.i.a(this.f3741e, eVar.f3741e)) {
+        if (kotlin.jvm.internal.i.a(this.f3817a, eVar.f3817a) && kotlin.jvm.internal.i.a(this.f3818b, eVar.f3818b) && kotlin.jvm.internal.i.a(this.f3819c, eVar.f3819c) && kotlin.jvm.internal.i.a(this.d, eVar.d) && kotlin.jvm.internal.i.a(this.f3820e, eVar.f3820e)) {
             return true;
         }
         return false;
@@ -34,21 +34,21 @@ public final class e {
         int hashCode3;
         int hashCode4;
         int i10 = 0;
-        Boolean bool = this.f3738a;
+        Boolean bool = this.f3817a;
         if (bool == null) {
             hashCode = 0;
         } else {
             hashCode = bool.hashCode();
         }
         int i11 = hashCode * 31;
-        Double d = this.f3739b;
+        Double d = this.f3818b;
         if (d == null) {
             hashCode2 = 0;
         } else {
             hashCode2 = d.hashCode();
         }
         int i12 = (i11 + hashCode2) * 31;
-        Integer num = this.f3740c;
+        Integer num = this.f3819c;
         if (num == null) {
             hashCode3 = 0;
         } else {
@@ -62,7 +62,7 @@ public final class e {
             hashCode4 = num2.hashCode();
         }
         int i14 = (i13 + hashCode4) * 31;
-        Long l4 = this.f3741e;
+        Long l4 = this.f3820e;
         if (l4 != null) {
             i10 = l4.hashCode();
         }
@@ -70,6 +70,6 @@ public final class e {
     }
 
     public final String toString() {
-        return "SessionConfigs(sessionEnabled=" + this.f3738a + ", sessionSamplingRate=" + this.f3739b + ", sessionRestartTimeout=" + this.f3740c + ", cacheDuration=" + this.d + ", cacheUpdatedTime=" + this.f3741e + ')';
+        return "SessionConfigs(sessionEnabled=" + this.f3817a + ", sessionSamplingRate=" + this.f3818b + ", sessionRestartTimeout=" + this.f3819c + ", cacheDuration=" + this.d + ", cacheUpdatedTime=" + this.f3820e + ')';
     }
 }

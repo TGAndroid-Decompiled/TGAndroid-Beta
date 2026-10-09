@@ -10,36 +10,36 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 public final class tb0 extends org.telegram.ui.Cells.j3 {
-    public boolean f40839x;
-    public final vb0 f40840y;
+    public boolean f41967x;
+    public final vb0 f41968y;
 
-    public tb0(vb0 vb0Var, Context context, String str, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, str, false, false, -1, d6Var);
-        this.f40840y = vb0Var;
+    public tb0(vb0 vb0Var, Context context, String str, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, str, false, false, -1, e6Var);
+        this.f41968y = vb0Var;
     }
 
     @Override
     public final void b(Editable editable) {
         int i10;
         int i11;
-        if (this.f40839x) {
+        if (this.f41967x) {
             return;
         }
         boolean isEmpty = TextUtils.isEmpty(editable);
-        vb0 vb0Var = this.f40840y;
+        vb0 vb0Var = this.f41968y;
         if (isEmpty) {
-            vb0Var.f41700s.setText("");
+            vb0Var.f42809s.setText("");
             return;
         }
         try {
             long parseLong = Long.parseLong(editable.toString());
             if (parseLong > vb0Var.getMessagesController().starsSubscriptionAmountMax) {
-                this.f40839x = true;
+                this.f41967x = true;
                 parseLong = vb0Var.getMessagesController().starsSubscriptionAmountMax;
                 setText(Long.toString(parseLong));
-                this.f40839x = false;
+                this.f41967x = false;
             }
-            TextView textView = vb0Var.f41700s;
+            TextView textView = vb0Var.f42809s;
             if (vb0Var.getConnectionsManager().isTestBackend()) {
                 i10 = R.string.RequireMonthlyFeePriceTest5Minutes;
             } else {

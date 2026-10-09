@@ -11,24 +11,24 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class l extends org.telegram.ui.ActionBar.n2 implements NotificationCenter.NotificationCenterDelegate {
-    public org.telegram.ui.Components.zl0 f38202a;
-    public k f38203b;
-    public boolean f38204c;
+    public org.telegram.ui.Components.qm0 f39380a;
+    public k f39381b;
+    public boolean f39382c;
     public TLRPC.GlobalPrivacySettings d;
-    public int f38205e;
-    public final ArrayList f38206f;
+    public int f39383e;
+    public final ArrayList f39384f;
     public final ArrayList h;
 
     public l() {
         super(null);
-        this.f38204c = false;
-        this.f38205e = -3;
-        this.f38206f = new ArrayList();
+        this.f39382c = false;
+        this.f39383e = -3;
+        this.f39384f = new ArrayList();
         this.h = new ArrayList();
     }
 
-    public final void S(boolean z10) {
-        ArrayList arrayList = this.f38206f;
+    public final void U(boolean z10) {
+        ArrayList arrayList = this.f39384f;
         arrayList.clear();
         ArrayList arrayList2 = this.h;
         arrayList.addAll(arrayList2);
@@ -44,7 +44,7 @@ public final class l extends org.telegram.ui.ActionBar.n2 implements Notificatio
         arrayList2.add(new j(0, 6, LocaleController.getString("NewChatsFromNonContacts")));
         arrayList2.add(new j(1, 7, LocaleController.getString("NewChatsFromNonContactsCheck")));
         arrayList2.add(new j(2, 8, LocaleController.getString("ArchiveAndMuteInfo")));
-        k kVar = this.f38203b;
+        k kVar = this.f39381b;
         if (kVar == null) {
             return;
         }
@@ -57,39 +57,39 @@ public final class l extends org.telegram.ui.ActionBar.n2 implements Notificatio
 
     @Override
     public final View createView(Context context) {
-        setHasOwnBackground(true);
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setTitle(LocaleController.getString(R.string.ArchiveSettings));
-        this.actionBar.setActionBarMenuOnItemClick(new ei.u(this, 18));
+        this.actionBar.setActionBarMenuOnItemClick(new ei.t(this, 18));
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        org.telegram.ui.Components.zl0 zl0Var = new org.telegram.ui.Components.zl0(context, null);
-        this.f38202a = zl0Var;
-        zl0Var.r1();
-        this.f38202a.setLayoutManager(new gg.b0(1, false, 2));
-        this.f38202a.setVerticalScrollBarEnabled(false);
-        this.f38202a.setSectionsDrawBackground(true);
-        this.f38202a.setLayoutAnimation(null);
-        org.telegram.ui.Components.zl0 zl0Var2 = this.f38202a;
+        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20741a7, false));
+        org.telegram.ui.Components.qm0 qm0Var = new org.telegram.ui.Components.qm0(context, null);
+        this.f39380a = qm0Var;
+        qm0Var.p1();
+        this.actionBar.setAdaptiveBackground(this.f39380a);
+        this.f39380a.setLayoutManager(new gg.a0(1, false, 2));
+        this.f39380a.setVerticalScrollBarEnabled(false);
+        this.f39380a.setLayoutAnimation(null);
+        org.telegram.ui.Components.qm0 qm0Var2 = this.f39380a;
         k kVar = new k(this);
-        this.f38203b = kVar;
-        zl0Var2.setAdapter(kVar);
+        this.f39381b = kVar;
+        qm0Var2.setAdapter(kVar);
         s4.j jVar = new s4.j();
         jVar.n(350L);
-        jVar.o(org.telegram.ui.Components.tr.h);
+        jVar.o(org.telegram.ui.Components.hs.h);
         jVar.C = false;
-        jVar.f46577m = false;
-        this.f38202a.setItemAnimator(jVar);
-        frameLayout.addView(this.f38202a, w7.z5.c(-1.0f, -1));
-        this.f38202a.setOnItemClickListener(new i(this, 0));
+        jVar.f47696m = false;
+        this.f39380a.setItemAnimator(jVar);
+        frameLayout.addView(this.f39380a, w7.x5.d(-1.0f, -1));
+        this.f39380a.setOnItemClickListener(new i(this, 0));
         getContactsController().loadGlobalPrivacySetting();
         TLRPC.GlobalPrivacySettings globalPrivacySettings = getContactsController().getGlobalPrivacySettings();
         this.d = globalPrivacySettings;
         if (globalPrivacySettings == null) {
             this.d = new TLRPC.TL_globalPrivacySettings();
         }
-        S(false);
+        U(false);
         return this.fragmentView;
     }
 
@@ -101,10 +101,10 @@ public final class l extends org.telegram.ui.ActionBar.n2 implements Notificatio
             if (globalPrivacySettings == null) {
                 this.d = new TLRPC.TL_globalPrivacySettings();
             }
-            if (this.f38202a != null) {
-                for (int i12 = 0; i12 < this.f38202a.getChildCount(); i12++) {
-                    View childAt = this.f38202a.getChildAt(i12);
-                    this.f38202a.getClass();
+            if (this.f39380a != null) {
+                for (int i12 = 0; i12 < this.f39380a.getChildCount(); i12++) {
+                    View childAt = this.f39380a.getChildAt(i12);
+                    this.f39380a.getClass();
                     int R = RecyclerView.R(childAt);
                     if (R >= 0) {
                         ArrayList arrayList = this.h;
@@ -121,15 +121,10 @@ public final class l extends org.telegram.ui.ActionBar.n2 implements Notificatio
                     }
                 }
             }
-            this.f38204c = false;
+            this.f39382c = false;
         } else if (i10 == NotificationCenter.dialogFiltersUpdated) {
-            S(true);
+            U(true);
         }
-    }
-
-    @Override
-    public final org.telegram.ui.Components.zl0 getListViewForSimpleGlass() {
-        return this.f38202a;
     }
 
     @Override
@@ -147,11 +142,17 @@ public final class l extends org.telegram.ui.ActionBar.n2 implements Notificatio
     public final void onFragmentDestroy() {
         getNotificationCenter().removeObserver(this, NotificationCenter.privacyRulesUpdated);
         super.onFragmentDestroy();
-        if (this.f38204c) {
+        if (this.f39382c) {
             TL_account.setGlobalPrivacySettings setglobalprivacysettings = new TL_account.setGlobalPrivacySettings();
             setglobalprivacysettings.settings = this.d;
-            getConnectionsManager().sendRequest(setglobalprivacysettings, new ai.u7(8));
-            this.f38204c = false;
+            getConnectionsManager().sendRequest(setglobalprivacysettings, new ai.v7(8));
+            this.f39382c = false;
         }
+    }
+
+    @Override
+    public final void onInsets(int i10, int i11, int i12, int i13) {
+        this.f39380a.setPadding(0, 0, 0, i13);
+        this.f39380a.setClipToPadding(false);
     }
 }

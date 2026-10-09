@@ -1,8 +1,9 @@
 package org.telegram.tgnet;
 
-import ai.ga;
-import ai.n3;
-import ai.o8;
+import ai.ha;
+import ai.i5;
+import ai.o3;
+import ai.p8;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.InstallSourceInfo;
@@ -12,11 +13,10 @@ import android.os.Build;
 import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.Base64;
-import com.google.android.gms.internal.vision.e2;
 import com.google.android.play.core.integrity.IntegrityManagerFactory;
 import com.google.android.play.core.integrity.IntegrityTokenRequest;
 import com.google.android.play.core.integrity.IntegrityTokenResponse;
-import ei.s2;
+import ei.r2;
 import i2.a0;
 import j$.util.Objects;
 import j$.util.concurrent.ConcurrentHashMap;
@@ -67,11 +67,10 @@ import org.telegram.messenger.StatsController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.kh;
-import org.telegram.messenger.voip.m0;
+import org.telegram.messenger.voip.n0;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.e81;
-import org.telegram.ui.ug0;
-import org.telegram.ui.zr0;
+import org.telegram.ui.Components.k81;
+import org.telegram.ui.wg0;
 public class ConnectionsManager extends BaseController {
     private static final int CORE_POOL_SIZE;
     public static final int CPU_COUNT;
@@ -87,6 +86,7 @@ public class ConnectionsManager extends BaseController {
     public static final int ConnectionTypeUpload = 4;
     public static final int DEFAULT_DATACENTER_ID = Integer.MAX_VALUE;
     public static final Executor DNS_THREAD_POOL_EXECUTOR;
+    public static final int DownloadConnectionsCount = 8;
     public static final int FileTypeAudio = 50331648;
     public static final int FileTypeFile = 67108864;
     public static final int FileTypePhoto = 16777216;
@@ -96,6 +96,7 @@ public class ConnectionsManager extends BaseController {
     private static final int MAXIMUM_POOL_SIZE;
     public static final int RequestFlagCanCompress = 4;
     public static final int RequestFlagDoNotWaitFloodWait = 1024;
+    public static final int RequestFlagDownloadByteBudget = 262144;
     public static final int RequestFlagEnableUnauthorized = 1;
     public static final int RequestFlagFailOnServerErrors = 2;
     public static final int RequestFlagFailOnServerErrorsExceptFloodWait = 65536;
@@ -103,6 +104,7 @@ public class ConnectionsManager extends BaseController {
     public static final int RequestFlagInvokeAfter = 64;
     public static final int RequestFlagListenAfterCancel = 2048;
     public static final int RequestFlagNeedQuickAck = 128;
+    public static final int RequestFlagSmallDownload = 131072;
     public static final int RequestFlagTryDifferentDc = 16;
     public static final int RequestFlagWithoutLogin = 8;
     public static final byte USE_IPV4_IPV6_RANDOM = 2;
@@ -614,7 +616,6 @@ public class ConnectionsManager extends BaseController {
         String str5;
         String str6;
         SharedPreferences sharedPreferences;
-        boolean z10;
         this.lastPauseTime = System.currentTimeMillis();
         this.appPaused = true;
         this.lastRequestToken = new AtomicInteger(1);
@@ -665,16 +666,11 @@ public class ConnectionsManager extends BaseController {
             sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig" + this.currentAccount, 0);
         }
         this.forceTryIpV6 = sharedPreferences.getBoolean("forceTryIpV6", false);
-        if (getUserConfig().getCurrentUser() != null) {
-            z10 = getUserConfig().getCurrentUser().premium;
-        } else {
-            z10 = false;
-        }
-        init(SharedConfig.buildVersion(), 229, BuildVars.APP_ID, str8, str, str6, str2, str7, file2, FileLog.getNetworkLogPath(), regId, certificateSHA256Fingerprint, dSTSavings, getUserConfig().getClientUserId(), z10, isPushConnectionEnabled);
+        init(SharedConfig.buildVersion(), 231, BuildVars.APP_ID, str8, str, str6, str2, str7, file2, FileLog.getNetworkLogPath(), regId, certificateSHA256Fingerprint, dSTSavings, getUserConfig().getClientUserId(), getUserConfig().getCurrentUser() != null ? getUserConfig().getCurrentUser().premium : false, isPushConnectionEnabled);
     }
 
-    public void checkWebProxyInternal(qi.b bVar, int i10, RequestTimeDelegate requestTimeDelegate) {
-        native_checkProxy(this.currentAccount, "127.0.0.1", i10, "", "", bVar.f45531f, requestTimeDelegate);
+    public void checkWebProxyInternal(oi.b bVar, int i10, RequestTimeDelegate requestTimeDelegate) {
+        native_checkProxy(this.currentAccount, "127.0.0.1", i10, "", "", bVar.f17165f, requestTimeDelegate);
     }
 
     public static int generateClassGuid() {
@@ -684,7 +680,7 @@ public class ConnectionsManager extends BaseController {
     }
 
     public static void getHostByName(String str, long j3) {
-        AndroidUtilities.runOnUIThread(new ai.j(str, j3, 17));
+        AndroidUtilities.runOnUIThread(new ai.j(str, j3, 18));
     }
 
     public static int getInitFlags() {
@@ -723,7 +719,7 @@ public class ConnectionsManager extends BaseController {
         String str;
         String str2 = SharedConfig.pushString;
         if (!TextUtils.isEmpty(str2) && SharedConfig.pushType == 13) {
-            str2 = sa.e.i("huawei://", str2);
+            str2 = sc.v.i("huawei://", str2);
         }
         if (TextUtils.isEmpty(str2) && !TextUtils.isEmpty(SharedConfig.pushStringStatus)) {
             str2 = SharedConfig.pushStringStatus;
@@ -734,7 +730,7 @@ public class ConnectionsManager extends BaseController {
             } else {
                 str = "HUAWEI";
             }
-            StringBuilder w10 = a4.a.w("__", str, "_GENERATING_SINCE_");
+            StringBuilder w10 = a1.g.w("__", str, "_GENERATING_SINCE_");
             w10.append(getCurrentTime());
             w10.append("__");
             String sb2 = w10.toString();
@@ -746,7 +742,7 @@ public class ConnectionsManager extends BaseController {
 
     public void lambda$cancelRequest$10(Runnable runnable, int i10, boolean z10) {
         if (runnable != null) {
-            listenCancel(i10, new n3(3, runnable));
+            listenCancel(i10, new o3(3, runnable));
         }
         native_cancelRequest(this.currentAccount, i10, z10);
     }
@@ -816,7 +812,7 @@ public class ConnectionsManager extends BaseController {
         j10.append(System.currentTimeMillis() - j3);
         j10.append("ms");
         FileLog.e(j10.toString(), exc);
-        native_receivedIntegrityCheckClassic(i10, i11, str, "PLAYINTEGRITY_FAILED_EXCEPTION_" + ug0.f1(exc));
+        native_receivedIntegrityCheckClassic(i10, i11, str, "PLAYINTEGRITY_FAILED_EXCEPTION_" + wg0.f1(exc));
     }
 
     public static void lambda$onIntegrityCheckClassic$27(int i10, String str, String str2, int i11) {
@@ -826,7 +822,7 @@ public class ConnectionsManager extends BaseController {
         sb2.append(": server requests integrity classic check with project = ");
         sb2.append(str);
         sb2.append(" nonce = ");
-        e2.t(str2, sb2);
+        hg.c.t(str2, sb2);
         try {
             IntegrityManagerFactory.create(ApplicationLoader.applicationContext).requestIntegrityToken(IntegrityTokenRequest.builder().setNonce(str2).setCloudProjectNumber(Long.parseLong(str)).build()).addOnSuccessListener(new g(i10, currentTimeMillis, str2, i11)).addOnFailureListener(new g(i10, currentTimeMillis, str2, i11));
         } catch (Exception unused) {
@@ -911,7 +907,7 @@ public class ConnectionsManager extends BaseController {
     }
 
     public static void lambda$onUnparsedMessageReceived$12(int i10, TLRPC.Updates updates) {
-        AccountInstance.getInstance(i10).getMessagesController().processUpdates(updates, false);
+        AccountInstance.getInstance(i10).getMessagesController().lambda$processUpdates$377(updates, false);
     }
 
     public static void lambda$onUpdate$13(int i10) {
@@ -929,7 +925,7 @@ public class ConnectionsManager extends BaseController {
             requestDelegateTimestamp.run(tLObject, tL_error, j3);
         } else if (tLObject instanceof TLRPC.Updates) {
             KeepAliveJob.finishJob();
-            AccountInstance.getInstance(this.currentAccount).getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
+            AccountInstance.getInstance(this.currentAccount).getMessagesController().lambda$processUpdates$377((TLRPC.Updates) tLObject, false);
         }
         if (tLObject != null) {
             tLObject.freeResources();
@@ -937,8 +933,8 @@ public class ConnectionsManager extends BaseController {
     }
 
     public void lambda$sendRequestInternal$8(TLObject tLObject, int i10, long j3, RequestDelegate requestDelegate, RequestDelegateTimestamp requestDelegateTimestamp, QuickAckDelegate quickAckDelegate, WriteToSocketDelegate writeToSocketDelegate, int i11, int i12, boolean z10, int i13, long j10, int i14, String str, int i15, long j11, long j12, int i16) {
-        TLObject tLObject2;
         int i17;
+        TLObject tLObject2;
         TLRPC.TL_error tL_error;
         String str2;
         TLRPC.TL_error tL_error2 = null;
@@ -957,22 +953,21 @@ public class ConnectionsManager extends BaseController {
                     }
                     throw e7;
                 }
-            } else {
-                if (str != null) {
-                    TLRPC.TL_error tL_error3 = new TLRPC.TL_error();
-                    tL_error3.code = i14;
-                    tL_error3.text = str;
-                    if (BuildVars.LOGS_ENABLED && i14 != -2000) {
-                        FileLog.e(tLObject + " got error " + tL_error3.code + " " + tL_error3.text);
-                    }
-                    tLObject2 = null;
-                    tL_error2 = tL_error3;
-                } else {
-                    tLObject2 = null;
+            } else if (str != null) {
+                TLRPC.TL_error tL_error3 = new TLRPC.TL_error();
+                tL_error3.code = i14;
+                tL_error3.text = str;
+                if (BuildVars.LOGS_ENABLED && i14 != -2000) {
+                    FileLog.e(tLObject + " got error " + tL_error3.code + " " + tL_error3.text);
                 }
                 i17 = 0;
+                tLObject2 = null;
+                tL_error2 = tL_error3;
+            } else {
+                i17 = 0;
+                tLObject2 = null;
             }
-            if ((i10 & 2) != 0 && e81.f26046k0.isEmpty()) {
+            if ((i10 & 2) != 0 && k81.f27876k0.isEmpty()) {
                 y2.f.b(ApplicationLoader.applicationContext).d(i17, Math.max(0L, (System.currentTimeMillis() - j3) - native_getCurrentPingTime(this.currentAccount)));
             }
             if (BuildVars.DEBUG_PRIVATE_VERSION) {
@@ -1014,7 +1009,7 @@ public class ConnectionsManager extends BaseController {
             } else {
                 tL_error = tL_error2;
             }
-            Utilities.stageQueue.postRunnable(new ga(this, requestDelegate, tLObject2, tL_error, requestDelegateTimestamp, j11));
+            Utilities.stageQueue.postRunnable(new ha(this, requestDelegate, tLObject2, tL_error, requestDelegateTimestamp, j11));
         } catch (Exception e12) {
             e = e12;
             FileLog.e(e);
@@ -1023,7 +1018,7 @@ public class ConnectionsManager extends BaseController {
 
     public static void lambda$sendRequestTyped$3(Executor executor, Utilities.Callback2 callback2, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (executor != null) {
-            executor.execute(new org.telegram.messenger.video.o(callback2, tLObject, tL_error, 1));
+            executor.execute(new org.telegram.messenger.video.f(callback2, tLObject, tL_error, 2));
         } else {
             callback2.run(tLObject, tL_error);
         }
@@ -1031,10 +1026,10 @@ public class ConnectionsManager extends BaseController {
 
     public void lambda$sendRequestTypedAndProcessUpdates$5(Executor executor, Utilities.Callback2 callback2, TLRPC.Updates updates, TLRPC.TL_error tL_error) {
         if (updates != null) {
-            getMessagesController().processUpdates(updates, false);
+            getMessagesController().lambda$processUpdates$377(updates, false);
         }
         if (executor != null) {
-            executor.execute(new org.telegram.messenger.video.o(callback2, updates, tL_error, 2));
+            executor.execute(new org.telegram.messenger.video.f(callback2, updates, tL_error, 3));
         } else {
             callback2.run(updates, tL_error);
         }
@@ -1112,7 +1107,7 @@ public class ConnectionsManager extends BaseController {
 
     public static native void native_resumeNetwork(int i10, boolean z10);
 
-    public static native void native_sendRequest(int i10, long j3, int i11, int i12, int i13, boolean z10, int i14);
+    public static native void native_sendRequest(int i10, long j3, int i11, int i12, int i13, boolean z10, int i14, int i15);
 
     public static native void native_setIpStrategy(int i10, byte b10);
 
@@ -1171,7 +1166,7 @@ public class ConnectionsManager extends BaseController {
     }
 
     public static void onLogout(int i10) {
-        AndroidUtilities.runOnUIThread(new s2(i10, 9));
+        AndroidUtilities.runOnUIThread(new r2(i10, 10));
     }
 
     public static void onPremiumFloodWait(int i10, int i11, boolean z10) {
@@ -1235,7 +1230,7 @@ public class ConnectionsManager extends BaseController {
     }
 
     public static void onSessionCreated(int i10) {
-        Utilities.stageQueue.postRunnable(new s2(i10, 8));
+        Utilities.stageQueue.postRunnable(new r2(i10, 9));
     }
 
     public static void onUnparsedMessageReceived(long j3, int i10, long j10) {
@@ -1261,7 +1256,7 @@ public class ConnectionsManager extends BaseController {
     }
 
     public static void onUpdate(int i10) {
-        Utilities.stageQueue.postRunnable(new s2(i10, 7));
+        Utilities.stageQueue.postRunnable(new r2(i10, 8));
     }
 
     public static void onUpdateConfig(long j3, int i10) {
@@ -1270,58 +1265,15 @@ public class ConnectionsManager extends BaseController {
             wrap.reused = true;
             TLRPC.TL_config TLdeserialize = TLRPC.TL_config.TLdeserialize(wrap, wrap.readInt32(true), true);
             if (TLdeserialize != null) {
-                Utilities.stageQueue.postRunnable(new o8(i10, TLdeserialize, 14));
+                Utilities.stageQueue.postRunnable(new p8(i10, TLdeserialize, 14));
             }
         } catch (Exception e7) {
             FileLog.e(e7);
         }
     }
 
-    public void lambda$sendRequest$6(final TLObject tLObject, final RequestDelegate requestDelegate, final RequestDelegateTimestamp requestDelegateTimestamp, final QuickAckDelegate quickAckDelegate, final WriteToSocketDelegate writeToSocketDelegate, final int i10, final int i11, final int i12, final boolean z10, final int i13) {
-        long j3;
-        if (BuildVars.LOGS_ENABLED) {
-            FileLog.d("send request " + tLObject + " with token = " + i13);
-        }
-        try {
-            NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tLObject.getObjectSize());
-            tLObject.serializeToStream(nativeByteBuffer);
-            tLObject.freeResources();
-            if (BuildVars.DEBUG_PRIVATE_VERSION) {
-                if (!BuildVars.LOGS_ENABLED) {
-                }
-                j3 = System.currentTimeMillis();
-                final long j10 = j3;
-                listen(i13, new RequestDelegateInternal() {
-                    @Override
-                    public final void run(long j11, int i14, String str, int i15, long j12, long j13, int i16) {
-                        ConnectionsManager.this.lambda$sendRequestInternal$8(tLObject, i12, j10, requestDelegate, requestDelegateTimestamp, quickAckDelegate, writeToSocketDelegate, i10, i11, z10, i13, j11, i14, str, i15, j12, j13, i16);
-                    }
-                }, quickAckDelegate, writeToSocketDelegate);
-                native_sendRequest(this.currentAccount, nativeByteBuffer.address, i10, i11, i12, z10, i13);
-            }
-            if ((i12 & 2) == 0) {
-                j3 = 0;
-                final long j102 = j3;
-                listen(i13, new RequestDelegateInternal() {
-                    @Override
-                    public final void run(long j11, int i14, String str, int i15, long j12, long j13, int i16) {
-                        ConnectionsManager.this.lambda$sendRequestInternal$8(tLObject, i12, j102, requestDelegate, requestDelegateTimestamp, quickAckDelegate, writeToSocketDelegate, i10, i11, z10, i13, j11, i14, str, i15, j12, j13, i16);
-                    }
-                }, quickAckDelegate, writeToSocketDelegate);
-                native_sendRequest(this.currentAccount, nativeByteBuffer.address, i10, i11, i12, z10, i13);
-            }
-            j3 = System.currentTimeMillis();
-            final long j1022 = j3;
-            listen(i13, new RequestDelegateInternal() {
-                @Override
-                public final void run(long j11, int i14, String str, int i15, long j12, long j13, int i16) {
-                    ConnectionsManager.this.lambda$sendRequestInternal$8(tLObject, i12, j1022, requestDelegate, requestDelegateTimestamp, quickAckDelegate, writeToSocketDelegate, i10, i11, z10, i13, j11, i14, str, i15, j12, j13, i16);
-                }
-            }, quickAckDelegate, writeToSocketDelegate);
-            native_sendRequest(this.currentAccount, nativeByteBuffer.address, i10, i11, i12, z10, i13);
-        } catch (Exception e7) {
-            FileLog.e(e7);
-        }
+    public void lambda$sendRequest$6(final org.telegram.tgnet.TLObject r16, final org.telegram.tgnet.RequestDelegate r17, final org.telegram.tgnet.RequestDelegateTimestamp r18, final org.telegram.tgnet.QuickAckDelegate r19, final org.telegram.tgnet.WriteToSocketDelegate r20, final int r21, final int r22, final int r23, final boolean r24, final int r25) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.tgnet.ConnectionsManager.lambda$sendRequest$6(org.telegram.tgnet.TLObject, org.telegram.tgnet.RequestDelegate, org.telegram.tgnet.RequestDelegateTimestamp, org.telegram.tgnet.QuickAckDelegate, org.telegram.tgnet.WriteToSocketDelegate, int, int, int, boolean, int):void");
     }
 
     public static void setLangCode(String str) {
@@ -1331,7 +1283,7 @@ public class ConnectionsManager extends BaseController {
         }
     }
 
-    public static void setProxySettings(boolean z10, qi.b bVar) {
+    public static void setProxySettings(boolean z10, oi.b bVar) {
         String str;
         String str2;
         String str3;
@@ -1340,13 +1292,13 @@ public class ConnectionsManager extends BaseController {
         int i11;
         String str5 = "";
         if (z10 && bVar != null && bVar.f()) {
-            String str6 = bVar.f45528b;
-            int i12 = bVar.f45529c;
+            String str6 = bVar.f17162b;
+            int i12 = bVar.f17163c;
             String str7 = bVar.d;
-            String str8 = bVar.f45530e;
-            String str9 = bVar.f45531f;
-            if (bVar.f45527a == 3) {
-                i10 = qi.j.m(str6, str9);
+            String str8 = bVar.f17164e;
+            String str9 = bVar.f17165f;
+            if (bVar.f17161a == 3) {
+                i10 = oi.k.m(str6, str9);
                 if (i10 == 0) {
                     i10 = 9;
                 }
@@ -1355,12 +1307,12 @@ public class ConnectionsManager extends BaseController {
                 str5 = "127.0.0.1";
                 str = str2;
             } else {
-                synchronized (qi.j.f45550y) {
+                synchronized (oi.k.f17186y) {
                     try {
-                        qi.j jVar = qi.j.f45551z;
-                        if (jVar != null) {
-                            jVar.o();
-                            qi.j.f45551z = null;
+                        oi.k kVar = oi.k.f17187z;
+                        if (kVar != null) {
+                            kVar.o();
+                            oi.k.f17187z = null;
                         }
                     } finally {
                     }
@@ -1372,7 +1324,7 @@ public class ConnectionsManager extends BaseController {
                 str3 = str9;
             }
         } else {
-            qi.j.n();
+            oi.k.n();
             str = "";
             str2 = str;
             str3 = str2;
@@ -1401,7 +1353,7 @@ public class ConnectionsManager extends BaseController {
     public static void setRegId(String str, int i10, String str2) {
         String str3;
         if (!TextUtils.isEmpty(str) && i10 == 13) {
-            str = sa.e.i("huawei://", str);
+            str = sc.v.i("huawei://", str);
         }
         if (!TextUtils.isEmpty(str) || TextUtils.isEmpty(str2)) {
             str2 = str;
@@ -1412,7 +1364,7 @@ public class ConnectionsManager extends BaseController {
             } else {
                 str3 = "HUAWEI";
             }
-            StringBuilder w10 = a4.a.w("__", str3, "_GENERATING_SINCE_");
+            StringBuilder w10 = a1.g.w("__", str3, "_GENERATING_SINCE_");
             w10.append(getInstance(0).getCurrentTime());
             w10.append("__");
             str2 = w10.toString();
@@ -1462,33 +1414,33 @@ public class ConnectionsManager extends BaseController {
         native_setNetworkAvailable(this.currentAccount, ApplicationLoader.isNetworkOnline(), ApplicationLoader.getCurrentNetworkType(), ApplicationLoader.isConnectionSlow());
     }
 
-    public long checkProxy(qi.b bVar, RequestTimeDelegate requestTimeDelegate) {
+    public long checkProxy(oi.b bVar, RequestTimeDelegate requestTimeDelegate) {
         if (bVar != null && bVar.f()) {
-            if (bVar.f45527a == 3) {
-                qi.f fVar = qi.f.f45540e;
+            if (bVar.f17161a == 3) {
+                oi.f fVar = oi.f.f17174e;
                 if (fVar == null) {
-                    synchronized (qi.f.class) {
+                    synchronized (oi.f.class) {
                         try {
-                            fVar = qi.f.f45540e;
+                            fVar = oi.f.f17174e;
                             if (fVar == null) {
-                                fVar = new qi.f(0);
-                                qi.f.f45540e = fVar;
+                                fVar = new oi.f(0);
+                                oi.f.f17174e = fVar;
                             }
                         } finally {
                         }
                     }
                 }
-                qi.f fVar2 = fVar;
-                k2.v vVar = new k2.v(this, 10);
-                if (bVar.f45527a == 3 && bVar.f() && requestTimeDelegate != null) {
-                    AndroidUtilities.runOnUIThread(new zr0(fVar2, vVar, bVar, requestTimeDelegate, 25));
+                oi.f fVar2 = fVar;
+                m4.w wVar = new m4.w(this, 9);
+                if (bVar.f17161a == 3 && bVar.f() && requestTimeDelegate != null) {
+                    AndroidUtilities.runOnUIThread(new i5(fVar2, wVar, bVar, requestTimeDelegate, 26));
                     return 0L;
                 } else if (requestTimeDelegate != null) {
                     requestTimeDelegate.run(-1L);
                     return 0L;
                 }
             } else {
-                return native_checkProxy(this.currentAccount, bVar.f45528b, bVar.f45529c, bVar.d, bVar.f45530e, bVar.f45531f, requestTimeDelegate);
+                return native_checkProxy(this.currentAccount, bVar.f17162b, bVar.f17163c, bVar.d, bVar.f17164e, bVar.f17165f, requestTimeDelegate);
             }
         }
         return 0L;
@@ -1499,7 +1451,7 @@ public class ConnectionsManager extends BaseController {
     }
 
     public void discardConnection(int i10, int i11) {
-        Utilities.stageQueue.postRunnable(new gg.n(this, i10, i11, 5));
+        Utilities.stageQueue.postRunnable(new gg.n(this, i10, i11, 4));
     }
 
     public void failNotRunningRequest(int i10) {
@@ -1611,13 +1563,17 @@ public class ConnectionsManager extends BaseController {
         String str11;
         Context context;
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0);
-        qi.b c10 = qi.b.c(sharedPreferences);
+        oi.b c10 = oi.b.c(sharedPreferences);
         if (sharedPreferences.getBoolean("proxy_enabled", false) && c10.f()) {
-            if (c10.f45527a == 3) {
-                int m10 = qi.j.m(c10.f45528b, c10.f45531f);
-                native_setProxySettings(this.currentAccount, "127.0.0.1", m10 != 0 ? m10 : 9, "", "", c10.f45531f);
+            if (c10.f17161a == 3) {
+                int m10 = oi.k.m(c10.f17162b, c10.f17165f);
+                int i14 = this.currentAccount;
+                if (m10 == 0) {
+                    m10 = 9;
+                }
+                native_setProxySettings(i14, "127.0.0.1", m10, "", "", c10.f17165f);
             } else {
-                native_setProxySettings(this.currentAccount, c10.f45528b, c10.f45529c, c10.d, c10.f45530e, c10.f45531f);
+                native_setProxySettings(this.currentAccount, c10.f17162b, c10.f17163c, c10.d, c10.f17164e, c10.f17165f);
             }
         }
         try {
@@ -1698,7 +1654,7 @@ public class ConnectionsManager extends BaseController {
                 this.appResumeCount++;
             }
             if (BuildVars.LOGS_ENABLED) {
-                org.telegram.messenger.q.n(this.appResumeCount, new StringBuilder("app resume count "));
+                org.telegram.messenger.q.o(this.appResumeCount, new StringBuilder("app resume count "));
             }
             if (this.appResumeCount < 0) {
                 this.appResumeCount = 0;
@@ -1734,7 +1690,7 @@ public class ConnectionsManager extends BaseController {
     }
 
     public void setIsUpdating(boolean z10) {
-        AndroidUtilities.runOnUIThread(new bi.f(18, this, z10));
+        AndroidUtilities.runOnUIThread(new bi.f(19, this, z10));
     }
 
     public void setPushConnectionEnabled(boolean z10) {
@@ -1755,7 +1711,7 @@ public class ConnectionsManager extends BaseController {
     }
 
     public void cancelRequest(int i10, boolean z10, Runnable runnable) {
-        Utilities.stageQueue.postRunnable(new m0(i10, 1, this, runnable, z10));
+        Utilities.stageQueue.postRunnable(new n0(i10, 1, this, runnable, z10));
     }
 
     public int sendRequest(TLObject tLObject, RequestDelegate requestDelegate, int i10) {

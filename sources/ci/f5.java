@@ -1,59 +1,46 @@
 package ci;
 
-import java.util.List;
-public final class f5 implements Runnable {
-    public final int f5074a;
-    public final q6 f5075b;
+import android.view.MotionEvent;
+import android.view.View;
+import org.telegram.ui.Components.tw0;
+public final class f5 implements View.OnTouchListener {
+    public final int f5068a;
+    public final tw0 f5069b;
 
-    public f5(q6 q6Var, int i10) {
-        this.f5074a = i10;
-        this.f5075b = q6Var;
+    public f5(tw0 tw0Var, int i10) {
+        this.f5068a = i10;
+        this.f5069b = tw0Var;
     }
 
     @Override
-    public final void run() {
-        int e7;
-        switch (this.f5074a) {
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        org.telegram.ui.ActionBar.n1 n1Var;
+        org.telegram.ui.ActionBar.n1 n1Var2;
+        switch (this.f5068a) {
             case 0:
-                qg.w1 w1Var = this.f5075b.f5751d1;
-                if (w1Var != null) {
-                    w1Var.invalidate();
-                    return;
-                }
-                return;
-            case 1:
-                new rg.y0((org.telegram.ui.ActionBar.n2) new ai.y3(this.f5075b, 3), 14, true).show();
-                return;
-            case 2:
-                this.f5075b.z0(false);
-                return;
-            default:
-                q6 q6Var = this.f5075b;
-                boolean z10 = pg.u0.e(q6Var.F1).f44662k;
-                int i10 = 0;
-                while (true) {
-                    List list = pg.l.f44533b;
-                    if (i10 < list.size()) {
-                        pg.l lVar = (pg.l) list.get(i10);
-                        if (z10) {
-                            e7 = lVar.m();
-                        } else {
-                            e7 = lVar.e();
-                        }
-                        String n10 = lVar.n();
-                        ai.s1 s1Var = new ai.s1(q6Var, lVar, e7, 5);
-                        n6 n6Var = new n6(q6Var, q6Var.getContext());
-                        n6Var.setIcon(e7);
-                        n6Var.setText(n10);
-                        n6Var.setSelected(false);
-                        n6Var.setOnClickListener(new ai.v0(s1Var, 10));
-                        n6Var.setOnLongClickListener(new m5(q6Var, 0));
-                        q6Var.I1.a(n6Var, w7.z5.n(-1, 48));
-                        i10++;
-                    } else {
-                        return;
+                q6 q6Var = (q6) this.f5069b;
+                q6Var.getClass();
+                if (motionEvent.getActionMasked() == 0 && (n1Var = q6Var.H1) != null && n1Var.isShowing()) {
+                    view.getHitRect(q6Var.J1);
+                    if (!q6Var.J1.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        q6Var.H1.d(true);
+                        return false;
                     }
+                    return false;
                 }
+                return false;
+            default:
+                qg.m0 m0Var = (qg.m0) this.f5069b;
+                m0Var.getClass();
+                if (motionEvent.getActionMasked() == 0 && (n1Var2 = m0Var.R1) != null && n1Var2.isShowing()) {
+                    view.getHitRect(m0Var.T1);
+                    if (!m0Var.T1.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        m0Var.R1.d(true);
+                        return false;
+                    }
+                    return false;
+                }
+                return false;
         }
     }
 }

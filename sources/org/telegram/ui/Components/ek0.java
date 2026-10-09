@@ -1,59 +1,47 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-public final class ek0 implements Utilities.Callback {
-    public final int f26151a;
-    public final sk0 f26152b;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
+public final class ek0 extends Drawable {
+    public final int f26102a;
+    public final int f26103b;
+    public final fk0 f26104c;
 
-    public ek0(sk0 sk0Var, int i10) {
-        this.f26151a = i10;
-        this.f26152b = sk0Var;
+    public ek0(fk0 fk0Var, int i10, int i11) {
+        this.f26104c = fk0Var;
+        this.f26102a = i10;
+        this.f26103b = i11;
     }
 
     @Override
-    public final void run(Object obj) {
-        float f7;
-        View view = (View) obj;
-        switch (this.f26151a) {
-            case 0:
-                sk0 sk0Var = this.f26152b;
-                ArrayList arrayList = sk0Var.d;
-                sk0Var.f30819b.getClass();
-                int R = RecyclerView.R(view);
-                if (R >= 0 && R < arrayList.size() && (view instanceof qk0)) {
-                    ((qk0) view).f(((jk0) arrayList.get(R)).f27875c, true);
-                    return;
-                }
-                return;
-            default:
-                if (view instanceof qk0) {
-                    qk0 qk0Var = (qk0) view;
-                    pk0 pk0Var = qk0Var.f30086b;
-                    qk0Var.N = false;
-                    float f10 = 1.0f;
-                    pk0Var.setAlpha(1.0f);
-                    if (this.f26152b.N0) {
-                        float f11 = qk0Var.I;
-                        if (qk0Var.f30093w) {
-                            f7 = 0.76f;
-                        } else {
-                            f7 = 1.0f;
-                        }
-                        pk0Var.setScaleX(f11 * f7);
-                        float f12 = qk0Var.I;
-                        if (qk0Var.f30093w) {
-                            f10 = 0.76f;
-                        }
-                        pk0Var.setScaleY(f12 * f10);
-                        return;
-                    }
-                    qk0Var.d();
-                    return;
-                }
-                return;
-        }
+    public final void draw(Canvas canvas) {
+        Rect rect = AndroidUtilities.rectTmp2;
+        int centerX = getBounds().centerX();
+        float f7 = this.f26102a;
+        int dp = centerX - (AndroidUtilities.dp(f7) / 2);
+        int centerY = getBounds().centerY();
+        float f10 = this.f26103b;
+        rect.set(dp, centerY - (AndroidUtilities.dp(f10) / 2), (AndroidUtilities.dp(f7) / 2) + getBounds().centerX(), (AndroidUtilities.dp(f10) / 2) + getBounds().centerY());
+        fk0 fk0Var = this.f26104c;
+        fk0Var.f26399c.setImageCoords(rect);
+        fk0Var.f26399c.draw(canvas);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f26104c.f26399c.setAlpha(i10 / 255.0f);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f26104c.f26399c.setColorFilter(colorFilter);
     }
 }

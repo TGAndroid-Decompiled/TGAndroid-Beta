@@ -1,74 +1,67 @@
 package qg;
 
-import java.io.File;
-import java.util.ArrayList;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.tgnet.TLRPC;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
+import android.view.View;
+import org.telegram.ui.Components.g6;
+import org.telegram.ui.Components.hs;
 public final class l2 {
-    public String f45149a;
-    public String f45150b;
-    public String f45151c;
-    public CharSequence d;
-    public TLRPC.TL_inputStickerSetItem f45152e;
-    public TLRPC.TL_messageMediaDocument f45153f;
-    public TLRPC.InputFile f45154g;
-    public boolean h;
-    public long f45155i;
-    public TLRPC.StickerSet f45156j;
-    public TLRPC.Document f45157k;
-    public String f45158l;
-    public Utilities.Callback2 f45159m;
-    public Utilities.Callback f45160n;
-    public boolean f45161o;
-    public ArrayList f45162p;
-    public ArrayList f45163q;
-    public MessageObject f45164r;
-    public VideoEditedInfo f45165s;
-    public float f45166t;
-    public float f45167u;
+    public boolean f46339b;
+    public int f46340c;
+    public Bitmap d;
+    public Bitmap f46341e;
+    public Bitmap f46342f;
+    public Bitmap f46343g;
+    public float f46345j;
+    public float f46346k;
+    public int f46349n;
+    public float[] f46350o;
+    public final Paint f46353r;
+    public final Paint f46354s;
+    public final o2 f46355t;
+    public final g6 f46338a = new g6(0.0f, (View) null, 0, 320, hs.h);
+    public final RectF h = new RectF();
+    public final RectF f46344i = new RectF();
+    public final Path f46347l = new Path();
+    public final Path f46348m = new Path();
+    public final Paint f46351p = new Paint(1);
+    public final Paint f46352q = new Paint(1);
 
-    public final void a() {
-        ArrayList arrayList = this.f45163q;
-        ArrayList arrayList2 = this.f45162p;
-        int size = arrayList2.size();
-        int i10 = 0;
-        int i11 = 0;
-        while (i11 < size) {
-            Object obj = arrayList2.get(i11);
-            i11++;
-            try {
-                ((File) obj).delete();
-            } catch (Exception e7) {
-                FileLog.e(e7);
-            }
-        }
-        arrayList2.clear();
-        int size2 = arrayList.size();
-        while (i10 < size2) {
-            Object obj2 = arrayList.get(i10);
-            i10++;
-            try {
-                ((File) obj2).delete();
-            } catch (Exception e10) {
-                FileLog.e(e10);
-            }
-        }
-        arrayList.clear();
+    public l2(o2 o2Var) {
+        this.f46355t = o2Var;
+        new Paint(1);
+        this.f46353r = new Paint(1);
+        this.f46354s = new Paint(1);
     }
 
-    public final float b() {
-        float f7;
-        if (this.f45159m == null) {
-            f7 = 0.9f;
-        } else {
-            f7 = 1.0f;
+    public final Bitmap a() {
+        Bitmap bitmap = this.f46343g;
+        if (bitmap != null) {
+            return bitmap;
         }
-        if (this.f45165s == null) {
-            return f7 * this.f45167u;
+        return this.f46342f;
+    }
+
+    public final Bitmap b() {
+        Bitmap bitmap = this.f46341e;
+        if (bitmap != null) {
+            return bitmap;
         }
-        return com.google.android.gms.internal.vision.e2.B(this.f45167u, 0.5f, this.f45166t * 0.5f, f7);
+        return this.d;
+    }
+
+    public final Bitmap c() {
+        Bitmap createBitmap = Bitmap.createBitmap(b().getWidth(), b().getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(createBitmap);
+        canvas.drawColor(-16777216);
+        Paint paint = new Paint(3);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        canvas.drawBitmap(b(), 0.0f, 0.0f, paint);
+        return createBitmap;
     }
 }

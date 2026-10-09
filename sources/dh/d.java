@@ -1,6 +1,6 @@
 package dh;
 
-import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.e6;
 public interface d {
-    int h(d6 d6Var, boolean z10);
+    int g(e6 e6Var, boolean z10);
 }

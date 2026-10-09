@@ -1,6 +1,6 @@
 package ii;
 
-import ai.c9;
+import ai.d9;
 import android.text.Editable;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
@@ -11,29 +11,29 @@ import org.telegram.messenger.UserObject;
 import org.telegram.messenger.bi;
 import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Cells.q9;
+import org.telegram.ui.Cells.o9;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.am;
-import org.telegram.ui.Components.xi;
-import org.telegram.ui.Components.xj;
+import org.telegram.ui.Components.om;
+import org.telegram.ui.Components.yi;
+import org.telegram.ui.Components.yj;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.yn;
+import org.telegram.ui.zn;
 public final class i0 implements Runnable {
-    public final int f12421a = 1;
-    public final int f12422b;
-    public final int f12423c;
+    public final int f12468a = 1;
+    public final int f12469b;
+    public final int f12470c;
     public final Object d;
-    public final Object f12424e;
-    public final Object f12425f;
+    public final Object f12471e;
+    public final Object f12472f;
     public final Object h;
 
-    public i0(m4.a1 a1Var, m4.r rVar, int i10, m4.a0 a0Var, int i11, m4.z0 z0Var) {
-        this.d = a1Var;
-        this.f12424e = rVar;
-        this.f12422b = i10;
-        this.f12425f = a0Var;
-        this.f12423c = i11;
-        this.h = z0Var;
+    public i0(m4.b1 b1Var, m4.r rVar, int i10, m4.b0 b0Var, int i11, m4.a1 a1Var) {
+        this.d = b1Var;
+        this.f12471e = rVar;
+        this.f12469b = i10;
+        this.f12472f = b0Var;
+        this.f12470c = i11;
+        this.h = a1Var;
     }
 
     @Override
@@ -47,62 +47,61 @@ public final class i0 implements Runnable {
         char c10;
         String publicUsername;
         int i12;
-        int i13;
-        yn ynVar;
+        zn znVar;
         boolean z10;
-        int i14 = this.f12421a;
-        final int i15 = this.f12423c;
+        int i13 = this.f12468a;
+        final int i14 = this.f12470c;
         Object obj = this.h;
-        Object obj2 = this.f12425f;
-        Object obj3 = this.f12424e;
-        int i16 = this.f12422b;
+        Object obj2 = this.f12472f;
+        Object obj3 = this.f12471e;
+        int i15 = this.f12469b;
         Object obj4 = this.d;
-        switch (i14) {
+        switch (i13) {
             case 0:
                 i1 i1Var = (i1) obj3;
-                q9 q9Var = (q9) obj2;
+                o9 o9Var = (o9) obj2;
                 k0 k0Var = (k0) obj;
-                l0 l0Var = (l0) ((n4.y) obj4).f16650c;
-                if (i1Var.length() >= i16 && i1Var.getSelectionStart() != i1Var.getSelectionEnd() && q9Var.k0(k0Var.R(), 0, i15, i16)) {
+                l0 l0Var = (l0) ((n4.x) obj4).f16613c;
+                if (i1Var.length() >= i15 && i1Var.getSelectionStart() != i1Var.getSelectionEnd() && o9Var.j0(k0Var.C(), 0, i14, i15)) {
                     l0Var.d = true;
-                    i1Var.setSelection(i16);
+                    i1Var.setSelection(i15);
                     l0Var.d = false;
                     return;
                 }
                 return;
             case 1:
                 final m4.r rVar = (m4.r) obj3;
-                final m4.a0 a0Var = (m4.a0) obj2;
-                final m4.z0 z0Var = (m4.z0) obj;
-                qi.f fVar = ((m4.a1) obj4).f16069b;
-                if (!fVar.B(rVar, i16)) {
-                    m4.a1.O0(a0Var, rVar, i15, new m4.k1(-4));
+                final m4.b0 b0Var = (m4.b0) obj2;
+                final m4.a1 a1Var = (m4.a1) obj;
+                oi.f fVar = ((m4.b1) obj4).f16004b;
+                if (!fVar.B(rVar, i15)) {
+                    m4.b1.N0(b0Var, rVar, i14, new m4.l1(-4));
                     return;
                 }
-                na.d dVar = a0Var.f16048e;
-                a0Var.s(rVar);
+                na.d dVar = b0Var.f15983e;
+                b0Var.s(rVar);
                 dVar.getClass();
-                if (i16 == 27) {
-                    z0Var.h(a0Var, rVar, i15);
-                    fVar.d(rVar, i16, new Object());
+                if (i15 == 27) {
+                    a1Var.h(b0Var, rVar, i14);
+                    fVar.d(rVar, i15, new Object());
                     return;
                 }
-                fVar.d(rVar, i16, new m4.d() {
+                fVar.d(rVar, i15, new m4.d() {
                     @Override
                     public final i9.w run() {
-                        return (i9.w) z0.this.h(a0Var, rVar, i15);
+                        return (i9.w) a1.this.h(b0Var, rVar, i14);
                     }
                 });
                 return;
             case 2:
-                xj xjVar = (xj) obj4;
+                yj yjVar = (yj) obj4;
                 ArrayList arrayList2 = (ArrayList) obj2;
                 ArrayList arrayList3 = (ArrayList) obj;
-                xjVar.getClass();
+                yjVar.getClass();
                 String lowerCase = ((String) obj3).trim().toLowerCase();
                 if (lowerCase.length() == 0) {
-                    xjVar.h = -1;
-                    AndroidUtilities.runOnUIThread(new c9(xjVar, xjVar.h, new ArrayList(), new ArrayList(), 15));
+                    yjVar.h = -1;
+                    AndroidUtilities.runOnUIThread(new d9(yjVar, yjVar.h, new ArrayList(), new ArrayList(), 15));
                     return;
                 }
                 String translitString = LocaleController.getInstance().getTranslitString(lowerCase);
@@ -114,22 +113,22 @@ public final class i0 implements Runnable {
                 } else {
                     i10 = 0;
                 }
-                int i17 = i10 + 1;
-                String[] strArr = new String[i17];
+                int i16 = i10 + 1;
+                String[] strArr = new String[i16];
                 strArr[0] = lowerCase;
                 if (translitString != null) {
                     strArr[1] = translitString;
                 }
                 ArrayList arrayList4 = new ArrayList();
-                xj xjVar2 = xjVar;
+                yj yjVar2 = yjVar;
                 ArrayList arrayList5 = new ArrayList();
                 LongSparseIntArray longSparseIntArray = new LongSparseIntArray();
-                int i18 = 0;
-                while (i18 < arrayList2.size()) {
-                    ContactsController.Contact contact = (ContactsController.Contact) arrayList2.get(i18);
+                int i17 = 0;
+                while (i17 < arrayList2.size()) {
+                    ContactsController.Contact contact = (ContactsController.Contact) arrayList2.get(i17);
                     String lowerCase2 = ContactsController.formatName(contact.first_name, contact.last_name).toLowerCase();
                     String translitString2 = LocaleController.getInstance().getTranslitString(lowerCase2);
-                    xj xjVar3 = xjVar2;
+                    yj yjVar3 = yjVar2;
                     TLRPC.User user = contact.user;
                     if (user != null) {
                         arrayList = arrayList2;
@@ -144,17 +143,17 @@ public final class i0 implements Runnable {
                         translitString2 = null;
                     }
                     String[] strArr2 = strArr;
-                    int i19 = 0;
+                    int i18 = 0;
                     char c11 = 0;
-                    while (i19 < i17) {
-                        int i20 = i19;
-                        String str4 = strArr2[i20];
-                        if ((str == null || (!str.startsWith(str4) && !bi.u(" ", str4, str))) && (str2 == null || (!str2.startsWith(str4) && !bi.u(" ", str4, str2)))) {
+                    while (i18 < i16) {
+                        int i19 = i18;
+                        String str4 = strArr2[i19];
+                        if ((str == null || (!str.startsWith(str4) && !bi.w(" ", str4, str))) && (str2 == null || (!str2.startsWith(str4) && !bi.w(" ", str4, str2)))) {
                             str3 = str;
                             TLRPC.User user2 = contact.user;
                             if (user2 != null && (publicUsername = UserObject.getPublicUsername(user2)) != null && publicUsername.startsWith(str4)) {
                                 c10 = 2;
-                            } else if (!lowerCase2.startsWith(str4) && !bi.u(" ", str4, lowerCase2) && (translitString2 == null || (!translitString2.startsWith(str4) && !bi.u(" ", str4, translitString2)))) {
+                            } else if (!lowerCase2.startsWith(str4) && !bi.w(" ", str4, lowerCase2) && (translitString2 == null || (!translitString2.startsWith(str4) && !bi.w(" ", str4, translitString2)))) {
                                 c10 = c11;
                             } else {
                                 c10 = 3;
@@ -175,120 +174,119 @@ public final class i0 implements Runnable {
                             }
                             TLRPC.User user4 = contact.user;
                             if (user4 != null) {
-                                longSparseIntArray.put(user4.f20194id, 1);
+                                longSparseIntArray.put(user4.f20185id, 1);
                             }
                             arrayList4.add(contact);
-                            i18++;
-                            xjVar2 = xjVar3;
+                            i17++;
+                            yjVar2 = yjVar3;
                             arrayList2 = arrayList;
                             strArr = strArr2;
                         } else {
-                            i19 = i20 + 1;
+                            i18 = i19 + 1;
                             lowerCase2 = str5;
                             c11 = c10;
                             str = str3;
                         }
                     }
-                    i18++;
-                    xjVar2 = xjVar3;
+                    i17++;
+                    yjVar2 = yjVar3;
                     arrayList2 = arrayList;
                     strArr = strArr2;
                 }
-                xj xjVar4 = xjVar2;
+                yj yjVar4 = yjVar2;
                 String[] strArr3 = strArr;
-                int i21 = 0;
-                while (i21 < arrayList3.size()) {
-                    TLRPC.TL_contact tL_contact = (TLRPC.TL_contact) arrayList3.get(i21);
+                int i20 = 0;
+                while (i20 < arrayList3.size()) {
+                    TLRPC.TL_contact tL_contact = (TLRPC.TL_contact) arrayList3.get(i20);
                     if (longSparseIntArray.indexOfKey(tL_contact.user_id) < 0) {
-                        TLRPC.User user5 = MessagesController.getInstance(i16).getUser(Long.valueOf(tL_contact.user_id));
+                        TLRPC.User user5 = MessagesController.getInstance(i15).getUser(Long.valueOf(tL_contact.user_id));
                         String lowerCase3 = ContactsController.formatName(user5.first_name, user5.last_name).toLowerCase();
                         String translitString3 = LocaleController.getInstance().getTranslitString(lowerCase3);
                         if (lowerCase3.equals(translitString3)) {
                             translitString3 = null;
                         }
-                        char c12 = 0;
-                        int i22 = 0;
-                        while (i22 < i17) {
-                            String str6 = strArr3[i22];
-                            if (lowerCase3.startsWith(str6) || bi.u(" ", str6, lowerCase3) || (translitString3 != null && (translitString3.startsWith(str6) || bi.u(" ", str6, translitString3)))) {
-                                i11 = i21;
-                                c12 = 1;
+                        boolean z11 = false;
+                        int i21 = 0;
+                        while (i21 < i16) {
+                            String str6 = strArr3[i21];
+                            if (lowerCase3.startsWith(str6) || bi.w(" ", str6, lowerCase3) || (translitString3 != null && (translitString3.startsWith(str6) || bi.w(" ", str6, translitString3)))) {
+                                i11 = i20;
+                                z11 = true;
                             } else {
-                                i11 = i21;
+                                i11 = i20;
                                 String publicUsername2 = UserObject.getPublicUsername(user5);
                                 if (publicUsername2 != null && publicUsername2.startsWith(str6)) {
-                                    c12 = 2;
+                                    z11 = true;
                                 }
                             }
-                            if (c12 != 0 && user5.phone != null) {
-                                if (c12 == 1) {
+                            if (z11 && user5.phone != null) {
+                                if (z11) {
                                     arrayList5.add(AndroidUtilities.generateSearchName(user5.first_name, user5.last_name, str6));
                                 } else {
                                     arrayList5.add(AndroidUtilities.generateSearchName("@" + UserObject.getPublicUsername(user5), null, "@" + str6));
                                 }
                                 arrayList4.add(user5);
-                                i21 = i11 + 1;
+                                i20 = i11 + 1;
                             } else {
-                                i22++;
-                                i21 = i11;
+                                i21++;
+                                i20 = i11;
                             }
                         }
                     }
-                    i11 = i21;
-                    i21 = i11 + 1;
+                    i11 = i20;
+                    i20 = i11 + 1;
                 }
-                AndroidUtilities.runOnUIThread(new c9(xjVar4, this.f12423c, arrayList4, arrayList5, 15));
+                AndroidUtilities.runOnUIThread(new d9(yjVar4, this.f12470c, arrayList4, arrayList5, 15));
                 return;
             default:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) obj4;
                 org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) obj3;
                 ArrayList arrayList6 = (ArrayList) obj2;
-                yn ynVar2 = (yn) obj;
-                boolean z11 = ChatAttachAlertPhotoLayout.f24025q1;
-                xi xiVar = chatAttachAlertPhotoLayout.f29741b;
-                if (xiVar.F && !xiVar.G) {
+                zn znVar2 = (zn) obj;
+                boolean z12 = ChatAttachAlertPhotoLayout.f24021q1;
+                yi yiVar = chatAttachAlertPhotoLayout.f30173b;
+                if (yiVar.F && !yiVar.G) {
                     PhotoViewer.t1().K2(null, n2Var, null);
                     PhotoViewer t12 = PhotoViewer.t1();
                     t12.h = 0;
-                    t12.f33990n = false;
+                    t12.f33980n = false;
                     i12 = 3;
                 } else {
-                    i12 = i16;
+                    i12 = i15;
                 }
-                if (xiVar.H) {
-                    i13 = 13;
-                } else {
-                    i13 = i12;
+                if (yiVar.H) {
+                    i12 = 13;
                 }
+                int i22 = i12;
                 PhotoViewer t13 = PhotoViewer.t1();
-                am amVar = chatAttachAlertPhotoLayout.f24045h1;
-                if (xiVar.H) {
-                    ynVar = null;
+                om omVar = chatAttachAlertPhotoLayout.f24041h1;
+                if (yiVar.H) {
+                    znVar = null;
                 } else {
-                    ynVar = ynVar2;
+                    znVar = znVar2;
                 }
-                t13.g2(arrayList6, this.f12423c, i13, false, amVar, ynVar);
-                PhotoViewer.t1().x2(xiVar.Q);
-                if (xiVar.F && !xiVar.G) {
+                t13.g2(arrayList6, this.f12470c, i22, false, omVar, znVar);
+                PhotoViewer.t1().x2(yiVar.Q);
+                if (yiVar.F && !yiVar.G) {
                     PhotoViewer.t1().O = false;
-                } else if (xiVar.Q0 != 0) {
+                } else if (yiVar.T0 != 0) {
                     PhotoViewer.t1().O = true;
                     PhotoViewer t14 = PhotoViewer.t1();
-                    if (xiVar.R0 != null) {
+                    if (yiVar.U0 != null) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
                     t14.P = z10;
                 }
-                if (xiVar.G) {
-                    PhotoViewer.t1().X0(null, null, false, xiVar.J);
+                if (yiVar.G) {
+                    PhotoViewer.t1().Y0(null, null, false, yiVar.J);
                 }
-                if (ChatAttachAlertPhotoLayout.R()) {
+                if (ChatAttachAlertPhotoLayout.T()) {
                     PhotoViewer t15 = PhotoViewer.t1();
-                    Editable text = xiVar.m1().getText();
-                    t15.f34015p7 = true;
-                    t15.f34023q7 = text;
+                    Editable text = yiVar.o1().getText();
+                    t15.f34005p7 = true;
+                    t15.f34013q7 = text;
                     t15.A2(null, text, false, false);
                     t15.t3(null);
                     return;
@@ -297,30 +295,30 @@ public final class i0 implements Runnable {
         }
     }
 
-    public i0(n4.y yVar, i1 i1Var, int i10, q9 q9Var, k0 k0Var, int i11) {
-        this.d = yVar;
-        this.f12424e = i1Var;
-        this.f12422b = i10;
-        this.f12425f = q9Var;
+    public i0(n4.x xVar, i1 i1Var, int i10, o9 o9Var, k0 k0Var, int i11) {
+        this.d = xVar;
+        this.f12471e = i1Var;
+        this.f12469b = i10;
+        this.f12472f = o9Var;
         this.h = k0Var;
-        this.f12423c = i11;
+        this.f12470c = i11;
     }
 
-    public i0(xj xjVar, String str, ArrayList arrayList, ArrayList arrayList2, int i10, int i11) {
-        this.d = xjVar;
-        this.f12424e = str;
-        this.f12425f = arrayList;
+    public i0(yj yjVar, String str, ArrayList arrayList, ArrayList arrayList2, int i10, int i11) {
+        this.d = yjVar;
+        this.f12471e = str;
+        this.f12472f = arrayList;
         this.h = arrayList2;
-        this.f12422b = i10;
-        this.f12423c = i11;
+        this.f12469b = i10;
+        this.f12470c = i11;
     }
 
-    public i0(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i10, org.telegram.ui.ActionBar.n2 n2Var, ArrayList arrayList, int i11, yn ynVar) {
+    public i0(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i10, org.telegram.ui.ActionBar.n2 n2Var, ArrayList arrayList, int i11, zn znVar) {
         this.d = chatAttachAlertPhotoLayout;
-        this.f12422b = i10;
-        this.f12424e = n2Var;
-        this.f12425f = arrayList;
-        this.f12423c = i11;
-        this.h = ynVar;
+        this.f12469b = i10;
+        this.f12471e = n2Var;
+        this.f12472f = arrayList;
+        this.f12470c = i11;
+        this.h = znVar;
     }
 }

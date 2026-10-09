@@ -1,14 +1,15 @@
 package w7;
 
-import android.content.SharedPreferences;
-import org.telegram.messenger.MessagesController;
-import org.telegram.ui.Components.n40;
+import android.view.View;
 public abstract class y5 {
-    public static void a() {
-        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
-        for (n40 n40Var : n40.values()) {
-            edit.remove(n40Var.f28968a);
-        }
-        edit.apply();
+    public abstract void a();
+
+    public void b() {
+    }
+
+    public void c() {
+    }
+
+    public void d(View view) {
     }
 }

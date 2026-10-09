@@ -1,23 +1,18 @@
 package ci;
 
-import org.telegram.messenger.MediaController;
-public final class j3 extends org.telegram.ui.ActionBar.j {
-    public final w3 f5204a;
+import android.content.Context;
+import android.view.accessibility.AccessibilityNodeInfo;
+public final class j3 extends org.telegram.ui.ActionBar.v0 {
+    public final v3 f5230v0;
 
-    public j3(w3 w3Var) {
-        this.f5204a = w3Var;
+    public j3(v3 v3Var, Context context, org.telegram.ui.ActionBar.z zVar, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, zVar, 0, 0, false, e6Var);
+        this.f5230v0 = v3Var;
     }
 
     @Override
-    public final void b(int i10) {
-        w3 w3Var = this.f5204a;
-        if (i10 == -1) {
-            Runnable runnable = w3Var.V;
-            if (runnable != null) {
-                runnable.run();
-            }
-        } else if (i10 >= 10) {
-            w3Var.e((MediaController.AlbumEntry) w3Var.f6219g0.get(i10 - 10), false);
-        }
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setText(this.f5230v0.f6147y.getText());
     }
 }

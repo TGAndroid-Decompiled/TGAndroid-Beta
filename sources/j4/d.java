@@ -4,32 +4,71 @@ import e9.a1;
 import e9.i0;
 import java.util.List;
 public final class d implements c3.o {
-    public final int f13716a;
+    public final int f13753a;
     public final e2.v d;
-    public final a4.h f13719e;
-    public c3.q f13720f;
-    public long f13721g;
-    public boolean f13723j;
-    public boolean f13724k;
-    public boolean f13725l;
-    public final e f13717b = new e(0, null, "audio/mp4a-latm", true);
-    public final e2.v f13718c = new e2.v(2048);
-    public int f13722i = -1;
+    public final a4.g f13756e;
+    public c3.q f13757f;
+    public long f13758g;
+    public boolean f13760j;
+    public boolean f13761k;
+    public boolean f13762l;
+    public final e f13754b = new e(0, null, "audio/mp4a-latm", true);
+    public final e2.v f13755c = new e2.v(2048);
+    public int f13759i = -1;
     public long h = -1;
 
     public d(int i10) {
-        this.f13716a = i10;
+        this.f13753a = i10;
         e2.v vVar = new e2.v(10);
         this.d = vVar;
-        byte[] bArr = vVar.f8590a;
-        this.f13719e = new a4.h(bArr, bArr.length);
+        byte[] bArr = vVar.f8584a;
+        this.f13756e = new a4.g(bArr, bArr.length);
     }
 
-    public final int a(c3.p pVar) {
+    @Override
+    public final boolean a(c3.p pVar) {
+        int b10 = b(pVar);
+        int i10 = b10;
+        int i11 = 0;
+        int i12 = 0;
+        do {
+            e2.v vVar = this.d;
+            c3.l lVar = (c3.l) pVar;
+            lVar.h(vVar.f8584a, 0, 2, false);
+            vVar.J(0);
+            if ((vVar.D() & 65526) == 65520) {
+                i11++;
+                if (i11 >= 4 && i12 > 188) {
+                    return true;
+                }
+                lVar.h(vVar.f8584a, 0, 4, false);
+                a4.g gVar = this.f13756e;
+                gVar.q(14);
+                int i13 = gVar.i(13);
+                if (i13 <= 6) {
+                    i10++;
+                    lVar.f4142f = 0;
+                    lVar.v(i10, false);
+                } else {
+                    lVar.v(i13 - 6, false);
+                    i12 += i13;
+                }
+            } else {
+                i10++;
+                lVar.f4142f = 0;
+                lVar.v(i10, false);
+            }
+            i11 = 0;
+            i12 = 0;
+        } while (i10 - b10 < 8192);
+        return false;
+    }
+
+    public final int b(c3.p pVar) {
         int i10 = 0;
         while (true) {
             e2.v vVar = this.d;
-            pVar.b(0, 10, vVar.f8590a);
+            pVar.a(0, 10, vVar.f8584a);
             vVar.J(0);
             if (vVar.A() != 4801587) {
                 break;
@@ -37,10 +76,10 @@ public final class d implements c3.o {
             vVar.K(3);
             int w10 = vVar.w();
             i10 += w10 + 10;
-            pVar.h(w10);
+            pVar.l(w10);
         }
-        pVar.m();
-        pVar.h(i10);
+        pVar.q();
+        pVar.l(i10);
         if (this.h == -1) {
             this.h = i10;
         }
@@ -48,62 +87,23 @@ public final class d implements c3.o {
     }
 
     @Override
-    public final boolean b(c3.p pVar) {
-        int a2 = a(pVar);
-        int i10 = a2;
-        int i11 = 0;
-        int i12 = 0;
-        do {
-            e2.v vVar = this.d;
-            c3.l lVar = (c3.l) pVar;
-            lVar.f(vVar.f8590a, 0, 2, false);
-            vVar.J(0);
-            if ((vVar.D() & 65526) == 65520) {
-                i11++;
-                if (i11 >= 4 && i12 > 188) {
-                    return true;
-                }
-                lVar.f(vVar.f8590a, 0, 4, false);
-                a4.h hVar = this.f13719e;
-                hVar.q(14);
-                int i13 = hVar.i(13);
-                if (i13 <= 6) {
-                    i10++;
-                    lVar.f4093f = 0;
-                    lVar.s(i10, false);
-                } else {
-                    lVar.s(i13 - 6, false);
-                    i12 += i13;
-                }
-            } else {
-                i10++;
-                lVar.f4093f = 0;
-                lVar.s(i10, false);
-            }
-            i11 = 0;
-            i12 = 0;
-        } while (i10 - a2 < 8192);
-        return false;
-    }
-
-    @Override
     public final void g(c3.q qVar) {
-        this.f13720f = qVar;
-        this.f13717b.d(qVar, new f0(0, 1));
-        qVar.e1();
+        this.f13757f = qVar;
+        this.f13754b.d(qVar, new f0(0, 1));
+        qVar.k1();
     }
 
     @Override
     public final void h(long j3, long j10) {
-        this.f13724k = false;
-        this.f13717b.c();
-        this.f13721g = j10;
+        this.f13761k = false;
+        this.f13754b.c();
+        this.f13758g = j10;
     }
 
     @Override
     public final List i() {
-        e9.g0 g0Var = i0.f8758b;
-        return a1.f8721e;
+        e9.g0 g0Var = i0.f8752b;
+        return a1.f8715e;
     }
 
     @Override

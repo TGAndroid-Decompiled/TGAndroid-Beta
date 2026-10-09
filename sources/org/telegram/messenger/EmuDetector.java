@@ -93,7 +93,7 @@ public class EmuDetector {
     private boolean checkFiles(String[] strArr, EmulatorTypes emulatorTypes) {
         File file;
         for (String str : strArr) {
-            if (f0.e.b(this.mContext, "android.permission.READ_EXTERNAL_STORAGE") == 0) {
+            if (f0.c.b(this.mContext, "android.permission.READ_EXTERNAL_STORAGE") == 0) {
                 if ((str.contains("/") && emulatorTypes == EmulatorTypes.NOX) || emulatorTypes == EmulatorTypes.BLUE) {
                     file = new File(Environment.getExternalStorageDirectory() + str);
                 } else {
@@ -121,7 +121,7 @@ public class EmuDetector {
 
     private boolean checkIp() {
         String[] split;
-        if (f0.e.b(this.mContext, "android.permission.INTERNET") != 0) {
+        if (f0.c.b(this.mContext, "android.permission.INTERNET") != 0) {
             return false;
         }
         String[] strArr = {"/system/bin/netcfg"};
@@ -222,7 +222,7 @@ public class EmuDetector {
     }
 
     private boolean checkTelephony() {
-        if (f0.e.b(this.mContext, "android.permission.READ_PHONE_STATE") == 0 && this.isTelephony && isSupportTelePhony()) {
+        if (f0.c.b(this.mContext, "android.permission.READ_PHONE_STATE") == 0 && this.isTelephony && isSupportTelePhony()) {
             if (checkPhoneNumber() || checkDeviceId() || checkImsi() || checkOperatorNameAndroid()) {
                 return true;
             }

@@ -1,3 +1,6 @@
 package org.telegram.ui.Components;
-public final class fp0 extends dc {
+public interface fp0 {
+    void b(float f7);
+
+    void d(float f7);
 }

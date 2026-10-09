@@ -1,49 +1,36 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.view.ViewGroup;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class o81 implements Utilities.Callback5, Utilities.Callback5Return, r0.n {
-    public final y81 f39121a;
+import android.content.Intent;
+import android.net.Uri;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+public final class o81 implements org.telegram.ui.ActionBar.a2 {
+    public final int f40428a;
+    public final SessionsActivity f40429b;
 
-    public o81(y81 y81Var) {
-        this.f39121a = y81Var;
+    public o81(SessionsActivity sessionsActivity, int i10) {
+        this.f40428a = i10;
+        this.f40429b = sessionsActivity;
     }
 
     @Override
-    public r0.l1 Q0(View view, r0.l1 l1Var) {
-        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
-        int i10 = defaultWindowInsets.d;
-        y81 y81Var = this.f39121a;
-        y81Var.T = i10;
-        int i11 = defaultWindowInsets.f11527b;
-        if (y81Var.N != null) {
-            int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + i11;
-            ViewGroup.LayoutParams layoutParams = y81Var.N.getLayoutParams();
-            if (layoutParams.height != currentActionBarHeight) {
-                layoutParams.height = currentActionBarHeight;
-                y81Var.N.setLayoutParams(layoutParams);
-            }
+    public final void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f40428a) {
+            case 0:
+                SessionsActivity sessionsActivity = this.f40429b;
+                sessionsActivity.getClass();
+                try {
+                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+                    sessionsActivity.getParentActivity().startActivity(intent);
+                    return;
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                    return;
+                }
+            default:
+                SessionsActivity.W(this.f40429b);
+                return;
         }
-        li.a.c(y81Var.f43140c, i11, defaultWindowInsets.d, AndroidUtilities.dp(12.0f), y81Var.U);
-        return r0.l1.f45623b;
-    }
-
-    @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        return Boolean.valueOf(y81.S(this.f39121a, (org.telegram.ui.Components.h61) obj, (View) obj2));
-    }
-
-    @Override
-    public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        y81.e0(this.f39121a, (org.telegram.ui.Components.h61) obj);
     }
 }

@@ -1,34 +1,34 @@
 package org.telegram.ui.Components;
-public final class m60 {
-    public final int f28615a;
-    public final int f28616b;
 
-    public m60(int i10, int i11) {
-        this.f28615a = i10;
-        this.f28616b = i11;
+import android.animation.ValueAnimator;
+public final class m60 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f28707a;
+    public final s60 f28708b;
+
+    public m60(s60 s60Var, int i10) {
+        this.f28707a = i10;
+        this.f28708b = s60Var;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f28707a) {
+            case 0:
+                s60 s60Var = this.f28708b;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue() * s60Var.getMeasuredHeight() * 0.5f;
+                s60Var.f30697v0 = floatValue;
+                s60Var.v.setTranslationY(floatValue + s60Var.f30696u0);
+                return;
+            default:
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                s60 s60Var2 = this.f28708b;
+                s60Var2.f30701x0 = floatValue2;
+                ki.t0 t0Var = s60Var2.P;
+                if (t0Var != null) {
+                    t0Var.w(floatValue2);
+                    return;
+                }
+                return;
         }
-        if (obj != null && m60.class == obj.getClass()) {
-            m60 m60Var = (m60) obj;
-            if (this.f28615a == m60Var.f28615a && this.f28616b == m60Var.f28616b) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return (this.f28615a * 31) + this.f28616b;
-    }
-
-    public final String toString() {
-        StringBuilder sb2 = new StringBuilder("IntSize(");
-        sb2.append(this.f28615a);
-        sb2.append(", ");
-        return a4.a.o(this.f28616b, ")", sb2);
     }
 }

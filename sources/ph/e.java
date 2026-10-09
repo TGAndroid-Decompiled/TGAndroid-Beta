@@ -7,38 +7,38 @@ import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.PathInterpolator;
-import hh.k;
+import hh.j;
 import java.util.Iterator;
 import java.util.List;
 import java.util.WeakHashMap;
 import r0.i0;
-import r0.l1;
+import r0.k1;
 import r0.p0;
 import r0.q0;
 import r0.t0;
 import r0.v0;
-import w7.e0;
+import w7.g0;
 public final class e extends b2.g {
-    public static final RectF f44722e;
-    public static final Rect f44723f;
-    public final ViewGroup f44724b;
-    public int f44725c;
-    public final pe.b d = new pe.b();
+    public static final RectF f45864e;
+    public static final Rect f45865f;
+    public final ViewGroup f45866b;
+    public int f45867c;
+    public final qe.b d = new qe.b();
 
     static {
         new PointF();
-        f44722e = new RectF();
-        f44723f = new Rect();
+        f45864e = new RectF();
+        f45865f = new Rect();
     }
 
     public e(ViewGroup viewGroup) {
-        this.f44724b = viewGroup;
-        WeakHashMap weakHashMap = i0.f45610a;
+        this.f45866b = viewGroup;
+        WeakHashMap weakHashMap = i0.f46764a;
         if (Build.VERSION.SDK_INT >= 30) {
             t0.g(viewGroup, this);
             return;
         }
-        PathInterpolator pathInterpolator = q0.f45635e;
+        PathInterpolator pathInterpolator = q0.f46787e;
         View.OnApplyWindowInsetsListener p0Var = new p0(viewGroup, this);
         viewGroup.setTag(2131296698, p0Var);
         if (viewGroup.getTag(2131296686) == null && viewGroup.getTag(2131296687) == null) {
@@ -46,20 +46,20 @@ public final class e extends b2.g {
         }
     }
 
-    public static l1 Z0(l1 l1Var, View view, View view2) {
-        if (view != null && view2 != null && l1Var != null) {
-            RectF rectF = f44722e;
-            if (k.c(view, view2, rectF)) {
-                Rect rect = f44723f;
+    public static k1 b1(k1 k1Var, View view, View view2) {
+        if (view != null && view2 != null && k1Var != null) {
+            RectF rectF = f45864e;
+            if (j.c(view, view2, rectF)) {
+                Rect rect = f45865f;
                 rectF.round(rect);
                 int i10 = rect.left;
                 int i11 = rect.top;
                 int width = view2.getWidth() - rect.right;
                 int height = view2.getHeight() - rect.bottom;
                 if (i10 == 0 && i11 == 0 && width == 0 && height == 0) {
-                    return l1Var;
+                    return k1Var;
                 }
-                return l1Var.f45624a.m(Math.max(0, i10), Math.max(0, i11), Math.max(0, width), Math.max(0, height));
+                return k1Var.f46775a.m(Math.max(0, i10), Math.max(0, i11), Math.max(0, width), Math.max(0, height));
             }
             return null;
         }
@@ -68,8 +68,8 @@ public final class e extends b2.g {
 
     @Override
     public final void S0() {
-        int i10 = this.f44725c - 1;
-        this.f44725c = i10;
+        int i10 = this.f45867c - 1;
+        this.f45867c = i10;
         if (i10 == 0) {
             Iterator it = this.d.iterator();
             while (it.hasNext()) {
@@ -79,22 +79,22 @@ public final class e extends b2.g {
     }
 
     @Override
-    public final l1 T0(l1 l1Var, List list) {
+    public final k1 T0(k1 k1Var, List list) {
         Iterator it = list.iterator();
         int i10 = 0;
         while (it.hasNext()) {
-            i10 |= ((v0) it.next()).f45651a.c();
+            i10 |= ((v0) it.next()).f46803a.c();
         }
-        if (e0.a(i10, 8)) {
+        if (g0.a(i10, 8)) {
             Iterator it2 = this.d.iterator();
             while (it2.hasNext()) {
                 d dVar = (d) it2.next();
-                l1 Z0 = Z0(l1Var, dVar.L(), this.f44724b);
-                if (Z0 != null) {
-                    dVar.j(Z0);
+                k1 b12 = b1(k1Var, dVar.N(), this.f45866b);
+                if (b12 != null) {
+                    dVar.j(b12);
                 }
             }
         }
-        return l1Var;
+        return k1Var;
     }
 }

@@ -12,13 +12,13 @@ public class m {
         int[] iArr;
         Object[] objArr;
         if (i10 == 0) {
-            iArr = b0.a.f3107a;
+            iArr = b0.a.f3186a;
         } else {
             iArr = new int[i10];
         }
         this.f31a = iArr;
         if (i10 == 0) {
-            objArr = b0.a.f3109c;
+            objArr = b0.a.f3188c;
         } else {
             objArr = new Object[i10 << 1];
         }
@@ -77,8 +77,8 @@ public class m {
 
     public final void clear() {
         if (this.f33c > 0) {
-            this.f31a = b0.a.f3107a;
-            this.f32b = b0.a.f3109c;
+            this.f31a = b0.a.f3186a;
+            this.f32b = b0.a.f3188c;
             this.f33c = 0;
         }
         if (this.f33c <= 0) {
@@ -204,13 +204,13 @@ public class m {
                 this.f32b = copyOf2;
                 if (i11 == this.f33c) {
                     if (i10 > 0) {
-                        hd.f.b(0, 0, i10, iArr, this.f31a);
-                        hd.f.c(0, 0, i12, objArr, this.f32b);
+                        id.f.b(0, 0, i10, iArr, this.f31a);
+                        id.f.c(0, 0, i12, objArr, this.f32b);
                     }
                     if (i10 < i13) {
                         int i15 = i10 + 1;
-                        hd.f.b(i10, i15, i11, iArr, this.f31a);
-                        hd.f.c(i12, i15 << 1, i11 << 1, objArr, this.f32b);
+                        id.f.b(i10, i15, i11, iArr, this.f31a);
+                        id.f.c(i12, i15 << 1, i11 << 1, objArr, this.f32b);
                     }
                 } else {
                     throw new ConcurrentModificationException();
@@ -218,9 +218,9 @@ public class m {
             } else {
                 if (i10 < i13) {
                     int i16 = i10 + 1;
-                    hd.f.b(i10, i16, i11, iArr, iArr);
+                    id.f.b(i10, i16, i11, iArr, iArr);
                     Object[] objArr2 = this.f32b;
-                    hd.f.c(i12, i16 << 1, i11 << 1, objArr2, objArr2);
+                    id.f.c(i12, i16 << 1, i11 << 1, objArr2, objArr2);
                 }
                 Object[] objArr3 = this.f32b;
                 int i17 = i13 << 1;
@@ -343,9 +343,9 @@ public class m {
         if (i13 < i11) {
             int[] iArr2 = this.f31a;
             int i15 = i13 + 1;
-            hd.f.b(i15, i13, i11, iArr2, iArr2);
+            id.f.b(i15, i13, i11, iArr2, iArr2);
             Object[] objArr2 = this.f32b;
-            hd.f.c(i15 << 1, i13 << 1, this.f33c << 1, objArr2, objArr2);
+            id.f.c(i15 << 1, i13 << 1, this.f33c << 1, objArr2, objArr2);
         }
         int i16 = this.f33c;
         if (i11 == i16) {

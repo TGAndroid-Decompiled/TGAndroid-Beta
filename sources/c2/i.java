@@ -3,35 +3,35 @@ package c2;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 public abstract class i implements h {
-    public f f3963b;
-    public f f3964c;
+    public f f4012b;
+    public f f4013c;
     public f d;
-    public f f3965e;
-    public ByteBuffer f3966f;
-    public ByteBuffer f3967g;
+    public f f4014e;
+    public ByteBuffer f4015f;
+    public ByteBuffer f4016g;
     public boolean h;
 
     public i() {
-        ByteBuffer byteBuffer = h.f3962a;
-        this.f3966f = byteBuffer;
-        this.f3967g = byteBuffer;
-        f fVar = f.f3958e;
+        ByteBuffer byteBuffer = h.f4011a;
+        this.f4015f = byteBuffer;
+        this.f4016g = byteBuffer;
+        f fVar = f.f4007e;
         this.d = fVar;
-        this.f3965e = fVar;
-        this.f3963b = fVar;
-        this.f3964c = fVar;
+        this.f4014e = fVar;
+        this.f4012b = fVar;
+        this.f4013c = fVar;
     }
 
     @Override
     public ByteBuffer a() {
-        ByteBuffer byteBuffer = this.f3967g;
-        this.f3967g = h.f3962a;
+        ByteBuffer byteBuffer = this.f4016g;
+        this.f4016g = h.f4011a;
         return byteBuffer;
     }
 
     @Override
     public boolean b() {
-        if (this.h && this.f3967g == h.f3962a) {
+        if (this.h && this.f4016g == h.f4011a) {
             return true;
         }
         return false;
@@ -40,11 +40,11 @@ public abstract class i implements h {
     @Override
     public final f d(f fVar) {
         this.d = fVar;
-        this.f3965e = f(fVar);
+        this.f4014e = f(fVar);
         if (isActive()) {
-            return this.f3965e;
+            return this.f4014e;
         }
-        return f.f3958e;
+        return f.f4007e;
     }
 
     @Override
@@ -57,43 +57,43 @@ public abstract class i implements h {
 
     @Override
     public final void flush() {
-        this.f3967g = h.f3962a;
+        this.f4016g = h.f4011a;
         this.h = false;
-        this.f3963b = this.d;
-        this.f3964c = this.f3965e;
+        this.f4012b = this.d;
+        this.f4013c = this.f4014e;
         g();
     }
 
     @Override
     public boolean isActive() {
-        if (this.f3965e != f.f3958e) {
+        if (this.f4014e != f.f4007e) {
             return true;
         }
         return false;
     }
 
     public final ByteBuffer j(int i10) {
-        if (this.f3966f.capacity() < i10) {
-            this.f3966f = ByteBuffer.allocateDirect(i10).order(ByteOrder.nativeOrder());
+        if (this.f4015f.capacity() < i10) {
+            this.f4015f = ByteBuffer.allocateDirect(i10).order(ByteOrder.nativeOrder());
         } else {
-            this.f3966f.clear();
+            this.f4015f.clear();
         }
-        ByteBuffer byteBuffer = this.f3966f;
-        this.f3967g = byteBuffer;
+        ByteBuffer byteBuffer = this.f4015f;
+        this.f4016g = byteBuffer;
         return byteBuffer;
     }
 
     @Override
     public final void reset() {
-        ByteBuffer byteBuffer = h.f3962a;
-        this.f3967g = byteBuffer;
+        ByteBuffer byteBuffer = h.f4011a;
+        this.f4016g = byteBuffer;
         this.h = false;
-        this.f3966f = byteBuffer;
-        f fVar = f.f3958e;
+        this.f4015f = byteBuffer;
+        f fVar = f.f4007e;
         this.d = fVar;
-        this.f3965e = fVar;
-        this.f3963b = fVar;
-        this.f3964c = fVar;
+        this.f4014e = fVar;
+        this.f4012b = fVar;
+        this.f4013c = fVar;
         i();
     }
 

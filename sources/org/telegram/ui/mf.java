@@ -1,29 +1,38 @@
 package org.telegram.ui;
-public final class mf implements Runnable {
-    public final int f38616a;
-    public final yn f38617b;
-    public final boolean f38618c;
 
-    public mf(yn ynVar, boolean z10, int i10) {
-        this.f38616a = i10;
-        this.f38617b = ynVar;
-        this.f38618c = z10;
+import android.animation.ValueAnimator;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class mf implements ValueAnimator.AnimatorUpdateListener {
+    public final int f39892a;
+    public final zn f39893b;
+    public final View f39894c;
+
+    public mf(zn znVar, org.telegram.ui.Cells.w0 w0Var, int i10) {
+        this.f39892a = i10;
+        this.f39893b = znVar;
+        this.f39894c = w0Var;
     }
 
     @Override
-    public final void run() {
-        String str;
-        switch (this.f38616a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f39892a) {
             case 0:
-                if (this.f38618c) {
-                    str = "upload_speed";
-                } else {
-                    str = "download_speed";
-                }
-                this.f38617b.presentFragment(new PremiumPreviewFragment(0, str));
+                zn znVar = this.f39893b;
+                znVar.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                znVar.A9 = AndroidUtilities.dp(30.0f) * floatValue;
+                znVar.t9();
+                this.f39894c.setAlpha(floatValue);
                 return;
             default:
-                this.f38617b.xc(0, this.f38618c);
+                zn znVar2 = this.f39893b;
+                znVar2.getClass();
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                znVar2.A9 = AndroidUtilities.dp(30.0f) * floatValue2;
+                znVar2.t9();
+                znVar2.w9();
+                this.f39894c.setAlpha(floatValue2);
                 return;
         }
     }

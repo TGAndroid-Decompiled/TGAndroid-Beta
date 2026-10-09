@@ -1,20 +1,20 @@
 package s3;
 
-import a4.h;
+import a4.g;
 import b2.o0;
 import b2.p0;
 import e2.b0;
 import e2.v;
-import ii.n4;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import w7.m;
-public final class c extends m {
-    public final v f46493a = new v();
-    public final h f46494b = new h();
-    public b0 f46495c;
+import k2.g0;
+import w7.l;
+public final class c extends l {
+    public final v f47593a = new v();
+    public final g f47594b = new g();
+    public b0 f47595c;
 
     @Override
     public final p0 b(l3.a aVar, ByteBuffer byteBuffer) {
@@ -29,23 +29,23 @@ public final class c extends m {
         boolean z16;
         long j10;
         long j11;
-        b0 b0Var = this.f46495c;
-        if (b0Var == null || aVar.f15322r != b0Var.e()) {
-            b0 b0Var2 = new b0(aVar.f10981e);
-            this.f46495c = b0Var2;
-            b0Var2.a(aVar.f10981e - aVar.f15322r);
+        b0 b0Var = this.f47595c;
+        if (b0Var == null || aVar.f15386r != b0Var.e()) {
+            b0 b0Var2 = new b0(aVar.f10986e);
+            this.f47595c = b0Var2;
+            b0Var2.a(aVar.f10986e - aVar.f15386r);
         }
         byte[] array = byteBuffer.array();
         int limit = byteBuffer.limit();
-        v vVar = this.f46493a;
+        v vVar = this.f47593a;
         vVar.H(limit, array);
-        h hVar = this.f46494b;
-        hVar.o(limit, array);
-        hVar.t(39);
-        long i10 = (hVar.i(1) << 32) | hVar.i(32);
-        hVar.t(20);
-        int i11 = hVar.i(12);
-        int i12 = hVar.i(8);
+        g gVar = this.f47594b;
+        gVar.o(limit, array);
+        gVar.t(39);
+        long i10 = (gVar.i(1) << 32) | gVar.i(32);
+        gVar.t(20);
+        int i11 = gVar.i(12);
+        int i12 = gVar.i(8);
         vVar.K(14);
         if (i12 != 0) {
             if (i12 != 255) {
@@ -54,12 +54,12 @@ public final class c extends m {
                         if (i12 != 6) {
                             obj = null;
                         } else {
-                            b0 b0Var3 = this.f46495c;
+                            b0 b0Var3 = this.f47595c;
                             long d = a.d(i10, vVar);
                             obj = new a(d, b0Var3.b(d), 1);
                         }
                     } else {
-                        b0 b0Var4 = this.f46495c;
+                        b0 b0Var4 = this.f47595c;
                         vVar.z();
                         if ((vVar.x() & 128) != 0) {
                             z13 = true;
@@ -161,7 +161,7 @@ public final class c extends m {
                             vVar.x();
                             vVar.x();
                         }
-                        arrayList2.add(new n4(arrayList3));
+                        arrayList2.add(new g0(arrayList3));
                     }
                     obj = new f(arrayList2);
                 }

@@ -1,55 +1,123 @@
 package v7;
 
-import android.graphics.Path;
+import android.content.Context;
+import android.content.res.Resources;
+import android.net.Uri;
+import android.os.ParcelFileDescriptor;
+import android.os.Process;
+import android.os.StrictMode;
+import android.util.Log;
+import java.io.Closeable;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.MappedByteBuffer;
+import java.nio.channels.FileChannel;
 public abstract class g8 {
-    public static boolean a(i0.d[] dVarArr, i0.d[] dVarArr2) {
-        if (dVarArr == null || dVarArr2 == null || dVarArr.length != dVarArr2.length) {
-            return false;
-        }
-        for (int i10 = 0; i10 < dVarArr.length; i10++) {
-            i0.d dVar = dVarArr[i10];
-            char c10 = dVar.f11530a;
-            i0.d dVar2 = dVarArr2[i10];
-            if (c10 != dVar2.f11530a || dVar.f11531b.length != dVar2.f11531b.length) {
-                return false;
+    public static void a(Closeable closeable) {
+        if (closeable != null) {
+            try {
+                closeable.close();
+            } catch (IOException unused) {
             }
         }
-        return true;
     }
 
-    public static float[] b(float[] fArr, int i10) {
-        if (i10 >= 0) {
-            int length = fArr.length;
-            if (length >= 0) {
-                int min = Math.min(i10, length);
-                float[] fArr2 = new float[i10];
-                System.arraycopy(fArr, 0, fArr2, 0, min);
-                return fArr2;
-            }
-            throw new ArrayIndexOutOfBoundsException();
-        }
-        throw new IllegalArgumentException();
-    }
-
-    public static i0.d[] c(java.lang.String r17) {
-        throw new UnsupportedOperationException("Method not decompiled: v7.g8.c(java.lang.String):i0.d[]");
-    }
-
-    public static Path d(String str) {
-        Path path = new Path();
+    public static boolean b(File file, Resources resources, int i10) {
+        InputStream inputStream;
         try {
-            i0.d.b(c(str), path);
-            return path;
-        } catch (RuntimeException e7) {
-            throw new RuntimeException("Error in parsing ".concat(str), e7);
+            inputStream = resources.openRawResource(i10);
+            try {
+                boolean c10 = c(inputStream, file);
+                a(inputStream);
+                return c10;
+            } catch (Throwable th2) {
+                th = th2;
+                a(inputStream);
+                throw th;
+            }
+        } catch (Throwable th3) {
+            th = th3;
+            inputStream = null;
         }
     }
 
-    public static i0.d[] e(i0.d[] dVarArr) {
-        i0.d[] dVarArr2 = new i0.d[dVarArr.length];
-        for (int i10 = 0; i10 < dVarArr.length; i10++) {
-            dVarArr2[i10] = new i0.d(dVarArr[i10]);
+    public static boolean c(InputStream inputStream, File file) {
+        FileOutputStream fileOutputStream;
+        StrictMode.ThreadPolicy allowThreadDiskWrites = StrictMode.allowThreadDiskWrites();
+        FileOutputStream fileOutputStream2 = null;
+        try {
+            try {
+                fileOutputStream = new FileOutputStream(file, false);
+            } catch (IOException e7) {
+                e = e7;
+            }
+        } catch (Throwable th2) {
+            th = th2;
         }
-        return dVarArr2;
+        try {
+            byte[] bArr = new byte[1024];
+            while (true) {
+                int read = inputStream.read(bArr);
+                if (read != -1) {
+                    fileOutputStream.write(bArr, 0, read);
+                } else {
+                    a(fileOutputStream);
+                    StrictMode.setThreadPolicy(allowThreadDiskWrites);
+                    return true;
+                }
+            }
+        } catch (IOException e10) {
+            e = e10;
+            fileOutputStream2 = fileOutputStream;
+            Log.e("TypefaceCompatUtil", "Error copying resource contents to temp file: " + e.getMessage());
+            a(fileOutputStream2);
+            StrictMode.setThreadPolicy(allowThreadDiskWrites);
+            return false;
+        } catch (Throwable th3) {
+            th = th3;
+            fileOutputStream2 = fileOutputStream;
+            a(fileOutputStream2);
+            StrictMode.setThreadPolicy(allowThreadDiskWrites);
+            throw th;
+        }
+    }
+
+    public static File d(Context context) {
+        File cacheDir = context.getCacheDir();
+        if (cacheDir == null) {
+            return null;
+        }
+        String str = ".font" + Process.myPid() + "-" + Process.myTid() + "-";
+        for (int i10 = 0; i10 < 100; i10++) {
+            File file = new File(cacheDir, str + i10);
+            if (file.createNewFile()) {
+                return file;
+            }
+        }
+        return null;
+    }
+
+    public static MappedByteBuffer e(Context context, Uri uri) {
+        ParcelFileDescriptor openFileDescriptor;
+        try {
+            openFileDescriptor = context.getContentResolver().openFileDescriptor(uri, "r", null);
+        } catch (IOException unused) {
+        }
+        if (openFileDescriptor == null) {
+            if (openFileDescriptor != null) {
+                openFileDescriptor.close();
+                return null;
+            }
+            return null;
+        }
+        FileInputStream fileInputStream = new FileInputStream(openFileDescriptor.getFileDescriptor());
+        FileChannel channel = fileInputStream.getChannel();
+        MappedByteBuffer map = channel.map(FileChannel.MapMode.READ_ONLY, 0L, channel.size());
+        fileInputStream.close();
+        openFileDescriptor.close();
+        return map;
     }
 }

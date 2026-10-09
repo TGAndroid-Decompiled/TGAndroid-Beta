@@ -1,5 +1,6 @@
 package o3;
 
+import a1.g;
 import b2.m0;
 import b2.o0;
 import b2.r0;
@@ -8,23 +9,23 @@ import e2.v;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 public final class a implements o0 {
-    public final int f17118a;
-    public final String f17119b;
-    public final String f17120c;
+    public final int f17062a;
+    public final String f17063b;
+    public final String f17064c;
     public final int d;
-    public final int f17121e;
-    public final int f17122f;
-    public final int f17123g;
+    public final int f17065e;
+    public final int f17066f;
+    public final int f17067g;
     public final byte[] h;
 
     public a(int i10, String str, String str2, int i11, int i12, int i13, int i14, byte[] bArr) {
-        this.f17118a = i10;
-        this.f17119b = str;
-        this.f17120c = str2;
+        this.f17062a = i10;
+        this.f17063b = str;
+        this.f17064c = str2;
         this.d = i11;
-        this.f17121e = i12;
-        this.f17122f = i13;
-        this.f17123g = i14;
+        this.f17065e = i12;
+        this.f17066f = i13;
+        this.f17067g = i14;
         this.h = bArr;
     }
 
@@ -49,7 +50,7 @@ public final class a implements o0 {
 
     @Override
     public final void b(m0 m0Var) {
-        m0Var.a(this.f17118a, this.h);
+        m0Var.a(this.f17062a, this.h);
     }
 
     @Override
@@ -63,7 +64,7 @@ public final class a implements o0 {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            if (this.f17118a == aVar.f17118a && this.f17119b.equals(aVar.f17119b) && this.f17120c.equals(aVar.f17120c) && this.d == aVar.d && this.f17121e == aVar.f17121e && this.f17122f == aVar.f17122f && this.f17123g == aVar.f17123g && Arrays.equals(this.h, aVar.h)) {
+            if (this.f17062a == aVar.f17062a && this.f17063b.equals(aVar.f17063b) && this.f17064c.equals(aVar.f17064c) && this.d == aVar.d && this.f17065e == aVar.f17065e && this.f17066f == aVar.f17066f && this.f17067g == aVar.f17067g && Arrays.equals(this.h, aVar.h)) {
                 return true;
             }
         }
@@ -71,10 +72,10 @@ public final class a implements o0 {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(this.h) + ((((((((a4.a.h(a4.a.h((527 + this.f17118a) * 31, 31, this.f17119b), 31, this.f17120c) + this.d) * 31) + this.f17121e) * 31) + this.f17122f) * 31) + this.f17123g) * 31);
+        return Arrays.hashCode(this.h) + ((((((((g.h(g.h((527 + this.f17062a) * 31, 31, this.f17063b), 31, this.f17064c) + this.d) * 31) + this.f17065e) * 31) + this.f17066f) * 31) + this.f17067g) * 31);
     }
 
     public final String toString() {
-        return "Picture: mimeType=" + this.f17119b + ", description=" + this.f17120c;
+        return "Picture: mimeType=" + this.f17063b + ", description=" + this.f17064c;
     }
 }

@@ -2,28 +2,28 @@ package b2;
 
 import java.util.Arrays;
 public final class r1 {
-    public static final String f3517f;
-    public static final String f3518g;
+    public static final String f3596f;
+    public static final String f3597g;
     public static final String h;
-    public static final String f3519i;
-    public final int f3520a;
-    public final l1 f3521b;
-    public final boolean f3522c;
+    public static final String f3598i;
+    public final int f3599a;
+    public final l1 f3600b;
+    public final boolean f3601c;
     public final int[] d;
-    public final boolean[] f3523e;
+    public final boolean[] f3602e;
 
     static {
-        String str = e2.d0.f8538a;
-        f3517f = Integer.toString(0, 36);
-        f3518g = Integer.toString(1, 36);
+        String str = e2.d0.f8532a;
+        f3596f = Integer.toString(0, 36);
+        f3597g = Integer.toString(1, 36);
         h = Integer.toString(3, 36);
-        f3519i = Integer.toString(4, 36);
+        f3598i = Integer.toString(4, 36);
     }
 
     public r1(l1 l1Var, boolean z10, int[] iArr, boolean[] zArr) {
         boolean z11;
-        int i10 = l1Var.f3336a;
-        this.f3520a = i10;
+        int i10 = l1Var.f3415a;
+        this.f3599a = i10;
         boolean z12 = false;
         if (i10 == iArr.length && i10 == zArr.length) {
             z11 = true;
@@ -31,13 +31,13 @@ public final class r1 {
             z11 = false;
         }
         e2.d.b(z11);
-        this.f3521b = l1Var;
+        this.f3600b = l1Var;
         if (z10 && i10 > 1) {
             z12 = true;
         }
-        this.f3522c = z12;
+        this.f3601c = z12;
         this.d = (int[]) iArr.clone();
-        this.f3523e = (boolean[]) zArr.clone();
+        this.f3602e = (boolean[]) zArr.clone();
     }
 
     public final boolean equals(Object obj) {
@@ -46,7 +46,7 @@ public final class r1 {
         }
         if (obj != null && r1.class == obj.getClass()) {
             r1 r1Var = (r1) obj;
-            if (this.f3522c == r1Var.f3522c && this.f3521b.equals(r1Var.f3521b) && Arrays.equals(this.d, r1Var.d) && Arrays.equals(this.f3523e, r1Var.f3523e)) {
+            if (this.f3601c == r1Var.f3601c && this.f3600b.equals(r1Var.f3600b) && Arrays.equals(this.d, r1Var.d) && Arrays.equals(this.f3602e, r1Var.f3602e)) {
                 return true;
             }
         }
@@ -55,6 +55,6 @@ public final class r1 {
 
     public final int hashCode() {
         int hashCode = Arrays.hashCode(this.d);
-        return Arrays.hashCode(this.f3523e) + ((hashCode + (((this.f3521b.hashCode() * 31) + (this.f3522c ? 1 : 0)) * 31)) * 31);
+        return Arrays.hashCode(this.f3602e) + ((hashCode + (((this.f3600b.hashCode() * 31) + (this.f3601c ? 1 : 0)) * 31)) * 31);
     }
 }

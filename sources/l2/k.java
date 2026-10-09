@@ -8,14 +8,14 @@ public final class k extends v2.b {
     }
 
     @Override
-    public final long a() {
-        b();
-        return this.d.f(this.f47779c);
+    public final long c() {
+        a();
+        return this.d.f(this.f49034c);
     }
 
     @Override
-    public final long f() {
-        b();
-        return this.d.e(this.f47779c);
+    public final long h() {
+        a();
+        return this.d.e(this.f49034c);
     }
 }

@@ -1,20 +1,10 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-public final class h71 extends s4.s0 {
-    public final k71 f37018a;
+import org.telegram.tgnet.TLRPC;
+public final class h71 extends TLRPC.Document {
+    public final CharSequence f38220a;
 
-    public h71(k71 k71Var) {
-        this.f37018a = k71Var;
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        k71 k71Var = this.f37018a;
-        if (k71Var.d.K1) {
-            AndroidUtilities.hideKeyboard(k71Var.f37873c0);
-        }
-        k71.Q(k71Var);
+    public h71(CharSequence charSequence) {
+        this.f38220a = charSequence;
     }
 }

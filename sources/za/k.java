@@ -1,16 +1,35 @@
 package za;
-public enum k implements ka.f {
-    EVENT_TYPE_UNKNOWN(0),
-    SESSION_START(1);
-    
-    public final int f53154a;
 
-    k(int i10) {
-        this.f53154a = i10;
+import android.util.Log;
+import org.telegram.tgnet.tl.TL_bots;
+import org.telegram.ui.ActionBar.a2;
+import org.telegram.ui.ActionBar.b2;
+public final class k implements i5.e, a2 {
+    public final Object f54254a;
+
+    public k(Object obj) {
+        this.f54254a = obj;
     }
 
     @Override
-    public final int a() {
-        return this.f53154a;
+    public Object apply(Object obj) {
+        ((m2.t) this.f54254a).getClass();
+        String T = d0.f54209b.T((c0) obj);
+        kotlin.jvm.internal.i.d(T, "SessionEvents.SESSION_EVENT_ENCODER.encode(value)");
+        Log.d("EventGDTLogger", "Session Event: ".concat(T));
+        byte[] bytes = T.getBytes(yd.a.f52100a);
+        kotlin.jvm.internal.i.d(bytes, "this as java.lang.String).getBytes(charset)");
+        return bytes;
+    }
+
+    @Override
+    public void f(b2 b2Var, int i10) {
+        ei.l lVar = (ei.l) this.f54254a;
+        TL_bots.updateStarRefProgram updatestarrefprogram = new TL_bots.updateStarRefProgram();
+        updatestarrefprogram.bot = lVar.getMessagesController().getInputUser(lVar.P);
+        updatestarrefprogram.commission_permille = 0;
+        b2 b2Var2 = new b2(lVar.getParentActivity(), 3, null);
+        b2Var2.q(150L);
+        lVar.getConnectionsManager().sendRequest(updatestarrefprogram, new ei.b(lVar, b2Var2, 0));
     }
 }

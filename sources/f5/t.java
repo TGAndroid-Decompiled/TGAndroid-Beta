@@ -1,40 +1,39 @@
 package f5;
 
-import ii.n4;
 import java.nio.ByteBuffer;
-import w7.u6;
+import w7.s6;
 public final class t extends c {
-    public static final n4 h;
-    public static final n4 f9718n;
-    public long[] f9719f;
+    public static final m2.t h;
+    public static final m2.t f9729n;
+    public long[] f9730f;
 
     static {
-        re.a aVar = new re.a(t.class, "StaticChunkOffsetBox.java");
+        se.a aVar = new se.a(t.class, "StaticChunkOffsetBox.java");
         h = aVar.e(aVar.d("getChunkOffsets", "com.coremedia.iso.boxes.StaticChunkOffsetBox", "", "", "[J"));
-        f9718n = aVar.e(aVar.d("setChunkOffsets", "com.coremedia.iso.boxes.StaticChunkOffsetBox", "[J", "chunkOffsets", "void"));
+        f9729n = aVar.e(aVar.d("setChunkOffsets", "com.coremedia.iso.boxes.StaticChunkOffsetBox", "[J", "chunkOffsets", "void"));
     }
 
     @Override
     public final void _parseDetails(ByteBuffer byteBuffer) {
         f(byteBuffer);
-        int a2 = u6.a(e5.b.i(byteBuffer));
-        this.f9719f = new long[a2];
+        int a2 = s6.a(e5.b.i(byteBuffer));
+        this.f9730f = new long[a2];
         for (int i10 = 0; i10 < a2; i10++) {
-            this.f9719f[i10] = e5.b.i(byteBuffer);
+            this.f9730f[i10] = e5.b.i(byteBuffer);
         }
     }
 
     @Override
     public final void getContent(ByteBuffer byteBuffer) {
         i(byteBuffer);
-        byteBuffer.putInt(this.f9719f.length);
-        for (long j3 : this.f9719f) {
+        byteBuffer.putInt(this.f9730f.length);
+        for (long j3 : this.f9730f) {
             byteBuffer.putInt((int) j3);
         }
     }
 
     @Override
     public final long getContentSize() {
-        return (this.f9719f.length * 4) + 8;
+        return (this.f9730f.length * 4) + 8;
     }
 }

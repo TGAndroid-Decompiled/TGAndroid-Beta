@@ -1,13 +1,17 @@
 package v7;
-
-import java.io.IOException;
 public abstract class m7 {
-    public static void a(g2.h hVar) {
-        if (hVar != null) {
-            try {
-                hVar.close();
-            } catch (IOException unused) {
-            }
+    public static int a(int i10, int i11) {
+        boolean z10;
+        long j3 = i10 + i11;
+        int i12 = (int) j3;
+        if (j3 == i12) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
+        if (z10) {
+            return i12;
+        }
+        throw new ArithmeticException("overflow: checkedAdd(" + i10 + ", " + i11 + ")");
     }
 }

@@ -1,39 +1,61 @@
 package org.telegram.ui.Components;
 
-import j$.util.Objects;
-public final class a9 {
-    public int f24515a;
-    public boolean f24516b;
-    public int f24517c;
-    public int d;
-    public int f24518e;
-    public int f24519f;
+import android.app.Activity;
+import android.view.View;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class a9 extends org.telegram.ui.k71 {
+    public boolean f24626d2;
+    public final g9 f24627e2;
 
-    public final a9 a() {
-        ?? obj = new Object();
-        obj.f24517c = this.f24517c;
-        obj.d = this.d;
-        obj.f24518e = this.f24518e;
-        obj.f24519f = this.f24519f;
-        obj.f24516b = this.f24516b;
-        return obj;
+    public a9(g9 g9Var, g9 g9Var2, Activity activity, int i10) {
+        super(g9Var2, activity, false, null, 4, true, null, 16, i10);
+        this.f24627e2 = g9Var;
+        this.f24626d2 = true;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        if (this.f24626d2) {
+            this.f24626d2 = false;
+            this.f24627e2.f26625b.s(null);
         }
-        if (!(obj instanceof a9)) {
-            return false;
-        }
-        a9 a9Var = (a9) obj;
-        if (this.f24517c == a9Var.f24517c && this.d == a9Var.d && this.f24518e == a9Var.f24518e && this.f24519f == a9Var.f24519f) {
-            return true;
-        }
-        return false;
     }
 
-    public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f24515a), Integer.valueOf(this.f24517c), Integer.valueOf(this.d), Integer.valueOf(this.f24518e), Integer.valueOf(this.f24519f));
+    @Override
+    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+        int i10;
+        TLRPC.TL_emojiList tL_emojiList;
+        boolean z10;
+        long j3;
+        int i11;
+        boolean z11 = this.R;
+        g9 g9Var = this.f24627e2;
+        if (z11) {
+            i11 = ((org.telegram.ui.ActionBar.n2) g9Var).currentAccount;
+            tL_emojiList = MediaDataController.getInstance(i11).profileAvatarConstructorDefault;
+        } else {
+            i10 = ((org.telegram.ui.ActionBar.n2) g9Var).currentAccount;
+            tL_emojiList = MediaDataController.getInstance(i10).groupAvatarConstructorDefault;
+        }
+        long j10 = 0;
+        if (tL_emojiList != null) {
+            if (document != null) {
+                j3 = document.f20044id;
+            } else if (l4 != null) {
+                j3 = l4.longValue();
+            } else {
+                j3 = 0;
+            }
+            z10 = tL_emojiList.document_id.contains(Long.valueOf(j3));
+        } else {
+            z10 = false;
+        }
+        if (l4 != null) {
+            j10 = l4.longValue();
+        }
+        g9Var.h0(z10, j10, document);
     }
 }

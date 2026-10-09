@@ -1,21 +1,31 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-public final class pl extends ou0 {
-    public final yn f39602a;
+import android.graphics.Outline;
+import android.view.View;
+import android.view.ViewOutlineProvider;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.R;
+public final class pl extends ViewOutlineProvider {
+    public final zn f40823a;
 
-    public pl(yn ynVar) {
-        this.f39602a = ynVar;
+    public pl(zn znVar) {
+        this.f40823a = znVar;
     }
 
     @Override
-    public final yu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        return yn.A1(this.f39602a, messageObject, fileLocation, i10, z10, false);
-    }
-
-    @Override
-    public final boolean K() {
-        return true;
+    public final void getOutline(View view, Outline outline) {
+        ImageReceiver imageReceiver = (ImageReceiver) view.getTag(R.id.parent_tag);
+        if (imageReceiver != null) {
+            int[] roundRadius = imageReceiver.getRoundRadius();
+            int i10 = 0;
+            for (int i11 = 0; i11 < 4; i11++) {
+                i10 = Math.max(i10, roundRadius[i11]);
+            }
+            outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), i10);
+            return;
+        }
+        zn znVar = this.f40823a;
+        outline.setOval(0, 0, AndroidUtilities.roundPlayingMessageSize(znVar.H9()), AndroidUtilities.roundPlayingMessageSize(znVar.H9()));
     }
 }

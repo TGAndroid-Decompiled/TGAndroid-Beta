@@ -1,33 +1,33 @@
 package xh;
 public final class p4 implements Runnable {
-    public final int f50188a;
-    public final z4 f50189b;
+    public final int f51455a;
+    public final z4 f51456b;
 
     public p4(z4 z4Var, int i10) {
-        this.f50188a = i10;
-        this.f50189b = z4Var;
+        this.f51455a = i10;
+        this.f51456b = z4Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f50188a) {
+        switch (this.f51455a) {
             case 0:
-                this.f50189b.X(false);
+                this.f51456b.Z(false);
                 return;
             case 1:
-                this.f50189b.X(true);
+                this.f51456b.Z(true);
                 return;
             case 2:
-                z4.S(this.f50189b);
+                z4.V(this.f51456b);
                 return;
             case 3:
-                z4.R(this.f50189b);
+                z4.U(this.f51456b);
                 return;
             case 4:
-                z4.P(this.f50189b);
+                z4.S(this.f51456b);
                 return;
             default:
-                this.f50189b.dismiss();
+                this.f51456b.dismiss();
                 return;
         }
     }

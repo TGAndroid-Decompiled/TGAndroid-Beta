@@ -1,11 +1,12 @@
 package w7;
+
+import android.os.Parcel;
+import android.os.Parcelable;
 public abstract class r {
-    public static m1.c a(String name) {
-        ge.d dVar = zd.m0.f53270b;
-        zd.i1 i1Var = new zd.i1();
-        dVar.getClass();
-        ee.e b10 = zd.e0.b(v7.n8.c(dVar, i1Var));
-        kotlin.jvm.internal.i.e(name, "name");
-        return new m1.c(name, m1.a.f15964b, b10);
+    public static Object a(Parcel parcel, Parcelable.Creator creator) {
+        if (parcel.readInt() != 0) {
+            return creator.createFromParcel(parcel);
+        }
+        return null;
     }
 }

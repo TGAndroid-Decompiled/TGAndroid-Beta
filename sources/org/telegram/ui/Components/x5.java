@@ -1,17 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.text.Layout;
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.HashMap;
 public final class x5 {
-    public Layout f32816a;
-    public final ArrayList f32817b = new ArrayList();
-
-    public x5(WeakReference weakReference, Layout layout) {
-        this.f32816a = layout;
-    }
+    public ArrayList f32748a;
+    public HashMap f32749b;
+    public ArrayList f32750c;
 
     public final void a() {
-        this.f32817b.size();
+        ArrayList arrayList = this.f32748a;
+        for (int i10 = 0; i10 < arrayList.size(); i10++) {
+            ((w5) arrayList.get(i10)).d.spanDrawn = false;
+        }
+    }
+
+    public final void b(int i10) {
+        w5 w5Var = (w5) this.f32748a.remove(i10);
+        HashMap hashMap = this.f32749b;
+        z5 z5Var = (z5) hashMap.get(w5Var.f32547c);
+        if (z5Var != null) {
+            ArrayList arrayList = z5Var.f33474b;
+            arrayList.remove(w5Var);
+            z5Var.a();
+            if (arrayList.isEmpty()) {
+                hashMap.remove(w5Var.f32547c);
+                this.f32750c.remove(z5Var);
+            }
+            s5 s5Var = w5Var.f32549f;
+            if (s5Var != null) {
+                s5Var.p(w5Var);
+                return;
+            }
+            return;
+        }
+        throw new RuntimeException("!!!");
     }
 }

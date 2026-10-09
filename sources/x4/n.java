@@ -1,37 +1,43 @@
 package x4;
 
-import android.content.res.ColorStateList;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.VectorDrawable;
 public final class n extends Drawable.ConstantState {
-    public int f49367a;
-    public m f49368b;
-    public ColorStateList f49369c;
-    public PorterDuff.Mode d;
-    public boolean f49370e;
-    public Bitmap f49371f;
-    public ColorStateList f49372g;
-    public PorterDuff.Mode h;
-    public int f49373i;
-    public boolean f49374j;
-    public boolean f49375k;
-    public Paint f49376l;
+    public final Drawable.ConstantState f50652a;
+
+    public n(Drawable.ConstantState constantState) {
+        this.f50652a = constantState;
+    }
+
+    @Override
+    public final boolean canApplyTheme() {
+        return this.f50652a.canApplyTheme();
+    }
 
     @Override
     public int getChangingConfigurations() {
-        return this.f49367a;
+        return this.f50652a.getChangingConfigurations();
     }
 
     @Override
     public final Drawable newDrawable() {
-        return new p(this);
+        o oVar = new o();
+        oVar.f27116b = (VectorDrawable) this.f50652a.newDrawable();
+        return oVar;
     }
 
     @Override
     public final Drawable newDrawable(Resources resources) {
-        return new p(this);
+        o oVar = new o();
+        oVar.f27116b = (VectorDrawable) this.f50652a.newDrawable(resources);
+        return oVar;
+    }
+
+    @Override
+    public final Drawable newDrawable(Resources resources, Resources.Theme theme) {
+        o oVar = new o();
+        oVar.f27116b = (VectorDrawable) this.f50652a.newDrawable(resources, theme);
+        return oVar;
     }
 }

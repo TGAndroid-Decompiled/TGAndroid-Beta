@@ -1,73 +1,50 @@
 package org.telegram.ui;
 
-import android.appwidget.AppWidgetManager;
-import android.content.Intent;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import java.util.ArrayList;
-import org.telegram.messenger.ChatsWidgetProvider;
-import org.telegram.messenger.ContactsWidgetProvider;
-import org.telegram.messenger.MessagesStorage;
-public final class xy extends org.telegram.ui.ActionBar.j {
-    public final dz f43037a;
+import org.telegram.messenger.MessagesController;
+public final class xy implements DialogInterface.OnClickListener {
+    public final int f44160a;
+    public final int f44161b;
+    public final Object f44162c;
 
-    public xy(dz dzVar) {
-        this.f43037a = dzVar;
+    public xy(Object obj, int i10, int i11) {
+        this.f44160a = i11;
+        this.f44162c = obj;
+        this.f44161b = i10;
     }
 
     @Override
-    public final void b(int i10) {
-        int i11;
-        dz dzVar = this.f43037a;
-        int i12 = dzVar.f35914w;
-        ArrayList arrayList = dzVar.f35909e;
-        int i13 = dzVar.f35915x;
-        if (i10 == -1) {
-            if (dzVar.f35916y == null) {
-                dzVar.X();
-            } else {
-                dzVar.finishFragment();
-            }
-        } else if (i10 == 1 && dzVar.getParentActivity() != null) {
-            ArrayList<MessagesStorage.TopicKey> arrayList2 = new ArrayList<>();
-            for (int i14 = 0; i14 < arrayList.size(); i14++) {
-                arrayList2.add(MessagesStorage.TopicKey.of(((Long) arrayList.get(i14)).longValue(), 0L));
-            }
-            dzVar.getMessagesStorage().putWidgetDialogs(i13, arrayList2);
-            SharedPreferences.Editor edit = dzVar.getParentActivity().getSharedPreferences("shortcut_widget", 0).edit();
-            i11 = ((org.telegram.ui.ActionBar.n2) dzVar).currentAccount;
-            edit.putInt("account" + i13, i11);
-            edit.putInt("type" + i13, i12);
-            edit.commit();
-            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(dzVar.getParentActivity());
-            if (i12 == 0) {
-                ChatsWidgetProvider.updateWidget(dzVar.getParentActivity(), appWidgetManager, i13);
-            } else {
-                ContactsWidgetProvider.updateWidget(dzVar.getParentActivity(), appWidgetManager, i13);
-            }
-            z0 z0Var = dzVar.f35916y;
-            if (z0Var != null) {
-                int i15 = z0Var.f43661a;
-                Object obj = z0Var.f43662b;
-                switch (i15) {
-                    case 27:
-                        ChatsWidgetConfigActivity chatsWidgetConfigActivity = (ChatsWidgetConfigActivity) obj;
-                        int i16 = ChatsWidgetConfigActivity.F;
-                        Intent intent = new Intent();
-                        intent.putExtra("appWidgetId", chatsWidgetConfigActivity.E);
-                        chatsWidgetConfigActivity.setResult(-1, intent);
-                        chatsWidgetConfigActivity.finish();
+    public final void onClick(DialogInterface dialogInterface, int i10) {
+        switch (this.f44160a) {
+            case 0:
+                cz czVar = ((yy) this.f44162c).f44426b;
+                if (i10 == 0) {
+                    czVar.f36754e.remove(this.f44161b - czVar.f36756n);
+                    czVar.Z();
+                    bz bzVar = czVar.f36755f;
+                    if (bzVar != null) {
+                        bzVar.a();
                         return;
-                    default:
-                        ContactsWidgetConfigActivity contactsWidgetConfigActivity = (ContactsWidgetConfigActivity) obj;
-                        int i17 = ContactsWidgetConfigActivity.F;
-                        Intent intent2 = new Intent();
-                        intent2.putExtra("appWidgetId", contactsWidgetConfigActivity.E);
-                        contactsWidgetConfigActivity.setResult(-1, intent2);
-                        contactsWidgetConfigActivity.finish();
-                        return;
+                    }
+                    return;
                 }
-            }
-            dzVar.X();
+                return;
+            case 1:
+                NotificationsSettingsActivity.X((NotificationsSettingsActivity) this.f44162c, this.f44161b, i10);
+                return;
+            default:
+                ThemeActivity themeActivity = (ThemeActivity) this.f44162c;
+                themeActivity.getClass();
+                SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+                edit.putInt("sortContactsBy", i10);
+                edit.commit();
+                hc1 hc1Var = themeActivity.f34529a;
+                if (hc1Var != null) {
+                    hc1Var.m(this.f44161b);
+                    return;
+                }
+                return;
         }
     }
 }

@@ -10,22 +10,22 @@ import android.util.Log;
 import android.util.SparseArray;
 import org.telegram.ui.Cells.c1;
 public final class m0 implements IBinder.DeathRecipient {
-    public final Messenger f44224a;
-    public final g.d f44225b;
-    public final Messenger f44226c;
-    public int f44228f;
-    public int f44229g;
-    public final r0 f44230i;
+    public final Messenger f45388a;
+    public final g.c f45389b;
+    public final Messenger f45390c;
+    public int f45392f;
+    public int f45393g;
+    public final r0 f45394i;
     public int d = 1;
-    public int f44227e = 1;
+    public int f45391e = 1;
     public final SparseArray h = new SparseArray();
 
     public m0(r0 r0Var, Messenger messenger) {
-        this.f44230i = r0Var;
-        this.f44224a = messenger;
-        g.d dVar = new g.d(this);
-        this.f44225b = dVar;
-        this.f44226c = new Messenger(dVar);
+        this.f45394i = r0Var;
+        this.f45388a = messenger;
+        g.c cVar = new g.c(this);
+        this.f45389b = cVar;
+        this.f45390c = new Messenger(cVar);
     }
 
     public final void a(int i10) {
@@ -41,9 +41,9 @@ public final class m0 implements IBinder.DeathRecipient {
         obtain.arg2 = i12;
         obtain.obj = bundle;
         obtain.setData(bundle2);
-        obtain.replyTo = this.f44226c;
+        obtain.replyTo = this.f45390c;
         try {
-            this.f44224a.send(obtain);
+            this.f45388a.send(obtain);
             return true;
         } catch (DeadObjectException unused) {
             return false;
@@ -58,20 +58,20 @@ public final class m0 implements IBinder.DeathRecipient {
 
     @Override
     public final void binderDied() {
-        this.f44230i.f44260s.post(new l0(this, 1));
+        this.f45394i.f45424s.post(new l0(this, 1));
     }
 
     public final void c(int i10, int i11) {
-        Bundle h = c1.h(i11, "volume");
+        Bundle f7 = c1.f(i11, "volume");
         int i12 = this.d;
         this.d = i12 + 1;
-        b(7, i12, i10, null, h);
+        b(7, i12, i10, null, f7);
     }
 
     public final void d(int i10, int i11) {
-        Bundle h = c1.h(i11, "volume");
+        Bundle f7 = c1.f(i11, "volume");
         int i12 = this.d;
         this.d = i12 + 1;
-        b(8, i12, i10, null, h);
+        b(8, i12, i10, null, f7);
     }
 }

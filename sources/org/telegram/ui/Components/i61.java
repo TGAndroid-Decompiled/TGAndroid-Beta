@@ -1,45 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-public final class i61 extends l61 {
-    public static boolean h = true;
-    public final int f27411e;
-    public final n11 f27412f;
+import android.view.MotionEvent;
+import org.telegram.tgnet.TLRPC;
+public abstract class i61 {
+    public String[] f27254a = new String[0];
 
-    public i61(String str, int i10, n11 n11Var) {
-        super(str, (n11) null);
-        this.f27411e = i10;
-        this.f27412f = n11Var;
+    public boolean a() {
+        return false;
     }
 
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        int i10;
-        int i11;
-        super.updateDrawState(textPaint);
-        int i12 = this.f27411e;
-        if (i12 == 2) {
-            textPaint.setColor(-1);
-        } else if (i12 == 1) {
-            if (h) {
-                i11 = org.telegram.ui.ActionBar.i6.f20905hc;
-            } else {
-                i11 = org.telegram.ui.ActionBar.i6.f20869fc;
-            }
-            textPaint.setColor(org.telegram.ui.ActionBar.i6.w0(null, i11, false));
-        } else {
-            if (h) {
-                i10 = org.telegram.ui.ActionBar.i6.gc;
-            } else {
-                i10 = org.telegram.ui.ActionBar.i6.ec;
-            }
-            textPaint.setColor(org.telegram.ui.ActionBar.i6.w0(null, i10, false));
-        }
-        n11 n11Var = this.f27412f;
-        if (n11Var != null) {
-            n11Var.a(textPaint);
-        } else {
-            textPaint.setUnderlineText(false);
-        }
+    public String[] b() {
+        return this.f27254a;
+    }
+
+    public boolean c() {
+        return false;
+    }
+
+    public boolean d(b61 b61Var, MotionEvent motionEvent) {
+        return false;
+    }
+
+    public boolean e(b61 b61Var, j jVar, MotionEvent motionEvent) {
+        return false;
+    }
+
+    public abstract void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10);
+
+    public abstract void h(TLRPC.StickerSetCovered stickerSetCovered);
+
+    public void i(String[] strArr) {
+        this.f27254a = strArr;
+    }
+
+    public void f(TLRPC.Document document, Object obj, boolean z10, int i10) {
     }
 }

@@ -1,122 +1,165 @@
 package org.telegram.ui;
 
-import android.view.KeyEvent;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.RectF;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class yd implements TextView.OnEditorActionListener {
-    public final int f43192a;
-    public final Object f43193b;
-    public final Object f43194c;
+public class yd extends LinearLayout {
+    public static float f44316b = 1.0f;
+    public final int f44317a;
 
-    public yd(int i10, Object obj, Object obj2) {
-        this.f43192a = i10;
-        this.f43193b = obj;
-        this.f43194c = obj2;
+    public yd(Context context, int i10) {
+        super(context);
+        this.f44317a = i10;
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
-        s4.c1 T;
-        int b10;
-        s4.c1 T2;
-        int b11;
-        switch (this.f43192a) {
-            case 0:
-                me meVar = (me) this.f43193b;
-                ta1 ta1Var = (ta1) this.f43194c;
-                if (i10 == 5) {
-                    TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
-                    ud udVar = new ud(meVar, twoStepVerificationActivity, 1);
-                    twoStepVerificationActivity.Z = 1;
-                    twoStepVerificationActivity.f34583b0 = udVar;
-                    meVar.G0.setLoading(true);
-                    twoStepVerificationActivity.s0(new vd(meVar, ta1Var, twoStepVerificationActivity, 1));
-                    return true;
-                }
-                return false;
-            case 1:
-                org.telegram.ui.ActionBar.b2 b2Var = (org.telegram.ui.ActionBar.b2) this.f43193b;
-                ei.v1 v1Var = (ei.v1) this.f43194c;
-                if ((i10 != 6 && keyEvent.getKeyCode() != 66) || !b2Var.isShowing()) {
-                    return false;
-                }
-                v1Var.g(b2Var, 0);
-                return true;
-            case 2:
-                org.telegram.ui.Components.un unVar = (org.telegram.ui.Components.un) this.f43194c;
-                org.telegram.ui.Components.xn xnVar = ((org.telegram.ui.Components.vn) this.f43193b).d;
-                xb1 xb1Var = xnVar.f33034s;
-                if (i10 == 5) {
-                    View F = xb1Var.F(unVar);
-                    if (F == null) {
-                        T = null;
-                    } else {
-                        T = xb1Var.T(F);
-                    }
-                    if (T == null || (b10 = T.b()) == -1) {
-                        return true;
-                    }
-                    int i11 = b10 - xnVar.f33036t0;
-                    int i12 = xnVar.M;
-                    int i13 = i12 - 1;
-                    if (i11 == i13 && i12 < xnVar.J) {
-                        xnVar.N();
-                        return true;
-                    } else if (i11 == i13) {
-                        AndroidUtilities.hideKeyboard(unVar.getTextView());
-                        return true;
-                    } else {
-                        s4.c1 K = xb1Var.K(b10 + 1);
-                        if (K == null) {
-                            return true;
+    public boolean drawChild(Canvas canvas, View view, long j3) {
+        View childAt;
+        boolean z10;
+        boolean z11;
+        switch (this.f44317a) {
+            case 4:
+                if (getParent() instanceof org.telegram.ui.Components.ep0) {
+                    org.telegram.ui.Components.ep0 ep0Var = (org.telegram.ui.Components.ep0) getParent();
+                    canvas.save();
+                    LinearLayout linearLayout = ep0Var.f26141b;
+                    Path path = ep0Var.f26145n;
+                    if (view != null && org.telegram.ui.Components.ep0.e(view)) {
+                        int indexOfChild = linearLayout.indexOfChild(view);
+                        int i10 = indexOfChild - 1;
+                        View view2 = null;
+                        if (i10 < 0) {
+                            childAt = null;
+                        } else {
+                            childAt = linearLayout.getChildAt(i10);
                         }
-                        View view = K.f46538a;
-                        if (!(view instanceof org.telegram.ui.Cells.d6)) {
-                            return true;
+                        boolean z12 = true;
+                        int i11 = indexOfChild + 1;
+                        if (i11 < linearLayout.getChildCount()) {
+                            view2 = linearLayout.getChildAt(i11);
                         }
-                        ((org.telegram.ui.Cells.d6) view).getTextView().requestFocus();
-                        return true;
+                        if (childAt != null && org.telegram.ui.Components.ep0.e(childAt)) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        if (view2 != null && org.telegram.ui.Components.ep0.e(view2)) {
+                            z11 = true;
+                        } else {
+                            z11 = false;
+                        }
+                        RectF rectF = AndroidUtilities.rectTmp;
+                        float x10 = view.getX();
+                        float max = Math.max(ep0Var.getScrollY() - AndroidUtilities.dp(16.0f), view.getY() + linearLayout.getY());
+                        float x11 = view.getX() + view.getWidth();
+                        int height = ep0Var.getHeight();
+                        rectF.set(x10, max, x11, Math.min(AndroidUtilities.dp(16.0f) + ep0Var.getScrollY() + height, view.getY() + linearLayout.getY() + view.getHeight()));
+                        if (z10 && z11) {
+                            if (view.getY() >= rectF.top) {
+                                z10 = true;
+                            } else {
+                                z10 = false;
+                            }
+                            if (view.getY() + view.getHeight() > rectF.bottom) {
+                                z12 = false;
+                            }
+                            if (!z10 || !z12) {
+                                z11 = z12;
+                            }
+                        }
+                        if (!z10 && !z11) {
+                            path.rewind();
+                            float f7 = ep0Var.f26142c;
+                            path.addRoundRect(rectF, f7, f7, Path.Direction.CW);
+                            canvas.clipPath(path);
+                        } else if (!z10) {
+                            path.rewind();
+                            path.addRoundRect(rectF, ep0Var.d, Path.Direction.CW);
+                            canvas.clipPath(path);
+                        } else if (!z11) {
+                            path.rewind();
+                            path.addRoundRect(rectF, ep0Var.f26143e, Path.Direction.CW);
+                            canvas.clipPath(path);
+                        }
                     }
+                    boolean drawChild = super.drawChild(canvas, view, j3);
+                    canvas.restore();
+                    return drawChild;
                 }
-                return false;
+                return super.drawChild(canvas, view, j3);
             default:
-                rv0 rv0Var = (rv0) this.f43194c;
-                uv0 uv0Var = ((sv0) this.f43193b).d;
-                if (i10 == 5) {
-                    xb1 xb1Var2 = uv0Var.f41370c;
-                    View F2 = xb1Var2.F(rv0Var);
-                    if (F2 == null) {
-                        T2 = null;
-                    } else {
-                        T2 = xb1Var2.T(F2);
-                    }
-                    if (T2 == null || (b11 = T2.b()) == -1) {
-                        return true;
-                    }
-                    int i14 = b11 - uv0Var.f41384n0;
-                    int i15 = uv0Var.f41399y;
-                    int i16 = i15 - 1;
-                    if (i14 == i16 && i15 < uv0Var.f41383n) {
-                        uv0Var.f0();
-                        return true;
-                    } else if (i14 == i16) {
-                        AndroidUtilities.hideKeyboard(rv0Var.getTextView());
-                        return true;
-                    } else {
-                        s4.c1 K2 = uv0Var.f41370c.K(b11 + 1);
-                        if (K2 == null) {
-                            return true;
-                        }
-                        View view2 = K2.f46538a;
-                        if (!(view2 instanceof org.telegram.ui.Cells.d6)) {
-                            return true;
-                        }
-                        ((org.telegram.ui.Cells.d6) view2).getTextView().requestFocus();
-                        return true;
-                    }
-                }
-                return false;
+                return super.drawChild(canvas, view, j3);
         }
+    }
+
+    @Override
+    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        switch (this.f44317a) {
+            case 2:
+                super.onLayout(z10, i10, i11, i12, i13);
+                setPivotX(getWidth());
+                return;
+            case 3:
+            default:
+                super.onLayout(z10, i10, i11, i12, i13);
+                return;
+            case 4:
+                super.onLayout(z10, i10, i11, i12, i13);
+                if (getParent() instanceof org.telegram.ui.Components.ep0) {
+                    ((org.telegram.ui.Components.ep0) getParent()).invalidate();
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f44317a) {
+            case 0:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+                return;
+            case 1:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+                return;
+            case 2:
+            case 4:
+            case 5:
+            default:
+                super.onMeasure(i10, i11);
+                return;
+            case 3:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(220.0f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)), i11);
+                return;
+            case 6:
+                super.onMeasure(i10, i11);
+                setPivotY(0.0f);
+                setPivotX(0.0f);
+                return;
+            case 7:
+                super.onMeasure(i10, i11);
+                setPivotY(0.0f);
+                setPivotX(getMeasuredWidth());
+                return;
+            case 8:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(600.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i11), AndroidUtilities.dp(800.0f)), 1073741824));
+                return;
+            case 9:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+                return;
+            case 10:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+                return;
+        }
+    }
+
+    public yd(Context context) {
+        super(context);
+        this.f44317a = 4;
+        setWillNotDraw(false);
     }
 }

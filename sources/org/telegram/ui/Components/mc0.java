@@ -1,29 +1,37 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import org.telegram.messenger.AndroidUtilities;
-public final class mc0 extends org.telegram.ui.ActionBar.i5 {
-    public final Paint M0;
-    public final org.telegram.ui.ActionBar.d6 N0;
+import org.telegram.messenger.ChatMessageSharedResources;
+import org.telegram.messenger.MessageObject;
+public final class mc0 extends org.telegram.ui.Cells.u1 {
+    public final oc0 Ge;
 
-    public mc0(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context);
-        this.N0 = d6Var;
-        this.M0 = new Paint(1);
+    public mc0(oc0 oc0Var, Context context, int i10, ChatMessageSharedResources chatMessageSharedResources, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, i10, false, chatMessageSharedResources, e6Var);
+        this.Ge = oc0Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.K5, this.N0);
-        Paint paint = this.M0;
-        paint.setColor(v02);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(1.0f);
-        float height = getHeight() / 2.0f;
-        canvas.drawLine(0.0f, height, ((getWidth() / 2.0f) - (getTextWidth() / 2.0f)) - AndroidUtilities.dp(8.0f), height, paint);
-        canvas.drawLine((getTextWidth() / 2.0f) + (getWidth() / 2.0f) + AndroidUtilities.dp(8.0f), height, getWidth(), height, paint);
-        super.dispatchDraw(canvas);
+    public final void X3(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, boolean z10, boolean z11, boolean z12, boolean z13) {
+        super.X3(messageObject, groupedMessages, z10, z11, z12, z13);
+        pc0.b(this.Ge.f29450c, this);
+    }
+
+    @Override
+    public final void invalidate() {
+        super.invalidate();
+        this.Ge.f29450c.f29847f.invalidate();
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        pc0.b(this.Ge.f29450c, this);
+    }
+
+    @Override
+    public final void invalidate(int i10, int i11, int i12, int i13) {
+        super.invalidate(i10, i11, i12, i13);
+        this.Ge.f29450c.f29847f.invalidate();
     }
 }

@@ -1,39 +1,87 @@
 package yh;
 
-import android.text.Spanned;
-import android.text.style.ClickableSpan;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
 import android.view.View;
-public final class q3 implements View.OnClickListener {
-    public final int f51863a;
-    public final v3 f51864b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.hr;
+public final class q3 extends hr {
+    public final View f53061c;
+    public final Paint d;
+    public final Path f53062e;
+    public final long f53063f;
+    public float h;
 
-    public q3(v3 v3Var, int i10) {
-        this.f51863a = i10;
-        this.f51864b = v3Var;
+    public q3(ci.d dVar, int i10) {
+        super(dVar);
+        Paint paint = new Paint(1);
+        this.d = paint;
+        Path path = new Path();
+        this.f53062e = path;
+        this.f53063f = System.currentTimeMillis();
+        this.h = 1.0f;
+        this.f53061c = dVar;
+        ((Paint) this.f27116b).setColor(-1);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setColor(i10);
+        path.rewind();
+        path.moveTo(-AndroidUtilities.dpf2(2.91f), AndroidUtilities.dpf2(1.08f));
+        path.lineTo(0.0f, -AndroidUtilities.dpf2(1.08f));
+        path.lineTo(AndroidUtilities.dpf2(2.91f), AndroidUtilities.dpf2(1.08f));
     }
 
     @Override
-    public final void onClick(View view) {
-        View.OnClickListener onClickListener;
-        switch (this.f51863a) {
-            case 0:
-                CharSequence text = this.f51864b.v.getText();
-                if (text instanceof Spanned) {
-                    ClickableSpan[] clickableSpanArr = (ClickableSpan[]) ((Spanned) text).getSpans(0, text.length(), ClickableSpan.class);
-                    if (clickableSpanArr.length > 0) {
-                        clickableSpanArr[0].onClick(view);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                v3 v3Var = this.f51864b;
-                if (v3Var.N.getVisibility() == 0 && (onClickListener = v3Var.T) != null) {
-                    onClickListener.onClick(view);
-                    return;
-                }
-                return;
+    public final void draw(Canvas canvas) {
+        float f7;
+        Paint paint = (Paint) this.f27116b;
+        paint.setAlpha((int) (this.h * 255.0f));
+        canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), getBounds().width() / 2.0f, paint);
+        float currentTimeMillis = ((float) ((System.currentTimeMillis() - this.f53063f) % 400)) / 400.0f;
+        Paint paint2 = this.d;
+        int alpha = paint2.getAlpha();
+        paint2.setAlpha((int) (alpha * this.h));
+        paint2.setStrokeWidth(AndroidUtilities.dpf2(1.33f));
+        canvas.save();
+        canvas.translate(getBounds().centerX(), getBounds().centerY() - (((AndroidUtilities.dpf2(1.166f) * 2.0f) + (AndroidUtilities.dpf2(2.16f) * 3.0f)) / 2.0f));
+        for (int i10 = 0; i10 < 4; i10++) {
+            if (i10 == 0) {
+                f7 = 1.0f - currentTimeMillis;
+            } else if (i10 == 3) {
+                f7 = currentTimeMillis;
+            } else {
+                f7 = 1.0f;
+            }
+            paint2.setAlpha((int) (f7 * 255.0f * this.h));
+            canvas.save();
+            float lerp = AndroidUtilities.lerp(0.5f, 1.0f, f7);
+            canvas.scale(lerp, lerp);
+            canvas.drawPath(this.f53062e, paint2);
+            canvas.restore();
+            canvas.translate(0.0f, AndroidUtilities.dpf2(3.3260002f) * f7);
         }
+        canvas.restore();
+        paint2.setAlpha(alpha);
+        View view = this.f53061c;
+        if (view != null) {
+            view.invalidate();
+        }
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(18.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(18.0f);
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.h = i10 / 255.0f;
     }
 }

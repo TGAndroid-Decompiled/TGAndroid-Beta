@@ -1,9 +1,9 @@
 package w7;
 public final class k2 implements ia.d {
-    public static final k2 f48745a = new Object();
+    public static final k2 f50030a = new Object();
 
     static {
-        sa.e.t(sa.e.m(d.class, sa.e.q(10, sa.e.m(d.class, sa.e.q(9, sa.e.m(d.class, sa.e.q(8, sa.e.m(d.class, sa.e.q(7, sa.e.m(d.class, sa.e.q(6, sa.e.m(d.class, sa.e.q(5, sa.e.m(d.class, sa.e.q(4, sa.e.m(d.class, sa.e.q(3, sa.e.m(d.class, sa.e.q(2, sa.e.m(d.class, new a(1)))))))))))))))))))));
+        sc.v.t(sc.v.m(d.class, sc.v.q(10, sc.v.m(d.class, sc.v.q(9, sc.v.m(d.class, sc.v.q(8, sc.v.m(d.class, sc.v.q(7, sc.v.m(d.class, sc.v.q(6, sc.v.m(d.class, sc.v.q(5, sc.v.m(d.class, sc.v.q(4, sc.v.m(d.class, sc.v.q(3, sc.v.m(d.class, sc.v.q(2, sc.v.m(d.class, new a(1)))))))))))))))))))));
     }
 
     @Override

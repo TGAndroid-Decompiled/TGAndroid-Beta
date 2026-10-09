@@ -1,8 +1,9 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-public final class sd1 implements DialogInterface.OnCancelListener {
+import org.telegram.messenger.MessageObject;
+public final class sd1 extends MessageObject {
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
+    public final boolean needDrawAvatar() {
+        return false;
     }
 }

@@ -1,19 +1,30 @@
 package org.telegram.ui;
-public final class lx extends s4.c0 {
-    public final ty I;
-    public final mx J;
 
-    public lx(mx mxVar, ty tyVar) {
-        this.J = mxVar;
-        this.I = tyVar;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
+import org.telegram.messenger.AndroidUtilities;
+public final class lx extends org.telegram.ui.Components.la {
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        return false;
     }
 
     @Override
-    public final int R0() {
-        ty tyVar = this.I;
-        if (tyVar.f41053s == 0 && this.J.W.i4() && tyVar.v == 2) {
-            return 1;
-        }
-        return 0;
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public final int x1() {
+        return AndroidUtilities.dp(48.0f);
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
     }
 }

@@ -1,91 +1,47 @@
 package org.telegram.ui.Components;
+public final class i01 {
+    public static final i01 f27175e = new i01(false, new f01(Integer.MIN_VALUE, -2147483647), l01.R, 0.0f);
+    public final boolean f27176a;
+    public final f01 f27177b;
+    public final xz0 f27178c;
+    public final float d;
 
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class i01 extends FrameLayout {
-    public final l01 f27351a;
-    public boolean f27352b;
-    public boolean f27353c;
-    public boolean d;
-    public boolean f27354e;
-
-    public i01(l01 l01Var, View view, boolean z10) {
-        super(l01Var.getContext());
-        this.d = false;
-        this.f27354e = true;
-        this.f27351a = l01Var;
-        setWillNotDraw(false);
-        if (!z10) {
-            setPadding(AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f), AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f));
-        }
-        addView(view, w7.z5.c(-1.0f, -1));
+    public i01(boolean z10, f01 f01Var, xz0 xz0Var, float f7) {
+        this.f27176a = z10;
+        this.f27177b = f01Var;
+        this.f27178c = xz0Var;
+        this.d = f7;
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        Canvas canvas2;
-        float f7;
-        float f10;
-        float f11;
-        float f12;
-        boolean z10 = this.f27352b;
-        l01 l01Var = this.f27351a;
-        if (z10 || this.f27353c) {
-            canvas2 = canvas;
-            float dp = AndroidUtilities.dp(10.0f);
-            float[] fArr = l01Var.f28337c;
-            boolean z11 = this.f27352b;
-            if (z11 && this.d) {
-                f7 = dp;
-            } else {
-                f7 = 0.0f;
-            }
-            fArr[1] = f7;
-            fArr[0] = f7;
-            if (z11 && this.f27354e) {
-                f10 = dp;
-            } else {
-                f10 = 0.0f;
-            }
-            fArr[3] = f10;
-            fArr[2] = f10;
-            boolean z12 = this.f27353c;
-            if (z12 && this.f27354e) {
-                f11 = dp;
-            } else {
-                f11 = 0.0f;
-            }
-            fArr[5] = f11;
-            fArr[4] = f11;
-            dp = (z12 && this.d) ? 0.0f : 0.0f;
-            fArr[7] = dp;
-            fArr[6] = dp;
-            l01Var.f28336b.rewind();
-            RectF rectF = AndroidUtilities.rectTmp;
-            float f13 = l01Var.h;
-            float width = getWidth() - l01Var.h;
-            float height = getHeight();
-            float f14 = l01Var.h;
-            if (this.f27353c) {
-                f12 = -1.0f;
-            } else {
-                f12 = 1.0f;
-            }
-            rectF.set(f13, f13, width, (f14 * AndroidUtilities.dp(f12)) + height);
-            if (!this.f27354e) {
-                rectF.right += l01Var.f28339f;
-            }
-            l01Var.f28336b.addRoundRect(rectF, l01Var.f28337c, Path.Direction.CW);
-            canvas2.drawPath(l01Var.f28336b, l01Var.f28338e);
-        } else {
-            float f15 = l01Var.h;
-            canvas2 = canvas;
-            canvas2.drawRect(f15, f15, getWidth() - l01Var.h, getHeight() + l01Var.h, l01Var.f28338e);
+    public static xz0 a(i01 i01Var, boolean z10) {
+        xz0 xz0Var = i01Var.f27178c;
+        if (xz0Var != l01.R) {
+            return xz0Var;
         }
-        super.onDraw(canvas2);
+        if (i01Var.d == 0.0f) {
+            if (z10) {
+                return l01.S;
+            }
+            return l01.T;
+        }
+        return l01.U;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || i01.class != obj.getClass()) {
+            return false;
+        }
+        i01 i01Var = (i01) obj;
+        if (this.f27178c.equals(i01Var.f27178c) && this.f27177b.equals(i01Var.f27177b)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return this.f27178c.hashCode() + (this.f27177b.hashCode() * 31);
     }
 }

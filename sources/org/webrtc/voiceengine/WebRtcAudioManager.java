@@ -235,7 +235,7 @@ public class WebRtcAudioManager {
     }
 
     private boolean isProAudioSupported() {
-        if (Build.VERSION.SDK_INT >= 23 && ContextUtils.getApplicationContext().getPackageManager().hasSystemFeature("android.hardware.audio.pro")) {
+        if (ContextUtils.getApplicationContext().getPackageManager().hasSystemFeature("android.hardware.audio.pro")) {
             return true;
         }
         return false;

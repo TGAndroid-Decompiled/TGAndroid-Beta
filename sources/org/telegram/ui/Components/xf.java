@@ -2,18 +2,45 @@ package org.telegram.ui.Components;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.SharedConfig;
 public final class xf extends AnimatorListenerAdapter {
-    public final ChatActivityEnterView f32875a;
+    public final boolean f32819a;
+    public final ChatActivityEnterView f32820b;
 
-    public xf(ChatActivityEnterView chatActivityEnterView) {
-        this.f32875a = chatActivityEnterView;
+    public xf(ChatActivityEnterView chatActivityEnterView, boolean z10) {
+        this.f32820b = chatActivityEnterView;
+        this.f32819a = z10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        ChatActivityEnterView chatActivityEnterView = this.f32875a;
-        chatActivityEnterView.f23902h1.setAllowDraw(true);
-        chatActivityEnterView.N1.setTransformToSeekbar(1.0f);
-        chatActivityEnterView.x0();
+        ChatActivityEnterView chatActivityEnterView = this.f32820b;
+        if (animator.equals(chatActivityEnterView.f23964t2)) {
+            chatActivityEnterView.f23964t2 = null;
+        }
+        chatActivityEnterView.v0();
+        chatActivityEnterView.f23915k1.setAlpha(1.0f);
+        chatActivityEnterView.f23915k1.setTranslationX(0.0f);
+        ug ugVar = chatActivityEnterView.O1;
+        if (ugVar != null && SharedConfig.lockRecordAudioVideoHint < 3) {
+            ChatActivityEnterView chatActivityEnterView2 = ugVar.V;
+            chatActivityEnterView2.f23882e4 = true;
+            chatActivityEnterView2.f23889f4 = System.currentTimeMillis();
+        }
+        sf sfVar = chatActivityEnterView.E0;
+        if (sfVar != null) {
+            sfVar.setAlpha(0.0f);
+        }
+        if (this.f32819a) {
+            ll0 ll0Var = chatActivityEnterView.f23898h1;
+            if (ll0Var != null) {
+                ll0Var.setVisibility(8);
+            }
+            ne neVar = chatActivityEnterView.f23879e1;
+            if (neVar != null) {
+                neVar.setVisibility(8);
+            }
+            chatActivityEnterView.v0();
+        }
     }
 }

@@ -1,48 +1,61 @@
 package gg;
 
-import ai.p3;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
+import java.util.ArrayList;
+import java.util.Comparator;
+import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-public final class b1 implements Runnable {
-    public final String f10515a;
-    public final String f10516b;
-    public final MessagesController f10517c;
-    public final MessagesStorage d;
-    public final k1 f10518e;
+public final class b1 implements Comparator {
+    public final ArrayList f10530a;
+    public final ArrayList f10531b;
 
-    public b1(k1 k1Var, String str, String str2, MessagesController messagesController, MessagesStorage messagesStorage) {
-        this.f10518e = k1Var;
-        this.f10515a = str;
-        this.f10516b = str2;
-        this.f10517c = messagesController;
-        this.d = messagesStorage;
+    public b1(ArrayList arrayList, ArrayList arrayList2) {
+        this.f10530a = arrayList;
+        this.f10531b = arrayList2;
+    }
+
+    public final int a(i1 i1Var) {
+        int i10 = 0;
+        int i11 = 0;
+        while (true) {
+            ArrayList arrayList = this.f10530a;
+            if (i11 >= arrayList.size()) {
+                while (true) {
+                    ArrayList arrayList2 = this.f10531b;
+                    if (i10 < Math.min(20, arrayList2.size())) {
+                        if (((TLRPC.Document) arrayList2.get(i10)).f20044id == i1Var.f10656a.f20044id) {
+                            return (arrayList2.size() - i10) + 1000000;
+                        }
+                        i10++;
+                    } else {
+                        return -1;
+                    }
+                }
+            } else if (((TLRPC.Document) arrayList.get(i11)).f20044id == i1Var.f10656a.f20044id) {
+                return i11 + 2000000;
+            } else {
+                i11++;
+            }
+        }
     }
 
     @Override
-    public final void run() {
-        k1 k1Var = this.f10518e;
-        if (k1Var.f10700y0 == this) {
-            k1Var.f10700y0 = null;
-            TLRPC.User user = k1Var.f10696w0;
-            if (user == null && !k1Var.f10694v0) {
-                String str = this.f10516b;
-                k1Var.f10687q0 = str;
-                MessagesController messagesController = this.f10517c;
-                TLObject userOrChat = messagesController.getUserOrChat(str);
-                if (userOrChat instanceof TLRPC.User) {
-                    k1Var.R((TLRPC.User) userOrChat);
-                    return;
+    public final int compare(Object obj, Object obj2) {
+        i1 i1Var = (i1) obj;
+        i1 i1Var2 = (i1) obj2;
+        boolean isAnimatedStickerDocument = MessageObject.isAnimatedStickerDocument(i1Var.f10656a, true);
+        if (isAnimatedStickerDocument == MessageObject.isAnimatedStickerDocument(i1Var2.f10656a, true)) {
+            int a2 = a(i1Var);
+            int a10 = a(i1Var2);
+            if (a2 <= a10) {
+                if (a2 >= a10) {
+                    return 0;
                 }
-                TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
-                tL_contacts_resolveUsername.username = k1Var.f10687q0;
-                k1Var.f10692t0 = ConnectionsManager.getInstance(k1Var.f10675f).sendRequest(tL_contacts_resolveUsername, new p3(this, str, messagesController, this.d, 2));
-            } else if (k1Var.f10694v0) {
             } else {
-                k1Var.T(true, user, this.f10515a, "");
+                return -1;
             }
+        } else if (isAnimatedStickerDocument) {
+            return -1;
         }
+        return 1;
     }
 }

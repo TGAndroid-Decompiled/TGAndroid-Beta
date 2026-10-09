@@ -1,29 +1,24 @@
 package e0;
 
-import android.app.Notification;
+import android.media.AudioAttributes;
 public abstract class q {
-    public static Notification.BubbleMetadata a(r rVar) {
-        boolean z10;
-        if (rVar == null) {
-            return null;
-        }
-        Notification.BubbleMetadata.Builder builder = new Notification.BubbleMetadata.Builder(rVar.f8474a, rVar.f8475b.m(null));
-        Notification.BubbleMetadata.Builder deleteIntent = builder.setDeleteIntent(null);
-        boolean z11 = true;
-        if ((rVar.d & 1) != 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        Notification.BubbleMetadata.Builder autoExpandBubble = deleteIntent.setAutoExpandBubble(z10);
-        if ((rVar.d & 2) == 0) {
-            z11 = false;
-        }
-        autoExpandBubble.setSuppressNotification(z11);
-        int i10 = rVar.f8476c;
-        if (i10 != 0) {
-            builder.setDesiredHeight(i10);
-        }
+    public static AudioAttributes a(AudioAttributes.Builder builder) {
         return builder.build();
+    }
+
+    public static AudioAttributes.Builder b() {
+        return new AudioAttributes.Builder();
+    }
+
+    public static AudioAttributes.Builder c(AudioAttributes.Builder builder, int i10) {
+        return builder.setContentType(i10);
+    }
+
+    public static AudioAttributes.Builder d(AudioAttributes.Builder builder, int i10) {
+        return builder.setLegacyStreamType(i10);
+    }
+
+    public static AudioAttributes.Builder e(AudioAttributes.Builder builder, int i10) {
+        return builder.setUsage(i10);
     }
 }

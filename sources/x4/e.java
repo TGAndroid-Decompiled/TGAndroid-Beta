@@ -1,34 +1,34 @@
 package x4;
 
 import android.animation.TypeEvaluator;
-import v7.g8;
+import v7.c8;
 public final class e implements TypeEvaluator {
-    public i0.d[] f49329a;
+    public i0.d[] f50605a;
 
     @Override
     public final Object evaluate(float f7, Object obj, Object obj2) {
         i0.d[] dVarArr = (i0.d[]) obj;
         i0.d[] dVarArr2 = (i0.d[]) obj2;
-        if (g8.a(dVarArr, dVarArr2)) {
-            if (!g8.a(this.f49329a, dVarArr)) {
-                this.f49329a = g8.e(dVarArr);
+        if (c8.a(dVarArr, dVarArr2)) {
+            if (!c8.a(this.f50605a, dVarArr)) {
+                this.f50605a = c8.e(dVarArr);
             }
             for (int i10 = 0; i10 < dVarArr.length; i10++) {
-                i0.d dVar = this.f49329a[i10];
+                i0.d dVar = this.f50605a[i10];
                 i0.d dVar2 = dVarArr[i10];
                 i0.d dVar3 = dVarArr2[i10];
                 dVar.getClass();
-                dVar.f11530a = dVar2.f11530a;
+                dVar.f11580a = dVar2.f11580a;
                 int i11 = 0;
                 while (true) {
-                    float[] fArr = dVar2.f11531b;
+                    float[] fArr = dVar2.f11581b;
                     if (i11 < fArr.length) {
-                        dVar.f11531b[i11] = (dVar3.f11531b[i11] * f7) + ((1.0f - f7) * fArr[i11]);
+                        dVar.f11581b[i11] = (dVar3.f11581b[i11] * f7) + ((1.0f - f7) * fArr[i11]);
                         i11++;
                     }
                 }
             }
-            return this.f49329a;
+            return this.f50605a;
         }
         throw new IllegalArgumentException("Can't interpolate between two incompatible pathData");
     }

@@ -6,10 +6,10 @@ import android.hardware.camera2.CaptureResult;
 import android.hardware.camera2.TotalCaptureResult;
 import android.os.SystemClock;
 public final class g extends CameraCaptureSession.CaptureCallback {
-    public final i f14877a;
+    public final j f14925a;
 
-    public g(i iVar) {
-        this.f14877a = iVar;
+    public g(j jVar) {
+        this.f14925a = jVar;
     }
 
     @Override
@@ -20,88 +20,88 @@ public final class g extends CameraCaptureSession.CaptureCallback {
         boolean z11;
         boolean z12;
         int i11;
-        i iVar = this.f14877a;
-        m mVar = iVar.f14909j;
-        if (iVar.N) {
+        j jVar = this.f14925a;
+        n nVar = jVar.f14978j;
+        if (jVar.N) {
             Object tag = captureRequest.getTag();
-            if ((tag instanceof Integer) && ((Integer) tag).intValue() == iVar.R) {
-                iVar.O++;
+            if ((tag instanceof Integer) && ((Integer) tag).intValue() == jVar.R) {
+                jVar.O++;
                 Integer num = (Integer) totalCaptureResult.get(CaptureResult.FLASH_MODE);
                 Integer num2 = (Integer) totalCaptureResult.get(CaptureResult.FLASH_STATE);
-                if (!iVar.M ? num == null || num.intValue() == 0 : num != null && num.intValue() == 2) {
+                if (!jVar.M ? num == null || num.intValue() == 0 : num != null && num.intValue() == 2) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                if (iVar.M && num2 != null && num2.intValue() != 3 && num2.intValue() != 4) {
+                if (jVar.M && num2 != null && num2.intValue() != 3 && num2.intValue() != 4) {
                     z12 = false;
                 } else {
                     z12 = true;
                 }
                 if (z11 && z12) {
-                    mVar.b("torch result confirmed: enabled=" + iVar.M + ", resultMode=" + num + ", flashState=" + num2 + ", frames=" + iVar.O + ", retries=" + iVar.P);
-                    iVar.N = false;
+                    nVar.b("torch result confirmed: enabled=" + jVar.M + ", resultMode=" + num + ", flashState=" + num2 + ", frames=" + jVar.O + ", retries=" + jVar.P);
+                    jVar.N = false;
                 } else {
-                    int i12 = iVar.O;
-                    if (i12 == 3 && (i11 = iVar.P) == 0) {
-                        iVar.P = i11 + 1;
-                        iVar.O = 0;
-                        mVar.b("torch result not applied; rebuilding request: enabled=" + iVar.M + ", resultMode=" + num + ", flashState=" + num2);
-                        iVar.a();
+                    int i12 = jVar.O;
+                    if (i12 == 3 && (i11 = jVar.P) == 0) {
+                        jVar.P = i11 + 1;
+                        jVar.O = 0;
+                        nVar.b("torch result not applied; rebuilding request: enabled=" + jVar.M + ", resultMode=" + num + ", flashState=" + num2);
+                        jVar.c();
                     } else if (i12 >= 6) {
-                        mVar.b("torch result failed: enabled=" + iVar.M + ", resultMode=" + num + ", flashState=" + num2 + ", retries=" + iVar.P);
-                        iVar.N = false;
+                        nVar.b("torch result failed: enabled=" + jVar.M + ", resultMode=" + num + ", flashState=" + num2 + ", retries=" + jVar.P);
+                        jVar.N = false;
                     }
                 }
             }
         }
         Long l4 = (Long) totalCaptureResult.get(CaptureResult.SENSOR_TIMESTAMP);
-        if (l4 != null && l4.longValue() > iVar.f14940z0) {
+        if (l4 != null && l4.longValue() > jVar.M0) {
             long elapsedRealtimeNanos = SystemClock.elapsedRealtimeNanos();
-            if (iVar.f14938y0 == 0) {
-                iVar.f14938y0 = l4.longValue();
-                iVar.A0 = 1L;
+            if (jVar.L0 == 0) {
+                jVar.L0 = l4.longValue();
+                jVar.N0 = 1L;
             } else {
-                long longValue = l4.longValue() - iVar.f14940z0;
-                iVar.C0++;
-                iVar.D0 += longValue;
+                long longValue = l4.longValue() - jVar.M0;
+                jVar.P0++;
+                jVar.Q0 += longValue;
                 double d = longValue;
-                iVar.E0 = (d * d) + iVar.E0;
-                long j3 = iVar.F0;
+                jVar.R0 = (d * d) + jVar.R0;
+                long j3 = jVar.S0;
                 if (j3 == 0 || longValue < j3) {
-                    iVar.F0 = longValue;
+                    jVar.S0 = longValue;
                 }
-                iVar.G0 = Math.max(iVar.G0, longValue);
+                jVar.T0 = Math.max(jVar.T0, longValue);
                 if (longValue > 50000000) {
-                    iVar.H0++;
+                    jVar.U0++;
                 }
                 if (longValue > 100000000) {
-                    iVar.I0++;
+                    jVar.V0++;
                 }
-                iVar.A0++;
+                jVar.N0++;
             }
-            long j10 = iVar.B0;
+            long j10 = jVar.O0;
             if (j10 != 0) {
                 long j11 = elapsedRealtimeNanos - j10;
-                iVar.J0++;
-                iVar.K0 += j11;
-                iVar.L0 = Math.max(iVar.L0, j11);
+                jVar.W0++;
+                jVar.X0 += j11;
+                jVar.Y0 = Math.max(jVar.Y0, j11);
             }
-            iVar.B0 = elapsedRealtimeNanos;
-            iVar.f14940z0 = l4.longValue();
-            long longValue2 = l4.longValue() - iVar.f14938y0;
+            jVar.O0 = elapsedRealtimeNanos;
+            jVar.M0 = l4.longValue();
+            long longValue2 = l4.longValue() - jVar.L0;
             if (longValue2 >= 3000000000L) {
-                float f7 = (((float) (iVar.A0 - 1)) * 1.0E9f) / ((float) longValue2);
-                n0 n0Var = iVar.G;
-                if (n0Var == null) {
+                float f7 = (((float) (jVar.N0 - 1)) * 1.0E9f) / ((float) longValue2);
+                o0 o0Var = jVar.G;
+                if (o0Var == null) {
                     i10 = 0;
                 } else {
-                    i10 = n0Var.f14996a;
+                    i10 = o0Var.f15065a;
                 }
                 StringBuilder sb2 = new StringBuilder("camera capture rate: measuredFps=");
                 sb2.append(f7);
                 sb2.append(", requestedFps=");
-                sb2.append(iVar.h.f14996a);
+                sb2.append(jVar.h.f15065a);
                 sb2.append(", activeFps=");
                 if (i10 == 0) {
                     valueOf = "unknown";
@@ -117,30 +117,30 @@ public final class g extends CameraCaptureSession.CaptureCallback {
                 }
                 sb2.append(z10);
                 sb2.append(", fpsRange=");
-                sb2.append(iVar.H);
+                sb2.append(jVar.H);
                 sb2.append(", sensorIntervalMs={avg=");
-                sb2.append(i.c(iVar.D0, iVar.C0));
+                sb2.append(j.f(jVar.Q0, jVar.P0));
                 sb2.append(", min=");
-                sb2.append(((float) iVar.F0) / 1000000.0f);
+                sb2.append(((float) jVar.S0) / 1000000.0f);
                 sb2.append(", max=");
-                sb2.append(((float) iVar.G0) / 1000000.0f);
+                sb2.append(((float) jVar.T0) / 1000000.0f);
                 sb2.append(", jitter=");
-                sb2.append(i.B(iVar.E0, iVar.D0, iVar.C0));
+                sb2.append(j.K(jVar.R0, jVar.Q0, jVar.P0));
                 sb2.append("}, sensorGaps={over50ms=");
-                sb2.append(iVar.H0);
+                sb2.append(jVar.U0);
                 sb2.append(", over100ms=");
-                sb2.append(iVar.I0);
+                sb2.append(jVar.V0);
                 sb2.append("}, callbackIntervalMs={avg=");
-                sb2.append(i.c(iVar.K0, iVar.J0));
+                sb2.append(j.f(jVar.X0, jVar.W0));
                 sb2.append(", max=");
-                sb2.append(((float) iVar.L0) / 1000000.0f);
+                sb2.append(((float) jVar.Y0) / 1000000.0f);
                 sb2.append("}");
-                mVar.b(sb2.toString());
-                iVar.u();
-                iVar.f14938y0 = l4.longValue();
-                iVar.f14940z0 = l4.longValue();
-                iVar.A0 = 1L;
-                iVar.B0 = elapsedRealtimeNanos;
+                nVar.b(sb2.toString());
+                jVar.D();
+                jVar.L0 = l4.longValue();
+                jVar.M0 = l4.longValue();
+                jVar.N0 = 1L;
+                jVar.O0 = elapsedRealtimeNanos;
             }
         }
     }

@@ -1,31 +1,9 @@
 package s4;
 
-import android.util.SparseArray;
+import java.util.ArrayList;
 public final class u0 {
-    public final SparseArray f46681a = new SparseArray();
-    public int f46682b = 0;
-
-    public final void a() {
-        int i10 = 0;
-        while (true) {
-            SparseArray sparseArray = this.f46681a;
-            if (i10 < sparseArray.size()) {
-                ((t0) sparseArray.valueAt(i10)).f46667a.clear();
-                i10++;
-            } else {
-                return;
-            }
-        }
-    }
-
-    public final t0 b(int i10) {
-        SparseArray sparseArray = this.f46681a;
-        t0 t0Var = (t0) sparseArray.get(i10);
-        if (t0Var == null) {
-            t0 t0Var2 = new t0();
-            sparseArray.put(i10, t0Var2);
-            return t0Var2;
-        }
-        return t0Var;
-    }
+    public final ArrayList f47794a = new ArrayList();
+    public final int f47795b = 20;
+    public long f47796c = 0;
+    public long d = 0;
 }

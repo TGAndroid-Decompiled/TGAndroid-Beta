@@ -1,25 +1,25 @@
 package org.telegram.ui.Components;
 
-import android.util.Pair;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-public final class vz0 extends ArrayList {
-    public final Class f32440a;
-    public final Class f32441b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class vz0 extends AnimatorListenerAdapter {
+    public final int f32486a;
+    public final Switch f32487b;
 
-    public vz0(Class cls, Class cls2) {
-        this.f32440a = cls;
-        this.f32441b = cls2;
+    public vz0(Switch r12, int i10) {
+        this.f32486a = i10;
+        this.f32487b = r12;
     }
 
-    public final la.h i() {
-        int size = size();
-        Object[] objArr = (Object[]) Array.newInstance(this.f32440a, size);
-        Object[] objArr2 = (Object[]) Array.newInstance(this.f32441b, size);
-        for (int i10 = 0; i10 < size; i10++) {
-            objArr[i10] = ((Pair) get(i10)).first;
-            objArr2[i10] = ((Pair) get(i10)).second;
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f32486a) {
+            case 0:
+                this.f32487b.d = null;
+                return;
+            default:
+                this.f32487b.f24340e = null;
+                return;
         }
-        return new la.h(objArr, objArr2);
     }
 }

@@ -1,1185 +1,650 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
-import android.app.Activity;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.RectF;
+import android.graphics.SurfaceTexture;
+import android.opengl.EGL14;
+import android.opengl.GLES20;
+import android.opengl.GLUtils;
+import android.opengl.Matrix;
 import android.os.Handler;
-import android.os.SystemClock;
-import android.util.Property;
-import android.view.MotionEvent;
-import android.view.TextureView;
-import android.view.View;
-import android.view.WindowManager;
+import android.os.Looper;
+import android.os.Message;
 import android.view.animation.DecelerateInterpolator;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import java.io.File;
-import java.io.FileOutputStream;
+import java.nio.Buffer;
+import java.nio.ByteBuffer;
+import java.nio.FloatBuffer;
+import javax.microedition.khronos.egl.EGL10;
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.egl.EGLContext;
+import javax.microedition.khronos.egl.EGLDisplay;
+import javax.microedition.khronos.egl.EGLSurface;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public final class e60 extends k60 {
-    public boolean A0;
-    public final aq B0;
-    public final l2.g C0;
-    public final org.telegram.ui.il E;
-    public final LinearLayout F;
-    public final ci.v2 G;
-    public final ci.v2 H;
-    public final ImageView I;
-    public final ci.x2 J;
-    public final int[] K;
-    public final Matrix L;
-    public final float[] M;
-    public final Paint N;
-    public final int O;
-    public ki.s0 P;
-    public ki.q0 Q;
-    public ki.r0 R;
-    public ki.k0 S;
-    public a11 T;
-    public VideoEditedInfo U;
-    public d60 V;
-    public AnimatorSet W;
-    public ValueAnimator f25994a0;
-    public final kj0 f25995b0;
-    public kj0 f25996c0;
-    public kj0 f25997d0;
-    public boolean f25998e0;
-    public final r50 f25999f;
-    public boolean f26000f0;
-    public boolean f26001g0;
-    public final int h;
-    public boolean f26002h0;
-    public boolean f26003i0;
-    public boolean f26004j0;
-    public boolean f26005k0;
-    public boolean f26006l0;
-    public Bitmap m0;
-    public final int f26007n;
-    public long f26008n0;
-    public float f26009o0;
-    public float f26010p0;
-    public float f26011q0;
-    public final boolean f26012r;
-    public float f26013r0;
-    public final View f26014s;
-    public int f26015s0;
-    public int f26016t0;
-    public boolean f26017u0;
-    public final c60 v;
-    public boolean f26018v0;
-    public final om0 f26019w;
-    public float f26020w0;
-    public final FrameLayout f26021x;
-    public int f26022x0;
-    public final b60 f26023y;
-    public long f26024y0;
-    public boolean f26025z0;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.camera.Camera2Session;
+import org.telegram.messenger.camera.CameraSession;
+public final class e60 extends DispatchQueue {
+    public Integer E;
+    public int F;
+    public int G;
+    public final t60 H;
+    public final SurfaceTexture f25962a;
+    public EGL10 f25963b;
+    public EGLDisplay f25964c;
+    public EGLContext d;
+    public EGLSurface f25965e;
+    public boolean f25966f;
+    public Object h;
+    public final SurfaceTexture[] f25967n;
+    public int f25968r;
+    public int f25969s;
+    public int v;
+    public int f25970w;
+    public int f25971x;
+    public boolean f25972y;
 
-    public e60(Activity activity, r50 r50Var, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(activity);
-        this.h = UserConfig.selectedAccount;
-        this.K = new int[2];
-        this.L = new Matrix();
-        this.M = new float[9];
-        this.N = new Paint(3);
-        this.f26015s0 = -1;
-        this.f26016t0 = -1;
-        this.f26020w0 = Float.NaN;
-        this.B0 = new aq(this, 25);
-        this.C0 = new l2.g(this, 9);
-        this.f25999f = r50Var;
-        this.f26007n = r50Var.getClassGuid();
-        this.f26012r = r50Var.v();
-        this.f26014s = r50Var.getFragmentView();
-        setWillNotDraw(false);
-        ci.x2 x2Var = new ci.x2(activity, null, this, null);
-        this.J = x2Var;
-        x2Var.f6277o = 0.5f;
-        x2Var.f6276n = ci.x2.f(0.5f);
-        x2Var.g();
-        addView(x2Var.f6266b, w7.z5.e(-1, -1, 119));
-        c60 c60Var = new c60(this, activity);
-        this.v = c60Var;
-        om0 om0Var = new om0(activity);
-        this.f26019w = om0Var;
-        FrameLayout frameLayout = new FrameLayout(activity);
-        this.f26021x = frameLayout;
-        b60 b60Var = new b60(this, activity, 0);
-        b60Var.setOpaque(true);
-        b60Var.setClickable(true);
-        b60Var.setCameraDistance(AndroidUtilities.dp(8000.0f));
-        b60Var.setOutlineProvider(new ai.k2(13));
-        b60Var.setClipToOutline(true);
-        this.f26023y = b60Var;
-        frameLayout.addView(b60Var, w7.z5.e(-1, -1, 119));
-        Paint paint = new Paint(1);
-        paint.setColor(Color.argb(40, 0, 0, 0));
-        org.telegram.ui.il ilVar = new org.telegram.ui.il(this, activity, paint);
-        this.E = ilVar;
-        ilVar.setOutlineProvider(new ai.k2(12));
-        ilVar.setClipToOutline(true);
-        frameLayout.addView(ilVar, w7.z5.e(-1, -1, 119));
-        om0Var.addView(frameLayout, w7.z5.d(-1, -1.0f, 119, 14.0f, 14.0f, 14.0f, 14.0f));
-        c60Var.addView(om0Var, w7.z5.e(-1, -1, 119));
-        int i10 = AndroidUtilities.roundPlayingMessageSize;
-        addView(c60Var, new FrameLayout.LayoutParams(i10, i10, 17));
-        addView(x2Var.f6267c, w7.z5.e(-1, -1, 119));
-        LinearLayout linearLayout = new LinearLayout(activity);
-        this.F = linearLayout;
-        linearLayout.setOrientation(0);
-        linearLayout.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f));
-        addView(linearLayout, w7.z5.d(-2, 56.0f, 83, 1.0f, 0.0f, 0.0f, 0.0f));
-        ?? imageView = new ImageView(activity);
-        this.G = imageView;
-        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
-        imageView.setScaleType(scaleType);
-        imageView.setContentDescription(LocaleController.getString(R.string.AccDescrSwitchCamera));
-        linearLayout.addView((View) imageView, w7.z5.n(44, 44));
-        imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final e60 f24506b;
-
-            {
-                this.f24506b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                ki.r0 r0Var;
-                ki.k0 k0Var;
-                boolean z10;
-                ki.r0 r0Var2;
-                int i11;
-                switch (r2) {
-                    case 0:
-                        e60 e60Var = this.f24506b;
-                        ki.s0 s0Var = e60Var.P;
-                        if (s0Var != null && (r0Var = e60Var.R) != null && (k0Var = e60Var.S) != null && r0Var.f15036a == 3 && !r0Var.f15039e) {
-                            ki.l0 l0Var = k0Var.f14957a;
-                            ki.l0 l0Var2 = ki.l0.f14983a;
-                            if (l0Var == l0Var2) {
-                                l0Var2 = ki.l0.f14984b;
-                            }
-                            s0Var.getClass();
-                            ki.s0.t();
-                            int i12 = s0Var.W;
-                            if (i12 != 7 && i12 != 8 && i12 != 9 && i12 != 10) {
-                                if (s0Var.f15057p != l0Var2) {
-                                    s0Var.f15054m.b("camera facing requested: " + s0Var.f15057p + " -> " + l0Var2 + ", state=" + hg.c.B(s0Var.W));
-                                    s0Var.f15057p = l0Var2;
-                                    int i13 = s0Var.W;
-                                    if (i13 == 3 || i13 == 2) {
-                                        s0Var.e();
-                                        ki.i iVar = s0Var.f15053l;
-                                        iVar.C = l0Var2;
-                                        Handler handler = iVar.f14916n;
-                                        if (iVar.S && handler != null) {
-                                            handler.post(new gg.x1(27, iVar, l0Var2));
-                                            z10 = true;
-                                        } else {
-                                            z10 = false;
-                                        }
-                                        s0Var.f15063w = z10;
-                                    }
-                                    s0Var.n();
-                                    s0Var.o();
-                                }
-                                e60Var.f25995b0.M(0);
-                                e60Var.f25995b0.start();
-                                return;
-                            }
-                            return;
-                        }
-                        return;
-                    default:
-                        e60 e60Var2 = this.f24506b;
-                        ki.s0 s0Var2 = e60Var2.P;
-                        if (s0Var2 != null && (r0Var2 = e60Var2.R) != null && e60Var2.S != null) {
-                            boolean z11 = !r0Var2.f15040f;
-                            ki.i iVar2 = s0Var2.f15053l;
-                            ki.s0.t();
-                            if (s0Var2.W == 3 && !s0Var2.f15063w && (i11 = s0Var2.X) != 1) {
-                                s0Var2.f15062u = z11;
-                                if (i11 == 3) {
-                                    s0Var2.u(z11);
-                                    iVar2.y(false);
-                                } else {
-                                    s0Var2.u(false);
-                                    iVar2.y(z11);
-                                }
-                                s0Var2.o();
-                                e60Var2.v();
-                                return;
-                            }
-                            return;
-                        }
-                        return;
-                }
-            }
-        });
-        ?? imageView2 = new ImageView(activity);
-        this.H = imageView2;
-        imageView2.setScaleType(scaleType);
-        linearLayout.addView((View) imageView2, w7.z5.n(44, 44));
-        imageView2.setOnClickListener(new View.OnClickListener(this) {
-            public final e60 f24506b;
-
-            {
-                this.f24506b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                ki.r0 r0Var;
-                ki.k0 k0Var;
-                boolean z10;
-                ki.r0 r0Var2;
-                int i11;
-                switch (r2) {
-                    case 0:
-                        e60 e60Var = this.f24506b;
-                        ki.s0 s0Var = e60Var.P;
-                        if (s0Var != null && (r0Var = e60Var.R) != null && (k0Var = e60Var.S) != null && r0Var.f15036a == 3 && !r0Var.f15039e) {
-                            ki.l0 l0Var = k0Var.f14957a;
-                            ki.l0 l0Var2 = ki.l0.f14983a;
-                            if (l0Var == l0Var2) {
-                                l0Var2 = ki.l0.f14984b;
-                            }
-                            s0Var.getClass();
-                            ki.s0.t();
-                            int i12 = s0Var.W;
-                            if (i12 != 7 && i12 != 8 && i12 != 9 && i12 != 10) {
-                                if (s0Var.f15057p != l0Var2) {
-                                    s0Var.f15054m.b("camera facing requested: " + s0Var.f15057p + " -> " + l0Var2 + ", state=" + hg.c.B(s0Var.W));
-                                    s0Var.f15057p = l0Var2;
-                                    int i13 = s0Var.W;
-                                    if (i13 == 3 || i13 == 2) {
-                                        s0Var.e();
-                                        ki.i iVar = s0Var.f15053l;
-                                        iVar.C = l0Var2;
-                                        Handler handler = iVar.f14916n;
-                                        if (iVar.S && handler != null) {
-                                            handler.post(new gg.x1(27, iVar, l0Var2));
-                                            z10 = true;
-                                        } else {
-                                            z10 = false;
-                                        }
-                                        s0Var.f15063w = z10;
-                                    }
-                                    s0Var.n();
-                                    s0Var.o();
-                                }
-                                e60Var.f25995b0.M(0);
-                                e60Var.f25995b0.start();
-                                return;
-                            }
-                            return;
-                        }
-                        return;
-                    default:
-                        e60 e60Var2 = this.f24506b;
-                        ki.s0 s0Var2 = e60Var2.P;
-                        if (s0Var2 != null && (r0Var2 = e60Var2.R) != null && e60Var2.S != null) {
-                            boolean z11 = !r0Var2.f15040f;
-                            ki.i iVar2 = s0Var2.f15053l;
-                            ki.s0.t();
-                            if (s0Var2.W == 3 && !s0Var2.f15063w && (i11 = s0Var2.X) != 1) {
-                                s0Var2.f15062u = z11;
-                                if (i11 == 3) {
-                                    s0Var2.u(z11);
-                                    iVar2.y(false);
-                                } else {
-                                    s0Var2.u(false);
-                                    iVar2.y(z11);
-                                }
-                                s0Var2.o();
-                                e60Var2.v();
-                                return;
-                            }
-                            return;
-                        }
-                        return;
-                }
-            }
-        });
-        int dp = AndroidUtilities.dp(24.0f);
-        this.O = dp;
-        kj0 kj0Var = new kj0(R.raw.roundcamera_flip, dp, dp);
-        this.f25995b0 = kj0Var;
-        kj0Var.setCallback(imageView);
-        kj0Var.M(kj0Var.f28216e[0] - 1);
-        imageView.setImageDrawable(kj0Var);
-        v();
-        if (d6Var != null && !d6Var.a()) {
-            imageView.setInvert(0.6f);
-            imageView2.setInvert(0.6f);
-        }
-        ImageView imageView3 = new ImageView(activity);
-        this.I = imageView3;
-        imageView3.setScaleType(scaleType);
-        imageView3.setImageResource(R.drawable.video_mute);
-        imageView3.setAlpha(0.0f);
-        addView(imageView3, w7.z5.e(48, 48, 17));
-        b60Var.setOnTouchListener(new yr(this, 1));
-        super.setVisibility(4);
+    public e60(t60 t60Var, SurfaceTexture surfaceTexture, int i10, int i11) {
+        super("CameraGLThread");
+        this.H = t60Var;
+        this.f25967n = new SurfaceTexture[2];
+        this.E = 0;
+        this.f25962a = surfaceTexture;
+        this.F = i10;
+        this.G = i11;
     }
 
-    private long getCurrentDurationMs() {
-        ki.r0 r0Var;
-        ki.s0 s0Var = this.P;
-        if (s0Var != null && (r0Var = this.R) != null) {
-            if (r0Var.f15036a == 3) {
-                return s0Var.j();
-            }
-            return r0Var.f15037b;
+    public final void b(long j3, int i10, boolean z10, int i11, int i12) {
+        Handler handler = getHandler();
+        if (handler != null) {
+            sendMessage(handler.obtainMessage(1, i10, 0, new h60(j3, i11, i12, z10, 0L)), 0);
         }
-        return 0L;
     }
 
-    public static void k(e60 e60Var) {
+    public final void c() {
+        t60 t60Var = this.H;
+        if (t60Var.f31027n0[t60Var.f31024k1] != null) {
+            t60 t60Var2 = this.H;
+            int width = t60Var2.f31027n0[t60Var2.f31024k1].getWidth();
+            t60 t60Var3 = this.H;
+            int height = t60Var3.f31027n0[t60Var3.f31024k1].getHeight();
+            float min = this.F / Math.min(width, height);
+            int i10 = (int) (width * min);
+            int i11 = (int) (height * min);
+            if (i10 == i11) {
+                t60 t60Var4 = this.H;
+                t60Var4.L0 = 1.0f;
+                t60Var4.M0 = 1.0f;
+            } else if (i10 > i11) {
+                t60 t60Var5 = this.H;
+                t60Var5.L0 = 1.0f;
+                t60Var5.M0 = i10 / this.G;
+            } else {
+                t60 t60Var6 = this.H;
+                t60Var6.L0 = i11 / this.F;
+                t60Var6.M0 = 1.0f;
+            }
+            FileLog.d("InstantCamera camera scaleX = " + this.H.L0 + " scaleY = " + this.H.M0);
+        }
+    }
+
+    public final void finish() {
+        EGLContext eGLContext;
+        if (this.f25967n != null) {
+            for (int i10 = 0; i10 < 2; i10++) {
+                SurfaceTexture surfaceTexture = this.f25967n[i10];
+                if (surfaceTexture != null) {
+                    surfaceTexture.release();
+                    this.f25967n[i10] = null;
+                }
+            }
+        }
+        this.H.W = false;
+        if (this.f25965e != null && (eGLContext = this.d) != null) {
+            if (!eGLContext.equals(this.f25963b.eglGetCurrentContext()) || !this.f25965e.equals(this.f25963b.eglGetCurrentSurface(12377))) {
+                EGL10 egl10 = this.f25963b;
+                EGLDisplay eGLDisplay = this.f25964c;
+                EGLSurface eGLSurface = this.f25965e;
+                egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.d);
+            }
+            int[] iArr = this.H.f31004b0;
+            if (iArr != null && iArr[0] != Integer.MIN_VALUE) {
+                GLES20.glDeleteTextures(1, iArr, 0);
+                this.H.f31004b0[0] = Integer.MIN_VALUE;
+            }
+            int[] iArr2 = this.H.f31004b0;
+            if (iArr2 != null && iArr2[1] != Integer.MIN_VALUE) {
+                GLES20.glDeleteTextures(1, iArr2, 1);
+                this.H.f31004b0[1] = Integer.MIN_VALUE;
+            }
+        }
+        if (this.f25965e != null) {
+            EGL10 egl102 = this.f25963b;
+            EGLDisplay eGLDisplay2 = this.f25964c;
+            EGLSurface eGLSurface2 = EGL10.EGL_NO_SURFACE;
+            egl102.eglMakeCurrent(eGLDisplay2, eGLSurface2, eGLSurface2, EGL10.EGL_NO_CONTEXT);
+            this.f25963b.eglDestroySurface(this.f25964c, this.f25965e);
+            this.f25965e = null;
+        }
+        EGLContext eGLContext2 = this.d;
+        if (eGLContext2 != null) {
+            this.f25963b.eglDestroyContext(this.f25964c, eGLContext2);
+            this.d = null;
+        }
+        EGLDisplay eGLDisplay3 = this.f25964c;
+        if (eGLDisplay3 != null) {
+            this.f25963b.eglTerminate(eGLDisplay3);
+            this.f25964c = null;
+        }
+    }
+
+    @Override
+    public final void handleMessage(Message message) {
         boolean z10;
-        ki.k0 k0Var;
-        ki.r0 r0Var = e60Var.R;
-        boolean z11 = false;
-        if (r0Var != null && r0Var.f15036a == 3 && !r0Var.f15039e) {
+        boolean z11;
+        boolean z12;
+        boolean z13;
+        int i10;
+        Object obj;
+        boolean z14;
+        l60 l60Var;
+        int i11;
+        int i12 = message.what;
+        if (i12 != 0) {
+            h60 h60Var = null;
+            if (i12 != 1) {
+                if (i12 != 2) {
+                    if (i12 != 3) {
+                        if (i12 == 4) {
+                            t60 t60Var = this.H;
+                            t60Var.f31024k1 = 1 - t60Var.f31024k1;
+                            if (this.H.B0) {
+                                this.H.p("GL surface flip applied: surface=" + this.H.f31024k1);
+                            }
+                            c();
+                            t60 t60Var2 = this.H;
+                            float f7 = (1.0f / t60Var2.L0) / 2.0f;
+                            float f10 = (1.0f / t60Var2.M0) / 2.0f;
+                            float f11 = 0.5f - f7;
+                            float f12 = 0.5f - f10;
+                            float f13 = f7 + 0.5f;
+                            float f14 = f10 + 0.5f;
+                            t60Var2.J0 = org.telegram.messenger.bi.h(ByteBuffer.allocateDirect(32));
+                            this.H.J0.put(new float[]{f11, f12, f13, f12, f11, f14, f13, f14}).position(0);
+                            return;
+                        }
+                        return;
+                    }
+                    if (BuildVars.LOGS_ENABLED) {
+                        FileLog.d("InstantCamera set gl renderer session");
+                    }
+                    Object obj2 = message.obj;
+                    Object obj3 = this.h;
+                    if (obj3 == obj2) {
+                        if (obj3 instanceof CameraSession) {
+                            i11 = ((CameraSession) obj3).getWorldAngle();
+                        } else if (obj3 instanceof Camera2Session) {
+                            i11 = ((Camera2Session) obj3).getWorldAngle();
+                        } else {
+                            i11 = 0;
+                        }
+                        Matrix.setIdentityM(this.H.F0, 0);
+                        if (i11 != 0) {
+                            Matrix.rotateM(this.H.F0, 0, i11, 0.0f, 0.0f, 1.0f);
+                            return;
+                        }
+                        return;
+                    }
+                    this.h = obj2;
+                    return;
+                }
+                EGL10 egl10 = this.f25963b;
+                EGLDisplay eGLDisplay = this.f25964c;
+                EGLSurface eGLSurface = this.f25965e;
+                if (!egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.d)) {
+                    if (BuildVars.LOGS_ENABLED) {
+                        FileLog.d("InstantCamera eglMakeCurrent failed " + GLUtils.getEGLErrorString(this.f25963b.eglGetError()));
+                        return;
+                    }
+                    return;
+                }
+                SurfaceTexture surfaceTexture = this.f25967n[0];
+                if (surfaceTexture != null) {
+                    surfaceTexture.getTransformMatrix(this.H.H0);
+                    this.f25967n[0].setOnFrameAvailableListener(null);
+                    this.f25967n[0].release();
+                    t60 t60Var3 = this.H;
+                    int[] iArr = t60Var3.f31006c0;
+                    int[] iArr2 = t60Var3.f31004b0;
+                    iArr[0] = iArr2[0];
+                    t60Var3.f31008d0 = 0.0f;
+                    iArr2[0] = 0;
+                    t60Var3.K0 = t60Var3.J0.duplicate();
+                    t60 t60Var4 = this.H;
+                    t60Var4.N0 = t60Var4.f31027n0[0];
+                }
+                this.E = Integer.valueOf(this.E.intValue() + 1);
+                this.H.K = false;
+                GLES20.glGenTextures(1, this.H.f31004b0, 0);
+                GLES20.glBindTexture(36197, this.H.f31004b0[0]);
+                GLES20.glTexParameteri(36197, 10241, 9729);
+                GLES20.glTexParameteri(36197, 10240, 9729);
+                GLES20.glTexParameteri(36197, 10242, 33071);
+                GLES20.glTexParameteri(36197, 10243, 33071);
+                this.f25967n[0] = new SurfaceTexture(this.H.f31004b0[0]);
+                this.f25967n[0].setOnFrameAvailableListener(new k00(this, 1));
+                if (this.H.B0) {
+                    this.H.p("GL input recreated: surface=0");
+                }
+                AndroidUtilities.runOnUIThread(new zk(this.H, 0, this.f25967n[0], 7));
+                c();
+                t60 t60Var5 = this.H;
+                float f15 = (1.0f / t60Var5.L0) / 2.0f;
+                float f16 = (1.0f / t60Var5.M0) / 2.0f;
+                float f17 = 0.5f - f15;
+                float f18 = 0.5f - f16;
+                float f19 = f15 + 0.5f;
+                float f20 = f16 + 0.5f;
+                t60Var5.J0 = org.telegram.messenger.bi.h(ByteBuffer.allocateDirect(32));
+                this.H.J0.put(new float[]{f17, f18, f19, f18, f17, f20, f19, f20}).position(0);
+                return;
+            }
+            finish();
+            if (this.f25972y && ((!((z14 = (obj = message.obj) instanceof h60)) || ((h60) obj).f26978c != -2) && (l60Var = this.H.f31020i1) != null)) {
+                int i13 = message.arg1;
+                if (z14) {
+                    h60Var = (h60) obj;
+                }
+                l60Var.i(i13, h60Var);
+            }
+            Looper myLooper = Looper.myLooper();
+            if (myLooper != null) {
+                myLooper.quit();
+                return;
+            }
+            return;
+        }
+        int i14 = message.arg1;
+        int i15 = message.arg2;
+        if ((i15 & 1) != 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        e60Var.G.setEnabled(z10);
-        ci.v2 v2Var = e60Var.H;
-        if (z10 && (k0Var = e60Var.S) != null && k0Var.f14958b != 1) {
+        if ((i15 & 2) != 0) {
             z11 = true;
-        }
-        v2Var.setEnabled(z11);
-        e60Var.v();
-    }
-
-    public static void l(e60 e60Var) {
-        org.telegram.ui.il ilVar = e60Var.E;
-        if (!e60Var.f26005k0) {
-            return;
-        }
-        e60Var.f26005k0 = false;
-        ilVar.invalidate();
-        ilVar.animate().cancel();
-        ilVar.animate().alpha(0.0f).setDuration(120L).setInterpolator(new DecelerateInterpolator()).start();
-    }
-
-    public void setRecordingUiFrameClockActive(boolean z10) {
-        org.telegram.ui.jk jkVar;
-        if (z10 != this.f26025z0) {
-            this.f26025z0 = z10;
-            this.f26024y0 = 0L;
-            aq aqVar = this.B0;
-            if (z10) {
-                yf.h.d().a(30, aqVar);
-            } else {
-                yf.h.d().f(aqVar);
-            }
-            if (this.d != z10) {
-                this.d = z10;
-                i60 i60Var = this.f28068c;
-                if (i60Var != null && (jkVar = ((org.telegram.ui.oj) i60Var).f39219a.W) != null) {
-                    jkVar.setRoundVideoUiFrameClockActive(z10);
-                }
-            }
-        }
-    }
-
-    public void setScreenFlashEnabled(boolean z10) {
-        Activity parentActivity = this.f25999f.getParentActivity();
-        if (parentActivity == null) {
-            return;
-        }
-        WindowManager.LayoutParams attributes = parentActivity.getWindow().getAttributes();
-        ci.x2 x2Var = this.J;
-        if (z10) {
-            if (Float.isNaN(this.f26020w0)) {
-                this.f26020w0 = attributes.screenBrightness;
-            }
-            attributes.screenBrightness = 1.0f;
-            x2Var.c(null);
         } else {
-            if (!Float.isNaN(this.f26020w0)) {
-                attributes.screenBrightness = this.f26020w0;
-                this.f26020w0 = Float.NaN;
-            }
-            x2Var.d();
+            z11 = false;
         }
-        parentActivity.getWindow().setAttributes(attributes);
-    }
-
-    @Override
-    public final void a(boolean z10) {
-        int i10;
-        if (this.P == null) {
-            return;
-        }
-        if (z10) {
-            i10 = 0;
-        } else {
-            i10 = 6;
-        }
-        r(i10);
-        this.P.a();
-        a11 a11Var = this.T;
-        if (a11Var != null) {
-            a11Var.d(true);
-        }
-        this.T = null;
-        MediaController.getInstance().requestRecordAudioFocus(false);
-        t(false, false);
-    }
-
-    @Override
-    public final void b(float f7, int i10) {
-        ki.r0 r0Var;
-        i2.f0 f0Var;
-        if (this.P != null && (r0Var = this.R) != null && r0Var.f15036a == 5) {
-            n();
-            if (i10 == 0) {
-                this.P.q();
-            } else if (i10 == 1) {
-                ki.s0 s0Var = this.P;
-                s0Var.getClass();
-                ki.s0.t();
-                if (s0Var.W == 5 && (f0Var = s0Var.S) != null) {
-                    f0Var.e();
-                    s0Var.x(false);
-                    l2.g gVar = s0Var.d;
-                    s0Var.S.J0();
-                    gVar.getClass();
-                }
-            } else if (i10 == 2) {
-                ki.s0 s0Var2 = this.P;
-                long j3 = f7 * ((float) this.R.f15037b);
-                s0Var2.getClass();
-                ki.s0.t();
-                if (s0Var2.W == 5 && s0Var2.S != null) {
-                    long j10 = s0Var2.G;
-                    s0Var2.S.W0(5, Math.max(j10, Math.min(Math.max(j10, s0Var2.H - 1), j3)));
-                    s0Var2.d.getClass();
-                }
-            }
-        }
-    }
-
-    @Override
-    public final void c(boolean z10) {
-        setRecordingUiFrameClockActive(false);
-        ValueAnimator valueAnimator = this.f25994a0;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        ki.s0 s0Var = this.P;
-        if (s0Var != null) {
-            ki.s0.t();
-            int i10 = s0Var.W;
-            if (i10 == 10) {
-                if (!s0Var.C) {
-                    s0Var.i();
-                }
-            } else if (i10 != 8) {
-                s0Var.a();
-            } else {
-                s0Var.e();
-                s0Var.r();
-                s0Var.f15053l.s();
-                s0Var.C = true;
-                s0Var.v(10);
-                s0Var.m("released");
-                s0Var.f15050i.removeCallbacksAndMessages(null);
-                s0Var.f15051j.shutdown();
-                s0Var.f15052k.shutdown();
-            }
-            this.P = null;
-        }
-        a11 a11Var = this.T;
-        if (a11Var != null) {
-            a11Var.d(true ^ this.f26003i0);
-            this.T = null;
-        }
-        setScreenFlashEnabled(false);
-        MediaController.getInstance().requestRecordAudioFocus(false);
-        u();
-        c60 c60Var = this.v;
-        c60Var.setTranslationX(0.0f);
-        this.f26010p0 = 0.0f;
-        c60Var.setTranslationY(0.0f + this.f26009o0);
-        c60Var.setImageReceiver(null);
-        MediaController.getInstance().resumeByRewind();
-    }
-
-    @Override
-    public final boolean d() {
-        ki.r0 r0Var = this.R;
-        if (r0Var != null) {
-            int i10 = r0Var.f15036a;
-            if (i10 == 4 || i10 == 5 || i10 == 6) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final void e(float f7) {
-        float f10 = f7 * 0.5f;
-        this.f26009o0 = f10;
-        this.v.setTranslationY(this.f26010p0 + f10);
-    }
-
-    @Override
-    public final void f(int i10, int i11, int i12, long j3, long j10, boolean z10) {
-        ki.r0 r0Var;
-        boolean z11;
-        int i13;
-        ki.s0 s0Var = this.P;
-        if (s0Var != null && (r0Var = this.R) != null) {
-            if (i10 == 3) {
-                if (s0Var != null && r0Var != null && r0Var.f15036a == 3) {
-                    r(2);
-                    this.P.p();
-                }
-            } else if (i10 == 1 || i10 == 4) {
-                long currentDurationMs = getCurrentDurationMs();
-                if (currentDurationMs < 800) {
-                    NotificationCenter.getInstance(this.h).lambda$postNotificationNameOnUIThread$1(NotificationCenter.audioRecordTooShort, Integer.valueOf(this.f26007n), Boolean.TRUE, Integer.valueOf((int) currentDurationMs));
-                    a(false);
-                    return;
-                }
-                if (this.R.f15036a == 3) {
-                    r(5);
-                } else {
-                    n();
-                }
-                this.V = new d60(j3, i11, i12, z10, j10);
-                ki.s0 s0Var2 = this.P;
-                boolean z12 = this.f26002h0;
-                boolean z13 = !z12;
-                s0Var2.getClass();
-                ki.s0.t();
-                int i14 = s0Var2.W;
-                if (i14 == 3 || i14 == 5) {
-                    s0Var2.f15054m.b("finish requested: state=" + hg.c.B(s0Var2.W) + ", includeAudio=" + z13 + ", durationMs=" + s0Var2.j() + ", trim=" + s0Var2.G + ".." + s0Var2.H);
-                    s0Var2.f15066z = z13;
-                    if (s0Var2.W == 3) {
-                        s0Var2.E = s0Var2.j();
-                        s0Var2.f15065y = true;
-                        s0Var2.e();
-                        s0Var2.f15050i.removeCallbacks(s0Var2.T);
-                        s0Var2.v(7);
-                        boolean D = s0Var2.f15053l.D();
-                        s0Var2.B = D;
-                        if (!D) {
-                            s0Var2.h(new IllegalStateException("Unable to stop the camera segment"));
-                            return;
-                        }
+        if (this.f25966f) {
+            if (!this.d.equals(this.f25963b.eglGetCurrentContext()) || !this.f25965e.equals(this.f25963b.eglGetCurrentSurface(12377))) {
+                EGL10 egl102 = this.f25963b;
+                EGLDisplay eGLDisplay2 = this.f25964c;
+                EGLSurface eGLSurface2 = this.f25965e;
+                if (!egl102.eglMakeCurrent(eGLDisplay2, eGLSurface2, eGLSurface2, this.d)) {
+                    if (BuildVars.LOGS_ENABLED) {
+                        org.telegram.messenger.bi.v(this.f25963b, new StringBuilder("eglMakeCurrent failed "));
                         return;
                     }
-                    s0Var2.r();
-                    s0Var2.v(7);
-                    if (!s0Var2.l() && !z12) {
-                        z11 = false;
-                    } else {
-                        z11 = true;
-                    }
-                    if (s0Var2.l()) {
-                        i13 = 1;
-                    } else {
-                        i13 = 2;
-                    }
-                    s0Var2.f15051j.execute(new ki.g0(s0Var2, s0Var2.Q, z11, s0Var2.R, z13, i13, s0Var2.P));
+                    return;
                 }
             }
-        }
-    }
-
-    @Override
-    public final void g(ah.c cVar, org.telegram.ui.hj hjVar) {
-        View view = this.F;
-        ch.d c10 = cVar.c(view, hjVar, false);
-        c10.x(AndroidUtilities.dp(6.0f));
-        c10.y(AndroidUtilities.dp(21.0f));
-        view.setBackground(c10);
-    }
-
-    @Override
-    public View getButtonsLayout() {
-        return this.F;
-    }
-
-    @Override
-    public h60 getCameraContainer() {
-        return this.v;
-    }
-
-    @Override
-    public RectF getCameraRect() {
-        b60 b60Var = this.f26023y;
-        int[] iArr = this.K;
-        b60Var.getLocationOnScreen(iArr);
-        int i10 = iArr[0];
-        return new RectF(i10, iArr[1], b60Var.getWidth() + i10, b60Var.getHeight() + iArr[1]);
-    }
-
-    @Override
-    public View getMuteImageView() {
-        return this.I;
-    }
-
-    @Override
-    public Paint getPaint() {
-        return this.f26019w.getPaint();
-    }
-
-    @Override
-    public TextureView getTextureView() {
-        return this.f26023y;
-    }
-
-    @Override
-    public final void h(boolean z10) {
-        if (this.P != null) {
-            return;
-        }
-        setVisibility(0);
-        this.f26019w.getPaint().setAlpha(255);
-        this.f26003i0 = false;
-        this.f26002h0 = false;
-        this.f25998e0 = false;
-        this.f26001g0 = false;
-        this.f26008n0 = 0L;
-        this.f26019w.setProgress(0.0f);
-        org.telegram.ui.il ilVar = this.E;
-        if (!this.f26005k0) {
-            if (this.m0 == null) {
-                try {
-                    this.m0 = BitmapFactory.decodeFile(new File(ApplicationLoader.getFilesDirFixed(), "icthumb.jpg").getAbsolutePath());
-                } catch (Throwable unused) {
-                }
+            if (z10) {
+                this.f25967n[0].updateTexImage();
             }
-            Bitmap bitmap = this.m0;
-            if (bitmap != null) {
-                ilVar.setImageBitmap(bitmap);
+            if (z11) {
+                this.f25967n[1].updateTexImage();
+            }
+            if (this.H.B0 && this.H.f31024k1 == this.H.A0 && ((this.H.f31024k1 == 0 && z10) || (this.H.f31024k1 == 1 && z11))) {
+                z12 = true;
             } else {
-                ilVar.setImageResource(R.drawable.icplaceholder);
+                z12 = false;
             }
-            this.f26005k0 = true;
-            ilVar.animate().cancel();
-            ilVar.setAlpha(1.0f);
-            ilVar.invalidate();
-        }
-        this.T = new a11(this.h, this.f26012r);
-        this.Q = (ki.q0) ri.e.f46459c.a();
-        ki.j0 j0Var = new ki.j0(getContext(), this.f26023y);
-        j0Var.f14947c = new File(ApplicationLoader.getFilesDirFixed(), "cache");
-        j0Var.d = (ki.l0) ri.e.h.a();
-        j0Var.f14948e = this.Q;
-        j0Var.h = ri.e.f46461f.a();
-        j0Var.f14949f = (ki.m0) ri.e.d.a();
-        j0Var.f14950g = (ki.n0) ri.e.f46460e.a();
-        ri.a aVar = ri.e.f46462g;
-        aVar.a();
-        j0Var.f14951i = aVar.d;
-        l2.g gVar = this.C0;
-        j0Var.f14952j = gVar;
-        a11 a11Var = this.T;
-        j0Var.f14953k = a11Var;
-        j0Var.f14954l = new pv(this, 6);
-        if (j0Var.d != null) {
-            if (j0Var.f14948e != null) {
-                if (j0Var.h > 0) {
-                    if (j0Var.f14949f != null) {
-                        if (j0Var.f14950g != null) {
-                            if (gVar != null) {
-                                if (a11Var != null) {
-                                    this.P = new ki.s0(j0Var);
-                                    MediaController.getInstance().requestRecordAudioFocus(true);
-                                    ki.s0 s0Var = this.P;
-                                    s0Var.getClass();
-                                    ki.s0.t();
-                                    if (s0Var.W == 1) {
-                                        try {
-                                            s0Var.f15054m.b("start requested");
-                                            s0Var.c(true);
-                                            s0Var.v(2);
-                                            s0Var.f15053l.C(s0Var.Q, 0L, s0Var.f15057p);
-                                        } catch (Exception e7) {
-                                            s0Var.h(e7);
+            if (!this.f25972y) {
+                t60 t60Var6 = this.H;
+                if (t60Var6.f31020i1 == null) {
+                    t60Var6.f31020i1 = new l60(t60Var6);
+                }
+                t60 t60Var7 = this.H;
+                if (t60Var7.f31020i1.F0) {
+                    if (!t60Var7.K) {
+                        this.H.K = true;
+                        AndroidUtilities.runOnUIThread(new Runnable(this) {
+                            public final e60 f25609b;
+
+                            {
+                                this.f25609b = this;
+                            }
+
+                            @Override
+                            public final void run() {
+                                switch (r2) {
+                                    case 0:
+                                        this.f25609b.H.f31032r0.animate().setDuration(120L).alpha(0.0f).setInterpolator(new DecelerateInterpolator()).start();
+                                        return;
+                                    default:
+                                        t60 t60Var8 = this.f25609b.H;
+                                        if (t60Var8.f31030q0 != null) {
+                                            Bitmap bitmap = t60Var8.f31022j1;
+                                            if (bitmap != null) {
+                                                bitmap.recycle();
+                                                t60Var8.f31022j1 = null;
+                                            }
+                                            t60Var8.f31022j1 = t60Var8.f31030q0.getBitmap();
+                                            return;
                                         }
+                                        return;
+                                }
+                            }
+                        });
+                    }
+                    z13 = false;
+                } else {
+                    z13 = true;
+                }
+                t60 t60Var8 = this.H;
+                l60 l60Var2 = t60Var8.f31020i1;
+                a60 a60Var = t60Var8.f31013f0;
+                android.opengl.EGLContext eglGetCurrentContext = EGL14.eglGetCurrentContext();
+                if (l60Var2.F0 && l60Var2.T != null && l60Var2.T.getLooper() != null && l60Var2.T.getLooper().getThread() != null && l60Var2.T.getLooper().getThread().isAlive()) {
+                    l60Var2.f28296w = eglGetCurrentContext;
+                    l60Var2.T.sendMessage(l60Var2.T.obtainMessage(0, 1, 0));
+                }
+                l60Var2.F0 = true;
+                int i16 = MessagesController.getInstance(l60Var2.H0.f31012f).roundVideoSize;
+                AndroidUtilities.runOnUIThread(new vh(7));
+                l60Var2.f28267a = a60Var;
+                l60Var2.d = i16;
+                l60Var2.f28274e = i16;
+                l60Var2.f28276f = MessagesController.getInstance(l60Var2.H0.f31012f).roundVideoBitrate * 1024;
+                l60Var2.f28296w = eglGetCurrentContext;
+                synchronized (l60Var2.U) {
+                    try {
+                        if (!l60Var2.W) {
+                            l60Var2.W = true;
+                            Thread thread = new Thread(l60Var2, "TextureMovieEncoder");
+                            thread.setPriority(10);
+                            thread.start();
+                            while (!l60Var2.V) {
+                                try {
+                                    l60Var2.U.wait();
+                                } catch (InterruptedException unused) {
+                                }
+                            }
+                            l60Var2.A0.clear();
+                            l60Var2.C0 = 0;
+                            DispatchQueue dispatchQueue = l60Var2.B0;
+                            if (dispatchQueue != null) {
+                                dispatchQueue.cleanupQueue();
+                                l60Var2.B0.recycle();
+                            }
+                            l60Var2.B0 = new DispatchQueue("keyframes_thumb_queue");
+                            l60Var2.T.sendMessage(l60Var2.T.obtainMessage(0));
+                        }
+                    } finally {
+                    }
+                }
+                Object obj4 = this.h;
+                if (obj4 instanceof CameraSession) {
+                    i10 = ((CameraSession) obj4).getCurrentOrientation();
+                } else if (obj4 instanceof Camera2Session) {
+                    i10 = ((Camera2Session) obj4).getCurrentOrientation();
+                } else {
+                    i10 = 0;
+                }
+                if (i10 == 90 || i10 == 270) {
+                    t60 t60Var9 = this.H;
+                    float f21 = t60Var9.L0;
+                    t60Var9.L0 = t60Var9.M0;
+                    t60Var9.M0 = f21;
+                }
+                this.f25972y = true;
+                this.H.v();
+            } else {
+                z13 = false;
+            }
+            t60 t60Var10 = this.H;
+            if (t60Var10.f31020i1 != null && ((t60Var10.f31024k1 == 0 && z10) || (this.H.f31024k1 == 1 && z11))) {
+                t60 t60Var11 = this.H;
+                l60 l60Var3 = t60Var11.f31020i1;
+                SurfaceTexture surfaceTexture2 = this.f25967n[t60Var11.f31024k1];
+                t60 t60Var12 = this.H;
+                if (t60Var12.f31036u0) {
+                    i14 = t60Var12.f31024k1;
+                }
+                l60Var3.f(surfaceTexture2, Integer.valueOf(i14), System.nanoTime());
+            }
+            this.f25967n[this.H.f31024k1].getTransformMatrix(this.H.G0);
+            GLES20.glUseProgram(this.f25968r);
+            GLES20.glActiveTexture(33984);
+            t60 t60Var13 = this.H;
+            GLES20.glBindTexture(36197, t60Var13.f31004b0[t60Var13.f31024k1]);
+            GLES20.glVertexAttribPointer(this.f25970w, 3, 5126, false, 12, (Buffer) this.H.I0);
+            GLES20.glEnableVertexAttribArray(this.f25970w);
+            GLES20.glVertexAttribPointer(this.f25971x, 2, 5126, false, 8, (Buffer) this.H.J0);
+            GLES20.glEnableVertexAttribArray(this.f25971x);
+            GLES20.glUniformMatrix4fv(this.v, 1, false, this.H.G0, 0);
+            GLES20.glUniformMatrix4fv(this.f25969s, 1, false, this.H.F0, 0);
+            GLES20.glDrawArrays(5, 0, 4);
+            GLES20.glDisableVertexAttribArray(this.f25970w);
+            GLES20.glDisableVertexAttribArray(this.f25971x);
+            GLES20.glBindTexture(36197, 0);
+            GLES20.glUseProgram(0);
+            this.f25963b.eglSwapBuffers(this.f25964c, this.f25965e);
+            if (z12 && this.H.B0) {
+                this.H.B0 = false;
+                this.H.p("first target frame presented: surface=" + this.H.f31024k1);
+            }
+            if (z13) {
+                AndroidUtilities.runOnUIThread(new Runnable(this) {
+                    public final e60 f25609b;
+
+                    {
+                        this.f25609b = this;
+                    }
+
+                    @Override
+                    public final void run() {
+                        switch (r2) {
+                            case 0:
+                                this.f25609b.H.f31032r0.animate().setDuration(120L).alpha(0.0f).setInterpolator(new DecelerateInterpolator()).start();
+                                return;
+                            default:
+                                t60 t60Var82 = this.f25609b.H;
+                                if (t60Var82.f31030q0 != null) {
+                                    Bitmap bitmap = t60Var82.f31022j1;
+                                    if (bitmap != null) {
+                                        bitmap.recycle();
+                                        t60Var82.f31022j1 = null;
                                     }
-                                    t(true, false);
+                                    t60Var82.f31022j1 = t60Var82.f31030q0.getBitmap();
                                     return;
                                 }
-                                throw new IllegalStateException("Output listener is required");
-                            }
-                            throw new IllegalStateException("Session listener is required");
+                                return;
                         }
-                        throw new IllegalStateException("Frame rate is required");
                     }
-                    throw new IllegalStateException("Camera resolution is required");
-                }
-                throw new IllegalStateException("Video bitrate is required");
-            }
-            throw new IllegalStateException("Output resolution is required");
-        }
-        throw new IllegalStateException("Initial camera is required");
-    }
-
-    @Override
-    public final void i() {
-        ki.r0 r0Var;
-        ki.s0 s0Var = this.P;
-        if (s0Var != null && (r0Var = this.R) != null) {
-            int i10 = r0Var.f15036a;
-            if (i10 == 3) {
-                if (s0Var != null && r0Var != null && i10 == 3) {
-                    r(2);
-                    this.P.p();
-                }
-            } else if (i10 == 5) {
-                this.U = null;
-                this.f26000f0 = true;
-                this.f26001g0 = false;
-                ki.s0.t();
-                if (s0Var.W == 5 && s0Var.H - s0Var.G < s0Var.f15056o) {
-                    s0Var.M++;
-                    s0Var.f15054m.b("resume requested: trim=" + s0Var.G + ".." + s0Var.H + ", sourceDurationMs=" + s0Var.E);
-                    s0Var.r();
-                    s0Var.v(6);
-                    s0Var.f15051j.execute(new ci.u1(s0Var, s0Var.l(), s0Var.Q, s0Var.P, s0Var.R));
-                }
+                });
             }
         }
     }
 
-    public final void n() {
-        ki.r0 r0Var;
-        VideoEditedInfo videoEditedInfo;
-        if (this.P != null && (r0Var = this.R) != null && (videoEditedInfo = this.U) != null) {
-            long j3 = r0Var.f15037b;
-            long max = Math.max(0L, videoEditedInfo.startTime);
-            long j10 = this.U.endTime;
-            if (j10 >= 0) {
-                j3 = Math.min(j3, j10);
-            }
-            ki.s0 s0Var = this.P;
-            s0Var.getClass();
-            ki.s0.t();
-            if (s0Var.W == 5) {
-                long max2 = Math.max(0L, Math.min(s0Var.E, max));
-                long max3 = Math.max(max2, Math.min(s0Var.E, j3));
-                if (max3 - max2 >= Math.min(800L, s0Var.E)) {
-                    s0Var.G = max2;
-                    s0Var.H = max3;
-                    i2.f0 f0Var = s0Var.S;
-                    if (f0Var != null) {
-                        f0Var.W0(5, max2);
-                    }
-                    s0Var.d.getClass();
-                    s0Var.o();
-                }
-            }
-        }
-    }
-
-    public final Bitmap o(Bitmap bitmap) {
-        b60 b60Var = this.f26023y;
-        if (b60Var.getWidth() > 0 && b60Var.getHeight() > 0) {
-            Matrix matrix = this.L;
-            b60Var.getTransform(matrix);
-            if (!matrix.isIdentity()) {
-                float[] fArr = this.M;
-                matrix.getValues(fArr);
-                float width = bitmap.getWidth() / b60Var.getWidth();
-                float height = bitmap.getHeight() / b60Var.getHeight();
-                fArr[1] = (width / height) * fArr[1];
-                fArr[2] = fArr[2] * width;
-                fArr[3] = (height / width) * fArr[3];
-                fArr[5] = fArr[5] * height;
-                fArr[6] = fArr[6] / width;
-                fArr[7] = fArr[7] / height;
-                matrix.setValues(fArr);
-                Bitmap createBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
-                new Canvas(createBitmap).drawBitmap(bitmap, matrix, this.N);
-                bitmap.recycle();
-                return createBitmap;
-            }
-        }
-        return bitmap;
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (getParent() != null) {
-            getParent().requestDisallowInterceptTouchEvent(true);
-        }
-        return super.onInterceptTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12;
-        if (View.MeasureSpec.getSize(i11) - getPaddingBottom() > View.MeasureSpec.getSize(i10) * 1.3f) {
-            i12 = AndroidUtilities.roundPlayingMessageSize;
-        } else {
-            i12 = AndroidUtilities.roundMessageSize;
-        }
-        if (this.f26022x0 != i12) {
-            this.f26022x0 = i12;
-            c60 c60Var = this.v;
-            c60Var.getLayoutParams().width = AndroidUtilities.dp(28.0f) + i12;
-            c60Var.getLayoutParams().height = AndroidUtilities.dp(28.0f) + i12;
-            ((FrameLayout.LayoutParams) this.I.getLayoutParams()).topMargin = (i12 / 2) - AndroidUtilities.dp(24.0f);
-        }
-        super.onMeasure(i10, i11);
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), 1073741824);
-        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824);
-        ci.x2 x2Var = this.J;
-        x2Var.f6266b.measure(makeMeasureSpec, makeMeasureSpec2);
-        x2Var.f6267c.measure(makeMeasureSpec, makeMeasureSpec2);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0 && motionEvent.getY() > getMeasuredHeight() - getPaddingBottom()) {
-            return false;
-        }
-        return true;
-    }
-
-    public final VideoEditedInfo p(File file, long j3, z01 z01Var) {
-        long j10;
+    public final void requestRender(boolean z10, boolean z11) {
         int i10;
-        int i11;
-        ki.n0 n0Var;
-        VideoEditedInfo videoEditedInfo = new VideoEditedInfo();
-        videoEditedInfo.startTime = -1L;
-        videoEditedInfo.endTime = -1L;
-        videoEditedInfo.estimatedDuration = j3;
-        if (z01Var == null) {
-            j10 = file.length();
-        } else {
-            j10 = z01Var.f33391a;
-        }
-        videoEditedInfo.estimatedSize = Math.max(1L, j10);
-        videoEditedInfo.roundVideo = true;
-        ki.s0 s0Var = this.P;
-        if (s0Var != null && (n0Var = s0Var.f15060s) != null) {
-            i10 = n0Var.f14996a;
-        } else {
-            i10 = 30;
-        }
-        videoEditedInfo.framerate = i10;
-        ki.q0 q0Var = this.Q;
-        if (q0Var == null) {
-            i11 = 480;
-        } else {
-            i11 = q0Var.f15032a;
-        }
-        videoEditedInfo.originalWidth = i11;
-        videoEditedInfo.resultWidth = i11;
-        videoEditedInfo.originalHeight = i11;
-        videoEditedInfo.resultHeight = i11;
-        videoEditedInfo.originalPath = file.getAbsolutePath();
-        if (z01Var != null) {
-            videoEditedInfo.file = z01Var.f33392b;
-            videoEditedInfo.encryptedFile = z01Var.f33393c;
-            videoEditedInfo.key = z01Var.d;
-            videoEditedInfo.iv = z01Var.f33394e;
-        }
-        return videoEditedInfo;
-    }
-
-    public final void q() {
-        if (this.f26017u0) {
-            this.f26017u0 = false;
-            this.f26015s0 = -1;
-            this.f26016t0 = -1;
-            if (this.P == null) {
-                return;
-            }
-            ValueAnimator valueAnimator = this.f25994a0;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-            }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f26013r0, 0.0f);
-            this.f25994a0 = ofFloat;
-            ofFloat.setDuration(350L);
-            this.f25994a0.addUpdateListener(new z50(this, 1));
-            this.f25994a0.start();
-        }
-    }
-
-    public final void r(int i10) {
-        if (this.f26001g0 && i10 == 2) {
-            return;
-        }
-        this.f26001g0 = true;
-        NotificationCenter.getInstance(this.h).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStopped, Integer.valueOf(this.f26007n), Integer.valueOf(i10));
-    }
-
-    public final void s(boolean z10) {
-        Bitmap bitmap;
-        b60 b60Var = this.f26023y;
-        if (b60Var.isAvailable() && (bitmap = b60Var.getBitmap(180, 180)) != null) {
-            try {
-                if (bitmap.getWidth() != 0 && bitmap.getHeight() != 0 && bitmap.getPixel(bitmap.getWidth() / 2, bitmap.getHeight() / 2) != 0) {
-                    bitmap = o(bitmap);
-                    Utilities.stackBlurBitmap(bitmap, 15);
-                    Bitmap bitmap2 = this.m0;
-                    this.m0 = bitmap;
-                    if (bitmap2 != null && bitmap2 != bitmap && !bitmap2.isRecycled()) {
-                        bitmap2.recycle();
-                    }
-                    if (z10) {
-                        try {
-                            FileOutputStream fileOutputStream = new FileOutputStream(new File(ApplicationLoader.getFilesDirFixed(), "icthumb.jpg"));
-                            bitmap.compress(Bitmap.CompressFormat.JPEG, 87, fileOutputStream);
-                            fileOutputStream.close();
-                        } catch (Throwable unused) {
-                        }
-                    }
-                    if (bitmap != this.m0) {
-                        bitmap.recycle();
-                        return;
-                    }
-                    return;
-                }
-            } finally {
-                if (bitmap != this.m0) {
-                    bitmap.recycle();
-                }
-            }
-        }
-    }
-
-    @Override
-    public void setInternalPadding(int i10) {
-        setPadding(0, 0, 0, i10);
-    }
-
-    @Override
-    public void setIsMessageTransition(boolean z10) {
-        this.v.getClass();
-    }
-
-    @Override
-    public void setVisibility(int i10) {
-        super.setVisibility(i10);
-        this.F.setAlpha(0.0f);
-        c60 c60Var = this.v;
-        c60Var.setAlpha(0.0f);
-        c60Var.setScaleX(0.1f);
-        c60Var.setScaleY(0.1f);
-        c60Var.setTranslationX(0.0f);
-        ImageView imageView = this.I;
-        imageView.setAlpha(0.0f);
-        imageView.setScaleX(1.0f);
-        imageView.setScaleY(1.0f);
-        this.f26019w.getPaint().setAlpha(0);
-        try {
-            Activity activity = (Activity) getContext();
-            if (i10 == 0) {
-                activity.getWindow().addFlags(128);
+        Handler handler = getHandler();
+        if (handler != null) {
+            int intValue = this.E.intValue();
+            if (z11) {
+                i10 = 2;
             } else {
-                activity.getWindow().clearFlags(128);
+                i10 = 0;
             }
-        } catch (Exception e7) {
-            FileLog.e(e7);
+            sendMessage(handler.obtainMessage(0, intValue, (z10 ? 1 : 0) + i10), 0);
         }
     }
 
-    public final void t(boolean z10, boolean z11) {
-        float f7;
-        float f10;
-        float f11;
-        float f12;
-        float f13;
-        float f14;
-        float f15;
-        g60 g60Var = this.f28066a;
-        if (g60Var != null) {
-            ((org.telegram.ui.re) g60Var).f40078b.f43500sc.a(z10, true);
+    @Override
+    public final void run() {
+        if (BuildVars.LOGS_ENABLED) {
+            FileLog.d("InstantCamera start init gl");
         }
-        AnimatorSet animatorSet = this.W;
-        if (animatorSet != null) {
-            animatorSet.removeAllListeners();
-            this.W.cancel();
-        }
-        PipRoundVideoView pipRoundVideoView = PipRoundVideoView.F;
-        if (pipRoundVideoView != null) {
-            pipRoundVideoView.e(!z10);
-        }
-        c60 c60Var = this.v;
-        if (z10 && !this.f26004j0) {
-            c60Var.setTranslationX(0.0f);
-            float measuredHeight = getMeasuredHeight() * 0.5f;
-            this.f26010p0 = measuredHeight;
-            c60Var.setTranslationY(measuredHeight + this.f26009o0);
-        }
-        this.f26004j0 = z10;
-        View view = this.f26014s;
-        if (view != null) {
-            view.invalidate();
-        }
-        if (!z10 && Math.max(getCurrentDurationMs(), this.f26008n0) > 300) {
-            f7 = AndroidUtilities.dp(24.0f) - (getMeasuredWidth() * 0.5f);
-        } else {
-            f7 = 0.0f;
-        }
-        if (z10) {
-            f10 = 1.0f;
-        } else {
-            f10 = 0.0f;
-        }
-        if (z10) {
-            f11 = 0.0f;
-        } else {
-            f11 = 1.0f;
-        }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f11);
-        ofFloat.addUpdateListener(new z50(this, 0));
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        this.W = animatorSet2;
-        if (z10) {
-            f12 = 1.0f;
-        } else {
-            f12 = 0.0f;
-        }
-        float[] fArr = {f12};
-        LinearLayout linearLayout = this.F;
-        Property property = View.ALPHA;
-        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(linearLayout, property, fArr);
-        if (z10) {
-            f13 = 1.0f;
-        } else {
-            f13 = 0.0f;
-        }
-        ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(c60Var, property, f13);
-        float f16 = 0.1f;
-        if (z10) {
-            f14 = 1.0f;
-        } else {
-            f14 = 0.1f;
-        }
-        ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(c60Var, View.SCALE_X, f14);
-        if (z10) {
-            f16 = 1.0f;
-        }
-        ObjectAnimator ofFloat5 = ObjectAnimator.ofFloat(c60Var, View.SCALE_Y, f16);
-        ObjectAnimator ofFloat6 = ObjectAnimator.ofFloat(c60Var, View.TRANSLATION_X, f7);
-        if (this.f26002h0 && z10) {
-            f15 = 1.0f;
-        } else {
-            f15 = 0.0f;
-        }
-        animatorSet2.playTogether(ofFloat2, ofFloat3, ofFloat4, ofFloat5, ofFloat6, ObjectAnimator.ofFloat(this.I, property, f15), ofFloat);
-        this.W.setDuration(180L);
-        this.W.setInterpolator(new DecelerateInterpolator());
-        if (!z10) {
-            this.W.addListener(new r8(this, 24));
-        } else {
-            setTranslationX(0.0f);
-        }
-        this.W.start();
-    }
-
-    public final void u() {
-        if (!this.f26018v0) {
-            return;
-        }
-        this.f26018v0 = false;
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
-    }
-
-    public final void v() {
-        ki.r0 r0Var = this.R;
-        int i10 = this.O;
-        ci.v2 v2Var = this.H;
-        if (r0Var != null && r0Var.f15040f) {
-            if (this.f25997d0 == null) {
-                kj0 kj0Var = new kj0(R.raw.roundcamera_flash_off, i10, i10);
-                this.f25997d0 = kj0Var;
-                kj0Var.setCallback(v2Var);
+        EGL10 egl10 = (EGL10) EGLContext.getEGL();
+        this.f25963b = egl10;
+        EGLDisplay eglGetDisplay = egl10.eglGetDisplay(EGL10.EGL_DEFAULT_DISPLAY);
+        this.f25964c = eglGetDisplay;
+        boolean z10 = false;
+        z10 = false;
+        z10 = false;
+        z10 = false;
+        z10 = false;
+        z10 = false;
+        z10 = false;
+        z10 = false;
+        z10 = false;
+        if (eglGetDisplay == EGL10.EGL_NO_DISPLAY) {
+            if (BuildVars.LOGS_ENABLED) {
+                org.telegram.messenger.bi.v(this.f25963b, new StringBuilder("InstantCamera eglGetDisplay failed "));
             }
-            v2Var.setImageDrawable(this.f25997d0);
-            return;
-        }
-        if (this.f25996c0 == null) {
-            kj0 kj0Var2 = new kj0(R.raw.roundcamera_flash_on, i10, i10);
-            this.f25996c0 = kj0Var2;
-            kj0Var2.setCallback(v2Var);
-        }
-        v2Var.setImageDrawable(this.f25996c0);
-    }
-
-    public final void w() {
-        org.telegram.ui.jk jkVar;
-        float f7;
-        ki.r0 r0Var = this.R;
-        if (r0Var != null) {
-            long j3 = r0Var.d;
-            if (r0Var.f15036a == 3) {
-                long min = Math.min(j3, (SystemClock.elapsedRealtime() + r0Var.f15037b) - r0Var.f15038c);
-                this.f26008n0 = min;
-                this.f26019w.setProgress(((float) min) / ((float) j3));
-                i60 i60Var = this.f28068c;
-                if (i60Var != null && (jkVar = ((org.telegram.ui.oj) i60Var).f39219a.W) != null && jkVar.f23914j1) {
-                    jkVar.f23908i1 = min;
-                    yg ygVar = jkVar.Y0;
-                    if (ygVar != null && ygVar.f33272r) {
-                        ygVar.h = min;
-                        ygVar.invalidate();
+            finish();
+        } else if (!this.f25963b.eglInitialize(eglGetDisplay, new int[2])) {
+            if (BuildVars.LOGS_ENABLED) {
+                org.telegram.messenger.bi.v(this.f25963b, new StringBuilder("InstantCamera eglInitialize failed "));
+            }
+            finish();
+        } else {
+            int[] iArr = new int[1];
+            EGLConfig[] eGLConfigArr = new EGLConfig[1];
+            if (!this.f25963b.eglChooseConfig(this.f25964c, new int[]{12352, 4, 12324, 8, 12323, 8, 12322, 8, 12321, 0, 12325, 0, 12326, 0, 12344}, eGLConfigArr, 1, iArr)) {
+                if (BuildVars.LOGS_ENABLED) {
+                    org.telegram.messenger.bi.v(this.f25963b, new StringBuilder("InstantCamera eglChooseConfig failed "));
+                }
+                finish();
+            } else if (iArr[0] > 0) {
+                EGLConfig eGLConfig = eGLConfigArr[0];
+                EGLContext eglCreateContext = this.f25963b.eglCreateContext(this.f25964c, eGLConfig, EGL10.EGL_NO_CONTEXT, new int[]{12440, 2, 12344});
+                this.d = eglCreateContext;
+                if (eglCreateContext == null) {
+                    if (BuildVars.LOGS_ENABLED) {
+                        org.telegram.messenger.bi.v(this.f25963b, new StringBuilder("InstantCamera eglCreateContext failed "));
                     }
-                    vg vgVar = jkVar.l1;
-                    if (vgVar != null && vgVar.f31757n) {
-                        if (!vgVar.h) {
-                            long j10 = vgVar.f31758r;
-                            if (j10 >= 0) {
-                                if (!vgVar.f31755e) {
-                                    long max = Math.max(0L, min - j10) % 1200;
-                                    if (max < 600) {
-                                        f7 = 1.0f - (((float) max) / 600.0f);
-                                    } else {
-                                        f7 = ((float) (max - 600)) / 600.0f;
-                                    }
-                                    vgVar.f31752a = f7;
+                    finish();
+                } else {
+                    SurfaceTexture surfaceTexture = this.f25962a;
+                    if (surfaceTexture != null) {
+                        EGLSurface eglCreateWindowSurface = this.f25963b.eglCreateWindowSurface(this.f25964c, eGLConfig, surfaceTexture, null);
+                        this.f25965e = eglCreateWindowSurface;
+                        if (eglCreateWindowSurface != null && eglCreateWindowSurface != EGL10.EGL_NO_SURFACE) {
+                            if (!this.f25963b.eglMakeCurrent(this.f25964c, eglCreateWindowSurface, eglCreateWindowSurface, this.d)) {
+                                if (BuildVars.LOGS_ENABLED) {
+                                    org.telegram.messenger.bi.v(this.f25963b, new StringBuilder("InstantCamera eglMakeCurrent failed "));
                                 }
-                                vgVar.invalidate();
+                                finish();
+                            } else {
+                                c();
+                                t60 t60Var = this.H;
+                                float f7 = t60Var.L0;
+                                int[] iArr2 = t60Var.f31004b0;
+                                float f10 = (1.0f / f7) / 2.0f;
+                                float f11 = (1.0f / t60Var.M0) / 2.0f;
+                                float[] fArr = {-1.0f, -1.0f, 0.0f, 1.0f, -1.0f, 0.0f, -1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f};
+                                float f12 = 0.5f - f10;
+                                float f13 = 0.5f - f11;
+                                float f14 = f10 + 0.5f;
+                                float f15 = f11 + 0.5f;
+                                float[] fArr2 = {f12, f13, f14, f13, f12, f15, f14, f15};
+                                if (t60Var.f31020i1 == null) {
+                                    t60Var.f31020i1 = new l60(t60Var);
+                                }
+                                FloatBuffer h = org.telegram.messenger.bi.h(ByteBuffer.allocateDirect(48));
+                                t60Var.I0 = h;
+                                h.put(fArr).position(0);
+                                FloatBuffer h10 = org.telegram.messenger.bi.h(ByteBuffer.allocateDirect(32));
+                                t60Var.J0 = h10;
+                                h10.put(fArr2).position(0);
+                                Matrix.setIdentityM(t60Var.G0, 0);
+                                int j3 = t60.j(t60Var, 35633, "uniform mat4 uMVPMatrix;\nuniform mat4 uSTMatrix;\nattribute vec4 aPosition;\nattribute vec4 aTextureCoord;\nvarying vec2 vTextureCoord;\nvoid main() {\n   gl_Position = uMVPMatrix * aPosition;\n   vTextureCoord = (uSTMatrix * aTextureCoord).xy;\n}\n");
+                                int j10 = t60.j(t60Var, 35632, "#extension GL_OES_EGL_image_external : require\nprecision lowp float;\nvarying vec2 vTextureCoord;\nuniform samplerExternalOES sTexture;\nvoid main() {\n   gl_FragColor = texture2D(sTexture, vTextureCoord);\n}\n");
+                                if (j3 != 0 && j10 != 0) {
+                                    int glCreateProgram = GLES20.glCreateProgram();
+                                    this.f25968r = glCreateProgram;
+                                    GLES20.glAttachShader(glCreateProgram, j3);
+                                    GLES20.glAttachShader(this.f25968r, j10);
+                                    GLES20.glLinkProgram(this.f25968r);
+                                    int[] iArr3 = new int[1];
+                                    GLES20.glGetProgramiv(this.f25968r, 35714, iArr3, 0);
+                                    if (iArr3[0] == 0) {
+                                        if (BuildVars.LOGS_ENABLED) {
+                                            FileLog.e("InstantCamera failed link shader");
+                                        }
+                                        GLES20.glDeleteProgram(this.f25968r);
+                                        this.f25968r = 0;
+                                    } else {
+                                        this.f25970w = GLES20.glGetAttribLocation(this.f25968r, "aPosition");
+                                        this.f25971x = GLES20.glGetAttribLocation(this.f25968r, "aTextureCoord");
+                                        this.f25969s = GLES20.glGetUniformLocation(this.f25968r, "uMVPMatrix");
+                                        this.v = GLES20.glGetUniformLocation(this.f25968r, "uSTMatrix");
+                                    }
+                                    Matrix.setIdentityM(t60Var.F0, 0);
+                                    GLES20.glGenTextures(2, iArr2, 0);
+                                    for (final int i10 = 0; i10 < 2; i10++) {
+                                        GLES20.glBindTexture(36197, iArr2[i10]);
+                                        GLES20.glTexParameteri(36197, 10241, 9729);
+                                        GLES20.glTexParameteri(36197, 10240, 9729);
+                                        GLES20.glTexParameteri(36197, 10242, 33071);
+                                        GLES20.glTexParameteri(36197, 10243, 33071);
+                                        SurfaceTexture surfaceTexture2 = new SurfaceTexture(iArr2[i10]);
+                                        SurfaceTexture[] surfaceTextureArr = this.f25967n;
+                                        surfaceTextureArr[i10] = surfaceTexture2;
+                                        surfaceTexture2.setOnFrameAvailableListener(new SurfaceTexture.OnFrameAvailableListener() {
+                                            @Override
+                                            public final void onFrameAvailable(SurfaceTexture surfaceTexture3) {
+                                                boolean z11;
+                                                e60 e60Var = e60.this;
+                                                int i11 = i10;
+                                                boolean z12 = true;
+                                                e60Var.H.W = true;
+                                                if (i11 == 0) {
+                                                    z11 = true;
+                                                } else {
+                                                    z11 = false;
+                                                }
+                                                if (i11 != 1) {
+                                                    z12 = false;
+                                                }
+                                                e60Var.requestRender(z11, z12);
+                                            }
+                                        });
+                                        AndroidUtilities.runOnUIThread(new zk(t60Var, i10, surfaceTextureArr[i10], 7));
+                                    }
+                                    if (BuildVars.LOGS_ENABLED) {
+                                        FileLog.e("InstantCamera gl initied");
+                                    }
+                                    z10 = true;
+                                } else {
+                                    if (BuildVars.LOGS_ENABLED) {
+                                        FileLog.e("InstantCamera failed creating shader");
+                                    }
+                                    finish();
+                                }
                             }
+                        } else {
+                            if (BuildVars.LOGS_ENABLED) {
+                                org.telegram.messenger.bi.v(this.f25963b, new StringBuilder("InstantCamera createWindowSurface failed "));
+                            }
+                            finish();
                         }
-                        vgVar.f31758r = min;
-                        vgVar.f31752a = 1.0f;
-                        vgVar.invalidate();
-                    }
-                    ChatActivityEnterView.SlideTextView slideTextView = jkVar.f23919k1;
-                    if (slideTextView != null && slideTextView.J && slideTextView.f24019n != 1.0f) {
-                        slideTextView.invalidate();
+                    } else {
+                        finish();
                     }
                 }
+            } else {
+                if (BuildVars.LOGS_ENABLED) {
+                    FileLog.e("InstantCamera eglConfig not initialized");
+                }
+                finish();
             }
         }
+        this.f25966f = z10;
+        super.run();
     }
 }

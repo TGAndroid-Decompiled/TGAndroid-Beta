@@ -1,78 +1,134 @@
 package ci;
 
-import android.app.Activity;
-import java.util.HashSet;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
+import android.graphics.Bitmap;
+import android.widget.TextView;
+import java.io.File;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.vy;
-import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.du;
-import org.telegram.ui.ep;
-import org.telegram.ui.lg;
-import org.telegram.ui.me;
-import org.telegram.ui.yn;
-public final class t1 implements RequestDelegate {
-    public final int f5953a;
-    public final boolean f5954b;
-    public final Object f5955c;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.Components.hz;
+import org.telegram.ui.Components.ru;
+import org.telegram.ui.ih1;
+import org.telegram.ui.vo0;
+public final class t1 implements Runnable {
+    public final int f5988a;
+    public final boolean f5989b;
+    public final Object f5990c;
     public final Object d;
-    public final Object f5956e;
+    public final Object f5991e;
+    public final Object f5992f;
 
-    public t1(w1 w1Var, boolean z10, TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults, String str) {
-        this.f5953a = 0;
-        this.f5955c = w1Var;
-        this.f5954b = z10;
-        this.d = tL_messages_getInlineBotResults;
-        this.f5956e = str;
+    public t1(Object obj, Object obj2, Object obj3, Object obj4, boolean z10, int i10) {
+        this.f5988a = i10;
+        this.f5990c = obj;
+        this.d = obj2;
+        this.f5991e = obj3;
+        this.f5992f = obj4;
+        this.f5989b = z10;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f5953a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new u1((w1) this.f5955c, tLObject, this.f5954b, (TLRPC.TL_messages_getInlineBotResults) this.d, (String) this.f5956e, 0));
-                return;
-            case 1:
-                AndroidUtilities.runOnUIThread(new i2.c1((me) this.f5955c, tL_error, (TwoStepVerificationActivity) this.d, (Activity) this.f5956e, this.f5954b, tLObject, 6));
-                return;
-            case 2:
-                AndroidUtilities.runOnUIThread(new u1((Object) ((yn) this.f5955c), (Object) ((nf.e) this.d), tLObject, (Object) ((lg) this.f5956e), this.f5954b, 15));
-                return;
-            case 3:
-                AndroidUtilities.runOnUIThread(new i2.c1((ep) this.f5955c, (TLRPC.TL_channels_toggleUsername) this.d, tLObject, (TLRPC.TL_username) this.f5956e, this.f5954b, tL_error, 8));
-                return;
-            case 4:
-                AndroidUtilities.runOnUIThread(new u1((vy) this.f5955c, (String) this.f5956e, this.f5954b, (String) this.d, tLObject));
-                return;
-            default:
-                AndroidUtilities.runOnUIThread(new i2.c1((du) this.f5955c, tLObject, (d) this.d, this.f5954b, (HashSet) this.f5956e, tL_error, 10));
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: ci.t1.run():void");
     }
 
-    public t1(Object obj, Object obj2, Object obj3, boolean z10, int i10) {
-        this.f5953a = i10;
-        this.f5955c = obj;
+    public t1(Object obj, Object obj2, Object obj3, boolean z10, Object obj4, int i10) {
+        this.f5988a = i10;
+        this.f5990c = obj;
         this.d = obj2;
-        this.f5956e = obj3;
-        this.f5954b = z10;
+        this.f5991e = obj3;
+        this.f5989b = z10;
+        this.f5992f = obj4;
     }
 
-    public t1(vy vyVar, String str, boolean z10, String str2) {
-        this.f5953a = 4;
-        this.f5955c = vyVar;
-        this.f5956e = str;
-        this.f5954b = z10;
+    public t1(Object obj, Object obj2, TLObject tLObject, Object obj3, boolean z10, int i10) {
+        this.f5988a = i10;
+        this.f5990c = obj;
+        this.f5991e = obj2;
+        this.d = tLObject;
+        this.f5992f = obj3;
+        this.f5989b = z10;
+    }
+
+    public t1(Object obj, Object obj2, boolean z10, Object obj3, Object obj4, int i10) {
+        this.f5988a = i10;
+        this.f5990c = obj;
+        this.d = obj2;
+        this.f5989b = z10;
+        this.f5991e = obj3;
+        this.f5992f = obj4;
+    }
+
+    public t1(ki.t0 t0Var, boolean z10, ki.u uVar, ki.p0 p0Var, File file) {
+        this.f5988a = 4;
+        this.f5990c = t0Var;
+        this.f5989b = z10;
+        this.d = uVar;
+        this.f5991e = p0Var;
+        this.f5992f = file;
+    }
+
+    public t1(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, TLObject tLObject, boolean z10, TLObject tLObject2, Object obj, int i10) {
+        this.f5988a = i10;
+        this.f5990c = notificationCenterDelegate;
+        this.f5991e = tLObject;
+        this.f5989b = z10;
+        this.d = tLObject2;
+        this.f5992f = obj;
+    }
+
+    public t1(TLRPC.payments_GiveawayInfo payments_giveawayinfo, boolean z10, String str, long j3, TLRPC.TL_messageMediaGiveaway tL_messageMediaGiveaway, org.telegram.ui.ActionBar.n2 n2Var) {
+        this.f5988a = 24;
+        this.f5990c = payments_giveawayinfo;
+        this.f5989b = z10;
+        this.f5992f = str;
+        this.d = tL_messageMediaGiveaway;
+        this.f5991e = n2Var;
+    }
+
+    public t1(org.telegram.ui.Components.ra raVar, String str, Bitmap bitmap, boolean z10, Bitmap bitmap2) {
+        this.f5988a = 16;
+        this.f5990c = raVar;
+        this.f5992f = str;
+        this.d = bitmap;
+        this.f5989b = z10;
+        this.f5991e = bitmap2;
+    }
+
+    public t1(ru ruVar, boolean z10, fi.o oVar, String str, TextView textView) {
+        this.f5988a = 17;
+        this.f5990c = ruVar;
+        this.f5989b = z10;
+        this.d = oVar;
+        this.f5992f = str;
+        this.f5991e = textView;
+    }
+
+    public t1(hz hzVar, String str, boolean z10, String str2, TLObject tLObject) {
+        this.f5988a = 18;
+        this.f5990c = hzVar;
+        this.f5992f = str;
+        this.f5989b = z10;
+        this.f5991e = str2;
+        this.d = tLObject;
+    }
+
+    public t1(vo0 vo0Var, boolean z10, String str, String str2, TL_account.updatePasswordSettings updatepasswordsettings) {
+        this.f5988a = 21;
+        this.f5990c = vo0Var;
+        this.f5989b = z10;
+        this.f5992f = str;
         this.d = str2;
+        this.f5991e = updatepasswordsettings;
     }
 
-    public t1(du duVar, d dVar, boolean z10, HashSet hashSet) {
-        this.f5953a = 5;
-        this.f5955c = duVar;
-        this.d = dVar;
-        this.f5954b = z10;
-        this.f5956e = hashSet;
+    public t1(ih1 ih1Var, TLObject tLObject, boolean z10, String str, TL_account.passwordInputSettings passwordinputsettings) {
+        this.f5988a = 23;
+        this.f5990c = ih1Var;
+        this.d = tLObject;
+        this.f5989b = z10;
+        this.f5992f = str;
+        this.f5991e = passwordinputsettings;
     }
 }

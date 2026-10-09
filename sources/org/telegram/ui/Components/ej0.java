@@ -1,77 +1,55 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Paint;
-import android.text.TextPaint;
-import android.text.style.LineHeightSpan;
-import android.text.style.MetricAffectingSpan;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
-public final class ej0 extends MetricAffectingSpan implements LineHeightSpan {
-    public fj0 f26148a;
+import java.util.Locale;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class ej0 implements qd0, sd0 {
+    public final int f26097a;
+    public final jj0 f26098b;
+
+    public ej0(jj0 jj0Var, int i10) {
+        this.f26097a = i10;
+        this.f26098b = jj0Var;
+    }
 
     @Override
-    public final void chooseHeight(CharSequence charSequence, int i10, int i11, int i12, int i13, Paint.FontMetricsInt fontMetricsInt) {
-        int i14;
-        int i15;
-        fj0 fj0Var = this.f26148a;
-        if (fj0Var.f26478b) {
-            int i16 = 2;
-            if (fj0Var.f26481f) {
-                i14 = 7;
-            } else {
-                i14 = 2;
-            }
-            if (i10 <= fj0Var.f26479c) {
-                int i17 = fontMetricsInt.ascent;
-                if (fj0Var.f26482n) {
-                    i15 = 2;
+    public String i(int i10) {
+        int i11 = this.f26097a;
+        jj0 jj0Var = this.f26098b;
+        switch (i11) {
+            case 0:
+                if (jj0Var.O) {
+                    return LocaleController.formatString("MilesShort", R.string.MilesShort, Integer.valueOf(i10));
+                }
+                return LocaleController.formatString("KMetersShort", R.string.KMetersShort, Integer.valueOf(i10));
+            default:
+                if (jj0Var.O) {
+                    if (i10 == 1) {
+                        return LocaleController.formatString("FootsShort", R.string.FootsShort, 250);
+                    }
+                    if (i10 > 1) {
+                        i10--;
+                    }
+                    Locale locale = Locale.US;
+                    return hg.c.h(i10, ".");
+                } else if (i10 == 1) {
+                    return LocaleController.formatString("MetersShort", R.string.MetersShort, 50);
                 } else {
-                    i15 = 0;
+                    if (i10 > 1) {
+                        i10--;
+                    }
+                    return LocaleController.formatString("MetersShort", R.string.MetersShort, Integer.valueOf(i10 * 100));
                 }
-                fontMetricsInt.ascent = i17 - AndroidUtilities.dp(i15 + i14);
-                int i18 = fontMetricsInt.top;
-                if (!this.f26148a.f26482n) {
-                    i16 = 0;
-                }
-                fontMetricsInt.top = i18 - AndroidUtilities.dp(i16 + i14);
-            }
-            if (i11 >= this.f26148a.d) {
-                float f7 = i14;
-                fontMetricsInt.descent = AndroidUtilities.dp(f7) + fontMetricsInt.descent;
-                fontMetricsInt.bottom = AndroidUtilities.dp(f7) + fontMetricsInt.bottom;
-            }
         }
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        float f7;
-        if (textPaint == null) {
-            return;
+    public void r(ud0 ud0Var, int i10) {
+        jj0 jj0Var = this.f26098b;
+        try {
+            jj0Var.performHapticFeedback(3, 2);
+        } catch (Exception unused) {
         }
-        if (this.f26148a.f26477a) {
-            f7 = 16.0f;
-        } else {
-            f7 = SharedConfig.fontSize - 2;
-        }
-        textPaint.setTextSize(AndroidUtilities.dp(f7));
-    }
-
-    @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        float f7;
-        float f10;
-        if (this.f26148a.f26477a) {
-            f7 = 16.0f;
-        } else {
-            f7 = SharedConfig.fontSize - 2;
-        }
-        textPaint.setTextSize(AndroidUtilities.dp(f7));
-        if (this.f26148a.f26477a) {
-            f10 = 1.1f;
-        } else {
-            f10 = 1.0f;
-        }
-        textPaint.setTextScaleX(f10);
+        jj0Var.c(true);
     }
 }

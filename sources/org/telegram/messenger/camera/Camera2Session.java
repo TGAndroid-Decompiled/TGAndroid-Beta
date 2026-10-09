@@ -10,7 +10,6 @@ import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.CaptureRequest;
 import android.hardware.camera2.params.StreamConfigurationMap;
 import android.media.ImageReader;
-import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.util.Range;
@@ -240,6 +239,7 @@ public class Camera2Session {
         String[] cameraIdList;
         android.util.Size size2;
         float width;
+        float f7;
         boolean z11;
         boolean z12;
         Context context = ApplicationLoader.applicationContext;
@@ -247,7 +247,7 @@ public class Camera2Session {
         try {
             size = null;
             str = null;
-            float f7 = 0.0f;
+            float f10 = 0.0f;
             for (String str2 : cameraManager.getCameraIdList()) {
                 try {
                     CameraCharacteristics cameraCharacteristics = cameraManager.getCameraCharacteristics(str2);
@@ -261,30 +261,32 @@ public class Camera2Session {
                                 } else {
                                     width = size2.getWidth() / size2.getHeight();
                                 }
-                                float f10 = i10 / i11;
-                                if (f10 >= 1.0f) {
+                                float f11 = i10 / i11;
+                                if (f11 >= 1.0f) {
+                                    f7 = 1.0f;
                                     z11 = true;
                                 } else {
+                                    f7 = 1.0f;
                                     z11 = false;
                                 }
-                                if (width >= 1.0f) {
+                                if (width >= f7) {
                                     z12 = true;
                                 } else {
                                     z12 = false;
                                 }
                                 if (z11 != z12) {
-                                    width = 1.0f / width;
+                                    width = f7 / width;
                                 }
-                                if (f7 > 0.0f) {
-                                    if (Math.abs(f10 - f7) > Math.abs(f10 - width)) {
+                                if (f10 > 0.0f) {
+                                    if (Math.abs(f11 - f10) > Math.abs(f11 - width)) {
                                     }
                                 }
-                                if (streamConfigurationMap != null && Build.VERSION.SDK_INT >= 23) {
+                                if (streamConfigurationMap != null) {
                                     android.util.Size chooseOptimalSize = chooseOptimalSize(streamConfigurationMap.getOutputSizes(SurfaceTexture.class), i10, i11, false);
                                     if (chooseOptimalSize != null) {
                                         size = chooseOptimalSize;
                                         str = str2;
-                                        f7 = width;
+                                        f10 = width;
                                     }
                                 }
                             } catch (Exception e7) {

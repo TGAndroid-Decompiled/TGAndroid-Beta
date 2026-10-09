@@ -8,21 +8,21 @@ import c5.x;
 import com.google.android.gms.common.api.m;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
-import u4.e;
+import s4.v;
 public final class a implements Runnable {
-    public static Handler f49174f;
-    public final d f49178e;
-    public volatile int f49176b = 1;
-    public final AtomicBoolean f49177c = new AtomicBoolean();
+    public static Handler f50450f;
+    public final d f50454e;
+    public volatile int f50452b = 1;
+    public final AtomicBoolean f50453c = new AtomicBoolean();
     public final AtomicBoolean d = new AtomicBoolean();
-    public final b f49175a = new b(this, new x(this, 8));
+    public final b f50451a = new b(this, new x(this, 8));
 
     public a(d dVar) {
-        this.f49178e = dVar;
+        this.f50454e = dVar;
     }
 
     public final void a() {
-        d dVar = this.f49178e;
+        d dVar = this.f50454e;
         int i10 = 0;
         for (m mVar : dVar.f319j) {
             if (mVar.d(dVar)) {
@@ -41,19 +41,19 @@ public final class a implements Runnable {
         Handler handler;
         synchronized (a.class) {
             try {
-                if (f49174f == null) {
-                    f49174f = new Handler(Looper.getMainLooper());
+                if (f50450f == null) {
+                    f50450f = new Handler(Looper.getMainLooper());
                 }
-                handler = f49174f;
+                handler = f50450f;
             } catch (Throwable th2) {
                 throw th2;
             }
         }
-        handler.post(new e(6, this, obj));
+        handler.post(new v(7, this, obj));
     }
 
     @Override
     public final void run() {
-        this.f49178e.b();
+        this.f50454e.b();
     }
 }

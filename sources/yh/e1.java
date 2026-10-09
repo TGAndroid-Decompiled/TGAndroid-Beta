@@ -1,63 +1,43 @@
 package yh;
 
 import org.telegram.messenger.AndroidUtilities;
-public final class e1 implements Runnable {
-    public final int f51242a;
-    public final y3 f51243b;
-    public final long f51244c;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class e1 implements RequestDelegate {
+    public final int f52421a = 1;
+    public final s3 f52422b;
+    public final long f52423c;
+    public final long d;
+    public final long f52424e;
+    public final Object f52425f;
 
-    public e1(y3 y3Var, long j3, int i10) {
-        this.f51242a = i10;
-        this.f51243b = y3Var;
-        this.f51244c = j3;
+    public e1(s3 s3Var, long j3, long j10, Utilities.Callback callback, long j11) {
+        this.f52422b = s3Var;
+        this.f52423c = j3;
+        this.d = j10;
+        this.f52425f = callback;
+        this.f52424e = j11;
     }
 
     @Override
-    public final void run() {
-        switch (this.f51242a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f52421a) {
             case 0:
-                y3 y3Var = this.f51243b;
-                d1 d1Var = y3Var.f52305n1;
-                y3Var.q2(1, true, null);
-                if (this.f51244c > 0) {
-                    AndroidUtilities.cancelRunOnUIThread(d1Var);
-                    AndroidUtilities.runOnUIThread(d1Var);
-                    return;
-                }
-                return;
-            case 1:
-                this.f51243b.X1(this.f51244c);
-                return;
-            case 2:
-                y3.P0(this.f51243b, this.f51244c);
-                return;
-            case 3:
-                y3.d1(this.f51243b, this.f51244c);
-                return;
-            case 4:
-                this.f51243b.X1(this.f51244c);
-                return;
-            case 5:
-                y3.l0(this.f51243b, this.f51244c);
-                return;
-            case 6:
-                this.f51243b.X1(this.f51244c);
-                return;
-            case 7:
-                y3.N(this.f51243b, this.f51244c);
-                return;
-            case 8:
-                this.f51243b.X1(this.f51244c);
-                return;
-            case 9:
-                y3.B0(this.f51243b, this.f51244c);
-                return;
-            case 10:
-                this.f51243b.X1(this.f51244c);
+                AndroidUtilities.runOnUIThread(new n1(this.f52422b, (org.telegram.ui.ActionBar.b2) this.f52425f, tLObject, this.f52423c, this.d, this.f52424e, tL_error));
                 return;
             default:
-                this.f51243b.X1(this.f51244c);
+                AndroidUtilities.runOnUIThread(new n1(this.f52422b, tLObject, this.f52423c, this.d, (Utilities.Callback) this.f52425f, tL_error, this.f52424e));
                 return;
         }
+    }
+
+    public e1(s3 s3Var, org.telegram.ui.ActionBar.b2 b2Var, long j3, long j10, long j11) {
+        this.f52422b = s3Var;
+        this.f52425f = b2Var;
+        this.f52423c = j3;
+        this.d = j10;
+        this.f52424e = j11;
     }
 }

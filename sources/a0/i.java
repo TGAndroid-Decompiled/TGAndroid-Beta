@@ -9,8 +9,8 @@ public final class i implements Cloneable {
 
     public i(int i10) {
         if (i10 == 0) {
-            this.f20b = b0.a.f3108b;
-            this.f21c = b0.a.f3109c;
+            this.f20b = b0.a.f3187b;
+            this.f21c = b0.a.f3188c;
             return;
         }
         int i11 = i10 * 8;
@@ -266,7 +266,7 @@ public final class i implements Cloneable {
             kotlin.jvm.internal.i.e(jArr2, "<this>");
             System.arraycopy(jArr2, i10, jArr2, i20, i19);
             Object[] objArr3 = this.f21c;
-            hd.f.c(i20, i10, this.d, objArr3, objArr3);
+            id.f.c(i20, i10, this.d, objArr3, objArr3);
         }
         this.f20b[i10] = j3;
         this.f21c[i10] = obj;

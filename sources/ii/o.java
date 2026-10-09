@@ -5,21 +5,21 @@ import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ik;
-import org.telegram.ui.Components.xi;
-public final class o implements ik {
-    public final xi f12545a;
-    public final r f12546b;
+import org.telegram.ui.Components.jk;
+import org.telegram.ui.Components.yi;
+public final class o implements jk {
+    public final yi f12592a;
+    public final r f12593b;
 
-    public o(r rVar, xi xiVar) {
-        this.f12546b = rVar;
-        this.f12545a = xiVar;
+    public o(r rVar, yi yiVar) {
+        this.f12593b = rVar;
+        this.f12592a = yiVar;
     }
 
     @Override
     public final void k(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i10, long j3, boolean z11, long j10) {
         String str2;
-        x3 x3Var = this.f12546b.f12603r;
+        x3 x3Var = this.f12593b.f12650r;
         if (!arrayList.isEmpty()) {
             x3Var.d2((String) arrayList.get(0));
         } else if (!arrayList3.isEmpty()) {
@@ -36,22 +36,22 @@ public final class o implements ik {
                 x3Var.e2(document, str2);
             }
         }
-        this.f12545a.dismiss(true);
+        this.f12592a.dismiss(true);
     }
 
     @Override
-    public final void w() {
+    public final void x() {
         try {
             Intent intent = new Intent("android.intent.action.GET_CONTENT");
             intent.setType("*/*");
-            this.f12546b.f29741b.f32910f0.startActivityForResult(intent, 21);
+            this.f12593b.f30173b.f33228f0.startActivityForResult(intent, 21);
         } catch (Exception e7) {
             FileLog.e(e7);
         }
     }
 
     @Override
-    public final void M() {
+    public final void O() {
     }
 
     @Override

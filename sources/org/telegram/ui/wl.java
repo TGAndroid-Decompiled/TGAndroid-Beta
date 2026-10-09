@@ -1,69 +1,66 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.view.View;
-import java.util.ArrayList;
-public final class wl extends AnimatorListenerAdapter {
-    public final boolean f42594a;
-    public final boolean f42595b;
-    public final org.telegram.ui.Components.w9 f42596c;
-    public final xn d;
-    public final org.telegram.ui.ActionBar.i5 f42597e;
-    public final boolean f42598f;
-    public final ai.p4 h;
-    public final yn f42599n;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.tgnet.TLRPC;
+public final class wl extends uu0 {
+    public final MessageObject f43701a;
+    public final MediaController.PhotoEntry f43702b;
+    public final zn f43703c;
 
-    public wl(yn ynVar, boolean z10, boolean z11, org.telegram.ui.Components.w9 w9Var, xn xnVar, org.telegram.ui.ActionBar.i5 i5Var, boolean z12, ai.p4 p4Var) {
-        this.f42599n = ynVar;
-        this.f42594a = z10;
-        this.f42595b = z11;
-        this.f42596c = w9Var;
-        this.d = xnVar;
-        this.f42597e = i5Var;
-        this.f42598f = z12;
-        this.h = p4Var;
+    public wl(zn znVar, MessageObject messageObject, MediaController.PhotoEntry photoEntry) {
+        this.f43703c = znVar;
+        this.f43701a = messageObject;
+        this.f43702b = photoEntry;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        yn ynVar = this.f42599n;
-        ynVar.F2[1] = null;
-        ynVar.f43579z2[1].setTranslationY(0.0f);
+    public final ev0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        return zn.E1(this.f43703c, this.f43701a, null, i10, z10, true);
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        Object[] objArr = this.f42599n.F2;
-        if (animator.equals(objArr[1])) {
-            org.telegram.ui.Components.w9 w9Var = this.f42596c;
-            boolean z10 = this.f42595b;
-            boolean z11 = this.f42594a;
-            if (!z11 && !z10 && w9Var == null) {
-                objArr[1] = null;
-                return;
-            }
-            objArr[1] = new AnimatorSet();
-            objArr[1].setInterpolator(org.telegram.ui.Components.tr.h);
-            objArr[1].setDuration(360L);
-            ArrayList arrayList = new ArrayList();
-            if (z11) {
-                arrayList.add(ObjectAnimator.ofFloat(this.d, View.TRANSLATION_Y, 0.0f));
-            }
-            if (z10) {
-                arrayList.add(ObjectAnimator.ofFloat(this.f42597e, View.TRANSLATION_Y, 0.0f));
-            }
-            if (this.f42598f) {
-                arrayList.add(ObjectAnimator.ofFloat(this.h, View.TRANSLATION_Y, 0.0f));
-            }
-            if (w9Var != null) {
-                arrayList.add(ObjectAnimator.ofFloat(w9Var, View.TRANSLATION_Y, 0.0f));
-            }
-            objArr[1].addListener(new u4(this, 20));
-            objArr[1].playTogether(arrayList);
-            objArr[1].start();
+    public final boolean O() {
+        zn znVar = this.f43703c;
+        if (znVar.Y != null && znVar.C9()) {
+            znVar.Y.N();
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final MessageObject U() {
+        MessageObject messageObject = this.f43703c.p5;
+        MessageObject messageObject2 = this.f43701a;
+        if (messageObject == messageObject2) {
+            return messageObject2;
+        }
+        return null;
+    }
+
+    @Override
+    public final void e(CharSequence charSequence) {
+        this.f43703c.Y.d1(charSequence, false);
+    }
+
+    @Override
+    public final boolean g() {
+        return false;
+    }
+
+    @Override
+    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
+        zn znVar = this.f43703c;
+        if (znVar.p5 != this.f43701a) {
+            return;
+        }
+        MediaController.PhotoEntry photoEntry = this.f43702b;
+        if (!photoEntry.isCropped && !photoEntry.isPainted && !photoEntry.isFiltered && videoEditedInfo == null) {
+            znVar.Y.b0();
+        } else {
+            znVar.r(photoEntry, videoEditedInfo, z10, i11, 0, z11, 0L);
         }
     }
 }

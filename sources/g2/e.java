@@ -11,21 +11,21 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
 public final class e extends c {
-    public final ContentResolver f10163a;
-    public Uri f10164b;
-    public AssetFileDescriptor f10165c;
+    public final ContentResolver f10236a;
+    public Uri f10237b;
+    public AssetFileDescriptor f10238c;
     public FileInputStream d;
-    public long f10166e;
-    public boolean f10167f;
+    public long f10239e;
+    public boolean f10240f;
 
     public e(Context context) {
         super(false);
-        this.f10163a = context.getContentResolver();
+        this.f10236a = context.getContentResolver();
     }
 
     @Override
     public final void close() {
-        this.f10164b = null;
+        this.f10237b = null;
         try {
             try {
                 FileInputStream fileInputStream = this.d;
@@ -35,7 +35,7 @@ public final class e extends c {
                 this.d = null;
                 try {
                     try {
-                        AssetFileDescriptor assetFileDescriptor = this.f10165c;
+                        AssetFileDescriptor assetFileDescriptor = this.f10238c;
                         if (assetFileDescriptor != null) {
                             assetFileDescriptor.close();
                         }
@@ -43,9 +43,9 @@ public final class e extends c {
                         throw new j(e7, 2000);
                     }
                 } finally {
-                    this.f10165c = null;
-                    if (this.f10167f) {
-                        this.f10167f = false;
+                    this.f10238c = null;
+                    if (this.f10240f) {
+                        this.f10240f = false;
                         transferEnded();
                     }
                 }
@@ -56,13 +56,13 @@ public final class e extends c {
             this.d = null;
             try {
                 try {
-                    AssetFileDescriptor assetFileDescriptor2 = this.f10165c;
+                    AssetFileDescriptor assetFileDescriptor2 = this.f10238c;
                     if (assetFileDescriptor2 != null) {
                         assetFileDescriptor2.close();
                     }
-                    this.f10165c = null;
-                    if (this.f10167f) {
-                        this.f10167f = false;
+                    this.f10238c = null;
+                    if (this.f10240f) {
+                        this.f10240f = false;
                         transferEnded();
                     }
                     throw th2;
@@ -70,9 +70,9 @@ public final class e extends c {
                     throw new j(e11, 2000);
                 }
             } finally {
-                this.f10165c = null;
-                if (this.f10167f) {
-                    this.f10167f = false;
+                this.f10238c = null;
+                if (this.f10240f) {
+                    this.f10240f = false;
                     transferEnded();
                 }
             }
@@ -81,88 +81,97 @@ public final class e extends c {
 
     @Override
     public final Uri getUri() {
-        return this.f10164b;
+        return this.f10237b;
     }
 
     @Override
     public final long open(m mVar) {
+        int i10;
         AssetFileDescriptor openAssetFileDescriptor;
         long min;
-        int i10 = 2000;
         try {
-            Uri uri = mVar.f10194a;
-            long j3 = mVar.f10198f;
-            long j10 = mVar.f10197e;
-            Uri normalizeScheme = uri.normalizeScheme();
-            this.f10164b = normalizeScheme;
-            transferInitializing(mVar);
-            boolean equals = Objects.equals(normalizeScheme.getScheme(), "content");
-            ContentResolver contentResolver = this.f10163a;
-            if (equals) {
-                Bundle bundle = new Bundle();
-                bundle.putBoolean("android.provider.extra.ACCEPT_ORIGINAL_MEDIA_FORMAT", true);
-                openAssetFileDescriptor = contentResolver.openTypedAssetFileDescriptor(normalizeScheme, "*/*", bundle);
-            } else {
-                openAssetFileDescriptor = contentResolver.openAssetFileDescriptor(normalizeScheme, "r");
-            }
-            this.f10165c = openAssetFileDescriptor;
-            if (openAssetFileDescriptor != null) {
-                long length = openAssetFileDescriptor.getLength();
-                FileInputStream fileInputStream = new FileInputStream(openAssetFileDescriptor.getFileDescriptor());
-                this.d = fileInputStream;
-                int i11 = (length > (-1L) ? 1 : (length == (-1L) ? 0 : -1));
-                if (i11 != 0 && j10 > length) {
-                    throw new j((Exception) null, 2008);
+            try {
+                Uri uri = mVar.f10267a;
+                long j3 = mVar.f10271f;
+                long j10 = mVar.f10270e;
+                Uri normalizeScheme = uri.normalizeScheme();
+                this.f10237b = normalizeScheme;
+                transferInitializing(mVar);
+                boolean equals = Objects.equals(normalizeScheme.getScheme(), "content");
+                ContentResolver contentResolver = this.f10236a;
+                if (equals) {
+                    Bundle bundle = new Bundle();
+                    bundle.putBoolean("android.provider.extra.ACCEPT_ORIGINAL_MEDIA_FORMAT", true);
+                    openAssetFileDescriptor = contentResolver.openTypedAssetFileDescriptor(normalizeScheme, "*/*", bundle);
+                } else {
+                    openAssetFileDescriptor = contentResolver.openAssetFileDescriptor(normalizeScheme, "r");
                 }
-                long startOffset = openAssetFileDescriptor.getStartOffset();
-                long skip = fileInputStream.skip(startOffset + j10) - startOffset;
-                if (skip == j10) {
-                    if (i11 == 0) {
-                        FileChannel channel = fileInputStream.getChannel();
-                        long size = channel.size();
-                        if (size == 0) {
-                            this.f10166e = -1L;
+                this.f10238c = openAssetFileDescriptor;
+                if (openAssetFileDescriptor != null) {
+                    long length = openAssetFileDescriptor.getLength();
+                    FileInputStream fileInputStream = new FileInputStream(openAssetFileDescriptor.getFileDescriptor());
+                    this.d = fileInputStream;
+                    int i11 = (length > (-1L) ? 1 : (length == (-1L) ? 0 : -1));
+                    if (i11 != 0 && j10 > length) {
+                        throw new j((Exception) null, 2008);
+                    }
+                    long startOffset = openAssetFileDescriptor.getStartOffset();
+                    long skip = fileInputStream.skip(startOffset + j10) - startOffset;
+                    if (skip == j10) {
+                        if (i11 == 0) {
+                            FileChannel channel = fileInputStream.getChannel();
+                            long size = channel.size();
+                            if (size == 0) {
+                                this.f10239e = -1L;
+                            } else {
+                                long position = size - channel.position();
+                                this.f10239e = position;
+                                if (position < 0) {
+                                    throw new j((Exception) null, 2008);
+                                }
+                            }
                         } else {
-                            long position = size - channel.position();
-                            this.f10166e = position;
-                            if (position < 0) {
+                            long j11 = length - skip;
+                            this.f10239e = j11;
+                            if (j11 < 0) {
                                 throw new j((Exception) null, 2008);
                             }
                         }
-                    } else {
-                        long j11 = length - skip;
-                        this.f10166e = j11;
-                        if (j11 < 0) {
-                            throw new j((Exception) null, 2008);
+                        int i12 = (j3 > (-1L) ? 1 : (j3 == (-1L) ? 0 : -1));
+                        if (i12 != 0) {
+                            long j12 = this.f10239e;
+                            if (j12 == -1) {
+                                min = j3;
+                            } else {
+                                min = Math.min(j12, j3);
+                            }
+                            this.f10239e = min;
                         }
-                    }
-                    int i12 = (j3 > (-1L) ? 1 : (j3 == (-1L) ? 0 : -1));
-                    if (i12 != 0) {
-                        long j12 = this.f10166e;
-                        if (j12 == -1) {
-                            min = j3;
-                        } else {
-                            min = Math.min(j12, j3);
+                        this.f10240f = true;
+                        transferStarted(mVar);
+                        if (i12 != 0) {
+                            return j3;
                         }
-                        this.f10166e = min;
+                        return this.f10239e;
                     }
-                    this.f10167f = true;
-                    transferStarted(mVar);
-                    if (i12 != 0) {
-                        return j3;
-                    }
-                    return this.f10166e;
+                    throw new j((Exception) null, 2008);
                 }
-                throw new j((Exception) null, 2008);
+                i10 = 2000;
+                try {
+                    throw new j(new IOException("Could not open file descriptor for: " + normalizeScheme), 2000);
+                } catch (IOException e7) {
+                    e = e7;
+                    if (e instanceof FileNotFoundException) {
+                        i10 = 2005;
+                    }
+                    throw new j(e, i10);
+                }
+            } catch (IOException e10) {
+                e = e10;
+                i10 = 2000;
             }
-            throw new j(new IOException("Could not open file descriptor for: " + normalizeScheme), 2000);
-        } catch (d e7) {
-            throw e7;
-        } catch (IOException e10) {
-            if (e10 instanceof FileNotFoundException) {
-                i10 = 2005;
-            }
-            throw new j(e10, i10);
+        } catch (d e11) {
+            throw e11;
         }
     }
 
@@ -171,7 +180,7 @@ public final class e extends c {
         if (i11 == 0) {
             return 0;
         }
-        long j3 = this.f10166e;
+        long j3 = this.f10239e;
         if (j3 != 0) {
             if (j3 != -1) {
                 try {
@@ -181,12 +190,12 @@ public final class e extends c {
                 }
             }
             FileInputStream fileInputStream = this.d;
-            String str = e2.d0.f8538a;
+            String str = e2.d0.f8532a;
             int read = fileInputStream.read(bArr, i10, i11);
             if (read != -1) {
-                long j10 = this.f10166e;
+                long j10 = this.f10239e;
                 if (j10 != -1) {
-                    this.f10166e = j10 - read;
+                    this.f10239e = j10 - read;
                 }
                 bytesTransferred(read);
                 return read;

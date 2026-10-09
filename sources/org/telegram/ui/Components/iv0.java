@@ -1,211 +1,115 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
 import java.util.ArrayList;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.Utilities;
+import java.util.Calendar;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ProfileActivity;
-public final class iv0 implements NotificationCenter.NotificationCenterDelegate {
-    public final NotificationCenter.ObserversGroup E;
-    public boolean f27605f;
-    public boolean h;
-    public final fv0[] f27606n;
-    public final long f27607r;
-    public final long f27608s;
-    public long v;
-    public final org.telegram.ui.ActionBar.n2 f27609w;
-    public boolean f27611y;
-    public int[] f27601a = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
-    public int[] f27602b = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
-    public final int[] f27603c = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
-    public final int[] d = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
-    public final int[] f27604e = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
-    public final ArrayList f27610x = new ArrayList();
+public final class iv0 extends pm0 {
+    public final Context f27489c;
+    public final int d;
+    public final org.telegram.ui.ActionBar.e6 f27490e;
+    public final gv0 f27491f;
+    public final ArrayList h = new ArrayList(10);
+    public final ArrayList f27492n = new ArrayList();
+    public tu0 f27493r;
+    public final bw0 f27494s;
 
-    public iv0(org.telegram.ui.ActionBar.n2 n2Var) {
-        int i10;
-        TLRPC.ChatFull chatFull;
-        this.f27609w = n2Var;
-        if (n2Var instanceof dh) {
-            dh dhVar = (dh) n2Var;
-            long a2 = dhVar.a();
-            this.f27607r = a2;
-            this.v = dhVar.G();
-            this.f27608s = dhVar.d();
-            if (a2 != n2Var.getUserConfig().getClientUserId()) {
-                n2Var.getMessagesController().getSavedMessagesController().hasSavedMessages(a2, new Utilities.Callback(this) {
-                    public final iv0 f27335b;
+    public iv0(bw0 bw0Var, Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
+        this.f27494s = bw0Var;
+        this.f27489c = context;
+        this.d = i10;
+        this.f27490e = e6Var;
+        this.f27491f = new gv0(this, i10, e6Var);
+        E();
+    }
 
-                    {
-                        this.f27335b = this;
-                    }
+    @Override
+    public final boolean D(s4.d1 d1Var) {
+        return false;
+    }
 
-                    @Override
-                    public final void run(Object obj) {
-                        Boolean bool = (Boolean) obj;
-                        switch (r2) {
-                            case 0:
-                                iv0 iv0Var = this.f27335b;
-                                ArrayList arrayList = iv0Var.f27610x;
-                                boolean booleanValue = bool.booleanValue();
-                                iv0Var.f27605f = booleanValue;
-                                iv0Var.h = true;
-                                if (booleanValue) {
-                                    int size = arrayList.size();
-                                    for (int i11 = 0; i11 < size; i11++) {
-                                        ((jv0) arrayList.get(i11)).K();
-                                    }
-                                    return;
-                                }
-                                return;
-                            default:
-                                iv0 iv0Var2 = this.f27335b;
-                                ArrayList arrayList2 = iv0Var2.f27610x;
-                                boolean booleanValue2 = bool.booleanValue();
-                                iv0Var2.f27605f = booleanValue2;
-                                iv0Var2.h = true;
-                                if (booleanValue2) {
-                                    int size2 = arrayList2.size();
-                                    for (int i12 = 0; i12 < size2; i12++) {
-                                        ((jv0) arrayList2.get(i12)).K();
-                                    }
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
+    public final void E() {
+        ArrayList arrayList = this.f27492n;
+        arrayList.clear();
+        ArrayList c10 = this.f27494s.f25162t1[8].c();
+        int i10 = 0;
+        for (int i11 = 0; i11 < c10.size(); i11++) {
+            MessageObject messageObject = (MessageObject) c10.get(i11);
+            if (messageObject.dateKeyInt != i10) {
+                int i12 = messageObject.messageOwner.date;
+                TLRPC.TL_message tL_message = new TLRPC.TL_message();
+                long j3 = i12;
+                tL_message.message = LocaleController.formatDateChat(j3);
+                tL_message.f20059id = 0;
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTimeInMillis(j3 * 1000);
+                calendar.set(11, 0);
+                calendar.set(12, 0);
+                calendar.set(13, 0);
+                calendar.set(14, 0);
+                tL_message.date = (int) (calendar.getTimeInMillis() / 1000);
+                MessageObject messageObject2 = new MessageObject(this.d, tL_message, false, false);
+                messageObject2.type = 10;
+                messageObject2.contentType = 1;
+                messageObject2.isDateObject = true;
+                arrayList.add(messageObject2);
+                i10 = messageObject.dateKeyInt;
             }
-        } else if (n2Var instanceof ProfileActivity) {
-            ProfileActivity profileActivity = (ProfileActivity) n2Var;
-            if (profileActivity.f34275h1) {
-                this.f27607r = profileActivity.getUserConfig().getClientUserId();
-                this.f27608s = profileActivity.a();
-            } else {
-                long a10 = profileActivity.a();
-                this.f27607r = a10;
-                this.f27608s = profileActivity.f34268g1;
-                TLRPC.ChatFull chatFull2 = profileActivity.f34364u2;
-                if (chatFull2 != null) {
-                    c(chatFull2);
+            arrayList.add(messageObject);
+        }
+    }
+
+    @Override
+    public final int h() {
+        return this.f27492n.size();
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (i10 >= 0) {
+            ArrayList arrayList = this.f27492n;
+            if (i10 < arrayList.size()) {
+                return ((MessageObject) arrayList.get(i10)).contentType;
+            }
+            return 0;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void l() {
+        E();
+        super.l();
+    }
+
+    @Override
+    public final void v(s4.d1 d1Var, int i10) {
+        if (i10 >= 0) {
+            ArrayList arrayList = this.f27492n;
+            if (i10 < arrayList.size()) {
+                MessageObject messageObject = (MessageObject) arrayList.get(i10);
+                int i11 = d1Var.f47660f;
+                View view = d1Var.f47656a;
+                if (i11 == 0) {
+                    ((org.telegram.ui.Cells.u1) view).X3(messageObject, null, false, false, false, false);
+                } else {
+                    ((org.telegram.ui.Cells.w0) view).setMessageObject(messageObject);
                 }
-                if (a10 != n2Var.getUserConfig().getClientUserId()) {
-                    n2Var.getMessagesController().getSavedMessagesController().hasSavedMessages(a10, new Utilities.Callback(this) {
-                        public final iv0 f27335b;
-
-                        {
-                            this.f27335b = this;
-                        }
-
-                        @Override
-                        public final void run(Object obj) {
-                            Boolean bool = (Boolean) obj;
-                            switch (r2) {
-                                case 0:
-                                    iv0 iv0Var = this.f27335b;
-                                    ArrayList arrayList = iv0Var.f27610x;
-                                    boolean booleanValue = bool.booleanValue();
-                                    iv0Var.f27605f = booleanValue;
-                                    iv0Var.h = true;
-                                    if (booleanValue) {
-                                        int size = arrayList.size();
-                                        for (int i11 = 0; i11 < size; i11++) {
-                                            ((jv0) arrayList.get(i11)).K();
-                                        }
-                                        return;
-                                    }
-                                    return;
-                                default:
-                                    iv0 iv0Var2 = this.f27335b;
-                                    ArrayList arrayList2 = iv0Var2.f27610x;
-                                    boolean booleanValue2 = bool.booleanValue();
-                                    iv0Var2.f27605f = booleanValue2;
-                                    iv0Var2.h = true;
-                                    if (booleanValue2) {
-                                        int size2 = arrayList2.size();
-                                        for (int i12 = 0; i12 < size2; i12++) {
-                                            ((jv0) arrayList2.get(i12)).K();
-                                        }
-                                        return;
-                                    }
-                                    return;
-                            }
-                        }
-                    });
-                }
-            }
-        } else if (n2Var instanceof pa0) {
-            this.f27607r = ((pa0) n2Var).f29685e;
-        } else if (n2Var instanceof org.telegram.ui.uy) {
-            this.f27607r = n2Var.getUserConfig().getClientUserId();
-        }
-        if (this.v == 0 && DialogObject.isChatDialog(this.f27607r) && (chatFull = n2Var.getMessagesController().getChatFull(-this.f27607r)) != null) {
-            long j3 = chatFull.migrated_from_chat_id;
-            if (j3 != 0) {
-                this.v = -j3;
-            }
-        }
-        this.f27606n = new fv0[9];
-        int i11 = 0;
-        while (true) {
-            fv0[] fv0VarArr = this.f27606n;
-            if (i11 >= fv0VarArr.length) {
-                break;
-            }
-            fv0VarArr[i11] = new fv0();
-            fv0 fv0Var = this.f27606n[i11];
-            if (DialogObject.isEncryptedDialog(this.f27607r)) {
-                i10 = Integer.MIN_VALUE;
-            } else {
-                i10 = Integer.MAX_VALUE;
-            }
-            fv0Var.f26598j[0] = i10;
-            this.f27606n[i11].f26598j[1] = Integer.MAX_VALUE;
-            i11++;
-        }
-        a();
-        org.telegram.ui.ActionBar.n2 n2Var2 = this.f27609w;
-        if (n2Var2 == null) {
-            this.E = null;
-        } else {
-            this.E = n2Var2.getNotificationCenter().createObserversGroup(this).add(NotificationCenter.mediaCountsDidLoad).add(NotificationCenter.mediaCountDidLoad).add(NotificationCenter.didReceiveNewMessages).add(NotificationCenter.messageReceivedByServer).add(NotificationCenter.mediaDidLoad).add(NotificationCenter.messagesDeleted).add(NotificationCenter.replaceMessagesObjects).add(NotificationCenter.chatInfoDidLoad).add(NotificationCenter.fileLoaded).add(NotificationCenter.storiesListUpdated).add(NotificationCenter.savedMessagesDialogsUpdate);
-        }
-    }
-
-    public final void a() {
-        org.telegram.ui.ActionBar.n2 n2Var = this.f27609w;
-        if (n2Var != null) {
-            n2Var.getMediaDataController().getMediaCounts(this.f27607r, this.f27608s, n2Var.getClassGuid());
-            if (this.v != 0) {
-                n2Var.getMediaDataController().getMediaCounts(this.v, this.f27608s, n2Var.getClassGuid());
-            }
-        }
-    }
-
-    public final void b(org.telegram.ui.ActionBar.n2 n2Var) {
-        if (n2Var == this.f27609w) {
-            this.f27610x.clear();
-            NotificationCenter.ObserversGroup observersGroup = this.E;
-            if (observersGroup != null) {
-                observersGroup.removeAllObservers();
-            }
-        }
-    }
-
-    public final void c(TLRPC.ChatFull chatFull) {
-        org.telegram.ui.ActionBar.n2 n2Var = this.f27609w;
-        if (n2Var != null && chatFull != null) {
-            long j3 = chatFull.migrated_from_chat_id;
-            if (j3 != 0 && this.v == 0) {
-                this.v = -j3;
-                n2Var.getMediaDataController().getMediaCounts(this.v, this.f27608s, n2Var.getClassGuid());
             }
         }
     }
 
     @Override
-    public final void didReceivedNotification(int r25, int r26, java.lang.Object... r27) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.iv0.didReceivedNotification(int, int, java.lang.Object[]):void");
+    public final s4.d1 x(ViewGroup viewGroup, int i10) {
+        if (i10 == 0) {
+            hv0 hv0Var = new hv0(this.f27489c, this.d, false, null, this.f27490e);
+            hv0Var.setDelegate(this.f27491f);
+            return new s4.d1(hv0Var);
+        }
+        return new s4.d1(new org.telegram.ui.Cells.w0(this.f27489c, this.f27490e, false));
     }
 }

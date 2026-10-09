@@ -13,7 +13,7 @@ public class i0 extends db.u {
             fb.d.d(v);
             return new BigInteger(v);
         } catch (NumberFormatException e7) {
-            StringBuilder w10 = a4.a.w("Failed parsing '", v, "' as BigInteger; at path ");
+            StringBuilder w10 = a1.g.w("Failed parsing '", v, "' as BigInteger; at path ");
             w10.append(aVar.j());
             throw new RuntimeException(w10.toString(), e7);
         }

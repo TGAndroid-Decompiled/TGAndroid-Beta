@@ -1,64 +1,37 @@
 package gg;
 
-import java.io.File;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaDataController;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.a6;
-import org.telegram.ui.ActionBar.i6;
-public final class v0 implements Runnable {
-    public final int f10824a = 0;
-    public final boolean f10825b;
-    public final int f10826c;
-    public final boolean d;
-    public final Object f10827e;
-    public final Object f10828f;
-    public final Object h;
+import org.telegram.ui.Components.kb0;
+public final class v0 implements MediaDataController.KeywordResultCallback, org.telegram.ui.Cells.e2 {
+    public final j1 f10838a;
 
-    public v0(k1 k1Var, CharSequence charSequence, int i10, ArrayList arrayList, boolean z10, boolean z11) {
-        this.f10827e = k1Var;
-        this.f10828f = charSequence;
-        this.f10826c = i10;
-        this.h = arrayList;
-        this.f10825b = z10;
-        this.d = z11;
+    public v0(j1 j1Var) {
+        this.f10838a = j1Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f10824a) {
-            case 0:
-                boolean z10 = this.f10825b;
-                boolean z11 = this.d;
-                ((k1) this.f10827e).U((CharSequence) this.f10828f, this.f10826c, (ArrayList) this.h, z10, z11);
-                return;
-            case 1:
-                boolean z12 = this.d;
-                ((MediaDataController) this.f10827e).lambda$processLoadedDiceStickers$89(this.f10825b, (TLRPC.TL_messages_stickerSet) this.f10828f, this.f10826c, (String) this.h, z12);
-                return;
-            default:
-                boolean z13 = this.d;
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.q(i6.k1((a6) this.f10827e, (File) this.f10828f, this.f10826c, this.f10825b, (TLRPC.Document) this.h, z13), 15));
-                return;
+    public void run(ArrayList arrayList, String str) {
+        boolean z10;
+        j1 j1Var = this.f10838a;
+        j1Var.N = arrayList;
+        j1Var.I = null;
+        j1Var.A0 = null;
+        j1Var.f10695x = null;
+        j1Var.f10697y = null;
+        j1Var.J = null;
+        j1Var.Q = null;
+        j1Var.M = null;
+        j1Var.K = null;
+        j1Var.P = null;
+        j1Var.l();
+        kb0 kb0Var = j1Var.V;
+        ArrayList arrayList2 = j1Var.N;
+        if (arrayList2 != null && !arrayList2.isEmpty()) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-    }
-
-    public v0(MediaDataController mediaDataController, boolean z10, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, int i10, String str, boolean z11) {
-        this.f10827e = mediaDataController;
-        this.f10825b = z10;
-        this.f10828f = tL_messages_stickerSet;
-        this.f10826c = i10;
-        this.h = str;
-        this.d = z11;
-    }
-
-    public v0(a6 a6Var, File file, int i10, boolean z10, TLRPC.Document document, boolean z11) {
-        this.f10827e = a6Var;
-        this.f10828f = file;
-        this.f10826c = i10;
-        this.f10825b = z10;
-        this.h = document;
-        this.d = z11;
+        kb0Var.a(z10);
     }
 }

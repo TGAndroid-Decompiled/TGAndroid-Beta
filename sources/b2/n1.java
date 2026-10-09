@@ -1,25 +1,25 @@
 package b2;
 public final class n1 {
-    public int f3413a;
-    public boolean f3414b;
-    public boolean f3415c;
+    public int f3492a;
+    public boolean f3493b;
+    public boolean f3494c;
 
     public n1(int i10, boolean z10, boolean z11) {
-        this.f3413a = i10;
-        this.f3415c = z10;
-        this.f3414b = z11;
+        this.f3492a = i10;
+        this.f3494c = z10;
+        this.f3493b = z11;
     }
 
     public n1(int i10) {
         switch (i10) {
-            case 4:
-                this.f3413a = 100;
-                this.f3414b = false;
+            case 3:
+                this.f3492a = 100;
+                this.f3493b = false;
                 return;
             default:
-                this.f3413a = 0;
-                this.f3414b = false;
-                this.f3415c = false;
+                this.f3492a = 0;
+                this.f3493b = false;
+                this.f3494c = false;
                 return;
         }
     }

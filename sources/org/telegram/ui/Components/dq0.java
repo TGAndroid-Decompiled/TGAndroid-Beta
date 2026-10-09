@@ -1,48 +1,34 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Canvas;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-public final class dq0 extends s4.s0 {
-    public final int f25840a;
-    public final br0 f25841b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class dq0 {
+    public final dv f25793a;
+    public final long f25794b;
+    public final float f25795c;
+    public final float d;
+    public final float f25796e;
 
-    public dq0(br0 br0Var, int i10) {
-        this.f25840a = i10;
-        this.f25841b = br0Var;
+    public dq0(View view) {
+        dv dvVar = new dv(1, view);
+        this.f25794b = System.currentTimeMillis();
+        this.f25793a = dvVar;
+        this.f25795c = AndroidUtilities.lerp(5.0f, 9.0f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
+        this.d = AndroidUtilities.lerp(2.5f, 5.0f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
+        this.f25796e = AndroidUtilities.lerp(2.5f, 5.2f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
     }
 
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        vb vbVar;
-        switch (this.f25840a) {
-            case 0:
-                br0 br0Var = this.f25841b;
-                if (i11 != 0) {
-                    br0.k0(br0Var);
-                    br0Var.f25071q0 = br0Var.f25070p0;
-                }
-                rc rcVar = rc.f30419w;
-                if (rcVar != null && (vbVar = rcVar.f30423e) != null && (vbVar.getParent() instanceof View) && ((View) rc.f30419w.f30423e.getParent()).getParent() == br0Var.f25079w) {
-                    rc.e();
-                    return;
-                }
-                return;
-            case 1:
-                if (i11 != 0) {
-                    br0 br0Var2 = this.f25841b;
-                    br0.k0(br0Var2);
-                    br0Var2.f25071q0 = br0Var2.f25070p0;
-                    return;
-                }
-                return;
-            default:
-                if (i11 != 0) {
-                    br0 br0Var3 = this.f25841b;
-                    br0.k0(br0Var3);
-                    br0Var3.f25071q0 = br0Var3.f25070p0;
-                    return;
-                }
-                return;
+    public final void a(Canvas canvas, float f7) {
+        dv dvVar;
+        float currentTimeMillis = ((float) (System.currentTimeMillis() - this.f25794b)) / 1000.0f;
+        canvas.translate(0.0f, 0.0f);
+        canvas.rotate(((float) Math.sin(this.f25795c * currentTimeMillis * 3.141592653589793d)) * 1.0f * f7);
+        canvas.translate(((float) Math.cos(this.d * currentTimeMillis * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f7, ((float) Math.sin(currentTimeMillis * this.f25796e * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f7);
+        canvas.translate(-0.0f, -0.0f);
+        if (f7 > 0.0f && (dvVar = this.f25793a) != null) {
+            dvVar.run();
         }
     }
 }

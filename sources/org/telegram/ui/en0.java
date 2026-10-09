@@ -1,57 +1,26 @@
 package org.telegram.ui;
+public final class en0 implements org.telegram.ui.ActionBar.a2 {
+    public final int f37297a;
+    public final jn0 f37298b;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class en0 implements TextWatcher {
-    public final int f36082a;
-    public final gn0 f36083b;
-
-    public en0(gn0 gn0Var, int i10) {
-        this.f36083b = gn0Var;
-        this.f36082a = i10;
+    public en0(jn0 jn0Var, int i10) {
+        this.f37297a = i10;
+        this.f37298b = jn0Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int length;
-        String code;
-        gn0 gn0Var = this.f36083b;
-        if (!gn0Var.H && (length = editable.length()) >= 1) {
-            int i10 = this.f36082a;
-            if (length > 1) {
-                String obj = editable.toString();
-                gn0Var.H = true;
-                for (int i11 = 0; i11 < Math.min(gn0Var.O - i10, length); i11++) {
-                    if (i11 == 0) {
-                        editable.replace(0, length, obj.substring(i11, i11 + 1));
-                    } else {
-                        gn0Var.d[i10 + i11].setText(obj.substring(i11, i11 + 1));
-                    }
-                }
-                gn0Var.H = false;
-            }
-            if (i10 != gn0Var.O - 1) {
-                int i12 = i10 + 1;
-                EditTextBoldCursor editTextBoldCursor = gn0Var.d[i12];
-                editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                gn0Var.d[i12].requestFocus();
-            }
-            int i13 = gn0Var.O;
-            if (i10 == i13 - 1 || (i10 == i13 - 2 && length >= 2)) {
-                code = gn0Var.getCode();
-                if (code.length() == gn0Var.O) {
-                    gn0Var.h(null);
-                }
-            }
+    public final void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f37297a) {
+            case 0:
+                jn0 jn0Var = this.f37298b;
+                jn0Var.c(true);
+                jn0Var.Q.finishFragment();
+                return;
+            default:
+                jn0 jn0Var2 = this.f37298b;
+                jn0Var2.c(true);
+                jn0Var2.Q.J1(null, 0, true);
+                return;
         }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

@@ -1,33 +1,13 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MessagesController;
-public final class cy0 implements Runnable {
-    public final int f25547a;
-    public final ry0 f25548b;
-
-    public cy0(ry0 ry0Var, int i10) {
-        this.f25547a = i10;
-        this.f25548b = ry0Var;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.LaunchActivity;
+public final class cy0 extends pc {
+    public cy0(LaunchActivity launchActivity, int i10, TLRPC.Document document) {
+        this(launchActivity, null, 1, i10, document, null);
     }
 
-    @Override
-    public final void run() {
-        switch (this.f25547a) {
-            case 0:
-                this.f25548b.d.l();
-                return;
-            case 1:
-                this.f25548b.d.l();
-                return;
-            case 2:
-                ry0.t(this.f25548b);
-                return;
-            case 3:
-                MessagesController.getInstance(r0.currentAccount).openByUserName("stickers", this.f25548b.L, 1);
-                return;
-            default:
-                ry0.s(this.f25548b);
-                return;
-        }
+    public cy0(android.content.Context r14, org.telegram.tgnet.TLObject r15, int r16, int r17, org.telegram.tgnet.TLRPC.Document r18, org.telegram.ui.ActionBar.e6 r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.cy0.<init>(android.content.Context, org.telegram.tgnet.TLObject, int, int, org.telegram.tgnet.TLRPC$Document, org.telegram.ui.ActionBar.e6):void");
     }
 }

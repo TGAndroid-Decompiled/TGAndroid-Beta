@@ -1,96 +1,69 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.PhotoViewer;
-public final class mg0 implements Runnable {
-    public final int f28702a;
-    public final rg0 f28703b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class mg0 extends LinearLayout {
+    public final LinearLayout f28832a;
+    public final LinearLayout f28833b;
 
-    public mg0(rg0 rg0Var, int i10) {
-        this.f28702a = i10;
-        this.f28703b = rg0Var;
+    public mg0(Context context) {
+        super(context);
+        setOrientation(0);
+        setGravity(17);
+        setPadding(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
+        LinearLayout a2 = a(R.drawable.msg_replace, LocaleController.getString(R.string.ReplaceAttachedPollMedia));
+        this.f28833b = a2;
+        addView(a2, w7.x5.n(-2, -1));
+        LinearLayout a10 = a(R.drawable.media_button_restore, LocaleController.getString(R.string.Edit));
+        this.f28832a = a10;
+        addView(a10, w7.x5.n(-2, -1));
+    }
+
+    public final LinearLayout a(int i10, String str) {
+        Context context = getContext();
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(0);
+        linearLayout.setGravity(17);
+        linearLayout.setPadding(AndroidUtilities.dp(25.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(25.0f), AndroidUtilities.dp(7.0f));
+        ImageView imageView = new ImageView(context);
+        imageView.setImageResource(i10);
+        linearLayout.addView(imageView, w7.x5.k(0.0f, 0.0f, 8.0f, 0.0f, 24, 24));
+        TextView textView = new TextView(context);
+        textView.setGravity(16);
+        textView.setText(str);
+        textView.setTextSize(2, 14.0f);
+        textView.setSingleLine(true);
+        textView.setTextColor(-1);
+        linearLayout.addView(textView, w7.x5.n(-2, -2));
+        w7.z5.a(linearLayout);
+        return linearLayout;
     }
 
     @Override
-    public final void run() {
-        boolean z10;
-        switch (this.f28702a) {
-            case 0:
-                this.f28703b.u();
-                return;
-            case 1:
-                rg0 rg0Var = this.f28703b;
-                PhotoViewer photoViewer = rg0Var.V;
-                if (photoViewer != null) {
-                    dg0 dg0Var = rg0Var.f30485r;
-                    if (dg0Var != null) {
-                        rg0Var.Z = dg0Var.getCurrentPosition() / rg0Var.f30485r.getVideoDuration();
-                        rg0Var.f30468a0 = rg0Var.f30485r.getBufferedPosition();
-                    } else {
-                        e81 e81Var = photoViewer.F2;
-                        if (e81Var != null) {
-                            float m10 = (float) rg0Var.m();
-                            rg0Var.Z = ((float) e81Var.n()) / m10;
-                            rg0Var.f30468a0 = ((float) e81Var.j()) / m10;
-                        } else {
-                            return;
-                        }
-                    }
-                    rg0Var.f30470b0.invalidate();
-                    AndroidUtilities.runOnUIThread(rg0Var.f30475e0, 500L);
-                    return;
-                }
-                return;
-            case 2:
-                rg0 rg0Var2 = this.f28703b;
-                PhotoViewer photoViewer2 = rg0Var2.V;
-                if (photoViewer2 != null) {
-                    if ((photoViewer2.F2 != null || rg0Var2.f30485r != null) && !rg0Var2.f30472c0 && !rg0Var2.Y && !rg0Var2.f30487w && !rg0Var2.f30486s.isInProgress() && rg0Var2.f30477f0) {
-                        e81 e81Var2 = rg0Var2.V.F2;
-                        if (rg0Var2.f30478g0[0] >= rg0Var2.t() * rg0Var2.J * 0.5f) {
-                            z10 = true;
-                        } else {
-                            z10 = false;
-                        }
-                        long l4 = rg0Var2.l();
-                        long m11 = rg0Var2.m();
-                        if (l4 != -9223372036854775807L && m11 >= 15000) {
-                            dg0 dg0Var2 = rg0Var2.f30485r;
-                            if (dg0Var2 != null) {
-                                PhotoViewer photoViewer3 = rg0Var2.V;
-                                photoViewer3.f33899c4.startRewind(dg0Var2, z10, rg0Var2.f30478g0[0], photoViewer3.f34046t1, rg0Var2.R);
-                            } else {
-                                PhotoViewer photoViewer4 = rg0Var2.V;
-                                photoViewer4.f33899c4.startRewind(e81Var2, z10, rg0Var2.f30478g0[0], photoViewer4.f34046t1, rg0Var2.R);
-                            }
-                            if (!rg0Var2.E) {
-                                rg0Var2.E = true;
-                                rg0Var2.y(true);
-                                if (!rg0Var2.f30480i0) {
-                                    AndroidUtilities.runOnUIThread(rg0Var2.f30481j0, 1500L);
-                                    rg0Var2.f30480i0 = true;
-                                    return;
-                                }
-                                return;
-                            }
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                rg0 rg0Var3 = this.f28703b;
-                PhotoViewer photoViewer5 = rg0Var3.V;
-                if (photoViewer5 != null && photoViewer5.f33899c4.rewinding) {
-                    AndroidUtilities.runOnUIThread(rg0Var3.f30481j0, 1500L);
-                    return;
-                }
-                rg0Var3.E = false;
-                rg0Var3.y(false);
-                rg0Var3.f30480i0 = false;
-                return;
-        }
+    public final void onMeasure(int i10, int i11) {
+        LinearLayout linearLayout = this.f28832a;
+        ViewGroup.LayoutParams layoutParams = linearLayout.getLayoutParams();
+        ViewGroup.LayoutParams layoutParams2 = linearLayout.getLayoutParams();
+        int size = View.MeasureSpec.getSize(i10);
+        int size2 = View.MeasureSpec.getSize(i11);
+        int paddingRight = getPaddingRight() + getPaddingLeft();
+        int paddingTop = getPaddingTop();
+        int max = Math.max(0, size - paddingRight);
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.max(0, size2 - (getPaddingBottom() + paddingTop)), 1073741824);
+        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(max, Integer.MIN_VALUE);
+        linearLayout.measure(makeMeasureSpec2, makeMeasureSpec);
+        LinearLayout linearLayout2 = this.f28833b;
+        linearLayout2.measure(makeMeasureSpec2, makeMeasureSpec);
+        int min = Math.min(Math.max(linearLayout.getMeasuredWidth(), linearLayout2.getMeasuredWidth()), max / 2);
+        layoutParams2.width = min;
+        layoutParams.width = min;
+        super.onMeasure(i10, i11);
     }
 }

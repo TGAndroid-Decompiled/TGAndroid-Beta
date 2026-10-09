@@ -7,24 +7,24 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.bi;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.uk0;
-import w7.z5;
+import org.telegram.ui.Components.ml0;
+import w7.x5;
 public final class t0 extends j {
-    public final s0 f45350q0;
-    public boolean f45351r0;
-    public int f45352s0;
-    public int f45353t0;
-    public TLRPC.MessageMedia f45354u0;
-    public TL_stories.MediaArea f45355v0;
+    public final s0 f46556q0;
+    public boolean f46557r0;
+    public int f46558s0;
+    public int f46559t0;
+    public TLRPC.MessageMedia f46560u0;
+    public TL_stories.MediaArea f46561v0;
 
     public t0(Context context, PointF pointF, int i10, TLRPC.MessageMedia messageMedia, TL_stories.MediaArea mediaArea, float f7, int i11) {
         super(context, pointF);
         s0 s0Var = new s0(context, f7);
-        this.f45350q0 = s0Var;
+        this.f46556q0 = s0Var;
         s0Var.setMaxWidth(i11);
         r(i10, messageMedia, mediaArea);
-        s0Var.e(0, this.f45352s0);
-        addView(s0Var, z5.e(-2, -2, 51));
+        s0Var.e(0, this.f46558s0);
+        addView(s0Var, x5.e(-2, -2, 51));
         setClipChildren(false);
         setClipToPadding(false);
         k();
@@ -37,9 +37,9 @@ public final class t0 extends j {
         double abs = Math.abs(d);
         double floor = Math.floor(abs);
         String str4 = "";
-        String o9 = a4.a.o((int) floor, "°", new StringBuilder(""));
+        String o9 = a1.g.o((int) floor, "°", new StringBuilder(""));
         double floor2 = Math.floor((abs - floor) * 60.0d);
-        StringBuilder v = a4.a.v(o9);
+        StringBuilder v = a1.g.v(o9);
         if (floor2 > 0.0d) {
             str = "";
         } else {
@@ -52,9 +52,9 @@ public final class t0 extends j {
             str2 = "0";
         }
         v.append(str2);
-        String o10 = a4.a.o((int) floor2, "'", v);
+        String o10 = a1.g.o((int) floor2, "'", v);
         double floor3 = Math.floor(Math.floor(floor2) * 60.0d);
-        StringBuilder v9 = a4.a.v(o10);
+        StringBuilder v9 = a1.g.v(o10);
         if (floor3 > 0.0d) {
             str3 = "";
         } else {
@@ -65,7 +65,7 @@ public final class t0 extends j {
             str4 = "0";
         }
         v9.append(str4);
-        return a4.a.o((int) floor3, "\"", v9);
+        return a1.g.o((int) floor3, "\"", v9);
     }
 
     @Override
@@ -74,7 +74,7 @@ public final class t0 extends j {
     }
 
     public int getColor() {
-        return this.f45352s0;
+        return this.f46558s0;
     }
 
     @Override
@@ -83,7 +83,7 @@ public final class t0 extends j {
     }
 
     @Override
-    public uk0 getSelectionBounds() {
+    public ml0 getSelectionBounds() {
         ViewGroup viewGroup = (ViewGroup) getParent();
         if (viewGroup == null) {
             return new Object();
@@ -93,36 +93,36 @@ public final class t0 extends j {
         float dp = (AndroidUtilities.dp(64.0f) / scaleX) + (scale * getMeasuredWidth());
         float scale2 = getScale();
         float dp2 = (AndroidUtilities.dp(64.0f) / scaleX) + (scale2 * getMeasuredHeight());
-        float x10 = bi.x(dp, 2.0f, getPositionX(), scaleX);
-        return new uk0(x10, bi.x(dp2, 2.0f, getPositionY(), scaleX), ((dp * scaleX) + x10) - x10, dp2 * scaleX);
+        float y3 = bi.y(dp, 2.0f, getPositionX(), scaleX);
+        return new ml0(y3, bi.y(dp2, 2.0f, getPositionY(), scaleX), ((dp * scaleX) + y3) - y3, dp2 * scaleX);
     }
 
     @Override
     public float getStickyPaddingBottom() {
-        return this.f45350q0.J;
+        return this.f46556q0.J;
     }
 
     @Override
     public float getStickyPaddingLeft() {
-        return this.f45350q0.I;
+        return this.f46556q0.I;
     }
 
     @Override
     public float getStickyPaddingRight() {
-        return this.f45350q0.I;
+        return this.f46556q0.I;
     }
 
     @Override
     public float getStickyPaddingTop() {
-        return this.f45350q0.J;
+        return this.f46556q0.J;
     }
 
     public int getType() {
-        return this.f45353t0;
+        return this.f46559t0;
     }
 
     public int getTypesCount() {
-        return this.f45350q0.getTypesCount() - (!this.f45351r0 ? 1 : 0);
+        return this.f46556q0.getTypesCount() - (!this.f46557r0 ? 1 : 0);
     }
 
     @Override
@@ -141,8 +141,8 @@ public final class t0 extends j {
         String str;
         String str2;
         String str3;
-        this.f45354u0 = messageMedia;
-        this.f45355v0 = mediaArea;
+        this.f46560u0 = messageMedia;
+        this.f46561v0 = mediaArea;
         String str4 = null;
         if (messageMedia instanceof TLRPC.TL_messageMediaGeo) {
             TLRPC.GeoPoint geoPoint = messageMedia.geo;
@@ -172,23 +172,23 @@ public final class t0 extends j {
         } else {
             str = "";
         }
-        s0 s0Var = this.f45350q0;
+        s0 s0Var = this.f46556q0;
         s0Var.d(i10, str4);
         s0Var.setText(str);
         m();
     }
 
     public void setColor(int i10) {
-        this.f45351r0 = true;
-        this.f45352s0 = i10;
+        this.f46557r0 = true;
+        this.f46558s0 = i10;
     }
 
     public void setMaxWidth(int i10) {
-        this.f45350q0.setMaxWidth(i10);
+        this.f46556q0.setMaxWidth(i10);
     }
 
     public void setType(int i10) {
-        this.f45353t0 = i10;
-        this.f45350q0.e(i10, this.f45352s0);
+        this.f46559t0 = i10;
+        this.f46556q0.e(i10, this.f46558s0);
     }
 }

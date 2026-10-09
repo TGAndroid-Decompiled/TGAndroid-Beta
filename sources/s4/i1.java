@@ -1,15 +1,71 @@
 package s4;
 public final class i1 {
-    public static final c5.b0 d = new c5.b0(20, 6);
-    public int f46600a;
-    public b2.q0 f46601b;
-    public b2.q0 f46602c;
+    public int f47712a;
+    public int f47713b;
+    public int f47714c;
+    public int d;
+    public int f47715e;
 
-    public static i1 a() {
-        i1 i1Var = (i1) d.b();
-        if (i1Var == null) {
-            return new Object();
+    public boolean a() {
+        int i10;
+        int i11;
+        int i12;
+        int i13 = this.f47712a;
+        int i14 = 2;
+        if ((i13 & 7) != 0) {
+            int i15 = this.d;
+            int i16 = this.f47713b;
+            if (i15 > i16) {
+                i12 = 1;
+            } else if (i15 == i16) {
+                i12 = 2;
+            } else {
+                i12 = 4;
+            }
+            if ((i12 & i13) == 0) {
+                return false;
+            }
         }
-        return i1Var;
+        if ((i13 & 112) != 0) {
+            int i17 = this.d;
+            int i18 = this.f47714c;
+            if (i17 > i18) {
+                i11 = 1;
+            } else if (i17 == i18) {
+                i11 = 2;
+            } else {
+                i11 = 4;
+            }
+            if (((i11 << 4) & i13) == 0) {
+                return false;
+            }
+        }
+        if ((i13 & 1792) != 0) {
+            int i19 = this.f47715e;
+            int i20 = this.f47713b;
+            if (i19 > i20) {
+                i10 = 1;
+            } else if (i19 == i20) {
+                i10 = 2;
+            } else {
+                i10 = 4;
+            }
+            if (((i10 << 8) & i13) == 0) {
+                return false;
+            }
+        }
+        if ((i13 & 28672) != 0) {
+            int i21 = this.f47715e;
+            int i22 = this.f47714c;
+            if (i21 > i22) {
+                i14 = 1;
+            } else if (i21 != i22) {
+                i14 = 4;
+            }
+            if ((i13 & (i14 << 12)) == 0) {
+                return false;
+            }
+        }
+        return true;
     }
 }

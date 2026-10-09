@@ -3,42 +3,42 @@ package rg;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class u implements View.OnClickListener {
-    public final int f46320a;
-    public final k0 f46321b;
+    public final int f47449a;
+    public final j0 f47450b;
 
-    public u(k0 k0Var, int i10) {
-        this.f46320a = i10;
-        this.f46321b = k0Var;
+    public u(j0 j0Var, int i10) {
+        this.f47449a = i10;
+        this.f47450b = j0Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f46320a) {
+        switch (this.f47449a) {
             case 0:
-                k0 k0Var = this.f46321b;
-                AndroidUtilities.addToClipboard(k0Var.p1());
-                k0Var.dismiss();
+                j0 j0Var = this.f47450b;
+                AndroidUtilities.addToClipboard(j0Var.q1());
+                j0Var.dismiss();
                 return;
             case 1:
-                a0 a0Var = this.f46321b.E0;
-                if (a0Var.h) {
-                    a0Var.f46263e.performClick();
+                z zVar = this.f47450b.E0;
+                if (zVar.h) {
+                    zVar.f47380e.performClick();
                     return;
                 } else {
-                    a0Var.f46266r.performClick();
+                    zVar.f47383r.performClick();
                     return;
                 }
             case 2:
-                a0 a0Var2 = this.f46321b.E0;
-                if (a0Var2.h) {
-                    a0Var2.f46263e.performClick();
+                z zVar2 = this.f47450b.E0;
+                if (zVar2.h) {
+                    zVar2.f47380e.performClick();
                     return;
                 } else {
-                    a0Var2.f46266r.performClick();
+                    zVar2.f47383r.performClick();
                     return;
                 }
             default:
-                k0.Q(this.f46321b);
+                j0.T(this.f47450b);
                 return;
         }
     }

@@ -1,73 +1,60 @@
 package ai;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
+import android.view.View;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.voip.ConferenceCall;
 import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.RequestDelegateTimestamp;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class ga implements Runnable {
-    public final int f980a;
-    public final Object f981b;
-    public final long f982c;
+import org.telegram.tgnet.tl.TL_phone;
+import org.telegram.ui.zn;
+public final class ga implements RequestDelegate {
+    public final int f1062a = 0;
+    public final long f1063b;
+    public final Object f1064c;
     public final Object d;
-    public final Object f983e;
-    public final Object f984f;
-    public final Object h;
+    public final Object f1065e;
+    public final Object f1066f;
 
-    public ga(Object obj, Object obj2, long j3, Object obj3, Object obj4, Object obj5, int i10) {
-        this.f980a = i10;
-        this.d = obj;
-        this.f981b = obj2;
-        this.f982c = j3;
-        this.f983e = obj3;
-        this.f984f = obj4;
-        this.h = obj5;
+    public ga(ia iaVar, long j3, View view, da daVar, MessagesController messagesController) {
+        this.f1064c = iaVar;
+        this.f1063b = j3;
+        this.d = view;
+        this.f1065e = daVar;
+        this.f1066f = messagesController;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: ai.ga.run():void");
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f1062a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new ha((ia) this.f1064c, tLObject, this.f1063b, (View) this.d, (da) this.f1065e, (MessagesController) this.f1066f, 0));
+                return;
+            case 1:
+                ((ConferenceCall) this.f1064c).lambda$poll$8((TL_phone.getGroupCallChainBlocks) this.d, this.f1063b, (AtomicBoolean) this.f1065e, (AtomicInteger) this.f1066f, tLObject, tL_error);
+                return;
+            default:
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.e(tL_error, (zn) this.f1064c, tLObject, (TLRPC.FileLocation[]) this.d, (String) this.f1065e, (TLRPC.FileLocation[]) this.f1066f, this.f1063b));
+                return;
+        }
     }
 
-    public ga(Object obj, TLObject tLObject, Object obj2, TLObject tLObject2, Object obj3, long j3, int i10) {
-        this.f980a = i10;
-        this.d = obj;
-        this.f981b = tLObject;
-        this.f983e = obj2;
-        this.f984f = tLObject2;
-        this.h = obj3;
-        this.f982c = j3;
+    public ga(ConferenceCall conferenceCall, TL_phone.getGroupCallChainBlocks getgroupcallchainblocks, long j3, AtomicBoolean atomicBoolean, AtomicInteger atomicInteger) {
+        this.f1064c = conferenceCall;
+        this.d = getgroupcallchainblocks;
+        this.f1063b = j3;
+        this.f1065e = atomicBoolean;
+        this.f1066f = atomicInteger;
     }
 
-    public ga(ConnectionsManager connectionsManager, RequestDelegate requestDelegate, TLObject tLObject, TLRPC.TL_error tL_error, RequestDelegateTimestamp requestDelegateTimestamp, long j3) {
-        this.f980a = 1;
-        this.d = connectionsManager;
-        this.f983e = requestDelegate;
-        this.f981b = tLObject;
-        this.f984f = tL_error;
-        this.h = requestDelegateTimestamp;
-        this.f982c = j3;
-    }
-
-    public ga(yh.u5 u5Var, boolean[] zArr, long j3, TLObject tLObject, TLRPC.TL_textWithEntities tL_textWithEntities, Utilities.Callback2 callback2) {
-        this.f980a = 5;
-        this.d = u5Var;
-        this.f983e = zArr;
-        this.f982c = j3;
-        this.f981b = tLObject;
-        this.f984f = tL_textWithEntities;
-        this.h = callback2;
-    }
-
-    public ga(yh.u5 u5Var, boolean[] zArr, TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift, TL_stars.StarGift starGift, long j3, Utilities.Callback2 callback2) {
-        this.f980a = 6;
-        this.d = u5Var;
-        this.f981b = zArr;
-        this.f983e = tL_payments_paymentFormStarGift;
-        this.f984f = starGift;
-        this.f982c = j3;
-        this.h = callback2;
+    public ga(zn znVar, TLRPC.FileLocation[] fileLocationArr, String str, TLRPC.FileLocation[] fileLocationArr2, long j3) {
+        this.f1064c = znVar;
+        this.d = fileLocationArr;
+        this.f1065e = str;
+        this.f1066f = fileLocationArr2;
+        this.f1063b = j3;
     }
 }

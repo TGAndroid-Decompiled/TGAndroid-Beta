@@ -1,133 +1,50 @@
 package of;
 
-import android.util.Log;
-import c6.k;
-import com.google.android.gms.cast.MediaError;
-import com.google.android.gms.cast.MediaInfo;
-import e6.h;
-import n6.l;
-public final class a extends e6.g {
-    public final h f17160a;
-    public final d6.g f17161b;
-    public final d6.c f17162c;
-    public g d;
-    public int f17163e;
-    public int f17164f;
-    public int f17165g;
-    public int h;
+import android.content.Context;
+import android.net.Uri;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.b2;
+import org.telegram.ui.i4;
+public final class a implements RequestDelegate {
+    public final int f17104a = 0;
+    public final int f17105b;
+    public final boolean f17106c;
+    public final Object d;
+    public final Object f17107e;
+    public final Object f17108f;
+    public final Object f17109g;
 
-    public a(d6.c cVar, d6.g gVar, h hVar) {
-        this.f17162c = cVar;
-        this.f17161b = gVar;
-        this.f17160a = hVar;
+    public a(e eVar, b2[] b2VarArr, int i10, Uri uri, Context context, boolean z10) {
+        this.d = eVar;
+        this.f17107e = b2VarArr;
+        this.f17105b = i10;
+        this.f17108f = uri;
+        this.f17109g = context;
+        this.f17106c = z10;
     }
 
     @Override
-    public final void a() {
-        Log.d("CAST_CLIENT", "onAdBreakStatusUpdated " + this.f17162c.a());
-    }
-
-    @Override
-    public final void b(MediaError mediaError) {
-        int i10;
-        StringBuilder sb2 = new StringBuilder("onMediaError ");
-        sb2.append(this.f17162c.a());
-        sb2.append(" ");
-        Integer num = mediaError.f6435c;
-        sb2.append(num);
-        sb2.append(" ");
-        sb2.append(mediaError.f6434b);
-        Log.d("CAST_CLIENT", sb2.toString());
-        if (num != null) {
-            i10 = num.intValue();
-        } else {
-            i10 = -1;
-        }
-        this.f17163e = i10;
-    }
-
-    @Override
-    public final void c() {
-        Log.d("CAST_CLIENT", "onMetadataUpdated " + this.f17162c.a());
-    }
-
-    @Override
-    public final void d() {
-        Log.d("CAST_CLIENT", "onPreloadStatusUpdated " + this.f17162c.a());
-    }
-
-    @Override
-    public final void e() {
-        Log.d("CAST_CLIENT", "onQueueStatusUpdated " + this.f17162c.a());
-    }
-
-    @Override
-    public final void f() {
-        Log.d("CAST_CLIENT", "onSendingRemoteMediaRequest " + this.f17162c.a());
-    }
-
-    @Override
-    public final void g() {
-        Log.d("CAST_CLIENT", "onStatusUpdated " + this.f17162c.a());
-        int b10 = this.f17160a.b();
-        if (b10 != this.f17164f) {
-            Log.d("CAST_CLIENT", "idleReason " + b10);
-            this.f17164f = b10;
-            if (b10 == 2) {
-                this.f17161b.b(true);
-            } else if (b10 == 4) {
-                int i10 = this.f17163e;
-                if (i10 == 104) {
-                    q(true);
-                } else if (i10 == 102) {
-                    q(false);
-                }
-            }
-        }
-    }
-
-    public final void p() {
-        f fVar;
-        this.f17163e = -1;
-        if (this.d == null) {
-            this.d = null;
-            return;
-        }
-        String i10 = d.i();
-        if (this.f17165g < this.d.f17191a.size()) {
-            fVar = this.d.a(this.f17165g);
-        } else {
-            fVar = d.f17172l;
-        }
-        MediaInfo mediaInfo = new MediaInfo(d.j(i10, fVar.d) + ("?index=" + this.f17165g + "&attempt=" + this.h), 1, fVar.f17186a, fVar.f17187b, -1L, null, null, null, null, null, null, null, -1L, null, null, null, null);
-        Boolean bool = Boolean.TRUE;
-        if (Double.compare(1.0d, 2.0d) <= 0 && Double.compare(1.0d, 0.5d) >= 0) {
-            k kVar = new k(mediaInfo, null, bool, -1L, 1.0d, null, null, null, null, null, null, 0L);
-            l.e("Must be called from the main thread.");
-            h hVar = this.f17160a;
-            if (!hVar.w()) {
-                h.t();
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f17104a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new c((e) this.d, (b2[]) this.f17107e, tLObject, this.f17105b, (Uri) this.f17108f, (Context) this.f17109g, this.f17106c));
                 return;
-            } else {
-                h.x(new e6.k(hVar, kVar, 1));
+            default:
+                AndroidUtilities.runOnUIThread(new c((i4) this.d, tLObject, this.f17105b, (TLRPC.WebPage) this.f17107e, (MessageObject) this.f17108f, this.f17106c, (String) this.f17109g));
                 return;
-            }
         }
-        throw new IllegalArgumentException("playbackRate must be between PLAYBACK_RATE_MIN and PLAYBACK_RATE_MAX");
     }
 
-    public final void q(boolean z10) {
-        if (z10) {
-            this.f17165g++;
-        } else {
-            int i10 = this.h + 1;
-            this.h = i10;
-            if (i10 > 3) {
-                this.h = 0;
-                this.f17165g++;
-            }
-        }
-        Log.e("CAST_CLIENT", "next attempt " + this.f17163e + " " + this.f17165g + " " + this.h);
-        p();
+    public a(i4 i4Var, int i10, TLRPC.WebPage webPage, MessageObject messageObject, boolean z10, String str) {
+        this.d = i4Var;
+        this.f17105b = i10;
+        this.f17107e = webPage;
+        this.f17108f = messageObject;
+        this.f17106c = z10;
+        this.f17109g = str;
     }
 }

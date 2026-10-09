@@ -1,29 +1,12 @@
 package w7;
 public abstract class g {
-    public static id.c a(id.c cVar, id.c cVar2, rd.p pVar) {
-        kotlin.jvm.internal.i.e(pVar, "<this>");
-        if (pVar instanceof kd.a) {
-            return ((kd.a) pVar).create(cVar, cVar2);
+    public static boolean a(Object obj, Object obj2) {
+        if (obj != obj2) {
+            if (obj == null || !obj.equals(obj2)) {
+                return false;
+            }
+            return true;
         }
-        id.h context = cVar2.getContext();
-        if (context == id.i.f12059a) {
-            return new jd.b(cVar2, cVar, pVar);
-        }
-        return new jd.c(cVar2, context, pVar, cVar);
-    }
-
-    public static id.c b(id.c cVar) {
-        kd.c cVar2;
-        id.c intercepted;
-        kotlin.jvm.internal.i.e(cVar, "<this>");
-        if (cVar instanceof kd.c) {
-            cVar2 = (kd.c) cVar;
-        } else {
-            cVar2 = null;
-        }
-        if (cVar2 != null && (intercepted = cVar2.intercepted()) != null) {
-            return intercepted;
-        }
-        return cVar;
+        return true;
     }
 }

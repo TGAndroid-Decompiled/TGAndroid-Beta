@@ -8,8 +8,8 @@ import android.graphics.RadialGradient;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.tr;
-import org.telegram.ui.Components.zc;
+import org.telegram.ui.Components.bd;
+import org.telegram.ui.Components.hs;
 public final class v3 {
     public final RectF f21612a = new RectF();
     public final w3 f21613b;
@@ -21,7 +21,7 @@ public final class v3 {
     public final float[] h;
     public float f21618i;
     public ValueAnimator f21619j;
-    public final zc f21620k;
+    public final bd f21620k;
     public final Paint f21621l;
     public final RectF f21622m;
     public final Path f21623n;
@@ -47,8 +47,8 @@ public final class v3 {
         this.f21613b = w3Var;
         this.f21614c = m3Var;
         this.d = k3Var;
-        this.f21620k = new zc(w3Var);
-        paint.setColor(m3Var.f21392r);
+        this.f21620k = new bd(w3Var);
+        paint.setColor(m3Var.f21390r);
     }
 
     public final void a(float f7) {
@@ -63,7 +63,7 @@ public final class v3 {
         if (Math.abs(f7) < 0.1f) {
             AndroidUtilities.applySpring(this.f21619j, 285.0d, 20.0d);
         } else {
-            this.f21619j.setInterpolator(tr.h);
+            this.f21619j.setInterpolator(hs.h);
         }
         this.f21619j.start();
     }

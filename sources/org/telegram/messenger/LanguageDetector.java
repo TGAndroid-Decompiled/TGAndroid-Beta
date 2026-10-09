@@ -36,7 +36,7 @@ public class LanguageDetector {
         if (z10) {
             try {
                 Context context = ApplicationLoader.applicationContext;
-                synchronized (qb.g.f44919b) {
+                synchronized (qb.g.f46074b) {
                     qb.g.d(context, TaskExecutors.MAIN_THREAD);
                 }
             } catch (IllegalStateException e7) {
@@ -63,6 +63,6 @@ public class LanguageDetector {
                 return;
             }
         }
-        w7.i7.a().g(str).addOnSuccessListener(new d0(stringCallback, 5)).addOnFailureListener(new d0(exceptionCallback, 6));
+        w7.l7.a().g(str).addOnSuccessListener(new d0(stringCallback, 5)).addOnFailureListener(new d0(exceptionCallback, 6));
     }
 }

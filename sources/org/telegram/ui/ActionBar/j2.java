@@ -2,7 +2,7 @@ package org.telegram.ui.ActionBar;
 
 import android.app.Dialog;
 import android.view.View;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.ad;
 public interface j2 {
     boolean attachedToParent();
 
@@ -10,7 +10,7 @@ public interface j2 {
 
     void dismiss(boolean z10);
 
-    yc getBulletinFactory();
+    ad getBulletinFactory();
 
     int getNavigationBarColor(int i10);
 

@@ -1,50 +1,39 @@
 package ci;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
+import org.telegram.messenger.camera.CameraController;
 public final class eb implements Runnable {
-    public final int f5060a = 1;
-    public final fb f5061b;
-    public final Runnable f5062c;
-    public final boolean d;
+    public final int f5054a;
+    public final gb f5055b;
 
-    public eb(fb fbVar, Runnable runnable, boolean z10) {
-        this.f5061b = fbVar;
-        this.f5062c = runnable;
-        this.d = z10;
+    public eb(gb gbVar, int i10) {
+        this.f5054a = i10;
+        this.f5055b = gbVar;
     }
 
     @Override
     public final void run() {
-        int i10;
-        switch (this.f5060a) {
+        switch (this.f5054a) {
             case 0:
-                boolean z10 = this.d;
-                this.f5061b.f(this.f5062c, z10);
+                lc lcVar = this.f5055b.f5132a;
+                f7 f7Var = lcVar.C0;
+                if (f7Var != null) {
+                    f7Var.c(false);
+                }
+                if (lcVar.Q1 && lcVar.R1 && lcVar.B0 != null) {
+                    lcVar.i0(false);
+                    CameraController.getInstance().stopVideoRecording(lcVar.B0.getCameraSessionRecording(), false, false);
+                    return;
+                }
+                return;
+            case 1:
+                this.f5055b.f5132a.J(1, true);
+                return;
+            case 2:
+                this.f5055b.f5132a.J(1, true);
                 return;
             default:
-                this.f5062c.run();
-                kc kcVar = this.f5061b.f5090a;
-                b4 b4Var = kcVar.T0;
-                if (this.d) {
-                    i10 = R.string.StoryHintSwipeToZoom;
-                } else {
-                    i10 = R.string.StoryHintPinchToZoom;
-                }
-                b4Var.f4735a.q(LocaleController.getString(i10), false, true);
-                b4Var.invalidate();
-                kcVar.h(true, true);
-                kcVar.d0(true);
-                kcVar.I0.a(false, true);
-                kcVar.J0.b(true, true);
-                kcVar.i0(true, true);
+                this.f5055b.f5132a.J(1, true);
                 return;
         }
-    }
-
-    public eb(fb fbVar, boolean z10, Runnable runnable) {
-        this.f5061b = fbVar;
-        this.d = z10;
-        this.f5062c = runnable;
     }
 }

@@ -1,36 +1,25 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-import android.net.Uri;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-public final class e81 implements org.telegram.ui.ActionBar.a2 {
-    public final int f35983a;
-    public final SessionsActivity f35984b;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.Switch;
+public final class e81 implements View.OnClickListener {
+    public final g81 f37193a;
+    public final TLRPC.TL_authorization f37194b;
+    public final h81 f37195c;
 
-    public e81(SessionsActivity sessionsActivity, int i10) {
-        this.f35983a = i10;
-        this.f35984b = sessionsActivity;
+    public e81(h81 h81Var, g81 g81Var, TLRPC.TL_authorization tL_authorization) {
+        this.f37195c = h81Var;
+        this.f37193a = g81Var;
+        this.f37194b = tL_authorization;
     }
 
     @Override
-    public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f35983a) {
-            case 0:
-                SessionsActivity sessionsActivity = this.f35984b;
-                sessionsActivity.getClass();
-                try {
-                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                    sessionsActivity.getParentActivity().startActivity(intent);
-                    return;
-                } catch (Exception e7) {
-                    FileLog.e(e7);
-                    return;
-                }
-            default:
-                SessionsActivity.U(this.f35984b);
-                return;
-        }
+    public final void onClick(View view) {
+        g81 g81Var = this.f37193a;
+        Switch r02 = g81Var.d;
+        r02.c(!r02.h, true);
+        this.f37194b.call_requests_disabled = !g81Var.d.h;
+        h81.p(this.f37195c);
     }
 }

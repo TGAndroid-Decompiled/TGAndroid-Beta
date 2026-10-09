@@ -1,98 +1,37 @@
 package yh;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.RadialGradient;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
+import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.tr;
-public final class x2 extends Drawable {
-    public Drawable f52221g;
-    public int h;
-    public int f52222i;
-    public final Paint f52217b = new Paint(1);
-    public final Shader[] f52218c = new Shader[2];
-    public final Matrix d = new Matrix();
-    public final org.telegram.ui.Components.e6 f52219e = new org.telegram.ui.Components.e6(1.0f, new o2(this, 2), 0, 420, tr.h);
-    public final RectF f52220f = new RectF();
-    public final int f52216a = 1;
+import org.telegram.ui.Components.c50;
+public final class x2 extends FrameLayout {
+    public final int[] f53365a;
+    public final y2 f53366b;
 
-    public final void a(int i10, int i11) {
-        if (this.h == i10 && this.f52222i == i11) {
-            return;
-        }
-        Shader[] shaderArr = this.f52218c;
-        shaderArr[0] = shaderArr[1];
-        if (this.f52216a == 0) {
-            this.h = i10;
-            this.f52222i = i11;
-            shaderArr[1] = new LinearGradient(0.0f, 0.0f, 100.0f, 0.0f, new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-        } else {
-            this.h = i10;
-            this.f52222i = i11;
-            shaderArr[1] = new RadialGradient(0.0f, 0.0f, AndroidUtilities.dp(340.0f), new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-        }
-        this.f52219e.d(0.0f, true);
-        invalidateSelf();
+    public x2(y2 y2Var, Context context) {
+        super(context);
+        this.f53366b = y2Var;
+        this.f53365a = new int[2];
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        RectF rectF = this.f52220f;
-        rectF.set(bounds);
-        rectF.right = rectF.width() + rectF.left;
-        int i10 = 0;
-        float d = this.f52219e.d(1.0f, false);
-        while (true) {
-            Shader[] shaderArr = this.f52218c;
-            if (i10 >= shaderArr.length) {
-                break;
-            }
-            if (shaderArr[i10] != null) {
-                float pow = (float) Math.pow(1.0f - Math.abs(i10 - d), 0.25d);
-                if (pow > 0.0f) {
-                    Matrix matrix = this.d;
-                    matrix.reset();
-                    if (this.f52216a == 1) {
-                        matrix.postTranslate(rectF.centerX(), AndroidUtilities.dp(145.0f));
-                    } else {
-                        matrix.postScale(getBounds().width() / 100.0f, 1.0f);
-                    }
-                    shaderArr[i10].setLocalMatrix(matrix);
-                    Shader shader = shaderArr[i10];
-                    Paint paint = this.f52217b;
-                    paint.setShader(shader);
-                    paint.setAlpha((int) (pow * 255.0f));
-                    canvas.drawRoundRect(rectF, 0.0f, 0.0f, paint);
-                }
-            }
-            i10++;
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        FrameLayout frameLayout;
+        super.onLayout(z10, i10, i11, i12, i13);
+        y2 y2Var = this.f53366b;
+        c50 c50Var = y2Var.f53413i;
+        if (c50Var != null && c50Var.d.getChildCount() >= 2 && y2Var.f53422r != null && (frameLayout = y2Var.f53417m) != null) {
+            int[] iArr = this.f53365a;
+            frameLayout.getLocationInWindow(iArr);
+            float translationX = iArr[0] - y2Var.f53417m.getTranslationX();
+            float translationY = iArr[1] - y2Var.f53417m.getTranslationY();
+            View childAt = c50Var.d.getChildAt(1);
+            childAt.getLocationInWindow(iArr);
+            float translationY2 = iArr[1] - childAt.getTranslationY();
+            ci.d4 d4Var = y2Var.f53422r;
+            d4Var.setTranslationY(((translationY2 - translationY) - d4Var.getMeasuredHeight()) - c50Var.getMeasuredHeight());
+            y2Var.f53422r.m(0.0f, ((childAt.getMeasuredWidth() / 2.0f) + ((iArr[0] - childAt.getTranslationX()) - translationX)) - AndroidUtilities.dp(12.0f));
         }
-        if (this.f52221g != null) {
-            canvas.save();
-            canvas.translate(rectF.centerX(), AndroidUtilities.dp(145.0f));
-            k0.a(canvas, 0, this.f52221g, rectF.width(), AndroidUtilities.dp(290.0f), 2.0f, 1.0f);
-            canvas.restore();
-        }
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

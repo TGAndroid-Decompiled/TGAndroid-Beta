@@ -5,11 +5,11 @@ import android.os.Parcelable;
 import g8.j;
 import java.util.Arrays;
 import n6.l;
-import w7.g0;
+import w7.d0;
 public final class a extends o6.a {
     public static final Parcelable.Creator<a> CREATOR = new j(21);
-    public String f15379a;
-    public String f15380b;
+    public String f15442a;
+    public String f15443b;
 
     public final boolean equals(Object obj) {
         if (this == obj) {
@@ -17,7 +17,7 @@ public final class a extends o6.a {
         }
         if (obj instanceof a) {
             a aVar = (a) obj;
-            if (l.l(this.f15379a, aVar.f15379a) && l.l(this.f15380b, aVar.f15380b)) {
+            if (l.l(this.f15442a, aVar.f15442a) && l.l(this.f15443b, aVar.f15443b)) {
                 return true;
             }
         }
@@ -25,14 +25,14 @@ public final class a extends o6.a {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f15379a, this.f15380b});
+        return Arrays.hashCode(new Object[]{this.f15442a, this.f15443b});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = g0.q(parcel, 20293);
-        g0.l(parcel, 1, this.f15379a);
-        g0.l(parcel, 2, this.f15380b);
-        g0.r(parcel, q6);
+        int q6 = d0.q(parcel, 20293);
+        d0.l(parcel, 1, this.f15442a);
+        d0.l(parcel, 2, this.f15443b);
+        d0.r(parcel, q6);
     }
 }

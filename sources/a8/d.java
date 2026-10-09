@@ -9,27 +9,27 @@ import com.google.android.gms.common.api.l;
 import g6.v;
 import g6.w;
 import kotlin.jvm.internal.i;
-import m.p3;
+import m.q3;
 import n6.p;
 import v8.o;
 import y8.y0;
 public final class d {
-    public final int f333a;
+    public final int f331a;
 
     public d(int i10) {
-        this.f333a = i10;
+        this.f331a = i10;
     }
 
-    public com.google.android.gms.common.api.c a(Context context, Looper looper, p3 commonSettings, Object obj, k kVar, l lVar) {
-        switch (this.f333a) {
+    public com.google.android.gms.common.api.c a(Context context, Looper looper, q3 commonSettings, Object obj, k kVar, l lVar) {
+        switch (this.f331a) {
             case 1:
                 c6.e eVar = (c6.e) obj;
                 n6.l.i(eVar, "Setting the API options is required.");
-                return new w(context, looper, commonSettings, eVar.f4294a, 0, eVar.f4296c, eVar.d, kVar, lVar);
+                return new w(context, looper, commonSettings, eVar.f4344a, 0, eVar.f4346c, eVar.d, kVar, lVar);
             case 2:
                 c6.e eVar2 = (c6.e) obj;
                 n6.l.i(eVar2, "Setting the API options is required.");
-                return new v(context, looper, commonSettings, eVar2.f4294a, 0, eVar2.f4295b, eVar2.f4296c, kVar, lVar);
+                return new v(context, looper, commonSettings, eVar2.f4344a, 0, eVar2.f4345b, eVar2.f4346c, kVar, lVar);
             case 3:
                 com.google.android.gms.common.api.a aVar = (com.google.android.gms.common.api.a) obj;
                 return new n6.g(context, looper, 161, commonSettings, kVar, lVar, 0);
@@ -40,7 +40,7 @@ public final class d {
             case 13:
             case 14:
             default:
-                switch (this.f333a) {
+                switch (this.f331a) {
                     case 0:
                         com.google.android.gms.common.api.a apiOptions = (com.google.android.gms.common.api.a) obj;
                         i.e(context, "context");
@@ -102,13 +102,13 @@ public final class d {
                 bundle.putBoolean("com.google.android.gms.signin.internal.waitForAccessTokenRefresh", false);
                 return new o8.a(context, looper, commonSettings, bundle, kVar, lVar);
             case 10:
-                throw a4.a.j(obj);
+                throw a1.g.j(obj);
             case 15:
                 o oVar = (o) obj;
                 if (oVar == null) {
                     oVar = new o(new com.google.android.gms.internal.cast.a());
                 }
-                return new e8.b(context, looper, commonSettings, kVar, lVar, oVar.f48233a);
+                return new e8.b(context, looper, commonSettings, kVar, lVar, oVar.f49483a);
             case 16:
                 return new i7.g(context, looper, commonSettings, (w5.b) obj, kVar, lVar);
             case 17:

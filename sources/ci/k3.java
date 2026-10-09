@@ -1,18 +1,37 @@
 package ci;
 
-import android.content.Context;
-import android.view.accessibility.AccessibilityNodeInfo;
-public final class k3 extends org.telegram.ui.ActionBar.v0 {
-    public final w3 f5292v0;
+import android.text.TextUtils;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.ay0;
+public final class k3 extends u3 {
+    public final v3 f5314x;
 
-    public k3(w3 w3Var, Context context, org.telegram.ui.ActionBar.z zVar, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, zVar, 0, 0, false, d6Var);
-        this.f5292v0 = w3Var;
+    public k3(v3 v3Var) {
+        super(v3Var);
+        this.f5314x = v3Var;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setText(this.f5292v0.f6227y.getText());
+    public final void F(boolean z10) {
+        v3 v3Var = this.f5314x;
+        org.telegram.ui.ActionBar.v0 v0Var = v3Var.G;
+        if (v0Var != null) {
+            v0Var.setShowSearchProgress(z10);
+        }
+        v3Var.f6144s.e(z10, true);
+    }
+
+    @Override
+    public final void l() {
+        ay0 ay0Var = this.f5314x.f6144s;
+        super.l();
+        if (TextUtils.isEmpty(this.f6058f)) {
+            ay0Var.setStickerType(11);
+            ay0Var.d.setText(LocaleController.getString(R.string.SearchImagesType));
+            return;
+        }
+        ay0Var.setStickerType(1);
+        ay0Var.d.setText(LocaleController.formatString(R.string.NoResultFoundFor, this.f6058f));
     }
 }

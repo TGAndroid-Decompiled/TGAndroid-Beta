@@ -1,87 +1,31 @@
 package ed;
+public abstract class k {
+    public final int f8880a;
+    public final int f8881b;
 
-import bf.s;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.ListIterator;
-public final class k implements ef.a {
-    public final char f8858a;
-    public int f8859b = 0;
-    public final LinkedList f8860c = new LinkedList();
-
-    public k(char c10) {
-        this.f8858a = c10;
+    public k(int i10, int i11) {
+        this.f8880a = i11;
+        this.f8881b = i10;
     }
 
-    @Override
-    public final char a() {
-        return this.f8858a;
+    public static String a(int i10) {
+        return "" + ((char) ((i10 >> 24) & 255)) + ((char) ((i10 >> 16) & 255)) + ((char) ((i10 >> 8) & 255)) + ((char) (i10 & 255));
     }
 
-    @Override
-    public final int b(ye.b bVar, ye.b bVar2) {
-        ef.a aVar;
-        int i10 = bVar.f50877g;
-        LinkedList linkedList = this.f8860c;
-        Iterator it = linkedList.iterator();
-        while (true) {
-            if (it.hasNext()) {
-                aVar = (ef.a) it.next();
-                if (aVar.c() <= i10) {
-                    break;
-                }
-            } else {
-                aVar = (ef.a) linkedList.getFirst();
-                break;
-            }
+    public static void c(StringBuilder sb2) {
+        if (sb2 != null) {
+            sb2.delete(0, sb2.length());
         }
-        return aVar.b(bVar, bVar2);
     }
 
-    @Override
-    public final int c() {
-        return this.f8859b;
-    }
+    public abstract k b();
 
-    @Override
-    public final void d(s sVar, s sVar2, int i10) {
-        ef.a aVar;
-        LinkedList linkedList = this.f8860c;
-        Iterator it = linkedList.iterator();
-        while (true) {
-            if (it.hasNext()) {
-                aVar = (ef.a) it.next();
-                if (aVar.c() <= i10) {
-                    break;
-                }
-            } else {
-                aVar = (ef.a) linkedList.getFirst();
-                break;
-            }
+    public String toString() {
+        switch (this.f8880a) {
+            case 1:
+                return a(this.f8881b);
+            default:
+                return super.toString();
         }
-        aVar.d(sVar, sVar2, i10);
-    }
-
-    @Override
-    public final char e() {
-        return this.f8858a;
-    }
-
-    public final void f(ef.a aVar) {
-        int c10 = aVar.c();
-        LinkedList linkedList = this.f8860c;
-        ListIterator listIterator = linkedList.listIterator();
-        while (listIterator.hasNext()) {
-            int c11 = ((ef.a) listIterator.next()).c();
-            if (c10 > c11) {
-                listIterator.previous();
-                listIterator.add(aVar);
-                return;
-            } else if (c10 == c11) {
-                throw new IllegalArgumentException("Cannot add two delimiter processors for char '" + this.f8858a + "' and minimum length " + c10);
-            }
-        }
-        linkedList.add(aVar);
-        this.f8859b = c10;
     }
 }

@@ -4,14 +4,14 @@ public enum a implements la.c {
     MESSAGE_DELIVERED(1),
     MESSAGE_OPEN(2);
     
-    public final int f49024a;
+    public final int f50303a;
 
     a(int i10) {
-        this.f49024a = i10;
+        this.f50303a = i10;
     }
 
     @Override
     public final int a() {
-        return this.f49024a;
+        return this.f50303a;
     }
 }

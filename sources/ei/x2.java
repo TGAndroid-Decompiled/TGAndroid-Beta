@@ -1,48 +1,60 @@
 package ei;
 
-import android.animation.ValueAnimator;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
-public final class x2 implements ValueAnimator.AnimatorUpdateListener {
-    public final boolean f9457a;
-    public final float f9458b;
-    public final float f9459c;
-    public final float d;
-    public final float f9460e;
-    public final l3 f9461f;
+public final class x2 extends AnimatorListenerAdapter {
+    public final boolean f9488a;
+    public final float f9489b;
+    public final float f9490c;
+    public final k3 d;
 
-    public x2(l3 l3Var, boolean z10, float f7, float f10, float f11, float f12) {
-        this.f9461f = l3Var;
-        this.f9457a = z10;
-        this.f9458b = f7;
-        this.f9459c = f10;
-        this.d = f11;
-        this.f9460e = f12;
+    public x2(k3 k3Var, boolean z10, float f7, float f10) {
+        this.d = k3Var;
+        this.f9488a = z10;
+        this.f9489b = f7;
+        this.f9490c = f10;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        l3 l3Var = this.f9461f;
-        c3 c3Var = l3Var.f9181x;
-        i3 i3Var = l3Var.W;
-        b3 b3Var = l3Var.v;
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        l3Var.f9161g0 = floatValue;
-        if (!this.f9457a) {
-            floatValue = 1.0f - floatValue;
+    public final void onAnimationEnd(Animator animator) {
+        float f7;
+        k3 k3Var = this.d;
+        b3 b3Var = k3Var.f9183x;
+        h3 h3Var = k3Var.W;
+        a3 a3Var = k3Var.v;
+        k3Var.f9164h0 = false;
+        boolean z10 = this.f9488a;
+        if (!z10) {
+            k3Var.E();
+            k3Var.H();
+            float f10 = this.f9489b;
+            a3Var.setForceOffsetY(f10 - AndroidUtilities.dp(24.0f));
+            a3Var.setTopActionBarOffsetY(f10 - AndroidUtilities.dp(24.0f));
+            a3Var.setSwipeOffsetY(0.0f);
+        } else {
+            a3Var.setForceOffsetY(-AndroidUtilities.dp(24.0f));
+            a3Var.setTopActionBarOffsetY(-AndroidUtilities.dp(24.0f));
+            a3Var.setSwipeOffsetY(0.0f);
         }
-        l3Var.f9160f0 = floatValue;
-        i3Var.setAlpha(1.0f - floatValue);
-        i3Var.setTranslationY((-org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) * l3Var.f9160f0);
-        float f7 = this.f9458b;
-        float f10 = l3Var.f9161g0;
-        float f11 = this.f9459c;
-        b3Var.setTranslationY(AndroidUtilities.lerp(f7, f11, f10));
-        b3Var.setTranslationX(AndroidUtilities.lerp(this.d, 0.0f, l3Var.f9161g0));
-        l3Var.f9166l0.setTranslationX(AndroidUtilities.lerp(this.f9460e, 0.0f, l3Var.f9161g0));
-        l3Var.m0.setAlpha(l3Var.f9160f0);
-        l3Var.f9157e.invalidate();
-        c3Var.setViewPortHeightOffset(b3Var.getTranslationY() - f11);
-        c3Var.o(false, false);
-        l3Var.C();
+        if (z10) {
+            f7 = k3Var.f9163g0;
+        } else {
+            f7 = 1.0f - k3Var.f9163g0;
+        }
+        k3Var.f9162f0 = f7;
+        h3Var.setAlpha(1.0f - f7);
+        h3Var.setTranslationY((-org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) * k3Var.f9162f0);
+        k3Var.m0.setAlpha(k3Var.f9162f0);
+        if (z10) {
+            h3Var.setVisibility(8);
+        }
+        a3Var.setSwipeOffsetAnimationDisallowed(false);
+        a3Var.setTranslationX(AndroidUtilities.lerp(this.f9490c, 0.0f, k3Var.f9163g0));
+        k3Var.f9168l0.setTranslationX(0.0f);
+        k3Var.f9159e.invalidate();
+        b3Var.setViewPortHeightOffset(0.0f);
+        b3Var.n(true, true);
+        k3Var.D();
     }
 }

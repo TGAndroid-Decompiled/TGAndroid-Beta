@@ -5,27 +5,27 @@ import android.text.TextWatcher;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.w61;
+import org.telegram.ui.Components.c71;
 public final class w implements TextWatcher {
-    public final x f12708a;
+    public final x f12755a;
 
     public w(x xVar) {
-        this.f12708a = xVar;
+        this.f12755a = xVar;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        x xVar = this.f12708a;
-        TL_iv.RichMessage richMessage = xVar.f12751i0;
+        x xVar = this.f12755a;
+        TL_iv.RichMessage richMessage = xVar.f12798i0;
         if (richMessage != null && richMessage != null) {
-            xVar.f12751i0 = null;
-            xVar.f12748f0.g(LocaleController.getString(R.string.ArticleAIGenerate), true, true);
-            w61 w61Var = xVar.Z;
-            if (w61Var != null) {
-                w61Var.N(true);
+            xVar.f12798i0 = null;
+            xVar.f12795f0.g(LocaleController.getString(R.string.ArticleAIGenerate), true, true);
+            c71 c71Var = xVar.Z;
+            if (c71Var != null) {
+                c71Var.N(true);
             }
         }
-        xVar.N();
+        xVar.Q();
     }
 
     @Override

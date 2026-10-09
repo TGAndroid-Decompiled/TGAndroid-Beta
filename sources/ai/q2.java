@@ -1,45 +1,36 @@
 package ai;
 
-import android.app.Activity;
-import android.content.Context;
-import android.graphics.Canvas;
+import android.animation.ValueAnimator;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.wp;
-public final class q2 extends View {
-    public final int f1537a = 1;
-    public final wp f1538b;
+public final class q2 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f1608a;
+    public final s2 f1609b;
 
-    public q2(Context context) {
-        super(context);
-        this.f1538b = new wp(AndroidUtilities.dp(36.0f), AndroidUtilities.dp(2.0f), -13522392);
+    public q2(s2 s2Var, int i10) {
+        this.f1608a = i10;
+        this.f1609b = s2Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        switch (this.f1537a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f1608a) {
             case 0:
-                int dp = AndroidUtilities.dp(1.0f);
-                wp wpVar = this.f1538b;
-                wpVar.setBounds(dp, dp, (getWidth() - dp) - dp, (getHeight() - dp) - dp);
-                wpVar.draw(canvas);
-                invalidate();
+                this.f1609b.d.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             default:
-                int width = getWidth();
-                int height = getHeight();
-                wp wpVar2 = this.f1538b;
-                wpVar2.setBounds(0, 0, width, height);
-                wpVar2.setAlpha(255);
-                wpVar2.draw(canvas);
-                invalidate();
-                super.onDraw(canvas);
+                s2 s2Var = this.f1609b;
+                s2Var.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                s2Var.f1696n = floatValue;
+                View view = s2Var.f1692b;
+                view.setAlpha(1.0f - floatValue);
+                view.setScaleX(1.0f - s2Var.f1696n);
+                view.setScaleY(1.0f - s2Var.f1696n);
+                s2Var.f1693c.setColorFilter(new PorterDuffColorFilter(i0.a.d(s2Var.f1696n, -1, -2960428), PorterDuff.Mode.SRC_IN));
+                s2Var.f1691a.invalidate();
                 return;
         }
-    }
-
-    public q2(Activity activity) {
-        super(activity);
-        this.f1538b = new wp(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(3.0f), org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20992m5, false));
     }
 }

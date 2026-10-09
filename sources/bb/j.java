@@ -1,18 +1,18 @@
 package bb;
-public final class j extends kd.c {
-    public Object f3752a;
-    public final l f3753b;
-    public int f3754c;
+public final class j extends ld.c {
+    public Object f3831a;
+    public final l f3832b;
+    public int f3833c;
 
-    public j(l lVar, kd.c cVar) {
+    public j(l lVar, ld.c cVar) {
         super(cVar);
-        this.f3753b = lVar;
+        this.f3832b = lVar;
     }
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        this.f3752a = obj;
-        this.f3754c |= Integer.MIN_VALUE;
-        return this.f3753b.c(null, null, this);
+        this.f3831a = obj;
+        this.f3833c |= Integer.MIN_VALUE;
+        return this.f3832b.c(null, null, this);
     }
 }

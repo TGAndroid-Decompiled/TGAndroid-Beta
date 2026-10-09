@@ -8,7 +8,6 @@ import j$.util.DesugarCollections;
 import java.util.ArrayList;
 import java.util.List;
 import v7.x6;
-import w7.g0;
 public final class b extends o6.a {
     public static final Parcelable.Creator<b> CREATOR;
     public static final a0 G = new a0(false);
@@ -16,20 +15,20 @@ public final class b extends o6.a {
     public static final e6.a I;
     public final a0 E;
     public b0 F;
-    public final String f8117a;
-    public final ArrayList f8118b;
-    public final boolean f8119c;
+    public final String f8166a;
+    public final ArrayList f8167b;
+    public final boolean f8168c;
     public final c6.i d;
-    public final boolean f8120e;
-    public final e6.a f8121f;
+    public final boolean f8169e;
+    public final e6.a f8170f;
     public final boolean h;
-    public final double f8122n;
-    public final boolean f8123r;
-    public final boolean f8124s;
+    public final double f8171n;
+    public final boolean f8172r;
+    public final boolean f8173s;
     public final boolean v;
-    public final List f8125w;
-    public final boolean f8126x;
-    public final boolean f8127y;
+    public final List f8174w;
+    public final boolean f8175x;
+    public final boolean f8176y;
 
     static {
         new e6.f(e6.f.Y, e6.f.Z, 10000L, null, x6.a("smallIconDrawableResId"), x6.a("stopLiveStreamDrawableResId"), x6.a("pauseDrawableResId"), x6.a("playDrawableResId"), x6.a("skipNextDrawableResId"), x6.a("skipPrevDrawableResId"), x6.a("forwardDrawableResId"), x6.a("forward10DrawableResId"), x6.a("forward30DrawableResId"), x6.a("rewindDrawableResId"), x6.a("rewind10DrawableResId"), x6.a("rewind30DrawableResId"), x6.a("disconnectDrawableResId"), x6.a("notificationImageSizeDimenResId"), x6.a("castingToDeviceStringResId"), x6.a("stopLiveStreamStringResId"), x6.a("pauseStringResId"), x6.a("playStringResId"), x6.a("skipNextStringResId"), x6.a("skipPrevStringResId"), x6.a("forwardStringResId"), x6.a("forward10StringResId"), x6.a("forward30StringResId"), x6.a("rewindStringResId"), x6.a("rewind10StringResId"), x6.a("rewind30StringResId"), x6.a("disconnectStringResId"), null, false, false);
@@ -39,63 +38,63 @@ public final class b extends o6.a {
 
     public b(String str, ArrayList arrayList, boolean z10, c6.i iVar, boolean z11, e6.a aVar, boolean z12, double d, boolean z13, boolean z14, boolean z15, ArrayList arrayList2, boolean z16, boolean z17, a0 a0Var, b0 b0Var) {
         int size;
-        this.f8117a = true == TextUtils.isEmpty(str) ? "" : str;
+        this.f8166a = true == TextUtils.isEmpty(str) ? "" : str;
         if (arrayList == null) {
             size = 0;
         } else {
             size = arrayList.size();
         }
         ArrayList arrayList3 = new ArrayList(size);
-        this.f8118b = arrayList3;
+        this.f8167b = arrayList3;
         if (size > 0) {
             arrayList3.addAll(arrayList);
         }
-        this.f8119c = z10;
+        this.f8168c = z10;
         this.d = iVar == null ? new c6.i() : iVar;
-        this.f8120e = z11;
-        this.f8121f = aVar;
+        this.f8169e = z11;
+        this.f8170f = aVar;
         this.h = z12;
-        this.f8122n = d;
-        this.f8123r = z13;
-        this.f8124s = z14;
+        this.f8171n = d;
+        this.f8172r = z13;
+        this.f8173s = z14;
         this.v = z15;
-        this.f8125w = arrayList2;
-        this.f8126x = z16;
-        this.f8127y = z17;
+        this.f8174w = arrayList2;
+        this.f8175x = z16;
+        this.f8176y = z17;
         this.E = a0Var;
         this.F = b0Var;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = g0.q(parcel, 20293);
-        g0.l(parcel, 2, this.f8117a);
-        g0.n(parcel, 3, DesugarCollections.unmodifiableList(this.f8118b));
-        g0.s(parcel, 4, 4);
-        parcel.writeInt(this.f8119c ? 1 : 0);
-        g0.k(parcel, 5, this.d, i10);
-        g0.s(parcel, 6, 4);
-        parcel.writeInt(this.f8120e ? 1 : 0);
-        g0.k(parcel, 7, this.f8121f, i10);
-        g0.s(parcel, 8, 4);
+        int q6 = w7.d0.q(parcel, 20293);
+        w7.d0.l(parcel, 2, this.f8166a);
+        w7.d0.n(parcel, 3, DesugarCollections.unmodifiableList(this.f8167b));
+        w7.d0.s(parcel, 4, 4);
+        parcel.writeInt(this.f8168c ? 1 : 0);
+        w7.d0.k(parcel, 5, this.d, i10);
+        w7.d0.s(parcel, 6, 4);
+        parcel.writeInt(this.f8169e ? 1 : 0);
+        w7.d0.k(parcel, 7, this.f8170f, i10);
+        w7.d0.s(parcel, 8, 4);
         parcel.writeInt(this.h ? 1 : 0);
-        g0.s(parcel, 9, 8);
-        parcel.writeDouble(this.f8122n);
-        g0.s(parcel, 10, 4);
-        parcel.writeInt(this.f8123r ? 1 : 0);
-        g0.s(parcel, 11, 4);
-        parcel.writeInt(this.f8124s ? 1 : 0);
-        g0.s(parcel, 12, 4);
+        w7.d0.s(parcel, 9, 8);
+        parcel.writeDouble(this.f8171n);
+        w7.d0.s(parcel, 10, 4);
+        parcel.writeInt(this.f8172r ? 1 : 0);
+        w7.d0.s(parcel, 11, 4);
+        parcel.writeInt(this.f8173s ? 1 : 0);
+        w7.d0.s(parcel, 12, 4);
         parcel.writeInt(this.v ? 1 : 0);
-        g0.n(parcel, 13, DesugarCollections.unmodifiableList(this.f8125w));
-        g0.s(parcel, 14, 4);
-        parcel.writeInt(this.f8126x ? 1 : 0);
-        g0.s(parcel, 15, 4);
+        w7.d0.n(parcel, 13, DesugarCollections.unmodifiableList(this.f8174w));
+        w7.d0.s(parcel, 14, 4);
+        parcel.writeInt(this.f8175x ? 1 : 0);
+        w7.d0.s(parcel, 15, 4);
         parcel.writeInt(0);
-        g0.s(parcel, 16, 4);
-        parcel.writeInt(this.f8127y ? 1 : 0);
-        g0.k(parcel, 17, this.E, i10);
-        g0.k(parcel, 18, this.F, i10);
-        g0.r(parcel, q6);
+        w7.d0.s(parcel, 16, 4);
+        parcel.writeInt(this.f8176y ? 1 : 0);
+        w7.d0.k(parcel, 17, this.E, i10);
+        w7.d0.k(parcel, 18, this.F, i10);
+        w7.d0.r(parcel, q6);
     }
 }

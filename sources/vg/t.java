@@ -8,79 +8,79 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.o11;
-import w7.z5;
+import org.telegram.ui.Components.u11;
+import w7.x5;
 public final class t extends FrameLayout {
-    public final vh.n f48341a;
-    public final FrameLayout f48342b;
-    public String f48343c;
+    public final vh.n f49621a;
+    public final FrameLayout f49622b;
+    public String f49623c;
     public String d;
-    public final ImageView f48344e;
+    public final ImageView f49624e;
 
-    public t(Context context, d6 d6Var) {
+    public t(Context context, e6 e6Var) {
         super(context);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f48342b = frameLayout;
+        this.f49622b = frameLayout;
         vh.n nVar = new vh.n(context);
-        this.f48341a = nVar;
+        this.f49621a = nVar;
         nVar.setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(50.0f), AndroidUtilities.dp(13.0f));
         nVar.setTextSize(1, 16.0f);
         nVar.setEllipsize(TextUtils.TruncateAt.MIDDLE);
         nVar.setSingleLine(true);
-        nVar.setTextColor(i6.v0(i6.G6, d6Var));
-        nVar.f48451f = false;
-        frameLayout.addView(nVar, z5.e(-2, -2, 17));
+        nVar.setTextColor(i6.w0(i6.G6, e6Var));
+        nVar.f49734r = false;
+        frameLayout.addView(nVar, x5.e(-2, -2, 17));
         int dp = AndroidUtilities.dp(8.0f);
-        int v02 = i6.v0(i6.e7, d6Var);
-        int i10 = i6.f20918i6;
-        int k10 = i0.a.k(i6.v0(i10, d6Var), 76);
-        frameLayout.setBackground(i6.i0(dp, dp, dp, dp, v02, k10, k10));
-        addView(frameLayout, z5.d(-1, -2.0f, 0, 14.0f, 0.0f, 14.0f, 0.0f));
+        int w02 = i6.w0(i6.e7, e6Var);
+        int i10 = i6.f20888i6;
+        int k10 = i0.a.k(i6.w0(i10, e6Var), 76);
+        frameLayout.setBackground(i6.j0(dp, dp, dp, dp, w02, k10, k10));
+        addView(frameLayout, x5.a(-2.0f, 14.0f, 0.0f, 14.0f, 0.0f, -1, 0));
         frameLayout.setOnClickListener(new View.OnClickListener(this) {
-            public final t f48340b;
+            public final t f49620b;
 
             {
-                this.f48340b = this;
+                this.f49620b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        AndroidUtilities.addToClipboard(this.f48340b.d);
+                        AndroidUtilities.addToClipboard(this.f49620b.d);
                         return;
                     default:
-                        AndroidUtilities.addToClipboard(this.f48340b.d);
+                        AndroidUtilities.addToClipboard(this.f49620b.d);
                         return;
                 }
             }
         });
         ImageView imageView = new ImageView(getContext());
-        this.f48344e = imageView;
+        this.f49624e = imageView;
         imageView.setImageResource(R.drawable.menu_copy_s);
-        imageView.setColorFilter(i6.v0(i6.f20935j5, d6Var));
+        imageView.setColorFilter(i6.w0(i6.f20905j5, e6Var));
         imageView.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
         int dp2 = AndroidUtilities.dp(20.0f);
-        int k11 = i0.a.k(i6.v0(i10, d6Var), 76);
-        imageView.setBackground(i6.i0(dp2, dp2, dp2, dp2, 0, k11, k11));
-        addView(imageView, z5.d(40, 40.0f, 21, 15.0f, 0.0f, 17.0f, 0.0f));
+        int k11 = i0.a.k(i6.w0(i10, e6Var), 76);
+        imageView.setBackground(i6.j0(dp2, dp2, dp2, dp2, 0, k11, k11));
+        addView(imageView, x5.a(40.0f, 15.0f, 0.0f, 17.0f, 0.0f, 40, 21));
         imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final t f48340b;
+            public final t f49620b;
 
             {
-                this.f48340b = this;
+                this.f49620b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        AndroidUtilities.addToClipboard(this.f48340b.d);
+                        AndroidUtilities.addToClipboard(this.f49620b.d);
                         return;
                     default:
-                        AndroidUtilities.addToClipboard(this.f48340b.d);
+                        AndroidUtilities.addToClipboard(this.f49620b.d);
                         return;
                 }
             }
@@ -88,27 +88,27 @@ public final class t extends FrameLayout {
     }
 
     public final void a(Runnable runnable) {
-        this.f48344e.setVisibility(4);
+        this.f49624e.setVisibility(4);
         int dp = AndroidUtilities.dp(18.0f);
         int dp2 = AndroidUtilities.dp(14.0f);
         int dp3 = AndroidUtilities.dp(14.0f);
         int dp4 = AndroidUtilities.dp(18.0f);
-        vh.n nVar = this.f48341a;
+        vh.n nVar = this.f49621a;
         nVar.setPadding(dp, dp2, dp3, dp4);
         ?? obj = new Object();
-        obj.f28925a |= 256;
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("t.me/giftcode/" + this.f48343c);
-        if (this.f48343c == null) {
+        obj.f30974a |= 256;
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("t.me/giftcode/" + this.f49623c);
+        if (this.f49623c == null) {
             spannableStringBuilder.append((CharSequence) "1234567891011123654897566536223");
         }
-        spannableStringBuilder.setSpan(new o11(obj, 0), 0, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.setSpan(new u11(obj, 0), 0, spannableStringBuilder.length(), 33);
         nVar.setText(spannableStringBuilder);
-        this.f48342b.setOnClickListener(new bi.p(4, runnable));
+        this.f49622b.setOnClickListener(new bi.p(4, runnable));
     }
 
     public void setSlug(String str) {
-        this.f48343c = str;
-        this.d = sa.e.i("https://t.me/giftcode/", str);
-        this.f48341a.setText("t.me/giftcode/" + str);
+        this.f49623c = str;
+        this.d = sc.v.i("https://t.me/giftcode/", str);
+        this.f49621a.setText("t.me/giftcode/" + str);
     }
 }

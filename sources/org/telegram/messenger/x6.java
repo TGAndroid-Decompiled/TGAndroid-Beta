@@ -1,31 +1,38 @@
 package org.telegram.messenger;
+public final class x6 implements Runnable {
+    public final int f19772a;
+    public final MediaDataController f19773b;
+    public final String f19774c;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class x6 implements RequestDelegate {
-    public final int f19771a;
-    public final int f19772b;
-    public final String f19773c;
-    public final String d;
-    public final BaseController f19774e;
-
-    public x6(BaseController baseController, int i10, String str, String str2, int i11) {
-        this.f19771a = i11;
-        this.f19774e = baseController;
-        this.f19772b = i10;
-        this.f19773c = str;
-        this.d = str2;
+    public x6(MediaDataController mediaDataController, String str, int i10) {
+        this.f19772a = i10;
+        this.f19773b = mediaDataController;
+        this.f19774c = str;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f19771a) {
+    public final void run() {
+        switch (this.f19772a) {
             case 0:
-                ((MediaDataController) this.f19774e).lambda$fetchNewEmojiKeywords$213(this.f19772b, this.f19773c, this.d, tLObject, tL_error);
+                this.f19773b.lambda$fetchNewEmojiKeywords$208(this.f19774c);
+                return;
+            case 1:
+                this.f19773b.lambda$fetchNewEmojiKeywords$210(this.f19774c);
+                return;
+            case 2:
+                this.f19773b.lambda$fetchNewEmojiKeywords$212(this.f19774c);
+                return;
+            case 3:
+                this.f19773b.lambda$fetchNewEmojiKeywords$209(this.f19774c);
+                return;
+            case 4:
+                this.f19773b.lambda$fetchNewEmojiKeywords$214(this.f19774c);
+                return;
+            case 5:
+                this.f19773b.lambda$putEmojiKeywords$215(this.f19774c);
                 return;
             default:
-                ((MessagesController) this.f19774e).lambda$checkPromoInfoInternal$169(this.f19772b, this.f19773c, this.d, tLObject, tL_error);
+                this.f19773b.lambda$processLoadedDiceStickers$86(this.f19774c);
                 return;
         }
     }

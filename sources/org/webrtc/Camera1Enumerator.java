@@ -88,7 +88,7 @@ public class Camera1Enumerator implements CameraEnumerator {
                 return i10;
             }
         }
-        throw new IllegalArgumentException(sa.e.i("No such camera: ", str));
+        throw new IllegalArgumentException(sc.v.i("No such camera: ", str));
     }
 
     private static Camera.CameraInfo getCameraInfo(int i10) {

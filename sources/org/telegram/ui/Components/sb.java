@@ -1,10 +1,7 @@
 package org.telegram.ui.Components;
-public interface sb {
-    void a(rc rcVar);
-
-    void b();
-
-    void c();
-
-    void d();
+public final class sb extends tc {
+    @Override
+    public final tc j() {
+        return this;
+    }
 }

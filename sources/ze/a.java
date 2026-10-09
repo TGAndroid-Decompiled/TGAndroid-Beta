@@ -1,80 +1,36 @@
 package ze;
 
-import bf.g;
-import bf.p;
-import bf.s;
-import ye.b;
-public final class a implements ef.a {
-    public final char f53320a;
+import cf.p;
+public final class a extends ef.a {
+    public final cf.b f54367a = new p();
 
-    public a(int i10) {
-        this('*');
-        switch (i10) {
-            case 1:
-                this('_');
-                return;
-            default:
-                return;
+    public static boolean i(d dVar, int i10) {
+        CharSequence charSequence = dVar.f54378a;
+        if (dVar.f54383g < 4 && i10 < charSequence.length() && charSequence.charAt(i10) == '>') {
+            return true;
         }
+        return false;
     }
 
     @Override
-    public final char a() {
-        return this.f53320a;
+    public final cf.a e() {
+        return this.f54367a;
     }
 
     @Override
-    public final int b(b bVar, b bVar2) {
-        if (bVar.d || bVar2.f50874c) {
-            int i10 = bVar2.h;
-            if (i10 % 3 != 0 && (bVar.h + i10) % 3 == 0) {
-                return 0;
+    public final q3.h h(d dVar) {
+        char charAt;
+        int i10 = dVar.f54381e;
+        if (i(dVar, i10)) {
+            int i11 = dVar.f54380c + dVar.f54383g;
+            int i12 = i11 + 1;
+            CharSequence charSequence = dVar.f54378a;
+            int i13 = i10 + 1;
+            if (i13 < charSequence.length() && ((charAt = charSequence.charAt(i13)) == '\t' || charAt == ' ')) {
+                i12 = i11 + 2;
             }
+            return new q3.h(-1, i12, false);
         }
-        if (bVar.f50877g >= 2 && bVar2.f50877g >= 2) {
-            return 2;
-        }
-        return 1;
-    }
-
-    @Override
-    public final int c() {
-        return 1;
-    }
-
-    @Override
-    public final void d(s sVar, s sVar2, int i10) {
-        g gVar;
-        String.valueOf(this.f53320a);
-        if (i10 == 1) {
-            gVar = new g(0);
-        } else {
-            gVar = new g(3);
-        }
-        for (p pVar = (p) sVar.f3834f; pVar != null && pVar != sVar2; pVar = (p) pVar.f3834f) {
-            gVar.b(pVar);
-        }
-        gVar.g();
-        p pVar2 = (p) sVar.f3834f;
-        gVar.f3834f = pVar2;
-        if (pVar2 != null) {
-            pVar2.f3833e = gVar;
-        }
-        gVar.f3833e = sVar;
-        sVar.f3834f = gVar;
-        p pVar3 = (p) sVar.f3831b;
-        gVar.f3831b = pVar3;
-        if (((p) gVar.f3834f) == null) {
-            pVar3.d = gVar;
-        }
-    }
-
-    @Override
-    public final char e() {
-        return this.f53320a;
-    }
-
-    public a(char c10) {
-        this.f53320a = c10;
+        return null;
     }
 }

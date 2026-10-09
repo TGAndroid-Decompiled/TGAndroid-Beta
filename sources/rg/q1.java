@@ -2,212 +2,371 @@ package rg;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.Shader;
+import android.os.SystemClock;
 import android.view.View;
-import java.util.ArrayList;
-import java.util.Collections;
+import android.view.ViewGroup;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.tr;
-import org.telegram.ui.Components.xb0;
-import org.telegram.ui.Components.zl0;
-import org.telegram.ui.eb1;
-public abstract class q1 extends zl0 implements NotificationCenter.NotificationCenterDelegate, m0 {
-    public final ArrayList f46271e3;
-    public final s4.c0 f46272f3;
-    public boolean f46273g3;
-    public boolean f46274h3;
-    public final int f46275i3;
-    public boolean j3;
-    public boolean f46276k3;
-    public final pg.c1 f46277l3;
-    public final tr f46278m3;
-    public final ArrayList f46279n3;
-    public final eb1 f46280o3;
-    public View f46281p3;
-    public boolean f46282q3;
-    public int f46283r3;
-    public int f46284s3;
-    public boolean f46285t3;
-    public boolean f46286u3;
+import org.telegram.messenger.GenericProvider;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.bi;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Components.dq;
+import org.telegram.ui.Components.eq;
+import org.telegram.ui.lx0;
+import w7.x5;
+public class q1 extends ViewGroup {
+    public q1 E;
+    public int F;
+    public int G;
+    public final Matrix H;
+    public long I;
+    public int J;
+    public float K;
+    public boolean L;
+    public boolean M;
+    public final dq f47404a;
+    public final TextView f47405b;
+    public final TextView f47406c;
+    public final TextView d;
+    public final TextView f47407e;
+    public final int f47408f;
+    public final int h;
+    public lx0 f47409n;
+    public final TextView f47410r;
+    public final int f47411s;
+    public final int v;
+    public int f47412w;
+    public LinearGradient f47413x;
+    public final Paint f47414y;
 
-    public q1(Context context, int i10) {
-        super(context, null);
-        ArrayList arrayList = new ArrayList();
-        this.f46271e3 = arrayList;
-        this.f46273g3 = true;
-        this.f46274h3 = true;
-        t0 t0Var = (t0) this;
-        this.f46277l3 = new pg.c1(t0Var, 2);
-        this.f46278m3 = new tr(0.0f, 0.5f, 0.5f, 1.0f);
-        this.f46279n3 = new ArrayList();
-        this.f46280o3 = new eb1(6);
-        this.f46284s3 = -1;
-        this.f46275i3 = i10;
-        s4.c0 c0Var = new s4.c0();
-        this.f46272f3 = c0Var;
-        setLayoutManager(c0Var);
-        setAdapter(new n1(t0Var));
-        setClipChildren(false);
-        setOnScrollListener(new xb0(t0Var, 13));
-        setOnItemClickListener(new ai.g(t0Var, 17));
-        MediaDataController.getInstance(i10).preloadPremiumPreviewStickers();
-        arrayList.clear();
-        arrayList.addAll(MediaDataController.getInstance(i10).premiumPreviewStickers);
-        getAdapter().l();
-        invalidate();
+    public q1(Context context) {
+        super(context);
+        int i10;
+        int i11;
+        int i12;
+        this.f47408f = 12;
+        this.h = 8;
+        this.f47411s = i6.f20797d6;
+        this.v = i6.f20741a7;
+        this.f47414y = new Paint();
+        this.H = new Matrix();
+        dq dqVar = new dq(context, 24, null);
+        this.f47404a = dqVar;
+        dqVar.setDrawBackgroundAsArc(10);
+        int i13 = i6.f20854g7;
+        dqVar.b(i13, i13, i6.f20926k7);
+        addView(dqVar);
+        TextView textView = new TextView(context);
+        this.f47405b = textView;
+        textView.setTextSize(1, 16.0f);
+        textView.setTextColor(i6.x0(null, i6.G6, false));
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setSingleLine();
+        if (LocaleController.isRTL) {
+            i10 = 5;
+        } else {
+            i10 = 3;
+        }
+        addView(textView, x5.a(-2.0f, 0.0f, 8.0f, 0.0f, 0.0f, -2, i10 | 48));
+        TextView textView2 = new TextView(context);
+        this.f47410r = textView2;
+        textView2.setTextSize(1, 14.0f);
+        textView2.setTextColor(-1);
+        textView2.setPadding(AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f), 0);
+        textView2.setTypeface(AndroidUtilities.bold());
+        if (LocaleController.isRTL) {
+            i11 = 5;
+        } else {
+            i11 = 3;
+        }
+        addView(textView2, x5.a(-2.0f, 0.0f, 0.0f, 0.0f, 8.0f, -2, i11 | 80));
+        TextView textView3 = new TextView(context);
+        this.d = textView3;
+        textView3.setTextSize(1, 14.0f);
+        int i14 = i6.f21181y6;
+        textView3.setTextColor(i6.x0(null, i14, false));
+        textView3.getPaint().setStrikeThruText(true);
+        textView3.setSingleLine();
+        if (LocaleController.isRTL) {
+            i12 = 5;
+        } else {
+            i12 = 3;
+        }
+        addView(textView3, x5.a(-2.0f, 0.0f, 0.0f, 0.0f, 8.0f, -2, i12 | 80));
+        TextView textView4 = new TextView(context);
+        this.f47407e = textView4;
+        textView4.setTextSize(1, 14.0f);
+        textView4.setTextColor(i6.x0(null, i14, false));
+        textView4.setSingleLine();
+        addView(textView4, x5.a(-2.0f, 0.0f, 0.0f, 0.0f, 8.0f, -2, (LocaleController.isRTL ? 5 : 3) | 80));
+        TextView textView5 = new TextView(context);
+        this.f47406c = textView5;
+        textView5.setTextSize(1, 15.0f);
+        textView5.setTextColor(i6.x0(null, i14, false));
+        textView5.setSingleLine();
+        addView(textView5, x5.e(-2, -2, 8388613));
+        setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(8.0f));
+        setClipToPadding(false);
+        setWillNotDraw(false);
+    }
+
+    public final void a(org.telegram.ui.lx0 r11, boolean r12) {
+        throw new UnsupportedOperationException("Method not decompiled: rg.q1.a(org.telegram.ui.lx0, boolean):void");
+    }
+
+    public final void b(View view) {
+        Rect rect = AndroidUtilities.rectTmp2;
+        rect.right = view.getMeasuredWidth() + rect.left;
+        rect.bottom = view.getMeasuredHeight() + rect.top;
+        if (LocaleController.isRTL) {
+            int i10 = rect.right;
+            rect.right = getWidth() - rect.left;
+            rect.left = getWidth() - i10;
+        }
+        view.layout(rect.left, rect.top, rect.right, rect.bottom);
+    }
+
+    public final void c(boolean z10, boolean z11) {
+        this.f47404a.a(z10, z11);
+    }
+
+    public final void d() {
+        q1 q1Var = this.E;
+        if (q1Var != null) {
+            q1Var.d();
+            return;
+        }
+        int x02 = i6.x0(null, this.f47411s, false);
+        int x03 = i6.x0(null, this.v, false);
+        if (this.G == x03 && this.F == x02) {
+            return;
+        }
+        this.F = x02;
+        this.G = x03;
+        int dp = AndroidUtilities.dp(200.0f);
+        this.f47412w = dp;
+        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, dp, 0.0f, new int[]{x03, x02, x02, x03}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
+        this.f47413x = linearGradient;
+        this.f47414y.setShader(linearGradient);
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.premiumStickersPreviewLoaded) {
-            ArrayList arrayList = this.f46271e3;
-            arrayList.clear();
-            arrayList.addAll(MediaDataController.getInstance(this.f46275i3).premiumPreviewStickers);
-            getAdapter().l();
+    public void dispatchDraw(Canvas canvas) {
+        Paint paint;
+        if (this.L) {
+            q1 q1Var = this.E;
+            if (q1Var != null) {
+                paint = q1Var.f47414y;
+            } else {
+                paint = this.f47414y;
+            }
+            drawChild(canvas, this.f47404a, getDrawingTime());
+            d();
+            e();
+            RectF rectF = AndroidUtilities.rectTmp;
+            TextView textView = this.f47406c;
+            rectF.set(textView.getLeft(), AndroidUtilities.dp(4.0f) + textView.getTop(), textView.getRight(), textView.getBottom() - AndroidUtilities.dp(4.0f));
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
+            TextView textView2 = this.d;
+            rectF.set(textView2.getLeft(), AndroidUtilities.dp(3.0f) + textView2.getTop(), textView2.getRight(), textView2.getBottom() - AndroidUtilities.dp(3.0f));
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
+            TextView textView3 = this.f47405b;
+            rectF.set(textView3.getLeft(), AndroidUtilities.dp(4.0f) + textView3.getTop(), textView3.getRight(), textView3.getBottom() - AndroidUtilities.dp(4.0f));
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
             invalidate();
+            return;
+        }
+        super.dispatchDraw(canvas);
+    }
+
+    public final void e() {
+        q1 q1Var = this.E;
+        if (q1Var != null) {
+            q1Var.e();
+            return;
+        }
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        long abs = Math.abs(this.I - elapsedRealtime);
+        if (abs > 17) {
+            abs = 16;
+        }
+        if (abs < 4) {
+            abs = 0;
+        }
+        int measuredWidth = getMeasuredWidth();
+        this.I = elapsedRealtime;
+        int i10 = (int) ((((float) (abs * measuredWidth)) / 400.0f) + this.J);
+        this.J = i10;
+        if (i10 >= measuredWidth * 4) {
+            this.J = (-this.f47412w) * 2;
+        }
+        Matrix matrix = this.H;
+        matrix.setTranslate(this.J + this.K, 0.0f);
+        LinearGradient linearGradient = this.f47413x;
+        if (linearGradient != null) {
+            linearGradient.setLocalMatrix(matrix);
         }
     }
 
+    public lx0 getTier() {
+        return this.f47409n;
+    }
+
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        if (this.f46285t3) {
-            ArrayList arrayList = this.f46279n3;
-            arrayList.clear();
-            for (int i10 = 0; i10 < getChildCount(); i10++) {
-                p1 p1Var = (p1) getChildAt(i10);
-                float measuredHeight = ((p1Var.getMeasuredHeight() + p1Var.getTop()) + (p1Var.getMeasuredHeight() >> 1)) / (p1Var.getMeasuredHeight() + (getMeasuredHeight() >> 1));
-                if (measuredHeight > 1.0f) {
-                    measuredHeight = 2.0f - measuredHeight;
-                }
-                float clamp = Utilities.clamp(measuredHeight, 1.0f, 0.0f);
-                p1Var.f46249a = clamp;
-                p1Var.f46250b.setTranslationX((1.0f - this.f46278m3.getInterpolation(clamp)) * (-getMeasuredWidth()) * 2.0f);
-                arrayList.add(p1Var);
-            }
-            Collections.sort(arrayList, this.f46280o3);
-            if ((this.f46274h3 || this.f46282q3) && arrayList.size() > 0 && !this.f46271e3.isEmpty()) {
-                View view = (View) hg.c.g(1, arrayList);
-                this.f46281p3 = view;
-                x1(view, !this.f46274h3);
-                this.f46274h3 = false;
-                this.f46282q3 = false;
-            } else if (this.f46281p3 != hg.c.g(1, arrayList)) {
-                this.f46281p3 = (View) hg.c.g(1, arrayList);
-                if (this.f46276k3) {
-                    try {
-                        performHapticFeedback(3);
-                    } catch (Exception unused) {
-                    }
-                }
-            }
-            for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                canvas.save();
-                canvas.translate(((p1) arrayList.get(i11)).getX(), ((p1) arrayList.get(i11)).getY());
-                ((p1) arrayList.get(i11)).draw(canvas);
-                canvas.restore();
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        if (this.M) {
+            boolean z10 = LocaleController.isRTL;
+            TextView textView = this.f47405b;
+            if (z10) {
+                canvas.drawLine(0.0f, getHeight() - 1, textView.getRight(), getHeight() - 1, i6.f20919k0);
+            } else {
+                canvas.drawLine(textView.getLeft(), getHeight() - 1, getWidth(), getHeight() - 1, i6.f20919k0);
             }
         }
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        return true;
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        NotificationCenter.getInstance(this.f46275i3).addObserver(this, NotificationCenter.premiumStickersPreviewLoaded);
-        y1();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        NotificationCenter.getInstance(this.f46275i3).removeObserver(this, NotificationCenter.premiumStickersPreviewLoaded);
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        if (this.f46273g3 && !this.f46271e3.isEmpty() && getChildCount() > 0) {
-            this.f46273g3 = false;
-            AndroidUtilities.runOnUIThread(new org.telegram.ui.web.u0(this, 29));
+        int i14;
+        int paddingTop;
+        int i15;
+        Rect rect = AndroidUtilities.rectTmp2;
+        int i16 = this.h;
+        int paddingLeft = getPaddingLeft() + AndroidUtilities.dp(i16);
+        int measuredHeight = getMeasuredHeight();
+        dq dqVar = this.f47404a;
+        rect.set(paddingLeft, (int) ((measuredHeight - dqVar.getMeasuredHeight()) / 2.0f), 0, 0);
+        b(dqVar);
+        int measuredHeight2 = getMeasuredHeight();
+        TextView textView = this.f47406c;
+        int measuredHeight3 = (int) ((measuredHeight2 - textView.getMeasuredHeight()) / 2.0f);
+        int i17 = i16 + this.f47408f;
+        int measuredWidth = dqVar.getMeasuredWidth() + AndroidUtilities.dp(i17 + 24);
+        TextView textView2 = this.d;
+        if (textView2.getVisibility() == 0) {
+            i14 = textView2.getMeasuredWidth();
+        } else {
+            i14 = 0;
         }
-        int i14 = this.f46284s3;
-        if (i14 > 0) {
-            s4.c1 K = K(i14);
-            if (K != null) {
-                x1(K.f46538a, false);
-            }
-            this.f46284s3 = -1;
+        int i18 = measuredWidth + i14;
+        TextView textView3 = this.f47407e;
+        int paddingLeft2 = getPaddingLeft() + textView3.getMeasuredWidth() + i18;
+        int measuredWidth2 = getMeasuredWidth() - textView.getMeasuredWidth();
+        TextView textView4 = this.f47410r;
+        if (paddingLeft2 > measuredWidth2 && textView4.getVisibility() == 0) {
+            measuredHeight3 = getPaddingTop() + AndroidUtilities.dp(2.0f);
         }
+        rect.set(((getMeasuredWidth() - textView.getMeasuredWidth()) - AndroidUtilities.dp(16.0f)) - getPaddingRight(), measuredHeight3, 0, 0);
+        b(textView);
+        float f7 = i17;
+        int paddingLeft3 = getPaddingLeft() + dqVar.getMeasuredWidth() + AndroidUtilities.dp(f7);
+        int visibility = textView3.getVisibility();
+        TextView textView5 = this.f47405b;
+        if (visibility == 8) {
+            paddingTop = (int) ((getMeasuredHeight() - textView5.getMeasuredHeight()) / 2.0f);
+        } else {
+            paddingTop = getPaddingTop();
+        }
+        rect.set(paddingLeft3, paddingTop, 0, 0);
+        b(textView5);
+        if (textView4.getVisibility() == 0) {
+            rect.set(textView5.getMeasuredWidth() + getPaddingLeft() + dqVar.getMeasuredWidth() + AndroidUtilities.dp(i17 + 6), AndroidUtilities.dp(2.0f) + getPaddingTop(), 0, 0);
+            b(textView4);
+        }
+        rect.set(getPaddingLeft() + dqVar.getMeasuredWidth() + AndroidUtilities.dp(f7), (getMeasuredHeight() - textView2.getMeasuredHeight()) - getPaddingBottom(), 0, 0);
+        b(textView2);
+        int measuredWidth3 = dqVar.getMeasuredWidth() + AndroidUtilities.dp(f7);
+        if (textView2.getVisibility() == 0) {
+            i15 = AndroidUtilities.dp(6.0f) + textView2.getMeasuredWidth();
+        } else {
+            i15 = 0;
+        }
+        rect.set(getPaddingLeft() + measuredWidth3 + i15, (getMeasuredHeight() - textView3.getMeasuredHeight()) - getPaddingBottom(), 0, 0);
+        b(textView3);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        if (View.MeasureSpec.getSize(i11) > View.MeasureSpec.getSize(i10)) {
-            this.f46283r3 = View.MeasureSpec.getSize(i10);
+        int size = View.MeasureSpec.getSize(i10);
+        int dp = AndroidUtilities.dp(58.0f);
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(28.0f), 1073741824);
+        dq dqVar = this.f47404a;
+        dqVar.measure(makeMeasureSpec, makeMeasureSpec);
+        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(size - dqVar.getMeasuredWidth(), Integer.MIN_VALUE);
+        int makeMeasureSpec3 = View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE);
+        TextView textView = this.f47406c;
+        textView.measure(makeMeasureSpec2, makeMeasureSpec3);
+        this.f47405b.measure(View.MeasureSpec.makeMeasureSpec((size - dqVar.getMeasuredWidth()) - textView.getMeasuredWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
+        TextView textView2 = this.f47410r;
+        int i12 = 0;
+        if (textView2.getVisibility() == 0) {
+            textView2.measure(View.MeasureSpec.makeMeasureSpec((size - dqVar.getMeasuredWidth()) - textView.getMeasuredWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
         } else {
-            this.f46283r3 = View.MeasureSpec.getSize(i11);
+            textView2.measure(View.MeasureSpec.makeMeasureSpec(0, 1073741824), View.MeasureSpec.makeMeasureSpec(0, 1073741824));
         }
-        super.onMeasure(i10, i11);
+        int makeMeasureSpec4 = View.MeasureSpec.makeMeasureSpec(size - dqVar.getMeasuredWidth(), Integer.MIN_VALUE);
+        int makeMeasureSpec5 = View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE);
+        TextView textView3 = this.d;
+        textView3.measure(makeMeasureSpec4, makeMeasureSpec5);
+        int measuredWidth = size - dqVar.getMeasuredWidth();
+        if (textView3.getVisibility() == 0) {
+            i12 = textView3.getMeasuredWidth();
+        }
+        int c10 = bi.c(6.0f, measuredWidth - i12, Integer.MIN_VALUE);
+        int makeMeasureSpec6 = View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE);
+        TextView textView4 = this.f47407e;
+        textView4.measure(c10, makeMeasureSpec6);
+        if (textView4.getVisibility() != 0) {
+            dp -= AndroidUtilities.dp(8.0f);
+        }
+        setMeasuredDimension(size, dp);
     }
 
-    public void setAutoPlayEnabled(boolean z10) {
-        if (this.f46286u3 != z10) {
-            this.f46286u3 = z10;
-            if (z10) {
-                y1();
-                this.f46282q3 = true;
-                invalidate();
-                return;
-            }
-            AndroidUtilities.cancelRunOnUIThread(this.f46277l3);
-            x1(null, true);
-        }
+    public void setCirclePaintProvider(GenericProvider<Void, Paint> genericProvider) {
+        this.f47404a.setCirclePaintProvider(genericProvider);
     }
 
     @Override
-    public void setOffset(float f7) {
-        boolean z10;
-        if (Math.abs(f7 / getMeasuredWidth()) < 1.0f) {
-            z10 = true;
+    public void setEnabled(boolean z10) {
+        float f7;
+        float f10;
+        super.setEnabled(z10);
+        float f11 = 0.6f;
+        if (z10) {
+            f7 = 1.0f;
         } else {
-            z10 = false;
+            f7 = 0.6f;
         }
-        if (this.f46285t3 != z10) {
-            this.f46285t3 = z10;
-            invalidate();
+        this.f47405b.setAlpha(f7);
+        if (z10) {
+            f10 = 1.0f;
+        } else {
+            f10 = 0.6f;
         }
+        this.f47406c.setAlpha(f10);
+        if (z10) {
+            f11 = 1.0f;
+        }
+        this.f47404a.setAlpha(f11);
     }
 
-    public final void x1(View view, boolean z10) {
-        boolean z11;
-        if (view != null) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        this.j3 = z11;
-        for (int i10 = 0; i10 < getChildCount(); i10++) {
-            p1 p1Var = (p1) getChildAt(i10);
-            if (p1Var == view) {
-                p1Var.a(true, true, z10);
-            } else {
-                p1Var.a(!this.j3, false, z10);
-            }
-        }
+    public void setGlobalGradientView(q1 q1Var) {
+        this.E = q1Var;
     }
 
-    public final void y1() {
-        if (!this.f46286u3) {
-            return;
-        }
-        pg.c1 c1Var = this.f46277l3;
-        AndroidUtilities.cancelRunOnUIThread(c1Var);
-        AndroidUtilities.runOnUIThread(c1Var, 2700L);
+    public void setParentXOffset(float f7) {
+        this.K = f7;
+    }
+
+    public void setProgressDelegate(eq eqVar) {
+        this.f47404a.setProgressDelegate(eqVar);
     }
 }

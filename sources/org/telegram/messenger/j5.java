@@ -1,29 +1,38 @@
 package org.telegram.messenger;
-public final class j5 implements Runnable {
-    public final int f18228a;
-    public final LocaleController f18229b;
-    public final int f18230c;
 
-    public j5(LocaleController localeController, int i10, int i11) {
-        this.f18228a = i11;
-        this.f18229b = localeController;
-        this.f18230c = i10;
+import org.telegram.messenger.LocaleController;
+import org.telegram.tgnet.TLObject;
+public final class j5 implements Runnable {
+    public final int f18220a;
+    public final LocaleController f18221b;
+    public final LocaleController.LocaleInfo f18222c;
+    public final TLObject d;
+    public final int f18223e;
+    public final Runnable f18224f;
+
+    public j5(LocaleController localeController, LocaleController.LocaleInfo localeInfo, TLObject tLObject, int i10, Runnable runnable, int i11) {
+        this.f18220a = i11;
+        this.f18221b = localeController;
+        this.f18222c = localeInfo;
+        this.d = tLObject;
+        this.f18223e = i10;
+        this.f18224f = runnable;
     }
 
     @Override
     public final void run() {
-        switch (this.f18228a) {
+        switch (this.f18220a) {
             case 0:
-                LocaleController.u(this.f18229b, this.f18230c);
+                this.f18221b.lambda$applyRemoteLanguage$16(this.f18222c, this.d, this.f18223e, this.f18224f);
                 return;
             case 1:
-                LocaleController.h(this.f18229b, this.f18230c);
+                this.f18221b.lambda$applyRemoteLanguage$20(this.f18222c, this.d, this.f18223e, this.f18224f);
                 return;
             case 2:
-                LocaleController.k(this.f18229b, this.f18230c);
+                this.f18221b.lambda$applyRemoteLanguage$18(this.f18222c, this.d, this.f18223e, this.f18224f);
                 return;
             default:
-                LocaleController.q(this.f18229b, this.f18230c);
+                this.f18221b.lambda$applyRemoteLanguage$14(this.f18222c, this.d, this.f18223e, this.f18224f);
                 return;
         }
     }

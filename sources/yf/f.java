@@ -1,11 +1,11 @@
 package yf;
 public final class f {
-    public final long f50990a;
-    public final pe.b f50991b = new pe.b();
-    public final pe.b f50992c = new pe.b();
-    public pe.b d;
+    public final long f52151a;
+    public final qe.b f52152b = new qe.b();
+    public final qe.b f52153c = new qe.b();
+    public qe.b d;
 
     public f(long j3) {
-        this.f50990a = j3;
+        this.f52151a = j3;
     }
 }

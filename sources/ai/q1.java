@@ -2,16 +2,16 @@ package ai;
 
 import org.telegram.tgnet.RequestDelegate;
 public final class q1 implements RequestDelegate {
-    public final int f1535a;
-    public final d2 f1536b;
+    public final int f1606a;
+    public final d2 f1607b;
 
     public q1(d2 d2Var, int i10) {
-        this.f1535a = i10;
-        this.f1536b = d2Var;
+        this.f1606a = i10;
+        this.f1607b = d2Var;
     }
 
     @Override
-    public final void run(final org.telegram.tgnet.TLObject r18, final org.telegram.tgnet.TLRPC.TL_error r19) {
+    public final void run(final org.telegram.tgnet.TLObject r17, final org.telegram.tgnet.TLRPC.TL_error r18) {
         throw new UnsupportedOperationException("Method not decompiled: ai.q1.run(org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
     }
 }

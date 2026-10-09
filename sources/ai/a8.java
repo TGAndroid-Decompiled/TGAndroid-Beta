@@ -1,101 +1,62 @@
 package ai;
 
-import java.util.Collections;
-import org.telegram.messenger.AccountInstance;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BotForumHelper;
-import org.telegram.messenger.LocationController;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.SendMessagesHelper;
+import java.util.HashMap;
+import org.telegram.messenger.Utilities;
 import org.telegram.messenger.support.LongSparseIntArray;
-import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.qv0;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.yn;
-import org.telegram.ui.z90;
-public final class a8 implements Runnable {
-    public final int f578a;
-    public final int f579b;
-    public final long f580c;
-    public final Object d;
+public final class a8 implements Utilities.Callback {
+    public final int f646a;
+    public final m9 f647b;
 
-    public a8(Object obj, int i10, long j3, int i11) {
-        this.f578a = i11;
-        this.d = obj;
-        this.f579b = i10;
-        this.f580c = j3;
+    public a8(m9 m9Var, int i10) {
+        this.f646a = i10;
+        this.f647b = m9Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f578a) {
+    public final void run(Object obj) {
+        switch (this.f646a) {
             case 0:
-                l9 l9Var = (l9) this.d;
-                LongSparseIntArray longSparseIntArray = l9Var.f1294f;
-                long j3 = this.f580c;
-                int i10 = longSparseIntArray.get(j3, 0);
-                int i11 = this.f579b;
-                int max = Math.max(i10, i11);
-                l9Var.f1294f.put(j3, max);
-                l9Var.f1298k.i(max, j3);
-                TL_stories.PeerStories y3 = l9Var.y(j3);
-                if (y3 != null && i11 > y3.max_read_id) {
-                    y3.max_read_id = i11;
-                    Collections.sort(l9Var.f1295g, l9Var.J);
-                    NotificationCenter.getInstance(l9Var.f1290a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
-                    return;
-                }
-                return;
-            case 1:
-                ((LocationController) this.d).lambda$setProximityLocation$12(this.f579b, this.f580c);
-                return;
-            case 2:
-                ((MediaController) this.d).lambda$prepareResumedRecording$23(this.f579b, this.f580c);
-                return;
-            case 3:
-                ((MediaDataController) this.d).lambda$deletePeer$159(this.f580c, this.f579b);
-                return;
-            case 4:
-                ((MessagesController) this.d).lambda$processUpdateArray$420(this.f580c, this.f579b);
-                return;
-            case 5:
-                SendMessagesHelper.lambda$finishGroup$117((AccountInstance) this.d, this.f580c, this.f579b);
-                return;
-            case 6:
-                BotForumHelper.BotDraftAnimationsPool botDraftAnimationsPool = ((org.telegram.ui.Cells.u1) this.d).Pd;
-                if (botDraftAnimationsPool != null) {
-                    botDraftAnimationsPool.removeAnimator(this.f580c, this.f579b);
-                    return;
-                }
-                return;
-            case 7:
-                qv0.n((qv0) this.d, this.f580c, this.f579b);
-                return;
-            default:
-                Long l4 = (Long) this.d;
-                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
-                if (U != null) {
-                    yn Q9 = yn.Q9(l4.longValue());
-                    U.presentFragment(Q9);
-                    TLRPC.Chat chat = MessagesController.getInstance(this.f579b).getChat(Long.valueOf(-l4.longValue()));
-                    if (chat != null) {
-                        AndroidUtilities.runOnUIThread(new z90(Q9, this.f580c, chat, 1), 250L);
+                e9 e9Var = (e9) obj;
+                m9 m9Var = this.f647b;
+                HashMap hashMap = m9Var.H;
+                int i10 = e9Var.f896e;
+                int i11 = e9Var.f897f;
+                long j3 = e9Var.d;
+                if (i10 == 0 && i11 > 0) {
+                    HashMap hashMap2 = (HashMap) hashMap.get(Long.valueOf(j3));
+                    if (hashMap2 != null) {
+                        hashMap2.remove(Integer.valueOf(i11));
+                        if (hashMap2.isEmpty()) {
+                            hashMap.remove(Long.valueOf(j3));
+                            return;
+                        }
                         return;
                     }
                     return;
                 }
+                HashMap hashMap3 = m9Var.G[i10];
+                if (hashMap3 != null) {
+                    hashMap3.remove(Long.valueOf(j3));
+                    return;
+                }
+                return;
+            case 1:
+                this.f647b.f1410f = (LongSparseIntArray) obj;
+                return;
+            default:
+                TL_stories.TL_stories_allStories tL_stories_allStories = (TL_stories.TL_stories_allStories) obj;
+                m9 m9Var2 = this.f647b;
+                m9Var2.f1417n = false;
+                if (tL_stories_allStories != null) {
+                    m9Var2.Y(tL_stories_allStories, false, true, false);
+                    m9Var2.Q(false);
+                    m9Var2.Q(true);
+                    return;
+                }
+                m9Var2.q();
+                m9Var2.T();
                 return;
         }
-    }
-
-    public a8(Object obj, long j3, int i10, int i11) {
-        this.f578a = i11;
-        this.d = obj;
-        this.f580c = j3;
-        this.f579b = i10;
     }
 }

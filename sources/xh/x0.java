@@ -1,8 +1,8 @@
 package xh;
 
 import android.view.MotionEvent;
-import org.telegram.ui.Components.q90;
-public final class x0 extends q90 {
+import org.telegram.ui.Components.ea0;
+public final class x0 extends ea0 {
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         if (getAlpha() < 0.95f) {

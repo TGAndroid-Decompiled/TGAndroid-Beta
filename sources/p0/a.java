@@ -1,35 +1,35 @@
 package p0;
 public final class a {
-    public static final byte[] f43978e = new byte[1792];
-    public final CharSequence f43979a;
-    public final int f43980b;
-    public int f43981c;
+    public static final byte[] f45142e = new byte[1792];
+    public final CharSequence f45143a;
+    public final int f45144b;
+    public int f45145c;
     public char d;
 
     static {
         for (int i10 = 0; i10 < 1792; i10++) {
-            f43978e[i10] = Character.getDirectionality(i10);
+            f45142e[i10] = Character.getDirectionality(i10);
         }
     }
 
     public a(CharSequence charSequence) {
-        this.f43979a = charSequence;
-        this.f43980b = charSequence.length();
+        this.f45143a = charSequence;
+        this.f45144b = charSequence.length();
     }
 
     public final byte a() {
-        CharSequence charSequence = this.f43979a;
-        char charAt = charSequence.charAt(this.f43981c - 1);
+        CharSequence charSequence = this.f45143a;
+        char charAt = charSequence.charAt(this.f45145c - 1);
         this.d = charAt;
         if (Character.isLowSurrogate(charAt)) {
-            int codePointBefore = Character.codePointBefore(charSequence, this.f43981c);
-            this.f43981c -= Character.charCount(codePointBefore);
+            int codePointBefore = Character.codePointBefore(charSequence, this.f45145c);
+            this.f45145c -= Character.charCount(codePointBefore);
             return Character.getDirectionality(codePointBefore);
         }
-        this.f43981c--;
+        this.f45145c--;
         char c10 = this.d;
         if (c10 < 1792) {
-            return f43978e[c10];
+            return f45142e[c10];
         }
         return Character.getDirectionality(c10);
     }

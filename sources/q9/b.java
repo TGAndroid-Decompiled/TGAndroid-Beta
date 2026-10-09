@@ -6,9 +6,9 @@ public interface b {
 
     p b(r rVar);
 
-    pa.b d(Class cls);
+    pa.b c(Class cls);
 
-    pa.b e(r rVar);
+    pa.b d(r rVar);
 
     Set f(r rVar);
 

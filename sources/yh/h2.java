@@ -1,98 +1,180 @@
 package yh;
 
-import android.content.Context;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.fs0;
-import org.telegram.ui.Components.h91;
-public final class h2 extends h91 {
-    public final y3 V;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.tl.TL_stars;
+public final class h2 implements View.OnClickListener {
+    public final int f52615a;
+    public final t2 f52616b;
 
-    public h2(y3 y3Var, Context context) {
-        super(context, null);
-        this.V = y3Var;
+    public h2(t2 t2Var, int i10) {
+        this.f52615a = i10;
+        this.f52616b = t2Var;
     }
 
     @Override
-    public final void F(View view, float f7) {
-        int i10;
-        View view2;
-        xh.n2 n2Var;
-        xh.n2 n2Var2;
-        j2 j2Var;
-        j2 j2Var2;
-        j2 j2Var3;
-        if (getMeasuredWidth() <= 0) {
-            view.setTranslationX(f7);
-            return;
-        }
-        float clamp = Utilities.clamp(f7 / getMeasuredWidth(), 1.0f, -1.0f);
-        y3 y3Var = this.V;
-        i10 = ((org.telegram.ui.ActionBar.f3) y3Var).backgroundPaddingLeft;
-        view.setTranslationX(((-clamp) * 2.0f * i10) + f7);
-        float f10 = 0.0f;
-        if (clamp <= 0.0f) {
-            f10 = view.getMeasuredWidth();
-        }
-        view.setPivotX(f10);
-        view.setCameraDistance(view.getMeasuredHeight() * 3.4f);
-        view.setScaleX(1.0f - Math.abs(0.25f * clamp));
-        view.setRotationY(clamp * 10.0f);
-        if (view instanceof FrameLayout) {
-            FrameLayout frameLayout = (FrameLayout) view;
-            if (frameLayout.getChildCount() > 0) {
-                view2 = frameLayout.getChildAt(0);
-                n2Var = y3Var.f52282b0;
-                if (n2Var != null && view2 == n2Var.Y && (j2Var3 = n2Var.f52286d0) != null) {
-                    j2Var3.invalidate();
-                }
-                if (view2 == y3Var.Y && (j2Var2 = y3Var.f52286d0) != null) {
-                    j2Var2.invalidate();
-                }
-                n2Var2 = y3Var.f52284c0;
-                if (n2Var2 == null && view2 == n2Var2.Y && (j2Var = n2Var2.f52286d0) != null) {
-                    j2Var.invalidate();
+    public final void onClick(View view) {
+        TL_stars.StarGift starGift;
+        TL_stars.StarGift starGift2;
+        TL_stars.StarGift starGift3;
+        r2 r2Var;
+        int i10 = this.f52615a;
+        boolean z10 = false;
+        t2 t2Var = this.f52616b;
+        switch (i10) {
+            case 0:
+                if (t2Var.P.getAlpha() >= 1.0f) {
+                    t2Var.f53227g0.run();
                     return;
                 }
                 return;
-            }
-        }
-        view2 = null;
-        n2Var = y3Var.f52282b0;
-        if (n2Var != null) {
-            j2Var3.invalidate();
-        }
-        if (view2 == y3Var.Y) {
-            j2Var2.invalidate();
-        }
-        n2Var2 = y3Var.f52284c0;
-        if (n2Var2 == null) {
-        }
-    }
-
-    @Override
-    public final void G() {
-        super.G();
-        int i10 = this.f27166b;
-        y3 y3Var = this.V;
-        boolean z10 = false;
-        if (i10 != y3Var.L1(false)) {
-            if (this.f27166b > y3Var.L1(false)) {
+            case 1:
+                if (t2Var.P.getAlpha() >= 1.0f) {
+                    t2Var.f53227g0.run();
+                    return;
+                }
+                return;
+            case 2:
+                t2Var.getClass();
+                t2Var.b((i2) view);
+                return;
+            case 3:
+                t2Var.getClass();
+                t2Var.b((i2) view);
+                return;
+            case 4:
+                t2 t2Var2 = this.f52616b;
+                LinearLayout linearLayout = t2Var2.G;
+                r2[] r2VarArr = t2Var2.f53233n;
+                if (t2Var2.getAlpha() >= 1.0f && !t2Var2.f53228h0) {
+                    if (t2Var2.f53230j0) {
+                        t2Var2.a(t2Var2.W, t2Var2.f53217a0, t2Var2.f53219b0, t2Var2.f53221c0);
+                        return;
+                    }
+                    ArrayList arrayList = new ArrayList();
+                    for (r2 r2Var2 : r2VarArr) {
+                        if (r2Var2 != null) {
+                            TL_stars.StarGift starGift4 = r2Var2.h;
+                            if (starGift4 != null) {
+                                starGift3 = starGift4;
+                            } else {
+                                starGift3 = null;
+                            }
+                            if (starGift3 != null) {
+                                if (starGift4 == null) {
+                                    starGift4 = null;
+                                }
+                                arrayList.add(starGift4);
+                            }
+                        }
+                    }
+                    if (!arrayList.isEmpty() && t2Var2.f53224e0 != null) {
+                        TextView textView = t2Var2.K;
+                        t2Var2.f53228h0 = true;
+                        t2Var2.f53230j0 = false;
+                        ci.d4 d4Var = t2Var2.T;
+                        if (d4Var != null) {
+                            d4Var.e(true);
+                            t2Var2.T = null;
+                        }
+                        textView.setText("");
+                        t2Var2.L.setText(LocaleController.formatString(R.string.GiftCraftProgressSuccessChance, ei.l.H0(t2Var2.getGiftsSuccessChance())));
+                        for (int i11 = 0; i11 < r2VarArr.length; i11++) {
+                            r2 r2Var3 = r2VarArr[i11];
+                            if (r2Var3 != null) {
+                                r2Var3.setClickable(false);
+                                r2 r2Var4 = r2VarArr[i11];
+                                TL_stars.StarGift starGift5 = r2Var4.h;
+                                if (starGift5 == null) {
+                                    starGift5 = null;
+                                }
+                                if (starGift5 == null) {
+                                    r2Var4.animate().alpha(0.0f).start();
+                                }
+                            }
+                        }
+                        int i12 = 0;
+                        while (true) {
+                            if (i12 < r2VarArr.length) {
+                                r2 r2Var5 = r2VarArr[i12];
+                                if (r2Var5 != null) {
+                                    TL_stars.StarGift starGift6 = r2Var5.h;
+                                    if (starGift6 != null) {
+                                        starGift2 = starGift6;
+                                    } else {
+                                        starGift2 = null;
+                                    }
+                                    if (starGift2 != null) {
+                                        if (starGift6 == null) {
+                                            starGift6 = null;
+                                        }
+                                        textView.setText(starGift6.title + " #" + LocaleController.formatNumber(starGift6.num, ','));
+                                    }
+                                }
+                                i12++;
+                            }
+                        }
+                        t2Var2.Q.animate().alpha(0.0f).start();
+                        linearLayout.animate().alpha(0.0f).start();
+                        t2Var2.R.animate().alpha(1.0f).start();
+                        t2Var2.P.animate().alpha(0.25f).start();
+                        t2Var2.J.d();
+                        ArrayList arrayList2 = new ArrayList();
+                        for (r2 r2Var6 : r2VarArr) {
+                            TL_stars.StarGift starGift7 = r2Var6.h;
+                            if (starGift7 != null) {
+                                starGift = starGift7;
+                            } else {
+                                starGift = null;
+                            }
+                            if (starGift != null) {
+                                if (starGift7 == null) {
+                                    starGift7 = null;
+                                }
+                                arrayList2.add(starGift7);
+                            }
+                        }
+                        t2Var2.f53224e0.run(arrayList2, new qh.r(3, t2Var2, arrayList2), new f0(t2Var2, 1));
+                        return;
+                    }
+                    AndroidUtilities.shakeViewSpring(linearLayout);
+                    return;
+                }
+                return;
+            default:
+                r2 r2Var7 = (r2) view;
+                TL_stars.StarGift starGift8 = r2Var7.h;
+                if (starGift8 == null) {
+                    starGift8 = null;
+                }
+                if (starGift8 != null && !r2Var7.f53122n) {
+                    r2Var7.a(null, true);
+                    t2Var.d(true);
+                    return;
+                }
+                int i13 = 0;
+                while (true) {
+                    r2[] r2VarArr2 = t2Var.f53233n;
+                    if (i13 < r2VarArr2.length && (r2Var = r2VarArr2[i13]) != view) {
+                        if (r2Var != null) {
+                            TL_stars.StarGift starGift9 = r2Var.h;
+                            if (starGift9 == null) {
+                                starGift9 = null;
+                            }
+                            if (starGift9 != null) {
+                            }
+                        }
+                        i13++;
+                    }
+                }
                 z10 = true;
-            }
-            AndroidUtilities.runOnUIThread(new fs0(16, this, z10));
+                t2Var.f53226f0.run(new org.telegram.ui.Wallet.y6(14, t2Var, r2Var7), Boolean.valueOf(z10));
+                return;
         }
-    }
-
-    @Override
-    public final boolean i(MotionEvent motionEvent) {
-        f4.d dVar = this.V.Y0;
-        if (dVar != null && !dVar.c(0)) {
-            return false;
-        }
-        return true;
     }
 }

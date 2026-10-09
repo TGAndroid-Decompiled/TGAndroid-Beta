@@ -1,108 +1,231 @@
 package ai;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.media.AudioManager;
 import android.os.Build;
-import android.view.KeyEvent;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class oa extends View {
-    public Paint f1475a;
-    public boolean f1476b;
-    public q4 f1477c;
-    public org.telegram.ui.Components.e6 d;
-    public org.telegram.ui.Components.e6 f1478e;
-    public float f1479f;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import org.telegram.messenger.FileLog;
+public abstract class oa extends z4.g {
+    public ArrayList A0;
+    public y5 B0;
+    public boolean C0;
+    public boolean D0;
+    public int E0;
+    public int F0;
+    public Runnable G0;
+    public c6 H0;
+    public int I0;
+    public int J0;
+    public float K0;
+    public boolean L0;
+    public r4 M0;
+    public kc N0;
+    public int O0;
+    public float P0;
+    public long f1541w0;
+    public ArrayList f1542x0;
+    public int f1543y0;
+    public la f1544z0;
 
-    public final void a(boolean z10) {
-        q4 q4Var = this.f1477c;
-        AudioManager audioManager = (AudioManager) getContext().getSystemService("audio");
-        int streamMaxVolume = audioManager.getStreamMaxVolume(3);
-        int streamVolume = audioManager.getStreamVolume(3);
-        float f7 = streamMaxVolume;
-        int max = (int) Math.max(1.0f, f7 / 15.0f);
+    public static boolean C(ArrayList arrayList, ArrayList arrayList2) {
+        if (arrayList == null && arrayList2 == null) {
+            return true;
+        }
+        if (arrayList == null || arrayList2 == null || arrayList.size() != arrayList2.size()) {
+            return false;
+        }
+        for (int i10 = 0; i10 < arrayList.size(); i10++) {
+            if (arrayList.get(i10) != arrayList2.get(i10)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public final void A() {
+        boolean z10 = false;
+        int i10 = 0;
+        while (true) {
+            if (i10 < getChildCount()) {
+                na naVar = (na) getChildAt(i10);
+                if (naVar.d && !naVar.f1487a.O1.d()) {
+                    break;
+                }
+                i10++;
+            } else {
+                z10 = true;
+                break;
+            }
+        }
+        this.N0.l(z10);
+    }
+
+    public final void B() {
+        if (this.O0 >= 0) {
+            for (int i10 = 0; i10 < getChildCount(); i10++) {
+                if (((Integer) getChildAt(i10).getTag()).intValue() == getCurrentItem() && getCurrentItem() == this.O0) {
+                    na naVar = (na) getChildAt(i10);
+                    if (!naVar.d) {
+                        this.O0 = -1;
+                        naVar.a(true);
+                        if (this.f1542x0 != null) {
+                            f6 f6Var = naVar.f1487a;
+                            long j3 = naVar.f1488b;
+                            ArrayList arrayList = naVar.f1489c;
+                            f6Var.B1 = j3;
+                            f6Var.f1027z1 = arrayList;
+                            f6Var.o0(0);
+                        } else {
+                            naVar.f1487a.U0(0, naVar.f1488b);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public final void D(int r9, long r10, java.util.ArrayList r12) {
+        throw new UnsupportedOperationException("Method not decompiled: ai.oa.D(int, long, java.util.ArrayList):void");
+    }
+
+    public final boolean E(boolean z10) {
+        kc kcVar = this.N0;
+        boolean z11 = false;
         if (z10) {
-            int i10 = streamVolume + max;
-            if (i10 <= streamMaxVolume) {
-                streamMaxVolume = i10;
+            int currentItem = getCurrentItem();
+            ArrayList arrayList = this.f1542x0;
+            if (arrayList == null) {
+                arrayList = this.A0;
             }
-        } else {
-            streamMaxVolume = streamVolume - max;
-            if (streamMaxVolume < 0) {
-                streamMaxVolume = 0;
+            if (currentItem < arrayList.size() - 1) {
+                int currentItem2 = getCurrentItem() + 1;
+                if (kcVar.f1253a && Build.VERSION.SDK_INT < 33) {
+                    z11 = true;
+                }
+                x(currentItem2, !z11);
+                return true;
             }
         }
-        audioManager.setStreamVolume(3, streamMaxVolume, 0);
-        float f10 = streamMaxVolume / f7;
-        this.f1479f = f10;
-        if (!this.f1476b) {
-            this.f1478e.d(f10, true);
+        if (z10 || getCurrentItem() <= 0) {
+            return false;
         }
-        invalidate();
-        this.f1476b = true;
-        AndroidUtilities.cancelRunOnUIThread(q4Var);
-        AndroidUtilities.runOnUIThread(q4Var, 2000L);
+        int currentItem3 = getCurrentItem() - 1;
+        if (kcVar.f1253a && Build.VERSION.SDK_INT < 33) {
+            z11 = true;
+        }
+        x(currentItem3, !z11);
+        return true;
     }
 
-    public final void b() {
-        int i10;
-        q4 q4Var = this.f1477c;
-        AudioManager audioManager = (AudioManager) getContext().getSystemService("audio");
-        int streamMaxVolume = audioManager.getStreamMaxVolume(3);
-        if (Build.VERSION.SDK_INT >= 28) {
-            i10 = audioManager.getStreamMinVolume(3);
-        } else {
-            i10 = 0;
+    public final void F() {
+        boolean z10;
+        for (int i10 = 0; i10 < getChildCount(); i10++) {
+            f6 f6Var = (f6) ((FrameLayout) getChildAt(i10)).getChildAt(0);
+            if (((Integer) getChildAt(i10).getTag()).intValue() == getCurrentItem() && !f6Var.U3) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            f6Var.setActive(z10);
         }
-        int streamVolume = audioManager.getStreamVolume(3);
-        if (streamVolume <= i10) {
-            a(true);
-        } else if (!this.f1476b) {
-            float f7 = streamVolume / streamMaxVolume;
-            this.f1479f = f7;
-            this.f1478e.d(f7, true);
-            this.f1476b = true;
-            invalidate();
-            AndroidUtilities.cancelRunOnUIThread(q4Var);
-            AndroidUtilities.runOnUIThread(q4Var, 2000L);
+    }
+
+    public long getCurrentDialogId() {
+        if (this.f1542x0 != null) {
+            return this.f1541w0;
         }
+        if (getCurrentItem() < this.A0.size()) {
+            return ((Long) this.A0.get(getCurrentItem())).longValue();
+        }
+        return 0L;
+    }
+
+    public f6 getCurrentPeerView() {
+        for (int i10 = 0; i10 < getChildCount(); i10++) {
+            if (((Integer) getChildAt(i10).getTag()).intValue() == getCurrentItem()) {
+                return (f6) ((FrameLayout) getChildAt(i10)).getChildAt(0);
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<Long> getDialogIds() {
+        return this.A0;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float f7;
-        Paint paint = this.f1475a;
-        super.onDraw(canvas);
-        org.telegram.ui.Components.e6 e6Var = this.f1478e;
-        e6Var.d(this.f1479f, false);
-        org.telegram.ui.Components.e6 e6Var2 = this.d;
-        if (this.f1476b) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (this.D0 && !this.L0) {
+            try {
+                return super.onInterceptTouchEvent(motionEvent);
+            } catch (Exception e7) {
+                FileLog.e(e7);
+            }
         }
-        e6Var2.d(f7, false);
-        if (e6Var2.f25987c != 0.0f) {
-            float measuredHeight = getMeasuredHeight() / 2.0f;
-            paint.setAlpha((int) (e6Var2.f25987c * 255.0f));
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(0.0f, 0.0f, getMeasuredWidth() * e6Var.f25987c, getMeasuredHeight());
-            canvas.drawRoundRect(rectF, measuredHeight, measuredHeight, paint);
-        }
+        return false;
     }
 
     @Override
-    public final boolean onKeyDown(int i10, KeyEvent keyEvent) {
-        if (keyEvent.getAction() == 0 && i10 == 24) {
-            a(true);
-            return true;
-        } else if (keyEvent.getAction() == 0 && i10 == 25) {
-            a(false);
-            return true;
-        } else {
-            return super.onKeyDown(i10, keyEvent);
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        if (this.C0) {
+            this.C0 = false;
+            f6 currentPeerView = getCurrentPeerView();
+            if (currentPeerView != null) {
+                y5 y5Var = this.B0;
+                bc bcVar = (bc) y5Var;
+                bcVar.a(currentPeerView.getSelectedPosition(), currentPeerView.getCurrentPeer());
+            }
+        }
+        B();
+        F();
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (this.D0 && !this.L0) {
+            return super.onTouchEvent(motionEvent);
+        }
+        if (this.L0) {
+            if (motionEvent.getAction() == 0 || motionEvent.getAction() == 2) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public void setDelegate(y5 y5Var) {
+        this.B0 = y5Var;
+    }
+
+    public void setHorizontalProgressToDismiss(float f7) {
+        if (Math.abs(f7) <= 1.0f && this.P0 != f7) {
+            this.P0 = f7;
+            setCameraDistance(getWidth() * 15);
+            float f10 = 0.0f;
+            if (f7 < 0.0f) {
+                f10 = getWidth();
+            }
+            setPivotX(f10);
+            setPivotY(getHeight() * 0.5f);
+            setRotationY(f7 * 90.0f);
+        }
+    }
+
+    public void setKeyboardHeight(int i10) {
+        if (this.E0 != i10) {
+            this.E0 = i10;
+            f6 currentPeerView = getCurrentPeerView();
+            if (currentPeerView != null) {
+                currentPeerView.requestLayout();
+            }
+        }
+    }
+
+    public void setPaused(boolean z10) {
+        for (int i10 = 0; i10 < getChildCount(); i10++) {
+            ((f6) ((FrameLayout) getChildAt(i10)).getChildAt(0)).setPaused(z10);
         }
     }
 }

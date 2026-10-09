@@ -1,42 +1,28 @@
 package w7;
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.Looper;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.Tasks;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Set;
 public abstract class h9 {
-    public static com.google.android.gms.internal.clearcut.v0 a(Context context, GoogleSignInOptions googleSignInOptions) {
-        n6.l.h(googleSignInOptions);
-        return new com.google.android.gms.common.api.j(context, w5.a.f48599a, googleSignInOptions, new com.google.android.gms.common.api.i(new Object(), Looper.getMainLooper()));
-    }
-
-    public static Task b(Intent intent) {
-        z5.b bVar;
-        GoogleSignInAccount googleSignInAccount;
-        a5.a aVar = a6.h.f323a;
-        Status status = Status.h;
-        if (intent == null) {
-            bVar = new z5.b(null, status);
-        } else {
-            Status status2 = (Status) intent.getParcelableExtra("googleSignInStatus");
-            GoogleSignInAccount googleSignInAccount2 = (GoogleSignInAccount) intent.getParcelableExtra("googleSignInAccount");
-            if (googleSignInAccount2 == null) {
-                if (status2 != null) {
-                    status = status2;
+    public static boolean a(e9.l1 l1Var, Collection collection) {
+        collection.getClass();
+        if (collection instanceof z7.l) {
+            collection = ((z7.l) collection).zza();
+        }
+        boolean z10 = false;
+        if ((collection instanceof Set) && collection.size() > l1Var.size()) {
+            Iterator<E> it = l1Var.iterator();
+            while (it.hasNext()) {
+                if (collection.contains(it.next())) {
+                    it.remove();
+                    z10 = true;
                 }
-                bVar = new z5.b(null, status);
-            } else {
-                bVar = new z5.b(googleSignInAccount2, Status.f6469e);
             }
+            return z10;
         }
-        Status status3 = bVar.f52464a;
-        if (status3.b() && (googleSignInAccount = bVar.f52465b) != null) {
-            return Tasks.forResult(googleSignInAccount);
+        for (Object obj : collection) {
+            z10 |= l1Var.remove(obj);
         }
-        return Tasks.forException(n6.l.m(status3));
+        return z10;
     }
 }

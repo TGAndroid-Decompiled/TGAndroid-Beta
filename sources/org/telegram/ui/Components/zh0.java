@@ -1,28 +1,22 @@
 package org.telegram.ui.Components;
+public final class zh0 implements Runnable {
+    public final int f33581a;
+    public final di0 f33582b;
 
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.ImageReceiver;
-public final class zh0 implements ImageReceiver.ImageReceiverDelegate {
-    public final ai0 f33511a;
-
-    public zh0(ai0 ai0Var) {
-        this.f33511a = ai0Var;
+    public zh0(di0 di0Var, int i10) {
+        this.f33581a = i10;
+        this.f33582b = di0Var;
     }
 
     @Override
-    public final void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        org.telegram.messenger.h5.a(this, i10, str, drawable);
-    }
-
-    @Override
-    public final void onAnimationReady(ImageReceiver imageReceiver) {
-        wh0 wh0Var = this.f33511a.h.G0;
-        if (wh0Var != null) {
-            wh0Var.d();
+    public final void run() {
+        switch (this.f33581a) {
+            case 0:
+                this.f33582b.a(true);
+                return;
+            default:
+                this.f33582b.d();
+                return;
         }
-    }
-
-    @Override
-    public final void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
     }
 }

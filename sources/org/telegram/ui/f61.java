@@ -1,88 +1,42 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.text.TextUtils;
+import android.graphics.Outline;
+import android.graphics.Rect;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.view.ViewOutlineProvider;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class f61 extends FrameLayout {
-    public final TextView f36212a;
-    public final org.telegram.ui.Components.nj0 f36213b;
-    public final ImageView f36214c;
-    public float d;
-    public ValueAnimator f36215e;
-    public final a71 f36216f;
+public final class f61 extends ViewOutlineProvider {
+    public final Rect f37463a = new Rect();
+    public final Integer f37464b;
+    public final k71 f37465c;
 
-    public f61(a71 a71Var, Context context, boolean z10) {
-        super(context);
-        int i10;
-        this.f36216f = a71Var;
-        LinearLayout e7 = org.telegram.messenger.bi.e(context, 0);
-        if (z10) {
-            i10 = 3;
-        } else {
-            i10 = 17;
-        }
-        addView(e7, w7.z5.e(-2, -2, i10));
-        ?? imageView = new ImageView(context);
-        this.f36213b = imageView;
-        imageView.f(R.raw.unlock_icon, 20, 20, null);
-        int i11 = org.telegram.ui.ActionBar.i6.Te;
-        org.telegram.ui.ActionBar.d6 d6Var = a71Var.Z0;
-        imageView.setColorFilter(org.telegram.ui.ActionBar.i6.v0(i11, d6Var));
-        e7.addView((View) imageView, w7.z5.n(20, 20));
-        TextView textView = new TextView(context);
-        this.f36212a = textView;
-        textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(i11, d6Var));
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setTextSize(1, 14.0f);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setLines(1);
-        textView.setMaxLines(1);
-        textView.setSingleLine(true);
-        e7.addView(textView, w7.z5.q(-2, -2, 17));
-        ImageView imageView2 = new ImageView(context);
-        this.f36214c = imageView2;
-        imageView2.setImageResource(R.drawable.msg_close);
-        imageView2.setScaleType(ImageView.ScaleType.CENTER);
-        imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Ve, d6Var), PorterDuff.Mode.MULTIPLY));
-        addView(imageView2, w7.z5.e(24, 24, 21));
-    }
-
-    public final void a(String str, boolean z10) {
-        this.f36212a.setText(str);
-        b(z10);
-    }
-
-    public final void b(boolean z10) {
-        float f7;
-        ValueAnimator valueAnimator = this.f36215e;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.f36215e = null;
-        }
-        if (z10) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        this.d = f7;
-        float dp = (1.0f - this.d) * AndroidUtilities.dp(-8.0f);
-        org.telegram.ui.Components.nj0 nj0Var = this.f36213b;
-        nj0Var.setTranslationX(dp);
-        this.f36212a.setTranslationX((1.0f - this.d) * AndroidUtilities.dp(-8.0f));
-        nj0Var.setAlpha(this.d);
+    public f61(k71 k71Var, Integer num) {
+        this.f37465c = k71Var;
+        this.f37464b = num;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
+    public final void getOutline(View view, Outline outline) {
+        float intValue;
+        Integer num = this.f37464b;
+        if (num == null) {
+            intValue = view.getWidth() / 2.0f;
+        } else {
+            intValue = num.intValue();
+        }
+        float dp = intValue + AndroidUtilities.dp(20.0f);
+        float width = (view.getWidth() - view.getPaddingLeft()) - view.getPaddingRight();
+        float height = (view.getHeight() - view.getPaddingBottom()) - view.getPaddingTop();
+        k71 k71Var = this.f37465c;
+        boolean n10 = k71Var.n();
+        Rect rect = this.f37463a;
+        if (n10) {
+            int paddingLeft = (int) ((dp - (k71Var.f39113a1 * dp)) + view.getPaddingLeft());
+            float y3 = com.google.android.gms.internal.vision.e2.y(1.0f, k71Var.f39116b1, height, view.getPaddingTop());
+            rect.set(paddingLeft, (int) com.google.android.gms.internal.vision.e2.y(1.0f, k71Var.f39116b1, AndroidUtilities.dp(k71Var.f39121d1), y3), (int) (((width - dp) * k71Var.f39113a1) + view.getPaddingLeft() + dp), (int) com.google.android.gms.internal.vision.e2.y(1.0f, k71Var.f39116b1, AndroidUtilities.dp(k71Var.f39121d1), view.getPaddingTop() + height));
+        } else {
+            rect.set((int) ((dp - (k71Var.f39113a1 * dp)) + view.getPaddingLeft()), view.getPaddingTop(), (int) (((width - dp) * k71Var.f39113a1) + view.getPaddingLeft() + dp), (int) ((height * k71Var.f39116b1) + view.getPaddingTop()));
+        }
+        outline.setRoundRect(rect, AndroidUtilities.dp(12.0f));
     }
 }

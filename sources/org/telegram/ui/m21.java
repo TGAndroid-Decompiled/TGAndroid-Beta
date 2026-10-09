@@ -1,30 +1,31 @@
 package org.telegram.ui;
 
-import android.widget.Toast;
-import java.util.List;
-import org.telegram.tgnet.ResultCallback;
-import org.telegram.tgnet.TLRPC;
-public final class m21 implements ResultCallback {
-    public final y21 f38451a;
+import android.transition.Transition;
+public final class m21 implements Transition.TransitionListener {
+    public final Runnable f39748a;
 
-    public m21(y21 y21Var) {
-        this.f38451a = y21Var;
+    public m21(Runnable runnable) {
+        this.f39748a = runnable;
     }
 
     @Override
-    public final void onComplete(Object obj) {
-        List list = (List) obj;
-        this.f38451a.c0(list);
-        y21.S = list;
+    public final void onTransitionEnd(Transition transition) {
+        this.f39748a.run();
     }
 
     @Override
-    public final void onError(Throwable th2) {
-        org.telegram.tgnet.l.a(this, th2);
+    public final void onTransitionCancel(Transition transition) {
     }
 
     @Override
-    public final void onError(TLRPC.TL_error tL_error) {
-        Toast.makeText(this.f38451a.getParentActivity(), tL_error.text, 0).show();
+    public final void onTransitionPause(Transition transition) {
+    }
+
+    @Override
+    public final void onTransitionResume(Transition transition) {
+    }
+
+    @Override
+    public final void onTransitionStart(Transition transition) {
     }
 }

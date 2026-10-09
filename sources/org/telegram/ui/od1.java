@@ -1,6 +1,8 @@
 package org.telegram.ui;
-
-import org.telegram.tgnet.TLRPC;
 public interface od1 {
-    void a(TLRPC.TL_wallPaper tL_wallPaper);
+    boolean T0();
+
+    boolean a();
+
+    void l1(boolean z10);
 }

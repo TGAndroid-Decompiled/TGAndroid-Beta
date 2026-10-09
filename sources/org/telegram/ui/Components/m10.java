@@ -1,75 +1,84 @@
 package org.telegram.ui.Components;
 
-import java.util.Iterator;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocationController;
-import org.telegram.messenger.MediaController;
-public final class m10 implements org.telegram.ui.ActionBar.r0, le.k, org.telegram.ui.ActionBar.a2, tv0 {
-    public final FragmentContextView f28566a;
+import android.content.Context;
+import android.view.ViewGroup;
+import org.telegram.tgnet.tl.TL_chatlists;
+public final class m10 extends pm0 {
+    public final s10 f28647c;
 
-    public m10(FragmentContextView fragmentContextView) {
-        this.f28566a = fragmentContextView;
+    public m10(s10 s10Var) {
+        this.f28647c = s10Var;
     }
 
     @Override
-    public void b(LocationController.SharingLocationInfo sharingLocationInfo) {
-        float[] fArr = FragmentContextView.P0;
-        this.f28566a.k(sharingLocationInfo);
-    }
-
-    @Override
-    public void c(le.l lVar) {
-        FragmentContextView fragmentContextView = this.f28566a;
-        le.l lVar2 = fragmentContextView.N0;
-        float f7 = 1.0f - lVar2.f15463a.d.f15454c.f15464a;
-        fragmentContextView.d.setAlpha(f7);
-        fragmentContextView.d.setScaleX(AndroidUtilities.lerp(0.7f, 1.0f, f7));
-        fragmentContextView.d.setScaleY(AndroidUtilities.lerp(0.7f, 1.0f, f7));
-        Iterator it = lVar2.iterator();
-        while (it.hasNext()) {
-            le.g gVar = (le.g) it.next();
-            float c10 = gVar.c();
-            Object obj = gVar.f15447a;
-            float lerp = AndroidUtilities.lerp(0.7f, 1.0f, c10);
-            lh.c cVar = ((y10) obj).f33152b;
-            cVar.setAlpha(gVar.c());
-            cVar.setScaleX(lerp);
-            cVar.setScaleY(lerp);
-        }
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        FragmentContextView fragmentContextView = this.f28566a;
-        org.telegram.ui.ActionBar.n2 n2Var = fragmentContextView.h;
-        if (n2Var instanceof org.telegram.ui.uy) {
-            for (int i11 = 0; i11 < 4; i11++) {
-                LocationController.getInstance(i11).removeAllLocationSharings();
+    public final boolean D(s4.d1 d1Var) {
+        if (d1Var.f47660f == 2) {
+            int b10 = d1Var.b();
+            s10 s10Var = this.f28647c;
+            if (b10 >= s10Var.f30586r0 && d1Var.b() <= s10Var.f30587s0) {
+                return true;
             }
-            return;
+            return false;
         }
-        LocationController.getInstance(n2Var.getCurrentAccount()).removeSharingLocation(fragmentContextView.f24183n.a());
+        return false;
     }
 
     @Override
-    public void m(int i10) {
-        float[] fArr = FragmentContextView.P0;
-        if (i10 >= 0) {
-            float[] fArr2 = FragmentContextView.P0;
-            if (i10 < 6) {
-                MediaController mediaController = MediaController.getInstance();
-                FragmentContextView fragmentContextView = this.f28566a;
-                float playbackSpeed = mediaController.getPlaybackSpeed(fragmentContextView.V);
-                float f7 = fArr2[i10];
-                MediaController.getInstance().setPlaybackSpeed(fragmentContextView.V, f7);
-                if (playbackSpeed != f7) {
-                    fragmentContextView.l(playbackSpeed, f7, false);
-                }
+    public final int h() {
+        return this.f28647c.f30583o0;
+    }
+
+    @Override
+    public final int j(int i10) {
+        s10 s10Var = this.f28647c;
+        s10Var.getClass();
+        if (i10 == 0) {
+            return 0;
+        }
+        if (i10 != s10Var.f30584p0 && i10 != s10Var.f30588t0 && i10 != s10Var.f30592x0) {
+            if (i10 != s10Var.f30585q0 && i10 != s10Var.f30589u0) {
+                return 2;
             }
+            return 3;
         }
+        return 1;
     }
 
     @Override
-    public void a() {
+    public final void v(s4.d1 r11, int r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.m10.v(s4.d1, int):void");
+    }
+
+    @Override
+    public final s4.d1 x(ViewGroup viewGroup, int i10) {
+        r10 r10Var;
+        r10 r10Var2;
+        s10 s10Var = this.f28647c;
+        if (i10 == 0) {
+            boolean z10 = false;
+            Context context = s10Var.getContext();
+            if ((s10Var.Z instanceof TL_chatlists.TL_chatlists_chatlistInviteAlready) || s10Var.f30570a0 != null) {
+                z10 = true;
+            }
+            r10Var = new r10(s10Var, context, z10, s10Var.f30575f0, s10Var.f30573d0, s10Var.f30574e0);
+            s10Var.f30582n0 = r10Var;
+        } else {
+            r10Var = null;
+            if (i10 == 1) {
+                ?? e9Var = new org.telegram.ui.Cells.e9(s10Var.getContext());
+                e9Var.setBackgroundColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20741a7, false));
+                r10Var2 = e9Var;
+            } else if (i10 == 2) {
+                ?? g4Var = new org.telegram.ui.Cells.g4(1, 0, s10Var.getContext(), false);
+                g4Var.setBackgroundColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20797d6, false));
+                r10Var = g4Var;
+            } else if (i10 == 3) {
+                ?? p10Var = new p10(s10Var.getContext());
+                p10Var.setBackgroundColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20797d6, false));
+                r10Var2 = p10Var;
+            }
+            r10Var = r10Var2;
+        }
+        return new s4.d1(r10Var);
     }
 }

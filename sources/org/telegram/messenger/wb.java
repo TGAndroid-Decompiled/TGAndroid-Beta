@@ -1,30 +1,46 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class wb implements RequestDelegate {
-    public final int f19683a;
-    public final MessagesController f19684b;
-    public final long f19685c;
-    public final long d;
+import java.util.ArrayList;
+public final class wb implements Runnable {
+    public final int f19692a = 0;
+    public final MessagesController f19693b;
+    public final long f19694c;
+    public final ArrayList d;
+    public final long f19695e;
 
-    public wb(int i10, long j3, long j10, MessagesController messagesController) {
-        this.f19683a = i10;
-        this.f19684b = messagesController;
-        this.f19685c = j3;
-        this.d = j10;
+    public wb(MessagesController messagesController, long j3, long j10, ArrayList arrayList) {
+        this.f19693b = messagesController;
+        this.f19694c = j3;
+        this.f19695e = j10;
+        this.d = arrayList;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f19683a) {
+    public final void run() {
+        switch (this.f19692a) {
             case 0:
-                this.f19684b.lambda$loadUnknownDialog$208(this.f19685c, this.d, tLObject, tL_error);
+                this.f19693b.lambda$checkUnreadPollVotesInternal2$434(this.f19694c, this.f19695e, 0, this.d);
+                return;
+            case 1:
+                this.f19693b.lambda$processUpdateArray$422(this.f19694c, this.d, this.f19695e);
                 return;
             default:
-                this.f19684b.lambda$deleteMessages$124(this.f19685c, this.d, tLObject, tL_error);
+                this.f19693b.lambda$deleteMessagesByPush$369(this.d, this.f19694c, this.f19695e);
                 return;
         }
+    }
+
+    public wb(MessagesController messagesController, long j3, ArrayList arrayList, long j10) {
+        this.f19693b = messagesController;
+        this.f19694c = j3;
+        this.d = arrayList;
+        this.f19695e = j10;
+    }
+
+    public wb(MessagesController messagesController, ArrayList arrayList, long j3, long j10) {
+        this.f19693b = messagesController;
+        this.d = arrayList;
+        this.f19694c = j3;
+        this.f19695e = j10;
     }
 }

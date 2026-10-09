@@ -1,43 +1,42 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class p40 extends TextView {
-    public final RectF f39351a;
-    public final Paint f39352b;
+public final class p40 extends LinearLayout {
+    public boolean f40662a;
+    public final org.telegram.ui.Components.ud0 f40663b;
+    public final l40 f40664c;
+    public final m40 d;
 
-    public p40(LaunchActivity launchActivity) {
+    public p40(LaunchActivity launchActivity, org.telegram.ui.Components.ud0 ud0Var, l40 l40Var, m40 m40Var) {
         super(launchActivity);
-        this.f39351a = new RectF();
-        Paint paint = new Paint(1);
-        this.f39352b = paint;
-        paint.setStyle(Paint.Style.FILL);
-        paint.setColor(-16711936);
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        RectF rectF = this.f39351a;
-        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f39352b);
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        Paint paint = this.f39352b;
-        paint.setColor(-16711936);
-        RectF rectF = this.f39351a;
-        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
-        super.onDraw(canvas);
+        this.f40663b = ud0Var;
+        this.f40664c = l40Var;
+        this.d = m40Var;
+        this.f40662a = false;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
+        this.f40662a = true;
+        org.telegram.ui.Components.ud0 ud0Var = this.f40663b;
+        ud0Var.setItemCount(5);
+        l40 l40Var = this.f40664c;
+        l40Var.setItemCount(5);
+        m40 m40Var = this.d;
+        m40Var.setItemCount(5);
+        ud0Var.getLayoutParams().height = AndroidUtilities.dp(54.0f) * 5;
+        l40Var.getLayoutParams().height = AndroidUtilities.dp(54.0f) * 5;
+        m40Var.getLayoutParams().height = AndroidUtilities.dp(54.0f) * 5;
+        this.f40662a = false;
         super.onMeasure(i10, i11);
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.f40662a) {
+            return;
+        }
+        super.requestLayout();
     }
 }

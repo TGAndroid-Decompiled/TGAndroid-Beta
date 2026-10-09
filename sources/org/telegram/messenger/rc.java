@@ -1,45 +1,26 @@
 package org.telegram.messenger;
-public final class rc implements Runnable {
-    public final int f19081a;
-    public final MessagesController f19082b;
-    public final int f19083c;
-    public final long d;
-    public final long f19084e;
 
-    public rc(int i10, long j3, long j10, MessagesController messagesController) {
-        this.f19081a = 2;
-        this.f19082b = messagesController;
-        this.d = j3;
-        this.f19084e = j10;
-        this.f19083c = i10;
+import org.telegram.tgnet.tl.TL_update;
+public final class rc implements Runnable {
+    public final int f19044a;
+    public final MessagesController f19045b;
+    public final TL_update.TL_updatePeerBlocked f19046c;
+
+    public rc(MessagesController messagesController, TL_update.TL_updatePeerBlocked tL_updatePeerBlocked, int i10) {
+        this.f19044a = i10;
+        this.f19045b = messagesController;
+        this.f19046c = tL_updatePeerBlocked;
     }
 
     @Override
     public final void run() {
-        switch (this.f19081a) {
+        switch (this.f19044a) {
             case 0:
-                long j3 = this.d;
-                long j10 = this.f19084e;
-                this.f19082b.lambda$sendTyping$173(this.f19083c, j3, j10);
-                return;
-            case 1:
-                long j11 = this.d;
-                long j12 = this.f19084e;
-                this.f19082b.lambda$sendTyping$171(this.f19083c, j11, j12);
+                this.f19045b.lambda$processUpdateArray$394(this.f19046c);
                 return;
             default:
-                long j13 = this.f19084e;
-                int i10 = this.f19083c;
-                this.f19082b.lambda$checkDeletingTask$84(this.d, j13, i10);
+                this.f19045b.lambda$processUpdateArray$393(this.f19046c);
                 return;
         }
-    }
-
-    public rc(MessagesController messagesController, int i10, long j3, long j10, int i11) {
-        this.f19081a = i11;
-        this.f19082b = messagesController;
-        this.f19083c = i10;
-        this.d = j3;
-        this.f19084e = j10;
     }
 }

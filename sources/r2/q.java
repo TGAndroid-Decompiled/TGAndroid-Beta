@@ -1,16 +1,19 @@
 package r2;
+public final class q extends Exception {
+    public final String f46904a;
+    public final boolean f46905b;
+    public final p f46906c;
+    public final String d;
 
-import e2.a0;
-public final class q {
-    public static final q f45757e = new q(-9223372036854775807L, -9223372036854775807L, -9223372036854775807L);
-    public final long f45758a;
-    public final long f45759b;
-    public final long f45760c;
-    public final a0 d = new a0();
+    public q(b2.s sVar, u uVar, boolean z10, int i10) {
+        this("Decoder init failed: [" + i10 + "], " + sVar, uVar, sVar.f3643r, z10, null, "androidx.media3.exoplayer.mediacodec.MediaCodecRenderer_" + (i10 < 0 ? "neg_" : "") + Math.abs(i10));
+    }
 
-    public q(long j3, long j10, long j11) {
-        this.f45758a = j3;
-        this.f45759b = j10;
-        this.f45760c = j11;
+    public q(String str, Throwable th2, String str2, boolean z10, p pVar, String str3) {
+        super(str, th2);
+        this.f46904a = str2;
+        this.f46905b = z10;
+        this.f46906c = pVar;
+        this.d = str3;
     }
 }

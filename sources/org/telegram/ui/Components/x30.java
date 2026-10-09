@@ -1,50 +1,46 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class x30 extends AnimatorListenerAdapter {
-    public final int f32812a;
-    public final z30 f32813b;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class x30 extends FrameLayout {
+    public final org.telegram.ui.f50 f32732a;
 
-    public x30(z30 z30Var, int i10) {
-        this.f32812a = i10;
-        this.f32813b = z30Var;
+    public x30(org.telegram.ui.f50 f50Var, Context context) {
+        super(context);
+        this.f32732a = f50Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f32812a) {
-            case 0:
-                z30 z30Var = this.f32813b;
-                if (z30Var.f33413b0 == animator) {
-                    z30Var.f33413b0 = null;
-                    z30Var.b();
-                    return;
-                }
-                return;
-            default:
-                z30 z30Var2 = this.f32813b;
-                if (z30Var2.f33411a0 == animator) {
-                    z30Var2.f33411a0 = null;
-                    return;
-                }
-                return;
-        }
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        c40.o(this.f32732a);
     }
 
     @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f32812a) {
-            case 1:
-                y30 y30Var = this.f32813b.W;
-                if (y30Var != null) {
-                    ((org.telegram.ui.qs0) y30Var).f39880a.f33914e0.requestLayout();
-                    return;
-                }
-                return;
-            default:
-                super.onAnimationStart(animator);
-                return;
+    public final void onMeasure(int i10, int i11) {
+        boolean z10;
+        if (View.MeasureSpec.getSize(i10) > View.MeasureSpec.getSize(i11)) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
+        org.telegram.ui.f50 f50Var = this.f32732a;
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) f50Var.f25231c.getLayoutParams();
+        if (z10) {
+            int dp = AndroidUtilities.dp(80.0f);
+            marginLayoutParams.leftMargin = dp;
+            marginLayoutParams.rightMargin = dp;
+        } else {
+            int dp2 = AndroidUtilities.dp(16.0f);
+            marginLayoutParams.leftMargin = dp2;
+            marginLayoutParams.rightMargin = dp2;
+        }
+        int A = org.telegram.messenger.bi.A(200.0f, View.MeasureSpec.getSize(i10), 2);
+        f50Var.f25230b.setPadding(A, 0, A, 0);
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(370.0f), 1073741824));
+        measureChildWithMargins(f50Var.d, View.MeasureSpec.makeMeasureSpec(0, 0), 0, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f), 1073741824), 0);
     }
 }

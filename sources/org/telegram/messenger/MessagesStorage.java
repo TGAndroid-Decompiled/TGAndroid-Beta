@@ -562,7 +562,7 @@ public class MessagesStorage extends BaseController {
                 TLRPC.Reaction reaction = reactionCount2.reaction;
                 if ((reaction instanceof TLRPC.TL_reactionEmoji) || (reaction instanceof TLRPC.TL_reactionCustomEmoji)) {
                     sQLitePreparedStatement.requery();
-                    sQLitePreparedStatement.bindLong(1, message.f20068id);
+                    sQLitePreparedStatement.bindLong(1, message.f20059id);
                     sQLitePreparedStatement.bindLong(2, MessageObject.getSavedDialogId(clientUserId, message));
                     TLRPC.Reaction reaction2 = reactionCount2.reaction;
                     if (reaction2 instanceof TLRPC.TL_reactionEmoji) {
@@ -610,7 +610,7 @@ public class MessagesStorage extends BaseController {
                 i10 = queryFinalized.intValue(0);
             }
             queryFinalized.dispose();
-            AndroidUtilities.runOnUIThread(new q4(this, l4, i10, 17));
+            AndroidUtilities.runOnUIThread(new r4(this, l4, i10, 17));
         } catch (Exception e10) {
             e = e10;
             sQLiteCursor = queryFinalized;
@@ -657,8 +657,7 @@ public class MessagesStorage extends BaseController {
                 sQLiteCursor.dispose();
                 if (z10) {
                     AndroidUtilities.runOnUIThread(new hf(this, i10, 1));
-                    SQLiteDatabase sQLiteDatabase = this.database;
-                    sQLiteDatabase.executeFast("DELETE FROM dialogs WHERE did = " + DialogObject.makeFolderDialogId(i10)).stepThis().dispose();
+                    this.database.executeFast("DELETE FROM dialogs WHERE did = " + DialogObject.makeFolderDialogId(i10)).stepThis().dispose();
                 }
                 sQLiteCursor.dispose();
             } catch (Exception e7) {
@@ -716,27 +715,37 @@ public class MessagesStorage extends BaseController {
     private void closeHolesInTable(String str, long j3, int i10, int i11, long j10) {
         SQLiteCursor sQLiteCursor;
         SQLiteCursor sQLiteCursor2;
-        char c10;
-        char c11;
-        SQLiteCursor queryFinalized;
         int i12;
-        ArrayList arrayList;
-        SQLitePreparedStatement executeFast;
-        long j11;
         int i13;
         int i14;
+        int i15;
+        SQLiteCursor queryFinalized;
+        int i16;
+        ArrayList arrayList;
+        int i17;
+        boolean z10;
+        SQLitePreparedStatement executeFast;
+        long j11;
+        int i18;
+        int i19;
+        int i20;
+        int i21 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
+        boolean z11 = false;
         SQLitePreparedStatement sQLitePreparedStatement = null;
-        int i15 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
         try {
             try {
                 try {
-                    if (i15 != 0) {
-                        c10 = 2;
-                        c11 = 3;
+                    if (i21 != 0) {
+                        i12 = 2;
+                        i13 = 3;
+                        i14 = 4;
+                        i15 = 1;
                         queryFinalized = this.database.queryFinalized(String.format(Locale.US, "SELECT start, end FROM " + str + " WHERE uid = %d AND topic_id = %d AND ((end >= %d AND end <= %d) OR (start >= %d AND start <= %d) OR (start >= %d AND end <= %d) OR (start <= %d AND end >= %d))", Long.valueOf(j3), Long.valueOf(j10), Integer.valueOf(i10), Integer.valueOf(i11), Integer.valueOf(i10), Integer.valueOf(i11), Integer.valueOf(i10), Integer.valueOf(i11), Integer.valueOf(i10), Integer.valueOf(i11)), new Object[0]);
                     } else {
-                        c10 = 2;
-                        c11 = 3;
+                        i12 = 2;
+                        i13 = 3;
+                        i14 = 4;
+                        i15 = 1;
                         queryFinalized = this.database.queryFinalized(String.format(Locale.US, "SELECT start, end FROM " + str + " WHERE uid = %d AND ((end >= %d AND end <= %d) OR (start >= %d AND start <= %d) OR (start >= %d AND end <= %d) OR (start <= %d AND end >= %d))", Long.valueOf(j3), Integer.valueOf(i10), Integer.valueOf(i11), Integer.valueOf(i10), Integer.valueOf(i11), Integer.valueOf(i10), Integer.valueOf(i11), Integer.valueOf(i10), Integer.valueOf(i11)), new Object[0]);
                     }
                     sQLiteCursor2 = queryFinalized;
@@ -747,52 +756,56 @@ public class MessagesStorage extends BaseController {
                                 arrayList2 = new ArrayList();
                             }
                             int intValue = sQLiteCursor2.intValue(0);
-                            int intValue2 = sQLiteCursor2.intValue(1);
-                            if (intValue != intValue2 || intValue != 1) {
+                            int i22 = i15;
+                            int intValue2 = sQLiteCursor2.intValue(i22);
+                            if (intValue != intValue2 || intValue != i22) {
                                 arrayList2.add(new Hole(intValue, intValue2));
                             }
+                            i15 = 1;
                         } catch (Exception e7) {
                             e = e7;
                         }
                     }
                     sQLiteCursor2.dispose();
                     if (arrayList2 != null) {
-                        int i16 = 0;
-                        while (i16 < arrayList2.size()) {
-                            Hole hole = (Hole) arrayList2.get(i16);
-                            int i17 = hole.end;
-                            if (i11 >= i17 - 1 && i10 <= hole.start + 1) {
-                                if (i15 != 0) {
+                        int i23 = 0;
+                        while (i23 < arrayList2.size()) {
+                            Hole hole = (Hole) arrayList2.get(i23);
+                            int i24 = hole.end;
+                            boolean z12 = z11;
+                            int i25 = i21;
+                            if (i11 >= i24 - 1 && i10 <= hole.start + 1) {
+                                if (i25 != 0) {
                                     Long valueOf = Long.valueOf(j3);
                                     Long valueOf2 = Long.valueOf(j10);
-                                    i12 = i16;
+                                    i16 = i23;
                                     Integer valueOf3 = Integer.valueOf(hole.start);
                                     Integer valueOf4 = Integer.valueOf(hole.end);
-                                    arrayList = arrayList2;
-                                    Object[] objArr = new Object[4];
-                                    objArr[0] = valueOf;
+                                    Object[] objArr = new Object[i14];
+                                    objArr[z12 ? 1 : 0] = valueOf;
                                     objArr[1] = valueOf2;
-                                    objArr[c10] = valueOf3;
-                                    objArr[c11] = valueOf4;
+                                    objArr[i12] = valueOf3;
+                                    objArr[i13] = valueOf4;
                                     this.database.executeFast(String.format(Locale.US, "DELETE FROM " + str + " WHERE uid = %d AND topic_id = %d AND start = %d AND end = %d", objArr)).stepThis().dispose();
-                                } else {
-                                    i12 = i16;
                                     arrayList = arrayList2;
+                                } else {
+                                    i16 = i23;
                                     Long valueOf5 = Long.valueOf(j3);
                                     Integer valueOf6 = Integer.valueOf(hole.start);
                                     Integer valueOf7 = Integer.valueOf(hole.end);
-                                    Object[] objArr2 = new Object[3];
-                                    objArr2[0] = valueOf5;
+                                    arrayList = arrayList2;
+                                    Object[] objArr2 = new Object[i13];
+                                    objArr2[z12 ? 1 : 0] = valueOf5;
                                     objArr2[1] = valueOf6;
-                                    objArr2[c10] = valueOf7;
+                                    objArr2[i12] = valueOf7;
                                     this.database.executeFast(String.format(Locale.US, "DELETE FROM " + str + " WHERE uid = %d AND start = %d AND end = %d", objArr2)).stepThis().dispose();
                                 }
                             } else {
-                                i12 = i16;
+                                i16 = i23;
                                 arrayList = arrayList2;
-                                if (i11 >= i17 - 1) {
-                                    if (i17 != i10) {
-                                        if (i15 != 0) {
+                                if (i11 >= i24 - 1) {
+                                    if (i24 != i10) {
+                                        if (i25 != 0) {
                                             try {
                                                 SQLiteDatabase sQLiteDatabase = this.database;
                                                 Locale locale = Locale.US;
@@ -801,9 +814,9 @@ public class MessagesStorage extends BaseController {
                                                 Integer valueOf10 = Integer.valueOf(hole.start);
                                                 Integer valueOf11 = Integer.valueOf(hole.end);
                                                 Object[] objArr3 = new Object[4];
-                                                objArr3[0] = valueOf8;
+                                                objArr3[z12 ? 1 : 0] = valueOf8;
                                                 objArr3[1] = valueOf9;
-                                                objArr3[c10] = valueOf10;
+                                                objArr3[i12] = valueOf10;
                                                 objArr3[3] = valueOf11;
                                                 sQLiteDatabase.executeFast(String.format(locale, "DELETE FROM " + str + " WHERE uid = %d AND topic_id = %d AND start = %d AND end = %d", objArr3)).stepThis().dispose();
                                                 Long valueOf12 = Long.valueOf(j3);
@@ -811,13 +824,13 @@ public class MessagesStorage extends BaseController {
                                                 Integer valueOf14 = Integer.valueOf(hole.start);
                                                 Integer valueOf15 = Integer.valueOf(i10);
                                                 Object[] objArr4 = new Object[4];
-                                                objArr4[0] = valueOf12;
+                                                objArr4[z12 ? 1 : 0] = valueOf12;
                                                 objArr4[1] = valueOf13;
-                                                objArr4[c10] = valueOf14;
+                                                objArr4[i12] = valueOf14;
                                                 objArr4[3] = valueOf15;
                                                 this.database.executeFast(String.format(locale, "REPLACE INTO " + str + " VALUES(%d, %d, %d, %d)", objArr4)).stepThis().dispose();
                                             } catch (Exception e10) {
-                                                checkSQLException(e10, false);
+                                                checkSQLException(e10, z12);
                                             }
                                         } else {
                                             SQLiteDatabase sQLiteDatabase2 = this.database;
@@ -826,25 +839,25 @@ public class MessagesStorage extends BaseController {
                                             Integer valueOf17 = Integer.valueOf(hole.start);
                                             Integer valueOf18 = Integer.valueOf(hole.end);
                                             Object[] objArr5 = new Object[3];
-                                            objArr5[0] = valueOf16;
+                                            objArr5[z12 ? 1 : 0] = valueOf16;
                                             objArr5[1] = valueOf17;
-                                            objArr5[c10] = valueOf18;
+                                            objArr5[i12] = valueOf18;
                                             sQLiteDatabase2.executeFast(String.format(locale2, "DELETE FROM " + str + " WHERE uid = %d AND start = %d AND end = %d", objArr5)).stepThis().dispose();
                                             Long valueOf19 = Long.valueOf(j3);
                                             Integer valueOf20 = Integer.valueOf(hole.start);
                                             Integer valueOf21 = Integer.valueOf(i10);
                                             Object[] objArr6 = new Object[3];
-                                            objArr6[0] = valueOf19;
+                                            objArr6[z12 ? 1 : 0] = valueOf19;
                                             objArr6[1] = valueOf20;
-                                            objArr6[c10] = valueOf21;
+                                            objArr6[i12] = valueOf21;
                                             this.database.executeFast(String.format(locale2, "REPLACE INTO " + str + " VALUES(%d, %d, %d)", objArr6)).stepThis().dispose();
                                         }
                                     }
                                 } else {
-                                    int i18 = hole.start;
-                                    if (i10 <= i18 + 1) {
-                                        if (i18 != i11) {
-                                            if (i15 != 0) {
+                                    int i26 = hole.start;
+                                    if (i10 <= i26 + 1) {
+                                        if (i26 != i11) {
+                                            if (i25 != 0) {
                                                 try {
                                                     SQLiteDatabase sQLiteDatabase3 = this.database;
                                                     Locale locale3 = Locale.US;
@@ -855,7 +868,7 @@ public class MessagesStorage extends BaseController {
                                                     Object[] objArr7 = new Object[4];
                                                     objArr7[0] = valueOf22;
                                                     objArr7[1] = valueOf23;
-                                                    objArr7[c10] = valueOf24;
+                                                    objArr7[i12] = valueOf24;
                                                     objArr7[3] = valueOf25;
                                                     sQLiteDatabase3.executeFast(String.format(locale3, "DELETE FROM " + str + " WHERE uid = %d AND topic_id = %d AND start = %d AND end = %d", objArr7)).stepThis().dispose();
                                                     Long valueOf26 = Long.valueOf(j3);
@@ -865,7 +878,7 @@ public class MessagesStorage extends BaseController {
                                                     Object[] objArr8 = new Object[4];
                                                     objArr8[0] = valueOf26;
                                                     objArr8[1] = valueOf27;
-                                                    objArr8[c10] = valueOf28;
+                                                    objArr8[i12] = valueOf28;
                                                     objArr8[3] = valueOf29;
                                                     this.database.executeFast(String.format(locale3, "REPLACE INTO " + str + " VALUES(%d, %d, %d, %d)", objArr8)).stepThis().dispose();
                                                 } catch (Exception e11) {
@@ -880,7 +893,7 @@ public class MessagesStorage extends BaseController {
                                                 Object[] objArr9 = new Object[3];
                                                 objArr9[0] = valueOf30;
                                                 objArr9[1] = valueOf31;
-                                                objArr9[c10] = valueOf32;
+                                                objArr9[i12] = valueOf32;
                                                 sQLiteDatabase4.executeFast(String.format(locale4, "DELETE FROM " + str + " WHERE uid = %d AND start = %d AND end = %d", objArr9)).stepThis().dispose();
                                                 Long valueOf33 = Long.valueOf(j3);
                                                 Integer valueOf34 = Integer.valueOf(i11);
@@ -888,12 +901,12 @@ public class MessagesStorage extends BaseController {
                                                 Object[] objArr10 = new Object[3];
                                                 objArr10[0] = valueOf33;
                                                 objArr10[1] = valueOf34;
-                                                objArr10[c10] = valueOf35;
+                                                objArr10[i12] = valueOf35;
                                                 this.database.executeFast(String.format(locale4, "REPLACE INTO " + str + " VALUES(%d, %d, %d)", objArr10)).stepThis().dispose();
                                             }
                                         }
                                     } else {
-                                        if (i15 != 0) {
+                                        if (i25 != 0) {
                                             Long valueOf36 = Long.valueOf(j3);
                                             Long valueOf37 = Long.valueOf(j10);
                                             Integer valueOf38 = Integer.valueOf(hole.start);
@@ -901,51 +914,61 @@ public class MessagesStorage extends BaseController {
                                             Object[] objArr11 = new Object[4];
                                             objArr11[0] = valueOf36;
                                             objArr11[1] = valueOf37;
-                                            objArr11[c10] = valueOf38;
+                                            objArr11[i12] = valueOf38;
                                             objArr11[3] = valueOf39;
                                             this.database.executeFast(String.format(Locale.US, "DELETE FROM " + str + " WHERE uid = %d AND topic_id = %d AND start = %d AND end = %d", objArr11)).stepThis().dispose();
                                             executeFast = this.database.executeFast("REPLACE INTO " + str + " VALUES(?, ?, ?, ?)");
+                                            i14 = 4;
+                                            i17 = 3;
+                                            z10 = false;
                                         } else {
+                                            i14 = 4;
                                             Long valueOf40 = Long.valueOf(j3);
                                             Integer valueOf41 = Integer.valueOf(hole.start);
                                             Integer valueOf42 = Integer.valueOf(hole.end);
+                                            i17 = 3;
                                             Object[] objArr12 = new Object[3];
+                                            z10 = false;
                                             objArr12[0] = valueOf40;
                                             objArr12[1] = valueOf41;
-                                            objArr12[c10] = valueOf42;
+                                            objArr12[i12] = valueOf42;
                                             this.database.executeFast(String.format(Locale.US, "DELETE FROM " + str + " WHERE uid = %d AND start = %d AND end = %d", objArr12)).stepThis().dispose();
                                             executeFast = this.database.executeFast("REPLACE INTO " + str + " VALUES(?, ?, ?)");
                                         }
                                         try {
                                             executeFast.requery();
                                             executeFast.bindLong(1, j3);
-                                            if (i15 != 0) {
+                                            if (i25 != 0) {
                                                 j11 = j10;
-                                                executeFast.bindLong(2, j11);
-                                                i13 = 3;
+                                                executeFast.bindLong(i12, j11);
+                                                i18 = i17;
                                             } else {
                                                 j11 = j10;
-                                                i13 = 2;
+                                                i18 = 2;
                                             }
-                                            executeFast.bindInteger(i13, hole.start);
-                                            executeFast.bindInteger(i13 + 1, i10);
+                                            executeFast.bindInteger(i18, hole.start);
+                                            executeFast.bindInteger(i18 + 1, i10);
                                             executeFast.step();
                                             executeFast.requery();
                                             executeFast.bindLong(1, j3);
-                                            if (i15 != 0) {
+                                            if (i25 != 0) {
+                                                i19 = 2;
                                                 executeFast.bindLong(2, j11);
-                                                i14 = 3;
+                                                i20 = i17;
                                             } else {
-                                                i14 = 2;
+                                                i19 = 2;
+                                                i20 = 2;
                                             }
-                                            executeFast.bindInteger(i14, i11);
-                                            executeFast.bindInteger(i14 + 1, hole.end);
+                                            executeFast.bindInteger(i20, i11);
+                                            executeFast.bindInteger(i20 + 1, hole.end);
                                             executeFast.step();
                                             executeFast.dispose();
-                                            i16 = i12 + 1;
+                                            i12 = i19;
+                                            i13 = i17;
+                                            z11 = z10;
+                                            i21 = i25;
                                             arrayList2 = arrayList;
-                                            c10 = 2;
-                                            c11 = 3;
+                                            i23 = i16 + 1;
                                         } catch (Exception e12) {
                                             e = e12;
                                             sQLiteCursor2 = null;
@@ -974,10 +997,16 @@ public class MessagesStorage extends BaseController {
                                     }
                                 }
                             }
-                            i16 = i12 + 1;
+                            i19 = i12;
+                            i17 = 3;
+                            z10 = false;
+                            i14 = 4;
+                            i12 = i19;
+                            i13 = i17;
+                            z11 = z10;
+                            i21 = i25;
                             arrayList2 = arrayList;
-                            c10 = 2;
-                            c11 = 3;
+                            i23 = i16 + 1;
                         }
                     }
                 } catch (Throwable th3) {
@@ -1042,7 +1071,7 @@ public class MessagesStorage extends BaseController {
     private void createOrEditTopic(long j3, TLRPC.Message message) {
         TLRPC.TL_forumTopic tL_forumTopic = new TLRPC.TL_forumTopic();
         tL_forumTopic.topicStartMessage = message;
-        tL_forumTopic.top_message = message.f20068id;
+        tL_forumTopic.top_message = message.f20059id;
         tL_forumTopic.topMessage = message;
         tL_forumTopic.from_id = message.from_id;
         tL_forumTopic.notify_settings = new TLRPC.TL_peerNotifySettings();
@@ -1051,7 +1080,7 @@ public class MessagesStorage extends BaseController {
         TLRPC.MessageAction messageAction = message.action;
         if (messageAction instanceof TLRPC.TL_messageActionTopicCreate) {
             TLRPC.TL_messageActionTopicCreate tL_messageActionTopicCreate = (TLRPC.TL_messageActionTopicCreate) messageAction;
-            tL_forumTopic.f20099id = message.f20068id;
+            tL_forumTopic.f20090id = message.f20059id;
             long j10 = tL_messageActionTopicCreate.icon_emoji_id;
             tL_forumTopic.icon_emoji_id = j10;
             tL_forumTopic.title = tL_messageActionTopicCreate.title;
@@ -1062,10 +1091,10 @@ public class MessagesStorage extends BaseController {
             ArrayList arrayList = new ArrayList();
             arrayList.add(tL_forumTopic);
             saveTopics(j3, arrayList, false, false, message.date);
-            AndroidUtilities.runOnUIThread(new b4(this, j3, tL_forumTopic, 21));
+            AndroidUtilities.runOnUIThread(new c4(this, j3, tL_forumTopic, 21));
         } else if (messageAction instanceof TLRPC.TL_messageActionTopicEdit) {
             TLRPC.TL_messageActionTopicEdit tL_messageActionTopicEdit = (TLRPC.TL_messageActionTopicEdit) messageAction;
-            tL_forumTopic.f20099id = (int) MessageObject.getTopicId(this.currentAccount, message, true);
+            tL_forumTopic.f20090id = (int) MessageObject.getTopicId(this.currentAccount, message, true);
             tL_forumTopic.icon_emoji_id = tL_messageActionTopicEdit.icon_emoji_id;
             tL_forumTopic.title = tL_messageActionTopicEdit.title;
             tL_forumTopic.closed = tL_messageActionTopicEdit.closed;
@@ -1190,8 +1219,7 @@ public class MessagesStorage extends BaseController {
                     this.database.commitTransaction();
                     SQLiteDatabase sQLiteDatabase3 = this.database;
                     Locale locale = Locale.US;
-                    String join = TextUtils.join(", ", arrayList);
-                    sQLiteDatabase3.executeFast("UPDATE messages_v2 SET ttl = 0 WHERE uid = " + j3 + " AND mid IN(" + join + ")").stepThis().dispose();
+                    sQLiteDatabase3.executeFast("UPDATE messages_v2 SET ttl = 0 WHERE uid = " + j3 + " AND mid IN(" + TextUtils.join(", ", arrayList) + ")").stepThis().dispose();
                     getMessagesController().didAddedNewTask(i10, j3, sparseArray);
                 }
                 SQLiteDatabase sQLiteDatabase4 = this.database;
@@ -1209,13 +1237,13 @@ public class MessagesStorage extends BaseController {
     public void lambda$deleteDialogFilter$72(MessagesController.DialogFilter dialogFilter) {
         try {
             this.dialogFilters.remove(dialogFilter);
-            this.dialogFiltersMap.remove(dialogFilter.f17266id);
+            this.dialogFiltersMap.remove(dialogFilter.f17252id);
             SQLiteDatabase sQLiteDatabase = this.database;
-            sQLiteDatabase.executeFast("DELETE FROM dialog_filter WHERE id = " + dialogFilter.f17266id).stepThis().dispose();
+            sQLiteDatabase.executeFast("DELETE FROM dialog_filter WHERE id = " + dialogFilter.f17252id).stepThis().dispose();
             SQLiteDatabase sQLiteDatabase2 = this.database;
-            sQLiteDatabase2.executeFast("DELETE FROM dialog_filter_ep WHERE id = " + dialogFilter.f17266id).stepThis().dispose();
+            sQLiteDatabase2.executeFast("DELETE FROM dialog_filter_ep WHERE id = " + dialogFilter.f17252id).stepThis().dispose();
             SQLiteDatabase sQLiteDatabase3 = this.database;
-            sQLiteDatabase3.executeFast("DELETE FROM dialog_filter_pin_v2 WHERE id = " + dialogFilter.f17266id).stepThis().dispose();
+            sQLiteDatabase3.executeFast("DELETE FROM dialog_filter_pin_v2 WHERE id = " + dialogFilter.f17252id).stepThis().dispose();
         } catch (Exception e7) {
             checkSQLException(e7);
         }
@@ -1231,23 +1259,23 @@ public class MessagesStorage extends BaseController {
 
     private void doneHolesInTable(String str, long j3, int i10, long j10) {
         SQLitePreparedStatement executeFast;
-        int i11 = 2;
-        int i12 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
-        if (i12 != 0) {
+        int i11 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
+        int i12 = 2;
+        if (i11 != 0) {
             if (i10 == 0) {
-                this.database.executeFast(String.format(Locale.US, a4.a.q("DELETE FROM ", str, " WHERE uid = %d AND topic_id = %d"), Long.valueOf(j3), Long.valueOf(j10))).stepThis().dispose();
+                this.database.executeFast(String.format(Locale.US, a1.g.q("DELETE FROM ", str, " WHERE uid = %d AND topic_id = %d"), Long.valueOf(j3), Long.valueOf(j10))).stepThis().dispose();
             } else {
-                this.database.executeFast(String.format(Locale.US, a4.a.q("DELETE FROM ", str, " WHERE uid = %d AND topic_id = %d AND start = 0"), Long.valueOf(j3), Long.valueOf(j10))).stepThis().dispose();
+                this.database.executeFast(String.format(Locale.US, a1.g.q("DELETE FROM ", str, " WHERE uid = %d AND topic_id = %d AND start = 0"), Long.valueOf(j3), Long.valueOf(j10))).stepThis().dispose();
             }
         } else if (i10 == 0) {
-            this.database.executeFast(String.format(Locale.US, a4.a.q("DELETE FROM ", str, " WHERE uid = %d"), Long.valueOf(j3))).stepThis().dispose();
+            this.database.executeFast(String.format(Locale.US, a1.g.q("DELETE FROM ", str, " WHERE uid = %d"), Long.valueOf(j3))).stepThis().dispose();
         } else {
-            this.database.executeFast(String.format(Locale.US, a4.a.q("DELETE FROM ", str, " WHERE uid = %d AND start = 0"), Long.valueOf(j3))).stepThis().dispose();
+            this.database.executeFast(String.format(Locale.US, a1.g.q("DELETE FROM ", str, " WHERE uid = %d AND start = 0"), Long.valueOf(j3))).stepThis().dispose();
         }
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
-                if (i12 != 0) {
+                if (i11 != 0) {
                     SQLiteDatabase sQLiteDatabase = this.database;
                     executeFast = sQLiteDatabase.executeFast("REPLACE INTO " + str + " VALUES(?, ?, ?, ?)");
                 } else {
@@ -1257,12 +1285,12 @@ public class MessagesStorage extends BaseController {
                 sQLitePreparedStatement = executeFast;
                 sQLitePreparedStatement.requery();
                 sQLitePreparedStatement.bindLong(1, j3);
-                if (i12 != 0) {
+                if (i11 != 0) {
                     sQLitePreparedStatement.bindLong(2, j10);
-                    i11 = 3;
+                    i12 = 3;
                 }
-                sQLitePreparedStatement.bindInteger(i11, 1);
-                sQLitePreparedStatement.bindInteger(i11 + 1, 1);
+                sQLitePreparedStatement.bindInteger(i12, 1);
+                sQLitePreparedStatement.bindInteger(i12 + 1, 1);
                 sQLitePreparedStatement.step();
                 sQLitePreparedStatement.dispose();
             } catch (Exception e7) {
@@ -1296,12 +1324,12 @@ public class MessagesStorage extends BaseController {
             TLRPC.MessageMedia messageMedia = message.media;
             if (messageMedia instanceof TLRPC.TL_messageMediaUnsupported_old) {
                 if (messageMedia.bytes.length == 0) {
-                    messageMedia.bytes = Utilities.intToBytes(229);
+                    messageMedia.bytes = Utilities.intToBytes(231);
                 }
             } else if (messageMedia instanceof TLRPC.TL_messageMediaUnsupported) {
                 TLRPC.TL_messageMediaUnsupported_old tL_messageMediaUnsupported_old = new TLRPC.TL_messageMediaUnsupported_old();
                 message.media = tL_messageMediaUnsupported_old;
-                tL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(229);
+                tL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(231);
                 message.flags |= 512;
             }
         }
@@ -1990,8 +2018,8 @@ public class MessagesStorage extends BaseController {
                 int i12 = ephemeralMessage.anchor_msg_id;
                 if (i12 != 0) {
                     yf.t tVar = this.ephemeralWelcomeAnchorsState;
-                    int i13 = ephemeralMessage.f20260id;
-                    a0.i iVar3 = tVar.f51024a;
+                    int i13 = ephemeralMessage.f20251id;
+                    a0.i iVar3 = tVar.f52192a;
                     SparseIntArray sparseIntArray = (SparseIntArray) iVar3.f(j3);
                     if (sparseIntArray != null && sparseIntArray.get(i12, -1) == i13) {
                         sparseIntArray.delete(i12);
@@ -2023,7 +2051,7 @@ public class MessagesStorage extends BaseController {
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagesDeleted, arrayList, 0L, Boolean.FALSE);
     }
 
-    public void lambda$deleteSavedDialog$55(long r13) {
+    public void lambda$deleteSavedDialog$55(long r12) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$deleteSavedDialog$55(long):void");
     }
 
@@ -2240,7 +2268,7 @@ public class MessagesStorage extends BaseController {
                         DownloadObject downloadObject = new DownloadObject();
                         boolean z12 = true;
                         downloadObject.type = queryFinalized.intValue(1);
-                        downloadObject.f17255id = queryFinalized.longValue(0);
+                        downloadObject.f17241id = queryFinalized.longValue(0);
                         downloadObject.parent = queryFinalized.stringValue(3);
                         NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(2);
                         if (byteBufferValue != null) {
@@ -2381,7 +2409,7 @@ public class MessagesStorage extends BaseController {
         Timer.Task start = Timer.start(timer, "MessagesStorage.getMessages");
         Runnable messagesInternal = getMessagesInternal(j3, j10, i10, i11, i12, i13, i14, i15, i16, j11, i17, z10, z11, timer);
         Timer.done(start);
-        Utilities.stageQueue.postRunnable(new dc(22, Timer.start(timer, "MessagesStorage.getMessages: stageQueue.postRunnable"), messagesInternal));
+        Utilities.stageQueue.postRunnable(new mc(23, Timer.start(timer, "MessagesStorage.getMessages: stageQueue.postRunnable"), messagesInternal));
     }
 
     public void lambda$getMessagesCount$158(long j3, IntCallback intCallback) {
@@ -2417,16 +2445,16 @@ public class MessagesStorage extends BaseController {
         int i11;
         int i12;
         int i13;
-        if (!MessageObject.isEphemeralMessageId(message.f20068id) && !MessageObject.isEphemeralMessageId(message2.f20068id)) {
-            int i14 = message.f20068id;
-            if (i14 > 0 && (i13 = message2.f20068id) > 0) {
+        if (!MessageObject.isEphemeralMessageId(message.f20059id) && !MessageObject.isEphemeralMessageId(message2.f20059id)) {
+            int i14 = message.f20059id;
+            if (i14 > 0 && (i13 = message2.f20059id) > 0) {
                 if (i14 > i13) {
                     return -1;
                 }
                 if (i14 < i13) {
                     return 1;
                 }
-            } else if (i14 < 0 && (i12 = message2.f20068id) < 0) {
+            } else if (i14 < 0 && (i12 = message2.f20059id) < 0) {
                 if (i14 < i12) {
                     return -1;
                 }
@@ -2453,10 +2481,10 @@ public class MessagesStorage extends BaseController {
         if (i17 < i18) {
             return 1;
         }
-        if (MessageObject.isEphemeralMessageId(message.f20068id) && !MessageObject.isEphemeralMessageId(message2.f20068id)) {
+        if (MessageObject.isEphemeralMessageId(message.f20059id) && !MessageObject.isEphemeralMessageId(message2.f20059id)) {
             return -1;
         }
-        if ((!MessageObject.isEphemeralMessageId(message.f20068id) && MessageObject.isEphemeralMessageId(message2.f20068id)) || (i10 = message.f20068id) > (i11 = message2.f20068id)) {
+        if ((!MessageObject.isEphemeralMessageId(message.f20059id) && MessageObject.isEphemeralMessageId(message2.f20059id)) || (i10 = message.f20059id) > (i11 = message2.f20059id)) {
             return 1;
         }
         if (i10 >= i11) {
@@ -2597,8 +2625,6 @@ public class MessagesStorage extends BaseController {
     }
 
     public void lambda$getWidgetDialogIds$168(int i10, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i11, CountDownLatch countDownLatch) {
-        Exception exc;
-        Throwable th2;
         SQLiteCursor sQLiteCursor = null;
         try {
             try {
@@ -2622,22 +2648,22 @@ public class MessagesStorage extends BaseController {
                                 }
                             }
                         } catch (Exception e7) {
-                            exc = e7;
+                            e = e7;
                             sQLiteCursor = queryFinalized;
-                            checkSQLException(exc);
+                            checkSQLException(e);
                             if (sQLiteCursor != null) {
                                 sQLiteCursor.dispose();
                             }
                             countDownLatch.countDown();
                             return;
-                        } catch (Throwable th3) {
-                            th2 = th3;
+                        } catch (Throwable th2) {
+                            th = th2;
                             sQLiteCursor = queryFinalized;
                             if (sQLiteCursor != null) {
                                 sQLiteCursor.dispose();
                             }
                             countDownLatch.countDown();
-                            throw th2;
+                            throw th;
                         }
                     }
                     queryFinalized.dispose();
@@ -2684,15 +2710,15 @@ public class MessagesStorage extends BaseController {
                     }
                     countDownLatch.countDown();
                 } catch (Exception e10) {
-                    exc = e10;
-                } catch (Throwable th4) {
-                    th2 = th4;
+                    e = e10;
+                } catch (Throwable th3) {
+                    th = th3;
                 }
-            } catch (Throwable th5) {
-                th2 = th5;
+            } catch (Throwable th4) {
+                th = th4;
             }
         } catch (Exception e11) {
-            exc = e11;
+            e = e11;
         }
     }
 
@@ -2767,24 +2793,24 @@ public class MessagesStorage extends BaseController {
                             arrayList.add(Long.valueOf(longValue3));
                         }
                         TLRPC.TL_dialog tL_dialog = new TLRPC.TL_dialog();
-                        tL_dialog.f20051id = longValue3;
+                        tL_dialog.f20042id = longValue3;
                         tL_dialog.top_message = queryFinalized.intValue(1);
                         tL_dialog.unread_count = queryFinalized.intValue(2);
                         tL_dialog.last_message_date = queryFinalized.intValue(3);
-                        iVar.k(tL_dialog, tL_dialog.f20051id);
+                        iVar.k(tL_dialog, tL_dialog.f20042id);
                         NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(4);
                         if (byteBufferValue != null) {
                             TLRPC.Message TLdeserialize = TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                             TLdeserialize.readAttachPath(byteBufferValue, getUserConfig().clientUserId);
                             byteBufferValue.reuse();
                             MessageObject.setUnreadFlags(TLdeserialize, queryFinalized.intValue(5));
-                            TLdeserialize.f20068id = queryFinalized.intValue(6);
+                            TLdeserialize.f20059id = queryFinalized.intValue(6);
                             TLdeserialize.send_state = queryFinalized.intValue(7);
                             int intValue = queryFinalized.intValue(8);
                             if (intValue != 0) {
                                 tL_dialog.last_message_date = intValue;
                             }
-                            long j3 = tL_dialog.f20051id;
+                            long j3 = tL_dialog.f20042id;
                             TLdeserialize.dialog_id = j3;
                             iVar2.k(TLdeserialize, j3);
                             addUsersAndChatsFromMessage(TLdeserialize, arrayList4, arrayList5, null);
@@ -2799,7 +2825,7 @@ public class MessagesStorage extends BaseController {
                         long longValue4 = l4.longValue();
                         if (iVar.f(((Long) arrayList.get(i12)).longValue()) == null) {
                             TLRPC.TL_dialog tL_dialog2 = new TLRPC.TL_dialog();
-                            tL_dialog2.f20051id = longValue4;
+                            tL_dialog2.f20042id = longValue4;
                             iVar.k(tL_dialog2, longValue4);
                             if (DialogObject.isChatDialog(longValue4)) {
                                 long j10 = -longValue4;
@@ -3112,8 +3138,8 @@ public class MessagesStorage extends BaseController {
         messagesController.markMessageAsRead2(j3, i10, inputChannel, i11, j10, z10);
     }
 
-    public void lambda$loadPendingTasks$24(org.telegram.ui.ActionBar.a6 a6Var, boolean z10, long j3) {
-        getMessagesController().saveWallpaperToServer(null, a6Var, z10, j3);
+    public void lambda$loadPendingTasks$24(org.telegram.ui.ActionBar.b6 b6Var, boolean z10, long j3) {
+        getMessagesController().saveWallpaperToServer(null, b6Var, z10, j3);
     }
 
     public void lambda$loadPendingTasks$25(long j3, boolean z10, int i10, int i11, boolean z11, TLRPC.InputPeer inputPeer, long j10) {
@@ -3145,7 +3171,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void lambda$loadPendingTasks$32(long j3, long j10, int i10) {
-        getMessagesController().lambda$checkDeletingTask$84(j3, j10, i10);
+        getMessagesController().lambda$checkDeletingTask$83(j3, j10, i10);
     }
 
     public void lambda$loadPendingTasks$33() {
@@ -3185,9 +3211,9 @@ public class MessagesStorage extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$loadUserInfo$129(org.telegram.tgnet.TLRPC$User, boolean, int):void");
     }
 
-    public static int lambda$localSearch$260(gg.d0 d0Var, gg.d0 d0Var2) {
-        int i10 = d0Var.f10553b;
-        int i11 = d0Var2.f10553b;
+    public static int lambda$localSearch$260(gg.c0 c0Var, gg.c0 c0Var2) {
+        int i10 = c0Var.f10558b;
+        int i11 = c0Var2.f10558b;
         if (i10 < i11) {
             return 1;
         }
@@ -3213,7 +3239,7 @@ public class MessagesStorage extends BaseController {
 
     public void lambda$markMessageAsSendError$209(int i10, TLRPC.Message message) {
         try {
-            long j3 = message.f20068id;
+            long j3 = message.f20059id;
             if (MessageObject.isQuickReply(message)) {
                 i10 = 5;
             } else if (MessageObject.isWelcomeMessage(message)) {
@@ -3244,17 +3270,13 @@ public class MessagesStorage extends BaseController {
 
     public void lambda$markMessageAsSendErrorWithParams$210(TLRPC.Message message, long j3) {
         String str;
-        long j10;
         char c10;
-        SQLiteDatabase sQLiteDatabase;
-        String str2;
-        Long valueOf;
-        Long valueOf2;
+        long j10;
         NativeByteBuffer byteBufferValue;
         SQLiteCursor sQLiteCursor = null;
         try {
             try {
-                long j11 = message.f20068id;
+                long j11 = message.f20059id;
                 long dialogId = MessageObject.getDialogId(message);
                 int i10 = 0;
                 int i11 = 0;
@@ -3264,61 +3286,61 @@ public class MessagesStorage extends BaseController {
                     } else {
                         str = "messages_topics";
                     }
-                    SQLiteDatabase sQLiteDatabase2 = this.database;
+                    SQLiteDatabase sQLiteDatabase = this.database;
                     Locale locale = Locale.US;
-                    sQLiteCursor = sQLiteDatabase2.queryFinalized("SELECT data FROM messages_v2 WHERE mid = " + j11 + " AND uid = " + dialogId + " LIMIT 1", new Object[i10]);
+                    sQLiteCursor = sQLiteDatabase.queryFinalized("SELECT data FROM messages_v2 WHERE mid = " + j11 + " AND uid = " + dialogId + " LIMIT 1", new Object[i10]);
                     try {
                         if (sQLiteCursor.next() && (byteBufferValue = sQLiteCursor.byteBufferValue(i10)) != null) {
+                            c10 = i10;
                             j10 = j11;
-                            c10 = 0;
                             TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(i10), i10).readAttachPath(byteBufferValue, j3);
                             byteBufferValue.reuse();
                         } else {
+                            c10 = i10;
                             j10 = j11;
-                            c10 = 0;
                         }
-                        sQLiteDatabase = this.database;
-                        str2 = "UPDATE " + str + " SET send_state = 2 WHERE mid = %d AND uid = %d";
-                        valueOf = Long.valueOf(j10);
-                        valueOf2 = Long.valueOf(dialogId);
-                    } catch (Exception e7) {
-                        e = e7;
-                    } catch (Throwable th2) {
-                        th = th2;
-                    }
-                    try {
-                        Object[] objArr = new Object[2];
-                        objArr[c10] = valueOf;
-                        objArr[1] = valueOf2;
-                        sQLiteDatabase.executeFast(String.format(locale, str2, objArr)).stepThis().dispose();
-                        SQLiteDatabase sQLiteDatabase3 = this.database;
-                        String str3 = "UPDATE " + str + " SET send_state = 2 WHERE mid = %d AND uid = %d";
-                        Long valueOf3 = Long.valueOf(j10);
-                        Long valueOf4 = Long.valueOf(dialogId);
-                        Object[] objArr2 = new Object[2];
-                        objArr2[c10] = valueOf3;
-                        objArr2[1] = valueOf4;
-                        sQLiteDatabase3.executeFast(String.format(locale, str3, objArr2)).stepThis().dispose();
-                        i11++;
-                        j11 = j10;
-                        sQLiteCursor = sQLiteCursor;
-                        i10 = 0;
+                        SQLiteDatabase sQLiteDatabase2 = this.database;
+                        String str2 = "UPDATE " + str + " SET send_state = 2 WHERE mid = %d AND uid = %d";
+                        Long valueOf = Long.valueOf(j10);
+                        Long valueOf2 = Long.valueOf(dialogId);
+                        try {
+                            Object[] objArr = new Object[2];
+                            objArr[c10] = valueOf;
+                            objArr[1] = valueOf2;
+                            sQLiteDatabase2.executeFast(String.format(locale, str2, objArr)).stepThis().dispose();
+                            SQLiteDatabase sQLiteDatabase3 = this.database;
+                            String str3 = "UPDATE " + str + " SET send_state = 2 WHERE mid = %d AND uid = %d";
+                            Long valueOf3 = Long.valueOf(j10);
+                            Long valueOf4 = Long.valueOf(dialogId);
+                            Object[] objArr2 = new Object[2];
+                            objArr2[c10] = valueOf3;
+                            objArr2[1] = valueOf4;
+                            sQLiteDatabase3.executeFast(String.format(locale, str3, objArr2)).stepThis().dispose();
+                            i11++;
+                            i10 = c10;
+                            j11 = j10;
+                            sQLiteCursor = sQLiteCursor;
+                        } catch (Exception e7) {
+                            e = e7;
+                            sQLiteCursor = sQLiteCursor;
+                            checkSQLException(e);
+                            if (sQLiteCursor != null) {
+                                sQLiteCursor.dispose();
+                                return;
+                            }
+                            return;
+                        } catch (Throwable th2) {
+                            th = th2;
+                            sQLiteCursor = sQLiteCursor;
+                            if (sQLiteCursor != null) {
+                                sQLiteCursor.dispose();
+                            }
+                            throw th;
+                        }
                     } catch (Exception e10) {
                         e = e10;
-                        sQLiteCursor = sQLiteCursor;
-                        checkSQLException(e);
-                        if (sQLiteCursor != null) {
-                            sQLiteCursor.dispose();
-                            return;
-                        }
-                        return;
                     } catch (Throwable th3) {
                         th = th3;
-                        sQLiteCursor = sQLiteCursor;
-                        if (sQLiteCursor != null) {
-                            sQLiteCursor.dispose();
-                        }
-                        throw th;
                     }
                 }
                 if (sQLiteCursor != null) {
@@ -3478,28 +3500,28 @@ public class MessagesStorage extends BaseController {
             iVar2.b();
             if (tL_messageReactions != null && tL_messageReactions.results != null && tL_messageReactions.reactions_as_tags) {
                 for (int i11 = 0; i11 < tL_messageReactions.results.size(); i11++) {
-                    zg.m0 d = zg.m0.d(tL_messageReactions.results.get(i11).reaction);
+                    zg.n0 d = zg.n0.d(tL_messageReactions.results.get(i11).reaction);
                     iVar.k(d, d.h);
                 }
             }
             if (tL_messageReactions2 != null && tL_messageReactions2.results != null && tL_messageReactions2.reactions_as_tags) {
                 for (int i12 = 0; i12 < tL_messageReactions2.results.size(); i12++) {
-                    zg.m0 d10 = zg.m0.d(tL_messageReactions2.results.get(i12).reaction);
+                    zg.n0 d10 = zg.n0.d(tL_messageReactions2.results.get(i12).reaction);
                     iVar2.k(d10, d10.h);
                 }
             }
             for (int i13 = 0; i13 < iVar.m(); i13++) {
                 long j3 = iVar.j(i13);
-                zg.m0 m0Var = (zg.m0) iVar.n(i13);
-                if (!iVar2.d(j3) && getMessagesController().updateSavedReactionTags(savedReactionsUpdate.topic_id, m0Var, false, false)) {
+                zg.n0 n0Var = (zg.n0) iVar.n(i13);
+                if (!iVar2.d(j3) && getMessagesController().updateSavedReactionTags(savedReactionsUpdate.topic_id, n0Var, false, false)) {
                     hashSet.add(Long.valueOf(savedReactionsUpdate.topic_id));
                     z10 = true;
                 }
             }
             for (int i14 = 0; i14 < iVar2.m(); i14++) {
                 long j10 = iVar2.j(i14);
-                zg.m0 m0Var2 = (zg.m0) iVar2.n(i14);
-                if (!iVar.d(j10) && getMessagesController().updateSavedReactionTags(savedReactionsUpdate.topic_id, m0Var2, true, false)) {
+                zg.n0 n0Var2 = (zg.n0) iVar2.n(i14);
+                if (!iVar.d(j10) && getMessagesController().updateSavedReactionTags(savedReactionsUpdate.topic_id, n0Var2, true, false)) {
                     hashSet.add(Long.valueOf(savedReactionsUpdate.topic_id));
                     z10 = true;
                 }
@@ -3515,22 +3537,22 @@ public class MessagesStorage extends BaseController {
         a0.i iVar2 = new a0.i();
         if (tL_messageReactions != null && tL_messageReactions.results != null && tL_messageReactions.reactions_as_tags) {
             for (int i10 = 0; i10 < tL_messageReactions.results.size(); i10++) {
-                zg.m0 d = zg.m0.d(tL_messageReactions.results.get(i10).reaction);
+                zg.n0 d = zg.n0.d(tL_messageReactions.results.get(i10).reaction);
                 iVar.k(d, d.h);
             }
         }
         if (tL_messageReactions2 != null && tL_messageReactions2.results != null && tL_messageReactions2.reactions_as_tags) {
             for (int i11 = 0; i11 < tL_messageReactions2.results.size(); i11++) {
-                zg.m0 d10 = zg.m0.d(tL_messageReactions2.results.get(i11).reaction);
+                zg.n0 d10 = zg.n0.d(tL_messageReactions2.results.get(i11).reaction);
                 iVar2.k(d10, d10.h);
             }
         }
         boolean z10 = false;
         for (int i12 = 0; i12 < iVar.m(); i12++) {
             long j10 = iVar.j(i12);
-            zg.m0 m0Var = (zg.m0) iVar.n(i12);
+            zg.n0 n0Var = (zg.n0) iVar.n(i12);
             if (!iVar2.d(j10)) {
-                if (!getMessagesController().updateSavedReactionTags(j3, m0Var, false, false) && !z10) {
+                if (!getMessagesController().updateSavedReactionTags(j3, n0Var, false, false) && !z10) {
                     z10 = false;
                 } else {
                     z10 = true;
@@ -3539,9 +3561,9 @@ public class MessagesStorage extends BaseController {
         }
         for (int i13 = 0; i13 < iVar2.m(); i13++) {
             long j11 = iVar2.j(i13);
-            zg.m0 m0Var2 = (zg.m0) iVar2.n(i13);
+            zg.n0 n0Var2 = (zg.n0) iVar2.n(i13);
             if (!iVar.d(j11)) {
-                if (!getMessagesController().updateSavedReactionTags(j3, m0Var2, true, false) && !z10) {
+                if (!getMessagesController().updateSavedReactionTags(j3, n0Var2, true, false) && !z10) {
                     z10 = false;
                 } else {
                     z10 = true;
@@ -3572,7 +3594,7 @@ public class MessagesStorage extends BaseController {
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.removeAllMessagesFromDialog, Long.valueOf(j3), Boolean.TRUE, tL_updates_channelDifferenceTooLong);
     }
 
-    public void lambda$overwriteChannel$190(long r25, int r27, org.telegram.tgnet.TLRPC.TL_updates_channelDifferenceTooLong r28, java.lang.Runnable r29) {
+    public void lambda$overwriteChannel$190(long r27, int r29, org.telegram.tgnet.TLRPC.TL_updates_channelDifferenceTooLong r30, java.lang.Runnable r31) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$overwriteChannel$190(long, int, org.telegram.tgnet.TLRPC$TL_updates_channelDifferenceTooLong, java.lang.Runnable):void");
     }
 
@@ -3603,7 +3625,7 @@ public class MessagesStorage extends BaseController {
         return 0;
     }
 
-    public void lambda$processPendingRead$145(long r18, int r20, int r21, int r22, int r23) {
+    public void lambda$processPendingRead$145(long r17, int r19, int r20, int r21, int r22) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$processPendingRead$145(long, int, int, int, int):void");
     }
 
@@ -3670,7 +3692,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$putChannelViews$191(a0.i r23, a0.i r24, a0.i r25, boolean r26) {
+    public void lambda$putChannelViews$191(a0.i r24, a0.i r25, a0.i r26, boolean r27) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$putChannelViews$191(a0.i, a0.i, a0.i, boolean):void");
     }
 
@@ -4357,7 +4379,7 @@ public class MessagesStorage extends BaseController {
         this.dialogFilters.addAll(arrayList);
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
             ((MessagesController.DialogFilter) arrayList.get(i10)).order = i10;
-            this.dialogFiltersMap.put(((MessagesController.DialogFilter) arrayList.get(i10)).f17266id, (MessagesController.DialogFilter) arrayList.get(i10));
+            this.dialogFiltersMap.put(((MessagesController.DialogFilter) arrayList.get(i10)).f17252id, (MessagesController.DialogFilter) arrayList.get(i10));
         }
         saveDialogFiltersOrderInternal();
     }
@@ -4628,7 +4650,7 @@ public class MessagesStorage extends BaseController {
         notificationCenter.lambda$postNotificationNameOnUIThread$1(i10, chatFull, 0, bool, bool);
     }
 
-    public void lambda$updateChatInfo$140(long r18, int r20, long r21, long r23, int r25) {
+    public void lambda$updateChatInfo$140(long r17, int r19, long r20, long r22, int r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateChatInfo$140(long, int, long, long, int):void");
     }
 
@@ -4696,7 +4718,7 @@ public class MessagesStorage extends BaseController {
                 SQLitePreparedStatement executeFast = this.database.executeFast("REPLACE INTO chat_settings_v2 VALUES(?, ?, ?, ?, ?, ?, ?)");
                 NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(chatFull.getObjectSize());
                 chatFull.serializeToStream(nativeByteBuffer);
-                executeFast.bindLong(1, chatFull.f20048id);
+                executeFast.bindLong(1, chatFull.f20039id);
                 executeFast.bindByteBuffer(2, nativeByteBuffer);
                 executeFast.bindInteger(3, chatFull.pinned_msg_id);
                 executeFast.bindInteger(4, chatFull.online_count);
@@ -4756,7 +4778,7 @@ public class MessagesStorage extends BaseController {
             try {
                 sQLitePreparedStatement = this.database.executeFast("UPDATE enc_chats SET layer = ? WHERE uid = ?");
                 sQLitePreparedStatement.bindInteger(1, encryptedChat.layer);
-                sQLitePreparedStatement.bindInteger(2, encryptedChat.f20055id);
+                sQLitePreparedStatement.bindInteger(2, encryptedChat.f20046id);
                 sQLitePreparedStatement.step();
                 sQLitePreparedStatement.dispose();
             } catch (Exception e7) {
@@ -4783,10 +4805,10 @@ public class MessagesStorage extends BaseController {
                 sQLitePreparedStatement.bindInteger(3, (encryptedChat.key_use_count_in << 16) | encryptedChat.key_use_count_out);
                 sQLitePreparedStatement.bindInteger(4, encryptedChat.in_seq_no);
                 sQLitePreparedStatement.bindInteger(5, encryptedChat.mtproto_seq);
-                sQLitePreparedStatement.bindInteger(6, encryptedChat.f20055id);
+                sQLitePreparedStatement.bindInteger(6, encryptedChat.f20046id);
                 sQLitePreparedStatement.step();
                 if (z10 && encryptedChat.in_seq_no != 0) {
-                    long encryptedChatId = DialogObject.getEncryptedChatId(encryptedChat.f20055id);
+                    long encryptedChatId = DialogObject.getEncryptedChatId(encryptedChat.f20046id);
                     SQLiteDatabase sQLiteDatabase = this.database;
                     Locale locale = Locale.US;
                     sQLiteDatabase.executeFast("DELETE FROM messages_v2 WHERE mid IN (SELECT m.mid FROM messages_v2 as m LEFT JOIN messages_seq as s ON m.mid = s.mid WHERE m.uid = " + encryptedChatId + " AND m.date = 0 AND m.mid < 0 AND s.seq_out <= " + encryptedChat.in_seq_no + ") AND uid = " + encryptedChatId).stepThis().dispose();
@@ -4812,7 +4834,7 @@ public class MessagesStorage extends BaseController {
             try {
                 sQLitePreparedStatement = this.database.executeFast("UPDATE enc_chats SET ttl = ? WHERE uid = ?");
                 sQLitePreparedStatement.bindInteger(1, encryptedChat.ttl);
-                sQLitePreparedStatement.bindInteger(2, encryptedChat.f20055id);
+                sQLitePreparedStatement.bindInteger(2, encryptedChat.f20046id);
                 sQLitePreparedStatement.step();
                 sQLitePreparedStatement.dispose();
             } catch (Exception e7) {
@@ -4845,7 +4867,7 @@ public class MessagesStorage extends BaseController {
         try {
             try {
                 this.database.beginTransaction();
-                TLRPC.Message messageWithCustomParamsOnlyInternal = getMessageWithCustomParamsOnlyInternal(message.f20068id, j3);
+                TLRPC.Message messageWithCustomParamsOnlyInternal = getMessageWithCustomParamsOnlyInternal(message.f20059id, j3);
                 MessageCustomParamsHelper.copyParams(message, messageWithCustomParamsOnlyInternal);
                 for (int i10 = 0; i10 < 2; i10++) {
                     if (i10 == 0) {
@@ -4861,7 +4883,7 @@ public class MessagesStorage extends BaseController {
                         } else {
                             executeFast.bindNull(1);
                         }
-                        executeFast.bindInteger(2, message.f20068id);
+                        executeFast.bindInteger(2, message.f20059id);
                         executeFast.bindLong(3, j3);
                         executeFast.step();
                         executeFast.dispose();
@@ -4916,7 +4938,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void lambda$updateMessageStateAndIdInternal$212(TLRPC.TL_updates tL_updates) {
-        getMessagesController().processUpdates(tL_updates, false);
+        getMessagesController().lambda$processUpdates$377(tL_updates, false);
     }
 
     public void lambda$updateMessageTopicId$214(int i10, long j3, long j10) {
@@ -4969,7 +4991,7 @@ public class MessagesStorage extends BaseController {
                                 i10 = 0;
                             }
                             executeFast.bindInteger(1, i10);
-                            executeFast.bindInteger(2, message.f20068id);
+                            executeFast.bindInteger(2, message.f20059id);
                             executeFast.bindLong(3, MessageObject.getDialogId(message));
                             executeFast.step();
                         }
@@ -4977,8 +4999,8 @@ public class MessagesStorage extends BaseController {
                         this.database.commitTransaction();
                     } catch (Exception e7) {
                         e = e7;
-                        sQLitePreparedStatement = executeFast;
                         z10 = true;
+                        sQLitePreparedStatement = executeFast;
                         checkSQLException(e);
                         if (z10 && (sQLiteDatabase2 = this.database) != null) {
                             sQLiteDatabase2.commitTransaction();
@@ -4988,8 +5010,8 @@ public class MessagesStorage extends BaseController {
                         }
                     } catch (Throwable th2) {
                         th = th2;
-                        sQLitePreparedStatement = executeFast;
                         z10 = true;
+                        sQLitePreparedStatement = executeFast;
                         if (z10 && (sQLiteDatabase = this.database) != null) {
                             sQLiteDatabase.commitTransaction();
                         }
@@ -5000,8 +5022,10 @@ public class MessagesStorage extends BaseController {
                     }
                 } catch (Exception e10) {
                     e = e10;
+                    z10 = true;
                 } catch (Throwable th3) {
                     th = th3;
+                    z10 = true;
                 }
             } catch (Exception e11) {
                 e = e11;
@@ -5282,7 +5306,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$updateUnreadReactionsCountInternal$261(long r19, boolean r21, java.lang.String r22, long r23, int r25, java.lang.String r26, java.lang.String r27, java.lang.String r28) {
+    public void lambda$updateUnreadReactionsCountInternal$261(long r17, boolean r19, java.lang.String r20, long r21, int r23, java.lang.String r24, java.lang.String r25, java.lang.String r26) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateUnreadReactionsCountInternal$261(long, boolean, java.lang.String, long, int, java.lang.String, java.lang.String, java.lang.String):void");
     }
 
@@ -5389,7 +5413,7 @@ public class MessagesStorage extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.markMessageReactionsAsReadInternal(java.lang.String, java.lang.String, long, long, int, boolean):void");
     }
 
-    public java.util.ArrayList<java.lang.Long> lambda$markMessagesAsDeleted$229(long r46, java.util.ArrayList<java.lang.Integer> r48, boolean r49, int r50, int r51) {
+    public java.util.ArrayList<java.lang.Long> lambda$markMessagesAsDeleted$229(long r47, java.util.ArrayList<java.lang.Integer> r49, boolean r50, int r51, int r52) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$markMessagesAsDeleted$229(long, java.util.ArrayList, boolean, int, int):java.util.ArrayList");
     }
 
@@ -5465,8 +5489,8 @@ public class MessagesStorage extends BaseController {
             long peerDialogId2 = DialogObject.getPeerDialogId(ephemeralMessage2.from_id);
             int i11 = ephemeralMessage2.anchor_msg_id;
             yf.t tVar = this.ephemeralWelcomeAnchorsState;
-            int i12 = ephemeralMessage2.f20260id;
-            a0.i iVar = tVar.f51024a;
+            int i12 = ephemeralMessage2.f20251id;
+            a0.i iVar = tVar.f52192a;
             SparseIntArray sparseIntArray = (SparseIntArray) iVar.f(peerDialogId);
             if (sparseIntArray == null) {
                 sparseIntArray = new SparseIntArray();
@@ -5495,7 +5519,7 @@ public class MessagesStorage extends BaseController {
             TL_ephemeral.EphemeralMessage ephemeralMessage = arrayList.get(i11);
             i11++;
             TL_ephemeral.EphemeralMessage ephemeralMessage2 = ephemeralMessage;
-            if (ephemeralMessage2.top_msg_id == 0 && (ephemeralMessageInternal = getEphemeralMessageInternal(DialogObject.getPeerDialogId(ephemeralMessage2.peer_id), ephemeralMessage2.f20260id)) != null && (i10 = ephemeralMessageInternal.top_msg_id) != 0) {
+            if (ephemeralMessage2.top_msg_id == 0 && (ephemeralMessageInternal = getEphemeralMessageInternal(DialogObject.getPeerDialogId(ephemeralMessage2.peer_id), ephemeralMessage2.f20251id)) != null && (i10 = ephemeralMessageInternal.top_msg_id) != 0) {
                 ephemeralMessage2.top_msg_id = i10;
                 TLRPC.MessageReplyHeader messageReplyHeader = ephemeralMessage2.reply_to;
                 if (messageReplyHeader != null) {
@@ -5590,7 +5614,7 @@ public class MessagesStorage extends BaseController {
         boolean z11 = false;
         for (int i13 = 0; i13 < size3; i13++) {
             MessagesController.DialogFilter dialogFilter3 = this.dialogFilters.get(i13);
-            int indexOf = arrayList4.indexOf(Integer.valueOf(dialogFilter3.f17266id));
+            int indexOf = arrayList4.indexOf(Integer.valueOf(dialogFilter3.f17252id));
             if (dialogFilter3.order != indexOf) {
                 dialogFilter3.order = indexOf;
                 z11 = true;
@@ -5618,7 +5642,7 @@ public class MessagesStorage extends BaseController {
                 if (chat.min) {
                     SQLiteDatabase sQLiteDatabase = this.database;
                     Locale locale = Locale.US;
-                    SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized(a4.a.p(chat.f20047id, "SELECT data FROM chats WHERE uid = "), new Object[0]);
+                    SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized(a1.g.p(chat.f20038id, "SELECT data FROM chats WHERE uid = "), new Object[0]);
                     if (queryFinalized.next()) {
                         try {
                             NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
@@ -5639,7 +5663,7 @@ public class MessagesStorage extends BaseController {
                                         TLdeserialize.linked_monoforum_id = chat.linked_monoforum_id;
                                         TLdeserialize.flags2 |= 262144;
                                     }
-                                    if (w7.e0.a(chat.flags2, 1048576)) {
+                                    if (w7.g0.a(chat.flags2, 1048576)) {
                                         TLdeserialize.linked_community_id = chat.linked_community_id;
                                         TLdeserialize.flags2 |= 1048576;
                                     }
@@ -5683,7 +5707,7 @@ public class MessagesStorage extends BaseController {
                 chat.flags |= 131072;
                 NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(chat.getObjectSize());
                 chat.serializeToStream(nativeByteBuffer);
-                executeFast.bindLong(1, chat.f20047id);
+                executeFast.bindLong(1, chat.f20038id);
                 String str2 = chat.title;
                 if (str2 != null) {
                     executeFast.bindString(2, str2.toLowerCase());
@@ -5693,7 +5717,7 @@ public class MessagesStorage extends BaseController {
                 executeFast.bindByteBuffer(3, nativeByteBuffer);
                 executeFast.step();
                 nativeByteBuffer.reuse();
-                isForumCacheInvalidate(-chat.f20047id);
+                isForumCacheInvalidate(-chat.f20038id);
             }
             executeFast.dispose();
         }
@@ -5734,7 +5758,7 @@ public class MessagesStorage extends BaseController {
             if (!ephemeralMessage2.welcome) {
                 sQLitePreparedStatement.requery();
                 sQLitePreparedStatement.bindLong(1, DialogObject.getPeerDialogId(ephemeralMessage2.peer_id));
-                sQLitePreparedStatement.bindInteger(2, ephemeralMessage2.f20260id);
+                sQLitePreparedStatement.bindInteger(2, ephemeralMessage2.f20251id);
                 sQLitePreparedStatement.bindInteger(3, ephemeralMessage2.top_msg_id);
                 sQLitePreparedStatement.bindInteger(4, ephemeralMessage2.date);
                 sQLitePreparedStatement.bindTlObject(5, ephemeralMessage2);
@@ -5795,7 +5819,7 @@ public class MessagesStorage extends BaseController {
                     if (user.min) {
                         SQLiteDatabase sQLiteDatabase = this.database;
                         Locale locale = Locale.US;
-                        SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized(a4.a.p(user.f20194id, "SELECT data FROM users WHERE uid = "), new Object[0]);
+                        SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized(a1.g.p(user.f20185id, "SELECT data FROM users WHERE uid = "), new Object[0]);
                         if (queryFinalized.next()) {
                             try {
                                 NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
@@ -5833,7 +5857,7 @@ public class MessagesStorage extends BaseController {
                     executeFast.requery();
                     NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(user.getObjectSize());
                     user.serializeToStream(nativeByteBuffer);
-                    executeFast.bindLong(1, user.f20194id);
+                    executeFast.bindLong(1, user.f20185id);
                     executeFast.bindString(2, formatUserSearchName(user));
                     TLRPC.UserStatus userStatus = user.status;
                     if (userStatus != null) {
@@ -5866,7 +5890,7 @@ public class MessagesStorage extends BaseController {
                     executeFast.bindByteBuffer(4, nativeByteBuffer);
                     executeFast.step();
                     nativeByteBuffer.reuse();
-                    isForumCacheInvalidate(user.f20194id);
+                    isForumCacheInvalidate(user.f20185id);
                 }
             }
             executeFast.dispose();
@@ -5957,7 +5981,7 @@ public class MessagesStorage extends BaseController {
                     } else {
                         this.dialogFilters.add(dialogFilter);
                     }
-                    this.dialogFiltersMap.put(dialogFilter.f17266id, dialogFilter);
+                    this.dialogFiltersMap.put(dialogFilter.f17252id, dialogFilter);
                 }
                 executeFast = this.database.executeFast("REPLACE INTO dialog_filter VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
             } catch (Throwable th2) {
@@ -5967,11 +5991,11 @@ public class MessagesStorage extends BaseController {
             e = e7;
         }
         try {
-            executeFast.bindInteger(1, dialogFilter.f17266id);
+            executeFast.bindInteger(1, dialogFilter.f17252id);
             executeFast.bindInteger(2, dialogFilter.order);
             executeFast.bindInteger(3, dialogFilter.unreadCount);
             executeFast.bindInteger(4, dialogFilter.flags);
-            if (dialogFilter.f17266id == 0) {
+            if (dialogFilter.f17252id == 0) {
                 str = "ALL_CHATS";
             } else {
                 str = dialogFilter.name;
@@ -5988,17 +6012,15 @@ public class MessagesStorage extends BaseController {
             executeFast.dispose();
             nativeByteBuffer.reuse();
             if (z11) {
-                SQLiteDatabase sQLiteDatabase = this.database;
-                sQLiteDatabase.executeFast("DELETE FROM dialog_filter_ep WHERE id = " + dialogFilter.f17266id).stepThis().dispose();
-                SQLiteDatabase sQLiteDatabase2 = this.database;
-                sQLiteDatabase2.executeFast("DELETE FROM dialog_filter_pin_v2 WHERE id = " + dialogFilter.f17266id).stepThis().dispose();
+                this.database.executeFast("DELETE FROM dialog_filter_ep WHERE id = " + dialogFilter.f17252id).stepThis().dispose();
+                this.database.executeFast("DELETE FROM dialog_filter_pin_v2 WHERE id = " + dialogFilter.f17252id).stepThis().dispose();
                 this.database.beginTransaction();
                 SQLitePreparedStatement executeFast2 = this.database.executeFast("REPLACE INTO dialog_filter_pin_v2 VALUES(?, ?, ?)");
                 int size = dialogFilter.alwaysShow.size();
                 for (int i11 = 0; i11 < size; i11++) {
                     long longValue = dialogFilter.alwaysShow.get(i11).longValue();
                     executeFast2.requery();
-                    executeFast2.bindInteger(1, dialogFilter.f17266id);
+                    executeFast2.bindInteger(1, dialogFilter.f17252id);
                     executeFast2.bindLong(2, longValue);
                     executeFast2.bindInteger(3, dialogFilter.pinnedDialogs.get(longValue, Integer.MIN_VALUE));
                     executeFast2.step();
@@ -6008,7 +6030,7 @@ public class MessagesStorage extends BaseController {
                     long keyAt = dialogFilter.pinnedDialogs.keyAt(i12);
                     if (DialogObject.isEncryptedDialog(keyAt)) {
                         executeFast2.requery();
-                        executeFast2.bindInteger(1, dialogFilter.f17266id);
+                        executeFast2.bindInteger(1, dialogFilter.f17252id);
                         executeFast2.bindLong(2, keyAt);
                         executeFast2.bindInteger(3, dialogFilter.pinnedDialogs.valueAt(i12));
                         executeFast2.step();
@@ -6019,24 +6041,24 @@ public class MessagesStorage extends BaseController {
                 int size3 = dialogFilter.neverShow.size();
                 for (i10 = 0; i10 < size3; i10++) {
                     executeFast3.requery();
-                    executeFast3.bindInteger(1, dialogFilter.f17266id);
+                    executeFast3.bindInteger(1, dialogFilter.f17252id);
                     executeFast3.bindLong(2, dialogFilter.neverShow.get(i10).longValue());
                     executeFast3.step();
                 }
                 executeFast3.dispose();
                 this.database.commitTransaction();
             }
-            SQLiteDatabase sQLiteDatabase3 = this.database;
-            if (sQLiteDatabase3 != null) {
-                sQLiteDatabase3.commitTransaction();
+            SQLiteDatabase sQLiteDatabase = this.database;
+            if (sQLiteDatabase != null) {
+                sQLiteDatabase.commitTransaction();
             }
         } catch (Exception e10) {
             e = e10;
             sQLitePreparedStatement3 = sQLitePreparedStatement2;
             checkSQLException(e);
-            SQLiteDatabase sQLiteDatabase4 = this.database;
-            if (sQLiteDatabase4 != null) {
-                sQLiteDatabase4.commitTransaction();
+            SQLiteDatabase sQLiteDatabase2 = this.database;
+            if (sQLiteDatabase2 != null) {
+                sQLiteDatabase2.commitTransaction();
             }
             if (sQLitePreparedStatement3 != null) {
                 sQLitePreparedStatement3.dispose();
@@ -6044,9 +6066,9 @@ public class MessagesStorage extends BaseController {
         } catch (Throwable th3) {
             th = th3;
             sQLitePreparedStatement3 = sQLitePreparedStatement;
-            SQLiteDatabase sQLiteDatabase5 = this.database;
-            if (sQLiteDatabase5 != null) {
-                sQLiteDatabase5.commitTransaction();
+            SQLiteDatabase sQLiteDatabase3 = this.database;
+            if (sQLiteDatabase3 != null) {
+                sQLiteDatabase3.commitTransaction();
             }
             if (sQLitePreparedStatement3 != null) {
                 sQLitePreparedStatement3.dispose();
@@ -6076,7 +6098,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$saveStoryAlbumsCache$269(long r6, java.util.List<ai.e9> r8) {
+    public void lambda$saveStoryAlbumsCache$269(long r6, java.util.List<ai.f9> r8) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$saveStoryAlbumsCache$269(long, java.util.List):void");
     }
 
@@ -6183,7 +6205,7 @@ public class MessagesStorage extends BaseController {
                             } else {
                                 executeFast.bindInteger(1, 0);
                             }
-                            executeFast.bindLong(2, user.f20194id);
+                            executeFast.bindLong(2, user.f20185id);
                             executeFast.step();
                         }
                         executeFast.dispose();
@@ -6221,15 +6243,15 @@ public class MessagesStorage extends BaseController {
                     int size2 = arrayList.size();
                     for (int i11 = 0; i11 < size2; i11++) {
                         TLRPC.User user2 = arrayList.get(i11);
-                        arrayList2.add(Long.valueOf(user2.f20194id));
-                        iVar.k(user2, user2.f20194id);
+                        arrayList2.add(Long.valueOf(user2.f20185id));
+                        iVar.k(user2, user2.f20185id);
                     }
                     ArrayList<TLRPC.User> arrayList3 = new ArrayList<>();
                     getUsersInternal(arrayList2, arrayList3);
                     int size3 = arrayList3.size();
                     for (int i12 = 0; i12 < size3; i12++) {
                         TLRPC.User user3 = arrayList3.get(i12);
-                        TLRPC.User user4 = (TLRPC.User) iVar.f(user3.f20194id);
+                        TLRPC.User user4 = (TLRPC.User) iVar.f(user3.f20185id);
                         if (user4 != null) {
                             if (user4.first_name != null && user4.last_name != null) {
                                 if (!UserObject.isContact(user3)) {
@@ -6290,7 +6312,7 @@ public class MessagesStorage extends BaseController {
         if (TextUtils.isEmpty(str)) {
             return;
         }
-        this.storageQueue.postRunnable(new j8((BaseController) this, str, (Object) str2, 19));
+        this.storageQueue.postRunnable(new j8((BaseController) this, str, (Object) str2, 20));
     }
 
     public void bindTaskToGuid(Runnable runnable, int i10) {
@@ -6337,7 +6359,7 @@ public class MessagesStorage extends BaseController {
     public boolean checkMessageId(long j3, int i10) {
         boolean[] zArr = new boolean[1];
         CountDownLatch countDownLatch = new CountDownLatch(1);
-        this.storageQueue.postRunnable(new ai.m8(this, j3, i10, zArr, countDownLatch, 3));
+        this.storageQueue.postRunnable(new ai.n8(this, j3, i10, zArr, countDownLatch, 3));
         try {
             countDownLatch.await();
         } catch (Exception e7) {
@@ -6399,7 +6421,7 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new hf(this, i10, 7));
     }
 
-    public void closeHolesInMedia(long r24, int r26, int r27, int r28, long r29) {
+    public void closeHolesInMedia(long r23, int r25, int r26, int r27, long r28) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.closeHolesInMedia(long, int, int, int, long):void");
     }
 
@@ -6416,7 +6438,7 @@ public class MessagesStorage extends BaseController {
     public boolean containsLocalDialog(long j3) {
         CountDownLatch countDownLatch = new CountDownLatch(1);
         Boolean[] boolArr = {Boolean.FALSE};
-        this.storageQueue.postRunnable(new ai.q8(this, j3, boolArr, countDownLatch, 20));
+        this.storageQueue.postRunnable(new ai.r8(this, j3, boolArr, countDownLatch, 20));
         try {
             countDownLatch.await();
         } catch (Exception e7) {
@@ -6428,7 +6450,7 @@ public class MessagesStorage extends BaseController {
     public SQLiteCursor createLoadStoriesCursor(long j3, int i10, int i11) {
         SQLiteDatabase sQLiteDatabase = this.database;
         Locale locale = Locale.US;
-        StringBuilder u10 = a4.a.u(j3, "SELECT data, seen, pin FROM profile_stories JOIN profile_stories_albums_links ON profile_stories.story_id = profile_stories_albums_links.story_id WHERE profile_stories.dialog_id = ", " AND profile_stories_albums_links.dialog_id = ");
+        StringBuilder u10 = a1.g.u(j3, "SELECT data, seen, pin FROM profile_stories JOIN profile_stories_albums_links ON profile_stories.story_id = profile_stories_albums_links.story_id WHERE profile_stories.dialog_id = ", " AND profile_stories_albums_links.dialog_id = ");
         u10.append(j3);
         u10.append("  AND profile_stories_albums_links.album_id = ");
         u10.append(i10);
@@ -6443,7 +6465,7 @@ public class MessagesStorage extends BaseController {
             return 0L;
         }
         long andAdd = this.lastTaskId.getAndAdd(1L);
-        this.storageQueue.postRunnable(new b4(this, andAdd, nativeByteBuffer, 22));
+        this.storageQueue.postRunnable(new c4(this, andAdd, nativeByteBuffer, 22));
         return andAdd;
     }
 
@@ -6488,7 +6510,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void deleteDialogFilter(MessagesController.DialogFilter dialogFilter) {
-        this.storageQueue.postRunnable(new dc(24, this, dialogFilter));
+        this.storageQueue.postRunnable(new mc(25, this, dialogFilter));
     }
 
     public void deleteEphemeralMessages(long j3, int i10) {
@@ -6553,7 +6575,7 @@ public class MessagesStorage extends BaseController {
                     NativeByteBuffer byteBufferValue = sQLiteCursor.byteBufferValue(0);
                     try {
                         TLRPC.Document TLdeserialize = TLRPC.Document.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(true), true);
-                        if (TLdeserialize != null && TLdeserialize.f20053id != 0) {
+                        if (TLdeserialize != null && TLdeserialize.f20044id != 0) {
                             arrayList.add(TLdeserialize);
                         }
                     } catch (Exception e7) {
@@ -6599,7 +6621,7 @@ public class MessagesStorage extends BaseController {
     public int getChannelPtsSync(long j3) {
         CountDownLatch countDownLatch = new CountDownLatch(1);
         Integer[] numArr = {0};
-        this.storageQueue.postRunnable(new ai.q8(this, j3, numArr, countDownLatch, 21));
+        this.storageQueue.postRunnable(new ai.r8(this, j3, numArr, countDownLatch, 21));
         try {
             countDownLatch.await();
         } catch (Exception e7) {
@@ -6625,7 +6647,7 @@ public class MessagesStorage extends BaseController {
     public TLRPC.Chat getChatSync(long j3) {
         CountDownLatch countDownLatch = new CountDownLatch(1);
         TLRPC.Chat[] chatArr = new TLRPC.Chat[1];
-        this.storageQueue.postRunnable(new ai.q8(this, chatArr, j3, countDownLatch, 22));
+        this.storageQueue.postRunnable(new ai.r8(this, chatArr, j3, countDownLatch, 22));
         try {
             countDownLatch.await();
         } catch (Exception e7) {
@@ -6768,14 +6790,14 @@ public class MessagesStorage extends BaseController {
         if (countDownLatch == null || arrayList == null) {
             return;
         }
-        this.storageQueue.postRunnable(new ai.q8(this, j3, arrayList, countDownLatch, 24));
+        this.storageQueue.postRunnable(new ai.r8(this, j3, arrayList, countDownLatch, 24));
     }
 
     public void getEncryptedChatsInternal(String str, ArrayList<TLRPC.EncryptedChat> arrayList, ArrayList<Long> arrayList2) {
         if (str != null && str.length() != 0 && arrayList != null) {
             SQLiteDatabase sQLiteDatabase = this.database;
             Locale locale = Locale.US;
-            SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized(a4.a.q("SELECT data, user, g, authkey, ttl, layer, seq_in, seq_out, use_count, exchange_id, key_date, fprint, fauthkey, khash, in_seq_no, admin_id, mtproto_seq FROM enc_chats WHERE uid IN(", str, ")"), new Object[0]);
+            SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized(a1.g.q("SELECT data, user, g, authkey, ttl, layer, seq_in, seq_out, use_count, exchange_id, key_date, fprint, fauthkey, khash, in_seq_no, admin_id, mtproto_seq FROM enc_chats WHERE uid IN(", str, ")"), new Object[0]);
             while (queryFinalized.next()) {
                 try {
                     NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
@@ -6979,7 +7001,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void getNewTask(a0.i iVar, a0.i iVar2) {
-        this.storageQueue.postRunnable(new j8(this, iVar, iVar2, 21));
+        this.storageQueue.postRunnable(new j8(this, iVar, iVar2, 22));
     }
 
     public void getSavedDialogMaxMessageId(long j3, IntCallback intCallback) {
@@ -7002,7 +7024,7 @@ public class MessagesStorage extends BaseController {
         }
         CountDownLatch countDownLatch = new CountDownLatch(1);
         Object[] objArr = new Object[2];
-        this.storageQueue.postRunnable(new ei.m3(this, str, i10, objArr, countDownLatch, 9));
+        this.storageQueue.postRunnable(new ei.l3(this, str, i10, objArr, countDownLatch, 9));
         try {
             countDownLatch.await();
         } catch (Exception e7) {
@@ -7080,7 +7102,7 @@ public class MessagesStorage extends BaseController {
     public TLRPC.User getUserSync(long j3) {
         CountDownLatch countDownLatch = new CountDownLatch(1);
         TLRPC.User[] userArr = new TLRPC.User[1];
-        this.storageQueue.postRunnable(new ai.q8(this, userArr, j3, countDownLatch, 19));
+        this.storageQueue.postRunnable(new ai.r8(this, userArr, j3, countDownLatch, 19));
         try {
             countDownLatch.await();
         } catch (Exception e7) {
@@ -7163,7 +7185,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void isDialogHasTopMessage(long j3, Runnable runnable) {
-        this.storageQueue.postRunnable(new b4(this, j3, runnable, 17));
+        this.storageQueue.postRunnable(new c4(this, j3, runnable, 17));
     }
 
     public boolean isForum(long j3, int i10) {
@@ -7202,7 +7224,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void loadGiftChatTheme(Utilities.Callback<List<TLRPC.TL_chatThemeUniqueGift>> callback) {
-        executeInStorageQueue(new dc(25, this, callback));
+        executeInStorageQueue(new mc(26, this, callback));
     }
 
     public void loadGroupedMessagesForTopicUpdates(ArrayList<TopicsController.TopicUpdate> arrayList) {
@@ -7227,8 +7249,7 @@ public class MessagesStorage extends BaseController {
                     ArrayList arrayList3 = (ArrayList) iVar.n(i11);
                     SQLiteDatabase sQLiteDatabase = this.database;
                     Locale locale = Locale.US;
-                    long j11 = ((TopicsController.TopicUpdate) arrayList3.get(0)).dialogId;
-                    SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized("SELECT data FROM messages_v2 WHERE uid = " + j11 + " AND group_id = " + j10 + " ORDER BY date DESC", new Object[0]);
+                    SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized("SELECT data FROM messages_v2 WHERE uid = " + ((TopicsController.TopicUpdate) arrayList3.get(0)).dialogId + " AND group_id = " + j10 + " ORDER BY date DESC", new Object[0]);
                     ArrayList<MessageObject> arrayList4 = null;
                     while (queryFinalized.next()) {
                         NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
@@ -7306,7 +7327,7 @@ public class MessagesStorage extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.loadReplyMessages(a0.i, a0.i, java.util.ArrayList, java.util.ArrayList, int):void");
     }
 
-    public void loadStoryAlbumsCache(long j3, Consumer<List<ai.e9>> consumer) {
+    public void loadStoryAlbumsCache(long j3, Consumer<List<ai.f9>> consumer) {
         this.storageQueue.postRunnable(new rg(this, j3, consumer, 0));
     }
 
@@ -7322,7 +7343,7 @@ public class MessagesStorage extends BaseController {
         if (user == null) {
             return;
         }
-        this.storageQueue.postRunnable(new u4(i10, 3, this, user, z10));
+        this.storageQueue.postRunnable(new v4(i10, 3, this, user, z10));
     }
 
     public ArrayList<TLRPC.UserFull> loadUserInfos(HashSet<Long> hashSet) {
@@ -7361,7 +7382,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void markMessageAsSendError(TLRPC.Message message, int i10) {
-        this.storageQueue.postRunnable(new q4(this, i10, message, 16));
+        this.storageQueue.postRunnable(new r4(this, i10, message, 16));
     }
 
     public void markMessageAsSendErrorWithParams(TLRPC.Message message, long j3, long j10) {
@@ -7437,7 +7458,7 @@ public class MessagesStorage extends BaseController {
         }
         File filesDirFixed = ApplicationLoader.getFilesDirFixed();
         if (this.currentAccount != 0) {
-            File file = new File(filesDirFixed, a4.a.o(this.currentAccount, "/", new StringBuilder("account")));
+            File file = new File(filesDirFixed, a1.g.o(this.currentAccount, "/", new StringBuilder("account")));
             file.mkdirs();
             filesDirFixed = file;
         }
@@ -7541,7 +7562,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void overwriteChannel(long j3, TLRPC.TL_updates_channelDifferenceTooLong tL_updates_channelDifferenceTooLong, int i10, Runnable runnable) {
-        this.storageQueue.postRunnable(new ai.m8(this, j3, i10, tL_updates_channelDifferenceTooLong, runnable, 4));
+        this.storageQueue.postRunnable(new ai.n8(this, j3, i10, tL_updates_channelDifferenceTooLong, runnable, 4));
     }
 
     public void processAnchoredEphemeralMessages(ArrayList<TL_ephemeral.EphemeralMessage> arrayList, Runnable runnable) {
@@ -7584,20 +7605,20 @@ public class MessagesStorage extends BaseController {
     public void putCachedPhoneBook(HashMap<String, ContactsController.Contact> hashMap, boolean z10, boolean z11) {
         if (hashMap != null) {
             if (!hashMap.isEmpty() || z10 || z11) {
-                this.storageQueue.postRunnable(new m6(this, hashMap, z10, 7));
+                this.storageQueue.postRunnable(new n6(this, hashMap, z10, 7));
             }
         }
     }
 
     public void putChannelAdmins(long j3, a0.i iVar) {
-        this.storageQueue.postRunnable(new b4(this, j3, iVar, 23));
+        this.storageQueue.postRunnable(new c4(this, j3, iVar, 23));
     }
 
     public void putChannelViews(a0.i iVar, a0.i iVar2, a0.i iVar3, boolean z10) {
         if (isEmpty(iVar) && isEmpty(iVar2) && isEmpty(iVar3)) {
             return;
         }
-        this.storageQueue.postRunnable(new ci.u1(this, iVar, iVar2, iVar3, z10, 8));
+        this.storageQueue.postRunnable(new ci.t1(this, iVar, iVar2, iVar3, z10, 8));
     }
 
     public void putContacts(ArrayList<TLRPC.TL_contact> arrayList, boolean z10) {
@@ -7611,7 +7632,7 @@ public class MessagesStorage extends BaseController {
         if (messages_dialogs.dialogs.isEmpty()) {
             return;
         }
-        this.storageQueue.postRunnable(new q4(this, messages_dialogs, i10, 18));
+        this.storageQueue.postRunnable(new r4(this, messages_dialogs, i10, 18));
     }
 
     public void putEncryptedChat(TLRPC.EncryptedChat encryptedChat, TLRPC.User user, TLRPC.Dialog dialog) {
@@ -7632,7 +7653,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void putGiftChatThemes(List<TLRPC.ChatTheme> list) {
-        executeInStorageQueue(new dc(20, this, list));
+        executeInStorageQueue(new mc(21, this, list));
     }
 
     public void putMessages(ArrayList<TLRPC.Message> arrayList, boolean z10, boolean z11, boolean z12, int i10, int i11, long j3) {
@@ -7640,17 +7661,17 @@ public class MessagesStorage extends BaseController {
     }
 
     public void putPushMessage(MessageObject messageObject) {
-        this.storageQueue.postRunnable(new dc(21, this, messageObject));
+        this.storageQueue.postRunnable(new mc(22, this, messageObject));
     }
 
     public void putSentFile(String str, TLObject tLObject, int i10, String str2) {
         if (str != null && tLObject != null && str2 != null) {
-            this.storageQueue.postRunnable(new ei.m3(this, str, tLObject, i10, str2, 10));
+            this.storageQueue.postRunnable(new ei.l3(this, str, tLObject, i10, str2, 10));
         }
     }
 
     public void putStoryPushMessage(NotificationsController.StoryNotification storyNotification) {
-        this.storageQueue.postRunnable(new dc(26, this, storyNotification));
+        this.storageQueue.postRunnable(new mc(27, this, storyNotification));
     }
 
     public void putUsersAndChats(List<TLRPC.User> list, List<TLRPC.Chat> list2, boolean z10, boolean z11) {
@@ -7658,7 +7679,7 @@ public class MessagesStorage extends BaseController {
             return;
         }
         if (z11) {
-            this.storageQueue.postRunnable(new uj(this, list, list2, z10, 13));
+            this.storageQueue.postRunnable(new bk(this, list, list2, z10, 13));
         } else {
             lambda$putUsersAndChats$181(list, list2, z10);
         }
@@ -7707,7 +7728,7 @@ public class MessagesStorage extends BaseController {
         if (message == null || (message instanceof TLRPC.TL_messageEmpty)) {
             return;
         }
-        this.storageQueue.postRunnable(new ci.u1(this, message, z10, arrayList, arrayList2, 9));
+        this.storageQueue.postRunnable(new ci.t1(this, message, z10, arrayList, arrayList2, 9));
     }
 
     public void reset() {
@@ -7746,7 +7767,7 @@ public class MessagesStorage extends BaseController {
 
     public void saveBotCache(String str, TLObject tLObject) {
         if (tLObject != null && !TextUtils.isEmpty(str)) {
-            this.storageQueue.postRunnable(new j8(this, tLObject, str, 18));
+            this.storageQueue.postRunnable(new j8(this, tLObject, str, 19));
         }
     }
 
@@ -7781,7 +7802,7 @@ public class MessagesStorage extends BaseController {
                     sQLitePreparedStatement.requery();
                     sQLitePreparedStatement.bindInteger(1, dialogFilter.order);
                     sQLitePreparedStatement.bindInteger(2, dialogFilter.flags);
-                    sQLitePreparedStatement.bindInteger(3, dialogFilter.f17266id);
+                    sQLitePreparedStatement.bindInteger(3, dialogFilter.f17252id);
                     sQLitePreparedStatement.step();
                 }
                 sQLitePreparedStatement.dispose();
@@ -7804,11 +7825,11 @@ public class MessagesStorage extends BaseController {
     }
 
     public void saveSecretParams(int i10, int i11, byte[] bArr) {
-        this.storageQueue.postRunnable(new x4((Object) this, i10, i11, (Serializable) bArr, 7));
+        this.storageQueue.postRunnable(new y4((Object) this, i10, i11, (Serializable) bArr, 7));
     }
 
-    public void saveStoryAlbumsCache(long j3, List<ai.e9> list) {
-        this.storageQueue.postRunnable(new b4(this, j3, list, 19));
+    public void saveStoryAlbumsCache(long j3, List<ai.f9> list) {
+        this.storageQueue.postRunnable(new c4(this, j3, list, 19));
     }
 
     public void saveTopics(long j3, List<TLRPC.TL_forumTopic> list, boolean z10, boolean z11, int i10) {
@@ -7855,7 +7876,7 @@ public class MessagesStorage extends BaseController {
         if (arrayList == null && arrayList2 == null && j3 == 0) {
             return;
         }
-        this.storageQueue.postRunnable(new ai.m8(this, arrayList, arrayList2, i10, j3));
+        this.storageQueue.postRunnable(new ai.n8(this, arrayList, arrayList2, i10, j3));
     }
 
     public void setDialogsPinned(ArrayList<Long> arrayList, ArrayList<Integer> arrayList2) {
@@ -7922,12 +7943,12 @@ public class MessagesStorage extends BaseController {
 
     public void updateChatDefaultBannedRights(long j3, TLRPC.TL_chatBannedRights tL_chatBannedRights, int i10) {
         if (tL_chatBannedRights != null && j3 != 0) {
-            this.storageQueue.postRunnable(new g7(this, j3, i10, tL_chatBannedRights, 8));
+            this.storageQueue.postRunnable(new h7(this, j3, i10, tL_chatBannedRights, 8));
         }
     }
 
     public void updateChatInfo(TLRPC.ChatFull chatFull, boolean z10) {
-        this.storageQueue.postRunnable(new m6(this, chatFull, z10, 9));
+        this.storageQueue.postRunnable(new n6(this, chatFull, z10, 9));
     }
 
     public void updateChatOnlineCount(long j3, int i10) {
@@ -7938,14 +7959,14 @@ public class MessagesStorage extends BaseController {
         if (chatParticipants == null) {
             return;
         }
-        this.storageQueue.postRunnable(new dc(23, this, chatParticipants));
+        this.storageQueue.postRunnable(new mc(24, this, chatParticipants));
     }
 
     public void updateDialogData(TLRPC.Dialog dialog) {
         if (dialog == null) {
             return;
         }
-        this.storageQueue.postRunnable(new dc(28, this, dialog));
+        this.storageQueue.postRunnable(new mc(29, this, dialog));
     }
 
     public void updateDialogUnreadPollVotes(long j3, long j10, int i10, boolean z10) {
@@ -7965,7 +7986,7 @@ public class MessagesStorage extends BaseController {
             return;
         }
         if (z10) {
-            this.storageQueue.postRunnable(new b5(this, longSparseIntArray, longSparseIntArray2, iVar, longSparseIntArray3, 12));
+            this.storageQueue.postRunnable(new c5(this, longSparseIntArray, longSparseIntArray2, iVar, longSparseIntArray3, 12));
         } else {
             updateDialogsWithReadMessagesInternal(null, longSparseIntArray, longSparseIntArray2, iVar, longSparseIntArray3);
         }
@@ -7989,7 +8010,7 @@ public class MessagesStorage extends BaseController {
         if (encryptedChat == null) {
             return;
         }
-        this.storageQueue.postRunnable(new m6(this, encryptedChat, z10, 8));
+        this.storageQueue.postRunnable(new n6(this, encryptedChat, z10, 8));
     }
 
     public void updateEncryptedChatTTL(TLRPC.EncryptedChat encryptedChat) {
@@ -8004,11 +8025,11 @@ public class MessagesStorage extends BaseController {
     }
 
     public void updateMessagePollResults(long j3, TLRPC.Poll poll, TLRPC.PollResults pollResults) {
-        this.storageQueue.postRunnable(new ai.q8(this, j3, poll, pollResults, 17));
+        this.storageQueue.postRunnable(new ai.r8(this, j3, poll, pollResults, 17));
     }
 
     public void updateMessageReactions(long j3, int i10, TLRPC.TL_messageReactions tL_messageReactions) {
-        this.storageQueue.postRunnable(new g7(this, i10, j3, tL_messageReactions, 7));
+        this.storageQueue.postRunnable(new h7(this, i10, j3, tL_messageReactions, 7));
     }
 
     public long[] updateMessageStateAndId(final long j3, final long j10, final Integer num, final int i10, final int i11, boolean z10, final int i12, final int i13) {
@@ -8042,7 +8063,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void updateMessageVoiceTranscriptionOpen(long j3, int i10, TLRPC.Message message) {
-        this.storageQueue.postRunnable(new g7(this, i10, j3, message, 6));
+        this.storageQueue.postRunnable(new h7(this, i10, j3, message, 6));
     }
 
     public void updateMutedDialogsFiltersCounters() {
@@ -8050,7 +8071,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void updatePinnedMessages(long j3, ArrayList<Integer> arrayList, boolean z10, int i10, int i11, boolean z11, HashMap<Integer, MessageObject> hashMap) {
-        this.storageQueue.postRunnable(new k6(this, z10, hashMap, i11, j3, arrayList, i10, z11));
+        this.storageQueue.postRunnable(new l6(this, z10, hashMap, i11, j3, arrayList, i10, z11));
     }
 
     public void updateRanksInLastMessages(long j3, long j10, String str) {
@@ -8058,7 +8079,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void updateRepliesCount(long j3, int i10, ArrayList<TLRPC.Peer> arrayList, int i11, int i12) {
-        this.storageQueue.postRunnable(new h3(this, i10, j3, i12, arrayList, i11));
+        this.storageQueue.postRunnable(new i3(this, i10, j3, i12, arrayList, i11));
     }
 
     public void updateRepliesMaxReadId(long j3, long j10, int i10, int i11, boolean z10) {
@@ -8074,7 +8095,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void updateTopicsWithReadMessages(HashMap<TopicKey, Integer> hashMap) {
-        this.storageQueue.postRunnable(new dc(19, this, hashMap));
+        this.storageQueue.postRunnable(new mc(20, this, hashMap));
     }
 
     public void updateUnreadPollVotesCount(long j3, long j10, int i10) {
@@ -8086,11 +8107,11 @@ public class MessagesStorage extends BaseController {
     }
 
     public void updateUserInfo(TLRPC.UserFull userFull, boolean z10) {
-        this.storageQueue.postRunnable(new m6(this, userFull, z10, 6));
+        this.storageQueue.postRunnable(new n6(this, userFull, z10, 6));
     }
 
     public void updateUserInfoContactBlocked(long j3, TL_account.RequirementToContact requirementToContact) {
-        this.storageQueue.postRunnable(new b4(this, j3, requirementToContact, 16));
+        this.storageQueue.postRunnable(new c4(this, j3, requirementToContact, 16));
     }
 
     public void updateUsers(ArrayList<TLRPC.User> arrayList, boolean z10, boolean z11, boolean z12) {
@@ -8130,7 +8151,7 @@ public class MessagesStorage extends BaseController {
         }
         SQLiteDatabase sQLiteDatabase = this.database;
         Locale locale = Locale.US;
-        SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized(a4.a.q("SELECT data FROM chats WHERE uid IN(", str, ")"), new Object[0]);
+        SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized(a1.g.q("SELECT data FROM chats WHERE uid IN(", str, ")"), new Object[0]);
         ArrayList arrayList2 = null;
         while (queryFinalized.next()) {
             try {
@@ -8162,7 +8183,7 @@ public class MessagesStorage extends BaseController {
         if (arrayList2 != null) {
             SQLiteDatabase sQLiteDatabase2 = this.database;
             Locale locale2 = Locale.US;
-            SQLiteCursor queryFinalized2 = sQLiteDatabase2.queryFinalized(a4.a.q("SELECT data FROM chats WHERE uid IN(", TextUtils.join(", ", arrayList2), ")"), new Object[0]);
+            SQLiteCursor queryFinalized2 = sQLiteDatabase2.queryFinalized(a1.g.q("SELECT data FROM chats WHERE uid IN(", TextUtils.join(", ", arrayList2), ")"), new Object[0]);
             while (queryFinalized2.next()) {
                 try {
                     NativeByteBuffer byteBufferValue2 = queryFinalized2.byteBufferValue(0);
@@ -8218,7 +8239,7 @@ public class MessagesStorage extends BaseController {
         }
         SQLiteDatabase sQLiteDatabase = this.database;
         Locale locale = Locale.US;
-        SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized(a4.a.q("SELECT data, status FROM users WHERE uid IN(", TextUtils.join(",", arrayList), ")"), new Object[0]);
+        SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized(a1.g.q("SELECT data, status FROM users WHERE uid IN(", TextUtils.join(",", arrayList), ")"), new Object[0]);
         while (queryFinalized.next()) {
             try {
                 NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
@@ -8281,7 +8302,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void updateMessageVoiceTranscription(long j3, int i10, String str, TLRPC.Message message) {
-        this.storageQueue.postRunnable(new ai.m8(this, i10, j3, message, str, 5));
+        this.storageQueue.postRunnable(new ai.n8(this, i10, j3, message, str, 5));
     }
 
     public void updateTopicData(long j3, TLRPC.TL_forumTopic tL_forumTopic, int i10, int i11) {
@@ -8328,7 +8349,7 @@ public class MessagesStorage extends BaseController {
         if (arrayList.isEmpty() && tL_messageReactions2 != null && tL_messageReactions2.results.isEmpty()) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new ai.q8(this, tL_messageReactions, tL_messageReactions2, j3, 18));
+        AndroidUtilities.runOnUIThread(new ai.r8(this, tL_messageReactions, tL_messageReactions2, j3, 18));
     }
 
     private static boolean isEmpty(SparseIntArray sparseIntArray) {
@@ -8377,7 +8398,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void deleteEphemeralMessages(a0.i iVar, boolean z10) {
-        executeInStorageQueue(new m6(this, iVar, z10, 10));
+        executeInStorageQueue(new n6(this, iVar, z10, 10));
     }
 
     public ArrayList<TL_ephemeral.EphemeralMessage> getEphemeralMessagesInternal(long j3, ArrayList<Integer> arrayList) {
@@ -8437,7 +8458,7 @@ public class MessagesStorage extends BaseController {
         }
         SQLiteDatabase sQLiteDatabase = this.database;
         Locale locale = Locale.US;
-        SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized(a4.a.q("SELECT data, status FROM users WHERE uid IN(", TextUtils.join(",", hashSet), ")"), new Object[0]);
+        SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized(a1.g.q("SELECT data, status FROM users WHERE uid IN(", TextUtils.join(",", hashSet), ")"), new Object[0]);
         while (queryFinalized.next()) {
             try {
                 NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);

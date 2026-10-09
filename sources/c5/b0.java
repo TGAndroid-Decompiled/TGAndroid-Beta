@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.media.MediaCodecInfo;
 import android.media.MediaCodecList;
+import android.opengl.GLES20;
 import android.os.Message;
 import android.os.Parcel;
 import android.view.ContextThemeWrapper;
@@ -16,34 +17,56 @@ import androidx.appcompat.app.AlertController$RecycleListView;
 import b2.q0;
 import com.google.android.gms.internal.play_billing.h4;
 import j$.util.DesugarCollections;
+import java.net.URI;
+import java.nio.ByteBuffer;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.net.SocketFactory;
+import javax.net.ssl.SSLSocketFactory;
+import org.telegram.ui.Wallet.e5;
 public final class b0 implements r2.v {
-    public final int f4152a;
-    public int f4153b;
-    public Object f4154c;
+    public final int f4202a;
+    public int f4203b;
+    public Object f4204c;
 
-    public b0(char c10, int i10) {
-        this.f4152a = i10;
+    public b0(int i10, boolean z10, boolean z11) {
+        this.f4202a = i10;
     }
 
     @Override
-    public boolean Y(String str, MediaCodecInfo.CodecCapabilities codecCapabilities) {
+    public boolean D(String str, MediaCodecInfo.CodecCapabilities codecCapabilities) {
         return codecCapabilities.isFeatureRequired(str);
     }
 
     @Override
-    public MediaCodecInfo a(int i10) {
-        if (((MediaCodecInfo[]) this.f4154c) == null) {
-            this.f4154c = new MediaCodecList(this.f4153b).getCodecInfos();
+    public int F() {
+        if (((MediaCodecInfo[]) this.f4204c) == null) {
+            this.f4204c = new MediaCodecList(this.f4203b).getCodecInfos();
         }
-        return ((MediaCodecInfo[]) this.f4154c)[i10];
+        return ((MediaCodecInfo[]) this.f4204c).length;
+    }
+
+    @Override
+    public boolean X() {
+        return true;
+    }
+
+    @Override
+    public MediaCodecInfo a(int i10) {
+        if (((MediaCodecInfo[]) this.f4204c) == null) {
+            this.f4204c = new MediaCodecList(this.f4203b).getCodecInfos();
+        }
+        return ((MediaCodecInfo[]) this.f4204c)[i10];
     }
 
     public Object b() {
-        Object[] objArr = (Object[]) this.f4154c;
-        int i10 = this.f4153b;
+        Object[] objArr = (Object[]) this.f4204c;
+        int i10 = this.f4203b;
         if (i10 <= 0) {
             return null;
         }
@@ -51,135 +74,292 @@ public final class b0 implements r2.v {
         Object obj = objArr[i11];
         kotlin.jvm.internal.i.c(obj, "null cannot be cast to non-null type T of androidx.core.util.Pools.SimplePool");
         objArr[i11] = null;
-        this.f4153b--;
+        this.f4203b--;
         return obj;
     }
 
     public void c(long j3) {
-        int i10 = this.f4153b;
-        long[] jArr = (long[]) this.f4154c;
+        int i10 = this.f4203b;
+        long[] jArr = (long[]) this.f4204c;
         if (i10 == jArr.length) {
-            this.f4154c = Arrays.copyOf(jArr, i10 * 2);
+            this.f4204c = Arrays.copyOf(jArr, i10 * 2);
         }
-        int i11 = this.f4153b;
-        this.f4153b = i11 + 1;
-        ((long[]) this.f4154c)[i11] = j3;
+        int i11 = this.f4203b;
+        this.f4203b = i11 + 1;
+        ((long[]) this.f4204c)[i11] = j3;
     }
 
     public void d(long[] jArr) {
-        int length = this.f4153b + jArr.length;
-        long[] jArr2 = (long[]) this.f4154c;
+        int length = this.f4203b + jArr.length;
+        long[] jArr2 = (long[]) this.f4204c;
         if (length > jArr2.length) {
-            this.f4154c = Arrays.copyOf(jArr2, Math.max(jArr2.length * 2, length));
+            this.f4204c = Arrays.copyOf(jArr2, Math.max(jArr2.length * 2, length));
         }
-        System.arraycopy(jArr, 0, (long[]) this.f4154c, this.f4153b, jArr.length);
-        this.f4153b = length;
+        System.arraycopy(jArr, 0, (long[]) this.f4204c, this.f4203b, jArr.length);
+        this.f4203b = length;
     }
 
-    @Override
-    public int d0() {
-        if (((MediaCodecInfo[]) this.f4154c) == null) {
-            this.f4154c = new MediaCodecList(this.f4153b).getCodecInfos();
-        }
-        return ((MediaCodecInfo[]) this.f4154c).length;
-    }
-
-    public g.g e() {
+    public g.f e() {
         int i10;
         Message message;
-        g.c cVar = (g.c) this.f4154c;
-        g.g gVar = new g.g(cVar.f10027a, this.f4153b);
-        View view = cVar.f10030e;
-        g.f fVar = gVar.f10063f;
+        g.b bVar = (g.b) this.f4204c;
+        g.f fVar = new g.f(bVar.f10097a, this.f4203b);
+        View view = bVar.f10100e;
+        g.e eVar = fVar.f10133f;
         if (view != null) {
-            fVar.f10055r = view;
+            eVar.f10125r = view;
         } else {
-            CharSequence charSequence = cVar.d;
+            CharSequence charSequence = bVar.d;
             if (charSequence != null) {
-                fVar.d = charSequence;
-                TextView textView = fVar.f10053p;
+                eVar.d = charSequence;
+                TextView textView = eVar.f10123p;
                 if (textView != null) {
                     textView.setText(charSequence);
                 }
             }
-            Drawable drawable = cVar.f10029c;
+            Drawable drawable = bVar.f10099c;
             if (drawable != null) {
-                fVar.f10051n = drawable;
-                ImageView imageView = fVar.f10052o;
+                eVar.f10121n = drawable;
+                ImageView imageView = eVar.f10122o;
                 if (imageView != null) {
                     imageView.setVisibility(0);
-                    fVar.f10052o.setImageDrawable(drawable);
+                    eVar.f10122o.setImageDrawable(drawable);
                 }
             }
         }
-        CharSequence charSequence2 = cVar.f10031f;
+        CharSequence charSequence2 = bVar.f10101f;
         if (charSequence2 != null) {
-            androidx.biometric.w wVar = cVar.f10032g;
-            fVar.getClass();
+            androidx.biometric.w wVar = bVar.f10102g;
+            eVar.getClass();
             if (wVar != null) {
-                message = fVar.f10062z.obtainMessage(-2, wVar);
+                message = eVar.f10132z.obtainMessage(-2, wVar);
             } else {
                 message = null;
             }
-            fVar.f10047j = charSequence2;
-            fVar.f10048k = message;
+            eVar.f10117j = charSequence2;
+            eVar.f10118k = message;
         }
-        if (cVar.f10033i != null) {
-            AlertController$RecycleListView alertController$RecycleListView = (AlertController$RecycleListView) cVar.f10028b.inflate(fVar.v, (ViewGroup) null);
-            if (cVar.f10036l) {
-                i10 = fVar.f10059w;
+        if (bVar.f10103i != null) {
+            AlertController$RecycleListView alertController$RecycleListView = (AlertController$RecycleListView) bVar.f10098b.inflate(eVar.v, (ViewGroup) null);
+            if (bVar.f10106l) {
+                i10 = eVar.f10129w;
             } else {
-                i10 = fVar.f10060x;
+                i10 = eVar.f10130x;
             }
-            Object obj = cVar.f10033i;
+            Object obj = bVar.f10103i;
             ArrayAdapter arrayAdapter = obj;
             if (obj == null) {
-                arrayAdapter = new ArrayAdapter(cVar.f10027a, i10, 16908308, (Object[]) null);
+                arrayAdapter = new ArrayAdapter(bVar.f10097a, i10, 16908308, (Object[]) null);
             }
-            fVar.f10056s = arrayAdapter;
-            fVar.f10057t = cVar.f10037m;
-            if (cVar.f10034j != null) {
-                alertController$RecycleListView.setOnItemClickListener(new g.b(cVar, fVar));
+            eVar.f10126s = arrayAdapter;
+            eVar.f10127t = bVar.f10107m;
+            if (bVar.f10104j != null) {
+                alertController$RecycleListView.setOnItemClickListener(new g.a(bVar, eVar));
             }
-            if (cVar.f10036l) {
+            if (bVar.f10106l) {
                 alertController$RecycleListView.setChoiceMode(1);
             }
-            fVar.f10043e = alertController$RecycleListView;
+            eVar.f10113e = alertController$RecycleListView;
         }
-        View view2 = cVar.f10035k;
+        View view2 = bVar.f10105k;
         if (view2 != null) {
-            fVar.f10044f = view2;
-            fVar.f10045g = false;
+            eVar.f10114f = view2;
+            eVar.f10115g = false;
         }
-        gVar.setCancelable(true);
-        gVar.setCanceledOnTouchOutside(true);
-        gVar.setOnCancelListener(null);
-        gVar.setOnDismissListener(null);
-        l.l lVar = cVar.h;
+        fVar.setCancelable(true);
+        fVar.setCanceledOnTouchOutside(true);
+        fVar.setOnCancelListener(null);
+        fVar.setOnDismissListener(null);
+        l.l lVar = bVar.h;
         if (lVar != null) {
-            gVar.setOnKeyListener(lVar);
+            fVar.setOnKeyListener(lVar);
         }
-        return gVar;
+        return fVar;
     }
 
-    public long f(int i10) {
-        if (i10 >= 0 && i10 < this.f4153b) {
-            return ((long[]) this.f4154c)[i10];
+    public sc.u f(String str) {
+        Matcher matcher;
+        String str2;
+        Matcher matcher2;
+        boolean z10;
+        String str3;
+        int i10;
+        SocketFactory socketFactory;
+        int i11 = this.f4203b;
+        if (str != null) {
+            if (i11 >= 0) {
+                URI create = URI.create(str);
+                if (create != null) {
+                    if (i11 >= 0) {
+                        String scheme = create.getScheme();
+                        String userInfo = create.getUserInfo();
+                        SecureRandom secureRandom = sc.k.f47912a;
+                        String host = create.getHost();
+                        if (host == null) {
+                            String rawAuthority = create.getRawAuthority();
+                            if (rawAuthority == null || (matcher = Pattern.compile("^(.*@)?([^:]+)(:\\d+)?$").matcher(rawAuthority)) == null || !matcher.matches()) {
+                                host = null;
+                            } else {
+                                host = matcher.group(2);
+                            }
+                            if (host == null) {
+                                String uri = create.toString();
+                                if (uri != null && (matcher2 = Pattern.compile("^\\w+://([^@/]*@)?([^:/]+)(:\\d+)?(/.*)?$").matcher(uri)) != null && matcher2.matches()) {
+                                    host = matcher2.group(2);
+                                } else {
+                                    str2 = null;
+                                    int port = create.getPort();
+                                    String rawPath = create.getRawPath();
+                                    String rawQuery = create.getRawQuery();
+                                    if (scheme == null && scheme.length() != 0) {
+                                        if (!"wss".equalsIgnoreCase(scheme) && !"https".equalsIgnoreCase(scheme)) {
+                                            if (!"ws".equalsIgnoreCase(scheme) && !"http".equalsIgnoreCase(scheme)) {
+                                                throw new IllegalArgumentException("Bad scheme: ".concat(scheme));
+                                            }
+                                            z10 = false;
+                                        } else {
+                                            z10 = true;
+                                        }
+                                        if (str2 != null && str2.length() != 0) {
+                                            if (rawPath == null || rawPath.length() == 0) {
+                                                str3 = "/";
+                                            } else {
+                                                if (!rawPath.startsWith("/")) {
+                                                    rawPath = "/".concat(rawPath);
+                                                }
+                                                str3 = rawPath;
+                                            }
+                                            if (port >= 0) {
+                                                i10 = port;
+                                            } else if (z10) {
+                                                i10 = 443;
+                                            } else {
+                                                i10 = 80;
+                                            }
+                                            ((qb.b) this.f4204c).getClass();
+                                            if (z10) {
+                                                socketFactory = SSLSocketFactory.getDefault();
+                                            } else {
+                                                socketFactory = SocketFactory.getDefault();
+                                            }
+                                            sc.s sVar = new sc.s(socketFactory, new sc.a(str2, i10), i11, null, null);
+                                            sVar.d = 1;
+                                            sVar.f47929e = 250;
+                                            sVar.f47930f = true;
+                                            if (port >= 0) {
+                                                str2 = str2 + ":" + port;
+                                            }
+                                            if (rawQuery != null) {
+                                                str3 = a1.g.D(str3, "?", rawQuery);
+                                            }
+                                            return new sc.u(z10, userInfo, str2, str3, sVar);
+                                        }
+                                        throw new IllegalArgumentException("The host part is empty.");
+                                    }
+                                    throw new IllegalArgumentException("The scheme part is empty.");
+                                }
+                            }
+                        }
+                        str2 = host;
+                        int port2 = create.getPort();
+                        String rawPath2 = create.getRawPath();
+                        String rawQuery2 = create.getRawQuery();
+                        if (scheme == null) {
+                        }
+                        throw new IllegalArgumentException("The scheme part is empty.");
+                    }
+                    throw new IllegalArgumentException("The given timeout value is negative.");
+                }
+                throw new IllegalArgumentException("The given URI is null.");
+            }
+            throw new IllegalArgumentException("The given timeout value is negative.");
+        }
+        throw new IllegalArgumentException("The given URI is null.");
+    }
+
+    public void g(int i10) {
+        ByteBuffer allocate = ByteBuffer.allocate(i10);
+        int position = ((ByteBuffer) this.f4204c).position();
+        ((ByteBuffer) this.f4204c).position(0);
+        allocate.put((ByteBuffer) this.f4204c);
+        allocate.position(position);
+        this.f4204c = allocate;
+    }
+
+    public byte h(int i10) {
+        if (i10 >= 0 && this.f4203b > i10) {
+            return ((ByteBuffer) this.f4204c).get(i10);
+        }
+        throw new IndexOutOfBoundsException(String.format("Bad index: index=%d, length=%d", Integer.valueOf(i10), Integer.valueOf(this.f4203b)));
+    }
+
+    public long i(int i10) {
+        if (i10 >= 0 && i10 < this.f4203b) {
+            return ((long[]) this.f4204c)[i10];
         }
         StringBuilder j3 = hg.c.j(i10, "Invalid index ", ", size is ");
-        j3.append(this.f4153b);
+        j3.append(this.f4203b);
         throw new IndexOutOfBoundsException(j3.toString());
     }
 
-    public synchronized List g() {
-        return DesugarCollections.unmodifiableList(new ArrayList((ArrayList) this.f4154c));
+    public boolean j(int i10) {
+        int i11 = i10 / 8;
+        if (((1 << (i10 % 8)) & h(i11)) != 0) {
+            return true;
+        }
+        return false;
     }
 
-    public long h(c3.l lVar) {
-        e2.v vVar = (e2.v) this.f4154c;
+    public synchronized List k() {
+        return DesugarCollections.unmodifiableList(new ArrayList((ArrayList) this.f4204c));
+    }
+
+    public void l(int i10) {
+        int capacity = ((ByteBuffer) this.f4204c).capacity();
+        int i11 = this.f4203b;
+        if (capacity < i11 + 1) {
+            g(i11 + 1024);
+        }
+        ((ByteBuffer) this.f4204c).put((byte) i10);
+        this.f4203b++;
+    }
+
+    @Override
+    public boolean m(String str, String str2, MediaCodecInfo.CodecCapabilities codecCapabilities) {
+        return codecCapabilities.isFeatureSupported(str);
+    }
+
+    public void n(byte[] bArr) {
+        int capacity = ((ByteBuffer) this.f4204c).capacity();
+        int i10 = this.f4203b;
+        if (capacity < bArr.length + i10) {
+            g(i10 + bArr.length + 1024);
+        }
+        ((ByteBuffer) this.f4204c).put(bArr);
+        this.f4203b += bArr.length;
+    }
+
+    public int o(int i10, int[] iArr) {
+        int i11 = iArr[0];
+        int i12 = 1;
+        int i13 = 0;
+        int i14 = 0;
+        while (i13 < i10) {
+            if (j(i11 + i13)) {
+                i14 += i12;
+            }
+            i13++;
+            i12 *= 2;
+        }
+        iArr[0] = iArr[0] + i10;
+        return i14;
+    }
+
+    public long p(c3.l lVar) {
+        e2.v vVar = (e2.v) this.f4204c;
         int i10 = 0;
-        lVar.f(vVar.f8590a, 0, 1, false);
-        int i11 = vVar.f8590a[0] & 255;
+        lVar.h(vVar.f8584a, 0, 1, false);
+        int i11 = vVar.f8584a[0] & 255;
         if (i11 == 0) {
             return Long.MIN_VALUE;
         }
@@ -190,35 +370,47 @@ public final class b0 implements r2.v {
             i13++;
         }
         int i14 = i11 & (~i12);
-        lVar.f(vVar.f8590a, 1, i13, false);
+        lVar.h(vVar.f8584a, 1, i13, false);
         while (i10 < i13) {
             i10++;
-            i14 = (vVar.f8590a[i10] & 255) + (i14 << 8);
+            i14 = (vVar.f8584a[i10] & 255) + (i14 << 8);
         }
-        this.f4153b = i13 + 1 + this.f4153b;
+        this.f4203b = i13 + 1 + this.f4203b;
         return i14;
     }
 
-    public void i(Object instance) {
-        Object[] objArr = (Object[]) this.f4154c;
+    public void q(Object instance) {
+        Object[] objArr = (Object[]) this.f4204c;
         kotlin.jvm.internal.i.e(instance, "instance");
-        int i10 = this.f4153b;
+        int i10 = this.f4203b;
         for (int i11 = 0; i11 < i10; i11++) {
             if (objArr[i11] == instance) {
                 throw new IllegalStateException("Already in the pool!");
             }
         }
-        int i12 = this.f4153b;
+        int i12 = this.f4203b;
         if (i12 < objArr.length) {
             objArr[i12] = instance;
-            this.f4153b = i12 + 1;
+            this.f4203b = i12 + 1;
         }
     }
 
-    public String j(h4 h4Var) {
+    public byte[] r(int i10, int i11) {
+        int i12 = i11 - i10;
+        if (i12 >= 0 && i10 >= 0 && this.f4203b >= i11) {
+            byte[] bArr = new byte[i12];
+            if (i12 != 0) {
+                System.arraycopy(((ByteBuffer) this.f4204c).array(), i10, bArr, 0, i12);
+            }
+            return bArr;
+        }
+        throw new IllegalArgumentException(String.format("Bad range: beginIndex=%d, endIndex=%d, length=%d", Integer.valueOf(i10), Integer.valueOf(i11), Integer.valueOf(this.f4203b)));
+    }
+
+    public String s(h4 h4Var) {
         String str;
-        d0 d0Var = (d0) this.f4154c;
-        int i10 = this.f4153b;
+        d0 d0Var = (d0) this.f4204c;
+        int i10 = this.f4203b;
         try {
             if (d0Var.E != null) {
                 com.google.android.gms.internal.play_billing.g gVar = d0Var.E;
@@ -246,108 +438,121 @@ public final class b0 implements r2.v {
                 }
                 c0 c0Var = new c0(h4Var);
                 com.google.android.gms.internal.play_billing.e eVar = (com.google.android.gms.internal.play_billing.e) gVar;
-                Parcel U0 = eVar.U0();
-                U0.writeString(packageName);
-                U0.writeString(str);
-                int i11 = com.google.android.gms.internal.play_billing.d.f7276a;
-                U0.writeStrongBinder(c0Var);
-                eVar.f338b.transact(1, U0, null, 1);
-                U0.recycle();
+                Parcel T0 = eVar.T0();
+                T0.writeString(packageName);
+                T0.writeString(str);
+                int i11 = com.google.android.gms.internal.play_billing.d.f7325a;
+                T0.writeStrongBinder(c0Var);
+                eVar.f336b.transact(1, T0, null, 1);
+                T0.recycle();
                 return "billingOverrideService.getBillingOverride";
             }
             throw null;
         } catch (Exception e7) {
-            d0Var.F(95, 28, g0.f4203p);
+            d0Var.F(95, 28, g0.f4253p);
             com.google.android.gms.internal.play_billing.u.i("BillingClientTesting", "An error occurred while retrieving billing override.", e7);
             h4Var.a(0);
             return "billingOverrideService.getBillingOverride";
         }
     }
 
-    @Override
-    public boolean p0() {
-        return true;
-    }
-
     public String toString() {
-        switch (this.f4152a) {
+        switch (this.f4202a) {
             case 5:
-                return new String((char[]) this.f4154c, 0, this.f4153b);
+                return new String((char[]) this.f4204c, 0, this.f4203b);
             default:
                 return super.toString();
         }
     }
 
-    @Override
-    public boolean y(String str, String str2, MediaCodecInfo.CodecCapabilities codecCapabilities) {
-        return codecCapabilities.isFeatureSupported(str);
-    }
-
     public b0(Object obj, int i10, int i11) {
-        this.f4152a = i11;
-        this.f4154c = obj;
-        this.f4153b = i10;
+        this.f4202a = i11;
+        this.f4204c = obj;
+        this.f4203b = i10;
     }
 
     public b0(k6.a aVar, int i10) {
-        this.f4152a = 1;
+        this.f4202a = 1;
         n6.l.h(aVar);
-        this.f4154c = aVar;
-        this.f4153b = i10;
+        this.f4204c = aVar;
+        this.f4203b = i10;
     }
 
-    public b0(int i10, byte b10) {
+    public b0(int i10, short s10) {
         this(32, 2);
-        this.f4152a = i10;
+        this.f4202a = i10;
         switch (i10) {
-            case 8:
-                this.f4154c = new e2.v(8);
-                return;
-            case 9:
             case 11:
-            default:
-                return;
-            case 10:
-                this.f4154c = new ArrayList();
-                this.f4153b = 128;
+                this.f4204c = new qb.b();
                 return;
             case 12:
-                this.f4153b = 0;
-                this.f4154c = new StringBuilder();
+                this.f4204c = new e2.v(8);
+                return;
+            case 13:
+            case 15:
+            default:
+                return;
+            case 14:
+                this.f4204c = new ArrayList();
+                this.f4203b = 128;
+                return;
+            case 16:
+                this.f4203b = 0;
+                this.f4204c = new StringBuilder();
                 return;
         }
     }
 
     public b0(int i10, int i11) {
-        this.f4152a = i11;
+        this.f4202a = i11;
         switch (i11) {
-            case 6:
+            case 7:
                 if (i10 > 0) {
-                    this.f4154c = new Object[i10];
+                    this.f4204c = new Object[i10];
                     return;
                 }
                 throw new IllegalArgumentException("The max pool size must be > 0");
+            case 8:
             default:
-                this.f4154c = new long[i10];
+                this.f4204c = new long[i10];
+                return;
+            case 9:
+                this.f4204c = ByteBuffer.allocate(i10);
+                this.f4203b = 0;
+                return;
+            case 10:
+                this.f4204c = new CountDownLatch(1);
+                this.f4203b = i10;
                 return;
         }
     }
 
     public b0(int i10, q0[] q0VarArr) {
-        this.f4152a = 4;
-        this.f4153b = i10;
-        this.f4154c = q0VarArr;
+        this.f4202a = 4;
+        this.f4203b = i10;
+        this.f4204c = q0VarArr;
     }
 
     public b0(Context context) {
-        this.f4152a = 3;
-        int e7 = g.g.e(context, 0);
-        this.f4154c = new g.c(new ContextThemeWrapper(context, g.g.e(context, e7)));
-        this.f4153b = e7;
+        this.f4202a = 3;
+        int e7 = g.f.e(context, 0);
+        this.f4204c = new g.b(new ContextThemeWrapper(context, g.f.e(context, e7)));
+        this.f4203b = e7;
+    }
+
+    public b0(Context context, String str) {
+        this.f4202a = 6;
+        int[] iArr = new int[2];
+        this.f4204c = iArr;
+        j6.l lVar = new j6.l(context, str);
+        this.f4203b = lVar.f14061a;
+        GLES20.glGenBuffers(2, iArr, 0);
+        e5.a((float[]) lVar.d, iArr[0]);
+        e5.a((float[]) lVar.f14062b, iArr[1]);
     }
 
     public b0(boolean z10, boolean z11, boolean z12) {
-        this.f4152a = 7;
-        this.f4153b = (z10 || z11 || z12) ? 1 : 0;
+        this.f4202a = 8;
+        this.f4203b = (z10 || z11 || z12) ? 1 : 0;
     }
 }

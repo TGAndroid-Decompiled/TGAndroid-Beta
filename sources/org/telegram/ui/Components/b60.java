@@ -1,51 +1,19 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.os.SystemClock;
-import android.view.TextureView;
-public final class b60 extends TextureView {
-    public final int f24845a;
-    public final Object f24846b;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+public final class b60 {
+    public final ByteBuffer[] f24914a = new ByteBuffer[10];
+    public final long[] f24915b = new long[10];
+    public final int[] f24916c = new int[10];
+    public int d;
+    public int f24917e;
+    public boolean f24918f;
 
-    public b60(Object obj, Context context, int i10) {
-        super(context);
-        this.f24845a = i10;
-        this.f24846b = obj;
-    }
-
-    @Override
-    public void invalidate() {
-        ki.r0 r0Var;
-        switch (this.f24845a) {
-            case 0:
-                e60 e60Var = (e60) this.f24846b;
-                if (!e60Var.A0 && (r0Var = e60Var.R) != null && r0Var.f15036a == 3) {
-                    e60Var.A0 = true;
-                    try {
-                        e60Var.f26024y0 = SystemClock.elapsedRealtimeNanos();
-                        e60Var.w();
-                    } finally {
-                        e60Var.A0 = false;
-                    }
-                }
-                super.invalidate();
-                return;
-            default:
-                super.invalidate();
-                return;
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f24845a) {
-            case 1:
-                vh.f fVar = (vh.f) this.f24846b;
-                setMeasuredDimension(fVar.f48392g, fVar.h);
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
+    public b60() {
+        for (int i10 = 0; i10 < 10; i10++) {
+            this.f24914a[i10] = ByteBuffer.allocateDirect(2048);
+            this.f24914a[i10].order(ByteOrder.nativeOrder());
         }
     }
 }

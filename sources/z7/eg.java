@@ -4,16 +4,16 @@ import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Parcel;
 public final class eg extends a9.a implements gg {
-    public final dg W0(x6.b bVar, jg jgVar) {
+    public final dg V0(x6.b bVar, jg jgVar) {
         dg aVar;
         Parcel obtain = Parcel.obtain();
-        obtain.writeInterfaceToken(this.f339c);
-        int i10 = t.f52937a;
+        obtain.writeInterfaceToken(this.f337c);
+        int i10 = t.f54041a;
         obtain.writeStrongBinder(bVar);
         obtain.writeInt(1);
         jgVar.writeToParcel(obtain, 0);
-        Parcel Q0 = Q0(obtain, 1);
-        IBinder readStrongBinder = Q0.readStrongBinder();
+        Parcel P0 = P0(obtain, 1);
+        IBinder readStrongBinder = P0.readStrongBinder();
         if (readStrongBinder == null) {
             aVar = 0;
         } else {
@@ -24,7 +24,7 @@ public final class eg extends a9.a implements gg {
                 aVar = new a9.a(readStrongBinder, "com.google.mlkit.vision.segmentation.subject.aidls.ISubjectSegmenter", 11);
             }
         }
-        Q0.recycle();
+        P0.recycle();
         return aVar;
     }
 }

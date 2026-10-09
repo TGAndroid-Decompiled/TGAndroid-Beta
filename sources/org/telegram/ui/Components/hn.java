@@ -1,127 +1,315 @@
 package org.telegram.ui.Components;
 
+import android.animation.ValueAnimator;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Point;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.HashMap;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class hn implements vi {
-    public final org.telegram.ui.ActionBar.n2 f27265a;
-    public final Utilities.Callback f27266b;
-    public final fn f27267c;
+import org.telegram.messenger.R;
+public final class hn extends qi {
+    public static final HashMap U = new HashMap();
+    public float E;
+    public float F;
+    public float G;
+    public float H;
+    public float I;
+    public en J;
+    public boolean K;
+    public ValueAnimator L;
+    public float M;
+    public Drawable N;
+    public ViewPropertyAnimator O;
+    public ChatAttachAlertPhotoLayout P;
+    public boolean Q;
+    public int R;
+    public boolean S;
+    public boolean T;
+    public org.telegram.ui.ActionBar.e6 f27089n;
+    public ai.w0 f27090r;
+    public s4.d0 f27091s;
+    public gn v;
+    public UndoView f27092w;
+    public TextView f27093x;
+    public float f27094y;
 
-    public hn(Utilities.Callback callback, org.telegram.ui.ActionBar.n2 n2Var, fn fnVar) {
-        this.f27265a = n2Var;
-        this.f27266b = callback;
-        this.f27267c = fnVar;
+    @Override
+    public final void C(int r5, int r6) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.hn.C(int, int):void");
     }
 
     @Override
-    public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
-        fn fnVar = this.f27267c;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = fnVar.f32922j0;
-        Utilities.Callback callback = this.f27266b;
-        if (i10 == 15) {
-            org.telegram.ui.ActionBar.n2 n2Var = this.f27265a;
-            e5.g0(n2Var.getContext(), n2Var.getResourceProvider(), null, null, new gn(0, callback), null);
-        } else if (i10 == 7 || i10 == 8) {
-            HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
-            if (selectedPhotosOrder.size() > 0) {
-                Object obj = selectedPhotos.get(selectedPhotosOrder.get(0));
-                SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
-                String str = null;
-                if (obj instanceof MediaController.PhotoEntry) {
-                    MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;
-                    String str2 = photoEntry.imagePath;
-                    if (str2 != null) {
-                        sendingMediaInfo.path = str2;
-                    } else {
-                        sendingMediaInfo.path = photoEntry.path;
-                    }
-                    sendingMediaInfo.thumbPath = photoEntry.thumbPath;
-                    sendingMediaInfo.coverPath = photoEntry.coverPath;
-                    sendingMediaInfo.videoEditedInfo = photoEntry.editedInfo;
-                    sendingMediaInfo.isLivePhoto = photoEntry.isLivePhoto();
-                    sendingMediaInfo.livePhotoVideoOffset = photoEntry.livePhotoVideoOffset;
-                    sendingMediaInfo.discardLivePhoto = true;
-                    sendingMediaInfo.isVideo = photoEntry.isVideo;
-                    CharSequence charSequence = photoEntry.caption;
-                    if (charSequence != null) {
-                        str = charSequence.toString();
-                    }
-                    sendingMediaInfo.caption = str;
-                    sendingMediaInfo.entities = photoEntry.entities;
-                    sendingMediaInfo.masks = photoEntry.stickers;
-                    sendingMediaInfo.ttl = photoEntry.ttl;
-                    sendingMediaInfo.emojiMarkup = photoEntry.emojiMarkup;
-                    sendingMediaInfo.originalPhotoEntry = photoEntry;
-                } else if (obj instanceof MediaController.SearchImage) {
-                    MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
-                    String str3 = searchImage.imagePath;
-                    if (str3 != null) {
-                        sendingMediaInfo.path = str3;
-                    } else {
-                        sendingMediaInfo.searchImage = searchImage;
-                    }
-                    sendingMediaInfo.thumbPath = searchImage.thumbPath;
-                    sendingMediaInfo.coverPath = searchImage.coverPath;
-                    sendingMediaInfo.videoEditedInfo = searchImage.editedInfo;
-                    CharSequence charSequence2 = searchImage.caption;
-                    if (charSequence2 != null) {
-                        str = charSequence2.toString();
-                    }
-                    sendingMediaInfo.caption = str;
-                    sendingMediaInfo.entities = searchImage.entities;
-                    sendingMediaInfo.masks = searchImage.stickers;
-                    sendingMediaInfo.ttl = searchImage.ttl;
-                    TLRPC.BotInlineResult botInlineResult = searchImage.inlineResult;
-                    if (botInlineResult != null && searchImage.type == 1) {
-                        sendingMediaInfo.inlineResult = botInlineResult;
-                        sendingMediaInfo.params = searchImage.params;
-                    }
-                    searchImage.date = (int) (System.currentTimeMillis() / 1000);
+    public final void E(int i10) {
+        yi yiVar = this.f30173b;
+        if (i10 > 1) {
+            yiVar.f33221d1.K(0);
+        } else {
+            yiVar.f33221d1.r(0);
+        }
+    }
+
+    @Override
+    public final void G(qi qiVar) {
+        gn gnVar = this.v;
+        this.Q = true;
+        if (qiVar instanceof ChatAttachAlertPhotoLayout) {
+            this.P = (ChatAttachAlertPhotoLayout) qiVar;
+            gnVar.f26806c.clear();
+            ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.P;
+            gnVar.h = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
+            gnVar.d = chatAttachAlertPhotoLayout.getSelectedPhotos();
+            gnVar.c();
+            gnVar.requestLayout();
+            this.f27091s.h1(0, 0);
+            this.f27090r.post(new ea(24, this, qiVar));
+            postDelayed(new rg(this, 25), 250L);
+            gnVar.i(this.P, false);
+        } else {
+            J();
+        }
+        ViewPropertyAnimator viewPropertyAnimator = this.O;
+        if (viewPropertyAnimator != null) {
+            viewPropertyAnimator.cancel();
+        }
+        ViewPropertyAnimator interpolator = this.f27093x.animate().alpha(1.0f).setDuration(150L).setInterpolator(hs.f27118f);
+        this.O = interpolator;
+        interpolator.start();
+    }
+
+    @Override
+    public final void J() {
+        this.f27090r.x0(0);
+    }
+
+    public final void N() {
+        ArrayList arrayList = this.v.f26805b;
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            ArrayList arrayList2 = ((fn) obj).h;
+            int size2 = arrayList2.size();
+            int i11 = 0;
+            while (i11 < size2) {
+                Object obj2 = arrayList2.get(i11);
+                i11++;
+                en enVar = (en) obj2;
+                RectF d = enVar.d();
+                Bitmap createBitmap = Bitmap.createBitmap(Math.max(1, Math.round(d.width())), Math.max(1, Math.round(d.height())), Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(createBitmap);
+                canvas.save();
+                canvas.translate(-d.left, -d.top);
+                enVar.c(canvas, false);
+                canvas.restore();
+                Bitmap bitmap = enVar.v;
+                if (bitmap != null && !bitmap.isRecycled()) {
+                    enVar.v.recycle();
                 }
-                callback.run(new rh.d(sendingMediaInfo));
+                enVar.v = createBitmap;
+                enVar.f26132w = 0.0f;
+                enVar.O.f26431z.invalidate();
             }
         }
-        fnVar.dismiss(true);
     }
 
     @Override
-    public final boolean S1() {
-        return false;
+    public final void a(CharSequence charSequence) {
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.P;
+        if (chatAttachAlertPhotoLayout != null) {
+            chatAttachAlertPhotoLayout.a(charSequence);
+        }
     }
 
     @Override
-    public final boolean a0() {
-        return false;
+    public final void dispatchDraw(Canvas canvas) {
+        Drawable d;
+        int i10;
+        org.telegram.ui.xn xnVar = this.f30173b.f33263r;
+        boolean z10 = false;
+        if (xnVar != null && (d = xnVar.d()) != null) {
+            int currentItemTop = getCurrentItemTop();
+            if (AndroidUtilities.isTablet()) {
+                i10 = 16;
+            } else {
+                Point point = AndroidUtilities.displaySize;
+                if (point.x > point.y) {
+                    i10 = 6;
+                } else {
+                    i10 = 12;
+                }
+            }
+            if (currentItemTop < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) {
+                currentItemTop -= AndroidUtilities.dp((1.0f - (currentItemTop / org.telegram.ui.ActionBar.k.getCurrentActionBarHeight())) * i10);
+            }
+            int max = Math.max(0, currentItemTop);
+            canvas.save();
+            canvas.clipRect(0, max, getWidth(), getHeight());
+            d.setBounds(0, max, getWidth(), AndroidUtilities.displaySize.y + max);
+            d.draw(canvas);
+            z10 = true;
+        }
+        super.dispatchDraw(canvas);
+        if (z10) {
+            canvas.restore();
+        }
     }
 
     @Override
-    public final void x0(ih ihVar) {
-        NotificationCenter.getInstance(this.f27265a.getCurrentAccount()).doOnIdle(ihVar);
+    public int getCurrentItemTop() {
+        ai.w0 w0Var = this.f27090r;
+        if (w0Var.getChildCount() <= 0) {
+            w0Var.setTopGlowOffset(w0Var.getPaddingTop());
+            return Integer.MAX_VALUE;
+        }
+        View childAt = w0Var.getChildAt(0);
+        am0 am0Var = (am0) w0Var.G(childAt);
+        int top = childAt.getTop();
+        int dp = AndroidUtilities.dp(8.0f);
+        if (top < AndroidUtilities.dp(8.0f) || am0Var == null || am0Var.b() != 0) {
+            top = dp;
+        }
+        w0Var.setTopGlowOffset(top);
+        return top;
     }
 
     @Override
-    public final void K0() {
+    public int getFirstOffset() {
+        return AndroidUtilities.dp(56.0f) + getListTopPadding();
     }
 
     @Override
-    public final void U0(Object obj) {
+    public int getListTopPadding() {
+        return this.f27090r.getPaddingTop();
+    }
+
+    public float getPreviewScale() {
+        Point point = AndroidUtilities.displaySize;
+        if (point.y > point.x) {
+            return 0.8f;
+        }
+        return 0.45f;
     }
 
     @Override
-    public final void j1(TLRPC.User user) {
+    public int getSelectedItemsCount() {
+        an anVar;
+        ArrayList arrayList;
+        ArrayList arrayList2 = this.v.f26805b;
+        int size = arrayList2.size();
+        int i10 = 0;
+        for (int i11 = 0; i11 < size; i11++) {
+            fn fnVar = (fn) arrayList2.get(i11);
+            if (fnVar != null && (anVar = fnVar.f26417k) != null && (arrayList = anVar.f24717g) != null) {
+                i10 = arrayList.size() + i10;
+            }
+        }
+        return i10;
     }
 
     @Override
-    public final void u0() {
+    public final int i() {
+        return 1;
     }
 
     @Override
-    public final void W1(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j3, boolean z11, long j10) {
+    public final boolean j() {
+        this.f30173b.d2(false);
+        return true;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        boolean z11;
+        gn gnVar = this.v;
+        super.onLayout(z10, i10, i11, i12, i13);
+        Point point = AndroidUtilities.displaySize;
+        if (point.y > point.x) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        if (this.T != z11) {
+            this.T = z11;
+            int size = gnVar.f26805b.size();
+            for (int i14 = 0; i14 < size; i14++) {
+                fn fnVar = (fn) gnVar.f26805b.get(i14);
+                if (fnVar.f26417k.f24717g.size() == 1) {
+                    fn.a(fnVar, fnVar.f26417k, true);
+                }
+            }
+        }
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.S) {
+            return;
+        }
+        super.requestLayout();
+    }
+
+    @Override
+    public final void t() {
+        MediaController.PhotoEntry photoEntry;
+        this.J = null;
+        UndoView undoView = this.f27092w;
+        if (undoView != null) {
+            undoView.e(0, false);
+        }
+        ArrayList arrayList = this.v.f26805b;
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            ArrayList arrayList2 = ((fn) obj).h;
+            int size2 = arrayList2.size();
+            int i11 = 0;
+            while (i11 < size2) {
+                Object obj2 = arrayList2.get(i11);
+                i11++;
+                en enVar = (en) obj2;
+                if (enVar.f26116e && (photoEntry = enVar.f26114b) != null) {
+                    photoEntry.isChatPreviewSpoilerRevealed = false;
+                }
+            }
+        }
+    }
+
+    @Override
+    public final void u() {
+        yi yiVar;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout;
+        this.Q = false;
+        ViewPropertyAnimator viewPropertyAnimator = this.O;
+        if (viewPropertyAnimator != null) {
+            viewPropertyAnimator.cancel();
+        }
+        ViewPropertyAnimator interpolator = this.f27093x.animate().alpha(0.0f).setDuration(150L).setInterpolator(hs.f27121j);
+        this.O = interpolator;
+        interpolator.start();
+        if (getSelectedItemsCount() > 1 && (chatAttachAlertPhotoLayout = (yiVar = this.f30173b).f33240j0) != null) {
+            chatAttachAlertPhotoLayout.f24031c1.setIcon(R.drawable.msg_view_file);
+            yiVar.f33240j0.f24031c1.setText(LocaleController.getString(R.string.AttachMediaPreviewButton));
+            yiVar.f33240j0.f24031c1.setRightIcon(R.drawable.msg_arrowright);
+        }
+        this.v.i(this.P, true);
+    }
+
+    @Override
+    public final void w(int i10) {
+        try {
+            this.f30173b.f33240j0.w(i10);
+        } catch (Exception unused) {
+        }
     }
 }

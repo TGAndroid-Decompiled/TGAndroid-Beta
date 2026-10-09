@@ -1,19 +1,26 @@
 package xh;
 
-import org.telegram.ui.Components.wg;
-public final class i0 extends wg {
-    @Override
-    public final boolean d() {
-        return false;
+import android.app.Activity;
+import android.view.Menu;
+import org.telegram.ui.Components.ChatActivityEnterView;
+import org.telegram.ui.zn;
+public final class i0 extends ChatActivityEnterView {
+    public final l0 f51276o5;
+
+    public i0(l0 l0Var, Activity activity, h0 h0Var) {
+        super(activity, h0Var, null, false, null);
+        this.f51276o5 = l0Var;
     }
 
     @Override
-    public final boolean f() {
-        return true;
+    public final void f0(Menu menu) {
+        zn.n8(menu, null, false, false, false, false);
     }
 
     @Override
-    public final boolean j() {
-        return true;
+    public final void y0(float f7) {
+        l0 l0Var = this.f51276o5;
+        l0Var.f51333f.setInputBubbleHeight(f7);
+        l0Var.q();
     }
 }

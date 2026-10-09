@@ -1,121 +1,201 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
+import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class j80 extends yl0 {
-    public final Context f27735c;
-    public final k80 d;
+public final class j80 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f27632a;
+    public final Object f27633b;
 
-    public j80(k80 k80Var, Context context) {
-        this.d = k80Var;
-        this.f27735c = context;
+    public j80(Object obj, int i10) {
+        this.f27632a = i10;
+        this.f27633b = obj;
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        return this.d.h.size();
-    }
-
-    @Override
-    public final int j(int i10) {
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        int i11;
-        TLObject chat;
-        String str;
-        int i12;
-        View view = c1Var.f46538a;
-        k80 k80Var = this.d;
-        long peerId = MessageObject.getPeerId((TLRPC.Peer) k80Var.h.get(i10));
-        if (peerId > 0) {
-            i12 = ((org.telegram.ui.ActionBar.f3) k80Var).currentAccount;
-            chat = MessagesController.getInstance(i12).getUser(Long.valueOf(peerId));
-            str = LocaleController.getString(R.string.VoipGroupPersonalAccount);
-        } else {
-            i11 = ((org.telegram.ui.ActionBar.f3) k80Var).currentAccount;
-            chat = MessagesController.getInstance(i11).getChat(Long.valueOf(-peerId));
-            str = null;
-        }
-        boolean z10 = false;
-        if (k80Var.f28105s == 0) {
-            org.telegram.ui.Cells.g7 g7Var = (org.telegram.ui.Cells.g7) view;
-            if (peerId == MessageObject.getPeerId(k80Var.v)) {
-                z10 = true;
-            }
-            g7Var.c(peerId, z10, null);
-            return;
-        }
-        org.telegram.ui.Cells.g4 g4Var = (org.telegram.ui.Cells.g4) view;
-        if (i10 != h() - 1) {
-            z10 = true;
-        }
-        g4Var.e(chat, null, str, z10);
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        boolean z10;
-        View g4Var;
-        k80 k80Var = this.d;
-        if (k80Var.f28105s == 0) {
-            g4Var = new org.telegram.ui.Cells.g7(this.f27735c, 2, null);
-            g4Var.setLayoutParams(new s4.p0(AndroidUtilities.dp(80.0f), AndroidUtilities.dp(100.0f)));
-        } else {
-            if (k80Var.f28105s == 2) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            g4Var = new org.telegram.ui.Cells.g4(2, 0, this.f27735c, null, false, z10);
-        }
-        return new s4.c1(g4Var);
-    }
-
-    @Override
-    public final void y(s4.c1 c1Var) {
-        long j3;
-        c1Var.b();
-        long peerId = MessageObject.getPeerId(this.d.v);
-        View view = c1Var.f46538a;
-        boolean z10 = true;
-        if (view instanceof org.telegram.ui.Cells.g4) {
-            org.telegram.ui.Cells.g4 g4Var = (org.telegram.ui.Cells.g4) view;
-            Object object = g4Var.getObject();
-            if (object != null) {
-                if (object instanceof TLRPC.Chat) {
-                    j3 = -((TLRPC.Chat) object).f20047id;
-                } else {
-                    j3 = ((TLRPC.User) object).f20194id;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        float f7;
+        switch (this.f27632a) {
+            case 0:
+                p80 p80Var = (p80) this.f27633b;
+                p80Var.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                n80 n80Var = p80Var.f29793x;
+                if (n80Var != null) {
+                    n80Var.setProgress(floatValue);
+                    return;
                 }
-            } else {
-                j3 = 0;
-            }
-            if (peerId != j3) {
-                z10 = false;
-            }
-            g4Var.c(z10, false);
-            return;
+                return;
+            case 1:
+                ((n80) this.f27633b).setProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 2:
+                m90 m90Var = (m90) this.f27633b;
+                m90Var.getClass();
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                m90Var.f28786s = floatValue2;
+                m90Var.d(floatValue2);
+                return;
+            case 3:
+                te0 te0Var = ((oe0) this.f27633b).d;
+                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                te0Var.T = floatValue3;
+                te0Var.g(floatValue3);
+                return;
+            case 4:
+                ((gh0) this.f27633b).h.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 5:
+                ni0 ni0Var = (ni0) this.f27633b;
+                ni0Var.H.E = AndroidUtilities.lerp(ni0Var.J, 0.0f, valueAnimator.getAnimatedFraction());
+                return;
+            case 6:
+                uk0 uk0Var = (uk0) this.f27633b;
+                float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                uk0Var.f31524e.setAlpha(floatValue4);
+                uk0Var.h.setAlpha(1.0f - floatValue4);
+                return;
+            case 7:
+                kl0 kl0Var = (kl0) this.f27633b;
+                kl0Var.B0 = ((Float) kl0Var.f28108y0.getAnimatedValue()).floatValue();
+                ci.m6 m6Var = kl0Var.S;
+                if (m6Var != null) {
+                    m6Var.invalidate();
+                }
+                kl0Var.invalidate();
+                return;
+            case 8:
+                js jsVar = (js) this.f27633b;
+                jsVar.getClass();
+                float floatValue5 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                jsVar.setScaleX(floatValue5);
+                jsVar.setScaleY(floatValue5);
+                ((kl0) jsVar.f27775c).S.invalidate();
+                return;
+            case 9:
+                ((q0.a) this.f27633b).accept((Float) valueAnimator.getAnimatedValue());
+                return;
+            case 10:
+                il0 il0Var = (il0) this.f27633b;
+                float floatValue6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                il0Var.I = floatValue6;
+                hl0 hl0Var = il0Var.f27421b;
+                float f10 = 1.0f;
+                if (il0Var.f27428w) {
+                    f7 = 0.76f;
+                } else {
+                    f7 = 1.0f;
+                }
+                hl0Var.setScaleY(floatValue6 * f7);
+                float f11 = il0Var.I;
+                if (il0Var.f27428w) {
+                    f10 = 0.76f;
+                }
+                hl0Var.setScaleX(f11 * f10);
+                return;
+            case 11:
+                vm0 vm0Var = (vm0) this.f27633b;
+                vm0Var.getClass();
+                vm0Var.h = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                vm0Var.invalidateSelf();
+                return;
+            case 12:
+                gn0 gn0Var = (gn0) this.f27633b;
+                float floatValue7 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                gn0Var.f26821r = floatValue7;
+                gn0Var.f26825y.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, floatValue7));
+                gn0Var.f26825y.setScaleY(AndroidUtilities.lerp(0.8f, 1.0f, gn0Var.f26821r));
+                gn0Var.f26825y.setAlpha(gn0Var.f26821r);
+                gn0Var.f26822s.invalidate();
+                gn0Var.v.invalidate();
+                return;
+            case 13:
+                on0 on0Var = (on0) this.f27633b;
+                on0Var.getClass();
+                on0Var.v = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                on0Var.j();
+                return;
+            case 14:
+                ((on0) ((kn0) this.f27633b).f28114b).invalidate();
+                return;
+            case 15:
+                sn0 sn0Var = (sn0) this.f27633b;
+                sn0Var.getClass();
+                sn0Var.setScrollX((int) ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 16:
+                no0 no0Var = (no0) this.f27633b;
+                no0Var.getClass();
+                float floatValue8 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                no0Var.F = floatValue8;
+                no0Var.setShown(floatValue8);
+                no0Var.b(false);
+                return;
+            case 17:
+                bq0 bq0Var = (bq0) this.f27633b;
+                bq0Var.getClass();
+                bq0Var.f25091n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                bq0Var.invalidate();
+                return;
+            case 18:
+                qq0 qq0Var = (qq0) this.f27633b;
+                mr0 mr0Var = qq0Var.f30250b;
+                mr0Var.f28919u0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                mr0Var.f28896c.invalidate();
+                qq0Var.invalidate();
+                return;
+            case 19:
+                ((ru) this.f27633b).setOffsetY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 20:
+                bw0 bw0Var = (bw0) this.f27633b;
+                bw0Var.M0(bw0Var.getTabProgress());
+                return;
+            case 21:
+                ((uu0) this.f27633b).h.invalidate();
+                return;
+            case 22:
+                iw0 iw0Var = (iw0) this.f27633b;
+                iw0Var.getClass();
+                iw0Var.d = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                iw0Var.invalidate();
+                return;
+            case 23:
+                sw0 sw0Var = (sw0) ((androidx.activity.g) this.f27633b).f2128c;
+                sw0Var.f30926f0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                sw0Var.N();
+                return;
+            case 24:
+                yx0.x1((yx0) this.f27633b, valueAnimator);
+                return;
+            case 25:
+                ay0 ay0Var = (ay0) this.f27633b;
+                ay0Var.I = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ay0Var.a();
+                return;
+            case 26:
+                ez0 ez0Var = (ez0) this.f27633b;
+                ez0Var.getClass();
+                ez0Var.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ez0Var.invalidate();
+                return;
+            case 27:
+                hz0 hz0Var = (hz0) this.f27633b;
+                hz0Var.getClass();
+                hz0Var.f27165i = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                hz0Var.f27159a.invalidate();
+                return;
+            case 28:
+                z21 z21Var = (z21) this.f27633b;
+                z21Var.getClass();
+                z21Var.M = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                z21Var.invalidate();
+                return;
+            default:
+                c41 c41Var = (c41) this.f27633b;
+                c41Var.getClass();
+                c41Var.R = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                c41Var.o();
+                return;
         }
-        org.telegram.ui.Cells.g7 g7Var = (org.telegram.ui.Cells.g7) view;
-        if (peerId != g7Var.getCurrentDialog()) {
-            z10 = false;
-        }
-        g7Var.b(z10, false);
     }
 }

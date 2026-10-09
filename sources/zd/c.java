@@ -1,46 +1,45 @@
 package zd;
 
-import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
-import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
-public final class c extends k1 {
-    public static final AtomicReferenceFieldUpdater f53223n = AtomicReferenceFieldUpdater.newUpdater(c.class, Object.class, "_disposer$volatile");
-    private volatile Object _disposer$volatile;
-    public final m f53224e;
-    public o0 f53225f;
-    public final e h;
+import java.util.concurrent.TimeUnit;
+import w7.v;
+public final class c {
+    public static final c f54361b;
+    public static final c f54362c;
+    public static final c d;
+    public static final c f54363e;
+    public static final c f54364f;
+    public static final c h;
+    public static final c[] f54365n;
+    public final TimeUnit f54366a;
 
-    public c(e eVar, m mVar) {
-        this.h = eVar;
-        this.f53224e = mVar;
+    static {
+        c cVar = new c("NANOSECONDS", 0, TimeUnit.NANOSECONDS);
+        f54361b = cVar;
+        c cVar2 = new c("MICROSECONDS", 1, TimeUnit.MICROSECONDS);
+        c cVar3 = new c("MILLISECONDS", 2, TimeUnit.MILLISECONDS);
+        f54362c = cVar3;
+        c cVar4 = new c("SECONDS", 3, TimeUnit.SECONDS);
+        d = cVar4;
+        c cVar5 = new c("MINUTES", 4, TimeUnit.MINUTES);
+        f54363e = cVar5;
+        c cVar6 = new c("HOURS", 5, TimeUnit.HOURS);
+        f54364f = cVar6;
+        c cVar7 = new c("DAYS", 6, TimeUnit.DAYS);
+        h = cVar7;
+        c[] cVarArr = {cVar, cVar2, cVar3, cVar4, cVar5, cVar6, cVar7};
+        f54365n = cVarArr;
+        v.a(cVarArr);
     }
 
-    @Override
-    public final void a(Throwable th2) {
-        m mVar = this.f53224e;
-        if (th2 != null) {
-            mVar.getClass();
-            com.google.android.gms.internal.clearcut.e F = mVar.F(null, new v(th2, false));
-            if (F != null) {
-                mVar.e(F);
-                d dVar = (d) f53223n.get(this);
-                if (dVar != null) {
-                    dVar.b();
-                    return;
-                }
-                return;
-            }
-            return;
-        }
-        AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = e.f53232b;
-        e eVar = this.h;
-        if (atomicIntegerFieldUpdater.decrementAndGet(eVar) == 0) {
-            h0[] h0VarArr = eVar.f53233a;
-            ArrayList arrayList = new ArrayList(h0VarArr.length);
-            for (h0 h0Var : h0VarArr) {
-                arrayList.add(h0Var.getCompleted());
-            }
-            mVar.resumeWith(arrayList);
-        }
+    public c(String str, int i10, TimeUnit timeUnit) {
+        this.f54366a = timeUnit;
+    }
+
+    public static c valueOf(String str) {
+        return (c) Enum.valueOf(c.class, str);
+    }
+
+    public static c[] values() {
+        return (c[]) f54365n.clone();
     }
 }

@@ -1,226 +1,80 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-public final class kw0 implements org.telegram.ui.Components.pg {
-    public final PopupNotificationActivity f38195a;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import org.telegram.messenger.AndroidUtilities;
+public final class kw0 extends org.telegram.ui.Cells.u1 {
+    public final Path Ge;
+    public final Paint He;
+    public final byte[] Ie;
+    public final int Je;
+    public final int Ke;
+    public final mw0 Le;
 
-    public kw0(PopupNotificationActivity popupNotificationActivity) {
-        this.f38195a = popupNotificationActivity;
+    public kw0(mw0 mw0Var, Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var, byte[] bArr, int i11, int i12) {
+        super(context, i10, false, null, e6Var);
+        this.Le = mw0Var;
+        this.Ie = bArr;
+        this.Je = i11;
+        this.Ke = i12;
+        this.Ge = new Path();
+        this.He = new Paint(1);
     }
 
     @Override
-    public final boolean C0() {
-        return true;
+    public final void Y1(Canvas canvas) {
+        this.f23226i6 = 0;
+        this.f23240j6 = this.Y5.size() - 1;
+        this.f23255k6 = (-AndroidUtilities.dp(7.0f)) * this.Le.f40018y;
+        super.Y1(canvas);
     }
 
     @Override
-    public final void E1() {
-        PopupNotificationActivity popupNotificationActivity = this.f38195a;
-        MessageObject messageObject = popupNotificationActivity.Q;
-        if (messageObject != null) {
-            MessagesController.getInstance(messageObject.currentAccount).sendTyping(popupNotificationActivity.Q.getDialogId(), 0L, 0, popupNotificationActivity.K);
+    public final void onDraw(Canvas canvas) {
+        float f7;
+        canvas.save();
+        int I2 = I2(this.Ie);
+        float H2 = H2(I2);
+        float G2 = G2(I2);
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(getPollButtonsLeft(), H2, getPollButtonsRight(), G2);
+        float f10 = rectF.top;
+        float dp = AndroidUtilities.dp(3.0f);
+        mw0 mw0Var = this.Le;
+        if (mw0Var.V) {
+            f7 = -AndroidUtilities.dp(3.0f);
+        } else {
+            f7 = 0.0f;
         }
-    }
-
-    @Override
-    public final void H(CharSequence charSequence, boolean z10, int i10, int i11, long j3) {
-        PopupNotificationActivity popupNotificationActivity = this.f38195a;
-        if (popupNotificationActivity.Q == null) {
-            return;
+        rectF.top = AndroidUtilities.lerp(dp, f7, mw0Var.f40018y) + f10;
+        float f11 = rectF.bottom;
+        boolean z10 = mw0Var.V;
+        float dp2 = AndroidUtilities.dp(3.0f);
+        if (!z10) {
+            dp2 = AndroidUtilities.lerp(dp2, 0.0f, mw0Var.f40018y);
         }
-        int i12 = popupNotificationActivity.S;
-        if (i12 >= 0 && i12 < popupNotificationActivity.f34124a0.size()) {
-            popupNotificationActivity.f34124a0.remove(popupNotificationActivity.S);
-        }
-        MessagesController.getInstance(popupNotificationActivity.Q.currentAccount).markDialogAsRead(popupNotificationActivity.Q.getDialogId(), popupNotificationActivity.Q.getId(), Math.max(0, popupNotificationActivity.Q.getId()), popupNotificationActivity.Q.messageOwner.date, true, 0L, 0, true, 0);
-        popupNotificationActivity.Q = null;
-        popupNotificationActivity.f();
+        rectF.bottom = f11 + dp2;
+        Path path = this.Ge;
+        path.rewind();
+        path.addRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), Path.Direction.CW);
+        Paint paint = this.He;
+        paint.setColor(0);
+        paint.setShadowLayer(AndroidUtilities.dp(2.0f), 0.0f, AndroidUtilities.dp(0.66f), org.telegram.ui.ActionBar.i6.m1(mw0Var.f40018y * 0.2f, -16777216));
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
+        canvas.clipPath(path);
+        S1(canvas);
+        canvas.restore();
     }
 
     @Override
-    public final TLRPC.TL_channels_sendAsPeers I() {
-        return null;
+    public final void onMeasure(int i10, int i11) {
+        setMeasuredDimension(this.Je, this.Ke);
     }
 
     @Override
-    public final int b1() {
-        return 0;
-    }
-
-    @Override
-    public final TL_stories.StoryItem d1() {
-        return null;
-    }
-
-    @Override
-    public final boolean f1(long j3) {
-        return false;
-    }
-
-    @Override
-    public final boolean i1() {
-        return false;
-    }
-
-    @Override
-    public final boolean m() {
-        return false;
-    }
-
-    @Override
-    public final boolean o1() {
-        return false;
-    }
-
-    @Override
-    public final on p0() {
-        return null;
-    }
-
-    @Override
-    public final int q() {
-        return 0;
-    }
-
-    @Override
-    public final TLRPC.Peer v() {
-        return null;
-    }
-
-    @Override
-    public final boolean w1() {
-        return false;
-    }
-
-    @Override
-    public final void A2() {
-    }
-
-    @Override
-    public final void B(boolean z10) {
-    }
-
-    @Override
-    public final void D() {
-    }
-
-    @Override
-    public final void G0() {
-    }
-
-    @Override
-    public final void J0() {
-    }
-
-    @Override
-    public final void T0() {
-    }
-
-    @Override
-    public final void V() {
-    }
-
-    @Override
-    public final void X(boolean z10) {
-    }
-
-    @Override
-    public final void a1(int i10) {
-    }
-
-    @Override
-    public final void d2() {
-    }
-
-    @Override
-    public final void f() {
-    }
-
-    @Override
-    public final void f2(int i10) {
-    }
-
-    @Override
-    public final void i() {
-    }
-
-    @Override
-    public final void i2() {
-    }
-
-    @Override
-    public final void j2(boolean z10) {
-    }
-
-    @Override
-    public final void m0() {
-    }
-
-    @Override
-    public final void n1() {
-    }
-
-    @Override
-    public final void o2() {
-    }
-
-    @Override
-    public final void q1() {
-    }
-
-    @Override
-    public final void r1() {
-    }
-
-    @Override
-    public final void s0() {
-    }
-
-    @Override
-    public final void s1() {
-    }
-
-    @Override
-    public final void v1(CharSequence charSequence) {
-    }
-
-    @Override
-    public final void w2() {
-    }
-
-    @Override
-    public final void x() {
-    }
-
-    @Override
-    public final void y(float f7) {
-    }
-
-    @Override
-    public final void z1() {
-    }
-
-    @Override
-    public final void E0(int i10, int i11) {
-    }
-
-    @Override
-    public final void K(float f7, int i10) {
-    }
-
-    @Override
-    public final void l1(CharSequence charSequence, boolean z10, boolean z11) {
-    }
-
-    @Override
-    public final void t1(View view, CharSequence charSequence, boolean z10) {
-    }
-
-    @Override
-    public final void k2(int i10, int i11, int i12, long j3, long j10, boolean z10) {
+    public final void setPressed(boolean z10) {
     }
 }

@@ -1,46 +1,36 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class vy {
-    public final ArrayList f32436a = new ArrayList();
-    public final nz f32437b;
+public final class vy implements View.OnClickListener {
+    public final boolean[] f32474a;
+    public final org.telegram.ui.ActionBar.a3 f32475b;
+    public final wy f32476c;
 
-    public vy(nz nzVar) {
-        this.f32437b = nzVar;
+    public vy(wy wyVar, boolean[] zArr, org.telegram.ui.ActionBar.a3 a3Var) {
+        this.f32476c = wyVar;
+        this.f32474a = zArr;
+        this.f32475b = a3Var;
     }
 
-    public final void a(String str, boolean z10) {
-        nz nzVar = this.f32437b;
-        int i10 = nzVar.f29194c1;
-        String q6 = a4.a.q("gif_search_", str, "_");
-        if (!z10 || !nzVar.f29222l0.containsKey(q6)) {
-            ci.t1 t1Var = new ci.t1(this, str, z10, q6);
-            ArrayList arrayList = this.f32436a;
-            if (z10) {
-                arrayList.add(q6);
-                MessagesStorage.getInstance(i10).getBotCache(q6, t1Var);
-                return;
-            }
-            MessagesController messagesController = MessagesController.getInstance(i10);
-            TLObject userOrChat = messagesController.getUserOrChat(messagesController.gifSearchBot);
-            if (!(userOrChat instanceof TLRPC.User)) {
-                return;
-            }
-            arrayList.add(q6);
-            TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
-            if (str == null) {
-                str = "";
-            }
-            tL_messages_getInlineBotResults.query = str;
-            tL_messages_getInlineBotResults.bot = messagesController.getInputUser((TLRPC.User) userOrChat);
-            tL_messages_getInlineBotResults.offset = "";
-            tL_messages_getInlineBotResults.peer = new TLRPC.TL_inputPeerEmpty();
-            ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getInlineBotResults, t1Var, 2);
+    @Override
+    public final void onClick(View view) {
+        zy zyVar = this.f32476c.f32694a;
+        boolean[] zArr = this.f32474a;
+        if (zArr[0]) {
+            return;
         }
+        zArr[0] = true;
+        org.telegram.ui.ActionBar.b2[] b2VarArr = {new org.telegram.ui.ActionBar.b2(zyVar.F.getContext(), 3, null)};
+        TLRPC.TL_messages_getEmojiURL tL_messages_getEmojiURL = new TLRPC.TL_messages_getEmojiURL();
+        a00 a00Var = zyVar.F;
+        String str = zyVar.f33680w;
+        if (str == null) {
+            str = a00Var.W0[0];
+        }
+        tL_messages_getEmojiURL.lang_code = str;
+        AndroidUtilities.runOnUIThread(new zk(this, b2VarArr, ConnectionsManager.getInstance(a00Var.f24401c1).sendRequest(tL_messages_getEmojiURL, new ai.t5(this, b2VarArr, this.f32475b, 8)), 3), 1000L);
     }
 }

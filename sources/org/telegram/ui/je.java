@@ -1,22 +1,88 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.tl.TL_stars;
-public final class je {
-    public String f37670b;
-    public CharSequence f37671c;
-    public long d;
-    public long f37672e;
-    public String f37673f;
-    public boolean f37674g;
-    public String h;
-    public long f37676j;
-    public boolean f37669a = true;
-    public TL_stars.StarsAmount f37675i = TL_stars.StarsAmount.ofStars(0);
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+public final class je extends FrameLayout {
+    public final org.telegram.ui.ActionBar.e6 f38917a;
+    public final org.telegram.ui.Components.a6 f38918b;
+    public final TextView f38919c;
+    public final TextView d;
+    public final DecimalFormat f38920e;
+    public boolean f38921f;
 
-    public static je a(String str, String str2) {
-        je jeVar = new je();
-        jeVar.f37670b = str;
-        jeVar.f37671c = str2;
-        return jeVar;
+    public je(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context);
+        this.f38917a = e6Var;
+        LinearLayout e7 = org.telegram.messenger.bi.e(context, 1);
+        addView(e7, w7.x5.a(-2.0f, 17.0f, 9.0f, 130.0f, 9.0f, -1, 119));
+        TextView textView = new TextView(context);
+        this.f38919c = textView;
+        textView.setTextSize(1, 16.0f);
+        textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.G6, e6Var));
+        TextView h = com.google.android.gms.internal.vision.e2.h(e7, textView, w7.x5.n(-1, -2), context);
+        this.d = h;
+        h.setTextSize(1, 13.0f);
+        h.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21181y6, e6Var));
+        e7.addView(h, w7.x5.k(0.0f, 4.0f, 0.0f, 0.0f, -1, -2));
+        org.telegram.ui.Components.a6 a6Var = new org.telegram.ui.Components.a6(context);
+        this.f38918b = a6Var;
+        a6Var.setTypeface(AndroidUtilities.bold());
+        a6Var.setTextSize(1, 13.0f);
+        addView(a6Var, w7.x5.a(-2.0f, 0.0f, 0.0f, 18.0f, 0.0f, -2, 21));
+        DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(Locale.US);
+        decimalFormatSymbols.setDecimalSeparator('.');
+        DecimalFormat decimalFormat = new DecimalFormat("#.##", decimalFormatSymbols);
+        this.f38920e = decimalFormat;
+        decimalFormat.setMinimumFractionDigits(2);
+        decimalFormat.setMaximumFractionDigits(12);
+        decimalFormat.setGroupingUsed(false);
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        Paint paint;
+        float dp;
+        int i10;
+        super.onDraw(canvas);
+        if (this.f38921f) {
+            org.telegram.ui.ActionBar.e6 e6Var = this.f38917a;
+            if (e6Var != null) {
+                paint = e6Var.F("paintDivider");
+            } else {
+                paint = org.telegram.ui.ActionBar.i6.f20919k0;
+            }
+            Paint paint2 = paint;
+            if (paint2 != null) {
+                if (LocaleController.isRTL) {
+                    dp = 0.0f;
+                } else {
+                    dp = AndroidUtilities.dp(17.0f);
+                }
+                float f7 = dp;
+                float measuredHeight = getMeasuredHeight() - 1;
+                int measuredWidth = getMeasuredWidth();
+                if (LocaleController.isRTL) {
+                    i10 = AndroidUtilities.dp(17.0f);
+                } else {
+                    i10 = 0;
+                }
+                canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, paint2);
+            }
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
     }
 }

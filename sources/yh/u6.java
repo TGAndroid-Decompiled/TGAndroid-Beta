@@ -1,47 +1,36 @@
 package yh;
 
-import android.widget.LinearLayout;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.w9;
-import org.telegram.ui.ou0;
-import org.telegram.ui.yu0;
-public final class u6 extends ou0 {
-    public final w9 f52108a;
-    public final LinearLayout f52109b;
-    public final long f52110c;
+import org.telegram.ui.Components.ck0;
+public final class u6 implements ImageReceiver.ImageReceiverDelegate {
+    public final boolean[] f53291a;
 
-    public u6(w9 w9Var, LinearLayout linearLayout, long j3) {
-        this.f52108a = w9Var;
-        this.f52109b = linearLayout;
-        this.f52110c = j3;
+    public u6(boolean[] zArr) {
+        this.f53291a = zArr;
     }
 
     @Override
-    public final yu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        w9 w9Var = this.f52108a;
-        ImageReceiver imageReceiver = w9Var.getImageReceiver();
-        int[] iArr = new int[2];
-        w9Var.getLocationInWindow(iArr);
-        yu0 yu0Var = new yu0();
-        yu0Var.f43621b = iArr[0];
-        yu0Var.f43622c = iArr[1];
-        yu0Var.d = this.f52109b;
-        yu0Var.f43630m = null;
-        yu0Var.f43620a = imageReceiver;
-        if (z10) {
-            yu0Var.f43623e = imageReceiver.getBitmapSafe();
+    public final void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
+        ck0 lottieAnimation;
+        if (z10 && (lottieAnimation = imageReceiver.getLottieAnimation()) != null) {
+            boolean[] zArr = this.f53291a;
+            if (!zArr[0]) {
+                lottieAnimation.N(0, false, false);
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Cells.r0(lottieAnimation, 0));
+                zArr[0] = true;
+            }
         }
-        yu0Var.h = imageReceiver.getRoundRadius(true);
-        yu0Var.f43624f = this.f52110c;
-        yu0Var.f43627j = 0;
-        yu0Var.f43626i = 0;
-        return yu0Var;
     }
 
     @Override
-    public final boolean K() {
-        return true;
+    public final void didSetImageBitmap(int i10, String str, Drawable drawable) {
+        org.telegram.messenger.i5.a(this, i10, str, drawable);
+    }
+
+    @Override
+    public final void onAnimationReady(ImageReceiver imageReceiver) {
+        org.telegram.messenger.i5.b(this, imageReceiver);
     }
 }

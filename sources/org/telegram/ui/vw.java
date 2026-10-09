@@ -1,102 +1,76 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-public final class vw extends s4.c0 {
-    public boolean I;
-    public boolean J;
-    public ValueAnimator K;
-    public final ty L;
-    public final uy M;
+public final class vw implements Runnable {
+    public final int f42989a;
+    public final sy f42990b;
 
-    public vw(uy uyVar, ty tyVar) {
-        this.M = uyVar;
-        this.L = tyVar;
+    public vw(sy syVar, int i10) {
+        this.f42989a = i10;
+        this.f42990b = syVar;
     }
 
     @Override
-    public final int R0() {
-        ty tyVar = this.L;
-        if (tyVar.f41053s == 0 && this.M.i4() && tyVar.v == 2) {
-            return 1;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void b0(of.e eVar, s4.z0 z0Var) {
-        if (BuildVars.DEBUG_PRIVATE_VERSION) {
-            try {
-                super.b0(eVar, z0Var);
+    public final void run() {
+        boolean z10;
+        switch (this.f42989a) {
+            case 0:
+                this.f42990b.d.l();
                 return;
-            } catch (IndexOutOfBoundsException unused) {
-                StringBuilder sb2 = new StringBuilder("Inconsistency detected. dialogsListIsFrozen=");
-                uy uyVar = this.M;
-                sb2.append(uyVar.S1);
-                sb2.append(" lastUpdateAction=");
-                sb2.append(uyVar.y3);
-                throw new RuntimeException(sb2.toString());
-            }
+            case 1:
+                sy syVar = this.f42990b;
+                ty tyVar = syVar.K;
+                py pyVar = syVar.f41788a;
+                if (pyVar != null && pyVar.getScrollState() == 0 && syVar.f41788a.getChildCount() > 0 && syVar.f41788a.getLayoutManager() != null) {
+                    int i10 = 1;
+                    if (syVar.f41795s == 0 && tyVar.W3() && syVar.v == 2) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    float f7 = tyVar.N;
+                    s4.d0 d0Var = (s4.d0) syVar.f41788a.getLayoutManager();
+                    View view = null;
+                    int i11 = Integer.MAX_VALUE;
+                    int i12 = -1;
+                    for (int i13 = 0; i13 < syVar.f41788a.getChildCount(); i13++) {
+                        int R = RecyclerView.R(syVar.f41788a.getChildAt(i13));
+                        View childAt = syVar.f41788a.getChildAt(i13);
+                        if (R != -1 && childAt != null && childAt.getTop() < i11) {
+                            i11 = childAt.getTop();
+                            i12 = R;
+                            view = childAt;
+                        }
+                    }
+                    if (view != null) {
+                        float top = view.getTop() - syVar.f41788a.getPaddingTop();
+                        if (tyVar.K) {
+                            f7 = 0.0f;
+                        }
+                        if (syVar.f41788a.getScrollState() != 1) {
+                            if (z10 && i12 == 0 && ((syVar.f41788a.getPaddingTop() - view.getTop()) - view.getMeasuredHeight()) + f7 < 0.0f) {
+                                top = f7;
+                            } else {
+                                i10 = i12;
+                            }
+                            d0Var.h1(i10, (int) top);
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                sy syVar2 = this.f42990b;
+                syVar2.d.W(syVar2.I);
+                syVar2.K.Q = true;
+                py pyVar2 = syVar2.f41788a;
+                pyVar2.f40912b3 = true;
+                syVar2.H = false;
+                pyVar2.invalidate();
+                return;
         }
-        try {
-            super.b0(eVar, z0Var);
-        } catch (IndexOutOfBoundsException e7) {
-            FileLog.e(e7);
-            AndroidUtilities.runOnUIThread(new uw(this.L, 0));
-        }
-    }
-
-    @Override
-    public final void b1(View view, View view2, int i10, int i11) {
-        this.I = true;
-        super.b1(view, view2, i10, i11);
-        this.I = false;
-    }
-
-    @Override
-    public final void f0() {
-        ValueAnimator valueAnimator = this.K;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllListeners();
-            this.K.cancel();
-        }
-        ty tyVar = this.L;
-        if (tyVar.f41046a.getScrollState() != 1) {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.M.T, 0.0f);
-            this.K = ofFloat;
-            ofFloat.addUpdateListener(new ai.x(21, this, tyVar));
-            this.K.addListener(new org.telegram.ui.Components.b91(this, 17));
-            this.K.setDuration(200L);
-            this.K.setInterpolator(org.telegram.ui.Components.tr.f31215f);
-            this.K.start();
-        }
-    }
-
-    @Override
-    public final void h1(int i10, int i11) {
-        if (this.I) {
-            i11 -= this.L.f41046a.getPaddingTop();
-        }
-        super.h1(i10, i11);
-    }
-
-    @Override
-    public final int o0(int r23, of.e r24, s4.z0 r25) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.vw.o0(int, of.e, s4.z0):int");
-    }
-
-    @Override
-    public final void v0(RecyclerView recyclerView, s4.z0 z0Var, int i10) {
-        if (this.M.i4() && i10 == 1) {
-            super.v0(recyclerView, z0Var, i10);
-            return;
-        }
-        ji.o oVar = new ji.o(recyclerView.getContext(), 0);
-        oVar.f46706a = i10;
-        w0(oVar);
     }
 }

@@ -104,8 +104,7 @@ public class Camera1Session implements CameraSession {
             try {
                 Camera open = Camera.open(cameraIndex);
                 if (open == null) {
-                    CameraSession.FailureType failureType = CameraSession.FailureType.ERROR;
-                    createSessionCallback.onFailure(failureType, "Camera.open returned null for camera id = " + cameraIndex);
+                    createSessionCallback.onFailure(CameraSession.FailureType.ERROR, "Camera.open returned null for camera id = " + cameraIndex);
                     return;
                 }
                 try {

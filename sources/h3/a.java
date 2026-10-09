@@ -7,15 +7,15 @@ import c3.i;
 import c3.p;
 import c3.s;
 public final class a {
-    public final e f10998a;
-    public final i f10999b;
-    public f f11000c;
+    public final e f11002a;
+    public final i f11003b;
+    public f f11004c;
     public final int d;
 
     public a(g gVar, i iVar, long j3, long j10, long j11, long j12, long j13, int i10) {
-        this.f10999b = iVar;
+        this.f11003b = iVar;
         this.d = i10;
-        this.f10998a = new e(gVar, j3, j10, j11, j12, j13);
+        this.f11002a = new e(gVar, j3, j10, j11, j12, j13);
     }
 
     public static int a(int i10, byte[] bArr) {
@@ -26,20 +26,20 @@ public final class a {
         if (j3 == pVar.getPosition()) {
             return 0;
         }
-        sVar.f4101a = j3;
+        sVar.f4150a = j3;
         return 1;
     }
 
-    public final int b(c3.p r27, c3.s r28) {
+    public final int b(c3.p r28, c3.s r29) {
         throw new UnsupportedOperationException("Method not decompiled: h3.a.b(c3.p, c3.s):int");
     }
 
     public final void d(long j3) {
-        f fVar = this.f11000c;
-        if (fVar != null && fVar.f4058a == j3) {
+        f fVar = this.f11004c;
+        if (fVar != null && fVar.f4107a == j3) {
             return;
         }
-        e eVar = this.f10998a;
-        this.f11000c = new f(j3, eVar.f4053a.m(j3), eVar.f4055c, eVar.d, eVar.f4056e, eVar.f4057f);
+        e eVar = this.f11002a;
+        this.f11004c = new f(j3, eVar.f4102a.c(j3), eVar.f4104c, eVar.d, eVar.f4105e, eVar.f4106f);
     }
 }

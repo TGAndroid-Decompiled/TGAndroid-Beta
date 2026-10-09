@@ -1,57 +1,56 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Point;
-import android.view.ViewGroup;
-import java.util.ArrayList;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.EditText;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-public final class ji0 extends s4.h0 {
-    public final Context f37715c;
-    public final org.telegram.ui.ActionBar.d6 d;
-    public final zi0 f37716e;
+import org.telegram.messenger.FileLog;
+public final class ji0 implements Runnable {
+    public final int f38944a;
+    public final dj0 f38945b;
+    public final EditText f38946c;
 
-    public ji0(zi0 zi0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.f37716e = zi0Var;
-        this.f37715c = context;
-        this.d = d6Var;
+    public ji0(dj0 dj0Var, EditText editText, int i10) {
+        this.f38944a = i10;
+        this.f38945b = dj0Var;
+        this.f38946c = editText;
     }
 
     @Override
-    public final int h() {
-        return this.f37716e.N.size();
-    }
-
-    @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        zi0 zi0Var = this.f37716e;
-        ArrayList arrayList = zi0Var.N;
-        boolean z10 = true;
-        MessageObject messageObject = (MessageObject) arrayList.get((h() - 1) - i10);
-        org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) c1Var.f46538a;
-        MessageObject.GroupedMessages l4 = zi0Var.l(messageObject);
-        int i11 = 0;
-        if (l4 == null) {
-            z10 = false;
+    public final void run() {
+        switch (this.f38944a) {
+            case 0:
+                dj0 dj0Var = this.f38945b;
+                if (!dj0Var.f37008p0) {
+                    try {
+                        Window window = dj0Var.getWindow();
+                        WindowManager.LayoutParams attributes = window.getAttributes();
+                        attributes.flags &= -131073;
+                        window.setAttributes(attributes);
+                        dj0Var.f37008p0 = true;
+                    } catch (Exception e7) {
+                        FileLog.e(e7);
+                    }
+                }
+                AndroidUtilities.runOnUIThread(new ji0(dj0Var, this.f38946c, 1), 100L);
+                return;
+            default:
+                dj0 dj0Var2 = this.f38945b;
+                int[] iArr = dj0Var2.f37007o0;
+                AndroidUtilities.showKeyboard(this.f38946c);
+                org.telegram.ui.Components.xg xgVar = dj0Var2.W;
+                if (xgVar != null) {
+                    xgVar.getLocationOnScreen(iArr);
+                    int i10 = iArr[0];
+                    int width = dj0Var2.W.getWidth();
+                    org.telegram.ui.Components.xg xgVar2 = dj0Var2.W;
+                    xgVar2.getHeight();
+                    iArr[0] = org.telegram.messenger.bi.D(6.0f, width - xgVar2.m(), i10);
+                    dj0Var2.X.setScaleX(dj0Var2.W.getScaleX());
+                    dj0Var2.X.setScaleY(dj0Var2.W.getScaleY());
+                    return;
+                }
+                return;
         }
-        u1Var.setInvalidatesParent(z10);
-        u1Var.X3(messageObject, l4, false, false, false, false);
-        if (!zi0Var.P.i() && arrayList.size() >= 10) {
-            i11 = arrayList.size() % 10;
-        }
-        if (i10 == i11 && !messageObject.needDrawForwarded()) {
-            zi0Var.Q = u1Var;
-            Point point = AndroidUtilities.displaySize;
-            u1Var.Z3(point.x, point.y);
-            zi0Var.R = messageObject.getId();
-        }
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        zi0 zi0Var = this.f37716e;
-        yi0 yi0Var = new yi0(zi0Var, this.f37715c, zi0Var.f43806c, this.d);
-        yi0Var.setDelegate(new na.d(17));
-        return new s4.c1(yi0Var);
     }
 }

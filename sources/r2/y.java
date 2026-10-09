@@ -7,113 +7,113 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Surface;
 import java.nio.ByteBuffer;
-public final class y implements l {
-    public final MediaCodec f45792a;
-    public final j f45793b;
+public final class y implements m {
+    public final MediaCodec f46940a;
+    public final k f46941b;
 
-    public y(MediaCodec mediaCodec, j jVar) {
-        this.f45792a = mediaCodec;
-        this.f45793b = jVar;
-        if (Build.VERSION.SDK_INT >= 35 && jVar != null) {
-            jVar.a(mediaCodec);
+    public y(MediaCodec mediaCodec, k kVar) {
+        this.f46940a = mediaCodec;
+        this.f46941b = kVar;
+        if (Build.VERSION.SDK_INT >= 35 && kVar != null) {
+            kVar.a(mediaCodec);
         }
     }
 
     @Override
     public final void a(long j3, int i10, int i11, int i12) {
-        this.f45792a.queueInputBuffer(i10, 0, i11, j3, i12);
+        this.f46940a.queueInputBuffer(i10, 0, i11, j3, i12);
     }
 
     @Override
     public final void b(int i10, h2.d dVar, long j3, int i11) {
-        this.f45792a.queueSecureInputBuffer(i10, 0, dVar.f10976i, j3, i11);
+        this.f46940a.queueSecureInputBuffer(i10, 0, dVar.f10981i, j3, i11);
     }
 
     @Override
     public final void c(int i10) {
-        this.f45792a.releaseOutputBuffer(i10, false);
+        this.f46940a.releaseOutputBuffer(i10, false);
     }
 
     @Override
     public final void d(a3.m mVar, Handler handler) {
-        this.f45792a.setOnFrameRenderedListener(new a(this, mVar, 1), handler);
+        this.f46940a.setOnFrameRenderedListener(new a(this, mVar, 1), handler);
     }
 
     @Override
     public final void e() {
-        this.f45792a.detachOutputSurface();
+        this.f46940a.detachOutputSurface();
     }
 
     @Override
-    public final boolean f(n2.c cVar) {
-        return false;
+    public final void f(int i10, long j3) {
+        this.f46940a.releaseOutputBuffer(i10, j3);
     }
 
     @Override
     public final void flush() {
-        this.f45792a.flush();
+        this.f46940a.flush();
     }
 
     @Override
-    public final void g(int i10, long j3) {
-        this.f45792a.releaseOutputBuffer(i10, j3);
+    public final int g() {
+        return this.f46940a.dequeueInputBuffer(0L);
     }
 
     @Override
     public final ByteBuffer getInputBuffer(int i10) {
-        return this.f45792a.getInputBuffer(i10);
+        return this.f46940a.getInputBuffer(i10);
     }
 
     @Override
     public final ByteBuffer getOutputBuffer(int i10) {
-        return this.f45792a.getOutputBuffer(i10);
+        return this.f46940a.getOutputBuffer(i10);
     }
 
     @Override
     public final MediaFormat getOutputFormat() {
-        return this.f45792a.getOutputFormat();
+        return this.f46940a.getOutputFormat();
     }
 
     @Override
-    public final int h() {
-        return this.f45792a.dequeueInputBuffer(0L);
-    }
-
-    @Override
-    public final int i(MediaCodec.BufferInfo bufferInfo) {
+    public final int h(MediaCodec.BufferInfo bufferInfo) {
         int dequeueOutputBuffer;
         do {
-            dequeueOutputBuffer = this.f45792a.dequeueOutputBuffer(bufferInfo, 0L);
+            dequeueOutputBuffer = this.f46940a.dequeueOutputBuffer(bufferInfo, 0L);
         } while (dequeueOutputBuffer == -3);
         return dequeueOutputBuffer;
     }
 
     @Override
-    public final void j(int i10) {
-        this.f45792a.setVideoScalingMode(i10);
+    public final void i(int i10) {
+        this.f46940a.setVideoScalingMode(i10);
     }
 
     @Override
-    public final void k(Surface surface) {
-        this.f45792a.setOutputSurface(surface);
+    public final void j(Surface surface) {
+        this.f46940a.setOutputSurface(surface);
+    }
+
+    @Override
+    public final boolean k(l2.f fVar) {
+        return false;
     }
 
     @Override
     public final void release() {
-        j jVar = this.f45793b;
-        MediaCodec mediaCodec = this.f45792a;
+        k kVar = this.f46941b;
+        MediaCodec mediaCodec = this.f46940a;
         try {
             int i10 = Build.VERSION.SDK_INT;
             if (i10 >= 30 && i10 < 33) {
                 mediaCodec.stop();
             }
-            if (i10 >= 35 && jVar != null) {
-                jVar.c(mediaCodec);
+            if (i10 >= 35 && kVar != null) {
+                kVar.c(mediaCodec);
             }
             mediaCodec.release();
         } catch (Throwable th2) {
-            if (Build.VERSION.SDK_INT >= 35 && jVar != null) {
-                jVar.c(mediaCodec);
+            if (Build.VERSION.SDK_INT >= 35 && kVar != null) {
+                kVar.c(mediaCodec);
             }
             mediaCodec.release();
             throw th2;
@@ -122,6 +122,6 @@ public final class y implements l {
 
     @Override
     public final void setParameters(Bundle bundle) {
-        this.f45792a.setParameters(bundle);
+        this.f46940a.setParameters(bundle);
     }
 }

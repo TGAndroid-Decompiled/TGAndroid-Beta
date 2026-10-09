@@ -1,37 +1,20 @@
 package ci;
 
-import android.text.TextUtils;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.ux0;
-public final class l3 extends v3 {
-    public final w3 f5488x;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+public final class l3 extends s4.t0 {
+    public final v3 f5385a;
 
-    public l3(w3 w3Var) {
-        super(w3Var);
-        this.f5488x = w3Var;
+    public l3(v3 v3Var) {
+        this.f5385a = v3Var;
     }
 
     @Override
-    public final void F(boolean z10) {
-        w3 w3Var = this.f5488x;
-        org.telegram.ui.ActionBar.v0 v0Var = w3Var.G;
-        if (v0Var != null) {
-            v0Var.setShowSearchProgress(z10);
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        org.telegram.ui.ActionBar.v0 v0Var;
+        v3 v3Var = this.f5385a;
+        if (v3Var.f6142n.I1 && (v0Var = v3Var.G) != null && v0Var.getSearchField() != null) {
+            AndroidUtilities.hideKeyboard(v3Var.G.getSearchContainer());
         }
-        w3Var.f6224s.e(z10, true);
-    }
-
-    @Override
-    public final void l() {
-        ux0 ux0Var = this.f5488x.f6224s;
-        super.l();
-        if (TextUtils.isEmpty(this.f6108f)) {
-            ux0Var.setStickerType(11);
-            ux0Var.d.setText(LocaleController.getString(R.string.SearchImagesType));
-            return;
-        }
-        ux0Var.setStickerType(1);
-        ux0Var.d.setText(LocaleController.formatString(R.string.NoResultFoundFor, this.f6108f));
     }
 }

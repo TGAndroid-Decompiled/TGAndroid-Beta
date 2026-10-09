@@ -1,6 +1,6 @@
 package c5;
 
-import ai.q4;
+import ai.r4;
 import android.content.ComponentName;
 import android.content.ServiceConnection;
 import android.os.IBinder;
@@ -17,41 +17,41 @@ import com.google.android.gms.internal.play_billing.l3;
 import com.google.android.gms.internal.play_billing.z3;
 import java.util.concurrent.TimeUnit;
 public final class y implements ServiceConnection {
-    public final d f4252a;
-    public final com.google.android.gms.internal.play_billing.m f4253b;
-    public final com.google.android.gms.internal.play_billing.m f4254c;
+    public final d f4302a;
+    public final com.google.android.gms.internal.play_billing.m f4303b;
+    public final com.google.android.gms.internal.play_billing.m f4304c;
     public final c d;
 
     public y(c cVar, d dVar) {
         this.d = cVar;
         com.google.android.gms.internal.play_billing.h hVar = cVar.B;
-        this.f4253b = new com.google.android.gms.internal.play_billing.m(hVar);
-        this.f4254c = new com.google.android.gms.internal.play_billing.m(hVar);
-        this.f4252a = dVar;
+        this.f4303b = new com.google.android.gms.internal.play_billing.m(hVar);
+        this.f4304c = new com.google.android.gms.internal.play_billing.m(hVar);
+        this.f4302a = dVar;
     }
 
     public final Long a(boolean z10) {
         if (z10) {
-            com.google.android.gms.internal.play_billing.m mVar = this.f4253b;
-            if (mVar.f7359b) {
-                long a2 = mVar.f7358a.a();
-                if (mVar.f7359b) {
-                    mVar.f7359b = false;
-                    long j3 = (a2 - mVar.d) + mVar.f7360c;
-                    mVar.f7360c = j3;
+            com.google.android.gms.internal.play_billing.m mVar = this.f4303b;
+            if (mVar.f7408b) {
+                long a2 = mVar.f7407a.a();
+                if (mVar.f7408b) {
+                    mVar.f7408b = false;
+                    long j3 = (a2 - mVar.d) + mVar.f7409c;
+                    mVar.f7409c = j3;
                     return Long.valueOf(TimeUnit.MILLISECONDS.convert(j3, TimeUnit.NANOSECONDS));
                 }
                 throw new IllegalStateException("This stopwatch is already stopped.");
             }
             return null;
         }
-        com.google.android.gms.internal.play_billing.m mVar2 = this.f4254c;
-        if (mVar2.f7359b) {
-            long a10 = mVar2.f7358a.a();
-            if (mVar2.f7359b) {
-                mVar2.f7359b = false;
-                long j10 = (a10 - mVar2.d) + mVar2.f7360c;
-                mVar2.f7360c = j10;
+        com.google.android.gms.internal.play_billing.m mVar2 = this.f4304c;
+        if (mVar2.f7408b) {
+            long a10 = mVar2.f7407a.a();
+            if (mVar2.f7408b) {
+                mVar2.f7408b = false;
+                long j10 = (a10 - mVar2.d) + mVar2.f7409c;
+                mVar2.f7409c = j10;
                 return Long.valueOf(TimeUnit.MILLISECONDS.convert(j10, TimeUnit.NANOSECONDS));
             }
             throw new IllegalStateException("This stopwatch is already stopped.");
@@ -62,17 +62,17 @@ public final class y implements ServiceConnection {
     public final void b(h hVar, int i10, String str, boolean z10) {
         try {
             j3 s10 = k3.s();
-            int i11 = hVar.f4204a;
+            int i11 = hVar.f4254a;
             s10.c();
-            k3.r((k3) s10.f7427b, i11);
-            String str2 = hVar.f4206c;
+            k3.r((k3) s10.f7476b, i11);
+            String str2 = hVar.f4256c;
             s10.c();
-            k3.o((k3) s10.f7427b, str2);
+            k3.o((k3) s10.f7476b, str2);
             s10.c();
-            k3.q((k3) s10.f7427b, i10);
+            k3.q((k3) s10.f7476b, i10);
             if (str != null) {
                 s10.c();
-                k3.n((k3) s10.f7427b, str);
+                k3.n((k3) s10.f7476b, str);
             }
             Long a2 = a(z10);
             c cVar = this.d;
@@ -83,25 +83,25 @@ public final class y implements ServiceConnection {
                 if (a2 != null) {
                     long longValue = a2.longValue();
                     r10.c();
-                    d4.p((d4) r10.f7427b, longValue);
+                    d4.p((d4) r10.f7476b, longValue);
                 }
                 f3 u10 = g3.u();
                 u10.d(s10);
                 u10.c();
-                g3.t((g3) u10.f7427b, 6);
+                g3.t((g3) u10.f7476b, 6);
                 u10.e(r10);
                 cVar.h((g3) u10.a());
                 return;
             }
             z3 p5 = a4.p();
             p5.c();
-            a4.n((a4) p5.f7427b, (k3) s10.a());
+            a4.n((a4) p5.f7476b, (k3) s10.a());
             if (a2 != null) {
                 long longValue2 = a2.longValue();
                 p5.c();
-                a4.o((a4) p5.f7427b, longValue2);
+                a4.o((a4) p5.f7476b, longValue2);
             }
-            cVar.h.Z((a4) p5.a());
+            cVar.h.b0((a4) p5.a());
         } catch (Throwable th2) {
             com.google.android.gms.internal.play_billing.u.i("BillingClient", "Unable to log.", th2);
         }
@@ -109,13 +109,13 @@ public final class y implements ServiceConnection {
 
     public final void c(h hVar) {
         c cVar = this.d;
-        synchronized (cVar.f4155a) {
+        synchronized (cVar.f4205a) {
             try {
-                if (cVar.f4156b == 3) {
+                if (cVar.f4206b == 3) {
                     return;
                 }
                 try {
-                    this.f4252a.onBillingSetupFinished(hVar);
+                    this.f4302a.onBillingSetupFinished(hVar);
                 } catch (Throwable th2) {
                     com.google.android.gms.internal.play_billing.u.i("BillingClient", "Exception while calling onBillingSetupFinished.", th2);
                 }
@@ -131,32 +131,32 @@ public final class y implements ServiceConnection {
         try {
             c cVar = this.d;
             if (c.q(cVar)) {
-                of.b bVar = cVar.h;
+                pf.b bVar = cVar.h;
                 f3 u10 = g3.u();
                 u10.c();
-                g3.t((g3) u10.f7427b, 6);
+                g3.t((g3) u10.f7476b, 6);
                 j3 s10 = k3.s();
                 s10.c();
-                k3.q((k3) s10.f7427b, 110);
+                k3.q((k3) s10.f7476b, 110);
                 u10.d(s10);
                 c4 r10 = d4.r();
                 r10.d(false);
                 r10.e();
                 u10.e(r10);
-                bVar.T((g3) u10.a());
+                bVar.W((g3) u10.a());
             } else {
-                cVar.h.X(l3.n());
+                cVar.h.a0(l3.n());
             }
         } catch (Throwable th2) {
             com.google.android.gms.internal.play_billing.u.i("BillingClient", "Unable to log.", th2);
         }
         c cVar2 = this.d;
-        synchronized (cVar2.f4155a) {
-            if (cVar2.f4156b != 3 && cVar2.f4156b != 0) {
+        synchronized (cVar2.f4205a) {
+            if (cVar2.f4206b != 3 && cVar2.f4206b != 0) {
                 cVar2.k(0);
                 cVar2.m();
                 try {
-                    this.f4252a.onBillingServiceDisconnected();
+                    this.f4302a.onBillingServiceDisconnected();
                 } catch (Throwable th3) {
                     com.google.android.gms.internal.play_billing.u.i("BillingClient", "Exception while calling onBillingServiceDisconnected.", th3);
                 }
@@ -169,12 +169,12 @@ public final class y implements ServiceConnection {
         com.google.android.gms.internal.play_billing.c aVar;
         com.google.android.gms.internal.play_billing.u.g("BillingClient", "Billing service connected.");
         c cVar = this.d;
-        synchronized (cVar.f4155a) {
+        synchronized (cVar.f4205a) {
             try {
-                if (cVar.f4156b == 3) {
+                if (cVar.f4206b == 3) {
                     return;
                 }
-                int i10 = com.google.android.gms.internal.play_billing.b.f7263b;
+                int i10 = com.google.android.gms.internal.play_billing.b.f7312b;
                 if (iBinder == null) {
                     aVar = 0;
                 } else {
@@ -185,8 +185,8 @@ public final class y implements ServiceConnection {
                         aVar = new a9.a(iBinder, "com.android.vending.billing.IInAppBillingService", 2);
                     }
                 }
-                cVar.f4161i = aVar;
-                if (c.f(new x(this, 0), 30000L, new q4(this, 11), cVar.r(), cVar.e()) == null) {
+                cVar.f4211i = aVar;
+                if (c.f(new x(this, 0), 30000L, new r4(this, 11), cVar.r(), cVar.e()) == null) {
                     h u10 = cVar.u();
                     cVar.j(25, u10);
                     c(u10);
@@ -203,36 +203,36 @@ public final class y implements ServiceConnection {
         try {
             c cVar = this.d;
             if (c.q(cVar)) {
-                of.b bVar = cVar.h;
+                pf.b bVar = cVar.h;
                 f3 u10 = g3.u();
                 u10.c();
-                g3.t((g3) u10.f7427b, 6);
+                g3.t((g3) u10.f7476b, 6);
                 j3 s10 = k3.s();
                 s10.c();
-                k3.q((k3) s10.f7427b, 109);
+                k3.q((k3) s10.f7476b, 109);
                 u10.d(s10);
                 c4 r10 = d4.r();
                 r10.d(false);
                 r10.e();
                 u10.e(r10);
-                bVar.T((g3) u10.a());
+                bVar.W((g3) u10.a());
             } else {
-                cVar.h.a0(b4.n());
+                cVar.h.c0(b4.n());
             }
         } catch (Throwable th2) {
             com.google.android.gms.internal.play_billing.u.i("BillingClient", "Unable to log.", th2);
         }
-        com.google.android.gms.internal.play_billing.m mVar = this.f4254c;
-        mVar.f7360c = 0L;
-        mVar.f7359b = false;
+        com.google.android.gms.internal.play_billing.m mVar = this.f4304c;
+        mVar.f7409c = 0L;
+        mVar.f7408b = false;
         mVar.a();
         c cVar2 = this.d;
-        synchronized (cVar2.f4155a) {
+        synchronized (cVar2.f4205a) {
             try {
-                if (cVar2.f4156b != 3) {
+                if (cVar2.f4206b != 3) {
                     cVar2.k(0);
                     try {
-                        this.f4252a.onBillingServiceDisconnected();
+                        this.f4302a.onBillingServiceDisconnected();
                     } catch (Throwable th3) {
                         com.google.android.gms.internal.play_billing.u.i("BillingClient", "Exception while calling onBillingServiceDisconnected.", th3);
                     }

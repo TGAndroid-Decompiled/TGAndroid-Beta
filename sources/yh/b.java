@@ -5,81 +5,81 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.bi;
-import org.telegram.ui.Components.rc;
-import org.telegram.ui.Components.rq;
-import org.telegram.ui.Components.vb;
-import org.telegram.ui.Components.zb;
+import org.telegram.ui.Components.bc;
+import org.telegram.ui.Components.er;
+import org.telegram.ui.Components.tc;
+import org.telegram.ui.Components.xb;
 public final class b implements Runnable {
-    public final int f51116a;
-    public final h f51117b;
+    public final int f52271a;
+    public final g f52272b;
 
-    public b(h hVar, int i10) {
-        this.f51116a = i10;
-        this.f51117b = hVar;
+    public b(g gVar, int i10) {
+        this.f52271a = i10;
+        this.f52272b = gVar;
     }
 
     @Override
     public final void run() {
         boolean z10;
         String formatPluralStringSpaced;
-        int i10 = this.f51116a;
-        h hVar = this.f51117b;
+        int i10 = this.f52271a;
+        g gVar = this.f52272b;
         switch (i10) {
             case 0:
-                b bVar = hVar.f51391s0;
-                int currentTime = hVar.getConnectionsManager().getCurrentTime();
-                bi.q qVar = hVar.f51367a0;
-                if (hVar.Y <= 0 && hVar.P <= currentTime) {
+                b bVar = gVar.f52566n0;
+                int currentTime = gVar.getConnectionsManager().getCurrentTime();
+                bi.q qVar = gVar.R;
+                if (gVar.P <= 0 && gVar.G <= currentTime) {
                     z10 = false;
                 } else {
                     z10 = true;
                 }
                 qVar.setEnabled(z10);
-                if (currentTime < hVar.P) {
-                    hVar.f51367a0.g(LocaleController.getString(R.string.BotStarsButtonWithdrawShortUntil), true, true);
-                    if (hVar.f51389r0 == null) {
-                        hVar.f51389r0 = new SpannableStringBuilder("l");
-                        rq rqVar = new rq(R.drawable.mini_switch_lock, 0);
-                        rqVar.setTopOffset(1);
-                        hVar.f51389r0.setSpan(rqVar, 0, 1, 33);
+                if (currentTime < gVar.G) {
+                    gVar.R.g(LocaleController.getString(R.string.BotStarsButtonWithdrawShortUntil), true, true);
+                    if (gVar.m0 == null) {
+                        gVar.m0 = new SpannableStringBuilder("l");
+                        er erVar = new er(R.drawable.mini_switch_lock, 0);
+                        erVar.setTopOffset(1);
+                        gVar.m0.setSpan(erVar, 0, 1, 33);
                     }
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                    spannableStringBuilder.append((CharSequence) hVar.f51389r0).append((CharSequence) h.r0(hVar.P - currentTime));
-                    hVar.f51367a0.f(spannableStringBuilder, true);
-                    rc rcVar = hVar.f51380j0;
-                    if (rcVar != null) {
-                        vb vbVar = rcVar.f30423e;
-                        if ((vbVar instanceof zb) && vbVar.isAttachedToWindow()) {
-                            bi.p(R.string.BotStarsWithdrawalToast, new Object[]{h.r0(hVar.P - currentTime)}, ((zb) hVar.f51380j0.f30423e).f33480b);
+                    spannableStringBuilder.append((CharSequence) gVar.m0).append((CharSequence) g.j0(gVar.G - currentTime));
+                    gVar.R.f(spannableStringBuilder, true);
+                    tc tcVar = gVar.f52549a0;
+                    if (tcVar != null) {
+                        xb xbVar = tcVar.f31126e;
+                        if ((xbVar instanceof bc) && xbVar.isAttachedToWindow()) {
+                            bi.r(R.string.BotStarsWithdrawalToast, new Object[]{g.j0(gVar.G - currentTime)}, ((bc) gVar.f52549a0.f31126e).f24967b);
                         }
                     }
                     AndroidUtilities.cancelRunOnUIThread(bVar);
                     AndroidUtilities.runOnUIThread(bVar, 1000L);
                     return;
                 }
-                hVar.f51367a0.f(null, true);
-                bi.q qVar2 = hVar.f51367a0;
-                if (hVar.X) {
+                gVar.R.f(null, true);
+                bi.q qVar2 = gVar.R;
+                if (gVar.O) {
                     formatPluralStringSpaced = LocaleController.getString(R.string.BotStarsButtonWithdrawShortAll);
                 } else {
-                    formatPluralStringSpaced = LocaleController.formatPluralStringSpaced("BotStarsButtonWithdrawShort", (int) hVar.Y);
+                    formatPluralStringSpaced = LocaleController.formatPluralStringSpaced("BotStarsButtonWithdrawShort", (int) gVar.P);
                 }
-                qVar2.g(z7.b1(false, formatPluralStringSpaced, hVar.f51371c0), true, true);
+                qVar2.g(p7.W0(false, formatPluralStringSpaced, gVar.T), true, true);
                 return;
             case 1:
-                h.U(hVar);
+                g.U(gVar);
                 return;
             case 2:
-                nf.f.s(hVar.getParentActivity(), LocaleController.getString(R.string.BotStarsWithdrawInfoLink));
+                g.V(gVar);
                 return;
             case 3:
-                h.S(hVar);
+                of.f.s(gVar.getParentActivity(), LocaleController.getString(R.string.BotMonetizationBalanceInfoLink));
                 return;
             case 4:
-                nf.f.s(hVar.getParentActivity(), LocaleController.getString(R.string.BotMonetizationBalanceInfoLink));
+                of.f.s(gVar.getParentActivity(), LocaleController.getString(R.string.BotStarsWithdrawInfoLink));
                 return;
             default:
-                hVar.f51369b0.setLoading(false);
+                gVar.S.setLoading(false);
                 return;
         }
     }

@@ -14,6 +14,7 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_ephemeral;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.tgnet.w;
 public class TL_update {
 
@@ -143,12 +144,12 @@ public class TL_update {
         public static final int constructor = -761649164;
         public long channel_id;
         public int forwards;
-        public int f20299id;
+        public int f20291id;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.channel_id = inputSerializedData.readInt64(z10);
-            this.f20299id = inputSerializedData.readInt32(z10);
+            this.f20291id = inputSerializedData.readInt32(z10);
             this.forwards = inputSerializedData.readInt32(z10);
         }
 
@@ -156,7 +157,7 @@ public class TL_update {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-761649164);
             outputSerializedData.writeInt64(this.channel_id);
-            outputSerializedData.writeInt32(this.f20299id);
+            outputSerializedData.writeInt32(this.f20291id);
             outputSerializedData.writeInt32(this.forwards);
         }
     }
@@ -164,13 +165,13 @@ public class TL_update {
     public static class TL_updateChannelMessageViews extends TLRPC.Update {
         public static final int constructor = -232346616;
         public long channel_id;
-        public int f20300id;
+        public int f20292id;
         public int views;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.channel_id = inputSerializedData.readInt64(z10);
-            this.f20300id = inputSerializedData.readInt32(z10);
+            this.f20292id = inputSerializedData.readInt32(z10);
             this.views = inputSerializedData.readInt32(z10);
         }
 
@@ -178,7 +179,7 @@ public class TL_update {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-232346616);
             outputSerializedData.writeInt64(this.channel_id);
-            outputSerializedData.writeInt32(this.f20300id);
+            outputSerializedData.writeInt32(this.f20292id);
             outputSerializedData.writeInt32(this.views);
         }
     }
@@ -740,12 +741,12 @@ public class TL_update {
         public static final int constructor = 654302845;
         public TLRPC.DialogFilter filter;
         public int flags;
-        public int f20301id;
+        public int f20293id;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.flags = inputSerializedData.readInt32(z10);
-            this.f20301id = inputSerializedData.readInt32(z10);
+            this.f20293id = inputSerializedData.readInt32(z10);
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.filter = TLRPC.DialogFilter.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
@@ -755,7 +756,7 @@ public class TL_update {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(654302845);
             outputSerializedData.writeInt32(this.flags);
-            outputSerializedData.writeInt32(this.f20301id);
+            outputSerializedData.writeInt32(this.f20293id);
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.filter.serializeToStream(outputSerializedData);
             }
@@ -1095,7 +1096,7 @@ public class TL_update {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            this.folder_peers = Vector.deserialize(inputSerializedData, new d(15), z10);
+            this.folder_peers = Vector.deserialize(inputSerializedData, new d(17), z10);
             this.pts = inputSerializedData.readInt32(z10);
             this.pts_count = inputSerializedData.readInt32(z10);
         }
@@ -1410,19 +1411,19 @@ public class TL_update {
 
     public static class TL_updateMessageID extends TLRPC.Update {
         public static final int constructor = 1318109142;
-        public int f20302id;
+        public int f20294id;
         public long random_id;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            this.f20302id = inputSerializedData.readInt32(z10);
+            this.f20294id = inputSerializedData.readInt32(z10);
             this.random_id = inputSerializedData.readInt64(z10);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1318109142);
-            outputSerializedData.writeInt32(this.f20302id);
+            outputSerializedData.writeInt32(this.f20294id);
             outputSerializedData.writeInt64(this.random_id);
         }
     }
@@ -1928,7 +1929,7 @@ public class TL_update {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            this.peers = Vector.deserialize(inputSerializedData, new d(16), z10);
+            this.peers = Vector.deserialize(inputSerializedData, new d(18), z10);
         }
 
         @Override
@@ -2662,6 +2663,47 @@ public class TL_update {
         }
     }
 
+    public static class TL_updateSentWalletTransaction extends TLRPC.Update {
+        public static final int constructor = -1320989366;
+        public boolean gasless;
+        public String msg_hash;
+        public TL_wallet.walletTransaction transaction;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            boolean z11;
+            int readInt32 = inputSerializedData.readInt32(z10);
+            if ((readInt32 & 1) != 0) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            this.gasless = z11;
+            this.msg_hash = inputSerializedData.readString(z10);
+            if ((readInt32 & 2) != 0) {
+                this.transaction = TL_wallet.walletTransaction.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            }
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            int i10;
+            outputSerializedData.writeInt32(-1320989366);
+            boolean z10 = this.gasless;
+            if (this.transaction != null) {
+                i10 = 2;
+            } else {
+                i10 = 0;
+            }
+            outputSerializedData.writeInt32((z10 ? 1 : 0) | i10);
+            outputSerializedData.writeString(this.msg_hash);
+            TL_wallet.walletTransaction wallettransaction = this.transaction;
+            if (wallettransaction != null) {
+                wallettransaction.serializeToStream(outputSerializedData);
+            }
+        }
+    }
+
     public static class TL_updateServiceNotification extends TLRPC.Update {
         public static final int constructor = -337352679;
         public ArrayList<TLRPC.MessageEntity> entities = new ArrayList<>();
@@ -2848,19 +2890,19 @@ public class TL_update {
 
     public static class TL_updateStoryID extends TLRPC.Update {
         public static final int constructor = 468923833;
-        public int f20303id;
+        public int f20295id;
         public long random_id;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            this.f20303id = inputSerializedData.readInt32(z10);
+            this.f20295id = inputSerializedData.readInt32(z10);
             this.random_id = inputSerializedData.readInt64(z10);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(468923833);
-            outputSerializedData.writeInt32(this.f20303id);
+            outputSerializedData.writeInt32(this.f20295id);
             outputSerializedData.writeInt64(this.random_id);
         }
     }
@@ -3090,6 +3132,86 @@ public class TL_update {
                 outputSerializedData.writeInt32(this.top_msg_id);
             }
             this.action.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_updateWalletGaslessInfo extends TLRPC.Update {
+        public static final int constructor = -1464984404;
+        public boolean available;
+        public int left;
+        public long min_amount;
+        public String relayer_address;
+        public int reset_at;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            boolean z11 = true;
+            if ((inputSerializedData.readInt32(z10) & 1) == 0) {
+                z11 = false;
+            }
+            this.available = z11;
+            this.left = inputSerializedData.readInt32(z10);
+            this.reset_at = inputSerializedData.readInt32(z10);
+            this.min_amount = inputSerializedData.readInt64(z10);
+            this.relayer_address = inputSerializedData.readString(z10);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1464984404);
+            outputSerializedData.writeInt32(this.available ? 1 : 0);
+            outputSerializedData.writeInt32(this.left);
+            outputSerializedData.writeInt32(this.reset_at);
+            outputSerializedData.writeInt64(this.min_amount);
+            outputSerializedData.writeString(this.relayer_address);
+        }
+    }
+
+    public static class TL_updateWalletState extends TLRPC.Update {
+        public static final int constructor = 1791226538;
+        public TL_wallet.WalletState state;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.state = TL_wallet.WalletState.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1791226538);
+            this.state.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_updateWalletTonConnectPendingDisconnect extends TLRPC.Update {
+        public static final int constructor = -772898407;
+        public ArrayList<Long> session_ids = new ArrayList<>();
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.session_ids = Vector.deserializeLong(inputSerializedData, z10);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-772898407);
+            Vector.serializeLong(outputSerializedData, this.session_ids);
+        }
+    }
+
+    public static class TL_updateWalletTonConnectSession extends TLRPC.Update {
+        public static final int constructor = 1352896014;
+        public TL_wallet.tonConnectSession session;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.session = TL_wallet.tonConnectSession.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1352896014);
+            this.session.serializeToStream(outputSerializedData);
         }
     }
 

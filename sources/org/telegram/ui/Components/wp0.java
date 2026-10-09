@@ -1,38 +1,38 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class wp0 implements Runnable {
-    public final int f32686a;
-    public final br0 f32687b;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+import androidx.recyclerview.widget.RecyclerView;
+public final class wp0 extends s4.t0 {
+    public final hf f32656a;
 
-    public wp0(br0 br0Var, int i10) {
-        this.f32686a = i10;
-        this.f32687b = br0Var;
+    public wp0(hf hfVar) {
+        this.f32656a = hfVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f32686a) {
-            case 0:
-                br0 br0Var = this.f32687b;
-                br0Var.A0 = true;
-                f20 f20Var = br0Var.f25084y0;
-                f20Var.f26295r.setText("");
-                AndroidUtilities.showKeyboard(f20Var.f26295r);
-                return;
-            default:
-                uh uhVar = new uh(9);
-                br0 br0Var2 = this.f32687b;
-                if (br0Var2.isKeyboardVisible()) {
-                    f20 f20Var2 = br0Var2.f25084y0;
-                    if (f20Var2 != null) {
-                        AndroidUtilities.hideKeyboard(f20Var2.f26295r);
-                    }
-                    AndroidUtilities.runOnUIThread(uhVar, 300L);
-                    return;
-                }
-                uhVar.run();
-                return;
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        boolean z10;
+        float f7;
+        hf hfVar = this.f32656a;
+        View view = hfVar.f24744u;
+        if (hfVar.f24745w.I0() != 0) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
+        Boolean bool = hfVar.f24746x;
+        if (bool != null && z10 == bool.booleanValue()) {
+            return;
+        }
+        view.animate().cancel();
+        ViewPropertyAnimator animate = view.animate();
+        if (z10) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
+        }
+        animate.alpha(f7).setDuration(150L).start();
+        hfVar.f24746x = Boolean.valueOf(z10);
     }
 }

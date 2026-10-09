@@ -1,151 +1,385 @@
 package ai;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
-import android.view.KeyEvent;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.regex.Pattern;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Point;
+import android.graphics.RectF;
+import android.graphics.drawable.GradientDrawable;
+import android.text.style.CharacterStyle;
+import android.text.style.URLSpan;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.OverScroller;
+import androidx.core.widget.NestedScrollView;
+import java.lang.reflect.Field;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ch0;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.bj;
-import org.telegram.ui.h90;
-import org.telegram.ui.qs;
-import org.telegram.ui.t60;
-import org.telegram.ui.uq;
-public final class ya implements RequestDelegate {
-    public final int f1917a;
-    public final int f1918b;
-    public final Object f1919c;
-    public final Object d;
-    public final Object f1920e;
-    public final Object f1921f;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.o80;
+public class ya extends NestedScrollView implements o80 {
+    public final org.telegram.ui.Cells.y9 W;
+    public final o1.k f1968a0;
+    public final xa f1969b0;
+    public boolean f1970c0;
+    public float f1971d0;
+    public float f1972e0;
+    public float f1973f0;
+    public float f1974g0;
+    public float f1975h0;
+    public float f1976i0;
+    public float f1977j0;
+    public final OverScroller f1978k0;
+    public boolean f1979l0;
+    public int m0;
+    public int f1980n0;
+    public int f1981o0;
+    public int f1982p0;
+    public int f1983q0;
+    public final FrameLayout f1984r0;
+    public boolean f1985s0;
+    public boolean f1986t0;
+    public int f1987u0;
+    public boolean f1988v0;
+    public boolean f1989w0;
 
-    public ya(int i10, Object obj, Object obj2, Object obj3, Object obj4, int i11) {
-        this.f1917a = i11;
-        this.f1918b = i10;
-        this.d = obj;
-        this.f1920e = obj2;
-        this.f1919c = obj3;
-        this.f1921f = obj4;
-    }
-
-    @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f1917a;
-        Object obj = this.f1920e;
-        Object obj2 = this.f1921f;
-        Object obj3 = this.f1919c;
-        Object obj4 = this.d;
-        switch (i10) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new cb((db) obj4, tLObject, this.f1920e, (ArrayList) obj3, (boolean[]) obj2, this.f1918b));
-                return;
-            case 1:
-                AndroidUtilities.runOnUIThread(new gg.e1((gg.f1) obj4, this.f1918b, (ArrayList) obj3, (a0.i) obj, tL_error, tLObject, (MessagesController) obj2, 0));
-                return;
-            case 2:
-                ((ChatObject.Call) obj4).lambda$loadUnknownParticipants$6(this.f1918b, (ChatObject.Call.OnParticipantsLoad) obj, (ArrayList) obj3, (HashSet) obj2, tLObject, tL_error);
-                return;
-            case 3:
-                AndroidUtilities.runOnUIThread(new cb(this.f1918b, 5, (org.telegram.ui.ActionBar.b2) obj4, (Context) obj, (org.telegram.ui.ActionBar.d6) obj3, (t60) obj2, tLObject));
-                return;
-            case 4:
-                AndroidUtilities.runOnUIThread(new gg.e1(tL_error, tLObject, (ArrayList) obj3, this.f1918b, (AtomicInteger) obj4, (ArrayList) obj, (uq) obj2));
-                return;
-            case 5:
-                AndroidUtilities.runOnUIThread(new cb((ch0) obj4, (Integer[]) obj, this.f1918b, tLObject, (ArrayList) obj3, (TLRPC.PollAnswerVoters) obj2));
-                return;
-            case 6:
-                AndroidUtilities.runOnUIThread(new gg.e1((org.telegram.ui.ActionBar.b2) obj4, tLObject, this.f1918b, (TLRPC.Document) obj3, tL_error, this.f1920e, (TLRPC.TL_stickers_addStickerToSet) obj2));
-                return;
-            case 7:
-                AndroidUtilities.runOnUIThread(new cb((qs) obj4, (TLRPC.FileLocation) obj, (TLRPC.InputFile) obj3, tLObject, (TLRPC.FileLocation) obj2, this.f1918b));
-                return;
-            case 8:
-                AndroidUtilities.runOnUIThread(new gg.e1((org.telegram.ui.ActionBar.b2) obj4, (nf.e) obj, tLObject, this.f1918b, (Context) obj3, (TLRPC.TL_inputGroupCallSlug) obj2, tL_error));
-                return;
-            case 9:
-                Pattern pattern = LaunchActivity.B1;
-                AndroidUtilities.runOnUIThread(new gg.e1((LaunchActivity) obj4, tL_error, tLObject, (TLRPC.TL_inputInvoiceSlug) obj, (h90) obj3, this.f1918b, (String) obj2));
-                return;
-            case 10:
-                Pattern pattern2 = LaunchActivity.B1;
-                AndroidUtilities.runOnUIThread(new gg.e1((LaunchActivity) obj4, tL_error, tLObject, this.f1918b, (org.telegram.ui.ActionBar.b2) obj, (h90) obj3, (String) obj2));
-                return;
-            case 11:
-                AndroidUtilities.runOnUIThread(new gg.e1((org.telegram.ui.web.c1) obj4, (String) obj, tLObject, tL_error, this.f1918b, (org.telegram.ui.web.z0) obj3, (da) obj2));
-                return;
-            case 12:
-                AndroidUtilities.runOnUIThread(new cb(this.f1918b, 13, (TLRPC.PhotoSize) obj4, (TLRPC.PhotoSize) obj, (bj) obj3, (org.telegram.ui.ActionBar.c5) obj2, tLObject));
-                return;
-            case 13:
-                AndroidUtilities.runOnUIThread(new cb((ci.d) obj4, tLObject, (org.telegram.ui.ActionBar.f3[]) obj, (org.telegram.ui.ActionBar.d6) obj3, this.f1918b, (TLRPC.TL_messages_checkChatInvite) obj2, 14));
-                return;
-            default:
-                AndroidUtilities.runOnUIThread(new xh.o0((ci.d) obj4, (org.telegram.ui.ActionBar.f3[]) obj, this.f1918b, (TLObject) obj3, (String) obj2, 1));
-                return;
+    public ya(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context);
+        Paint paint = new Paint(1);
+        this.f1983q0 = -1;
+        new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{0, i0.a.k(-16777216, 51)});
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.f1984r0 = frameLayout;
+        setClipChildren(false);
+        setOverScrollMode(2);
+        NotificationCenter.listenEmojiLoading(this);
+        xa xaVar = new xa(this, getContext());
+        this.f1969b0 = xaVar;
+        org.telegram.ui.Cells.y9 y9Var = new org.telegram.ui.Cells.y9(xaVar, e6Var);
+        this.W = y9Var;
+        y9Var.f21865h0 = false;
+        frameLayout.addView(xaVar, -1, -2);
+        addView(frameLayout, new ViewGroup.LayoutParams(-1, -2));
+        paint.setColor(-16777216);
+        setFadingEdgeLength(AndroidUtilities.dp(12.0f));
+        setVerticalFadingEdgeEnabled(true);
+        setWillNotDraw(false);
+        o1.k kVar = new o1.k(xaVar, o1.h.f16920n, 0.0f);
+        this.f1968a0 = kVar;
+        kVar.f16938u.b(100.0f);
+        kVar.e(1.0f);
+        kVar.b(new ra(0, this));
+        kVar.f16938u.a(1.0f);
+        try {
+            NestedScrollView.class.getDeclaredMethod("d", null).setAccessible(true);
+        } catch (Exception e7) {
+            FileLog.e(e7);
+        }
+        try {
+            Field declaredField = NestedScrollView.class.getDeclaredField("d");
+            declaredField.setAccessible(true);
+            this.f1978k0 = (OverScroller) declaredField.get(this);
+        } catch (Exception e10) {
+            this.f1978k0 = null;
+            FileLog.e(e10);
         }
     }
 
-    public ya(KeyEvent.Callback callback, Object obj, int i10, Object obj2, Object obj3, int i11) {
-        this.f1917a = i11;
-        this.d = callback;
-        this.f1920e = obj;
-        this.f1918b = i10;
-        this.f1919c = obj2;
-        this.f1921f = obj3;
+    @Override
+    public final void B(int i10) {
+        OverScroller overScroller;
+        if (this.f1970c0 && i10 == 0) {
+            this.f1970c0 = false;
+            if (this.f1971d0 != 0.0f && (overScroller = this.f1978k0) != null && overScroller.isFinished()) {
+                K(this.f1973f0);
+            }
+        }
     }
 
-    public ya(KeyEvent.Callback callback, Object obj, Object obj2, int i10, Object obj3, int i11) {
-        this.f1917a = i11;
-        this.d = callback;
-        this.f1920e = obj;
-        this.f1919c = obj2;
-        this.f1918b = i10;
-        this.f1921f = obj3;
+    public final void C() {
+        if (!this.f1988v0) {
+            return;
+        }
+        this.f1988v0 = false;
+        float f7 = this.f1969b0.f1925w;
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        ofFloat.addUpdateListener(new qa(this, getScrollY(), f7, 0));
+        ofFloat.setDuration(250L);
+        ofFloat.setInterpolator(hs.f27118f);
+        ofFloat.start();
     }
 
-    public ya(Object obj, int i10, Object obj2, Object obj3, Serializable serializable, int i11) {
-        this.f1917a = i11;
-        this.d = obj;
-        this.f1918b = i10;
-        this.f1920e = obj2;
-        this.f1919c = obj3;
-        this.f1921f = serializable;
+    public final void D(boolean z10) {
+        if (this.f1988v0 && !z10) {
+            return;
+        }
+        this.f1988v0 = true;
+        float f7 = this.f1969b0.f1925w;
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        ofFloat.addUpdateListener(new qa(this, getScrollY(), f7, 1));
+        ofFloat.setDuration(250L);
+        ofFloat.setInterpolator(hs.f27118f);
+        ofFloat.start();
     }
 
-    public ya(Object obj, int i10, Object obj2, Object obj3, Object obj4, int i11) {
-        this.f1917a = i11;
-        this.d = obj;
-        this.f1918b = i10;
-        this.f1919c = obj2;
-        this.f1920e = obj3;
-        this.f1921f = obj4;
+    public final void J() {
+        scrollTo(0, 0);
+        this.f1988v0 = false;
+        xa xaVar = this.f1969b0;
+        xaVar.f1925w = 0.0f;
+        xaVar.invalidate();
     }
 
-    public ya(Object obj, Object obj2, Object obj3, Object obj4, int i10, int i11) {
-        this.f1917a = i11;
-        this.d = obj;
-        this.f1920e = obj2;
-        this.f1919c = obj3;
-        this.f1921f = obj4;
-        this.f1918b = i10;
+    public final void K(float f7) {
+        o1.k kVar = this.f1968a0;
+        if (!kVar.f16931f) {
+            kVar.f16927a = f7;
+            kVar.h();
+        }
+        if (getScrollY() < AndroidUtilities.dp(2.0f)) {
+            C();
+        }
     }
 
-    public ya(ArrayList arrayList, int i10, AtomicInteger atomicInteger, ArrayList arrayList2, uq uqVar) {
-        this.f1917a = 4;
-        this.f1919c = arrayList;
-        this.f1918b = i10;
-        this.d = atomicInteger;
-        this.f1920e = arrayList2;
-        this.f1921f = uqVar;
+    public final void L(int r10, int r11) {
+        throw new UnsupportedOperationException("Method not decompiled: ai.ya.L(int, int):void");
+    }
+
+    @Override
+    public final void a(RectF rectF) {
+        wa waVar;
+        xa xaVar = this.f1969b0;
+        wa[] waVarArr = xaVar.f1923r;
+        if (waVarArr != null && (waVar = waVarArr[0]) != null && waVar.f1881p != null) {
+            int i10 = xaVar.F;
+            int i11 = xaVar.F;
+            wa waVar2 = xaVar.f1923r[0];
+            rectF.set(xaVar.E, (AndroidUtilities.lerp(waVar.f1878m, waVar.f1877l, xaVar.f1925w) + i10) - xaVar.f1923r[0].f1881p.b(), getWidth() - xaVar.E, AndroidUtilities.lerp(waVar2.f1878m, waVar2.f1877l, xaVar.f1925w) + i11);
+            float x10 = xaVar.getX() - getScrollX();
+            FrameLayout frameLayout = this.f1984r0;
+            rectF.offset(frameLayout.getX() + x10, frameLayout.getY() + (xaVar.getY() - getScrollY()));
+        }
+    }
+
+    @Override
+    public final void b(Canvas canvas, float f7) {
+        wa waVar;
+        xa xaVar = this.f1969b0;
+        wa[] waVarArr = xaVar.f1923r;
+        wa[] waVarArr2 = xaVar.f1923r;
+        if (waVarArr != null && (waVar = waVarArr[0]) != null && waVar.f1881p != null) {
+            canvas.save();
+            float x10 = xaVar.getX() - getScrollX();
+            FrameLayout frameLayout = this.f1984r0;
+            float x11 = frameLayout.getX() + x10 + xaVar.E;
+            float y3 = frameLayout.getY() + (xaVar.getY() - getScrollY()) + xaVar.F;
+            wa waVar2 = waVarArr2[0];
+            canvas.translate(x11, (y3 + AndroidUtilities.lerp(waVar2.f1878m, waVar2.f1877l, xaVar.f1925w)) - waVarArr2[0].f1881p.b());
+            ta taVar = waVarArr2[0].f1881p;
+            int width = getWidth();
+            int i10 = xaVar.E;
+            taVar.a(canvas, (width - i10) - i10);
+            canvas.restore();
+            return;
+        }
+        draw(canvas);
+    }
+
+    @Override
+    public final void computeScroll() {
+        OverScroller overScroller;
+        super.computeScroll();
+        if (!this.f1970c0 && this.f1971d0 != 0.0f && (overScroller = this.f1978k0) != null && overScroller.isFinished()) {
+            K(0.0f);
+        }
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        if (this.f1986t0) {
+            return;
+        }
+        int width = getWidth();
+        int height = getHeight();
+        int scrollY = getScrollY();
+        int save = canvas.save();
+        int i10 = height + scrollY;
+        canvas.clipRect(0, scrollY, width, this.f1987u0 + i10);
+        canvas.clipRect(0, scrollY, width, i10);
+        super.draw(canvas);
+        canvas.restoreToCount(save);
+    }
+
+    @Override
+    public final boolean g(int i10, int i11, int i12, int[] iArr, int[] iArr2) {
+        float f7;
+        int i13;
+        iArr[1] = 0;
+        if (!this.f1970c0 || (((this.f1971d0) <= 0.0f || i11 <= 0) && (f7 >= 0.0f || i11 >= 0))) {
+            return false;
+        }
+        float f10 = i11;
+        float f11 = f7 - f10;
+        if (i13 > 0) {
+            if (f11 < 0.0f) {
+                this.f1971d0 = 0.0f;
+                iArr[1] = (int) (f10 + f11 + 0);
+            } else {
+                this.f1971d0 = f11;
+                iArr[1] = i11;
+            }
+        } else if (f11 > 0.0f) {
+            this.f1971d0 = 0.0f;
+            iArr[1] = (int) (f10 + f11 + 0);
+        } else {
+            this.f1971d0 = f11;
+            iArr[1] = i11;
+        }
+        this.f1969b0.setTranslationY(this.f1971d0);
+        this.W.w();
+        return true;
+    }
+
+    @Override
+    public float getBottomFadingEdgeStrength() {
+        return 1.0f;
+    }
+
+    public float getMaxTop() {
+        FrameLayout frameLayout = this.f1984r0;
+        return frameLayout.getTop() - (frameLayout.getBottom() - getMeasuredHeight());
+    }
+
+    public int getPendingMarginTopDiff() {
+        int i10 = this.f1983q0;
+        if (i10 >= 0) {
+            return i10 - ((ViewGroup.MarginLayoutParams) this.f1984r0.getLayoutParams()).topMargin;
+        }
+        return 0;
+    }
+
+    public float getProgressToBlackout() {
+        return Utilities.clamp((getScrollY() - this.f1969b0.getTranslationY()) / Math.min(this.f1982p0, AndroidUtilities.dp(40.0f)), 1.0f, 0.0f);
+    }
+
+    public float getTextTop() {
+        return (this.f1969b0.getTranslationY() + this.f1984r0.getTop()) - getScrollY();
+    }
+
+    @Override
+    public float getTopFadingEdgeStrength() {
+        return 1.0f;
+    }
+
+    @Override
+    public final void h(int i10, int i11, int i12, int i13, int[] iArr, int i14, int[] iArr2) {
+        float f7;
+        float f10;
+        float f11;
+        if (i13 != 0) {
+            int round = Math.round((1.0f - Math.abs((-this.f1971d0) / this.f1984r0.getTop())) * i13);
+            if (round != 0) {
+                boolean z10 = this.f1970c0;
+                xa xaVar = this.f1969b0;
+                if (!z10) {
+                    if (!this.f1968a0.f16931f) {
+                        OverScroller overScroller = this.f1978k0;
+                        if (overScroller != null) {
+                            f7 = overScroller.getCurrVelocity();
+                        } else {
+                            f7 = Float.NaN;
+                        }
+                        if (!Float.isNaN(f7)) {
+                            Point point = AndroidUtilities.displaySize;
+                            if (point.x > point.y) {
+                                f11 = 3000.0f;
+                            } else {
+                                f11 = 5000.0f;
+                            }
+                            float min = Math.min(f11, f7);
+                            round = (int) ((round * min) / f7);
+                            f10 = min * (-this.f1972e0);
+                        } else {
+                            f10 = 0.0f;
+                        }
+                        if (round != 0) {
+                            float f12 = this.f1971d0 - round;
+                            this.f1971d0 = f12;
+                            xaVar.setTranslationY(f12);
+                        }
+                        K(f10);
+                    }
+                } else {
+                    float f13 = this.f1971d0 - round;
+                    this.f1971d0 = f13;
+                    xaVar.setTranslationY(f13);
+                }
+            }
+        }
+        this.W.w();
+    }
+
+    @Override
+    public final void invalidate() {
+        super.invalidate();
+        if (getParent() != null) {
+            ((View) getParent()).invalidate();
+        }
+        this.W.w();
+    }
+
+    @Override
+    public final void k(int i10) {
+        super.k(i10);
+        this.f1972e0 = Math.signum(i10);
+        this.f1973f0 = 0.0f;
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(android.view.MotionEvent r6) {
+        throw new UnsupportedOperationException("Method not decompiled: ai.ya.onInterceptTouchEvent(android.view.MotionEvent):boolean");
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        L(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11));
+        super.onMeasure(i10, i11);
+    }
+
+    @Override
+    public boolean onTouchEvent(android.view.MotionEvent r6) {
+        throw new UnsupportedOperationException("Method not decompiled: ai.ya.onTouchEvent(android.view.MotionEvent):boolean");
+    }
+
+    @Override
+    public final void scrollBy(int i10, int i11) {
+        super.scrollBy(i10, i11);
+        invalidate();
+    }
+
+    @Override
+    public final boolean z(int i10, int i11) {
+        if (i11 == 0) {
+            this.f1968a0.c();
+            this.f1970c0 = true;
+            this.f1971d0 = this.f1969b0.getTranslationY();
+        }
+        return true;
+    }
+
+    public void F(org.telegram.ui.Components.b6 b6Var) {
+    }
+
+    public void I(ta taVar) {
+    }
+
+    public void G(CharacterStyle characterStyle, View view) {
+    }
+
+    public void H(URLSpan uRLSpan, View view, a3.d dVar) {
     }
 }

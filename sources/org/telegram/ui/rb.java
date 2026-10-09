@@ -1,46 +1,192 @@
 package org.telegram.ui;
 
+import android.content.Context;
 import android.view.View;
-import android.view.ViewTreeObserver;
-import org.telegram.messenger.AndroidUtilities;
-public final class rb implements ViewTreeObserver.OnPreDrawListener {
-    public final View f40056a;
-    public final s4.c1 f40057b;
-    public final sb f40058c;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MessageObject;
+public final class rb extends s4.i0 {
+    public final Context f41363c;
+    public int d;
+    public int f41364e;
+    public int f41365f;
+    public int h;
+    public final vb f41366n;
 
-    public rb(sb sbVar, View view, s4.c1 c1Var) {
-        this.f40058c = sbVar;
-        this.f40056a = view;
-        this.f40057b = c1Var;
+    public rb(vb vbVar, Context context) {
+        this.f41366n = vbVar;
+        new ArrayList();
+        new ArrayList();
+        this.f41363c = context;
+        C(true);
+    }
+
+    public final void D(boolean z10) {
+        this.d = 0;
+        vb vbVar = this.f41366n;
+        ArrayList arrayList = vbVar.f42785o0;
+        if (!arrayList.isEmpty()) {
+            if (!vbVar.f42787q0) {
+                int i10 = this.d;
+                this.d = i10 + 1;
+                this.f41364e = i10;
+            } else {
+                this.f41364e = -1;
+            }
+            int i11 = this.d;
+            this.f41365f = i11;
+            int size = arrayList.size() + i11;
+            this.d = size;
+            this.h = size;
+            return;
+        }
+        this.f41364e = -1;
+        this.f41365f = -1;
+        this.h = -1;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        int i10;
-        View view = this.f40056a;
-        view.getViewTreeObserver().removeOnPreDrawListener(this);
-        wb wbVar = this.f40058c.f40430n;
-        int measuredHeight = wbVar.v.getMeasuredHeight();
-        int top = view.getTop();
-        view.getBottom();
-        if (top >= 0) {
-            i10 = 0;
+    public final int h() {
+        return this.d;
+    }
+
+    @Override
+    public final long i(int i10) {
+        if (i10 >= this.f41365f && i10 < this.h) {
+            ArrayList arrayList = this.f41366n.f42785o0;
+            return ((MessageObject) arrayList.get((arrayList.size() - (i10 - this.f41365f)) - 1)).stableId;
+        } else if (i10 == this.f41364e) {
+            return 2L;
         } else {
-            i10 = -top;
+            return 5L;
         }
-        int measuredHeight2 = view.getMeasuredHeight();
-        if (measuredHeight2 > measuredHeight) {
-            measuredHeight2 = i10 + measuredHeight;
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (i10 >= this.f41365f && i10 < this.h) {
+            ArrayList arrayList = this.f41366n.f42785o0;
+            return ((MessageObject) arrayList.get((arrayList.size() - (i10 - this.f41365f)) - 1)).contentType;
         }
-        View view2 = this.f40057b.f46538a;
-        if (view2 instanceof org.telegram.ui.Cells.u1) {
-            ((org.telegram.ui.Cells.u1) view).b4(i10, measuredHeight2 - i10, (wbVar.X.getHeightWithKeyboard() - AndroidUtilities.dp(48.0f)) - wbVar.v.getTop(), 0.0f, (view.getY() + wb.G0(wbVar).getMeasuredHeight()) - wbVar.X.getBackgroundTranslationY(), wbVar.X.getMeasuredWidth(), wbVar.X.getBackgroundSizeY(), 0, 0, 0);
-            return true;
-        } else if ((view2 instanceof org.telegram.ui.Cells.w0) && wb.H0(wbVar) != null && wbVar.X != null) {
-            ((org.telegram.ui.Cells.w0) view).U((view.getY() + wb.I0(wbVar).getMeasuredHeight()) - wbVar.X.getBackgroundTranslationY(), wbVar.X.getBackgroundSizeY());
-            return true;
+        return 4;
+    }
+
+    @Override
+    public final void l() {
+        D(true);
+        try {
+            super.l();
+        } catch (Exception e7) {
+            FileLog.e(e7);
+        }
+    }
+
+    @Override
+    public final void m(int i10) {
+        D(false);
+        try {
+            super.m(i10);
+        } catch (Exception e7) {
+            FileLog.e(e7);
+        }
+    }
+
+    @Override
+    public final void p(int i10, int i11) {
+        D(false);
+        try {
+            super.p(i10, i11);
+        } catch (Exception e7) {
+            FileLog.e(e7);
+        }
+    }
+
+    @Override
+    public final void q(int i10, int i11) {
+        D(false);
+        try {
+            super.q(i10, i11);
+        } catch (Exception e7) {
+            FileLog.e(e7);
+        }
+    }
+
+    @Override
+    public final void s(int i10, int i11) {
+        D(false);
+        try {
+            super.s(i10, i11);
+        } catch (Exception e7) {
+            FileLog.e(e7);
+        }
+    }
+
+    @Override
+    public final void t(int i10, int i11) {
+        D(false);
+        try {
+            super.t(i10, i11);
+        } catch (Exception e7) {
+            FileLog.e(e7);
+        }
+    }
+
+    @Override
+    public final void v(s4.d1 r21, int r22) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.rb.v(s4.d1, int):void");
+    }
+
+    @Override
+    public final s4.d1 x(ViewGroup viewGroup, int i10) {
+        org.telegram.ui.ActionBar.e6 e6Var;
+        org.telegram.ui.Cells.v1 v1Var;
+        int i11;
+        View view;
+        vb vbVar = this.f41366n;
+        ArrayList arrayList = vbVar.h;
+        Context context = this.f41363c;
+        if (i10 == 0) {
+            if (arrayList.isEmpty()) {
+                i11 = ((org.telegram.ui.ActionBar.n2) vbVar).currentAccount;
+                view = new org.telegram.ui.Cells.u1(context, i11);
+            } else {
+                arrayList.remove(0);
+                view = (View) arrayList.get(0);
+            }
+            org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) view;
+            u1Var.setDelegate(new mb(this));
+            u1Var.setAllowAssistant(true);
+            v1Var = view;
+        } else if (i10 == 1) {
+            org.telegram.ui.Cells.w0 w0Var = new org.telegram.ui.Cells.w0(context);
+            w0Var.setDelegate(new pb(this));
+            v1Var = w0Var;
+        } else if (i10 == 2) {
+            v1Var = new org.telegram.ui.Cells.w1(context, null);
+        } else if (i10 == 10) {
+            e6Var = ((org.telegram.ui.ActionBar.n2) vbVar).resourceProvider;
+            org.telegram.ui.Cells.v1 v1Var2 = new org.telegram.ui.Cells.v1(context, e6Var);
+            v1Var2.setDelegate(new g(this, 10));
+            v1Var = v1Var2;
         } else {
-            return true;
+            v1Var = new org.telegram.ui.Cells.z0(context, null);
+        }
+        return com.google.android.gms.internal.vision.e2.k(v1Var, v1Var, -1, -2);
+    }
+
+    @Override
+    public final void y(s4.d1 d1Var) {
+        View view = d1Var.f47656a;
+        if ((view instanceof org.telegram.ui.Cells.u1) || (view instanceof org.telegram.ui.Cells.w0)) {
+            view.getViewTreeObserver().addOnPreDrawListener(new qb(this, view, d1Var));
+        }
+        if (view instanceof org.telegram.ui.Cells.u1) {
+            org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) view;
+            u1Var.getMessageObject();
+            u1Var.setBackgroundDrawable(null);
+            u1Var.K3(true, false);
+            u1Var.setHighlighted(false);
         }
     }
 }

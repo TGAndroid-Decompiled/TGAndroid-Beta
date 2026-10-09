@@ -1,18 +1,18 @@
 package a9;
 public final class w {
-    public final int f381a;
-    public final long f382b;
+    public final int f379a;
+    public final long f380b;
 
     public w(int i10, long j3) {
-        this.f381a = i10;
-        this.f382b = j3;
+        this.f379a = i10;
+        this.f380b = j3;
     }
 
     public final boolean equals(Object obj) {
         if (obj != this) {
             if (obj instanceof w) {
                 w wVar = (w) obj;
-                if (this.f381a == wVar.f381a && this.f382b == wVar.f382b) {
+                if (this.f379a == wVar.f379a && this.f380b == wVar.f380b) {
                     return true;
                 }
                 return false;
@@ -23,14 +23,14 @@ public final class w {
     }
 
     public final int hashCode() {
-        long j3 = this.f382b;
-        return ((this.f381a ^ 1000003) * 1000003) ^ ((int) (j3 ^ (j3 >>> 32)));
+        long j3 = this.f380b;
+        return ((this.f379a ^ 1000003) * 1000003) ^ ((int) (j3 ^ (j3 >>> 32)));
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("EventRecord{eventType=");
-        sb2.append(this.f381a);
+        sb2.append(this.f379a);
         sb2.append(", eventTimestamp=");
-        return a4.a.s(sb2, this.f382b, "}");
+        return a1.g.s(sb2, this.f380b, "}");
     }
 }

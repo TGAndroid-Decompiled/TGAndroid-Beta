@@ -1,23 +1,22 @@
 package org.telegram.ui;
+public final class pl0 implements Runnable {
+    public final int f40824a;
+    public final es f40825b;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-public final class pl0 extends FrameLayout {
-    public final org.telegram.ui.Components.nj0 f39603a;
+    public pl0(es esVar, int i10) {
+        this.f40824a = i10;
+        this.f40825b = esVar;
+    }
 
-    public pl0(Context context) {
-        super(context);
-        ?? imageView = new ImageView(context);
-        this.f39603a = imageView;
-        imageView.setOnClickListener(new j60(this, 14));
-        int dp = AndroidUtilities.dp(120.0f);
-        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(dp, dp);
-        layoutParams.gravity = 1;
-        addView((View) imageView, layoutParams);
-        setPadding(0, AndroidUtilities.dp(32.0f), 0, 0);
-        setLayoutParams(new s4.p0(-1, -2));
+    @Override
+    public final void run() {
+        switch (this.f40824a) {
+            case 0:
+                this.f40825b.l(1.0f);
+                return;
+            default:
+                this.f40825b.l(1.0f);
+                return;
+        }
     }
 }

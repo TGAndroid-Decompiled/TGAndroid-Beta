@@ -85,28 +85,28 @@ public abstract class q {
         return messagesController.getEncryptedChat(Integer.valueOf(DialogObject.getEncryptedChatId(j3)));
     }
 
-    public static void m(int i10, TextView textView) {
+    public static void m(float f7, int i10, int i11, TextView textView) {
+        textView.setTextColor(i10);
+        textView.setTextSize(i11, f7);
+        textView.setTypeface(AndroidUtilities.bold());
+    }
+
+    public static void n(int i10, TextView textView) {
         textView.setText(AndroidUtilities.replaceTags(LocaleController.getString(i10)));
     }
 
-    public static void n(int i10, StringBuilder sb2) {
+    public static void o(int i10, StringBuilder sb2) {
         sb2.append(i10);
         FileLog.d(sb2.toString());
     }
 
-    public static void o(int i10, AlertDialog$Builder alertDialog$Builder, org.telegram.ui.ActionBar.a2 a2Var) {
+    public static void p(int i10, AlertDialog$Builder alertDialog$Builder, org.telegram.ui.ActionBar.a2 a2Var) {
         alertDialog$Builder.k(LocaleController.getString(i10), a2Var);
         alertDialog$Builder.o();
     }
 
-    public static void p(int i10, org.telegram.ui.Components.yc ycVar, int i11, int i12) {
-        ycVar.Q(i11, i12, LocaleController.getString(i10)).j();
-    }
-
-    public static void q(TextView textView, int i10, int i11, float f7) {
-        textView.setTextColor(i10);
-        textView.setTextSize(i11, f7);
-        textView.setTypeface(AndroidUtilities.bold());
+    public static void q(int i10, org.telegram.ui.Components.ad adVar, int i11, int i12) {
+        adVar.Q(i11, i12, LocaleController.getString(i10)).j();
     }
 
     public static void r(StringBuilder sb2, long j3) {

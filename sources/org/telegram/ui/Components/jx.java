@@ -1,33 +1,40 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class jx extends AnimatorListenerAdapter {
-    public final int f27985a;
-    public final boolean f27986b;
-    public final nz f27987c;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.FileLog;
+public final class jx extends s4.s {
+    public final a00 Q;
 
-    public jx(nz nzVar, boolean z10, int i10) {
-        this.f27985a = i10;
-        this.f27987c = nzVar;
-        this.f27986b = z10;
+    public jx(a00 a00Var) {
+        super(5);
+        this.Q = a00Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f27985a) {
-            case 0:
-                if (!this.f27986b) {
-                    this.f27987c.f29260x.setVisibility(4);
-                    return;
-                }
-                return;
-            default:
-                if (!this.f27986b) {
-                    this.f27987c.f29264y.setVisibility(4);
-                    return;
-                }
-                return;
+    public final int o0(int i10, pf.e eVar, s4.a1 a1Var) {
+        int o02 = super.o0(i10, eVar, a1Var);
+        a00 a00Var = this.Q;
+        if (o02 != 0 && a00Var.D0.getScrollState() == 1) {
+            a00Var.X1 = false;
+            a00Var.Y();
+        }
+        if (a00Var.T0 == null) {
+            gg.f1 f1Var = new gg.f1(a00Var, a00Var.f24401c1, a00Var.f24455t1.a(), a00Var.f24455t1.f(), 1);
+            a00Var.T0 = f1Var;
+            f1Var.a();
+        }
+        a00Var.T0.b();
+        return o02;
+    }
+
+    @Override
+    public final void v0(RecyclerView recyclerView, s4.a1 a1Var, int i10) {
+        try {
+            ji.o oVar = new ji.o(recyclerView.getContext(), 2);
+            oVar.f47825a = i10;
+            w0(oVar);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
     }
 }

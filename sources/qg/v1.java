@@ -1,6 +1,6 @@
 package qg;
 public interface v1 {
-    void X(float f7);
-
     float get();
+
+    void q0(float f7);
 }

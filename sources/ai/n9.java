@@ -1,35 +1,13 @@
 package ai;
 
-import android.view.View;
-import android.view.ViewTreeObserver;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class n9 implements ViewTreeObserver.OnGlobalLayoutListener {
-    public final TextView f1412a;
-    public final View f1413b;
-    public final TextView f1414c;
-    public final p9 d;
-
-    public n9(p9 p9Var, TextView textView, View view, TextView textView2) {
-        this.d = p9Var;
-        this.f1412a = textView;
-        this.f1413b = view;
-        this.f1414c = textView2;
-    }
+import org.telegram.ui.Components.f30;
+public final class n9 extends f30 {
+    public int f1485n;
+    public int f1486o;
 
     @Override
-    public final void onGlobalLayout() {
-        int[] iArr = new int[2];
-        TextView textView = this.f1412a;
-        textView.getLocationOnScreen(iArr);
-        int dp = AndroidUtilities.dp(24.0f) + iArr[1];
-        int measuredHeight = this.f1413b.getMeasuredHeight();
-        p9 p9Var = this.d;
-        if (dp > measuredHeight) {
-            textView.setLayoutParams(w7.z5.k(0.0f, 13.0f, 0.0f, 0.0f, -2, -2));
-            this.f1414c.setLayoutParams(w7.z5.k(68.0f, 8.0f, 68.0f, 13.0f, -2, -2));
-            p9Var.requestLayout();
-        }
-        p9Var.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+    public final void e() {
+        d(org.telegram.ui.ActionBar.i6.x0(null, this.f1485n, false), org.telegram.ui.ActionBar.i6.x0(null, this.f1486o, false), 0, 0);
+        super.e();
     }
 }

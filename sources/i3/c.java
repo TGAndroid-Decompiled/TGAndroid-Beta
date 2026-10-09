@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 public final class c extends g {
-    public long f11910b;
-    public long[] f11911c;
+    public long f11960b;
+    public long[] f11961c;
     public long[] d;
 
-    public static Serializable Z0(int i10, v vVar) {
+    public static Serializable b1(int i10, v vVar) {
         if (i10 != 0) {
             boolean z10 = false;
             if (i10 != 1) {
@@ -29,29 +29,29 @@ public final class c extends g {
                             int B = vVar.B();
                             ArrayList arrayList = new ArrayList(B);
                             for (int i11 = 0; i11 < B; i11++) {
-                                Serializable Z0 = Z0(vVar.x(), vVar);
-                                if (Z0 != null) {
-                                    arrayList.add(Z0);
+                                Serializable b12 = b1(vVar.x(), vVar);
+                                if (b12 != null) {
+                                    arrayList.add(b12);
                                 }
                             }
                             return arrayList;
                         }
-                        return a1(vVar);
+                        return c1(vVar);
                     }
                     HashMap hashMap = new HashMap();
                     while (true) {
-                        String b12 = b1(vVar);
+                        String d12 = d1(vVar);
                         int x10 = vVar.x();
                         if (x10 == 9) {
                             return hashMap;
                         }
-                        Serializable Z02 = Z0(x10, vVar);
-                        if (Z02 != null) {
-                            hashMap.put(b12, Z02);
+                        Serializable b13 = b1(x10, vVar);
+                        if (b13 != null) {
+                            hashMap.put(d12, b13);
                         }
                     }
                 } else {
-                    return b1(vVar);
+                    return d1(vVar);
                 }
             } else {
                 if (vVar.x() == 1) {
@@ -64,23 +64,23 @@ public final class c extends g {
         }
     }
 
-    public static HashMap a1(v vVar) {
+    public static HashMap c1(v vVar) {
         int B = vVar.B();
         HashMap hashMap = new HashMap(B);
         for (int i10 = 0; i10 < B; i10++) {
-            String b12 = b1(vVar);
-            Serializable Z0 = Z0(vVar.x(), vVar);
-            if (Z0 != null) {
-                hashMap.put(b12, Z0);
+            String d12 = d1(vVar);
+            Serializable b12 = b1(vVar.x(), vVar);
+            if (b12 != null) {
+                hashMap.put(d12, b12);
             }
         }
         return hashMap;
     }
 
-    public static String b1(v vVar) {
+    public static String d1(v vVar) {
         int D = vVar.D();
-        int i10 = vVar.f8591b;
+        int i10 = vVar.f8585b;
         vVar.K(D);
-        return new String(vVar.f8590a, i10, D);
+        return new String(vVar.f8584a, i10, D);
     }
 }

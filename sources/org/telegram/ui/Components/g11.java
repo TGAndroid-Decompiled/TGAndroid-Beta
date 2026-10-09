@@ -1,69 +1,84 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.text.style.ReplacementSpan;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-public final class g11 extends ReplacementSpan {
-    public static final int f26673f = 0;
-    public ImageReceiver f26674a;
-    public int f26675b;
-    public int f26676c;
-    public final boolean d;
-    public final int f26677e;
+import java.io.File;
+import java.util.HashMap;
+import java.util.Iterator;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.NotificationCenter;
+public final class g11 implements ki.q0, NotificationCenter.NotificationCenterDelegate {
+    public final int f26552a;
+    public final boolean f26553b;
+    public final HashMap f26554c = new HashMap();
+    public boolean d;
 
-    public g11(View view, Bitmap bitmap, int i10, int i11, int i12, int i13) {
-        this.f26675b = i10;
-        this.f26676c = i11;
-        ImageReceiver imageReceiver = new ImageReceiver(view);
-        this.f26674a = imageReceiver;
-        imageReceiver.setInvalidateAll(true);
-        imageReceiver.setImageBitmap(bitmap);
-        imageReceiver.setColorFilter(new PorterDuffColorFilter(i12, PorterDuff.Mode.SRC_IN));
-        this.f26677e = i13;
-        this.d = true;
+    public g11(int i10, boolean z10) {
+        this.f26552a = i10;
+        this.f26553b = z10;
+        NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileUploaded);
     }
 
-    @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        int i15 = this.f26675b;
-        int i16 = this.f26676c;
-        ImageReceiver imageReceiver = this.f26674a;
-        canvas.save();
-        if (this.d) {
-            imageReceiver.setImageCoords((int) f7, i13 - (i16 - this.f26677e), i15, i16);
-        } else {
-            imageReceiver.setImageCoords((int) f7, hg.c.y(org.telegram.messenger.q.B(4.0f, i14, i12), i16, 2, i12), i15, i16);
+    public final synchronized void a(long j3, File file, long j10, long j11) {
+        e11 e11Var = (e11) this.f26554c.get(Long.valueOf(j3));
+        if (!this.d && e11Var != null && !e11Var.f25918e) {
+            e(e11Var);
+            e11Var.f25916b = Math.max(e11Var.f25916b, j10 + j11);
+            FileLoader.getInstance(this.f26552a).checkUploadNewDataAvailable(file.getAbsolutePath(), this.f26553b, e11Var.f25916b, 0L);
         }
-        imageReceiver.draw(canvas);
-        canvas.restore();
     }
 
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        int i12 = this.f26676c;
-        if (fontMetricsInt != null) {
+    public final synchronized void b(long j3, long j10, File file) {
+        e11 e11Var = (e11) this.f26554c.get(Long.valueOf(j3));
+        if (!this.d && e11Var != null && !e11Var.f25918e) {
+            e(e11Var);
+            e11Var.f25916b = Math.max(e11Var.f25916b, j10);
+            e11Var.f25917c = j10;
+            FileLoader.getInstance(this.f26552a).checkUploadNewDataAvailable(file.getAbsolutePath(), this.f26553b, e11Var.f25916b, j10);
+        }
+    }
+
+    public final synchronized void c(long j3) {
+        e11 e11Var = (e11) this.f26554c.remove(Long.valueOf(j3));
+        if (e11Var == null) {
+            return;
+        }
+        e11Var.f25918e = true;
+        if (e11Var.d) {
+            FileLoader.getInstance(this.f26552a).cancelFileUpload(e11Var.f25915a.getAbsolutePath(), this.f26553b);
+        }
+    }
+
+    public final synchronized void d(boolean z10) {
+        try {
             if (this.d) {
-                int i13 = this.f26677e;
-                int i14 = -(i12 - i13);
-                fontMetricsInt.ascent = i14;
-                fontMetricsInt.top = i14;
-                fontMetricsInt.descent = i13;
-                fontMetricsInt.bottom = i13;
-            } else {
-                int dp = ((-i12) / 2) - AndroidUtilities.dp(4.0f);
-                fontMetricsInt.ascent = dp;
-                fontMetricsInt.top = dp;
-                int dp2 = (i12 - (i12 / 2)) - AndroidUtilities.dp(4.0f);
-                fontMetricsInt.descent = dp2;
-                fontMetricsInt.bottom = dp2;
+                return;
             }
+            this.d = true;
+            NotificationCenter.getInstance(this.f26552a).removeObserver(this, NotificationCenter.fileUploaded);
+            if (z10) {
+                Iterator it = this.f26554c.values().iterator();
+                while (it.hasNext()) {
+                    e11 e11Var = (e11) it.next();
+                    if (e11Var.d && !e11Var.f25918e) {
+                        FileLoader.getInstance(this.f26552a).cancelFileUpload(e11Var.f25915a.getAbsolutePath(), this.f26553b);
+                    }
+                    it.remove();
+                }
+            }
+        } catch (Throwable th2) {
+            throw th2;
         }
-        return this.f26675b;
+    }
+
+    @Override
+    public final synchronized void didReceivedNotification(int r4, int r5, java.lang.Object... r6) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.g11.didReceivedNotification(int, int, java.lang.Object[]):void");
+    }
+
+    public final void e(e11 e11Var) {
+        if (e11Var.d) {
+            return;
+        }
+        e11Var.d = true;
+        FileLoader.getInstance(this.f26552a).uploadFile(e11Var.f25915a.getAbsolutePath(), this.f26553b, false, 1L, 33554432, false);
     }
 }

@@ -3,7 +3,7 @@ package l8;
 import android.os.Parcel;
 import android.os.Parcelable;
 import g8.j;
-import w7.g0;
+import w7.d0;
 public final class c extends o6.a {
     public static final Parcelable.Creator<c> CREATOR = new j(23);
 
@@ -20,6 +20,6 @@ public final class c extends o6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        g0.r(parcel, g0.q(parcel, 20293));
+        d0.r(parcel, d0.q(parcel, 20293));
     }
 }

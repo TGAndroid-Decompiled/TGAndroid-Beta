@@ -2,116 +2,48 @@ package org.telegram.ui;
 
 import android.app.Activity;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
-import android.text.StaticLayout;
-import android.text.TextPaint;
+import android.graphics.Path;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class v41 extends FrameLayout {
-    public final Paint f41593a;
-    public final Paint f41594b;
-    public final RectF f41595c;
-    public final org.telegram.ui.Components.w21 d;
-    public boolean f41596e;
-    public long f41597f;
-    public long h;
-    public final org.telegram.ui.Components.kj0 f41598n;
-    public final TextPaint f41599r;
-    public StaticLayout f41600s;
-    public float v;
-    public float f41601w;
-    public final SecretMediaViewer f41602x;
+public final class v41 extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
+    public final Path f42638a;
+    public ch.d f42639b;
 
-    public v41(SecretMediaViewer secretMediaViewer, Activity activity) {
+    public v41(Activity activity) {
         super(activity);
-        this.f41602x = secretMediaViewer;
-        this.f41595c = new RectF();
-        this.d = new org.telegram.ui.Components.w21();
-        this.f41599r = new TextPaint(1);
-        setWillNotDraw(false);
-        Paint paint = new Paint(1);
-        this.f41594b = paint;
-        paint.setStrokeWidth(AndroidUtilities.dp(1.5f));
-        paint.setColor(-1644826);
-        Paint.Cap cap = Paint.Cap.ROUND;
-        paint.setStrokeCap(cap);
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        Paint paint2 = new Paint(1);
-        this.f41593a = paint2;
-        paint2.setStyle(style);
-        paint2.setStrokeCap(cap);
-        paint2.setColor(-1644826);
-        paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        new Paint(1).setColor(2130706432);
-        org.telegram.ui.Components.kj0 kj0Var = new org.telegram.ui.Components.kj0(R.raw.fire_on, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
-        this.f41598n = kj0Var;
-        kj0Var.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        kj0Var.R(this);
-        kj0Var.start();
+        this.f42638a = new Path();
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        SecretMediaViewer secretMediaViewer;
-        float max;
-        MessageObject messageObject = this.f41602x.f34441h0;
-        if (messageObject != null) {
-            TLRPC.Message message = messageObject.messageOwner;
-            if (message.destroyTime != 0 || message.ttl == Integer.MAX_VALUE) {
-                if (this.f41597f == 0) {
-                    max = 1.0f;
-                } else {
-                    max = ((float) Math.max(0L, this.f41597f - (System.currentTimeMillis() + (ConnectionsManager.getInstance(secretMediaViewer.f34422a).getTimeDifference() * 1000)))) / (((float) this.h) * 1000.0f);
-                }
-                boolean z10 = this.f41596e;
-                Paint paint = this.f41594b;
-                Paint paint2 = this.f41593a;
-                float f7 = max;
-                RectF rectF = this.f41595c;
-                if (z10) {
-                    canvas.save();
-                    canvas.translate(rectF.centerX() - (this.v / 2.0f), rectF.centerY() - (this.f41601w / 2.0f));
-                    this.f41600s.draw(canvas);
-                    canvas.restore();
-                    canvas.drawArc(rectF, 90.0f, 180.0f, false, paint2);
-                    float f10 = 19.285715f;
-                    for (int i10 = 0; i10 < 5; i10++) {
-                        canvas.drawArc(rectF, f10 + 270.0f, 12.857143f, false, paint2);
-                        f10 += 32.14286f;
-                    }
-                    this.d.a(0.0f, 1.0f, canvas, paint, rectF);
-                } else {
-                    float centerX = rectF.centerX();
-                    float centerY = rectF.centerY() - AndroidUtilities.dp(1.0f);
-                    float dp = AndroidUtilities.dp(8.0f);
-                    org.telegram.ui.Components.kj0 kj0Var = this.f41598n;
-                    kj0Var.setBounds((int) (centerX - dp), (int) (centerY - dp), (int) (centerX + dp), (int) (centerY + dp));
-                    kj0Var.draw(canvas);
-                    float f11 = f7 * (-360.0f);
-                    canvas.drawArc(rectF, -90.0f, f11, false, paint2);
-                    this.d.a(f11, 1.0f, canvas, paint, rectF);
-                }
-                invalidate();
-            }
+    public final void dispatchDraw(Canvas canvas) {
+        canvas.save();
+        canvas.clipPath(this.f42638a);
+        super.dispatchDraw(canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public final void e() {
+        ch.d dVar = this.f42639b;
+        if (dVar != null) {
+            dVar.v();
         }
     }
 
+    public int[] getColorKeys() {
+        return null;
+    }
+
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        float measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(35.0f);
-        float measuredHeight = getMeasuredHeight() / 2.0f;
-        float dpf2 = AndroidUtilities.dpf2(10.5f);
-        this.f41595c.set(measuredWidth - dpf2, measuredHeight - dpf2, measuredWidth + dpf2, dpf2 + measuredHeight);
-        setPivotX(measuredWidth);
-        setPivotY(measuredHeight);
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        super.onSizeChanged(i10, i11, i12, i13);
+        Path path = this.f42638a;
+        path.rewind();
+        path.addRoundRect(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), i10 - AndroidUtilities.dp(9.0f), i11 - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Path.Direction.CW);
+    }
+
+    public void setBlurredBackground(ch.d dVar) {
+        this.f42639b = dVar;
+        setBackground(dVar);
     }
 }

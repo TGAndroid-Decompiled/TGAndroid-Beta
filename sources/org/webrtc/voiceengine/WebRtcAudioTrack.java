@@ -199,10 +199,7 @@ public class WebRtcAudioTrack {
     }
 
     private int getBufferSizeInFrames() {
-        if (Build.VERSION.SDK_INT >= 23) {
-            return this.audioTrack.getBufferSizeInFrames();
-        }
-        return -1;
+        return this.audioTrack.getBufferSizeInFrames();
     }
 
     private static int getDefaultUsageAttribute() {
@@ -288,9 +285,7 @@ public class WebRtcAudioTrack {
     }
 
     private void logBufferSizeInFrames() {
-        if (Build.VERSION.SDK_INT >= 23) {
-            Logging.d("WebRtcAudioTrack", "AudioTrack: buffer size in frames: " + this.audioTrack.getBufferSizeInFrames());
-        }
+        Logging.d("WebRtcAudioTrack", "AudioTrack: buffer size in frames: " + this.audioTrack.getBufferSizeInFrames());
     }
 
     private void logMainParameters() {
@@ -426,8 +421,7 @@ public class WebRtcAudioTrack {
         try {
             this.audioTrack.play();
             if (this.audioTrack.getPlayState() != 3) {
-                AudioTrackStartErrorCode audioTrackStartErrorCode = AudioTrackStartErrorCode.AUDIO_TRACK_START_STATE_MISMATCH;
-                reportWebRtcAudioTrackStartError(audioTrackStartErrorCode, "AudioTrack.play failed - incorrect state :" + this.audioTrack.getPlayState());
+                reportWebRtcAudioTrackStartError(AudioTrackStartErrorCode.AUDIO_TRACK_START_STATE_MISMATCH, "AudioTrack.play failed - incorrect state :" + this.audioTrack.getPlayState());
                 releaseAudioResources();
                 return false;
             }
@@ -436,8 +430,7 @@ public class WebRtcAudioTrack {
             audioTrackThread.start();
             return true;
         } catch (IllegalStateException e7) {
-            AudioTrackStartErrorCode audioTrackStartErrorCode2 = AudioTrackStartErrorCode.AUDIO_TRACK_START_EXCEPTION;
-            reportWebRtcAudioTrackStartError(audioTrackStartErrorCode2, "AudioTrack.play failed: " + e7.getMessage());
+            reportWebRtcAudioTrackStartError(AudioTrackStartErrorCode.AUDIO_TRACK_START_EXCEPTION, "AudioTrack.play failed: " + e7.getMessage());
             releaseAudioResources();
             return false;
         }

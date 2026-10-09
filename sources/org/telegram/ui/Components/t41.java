@@ -1,44 +1,21 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-public final class t41 extends s4.h0 {
-    public Context f31057c;
-    public View d;
-    public int f31058e;
+import org.telegram.tgnet.TLRPC;
+public final class t41 extends b51 {
+    public final Runnable T;
 
-    public final void D(View view) {
-        if (this.d == view) {
-            return;
+    public t41(Context context, String str, String str2, CharSequence charSequence, TLRPC.InputPeer inputPeer, int i10, boolean z10, Runnable runnable) {
+        super(context, str, str2, charSequence, inputPeer, i10, z10, null);
+        this.T = runnable;
+    }
+
+    @Override
+    public final void dismiss() {
+        super.dismiss();
+        Runnable runnable = this.T;
+        if (runnable != null) {
+            runnable.run();
         }
-        this.f31058e++;
-        this.d = view;
-        m(1);
-    }
-
-    @Override
-    public final int h() {
-        return 2;
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 == 0) {
-            return 0;
-        }
-        return this.f31058e;
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        if (i10 == 0) {
-            return new s4.c1(new nn(this.f31057c, 13));
-        }
-        return new s4.c1(this.d);
-    }
-
-    @Override
-    public final void v(s4.c1 c1Var, int i10) {
     }
 }

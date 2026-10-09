@@ -1,22 +1,31 @@
 package org.telegram.ui.Components;
 
-import java.util.regex.Pattern;
-public final class ca0 extends ed.h {
-    public static final Pattern f25341e = Pattern.compile("\\$([^\\s\\$][^\\$]*?)(?<!\\s)\\$(?![0-9])");
+import android.content.Context;
+import android.graphics.Canvas;
+public final class ca0 extends org.telegram.ui.ActionBar.j5 {
+    public final org.telegram.ui.ActionBar.e6 M0;
+    public final ba0 N0;
+    public fa0 O0;
 
-    @Override
-    public final bf.p b() {
-        String a2 = a(f25341e);
-        if (a2 == null) {
-            return null;
-        }
-        ?? pVar = new bf.p();
-        pVar.f53216g = com.google.android.gms.internal.vision.e2.i(1, 1, a2);
-        return pVar;
+    public ca0(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context);
+        this.N0 = new ba0(this);
+        this.M0 = e6Var;
     }
 
     @Override
-    public final char d() {
-        return '$';
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        canvas.save();
+        canvas.translate(getLayoutX(), getLayoutY());
+        if (this.N0.f(canvas)) {
+            invalidate();
+        }
+        canvas.restore();
+    }
+
+    @Override
+    public final boolean onTouchEvent(android.view.MotionEvent r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ca0.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

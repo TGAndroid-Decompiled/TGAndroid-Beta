@@ -1,63 +1,32 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.view.ViewGroup;
-public final class yi1 extends org.telegram.ui.Components.yl0 {
-    public final Context f43242c;
-    public final WallpapersListActivity d;
+import java.util.ArrayList;
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class yi1 extends AnimatorListenerAdapter {
+    public final org.telegram.ui.Cells.u1 f44355a;
+    public final org.telegram.ui.Components.xi f44356b;
+    public final zi1 f44357c;
 
-    public yi1(WallpapersListActivity wallpapersListActivity, Context context) {
-        this.d = wallpapersListActivity;
-        this.f43242c = context;
+    public yi1(zi1 zi1Var, org.telegram.ui.Cells.u1 u1Var, org.telegram.ui.Components.xi xiVar) {
+        this.f44357c = zi1Var;
+        this.f44355a = u1Var;
+        this.f44356b = xiVar;
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f46542f == 0) {
-            return true;
+    public final void onAnimationEnd(Animator animator) {
+        this.f44355a.setEnterTransitionInProgress(false);
+        org.telegram.ui.Components.xi xiVar = this.f44356b;
+        zi1 zi1Var = this.f44357c;
+        ((ArrayList) xiVar.f32877c).remove(zi1Var);
+        xiVar.a();
+        ((ViewGroup) xiVar.d).invalidate();
+        ChatActivityEnterView.RecordCircle recordCircle = zi1Var.f44674g;
+        if (recordCircle != null) {
+            recordCircle.N = false;
         }
-        return false;
-    }
-
-    @Override
-    public final int h() {
-        return this.d.f34617a;
-    }
-
-    @Override
-    public final int j(int i10) {
-        int i11;
-        WallpapersListActivity wallpapersListActivity = this.d;
-        i11 = wallpapersListActivity.uploadImageRow;
-        if (i10 != i11 && i10 != wallpapersListActivity.h && i10 != wallpapersListActivity.f34619b && i10 != wallpapersListActivity.f34624e) {
-            if (i10 != wallpapersListActivity.f34626f && i10 != wallpapersListActivity.f34630n) {
-                return 2;
-            }
-            return 3;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.c1 r17, int r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.yi1.v(s4.c1, int):void");
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        View r8Var;
-        Context context = this.f43242c;
-        if (i10 != 0) {
-            if (i10 != 3) {
-                r8Var = new org.telegram.ui.Components.lj(this, context, 1);
-                r8Var.setTag(-33024);
-            } else {
-                r8Var = new org.telegram.ui.Cells.e9(context);
-            }
-        } else {
-            r8Var = new org.telegram.ui.Cells.r8(context);
-        }
-        return new s4.c1(r8Var);
     }
 }

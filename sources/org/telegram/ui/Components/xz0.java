@@ -1,36 +1,47 @@
 package org.telegram.ui.Components;
-public class xz0 {
-    public int f33123a;
-    public int f33124b;
-    public int f33125c;
+public final class xz0 {
+    public final int f33051a;
 
-    public xz0() {
-        c();
+    public xz0(int i10) {
+        this.f33051a = i10;
     }
 
-    public int a(g01 g01Var, zz0 zz0Var, sz0 sz0Var, int i10, boolean z10) {
-        return this.f33123a - sz0Var.a(zz0Var, i10);
-    }
-
-    public void b(int i10, int i11) {
-        this.f33123a = Math.max(this.f33123a, i10);
-        this.f33124b = Math.max(this.f33124b, i11);
-    }
-
-    public void c() {
-        this.f33123a = Integer.MIN_VALUE;
-        this.f33124b = Integer.MIN_VALUE;
-        this.f33125c = 2;
-    }
-
-    public int d(boolean z10) {
-        if (!z10) {
-            int i10 = this.f33125c;
-            sz0 sz0Var = g01.R;
-            if ((i10 & 2) != 0) {
-                return 100000;
-            }
+    public final int a(e01 e01Var, int i10) {
+        switch (this.f33051a) {
+            case 0:
+                return Integer.MIN_VALUE;
+            case 1:
+                return 0;
+            case 2:
+                return i10;
+            case 3:
+                return Integer.MIN_VALUE;
+            default:
+                return Integer.MIN_VALUE;
         }
-        return this.f33123a + this.f33124b;
+    }
+
+    public final int b(e01 e01Var, int i10) {
+        switch (this.f33051a) {
+            case 0:
+                return Integer.MIN_VALUE;
+            case 1:
+                return 0;
+            case 2:
+                return i10;
+            case 3:
+                return 0;
+            default:
+                return 0;
+        }
+    }
+
+    public int c(int i10, int i11) {
+        switch (this.f33051a) {
+            case 4:
+                return i11;
+            default:
+                return i10;
+        }
     }
 }

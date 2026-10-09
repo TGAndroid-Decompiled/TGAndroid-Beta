@@ -1,9 +1,9 @@
 package v7;
 public final class y4 implements ia.d {
-    public static final y4 f48160a = new Object();
+    public static final y4 f49412a = new Object();
 
     static {
-        sa.e.t(sa.e.l(h.class, sa.e.p(3, sa.e.l(h.class, sa.e.p(2, sa.e.l(h.class, new e(1)))))));
+        sc.v.t(sc.v.l(h.class, sc.v.p(2, sc.v.l(h.class, new e(1)))));
     }
 
     @Override

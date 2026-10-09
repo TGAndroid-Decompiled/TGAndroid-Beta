@@ -1,28 +1,18 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class pw extends FrameLayout {
-    public final nz f29854a;
+import android.view.MotionEvent;
+public final class pw extends ow {
+    public final qw K;
 
-    public pw(nz nzVar, Context context) {
-        super(context);
-        this.f29854a = nzVar;
+    public pw(qw qwVar, Context context, int i10) {
+        super(qwVar.f30297s, context, i10);
+        this.K = qwVar;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        nz nzVar = this.f29854a;
-        sw swVar = nzVar.f29230o0;
-        if (view == nzVar.f29210h0) {
-            canvas.save();
-            canvas.clipRect(0.0f, swVar.getY() + swVar.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight());
-            boolean drawChild = super.drawChild(canvas, view, j3);
-            canvas.restore();
-            return drawChild;
-        }
-        return super.drawChild(canvas, view, j3);
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        this.K.d(motionEvent);
+        return super.onTouchEvent(motionEvent);
     }
 }

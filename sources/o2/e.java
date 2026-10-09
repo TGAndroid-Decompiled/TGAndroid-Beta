@@ -1,40 +1,40 @@
 package o2;
 
 import java.util.Arrays;
-import v7.m7;
+import v7.k7;
 public final class e extends v2.e {
-    public byte[] f17013s;
+    public byte[] f16958s;
     public volatile boolean v;
-    public byte[] f17014w;
+    public byte[] f16959w;
 
     @Override
     public final void a() {
         try {
-            this.f47799r.open(this.f47794b);
+            this.f49054r.open(this.f49049b);
             int i10 = 0;
             int i11 = 0;
             while (i10 != -1 && !this.v) {
-                byte[] bArr = this.f17013s;
+                byte[] bArr = this.f16958s;
                 if (bArr.length < i11 + 16384) {
-                    this.f17013s = Arrays.copyOf(bArr, bArr.length + 16384);
+                    this.f16958s = Arrays.copyOf(bArr, bArr.length + 16384);
                 }
-                i10 = this.f47799r.read(this.f17013s, i11, 16384);
+                i10 = this.f49054r.read(this.f16958s, i11, 16384);
                 if (i10 != -1) {
                     i11 += i10;
                 }
             }
             if (!this.v) {
-                this.f17014w = Arrays.copyOf(this.f17013s, i11);
+                this.f16959w = Arrays.copyOf(this.f16958s, i11);
             }
-            m7.a(this.f47799r);
+            k7.a(this.f49054r);
         } catch (Throwable th2) {
-            m7.a(this.f47799r);
+            k7.a(this.f49054r);
             throw th2;
         }
     }
 
     @Override
-    public final void q() {
+    public final void v() {
         this.v = true;
     }
 }

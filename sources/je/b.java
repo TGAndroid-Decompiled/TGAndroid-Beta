@@ -1,52 +1,31 @@
 package je;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import v0.c;
-import v0.i;
-import v7.t7;
-import w0.d;
-import zd.m;
-public final class b implements OnCompleteListener, i {
-    public final m f14097a;
+import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
+import sd.l;
+public final class b extends kotlin.jvm.internal.j implements l {
+    public final int f14130b;
+    public final d f14131c;
 
-    public b(m mVar) {
-        this.f14097a = mVar;
+    public b(d dVar, c cVar, int i10) {
+        super(1);
+        this.f14130b = i10;
+        this.f14131c = dVar;
     }
 
     @Override
-    public void onComplete(Task task) {
-        Exception exception = task.getException();
-        m mVar = this.f14097a;
-        if (exception == null) {
-            if (task.isCanceled()) {
-                mVar.n(null);
-                return;
-            } else {
-                mVar.resumeWith(task.getResult());
-                return;
-            }
-        }
-        mVar.resumeWith(t7.a(exception));
-    }
-
-    @Override
-    public void onError(Object obj) {
-        d e7 = (d) obj;
-        kotlin.jvm.internal.i.e(e7, "e");
-        m mVar = this.f14097a;
-        if (mVar.w()) {
-            mVar.resumeWith(t7.a(e7));
-        }
-    }
-
-    @Override
-    public void onResult(Object obj) {
-        c result = (c) obj;
-        kotlin.jvm.internal.i.e(result, "result");
-        m mVar = this.f14097a;
-        if (mVar.w()) {
-            mVar.resumeWith(result);
+    public final Object invoke(Object obj) {
+        switch (this.f14130b) {
+            case 0:
+                Throwable th2 = (Throwable) obj;
+                this.f14131c.e(null);
+                return hd.i.f11092a;
+            default:
+                Throwable th3 = (Throwable) obj;
+                AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = d.f14134g;
+                d dVar = this.f14131c;
+                atomicReferenceFieldUpdater.set(dVar, null);
+                dVar.e(null);
+                return hd.i.f11092a;
         }
     }
 }

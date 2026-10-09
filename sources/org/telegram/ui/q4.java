@@ -1,270 +1,170 @@
 package org.telegram.ui;
 
-import android.animation.TimeInterpolator;
+import android.animation.ValueAnimator;
 import android.content.Context;
-import android.transition.ChangeBounds;
-import android.transition.Fade;
-import android.transition.TransitionManager;
-import android.transition.TransitionSet;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.Typeface;
+import android.graphics.drawable.GradientDrawable;
+import android.text.TextPaint;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import java.util.ArrayList;
+import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class q4 extends org.telegram.ui.ActionBar.n2 implements NotificationCenter.NotificationCenterDelegate {
-    public p4 f39707a;
-    public p4 f39708b;
-    public p4 f39709c;
-    public p4 d;
-    public p4 f39710e;
-    public LinearLayout f39711f;
-    public final ArrayList h;
-    public int f39712n;
-    public org.telegram.ui.Components.so0 f39713r;
+public abstract class q4 extends View implements org.telegram.ui.Components.oi0 {
+    public final boolean[] E;
+    public final float[] F;
+    public float G;
+    public float[] H;
+    public long I;
+    public float J;
+    public int K;
+    public float L;
+    public int M;
+    public float N;
+    public int O;
+    public org.telegram.ui.Components.ti0 P;
+    public final TextPaint Q;
+    public float R;
+    public int S;
+    public String T;
+    public final RectF f40997a;
+    public int f40998b;
+    public final Rect f40999c;
+    public final Rect d;
+    public final RectF f41000e;
+    public final GradientDrawable f41001f;
+    public final GradientDrawable h;
+    public final float[] f41002n;
+    public final Paint f41003r;
+    public final Paint f41004s;
+    public final Paint v;
+    public final Path f41005w;
+    public final RectF f41006x;
+    public final GradientDrawable[] f41007y;
 
-    public q4() {
-        super(null);
-        this.h = new ArrayList();
-        this.f39712n = 0;
-    }
-
-    public final int S() {
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList = this.h;
-            if (i10 < arrayList.size()) {
-                if (((p4) arrayList.get(i10)).f22410b.f24304f) {
-                    return ((p4) arrayList.get(i10)).f39350e;
-                }
-                i10++;
+    public q4(Context context) {
+        super(context);
+        GradientDrawable.Orientation orientation;
+        this.f40997a = new RectF();
+        this.f40998b = 1;
+        this.f40999c = new Rect();
+        this.d = new Rect();
+        this.f41000e = new RectF();
+        this.f41002n = new float[]{0.0f, 1.0f};
+        this.f41005w = new Path();
+        this.f41006x = new RectF();
+        this.f41007y = new GradientDrawable[2];
+        this.E = new boolean[2];
+        this.F = new float[2];
+        this.G = 0.0f;
+        this.H = null;
+        this.K = -1;
+        this.O = 1;
+        this.S = -1;
+        Paint paint = new Paint(1);
+        this.f41004s = paint;
+        paint.setColor(1442840575);
+        Paint paint2 = new Paint(1);
+        this.v = paint2;
+        paint2.setColor(-1);
+        GradientDrawable gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{1107296256, 0});
+        this.f41001f = gradientDrawable;
+        gradientDrawable.setShape(0);
+        GradientDrawable gradientDrawable2 = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{1107296256, 0});
+        this.h = gradientDrawable2;
+        gradientDrawable2.setShape(0);
+        for (int i10 = 0; i10 < 2; i10++) {
+            if (i10 == 0) {
+                orientation = GradientDrawable.Orientation.LEFT_RIGHT;
             } else {
-                return this.f39712n;
+                orientation = GradientDrawable.Orientation.RIGHT_LEFT;
             }
+            this.f41007y[i10] = new GradientDrawable(orientation, new int[]{838860800, 0});
+            this.f41007y[i10].setShape(0);
         }
+        Paint paint3 = new Paint(1);
+        this.f41003r = paint3;
+        paint3.setColor(-16777216);
+        paint3.setAlpha(66);
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        ofFloat.setDuration(250L);
+        ofFloat.setInterpolator(org.telegram.ui.Components.hs.f27121j);
+        ofFloat.addUpdateListener(new c3(this, 1));
+        ofFloat.addListener(new ai.b(this, 29));
+        TextPaint textPaint = new TextPaint(1);
+        this.Q = textPaint;
+        textPaint.setColor(-1);
+        textPaint.setTypeface(Typeface.SANS_SERIF);
+        textPaint.setTextAlign(Paint.Align.CENTER);
+        textPaint.setTextSize(AndroidUtilities.dpf2(15.0f));
     }
 
-    public final void T(int i10, boolean z10) {
-        TransitionSet transitionSet = new TransitionSet();
-        ChangeBounds changeBounds = new ChangeBounds();
-        changeBounds.setDuration(150L);
-        Fade fade = new Fade(1);
-        fade.setDuration(150L);
-        transitionSet.addTransition(new Fade(2).setDuration(150L)).addTransition(changeBounds).addTransition(fade);
-        transitionSet.setOrdering(0);
-        transitionSet.setInterpolator((TimeInterpolator) org.telegram.ui.Components.tr.f31215f);
-        TransitionManager.beginDelayedTransition(this.f39711f, transitionSet);
-        int i11 = 0;
-        while (true) {
-            ArrayList arrayList = this.h;
-            if (i11 < arrayList.size()) {
-                if (((p4) arrayList.get(i11)).f39350e == i10) {
-                    U((View) arrayList.get(i11), z10);
-                    return;
-                }
-                i11++;
-            } else {
-                int i12 = 0;
-                while (i12 < arrayList.size()) {
-                    if (((p4) arrayList.get(i12)).d) {
-                        this.f39711f.removeView((View) arrayList.get(i12));
-                        arrayList.remove(i12);
-                        i12--;
-                    }
-                    i12++;
-                }
-                int size = arrayList.size();
-                int i13 = 0;
-                while (true) {
-                    if (i13 >= arrayList.size()) {
-                        break;
-                    } else if (i10 < ((p4) arrayList.get(i13)).f39350e) {
-                        size = i13 + 1;
-                        break;
-                    } else {
-                        i13++;
-                    }
-                }
-                ?? k6Var = new org.telegram.ui.Cells.k6(getParentActivity(), null);
-                k6Var.d = true;
-                k6Var.f39350e = i10;
-                k6Var.c(LocaleController.formatString("AutoDeleteAfterShort", R.string.AutoDeleteAfterShort, LocaleController.formatTTLString(i10 * 60)), false, true);
-                arrayList.add(size, k6Var);
-                this.f39711f.addView((View) k6Var, size);
-                W();
-                U(k6Var, z10);
-                return;
-            }
+    private String getCurrentTitle() {
+        if (this.S != this.P.getCurrentItem()) {
+            this.T = ((String) this.P.getAdapter().d(this.P.getCurrentItem())).toString();
+            this.S = this.P.getCurrentItem();
         }
-    }
-
-    public final void U(View view, boolean z10) {
-        int i10;
-        int i11 = 0;
-        while (true) {
-            ArrayList arrayList = this.h;
-            if (i11 >= arrayList.size()) {
-                break;
-            }
-            if (arrayList.get(i11) == view) {
-                ((p4) arrayList.get(i11)).a(true, this.fragmentBeginToShow);
-            } else {
-                ((p4) arrayList.get(i11)).a(false, this.fragmentBeginToShow);
-            }
-            i11++;
-        }
-        if (z10 && (i10 = ((p4) view).f39350e) > 0) {
-            org.telegram.ui.Components.yc.a0(this).Q(R.raw.fire_on, 36, AndroidUtilities.replaceTags(LocaleController.formatString("AutoDeleteGlobalTimerEnabled", R.string.AutoDeleteGlobalTimerEnabled, LocaleController.formatTTLString(i10 * 60)))).j();
-        }
-    }
-
-    public final void W() {
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList = this.h;
-            if (i10 < arrayList.size()) {
-                ((p4) arrayList.get(i10)).setBackground(org.telegram.ui.ActionBar.i6.g0(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20827d6, false), org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20918i6, false)));
-                ((p4) arrayList.get(i10)).setOnClickListener(new a(this, 3));
-                i10++;
-            } else {
-                return;
-            }
-        }
+        return this.T;
     }
 
     @Override
-    public final View createView(Context context) {
-        setHasOwnBackground(true);
-        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString(R.string.AutoDeleteMessages));
-        this.actionBar.setActionBarMenuOnItemClick(new ei.u(this, 20));
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.fragmentView = frameLayout;
-        org.telegram.ui.Components.ro0 ro0Var = new org.telegram.ui.Components.ro0(getParentActivity());
-        org.telegram.ui.Components.so0 so0Var = new org.telegram.ui.Components.so0(getParentActivity(), ro0Var, this.resourceProvider, true);
-        this.f39713r = so0Var;
-        so0Var.setDrawBackground(true);
-        this.f39713r.setOverScrollMode(0);
-        ro0Var.setOrientation(1);
-        this.f39713r.addView(ro0Var);
-        frameLayout.addView(this.f39713r);
-        FrameLayout frameLayout2 = new FrameLayout(context);
-        org.telegram.ui.Components.vx0 vx0Var = new org.telegram.ui.Components.vx0(context, this.currentAccount);
-        vx0Var.setStickerNum(10);
-        frameLayout2.addView(vx0Var, w7.z5.e(130, 130, 17));
-        frameLayout2.setTag(-33024);
-        ro0Var.addView(frameLayout2, w7.z5.n(-1, 170));
-        LinearLayout linearLayout = new LinearLayout(getParentActivity());
-        this.f39711f = linearLayout;
-        linearLayout.setOrientation(1);
-        this.f39711f.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20827d6, false));
-        ro0Var.addView(this.f39711f, w7.z5.n(-1, -2));
-        org.telegram.ui.Cells.m4 m4Var = new org.telegram.ui.Cells.m4(getParentActivity());
-        m4Var.setText(LocaleController.getString(R.string.MessageLifetime));
-        this.f39711f.addView(m4Var);
-        ?? k6Var = new org.telegram.ui.Cells.k6(getParentActivity(), null);
-        this.f39707a = k6Var;
-        k6Var.c(LocaleController.getString(R.string.ShortMessageLifetimeForever), false, true);
-        p4 p4Var = this.f39707a;
-        p4Var.f39350e = 0;
-        this.f39711f.addView(p4Var);
-        ?? k6Var2 = new org.telegram.ui.Cells.k6(getParentActivity(), null);
-        this.f39708b = k6Var2;
-        k6Var2.c(LocaleController.getString(R.string.AutoDeleteAfter1Day), false, true);
-        p4 p4Var2 = this.f39708b;
-        p4Var2.f39350e = 1440;
-        this.f39711f.addView(p4Var2);
-        ?? k6Var3 = new org.telegram.ui.Cells.k6(getParentActivity(), null);
-        this.f39709c = k6Var3;
-        k6Var3.c(LocaleController.getString(R.string.AutoDeleteAfter1Week), false, true);
-        p4 p4Var3 = this.f39709c;
-        p4Var3.f39350e = 10080;
-        this.f39711f.addView(p4Var3);
-        ?? k6Var4 = new org.telegram.ui.Cells.k6(getParentActivity(), null);
-        this.d = k6Var4;
-        k6Var4.c(LocaleController.getString(R.string.AutoDeleteAfter1Month), false, true);
-        p4 p4Var4 = this.d;
-        p4Var4.f39350e = 44640;
-        this.f39711f.addView(p4Var4);
-        ?? k6Var5 = new org.telegram.ui.Cells.k6(getParentActivity(), null);
-        this.f39710e = k6Var5;
-        k6Var5.c(LocaleController.getString(R.string.SetCustomTime), false, false);
-        this.f39710e.f22410b.setVisibility(8);
-        this.f39711f.addView(this.f39710e);
-        p4 p4Var5 = this.f39707a;
-        ArrayList arrayList = this.h;
-        arrayList.add(p4Var5);
-        arrayList.add(this.f39708b);
-        arrayList.add(this.f39709c);
-        arrayList.add(this.d);
-        arrayList.add(this.f39710e);
-        W();
-        org.telegram.ui.Cells.e9 e9Var = new org.telegram.ui.Cells.e9(context, 12, this.resourceProvider);
-        e9Var.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.GlobalAutoDeleteInfo), new n4(this)));
-        ro0Var.addView(e9Var, w7.z5.n(-1, -2));
-        T(this.f39712n, false);
-        return this.fragmentView;
+    public final void a() {
+        Arrays.fill(this.E, false);
+        postInvalidateOnAnimation();
     }
 
     @Override
-    public final org.telegram.ui.Components.so0 getScrollViewForSimpleGlass() {
-        return this.f39713r;
+    public final void b(boolean z10) {
+        this.E[!z10 ? 1 : 0] = true;
+        postInvalidateOnAnimation();
     }
 
     @Override
-    public final boolean isSupportEdgeToEdge() {
-        return true;
+    public final void d() {
+        invalidate();
+    }
+
+    public org.telegram.ui.Components.ti0 getProfileGalleryView() {
+        return this.P;
     }
 
     @Override
-    public final boolean onFragmentCreate() {
-        int globalTTl = getUserConfig().getGlobalTTl();
-        this.f39712n = globalTTl;
-        if (globalTTl < 0) {
-            this.f39712n = 0;
-        }
-        getUserConfig().loadGlobalTTl();
-        getNotificationCenter().addObserver(this, NotificationCenter.didUpdateGlobalAutoDeleteTimer);
-        return super.onFragmentCreate();
+    public void onDraw(android.graphics.Canvas r31) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.q4.onDraw(android.graphics.Canvas):void");
     }
 
     @Override
-    public final void onFragmentDestroy() {
-        super.onFragmentDestroy();
-        getNotificationCenter().removeObserver(this, NotificationCenter.didUpdateGlobalAutoDeleteTimer);
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        Path path = this.f41005w;
+        path.reset();
+        RectF rectF = this.f41006x;
+        rectF.set(0.0f, 0.0f, getMeasuredHeight(), getMeasuredWidth());
+        path.addRoundRect(rectF, new float[]{AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), 0.0f, 0.0f, 0.0f, 0.0f}, Path.Direction.CCW);
     }
 
     @Override
-    public final void onPause() {
-        super.onPause();
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList = this.h;
-            if (i10 < arrayList.size()) {
-                if (((p4) arrayList.get(i10)).f22410b.f24304f) {
-                    if (((p4) arrayList.get(i10)).f39350e != this.f39712n) {
-                        this.f39712n = ((p4) arrayList.get(i10)).f39350e;
-                        TLRPC.TL_messages_setDefaultHistoryTTL tL_messages_setDefaultHistoryTTL = new TLRPC.TL_messages_setDefaultHistoryTTL();
-                        tL_messages_setDefaultHistoryTTL.period = ((p4) arrayList.get(i10)).f39350e * 60;
-                        getConnectionsManager().sendRequest(tL_messages_setDefaultHistoryTTL, new Object());
-                        getUserConfig().setGlobalTtl(this.f39712n);
-                        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didUpdateGlobalAutoDeleteTimer, new Object[0]);
-                        return;
-                    }
-                    return;
-                }
-                i10++;
-            } else {
-                return;
-            }
-        }
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
+        Rect rect = this.f40999c;
+        rect.set(0, 0, i10, (int) (currentActionBarHeight * 0.5f));
+        Rect rect2 = this.d;
+        rect2.set(0, (int) (i11 - (AndroidUtilities.dp(72.0f) * 0.5f)), i10, i11);
+        this.f41001f.setBounds(0, rect.bottom, i10, AndroidUtilities.dp(16.0f) + currentActionBarHeight);
+        this.h.setBounds(0, (i11 - AndroidUtilities.dp(72.0f)) - AndroidUtilities.dp(24.0f), i10, rect2.top);
+        GradientDrawable[] gradientDrawableArr = this.f41007y;
+        int i14 = i10 / 5;
+        gradientDrawableArr[0].setBounds(0, 0, i14, i11);
+        gradientDrawableArr[1].setBounds(i10 - i14, 0, i10, i11);
+    }
+
+    public void setProfileGalleryView(org.telegram.ui.Components.ti0 ti0Var) {
+        this.P = ti0Var;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+    public void c() {
     }
 }

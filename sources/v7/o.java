@@ -1,11 +1,21 @@
 package v7;
+
+import android.os.Parcel;
+import android.os.Parcelable;
 public abstract class o {
-    public void b() {
+    public static Object a(Parcel parcel, Parcelable.Creator creator) {
+        if (parcel.readInt() != 0) {
+            return creator.createFromParcel(parcel);
+        }
+        return null;
     }
 
-    public void c(androidx.biometric.s sVar) {
-    }
-
-    public void a(int i10, CharSequence charSequence) {
+    public static void b(Parcel parcel, Parcelable parcelable, int i10) {
+        if (parcelable != null) {
+            parcel.writeInt(1);
+            parcelable.writeToParcel(parcel, i10);
+            return;
+        }
+        parcel.writeInt(0);
     }
 }

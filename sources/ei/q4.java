@@ -1,419 +1,94 @@
 package ei;
 
-import android.content.Context;
-import android.content.res.Configuration;
-import android.graphics.Canvas;
-import android.graphics.Point;
-import android.graphics.RecordingCanvas;
-import android.graphics.RenderNode;
-import android.os.Build;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.ViewConfiguration;
-import android.widget.FrameLayout;
-import ci.qc;
-import ci.ra;
+import ai.d9;
+import java.util.ArrayList;
+import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.GenericProvider;
-import org.telegram.ui.Components.fw0;
-import org.telegram.ui.Components.rc;
-public abstract class q4 extends FrameLayout {
-    public static final fw0 f9281b0 = new fw0(new d2.c(21), new d2.c(22));
-    public Runnable E;
-    public p4 F;
-    public o1.k G;
-    public int H;
-    public GenericProvider I;
-    public boolean J;
-    public boolean K;
-    public boolean L;
-    public boolean M;
-    public boolean N;
-    public boolean O;
-    public boolean P;
-    public float Q;
-    public float R;
-    public boolean S;
-    public final float T;
-    public final boolean U;
-    public long V;
-    public float W;
-    public Object f9282a;
-    public float f9283a0;
-    public final k2.e f9284b;
-    public boolean f9285c;
-    public boolean d;
-    public float f9286e;
-    public float f9287f;
-    public float h;
-    public float f9288n;
-    public float f9289r;
-    public boolean f9290s;
-    public o1.k v;
-    public boolean f9291w;
-    public org.telegram.ui.web.z0 f9292x;
-    public Runnable f9293y;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.ad;
+import org.telegram.ui.Components.s10;
+import org.telegram.ui.Components.tc;
+import org.telegram.ui.l6;
+import org.telegram.ui.or0;
+public final class q4 implements Utilities.Callback {
+    public final int f9311a;
+    public final int f9312b;
+    public final Object f9313c;
+    public final Object d;
 
-    public q4(Context context) {
-        super(context);
-        float f7;
-        this.f9286e = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
-        this.f9287f = 0.0f;
-        this.h = -1.0f;
-        this.f9288n = -2.1474836E9f;
-        this.I = new d2.c(23);
-        this.M = true;
-        this.R = 0.0f;
-        this.S = false;
-        this.T = AndroidUtilities.dp(60.0f);
-        this.U = true;
-        this.f9284b = new k2.e(context, new o4(this, ViewConfiguration.get(context).getScaledTouchSlop(), 0));
-        Point point = AndroidUtilities.displaySize;
-        if (point.x > point.y) {
-            f7 = 8.0f;
-        } else {
-            f7 = 64.0f;
-        }
-        this.H = AndroidUtilities.dp(f7);
-    }
-
-    public final void a(boolean z10, boolean z11) {
-        this.O = z10;
-        this.P = z11;
-    }
-
-    public final boolean b(boolean z10) {
-        org.telegram.ui.web.z0 z0Var = this.f9292x;
-        if (z0Var != null && z0Var.N) {
-            if (z10) {
-                if (!this.O) {
-                    return false;
-                }
-                return true;
-            } else if (!this.P) {
-                return false;
-            } else {
-                return true;
-            }
-        }
-        return true;
-    }
-
-    public final void c() {
-        setTranslationY(Math.max(this.f9286e, this.f9287f + this.f9289r));
-        AndroidUtilities.cancelRunOnUIThread(new qc(this, 15));
-        AndroidUtilities.runOnUIThread(new qc(this, 15));
-        Runnable runnable = this.f9293y;
-        if (runnable != null) {
-            runnable.run();
-        }
-        rc rcVar = rc.f30419w;
-        if (rcVar != null) {
-            rcVar.l();
-        }
-    }
-
-    public final boolean d() {
-        return this.f9285c;
+    public q4(Object obj, int i10, Object obj2, int i11) {
+        this.f9311a = i11;
+        this.f9313c = obj;
+        this.f9312b = i10;
+        this.d = obj2;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        RecordingCanvas recordingCanvas;
-        if (canvas.isHardwareAccelerated()) {
-            Object obj = this.f9282a;
-            if (obj != null) {
-                RenderNode c10 = org.telegram.messenger.b.c(obj);
-                c10.setPosition(0, 0, getWidth(), getHeight());
-                recordingCanvas = c10.beginRecording();
-            } else {
-                recordingCanvas = canvas;
-            }
-            super.dispatchDraw(recordingCanvas);
-            Object obj2 = this.f9282a;
-            if (obj2 != null) {
-                RenderNode c11 = org.telegram.messenger.b.c(obj2);
-                c11.endRecording();
-                canvas.drawRenderNode(c11);
+    public final void run(Object obj) {
+        switch (this.f9311a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new d9((TLRPC.UserFull) obj, (org.telegram.ui.web.q) this.f9313c, this.f9312b, (TLRPC.User) this.d, 2));
                 return;
-            }
-            return;
-        }
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (!this.f9285c || motionEvent.getActionIndex() == 0) {
-            if (motionEvent.getAction() == 0) {
-                this.V = motionEvent.getEventTime();
-                this.W = motionEvent.getX();
-                this.f9283a0 = motionEvent.getY();
-                this.S = false;
-                this.R = 0.0f;
-                if (this.N) {
-                    this.O = false;
-                    this.P = false;
-                }
-            }
-            MotionEvent obtain = MotionEvent.obtain(motionEvent);
-            int actionIndex = motionEvent.getActionIndex();
-            if (Build.VERSION.SDK_INT >= 29) {
-                obtain.setLocation(motionEvent.getRawX(actionIndex), motionEvent.getRawY(actionIndex));
-            } else {
-                obtain.setLocation(motionEvent.getX(actionIndex) + (motionEvent.getRawX() - motionEvent.getX()), motionEvent.getY(actionIndex) + (motionEvent.getRawY() - motionEvent.getY()));
-            }
-            boolean onTouchEvent = ((GestureDetector) this.f9284b.f14389b).onTouchEvent(obtain);
-            obtain.recycle();
-            if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                boolean z10 = this.f9285c;
-                this.d = false;
-                this.f9285c = false;
-                if (!this.J || this.L) {
-                    if (this.f9291w) {
-                        this.f9291w = false;
-                    } else if (this.M && (!this.N || (this.f9289r != (-this.f9287f) + this.f9286e && b(false)))) {
-                        float f7 = this.f9289r;
-                        int i10 = this.H;
-                        float f10 = -i10;
-                        boolean z11 = this.U;
-                        if (f7 <= f10) {
-                            if (z11) {
-                                e((-this.f9287f) + this.f9286e);
-                            }
-                        } else if (f7 > f10 && f7 <= i10) {
-                            if (z11) {
-                                e(0.0f);
-                            }
-                        } else {
-                            float distance = AndroidUtilities.distance(motionEvent.getX(), motionEvent.getY(), this.W, this.f9283a0);
-                            long eventTime = motionEvent.getEventTime() - this.V;
-                            if (this.F != null && (eventTime > 250 || distance > AndroidUtilities.dp(200.0f))) {
-                                this.F.o(!z10);
-                            } else if (z11) {
-                                e((-this.f9287f) + this.f9286e);
-                            }
-                        }
-                    }
-                }
-            }
-            boolean dispatchTouchEvent = super.dispatchTouchEvent(motionEvent);
-            if ((!dispatchTouchEvent && !onTouchEvent && motionEvent.getAction() == 0) || dispatchTouchEvent || onTouchEvent) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final void e(float f7) {
-        f(f7, false, null);
-    }
-
-    public final void f(float f7, boolean z10, Runnable runnable) {
-        o1.k kVar;
-        if (this.J && !z10) {
-            f7 = (-getOffsetY()) + getTopActionBarOffsetY();
-        }
-        if (this.f9289r != f7 && ((kVar = this.G) == null || ((float) kVar.f16993u.f17000i) != f7)) {
-            this.f9288n = f7;
-            o1.k kVar2 = this.v;
-            if (kVar2 != null) {
-                kVar2.c();
-            }
-            o1.k kVar3 = this.G;
-            if (kVar3 != null) {
-                kVar3.c();
-            }
-            o1.k kVar4 = new o1.k(this, f9281b0, f7);
-            kVar4.f16993u = org.telegram.ui.Cells.c1.l(f7, 1200.0f, 1.0f);
-            kVar4.a(new n4(0, this, runnable));
-            this.G = kVar4;
-            kVar4.f();
-            return;
-        }
-        if (runnable != null) {
-            runnable.run();
-        }
-        Runnable runnable2 = this.E;
-        if (runnable2 != null) {
-            runnable2.run();
-        }
-    }
-
-    public float getOffsetY() {
-        return this.f9287f;
-    }
-
-    public Object getRenderNode() {
-        if (this.f9282a == null && Build.VERSION.SDK_INT >= 31) {
-            this.f9282a = ah.f.k();
-        }
-        return this.f9282a;
-    }
-
-    public float getSwipeOffsetY() {
-        return this.f9289r;
-    }
-
-    public float getTopActionBarOffsetY() {
-        return this.f9286e;
-    }
-
-    @Override
-    public final void onConfigurationChanged(Configuration configuration) {
-        float f7;
-        super.onConfigurationChanged(configuration);
-        Point point = AndroidUtilities.displaySize;
-        if (point.x > point.y) {
-            f7 = 8.0f;
-        } else {
-            f7 = 64.0f;
-        }
-        this.H = AndroidUtilities.dp(f7);
-    }
-
-    @Override
-    public final void requestDisallowInterceptTouchEvent(boolean z10) {
-        super.requestDisallowInterceptTouchEvent(z10);
-        if (z10) {
-            this.d = true;
-            this.f9285c = false;
-        }
-    }
-
-    public void setAllowFullSizeSwipe(boolean z10) {
-        this.L = z10;
-    }
-
-    public void setAllowSwipes(boolean z10) {
-        if (this.M != z10) {
-            this.M = z10;
-        }
-    }
-
-    public void setDelegate(p4 p4Var) {
-        this.F = p4Var;
-    }
-
-    public void setForceOffsetY(float f7) {
-        this.f9287f = f7;
-        c();
-    }
-
-    public void setFullSize(boolean z10) {
-        if (this.J != z10) {
-            this.J = z10;
-            if (z10) {
-                if (this.K) {
-                    e(getTopActionBarOffsetY() + (-getOffsetY()));
-                    return;
-                }
+            case 1:
+                org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.f9313c;
+                TLRPC.Chat chat = (TLRPC.Chat) this.d;
+                TLRPC.Chat chat2 = (TLRPC.Chat) obj;
+                n2Var.showDialog(new hi.b(n2Var.getContext(), chat, -chat2.f20038id, new fi.m0(n2Var, this.f9312b, chat2, chat, 0)));
                 return;
-            }
-            e(0.0f);
-        }
-    }
-
-    public void setIsKeyboardVisible(GenericProvider<Void, Boolean> genericProvider) {
-        this.I = genericProvider;
-    }
-
-    public void setOffsetY(final float f7) {
-        final boolean z10;
-        if (this.f9288n != -2.1474836E9f) {
-            this.h = f7;
-            return;
-        }
-        o1.k kVar = this.v;
-        if (kVar != null) {
-            kVar.c();
-        }
-        final float f10 = this.f9287f;
-        final float f11 = f7 - f10;
-        if (Math.abs((this.f9289r + f10) - this.f9286e) <= AndroidUtilities.dp(1.0f)) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (!this.f9290s) {
-            o1.k kVar2 = this.v;
-            if (kVar2 != null) {
-                kVar2.c();
-            }
-            o1.k kVar3 = new o1.k(new o1.j(f10));
-            kVar3.f16993u = org.telegram.ui.Cells.c1.l(f7, 1400.0f, 1.0f);
-            kVar3.b(new o1.g() {
-                @Override
-                public final void a(o1.h hVar, float f12, float f13) {
-                    float f14;
-                    q4 q4Var = q4.this;
-                    q4Var.f9287f = f12;
-                    float f15 = f11;
-                    float f16 = f10;
-                    if (f15 == 0.0f) {
-                        f14 = 1.0f;
+            case 2:
+                float f7 = this.f9312b;
+                ((l6) this.f9313c).run(Float.valueOf((w7.o.a(((Float) obj).floatValue(), 0.0f, 1.0f) * (1.0f / f7)) + (((int[]) this.d)[0] / f7)), Boolean.FALSE);
+                return;
+            case 3:
+                s10 s10Var = (s10) this.f9313c;
+                int i10 = this.f9312b;
+                s10Var.getClass();
+                s10Var.A0 = ((Boolean) obj).booleanValue();
+                s10Var.dismiss();
+                ((Utilities.Callback) this.d).run(Integer.valueOf(i10));
+                return;
+            case 4:
+                Utilities.themeQueue.postRunnable(new qg.f2((qg.o2) this.f9313c, this.f9312b, (List) obj, new ArrayList(), (or0) this.d));
+                return;
+            default:
+                xh.s2 s2Var = (xh.s2) this.f9313c;
+                int i11 = this.f9312b;
+                ArrayList arrayList = (ArrayList) obj;
+                org.telegram.ui.ActionBar.n2 n2Var2 = s2Var.f51509a;
+                yh.d5 d5Var = s2Var.f51512e;
+                d5Var.a(i11, arrayList);
+                ((xh.o2) this.d).f(true);
+                s2Var.f(true);
+                s2Var.n();
+                TL_stars.TL_starGiftCollection c10 = d5Var.c(i11);
+                if (c10 != null) {
+                    if (arrayList.size() > 1) {
+                        tc R = ad.a0(n2Var2).R(((TL_stars.SavedStarGift) arrayList.get(0)).gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("Gift2AddedToCollectionMany", arrayList.size(), c10.title)));
+                        R.f31138r = false;
+                        R.j();
+                        return;
+                    } else if (arrayList.size() == 1) {
+                        TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) arrayList.get(0);
+                        tc R2 = ad.a0(n2Var2).R(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2AddedToCollection, yh.s3.E1(savedStarGift.gift), c10.title)));
+                        R2.f31138r = false;
+                        R2.j();
+                        return;
                     } else {
-                        f14 = (f12 - f16) / f15;
+                        return;
                     }
-                    if (z10) {
-                        q4Var.f9289r = w7.q.a(q4Var.f9289r - (Math.max(0.0f, f15) * f14), (-q4Var.f9287f) + q4Var.f9286e, (q4Var.getHeight() - q4Var.f9287f) + q4Var.f9286e);
-                    }
-                    o1.k kVar4 = q4Var.G;
-                    if (kVar4 != null) {
-                        o1.l lVar = kVar4.f16993u;
-                        float f17 = (float) lVar.f17000i;
-                        float f18 = q4Var.f9286e;
-                        if (f17 == (-f16) + f18) {
-                            lVar.f17000i = (-f7) + f18;
-                        }
-                    }
-                    q4Var.c();
                 }
-            });
-            kVar3.a(new ra(this, f7, 1));
-            this.v = kVar3;
-            kVar3.f();
-            return;
+                return;
         }
-        this.f9287f = f7;
-        if (z10) {
-            this.f9289r = w7.q.a(this.f9289r - Math.max(0.0f, f11), (-this.f9287f) + this.f9286e, (getHeight() - this.f9287f) + this.f9286e);
-        }
-        c();
     }
 
-    public void setScrollEndListener(Runnable runnable) {
-        this.E = runnable;
-    }
-
-    public void setScrollListener(Runnable runnable) {
-        this.f9293y = runnable;
-    }
-
-    public void setShouldWaitWebViewScroll(boolean z10) {
-        this.N = z10;
-    }
-
-    public void setSwipeOffsetAnimationDisallowed(boolean z10) {
-        this.f9290s = z10;
-    }
-
-    public void setSwipeOffsetY(float f7) {
-        this.f9289r = f7;
-        c();
-    }
-
-    public void setTopActionBarOffsetY(float f7) {
-        this.f9286e = f7;
-        c();
-    }
-
-    @Override
-    public void setTranslationY(float f7) {
-        super.setTranslationY(f7);
-    }
-
-    public void setWebView(org.telegram.ui.web.z0 z0Var) {
-        this.f9292x = z0Var;
+    public q4(Object obj, Object obj2, int i10, int i11) {
+        this.f9311a = i11;
+        this.f9313c = obj;
+        this.d = obj2;
+        this.f9312b = i10;
     }
 }

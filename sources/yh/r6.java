@@ -1,46 +1,60 @@
 package yh;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.cd;
-public final class r6 implements Utilities.Callback {
-    public final int f51927a;
-    public final Object f51928b;
-    public final Object f51929c;
+import android.content.Context;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import org.telegram.messenger.AndroidUtilities;
+public final class r6 extends rg.w1 {
+    public Paint[] f53133n;
+    public final int f53134r;
+    public final int f53135s;
 
-    public r6(int i10, Object obj, Object obj2) {
-        this.f51927a = i10;
-        this.f51928b = obj;
-        this.f51929c = obj2;
+    public r6(Context context, int i10, int i11) {
+        super(context);
+        this.f53134r = i10;
+        this.f53135s = i11;
+        c();
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f51927a) {
-            case 0:
-                ((Utilities.Callback2) this.f51928b).run((zf.a) obj, new o2((j0[]) this.f51929c, 7));
-                return;
-            default:
-                cd cdVar = (cd) this.f51928b;
-                TLRPC.Chat chat = (TLRPC.Chat) this.f51929c;
-                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
-                cdVar.f35402c = tL_premium_boostsStatus;
-                if (tL_premium_boostsStatus != null) {
-                    int i10 = tL_premium_boostsStatus.level;
-                    cdVar.f35400b = i10;
-                    if (chat != null) {
-                        chat.flags |= 1024;
-                        chat.level = i10;
-                    }
-                }
-                cdVar.X0(true);
-                ci.d dVar = cdVar.P;
-                if (dVar != null) {
-                    dVar.setLoading(false);
-                    return;
-                }
-                return;
+    public final void a() {
+        rg.v1 v1Var = new rg.v1(this.f53134r);
+        this.f47501a = v1Var;
+        v1Var.N = 105;
+        int i10 = 0;
+        v1Var.M = false;
+        v1Var.G = false;
+        v1Var.K = true;
+        v1Var.H = true;
+        v1Var.J = false;
+        v1Var.f47484m = true;
+        v1Var.h = true;
+        if (this.f53135s == 1) {
+            v1Var.f47482k = AndroidUtilities.dp(24.0f);
         }
+        this.f53133n = new Paint[20];
+        while (true) {
+            Paint[] paintArr = this.f53133n;
+            if (i10 < paintArr.length) {
+                paintArr[i10] = new Paint(1);
+                this.f53133n[i10].setColorFilter(new PorterDuffColorFilter(i0.a.d(i10 / (this.f53133n.length - 1), -371690, -14281), PorterDuff.Mode.SRC_IN));
+                i10++;
+            } else {
+                rg.v1 v1Var2 = this.f47501a;
+                v1Var2.f47483l = new ci.x7(this, 5);
+                v1Var2.f47489r = 17;
+                v1Var2.f47490s = 18;
+                v1Var2.f47491t = 19;
+                v1Var2.P = org.telegram.ui.ActionBar.i6.G6;
+                v1Var2.c();
+                return;
+            }
+        }
+    }
+
+    @Override
+    public final int getStarsRectWidth() {
+        return getMeasuredWidth();
     }
 }

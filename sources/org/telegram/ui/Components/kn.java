@@ -1,16 +1,24 @@
 package org.telegram.ui.Components;
-public final class kn extends s4.j {
-    public final xn F;
 
-    public kn(xn xnVar) {
-        this.F = xnVar;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class kn implements sl, org.telegram.ui.ActionBar.a2 {
+    public final Utilities.Callback f28112a;
+
+    public kn(Utilities.Callback callback) {
+        this.f28112a = callback;
     }
 
     @Override
-    public final void P(s4.c1 c1Var) {
-        if (c1Var.b() == 0) {
-            xn xnVar = this.F;
-            xnVar.f29741b.W1(xnVar, 0);
+    public void b(TLRPC.MessageMedia messageMedia, int i10, boolean z10, int i11, long j3) {
+        this.f28112a.run(new rh.f(messageMedia));
+    }
+
+    @Override
+    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        Utilities.Callback callback = this.f28112a;
+        if (callback != null) {
+            callback.run(Boolean.FALSE);
         }
     }
 }

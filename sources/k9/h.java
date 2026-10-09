@@ -17,45 +17,47 @@ import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
-import n4.y;
+import m.f3;
+import n4.x;
 import n6.l;
+import org.telegram.ui.ActionBar.b5;
 import q9.n;
 public final class h {
-    public static final Object f14713k = new Object();
-    public static final a0.f f14714l = new m(0);
-    public final Context f14715a;
-    public final String f14716b;
-    public final j f14717c;
+    public static final Object f14745k = new Object();
+    public static final a0.f f14746l = new m(0);
+    public final Context f14747a;
+    public final String f14748b;
+    public final j f14749c;
     public final q9.g d;
-    public final AtomicBoolean f14718e;
-    public final AtomicBoolean f14719f;
-    public final n f14720g;
+    public final AtomicBoolean f14750e;
+    public final AtomicBoolean f14751f;
+    public final n f14752g;
     public final pa.b h;
-    public final CopyOnWriteArrayList f14721i;
-    public final CopyOnWriteArrayList f14722j;
+    public final CopyOnWriteArrayList f14753i;
+    public final CopyOnWriteArrayList f14754j;
 
     public h(Context context, String str, j jVar) {
         boolean z10;
         AtomicBoolean atomicBoolean = new AtomicBoolean(false);
-        this.f14718e = atomicBoolean;
-        this.f14719f = new AtomicBoolean();
+        this.f14750e = atomicBoolean;
+        this.f14751f = new AtomicBoolean();
         CopyOnWriteArrayList copyOnWriteArrayList = new CopyOnWriteArrayList();
-        this.f14721i = copyOnWriteArrayList;
-        this.f14722j = new CopyOnWriteArrayList();
-        this.f14715a = context;
+        this.f14753i = copyOnWriteArrayList;
+        this.f14754j = new CopyOnWriteArrayList();
+        this.f14747a = context;
         l.f(str);
-        this.f14716b = str;
-        this.f14717c = jVar;
-        a aVar = FirebaseInitProvider.f7951a;
+        this.f14748b = str;
+        this.f14749c = jVar;
+        a aVar = FirebaseInitProvider.f8000a;
         Trace.beginSection("Firebase");
         Trace.beginSection("ComponentDiscovery");
-        ArrayList y3 = new o0.a(12, context, new k2.e(ComponentDiscoveryService.class, 14)).y();
+        ArrayList j3 = new b5(context, new f3(ComponentDiscoveryService.class, 14), false, 11).j();
         Trace.endSection();
         Trace.beginSection("Runtime");
-        r9.j jVar2 = r9.j.f45972a;
+        r9.j jVar2 = r9.j.f47122a;
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
-        arrayList.addAll(y3);
+        arrayList.addAll(j3);
         arrayList.add(new q9.c(new FirebaseCommonRegistrar(), 1));
         arrayList.add(new q9.c(new ExecutorsRegistrar(), 1));
         arrayList2.add(q9.a.c(context, Context.class, new Class[0]));
@@ -67,18 +69,18 @@ public final class h {
         } else {
             z10 = true;
         }
-        if (z10 && FirebaseInitProvider.f7952b.get()) {
+        if (z10 && FirebaseInitProvider.f8001b.get()) {
             arrayList2.add(q9.a.c(aVar, a.class, new Class[0]));
         }
         q9.g gVar = new q9.g(jVar2, arrayList, arrayList2, dVar);
         this.d = gVar;
         Trace.endSection();
-        this.f14720g = new n(new d(0, this, context));
-        this.h = gVar.d(na.c.class);
+        this.f14752g = new n(new d(0, this, context));
+        this.h = gVar.c(na.c.class);
         e eVar = new e(this);
         a();
         if (atomicBoolean.get()) {
-            com.google.android.gms.common.api.internal.d.f6515e.f6516a.get();
+            com.google.android.gms.common.api.internal.d.f6567e.f6568a.get();
         }
         copyOnWriteArrayList.add(eVar);
         Trace.endSection();
@@ -86,9 +88,9 @@ public final class h {
 
     public static h c() {
         h hVar;
-        synchronized (f14713k) {
+        synchronized (f14745k) {
             try {
-                hVar = (h) f14714l.get("[DEFAULT]");
+                hVar = (h) f14746l.get("[DEFAULT]");
                 if (hVar != null) {
                     ((na.c) hVar.h.get()).c();
                 } else {
@@ -102,9 +104,9 @@ public final class h {
     }
 
     public static h f(Context context) {
-        synchronized (f14713k) {
+        synchronized (f14745k) {
             try {
-                if (f14714l.containsKey("[DEFAULT]")) {
+                if (f14746l.containsKey("[DEFAULT]")) {
                     return c();
                 }
                 j a2 = j.a(context);
@@ -121,16 +123,16 @@ public final class h {
 
     public static h g(Context context, j jVar) {
         h hVar;
-        AtomicReference atomicReference = f.f14710a;
+        AtomicReference atomicReference = f.f14742a;
         if (context.getApplicationContext() instanceof Application) {
             Application application = (Application) context.getApplicationContext();
-            AtomicReference atomicReference2 = f.f14710a;
+            AtomicReference atomicReference2 = f.f14742a;
             if (atomicReference2.get() == null) {
                 ?? obj = new Object();
                 while (true) {
                     if (atomicReference2.compareAndSet(null, obj)) {
                         com.google.android.gms.common.api.internal.d.b(application);
-                        com.google.android.gms.common.api.internal.d.f6515e.a(obj);
+                        com.google.android.gms.common.api.internal.d.f6567e.a(obj);
                         break;
                     } else if (atomicReference2.get() != null) {
                         break;
@@ -141,8 +143,8 @@ public final class h {
         if (context.getApplicationContext() != null) {
             context = context.getApplicationContext();
         }
-        synchronized (f14713k) {
-            a0.f fVar = f14714l;
+        synchronized (f14745k) {
+            a0.f fVar = f14746l;
             l.j("FirebaseApp name [DEFAULT] already exists!", !fVar.containsKey("[DEFAULT]"));
             l.i(context, "Application context cannot be null.");
             hVar = new h(context, "[DEFAULT]", jVar);
@@ -153,7 +155,7 @@ public final class h {
     }
 
     public final void a() {
-        l.j("FirebaseApp was deleted", !this.f14719f.get());
+        l.j("FirebaseApp was deleted", !this.f14751f.get());
     }
 
     public final Object b(Class cls) {
@@ -164,29 +166,29 @@ public final class h {
     public final String d() {
         StringBuilder sb2 = new StringBuilder();
         a();
-        sb2.append(u6.b.c(this.f14716b.getBytes(Charset.defaultCharset())));
+        sb2.append(u6.b.c(this.f14748b.getBytes(Charset.defaultCharset())));
         sb2.append("+");
         a();
-        sb2.append(u6.b.c(this.f14717c.f14728b.getBytes(Charset.defaultCharset())));
+        sb2.append(u6.b.c(this.f14749c.f14760b.getBytes(Charset.defaultCharset())));
         return sb2.toString();
     }
 
     public final void e() {
         boolean z10;
         int i10 = Build.VERSION.SDK_INT;
-        Context context = this.f14715a;
+        Context context = this.f14747a;
         if (i10 >= 24) {
             z10 = v.g(context);
         } else {
             z10 = true;
         }
-        String str = this.f14716b;
+        String str = this.f14748b;
         if (!z10) {
             StringBuilder sb2 = new StringBuilder("Device in Direct Boot Mode: postponing initialization of Firebase APIs for app ");
             a();
             sb2.append(str);
             Log.i("FirebaseApp", sb2.toString());
-            AtomicReference atomicReference = g.f14711b;
+            AtomicReference atomicReference = g.f14743b;
             if (atomicReference.get() == null) {
                 g gVar = new g(context);
                 while (!atomicReference.compareAndSet(null, gVar)) {
@@ -214,27 +216,27 @@ public final class h {
         }
         h hVar = (h) obj;
         hVar.a();
-        return this.f14716b.equals(hVar.f14716b);
+        return this.f14748b.equals(hVar.f14748b);
     }
 
     public final boolean h() {
         boolean z10;
         a();
-        ua.a aVar = (ua.a) this.f14720g.get();
+        ua.a aVar = (ua.a) this.f14752g.get();
         synchronized (aVar) {
-            z10 = aVar.f47586a;
+            z10 = aVar.f48879a;
         }
         return z10;
     }
 
     public final int hashCode() {
-        return this.f14716b.hashCode();
+        return this.f14748b.hashCode();
     }
 
     public final String toString() {
-        y yVar = new y(this);
-        yVar.m(this.f14716b, "name");
-        yVar.m(this.f14717c, "options");
-        return yVar.toString();
+        x xVar = new x(this);
+        xVar.o(this.f14748b, "name");
+        xVar.o(this.f14749c, "options");
+        return xVar.toString();
     }
 }

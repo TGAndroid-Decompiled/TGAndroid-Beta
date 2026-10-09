@@ -8,43 +8,43 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 public final class e4 extends FrameLayout {
-    public final org.telegram.ui.Components.zo0 f35940a;
-    public final int f35941b;
-    public final int f35942c;
+    public final org.telegram.ui.Components.kp0 f37144a;
+    public final int f37145b;
+    public final int f37146c;
     public int d;
-    public final TextPaint f35943e;
-    public final i4 f35944f;
+    public final TextPaint f37147e;
+    public final i4 f37148f;
 
     public e4(i4 i4Var, Context context) {
         super(context);
-        this.f35944f = i4Var;
-        this.f35941b = 12;
-        this.f35942c = 30;
+        this.f37148f = i4Var;
+        this.f37145b = 12;
+        this.f37146c = 30;
         setWillNotDraw(false);
         TextPaint textPaint = new TextPaint(1);
-        this.f35943e = textPaint;
+        this.f37147e = textPaint;
         textPaint.setTextSize(AndroidUtilities.dp(16.0f));
-        org.telegram.ui.Components.zo0 zo0Var = new org.telegram.ui.Components.zo0(context, null, false);
-        this.f35940a = zo0Var;
-        zo0Var.setReportChanges(true);
-        zo0Var.setSeparatorsCount(19);
-        zo0Var.setDelegate(new g(this, 3));
-        addView(zo0Var, w7.z5.d(-1, 38.0f, 51, 5.0f, 5.0f, 39.0f, 0.0f));
+        org.telegram.ui.Components.kp0 kp0Var = new org.telegram.ui.Components.kp0(context, null, false);
+        this.f37144a = kp0Var;
+        kp0Var.setReportChanges(true);
+        kp0Var.setSeparatorsCount(19);
+        kp0Var.setDelegate(new g(this, 3));
+        addView(kp0Var, w7.x5.a(38.0f, 5.0f, 5.0f, 39.0f, 0.0f, -1, 51));
     }
 
     @Override
     public final void invalidate() {
         super.invalidate();
-        this.f35940a.invalidate();
+        this.f37144a.invalidate();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int i10 = org.telegram.ui.ActionBar.i6.I6;
-        this.f35944f.getClass();
-        int w02 = org.telegram.ui.ActionBar.i6.w0(null, i10, false);
-        TextPaint textPaint = this.f35943e;
-        textPaint.setColor(w02);
+        this.f37148f.getClass();
+        int x02 = org.telegram.ui.ActionBar.i6.x0(null, i10, false);
+        TextPaint textPaint = this.f37147e;
+        textPaint.setColor(x02);
         canvas.drawText("" + SharedConfig.ivFontSize, getMeasuredWidth() - AndroidUtilities.dp(39.0f), AndroidUtilities.dp(28.0f), textPaint);
     }
 
@@ -54,8 +54,8 @@ public final class e4 extends FrameLayout {
         int size = View.MeasureSpec.getSize(i10);
         if (this.d != size) {
             int i12 = SharedConfig.ivFontSize;
-            int i13 = this.f35941b;
-            this.f35940a.setProgress((i12 - i13) / (this.f35942c - i13));
+            int i13 = this.f37145b;
+            this.f37144a.setProgress((i12 - i13) / (this.f37146c - i13));
             this.d = size;
         }
     }

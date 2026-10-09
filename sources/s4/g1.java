@@ -1,71 +1,64 @@
 package s4;
-public final class g1 {
-    public int f46585a;
-    public int f46586b;
-    public int f46587c;
-    public int d;
-    public int f46588e;
 
-    public boolean a() {
+import java.util.ArrayList;
+public abstract class g1 extends n0 {
+    public boolean f47696m;
+    public boolean f47697n;
+
+    public g1() {
+        this.f47746a = null;
+        this.f47747b = new ArrayList();
+        this.f47748c = 120L;
+        this.d = 120L;
+        this.f47749e = 250L;
+        this.f47750f = 250L;
+        this.f47751g = 250L;
+        this.f47755l = 0L;
+        this.f47696m = true;
+    }
+
+    @Override
+    public boolean a(d1 d1Var, b2.q0 q0Var, b2.q0 q0Var2) {
         int i10;
         int i11;
-        int i12;
-        int i13 = this.f46585a;
-        int i14 = 2;
-        if ((i13 & 7) != 0) {
-            int i15 = this.d;
-            int i16 = this.f46586b;
-            if (i15 > i16) {
-                i12 = 1;
-            } else if (i15 == i16) {
-                i12 = 2;
-            } else {
-                i12 = 4;
-            }
-            if ((i12 & i13) == 0) {
-                return false;
-            }
+        if (q0Var != null && ((i10 = q0Var.f3533a) != (i11 = q0Var2.f3533a) || q0Var.f3534b != q0Var2.f3534b || this.f47697n)) {
+            return r(d1Var, q0Var, i10, q0Var.f3534b, i11, q0Var2.f3534b);
         }
-        if ((i13 & 112) != 0) {
-            int i17 = this.d;
-            int i18 = this.f46587c;
-            if (i17 > i18) {
-                i11 = 1;
-            } else if (i17 == i18) {
-                i11 = 2;
-            } else {
-                i11 = 4;
-            }
-            if (((i11 << 4) & i13) == 0) {
-                return false;
-            }
-        }
-        if ((i13 & 1792) != 0) {
-            int i19 = this.f46588e;
-            int i20 = this.f46586b;
-            if (i19 > i20) {
-                i10 = 1;
-            } else if (i19 == i20) {
-                i10 = 2;
-            } else {
-                i10 = 4;
-            }
-            if (((i10 << 8) & i13) == 0) {
-                return false;
-            }
-        }
-        if ((i13 & 28672) != 0) {
-            int i21 = this.f46588e;
-            int i22 = this.f46587c;
-            if (i21 > i22) {
-                i14 = 1;
-            } else if (i21 != i22) {
-                i14 = 4;
-            }
-            if ((i13 & (i14 << 12)) == 0) {
-                return false;
-            }
+        p(d1Var);
+        return true;
+    }
+
+    public abstract void p(d1 d1Var);
+
+    public abstract boolean q(d1 d1Var, d1 d1Var2, b2.q0 q0Var, int i10, int i11, int i12, int i13);
+
+    public abstract boolean r(d1 d1Var, b2.q0 q0Var, int i10, int i11, int i12, int i13);
+
+    public abstract void s(d1 d1Var, b2.q0 q0Var);
+
+    public boolean t(d1 d1Var) {
+        if (this.f47696m && !d1Var.h()) {
+            return false;
         }
         return true;
+    }
+
+    public final void u(d1 d1Var) {
+        w(d1Var);
+        d(d1Var);
+    }
+
+    public final void v(d1 d1Var) {
+        x(d1Var);
+        d(d1Var);
+    }
+
+    public void y() {
+    }
+
+    public void w(d1 d1Var) {
+    }
+
+    public void x(d1 d1Var) {
     }
 }

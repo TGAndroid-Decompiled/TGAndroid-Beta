@@ -1,9 +1,23 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.LocaleController;
-public final class v4 extends gd0 {
+import android.content.Context;
+import android.os.Vibrator;
+import android.text.Spanned;
+public final class v4 extends wq {
+    public final Context f31689b;
+
+    public v4(Context context) {
+        super(255);
+        this.f31689b = context;
+    }
+
     @Override
-    public final CharSequence d(int i10) {
-        return LocaleController.formatPluralString("Minutes", i10, new Object[0]);
+    public final CharSequence filter(CharSequence charSequence, int i10, int i11, Spanned spanned, int i12, int i13) {
+        Vibrator vibrator;
+        CharSequence filter = super.filter(charSequence, i10, i11, spanned, i12, i13);
+        if (filter != null && charSequence != null && filter.length() != charSequence.length() && (vibrator = (Vibrator) this.f31689b.getSystemService("vibrator")) != null) {
+            vibrator.vibrate(200L);
+        }
+        return filter;
     }
 }

@@ -1,87 +1,112 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.RectF;
-import android.text.TextPaint;
-import android.view.View;
+import android.graphics.Path;
+import android.os.Build;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class xi0 {
-    public final e6 f32977a;
-    public final o6 f32978b;
-    public final int f32979c;
-    public boolean d;
-    public final cj0 f32980e;
-    public final zc f32981f;
-    public final Paint f32982g = new Paint(1);
+import org.telegram.messenger.NotchInfoUtils;
+import org.telegram.messenger.SharedConfig;
+public final class xi0 extends FrameLayout {
+    public final Paint f32879a;
+    public final Path f32880b;
+    public final wi0 f32881c;
+    public float d;
+    public float f32882e;
+    public float f32883f;
     public boolean h;
+    public NotchInfoUtils.NotchInfo f32884n;
 
-    public xi0(View view) {
-        this.f32977a = new e6(view, 350L, tr.h);
-        this.f32980e = new cj0(view);
-        this.f32981f = new zc(view);
-        o6 o6Var = new o6(false, false, false, false);
-        this.f32978b = o6Var;
-        o6Var.t(AndroidUtilities.dp(11.0f));
-        o6Var.o(true, true, false);
-        o6Var.setCallback(view);
-        o6Var.G = (int) (AndroidUtilities.displaySize.x * 0.3f);
-        this.d = false;
-        o6Var.q(LocaleController.getString(R.string.QuoteCollapse), false, true);
-        String string = LocaleController.getString(R.string.QuoteExpand);
-        TextPaint textPaint = o6Var.f29353a;
-        this.f32979c = (int) Math.ceil(Math.max(textPaint.measureText(string), textPaint.measureText(LocaleController.getString(R.string.QuoteCollapse))));
-    }
-
-    public final void a(Canvas canvas, RectF rectF, float f7, float f10, int i10, boolean z10, boolean z11) {
-        int i11;
-        boolean z12 = this.d;
-        o6 o6Var = this.f32978b;
-        if (z10 != z12) {
-            this.d = z10;
-            if (z10) {
-                i11 = R.string.QuoteExpand;
+    public xi0(Context context) {
+        super(context);
+        float f7;
+        Paint paint = new Paint(1);
+        this.f32879a = paint;
+        this.f32880b = new Path();
+        paint.setColor(-16777216);
+        if (Build.VERSION.SDK_INT >= 31 && SharedConfig.getDevicePerformanceClass() >= 1) {
+            if (SharedConfig.getDevicePerformanceClass() == 2) {
+                f7 = 1.0f;
             } else {
-                i11 = R.string.QuoteCollapse;
+                f7 = 1.5f;
             }
-            o6Var.q(LocaleController.getString(i11), true, true);
+            this.f32881c = new vi0(this, f7);
+        } else {
+            this.f32881c = new ui0(this);
         }
-        float d = o6Var.d();
-        float dp = AndroidUtilities.dp(17.66f);
-        rectF.set(f7 - ((int) (d + AndroidUtilities.dp(23.66f))), f10 - dp, f7, f10);
-        float a2 = this.f32981f.a(0.02f) * this.f32977a.e(z11);
-        if (a2 > 0.0f) {
-            int k10 = i0.a.k(i10, 30);
-            Paint paint = this.f32982g;
-            paint.setColor(k10);
-            canvas.save();
-            canvas.scale(a2, a2, f7, f10);
-            float f11 = dp / 2.0f;
-            canvas.drawRoundRect(rectF, f11, f11, paint);
-            o6Var.setBounds((int) (rectF.left + AndroidUtilities.dp(6.0f)), (int) rectF.top, (int) (rectF.right - AndroidUtilities.dp(17.66f)), (int) rectF.bottom);
-            o6Var.r(i10);
-            o6Var.draw(canvas);
-            float dp2 = AndroidUtilities.dp(14.0f);
-            float f12 = dp2 / 2.0f;
-            cj0 cj0Var = this.f32980e;
-            cj0Var.setBounds((int) ((rectF.right - AndroidUtilities.dp(3.33f)) - dp2), (int) ((rectF.centerY() - f12) + AndroidUtilities.dp(0.33f)), (int) (rectF.right - AndroidUtilities.dp(3.33f)), (int) (rectF.centerY() + f12 + AndroidUtilities.dp(0.33f)));
-            Paint paint2 = cj0Var.f25448b;
-            paint2.setColor(i10);
-            paint2.setAlpha(cj0Var.d);
-            boolean z13 = !z10;
-            if (cj0Var.f25450e != z13) {
-                cj0Var.f25450e = z13;
-                cj0Var.f25447a.invalidate();
-            }
-            cj0Var.draw(canvas);
-            canvas.restore();
-        }
+        setIntensity(15.0f);
+        setBlurIntensity(0.0f);
+        setWillNotDraw(false);
     }
 
-    public final void b(boolean z10) {
+    public static void a(xi0 xi0Var, Canvas canvas) {
+        canvas.save();
+        canvas.translate(0.0f, AndroidUtilities.dp(32.0f));
+        super.draw(canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        if (!this.h) {
+            super.draw(canvas);
+            return;
+        }
+        this.f32881c.c(new bw(this, 13), canvas);
+    }
+
+    public float getAvatarEndScale() {
+        float min;
+        int dp;
+        NotchInfoUtils.NotchInfo notchInfo = this.f32884n;
+        if (notchInfo == null) {
+            return 0.8f;
+        }
+        if (notchInfo.isLikelyCircle) {
+            min = notchInfo.bounds.width() - AndroidUtilities.dp(2.0f);
+            dp = AndroidUtilities.dp(100.0f);
+        } else {
+            min = Math.min(notchInfo.bounds.width(), this.f32884n.bounds.height());
+            dp = AndroidUtilities.dp(100.0f);
+        }
+        return Math.min(0.8f, min / dp);
+    }
+
+    @Override
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        super.onSizeChanged(i10, i11, i12, i13);
+        NotchInfoUtils.NotchInfo info = NotchInfoUtils.getInfo(getContext());
+        this.f32884n = info;
+        if ((info != null && info.gravity != 17) || getWidth() > getHeight()) {
+            this.f32884n = null;
+        }
+        this.f32881c.d(i10, i11);
+    }
+
+    public void setBlurIntensity(float f7) {
+        this.f32883f = f7;
+        this.f32881c.b(f7);
+        invalidate();
+    }
+
+    public void setGooeyEnabled(boolean z10) {
+        if (this.h == z10) {
+            return;
+        }
         this.h = z10;
-        this.f32981f.c(z10);
+        invalidate();
+    }
+
+    public void setIntensity(float f7) {
+        this.d = f7;
+        this.f32881c.a(f7);
+        invalidate();
+    }
+
+    public void setPullProgress(float f7) {
+        this.f32882e = f7;
+        invalidate();
     }
 }

@@ -2,30 +2,30 @@ package hg;
 
 import android.view.View;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.h61;
+import org.telegram.ui.Components.p61;
 public final class m1 implements Utilities.Callback5, Utilities.Callback5Return {
-    public final y1 f11266a;
+    public final z1 f11318a;
 
     @Override
-    public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+    public void mo16run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        y1.U(this.f11266a, (h61) obj, (View) obj2);
+        z1.W(this.f11318a, (p61) obj, (View) obj2);
     }
 
     @Override
     public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
         boolean z10;
-        h61 h61Var = (h61) obj;
+        p61 p61Var = (p61) obj;
         View view = (View) obj2;
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        if (h61Var.f17192a == 16) {
-            Object obj6 = h61Var.G;
-            if (!(obj6 instanceof a2) || !((a2) obj6).f11109g) {
-                this.f11266a.e0(h61Var, view);
+        if (p61Var.f17125a == 16) {
+            Object obj6 = p61Var.G;
+            if (!(obj6 instanceof b2) || !((b2) obj6).f11179g) {
+                this.f11318a.e0(p61Var, view);
                 z10 = true;
                 return Boolean.valueOf(z10);
             }

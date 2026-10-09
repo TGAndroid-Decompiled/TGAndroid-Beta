@@ -5,14 +5,14 @@ public enum m7 implements a0 {
     TYPE_THICK(2),
     TYPE_GMV(3);
     
-    public final int f49579a;
+    public final int f50854a;
 
     m7(int i10) {
-        this.f49579a = i10;
+        this.f50854a = i10;
     }
 
     @Override
     public final int zza() {
-        return this.f49579a;
+        return this.f50854a;
     }
 }

@@ -1,13 +1,31 @@
 package ce;
-public final class e extends kd.c {
-    public kotlin.jvm.internal.p f4573a;
-    public Object f4574b;
-    public int f4575c;
+public final class e extends f {
+    public final Throwable f4632a;
+
+    public e(Throwable th2) {
+        this.f4632a = th2;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj instanceof e) {
+            if (kotlin.jvm.internal.i.a(this.f4632a, ((e) obj).f4632a)) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        Throwable th2 = this.f4632a;
+        if (th2 != null) {
+            return th2.hashCode();
+        }
+        return 0;
+    }
 
     @Override
-    public final Object invokeSuspend(Object obj) {
-        this.f4574b = obj;
-        this.f4575c |= Integer.MIN_VALUE;
-        return o.a(null, null, this);
+    public final String toString() {
+        return "Closed(" + this.f4632a + ')';
     }
 }

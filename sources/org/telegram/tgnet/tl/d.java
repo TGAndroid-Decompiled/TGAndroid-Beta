@@ -6,16 +6,18 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_stats;
 import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.tgnet.tl.TL_toncenter;
+import org.telegram.tgnet.tl.TL_wallet;
 public final class d implements Vector.TLDeserializer {
-    public final int f20306a;
+    public final int f20303a;
 
     public d(int i10) {
-        this.f20306a = i10;
+        this.f20303a = i10;
     }
 
     @Override
     public final TLObject deserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-        switch (this.f20306a) {
+        switch (this.f20303a) {
             case 0:
                 return TL_stats.TL_statsGroupTopAdmin.TLdeserialize(inputSerializedData, i10, z10);
             case 1:
@@ -47,9 +49,29 @@ public final class d implements Vector.TLDeserializer {
             case 14:
                 return TL_stories.StoryView.TLdeserialize(inputSerializedData, i10, z10);
             case 15:
+                return TL_toncenter.onrampProviderInfo.TLdeserialize(inputSerializedData, i10, z10);
+            case 16:
+                return TL_toncenter.onrampMethodAvailability.TLdeserialize(inputSerializedData, i10, z10);
+            case 17:
                 return TLRPC.TL_folderPeer.TLdeserialize(inputSerializedData, i10, z10);
-            default:
+            case 18:
                 return TLRPC.PeerLocated.TLdeserialize(inputSerializedData, i10, z10);
+            case 19:
+                return TL_wallet.currencyRate.TLdeserialize(inputSerializedData, i10, z10);
+            case 20:
+                return TL_wallet.holderDc.TLdeserialize(inputSerializedData, i10, z10);
+            case 21:
+                return TL_wallet.nftAttribute.TLdeserialize(inputSerializedData, i10, z10);
+            case 22:
+                return TL_wallet.nftItem.TLdeserialize(inputSerializedData, i10, z10);
+            case 23:
+                return TL_wallet.tonConnectRequest.TLdeserialize(inputSerializedData, i10, z10);
+            case 24:
+                return TL_wallet.tonConnectSession.TLdeserialize(inputSerializedData, i10, z10);
+            case 25:
+                return TL_wallet.walletUserAddress.TLdeserialize(inputSerializedData, i10, z10);
+            default:
+                return TL_wallet.walletTransaction.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 }

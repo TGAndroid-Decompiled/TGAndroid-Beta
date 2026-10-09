@@ -5,24 +5,24 @@ import android.os.Parcelable;
 import android.util.Log;
 public final class e extends o6.a {
     public static final Parcelable.Creator<e> CREATOR = new c(1);
-    public final f f50489a;
-    public final int f50490b;
-    public final int f50491c;
+    public final f f51768a;
+    public final int f51769b;
+    public final int f51770c;
     public final int d;
 
     public e(f fVar, int i10, int i11, int i12) {
-        this.f50489a = fVar;
-        this.f50490b = i10;
-        this.f50491c = i11;
+        this.f51768a = fVar;
+        this.f51769b = i10;
+        this.f51770c = i11;
         this.d = i12;
     }
 
     public final void b(x8.c cVar) {
-        f fVar = this.f50489a;
-        int i10 = this.f50490b;
+        f fVar = this.f51768a;
+        int i10 = this.f51769b;
         if (i10 != 1) {
             int i11 = this.d;
-            int i12 = this.f50491c;
+            int i12 = this.f51770c;
             if (i10 != 2) {
                 if (i10 != 3) {
                     if (i10 != 4) {
@@ -44,8 +44,8 @@ public final class e extends o6.a {
     public final String toString() {
         String str;
         String str2;
-        String valueOf = String.valueOf(this.f50489a);
-        int i10 = this.f50490b;
+        String valueOf = String.valueOf(this.f51768a);
+        int i10 = this.f51769b;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 3) {
@@ -63,7 +63,7 @@ public final class e extends o6.a {
         } else {
             str = "CHANNEL_OPENED";
         }
-        int i11 = this.f50491c;
+        int i11 = this.f51770c;
         if (i11 != 0) {
             if (i11 != 1) {
                 if (i11 != 2) {
@@ -81,7 +81,7 @@ public final class e extends o6.a {
         } else {
             str2 = "CLOSE_REASON_NORMAL";
         }
-        StringBuilder x10 = a4.a.x("ChannelEventParcelable[, channel=", valueOf, ", type=", str, ", closeReason=");
+        StringBuilder x10 = a1.g.x("ChannelEventParcelable[, channel=", valueOf, ", type=", str, ", closeReason=");
         x10.append(str2);
         x10.append(", appErrorCode=");
         x10.append(this.d);
@@ -91,14 +91,14 @@ public final class e extends o6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = w7.g0.q(parcel, 20293);
-        w7.g0.k(parcel, 2, this.f50489a, i10);
-        w7.g0.s(parcel, 3, 4);
-        parcel.writeInt(this.f50490b);
-        w7.g0.s(parcel, 4, 4);
-        parcel.writeInt(this.f50491c);
-        w7.g0.s(parcel, 5, 4);
+        int q6 = w7.d0.q(parcel, 20293);
+        w7.d0.k(parcel, 2, this.f51768a, i10);
+        w7.d0.s(parcel, 3, 4);
+        parcel.writeInt(this.f51769b);
+        w7.d0.s(parcel, 4, 4);
+        parcel.writeInt(this.f51770c);
+        w7.d0.s(parcel, 5, 4);
         parcel.writeInt(this.d);
-        w7.g0.r(parcel, q6);
+        w7.d0.r(parcel, q6);
     }
 }

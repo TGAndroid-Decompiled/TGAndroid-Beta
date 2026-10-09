@@ -11,19 +11,19 @@ import java.nio.ByteBuffer;
 import java.util.HashSet;
 import la.h;
 import n6.l;
-import sa.e;
+import sc.v;
 public final class c extends g {
-    public final q8.a f46943b;
-    public final u2 f46944c;
+    public final q8.a f48235b;
+    public final u2 f48236c;
     public final Object d;
-    public boolean f46945e;
+    public boolean f48237e;
 
     public c(u2 u2Var) {
         super(3);
-        this.f46943b = new q8.a();
+        this.f48235b = new q8.a();
         this.d = new Object();
-        this.f46945e = true;
-        this.f46944c = u2Var;
+        this.f48237e = true;
+        this.f48236c = u2Var;
     }
 
     @Override
@@ -31,26 +31,26 @@ public final class c extends g {
         super.U0();
         synchronized (this.d) {
             try {
-                if (!this.f46945e) {
+                if (!this.f48237e) {
                     return;
                 }
-                this.f46944c.l();
-                this.f46945e = false;
+                this.f48236c.l();
+                this.f48237e = false;
             } catch (Throwable th2) {
                 throw th2;
             }
         }
     }
 
-    public final SparseArray Z0(h hVar) {
-        ByteBuffer F;
+    public final SparseArray b1(h hVar) {
+        ByteBuffer J;
         a[] n10;
         Bitmap bitmap = (Bitmap) hVar.d;
         if (bitmap != null) {
             int width = bitmap.getWidth();
             int height = bitmap.getHeight();
             int i10 = width * height;
-            F = ByteBuffer.allocateDirect(((((height + 1) / 2) * ((width + 1) / 2)) << 1) + i10);
+            J = ByteBuffer.allocateDirect(((((height + 1) / 2) * ((width + 1) / 2)) << 1) + i10);
             int i11 = i10;
             for (int i12 = 0; i12 < i10; i12++) {
                 int i13 = i12 % width;
@@ -59,24 +59,24 @@ public final class c extends g {
                 float red = Color.red(pixel);
                 float green = Color.green(pixel);
                 float blue = Color.blue(pixel);
-                F.put(i12, (byte) ((0.114f * blue) + (0.587f * green) + (0.299f * red)));
+                J.put(i12, (byte) ((0.114f * blue) + (0.587f * green) + (0.299f * red)));
                 if (i14 % 2 == 0 && i13 % 2 == 0) {
-                    float d = e.d(blue, 0.5f, ((-0.331f) * green) + ((-0.169f) * red), 128.0f);
-                    float d10 = e.d(blue, -0.081f, (green * (-0.419f)) + (red * 0.5f), 128.0f);
+                    float d = v.d(blue, 0.5f, ((-0.331f) * green) + ((-0.169f) * red), 128.0f);
+                    float d10 = v.d(blue, -0.081f, (green * (-0.419f)) + (red * 0.5f), 128.0f);
                     int i15 = i11 + 1;
-                    F.put(i11, (byte) d);
+                    J.put(i11, (byte) d);
                     i11 += 2;
-                    F.put(i15, (byte) d10);
+                    J.put(i15, (byte) d10);
                 }
             }
         } else {
-            F = hVar.F();
+            J = hVar.J();
         }
         synchronized (this.d) {
-            if (this.f46945e) {
-                u2 u2Var = this.f46944c;
-                l.h(F);
-                n10 = u2Var.n(F, g3.b(hVar));
+            if (this.f48237e) {
+                u2 u2Var = this.f48236c;
+                l.h(J);
+                n10 = u2Var.n(J, g3.b(hVar));
             } else {
                 throw new IllegalStateException("Cannot use detector after release()");
             }
@@ -85,14 +85,14 @@ public final class c extends g {
         SparseArray sparseArray = new SparseArray(n10.length);
         int i16 = 0;
         for (a aVar : n10) {
-            int i17 = aVar.f46937a;
+            int i17 = aVar.f48229a;
             i16 = Math.max(i16, i17);
             if (hashSet.contains(Integer.valueOf(i17))) {
                 i17 = i16 + 1;
                 i16 = i17;
             }
             hashSet.add(Integer.valueOf(i17));
-            sparseArray.append(this.f46943b.a(i17), aVar);
+            sparseArray.append(this.f48235b.a(i17), aVar);
         }
         return sparseArray;
     }
@@ -100,7 +100,7 @@ public final class c extends g {
     public final void finalize() {
         try {
             synchronized (this.d) {
-                if (this.f46945e) {
+                if (this.f48237e) {
                     Log.w("FaceDetector", "FaceDetector was not released with FaceDetector.release()");
                     U0();
                 }

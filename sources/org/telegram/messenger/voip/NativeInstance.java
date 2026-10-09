@@ -134,7 +134,7 @@ public class NativeInstance {
 
     private void onNetworkStateUpdated(boolean z10, boolean z11) {
         if (this.onStateUpdatedListener != null) {
-            AndroidUtilities.runOnUIThread(new org.telegram.messenger.video.k(this, z10, z11, 1));
+            AndroidUtilities.runOnUIThread(new org.telegram.messenger.video.l(this, z10, z11, 1));
         }
     }
 
@@ -142,7 +142,7 @@ public class NativeInstance {
         if (this.unknownParticipantsCallback == null) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new a3.h0(this, j3, iArr, 10));
+        AndroidUtilities.runOnUIThread(new a3.h0(this, j3, iArr, 11));
     }
 
     private void onRemoteMediaStateUpdated(int i10, int i11) {

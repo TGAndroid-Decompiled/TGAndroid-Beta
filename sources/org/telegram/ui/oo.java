@@ -1,35 +1,153 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessagesController;
-public final class oo implements Runnable {
-    public final int f39263a;
-    public final long f39264b;
-    public final long f39265c;
-    public final org.telegram.ui.ActionBar.n2 d;
+import android.content.Context;
+import android.util.Pair;
+import j$.util.Objects;
+import java.util.ArrayList;
+import java.util.regex.Pattern;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.Vector;
+import org.telegram.tgnet.tl.TL_bots;
+public final class oo implements RequestDelegate {
+    public final int f40579a;
+    public final Object f40580b;
+    public final Object f40581c;
 
-    public oo(org.telegram.ui.ActionBar.n2 n2Var, long j3, long j10, int i10) {
-        this.f39263a = i10;
-        this.d = n2Var;
-        this.f39264b = j3;
-        this.f39265c = j10;
+    public oo(int i10, Object obj, Object obj2) {
+        this.f40579a = i10;
+        this.f40580b = obj;
+        this.f40581c = obj2;
     }
 
     @Override
-    public final void run() {
-        org.telegram.ui.Components.w61 w61Var;
-        switch (this.f39263a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        int i10 = this.f40579a;
+        Object obj = this.f40581c;
+        Object obj2 = this.f40580b;
+        switch (i10) {
             case 0:
-                MessagesController.getInstance(r0.currentAccount).unlinkCommunity(this.f39264b, this.f39265c, new c5((to) this.d, 4));
+                uo uoVar = (uo) obj2;
+                TL_bots.setBotInfo setbotinfo = (TL_bots.setBotInfo) obj;
+                TLRPC.UserFull userFull = uoVar.E0;
+                if (userFull != null) {
+                    userFull.about = setbotinfo.about;
+                    uoVar.getMessagesStorage().updateUserInfo(uoVar.E0, false);
+                }
+                AndroidUtilities.runOnUIThread(new mo(uoVar, 2));
                 return;
-            default:
-                org.telegram.ui.web.a2 a2Var = (org.telegram.ui.web.a2) this.d;
-                a2Var.h = this.f39264b;
-                a2Var.f42118n = this.f39265c;
-                org.telegram.ui.Components.y61 y61Var = a2Var.f33438a;
-                if (y61Var != null && (w61Var = y61Var.f26034f3) != null && y61Var.G) {
-                    w61Var.N(true);
+            case 1:
+                AndroidUtilities.runOnUIThread(new sg(19, (up) obj2, (org.telegram.ui.ActionBar.b2[]) obj));
+                return;
+            case 2:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.n5((nq) obj2, tL_error, tLObject, (TwoStepVerificationActivity) obj, 13));
+                return;
+            case 3:
+                org.telegram.ui.Components.o5 o5Var = (org.telegram.ui.Components.o5) obj2;
+                NotificationCenter.getInstance(o5Var.f29389e).doOnIdle(new org.telegram.ui.Components.n5(o5Var, (ArrayList) obj, tLObject, 0));
+                return;
+            case 4:
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.video.f((org.telegram.ui.Components.l8) obj2, (org.telegram.ui.ActionBar.b2) obj, tLObject, 12));
+                return;
+            case 5:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.ea(11, (org.telegram.ui.Components.yi) obj2, (org.telegram.ui.Components.ri) obj));
+                return;
+            case 6:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.ea(12, (org.telegram.ui.Components.yi) obj2, (TLRPC.TL_attachMenuBot) obj));
+                return;
+            case 7:
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.video.f((org.telegram.ui.Components.aq) obj2, tLObject, (org.telegram.ui.ActionBar.h6) obj, 18));
+                return;
+            case 8:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.zr(16, (org.telegram.ui.Components.s10) obj2, (Pair) obj));
+                return;
+            case 9:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.n5((org.telegram.ui.Components.s10) obj2, tL_error, tLObject, (Utilities.Callback) obj));
+                return;
+            case 10:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.n5((org.telegram.ui.Components.i40) obj2, tL_error, tLObject, (TLRPC.TL_channels_getParticipants) obj, 25));
+                return;
+            case 11:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.n5((org.telegram.ui.Components.x90) obj2, (TLRPC.TL_chatInviteExported) obj, tL_error, tLObject, 27));
+                return;
+            case 12:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.og0((org.telegram.ui.Components.sh0) obj2, (org.telegram.ui.Components.rh0) obj, tLObject, 1));
+                return;
+            case 13:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.ci0((org.telegram.ui.Components.mr0) obj2, tLObject, (Context) obj, 11));
+                return;
+            case 14:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.oo0((org.telegram.ui.Components.xy0) obj2, tL_error, tLObject, (MediaDataController) obj, 3));
+                return;
+            case 15:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.oo0((rs0) obj2, tL_error, tLObject, (TLRPC.TL_messages_getAttachedStickers) obj, 4));
+                return;
+            case 16:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.oo0((org.telegram.ui.Components.k11) obj2, (org.telegram.ui.ActionBar.b2) obj, tLObject, tL_error, 5));
+                return;
+            case 17:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.oo0((org.telegram.ui.Components.b51) obj2, tL_error, tLObject, (TLRPC.TL_textWithEntities) obj, 7));
+                return;
+            case 18:
+                AndroidUtilities.runOnUIThread(new vq((fz) obj2, tLObject, (MessageObject) obj, 4));
+                return;
+            case 19:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.ea1(18, (a00) obj2, (org.telegram.ui.ActionBar.b2) obj));
+                return;
+            case 20:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.ea1(22, (f10) obj2, (org.telegram.ui.ActionBar.b2) obj));
+                return;
+            case 21:
+                AndroidUtilities.runOnUIThread(new vq((y00) obj2, tL_error, (x00) obj, 8));
+                return;
+            case 22:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.ea1(24, (FiltersSetupActivity) obj2, (TLRPC.TL_messages_toggleDialogFilterTags) obj));
+                return;
+            case 23:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.oo0((n50) obj2, tL_error, tLObject, (String) obj, 11));
+                return;
+            case 24:
+                o70 o70Var = (o70) obj2;
+                if (Objects.equals(o70Var.f40422a.f40690e, (String) obj)) {
+                    AndroidUtilities.runOnUIThread(new m70(2, o70Var, tLObject));
                     return;
                 }
+                return;
+            case 25:
+                d80 d80Var = (d80) obj2;
+                String str = (String) obj;
+                if (tLObject instanceof Vector) {
+                    Vector vector = (Vector) tLObject;
+                    if (!vector.objects.isEmpty()) {
+                        TLRPC.LangPackString langPackString = (TLRPC.LangPackString) vector.objects.get(0);
+                        if (langPackString instanceof TLRPC.TL_langPackString) {
+                            AndroidUtilities.runOnUIThread(new vq(d80Var, (TLRPC.TL_langPackString) langPackString, str, 11));
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 26:
+                Pattern pattern = LaunchActivity.B1;
+                AndroidUtilities.runOnUIThread(new vq((LaunchActivity) obj2, tLObject, (org.telegram.ui.ActionBar.h6) obj, 17));
+                return;
+            case 27:
+                Pattern pattern2 = LaunchActivity.B1;
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.oo0((org.telegram.ui.ActionBar.b2) obj2, tLObject, (h) obj, tL_error, 15));
+                return;
+            case 28:
+                AndroidUtilities.runOnUIThread(new vq((ec0) obj2, tLObject, (String) obj, 19));
+                return;
+            default:
+                AndroidUtilities.runOnUIThread(new vq((bc0) obj2, tLObject, (TLRPC.User) obj, 20));
                 return;
         }
     }

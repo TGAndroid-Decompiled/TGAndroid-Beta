@@ -1,10 +1,8 @@
 package ki;
-
-import ii.n4;
 public final class b {
-    public final n4 f14853a;
+    public final xa.d f14882a;
 
-    public b(n4 n4Var) {
-        this.f14853a = n4Var;
+    public b(xa.d dVar) {
+        this.f14882a = dVar;
     }
 }

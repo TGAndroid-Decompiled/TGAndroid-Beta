@@ -6,31 +6,31 @@ import java.util.Iterator;
 import java.util.Map;
 import v7.s6;
 public final class s extends AbstractSet {
-    public final int f8800a;
-    public final v f8801b;
+    public final int f8794a;
+    public final v f8795b;
 
     public s(v vVar, int i10) {
-        this.f8800a = i10;
-        this.f8801b = vVar;
+        this.f8794a = i10;
+        this.f8795b = vVar;
     }
 
     @Override
     public final void clear() {
-        switch (this.f8800a) {
+        switch (this.f8794a) {
             case 0:
-                this.f8801b.clear();
+                this.f8795b.clear();
                 return;
             default:
-                this.f8801b.clear();
+                this.f8795b.clear();
                 return;
         }
     }
 
     @Override
     public final boolean contains(Object obj) {
-        switch (this.f8800a) {
+        switch (this.f8794a) {
             case 0:
-                v vVar = this.f8801b;
+                v vVar = this.f8795b;
                 Map b10 = vVar.b();
                 if (b10 != null) {
                     return b10.entrySet().contains(obj);
@@ -44,22 +44,22 @@ public final class s extends AbstractSet {
                 }
                 return false;
             default:
-                return this.f8801b.containsKey(obj);
+                return this.f8795b.containsKey(obj);
         }
     }
 
     @Override
     public final Iterator iterator() {
-        switch (this.f8800a) {
+        switch (this.f8794a) {
             case 0:
-                v vVar = this.f8801b;
+                v vVar = this.f8795b;
                 Map b10 = vVar.b();
                 if (b10 != null) {
                     return b10.entrySet().iterator();
                 }
                 return new r(vVar, 1);
             default:
-                v vVar2 = this.f8801b;
+                v vVar2 = this.f8795b;
                 Map b11 = vVar2.b();
                 if (b11 != null) {
                     return b11.keySet().iterator();
@@ -70,9 +70,9 @@ public final class s extends AbstractSet {
 
     @Override
     public final boolean remove(Object obj) {
-        switch (this.f8800a) {
+        switch (this.f8794a) {
             case 0:
-                v vVar = this.f8801b;
+                v vVar = this.f8795b;
                 Map b10 = vVar.b();
                 if (b10 != null) {
                     return b10.entrySet().remove(obj);
@@ -83,25 +83,25 @@ public final class s extends AbstractSet {
                         int c10 = vVar.c();
                         Object key = entry.getKey();
                         Object value = entry.getValue();
-                        Object obj2 = vVar.f8813a;
+                        Object obj2 = vVar.f8807a;
                         Objects.requireNonNull(obj2);
                         int q6 = q.q(key, value, c10, obj2, vVar.h(), vVar.i(), vVar.j());
                         if (q6 != -1) {
                             vVar.e(q6, c10);
-                            vVar.f8817f--;
-                            vVar.f8816e += 32;
+                            vVar.f8811f--;
+                            vVar.f8810e += 32;
                             return true;
                         }
                     }
                 }
                 return false;
             default:
-                v vVar2 = this.f8801b;
+                v vVar2 = this.f8795b;
                 Map b11 = vVar2.b();
                 if (b11 != null) {
                     return b11.keySet().remove(obj);
                 }
-                if (vVar2.g(obj) != v.f8812s) {
+                if (vVar2.g(obj) != v.f8806s) {
                     return true;
                 }
                 return false;
@@ -110,11 +110,11 @@ public final class s extends AbstractSet {
 
     @Override
     public final int size() {
-        switch (this.f8800a) {
+        switch (this.f8794a) {
             case 0:
-                return this.f8801b.size();
+                return this.f8795b.size();
             default:
-                return this.f8801b.size();
+                return this.f8795b.size();
         }
     }
 }

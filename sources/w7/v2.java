@@ -1,9 +1,9 @@
 package w7;
 public final class v2 implements ia.d {
-    public static final v2 f48868a = new Object();
+    public static final v2 f50149a = new Object();
 
     static {
-        sa.e.t(sa.e.m(d.class, new a(1)));
+        sc.v.t(sc.v.m(d.class, new a(1)));
     }
 
     @Override

@@ -1,180 +1,474 @@
 package a4;
 
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-import android.text.style.BackgroundColorSpan;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.StyleSpan;
-import android.text.style.UnderlineSpan;
-import java.util.ArrayList;
+import e2.d0;
+import e2.v;
 public final class g {
-    public static final boolean[] A;
-    public static final int[] B;
-    public static final int[] C;
-    public static final int[] D;
-    public static final int[] E;
-    public static final int v = c(2, 2, 2, 0);
-    public static final int f252w;
-    public static final int[] f253x;
-    public static final int[] f254y;
-    public static final int[] f255z;
-    public final ArrayList f256a = new ArrayList();
-    public final SpannableStringBuilder f257b = new SpannableStringBuilder();
-    public boolean f258c;
-    public boolean d;
-    public int f259e;
-    public boolean f260f;
-    public int f261g;
-    public int h;
-    public int f262i;
-    public int f263j;
-    public int f264k;
-    public int f265l;
-    public int f266m;
-    public int f267n;
-    public int f268o;
-    public int f269p;
-    public int f270q;
-    public int f271r;
-    public int f272s;
-    public int f273t;
-    public int f274u;
-
-    static {
-        int c10 = c(0, 0, 0, 0);
-        f252w = c10;
-        int c11 = c(0, 0, 0, 3);
-        f253x = new int[]{0, 0, 0, 0, 0, 2, 0};
-        f254y = new int[]{0, 0, 0, 0, 0, 0, 2};
-        f255z = new int[]{3, 3, 3, 3, 3, 3, 1};
-        A = new boolean[]{false, false, false, true, true, true, false};
-        B = new int[]{c10, c11, c10, c10, c11, c10, c10};
-        C = new int[]{0, 1, 2, 3, 4, 3, 4};
-        D = new int[]{0, 0, 0, 0, 0, 3, 3};
-        E = new int[]{c10, c10, c10, c10, c10, c11, c11};
-    }
+    public final int f275a;
+    public byte[] f276b;
+    public int f277c;
+    public int d;
+    public int f278e;
 
     public g() {
-        d();
+        this.f275a = 2;
+        this.f276b = d0.f8533b;
     }
 
-    public static int c(int r4, int r5, int r6, int r7) {
-        throw new UnsupportedOperationException("Method not decompiled: a4.g.c(int, int, int, int):int");
-    }
-
-    public final void a(char c10) {
-        SpannableStringBuilder spannableStringBuilder = this.f257b;
-        if (c10 == '\n') {
-            SpannableString b10 = b();
-            ArrayList arrayList = this.f256a;
-            arrayList.add(b10);
-            spannableStringBuilder.clear();
-            if (this.f268o != -1) {
-                this.f268o = 0;
-            }
-            if (this.f269p != -1) {
-                this.f269p = 0;
-            }
-            if (this.f270q != -1) {
-                this.f270q = 0;
-            }
-            if (this.f272s != -1) {
-                this.f272s = 0;
-            }
-            while (true) {
-                if (arrayList.size() < this.f263j && arrayList.size() < 15) {
-                    this.f274u = arrayList.size();
-                    return;
+    public void a() {
+        boolean z10;
+        int i10;
+        boolean z11;
+        int i11;
+        switch (this.f275a) {
+            case 2:
+                int i12 = this.f277c;
+                if (i12 >= 0 && (i12 < (i10 = this.f278e) || (i12 == i10 && this.d == 0))) {
+                    z10 = true;
+                } else {
+                    z10 = false;
                 }
-                arrayList.remove(0);
+                e2.d.g(z10);
+                return;
+            default:
+                int i13 = this.d;
+                if (i13 >= 0 && (i13 < (i11 = this.f277c) || (i13 == i11 && this.f278e == 0))) {
+                    z11 = true;
+                } else {
+                    z11 = false;
+                }
+                e2.d.g(z11);
+                return;
+        }
+    }
+
+    public int b() {
+        return ((this.f278e - this.f277c) * 8) - this.d;
+    }
+
+    public void c() {
+        if (this.d == 0) {
+            return;
+        }
+        this.d = 0;
+        this.f277c++;
+        a();
+    }
+
+    public boolean d(int i10) {
+        int i11 = this.d;
+        int i12 = i10 / 8;
+        int i13 = i11 + i12;
+        int i14 = (this.f278e + i10) - (i12 * 8);
+        if (i14 > 7) {
+            i13++;
+            i14 -= 8;
+        }
+        while (true) {
+            i11++;
+            if (i11 > i13 || i13 >= this.f277c) {
+                break;
+            } else if (r(i11)) {
+                i13++;
+                i11 += 2;
             }
+        }
+        int i15 = this.f277c;
+        if (i13 < i15) {
+            return true;
+        }
+        if (i13 == i15 && i14 == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean e() {
+        boolean z10;
+        int i10 = this.d;
+        int i11 = this.f278e;
+        int i12 = 0;
+        while (this.d < this.f277c && !h()) {
+            i12++;
+        }
+        if (this.d == this.f277c) {
+            z10 = true;
         } else {
-            spannableStringBuilder.append(c10);
+            z10 = false;
+        }
+        this.d = i10;
+        this.f278e = i11;
+        if (z10 || !d((i12 * 2) + 1)) {
+            return false;
+        }
+        return true;
+    }
+
+    public int f() {
+        boolean z10;
+        if (this.d == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        e2.d.g(z10);
+        return this.f277c;
+    }
+
+    public int g() {
+        return (this.f277c * 8) + this.d;
+    }
+
+    public boolean h() {
+        boolean z10;
+        boolean z11;
+        boolean z12;
+        switch (this.f275a) {
+            case 1:
+                if ((((this.f276b[this.d] & 255) >> this.f278e) & 1) == 1) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                t(1);
+                return z10;
+            case 2:
+                if ((this.f276b[this.f277c] & (128 >> this.d)) != 0) {
+                    z11 = true;
+                } else {
+                    z11 = false;
+                }
+                s();
+                return z11;
+            default:
+                if ((this.f276b[this.d] & (128 >> this.f278e)) != 0) {
+                    z12 = true;
+                } else {
+                    z12 = false;
+                }
+                s();
+                return z12;
         }
     }
 
-    public final SpannableString b() {
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.f257b);
-        int length = spannableStringBuilder.length();
-        if (length > 0) {
-            if (this.f268o != -1) {
-                spannableStringBuilder.setSpan(new StyleSpan(2), this.f268o, length, 33);
-            }
-            if (this.f269p != -1) {
-                spannableStringBuilder.setSpan(new UnderlineSpan(), this.f269p, length, 33);
-            }
-            if (this.f270q != -1) {
-                spannableStringBuilder.setSpan(new ForegroundColorSpan(this.f271r), this.f270q, length, 33);
-            }
-            if (this.f272s != -1) {
-                spannableStringBuilder.setSpan(new BackgroundColorSpan(this.f273t), this.f272s, length, 33);
-            }
+    public int i(int i10) {
+        switch (this.f275a) {
+            case 1:
+                int i11 = this.d;
+                int min = Math.min(i10, 8 - this.f278e);
+                byte[] bArr = this.f276b;
+                int i12 = i11 + 1;
+                int i13 = ((bArr[i11] & 255) >> this.f278e) & (255 >> (8 - min));
+                while (min < i10) {
+                    i13 |= (bArr[i12] & 255) << min;
+                    min += 8;
+                    i12++;
+                }
+                int i14 = i13 & ((-1) >>> (32 - i10));
+                t(i10);
+                return i14;
+            case 2:
+                if (i10 == 0) {
+                    return 0;
+                }
+                this.d += i10;
+                int i15 = 0;
+                while (true) {
+                    int i16 = this.d;
+                    if (i16 > 8) {
+                        int i17 = i16 - 8;
+                        this.d = i17;
+                        byte[] bArr2 = this.f276b;
+                        int i18 = this.f277c;
+                        this.f277c = i18 + 1;
+                        i15 |= (bArr2[i18] & 255) << i17;
+                    } else {
+                        byte[] bArr3 = this.f276b;
+                        int i19 = this.f277c;
+                        int i20 = ((-1) >>> (32 - i10)) & (i15 | ((bArr3[i19] & 255) >> (8 - i16)));
+                        if (i16 == 8) {
+                            this.d = 0;
+                            this.f277c = i19 + 1;
+                        }
+                        a();
+                        return i20;
+                    }
+                }
+            default:
+                this.f278e += i10;
+                int i21 = 0;
+                while (true) {
+                    int i22 = this.f278e;
+                    int i23 = 2;
+                    if (i22 > 8) {
+                        int i24 = i22 - 8;
+                        this.f278e = i24;
+                        byte[] bArr4 = this.f276b;
+                        int i25 = this.d;
+                        i21 |= (bArr4[i25] & 255) << i24;
+                        if (!r(i25 + 1)) {
+                            i23 = 1;
+                        }
+                        this.d = i25 + i23;
+                    } else {
+                        byte[] bArr5 = this.f276b;
+                        int i26 = this.d;
+                        int i27 = ((-1) >>> (32 - i10)) & (i21 | ((bArr5[i26] & 255) >> (8 - i22)));
+                        if (i22 == 8) {
+                            this.f278e = 0;
+                            if (!r(i26 + 1)) {
+                                i23 = 1;
+                            }
+                            this.d = i26 + i23;
+                        }
+                        a();
+                        return i27;
+                    }
+                }
         }
-        return new SpannableString(spannableStringBuilder);
     }
 
-    public final void d() {
-        this.f256a.clear();
-        this.f257b.clear();
-        this.f268o = -1;
-        this.f269p = -1;
-        this.f270q = -1;
-        this.f272s = -1;
-        this.f274u = 0;
-        this.f258c = false;
-        this.d = false;
-        this.f259e = 4;
-        this.f260f = false;
-        this.f261g = 0;
-        this.h = 0;
-        this.f262i = 0;
-        this.f263j = 15;
-        this.f264k = 0;
-        this.f265l = 0;
-        this.f266m = 0;
-        int i10 = f252w;
-        this.f267n = i10;
-        this.f271r = v;
-        this.f273t = i10;
+    public void j(int i10, byte[] bArr) {
+        int i11 = i10 >> 3;
+        for (int i12 = 0; i12 < i11; i12++) {
+            byte[] bArr2 = this.f276b;
+            int i13 = this.f277c;
+            int i14 = i13 + 1;
+            this.f277c = i14;
+            byte b10 = bArr2[i13];
+            int i15 = this.d;
+            byte b11 = (byte) (b10 << i15);
+            bArr[i12] = b11;
+            bArr[i12] = (byte) (((255 & bArr2[i14]) >> (8 - i15)) | b11);
+        }
+        int i16 = i10 & 7;
+        if (i16 == 0) {
+            return;
+        }
+        byte b12 = (byte) (bArr[i11] & (255 >> i16));
+        bArr[i11] = b12;
+        int i17 = this.d;
+        if (i17 + i16 > 8) {
+            byte[] bArr3 = this.f276b;
+            int i18 = this.f277c;
+            this.f277c = i18 + 1;
+            bArr[i11] = (byte) (b12 | ((bArr3[i18] & 255) << i17));
+            this.d = i17 - 8;
+        }
+        int i19 = this.d + i16;
+        this.d = i19;
+        byte[] bArr4 = this.f276b;
+        int i20 = this.f277c;
+        bArr[i11] = (byte) (((byte) (((255 & bArr4[i20]) >> (8 - i19)) << (8 - i16))) | bArr[i11]);
+        if (i19 == 8) {
+            this.d = 0;
+            this.f277c = i20 + 1;
+        }
+        a();
     }
 
-    public final void e(boolean z10, boolean z11) {
-        int i10 = this.f268o;
-        SpannableStringBuilder spannableStringBuilder = this.f257b;
-        if (i10 != -1) {
-            if (!z10) {
-                spannableStringBuilder.setSpan(new StyleSpan(2), this.f268o, spannableStringBuilder.length(), 33);
-                this.f268o = -1;
-            }
-        } else if (z10) {
-            this.f268o = spannableStringBuilder.length();
+    public long k(int i10) {
+        if (i10 <= 32) {
+            int i11 = i(i10);
+            String str = d0.f8532a;
+            return 4294967295L & i11;
         }
-        if (this.f269p != -1) {
-            if (!z11) {
-                spannableStringBuilder.setSpan(new UnderlineSpan(), this.f269p, spannableStringBuilder.length(), 33);
-                this.f269p = -1;
+        int i12 = i(i10 - 32);
+        int i13 = i(32);
+        String str2 = d0.f8532a;
+        return (4294967295L & i13) | ((i12 & 4294967295L) << 32);
+    }
+
+    public void l(int i10, byte[] bArr) {
+        boolean z10;
+        if (this.d == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        e2.d.g(z10);
+        System.arraycopy(this.f276b, this.f277c, bArr, 0, i10);
+        this.f277c += i10;
+        a();
+    }
+
+    public int m() {
+        int i10 = 0;
+        int i11 = 0;
+        while (!h()) {
+            i11++;
+        }
+        int i12 = (1 << i11) - 1;
+        if (i11 > 0) {
+            i10 = i(i11);
+        }
+        return i12 + i10;
+    }
+
+    public int n() {
+        int i10;
+        int m10 = m();
+        if (m10 % 2 == 0) {
+            i10 = -1;
+        } else {
+            i10 = 1;
+        }
+        return ((m10 + 1) / 2) * i10;
+    }
+
+    public void o(int i10, byte[] bArr) {
+        this.f276b = bArr;
+        this.f277c = 0;
+        this.d = 0;
+        this.f278e = i10;
+    }
+
+    public void p(v vVar) {
+        o(vVar.f8586c, vVar.f8584a);
+        q(vVar.f8585b * 8);
+    }
+
+    public void q(int i10) {
+        int i11 = i10 / 8;
+        this.f277c = i11;
+        this.d = i10 - (i11 * 8);
+        a();
+    }
+
+    public boolean r(int i10) {
+        if (2 <= i10 && i10 < this.f277c) {
+            byte[] bArr = this.f276b;
+            if (bArr[i10] == 3 && bArr[i10 - 2] == 0 && bArr[i10 - 1] == 0) {
+                return true;
             }
-        } else if (z11) {
-            this.f269p = spannableStringBuilder.length();
+            return false;
+        }
+        return false;
+    }
+
+    public void s() {
+        switch (this.f275a) {
+            case 2:
+                int i10 = this.d + 1;
+                this.d = i10;
+                if (i10 == 8) {
+                    this.d = 0;
+                    this.f277c++;
+                }
+                a();
+                return;
+            default:
+                int i11 = 1;
+                int i12 = this.f278e + 1;
+                this.f278e = i12;
+                if (i12 == 8) {
+                    this.f278e = 0;
+                    int i13 = this.d;
+                    if (r(i13 + 1)) {
+                        i11 = 2;
+                    }
+                    this.d = i13 + i11;
+                }
+                a();
+                return;
         }
     }
 
-    public final void f(int i10, int i11) {
-        int i12 = this.f270q;
-        SpannableStringBuilder spannableStringBuilder = this.f257b;
-        if (i12 != -1 && this.f271r != i10) {
-            spannableStringBuilder.setSpan(new ForegroundColorSpan(this.f271r), this.f270q, spannableStringBuilder.length(), 33);
+    public void t(int i10) {
+        int i11;
+        switch (this.f275a) {
+            case 1:
+                int i12 = i10 / 8;
+                int i13 = this.d + i12;
+                this.d = i13;
+                int i14 = (i10 - (i12 * 8)) + this.f278e;
+                this.f278e = i14;
+                boolean z10 = true;
+                if (i14 > 7) {
+                    this.d = i13 + 1;
+                    this.f278e = i14 - 8;
+                }
+                int i15 = this.d;
+                if (i15 < 0 || (i15 >= (i11 = this.f277c) && (i15 != i11 || this.f278e != 0))) {
+                    z10 = false;
+                }
+                e2.d.g(z10);
+                return;
+            case 2:
+                int i16 = i10 / 8;
+                int i17 = this.f277c + i16;
+                this.f277c = i17;
+                int i18 = (i10 - (i16 * 8)) + this.d;
+                this.d = i18;
+                if (i18 > 7) {
+                    this.f277c = i17 + 1;
+                    this.d = i18 - 8;
+                }
+                a();
+                return;
+            default:
+                int i19 = this.d;
+                int i20 = i10 / 8;
+                int i21 = i19 + i20;
+                this.d = i21;
+                int i22 = (i10 - (i20 * 8)) + this.f278e;
+                this.f278e = i22;
+                if (i22 > 7) {
+                    this.d = i21 + 1;
+                    this.f278e = i22 - 8;
+                }
+                while (true) {
+                    i19++;
+                    if (i19 <= this.d) {
+                        if (r(i19)) {
+                            this.d++;
+                            i19 += 2;
+                        }
+                    } else {
+                        a();
+                        return;
+                    }
+                }
         }
-        if (i10 != v) {
-            this.f270q = spannableStringBuilder.length();
-            this.f271r = i10;
+    }
+
+    public void u(int i10) {
+        boolean z10;
+        if (this.d == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        if (this.f272s != -1 && this.f273t != i11) {
-            spannableStringBuilder.setSpan(new BackgroundColorSpan(this.f273t), this.f272s, spannableStringBuilder.length(), 33);
-        }
-        if (i11 != f252w) {
-            this.f272s = spannableStringBuilder.length();
-            this.f273t = i11;
-        }
+        e2.d.g(z10);
+        this.f277c += i10;
+        a();
+    }
+
+    public g(byte[] bArr) {
+        this.f275a = 1;
+        this.f276b = bArr;
+        this.f277c = bArr.length;
+    }
+
+    public g(byte[] bArr, int i10, int i11) {
+        this.f275a = 3;
+        this.f276b = bArr;
+        this.d = i10;
+        this.f277c = i11;
+        this.f278e = 0;
+        a();
+    }
+
+    public g(byte[] bArr, int i10) {
+        this.f275a = 2;
+        this.f276b = bArr;
+        this.f278e = i10;
+    }
+
+    public g(int i10, int i11) {
+        this.f275a = 0;
+        this.f277c = i10;
+        this.d = i11;
+        this.f276b = new byte[(i11 * 2) - 1];
+        this.f278e = 0;
     }
 }

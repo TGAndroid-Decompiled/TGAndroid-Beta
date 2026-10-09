@@ -1,99 +1,70 @@
 package ci;
 
 import java.util.ArrayList;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationsController;
-import org.telegram.messenger.TopicsController;
-import org.telegram.tgnet.tl.TL_communities;
-import org.telegram.ui.yn;
-public final class n9 implements Runnable {
-    public final int f5617a;
-    public final long f5618b;
-    public final boolean f5619c;
-    public final Object d;
+import java.util.HashSet;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class n9 implements Utilities.Callback {
+    public final int f5648a;
+    public final y9 f5649b;
 
-    public n9(Object obj, long j3, boolean z10, int i10) {
-        this.f5617a = i10;
-        this.d = obj;
-        this.f5618b = j3;
-        this.f5619c = z10;
+    public n9(y9 y9Var, int i10) {
+        this.f5648a = i10;
+        this.f5649b = y9Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f5617a) {
+    public final void run(Object obj) {
+        int i10;
+        switch (this.f5648a) {
             case 0:
-                x9 x9Var = (x9) this.d;
-                ea eaVar = x9Var.W;
-                boolean z10 = this.f5619c;
-                long j3 = this.f5618b;
-                if (z10) {
-                    MessagesController.getInstance(ea.Y(eaVar)).loadChannelParticipants(Long.valueOf(j3), new o9(x9Var, j3, 0), 200);
-                    return;
-                } else {
-                    MessagesController.getInstance(ea.b0(eaVar)).loadFullChat(j3, 0, true);
-                    return;
+                y9 y9Var = this.f5649b;
+                fa faVar = y9Var.W;
+                faVar.f5096c = (TLRPC.InputPeer) obj;
+                HashSet hashSet = faVar.v;
+                hashSet.clear();
+                if (faVar.K && faVar.G) {
+                    faVar.G = false;
                 }
+                Utilities.Callback callback = faVar.W;
+                if (callback != null) {
+                    callback.run(faVar.f5096c);
+                }
+                ia iaVar = faVar.X;
+                if (iaVar != null) {
+                    iaVar.run(new HashSet(hashSet));
+                }
+                y9Var.g(true);
+                return;
             case 1:
-                fi.t0 t0Var = (fi.t0) this.d;
-                t0Var.f9981i = null;
-                a0.i iVar = t0Var.f9980g;
-                long j10 = this.f5618b;
-                iVar.l(j10);
-                ArrayList arrayList = t0Var.f9982j;
-                if (arrayList != null) {
-                    for (int size = arrayList.size() - 1; size >= 0; size--) {
-                        if (DialogObject.getPeerDialogId(((TL_communities.CommunityPeerRequest) t0Var.f9982j.get(size)).peer) == j10) {
-                            t0Var.f9982j.remove(size);
-                        }
-                    }
-                }
-                t0Var.a();
-                fi.s0 s0Var = t0Var.h;
-                if (s0Var != null) {
-                    s0Var.l();
-                }
-                MessagesController.getInstance(t0Var.d).resolveCommunityJoinPendingRequest(t0Var.f9978e, j10, !this.f5619c, new fi.r0(t0Var, 2));
+                fa faVar2 = this.f5649b.W;
+                i10 = ((org.telegram.ui.ActionBar.f3) faVar2).currentAccount;
+                faVar2.h1(new da(5, i10, (ArrayList) obj), new ai.s5(faVar2, 1), false);
                 return;
             case 2:
-                ((MediaDataController) this.d).lambda$markFeaturedStickersByIdAsRead$67(this.f5619c, this.f5618b);
-                return;
-            case 3:
-                ((NotificationsController) this.d).lambda$setOpenedInBubble$4(this.f5619c, this.f5618b);
-                return;
-            case 4:
-                ((TopicsController) this.d).lambda$reloadTopics$24(this.f5618b, this.f5619c);
-                return;
-            case 5:
-                yn.d0((yn) this.d, this.f5618b, this.f5619c);
-                return;
-            default:
-                yh.r8 r8Var = (yh.r8) this.d;
-                long j11 = this.f5618b;
-                r8Var.F = j11;
-                r8Var.E = j11;
-                if (this.f5619c) {
-                    ai.m1 m1Var = r8Var.G;
-                    m1Var.f1327c = j11;
-                    r8Var.H.set(m1Var);
-                }
-                r8Var.r();
-                r8Var.I.a(true, true);
-                yh.q8 q8Var = r8Var.f51947y;
-                if (q8Var != null) {
-                    q8Var.setMyPrivacy(r8Var.E);
+                y9 y9Var2 = this.f5649b;
+                fa faVar3 = y9Var2.W;
+                HashSet hashSet2 = faVar3.v;
+                hashSet2.add(Integer.valueOf(((ai.f9) obj).f1033a));
+                y9Var2.g(true);
+                ia iaVar2 = faVar3.X;
+                if (iaVar2 != null) {
+                    iaVar2.run(new HashSet(hashSet2));
                     return;
                 }
                 return;
+            default:
+                String str = (String) obj;
+                y9 y9Var3 = this.f5649b;
+                if (str != null) {
+                    y9Var3.getClass();
+                    if (str.isEmpty()) {
+                        str = null;
+                    }
+                }
+                y9Var3.I = str;
+                y9Var3.g(false);
+                return;
         }
-    }
-
-    public n9(Object obj, boolean z10, long j3, int i10) {
-        this.f5617a = i10;
-        this.d = obj;
-        this.f5619c = z10;
-        this.f5618b = j3;
     }
 }

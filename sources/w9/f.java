@@ -7,10 +7,10 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicLong;
 public final class f {
-    public static final AtomicLong f48944a = new AtomicLong(0);
-    public static String f48945b;
+    public static final AtomicLong f50224a = new AtomicLong(0);
+    public static String f50225b;
 
-    public f(v vVar) {
+    public f(u uVar) {
         long time = new Date().getTime();
         ByteBuffer allocate = ByteBuffer.allocate(4);
         allocate.putInt((int) (time / 1000));
@@ -24,15 +24,15 @@ public final class f {
         byte[] a2 = a(time % 1000);
         byte b14 = a2[0];
         byte b15 = a2[1];
-        byte[] a10 = a(f48944a.incrementAndGet());
+        byte[] a10 = a(f50224a.incrementAndGet());
         byte b16 = a10[0];
         byte b17 = a10[1];
         byte[] a11 = a(Integer.valueOf(Process.myPid()).shortValue());
         byte[] bArr = {b10, b11, b12, b13, b14, b15, b16, b17, a11[0], a11[1]};
-        String i10 = h.i(vVar.b().f48939a);
+        String i10 = h.i(uVar.b().f50219a);
         String f7 = h.f(bArr);
         Locale locale = Locale.US;
-        f48945b = String.format(locale, "%s%s%s%s", f7.substring(0, 12), f7.substring(12, 16), f7.subSequence(16, 20), i10.substring(0, 12)).toUpperCase(locale);
+        f50225b = String.format(locale, "%s%s%s%s", f7.substring(0, 12), f7.substring(12, 16), f7.subSequence(16, 20), i10.substring(0, 12)).toUpperCase(locale);
     }
 
     public static byte[] a(long j3) {
@@ -44,6 +44,6 @@ public final class f {
     }
 
     public final String toString() {
-        return f48945b;
+        return f50225b;
     }
 }

@@ -1,93 +1,56 @@
 package ci;
-public final class kb implements oc {
-    public final bi.v f5373a;
 
-    public kb(bi.v vVar) {
-        this.f5373a = vVar;
+import android.content.Context;
+import android.view.MotionEvent;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.Utilities;
+public final class kb extends v3 {
+    public final lc f5345k0;
+
+    public kb(lc lcVar, int i10, Context context, ai.d dVar, MediaController.AlbumEntry albumEntry, boolean z10, boolean z11, boolean z12) {
+        super(i10, context, dVar, albumEntry, z10, 1.39f, z11, z12);
+        this.f5345k0 = lcVar;
     }
 
     @Override
-    public final void O(float f7, boolean z10) {
-        this.f5373a.run(Boolean.FALSE, Float.valueOf(f7));
+    public final void a() {
+        lc lcVar = this.f5345k0;
+        lcVar.M0.setTranslationY(lcVar.f5499n.getMeasuredHeight() - lcVar.M0.g());
+        ra raVar = lcVar.f5511q2;
+        if (raVar != null) {
+            raVar.run();
+            lcVar.f5511q2 = null;
+        }
     }
 
     @Override
-    public final void A(float f7) {
+    public final void c(boolean z10) {
+        if (this.f5345k0.f5477f0 == 0 && z10) {
+            AndroidUtilities.runOnUIThread(new androidx.fragment.app.a0(this, 24));
+        }
     }
 
     @Override
-    public final void C(boolean z10) {
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0 && motionEvent.getY() < g()) {
+            lc lcVar = this.f5345k0;
+            lcVar.L0 = true;
+            lcVar.e(false);
+            return true;
+        }
+        return super.dispatchTouchEvent(motionEvent);
     }
 
     @Override
-    public final void L(float f7) {
-    }
-
-    @Override
-    public final void U(long j3) {
-    }
-
-    @Override
-    public final void X(boolean z10) {
-    }
-
-    @Override
-    public final void c0(float f7) {
-    }
-
-    @Override
-    public final void d(int i10) {
-    }
-
-    @Override
-    public final void h(float f7) {
-    }
-
-    @Override
-    public final void h0(float f7) {
-    }
-
-    @Override
-    public final void k(float f7) {
-    }
-
-    @Override
-    public final void l0(float f7) {
-    }
-
-    @Override
-    public final void s0(float f7) {
-    }
-
-    @Override
-    public final void u0(long j3) {
-    }
-
-    @Override
-    public final void m0() {
-    }
-
-    @Override
-    public final void s() {
-    }
-
-    @Override
-    public final void I(float f7, int i10) {
-    }
-
-    @Override
-    public final void b0(float f7, int i10) {
-    }
-
-    @Override
-    public final void k0(float f7, int i10) {
-    }
-
-    @Override
-    public final void l(long j3, boolean z10) {
-    }
-
-    @Override
-    public final void t0(int i10, long j3) {
+    public final void setTranslationY(float f7) {
+        super.setTranslationY(f7);
+        lc lcVar = this.f5345k0;
+        if (lcVar.f5494k2) {
+            float clamp = Utilities.clamp(1.0f - (f7 / (lcVar.f5499n.getMeasuredHeight() - lcVar.M0.g())), 1.0f, 0.0f);
+            lcVar.f5512r.b(AndroidUtilities.dp(-32.0f) * clamp);
+            lcVar.f5512r.setAlpha(1.0f - (0.6f * clamp));
+            lcVar.f5486i0.setAlpha(1.0f - clamp);
+        }
     }
 }

@@ -1,8 +1,11 @@
 package zd;
-public final class b implements x1 {
-    public static final b f53219a = new Object();
+public abstract class b {
+    public static final int f54360a = 0;
 
-    public final String toString() {
-        return "Active";
+    static {
+        ThreadLocal[] threadLocalArr = new ThreadLocal[4];
+        for (int i10 = 0; i10 < 4; i10++) {
+            threadLocalArr[i10] = new ThreadLocal();
+        }
     }
 }

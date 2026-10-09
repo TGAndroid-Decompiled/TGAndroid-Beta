@@ -1,106 +1,62 @@
 package yh;
 
+import android.content.Context;
 import android.view.View;
-import java.util.ArrayList;
+import android.widget.LinearLayout;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Cells.w8;
-import org.telegram.ui.Components.h61;
-import org.telegram.ui.Components.w61;
-public final class o7 implements Utilities.Callback2 {
-    public final int f51741a;
-    public final NotificationCenter.NotificationCenterDelegate f51742b;
+import org.telegram.ui.Components.o91;
+import org.telegram.ui.Components.qm0;
+public final class o7 extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
+    public final int f52975a;
+    public final o91 f52976b;
+    public final n7 f52977c;
 
-    public o7(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f51741a = i10;
-        this.f51742b = notificationCenterDelegate;
+    public o7(Context context, int i10, boolean z10, long j3, int i11, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context);
+        this.f52975a = i10;
+        setOrientation(1);
+        o91 o91Var = new o91(context, null);
+        this.f52976b = o91Var;
+        n7 n7Var = new n7(context, i10, z10, j3, i11, e6Var);
+        this.f52977c = n7Var;
+        o91Var.setAdapter(n7Var);
+        View n10 = o91Var.n(3, true);
+        View view = new View(context);
+        view.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20798d7, e6Var));
+        addView(n10, w7.x5.n(-1, 48));
+        addView(view, new LinearLayout.LayoutParams(w7.x5.z(-1.0f), w7.x5.z(1.0f / AndroidUtilities.density)));
+        addView(o91Var, w7.x5.n(-1, -1));
+        setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20868h5, e6Var));
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        h61 j3;
-        int i10 = this.f51741a;
-        int i11 = 0;
-        NotificationCenter.NotificationCenterDelegate notificationCenterDelegate = this.f51742b;
-        switch (i10) {
-            case 0:
-                ((p7) notificationCenterDelegate).P((ArrayList) obj, (w61) obj2);
-                return;
-            case 1:
-                w7 w7Var = (w7) notificationCenterDelegate;
-                ArrayList arrayList = (ArrayList) obj;
-                w61 w61Var = (w61) obj2;
-                int i12 = w7Var.f52205c;
-                int i13 = w7Var.d;
-                long j10 = w7Var.f52207f;
-                if (j10 != 0) {
-                    p g10 = p.g(i12);
-                    ArrayList arrayList2 = g10.k(j10).f51719a[i13];
-                    int size = arrayList2.size();
-                    while (i11 < size) {
-                        Object obj3 = arrayList2.get(i11);
-                        i11++;
-                        int i14 = s7.f51981a;
-                        h61 K = h61.K(s7.class);
-                        K.G = (TL_stars.StarsTransaction) obj3;
-                        K.f27098q = true;
-                        arrayList.add(K);
-                    }
-                    if (!g10.k(j10).f51722e[i13]) {
-                        arrayList.add(h61.q(arrayList.size(), 7));
-                        arrayList.add(h61.q(arrayList.size(), 7));
-                        arrayList.add(h61.q(arrayList.size(), 7));
-                        return;
-                    }
-                    return;
-                }
-                u5 y3 = u5.y(i12, w7Var.f52206e);
-                ArrayList arrayList3 = y3.f52099q[i13];
-                int size2 = arrayList3.size();
-                int i15 = 0;
-                while (i15 < size2) {
-                    Object obj4 = arrayList3.get(i15);
-                    i15++;
-                    int i16 = s7.f51981a;
-                    h61 K2 = h61.K(s7.class);
-                    K2.G = (TL_stars.StarsTransaction) obj4;
-                    K2.f27098q = false;
-                    arrayList.add(K2);
-                }
-                if (!y3.f52103u[i13]) {
-                    arrayList.add(h61.q(arrayList.size(), 7));
-                    arrayList.add(h61.q(arrayList.size(), 7));
-                    arrayList.add(h61.q(arrayList.size(), 7));
-                    return;
-                }
-                return;
-            default:
-                zg.o oVar = (zg.o) notificationCenterDelegate;
-                ArrayList arrayList4 = (ArrayList) obj;
-                w61 w61Var2 = (w61) obj2;
-                ArrayList arrayList5 = oVar.F;
-                w8 w8Var = oVar.f53503e;
-                if (w8Var != null && oVar.f53504f != null) {
-                    arrayList4.add(h61.j(1, w8Var));
-                    arrayList4.add(h61.l(2, oVar.f53504f));
-                    int i17 = oVar.X;
-                    if (i17 == 1 || i17 == 0 || oVar.f53500a) {
-                        while (i11 < arrayList5.size()) {
-                            View view = (View) arrayList5.get(i11);
-                            if (((Boolean) oVar.G.get(i11)).booleanValue()) {
-                                j3 = h61.l(i11 + 100, view);
-                            } else {
-                                j3 = h61.j(i11 + 100, view);
-                            }
-                            arrayList4.add(j3);
-                            i11++;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.starTransactionsLoaded) {
+            this.f52977c.i();
+            this.f52976b.o(true);
         }
+    }
+
+    public qm0 getCurrentListView() {
+        View currentView = this.f52976b.getCurrentView();
+        if (!(currentView instanceof m7)) {
+            return null;
+        }
+        return ((m7) currentView).f52903a;
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        this.f52977c.i();
+        this.f52976b.o(false);
+        NotificationCenter.getInstance(this.f52975a).addObserver(this, NotificationCenter.starTransactionsLoaded);
+        super.onAttachedToWindow();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        NotificationCenter.getInstance(this.f52975a).removeObserver(this, NotificationCenter.starTransactionsLoaded);
+        super.onDetachedFromWindow();
     }
 }

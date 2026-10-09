@@ -1,40 +1,20 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-public final class sb0 extends org.telegram.ui.ActionBar.f1 {
-    public final int L;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import org.telegram.tgnet.TLRPC;
+public final class sb0 extends b6 {
+    public final vb0 f30762a;
 
-    public sb0(int i10, int i11, Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10, boolean z11) {
-        super(i10, context, d6Var, z10, z11);
-        this.L = i11;
+    public sb0(vb0 vb0Var, TLRPC.Document document, Paint.FontMetricsInt fontMetricsInt) {
+        super(document, fontMetricsInt);
+        this.f30762a = vb0Var;
     }
 
     @Override
-    public final void i() {
-        switch (this.L) {
-            case 0:
-                setBackground(null);
-                return;
-            default:
-                setBackground(null);
-                return;
-        }
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.L) {
-            case 0:
-                if (getVisibility() == 0 && getAlpha() >= 0.5f) {
-                    return super.onTouchEvent(motionEvent);
-                }
-                return false;
-            default:
-                if (getVisibility() == 0 && getAlpha() >= 0.5f) {
-                    return super.onTouchEvent(motionEvent);
-                }
-                return false;
-        }
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        int i15 = i14 + i12;
+        int i16 = this.measuredSize;
+        this.f30762a.f31735c.set((int) f7, (i15 - i16) / 2, (int) (f7 + i16), (i15 + i16) / 2);
     }
 }

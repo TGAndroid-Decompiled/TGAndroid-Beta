@@ -1,11 +1,7 @@
 package org.telegram.ui.Components;
-public final class zi0 {
-    public float f33514a;
-    public float f33515b;
-    public float f33516c;
-    public float d;
-    public boolean f33517e;
-    public boolean f33518f;
-    public float f33519g;
-    public float h;
+
+import android.view.View;
+import org.telegram.messenger.DispatchQueue;
+public abstract class zi0 extends View {
+    public static final DispatchQueue f33585a = new DispatchQueue("profileBlurQueue");
 }

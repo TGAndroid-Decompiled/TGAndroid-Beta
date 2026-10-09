@@ -19,9 +19,9 @@ public final class r implements o0 {
 
     public r(w wVar, Context context) {
         this.f204f = wVar;
-        e2.d0.L(context);
-        e9.g0 g0Var = e9.i0.f8758b;
-        this.f200a = a1.f8721e;
+        e2.d0.K(context);
+        e9.g0 g0Var = e9.i0.f8752b;
+        this.f200a = a1.f8715e;
         this.d = -9223372036854775807L;
         this.f203e = w.f207o;
     }
@@ -58,7 +58,7 @@ public final class r implements o0 {
         if (jVar == null || !jVar.d()) {
             jVar = b2.j.h;
         }
-        int i10 = jVar.f3275c;
+        int i10 = jVar.f3354c;
         if (i10 == 7) {
             try {
                 int i11 = Build.VERSION.SDK_INT;
@@ -119,7 +119,7 @@ public final class r implements o0 {
 
     @Override
     public final void g(a6.i iVar) {
-        this.f203e = i9.q.f12025a;
+        this.f203e = i9.q.f12075a;
     }
 
     @Override
@@ -145,7 +145,7 @@ public final class r implements o0 {
     public final void k() {
         w wVar = this.f204f;
         wVar.getClass();
-        int i10 = e2.w.f8593c.f8594a;
+        int i10 = e2.w.f8587c.f8588a;
         wVar.f215j = null;
     }
 
@@ -172,17 +172,17 @@ public final class r implements o0 {
         if (wVar.f217l == 1) {
             wVar.f216k++;
             fVar.m(z10);
-            while (wVar.h.i() > 1) {
-                wVar.h.f();
+            while (wVar.h.m() > 1) {
+                wVar.h.h();
             }
-            if (wVar.h.i() != 1) {
+            if (wVar.h.m() != 1) {
                 wVar.f218m = -9223372036854775807L;
                 e2.z zVar = wVar.f214i;
                 e2.d.h(zVar);
                 zVar.c(new d(wVar, 1));
                 return;
             }
-            ((v) wVar.h.f()).getClass();
+            ((v) wVar.h.h()).getClass();
             throw null;
         }
     }
@@ -242,7 +242,7 @@ public final class r implements o0 {
         }
         e2.z zVar = wVar.f214i;
         if (zVar != null) {
-            zVar.f8599a.removeCallbacksAndMessages(null);
+            zVar.f8593a.removeCallbacksAndMessages(null);
         }
         wVar.f215j = null;
         wVar.f217l = 2;
@@ -256,7 +256,7 @@ public final class r implements o0 {
             return;
         }
         wVar2.f215j = Pair.create(surface, wVar);
-        int i10 = wVar.f8594a;
+        int i10 = wVar.f8588a;
     }
 
     @Override
@@ -272,15 +272,15 @@ public final class r implements o0 {
     @Override
     public final void w() {
         w wVar = this.f204f;
-        if (wVar.h.i() == 0) {
+        if (wVar.h.m() == 0) {
             wVar.f211e.w();
             return;
         }
-        e2.a0 a0Var = new e2.a0();
-        if (wVar.h.i() <= 0) {
+        e2.a0 a0Var = new e2.a0(0, (byte) 0);
+        if (wVar.h.m() <= 0) {
             wVar.h = a0Var;
         } else {
-            ((v) wVar.h.f()).getClass();
+            ((v) wVar.h.h()).getClass();
             throw null;
         }
     }

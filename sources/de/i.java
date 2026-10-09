@@ -1,13 +1,17 @@
 package de;
+public final class i implements c {
+    public final kotlin.jvm.internal.n f8330a;
+    public final c f8331b;
+    public final k1.n f8332c;
 
-import kotlin.jvm.internal.s;
-import rd.q;
-public abstract class i {
-    public static final q f8335a;
+    public i(kotlin.jvm.internal.n nVar, c cVar, k1.n nVar2) {
+        this.f8330a = nVar;
+        this.f8331b = cVar;
+        this.f8332c = nVar2;
+    }
 
-    static {
-        h hVar = h.f8334a;
-        s.a(3, hVar);
-        f8335a = hVar;
+    @Override
+    public final java.lang.Object b(java.lang.Object r8, ld.c r9) {
+        throw new UnsupportedOperationException("Method not decompiled: de.i.b(java.lang.Object, ld.c):java.lang.Object");
     }
 }

@@ -1,412 +1,323 @@
 package yh;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.RectF;
 import android.view.View;
+import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
-import java.lang.reflect.Array;
-import java.util.HashMap;
-import java.util.HashSet;
+import android.widget.ImageView;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.y9;
 public final class r2 extends FrameLayout {
-    public float E;
-    public int F;
-    public ValueAnimator G;
-    public q2 H;
-    public final o2 I;
-    public final View[] f51903a;
-    public final Matrix f51904b;
-    public final float[] f51905c;
-    public float d;
-    public float f51906e;
-    public boolean f51907f;
-    public final float[][] h;
-    public final float[] f51908n;
-    public final float[] f51909r;
-    public final Integer[] f51910s;
-    public final HashSet v;
-    public final HashMap f51911w;
-    public final HashMap f51912x;
-    public final float[] f51913y;
+    public final xh.g1 f53117a;
+    public final FrameLayout f53118b;
+    public final y9 f53119c;
+    public final TextView d;
+    public final FrameLayout f53120e;
+    public final ImageView f53121f;
+    public TL_stars.StarGift h;
+    public boolean f53122n;
 
-    public r2(Context context, View[] viewArr) {
+    public r2(Context context) {
         super(context);
-        this.f51904b = new Matrix();
-        float[] fArr = new float[16];
-        this.f51905c = fArr;
-        this.d = 0.0f;
-        this.f51906e = 0.0f;
-        this.f51907f = true;
-        this.h = new float[][]{new float[]{-1.0f, 0.0f, 0.0f, 0.0f}, new float[]{1.0f, 0.0f, 0.0f, 0.0f}, new float[]{0.0f, 1.0f, 0.0f, 0.0f}, new float[]{0.0f, -1.0f, 0.0f, 0.0f}, new float[]{0.0f, 0.0f, -1.0f, 0.0f}, new float[]{0.0f, 0.0f, 1.0f, 0.0f}};
-        this.f51908n = new float[4];
-        this.f51909r = new float[6];
-        this.f51910s = new Integer[]{0, 1, 2, 3, 4, 5};
-        this.v = new HashSet();
-        this.f51911w = new HashMap();
-        this.f51912x = new HashMap();
-        this.f51913y = new float[6];
-        this.F = -1;
-        this.I = new o2(this, 0);
-        setClipToOutline(false);
-        setClipToPadding(false);
-        android.opengl.Matrix.setIdentityM(fArr, 0);
-        this.f51903a = viewArr;
-        for (View view : viewArr) {
-            addView(view, w7.z5.e(108, 108, 17));
-        }
+        FrameLayout frameLayout = new FrameLayout(context);
+        addView(frameLayout, w7.x5.a(-1.0f, 6.0f, 6.0f, 6.0f, 6.0f, -1, 119));
+        frameLayout.setBackground(org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(18.0f), org.telegram.ui.ActionBar.i6.m1(0.12f, -4530177)));
+        frameLayout.setForeground(new g3(AndroidUtilities.dp(18.0f), 0));
+        ImageView imageView = new ImageView(context);
+        imageView.setImageResource(R.drawable.filled_add_album);
+        imageView.setScaleX(1.25f);
+        imageView.setScaleY(1.25f);
+        frameLayout.addView(imageView, w7.x5.e(24, 24, 17));
+        FrameLayout frameLayout2 = new FrameLayout(context);
+        this.f53118b = frameLayout2;
+        xh.g1 g1Var = new xh.g1(frameLayout2, null, false);
+        this.f53117a = g1Var;
+        frameLayout2.setBackground(g1Var);
+        g1Var.f51242s = AndroidUtilities.dp(18.0f);
+        g1Var.f51244u = false;
+        frameLayout.addView(frameLayout2, w7.x5.e(-1, -1, 119));
+        frameLayout2.setAlpha(0.0f);
+        frameLayout2.setScaleX(0.6f);
+        frameLayout2.setScaleY(0.6f);
+        y9 y9Var = new y9(context);
+        this.f53119c = y9Var;
+        frameLayout2.addView(y9Var, w7.x5.e(52, 52, 17));
+        TextView textView = new TextView(context);
+        this.d = textView;
+        textView.setPadding(AndroidUtilities.dp(5.0f), 0, AndroidUtilities.dp(5.0f), 0);
+        textView.setGravity(17);
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setTextSize(1, 10.0f);
+        textView.setTextColor(-1);
+        textView.setAlpha(0.0f);
+        addView(textView, w7.x5.a(15.33f, 2.0f, 0.0f, 2.0f, 0.0f, -2, 51));
+        FrameLayout frameLayout3 = new FrameLayout(context);
+        this.f53120e = frameLayout3;
+        frameLayout3.setAlpha(0.0f);
+        addView(frameLayout3, w7.x5.a(20.0f, 2.0f, 0.0f, 2.0f, 0.0f, 20, 53));
+        ImageView imageView2 = new ImageView(context);
+        this.f53121f = imageView2;
+        imageView2.setImageResource(R.drawable.msg_close);
+        imageView2.setScaleType(ImageView.ScaleType.CENTER);
+        frameLayout3.addView(imageView2, w7.x5.e(12, 12, 17));
+        b(false, false);
     }
 
-    public static void b(float f7, float f10, float f11, float[] fArr) {
-        double d = f11;
-        float cos = (float) Math.cos(d);
-        float sin = (float) Math.sin(d);
-        float f12 = 1.0f - cos;
-        float f13 = f12 * f7;
-        fArr[0] = (f13 * f7) + cos;
-        float f14 = f13 * f10;
-        float f15 = sin * 0.0f;
-        fArr[4] = f14 - f15;
-        float f16 = f13 * 0.0f;
-        float f17 = sin * f10;
-        fArr[8] = f16 + f17;
-        fArr[12] = 0.0f;
-        fArr[1] = f14 + f15;
-        float f18 = f12 * f10;
-        fArr[5] = (f10 * f18) + cos;
-        float f19 = f18 * 0.0f;
-        float f20 = sin * f7;
-        fArr[9] = f19 - f20;
-        fArr[13] = 0.0f;
-        fArr[2] = f16 - f17;
-        fArr[6] = f19 + f20;
-        fArr[10] = com.google.android.gms.internal.vision.e2.x(f12, 0.0f, 0.0f, cos);
-        fArr[14] = 0.0f;
-        fArr[3] = 0.0f;
-        fArr[7] = 0.0f;
-        fArr[11] = 0.0f;
-        fArr[15] = 1.0f;
-    }
-
-    public static void c(float[] fArr, float[] fArr2, float[] fArr3) {
-        float f7 = fArr[1];
-        float f10 = fArr2[2];
-        float f11 = fArr[2];
-        fArr3[0] = (f7 * f10) - (fArr2[1] * f11);
-        float f12 = fArr2[0];
-        float f13 = fArr[0];
-        fArr3[1] = (f11 * f12) - (f10 * f13);
-        fArr3[2] = (f13 * fArr2[1]) - (fArr[1] * f12);
-    }
-
-    public static void d(float[] fArr, float[] fArr2, float[] fArr3) {
-        float[] fArr4 = new float[16];
-        android.opengl.Matrix.multiplyMM(fArr4, 0, fArr, 0, fArr2, 0);
-        System.arraycopy(fArr4, 0, fArr3, 0, 16);
-    }
-
-    public static void e(float[] fArr) {
-        float f7 = fArr[0];
-        float f10 = fArr[1];
-        float f11 = fArr[2];
-        float f12 = f11 * f11;
-        float sqrt = (float) Math.sqrt(f12 + (f10 * f10) + (f7 * f7));
-        if (sqrt > 0.0f) {
-            fArr[0] = fArr[0] / sqrt;
-            fArr[1] = fArr[1] / sqrt;
-            fArr[2] = fArr[2] / sqrt;
-        }
-    }
-
-    public final void a() {
-        if (Math.abs(this.d) > 1.0E-4f || Math.abs(this.f51906e) > 1.0E-4f) {
-            float[] fArr = new float[16];
-            b(1.0f, 0.0f, this.d, fArr);
-            float[] fArr2 = this.f51905c;
-            d(fArr, fArr2, fArr2);
-            b(0.0f, 1.0f, this.f51906e, fArr);
-            d(fArr, fArr2, fArr2);
-            if (this.f51907f) {
-                this.d *= 0.96f;
-                this.f51906e *= 0.96f;
-            }
-        }
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        RectF rectF;
-        boolean z10;
+    public final void a(TL_stars.StarGift starGift, boolean z10) {
         boolean z11;
-        float f7;
-        char c10;
-        float f10;
-        int i10;
-        float f11;
-        float f12;
-        float f13;
-        float f14;
-        int indexOfChild = indexOfChild(view);
-        if (indexOfChild >= 6) {
-            if (this.F == indexOfChild) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            rectF = (RectF) this.f51912x.get(Integer.valueOf(indexOfChild));
-            Integer num = (Integer) this.f51911w.get(Integer.valueOf(indexOfChild));
-            if (num != null) {
-                indexOfChild = num.intValue();
-            }
-            if (view instanceof w2) {
-                w2 w2Var = (w2) view;
-                if (z10) {
-                    f14 = this.E;
-                } else {
-                    f14 = 1.0f;
-                }
-                float f15 = 1.0f - f14;
-                w2Var.d.setAlpha(f15);
-                w2Var.f52191e.setAlpha(f15);
-                if (!z10 || this.E >= 1.0f) {
-                    this.f51903a[indexOfChild].setVisibility(8);
-                }
-            }
+        this.h = starGift;
+        if (starGift != null) {
+            TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) m5.l(starGift.attributes, TL_stars.starGiftAttributeBackdrop.class);
+            xh.g1 g1Var = this.f53117a;
+            g1Var.d(stargiftattributebackdrop);
+            g1Var.e((TL_stars.starGiftAttributePattern) m5.l(starGift.attributes, TL_stars.starGiftAttributePattern.class));
+            p7.a1(this.f53119c.getImageReceiver(), ((TL_stars.starGiftAttributeModel) m5.l(starGift.attributes, TL_stars.starGiftAttributeModel.class)).document, 52);
+            int b10 = org.telegram.ui.ActionBar.i6.b(-0.05f, -0.15f, org.telegram.ui.ActionBar.i6.m1(0.88f, stargiftattributebackdrop.edge_color | (-16777216)));
+            String H0 = ei.l.H0(starGift.craft_chance_permille);
+            TextView textView = this.d;
+            textView.setText(H0);
+            textView.setBackground(new g3(AndroidUtilities.dp(10.0f), b10));
+            this.f53120e.setBackground(new g3(AndroidUtilities.dp(10.0f), b10));
+        }
+        if (starGift != null) {
             z11 = true;
         } else {
-            rectF = null;
-            z10 = false;
             z11 = false;
         }
-        float[][] fArr = this.h;
-        android.opengl.Matrix.multiplyMV(this.f51908n, 0, this.f51905c, 0, fArr[indexOfChild], 0);
-        float f16 = this.f51908n[2];
-        if (f16 < 0.001f) {
-            return false;
-        }
-        view.setAlpha(Math.min(1.0f, f16 / 0.3f));
-        float width = view.getWidth() / 2.0f;
-        if (z11 && (view instanceof w2)) {
-            float dp = AndroidUtilities.dp(-6.0f);
-            f7 = 1.0f;
+        b(z11, z10);
+    }
+
+    public final void b(final boolean z10, boolean z11) {
+        float f7;
+        float f10;
+        float f11;
+        int i10;
+        float f12;
+        float f13;
+        int i11;
+        float f14;
+        FrameLayout frameLayout = this.f53118b;
+        frameLayout.animate().cancel();
+        TextView textView = this.d;
+        textView.animate().cancel();
+        FrameLayout frameLayout2 = this.f53120e;
+        frameLayout2.animate().cancel();
+        float f15 = 0.6f;
+        float f16 = 0.0f;
+        int i12 = 0;
+        if (!z11) {
             if (z10) {
-                f13 = this.E;
+                i10 = 0;
             } else {
-                f13 = 1.0f;
+                i10 = 8;
             }
-            c10 = 6;
-            f10 = (f13 * AndroidUtilities.dp(2.0f)) + dp;
-        } else {
+            frameLayout.setVisibility(i10);
+            if (z10) {
+                f12 = 1.0f;
+            } else {
+                f12 = 0.6f;
+            }
+            frameLayout.setScaleX(f12);
+            if (z10) {
+                f15 = 1.0f;
+            }
+            frameLayout.setScaleY(f15);
+            if (z10) {
+                f13 = 1.0f;
+            } else {
+                f13 = 0.0f;
+            }
+            frameLayout.setAlpha(f13);
+            if (z10) {
+                i11 = 0;
+            } else {
+                i11 = 8;
+            }
+            textView.setVisibility(i11);
+            if (z10) {
+                f14 = 1.0f;
+            } else {
+                f14 = 0.0f;
+            }
+            textView.setAlpha(f14);
+            if (!z10) {
+                i12 = 8;
+            }
+            frameLayout2.setVisibility(i12);
+            if (z10) {
+                f16 = 1.0f;
+            }
+            frameLayout2.setAlpha(f16);
+            return;
+        }
+        frameLayout.setVisibility(0);
+        ViewPropertyAnimator animate = frameLayout.animate();
+        if (z10) {
             f7 = 1.0f;
-            c10 = 6;
+        } else {
+            f7 = 0.6f;
+        }
+        ViewPropertyAnimator scaleX = animate.scaleX(f7);
+        if (z10) {
+            f15 = 1.0f;
+        }
+        ViewPropertyAnimator scaleY = scaleX.scaleY(f15);
+        if (z10) {
+            f10 = 1.0f;
+        } else {
             f10 = 0.0f;
         }
-        float dp2 = AndroidUtilities.dp(108.0f) / 2.0f;
-        float width2 = getWidth() / 2.0f;
-        float height = getHeight() / 2.0f;
-        float[] fArr2 = new float[4];
-        float[] fArr3 = new float[4];
-        float[] fArr4 = new float[4];
-        System.arraycopy(fArr[indexOfChild], 0, fArr2, 0, 4);
-        if (indexOfChild != 0) {
-            if (indexOfChild != 1) {
-                if (indexOfChild != 2) {
-                    if (indexOfChild != 3) {
-                        if (indexOfChild != 4) {
-                            i10 = 3;
-                            if (indexOfChild == 5) {
-                                fArr3[0] = f7;
-                                fArr3[1] = 0.0f;
-                                fArr3[2] = 0.0f;
-                                fArr4[0] = 0.0f;
-                                fArr4[1] = -1.0f;
-                                fArr4[2] = 0.0f;
-                            }
+        ViewPropertyAnimator alpha = scaleY.alpha(f10);
+        hs hsVar = hs.h;
+        alpha.setInterpolator(hsVar).setDuration(420L).withEndAction(new Runnable(this) {
+            public final r2 f53059b;
+
+            {
+                this.f53059b = this;
+            }
+
+            @Override
+            public final void run() {
+                switch (r3) {
+                    case 0:
+                        boolean z12 = z10;
+                        r2 r2Var = this.f53059b;
+                        if (!z12) {
+                            r2Var.f53120e.setVisibility(8);
+                            return;
                         } else {
-                            i10 = 3;
-                            fArr3[0] = -1.0f;
-                            fArr3[1] = 0.0f;
-                            fArr3[2] = 0.0f;
-                            fArr4[0] = 0.0f;
-                            fArr4[1] = -1.0f;
-                            fArr4[2] = 0.0f;
+                            r2Var.getClass();
+                            return;
                         }
-                    } else {
-                        i10 = 3;
-                        fArr3[0] = f7;
-                        fArr3[1] = 0.0f;
-                        fArr3[2] = 0.0f;
-                        fArr4[0] = 0.0f;
-                        fArr4[1] = 0.0f;
-                        fArr4[2] = -1.0f;
-                    }
-                } else {
-                    i10 = 3;
-                    fArr3[0] = f7;
-                    fArr3[1] = 0.0f;
-                    fArr3[2] = 0.0f;
-                    fArr4[0] = 0.0f;
-                    fArr4[1] = 0.0f;
-                    fArr4[2] = f7;
+                    case 1:
+                        boolean z13 = z10;
+                        r2 r2Var2 = this.f53059b;
+                        if (!z13) {
+                            r2Var2.f53120e.setVisibility(8);
+                            return;
+                        } else {
+                            r2Var2.getClass();
+                            return;
+                        }
+                    default:
+                        boolean z14 = z10;
+                        r2 r2Var3 = this.f53059b;
+                        if (!z14) {
+                            r2Var3.f53120e.setVisibility(8);
+                            return;
+                        } else {
+                            r2Var3.getClass();
+                            return;
+                        }
                 }
-            } else {
-                i10 = 3;
-                fArr3[0] = 0.0f;
-                fArr3[1] = 0.0f;
-                fArr3[2] = -1.0f;
-                fArr4[0] = 0.0f;
-                fArr4[1] = -1.0f;
-                fArr4[2] = 0.0f;
             }
+        }).start();
+        textView.setVisibility(0);
+        ViewPropertyAnimator animate2 = textView.animate();
+        if (z10) {
+            f11 = 1.0f;
         } else {
-            i10 = 3;
-            fArr3[0] = 0.0f;
-            fArr3[1] = 0.0f;
-            fArr3[2] = f7;
-            fArr4[0] = 0.0f;
-            fArr4[1] = -1.0f;
-            fArr4[2] = 0.0f;
+            f11 = 0.0f;
         }
-        fArr3[i10] = 0.0f;
-        fArr4[i10] = 0.0f;
-        float f17 = this.f51913y[indexOfChild];
-        if (f17 != 0.0f) {
-            double radians = (float) Math.toRadians(f17);
-            float cos = (float) Math.cos(radians);
-            float sin = (float) Math.sin(radians);
-            float f18 = fArr3[0];
-            float f19 = fArr4[0];
-            float f20 = fArr3[1];
-            float f21 = fArr4[1];
-            float f22 = fArr3[2];
-            float f23 = fArr4[2];
-            fArr3[0] = (f19 * sin) + (f18 * cos);
-            fArr3[1] = (f21 * sin) + (f20 * cos);
-            fArr3[2] = (f23 * sin) + (f22 * cos);
-            fArr4[0] = (f19 * cos) + ((-f18) * sin);
-            fArr4[1] = (f21 * cos) + ((-f20) * sin);
-            fArr4[2] = (f23 * cos) + ((-f22) * sin);
-        }
-        float[] fArr5 = new float[4];
-        float[] fArr6 = new float[4];
-        float[] fArr7 = new float[4];
-        android.opengl.Matrix.multiplyMV(fArr5, 0, this.f51905c, 0, fArr2, 0);
-        float[] fArr8 = fArr5;
-        android.opengl.Matrix.multiplyMV(fArr6, 0, this.f51905c, 0, fArr3, 0);
-        float[] fArr9 = fArr6;
-        android.opengl.Matrix.multiplyMV(fArr7, 0, this.f51905c, 0, fArr4, 0);
-        float f24 = 64.0f * dp2;
-        int i11 = 2;
-        int i12 = 1;
-        float[][] fArr10 = (float[][]) Array.newInstance(Float.TYPE, 4, i10);
-        int i13 = 0;
-        for (int i14 = 4; i13 < i14; i14 = 4) {
-            if (i13 != i12 && i13 != i11) {
-                f11 = -1.0f;
-            } else {
-                f11 = 1.0f;
-            }
-            if (i13 != 0 && i13 != i12) {
-                f12 = -1.0f;
-            } else {
-                f12 = 1.0f;
-            }
-            float[] fArr11 = fArr10[i13];
-            float[] fArr12 = fArr8;
-            float[] fArr13 = fArr9;
-            fArr11[0] = com.google.android.gms.internal.vision.e2.B(fArr7[0], f12, (fArr9[0] * f11) + fArr8[0], dp2);
-            fArr11[1] = com.google.android.gms.internal.vision.e2.B(fArr7[1], f12, (fArr13[1] * f11) + fArr12[1], dp2);
-            fArr11[2] = com.google.android.gms.internal.vision.e2.B(fArr7[2], f12, (fArr13[2] * f11) + fArr12[2], dp2);
-            i13++;
-            fArr9 = fArr13;
-            fArr8 = fArr12;
-            i12 = 1;
-            i11 = 2;
-        }
-        char c11 = 2;
-        float[] fArr14 = new float[8];
-        int i15 = 0;
-        while (i15 < 4) {
-            float[] fArr15 = fArr10[i15];
-            float f25 = f24 / (f24 - fArr15[c11]);
-            int i16 = i15 * 2;
-            fArr14[i16] = (fArr15[0] * f25) + width2;
-            fArr14[i16 + 1] = (fArr15[1] * f25) + height;
-            i15++;
-            c11 = 2;
-        }
-        float f26 = (width2 - width) - f10;
-        float f27 = (height - width) - f10;
-        float f28 = width2 + width + f10;
-        float f29 = height + width + f10;
-        float[] fArr16 = new float[8];
-        fArr16[0] = f26;
-        fArr16[1] = f27;
-        fArr16[2] = f28;
-        fArr16[i10] = f27;
-        fArr16[4] = f28;
-        fArr16[5] = f29;
-        fArr16[c10] = f26;
-        fArr16[7] = f29;
-        if (z10 && rectF != null) {
-            float f30 = rectF.left;
-            float f31 = rectF.top;
-            float f32 = rectF.right;
-            float f33 = rectF.bottom;
-            float[] fArr17 = new float[8];
-            fArr17[0] = f30;
-            fArr17[1] = f31;
-            fArr17[2] = f32;
-            fArr17[i10] = f31;
-            fArr17[4] = f32;
-            fArr17[5] = f33;
-            fArr17[c10] = f30;
-            fArr17[7] = f33;
-            AndroidUtilities.lerp(fArr17, fArr14, this.E, fArr14);
-        }
-        Matrix matrix = this.f51904b;
-        matrix.reset();
-        matrix.setPolyToPoly(fArr16, 0, fArr14, 0, 4);
-        canvas.save();
-        canvas.concat(matrix);
-        boolean drawChild = super.drawChild(canvas, view, j3);
-        canvas.restore();
-        return drawChild;
-    }
+        animate2.alpha(f11).setInterpolator(hsVar).setDuration(420L).withEndAction(new Runnable(this) {
+            public final r2 f53059b;
 
-    public final void f(int i10, FrameLayout frameLayout) {
-        if (i10 == -1) {
-            i10 = 5;
+            {
+                this.f53059b = this;
+            }
+
+            @Override
+            public final void run() {
+                switch (r3) {
+                    case 0:
+                        boolean z12 = z10;
+                        r2 r2Var = this.f53059b;
+                        if (!z12) {
+                            r2Var.f53120e.setVisibility(8);
+                            return;
+                        } else {
+                            r2Var.getClass();
+                            return;
+                        }
+                    case 1:
+                        boolean z13 = z10;
+                        r2 r2Var2 = this.f53059b;
+                        if (!z13) {
+                            r2Var2.f53120e.setVisibility(8);
+                            return;
+                        } else {
+                            r2Var2.getClass();
+                            return;
+                        }
+                    default:
+                        boolean z14 = z10;
+                        r2 r2Var3 = this.f53059b;
+                        if (!z14) {
+                            r2Var3.f53120e.setVisibility(8);
+                            return;
+                        } else {
+                            r2Var3.getClass();
+                            return;
+                        }
+                }
+            }
+        }).start();
+        frameLayout2.setVisibility(0);
+        ViewPropertyAnimator animate3 = frameLayout2.animate();
+        if (z10) {
+            f16 = 1.0f;
         }
-        AndroidUtilities.removeFromParent(frameLayout);
-        int childCount = getChildCount();
-        addView(frameLayout, w7.z5.e(64, 64, 17));
-        this.v.add(Integer.valueOf(i10));
-        this.f51911w.put(Integer.valueOf(childCount), Integer.valueOf(i10));
+        animate3.alpha(f16).setInterpolator(hsVar).setDuration(420L).withEndAction(new Runnable(this) {
+            public final r2 f53059b;
+
+            {
+                this.f53059b = this;
+            }
+
+            @Override
+            public final void run() {
+                switch (r3) {
+                    case 0:
+                        boolean z12 = z10;
+                        r2 r2Var = this.f53059b;
+                        if (!z12) {
+                            r2Var.f53120e.setVisibility(8);
+                            return;
+                        } else {
+                            r2Var.getClass();
+                            return;
+                        }
+                    case 1:
+                        boolean z13 = z10;
+                        r2 r2Var2 = this.f53059b;
+                        if (!z13) {
+                            r2Var2.f53120e.setVisibility(8);
+                            return;
+                        } else {
+                            r2Var2.getClass();
+                            return;
+                        }
+                    default:
+                        boolean z14 = z10;
+                        r2 r2Var3 = this.f53059b;
+                        if (!z14) {
+                            r2Var3.f53120e.setVisibility(8);
+                            return;
+                        } else {
+                            r2Var3.getClass();
+                            return;
+                        }
+                }
+            }
+        }).start();
     }
 
     @Override
-    public final int getChildDrawingOrder(int i10, int i11) {
-        if (i11 < 6) {
-            Integer[] numArr = this.f51910s;
-            if (i11 < numArr.length) {
-                return numArr[i11].intValue();
-            }
-        }
-        return i11;
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        AndroidUtilities.runOnUIThread(this.I, 16L);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        AndroidUtilities.cancelRunOnUIThread(this.I);
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(76.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(76.0f), 1073741824));
     }
 }

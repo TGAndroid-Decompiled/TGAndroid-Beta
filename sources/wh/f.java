@@ -6,40 +6,40 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.te;
-import yh.y3;
+import yh.s3;
 public final class f implements RequestDelegate {
-    public final int f49121a = 0;
-    public final boolean f49122b;
-    public final boolean f49123c;
+    public final int f50403a = 0;
+    public final boolean f50404b;
+    public final boolean f50405c;
     public final Object d;
-    public final Object f49124e;
-    public final Object f49125f;
+    public final Object f50406e;
+    public final Object f50407f;
 
-    public f(n nVar, boolean z10, e eVar, String str, boolean z11) {
-        this.d = nVar;
-        this.f49122b = z10;
-        this.f49124e = eVar;
-        this.f49125f = str;
-        this.f49123c = z11;
+    public f(l lVar, boolean z10, e eVar, String str, boolean z11) {
+        this.d = lVar;
+        this.f50404b = z10;
+        this.f50406e = eVar;
+        this.f50407f = str;
+        this.f50405c = z11;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f49121a) {
+        switch (this.f50403a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new te((n) this.d, this.f49122b, (Runnable) this.f49124e, (String) this.f49125f, tL_error, tLObject, this.f49123c));
+                AndroidUtilities.runOnUIThread(new te((l) this.d, this.f50404b, (Runnable) this.f50406e, (String) this.f50407f, tL_error, tLObject, this.f50405c));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new te((y3) this.d, tLObject, this.f49122b, (TLRPC.Document) this.f49124e, this.f49123c, tL_error, (TL_stars.saveStarGift) this.f49125f));
+                AndroidUtilities.runOnUIThread(new te((s3) this.d, tLObject, this.f50404b, (TLRPC.Document) this.f50406e, this.f50405c, tL_error, (TL_stars.saveStarGift) this.f50407f));
                 return;
         }
     }
 
-    public f(y3 y3Var, boolean z10, TLRPC.Document document, boolean z11, TL_stars.saveStarGift savestargift) {
-        this.d = y3Var;
-        this.f49122b = z10;
-        this.f49124e = document;
-        this.f49123c = z11;
-        this.f49125f = savestargift;
+    public f(s3 s3Var, boolean z10, TLRPC.Document document, boolean z11, TL_stars.saveStarGift savestargift) {
+        this.d = s3Var;
+        this.f50404b = z10;
+        this.f50406e = document;
+        this.f50405c = z11;
+        this.f50407f = savestargift;
     }
 }

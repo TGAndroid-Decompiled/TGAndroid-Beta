@@ -6,7 +6,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
 import ci.d;
-import ci.y0;
+import ci.x0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
@@ -16,55 +16,55 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Cells.j6;
-import org.telegram.ui.Components.cb;
-import org.telegram.ui.Components.e5;
-import org.telegram.ui.Components.w61;
-import org.telegram.ui.Components.yl0;
-import org.telegram.ui.Components.zl0;
-import s4.p0;
-import w7.z5;
-public final class b extends cb {
-    public w61 X;
+import org.telegram.ui.Components.c71;
+import org.telegram.ui.Components.eb;
+import org.telegram.ui.Components.g5;
+import org.telegram.ui.Components.pm0;
+import org.telegram.ui.Components.qm0;
+import s4.q0;
+import w7.x5;
+public final class b extends eb {
+    public c71 X;
     public boolean Y;
     public final FrameLayout Z;
-    public final boolean f11480a0;
-    public final boolean f11481b0;
-    public int f11482c0;
+    public final boolean f11528a0;
+    public final boolean f11529b0;
+    public int f11530c0;
 
     public b(Context context, TLRPC.Chat chat, long j3, Utilities.Callback callback) {
-        super(context, (d6) null, false);
+        super(context, (e6) null, false);
         int i10;
         int i11;
         TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j3));
         TLRPC.Chat chat2 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j3));
-        this.f11481b0 = UserObject.isBot(user);
-        this.f11480a0 = ChatObject.isChannelAndNotMegaGroup(chat2);
+        this.f11529b0 = UserObject.isBot(user);
+        this.f11528a0 = ChatObject.isChannelAndNotMegaGroup(chat2);
         this.L = false;
         this.K = AndroidUtilities.dp(12.0f);
-        this.f25355e.setTitle(y());
-        setBackgroundColor(i6.v0(i6.f20771a7, this.resourcesProvider));
+        this.f26023e.setTitle(B());
+        setBackgroundColor(i6.w0(i6.f20741a7, this.resourcesProvider));
         FrameLayout frameLayout = new FrameLayout(context);
         this.Z = frameLayout;
         frameLayout.setPadding(0, AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f));
-        frameLayout.setLayoutParams(new p0(-1, -2));
+        frameLayout.setLayoutParams(new q0(-1, -2));
         org.telegram.ui.Cells.i6 i6Var = new org.telegram.ui.Cells.i6(context, null);
         if (chat2 != null) {
             i10 = -1;
-            i6Var.t(chat2, null, chat2.title, LocaleController.formatPluralStringSpaced("Members", chat2.participants_count), false, false);
+            i6Var.u(chat2, null, chat2.title, LocaleController.formatPluralStringSpaced("Members", chat2.participants_count), false, false);
         } else {
             i10 = -1;
             if (user != null) {
-                i6Var.t(user, null, DialogObject.getName(user), LocaleController.getString(R.string.Bot), false, false);
+                i6Var.u(user, null, DialogObject.getName(user), LocaleController.getString(R.string.Bot), false, false);
             }
         }
-        frameLayout.addView(i6Var, z5.c(-2.0f, i10));
-        zl0 zl0Var = this.d;
+        frameLayout.addView(i6Var, x5.d(-2.0f, i10));
+        qm0 qm0Var = this.d;
         int i12 = this.backgroundPaddingLeft;
-        zl0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(64.0f) + AndroidUtilities.navigationBarHeight);
-        this.d.r1();
+        qm0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(64.0f) + AndroidUtilities.navigationBarHeight);
+        this.d.p1();
         this.d.setClipToPadding(false);
         this.d.setOnItemClickListener(new g(this, 12));
         d dVar = new d(context, this.resourcesProvider, true);
@@ -80,41 +80,52 @@ public final class b extends cb {
         }
         dVar.e();
         dVar.setOnClickListener(new d0(this, callback, chat, 9));
-        this.containerView.addView(dVar, z5.f(48.0f, 80, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(12.0f) + AndroidUtilities.navigationBarHeight));
+        this.containerView.addView(dVar, x5.f(48.0f, 80, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(12.0f) + AndroidUtilities.navigationBarHeight));
         this.X.N(false);
     }
 
-    public final void N(Utilities.Callback callback, boolean z10, boolean z11) {
+    @Override
+    public final CharSequence B() {
         int i10;
-        if (z11 && !z10 && !this.f11481b0) {
+        if (this.f11529b0) {
+            i10 = R.string.CommunityAddBotTitle;
+        } else {
+            i10 = R.string.CommunityAddChatTitle;
+        }
+        return LocaleController.getString(i10);
+    }
+
+    public final void Q(Utilities.Callback callback, boolean z10, boolean z11) {
+        int i10;
+        if (z11 && !z10 && !this.f11529b0) {
             Context context = getContext();
-            d6 d6Var = this.resourcesProvider;
+            e6 e6Var = this.resourcesProvider;
             String string = LocaleController.getString(R.string.CommunityAddToCommunityTitle);
-            if (this.f11480a0) {
+            if (this.f11528a0) {
                 i10 = R.string.CommunityAddToCommunityChannelMessage;
             } else {
                 i10 = R.string.CommunityAddToCommunityGroupMessage;
             }
-            e5.P(context, d6Var, string, LocaleController.getString(i10), LocaleController.getString(R.string.Add), new y0(this, callback, z10, 3)).show();
+            g5.O(context, e6Var, string, LocaleController.getString(i10), LocaleController.getString(R.string.Add), new x0(this, callback, z10, 3)).show();
             return;
         }
         callback.run(Boolean.valueOf(z10));
         dismiss();
     }
 
-    public final void O(boolean z10) {
+    public final void R(boolean z10) {
         boolean z11;
         if (this.Y != z10) {
             this.Y = z10;
-            zl0 zl0Var = this.d;
-            View U0 = zl0Var.U0(this.f11482c0 + 1);
+            qm0 qm0Var = this.d;
+            View U0 = qm0Var.U0(this.f11530c0 + 1);
             if (U0 instanceof j6) {
                 ((j6) U0).a(!z10);
                 z11 = false;
             } else {
                 z11 = true;
             }
-            View U02 = zl0Var.U0(this.f11482c0 + 2);
+            View U02 = qm0Var.U0(this.f11530c0 + 2);
             if (U02 instanceof j6) {
                 ((j6) U02).a(z10);
             } else {
@@ -127,21 +138,10 @@ public final class b extends cb {
     }
 
     @Override
-    public final yl0 v(zl0 zl0Var) {
-        w61 w61Var = new w61(this.d, getContext(), this.currentAccount, 0, false, new a(this, 0), this.resourcesProvider);
-        this.X = w61Var;
-        w61Var.f32531r = false;
-        return w61Var;
-    }
-
-    @Override
-    public final CharSequence y() {
-        int i10;
-        if (this.f11481b0) {
-            i10 = R.string.CommunityAddBotTitle;
-        } else {
-            i10 = R.string.CommunityAddChatTitle;
-        }
-        return LocaleController.getString(i10);
+    public final pm0 x(qm0 qm0Var) {
+        c71 c71Var = new c71(this.d, getContext(), this.currentAccount, 0, false, new a(this, 0), this.resourcesProvider);
+        this.X = c71Var;
+        c71Var.f25280r = false;
+        return c71Var;
     }
 }

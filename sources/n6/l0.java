@@ -1,3 +1,10 @@
 package n6;
-public final class l0 extends a9.a implements h {
+
+import android.net.Uri;
+public abstract class l0 {
+    public static final int f16692a = 0;
+
+    static {
+        Uri.parse("https://plus.google.com/").buildUpon().appendPath("circles").appendPath("find").build();
+    }
 }

@@ -1,138 +1,67 @@
 package org.telegram.messenger;
 
-import android.content.SharedPreferences;
+import java.util.HashMap;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.sk0;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.NotificationsSettingsActivity;
-import org.telegram.ui.yn;
 public final class rj implements Runnable {
-    public final int f19106a = 0;
-    public final int f19107b;
-    public final int f19108c;
-    public final boolean d;
-    public final Object f19109e;
-    public final Object f19110f;
+    public final int f19071a = 0;
+    public final SendMessagesHelper f19072b;
+    public final MessageObject f19073c;
+    public final String d;
+    public final SendMessagesHelper.DelayedMessage f19074e;
+    public final boolean f19075f;
+    public final SendMessagesHelper.DelayedMessage h;
+    public final Object f19076n;
+    public final HashMap f19077r;
+    public final boolean f19078s;
+    public final Object v;
+    public final TLObject f19079w;
+    public final TLObject f19080x;
 
-    public rj(SendMessagesHelper sendMessagesHelper, TLRPC.Message message, int i10, int i11, boolean z10) {
-        this.f19109e = sendMessagesHelper;
-        this.f19110f = message;
-        this.f19107b = i10;
-        this.f19108c = i11;
-        this.d = z10;
+    public rj(SendMessagesHelper sendMessagesHelper, TLObject tLObject, TLRPC.TL_messages_addPollAnswer tL_messages_addPollAnswer, TLObject tLObject2, MessageObject messageObject, String str, SendMessagesHelper.DelayedMessage delayedMessage, boolean z10, SendMessagesHelper.DelayedMessage delayedMessage2, Object obj, HashMap hashMap, boolean z11) {
+        this.f19072b = sendMessagesHelper;
+        this.v = tLObject;
+        this.f19080x = tL_messages_addPollAnswer;
+        this.f19079w = tLObject2;
+        this.f19073c = messageObject;
+        this.d = str;
+        this.f19074e = delayedMessage;
+        this.f19075f = z10;
+        this.h = delayedMessage2;
+        this.f19076n = obj;
+        this.f19077r = hashMap;
+        this.f19078s = z11;
     }
 
     @Override
     public final void run() {
-        TLRPC.Document f7;
-        gg.n nVar;
-        int i10;
-        switch (this.f19106a) {
+        switch (this.f19071a) {
             case 0:
-                ((SendMessagesHelper) this.f19109e).lambda$performSendMessageRequest$98((TLRPC.Message) this.f19110f, this.f19107b, this.f19108c, this.d);
-                return;
-            case 1:
-                yn ynVar = (yn) this.f19109e;
-                sk0 sk0Var = (sk0) this.f19110f;
-                org.telegram.ui.ActionBar.n1 n1Var = ynVar.O8;
-                if (n1Var != null && ynVar.fragmentView != null && !n1Var.isShowing() && AndroidUtilities.isActivityRunning(ynVar.getParentActivity())) {
-                    ynVar.O8.showAtLocation(ynVar.f43526v0, 51, this.f19107b, this.f19108c);
-                    if (this.d && sk0Var != null) {
-                        sk0Var.r(true);
-                    }
-                    AndroidUtilities.runOnUIThread(new org.telegram.ui.yf(ynVar, 23), 420L);
-                    return;
-                }
-                return;
-            case 2:
-                org.telegram.ui.Components.bc bcVar = (org.telegram.ui.Components.bc) this.f19109e;
-                zg.m0 m0Var = (zg.m0) this.f19110f;
-                org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
-                long j3 = m0Var.f53472g;
-                if (j3 == 0) {
-                    TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(m0Var.f53471f);
-                    if (tL_availableReaction != null) {
-                        f7 = tL_availableReaction.activate_animation;
-                    } else {
-                        return;
-                    }
-                } else {
-                    f7 = org.telegram.ui.Components.q5.f(UserConfig.selectedAccount, j3);
-                }
-                if (f7 != null && R != null) {
-                    org.telegram.ui.Components.yc a02 = org.telegram.ui.Components.yc.a0(R);
-                    int i11 = bcVar.f24937a.h;
-                    if (this.d) {
-                        nVar = new gg.n(this.f19107b, this.f19108c, R, 7);
-                    } else {
-                        nVar = null;
-                    }
-                    a02.y(i11, f7, nVar).k(true);
-                    return;
-                }
+                HashMap hashMap = this.f19077r;
+                boolean z10 = this.f19078s;
+                this.f19072b.lambda$performSendMessageRequest$78((TLObject) this.v, (TLRPC.TL_messages_addPollAnswer) this.f19080x, this.f19079w, this.f19073c, this.d, this.f19074e, this.f19075f, this.h, this.f19076n, hashMap, z10);
                 return;
             default:
-                NotificationsSettingsActivity notificationsSettingsActivity = (NotificationsSettingsActivity) this.f19109e;
-                org.telegram.ui.Cells.j5 j5Var = (org.telegram.ui.Cells.j5) this.f19110f;
-                int i12 = this.f19107b;
-                boolean z10 = this.d;
-                if (i12 == 3) {
-                    SharedPreferences.Editor edit = notificationsSettingsActivity.getNotificationsSettings().edit();
-                    if (z10) {
-                        edit.remove("EnableAllStories");
-                    } else {
-                        edit.putBoolean("EnableAllStories", true);
-                    }
-                    edit.apply();
-                    notificationsSettingsActivity.getNotificationsController().updateServerNotificationsSettings(i12);
-                } else if (i12 != 4 && i12 != 5) {
-                    NotificationsController notificationsController = notificationsSettingsActivity.getNotificationsController();
-                    if (!z10) {
-                        i10 = 0;
-                    } else {
-                        i10 = Integer.MAX_VALUE;
-                    }
-                    notificationsController.setGlobalNotificationsEnabled(i12, i10);
-                } else {
-                    SharedPreferences.Editor edit2 = notificationsSettingsActivity.getNotificationsSettings().edit();
-                    if (z10) {
-                        edit2.putBoolean("EnableReactionsMessages", false);
-                        edit2.putBoolean("EnableReactionsStories", false);
-                    } else {
-                        edit2.putBoolean("EnableReactionsMessages", true);
-                        edit2.putBoolean("EnableReactionsStories", true);
-                    }
-                    edit2.apply();
-                    notificationsSettingsActivity.getNotificationsController().updateServerNotificationsSettings(i12);
-                    notificationsSettingsActivity.getNotificationsController().deleteNotificationChannelGlobal(i12);
-                }
-                j5Var.f22337e.b(0, !z10, true);
-                notificationsSettingsActivity.f33850c.m(this.f19108c);
+                HashMap hashMap2 = this.f19077r;
+                boolean z11 = this.f19078s;
+                this.f19072b.lambda$performSendMessageRequest$86((org.telegram.ui.ActionBar.n2) this.v, (TLRPC.TL_inputMediaStakeDice) this.f19079w, (TLRPC.TL_messages_sendMedia) this.f19080x, this.f19073c, this.d, this.f19074e, this.f19075f, this.h, this.f19076n, hashMap2, z11);
                 return;
         }
     }
 
-    public rj(yn ynVar, int i10, int i11, boolean z10, sk0 sk0Var) {
-        this.f19109e = ynVar;
-        this.f19107b = i10;
-        this.f19108c = i11;
-        this.d = z10;
-        this.f19110f = sk0Var;
-    }
-
-    public rj(org.telegram.ui.Components.bc bcVar, zg.m0 m0Var, boolean z10, int i10, int i11) {
-        this.f19109e = bcVar;
-        this.f19110f = m0Var;
-        this.d = z10;
-        this.f19107b = i10;
-        this.f19108c = i11;
-    }
-
-    public rj(NotificationsSettingsActivity notificationsSettingsActivity, int i10, boolean z10, org.telegram.ui.Cells.j5 j5Var, int i11) {
-        this.f19109e = notificationsSettingsActivity;
-        this.f19107b = i10;
-        this.d = z10;
-        this.f19110f = j5Var;
-        this.f19108c = i11;
+    public rj(SendMessagesHelper sendMessagesHelper, org.telegram.ui.ActionBar.n2 n2Var, TLRPC.TL_inputMediaStakeDice tL_inputMediaStakeDice, TLRPC.TL_messages_sendMedia tL_messages_sendMedia, MessageObject messageObject, String str, SendMessagesHelper.DelayedMessage delayedMessage, boolean z10, SendMessagesHelper.DelayedMessage delayedMessage2, Object obj, HashMap hashMap, boolean z11) {
+        this.f19072b = sendMessagesHelper;
+        this.v = n2Var;
+        this.f19079w = tL_inputMediaStakeDice;
+        this.f19080x = tL_messages_sendMedia;
+        this.f19073c = messageObject;
+        this.d = str;
+        this.f19074e = delayedMessage;
+        this.f19075f = z10;
+        this.h = delayedMessage2;
+        this.f19076n = obj;
+        this.f19077r = hashMap;
+        this.f19078s = z11;
     }
 }

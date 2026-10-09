@@ -1,48 +1,21 @@
 package org.telegram.messenger;
 public final class v5 implements Runnable {
-    public final int f19391a;
-    public final MediaController f19392b;
+    public final int f19392a;
+    public final LocationSharingService f19393b;
 
-    public v5(MediaController mediaController, int i10) {
-        this.f19391a = i10;
-        this.f19392b = mediaController;
+    public v5(LocationSharingService locationSharingService, int i10) {
+        this.f19392a = i10;
+        this.f19393b = locationSharingService;
     }
 
     @Override
     public final void run() {
-        switch (this.f19391a) {
+        switch (this.f19392a) {
             case 0:
-                this.f19392b.lambda$startRaiseToEarSensors$8();
-                return;
-            case 1:
-                this.f19392b.lambda$playMessage$20();
-                return;
-            case 2:
-                this.f19392b.lambda$setTextureView$15();
-                return;
-            case 3:
-                this.f19392b.lambda$toggleRecordingPause$29();
-                return;
-            case 4:
-                this.f19392b.lambda$toggleRecordingPause$30();
-                return;
-            case 5:
-                this.f19392b.lambda$stopRaiseToEarSensors$9();
-                return;
-            case 6:
-                this.f19392b.lambda$new$2();
-                return;
-            case 7:
-                this.f19392b.lambda$new$3();
-                return;
-            case 8:
-                this.f19392b.lambda$new$4();
-                return;
-            case 9:
-                this.f19392b.lambda$toggleRecordingPause$31();
+                LocationSharingService.a(this.f19393b);
                 return;
             default:
-                this.f19392b.lambda$setCurrentVideoVisible$14();
+                LocationSharingService.b(this.f19393b);
                 return;
         }
     }

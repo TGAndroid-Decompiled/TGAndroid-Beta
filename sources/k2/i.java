@@ -1,32 +1,41 @@
 package k2;
 public final class i implements Runnable {
-    public final int f14442a;
-    public final n4.y f14443b;
-    public final l f14444c;
+    public final int f14485a;
+    public final int f14486b;
+    public final long f14487c;
+    public final long d;
+    public final Object f14488e;
 
-    public i(n4.y yVar, l lVar, int i10) {
-        this.f14442a = i10;
-        this.f14443b = yVar;
-        this.f14444c = lVar;
+    public i(Object obj, int i10, long j3, long j10, int i11) {
+        this.f14485a = i11;
+        this.f14488e = obj;
+        this.f14486b = i10;
+        this.f14487c = j3;
+        this.d = j10;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f14442a;
-        l lVar = this.f14444c;
-        n4.y yVar = this.f14443b;
+        u2.f0 f0Var;
+        int i10 = this.f14485a;
+        Object obj = this.f14488e;
         switch (i10) {
             case 0:
-                String str = e2.d0.f8538a;
-                j2.f fVar = ((i2.c0) ((k) yVar.f16650c)).f11570a.f11633s;
+                String str = e2.d0.f8532a;
+                j2.f fVar = ((i2.c0) ((j) ((n4.x) obj).f16613c)).f11620a.f11683s;
                 j2.a p5 = fVar.p();
-                fVar.q(p5, 1032, new j2.e(p5, lVar, 2));
+                fVar.q(p5, 1011, new j2.c(p5, this.f14486b, this.f14487c, this.d));
                 return;
             default:
-                String str2 = e2.d0.f8538a;
-                j2.f fVar2 = ((i2.c0) ((k) yVar.f16650c)).f11570a.f11633s;
-                j2.a p10 = fVar2.p();
-                fVar2.q(p10, 1031, new j2.c(p10, lVar, 19));
+                j2.f fVar2 = ((y2.b) obj).f51657b;
+                com.google.firebase.messaging.n nVar = fVar2.d;
+                if (((e9.i0) nVar.f7955b).isEmpty()) {
+                    f0Var = null;
+                } else {
+                    f0Var = (u2.f0) e9.q.l((e9.i0) nVar.f7955b);
+                }
+                j2.a n10 = fVar2.n(f0Var);
+                fVar2.q(n10, 1006, new j2.d(n10, this.f14486b, this.f14487c, this.d));
                 return;
         }
     }

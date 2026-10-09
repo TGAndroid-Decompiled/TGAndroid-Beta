@@ -1,70 +1,72 @@
 package org.telegram.ui.Components;
 
-import android.text.style.ClickableSpan;
-import java.util.ArrayList;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.view.MotionEvent;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class x41 implements Utilities.Callback2 {
-    public final int f32814a;
-    public final f51 f32815b;
+public final class x41 extends r6 {
+    public final Paint f32746s;
+    public final ba0 v;
+    public final z41 f32747w;
 
-    public x41(f51 f51Var, int i10) {
-        this.f32814a = i10;
-        this.f32815b = f51Var;
+    public x41(z41 z41Var, Context context) {
+        super(context, false, false, false);
+        this.f32747w = z41Var;
+        this.f32746s = new Paint(1);
+        this.v = new ba0();
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        String string;
-        String str;
-        switch (this.f32814a) {
-            case 0:
-                ArrayList arrayList = (ArrayList) obj;
-                w61 w61Var = (w61) obj2;
-                final f51 f51Var = this.f32815b;
-                String[] strArr = f51Var.f26342i0;
-                arrayList.add(h61.C(null));
-                w61Var.E = 1;
-                w61Var.U();
-                String str2 = f51Var.f26338e0;
-                if (str2 != null) {
-                    string = u41.y(u41.C(str2, null, null));
-                } else {
-                    string = LocaleController.getString(R.string.AIEditorOriginalText);
-                }
-                arrayList.add(z41.b(3, "", string, null, null));
-                arrayList.add(d51.a(4, f51Var.f26334a0, f51Var.f26344k0, new gt(18, f51Var, w61Var), new p90() {
-                    @Override
-                    public final void a(ClickableSpan clickableSpan) {
-                        f51.O(f51.this, clickableSpan);
-                    }
-                }, null));
-                StringBuilder sb2 = new StringBuilder();
-                sb2.append(u41.C(f51Var.f26339f0, null, null));
-                if (f51Var.f26340g0 == 1 || strArr == null) {
-                    str = "";
-                } else {
-                    str = a4.a.t(new StringBuilder(" ("), strArr[f51Var.f26340g0], ")");
-                }
-                sb2.append(str);
-                arrayList.add(z41.b(5, "", u41.y(sb2.toString()), null, new w41(f51Var, 4)));
-                arrayList.add(d51.a(6, f51Var.f26336c0, false, null, new p90() {
-                    @Override
-                    public final void a(ClickableSpan clickableSpan) {
-                        f51.O(f51.this, clickableSpan);
-                    }
-                }, null));
-                w61Var.T();
-                arrayList.add(h61.C(null));
-                w61Var.U();
-                arrayList.add(h61.c(1, R.drawable.msg_copy, LocaleController.getString(R.string.TranslateCopy)));
-                w61Var.T();
-                return;
-            default:
-                f51.P(this.f32815b, (TLRPC.TL_messages_translateResult) obj, (TLRPC.TL_error) obj2);
-                return;
+    public final void onDraw(Canvas canvas) {
+        if (LocaleController.isRTL) {
+            AndroidUtilities.rectTmp.set(getWidth() - d(), (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, getWidth(), (AndroidUtilities.dp(18.0f) + getHeight()) / 2.0f);
+        } else {
+            AndroidUtilities.rectTmp.set(0.0f, (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, d(), (AndroidUtilities.dp(18.0f) + getHeight()) / 2.0f);
         }
+        b51 b51Var = this.f32747w.f33472n;
+        int i10 = org.telegram.ui.ActionBar.i6.Pi;
+        String[] strArr = b51.R;
+        int m12 = org.telegram.ui.ActionBar.i6.m1(0.1175f, b51Var.getThemedColor(i10));
+        Paint paint = this.f32746s;
+        paint.setColor(m12);
+        canvas.drawRoundRect(AndroidUtilities.rectTmp, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint);
+        if (this.v.f(canvas)) {
+            invalidate();
+        }
+        super.onDraw(canvas);
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        org.telegram.ui.ActionBar.e6 e6Var;
+        b51 b51Var = this.f32747w.f33472n;
+        int action = motionEvent.getAction();
+        ba0 ba0Var = this.v;
+        if (action == 0) {
+            e6Var = ((org.telegram.ui.ActionBar.f3) b51Var).resourcesProvider;
+            fa0 fa0Var = new fa0(null, e6Var, motionEvent.getX(), motionEvent.getY(), 0);
+            fa0Var.d(org.telegram.ui.ActionBar.i6.m1(0.1175f, b51Var.getThemedColor(org.telegram.ui.ActionBar.i6.Pi)));
+            y90 b10 = fa0Var.b();
+            if (LocaleController.isRTL) {
+                AndroidUtilities.rectTmp.set(getWidth() - d(), (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, getWidth(), (AndroidUtilities.dp(18.0f) + getHeight()) / 2.0f);
+            } else {
+                AndroidUtilities.rectTmp.set(0.0f, (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, d(), (AndroidUtilities.dp(18.0f) + getHeight()) / 2.0f);
+            }
+            b10.addRect(AndroidUtilities.rectTmp, Path.Direction.CW);
+            ba0Var.a(fa0Var, null);
+            invalidate();
+            return true;
+        }
+        if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+            if (motionEvent.getAction() == 1) {
+                performClick();
+            }
+            ba0Var.d(true);
+            invalidate();
+        }
+        return super.onTouchEvent(motionEvent);
     }
 }

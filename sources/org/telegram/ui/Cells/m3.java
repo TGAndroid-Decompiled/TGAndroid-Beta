@@ -11,24 +11,24 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.e61;
+import org.telegram.ui.Components.m61;
 public final class m3 {
-    public boolean f22465a;
-    public StaticLayout f22466b;
-    public StaticLayout f22467c;
+    public boolean f22449a;
+    public StaticLayout f22450b;
+    public StaticLayout f22451c;
     public int d;
-    public int f22468e;
-    public float f22469f;
-    public float f22470g;
+    public int f22452e;
+    public float f22453f;
+    public float f22454g;
     public float h;
-    public float f22471i;
+    public float f22455i;
 
     public final void a(u1 u1Var) {
         TLRPC.Message message;
         String str;
         int parentWidth;
         String str2;
-        SpannableStringBuilder e7 = ai.ia.e(R.string.ExpiredStory, false, new Object[0]);
+        SpannableStringBuilder e7 = ai.ja.e(R.string.ExpiredStory, false, new Object[0]);
         MessageObject messageObject = u1Var.getMessageObject();
         if (messageObject != null && (message = messageObject.messageOwner) != null) {
             TLRPC.MessageMedia messageMedia = message.media;
@@ -57,7 +57,7 @@ public final class m3 {
                 String format = String.format(string2, str3);
                 if (indexOf >= 0) {
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(format);
-                    spannableStringBuilder.setSpan(new e61(AndroidUtilities.bold()), indexOf, str3.length() + indexOf, 33);
+                    spannableStringBuilder.setSpan(new m61(AndroidUtilities.bold()), indexOf, str3.length() + indexOf, 33);
                     str2 = spannableStringBuilder;
                 } else {
                     str2 = format;
@@ -65,19 +65,19 @@ public final class m3 {
                 TextPaint textPaint2 = org.telegram.ui.ActionBar.i6.Z2;
                 int dp = AndroidUtilities.dp(10.0f);
                 Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
-                this.f22466b = new StaticLayout(e7, textPaint2, dp + ((int) (textPaint2.measureText(e7, 0, e7.length()) + 1.0f)), alignment, 1.0f, 0.0f, false);
-                this.f22467c = new StaticLayout(str2, textPaint2, AndroidUtilities.dp(10.0f) + ((int) (textPaint2.measureText((CharSequence) str2, 0, str2.length()) + 1.0f)), alignment, 1.0f, 0.0f, false);
-                this.f22468e = 0;
+                this.f22450b = new StaticLayout(e7, textPaint2, dp + ((int) (textPaint2.measureText(e7, 0, e7.length()) + 1.0f)), alignment, 1.0f, 0.0f, false);
+                this.f22451c = new StaticLayout(str2, textPaint2, AndroidUtilities.dp(10.0f) + ((int) (textPaint2.measureText((CharSequence) str2, 0, str2.length()) + 1.0f)), alignment, 1.0f, 0.0f, false);
+                this.f22452e = 0;
                 this.h = AndroidUtilities.dp(4.0f);
-                this.f22471i = AndroidUtilities.dp(12.0f);
-                this.f22468e = (int) sa.e.d(this.h, 2.0f, AndroidUtilities.dp(4.0f) + this.f22467c.getHeight() + AndroidUtilities.dp(2.0f) + this.f22466b.getHeight() + AndroidUtilities.dp(4.0f), this.f22468e);
-                this.d = u1Var.getExtraTextX() + AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(12.0f) + Math.max(this.f22466b.getWidth(), this.f22467c.getWidth());
+                this.f22455i = AndroidUtilities.dp(12.0f);
+                this.f22452e = (int) sc.v.d(this.h, 2.0f, AndroidUtilities.dp(4.0f) + this.f22451c.getHeight() + AndroidUtilities.dp(2.0f) + this.f22450b.getHeight() + AndroidUtilities.dp(4.0f), this.f22452e);
+                this.d = u1Var.getExtraTextX() + AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(12.0f) + Math.max(this.f22450b.getWidth(), this.f22451c.getWidth());
                 return;
             }
         }
         this.h = AndroidUtilities.dp(4.0f);
-        this.f22471i = AndroidUtilities.dp(12.0f);
-        this.f22468e = 0;
+        this.f22455i = AndroidUtilities.dp(12.0f);
+        this.f22452e = 0;
         this.d = 0;
     }
 }

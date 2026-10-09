@@ -1,13 +1,20 @@
 package de;
-public final class d implements id.c {
-    public static final d f8327a = new Object();
+public final class d extends ld.c {
+    public Object f8314a;
+    public int f8315b;
+    public final pf.b f8316c;
+    public pf.b d;
+    public c f8317e;
 
-    @Override
-    public final id.h getContext() {
-        return id.i.f12059a;
+    public d(pf.b bVar, ld.c cVar) {
+        super(cVar);
+        this.f8316c = bVar;
     }
 
     @Override
-    public final void resumeWith(Object obj) {
+    public final Object invokeSuspend(Object obj) {
+        this.f8314a = obj;
+        this.f8315b |= Integer.MIN_VALUE;
+        return this.f8316c.z(null, this);
     }
 }

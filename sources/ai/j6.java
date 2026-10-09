@@ -1,145 +1,30 @@
 package ai;
 
-import android.animation.AnimatorSet;
-import android.animation.ValueAnimator;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
+import android.graphics.Outline;
 import android.view.View;
-import java.util.ArrayList;
+import android.view.ViewOutlineProvider;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.ql0;
-public final class j6 implements GestureDetector.OnGestureListener {
-    public final int f1116a;
-    public final View f1117b;
+public final class j6 extends ViewOutlineProvider {
+    public final int f1184a = 1;
+    public float f1185b;
 
-    public j6(int i10, View view) {
-        this.f1116a = i10;
-        this.f1117b = view;
+    public j6(int i10) {
+        this.f1185b = i10;
     }
 
     @Override
-    public final boolean onDown(MotionEvent motionEvent) {
-        switch (this.f1116a) {
+    public final void getOutline(View view, Outline outline) {
+        switch (this.f1184a) {
             case 0:
-                l7 l7Var = (l7) this.f1117b;
-                l7Var.d.abortAnimation();
-                ValueAnimator valueAnimator = l7Var.M;
-                if (valueAnimator != null) {
-                    valueAnimator.removeAllListeners();
-                    l7Var.M.cancel();
-                    l7Var.M = null;
-                }
-                l7Var.L = false;
-                l7Var.O.f1639w = false;
-                return true;
-            default:
-                sg.e eVar = (sg.e) this.f1117b;
-                ValueAnimator valueAnimator2 = eVar.S;
-                if (valueAnimator2 != null) {
-                    valueAnimator2.removeAllListeners();
-                    eVar.S.cancel();
-                    eVar.S = null;
-                }
-                AnimatorSet animatorSet = eVar.T;
-                if (animatorSet != null) {
-                    animatorSet.removeAllListeners();
-                    eVar.T.cancel();
-                    eVar.T = null;
-                }
-                AndroidUtilities.cancelRunOnUIThread(eVar.U);
-                eVar.f46825a = true;
-                return true;
-        }
-    }
-
-    @Override
-    public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        switch (this.f1116a) {
-            case 0:
-                l7 l7Var = (l7) this.f1117b;
-                l7Var.d.fling((int) l7Var.f1354e, 0, (int) (-f7), 0, (int) l7Var.f1355f, (int) l7Var.h, 0, 0);
-                l7Var.invalidate();
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public final void onLongPress(MotionEvent motionEvent) {
-        switch (this.f1116a) {
-            case 0:
+                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.dpf2(this.f1185b));
                 return;
             default:
-                ((sg.e) this.f1117b).g();
+                outline.setRoundRect(view.getPaddingLeft(), view.getPaddingTop(), view.getMeasuredWidth() - view.getPaddingRight(), view.getMeasuredHeight() - view.getPaddingBottom(), this.f1185b);
                 return;
         }
     }
 
-    @Override
-    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        switch (this.f1116a) {
-            case 0:
-                l7 l7Var = (l7) this.f1117b;
-                float f11 = l7Var.f1354e + f7;
-                l7Var.f1354e = f11;
-                float f12 = l7Var.f1355f;
-                if (f11 < f12) {
-                    l7Var.f1354e = f12;
-                }
-                float f13 = l7Var.f1354e;
-                float f14 = l7Var.h;
-                if (f13 > f14) {
-                    l7Var.f1354e = f14;
-                }
-                l7Var.invalidate();
-                return false;
-            default:
-                sg.a aVar = ((sg.e) this.f1117b).f46827b;
-                aVar.d = (f7 * 0.5f) + aVar.d;
-                aVar.f46801g = (f10 * 0.05f) + aVar.f46801g;
-                return true;
-        }
-    }
-
-    @Override
-    public final void onShowPress(MotionEvent motionEvent) {
-        int i10 = this.f1116a;
-    }
-
-    @Override
-    public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        switch (this.f1116a) {
-            case 0:
-                l7 l7Var = (l7) this.f1117b;
-                ArrayList arrayList = l7Var.G;
-                for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                    l6 l6Var = (l6) arrayList.get(i10);
-                    if (((l6) arrayList.get(i10)).f1280a.getDrawRegion().contains(motionEvent.getX(), motionEvent.getY())) {
-                        int i11 = l7Var.K;
-                        int i12 = l6Var.f1281b;
-                        if (i11 != i12) {
-                            l7Var.c(i12, true, false);
-                        } else {
-                            l7Var.N.n(false);
-                        }
-                    }
-                }
-                return false;
-            default:
-                float measuredWidth = ((sg.e) this.f1117b).getMeasuredWidth() / 2.0f;
-                AndroidUtilities.runOnUIThread(new ql0(this, ((measuredWidth - motionEvent.getX()) * (Utilities.random.nextInt(30) + 40)) / measuredWidth, ((measuredWidth - motionEvent.getY()) * (Utilities.random.nextInt(30) + 40)) / measuredWidth, 1), 16L);
-                return true;
-        }
-    }
-
-    private final void a(MotionEvent motionEvent) {
-    }
-
-    private final void b(MotionEvent motionEvent) {
-    }
-
-    private final void c(MotionEvent motionEvent) {
+    public j6(float f7) {
+        this.f1185b = f7;
     }
 }

@@ -1,42 +1,88 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
+import android.text.Editable;
 import android.text.TextWatcher;
+import java.util.HashMap;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.EditTextBoldCursor;
 public final class no0 implements TextWatcher {
-    public int f39016a = -1;
-    public boolean f39017b;
-    public int f39018c;
-    public final so0 d;
+    public final vo0 f40303a;
 
-    public no0(so0 so0Var) {
-        this.d = so0Var;
+    public no0(vo0 vo0Var) {
+        this.f40303a = vo0Var;
     }
 
     @Override
-    public final void afterTextChanged(android.text.Editable r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.no0.afterTextChanged(android.text.Editable):void");
+    public final void afterTextChanged(Editable editable) {
+        boolean z10;
+        String str;
+        String str2;
+        vo0 vo0Var = this.f40303a;
+        HashMap hashMap = vo0Var.f42917c;
+        if (vo0Var.m0) {
+            return;
+        }
+        vo0Var.m0 = true;
+        String d = hf.b.d(vo0Var.f42925f[8].getText().toString(), false);
+        vo0Var.f42925f[8].setText(d);
+        org.telegram.ui.Components.w40 w40Var = (org.telegram.ui.Components.w40) vo0Var.f42925f[9];
+        if (d.length() == 0) {
+            w40Var.setHintText((String) null);
+            w40Var.setHint(LocaleController.getString(R.string.PaymentShippingPhoneNumber));
+        } else {
+            int i10 = 4;
+            if (d.length() > 4) {
+                while (true) {
+                    if (i10 >= 1) {
+                        String substring = d.substring(0, i10);
+                        if (((String) hashMap.get(substring)) != null) {
+                            vo0Var.f42925f[8].setText(substring);
+                            str = d.substring(i10) + vo0Var.f42925f[9].getText().toString();
+                            d = substring;
+                            z10 = true;
+                            break;
+                        }
+                        i10--;
+                    } else {
+                        z10 = false;
+                        str = null;
+                        break;
+                    }
+                }
+                if (!z10) {
+                    str = d.substring(1) + vo0Var.f42925f[9].getText().toString();
+                    EditTextBoldCursor editTextBoldCursor = vo0Var.f42925f[8];
+                    d = d.substring(0, 1);
+                    editTextBoldCursor.setText(d);
+                }
+            } else {
+                z10 = false;
+                str = null;
+            }
+            String str3 = (String) hashMap.get(d);
+            if (str3 != null && vo0Var.f42911a.indexOf(str3) != -1 && (str2 = (String) vo0Var.d.get(d)) != null) {
+                w40Var.setHintText(str2.replace('X', (char) 8211));
+                w40Var.setHint((CharSequence) null);
+            } else {
+                w40Var.setHintText((String) null);
+                w40Var.setHint(LocaleController.getString(R.string.PaymentShippingPhoneNumber));
+            }
+            if (!z10) {
+                EditTextBoldCursor editTextBoldCursor2 = vo0Var.f42925f[8];
+                editTextBoldCursor2.setSelection(editTextBoldCursor2.getText().length());
+            }
+            if (str != null) {
+                w40Var.requestFocus();
+                w40Var.setText(str);
+                w40Var.setSelection(w40Var.length());
+            }
+        }
+        vo0Var.m0 = false;
     }
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        boolean z10 = false;
-        if (i11 == 0 && i12 == 1) {
-            if (TextUtils.indexOf((CharSequence) this.d.f40572f[1].getText(), '/') != -1) {
-                z10 = true;
-            }
-            this.f39017b = z10;
-            this.f39016a = 1;
-        } else if (i11 == 1 && i12 == 0) {
-            if (charSequence.charAt(i10) == '/' && i10 > 0) {
-                this.f39017b = false;
-                this.f39016a = 3;
-                this.f39018c = i10 - 1;
-                return;
-            }
-            this.f39016a = 2;
-        } else {
-            this.f39016a = -1;
-        }
     }
 
     @Override

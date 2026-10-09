@@ -1,34 +1,60 @@
 package ei;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.ui.ActionBar.i6;
-public final class a3 extends AnimatorListenerAdapter {
-    public final int f8915a;
-    public final int f8916b;
-    public final d2 f8917c;
-    public final l3 d;
+import android.content.Context;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BotFullscreenButtons;
+public final class a3 extends o4 {
+    public final int f8940c0;
+    public final Object f8941d0;
 
-    public a3(l3 l3Var, int i10, int i11, d2 d2Var) {
-        this.d = l3Var;
-        this.f8915a = i10;
-        this.f8916b = i11;
-        this.f8917c = d2Var;
+    public a3(Object obj, Context context, int i10) {
+        super(context);
+        this.f8940c0 = i10;
+        this.f8941d0 = obj;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int d = i0.a.d(1.0f, this.f8915a, this.f8916b);
-        l3 l3Var = this.d;
-        l3Var.Q = d;
-        l3Var.h();
-        k3 k3Var = l3Var.f9157e;
-        k3Var.invalidate();
-        i3 i3Var = l3Var.W;
-        i3Var.setBackgroundColor(l3Var.Q);
-        d2 d2Var = this.f8917c;
-        d2Var.b(i3Var, 1.0f);
-        l3Var.f9150a = d2Var.a(i6.Ii);
-        k3Var.invalidate();
+    public final void onMeasure(int r6, int r7) {
+        throw new UnsupportedOperationException("Method not decompiled: ei.a3.onMeasure(int, int):void");
+    }
+
+    @Override
+    public void requestLayout() {
+        switch (this.f8940c0) {
+            case 0:
+                if (!((k3) this.f8941d0).F) {
+                    super.requestLayout();
+                    return;
+                }
+                return;
+            default:
+                super.requestLayout();
+                return;
+        }
+    }
+
+    @Override
+    public void setTranslationY(float f7) {
+        switch (this.f8940c0) {
+            case 0:
+                super.setTranslationY(f7);
+                k3 k3Var = (k3) this.f8941d0;
+                BotFullscreenButtons botFullscreenButtons = k3Var.m0;
+                if (botFullscreenButtons != null) {
+                    botFullscreenButtons.setTranslationY(AndroidUtilities.dp(24.0f) + f7);
+                }
+                FrameLayout frameLayout = k3Var.f9172p0;
+                if (frameLayout != null) {
+                    int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() - AndroidUtilities.dp(24.0f);
+                    int i10 = k3Var.h.top;
+                    frameLayout.setTranslationY(k3Var.v.getTranslationY() + AndroidUtilities.lerp(currentActionBarHeight, AndroidUtilities.dp(70.0f) + i10, k3Var.f9162f0));
+                    return;
+                }
+                return;
+            default:
+                super.setTranslationY(f7);
+                return;
+        }
     }
 }

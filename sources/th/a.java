@@ -3,64 +3,65 @@ package th;
 import android.view.View;
 import java.util.ArrayList;
 import java.util.HashMap;
-import org.telegram.ui.Components.xn;
+import m2.t;
+import org.telegram.ui.Components.lo;
 public final class a implements View.OnClickListener {
-    public final int f47156a;
-    public final f f47157b;
+    public final int f48453a;
+    public final f f48454b;
 
     public a(f fVar, int i10) {
-        this.f47156a = i10;
-        this.f47157b = fVar;
+        this.f48453a = i10;
+        this.f48454b = fVar;
     }
 
     @Override
     public final void onClick(View view) {
-        int i10 = this.f47156a;
-        f fVar = this.f47157b;
+        int i10 = this.f48453a;
+        f fVar = this.f48454b;
         switch (i10) {
             case 0:
-                l2.g gVar = fVar.f47177k0;
-                if (gVar != null) {
-                    ArrayList arrayList = new ArrayList(fVar.f47176j0.keySet());
-                    xn xnVar = (xn) gVar.f15268b;
-                    ArrayList arrayList2 = xnVar.P0;
+                t tVar = fVar.f48474k0;
+                if (tVar != null) {
+                    ArrayList arrayList = new ArrayList(fVar.f48473j0.keySet());
+                    lo loVar = (lo) tVar.f15972b;
+                    ArrayList arrayList2 = loVar.P0;
                     arrayList2.clear();
                     arrayList2.addAll(arrayList);
-                    int i11 = xnVar.L0;
+                    int i11 = loVar.L0;
                     if (i11 >= 0) {
-                        xnVar.f33032r.m(i11);
+                        loVar.f28523r.m(i11);
                     }
                 }
                 fVar.dismiss();
                 return;
             case 1:
-                l2.g gVar2 = fVar.f47177k0;
-                if (gVar2 != null) {
-                    ArrayList arrayList3 = new ArrayList(fVar.f47176j0.keySet());
-                    xn xnVar2 = (xn) gVar2.f15268b;
-                    ArrayList arrayList4 = xnVar2.P0;
+                t tVar2 = fVar.f48474k0;
+                if (tVar2 != null) {
+                    ArrayList arrayList3 = new ArrayList(fVar.f48473j0.keySet());
+                    lo loVar2 = (lo) tVar2.f15972b;
+                    ArrayList arrayList4 = loVar2.P0;
                     arrayList4.clear();
                     arrayList4.addAll(arrayList3);
-                    int i12 = xnVar2.L0;
+                    int i12 = loVar2.L0;
                     if (i12 >= 0) {
-                        xnVar2.f33032r.m(i12);
+                        loVar2.f28523r.m(i12);
                     }
                 }
                 fVar.dismiss();
                 return;
             case 2:
-                HashMap hashMap = fVar.f47176j0;
+                HashMap hashMap = fVar.f48473j0;
                 hashMap.clear();
-                fVar.f47174h0.b();
-                fVar.f47170d0.N(true);
-                fVar.f47171e0.b(hashMap.size(), true);
+                fVar.f48471h0.b();
+                fVar.f48467d0.N(true);
+                fVar.f48468e0.b(hashMap.size(), true);
                 return;
             case 3:
-                fVar.Q(view);
+                fVar.T(view);
                 return;
             default:
-                int i13 = f.f47166r0;
-                fVar.Q(view);
+                int i13 = f.f48463r0;
+                fVar.T(view);
                 return;
         }
     }

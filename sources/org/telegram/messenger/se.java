@@ -2,27 +2,27 @@ package org.telegram.messenger;
 
 import org.telegram.messenger.MessagesStorage;
 public final class se implements Runnable {
-    public final int f19164a;
-    public final MessagesStorage.IntCallback f19165b;
-    public final int f19166c;
+    public final int f19156a;
+    public final MessagesStorage.IntCallback f19157b;
+    public final int f19158c;
 
     public se(MessagesStorage.IntCallback intCallback, int i10, int i11) {
-        this.f19164a = i11;
-        this.f19165b = intCallback;
-        this.f19166c = i10;
+        this.f19156a = i11;
+        this.f19157b = intCallback;
+        this.f19158c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f19164a) {
+        switch (this.f19156a) {
             case 0:
-                this.f19165b.run(this.f19166c);
+                this.f19157b.run(this.f19158c);
                 return;
             case 1:
-                this.f19165b.run(this.f19166c);
+                this.f19157b.run(this.f19158c);
                 return;
             default:
-                this.f19165b.run(this.f19166c);
+                this.f19157b.run(this.f19158c);
                 return;
         }
     }

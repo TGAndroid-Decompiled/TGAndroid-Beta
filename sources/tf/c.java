@@ -1,40 +1,41 @@
 package tf;
 
-import android.view.View;
-import java.util.ArrayList;
-import li.h;
-import org.telegram.messenger.R;
-public final class c implements View.OnAttachStateChangeListener {
-    @Override
-    public final void onViewAttachedToWindow(View view) {
-        b a2;
-        d dVar = (d) view.getTag(R.id.tag_view_on_post_draw_state);
-        if (dVar != null && (a2 = e.a(view, dVar)) != null) {
-            ArrayList arrayList = dVar.f46957a;
-            int size = arrayList.size();
-            int i10 = 0;
-            while (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                ((pe.b) a2.f46956a.f1400b).add((h) obj);
-            }
+import android.content.Context;
+import android.os.Build;
+import android.view.WindowManager;
+import org.telegram.messenger.AndroidUtilities;
+public abstract class c {
+    public static final int[] f48258a = new int[2];
+
+    public static int a(Context context) {
+        if (AndroidUtilities.checkInlinePermissions(context)) {
+            return 2;
         }
+        if (Build.VERSION.SDK_INT >= 26) {
+            if (AndroidUtilities.checkPipPermissions(context)) {
+                return 1;
+            }
+            return -2;
+        }
+        return -1;
     }
 
-    @Override
-    public final void onViewDetachedFromWindow(View view) {
-        b bVar;
-        d dVar = (d) view.getTag(R.id.tag_view_on_post_draw_state);
-        if (dVar != null && (bVar = dVar.f46958b) != null) {
-            ArrayList arrayList = dVar.f46957a;
-            int size = arrayList.size();
-            int i10 = 0;
-            while (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                ((pe.b) bVar.f46956a.f1400b).remove((h) obj);
+    public static WindowManager.LayoutParams b(Context context, boolean z10) {
+        int i10;
+        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+        layoutParams.gravity = 51;
+        layoutParams.format = -3;
+        if (!z10 && AndroidUtilities.checkInlinePermissions(context)) {
+            if (Build.VERSION.SDK_INT >= 26) {
+                i10 = 2038;
+            } else {
+                i10 = 2003;
             }
-            dVar.f46958b = null;
+        } else {
+            i10 = 2;
         }
+        layoutParams.type = i10;
+        layoutParams.flags = 520;
+        return layoutParams;
     }
 }

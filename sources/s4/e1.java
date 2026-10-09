@@ -1,57 +1,92 @@
 package s4;
 
+import android.os.Bundle;
 import android.view.View;
-import android.view.accessibility.AccessibilityEvent;
+import android.view.accessibility.AccessibilityNodeInfo;
 import androidx.recyclerview.widget.RecyclerView;
 public final class e1 extends r0.b {
-    public final RecyclerView d;
-    public final d1 f46572e = new d1(this);
+    public final int d = 0;
+    public final Object f47686e;
 
-    public e1(RecyclerView recyclerView) {
-        this.d = recyclerView;
+    public e1(f1 f1Var) {
+        this.f47686e = f1Var;
     }
 
     @Override
-    public final void b(View view, AccessibilityEvent accessibilityEvent) {
-        super.b(view, accessibilityEvent);
-        if ((view instanceof RecyclerView) && !this.d.Z()) {
-            RecyclerView recyclerView = (RecyclerView) view;
-            if (recyclerView.getLayoutManager() != null) {
-                c0 c0Var = (c0) recyclerView.getLayoutManager();
-                RecyclerView recyclerView2 = c0Var.f46642b;
-                of.e eVar = recyclerView2.f3061b;
-                if (accessibilityEvent != null) {
-                    boolean z10 = true;
-                    if (!recyclerView2.canScrollVertically(1) && !c0Var.f46642b.canScrollVertically(-1) && !c0Var.f46642b.canScrollHorizontally(-1) && !c0Var.f46642b.canScrollHorizontally(1)) {
-                        z10 = false;
-                    }
-                    accessibilityEvent.setScrollable(z10);
-                    h0 h0Var = c0Var.f46642b.f3088w;
-                    if (h0Var != null) {
-                        accessibilityEvent.setItemCount(h0Var.h());
-                    }
-                }
-                if (c0Var.r() > 0) {
-                    accessibilityEvent.setFromIndex(c0Var.L0());
-                    accessibilityEvent.setToIndex(c0Var.N0());
-                }
-            }
-        }
+    public void b(android.view.View r3, android.view.accessibility.AccessibilityEvent r4) {
+        throw new UnsupportedOperationException("Method not decompiled: s4.e1.b(android.view.View, android.view.accessibility.AccessibilityEvent):void");
     }
 
     @Override
     public final void c(View view, s0.d dVar) {
-        this.f45575a.onInitializeAccessibilityNodeInfo(view, dVar.f46485a);
-        RecyclerView recyclerView = this.d;
-        if (!recyclerView.Z() && recyclerView.getLayoutManager() != null) {
-            o0 layoutManager = recyclerView.getLayoutManager();
-            RecyclerView recyclerView2 = layoutManager.f46642b;
-            layoutManager.S(recyclerView2.f3061b, recyclerView2.f3085t0, dVar);
+        boolean z10;
+        switch (this.d) {
+            case 0:
+                this.f46729a.onInitializeAccessibilityNodeInfo(view, dVar.f47585a);
+                f1 f1Var = (f1) this.f47686e;
+                RecyclerView recyclerView = f1Var.d;
+                RecyclerView recyclerView2 = f1Var.d;
+                if (!recyclerView.Z() && recyclerView2.getLayoutManager() != null) {
+                    recyclerView2.getLayoutManager().T(view, dVar);
+                    return;
+                }
+                return;
+            default:
+                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f47585a;
+                this.f46729a.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
+                dVar.i(z4.g.class.getName());
+                z4.g gVar = (z4.g) this.f47686e;
+                z4.a aVar = gVar.f53540e;
+                if (aVar != null && aVar.b() > 1) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                accessibilityNodeInfo.setScrollable(z10);
+                if (gVar.canScrollHorizontally(1)) {
+                    dVar.a(4096);
+                }
+                if (gVar.canScrollHorizontally(-1)) {
+                    dVar.a(8192);
+                    return;
+                }
+                return;
         }
     }
 
     @Override
-    public final boolean d(android.view.View r4, int r5, android.os.Bundle r6) {
-        throw new UnsupportedOperationException("Method not decompiled: s4.e1.d(android.view.View, int, android.os.Bundle):boolean");
+    public final boolean d(View view, int i10, Bundle bundle) {
+        switch (this.d) {
+            case 0:
+                f1 f1Var = (f1) this.f47686e;
+                if (super.d(view, i10, bundle)) {
+                    return true;
+                }
+                RecyclerView recyclerView = f1Var.d;
+                RecyclerView recyclerView2 = f1Var.d;
+                if (!recyclerView.Z() && recyclerView2.getLayoutManager() != null) {
+                    pf.e eVar = recyclerView2.getLayoutManager().f47762b.f3140b;
+                }
+                return false;
+            default:
+                z4.g gVar = (z4.g) this.f47686e;
+                if (super.d(view, i10, bundle)) {
+                    return true;
+                }
+                if (i10 != 4096) {
+                    if (i10 == 8192 && gVar.canScrollHorizontally(-1)) {
+                        gVar.setCurrentItem(gVar.f53542f - 1);
+                        return true;
+                    }
+                } else if (gVar.canScrollHorizontally(1)) {
+                    gVar.setCurrentItem(gVar.f53542f + 1);
+                    return true;
+                }
+                return false;
+        }
+    }
+
+    public e1(z4.g gVar) {
+        this.f47686e = gVar;
     }
 }

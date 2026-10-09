@@ -7,26 +7,26 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.ActionBar.y5;
-import org.telegram.ui.Components.w9;
-import w7.z5;
-public final class n extends FrameLayout implements y5 {
-    public final w9 f9937a;
+import org.telegram.ui.ActionBar.z5;
+import org.telegram.ui.Components.y9;
+import w7.x5;
+public final class n extends FrameLayout implements z5 {
+    public final y9 f10012a;
 
     public n(Context context) {
         super(context);
-        w9 w9Var = new w9(context);
-        this.f9937a = w9Var;
-        w9Var.setRoundRadius(AndroidUtilities.dp(20.0f));
-        addView(w9Var, z5.d(72, 72.0f, 81, 0.0f, 0.0f, 0.0f, 28.0f));
+        y9 y9Var = new y9(context);
+        this.f10012a = y9Var;
+        y9Var.setRoundRadius(AndroidUtilities.dp(20.0f));
+        addView(y9Var, x5.a(72.0f, 0.0f, 0.0f, 0.0f, 28.0f, 72, 81));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         Drawable drawable = i6.S0;
-        w9 w9Var = this.f9937a;
-        yf.p.a(canvas, drawable, (w9Var.getWidth() / 2.0f) + w9Var.getLeft(), (w9Var.getHeight() / 2.0f) + w9Var.getTop(), w9Var.getHeight());
+        y9 y9Var = this.f10012a;
+        yf.p.a(canvas, drawable, (y9Var.getWidth() / 2.0f) + y9Var.getLeft(), (y9Var.getHeight() / 2.0f) + y9Var.getTop(), y9Var.getHeight());
     }
 
     @Override

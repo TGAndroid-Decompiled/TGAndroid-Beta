@@ -1,62 +1,99 @@
 package org.telegram.ui;
 
-import java.io.File;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLocation;
+import android.widget.Toast;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class ns0 extends org.telegram.ui.ActionBar.j {
-    public final org.telegram.ui.ActionBar.d6 f39029a;
-    public final PhotoViewer f39030b;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_stats;
+public final class ns0 implements RequestDelegate {
+    public final int f40357a;
+    public final Object f40358b;
+    public final Object f40359c;
+    public final Object d;
 
-    public ns0(PhotoViewer photoViewer, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.f39030b = photoViewer;
-        this.f39029a = d6Var;
+    public ns0(Object obj, Object obj2, Object obj3, int i10) {
+        this.f40357a = i10;
+        this.f40358b = obj;
+        this.f40359c = obj2;
+        this.d = obj3;
     }
 
     @Override
-    public final boolean a() {
-        TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated;
-        boolean z10;
-        PhotoViewer photoViewer = this.f39030b;
-        if (photoViewer.T4 != null || photoViewer.f33890b5 != null) {
-            return true;
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f40357a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new rr0((ss0) this.f40358b, tLObject, (UserConfig) this.f40359c, (TLRPC.Photo) this.d, 2));
+                return;
+            case 1:
+                AndroidUtilities.runOnUIThread(new g90((Object) ((yx0) this.f40358b), tLObject, (Object) ((TLRPC.UserFull) this.f40359c), (Object) ((TL_account.TL_birthday) this.d), tL_error, 17));
+                return;
+            case 2:
+                AndroidUtilities.runOnUIThread(new rr0((PrivacySettingsActivity) this.f40358b, (org.telegram.ui.ActionBar.b2) this.f40359c, tLObject, (TL_account.setAccountTTL) this.d, 5));
+                return;
+            case 3:
+                AndroidUtilities.runOnUIThread(new g90((Object) ((ProfileActivity) this.f40358b), tLObject, (Object) ((TLRPC.UserFull) this.f40359c), (Object) ((TL_account.TL_birthday) this.d), tL_error, 21));
+                return;
+            case 4:
+                AndroidUtilities.runOnUIThread(new g90((Object) ((ProfileActivity) this.f40358b), tLObject, (Object) ((TLRPC.TL_username) this.f40359c), (Object) ((yz0) this.d), tL_error, 19));
+                return;
+            case 5:
+                AndroidUtilities.runOnUIThread(new g90((Object) ((ProfileActivity) this.f40358b), tLObject, (Object) ((String) this.f40359c), (Object) ((TLRPC.User) this.d), tL_error, 20));
+                return;
+            case 6:
+                AndroidUtilities.runOnUIThread(new rr0((g01) this.f40358b, tLObject, (UserConfig) this.f40359c, (TLRPC.Photo) this.d, 11));
+                return;
+            case 7:
+                AndroidUtilities.runOnUIThread(new g90((Object) ((u71) this.f40358b), tL_error, tLObject, (Object) ((TwoStepVerificationActivity) this.f40359c), (Object) ((TLRPC.User) this.d), 24));
+                return;
+            case 8:
+                AndroidUtilities.runOnUIThread(new rr0((SessionsActivity) this.f40358b, (org.telegram.ui.ActionBar.b2) this.f40359c, tL_error, (TLRPC.TL_authorization) this.d, 14));
+                return;
+            case 9:
+                AndroidUtilities.runOnUIThread(new rr0((SessionsActivity) this.f40358b, (org.telegram.ui.ActionBar.b2) this.f40359c, tL_error, (TLRPC.TL_webAuthorization) this.d, 13));
+                return;
+            case 10:
+                ma1 ma1Var = (ma1) this.f40358b;
+                String str = (String) this.f40359c;
+                ab1 ab1Var = (ab1) this.d;
+                boolean z10 = true;
+                jg.b bVar = null;
+                if (tLObject instanceof TL_stats.TL_statsGraph) {
+                    try {
+                        JSONObject jSONObject = new JSONObject(((TL_stats.TL_statsGraph) tLObject).json.data);
+                        na1 na1Var = ma1Var.f39492r;
+                        int i10 = na1Var.f40152i;
+                        if (na1Var != ma1Var.f39819w.f36231w) {
+                            z10 = false;
+                        }
+                        bVar = bb1.e0(jSONObject, i10, z10);
+                    } catch (JSONException e7) {
+                        e7.printStackTrace();
+                    }
+                } else if (tLObject instanceof TL_stats.TL_statsGraphError) {
+                    Toast.makeText(ma1Var.getContext(), ((TL_stats.TL_statsGraphError) tLObject).error, 1).show();
+                }
+                AndroidUtilities.runOnUIThread(new rr0(ma1Var, bVar, str, ab1Var, 17));
+                return;
+            case 11:
+                AndroidUtilities.runOnUIThread(new rr0((xe1) this.f40358b, tLObject, (String) this.f40359c, (org.telegram.ui.ActionBar.b2) this.d, 19));
+                return;
+            default:
+                TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f40358b;
+                byte[] bArr = (byte[]) this.f40359c;
+                byte[] bArr2 = (byte[]) this.d;
+                if (tL_error == null) {
+                    Utilities.globalQueue.postRunnable(new rr0(twoStepVerificationActivity, bArr, tLObject, bArr2, 20));
+                    return;
+                } else {
+                    AndroidUtilities.runOnUIThread(new n31(25, twoStepVerificationActivity, tL_error));
+                    return;
+                }
         }
-        if (photoViewer.f33880a5 != null) {
-            FileLoader fileLoader = FileLoader.getInstance(photoViewer.T);
-            ImageLocation imageLocation = photoViewer.f33880a5;
-            TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated2 = null;
-            if (imageLocation == null) {
-                tL_fileLocationToBeDeprecated = null;
-            } else {
-                tL_fileLocationToBeDeprecated = imageLocation.location;
-            }
-            String q12 = PhotoViewer.q1(imageLocation);
-            if (photoViewer.f34106z5 == 0 && !photoViewer.B5) {
-                z10 = false;
-            } else {
-                z10 = true;
-            }
-            File pathToAttach = fileLoader.getPathToAttach(tL_fileLocationToBeDeprecated, q12, z10);
-            File file = new File(FileLoader.getDirectory(4), pathToAttach.getName());
-            FileLoader fileLoader2 = FileLoader.getInstance(photoViewer.T);
-            ImageLocation imageLocation2 = photoViewer.f33880a5;
-            if (imageLocation2 != null) {
-                tL_fileLocationToBeDeprecated2 = imageLocation2.location;
-            }
-            File pathToAttach2 = fileLoader2.getPathToAttach(tL_fileLocationToBeDeprecated2, PhotoViewer.q1(imageLocation2), false);
-            if (pathToAttach.exists() || file.exists() || pathToAttach2.exists()) {
-                return true;
-            }
-            return false;
-        } else if (photoViewer.f33964j7 != null) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    @Override
-    public final void b(int r37) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ns0.b(int):void");
     }
 }

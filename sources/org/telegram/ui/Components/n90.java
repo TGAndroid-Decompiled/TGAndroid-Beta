@@ -1,241 +1,132 @@
 package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
-import android.os.SystemClock;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.text.Layout;
-import android.text.Spanned;
-import android.text.style.CharacterStyle;
-import android.util.Pair;
-import android.view.View;
-import java.util.ArrayList;
+import android.text.StaticLayout;
+import android.text.TextPaint;
 import org.telegram.messenger.AndroidUtilities;
-public final class n90 {
-    public View f29003a;
-    public org.telegram.ui.Cells.b1 f29004b;
-    public final ArrayList f29005c = new ArrayList();
-    public int d = 0;
-    public final ArrayList f29006e = new ArrayList();
-    public int f29007f = 0;
+import org.telegram.messenger.FileLog;
+public final class n90 extends Drawable {
+    public static final Paint f29083j = new Paint();
+    public static TextPaint f29084k;
+    public static TextPaint f29085l;
+    public static TextPaint f29086m;
+    public StaticLayout f29088b;
+    public float f29089c;
+    public float d;
+    public float f29090e;
+    public final int f29092g;
+    public final TextPaint h;
+    public final RectF f29087a = new RectF();
+    public final StringBuilder f29091f = new StringBuilder(5);
+    public float f29093i = 1.0f;
 
-    public n90() {
-    }
-
-    public static u90 i(Layout layout, CharacterStyle characterStyle, float f7) {
-        if (layout != null && characterStyle != null && (layout.getText() instanceof Spanned)) {
-            Spanned spanned = (Spanned) layout.getText();
-            k90 k90Var = new k90(0);
-            int spanStart = spanned.getSpanStart(characterStyle);
-            int spanEnd = spanned.getSpanEnd(characterStyle);
-            k90Var.d(layout, spanStart, f7);
-            layout.getSelectionPath(spanStart, spanEnd, k90Var);
-            u90 u90Var = new u90();
-            u90Var.f31406x = k90Var;
-            u90Var.C = true;
-            u90Var.j(4.0f);
-            u90Var.k();
-            return u90Var;
-        }
-        return null;
-    }
-
-    public final void a(r90 r90Var, Object obj) {
-        this.f29005c.add(new Pair(r90Var, obj));
-        this.d++;
-        h(obj, true);
-    }
-
-    public final void b(u90 u90Var, Object obj) {
-        this.f29006e.add(new Pair(u90Var, obj));
-        this.f29007f++;
-        h(obj, true);
-    }
-
-    public final void c() {
-        d(true);
-    }
-
-    public final void d(boolean z10) {
-        if (z10) {
-            for (int i10 = 0; i10 < this.d; i10++) {
-                j(i10);
+    public n90(int i10, org.telegram.ui.ActionBar.e6 e6Var) {
+        this.f29092g = i10;
+        if (i10 == 0) {
+            if (f29084k == null) {
+                f29084k = new TextPaint(1);
             }
-        } else if (this.d > 0) {
-            int i11 = 0;
-            while (true) {
-                int i12 = this.d;
-                ArrayList arrayList = this.f29005c;
-                if (i11 < i12) {
-                    ((r90) ((Pair) arrayList.get(i11)).first).c();
-                    h(((Pair) arrayList.get(i11)).second, false);
-                    i11++;
-                } else {
-                    arrayList.clear();
-                    this.d = 0;
-                    h(null, true);
+            f29084k.setTextSize(AndroidUtilities.dp(28.0f));
+            f29083j.setColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.Jh, e6Var));
+            f29084k.setColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.Kh, e6Var));
+            this.h = f29084k;
+        } else if (i10 == 1) {
+            if (f29085l == null) {
+                f29085l = new TextPaint(1);
+            }
+            f29085l.setColor(-1);
+            f29085l.setTextSize(AndroidUtilities.dp(13.0f));
+            f29085l.setTypeface(Typeface.create(Typeface.DEFAULT, 1));
+            this.h = f29085l;
+        } else {
+            if (f29086m == null) {
+                f29086m = new TextPaint(1);
+            }
+            f29086m.setColor(-1);
+            f29086m.setTextSize(org.telegram.ui.ActionBar.i6.f20794d3.getTextSize() * 0.75f);
+            f29086m.setTypeface(Typeface.create(Typeface.DEFAULT, 1));
+            this.h = f29086m;
+        }
+    }
+
+    public final void a(String str) {
+        StringBuilder sb2 = this.f29091f;
+        sb2.setLength(0);
+        if (str != null && str.length() > 0) {
+            sb2.append(str.substring(0, 1));
+        }
+        if (sb2.length() > 0) {
+            try {
+                StaticLayout staticLayout = new StaticLayout(sb2.toString().toUpperCase(), this.h, AndroidUtilities.dp(100.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                this.f29088b = staticLayout;
+                if (staticLayout.getLineCount() > 0) {
+                    this.f29090e = this.f29088b.getLineLeft(0);
+                    this.f29089c = this.f29088b.getLineWidth(0);
+                    this.d = this.f29088b.getLineBottom(0);
                     return;
                 }
+                return;
+            } catch (Exception e7) {
+                FileLog.e(e7);
+                return;
             }
         }
+        this.f29088b = null;
     }
 
-    public final void e() {
-        for (int i10 = 0; i10 < this.f29007f; i10++) {
-            m(i10, true);
+    @Override
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        if (bounds == null) {
+            return;
         }
+        if (this.f29092g == 0) {
+            RectF rectF = this.f29087a;
+            rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), f29083j);
+        }
+        canvas.save();
+        float f7 = this.f29093i;
+        if (f7 != 1.0f) {
+            canvas.scale(f7, f7, bounds.centerX(), bounds.centerY());
+        }
+        if (this.f29088b != null) {
+            float width = bounds.width();
+            canvas.translate(com.google.android.gms.internal.vision.e2.z(width, this.f29089c, 2.0f, bounds.left) - this.f29090e, com.google.android.gms.internal.vision.e2.z(width, this.d, 2.0f, bounds.top));
+            this.f29088b.draw(canvas);
+        }
+        canvas.restore();
     }
 
-    public final boolean f(Canvas canvas) {
-        int i10 = 0;
-        boolean z10 = false;
-        while (i10 < this.f29007f) {
-            ((u90) ((Pair) this.f29006e.get(i10)).first).draw(canvas);
-            i10++;
-            z10 = true;
-        }
-        for (int i11 = 0; i11 < this.d; i11++) {
-            if (!((r90) ((Pair) this.f29005c.get(i11)).first).a(canvas) && !z10) {
-                z10 = false;
-            } else {
-                z10 = true;
-            }
-        }
-        return z10;
+    @Override
+    public final int getIntrinsicHeight() {
+        return 0;
     }
 
-    public final boolean g(Canvas canvas, Object obj) {
-        boolean z10 = false;
-        for (int i10 = 0; i10 < this.f29007f; i10++) {
-            ArrayList arrayList = this.f29006e;
-            if (((Pair) arrayList.get(i10)).second == obj) {
-                ((u90) ((Pair) arrayList.get(i10)).first).draw(canvas);
-                z10 = true;
-            }
-        }
-        for (int i11 = 0; i11 < this.d; i11++) {
-            ArrayList arrayList2 = this.f29005c;
-            if (((Pair) arrayList2.get(i11)).second == obj) {
-                if (!((r90) ((Pair) arrayList2.get(i11)).first).a(canvas) && !z10) {
-                    z10 = false;
-                } else {
-                    z10 = true;
-                }
-            }
-        }
-        h(obj, false);
-        return z10;
+    @Override
+    public final int getIntrinsicWidth() {
+        return 0;
     }
 
-    public final void h(Object obj, boolean z10) {
-        View view;
-        View view2;
-        if (obj instanceof View) {
-            ((View) obj).invalidate();
-        } else if (obj instanceof org.telegram.ui.b3) {
-            org.telegram.ui.b3 b3Var = (org.telegram.ui.b3) obj;
-            if (!b3Var.f35030c && (view2 = b3Var.f35029b) != null) {
-                view2.invalidate();
-            }
-        } else if (z10 && (view = this.f29003a) != null) {
-            view.invalidate();
-        }
-        org.telegram.ui.Cells.b1 b1Var = this.f29004b;
-        if (b1Var != null) {
-            b1Var.run();
-        }
+    @Override
+    public final int getOpacity() {
+        return -2;
     }
 
-    public final void j(int i10) {
-        if (i10 >= 0 && i10 < this.d) {
-            Pair pair = (Pair) this.f29005c.get(i10);
-            r90 r90Var = (r90) pair.first;
-            if (r90Var.f30401p < 0) {
-                r90Var.f30401p = Math.max(r90Var.f30400o + r90Var.f30402q, SystemClock.elapsedRealtime());
-                h(pair.second, true);
-                AndroidUtilities.runOnUIThread(new m90(this, r90Var, 1), Math.max(0L, (r90Var.f30401p - SystemClock.elapsedRealtime()) + 175));
-            }
-        }
+    @Override
+    public final void setAlpha(int i10) {
+        this.h.setAlpha(i10);
+        f29083j.setAlpha(i10);
     }
 
-    public final void k(r90 r90Var, boolean z10) {
-        ArrayList arrayList;
-        Pair pair;
-        if (r90Var != null) {
-            int i10 = 0;
-            while (true) {
-                int i11 = this.d;
-                arrayList = this.f29005c;
-                if (i10 < i11) {
-                    if (((Pair) arrayList.get(i10)).first == r90Var) {
-                        pair = (Pair) arrayList.get(i10);
-                        break;
-                    }
-                    i10++;
-                } else {
-                    pair = null;
-                    break;
-                }
-            }
-            if (pair != null) {
-                if (z10) {
-                    if (r90Var.f30401p < 0) {
-                        r90Var.f30401p = Math.max(r90Var.f30400o + r90Var.f30402q, SystemClock.elapsedRealtime());
-                        h(pair.second, true);
-                        AndroidUtilities.runOnUIThread(new m90(this, r90Var, 0), Math.max(0L, (r90Var.f30401p - SystemClock.elapsedRealtime()) + 175));
-                        return;
-                    }
-                    return;
-                }
-                arrayList.remove(pair);
-                r90Var.c();
-                this.d = arrayList.size();
-                h(pair.second, true);
-            }
-        }
-    }
-
-    public final void l(u90 u90Var, boolean z10) {
-        if (u90Var != null) {
-            for (int i10 = 0; i10 < this.f29007f; i10++) {
-                if (((Pair) this.f29006e.get(i10)).first == u90Var) {
-                    m(i10, z10);
-                    return;
-                }
-            }
-        }
-    }
-
-    public final void m(int i10, boolean z10) {
-        if (i10 >= 0 && i10 < this.f29007f) {
-            ArrayList arrayList = this.f29006e;
-            Pair pair = (Pair) arrayList.get(i10);
-            if (pair != null) {
-                u90 u90Var = (u90) pair.first;
-                if (z10) {
-                    if (!u90Var.b()) {
-                        if (!u90Var.c()) {
-                            u90Var.a();
-                        }
-                        yw ywVar = new yw(18, this, u90Var);
-                        long j3 = 0;
-                        if (u90Var.f31388c > 0) {
-                            j3 = 320 - (SystemClock.elapsedRealtime() - u90Var.f31388c);
-                        }
-                        AndroidUtilities.runOnUIThread(ywVar, j3);
-                        return;
-                    }
-                    l(u90Var, false);
-                    return;
-                }
-                arrayList.remove(pair);
-                u90Var.f31387b = -1L;
-                u90Var.f31388c = -1L;
-                this.f29007f = arrayList.size();
-                h(pair.second, true);
-            }
-        }
-    }
-
-    public n90(View view) {
-        this.f29003a = view;
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

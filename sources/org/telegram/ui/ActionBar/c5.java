@@ -1,61 +1,26 @@
 package org.telegram.ui.ActionBar;
 
-import android.app.Activity;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.FrameLayout;
-import java.util.List;
-public interface c5 {
-    n2 getBackgroundFragment();
+import org.telegram.ui.sn;
+import org.telegram.ui.un;
+public final class c5 {
+    public final h6 f20511a;
+    public final int f20512b;
+    public final boolean f20513c;
+    public final boolean d;
+    public boolean f20514e;
+    public Runnable h;
+    public sn f20517i;
+    public sn f20518j;
+    public un f20519k;
+    public e6 f20521m;
+    public boolean f20515f = true;
+    public boolean f20516g = true;
+    public long f20520l = 200;
 
-    f3 getBottomSheet();
-
-    List getFragmentStack();
-
-    n2 getLastFragment();
-
-    e5 getMessageDrawableOutMediaStart();
-
-    e5 getMessageDrawableOutStart();
-
-    FrameLayout getOverlayContainerView();
-
-    Activity getParentActivity();
-
-    List getPulledDialogs();
-
-    n2 getSafeLastFragment();
-
-    float getThemeAnimationValue();
-
-    ViewGroup getView();
-
-    Window getWindow();
-
-    void setBackgroundView(View view);
-
-    void setDelegate(z4 z4Var);
-
-    void setDrawerLayoutContainer(y3 y3Var);
-
-    void setFragmentPanTranslationOffset(int i10);
-
-    void setFragmentStack(List list);
-
-    void setHighlightActionButtons(boolean z10);
-
-    void setInBubbleMode(boolean z10);
-
-    void setIsSheet(boolean z10);
-
-    void setNavigationBarColor(int i10);
-
-    void setPulledDialogs(List list);
-
-    void setRemoveActionBarExtraHeight(boolean z10);
-
-    void setUseAlphaAnimations(boolean z10);
-
-    void setWindow(Window window);
+    public c5(h6 h6Var, int i10, boolean z10, boolean z11) {
+        this.f20511a = h6Var;
+        this.f20512b = i10;
+        this.f20513c = z10;
+        this.d = z11;
+    }
 }

@@ -5,38 +5,38 @@ import android.content.IntentFilter;
 import android.util.SparseArray;
 import e9.a1;
 public final class b {
-    public static final b f14374c = new b(e9.i0.z(a.d));
+    public static final b f14409c = new b(e9.i0.z(a.d));
     public static final a1 d;
-    public static final e9.k0 f14375e;
-    public final SparseArray f14376a = new SparseArray();
-    public final int f14377b;
+    public static final e9.k0 f14410e;
+    public final SparseArray f14411a = new SparseArray();
+    public final int f14412b;
 
     static {
         Object[] objArr = {2, 5, 6};
         e9.q.d(3, objArr);
         d = e9.i0.t(3, objArr);
         a5.a aVar = new a5.a(4, 5);
-        aVar.u(5, 6);
-        aVar.u(17, 6);
-        aVar.u(7, 6);
-        aVar.u(30, 10);
-        aVar.u(18, 6);
-        aVar.u(6, 8);
-        aVar.u(8, 8);
-        aVar.u(14, 8);
-        f14375e = aVar.d();
+        aVar.w(5, 6);
+        aVar.w(17, 6);
+        aVar.w(7, 6);
+        aVar.w(30, 10);
+        aVar.w(18, 6);
+        aVar.w(6, 8);
+        aVar.w(8, 8);
+        aVar.w(14, 8);
+        f14410e = aVar.f();
     }
 
     public b(a1 a1Var) {
         for (int i10 = 0; i10 < a1Var.d; i10++) {
             a aVar = (a) a1Var.get(i10);
-            this.f14376a.put(aVar.f14368a, aVar);
+            this.f14411a.put(aVar.f14404a, aVar);
         }
         int i11 = 0;
-        for (int i12 = 0; i12 < this.f14376a.size(); i12++) {
-            i11 = Math.max(i11, ((a) this.f14376a.valueAt(i12)).f14369b);
+        for (int i12 = 0; i12 < this.f14411a.size(); i12++) {
+            i11 = Math.max(i11, ((a) this.f14411a.valueAt(i12)).f14405b);
         }
-        this.f14377b = i11;
+        this.f14412b = i11;
     }
 
     public static a1 a(int i10, int[] iArr) {
@@ -50,12 +50,12 @@ public final class b {
         return u10.i();
     }
 
-    public static k2.b b(android.content.Context r5, android.content.Intent r6, b2.e r7, k2.e r8) {
-        throw new UnsupportedOperationException("Method not decompiled: k2.b.b(android.content.Context, android.content.Intent, b2.e, k2.e):k2.b");
+    public static k2.b b(android.content.Context r11, android.content.Intent r12, b2.e r13, a4.l r14) {
+        throw new UnsupportedOperationException("Method not decompiled: k2.b.b(android.content.Context, android.content.Intent, b2.e, a4.l):k2.b");
     }
 
-    public static b c(Context context, b2.e eVar, e eVar2) {
-        return b(context, context.registerReceiver(null, new IntentFilter("android.media.action.HDMI_AUDIO_PLUG")), eVar, eVar2);
+    public static b c(Context context, b2.e eVar, a4.l lVar) {
+        return b(context, context.registerReceiver(null, new IntentFilter("android.media.action.HDMI_AUDIO_PLUG")), eVar, lVar);
     }
 
     public final android.util.Pair d(b2.e r14, b2.s r15) {
@@ -66,7 +66,7 @@ public final class b {
         if (this != obj) {
             if (obj instanceof b) {
                 b bVar = (b) obj;
-                if (e2.d0.l(this.f14376a, bVar.f14376a) && this.f14377b == bVar.f14377b) {
+                if (e2.d0.l(this.f14411a, bVar.f14411a) && this.f14412b == bVar.f14412b) {
                     return true;
                 }
                 return false;
@@ -77,10 +77,10 @@ public final class b {
     }
 
     public final int hashCode() {
-        return (e2.d0.m(this.f14376a) * 31) + this.f14377b;
+        return (e2.d0.m(this.f14411a) * 31) + this.f14412b;
     }
 
     public final String toString() {
-        return "AudioCapabilities[maxChannelCount=" + this.f14377b + ", audioProfiles=" + this.f14376a + "]";
+        return "AudioCapabilities[maxChannelCount=" + this.f14412b + ", audioProfiles=" + this.f14411a + "]";
     }
 }

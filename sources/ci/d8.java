@@ -1,107 +1,794 @@
 package ci;
 
-import android.app.Activity;
+import android.content.Context;
+import android.database.Cursor;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.os.Build;
+import android.provider.MediaStore;
 import android.text.TextUtils;
-import android.view.ViewPropertyAnimator;
+import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.TextView;
+import androidx.recyclerview.widget.RecyclerView;
+import java.io.File;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.DownloadController;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.UserObject;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.bi;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.tr;
-public final class d8 extends FrameLayout {
-    public final int f4914a;
-    public final org.telegram.ui.Components.h9 f4915b;
-    public final org.telegram.ui.Components.w9 f4916c;
-    public final TextView d;
-    public ViewPropertyAnimator f4917e;
+import org.telegram.ui.Components.c71;
+import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.p61;
+import org.telegram.ui.Components.pm0;
+import org.telegram.ui.Components.qm0;
+import org.telegram.ui.Components.s20;
+import org.telegram.ui.Components.xi;
+public final class d8 extends org.telegram.ui.Components.eb implements NotificationCenter.NotificationCenterDelegate, DownloadController.FileDownloadProgressListener, me.d {
+    public String A0;
+    public boolean B0;
+    public boolean C0;
+    public boolean D0;
+    public TLRPC.User E0;
+    public boolean F0;
+    public boolean G0;
+    public int H0;
+    public String I0;
+    public int J0;
+    public final v7 K0;
+    public boolean L0;
+    public final ArrayList M0;
+    public final RectF N0;
+    public final ArrayList O0;
+    public final me.b X;
+    public final int Y;
+    public boolean Z;
+    public final d8 f4946a0;
+    public final ArrayList f4947b0;
+    public final ArrayList f4948c0;
+    public final ArrayList f4949d0;
+    public final MessagesController.SavedMusicList f4950e0;
+    public final Utilities.Callback f4951f0;
+    public MessageObject f4952g0;
+    public boolean f4953h0;
+    public boolean f4954i0;
+    public final FrameLayout f4955j0;
+    public final xi f4956k0;
+    public final ah.h f4957l0;
+    public final fh.d m0;
+    public final fh.d f4958n0;
+    public final ah.c f4959o0;
+    public final w7 f4960p0;
+    public c71 f4961q0;
+    public MessageObject f4962r0;
+    public String f4963s0;
+    public int f4964t0;
+    public boolean f4965u0;
+    public boolean f4966v0;
+    public boolean f4967w0;
+    public String f4968x0;
+    public int f4969y0;
+    public final v7 f4970z0;
 
-    public d8(Activity activity, int i10) {
-        super(activity);
-        this.f4914a = i10;
-        this.f4915b = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
-        org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(activity);
-        this.f4916c = w9Var;
-        w9Var.setRoundRadius(AndroidUtilities.dp(15.0f));
-        addView(w9Var, w7.z5.d(30, 30.0f, 19, 14.0f, 0.0f, 0.0f, 0.0f));
-        TextView textView = new TextView(activity);
-        this.d = textView;
-        textView.setTextSize(1, 14.0f);
-        textView.setTextColor(-1);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setSingleLine();
-        textView.setLines(1);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        addView(textView, w7.z5.d(-1, -2.0f, 51, 53.0f, 11.33f, 12.0f, 0.0f));
-        TextView textView2 = new TextView(activity);
-        textView2.setTextSize(1, 12.0f);
-        textView2.setTextColor(org.telegram.ui.ActionBar.i6.l1(0.85f, -1));
-        addView(textView2, w7.z5.d(-1, -2.0f, 51, 53.0f, 29.33f, 12.0f, 0.0f));
-        textView2.setText(AndroidUtilities.replaceArrows(LocaleController.getString(R.string.LiveStoryPeerChange), false, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(0.33f), 1.0f));
-        set(null);
-    }
+    public d8(Context context, boolean z10, d8 d8Var, Utilities.Callback callback, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(2, context, e6Var, true);
+        hs hsVar = hs.h;
+        this.X = new me.b(0, this, hsVar, 380L, false);
+        this.f4947b0 = new ArrayList();
+        this.f4948c0 = new ArrayList();
+        this.f4949d0 = new ArrayList();
+        this.f4969y0 = -1;
+        this.f4970z0 = new Runnable(this) {
+            public final d8 f6159b;
 
-    public final void a(boolean z10, boolean z11) {
-        ViewPropertyAnimator viewPropertyAnimator = this.f4917e;
-        if (viewPropertyAnimator != null) {
-            viewPropertyAnimator.cancel();
-            this.f4917e = null;
-        }
-        float f7 = 0.0f;
-        int i10 = 0;
-        if (z11) {
-            setVisibility(0);
-            ViewPropertyAnimator animate = animate();
-            if (z10) {
-                f7 = 1.0f;
+            {
+                this.f6159b = this;
             }
-            ViewPropertyAnimator duration = animate.alpha(f7).setInterpolator(tr.h).withEndAction(new bi.f(4, this, z10)).setDuration(320L);
-            this.f4917e = duration;
-            duration.start();
-            return;
+
+            @Override
+            public final void run() {
+                switch (r2) {
+                    case 0:
+                        this.f6159b.c0();
+                        return;
+                    case 1:
+                        this.f6159b.b0();
+                        return;
+                    default:
+                        d8.U(this.f6159b);
+                        return;
+                }
+            }
+        };
+        this.H0 = -1;
+        this.J0 = -2000000000;
+        this.K0 = new Runnable(this) {
+            public final d8 f6159b;
+
+            {
+                this.f6159b = this;
+            }
+
+            @Override
+            public final void run() {
+                switch (r2) {
+                    case 0:
+                        this.f6159b.c0();
+                        return;
+                    case 1:
+                        this.f6159b.b0();
+                        return;
+                    default:
+                        d8.U(this.f6159b);
+                        return;
+                }
+            }
+        };
+        ArrayList arrayList = new ArrayList();
+        this.M0 = arrayList;
+        RectF rectF = new RectF();
+        this.N0 = rectF;
+        arrayList.add(rectF);
+        this.O0 = new ArrayList();
+        this.v = 0.35f;
+        fixNavigationBar();
+        L();
+        this.I = AndroidUtilities.dp(4.0f);
+        this.J = AndroidUtilities.dp(-20.0f);
+        this.Z = z10;
+        this.Y = DownloadController.getInstance(this.currentAccount).generateObserverTag();
+        this.f4946a0 = d8Var;
+        this.f4951f0 = callback;
+        fh.c cVar = new fh.c();
+        cVar.a(getThemedColor(org.telegram.ui.ActionBar.i6.f20797d6));
+        if (Build.VERSION.SDK_INT >= 31) {
+            this.f4957l0 = new ah.h(false);
+            fh.d dVar = new fh.d(null);
+            this.f4958n0 = dVar;
+            dVar.j(new y7(this));
+            fh.d dVar2 = new fh.d(null);
+            this.m0 = dVar2;
+            dVar2.j(new z7(this));
+            ah.c cVar2 = new ah.c(dVar);
+            this.f4959o0 = cVar2;
+            cVar2.f547i = LiteMode.isEnabled(262144);
+            LiteMode.isEnabled(262144);
+        } else {
+            this.f4957l0 = null;
+            this.m0 = null;
+            this.f4958n0 = null;
+            this.f4959o0 = new ah.c(cVar);
         }
+        this.f4960p0 = new w7(this, 0);
+        int i10 = org.telegram.ui.ActionBar.i6.f20741a7;
+        xi xiVar = new xi(context, i10, e6Var);
+        this.f4956k0 = xiVar;
+        xiVar.setVisibility(4);
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.f4955j0 = frameLayout;
+        s20 s20Var = new s20(context, e6Var);
+        s20Var.f30614r.setOnFocusChangeListener(new a8(this));
+        s20Var.f30616w = true;
+        s20Var.setPadding(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
+        s20Var.e();
+        s20Var.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
+        s20Var.f30614r.addTextChangedListener(new b8(this));
+        s20Var.f30614r.setHint(LocaleController.getString(R.string.Search));
+        frameLayout.addView(xiVar, w7.x5.g());
+        frameLayout.addView(s20Var, w7.x5.a(48.0f, 0.0f, 8.0f, 0.0f, 4.0f, -1, 51));
+        s20Var.setupBlurredBackground(this.f4959o0.c(s20Var, eh.b.n(e6Var), false));
+        frameLayout.setPadding(AndroidUtilities.dp(8.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(8.0f) + this.backgroundPaddingLeft, 0);
+        this.containerView.addView(frameLayout, w7.x5.e(-1, -2, 55));
+        setBackgroundColor(getThemedColor(i10));
+        qm0 qm0Var = this.d;
+        int i11 = this.backgroundPaddingLeft;
+        qm0Var.setPadding(i11, 0, i11, 0);
+        this.d.p1();
+        s4.j jVar = new s4.j();
+        jVar.f47696m = false;
+        jVar.C = false;
+        jVar.o(hsVar);
+        jVar.n(350L);
+        this.d.setItemAnimator(jVar);
         if (!z10) {
-            i10 = 8;
+            int i12 = this.currentAccount;
+            MessagesController.SavedMusicList savedMusicList = new MessagesController.SavedMusicList(i12, UserConfig.getInstance(i12).getClientUserId());
+            this.f4950e0 = savedMusicList;
+            savedMusicList.load();
+            c0();
+            b0();
+        } else {
+            this.f4950e0 = null;
+            if (this.Z && !this.L0) {
+                this.L0 = true;
+                Utilities.globalQueue.postRunnable(new Runnable(this) {
+                    public final d8 f6159b;
+
+                    {
+                        this.f6159b = this;
+                    }
+
+                    @Override
+                    public final void run() {
+                        switch (r2) {
+                            case 0:
+                                this.f6159b.c0();
+                                return;
+                            case 1:
+                                this.f6159b.b0();
+                                return;
+                            default:
+                                d8.U(this.f6159b);
+                                return;
+                        }
+                    }
+                });
+            }
         }
-        setVisibility(i10);
-        if (z10) {
-            f7 = 1.0f;
-        }
-        setAlpha(f7);
+        this.d.setOnScrollListener(new c8(this));
+        this.d.setOnItemClickListener(new ai.u0(this, callback, e6Var, 1));
     }
 
-    public void set(TLRPC.InputPeer inputPeer) {
-        long peerDialogId;
-        String str;
-        int i10 = this.f4914a;
-        if (inputPeer == null) {
-            peerDialogId = UserConfig.getInstance(i10).getClientUserId();
-        } else {
-            peerDialogId = DialogObject.getPeerDialogId(inputPeer);
-        }
-        TextView textView = this.d;
-        org.telegram.ui.Components.w9 w9Var = this.f4916c;
-        org.telegram.ui.Components.h9 h9Var = this.f4915b;
-        if (peerDialogId >= 0) {
-            TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(peerDialogId));
-            h9Var.r(user);
-            w9Var.e(user, h9Var);
-            textView.setText(UserObject.getUserName(user));
+    public static void Q(d8 d8Var, TLRPC.messages_BotResults messages_botresults) {
+        ArrayList arrayList = d8Var.f4949d0;
+        boolean z10 = false;
+        d8Var.C0 = false;
+        d8Var.D0 = false;
+        if (messages_botresults != null) {
+            MessagesController.getInstance(d8Var.currentAccount).putUsers(messages_botresults.users, false);
+            ArrayList<TLRPC.BotInlineResult> arrayList2 = messages_botresults.results;
+            int size = arrayList2.size();
+            int i10 = 0;
+            while (i10 < size) {
+                TLRPC.BotInlineResult botInlineResult = arrayList2.get(i10);
+                i10++;
+                TLRPC.BotInlineResult botInlineResult2 = botInlineResult;
+                if (botInlineResult2 instanceof TLRPC.TL_botInlineMediaResult) {
+                    TLRPC.TL_botInlineMediaResult tL_botInlineMediaResult = (TLRPC.TL_botInlineMediaResult) botInlineResult2;
+                    if (tL_botInlineMediaResult.document != null) {
+                        TLRPC.TL_message tL_message = new TLRPC.TL_message();
+                        tL_message.out = true;
+                        int i11 = d8Var.J0;
+                        d8Var.J0 = i11 - 1;
+                        tL_message.f20059id = i11;
+                        tL_message.peer_id = new TLRPC.TL_peerUser();
+                        TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
+                        tL_message.from_id = tL_peerUser;
+                        TLRPC.Peer peer = tL_message.peer_id;
+                        long clientUserId = UserConfig.getInstance(d8Var.currentAccount).getClientUserId();
+                        tL_peerUser.user_id = clientUserId;
+                        peer.user_id = clientUserId;
+                        tL_message.date = (int) (System.currentTimeMillis() / 1000);
+                        tL_message.message = "";
+                        TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
+                        tL_message.media = tL_messageMediaDocument;
+                        tL_messageMediaDocument.flags |= 3;
+                        tL_messageMediaDocument.document = tL_botInlineMediaResult.document;
+                        tL_message.flags |= 768;
+                        arrayList.add(new MessageObject(d8Var.currentAccount, tL_message, false, true));
+                    }
+                }
+            }
+            d8Var.A0 = messages_botresults.next_offset;
+            if (!arrayList.isEmpty() && !TextUtils.isEmpty(d8Var.A0)) {
+                z10 = true;
+            }
+            d8Var.B0 = z10;
+            d8Var.f4961q0.N(true);
             return;
         }
-        TLRPC.Chat chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-peerDialogId));
-        h9Var.q(chat);
-        w9Var.e(chat, h9Var);
-        if (chat == null) {
-            str = "";
-        } else {
-            str = chat.title;
+        d8Var.f4961q0.N(true);
+    }
+
+    public static void R(d8 d8Var, Utilities.Callback callback, org.telegram.ui.ActionBar.e6 e6Var, View view, int i10) {
+        if (view instanceof org.telegram.ui.Cells.j7) {
+            MessageObject message = ((org.telegram.ui.Cells.j7) view).getMessage();
+            if (message != null) {
+                DownloadController.getInstance(d8Var.currentAccount).removeLoadingFileObserver(d8Var);
+                if (d8Var.f4952g0 != null) {
+                    FileLoader.getInstance(d8Var.currentAccount).cancelLoadFile(d8Var.f4952g0.getDocument());
+                    d8Var.f4952g0 = null;
+                }
+                if (!message.attachPathExists && !message.mediaExists) {
+                    String fileName = message.getFileName();
+                    if (!TextUtils.isEmpty(fileName)) {
+                        d8Var.f4952g0 = message;
+                        DownloadController.getInstance(d8Var.currentAccount).addLoadingFileObserver(fileName, message, d8Var);
+                        FileLoader.getInstance(d8Var.currentAccount).loadFile(message.getDocument(), message, 1, 0);
+                        return;
+                    }
+                    return;
+                }
+                d8Var.f4951f0.run(message);
+                d8 d8Var2 = d8Var.f4946a0;
+                if (d8Var2 != null) {
+                    d8Var2.dismiss();
+                }
+                d8Var.dismiss();
+                return;
+            }
+            return;
         }
-        textView.setText(str);
+        p61 G = d8Var.f4961q0.G(i10 - 1);
+        if (G != null && G.d == 1) {
+            new d8(d8Var.getContext(), true, d8Var, callback, e6Var).show();
+        } else if (G != null && G.d == 2) {
+            d8Var.f4950e0.load();
+        } else if (G != null && G.d == 3) {
+            d8Var.c0();
+        } else if (G != null && G.d == 4) {
+            d8Var.b0();
+        }
+    }
+
+    public static void S(d8 d8Var, TLObject tLObject) {
+        ArrayList arrayList = d8Var.f4948c0;
+        boolean z10 = false;
+        d8Var.f4967w0 = false;
+        d8Var.f4966v0 = false;
+        if (tLObject instanceof TLRPC.messages_Messages) {
+            TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
+            MessagesController.getInstance(d8Var.currentAccount).putUsers(messages_messages.users, false);
+            MessagesController.getInstance(d8Var.currentAccount).putChats(messages_messages.chats, false);
+            ArrayList<TLRPC.Message> arrayList2 = messages_messages.messages;
+            int size = arrayList2.size();
+            int i10 = 0;
+            while (i10 < size) {
+                TLRPC.Message message = arrayList2.get(i10);
+                i10++;
+                arrayList.add(new MessageObject(d8Var.currentAccount, message, false, true));
+            }
+            if ((messages_messages instanceof TLRPC.TL_messages_messagesSlice) && arrayList.size() < messages_messages.count) {
+                z10 = true;
+            }
+            d8Var.f4965u0 = z10;
+            d8Var.f4964t0 = messages_messages.next_rate;
+        } else {
+            d8Var.f4965u0 = false;
+            d8Var.f4964t0 = 0;
+        }
+        d8Var.f4961q0.N(true);
+    }
+
+    public static void T(d8 d8Var, Long l4) {
+        TLRPC.User user;
+        boolean z10 = false;
+        d8Var.F0 = false;
+        if (l4 == null) {
+            user = null;
+        } else {
+            user = MessagesController.getInstance(d8Var.currentAccount).getUser(l4);
+        }
+        d8Var.E0 = user;
+        if (user == null) {
+            z10 = true;
+        }
+        d8Var.G0 = z10;
+        if (user != null) {
+            d8Var.b0();
+        }
+    }
+
+    public static void U(d8 d8Var) {
+        String[] strArr = {"_id", "artist", "title", "_data", "duration", "album"};
+        ArrayList arrayList = new ArrayList();
+        try {
+            Cursor query = ApplicationLoader.applicationContext.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, strArr, "is_music != 0", null, "title");
+            int i10 = -2000000000;
+            while (query.moveToNext()) {
+                MediaController.AudioEntry audioEntry = new MediaController.AudioEntry();
+                audioEntry.f17245id = query.getInt(0);
+                audioEntry.author = query.getString(1);
+                audioEntry.title = query.getString(2);
+                audioEntry.path = query.getString(3);
+                audioEntry.duration = (int) (query.getLong(4) / 1000);
+                audioEntry.genre = query.getString(5);
+                File file = new File(audioEntry.path);
+                TLRPC.TL_message tL_message = new TLRPC.TL_message();
+                tL_message.out = true;
+                tL_message.f20059id = i10;
+                tL_message.peer_id = new TLRPC.TL_peerUser();
+                TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
+                tL_message.from_id = tL_peerUser;
+                TLRPC.Peer peer = tL_message.peer_id;
+                long clientUserId = UserConfig.getInstance(d8Var.currentAccount).getClientUserId();
+                tL_peerUser.user_id = clientUserId;
+                peer.user_id = clientUserId;
+                tL_message.date = (int) (System.currentTimeMillis() / 1000);
+                tL_message.message = "";
+                tL_message.attachPath = audioEntry.path;
+                TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
+                tL_message.media = tL_messageMediaDocument;
+                tL_messageMediaDocument.flags |= 3;
+                tL_messageMediaDocument.document = new TLRPC.TL_document();
+                tL_message.flags |= 768;
+                String fileExtension = FileLoader.getFileExtension(file);
+                TLRPC.Document document = tL_message.media.document;
+                document.f20044id = 0L;
+                document.access_hash = 0L;
+                document.file_reference = new byte[0];
+                document.date = tL_message.date;
+                StringBuilder sb2 = new StringBuilder();
+                sb2.append("audio/");
+                if (fileExtension.length() <= 0) {
+                    fileExtension = "mp3";
+                }
+                sb2.append(fileExtension);
+                document.mime_type = sb2.toString();
+                tL_message.media.document.size = (int) file.length();
+                tL_message.media.document.dc_id = 0;
+                TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio = new TLRPC.TL_documentAttributeAudio();
+                tL_documentAttributeAudio.duration = audioEntry.duration;
+                tL_documentAttributeAudio.title = audioEntry.title;
+                tL_documentAttributeAudio.performer = audioEntry.author;
+                tL_documentAttributeAudio.flags = 3 | tL_documentAttributeAudio.flags;
+                tL_message.media.document.attributes.add(tL_documentAttributeAudio);
+                TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
+                tL_documentAttributeFilename.file_name = file.getName();
+                tL_message.media.document.attributes.add(tL_documentAttributeFilename);
+                MessageObject messageObject = new MessageObject(d8Var.currentAccount, tL_message, false, true);
+                audioEntry.messageObject = messageObject;
+                arrayList.add(messageObject);
+                i10--;
+            }
+            query.close();
+        } catch (Exception e7) {
+            FileLog.e(e7);
+        }
+        AndroidUtilities.runOnUIThread(new ai.ca(25, d8Var, arrayList));
+    }
+
+    public static boolean d0(String str, String str2, String str3) {
+        if (str3 != null) {
+            String lowerCase = str3.toLowerCase();
+            if (!lowerCase.startsWith(str) && !bi.w(" ", str, lowerCase)) {
+                String translitSafe = AndroidUtilities.translitSafe(lowerCase);
+                if (!translitSafe.startsWith(str2) && !bi.w(" ", str2, translitSafe)) {
+                    return false;
+                }
+                return true;
+            }
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final CharSequence B() {
+        return LocaleController.getString(R.string.StoryMusicTitle2);
+    }
+
+    @Override
+    public final void J(Canvas canvas, View view) {
+        if (Build.VERSION.SDK_INT >= 31 && this.f4957l0 != null) {
+            Y();
+            fh.d dVar = this.m0;
+            if (dVar != null) {
+                dVar.i(this.containerView.getMeasuredWidth(), this.containerView.getMeasuredHeight());
+                dVar.k();
+            }
+            fh.d dVar2 = this.f4958n0;
+            if (dVar2 != null) {
+                dVar2.i(this.containerView.getMeasuredWidth(), this.containerView.getMeasuredHeight());
+                dVar2.k();
+            }
+        }
+        e0();
+        super.J(canvas, view);
+    }
+
+    public final int X(boolean z10, ArrayList arrayList, String str, ArrayList arrayList2, boolean z11, boolean z12, int i10) {
+        String lowerCase;
+        int i11;
+        if (arrayList2 != null && (!arrayList2.isEmpty() || z11)) {
+            ArrayList arrayList3 = new ArrayList();
+            String str2 = this.f4963s0;
+            if (str2 == null) {
+                lowerCase = null;
+            } else {
+                lowerCase = str2.toLowerCase();
+            }
+            String translitSafe = AndroidUtilities.translitSafe(lowerCase);
+            int size = arrayList2.size();
+            int i12 = 0;
+            while (i12 < size) {
+                Object obj = arrayList2.get(i12);
+                i12++;
+                MessageObject messageObject = (MessageObject) obj;
+                if (!z10) {
+                    messageObject.setQuery(this.f4963s0);
+                    arrayList3.add(messageObject);
+                } else if (!TextUtils.isEmpty(lowerCase) && arrayList2 != this.f4948c0) {
+                    String musicTitle = messageObject.getMusicTitle();
+                    String musicAuthor = messageObject.getMusicAuthor();
+                    if (d0(lowerCase, translitSafe, musicTitle) || d0(lowerCase, translitSafe, musicAuthor)) {
+                        messageObject.setQuery(this.f4963s0);
+                        arrayList3.add(messageObject);
+                    }
+                } else {
+                    messageObject.setQuery(null);
+                    arrayList3.add(messageObject);
+                }
+            }
+            if (!arrayList3.isEmpty() || z11) {
+                if (!arrayList.isEmpty() && arrayList.size() > 1) {
+                    arrayList.add(p61.B(null));
+                    i11 = AndroidUtilities.dp(12.0f);
+                } else {
+                    i11 = 0;
+                }
+                this.f4961q0.U();
+                arrayList.add(p61.t(str));
+                int size2 = arrayList3.size();
+                int i13 = 0;
+                while (i13 < size2) {
+                    Object obj2 = arrayList3.get(i13);
+                    i13++;
+                    x7 x7Var = new x7(this, 0);
+                    int i14 = org.telegram.ui.Cells.i7.f22275a;
+                    p61 J = p61.J(org.telegram.ui.Cells.i7.class);
+                    J.G = (MessageObject) obj2;
+                    J.H = x7Var;
+                    arrayList.add(J);
+                    i11 += AndroidUtilities.dp(56.0f);
+                }
+                if (z11) {
+                    arrayList.add(p61.n(4));
+                    arrayList.add(p61.n(4));
+                    arrayList.add(p61.n(4));
+                    i11 += AndroidUtilities.dp(56.0f) * 3;
+                }
+                if (z12 && !z11) {
+                    p61 c10 = p61.c(i10, R.drawable.arrow_more, LocaleController.getString(R.string.ShowMore));
+                    c10.f29739q = true;
+                    arrayList.add(c10);
+                    i11 += AndroidUtilities.dp(50.0f);
+                }
+                this.f4961q0.T();
+                return i11;
+            }
+        }
+        return 0;
+    }
+
+    public final void Y() {
+        ah.h hVar;
+        if (Build.VERSION.SDK_INT >= 31 && (hVar = this.f4957l0) != null) {
+            this.N0.set(0.0f, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight, this.containerView.getMeasuredWidth(), AndroidUtilities.dp(64.0f) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight);
+            ArrayList arrayList = this.M0;
+            ArrayList arrayList2 = this.O0;
+            hVar.g(yf.e0.a(arrayList, 1, arrayList2), arrayList2);
+            hVar.e(this.f4960p0, this.containerView.getMeasuredWidth(), this.containerView.getMeasuredHeight());
+        }
+    }
+
+    public final void Z() {
+        if (this.H0 >= 0) {
+            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.H0, true);
+        }
+        this.H0 = -1;
+        this.A0 = "";
+        this.B0 = false;
+        this.f4949d0.clear();
+        this.C0 = false;
+        this.D0 = false;
+    }
+
+    public final void a0() {
+        if (this.f4969y0 >= 0) {
+            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.f4969y0, true);
+        }
+        this.f4969y0 = -1;
+        this.f4964t0 = 0;
+        this.f4948c0.clear();
+        this.f4966v0 = false;
+        this.f4967w0 = false;
+    }
+
+    public final void b0() {
+        String str = MessagesController.getInstance(this.currentAccount).config.musicSearchUsername.get();
+        if (!TextUtils.isEmpty(str)) {
+            String str2 = this.I0;
+            String str3 = this.f4963s0;
+            String str4 = "";
+            if (str3 == null) {
+                str3 = "";
+            }
+            if (!TextUtils.equals(str2, str3)) {
+                Z();
+            }
+            if (!this.C0 && !TextUtils.isEmpty(this.f4963s0) && this.f4963s0.length() >= 3) {
+                ArrayList arrayList = this.f4949d0;
+                if (arrayList.isEmpty() || this.B0) {
+                    if (this.E0 == null) {
+                        this.E0 = MessagesController.getInstance(this.currentAccount).getUser(str);
+                    }
+                    if (this.E0 == null) {
+                        if (!this.F0 && !this.G0) {
+                            this.F0 = true;
+                            MessagesController.getInstance(this.currentAccount).getUserNameResolver().resolve(str, new ai.y1(this, 14));
+                            return;
+                        }
+                        return;
+                    }
+                    this.C0 = true;
+                    TLRPC.User currentUser = UserConfig.getInstance(this.currentAccount).getCurrentUser();
+                    TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
+                    tL_messages_getInlineBotResults.bot = MessagesController.getInstance(this.currentAccount).getInputUser(this.E0);
+                    tL_messages_getInlineBotResults.peer = MessagesController.getInputPeer(currentUser);
+                    tL_messages_getInlineBotResults.offset = (arrayList.isEmpty() || (r0 = this.A0) == null) ? "" : "";
+                    String str5 = this.f4963s0;
+                    if (str5 != null) {
+                        str4 = str5;
+                    }
+                    this.I0 = str4;
+                    tL_messages_getInlineBotResults.query = str4;
+                    this.H0 = ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_getInlineBotResults, new Object(), new u7(this, 1));
+                    this.f4961q0.N(true);
+                }
+            }
+        }
+    }
+
+    public final void c0() {
+        if (!this.Z) {
+            String str = this.f4968x0;
+            String str2 = this.f4963s0;
+            String str3 = "";
+            if (str2 == null) {
+                str2 = "";
+            }
+            if (!TextUtils.equals(str, str2)) {
+                a0();
+            }
+            if (!this.f4966v0) {
+                ArrayList arrayList = this.f4948c0;
+                if (!arrayList.isEmpty() && !this.f4965u0) {
+                    return;
+                }
+                this.f4966v0 = true;
+                TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal = new TLRPC.TL_messages_searchGlobal();
+                tL_messages_searchGlobal.filter = new TLRPC.TL_inputMessagesFilterMusic();
+                String str4 = this.f4963s0;
+                if (str4 != null) {
+                    str3 = str4;
+                }
+                this.f4968x0 = str3;
+                tL_messages_searchGlobal.f20149q = str3;
+                tL_messages_searchGlobal.limit = 20;
+                if (arrayList.size() > 0) {
+                    MessageObject messageObject = (MessageObject) hg.c.g(1, arrayList);
+                    tL_messages_searchGlobal.offset_id = messageObject.getId();
+                    tL_messages_searchGlobal.offset_rate = this.f4964t0;
+                    tL_messages_searchGlobal.offset_peer = MessagesController.getInstance(this.currentAccount).getInputPeer(MessageObject.getPeerId(messageObject.messageOwner.peer_id));
+                } else {
+                    tL_messages_searchGlobal.offset_rate = 0;
+                    tL_messages_searchGlobal.offset_id = 0;
+                    tL_messages_searchGlobal.offset_peer = new TLRPC.TL_inputPeerEmpty();
+                }
+                this.f4969y0 = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_searchGlobal, new ai.o8(this, 4));
+                this.f4961q0.N(true);
+            }
+        }
+    }
+
+    @Override
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.musicListLoaded) {
+            this.f4961q0.N(true);
+        }
+    }
+
+    @Override
+    public final void dismiss() {
+        super.dismiss();
+        if (this.f4962r0 != null && MediaController.getInstance().isPlayingMessage(this.f4962r0)) {
+            MediaController.getInstance().cleanupPlayer(true, true);
+        }
+        this.f4962r0 = null;
+    }
+
+    public final void e0() {
+        float f7 = AndroidUtilities.displaySize.y;
+        boolean z10 = false;
+        int i10 = 0;
+        while (true) {
+            qm0 qm0Var = this.d;
+            if (i10 >= qm0Var.getChildCount()) {
+                break;
+            }
+            View childAt = qm0Var.getChildAt(i10);
+            if (RecyclerView.R(childAt) >= 1 && childAt.getY() < f7) {
+                f7 = childAt.getY();
+            }
+            i10++;
+        }
+        this.f4955j0.setTranslationY(Math.max(org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight, f7));
+        if (f7 <= org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight) {
+            z10 = true;
+        }
+        this.X.a(z10, true);
+    }
+
+    @Override
+    public final int getObserverTag() {
+        return this.Y;
+    }
+
+    @Override
+    public final void n(int i10, float f7, float f10, me.e eVar) {
+        int i11;
+        if (i10 == 0) {
+            xi xiVar = this.f4956k0;
+            xiVar.setAlpha(f7);
+            if (f7 > 0.0f) {
+                i11 = 0;
+            } else {
+                i11 = 4;
+            }
+            xiVar.setVisibility(i11);
+        }
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.musicListLoaded);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.musicListLoaded);
+    }
+
+    @Override
+    public final void onSuccessDownload(String str) {
+        MessageObject messageObject = this.f4952g0;
+        if (messageObject != null && TextUtils.equals(messageObject.getFileName(), str)) {
+            this.f4951f0.run(this.f4952g0);
+            d8 d8Var = this.f4946a0;
+            if (d8Var != null) {
+                d8Var.dismiss();
+            }
+            dismiss();
+        }
+    }
+
+    @Override
+    public final pm0 x(qm0 qm0Var) {
+        c71 c71Var = new c71(qm0Var, getContext(), this.currentAccount, 0, false, new u7(this, 0), this.resourcesProvider);
+        this.f4961q0 = c71Var;
+        c71Var.f25280r = false;
+        return c71Var;
+    }
+
+    @Override
+    public final void A(float f7, int i10) {
+    }
+
+    @Override
+    public final void onFailedDownload(String str, boolean z10) {
+    }
+
+    @Override
+    public final void onProgressDownload(String str, long j3, long j10) {
+    }
+
+    @Override
+    public final void onProgressUpload(String str, long j3, long j10, boolean z10) {
     }
 }

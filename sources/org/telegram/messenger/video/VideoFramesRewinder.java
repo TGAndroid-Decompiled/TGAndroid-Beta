@@ -29,7 +29,7 @@ public class VideoFramesRewinder {
     private View parentView;
     private long prepareToMs;
     private float prepareWithSpeed;
-    int f19443w;
+    int f19449w;
     private final Paint paint = new Paint(2);
     private final int[] meta = new int[8];
     private final ArrayList<Frame> freeFrames = new ArrayList<>();
@@ -94,7 +94,7 @@ public class VideoFramesRewinder {
             }
         }
         while (!arrayList.isEmpty() && this.frames.size() < this.maxFramesCount) {
-            this.frames.add((Frame) hg.c.w(1, arrayList));
+            this.frames.add((Frame) hg.c.x(1, arrayList));
         }
         if (arrayList.size() > 0) {
             FileLog.d("[VideoFramesRewinder] prepared " + arrayList.size() + " more frames than I could fit :(");
@@ -107,14 +107,16 @@ public class VideoFramesRewinder {
 
     public void lambda$new$2() {
         Frame frame;
+        char c10;
         int i10;
         int i11;
         ArrayList arrayList = new ArrayList();
         long currentTimeMillis = System.currentTimeMillis();
         int[] iArr = this.meta;
+        char c11 = 4;
         int i12 = iArr[4];
         int i13 = 0;
-        int min = Math.min(this.f19443w / 4, iArr[0]);
+        int min = Math.min(this.f19449w / 4, iArr[0]);
         int min2 = Math.min(this.h / 4, this.meta[1]);
         int i14 = this.maxFrameSide;
         if (min > i14 || min2 > i14) {
@@ -123,13 +125,18 @@ public class VideoFramesRewinder {
             min2 = (int) (min2 * max);
         }
         this.mDecoder.g(this.prepareToMs - (this.prepareWithSpeed * 350.0f), false);
+        char c12 = 3;
         long j3 = this.meta[3];
         int i15 = 0;
         int i16 = 0;
-        for (char c10 = 3; this.meta[c10] <= this.until.get() && i15 < this.maxFramesCount && !this.stop.get(); c10 = 3) {
+        while (true) {
+            char c13 = c11;
+            if (this.meta[c12] > this.until.get() || i15 >= this.maxFramesCount || this.stop.get()) {
+                break;
+            }
             float f7 = 1000.0f / i12;
+            char c14 = c12;
             long j10 = j3;
-            char c11 = 3;
             long j11 = (this.prepareWithSpeed * f7) + ((float) j3);
             if (!this.freeFrames.isEmpty()) {
                 frame = this.freeFrames.remove(i13);
@@ -146,33 +153,36 @@ public class VideoFramesRewinder {
                 }
             }
             while (true) {
+                c10 = c14;
                 i10 = i12;
                 i11 = i15;
-                if (this.meta[c11] + ((long) Math.ceil(f7)) >= j11) {
+                if (this.meta[c14] + ((long) Math.ceil(f7)) >= j11) {
                     break;
                 }
-                this.mDecoder.c(null, true, 0.0f, this.meta[4], false);
+                this.mDecoder.c(null, true, 0.0f, this.meta[c13], false);
                 i12 = i10;
+                c14 = c10;
                 i15 = i11;
-                c11 = 3;
             }
-            if (this.mDecoder.c(frame.bitmap, true, 0.0f, this.meta[4], false) == 0) {
+            if (this.mDecoder.c(frame.bitmap, true, 0.0f, this.meta[c13], false) == 0) {
                 i16++;
                 if (i16 > 6) {
                     break;
                 }
                 j3 = j10;
             } else {
-                long j12 = this.meta[3];
+                long j12 = this.meta[c10];
                 frame.position = j12;
                 arrayList.add(frame);
                 j3 = j12;
             }
             i15 = i11 + 1;
+            c11 = c13;
             i12 = i10;
+            c12 = c10;
             i13 = 0;
         }
-        AndroidUtilities.runOnUIThread(new h0(this, arrayList, currentTimeMillis, 9));
+        AndroidUtilities.runOnUIThread(new h0(this, arrayList, currentTimeMillis, 10));
     }
 
     private void prepare(long j3) {
@@ -194,7 +204,7 @@ public class VideoFramesRewinder {
     }
 
     public void draw(Canvas canvas, int i10, int i11) {
-        this.f19443w = i10;
+        this.f19449w = i10;
         this.h = i11;
         if (this.mDecoder != null && this.currentFrame != null) {
             canvas.save();

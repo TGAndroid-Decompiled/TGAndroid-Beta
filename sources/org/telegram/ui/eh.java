@@ -1,28 +1,21 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import java.util.regex.Pattern;
-public final class eh implements DialogInterface.OnCancelListener {
-    public final int f36053a;
-    public final boolean[] f36054b;
+import org.telegram.messenger.Utilities;
+public final class eh implements Utilities.Callback {
+    public final int f37254a;
+    public final long f37255b;
+    public final long f37256c;
+    public final Object d;
 
-    public eh(int i10, boolean[] zArr) {
-        this.f36053a = i10;
-        this.f36054b = zArr;
+    public eh(Object obj, long j3, long j10, int i10) {
+        this.f37254a = i10;
+        this.d = obj;
+        this.f37255b = j3;
+        this.f37256c = j10;
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        int i10 = this.f36053a;
-        boolean[] zArr = this.f36054b;
-        switch (i10) {
-            case 0:
-                zArr[0] = true;
-                return;
-            default:
-                Pattern pattern = LaunchActivity.B1;
-                zArr[0] = true;
-                return;
-        }
+    public final void run(java.lang.Object r22) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.eh.run(java.lang.Object):void");
     }
 }

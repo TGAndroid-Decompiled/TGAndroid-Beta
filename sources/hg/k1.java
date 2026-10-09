@@ -13,19 +13,20 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.WebFile;
+import org.telegram.messenger.bi;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.u90;
-import w7.z5;
+import org.telegram.ui.Components.ia0;
+import w7.x5;
 public final class k1 extends LinearLayout {
-    public final d6 f11246a;
-    public final u90 f11247b;
-    public final ImageReceiver f11248c;
+    public final e6 f11298a;
+    public final ia0 f11299b;
+    public final ImageReceiver f11300c;
     public final TextView d;
-    public boolean f11249e;
+    public boolean f11301e;
 
-    public k1(Context context, d6 d6Var) {
+    public k1(Context context, e6 e6Var) {
         super(context);
         int i10;
         int i11;
@@ -33,16 +34,16 @@ public final class k1 extends LinearLayout {
         int i13;
         int i14;
         ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f11248c = imageReceiver;
-        this.f11246a = d6Var;
+        this.f11300c = imageReceiver;
+        this.f11298a = e6Var;
         setOrientation(1);
-        u90 u90Var = new u90();
-        this.f11247b = u90Var;
+        ia0 ia0Var = new ia0();
+        this.f11299b = ia0Var;
         int i15 = i6.G6;
-        int v02 = i6.v0(i15, d6Var);
-        u90Var.f(i6.l1(0.05f, v02), i6.l1(0.15f, v02), i6.l1(0.1f, v02), i6.l1(0.3f, v02));
-        u90Var.j(4.0f);
-        u90Var.f31405w.setStrokeWidth(AndroidUtilities.dp(1.0f));
+        int w02 = i6.w0(i15, e6Var);
+        ia0Var.g(i6.m1(0.05f, w02), i6.m1(0.15f, w02), i6.m1(0.1f, w02), i6.m1(0.3f, w02));
+        ia0Var.k(4.0f);
+        ia0Var.f27340x.setStrokeWidth(AndroidUtilities.dp(1.0f));
         imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
         TextView textView = new TextView(context);
         this.d = textView;
@@ -52,7 +53,7 @@ public final class k1 extends LinearLayout {
             i10 = 3;
         }
         textView.setGravity(i10);
-        textView.setTextColor(i6.v0(i15, d6Var));
+        textView.setTextColor(i6.w0(i15, e6Var));
         textView.setTextSize(1, 16.0f);
         boolean z10 = LocaleController.isRTL;
         if (z10) {
@@ -65,12 +66,11 @@ public final class k1 extends LinearLayout {
         } else {
             i12 = 70;
         }
-        addView(textView, z5.t(-1, -2, 55, i11, 10, i12, 4));
+        addView(textView, x5.t(-1, -2, 55, i11, 10, i12, 4));
         TextView textView2 = new TextView(context);
         textView2.setGravity(LocaleController.isRTL ? 5 : 3);
-        textView2.setTextColor(i6.v0(i6.f21233z6, d6Var));
-        textView2.setText(LocaleController.getString(R.string.BusinessProfileLocation));
-        textView2.setTextSize(1, 13.0f);
+        textView2.setTextColor(i6.w0(i6.f21199z6, e6Var));
+        bi.j(13.0f, R.string.BusinessProfileLocation, 1, textView2);
         boolean z11 = LocaleController.isRTL;
         if (z11) {
             i13 = 70;
@@ -82,7 +82,7 @@ public final class k1 extends LinearLayout {
         } else {
             i14 = 70;
         }
-        addView(textView2, z5.t(-1, -2, 55, i13, 0, i14, 8));
+        addView(textView2, x5.t(-1, -2, 55, i13, 0, i14, 8));
         setWillNotDraw(false);
     }
 
@@ -90,12 +90,12 @@ public final class k1 extends LinearLayout {
         if (tL_businessLocation != null) {
             this.d.setText(tL_businessLocation.address);
             if (tL_businessLocation.geo_point != null) {
-                this.f11248c.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(tL_businessLocation.geo_point, AndroidUtilities.dp(44.0f), AndroidUtilities.dp(44.0f), 15, Math.min(2, (int) Math.ceil(AndroidUtilities.density)))), "44_44", this.f11247b, 0L, (String) null, (Object) null, 0);
+                this.f11300c.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(tL_businessLocation.geo_point, AndroidUtilities.dp(44.0f), AndroidUtilities.dp(44.0f), 15, Math.min(2, (int) Math.ceil(AndroidUtilities.density)))), "44_44", this.f11299b, 0L, (String) null, (Object) null, 0);
             } else {
-                this.f11248c.setImageBitmap((Drawable) null);
+                this.f11300c.setImageBitmap((Drawable) null);
             }
         }
-        this.f11249e = z10;
+        this.f11301e = z10;
         setPadding(0, 0, 0, z10 ? 1 : 0);
         invalidate();
     }
@@ -110,16 +110,16 @@ public final class k1 extends LinearLayout {
             width = getWidth() - AndroidUtilities.dp(60.0f);
         }
         float f10 = width;
-        ImageReceiver imageReceiver = this.f11248c;
+        ImageReceiver imageReceiver = this.f11300c;
         imageReceiver.setImageCoords(f10, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(44.0f), AndroidUtilities.dp(44.0f));
         imageReceiver.draw(canvas);
         super.onDraw(canvas);
-        if (this.f11249e) {
-            Paint T0 = i6.T0("paintDivider", this.f11246a);
-            if (T0 == null) {
-                T0 = i6.f20950k0;
+        if (this.f11301e) {
+            Paint U0 = i6.U0("paintDivider", this.f11298a);
+            if (U0 == null) {
+                U0 = i6.f20919k0;
             }
-            Paint paint = T0;
+            Paint paint = U0;
             float f11 = 21.33f;
             if (LocaleController.isRTL) {
                 f7 = 0.0f;
@@ -143,7 +143,7 @@ public final class k1 extends LinearLayout {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f11247b && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f11299b && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

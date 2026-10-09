@@ -1,16 +1,20 @@
 package ed;
+public final class e extends k {
+    public final StringBuilder f8870c;
 
-import java.util.regex.Pattern;
-public final class e extends h {
-    public static final Pattern f8839e = i.f8849n;
-
-    @Override
-    public final bf.p b() {
-        throw new UnsupportedOperationException("Method not decompiled: ed.e.b():bf.p");
+    public e() {
+        super(4, 0);
+        this.f8870c = new StringBuilder();
     }
 
     @Override
-    public final char d() {
-        return ']';
+    public final k b() {
+        k.c(this.f8870c);
+        return this;
+    }
+
+    @Override
+    public final String toString() {
+        return "<!--" + this.f8870c.toString() + "-->";
     }
 }

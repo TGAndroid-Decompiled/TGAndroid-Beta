@@ -1,3 +1,4 @@
 package org.telegram.ui.Components;
-public interface ph0 {
+public final class ph0 {
+    public float f29865a;
 }

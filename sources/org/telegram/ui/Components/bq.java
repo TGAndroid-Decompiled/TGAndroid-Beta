@@ -1,83 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
-import androidx.core.widget.NestedScrollView;
-import org.telegram.messenger.AndroidUtilities;
-public final class bq extends NestedScrollView {
-    public boolean W;
-    public final fq f25045a0;
+public final class bq {
+    public final org.telegram.ui.ActionBar.c4 f25082a;
+    public Drawable f25083b;
+    public int f25084c;
+    public boolean d;
+    public Bitmap f25085e;
 
-    public bq(fq fqVar, Context context) {
-        super(context);
-        this.f25045a0 = fqVar;
+    public bq(org.telegram.ui.ActionBar.c4 c4Var) {
+        this.f25082a = c4Var;
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        int i10;
-        int i11;
-        fq fqVar = this.f25045a0;
-        int i12 = fqVar.f26559f;
-        i10 = ((org.telegram.ui.ActionBar.f3) fqVar).backgroundPaddingTop;
-        int scrollY = (int) ((getScrollY() + (i12 - i10)) - getTranslationY());
-        Drawable drawable = fqVar.f26556b;
-        int measuredWidth = getMeasuredWidth();
-        i11 = ((org.telegram.ui.ActionBar.f3) fqVar).backgroundPaddingTop;
-        drawable.setBounds(0, scrollY, measuredWidth, AndroidUtilities.dp(19.0f) + i11 + fqVar.f26557c.getMeasuredHeight() + scrollY);
-        drawable.draw(canvas);
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            fq fqVar = this.f25045a0;
-            if (fqVar.f26559f != 0 && motionEvent.getY() < fqVar.f26559f) {
-                fqVar.dismiss();
-                return true;
-            }
+    public final String a() {
+        org.telegram.ui.ActionBar.c4 c4Var = this.f25082a;
+        if (c4Var != null && !c4Var.f20505a) {
+            return c4Var.f20508e;
         }
-        return super.onInterceptTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        fq.m(this.f25045a0);
-    }
-
-    @Override
-    public final void onMeasure(int r9, int r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.bq.onMeasure(int, int):void");
-    }
-
-    @Override
-    public final void onScrollChanged(int i10, int i11, int i12, int i13) {
-        super.onScrollChanged(i10, i11, i12, i13);
-        fq.m(this.f25045a0);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f25045a0.isDismissed() && super.onTouchEvent(motionEvent)) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.W) {
-            return;
-        }
-        super.requestLayout();
-    }
-
-    @Override
-    public final void setTranslationY(float f7) {
-        super.setTranslationY(f7);
-        fq.m(this.f25045a0);
+        return null;
     }
 }

@@ -1,28 +1,25 @@
 package org.telegram.messenger;
 
-import android.content.DialogInterface;
-public final class va implements DialogInterface.OnCancelListener {
-    public final int f19410a;
-    public final BaseController f19411b;
-    public final int f19412c;
+import org.telegram.tgnet.TLRPC;
+public final class va implements Runnable {
+    public final int f19415a;
+    public final MessagesController f19416b;
+    public final TLRPC.TL_help_peerColors f19417c;
 
-    public va(BaseController baseController, int i10, int i11) {
-        this.f19410a = i11;
-        this.f19411b = baseController;
-        this.f19412c = i10;
+    public va(MessagesController messagesController, TLRPC.TL_help_peerColors tL_help_peerColors, int i10) {
+        this.f19415a = i10;
+        this.f19416b = messagesController;
+        this.f19417c = tL_help_peerColors;
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f19410a) {
+    public final void run() {
+        switch (this.f19415a) {
             case 0:
-                ((MessagesController) this.f19411b).lambda$convertToGigaGroup$271(this.f19412c, dialogInterface);
-                return;
-            case 1:
-                ((MessagesController) this.f19411b).lambda$convertToMegaGroup$266(this.f19412c, dialogInterface);
+                this.f19416b.lambda$checkPeerColors$493(this.f19417c);
                 return;
             default:
-                ((SecretChatHelper) this.f19411b).lambda$startSecretChat$31(this.f19412c, dialogInterface);
+                this.f19416b.lambda$checkPeerColors$495(this.f19417c);
                 return;
         }
     }

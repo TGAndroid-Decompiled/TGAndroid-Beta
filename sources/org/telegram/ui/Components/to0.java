@@ -1,6 +1,13 @@
 package org.telegram.ui.Components;
-public interface to0 {
-    void b(float f7);
+public final class to0 extends s4.j {
+    public final org.telegram.ui.dy F;
 
-    void d(float f7);
+    public to0(org.telegram.ui.dy dyVar) {
+        this.F = dyVar;
+    }
+
+    @Override
+    public final void P(s4.d1 d1Var) {
+        this.F.invalidate();
+    }
 }

@@ -1,87 +1,71 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-public final class le extends FrameLayout {
-    public final org.telegram.ui.ActionBar.d6 f38290a;
-    public final org.telegram.ui.Components.y5 f38291b;
-    public final TextView f38292c;
-    public final TextView d;
-    public final DecimalFormat f38293e;
-    public boolean f38294f;
+import org.telegram.messenger.R;
+import org.telegram.messenger.support.LongSparseIntArray;
+public final class le implements Runnable {
+    public final int f39545a;
+    public final zn f39546b;
+    public final long f39547c;
 
-    public le(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context);
-        this.f38290a = d6Var;
-        LinearLayout e7 = org.telegram.messenger.bi.e(context, 1);
-        addView(e7, w7.z5.d(-1, -2.0f, 119, 17.0f, 9.0f, 130.0f, 9.0f));
-        TextView textView = new TextView(context);
-        this.f38292c = textView;
-        textView.setTextSize(1, 16.0f);
-        textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.G6, d6Var));
-        TextView h = com.google.android.gms.internal.vision.e2.h(e7, textView, w7.z5.n(-1, -2), context);
-        this.d = h;
-        h.setTextSize(1, 13.0f);
-        h.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21214y6, d6Var));
-        e7.addView(h, w7.z5.k(0.0f, 4.0f, 0.0f, 0.0f, -1, -2));
-        org.telegram.ui.Components.y5 y5Var = new org.telegram.ui.Components.y5(context);
-        this.f38291b = y5Var;
-        y5Var.setTypeface(AndroidUtilities.bold());
-        y5Var.setTextSize(1, 13.0f);
-        addView(y5Var, w7.z5.d(-2, -2.0f, 21, 0.0f, 0.0f, 18.0f, 0.0f));
-        DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(Locale.US);
-        decimalFormatSymbols.setDecimalSeparator('.');
-        DecimalFormat decimalFormat = new DecimalFormat("#.##", decimalFormatSymbols);
-        this.f38293e = decimalFormat;
-        decimalFormat.setMinimumFractionDigits(2);
-        decimalFormat.setMaximumFractionDigits(12);
-        decimalFormat.setGroupingUsed(false);
+    public le(long j3, zn znVar) {
+        this.f39545a = 7;
+        this.f39547c = j3;
+        this.f39546b = znVar;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        Paint paint;
-        float dp;
-        int i10;
-        super.onDraw(canvas);
-        if (this.f38294f) {
-            org.telegram.ui.ActionBar.d6 d6Var = this.f38290a;
-            if (d6Var != null) {
-                paint = d6Var.H("paintDivider");
-            } else {
-                paint = org.telegram.ui.ActionBar.i6.f20950k0;
-            }
-            Paint paint2 = paint;
-            if (paint2 != null) {
-                if (LocaleController.isRTL) {
-                    dp = 0.0f;
-                } else {
-                    dp = AndroidUtilities.dp(17.0f);
+    public final void run() {
+        switch (this.f39545a) {
+            case 0:
+                r0.getMediaDataController().loadBotInfo(this.f39547c, r1, true, this.f39546b.classGuid);
+                return;
+            case 1:
+                this.f39546b.getMessagesController().loadFullChat(this.f39547c, 0, true);
+                return;
+            case 2:
+                zn znVar = this.f39546b;
+                LongSparseIntArray longSparseIntArray = znVar.M5;
+                long j3 = this.f39547c;
+                longSparseIntArray.put(j3, 0);
+                org.telegram.ui.Components.c41 c41Var = znVar.R1;
+                if (c41Var != null) {
+                    c41Var.setAllTopicsHidden(false);
                 }
-                float measuredHeight = getMeasuredHeight() - 1;
-                int measuredWidth = getMeasuredWidth();
-                if (LocaleController.isRTL) {
-                    i10 = AndroidUtilities.dp(17.0f);
-                } else {
-                    i10 = 0;
+                if (j3 == znVar.f44742d4) {
+                    znVar.A0.O(false);
+                    return;
                 }
-                canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, paint2);
-            }
+                return;
+            case 3:
+                zn znVar2 = this.f39546b;
+                znVar2.getClass();
+                znVar2.presentFragment(zn.W9(this.f39547c));
+                return;
+            case 4:
+                zn znVar3 = this.f39546b;
+                znVar3.getClass();
+                znVar3.presentFragment(ProfileActivity.m4(this.f39547c));
+                return;
+            case 5:
+                zn znVar4 = this.f39546b;
+                org.telegram.ui.Components.tc v = org.telegram.ui.Components.ad.v(znVar4.getParentActivity(), znVar4, null, 1, this.f39547c, 1, znVar4.getThemedColor(org.telegram.ui.ActionBar.i6.Fi), znVar4.getThemedColor(org.telegram.ui.ActionBar.i6.Hi), 5000, true, null);
+                v.f31131k = true;
+                v.k(true);
+                return;
+            case 6:
+                org.telegram.ui.Components.ad.a0(this.f39546b).M(LocaleController.getString(R.string.StarsGiveawaySentPopup), AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsGiveawaySentPopupInfo", (int) this.f39547c)), R.raw.stars_topup).k(true);
+                return;
+            default:
+                this.f39546b.presentFragment(new ProfileActivity(sc.v.f(this.f39547c, "user_id"), null));
+                return;
         }
     }
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public le(zn znVar, long j3, int i10) {
+        this.f39545a = i10;
+        this.f39546b = znVar;
+        this.f39547c = j3;
     }
 }

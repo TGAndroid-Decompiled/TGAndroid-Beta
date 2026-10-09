@@ -1,26 +1,36 @@
 package org.telegram.messenger;
 
+import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class e4 implements Utilities.Callback2 {
-    public final int f17724a;
-    public final Utilities.Callback f17725b;
+import org.telegram.tgnet.tl.TL_payments;
+public final class e4 implements Utilities.Callback {
+    public final int f17698a = 0;
+    public final long f17699b;
+    public final BaseController f17700c;
+    public final Object d;
 
-    public e4(int i10, Utilities.Callback callback) {
-        this.f17724a = i10;
-        this.f17725b = callback;
+    public e4(GiftAuctionController giftAuctionController, long j3, TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState) {
+        this.f17700c = giftAuctionController;
+        this.f17699b = j3;
+        this.d = tL_StarGiftAuctionState;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f17724a) {
+    public final void run(Object obj) {
+        switch (this.f17698a) {
             case 0:
-                GiftAuctionController.lambda$requestAuctionUpgrades$5(this.f17725b, (TL_stars.starGiftUpgradeAttributes) obj, (TLRPC.TL_error) obj2);
+                ((GiftAuctionController) this.f17700c).lambda$subscribeToGiftAuctionStateInternal$0(this.f17699b, (TL_payments.TL_StarGiftAuctionState) this.d, (ArrayList) obj);
                 return;
             default:
-                MediaDataController.lambda$searchStickerSets$250(this.f17725b, (TLRPC.messages_FoundStickerSets) obj, (TLRPC.TL_error) obj2);
+                ((TranslateController) this.f17700c).lambda$checkTranslation$4((MessageObject) this.d, this.f17699b, (TLRPC.TL_textWithEntities) obj);
                 return;
         }
+    }
+
+    public e4(TranslateController translateController, MessageObject messageObject, long j3) {
+        this.f17700c = translateController;
+        this.d = messageObject;
+        this.f17699b = j3;
     }
 }

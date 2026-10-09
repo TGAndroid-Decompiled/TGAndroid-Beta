@@ -2,52 +2,52 @@ package org.telegram.ui;
 
 import org.telegram.messenger.Intro;
 public final class m2 implements z4.e {
-    public final int f38448a;
-    public final Object f38449b;
+    public final int f39742a;
+    public final Object f39743b;
 
     public m2(Object obj, int i10) {
-        this.f38448a = i10;
-        this.f38449b = obj;
+        this.f39742a = i10;
+        this.f39743b = obj;
     }
 
     @Override
     public final void a(int i10) {
-        switch (this.f38448a) {
+        switch (this.f39742a) {
             case 0:
-                q2 q2Var = (q2) this.f38449b;
+                q2 q2Var = (q2) this.f39743b;
                 q2Var.v = i10;
-                q2Var.f39669c.invalidate();
+                q2Var.f40956c.invalidate();
                 return;
             case 1:
-                ((c80) this.f38449b).H = i10;
+                ((d80) this.f39743b).H = i10;
                 return;
             default:
-                ((pd1) this.f38449b).f39488a0.invalidate();
+                ((xd1) this.f39743b).f43936a0.invalidate();
                 return;
         }
     }
 
     @Override
     public final void b(float f7, int i10, int i11) {
-        switch (this.f38448a) {
+        switch (this.f39742a) {
             case 0:
-                q2 q2Var = (q2) this.f38449b;
-                float measuredWidth = q2Var.f39667a.getMeasuredWidth();
+                q2 q2Var = (q2) this.f39743b;
+                float measuredWidth = q2Var.f40954a.getMeasuredWidth();
                 if (measuredWidth != 0.0f) {
-                    q2Var.f39674s = com.google.android.gms.internal.vision.e2.v(q2Var.v, measuredWidth, (i10 * measuredWidth) + i11, measuredWidth);
-                    q2Var.f39669c.invalidate();
+                    q2Var.f40961s = com.google.android.gms.internal.vision.e2.u(q2Var.v, measuredWidth, (i10 * measuredWidth) + i11, measuredWidth);
+                    q2Var.f40956c.invalidate();
                     return;
                 }
                 return;
             case 1:
-                c80 c80Var = (c80) this.f38449b;
-                org.telegram.ui.Components.ta taVar = c80Var.f35351e;
-                taVar.f31093b = f7;
-                taVar.f31094c = i10;
-                taVar.invalidate();
-                float measuredWidth2 = c80Var.d.getMeasuredWidth();
+                d80 d80Var = (d80) this.f39743b;
+                org.telegram.ui.Components.va vaVar = d80Var.f36892e;
+                vaVar.f31722b = f7;
+                vaVar.f31723c = i10;
+                vaVar.invalidate();
+                float measuredWidth2 = d80Var.d.getMeasuredWidth();
                 if (measuredWidth2 != 0.0f) {
-                    Intro.setScrollOffset((((i10 * measuredWidth2) + i11) - (c80Var.H * measuredWidth2)) / measuredWidth2);
+                    Intro.setScrollOffset((((i10 * measuredWidth2) + i11) - (d80Var.H * measuredWidth2)) / measuredWidth2);
                     return;
                 }
                 return;
@@ -58,22 +58,22 @@ public final class m2 implements z4.e {
 
     @Override
     public final void c(int i10) {
-        switch (this.f38448a) {
+        switch (this.f39742a) {
             case 0:
                 return;
             case 1:
-                c80 c80Var = (c80) this.f38449b;
+                d80 d80Var = (d80) this.f39743b;
                 if (i10 == 1) {
-                    c80Var.K = true;
-                    c80Var.d.getCurrentItem();
-                    c80Var.d.getMeasuredWidth();
+                    d80Var.K = true;
+                    d80Var.d.getCurrentItem();
+                    d80Var.d.getMeasuredWidth();
                     return;
                 } else if (i10 == 0 || i10 == 2) {
-                    if (c80Var.K) {
-                        c80Var.K = false;
+                    if (d80Var.K) {
+                        d80Var.K = false;
                     }
-                    if (c80Var.f35356w != c80Var.d.getCurrentItem()) {
-                        c80Var.f35356w = c80Var.d.getCurrentItem();
+                    if (d80Var.f36897w != d80Var.d.getCurrentItem()) {
+                        d80Var.f36897w = d80Var.d.getCurrentItem();
                         return;
                     }
                     return;

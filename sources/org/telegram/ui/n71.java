@@ -1,104 +1,76 @@
 package org.telegram.ui;
 
-import android.view.View;
-import java.util.HashMap;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-public final class n71 extends org.telegram.ui.Components.cb implements NotificationCenter.NotificationCenterDelegate {
-    public final org.telegram.ui.Components.qz X;
-    public final ci.d Y;
-    public final ai.d9 Z;
-    public final HashMap f38824a0;
-    public final int f38825b0;
-    public int f38826c0;
-    public org.telegram.ui.Components.w61 f38827d0;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class n71 implements TextWatcher {
+    public final nz0 f40094a = new nz0(this, 17);
+    public final u71 f40095b;
 
-    public n71(org.telegram.ui.ActionBar.n2 r17, long r18, int r20, org.telegram.ui.Components.uc r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.n71.<init>(org.telegram.ui.ActionBar.n2, long, int, org.telegram.ui.Components.uc):void");
+    public n71(u71 u71Var) {
+        this.f40095b = u71Var;
     }
 
-    public final void N() {
-        int abs;
-        org.telegram.ui.Components.qz qzVar = this.X;
-        int L0 = qzVar.L0();
-        if (L0 == -1) {
-            abs = 0;
+    public final void a() {
+        boolean z10;
+        boolean z11;
+        TLRPC.TL_channelParticipantsSearch tL_channelParticipantsSearch = new TLRPC.TL_channelParticipantsSearch();
+        u71 u71Var = this.f40095b;
+        String obj = u71Var.f42352c0.getText().toString();
+        tL_channelParticipantsSearch.f20037q = obj;
+        t71 t71Var = u71Var.f42356g0;
+        TLRPC.ChannelParticipantsFilter channelParticipantsFilter = t71Var.f41895c;
+        if (channelParticipantsFilter instanceof TLRPC.TL_channelParticipantsSearch) {
+            z10 = !TextUtils.equals(channelParticipantsFilter.f20037q, obj);
+            z11 = false;
         } else {
-            abs = Math.abs(qzVar.N0() - L0) + 1;
+            z10 = true;
+            z11 = true;
         }
-        ai.d9 d9Var = this.Z;
-        if (d9Var != null) {
-            int i10 = L0 + abs;
-            int i11 = d9Var.i();
-            int i12 = this.f38825b0;
-            if (i10 > i11 - i12) {
-                d9Var.p(Math.min(100, Math.max(1, i12 / 2) * i12 * i12), false);
-            }
-        }
-    }
-
-    public final boolean O(int i10, View view) {
-        org.telegram.ui.Components.h61 G;
-        org.telegram.ui.Components.w61 w61Var = this.f38827d0;
-        if (w61Var == null || i10 == 0 || (G = w61Var.G(i10 - 1)) == null) {
-            return false;
-        }
-        Object obj = G.G;
-        if (obj instanceof MessageObject) {
-            MessageObject messageObject = (MessageObject) obj;
-            int id2 = messageObject.getId();
-            Integer valueOf = Integer.valueOf(id2);
-            HashMap hashMap = this.f38824a0;
-            if (hashMap.containsKey(valueOf)) {
-                hashMap.remove(Integer.valueOf(id2));
-                G.f27087e = false;
-                ((org.telegram.ui.Cells.t7) view).i(false, true);
+        t71Var.f41895c = tL_channelParticipantsSearch;
+        if (z10) {
+            if (z11) {
+                t71Var.f41899r = false;
+                if (t71Var.f41898n >= 0) {
+                    ConnectionsManager.getInstance(t71Var.f41893a).cancelRequest(t71Var.f41898n, true);
+                    t71Var.f41898n = -1;
+                }
+                t71Var.f41897f = false;
+                t71Var.d.clear();
+                t71Var.h = false;
             } else {
-                hashMap.put(Integer.valueOf(id2), messageObject.storyItem);
-                G.f27087e = true;
-                ((org.telegram.ui.Cells.t7) view).i(true, true);
+                t71Var.f41899r = true;
+                t71Var.h = false;
             }
-            ci.d dVar = this.Y;
-            dVar.setEnabled(!hashMap.isEmpty());
-            dVar.b(hashMap.size(), true);
+            t71Var.b();
         }
-        return true;
-    }
-
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.storiesListUpdated && ((ai.d9) objArr[0]) == this.Z) {
-            this.f38827d0.N(false);
-            N();
+        org.telegram.ui.Components.c71 c71Var = u71Var.f42358i0;
+        if (c71Var != null) {
+            c71Var.N(true);
         }
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f38826c0 = this.Z.o();
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesListUpdated);
+    public final void afterTextChanged(Editable editable) {
+        int length = editable.length();
+        nz0 nz0Var = this.f40094a;
+        if (length <= 0) {
+            AndroidUtilities.cancelRunOnUIThread(nz0Var);
+            a();
+            return;
+        }
+        AndroidUtilities.cancelRunOnUIThread(nz0Var);
+        AndroidUtilities.runOnUIThread(nz0Var, 300L);
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.Z.z(this.f38826c0);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.storiesListUpdated);
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 
     @Override
-    public final org.telegram.ui.Components.yl0 v(org.telegram.ui.Components.zl0 zl0Var) {
-        org.telegram.ui.Components.w61 w61Var = new org.telegram.ui.Components.w61(zl0Var, getContext(), this.currentAccount, 0, false, new c5(this, 25), this.resourcesProvider);
-        this.f38827d0 = w61Var;
-        w61Var.f32531r = false;
-        return w61Var;
-    }
-
-    @Override
-    public final CharSequence y() {
-        return LocaleController.getString(R.string.StoriesAlbumMenuAddStories);
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

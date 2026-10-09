@@ -6,69 +6,69 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.kj0;
+import org.telegram.ui.Components.ck0;
 public final class q extends Drawable {
-    public final Paint f5723a;
-    public float f5724b;
-    public float f5725c;
+    public final Paint f5743a;
+    public float f5744b;
+    public float f5745c;
     public long d;
-    public boolean f5726e;
-    public boolean f5727f;
-    public boolean f5728g;
-    public final kj0 h;
-    public final ac f5729i;
-    public final ac f5730j;
+    public boolean f5746e;
+    public boolean f5747f;
+    public boolean f5748g;
+    public final ck0 h;
+    public final bc f5749i;
+    public final bc f5750j;
 
-    public q(ac acVar, ac acVar2) {
-        this.f5730j = acVar;
+    public q(bc bcVar, bc bcVar2) {
+        this.f5750j = bcVar;
         Paint paint = new Paint(1);
-        this.f5723a = paint;
-        this.f5725c = 1.0f;
-        this.f5729i = acVar2;
-        kj0 kj0Var = new kj0(R.raw.chat_audio_record_delete_3, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), false, null);
-        this.h = kj0Var;
-        kj0Var.f28228o0 = true;
+        this.f5743a = paint;
+        this.f5745c = 1.0f;
+        this.f5749i = bcVar2;
+        ck0 ck0Var = new ck0(R.raw.chat_audio_record_delete_3, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), false, null);
+        this.h = ck0Var;
+        ck0Var.f25413o0 = true;
         paint.setColor(-2406842);
-        kj0Var.Z = true;
-        kj0Var.Q(-2406842, "Cup Red");
-        kj0Var.Q(-2406842, "Box");
-        kj0Var.o();
+        ck0Var.Z = true;
+        ck0Var.Q(-2406842, "Cup Red");
+        ck0Var.Q(-2406842, "Box");
+        ck0Var.o();
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        boolean z10 = this.f5728g;
-        kj0 kj0Var = this.h;
+        boolean z10 = this.f5748g;
+        ck0 ck0Var = this.h;
         if (z10) {
-            kj0Var.setAlpha((int) (this.f5724b * 255.0f * this.f5725c));
+            ck0Var.setAlpha((int) (this.f5744b * 255.0f * this.f5745c));
         }
-        Paint paint = this.f5723a;
-        paint.setAlpha((int) (this.f5724b * 255.0f * this.f5725c));
+        Paint paint = this.f5743a;
+        paint.setAlpha((int) (this.f5744b * 255.0f * this.f5745c));
         long currentTimeMillis = System.currentTimeMillis() - this.d;
-        if (!this.f5726e && !this.f5728g) {
-            float f7 = this.f5724b - (((float) currentTimeMillis) / 600.0f);
-            this.f5724b = f7;
+        if (!this.f5746e && !this.f5748g) {
+            float f7 = this.f5744b - (((float) currentTimeMillis) / 600.0f);
+            this.f5744b = f7;
             if (f7 <= 0.0f) {
-                this.f5724b = 0.0f;
-                this.f5726e = true;
+                this.f5744b = 0.0f;
+                this.f5746e = true;
             }
         } else {
-            float f10 = (((float) currentTimeMillis) / 600.0f) + this.f5724b;
-            this.f5724b = f10;
+            float f10 = (((float) currentTimeMillis) / 600.0f) + this.f5744b;
+            this.f5744b = f10;
             if (f10 >= 1.0f) {
-                this.f5724b = 1.0f;
-                this.f5726e = false;
+                this.f5744b = 1.0f;
+                this.f5746e = false;
             }
         }
         this.d = System.currentTimeMillis();
-        kj0Var.setBounds(getBounds());
-        if (this.f5728g) {
-            kj0Var.draw(canvas);
+        ck0Var.setBounds(getBounds());
+        if (this.f5748g) {
+            ck0Var.draw(canvas);
         }
-        if (!this.f5728g || !kj0Var.u()) {
+        if (!this.f5748g || !ck0Var.u()) {
             canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), AndroidUtilities.dp(5.0f), paint);
         }
-        this.f5730j.invalidate();
+        this.f5750j.invalidate();
     }
 
     @Override
@@ -78,7 +78,7 @@ public final class q extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f5725c = i10 / 255.0f;
+        this.f5745c = i10 / 255.0f;
     }
 
     @Override

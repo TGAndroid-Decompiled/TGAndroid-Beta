@@ -1,31 +1,29 @@
 package ci;
 
 import android.view.View;
-import android.widget.TextView;
-public final class f4 implements View.OnLayoutChangeListener {
-    public final int f5072a;
-    public final Object f5073b;
+import android.view.ViewTreeObserver;
+public final class f4 implements ViewTreeObserver.OnGlobalLayoutListener {
+    public final int f5066a;
+    public final Object f5067b;
 
     public f4(Object obj, int i10) {
-        this.f5072a = i10;
-        this.f5073b = obj;
+        this.f5066a = i10;
+        this.f5067b = obj;
     }
 
     @Override
-    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
-        switch (this.f5072a) {
+    public final void onGlobalLayout() {
+        switch (this.f5066a) {
             case 0:
-                ((i4) this.f5073b).d();
-                return;
-            case 1:
-                kg.c cVar = (kg.c) this.f5073b;
-                TextView textView = cVar.f14772c;
-                textView.setPivotX(textView.getMeasuredWidth() * 0.7f);
-                TextView textView2 = cVar.f14771b;
-                textView2.setPivotX(textView2.getMeasuredWidth() * 0.7f);
+                ((h4) this.f5067b).d();
                 return;
             default:
-                ((ki.i) this.f5073b).G();
+                qf.e eVar = (qf.e) this.f5067b;
+                View view = eVar.f46167j;
+                if (view != null) {
+                    eVar.e(view);
+                    return;
+                }
                 return;
         }
     }

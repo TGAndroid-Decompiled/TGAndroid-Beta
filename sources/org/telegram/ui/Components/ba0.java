@@ -1,202 +1,241 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.tl.TL_iv;
-public final class ba0 extends v7.j0 {
-    public int f24917a;
-    public final TL_iv.PageBlock f24918b;
-    public TL_iv.textConcat f24919c = new TL_iv.textConcat();
+import android.graphics.Canvas;
+import android.os.SystemClock;
+import android.text.Layout;
+import android.text.Spanned;
+import android.text.style.CharacterStyle;
+import android.util.Pair;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+public final class ba0 {
+    public View f24954a;
+    public org.telegram.ui.Cells.b1 f24955b;
+    public final ArrayList f24956c = new ArrayList();
+    public int d = 0;
+    public final ArrayList f24957e = new ArrayList();
+    public int f24958f = 0;
 
-    public ba0(TL_iv.PageBlock pageBlock) {
-        this.f24918b = pageBlock;
+    public ba0() {
     }
 
-    public static TL_iv.RichText x(TL_iv.textConcat textconcat) {
-        if (textconcat.texts.isEmpty()) {
-            return new TL_iv.textEmpty();
+    public static ia0 i(Layout layout, CharacterStyle characterStyle, float f7) {
+        if (layout != null && characterStyle != null && (layout.getText() instanceof Spanned)) {
+            Spanned spanned = (Spanned) layout.getText();
+            y90 y90Var = new y90(0);
+            int spanStart = spanned.getSpanStart(characterStyle);
+            int spanEnd = spanned.getSpanEnd(characterStyle);
+            y90Var.d(layout, spanStart, f7);
+            layout.getSelectionPath(spanStart, spanEnd, y90Var);
+            ia0 ia0Var = new ia0();
+            ia0Var.f27341y = y90Var;
+            ia0Var.D = true;
+            ia0Var.k(4.0f);
+            ia0Var.l();
+            return ia0Var;
         }
-        if (textconcat.texts.size() == 1) {
-            return textconcat.texts.get(0);
-        }
-        return textconcat;
+        return null;
     }
 
-    @Override
-    public final void a(bf.b bVar) {
-        int i10 = this.f24917a;
-        if (i10 >= 64) {
-            return;
-        }
-        this.f24917a = i10 + 1;
-        try {
-            v(bVar);
-        } finally {
-            this.f24917a--;
-        }
+    public final void a(fa0 fa0Var, Object obj) {
+        this.f24956c.add(new Pair(fa0Var, obj));
+        this.d++;
+        h(obj, true);
     }
 
-    @Override
-    public final void b(bf.c cVar) {
-        int i10 = this.f24917a;
-        if (i10 >= 64) {
-            return;
-        }
-        this.f24917a = i10 + 1;
-        try {
-            v(cVar);
-        } finally {
-            this.f24917a--;
-        }
+    public final void b(ia0 ia0Var, Object obj) {
+        this.f24957e.add(new Pair(ia0Var, obj));
+        this.f24958f++;
+        h(obj, true);
     }
 
-    @Override
-    public final void c(bf.d dVar) {
-        TL_iv.textFixed textfixed = new TL_iv.textFixed();
-        textfixed.text = ea0.j(dVar.h);
-        w(textfixed);
+    public final void c() {
+        d(true);
     }
 
-    @Override
-    public final void d(bf.e eVar) {
-        if (eVar instanceof ue.a) {
-            TL_iv.textStrike textstrike = new TL_iv.textStrike();
-            textstrike.text = y(eVar);
-            w(textstrike);
-        } else if (eVar instanceof zc.d) {
-            w(ea0.c(((zc.d) eVar).f53216g));
-        } else {
-            v(eVar);
-        }
-    }
-
-    @Override
-    public final void e(bf.g gVar) {
-        TL_iv.textItalic textitalic = new TL_iv.textItalic();
-        textitalic.text = y(gVar);
-        w(textitalic);
-    }
-
-    @Override
-    public final void i(bf.k kVar) {
-        w(y(kVar));
-    }
-
-    @Override
-    public final void k(bf.n nVar) {
-        if (nVar instanceof zc.a) {
-            if (!this.f24919c.texts.isEmpty()) {
-                w(ea0.j("\n"));
+    public final void d(boolean z10) {
+        if (z10) {
+            for (int i10 = 0; i10 < this.d; i10++) {
+                j(i10);
             }
-            w(ea0.c(((zc.a) nVar).f53211g));
-            w(ea0.j("\n"));
-            return;
-        }
-        v(nVar);
-    }
-
-    @Override
-    public final void l(bf.o oVar) {
-        int i10 = this.f24917a;
-        if (i10 >= 64) {
-            return;
-        }
-        this.f24917a = i10 + 1;
-        try {
-            v(oVar);
-        } finally {
-            this.f24917a--;
+        } else if (this.d > 0) {
+            int i11 = 0;
+            while (true) {
+                int i12 = this.d;
+                ArrayList arrayList = this.f24956c;
+                if (i11 < i12) {
+                    ((fa0) ((Pair) arrayList.get(i11)).first).c();
+                    h(((Pair) arrayList.get(i11)).second, false);
+                    i11++;
+                } else {
+                    arrayList.clear();
+                    this.d = 0;
+                    h(null, true);
+                    return;
+                }
+            }
         }
     }
 
-    @Override
-    public final void m(bf.q qVar) {
-        int i10 = this.f24917a;
-        if (i10 >= 64) {
-            return;
-        }
-        this.f24917a = i10 + 1;
-        try {
-            v(qVar);
-        } finally {
-            this.f24917a--;
+    public final void e() {
+        for (int i10 = 0; i10 < this.f24958f; i10++) {
+            m(i10, true);
         }
     }
 
-    @Override
-    public final void n(bf.r rVar) {
-        if (!this.f24919c.texts.isEmpty()) {
-            w(ea0.j("\n\n"));
+    public final boolean f(Canvas canvas) {
+        int i10 = 0;
+        boolean z10 = false;
+        while (i10 < this.f24958f) {
+            ((ia0) ((Pair) this.f24957e.get(i10)).first).draw(canvas);
+            i10++;
+            z10 = true;
         }
-        v(rVar);
-    }
-
-    @Override
-    public final void o(bf.s sVar) {
-        w(ea0.j(sVar.f3836g));
-    }
-
-    @Override
-    public final void q(bf.d dVar) {
-        w(ea0.j(dVar.h));
-    }
-
-    @Override
-    public final void r(bf.g gVar) {
-        w(ea0.j("\n"));
-    }
-
-    @Override
-    public final void s(bf.k kVar) {
-        String str = kVar.h;
-        if (str == null) {
-            str = "";
+        for (int i11 = 0; i11 < this.d; i11++) {
+            if (!((fa0) ((Pair) this.f24956c.get(i11)).first).a(canvas) && !z10) {
+                z10 = false;
+            } else {
+                z10 = true;
+            }
         }
-        String trim = str.trim();
-        if (trim.startsWith("mailto:")) {
-            TL_iv.RichText textemail = new TL_iv.textEmail();
-            textemail.text = y(kVar);
-            textemail.email = trim.substring(7);
-            w(textemail);
-        } else if (trim.startsWith("tel:")) {
-            TL_iv.textPhone textphone = new TL_iv.textPhone();
-            textphone.text = y(kVar);
-            textphone.phone = trim.substring(4);
-            w(textphone);
-        } else {
-            TL_iv.RichText texturl = new TL_iv.textUrl();
-            texturl.text = y(kVar);
-            texturl.url = trim;
-            w(texturl);
+        return z10;
+    }
+
+    public final boolean g(Canvas canvas, Object obj) {
+        boolean z10 = false;
+        for (int i10 = 0; i10 < this.f24958f; i10++) {
+            ArrayList arrayList = this.f24957e;
+            if (((Pair) arrayList.get(i10)).second == obj) {
+                ((ia0) ((Pair) arrayList.get(i10)).first).draw(canvas);
+                z10 = true;
+            }
+        }
+        for (int i11 = 0; i11 < this.d; i11++) {
+            ArrayList arrayList2 = this.f24956c;
+            if (((Pair) arrayList2.get(i11)).second == obj) {
+                if (!((fa0) ((Pair) arrayList2.get(i11)).first).a(canvas) && !z10) {
+                    z10 = false;
+                } else {
+                    z10 = true;
+                }
+            }
+        }
+        h(obj, false);
+        return z10;
+    }
+
+    public final void h(Object obj, boolean z10) {
+        View view;
+        View view2;
+        if (obj instanceof View) {
+            ((View) obj).invalidate();
+        } else if (obj instanceof org.telegram.ui.b3) {
+            org.telegram.ui.b3 b3Var = (org.telegram.ui.b3) obj;
+            if (!b3Var.f36110c && (view2 = b3Var.f36109b) != null) {
+                view2.invalidate();
+            }
+        } else if (z10 && (view = this.f24954a) != null) {
+            view.invalidate();
+        }
+        org.telegram.ui.Cells.b1 b1Var = this.f24955b;
+        if (b1Var != null) {
+            b1Var.run();
         }
     }
 
-    @Override
-    public final void t(bf.g gVar) {
-        String str;
-        if (this.f24918b instanceof TL_iv.pageBlockBlockquote) {
-            str = "\n";
-        } else {
-            str = " ";
+    public final void j(int i10) {
+        if (i10 >= 0 && i10 < this.d) {
+            Pair pair = (Pair) this.f24956c.get(i10);
+            fa0 fa0Var = (fa0) pair.first;
+            if (fa0Var.f26337p < 0) {
+                fa0Var.f26337p = Math.max(fa0Var.f26336o + fa0Var.f26338q, SystemClock.elapsedRealtime());
+                h(pair.second, true);
+                AndroidUtilities.runOnUIThread(new aa0(this, fa0Var, 1), Math.max(0L, (fa0Var.f26337p - SystemClock.elapsedRealtime()) + 175));
+            }
         }
-        w(ea0.j(str));
     }
 
-    @Override
-    public final void u(bf.g gVar) {
-        TL_iv.textBold textbold = new TL_iv.textBold();
-        textbold.text = y(gVar);
-        w(textbold);
+    public final void k(fa0 fa0Var, boolean z10) {
+        ArrayList arrayList;
+        Pair pair;
+        if (fa0Var != null) {
+            int i10 = 0;
+            while (true) {
+                int i11 = this.d;
+                arrayList = this.f24956c;
+                if (i10 < i11) {
+                    if (((Pair) arrayList.get(i10)).first == fa0Var) {
+                        pair = (Pair) arrayList.get(i10);
+                        break;
+                    }
+                    i10++;
+                } else {
+                    pair = null;
+                    break;
+                }
+            }
+            if (pair != null) {
+                if (z10) {
+                    if (fa0Var.f26337p < 0) {
+                        fa0Var.f26337p = Math.max(fa0Var.f26336o + fa0Var.f26338q, SystemClock.elapsedRealtime());
+                        h(pair.second, true);
+                        AndroidUtilities.runOnUIThread(new aa0(this, fa0Var, 0), Math.max(0L, (fa0Var.f26337p - SystemClock.elapsedRealtime()) + 175));
+                        return;
+                    }
+                    return;
+                }
+                arrayList.remove(pair);
+                fa0Var.c();
+                this.d = arrayList.size();
+                h(pair.second, true);
+            }
+        }
     }
 
-    public final void w(TL_iv.RichText richText) {
-        this.f24919c.texts.add(richText);
+    public final void l(ia0 ia0Var, boolean z10) {
+        if (ia0Var != null) {
+            for (int i10 = 0; i10 < this.f24958f; i10++) {
+                if (((Pair) this.f24957e.get(i10)).first == ia0Var) {
+                    m(i10, z10);
+                    return;
+                }
+            }
+        }
     }
 
-    public final TL_iv.RichText y(bf.p pVar) {
-        TL_iv.textConcat textconcat = this.f24919c;
-        this.f24919c = new TL_iv.textConcat();
-        v(pVar);
-        TL_iv.RichText x10 = x(this.f24919c);
-        this.f24919c = textconcat;
-        return x10;
+    public final void m(int i10, boolean z10) {
+        if (i10 >= 0 && i10 < this.f24958f) {
+            ArrayList arrayList = this.f24957e;
+            Pair pair = (Pair) arrayList.get(i10);
+            if (pair != null) {
+                ia0 ia0Var = (ia0) pair.first;
+                if (z10) {
+                    if (!ia0Var.c()) {
+                        if (!ia0Var.d()) {
+                            ia0Var.a();
+                        }
+                        zr zrVar = new zr(26, this, ia0Var);
+                        long j3 = 0;
+                        if (ia0Var.f27322c > 0) {
+                            j3 = 320 - (SystemClock.elapsedRealtime() - ia0Var.f27322c);
+                        }
+                        AndroidUtilities.runOnUIThread(zrVar, j3);
+                        return;
+                    }
+                    l(ia0Var, false);
+                    return;
+                }
+                arrayList.remove(pair);
+                ia0Var.f27321b = -1L;
+                ia0Var.f27322c = -1L;
+                this.f24958f = arrayList.size();
+                h(pair.second, true);
+            }
+        }
+    }
+
+    public ba0(View view) {
+        this.f24954a = view;
     }
 }

@@ -5,21 +5,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 public final class k {
-    public ViewParent f45617a;
-    public ViewParent f45618b;
-    public final ViewGroup f45619c;
+    public ViewParent f46769a;
+    public ViewParent f46770b;
+    public final ViewGroup f46771c;
     public boolean d;
-    public int[] f45620e;
+    public int[] f46772e;
 
     public k(ViewGroup viewGroup) {
-        this.f45619c = viewGroup;
+        this.f46771c = viewGroup;
     }
 
     public final boolean a(float f7, float f10, boolean z10) {
         ViewParent e7;
         if (this.d && (e7 = e(0)) != null) {
             try {
-                return e7.onNestedFling(this.f45619c, f7, f10, z10);
+                return e7.onNestedFling(this.f46771c, f7, f10, z10);
             } catch (AbstractMethodError e10) {
                 Log.e("ViewParentCompat", "ViewParent " + e7 + " does not implement interface method onNestedFling", e10);
             }
@@ -31,7 +31,7 @@ public final class k {
         ViewParent e7;
         if (this.d && (e7 = e(0)) != null) {
             try {
-                return e7.onNestedPreFling(this.f45619c, f7, f10);
+                return e7.onNestedPreFling(this.f46771c, f7, f10);
             } catch (AbstractMethodError e10) {
                 Log.e("ViewParentCompat", "ViewParent " + e7 + " does not implement interface method onNestedPreFling", e10);
             }
@@ -55,7 +55,7 @@ public final class k {
             iArr2[1] = 0;
             return false;
         }
-        ViewGroup viewGroup = this.f45619c;
+        ViewGroup viewGroup = this.f46771c;
         if (iArr2 != null) {
             viewGroup.getLocationInWindow(iArr2);
             i13 = iArr2[0];
@@ -65,17 +65,17 @@ public final class k {
             i14 = 0;
         }
         if (iArr == null) {
-            if (this.f45620e == null) {
-                this.f45620e = new int[2];
+            if (this.f46772e == null) {
+                this.f46772e = new int[2];
             }
-            iArr3 = this.f45620e;
+            iArr3 = this.f46772e;
         } else {
             iArr3 = iArr;
         }
         iArr3[0] = 0;
         iArr3[1] = 0;
         if (e7 instanceof l) {
-            ((l) e7).t(viewGroup, i10, i11, iArr3, i12);
+            ((l) e7).E(viewGroup, i10, i11, iArr3, i12);
         } else if (i12 == 0) {
             try {
                 e7.onNestedPreScroll(viewGroup, i10, i11, iArr3);
@@ -107,7 +107,7 @@ public final class k {
                     return false;
                 }
             } else {
-                ViewGroup viewGroup = this.f45619c;
+                ViewGroup viewGroup = this.f46771c;
                 if (iArr != null) {
                     viewGroup.getLocationInWindow(iArr);
                     i15 = iArr[0];
@@ -117,10 +117,10 @@ public final class k {
                     i16 = 0;
                 }
                 if (iArr2 == null) {
-                    if (this.f45620e == null) {
-                        this.f45620e = new int[2];
+                    if (this.f46772e == null) {
+                        this.f46772e = new int[2];
                     }
-                    int[] iArr4 = this.f45620e;
+                    int[] iArr4 = this.f46772e;
                     iArr4[0] = 0;
                     iArr4[1] = 0;
                     iArr3 = iArr4;
@@ -128,12 +128,12 @@ public final class k {
                     iArr3 = iArr2;
                 }
                 if (e7 instanceof m) {
-                    ((m) e7).n(viewGroup, i10, i11, i12, i13, i14, iArr3);
+                    ((m) e7).j(viewGroup, i10, i11, i12, i13, i14, iArr3);
                 } else {
                     iArr3[0] = iArr3[0] + i12;
                     iArr3[1] = iArr3[1] + i13;
                     if (e7 instanceof l) {
-                        ((l) e7).o(viewGroup, i10, i11, i12, i13, i14);
+                        ((l) e7).c(viewGroup, i10, i11, i12, i13, i14);
                     } else if (i14 == 0) {
                         try {
                             e7.onNestedScroll(viewGroup, i10, i11, i12, i13);
@@ -158,9 +158,9 @@ public final class k {
             if (i10 != 1) {
                 return null;
             }
-            return this.f45618b;
+            return this.f46770b;
         }
-        return this.f45617a;
+        return this.f46769a;
     }
 
     public final boolean f(int i10) {
@@ -174,7 +174,7 @@ public final class k {
         boolean onStartNestedScroll;
         if (!f(i11)) {
             if (this.d) {
-                View view = this.f45619c;
+                View view = this.f46771c;
                 View view2 = view;
                 for (ViewParent parent = view.getParent(); parent != null; parent = parent.getParent()) {
                     boolean z10 = parent instanceof l;
@@ -193,10 +193,10 @@ public final class k {
                     if (onStartNestedScroll) {
                         if (i11 != 0) {
                             if (i11 == 1) {
-                                this.f45618b = parent;
+                                this.f46770b = parent;
                             }
                         } else {
-                            this.f45617a = parent;
+                            this.f46769a = parent;
                         }
                         if (z10) {
                             ((l) parent).s(view2, view, i10, i11);
@@ -223,9 +223,9 @@ public final class k {
         ViewParent e7 = e(i10);
         if (e7 != null) {
             boolean z10 = e7 instanceof l;
-            ViewGroup viewGroup = this.f45619c;
+            ViewGroup viewGroup = this.f46771c;
             if (z10) {
-                ((l) e7).m(i10, viewGroup);
+                ((l) e7).o(i10, viewGroup);
             } else if (i10 == 0) {
                 try {
                     e7.onStopNestedScroll(viewGroup);
@@ -235,12 +235,12 @@ public final class k {
             }
             if (i10 != 0) {
                 if (i10 == 1) {
-                    this.f45618b = null;
+                    this.f46770b = null;
                     return;
                 }
                 return;
             }
-            this.f45617a = null;
+            this.f46769a = null;
         }
     }
 }

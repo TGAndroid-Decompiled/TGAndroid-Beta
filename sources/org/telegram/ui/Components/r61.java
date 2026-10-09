@@ -1,38 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.text.Selection;
-import android.text.Spannable;
-import android.text.method.LinkMovementMethod;
-import android.text.style.CharacterStyle;
-import android.view.MotionEvent;
-import android.widget.TextView;
-import org.telegram.messenger.FileLog;
-public final class r61 extends LinkMovementMethod {
-    public final UndoView f30363a;
+import android.net.Uri;
+import android.text.TextPaint;
+import android.text.style.URLSpan;
+import android.view.View;
+public final class r61 extends URLSpan {
+    public final t11 f30373a;
 
-    public r61(UndoView undoView) {
-        this.f30363a = undoView;
+    public r61(String str, t11 t11Var) {
+        super(str != null ? str.replace((char) 8238, ' ') : str);
+        this.f30373a = t11Var;
     }
 
     @Override
-    public final boolean onTouchEvent(TextView textView, Spannable spannable, MotionEvent motionEvent) {
-        CharacterStyle[] characterStyleArr;
-        try {
-            if (motionEvent.getAction() != 0 || ((characterStyleArr = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class)) != null && characterStyleArr.length != 0)) {
-                if (motionEvent.getAction() == 1) {
-                    CharacterStyle[] characterStyleArr2 = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class);
-                    if (characterStyleArr2 != null && characterStyleArr2.length > 0) {
-                        this.f30363a.b(characterStyleArr2[0]);
-                    }
-                    Selection.removeSelection(spannable);
-                    return true;
-                }
-                return super.onTouchEvent(textView, spannable, motionEvent);
-            }
-            return false;
-        } catch (Exception e7) {
-            FileLog.e(e7);
-            return false;
+    public final void onClick(View view) {
+        of.f.p(view.getContext(), Uri.parse(getURL()), true, true);
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        super.updateDrawState(textPaint);
+        t11 t11Var = this.f30373a;
+        if (t11Var != null) {
+            t11Var.a(textPaint);
         }
+        textPaint.setUnderlineText(true);
     }
 }

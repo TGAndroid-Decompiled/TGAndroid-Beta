@@ -1,75 +1,88 @@
 package org.telegram.ui;
 
-import android.app.Activity;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.UndoView;
-public final class wx extends UndoView {
-    public final uy f42718f0;
+public final class wx extends AnimatorListenerAdapter {
+    public final int f43762a;
+    public final float f43763b;
+    public final ty f43764c;
 
-    public wx(uy uyVar, Activity activity) {
-        super(activity);
-        this.f42718f0 = uyVar;
+    public wx(ty tyVar, float f7, int i10) {
+        this.f43762a = i10;
+        this.f43764c = tyVar;
+        this.f43763b = f7;
     }
 
     @Override
-    public final boolean a() {
-        int i10 = 0;
-        while (true) {
-            ty[] tyVarArr = this.f42718f0.f41435e0;
-            if (i10 < tyVarArr.length) {
-                if (tyVarArr[i10].f41055x.k()) {
-                    return false;
-                }
-                i10++;
-            } else {
-                return true;
-            }
-        }
-    }
-
-    @Override
-    public final void h(int i10, long j3) {
-        if (i10 != 1 && i10 != 27) {
-            return;
-        }
-        uy uyVar = this.f42718f0;
-        uyVar.y3 = 1;
-        uyVar.J4(true, true);
-        if (uyVar.R1 != null) {
-            int i11 = 0;
-            while (true) {
-                if (i11 < uyVar.R1.size()) {
-                    if (((TLRPC.Dialog) uyVar.R1.get(i11)).f20051id == j3) {
-                        break;
-                    }
-                    i11++;
+    public final void onAnimationEnd(Animator animator) {
+        int i10;
+        int i11;
+        switch (this.f43762a) {
+            case 0:
+                super.onAnimationEnd(animator);
+                ty tyVar = this.f43764c;
+                tyVar.f42255u3 = null;
+                int i12 = 0;
+                tyVar.O = false;
+                tyVar.Q = true;
+                tyVar.R = true;
+                tyVar.fragmentView.invalidate();
+                if (tyVar.K) {
+                    i10 = 81;
                 } else {
-                    i11 = -1;
-                    break;
+                    i10 = 0;
                 }
-            }
-            if (i11 >= 0) {
-                uyVar.f41435e0[0].d.l();
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.zm(this, i11, (TLRPC.Dialog) uyVar.R1.remove(i11), 25));
-            } else {
-                uyVar.J4(false, true);
-            }
-        }
-        uyVar.x3();
-    }
-
-    @Override
-    public final void setTranslationY(float f7) {
-        super.setTranslationY(f7);
-        uy uyVar = this.f42718f0;
-        UndoView[] undoViewArr = uyVar.f41535y0;
-        if (this == undoViewArr[0]) {
-            UndoView undoView = undoViewArr[1];
-            if (undoView == null || undoView.getVisibility() != 0) {
-                uyVar.f41516u1 = Math.max(0.0f, (AndroidUtilities.dp(8.0f) + getMeasuredHeight()) - f7);
-                uyVar.g5();
-            }
+                tyVar.f42271x3 = -(AndroidUtilities.dp(i10 + 48) - this.f43763b);
+                tyVar.f42172e0[0].setTranslationY(0.0f);
+                while (true) {
+                    sy[] syVarArr = tyVar.f42172e0;
+                    if (i12 < syVarArr.length) {
+                        sy syVar = syVarArr[i12];
+                        if (syVar != null) {
+                            syVar.f41788a.requestLayout();
+                        }
+                        i12++;
+                    } else {
+                        tyVar.fragmentView.requestLayout();
+                        jy jyVar = tyVar.X;
+                        if (jyVar != null && tyVar.f42154b.f16338f) {
+                            jyVar.f30614r.requestFocus();
+                            AndroidUtilities.showKeyboard(tyVar.X.f30614r);
+                            return;
+                        }
+                        return;
+                    }
+                }
+                break;
+            default:
+                super.onAnimationEnd(animator);
+                ty tyVar2 = this.f43764c;
+                tyVar2.f42255u3 = null;
+                tyVar2.P = 0;
+                tyVar2.O = true;
+                if (tyVar2.K) {
+                    i11 = 81;
+                } else {
+                    i11 = 0;
+                }
+                tyVar2.f42271x3 = AndroidUtilities.dp(i11 + 48) - this.f43763b;
+                tyVar2.f42172e0[0].setTranslationY(0.0f);
+                int i13 = 0;
+                while (true) {
+                    sy[] syVarArr2 = tyVar2.f42172e0;
+                    if (i13 < syVarArr2.length) {
+                        sy syVar2 = syVarArr2[i13];
+                        if (syVar2 != null) {
+                            syVar2.f41788a.requestLayout();
+                        }
+                        i13++;
+                    } else {
+                        tyVar2.E0.l(1.0f, false);
+                        tyVar2.fragmentView.requestLayout();
+                        return;
+                    }
+                }
         }
     }
 }

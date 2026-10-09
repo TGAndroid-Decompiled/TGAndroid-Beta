@@ -3,9 +3,9 @@ package h9;
 import java.io.Serializable;
 import v7.t6;
 public final class a implements Serializable {
-    public static final int f11044c = 0;
-    public final int[] f11045a;
-    public final int f11046b;
+    public static final int f11048c = 0;
+    public final int[] f11049a;
+    public final int f11050b;
 
     static {
         new a(new int[0]);
@@ -13,8 +13,8 @@ public final class a implements Serializable {
 
     public a(int[] iArr) {
         int length = iArr.length;
-        this.f11045a = iArr;
-        this.f11046b = length;
+        this.f11049a = iArr;
+        this.f11050b = length;
     }
 
     public final boolean equals(Object obj) {
@@ -22,12 +22,12 @@ public final class a implements Serializable {
         int i10;
         int i11;
         if (obj != this) {
-            if ((obj instanceof a) && (i11 = this.f11046b) == (i10 = (aVar = (a) obj).f11046b)) {
+            if ((obj instanceof a) && (i11 = this.f11050b) == (i10 = (aVar = (a) obj).f11050b)) {
                 for (int i12 = 0; i12 < i11; i12++) {
                     t6.c(i12, i11);
-                    int i13 = this.f11045a[i12];
+                    int i13 = this.f11049a[i12];
                     t6.c(i12, i10);
-                    if (i13 == aVar.f11045a[i12]) {
+                    if (i13 == aVar.f11049a[i12]) {
                     }
                 }
                 return true;
@@ -39,20 +39,20 @@ public final class a implements Serializable {
 
     public final int hashCode() {
         int i10 = 1;
-        for (int i11 = 0; i11 < this.f11046b; i11++) {
-            i10 = (i10 * 31) + this.f11045a[i11];
+        for (int i11 = 0; i11 < this.f11050b; i11++) {
+            i10 = (i10 * 31) + this.f11049a[i11];
         }
         return i10;
     }
 
     public final String toString() {
-        int i10 = this.f11046b;
+        int i10 = this.f11050b;
         if (i10 == 0) {
             return "[]";
         }
         StringBuilder sb2 = new StringBuilder(i10 * 5);
         sb2.append('[');
-        int[] iArr = this.f11045a;
+        int[] iArr = this.f11049a;
         sb2.append(iArr[0]);
         for (int i11 = 1; i11 < i10; i11++) {
             sb2.append(", ");

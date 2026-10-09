@@ -1,22 +1,22 @@
 package org.telegram.ui;
-public final class rs0 extends org.telegram.ui.Cells.aa {
-    public final int f40235v0 = 0;
 
-    public rs0(ai.wa waVar, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(waVar, d6Var);
+import android.app.Activity;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLObject;
+public final class rs0 extends org.telegram.ui.Components.xy0 {
+    public final ss0 f41479v0;
+
+    public rs0(ss0 ss0Var, Activity activity, MessageObject messageObject, TLObject tLObject, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(activity, messageObject, tLObject, e6Var);
+        this.f41479v0 = ss0Var;
     }
 
     @Override
-    public final int p() {
-        switch (this.f40235v0) {
-            case 0:
-                return 0;
-            default:
-                return 0;
+    public final void dismiss() {
+        super.dismiss();
+        PhotoViewer photoViewer = this.f41479v0.f41765b;
+        if (photoViewer.U3 == this) {
+            photoViewer.U3 = null;
         }
-    }
-
-    public rs0(ai.d dVar) {
-        super(null, dVar);
     }
 }

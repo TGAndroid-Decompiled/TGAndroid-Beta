@@ -1,154 +1,84 @@
 package ai;
 
-import android.animation.ValueAnimator;
-import android.view.View;
+import android.content.Context;
+import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.qd0;
-import org.telegram.ui.Components.sh0;
-public final class n7 implements z4.e {
-    public final int f1408a;
-    public final View f1409b;
+public final class n7 extends z4.g {
+    public boolean f1477w0;
+    public final t7 f1478x0;
+    public final t7 f1479y0;
 
-    public n7(int i10, View view) {
-        this.f1408a = i10;
-        this.f1409b = view;
+    public n7(t7 t7Var, Context context) {
+        super(context);
+        this.f1479y0 = t7Var;
+        this.f1478x0 = t7Var;
+    }
+
+    public final boolean A(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            this.f1477w0 = true;
+        }
+        if (this.f1477w0 && this.f1478x0.f1747x <= 0) {
+            try {
+                return super.onInterceptTouchEvent(motionEvent);
+            } catch (Exception unused) {
+            }
+        }
+        return false;
+    }
+
+    public final boolean B(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            this.f1477w0 = true;
+        }
+        if (this.f1477w0 && this.f1478x0.f1747x <= 0) {
+            return super.onTouchEvent(motionEvent);
+        }
+        return false;
     }
 
     @Override
-    public final void a(int i10) {
-        boolean z10;
-        switch (this.f1408a) {
-            case 0:
-                return;
-            case 1:
-                qd0 qd0Var = (qd0) this.f1409b;
-                z4.e eVar = qd0Var.f30030c;
-                if (eVar != null) {
-                    eVar.a(i10);
-                }
-                for (int i11 = 0; i11 < qd0Var.d.getChildCount(); i11++) {
-                    View childAt = qd0Var.d.getChildAt(i11);
-                    if (i11 == i10) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    childAt.setSelected(z10);
-                }
-                return;
-            default:
-                return;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        float currentTopOffset;
+        float y3 = motionEvent.getY();
+        currentTopOffset = this.f1479y0.getCurrentTopOffset();
+        if (y3 < currentTopOffset && motionEvent.getAction() == 0) {
+            return false;
         }
+        return super.dispatchTouchEvent(motionEvent);
     }
 
     @Override
-    public final void b(float f7, int i10, int i11) {
-        float f10;
-        switch (this.f1408a) {
-            case 0:
-                s7 s7Var = (s7) this.f1409b;
-                if (s7Var.f1639w) {
-                    l7 l7Var = s7Var.h;
-                    l7Var.d.abortAnimation();
-                    if (Math.abs(f7) <= 1.0f) {
-                        ValueAnimator valueAnimator = l7Var.M;
-                        if (valueAnimator != null) {
-                            valueAnimator.cancel();
-                            l7Var.M = null;
-                        }
-                        int i12 = l7Var.f1358s;
-                        float f11 = (i12 / 2.0f) + ((-l7Var.getMeasuredWidth()) / 2.0f) + ((i12 + l7Var.f1356n) * i10);
-                        if (f7 > 0.0f) {
-                            int i13 = l7Var.f1358s;
-                            f10 = (i13 / 2.0f) + ((-l7Var.getMeasuredWidth()) / 2.0f) + ((i10 + 1) * (i13 + l7Var.f1356n));
-                        } else {
-                            int i14 = l7Var.f1358s;
-                            f10 = (i14 / 2.0f) + ((-l7Var.getMeasuredWidth()) / 2.0f) + ((i10 - 1) * (i14 + l7Var.f1356n));
-                            f7 = -f7;
-                        }
-                        if (f7 == 0.0f) {
-                            l7Var.f1354e = f11;
-                        } else {
-                            l7Var.f1354e = AndroidUtilities.lerp(f11, f10, f7);
-                        }
-                        l7Var.L = false;
-                        l7Var.invalidate();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 1:
-                qd0 qd0Var = (qd0) this.f1409b;
-                qd0Var.h = i10;
-                qd0Var.f30033n = f7;
-                if (qd0Var.d.getChildAt(i10) != null) {
-                    qd0.a(qd0Var, i10, (int) (qd0Var.d.getChildAt(i10).getWidth() * f7));
-                    qd0Var.invalidate();
-                    z4.e eVar = qd0Var.f30030c;
-                    if (eVar != null) {
-                        eVar.b(f7, i10, i11);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                sh0 sh0Var = (sh0) this.f1409b;
-                if (!sh0Var.f30783a && Math.abs(i10 - sh0Var.f30791w) == 1) {
-                    int i15 = sh0Var.f30791w;
-                    if (i10 > i15) {
-                        sh0.a(sh0Var, 0, 1, 1);
-                    } else if (i10 < i15) {
-                        sh0.a(sh0Var, 1, 0, 0);
-                        sh0.a(sh0Var, 2, 0, -1);
-                    }
-                }
-                int i16 = sh0Var.f30791w;
-                int i17 = sh0Var.f30792x;
-                sh0Var.f30791w = i10;
-                sh0Var.f30792x = i11;
-                if (i16 != i10 || i17 != i11) {
-                    sh0Var.H = true;
-                    sh0Var.postInvalidateOnAnimation();
-                    return;
-                }
-                return;
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        float currentTopOffset;
+        float currentTopOffset2;
+        float y3 = motionEvent.getY();
+        t7 t7Var = this.f1479y0;
+        currentTopOffset = t7Var.getCurrentTopOffset();
+        if (y3 >= currentTopOffset) {
+            currentTopOffset2 = t7Var.getCurrentTopOffset();
+            if (Math.abs(currentTopOffset2 - t7Var.d) > AndroidUtilities.dp(1.0f)) {
+                return false;
+            }
+            return A(motionEvent);
         }
+        return false;
     }
 
     @Override
-    public final void c(int i10) {
-        switch (this.f1408a) {
-            case 0:
-                s7 s7Var = (s7) this.f1409b;
-                if (i10 == 1) {
-                    s7Var.f1639w = true;
-                    return;
-                }
-                return;
-            case 1:
-                qd0 qd0Var = (qd0) this.f1409b;
-                if (i10 == 0) {
-                    qd0.a(qd0Var, qd0Var.f30031e.getCurrentItem(), 0);
-                }
-                z4.e eVar = qd0Var.f30030c;
-                if (eVar != null) {
-                    eVar.c(i10);
-                    return;
-                }
-                return;
-            default:
-                return;
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        float currentTopOffset;
+        float currentTopOffset2;
+        float y3 = motionEvent.getY();
+        t7 t7Var = this.f1479y0;
+        currentTopOffset = t7Var.getCurrentTopOffset();
+        if (y3 >= currentTopOffset) {
+            currentTopOffset2 = t7Var.getCurrentTopOffset();
+            if (Math.abs(currentTopOffset2 - t7Var.d) > AndroidUtilities.dp(1.0f)) {
+                return false;
+            }
+            return B(motionEvent);
         }
-    }
-
-    private final void d(int i10) {
-    }
-
-    private final void e(int i10) {
-    }
-
-    private final void f(int i10) {
+        return false;
     }
 }

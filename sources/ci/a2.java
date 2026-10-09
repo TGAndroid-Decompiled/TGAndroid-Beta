@@ -1,12 +1,14 @@
 package ci;
 
+import android.view.View;
 import android.widget.FrameLayout;
-public abstract class a2 extends FrameLayout {
-    public int f4691a;
+import org.telegram.messenger.AndroidUtilities;
+public final class a2 extends FrameLayout {
+    public org.telegram.ui.Components.y9 f4717a;
+    public int f4718b;
 
-    public abstract void a(int i10);
-
-    public abstract float b();
-
-    public abstract void c();
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.max(AndroidUtilities.dp(170.0f), (AndroidUtilities.displaySize.y * 0.34999996f) - AndroidUtilities.dp(142.0f)), 1073741824));
+    }
 }

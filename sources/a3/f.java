@@ -19,7 +19,7 @@ public final class f implements o0 {
     public f(a0 a0Var, e2.x xVar) {
         this.f104a = a0Var;
         a0Var.f72l = xVar;
-        this.f105b = new f0(new n4.y(this), a0Var);
+        this.f105b = new f0(new n4.x(this), a0Var);
         this.f106c = new ArrayDeque();
         this.f107e = new b2.s(new b2.r());
         this.f108f = -9223372036854775807L;
@@ -68,7 +68,7 @@ public final class f implements o0 {
     @Override
     public final void g(a6.i iVar) {
         this.f109g = iVar;
-        this.h = i9.q.f12025a;
+        this.h = i9.q.f12075a;
     }
 
     @Override
@@ -107,12 +107,12 @@ public final class f implements o0 {
         long j10;
         long j11;
         e2.d.g(list.isEmpty());
-        int i11 = sVar.f3570y;
-        int i12 = sVar.f3571z;
+        int i11 = sVar.f3649y;
+        int i12 = sVar.f3650z;
         b2.s sVar2 = this.f107e;
-        int i13 = sVar2.f3570y;
+        int i13 = sVar2.f3649y;
         f0 f0Var = this.f105b;
-        if (i11 != i13 || i12 != sVar2.f3571z) {
+        if (i11 != i13 || i12 != sVar2.f3650z) {
             e2.a0 a0Var = f0Var.d;
             long j12 = f0Var.f116g;
             if (j12 == -9223372036854775807L) {
@@ -128,7 +128,7 @@ public final class f implements o0 {
         }
         this.f107e = sVar;
         if (j3 != this.f108f) {
-            if (f0Var.f115f.f8577c == 0) {
+            if (f0Var.f115f.f8571c == 0) {
                 f0Var.f112b.f(i10);
                 f0Var.f119k = j3;
             } else {
@@ -163,38 +163,38 @@ public final class f implements o0 {
         e2.a0 a0Var2 = f0Var.d;
         e2.q qVar = f0Var.f115f;
         boolean z12 = false;
-        qVar.f8575a = 0;
-        qVar.f8576b = -1;
-        qVar.f8577c = 0;
+        qVar.f8569a = 0;
+        qVar.f8570b = -1;
+        qVar.f8571c = 0;
         f0Var.f116g = -9223372036854775807L;
         f0Var.h = -9223372036854775807L;
         f0Var.f117i = -9223372036854775807L;
         e2.a0 a0Var3 = f0Var.f114e;
-        if (a0Var3.i() > 0) {
-            if (a0Var3.i() > 0) {
+        if (a0Var3.m() > 0) {
+            if (a0Var3.m() > 0) {
                 z11 = true;
             } else {
                 z11 = false;
             }
             e2.d.b(z11);
-            while (a0Var3.i() > 1) {
-                a0Var3.f();
+            while (a0Var3.m() > 1) {
+                a0Var3.h();
             }
-            Object f7 = a0Var3.f();
-            f7.getClass();
-            f0Var.f119k = ((Long) f7).longValue();
+            Object h = a0Var3.h();
+            h.getClass();
+            f0Var.f119k = ((Long) h).longValue();
         }
-        if (a0Var2.i() > 0) {
-            if (a0Var2.i() > 0) {
+        if (a0Var2.m() > 0) {
+            if (a0Var2.m() > 0) {
                 z12 = true;
             }
             e2.d.b(z12);
-            while (a0Var2.i() > 1) {
-                a0Var2.f();
+            while (a0Var2.m() > 1) {
+                a0Var2.h();
             }
-            Object f10 = a0Var2.f();
-            f10.getClass();
-            a0Var2.a((x1) f10, 0L);
+            Object h10 = a0Var2.h();
+            h10.getClass();
+            a0Var2.a((x1) h10, 0L);
         }
         this.f106c.clear();
     }
@@ -204,29 +204,29 @@ public final class f implements o0 {
         this.f106c.add(jVar);
         f0 f0Var = this.f105b;
         e2.q qVar = f0Var.f115f;
-        int i10 = qVar.f8577c;
-        long[] jArr = (long[]) qVar.f8578e;
+        int i10 = qVar.f8571c;
+        long[] jArr = (long[]) qVar.f8572e;
         if (i10 == jArr.length) {
             int length = jArr.length << 1;
             if (length >= 0) {
                 long[] jArr2 = new long[length];
                 int length2 = jArr.length;
-                int i11 = qVar.f8575a;
+                int i11 = qVar.f8569a;
                 int i12 = length2 - i11;
                 System.arraycopy(jArr, i11, jArr2, 0, i12);
-                System.arraycopy((long[]) qVar.f8578e, 0, jArr2, i12, i11);
-                qVar.f8575a = 0;
-                qVar.f8576b = qVar.f8577c - 1;
-                qVar.f8578e = jArr2;
+                System.arraycopy((long[]) qVar.f8572e, 0, jArr2, i12, i11);
+                qVar.f8569a = 0;
+                qVar.f8570b = qVar.f8571c - 1;
+                qVar.f8572e = jArr2;
                 qVar.d = length - 1;
             } else {
                 throw new IllegalStateException();
             }
         }
-        int i13 = (qVar.f8576b + 1) & qVar.d;
-        qVar.f8576b = i13;
-        ((long[]) qVar.f8578e)[i13] = j3;
-        qVar.f8577c++;
+        int i13 = (qVar.f8570b + 1) & qVar.d;
+        qVar.f8570b = i13;
+        ((long[]) qVar.f8572e)[i13] = j3;
+        qVar.f8571c++;
         f0Var.f116g = j3;
         f0Var.f117i = -9223372036854775807L;
         this.h.execute(new d(this, 0));

@@ -1,18 +1,13 @@
 package v7;
-public enum h6 implements f {
-    TYPE_UNKNOWN(0),
-    TYPE_THIN(1),
-    TYPE_THICK(2),
-    TYPE_GMV(3);
-    
-    public final int f47960a;
 
-    h6(int i10) {
-        this.f47960a = i10;
-    }
-
-    @Override
-    public final int zza() {
-        return this.f47960a;
+import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
+public abstract class h6 {
+    public static boolean a(AtomicReferenceFieldUpdater atomicReferenceFieldUpdater, com.google.android.gms.internal.play_billing.g4 g4Var, Object obj, Object obj2) {
+        while (!atomicReferenceFieldUpdater.compareAndSet(g4Var, obj, obj2)) {
+            if (atomicReferenceFieldUpdater.get(g4Var) != obj && atomicReferenceFieldUpdater.get(g4Var) != obj) {
+                return false;
+            }
+        }
+        return true;
     }
 }

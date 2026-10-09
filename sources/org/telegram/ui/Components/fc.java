@@ -1,9 +1,30 @@
 package org.telegram.ui.Components;
-public final class fc implements o1.g {
+
+import android.content.Context;
+import android.graphics.Typeface;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public class fc extends qb {
+    public final y9 f26343a;
+    public final TextView f26344b;
+
+    public fc(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, e6Var);
+        y9 y9Var = new y9(getContext());
+        this.f26343a = y9Var;
+        TextView textView = new TextView(getContext());
+        this.f26344b = textView;
+        addView(y9Var, w7.x5.i(30.0f, 30.0f, 8388627, 12.0f, 8.0f, 12.0f, 8.0f));
+        textView.setGravity(8388611);
+        textView.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
+        textView.setTextColor(getThemedColor(org.telegram.ui.ActionBar.i6.Hi));
+        textView.setTextSize(1, 15.0f);
+        textView.setTypeface(Typeface.SANS_SERIF);
+        addView(textView, w7.x5.i(-1.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
+    }
+
     @Override
-    public final void a(o1.h hVar, float f7, float f10) {
-        if (f7 <= 0.0f) {
-            hVar.c();
-        }
+    public CharSequence getAccessibilityText() {
+        return this.f26344b.getText();
     }
 }

@@ -8,13 +8,13 @@ import org.xml.sax.ContentHandler;
 import org.xml.sax.Locator;
 import org.xml.sax.XMLReader;
 public final class j implements Html.TagHandler, ContentHandler {
-    public final rb.a f51008a;
-    public ContentHandler f51009b;
-    public Editable f51010c;
+    public final qb.b f52173a;
+    public ContentHandler f52174b;
+    public Editable f52175c;
     public final ArrayDeque d = new ArrayDeque();
 
-    public j(rb.a aVar) {
-        this.f51008a = aVar;
+    public j(qb.b bVar) {
+        this.f52173a = bVar;
     }
 
     public static String a(String str, Attributes attributes) {
@@ -29,34 +29,34 @@ public final class j implements Html.TagHandler, ContentHandler {
 
     @Override
     public final void characters(char[] cArr, int i10, int i11) {
-        this.f51009b.characters(cArr, i10, i11);
+        this.f52174b.characters(cArr, i10, i11);
     }
 
     @Override
     public final void endDocument() {
-        this.f51009b.endDocument();
+        this.f52174b.endDocument();
     }
 
     @Override
     public final void endElement(String str, String str2, String str3) {
         if (!((Boolean) this.d.removeLast()).booleanValue()) {
-            this.f51009b.endElement(str, str2, str3);
+            this.f52174b.endElement(str, str2, str3);
         }
-        Editable editable = this.f51010c;
-        this.f51008a.getClass();
-        rb.a.r3(false, str2, editable, null);
+        Editable editable = this.f52175c;
+        this.f52173a.getClass();
+        qb.b.K3(false, str2, editable, null);
     }
 
     @Override
     public final void endPrefixMapping(String str) {
-        this.f51009b.endPrefixMapping(str);
+        this.f52174b.endPrefixMapping(str);
     }
 
     @Override
     public final void handleTag(boolean z10, String str, Editable editable, XMLReader xMLReader) {
-        if (this.f51009b == null) {
-            this.f51010c = editable;
-            this.f51009b = xMLReader.getContentHandler();
+        if (this.f52174b == null) {
+            this.f52175c = editable;
+            this.f52174b = xMLReader.getContentHandler();
             xMLReader.setContentHandler(this);
             this.d.addLast(Boolean.FALSE);
         }
@@ -64,42 +64,42 @@ public final class j implements Html.TagHandler, ContentHandler {
 
     @Override
     public final void ignorableWhitespace(char[] cArr, int i10, int i11) {
-        this.f51009b.ignorableWhitespace(cArr, i10, i11);
+        this.f52174b.ignorableWhitespace(cArr, i10, i11);
     }
 
     @Override
     public final void processingInstruction(String str, String str2) {
-        this.f51009b.processingInstruction(str, str2);
+        this.f52174b.processingInstruction(str, str2);
     }
 
     @Override
     public final void setDocumentLocator(Locator locator) {
-        this.f51009b.setDocumentLocator(locator);
+        this.f52174b.setDocumentLocator(locator);
     }
 
     @Override
     public final void skippedEntity(String str) {
-        this.f51009b.skippedEntity(str);
+        this.f52174b.skippedEntity(str);
     }
 
     @Override
     public final void startDocument() {
-        this.f51009b.startDocument();
+        this.f52174b.startDocument();
     }
 
     @Override
     public final void startElement(String str, String str2, String str3, Attributes attributes) {
-        Editable editable = this.f51010c;
-        this.f51008a.getClass();
-        boolean r32 = rb.a.r3(true, str2, editable, attributes);
-        this.d.addLast(Boolean.valueOf(r32));
-        if (!r32) {
-            this.f51009b.startElement(str, str2, str3, attributes);
+        Editable editable = this.f52175c;
+        this.f52173a.getClass();
+        boolean K3 = qb.b.K3(true, str2, editable, attributes);
+        this.d.addLast(Boolean.valueOf(K3));
+        if (!K3) {
+            this.f52174b.startElement(str, str2, str3, attributes);
         }
     }
 
     @Override
     public final void startPrefixMapping(String str, String str2) {
-        this.f51009b.startPrefixMapping(str, str2);
+        this.f52174b.startPrefixMapping(str, str2);
     }
 }

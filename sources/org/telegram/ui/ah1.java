@@ -1,33 +1,79 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class ah1 extends FrameLayout {
-    public final rg.q0 f34879a;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class ah1 implements Runnable {
+    public final int f35931a;
+    public final ih1 f35932b;
 
-    public ah1(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context);
-        LinearLayout linearLayout = new LinearLayout(context);
-        addView(linearLayout, w7.z5.e(-1, -2, 80));
-        linearLayout.setOrientation(1);
-        TextView textView = new TextView(context);
-        textView.setTextColor(i0.a.k(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.G6, d6Var), 100));
-        textView.setTextSize(1, 13.0f);
-        textView.setGravity(17);
-        textView.setText(LocaleController.getString(R.string.UnlockPremiumStickersDescription));
-        linearLayout.addView(textView, w7.z5.t(-1, -2, 0, 16, 17, 17, 16));
-        rg.q0 q0Var = new rg.q0(context, d6Var, false);
-        this.f34879a = q0Var;
-        String string = LocaleController.getString(R.string.UnlockPremiumStickers);
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        spannableStringBuilder.append((CharSequence) "d ").setSpan(new org.telegram.ui.Components.rq(0, context.getDrawable(R.drawable.msg_premium_normal)), 0, 1, 0);
-        spannableStringBuilder.append((CharSequence) string);
-        q0Var.d.setText(spannableStringBuilder);
-        linearLayout.addView(q0Var, w7.z5.t(-1, 48, 0, 16, 0, 16, 16));
+    public ah1(ih1 ih1Var, int i10) {
+        this.f35931a = i10;
+        this.f35932b = ih1Var;
+    }
+
+    @Override
+    public final void run() {
+        switch (this.f35931a) {
+            case 0:
+                ih1 ih1Var = this.f35932b;
+                EditTextBoldCursor editTextBoldCursor = ih1Var.f38655n;
+                if (editTextBoldCursor != null && editTextBoldCursor.getVisibility() == 0) {
+                    ih1Var.f38655n.requestFocus();
+                    AndroidUtilities.showKeyboard(ih1Var.f38655n);
+                    return;
+                }
+                return;
+            case 1:
+                ih1 ih1Var2 = this.f35932b;
+                ce0 ce0Var = ih1Var2.f38658w;
+                if (ce0Var != null && ce0Var.getVisibility() == 0) {
+                    ih1Var2.f38658w.f36732f[0].requestFocus();
+                    return;
+                }
+                return;
+            case 2:
+                int i10 = 0;
+                while (true) {
+                    es[] esVarArr = this.f35932b.f38658w.f36732f;
+                    if (i10 < esVarArr.length) {
+                        esVarArr[i10].i(0.0f);
+                        i10++;
+                    } else {
+                        return;
+                    }
+                }
+            case 3:
+                ih1 ih1Var3 = this.f35932b;
+                EditTextBoldCursor editTextBoldCursor2 = ih1Var3.f38655n;
+                if (editTextBoldCursor2 != null) {
+                    if (editTextBoldCursor2.length() != 0) {
+                        ih1Var3.f38650f0[2].P(49);
+                        ih1Var3.f38650f0[2].T(0.0f, false);
+                        ih1Var3.f38640a.d();
+                        return;
+                    }
+                    ih1Var3.F0(true);
+                    return;
+                }
+                return;
+            case 4:
+                ih1 ih1Var4 = this.f35932b;
+                if (ih1Var4.f38651g0 != null) {
+                    ih1Var4.F0(false);
+                    return;
+                }
+                return;
+            case 5:
+                ih1.f0(this.f35932b);
+                return;
+            case 6:
+                AndroidUtilities.runOnUIThread(new ah1(this.f35932b, 7), 150L);
+                return;
+            default:
+                for (es esVar : this.f35932b.f38658w.f36732f) {
+                    esVar.i(0.0f);
+                }
+                return;
+        }
     }
 }

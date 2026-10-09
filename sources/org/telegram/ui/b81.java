@@ -1,24 +1,18 @@
 package org.telegram.ui;
-public final class b81 implements Runnable {
-    public final int f35084a;
-    public final SessionsActivity f35085b;
-    public final boolean f35086c;
 
-    public b81(SessionsActivity sessionsActivity, boolean z10, int i10) {
-        this.f35084a = i10;
-        this.f35085b = sessionsActivity;
-        this.f35086c = z10;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+public final class b81 implements View.OnClickListener {
+    public final TLRPC.TL_authorization f36169a;
+    public final h81 f36170b;
+
+    public b81(h81 h81Var, TLRPC.TL_authorization tL_authorization) {
+        this.f36170b = h81Var;
+        this.f36169a = tL_authorization;
     }
 
     @Override
-    public final void run() {
-        switch (this.f35084a) {
-            case 0:
-                this.f35085b.k0(this.f35086c);
-                return;
-            default:
-                this.f35085b.k0(this.f35086c);
-                return;
-        }
+    public final void onClick(View view) {
+        h81.o(this.f36170b, this.f36169a.ip);
     }
 }

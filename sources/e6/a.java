@@ -6,21 +6,21 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.RemoteException;
 import c7.r0;
-import w7.g0;
+import w7.d0;
 public final class a extends o6.a {
-    public final String f8643a;
-    public final String f8644b;
-    public final l f8645c;
+    public final String f8637a;
+    public final String f8638b;
+    public final l f8639c;
     public final f d;
-    public final boolean f8646e;
-    public final boolean f8647f;
+    public final boolean f8640e;
+    public final boolean f8641f;
     public static final g6.b h = new g6.b("CastMediaOptions", null);
     public static final Parcelable.Creator<a> CREATOR = new r0(29);
 
     public a(String str, String str2, IBinder iBinder, f fVar, boolean z10, boolean z11) {
         l aVar;
-        this.f8643a = str;
-        this.f8644b = str2;
+        this.f8637a = str;
+        this.f8638b = str2;
         if (iBinder == null) {
             aVar = 0;
         } else {
@@ -31,20 +31,20 @@ public final class a extends o6.a {
                 aVar = new a9.a(iBinder, "com.google.android.gms.cast.framework.media.IImagePicker", 1);
             }
         }
-        this.f8645c = aVar;
+        this.f8639c = aVar;
         this.d = fVar;
-        this.f8646e = z10;
-        this.f8647f = z11;
+        this.f8640e = z10;
+        this.f8641f = z11;
     }
 
     public final void b() {
-        l lVar = this.f8645c;
+        l lVar = this.f8639c;
         if (lVar != null) {
             try {
-                Parcel Q0 = lVar.Q0(lVar.O0(), 2);
-                x6.a L0 = x6.b.L0(Q0.readStrongBinder());
-                Q0.recycle();
-                if (x6.b.M0(L0) != null) {
+                Parcel P0 = lVar.P0(lVar.N0(), 2);
+                x6.a K0 = x6.b.K0(P0.readStrongBinder());
+                P0.recycle();
+                if (x6.b.L0(K0) != null) {
                     throw new ClassCastException();
                 }
             } catch (RemoteException e7) {
@@ -56,21 +56,21 @@ public final class a extends o6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         IBinder iBinder;
-        int q6 = g0.q(parcel, 20293);
-        g0.l(parcel, 2, this.f8643a);
-        g0.l(parcel, 3, this.f8644b);
-        l lVar = this.f8645c;
+        int q6 = d0.q(parcel, 20293);
+        d0.l(parcel, 2, this.f8637a);
+        d0.l(parcel, 3, this.f8638b);
+        l lVar = this.f8639c;
         if (lVar == null) {
             iBinder = null;
         } else {
-            iBinder = lVar.f338b;
+            iBinder = lVar.f336b;
         }
-        g0.f(parcel, 4, iBinder);
-        g0.k(parcel, 5, this.d, i10);
-        g0.s(parcel, 6, 4);
-        parcel.writeInt(this.f8646e ? 1 : 0);
-        g0.s(parcel, 7, 4);
-        parcel.writeInt(this.f8647f ? 1 : 0);
-        g0.r(parcel, q6);
+        d0.f(parcel, 4, iBinder);
+        d0.k(parcel, 5, this.d, i10);
+        d0.s(parcel, 6, 4);
+        parcel.writeInt(this.f8640e ? 1 : 0);
+        d0.s(parcel, 7, 4);
+        parcel.writeInt(this.f8641f ? 1 : 0);
+        d0.r(parcel, q6);
     }
 }

@@ -1,28 +1,19 @@
 package k2;
 
+import android.media.AudioTrack;
 import android.os.Handler;
-import java.util.concurrent.Executor;
-public final class c0 implements Executor {
-    public final int f14382a;
-    public final Object f14383b;
+import android.os.Looper;
+public final class c0 {
+    public final Handler f14415a = new Handler(Looper.myLooper());
+    public final b0 f14416b = new b0(this);
+    public final d0 f14417c;
 
-    public c0(Object obj, int i10) {
-        this.f14382a = i10;
-        this.f14383b = obj;
+    public c0(d0 d0Var) {
+        this.f14417c = d0Var;
     }
 
-    @Override
-    public final void execute(Runnable runnable) {
-        switch (this.f14382a) {
-            case 0:
-                ((Handler) this.f14383b).post(runnable);
-                return;
-            case 1:
-                e2.d0.U(((m4.a0) this.f14383b).f16054l, runnable);
-                return;
-            default:
-                ((p4.b) this.f14383b).post(runnable);
-                return;
-        }
+    public final void a(AudioTrack audioTrack) {
+        audioTrack.unregisterStreamEventCallback(this.f14416b);
+        this.f14415a.removeCallbacksAndMessages(null);
     }
 }

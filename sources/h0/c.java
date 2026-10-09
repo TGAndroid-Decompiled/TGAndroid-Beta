@@ -7,7 +7,7 @@ import android.util.AttributeSet;
 import android.util.Xml;
 import org.xmlpull.v1.XmlPullParserException;
 public abstract class c {
-    public static final ThreadLocal f10932a = new ThreadLocal();
+    public static final ThreadLocal f10937a = new ThreadLocal();
 
     public static ColorStateList a(Resources resources, XmlResourceParser xmlResourceParser, Resources.Theme theme) {
         int next;
@@ -24,7 +24,7 @@ public abstract class c {
         throw new XmlPullParserException("No start tag found");
     }
 
-    public static android.content.res.ColorStateList b(android.content.res.Resources r34, org.xmlpull.v1.XmlPullParser r35, android.util.AttributeSet r36, android.content.res.Resources.Theme r37) {
+    public static android.content.res.ColorStateList b(android.content.res.Resources r33, org.xmlpull.v1.XmlPullParser r34, android.util.AttributeSet r35, android.content.res.Resources.Theme r36) {
         throw new UnsupportedOperationException("Method not decompiled: h0.c.b(android.content.res.Resources, org.xmlpull.v1.XmlPullParser, android.util.AttributeSet, android.content.res.Resources$Theme):android.content.res.ColorStateList");
     }
 }

@@ -1,56 +1,15 @@
 package org.telegram.ui;
-
-import android.app.Activity;
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
 public final class ov implements Runnable {
-    public final int f39296a;
-    public final Context f39297b;
+    public final int f40602a;
+    public final ty f40603b;
 
-    public ov(Context context, int i10) {
-        this.f39296a = i10;
-        this.f39297b = context;
+    public ov(ty tyVar, int i10) {
+        this.f40602a = i10;
+        this.f40603b = tyVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f39296a) {
-            case 0:
-                org.telegram.ui.ActionBar.i6.J(this.f39297b, false);
-                return;
-            case 1:
-                Activity findActivity = AndroidUtilities.findActivity(this.f39297b);
-                if (findActivity == null) {
-                    findActivity = LaunchActivity.G1;
-                }
-                if (findActivity != null && !findActivity.isFinishing()) {
-                    findActivity.moveTaskToBack(true);
-                    return;
-                }
-                return;
-            case 2:
-                nf.f.s(this.f39297b, "https://promote.telegram.org/guidelines");
-                return;
-            case 3:
-                nf.f.s(this.f39297b, "https://promote.telegram.org/guidelines");
-                return;
-            case 4:
-                nf.f.s(this.f39297b, "https://promote.telegram.org/guidelines");
-                return;
-            case 5:
-                nf.f.s(this.f39297b, "https://promote.telegram.org/guidelines");
-                return;
-            case 6:
-                nf.f.s(this.f39297b, "https://promote.telegram.org/guidelines");
-                return;
-            case 7:
-                nf.f.s(this.f39297b, "https://promote.telegram.org/guidelines");
-                return;
-            default:
-                nf.f.s(this.f39297b, LocaleController.getString(R.string.WebAppDisclaimerUrl));
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ov.run():void");
     }
 }

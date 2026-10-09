@@ -1,140 +1,120 @@
 package org.telegram.messenger;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import org.telegram.tgnet.TLMethod;
+import java.util.LinkedHashSet;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class jk implements Runnable {
-    public final int f18296a;
-    public final Object f18297b;
-    public final Object f18298c;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.k71;
+public final class jk implements Utilities.Callback {
+    public final int f18293a = 0;
+    public final boolean f18294b;
+    public final NotificationCenter.NotificationCenterDelegate f18295c;
     public final Object d;
-    public final Object f18299e;
-    public final Object f18300f;
-    public final Object h;
-    public final Object f18301n;
-    public final boolean f18302r;
-    public final Object f18303s;
+    public final Object f18296e;
+    public final Object f18297f;
+    public final Object f18298g;
 
-    public jk(Object obj, Object obj2, org.telegram.ui.ActionBar.f1 f1Var, org.telegram.ui.ActionBar.f1 f1Var2, org.telegram.ui.ActionBar.f1 f1Var3, org.telegram.ui.ActionBar.f1 f1Var4, boolean z10, org.telegram.ui.ActionBar.f1 f1Var5, org.telegram.ui.ActionBar.f1 f1Var6, int i10) {
-        this.f18296a = i10;
-        this.f18297b = obj;
-        this.f18298c = obj2;
-        this.d = f1Var;
-        this.f18299e = f1Var2;
-        this.f18300f = f1Var3;
-        this.h = f1Var4;
-        this.f18302r = z10;
-        this.f18301n = f1Var5;
-        this.f18303s = f1Var6;
+    public jk(SendMessagesHelper sendMessagesHelper, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, SendMessagesHelper.DelayedMessage delayedMessage, boolean z10) {
+        this.f18295c = sendMessagesHelper;
+        this.d = arrayList;
+        this.f18296e = arrayList2;
+        this.f18297f = arrayList3;
+        this.f18298g = delayedMessage;
+        this.f18294b = z10;
     }
 
     @Override
-    public final void run() {
-        int i10;
-        int i11;
-        int i12;
-        int i13;
-        switch (this.f18296a) {
+    public final void run(Object obj) {
+        ArrayList<TLRPC.Document> arrayList;
+        ArrayList<TLRPC.Document> arrayList2;
+        switch (this.f18293a) {
             case 0:
-                ((SendMessagesHelper) this.f18297b).lambda$performSendMessageRequest$86((TLRPC.TL_error) this.f18298c, (TLRPC.Message) this.d, (TLObject) this.f18299e, (MessageObject) this.f18300f, (String) this.h, (HashMap) this.f18301n, this.f18302r, (TLRPC.TL_messages_addPollAnswer) this.f18303s);
+                ((SendMessagesHelper) this.f18295c).lambda$performSendMessageRequestMulti$67((ArrayList) this.d, (ArrayList) this.f18296e, (ArrayList) this.f18297f, (SendMessagesHelper.DelayedMessage) this.f18298g, this.f18294b, (TLObject) obj);
                 return;
             case 1:
-                ((SendMessagesHelper) this.f18297b).lambda$performSendMessageRequest$89((TLRPC.TL_error) this.f18298c, (TLRPC.Message) this.d, (TLObject) this.f18299e, (MessageObject) this.f18300f, (String) this.h, (HashMap) this.f18301n, this.f18302r, (TLRPC.TL_messages_editMessage) this.f18303s);
-                return;
-            case 2:
-                ((SendMessagesHelper) this.f18297b).lambda$performSendMessageRequest$100(this.f18302r, (TLRPC.TL_error) this.f18298c, (TLRPC.Message) this.d, (TLObject) this.f18299e, (MessageObject) this.f18300f, (HashMap) this.f18301n, (String) this.h, (TLObject) this.f18303s);
-                return;
-            case 3:
-                org.telegram.ui.ActionBar.f1 f1Var = (org.telegram.ui.ActionBar.f1) this.f18297b;
-                yh.l5 l5Var = (yh.l5) this.f18298c;
-                org.telegram.ui.ActionBar.f1 f1Var2 = (org.telegram.ui.ActionBar.f1) this.d;
-                org.telegram.ui.ActionBar.f1 f1Var3 = (org.telegram.ui.ActionBar.f1) this.f18299e;
-                org.telegram.ui.ActionBar.f1 f1Var4 = (org.telegram.ui.ActionBar.f1) this.f18300f;
-                org.telegram.ui.ActionBar.f1 f1Var5 = (org.telegram.ui.ActionBar.f1) this.h;
-                org.telegram.ui.ActionBar.f1 f1Var6 = (org.telegram.ui.ActionBar.f1) this.f18301n;
-                org.telegram.ui.ActionBar.f1 f1Var7 = (org.telegram.ui.ActionBar.f1) this.f18303s;
-                if (f1Var != null) {
-                    if (l5Var.f51584e) {
-                        i10 = R.string.Gift2FilterSortByValue;
-                    } else {
-                        i10 = R.string.Gift2FilterSortByDate;
-                    }
-                    String string = LocaleController.getString(i10);
-                    if (l5Var.f51584e) {
-                        i11 = R.drawable.menu_sort_value;
-                    } else {
-                        i11 = R.drawable.menu_sort_date;
-                    }
-                    f1Var.g(string, i11, null);
-                }
-                f1Var2.setChecked(TLObject.hasFlag(l5Var.f51586g, 1));
-                f1Var3.setChecked(TLObject.hasFlag(l5Var.f51586g, 2));
-                f1Var4.setChecked(TLObject.hasFlag(l5Var.f51586g, 4));
-                f1Var5.setChecked(TLObject.hasFlag(l5Var.f51586g, 8));
-                if (this.f18302r) {
-                    f1Var6.setChecked(TLObject.hasFlag(l5Var.f51586g, 256));
-                    f1Var7.setChecked(TLObject.hasFlag(l5Var.f51586g, 512));
+                ProfileActivity profileActivity = (ProfileActivity) this.f18295c;
+                TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) this.d;
+                TLRPC.User user = (TLRPC.User) this.f18296e;
+                TLRPC.ChatParticipant chatParticipant = (TLRPC.ChatParticipant) this.f18297f;
+                String str = (String) this.f18298g;
+                Integer num = (Integer) obj;
+                profileActivity.getClass();
+                boolean z10 = this.f18294b;
+                if (channelParticipant != null) {
+                    profileActivity.A4(num.intValue(), user, chatParticipant, channelParticipant.admin_rights, channelParticipant.banned_rights, channelParticipant.rank, z10);
+                    return;
+                } else {
+                    profileActivity.A4(num.intValue(), user, chatParticipant, null, null, str, z10);
                     return;
                 }
-                return;
             default:
-                org.telegram.ui.ActionBar.f1 f1Var8 = (org.telegram.ui.ActionBar.f1) this.f18298c;
-                org.telegram.ui.ActionBar.f1 f1Var9 = (org.telegram.ui.ActionBar.f1) this.d;
-                org.telegram.ui.ActionBar.f1 f1Var10 = (org.telegram.ui.ActionBar.f1) this.f18299e;
-                org.telegram.ui.ActionBar.f1 f1Var11 = (org.telegram.ui.ActionBar.f1) this.f18300f;
-                org.telegram.ui.ActionBar.f1 f1Var12 = (org.telegram.ui.ActionBar.f1) this.h;
-                org.telegram.ui.ActionBar.f1 f1Var13 = (org.telegram.ui.ActionBar.f1) this.f18301n;
-                org.telegram.ui.ActionBar.f1 f1Var14 = (org.telegram.ui.ActionBar.f1) this.f18303s;
-                yh.l5 l5Var2 = ((xh.j4) this.f18297b).f50052c.Y;
-                if (l5Var2.f51584e) {
-                    i12 = R.string.Gift2FilterSortByValue;
-                } else {
-                    i12 = R.string.Gift2FilterSortByDate;
-                }
-                String string2 = LocaleController.getString(i12);
-                if (l5Var2.f51584e) {
-                    i13 = R.drawable.menu_sort_value;
-                } else {
-                    i13 = R.drawable.menu_sort_date;
-                }
-                f1Var8.g(string2, i13, null);
-                f1Var9.setChecked(TLObject.hasFlag(l5Var2.f51586g, 1));
-                f1Var10.setChecked(TLObject.hasFlag(l5Var2.f51586g, 2));
-                f1Var11.setChecked(TLObject.hasFlag(l5Var2.f51586g, 4));
-                f1Var12.setChecked(TLObject.hasFlag(l5Var2.f51586g, 8));
-                if (this.f18302r) {
-                    f1Var13.setChecked(TLObject.hasFlag(l5Var2.f51586g, 256));
-                    f1Var14.setChecked(TLObject.hasFlag(l5Var2.f51586g, 512));
+                k71 k71Var = (k71) this.f18295c;
+                LinkedHashSet linkedHashSet = (LinkedHashSet) this.f18296e;
+                String str2 = (String) this.f18297f;
+                HashMap hashMap = (HashMap) this.f18298g;
+                ArrayList arrayList3 = (ArrayList) this.d;
+                Runnable runnable = (Runnable) obj;
+                int i10 = k71Var.V;
+                boolean z11 = false;
+                if (this.f18294b) {
+                    ArrayList<TLRPC.TL_messages_stickerSet> stickerSets = MediaDataController.getInstance(i10).getStickerSets(5);
+                    for (int i11 = 0; i11 < stickerSets.size(); i11++) {
+                        if (stickerSets.get(i11).documents != null && (arrayList2 = stickerSets.get(i11).documents) != null) {
+                            for (int i12 = 0; i12 < arrayList2.size(); i12++) {
+                                String findAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(arrayList2.get(i12), null);
+                                long j3 = arrayList2.get(i12).f20044id;
+                                if (findAnimatedEmojiEmoticon != null && !linkedHashSet.contains(Long.valueOf(j3)) && str2.contains(findAnimatedEmojiEmoticon.toLowerCase())) {
+                                    linkedHashSet.add(Long.valueOf(j3));
+                                }
+                            }
+                        }
+                    }
+                    ArrayList<TLRPC.StickerSetCovered> featuredEmojiSets = MediaDataController.getInstance(i10).getFeaturedEmojiSets();
+                    for (int i13 = 0; i13 < featuredEmojiSets.size(); i13++) {
+                        if ((featuredEmojiSets.get(i13) instanceof TLRPC.TL_stickerSetFullCovered) && ((TLRPC.TL_stickerSetFullCovered) featuredEmojiSets.get(i13)).keywords != null && (arrayList = ((TLRPC.TL_stickerSetFullCovered) featuredEmojiSets.get(i13)).documents) != null) {
+                            for (int i14 = 0; i14 < arrayList.size(); i14++) {
+                                String findAnimatedEmojiEmoticon2 = MessageObject.findAnimatedEmojiEmoticon(arrayList.get(i14), null);
+                                long j10 = arrayList.get(i14).f20044id;
+                                if (findAnimatedEmojiEmoticon2 != null && !linkedHashSet.contains(Long.valueOf(j10)) && str2.contains(findAnimatedEmojiEmoticon2)) {
+                                    linkedHashSet.add(Long.valueOf(j10));
+                                }
+                            }
+                        }
+                    }
+                    runnable.run();
                     return;
                 }
+                MediaDataController mediaDataController = MediaDataController.getInstance(i10);
+                String[] strArr = k71.a2;
+                ai.h6 h6Var = new ai.h6(k71Var, linkedHashSet, hashMap, arrayList3, runnable);
+                if (k71Var.W == 3) {
+                    z11 = true;
+                }
+                mediaDataController.getEmojiSuggestions(strArr, str2, false, h6Var, null, true, z11, false, 30);
                 return;
         }
     }
 
-    public jk(SendMessagesHelper sendMessagesHelper, TLRPC.TL_error tL_error, TLRPC.Message message, TLObject tLObject, MessageObject messageObject, String str, HashMap hashMap, boolean z10, TLMethod tLMethod, int i10) {
-        this.f18296a = i10;
-        this.f18297b = sendMessagesHelper;
-        this.f18298c = tL_error;
-        this.d = message;
-        this.f18299e = tLObject;
-        this.f18300f = messageObject;
-        this.h = str;
-        this.f18301n = hashMap;
-        this.f18302r = z10;
-        this.f18303s = tLMethod;
+    public jk(ProfileActivity profileActivity, TLRPC.ChannelParticipant channelParticipant, TLRPC.User user, TLRPC.ChatParticipant chatParticipant, boolean z10, String str) {
+        this.f18295c = profileActivity;
+        this.d = channelParticipant;
+        this.f18296e = user;
+        this.f18297f = chatParticipant;
+        this.f18294b = z10;
+        this.f18298g = str;
     }
 
-    public jk(SendMessagesHelper sendMessagesHelper, boolean z10, TLRPC.TL_error tL_error, TLRPC.Message message, TLObject tLObject, MessageObject messageObject, HashMap hashMap, String str, TLObject tLObject2) {
-        this.f18296a = 2;
-        this.f18297b = sendMessagesHelper;
-        this.f18302r = z10;
-        this.f18298c = tL_error;
-        this.d = message;
-        this.f18299e = tLObject;
-        this.f18300f = messageObject;
-        this.f18301n = hashMap;
-        this.h = str;
-        this.f18303s = tLObject2;
+    public jk(k71 k71Var, boolean z10, LinkedHashSet linkedHashSet, String str, HashMap hashMap, ArrayList arrayList) {
+        this.f18295c = k71Var;
+        this.f18294b = z10;
+        this.f18296e = linkedHashSet;
+        this.f18297f = str;
+        this.f18298g = hashMap;
+        this.d = arrayList;
     }
 }

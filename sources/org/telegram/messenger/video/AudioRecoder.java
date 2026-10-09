@@ -64,14 +64,14 @@ public class AudioRecoder {
     }
 
     private void mix(ShortBuffer shortBuffer) {
+        ag.a aVar;
         int remaining = shortBuffer.remaining();
         for (int i10 = 0; i10 < remaining && isInputAvailable(); i10++) {
             boolean z10 = false;
             short s10 = 0;
             for (int i11 = 0; i11 < this.audioInputs.size() && isInputAvailable(); i11++) {
-                ag.a aVar = this.audioInputs.get(i11);
-                if (aVar.c()) {
-                    s10 = (short) ((((short) (aVar.a() * aVar.f440a)) / this.audioInputs.size()) + s10);
+                if (this.audioInputs.get(i11).c()) {
+                    s10 = (short) ((((short) (aVar.a() * aVar.f526a)) / this.audioInputs.size()) + s10);
                     z10 = true;
                 }
             }

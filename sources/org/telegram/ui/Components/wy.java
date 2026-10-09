@@ -1,97 +1,74 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.Utilities;
-public final class wy extends ImageView {
-    public int f32741a;
-    public q5 f32742b;
-    public boolean f32743c;
-    public z5 d;
-    public ay f32744e;
-    public final ImageReceiver.BackgroundThreadDrawHolder[] f32745f;
-    public float h;
-    public ValueAnimator f32746n;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class wy implements View.OnClickListener {
+    public final zy f32694a;
 
-    public wy(Context context) {
-        super(context);
-        this.f32745f = new ImageReceiver.BackgroundThreadDrawHolder[2];
-        setScaleType(ImageView.ScaleType.CENTER);
-        setBackground(org.telegram.ui.ActionBar.i6.Y(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20918i6, false), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f)));
-    }
-
-    public final void a(Drawable drawable, boolean z10) {
-        setImageDrawable(drawable);
-        this.f32743c = z10;
-    }
-
-    public z5 getSpan() {
-        return this.d;
+    public wy(zy zyVar) {
+        this.f32694a = zyVar;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        if (isPressed()) {
-            float f7 = this.h;
-            if (f7 != 1.0f) {
-                float min = (Math.min(40.0f, 1000.0f / AndroidUtilities.screenRefreshRate) / 100.0f) + f7;
-                this.h = min;
-                this.h = Utilities.clamp(min, 1.0f, 0.0f);
-                invalidate();
-            }
+    public final void onClick(View view) {
+        int i10;
+        int i11;
+        boolean[] zArr = new boolean[1];
+        zy zyVar = this.f32694a;
+        a00 a00Var = zyVar.F;
+        org.telegram.ui.ActionBar.a3 a3Var = new org.telegram.ui.ActionBar.a3(a00Var.getContext(), null);
+        LinearLayout linearLayout = new LinearLayout(a00Var.getContext());
+        linearLayout.setOrientation(1);
+        linearLayout.setPadding(AndroidUtilities.dp(21.0f), 0, AndroidUtilities.dp(21.0f), 0);
+        ImageView imageView = new ImageView(a00Var.getContext());
+        imageView.setImageResource(R.drawable.smiles_info);
+        linearLayout.addView(imageView, w7.x5.t(-2, -2, 49, 0, 15, 0, 0));
+        TextView textView = new TextView(a00Var.getContext());
+        org.telegram.messenger.bi.j(15.0f, R.string.EmojiSuggestions, 1, textView);
+        int i12 = org.telegram.ui.ActionBar.i6.f20981n5;
+        int i13 = a00.O2;
+        textView.setTextColor(a00Var.B(i12));
+        int i14 = 3;
+        if (LocaleController.isRTL) {
+            i10 = 5;
+        } else {
+            i10 = 3;
         }
-        float f10 = ((1.0f - this.h) * 0.2f) + 0.8f;
-        canvas.save();
-        canvas.scale(f10, f10, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
-        super.onDraw(canvas);
-        canvas.restore();
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.view.View");
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i10));
-    }
-
-    @Override
-    public void setPressed(boolean z10) {
-        ValueAnimator valueAnimator;
-        if (isPressed() != z10) {
-            super.setPressed(z10);
-            invalidate();
-            if (z10 && (valueAnimator = this.f32746n) != null) {
-                valueAnimator.removeAllListeners();
-                this.f32746n.cancel();
-            }
-            if (!z10) {
-                float f7 = this.h;
-                if (f7 != 0.0f) {
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, 0.0f);
-                    this.f32746n = ofFloat;
-                    ofFloat.addUpdateListener(new k6(this, 21));
-                    this.f32746n.addListener(new r8(this, 20));
-                    this.f32746n.setInterpolator(new OvershootInterpolator(5.0f));
-                    this.f32746n.setDuration(350L);
-                    this.f32746n.start();
-                }
-            }
+        textView.setGravity(i10);
+        textView.setTypeface(AndroidUtilities.bold());
+        linearLayout.addView(textView, w7.x5.t(-2, -2, 51, 0, 24, 0, 0));
+        TextView textView2 = new TextView(a00Var.getContext());
+        textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.EmojiSuggestionsInfo)));
+        textView2.setTextSize(1, 15.0f);
+        textView2.setTextColor(a00Var.B(org.telegram.ui.ActionBar.i6.f20905j5));
+        if (LocaleController.isRTL) {
+            i11 = 5;
+        } else {
+            i11 = 3;
         }
-    }
-
-    public void setSpan(z5 z5Var) {
-        this.d = z5Var;
+        textView2.setGravity(i11);
+        linearLayout.addView(textView2, w7.x5.t(-2, -2, 51, 0, 11, 0, 0));
+        TextView textView3 = new TextView(a00Var.getContext());
+        int i15 = R.string.EmojiSuggestionsUrl;
+        Object obj = zyVar.f33680w;
+        if (obj == null) {
+            obj = a00Var.W0;
+        }
+        textView3.setText(LocaleController.formatString("EmojiSuggestionsUrl", i15, obj));
+        textView3.setTextSize(1, 15.0f);
+        textView3.setTextColor(a00Var.B(org.telegram.ui.ActionBar.i6.f20924k5));
+        if (LocaleController.isRTL) {
+            i14 = 5;
+        }
+        textView3.setGravity(i14);
+        linearLayout.addView(textView3, w7.x5.t(-2, -2, 51, 0, 18, 0, 16));
+        textView3.setOnClickListener(new vy(this, zArr, a3Var));
+        a3Var.b(linearLayout);
+        a3Var.f20380a.show();
     }
 }

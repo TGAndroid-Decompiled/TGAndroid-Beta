@@ -1,19 +1,20 @@
 package ce;
-public final class a extends kd.c {
-    public de.g f4566a;
-    public Object f4567b;
-    public final xa.c f4568c;
-    public int d;
 
-    public a(xa.c cVar, kd.c cVar2) {
-        super(cVar2);
-        this.f4568c = cVar;
+import w7.v;
+public final class a {
+    public static final a[] f4606a;
+
+    static {
+        a[] aVarArr = {new Enum("SUSPEND", 0), new Enum("DROP_OLDEST", 1), new Enum("DROP_LATEST", 2)};
+        f4606a = aVarArr;
+        v.a(aVarArr);
     }
 
-    @Override
-    public final Object invokeSuspend(Object obj) {
-        this.f4567b = obj;
-        this.d |= Integer.MIN_VALUE;
-        return this.f4568c.d(null, this);
+    public static a valueOf(String str) {
+        return (a) Enum.valueOf(a.class, str);
+    }
+
+    public static a[] values() {
+        return (a[]) f4606a.clone();
     }
 }

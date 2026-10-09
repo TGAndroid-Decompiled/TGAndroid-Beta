@@ -188,7 +188,7 @@ public class BetaUpdaterController {
             }
             this.checkingForUpdate = true;
             this.firstCheck = false;
-            new org.telegram.ui.web.j1(new w(0, this, runnable)).execute("null");
+            new org.telegram.ui.web.i1(new w(0, this, runnable)).execute("https://telegram.org/dl/android/apk-public-beta.json");
         }
     }
 
@@ -235,38 +235,38 @@ public class BetaUpdaterController {
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.appUpdateLoading, new Object[0]);
         if (!TextUtils.isEmpty(this.fileUrl)) {
             HttpGetFileTask overrideExtension = new HttpGetFileTask(new Utilities.Callback(this) {
-                public final BetaUpdaterController f19375b;
+                public final BetaUpdaterController f19378b;
 
                 {
-                    this.f19375b = this;
+                    this.f19378b = this;
                 }
 
                 @Override
                 public final void run(Object obj) {
                     switch (r2) {
                         case 0:
-                            this.f19375b.lambda$downloadUpdate$5((File) obj);
+                            this.f19378b.lambda$downloadUpdate$5((File) obj);
                             return;
                         default:
-                            this.f19375b.lambda$downloadUpdate$6((Float) obj);
+                            this.f19378b.lambda$downloadUpdate$6((Float) obj);
                             return;
                     }
                 }
             }, new Utilities.Callback(this) {
-                public final BetaUpdaterController f19375b;
+                public final BetaUpdaterController f19378b;
 
                 {
-                    this.f19375b = this;
+                    this.f19378b = this;
                 }
 
                 @Override
                 public final void run(Object obj) {
                     switch (r2) {
                         case 0:
-                            this.f19375b.lambda$downloadUpdate$5((File) obj);
+                            this.f19378b.lambda$downloadUpdate$5((File) obj);
                             return;
                         default:
-                            this.f19375b.lambda$downloadUpdate$6((Float) obj);
+                            this.f19378b.lambda$downloadUpdate$6((Float) obj);
                             return;
                     }
                 }

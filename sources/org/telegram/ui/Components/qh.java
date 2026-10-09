@@ -5,36 +5,36 @@ import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class qh implements o1.g {
-    public final int f30051a = 1;
-    public final boolean f30052b;
-    public final float f30053c;
+    public final int f30165a = 1;
+    public final boolean f30166b;
+    public final float f30167c;
     public final float d;
-    public final KeyEvent.Callback f30054e;
+    public final KeyEvent.Callback f30168e;
 
-    public qh(xi xiVar, float f7, float f10, boolean z10) {
-        this.f30054e = xiVar;
-        this.f30053c = f7;
+    public qh(yi yiVar, float f7, float f10, boolean z10) {
+        this.f30168e = yiVar;
+        this.f30167c = f7;
         this.d = f10;
-        this.f30052b = z10;
+        this.f30166b = z10;
     }
 
     @Override
     public final void a(o1.h hVar, float f7, float f10) {
-        switch (this.f30051a) {
+        switch (this.f30165a) {
             case 0:
-                xi xiVar = (xi) this.f30054e;
-                LinearLayout linearLayout = xiVar.l1;
-                LinearLayout linearLayout2 = xiVar.f32934n1;
+                yi yiVar = (yi) this.f30168e;
+                LinearLayout linearLayout = yiVar.f33255o1;
+                LinearLayout linearLayout2 = yiVar.f33261q1;
                 float f11 = f7 / 500.0f;
-                ii iiVar = xiVar.f32906e0;
-                pi piVar = xiVar.f32971y0;
+                mi miVar = yiVar.f33224e0;
+                qi qiVar = yiVar.B0;
                 Float valueOf = Float.valueOf(f11);
-                iiVar.getClass();
-                iiVar.a(piVar, valueOf);
-                xiVar.X0.setAlpha(AndroidUtilities.lerp(this.f30053c, this.d, f11));
-                xiVar.W1(xiVar.f32971y0, 0);
-                xiVar.W1(xiVar.f32974z0, 0);
-                if (!(xiVar.f32974z0 instanceof tm) || this.f30052b) {
+                miVar.getClass();
+                miVar.a(qiVar, valueOf);
+                yiVar.f33211a1.setAlpha(AndroidUtilities.lerp(this.f30167c, this.d, f11));
+                yiVar.b2(yiVar.B0, 0);
+                yiVar.b2(yiVar.C0, 0);
+                if (!(yiVar.C0 instanceof hn) || this.f30166b) {
                     f11 = 1.0f - f11;
                 }
                 float clamp = Utilities.clamp(f11, 1.0f, 0.0f);
@@ -45,25 +45,25 @@ public final class qh implements o1.g {
                 linearLayout2.setTranslationX(f12 * AndroidUtilities.dp(16.0f));
                 return;
             default:
-                qp0 qp0Var = (qp0) this.f30054e;
-                boolean z10 = this.f30052b;
+                bq0 bq0Var = (bq0) this.f30168e;
+                boolean z10 = this.f30166b;
                 if (z10) {
-                    if (f7 > this.f30053c / 2.0f || !qp0Var.f30179s) {
+                    if (f7 > this.f30167c / 2.0f || !bq0Var.f25093s) {
                         return;
                     }
-                } else if (f7 < this.d / 2.0f || !qp0Var.f30178r) {
+                } else if (f7 < this.d / 2.0f || !bq0Var.f25092r) {
                     return;
                 }
-                qp0Var.f30179s = !z10;
-                qp0Var.f30178r = z10;
+                bq0Var.f25093s = !z10;
+                bq0Var.f25092r = z10;
                 return;
         }
     }
 
-    public qh(qp0 qp0Var, boolean z10, float f7, float f10) {
-        this.f30054e = qp0Var;
-        this.f30052b = z10;
-        this.f30053c = f7;
+    public qh(bq0 bq0Var, boolean z10, float f7, float f10) {
+        this.f30168e = bq0Var;
+        this.f30166b = z10;
+        this.f30167c = f7;
         this.d = f10;
     }
 }

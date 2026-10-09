@@ -10,16 +10,16 @@ import android.widget.HeaderViewListAdapter;
 import android.widget.ListAdapter;
 import android.widget.PopupWindow;
 public abstract class s implements b0, x, AdapterView.OnItemClickListener {
-    public Rect f15226a;
+    public Rect f15290a;
 
     public static int m(ListAdapter listAdapter, Context context, int i10) {
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
         int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(0, 0);
         int count = listAdapter.getCount();
-        FrameLayout frameLayout = null;
-        View view = null;
         int i11 = 0;
         int i12 = 0;
+        FrameLayout frameLayout = null;
+        View view = null;
         for (int i13 = 0; i13 < count; i13++) {
             int itemViewType = listAdapter.getItemViewType(i13);
             if (itemViewType != i12) {
@@ -68,7 +68,7 @@ public abstract class s implements b0, x, AdapterView.OnItemClickListener {
         } else {
             hVar = (h) listAdapter;
         }
-        k kVar = hVar.f15165a;
+        k kVar = hVar.f15229a;
         MenuItem menuItem = (MenuItem) listAdapter.getItem(i10);
         if (!(this instanceof e)) {
             i11 = 0;

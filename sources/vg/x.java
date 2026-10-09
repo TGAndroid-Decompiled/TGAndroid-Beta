@@ -3,31 +3,31 @@ package vg;
 import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Cells.m4;
-import org.telegram.ui.Components.p6;
-import org.telegram.ui.Components.tr;
-import w7.z5;
+import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.r6;
+import w7.x5;
 public final class x extends m4 {
-    public final p6 f48356r;
+    public final r6 f49636r;
 
-    public x(Context context, d6 d6Var) {
-        super(context, d6Var);
+    public x(Context context, e6 e6Var) {
+        super(context, e6Var);
         int i10;
-        p6 p6Var = new p6(context, true, true, true);
-        this.f48356r = p6Var;
-        p6Var.b(0.45f, 240L, tr.h);
+        r6 r6Var = new r6(context, true, true, true);
+        this.f49636r = r6Var;
+        r6Var.b(0.45f, 240L, hs.h);
         if (LocaleController.isRTL) {
             i10 = 3;
         } else {
             i10 = 5;
         }
-        p6Var.setGravity(i10);
-        p6Var.setTextSize(AndroidUtilities.dp(15.0f));
-        p6Var.setTypeface(AndroidUtilities.bold());
-        p6Var.setTextColor(i6.v0(i6.L6, d6Var));
-        addView(p6Var, z5.d(-2, 24.0f, (LocaleController.isRTL ? 3 : 5) | 80, 24.0f, 0.0f, 24.0f, 0.0f));
-        setBackgroundColor(i6.v0(i6.f20899h5, d6Var));
+        r6Var.setGravity(i10);
+        r6Var.setTextSize(AndroidUtilities.dp(15.0f));
+        r6Var.setTypeface(AndroidUtilities.bold());
+        r6Var.setTextColor(i6.w0(i6.L6, e6Var));
+        addView(r6Var, x5.a(24.0f, 24.0f, 0.0f, 24.0f, 0.0f, -2, (LocaleController.isRTL ? 3 : 5) | 80));
+        setBackgroundColor(i6.w0(i6.f20868h5, e6Var));
     }
 }

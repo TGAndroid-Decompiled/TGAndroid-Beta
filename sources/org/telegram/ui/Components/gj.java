@@ -1,6 +1,41 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-public interface gj {
-    void j(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j3, boolean z11, long j10);
+import android.content.Context;
+import org.telegram.messenger.AndroidUtilities;
+public final class gj extends k71 {
+    public final kj f26735d3;
+
+    public gj(kj kjVar, Context context, int i10, d dVar, cj cjVar, cj cjVar2, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, i10, 0, false, dVar, cjVar, cjVar2, e6Var);
+        this.f26735d3 = kjVar;
+    }
+
+    @Override
+    public final void D1() {
+        kj kjVar = this.f26735d3;
+        kjVar.f30173b.b2(kjVar, 0);
+    }
+
+    @Override
+    public final boolean E0(float f7) {
+        int i10;
+        yi yiVar = this.f26735d3.f30173b;
+        int dp = AndroidUtilities.dp(30.0f) + yiVar.f33226e2[0];
+        if (!yiVar.f33231g0) {
+            i10 = AndroidUtilities.statusBarHeight;
+        } else {
+            i10 = 0;
+        }
+        if (f7 < dp + i10) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        kj kjVar = this.f26735d3;
+        kjVar.f30173b.b2(kjVar, 0);
+    }
 }

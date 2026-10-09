@@ -1,116 +1,102 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.util.StateSet;
-import android.view.MotionEvent;
-public final class gq extends p6 {
-    public final Rect f26960s;
-    public Drawable v;
-    public boolean f26961w;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.app.Activity;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class gq extends FrameLayout {
+    public final TextView[] f26855a;
+    public final fk0[] f26856b;
+    public final ImageView f26857c;
+    public AnimatorSet d;
+    public rg f26858e;
+    public float f26859f;
+    public final org.telegram.ui.ActionBar.e6 h;
 
-    public gq(Context context) {
-        super(context, false, false, false);
-        this.f26960s = new Rect();
-    }
-
-    public Rect getClickBounds() {
-        return this.f26960s;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.v != null) {
-            Rect bounds = getDrawable().getBounds();
-            Rect rect = this.f26960s;
-            rect.set(bounds);
-            int ceil = (int) Math.ceil(getDrawable().d());
-            if (getDrawable().f29354b == 3) {
-                rect.right = rect.left + ceil;
-            } else if (getDrawable().f29354b == 5) {
-                rect.left = rect.right - ceil;
-            } else if (getDrawable().f29354b == 17) {
-                int i10 = (rect.left + rect.right) / 2;
-                int i11 = ceil / 2;
-                rect.left = i10 - i11;
-                rect.right = i10 + i11;
+    public gq(Activity activity, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(activity);
+        float f7;
+        float f10;
+        this.f26855a = new TextView[2];
+        this.f26856b = new fk0[2];
+        this.h = e6Var;
+        FrameLayout frameLayout = new FrameLayout(activity);
+        frameLayout.setBackground(org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(6.0f), org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21045qf, e6Var)));
+        frameLayout.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
+        addView(frameLayout, w7.x5.a(-2.0f, 0.0f, 0.0f, 0.0f, 6.0f, -2, 51));
+        for (int i10 = 0; i10 < 2; i10++) {
+            this.f26856b[i10] = new ImageView(activity);
+            this.f26856b[i10].setScaleType(ImageView.ScaleType.CENTER);
+            fk0 fk0Var = this.f26856b[i10];
+            if (i10 == 0) {
+                f7 = 0.0f;
+            } else {
+                f7 = 24.0f;
             }
-            rect.left -= getPaddingLeft();
-            rect.top -= getPaddingTop();
-            rect.right = getPaddingRight() + rect.right;
-            rect.bottom = getPaddingBottom() + rect.bottom;
-            this.v.setBounds(rect);
-            this.v.draw(canvas);
+            frameLayout.addView(fk0Var, w7.x5.a(24.0f, 0.0f, f7, 0.0f, 0.0f, 24, 51));
+            this.f26855a[i10] = new TextView(activity);
+            this.f26855a[i10].setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21026pf, this.h));
+            this.f26855a[i10].setTextSize(1, 14.0f);
+            this.f26855a[i10].setMaxLines(1);
+            this.f26855a[i10].setSingleLine(true);
+            this.f26855a[i10].setMaxWidth(AndroidUtilities.dp(250.0f));
+            this.f26855a[i10].setGravity(51);
+            this.f26855a[i10].setPivotX(0.0f);
+            TextView textView = this.f26855a[i10];
+            if (i10 == 0) {
+                f10 = 2.0f;
+            } else {
+                f10 = 26.0f;
+            }
+            frameLayout.addView(textView, w7.x5.a(-2.0f, 32.0f, f10, 10.0f, 0.0f, -2, 51));
+            if (i10 == 0) {
+                this.f26856b[i10].f(R.raw.ticks_single, 24, 24, null);
+                this.f26855a[i10].setText(LocaleController.getString(R.string.HintSent));
+            } else {
+                this.f26856b[i10].f(R.raw.ticks_double, 24, 24, null);
+                this.f26855a[i10].setText(LocaleController.getString(R.string.HintRead));
+            }
+            this.f26856b[i10].d();
         }
-        super.onDraw(canvas);
+        ImageView imageView = new ImageView(activity);
+        this.f26857c = imageView;
+        imageView.setImageResource(R.drawable.tooltip_arrow);
+        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21045qf, this.h), PorterDuff.Mode.MULTIPLY));
+        addView(imageView, w7.x5.a(6.0f, 0.0f, 0.0f, 0.0f, 0.0f, 14, 83));
     }
 
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean contains = getClickBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY());
-        if (motionEvent.getAction() == 0 && contains) {
-            this.f26961w = true;
-            Drawable drawable = this.v;
-            if (drawable != null) {
-                drawable.setHotspot(motionEvent.getX(), motionEvent.getY());
-                this.v.setState(new int[]{16842919, 16842910});
-            }
-            invalidate();
-            return contains;
+    public final void a() {
+        if (getTag() == null) {
+            return;
         }
-        if (motionEvent.getAction() == 1) {
-            if (this.f26961w && contains) {
-                callOnClick();
-            }
-            this.f26961w = false;
-            Drawable drawable2 = this.v;
-            if (drawable2 != null) {
-                drawable2.setState(StateSet.NOTHING);
-                return contains;
-            }
-        } else if (motionEvent.getAction() == 3) {
-            this.f26961w = false;
-            Drawable drawable3 = this.v;
-            if (drawable3 != null) {
-                drawable3.setState(StateSet.NOTHING);
-            }
+        setTag(null);
+        rg rgVar = this.f26858e;
+        if (rgVar != null) {
+            AndroidUtilities.cancelRunOnUIThread(rgVar);
+            this.f26858e = null;
         }
-        return contains;
+        AnimatorSet animatorSet = this.d;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+            this.d = null;
+        }
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        this.d = animatorSet2;
+        animatorSet2.playTogether(ObjectAnimator.ofFloat(this, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this, View.SCALE_X, 0.0f), ObjectAnimator.ofFloat(this, View.SCALE_Y, 0.0f));
+        this.d.addListener(new fq(this, 1));
+        this.d.setDuration(180L);
+        this.d.start();
     }
 
-    @Override
-    public void setBackground(Drawable drawable) {
-        Drawable drawable2 = this.v;
-        if (drawable2 != null) {
-            drawable2.setCallback(null);
-        }
-        this.v = drawable;
-        if (drawable != null) {
-            drawable.setCallback(this);
-        }
-        invalidate();
-    }
-
-    @Override
-    public void setBackgroundDrawable(Drawable drawable) {
-        Drawable drawable2 = this.v;
-        if (drawable2 != null) {
-            drawable2.setCallback(null);
-        }
-        this.v = drawable;
-        if (drawable != null) {
-            drawable.setCallback(this);
-        }
-        invalidate();
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.v && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
+    public float getBaseTranslationY() {
+        return this.f26859f;
     }
 }

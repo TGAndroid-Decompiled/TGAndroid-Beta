@@ -1,9 +1,9 @@
 package v7;
 public final class m1 implements ia.d {
-    public static final m1 f48016a = new Object();
+    public static final m1 f49264a = new Object();
 
     static {
-        sa.e.t(sa.e.l(h.class, new e(1)));
+        sc.v.t(sc.v.l(h.class, sc.v.p(4, sc.v.l(h.class, sc.v.p(3, sc.v.l(h.class, sc.v.p(2, sc.v.l(h.class, new e(1)))))))));
     }
 
     @Override

@@ -1,45 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
 import android.view.View;
-public final class i70 extends ux0 {
-    public final int K;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ProfileActivity;
+public final class i70 extends ClickableSpan {
+    public final org.telegram.ui.ActionBar.f3[] f27258a;
+    public final TLRPC.TL_chatInviteImporter f27259b;
 
-    public i70(Context context, View view, int i10, org.telegram.ui.ActionBar.d6 d6Var, int i11) {
-        super(context, view, i10, d6Var);
-        this.K = i11;
+    public i70(org.telegram.ui.ActionBar.f3[] f3VarArr, TLRPC.TL_chatInviteImporter tL_chatInviteImporter) {
+        this.f27258a = f3VarArr;
+        this.f27259b = tL_chatInviteImporter;
     }
 
     @Override
-    public void onAttachedToWindow() {
-        switch (this.K) {
-            case 0:
-                super.onAttachedToWindow();
-                this.f31549b.getImageReceiver().startAnimation();
-                return;
-            case 1:
-                super.onAttachedToWindow();
-                this.f31549b.getImageReceiver().startAnimation();
-                return;
-            default:
-                super.onAttachedToWindow();
-                return;
+    public final void onClick(View view) {
+        this.f27258a[0].dismiss();
+        org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+        if (U != null) {
+            U.presentFragment(ProfileActivity.m4(this.f27259b.user_id));
         }
     }
 
     @Override
-    public void setVisibility(int i10) {
-        switch (this.K) {
-            case 2:
-                super.setVisibility(i10);
-                if (i10 != 0) {
-                    e(false, false);
-                    return;
-                }
-                return;
-            default:
-                super.setVisibility(i10);
-                return;
-        }
+    public final void updateDrawState(TextPaint textPaint) {
+        textPaint.setUnderlineText(false);
     }
 }

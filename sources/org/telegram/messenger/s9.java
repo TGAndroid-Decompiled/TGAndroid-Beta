@@ -1,48 +1,84 @@
 package org.telegram.messenger;
+public final class s9 implements Runnable {
+    public final int f19127a;
+    public final MessagesController f19128b;
+    public final long f19129c;
 
-import java.util.Comparator;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-public final class s9 implements Comparator {
-    public final int f19149a;
-    public final MessagesController f19150b;
-
-    public s9(MessagesController messagesController, int i10) {
-        this.f19149a = i10;
-        this.f19150b = messagesController;
+    public s9(MessagesController messagesController, long j3, int i10) {
+        this.f19127a = i10;
+        this.f19128b = messagesController;
+        this.f19129c = j3;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int lambda$new$9;
-        int lambda$new$10;
-        int lambda$new$11;
-        int lambda$new$12;
-        int lambda$processUpdatesQueue$327;
-        int lambda$renameSavedReactionTag$484;
-        int lambda$updateSavedReactionTags$483;
-        switch (this.f19149a) {
+    public final void run() {
+        switch (this.f19127a) {
             case 0:
-                lambda$new$9 = this.f19150b.lambda$new$9((TLRPC.Dialog) obj, (TLRPC.Dialog) obj2);
-                return lambda$new$9;
+                this.f19128b.lambda$setDefaultBannedRole$96(this.f19129c);
+                return;
             case 1:
-                lambda$new$10 = this.f19150b.lambda$new$10((TLRPC.Dialog) obj, (TLRPC.Dialog) obj2);
-                return lambda$new$10;
+                this.f19128b.lambda$setChatReactions$473(this.f19129c);
+                return;
             case 2:
-                lambda$new$11 = this.f19150b.lambda$new$11((MessagesController.CommunityPeerDialog) obj, (MessagesController.CommunityPeerDialog) obj2);
-                return lambda$new$11;
+                this.f19128b.lambda$deleteParticipantFromChat$311(this.f19129c);
+                return;
             case 3:
-                lambda$new$12 = this.f19150b.lambda$new$12((TLRPC.Update) obj, (TLRPC.Update) obj2);
-                return lambda$new$12;
+                this.f19128b.lambda$setBoostsToUnblockRestrictions$94(this.f19129c);
+                return;
             case 4:
-                lambda$processUpdatesQueue$327 = this.f19150b.lambda$processUpdatesQueue$327((TLRPC.Updates) obj, (TLRPC.Updates) obj2);
-                return lambda$processUpdatesQueue$327;
+                this.f19128b.lambda$deleteDialog$139(this.f19129c);
+                return;
             case 5:
-                lambda$renameSavedReactionTag$484 = this.f19150b.lambda$renameSavedReactionTag$484((TLRPC.TL_savedReactionTag) obj, (TLRPC.TL_savedReactionTag) obj2);
-                return lambda$renameSavedReactionTag$484;
+                this.f19128b.lambda$addUserToChat$297(this.f19129c);
+                return;
+            case 6:
+                this.f19128b.lambda$addUserToChat$308(this.f19129c);
+                return;
+            case 7:
+                this.f19128b.lambda$addUserToChat$306(this.f19129c);
+                return;
+            case 8:
+                this.f19128b.lambda$processUpdateArray$386(this.f19129c);
+                return;
+            case 9:
+                this.f19128b.lambda$getSavedReactionTags$491(this.f19129c);
+                return;
+            case 10:
+                this.f19128b.lambda$getChannelDifference$333(this.f19129c);
+                return;
+            case 11:
+                this.f19128b.lambda$getChannelDifference$334(this.f19129c);
+                return;
+            case 12:
+                this.f19128b.lambda$getChannelDifference$335(this.f19129c);
+                return;
+            case 13:
+                this.f19128b.lambda$getChannelDifference$336(this.f19129c);
+                return;
+            case 14:
+                this.f19128b.lambda$setChannelSlowMode$92(this.f19129c);
+                return;
+            case 15:
+                this.f19128b.lambda$deleteParticipantFromChat$314(this.f19129c);
+                return;
+            case 16:
+                this.f19128b.lambda$deleteDialog$138(this.f19129c);
+                return;
+            case 17:
+                this.f19128b.lambda$removeDialog$133(this.f19129c);
+                return;
+            case 18:
+                this.f19128b.lambda$setParticipantBannedRole$89(this.f19129c);
+                return;
+            case 19:
+                this.f19128b.lambda$getChannelDifference$343(this.f19129c);
+                return;
+            case 20:
+                this.f19128b.lambda$getChannelDifference$344(this.f19129c);
+                return;
             default:
-                lambda$updateSavedReactionTags$483 = this.f19150b.lambda$updateSavedReactionTags$483((TLRPC.TL_savedReactionTag) obj, (TLRPC.TL_savedReactionTag) obj2);
-                return lambda$updateSavedReactionTags$483;
+                this.f19128b.lambda$getChannelDifference$342(this.f19129c);
+                return;
         }
     }
 }

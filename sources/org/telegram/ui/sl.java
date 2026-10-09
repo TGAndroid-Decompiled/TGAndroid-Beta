@@ -1,66 +1,33 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.tgnet.TLRPC;
-public final class sl extends ou0 {
-    public final MessageObject f40537a;
-    public final MediaController.PhotoEntry f40538b;
-    public final yn f40539c;
+import android.content.Intent;
+import java.util.ArrayList;
+import org.telegram.messenger.FileLog;
+public final class sl implements jq0 {
+    public final zn f41727a;
 
-    public sl(yn ynVar, MessageObject messageObject, MediaController.PhotoEntry photoEntry) {
-        this.f40539c = ynVar;
-        this.f40537a = messageObject;
-        this.f40538b = photoEntry;
+    public sl(zn znVar) {
+        this.f41727a = znVar;
     }
 
     @Override
-    public final yu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        return yn.A1(this.f40539c, this.f40537a, null, i10, z10, true);
-    }
-
-    @Override
-    public final boolean O() {
-        yn ynVar = this.f40539c;
-        if (ynVar.W != null && ynVar.w9()) {
-            ynVar.W.N();
-            return true;
+    public final void b() {
+        try {
+            Intent intent = new Intent();
+            intent.setType("video/*");
+            intent.setAction("android.intent.action.GET_CONTENT");
+            intent.putExtra("android.intent.extra.sizeLimit", 2097152000L);
+            Intent intent2 = new Intent("android.intent.action.PICK");
+            intent2.setType("image/*");
+            Intent createChooser = Intent.createChooser(intent2, null);
+            createChooser.putExtra("android.intent.extra.INITIAL_INTENTS", new Intent[]{intent});
+            this.f41727a.startActivityForResult(createChooser, 1);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
-        return false;
     }
 
     @Override
-    public final MessageObject U() {
-        MessageObject messageObject = this.f40539c.f43431n5;
-        MessageObject messageObject2 = this.f40537a;
-        if (messageObject == messageObject2) {
-            return messageObject2;
-        }
-        return null;
-    }
-
-    @Override
-    public final void e(CharSequence charSequence) {
-        this.f40539c.W.e1(charSequence, false);
-    }
-
-    @Override
-    public final boolean g() {
-        return false;
-    }
-
-    @Override
-    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        yn ynVar = this.f40539c;
-        if (ynVar.f43431n5 != this.f40537a) {
-            return;
-        }
-        MediaController.PhotoEntry photoEntry = this.f40538b;
-        if (!photoEntry.isCropped && !photoEntry.isPainted && !photoEntry.isFiltered && videoEditedInfo == null) {
-            ynVar.W.d0();
-        } else {
-            ynVar.q(photoEntry, videoEditedInfo, z10, i11, 0, z11, 0L);
-        }
+    public final void a(ArrayList arrayList) {
     }
 }

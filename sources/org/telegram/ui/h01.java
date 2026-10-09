@@ -1,43 +1,36 @@
 package org.telegram.ui;
+public final class h01 implements Runnable {
+    public final int f38177a;
+    public final i01 f38178b;
 
-import android.view.View;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-public final class h01 implements View.OnClickListener {
-    public final int f36846a;
-    public final s01 f36847b;
-
-    public h01(s01 s01Var, int i10) {
-        this.f36846a = i10;
-        this.f36847b = s01Var;
+    public h01(i01 i01Var, int i10) {
+        this.f38177a = i10;
+        this.f38178b = i01Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f36846a) {
+    public final void run() {
+        switch (this.f38177a) {
             case 0:
-                s01 s01Var = this.f36847b;
-                ProfileActivity profileActivity = s01Var.f40298e;
-                TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(profileActivity.f34253e1));
-                MessagesController messagesController = profileActivity.getMessagesController();
-                ProfileActivity profileActivity2 = s01Var.f40298e;
-                messagesController.openApp(profileActivity2, user, null, profileActivity2.getClassGuid(), null);
-                return;
-            default:
-                ProfileActivity profileActivity3 = this.f36847b.f40298e;
-                profileActivity3.O4 = !profileActivity3.O4;
-                if (!profileActivity3.N4) {
-                    profileActivity3.N4 = true;
-                }
-                profileActivity3.F4();
-                view.requestLayout();
-                profileActivity3.d.m(profileActivity3.O3);
-                int i10 = profileActivity3.U5;
-                if (i10 >= 0) {
-                    profileActivity3.f34236c.h1(i10, profileActivity3.V5 - profileActivity3.f34221a.getPaddingTop());
+                ProfileActivity profileActivity = this.f38178b.D0;
+                vz0 vz0Var = profileActivity.B5;
+                if (vz0Var != null) {
+                    vz0Var.dismiss();
+                    profileActivity.B5 = null;
                     return;
                 }
                 return;
+            default:
+                try {
+                    org.telegram.ui.Components.qm0 currentListView = this.f38178b.f38426x0.O.getCurrentListView();
+                    if (currentListView != null && currentListView.getAdapter() != null) {
+                        currentListView.getAdapter().l();
+                        return;
+                    }
+                    return;
+                } catch (Throwable unused) {
+                    return;
+                }
         }
     }
 }

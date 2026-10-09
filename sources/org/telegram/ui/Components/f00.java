@@ -1,341 +1,160 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.text.Layout;
-import android.text.SpannableStringBuilder;
-import android.text.StaticLayout;
-import android.text.TextPaint;
+import android.util.SparseArray;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
-public final class f00 extends s4.j {
-    public final n00 F;
+import android.view.ViewGroup;
+import androidx.recyclerview.widget.RecyclerView;
+public class f00 extends s4.d0 {
+    public final SparseArray I;
+    public int J;
+    public int K;
+    public int L;
+    public int M;
+    public final RecyclerView N;
+    public boolean O;
+    public boolean P;
+    public final boolean Q;
+    public boolean R;
+    public int S;
+    public final boolean T;
 
-    public f00(n00 n00Var) {
-        this.F = n00Var;
+    public f00(qm0 qm0Var, int i10) {
+        this.I = new SparseArray();
+        this.J = -1;
+        this.P = true;
+        this.Q = true;
+        this.T = true;
+        this.N = qm0Var;
+        this.M = i10;
     }
 
     @Override
-    public final void C(s4.c1 c1Var, s4.i iVar) {
-        super.C(c1Var, iVar);
-        View view = c1Var.f46538a;
-        if (view instanceof l00) {
-            l00 l00Var = (l00) view;
-            if (l00Var.f28332w) {
-                ValueAnimator valueAnimator = l00Var.f28312a;
-                if (valueAnimator != null) {
-                    valueAnimator.removeAllListeners();
-                    l00Var.f28312a.removeAllUpdateListeners();
-                    l00Var.f28312a.cancel();
-                }
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                ofFloat.addUpdateListener(new e00(l00Var, 0));
-                ofFloat.addListener(new r8(l00Var, 21));
-                l00Var.f28312a = ofFloat;
-                ofFloat.setDuration(this.f46629e);
-                ofFloat.start();
+    public final void P(View view) {
+        s4.d1 T;
+        if (this.T) {
+            RecyclerView recyclerView = this.N;
+            View F = recyclerView.F(view);
+            if (F == null) {
+                T = null;
+            } else {
+                T = recyclerView.T(F);
+            }
+            if (T.b() == B() - 1) {
+                ((ViewGroup.MarginLayoutParams) ((s4.q0) view.getLayoutParams())).height = Math.max(this.J, 0);
             }
         }
+        super.P(view);
     }
 
     @Override
-    public final void f(s4.c1 c1Var) {
-        super.f(c1Var);
-        View view = c1Var.f46538a;
-        view.setTranslationX(0.0f);
-        if (view instanceof l00) {
-            ((l00) view).a();
-        }
+    public final void Q() {
+        this.I.clear();
+        p1();
     }
 
     @Override
-    public final void m() {
-        boolean isEmpty = this.f46604p.isEmpty();
-        boolean isEmpty2 = this.f46606r.isEmpty();
-        boolean isEmpty3 = this.f46607s.isEmpty();
-        boolean isEmpty4 = this.f46605q.isEmpty();
-        if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.1f);
-            ofFloat.addUpdateListener(new k6(this, 23));
-            ofFloat.setDuration(this.f46629e);
-            ofFloat.start();
-        }
-        super.m();
+    public final void V(RecyclerView recyclerView, int i10, int i11) {
+        p1();
     }
 
     @Override
-    public final boolean r(s4.c1 c1Var, b2.q0 q0Var, int i10, int i11, int i12, int i13) {
-        int i14;
-        int i15;
-        int i16;
-        ?? r32;
-        boolean z10;
-        String str;
-        int i17;
-        int i18;
-        boolean z11;
-        boolean z12;
-        float f7;
-        CharSequence charSequence;
-        CharSequence charSequence2;
-        boolean z13;
-        int i19;
-        int i20;
-        float f10;
-        int i21;
-        int i22;
-        float f11;
-        boolean z14;
-        boolean z15;
-        int i23;
-        View view = c1Var.f46538a;
-        if (view instanceof l00) {
-            int translationX = i10 + ((int) view.getTranslationX());
-            int translationY = i11 + ((int) view.getTranslationY());
-            R(c1Var);
-            int i24 = i12 - translationX;
-            int i25 = i13 - translationY;
-            if (i24 != 0) {
-                view.setTranslationX(-i24);
-            }
-            if (i25 != 0) {
-                view.setTranslationY(-i25);
-            }
-            l00 l00Var = (l00) view;
-            n00 n00Var = l00Var.m0;
-            TextPaint textPaint = n00Var.f28876b;
-            TextPaint textPaint2 = n00Var.f28878c;
-            int i26 = l00Var.f28314b.d;
-            int i27 = l00Var.I;
-            if (i26 != i27) {
-                l00Var.H = true;
-                l00Var.J = i27;
-                l00Var.f28322f0 = l00Var.f28318d0;
-                l00Var.f28323g0 = l00Var.f28320e0;
-                if (i27 > 0 && i26 > 0) {
-                    String valueOf = String.valueOf(i27);
-                    String valueOf2 = String.valueOf(l00Var.f28314b.d);
-                    if (valueOf.length() == valueOf2.length()) {
-                        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(valueOf);
-                        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(valueOf2);
-                        SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(valueOf2);
-                        int i28 = 0;
-                        while (i28 < valueOf.length()) {
-                            int i29 = translationX;
-                            if (valueOf.charAt(i28) == valueOf2.charAt(i28)) {
-                                i23 = translationY;
-                                int i30 = i28 + 1;
-                                spannableStringBuilder.setSpan(new oz(false), i28, i30, 0);
-                                spannableStringBuilder2.setSpan(new oz(false), i28, i30, 0);
-                            } else {
-                                i23 = translationY;
-                                spannableStringBuilder3.setSpan(new oz(false), i28, i28 + 1, 0);
-                            }
-                            i28++;
-                            translationY = i23;
-                            translationX = i29;
-                        }
-                        i14 = translationX;
-                        i15 = translationY;
-                        z15 = false;
-                        int ceil = (int) Math.ceil(org.telegram.ui.ActionBar.i6.L0.measureText(valueOf));
-                        TextPaint textPaint3 = n00Var.f28878c;
-                        Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
-                        l00Var.L = new StaticLayout(spannableStringBuilder, textPaint3, ceil, alignment, 1.0f, 0.0f, false);
-                        l00Var.M = new StaticLayout(spannableStringBuilder3, textPaint3, ceil, alignment, 1.0f, 0.0f, false);
-                        l00Var.K = new StaticLayout(spannableStringBuilder2, textPaint3, ceil, alignment, 1.0f, 0.0f, false);
-                        z14 = true;
-                    } else {
-                        i14 = translationX;
-                        i15 = translationY;
-                        z15 = false;
-                        Layout.Alignment alignment2 = Layout.Alignment.ALIGN_CENTER;
-                        z14 = true;
-                        l00Var.L = new StaticLayout(valueOf, textPaint2, (int) Math.ceil(org.telegram.ui.ActionBar.i6.L0.measureText(valueOf)), alignment2, 1.0f, 0.0f, false);
-                        l00Var.K = new StaticLayout(valueOf2, textPaint2, (int) Math.ceil(org.telegram.ui.ActionBar.i6.L0.measureText(valueOf2)), alignment2, 1.0f, 0.0f, false);
-                    }
-                } else {
-                    i14 = translationX;
-                    i15 = translationY;
-                    z14 = true;
-                    z15 = false;
-                }
-                z10 = true;
-                i16 = z14;
-                r32 = z15;
-            } else {
-                i14 = translationX;
-                i15 = translationY;
-                i16 = 1;
-                r32 = 0;
-                z10 = false;
-            }
-            int i31 = l00Var.f28314b.d;
-            if (i31 > 0) {
-                Object[] objArr = new Object[i16];
-                objArr[r32] = Integer.valueOf(i31);
-                str = String.format("%d", objArr);
-                i17 = Math.max(AndroidUtilities.dp(7.333f), (int) Math.ceil(textPaint2.measureText(str))) + AndroidUtilities.dp(10.0f);
-            } else {
-                str = null;
-                i17 = 0;
-            }
-            int i32 = l00Var.f28314b.f27639c;
-            if (i17 != 0) {
-                if (str != null) {
-                    f11 = 1.0f;
-                } else {
-                    f11 = n00Var.f28903w;
-                }
-                i18 = AndroidUtilities.dp(f11 * 6.0f) + i17;
-            } else {
-                i18 = 0;
-            }
-            int i33 = i18 + i32;
-            float f12 = l00Var.E;
-            if ((l00Var.getMeasuredWidth() - i33) / 2 != f12) {
-                l00Var.G = i16;
-                l00Var.F = f12;
-                z11 = true;
-            } else {
-                z11 = z10;
-            }
-            CharSequence charSequence3 = l00Var.N;
-            if (charSequence3 != null && !l00Var.f28314b.f27638b.equals(charSequence3)) {
-                if (l00Var.N.length() > l00Var.f28314b.f27638b.length()) {
-                    charSequence = l00Var.N;
-                    charSequence2 = l00Var.f28314b.f27638b;
-                    z13 = true;
-                } else {
-                    charSequence = l00Var.f28314b.f27638b;
-                    charSequence2 = l00Var.N;
-                    z13 = false;
-                }
-                int charSequenceIndexOf = AndroidUtilities.charSequenceIndexOf(charSequence, charSequence2);
-                if (charSequenceIndexOf >= 0) {
-                    TextPaint textPaint4 = n00Var.f28876b;
-                    CharSequence replaceEmoji = Emoji.replaceEmoji(charSequence, textPaint4.getFontMetricsInt(), r32);
-                    SpannableStringBuilder spannableStringBuilder4 = new SpannableStringBuilder(replaceEmoji);
-                    SpannableStringBuilder spannableStringBuilder5 = new SpannableStringBuilder(replaceEmoji);
-                    if (charSequenceIndexOf != 0) {
-                        spannableStringBuilder5.setSpan(new oz((boolean) r32), r32, charSequenceIndexOf, r32);
-                    }
-                    if (charSequence2.length() + charSequenceIndexOf != charSequence.length()) {
-                        spannableStringBuilder5.setSpan(new oz((boolean) r32), charSequence2.length() + charSequenceIndexOf, charSequence.length(), r32);
-                    }
-                    spannableStringBuilder4.setSpan(new oz((boolean) r32), charSequenceIndexOf, charSequence2.length() + charSequenceIndexOf, r32);
-                    int dp = AndroidUtilities.dp(400.0f);
-                    Layout.Alignment alignment3 = Layout.Alignment.ALIGN_NORMAL;
-                    StaticLayout staticLayout = new StaticLayout(spannableStringBuilder4, textPaint4, dp, alignment3, 1.0f, 0.0f, false);
-                    l00Var.P = staticLayout;
-                    if (l00Var.f28328l0) {
-                        if (l00Var.f28314b.f27642g) {
-                            i22 = 26;
-                        } else {
-                            i22 = 0;
-                        }
-                        v5 v5Var = l00Var.O;
-                        Layout[] layoutArr = new Layout[i16];
-                        layoutArr[r32] = staticLayout;
-                        l00Var.O = z5.update(i22, l00Var, v5Var, layoutArr);
-                    }
-                    StaticLayout staticLayout2 = new StaticLayout(spannableStringBuilder5, textPaint4, AndroidUtilities.dp(400.0f), alignment3, 1.0f, 0.0f, false);
-                    l00Var.T = staticLayout2;
-                    if (l00Var.f28328l0) {
-                        if (l00Var.f28314b.f27642g) {
-                            i21 = 26;
-                        } else {
-                            i21 = 0;
-                        }
-                        v5 v5Var2 = l00Var.S;
-                        Layout[] layoutArr2 = new Layout[i16];
-                        layoutArr2[r32] = staticLayout2;
-                        l00Var.S = z5.update(i21, l00Var, v5Var2, layoutArr2);
-                    }
-                    l00Var.U = i16;
-                    l00Var.V = z13;
-                    if (charSequenceIndexOf == 0) {
-                        f10 = 0.0f;
-                    } else {
-                        f10 = -l00Var.T.getPrimaryHorizontal(charSequenceIndexOf);
-                    }
-                    l00Var.f28313a0 = f10;
-                    l00Var.f28317c0 = l00Var.f28315b0;
-                    l00Var.R = null;
-                    z5.release(l00Var, l00Var.Q);
-                    z12 = false;
-                    f7 = 0.0f;
-                } else {
-                    CharSequence charSequence4 = l00Var.f28314b.f27638b;
-                    int dp2 = AndroidUtilities.dp(400.0f);
-                    Layout.Alignment alignment4 = Layout.Alignment.ALIGN_NORMAL;
-                    z12 = false;
-                    f7 = 0.0f;
-                    StaticLayout staticLayout3 = new StaticLayout(charSequence4, textPaint, dp2, alignment4, 1.0f, 0.0f, false);
-                    l00Var.P = staticLayout3;
-                    if (l00Var.f28328l0) {
-                        if (l00Var.f28314b.f27642g) {
-                            i20 = 26;
-                        } else {
-                            i20 = 0;
-                        }
-                        v5 v5Var3 = l00Var.O;
-                        Layout[] layoutArr3 = new Layout[i16];
-                        layoutArr3[0] = staticLayout3;
-                        l00Var.O = z5.update(i20, l00Var, v5Var3, layoutArr3);
-                    }
-                    StaticLayout staticLayout4 = new StaticLayout(l00Var.N, textPaint, AndroidUtilities.dp(400.0f), alignment4, 1.0f, 0.0f, false);
-                    l00Var.R = staticLayout4;
-                    if (l00Var.f28328l0) {
-                        if (l00Var.f28314b.f27642g) {
-                            i19 = 26;
-                        } else {
-                            i19 = 0;
-                        }
-                        v5 v5Var4 = l00Var.Q;
-                        Layout[] layoutArr4 = new Layout[i16];
-                        layoutArr4[0] = staticLayout4;
-                        l00Var.Q = z5.update(i19, l00Var, v5Var4, layoutArr4);
-                    }
-                    l00Var.T = null;
-                    z5.release(l00Var, l00Var.S);
-                    l00Var.U = i16;
-                    l00Var.f28313a0 = 0.0f;
-                    l00Var.f28317c0 = l00Var.f28315b0;
-                }
-                z11 = true;
-            } else {
-                z12 = false;
-                f7 = 0.0f;
-            }
-            if (i33 != l00Var.f28324h0 || l00Var.getMeasuredWidth() != l00Var.f28326j0) {
-                l00Var.W = i16;
-                l00Var.f28325i0 = l00Var.f28324h0;
-                z11 = true;
-            }
-            if (z11) {
-                l00Var.f28333x = f7;
-                l00Var.f28332w = i16;
-                n00 n00Var2 = this.F;
-                n00Var2.F.invalidate();
-                n00Var2.invalidate();
-            }
-            if (i24 == 0 && i25 == 0 && !z11) {
-                v(c1Var);
-                return z12;
-            }
-            this.f46606r.add(new s4.i(c1Var, i14, i15, i12, i13));
-            return true;
-        }
-        return super.r(c1Var, q0Var, i10, i11, i12, i13);
+    public final void W(RecyclerView recyclerView) {
+        this.I.clear();
+        p1();
     }
 
     @Override
-    public final void x(s4.c1 c1Var) {
-        c1Var.f46538a.setTranslationX(0.0f);
-        View view = c1Var.f46538a;
-        if (view instanceof l00) {
-            ((l00) view).a();
+    public final void X(RecyclerView recyclerView, int i10, int i11) {
+        p1();
+    }
+
+    @Override
+    public final void Y(RecyclerView recyclerView, int i10, int i11) {
+        p1();
+    }
+
+    @Override
+    public final void Z() {
+        p1();
+    }
+
+    @Override
+    public final void a0(RecyclerView recyclerView, int i10, int i11, Object obj) {
+        p1();
+        p1();
+    }
+
+    @Override
+    public final void d0(pf.e eVar, s4.a1 a1Var, int i10, int i11) {
+        int i12 = this.K;
+        this.L = View.MeasureSpec.getSize(i10);
+        int size = View.MeasureSpec.getSize(i11);
+        this.K = size;
+        if (i12 != size) {
+            p1();
         }
+        super.d0(eVar, a1Var, i10, i11);
+    }
+
+    @Override
+    public final boolean e() {
+        return this.Q;
+    }
+
+    public final void p1() {
+        RecyclerView recyclerView;
+        s4.i0 adapter;
+        if (this.K <= 0 || (adapter = (recyclerView = this.N).getAdapter()) == null) {
+            return;
+        }
+        int h = adapter.h() - 1;
+        int i10 = 0;
+        int i11 = 0;
+        for (int i12 = this.O; i12 < h; i12++) {
+            int j3 = adapter.j(i12);
+            SparseArray sparseArray = this.I;
+            s4.d1 d1Var = (s4.d1) sparseArray.get(j3, null);
+            if (d1Var == null) {
+                d1Var = adapter.e(recyclerView, j3);
+                View view = d1Var.f47656a;
+                sparseArray.put(j3, d1Var);
+                if (view.getLayoutParams() == null) {
+                    view.setLayoutParams(n());
+                }
+            }
+            View view2 = d1Var.f47656a;
+            if (this.P) {
+                adapter.v(d1Var, i12);
+            }
+            s4.q0 q0Var = (s4.q0) view2.getLayoutParams();
+            view2.measure(s4.p0.s(d(), this.L, this.f47769k, E() + D() + ((ViewGroup.MarginLayoutParams) q0Var).leftMargin + ((ViewGroup.MarginLayoutParams) q0Var).rightMargin, ((ViewGroup.MarginLayoutParams) q0Var).width), s4.p0.s(this.Q, this.K, this.f47770l, C() + F() + ((ViewGroup.MarginLayoutParams) q0Var).topMargin + ((ViewGroup.MarginLayoutParams) q0Var).bottomMargin, ((ViewGroup.MarginLayoutParams) q0Var).height));
+            i10 += view2.getMeasuredHeight();
+            if (i12 == 0) {
+                i11 = view2.getMeasuredHeight();
+            }
+            if (this.R) {
+                if (i10 >= this.K + i11) {
+                    break;
+                }
+            } else if (i10 >= this.K) {
+                break;
+            }
+        }
+        if (this.R) {
+            this.J = Math.max(this.S, (((this.K - i10) - this.M) - recyclerView.getPaddingBottom()) + i11);
+        } else {
+            this.J = Math.max(this.S, ((this.K - i10) - this.M) - recyclerView.getPaddingBottom());
+        }
+    }
+
+    public f00(int i10, int i11, qm0 qm0Var) {
+        super(1, false);
+        this.I = new SparseArray();
+        this.J = -1;
+        this.P = true;
+        this.Q = true;
+        this.T = true;
+        this.N = qm0Var;
+        this.M = i10;
     }
 }

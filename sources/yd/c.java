@@ -1,45 +1,19 @@
 package yd;
 
-import java.util.concurrent.TimeUnit;
-import w7.n;
-public final class c {
-    public static final c f50865b;
-    public static final c f50866c;
-    public static final c d;
-    public static final c f50867e;
-    public static final c f50868f;
-    public static final c h;
-    public static final c[] f50869n;
-    public final TimeUnit f50870a;
+import java.io.Serializable;
+import java.util.regex.Pattern;
+public final class c implements Serializable {
+    public final Pattern f52105a;
 
-    static {
-        c cVar = new c("NANOSECONDS", 0, TimeUnit.NANOSECONDS);
-        f50865b = cVar;
-        c cVar2 = new c("MICROSECONDS", 1, TimeUnit.MICROSECONDS);
-        c cVar3 = new c("MILLISECONDS", 2, TimeUnit.MILLISECONDS);
-        f50866c = cVar3;
-        c cVar4 = new c("SECONDS", 3, TimeUnit.SECONDS);
-        d = cVar4;
-        c cVar5 = new c("MINUTES", 4, TimeUnit.MINUTES);
-        f50867e = cVar5;
-        c cVar6 = new c("HOURS", 5, TimeUnit.HOURS);
-        f50868f = cVar6;
-        c cVar7 = new c("DAYS", 6, TimeUnit.DAYS);
-        h = cVar7;
-        c[] cVarArr = {cVar, cVar2, cVar3, cVar4, cVar5, cVar6, cVar7};
-        f50869n = cVarArr;
-        n.a(cVarArr);
+    public c() {
+        Pattern compile = Pattern.compile("^[a-zA-Z0-9/_]{1,100}$");
+        kotlin.jvm.internal.i.d(compile, "compile(...)");
+        this.f52105a = compile;
     }
 
-    public c(String str, int i10, TimeUnit timeUnit) {
-        this.f50870a = timeUnit;
-    }
-
-    public static c valueOf(String str) {
-        return (c) Enum.valueOf(c.class, str);
-    }
-
-    public static c[] values() {
-        return (c[]) f50869n.clone();
+    public final String toString() {
+        String pattern = this.f52105a.toString();
+        kotlin.jvm.internal.i.d(pattern, "toString(...)");
+        return pattern;
     }
 }

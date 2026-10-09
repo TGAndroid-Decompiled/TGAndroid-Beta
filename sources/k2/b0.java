@@ -1,41 +1,34 @@
 package k2;
 
-import android.os.SystemClock;
-public final class b0 {
-    public Exception f14378a;
-    public long f14379b = -9223372036854775807L;
-    public long f14380c = -9223372036854775807L;
+import android.media.AudioTrack;
+import android.media.AudioTrack$StreamEventCallback;
+public final class b0 extends AudioTrack$StreamEventCallback {
+    public final c0 f14413a;
 
-    public final void a(Exception exc) {
-        boolean z10;
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        if (this.f14378a == null) {
-            this.f14378a = exc;
+    public b0(c0 c0Var) {
+        this.f14413a = c0Var;
+    }
+
+    public final void onDataRequest(AudioTrack audioTrack, int i10) {
+        d0 d0Var;
+        n nVar;
+        if (audioTrack.equals(this.f14413a.f14417c.f14455w) && (nVar = (d0Var = this.f14413a.f14417c).f14452s) != null && d0Var.W) {
+            nVar.y0();
         }
-        if (this.f14379b == -9223372036854775807L) {
-            synchronized (f0.f14396o0) {
-                if (f0.f14398q0 > 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-            }
-            if (!z10) {
-                this.f14379b = 200 + elapsedRealtime;
-            }
+    }
+
+    public final void onPresentationEnded(AudioTrack audioTrack) {
+        if (!audioTrack.equals(this.f14413a.f14417c.f14455w)) {
+            return;
         }
-        long j3 = this.f14379b;
-        if (j3 != -9223372036854775807L && elapsedRealtime >= j3) {
-            Exception exc2 = this.f14378a;
-            if (exc2 != exc) {
-                exc2.addSuppressed(exc);
-            }
-            Exception exc3 = this.f14378a;
-            this.f14378a = null;
-            this.f14379b = -9223372036854775807L;
-            this.f14380c = -9223372036854775807L;
-            throw exc3;
+        this.f14413a.f14417c.V = true;
+    }
+
+    public final void onTearDown(AudioTrack audioTrack) {
+        d0 d0Var;
+        n nVar;
+        if (audioTrack.equals(this.f14413a.f14417c.f14455w) && (nVar = (d0Var = this.f14413a.f14417c).f14452s) != null && d0Var.W) {
+            nVar.y0();
         }
-        this.f14380c = elapsedRealtime + 50;
     }
 }

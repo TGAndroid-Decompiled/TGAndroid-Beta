@@ -1,26 +1,23 @@
 package g;
 
-import android.content.res.Configuration;
-import android.os.LocaleList;
+import ai.sb;
+import android.app.Activity;
+import android.window.OnBackInvokedCallback;
+import android.window.OnBackInvokedDispatcher;
+import j$.util.Objects;
 public abstract class l {
-    public static void a(Configuration configuration, Configuration configuration2, Configuration configuration3) {
-        LocaleList locales = configuration.getLocales();
-        LocaleList locales2 = configuration2.getLocales();
-        if (!locales.equals(locales2)) {
-            configuration3.setLocales(locales2);
-            configuration3.locale = configuration2.locale;
-        }
+    public static OnBackInvokedDispatcher a(Activity activity) {
+        return activity.getOnBackInvokedDispatcher();
     }
 
-    public static n0.c b(Configuration configuration) {
-        return n0.c.b(configuration.getLocales().toLanguageTags());
+    public static OnBackInvokedCallback b(Object obj, r rVar) {
+        Objects.requireNonNull(rVar);
+        sb sbVar = new sb(rVar, 3);
+        d2.c.c(obj).registerOnBackInvokedCallback(1000000, sbVar);
+        return sbVar;
     }
 
-    public static void c(n0.c cVar) {
-        LocaleList.setDefault(LocaleList.forLanguageTags(cVar.f16492a.a()));
-    }
-
-    public static void d(Configuration configuration, n0.c cVar) {
-        configuration.setLocales(LocaleList.forLanguageTags(cVar.f16492a.a()));
+    public static void c(Object obj, Object obj2) {
+        d2.c.c(obj).unregisterOnBackInvokedCallback((OnBackInvokedCallback) obj2);
     }
 }

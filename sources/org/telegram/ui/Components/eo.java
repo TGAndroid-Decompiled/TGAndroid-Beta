@@ -1,49 +1,67 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public final class eo implements n8 {
-    public final org.telegram.ui.ActionBar.n1[] f26168a;
-    public final ho f26169b;
+import android.content.Context;
+import android.view.ActionMode;
+import android.view.Menu;
+import java.util.ArrayList;
+public final class eo extends org.telegram.ui.Cells.d6 {
+    public final int F;
+    public final jo G;
 
-    public eo(ho hoVar, org.telegram.ui.ActionBar.n1[] n1VarArr) {
-        this.f26169b = hoVar;
-        this.f26168a = n1VarArr;
+    public eo(jo joVar, Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var, int i11) {
+        super(context, i10, null, e6Var);
+        this.G = joVar;
+        this.F = i11;
     }
 
     @Override
-    public final void U0(int i10, int i11) {
-        int i12;
-        org.telegram.ui.yn ynVar = this.f26169b.G;
-        if (ynVar != null) {
-            ynVar.getMessagesController().setDialogHistoryTTL(ynVar.a(), i10);
-            TLRPC.ChatFull chatFull = ynVar.X7;
-            TLRPC.UserFull userFull = ynVar.Y7;
-            if (userFull != null || chatFull != null) {
-                ynVar.Q7();
-                UndoView undoView = ynVar.f43542w3;
-                if (undoView != null) {
-                    long a2 = ynVar.a();
-                    TLRPC.User i13 = ynVar.i();
-                    if (userFull != null) {
-                        i12 = userFull.ttl_period;
-                    } else {
-                        i12 = chatFull.ttl_period;
-                    }
-                    undoView.k(a2, i11, i13, Integer.valueOf(i12), null, null);
-                }
+    public final void g(org.telegram.ui.Cells.c6 c6Var, ActionMode actionMode) {
+        lo loVar = this.G.d;
+        if (!loVar.f28518n && this.F == 11 && c6Var.isFocused() && c6Var.hasSelection()) {
+            Menu menu = actionMode.getMenu();
+            if (menu.findItem(16908321) != null) {
+                org.telegram.ui.zn.n8(menu, ((org.telegram.ui.zn) loVar.f30173b.f33228f0).h, false, true, true, true);
             }
         }
     }
 
     @Override
-    public final void dismiss() {
-        org.telegram.ui.ActionBar.n1 n1Var = this.f26168a[0];
-        if (n1Var != null) {
-            n1Var.dismiss();
-        }
+    public final void i(boolean z10) {
+        lo.P(this.G.d, this, z10);
     }
 
     @Override
-    public final void l1() {
+    public final void j(org.telegram.ui.Cells.d6 d6Var) {
+        lo.Q(this.G.d, d6Var);
+    }
+
+    @Override
+    public final void k(org.telegram.ui.Cells.c6 c6Var) {
+        this.G.d.f30173b.w1(c6Var, true);
+    }
+
+    @Override
+    public final boolean l(ArrayList arrayList) {
+        lo loVar = this.G.d;
+        if (arrayList.isEmpty()) {
+            return false;
+        }
+        org.telegram.ui.Cells.c6 c6Var = this.d;
+        c6Var.getText().replace(c6Var.getSelectionStart(), c6Var.getSelectionEnd(), (CharSequence) arrayList.remove(0));
+        int i10 = 0;
+        while (!arrayList.isEmpty() && i10 < loVar.J) {
+            for (int length = loVar.K.length - 1; length > i10; length--) {
+                CharSequence[] charSequenceArr = loVar.K;
+                charSequenceArr[length] = charSequenceArr[length - 1];
+            }
+            loVar.K[i10] = (CharSequence) arrayList.remove(0);
+            loVar.M++;
+            i10++;
+        }
+        loVar.k0();
+        loVar.f28515k0 = (loVar.f28527t0 + i10) - 1;
+        loVar.f28525s.setItemAnimator(loVar.v);
+        loVar.f28523r.l();
+        return true;
     }
 }

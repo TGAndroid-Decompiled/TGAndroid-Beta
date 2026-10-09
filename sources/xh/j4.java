@@ -5,44 +5,43 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.jk;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.b80;
-import org.telegram.ui.py0;
-import yh.l5;
+import org.telegram.messenger.zj;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.Components.p80;
+import yh.e5;
 public final class j4 extends org.telegram.ui.ActionBar.j {
-    public final org.telegram.ui.ActionBar.v0 f50050a;
-    public final long f50051b;
-    public final m4 f50052c;
+    public final org.telegram.ui.ActionBar.v0 f51317a;
+    public final long f51318b;
+    public final m4 f51319c;
 
     public j4(m4 m4Var, org.telegram.ui.ActionBar.v0 v0Var, long j3) {
-        this.f50052c = m4Var;
-        this.f50050a = v0Var;
-        this.f50051b = j3;
+        this.f51319c = m4Var;
+        this.f51317a = v0Var;
+        this.f51318b = j3;
     }
 
     @Override
     public final void b(int i10) {
-        d6 d6Var;
+        e6 e6Var;
         int i11;
         int i12;
         boolean canUserDoAction;
         org.telegram.ui.ActionBar.f1 f1Var;
         org.telegram.ui.ActionBar.f1 f1Var2;
-        m4 m4Var = this.f50052c;
-        l5 l5Var = m4Var.Y;
+        m4 m4Var = this.f51319c;
+        e5 e5Var = m4Var.Y;
         if (i10 == 1) {
-            b80 b80Var = m4Var.f50132d0;
-            if (b80Var != null) {
-                b80Var.u();
+            p80 p80Var = m4Var.f51378d0;
+            if (p80Var != null) {
+                p80Var.u();
             }
             org.telegram.ui.ActionBar.d3 d3Var = m4Var.container;
-            d6Var = ((org.telegram.ui.ActionBar.f3) m4Var).resourcesProvider;
-            b80 F = b80.F(d3Var, d6Var, this.f50050a);
-            m4Var.f50132d0 = F;
+            e6Var = ((org.telegram.ui.ActionBar.f3) m4Var).resourcesProvider;
+            p80 F = p80.F(d3Var, e6Var, this.f51317a);
+            m4Var.f51378d0 = F;
             i11 = ((org.telegram.ui.ActionBar.f3) m4Var).currentAccount;
             long clientUserId = UserConfig.getInstance(i11).getClientUserId();
-            long j3 = this.f50051b;
+            long j3 = this.f51318b;
             if (j3 == clientUserId) {
                 canUserDoAction = true;
             } else if (j3 < 0) {
@@ -51,7 +50,7 @@ public final class j4 extends org.telegram.ui.ActionBar.j {
             } else {
                 canUserDoAction = false;
             }
-            org.telegram.ui.ActionBar.f1 f1Var3 = new org.telegram.ui.ActionBar.f1(0, F.f24860e, F.d, false, false);
+            org.telegram.ui.ActionBar.f1 f1Var3 = new org.telegram.ui.ActionBar.f1(0, F.f29764e, F.d, false, false);
             F.d(f1Var3);
             F.k();
             org.telegram.ui.ActionBar.f1 h = F.h();
@@ -74,20 +73,20 @@ public final class j4 extends org.telegram.ui.ActionBar.j {
                 f1Var = null;
                 f1Var2 = null;
             }
-            jk jkVar = new jk(this, f1Var3, h, h10, h11, h12, canUserDoAction, f1Var, f1Var2, 4);
-            jkVar.run();
-            f1Var3.setOnClickListener(new py0(28, this, jkVar));
-            s2.j(h, l5Var, jkVar, 1);
-            s2.j(h10, l5Var, jkVar, 2);
-            s2.j(h11, l5Var, jkVar, 4);
-            s2.j(h12, l5Var, jkVar, 8);
+            zj zjVar = new zj(this, f1Var3, h, h10, h11, h12, canUserDoAction, f1Var, f1Var2, 4);
+            zjVar.run();
+            f1Var3.setOnClickListener(new a(4, this, zjVar));
+            s2.j(h, e5Var, zjVar, 1);
+            s2.j(h10, e5Var, zjVar, 2);
+            s2.j(h11, e5Var, zjVar, 4);
+            s2.j(h12, e5Var, zjVar, 8);
             if (canUserDoAction) {
-                s2.j(f1Var, l5Var, jkVar, 256);
-                s2.j(f1Var2, l5Var, jkVar, 512);
+                s2.j(f1Var, e5Var, zjVar, 256);
+                s2.j(f1Var2, e5Var, zjVar, 512);
             }
             F.Y = true;
             F.J = false;
-            F.f24885s = 0;
+            F.f29789s = 0;
             F.Z();
         } else if (i10 == -1) {
             m4Var.dismiss();

@@ -1,50 +1,72 @@
 package org.telegram.ui.Components;
 
-import j$.util.function.Predicate$CC;
-import java.util.function.Predicate;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class fs implements Predicate {
-    public final int f26577a;
-    public final TLObject f26578b;
+import android.graphics.drawable.Drawable;
+public final class fs implements Drawable.Callback {
+    public final int f26476a;
+    public final gs f26477b;
 
-    public fs(int i10, TLObject tLObject) {
-        this.f26577a = i10;
-        this.f26578b = tLObject;
-    }
-
-    public Predicate and(Predicate predicate) {
-        int i10 = this.f26577a;
-        return Predicate$CC.$default$and(this, predicate);
-    }
-
-    public Predicate negate() {
-        switch (this.f26577a) {
-            case 0:
-                return Predicate$CC.$default$negate(this);
-            default:
-                return Predicate$CC.$default$negate(this);
-        }
-    }
-
-    public Predicate or(Predicate predicate) {
-        int i10 = this.f26577a;
-        return Predicate$CC.$default$or(this, predicate);
+    public fs(gs gsVar, int i10) {
+        this.f26476a = i10;
+        this.f26477b = gsVar;
     }
 
     @Override
-    public final boolean test(Object obj) {
-        switch (this.f26577a) {
+    public final void invalidateDrawable(Drawable drawable) {
+        switch (this.f26476a) {
             case 0:
-                return MessageObject.peersEqual((TLRPC.InputPeer) this.f26578b, ((MessageObject) obj).messageOwner.from_id);
-            default:
-                MessageObject messageObject = (MessageObject) obj;
-                TLObject tLObject = this.f26578b;
-                if (!(tLObject instanceof TLRPC.User) ? !(!(tLObject instanceof TLRPC.Chat) || messageObject.messageOwner.from_id.user_id != ((TLRPC.Chat) tLObject).f20047id) : messageObject.messageOwner.from_id.user_id == ((TLRPC.User) tLObject).f20194id) {
-                    return true;
+                gs gsVar = this.f26477b;
+                if (gsVar.f26867c < 1.0f) {
+                    gsVar.invalidateSelf();
+                    return;
                 }
-                return false;
+                return;
+            default:
+                gs gsVar2 = this.f26477b;
+                if (gsVar2.f26867c > 0.0f) {
+                    gsVar2.invalidateSelf();
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j3) {
+        switch (this.f26476a) {
+            case 0:
+                gs gsVar = this.f26477b;
+                if (gsVar.f26867c < 1.0f) {
+                    gsVar.scheduleSelf(runnable, j3);
+                    return;
+                }
+                return;
+            default:
+                gs gsVar2 = this.f26477b;
+                if (gsVar2.f26867c > 0.0f) {
+                    gsVar2.scheduleSelf(runnable, j3);
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+        switch (this.f26476a) {
+            case 0:
+                gs gsVar = this.f26477b;
+                if (gsVar.f26867c < 1.0f) {
+                    gsVar.unscheduleSelf(runnable);
+                    return;
+                }
+                return;
+            default:
+                gs gsVar2 = this.f26477b;
+                if (gsVar2.f26867c > 0.0f) {
+                    gsVar2.unscheduleSelf(runnable);
+                    return;
+                }
+                return;
         }
     }
 }

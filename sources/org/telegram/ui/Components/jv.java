@@ -1,18 +1,31 @@
 package org.telegram.ui.Components;
 
+import android.app.Activity;
 import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-public final class jv extends br0 {
-    public final wv X0;
+import android.view.OrientationEventListener;
+public final class jv extends OrientationEventListener {
+    public final lv f27785a;
 
-    public jv(wv wvVar, Context context, String str, String str2, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, null, str, false, str2, false, d6Var);
-        this.X0 = wvVar;
+    public jv(lv lvVar, Context context) {
+        super(context);
+        this.f27785a = lvVar;
     }
 
     @Override
-    public final void O0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        AndroidUtilities.runOnUIThread(new zm(this, iVar, i10, 1), 100L);
+    public final void onOrientationChanged(int i10) {
+        Activity activity;
+        lv lvVar = this.f27785a;
+        ha1 ha1Var = lvVar.f28599c;
+        if (lvVar.F != null && ha1Var.getVisibility() == 0 && (activity = lvVar.f28603r) != null && ha1Var.T && lvVar.M) {
+            if (i10 >= 240 && i10 <= 300) {
+                lvVar.N = true;
+            } else if (lvVar.N && i10 > 0) {
+                if (i10 >= 330 || i10 <= 30) {
+                    activity.setRequestedOrientation(lvVar.L);
+                    lvVar.M = false;
+                    lvVar.N = false;
+                }
+            }
+        }
     }
 }

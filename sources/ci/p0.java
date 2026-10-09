@@ -1,43 +1,55 @@
 package ci;
 
-import java.io.File;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaController;
-public final class p0 implements Runnable {
-    public final int f5677a;
-    public final u0 f5678b;
-    public final File f5679c;
+import android.net.Uri;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+public final class p0 implements Utilities.Callback {
+    public final int f5713a;
+    public final t0 f5714b;
 
-    public p0(u0 u0Var, File file, int i10) {
-        this.f5677a = i10;
-        this.f5678b = u0Var;
-        this.f5679c = file;
+    public p0(t0 t0Var, int i10) {
+        this.f5713a = i10;
+        this.f5714b = t0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f5677a) {
+    public final void run(Object obj) {
+        switch (this.f5713a) {
             case 0:
-                u0 u0Var = this.f5678b;
-                if (u0Var.f6045c && u0Var.f6049r != null) {
-                    MediaController.saveFile(this.f5679c.getAbsolutePath(), u0Var.getContext(), 1, null, null, new q0(u0Var, 1), false);
+                Float f7 = (Float) obj;
+                s0 s0Var = this.f5714b.f5983n;
+                if (s0Var != null) {
+                    s0Var.setProgress(f7.floatValue());
                     return;
                 }
                 return;
             case 1:
-                u0 u0Var2 = this.f5678b;
-                k8 k8Var = u0Var2.f6049r;
-                File file = this.f5679c;
-                k8Var.c(file);
-                if (u0Var2.f6045c && u0Var2.f6049r != null) {
-                    AndroidUtilities.runOnUIThread(new p0(u0Var2, file, 2));
+                Uri uri = (Uri) obj;
+                t0 t0Var = this.f5714b;
+                if (t0Var.f5980c && t0Var.f5984r != null) {
+                    t0Var.f5983n.b(R.raw.ic_save_to_gallery, 3500, LocaleController.getString("VideoSavedHint"));
+                    t0Var.f5980c = false;
+                    t0Var.d();
+                    t0Var.v = uri;
                     return;
                 }
                 return;
             default:
-                String absolutePath = this.f5679c.getAbsolutePath();
-                u0 u0Var3 = this.f5678b;
-                MediaController.saveFile(absolutePath, u0Var3.getContext(), 0, null, null, new q0(u0Var3, 2), false);
+                Uri uri2 = (Uri) obj;
+                t0 t0Var2 = this.f5714b;
+                t0Var2.f5980c = false;
+                t0Var2.d();
+                s0 s0Var2 = t0Var2.f5983n;
+                if (s0Var2 != null) {
+                    s0Var2.a();
+                    t0Var2.f5983n = null;
+                }
+                s0 s0Var3 = new s0(t0Var2.getContext());
+                t0Var2.f5983n = s0Var3;
+                s0Var3.b(R.raw.ic_save_to_gallery, 2500, LocaleController.getString("PhotoSavedHint"));
+                t0Var2.f5979b.addView(t0Var2.f5983n);
+                t0Var2.v = uri2;
                 return;
         }
     }

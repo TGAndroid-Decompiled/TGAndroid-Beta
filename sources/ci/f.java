@@ -1,65 +1,65 @@
 package ci;
 public final class f extends dh.b {
-    public final int f5066n;
+    public final int f5060n;
 
-    public f(int i10, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(i10, d6Var);
-        this.f5066n = 2;
+    public f(int i10, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(i10, e6Var);
+        this.f5060n = 2;
     }
 
     @Override
-    public int B() {
-        switch (this.f5066n) {
-            case 2:
-                if (b()) {
-                    return 83886079;
-                }
-                return 536870912;
-            default:
-                return super.B();
-        }
-    }
-
-    @Override
-    public int a() {
-        switch (this.f5066n) {
-            case 2:
-                if (b()) {
-                    return 117440511;
-                }
-                return 285212672;
+    public boolean a() {
+        switch (this.f5060n) {
+            case 0:
+                return true;
+            case 1:
+                return true;
             default:
                 return super.a();
         }
     }
 
     @Override
-    public boolean b() {
-        switch (this.f5066n) {
-            case 0:
-                return true;
-            case 1:
-                return true;
+    public int d() {
+        switch (this.f5060n) {
+            case 2:
+                if (a()) {
+                    return 117440511;
+                }
+                return 285212672;
             default:
-                return super.b();
+                return super.d();
         }
     }
 
     @Override
-    public int c() {
-        switch (this.f5066n) {
+    public int m() {
+        switch (this.f5060n) {
             case 2:
-                if (b()) {
+                if (a()) {
                     return 301989887;
                 }
                 return 536870912;
             default:
-                return super.c();
+                return super.m();
         }
     }
 
-    public f(org.telegram.ui.ActionBar.d6 d6Var, int i10, float f7, int i11) {
-        super(d6Var, i10, f7);
-        this.f5066n = i11;
+    @Override
+    public int q() {
+        switch (this.f5060n) {
+            case 2:
+                if (a()) {
+                    return 83886079;
+                }
+                return 536870912;
+            default:
+                return super.q();
+        }
+    }
+
+    public f(org.telegram.ui.ActionBar.e6 e6Var, int i10, float f7, int i11) {
+        super(e6Var, i10, f7);
+        this.f5060n = i11;
     }
 }

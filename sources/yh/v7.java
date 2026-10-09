@@ -1,61 +1,44 @@
 package yh;
 
-import android.util.Log;
-import android.view.View;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.h61;
-public final class v7 implements Utilities.Callback5, e2.h, i5.e {
-    public final int f52178a;
-    public final Object f52179b;
+import android.content.Context;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class v7 extends e8 {
+    public final boolean m0;
+    public final int f53319n0;
+    public final h8 f53320o0;
 
-    public v7(Object obj, int i10) {
-        this.f52178a = i10;
-        this.f52179b = obj;
+    public v7(h8 h8Var, Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10, int i10) {
+        super(context, e6Var);
+        this.f53320o0 = h8Var;
+        this.m0 = z10;
+        this.f53319n0 = i10;
     }
 
     @Override
-    public void accept(Object obj) {
-        switch (this.f52178a) {
-            case 1:
-                z3.h hVar = (z3.h) this.f52179b;
-                z3.a aVar = (z3.a) obj;
-                z3.g gVar = new z3.g(aVar.f52383b, ob.a.C2(aVar.f52382a, aVar.f52384c));
-                hVar.f52393c.add(gVar);
-                long j3 = hVar.f52398j;
-                if (j3 == -9223372036854775807L || aVar.d >= j3) {
-                    hVar.a(gVar);
-                    return;
-                }
-                return;
-            default:
-                ((e9.f0) this.f52179b).b((z3.a) obj);
-                return;
+    public final void e(int i10) {
+        long j3 = i10;
+        h8 h8Var = this.f53320o0;
+        h8Var.u(j3);
+        ci.d dVar = h8Var.f52654x;
+        if (dVar != null) {
+            dVar.g(p7.W0(false, LocaleController.formatString(R.string.StarsReactionSend, LocaleController.formatNumber(j3, ',')), h8Var.R), true, true);
+        }
+        if (this.m0) {
+            ai.m1 m1Var = h8Var.G;
+            m1Var.f1385g = j3;
+            h8Var.H.set(m1Var);
+            int i11 = this.f53319n0;
+            f(ai.g0.b(i11, i10, 3), ai.g0.b(i11, i10, 4), true);
         }
     }
 
     @Override
-    public Object apply(Object obj) {
-        ((k2.e) this.f52179b).getClass();
-        String c10 = za.b0.f53086b.c((za.a0) obj);
-        kotlin.jvm.internal.i.d(c10, "SessionEvents.SESSION_EVENT_ENCODER.encode(value)");
-        Log.d("EventGDTLogger", "Session Event: ".concat(c10));
-        byte[] bytes = c10.getBytes(xd.a.f49833a);
-        kotlin.jvm.internal.i.d(bytes, "this as java.lang.String).getBytes(charset)");
-        return bytes;
-    }
-
-    @Override
-    public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        w7 w7Var = (w7) this.f52179b;
-        h61 h61Var = (h61) obj;
-        View view = (View) obj2;
-        ((Integer) obj3).intValue();
-        ((Float) obj4).floatValue();
-        ((Float) obj5).floatValue();
-        w7Var.getClass();
-        if (h61Var.G instanceof TL_stars.StarsTransaction) {
-            z7.n1(w7Var.getContext(), false, 0L, w7Var.f52205c, (TL_stars.StarsTransaction) h61Var.G, w7Var.f52204b);
+    public final void setValue(int i10) {
+        super.setValue(i10);
+        if (this.m0) {
+            int i11 = this.f53319n0;
+            f(ai.g0.b(i11, i10, 3), ai.g0.b(i11, i10, 4), true);
         }
     }
 }

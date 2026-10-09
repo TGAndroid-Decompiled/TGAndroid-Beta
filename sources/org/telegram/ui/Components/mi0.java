@@ -1,55 +1,84 @@
 package org.telegram.ui.Components;
 
-import java.util.Locale;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class mi0 implements cd0, ed0 {
-    public final int f28711a;
-    public final ri0 f28712b;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MessagesController;
+public final class mi0 implements z4.e {
+    public final org.telegram.ui.pz0 f28840a;
 
-    public mi0(ri0 ri0Var, int i10) {
-        this.f28711a = i10;
-        this.f28712b = ri0Var;
+    public mi0(org.telegram.ui.pz0 pz0Var) {
+        this.f28840a = pz0Var;
     }
 
     @Override
-    public String e(int i10) {
-        int i11 = this.f28711a;
-        ri0 ri0Var = this.f28712b;
-        switch (i11) {
-            case 0:
-                if (ri0Var.O) {
-                    return LocaleController.formatString("MilesShort", R.string.MilesShort, Integer.valueOf(i10));
-                }
-                return LocaleController.formatString("KMetersShort", R.string.KMetersShort, Integer.valueOf(i10));
-            default:
-                if (ri0Var.O) {
-                    if (i10 == 1) {
-                        return LocaleController.formatString("FootsShort", R.string.FootsShort, 250);
-                    }
-                    if (i10 > 1) {
-                        i10--;
-                    }
-                    Locale locale = Locale.US;
-                    return hg.c.h(i10, ".");
-                } else if (i10 == 1) {
-                    return LocaleController.formatString("MetersShort", R.string.MetersShort, 50);
-                } else {
-                    if (i10 > 1) {
-                        i10--;
-                    }
-                    return LocaleController.formatString("MetersShort", R.string.MetersShort, Integer.valueOf(i10 * 100));
-                }
+    public final void a(int i10) {
+        boolean z10;
+        org.telegram.ui.pz0 pz0Var = this.f28840a;
+        int i11 = pz0Var.f31203o1;
+        int i12 = 0;
+        if (i10 >= i11) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (i10 != i11) {
+            pz0Var.f31203o1 = i10;
+        }
+        MessagesController.DialogPhotos dialogPhotos = pz0Var.S0;
+        if (dialogPhotos != null) {
+            si0 si0Var = pz0Var.D0;
+            if (si0Var != null) {
+                i12 = si0Var.j();
+            }
+            dialogPhotos.loadAfter(i10 - i12, z10);
         }
     }
 
     @Override
-    public void q(gd0 gd0Var, int i10) {
-        ri0 ri0Var = this.f28712b;
-        try {
-            ri0Var.performHapticFeedback(3, 2);
-        } catch (Exception unused) {
+    public final void b(float f7, int i10, int i11) {
+        ImageLocation imageLocation;
+        org.telegram.ui.pz0 pz0Var = this.f28840a;
+        si0 si0Var = pz0Var.D0;
+        ArrayList arrayList = pz0Var.W0;
+        pz0Var.B(f7, i10);
+        if (i11 == 0) {
+            int k10 = si0Var.k(i10);
+            pz0Var.getCurrentItemView();
+            int childCount = pz0Var.getChildCount();
+            for (int i12 = 0; i12 < childCount; i12++) {
+                View childAt = pz0Var.getChildAt(i12);
+                if (childAt instanceof y9) {
+                    int k11 = si0Var.k(si0Var.d.indexOf(childAt));
+                    ImageReceiver imageReceiver = ((y9) childAt).getImageReceiver();
+                    boolean allowStartAnimation = imageReceiver.getAllowStartAnimation();
+                    if (k11 >= 0 && k11 < arrayList.size()) {
+                        if (k11 == k10) {
+                            if (!allowStartAnimation) {
+                                imageReceiver.setAllowStartAnimation(true);
+                                imageReceiver.startAnimation();
+                            }
+                            ImageLocation imageLocation2 = (ImageLocation) arrayList.get(k11);
+                            if (imageLocation2 != null) {
+                                FileLoader.getInstance(pz0Var.L0).setForceStreamLoadingFile(imageLocation2.location, "mp4");
+                            }
+                        } else if (allowStartAnimation) {
+                            f6 animation = imageReceiver.getAnimation();
+                            if (animation != null && (imageLocation = (ImageLocation) arrayList.get(k11)) != null) {
+                                animation.y(imageLocation.videoSeekTo, false, true);
+                            }
+                            imageReceiver.setAllowStartAnimation(false);
+                            imageReceiver.stopAnimation();
+                        }
+                    }
+                }
+            }
         }
-        ri0Var.c(true);
+    }
+
+    @Override
+    public final void c(int i10) {
     }
 }

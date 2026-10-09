@@ -1,60 +1,109 @@
 package ei;
 
 import android.content.Context;
-import android.widget.FrameLayout;
+import android.graphics.Paint;
+import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BotFullscreenButtons;
-public final class b3 extends q4 {
-    public final int f8942c0;
-    public final Object f8943d0;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.UserObject;
+import org.telegram.ui.ActionBar.e6;
+public final class b3 extends org.telegram.ui.web.b1 {
+    public final int S0;
+    public final Object T0;
 
-    public b3(Object obj, Context context, int i10) {
-        super(context);
-        this.f8942c0 = i10;
-        this.f8943d0 = obj;
+    public b3(int i10, int i11, Context context, Object obj, e6 e6Var) {
+        super(i10, context, e6Var, true);
+        this.S0 = i11;
+        this.T0 = obj;
     }
 
     @Override
-    public final void onMeasure(int r6, int r7) {
-        throw new UnsupportedOperationException("Method not decompiled: ei.b3.onMeasure(int, int):void");
-    }
-
-    @Override
-    public void requestLayout() {
-        switch (this.f8942c0) {
+    public void D(boolean z10, String str) {
+        String userName;
+        boolean z11;
+        switch (this.S0) {
             case 0:
-                if (!((l3) this.f8943d0).F) {
-                    super.requestLayout();
-                    return;
+                k3 k3Var = (k3) this.T0;
+                Paint paint = k3Var.P;
+                if (z10) {
+                    k3Var.i();
+                    org.telegram.ui.d3 d3Var = k3Var.U0;
+                    if (k3Var.m()) {
+                        userName = k3Var.f9180v0.f9039e;
+                    } else {
+                        userName = UserObject.getUserName(MessagesController.getInstance(k3Var.G).getUser(Long.valueOf(k3Var.H)));
+                    }
+                    d3Var.a(userName, str);
+                    org.telegram.ui.d3 d3Var2 = k3Var.U0;
+                    if (AndroidUtilities.computePerceivedBrightness(paint.getColor()) <= 0.721f) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    d3Var2.b(z11, false);
+                    k3Var.U0.setBackgroundColor(paint.getColor());
+                    k3Var.T0 = str;
                 }
+                org.telegram.ui.d3 d3Var3 = k3Var.U0;
+                k3Var.S0 = z10;
+                AndroidUtilities.updateViewVisibilityAnimated(d3Var3, z10, 1.0f, false);
+                invalidate();
                 return;
             default:
-                super.requestLayout();
                 return;
         }
     }
 
     @Override
-    public void setTranslationY(float f7) {
-        switch (this.f8942c0) {
+    public final void J(org.telegram.ui.web.y0 y0Var) {
+        switch (this.S0) {
             case 0:
-                super.setTranslationY(f7);
-                l3 l3Var = (l3) this.f8943d0;
-                BotFullscreenButtons botFullscreenButtons = l3Var.m0;
-                if (botFullscreenButtons != null) {
-                    botFullscreenButtons.setTranslationY(AndroidUtilities.dp(24.0f) + f7);
+                k3 k3Var = (k3) this.T0;
+                k3Var.v.setWebView(y0Var);
+                a1 a1Var = k3Var.B0;
+                if (a1Var != null) {
+                    a1Var.f8930k = y0Var;
                 }
-                FrameLayout frameLayout = l3Var.f9170p0;
-                if (frameLayout != null) {
-                    int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() - AndroidUtilities.dp(24.0f);
-                    int i10 = l3Var.h.top;
-                    frameLayout.setTranslationY(l3Var.v.getTranslationY() + AndroidUtilities.lerp(currentActionBarHeight, AndroidUtilities.dp(70.0f) + i10, l3Var.f9160f0));
-                    return;
-                }
+                k3Var.m0.setWebView(y0Var);
+                k3Var.G();
                 return;
             default:
-                super.setTranslationY(f7);
+                ((p4) this.T0).J.setWebView(y0Var);
                 return;
+        }
+    }
+
+    @Override
+    public void K(org.telegram.ui.web.y0 y0Var) {
+        switch (this.S0) {
+            case 0:
+                k3 k3Var = (k3) this.T0;
+                a1 a1Var = k3Var.B0;
+                if (a1Var != null && a1Var.f8930k == y0Var) {
+                    a1Var.f8930k = null;
+                    a1Var.b();
+                }
+                k3Var.m0.setWebView(null);
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        switch (this.S0) {
+            case 1:
+                if (motionEvent.getAction() == 0) {
+                    p4 p4Var = (p4) this.T0;
+                    if (!p4Var.P) {
+                        p4Var.P = true;
+                        p4Var.f9292n.Q();
+                    }
+                }
+                return super.dispatchTouchEvent(motionEvent);
+            default:
+                return super.dispatchTouchEvent(motionEvent);
         }
     }
 }

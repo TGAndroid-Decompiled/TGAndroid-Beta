@@ -10,16 +10,16 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.bi;
-import org.telegram.ui.Components.l61;
-import org.telegram.ui.Components.n11;
-import org.telegram.ui.Components.q90;
+import org.telegram.ui.Components.ea0;
+import org.telegram.ui.Components.t11;
+import org.telegram.ui.Components.t61;
 public abstract class a7 extends LinearLayout {
-    public TextView f21806a;
-    public q90 f21807b;
-    public TextView f21808c;
+    public TextView f21803a;
+    public ea0 f21804b;
+    public TextView f21805c;
     public TextView d;
-    public int f21809e;
-    public int f21810f;
+    public int f21806e;
+    public int f21807f;
 
     @Override
     public final void onMeasure(int i10, int i11) {
@@ -27,14 +27,14 @@ public abstract class a7 extends LinearLayout {
     }
 
     public void setType(int i10) {
-        int i11 = this.f21810f;
-        TextView textView = this.f21808c;
-        q90 q90Var = this.f21807b;
-        TextView textView2 = this.f21806a;
+        int i11 = this.f21807f;
+        TextView textView = this.f21805c;
+        ea0 ea0Var = this.f21804b;
+        TextView textView2 = this.f21803a;
         TextView textView3 = this.d;
-        this.f21809e = i10;
+        this.f21806e = i10;
         if (i10 == 0) {
-            textView2.setText(LocaleController.formatString(R.string.CheckPhoneNumber, bi.g(new StringBuilder("+"), MessagesController.getInstance(i11).getUser(Long.valueOf(UserConfig.getInstance(i11).clientUserId)).phone, gf.b.c())));
+            textView2.setText(LocaleController.formatString(R.string.CheckPhoneNumber, bi.g(new StringBuilder("+"), MessagesController.getInstance(i11).getUser(Long.valueOf(UserConfig.getInstance(i11).clientUserId)).phone, hf.b.c())));
             String string = LocaleController.getString(R.string.CheckPhoneNumberInfo);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
             int indexOf = string.indexOf("**");
@@ -43,24 +43,24 @@ public abstract class a7 extends LinearLayout {
                 spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 2, (CharSequence) "");
                 spannableStringBuilder.replace(indexOf, indexOf + 2, (CharSequence) "");
                 try {
-                    spannableStringBuilder.setSpan(new l61(LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl), (n11) null), indexOf, lastIndexOf - 2, 33);
+                    spannableStringBuilder.setSpan(new t61(LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl), (t11) null), indexOf, lastIndexOf - 2, 33);
                 } catch (Exception e7) {
                     FileLog.e(e7);
                 }
             }
-            q90Var.setText(spannableStringBuilder);
+            ea0Var.setText(spannableStringBuilder);
             textView.setText(LocaleController.getString(R.string.CheckPhoneNumberYes));
             textView3.setVisibility(0);
             textView3.setText(LocaleController.getString(R.string.CheckPhoneNumberNo));
         } else if (i10 == 1) {
             textView2.setText(LocaleController.getString(R.string.YourPasswordHeader));
-            q90Var.setText(LocaleController.getString(R.string.YourPasswordRemember));
+            ea0Var.setText(LocaleController.getString(R.string.YourPasswordRemember));
             textView.setText(LocaleController.getString(R.string.YourPasswordRememberYes));
             textView3.setVisibility(0);
             textView3.setText(LocaleController.getString(R.string.YourPasswordRememberNo));
         } else if (i10 == 2) {
             textView2.setText(LocaleController.getString(R.string.GraceSuggestionTitle));
-            q90Var.setText(LocaleController.getString(R.string.GraceSuggestionMessage));
+            ea0Var.setText(LocaleController.getString(R.string.GraceSuggestionMessage));
             textView.setText(LocaleController.getString(R.string.GraceSuggestionButton));
             textView3.setVisibility(8);
         }

@@ -1,62 +1,35 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.widget.FrameLayout;
-public final class r91 extends org.telegram.ui.Components.y81 {
-    public final boolean f40014a;
-    public final boolean f40015b;
-    public final boolean f40016c;
-    public final FrameLayout d;
-    public final ta1 f40017e;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.text.style.ReplacementSpan;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class r91 extends ReplacementSpan {
+    public final org.telegram.ui.Components.l11 f41313a = new org.telegram.ui.Components.l11(LocaleController.getString(R.string.StakeDiceTitleBeta), 12.0f, AndroidUtilities.bold());
+    public final Paint f41314b = new Paint(1);
+    public final org.telegram.ui.ActionBar.e6 f41315c;
 
-    public r91(ta1 ta1Var, boolean z10, boolean z11, boolean z12, FrameLayout frameLayout) {
-        this.f40017e = ta1Var;
-        this.f40014a = z10;
-        this.f40015b = z11;
-        this.f40016c = z12;
-        this.d = frameLayout;
+    public r91(org.telegram.ui.ActionBar.e6 e6Var) {
+        this.f41315c = e6Var;
     }
 
     @Override
-    public final View d(int i10) {
-        ta1 ta1Var = this.f40017e;
-        if (ta1Var.f40820n0) {
-            return ta1Var.f40815i0;
-        }
-        boolean z10 = this.f40014a;
-        FrameLayout frameLayout = this.d;
-        if (z10) {
-            if (i10 == 0) {
-                return frameLayout;
-            }
-            i10--;
-        }
-        if (this.f40015b) {
-            if (i10 == 0) {
-                return ta1Var.f40815i0;
-            }
-            i10--;
-        }
-        if (this.f40016c && i10 == 0) {
-            return ta1Var.f40816j0;
-        }
-        return frameLayout;
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        float dp = ((i12 + i14) / 2.0f) + AndroidUtilities.dp(1.0f);
+        int w02 = org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.Oh, this.f41315c);
+        Paint paint2 = this.f41314b;
+        paint2.setColor(w02);
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(f7, dp - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(16.0f) + f7 + this.f41313a.f28222c, AndroidUtilities.dp(9.0f) + dp);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), paint2);
+        this.f41313a.c(f7 + AndroidUtilities.dp(8.0f), dp, 1.0f, -1, canvas);
     }
 
     @Override
-    public final int e() {
-        if (this.f40017e.f40820n0) {
-            return 1;
-        }
-        return (this.f40014a ? 1 : 0) + (this.f40015b ? 1 : 0) + (this.f40016c ? 1 : 0);
-    }
-
-    @Override
-    public final int h(int i10) {
-        return i10;
-    }
-
-    @Override
-    public final void b(View view, int i10, int i11) {
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        return (int) (AndroidUtilities.dp(16.0f) + this.f41313a.f28222c);
     }
 }

@@ -1,19 +1,16 @@
 package ci;
-public final class f3 extends s4.s {
-    public final w3 Q;
+public final class f3 extends g.o {
+    public final v3 f5065c;
 
-    public f3(w3 w3Var) {
-        super(3);
-        this.Q = w3Var;
+    public f3(v3 v3Var) {
+        this.f5065c = v3Var;
     }
 
     @Override
-    public final void b0(of.e eVar, s4.z0 z0Var) {
-        super.b0(eVar, z0Var);
-        w3 w3Var = this.Q;
-        if (w3Var.U) {
-            w3Var.U = false;
-            w3Var.a();
+    public final int i(int i10) {
+        if (i10 != 0 && i10 != 1 && i10 != this.f5065c.f6137f.h() - 1) {
+            return 1;
         }
+        return 3;
     }
 }

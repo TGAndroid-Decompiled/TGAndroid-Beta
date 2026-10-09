@@ -1,178 +1,256 @@
 package s4;
 
-import android.graphics.Canvas;
-import android.view.View;
+import android.os.Looper;
+import android.os.SystemClock;
+import android.util.Log;
+import android.util.Xml;
 import androidx.recyclerview.widget.RecyclerView;
-import java.util.WeakHashMap;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Cells.m2;
-import org.telegram.ui.bz;
-public abstract class v {
-    public static final m2 f46683b = new m2(1);
-    public static final m2 f46684c = new m2(2);
-    public int f46685a = -1;
+import androidx.sharetarget.ShortcutInfoCompatSaverImpl;
+import com.google.android.gms.common.data.DataHolder;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import org.xmlpull.v1.XmlSerializer;
+public final class v implements Runnable {
+    public final int f47797a;
+    public final Object f47798b;
+    public final Object f47799c;
 
-    public static int c(int i10, int i11) {
-        int i12;
-        int i13 = i10 & 789516;
-        if (i13 == 0) {
-            return i10;
-        }
-        int i14 = i10 & (~i13);
-        if (i11 == 0) {
-            i12 = i13 << 2;
-        } else {
-            int i15 = i13 << 1;
-            i14 |= (-789517) & i15;
-            i12 = (i15 & 789516) << 2;
-        }
-        return i14 | i12;
+    public v(int i10, Object obj, Object obj2) {
+        this.f47797a = i10;
+        this.f47799c = obj;
+        this.f47798b = obj2;
     }
 
-    public static int l(int i10, int i11) {
-        int i12 = i11 | i10;
-        return (i10 << 16) | (i11 << 8) | i12;
-    }
-
-    public void a(RecyclerView recyclerView, c1 c1Var) {
-        View view = c1Var.f46538a;
-        Object tag = view.getTag();
-        if (tag instanceof Float) {
-            float floatValue = ((Float) tag).floatValue();
-            WeakHashMap weakHashMap = r0.i0.f45610a;
-            r0.a0.i(view, floatValue);
-        }
-        view.setTag(null);
-        view.setTranslationX(0.0f);
-        view.setTranslationY(0.0f);
-    }
-
-    public int b(int i10, int i11) {
-        int i12;
-        int i13 = i10 & 3158064;
-        if (i13 == 0) {
-            return i10;
-        }
-        int i14 = i10 & (~i13);
-        if (i11 == 0) {
-            i12 = i13 >> 2;
-        } else {
-            int i15 = i13 >> 1;
-            i14 |= (-3158065) & i15;
-            i12 = (i15 & 3158064) >> 2;
-        }
-        return i14 | i12;
-    }
-
-    public long d(RecyclerView recyclerView, int i10, float f7, float f10) {
-        m0 itemAnimator = recyclerView.getItemAnimator();
-        if (itemAnimator == null) {
-            if (i10 == 8) {
-                return 200L;
-            }
-            return 250L;
-        } else if (i10 == 8) {
-            return itemAnimator.j();
-        } else {
-            return itemAnimator.d;
-        }
-    }
-
-    public abstract int e(RecyclerView recyclerView, c1 c1Var);
-
-    public float g() {
-        return 0.5f;
-    }
-
-    public final int i(int i10, int i11, long j3) {
-        if (this.f46685a == -1) {
-            this.f46685a = AndroidUtilities.dp(20.0f);
-        }
-        int i12 = this.f46685a;
-        float f7 = 1.0f;
-        int interpolation = (int) (f46684c.getInterpolation(Math.min(1.0f, (Math.abs(i11) * 1.0f) / i10)) * ((int) Math.signum(i11)) * i12);
-        if (j3 <= 500) {
-            f7 = ((float) j3) / 500.0f;
-        }
-        int interpolation2 = (int) (f46683b.getInterpolation(f7) * interpolation);
-        if (interpolation2 == 0) {
-            if (i11 <= 0) {
-                return -1;
-            }
-            return 1;
-        }
-        return interpolation2;
-    }
-
-    public boolean j() {
-        return true;
-    }
-
-    public boolean k() {
-        return !(this instanceof bz);
-    }
-
-    public void m(Canvas canvas, RecyclerView recyclerView, c1 c1Var, float f7, float f10, int i10, boolean z10) {
-        View view = c1Var.f46538a;
-        if (z10 && view.getTag() == null) {
-            WeakHashMap weakHashMap = r0.i0.f45610a;
-            Float valueOf = Float.valueOf(r0.a0.e(view));
-            int childCount = recyclerView.getChildCount();
-            float f11 = 0.0f;
-            for (int i11 = 0; i11 < childCount; i11++) {
-                View childAt = recyclerView.getChildAt(i11);
-                if (childAt != view) {
-                    WeakHashMap weakHashMap2 = r0.i0.f45610a;
-                    float e7 = r0.a0.e(childAt);
-                    if (e7 > f11) {
-                        f11 = e7;
+    @Override
+    public final void run() {
+        y8.d dVar;
+        switch (this.f47797a) {
+            case 0:
+                u uVar = (u) this.f47798b;
+                d1 d1Var = uVar.f47786e;
+                z zVar = (z) this.f47799c;
+                RecyclerView recyclerView = zVar.H;
+                if (recyclerView != null && recyclerView.G && !uVar.v && d1Var.b() != -1) {
+                    n0 itemAnimator = zVar.H.getItemAnimator();
+                    if (itemAnimator == null || !itemAnimator.k()) {
+                        ArrayList arrayList = zVar.F;
+                        int size = arrayList.size();
+                        for (int i10 = 0; i10 < size; i10++) {
+                            if (((u) arrayList.get(i10)).f47791w) {
+                            }
+                        }
+                        zVar.f47823x.q(d1Var);
+                        return;
+                    }
+                    zVar.H.post(this);
+                    return;
+                }
+                return;
+            case 1:
+                ShortcutInfoCompatSaverImpl shortcutInfoCompatSaverImpl = (ShortcutInfoCompatSaverImpl) this.f47799c;
+                ArrayList arrayList2 = (ArrayList) this.f47798b;
+                shortcutInfoCompatSaverImpl.e(arrayList2);
+                File file = shortcutInfoCompatSaverImpl.f3180f;
+                la.h hVar = new la.h(file);
+                File file2 = (File) hVar.f15463c;
+                FileOutputStream fileOutputStream = null;
+                try {
+                    FileOutputStream Y = hVar.Y();
+                    try {
+                        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(Y);
+                        XmlSerializer newSerializer = Xml.newSerializer();
+                        newSerializer.setOutput(bufferedOutputStream, "UTF_8");
+                        newSerializer.startDocument(null, Boolean.TRUE);
+                        newSerializer.startTag(null, "share_targets");
+                        int size2 = arrayList2.size();
+                        boolean z10 = false;
+                        int i11 = 0;
+                        while (i11 < size2) {
+                            Object obj = arrayList2.get(i11);
+                            i11++;
+                            u4.d.h(newSerializer, (u4.g) obj);
+                        }
+                        newSerializer.endTag(null, "share_targets");
+                        newSerializer.endDocument();
+                        bufferedOutputStream.flush();
+                        Y.flush();
+                        try {
+                            Y.getFD().sync();
+                            z10 = true;
+                        } catch (IOException unused) {
+                        }
+                        if (!z10) {
+                            Log.e("AtomicFile", "Failed to sync file output stream");
+                        }
+                        try {
+                            Y.close();
+                        } catch (IOException e7) {
+                            Log.e("AtomicFile", "Failed to close file output stream", e7);
+                        }
+                        la.h.V(file2, file);
+                        return;
+                    } catch (Exception e10) {
+                        e = e10;
+                        fileOutputStream = Y;
+                        Log.e("ShortcutInfoCompatSaver", "Failed to write to file " + file, e);
+                        if (fileOutputStream != null) {
+                            try {
+                                fileOutputStream.getFD().sync();
+                            } catch (IOException unused2) {
+                                Log.e("AtomicFile", "Failed to sync file output stream");
+                            }
+                            try {
+                                fileOutputStream.close();
+                            } catch (IOException e11) {
+                                Log.e("AtomicFile", "Failed to close file output stream", e11);
+                            }
+                            if (!file2.delete()) {
+                                Log.e("AtomicFile", "Failed to delete new file " + file2);
+                            }
+                        }
+                        throw new RuntimeException("Failed to write to file " + file, e);
+                    }
+                } catch (Exception e12) {
+                    e = e12;
+                }
+            case 2:
+                c0.l lVar = (c0.l) this.f47799c;
+                try {
+                    ((c0.l) this.f47798b).get();
+                    lVar.k(null);
+                    return;
+                } catch (Exception e13) {
+                    lVar.l(e13);
+                    return;
+                }
+            case 3:
+                ShortcutInfoCompatSaverImpl shortcutInfoCompatSaverImpl2 = (ShortcutInfoCompatSaverImpl) this.f47799c;
+                a0.f fVar = shortcutInfoCompatSaverImpl2.f3177b;
+                try {
+                    ShortcutInfoCompatSaverImpl.f((File) this.f47798b);
+                    ShortcutInfoCompatSaverImpl.f(shortcutInfoCompatSaverImpl2.f3181g);
+                    fVar.putAll(u4.d.c(shortcutInfoCompatSaverImpl2.f3180f, shortcutInfoCompatSaverImpl2.f3176a));
+                    shortcutInfoCompatSaverImpl2.e(new ArrayList(fVar.values()));
+                    return;
+                } catch (Exception e14) {
+                    Log.w("ShortcutInfoCompatSaver", "ShortcutInfoCompatSaver started with an exceptions ", e14);
+                    return;
+                }
+            case 4:
+                ShortcutInfoCompatSaverImpl shortcutInfoCompatSaverImpl3 = (ShortcutInfoCompatSaverImpl) this.f47799c;
+                shortcutInfoCompatSaverImpl3.f3177b.clear();
+                a0.f fVar2 = shortcutInfoCompatSaverImpl3.f3178c;
+                Iterator it = ((a0.e) fVar2.values()).iterator();
+                while (it.hasNext()) {
+                    ((i9.w) it.next()).cancel(false);
+                }
+                fVar2.clear();
+                shortcutInfoCompatSaverImpl3.h((c0.l) this.f47798b);
+                return;
+            case 5:
+                if (!(((c0.l) this.f47798b).f3972a instanceof c0.a)) {
+                    try {
+                        ((Runnable) this.f47799c).run();
+                        ((c0.l) this.f47798b).k(null);
+                        return;
+                    } catch (Exception e15) {
+                        ((c0.l) this.f47798b).l(e15);
+                        return;
                     }
                 }
-            }
-            r0.a0.i(view, f11 + 1.0f);
-            view.setTag(valueOf);
+                return;
+            case 6:
+                w9.o.a((w9.o) this.f47799c, (da.c) this.f47798b);
+                return;
+            case 7:
+                x1.a aVar = (x1.a) this.f47799c;
+                Object obj2 = this.f47798b;
+                if (aVar.f50453c.get()) {
+                    a6.d dVar2 = aVar.f50454e;
+                    if (dVar2.h == aVar) {
+                        SystemClock.uptimeMillis();
+                        dVar2.h = null;
+                        dVar2.b();
+                    }
+                } else {
+                    a6.d dVar3 = aVar.f50454e;
+                    if (dVar3.f317g != aVar) {
+                        if (dVar3.h == aVar) {
+                            SystemClock.uptimeMillis();
+                            dVar3.h = null;
+                            dVar3.b();
+                        }
+                    } else if (!dVar3.f314c) {
+                        SystemClock.uptimeMillis();
+                        dVar3.f317g = null;
+                        w1.a aVar2 = dVar3.f312a;
+                        if (aVar2 != null) {
+                            if (Looper.myLooper() == Looper.getMainLooper()) {
+                                aVar2.j(obj2);
+                            } else {
+                                aVar2.h(obj2);
+                            }
+                        }
+                    }
+                }
+                aVar.f50452b = 3;
+                return;
+            case 8:
+                DataHolder dataHolder = (DataHolder) this.f47798b;
+                x8.e eVar = new x8.e(dataHolder);
+                try {
+                    ((x8.m) this.f47799c).f51059c.onDataChanged(eVar);
+                    if (dataHolder != null) {
+                        dataHolder.close();
+                        return;
+                    }
+                    return;
+                } catch (Throwable th2) {
+                    DataHolder dataHolder2 = eVar.f51052a;
+                    if (dataHolder2 != null) {
+                        dataHolder2.close();
+                    }
+                    throw th2;
+                }
+            case 9:
+                ((x8.m) this.f47799c).f51059c.onMessageReceived((y8.k0) this.f47798b);
+                return;
+            case 10:
+                ((x8.m) this.f47799c).f51059c.onConnectedNodes((List) this.f47798b);
+                return;
+            case 11:
+                ((x8.m) this.f47799c).f51059c.onCapabilityChanged((y8.b) this.f47798b);
+                return;
+            case 12:
+                ((x8.m) this.f47799c).f51059c.onNotificationReceived((y8.b1) this.f47798b);
+                return;
+            case 13:
+                ((x8.m) this.f47799c).f51059c.onEntityUpdate((y8.v0) this.f47798b);
+                return;
+            default:
+                y8.e eVar2 = (y8.e) this.f47798b;
+                x8.m mVar = (x8.m) this.f47799c;
+                eVar2.b(mVar.f51059c);
+                dVar = mVar.f51059c.zzh;
+                eVar2.b(dVar);
+                return;
         }
-        view.setTranslationX(f7);
-        view.setTranslationY(f10);
     }
 
-    public abstract boolean n(RecyclerView recyclerView, c1 c1Var, c1 c1Var2);
-
-    public void o(RecyclerView recyclerView, c1 c1Var, c1 c1Var2, int i10, int i11, int i12) {
-        View view = c1Var2.f46538a;
-        o0 layoutManager = recyclerView.getLayoutManager();
-        if (layoutManager instanceof c0) {
-            ((c0) layoutManager).b1(c1Var.f46538a, view, i11, i12);
-            return;
-        }
-        if (layoutManager.d()) {
-            if (o0.x(view) <= recyclerView.getPaddingLeft()) {
-                recyclerView.v0(i10);
-            }
-            if (o0.y(view) >= recyclerView.getWidth() - recyclerView.getPaddingRight()) {
-                recyclerView.v0(i10);
-            }
-        }
-        if (layoutManager.e()) {
-            if (o0.z(view) <= recyclerView.getPaddingTop()) {
-                recyclerView.v0(i10);
-            }
-            if (o0.v(view) >= recyclerView.getHeight() - recyclerView.getPaddingBottom()) {
-                recyclerView.v0(i10);
-            }
-        }
+    public v(c0.l lVar, Object obj, int i10) {
+        this.f47797a = i10;
+        this.f47798b = lVar;
+        this.f47799c = obj;
     }
 
-    public abstract void q(c1 c1Var);
-
-    public float f(float f7) {
-        return f7;
-    }
-
-    public float h(float f7) {
-        return f7;
-    }
-
-    public void p(c1 c1Var, int i10) {
+    public v(z zVar, u uVar, int i10) {
+        this.f47797a = 0;
+        this.f47799c = zVar;
+        this.f47798b = uVar;
     }
 }

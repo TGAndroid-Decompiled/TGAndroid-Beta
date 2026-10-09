@@ -1,31 +1,29 @@
 package ci;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.LaunchActivity;
-public final class wa implements Runnable {
-    public final int f6249a;
-    public final Utilities.Callback f6250b;
+import android.content.DialogInterface;
+public final class wa implements DialogInterface.OnDismissListener {
+    public final int f6225a;
+    public final lc f6226b;
 
-    public wa(int i10, Utilities.Callback callback) {
-        this.f6249a = i10;
-        this.f6250b = callback;
+    public wa(lc lcVar, int i10) {
+        this.f6225a = i10;
+        this.f6226b = lcVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f6249a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f6225a) {
             case 0:
-                this.f6250b.run(LaunchActivity.U());
-                return;
-            case 1:
-                AndroidUtilities.runOnUIThread(new wa(3, this.f6250b));
-                return;
-            case 2:
-                this.f6250b.run(null);
+                lc lcVar = this.f6226b;
+                lcVar.X0.x(3, false);
+                lcVar.f5509q0 = null;
                 return;
             default:
-                this.f6250b.run(null);
+                zb zbVar = this.f6226b.X0;
+                if (zbVar != null) {
+                    zbVar.x(4, false);
+                    return;
+                }
                 return;
         }
     }

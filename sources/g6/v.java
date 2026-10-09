@@ -12,33 +12,33 @@ import com.google.android.gms.common.internal.BinderWrapper;
 import d6.d0;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicLong;
-import m.p3;
+import m.q3;
 public final class v extends n6.g {
-    public static final b f10295n0 = new b("CastClientImpl", null);
-    public static final Object f10296o0 = new Object();
-    public static final Object f10297p0 = new Object();
+    public static final b f10368n0 = new b("CastClientImpl", null);
+    public static final Object f10369o0 = new Object();
+    public static final Object f10370p0 = new Object();
     public c6.d U;
     public final CastDevice V;
     public final d0 W;
     public final HashMap X;
     public final long Y;
     public final Bundle Z;
-    public u f10298a0;
-    public String f10299b0;
-    public boolean f10300c0;
-    public boolean f10301d0;
-    public boolean f10302e0;
-    public double f10303f0;
-    public c6.x f10304g0;
-    public int f10305h0;
-    public int f10306i0;
-    public String f10307j0;
-    public String f10308k0;
-    public Bundle f10309l0;
+    public u f10371a0;
+    public String f10372b0;
+    public boolean f10373c0;
+    public boolean f10374d0;
+    public boolean f10375e0;
+    public double f10376f0;
+    public c6.x f10377g0;
+    public int f10378h0;
+    public int f10379i0;
+    public String f10380j0;
+    public String f10381k0;
+    public Bundle f10382l0;
     public final HashMap m0;
 
-    public v(Context context, Looper looper, p3 p3Var, CastDevice castDevice, long j3, d0 d0Var, Bundle bundle, com.google.android.gms.common.api.k kVar, com.google.android.gms.common.api.l lVar) {
-        super(context, looper, 10, p3Var, kVar, lVar, 0);
+    public v(Context context, Looper looper, q3 q3Var, CastDevice castDevice, long j3, d0 d0Var, Bundle bundle, com.google.android.gms.common.api.k kVar, com.google.android.gms.common.api.l lVar) {
+        super(context, looper, 10, q3Var, kVar, lVar, 0);
         this.V = castDevice;
         this.W = d0Var;
         this.Y = j3;
@@ -46,14 +46,14 @@ public final class v extends n6.g {
         this.X = new HashMap();
         new AtomicLong(0L);
         this.m0 = new HashMap();
-        this.f10305h0 = -1;
-        this.f10306i0 = -1;
+        this.f10378h0 = -1;
+        this.f10379i0 = -1;
         this.U = null;
-        this.f10299b0 = null;
-        this.f10303f0 = 0.0d;
+        this.f10372b0 = null;
+        this.f10376f0 = 0.0d;
         I();
-        this.f10300c0 = false;
-        this.f10304g0 = null;
+        this.f10373c0 = false;
+        this.f10377g0 = null;
         I();
     }
 
@@ -69,14 +69,14 @@ public final class v extends n6.g {
 
     @Override
     public final void B(int i10, IBinder iBinder, Bundle bundle, int i11) {
-        f10295n0.b("in onPostInitHandler; statusCode=%d", Integer.valueOf(i10));
+        f10368n0.b("in onPostInitHandler; statusCode=%d", Integer.valueOf(i10));
         if (i10 == 0 || i10 == 2300) {
-            this.f10301d0 = true;
-            this.f10302e0 = true;
+            this.f10374d0 = true;
+            this.f10375e0 = true;
         }
         if (i10 == 2300) {
             Bundle bundle2 = new Bundle();
-            this.f10309l0 = bundle2;
+            this.f10382l0 = bundle2;
             bundle2.putBoolean("com.google.android.gms.cast.EXTRA_APP_NO_LONGER_RUNNING", true);
             i10 = 0;
         }
@@ -84,7 +84,7 @@ public final class v extends n6.g {
     }
 
     public final void H() {
-        f10295n0.b("removing all MessageReceivedCallbacks", new Object[0]);
+        f10368n0.b("removing all MessageReceivedCallbacks", new Object[0]);
         synchronized (this.X) {
             this.X.clear();
         }
@@ -94,36 +94,36 @@ public final class v extends n6.g {
         CastDevice castDevice = this.V;
         n6.l.i(castDevice, "device should not be null");
         if (!castDevice.c(2048) && castDevice.c(4) && !castDevice.c(1)) {
-            "Chromecast Audio".equals(castDevice.f6425e);
+            "Chromecast Audio".equals(castDevice.f6477e);
         }
     }
 
     @Override
     public final void disconnect() {
-        Object[] objArr = {this.f10298a0, Boolean.valueOf(j())};
-        b bVar = f10295n0;
+        Object[] objArr = {this.f10371a0, Boolean.valueOf(j())};
+        b bVar = f10368n0;
         bVar.b("disconnect(); ServiceListener=%s, isConnected=%b", objArr);
-        u uVar = this.f10298a0;
+        u uVar = this.f10371a0;
         v vVar = null;
-        this.f10298a0 = null;
+        this.f10371a0 = null;
         if (uVar != null) {
-            v vVar2 = (v) uVar.f10293b.getAndSet(null);
+            v vVar2 = (v) uVar.f10366b.getAndSet(null);
             if (vVar2 != null) {
-                vVar2.f10305h0 = -1;
-                vVar2.f10306i0 = -1;
+                vVar2.f10378h0 = -1;
+                vVar2.f10379i0 = -1;
                 vVar2.U = null;
-                vVar2.f10299b0 = null;
-                vVar2.f10303f0 = 0.0d;
+                vVar2.f10372b0 = null;
+                vVar2.f10376f0 = 0.0d;
                 vVar2.I();
-                vVar2.f10300c0 = false;
-                vVar2.f10304g0 = null;
+                vVar2.f10373c0 = false;
+                vVar2.f10377g0 = null;
                 vVar = vVar2;
             }
             if (vVar != null) {
                 H();
                 try {
                     try {
-                        ((f) u()).W0();
+                        ((f) u()).V0();
                     } finally {
                         super.disconnect();
                     }
@@ -155,18 +155,18 @@ public final class v extends n6.g {
 
     @Override
     public final Bundle s() {
-        Bundle bundle = this.f10309l0;
+        Bundle bundle = this.f10382l0;
         if (bundle == null) {
             return null;
         }
-        this.f10309l0 = null;
+        this.f10382l0 = null;
         return bundle;
     }
 
     @Override
     public final Bundle t() {
         Bundle bundle = new Bundle();
-        f10295n0.b("getRemoteService(): mLastApplicationId=%s, mLastSessionId=%s", this.f10307j0, this.f10308k0);
+        f10368n0.b("getRemoteService(): mLastApplicationId=%s, mLastSessionId=%s", this.f10380j0, this.f10381k0);
         CastDevice castDevice = this.V;
         castDevice.getClass();
         bundle.putParcelable("com.google.android.gms.cast.EXTRA_CAST_DEVICE", castDevice);
@@ -176,12 +176,12 @@ public final class v extends n6.g {
             bundle.putAll(bundle2);
         }
         u uVar = new u(this);
-        this.f10298a0 = uVar;
+        this.f10371a0 = uVar;
         bundle.putParcelable("listener", new BinderWrapper(uVar));
-        String str = this.f10307j0;
+        String str = this.f10380j0;
         if (str != null) {
             bundle.putString("last_application_id", str);
-            String str2 = this.f10308k0;
+            String str2 = this.f10381k0;
             if (str2 != null) {
                 bundle.putString("last_session_id", str2);
             }

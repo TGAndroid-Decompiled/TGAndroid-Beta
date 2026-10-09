@@ -1,30 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ObjectAnimator;
-import android.view.View;
-import android.widget.ImageView;
-import org.telegram.messenger.R;
-public final class vl extends AnimatorListenerAdapter {
-    public final ChatAttachAlertPhotoLayout f31801a;
+import android.content.Context;
+import android.widget.TextView;
+public final class vl extends TextView {
+    public final int f31813a;
+    public float f31814b;
+    public float f31815c;
 
-    public vl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
-        this.f31801a = chatAttachAlertPhotoLayout;
+    public vl(Context context, int i10) {
+        super(context);
+        this.f31813a = i10;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f31801a;
-        ImageView imageView = chatAttachAlertPhotoLayout.f24063r0;
-        gm gmVar = chatAttachAlertPhotoLayout.P;
-        if (gmVar != null && gmVar.isFrontface()) {
-            i10 = R.drawable.camera_revert1;
-        } else {
-            i10 = R.drawable.camera_revert2;
+    public final float getTranslationX() {
+        switch (this.f31813a) {
+            case 0:
+                return this.f31814b;
+            default:
+                return this.f31814b;
         }
-        imageView.setImageResource(i10);
-        ObjectAnimator.ofFloat(chatAttachAlertPhotoLayout.f24063r0, View.SCALE_X, 1.0f).setDuration(100L).start();
+    }
+
+    @Override
+    public final void setTranslationX(float f7) {
+        switch (this.f31813a) {
+            case 0:
+                this.f31814b = f7;
+                setTranslationY(this.f31815c + f7);
+                return;
+            default:
+                this.f31814b = f7;
+                setTranslationY(this.f31815c + f7);
+                return;
+        }
     }
 }

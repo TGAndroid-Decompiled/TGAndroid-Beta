@@ -1,20 +1,56 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-public final class i8 {
-    public MessageObject f37301a;
-    public ArrayList f37302b;
-    public int f37303c;
-    public boolean f37305f;
-    public int h;
-    public float f37307i;
-    public float f37308j;
-    public float f37309k;
-    public float f37310l;
-    public float f37311m;
-    public float f37312n;
-    public float d = 1.0f;
-    public float f37304e = 1.0f;
-    public boolean f37306g = true;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class i8 implements Runnable {
+    public final int f38534a;
+    public final j9 f38535b;
+
+    public i8(j9 j9Var, int i10) {
+        this.f38534a = i10;
+        this.f38535b = j9Var;
+    }
+
+    @Override
+    public final void run() {
+        org.telegram.ui.Components.ad a02;
+        switch (this.f38534a) {
+            case 0:
+                j9 j9Var = this.f38535b;
+                j9Var.f0();
+                j9Var.i0();
+                return;
+            case 1:
+                j9 j9Var2 = this.f38535b;
+                j9Var2.n0(false);
+                if (j9Var2.f38878w) {
+                    a02 = org.telegram.ui.Components.ad.X();
+                } else {
+                    a02 = org.telegram.ui.Components.ad.a0(j9Var2);
+                }
+                org.telegram.ui.Components.tc I = a02.I(R.raw.contact_check, AndroidUtilities.replaceTags(LocaleController.getString(R.string.GroupCallTabWasHiddenTitle)), LocaleController.getString(R.string.UndoNoCaps), 5000, true, new i8(j9Var2, 5));
+                I.f31130j = 5000;
+                I.j();
+                return;
+            case 2:
+                this.f38535b.p0(true);
+                return;
+            case 3:
+                j9 j9Var3 = this.f38535b;
+                j9Var3.h0();
+                j9Var3.f0();
+                return;
+            case 4:
+                this.f38535b.n0(false);
+                return;
+            case 5:
+                this.f38535b.n0(true);
+                return;
+            default:
+                j9 j9Var4 = this.f38535b;
+                j9Var4.d.postOnAnimation(new i8(j9Var4, 3));
+                return;
+        }
+    }
 }

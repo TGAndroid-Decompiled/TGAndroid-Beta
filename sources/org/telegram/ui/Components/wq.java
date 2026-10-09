@@ -1,107 +1,27 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class wq extends View {
-    public final Paint f32688a;
-    public final Paint f32689b;
-    public final RectF f32690c;
-    public int d;
-    public long f32691e;
-    public int f32692f;
-    public int h;
-    public int f32693n;
-    public int f32694r;
+import android.text.InputFilter;
+import android.text.Spanned;
+public abstract class wq implements InputFilter {
+    public final int f32657a;
 
-    public wq(Context context, int i10) {
-        super(context);
-        Paint paint = new Paint(1);
-        this.f32688a = paint;
-        Paint paint2 = new Paint(1);
-        this.f32689b = paint2;
-        this.f32690c = new RectF();
-        this.d = 0;
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        paint2.setStyle(style);
-        paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        paint2.setStrokeCap(Paint.Cap.ROUND);
-        if (i10 == 0) {
-            this.f32692f = org.telegram.ui.ActionBar.i6.B7;
-            this.h = org.telegram.ui.ActionBar.i6.C7;
-        } else if (i10 == 1) {
-            this.f32692f = org.telegram.ui.ActionBar.i6.D7;
-            this.h = org.telegram.ui.ActionBar.i6.E7;
-        } else if (i10 == 2) {
-            this.f32692f = org.telegram.ui.ActionBar.i6.F7;
-            this.h = org.telegram.ui.ActionBar.i6.G7;
-        } else if (i10 == 3) {
-            this.f32692f = org.telegram.ui.ActionBar.i6.H7;
-            this.h = org.telegram.ui.ActionBar.i6.I7;
-        }
-        b();
-    }
-
-    public final void a(int i10, int i11) {
-        this.f32692f = -1;
-        this.h = -1;
-        this.f32693n = i10;
-        this.f32694r = i11;
-        b();
-    }
-
-    public final void b() {
-        int i10 = this.f32692f;
-        Paint paint = this.f32688a;
-        if (i10 >= 0) {
-            paint.setColor(org.telegram.ui.ActionBar.i6.w0(null, i10, false));
-        } else {
-            paint.setColor(this.f32693n);
-        }
-        int i11 = this.h;
-        Paint paint2 = this.f32689b;
-        if (i11 >= 0) {
-            paint2.setColor(org.telegram.ui.ActionBar.i6.w0(null, i11, false));
-        } else {
-            paint2.setColor(this.f32694r);
-        }
-        invalidate();
+    public wq(int i10) {
+        this.f32657a = i10;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f32691e = System.currentTimeMillis();
-        invalidate();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        if (getVisibility() != 0) {
-            return;
+    public CharSequence filter(CharSequence charSequence, int i10, int i11, Spanned spanned, int i12, int i13) {
+        int codePointCount = this.f32657a - (Character.codePointCount(spanned, 0, spanned.length()) - Character.codePointCount(spanned, i12, i13));
+        if (codePointCount <= 0) {
+            return "";
         }
-        long currentTimeMillis = System.currentTimeMillis();
-        long j3 = currentTimeMillis - this.f32691e;
-        this.f32691e = currentTimeMillis;
-        this.d = (int) ((((float) (j3 * 360)) / 1000.0f) + this.d);
-        int measuredWidth = (getMeasuredWidth() / 2) - AndroidUtilities.dp(9.0f);
-        int measuredHeight = (getMeasuredHeight() / 2) - AndroidUtilities.dp(9.0f);
-        RectF rectF = this.f32690c;
-        rectF.set(measuredWidth, measuredHeight, AndroidUtilities.dp(18.0f) + measuredWidth, AndroidUtilities.dp(18.0f) + measuredHeight);
-        canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, AndroidUtilities.dp(9.0f), this.f32688a);
-        canvas.drawArc(rectF, this.d - 90, 90.0f, false, this.f32689b);
-        invalidate();
-    }
-
-    @Override
-    public void setVisibility(int i10) {
-        super.setVisibility(i10);
-        this.f32691e = System.currentTimeMillis();
-        invalidate();
+        if (codePointCount >= Character.codePointCount(charSequence, i10, i11)) {
+            return null;
+        }
+        int i14 = codePointCount + i10;
+        if (Character.isHighSurrogate(charSequence.charAt(i14 - 1)) && i14 - 1 == i10) {
+            return "";
+        }
+        return charSequence.subSequence(i10, i14);
     }
 }

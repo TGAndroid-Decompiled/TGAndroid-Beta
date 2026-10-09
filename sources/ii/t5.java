@@ -7,26 +7,26 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.tl.TL_iv;
 public final class t5 extends FrameLayout {
-    public final i1 f12661a;
-    public TL_iv.pageTableCell f12662b;
+    public final i1 f12708a;
+    public TL_iv.pageTableCell f12709b;
 
-    public t5(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+    public t5(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
-        i1 i1Var = new i1(context, d6Var);
-        this.f12661a = i1Var;
+        i1 i1Var = new i1(context, e6Var);
+        this.f12708a = i1Var;
         i1Var.setTextSize(1, Math.max(8, SharedConfig.fontSize - 2));
         i1Var.setAllowNewlines(true);
         setCompact(false);
-        addView(i1Var, w7.z5.e(-1, -2, 51));
+        addView(i1Var, w7.x5.e(-1, -2, 51));
     }
 
     public final void a() {
         int i10;
         int i11;
         int i12;
-        i1 i1Var = this.f12661a;
+        i1 i1Var = this.f12708a;
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) i1Var.getLayoutParams();
-        TL_iv.pageTableCell pagetablecell = this.f12662b;
+        TL_iv.pageTableCell pagetablecell = this.f12709b;
         if (pagetablecell.align_right) {
             i10 = 5;
         } else if (pagetablecell.align_center) {
@@ -43,7 +43,7 @@ public final class t5 extends FrameLayout {
         }
         layoutParams.gravity = i11;
         i1Var.setLayoutParams(layoutParams);
-        TL_iv.pageTableCell pagetablecell2 = this.f12662b;
+        TL_iv.pageTableCell pagetablecell2 = this.f12709b;
         if (pagetablecell2.align_right) {
             i12 = 53;
         } else if (pagetablecell2.align_center) {
@@ -62,7 +62,7 @@ public final class t5 extends FrameLayout {
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         boolean z10;
-        i1 i1Var = this.f12661a;
+        i1 i1Var = this.f12708a;
         if (i1Var.getVisibility() == 0 && motionEvent.getActionMasked() != 3) {
             float x10 = motionEvent.getX();
             float y3 = motionEvent.getY();
@@ -72,12 +72,13 @@ public final class t5 extends FrameLayout {
             } else {
                 z10 = false;
             }
-            z11 = (y3 < ((float) i1Var.getTop()) || y3 >= ((float) i1Var.getBottom())) ? true : true;
+            if (y3 < i1Var.getTop() || y3 >= i1Var.getBottom()) {
+                z11 = true;
+            }
             if (z10 && z11 && i1Var.getHeight() > 0) {
-                float left = x10 - i1Var.getLeft();
                 float max = Math.max(0.0f, Math.min(y3 - i1Var.getTop(), i1Var.getHeight() - 1));
                 MotionEvent obtain = MotionEvent.obtain(motionEvent);
-                obtain.setLocation(left, max);
+                obtain.setLocation(x10 - i1Var.getLeft(), max);
                 boolean onTouchEvent = i1Var.onTouchEvent(obtain);
                 obtain.recycle();
                 return onTouchEvent;
@@ -87,7 +88,7 @@ public final class t5 extends FrameLayout {
     }
 
     public void setCompact(boolean z10) {
-        i1 i1Var = this.f12661a;
+        i1 i1Var = this.f12708a;
         if (z10) {
             i1Var.setPadding(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f));
             i1Var.setMinHeight(AndroidUtilities.dp(18.0f));
@@ -98,6 +99,6 @@ public final class t5 extends FrameLayout {
     }
 
     public void setLocked(boolean z10) {
-        this.f12661a.setLocked(z10);
+        this.f12708a.setLocked(z10);
     }
 }

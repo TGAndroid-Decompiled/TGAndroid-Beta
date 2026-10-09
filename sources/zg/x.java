@@ -1,34 +1,33 @@
 package zg;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.sk0;
-public final class x extends AnimatorListenerAdapter {
-    public final int f53539a;
-    public final z f53540b;
+import android.graphics.Outline;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.view.View;
+import android.view.ViewOutlineProvider;
+import org.telegram.messenger.AndroidUtilities;
+public final class x extends ViewOutlineProvider {
+    public final Rect f54678a = new Rect();
+    public final RectF f54679b = new RectF();
+    public final RectF f54680c = new RectF();
+    public final a0 d;
 
-    public x(z zVar, int i10) {
-        this.f53539a = i10;
-        this.f53540b = zVar;
+    public x(a0 a0Var) {
+        this.d = a0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f53539a) {
-            case 0:
-                this.f53540b.f();
-                return;
-            default:
-                z zVar = this.f53540b;
-                z.a(zVar, false);
-                zVar.f53557j = 0.0f;
-                sk0 sk0Var = zVar.f53561n;
-                sk0Var.setCustomEmojiEnterProgress(Utilities.clamp(0.0f, 1.0f, 0.0f));
-                sk0Var.setSkipDraw(false);
-                zVar.f53552c.setVisibility(8);
-                zVar.f();
-                return;
-        }
+    public final void getOutline(View view, Outline outline) {
+        a0 a0Var = this.d;
+        float lerp = AndroidUtilities.lerp(a0Var.f54450e, AndroidUtilities.dp(8.0f), a0Var.f54454j);
+        RectF rectF = this.f54679b;
+        rectF.set(0.0f, 0.0f, view.getMeasuredWidth(), view.getMeasuredHeight());
+        RectF rectF2 = a0Var.f54451f;
+        float f7 = a0Var.f54454j;
+        RectF rectF3 = this.f54680c;
+        AndroidUtilities.lerp(rectF2, rectF, f7, rectF3);
+        Rect rect = this.f54678a;
+        rectF3.round(rect);
+        outline.setRoundRect(rect, lerp);
     }
 }

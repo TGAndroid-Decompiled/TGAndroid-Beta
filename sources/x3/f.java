@@ -5,26 +5,26 @@ import c3.p;
 import e2.v;
 import java.io.EOFException;
 public final class f {
-    public int f49289a;
-    public long f49290b;
-    public int f49291c;
+    public int f50565a;
+    public long f50566b;
+    public int f50567c;
     public int d;
-    public int f49292e;
-    public final int[] f49293f = new int[255];
-    public final v f49294g = new v(255);
+    public int f50568e;
+    public final int[] f50569f = new int[255];
+    public final v f50570g = new v(255);
 
     public final boolean a(p pVar, boolean z10) {
         boolean z11;
         boolean z12;
-        this.f49289a = 0;
-        this.f49290b = 0L;
-        this.f49291c = 0;
+        this.f50565a = 0;
+        this.f50566b = 0L;
+        this.f50567c = 0;
         this.d = 0;
-        this.f49292e = 0;
-        v vVar = this.f49294g;
+        this.f50568e = 0;
+        v vVar = this.f50570g;
         vVar.G(27);
         try {
-            z11 = pVar.f(vVar.f8590a, 0, 27, z10);
+            z11 = pVar.h(vVar.f8584a, 0, 27, z10);
         } catch (EOFException e7) {
             if (z10) {
                 z11 = false;
@@ -38,17 +38,17 @@ public final class f {
                     throw s0.c("unsupported bit stream revision");
                 }
             } else {
-                this.f49289a = vVar.x();
-                this.f49290b = vVar.m();
+                this.f50565a = vVar.x();
+                this.f50566b = vVar.m();
                 vVar.o();
                 vVar.o();
                 vVar.o();
                 int x10 = vVar.x();
-                this.f49291c = x10;
+                this.f50567c = x10;
                 this.d = x10 + 27;
                 vVar.G(x10);
                 try {
-                    z12 = pVar.f(vVar.f8590a, 0, this.f49291c, z10);
+                    z12 = pVar.h(vVar.f8584a, 0, this.f50567c, z10);
                 } catch (EOFException e10) {
                     if (z10) {
                         z12 = false;
@@ -57,10 +57,10 @@ public final class f {
                     }
                 }
                 if (z12) {
-                    for (int i10 = 0; i10 < this.f49291c; i10++) {
+                    for (int i10 = 0; i10 < this.f50567c; i10++) {
                         int x11 = vVar.x();
-                        this.f49293f[i10] = x11;
-                        this.f49292e += x11;
+                        this.f50569f[i10] = x11;
+                        this.f50568e += x11;
                     }
                     return true;
                 }
@@ -73,13 +73,13 @@ public final class f {
         boolean z10;
         int i10;
         boolean z11;
-        if (pVar.getPosition() == pVar.g()) {
+        if (pVar.getPosition() == pVar.j()) {
             z10 = true;
         } else {
             z10 = false;
         }
         e2.d.b(z10);
-        v vVar = this.f49294g;
+        v vVar = this.f50570g;
         vVar.G(4);
         while (true) {
             i10 = (j3 > (-1L) ? 1 : (j3 == (-1L) ? 0 : -1));
@@ -87,7 +87,7 @@ public final class f {
                 break;
             }
             try {
-                z11 = pVar.f(vVar.f8590a, 0, 4, true);
+                z11 = pVar.h(vVar.f8584a, 0, 4, true);
             } catch (EOFException unused) {
                 z11 = false;
             }
@@ -96,10 +96,10 @@ public final class f {
             }
             vVar.J(0);
             if (vVar.z() == 1332176723) {
-                pVar.m();
+                pVar.q();
                 return true;
             }
-            pVar.o(1);
+            pVar.r(1);
         }
         do {
             if (i10 != 0 && pVar.getPosition() >= j3) {

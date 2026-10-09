@@ -10,21 +10,21 @@ import android.view.KeyEvent;
 import android.view.ViewConfiguration;
 import java.lang.ref.WeakReference;
 public abstract class p {
-    public boolean f16625c;
-    public androidx.mediarouter.app.c f16626e;
-    public final Object f16623a = new Object();
-    public final o f16624b = new o(this);
+    public boolean f16589c;
+    public androidx.mediarouter.app.c f16590e;
+    public final Object f16587a = new Object();
+    public final o f16588b = new o(this);
     public WeakReference d = new WeakReference(null);
 
     public final void C(r rVar, Handler handler) {
-        synchronized (this.f16623a) {
+        synchronized (this.f16587a) {
             try {
                 this.d = new WeakReference(rVar);
-                androidx.mediarouter.app.c cVar = this.f16626e;
+                androidx.mediarouter.app.c cVar = this.f16590e;
                 if (cVar != null) {
                     cVar.removeCallbacksAndMessages(null);
                 }
-                this.f16626e = new androidx.mediarouter.app.c(this, handler.getLooper(), 6);
+                this.f16590e = new androidx.mediarouter.app.c(this, handler.getLooper(), 6);
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -35,17 +35,17 @@ public abstract class p {
         long j3;
         boolean z10;
         boolean z11;
-        if (this.f16625c) {
+        if (this.f16589c) {
             boolean z12 = false;
-            this.f16625c = false;
+            this.f16589c = false;
             handler.removeMessages(1);
-            h0 h0Var = rVar.f16634g;
-            if (h0Var == null) {
+            f0 f0Var = rVar.f16598g;
+            if (f0Var == null) {
                 j3 = 0;
             } else {
-                j3 = h0Var.f16597e;
+                j3 = f0Var.f16560e;
             }
-            if (h0Var != null && h0Var.f16594a == 3) {
+            if (f0Var != null && f0Var.f16557a == 3) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -72,32 +72,32 @@ public abstract class p {
         KeyEvent keyEvent;
         long j3;
         if (Build.VERSION.SDK_INT < 27) {
-            synchronized (this.f16623a) {
+            synchronized (this.f16587a) {
                 rVar = (r) this.d.get();
-                cVar = this.f16626e;
+                cVar = this.f16590e;
             }
             if (rVar != null && cVar != null && (keyEvent = (KeyEvent) intent.getParcelableExtra("android.intent.extra.KEY_EVENT")) != null && keyEvent.getAction() == 0) {
-                a0 c10 = rVar.c();
+                z c10 = rVar.c();
                 int keyCode = keyEvent.getKeyCode();
                 if (keyCode != 79 && keyCode != 85) {
                     a(rVar, cVar);
                     return false;
                 } else if (keyEvent.getRepeatCount() == 0) {
-                    if (this.f16625c) {
+                    if (this.f16589c) {
                         cVar.removeMessages(1);
-                        this.f16625c = false;
-                        h0 h0Var = rVar.f16634g;
-                        if (h0Var == null) {
+                        this.f16589c = false;
+                        f0 f0Var = rVar.f16598g;
+                        if (f0Var == null) {
                             j3 = 0;
                         } else {
-                            j3 = h0Var.f16597e;
+                            j3 = f0Var.f16560e;
                         }
                         if ((j3 & 32) != 0) {
                             y();
                         }
                         return true;
                     }
-                    this.f16625c = true;
+                    this.f16589c = true;
                     cVar.sendMessageDelayed(cVar.obtainMessage(1, c10), ViewConfiguration.getDoubleTapTimeout());
                     return true;
                 } else {
@@ -148,10 +148,10 @@ public abstract class p {
     public void t(float f7) {
     }
 
-    public void u(i0 i0Var) {
+    public void u(g0 g0Var) {
     }
 
-    public void v(i0 i0Var) {
+    public void v(g0 g0Var) {
     }
 
     public void w(int i10) {

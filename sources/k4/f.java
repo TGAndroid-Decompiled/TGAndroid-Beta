@@ -7,26 +7,26 @@ import e2.d0;
 import e2.q;
 import java.math.RoundingMode;
 public final class f implements b0 {
-    public final q f14594a;
-    public final int f14595b;
-    public final long f14596c;
+    public final q f14626a;
+    public final int f14627b;
+    public final long f14628c;
     public final long d;
-    public final long f14597e;
+    public final long f14629e;
 
     public f(q qVar, int i10, long j3, long j10) {
-        this.f14594a = qVar;
-        this.f14595b = i10;
-        this.f14596c = j3;
-        long j11 = (j10 - j3) / qVar.f8577c;
+        this.f14626a = qVar;
+        this.f14627b = i10;
+        this.f14628c = j3;
+        long j11 = (j10 - j3) / qVar.f8571c;
         this.d = j11;
-        this.f14597e = b(j11);
+        this.f14629e = a(j11);
     }
 
-    public final long b(long j3) {
-        long j10 = j3 * this.f14595b;
-        long j11 = this.f14594a.f8576b;
-        String str = d0.f8538a;
-        return d0.Y(j10, 1000000L, j11, RoundingMode.DOWN);
+    public final long a(long j3) {
+        long j10 = j3 * this.f14627b;
+        long j11 = this.f14626a.f8570b;
+        String str = d0.f8532a;
+        return d0.X(j10, 1000000L, j11, RoundingMode.DOWN);
     }
 
     @Override
@@ -36,22 +36,22 @@ public final class f implements b0 {
 
     @Override
     public final a0 j(long j3) {
-        q qVar = this.f14594a;
-        long j10 = (qVar.f8576b * j3) / (this.f14595b * 1000000);
+        q qVar = this.f14626a;
+        long j10 = (qVar.f8570b * j3) / (this.f14627b * 1000000);
         long j11 = this.d;
         long i10 = d0.i(j10, 0L, j11 - 1);
-        long j12 = this.f14596c;
-        long b10 = b(i10);
-        c0 c0Var = new c0(b10, (qVar.f8577c * i10) + j12);
-        if (b10 < j3 && i10 != j11 - 1) {
+        long j12 = this.f14628c;
+        long a2 = a(i10);
+        c0 c0Var = new c0(a2, (qVar.f8571c * i10) + j12);
+        if (a2 < j3 && i10 != j11 - 1) {
             long j13 = i10 + 1;
-            return new a0(c0Var, new c0(b(j13), (qVar.f8577c * j13) + j12));
+            return new a0(c0Var, new c0(a(j13), (qVar.f8571c * j13) + j12));
         }
         return new a0(c0Var, c0Var);
     }
 
     @Override
     public final long l() {
-        return this.f14597e;
+        return this.f14629e;
     }
 }

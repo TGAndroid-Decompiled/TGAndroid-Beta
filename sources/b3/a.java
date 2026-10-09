@@ -7,7 +7,7 @@ import hg.c;
 import i2.d0;
 import i2.f;
 import java.nio.ByteBuffer;
-import n4.y;
+import n4.x;
 public final class a extends f {
     public final h I;
     public final v J;
@@ -22,7 +22,7 @@ public final class a extends f {
 
     @Override
     public final int A(s sVar) {
-        if ("application/x-camera-motion".equals(sVar.f3564r)) {
+        if ("application/x-camera-motion".equals(sVar.f3643r)) {
             return c.b(4, 0, 0, 0);
         }
         return c.b(0, 0, 0, 0);
@@ -74,20 +74,20 @@ public final class a extends f {
         while (!k() && this.L < 100000 + j3) {
             h hVar = this.I;
             hVar.clear();
-            y yVar = this.f11596c;
-            yVar.o();
-            if (w(yVar, hVar, 0) == -4 && !hVar.isEndOfStream()) {
-                long j11 = hVar.f10981e;
+            x xVar = this.f11646c;
+            xVar.u();
+            if (w(xVar, hVar, 0) == -4 && !hVar.isEndOfStream()) {
+                long j11 = hVar.f10986e;
                 this.L = j11;
-                if (j11 < this.f11602w) {
+                if (j11 < this.f11652w) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 if (this.K != null && !z10) {
-                    hVar.d();
-                    ByteBuffer byteBuffer = hVar.f10980c;
-                    String str = e2.d0.f8538a;
+                    hVar.c();
+                    ByteBuffer byteBuffer = hVar.f10985c;
+                    String str = e2.d0.f8532a;
                     if (byteBuffer.remaining() != 16) {
                         fArr = null;
                     } else {

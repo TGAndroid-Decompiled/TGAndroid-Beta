@@ -1,34 +1,27 @@
 package n2;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-public interface r {
-    h2.b B(byte[] bArr);
+import android.os.Build;
+import java.util.UUID;
+public final class r implements h2.b {
+    public static final boolean f16528c;
+    public final UUID f16529a;
+    public final byte[] f16530b;
 
-    byte[] C();
+    static {
+        boolean z10;
+        if ("Amazon".equals(Build.MANUFACTURER)) {
+            String str = Build.MODEL;
+            if ("AFTM".equals(str) || "AFTB".equals(str)) {
+                z10 = true;
+                f16528c = z10;
+            }
+        }
+        z10 = false;
+        f16528c = z10;
+    }
 
-    void I(byte[] bArr, byte[] bArr2);
-
-    void K(byte[] bArr);
-
-    byte[] X(byte[] bArr, byte[] bArr2);
-
-    Map b(byte[] bArr);
-
-    void d(byte[] bArr, j2.k kVar);
-
-    void i(c cVar);
-
-    void j0(byte[] bArr);
-
-    p k0(byte[] bArr, List list, int i10, HashMap hashMap);
-
-    q m();
-
-    int m0();
-
-    boolean r0(String str, byte[] bArr);
-
-    void release();
+    public r(UUID uuid, byte[] bArr) {
+        this.f16529a = uuid;
+        this.f16530b = bArr;
+    }
 }

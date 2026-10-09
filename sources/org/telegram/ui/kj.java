@@ -1,27 +1,39 @@
 package org.telegram.ui;
+public final class kj extends dh.b {
+    public final int f39303n;
+    public final zn f39304r;
 
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.tgnet.TLRPC;
-public final class kj implements MessagesStorage.BooleanCallback {
-    public final boolean f38066a;
-    public final lj f38067b;
-
-    public kj(lj ljVar, boolean z10) {
-        this.f38067b = ljVar;
-        this.f38066a = z10;
+    public kj(zn znVar, org.telegram.ui.ActionBar.e6 e6Var, int i10, int i11) {
+        super(i10, e6Var);
+        this.f39303n = i11;
+        this.f39304r = znVar;
     }
 
     @Override
-    public final void run(boolean z10) {
-        yn ynVar = this.f38067b.f38338b;
-        if (z10) {
-            TLRPC.User user = ynVar.f43327f;
-            boolean z11 = this.f38066a;
-            if (user != null || z11) {
-                ynVar.getMessagesStorage().getMessagesCount(ynVar.R5, new jj(1, this, z11));
-                return;
-            }
+    public final int x() {
+        int i10;
+        int i11;
+        switch (this.f39303n) {
+            case 0:
+                zn znVar = this.f39304r;
+                i10 = ((org.telegram.ui.ActionBar.n2) znVar).currentAccount;
+                if (!eh.b.c(i10, znVar.f44761ea)) {
+                    return i0.a.k(znVar.getThemedColor(org.telegram.ui.ActionBar.i6.Sd), 255);
+                }
+                if (znVar.f44761ea != null && !org.telegram.ui.ActionBar.i6.I.q()) {
+                    return i0.a.k(this.d, 216);
+                }
+                return this.d;
+            default:
+                zn znVar2 = this.f39304r;
+                i11 = ((org.telegram.ui.ActionBar.n2) znVar2).currentAccount;
+                if (!eh.b.c(i11, znVar2.f44761ea)) {
+                    return i0.a.k(znVar2.getThemedColor(org.telegram.ui.ActionBar.i6.f20797d6), 255);
+                }
+                if (znVar2.f44761ea != null && !org.telegram.ui.ActionBar.i6.I.q()) {
+                    return i0.a.k(this.d, 216);
+                }
+                return this.d;
         }
-        ynVar.pa(ynVar.f43280b4, z10);
     }
 }

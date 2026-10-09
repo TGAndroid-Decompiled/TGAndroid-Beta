@@ -1,12 +1,18 @@
 package w7;
 
-import java.util.Date;
+import java.io.Closeable;
 public abstract class v6 {
-    public static long a(Date date) {
-        return (date.getTime() / 1000) + 2082844800;
-    }
-
-    public static Date b(long j3) {
-        return new Date((j3 - 2082844800) * 1000);
+    public static final void a(Closeable closeable, Throwable th2) {
+        if (closeable != null) {
+            if (th2 == null) {
+                closeable.close();
+                return;
+            }
+            try {
+                closeable.close();
+            } catch (Throwable th3) {
+                v7.y7.a(th2, th3);
+            }
+        }
     }
 }

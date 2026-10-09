@@ -1,42 +1,39 @@
 package yh;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-public final class l3 extends Drawable {
-    public final float f51575a;
-    public final Paint f51576b;
+import android.text.Spanned;
+import android.text.style.ClickableSpan;
+import android.view.View;
+public final class l3 implements View.OnClickListener {
+    public final int f52822a;
+    public final p3 f52823b;
 
-    public l3(float f7, int i10) {
-        Paint paint = new Paint(1);
-        this.f51576b = paint;
-        this.f51575a = f7;
-        paint.setColor(i10);
+    public l3(p3 p3Var, int i10) {
+        this.f52822a = i10;
+        this.f52823b = p3Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(getBounds());
-        Paint paint = this.f51576b;
-        float f7 = this.f51575a;
-        canvas.drawRoundRect(rectF, f7, f7, paint);
-        AndroidUtilities.drawStroke(canvas, rectF, f7);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void onClick(View view) {
+        View.OnClickListener onClickListener;
+        switch (this.f52822a) {
+            case 0:
+                CharSequence text = this.f52823b.v.getText();
+                if (text instanceof Spanned) {
+                    ClickableSpan[] clickableSpanArr = (ClickableSpan[]) ((Spanned) text).getSpans(0, text.length(), ClickableSpan.class);
+                    if (clickableSpanArr.length > 0) {
+                        clickableSpanArr[0].onClick(view);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                p3 p3Var = this.f52823b;
+                if (p3Var.N.getVisibility() == 0 && (onClickListener = p3Var.T) != null) {
+                    onClickListener.onClick(view);
+                    return;
+                }
+                return;
+        }
     }
 }

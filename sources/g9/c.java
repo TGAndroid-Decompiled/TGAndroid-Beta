@@ -1,17 +1,17 @@
 package g9;
 
 import java.math.RoundingMode;
-import v7.n7;
+import v7.l7;
 public abstract class c {
-    public static final int f10358a = 0;
+    public static final int f10431a = 0;
 
     static {
         Math.log(2.0d);
     }
 
     public static boolean a(double d) {
-        if (n7.b(d)) {
-            if (d == 0.0d || 52 - Long.numberOfTrailingZeros(n7.a(d)) <= Math.getExponent(d)) {
+        if (l7.b(d)) {
+            if (d == 0.0d || 52 - Long.numberOfTrailingZeros(l7.a(d)) <= Math.getExponent(d)) {
                 return true;
             }
             return false;
@@ -20,8 +20,8 @@ public abstract class c {
     }
 
     public static boolean b(double d) {
-        if (d > 0.0d && n7.b(d)) {
-            long a2 = n7.a(d);
+        if (d > 0.0d && l7.b(d)) {
+            long a2 = l7.a(d);
             if ((a2 & (a2 - 1)) == 0) {
                 return true;
             }
@@ -34,7 +34,7 @@ public abstract class c {
         boolean b10;
         RoundingMode roundingMode = RoundingMode.CEILING;
         boolean z11 = false;
-        if (d > 0.0d && n7.b(d)) {
+        if (d > 0.0d && l7.b(d)) {
             z10 = true;
         } else {
             z10 = false;
@@ -42,7 +42,7 @@ public abstract class c {
         if (z10) {
             int exponent = Math.getExponent(d);
             if (Math.getExponent(d) >= -1022) {
-                switch (b.f10357a[roundingMode.ordinal()]) {
+                switch (b.f10430a[roundingMode.ordinal()]) {
                     case 1:
                         if (!b(d)) {
                             throw new ArithmeticException("mode was UNNECESSARY, but rounding was necessary");

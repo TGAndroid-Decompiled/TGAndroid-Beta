@@ -1,66 +1,37 @@
 package org.telegram.ui.web;
 
-import android.os.AsyncTask;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-import org.telegram.messenger.Utilities;
-public final class j1 extends AsyncTask {
-    public final HashMap f42255a = new HashMap();
-    public final Utilities.Callback f42256b;
-    public Exception f42257c;
+import java.io.File;
+import java.io.FileInputStream;
+public final class j1 extends FileInputStream {
+    public final long f43361a;
 
-    public j1(Utilities.Callback callback) {
-        this.f42256b = callback;
-    }
-
-    @Override
-    public final Object doInBackground(Object[] objArr) {
-        BufferedReader bufferedReader;
-        try {
-            HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(((String[]) objArr)[0]).openConnection();
-            for (Map.Entry entry : this.f42255a.entrySet()) {
-                if (entry.getKey() != null && entry.getValue() != null) {
-                    httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
-                }
-            }
-            httpURLConnection.setRequestMethod("GET");
-            httpURLConnection.setDoInput(true);
-            int responseCode = httpURLConnection.getResponseCode();
-            if (responseCode >= 200 && responseCode < 300) {
-                bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
-            } else {
-                bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getErrorStream()));
-            }
-            StringBuilder sb2 = new StringBuilder();
-            while (true) {
-                String readLine = bufferedReader.readLine();
-                if (readLine != null) {
-                    sb2.append(readLine);
-                } else {
-                    bufferedReader.close();
-                    return sb2.toString();
-                }
-            }
-        } catch (Exception e7) {
-            this.f42257c = e7;
-            return null;
+    public j1(long j3, long j10, File file) {
+        super(file);
+        this.f43361a = j10;
+        if (j3 > 0 && skip(j3) != j3) {
+            throw new RuntimeException("BoundedInputStream failed to skip");
         }
     }
 
     @Override
-    public final void onPostExecute(Object obj) {
-        String str = (String) obj;
-        Utilities.Callback callback = this.f42256b;
-        if (callback != null) {
-            if (this.f42257c == null) {
-                callback.run(str);
-            } else {
-                callback.run(null);
-            }
+    public final int read() {
+        if (getChannel().position() >= this.f43361a) {
+            return -1;
         }
+        return super.read();
+    }
+
+    @Override
+    public final int read(byte[] bArr, int i10, int i11) {
+        long position = getChannel().position();
+        long j3 = this.f43361a;
+        if (position >= j3) {
+            return -1;
+        }
+        long position2 = j3 - getChannel().position();
+        if (i11 > position2) {
+            i11 = (int) position2;
+        }
+        return super.read(bArr, i10, i11);
     }
 }

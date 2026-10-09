@@ -1,22 +1,14 @@
 package w7;
-public abstract class q {
-    public static float a(float f7, float f10, float f11) {
-        if (f7 < f10) {
-            return f10;
-        }
-        if (f7 > f11) {
-            return f11;
-        }
-        return f7;
-    }
 
-    public static int b(int i10, int i11, int i12) {
-        if (i10 < i11) {
-            return i11;
+import android.os.Parcel;
+import android.os.Parcelable;
+public abstract class q {
+    public static void a(Parcel parcel, Parcelable parcelable) {
+        if (parcelable != null) {
+            parcel.writeInt(1);
+            parcelable.writeToParcel(parcel, 0);
+            return;
         }
-        if (i10 > i12) {
-            return i12;
-        }
-        return i10;
+        parcel.writeInt(0);
     }
 }

@@ -2,20 +2,21 @@ package w5;
 
 import java.util.Arrays;
 import n6.l;
+import org.telegram.ui.ActionBar.b5;
 public final class b implements com.google.android.gms.common.api.b {
-    public static final b f48600c;
-    public final boolean f48601a;
-    public final String f48602b;
+    public static final b f49883c;
+    public final boolean f49884a;
+    public final String f49885b;
 
     static {
-        o0.a aVar = new o0.a(21, (byte) 0);
-        aVar.f16937b = Boolean.FALSE;
-        f48600c = new b(aVar);
+        b5 b5Var = new b5(19, (byte) 0);
+        b5Var.f20461b = Boolean.FALSE;
+        f49883c = new b(b5Var);
     }
 
-    public b(o0.a aVar) {
-        this.f48601a = ((Boolean) aVar.f16937b).booleanValue();
-        this.f48602b = (String) aVar.f16938c;
+    public b(b5 b5Var) {
+        this.f49884a = ((Boolean) b5Var.f20461b).booleanValue();
+        this.f49885b = (String) b5Var.f20462c;
     }
 
     public final boolean equals(Object obj) {
@@ -26,13 +27,13 @@ public final class b implements com.google.android.gms.common.api.b {
             return false;
         }
         b bVar = (b) obj;
-        if (l.l(null, null) && this.f48601a == bVar.f48601a && l.l(this.f48602b, bVar.f48602b)) {
+        if (l.l(null, null) && this.f49884a == bVar.f49884a && l.l(this.f49885b, bVar.f49885b)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{null, Boolean.valueOf(this.f48601a), this.f48602b});
+        return Arrays.hashCode(new Object[]{null, Boolean.valueOf(this.f49884a), this.f49885b});
     }
 }

@@ -1,92 +1,262 @@
 package s4;
 
-import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
 import androidx.recyclerview.widget.RecyclerView;
-public final class d1 extends r0.b {
-    public final int d = 0;
-    public final Object f46568e;
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.WeakHashMap;
+import org.telegram.messenger.BuildVars;
+public abstract class d1 {
+    public static final List f47655u = Collections.EMPTY_LIST;
+    public final View f47656a;
+    public WeakReference f47657b;
+    public int f47665l;
+    public RecyclerView f47673t;
+    public int f47658c = -1;
+    public int d = -1;
+    public long f47659e = -1;
+    public int f47660f = -1;
+    public int f47661g = -1;
+    public int h = -1;
+    public int f47662i = -1;
+    public d1 f47663j = null;
+    public d1 f47664k = null;
+    public ArrayList f47666m = null;
+    public List f47667n = null;
+    public int f47668o = 0;
+    public pf.e f47669p = null;
+    public boolean f47670q = false;
+    public int f47671r = 0;
+    public int f47672s = -1;
 
-    public d1(e1 e1Var) {
-        this.f46568e = e1Var;
+    public d1(View view) {
+        if (view != null) {
+            this.f47656a = view;
+            return;
+        }
+        throw new IllegalArgumentException("itemView may not be null");
     }
 
-    @Override
-    public void b(android.view.View r3, android.view.accessibility.AccessibilityEvent r4) {
-        throw new UnsupportedOperationException("Method not decompiled: s4.d1.b(android.view.View, android.view.accessibility.AccessibilityEvent):void");
+    public final void a(int i10) {
+        this.f47665l = i10 | this.f47665l;
     }
 
-    @Override
-    public final void c(View view, s0.d dVar) {
-        boolean z10;
-        switch (this.d) {
-            case 0:
-                this.f45575a.onInitializeAccessibilityNodeInfo(view, dVar.f46485a);
-                e1 e1Var = (e1) this.f46568e;
-                RecyclerView recyclerView = e1Var.d;
-                RecyclerView recyclerView2 = e1Var.d;
-                if (!recyclerView.Z() && recyclerView2.getLayoutManager() != null) {
-                    recyclerView2.getLayoutManager().T(view, dVar);
-                    return;
-                }
-                return;
-            default:
-                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f46485a;
-                this.f45575a.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
-                dVar.i(z4.g.class.getName());
-                z4.g gVar = (z4.g) this.f46568e;
-                z4.a aVar = gVar.f52436e;
-                if (aVar != null && aVar.b() > 1) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                accessibilityNodeInfo.setScrollable(z10);
-                if (gVar.canScrollHorizontally(1)) {
-                    dVar.a(4096);
-                }
-                if (gVar.canScrollHorizontally(-1)) {
-                    dVar.a(8192);
-                    return;
-                }
-                return;
+    public final int b() {
+        RecyclerView recyclerView = this.f47673t;
+        if (recyclerView == null) {
+            return -1;
+        }
+        return recyclerView.N(this);
+    }
+
+    public final int c() {
+        int i10 = this.f47661g;
+        if (i10 == -1) {
+            return this.f47658c;
+        }
+        return i10;
+    }
+
+    public final List d() {
+        ArrayList arrayList;
+        if ((this.f47665l & 1024) == 0 && (arrayList = this.f47666m) != null && arrayList.size() != 0) {
+            return this.f47667n;
+        }
+        return f47655u;
+    }
+
+    public final boolean e(int i10) {
+        if ((i10 & this.f47665l) != 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean f() {
+        View view = this.f47656a;
+        if (view.getParent() != null && view.getParent() != this.f47673t) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean g() {
+        if ((this.f47665l & 1) != 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean h() {
+        if ((this.f47665l & 4) != 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean i() {
+        if ((this.f47665l & 16) == 0) {
+            WeakHashMap weakHashMap = r0.i0.f46764a;
+            if (!this.f47656a.hasTransientState()) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final boolean j() {
+        if ((this.f47665l & 8) != 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean k() {
+        if (this.f47669p != null) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean l() {
+        if ((this.f47665l & 256) != 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean m() {
+        if ((this.f47665l & 2) != 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void n(int i10, boolean z10) {
+        if (this.d == -1) {
+            this.d = this.f47658c;
+        }
+        if (this.f47661g == -1) {
+            this.f47661g = this.f47658c;
+        }
+        if (z10) {
+            this.f47661g += i10;
+        }
+        this.f47658c += i10;
+        View view = this.f47656a;
+        if (view.getLayoutParams() != null) {
+            ((q0) view.getLayoutParams()).f47780c = true;
         }
     }
 
-    @Override
-    public final boolean d(View view, int i10, Bundle bundle) {
-        switch (this.d) {
-            case 0:
-                e1 e1Var = (e1) this.f46568e;
-                if (super.d(view, i10, bundle)) {
-                    return true;
-                }
-                RecyclerView recyclerView = e1Var.d;
-                RecyclerView recyclerView2 = e1Var.d;
-                if (!recyclerView.Z() && recyclerView2.getLayoutManager() != null) {
-                    of.e eVar = recyclerView2.getLayoutManager().f46642b.f3061b;
-                }
-                return false;
-            default:
-                z4.g gVar = (z4.g) this.f46568e;
-                if (super.d(view, i10, bundle)) {
-                    return true;
-                }
-                if (i10 != 4096) {
-                    if (i10 == 8192 && gVar.canScrollHorizontally(-1)) {
-                        gVar.setCurrentItem(gVar.f52438f - 1);
-                        return true;
-                    }
-                } else if (gVar.canScrollHorizontally(1)) {
-                    gVar.setCurrentItem(gVar.f52438f + 1);
-                    return true;
-                }
-                return false;
+    public final void o() {
+        this.f47665l = 0;
+        int i10 = this.f47658c;
+        if (i10 != -1) {
+            this.h = i10;
+        }
+        this.f47658c = -1;
+        this.d = -1;
+        this.f47659e = -1L;
+        this.f47661g = -1;
+        this.f47668o = 0;
+        this.f47663j = null;
+        this.f47664k = null;
+        ArrayList arrayList = this.f47666m;
+        if (arrayList != null) {
+            arrayList.clear();
+        }
+        this.f47665l &= -1025;
+        this.f47671r = 0;
+        this.f47672s = -1;
+        RecyclerView.m(this);
+    }
+
+    public final void p(int i10, int i11) {
+        this.f47665l = (i10 & i11) | (this.f47665l & (~i11));
+    }
+
+    public final void q(boolean z10) {
+        int i10;
+        int i11 = this.f47668o;
+        if (z10) {
+            i10 = i11 - 1;
+        } else {
+            i10 = i11 + 1;
+        }
+        this.f47668o = i10;
+        if (i10 < 0) {
+            this.f47668o = 0;
+            if (!BuildVars.DEBUG_VERSION) {
+                Log.e("View", "isRecyclable decremented below 0: unmatched pair of setIsRecyable() calls for " + this);
+                return;
+            }
+            throw new RuntimeException("isRecyclable decremented below 0: unmatched pair of setIsRecyable() calls for " + this);
+        } else if (!z10 && i10 == 1) {
+            this.f47665l |= 16;
+        } else if (z10 && i10 == 0) {
+            this.f47665l &= -17;
         }
     }
 
-    public d1(z4.g gVar) {
-        this.f46568e = gVar;
+    public final boolean r() {
+        if ((this.f47665l & 128) != 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean s() {
+        if ((this.f47665l & 32) != 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public final String toString() {
+        String str;
+        StringBuilder sb2 = new StringBuilder("ViewHolder{" + Integer.toHexString(hashCode()) + " position=" + this.f47658c + " id=" + this.f47659e + ", oldPos=" + this.d + ", pLpos:" + this.f47661g);
+        if (k()) {
+            sb2.append(" scrap ");
+            if (this.f47670q) {
+                str = "[changeScrap]";
+            } else {
+                str = "[attachedScrap]";
+            }
+            sb2.append(str);
+        }
+        if (h()) {
+            sb2.append(" invalid");
+        }
+        if (!g()) {
+            sb2.append(" unbound");
+        }
+        if ((this.f47665l & 2) != 0) {
+            sb2.append(" update");
+        }
+        if (j()) {
+            sb2.append(" removed");
+        }
+        if (r()) {
+            sb2.append(" ignored");
+        }
+        if (l()) {
+            sb2.append(" tmpDetached");
+        }
+        if (!i()) {
+            sb2.append(" not recyclable(" + this.f47668o + ")");
+        }
+        if ((this.f47665l & 512) != 0 || h()) {
+            sb2.append(" undefined adapter position");
+        }
+        if (this.f47656a.getParent() == null) {
+            sb2.append(" no parent");
+        }
+        sb2.append("}");
+        return sb2.toString();
     }
 }

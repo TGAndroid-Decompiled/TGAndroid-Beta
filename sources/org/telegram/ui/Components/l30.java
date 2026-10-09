@@ -1,24 +1,28 @@
 package org.telegram.ui.Components;
-public final class l30 implements z4.e {
-    public final p30 f28358a;
 
-    public l30(p30 p30Var) {
-        this.f28358a = p30Var;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class l30 extends AnimatorListenerAdapter {
+    public final int f28243a;
+    public final q30 f28244b;
+
+    public l30(q30 q30Var, int i10) {
+        this.f28243a = i10;
+        this.f28244b = q30Var;
     }
 
     @Override
-    public final void b(float f7, int i10, int i11) {
-        p30 p30Var = this.f28358a;
-        p30Var.h = i10;
-        p30Var.f29579f = f7;
-        p30.m(p30Var);
-    }
-
-    @Override
-    public final void a(int i10) {
-    }
-
-    @Override
-    public final void c(int i10) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f28243a) {
+            case 0:
+                q30 q30Var = this.f28244b;
+                q30Var.f30013b.setVisibility(8);
+                q30Var.f30024y = false;
+                q30Var.E = 0.0f;
+                return;
+            default:
+                this.f28244b.f30017e.setVisibility(8);
+                return;
+        }
     }
 }

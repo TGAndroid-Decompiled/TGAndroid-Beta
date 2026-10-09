@@ -13,73 +13,73 @@ import org.telegram.messenger.EmuDetector;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.camera.Camera2Session;
 import org.telegram.messenger.camera.CameraController;
-import org.telegram.ui.Cells.fa;
-import org.telegram.ui.Components.aa1;
-import org.telegram.ui.Components.f60;
-import org.telegram.ui.Components.q50;
-import org.telegram.ui.Components.rg0;
-import org.telegram.ui.Components.u11;
-import org.telegram.ui.Components.v11;
-import org.telegram.ui.Components.w11;
+import org.telegram.ui.Cells.da;
+import org.telegram.ui.Components.a21;
+import org.telegram.ui.Components.b21;
+import org.telegram.ui.Components.c21;
+import org.telegram.ui.Components.e60;
+import org.telegram.ui.Components.gh0;
+import org.telegram.ui.Components.ha1;
+import org.telegram.ui.Components.t60;
 public final class d implements TextureView.SurfaceTextureListener {
-    public final int f14862a;
-    public final Object f14863b;
+    public final int f14911a;
+    public final Object f14912b;
 
     public d(Object obj, int i10) {
-        this.f14862a = i10;
-        this.f14863b = obj;
+        this.f14911a = i10;
+        this.f14912b = obj;
     }
 
     @Override
     public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
-        switch (this.f14862a) {
+        switch (this.f14911a) {
             case 0:
-                i iVar = (i) this.f14863b;
-                m mVar = iVar.f14909j;
-                mVar.b("preview surface available: view=" + i10 + "x" + i11);
-                Handler handler = iVar.f14916n;
-                if (iVar.S && handler != null && iVar.f14897c.isAvailable()) {
-                    handler.post(new a(iVar, 5));
+                j jVar = (j) this.f14912b;
+                n nVar = jVar.f14978j;
+                nVar.b("preview surface available: view=" + i10 + "x" + i11);
+                Handler handler = jVar.f14985n;
+                if (jVar.S && handler != null && jVar.f14961c.isAvailable()) {
+                    handler.post(new a(jVar, 5));
                     return;
                 }
                 return;
             case 1:
-                f60 f60Var = (f60) this.f14863b;
+                t60 t60Var = (t60) this.f14912b;
                 if (BuildVars.LOGS_ENABLED) {
                     FileLog.d("InstantCamera camera surface available");
                 }
-                if (f60Var.m0 == null && surfaceTexture != null && !f60Var.f26370l0) {
+                if (t60Var.m0 == null && surfaceTexture != null && !t60Var.f31025l0) {
                     if (BuildVars.LOGS_ENABLED) {
                         FileLog.d("InstantCamera start create thread");
                     }
-                    f60Var.m0 = new q50(f60Var, surfaceTexture, i10, i11);
+                    t60Var.m0 = new e60(t60Var, surfaceTexture, i10, i11);
                     return;
                 }
                 return;
             case 2:
                 return;
             case 3:
-                final w11 w11Var = (w11) this.f14863b;
-                ArrayList arrayList = w11Var.f32474c;
-                u11 u11Var = w11Var.f32472a;
-                if (u11Var != null) {
-                    u11Var.i();
-                    w11Var.f32472a = null;
+                final c21 c21Var = (c21) this.f14912b;
+                ArrayList arrayList = c21Var.f25215c;
+                a21 a21Var = c21Var.f25213a;
+                if (a21Var != null) {
+                    a21Var.i();
+                    c21Var.f25213a = null;
                 }
-                u11 u11Var2 = new u11(surfaceTexture, new Runnable() {
+                a21 a21Var2 = new a21(surfaceTexture, new Runnable() {
                     @Override
                     public final void run() {
                         switch (r2) {
                             case 0:
-                                w11Var.invalidate();
+                                c21Var.invalidate();
                                 return;
                             default:
-                                w11 w11Var2 = w11Var;
-                                Runnable runnable = w11Var2.d;
+                                c21 c21Var2 = c21Var;
+                                Runnable runnable = c21Var2.d;
                                 if (runnable != null) {
-                                    w11Var2.f32475e = true;
-                                    w11Var2.d = null;
-                                    w11.b(runnable);
+                                    c21Var2.f25216e = true;
+                                    c21Var2.d = null;
+                                    c21.b(runnable);
                                     return;
                                 }
                                 return;
@@ -90,50 +90,50 @@ public final class d implements TextureView.SurfaceTextureListener {
                     public final void run() {
                         switch (r2) {
                             case 0:
-                                w11Var.invalidate();
+                                c21Var.invalidate();
                                 return;
                             default:
-                                w11 w11Var2 = w11Var;
-                                Runnable runnable = w11Var2.d;
+                                c21 c21Var2 = c21Var;
+                                Runnable runnable = c21Var2.d;
                                 if (runnable != null) {
-                                    w11Var2.f32475e = true;
-                                    w11Var2.d = null;
-                                    w11.b(runnable);
+                                    c21Var2.f25216e = true;
+                                    c21Var2.d = null;
+                                    c21.b(runnable);
                                     return;
                                 }
                                 return;
                         }
                     }
                 }, i10, i11);
-                w11Var.f32472a = u11Var2;
-                u11Var2.f31289a = EmuDetector.with(w11Var.getContext()).detect();
+                c21Var.f25213a = a21Var2;
+                a21Var2.f24545a = EmuDetector.with(c21Var.getContext()).detect();
                 if (!arrayList.isEmpty()) {
                     for (int i12 = 0; i12 < arrayList.size(); i12++) {
-                        v11 v11Var = (v11) arrayList.get(i12);
-                        Bitmap bitmap = v11Var.f31603e;
+                        b21 b21Var = (b21) arrayList.get(i12);
+                        Bitmap bitmap = b21Var.f24856e;
                         if (bitmap != null) {
-                            w11Var.f32472a.c(v11Var.f31604f, bitmap, v11Var.f31602c, v11Var.d);
+                            c21Var.f25213a.c(b21Var.f24857f, bitmap, b21Var.f24855c, b21Var.d);
                         } else {
-                            ArrayList arrayList2 = v11Var.f31601b;
+                            ArrayList arrayList2 = b21Var.f24854b;
                             if (arrayList2 != null) {
-                                w11Var.f32472a.f(arrayList2, v11Var.d);
+                                c21Var.f25213a.f(arrayList2, b21Var.d);
                             } else {
-                                w11Var.f32472a.e(v11Var.f31600a, v11Var.f31605g, v11Var.d);
+                                c21Var.f25213a.e(b21Var.f24853a, b21Var.f24858g, b21Var.d);
                             }
                         }
                     }
                     arrayList.clear();
-                    Choreographer.getInstance().postFrameCallback(w11Var.f32473b);
+                    Choreographer.getInstance().postFrameCallback(c21Var.f25214b);
                     return;
                 }
                 return;
             case 4:
                 return;
             default:
-                vh.f fVar = (vh.f) this.f14863b;
-                if (fVar.f48391f == null) {
+                vh.f fVar = (vh.f) this.f14912b;
+                if (fVar.f49671f == null) {
                     vh.e eVar = new vh.e(fVar, surfaceTexture, i10, i11, new vh.d(fVar, 1));
-                    fVar.f48391f = eVar;
+                    fVar.f49671f = eVar;
                     eVar.start();
                     return;
                 }
@@ -143,24 +143,23 @@ public final class d implements TextureView.SurfaceTextureListener {
 
     @Override
     public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        switch (this.f14862a) {
+        switch (this.f14911a) {
             case 0:
-                m mVar = ((i) this.f14863b).f14909j;
-                mVar.b("preview surface destroyed: active=" + ((i) this.f14863b).S);
-                if (((i) this.f14863b).S) {
-                    ((i) this.f14863b).t(new IllegalStateException("Preview SurfaceTexture was destroyed"));
+                ((j) this.f14912b).f14978j.b("preview surface destroyed: active=" + ((j) this.f14912b).S);
+                if (((j) this.f14912b).S) {
+                    ((j) this.f14912b).C(new IllegalStateException("Preview SurfaceTexture was destroyed"));
                     return true;
                 }
                 return true;
             case 1:
-                f60 f60Var = (f60) this.f14863b;
-                Camera2Session[] camera2SessionArr = f60Var.f26382v0;
-                q50 q50Var = f60Var.m0;
-                if (q50Var != null) {
-                    q50Var.b(0L, 0, true, 0, 0);
-                    f60Var.m0 = null;
+                t60 t60Var = (t60) this.f14912b;
+                Camera2Session[] camera2SessionArr = t60Var.f31037v0;
+                e60 e60Var = t60Var.m0;
+                if (e60Var != null) {
+                    e60Var.b(0L, 0, true, 0, 0);
+                    t60Var.m0 = null;
                 }
-                if (f60Var.f26379s0) {
+                if (t60Var.f31034s0) {
                     for (int i10 = 0; i10 < camera2SessionArr.length; i10++) {
                         Camera2Session camera2Session = camera2SessionArr[i10];
                         if (camera2Session != null) {
@@ -169,47 +168,47 @@ public final class d implements TextureView.SurfaceTextureListener {
                         }
                     }
                     return true;
-                } else if (f60Var.f26380t0 != null) {
-                    CameraController.getInstance().close(f60Var.f26380t0, null, null);
+                } else if (t60Var.f31035t0 != null) {
+                    CameraController.getInstance().close(t60Var.f31035t0, null, null);
                     return true;
                 } else {
                     return true;
                 }
             case 2:
-                ((rg0) this.f14863b).V.f34076w3.setSurfaceTexture(surfaceTexture);
+                ((gh0) this.f14912b).V.f34066w3.setSurfaceTexture(surfaceTexture);
                 return false;
             case 3:
-                w11 w11Var = (w11) this.f14863b;
-                u11 u11Var = w11Var.f32472a;
-                if (u11Var != null) {
-                    u11Var.i();
-                    w11Var.f32472a = null;
+                c21 c21Var = (c21) this.f14912b;
+                a21 a21Var = c21Var.f25213a;
+                if (a21Var != null) {
+                    a21Var.i();
+                    c21Var.f25213a = null;
                 }
-                Runnable runnable = w11Var.d;
+                Runnable runnable = c21Var.d;
                 if (runnable != null) {
-                    w11Var.d = null;
-                    w11.b(runnable);
+                    c21Var.d = null;
+                    c21.b(runnable);
                     return false;
                 }
                 return false;
             case 4:
-                aa1 aa1Var = (aa1) this.f14863b;
-                TextureView textureView = aa1Var.d;
-                if (aa1Var.S) {
-                    if (aa1Var.W) {
-                        aa1Var.f24571r = 2;
+                ha1 ha1Var = (ha1) this.f14912b;
+                TextureView textureView = ha1Var.d;
+                if (ha1Var.S) {
+                    if (ha1Var.W) {
+                        ha1Var.f27029r = 2;
                     }
                     textureView.setSurfaceTexture(surfaceTexture);
                     textureView.setVisibility(0);
-                    aa1Var.S = false;
+                    ha1Var.S = false;
                     return false;
                 }
                 return true;
             default:
-                vh.e eVar = ((vh.f) this.f14863b).f48391f;
+                vh.e eVar = ((vh.f) this.f14912b).f49671f;
                 if (eVar != null) {
-                    eVar.f48375a = false;
-                    ((vh.f) this.f14863b).f48391f = null;
+                    eVar.f49655a = false;
+                    ((vh.f) this.f14912b).f49671f = null;
                     return true;
                 }
                 return true;
@@ -219,27 +218,27 @@ public final class d implements TextureView.SurfaceTextureListener {
     @Override
     public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
         Handler handler;
-        switch (this.f14862a) {
+        switch (this.f14911a) {
             case 0:
-                i iVar = (i) this.f14863b;
-                m mVar = iVar.f14909j;
-                mVar.b("preview surface size changed: view=" + i10 + "x" + i11);
-                iVar.G();
+                j jVar = (j) this.f14912b;
+                n nVar = jVar.f14978j;
+                nVar.b("preview surface size changed: view=" + i10 + "x" + i11);
+                jVar.Q();
                 return;
             case 1:
-                q50 q50Var = ((f60) this.f14863b).m0;
-                if (q50Var != null) {
-                    q50Var.F = i10;
-                    q50Var.G = i11;
-                    q50Var.c();
+                e60 e60Var = ((t60) this.f14912b).m0;
+                if (e60Var != null) {
+                    e60Var.F = i10;
+                    e60Var.G = i11;
+                    e60Var.c();
                     return;
                 }
                 return;
             case 2:
                 return;
             case 3:
-                u11 u11Var = ((w11) this.f14863b).f32472a;
-                if (u11Var != null && (handler = u11Var.getHandler()) != null && u11Var.f31290b.get()) {
+                a21 a21Var = ((c21) this.f14912b).f25213a;
+                if (a21Var != null && (handler = a21Var.getHandler()) != null && a21Var.f24546b.get()) {
                     handler.sendMessage(handler.obtainMessage(1, i10, i11));
                     return;
                 }
@@ -247,12 +246,12 @@ public final class d implements TextureView.SurfaceTextureListener {
             case 4:
                 return;
             default:
-                vh.e eVar = ((vh.f) this.f14863b).f48391f;
+                vh.e eVar = ((vh.f) this.f14912b).f49671f;
                 if (eVar != null) {
-                    synchronized (eVar.f48378e) {
-                        eVar.f48379f = true;
+                    synchronized (eVar.f49658e) {
+                        eVar.f49659f = true;
                         eVar.h = i10;
-                        eVar.f48380n = i11;
+                        eVar.f49660n = i11;
                     }
                     return;
                 }
@@ -266,102 +265,113 @@ public final class d implements TextureView.SurfaceTextureListener {
         long j10;
         float f7;
         Object valueOf;
-        switch (this.f14862a) {
+        String str;
+        switch (this.f14911a) {
             case 0:
-                if (((i) this.f14863b).X) {
-                    ((i) this.f14863b).X = false;
-                    ((i) this.f14863b).f14909j.b("camera switch first preview frame");
-                    s0 s0Var = (s0) ((i) this.f14863b).f14911k.f12544b;
-                    Handler handler = s0Var.f15050i;
-                    l2.g gVar = s0Var.d;
-                    Objects.requireNonNull(gVar);
-                    handler.post(new i2.h0(gVar, 10));
+                if (((j) this.f14912b).X) {
+                    ((j) this.f14912b).X = false;
+                    n nVar = ((j) this.f14912b).f14978j;
+                    StringBuilder sb2 = new StringBuilder("camera switch first preview frame: path=");
+                    if (((j) this.f14912b).f14994r0) {
+                        str = "WARM_DEVICE";
+                    } else {
+                        str = "SEQUENTIAL";
+                    }
+                    sb2.append(str);
+                    sb2.append(", totalElapsedMs=");
+                    sb2.append(j.s(((j) this.f14912b).f15001v0));
+                    nVar.b(sb2.toString());
+                    t0 t0Var = (t0) ((j) this.f14912b).f14980k.f51105b;
+                    Handler handler = t0Var.f15119i;
+                    m2.t tVar = t0Var.d;
+                    Objects.requireNonNull(tVar);
+                    handler.post(new i2.h0(tVar, 10));
                 }
                 long elapsedRealtimeNanos = SystemClock.elapsedRealtimeNanos();
                 long timestamp = surfaceTexture.getTimestamp();
-                i iVar = (i) this.f14863b;
-                if (iVar.f14910j0 == 0) {
-                    iVar.f14910j0 = elapsedRealtimeNanos;
-                    m mVar = iVar.f14909j;
-                    StringBuilder sb2 = new StringBuilder("preview frame delivery started: thread=");
-                    sb2.append(Thread.currentThread().getName());
-                    sb2.append(", view=");
-                    sb2.append(((i) this.f14863b).f14897c.getWidth());
-                    sb2.append("x");
-                    sb2.append(((i) this.f14863b).f14897c.getHeight());
-                    sb2.append(", buffer=");
-                    sb2.append(((i) this.f14863b).f14922q);
-                    sb2.append(", attached=");
-                    sb2.append(((i) this.f14863b).f14897c.isAttachedToWindow());
-                    sb2.append(", shown=");
-                    sb2.append(((i) this.f14863b).f14897c.isShown());
-                    sb2.append(", alpha=");
-                    sb2.append(((i) this.f14863b).f14897c.getAlpha());
-                    sb2.append(", hardwareAccelerated=");
-                    sb2.append(((i) this.f14863b).f14897c.isHardwareAccelerated());
-                    sb2.append(", displayRefreshRate=");
-                    if (((i) this.f14863b).f14897c.getDisplay() == null) {
+                j jVar = (j) this.f14912b;
+                if (jVar.f15003w0 == 0) {
+                    jVar.f15003w0 = elapsedRealtimeNanos;
+                    n nVar2 = jVar.f14978j;
+                    StringBuilder sb3 = new StringBuilder("preview frame delivery started: thread=");
+                    sb3.append(Thread.currentThread().getName());
+                    sb3.append(", view=");
+                    sb3.append(((j) this.f14912b).f14961c.getWidth());
+                    sb3.append("x");
+                    sb3.append(((j) this.f14912b).f14961c.getHeight());
+                    sb3.append(", buffer=");
+                    sb3.append(((j) this.f14912b).f14991q);
+                    sb3.append(", attached=");
+                    sb3.append(((j) this.f14912b).f14961c.isAttachedToWindow());
+                    sb3.append(", shown=");
+                    sb3.append(((j) this.f14912b).f14961c.isShown());
+                    sb3.append(", alpha=");
+                    sb3.append(((j) this.f14912b).f14961c.getAlpha());
+                    sb3.append(", hardwareAccelerated=");
+                    sb3.append(((j) this.f14912b).f14961c.isHardwareAccelerated());
+                    sb3.append(", displayRefreshRate=");
+                    if (((j) this.f14912b).f14961c.getDisplay() == null) {
                         valueOf = "unknown";
                     } else {
-                        valueOf = Float.valueOf(((i) this.f14863b).f14897c.getDisplay().getRefreshRate());
+                        valueOf = Float.valueOf(((j) this.f14912b).f14961c.getDisplay().getRefreshRate());
                     }
-                    sb2.append(valueOf);
-                    mVar.b(sb2.toString());
+                    sb3.append(valueOf);
+                    nVar2.b(sb3.toString());
                 }
-                i iVar2 = (i) this.f14863b;
-                long j11 = iVar2.f14914l0;
+                j jVar2 = (j) this.f14912b;
+                long j11 = jVar2.f15007y0;
                 if (j11 != 0) {
                     long j12 = elapsedRealtimeNanos - j11;
-                    iVar2.f14917n0++;
-                    iVar2.f14919o0 += j12;
+                    jVar2.A0++;
+                    jVar2.B0 += j12;
                     j3 = 0;
                     double d = j12;
-                    iVar2.f14921p0 = (d * d) + iVar2.f14921p0;
-                    long j13 = iVar2.f14923q0;
+                    jVar2.C0 = (d * d) + jVar2.C0;
+                    long j13 = jVar2.D0;
                     if (j13 == 0 || j12 < j13) {
-                        iVar2.f14923q0 = j12;
+                        jVar2.D0 = j12;
                     }
-                    iVar2.f14925r0 = Math.max(iVar2.f14925r0, j12);
+                    jVar2.E0 = Math.max(jVar2.E0, j12);
                     if (j12 > 50000000) {
-                        iVar2.f14927s0++;
+                        jVar2.F0++;
                     }
                     if (j12 > 100000000) {
-                        iVar2.f14929t0++;
+                        jVar2.G0++;
                     }
                 } else {
                     j3 = 0;
                 }
-                i iVar3 = (i) this.f14863b;
-                iVar3.f14914l0 = elapsedRealtimeNanos;
-                long j14 = iVar3.m0;
+                j jVar3 = (j) this.f14912b;
+                jVar3.f15007y0 = elapsedRealtimeNanos;
+                long j14 = jVar3.f15009z0;
                 if (timestamp > j14) {
-                    if (iVar3.f14932v0 == j3) {
-                        iVar3.f14932v0 = timestamp;
+                    if (jVar3.I0 == j3) {
+                        jVar3.I0 = timestamp;
                     }
-                    iVar3.f14934w0 = timestamp;
-                    iVar3.f14931u0++;
+                    jVar3.J0 = timestamp;
+                    jVar3.H0++;
                 } else if (j14 != j3) {
-                    iVar3.f14936x0++;
+                    jVar3.K0++;
                 }
-                iVar3.m0 = timestamp;
-                iVar3.f14912k0++;
-                if (elapsedRealtimeNanos - iVar3.f14910j0 >= 5000000000L) {
-                    TextureView textureView = iVar3.f14897c;
-                    long j15 = iVar3.f14934w0 - iVar3.f14932v0;
+                jVar3.f15009z0 = timestamp;
+                jVar3.f15005x0++;
+                if (elapsedRealtimeNanos - jVar3.f15003w0 >= 5000000000L) {
+                    TextureView textureView = jVar3.f14961c;
+                    long j15 = jVar3.J0 - jVar3.I0;
                     if (j15 > j3) {
-                        long j16 = iVar3.f14931u0;
+                        long j16 = jVar3.H0;
                         if (j16 > 1) {
                             f7 = (((float) (j16 - 1)) * 1.0E9f) / ((float) j15);
-                            iVar3.f14909j.b("preview frame delivery: callbackFps=" + ((((float) iVar3.f14912k0) * 1.0E9f) / ((float) j10)) + ", timestampFps=" + f7 + ", callbackIntervalMs={avg=" + i.c(iVar3.f14919o0, iVar3.f14917n0) + ", min=" + (((float) iVar3.f14923q0) / 1000000.0f) + ", max=" + (((float) iVar3.f14925r0) / 1000000.0f) + ", jitter=" + i.B(iVar3.f14921p0, iVar3.f14919o0, iVar3.f14917n0) + "}, gaps={over50ms=" + iVar3.f14927s0 + ", over100ms=" + iVar3.f14929t0 + "}, nonMonotonicTimestamps=" + iVar3.f14936x0 + ", viewState={shown=" + textureView.isShown() + ", alpha=" + textureView.getAlpha() + ", windowVisibility=" + textureView.getWindowVisibility() + "}");
-                            iVar3.v();
-                            iVar3.f14910j0 = elapsedRealtimeNanos;
+                            jVar3.f14978j.b("preview frame delivery: callbackFps=" + ((((float) jVar3.f15005x0) * 1.0E9f) / ((float) j10)) + ", timestampFps=" + f7 + ", callbackIntervalMs={avg=" + j.f(jVar3.B0, jVar3.A0) + ", min=" + (((float) jVar3.D0) / 1000000.0f) + ", max=" + (((float) jVar3.E0) / 1000000.0f) + ", jitter=" + j.K(jVar3.C0, jVar3.B0, jVar3.A0) + "}, gaps={over50ms=" + jVar3.F0 + ", over100ms=" + jVar3.G0 + "}, nonMonotonicTimestamps=" + jVar3.K0 + ", viewState={shown=" + textureView.isShown() + ", alpha=" + textureView.getAlpha() + ", windowVisibility=" + textureView.getWindowVisibility() + "}");
+                            jVar3.E();
+                            jVar3.f15003w0 = elapsedRealtimeNanos;
                             return;
                         }
                     }
                     f7 = 0.0f;
-                    iVar3.f14909j.b("preview frame delivery: callbackFps=" + ((((float) iVar3.f14912k0) * 1.0E9f) / ((float) j10)) + ", timestampFps=" + f7 + ", callbackIntervalMs={avg=" + i.c(iVar3.f14919o0, iVar3.f14917n0) + ", min=" + (((float) iVar3.f14923q0) / 1000000.0f) + ", max=" + (((float) iVar3.f14925r0) / 1000000.0f) + ", jitter=" + i.B(iVar3.f14921p0, iVar3.f14919o0, iVar3.f14917n0) + "}, gaps={over50ms=" + iVar3.f14927s0 + ", over100ms=" + iVar3.f14929t0 + "}, nonMonotonicTimestamps=" + iVar3.f14936x0 + ", viewState={shown=" + textureView.isShown() + ", alpha=" + textureView.getAlpha() + ", windowVisibility=" + textureView.getWindowVisibility() + "}");
-                    iVar3.v();
-                    iVar3.f14910j0 = elapsedRealtimeNanos;
+                    jVar3.f14978j.b("preview frame delivery: callbackFps=" + ((((float) jVar3.f15005x0) * 1.0E9f) / ((float) j10)) + ", timestampFps=" + f7 + ", callbackIntervalMs={avg=" + j.f(jVar3.B0, jVar3.A0) + ", min=" + (((float) jVar3.D0) / 1000000.0f) + ", max=" + (((float) jVar3.E0) / 1000000.0f) + ", jitter=" + j.K(jVar3.C0, jVar3.B0, jVar3.A0) + "}, gaps={over50ms=" + jVar3.F0 + ", over100ms=" + jVar3.G0 + "}, nonMonotonicTimestamps=" + jVar3.K0 + ", viewState={shown=" + textureView.isShown() + ", alpha=" + textureView.getAlpha() + ", windowVisibility=" + textureView.getWindowVisibility() + "}");
+                    jVar3.E();
+                    jVar3.f15003w0 = elapsedRealtimeNanos;
                     return;
                 }
                 return;
@@ -370,10 +380,10 @@ public final class d implements TextureView.SurfaceTextureListener {
             case 3:
                 return;
             case 4:
-                aa1 aa1Var = (aa1) this.f14863b;
-                if (aa1Var.f24571r == 1) {
-                    aa1Var.f24570n.getViewTreeObserver().addOnPreDrawListener(new fa(this, 4));
-                    aa1Var.f24570n.invalidate();
+                ha1 ha1Var = (ha1) this.f14912b;
+                if (ha1Var.f27029r == 1) {
+                    ha1Var.f27028n.getViewTreeObserver().addOnPreDrawListener(new da(this, 4));
+                    ha1Var.f27028n.invalidate();
                     return;
                 }
                 return;

@@ -1,31 +1,23 @@
 package org.telegram.messenger;
+public final class vc implements Runnable {
+    public final int f19422a;
+    public final MessagesController f19423b;
+    public final boolean f19424c;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class vc implements Utilities.Callback2 {
-    public final int f19419a;
-    public final MessagesController f19420b;
-    public final long f19421c;
-    public final Utilities.Callback2 d;
-
-    public vc(MessagesController messagesController, long j3, Utilities.Callback2 callback2, int i10) {
-        this.f19419a = i10;
-        this.f19420b = messagesController;
-        this.f19421c = j3;
-        this.d = callback2;
+    public vc(int i10, MessagesController messagesController, boolean z10) {
+        this.f19422a = i10;
+        this.f19423b = messagesController;
+        this.f19424c = z10;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f19419a) {
+    public final void run() {
+        switch (this.f19422a) {
             case 0:
-                this.f19420b.lambda$resolveCommunityAllJoinPendingRequests$250(this.f19421c, this.d, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
-                return;
-            case 1:
-                this.f19420b.lambda$resolveCommunityJoinPendingRequest$249(this.f19421c, this.d, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                this.f19423b.lambda$checkPromoInfo$163(this.f19424c);
                 return;
             default:
-                this.f19420b.lambda$toggleCommunityParticipantBanned$248(this.f19421c, this.d, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                this.f19423b.lambda$removeFolderTemporarily$483(this.f19424c);
                 return;
         }
     }

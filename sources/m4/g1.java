@@ -1,54 +1,14 @@
 package m4;
+public final class g1 extends i9.o {
+    public final int f16105n;
+    public final Object f16106r;
 
-import android.os.Bundle;
-import android.text.TextUtils;
-import j$.util.Objects;
-public final class g1 {
-    public static final e9.a1 d = e9.i0.z(40010);
-    public static final e9.a1 f16177e;
-    public static final String f16178f;
-    public static final String f16179g;
-    public static final String h;
-    public final int f16180a;
-    public final String f16181b;
-    public final Bundle f16182c;
-
-    static {
-        Object[] objArr = {50000, 50001, 50002, 50003, 50004, 50005, 50006};
-        e9.q.d(7, objArr);
-        f16177e = e9.i0.t(7, objArr);
-        String str = e2.d0.f8538a;
-        f16178f = Integer.toString(0, 36);
-        f16179g = Integer.toString(1, 36);
-        h = Integer.toString(2, 36);
+    public g1(int i10, Object obj) {
+        this.f16105n = i10;
+        this.f16106r = obj;
     }
 
-    public g1(int i10) {
-        e2.d.a("commandCode shouldn't be COMMAND_CODE_CUSTOM", i10 != 0);
-        this.f16180a = i10;
-        this.f16181b = "";
-        this.f16182c = Bundle.EMPTY;
-    }
-
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof g1)) {
-            return false;
-        }
-        g1 g1Var = (g1) obj;
-        if (this.f16180a != g1Var.f16180a || !TextUtils.equals(this.f16181b, g1Var.f16181b)) {
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        return Objects.hash(this.f16181b, Integer.valueOf(this.f16180a));
-    }
-
-    public g1(String str, Bundle bundle) {
-        this.f16180a = 0;
-        this.f16181b = str;
-        bundle.getClass();
-        this.f16182c = new Bundle(bundle);
+    public final void o() {
+        super.m(this.f16106r);
     }
 }

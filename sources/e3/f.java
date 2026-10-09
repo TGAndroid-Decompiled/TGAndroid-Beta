@@ -15,12 +15,12 @@ import java.nio.ByteOrder;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 public final class f implements a {
-    public final i0 f8634a;
-    public final int f8635b;
+    public final i0 f8628a;
+    public final int f8629b;
 
     public f(int i10, a1 a1Var) {
-        this.f8635b = i10;
-        this.f8634a = a1Var;
+        this.f8629b = i10;
+        this.f8628a = a1Var;
     }
 
     public static f b(int i10, v vVar) {
@@ -31,12 +31,12 @@ public final class f implements a {
         int i12 = 4;
         q.e(4, "initialCapacity");
         Object[] objArr = new Object[4];
-        int i13 = vVar.f8592c;
+        int i13 = vVar.f8586c;
         int i14 = -2;
         int i15 = 0;
         while (vVar.a() > 8) {
             int l4 = vVar.l();
-            int l10 = vVar.f8591b + vVar.l();
+            int l10 = vVar.f8585b + vVar.l();
             vVar.I(l10);
             if (l4 == 1414744396) {
                 gVar = b(vVar.l(), vVar);
@@ -85,9 +85,9 @@ public final class f implements a {
                                 break;
                             } else {
                                 r rVar = new r();
-                                rVar.f3512x = l11;
-                                rVar.f3513y = l12;
-                                rVar.f3506q = r0.n(str2);
+                                rVar.f3591x = l11;
+                                rVar.f3592y = l12;
+                                rVar.f3585q = r0.n(str2);
                                 gVar = new g(new s(rVar));
                                 break;
                             }
@@ -118,30 +118,30 @@ public final class f implements a {
                                     int l14 = vVar.l();
                                     vVar.K(6);
                                     int q11 = vVar.q();
-                                    String str3 = d0.f8538a;
-                                    int B = d0.B(q11, ByteOrder.LITTLE_ENDIAN);
+                                    String str3 = d0.f8532a;
+                                    int A = d0.A(q11, ByteOrder.LITTLE_ENDIAN);
                                     if (vVar.a() > 0) {
                                         i11 = vVar.q();
                                     } else {
                                         i11 = 0;
                                     }
                                     r rVar2 = new r();
-                                    rVar2.f3506q = r0.n(str);
+                                    rVar2.f3585q = r0.n(str);
                                     rVar2.I = q10;
                                     rVar2.J = l14;
-                                    if (str.equals("audio/raw") && B != 0) {
-                                        rVar2.K = B;
+                                    if (str.equals("audio/raw") && A != 0) {
+                                        rVar2.K = A;
                                     }
                                     if (str.equals("audio/mp4a-latm") && i11 > 0) {
                                         byte[] bArr = new byte[i11];
                                         vVar.h(0, i11, bArr);
-                                        rVar2.f3509t = i0.z(bArr);
+                                        rVar2.f3588t = i0.z(bArr);
                                     }
                                     gVar = new g(new s(rVar2));
                                     break;
                                 }
                             } else {
-                                e2.a.n("StreamFormatChunk", "Ignoring strf box for unsupported track type: " + d0.G(i14));
+                                e2.a.n("StreamFormatChunk", "Ignoring strf box for unsupported track type: " + d0.F(i14));
                             }
                             gVar = dVar;
                         }
@@ -196,7 +196,7 @@ public final class f implements a {
     }
 
     public final a a(Class cls) {
-        g0 listIterator = this.f8634a.listIterator(0);
+        g0 listIterator = this.f8628a.listIterator(0);
         while (listIterator.hasNext()) {
             a aVar = (a) listIterator.next();
             if (aVar.getClass() == cls) {
@@ -208,6 +208,6 @@ public final class f implements a {
 
     @Override
     public final int getType() {
-        return this.f8635b;
+        return this.f8629b;
     }
 }

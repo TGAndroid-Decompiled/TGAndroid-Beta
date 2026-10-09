@@ -1,57 +1,54 @@
 package org.telegram.ui.Components;
 
-import android.graphics.RectF;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import org.telegram.messenger.AndroidUtilities;
+import android.graphics.Bitmap;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.Utilities;
 public final class ra {
-    public final int f30406a;
-    public final kj0 f30407b;
-    public final org.telegram.ui.Cells.z f30408c;
-    public final TextPaint d;
-    public final StaticLayout f30409e;
-    public final float f30410f;
-    public final float f30411g;
-    public final RectF h;
-    public final e6 f30412i;
-    public final int f30413j;
-    public final int f30414k;
-    public boolean f30415l;
-    public int f30416m;
-    public final oa0 f30417n;
+    public String f30404a;
+    public Bitmap f30405b;
+    public final Paint f30406c;
+    public final int d;
+    public final Runnable f30407e;
+    public org.telegram.messenger.v7 f30408f;
 
-    public ra(oa0 oa0Var, int i10, int i11, int i12, int i13, String str) {
-        float f7;
-        this.f30417n = oa0Var;
-        TextPaint textPaint = new TextPaint(1);
-        this.d = textPaint;
-        this.h = new RectF();
-        this.f30412i = new e6(oa0Var, 0L, 200L, tr.h);
-        this.f30416m = -1;
-        this.f30406a = i10;
-        this.f30413j = i12;
-        this.f30414k = i13;
-        kj0 kj0Var = new kj0(i11, AndroidUtilities.dp(29.0f), AndroidUtilities.dp(29.0f));
-        this.f30407b = kj0Var;
-        kj0Var.R(oa0Var);
-        kj0Var.J(true);
-        kj0Var.h = true;
-        kj0Var.K(0);
-        textPaint.setTypeface(AndroidUtilities.bold());
-        textPaint.setTextSize(AndroidUtilities.dp(12.0f));
-        int i14 = org.telegram.ui.ActionBar.i6.G6;
-        org.telegram.ui.ActionBar.d6 d6Var = oa0Var.f30731a;
-        textPaint.setColor(org.telegram.ui.ActionBar.i6.v0(i14, d6Var));
-        StaticLayout staticLayout = new StaticLayout(str, textPaint, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        this.f30409e = staticLayout;
-        if (staticLayout.getLineCount() > 0) {
-            f7 = staticLayout.getLineWidth(0);
-        } else {
-            f7 = 0.0f;
+    public ra(int i10, Runnable runnable) {
+        Paint paint = new Paint(1);
+        this.f30406c = paint;
+        this.d = i10;
+        this.f30407e = runnable;
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+    }
+
+    public final void a() {
+        this.f30404a = null;
+        if (this.f30408f != null) {
+            Utilities.globalQueue.cancelRunnable(this.f30408f);
         }
-        this.f30410f = f7;
-        this.f30411g = staticLayout.getLineCount() > 0 ? staticLayout.getLineLeft(0) : 0.0f;
-        this.f30408c = org.telegram.ui.ActionBar.i6.f0(org.telegram.ui.ActionBar.i6.l1(0.1f, org.telegram.ui.ActionBar.i6.v0(i14, d6Var)), 7, AndroidUtilities.dp(16.0f));
+        Bitmap bitmap = this.f30405b;
+        if (bitmap != null && !bitmap.isRecycled()) {
+            this.f30405b.recycle();
+        }
+        this.f30405b = null;
+    }
+
+    public final android.graphics.Bitmap b(android.graphics.Bitmap r9, java.lang.String r10, int r11, int r12, boolean r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ra.b(android.graphics.Bitmap, java.lang.String, int, int, boolean):android.graphics.Bitmap");
+    }
+
+    public final Bitmap c(ImageReceiver.BitmapHolder bitmapHolder) {
+        if (bitmapHolder == null) {
+            return null;
+        }
+        return b(bitmapHolder.bitmap, bitmapHolder.getKey(), bitmapHolder.orientation, 0, false);
+    }
+
+    public final Bitmap d(ImageReceiver imageReceiver) {
+        if (imageReceiver == null) {
+            return null;
+        }
+        return b(imageReceiver.getBitmap(), imageReceiver.getImageKey(), imageReceiver.getOrientation(), imageReceiver.getInvert(), false);
     }
 }

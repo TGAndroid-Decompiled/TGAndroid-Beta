@@ -2,23 +2,25 @@ package p4;
 
 import android.media.MediaRoute2Info;
 import android.media.MediaRouter2;
+import android.media.MediaRouter2$TransferCallback;
 import android.text.TextUtils;
 import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
-public final class j extends MediaRouter2.TransferCallback {
-    public final k f44207a;
+import org.telegram.ui.a80;
+public final class j extends MediaRouter2$TransferCallback {
+    public final k f45371a;
 
     public j(k kVar) {
-        this.f44207a = kVar;
+        this.f45371a = kVar;
     }
 
-    @Override
     public final void onStop(MediaRouter2.RoutingController routingController) {
-        q qVar = (q) this.f44207a.v.remove(routingController);
+        k kVar = this.f45371a;
+        q qVar = (q) kVar.v.remove(routingController);
         if (qVar != null) {
-            e eVar = (e) this.f44207a.f44214s.f12544b;
-            if (qVar == eVar.f44164e) {
+            e eVar = (e) kVar.f45378s.f15331b;
+            if (qVar == eVar.f45328e) {
                 v c10 = eVar.c();
                 if (eVar.e() != c10) {
                     eVar.j(c10, 2);
@@ -32,12 +34,11 @@ public final class j extends MediaRouter2.TransferCallback {
         Log.w("MR2Provider", "onStop: No matching routeController found. routingController=" + routingController);
     }
 
-    @Override
     public final void onTransfer(MediaRouter2.RoutingController routingController, MediaRouter2.RoutingController routingController2) {
         v vVar;
-        this.f44207a.v.remove(routingController);
-        if (routingController2 == this.f44207a.f44213r.getSystemController()) {
-            e eVar = (e) this.f44207a.f44214s.f12544b;
+        this.f45371a.v.remove(routingController);
+        if (routingController2 == this.f45371a.f45377r.getSystemController()) {
+            e eVar = (e) this.f45371a.f45378s.f15331b;
             v c10 = eVar.c();
             if (eVar.e() != c10) {
                 eVar.j(c10, 3);
@@ -51,17 +52,17 @@ public final class j extends MediaRouter2.TransferCallback {
             return;
         }
         int i10 = 0;
-        String id2 = org.telegram.ui.web.w.e(selectedRoutes.get(0)).getId();
-        this.f44207a.v.put(routingController2, new g(this.f44207a, routingController2, id2));
-        e eVar2 = (e) this.f44207a.f44214s.f12544b;
-        ArrayList arrayList = eVar2.f44168j;
+        String id2 = a80.c(selectedRoutes.get(0)).getId();
+        this.f45371a.v.put(routingController2, new g(this.f45371a, routingController2, id2));
+        e eVar2 = (e) this.f45371a.f45378s.f15331b;
+        ArrayList arrayList = eVar2.f45332j;
         int size = arrayList.size();
         while (true) {
             if (i10 < size) {
                 Object obj = arrayList.get(i10);
                 i10++;
                 vVar = (v) obj;
-                if (vVar.c() == eVar2.f44176r && TextUtils.equals(id2, vVar.f44281b)) {
+                if (vVar.c() == eVar2.f45340r && TextUtils.equals(id2, vVar.f45445b)) {
                     break;
                 }
             } else {
@@ -74,10 +75,9 @@ public final class j extends MediaRouter2.TransferCallback {
         } else {
             eVar2.j(vVar, 3);
         }
-        this.f44207a.r(routingController2);
+        this.f45371a.r(routingController2);
     }
 
-    @Override
     public final void onTransferFailure(MediaRoute2Info mediaRoute2Info) {
         Log.w("MR2Provider", "Transfer failed. requestedRoute=" + mediaRoute2Info);
     }

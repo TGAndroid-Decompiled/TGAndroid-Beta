@@ -1,148 +1,50 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Shader;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
-import org.telegram.messenger.AndroidUtilities;
-public final class ed1 extends org.telegram.ui.Components.w9 {
-    public Drawable G;
-    public final boolean H;
-    public float I;
-    public float J;
-    public final pd1 K;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.widget.FrameLayout;
+public final class ed1 extends AnimatorListenerAdapter {
+    public final boolean f37233a;
+    public final int f37234b;
+    public final int f37235c;
+    public final boolean d;
+    public final xd1 f37236e;
 
-    public ed1(pd1 pd1Var, Activity activity) {
-        super(activity);
-        this.K = pd1Var;
-        this.H = true;
+    public ed1(xd1 xd1Var, boolean z10, int i10, int i11, boolean z11) {
+        this.f37236e = xd1Var;
+        this.f37233a = z10;
+        this.f37234b = i10;
+        this.f37235c = i11;
+        this.d = z11;
     }
 
     @Override
-    public Drawable getBackground() {
-        return this.G;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        this.I = 0.0f;
-        this.J = 0.0f;
-        boolean z10 = this.H;
-        pd1 pd1Var = this.K;
-        if (z10) {
-            Drawable drawable = this.G;
-            if (!(drawable instanceof ColorDrawable) && !(drawable instanceof GradientDrawable) && !(drawable instanceof org.telegram.ui.Components.pc0)) {
-                if (drawable instanceof BitmapDrawable) {
-                    if (((BitmapDrawable) drawable).getTileModeX() == Shader.TileMode.REPEAT) {
-                        canvas.save();
-                        float f7 = 2.0f / AndroidUtilities.density;
-                        canvas.scale(f7, f7);
-                        this.G.setBounds(0, 0, (int) Math.ceil(getMeasuredWidth() / f7), (int) Math.ceil(getMeasuredHeight() / f7));
-                        this.G.draw(canvas);
-                        canvas.restore();
-                    } else {
-                        int measuredHeight = getMeasuredHeight();
-                        float max = Math.max(getMeasuredWidth() / this.G.getIntrinsicWidth(), measuredHeight / this.G.getIntrinsicHeight());
-                        int ceil = (int) Math.ceil(this.G.getIntrinsicWidth() * max * pd1Var.f39554y1);
-                        int ceil2 = (int) Math.ceil(this.G.getIntrinsicHeight() * max * pd1Var.f39554y1);
-                        int measuredWidth = (getMeasuredWidth() - ceil) / 2;
-                        int i10 = (measuredHeight - ceil2) / 2;
-                        this.J = i10;
-                        this.G.setBounds(measuredWidth, i10, ceil + measuredWidth, ceil2 + i10);
-                        this.G.draw(canvas);
-                    }
-                }
-            } else {
-                drawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
-                this.G.draw(canvas);
+    public final void onAnimationEnd(Animator animator) {
+        xd1 xd1Var = this.f37236e;
+        FrameLayout[] frameLayoutArr = xd1Var.L0;
+        xd1Var.f43984r1 = null;
+        int i10 = this.f37235c;
+        int i11 = this.f37234b;
+        boolean z10 = this.f37233a;
+        if (z10 && frameLayoutArr[i11].getVisibility() == 0) {
+            frameLayoutArr[i11].setAlpha(1.0f);
+            frameLayoutArr[i11].setVisibility(4);
+        } else if (!z10) {
+            frameLayoutArr[i10].setVisibility(4);
+        }
+        int i12 = xd1Var.f43938b;
+        char c10 = 2;
+        if (i12 != 1 && i12 != 2) {
+            if (i10 == 1) {
+                frameLayoutArr[i11].setAlpha(0.0f);
+                return;
             }
+            return;
         }
-        if (pd1Var.a2) {
-            if (!pd1Var.f39494c.isFinished() && pd1Var.f39494c.computeScrollOffset()) {
-                if (pd1Var.f39494c.getStartX() < pd1Var.W1 && pd1Var.f39494c.getStartX() > 0) {
-                    pd1Var.X1 = pd1Var.f39494c.getCurrX();
-                }
-                pd1Var.V0();
-                invalidate();
-            }
-            canvas.save();
-            float f10 = -pd1Var.X1;
-            this.I = f10;
-            canvas.translate(f10, 0.0f);
-            super.onDraw(canvas);
-            canvas.restore();
-        } else {
-            super.onDraw(canvas);
+        org.telegram.ui.Components.p91[] p91VarArr = xd1Var.J0;
+        if (this.d) {
+            c10 = 0;
         }
-        if (pd1Var.M1) {
-            float f11 = pd1Var.f39527n1;
-            if (f11 > 0.0f) {
-                canvas.drawColor(i0.a.k(-16777216, (int) (f11 * 255.0f * pd1Var.f39529o1)));
-            }
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        pd1 pd1Var = this.K;
-        org.telegram.ui.Components.k91 k91Var = pd1Var.f39545v1;
-        int measuredWidth = getMeasuredWidth();
-        int measuredHeight = getMeasuredHeight();
-        k91Var.getClass();
-        float a2 = org.telegram.ui.Components.k91.a(measuredWidth, measuredHeight);
-        pd1Var.f39554y1 = a2;
-        if (pd1Var.E1) {
-            setScaleX(a2);
-            setScaleY(pd1Var.f39554y1);
-        }
-        if (pd1Var.f39490b == 2) {
-            getMeasuredWidth();
-            getMeasuredHeight();
-        }
-        int measuredWidth2 = getMeasuredWidth() + (getMeasuredHeight() << 16);
-        if (pd1Var.f39493b2 != measuredWidth2) {
-            pd1Var.a2 = false;
-            Bitmap bitmap = pd1Var.C1;
-            if (bitmap != null) {
-                int measuredHeight2 = (int) ((getMeasuredHeight() / pd1Var.C1.getHeight()) * bitmap.getWidth());
-                if (measuredHeight2 - getMeasuredWidth() > 100) {
-                    pd1Var.a2 = true;
-                    pd1Var.Z1 = (int) ((pd1Var.C1.getHeight() / getMeasuredHeight()) * getMeasuredWidth());
-                    float measuredWidth3 = (measuredHeight2 - getMeasuredWidth()) / 2.0f;
-                    pd1Var.X1 = measuredWidth3;
-                    pd1Var.Y1 = measuredWidth3;
-                    pd1Var.W1 = measuredWidth3 * 2.0f;
-                    s(measuredHeight2, getMeasuredHeight());
-                    this.v = true;
-                    pd1Var.V0();
-                }
-            }
-            if (!pd1Var.a2) {
-                s(-1, -1);
-                this.v = false;
-            }
-        }
-        pd1Var.f39493b2 = measuredWidth2;
-    }
-
-    @Override
-    public void setBackground(Drawable drawable) {
-        this.G = drawable;
-        if (drawable != null) {
-            drawable.setCallback(this);
-        }
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (this.G != drawable && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
+        p91VarArr[c10].setVisibility(4);
     }
 }

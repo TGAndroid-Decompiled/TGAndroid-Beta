@@ -1,23 +1,25 @@
 package zb;
+
+import ci.u5;
 public final class g implements q9.d {
-    public static final g f53208b = new g(0);
-    public static final g f53209c = new g(1);
+    public static final g f54314b = new g(0);
+    public static final g f54315c = new g(1);
     public static final g d = new g(2);
-    public final int f53210a;
+    public final int f54316a;
 
     public g(int i10) {
-        this.f53210a = i10;
+        this.f54316a = i10;
     }
 
     @Override
-    public final Object E(cf.c cVar) {
-        switch (this.f53210a) {
+    public final Object y0(u5 u5Var) {
+        switch (this.f54316a) {
             case 0:
-                return new e((qb.g) cVar.a(qb.g.class));
+                return new e((qb.g) u5Var.a(qb.g.class));
             case 1:
-                return new d((e) cVar.a(e.class), (qb.d) cVar.a(qb.d.class));
+                return new d((e) u5Var.a(e.class), (qb.d) u5Var.a(qb.d.class));
             default:
-                return new wb.b(cVar.d(d.class));
+                return new wb.b(u5Var.c(d.class));
         }
     }
 }

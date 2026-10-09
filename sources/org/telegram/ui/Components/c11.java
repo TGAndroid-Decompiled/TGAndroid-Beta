@@ -1,42 +1,69 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class c11 implements org.telegram.ui.ActionBar.a2 {
-    public final int f25224a;
-    public final e11 f25225b;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.text.style.ReplacementSpan;
+import org.telegram.messenger.AndroidUtilities;
+public final class c11 extends ReplacementSpan {
+    public final int f25205a;
+    public int f25206b;
+    public final Object f25207c;
 
-    public c11(e11 e11Var, int i10) {
-        this.f25224a = i10;
-        this.f25225b = e11Var;
+    public c11(int i10) {
+        this.f25205a = 0;
+        Paint paint = new Paint(1);
+        this.f25207c = paint;
+        this.f25206b = i10;
+        paint.setColor(org.telegram.ui.ActionBar.i6.m1(0.3f, org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20987nd, false)));
+    }
+
+    public void a(int i10) {
+        org.telegram.ui.vp0 vp0Var = (org.telegram.ui.vp0) this.f25207c;
+        if (vp0Var != null) {
+            vp0Var.f42957a = i10 / 2.0f;
+            vp0Var.d();
+            this.f25206b = i10;
+        }
     }
 
     @Override
-    public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f25224a) {
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        switch (this.f25205a) {
             case 0:
-                this.f25225b.a();
-                return;
-            case 1:
-                e11 e11Var = this.f25225b;
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(e11Var.getContext());
-                alertDialog$Builder.f20377a.T = LocaleController.getString(R.string.TosDeclineDeleteAccount);
-                alertDialog$Builder.f20377a.R = LocaleController.getString(R.string.AppName);
-                alertDialog$Builder.k(LocaleController.getString(R.string.Deactivate), new c11(e11Var, 2));
-                hg.c.p(R.string.Cancel, alertDialog$Builder, null);
+                float dp = ((i12 + i14) / 2.0f) + AndroidUtilities.dp(1.33f);
+                RectF rectF = AndroidUtilities.rectTmp;
+                float dp2 = AndroidUtilities.dp(6.66f) / 2.0f;
+                rectF.set(f7, dp - dp2, this.f25206b + f7, dp + dp2);
+                canvas.drawRoundRect(rectF, dp2, dp2, (Paint) this.f25207c);
                 return;
             default:
-                e11 e11Var2 = this.f25225b;
-                org.telegram.ui.ActionBar.b2 b2Var2 = new org.telegram.ui.ActionBar.b2(e11Var2.getContext(), 3, null);
-                b2Var2.f20432g0 = false;
-                TL_account.deleteAccount deleteaccount = new TL_account.deleteAccount();
-                deleteaccount.reason = "Decline ToS update";
-                ConnectionsManager.getInstance(e11Var2.d).sendRequest(deleteaccount, new org.telegram.ui.no(16, e11Var2, b2Var2));
-                b2Var2.show();
+                org.telegram.ui.vp0 vp0Var = (org.telegram.ui.vp0) this.f25207c;
+                if (vp0Var != null) {
+                    int i15 = (i12 + i14) / 2;
+                    float dp3 = f7 + AndroidUtilities.dp(5.0f);
+                    int i16 = this.f25206b;
+                    vp0Var.setBounds((int) (AndroidUtilities.dp(3.0f) + f7), i15 - this.f25206b, (int) (dp3 + i16), i15 + i16);
+                    vp0Var.draw(canvas);
+                    return;
+                }
                 return;
         }
+    }
+
+    @Override
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        switch (this.f25205a) {
+            case 0:
+                return this.f25206b;
+            default:
+                return AndroidUtilities.dp(3.0f) + AndroidUtilities.dp(3.0f) + this.f25206b;
+        }
+    }
+
+    public c11(boolean z10, int i10, int i11) {
+        this.f25205a = 1;
+        this.f25206b = AndroidUtilities.dp(21.0f);
+        this.f25207c = z10 ? org.telegram.ui.vp0.c(i10, i11) : org.telegram.ui.vp0.a(i10, i11);
     }
 }

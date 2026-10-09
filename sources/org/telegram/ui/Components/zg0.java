@@ -1,4 +1,63 @@
 package org.telegram.ui.Components;
-public final class zg0 {
-    public float f33507a;
+
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+public final class zg0 extends org.telegram.ui.l4 {
+    public final int h;
+    public final Object f33578n;
+
+    public zg0(Object obj, Context context, int i10) {
+        super(context);
+        this.h = i10;
+        this.f33578n = obj;
+    }
+
+    @Override
+    public boolean drawChild(Canvas canvas, View view, long j3) {
+        MessageObject playingMessageObject;
+        switch (this.h) {
+            case 0:
+                boolean drawChild = super.drawChild(canvas, view, j3);
+                PipRoundVideoView pipRoundVideoView = (PipRoundVideoView) this.f33578n;
+                if (view == pipRoundVideoView.f24214c && (playingMessageObject = MediaController.getInstance().getPlayingMessageObject()) != null) {
+                    pipRoundVideoView.E.set(AndroidUtilities.dpf2(1.5f), AndroidUtilities.dpf2(1.5f), getMeasuredWidth() - AndroidUtilities.dpf2(1.5f), getMeasuredHeight() - AndroidUtilities.dpf2(1.5f));
+                    canvas.drawArc(pipRoundVideoView.E, -90.0f, playingMessageObject.audioProgress * 360.0f, false, org.telegram.ui.ActionBar.i6.f20921k2);
+                }
+                return drawChild;
+            default:
+                return super.drawChild(canvas, view, j3);
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.h) {
+            case 1:
+                super.onMeasure(i10, i11);
+                ha1 ha1Var = (ha1) this.f33578n;
+                if (ha1Var.f27021f != null) {
+                    ViewGroup.LayoutParams layoutParams = ha1Var.d.getLayoutParams();
+                    layoutParams.width = getMeasuredWidth();
+                    layoutParams.height = getMeasuredHeight();
+                    ImageView imageView = ha1Var.f27019e;
+                    if (imageView != null) {
+                        ViewGroup.LayoutParams layoutParams2 = imageView.getLayoutParams();
+                        layoutParams2.width = getMeasuredWidth();
+                        layoutParams2.height = getMeasuredHeight();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
+        }
+    }
 }

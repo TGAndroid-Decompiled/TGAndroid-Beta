@@ -1,46 +1,80 @@
 package org.telegram.ui;
 
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Shader;
-public final class n50 extends org.telegram.ui.ActionBar.i5 {
-    public LinearGradient M0;
-    public int N0;
-    public final Matrix O0;
-    public float P0;
-    public float Q0;
-    public float R0;
-    public float S0;
-    public float T0;
-    public long U0;
-    public final h60 V0;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.tgnet.TLRPC;
+public final class n50 implements org.telegram.ui.Components.l50 {
+    public float f40074a;
+    public TLRPC.FileLocation f40075b;
+    public TLRPC.FileLocation f40076c;
+    public ImageLocation d;
+    public final long f40077e;
+    public final g60 f40078f;
 
-    public n50(h60 h60Var, LaunchActivity launchActivity) {
-        super(launchActivity);
-        this.V0 = h60Var;
-        this.O0 = new Matrix();
-        this.P0 = -1.0f;
+    public n50(g60 g60Var, long j3) {
+        this.f40078f = g60Var;
+        this.f40077e = j3;
     }
 
     @Override
-    public final void d(int i10) {
-        super.d(i10);
-        int textWidth = getTextWidth();
-        if (textWidth != this.N0) {
-            float f7 = textWidth;
-            this.T0 = 1.3f * f7;
-            float f10 = f7 * 2.0f;
-            int w02 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20928ih, false);
-            int w03 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20967kh, false);
-            int i11 = org.telegram.ui.ActionBar.i6.f20947jh;
-            this.M0 = new LinearGradient(0.0f, getTextHeight(), f10, 0.0f, new int[]{w02, w03, org.telegram.ui.ActionBar.i6.w0(null, i11, false), org.telegram.ui.ActionBar.i6.w0(null, i11, false)}, new float[]{0.0f, 0.38f, 0.76f, 1.0f}, Shader.TileMode.CLAMP);
-            getPaint().setShader(this.M0);
-            this.N0 = textWidth;
+    public final void D(float f7) {
+        this.f40078f.f37789b.O(this.d, f7);
+        a(f7);
+    }
+
+    @Override
+    public final void Q(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z10, TLRPC.VideoSize videoSize) {
+        AndroidUtilities.runOnUIThread(new fi.k(this, inputFile, inputFile2, videoSize, d, str, photoSize2, photoSize, 3));
+    }
+
+    public final void a(float f7) {
+        this.f40074a = f7;
+        m50 m50Var = this.f40078f.Q;
+        if (m50Var != null) {
+            for (int i10 = 0; i10 < m50Var.getChildCount(); i10++) {
+                View childAt = m50Var.getChildAt(i10);
+                if (childAt instanceof org.telegram.ui.Cells.e4) {
+                    org.telegram.ui.Cells.e4 e4Var = (org.telegram.ui.Cells.e4) childAt;
+                    if (e4Var.c()) {
+                        org.telegram.ui.Cells.z3 z3Var = e4Var.f22036x;
+                        z3Var.setProgress(f7);
+                        if (f7 < 1.0f) {
+                            AndroidUtilities.updateViewVisibilityAnimated(z3Var, true, 1.0f, true);
+                        } else {
+                            AndroidUtilities.updateViewVisibilityAnimated(z3Var, false, 1.0f, true);
+                        }
+                    }
+                }
+            }
         }
     }
 
     @Override
-    public final void onDraw(android.graphics.Canvas r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.n50.onDraw(android.graphics.Canvas):void");
+    public final boolean e() {
+        return true;
+    }
+
+    @Override
+    public final ev0 getCloseIntoObject() {
+        return null;
+    }
+
+    @Override
+    public final String getInitialSearchString() {
+        return null;
+    }
+
+    @Override
+    public final boolean u() {
+        return false;
+    }
+
+    @Override
+    public final void P() {
+    }
+
+    @Override
+    public final void L(boolean z10, boolean z11) {
     }
 }

@@ -1,10 +1,10 @@
 package v2;
 public interface l {
-    public static final na.d B = new na.d(24);
+    public static final rb.a B = new rb.a(24);
 
-    long a();
+    long c();
 
-    long f();
+    long h();
 
     boolean next();
 }

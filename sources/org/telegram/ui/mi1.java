@@ -1,32 +1,26 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public final class mi1 extends AnimatorListenerAdapter {
-    public final org.telegram.ui.Cells.u1 f38640a;
-    public final org.telegram.ui.Components.wi f38641b;
-    public final ni1 f38642c;
+import org.telegram.messenger.AndroidUtilities;
+import org.webrtc.RendererCommon;
+public final class mi1 implements RendererCommon.RendererEvents {
+    public final wi1 f39927a;
 
-    public mi1(ni1 ni1Var, org.telegram.ui.Cells.u1 u1Var, org.telegram.ui.Components.wi wiVar) {
-        this.f38642c = ni1Var;
-        this.f38640a = u1Var;
-        this.f38641b = wiVar;
+    public mi1(wi1 wi1Var) {
+        this.f39927a = wi1Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        this.f38640a.setEnterTransitionInProgress(false);
-        org.telegram.ui.Components.wi wiVar = this.f38641b;
-        ni1 ni1Var = this.f38642c;
-        ((ArrayList) wiVar.f32649c).remove(ni1Var);
-        wiVar.a();
-        ((ViewGroup) wiVar.d).invalidate();
-        ChatActivityEnterView.RecordCircle recordCircle = ni1Var.f38989g;
-        if (recordCircle != null) {
-            recordCircle.N = false;
+    public final void onFirstFrameRendered() {
+        wi1 wi1Var = this.f39927a;
+        com.google.android.gms.internal.cast.p pVar = wi1Var.l1;
+        if (pVar != null) {
+            pVar.run();
+            wi1Var.l1 = null;
         }
+        AndroidUtilities.runOnUIThread(new nz0(this, 23));
+    }
+
+    @Override
+    public final void onFrameResolutionChanged(int i10, int i11, int i12) {
     }
 }

@@ -1,6 +1,24 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public interface el {
-    void b(TLRPC.MessageMedia messageMedia, int i10, boolean z10, int i11, long j3);
+import android.text.Editable;
+import android.text.TextWatcher;
+public final class el implements TextWatcher {
+    public final gl f26105a;
+
+    public el(gl glVar) {
+        this.f26105a = glVar;
+    }
+
+    @Override
+    public final void afterTextChanged(Editable editable) {
+        this.f26105a.g0();
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
 }

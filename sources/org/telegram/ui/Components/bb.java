@@ -1,25 +1,41 @@
 package org.telegram.ui.Components;
-public final class bb {
-    public boolean f24920a;
-    public int f24921b;
-    public boolean f24922c;
-    public boolean d;
-    public boolean f24923e;
-    public int f24924f;
-    public org.telegram.ui.ActionBar.d6 f24925g;
+public final class bb extends s4.k0 {
+    public final s4.k0 f24961a;
+    public final cb f24962b;
 
-    public bb(bb bbVar) {
-        this.f24920a = bbVar.f24920a;
-        this.f24921b = bbVar.f24921b;
-        this.f24922c = bbVar.f24922c;
-        this.d = bbVar.d;
-        this.f24923e = bbVar.f24923e;
-        this.f24924f = bbVar.f24924f;
-        this.f24925g = bbVar.f24925g;
+    public bb(cb cbVar, s4.k0 k0Var) {
+        this.f24962b = cbVar;
+        this.f24961a = k0Var;
     }
 
-    public bb() {
-        this.f24921b = 1;
-        this.f24924f = 1;
+    @Override
+    public final void a() {
+        this.f24961a.a();
+    }
+
+    @Override
+    public final void b(int i10, int i11) {
+        this.f24961a.b(i10 + (!((eb) this.f24962b.f25320f).P ? 1 : 0), i11);
+    }
+
+    @Override
+    public final void c(int i10, int i11, Object obj) {
+        this.f24961a.c(i10 + (!((eb) this.f24962b.f25320f).P ? 1 : 0), i11, obj);
+    }
+
+    @Override
+    public final void d(int i10, int i11) {
+        this.f24961a.d(i10 + (!((eb) this.f24962b.f25320f).P ? 1 : 0), i11);
+    }
+
+    @Override
+    public final void e(int i10, int i11) {
+        int i12 = !((eb) this.f24962b.f25320f).P ? 1 : 0;
+        this.f24961a.e(i10 + i12, i11 + i12);
+    }
+
+    @Override
+    public final void f(int i10, int i11) {
+        this.f24961a.f(i10 + (!((eb) this.f24962b.f25320f).P ? 1 : 0), i11);
     }
 }

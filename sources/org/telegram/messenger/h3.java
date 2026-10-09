@@ -1,45 +1,30 @@
 package org.telegram.messenger;
 
-import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.concurrent.CountDownLatch;
 public final class h3 implements Runnable {
-    public final int f18019a = 0;
-    public final int f18020b;
-    public final long f18021c;
-    public final int d;
-    public final int f18022e;
-    public final Object f18023f;
-    public final Serializable h;
+    public final int f18009a;
+    public final FilePathDatabase f18010b;
+    public final String f18011c;
+    public final boolean[] d;
+    public final CountDownLatch f18012e;
 
-    public h3(FilePathDatabase filePathDatabase, long j3, int i10, int i11, String str, int i12) {
-        this.f18023f = filePathDatabase;
-        this.f18021c = j3;
-        this.f18020b = i10;
-        this.d = i11;
-        this.h = str;
-        this.f18022e = i12;
+    public h3(FilePathDatabase filePathDatabase, String str, boolean[] zArr, CountDownLatch countDownLatch, int i10) {
+        this.f18009a = i10;
+        this.f18010b = filePathDatabase;
+        this.f18011c = str;
+        this.d = zArr;
+        this.f18012e = countDownLatch;
     }
 
     @Override
     public final void run() {
-        switch (this.f18019a) {
+        switch (this.f18009a) {
             case 0:
-                int i10 = this.f18022e;
-                ((FilePathDatabase) this.f18023f).lambda$putPath$1(this.f18021c, this.f18020b, this.d, (String) this.h, i10);
+                FilePathDatabase.g(this.f18010b, this.f18011c, this.d, this.f18012e);
                 return;
             default:
-                int i11 = this.f18022e;
-                ((MessagesStorage) this.f18023f).lambda$updateRepliesCount$194(this.f18020b, this.f18021c, this.d, (ArrayList) this.h, i11);
+                FilePathDatabase.e(this.f18010b, this.f18011c, this.d, this.f18012e);
                 return;
         }
-    }
-
-    public h3(MessagesStorage messagesStorage, int i10, long j3, int i11, ArrayList arrayList, int i12) {
-        this.f18023f = messagesStorage;
-        this.f18020b = i10;
-        this.f18021c = j3;
-        this.d = i11;
-        this.h = arrayList;
-        this.f18022e = i12;
     }
 }

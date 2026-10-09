@@ -1,45 +1,42 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Matrix;
+import android.text.TextUtils;
 import android.view.View;
-import java.util.ArrayList;
-public final class v11 {
-    public final View f31600a;
-    public final ArrayList f31601b;
-    public final Runnable f31602c;
-    public Runnable d;
-    public final Bitmap f31603e;
-    public final Matrix f31604f;
-    public float f31605g;
-
-    public v11(View view, Runnable runnable) {
-        this.f31605g = 1.0f;
-        this.f31600a = view;
-        this.f31601b = null;
-        this.f31602c = null;
-        this.d = runnable;
-        this.f31603e = null;
-        this.f31604f = null;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.ViewSwitcher;
+public class v11 extends ViewSwitcher {
+    public final void a(CharSequence charSequence, boolean z10, boolean z11) {
+        if (z11 || !TextUtils.equals(charSequence, getCurrentView().getText())) {
+            if (z10) {
+                getNextView().setText(charSequence);
+                showNext();
+                return;
+            }
+            getCurrentView().setText(charSequence);
+        }
     }
 
-    public v11(ArrayList arrayList, gg.t tVar) {
-        this.f31605g = 1.0f;
-        this.f31600a = null;
-        this.f31601b = arrayList;
-        this.f31602c = null;
-        this.d = tVar;
-        this.f31603e = null;
-        this.f31604f = null;
+    @Override
+    public final void addView(View view, int i10, ViewGroup.LayoutParams layoutParams) {
+        if (view instanceof TextView) {
+            super.addView(view, i10, layoutParams);
+            return;
+        }
+        throw new IllegalArgumentException();
     }
 
-    public v11(Matrix matrix, Bitmap bitmap, Runnable runnable, Runnable runnable2) {
-        this.f31605g = 1.0f;
-        this.f31600a = null;
-        this.f31601b = null;
-        this.f31602c = runnable;
-        this.d = runnable2;
-        this.f31604f = matrix;
-        this.f31603e = bitmap;
+    public void setText(CharSequence charSequence) {
+        a(charSequence, true, false);
+    }
+
+    @Override
+    public TextView getCurrentView() {
+        return (TextView) super.getCurrentView();
+    }
+
+    @Override
+    public TextView getNextView() {
+        return (TextView) super.getNextView();
     }
 }

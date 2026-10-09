@@ -1,51 +1,103 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
+import android.graphics.Color;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
-public final class zq extends View {
-    public final yq f33626a;
+import org.telegram.messenger.AndroidUtilities;
+public final class zq implements TextWatcher {
+    public final int f33621a = 1;
+    public final int f33622b;
+    public final View f33623c;
 
-    public zq(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context);
-        setVisibility(8);
-        yq yqVar = new yq(this, true, d6Var);
-        this.f33626a = yqVar;
-        yqVar.G = true;
+    public zq(cr crVar, int i10) {
+        this.f33623c = crVar;
+        this.f33622b = i10;
     }
 
-    public float getEnterProgress() {
+    @Override
+    public final void afterTextChanged(Editable editable) {
         int i10;
-        yq yqVar = this.f33626a;
-        float f7 = yqVar.f33320l;
-        if (f7 != 1.0f && ((i10 = yqVar.f33313c) == 0 || i10 == 1)) {
-            if (i10 == 0) {
-                return f7;
-            }
-            return 1.0f - f7;
-        } else if (yqVar.h != 0) {
-            return 1.0f;
-        } else {
-            return 0.0f;
+        int i11 = this.f33621a;
+        int i12 = this.f33622b;
+        View view = this.f33623c;
+        boolean z10 = false;
+        switch (i11) {
+            case 0:
+                cr crVar = (cr) view;
+                EditTextBoldCursor[] editTextBoldCursorArr = crVar.E;
+                if (!crVar.f25494r) {
+                    crVar.f25494r = true;
+                    int i13 = 0;
+                    while (i13 < editable.length()) {
+                        char charAt = editable.charAt(i13);
+                        if ((charAt < '0' || charAt > '9') && ((charAt < 'a' || charAt > 'f') && (charAt < 'A' || charAt > 'F'))) {
+                            editable.replace(i13, i13 + 1, "");
+                            i13--;
+                        }
+                        i13++;
+                    }
+                    if (editable.length() == 0) {
+                        crVar.f25494r = false;
+                        return;
+                    }
+                    try {
+                        i10 = Integer.parseInt(editTextBoldCursorArr[i12].getText().toString(), 16) | (-16777216);
+                    } catch (Exception unused) {
+                        i10 = -1;
+                    }
+                    crVar.setColorInner(i10);
+                    int color = crVar.getColor();
+                    if (editable.length() == 6) {
+                        editable.replace(0, editable.length(), String.format("%02x%02x%02x", Byte.valueOf((byte) Color.red(color)), Byte.valueOf((byte) Color.green(color)), Byte.valueOf((byte) Color.blue(color))).toUpperCase());
+                        editTextBoldCursorArr[i12].setSelection(editable.length());
+                    }
+                    crVar.v[crVar.S].a(color);
+                    crVar.f25484a.s0(color, crVar.S, true);
+                    crVar.f25494r = false;
+                    return;
+                }
+                return;
+            default:
+                NumberTextView numberTextView = (NumberTextView) view;
+                int codePointCount = i12 - Character.codePointCount(editable, 0, editable.length());
+                if (codePointCount < 30) {
+                    if (numberTextView.getVisibility() == 0) {
+                        z10 = true;
+                    }
+                    numberTextView.a(codePointCount, z10);
+                    AndroidUtilities.updateViewVisibilityAnimated(numberTextView, true);
+                    return;
+                }
+                AndroidUtilities.updateViewVisibilityAnimated(numberTextView, false);
+                return;
         }
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        this.f33626a.a(canvas);
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f33621a;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        this.f33626a.d(getMeasuredHeight(), getMeasuredWidth());
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f33621a;
     }
 
-    public void setGravity(int i10) {
-        this.f33626a.f33333z = i10;
+    public zq(int i10, NumberTextView numberTextView) {
+        this.f33622b = i10;
+        this.f33623c = numberTextView;
     }
 
-    public void setReverse(boolean z10) {
-        this.f33626a.D = z10;
+    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

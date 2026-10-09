@@ -6,17 +6,17 @@ import android.graphics.Path;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.bi;
-import org.telegram.ui.Components.zl0;
-public final class t1 extends zl0 implements NotificationCenter.NotificationCenterDelegate {
-    public final Path f45356e3;
-    public q0.a f45357f3;
+import org.telegram.ui.Components.qm0;
+public final class t1 extends qm0 implements NotificationCenter.NotificationCenterDelegate {
+    public final Path V2;
+    public q0.a W2;
 
     public t1(Context context) {
         super(context, null);
-        this.f45356e3 = new Path();
+        this.V2 = new Path();
         setWillNotDraw(false);
-        setLayoutManager(new s4.c0());
-        setAdapter(new s4.h0());
+        setLayoutManager(new s4.d0());
+        setAdapter(new s4.i0());
         setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
         setClipToPadding(false);
     }
@@ -35,15 +35,15 @@ public final class t1 extends zl0 implements NotificationCenter.NotificationCent
 
     @Override
     public final void draw(Canvas canvas) {
-        q0.a aVar = this.f45357f3;
+        q0.a aVar = this.W2;
         if (aVar != null) {
-            Path path = this.f45356e3;
+            Path path = this.V2;
             aVar.accept(path);
             canvas.save();
             canvas.clipPath(path);
         }
         super.draw(canvas);
-        if (this.f45357f3 != null) {
+        if (this.W2 != null) {
             canvas.restore();
         }
     }
@@ -62,11 +62,11 @@ public final class t1 extends zl0 implements NotificationCenter.NotificationCent
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, bi.B(16.0f, AndroidUtilities.dp(48.0f) * Math.min(pg.k0.c().size(), 6), 1073741824));
+        super.onMeasure(i10, bi.C(16.0f, AndroidUtilities.dp(48.0f) * Math.min(pg.k0.c().size(), 6), 1073741824));
     }
 
     public void setMaskProvider(q0.a aVar) {
-        this.f45357f3 = aVar;
+        this.W2 = aVar;
         invalidate();
     }
 }

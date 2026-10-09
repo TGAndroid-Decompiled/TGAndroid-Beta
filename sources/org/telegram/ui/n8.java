@@ -1,44 +1,69 @@
 package org.telegram.ui;
 
+import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class n8 implements Runnable {
-    public final int f38828a;
-    public final m9 f38829b;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class n8 implements RequestDelegate {
+    public final int f40096a;
+    public final j9 f40097b;
+    public final org.telegram.ui.ActionBar.b2 f40098c;
+    public final HashSet d;
+    public final TLRPC.TL_inputGroupCallInviteMessage f40099e;
+    public final boolean f40100f;
 
-    public n8(m9 m9Var, int i10) {
-        this.f38828a = i10;
-        this.f38829b = m9Var;
+    public n8(j9 j9Var, org.telegram.ui.ActionBar.b2 b2Var, HashSet hashSet, TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage, boolean z10, int i10) {
+        this.f40096a = i10;
+        this.f40097b = j9Var;
+        this.f40098c = b2Var;
+        this.d = hashSet;
+        this.f40099e = tL_inputGroupCallInviteMessage;
+        this.f40100f = z10;
     }
 
     @Override
-    public final void run() {
-        org.telegram.ui.Components.yc a02;
-        switch (this.f38828a) {
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f40096a) {
             case 0:
-                m9 m9Var = this.f38829b;
-                m9Var.h0(false);
-                if (m9Var.v) {
-                    a02 = org.telegram.ui.Components.yc.X();
-                } else {
-                    a02 = org.telegram.ui.Components.yc.a0(m9Var);
-                }
-                org.telegram.ui.Components.rc I = a02.I(R.raw.contact_check, AndroidUtilities.replaceTags(LocaleController.getString(R.string.GroupCallTabWasHiddenTitle)), LocaleController.getString(R.string.UndoNoCaps), 5000, true, new n8(m9Var, 3));
-                I.f30427j = 5000;
-                I.j();
-                return;
-            case 1:
-                this.f38829b.j0(true);
-                return;
-            case 2:
-                this.f38829b.h0(false);
-                return;
-            case 3:
-                this.f38829b.h0(true);
+                final j9 j9Var = this.f40097b;
+                final org.telegram.ui.ActionBar.b2 b2Var = this.f40098c;
+                final HashSet hashSet = this.d;
+                final TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage = this.f40099e;
+                final boolean z10 = this.f40100f;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r8) {
+                            case 0:
+                                j9.V(j9Var, b2Var, tLObject, hashSet, tL_inputGroupCallInviteMessage, z10, tL_error);
+                                return;
+                            default:
+                                j9.Y(j9Var, b2Var, tLObject, hashSet, tL_inputGroupCallInviteMessage, z10, tL_error);
+                                return;
+                        }
+                    }
+                });
                 return;
             default:
-                this.f38829b.c0();
+                final j9 j9Var2 = this.f40097b;
+                final org.telegram.ui.ActionBar.b2 b2Var2 = this.f40098c;
+                final HashSet hashSet2 = this.d;
+                final TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage2 = this.f40099e;
+                final boolean z11 = this.f40100f;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r8) {
+                            case 0:
+                                j9.V(j9Var2, b2Var2, tLObject, hashSet2, tL_inputGroupCallInviteMessage2, z11, tL_error);
+                                return;
+                            default:
+                                j9.Y(j9Var2, b2Var2, tLObject, hashSet2, tL_inputGroupCallInviteMessage2, z11, tL_error);
+                                return;
+                        }
+                    }
+                });
                 return;
         }
     }

@@ -1,26 +1,81 @@
 package ai;
 
-import android.graphics.drawable.Drawable;
+import android.os.Trace;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-public final class aa extends ImageReceiver {
-    public final Runnable[] f584a;
-    public final da f585b;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.f30;
+import org.telegram.ui.LaunchActivity;
+public final class aa implements Runnable {
+    public final int f653a;
 
-    public aa(Runnable[] runnableArr, da daVar) {
-        this.f584a = runnableArr;
-        this.f585b = daVar;
+    public aa(int i10) {
+        this.f653a = i10;
     }
 
     @Override
-    public final boolean setImageBitmapByKey(Drawable drawable, String str, int i10, boolean z10, int i11) {
-        boolean imageBitmapByKey = super.setImageBitmapByKey(drawable, str, i10, z10, i11);
-        Runnable runnable = this.f584a[0];
-        if (runnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-            ((a1.e) this.f585b.d).run();
+    public final void run() {
+        boolean z10 = true;
+        switch (this.f653a) {
+            case 0:
+                Math.abs(Utilities.random.nextInt() % 3);
+                f30[] f30VarArr = ja.f1195a;
+                NotificationCenter.getInstance(UserConfig.selectedAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, 0);
+                AndroidUtilities.runOnUIThread(ja.f1207o, 1000L);
+                LaunchActivity.R().getFragmentView();
+                return;
+            case 1:
+                try {
+                    int i10 = n0.g.f16464a;
+                    Trace.beginSection("EmojiCompat.EmojiCompatInitializer.run");
+                    if (androidx.emoji2.text.l.f2604j == null) {
+                        z10 = false;
+                    }
+                    if (z10) {
+                        androidx.emoji2.text.l.a().c();
+                    }
+                    Trace.endSection();
+                    return;
+                } catch (Throwable th2) {
+                    int i11 = n0.g.f16464a;
+                    Trace.endSection();
+                    throw th2;
+                }
+            case 2:
+                return;
+            case 3:
+                org.telegram.ui.ActionBar.i6.f20900j = false;
+                org.telegram.ui.ActionBar.i6.l(false);
+                return;
+            case 4:
+                org.telegram.ui.ActionBar.i6.f20918k = false;
+                org.telegram.ui.ActionBar.i6.l(true);
+                return;
+            case 5:
+                return;
+            case 6:
+                org.telegram.ui.Components.voip.m2 m2Var = org.telegram.ui.Components.voip.m2.V;
+                if (m2Var != null) {
+                    AndroidUtilities.cancelRunOnUIThread(m2Var.f32090b.f32050f.N);
+                    return;
+                }
+                return;
+            default:
+                return;
         }
-        AndroidUtilities.runOnUIThread(new a3.d(this, 16));
-        return imageBitmapByKey;
+    }
+
+    public aa(org.telegram.ui.u2 u2Var) {
+        this.f653a = 5;
+    }
+
+    private final void a() {
+    }
+
+    private final void b() {
+    }
+
+    private final void c() {
     }
 }

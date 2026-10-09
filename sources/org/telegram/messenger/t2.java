@@ -11,23 +11,23 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.b80;
-import org.telegram.ui.p11;
+import org.telegram.ui.Components.p80;
+import org.telegram.ui.v11;
 public final class t2 implements Runnable {
-    public final int f19200a;
-    public final long f19201b;
-    public final long f19202c;
+    public final int f19201a;
+    public final long f19202b;
+    public final long f19203c;
     public final Object d;
-    public final Object f19203e;
-    public final Object f19204f;
+    public final Object f19204e;
+    public final Object f19205f;
 
     public t2(long j3, long j10, Runnable runnable, ArrayList arrayList, TopicsController topicsController) {
-        this.f19200a = 6;
+        this.f19201a = 6;
         this.d = topicsController;
-        this.f19201b = j3;
-        this.f19203e = arrayList;
-        this.f19202c = j10;
-        this.f19204f = runnable;
+        this.f19202b = j3;
+        this.f19204e = arrayList;
+        this.f19203c = j10;
+        this.f19205f = runnable;
     }
 
     @Override
@@ -36,61 +36,60 @@ public final class t2 implements Runnable {
         ?? tL_inputStorePaymentStarsGiveaway;
         int i10;
         int i11;
-        int i12 = this.f19200a;
-        Object obj = this.f19204f;
-        Object obj2 = this.f19203e;
+        int i12 = this.f19201a;
+        Object obj = this.f19205f;
+        Object obj2 = this.f19204e;
         Object obj3 = this.d;
         switch (i12) {
             case 0:
-                ((FileLoadOperation) obj3).lambda$getDownloadedLengthFromOffset$4((long[]) obj2, this.f19201b, this.f19202c, (CountDownLatch) obj);
+                ((FileLoadOperation) obj3).lambda$getDownloadedLengthFromOffset$5((long[]) obj2, this.f19202b, this.f19203c, (CountDownLatch) obj);
                 return;
             case 1:
-                long j3 = this.f19202c;
-                ((GiftAuctionController) obj3).lambda$sendBid$6((Utilities.Callback2) obj2, this.f19201b, (xh.l) obj, j3);
+                ((GiftAuctionController) obj3).lambda$sendBid$6((Utilities.Callback2) obj2, this.f19202b, (xh.n) obj, this.f19203c);
                 return;
             case 2:
-                ((MediaController) obj3).lambda$trimCurrentRecording$26((File) obj2, this.f19201b, this.f19202c, (Runnable) obj);
+                ((MediaController) obj3).lambda$trimCurrentRecording$26((File) obj2, this.f19202b, this.f19203c, (Runnable) obj);
                 return;
             case 3:
-                ((MessagesStorage) obj3).lambda$getMessage$142(this.f19201b, this.f19202c, (AtomicReference) obj2, (CountDownLatch) obj);
+                ((MessagesStorage) obj3).lambda$getMessage$142(this.f19202b, this.f19203c, (AtomicReference) obj2, (CountDownLatch) obj);
                 return;
             case 4:
-                ((MessagesStorage) obj3).lambda$updateDialogsWithDeletedMessages$228(this.f19201b, this.f19202c, (ArrayList) obj2, (ArrayList) obj);
+                ((MessagesStorage) obj3).lambda$updateDialogsWithDeletedMessages$228(this.f19202b, this.f19203c, (ArrayList) obj2, (ArrayList) obj);
                 return;
             case 5:
-                ((TopicsController) obj3).lambda$getTopicRepliesCount$29((TLObject) obj2, (TLRPC.TL_forumTopic) obj, this.f19201b, this.f19202c);
+                ((TopicsController) obj3).lambda$getTopicRepliesCount$29((TLObject) obj2, (TLRPC.TL_forumTopic) obj, this.f19202b, this.f19203c);
                 return;
             case 6:
-                ((TopicsController) obj3).lambda$loadTopic$27(this.f19201b, (ArrayList) obj2, this.f19202c, (Runnable) obj);
+                ((TopicsController) obj3).lambda$loadTopic$27(this.f19202b, (ArrayList) obj2, this.f19203c, (Runnable) obj);
                 return;
             case 7:
-                ((b80) obj3).u();
+                ((p80) obj3).u();
                 Bundle bundle = new Bundle();
-                bundle.putLong("dialog_id", this.f19201b);
-                bundle.putLong("topic_id", this.f19202c);
-                ((org.telegram.ui.ActionBar.n2) obj2).presentFragment(new p11(bundle, (org.telegram.ui.ActionBar.d6) obj));
+                bundle.putLong("dialog_id", this.f19202b);
+                bundle.putLong("topic_id", this.f19203c);
+                ((org.telegram.ui.ActionBar.n2) obj2).presentFragment(new v11(bundle, (org.telegram.ui.ActionBar.e6) obj));
                 return;
             default:
                 tg.a0 a0Var = (tg.a0) obj3;
                 TL_stories.PrepaidGiveaway prepaidGiveaway = (TL_stories.PrepaidGiveaway) obj2;
                 TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway = (TL_stories.TL_prepaidStarsGiveaway) obj;
                 int l4 = tg.s.l(a0Var.m0);
-                int i13 = a0Var.f46974j0;
-                int i14 = vg.u.f48345s;
+                int i13 = a0Var.f48273j0;
+                int i14 = vg.u.v;
                 if (i13 == 1) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                a0Var.f46980q0.b(true);
-                ArrayList arrayList = a0Var.f46967c0;
-                ArrayList arrayList2 = a0Var.f46969e0;
-                TLRPC.Chat chat = a0Var.f46966b0;
-                boolean z11 = a0Var.f46987x0;
-                boolean z12 = a0Var.f46986w0;
+                a0Var.f48279q0.b(true);
+                ArrayList arrayList = a0Var.f48266c0;
+                ArrayList arrayList2 = a0Var.f48268e0;
+                TLRPC.Chat chat = a0Var.f48265b0;
+                boolean z11 = a0Var.f48286x0;
+                boolean z12 = a0Var.f48285w0;
                 int i15 = prepaidGiveaway.quantity;
-                String str = a0Var.f46985v0;
-                tg.y yVar = new tg.y(a0Var, tL_prepaidStarsGiveaway, this.f19201b, this.f19202c, prepaidGiveaway);
+                String str = a0Var.f48284v0;
+                tg.y yVar = new tg.y(a0Var, tL_prepaidStarsGiveaway, this.f19202b, this.f19203c, prepaidGiveaway);
                 tg.v vVar = new tg.v(a0Var, 6);
                 MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
                 ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
@@ -107,7 +106,7 @@ public final class t2 implements Runnable {
                     }
                     tL_inputStorePaymentStarsGiveaway.random_id = System.currentTimeMillis();
                     tL_inputStorePaymentStarsGiveaway.additional_peers = new ArrayList<>();
-                    tL_inputStorePaymentStarsGiveaway.boost_peer = messagesController.getInputPeer(-chat.f20047id);
+                    tL_inputStorePaymentStarsGiveaway.boost_peer = messagesController.getInputPeer(-chat.f20038id);
                     tL_inputStorePaymentStarsGiveaway.currency = "";
                     int size = arrayList2.size();
                     int i17 = 0;
@@ -124,7 +123,7 @@ public final class t2 implements Runnable {
                         TLObject tLObject = (TLObject) obj5;
                         if (tLObject instanceof TLRPC.Chat) {
                             i11 = size2;
-                            tL_inputStorePaymentStarsGiveaway.additional_peers.add(messagesController.getInputPeer(-((TLRPC.Chat) tLObject).f20047id));
+                            tL_inputStorePaymentStarsGiveaway.additional_peers.add(messagesController.getInputPeer(-((TLRPC.Chat) tLObject).f20038id));
                         } else {
                             i11 = size2;
                         }
@@ -143,7 +142,7 @@ public final class t2 implements Runnable {
                     }
                     tL_inputStorePaymentStarsGiveaway.random_id = System.currentTimeMillis();
                     tL_inputStorePaymentStarsGiveaway.additional_peers = new ArrayList<>();
-                    tL_inputStorePaymentStarsGiveaway.boost_peer = messagesController.getInputPeer(-chat.f20047id);
+                    tL_inputStorePaymentStarsGiveaway.boost_peer = messagesController.getInputPeer(-chat.f20038id);
                     tL_inputStorePaymentStarsGiveaway.currency = "";
                     tL_inputStorePaymentStarsGiveaway.stars = ((TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway).stars;
                     tL_inputStorePaymentStarsGiveaway.users = prepaidGiveaway.quantity;
@@ -162,7 +161,7 @@ public final class t2 implements Runnable {
                         TLObject tLObject2 = (TLObject) obj7;
                         if (tLObject2 instanceof TLRPC.Chat) {
                             i10 = size4;
-                            tL_inputStorePaymentStarsGiveaway.additional_peers.add(messagesController.getInputPeer(-((TLRPC.Chat) tLObject2).f20047id));
+                            tL_inputStorePaymentStarsGiveaway.additional_peers.add(messagesController.getInputPeer(-((TLRPC.Chat) tLObject2).f20038id));
                         } else {
                             i10 = size4;
                         }
@@ -172,47 +171,47 @@ public final class t2 implements Runnable {
                     return;
                 }
                 TLRPC.TL_payments_launchPrepaidGiveaway tL_payments_launchPrepaidGiveaway = new TLRPC.TL_payments_launchPrepaidGiveaway();
-                tL_payments_launchPrepaidGiveaway.giveaway_id = prepaidGiveaway.f20283id;
-                tL_payments_launchPrepaidGiveaway.peer = messagesController.getInputPeer(-chat.f20047id);
+                tL_payments_launchPrepaidGiveaway.giveaway_id = prepaidGiveaway.f20274id;
+                tL_payments_launchPrepaidGiveaway.peer = messagesController.getInputPeer(-chat.f20038id);
                 tL_payments_launchPrepaidGiveaway.purpose = tL_inputStorePaymentStarsGiveaway;
-                connectionsManager.sendRequest(tL_payments_launchPrepaidGiveaway, new ai.s5(vVar, messagesController, yVar, 18));
+                connectionsManager.sendRequest(tL_payments_launchPrepaidGiveaway, new ai.t5(vVar, messagesController, yVar, 18));
                 return;
         }
     }
 
     public t2(Object obj, long j3, long j10, Object obj2, Object obj3, int i10) {
-        this.f19200a = i10;
+        this.f19201a = i10;
         this.d = obj;
-        this.f19201b = j3;
-        this.f19202c = j10;
-        this.f19203e = obj2;
-        this.f19204f = obj3;
+        this.f19202b = j3;
+        this.f19203c = j10;
+        this.f19204e = obj2;
+        this.f19205f = obj3;
     }
 
     public t2(Object obj, Serializable serializable, long j3, long j10, Object obj2, int i10) {
-        this.f19200a = i10;
+        this.f19201a = i10;
         this.d = obj;
-        this.f19203e = serializable;
-        this.f19201b = j3;
-        this.f19202c = j10;
-        this.f19204f = obj2;
+        this.f19204e = serializable;
+        this.f19202b = j3;
+        this.f19203c = j10;
+        this.f19205f = obj2;
     }
 
     public t2(Object obj, TLObject tLObject, TLObject tLObject2, long j3, long j10, int i10) {
-        this.f19200a = i10;
+        this.f19201a = i10;
         this.d = obj;
-        this.f19203e = tLObject;
-        this.f19204f = tLObject2;
-        this.f19201b = j3;
-        this.f19202c = j10;
+        this.f19204e = tLObject;
+        this.f19205f = tLObject2;
+        this.f19202b = j3;
+        this.f19203c = j10;
     }
 
-    public t2(GiftAuctionController giftAuctionController, Utilities.Callback2 callback2, long j3, xh.l lVar, long j10) {
-        this.f19200a = 1;
+    public t2(GiftAuctionController giftAuctionController, Utilities.Callback2 callback2, long j3, xh.n nVar, long j10) {
+        this.f19201a = 1;
         this.d = giftAuctionController;
-        this.f19203e = callback2;
-        this.f19201b = j3;
-        this.f19204f = lVar;
-        this.f19202c = j10;
+        this.f19204e = callback2;
+        this.f19202b = j3;
+        this.f19205f = nVar;
+        this.f19203c = j10;
     }
 }

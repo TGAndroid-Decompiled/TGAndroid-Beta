@@ -1,146 +1,144 @@
 package org.telegram.ui.Components;
 
-import android.util.SparseIntArray;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-public final class m00 extends s4.v {
-    public final aq d = new aq(this, 17);
-    public final n00 f28560e;
+import android.graphics.PointF;
+import java.nio.ByteBuffer;
+import org.telegram.messenger.MediaController;
+public final class m00 implements o00 {
+    public final MediaController.SavedFilterState f28638a;
 
-    public m00(n00 n00Var) {
-        this.f28560e = n00Var;
+    public m00(MediaController.SavedFilterState savedFilterState) {
+        this.f28638a = savedFilterState;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, s4.c1 c1Var) {
-        super.a(recyclerView, c1Var);
-        View view = c1Var.f46538a;
-        view.setPressed(false);
-        view.setBackground(null);
-        view.setTag(R.id.dragging, null);
+    public final ByteBuffer a() {
+        MediaController.SavedFilterState savedFilterState = this.f28638a;
+        savedFilterState.curvesToolValue.a();
+        return savedFilterState.curvesToolValue.f26694e;
     }
 
     @Override
-    public final int e(RecyclerView recyclerView, s4.c1 c1Var) {
-        if (MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked()) {
-            n00 n00Var = this.f28560e;
-            if (!n00Var.f28891n || (c1Var.b() == 0 && ((j00) n00Var.h.get(0)).f27640e && !UserConfig.getInstance(UserConfig.selectedAccount).isPremium())) {
-                return s4.v.l(0, 0);
-            }
+    public final boolean b() {
+        return false;
+    }
+
+    @Override
+    public final boolean c() {
+        return !this.f28638a.curvesToolValue.b();
+    }
+
+    @Override
+    public final float getBlurAngle() {
+        return this.f28638a.blurAngle;
+    }
+
+    @Override
+    public final float getBlurExcludeBlurSize() {
+        return this.f28638a.blurExcludeBlurSize;
+    }
+
+    @Override
+    public final PointF getBlurExcludePoint() {
+        return this.f28638a.blurExcludePoint;
+    }
+
+    @Override
+    public final float getBlurExcludeSize() {
+        return this.f28638a.blurExcludeSize;
+    }
+
+    @Override
+    public final int getBlurType() {
+        return this.f28638a.blurType;
+    }
+
+    @Override
+    public final float getContrastValue() {
+        return a1.g.e(this.f28638a.contrastValue, 100.0f, 0.3f, 1.0f);
+    }
+
+    @Override
+    public final float getEnhanceValue() {
+        return this.f28638a.enhanceValue / 100.0f;
+    }
+
+    @Override
+    public final float getExposureValue() {
+        return this.f28638a.exposureValue / 100.0f;
+    }
+
+    @Override
+    public final float getFadeValue() {
+        return this.f28638a.fadeValue / 100.0f;
+    }
+
+    @Override
+    public final float getGrainValue() {
+        return (this.f28638a.grainValue / 100.0f) * 0.04f;
+    }
+
+    @Override
+    public final float getHighlightsValue() {
+        return com.google.android.gms.internal.vision.e2.x(this.f28638a.highlightsValue, 0.75f, 100.0f, 100.0f);
+    }
+
+    @Override
+    public final float getSaturationValue() {
+        float f7 = this.f28638a.saturationValue / 100.0f;
+        if (f7 > 0.0f) {
+            f7 *= 1.05f;
         }
-        return s4.v.l(12, 0);
+        return f7 + 1.0f;
     }
 
     @Override
-    public final boolean k() {
-        return this.f28560e.f28891n;
+    public final float getShadowsValue() {
+        return com.google.android.gms.internal.vision.e2.x(this.f28638a.shadowsValue, 0.55f, 100.0f, 100.0f);
     }
 
     @Override
-    public final boolean n(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2) {
-        int i10 = 0;
-        if (MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked() && ((c1Var.b() == 0 || c1Var2.b() == 0) && !UserConfig.getInstance(UserConfig.selectedAccount).isPremium())) {
-            return false;
-        }
-        i00 i00Var = this.f28560e.I;
-        int b10 = c1Var.b();
-        int b11 = c1Var2.b();
-        n00 n00Var = i00Var.d;
-        ArrayList arrayList = n00Var.h;
-        SparseIntArray sparseIntArray = n00Var.f28889k0;
-        int size = arrayList.size();
-        if (b10 >= 0 && b11 >= 0 && b10 < size && b11 < size) {
-            ArrayList<MessagesController.DialogFilter> dialogFilters = MessagesController.getInstance(UserConfig.selectedAccount).getDialogFilters();
-            MessagesController.DialogFilter dialogFilter = dialogFilters.get(b10);
-            MessagesController.DialogFilter dialogFilter2 = dialogFilters.get(b11);
-            int i11 = dialogFilter.order;
-            dialogFilter.order = dialogFilter2.order;
-            dialogFilter2.order = i11;
-            dialogFilters.set(b10, dialogFilter2);
-            dialogFilters.set(b11, dialogFilter);
-            j00 j00Var = (j00) arrayList.get(b10);
-            j00 j00Var2 = (j00) arrayList.get(b11);
-            int i12 = j00Var.f27637a;
-            j00Var.f27637a = j00Var2.f27637a;
-            j00Var2.f27637a = i12;
-            int i13 = sparseIntArray.get(b10);
-            sparseIntArray.put(b10, sparseIntArray.get(b11));
-            sparseIntArray.put(b11, i13);
-            h00 h00Var = n00Var.J;
-            int i14 = j00Var2.f27637a;
-            int i15 = j00Var.f27637a;
-            org.telegram.ui.ly lyVar = (org.telegram.ui.ly) h00Var;
-            while (true) {
-                org.telegram.ui.ty[] tyVarArr = lyVar.f38419b.f41435e0;
-                if (i10 >= tyVarArr.length) {
-                    break;
-                }
-                org.telegram.ui.ty tyVar = tyVarArr[i10];
-                int i16 = tyVar.h;
-                if (i16 == i14) {
-                    tyVar.h = i15;
-                } else if (i16 == i15) {
-                    tyVar.h = i14;
-                }
-                i10++;
-            }
-            int i17 = n00Var.K;
-            if (i17 == b10) {
-                n00Var.K = b11;
-                n00Var.L = j00Var.f27637a;
-            } else if (i17 == b11) {
-                n00Var.K = b10;
-                n00Var.L = j00Var2.f27637a;
-            }
-            int i18 = n00Var.f28895q0;
-            if (i18 == b10) {
-                n00Var.f28895q0 = b11;
-                n00Var.f28897r0 = j00Var.f27637a;
-            } else if (i18 == b11) {
-                n00Var.f28895q0 = b10;
-                n00Var.f28897r0 = j00Var2.f27637a;
-            }
-            arrayList.set(b10, j00Var2);
-            arrayList.set(b11, j00Var);
-            n00Var.j();
-            n00Var.f28907y = true;
-            n00Var.F.setItemAnimator(n00Var.f28899s0);
-            i00Var.p(b10, b11);
-        }
-        return true;
+    public final float getSharpenValue() {
+        return a1.g.e(this.f28638a.sharpenValue, 100.0f, 0.6f, 0.11f);
     }
 
     @Override
-    public final void p(s4.c1 c1Var, int i10) {
-        Boolean bool;
-        if (i10 != 0) {
-            n00 n00Var = this.f28560e;
-            n00Var.F.J0(false);
-            c1Var.f46538a.setPressed(true);
-            c1Var.f46538a.setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(n00Var.f28877b0, n00Var.f28874a));
-        } else {
-            aq aqVar = this.d;
-            AndroidUtilities.cancelRunOnUIThread(aqVar);
-            AndroidUtilities.runOnUIThread(aqVar, 320L);
-        }
-        if (c1Var != null) {
-            View view = c1Var.f46538a;
-            int i11 = R.id.dragging;
-            if (i10 == 2) {
-                bool = Boolean.TRUE;
-            } else {
-                bool = null;
-            }
-            view.setTag(i11, bool);
-        }
+    public final float getSoftenSkinValue() {
+        return this.f28638a.softenSkinValue / 100.0f;
     }
 
     @Override
-    public final void q(s4.c1 c1Var) {
+    public final int getTintHighlightsColor() {
+        return this.f28638a.tintHighlightsColor;
+    }
+
+    @Override
+    public final float getTintHighlightsIntensityValue() {
+        if (this.f28638a.tintHighlightsColor == 0) {
+            return 0.0f;
+        }
+        return 0.5f;
+    }
+
+    @Override
+    public final int getTintShadowsColor() {
+        return this.f28638a.tintShadowsColor;
+    }
+
+    @Override
+    public final float getTintShadowsIntensityValue() {
+        if (this.f28638a.tintShadowsColor == 0) {
+            return 0.0f;
+        }
+        return 0.5f;
+    }
+
+    @Override
+    public final float getVignetteValue() {
+        return this.f28638a.vignetteValue / 100.0f;
+    }
+
+    @Override
+    public final float getWarmthValue() {
+        return this.f28638a.warmthValue / 100.0f;
     }
 }

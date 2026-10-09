@@ -6,21 +6,21 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 public final class l9 extends e9.l1 {
-    public final e9.d f52856b;
+    public final e9.d f53960b;
 
     public l9(e9.d dVar) {
         super(2);
-        this.f52856b = dVar;
+        this.f53960b = dVar;
     }
 
     @Override
     public final void clear() {
-        this.f52856b.clear();
+        this.f53960b.clear();
     }
 
     @Override
     public final boolean contains(Object obj) {
-        Set entrySet = this.f52856b.f8731b.entrySet();
+        Set entrySet = this.f53960b.f8725b.entrySet();
         entrySet.getClass();
         try {
             return entrySet.contains(obj);
@@ -31,12 +31,12 @@ public final class l9 extends e9.l1 {
 
     @Override
     public final boolean isEmpty() {
-        return this.f52856b.isEmpty();
+        return this.f53960b.isEmpty();
     }
 
     @Override
     public final Iterator iterator() {
-        return new e9.c(this.f52856b, (char) 0);
+        return new e9.c(this.f53960b, (char) 0);
     }
 
     @Override
@@ -48,7 +48,7 @@ public final class l9 extends e9.l1 {
         Map.Entry entry = (Map.Entry) obj;
         entry.getClass();
         Object key = entry.getKey();
-        d dVar = ((lg) this.f52856b.f8733e).f52857c;
+        d dVar = ((lg) this.f53960b.f8727e).f53961c;
         dVar.getClass();
         try {
             obj2 = dVar.remove(key);
@@ -68,7 +68,7 @@ public final class l9 extends e9.l1 {
     public final boolean removeAll(Collection collection) {
         try {
             if (collection != null) {
-                return w7.n9.a(this, collection);
+                return w7.h9.a(this, collection);
             }
             throw null;
         } catch (UnsupportedOperationException unused) {
@@ -107,11 +107,11 @@ public final class l9 extends e9.l1 {
                     hashSet.add(((Map.Entry) obj).getKey());
                 }
             }
-            lg lgVar = (lg) this.f52856b.f8733e;
-            ed edVar = lgVar.f52847a;
+            lg lgVar = (lg) this.f53960b.f8727e;
+            ed edVar = lgVar.f53951a;
             if (edVar == null) {
-                edVar = new ed(lgVar, lgVar.f52857c);
-                lgVar.f52847a = edVar;
+                edVar = new ed(lgVar, lgVar.f53961c);
+                lgVar.f53951a = edVar;
             }
             return edVar.retainAll(hashSet);
         }
@@ -119,6 +119,6 @@ public final class l9 extends e9.l1 {
 
     @Override
     public final int size() {
-        return this.f52856b.f8731b.size();
+        return this.f53960b.f8725b.size();
     }
 }

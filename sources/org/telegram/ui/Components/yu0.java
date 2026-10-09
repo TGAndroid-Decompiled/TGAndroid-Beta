@@ -1,81 +1,69 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
+import android.content.Context;
+import android.graphics.drawable.GradientDrawable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.view.View;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SavedMessagesController;
-public final class yu0 extends s4.v {
-    public final av0 d;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+public final class yu0 extends FrameLayout {
+    public final org.telegram.ui.Cells.i6 f33354a;
+    public final View f33355b;
 
-    public yu0(av0 av0Var) {
-        this.d = av0Var;
+    public yu0(int i10, Context context, boolean z10, org.telegram.ui.ActionBar.e6 e6Var, or0 or0Var) {
+        super(context);
+        int i11;
+        int i12;
+        org.telegram.ui.Cells.i6 i6Var = new org.telegram.ui.Cells.i6(context, e6Var);
+        this.f33354a = i6Var;
+        i6Var.setBackground(org.telegram.ui.ActionBar.i6.g0(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20888i6, e6Var), 2, -1));
+        addView(i6Var, w7.x5.d(-2.0f, -1));
+        View view = new View(context);
+        this.f33355b = view;
+        GradientDrawable.Orientation orientation = GradientDrawable.Orientation.TOP_BOTTOM;
+        int i13 = org.telegram.ui.ActionBar.i6.f20797d6;
+        view.setBackground(new GradientDrawable(orientation, new int[]{org.telegram.ui.ActionBar.i6.m1(0.4f, org.telegram.ui.ActionBar.i6.w0(i13, e6Var)), org.telegram.ui.ActionBar.i6.w0(i13, e6Var)}));
+        addView(view, w7.x5.d(60.0f, -1));
+        ci.d dVar = new ci.d(context, e6Var, true);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        if (z10) {
+            i11 = R.string.MoreSimilarBotsButton;
+        } else {
+            i11 = R.string.MoreSimilarButton;
+        }
+        spannableStringBuilder.append((CharSequence) LocaleController.getString(i11));
+        spannableStringBuilder.append((CharSequence) " ");
+        SpannableString spannableString = new SpannableString("l");
+        spannableString.setSpan(new er(R.drawable.msg_mini_lock2, 0), 0, 1, 33);
+        spannableStringBuilder.append((CharSequence) spannableString);
+        dVar.g(spannableStringBuilder, false, true);
+        addView(dVar, w7.x5.a(48.0f, 14.0f, 38.0f, 14.0f, 0.0f, -1, 48));
+        dVar.setOnClickListener(new b90(or0Var, 16));
+        ea0 ea0Var = new ea0(context, e6Var);
+        ea0Var.setTextSize(1, 13.0f);
+        ea0Var.setTextAlignment(4);
+        ea0Var.setGravity(17);
+        ea0Var.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.G6, e6Var));
+        ea0Var.setLinkTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20982n6, e6Var));
+        ea0Var.setLineSpacing(AndroidUtilities.dp(3.0f), 1.0f);
+        if (z10) {
+            i12 = R.string.MoreSimilarBotsText;
+        } else {
+            i12 = R.string.MoreSimilarText;
+        }
+        SpannableStringBuilder premiumText = AndroidUtilities.premiumText(LocaleController.getString(i12), new or0(or0Var, 4));
+        SpannableString spannableString2 = new SpannableString("" + MessagesController.getInstance(i10).recommendedChannelsLimitPremium);
+        spannableString2.setSpan(new m61(AndroidUtilities.bold()), 0, spannableString2.length(), 33);
+        ea0Var.setText(AndroidUtilities.replaceCharSequence("%s", premiumText, spannableString2));
+        addView(ea0Var, w7.x5.a(-2.0f, 24.0f, 96.0f, 24.0f, 12.0f, -1, 49));
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, s4.c1 c1Var) {
-        super.a(recyclerView, c1Var);
-        c1Var.f46538a.setPressed(false);
-    }
-
-    @Override
-    public final int e(RecyclerView recyclerView, s4.c1 c1Var) {
-        SavedMessagesController.SavedDialog r10;
-        int l4 = s4.v.l(0, 0);
-        qv0 qv0Var = this.d.f24754x;
-        if (qv0Var.C1 && recyclerView.getAdapter() != qv0Var.S && (r10 = r(c1Var)) != null && r10.pinned) {
-            return s4.v.l(3, 0);
-        }
-        return l4;
-    }
-
-    @Override
-    public final boolean n(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2) {
-        av0 av0Var = this.d;
-        ArrayList arrayList = av0Var.f24749f;
-        qv0 qv0Var = av0Var.f24754x;
-        if (qv0Var.C1 && recyclerView.getAdapter() != qv0Var.S) {
-            SavedMessagesController.SavedDialog r10 = r(c1Var);
-            SavedMessagesController.SavedDialog r11 = r(c1Var2);
-            if (r10 != null && r11 != null && r10.pinned && r11.pinned) {
-                int b10 = c1Var.b();
-                int b11 = c1Var2.b();
-                arrayList.remove(b10);
-                arrayList.add(b11, r10);
-                av0Var.p(b10, b11);
-                av0Var.h = true;
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final void p(s4.c1 c1Var, int i10) {
-        iu0 iu0Var;
-        av0 av0Var = this.d;
-        gq0 gq0Var = av0Var.f24750n;
-        if (c1Var != null && (iu0Var = av0Var.f24752s) != null) {
-            iu0Var.d1(false);
-        }
-        if (i10 == 0) {
-            AndroidUtilities.cancelRunOnUIThread(gq0Var);
-            AndroidUtilities.runOnUIThread(gq0Var, 300L);
-        }
-    }
-
-    public final SavedMessagesController.SavedDialog r(s4.c1 c1Var) {
-        int b10;
-        if (c1Var != null && (b10 = c1Var.b()) >= 0) {
-            av0 av0Var = this.d;
-            if (b10 < av0Var.f24749f.size()) {
-                return (SavedMessagesController.SavedDialog) av0Var.f24749f.get(b10);
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public final void q(s4.c1 c1Var) {
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(145.0f), 1073741824));
     }
 }

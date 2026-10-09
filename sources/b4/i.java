@@ -16,15 +16,15 @@ import java.util.List;
 import z3.l;
 import z3.m;
 public final class i implements m {
-    public static final byte[] f3668n = {0, 7, 8, 15};
-    public static final byte[] f3669r = {0, 119, -120, -1};
-    public static final byte[] f3670s = {0, 17, 34, 51, 68, 85, 102, 119, -120, -103, -86, -69, -52, -35, -18, -1};
-    public final Paint f3671a;
-    public final Paint f3672b;
-    public final Canvas f3673c;
+    public static final byte[] f3747n = {0, 7, 8, 15};
+    public static final byte[] f3748r = {0, 119, -120, -1};
+    public static final byte[] f3749s = {0, 17, 34, 51, 68, 85, 102, 119, -120, -103, -86, -69, -52, -35, -18, -1};
+    public final Paint f3750a;
+    public final Paint f3751b;
+    public final Canvas f3752c;
     public final b d;
-    public final a f3674e;
-    public final h f3675f;
+    public final a f3753e;
+    public final h f3754f;
     public Bitmap h;
 
     public i(List list) {
@@ -32,25 +32,25 @@ public final class i implements m {
         int D = vVar.D();
         int D2 = vVar.D();
         Paint paint = new Paint();
-        this.f3671a = paint;
+        this.f3750a = paint;
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
         paint.setPathEffect(null);
         Paint paint2 = new Paint();
-        this.f3672b = paint2;
+        this.f3751b = paint2;
         paint2.setStyle(Paint.Style.FILL);
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OVER));
         paint2.setPathEffect(null);
-        this.f3673c = new Canvas();
+        this.f3752c = new Canvas();
         this.d = new b(719, 575, 0, 719, 0, 575);
-        this.f3674e = new a(0, new int[]{0, -1, -16777216, -8421505}, b(), c());
-        this.f3675f = new h(D, D2);
+        this.f3753e = new a(0, new int[]{0, -1, -16777216, -8421505}, b(), c());
+        this.f3754f = new h(D, D2);
     }
 
-    public static byte[] a(int i10, int i11, a4.h hVar) {
+    public static byte[] a(int i10, int i11, a4.g gVar) {
         byte[] bArr = new byte[i10];
         for (int i12 = 0; i12 < i10; i12++) {
-            bArr[i12] = (byte) hVar.i(i11);
+            bArr[i12] = (byte) gVar.i(i11);
         }
         return bArr;
     }
@@ -288,7 +288,7 @@ public final class i implements m {
         throw new UnsupportedOperationException("Method not decompiled: b4.i.e(byte[], int[], int, int, int, android.graphics.Paint, android.graphics.Canvas):void");
     }
 
-    public static a f(a4.h hVar, int i10) {
+    public static a f(a4.g gVar, int i10) {
         int[] iArr;
         int i11;
         int i12;
@@ -296,47 +296,49 @@ public final class i implements m {
         int i14;
         int i15;
         int i16 = 8;
-        int i17 = hVar.i(8);
-        hVar.t(8);
+        int i17 = gVar.i(8);
+        gVar.t(8);
         int i18 = 2;
         int i19 = i10 - 2;
+        int i20 = 0;
         int[] iArr2 = {0, -1, -16777216, -8421505};
         int[] b10 = b();
         int[] c10 = c();
         while (i19 > 0) {
-            int i20 = hVar.i(i16);
-            int i21 = hVar.i(i16);
-            if ((i21 & 128) != 0) {
+            int i21 = gVar.i(i16);
+            int i22 = gVar.i(i16);
+            if ((i22 & 128) != 0) {
                 iArr = iArr2;
-            } else if ((i21 & 64) != 0) {
+            } else if ((i22 & 64) != 0) {
                 iArr = b10;
             } else {
                 iArr = c10;
             }
-            if ((i21 & 1) != 0) {
-                i14 = hVar.i(i16);
-                i15 = hVar.i(i16);
-                i11 = hVar.i(i16);
-                i13 = hVar.i(i16);
+            if ((i22 & 1) != 0) {
+                i14 = gVar.i(i16);
+                i15 = gVar.i(i16);
+                i11 = gVar.i(i16);
+                i13 = gVar.i(i16);
                 i12 = i19 - 6;
             } else {
-                int i22 = hVar.i(4) << 4;
-                i11 = hVar.i(4) << 4;
+                int i23 = gVar.i(4) << 4;
+                i11 = gVar.i(4) << 4;
                 i12 = i19 - 4;
-                i13 = hVar.i(i18) << 6;
-                i14 = hVar.i(6) << i18;
-                i15 = i22;
+                i13 = gVar.i(i18) << 6;
+                i14 = gVar.i(6) << i18;
+                i15 = i23;
             }
             if (i14 == 0) {
-                i15 = 0;
-                i11 = 0;
+                i15 = i20;
+                i11 = i15;
                 i13 = 255;
             }
             double d = i14;
             double d10 = i15 - 128;
             double d11 = i11 - 128;
-            iArr[i20] = d((byte) (255 - (i13 & 255)), d0.h((int) ((1.402d * d10) + d), 0, 255), d0.h((int) ((d - (0.34414d * d11)) - (d10 * 0.71414d)), 0, 255), d0.h((int) ((d11 * 1.772d) + d), 0, 255));
+            iArr[i21] = d((byte) (255 - (i13 & 255)), d0.h((int) ((1.402d * d10) + d), 0, 255), d0.h((int) ((d - (0.34414d * d11)) - (d10 * 0.71414d)), 0, 255), d0.h((int) ((d11 * 1.772d) + d), 0, 255));
             i19 = i12;
+            i20 = 0;
             i17 = i17;
             c10 = c10;
             i16 = 8;
@@ -345,26 +347,26 @@ public final class i implements m {
         return new a(i17, iArr2, b10, c10);
     }
 
-    public static c g(a4.h hVar) {
+    public static c g(a4.g gVar) {
         byte[] bArr;
-        int i10 = hVar.i(16);
-        hVar.t(4);
-        int i11 = hVar.i(2);
-        boolean h = hVar.h();
-        hVar.t(1);
-        byte[] bArr2 = d0.f8539b;
+        int i10 = gVar.i(16);
+        gVar.t(4);
+        int i11 = gVar.i(2);
+        boolean h = gVar.h();
+        gVar.t(1);
+        byte[] bArr2 = d0.f8533b;
         if (i11 == 1) {
-            hVar.t(hVar.i(8) * 16);
+            gVar.t(gVar.i(8) * 16);
         } else if (i11 == 0) {
-            int i12 = hVar.i(16);
-            int i13 = hVar.i(16);
+            int i12 = gVar.i(16);
+            int i13 = gVar.i(16);
             if (i12 > 0) {
                 bArr2 = new byte[i12];
-                hVar.l(i12, bArr2);
+                gVar.l(i12, bArr2);
             }
             if (i13 > 0) {
                 bArr = new byte[i13];
-                hVar.l(i13, bArr);
+                gVar.l(i13, bArr);
                 return new c(bArr2, bArr, h, i10);
             }
         }
@@ -373,9 +375,18 @@ public final class i implements m {
     }
 
     @Override
-    public final void E(byte[] bArr, int i10, int i11, l lVar, e2.h hVar) {
+    public final int O() {
+        return 2;
+    }
+
+    @Override
+    public final void P(byte[] bArr, int i10, int i11, l lVar, e2.h hVar) {
         h hVar2;
+        boolean z10;
         z3.a aVar;
+        char c10;
+        char c11;
+        char c12;
         int i12;
         ArrayList arrayList;
         int i13;
@@ -393,131 +404,132 @@ public final class i implements m {
         int i19;
         int i20;
         int i21;
-        a4.h hVar4 = new a4.h(bArr, i10 + i11);
-        hVar4.q(i10);
+        a4.g gVar = new a4.g(bArr, i10 + i11);
+        gVar.q(i10);
         while (true) {
-            int b10 = hVar4.b();
-            hVar2 = this.f3675f;
-            if (b10 >= 48 && hVar4.i(8) == 15) {
-                int i22 = hVar4.i(8);
-                int i23 = hVar4.i(16);
-                int i24 = hVar4.i(16);
-                int f7 = hVar4.f() + i24;
-                if (i24 * 8 > hVar4.b()) {
+            int b10 = gVar.b();
+            hVar2 = this.f3754f;
+            z10 = true;
+            if (b10 >= 48 && gVar.i(8) == 15) {
+                int i22 = gVar.i(8);
+                int i23 = gVar.i(16);
+                int i24 = gVar.i(16);
+                int f7 = gVar.f() + i24;
+                if (i24 * 8 > gVar.b()) {
                     e2.a.n("DvbParser", "Data field length exceeds limit");
-                    hVar4.t(hVar4.b());
+                    gVar.t(gVar.b());
                 } else {
                     switch (i22) {
                         case 16:
-                            if (i23 == hVar2.f3661a) {
-                                d dVar = hVar2.f3667i;
-                                hVar4.i(8);
-                                int i25 = hVar4.i(4);
-                                int i26 = hVar4.i(2);
-                                hVar4.t(2);
+                            if (i23 == hVar2.f3740a) {
+                                d dVar = hVar2.f3746i;
+                                gVar.i(8);
+                                int i25 = gVar.i(4);
+                                int i26 = gVar.i(2);
+                                gVar.t(2);
                                 int i27 = i24 - 2;
                                 SparseArray sparseArray = new SparseArray();
                                 while (i27 > 0) {
-                                    int i28 = hVar4.i(8);
-                                    hVar4.t(8);
+                                    int i28 = gVar.i(8);
+                                    gVar.t(8);
                                     i27 -= 6;
-                                    sparseArray.put(i28, new e(hVar4.i(16), hVar4.i(16)));
+                                    sparseArray.put(i28, new e(gVar.i(16), gVar.i(16)));
                                 }
                                 d dVar2 = new d(i25, i26, sparseArray);
                                 if (i26 != 0) {
-                                    hVar2.f3667i = dVar2;
-                                    hVar2.f3663c.clear();
+                                    hVar2.f3746i = dVar2;
+                                    hVar2.f3742c.clear();
                                     hVar2.d.clear();
-                                    hVar2.f3664e.clear();
+                                    hVar2.f3743e.clear();
                                     break;
-                                } else if (dVar != null && dVar.f3646a != i25) {
-                                    hVar2.f3667i = dVar2;
+                                } else if (dVar != null && dVar.f3725a != i25) {
+                                    hVar2.f3746i = dVar2;
                                     break;
                                 }
                             }
                             break;
                         case 17:
-                            d dVar3 = hVar2.f3667i;
-                            SparseArray sparseArray2 = hVar2.f3663c;
-                            if (i23 == hVar2.f3661a && dVar3 != null) {
-                                int i29 = hVar4.i(8);
-                                hVar4.t(4);
-                                boolean h = hVar4.h();
-                                hVar4.t(3);
-                                int i30 = hVar4.i(16);
-                                int i31 = hVar4.i(16);
-                                hVar4.i(3);
-                                int i32 = hVar4.i(3);
-                                hVar4.t(2);
-                                int i33 = hVar4.i(8);
-                                int i34 = hVar4.i(8);
-                                int i35 = hVar4.i(4);
-                                int i36 = hVar4.i(2);
-                                hVar4.t(2);
+                            d dVar3 = hVar2.f3746i;
+                            SparseArray sparseArray2 = hVar2.f3742c;
+                            if (i23 == hVar2.f3740a && dVar3 != null) {
+                                int i29 = gVar.i(8);
+                                gVar.t(4);
+                                boolean h = gVar.h();
+                                gVar.t(3);
+                                int i30 = gVar.i(16);
+                                int i31 = gVar.i(16);
+                                gVar.i(3);
+                                int i32 = gVar.i(3);
+                                gVar.t(2);
+                                int i33 = gVar.i(8);
+                                int i34 = gVar.i(8);
+                                int i35 = gVar.i(4);
+                                int i36 = gVar.i(2);
+                                gVar.t(2);
                                 int i37 = i24 - 10;
                                 SparseArray sparseArray3 = new SparseArray();
                                 while (i37 > 0) {
-                                    int i38 = hVar4.i(16);
-                                    int i39 = hVar4.i(2);
-                                    hVar4.i(2);
-                                    int i40 = hVar4.i(12);
-                                    hVar4.t(4);
-                                    int i41 = hVar4.i(12);
+                                    int i38 = gVar.i(16);
+                                    int i39 = gVar.i(2);
+                                    gVar.i(2);
+                                    int i40 = gVar.i(12);
+                                    gVar.t(4);
+                                    int i41 = gVar.i(12);
                                     int i42 = i37 - 6;
                                     if (i39 != 1 && i39 != 2) {
                                         i37 = i42;
                                     } else {
-                                        hVar4.i(8);
-                                        hVar4.i(8);
+                                        gVar.i(8);
+                                        gVar.i(8);
                                         i37 -= 8;
                                     }
                                     sparseArray3.put(i38, new g(i40, i41));
                                 }
                                 f fVar3 = new f(i29, h, i30, i31, i32, i33, i34, i35, i36, sparseArray3);
-                                if (dVar3.f3647b == 0 && (fVar2 = (f) sparseArray2.get(i29)) != null) {
-                                    SparseArray sparseArray4 = fVar2.f3658j;
+                                if (dVar3.f3726b == 0 && (fVar2 = (f) sparseArray2.get(i29)) != null) {
+                                    SparseArray sparseArray4 = fVar2.f3737j;
                                     for (int i43 = 0; i43 < sparseArray4.size(); i43++) {
-                                        fVar3.f3658j.put(sparseArray4.keyAt(i43), (g) sparseArray4.valueAt(i43));
+                                        fVar3.f3737j.put(sparseArray4.keyAt(i43), (g) sparseArray4.valueAt(i43));
                                     }
                                 }
-                                sparseArray2.put(fVar3.f3651a, fVar3);
+                                sparseArray2.put(fVar3.f3730a, fVar3);
                                 break;
                             }
                             break;
                         case 18:
-                            if (i23 == hVar2.f3661a) {
-                                a f10 = f(hVar4, i24);
-                                hVar2.d.put(f10.f3635a, f10);
+                            if (i23 == hVar2.f3740a) {
+                                a f10 = f(gVar, i24);
+                                hVar2.d.put(f10.f3714a, f10);
                                 break;
-                            } else if (i23 == hVar2.f3662b) {
-                                a f11 = f(hVar4, i24);
-                                hVar2.f3665f.put(f11.f3635a, f11);
+                            } else if (i23 == hVar2.f3741b) {
+                                a f11 = f(gVar, i24);
+                                hVar2.f3744f.put(f11.f3714a, f11);
                                 break;
                             }
                             break;
                         case 19:
-                            if (i23 == hVar2.f3661a) {
-                                c g10 = g(hVar4);
-                                hVar2.f3664e.put(g10.f3643a, g10);
+                            if (i23 == hVar2.f3740a) {
+                                c g10 = g(gVar);
+                                hVar2.f3743e.put(g10.f3722a, g10);
                                 break;
-                            } else if (i23 == hVar2.f3662b) {
-                                c g11 = g(hVar4);
-                                hVar2.f3666g.put(g11.f3643a, g11);
+                            } else if (i23 == hVar2.f3741b) {
+                                c g11 = g(gVar);
+                                hVar2.f3745g.put(g11.f3722a, g11);
                                 break;
                             }
                             break;
                         case 20:
-                            if (i23 == hVar2.f3661a) {
-                                hVar4.t(4);
-                                boolean h10 = hVar4.h();
-                                hVar4.t(3);
-                                int i44 = hVar4.i(16);
-                                int i45 = hVar4.i(16);
+                            if (i23 == hVar2.f3740a) {
+                                gVar.t(4);
+                                boolean h10 = gVar.h();
+                                gVar.t(3);
+                                int i44 = gVar.i(16);
+                                int i45 = gVar.i(16);
                                 if (h10) {
-                                    int i46 = hVar4.i(16);
-                                    i18 = hVar4.i(16);
-                                    i21 = hVar4.i(16);
-                                    i19 = hVar4.i(16);
+                                    int i46 = gVar.i(16);
+                                    i18 = gVar.i(16);
+                                    i21 = gVar.i(16);
+                                    i19 = gVar.i(16);
                                     i20 = i46;
                                 } else {
                                     i18 = i44;
@@ -530,76 +542,77 @@ public final class i implements m {
                             }
                             break;
                     }
-                    hVar4.u(f7 - hVar4.f());
+                    gVar.u(f7 - gVar.f());
                 }
             }
         }
-        d dVar4 = hVar2.f3667i;
+        d dVar4 = hVar2.f3746i;
         if (dVar4 == null) {
-            g0 g0Var = i0.f8758b;
-            aVar = new z3.a(-9223372036854775807L, -9223372036854775807L, a1.f8721e);
+            g0 g0Var = i0.f8752b;
+            aVar = new z3.a(-9223372036854775807L, -9223372036854775807L, a1.f8715e);
         } else {
             b bVar2 = hVar2.h;
             if (bVar2 == null) {
                 bVar2 = this.d;
             }
             Bitmap bitmap = this.h;
-            Canvas canvas = this.f3673c;
-            if (bitmap == null || bVar2.f3638a + 1 != bitmap.getWidth() || bVar2.f3639b + 1 != this.h.getHeight()) {
-                Bitmap createBitmap = Bitmap.createBitmap(bVar2.f3638a + 1, bVar2.f3639b + 1, Bitmap.Config.ARGB_8888);
+            Canvas canvas = this.f3752c;
+            if (bitmap == null || bVar2.f3717a + 1 != bitmap.getWidth() || bVar2.f3718b + 1 != this.h.getHeight()) {
+                Bitmap createBitmap = Bitmap.createBitmap(bVar2.f3717a + 1, bVar2.f3718b + 1, Bitmap.Config.ARGB_8888);
                 this.h = createBitmap;
                 canvas.setBitmap(createBitmap);
             }
             ArrayList arrayList2 = new ArrayList();
-            SparseArray sparseArray5 = (SparseArray) dVar4.f3648c;
+            SparseArray sparseArray5 = (SparseArray) dVar4.f3727c;
             int i47 = 0;
             while (i47 < sparseArray5.size()) {
                 canvas.save();
                 e eVar = (e) sparseArray5.valueAt(i47);
-                f fVar4 = (f) hVar2.f3663c.get(sparseArray5.keyAt(i47));
-                int i48 = eVar.f3649a + bVar2.f3640c;
-                int i49 = eVar.f3650b + bVar2.f3641e;
-                int i50 = fVar4.f3653c;
-                int i51 = fVar4.f3655f;
+                f fVar4 = (f) hVar2.f3742c.get(sparseArray5.keyAt(i47));
+                int i48 = eVar.f3728a + bVar2.f3719c;
+                int i49 = eVar.f3729b + bVar2.f3720e;
+                int i50 = fVar4.f3732c;
+                int i51 = fVar4.f3734f;
                 int i52 = fVar4.d;
+                boolean z11 = z10;
                 int i53 = i48 + i50;
                 int i54 = i49 + i52;
                 SparseArray sparseArray6 = sparseArray5;
-                canvas.clipRect(i48, i49, Math.min(i53, bVar2.d), Math.min(i54, bVar2.f3642f));
+                canvas.clipRect(i48, i49, Math.min(i53, bVar2.d), Math.min(i54, bVar2.f3721f));
                 a aVar2 = (a) hVar2.d.get(i51);
-                if (aVar2 == null && (aVar2 = (a) hVar2.f3665f.get(i51)) == null) {
-                    aVar2 = this.f3674e;
+                if (aVar2 == null && (aVar2 = (a) hVar2.f3744f.get(i51)) == null) {
+                    aVar2 = this.f3753e;
                 }
-                SparseArray sparseArray7 = fVar4.f3658j;
+                SparseArray sparseArray7 = fVar4.f3737j;
                 int i55 = i47;
                 int i56 = 0;
                 while (i56 < sparseArray7.size()) {
                     int keyAt = sparseArray7.keyAt(i56);
                     SparseArray sparseArray8 = sparseArray7;
-                    g gVar = (g) sparseArray7.valueAt(i56);
+                    g gVar2 = (g) sparseArray7.valueAt(i56);
                     int i57 = i49;
-                    c cVar = (c) hVar2.f3664e.get(keyAt);
+                    c cVar = (c) hVar2.f3743e.get(keyAt);
                     if (cVar == null) {
-                        cVar = (c) hVar2.f3666g.get(keyAt);
+                        cVar = (c) hVar2.f3745g.get(keyAt);
                     }
                     c cVar2 = cVar;
                     if (cVar2 != null) {
-                        if (cVar2.f3644b) {
+                        if (cVar2.f3723b) {
                             paint = null;
                         } else {
-                            paint = this.f3671a;
+                            paint = this.f3750a;
                         }
                         int i58 = i48;
-                        int i59 = fVar4.f3654e;
+                        int i59 = fVar4.f3733e;
                         hVar3 = hVar2;
-                        int i60 = i58 + gVar.f3659a;
-                        int i61 = i57 + gVar.f3660b;
+                        int i60 = i58 + gVar2.f3738a;
+                        int i61 = i57 + gVar2.f3739b;
                         if (i59 == 3) {
                             iArr = aVar2.d;
                         } else if (i59 == 2) {
-                            iArr = aVar2.f3637c;
+                            iArr = aVar2.f3716c;
                         } else {
-                            iArr = aVar2.f3636b;
+                            iArr = aVar2.f3715b;
                         }
                         int i62 = i52;
                         Paint paint2 = paint;
@@ -613,7 +626,7 @@ public final class i implements m {
                         fVar = fVar5;
                         i16 = i56;
                         i17 = i62;
-                        e(cVar2.f3645c, iArr2, i59, i60, i61, paint2, canvas);
+                        e(cVar2.f3724c, iArr2, i59, i60, i61, paint2, canvas);
                         e(cVar2.d, iArr2, i59, i60, i61 + 1, paint2, canvas);
                     } else {
                         arrayList = arrayList2;
@@ -639,36 +652,46 @@ public final class i implements m {
                 }
                 b bVar3 = bVar2;
                 ArrayList arrayList3 = arrayList2;
-                h hVar5 = hVar2;
+                h hVar4 = hVar2;
                 int i63 = i49;
                 f fVar6 = fVar4;
                 int i64 = i48;
                 int i65 = i50;
                 int i66 = i52;
-                if (fVar6.f3652b) {
-                    int i67 = fVar6.f3654e;
+                if (fVar6.f3731b) {
+                    int i67 = fVar6.f3733e;
                     if (i67 == 3) {
-                        i12 = aVar2.d[fVar6.f3656g];
-                    } else if (i67 == 2) {
-                        i12 = aVar2.f3637c[fVar6.h];
+                        i12 = aVar2.d[fVar6.f3735g];
+                        c12 = 2;
                     } else {
-                        i12 = aVar2.f3636b[fVar6.f3657i];
+                        c12 = 2;
+                        if (i67 == 2) {
+                            i12 = aVar2.f3716c[fVar6.h];
+                        } else {
+                            i12 = aVar2.f3715b[fVar6.f3736i];
+                        }
                     }
-                    Paint paint3 = this.f3672b;
+                    Paint paint3 = this.f3751b;
                     paint3.setColor(i12);
+                    c10 = c12;
+                    c11 = 3;
                     canvas.drawRect(i64, i63, i53, i54, paint3);
+                } else {
+                    c10 = 2;
+                    c11 = 3;
                 }
                 Bitmap createBitmap2 = Bitmap.createBitmap(this.h, i64, i63, i65, i66);
-                float f12 = bVar3.f3638a;
-                float f13 = bVar3.f3639b;
+                float f12 = bVar3.f3717a;
+                float f13 = bVar3.f3718b;
                 arrayList3.add(new d2.b(null, null, null, createBitmap2, i63 / f13, 0, 0, i64 / f12, 0, Integer.MIN_VALUE, -3.4028235E38f, i65 / f12, i66 / f13, false, -16777216, Integer.MIN_VALUE, 0.0f, 0));
                 canvas.drawColor(0, PorterDuff.Mode.CLEAR);
                 canvas.restore();
                 i47 = i55 + 1;
+                z10 = z11;
                 bVar2 = bVar3;
                 arrayList2 = arrayList3;
+                hVar2 = hVar4;
                 sparseArray5 = sparseArray6;
-                hVar2 = hVar5;
             }
             aVar = new z3.a(-9223372036854775807L, -9223372036854775807L, arrayList2);
         }
@@ -676,24 +699,19 @@ public final class i implements m {
     }
 
     @Override
-    public final z3.d h(int i10, int i11, byte[] bArr) {
-        return sa.e.a(this, bArr, i11);
-    }
-
-    @Override
     public final void reset() {
-        h hVar = this.f3675f;
-        hVar.f3663c.clear();
+        h hVar = this.f3754f;
+        hVar.f3742c.clear();
         hVar.d.clear();
-        hVar.f3664e.clear();
-        hVar.f3665f.clear();
-        hVar.f3666g.clear();
+        hVar.f3743e.clear();
+        hVar.f3744f.clear();
+        hVar.f3745g.clear();
         hVar.h = null;
-        hVar.f3667i = null;
+        hVar.f3746i = null;
     }
 
     @Override
-    public final int y() {
-        return 2;
+    public final z3.d s(int i10, int i11, byte[] bArr) {
+        return sc.v.a(this, bArr, i11);
     }
 }

@@ -1,90 +1,41 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagePreviewParams;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-public final class tb0 extends org.telegram.ui.Cells.r9 {
-    public final cc0 B0;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.text.style.ReplacementSpan;
+import android.view.KeyEvent;
+public final class tb0 extends ReplacementSpan {
+    public final int f31120a;
+    public final KeyEvent.Callback f31121b;
 
-    public tb0(cc0 cc0Var) {
-        this.B0 = cc0Var;
-        this.f21964h0 = cc0Var.f25374c0.F;
+    public tb0(KeyEvent.Callback callback, int i10) {
+        this.f31120a = i10;
+        this.f31121b = callback;
     }
 
     @Override
-    public final boolean A(MessageObject messageObject) {
-        cc0 cc0Var = this.B0;
-        if (cc0Var.f25369a == 0 && !cc0Var.f25374c0.d.isSecret && y()) {
-            return true;
-        }
-        return false;
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        int i15 = this.f31120a;
     }
 
     @Override
-    public final void J(int i10, int i11, MessageObject messageObject) {
-        org.telegram.ui.on onVar;
-        MessageObject messageObject2;
-        cc0 cc0Var = this.B0;
-        tb0 tb0Var = cc0Var.f25375e;
-        int i12 = tb0Var.v - tb0Var.f21988u;
-        ic0 ic0Var = cc0Var.f25374c0;
-        if (i12 > MessagesController.getInstance(ic0Var.f27464w).quoteLengthMax) {
-            cc0Var.f();
-            return;
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        switch (this.f31120a) {
+            case 0:
+                return ((vb0) this.f31121b).f31742x;
+            case 1:
+                return (int) ((org.telegram.ui.sj0) this.f31121b).f41719n0;
+            default:
+                return (int) ((tg.m1) this.f31121b).f48371t0;
         }
-        MessagePreviewParams messagePreviewParams = ic0Var.d;
-        messagePreviewParams.quoteStart = tb0Var.f21988u;
-        messagePreviewParams.quoteEnd = tb0Var.v;
-        MessageObject c10 = cc0Var.c(messageObject);
-        if (c10 != null && ((onVar = ic0Var.d.quote) == null || (messageObject2 = onVar.f39251a) == null || messageObject2.getId() != c10.getId())) {
-            ic0Var.d.quote = org.telegram.ui.on.b(i10, i11, c10);
-        }
-        ic0Var.b();
-        ic0Var.a(true);
     }
 
-    @Override
-    public final boolean b() {
-        MessageObject c10;
-        TLRPC.Message message;
-        cc0 cc0Var = this.B0;
-        if (cc0Var.f25369a == 0 && (c10 = cc0Var.c(null)) != null && (message = c10.messageOwner) != null && message.rich_message != null) {
-            return false;
-        }
-        MessagePreviewParams messagePreviewParams = cc0Var.f25374c0.d;
-        if (messagePreviewParams != null && messagePreviewParams.noforwards) {
-            return false;
-        }
-        return true;
+    private final void a(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
     }
 
-    @Override
-    public final boolean e() {
-        MessageObject c10;
-        TLRPC.Message message;
-        cc0 cc0Var = this.B0;
-        int i10 = cc0Var.f25369a;
-        if (i10 == 0 && !cc0Var.f25374c0.d.isSecret) {
-            if (i10 != 0 || (c10 = cc0Var.c(null)) == null || (message = c10.messageOwner) == null || message.rich_message == null) {
-                return true;
-            }
-            return false;
-        }
-        return false;
+    private final void b(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
     }
 
-    @Override
-    public final org.telegram.ui.ActionBar.d6 r() {
-        return this.f21964h0;
-    }
-
-    @Override
-    public final void x() {
-        super.x();
-        ub0 ub0Var = this.B0.f25376f;
-        if (ub0Var != null) {
-            ub0Var.invalidate();
-        }
+    private final void c(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
     }
 }

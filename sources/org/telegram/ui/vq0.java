@@ -1,14 +1,28 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-public interface vq0 {
-    void a();
+import android.text.TextUtils;
+import org.telegram.messenger.AndroidUtilities;
+public final class vq0 extends g.o {
+    public final br0 f42967c;
 
-    void b(Editable editable);
+    public vq0(br0 br0Var) {
+        this.f42967c = br0Var;
+    }
 
-    boolean e();
-
-    void g();
-
-    void h(int i10, boolean z10, boolean z11);
+    @Override
+    public final int i(int i10) {
+        int i11;
+        br0 br0Var = this.f42967c;
+        if (br0Var.L.j(i10) != 1 && !br0Var.Y && (br0Var.J != null || !TextUtils.isEmpty(br0Var.v))) {
+            int i12 = br0Var.R;
+            int i13 = br0Var.f36398g0;
+            if (i10 % i13 != i13 - 1) {
+                i11 = AndroidUtilities.dp(2.0f);
+            } else {
+                i11 = 0;
+            }
+            return i12 + i11;
+        }
+        return br0Var.M.J;
+    }
 }

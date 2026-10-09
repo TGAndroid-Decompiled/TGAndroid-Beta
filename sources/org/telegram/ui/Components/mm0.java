@@ -1,105 +1,172 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import org.telegram.messenger.AndroidUtilities;
-public final class mm0 extends ix0 {
-    public float d;
-    public final Paint f28744f;
-    public boolean f28740a = false;
-    public long f28741b = 0;
-    public boolean f28742c = false;
-    public int f28743e = 1;
+import android.util.SparseIntArray;
+import android.view.View;
+import j$.util.Objects;
+import java.util.ArrayList;
+public abstract class mm0 extends yl0 {
+    public SparseIntArray f28859c;
+    public SparseIntArray d;
+    public SparseIntArray f28860e;
+    public int f28861f;
+    public int h;
+    public final ArrayList f28862n = new ArrayList();
 
-    public mm0(boolean z10) {
-        if (z10) {
-            this.f28744f = new Paint(1);
-        }
+    public mm0() {
+        L();
     }
 
     @Override
-    public final void b(int i10) {
-        Paint paint = this.f28744f;
-        if (paint != null) {
-            paint.setColor(i10);
-        }
+    public final boolean D(s4.d1 d1Var) {
+        int b10 = d1Var.b();
+        return V(S(b10), Q(b10), d1Var);
     }
 
-    @Override
-    public final void c(boolean z10) {
-        this.f28740a = z10;
-    }
-
-    @Override
-    public final void d() {
-        this.f28741b = System.currentTimeMillis();
-        this.f28742c = true;
-        invalidateSelf();
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        float f7;
-        Paint paint = this.f28744f;
-        if (paint == null) {
-            paint = org.telegram.ui.ActionBar.i6.f20805c2;
-        }
-        paint.setAlpha(((int) (this.d * 200.0f)) + 55);
-        float dp = AndroidUtilities.dp(6.0f);
-        if (this.f28740a) {
-            f7 = 8.0f;
+    public final void L() {
+        SparseIntArray sparseIntArray = this.d;
+        if (sparseIntArray == null) {
+            this.d = new SparseIntArray();
+            this.f28859c = new SparseIntArray();
+            this.f28860e = new SparseIntArray();
         } else {
-            f7 = 9.0f;
+            sparseIntArray.clear();
+            this.f28859c.clear();
+            this.f28860e.clear();
         }
-        canvas.drawCircle(dp, AndroidUtilities.dp(f7), AndroidUtilities.dp(4.0f), paint);
-        if (this.f28742c) {
-            long currentTimeMillis = System.currentTimeMillis();
-            long j3 = currentTimeMillis - this.f28741b;
-            this.f28741b = currentTimeMillis;
-            if (j3 > 50) {
-                j3 = 50;
+        this.h = -1;
+        this.f28861f = -1;
+    }
+
+    public abstract int M(int i10);
+
+    public int N(int i10, int i11) {
+        return Objects.hash(Integer.valueOf((-49612) * i10), O(i10, i11));
+    }
+
+    public abstract Object O(int i10, int i11);
+
+    public abstract int P(int i10, int i11);
+
+    public final int Q(int i10) {
+        int i11 = this.f28859c.get(i10, Integer.MAX_VALUE);
+        if (i11 != Integer.MAX_VALUE) {
+            return i11;
+        }
+        int i12 = this.f28861f;
+        if (i12 < 0) {
+            i12 = R();
+            this.f28861f = i12;
+        }
+        int i13 = 0;
+        int i14 = 0;
+        while (i13 < i12) {
+            int U = U(i13) + i14;
+            if (i10 >= i14 && i10 < U) {
+                int i15 = i10 - i14;
+                this.f28859c.put(i10, i15);
+                return i15;
             }
-            float f10 = this.d;
-            int i10 = this.f28743e;
-            float f11 = (((float) (i10 * j3)) / 400.0f) + f10;
-            this.d = f11;
-            if (i10 > 0 && f11 >= 1.0f) {
-                this.f28743e = -1;
-                this.d = 1.0f;
-            } else if (i10 < 0 && f11 <= 0.0f) {
-                this.f28743e = 1;
-                this.d = 0.0f;
+            i13++;
+            i14 = U;
+        }
+        return -1;
+    }
+
+    public abstract int R();
+
+    public final int S(int i10) {
+        int i11 = this.d.get(i10, Integer.MAX_VALUE);
+        if (i11 != Integer.MAX_VALUE) {
+            return i11;
+        }
+        int i12 = this.f28861f;
+        if (i12 < 0) {
+            i12 = R();
+            this.f28861f = i12;
+        }
+        int i13 = 0;
+        int i14 = 0;
+        while (i13 < i12) {
+            int U = U(i13) + i14;
+            if (i10 >= i14 && i10 < U) {
+                this.d.put(i10, i13);
+                return i13;
             }
-            a();
+            i13++;
+            i14 = U;
+        }
+        return -1;
+    }
+
+    public abstract View T(int i10, View view);
+
+    public final int U(int i10) {
+        int i11 = this.f28860e.get(i10, Integer.MAX_VALUE);
+        if (i11 != Integer.MAX_VALUE) {
+            return i11;
+        }
+        int M = M(i10);
+        this.f28860e.put(i10, M);
+        return M;
+    }
+
+    public abstract boolean V(int i10, int i11, s4.d1 d1Var);
+
+    public abstract void W(int i10, int i11, s4.d1 d1Var);
+
+    public final void X(boolean z10) {
+        ArrayList arrayList = this.f28862n;
+        ArrayList arrayList2 = new ArrayList(arrayList);
+        L();
+        arrayList.clear();
+        int i10 = this.f28861f;
+        if (i10 < 0) {
+            i10 = R();
+            this.f28861f = i10;
+        }
+        for (int i11 = 0; i11 < i10; i11++) {
+            int U = U(i11);
+            for (int i12 = 0; i12 < U; i12++) {
+                arrayList.add(Integer.valueOf(N(i11, i12)));
+            }
+        }
+        if (z10) {
+            s4.o.c(new gg.g(this, arrayList2, 3), true).b(this);
+        } else {
+            super.l();
         }
     }
 
     @Override
-    public final void e() {
-        this.f28742c = false;
+    public final int h() {
+        int i10 = this.h;
+        if (i10 >= 0) {
+            return i10;
+        }
+        this.h = 0;
+        int i11 = this.f28861f;
+        if (i11 < 0) {
+            i11 = R();
+            this.f28861f = i11;
+        }
+        for (int i12 = 0; i12 < i11; i12++) {
+            this.h = U(i12) + this.h;
+        }
+        return this.h;
     }
 
     @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(10.0f);
+    public final int j(int i10) {
+        return P(S(i10), Q(i10));
     }
 
     @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(12.0f);
+    public void l() {
+        X(false);
     }
 
     @Override
-    public final int getOpacity() {
-        return 0;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void v(s4.d1 d1Var, int i10) {
+        W(S(i10), Q(i10), d1Var);
     }
 }

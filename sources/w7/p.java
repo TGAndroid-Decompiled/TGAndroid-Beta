@@ -1,28 +1,11 @@
 package w7;
-
-import android.os.Build;
-import android.text.TextUtils;
-import android.view.View;
 public abstract class p {
-    public static void a(View view, CharSequence charSequence) {
-        if (Build.VERSION.SDK_INT >= 26) {
-            m.m3.a(view, charSequence);
-            return;
-        }
-        m.o3 o3Var = m.o3.v;
-        if (o3Var != null && o3Var.f15837a == view) {
-            m.o3.b(null);
-        }
-        if (TextUtils.isEmpty(charSequence)) {
-            m.o3 o3Var2 = m.o3.f15836w;
-            if (o3Var2 != null && o3Var2.f15837a == view) {
-                o3Var2.a();
-            }
-            view.setOnLongClickListener(null);
-            view.setLongClickable(false);
-            view.setOnHoverListener(null);
-            return;
-        }
-        new m.o3(view, charSequence);
+    public static m1.c a(String name) {
+        he.d dVar = ae.o0.f481b;
+        ae.k1 k1Var = new ae.k1();
+        dVar.getClass();
+        fe.e b10 = ae.g0.b(v7.v8.c(dVar, k1Var));
+        kotlin.jvm.internal.i.e(name, "name");
+        return new m1.c(name, m1.a.f15894b, b10);
     }
 }

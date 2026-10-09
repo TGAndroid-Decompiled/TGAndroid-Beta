@@ -10,7 +10,7 @@ public interface t3 {
 
     int getNavigationBarColor(int i10);
 
-    u3 mo37getWindowView();
+    u3 mo36getWindowView();
 
     void release();
 

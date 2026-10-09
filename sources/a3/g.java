@@ -30,9 +30,9 @@ public final class g {
         } else {
             long j12 = j3 - this.f122c;
             int i10 = (int) (j10 % 15);
-            long abs = Math.abs(j12 - this.f121b);
+            int i11 = (Math.abs(j12 - this.f121b) > 1000000L ? 1 : (Math.abs(j12 - this.f121b) == 1000000L ? 0 : -1));
             boolean[] zArr = this.f125g;
-            if (abs <= 1000000) {
+            if (i11 <= 0) {
                 this.f123e++;
                 this.f124f += j12;
                 if (zArr[i10]) {

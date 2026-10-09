@@ -18,61 +18,61 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 public final class v6 extends FrameLayout {
-    public final int f6117a;
-    public int f6118b;
-    public final ai.w7 f6119c;
+    public final int f6153a;
+    public int f6154b;
+    public final ai.x7 f6155c;
     public final FrameLayout d;
-    public final ai.xa f6120e;
-    public boolean f6121f;
+    public final ai.ya f6156e;
+    public boolean f6157f;
     public boolean h;
 
     public v6(Activity activity, int i10, ai.d dVar) {
         super(activity);
-        this.f6118b = 1;
-        this.f6121f = false;
+        this.f6154b = 1;
+        this.f6157f = false;
         this.h = false;
-        this.f6117a = i10;
+        this.f6153a = i10;
         TLRPC.User currentUser = UserConfig.getInstance(i10).getCurrentUser();
-        ai.w7 w7Var = new ai.w7(this, getContext());
-        this.f6119c = w7Var;
-        ai.a6 a6Var = new ai.a6(getContext(), null);
-        a6Var.f568a.getAvatarDrawable().m(i10, currentUser);
-        ai.y5 y5Var = a6Var.f568a;
-        y5Var.e(currentUser, y5Var.getAvatarDrawable());
-        a6Var.f569b.l(Emoji.replaceEmoji(UserObject.getUserName(currentUser), a6Var.f569b.getPaint().getFontMetricsInt(), false), false);
-        a6Var.c(LocaleController.getString(R.string.RightNow), false);
-        w7Var.addView(a6Var, w7.z5.d(-1, -2.0f, 55, 0.0f, 17.0f, 0.0f, 0.0f));
+        ai.x7 x7Var = new ai.x7(this, getContext());
+        this.f6155c = x7Var;
+        ai.b6 b6Var = new ai.b6(getContext(), null);
+        b6Var.f711a.getAvatarDrawable().m(i10, currentUser);
+        ai.z5 z5Var = b6Var.f711a;
+        z5Var.e(currentUser, z5Var.getAvatarDrawable());
+        b6Var.f712b.l(Emoji.replaceEmoji(UserObject.getUserName(currentUser), b6Var.f712b.getPaint().getFontMetricsInt(), false), false);
+        b6Var.c(LocaleController.getString(R.string.RightNow), false);
+        x7Var.addView(b6Var, w7.x5.a(-2.0f, 0.0f, 17.0f, 0.0f, 0.0f, -1, 55));
         ImageView imageView = new ImageView(activity);
         imageView.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_close_white).mutate());
         imageView.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-        w7Var.addView(imageView, w7.z5.d(40, 40.0f, 53, 12.0f, 15.0f, 12.0f, 0.0f));
-        addView(w7Var, w7.z5.c(-2.0f, -1));
+        x7Var.addView(imageView, w7.x5.a(40.0f, 12.0f, 15.0f, 12.0f, 0.0f, 40, 53));
+        addView(x7Var, w7.x5.d(-2.0f, -1));
         FrameLayout frameLayout = new FrameLayout(getContext());
         this.d = frameLayout;
-        ai.xa xaVar = new ai.xa(getContext(), dVar);
-        this.f6120e = xaVar;
-        xaVar.f1881s0 = true;
-        xaVar.setTranslationY(AndroidUtilities.dp(8.0f));
-        frameLayout.addView(xaVar, w7.z5.d(-1, -1.0f, 87, 0.0f, 0.0f, 0.0f, 64.0f));
+        ai.ya yaVar = new ai.ya(getContext(), dVar);
+        this.f6156e = yaVar;
+        yaVar.f1985s0 = true;
+        yaVar.setTranslationY(AndroidUtilities.dp(8.0f));
+        frameLayout.addView(yaVar, w7.x5.a(-1.0f, 0.0f, 0.0f, 0.0f, 64.0f, -1, 87));
         ImageView imageView2 = new ImageView(activity);
         imageView2.setImageResource(R.drawable.msg_share);
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         imageView2.setColorFilter(new PorterDuffColorFilter(-1, mode));
-        frameLayout.addView(imageView2, w7.z5.d(28, 28.0f, 85, 0.0f, 0.0f, 12.0f, 16.0f));
+        frameLayout.addView(imageView2, w7.x5.a(28.0f, 0.0f, 0.0f, 12.0f, 16.0f, 28, 85));
         FrameLayout frameLayout2 = new FrameLayout(activity);
-        frameLayout2.setBackground(org.telegram.ui.ActionBar.i6.b0(AndroidUtilities.dp(22.0f), i0.a.k(-16777216, 122)));
+        frameLayout2.setBackground(org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(22.0f), i0.a.k(-16777216, 122)));
         TextView textView = new TextView(activity);
         textView.setTextSize(1, 18.0f);
         textView.setTextColor(1694498815);
         textView.setText(LocaleController.getString(R.string.ReplyPrivately));
-        frameLayout2.addView(textView, w7.z5.d(-2, -2.0f, 19, 24.0f, 0.0f, 24.0f, 0.0f));
+        frameLayout2.addView(textView, w7.x5.a(-2.0f, 24.0f, 0.0f, 24.0f, 0.0f, -2, 19));
         ImageView imageView3 = new ImageView(activity);
         imageView3.setImageResource(R.drawable.input_attach);
         imageView3.setColorFilter(new PorterDuffColorFilter(-1, mode));
-        frameLayout2.addView(imageView3, w7.z5.d(28, 28.0f, 21, 0.0f, 0.0f, 9.0f, 0.0f));
-        frameLayout.addView(frameLayout2, w7.z5.d(-1, 44.0f, 87, 9.0f, 8.0f, 55.0f, 8.0f));
-        addView(frameLayout, w7.z5.c(-1.0f, -1));
-        w7Var.setAlpha(0.0f);
+        frameLayout2.addView(imageView3, w7.x5.a(28.0f, 0.0f, 0.0f, 9.0f, 0.0f, 28, 21));
+        frameLayout.addView(frameLayout2, w7.x5.a(44.0f, 9.0f, 8.0f, 55.0f, 8.0f, -1, 87));
+        addView(frameLayout, w7.x5.d(-1.0f, -1));
+        x7Var.setAlpha(0.0f);
         frameLayout.setAlpha(0.0f);
         setImportantForAccessibility(4);
     }
@@ -81,8 +81,8 @@ public final class v6 extends FrameLayout {
         View view;
         float f7;
         if (z10) {
-            if (this.f6121f != z11) {
-                this.f6121f = z11;
+            if (this.f6157f != z11) {
+                this.f6157f = z11;
             } else {
                 return;
             }
@@ -92,7 +92,7 @@ public final class v6 extends FrameLayout {
             return;
         }
         if (z10) {
-            view = this.f6119c;
+            view = this.f6155c;
         } else {
             view = this.d;
         }
@@ -120,7 +120,7 @@ public final class v6 extends FrameLayout {
     }
 
     public final void b(CharSequence charSequence) {
-        this.f6120e.f1865b0.b(org.telegram.ui.Components.z5.cloneSpans(new SpannableString(charSequence)), null, null, false, false);
+        this.f6156e.f1969b0.b(org.telegram.ui.Components.b6.cloneSpans(new SpannableString(charSequence)), null, null, false, false);
     }
 
     @Override

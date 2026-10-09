@@ -1,75 +1,34 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class v31 extends org.telegram.ui.Components.yl0 {
-    public final Context f41584c;
-    public final boolean d;
-    public final w31 f41585e;
+import org.telegram.messenger.AndroidUtilities;
+public final class v31 implements y31 {
+    public final org.telegram.messenger.video.a f42633a;
+    public final org.telegram.ui.Components.ad f42634b;
+    public final Context f42635c;
+    public final ai.a1 d;
+    public final org.telegram.messenger.video.d f42636e;
 
-    public v31(w31 w31Var, Context context, boolean z10) {
-        this.f41585e = w31Var;
-        this.f41584c = context;
-        this.d = z10;
+    public v31(org.telegram.messenger.video.a aVar, org.telegram.ui.Components.ad adVar, Context context, ai.a1 a1Var, org.telegram.messenger.video.d dVar) {
+        this.f42633a = aVar;
+        this.f42634b = adVar;
+        this.f42635c = context;
+        this.d = a1Var;
+        this.f42636e = dVar;
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f46542f == 0) {
-            return true;
-        }
-        return false;
+    public final void a() {
+        AndroidUtilities.runOnUIThread(new r31(this.f42633a, this.f42634b, this.f42635c, this.d, 2), 200L);
     }
 
     @Override
-    public final int h() {
-        boolean z10 = this.d;
-        int i10 = 0;
-        w31 w31Var = this.f41585e;
-        if (z10) {
-            ArrayList arrayList = w31Var.f41909f;
-            if (arrayList == null) {
-                return 0;
-            }
-            return arrayList.size();
-        }
-        if (w31Var.f41908e >= 0) {
-            i10 = 1;
-        }
-        return w31Var.h.size() + i10;
+    public final void b() {
+        AndroidUtilities.runOnUIThread(new n31(3, this.f42633a, this.f42634b), 200L);
     }
 
     @Override
-    public final int j(int i10) {
-        if (!this.d && i10 == this.f41585e.f41908e) {
-            return 1;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.c1 r7, int r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.v31.v(s4.c1, int):void");
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        org.telegram.ui.Cells.m4 m4Var;
-        Context context = this.f41584c;
-        if (i10 != 0) {
-            if (i10 != 2) {
-                m4Var = new org.telegram.ui.Cells.b7(context, (org.telegram.ui.Cells.c1) null);
-            } else {
-                org.telegram.ui.Cells.m4 m4Var2 = new org.telegram.ui.Cells.m4(context);
-                m4Var2.setText(LocaleController.getString(R.string.ChooseLanguages));
-                m4Var = m4Var2;
-            }
-        } else {
-            m4Var = new org.telegram.ui.Cells.x8(context);
-        }
-        return new s4.c1(m4Var);
+    public final void c() {
+        this.f42636e.run();
     }
 }

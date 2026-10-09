@@ -1,183 +1,26 @@
 package ai;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.animation.LinearInterpolator;
-import j$.util.Objects;
+import android.text.style.LineHeightSpan;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.qu;
-import org.telegram.ui.Components.zc;
-public class kb extends View {
-    public boolean E;
-    public long F;
-    public final Path G;
-    public final a3.d H;
-    public final org.telegram.ui.Components.e6 f1245a;
-    public final TL_stories.MediaArea f1246b;
-    public final Paint f1247c;
-    public final Paint d;
-    public LinearGradient f1248e;
-    public LinearGradient f1249f;
-    public final Matrix h;
-    public final org.telegram.ui.Cells.z f1250n;
-    public final zc f1251r;
-    public final boolean f1252s;
-    public final boolean v;
-    public final boolean f1253w;
-    public final boolean f1254x;
-    public final boolean f1255y;
+public final class kb implements LineHeightSpan {
+    public final int f1249a;
 
-    public kb(Context context, View view, TL_stories.MediaArea mediaArea) {
-        super(context);
-        boolean z10;
-        boolean z11;
-        boolean z12 = true;
-        this.f1247c = new Paint(1);
-        Paint paint = new Paint(1);
-        this.d = paint;
-        this.h = new Matrix();
-        org.telegram.ui.Cells.z f02 = org.telegram.ui.ActionBar.i6.f0(1174405119, 2, -1);
-        this.f1250n = f02;
-        this.f1251r = new zc(this);
-        this.f1252s = false;
-        this.v = false;
-        this.E = false;
-        this.G = new Path();
-        this.H = new a3.d(this, 21);
-        this.f1246b = mediaArea;
-        boolean z13 = mediaArea instanceof TL_stories.TL_mediaAreaGeoPoint;
-        if (!z13 && !(mediaArea instanceof TL_stories.TL_mediaAreaVenue) && !(mediaArea instanceof TL_stories.TL_mediaAreaUrl)) {
-            z10 = false;
-        } else {
-            z10 = true;
-        }
-        this.f1252s = z10;
-        if (!z13 && !(mediaArea instanceof TL_stories.TL_mediaAreaVenue)) {
-            z11 = false;
-        } else {
-            z11 = true;
-        }
-        this.v = z11;
-        if (!z13 && !(mediaArea instanceof TL_stories.TL_mediaAreaVenue) && (mediaArea.coordinates.flags & 1) == 0) {
-            z12 = false;
-        }
-        this.f1253w = z12;
-        this.f1255y = z12;
-        this.f1254x = z12;
-        this.f1245a = new org.telegram.ui.Components.e6(view, 0L, 120L, new LinearInterpolator());
-        paint.setStyle(Paint.Style.STROKE);
-        f02.setCallback(this);
-    }
-
-    public final void b(Canvas canvas) {
-        if (!this.f1255y) {
-            return;
-        }
-        float innerRadius = getInnerRadius();
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-        Path path = this.G;
-        path.rewind();
-        path.addRoundRect(rectF, innerRadius, innerRadius, Path.Direction.CW);
-        canvas.save();
-        canvas.clipPath(path);
-        int width = getWidth();
-        int height = getHeight();
-        org.telegram.ui.Cells.z zVar = this.f1250n;
-        zVar.setBounds(0, 0, width, height);
-        zVar.draw(canvas);
-        canvas.restore();
+    public kb(int i10) {
+        this.f1249a = i10;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        int action = motionEvent.getAction();
-        org.telegram.ui.Cells.z zVar = this.f1250n;
-        zc zcVar = this.f1251r;
-        if (action == 0) {
-            if (getParent() instanceof View) {
-                View view = (View) getParent();
-                Objects.requireNonNull(view);
-                zcVar.f33486f = new qu(1, view);
-            }
-            zcVar.c(true);
-            zVar.setHotspot(motionEvent.getX(), motionEvent.getY());
-            zVar.setState(new int[]{16842919, 16842910});
-        } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            zcVar.c(false);
-            zVar.setState(new int[0]);
-        }
-        super.dispatchTouchEvent(motionEvent);
-        return true;
-    }
-
-    public float getInnerRadius() {
-        TL_stories.MediaArea mediaArea;
-        TL_stories.MediaAreaCoordinates mediaAreaCoordinates;
-        if ((getParent() instanceof View) && (mediaArea = this.f1246b) != null && (mediaAreaCoordinates = mediaArea.coordinates) != null) {
-            if ((mediaAreaCoordinates.flags & 1) != 0) {
-                return (float) (((mediaAreaCoordinates.radius / 100.0d) * getWidth()) / getScaleX());
-            }
-            return getMeasuredHeight() * 0.2f;
-        }
-        return getMeasuredHeight() * 0.2f;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        float innerRadius = getInnerRadius();
-        b(canvas);
-        if (this.v && this.E && this.f1248e != null) {
-            float measuredWidth = getMeasuredWidth() * 0.7f;
-            float currentTimeMillis = ((float) (System.currentTimeMillis() - this.F)) / 600.0f;
-            float measuredWidth2 = ((getMeasuredWidth() + measuredWidth) * currentTimeMillis) - measuredWidth;
-            if (currentTimeMillis >= 1.0f) {
-                this.E = false;
+    public final void chooseHeight(CharSequence charSequence, int i10, int i11, int i12, int i13, Paint.FontMetricsInt fontMetricsInt) {
+        switch (this.f1249a) {
+            case 0:
+                fontMetricsInt.ascent -= AndroidUtilities.dp(2.0f);
+                fontMetricsInt.top -= AndroidUtilities.dp(2.0f);
                 return;
-            }
-            Matrix matrix = this.h;
-            matrix.reset();
-            matrix.postScale(measuredWidth / 40.0f, 1.0f);
-            matrix.postTranslate(measuredWidth2, 0.0f);
-            this.f1248e.setLocalMatrix(matrix);
-            LinearGradient linearGradient = this.f1248e;
-            Paint paint = this.f1247c;
-            paint.setShader(linearGradient);
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-            canvas.drawRoundRect(rectF, innerRadius, innerRadius, paint);
-            this.f1249f.setLocalMatrix(matrix);
-            LinearGradient linearGradient2 = this.f1249f;
-            Paint paint2 = this.d;
-            paint2.setShader(linearGradient2);
-            float dpf2 = AndroidUtilities.dpf2(1.5f);
-            paint2.setStrokeWidth(dpf2);
-            float f7 = dpf2 / 2.0f;
-            rectF.inset(f7, f7);
-            float f10 = innerRadius - f7;
-            canvas.drawRoundRect(rectF, f10, f10, paint2);
-            invalidate();
+            default:
+                fontMetricsInt.descent = AndroidUtilities.dp(4.0f) + fontMetricsInt.descent;
+                fontMetricsInt.ascent = fontMetricsInt.ascent;
+                return;
         }
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f1250n && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
-    }
-
-    public void a(Canvas canvas) {
     }
 }

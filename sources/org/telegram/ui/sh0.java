@@ -1,37 +1,10 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class sh0 extends org.telegram.ui.Components.br0 {
-    public final th0 X0;
-
-    public sh0(th0 th0Var, Context context, String str, String str2, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, null, str, false, str2, false, d6Var);
-        this.X0 = th0Var;
-    }
-
+import android.view.View;
+import android.widget.FrameLayout;
+public final class sh0 extends FrameLayout {
     @Override
-    public final void O0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        String formatString;
-        wh0 wh0Var = this.X0.K;
-        if (!z10) {
-            return;
-        }
-        if (iVar != null && iVar.m() == 1) {
-            long j3 = ((TLRPC.Dialog) iVar.n(0)).f20051id;
-            if (j3 != 0 && j3 != wh0Var.getUserConfig().getClientUserId()) {
-                formatString = LocaleController.formatString(R.string.InvLinkToUser, wh0Var.getMessagesController().getPeerName(j3, true));
-            } else {
-                formatString = LocaleController.getString(R.string.InvLinkToSavedMessages);
-            }
-        } else {
-            formatString = LocaleController.formatString(R.string.InvLinkToChats, LocaleController.formatPluralString("Chats", i10, new Object[0]));
-        }
-        org.telegram.ui.Components.rc Q = org.telegram.ui.Components.yc.a0(wh0Var).Q(R.raw.forward, 36, AndroidUtilities.replaceTags(formatString));
-        Q.f30435r = false;
-        Q.k(true);
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
     }
 }

@@ -1,23 +1,32 @@
 package ai;
 
 import android.content.Context;
-import org.telegram.ui.LaunchActivity;
-public final class c7 extends org.telegram.ui.Cells.o6 {
-    public final e7 K;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class c7 extends View {
+    public final int f778a;
+    public final f7 f779b;
 
-    public c7(int i10, d dVar, e7 e7Var, Context context) {
-        super(1, i10, context, dVar, false, true);
-        this.K = e7Var;
+    public c7(f7 f7Var, Context context, int i10) {
+        super(context);
+        this.f778a = i10;
+        this.f779b = f7Var;
     }
 
     @Override
-    public final void b(long j3) {
-        org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
-        if (R == null) {
-            return;
+    public final void onMeasure(int i10, int i11) {
+        switch (this.f778a) {
+            case 0:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.f779b.d.f1337e), 1073741824));
+                return;
+            default:
+                l7 l7Var = this.f779b.d;
+                int i12 = l7Var.f1343x.J;
+                if (i12 >= l7Var.f1340r.getPaddingTop() && !l7Var.R) {
+                    i12 = 0;
+                }
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(i12, 1073741824));
+                return;
         }
-        jc createOverlayStoryViewer = R.createOverlayStoryViewer();
-        createOverlayStoryViewer.getClass();
-        createOverlayStoryViewer.D(getContext(), j3, u9.a(this.K.d.f1221r));
     }
 }

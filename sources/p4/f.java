@@ -1,15 +1,15 @@
 package p4;
 
 import android.media.MediaRouter2;
-public final class f extends MediaRouter2.ControllerCallback {
-    public final k f44186a;
+import android.media.MediaRouter2$ControllerCallback;
+public final class f extends MediaRouter2$ControllerCallback {
+    public final k f45350a;
 
     public f(k kVar) {
-        this.f44186a = kVar;
+        this.f45350a = kVar;
     }
 
-    @Override
     public final void onControllerUpdated(MediaRouter2.RoutingController routingController) {
-        this.f44186a.r(routingController);
+        this.f45350a.r(routingController);
     }
 }

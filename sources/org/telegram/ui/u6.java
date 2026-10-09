@@ -1,38 +1,42 @@
 package org.telegram.ui;
 
-import android.util.SparseArray;
-public final class u6 {
-    public long f41123a;
-    public int f41124b;
-    public long f41125c;
-    public final SparseArray d = new SparseArray();
+import android.content.Context;
+public final class u6 extends org.telegram.ui.Components.gd {
+    public final w6 f42339e0;
 
-    public u6(long j3) {
-        this.f41123a = j3;
+    public u6(w6 w6Var, Context context) {
+        super(context, 11, org.telegram.ui.Components.gd.W, 0, org.telegram.ui.Components.gd.f26665a0);
+        this.f42339e0 = w6Var;
     }
 
-    public final void a(zh.a aVar, int i10) {
-        SparseArray sparseArray = this.d;
-        v6 v6Var = (v6) sparseArray.get(i10, null);
-        if (v6Var == null) {
-            v6Var = new v6();
-            sparseArray.put(i10, v6Var);
+    @Override
+    public final void d(int i10, boolean z10) {
+        y6 y6Var = this.f42339e0.f43092e;
+        if (!z10) {
+            y6Var.f44247b.j1();
+            return;
         }
-        long j3 = aVar.f53575c;
-        v6Var.f41610a += j3;
-        this.f41125c += j3;
-        this.f41124b++;
-        v6Var.f41611b.add(aVar);
-    }
-
-    public final void b(zh.a aVar) {
-        v6 v6Var = (v6) this.d.get(aVar.d, null);
-        if (v6Var != null && v6Var.f41611b.remove(aVar)) {
-            long j3 = v6Var.f41610a;
-            long j10 = aVar.f53575c;
-            v6Var.f41610a = j3 - j10;
-            this.f41125c -= j10;
-            this.f41124b--;
+        int i11 = -1;
+        if (i10 == 8) {
+            i10 = -1;
+        }
+        int i12 = 0;
+        while (true) {
+            if (i12 < y6Var.f44246a0.size()) {
+                t6 t6Var = (t6) y6Var.f44246a0.get(i12);
+                if (t6Var != null && t6Var.f17125a == 11 && t6Var.f41862f == i10) {
+                    i11 = i12;
+                    break;
+                }
+                i12++;
+            } else {
+                break;
+            }
+        }
+        if (i11 >= 0) {
+            y6Var.f44247b.e1(new i2.w(i11, 7), 0, true);
+        } else {
+            y6Var.f44247b.j1();
         }
     }
 }

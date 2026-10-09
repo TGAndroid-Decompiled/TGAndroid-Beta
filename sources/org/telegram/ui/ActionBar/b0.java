@@ -6,38 +6,38 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class b0 implements View.OnClickListener {
-    public final int f20414a;
-    public final v0 f20415b;
+    public final int f20402a;
+    public final v0 f20403b;
 
     public b0(v0 v0Var, int i10) {
-        this.f20414a = i10;
-        this.f20415b = v0Var;
+        this.f20402a = i10;
+        this.f20403b = v0Var;
     }
 
     @Override
     public final void onClick(View view) {
-        f5 f5Var;
-        switch (this.f20414a) {
+        g5 g5Var;
+        switch (this.f20402a) {
             case 0:
-                v0 v0Var = this.f20415b;
+                v0 v0Var = this.f20403b;
                 ArrayList arrayList = v0Var.f21588g0;
                 if (v0Var.f21584e.length() != 0) {
                     v0Var.f21584e.setText("");
                 } else if (v0Var.p()) {
                     v0Var.f21584e.hideActionMode();
                     for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                        if (v0Var.H != null && ((gg.q0) arrayList.get(i10)).h) {
-                            v0Var.H.o((gg.q0) arrayList.get(i10));
+                        if (v0Var.H != null && ((gg.p0) arrayList.get(i10)).h) {
+                            v0Var.H.o((gg.p0) arrayList.get(i10));
                         }
                     }
                     v0Var.m();
                 } else {
                     TextView textView = v0Var.h;
-                    if (textView != null && textView.getVisibility() == 0 && ((f5Var = v0Var.H) == null || f5Var.a())) {
+                    if (textView != null && textView.getVisibility() == 0 && ((g5Var = v0Var.H) == null || g5Var.a())) {
                         v0Var.h.setVisibility(8);
-                        f5 f5Var2 = v0Var.H;
-                        if (f5Var2 != null) {
-                            f5Var2.k();
+                        g5 g5Var2 = v0Var.H;
+                        if (g5Var2 != null) {
+                            g5Var2.k();
                         }
                     }
                 }
@@ -45,7 +45,7 @@ public final class b0 implements View.OnClickListener {
                 AndroidUtilities.showKeyboard(v0Var.f21584e);
                 return;
             case 1:
-                v0 v0Var2 = this.f20415b;
+                v0 v0Var2 = this.f20403b;
                 n1 n1Var = v0Var2.d;
                 if (n1Var != null && n1Var.isShowing()) {
                     if (!v0Var2.T) {
@@ -67,7 +67,7 @@ public final class b0 implements View.OnClickListener {
                 }
                 return;
             case 2:
-                v0 v0Var3 = this.f20415b;
+                v0 v0Var3 = this.f20403b;
                 z zVar2 = v0Var3.f21581c;
                 if (zVar2 != null) {
                     zVar2.o(((Integer) view.getTag()).intValue());
@@ -80,7 +80,7 @@ public final class b0 implements View.OnClickListener {
                 }
                 return;
             default:
-                v0 v0Var4 = this.f20415b;
+                v0 v0Var4 = this.f20403b;
                 n1 n1Var2 = v0Var4.d;
                 if (n1Var2 != null && n1Var2.isShowing()) {
                     if (!v0Var4.T) {

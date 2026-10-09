@@ -1,49 +1,40 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
-import android.view.View;
-import android.view.animation.OvershootInterpolator;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class fl implements ValueAnimator.AnimatorUpdateListener {
-    public boolean f26497a;
-    public final float[] f26498b = {0.0f, 1.0f};
-    public final FrameLayout f26499c;
-    public final gl d;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.widget.TextView;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class fl implements TextWatcher {
+    public boolean f26403a;
+    public final TextView f26404b;
 
-    public fl(gl glVar, FrameLayout frameLayout) {
-        this.d = glVar;
-        this.f26499c = frameLayout;
+    public fl(hg.b1 b1Var, TextView textView) {
+        this.f26404b = textView;
+        this.f26403a = TextUtils.isEmpty(b1Var.getText());
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        float interpolation;
-        float lerp = AndroidUtilities.lerp(this.f26498b, valueAnimator.getAnimatedFraction());
-        if (lerp >= 0.7f && !this.f26497a) {
-            gl glVar = this.d;
-            jl jlVar = glVar.f26938b;
-            jl jlVar2 = glVar.f26938b;
-            if (jlVar.f27884i0 != null) {
-                AnimatorSet animatorSet = new AnimatorSet();
-                animatorSet.playTogether(ObjectAnimator.ofFloat(jlVar2.f27884i0, View.SCALE_X, 0.0f, 1.0f), ObjectAnimator.ofFloat(jlVar2.f27884i0, View.SCALE_Y, 0.0f, 1.0f), ObjectAnimator.ofFloat(jlVar2.f27884i0, View.ALPHA, 0.0f, 1.0f));
-                animatorSet.setInterpolator(new OvershootInterpolator(1.02f));
-                animatorSet.setDuration(250L);
-                animatorSet.start();
-                this.f26497a = true;
+    public final void afterTextChanged(Editable editable) {
+        int i10;
+        boolean isEmpty = TextUtils.isEmpty(editable);
+        if (isEmpty != this.f26403a) {
+            this.f26403a = isEmpty;
+            if (isEmpty) {
+                i10 = R.string.Remove;
+            } else {
+                i10 = R.string.Add;
             }
+            this.f26404b.setText(LocaleController.getString(i10));
         }
-        if (lerp <= 0.5f) {
-            interpolation = tr.f31216g.getInterpolation(lerp / 0.5f) * 1.1f;
-        } else if (lerp <= 0.75f) {
-            interpolation = 1.1f - (tr.f31216g.getInterpolation((lerp - 0.5f) / 0.25f) * 0.2f);
-        } else {
-            interpolation = (tr.f31216g.getInterpolation((lerp - 0.75f) / 0.25f) * 0.1f) + 0.9f;
-        }
-        FrameLayout frameLayout = this.f26499c;
-        frameLayout.setScaleX(interpolation);
-        frameLayout.setScaleY(interpolation);
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

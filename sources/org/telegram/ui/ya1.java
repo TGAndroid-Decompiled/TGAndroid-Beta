@@ -1,38 +1,52 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class ya1 implements Utilities.Callback5, Utilities.Callback5Return {
-    public final StickersActivity f43179a;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.tl.TL_stats;
+public final class ya1 {
+    public TL_stats.PostInteractionCounters f44303a;
+    public MessageObject f44304b;
 
-    public ya1(StickersActivity stickersActivity) {
-        this.f43179a = stickersActivity;
-    }
-
-    @Override
-    public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        StickersActivity.S(this.f43179a, (org.telegram.ui.Components.h61) obj, (View) obj2);
-    }
-
-    @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        boolean z10;
-        org.telegram.ui.Components.h61 h61Var = (org.telegram.ui.Components.h61) obj;
-        View view = (View) obj2;
-        ((Integer) obj3).intValue();
-        ((Float) obj4).floatValue();
-        ((Float) obj5).floatValue();
-        StickersActivity stickersActivity = this.f43179a;
-        if (stickersActivity.f34505x.isEmpty() && (h61Var.G instanceof TLRPC.TL_messages_stickerSet)) {
-            stickersActivity.n0((org.telegram.ui.Cells.m8) view);
-            z10 = true;
-        } else {
-            z10 = false;
+    public final int a() {
+        TL_stats.PostInteractionCounters postInteractionCounters = this.f44303a;
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
+            return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).forwards;
         }
-        return Boolean.valueOf(z10);
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersStory) {
+            return ((TL_stats.TL_postInteractionCountersStory) postInteractionCounters).forwards;
+        }
+        return 0;
+    }
+
+    public final int b() {
+        TL_stats.PostInteractionCounters postInteractionCounters = this.f44303a;
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
+            return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).msg_id;
+        }
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersStory) {
+            return ((TL_stats.TL_postInteractionCountersStory) postInteractionCounters).story_id;
+        }
+        return 0;
+    }
+
+    public final int c() {
+        TL_stats.PostInteractionCounters postInteractionCounters = this.f44303a;
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
+            return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).reactions;
+        }
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersStory) {
+            return ((TL_stats.TL_postInteractionCountersStory) postInteractionCounters).reactions;
+        }
+        return 0;
+    }
+
+    public final int d() {
+        TL_stats.PostInteractionCounters postInteractionCounters = this.f44303a;
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
+            return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).views;
+        }
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersStory) {
+            return ((TL_stats.TL_postInteractionCountersStory) postInteractionCounters).views;
+        }
+        return 0;
     }
 }

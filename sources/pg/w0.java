@@ -1,22 +1,22 @@
 package pg;
 public final class w0 {
-    public final double f44682a;
-    public final double f44683b;
-    public final double f44684c;
+    public final double f45827a;
+    public final double f45828b;
+    public final double f45829c;
     public boolean d;
 
     public w0(double d, double d10, double d11) {
-        this.f44682a = d;
-        this.f44683b = d10;
-        this.f44684c = d11;
+        this.f45827a = d;
+        this.f45828b = d10;
+        this.f45829c = d11;
     }
 
     public final float a(w0 w0Var) {
-        return (float) Math.sqrt(Math.pow(this.f44684c - w0Var.f44684c, 2.0d) + Math.pow(this.f44683b - w0Var.f44683b, 2.0d) + Math.pow(this.f44682a - w0Var.f44682a, 2.0d));
+        return (float) Math.sqrt(Math.pow(this.f45829c - w0Var.f45829c, 2.0d) + Math.pow(this.f45828b - w0Var.f45828b, 2.0d) + Math.pow(this.f45827a - w0Var.f45827a, 2.0d));
     }
 
     public final w0 b(w0 w0Var) {
-        return new w0((this.f44682a + w0Var.f44682a) * 0.5d, (this.f44683b + w0Var.f44683b) * 0.5d, (this.f44684c + w0Var.f44684c) * 0.5d);
+        return new w0((this.f45827a + w0Var.f45827a) * 0.5d, (this.f45828b + w0Var.f45828b) * 0.5d, (this.f45829c + w0Var.f45829c) * 0.5d);
     }
 
     public final boolean equals(Object obj) {
@@ -30,16 +30,16 @@ public final class w0 {
             return false;
         }
         w0 w0Var = (w0) obj;
-        if (this.f44682a != w0Var.f44682a || this.f44683b != w0Var.f44683b || this.f44684c != w0Var.f44684c) {
+        if (this.f45827a != w0Var.f45827a || this.f45828b != w0Var.f45828b || this.f45829c != w0Var.f45829c) {
             return false;
         }
         return true;
     }
 
     public w0(double d, double d10, double d11, int i10) {
-        this.f44682a = d;
-        this.f44683b = d10;
-        this.f44684c = d11;
+        this.f45827a = d;
+        this.f45828b = d10;
+        this.f45829c = d11;
         this.d = true;
     }
 }

@@ -2,11 +2,11 @@ package db;
 
 import gb.y;
 public class f extends y {
-    public u f8201a = null;
+    public u f8253a = null;
 
     @Override
     public final u a() {
-        u uVar = this.f8201a;
+        u uVar = this.f8253a;
         if (uVar != null) {
             return uVar;
         }
@@ -15,7 +15,7 @@ public class f extends y {
 
     @Override
     public final Object read(lb.a aVar) {
-        u uVar = this.f8201a;
+        u uVar = this.f8253a;
         if (uVar != null) {
             return uVar.read(aVar);
         }
@@ -24,7 +24,7 @@ public class f extends y {
 
     @Override
     public final void write(lb.b bVar, Object obj) {
-        u uVar = this.f8201a;
+        u uVar = this.f8253a;
         if (uVar != null) {
             uVar.write(bVar, obj);
             return;

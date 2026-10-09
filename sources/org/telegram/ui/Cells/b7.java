@@ -5,9 +5,9 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class b7 extends View {
-    public int f21846a;
-    public final int f21847b;
-    public boolean f21848c;
+    public int f21849a;
+    public final int f21850b;
+    public boolean f21851c;
     public boolean d;
 
     public b7(Context context) {
@@ -15,7 +15,7 @@ public final class b7 extends View {
     }
 
     private int getBackgroundResId() {
-        boolean z10 = this.f21848c;
+        boolean z10 = this.f21851c;
         if (z10 && this.d) {
             return R.drawable.greydivider;
         }
@@ -30,11 +30,11 @@ public final class b7 extends View {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.f21846a), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.f21849a), 1073741824));
     }
 
     public void setSize(int i10) {
-        this.f21846a = i10;
+        this.f21849a = i10;
     }
 
     public b7(Context context, Object obj) {
@@ -43,10 +43,10 @@ public final class b7 extends View {
 
     public b7(Context context, c1 c1Var) {
         super(context);
-        this.f21848c = true;
+        this.f21851c = true;
         this.d = true;
-        this.f21846a = 12;
-        int i10 = this.f21847b;
+        this.f21849a = 12;
+        int i10 = this.f21850b;
         if (i10 == 0) {
             setBackground(null);
         } else {
@@ -56,10 +56,10 @@ public final class b7 extends View {
 
     public b7(Context context, int i10, int i11) {
         super(context);
-        this.f21848c = true;
+        this.f21851c = true;
         this.d = true;
-        this.f21847b = i10;
-        this.f21846a = 12;
+        this.f21850b = i10;
+        this.f21849a = 12;
         if (i10 == 0) {
             setBackground(null);
         } else {

@@ -8,50 +8,50 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import v7.s6;
-import w7.n8;
-import w7.o9;
+import w7.i9;
+import w7.l8;
 import z7.lg;
 public final class n extends AbstractCollection {
-    public final int f8778a;
-    public final Object f8779b;
+    public final int f8772a;
+    public final Object f8773b;
 
     public n(int i10, Serializable serializable) {
-        this.f8778a = i10;
-        this.f8779b = serializable;
+        this.f8772a = i10;
+        this.f8773b = serializable;
     }
 
     @Override
     public final void clear() {
-        switch (this.f8778a) {
+        switch (this.f8772a) {
             case 0:
-                ((v0) this.f8779b).b();
+                ((v0) this.f8773b).b();
                 return;
             case 1:
-                ((v) this.f8779b).clear();
+                ((v) this.f8773b).clear();
                 return;
             case 2:
-                ((d) this.f8779b).clear();
+                ((d) this.f8773b).clear();
                 return;
             case 3:
-                ((x7.j) this.f8779b).clear();
+                ((x7.j) this.f8773b).clear();
                 return;
             case 4:
-                ((d) this.f8779b).clear();
+                ((d) this.f8773b).clear();
                 return;
             case 5:
-                ((z7.d) this.f8779b).clear();
+                ((z7.d) this.f8773b).clear();
                 return;
             default:
-                ((d) this.f8779b).clear();
+                ((d) this.f8773b).clear();
                 return;
         }
     }
 
     @Override
     public boolean contains(Object obj) {
-        switch (this.f8778a) {
+        switch (this.f8772a) {
             case 0:
-                for (Collection collection : ((v0) this.f8779b).a().values()) {
+                for (Collection collection : ((v0) this.f8773b).a().values()) {
                     if (collection.contains(obj)) {
                         return true;
                     }
@@ -63,70 +63,70 @@ public final class n extends AbstractCollection {
             default:
                 return super.contains(obj);
             case 2:
-                return ((d) this.f8779b).containsValue(obj);
+                return ((d) this.f8773b).containsValue(obj);
             case 4:
-                return ((d) this.f8779b).containsValue(obj);
+                return ((d) this.f8773b).containsValue(obj);
             case 6:
-                return ((d) this.f8779b).containsValue(obj);
+                return ((d) this.f8773b).containsValue(obj);
         }
     }
 
     @Override
     public boolean isEmpty() {
-        switch (this.f8778a) {
+        switch (this.f8772a) {
             case 2:
-                return ((d) this.f8779b).isEmpty();
+                return ((d) this.f8773b).isEmpty();
             case 3:
             case 5:
             default:
                 return super.isEmpty();
             case 4:
-                return ((d) this.f8779b).isEmpty();
+                return ((d) this.f8773b).isEmpty();
             case 6:
-                return ((d) this.f8779b).isEmpty();
+                return ((d) this.f8773b).isEmpty();
         }
     }
 
     @Override
     public final Iterator iterator() {
-        switch (this.f8778a) {
+        switch (this.f8772a) {
             case 0:
-                return new a((v0) this.f8779b);
+                return new a((v0) this.f8773b);
             case 1:
-                v vVar = (v) this.f8779b;
+                v vVar = (v) this.f8773b;
                 Map b10 = vVar.b();
                 if (b10 != null) {
                     return b10.values().iterator();
                 }
                 return new r(vVar, 2);
             case 2:
-                return new n1(((d) this.f8779b).entrySet().iterator());
+                return new n1(((d) this.f8773b).entrySet().iterator());
             case 3:
-                x7.j jVar = (x7.j) this.f8779b;
+                x7.j jVar = (x7.j) this.f8773b;
                 Map a2 = jVar.a();
                 if (a2 != null) {
                     return a2.values().iterator();
                 }
                 return new x7.g(jVar, 2);
             case 4:
-                return new com.google.android.gms.internal.clearcut.g1(((d) this.f8779b).entrySet().iterator(), 1);
+                return new com.google.android.gms.internal.clearcut.f1(((d) this.f8773b).entrySet().iterator(), 1);
             case 5:
-                z7.d dVar = (z7.d) this.f8779b;
+                z7.d dVar = (z7.d) this.f8773b;
                 Map a10 = dVar.a();
                 if (a10 != null) {
                     return a10.values().iterator();
                 }
                 return new z7.a(dVar, 2);
             default:
-                return new com.google.android.gms.internal.clearcut.g1(((d) this.f8779b).entrySet().iterator(), 2);
+                return new com.google.android.gms.internal.clearcut.f1(((d) this.f8773b).entrySet().iterator(), 2);
         }
     }
 
     @Override
     public boolean remove(Object obj) {
-        switch (this.f8778a) {
+        switch (this.f8772a) {
             case 2:
-                d dVar = (d) this.f8779b;
+                d dVar = (d) this.f8773b;
                 try {
                     return super.remove(obj);
                 } catch (UnsupportedOperationException unused) {
@@ -143,12 +143,12 @@ public final class n extends AbstractCollection {
             default:
                 return super.remove(obj);
             case 4:
-                d dVar2 = (d) this.f8779b;
+                d dVar2 = (d) this.f8773b;
                 try {
                     return super.remove(obj);
                 } catch (UnsupportedOperationException unused2) {
                     for (Map.Entry entry2 : dVar2.entrySet()) {
-                        if (n8.a(obj, entry2.getValue())) {
+                        if (l8.a(obj, entry2.getValue())) {
                             dVar2.remove(entry2.getKey());
                             return true;
                         }
@@ -156,12 +156,12 @@ public final class n extends AbstractCollection {
                     return false;
                 }
             case 6:
-                d dVar3 = (d) this.f8779b;
+                d dVar3 = (d) this.f8773b;
                 try {
                     return super.remove(obj);
                 } catch (UnsupportedOperationException unused3) {
                     for (Map.Entry entry3 : dVar3.entrySet()) {
-                        if (o9.a(obj, entry3.getValue())) {
+                        if (i9.a(obj, entry3.getValue())) {
                             dVar3.remove(entry3.getKey());
                             return true;
                         }
@@ -173,9 +173,9 @@ public final class n extends AbstractCollection {
 
     @Override
     public boolean removeAll(Collection collection) {
-        switch (this.f8778a) {
+        switch (this.f8772a) {
             case 2:
-                d dVar = (d) this.f8779b;
+                d dVar = (d) this.f8773b;
                 try {
                     collection.getClass();
                     return super.removeAll(collection);
@@ -193,7 +193,7 @@ public final class n extends AbstractCollection {
             default:
                 return super.removeAll(collection);
             case 4:
-                d dVar2 = (d) this.f8779b;
+                d dVar2 = (d) this.f8773b;
                 try {
                     if (collection != null) {
                         return super.removeAll(collection);
@@ -206,10 +206,10 @@ public final class n extends AbstractCollection {
                             hashSet2.add(entry2.getKey());
                         }
                     }
-                    return ((x7.f) dVar2.f8733e).b().removeAll(hashSet2);
+                    return ((x7.f) dVar2.f8727e).b().removeAll(hashSet2);
                 }
             case 6:
-                d dVar3 = (d) this.f8779b;
+                d dVar3 = (d) this.f8773b;
                 try {
                     if (collection != null) {
                         return super.removeAll(collection);
@@ -222,16 +222,16 @@ public final class n extends AbstractCollection {
                             hashSet3.add(entry3.getKey());
                         }
                     }
-                    return ((lg) dVar3.f8733e).b().removeAll(hashSet3);
+                    return ((lg) dVar3.f8727e).b().removeAll(hashSet3);
                 }
         }
     }
 
     @Override
     public boolean retainAll(Collection collection) {
-        switch (this.f8778a) {
+        switch (this.f8772a) {
             case 2:
-                d dVar = (d) this.f8779b;
+                d dVar = (d) this.f8773b;
                 try {
                     collection.getClass();
                     return super.retainAll(collection);
@@ -249,7 +249,7 @@ public final class n extends AbstractCollection {
             default:
                 return super.retainAll(collection);
             case 4:
-                d dVar2 = (d) this.f8779b;
+                d dVar2 = (d) this.f8773b;
                 try {
                     if (collection != null) {
                         return super.retainAll(collection);
@@ -262,10 +262,10 @@ public final class n extends AbstractCollection {
                             hashSet2.add(entry2.getKey());
                         }
                     }
-                    return ((x7.f) dVar2.f8733e).b().retainAll(hashSet2);
+                    return ((x7.f) dVar2.f8727e).b().retainAll(hashSet2);
                 }
             case 6:
-                d dVar3 = (d) this.f8779b;
+                d dVar3 = (d) this.f8773b;
                 try {
                     if (collection != null) {
                         return super.retainAll(collection);
@@ -278,33 +278,33 @@ public final class n extends AbstractCollection {
                             hashSet3.add(entry3.getKey());
                         }
                     }
-                    return ((lg) dVar3.f8733e).b().retainAll(hashSet3);
+                    return ((lg) dVar3.f8727e).b().retainAll(hashSet3);
                 }
         }
     }
 
     @Override
     public final int size() {
-        switch (this.f8778a) {
+        switch (this.f8772a) {
             case 0:
-                return ((v0) this.f8779b).f8820e;
+                return ((v0) this.f8773b).f8814e;
             case 1:
-                return ((v) this.f8779b).size();
+                return ((v) this.f8773b).size();
             case 2:
-                return ((d) this.f8779b).f8731b.size();
+                return ((d) this.f8773b).f8725b.size();
             case 3:
-                return ((x7.j) this.f8779b).size();
+                return ((x7.j) this.f8773b).size();
             case 4:
-                return ((d) this.f8779b).f8731b.size();
+                return ((d) this.f8773b).f8725b.size();
             case 5:
-                return ((z7.d) this.f8779b).size();
+                return ((z7.d) this.f8773b).size();
             default:
-                return ((d) this.f8779b).f8731b.size();
+                return ((d) this.f8773b).f8725b.size();
         }
     }
 
     public n(AbstractMap abstractMap, int i10) {
-        this.f8778a = i10;
-        this.f8779b = abstractMap;
+        this.f8772a = i10;
+        this.f8773b = abstractMap;
     }
 }

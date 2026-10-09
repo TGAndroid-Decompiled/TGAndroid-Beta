@@ -1,51 +1,37 @@
 package org.telegram.ui.Components;
+public final class o31 implements Runnable {
+    public final int f29379a;
+    public final long f29380b;
+    public final Object f29381c;
+    public final Object d;
+    public final Object f29382e;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class o31 extends Drawable {
-    public final Drawable f29328a;
-    public final Paint f29329b = new Paint(1);
-    public final RectF f29330c = new RectF();
-
-    public o31(Context context) {
-        this.f29328a = context.getResources().getDrawable(R.drawable.menu_topic_add).mutate();
+    public o31(Object obj, Object obj2, long j3, Object obj3, int i10) {
+        this.f29379a = i10;
+        this.f29381c = obj;
+        this.d = obj2;
+        this.f29380b = j3;
+        this.f29382e = obj3;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Paint paint = this.f29329b;
-        canvas.drawRoundRect(this.f29330c, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), paint);
-        this.f29328a.draw(canvas);
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.o31.run():void");
     }
 
-    @Override
-    public final int getOpacity() {
-        return 0;
+    public o31(Object obj, Object obj2, Object obj3, long j3, int i10) {
+        this.f29379a = i10;
+        this.f29381c = obj;
+        this.d = obj2;
+        this.f29382e = obj3;
+        this.f29380b = j3;
     }
 
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        super.onBoundsChange(rect);
-        this.f29330c.set(rect);
-        int centerX = rect.centerX() - AndroidUtilities.dp(12.0f);
-        int centerY = rect.centerY() - AndroidUtilities.dp(12.0f);
-        this.f29328a.setBounds(centerX, centerY, AndroidUtilities.dp(24.0f) + centerX, AndroidUtilities.dp(24.0f) + centerY);
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f29329b.setAlpha(i10);
-        this.f29328a.setAlpha(i10);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public o31(org.telegram.ui.ActionBar.f3 f3Var, long j3, Object obj, Object obj2, int i10) {
+        this.f29379a = i10;
+        this.f29381c = f3Var;
+        this.f29380b = j3;
+        this.d = obj;
+        this.f29382e = obj2;
     }
 }

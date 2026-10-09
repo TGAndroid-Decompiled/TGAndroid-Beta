@@ -1,10 +1,7 @@
 package g0;
 
+import a1.g;
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
 import android.graphics.Bitmap;
@@ -13,7 +10,6 @@ import android.graphics.drawable.Icon;
 import android.media.MediaRoute2Info;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
 import android.os.ext.SdkExtensions;
 import android.view.Surface;
 import android.view.View;
@@ -27,8 +23,8 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 public abstract class f {
-    public static volatile e f10149a;
-    public static volatile ArrayList f10150b;
+    public static volatile e f10222a;
+    public static volatile ArrayList f10223b;
 
     public static void a(Context context, ArrayList arrayList) {
         List p5 = p(arrayList);
@@ -55,7 +51,7 @@ public abstract class f {
         if (!it.hasNext()) {
             return;
         }
-        throw a4.a.k(it);
+        throw g.k(it);
     }
 
     public static boolean b(Context context, c cVar) {
@@ -63,7 +59,7 @@ public abstract class f {
         IconCompat c10;
         IconCompat iconCompat = cVar.h;
         if (iconCompat != null) {
-            int i10 = iconCompat.f2344a;
+            int i10 = iconCompat.f2423a;
             if (i10 != 6 && i10 != 4) {
                 return true;
             }
@@ -73,7 +69,7 @@ public abstract class f {
             }
             if (i10 == 6) {
                 c10 = new IconCompat(5);
-                c10.f2345b = decodeStream;
+                c10.f2424b = decodeStream;
             } else {
                 c10 = IconCompat.c(decodeStream);
             }
@@ -144,48 +140,21 @@ public abstract class f {
         return arrayList;
     }
 
-    public static List i(Context context) {
-        Bundle bundle;
-        String string;
-        if (f10150b == null) {
-            ArrayList arrayList = new ArrayList();
-            PackageManager packageManager = context.getPackageManager();
-            Intent intent = new Intent("androidx.core.content.pm.SHORTCUT_LISTENER");
-            intent.setPackage(context.getPackageName());
-            for (ResolveInfo resolveInfo : packageManager.queryIntentActivities(intent, 128)) {
-                ActivityInfo activityInfo = resolveInfo.activityInfo;
-                if (activityInfo != null && (bundle = activityInfo.metaData) != null && (string = bundle.getString("androidx.core.content.pm.shortcut_listener_impl")) != null) {
-                    try {
-                        if (Class.forName(string, false, f.class.getClassLoader()).getMethod("getInstance", Context.class).invoke(null, context) == null) {
-                            arrayList.add(null);
-                        } else {
-                            throw new ClassCastException();
-                            break;
-                        }
-                    } catch (Exception unused) {
-                    }
-                }
-            }
-            if (f10150b == null) {
-                f10150b = arrayList;
-            }
-        }
-        return f10150b;
+    public static java.util.List i(android.content.Context r8) {
+        throw new UnsupportedOperationException("Method not decompiled: g0.f.i(android.content.Context):java.util.List");
     }
 
     public static e j(Context context) {
-        if (f10149a == null) {
-            if (Build.VERSION.SDK_INT >= 23) {
-                try {
-                    f10149a = (e) Class.forName("androidx.sharetarget.ShortcutInfoCompatSaverImpl", false, f.class.getClassLoader()).getMethod("getInstance", Context.class).invoke(null, context);
-                } catch (Exception unused) {
-                }
+        if (f10222a == null) {
+            try {
+                f10222a = (e) Class.forName("androidx.sharetarget.ShortcutInfoCompatSaverImpl", false, f.class.getClassLoader()).getMethod("getInstance", Context.class).invoke(null, context);
+            } catch (Exception unused) {
             }
-            if (f10149a == null) {
-                f10149a = new Object();
+            if (f10222a == null) {
+                f10222a = new Object();
             }
         }
-        return f10149a;
+        return f10222a;
     }
 
     public static List k(Context context) {
@@ -224,8 +193,8 @@ public abstract class f {
                 }
                 List<ShortcutInfo> dynamicShortcuts = shortcutManager.getDynamicShortcuts();
                 if (dynamicShortcuts.size() >= g10) {
-                    String str = null;
                     int i12 = -1;
+                    String str = null;
                     for (ShortcutInfo shortcutInfo : dynamicShortcuts) {
                         if (shortcutInfo.getRank() > i12) {
                             str = shortcutInfo.getId();
@@ -242,9 +211,9 @@ public abstract class f {
                 if (b10.size() >= g10) {
                     String str2 = null;
                     for (c cVar2 : b10) {
-                        int i13 = cVar2.f10147m;
+                        int i13 = cVar2.f10220m;
                         if (i13 > i11) {
-                            str2 = cVar2.f10138b;
+                            str2 = cVar2.f10211b;
                             i11 = i13;
                         }
                     }
@@ -277,10 +246,10 @@ public abstract class f {
                     }
                     throw new ClassCastException();
                 }
-                q(context, cVar.f10138b);
+                q(context, cVar.f10211b);
                 throw th2;
             }
-            q(context, cVar.f10138b);
+            q(context, cVar.f10211b);
         }
     }
 
@@ -293,7 +262,7 @@ public abstract class f {
         if (!it.hasNext()) {
             return;
         }
-        throw a4.a.k(it);
+        throw g.k(it);
     }
 
     public static void o(Context context, ArrayList arrayList) {
@@ -305,7 +274,7 @@ public abstract class f {
         if (!it.hasNext()) {
             return;
         }
-        throw a4.a.k(it);
+        throw g.k(it);
     }
 
     public static List p(ArrayList arrayList) {
@@ -401,6 +370,6 @@ public abstract class f {
         if (!it.hasNext()) {
             return;
         }
-        throw a4.a.k(it);
+        throw g.k(it);
     }
 }

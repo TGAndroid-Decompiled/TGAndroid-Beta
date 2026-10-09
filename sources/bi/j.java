@@ -3,20 +3,20 @@ package bi;
 import android.content.Context;
 import android.graphics.Canvas;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.gl0;
-import org.telegram.ui.Components.gv0;
-import org.telegram.ui.Components.iu0;
-public final class j extends gv0 {
-    public final u f3855x3;
+import org.telegram.ui.Components.rv0;
+import org.telegram.ui.Components.tu0;
+import org.telegram.ui.Components.yl0;
+public final class j extends rv0 {
+    public final u f3904o3;
 
     public j(u uVar, Context context) {
         super(context);
-        this.f3855x3 = uVar;
+        this.f3904o3 = uVar;
     }
 
     @Override
     public final boolean A1() {
-        return this.f3855x3.f3875b;
+        return this.f3904o3.f3924b;
     }
 
     @Override
@@ -36,18 +36,18 @@ public final class j extends gv0 {
             }
         }
         float f7 = i11;
-        u uVar = this.f3855x3;
+        u uVar = this.f3904o3;
         r rVar = uVar.J;
-        if (uVar.f3875b) {
-            iu0 iu0Var = uVar.f3880r;
+        if (uVar.f3924b) {
+            tu0 tu0Var = uVar.f3929r;
             int i13 = 0;
-            for (int i14 = 0; i14 < iu0Var.getChildCount(); i14++) {
-                int bottom2 = iu0Var.getChildAt(i14).getBottom() - iu0Var.getPaddingTop();
+            for (int i14 = 0; i14 < tu0Var.getChildCount(); i14++) {
+                int bottom2 = tu0Var.getChildAt(i14).getBottom() - tu0Var.getPaddingTop();
                 if (bottom2 > i13) {
                     i13 = bottom2;
                 }
             }
-            f7 = AndroidUtilities.lerp(f7, i13, uVar.f3876c);
+            f7 = AndroidUtilities.lerp(f7, i13, uVar.f3925c);
         }
         if (uVar.v.h() <= 0) {
             i10 = 8;
@@ -58,35 +58,35 @@ public final class j extends gv0 {
 
     @Override
     public final int getAnimateToColumnsCount() {
-        return this.f3855x3.f3877e;
+        return this.f3904o3.f3926e;
     }
 
     @Override
     public final float getChangeColumnsProgress() {
-        return this.f3855x3.f3876c;
+        return this.f3904o3.f3925c;
     }
 
     @Override
     public final int getColumnsCount() {
-        return this.f3855x3.d;
+        return this.f3904o3.d;
     }
 
     @Override
-    public final gl0 getMovingAdapter() {
-        u uVar = this.f3855x3;
-        if (uVar.G.f46705y == 0 && !uVar.W.G.C1) {
+    public final yl0 getMovingAdapter() {
+        u uVar = this.f3904o3;
+        if (uVar.G.f47824y == 0 && !uVar.W.G.C1) {
             return uVar.v;
         }
         return null;
     }
 
     @Override
-    public final gl0 getSupportingAdapter() {
-        return this.f3855x3.f3882w;
+    public final yl0 getSupportingAdapter() {
+        return this.f3904o3.f3931w;
     }
 
     @Override
-    public final iu0 getSupportingListView() {
-        return this.f3855x3.f3880r;
+    public final tu0 getSupportingListView() {
+        return this.f3904o3.f3929r;
     }
 }

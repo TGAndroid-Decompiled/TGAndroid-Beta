@@ -7,25 +7,25 @@ import android.text.style.ReplacementSpan;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.f11;
+import org.telegram.ui.Components.l11;
 public final class e1 extends ReplacementSpan {
-    public final RectF f823a = new RectF();
-    public final Paint f824b = new Paint(1);
-    public final f11 f825c = new f11(LocaleController.getString(R.string.LiveStoryBadge), 8.0f, AndroidUtilities.bold());
+    public final RectF f870a = new RectF();
+    public final Paint f871b = new Paint(1);
+    public final l11 f872c = new l11(LocaleController.getString(R.string.LiveStoryBadge), 8.0f, AndroidUtilities.bold());
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
         float dp = ((i12 + i14) / 2.0f) + AndroidUtilities.dp(0.0f);
-        RectF rectF = this.f823a;
-        rectF.set(f7, dp - AndroidUtilities.dp(6.0f), this.f825c.l() + f7 + AndroidUtilities.dp(8.0f), AndroidUtilities.dp(6.0f) + dp);
-        Paint paint2 = this.f824b;
+        RectF rectF = this.f870a;
+        rectF.set(f7, dp - AndroidUtilities.dp(6.0f), this.f872c.l() + f7 + AndroidUtilities.dp(8.0f), AndroidUtilities.dp(6.0f) + dp);
+        Paint paint2 = this.f871b;
         paint2.setColor(-572850);
         canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, paint2);
-        this.f825c.c(AndroidUtilities.dp(4.0f) + f7, dp, 1.0f, -1, canvas);
+        this.f872c.c(AndroidUtilities.dp(4.0f) + f7, dp, 1.0f, -1, canvas);
     }
 
     @Override
     public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        return (int) (this.f825c.l() + AndroidUtilities.dp(8.0f));
+        return (int) (this.f872c.l() + AndroidUtilities.dp(8.0f));
     }
 }

@@ -1,398 +1,196 @@
 package yh;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import android.content.Context;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.eb1;
-public final class l5 implements m5 {
-    public final int f51581a;
-    public final long f51582b;
-    public int d;
-    public Boolean h;
-    public boolean f51587i;
-    public boolean f51588j;
-    public String f51589k;
-    public int f51592n;
-    public boolean f51593o;
-    public ArrayList f51595q;
-    public boolean f51583c = false;
-    public boolean f51584e = true;
-    public boolean f51585f = false;
-    public int f51586g = 783;
-    public final ArrayList f51590l = new ArrayList();
-    public int f51591m = -1;
-    public long f51594p = 0;
+import org.telegram.ui.Components.ad;
+import org.telegram.ui.Components.mc;
+import org.telegram.ui.Components.nc;
+import org.telegram.ui.Components.rc;
+import org.telegram.ui.Components.tc;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.zn;
+public final class l5 {
+    public final g5 f52833a;
+    public final MessageObject f52834b;
+    public final zn f52835c;
+    public final tc d;
+    public final nc f52836e;
+    public final mc f52837f;
+    public final boolean f52838g;
+    public long h;
+    public long f52841k;
+    public boolean f52842l;
+    public boolean f52843m;
+    public w3 f52845o;
+    public final j5 f52846p;
+    public final m5 f52847q;
+    public boolean f52839i = false;
+    public boolean f52840j = false;
+    public Long f52844n = null;
 
-    public l5(int i10, long j3, boolean z10) {
-        this.f51581a = i10;
-        this.f51582b = j3;
+    public l5(m5 m5Var, g5 g5Var, MessageObject messageObject, zn znVar, boolean z10) {
+        this.f52847q = m5Var;
+        j5 j5Var = new j5(this, 0);
+        this.f52846p = j5Var;
+        this.f52833a = g5Var;
+        this.f52834b = messageObject;
+        this.f52835c = znVar;
+        Context t10 = m5.t(znVar);
+        nc ncVar = new nc(t10, znVar.f44761ea);
+        this.f52836e = ncVar;
+        ncVar.c(R.raw.stars_topup, new String[0]);
+        ncVar.f29140b.setText(d());
+        rc rcVar = new rc(t10, znVar.f44761ea, true, false);
+        rcVar.e(LocaleController.getString(R.string.StarsSentUndo));
+        rcVar.f30421a = new j5(this, 1);
+        mc mcVar = new mc(t10, znVar.f44761ea);
+        this.f52837f = mcVar;
+        mcVar.f28806b = 5000L;
+        mcVar.setColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.Gi, znVar.f44761ea));
+        rcVar.addView(mcVar, w7.x5.a(20.0f, 0.0f, 0.0f, 12.0f, 0.0f, 20, 21));
+        rcVar.d.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(30.0f), AndroidUtilities.dp(8.0f));
+        ncVar.setButton(rcVar);
+        tc b10 = ad.a0(znVar).b(ncVar, -1);
+        this.d = b10;
+        b10.f31138r = false;
         if (z10) {
-            a();
+            b10.k(true);
+            this.f52843m = true;
         }
+        b10.v = j5Var;
+        this.h = 0L;
+        System.currentTimeMillis();
+        this.f52838g = messageObject.isPaidReactionChosen();
     }
 
-    @Override
     public final void a() {
-        boolean z10;
-        TL_stars.getSavedStarGifts getsavedstargifts;
-        if (!this.f51587i && !this.f51588j) {
-            if (this.f51589k == null) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            this.f51587i = true;
-            long j3 = this.f51594p;
-            int i10 = 30;
-            String str = "";
-            int i11 = this.f51581a;
-            if (j3 != 0) {
-                TL_stars.getCraftStarGifts getcraftstargifts = new TL_stars.getCraftStarGifts();
-                getcraftstargifts.gift_id = this.f51594p;
-                if (!z10) {
-                    str = this.f51589k;
-                }
-                getcraftstargifts.offset = str;
-                if (z10) {
-                    i10 = 15;
-                }
-                getcraftstargifts.limit = i10;
-                getsavedstargifts = getcraftstargifts;
-            } else {
-                TL_stars.getSavedStarGifts getsavedstargifts2 = new TL_stars.getSavedStarGifts();
-                getsavedstargifts2.sort_by_value = !this.f51584e;
-                getsavedstargifts2.exclude_unupgradable = !TLObject.hasFlag(this.f51586g, 2);
-                getsavedstargifts2.exclude_upgradable = !TLObject.hasFlag(this.f51586g, 4);
-                getsavedstargifts2.exclude_unlimited = !TLObject.hasFlag(this.f51586g, 1);
-                getsavedstargifts2.exclude_unique = !TLObject.hasFlag(this.f51586g, 8);
-                getsavedstargifts2.exclude_saved = !TLObject.hasFlag(this.f51586g, 256);
-                getsavedstargifts2.exclude_unsaved = !TLObject.hasFlag(this.f51586g, 512);
-                getsavedstargifts2.peer_color_available = this.f51585f;
-                long j10 = this.f51582b;
-                if (j10 == 0) {
-                    getsavedstargifts2.peer = new TLRPC.TL_inputPeerSelf();
-                } else {
-                    getsavedstargifts2.peer = MessagesController.getInstance(i11).getInputPeer(j10);
-                }
-                if (!z10) {
-                    str = this.f51589k;
-                }
-                getsavedstargifts2.offset = str;
-                if (z10) {
-                    i10 = Math.max(MessagesController.getInstance(i11).stargiftsPinnedToTopLimit, 15);
-                }
-                getsavedstargifts2.limit = i10;
-                getsavedstargifts = getsavedstargifts2;
-                if (this.f51583c) {
-                    getsavedstargifts2.flags |= 64;
-                    getsavedstargifts2.collection_id = this.d;
-                    getsavedstargifts = getsavedstargifts2;
-                }
-            }
-            int sendRequest = ConnectionsManager.getInstance(i11).sendRequest(getsavedstargifts, new ci.v1(this, r2, z10, 8));
-            this.f51591m = sendRequest;
-            int[] iArr = {sendRequest};
+        m5 m5Var = this.f52847q;
+        int i10 = m5Var.f52878a;
+        AndroidUtilities.cancelRunOnUIThread(this.f52846p);
+        this.f52840j = true;
+        this.d.b();
+        w3 w3Var = this.f52845o;
+        if (w3Var != null) {
+            w3Var.c();
+        }
+        boolean z10 = this.f52838g;
+        long c10 = c();
+        MessageObject messageObject = this.f52834b;
+        messageObject.addPaidReactions((int) (-this.h), z10, c10);
+        m5Var.f52883g -= this.h;
+        NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starBalanceUpdated, new Object[0]);
+        NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didUpdateReactions, Long.valueOf(messageObject.getDialogId()), Integer.valueOf(messageObject.getId()), messageObject.messageOwner.reactions);
+        if (m5Var.B == this) {
+            m5Var.B = null;
         }
     }
 
-    @Override
-    public final int b(int i10) {
-        if (!y3.O1(this.f51581a, this.f51582b)) {
-            return -1;
-        }
-        int i11 = i10 + 1;
-        while (true) {
-            ArrayList arrayList = this.f51590l;
-            if (i11 < arrayList.size()) {
-                if (((TL_stars.SavedStarGift) arrayList.get(i11)).can_upgrade) {
-                    return i11;
-                }
-                i11++;
-            } else {
-                for (int i12 = i10 - 1; i12 >= 0; i12--) {
-                    if (((TL_stars.SavedStarGift) arrayList.get(i12)).can_upgrade) {
-                        return i12;
-                    }
-                }
-                return -1;
-            }
-        }
-    }
-
-    @Override
-    public final int c() {
-        return this.f51592n;
-    }
-
-    @Override
-    public final void d() {
-        NotificationCenter.getInstance(this.f51581a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(this.f51582b), this);
-    }
-
-    @Override
-    public final int e() {
-        return this.f51590l.size();
-    }
-
-    public final void f(int i10, boolean z10) {
-        int i11;
-        if ((i10 & 15) != 0) {
-            i11 = 15;
-        } else if ((i10 & 768) != 0) {
-            i11 = 768;
-        } else {
-            i11 = 0;
-        }
-        int i12 = this.f51586g;
-        int i13 = i10 | ((~i11) & i12);
-        if (i12 != i13) {
-            this.f51586g = i13;
-            if (z10) {
-                i(true);
-            }
-        }
-    }
-
-    public final TL_stars.InputSavedStarGift g(TL_stars.SavedStarGift savedStarGift) {
-        if (savedStarGift == null) {
-            return null;
-        }
-        if ((savedStarGift.flags & 8) != 0) {
-            TL_stars.TL_inputSavedStarGiftUser tL_inputSavedStarGiftUser = new TL_stars.TL_inputSavedStarGiftUser();
-            tL_inputSavedStarGiftUser.msg_id = savedStarGift.msg_id;
-            return tL_inputSavedStarGiftUser;
-        }
-        TL_stars.TL_inputSavedStarGiftChat tL_inputSavedStarGiftChat = new TL_stars.TL_inputSavedStarGiftChat();
-        tL_inputSavedStarGiftChat.peer = MessagesController.getInstance(this.f51581a).getInputPeer(this.f51582b);
-        tL_inputSavedStarGiftChat.saved_id = savedStarGift.saved_id;
-        return tL_inputSavedStarGiftChat;
-    }
-
-    @Override
-    public final Object get(int i10) {
-        if (i10 >= 0) {
-            ArrayList arrayList = this.f51590l;
-            if (i10 < arrayList.size()) {
-                return arrayList.get(i10);
-            }
-            return null;
-        }
-        return null;
-    }
-
-    public final ArrayList h() {
-        ArrayList arrayList = new ArrayList();
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList2 = this.f51590l;
-            if (i10 < arrayList2.size()) {
-                TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) arrayList2.get(i10);
-                if (savedStarGift.pinned_to_top && !savedStarGift.unsaved) {
-                    arrayList.add(savedStarGift);
-                }
-                i10++;
-            } else {
-                return arrayList;
-            }
-        }
-    }
-
-    public final void i(boolean z10) {
-        if (this.f51591m != -1) {
-            ConnectionsManager.getInstance(this.f51581a).cancelRequest(this.f51591m, true);
-            this.f51591m = -1;
-        }
-        this.f51587i = false;
-        this.f51590l.clear();
-        this.f51589k = null;
-        this.f51588j = false;
-        if (!z10 && !this.f51593o) {
-            return;
-        }
-        a();
-    }
-
-    @Override
-    public final int indexOf(Object obj) {
-        return this.f51590l.indexOf(obj);
-    }
-
-    public final void j(ArrayList arrayList, TL_stars.StarGift starGift) {
-        int i10 = this.f51581a;
-        if (arrayList != null && !arrayList.isEmpty()) {
-            int size = arrayList.size();
-            boolean z10 = false;
-            int i11 = 0;
-            while (i11 < size) {
-                Object obj = arrayList.get(i11);
-                i11++;
-                TL_stars.StarGift starGift2 = (TL_stars.StarGift) obj;
-                int i12 = 0;
-                while (true) {
-                    ArrayList arrayList2 = this.f51590l;
-                    if (i12 < arrayList2.size()) {
-                        TL_stars.StarGift starGift3 = ((TL_stars.SavedStarGift) arrayList2.get(i12)).gift;
-                        if (starGift3 != null && starGift3.f20274id == starGift2.f20274id) {
-                            arrayList2.remove(i12);
-                            this.f51592n = Math.max(0, this.f51592n - 1);
-                            z10 = true;
-                            break;
-                        }
-                        i12++;
+    public final void b() {
+        MessageObject messageObject;
+        String str;
+        AndroidUtilities.cancelRunOnUIThread(this.f52846p);
+        if (this.f52842l) {
+            if (!this.f52839i && !this.f52840j) {
+                m5 y3 = m5.y(this.f52847q.f52878a, false);
+                MessagesController messagesController = MessagesController.getInstance(this.f52847q.f52878a);
+                ConnectionsManager connectionsManager = ConnectionsManager.getInstance(this.f52847q.f52878a);
+                long j3 = this.h;
+                if (y3.f52881e && y3.q(false, false, null).amount < j3) {
+                    this.f52840j = true;
+                    this.f52834b.addPaidReactions((int) (-this.h), this.f52838g, c());
+                    m5 m5Var = this.f52847q;
+                    m5Var.f52883g = 0L;
+                    NotificationCenter.getInstance(m5Var.f52878a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starBalanceUpdated, new Object[0]);
+                    NotificationCenter.getInstance(this.f52847q.f52878a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didUpdateReactions, Long.valueOf(this.f52834b.getDialogId()), Integer.valueOf(this.f52834b.getId()), this.f52834b.messageOwner.reactions);
+                    if (this.f52833a.f52582a >= 0) {
+                        str = UserObject.getForcedFirstName(this.f52835c.getMessagesController().getUser(Long.valueOf(this.f52833a.f52582a)));
                     } else {
-                        break;
+                        TLRPC.Chat chat = this.f52835c.getMessagesController().getChat(Long.valueOf(-this.f52833a.f52582a));
+                        if (chat == null) {
+                            str = "";
+                        } else {
+                            str = chat.title;
+                        }
                     }
-                }
-            }
-            if (z10) {
-                NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(this.f51582b), this);
-            }
-        }
-        if (starGift != null) {
-            TL_stars.getSavedStarGift getsavedstargift = new TL_stars.getSavedStarGift();
-            TL_stars.TL_inputSavedStarGiftSlug tL_inputSavedStarGiftSlug = new TL_stars.TL_inputSavedStarGiftSlug();
-            tL_inputSavedStarGiftSlug.slug = starGift.slug;
-            getsavedstargift.stargift.add(tL_inputSavedStarGiftSlug);
-            ConnectionsManager.getInstance(i10).sendRequest(getsavedstargift, new ai.n8(this, 27));
-        }
-    }
-
-    public final void k(int i10, int i11) {
-        ArrayList arrayList = this.f51590l;
-        int clamp = Utilities.clamp(i10, arrayList.size() - 1, 0);
-        if (clamp >= 0 && clamp < arrayList.size()) {
-            TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) arrayList.remove(clamp);
-            int clamp2 = Utilities.clamp(i11, arrayList.size() - 1, 0);
-            if (clamp2 >= 0 && clamp2 < arrayList.size()) {
-                arrayList.add(clamp2, savedStarGift);
-            }
-        }
-    }
-
-    public final void l() {
-        boolean z10 = this.f51583c;
-        int i10 = 0;
-        long j3 = this.f51582b;
-        int i11 = this.f51581a;
-        if (z10) {
-            TL_stars.updateStarGiftCollection updatestargiftcollection = new TL_stars.updateStarGiftCollection();
-            updatestargiftcollection.peer = MessagesController.getInstance(i11).getInputPeer(j3);
-            updatestargiftcollection.collection_id = this.d;
-            updatestargiftcollection.flags |= 8;
-            ArrayList arrayList = this.f51590l;
-            int size = arrayList.size();
-            while (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                updatestargiftcollection.order.add(g((TL_stars.SavedStarGift) obj));
-            }
-            ConnectionsManager.getInstance(i11).sendRequest(updatestargiftcollection, null, 64);
-            return;
-        }
-        TL_stars.toggleStarGiftsPinnedToTop togglestargiftspinnedtotop = new TL_stars.toggleStarGiftsPinnedToTop();
-        togglestargiftspinnedtotop.peer = MessagesController.getInstance(i11).getInputPeer(j3);
-        ArrayList h = h();
-        int size2 = h.size();
-        while (i10 < size2) {
-            Object obj2 = h.get(i10);
-            i10++;
-            togglestargiftspinnedtotop.stargift.add(g((TL_stars.SavedStarGift) obj2));
-        }
-        ConnectionsManager.getInstance(i11).sendRequest(togglestargiftspinnedtotop, new ai.u7(8), 64);
-    }
-
-    public final boolean m(TL_stars.SavedStarGift savedStarGift, boolean z10, boolean z11) {
-        boolean z12;
-        ArrayList arrayList;
-        if (savedStarGift != null) {
-            ArrayList h = h();
-            boolean contains = h.contains(savedStarGift);
-            int i10 = this.f51581a;
-            if (contains) {
-                if (!z10) {
-                    h.remove(savedStarGift);
-                    z12 = false;
-                    savedStarGift.pinned_to_top = z10;
-                    arrayList = this.f51590l;
-                    arrayList.removeAll(h);
-                    if (this.f51584e && !this.f51583c) {
-                        Collections.sort(arrayList, new eb1(20));
+                    String str2 = str;
+                    Context parentActivity = this.f52835c.getParentActivity();
+                    if (parentActivity == null) {
+                        parentActivity = LaunchActivity.G1;
                     }
-                    arrayList.addAll(0, h);
-                    NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(this.f51582b), this);
-                    l();
-                    return z12;
-                }
-            } else if (z10) {
-                if (h.size() + 1 > MessagesController.getInstance(i10).stargiftsPinnedToTopLimit) {
-                    if (!z11) {
-                        return true;
+                    if (parentActivity == null) {
+                        parentActivity = ApplicationLoader.applicationContext;
                     }
-                    while (h.size() > 0 && h.size() + 1 > MessagesController.getInstance(i10).stargiftsPinnedToTopLimit) {
-                        ((TL_stars.SavedStarGift) hg.c.w(1, h)).pinned_to_top = false;
-                    }
-                    z12 = true;
+                    new e7(parentActivity, this.f52835c.getResourceProvider(), j3, 5, str2, new k5(this, j3, 0), 0L).show();
                 } else {
-                    z12 = false;
-                }
-                h.add(savedStarGift);
-                savedStarGift.pinned_to_top = z10;
-                arrayList = this.f51590l;
-                arrayList.removeAll(h);
-                if (this.f51584e) {
-                    Collections.sort(arrayList, new eb1(20));
-                }
-                arrayList.addAll(0, h);
-                NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(this.f51582b), this);
-                l();
-                return z12;
-            }
-        }
-        return false;
-    }
-
-    public final void n(TL_stars.SavedStarGift savedStarGift, int i10, boolean z10) {
-        ArrayList arrayList = this.f51590l;
-        int size = arrayList.size();
-        int i11 = 0;
-        while (i11 < size) {
-            Object obj = arrayList.get(i11);
-            i11++;
-            TL_stars.SavedStarGift savedStarGift2 = (TL_stars.SavedStarGift) obj;
-            if (u5.k(savedStarGift2, savedStarGift)) {
-                if (z10) {
-                    if (!savedStarGift2.collection_id.contains(Integer.valueOf(i10))) {
-                        savedStarGift2.collection_id.add(Integer.valueOf(i10));
+                    this.f52839i = true;
+                    TLRPC.TL_messages_sendPaidReaction tL_messages_sendPaidReaction = new TLRPC.TL_messages_sendPaidReaction();
+                    tL_messages_sendPaidReaction.peer = messagesController.getInputPeer(this.f52833a.f52582a);
+                    tL_messages_sendPaidReaction.msg_id = this.f52833a.f52583b;
+                    tL_messages_sendPaidReaction.random_id = (connectionsManager.getCurrentTime() << 32) | (Utilities.random.nextLong() & 4294967295L);
+                    tL_messages_sendPaidReaction.count = (int) this.h;
+                    tL_messages_sendPaidReaction.flags |= 1;
+                    long c10 = c();
+                    if (c10 != 0 && c10 != UserConfig.getInstance(this.f52847q.f52878a).getClientUserId()) {
+                        if (c10 == 2666000) {
+                            tL_messages_sendPaidReaction.privacy = new TL_stars.paidReactionPrivacyAnonymous();
+                        } else {
+                            TL_stars.paidReactionPrivacyPeer paidreactionprivacypeer = new TL_stars.paidReactionPrivacyPeer();
+                            tL_messages_sendPaidReaction.privacy = paidreactionprivacypeer;
+                            paidreactionprivacypeer.peer = messagesController.getInputPeer(c10);
+                        }
+                    } else {
+                        tL_messages_sendPaidReaction.privacy = new TL_stars.paidReactionPrivacyDefault();
                     }
-                } else {
-                    savedStarGift2.collection_id.remove(Integer.valueOf(i10));
+                    this.f52847q.P();
+                    connectionsManager.sendRequest(tL_messages_sendPaidReaction, new ai.u1(this, messagesController, j3, 6));
                 }
             }
+        } else {
+            this.f52840j = true;
+            this.f52834b.addPaidReactions((int) (-this.h), this.f52838g, c());
+            m5 m5Var2 = this.f52847q;
+            m5Var2.f52883g -= this.h;
+            NotificationCenter.getInstance(m5Var2.f52878a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starBalanceUpdated, new Object[0]);
+        }
+        this.d.b();
+        w3 w3Var = this.f52845o;
+        if (w3Var != null && (messageObject = this.f52834b) != null && messageObject.getId() == w3Var.f53331c) {
+            this.f52845o.c();
+        }
+        m5 m5Var3 = this.f52847q;
+        if (m5Var3.B == this) {
+            m5Var3.B = null;
         }
     }
 
-    public final void o(TL_stars.SavedStarGift savedStarGift, boolean z10) {
-        ArrayList arrayList = this.f51590l;
-        int size = arrayList.size();
-        boolean z11 = false;
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            TL_stars.SavedStarGift savedStarGift2 = (TL_stars.SavedStarGift) obj;
-            if (u5.k(savedStarGift2, savedStarGift) && savedStarGift2.unsaved != z10) {
-                savedStarGift2.unsaved = z10;
-                z11 = true;
-            }
+    public final long c() {
+        Long l4 = this.f52844n;
+        if (l4 != null) {
+            return l4.longValue();
         }
-        if (z11) {
-            NotificationCenter.getInstance(this.f51581a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(this.f51582b), this);
+        return this.f52847q.A(this.f52834b);
+    }
+
+    public final String d() {
+        if (c() == 2666000) {
+            return LocaleController.getString(R.string.StarsSentAnonymouslyTitle);
         }
+        if (c() != 0 && c() != UserConfig.getInstance(this.f52847q.f52878a).getClientUserId()) {
+            return LocaleController.formatString(R.string.StarsSentTitleChannel, DialogObject.getShortName(c()));
+        }
+        return LocaleController.getString(R.string.StarsSentTitle);
     }
 }

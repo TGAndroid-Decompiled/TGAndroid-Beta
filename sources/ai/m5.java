@@ -1,41 +1,34 @@
 package ai;
-public final class m5 implements Runnable {
-    public final int f1349a;
-    public final v5 f1350b;
 
-    public m5(v5 v5Var, int i10) {
-        this.f1349a = i10;
-        this.f1350b = v5Var;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.nn0;
+public final class m5 implements View.OnClickListener {
+    public final int f1392a;
+    public final boolean f1393b;
+    public final Object f1394c;
+    public final Object d;
+    public final Object f1395e;
+
+    public m5(Object obj, Object obj2, boolean z10, Object obj3, int i10) {
+        this.f1392a = i10;
+        this.f1394c = obj;
+        this.d = obj2;
+        this.f1393b = z10;
+        this.f1395e = obj3;
     }
 
     @Override
-    public final void run() {
-        switch (this.f1349a) {
-            case 0:
-                ((ac) this.f1350b.f1756l.Q1).g(false);
-                return;
-            case 1:
-                e6 e6Var = this.f1350b.f1756l;
-                x5 x5Var = e6Var.Q1;
-                if (x5Var != null) {
-                    jc jcVar = ((ac) x5Var).d;
-                    jcVar.Z0 = false;
-                    jcVar.P();
-                }
-                e6Var.f1(false);
-                e6Var.f863h3 = true;
-                e6Var.K0.E(true);
-                return;
-            case 2:
-                e6 e6Var2 = this.f1350b.f1756l;
-                e6Var2.U3 = true;
-                e6Var2.setActive(false);
-                return;
-            default:
-                e6 e6Var3 = this.f1350b.f1756l;
-                e6Var3.U3 = true;
-                e6Var3.setActive(false);
-                return;
-        }
+    public final void onClick(android.view.View r11) {
+        throw new UnsupportedOperationException("Method not decompiled: ai.m5.onClick(android.view.View):void");
+    }
+
+    public m5(ArrayList arrayList, TLRPC.TL_secureRequiredType tL_secureRequiredType, nn0 nn0Var, boolean z10) {
+        this.f1392a = 2;
+        this.f1394c = nn0Var;
+        this.d = arrayList;
+        this.f1395e = tL_secureRequiredType;
+        this.f1393b = z10;
     }
 }

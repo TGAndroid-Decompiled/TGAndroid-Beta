@@ -4,7 +4,7 @@ import java.util.LinkedHashMap;
 public class k {
     public final int f24a;
     public final a6.i f25b;
-    public final rb.a f26c;
+    public final na.d f26c;
     public int d;
     public int f27e;
     public int f28f;
@@ -13,7 +13,7 @@ public class k {
         this.f24a = i10;
         if (i10 > 0) {
             this.f25b = new a6.i(6);
-            this.f26c = new rb.a(3);
+            this.f26c = new na.d(3);
             return;
         }
         throw new IllegalArgumentException("maxSize <= 0");

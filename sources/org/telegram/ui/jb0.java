@@ -5,28 +5,28 @@ import android.content.Context;
 import org.telegram.messenger.R;
 public final class jb0 {
     public static final jb0 h;
-    public static final jb0[] f37634n;
-    public final String f37635a;
-    public final int f37636b;
-    public final int f37637c;
+    public static final jb0[] f38896n;
+    public final String f38897a;
+    public final int f38898b;
+    public final int f38899c;
     public final int d;
-    public final boolean f37638e;
-    public ComponentName f37639f;
+    public final boolean f38900e;
+    public ComponentName f38901f;
 
     static {
         int i10 = R.drawable.icon_background_sa;
         int i11 = R.mipmap.icon_foreground_sa;
         jb0 jb0Var = new jb0("DEFAULT", 0, "DefaultIcon", i10, i11, R.string.AppIconDefault, false);
         h = jb0Var;
-        f37634n = new jb0[]{jb0Var, new jb0("VINTAGE", 1, "VintageIcon", R.drawable.icon_6_background_sa, R.mipmap.icon_6_foreground_sa, R.string.AppIconVintage, false), new jb0("AQUA", 2, "AquaIcon", R.drawable.icon_4_background_sa, i11, R.string.AppIconAqua, false), new jb0("PREMIUM", 3, "PremiumIcon", R.drawable.icon_3_background_sa, R.mipmap.icon_3_foreground_sa, R.string.AppIconPremium, true), new jb0("TURBO", 4, "TurboIcon", R.drawable.icon_5_background_sa, R.mipmap.icon_5_foreground_sa, R.string.AppIconTurbo, true), new jb0("NOX", 5, "NoxIcon", R.mipmap.icon_2_background_sa, i11, R.string.AppIconNox, true)};
+        f38896n = new jb0[]{jb0Var, new jb0("VINTAGE", 1, "VintageIcon", R.drawable.icon_6_background_sa, R.mipmap.icon_6_foreground_sa, R.string.AppIconVintage, false), new jb0("AQUA", 2, "AquaIcon", R.drawable.icon_4_background_sa, i11, R.string.AppIconAqua, false), new jb0("PREMIUM", 3, "PremiumIcon", R.drawable.icon_3_background_sa, R.mipmap.icon_3_foreground_sa, R.string.AppIconPremium, true), new jb0("TURBO", 4, "TurboIcon", R.drawable.icon_5_background_sa, R.mipmap.icon_5_foreground_sa, R.string.AppIconTurbo, true), new jb0("NOX", 5, "NoxIcon", R.mipmap.icon_2_background_sa, i11, R.string.AppIconNox, true)};
     }
 
     public jb0(String str, int i10, String str2, int i11, int i12, int i13, boolean z10) {
-        this.f37635a = str2;
-        this.f37636b = i11;
-        this.f37637c = i12;
+        this.f38897a = str2;
+        this.f38898b = i11;
+        this.f38899c = i12;
         this.d = i13;
-        this.f37638e = z10;
+        this.f38900e = z10;
     }
 
     public static jb0 valueOf(String str) {
@@ -34,14 +34,14 @@ public final class jb0 {
     }
 
     public static jb0[] values() {
-        return (jb0[]) f37634n.clone();
+        return (jb0[]) f38896n.clone();
     }
 
     public final ComponentName a(Context context) {
-        if (this.f37639f == null) {
+        if (this.f38901f == null) {
             String packageName = context.getPackageName();
-            this.f37639f = new ComponentName(packageName, "org.telegram.messenger." + this.f37635a);
+            this.f38901f = new ComponentName(packageName, "org.telegram.messenger." + this.f38897a);
         }
-        return this.f37639f;
+        return this.f38901f;
     }
 }

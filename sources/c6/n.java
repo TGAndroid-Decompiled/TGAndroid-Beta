@@ -10,31 +10,30 @@ import java.util.regex.Pattern;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import v7.w7;
-import w7.g0;
+import v7.t7;
 public final class n extends o6.a {
     public static final Parcelable.Creator<n> CREATOR = new v(13);
-    public String f4341a;
-    public String f4342b;
-    public int f4343c;
+    public String f4391a;
+    public String f4392b;
+    public int f4393c;
     public String d;
-    public m f4344e;
-    public int f4345f;
+    public m f4394e;
+    public int f4395f;
     public List h;
-    public int f4346n;
-    public long f4347r;
-    public boolean f4348s;
+    public int f4396n;
+    public long f4397r;
+    public boolean f4398s;
 
     public final JSONObject b() {
         JSONObject jSONObject = new JSONObject();
         try {
-            if (!TextUtils.isEmpty(this.f4341a)) {
-                jSONObject.put("id", this.f4341a);
+            if (!TextUtils.isEmpty(this.f4391a)) {
+                jSONObject.put("id", this.f4391a);
             }
-            if (!TextUtils.isEmpty(this.f4342b)) {
-                jSONObject.put("entity", this.f4342b);
+            if (!TextUtils.isEmpty(this.f4392b)) {
+                jSONObject.put("entity", this.f4392b);
             }
-            switch (this.f4343c) {
+            switch (this.f4393c) {
                 case 1:
                     jSONObject.put("queueType", "ALBUM");
                     break;
@@ -66,11 +65,11 @@ public final class n extends o6.a {
             if (!TextUtils.isEmpty(this.d)) {
                 jSONObject.put("name", this.d);
             }
-            m mVar = this.f4344e;
+            m mVar = this.f4394e;
             if (mVar != null) {
                 jSONObject.put("containerMetadata", mVar.b());
             }
-            String b10 = w7.b(Integer.valueOf(this.f4345f));
+            String b10 = t7.b(Integer.valueOf(this.f4395f));
             if (b10 != null) {
                 jSONObject.put("repeatMode", b10);
             }
@@ -82,13 +81,13 @@ public final class n extends o6.a {
                 }
                 jSONObject.put("items", jSONArray);
             }
-            jSONObject.put("startIndex", this.f4346n);
-            long j3 = this.f4347r;
+            jSONObject.put("startIndex", this.f4396n);
+            long j3 = this.f4397r;
             if (j3 != -1) {
-                Pattern pattern = g6.a.f10248a;
+                Pattern pattern = g6.a.f10321a;
                 jSONObject.put("startTime", j3 / 1000.0d);
             }
-            jSONObject.put("shuffle", this.f4348s);
+            jSONObject.put("shuffle", this.f4398s);
         } catch (JSONException unused) {
         }
         return jSONObject;
@@ -102,29 +101,29 @@ public final class n extends o6.a {
             return false;
         }
         n nVar = (n) obj;
-        if (TextUtils.equals(this.f4341a, nVar.f4341a) && TextUtils.equals(this.f4342b, nVar.f4342b) && this.f4343c == nVar.f4343c && TextUtils.equals(this.d, nVar.d) && n6.l.l(this.f4344e, nVar.f4344e) && this.f4345f == nVar.f4345f && n6.l.l(this.h, nVar.h) && this.f4346n == nVar.f4346n && this.f4347r == nVar.f4347r && this.f4348s == nVar.f4348s) {
+        if (TextUtils.equals(this.f4391a, nVar.f4391a) && TextUtils.equals(this.f4392b, nVar.f4392b) && this.f4393c == nVar.f4393c && TextUtils.equals(this.d, nVar.d) && n6.l.l(this.f4394e, nVar.f4394e) && this.f4395f == nVar.f4395f && n6.l.l(this.h, nVar.h) && this.f4396n == nVar.f4396n && this.f4397r == nVar.f4397r && this.f4398s == nVar.f4398s) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f4341a, this.f4342b, Integer.valueOf(this.f4343c), this.d, this.f4344e, Integer.valueOf(this.f4345f), this.h, Integer.valueOf(this.f4346n), Long.valueOf(this.f4347r), Boolean.valueOf(this.f4348s)});
+        return Arrays.hashCode(new Object[]{this.f4391a, this.f4392b, Integer.valueOf(this.f4393c), this.d, this.f4394e, Integer.valueOf(this.f4395f), this.h, Integer.valueOf(this.f4396n), Long.valueOf(this.f4397r), Boolean.valueOf(this.f4398s)});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         List unmodifiableList;
-        int q6 = g0.q(parcel, 20293);
-        g0.l(parcel, 2, this.f4341a);
-        g0.l(parcel, 3, this.f4342b);
-        int i11 = this.f4343c;
-        g0.s(parcel, 4, 4);
+        int q6 = w7.d0.q(parcel, 20293);
+        w7.d0.l(parcel, 2, this.f4391a);
+        w7.d0.l(parcel, 3, this.f4392b);
+        int i11 = this.f4393c;
+        w7.d0.s(parcel, 4, 4);
         parcel.writeInt(i11);
-        g0.l(parcel, 5, this.d);
-        g0.k(parcel, 6, this.f4344e, i10);
-        int i12 = this.f4345f;
-        g0.s(parcel, 7, 4);
+        w7.d0.l(parcel, 5, this.d);
+        w7.d0.k(parcel, 6, this.f4394e, i10);
+        int i12 = this.f4395f;
+        w7.d0.s(parcel, 7, 4);
         parcel.writeInt(i12);
         List list = this.h;
         if (list == null) {
@@ -132,16 +131,16 @@ public final class n extends o6.a {
         } else {
             unmodifiableList = DesugarCollections.unmodifiableList(list);
         }
-        g0.p(parcel, 8, unmodifiableList);
-        int i13 = this.f4346n;
-        g0.s(parcel, 9, 4);
+        w7.d0.p(parcel, 8, unmodifiableList);
+        int i13 = this.f4396n;
+        w7.d0.s(parcel, 9, 4);
         parcel.writeInt(i13);
-        long j3 = this.f4347r;
-        g0.s(parcel, 10, 8);
+        long j3 = this.f4397r;
+        w7.d0.s(parcel, 10, 8);
         parcel.writeLong(j3);
-        boolean z10 = this.f4348s;
-        g0.s(parcel, 11, 4);
+        boolean z10 = this.f4398s;
+        w7.d0.s(parcel, 11, 4);
         parcel.writeInt(z10 ? 1 : 0);
-        g0.r(parcel, q6);
+        w7.d0.r(parcel, q6);
     }
 }

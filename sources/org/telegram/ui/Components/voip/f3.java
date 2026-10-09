@@ -1,22 +1,32 @@
 package org.telegram.ui.Components.voip;
 
-import android.graphics.Canvas;
-import android.view.View;
-import org.telegram.ui.Components.xw0;
-public final class f3 extends View {
-    public xw0 f31932a;
-    public boolean f31933b;
+import org.telegram.messenger.AndroidUtilities;
+public final class f3 implements Runnable {
+    public final int f31935a;
+    public final k3 f31936b;
+    public final int f31937c;
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        xw0 xw0Var;
-        if (!this.f31933b && (xw0Var = this.f31932a) != null) {
-            xw0Var.b(canvas, this);
-        }
+    public f3(k3 k3Var, int i10, int i11) {
+        this.f31935a = i11;
+        this.f31936b = k3Var;
+        this.f31937c = i10;
     }
 
-    public void setState(boolean z10) {
-        this.f31933b = z10;
-        invalidate();
+    @Override
+    public final void run() {
+        switch (this.f31935a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new f3(this.f31936b, this.f31937c, 2));
+                return;
+            case 1:
+                AndroidUtilities.runOnUIThread(new f3(this.f31936b, this.f31937c, 3));
+                return;
+            case 2:
+                this.f31936b.c(this.f31937c);
+                return;
+            default:
+                this.f31936b.a(this.f31937c);
+                return;
+        }
     }
 }

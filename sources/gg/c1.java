@@ -2,60 +2,60 @@ package gg;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class c1 implements Comparator {
-    public final ArrayList f10530a;
-    public final ArrayList f10531b;
+    public final a0.i f10560a;
+    public final ArrayList f10561b;
 
-    public c1(ArrayList arrayList, ArrayList arrayList2) {
-        this.f10530a = arrayList;
-        this.f10531b = arrayList2;
-    }
-
-    public final int a(j1 j1Var) {
-        int i10 = 0;
-        int i11 = 0;
-        while (true) {
-            ArrayList arrayList = this.f10530a;
-            if (i11 >= arrayList.size()) {
-                while (true) {
-                    ArrayList arrayList2 = this.f10531b;
-                    if (i10 < Math.min(20, arrayList2.size())) {
-                        if (((TLRPC.Document) arrayList2.get(i10)).f20053id == j1Var.f10652a.f20053id) {
-                            return (arrayList2.size() - i10) + 1000000;
-                        }
-                        i10++;
-                    } else {
-                        return -1;
-                    }
-                }
-            } else if (((TLRPC.Document) arrayList.get(i11)).f20053id == j1Var.f10652a.f20053id) {
-                return i11 + 2000000;
-            } else {
-                i11++;
-            }
-        }
+    public c1(a0.i iVar, ArrayList arrayList) {
+        this.f10560a = iVar;
+        this.f10561b = arrayList;
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
-        j1 j1Var = (j1) obj;
-        j1 j1Var2 = (j1) obj2;
-        boolean isAnimatedStickerDocument = MessageObject.isAnimatedStickerDocument(j1Var.f10652a, true);
-        if (isAnimatedStickerDocument == MessageObject.isAnimatedStickerDocument(j1Var2.f10652a, true)) {
-            int a2 = a(j1Var);
-            int a10 = a(j1Var2);
-            if (a2 <= a10) {
-                if (a2 >= a10) {
-                    return 0;
+        long j3;
+        long j10;
+        TLObject tLObject = (TLObject) obj;
+        TLObject tLObject2 = (TLObject) obj2;
+        if (tLObject instanceof TLRPC.User) {
+            j3 = ((TLRPC.User) tLObject).f20185id;
+        } else {
+            j3 = -((TLRPC.Chat) tLObject).f20038id;
+        }
+        if (tLObject2 instanceof TLRPC.User) {
+            j10 = ((TLRPC.User) tLObject2).f20185id;
+        } else {
+            j10 = -((TLRPC.Chat) tLObject2).f20038id;
+        }
+        a0.i iVar = this.f10560a;
+        if (iVar.h(j3) < 0 || iVar.h(j10) < 0) {
+            if (iVar.h(j3) < 0) {
+                if (iVar.h(j10) < 0) {
+                    Long valueOf = Long.valueOf(j3);
+                    ArrayList arrayList = this.f10561b;
+                    int indexOf = arrayList.indexOf(valueOf);
+                    int indexOf2 = arrayList.indexOf(Long.valueOf(j10));
+                    if (indexOf != -1 && indexOf2 != -1) {
+                        if (indexOf >= indexOf2) {
+                            if (indexOf != indexOf2) {
+                                return 1;
+                            }
+                            return 0;
+                        }
+                    } else if (indexOf == -1 || indexOf2 != -1) {
+                        if (indexOf == -1 && indexOf2 != -1) {
+                            return 1;
+                        }
+                        return 0;
+                    }
+                } else {
+                    return 1;
                 }
-            } else {
-                return -1;
             }
-        } else if (isAnimatedStickerDocument) {
             return -1;
         }
-        return 1;
+        return 0;
     }
 }

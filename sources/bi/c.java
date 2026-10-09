@@ -3,11 +3,11 @@ package bi;
 import android.graphics.RectF;
 import android.view.WindowManager;
 import androidx.fragment.app.a0;
-import ci.ga;
-import ci.jc;
-import ci.k8;
+import ci.ha;
 import ci.kc;
-import ci.wb;
+import ci.l8;
+import ci.lc;
+import ci.xb;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
@@ -15,132 +15,132 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.ih;
-import org.telegram.ui.Components.vi;
-import org.telegram.ui.Components.xi;
-public final class c implements vi {
-    public final xi f3844a;
-    public final String f3845b;
-    public final z f3846c;
+import org.telegram.ui.Components.jh;
+import org.telegram.ui.Components.wi;
+import org.telegram.ui.Components.yi;
+public final class c implements wi {
+    public final yi f3893a;
+    public final String f3894b;
+    public final z f3895c;
 
-    public c(z zVar, xi xiVar, String str) {
-        this.f3846c = zVar;
-        this.f3844a = xiVar;
-        this.f3845b = str;
+    public c(z zVar, yi yiVar, String str) {
+        this.f3895c = zVar;
+        this.f3893a = yiVar;
+        this.f3894b = str;
     }
 
     @Override
-    public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
+    public final void I1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
         int i13;
-        jc jcVar;
-        z zVar = this.f3846c;
+        kc kcVar;
+        z zVar = this.f3895c;
         long j11 = zVar.d;
-        xi xiVar = this.f3844a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = xiVar.f32922j0;
+        yi yiVar = this.f3893a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = yiVar.f33240j0;
         if (!chatAttachAlertPhotoLayout.getSelectedPhotos().isEmpty()) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
             chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
             if (selectedPhotos.size() == 1) {
                 Object next = selectedPhotos.values().iterator().next();
                 if (next instanceof MediaController.PhotoEntry) {
-                    k8 l4 = k8.l((MediaController.PhotoEntry) next);
+                    l8 l4 = l8.l((MediaController.PhotoEntry) next);
                     l4.J0 = j11;
-                    String str = this.f3845b;
+                    String str = this.f3894b;
                     l4.K0 = str;
                     l4.A();
-                    kc E = kc.E(zVar.f3891a.getParentActivity(), zVar.f3892b);
-                    RectF rectF = E.H;
-                    WindowManager.LayoutParams layoutParams = E.h;
-                    int i14 = E.f5381c;
-                    WindowManager windowManager = E.f5392f;
-                    if (!E.d) {
+                    lc D = lc.D(zVar.f3940a.getParentActivity(), zVar.f3941b);
+                    RectF rectF = D.H;
+                    WindowManager.LayoutParams layoutParams = D.h;
+                    int i14 = D.f5465c;
+                    WindowManager windowManager = D.f5476f;
+                    if (!D.d) {
                         if (MessagesController.getInstance(i14).isFrozen()) {
                             org.telegram.ui.b.b(i14);
                         } else {
-                            E.f5442v0 = j11;
-                            E.f5446w0 = str;
-                            E.f5439u0 = false;
-                            E.f5388e = false;
-                            E.B2 = false;
-                            if (windowManager != null && (jcVar = E.f5415n) != null && jcVar.getParent() == null) {
-                                AndroidUtilities.setPreferredMaxRefreshRate(windowManager, E.f5415n, layoutParams);
-                                windowManager.addView(E.f5415n, layoutParams);
-                                E.g0();
+                            D.f5526v0 = j11;
+                            D.f5530w0 = str;
+                            D.f5523u0 = false;
+                            D.f5472e = false;
+                            D.B2 = false;
+                            if (windowManager != null && (kcVar = D.f5499n) != null && kcVar.getParent() == null) {
+                                AndroidUtilities.setPreferredMaxRefreshRate(windowManager, D.f5499n, layoutParams);
+                                windowManager.addView(D.f5499n, layoutParams);
+                                D.f0();
                             }
-                            E.K1 = l4;
+                            D.K1 = l4;
                             l4.J0 = j11;
                             l4.K0 = str;
-                            E.O1 = l4.K ? 1 : 0;
-                            E.f5433s0.f4704g = false;
-                            E.J = 0;
+                            D.O1 = l4.K ? 1 : 0;
+                            D.f5517s0.f4727g = false;
+                            D.J = 0;
                             rectF.set(0.0f, AndroidUtilities.dp(100.0f), AndroidUtilities.displaySize.x, AndroidUtilities.dp(100.0f) + AndroidUtilities.displaySize.y);
-                            E.G = AndroidUtilities.dp(8.0f);
-                            E.f5428r.c();
-                            wb wbVar = E.f5399h0;
-                            int i15 = E.J;
+                            D.G = AndroidUtilities.dp(8.0f);
+                            D.f5512r.c();
+                            xb xbVar = D.f5483h0;
+                            int i15 = D.J;
                             if (i15 != 1 && i15 != 0) {
                                 i13 = -14737633;
                             } else {
                                 i13 = 0;
                             }
-                            wbVar.setBackgroundColor(i13);
-                            E.f5428r.setTranslationX(0.0f);
-                            E.f5428r.setTranslationY(0.0f);
-                            E.f5428r.b(0.0f);
-                            E.f5428r.setScaleX(1.0f);
-                            E.f5428r.setScaleY(1.0f);
-                            E.K = 0.0f;
-                            AndroidUtilities.lockOrientation(E.f5377b, 1);
-                            k8 k8Var = E.K1;
-                            if (k8Var != null) {
-                                E.f5383c1.setText(k8Var.C0);
+                            xbVar.setBackgroundColor(i13);
+                            D.f5512r.setTranslationX(0.0f);
+                            D.f5512r.setTranslationY(0.0f);
+                            D.f5512r.b(0.0f);
+                            D.f5512r.setScaleX(1.0f);
+                            D.f5512r.setScaleY(1.0f);
+                            D.K = 0.0f;
+                            AndroidUtilities.lockOrientation(D.f5461b, 1);
+                            l8 l8Var = D.K1;
+                            if (l8Var != null) {
+                                D.f5467c1.setText(l8Var.C0);
                             }
-                            E.K(1, false);
-                            E.l0(-1, false, false);
-                            E.f5379b1.b(false, false);
-                            E.f5379b1.b(true, true);
-                            E.g(1.0f, true, new ga(E, 6));
-                            E.e();
+                            D.J(1, false);
+                            D.k0(-1, false, false);
+                            D.f5463b1.b(false, false);
+                            D.f5463b1.b(true, true);
+                            D.f(1.0f, true, new ha(D, 6));
+                            D.d();
                         }
                     }
-                    AndroidUtilities.runOnUIThread(new a0(xiVar, 2), 400L);
+                    AndroidUtilities.runOnUIThread(new a0(yiVar, 2), 400L);
                 }
             }
         }
     }
 
     @Override
-    public final boolean S1() {
+    public final boolean Y1() {
         return true;
     }
 
     @Override
-    public final boolean a0() {
+    public final void f0(jh jhVar) {
+        jhVar.run();
+    }
+
+    @Override
+    public final boolean i0() {
         return false;
     }
 
     @Override
-    public final void x0(ih ihVar) {
-        ihVar.run();
+    public final void a1(Object obj) {
     }
 
     @Override
-    public final void U0(Object obj) {
+    public final void p1(TLRPC.User user) {
     }
 
     @Override
-    public final void j1(TLRPC.User user) {
+    public final void B0() {
     }
 
     @Override
-    public final void K0() {
+    public final void P0() {
     }
 
     @Override
-    public final void u0() {
-    }
-
-    @Override
-    public final void W1(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j3, boolean z11, long j10) {
+    public final void c2(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j3, boolean z11, long j10) {
     }
 }

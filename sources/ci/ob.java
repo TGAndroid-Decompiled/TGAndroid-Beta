@@ -1,75 +1,45 @@
 package ci;
 
-import android.app.Activity;
-import android.app.Dialog;
-public final class ob extends org.telegram.ui.ActionBar.n2 {
-    public final int f5675a;
-    public final kc f5676b;
+import android.content.Context;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+public final class ob extends c1 {
+    public final lc f5702b0;
 
-    public ob(kc kcVar, int i10) {
-        super(null);
-        this.f5675a = i10;
-        switch (i10) {
-            case 1:
-                this.f5676b = kcVar;
-                super(null);
-                this.currentAccount = kcVar.f5381c;
-                return;
-            default:
-                this.f5676b = kcVar;
-                return;
+    public ob(lc lcVar, Context context, boolean z10) {
+        super(context, z10);
+        this.f5702b0 = lcVar;
+    }
+
+    @Override
+    public final void receivedAmplitude(double d) {
+        j7 j7Var = this.f5702b0.O0;
+        if (j7Var != null) {
+            j7Var.f5261g0 = Utilities.clamp((float) (d / 1800.0d), 1.0f, 0.0f);
         }
     }
 
     @Override
-    public final Activity getParentActivity() {
-        switch (this.f5675a) {
-            case 0:
-                return this.f5676b.f5377b;
-            default:
-                return this.f5676b.f5377b;
+    public final void toggleDual() {
+        int i10;
+        super.toggleDual();
+        lc lcVar = this.f5702b0;
+        lcVar.F0.setValue(isDual());
+        yc ycVar = lcVar.F0;
+        if (isDual()) {
+            i10 = R.string.AccDescrDualCameraOn;
+        } else {
+            i10 = R.string.AccDescrDualCameraOff;
         }
+        ycVar.setContentDescription(LocaleController.getString(i10));
+        lcVar.d0(lcVar.B());
     }
 
     @Override
-    public final org.telegram.ui.ActionBar.d6 getResourceProvider() {
-        switch (this.f5675a) {
-            case 0:
-                return new ai.x3(7, this.f5676b.f5374a);
-            default:
-                return new ai.x3(8, this.f5676b.f5374a);
-        }
-    }
-
-    @Override
-    public final boolean isLightStatusBar() {
-        switch (this.f5675a) {
-            case 0:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public boolean presentFragment(org.telegram.ui.ActionBar.n2 n2Var) {
-        switch (this.f5675a) {
-            case 0:
-                this.f5676b.T();
-                return false;
-            default:
-                return super.presentFragment(n2Var);
-        }
-    }
-
-    @Override
-    public Dialog showDialog(Dialog dialog) {
-        switch (this.f5675a) {
-            case 1:
-                dialog.show();
-                return dialog;
-            default:
-                return super.showDialog(dialog);
-        }
+    public final void u(boolean z10) {
+        lc lcVar = this.f5702b0;
+        lcVar.f5504o1.b(lcVar.f5467c1.getText());
+        lcVar.f5504o1.a(false, z10, lcVar.f5492k0);
     }
 }

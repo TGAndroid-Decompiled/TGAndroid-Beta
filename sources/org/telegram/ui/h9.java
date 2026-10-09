@@ -1,87 +1,46 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
+import android.view.View;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.CheckBoxBase;
-public final class h9 extends FrameLayout {
-    public final int f37032a;
-    public final org.telegram.ui.Components.k9 f37033b;
-    public final ImageView f37034c;
-    public final org.telegram.ui.Cells.i6 d;
-    public final org.telegram.ui.Components.qp f37035e;
+import org.telegram.tgnet.TLRPC;
+public final class h9 extends org.telegram.ui.Components.o61 {
+    public static final int f38231a = 0;
 
-    public h9(Context context, int i10) {
-        super(context);
-        int i11;
-        int dp;
-        float f7;
-        int i12;
-        int i13;
-        this.f37032a = i10;
-        org.telegram.ui.Cells.i6 i6Var = new org.telegram.ui.Cells.i6(context, null);
-        this.d = i6Var;
-        i6Var.M0 = true;
-        i6Var.E0 = true;
-        if (LocaleController.isRTL) {
-            i11 = AndroidUtilities.dp(32.0f);
+    static {
+        org.telegram.ui.Components.o61.setup(new org.telegram.ui.Components.o61());
+    }
+
+    @Override
+    public final void bindView(View view, org.telegram.ui.Components.p61 p61Var, boolean z10, org.telegram.ui.Components.c71 c71Var, org.telegram.ui.Components.k71 k71Var) {
+        String lowerCase;
+        i9 i9Var = (i9) view;
+        TLRPC.Chat chat = (TLRPC.Chat) p61Var.G;
+        View.OnClickListener onClickListener = p61Var.D;
+        i9Var.f38542c = chat;
+        org.telegram.ui.Components.cj0 cj0Var = i9Var.f38541b;
+        cj0Var.setTag(Long.valueOf(chat.f20038id));
+        if (ChatObject.isChannel(chat) && !chat.megagroup) {
+            if (!ChatObject.isPublic(chat)) {
+                lowerCase = LocaleController.getString(R.string.ChannelPrivate).toLowerCase();
+            } else {
+                lowerCase = LocaleController.getString(R.string.ChannelPublic).toLowerCase();
+            }
+        } else if (chat.has_geo) {
+            lowerCase = LocaleController.getString(R.string.MegaLocation);
+        } else if (!ChatObject.isPublic(chat)) {
+            lowerCase = LocaleController.getString(R.string.MegaPrivate).toLowerCase();
         } else {
-            i11 = 0;
+            lowerCase = LocaleController.getString(R.string.MegaPublic).toLowerCase();
         }
-        if (LocaleController.isRTL) {
-            dp = 0;
-        } else {
-            dp = AndroidUtilities.dp(32.0f);
-        }
-        i6Var.setPadding(i11, 0, dp, 0);
-        if (LocaleController.isRTL) {
-            f7 = 2.0f;
-        } else {
-            f7 = -2.0f;
-        }
-        i6Var.f22253b0 = AndroidUtilities.dp(f7);
-        i6Var.f22254c0 = -AndroidUtilities.dp(7.0f);
-        addView(i6Var, w7.z5.c(-1.0f, -1));
-        org.telegram.ui.Components.k9 k9Var = new org.telegram.ui.Components.k9(context, false);
-        this.f37033b = k9Var;
-        k9Var.setAvatarsTextSize(AndroidUtilities.dp(18.0f));
-        k9Var.setStepFactor(0.4f);
-        k9Var.setSize(AndroidUtilities.dp(29.0f));
-        k9Var.setCentered(true);
-        k9Var.setVisibility(8);
-        if (LocaleController.isRTL) {
-            i12 = 5;
-        } else {
-            i12 = 3;
-        }
-        addView(k9Var, w7.z5.d(72, -1.0f, i12, -2.0f, 0.0f, 0.0f, 0.0f));
-        ImageView imageView = new ImageView(context);
-        this.f37034c = imageView;
-        imageView.setColorFilter(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.il, false), PorterDuff.Mode.SRC_IN);
-        imageView.setBackground(org.telegram.ui.ActionBar.i6.f0(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20918i6, false), 1, -1));
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setContentDescription(LocaleController.getString(R.string.Call));
-        if (LocaleController.isRTL) {
-            i13 = 3;
-        } else {
-            i13 = 5;
-        }
-        addView(imageView, w7.z5.d(48, 48.0f, i13 | 16, 8.0f, 0.0f, 8.0f, 0.0f));
-        org.telegram.ui.Components.qp qpVar = new org.telegram.ui.Components.qp(context, 21, null);
-        this.f37035e = qpVar;
-        CheckBoxBase checkBoxBase = qpVar.getCheckBoxBase();
-        int w02 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.hl, false);
-        if (checkBoxBase.f24107x != w02) {
-            checkBoxBase.f24107x = w02;
-            checkBoxBase.b();
-        }
-        qpVar.b(-1, org.telegram.ui.ActionBar.i6.f20827d6, org.telegram.ui.ActionBar.i6.f20957k7);
-        qpVar.setDrawUnchecked(false);
-        qpVar.setDrawBackgroundAsArc(3);
-        addView(qpVar, w7.z5.d(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 48, 42.0f, 32.0f, 42.0f, 0.0f));
+        i9Var.f38540a.u(chat, null, null, lowerCase, false, false);
+        cj0Var.setOnClickListener(onClickListener);
+    }
+
+    @Override
+    public final View createView(Context context, org.telegram.ui.Components.qm0 qm0Var, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var) {
+        return new i9(context);
     }
 }

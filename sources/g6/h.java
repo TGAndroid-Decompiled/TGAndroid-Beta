@@ -2,7 +2,7 @@ package g6;
 
 import android.os.IInterface;
 public interface h extends IInterface {
-    void B0(String str, byte[] bArr);
+    void A0(String str, byte[] bArr);
 
     void P(int i10);
 
@@ -18,11 +18,11 @@ public interface h extends IInterface {
 
     void m(c6.d dVar, String str, String str2, boolean z10);
 
-    void u0(d dVar);
+    void t0(d dVar);
 
-    void w0(int i10);
+    void v0(int i10);
 
-    void z0(c cVar);
+    void y0(c cVar);
 
     void zzd(int i10);
 

@@ -1,5 +1,6 @@
 package m1;
 
+import ae.x;
 import androidx.datastore.preferences.protobuf.a1;
 import androidx.datastore.preferences.protobuf.b0;
 import androidx.datastore.preferences.protobuf.b1;
@@ -19,7 +20,7 @@ public final class f extends w {
     private static final f DEFAULT_INSTANCE;
     private static volatile w0 PARSER = null;
     public static final int PREFERENCES_FIELD_NUMBER = 1;
-    private n0 preferences_ = n0.f2446b;
+    private n0 preferences_ = n0.f2525b;
 
     static {
         f fVar = new f();
@@ -29,7 +30,7 @@ public final class f extends w {
 
     public static n0 i(f fVar) {
         n0 n0Var = fVar.preferences_;
-        if (!n0Var.f2447a) {
+        if (!n0Var.f2526a) {
             fVar.preferences_ = n0Var.b();
         }
         return fVar.preferences_;
@@ -46,18 +47,18 @@ public final class f extends w {
         m a2 = m.a();
         w wVar = (w) fVar.d(4);
         try {
-            y0 y0Var = y0.f2497c;
+            y0 y0Var = y0.f2576c;
             y0Var.getClass();
             b1 a10 = y0Var.a(wVar.getClass());
-            a0.h hVar3 = hVar2.f2411b;
+            a0.h hVar3 = hVar2.f2490b;
             if (hVar3 != null) {
                 hVar = hVar3;
             } else {
                 ?? obj = new Object();
                 obj.d = 0;
-                Charset charset = z.f2500a;
+                Charset charset = z.f2579a;
                 obj.f18c = hVar2;
-                hVar2.f2411b = obj;
+                hVar2.f2490b = obj;
                 hVar = obj;
             }
             a10.c(wVar, hVar, a2);
@@ -65,7 +66,7 @@ public final class f extends w {
             if (wVar.g()) {
                 return (f) wVar;
             }
-            throw new IOException(new androidx.car.app.j().getMessage());
+            throw new IOException(new x().getMessage());
         } catch (IOException e7) {
             if (e7.getCause() instanceof b0) {
                 throw ((b0) e7.getCause());
@@ -88,7 +89,7 @@ public final class f extends w {
             case 1:
                 return null;
             case 2:
-                return new a1(DEFAULT_INSTANCE, "\u0001\u0001\u0000\u0000\u0001\u0001\u0001\u0001\u0000\u0000\u00012", new Object[]{"preferences_", e.f15971a});
+                return new a1(DEFAULT_INSTANCE, "\u0001\u0001\u0000\u0000\u0001\u0001\u0001\u0001\u0000\u0000\u00012", new Object[]{"preferences_", e.f15901a});
             case 3:
                 return new f();
             case 4:

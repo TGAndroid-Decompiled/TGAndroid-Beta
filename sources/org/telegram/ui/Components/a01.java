@@ -1,32 +1,25 @@
 package org.telegram.ui.Components;
-public final class a01 {
-    public final int f24403a;
-    public final int f24404b;
 
-    public a01(int i10, int i11) {
-        this.f24403a = i10;
-        this.f24404b = i11;
+import android.util.Pair;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+public final class a01 extends ArrayList {
+    public final Class f24478a;
+    public final Class f24479b;
+
+    public a01(Class cls, Class cls2) {
+        this.f24478a = cls;
+        this.f24479b = cls2;
     }
 
-    public final int a() {
-        return this.f24404b - this.f24403a;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    public final la.h i() {
+        int size = size();
+        Object[] objArr = (Object[]) Array.newInstance(this.f24478a, size);
+        Object[] objArr2 = (Object[]) Array.newInstance(this.f24479b, size);
+        for (int i10 = 0; i10 < size; i10++) {
+            objArr[i10] = ((Pair) get(i10)).first;
+            objArr2[i10] = ((Pair) get(i10)).second;
         }
-        if (obj == null || a01.class != obj.getClass()) {
-            return false;
-        }
-        a01 a01Var = (a01) obj;
-        if (this.f24404b == a01Var.f24404b && this.f24403a == a01Var.f24403a) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return (this.f24403a * 31) + this.f24404b;
+        return new la.h(objArr, objArr2);
     }
 }

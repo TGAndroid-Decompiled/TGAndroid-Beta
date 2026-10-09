@@ -1,47 +1,47 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.widget.ImageView;
-import org.telegram.ui.Components.RadialProgressView;
-public final class vl extends AnimatorListenerAdapter {
-    public final boolean f41771a;
-    public final boolean f41772b;
-    public final boolean f41773c;
-    public final yn d;
+import java.util.ArrayList;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.VideoEditedInfo;
+public final class vl extends uu0 {
+    public final ArrayList f42896a;
+    public final boolean[] f42897b;
+    public final zn f42898c;
 
-    public vl(yn ynVar, boolean z10, boolean z11, boolean z12) {
-        this.d = ynVar;
-        this.f41771a = z10;
-        this.f41772b = z11;
-        this.f41773c = z12;
+    public vl(zn znVar, ArrayList arrayList, boolean[] zArr) {
+        this.f42898c = znVar;
+        this.f42896a = arrayList;
+        this.f42897b = zArr;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10;
-        int i11;
-        yn ynVar = this.d;
-        ynVar.K2 = null;
-        ImageView imageView = ynVar.H2;
-        int i12 = 4;
-        if (this.f41771a) {
-            i10 = 0;
-        } else {
-            i10 = 4;
+    public final boolean S() {
+        return false;
+    }
+
+    @Override
+    public final ImageReceiver.BitmapHolder j(int i10) {
+        return null;
+    }
+
+    @Override
+    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
+        ArrayList arrayList = this.f42896a;
+        for (int size = arrayList.size() - 1; size >= 0; size--) {
+            if (!this.f42897b[size]) {
+                arrayList.remove(size);
+            }
         }
-        imageView.setVisibility(i10);
-        ImageView imageView2 = ynVar.J2;
-        if (this.f41772b) {
-            i11 = 0;
-        } else {
-            i11 = 4;
-        }
-        imageView2.setVisibility(i11);
-        RadialProgressView radialProgressView = ynVar.I2;
-        if (this.f41773c) {
-            i12 = 0;
-        }
-        radialProgressView.setVisibility(i12);
+        this.f42898c.ib(arrayList, i11, z10, z11);
+    }
+
+    @Override
+    public final boolean x(int i10) {
+        return this.f42897b[i10];
+    }
+
+    @Override
+    public final int k(int i10, VideoEditedInfo videoEditedInfo) {
+        return i10;
     }
 }

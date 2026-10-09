@@ -1,6 +1,6 @@
 package org.scilab.forge.jlatexmath;
 
-import a4.a;
+import a1.g;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,7 +35,7 @@ public class GlueSettingsParser {
         if (obj != null) {
             return;
         }
-        throw new XMLResourceParseException("GlueSettings.xml", str, str2, a.q("has an unknown value '", str3, "'!"));
+        throw new XMLResourceParseException("GlueSettings.xml", str, str2, g.q("has an unknown value '", str3, "'!"));
     }
 
     private Glue createGlue(Element element, String str) {
@@ -53,7 +53,7 @@ public class GlueSettingsParser {
                 }
                 fArr[i10] = (float) d;
             } catch (NumberFormatException unused) {
-                throw new XMLResourceParseException("GlueSettings.xml", "GlueType", strArr[i10], a.q("has an invalid real value '", str2, "'!"));
+                throw new XMLResourceParseException("GlueSettings.xml", "GlueType", strArr[i10], g.q("has an invalid real value '", str2, "'!"));
             }
         }
         return new Glue(fArr[0], fArr[1], fArr[2], str);
@@ -131,25 +131,26 @@ public class GlueSettingsParser {
 
     public int[][][] createGlueTable() {
         int size = this.typeMappings.size();
+        int i10 = 0;
         int[][][] iArr = (int[][][]) Array.newInstance(Integer.TYPE, size, size, this.styleMappings.size());
         Element element = (Element) this.root.getElementsByTagName("GlueTable").item(0);
         if (element != null) {
             NodeList elementsByTagName = element.getElementsByTagName("Glue");
-            int i10 = 0;
-            while (i10 < elementsByTagName.getLength()) {
-                Element element2 = (Element) elementsByTagName.item(i10);
+            int i11 = 0;
+            while (i11 < elementsByTagName.getLength()) {
+                Element element2 = (Element) elementsByTagName.item(i11);
                 String attrValueAndCheckIfNotNull = getAttrValueAndCheckIfNotNull("lefttype", element2);
                 String attrValueAndCheckIfNotNull2 = getAttrValueAndCheckIfNotNull("righttype", element2);
                 String attrValueAndCheckIfNotNull3 = getAttrValueAndCheckIfNotNull("gluetype", element2);
                 NodeList elementsByTagName2 = element2.getElementsByTagName("Style");
-                int i11 = 0;
-                while (i11 < elementsByTagName2.getLength()) {
-                    String attrValueAndCheckIfNotNull4 = getAttrValueAndCheckIfNotNull("name", (Element) elementsByTagName2.item(i11));
+                int i12 = i10;
+                while (i12 < elementsByTagName2.getLength()) {
+                    String attrValueAndCheckIfNotNull4 = getAttrValueAndCheckIfNotNull("name", (Element) elementsByTagName2.item(i12));
                     int[][][] iArr2 = iArr;
                     Integer num = this.typeMappings.get(attrValueAndCheckIfNotNull);
                     NodeList nodeList = elementsByTagName;
                     Integer num2 = this.typeMappings.get(attrValueAndCheckIfNotNull2);
-                    int i12 = i10;
+                    int i13 = i11;
                     Integer num3 = this.styleMappings.get(attrValueAndCheckIfNotNull4);
                     NodeList nodeList2 = elementsByTagName2;
                     Integer num4 = this.glueTypeMappings.get(attrValueAndCheckIfNotNull3);
@@ -158,13 +159,14 @@ public class GlueSettingsParser {
                     checkMapping(num4, "Glue", "gluetype", attrValueAndCheckIfNotNull3);
                     checkMapping(num3, "Style", "name", attrValueAndCheckIfNotNull4);
                     iArr2[num.intValue()][num2.intValue()][num3.intValue()] = num4.intValue();
-                    i11++;
+                    i12++;
                     iArr = iArr2;
                     elementsByTagName = nodeList;
-                    i10 = i12;
+                    i11 = i13;
                     elementsByTagName2 = nodeList2;
                 }
-                i10++;
+                i11++;
+                i10 = 0;
             }
         }
         return iArr;

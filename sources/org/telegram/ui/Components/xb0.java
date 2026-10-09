@@ -1,141 +1,63 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.view.MotionEvent;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.NotificationCenter;
-public final class xb0 extends s4.s0 {
-    public final int f32851a;
-    public final Object f32852b;
+public final class xb0 extends o91 {
+    public final vc0 T;
 
-    public xb0(Object obj, int i10) {
-        this.f32851a = i10;
-        this.f32852b = obj;
+    public xb0(vc0 vc0Var, Context context, rc0 rc0Var) {
+        super(context, rc0Var);
+        this.T = vc0Var;
     }
 
     @Override
-    public void a(RecyclerView recyclerView, int i10) {
-        il0 il0Var;
-        int i11 = this.f32851a;
-        rg.p1 p1Var = null;
-        boolean z10 = false;
-        Object obj = this.f32852b;
-        switch (i11) {
-            case 1:
-                ch0 ch0Var = (ch0) obj;
-                wg0 wg0Var = ch0Var.f25420b;
-                if (i10 == 0 && ch0.G(ch0Var) + ((ch0Var.E - ch0.F(ch0Var)) - AndroidUtilities.dp(13.0f)) < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && wg0Var.canScrollVertically(1)) {
-                    wg0Var.getChildAt(0);
-                    il0 il0Var2 = (il0) wg0Var.K(0);
-                    if (il0Var2 != null) {
-                        View view = il0Var2.f46538a;
-                        if (view.getTop() > AndroidUtilities.dp(7.0f)) {
-                            wg0Var.w0(0, view.getTop() - AndroidUtilities.dp(7.0f), null);
-                            return;
-                        }
-                        return;
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        boolean z10;
+        int i10 = 0;
+        while (true) {
+            View[] viewArr = this.T.f31751f.f29429e;
+            if (i10 < viewArr.length) {
+                View view = viewArr[i10];
+                if (view != null) {
+                    pc0 pc0Var = (pc0) view;
+                    if (pc0Var.f29840a == 0) {
+                        z10 = pc0Var.f29846e.f21866i;
+                        break;
                     }
-                    return;
                 }
-                return;
-            case 3:
-                zl0 zl0Var = (zl0) obj;
-                if (i10 == 0) {
-                    if (zl0Var.f33572v2) {
-                        zl0Var.f33572v2 = false;
-                        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
-                    }
-                } else if (!zl0Var.f33572v2 && zl0Var.f33575x1) {
-                    zl0Var.f33572v2 = true;
-                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
-                }
-                if (i10 != 0 && zl0Var.N1 != null) {
-                    ql0 ql0Var = zl0Var.f33538e1;
-                    if (ql0Var != null) {
-                        AndroidUtilities.cancelRunOnUIThread(ql0Var);
-                        zl0Var.f33538e1 = null;
-                    }
-                    MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
-                    try {
-                        zl0Var.M1.G(obtain);
-                    } catch (Exception e7) {
-                        FileLog.e(e7);
-                    }
-                    zl0Var.N1.onTouchEvent(obtain);
-                    obtain.recycle();
-                    View view2 = zl0Var.N1;
-                    zl0Var.j1(view2, 0.0f, 0.0f, false);
-                    zl0Var.N1 = null;
-                    zl0Var.m1(null, view2);
-                    zl0Var.P1 = false;
-                }
-                s4.s0 s0Var = zl0Var.f33531a1;
-                if (s0Var != null) {
-                    s0Var.a(recyclerView, i10);
-                }
-                z10 = (i10 == 1 || i10 == 2) ? true : true;
-                zl0Var.K1 = z10;
-                if (z10) {
-                    zl0Var.L1 = true;
-                    return;
-                }
-                return;
-            case 4:
-                on0 on0Var = (on0) obj;
-                if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(on0Var.F.getCurrentFocus());
-                }
-                on0Var.a();
-                return;
-            case 9:
-                o71 o71Var = (o71) obj;
-                ai.w0 w0Var = o71Var.d;
-                if (i10 == 0 && o71Var.G && AndroidUtilities.dp(13.0f) + o71.m(o71Var) + o71Var.f29397y < AndroidUtilities.statusBarHeight * 2 && w0Var.canScrollVertically(1) && (il0Var = (il0) w0Var.K(0)) != null) {
-                    View view3 = il0Var.f46538a;
-                    if (view3.getTop() > 0) {
-                        w0Var.w0(0, view3.getTop(), null);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 13:
-                rg.t0 t0Var = (rg.t0) obj;
-                if (i10 == 1) {
-                    t0Var.f46276k3 = true;
-                }
-                if (i10 == 0) {
-                    for (int i12 = 0; i12 < recyclerView.getChildCount(); i12++) {
-                        rg.p1 p1Var2 = (rg.p1) t0Var.getChildAt(i12);
-                        if (p1Var == null || p1Var2.f46249a > p1Var.f46249a) {
-                            p1Var = p1Var2;
-                        }
-                    }
-                    if (p1Var != null) {
-                        t0Var.x1(p1Var, true);
-                        t0Var.f46276k3 = false;
-                        t0Var.w0(0, p1Var.getTop() - ((t0Var.getMeasuredHeight() - p1Var.getMeasuredHeight()) / 2), AndroidUtilities.overshootInterpolator);
-                    }
-                    t0Var.y1();
-                    return;
-                }
-                AndroidUtilities.cancelRunOnUIThread(t0Var.f46277l3);
-                return;
-            case 14:
-                if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(((tg.z0) obj).Y.getEditText());
-                    return;
-                }
-                return;
-            default:
-                return;
+                i10++;
+            } else {
+                z10 = false;
+                break;
+            }
+        }
+        if (z10) {
+            return false;
+        }
+        return A(motionEvent);
+    }
+
+    @Override
+    public final void u() {
+        View view = this.f29429e[0];
+        if (view instanceof pc0) {
+            ((pc0) view).f29846e.V();
         }
     }
 
     @Override
-    public void b(androidx.recyclerview.widget.RecyclerView r12, int r13, int r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.xb0.b(androidx.recyclerview.widget.RecyclerView, int, int):void");
+    public final void w(boolean z10) {
+        vc0 vc0Var = this.T;
+        vc0Var.f31750e.setSelectedTab(vc0Var.f31751f.getPositionAnimated());
+        View[] viewArr = this.f29429e;
+        View view = viewArr[0];
+        if (view instanceof pc0) {
+            ((pc0) view).f29846e.G();
+        }
+        View view2 = viewArr[1];
+        if (view2 instanceof pc0) {
+            ((pc0) view2).f29846e.G();
+        }
     }
 }

@@ -1,13 +1,63 @@
 package org.telegram.ui;
-public final class f71 extends s4.j {
-    public final k71 F;
 
-    public f71(k71 k71Var) {
-        this.F = k71Var;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
+public final class f71 extends AnimatorListenerAdapter {
+    public final boolean f37470a;
+    public final Runnable f37471b;
+    public final boolean[] f37472c;
+    public final boolean d;
+    public final Runnable f37473e;
+    public final g71 f37474f;
+
+    public f71(g71 g71Var, boolean z10, Runnable runnable, boolean[] zArr, boolean z11, Runnable runnable2) {
+        this.f37474f = g71Var;
+        this.f37470a = z10;
+        this.f37471b = runnable;
+        this.f37472c = zArr;
+        this.d = z11;
+        this.f37473e = runnable2;
     }
 
     @Override
-    public final void P(s4.c1 c1Var) {
-        k71.Q(this.F);
+    public final void onAnimationEnd(Animator animator) {
+        float f7;
+        Runnable runnable;
+        g71 g71Var = this.f37474f;
+        k0 k0Var = g71Var.f37907s;
+        boolean z10 = this.f37470a;
+        if (z10) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
+        }
+        g71Var.I = f7;
+        AndroidUtilities.lerp(g71Var.f37902c, g71Var.d, f7, g71Var.f37903e);
+        k0Var.invalidate();
+        if (!z10) {
+            g71Var.v.setAlpha(g71Var.I);
+        }
+        if (g71Var.I < 0.5f && !z10 && (runnable = this.f37471b) != null) {
+            boolean[] zArr = this.f37472c;
+            if (!zArr[0]) {
+                zArr[0] = true;
+                runnable.run();
+            }
+        }
+        if (!z10) {
+            if (this.d) {
+                g71Var.f37900a.f41869b = false;
+                g71Var.P.f39130h0.invalidate();
+            }
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 4);
+        }
+        g71Var.K = null;
+        k0Var.invalidate();
+        Runnable runnable2 = this.f37473e;
+        if (runnable2 != null) {
+            runnable2.run();
+        }
     }
 }

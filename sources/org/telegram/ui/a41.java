@@ -1,36 +1,28 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-public final class a41 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f34678a;
-    public final d41 f34679b;
+import android.content.Context;
+import android.text.Editable;
+import android.text.TextUtils;
+public final class a41 extends org.telegram.ui.Cells.j3 {
+    public final b41 f35829x;
 
-    public a41(d41 d41Var, int i10) {
-        this.f34678a = i10;
-        this.f34679b = d41Var;
+    public a41(b41 b41Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, "", true, false, 1024, e6Var);
+        this.f35829x = b41Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f34678a) {
-            case 0:
-                d41 d41Var = this.f34679b;
-                d41Var.getClass();
-                d41Var.f35641e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                d41Var.g();
-                return;
-            case 1:
-                d41 d41Var2 = this.f34679b;
-                d41Var2.getClass();
-                d41Var2.f35641e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                d41Var2.g();
-                return;
-            default:
-                d41 d41Var3 = this.f34679b;
-                d41Var3.getClass();
-                d41Var3.f35641e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                d41Var3.g();
-                return;
+    public final void b(Editable editable) {
+        boolean z10;
+        b41 b41Var = this.f35829x;
+        ci.d dVar = b41Var.f36136s;
+        if (dVar != null) {
+            if (!b41Var.d.optional && TextUtils.isEmpty(b41Var.f36134n.getText())) {
+                z10 = false;
+            } else {
+                z10 = true;
+            }
+            dVar.setEnabled(z10);
         }
     }
 }

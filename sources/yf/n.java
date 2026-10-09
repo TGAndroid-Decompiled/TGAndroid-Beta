@@ -1,34 +1,34 @@
 package yf;
 
 import org.telegram.messenger.AndroidUtilities;
-import rg.s1;
+import rg.x1;
 public final class n {
-    public final m f51013a;
-    public long f51014b;
-    public boolean f51015c;
-    public final s1 d = new s1(this, 20);
+    public final m f52181a;
+    public long f52182b;
+    public boolean f52183c;
+    public final x1 d = new x1(this, 24);
 
     public n(m mVar) {
-        this.f51013a = mVar;
+        this.f52181a = mVar;
     }
 
     public final void a(long j3) {
-        if (this.f51015c && this.f51014b == j3) {
+        if (this.f52183c && this.f52182b == j3) {
             return;
         }
-        this.f51014b = j3;
+        this.f52182b = j3;
         if (j3 <= 0) {
             b();
             return;
         }
-        this.f51015c = true;
-        s1 s1Var = this.d;
-        AndroidUtilities.cancelRunOnUIThread(s1Var);
-        AndroidUtilities.runOnUIThread(s1Var, 1000L);
+        this.f52183c = true;
+        x1 x1Var = this.d;
+        AndroidUtilities.cancelRunOnUIThread(x1Var);
+        AndroidUtilities.runOnUIThread(x1Var, 1000L);
     }
 
     public final void b() {
-        this.f51015c = false;
+        this.f52183c = false;
         AndroidUtilities.cancelRunOnUIThread(this.d);
     }
 }

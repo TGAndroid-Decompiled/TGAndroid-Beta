@@ -1,31 +1,11 @@
 package org.telegram.ui;
 
-import android.transition.Transition;
-public final class g21 implements Transition.TransitionListener {
-    public final Runnable f36492a;
-
-    public g21(Runnable runnable) {
-        this.f36492a = runnable;
-    }
+import android.content.ClipboardManager;
+public final class g21 implements ClipboardManager.OnPrimaryClipChangedListener {
+    public final n21 f37754a;
 
     @Override
-    public final void onTransitionEnd(Transition transition) {
-        this.f36492a.run();
-    }
-
-    @Override
-    public final void onTransitionCancel(Transition transition) {
-    }
-
-    @Override
-    public final void onTransitionPause(Transition transition) {
-    }
-
-    @Override
-    public final void onTransitionResume(Transition transition) {
-    }
-
-    @Override
-    public final void onTransitionStart(Transition transition) {
+    public final void onPrimaryClipChanged() {
+        this.f37754a.W();
     }
 }

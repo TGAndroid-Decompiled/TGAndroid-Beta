@@ -1,74 +1,55 @@
 package org.telegram.ui.Components;
 
-import android.os.Bundle;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-public abstract class x00 extends wo0 {
-    public final boolean d;
+public final class x00 extends AnimatorListenerAdapter {
+    public final int f32702a;
+    public final int f32703b;
+    public final float f32704c;
+    public final View d;
 
-    public x00(boolean z10) {
-        this.d = z10;
+    public x00(View view, int i10, float f7, int i11) {
+        this.f32702a = i11;
+        this.d = view;
+        this.f32703b = i10;
+        this.f32704c = f7;
     }
 
     @Override
-    public final boolean a() {
-        if (k() > j()) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean b() {
-        if (k() < i()) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void c(boolean z10) {
-        float h = h();
-        if (z10) {
-            h *= -1.0f;
-        }
-        l(Math.min(i(), Math.max(j(), k() + h)));
-    }
-
-    @Override
-    public final void e(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.e(view, accessibilityNodeInfo);
-        if (this.d) {
-            accessibilityNodeInfo.addAction((AccessibilityNodeInfo.AccessibilityAction) s0.c.h.f46482a);
-            accessibilityNodeInfo.setRangeInfo(AccessibilityNodeInfo.RangeInfo.obtain(1, j(), i(), k()));
+    public final void onAnimationEnd(Animator animator) {
+        float f7;
+        switch (this.f32702a) {
+            case 0:
+                y00 y00Var = (y00) this.d;
+                int i10 = this.f32703b;
+                if (i10 == 5) {
+                    f7 = 0.0f;
+                } else {
+                    f7 = -this.f32704c;
+                }
+                y00Var.b(f7, i10 + 1);
+                y00Var.f33087y = 0.0f;
+                y00Var.invalidate();
+                return;
+            case 1:
+                ((org.telegram.ui.web.u1) this.d).c(this.f32703b, this.f32704c, false);
+                return;
+            default:
+                yh.e8 e8Var = (yh.e8) this.d;
+                e8Var.f52460c0 = this.f32704c;
+                if (e8Var.getValue() != this.f32703b) {
+                    e8Var.e(e8Var.getValue());
+                }
+                e8Var.invalidate();
+                return;
         }
     }
 
-    @Override
-    public final boolean g(View view, int i10, Bundle bundle) {
-        if (super.g(view, i10, bundle)) {
-            return true;
-        }
-        if (i10 == ((AccessibilityNodeInfo.AccessibilityAction) s0.c.h.f46482a).getId()) {
-            l(bundle.getFloat("android.view.accessibility.action.ARGUMENT_PROGRESS_VALUE"));
-            return true;
-        }
-        return false;
+    public x00(yh.e8 e8Var, float f7, int i10) {
+        this.f32702a = 2;
+        this.d = e8Var;
+        this.f32704c = f7;
+        this.f32703b = i10;
     }
-
-    public float h() {
-        return 0.05f;
-    }
-
-    public float i() {
-        return 1.0f;
-    }
-
-    public float j() {
-        return 0.0f;
-    }
-
-    public abstract float k();
-
-    public abstract void l(float f7);
 }

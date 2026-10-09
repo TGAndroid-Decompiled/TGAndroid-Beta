@@ -14,21 +14,21 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.bi;
 public final class y8 extends FrameLayout {
     public static Paint d;
-    public static final int[] f23782e = {-1031100, -29183, -12769, -8792480, -12521994, -12140801, -2984711, -45162, -4473925};
-    public static final int[] f23783f = {-65536, -29183, -256, -16711936, -16711681, -16776961, -2984711, -65281, -1};
-    public final TextView f23784a;
-    public boolean f23785b;
-    public int f23786c;
+    public static final int[] f23783e = {-1031100, -29183, -12769, -8792480, -12521994, -12140801, -2984711, -45162, -4473925};
+    public static final int[] f23784f = {-65536, -29183, -256, -16711936, -16711681, -16776961, -2984711, -65281, -1};
+    public final TextView f23785a;
+    public boolean f23786b;
+    public int f23787c;
 
-    public y8(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+    public y8(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
         int i10;
         if (d == null) {
             d = new Paint(1);
         }
         TextView textView = new TextView(context);
-        this.f23784a = textView;
-        bi.m(org.telegram.ui.ActionBar.i6.G6, d6Var, textView, 1, 16.0f);
+        this.f23785a = textView;
+        bi.o(org.telegram.ui.ActionBar.i6.G6, e6Var, textView, 1, 16.0f);
         textView.setLines(1);
         textView.setMaxLines(1);
         textView.setSingleLine(true);
@@ -38,14 +38,14 @@ public final class y8 extends FrameLayout {
             i10 = 3;
         }
         textView.setGravity(i10 | 16);
-        addView(textView, w7.z5.d(-1, -1.0f, (LocaleController.isRTL ? 5 : 3) | 48, 21.0f, 0.0f, 21.0f, 0.0f));
+        addView(textView, w7.x5.a(-1.0f, 21.0f, 0.0f, 21.0f, 0.0f, -1, (LocaleController.isRTL ? 5 : 3) | 48));
     }
 
     public final void a(ArrayList arrayList, boolean z10) {
         float f7;
         float f10;
         setEnabled(z10);
-        TextView textView = this.f23784a;
+        TextView textView = this.f23785a;
         float f11 = 0.5f;
         if (arrayList != null) {
             if (z10) {
@@ -76,9 +76,9 @@ public final class y8 extends FrameLayout {
 
     public final void b(int i10, String str, boolean z10) {
         boolean z11;
-        this.f23784a.setText(str);
-        this.f23785b = z10;
-        this.f23786c = i10;
+        this.f23785a.setText(str);
+        this.f23786b = z10;
+        this.f23787c = i10;
         if (!z10 && i10 == 0) {
             z11 = true;
         } else {
@@ -94,12 +94,13 @@ public final class y8 extends FrameLayout {
         int measuredWidth;
         float dp;
         int i10;
-        if (this.f23785b) {
+        if (this.f23786b) {
             if (LocaleController.isRTL) {
                 dp = 0.0f;
             } else {
                 dp = AndroidUtilities.dp(20.0f);
             }
+            float f7 = dp;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth2 = getMeasuredWidth();
             if (LocaleController.isRTL) {
@@ -108,11 +109,11 @@ public final class y8 extends FrameLayout {
                 i10 = 0;
             }
             canvas2 = canvas;
-            canvas2.drawLine(dp, measuredHeight, measuredWidth2 - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.i6.f20950k0);
+            canvas2.drawLine(f7, measuredHeight, measuredWidth2 - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.i6.f20919k0);
         } else {
             canvas2 = canvas;
         }
-        int i11 = this.f23786c;
+        int i11 = this.f23787c;
         if (i11 != 0) {
             d.setColor(i11);
             if (LocaleController.isRTL) {
@@ -126,6 +127,6 @@ public final class y8 extends FrameLayout {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.f23785b ? 1 : 0), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.f23786b ? 1 : 0), 1073741824));
     }
 }

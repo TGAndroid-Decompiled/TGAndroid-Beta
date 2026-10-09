@@ -1,6 +1,6 @@
 package ii;
 
-import ai.o8;
+import ai.p8;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
@@ -11,20 +11,20 @@ import org.telegram.messenger.RichMessageLayout;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 public final class e0 extends View {
-    public final RichMessageLayout.RichButton f12307a;
-    public final int f12308b;
-    public boolean f12309c;
+    public final RichMessageLayout.RichButton f12352a;
+    public final int f12353b;
+    public boolean f12354c;
     public boolean d;
-    public final o8 f12310e;
-    public final h0 f12311f;
+    public final p8 f12355e;
+    public final h0 f12356f;
 
     public e0(h0 h0Var, Context context, TL_keyboard.PageButton pageButton, int i10) {
         super(context);
-        this.f12311f = h0Var;
-        this.f12308b = i10;
-        RichMessageLayout.RichButton createEditorPageButton = RichMessageLayout.createEditorPageButton(h0Var.f12404n, org.telegram.messenger.q.b(32.0f, AndroidUtilities.displaySize.x, AndroidUtilities.dp(240.0f)), h0Var.f12405r, pageButton, new i2.h0(this, 3));
-        this.f12307a = createEditorPageButton;
-        this.f12310e = new o8(this, i10, 10);
+        this.f12356f = h0Var;
+        this.f12353b = i10;
+        RichMessageLayout.RichButton createEditorPageButton = RichMessageLayout.createEditorPageButton(h0Var.f12450n, org.telegram.messenger.q.b(32.0f, AndroidUtilities.displaySize.x, AndroidUtilities.dp(240.0f)), h0Var.f12451r, pageButton, new i2.h0(this, 3));
+        this.f12352a = createEditorPageButton;
+        this.f12355e = new p8(this, i10, 10);
         createEditorPageButton.width = createEditorPageButton.getPreferredWidth();
         setContentDescription(h6.l(pageButton.text));
         setClickable(true);
@@ -34,13 +34,13 @@ public final class e0 extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f12307a.attach(this);
+        this.f12352a.attach(this);
     }
 
     @Override
     public final void onDetachedFromWindow() {
-        AndroidUtilities.cancelRunOnUIThread(this.f12310e);
-        this.f12307a.detach(this);
+        AndroidUtilities.cancelRunOnUIThread(this.f12355e);
+        this.f12352a.detach(this);
         super.onDetachedFromWindow();
     }
 
@@ -49,7 +49,7 @@ public final class e0 extends View {
         super.onDraw(canvas);
         canvas.save();
         int height = getHeight();
-        RichMessageLayout.RichButton richButton = this.f12307a;
+        RichMessageLayout.RichButton richButton = this.f12352a;
         canvas.translate(0.0f, (height - richButton.getHeight()) / 2.0f);
         richButton.draw(canvas);
         canvas.restore();
@@ -57,7 +57,7 @@ public final class e0 extends View {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        RichMessageLayout.RichButton richButton = this.f12307a;
+        RichMessageLayout.RichButton richButton = this.f12352a;
         setMeasuredDimension(richButton.width, AndroidUtilities.dp(8.0f) + richButton.getHeight());
     }
 
@@ -67,46 +67,46 @@ public final class e0 extends View {
         h0 h0Var;
         f0 f0Var;
         a aVar;
-        char c10;
         boolean z11;
         boolean z12;
         boolean z13;
+        boolean z14;
         int actionMasked = motionEvent.getActionMasked();
-        o8 o8Var = this.f12310e;
-        RichMessageLayout.RichButton richButton = this.f12307a;
+        p8 p8Var = this.f12355e;
+        RichMessageLayout.RichButton richButton = this.f12352a;
         if (actionMasked != 0) {
             if (actionMasked != 1) {
                 if (actionMasked != 2) {
                     if (actionMasked != 3) {
                         return super.onTouchEvent(motionEvent);
                     }
-                    this.f12309c = false;
+                    this.f12354c = false;
                     richButton.setPressed(false);
-                    AndroidUtilities.cancelRunOnUIThread(o8Var);
+                    AndroidUtilities.cancelRunOnUIThread(p8Var);
                     return true;
                 } else if (motionEvent.getX() < 0.0f || motionEvent.getY() < 0.0f || motionEvent.getX() > getWidth() || motionEvent.getY() > getHeight()) {
-                    this.f12309c = false;
+                    this.f12354c = false;
                     richButton.setPressed(false);
-                    AndroidUtilities.cancelRunOnUIThread(o8Var);
+                    AndroidUtilities.cancelRunOnUIThread(p8Var);
                     return true;
                 }
             } else {
-                if (this.f12309c && !this.d) {
+                if (this.f12354c && !this.d) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                this.f12309c = false;
+                this.f12354c = false;
                 richButton.setPressed(false);
-                AndroidUtilities.cancelRunOnUIThread(o8Var);
-                if (z10 && (f0Var = (h0Var = this.f12311f).E) != null && (aVar = h0Var.f12204a) != null) {
-                    x3 x3Var = ((p3) f0Var).f12577a;
-                    TL_iv.PageBlock pageBlock = aVar.f12187b;
+                AndroidUtilities.cancelRunOnUIThread(p8Var);
+                if (z10 && (f0Var = (h0Var = this.f12356f).E) != null && (aVar = h0Var.f12251a) != null) {
+                    x3 x3Var = ((p3) f0Var).f12624a;
+                    TL_iv.PageBlock pageBlock = aVar.f12234b;
                     if (pageBlock instanceof TL_iv.pageBlockButtonRow) {
                         TL_iv.pageBlockButtonRow pageblockbuttonrow = (TL_iv.pageBlockButtonRow) pageBlock;
-                        int i10 = this.f12308b;
+                        int i10 = this.f12353b;
                         if (i10 >= 0 && i10 < pageblockbuttonrow.buttons.size()) {
-                            i2 i2Var = x3Var.Q3;
+                            i2 i2Var = x3Var.H3;
                             if (i2Var != null) {
                                 i2Var.d();
                             }
@@ -114,55 +114,55 @@ public final class e0 extends View {
                             if (pageButton != null) {
                                 TL_keyboard.RichButtonStyle richButtonStyle = pageButton.style;
                                 if (richButtonStyle != null && richButtonStyle.bg_primary) {
-                                    c10 = 2;
+                                    z11 = true;
                                 } else if (richButtonStyle != null && richButtonStyle.bg_danger) {
-                                    c10 = 3;
+                                    z11 = true;
                                 } else if (richButtonStyle != null && richButtonStyle.bg_success) {
-                                    c10 = 0;
+                                    z11 = false;
                                 } else {
-                                    c10 = 1;
+                                    z11 = true;
                                 }
                                 if (richButtonStyle == null) {
                                     richButtonStyle = new TL_keyboard.RichButtonStyle();
                                 }
                                 richButtonStyle.flags = 0;
-                                if (c10 == 1) {
-                                    z11 = true;
-                                } else {
-                                    z11 = false;
-                                }
-                                richButtonStyle.bg_primary = z11;
-                                if (c10 == 2) {
+                                if (z11) {
                                     z12 = true;
                                 } else {
                                     z12 = false;
                                 }
-                                richButtonStyle.bg_danger = z12;
-                                if (c10 == 3) {
+                                richButtonStyle.bg_primary = z12;
+                                if (z11) {
                                     z13 = true;
                                 } else {
                                     z13 = false;
                                 }
-                                richButtonStyle.bg_success = z13;
+                                richButtonStyle.bg_danger = z13;
+                                if (z11) {
+                                    z14 = true;
+                                } else {
+                                    z14 = false;
+                                }
+                                richButtonStyle.bg_success = z14;
                                 richButtonStyle.link = false;
                                 pageButton.style = richButtonStyle;
                             }
-                            x3Var.f26034f3.N(false);
-                            i2 i2Var2 = x3Var.Q3;
+                            x3Var.W2.N(false);
+                            i2 i2Var2 = x3Var.H3;
                             if (i2Var2 != null) {
                                 i2Var2.h();
                             }
-                            x3Var.f12770o3.onContentChanged();
+                            x3Var.f12809f3.onContentChanged();
                         }
                     }
                 }
             }
             return true;
         }
-        this.f12309c = true;
+        this.f12354c = true;
         this.d = false;
         richButton.setPressed(true);
-        AndroidUtilities.runOnUIThread(o8Var, ViewConfiguration.getLongPressTimeout());
+        AndroidUtilities.runOnUIThread(p8Var, ViewConfiguration.getLongPressTimeout());
         return true;
     }
 }

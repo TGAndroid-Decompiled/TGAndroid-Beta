@@ -1,123 +1,41 @@
 package ai;
 
-import android.app.Activity;
-import org.telegram.messenger.AndroidUtilities;
+import android.view.View;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.PremiumPreviewFragment;
-public final class c3 implements Runnable {
-    public final int f691a;
-    public final e6 f692b;
+import org.telegram.ui.Components.p80;
+public final class c3 implements View.OnLongClickListener {
+    public final int f753a;
+    public final f6 f754b;
 
-    public c3(e6 e6Var, int i10) {
-        this.f691a = i10;
-        this.f692b = e6Var;
+    public c3(f6 f6Var, int i10) {
+        this.f753a = i10;
+        this.f754b = f6Var;
     }
 
     @Override
-    public final void run() {
-        float f7;
-        boolean z10;
-        switch (this.f691a) {
+    public final boolean onLongClick(View view) {
+        switch (this.f753a) {
             case 0:
-                this.f692b.f868j2.setVisibility(8);
-                return;
-            case 1:
-                e6 e6Var = this.f692b;
-                if (!e6Var.J0.H0) {
-                    e6Var.f918z3 = null;
-                    if (e6Var.H0 == null) {
-                        ci.e4 e4Var = new ci.e4(e6Var.getContext(), 3);
-                        e4Var.l(1.0f, -22.0f);
-                        e6Var.H0 = e4Var;
-                        e4Var.h(i0.a.k(i0.a.d(0.13f, -16777216, -1), 240));
-                        ci.e4 e4Var2 = e6Var.H0;
-                        e4Var2.U = false;
-                        e4Var2.s(LocaleController.getString(R.string.ReactionLongTapHint));
-                        e6Var.H0.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(1.0f));
-                        a5 a5Var = e6Var.f844c1;
-                        ci.e4 e4Var3 = e6Var.H0;
-                        if (e6Var.f910x2) {
-                            f7 = 0.0f;
-                        } else {
-                            f7 = 56.0f;
-                        }
-                        a5Var.addView(e4Var3, w7.z5.d(-1, -2.0f, 85, 0.0f, 0.0f, 0.0f, f7));
-                    }
-                    e6Var.H0.u();
-                    SharedConfig.setStoriesReactionsLongPressHintUsed(true);
-                    return;
+                f6 f6Var = this.f754b;
+                boolean z10 = false;
+                if (f6Var.D0(true)) {
+                    return false;
                 }
-                return;
-            case 2:
-                this.f692b.Q0();
-                return;
-            case 3:
-                ((ac) this.f692b.Q1).b(true);
-                return;
-            case 4:
-                this.f692b.r0(true);
-                return;
-            case 5:
-                jc jcVar = this.f692b.J0;
-                if (jcVar != null) {
-                    jcVar.H(new PremiumPreviewFragment(0, "noncontacts"));
-                    return;
+                p80 F = p80.F(f6Var.J0.v, f6Var.B0, view);
+                F.c(R.drawable.msg_edit, LocaleController.getString(R.string.LiveStoryMessageEditStars), new d3(f6Var, 6), false);
+                if (f6Var.L3 > 0) {
+                    z10 = true;
                 }
-                return;
-            case 6:
-                this.f692b.O0();
-                return;
-            case 7:
-                e6 e6Var2 = this.f692b;
-                e6Var2.L3 = 0L;
-                a4 a4Var = e6Var2.f841b2;
-                if (a4Var != null) {
-                    a4Var.I(true);
-                    e6Var2.f841b2.R1();
-                    e6Var2.r0(true);
-                    return;
-                }
-                return;
-            case 8:
-                e6 e6Var3 = this.f692b;
-                Activity findActivity = AndroidUtilities.findActivity(e6Var3.getContext());
-                if (findActivity != null) {
-                    a1.e eVar = new a1.e(11, e6Var3, findActivity);
-                    jc jcVar2 = ((ac) e6Var3.Q1).d;
-                    ic icVar = jcVar2.f1201z0;
-                    if (icVar != null) {
-                        z10 = icVar.release(eVar);
-                        jcVar2.f1201z0 = null;
-                    } else {
-                        z10 = false;
-                    }
-                    if (!z10) {
-                        AndroidUtilities.runOnUIThread(eVar, 80L);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 9:
-                jc jcVar3 = ((ac) this.f692b.Q1).d;
-                jcVar3.f1166i1 = false;
-                jcVar3.P();
-                return;
-            case 10:
-                this.f692b.L0(null);
-                return;
-            case 11:
-                this.f692b.c1(false);
-                MessagesController.getGlobalMainSettings().edit().putInt("taptostorysoundhint", MessagesController.getGlobalMainSettings().getInt("taptostorysoundhint", 0) + 1).apply();
-                return;
+                F.l(R.drawable.menu_delete_paid, LocaleController.getString(R.string.LiveStoryMessageRemoveStars), new d3(f6Var, 7), z10);
+                F.V(5);
+                F.U = true;
+                F.Z();
+                return true;
             default:
-                e6 e6Var4 = this.f692b;
-                e6Var4.U3 = true;
-                e6Var4.setActive(false);
-                return;
+                f6 f6Var2 = this.f754b;
+                f6Var2.L0.k(f6Var2.D0(false));
+                return true;
         }
     }
 }

@@ -1,52 +1,28 @@
 package v7;
 public abstract class w7 {
-    public static Integer a(String str) {
-        if (str != null) {
-            switch (str.hashCode()) {
-                case -1118317585:
-                    if (str.equals("REPEAT_ALL_AND_SHUFFLE")) {
-                        return 3;
-                    }
-                    return null;
-                case -962896020:
-                    if (str.equals("REPEAT_SINGLE")) {
-                        return 2;
-                    }
-                    return null;
-                case 1645938909:
-                    if (str.equals("REPEAT_ALL")) {
-                        return 1;
-                    }
-                    return null;
-                case 1645952171:
-                    if (str.equals("REPEAT_OFF")) {
-                        return 0;
-                    }
-                    return null;
-                default:
-                    return null;
-            }
+    public static long[] a(long[]... jArr) {
+        boolean z10;
+        long j3 = 0;
+        for (long[] jArr2 : jArr) {
+            j3 += jArr2.length;
         }
-        return null;
+        int i10 = (int) j3;
+        if (j3 == i10) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        t6.b(j3, "the total number of elements (%s) in the arrays must fit in an int", z10);
+        long[] jArr3 = new long[i10];
+        int i11 = 0;
+        for (long[] jArr4 : jArr) {
+            System.arraycopy(jArr4, 0, jArr3, i11, jArr4.length);
+            i11 += jArr4.length;
+        }
+        return jArr3;
     }
 
-    public static String b(Integer num) {
-        if (num != null) {
-            int intValue = num.intValue();
-            if (intValue != 0) {
-                if (intValue != 1) {
-                    if (intValue != 2) {
-                        if (intValue != 3) {
-                            return null;
-                        }
-                        return "REPEAT_ALL_AND_SHUFFLE";
-                    }
-                    return "REPEAT_SINGLE";
-                }
-                return "REPEAT_ALL";
-            }
-            return "REPEAT_OFF";
-        }
-        return null;
+    public static int b(long j3) {
+        return (int) (j3 ^ (j3 >>> 32));
     }
 }

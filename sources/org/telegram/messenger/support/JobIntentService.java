@@ -236,14 +236,12 @@ public abstract class JobIntentService extends Service {
             }
         }
 
-        @Override
         public boolean onStartJob(JobParameters jobParameters) {
             this.mParams = jobParameters;
             this.mService.ensureProcessorRunningLocked(false);
             return true;
         }
 
-        @Override
         public boolean onStopJob(JobParameters jobParameters) {
             boolean doStopCurrentWork = this.mService.doStopCurrentWork();
             synchronized (this.mLock) {

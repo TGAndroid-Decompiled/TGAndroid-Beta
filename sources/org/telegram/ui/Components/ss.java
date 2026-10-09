@@ -1,34 +1,50 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-public final class ss implements Runnable {
-    public final int f30939a;
-    public final ts f30940b;
+import j$.util.function.Predicate$CC;
+import java.util.function.Predicate;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class ss implements Predicate {
+    public final int f30883a;
+    public final TLObject f30884b;
 
-    public ss(ts tsVar, int i10) {
-        this.f30939a = i10;
-        this.f30940b = tsVar;
+    public ss(int i10, TLObject tLObject) {
+        this.f30883a = i10;
+        this.f30884b = tLObject;
+    }
+
+    public Predicate and(Predicate predicate) {
+        int i10 = this.f30883a;
+        return Predicate$CC.$default$and(this, predicate);
+    }
+
+    public Predicate negate() {
+        switch (this.f30883a) {
+            case 0:
+                return Predicate$CC.$default$negate(this);
+            default:
+                return Predicate$CC.$default$negate(this);
+        }
+    }
+
+    public Predicate or(Predicate predicate) {
+        int i10 = this.f30883a;
+        return Predicate$CC.$default$or(this, predicate);
     }
 
     @Override
-    public final void run() {
-        switch (this.f30939a) {
+    public final boolean test(Object obj) {
+        switch (this.f30883a) {
             case 0:
-                ts tsVar = this.f30940b;
-                tsVar.f31230c = false;
-                tsVar.f31229b.run();
-                ArrayList arrayList = tsVar.h;
-                if (arrayList.isEmpty() || System.currentTimeMillis() - tsVar.f31232f > 3600000) {
-                    arrayList.clear();
-                    tsVar.f31231e = false;
-                    tsVar.f31233g = null;
-                    tsVar.a();
-                    return;
-                }
-                return;
+                return MessageObject.peersEqual((TLRPC.InputPeer) this.f30884b, ((MessageObject) obj).messageOwner.from_id);
             default:
-                this.f30940b.f31234i = false;
-                return;
+                MessageObject messageObject = (MessageObject) obj;
+                TLObject tLObject = this.f30884b;
+                if (!(tLObject instanceof TLRPC.User) ? !(!(tLObject instanceof TLRPC.Chat) || messageObject.messageOwner.from_id.user_id != ((TLRPC.Chat) tLObject).f20038id) : messageObject.messageOwner.from_id.user_id == ((TLRPC.User) tLObject).f20185id) {
+                    return true;
+                }
+                return false;
         }
     }
 }

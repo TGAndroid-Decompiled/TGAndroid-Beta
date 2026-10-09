@@ -1,12 +1,21 @@
 package k9;
 
-import java.io.IOException;
+import android.os.Parcel;
+import android.os.Parcelable;
 public abstract class b {
-    public static void a(Appendable appendable, char c10) {
-        try {
-            appendable.append(c10);
-        } catch (IOException e7) {
-            throw new RuntimeException(e7);
+    public static Object a(Parcel parcel, Parcelable.Creator creator) {
+        if (parcel.readInt() != 0) {
+            return creator.createFromParcel(parcel);
         }
+        return null;
+    }
+
+    public static void b(Parcel parcel, Parcelable parcelable) {
+        if (parcelable != null) {
+            parcel.writeInt(1);
+            parcelable.writeToParcel(parcel, 0);
+            return;
+        }
+        parcel.writeInt(0);
     }
 }

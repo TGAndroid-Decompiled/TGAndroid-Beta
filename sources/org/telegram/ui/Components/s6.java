@@ -1,23 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.view.animation.OvershootInterpolator;
-public abstract class s6 {
-    public static final OvershootInterpolator f30696a = new OvershootInterpolator(1.9f);
-    public static final q6 f30697b = new q6("alpha", 0);
-    public static final org.telegram.ui.Cells.t8 f30698c;
-    public static final q6 d;
-    public static final q6 f30699e;
-    public static final org.telegram.ui.Cells.t8 f30700f;
-    public static final org.telegram.ui.Cells.t8 f30701g;
-    public static final org.telegram.ui.Cells.t8 h;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
+public final class s6 extends t6 {
+    public final int f30672b;
 
-    static {
-        new q6("color", 1);
-        f30698c = new org.telegram.ui.Cells.t8("currentAlpha", 4);
-        d = new q6("alpha", 2);
-        f30699e = new q6("alpha", 3);
-        f30700f = new org.telegram.ui.Cells.t8("animationProgress", 5);
-        f30701g = new org.telegram.ui.Cells.t8("animationValue", 6);
-        h = new org.telegram.ui.Cells.t8("clipProgress", 7);
+    public s6(String str, int i10) {
+        super(str, 1);
+        this.f30672b = i10;
+    }
+
+    @Override
+    public final void b(int i10, Object obj) {
+        switch (this.f30672b) {
+            case 0:
+                ((Paint) obj).setAlpha(i10);
+                return;
+            case 1:
+                ((Paint) obj).setColor(i10);
+                return;
+            case 2:
+                ((Drawable) obj).setAlpha(i10);
+                return;
+            default:
+                ((ShapeDrawable) obj).getPaint().setAlpha(i10);
+                return;
+        }
+    }
+
+    @Override
+    public final Object get(Object obj) {
+        switch (this.f30672b) {
+            case 0:
+                return Integer.valueOf(((Paint) obj).getAlpha());
+            case 1:
+                return Integer.valueOf(((Paint) obj).getColor());
+            case 2:
+                return Integer.valueOf(((Drawable) obj).getAlpha());
+            default:
+                return Integer.valueOf(((ShapeDrawable) obj).getPaint().getAlpha());
+        }
     }
 }

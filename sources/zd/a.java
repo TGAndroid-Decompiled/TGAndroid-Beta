@@ -1,100 +1,272 @@
 package zd;
 
-import v7.h7;
-import v7.t7;
-public abstract class a extends u1 implements id.c, c0 {
-    public final id.h f53217c;
+import kotlin.jvm.internal.i;
+public final class a implements Comparable {
+    public static final long f54357b;
+    public static final long f54358c;
+    public static final int d = 0;
+    public final long f54359a;
 
-    public a(id.h hVar, boolean z10) {
-        super(z10);
-        x((f1) hVar.get(b0.f53221b));
-        this.f53217c = hVar.plus(this);
+    static {
+        int i10 = b.f54360a;
+        f54357b = Long.MAX_VALUE;
+        f54358c = -9223372036854775805L;
     }
 
-    @Override
-    public final void F(Object obj) {
-        if (obj instanceof v) {
-            v.f53305b.get((v) obj);
-        }
-    }
-
-    public final void L(d0 d0Var, a aVar, rd.p pVar) {
-        Object invoke;
-        Object cVar;
-        int ordinal = d0Var.ordinal();
-        if (ordinal != 0) {
-            if (ordinal != 1) {
-                if (ordinal != 2) {
-                    if (ordinal == 3) {
-                        try {
-                            id.h hVar = this.f53217c;
-                            Object k10 = ee.a.k(hVar, null);
-                            if (!(pVar instanceof kd.a)) {
-                                kotlin.jvm.internal.i.e(pVar, "<this>");
-                                id.h hVar2 = this.f53217c;
-                                if (hVar2 == id.i.f12059a) {
-                                    cVar = new kd.h(this);
-                                } else {
-                                    cVar = new kd.c(this, hVar2);
-                                }
-                                kotlin.jvm.internal.s.a(2, pVar);
-                                invoke = pVar.invoke(aVar, cVar);
-                            } else {
-                                kotlin.jvm.internal.s.a(2, pVar);
-                                invoke = pVar.invoke(aVar, this);
+    public static final void a(StringBuilder sb2, int i10, int i11, int i12, String str) {
+        CharSequence charSequence;
+        sb2.append(i10);
+        if (i11 != 0) {
+            sb2.append('.');
+            String valueOf = String.valueOf(i11);
+            i.e(valueOf, "<this>");
+            if (i12 >= 0) {
+                if (i12 <= valueOf.length()) {
+                    charSequence = valueOf.subSequence(0, valueOf.length());
+                } else {
+                    StringBuilder sb3 = new StringBuilder(i12);
+                    int length = i12 - valueOf.length();
+                    int i13 = 1;
+                    if (1 <= length) {
+                        while (true) {
+                            sb3.append('0');
+                            if (i13 == length) {
+                                break;
                             }
-                            ee.a.f(hVar, k10);
-                            if (invoke != jd.a.f14088a) {
-                                resumeWith(invoke);
-                                return;
-                            }
-                            return;
-                        } catch (Throwable th2) {
-                            resumeWith(t7.a(th2));
-                            return;
+                            i13++;
                         }
                     }
-                    throw new RuntimeException();
+                    sb3.append((CharSequence) valueOf);
+                    charSequence = sb3;
                 }
-                kotlin.jvm.internal.i.e(pVar, "<this>");
-                w7.g.b(w7.g.a(aVar, this, pVar)).resumeWith(gd.i.f10453a);
-                return;
+                String obj = charSequence.toString();
+                int i14 = -1;
+                int length2 = obj.length() - 1;
+                if (length2 >= 0) {
+                    while (true) {
+                        int i15 = length2 - 1;
+                        if (obj.charAt(length2) != '0') {
+                            i14 = length2;
+                            break;
+                        } else if (i15 < 0) {
+                            break;
+                        } else {
+                            length2 = i15;
+                        }
+                    }
+                }
+                int i16 = i14 + 1;
+                if (i16 < 3) {
+                    sb2.append((CharSequence) obj, 0, i16);
+                } else {
+                    sb2.append((CharSequence) obj, 0, ((i14 + 3) / 3) * 3);
+                }
+            } else {
+                throw new IllegalArgumentException(hg.c.i(i12, "Desired length ", " is less than zero."));
             }
-            return;
         }
-        h7.a(pVar, aVar, this);
+        sb2.append(str);
     }
 
-    @Override
-    public final id.h c() {
-        return this.f53217c;
-    }
-
-    @Override
-    public final id.h getContext() {
-        return this.f53217c;
-    }
-
-    @Override
-    public final String k() {
-        return getClass().getSimpleName().concat(" was cancelled");
-    }
-
-    @Override
-    public final void resumeWith(Object obj) {
-        Throwable a2 = gd.f.a(obj);
-        if (a2 != null) {
-            obj = new v(a2, false);
+    public static final boolean b(long j3) {
+        if (j3 != f54357b && j3 != f54358c) {
+            return false;
         }
-        Object B = B(obj);
-        if (B == e0.f53237e) {
-            return;
+        return true;
+    }
+
+    public static final long c(long j3, c unit) {
+        c sourceUnit;
+        i.e(unit, "unit");
+        if (j3 == f54357b) {
+            return Long.MAX_VALUE;
         }
-        g(B);
+        if (j3 == f54358c) {
+            return Long.MIN_VALUE;
+        }
+        long j10 = j3 >> 1;
+        if ((((int) j3) & 1) == 0) {
+            sourceUnit = c.f54361b;
+        } else {
+            sourceUnit = c.f54362c;
+        }
+        i.e(sourceUnit, "sourceUnit");
+        return unit.f54366a.convert(j10, sourceUnit.f54366a);
     }
 
     @Override
-    public final void w(androidx.car.app.j jVar) {
-        e0.m(this.f53217c, jVar);
+    public final int compareTo(Object obj) {
+        long j3 = ((a) obj).f54359a;
+        long j10 = this.f54359a;
+        long j11 = j10 ^ j3;
+        if (j11 >= 0 && (((int) j11) & 1) != 0) {
+            int i10 = (((int) j10) & 1) - (((int) j3) & 1);
+            if (j10 < 0) {
+                return -i10;
+            }
+            return i10;
+        }
+        int i11 = (j10 > j3 ? 1 : (j10 == j3 ? 0 : -1));
+        if (i11 < 0) {
+            return -1;
+        }
+        if (i11 != 0) {
+            return 1;
+        }
+        return 0;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj instanceof a) {
+            if (this.f54359a != ((a) obj).f54359a) {
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        long j3 = this.f54359a;
+        return (int) (j3 ^ (j3 >>> 32));
+    }
+
+    public final String toString() {
+        boolean z10;
+        int c10;
+        long j3;
+        int c11;
+        int c12;
+        int i10;
+        long j10;
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        long j11 = this.f54359a;
+        int i17 = (j11 > 0L ? 1 : (j11 == 0L ? 0 : -1));
+        if (i17 == 0) {
+            return "0s";
+        }
+        if (j11 == f54357b) {
+            return "Infinity";
+        }
+        if (j11 == f54358c) {
+            return "-Infinity";
+        }
+        if (i17 < 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        StringBuilder sb2 = new StringBuilder();
+        if (z10) {
+            sb2.append('-');
+        }
+        if (i17 < 0) {
+            j11 = (((int) j11) & 1) + ((-(j11 >> 1)) << 1);
+            int i18 = b.f54360a;
+        }
+        long c13 = c(j11, c.h);
+        if (b(j11)) {
+            c10 = 0;
+        } else {
+            c10 = (int) (c(j11, c.f54364f) % 24);
+        }
+        if (b(j11)) {
+            j3 = 0;
+            c11 = 0;
+        } else {
+            j3 = 0;
+            c11 = (int) (c(j11, c.f54363e) % 60);
+        }
+        if (b(j11)) {
+            c12 = 0;
+        } else {
+            c12 = (int) (c(j11, c.d) % 60);
+        }
+        if (b(j11)) {
+            i10 = 1;
+            i11 = 0;
+        } else {
+            if ((((int) j11) & 1) == 1) {
+                i10 = 1;
+                j10 = ((j11 >> 1) % 1000) * 1000000;
+            } else {
+                i10 = 1;
+                j10 = (j11 >> 1) % 1000000000;
+            }
+            i11 = (int) j10;
+        }
+        if (c13 != j3) {
+            i12 = i10;
+        } else {
+            i12 = 0;
+        }
+        if (c10 != 0) {
+            i13 = i10;
+        } else {
+            i13 = 0;
+        }
+        if (c11 != 0) {
+            i14 = i10;
+        } else {
+            i14 = 0;
+        }
+        if (c12 == 0 && i11 == 0) {
+            i15 = 0;
+        } else {
+            i15 = i10;
+        }
+        if (i12 != 0) {
+            sb2.append(c13);
+            sb2.append('d');
+            i16 = i10;
+        } else {
+            i16 = 0;
+        }
+        if (i13 != 0 || (i12 != 0 && (i14 != 0 || i15 != 0))) {
+            int i19 = i16 + 1;
+            if (i16 > 0) {
+                sb2.append(' ');
+            }
+            sb2.append(c10);
+            sb2.append('h');
+            i16 = i19;
+        }
+        if (i14 != 0 || (i15 != 0 && (i13 != 0 || i12 != 0))) {
+            int i20 = i16 + 1;
+            if (i16 > 0) {
+                sb2.append(' ');
+            }
+            sb2.append(c11);
+            sb2.append('m');
+            i16 = i20;
+        }
+        if (i15 != 0) {
+            int i21 = i16 + 1;
+            if (i16 > 0) {
+                sb2.append(' ');
+            }
+            if (c12 == 0 && i12 == 0 && i13 == 0 && i14 == 0) {
+                if (i11 >= 1000000) {
+                    a(sb2, i11 / 1000000, i11 % 1000000, 6, "ms");
+                } else if (i11 >= 1000) {
+                    a(sb2, i11 / 1000, i11 % 1000, 3, "us");
+                } else {
+                    sb2.append(i11);
+                    sb2.append("ns");
+                }
+            } else {
+                a(sb2, c12, i11, 9, "s");
+            }
+            i16 = i21;
+        }
+        if (z10 && i16 > i10) {
+            sb2.insert(i10, '(').append(')');
+        }
+        return sb2.toString();
     }
 }

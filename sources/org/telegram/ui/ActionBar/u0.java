@@ -15,83 +15,96 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.sq;
-import org.telegram.ui.Components.tr;
-import org.telegram.ui.Components.w9;
-public class u0 extends FrameLayout implements le.d {
-    public final le.b f21533a;
-    public sq f21534b;
-    public final w9 f21535c;
+import org.telegram.ui.Components.fr;
+import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.y9;
+public class u0 extends FrameLayout implements me.d {
+    public final me.b f21537a;
+    public fr f21538b;
+    public final y9 f21539c;
     public final ImageView d;
-    public final TextView f21536e;
-    public gg.q0 f21537f;
+    public final TextView f21540e;
+    public gg.p0 f21541f;
     public final q h;
-    public final d6 f21538n;
-    public boolean f21539r;
-    public boolean f21540s;
+    public final e6 f21542n;
+    public boolean f21543r;
+    public boolean f21544s;
     public int v;
-    public int f21541w;
+    public int f21545w;
 
-    public u0(Context context, d6 d6Var) {
+    public u0(Context context, e6 e6Var) {
         super(context);
-        this.f21533a = new le.b(0, this, tr.h, 380L, false);
+        this.f21537a = new me.b(0, this, hs.h, 380L, false);
         this.h = new q(this, 2);
-        this.f21538n = d6Var;
-        w9 w9Var = new w9(context);
-        this.f21535c = w9Var;
-        addView(w9Var, w7.z5.c(32.0f, 32));
+        this.f21542n = e6Var;
+        y9 y9Var = new y9(context);
+        this.f21539c = y9Var;
+        addView(y9Var, w7.x5.d(32.0f, 32));
         ImageView imageView = new ImageView(context);
         this.d = imageView;
         imageView.setImageResource(R.drawable.ic_close_white);
-        addView(imageView, w7.z5.d(24, 24.0f, 16, 8.0f, 0.0f, 0.0f, 0.0f));
+        addView(imageView, w7.x5.a(24.0f, 8.0f, 0.0f, 0.0f, 0.0f, 24, 16));
         TextView textView = new TextView(context);
-        this.f21536e = textView;
+        this.f21540e = textView;
         textView.setSingleLine();
         textView.setEllipsize(TextUtils.TruncateAt.END);
         textView.setTextSize(1, 14.0f);
-        addView(textView, w7.z5.d(-2, -2.0f, 16, 38.0f, 0.0f, 12.0f, 0.0f));
-        this.f21541w = AndroidUtilities.dp(28.0f);
+        addView(textView, w7.x5.a(-2.0f, 38.0f, 0.0f, 12.0f, 0.0f, -2, 16));
+        this.f21545w = AndroidUtilities.dp(28.0f);
         a();
     }
 
     public final void a() {
-        int v02;
-        float f7 = this.f21533a.f15436e;
-        boolean z10 = this.f21539r;
-        d6 d6Var = this.f21538n;
+        int w02;
+        float f7 = this.f21537a.f16337e;
+        boolean z10 = this.f21543r;
+        e6 e6Var = this.f21542n;
         if (z10) {
-            v02 = i6.l1(0.075f, i6.v0(i6.G6, d6Var));
+            w02 = i6.m1(0.075f, i6.w0(i6.G6, e6Var));
         } else {
-            v02 = i6.v0(i6.f20820ci, d6Var);
+            w02 = i6.w0(i6.f20790ci, e6Var);
         }
         int i10 = i6.Oh;
-        int v03 = i6.v0(i10, d6Var);
-        int v04 = i6.v0(i6.G6, d6Var);
+        int w03 = i6.w0(i10, e6Var);
+        int w04 = i6.w0(i6.G6, e6Var);
         int i11 = i6.Sh;
-        int v05 = i6.v0(i11, d6Var);
-        this.v = i0.a.d(f7, v02, v03);
-        this.f21536e.setTextColor(i0.a.d(f7, v04, v05));
+        int w05 = i6.w0(i11, e6Var);
+        this.v = i0.a.d(f7, w02, w03);
+        this.f21540e.setTextColor(i0.a.d(f7, w04, w05));
         ImageView imageView = this.d;
-        imageView.setColorFilter(v05);
+        imageView.setColorFilter(w05);
         imageView.setAlpha(f7);
         float f10 = 0.82f * f7;
         imageView.setScaleX(f10);
         imageView.setScaleY(f10);
-        sq sqVar = this.f21534b;
-        if (sqVar != null) {
-            i6.v1(sqVar, i6.v0(i10, d6Var), false);
-            i6.v1(this.f21534b, i6.v0(i11, d6Var), true);
+        fr frVar = this.f21538b;
+        if (frVar != null) {
+            i6.w1(frVar, i6.w0(i10, e6Var), false);
+            i6.w1(this.f21538b, i6.w0(i11, e6Var), true);
         }
-        this.f21535c.setAlpha(1.0f - f7);
-        gg.q0 q0Var = this.f21537f;
-        if (q0Var != null && q0Var.d == 7) {
-            setData(q0Var);
+        this.f21539c.setAlpha(1.0f - f7);
+        gg.p0 p0Var = this.f21541f;
+        if (p0Var != null && p0Var.d == 7) {
+            setData(p0Var);
         }
         invalidate();
     }
 
     @Override
-    public final void a0(int i10, float f7, float f10, le.e eVar) {
+    public final void dispatchDraw(Canvas canvas) {
+        float width = getWidth();
+        float height = getHeight();
+        int i10 = this.f21545w;
+        canvas.drawRoundRect(0.0f, 0.0f, width, height, i10, i10, i6.m0(this.v));
+        super.dispatchDraw(canvas);
+    }
+
+    public gg.p0 getFilter() {
+        return this.f21541f;
+    }
+
+    @Override
+    public final void n(int i10, float f7, float f10, me.e eVar) {
         if (i10 == 0) {
             a();
             invalidate();
@@ -99,91 +112,78 @@ public class u0 extends FrameLayout implements le.d {
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float width = getWidth();
-        float height = getHeight();
-        int i10 = this.f21541w;
-        canvas.drawRoundRect(0.0f, 0.0f, width, height, i10, i10, i6.l0(this.v));
-        super.dispatchDraw(canvas);
-    }
-
-    public gg.q0 getFilter() {
-        return this.f21537f;
-    }
-
-    @Override
     public void onMeasure(int i10, int i11) {
-        if (this.f21540s) {
+        if (this.f21544s) {
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(135.0f), Integer.MIN_VALUE), i11);
         } else {
             super.onMeasure(i10, i11);
         }
     }
 
-    public void setData(gg.q0 q0Var) {
-        this.f21537f = q0Var;
-        this.f21540s = false;
-        String str = q0Var.f10757c;
+    public void setData(gg.p0 p0Var) {
+        this.f21541f = p0Var;
+        this.f21544s = false;
+        String str = p0Var.f10762c;
         if (str == null) {
-            str = LocaleController.getString(q0Var.f10756b);
+            str = LocaleController.getString(p0Var.f10761b);
         }
-        this.f21536e.setText(str);
-        sq L = i6.L(AndroidUtilities.dp(32.0f), q0Var.f10755a);
-        this.f21534b = L;
+        this.f21540e.setText(str);
+        fr M = i6.M(AndroidUtilities.dp(32.0f), p0Var.f10760a);
+        this.f21538b = M;
         int i10 = i6.Oh;
-        d6 d6Var = this.f21538n;
-        i6.v1(L, i6.v0(i10, d6Var), false);
-        sq sqVar = this.f21534b;
+        e6 e6Var = this.f21542n;
+        i6.w1(M, i6.w0(i10, e6Var), false);
+        fr frVar = this.f21538b;
         int i11 = i6.Sh;
-        i6.v1(sqVar, i6.v0(i11, d6Var), true);
-        int i12 = q0Var.d;
+        i6.w1(frVar, i6.w0(i11, e6Var), true);
+        int i12 = p0Var.d;
         float f7 = 16.0f;
-        w9 w9Var = this.f21535c;
+        y9 y9Var = this.f21539c;
         if (i12 == 4) {
-            TLObject tLObject = q0Var.f10759f;
+            TLObject tLObject = p0Var.f10764f;
             if (tLObject instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) tLObject;
-                if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().f20194id == user.f20194id) {
-                    sq L2 = i6.L(AndroidUtilities.dp(32.0f), R.drawable.chats_saved);
+                if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().f20185id == user.f20185id) {
+                    fr M2 = i6.M(AndroidUtilities.dp(32.0f), R.drawable.chats_saved);
                     int dp = AndroidUtilities.dp(16.0f);
                     int dp2 = AndroidUtilities.dp(16.0f);
-                    L2.f30926e = dp;
-                    L2.f30927f = dp2;
-                    i6.v1(L2, i6.v0(i10, d6Var), false);
-                    i6.v1(L2, i6.v0(i11, d6Var), true);
-                    w9Var.setImageDrawable(L2);
+                    M2.f26466e = dp;
+                    M2.f26467f = dp2;
+                    i6.w1(M2, i6.w0(i10, e6Var), false);
+                    i6.w1(M2, i6.w0(i11, e6Var), true);
+                    y9Var.setImageDrawable(M2);
                     return;
                 }
-                w9Var.getImageReceiver().setRoundRadius(AndroidUtilities.dp(16.0f));
-                w9Var.getImageReceiver().setForUserOrChat(user, this.f21534b);
+                y9Var.getImageReceiver().setRoundRadius(AndroidUtilities.dp(16.0f));
+                y9Var.getImageReceiver().setForUserOrChat(user, this.f21538b);
             } else if (tLObject instanceof TLRPC.Chat) {
                 TLRPC.Chat chat = (TLRPC.Chat) tLObject;
-                this.f21540s = ChatObject.isCommunity(chat);
-                ImageReceiver imageReceiver = w9Var.getImageReceiver();
-                if (this.f21540s) {
+                this.f21544s = ChatObject.isCommunity(chat);
+                ImageReceiver imageReceiver = y9Var.getImageReceiver();
+                if (this.f21544s) {
                     f7 = 10.0f;
                 }
                 int dp3 = AndroidUtilities.dp(f7);
-                this.f21541w = dp3;
+                this.f21545w = dp3;
                 imageReceiver.setRoundRadius(dp3);
-                w9Var.getImageReceiver().setForUserOrChat(chat, this.f21534b);
+                y9Var.getImageReceiver().setForUserOrChat(chat, this.f21538b);
             }
         } else if (i12 == 7) {
-            sq L3 = i6.L(AndroidUtilities.dp(32.0f), R.drawable.chats_archive);
+            fr M3 = i6.M(AndroidUtilities.dp(32.0f), R.drawable.chats_archive);
             int dp4 = AndroidUtilities.dp(16.0f);
             int dp5 = AndroidUtilities.dp(16.0f);
-            L3.f30926e = dp4;
-            L3.f30927f = dp5;
-            i6.v1(L3, i6.v0(i10, d6Var), false);
-            i6.v1(L3, i6.v0(i11, d6Var), true);
-            w9Var.setImageDrawable(L3);
+            M3.f26466e = dp4;
+            M3.f26467f = dp5;
+            i6.w1(M3, i6.w0(i10, e6Var), false);
+            i6.w1(M3, i6.w0(i11, e6Var), true);
+            y9Var.setImageDrawable(M3);
         } else {
-            w9Var.setImageDrawable(this.f21534b);
+            y9Var.setImageDrawable(this.f21538b);
         }
     }
 
     public void setExpanded(boolean z10) {
-        TextView textView = this.f21536e;
+        TextView textView = this.f21540e;
         if (z10) {
             textView.setVisibility(0);
             return;
@@ -193,8 +193,8 @@ public class u0 extends FrameLayout implements le.d {
     }
 
     public void setSelectedForDelete(boolean z10) {
-        le.b bVar = this.f21533a;
-        if (bVar.f15437f != z10) {
+        me.b bVar = this.f21537a;
+        if (bVar.f16338f != z10) {
             q qVar = this.h;
             AndroidUtilities.cancelRunOnUIThread(qVar);
             bVar.a(z10, true);
@@ -205,6 +205,6 @@ public class u0 extends FrameLayout implements le.d {
     }
 
     @Override
-    public final void V(float f7, int i10) {
+    public final void A(float f7, int i10) {
     }
 }

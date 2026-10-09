@@ -6,28 +6,28 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.ih;
-import org.telegram.ui.Components.vi;
-import org.telegram.ui.Components.xi;
-public final class n implements vi {
-    public final xi f12529a;
-    public final r f12530b;
+import org.telegram.ui.Components.jh;
+import org.telegram.ui.Components.wi;
+import org.telegram.ui.Components.yi;
+public final class n implements wi {
+    public final yi f12578a;
+    public final r f12579b;
 
-    public n(r rVar, xi xiVar) {
-        this.f12530b = rVar;
-        this.f12529a = xiVar;
+    public n(r rVar, yi yiVar) {
+        this.f12579b = rVar;
+        this.f12578a = yiVar;
     }
 
     @Override
-    public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
-        xi xiVar = this.f12529a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = xiVar.f32922j0;
-        x3 x3Var = this.f12530b.f12603r;
+    public final void I1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
+        yi yiVar = this.f12578a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = yiVar.f33240j0;
+        x3 x3Var = this.f12579b.f12650r;
         if (i10 == 7 || i10 == 8) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
             ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
-            a aVar = x3Var.f12763i4;
-            x3Var.f12763i4 = null;
+            a aVar = x3Var.Z3;
+            x3Var.Z3 = null;
             int i13 = 0;
             while (true) {
                 if (i13 >= selectedPhotosOrder.size()) {
@@ -45,42 +45,42 @@ public final class n implements vi {
                 }
             }
         }
-        x3Var.f12763i4 = null;
-        xiVar.dismiss(true);
+        x3Var.Z3 = null;
+        yiVar.dismiss(true);
     }
 
     @Override
-    public final boolean S1() {
+    public final boolean Y1() {
         return false;
     }
 
     @Override
-    public final boolean a0() {
+    public final void f0(jh jhVar) {
+        NotificationCenter.getInstance(this.f12579b.f12649n).doOnIdle(jhVar);
+    }
+
+    @Override
+    public final boolean i0() {
         return false;
     }
 
     @Override
-    public final void x0(ih ihVar) {
-        NotificationCenter.getInstance(this.f12530b.f12602n).doOnIdle(ihVar);
+    public final void a1(Object obj) {
     }
 
     @Override
-    public final void U0(Object obj) {
+    public final void p1(TLRPC.User user) {
     }
 
     @Override
-    public final void j1(TLRPC.User user) {
+    public final void B0() {
     }
 
     @Override
-    public final void K0() {
+    public final void P0() {
     }
 
     @Override
-    public final void u0() {
-    }
-
-    @Override
-    public final void W1(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j3, boolean z11, long j10) {
+    public final void c2(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j3, boolean z11, long j10) {
     }
 }

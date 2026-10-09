@@ -4,11 +4,11 @@ import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Cells.u7;
-import org.telegram.ui.Components.e71;
-import org.telegram.ui.Components.gw0;
-import org.telegram.ui.Components.qz;
-import s4.z0;
-public final class i extends qz {
+import org.telegram.ui.Components.d00;
+import org.telegram.ui.Components.k71;
+import org.telegram.ui.Components.mw0;
+import s4.a1;
+public final class i extends d00 {
     public final int X = 0;
     public final Object Y;
 
@@ -28,25 +28,25 @@ public final class i extends qz {
     }
 
     @Override
-    public gw0 D1(int i10) {
+    public mw0 D1(int i10) {
         switch (this.X) {
             case 0:
-                gw0 gw0Var = (gw0) this.Y;
-                gw0Var.f27003b = 100.0f;
-                gw0Var.f27002a = 100.0f;
-                return gw0Var;
+                mw0 mw0Var = (mw0) this.Y;
+                mw0Var.f28964b = 100.0f;
+                mw0Var.f28963a = 100.0f;
+                return mw0Var;
             default:
                 return super.D1(i10);
         }
     }
 
     @Override
-    public void U(of.e eVar, z0 z0Var, View view, s0.d dVar) {
+    public void U(pf.e eVar, a1 a1Var, View view, s0.d dVar) {
         e.a aVar;
         switch (this.X) {
             case 0:
-                super.U(eVar, z0Var, view, dVar);
-                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f46485a;
+                super.U(eVar, a1Var, view, dVar);
+                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f47585a;
                 AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
                 if (collectionItemInfo != null) {
                     aVar = new e.a(collectionItemInfo);
@@ -54,7 +54,7 @@ public final class i extends qz {
                     aVar = null;
                 }
                 if (aVar != null) {
-                    Object obj = aVar.f8396a;
+                    Object obj = aVar.f8390a;
                     if (((AccessibilityNodeInfo.CollectionItemInfo) obj).isHeading()) {
                         accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowSpan(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnSpan(), false));
                         return;
@@ -63,39 +63,39 @@ public final class i extends qz {
                 }
                 return;
             default:
-                super.U(eVar, z0Var, view, dVar);
+                super.U(eVar, a1Var, view, dVar);
                 return;
         }
     }
 
     @Override
-    public int W0(z0 z0Var) {
+    public int W0(a1 a1Var) {
         switch (this.X) {
             case 1:
-                if (((e71) this.Y).f26036h3) {
+                if (((k71) this.Y).Y2) {
                     return AndroidUtilities.displaySize.y;
                 }
-                return super.W0(z0Var);
+                return super.W0(a1Var);
             default:
-                return super.W0(z0Var);
+                return super.W0(a1Var);
         }
     }
 
     @Override
-    public void z0(z0 z0Var, int[] iArr) {
+    public void z0(a1 a1Var, int[] iArr) {
         switch (this.X) {
             case 0:
-                super.z0(z0Var, iArr);
+                super.z0(a1Var, iArr);
                 iArr[1] = Math.max(iArr[1], u7.a(1) * 2);
                 return;
             default:
-                super.z0(z0Var, iArr);
+                super.z0(a1Var, iArr);
                 return;
         }
     }
 
-    public i(e71 e71Var, int i10) {
+    public i(k71 k71Var, int i10) {
         super(i10, false);
-        this.Y = e71Var;
+        this.Y = k71Var;
     }
 }

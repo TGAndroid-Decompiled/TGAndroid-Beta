@@ -1,303 +1,86 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
+import android.app.Activity;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.graphics.PorterDuffXfermode;
-import android.view.MotionEvent;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.kj0;
-public final class k3 extends View {
-    public final r1 E;
-    public ValueAnimator F;
-    public float G;
-    public float H;
-    public float I;
-    public kj0 f32018a;
-    public kj0 f32019b;
-    public kj0 f32020c;
-    public final Paint d;
-    public final Paint f32021e;
-    public final Paint f32022f;
-    public final Path h;
-    public final int f32023n;
-    public int f32024r;
-    public int f32025s;
-    public boolean v;
-    public int f32026w;
-    public j3 f32027x;
-    public ValueAnimator f32028y;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.ck0;
+import org.telegram.ui.Components.ul0;
+import w7.x5;
+public final class k3 extends FrameLayout {
+    public final q1 f32032a;
+    public j3 f32033b;
+    public int f32034c;
+    public final TextView d;
+    public final TextView f32035e;
+    public int f32036f;
 
-    public k3(Context context, r1 r1Var) {
-        super(context);
-        Paint paint = new Paint(1);
-        this.d = paint;
-        Paint paint2 = new Paint(1);
-        this.f32021e = paint2;
-        Paint paint3 = new Paint(1);
-        this.f32022f = paint3;
-        this.h = new Path();
-        int dp = AndroidUtilities.dp(26.0f);
-        this.f32023n = dp;
-        this.f32024r = dp;
-        this.f32025s = 0;
-        this.v = false;
-        this.f32026w = 0;
-        this.G = 1.0f;
-        this.E = r1Var;
-        r1Var.a(this);
-        setLayerType(1, null);
-        paint2.setColor(-1);
-        paint.setColor(-16777216);
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-        paint3.setColor(-16777216);
-        paint3.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.SRC_ATOP));
-        paint3.setAlpha(35);
+    public k3(Activity activity, q1 q1Var) {
+        super(activity);
+        this.f32032a = q1Var;
+        setWillNotDraw(true);
+        j3 j3Var = new j3(activity, q1Var);
+        this.f32033b = j3Var;
+        addView(j3Var, x5.b(53.5f, 53.5f, 1));
+        TextView textView = new TextView(activity);
+        this.d = textView;
+        textView.setGravity(1);
+        textView.setTextSize(1, 11.0f);
+        textView.setTextColor(-1);
+        textView.setImportantForAccessibility(2);
+        addView(textView, x5.a(-2.0f, 0.0f, 58.0f, 0.0f, 2.0f, -1, 0));
+        TextView textView2 = new TextView(activity);
+        this.f32035e = textView2;
+        textView2.setGravity(1);
+        textView2.setTextSize(1, 11.0f);
+        textView2.setTextColor(-1);
+        textView2.setImportantForAccessibility(2);
+        addView(textView2, x5.a(-2.0f, 0.0f, 58.0f, 0.0f, 2.0f, -1, 0));
+        textView.setVisibility(8);
+        textView2.setVisibility(8);
     }
 
-    private void setPressedBtn(boolean z10) {
-        float f7;
-        ValueAnimator valueAnimator = this.F;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        float f10 = this.G;
-        if (z10) {
-            f7 = 0.8f;
+    public final void a(int i10) {
+        this.f32033b.f32011a = new ck0(R.raw.bt_to_speaker, i10, i10, true, null);
+        this.f32033b.f32012b = new ck0(R.raw.bt_to_speaker, i10, i10, true, null);
+        this.f32033b.f32012b.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
+    }
+
+    public final void b(int i10, int i11, int i12, boolean z10) {
+        j3 j3Var = new j3(getContext(), this.f32032a);
+        if (i10 == R.raw.camera_flip2) {
+            ck0 ck0Var = new ck0(i10, i11, i11, true, null);
+            j3Var.f32013c = ck0Var;
+            ck0Var.R(j3Var);
         } else {
-            f7 = 1.0f;
+            j3Var.f32011a = new ck0(i10, i11, i11, true, null);
+            ck0 ck0Var2 = new ck0(i10, i11, i11, true, null);
+            j3Var.f32012b = ck0Var2;
+            ck0Var2.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-        this.F = ofFloat;
-        ofFloat.addUpdateListener(new h3(this, 0));
-        this.F.setDuration(150L);
-        this.F.start();
+        j3Var.a(i12, z10, false);
+        j3Var.setAlpha(0.0f);
+        j3Var.setOnBtnClickedListener(this.f32033b.f32020x);
+        addView(j3Var, x5.b(53.5f, 53.5f, 1));
+        j3 j3Var2 = this.f32033b;
+        this.f32033b = j3Var;
+        j3Var.animate().alpha(1.0f).setDuration(250L).start();
+        j3Var2.animate().alpha(0.0f).setDuration(250L).setListener(new ul0(5, this, j3Var2)).start();
     }
 
-    public final void a(int i10, boolean z10, boolean z11) {
-        ValueAnimator ofInt;
-        ValueAnimator valueAnimator = this.f32028y;
-        if (valueAnimator != null && valueAnimator.isRunning()) {
-            this.f32028y.removeAllUpdateListeners();
-            this.f32028y.cancel();
-            z11 = false;
-        }
-        int i11 = this.f32023n;
-        if (z11) {
-            if (this.f32020c != null) {
-                ValueAnimator valueAnimator2 = this.f32028y;
-                if (valueAnimator2 != null) {
-                    valueAnimator2.removeAllUpdateListeners();
-                    this.f32028y.cancel();
-                }
-                if (z10) {
-                    ofInt = ValueAnimator.ofInt(20, 100);
-                } else {
-                    ofInt = ValueAnimator.ofInt(100, 20);
-                }
-                this.f32028y = ofInt;
-                ofInt.addUpdateListener(new h3(this, 1));
-                this.f32028y.setDuration(200L);
-                this.f32028y.start();
-                if (i10 == 2) {
-                    this.f32020c.N(0, false, false);
-                    this.f32020c.start();
-                }
-            } else {
-                ValueAnimator valueAnimator3 = this.f32028y;
-                if (valueAnimator3 != null) {
-                    valueAnimator3.removeAllUpdateListeners();
-                    this.f32028y.cancel();
-                }
-                ValueAnimator ofInt2 = ValueAnimator.ofInt(0, i11);
-                this.f32028y = ofInt2;
-                if (z10) {
-                    this.f32024r = i11;
-                    ofInt2.addUpdateListener(new h3(this, 2));
-                    this.f32028y.addListener(new i3(this, 0));
-                    this.f32028y.setDuration(200L);
-                    this.f32028y.start();
-                    this.f32019b.N(0, false, false);
-                    this.f32019b.start();
-                } else {
-                    this.f32025s = i11;
-                    ofInt2.addUpdateListener(new h3(this, 3));
-                    this.f32028y.setDuration(200L);
-                    this.f32028y.addListener(new i3(this, 1));
-                    this.f32028y.start();
-                }
-            }
-        } else if (z10) {
-            this.f32025s = i11;
-            this.f32024r = 0;
-            this.f32026w = 100;
-            if (i10 == 3 || i10 == 1) {
-                kj0 kj0Var = this.f32019b;
-                kj0Var.N(kj0Var.f28216e[0] - 1, false, false);
-            }
-        } else {
-            this.f32025s = 0;
-            this.f32024r = i11;
-            this.f32026w = 20;
-        }
-        this.v = z10;
-        invalidate();
+    public final void c(int i10) {
+        this.f32033b.f32011a = new ck0(R.raw.speaker_to_bt, i10, i10, true, null);
+        this.f32033b.f32012b = new ck0(R.raw.speaker_to_bt, i10, i10, true, null);
+        this.f32033b.f32012b.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        boolean z10;
-        boolean z11;
-        int i10;
-        Path path;
-        int i11;
-        canvas.save();
-        float f7 = this.G;
-        canvas.scale(f7, f7, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
-        float width = getWidth() / 2.0f;
-        float height = getHeight() / 2.0f;
-        float x10 = ((View) getParent()).getX() + getX();
-        float y3 = ((View) ((View) getParent()).getParent()).getY() + getY();
-        r1 r1Var = this.E;
-        int i12 = r1Var.f32181g;
-        Paint paint = r1Var.f32183j;
-        com.google.firebase.messaging.n nVar = r1Var.f32176a;
-        float f10 = r1Var.f32181g;
-        float f11 = 1.12f * f10;
-        float f12 = -x10;
-        float f13 = -y3;
-        nVar.B(f12 - ((f11 - r1Var.f32180f) / 2.0f), f13 - ((f11 - f10) / 2.0f), (i12 * 1.12f) / ((Bitmap) nVar.f7907c).getHeight(), r1Var.h);
-        r1Var.f32178c.z(f12, f13, r1Var.f32180f - x10, r1Var.f32181g - y3);
-        kj0 kj0Var = this.f32020c;
-        Paint paint2 = this.f32021e;
-        Paint paint3 = this.d;
-        int i13 = this.f32023n;
-        if (kj0Var != null) {
-            if (this.f32026w > 20) {
-                Paint paint4 = this.f32022f;
-                paint4.setAlpha((int) ((i11 * 35) / 100.0f));
-                paint2.setAlpha((int) ((this.f32026w * 255) / 100.0f));
-                canvas.drawCircle(width, height, i13, paint2);
-                this.f32020c.q(canvas, paint3, false, 0L, 0);
-                this.f32020c.q(canvas, paint4, false, 0L, 0);
-                return;
-            }
-            float f14 = i13;
-            if (!r1Var.f32182i) {
-                paint = (Paint) nVar.f7905a;
-            }
-            canvas.drawCircle(width, height, f14, paint);
-            if (r1Var.f32179e) {
-                canvas.drawCircle(width, height, f14, (Paint) r1Var.f32178c.f7905a);
-            }
-            this.f32020c.draw(canvas);
-        } else if (this.f32019b != null && this.f32018a != null) {
-            int i14 = this.f32024r;
-            if (i14 == i13 && this.f32025s == 0) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            int i15 = this.f32025s;
-            if (i15 == i13 && i14 == 0) {
-                z11 = true;
-            } else {
-                z11 = false;
-            }
-            Path path2 = this.h;
-            if (i15 == i13 && i14 > 0 && i14 != i13) {
-                canvas.drawCircle(width, height, i15, paint2);
-                canvas.drawCircle(width, height, this.f32024r, paint3);
-                this.f32019b.setAlpha(255);
-                i10 = i13;
-                this.f32019b.q(canvas, paint3, false, 0L, 0);
-                this.f32019b.setAlpha(35);
-                this.f32019b.draw(canvas);
-                path2.reset();
-                path = path2;
-                path.addCircle(width, height, this.f32024r, Path.Direction.CW);
-                canvas.clipPath(path);
-                canvas.drawCircle(width, height, this.f32024r, paint3);
-            } else {
-                i10 = i13;
-                path = path2;
-            }
-            if (z10 || this.f32024r > 0) {
-                float f15 = this.f32024r;
-                if (!r1Var.f32182i) {
-                    paint = (Paint) nVar.f7905a;
-                }
-                canvas.drawCircle(width, height, f15, paint);
-                if (r1Var.f32179e) {
-                    canvas.drawCircle(width, height, this.f32024r, (Paint) r1Var.f32178c.f7905a);
-                }
-                this.f32018a.draw(canvas);
-            }
-            if (z11 || (this.f32025s > 0 && this.f32024r == i10)) {
-                path.reset();
-                path.addCircle(width, height, this.f32025s, Path.Direction.CW);
-                canvas.clipPath(path);
-                canvas.drawCircle(width, height, this.f32025s, paint2);
-                this.f32019b.setAlpha(255);
-                this.f32019b.q(canvas, paint3, false, 0L, 0);
-                this.f32019b.setAlpha(35);
-                this.f32019b.draw(canvas);
-            }
-            canvas.restore();
-        }
+    public final void d(int r17, boolean r18, boolean r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.voip.k3.d(int, boolean, boolean):void");
     }
 
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean z10;
-        j3 j3Var;
-        int action = motionEvent.getAction();
-        if (action != 0) {
-            boolean z11 = false;
-            if (action != 1) {
-                if (action == 3) {
-                    setPressedBtn(false);
-                    return true;
-                }
-            } else {
-                setPressedBtn(false);
-                float x10 = motionEvent.getX();
-                float y3 = motionEvent.getY();
-                float f7 = this.H;
-                float f10 = this.I;
-                float abs = Math.abs(f7 - x10);
-                float abs2 = Math.abs(f10 - y3);
-                if (abs <= AndroidUtilities.dp(48.0f) && abs2 <= AndroidUtilities.dp(48.0f)) {
-                    int i10 = this.f32024r;
-                    int i11 = this.f32023n;
-                    if (i10 == i11 && this.f32025s == 0) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    if (this.f32025s == i11 && i10 == 0) {
-                        z11 = true;
-                    }
-                    if ((z10 || z11) && (j3Var = this.f32027x) != null) {
-                        j3Var.f(this);
-                    }
-                }
-            }
-            return true;
-        }
-        setPressedBtn(true);
-        this.H = motionEvent.getX();
-        this.I = motionEvent.getY();
-        return true;
-    }
-
-    public void setOnBtnClickedListener(j3 j3Var) {
-        this.f32027x = j3Var;
+    public void setOnBtnClickedListener(i3 i3Var) {
+        this.f32033b.setOnBtnClickedListener(i3Var);
     }
 }

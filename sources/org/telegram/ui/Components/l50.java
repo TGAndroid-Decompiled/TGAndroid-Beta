@@ -1,33 +1,20 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class l50 implements ValueAnimator.AnimatorUpdateListener {
-    public final boolean[] f28366a;
-    public final h50 f28367b;
-    public final f60 f28368c;
+import org.telegram.tgnet.TLRPC;
+public interface l50 {
+    void D(float f7);
 
-    public l50(f60 f60Var, boolean[] zArr, h50 h50Var) {
-        this.f28368c = f60Var;
-        this.f28366a = zArr;
-        this.f28367b = h50Var;
-    }
+    void L(boolean z10, boolean z11);
 
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        if (floatValue > 0.5f) {
-            boolean[] zArr = this.f28366a;
-            if (!zArr[0]) {
-                zArr[0] = true;
-                this.f28367b.run();
-            }
-        }
-        if (floatValue >= 0.5f) {
-            floatValue -= 1.0f;
-        }
-        float f7 = floatValue * 180.0f;
-        f60 f60Var = this.f28368c;
-        f60Var.h.setRotationY(f7);
-        f60Var.f26377r0.setRotationY(f7);
-    }
+    void P();
+
+    void Q(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z10, TLRPC.VideoSize videoSize);
+
+    boolean e();
+
+    org.telegram.ui.ev0 getCloseIntoObject();
+
+    String getInitialSearchString();
+
+    boolean u();
 }

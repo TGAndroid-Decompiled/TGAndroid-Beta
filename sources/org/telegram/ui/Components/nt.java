@@ -1,8 +1,79 @@
 package org.telegram.ui.Components;
-public abstract class nt {
-    public static final tr f29146a = new tr(0.39d, 0.575d, 0.565d, 1.0d);
-    public static final tr f29147b = new tr(0.445d, 0.05d, 0.55d, 0.95d);
-    public static final tr f29148c = new tr(0.55d, 0.085d, 0.68d, 0.53d);
-    public static final tr d = new tr(0.25d, 0.46d, 0.45d, 0.94d);
-    public static final tr f29149e = new tr(0.455d, 0.03d, 0.515d, 0.955d);
+
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+public final class nt extends AnimatorListenerAdapter {
+    public final int f29278a = 1;
+    public final s4.d1 f29279b;
+    public final View f29280c;
+    public final ViewPropertyAnimator d;
+    public final rt f29281e;
+
+    public nt(rt rtVar, s4.d1 d1Var, ViewPropertyAnimator viewPropertyAnimator, View view) {
+        this.f29281e = rtVar;
+        this.f29279b = d1Var;
+        this.d = viewPropertyAnimator;
+        this.f29280c = view;
+    }
+
+    @Override
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f29278a) {
+            case 1:
+                this.f29280c.setAlpha(1.0f);
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
+        }
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f29278a) {
+            case 0:
+                this.d.setListener(null);
+                this.f29280c.setAlpha(1.0f);
+                rt rtVar = this.f29281e;
+                s4.d1 d1Var = this.f29279b;
+                rtVar.d(d1Var);
+                rtVar.f30508x.remove(d1Var);
+                rtVar.A();
+                return;
+            default:
+                this.d.setListener(null);
+                rt rtVar2 = this.f29281e;
+                s4.d1 d1Var2 = this.f29279b;
+                rtVar2.u(d1Var2);
+                rtVar2.v.remove(d1Var2);
+                rtVar2.A();
+                View view = d1Var2.f47656a;
+                if (view instanceof org.telegram.ui.Cells.s2) {
+                    ((org.telegram.ui.Cells.s2) view).setMoving(false);
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final void onAnimationStart(Animator animator) {
+        switch (this.f29278a) {
+            case 0:
+                this.f29281e.y();
+                return;
+            default:
+                this.f29281e.getClass();
+                return;
+        }
+    }
+
+    public nt(rt rtVar, s4.d1 d1Var, View view, ViewPropertyAnimator viewPropertyAnimator) {
+        this.f29281e = rtVar;
+        this.f29279b = d1Var;
+        this.f29280c = view;
+        this.d = viewPropertyAnimator;
+    }
 }

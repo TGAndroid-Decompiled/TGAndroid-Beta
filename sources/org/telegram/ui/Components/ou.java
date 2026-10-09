@@ -1,30 +1,48 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-import android.text.style.CharacterStyle;
-public final class ou extends CharacterStyle {
-    public final int f29548a;
-    public int f29549b;
+import android.view.ActionMode;
+import android.view.Menu;
+import android.view.MenuItem;
+public final class ou implements ActionMode.Callback {
+    public final ActionMode.Callback f29572a;
+    public final ru f29573b;
 
-    public ou(int i10, int i11) {
-        this.f29548a = i11;
-        this.f29549b = i10;
+    public ou(ru ruVar, ActionMode.Callback callback) {
+        this.f29573b = ruVar;
+        this.f29572a = callback;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        switch (this.f29548a) {
-            case 0:
-                textPaint.setAlpha((int) ((this.f29549b / 255.0f) * textPaint.getAlpha()));
-                return;
-            default:
-                textPaint.setColor(org.telegram.ui.ActionBar.i6.l1(textPaint.getAlpha() / 255.0f, this.f29549b));
-                return;
+    public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+        if (this.f29573b.performMenuAction(menuItem.getItemId())) {
+            actionMode.finish();
+            return true;
+        }
+        try {
+            return this.f29572a.onActionItemClicked(actionMode, menuItem);
+        } catch (Exception unused) {
+            return true;
         }
     }
 
-    public ou() {
-        this.f29548a = 0;
-        this.f29549b = 0;
+    @Override
+    public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+        ru ruVar = this.f29573b;
+        ruVar.copyPasteShowed = true;
+        ruVar.onContextMenuOpen();
+        return this.f29572a.onCreateActionMode(actionMode, menu);
+    }
+
+    @Override
+    public final void onDestroyActionMode(ActionMode actionMode) {
+        ru ruVar = this.f29573b;
+        ruVar.copyPasteShowed = false;
+        ruVar.onContextMenuClose();
+        this.f29572a.onDestroyActionMode(actionMode);
+    }
+
+    @Override
+    public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+        return this.f29572a.onPrepareActionMode(actionMode, menu);
     }
 }

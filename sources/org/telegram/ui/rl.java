@@ -1,47 +1,52 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.VideoEditedInfo;
-public final class rl extends ou0 {
-    public final ArrayList f40138a;
-    public final boolean[] f40139b;
-    public final yn f40140c;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.text.TextPaint;
+import android.view.animation.OvershootInterpolator;
+import org.telegram.messenger.AndroidUtilities;
+public final class rl extends org.telegram.ui.Components.s11 {
+    public final zn K;
 
-    public rl(yn ynVar, ArrayList arrayList, boolean[] zArr) {
-        this.f40140c = ynVar;
-        this.f40138a = arrayList;
-        this.f40139b = zArr;
+    public rl(Activity activity, org.telegram.ui.ActionBar.e6 e6Var, zn znVar) {
+        super(activity);
+        this.K = znVar;
+        TextPaint textPaint = new TextPaint(1);
+        this.f30596b = textPaint;
+        Paint paint = new Paint(1);
+        this.f30597c = paint;
+        this.d = AndroidUtilities.dp(24.0f);
+        this.f30598e = new OvershootInterpolator();
+        this.H = new org.telegram.ui.Components.or0(this, 14);
+        this.J = new Path();
+        int w02 = org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.Hi, e6Var);
+        int alpha = Color.alpha(w02);
+        textPaint.setTextSize(AndroidUtilities.dp(15.0f));
+        textPaint.setColor(w02);
+        paint.setColor(w02);
+        paint.setAlpha((int) (alpha * 0.14d));
+        setBackground(org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(6.0f), org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.Fi, e6Var)));
+    }
+
+    public final void d() {
+        int i10 = -(AndroidUtilities.dp(16.0f) + getMeasuredHeight());
+        zn znVar = this.K;
+        int top = znVar.Y.getTop() - znVar.X0.getMeasuredHeight();
+        setTranslationY(top - ((1.0f - getPrepareProgress()) * (top + i10)));
     }
 
     @Override
-    public final boolean S() {
-        return false;
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        d();
     }
 
     @Override
-    public final ImageReceiver.BitmapHolder j(int i10) {
-        return null;
-    }
-
-    @Override
-    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        ArrayList arrayList = this.f40138a;
-        for (int size = arrayList.size() - 1; size >= 0; size--) {
-            if (!this.f40139b[size]) {
-                arrayList.remove(size);
-            }
-        }
-        this.f40140c.db(arrayList, i11, z10, z11);
-    }
-
-    @Override
-    public final boolean x(int i10) {
-        return this.f40139b[i10];
-    }
-
-    @Override
-    public final int k(int i10, VideoEditedInfo videoEditedInfo) {
-        return i10;
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        d();
     }
 }

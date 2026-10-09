@@ -1,34 +1,40 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Paint;
-import org.telegram.ui.ProfileActivity;
-public final class j50 extends Paint {
-    public final int f27680a;
-    public final Object f27681b;
+import java.util.ArrayList;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.tgnet.TLRPC;
+public final class j50 extends org.telegram.ui.uu0 {
+    public final ArrayList f27606a;
+    public final m50 f27607b;
 
-    public j50(Object obj, int i10) {
-        super(1);
-        this.f27680a = i10;
-        this.f27681b = obj;
+    public j50(m50 m50Var, ArrayList arrayList) {
+        this.f27607b = m50Var;
+        this.f27606a = arrayList;
     }
 
     @Override
-    public final void setAlpha(int i10) {
-        switch (this.f27680a) {
-            case 0:
-                super.setAlpha(i10);
-                ((f60) this.f27681b).invalidate();
-                return;
-            case 1:
-                super.setAlpha(i10);
-                om0 om0Var = (om0) this.f27681b;
-                om0Var.f29506a.setAlpha(Math.round(i10 * 0.2f));
-                om0Var.invalidate();
-                return;
-            default:
-                super.setAlpha(i10);
-                ((ProfileActivity) this.f27681b).fragmentView.invalidate();
-                return;
+    public final org.telegram.ui.ev0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        l50 l50Var = this.f27607b.f28683b;
+        if (l50Var == null) {
+            return null;
         }
+        return l50Var.getCloseIntoObject();
+    }
+
+    @Override
+    public final boolean S() {
+        return false;
+    }
+
+    @Override
+    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
+        this.f27607b.s((MediaController.PhotoEntry) this.f27606a.get(0));
+    }
+
+    @Override
+    public final boolean z() {
+        return false;
     }
 }

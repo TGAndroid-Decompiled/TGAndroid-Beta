@@ -62,7 +62,7 @@ public class NotchInfoUtils {
                 trim = trim.split("@bottom", 2)[0].trim();
             }
             try {
-                i0.d[] c10 = v7.g8.c(trim);
+                i0.d[] c10 = v7.c8.c(trim);
                 Path path = new Path();
                 i0.d.b(c10, path);
                 Matrix matrix = new Matrix();
@@ -93,7 +93,10 @@ public class NotchInfoUtils {
                     z10 = true;
                 }
                 notchInfo.isAccurate = z10;
-                notchInfo.isLikelyCircle = (rectF.width() <= ((float) AndroidUtilities.dp(32.0f)) || rectF.width() <= rectF.height()) ? true : true;
+                if (rectF.width() <= AndroidUtilities.dp(32.0f) || rectF.width() <= rectF.height()) {
+                    z11 = true;
+                }
+                notchInfo.isLikelyCircle = z11;
                 return notchInfo;
             } catch (Throwable th2) {
                 FileLog.e("Failed to parse notch info", th2);

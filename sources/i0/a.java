@@ -3,7 +3,7 @@ package i0;
 import android.graphics.Color;
 import com.google.android.gms.internal.vision.e2;
 public abstract class a {
-    public static final ThreadLocal f11524a = new ThreadLocal();
+    public static final ThreadLocal f11574a = new ThreadLocal();
 
     public static int a(float[] fArr) {
         int round;
@@ -56,7 +56,7 @@ public abstract class a {
     }
 
     public static void b(float[] fArr, int i10, int i11, int i12) {
-        float A;
+        float z10;
         float abs;
         float min;
         float min2;
@@ -69,19 +69,19 @@ public abstract class a {
         float f13 = (max + min3) / 2.0f;
         float f14 = 0.0f;
         if (max == min3) {
-            A = 0.0f;
+            z10 = 0.0f;
             abs = 0.0f;
         } else {
             if (max == f7) {
-                A = ((f10 - f11) / f12) % 6.0f;
+                z10 = ((f10 - f11) / f12) % 6.0f;
             } else if (max == f10) {
-                A = e2.A(f11, f7, f12, 2.0f);
+                z10 = e2.z(f11, f7, f12, 2.0f);
             } else {
-                A = e2.A(f7, f10, f12, 4.0f);
+                z10 = e2.z(f7, f10, f12, 4.0f);
             }
             abs = f12 / (1.0f - Math.abs((2.0f * f13) - 1.0f));
         }
-        float f15 = (A * 60.0f) % 360.0f;
+        float f15 = (z10 * 60.0f) % 360.0f;
         if (f15 < 0.0f) {
             f15 += 360.0f;
         }
@@ -123,7 +123,7 @@ public abstract class a {
         if (d17 > 0.0031308d) {
             d14 = (Math.pow(d17, 0.4166666666666667d) * 1.055d) - 0.055d;
         } else {
-            d14 = 12.92d * d17;
+            d14 = d17 * 12.92d;
         }
         return Color.rgb(j((int) Math.round(d12 * 255.0d)), j((int) Math.round(d13 * 255.0d)), j((int) Math.round(d14 * 255.0d)));
     }
@@ -149,7 +149,7 @@ public abstract class a {
         double pow;
         double pow2;
         double pow3;
-        ThreadLocal threadLocal = f11524a;
+        ThreadLocal threadLocal = f11574a;
         double[] dArr = (double[]) threadLocal.get();
         if (dArr == null) {
             dArr = new double[3];

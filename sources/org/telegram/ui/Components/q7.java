@@ -1,87 +1,44 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
-public final class q7 implements Runnable {
-    public final int f29964a;
-    public final r7 f29965b;
+import org.telegram.messenger.R;
+public final class q7 implements jp0 {
+    public final l8 f30093a;
 
-    public q7(r7 r7Var, int i10) {
-        this.f29964a = i10;
-        this.f29965b = r7Var;
+    public q7(l8 l8Var) {
+        this.f30093a = l8Var;
     }
 
     @Override
-    public final void run() {
-        long j3;
-        switch (this.f29964a) {
-            case 0:
-                r7 r7Var = this.f29965b;
-                int i10 = r7Var.v + 1;
-                r7Var.v = i10;
-                if (i10 == 1) {
-                    j8 j8Var = r7Var.H;
-                    j8Var.H0 = -1;
-                    j8Var.I0 = MediaController.getInstance().getPlayingMessageObject().audioProgress;
-                    r7Var.f30366w = System.currentTimeMillis();
-                    AndroidUtilities.runOnUIThread(this, 2000L);
-                    AndroidUtilities.runOnUIThread(r7Var.E);
-                    return;
-                } else if (i10 == 2) {
-                    AndroidUtilities.runOnUIThread(this, 2000L);
-                    return;
-                } else {
-                    return;
-                }
-            default:
-                r7 r7Var2 = this.f29965b;
-                j8 j8Var2 = r7Var2.H;
-                long duration = MediaController.getInstance().getDuration();
-                if (duration != 0 && duration != -9223372036854775807L) {
-                    float f7 = j8Var2.I0;
-                    long currentTimeMillis = System.currentTimeMillis();
-                    long j10 = currentTimeMillis - r7Var2.f30366w;
-                    r7Var2.f30366w = currentTimeMillis;
-                    long j11 = currentTimeMillis - r7Var2.f30367x;
-                    int i11 = r7Var2.v;
-                    if (i11 == 1) {
-                        j3 = 3;
-                    } else if (i11 == 2) {
-                        j3 = 6;
-                    } else {
-                        j3 = 12;
-                    }
-                    float f10 = (float) duration;
-                    float f11 = ((f7 * f10) - ((float) (j10 * j3))) / f10;
-                    if (f11 < 0.0f) {
-                        f11 = 0.0f;
-                    }
-                    j8Var2.I0 = f11;
-                    MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
-                    if (playingMessageObject != null && playingMessageObject.isMusic()) {
-                        j8Var2.G0(playingMessageObject, false);
-                    }
-                    if (j8Var2.H0 == -1 && r7Var2.v > 0) {
-                        if (j11 > 200 || j8Var2.I0 == 0.0f) {
-                            r7Var2.f30367x = currentTimeMillis;
-                            if (j8Var2.I0 == 0.0f) {
-                                MediaController.getInstance().seekToProgress(MediaController.getInstance().getPlayingMessageObject(), 0.0f);
-                                MediaController.getInstance().pauseByRewind();
-                            } else {
-                                MediaController.getInstance().seekToProgress(MediaController.getInstance().getPlayingMessageObject(), f11);
-                            }
-                        }
-                        if (r7Var2.v > 0 && j8Var2.I0 > 0.0f) {
-                            AndroidUtilities.runOnUIThread(r7Var2.E, 16L);
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                r7Var2.f30366w = System.currentTimeMillis();
-                return;
+    public final void X(float f7, boolean z10) {
+        if (z10) {
+            MediaController.getInstance().seekToProgress(MediaController.getInstance().getPlayingMessageObject(), f7);
         }
+        MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
+        if (playingMessageObject != null && playingMessageObject.isMusic()) {
+            this.f30093a.G0(playingMessageObject, false);
+        }
+    }
+
+    @Override
+    public final CharSequence getContentDescription() {
+        StringBuilder sb2 = new StringBuilder();
+        l8 l8Var = this.f30093a;
+        sb2.append(LocaleController.formatPluralString("Minutes", l8Var.D0 / 60, new Object[0]));
+        sb2.append(' ');
+        sb2.append(LocaleController.formatPluralString("Seconds", l8Var.D0 % 60, new Object[0]));
+        String sb3 = sb2.toString();
+        return LocaleController.formatString("AccDescrPlayerDuration", R.string.AccDescrPlayerDuration, sb3, LocaleController.formatPluralString("Minutes", l8Var.E0 / 60, new Object[0]) + ' ' + LocaleController.formatPluralString("Seconds", l8Var.E0 % 60, new Object[0]));
+    }
+
+    @Override
+    public final int i0() {
+        return 0;
+    }
+
+    @Override
+    public final void z() {
     }
 }

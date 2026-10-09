@@ -2,97 +2,93 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import java.util.HashSet;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class lg1 extends org.telegram.ui.Components.yl0 {
-    public final Context f38321c;
-    public final TwoStepVerificationActivity d;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class lg1 extends org.telegram.ui.ActionBar.n2 {
+    public jg1 f39572a;
+    public org.telegram.ui.Components.qm0 f39573b;
+    public long f39574c;
+    public ArrayList d;
+    public HashSet f39575e;
 
-    public lg1(TwoStepVerificationActivity twoStepVerificationActivity, Context context) {
-        this.d = twoStepVerificationActivity;
-        this.f38321c = context;
+    public static void U(lg1 lg1Var, int i10) {
+        lg1Var.getNotificationsController().getNotificationsSettingsFacade().clearPreference(lg1Var.f39574c, i10);
+        TL_account.updateNotifySettings updatenotifysettings = new TL_account.updateNotifySettings();
+        updatenotifysettings.settings = new TLRPC.TL_inputPeerNotifySettings();
+        TLRPC.TL_inputNotifyForumTopic tL_inputNotifyForumTopic = new TLRPC.TL_inputNotifyForumTopic();
+        tL_inputNotifyForumTopic.peer = lg1Var.getMessagesController().getInputPeer(lg1Var.f39574c);
+        tL_inputNotifyForumTopic.top_msg_id = i10;
+        updatenotifysettings.peer = tL_inputNotifyForumTopic;
+        lg1Var.getConnectionsManager().sendRequest(updatenotifysettings, new ai.v7(8));
     }
 
-    @Override
-    public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f46542f == 0) {
-            return true;
+    public final void V() {
+        ArrayList arrayList;
+        ArrayList arrayList2 = this.d;
+        if (!this.isPaused && this.f39572a != null) {
+            arrayList = new ArrayList();
+            arrayList.addAll(arrayList2);
+        } else {
+            arrayList = null;
         }
-        return false;
-    }
-
-    @Override
-    public final int h() {
-        TwoStepVerificationActivity twoStepVerificationActivity = this.d;
-        if (!twoStepVerificationActivity.G && twoStepVerificationActivity.I != null) {
-            return twoStepVerificationActivity.T;
-        }
-        return 0;
-    }
-
-    @Override
-    public final int j(int i10) {
-        TwoStepVerificationActivity twoStepVerificationActivity = this.d;
-        if (i10 != twoStepVerificationActivity.P && i10 != twoStepVerificationActivity.S) {
-            return 0;
-        }
-        return 1;
-    }
-
-    @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        int i11;
-        int i12;
-        int i13 = c1Var.f46542f;
-        View view = c1Var.f46538a;
-        TwoStepVerificationActivity twoStepVerificationActivity = this.d;
-        if (i13 != 0) {
-            if (i13 == 1) {
-                org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
-                if (i10 == twoStepVerificationActivity.P) {
-                    e9Var.setText(LocaleController.getString(R.string.SetAdditionalPasswordInfo));
-                    return;
-                } else if (i10 == twoStepVerificationActivity.S) {
-                    e9Var.setText(LocaleController.getString(R.string.EnabledPasswordText));
-                    return;
-                } else {
-                    return;
+        arrayList2.clear();
+        arrayList2.add(new kg1(1, null));
+        ArrayList<TLRPC.TL_forumTopic> topics = getMessagesController().getTopicsController().getTopics(-this.f39574c);
+        int i10 = 0;
+        if (topics != null) {
+            int i11 = 0;
+            while (i10 < topics.size()) {
+                if (this.f39575e.contains(Integer.valueOf(topics.get(i10).f20090id))) {
+                    arrayList2.add(new kg1(2, topics.get(i10)));
+                    i11 = 1;
                 }
+                i10++;
             }
-            return;
+            i10 = i11;
         }
-        org.telegram.ui.Cells.ea eaVar = (org.telegram.ui.Cells.ea) view;
-        int i14 = org.telegram.ui.ActionBar.i6.G6;
-        eaVar.setTag(Integer.valueOf(i14));
-        eaVar.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i14, false));
-        i11 = twoStepVerificationActivity.changePasswordRow;
-        if (i10 == i11) {
-            eaVar.b(LocaleController.getString(R.string.ChangePassword), true);
-        } else if (i10 != twoStepVerificationActivity.O) {
-            i12 = twoStepVerificationActivity.turnPasswordOffRow;
-            if (i10 == i12) {
-                eaVar.b(LocaleController.getString(R.string.TurnPasswordOff), true);
-            } else if (i10 == twoStepVerificationActivity.R) {
-                eaVar.b(LocaleController.getString(R.string.ChangeRecoveryEmail), false);
-            } else if (i10 == twoStepVerificationActivity.Q) {
-                eaVar.b(LocaleController.getString(R.string.SetRecoveryEmail), false);
-            }
-        } else {
-            eaVar.b(LocaleController.getString(R.string.SetAdditionalPassword), true);
+        if (i10 != 0) {
+            arrayList2.add(new kg1(3, null));
+            arrayList2.add(new kg1(4, null));
+        }
+        arrayList2.add(new kg1(3, null));
+        jg1 jg1Var = this.f39572a;
+        if (jg1Var != null) {
+            jg1Var.E(arrayList, arrayList2);
         }
     }
 
     @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        View eaVar;
-        Context context = this.f38321c;
-        if (i10 != 0) {
-            eaVar = new org.telegram.ui.Cells.e9(context);
-        } else {
-            eaVar = new org.telegram.ui.Cells.ea(context);
-            eaVar.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20827d6, false));
-        }
-        return new s4.c1(eaVar);
+    public final View createView(Context context) {
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.fragmentView = frameLayout;
+        hg.c.v(false, this.actionBar);
+        this.actionBar.setActionBarMenuOnItemClick(new p81(this, 6));
+        this.actionBar.setTitle(LocaleController.getString(R.string.NotificationsExceptions));
+        this.f39573b = new org.telegram.ui.Components.qm0(context, null);
+        s4.j jVar = new s4.j();
+        jVar.C = false;
+        jVar.f47696m = false;
+        this.f39573b.setItemAnimator(jVar);
+        this.f39573b.setLayoutManager(new s4.d0());
+        org.telegram.ui.Components.qm0 qm0Var = this.f39573b;
+        jg1 jg1Var = new jg1(this);
+        this.f39572a = jg1Var;
+        qm0Var.setAdapter(jg1Var);
+        this.f39573b.setOnItemClickListener(new ig1(this));
+        frameLayout.addView(this.f39573b);
+        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20741a7, false));
+        return this.fragmentView;
+    }
+
+    @Override
+    public final boolean onFragmentCreate() {
+        this.f39574c = this.arguments.getLong("dialog_id");
+        V();
+        return super.onFragmentCreate();
     }
 }

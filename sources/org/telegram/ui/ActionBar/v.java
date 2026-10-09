@@ -30,13 +30,13 @@ public final class v implements Runnable {
                 actionBarLayout.d0(true, true, this.d);
                 return;
             }
-            Runnable runnable = actionBarLayout.f20327e;
+            Runnable runnable = actionBarLayout.f20324e;
             if (runnable != null) {
                 AndroidUtilities.cancelRunOnUIThread(runnable);
                 if (actionBarLayout.R0) {
-                    actionBarLayout.f20327e.run();
+                    actionBarLayout.f20324e.run();
                 } else {
-                    AndroidUtilities.runOnUIThread(actionBarLayout.f20327e, 200L);
+                    AndroidUtilities.runOnUIThread(actionBarLayout.f20324e, 200L);
                 }
             }
         }

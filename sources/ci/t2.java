@@ -1,29 +1,46 @@
 package ci;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class t2 implements Runnable {
-    public final int f5957a;
-    public final x2 f5958b;
-    public final ai.y1 f5959c;
+public final class t2 extends View {
+    public final int f5993a;
+    public final w2 f5994b;
 
-    public t2(x2 x2Var, ai.y1 y1Var, int i10) {
-        this.f5957a = i10;
-        this.f5958b = x2Var;
-        this.f5959c = y1Var;
+    public t2(w2 w2Var, Context context, int i10) {
+        super(context);
+        this.f5993a = i10;
+        this.f5994b = w2Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f5957a) {
+    public final void dispatchDraw(Canvas canvas) {
+        switch (this.f5993a) {
             case 0:
-                x2 x2Var = this.f5958b;
-                x2Var.getClass();
-                AndroidUtilities.runOnUIThread(new t2(x2Var, this.f5959c, 1), 320L);
+                w2 w2Var = this.f5994b;
+                w2Var.f6197q.reset();
+                w2Var.b(canvas, true);
                 return;
             default:
-                x2 x2Var2 = this.f5958b;
-                x2Var2.getClass();
-                this.f5959c.run(new ai.y1(x2Var2, 8));
+                w2 w2Var2 = this.f5994b;
+                w2Var2.f6197q.reset();
+                w2Var2.f6197q.postTranslate(-getX(), (-getY()) + AndroidUtilities.statusBarHeight);
+                w2Var2.f6197q.postScale(1.0f / getScaleX(), 1.0f / getScaleY(), getPivotX(), getPivotY());
+                w2Var2.b(canvas, false);
+                return;
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f5993a) {
+            case 0:
+                super.onMeasure(i10, i11);
+                this.f5994b.g();
+                return;
+            default:
+                super.onMeasure(i10, i11);
                 return;
         }
     }

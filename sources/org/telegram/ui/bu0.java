@@ -1,30 +1,24 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class bu0 extends AnimatorListenerAdapter {
-    public final cu0 f35223a;
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Bitmap;
+import java.util.ArrayList;
+import org.telegram.messenger.MediaController;
+public final class bu0 extends qg.m0 {
+    public final PhotoViewer f36432o2;
 
-    public bu0(cu0 cu0Var) {
-        this.f35223a = cu0Var;
+    public bu0(PhotoViewer photoViewer, Context context, Activity activity, int i10, Bitmap bitmap, Bitmap bitmap2, int i11, ArrayList arrayList, MediaController.CropState cropState, ir0 ir0Var, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, activity, i10, bitmap, bitmap2, i11, arrayList, cropState, ir0Var, e6Var);
+        this.f36432o2 = photoViewer;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        super.onAnimationEnd(animator);
-        cu0 cu0Var = this.f35223a;
-        PhotoViewer photoViewer = cu0Var.f35552c;
-        photoViewer.f33995n4 = 0;
-        photoViewer.G1();
-        photoViewer.L0.setAlpha(255);
-        photoViewer.f33914e0.invalidate();
-        photoViewer.P0.setTranslationY(0.0f);
-        if (photoViewer.f34049t4) {
-            PhotoViewer.Z(photoViewer, cu0Var.f35551b.intValue());
+    public final int getPKeyboardHeight() {
+        ci.h4 h4Var = this.f36432o2.K1;
+        if (h4Var != null) {
+            return h4Var.f5167l;
         }
-        wu0 wu0Var = cu0Var.f35550a;
-        if (wu0Var != null) {
-            wu0Var.d();
-        }
+        return 0;
     }
 }

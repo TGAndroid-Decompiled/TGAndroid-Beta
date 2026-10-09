@@ -1,32 +1,41 @@
 package zg;
 
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.d6;
-public final class l extends b0 {
-    public final o h;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.os.Build;
+import org.telegram.messenger.NotificationCenter;
+public final class l extends AnimatorListenerAdapter {
+    public final int f54576a;
+    public final q f54577b;
 
-    public l(o oVar, Context context, d6 d6Var, int i10) {
-        super(context, i10, d6Var);
-        this.h = oVar;
+    public l(q qVar, int i10) {
+        this.f54576a = i10;
+        this.f54577b = qVar;
     }
 
     @Override
-    public final void onLineCountChanged(int i10, int i11) {
-        if (i11 > i10) {
-            this.h.E.w0(0, AndroidUtilities.dp(30.0f), null);
+    public final void onAnimationEnd(Animator animator) {
+        int i10 = this.f54576a;
+        q qVar = this.f54577b;
+        switch (i10) {
+            case 0:
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
+                qVar.f54647c.setVisibility(4);
+                if (Build.MODEL.toLowerCase().startsWith("zte") && Build.VERSION.SDK_INT <= 28) {
+                    qVar.f54649f.setFocusableInTouchMode(false);
+                    return;
+                }
+                return;
+            case 1:
+                qVar.f54650n.setFocusableInTouchMode(true);
+                return;
+            case 2:
+                qVar.f54653w.setVisibility(4);
+                return;
+            default:
+                qVar.f54650n.setFocusableInTouchMode(false);
+                qVar.f54649f.setVisibility(4);
+                return;
         }
-    }
-
-    @Override
-    public final boolean onTextContextMenuItem(int i10) {
-        if (i10 != R.id.menu_delete && i10 != 16908320) {
-            if (i10 != 16908322 && i10 != 16908321) {
-                return super.onTextContextMenuItem(i10);
-            }
-            return false;
-        }
-        return this.h.b0();
     }
 }

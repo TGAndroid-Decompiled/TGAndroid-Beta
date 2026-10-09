@@ -9,9 +9,9 @@ import com.google.android.gms.tasks.TaskCompletionSource;
 import org.telegram.ui.Cells.c1;
 import v7.f5;
 public abstract class l {
-    public static final Object f16725a = new Object();
-    public static boolean f16726b;
-    public static int f16727c;
+    public static final Object f16689a = new Object();
+    public static boolean f16690b;
+    public static int f16691c;
 
     public static void a(String str, boolean z10) {
         if (z10) {
@@ -43,7 +43,7 @@ public abstract class l {
             } else {
                 str = "null current looper";
             }
-            throw new IllegalStateException(c1.k("Must be called on ", handler.getLooper().getThread().getName(), " thread, but got ", str, "."));
+            throw new IllegalStateException(c1.i("Must be called on ", handler.getLooper().getThread().getName(), " thread, but got ", str, "."));
         }
     }
 
@@ -107,7 +107,7 @@ public abstract class l {
     }
 
     public static com.google.android.gms.common.api.f m(Status status) {
-        if (status.f6475c != null) {
+        if (status.f6527c != null) {
             return new com.google.android.gms.common.api.f(status);
         }
         return new com.google.android.gms.common.api.f(status);
@@ -115,7 +115,7 @@ public abstract class l {
 
     public static Task n(f5 f5Var, k kVar) {
         TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-        f5Var.b(new t(f5Var, taskCompletionSource, kVar));
+        f5Var.b(new u(f5Var, taskCompletionSource, kVar));
         return taskCompletionSource.getTask();
     }
 }

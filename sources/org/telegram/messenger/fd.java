@@ -1,44 +1,30 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class fd implements RequestDelegate {
-    public final int f17849a = 0;
-    public final long f17850b;
-    public final int f17851c;
-    public final Object d;
-    public final Object f17852e;
-    public final Object f17853f;
+public final class fd implements Runnable {
+    public final int f17836a;
+    public final MessagesController f17837b;
+    public final TLObject f17838c;
+    public final org.telegram.ui.ActionBar.h6 d;
+    public final org.telegram.ui.ActionBar.g6 f17839e;
 
-    public fd(MessagesController messagesController, long j3, Utilities.Callback callback, TLRPC.User user, int i10) {
-        this.d = messagesController;
-        this.f17850b = j3;
-        this.f17852e = callback;
-        this.f17853f = user;
-        this.f17851c = i10;
+    public fd(MessagesController messagesController, TLObject tLObject, org.telegram.ui.ActionBar.h6 h6Var, org.telegram.ui.ActionBar.g6 g6Var, int i10) {
+        this.f17836a = i10;
+        this.f17837b = messagesController;
+        this.f17838c = tLObject;
+        this.d = h6Var;
+        this.f17839e = g6Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f17849a) {
+    public final void run() {
+        switch (this.f17836a) {
             case 0:
-                int i10 = this.f17851c;
-                ((MessagesController) this.d).lambda$loadFullUser$72(this.f17850b, (Utilities.Callback) this.f17852e, (TLRPC.User) this.f17853f, i10, tLObject, tL_error);
+                this.f17837b.lambda$didReceivedNotification$47(this.f17838c, this.d, this.f17839e);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new ei.q3((org.telegram.ui.Cells.g6) this.d, tLObject, (MessagesStorage) this.f17852e, this.f17850b, this.f17851c, (ArrayList) this.f17853f, 2));
+                this.f17837b.lambda$didReceivedNotification$45(this.f17838c, this.d, this.f17839e);
                 return;
         }
-    }
-
-    public fd(org.telegram.ui.Cells.g6 g6Var, MessagesStorage messagesStorage, long j3, int i10, ArrayList arrayList) {
-        this.d = g6Var;
-        this.f17852e = messagesStorage;
-        this.f17850b = j3;
-        this.f17851c = i10;
-        this.f17853f = arrayList;
     }
 }

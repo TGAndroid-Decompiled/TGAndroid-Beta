@@ -8,24 +8,24 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.ad;
 import org.telegram.ui.LaunchActivity;
 public final class o0 implements Utilities.Callback2 {
-    public final int f9943a;
-    public final long f9944b;
-    public final Object f9945c;
+    public final int f10018a;
+    public final long f10019b;
+    public final Object f10020c;
 
     public o0(Object obj, long j3, int i10) {
-        this.f9943a = i10;
-        this.f9945c = obj;
-        this.f9944b = j3;
+        this.f10018a = i10;
+        this.f10020c = obj;
+        this.f10019b = j3;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        int i10 = this.f9943a;
-        long j3 = this.f9944b;
-        Object obj3 = this.f9945c;
+        int i10 = this.f10018a;
+        long j3 = this.f10019b;
+        Object obj3 = this.f10020c;
         switch (i10) {
             case 0:
                 n2 n2Var = (n2) obj3;
@@ -36,7 +36,7 @@ public final class o0 implements Utilities.Callback2 {
                         u0.d(n2Var, -j3, 2);
                         return;
                     } else {
-                        yc.a0(n2Var).d0(tL_error, false);
+                        ad.a0(n2Var).f0(tL_error, false);
                         return;
                     }
                 }
@@ -50,12 +50,12 @@ public final class o0 implements Utilities.Callback2 {
                 Long l4 = (Long) obj2;
                 Pattern pattern = LaunchActivity.B1;
                 if ("paid".equals((String) obj) && l4.longValue() != 0) {
-                    AndroidUtilities.runOnUIThread(new a3.h0(launchActivity, l4, this.f9944b, 25));
+                    AndroidUtilities.runOnUIThread(new a3.h0(launchActivity, l4, this.f10019b, 26));
                     return;
                 }
                 return;
             default:
-                xh.m.Q((xh.m) obj3, j3, (Boolean) obj, (String) obj2);
+                xh.o.T((xh.o) obj3, j3, (Boolean) obj, (String) obj2);
                 return;
         }
     }

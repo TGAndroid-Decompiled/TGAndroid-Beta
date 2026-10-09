@@ -1,4 +1,11 @@
 package org.telegram.ui.Components;
-public interface dd0 {
-    void n(int i10);
+
+import android.graphics.RuntimeShader;
+public abstract class dd0 {
+    public static RuntimeShader a(String str) {
+        return new RuntimeShader(str);
+    }
+
+    public static void b() {
+    }
 }

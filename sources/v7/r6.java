@@ -1,14 +1,14 @@
 package v7;
 public abstract class r6 {
     public static boolean a(String str, String str2) {
+        char charAt;
+        char charAt2;
         char c10;
         int length = str.length();
         if (str != str2) {
             if (length == str2.length()) {
                 for (int i10 = 0; i10 < length; i10++) {
-                    char charAt = str.charAt(i10);
-                    char charAt2 = str2.charAt(i10);
-                    if (charAt == charAt2 || ((c10 = (char) ((charAt | ' ') - 97)) < 26 && c10 == ((char) ((charAt2 | ' ') - 97)))) {
+                    if (str.charAt(i10) == str2.charAt(i10) || ((c10 = (char) ((charAt | ' ') - 97)) < 26 && c10 == ((char) ((charAt2 | ' ') - 97)))) {
                     }
                 }
                 return true;

@@ -1,89 +1,204 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.AndroidUtilities;
-public final class fi extends AnimatorListenerAdapter {
-    public final int f26467a;
-    public final int f26468b;
-    public final Object f26469c;
-    public final Object d;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.text.style.ImageSpan;
+import android.view.KeyEvent;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.LocaleController;
+public final class fi implements TextWatcher {
+    public final int f26370a;
+    public boolean f26371b;
+    public boolean f26372c;
+    public final KeyEvent.Callback d;
 
-    public fi(Object obj, int i10, Object obj2, int i11) {
-        this.f26467a = i11;
-        this.d = obj;
-        this.f26468b = i10;
-        this.f26469c = obj2;
+    public fi(KeyEvent.Callback callback, int i10) {
+        this.f26370a = i10;
+        this.d = callback;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
+    public final void afterTextChanged(Editable editable) {
+        boolean z10;
+        boolean z11;
         int i10;
-        int i11;
-        int i12;
-        switch (this.f26467a) {
+        boolean z12;
+        switch (this.f26370a) {
             case 0:
-                xi xiVar = (xi) this.d;
-                xiVar.f32971y0.setAlpha(0.0f);
-                xiVar.f32971y0.setTranslationY(AndroidUtilities.dp(78.0f) + this.f26468b);
-                ii iiVar = xiVar.f32906e0;
-                pi piVar = xiVar.f32971y0;
-                Float valueOf = Float.valueOf(1.0f);
-                iiVar.getClass();
-                iiVar.a(piVar, valueOf);
-                xiVar.X0.setAlpha(0.0f);
-                o1.k kVar = new o1.k(xiVar.f32974z0, o1.h.f16975n, 0.0f);
-                kVar.f16993u.a(0.75f);
-                kVar.f16993u.b(500.0f);
-                kVar.b(new k7(this, 3));
-                kVar.a(new ei.n4(3, this, (ih) this.f26469c));
-                xiVar.f32954t1 = kVar;
-                kVar.f();
-                return;
-            case 1:
-                a5.a aVar = (a5.a) this.d;
-                ((zl0) aVar.d).scrollBy(0, this.f26468b - ((int[]) this.f26469c)[0]);
-                aVar.f300c = null;
+                yi yiVar = (yi) this.d;
+                r6 r6Var = yiVar.v;
+                di diVar = yiVar.H0;
+                r6 r6Var2 = yiVar.f33267s;
+                if (this.f26372c != TextUtils.isEmpty(editable)) {
+                    qi qiVar = yiVar.B0;
+                    if (qiVar != null) {
+                        qiVar.E(qiVar.getSelectedItemsCount());
+                    }
+                    this.f26372c = !this.f26372c;
+                }
+                boolean z13 = false;
+                if (this.f26371b) {
+                    for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
+                        editable.removeSpan(imageSpan);
+                    }
+                    Emoji.replaceEmoji(editable, diVar.getEditText().getPaint().getFontMetricsInt(), false);
+                    this.f26371b = false;
+                }
+                int codePointCount = Character.codePointCount(editable, 0, editable.length());
+                yiVar.L = codePointCount;
+                me.b bVar = yiVar.f33223e;
+                if (codePointCount > 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                bVar.a(z10, true);
+                int i11 = yiVar.K;
+                if (i11 > 0 && (i10 = i11 - yiVar.L) <= 100) {
+                    if (i10 < -9999) {
+                        i10 = -9999;
+                    }
+                    long j3 = i10;
+                    String formatNumber = LocaleController.formatNumber(j3, ',');
+                    if (r6Var2.getVisibility() == 0) {
+                        z12 = true;
+                    } else {
+                        z12 = false;
+                    }
+                    r6Var2.c(formatNumber, z12, true);
+                    if (r6Var2.getVisibility() != 0) {
+                        r6Var2.setVisibility(0);
+                        r6Var2.setAlpha(0.0f);
+                        r6Var2.setScaleX(0.5f);
+                        r6Var2.setScaleY(0.5f);
+                    }
+                    r6Var2.animate().setListener(null).cancel();
+                    r6Var2.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
+                    if (i10 < 0) {
+                        r6Var2.setTextColor(yiVar.getThemedColor(org.telegram.ui.ActionBar.i6.f21018p7));
+                        z11 = false;
+                    } else {
+                        r6Var2.setTextColor(yiVar.getThemedColor(org.telegram.ui.ActionBar.i6.f21181y6));
+                        z11 = true;
+                    }
+                    r6Var.c(LocaleController.formatNumber(j3, ','), false, true);
+                    r6Var.setAlpha(1.0f);
+                } else {
+                    r6Var2.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(100L).setListener(new t8(this, 4));
+                    r6Var.setAlpha(0.0f);
+                    z11 = true;
+                }
+                if (yiVar.X0 != z11) {
+                    yiVar.X0 = z11;
+                    yiVar.L0.invalidate();
+                }
+                if (!yiVar.f33217c0) {
+                    if (diVar.getEditText().getLineCount() > 2 && !TextUtils.isEmpty(diVar.getText().toString().trim())) {
+                        z13 = true;
+                    }
+                    yiVar.Q1(z13);
+                }
+                yiVar.f1(true);
                 return;
             default:
-                yh.y3 y3Var = (yh.y3) this.d;
-                y3Var.T1();
-                yh.i2 i2Var = y3Var.f52290f0;
-                int i13 = 8;
-                int i14 = this.f26468b;
-                if (i14 == 0) {
-                    i10 = 0;
-                } else {
-                    i10 = 8;
+                org.telegram.ui.Wallet.h8 h8Var = (org.telegram.ui.Wallet.h8) this.d;
+                if (this.f26371b) {
+                    this.f26371b = false;
+                    this.f26372c = true;
+                    try {
+                        editable.append('.');
+                        this.f26372c = false;
+                        h8Var.f34984b.setSelection(editable.length());
+                        return;
+                    } catch (Throwable th2) {
+                        this.f26372c = false;
+                        throw th2;
+                    }
                 }
-                i2Var.setVisibility(i10);
-                yh.i2 i2Var2 = y3Var.f52311r0;
-                if (i14 == 1) {
-                    i11 = 0;
-                } else {
-                    i11 = 8;
-                }
-                i2Var2.setVisibility(i11);
-                yh.i2 i2Var3 = y3Var.f52318y0;
-                if (i14 == 2) {
-                    i12 = 0;
-                } else {
-                    i12 = 8;
-                }
-                i2Var3.setVisibility(i12);
-                yh.i2 i2Var4 = y3Var.A0;
-                if (i14 == 3) {
-                    i13 = 0;
-                }
-                i2Var4.setVisibility(i13);
-                y3Var.s2();
-                y3Var.Z0 = null;
-                Runnable runnable = (Runnable) this.f26469c;
-                if (runnable != null) {
-                    runnable.run();
+                h8Var.f(editable);
+                return;
+        }
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        switch (this.f26370a) {
+            case 0:
+                return;
+            default:
+                org.telegram.ui.Wallet.h8 h8Var = (org.telegram.ui.Wallet.h8) this.d;
+                org.telegram.ui.Wallet.d8 d8Var = h8Var.f34984b;
+                if (charSequence.length() > 0 && i11 == charSequence.length() && i12 == 0 && d8Var.getLayout() != null) {
+                    h8Var.M = d8Var.getLayout().getLineLeft(0) - d8Var.getScrollX();
                     return;
                 }
                 return;
         }
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        boolean z10;
+        float f7;
+        switch (this.f26370a) {
+            case 0:
+                yi yiVar = (yi) this.d;
+                if (i12 - i11 >= 1) {
+                    this.f26371b = true;
+                }
+                if (yiVar.E2 == null) {
+                    yi.S(yiVar);
+                }
+                if (yiVar.E2.getAdapter() != null) {
+                    yiVar.E2.setReversed(false);
+                    yiVar.E2.getAdapter().U(charSequence, yiVar.H0.getEditText().getSelectionStart(), null, false, false);
+                    yiVar.Y1();
+                    return;
+                }
+                return;
+            default:
+                boolean z11 = false;
+                if (i12 > 0 && TextUtils.equals(charSequence, "0")) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                this.f26371b = z10;
+                org.telegram.ui.Wallet.h8 h8Var = (org.telegram.ui.Wallet.h8) this.d;
+                if (!h8Var.Q && !this.f26372c) {
+                    if (i11 != 0 || i12 != 0) {
+                        org.telegram.ui.Wallet.b6 b6Var = h8Var.f34985c;
+                        if (i12 > 0 && i12 >= i11) {
+                            z11 = true;
+                        }
+                        if (b6Var.f34679x && b6Var.f34676r && b6Var.f34680y == -1) {
+                            fk0 fk0Var = b6Var.h;
+                            if (fk0Var != null) {
+                                if (!fk0Var.b()) {
+                                    b6Var.h.setProgress(0.0f);
+                                    b6Var.h.d();
+                                    return;
+                                }
+                                return;
+                            }
+                            float f10 = b6Var.f34664d0;
+                            if (z11) {
+                                f7 = -160.0f;
+                            } else {
+                                f7 = 160.0f;
+                            }
+                            b6Var.f34664d0 = Math.max(-360.0f, Math.min(360.0f, f10 + f7));
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
+        }
+    }
+
+    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

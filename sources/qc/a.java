@@ -4,17 +4,17 @@ import android.util.Log;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 public final class a extends c {
-    public final int f44950a;
-    public Object f44951b;
+    public final int f46105a;
+    public Object f46106b;
 
     @Override
     public final void b(String str) {
-        switch (this.f44950a) {
+        switch (this.f46105a) {
             case 0:
-                Log.d("isoparser", String.valueOf((String) this.f44951b) + ":" + str);
+                Log.d("isoparser", String.valueOf((String) this.f46106b) + ":" + str);
                 return;
             default:
-                ((Logger) this.f44951b).log(Level.FINE, str);
+                ((Logger) this.f46106b).log(Level.FINE, str);
                 return;
         }
     }

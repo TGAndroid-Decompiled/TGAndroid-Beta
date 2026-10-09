@@ -1,43 +1,49 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessagesStorage;
-public final class ah implements MessagesStorage.IntCallback {
-    public final int f34872a;
-    public final yn f34873b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.Utilities;
+public final class ah implements Utilities.Callback0Return {
+    public final int f35927a;
+    public final zn f35928b;
 
-    public ah(yn ynVar, int i10) {
-        this.f34872a = i10;
-        this.f34873b = ynVar;
+    public ah(zn znVar, int i10) {
+        this.f35927a = i10;
+        this.f35928b = znVar;
     }
 
     @Override
-    public final void run(int i10) {
-        switch (this.f34872a) {
+    public final Object run() {
+        boolean z10;
+        switch (this.f35927a) {
             case 0:
-                yn ynVar = this.f34873b;
-                if (ynVar.getParentActivity() != null && ynVar.fragmentView != null && i10 > 0) {
-                    org.telegram.ui.Components.yc.a0(ynVar).m(org.telegram.ui.Components.xc.f32856r, i10, 0, 0, ynVar.f43300ca).j();
-                    return;
-                }
-                return;
-            case 1:
-                yn ynVar2 = this.f34873b;
-                if (i10 == 0) {
-                    ynVar2.Pc(true);
-                    return;
+                this.f35928b.getClass();
+                if (org.telegram.ui.Components.c21.c() && LiteMode.isEnabled(65536)) {
+                    z10 = true;
                 } else {
-                    ynVar2.finishFragment();
-                    return;
+                    z10 = false;
                 }
+                return Boolean.valueOf(z10);
             default:
-                yn ynVar3 = this.f34873b;
-                if (i10 == 0) {
-                    ynVar3.f43395k6 = false;
-                    ynVar3.G9();
-                    return;
+                if (LiteMode.isEnabled(65536) && org.telegram.ui.Components.c21.c()) {
+                    zn znVar = this.f35928b;
+                    org.telegram.ui.Components.c21 c21Var = znVar.f44961v0;
+                    if (c21Var == null || c21Var.f25216e) {
+                        if (znVar.getParentActivity() != null && org.telegram.ui.Components.c21.c() && znVar.f44988x0 != null && znVar.X0 != null) {
+                            org.telegram.ui.Components.c21 c21Var2 = znVar.f44961v0;
+                            if (c21Var2 != null) {
+                                AndroidUtilities.removeFromParent(c21Var2);
+                            }
+                            org.telegram.ui.Components.c21 c21Var3 = new org.telegram.ui.Components.c21(znVar.getParentActivity(), new org.telegram.ui.ActionBar.p(27, znVar, r2));
+                            znVar.f44961v0 = c21Var3;
+                            org.telegram.ui.Components.c21[] c21VarArr = {c21Var3};
+                            sm smVar = znVar.X0;
+                            smVar.addView(c21Var3, smVar.indexOfChild(znVar.f44988x0) + 1, w7.x5.d(-1.0f, -1));
+                        }
+                    }
+                    return znVar.f44961v0;
                 }
-                ynVar3.D(i10, 0, 0, 0, false, true);
-                return;
+                return null;
         }
     }
 }

@@ -1,67 +1,49 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.View;
-import android.widget.LinearLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class zd extends LinearLayout {
-    public static float f43747b = 1.0f;
-    public final int f43748a;
+import android.view.MotionEvent;
+public final class zd extends org.telegram.ui.Components.zd0 {
+    public final int L;
+    public final Object M;
 
-    public zd(Context context, int i10) {
-        super(context);
-        this.f43748a = i10;
+    public zd(Object obj, Context context, int i10) {
+        super(context, null);
+        this.L = i10;
+        this.M = obj;
     }
 
     @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f43748a) {
-            case 2:
-                super.onLayout(z10, i10, i11, i12, i13);
-                setPivotX(getWidth());
-                return;
-            default:
-                super.onLayout(z10, i10, i11, i12, i13);
-                return;
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f43748a) {
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        switch (this.L) {
             case 0:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
-                return;
-            case 1:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
-                return;
-            case 2:
-            case 4:
+                ke keVar = (ke) this.M;
+                org.telegram.ui.Components.k71 k71Var = keVar.f39231a1;
+                fi.o oVar = keVar.Y0;
+                if (oVar != null && !oVar.isFocusable()) {
+                    oVar.setFocusable(true);
+                    oVar.setFocusableInTouchMode(true);
+                    int y12 = k71Var.y1(3);
+                    if (y12 >= 0 && y12 < k71Var.W2.f25283x.size()) {
+                        k71Var.B0();
+                        k71Var.x0(y12);
+                    }
+                    oVar.requestFocus();
+                }
+                return super.dispatchTouchEvent(motionEvent);
             default:
-                super.onMeasure(i10, i11);
-                return;
-            case 3:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(220.0f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)), i11);
-                return;
-            case 5:
-                super.onMeasure(i10, i11);
-                setPivotY(0.0f);
-                setPivotX(0.0f);
-                return;
-            case 6:
-                super.onMeasure(i10, i11);
-                setPivotY(0.0f);
-                setPivotX(getMeasuredWidth());
-                return;
-            case 7:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(600.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i11), AndroidUtilities.dp(800.0f)), 1073741824));
-                return;
-            case 8:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
-                return;
-            case 9:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
-                return;
+                yh.g gVar = (yh.g) this.M;
+                fi.o oVar2 = gVar.Q;
+                if (oVar2 != null && !oVar2.isFocusable()) {
+                    gVar.Q.setFocusable(true);
+                    gVar.Q.setFocusableInTouchMode(true);
+                    int y13 = gVar.f52555e.y1(1);
+                    if (y13 >= 0 && y13 < gVar.f52555e.W2.f25283x.size()) {
+                        gVar.f52555e.B0();
+                        gVar.f52555e.x0(y13);
+                    }
+                    gVar.Q.requestFocus();
+                }
+                return super.dispatchTouchEvent(motionEvent);
         }
     }
 }

@@ -3,12 +3,12 @@ package u1;
 import android.view.animation.Interpolator;
 import com.google.android.gms.internal.vision.e2;
 public abstract class b implements Interpolator {
-    public final float[] f47208a;
-    public final float f47209b;
+    public final float[] f48505a;
+    public final float f48506b;
 
     public b(float[] fArr) {
-        this.f47208a = fArr;
-        this.f47209b = 1.0f / (fArr.length - 1);
+        this.f48505a = fArr;
+        this.f48506b = 1.0f / (fArr.length - 1);
     }
 
     @Override
@@ -19,11 +19,11 @@ public abstract class b implements Interpolator {
         if (f7 <= 0.0f) {
             return 0.0f;
         }
-        float[] fArr = this.f47208a;
+        float[] fArr = this.f48505a;
         int min = Math.min((int) ((fArr.length - 1) * f7), fArr.length - 2);
-        float f10 = this.f47209b;
-        float v = e2.v(min, f10, f7, f10);
+        float f10 = this.f48506b;
+        float u10 = e2.u(min, f10, f7, f10);
         float f11 = fArr[min];
-        return e2.z(fArr[min + 1], f11, v, f11);
+        return e2.y(fArr[min + 1], f11, u10, f11);
     }
 }

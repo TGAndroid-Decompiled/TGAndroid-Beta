@@ -1,39 +1,18 @@
 package ai;
 
-import android.animation.ValueAnimator;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-public final class p6 extends s4.s0 {
-    public final k7 f1509a;
+import android.content.Context;
+import android.view.View;
+public final class p6 extends g7 {
+    public final l7 X2;
 
-    public p6(k7 k7Var) {
-        this.f1509a = k7Var;
+    public p6(l7 l7Var, Context context, d dVar) {
+        super(l7Var, context, dVar, 0);
+        this.X2 = l7Var;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        k7 k7Var = this.f1509a;
-        if (i10 == 0) {
-            k7Var.V = true;
-            k7Var.invalidate();
-        }
-        if (i10 == 1) {
-            k7Var.V = false;
-            a5.a aVar = k7Var.d;
-            ValueAnimator valueAnimator = (ValueAnimator) aVar.f300c;
-            if (valueAnimator != null) {
-                valueAnimator.removeAllListeners();
-                ((ValueAnimator) aVar.f300c).cancel();
-                aVar.f300c = null;
-            }
-            AndroidUtilities.hideKeyboard(k7Var);
-        }
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        k7 k7Var = this.f1509a;
-        k7Var.c();
-        k7Var.invalidate();
+    public final void onMeasure(int i10, int i11) {
+        this.X2.f1339n = View.MeasureSpec.getSize(i11);
+        super.onMeasure(i10, i11);
     }
 }

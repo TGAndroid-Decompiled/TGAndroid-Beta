@@ -3,84 +3,31 @@ package p0;
 import android.text.SpannableStringBuilder;
 import b2.p;
 public final class b {
-    public static final String f43982b;
-    public static final String f43983c;
+    public static final String f45146b;
+    public static final String f45147c;
     public static final b d;
-    public static final b f43984e;
-    public final boolean f43985a;
+    public static final b f45148e;
+    public final boolean f45149a;
 
     static {
-        p pVar = f.f43992c;
-        f43982b = Character.toString((char) 8206);
-        f43983c = Character.toString((char) 8207);
+        p pVar = f.f45156c;
+        f45146b = Character.toString((char) 8206);
+        f45147c = Character.toString((char) 8207);
         d = new b(false);
-        f43984e = new b(true);
+        f45148e = new b(true);
     }
 
     public b(boolean z10) {
-        p pVar = f.f43990a;
-        this.f43985a = z10;
+        p pVar = f.f45154a;
+        this.f45149a = z10;
     }
 
     public static int a(java.lang.CharSequence r9) {
         throw new UnsupportedOperationException("Method not decompiled: p0.b.a(java.lang.CharSequence):int");
     }
 
-    public static int b(CharSequence charSequence) {
-        a aVar = new a(charSequence);
-        aVar.f43981c = aVar.f43980b;
-        int i10 = 0;
-        int i11 = 0;
-        while (aVar.f43981c > 0) {
-            byte a2 = aVar.a();
-            if (a2 != 0) {
-                if (a2 != 1 && a2 != 2) {
-                    if (a2 != 9) {
-                        switch (a2) {
-                            case 14:
-                            case 15:
-                                if (i11 == i10) {
-                                    return -1;
-                                }
-                                i10--;
-                                break;
-                            case 16:
-                            case 17:
-                                if (i11 == i10) {
-                                    return 1;
-                                }
-                                i10--;
-                                break;
-                            case 18:
-                                i10++;
-                                break;
-                            default:
-                                if (i11 != 0) {
-                                    break;
-                                } else {
-                                    i11 = i10;
-                                    break;
-                                }
-                        }
-                    } else {
-                        continue;
-                    }
-                } else if (i10 == 0) {
-                    return 1;
-                } else {
-                    if (i11 == 0) {
-                        i11 = i10;
-                    }
-                }
-            } else if (i10 == 0) {
-                return -1;
-            } else {
-                if (i11 == 0) {
-                    i11 = i10;
-                }
-            }
-        }
-        return 0;
+    public static int b(java.lang.CharSequence r6) {
+        throw new UnsupportedOperationException("Method not decompiled: p0.b.b(java.lang.CharSequence):int");
     }
 
     public final SpannableStringBuilder c(CharSequence charSequence) {
@@ -88,22 +35,22 @@ public final class b {
         String str;
         p pVar2;
         char c10;
-        p pVar3 = f.f43992c;
+        p pVar3 = f.f45156c;
         if (charSequence == null) {
             return null;
         }
         boolean h = pVar3.h(charSequence.length(), charSequence);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         if (h) {
-            pVar = f.f43991b;
+            pVar = f.f45155b;
         } else {
-            pVar = f.f43990a;
+            pVar = f.f45154a;
         }
         boolean h10 = pVar.h(charSequence.length(), charSequence);
         String str2 = "";
-        String str3 = f43983c;
-        String str4 = f43982b;
-        boolean z10 = this.f43985a;
+        String str3 = f45147c;
+        String str4 = f45146b;
+        boolean z10 = this.f45149a;
         if (!z10 && (h10 || a(charSequence) == 1)) {
             str = str4;
         } else if (!z10 || (h10 && a(charSequence) != -1)) {
@@ -125,9 +72,9 @@ public final class b {
             spannableStringBuilder.append(charSequence);
         }
         if (h) {
-            pVar2 = f.f43991b;
+            pVar2 = f.f45155b;
         } else {
-            pVar2 = f.f43990a;
+            pVar2 = f.f45154a;
         }
         boolean h11 = pVar2.h(charSequence.length(), charSequence);
         if (!z10 && (h11 || b(charSequence) == 1)) {

@@ -1,34 +1,31 @@
 package org.telegram.messenger;
 
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class y6 implements Runnable {
-    public final int f19881a;
-    public final MediaDataController f19882b;
-    public final TLRPC.TL_messages_stickerSet f19883c;
+public final class y6 implements RequestDelegate {
+    public final int f19874a;
+    public final int f19875b;
+    public final String f19876c;
+    public final String d;
+    public final BaseController f19877e;
 
-    public y6(MediaDataController mediaDataController, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, int i10) {
-        this.f19881a = i10;
-        this.f19882b = mediaDataController;
-        this.f19883c = tL_messages_stickerSet;
+    public y6(BaseController baseController, int i10, String str, String str2, int i11) {
+        this.f19874a = i11;
+        this.f19877e = baseController;
+        this.f19875b = i10;
+        this.f19876c = str;
+        this.d = str2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f19881a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f19874a) {
             case 0:
-                this.f19882b.lambda$saveStickerSetIntoCache$40(this.f19883c);
-                return;
-            case 1:
-                this.f19882b.lambda$loadGroupStickerSet$45(this.f19883c);
-                return;
-            case 2:
-                this.f19882b.lambda$loadGroupStickerSet$43(this.f19883c);
-                return;
-            case 3:
-                this.f19882b.lambda$putSetToCache$47(this.f19883c);
+                ((MediaDataController) this.f19877e).lambda$fetchNewEmojiKeywords$213(this.f19875b, this.f19876c, this.d, tLObject, tL_error);
                 return;
             default:
-                this.f19882b.lambda$replaceStickerSet$28(this.f19883c);
+                ((MessagesController) this.f19877e).lambda$checkPromoInfoInternal$168(this.f19875b, this.f19876c, this.d, tLObject, tL_error);
                 return;
         }
     }

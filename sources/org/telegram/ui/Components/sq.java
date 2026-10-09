@@ -1,178 +1,160 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Rect;
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-public class sq extends Drawable implements Drawable.Callback {
-    public Drawable f30923a;
-    public final Drawable f30924b;
-    public final int f30925c;
-    public final int d;
-    public int f30926e;
-    public int f30927f;
-    public int h;
-    public int f30928n;
-    public boolean f30929r;
-    public int f30930s;
-    public int v;
-    public boolean f30931w;
-    public float f30932x;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC;
+public final class sq extends org.telegram.ui.ActionBar.f3 {
+    public final Drawable f30869b;
+    public final pq f30870c;
+    public final rq d;
+    public final boolean f30871e;
+    public int f30872f;
+    public final int[] h;
+    public final int f30873n;
+    public int f30874r;
+    public boolean f30875s;
+    public org.telegram.ui.db v;
 
-    public sq(Drawable drawable, Drawable drawable2, int i10, int i11) {
-        this.f30923a = drawable;
-        this.f30924b = drawable2;
-        this.f30925c = i10;
-        this.d = i11;
-        if (drawable2 != null) {
-            drawable2.setCallback(this);
+    public sq(Activity activity, TLRPC.Chat chat) {
+        super(1, (Context) activity, (org.telegram.ui.ActionBar.e6) null, false);
+        int i10;
+        this.h = new int[2];
+        this.f30871e = true;
+        setApplyBottomPadding(false);
+        TLRPC.ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(chat.f20038id);
+        if (chatFull != null) {
+            i10 = chatFull.ttl_period;
+        } else {
+            i10 = 0;
+        }
+        if (i10 == 0) {
+            this.f30873n = 0;
+            this.f30874r = 0;
+        } else if (i10 == 86400) {
+            this.f30873n = 1;
+            this.f30874r = 1;
+        } else if (i10 == 604800) {
+            this.f30873n = 2;
+            this.f30874r = 2;
+        } else {
+            this.f30873n = 3;
+            this.f30874r = 3;
+        }
+        Drawable mutate = activity.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
+        this.f30869b = mutate;
+        int i11 = org.telegram.ui.ActionBar.i6.f20868h5;
+        mutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(i11), PorterDuff.Mode.MULTIPLY));
+        oq oqVar = new oq(this, activity);
+        oqVar.setFillViewport(true);
+        oqVar.setWillNotDraw(false);
+        oqVar.setClipToPadding(false);
+        int i12 = this.backgroundPaddingLeft;
+        oqVar.setPadding(i12, 0, i12, 0);
+        this.containerView = oqVar;
+        pq pqVar = new pq(this, activity);
+        this.f30870c = pqVar;
+        pqVar.setOrientation(1);
+        oqVar.addView(pqVar, w7.x5.x(-1, -2, 80));
+        setCustomView(pqVar);
+        UserConfig.getInstance(this.currentAccount).getClientUserId();
+        int i13 = MessagesController.getInstance(this.currentAccount).revokeTimeLimit;
+        ?? imageView = new ImageView(activity);
+        imageView.setAutoRepeat(false);
+        imageView.f(R.raw.utyan_private, 120, 120, null);
+        imageView.setPadding(0, AndroidUtilities.dp(20.0f), 0, 0);
+        imageView.d();
+        pqVar.addView((View) imageView, w7.x5.t(160, 160, 49, 17, 0, 17, 0));
+        TextView textView = new TextView(activity);
+        org.telegram.messenger.bi.k(24.0f, 1, textView);
+        textView.setTextColor(getThemedColor(org.telegram.ui.ActionBar.i6.f20905j5));
+        textView.setText(LocaleController.getString(R.string.AutoDeleteAlertTitle));
+        pqVar.addView(textView, w7.x5.t(-2, -2, 49, 17, 18, 17, 0));
+        TextView textView2 = new TextView(activity);
+        textView2.setTextSize(1, 14.0f);
+        textView2.setTextColor(getThemedColor(org.telegram.ui.ActionBar.i6.f21054r5));
+        textView2.setGravity(1);
+        if (ChatObject.isChannel(chat) && !chat.megagroup) {
+            textView2.setText(LocaleController.getString(R.string.AutoDeleteAlertChannelInfo));
+        } else {
+            textView2.setText(LocaleController.getString(R.string.AutoDeleteAlertGroupInfo));
+        }
+        pqVar.addView(textView2, w7.x5.t(-2, -2, 49, 30, 22, 30, 20));
+        ww0 ww0Var = new ww0(activity, null);
+        ww0Var.setCallback(new qq(this, oqVar));
+        ww0Var.b(this.f30873n, null, LocaleController.getString(R.string.AutoDeleteNever), LocaleController.getString(R.string.AutoDelete24Hours), LocaleController.getString(R.string.AutoDelete7Days), LocaleController.getString(R.string.AutoDelete1Month));
+        pqVar.addView(ww0Var, w7.x5.k(0.0f, 8.0f, 0.0f, 0.0f, -1, -2));
+        FrameLayout frameLayout = new FrameLayout(activity);
+        fr frVar = new fr(new ColorDrawable(getThemedColor(org.telegram.ui.ActionBar.i6.f20741a7)), org.telegram.ui.ActionBar.i6.W0(activity, R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.i6.f20761b7));
+        frVar.f26471w = true;
+        frameLayout.setBackgroundDrawable(frVar);
+        pqVar.addView(frameLayout, w7.x5.n(-1, -2));
+        org.telegram.ui.Cells.e9 e9Var = new org.telegram.ui.Cells.e9(activity, null);
+        e9Var.setText(LocaleController.getString(R.string.AutoDeleteInfo));
+        frameLayout.addView(e9Var);
+        rq rqVar = new rq(activity);
+        this.d = rqVar;
+        rqVar.setBackgroundColor(getThemedColor(i11));
+        rqVar.setText(LocaleController.getString(R.string.AutoDeleteSet));
+        rqVar.f30480a.setOnClickListener(new f0(this, 8));
+        frameLayout.addView(rqVar);
+        r(false);
+    }
+
+    public static void o(sq sqVar) {
+        float f7;
+        View childAt = sqVar.f30870c.getChildAt(0);
+        int[] iArr = sqVar.h;
+        childAt.getLocationInWindow(iArr);
+        int i10 = iArr[1];
+        if (sqVar.f30871e) {
+            f7 = 6.0f;
+        } else {
+            f7 = 19.0f;
+        }
+        int max = Math.max(i10 - AndroidUtilities.dp(f7), 0);
+        if (sqVar.f30872f != max) {
+            sqVar.f30872f = max;
+            sqVar.containerView.invalidate();
         }
     }
 
     @Override
-    public void draw(Canvas canvas) {
-        canvas.save();
-        canvas.translate(this.f30932x, 0.0f);
-        if (this.f30929r) {
-            Rect bounds = getBounds();
-            setBounds(bounds.centerX() - (getIntrinsicWidth() / 2), bounds.centerY() - (getIntrinsicHeight() / 2), (getIntrinsicWidth() / 2) + bounds.centerX(), (getIntrinsicHeight() / 2) + bounds.centerY());
-        }
-        Drawable drawable = this.f30923a;
-        if (drawable != null) {
-            drawable.setBounds(getBounds());
-            this.f30923a.draw(canvas);
-        }
-        Drawable drawable2 = this.f30924b;
-        if (drawable2 != null) {
-            boolean z10 = this.f30931w;
-            int i10 = this.d;
-            int i11 = this.f30925c;
+    public final boolean canDismissWithSwipe() {
+        return false;
+    }
+
+    public final void r(boolean z10) {
+        int i10 = this.f30873n;
+        int i11 = this.f30874r;
+        rq rqVar = this.d;
+        if (i10 == i11 && !this.f30871e) {
             if (z10) {
-                Rect bounds2 = getBounds();
-                if (i11 != 0) {
-                    drawable2.setBounds(bounds2.left + i11, bounds2.top + i10, bounds2.right - i11, bounds2.bottom - i10);
-                } else {
-                    drawable2.setBounds(bounds2);
-                }
-            } else if (this.f30926e != 0) {
-                int centerX = (getBounds().centerX() - (this.f30926e / 2)) + i11 + this.f30930s;
-                int centerY = getBounds().centerY();
-                int i12 = this.f30927f;
-                int i13 = (centerY - (i12 / 2)) + i10 + this.v;
-                drawable2.setBounds(centerX, i13, this.f30926e + centerX, i12 + i13);
-            } else {
-                int centerX2 = (getBounds().centerX() - (drawable2.getIntrinsicWidth() / 2)) + i11;
-                int centerY2 = (getBounds().centerY() - (drawable2.getIntrinsicHeight() / 2)) + i10;
-                drawable2.setBounds(centerX2, centerY2, drawable2.getIntrinsicWidth() + centerX2, drawable2.getIntrinsicHeight() + centerY2);
+                rqVar.animate().alpha(0.0f).setDuration(180L).start();
+                return;
             }
-            drawable2.draw(canvas);
+            rqVar.setVisibility(4);
+            rqVar.setAlpha(0.0f);
+            return;
         }
-        canvas.restore();
-    }
-
-    @Override
-    public final Drawable.ConstantState getConstantState() {
-        return this.f30924b.getConstantState();
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        int i10 = this.f30928n;
-        if (i10 != 0) {
-            return i10;
-        }
-        return this.f30923a.getIntrinsicHeight();
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        int i10 = this.h;
-        if (i10 != 0) {
-            return i10;
-        }
-        return this.f30923a.getIntrinsicWidth();
-    }
-
-    @Override
-    public final int getMinimumHeight() {
-        int i10 = this.f30928n;
-        if (i10 != 0) {
-            return i10;
-        }
-        return this.f30923a.getMinimumHeight();
-    }
-
-    @Override
-    public final int getMinimumWidth() {
-        int i10 = this.h;
-        if (i10 != 0) {
-            return i10;
-        }
-        return this.f30923a.getMinimumWidth();
-    }
-
-    @Override
-    public final int getOpacity() {
-        return this.f30924b.getOpacity();
-    }
-
-    @Override
-    public final int[] getState() {
-        return this.f30924b.getState();
-    }
-
-    @Override
-    public final void invalidateDrawable(Drawable drawable) {
-        invalidateSelf();
-    }
-
-    @Override
-    public final boolean isStateful() {
-        return this.f30924b.isStateful();
-    }
-
-    @Override
-    public final void jumpToCurrentState() {
-        this.f30924b.jumpToCurrentState();
-    }
-
-    @Override
-    public final boolean onStateChange(int[] iArr) {
-        return true;
-    }
-
-    @Override
-    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j3) {
-        scheduleSelf(runnable, j3);
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f30924b.setAlpha(i10);
-        this.f30923a.setAlpha(i10);
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-        this.f30924b.setColorFilter(colorFilter);
-    }
-
-    @Override
-    public final boolean setState(int[] iArr) {
-        this.f30924b.setState(iArr);
-        return true;
-    }
-
-    @Override
-    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-        unscheduleSelf(runnable);
-    }
-
-    public sq(Drawable drawable, Drawable drawable2) {
-        this.f30923a = drawable;
-        this.f30924b = drawable2;
-        if (drawable2 != null) {
-            drawable2.setCallback(this);
+        rqVar.setVisibility(0);
+        if (z10) {
+            rqVar.animate().alpha(1.0f).setDuration(180L).start();
+        } else {
+            rqVar.setAlpha(1.0f);
         }
     }
 }

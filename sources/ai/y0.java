@@ -2,10 +2,10 @@ package ai;
 
 import android.view.View;
 public final class y0 extends s4.j {
-    public final r3 F;
+    public final s3 F;
 
-    public y0(r3 r3Var) {
-        this.F = r3Var;
+    public y0(s3 s3Var) {
+        this.F = s3Var;
     }
 
     @Override
@@ -15,11 +15,11 @@ public final class y0 extends s4.j {
 
     @Override
     public final void M() {
-        this.F.f1439c.invalidate();
+        this.F.f1509c.invalidate();
     }
 
     @Override
-    public final void P(s4.c1 c1Var) {
-        this.F.f1439c.invalidate();
+    public final void P(s4.d1 d1Var) {
+        this.F.f1509c.invalidate();
     }
 }

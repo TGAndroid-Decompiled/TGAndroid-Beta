@@ -1,73 +1,137 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import org.telegram.messenger.AndroidUtilities;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class yg0 implements Runnable {
-    public final int f43224a;
-    public final ch0 f43225b;
+public final class yg0 extends org.telegram.ui.Components.pm0 {
+    public final Context f44338c;
+    public final zg0 d;
 
-    public yg0(ch0 ch0Var, int i10) {
-        this.f43224a = i10;
-        this.f43225b = ch0Var;
+    public yg0(zg0 zg0Var, Context context) {
+        this.d = zg0Var;
+        this.f44338c = context;
     }
 
     @Override
-    public final void run() {
-        oh.b[] bVarArr;
-        switch (this.f43224a) {
-            case 0:
-                ch0.Z(this.f43225b);
-                return;
-            case 1:
-                ch0 ch0Var = this.f43225b;
-                ch0Var.getClass();
-                m9.g0(ch0Var);
-                return;
-            case 2:
-                ch0.c0(this.f43225b);
-                return;
-            case 3:
-                ch0.Y(this.f43225b);
-                return;
-            case 4:
-                ch0 ch0Var2 = this.f43225b;
-                ch0Var2.getClass();
-                new ak0(ch0Var2.getParentActivity(), ch0Var2).show();
-                return;
-            case 5:
-                ch0 ch0Var3 = this.f43225b;
-                ch0Var3.getClass();
-                Bundle bundle = new Bundle();
-                bundle.putBoolean("needFinishFragment", false);
-                ch0Var3.presentFragment(new m9(bundle));
-                return;
-            case 6:
-                ch0 ch0Var4 = this.f43225b;
-                if (ch0Var4.getParentActivity() != null && (bVarArr = ch0Var4.K) != null) {
-                    oh.b bVar = bVarArr[4];
-                    float width = ((bVar.getWidth() / 2.0f) + (ch0Var4.f40107b.getWidth() - ((bVar.getX() + ch0Var4.F.getX()) + bVar.getWidth()))) / AndroidUtilities.density;
-                    ci.e4 e4Var = new ci.e4(ch0Var4.getParentActivity(), 3);
-                    ch0Var4.P = e4Var;
-                    e4Var.setTranslationY(AndroidUtilities.dp(4.0f) + (-ch0Var4.L));
-                    ch0Var4.P.setPadding(AndroidUtilities.dp(7.33f), 0, AndroidUtilities.dp(7.33f), 0);
-                    ch0Var4.P.p(false);
-                    ch0Var4.P.i();
-                    ch0Var4.P.s(LocaleController.getString(R.string.SwitchAccountHint));
-                    ch0Var4.P.l(1.0f, (-width) + 7.33f);
-                    ch0Var4.f40107b.addView(ch0Var4.P, w7.z5.d(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, 72.0f));
-                    ci.e4 e4Var2 = ch0Var4.P;
-                    e4Var2.f4998l0 = new yg0(ch0Var4, 7);
-                    e4Var2.d = 8000L;
-                    e4Var2.u();
-                    org.telegram.ui.Components.n40.f28964r.b();
+    public final boolean D(s4.d1 d1Var) {
+        int b10 = d1Var.b();
+        zg0 zg0Var = this.d;
+        if (b10 != zg0Var.f44620c && b10 != zg0Var.d && b10 != zg0Var.f44621e && b10 != zg0Var.f44622f && b10 != zg0Var.h && b10 != zg0Var.f44624r) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        return this.d.v;
+    }
+
+    @Override
+    public final int j(int i10) {
+        zg0 zg0Var = this.d;
+        zg0Var.getClass();
+        if (i10 == 0) {
+            return 0;
+        }
+        if (i10 != zg0Var.f44620c && i10 != zg0Var.d && i10 != zg0Var.f44621e && i10 != zg0Var.f44622f && i10 != zg0Var.h) {
+            if (i10 == zg0Var.f44623n) {
+                return 2;
+            }
+            if (i10 == zg0Var.f44624r) {
+                return 3;
+            }
+            return 4;
+        }
+        return 1;
+    }
+
+    @Override
+    public final void v(s4.d1 d1Var, int i10) {
+        int i11 = d1Var.f47660f;
+        View view = d1Var.f47656a;
+        if (i11 != 0) {
+            zg0 zg0Var = this.d;
+            if (i11 != 1) {
+                if (i11 != 3) {
+                    if (i11 == 4) {
+                        org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
+                        if (i10 == zg0Var.f44625s) {
+                            e9Var.setText(LocaleController.getString(R.string.LogOutInfo));
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                org.telegram.ui.Cells.ca caVar = (org.telegram.ui.Cells.ca) view;
+                if (i10 == zg0Var.f44624r) {
+                    caVar.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f21018p7, false));
+                    caVar.b(LocaleController.getString(R.string.LogOutTitle), false);
                     return;
                 }
                 return;
-            default:
-                AndroidUtilities.removeFromParent(this.f43225b.P);
+            }
+            org.telegram.ui.Cells.d9 d9Var = (org.telegram.ui.Cells.d9) view;
+            if (i10 == zg0Var.f44620c) {
+                d9Var.b(R.drawable.msg_contact_add, LocaleController.getString(R.string.AddAnotherAccount), LocaleController.getString(R.string.AddAnotherAccountInfo), true);
                 return;
+            } else if (i10 == zg0Var.d) {
+                d9Var.b(R.drawable.msg_permissions, LocaleController.getString(R.string.SetPasscode), LocaleController.getString(R.string.SetPasscodeInfo), true);
+                return;
+            } else if (i10 == zg0Var.f44621e) {
+                d9Var.b(R.drawable.msg_clearcache, LocaleController.getString(R.string.ClearCache), LocaleController.getString(R.string.ClearCacheInfo), true);
+                return;
+            } else if (i10 == zg0Var.f44622f) {
+                d9Var.b(R.drawable.msg_newphone, LocaleController.getString(R.string.ChangePhoneNumber), LocaleController.getString(R.string.ChangePhoneNumberInfo), true);
+                return;
+            } else if (i10 == zg0Var.h) {
+                d9Var.b(R.drawable.msg_help, LocaleController.getString(R.string.ContactSupport), LocaleController.getString(R.string.ContactSupportInfo), false);
+                return;
+            } else {
+                return;
+            }
         }
+        org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) view;
+        if (i10 == 0) {
+            m4Var.setText(LocaleController.getString(R.string.AlternativeOptions));
+        }
+    }
+
+    @Override
+    public final s4.d1 x(ViewGroup viewGroup, int i10) {
+        org.telegram.ui.Cells.d9 d9Var;
+        View view;
+        Context context = this.f44338c;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    if (i10 != 3) {
+                        view = new org.telegram.ui.Cells.e9(context);
+                        view.setBackgroundDrawable(org.telegram.ui.ActionBar.i6.W0(context, R.drawable.greydivider, org.telegram.ui.ActionBar.i6.f20761b7));
+                    } else {
+                        FrameLayout caVar = new org.telegram.ui.Cells.ca(context);
+                        caVar.setBackgroundColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20797d6, false));
+                        d9Var = caVar;
+                    }
+                } else {
+                    view = new org.telegram.ui.Cells.b7(context, (org.telegram.ui.Cells.c1) null);
+                }
+                return com.google.android.gms.internal.vision.e2.k(view, view, -1, -2);
+            }
+            org.telegram.ui.Cells.d9 d9Var2 = new org.telegram.ui.Cells.d9(context);
+            d9Var2.setMultilineDetail(true);
+            d9Var2.setBackgroundColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20797d6, false));
+            d9Var = d9Var2;
+        } else {
+            FrameLayout m4Var = new org.telegram.ui.Cells.m4(context);
+            m4Var.setBackgroundColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20797d6, false));
+            d9Var = m4Var;
+        }
+        view = d9Var;
+        return com.google.android.gms.internal.vision.e2.k(view, view, -1, -2);
     }
 }

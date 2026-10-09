@@ -1,65 +1,91 @@
 package org.telegram.ui.web;
 
-import ai.da;
-import android.webkit.WebView;
-import java.io.Serializable;
-import org.telegram.tgnet.TLObject;
+import ai.ea;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-public final class b0 implements Runnable {
-    public final int f42123a;
-    public final Object f42124b;
-    public final Object f42125c;
-    public final Serializable d;
-    public final Object f42126e;
-    public final Object f42127f;
+import org.telegram.tgnet.tl.TL_keyboard;
+import org.telegram.ui.fg1;
+import org.telegram.ui.ny;
+import org.telegram.ui.rj0;
+import org.telegram.ui.ty;
+public final class b0 implements rj0, ny {
+    public final b1 f43231a;
+    public final boolean[] f43232b;
+    public final String f43233c;
+    public final TL_keyboard.TL_buttonTypeRequestPeer d;
+    public final ea f43234e;
 
-    public b0(Object obj, WebView webView, Object obj2, String str, Object obj3, int i10) {
-        this.f42123a = i10;
-        this.f42124b = obj;
-        this.f42126e = webView;
-        this.f42127f = obj2;
-        this.d = str;
-        this.f42125c = obj3;
+    public b0(b1 b1Var, boolean[] zArr, String str, TL_keyboard.TL_buttonTypeRequestPeer tL_buttonTypeRequestPeer, ea eaVar) {
+        this.f43231a = b1Var;
+        this.f43232b = zArr;
+        this.f43233c = str;
+        this.d = tL_buttonTypeRequestPeer;
+        this.f43234e = eaVar;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.b0.run():void");
+    public boolean C() {
+        return false;
     }
 
-    public b0(Object obj, String str, Serializable serializable, String str2, String str3, int i10) {
-        this.f42123a = i10;
-        this.f42124b = obj;
-        this.d = str;
-        this.f42126e = serializable;
-        this.f42127f = str2;
-        this.f42125c = str3;
+    @Override
+    public boolean K(ty tyVar) {
+        return false;
     }
 
-    public b0(c1 c1Var, TLObject tLObject, da daVar, String str, String str2) {
-        this.f42123a = 1;
-        this.f42124b = c1Var;
-        this.f42125c = tLObject;
-        this.f42126e = daVar;
-        this.d = str;
-        this.f42127f = str2;
+    @Override
+    public void a(ArrayList arrayList) {
+        if (!arrayList.isEmpty()) {
+            int i10 = 0;
+            this.f43232b[0] = true;
+            TLRPC.TL_messages_sendBotRequestedPeer tL_messages_sendBotRequestedPeer = new TLRPC.TL_messages_sendBotRequestedPeer();
+            b1 b1Var = this.f43231a;
+            MessagesController.getInstance(b1Var.M);
+            tL_messages_sendBotRequestedPeer.peer = MessagesController.getInputPeer(b1Var.U);
+            String str = this.f43233c;
+            tL_messages_sendBotRequestedPeer.webapp_req_id = str;
+            tL_messages_sendBotRequestedPeer.button_id = this.d.button_id;
+            int size = arrayList.size();
+            while (i10 < size) {
+                Object obj = arrayList.get(i10);
+                i10++;
+                tL_messages_sendBotRequestedPeer.requested_peers.add(MessagesController.getInstance(b1Var.M).getInputPeer(((Long) obj).longValue()));
+            }
+            ConnectionsManager.getInstance(b1Var.M).sendRequestTyped(tL_messages_sendBotRequestedPeer, new Object(), new u(b1Var, this.f43234e, str, 2));
+        }
     }
 
-    public b0(c1 c1Var, TLObject tLObject, String[] strArr, TLRPC.TL_error tL_error, org.telegram.ui.ActionBar.b2 b2Var) {
-        this.f42123a = 3;
-        this.f42124b = c1Var;
-        this.f42125c = tLObject;
-        this.d = strArr;
-        this.f42126e = tL_error;
-        this.f42127f = b2Var;
-    }
-
-    public b0(c1 c1Var, TLRPC.TL_error tL_error, String str, TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, TLObject tLObject) {
-        this.f42123a = 0;
-        this.f42124b = c1Var;
-        this.f42126e = tL_error;
-        this.d = str;
-        this.f42127f = tL_inputInvoiceSlug;
-        this.f42125c = tLObject;
+    @Override
+    public boolean w(ty tyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, fg1 fg1Var) {
+        if (!arrayList.isEmpty()) {
+            int i12 = 0;
+            this.f43232b[0] = true;
+            TLRPC.TL_messages_sendBotRequestedPeer tL_messages_sendBotRequestedPeer = new TLRPC.TL_messages_sendBotRequestedPeer();
+            b1 b1Var = this.f43231a;
+            MessagesController.getInstance(b1Var.M);
+            tL_messages_sendBotRequestedPeer.peer = MessagesController.getInputPeer(b1Var.U);
+            String str = this.f43233c;
+            tL_messages_sendBotRequestedPeer.webapp_req_id = str;
+            tL_messages_sendBotRequestedPeer.button_id = this.d.button_id;
+            HashSet hashSet = new HashSet();
+            int size = arrayList.size();
+            while (i12 < size) {
+                Object obj = arrayList.get(i12);
+                i12++;
+                hashSet.add(Long.valueOf(((MessagesStorage.TopicKey) obj).dialogId));
+            }
+            Iterator it = hashSet.iterator();
+            while (it.hasNext()) {
+                tL_messages_sendBotRequestedPeer.requested_peers.add(MessagesController.getInstance(b1Var.M).getInputPeer(((Long) it.next()).longValue()));
+            }
+            ConnectionsManager.getInstance(b1Var.M).sendRequestTyped(tL_messages_sendBotRequestedPeer, new Object(), new u(b1Var, this.f43234e, str, 1));
+        }
+        tyVar.finishFragment();
+        return true;
     }
 }

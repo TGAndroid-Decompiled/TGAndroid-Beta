@@ -1,17 +1,24 @@
 package gg;
 
-import org.telegram.tgnet.TLObject;
-import org.telegram.ui.Components.jo0;
-public final class z extends c2 {
-    public final jo0 f10872t;
+import android.content.Context;
+import org.telegram.ui.Cells.s2;
+public final class z extends s2 {
+    public final int f10877a5;
 
-    public z(jo0 jo0Var) {
-        super(false);
-        this.f10872t = jo0Var;
+    public z(int i10, Context context, boolean z10) {
+        super(context, z10);
+        this.f10877a5 = i10;
     }
 
     @Override
-    public final boolean d(TLObject tLObject) {
-        return this.f10872t.F(tLObject);
+    public final boolean Q() {
+        switch (this.f10877a5) {
+            case 0:
+                return false;
+            case 1:
+                return false;
+            default:
+                return false;
+        }
     }
 }

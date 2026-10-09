@@ -1,43 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-public final class za0 extends s4.n0 {
-    public final ab0 f33478a;
+import org.telegram.tgnet.TLRPC;
+public final class za0 implements nu0 {
+    public final db0 f33513a;
 
-    public za0(ab0 ab0Var) {
-        this.f33478a = ab0Var;
+    public za0(db0 db0Var) {
+        this.f33513a = db0Var;
     }
 
     @Override
-    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.z0 z0Var) {
-        int R;
-        int i10 = 0;
-        rect.left = 0;
-        rect.right = 0;
-        rect.top = 0;
-        rect.bottom = 0;
-        s4.o0 layoutManager = recyclerView.getLayoutManager();
-        bb0 bb0Var = this.f33478a.f24583i3;
-        if (layoutManager == bb0Var.d && (R = RecyclerView.R(view)) != 0 && !bb0Var.f24930f.N()) {
-            if (bb0Var.f24930f.I() == null && bb0Var.f24930f.U == null) {
-                rect.top = AndroidUtilities.dp(2.0f);
-            } else if (R != 0) {
-                R--;
-                ua0 ua0Var = bb0Var.d;
-                ua0Var.B1();
-                if (R > ua0Var.U) {
-                    rect.top = AndroidUtilities.dp(2.0f);
-                }
-            } else {
-                return;
-            }
-            if (!bb0Var.d.E1(R)) {
-                i10 = AndroidUtilities.dp(2.0f);
-            }
-            rect.right = i10;
-        }
+    public final void R() {
+        this.f33513a.a0();
+    }
+
+    @Override
+    public final boolean T() {
+        return false;
+    }
+
+    @Override
+    public final qm0 f() {
+        return null;
+    }
+
+    @Override
+    public final TLRPC.Chat g() {
+        return null;
+    }
+
+    @Override
+    public final boolean h(TLRPC.ChatParticipant chatParticipant, boolean z10, boolean z11, View view) {
+        return false;
+    }
+
+    @Override
+    public final boolean q() {
+        return true;
+    }
+
+    @Override
+    public final void E() {
     }
 }

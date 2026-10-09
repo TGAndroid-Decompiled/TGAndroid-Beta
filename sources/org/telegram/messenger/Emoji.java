@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.telegram.messenger.CompoundEmoji;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.rq;
+import org.telegram.ui.Components.er;
 public class Emoji {
     private static final String[] DEFAULT_RECENT;
     private static final int MAX_RECENT_EMOJI_COUNT = 48;
@@ -366,7 +366,9 @@ public class Emoji {
 
     public static void loadRecentEmoji() {
         String string;
+        boolean z10;
         if (!recentEmojiLoaded) {
+            boolean z11 = true;
             recentEmojiLoaded = true;
             SharedPreferences globalEmojiSettings = MessagesController.getGlobalEmojiSettings();
             try {
@@ -375,11 +377,15 @@ public class Emoji {
                     try {
                         String string2 = globalEmojiSettings.getString("emojis", "");
                         if (string2 != null && string2.length() > 0) {
-                            for (String str : string2.split(",")) {
-                                String[] split = str.split("=");
-                                long longValue = Utilities.parseLong(split[0]).longValue();
+                            String[] split = string2.split(",");
+                            int length = split.length;
+                            int i10 = 0;
+                            while (i10 < length) {
+                                String[] split2 = split[i10].split("=");
+                                long longValue = Utilities.parseLong(split2[0]).longValue();
                                 StringBuilder sb2 = new StringBuilder();
-                                for (int i10 = 0; i10 < 4; i10++) {
+                                boolean z12 = z11;
+                                for (int i11 = 0; i11 < 4; i11++) {
                                     sb2.insert(0, (char) longValue);
                                     longValue >>= 16;
                                     if (longValue == 0) {
@@ -387,10 +393,13 @@ public class Emoji {
                                     }
                                 }
                                 if (sb2.length() > 0) {
-                                    emojiUseHistory.put(sb2.toString(), Utilities.parseInt((CharSequence) split[1]));
+                                    emojiUseHistory.put(sb2.toString(), Utilities.parseInt((CharSequence) split2[z12 ? 1 : 0]));
                                 }
+                                i10++;
+                                z11 = z12 ? 1 : 0;
                             }
                         }
+                        z10 = z11;
                         globalEmojiSettings.edit().remove("emojis").commit();
                         saveRecentEmoji();
                     } catch (Exception e7) {
@@ -402,25 +411,26 @@ public class Emoji {
                         return;
                     }
                 } else {
+                    z10 = true;
                     String string3 = globalEmojiSettings.getString("emojis2", "");
                     if (string3 != null && string3.length() > 0) {
-                        for (String str2 : string3.split(",")) {
-                            String[] split2 = str2.split("=");
-                            emojiUseHistory.put(split2[0], Utilities.parseInt((CharSequence) split2[1]));
+                        for (String str : string3.split(",")) {
+                            String[] split3 = str.split("=");
+                            emojiUseHistory.put(split3[0], Utilities.parseInt((CharSequence) split3[1]));
                         }
                     }
                 }
                 if (emojiUseHistory.isEmpty() && !globalEmojiSettings.getBoolean("filled_default", false)) {
-                    int i11 = 0;
+                    int i12 = 0;
                     while (true) {
                         String[] strArr = DEFAULT_RECENT;
-                        if (i11 >= strArr.length) {
+                        if (i12 >= strArr.length) {
                             break;
                         }
-                        emojiUseHistory.put(strArr[i11], Integer.valueOf(strArr.length - i11));
-                        i11++;
+                        emojiUseHistory.put(strArr[i12], Integer.valueOf(strArr.length - i12));
+                        i12++;
                     }
-                    globalEmojiSettings.edit().putBoolean("filled_default", true).commit();
+                    globalEmojiSettings.edit().putBoolean("filled_default", z10).commit();
                     saveRecentEmoji();
                 }
                 sortEmoji();
@@ -430,9 +440,9 @@ public class Emoji {
             try {
                 string = globalEmojiSettings.getString("color", "");
                 if (string == null && string.length() > 0) {
-                    for (String str3 : string.split(",")) {
-                        String[] split3 = str3.split("=");
-                        emojiColor.put(split3[0], split3[1]);
+                    for (String str2 : string.split(",")) {
+                        String[] split4 = str2.split("=");
+                        emojiColor.put(split4[0], split4[1]);
                     }
                 }
             } catch (Exception e11) {
@@ -508,7 +518,7 @@ public class Emoji {
         while (true) {
             ArrayList<String> arrayList = recentEmoji;
             if (arrayList.size() > 48) {
-                a4.a.y(1, arrayList);
+                a1.g.y(1, arrayList);
             } else {
                 return;
             }
@@ -559,7 +569,7 @@ public class Emoji {
         @Override
         public void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
             boolean z10;
-            this.lastDrawX = a4.a.B(this.scale, this.size, 2.0f, f7);
+            this.lastDrawX = a1.g.B(this.scale, this.size, 2.0f, f7);
             this.lastDrawY = ((i14 - i12) / 2.0f) + i12;
             boolean z11 = true;
             this.drawn = true;
@@ -737,18 +747,17 @@ public class Emoji {
 
     public static CharSequence replaceWithRestrictedEmoji(CharSequence charSequence, Paint.FontMetricsInt fontMetricsInt, int i10, Runnable runnable) {
         Spannable newSpannable;
-        int i11;
         EmojiSpanRange emojiSpanRange;
         TLRPC.Document document;
-        org.telegram.ui.Components.z5 z5Var;
-        int i12;
+        org.telegram.ui.Components.b6 b6Var;
+        int i11;
         if (SharedConfig.useSystemEmoji || charSequence == null || charSequence.length() == 0) {
             return charSequence;
         }
-        int i13 = UserConfig.selectedAccount;
+        int i12 = UserConfig.selectedAccount;
         TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
         tL_inputStickerSetShortName.short_name = "RestrictedEmoji";
-        TLRPC.TL_messages_stickerSet stickerSet = MediaDataController.getInstance(i13).getStickerSet(tL_inputStickerSetShortName, 0, false, true, runnable == null ? null : new b1(runnable, 1));
+        TLRPC.TL_messages_stickerSet stickerSet = MediaDataController.getInstance(i12).getStickerSet(tL_inputStickerSetShortName, 0, false, true, runnable == null ? null : new b1(runnable, 1));
         if (charSequence instanceof Spannable) {
             newSpannable = (Spannable) charSequence;
         } else {
@@ -758,24 +767,23 @@ public class Emoji {
         if (parseEmojis.isEmpty()) {
             return charSequence;
         }
-        org.telegram.ui.Components.z5[] z5VarArr = (org.telegram.ui.Components.z5[]) newSpannable.getSpans(0, newSpannable.length(), org.telegram.ui.Components.z5.class);
-        int i14 = SharedConfig.getDevicePerformanceClass() >= 2 ? 100 : 50;
-        for (int i15 = 0; i15 < parseEmojis.size(); i15++) {
+        org.telegram.ui.Components.b6[] b6VarArr = (org.telegram.ui.Components.b6[]) newSpannable.getSpans(0, newSpannable.length(), org.telegram.ui.Components.b6.class);
+        int i13 = SharedConfig.getDevicePerformanceClass() >= 2 ? 100 : 50;
+        for (int i14 = 0; i14 < parseEmojis.size(); i14++) {
             try {
-                emojiSpanRange = parseEmojis.get(i15);
-                if (z5VarArr != null) {
-                    while (i12 < z5VarArr.length) {
-                        org.telegram.ui.Components.z5 z5Var2 = z5VarArr[i12];
-                        i12 = (z5Var2 != null && newSpannable.getSpanStart(z5Var2) == emojiSpanRange.start && newSpannable.getSpanEnd(z5Var2) == emojiSpanRange.end) ? 0 : i12 + 1;
+                emojiSpanRange = parseEmojis.get(i14);
+                if (b6VarArr != null) {
+                    for (org.telegram.ui.Components.b6 b6Var2 : b6VarArr) {
+                        i11 = (b6Var2 != null && newSpannable.getSpanStart(b6Var2) == emojiSpanRange.start && newSpannable.getSpanEnd(b6Var2) == emojiSpanRange.end) ? 0 : i11 + 1;
                     }
                 }
                 if (stickerSet != null) {
                     ArrayList<TLRPC.Document> arrayList = stickerSet.documents;
                     int size = arrayList.size();
-                    int i16 = 0;
-                    while (i16 < size) {
-                        TLRPC.Document document2 = arrayList.get(i16);
-                        i16++;
+                    int i15 = 0;
+                    while (i15 < size) {
+                        TLRPC.Document document2 = arrayList.get(i15);
+                        i15++;
                         document = document2;
                         if (MessageObject.findAnimatedEmojiEmoticon(document, null).contains(emojiSpanRange.code)) {
                             break;
@@ -784,28 +792,27 @@ public class Emoji {
                 }
                 document = null;
                 if (document != null) {
-                    z5Var = new org.telegram.ui.Components.z5(document, fontMetricsInt);
+                    b6Var = new org.telegram.ui.Components.b6(document, fontMetricsInt);
                 } else {
-                    z5Var = new org.telegram.ui.Components.z5(0L, fontMetricsInt);
+                    b6Var = new org.telegram.ui.Components.b6(0L, fontMetricsInt);
                 }
-                z5Var.emoji = emojiSpanRange.code.toString();
+                b6Var.emoji = emojiSpanRange.code.toString();
             } catch (Exception e7) {
                 e = e7;
             }
             try {
-                z5Var.cacheType = i10;
-                newSpannable.setSpan(z5Var, emojiSpanRange.start, emojiSpanRange.end, 33);
+                b6Var.cacheType = i10;
+                newSpannable.setSpan(b6Var, emojiSpanRange.start, emojiSpanRange.end, 33);
             } catch (Exception e10) {
                 e = e10;
                 FileLog.e(e);
-                i11 = Build.VERSION.SDK_INT;
-                if (i11 >= 23) {
+                if (Build.VERSION.SDK_INT >= 29) {
+                    break;
+                    return newSpannable;
                 }
-                break;
-                return newSpannable;
+                continue;
             }
-            i11 = Build.VERSION.SDK_INT;
-            if ((i11 >= 23 || i11 >= 29) && i15 + 1 >= i14) {
+            if (Build.VERSION.SDK_INT >= 29 && i14 + 1 >= i13) {
                 break;
             }
         }
@@ -832,22 +839,20 @@ public class Emoji {
         if (parseEmojis.isEmpty()) {
             return charSequence;
         }
-        org.telegram.ui.Components.z5[] z5VarArr = (org.telegram.ui.Components.z5[]) newSpannable.getSpans(0, newSpannable.length(), org.telegram.ui.Components.z5.class);
-        rq[] rqVarArr = (rq[]) newSpannable.getSpans(0, newSpannable.length(), rq.class);
+        org.telegram.ui.Components.b6[] b6VarArr = (org.telegram.ui.Components.b6[]) newSpannable.getSpans(0, newSpannable.length(), org.telegram.ui.Components.b6.class);
+        er[] erVarArr = (er[]) newSpannable.getSpans(0, newSpannable.length(), er.class);
         int i14 = (SharedConfig.getDevicePerformanceClass() >= 2 ? 100 : 50) - i11;
         for (int i15 = 0; i15 < parseEmojis.size(); i15++) {
             try {
                 EmojiSpanRange emojiSpanRange = parseEmojis.get(i15);
-                if (z5VarArr != null && z5VarArr.length > 0) {
-                    while (i13 < z5VarArr.length) {
-                        org.telegram.ui.Components.z5 z5Var = z5VarArr[i13];
-                        i13 = (z5Var != null && newSpannable.getSpanStart(z5Var) == emojiSpanRange.start && newSpannable.getSpanEnd(z5Var) == emojiSpanRange.end) ? 0 : i13 + 1;
+                if (b6VarArr != null && b6VarArr.length > 0) {
+                    for (org.telegram.ui.Components.b6 b6Var : b6VarArr) {
+                        i13 = (b6Var != null && newSpannable.getSpanStart(b6Var) == emojiSpanRange.start && newSpannable.getSpanEnd(b6Var) == emojiSpanRange.end) ? 0 : i13 + 1;
                     }
                 }
-                if (rqVarArr != null && rqVarArr.length > 0) {
-                    while (i12 < rqVarArr.length) {
-                        rq rqVar = rqVarArr[i12];
-                        i12 = (rqVar != null && newSpannable.getSpanStart(rqVar) == emojiSpanRange.start && newSpannable.getSpanEnd(rqVar) == emojiSpanRange.end) ? 0 : i12 + 1;
+                if (erVarArr != null && erVarArr.length > 0) {
+                    for (er erVar : erVarArr) {
+                        i12 = (erVar != null && newSpannable.getSpanStart(erVar) == emojiSpanRange.start && newSpannable.getSpanEnd(erVar) == emojiSpanRange.end) ? 0 : i12 + 1;
                     }
                 }
                 EmojiDrawable emojiDrawable = getEmojiDrawable(emojiSpanRange.code);
@@ -861,8 +866,7 @@ public class Emoji {
             } catch (Exception e7) {
                 FileLog.e(e7);
             }
-            int i16 = Build.VERSION.SDK_INT;
-            if ((i16 < 23 || i16 >= 29) && i15 + 1 >= i14) {
+            if (Build.VERSION.SDK_INT >= 29 && i15 + 1 >= i14) {
                 break;
             }
         }

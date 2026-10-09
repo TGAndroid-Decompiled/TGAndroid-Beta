@@ -4,26 +4,26 @@ import android.os.Parcel;
 import android.os.ParcelFileDescriptor;
 import android.os.Parcelable;
 import com.google.android.gms.common.data.DataHolder;
-import w7.g0;
+import w7.d0;
 public final class b extends o6.a {
     public static final Parcelable.Creator<b> CREATOR = new h(2);
-    public String f16337a;
-    public DataHolder f16338b;
-    public ParcelFileDescriptor f16339c;
+    public String f16271a;
+    public DataHolder f16272b;
+    public ParcelFileDescriptor f16273c;
     public long d;
-    public byte[] f16340e;
+    public byte[] f16274e;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = g0.q(parcel, 20293);
-        g0.l(parcel, 2, this.f16337a);
-        g0.k(parcel, 3, this.f16338b, i10);
-        g0.k(parcel, 4, this.f16339c, i10);
+        int q6 = d0.q(parcel, 20293);
+        d0.l(parcel, 2, this.f16271a);
+        d0.k(parcel, 3, this.f16272b, i10);
+        d0.k(parcel, 4, this.f16273c, i10);
         long j3 = this.d;
-        g0.s(parcel, 5, 8);
+        d0.s(parcel, 5, 8);
         parcel.writeLong(j3);
-        g0.c(parcel, 6, this.f16340e);
-        g0.r(parcel, q6);
-        this.f16339c = null;
+        d0.c(parcel, 6, this.f16274e);
+        d0.r(parcel, q6);
+        this.f16273c = null;
     }
 }

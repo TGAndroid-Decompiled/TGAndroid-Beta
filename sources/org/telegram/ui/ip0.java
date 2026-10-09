@@ -1,82 +1,104 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.Utilities;
+import android.content.Context;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DocumentObject;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-public final class ip0 implements Utilities.Callback {
-    public final int f37471a;
-    public final jp0 f37472b;
+public final class ip0 extends FrameLayout {
+    public long f38736a;
+    public TL_stars.starGiftAttributeBackdrop f38737b;
+    public TL_stars.starGiftAttributePattern f38738c;
+    public final FrameLayout d;
+    public final xh.g1 f38739e;
+    public final org.telegram.ui.Components.y9 f38740f;
+    public final xh.k1 h;
+    public TLRPC.Document f38741n;
 
-    public ip0(jp0 jp0Var, int i10) {
-        this.f37471a = i10;
-        this.f37472b = jp0Var;
+    public ip0(Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
+        super(context);
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.d = frameLayout;
+        xh.g1 g1Var = new xh.g1(frameLayout, e6Var, false);
+        this.f38739e = g1Var;
+        frameLayout.setBackground(g1Var);
+        addView(frameLayout, w7.x5.e(-1, -1, 119));
+        w7.z5.b(frameLayout, 0.025f, 1.25f);
+        org.telegram.ui.Components.y9 y9Var = new org.telegram.ui.Components.y9(context);
+        this.f38740f = y9Var;
+        frameLayout.addView(y9Var, w7.x5.a(80.0f, 0.0f, 12.0f, 0.0f, 12.0f, 80, 17));
+        if (z10) {
+            xh.k1 k1Var = new xh.k1(context);
+            this.h = k1Var;
+            addView(k1Var, w7.x5.a(-2.0f, 0.0f, 2.0f, 1.0f, 0.0f, -2, 53));
+            return;
+        }
+        this.h = null;
     }
 
-    @Override
-    public final void run(Object obj) {
-        TL_stars.StarGift starGift;
-        int i10;
-        qp0 qp0Var;
-        up0 up0Var;
-        qp0 qp0Var2;
-        switch (this.f37471a) {
-            case 0:
-                Integer num = (Integer) obj;
-                jp0 jp0Var = this.f37472b;
-                qp0 qp0Var3 = jp0Var.f37751e;
-                if (num.intValue() == 0) {
-                    starGift = null;
-                } else {
-                    starGift = (TL_stars.StarGift) qp0Var3.M.get(num);
-                }
-                qp0Var3.K = starGift;
-                wp0 wp0Var = qp0Var3.f39849p0;
-                if (starGift == null) {
-                    xh.v3 v3Var = qp0Var3.J;
-                    if (v3Var != null) {
-                        v3Var.f();
-                        qp0Var3.J = null;
-                    }
-                } else {
-                    xh.v3 v3Var2 = qp0Var3.J;
-                    if (v3Var2 == null || v3Var2.f50289b != starGift.f20274id) {
-                        i10 = ((org.telegram.ui.ActionBar.n2) wp0Var).currentAccount;
-                        xh.v3 v3Var3 = new xh.v3(qp0Var3.K.f20274id, i10, new ip0(jp0Var, 2));
-                        qp0Var3.J = v3Var3;
-                        v3Var3.g(false);
-                    }
-                }
-                qp0.a(qp0Var3);
-                if (wp0Var.I.getCurrentPosition() == 1) {
-                    qp0Var = wp0Var.f42655n;
-                } else {
-                    qp0Var = wp0Var.h;
-                }
-                qp0Var.e();
-                return;
-            case 1:
-                qp0 qp0Var4 = this.f37472b.f37751e;
-                qp0Var4.h = ((Integer) obj).intValue();
-                qp0Var4.f39850r = null;
-                qp0Var4.f39851s = null;
-                qp0Var4.I = null;
-                qp0Var4.j(true);
-                qp0Var4.i();
-                qp0Var4.f(true);
-                pp0 pp0Var = qp0Var4.f39854y;
-                if (pp0Var != null) {
-                    pp0Var.invalidate();
-                }
-                wp0 wp0Var2 = qp0Var4.f39849p0;
-                qp0 qp0Var5 = wp0Var2.f42655n;
-                if (qp0Var5 != null && (up0Var = qp0Var5.f39829a) != null && (qp0Var2 = wp0Var2.h) != null) {
-                    up0Var.a(qp0Var2.h);
-                    return;
-                }
-                return;
-            default:
-                Boolean bool = (Boolean) obj;
-                this.f37472b.f37751e.e();
-                return;
+    public final void a(int i10, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
+        int i11;
+        int i12;
+        this.f38736a = tL_starGiftUnique.f20265id;
+        boolean z10 = true;
+        if (i10 % 3 != 1) {
+            z10 = false;
         }
+        if (z10) {
+            i11 = AndroidUtilities.dp(4.0f);
+        } else {
+            i11 = 0;
+        }
+        if (z10) {
+            i12 = AndroidUtilities.dp(4.0f);
+        } else {
+            i12 = 0;
+        }
+        setPadding(i11, 0, i12, 0);
+        c(tL_starGiftUnique.getDocument(), tL_starGiftUnique);
+        this.f38737b = (TL_stars.starGiftAttributeBackdrop) yh.m5.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeBackdrop.class);
+        this.f38738c = (TL_stars.starGiftAttributePattern) yh.m5.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributePattern.class);
+        TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = this.f38737b;
+        xh.g1 g1Var = this.f38739e;
+        g1Var.d(stargiftattributebackdrop);
+        g1Var.e(this.f38738c);
+    }
+
+    public final void b(boolean z10, boolean z11) {
+        float f7;
+        this.f38739e.f(z10, z11);
+        if (z10) {
+            f7 = 0.9f;
+        } else {
+            f7 = 1.0f;
+        }
+        org.telegram.ui.Components.y9 y9Var = this.f38740f;
+        if (z11) {
+            y9Var.animate().scaleX(f7).scaleY(f7).start();
+            return;
+        }
+        y9Var.animate().cancel();
+        y9Var.setScaleX(f7);
+        y9Var.setScaleY(f7);
+    }
+
+    public final void c(TLRPC.Document document, TL_stars.StarGift starGift) {
+        org.telegram.ui.Components.y9 y9Var = this.f38740f;
+        if (document == null) {
+            y9Var.b();
+            this.f38741n = null;
+        } else if (this.f38741n == document) {
+        } else {
+            this.f38741n = document;
+            TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(100.0f));
+            y9Var.l(ImageLocation.getForDocument(document), "100_100", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "100_100", DocumentObject.getSvgThumb(document, org.telegram.ui.ActionBar.i6.f20741a7, 0.3f), starGift);
+        }
+    }
+
+    public long getGiftId() {
+        return this.f38736a;
     }
 }

@@ -1,36 +1,91 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class v60 extends org.telegram.ui.Components.j20 {
-    public final d70 f41612r;
+import android.view.KeyEvent;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.MessagesController;
+public final class v60 implements View.OnKeyListener {
+    public final int f42659a;
+    public boolean f42660b;
+    public final org.telegram.ui.ActionBar.n2 f42661c;
 
-    public v60(d70 d70Var, Context context, int i10) {
-        super(context, i10);
-        this.f41612r = d70Var;
+    public v60(int i10, org.telegram.ui.ActionBar.n2 n2Var) {
+        this.f42659a = i10;
+        this.f42661c = n2Var;
     }
 
     @Override
-    public final void a(org.telegram.ui.Components.q30 q30Var) {
-        super.a(q30Var);
-        d70.Y(this.f41612r);
-    }
-
-    @Override
-    public final void b() {
-        super.b();
-        d70.Y(this.f41612r);
-    }
-
-    @Override
-    public final void c(org.telegram.ui.Components.q30 q30Var) {
-        d70 d70Var = this.f41612r;
-        if (q30Var == d70Var.X) {
-            d70Var.X = null;
+    public final boolean onKey(View view, int i10, KeyEvent keyEvent) {
+        switch (this.f42659a) {
+            case 0:
+                c70 c70Var = (c70) this.f42661c;
+                if (i10 != 67) {
+                    return false;
+                }
+                boolean z10 = true;
+                if (keyEvent.getAction() == 0) {
+                    if (c70Var.f36549f.f30614r.length() != 0) {
+                        z10 = false;
+                    }
+                    this.f42660b = z10;
+                    return false;
+                } else if (keyEvent.getAction() != 1 || !this.f42660b || c70Var.f36541a0.isEmpty()) {
+                    return false;
+                } else {
+                    c70Var.h.c((org.telegram.ui.Components.d40) hg.c.g(1, c70Var.f36541a0));
+                    c70Var.s0();
+                    c70Var.k0();
+                    return true;
+                }
+            default:
+                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) this.f42661c;
+                ArrayList arrayList = usersSelectActivity.O;
+                if (i10 != 67) {
+                    return false;
+                }
+                boolean z11 = true;
+                if (keyEvent.getAction() == 0) {
+                    if (usersSelectActivity.f34594c.length() != 0) {
+                        z11 = false;
+                    }
+                    this.f42660b = z11;
+                    return false;
+                } else if (keyEvent.getAction() != 1 || !this.f42660b || arrayList.isEmpty()) {
+                    return false;
+                } else {
+                    org.telegram.ui.Components.d40 d40Var = (org.telegram.ui.Components.d40) hg.c.g(1, arrayList);
+                    usersSelectActivity.f34593b.b(d40Var);
+                    if (usersSelectActivity.f34601x == 2) {
+                        if (d40Var.getUid() == -9223372036854775800L) {
+                            usersSelectActivity.J &= -2;
+                        } else if (d40Var.getUid() == -9223372036854775799L) {
+                            usersSelectActivity.J &= -3;
+                        } else if (d40Var.getUid() == Long.MIN_VALUE) {
+                            usersSelectActivity.J &= -5;
+                        } else if (d40Var.getUid() == -9223372036854775807L) {
+                            usersSelectActivity.J &= -9;
+                        }
+                    } else if (d40Var.getUid() == Long.MIN_VALUE) {
+                        usersSelectActivity.J = (~MessagesController.DIALOG_FILTER_FLAG_CONTACTS) & usersSelectActivity.J;
+                    } else if (d40Var.getUid() == -9223372036854775807L) {
+                        usersSelectActivity.J = (~MessagesController.DIALOG_FILTER_FLAG_NON_CONTACTS) & usersSelectActivity.J;
+                    } else if (d40Var.getUid() == -9223372036854775806L) {
+                        usersSelectActivity.J = (~MessagesController.DIALOG_FILTER_FLAG_GROUPS) & usersSelectActivity.J;
+                    } else if (d40Var.getUid() == -9223372036854775805L) {
+                        usersSelectActivity.J = (~MessagesController.DIALOG_FILTER_FLAG_CHANNELS) & usersSelectActivity.J;
+                    } else if (d40Var.getUid() == -9223372036854775804L) {
+                        usersSelectActivity.J = (~MessagesController.DIALOG_FILTER_FLAG_BOTS) & usersSelectActivity.J;
+                    } else if (d40Var.getUid() == -9223372036854775803L) {
+                        usersSelectActivity.J = (~MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_MUTED) & usersSelectActivity.J;
+                    } else if (d40Var.getUid() == -9223372036854775802L) {
+                        usersSelectActivity.J = (~MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_READ) & usersSelectActivity.J;
+                    } else if (d40Var.getUid() == -9223372036854775801L) {
+                        usersSelectActivity.J = (~MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_ARCHIVED) & usersSelectActivity.J;
+                    }
+                    usersSelectActivity.Y();
+                    usersSelectActivity.W();
+                    return true;
+                }
         }
-        if (q30Var == d70Var.Y) {
-            d70Var.Y = null;
-        }
-        super.c(q30Var);
-        d70.Y(d70Var);
     }
 }

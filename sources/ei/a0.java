@@ -1,14 +1,13 @@
 package ei;
-public final class a0 extends org.telegram.ui.ActionBar.d5 {
-    public final d0 f8907p;
 
-    public a0(d0 d0Var) {
-        this.f8907p = d0Var;
-    }
+import android.widget.LinearLayout;
+import android.widget.TextView;
+public final class a0 extends LinearLayout {
+    public TextView f8919a;
+    public ai.q4 f8920b;
+    public String f8921c;
 
-    @Override
-    public final void invalidateSelf() {
-        super.invalidateSelf();
-        this.f8907p.invalidate();
+    public String getCommand() {
+        return this.f8921c;
     }
 }

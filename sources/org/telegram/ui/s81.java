@@ -1,37 +1,36 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-public final class s81 extends org.telegram.ui.Components.g61 {
-    public static final int f40381a = 0;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class s81 implements Runnable {
+    public final int f41609a;
+    public final t81 f41610b;
 
-    static {
-        org.telegram.ui.Components.g61.setup(new org.telegram.ui.Components.g61());
+    public s81(t81 t81Var, int i10) {
+        this.f41609a = i10;
+        this.f41610b = t81Var;
     }
 
     @Override
-    public final void bindView(View view, org.telegram.ui.Components.h61 h61Var, boolean z10, org.telegram.ui.Components.w61 w61Var, org.telegram.ui.Components.e71 e71Var) {
-        ((t81) view).set(h61Var.f27106z);
-    }
-
-    @Override
-    public final boolean contentsEquals(org.telegram.ui.Components.h61 h61Var, org.telegram.ui.Components.h61 h61Var2) {
-        if (h61Var.f27106z == h61Var2.f27106z) {
-            return true;
+    public final void run() {
+        String sb2;
+        switch (this.f41609a) {
+            case 0:
+                t81 t81Var = this.f41610b;
+                String str = t81Var.f41910b.text;
+                if (str != null && str.equals("AUTH_TOKEN_EXCEPTION")) {
+                    sb2 = LocaleController.getString(R.string.AccountAlreadyLoggedIn);
+                } else {
+                    StringBuilder sb3 = new StringBuilder();
+                    org.telegram.ui.Cells.c1.l(R.string.ErrorOccurred, "\n", sb3);
+                    sb3.append(t81Var.f41910b.text);
+                    sb2 = sb3.toString();
+                }
+                org.telegram.ui.Components.g5.t0(t81Var.f41911c, LocaleController.getString(R.string.AuthAnotherClient), sb2, null);
+                return;
+            default:
+                org.telegram.ui.Components.g5.t0(this.f41610b.f41911c, LocaleController.getString(R.string.AuthAnotherClient), LocaleController.getString(R.string.ErrorOccurred), null);
+                return;
         }
-        return false;
-    }
-
-    @Override
-    public final View createView(Context context, org.telegram.ui.Components.zl0 zl0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
-        return new t81(context, d6Var);
-    }
-
-    @Override
-    public final boolean equals(org.telegram.ui.Components.h61 h61Var, org.telegram.ui.Components.h61 h61Var2) {
-        if (h61Var.d == h61Var2.d) {
-            return true;
-        }
-        return false;
     }
 }

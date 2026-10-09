@@ -1,117 +1,277 @@
 package ei;
 
-import android.app.Activity;
 import android.content.Context;
-import java.util.HashSet;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.regex.Pattern;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.KeyEvent;
+import android.view.View;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.json.JSONObject;
+import org.telegram.messenger.AccountInstance;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.MessageSuggestionParams;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.f31;
-import org.telegram.ui.h60;
-import org.telegram.ui.yn;
-import org.telegram.ui.zh;
-public final class c1 implements RequestDelegate {
-    public final int f8950a = 0;
-    public final long f8951b;
-    public final int f8952c;
-    public final Object d;
-    public final Object f8953e;
-    public final Object f8954f;
-    public final Object f8955g;
+import org.telegram.ui.ba;
+import org.telegram.ui.fg0;
+import org.telegram.ui.fg1;
+import org.telegram.ui.ny;
+import org.telegram.ui.ty;
+import org.telegram.ui.zn;
+import yh.e7;
+import yh.m5;
+public final class c1 implements View.OnClickListener {
+    public final int f8987a = 0;
+    public final long f8988b;
+    public final int f8989c;
+    public final KeyEvent.Callback d;
+    public final Object f8990e;
+    public final Object f8991f;
     public final Object h;
 
-    public c1(int i10, org.telegram.ui.ActionBar.b2 b2Var, Context context, long j3, d6 d6Var, org.telegram.ui.web.s sVar, org.telegram.tgnet.e eVar) {
-        this.f8952c = i10;
-        this.d = b2Var;
-        this.f8953e = context;
-        this.f8951b = j3;
-        this.f8954f = d6Var;
-        this.f8955g = sVar;
-        this.h = eVar;
+    public c1(p1 p1Var, TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, org.telegram.tgnet.e eVar, int i10, long j3, org.telegram.ui.web.s sVar) {
+        this.d = p1Var;
+        this.f8990e = tL_messages_preparedInlineMessage;
+        this.f8991f = eVar;
+        this.f8989c = i10;
+        this.f8988b = j3;
+        this.h = sVar;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f8950a;
-        Object obj = this.h;
-        Object obj2 = this.f8955g;
-        Object obj3 = this.f8953e;
-        Object obj4 = this.f8954f;
-        Object obj5 = this.d;
-        switch (i10) {
+    public final void onClick(View view) {
+        TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage;
+        boolean z10;
+        zf.a aVar;
+        switch (this.f8987a) {
             case 0:
-                org.telegram.tgnet.e eVar = (org.telegram.tgnet.e) obj;
-                AndroidUtilities.runOnUIThread(new f1(tLObject, this.f8952c, (org.telegram.ui.ActionBar.b2) obj5, (Context) obj3, this.f8951b, (d6) obj4, (org.telegram.ui.web.s) obj2, eVar));
-                return;
-            case 1:
-                h60.v((h60) obj5, this.f8951b, (HashSet) obj3, (AtomicInteger) obj4, this.f8952c, (ChatObject.Call) obj2, (String) obj, tLObject, tL_error);
-                return;
-            case 2:
-                Pattern pattern = LaunchActivity.B1;
-                AndroidUtilities.runOnUIThread(new f1((LaunchActivity) obj5, tLObject, this.f8952c, (String) obj3, (String) obj4, (TLRPC.User) obj2, (String) obj, this.f8951b));
-                return;
-            default:
-                Activity activity = (Activity) obj5;
-                d6 d6Var = (d6) obj4;
-                byte[] bArr = (byte[]) obj3;
-                yn ynVar = (yn) obj2;
-                MessageObject messageObject = (MessageObject) obj;
-                if (tLObject != null) {
-                    if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) {
-                        AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.e(tLObject, activity, d6Var, this.f8951b, bArr, ynVar, messageObject));
-                        return;
-                    } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultReported) {
-                        AndroidUtilities.runOnUIThread(new f31(ynVar, activity, d6Var, messageObject, 0), 200L);
-                        return;
-                    } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultAdsHidden) {
-                        AndroidUtilities.runOnUIThread(new zh(ynVar, this.f8952c, messageObject), 200L);
-                        return;
-                    } else {
-                        return;
+                final p1 p1Var = (p1) this.d;
+                TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage2 = (TLRPC.TL_messages_preparedInlineMessage) this.f8990e;
+                final org.telegram.tgnet.e eVar = (org.telegram.tgnet.e) this.f8991f;
+                org.telegram.ui.web.s sVar = (org.telegram.ui.web.s) this.h;
+                final org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+                if (U != null) {
+                    p1Var.f9282b0 = true;
+                    Bundle bundle = new Bundle();
+                    bundle.putBoolean("onlySelect", true);
+                    bundle.putBoolean("canSelectTopics", true);
+                    bundle.putInt("dialogsType", 1);
+                    if (!tL_messages_preparedInlineMessage2.peer_types.isEmpty()) {
+                        int i10 = 0;
+                        bundle.putBoolean("allowGroups", false);
+                        bundle.putBoolean("allowMegagroups", false);
+                        bundle.putBoolean("allowLegacyGroups", false);
+                        bundle.putBoolean("allowUsers", false);
+                        bundle.putBoolean("allowChannels", false);
+                        bundle.putBoolean("allowBots", false);
+                        ArrayList<TLRPC.InlineQueryPeerType> arrayList = tL_messages_preparedInlineMessage2.peer_types;
+                        int size = arrayList.size();
+                        while (i10 < size) {
+                            TLRPC.InlineQueryPeerType inlineQueryPeerType = arrayList.get(i10);
+                            i10++;
+                            TLRPC.InlineQueryPeerType inlineQueryPeerType2 = inlineQueryPeerType;
+                            org.telegram.ui.web.s sVar2 = sVar;
+                            if (inlineQueryPeerType2 instanceof TLRPC.TL_inlineQueryPeerTypePM) {
+                                z10 = true;
+                                bundle.putBoolean("allowUsers", true);
+                                tL_messages_preparedInlineMessage = tL_messages_preparedInlineMessage2;
+                            } else {
+                                tL_messages_preparedInlineMessage = tL_messages_preparedInlineMessage2;
+                                z10 = true;
+                                if (inlineQueryPeerType2 instanceof TLRPC.TL_inlineQueryPeerTypeBotPM) {
+                                    bundle.putBoolean("allowBots", true);
+                                } else if (inlineQueryPeerType2 instanceof TLRPC.TL_inlineQueryPeerTypeBroadcast) {
+                                    bundle.putBoolean("allowChannels", true);
+                                } else if (inlineQueryPeerType2 instanceof TLRPC.TL_inlineQueryPeerTypeChat) {
+                                    bundle.putBoolean("allowLegacyGroups", true);
+                                } else if (inlineQueryPeerType2 instanceof TLRPC.TL_inlineQueryPeerTypeMegagroup) {
+                                    bundle.putBoolean("allowMegagroups", true);
+                                }
+                            }
+                            tL_messages_preparedInlineMessage2 = tL_messages_preparedInlineMessage;
+                            sVar = sVar2;
+                        }
                     }
-                } else if (tL_error != null && "AD_EXPIRED".equalsIgnoreCase(tL_error.text)) {
-                    AndroidUtilities.runOnUIThread(new f31(ynVar, activity, d6Var, messageObject, 1), 200L);
-                    return;
-                } else {
+                    org.telegram.ui.web.s sVar3 = sVar;
+                    final TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage3 = tL_messages_preparedInlineMessage2;
+                    n1 n1Var = new n1(p1Var, bundle, eVar);
+                    final int i11 = this.f8989c;
+                    final long j3 = this.f8988b;
+                    n1Var.C2 = new ny() {
+                        @Override
+                        public final boolean C() {
+                            return false;
+                        }
+
+                        @Override
+                        public final boolean K(ty tyVar) {
+                            return false;
+                        }
+
+                        @Override
+                        public final boolean w(ty tyVar, ArrayList arrayList2, CharSequence charSequence, boolean z11, boolean z12, int i12, int i13, fg1 fg1Var) {
+                            String str;
+                            TLRPC.TL_forumTopic findTopic;
+                            TLRPC.Message message;
+                            ArrayList arrayList3 = new ArrayList();
+                            int size2 = arrayList2.size();
+                            int i14 = 0;
+                            while (true) {
+                                str = null;
+                                r5 = null;
+                                r5 = null;
+                                MessageObject messageObject = null;
+                                if (i14 >= size2) {
+                                    break;
+                                }
+                                Object obj = arrayList2.get(i14);
+                                i14++;
+                                MessagesStorage.TopicKey topicKey = (MessagesStorage.TopicKey) obj;
+                                long j10 = topicKey.dialogId;
+                                long j11 = topicKey.topicId;
+                                if (!DialogObject.isEncryptedDialog(j10)) {
+                                    int i15 = (j11 > 0L ? 1 : (j11 == 0L ? 0 : -1));
+                                    int i16 = i11;
+                                    if (i15 != 0 && (findTopic = MessagesController.getInstance(i16).getTopicsController().findTopic(-j10, j11)) != null && (message = findTopic.topicStartMessage) != null) {
+                                        messageObject = new MessageObject(i16, message, false, false);
+                                        messageObject.isTopicMainMessage = true;
+                                    }
+                                    MessageObject messageObject2 = messageObject;
+                                    HashMap hashMap = new HashMap();
+                                    StringBuilder sb2 = new StringBuilder("");
+                                    TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage4 = tL_messages_preparedInlineMessage3;
+                                    sb2.append(tL_messages_preparedInlineMessage4.query_id);
+                                    hashMap.put("query_id", sb2.toString());
+                                    hashMap.put("id", "" + tL_messages_preparedInlineMessage4.result.f20036id);
+                                    hashMap.put("bot", "" + j3);
+                                    long j12 = j10;
+                                    SendMessagesHelper.prepareSendingBotContextResult(U, AccountInstance.getInstance(i16), tL_messages_preparedInlineMessage4.result, hashMap, j12, messageObject2, messageObject2, null, null, z12, i12, 0, null, 0L, 0L);
+                                    if (charSequence != null) {
+                                        SendMessagesHelper sendMessagesHelper = SendMessagesHelper.getInstance(i16);
+                                        SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of(charSequence.toString(), j12, messageObject2, messageObject2, null, true, null, null, null, true, 0, 0, null, false);
+                                        j12 = j12;
+                                        sendMessagesHelper.sendMessage(of2);
+                                    }
+                                    arrayList3.add(Long.valueOf(j12));
+                                }
+                            }
+                            p1 p1Var2 = p1.this;
+                            if (!p1Var2.f9283c0) {
+                                p1Var2.f9283c0 = true;
+                                if (arrayList3.size() <= 0) {
+                                    str = "USER_DECLINED";
+                                }
+                                eVar.run(str, arrayList3);
+                            }
+                            if (fg1Var != null) {
+                                fg1Var.finishFragment();
+                                tyVar.removeSelfFromStack();
+                                return true;
+                            }
+                            tyVar.finishFragment();
+                            return true;
+                        }
+                    };
+                    U.presentFragment(n1Var);
+                    p1Var.dismiss();
+                    sVar3.run();
                     return;
                 }
+                return;
+            case 1:
+                fg0 fg0Var = (fg0) this.d;
+                String str = (String) this.f8990e;
+                String str2 = (String) this.f8991f;
+                String str3 = (String) this.h;
+                ci.d dVar = fg0Var.f37548b;
+                if (!dVar.N) {
+                    dVar.setLoading(true);
+                    TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode = new TLRPC.TL_inputStorePaymentAuthCode();
+                    tL_inputStorePaymentAuthCode.currency = str;
+                    tL_inputStorePaymentAuthCode.amount = this.f8988b;
+                    if (TextUtils.isEmpty(str2)) {
+                        str2 = "";
+                    }
+                    tL_inputStorePaymentAuthCode.phone_code_hash = str2;
+                    tL_inputStorePaymentAuthCode.phone_number = str3;
+                    tL_inputStorePaymentAuthCode.premium_days = this.f8989c;
+                    TLRPC.TL_inputInvoicePremiumAuthCode tL_inputInvoicePremiumAuthCode = new TLRPC.TL_inputInvoicePremiumAuthCode();
+                    tL_inputInvoicePremiumAuthCode.purpose = tL_inputStorePaymentAuthCode;
+                    TLRPC.TL_payments_getPaymentForm tL_payments_getPaymentForm = new TLRPC.TL_payments_getPaymentForm();
+                    tL_payments_getPaymentForm.invoice = tL_inputInvoicePremiumAuthCode;
+                    JSONObject q6 = k3.q(null, false);
+                    if (q6 != null) {
+                        TLRPC.TL_dataJSON tL_dataJSON = new TLRPC.TL_dataJSON();
+                        tL_payments_getPaymentForm.theme_params = tL_dataJSON;
+                        tL_dataJSON.data = q6.toString();
+                        tL_payments_getPaymentForm.flags |= 1;
+                    }
+                    fg0Var.v.getConnectionsManager().sendRequest(tL_payments_getPaymentForm, new ba(fg0Var, tL_inputInvoicePremiumAuthCode, tL_inputStorePaymentAuthCode, 23), 74);
+                    return;
+                }
+                return;
+            default:
+                yh.c0 c0Var = (yh.c0) this.d;
+                Context context = (Context) this.f8990e;
+                e6 e6Var = (e6) this.f8991f;
+                Utilities.Callback callback = (Utilities.Callback) this.h;
+                if (c0Var.f52328s.W) {
+                    int i12 = this.f8989c;
+                    if (MessagesController.getInstance(i12).isFrozen()) {
+                        org.telegram.ui.b.b(i12);
+                        return;
+                    }
+                    m5 x10 = m5.x(i12, c0Var.H.f54439a);
+                    if (x10.f52881e) {
+                        aVar = zf.a.l(x10.p());
+                    } else {
+                        aVar = null;
+                    }
+                    if (!c0Var.f52323c && (aVar == null || aVar.f54440b < c0Var.H.f54440b)) {
+                        zf.a aVar2 = c0Var.H;
+                        zf.b bVar = aVar2.f54439a;
+                        if (bVar == zf.b.f54441a) {
+                            long a2 = aVar2.a();
+                            long j10 = this.f8988b;
+                            new e7(context, e6Var, a2, 13, ng.d.h(i12, j10), null, j10).show();
+                            return;
+                        } else if (bVar == zf.b.f54442b) {
+                            new di.h(context, e6Var, aVar2, true, null).show();
+                            return;
+                        } else {
+                            return;
+                        }
+                    }
+                    callback.run(MessageSuggestionParams.of(c0Var.H, c0Var.I));
+                    c0Var.dismiss();
+                    return;
+                }
+                return;
         }
     }
 
-    public c1(Activity activity, d6 d6Var, long j3, byte[] bArr, yn ynVar, MessageObject messageObject, int i10) {
-        this.d = activity;
-        this.f8954f = d6Var;
-        this.f8951b = j3;
-        this.f8953e = bArr;
-        this.f8955g = ynVar;
-        this.h = messageObject;
-        this.f8952c = i10;
-    }
-
-    public c1(h60 h60Var, long j3, HashSet hashSet, AtomicInteger atomicInteger, int i10, ChatObject.Call call, String str) {
-        this.d = h60Var;
-        this.f8951b = j3;
-        this.f8953e = hashSet;
-        this.f8954f = atomicInteger;
-        this.f8952c = i10;
-        this.f8955g = call;
-        this.h = str;
-    }
-
-    public c1(LaunchActivity launchActivity, int i10, String str, String str2, TLRPC.User user, String str3, long j3) {
-        this.d = launchActivity;
-        this.f8952c = i10;
-        this.f8953e = str;
-        this.f8954f = str2;
-        this.f8955g = user;
+    public c1(fg0 fg0Var, String str, long j3, String str2, String str3, int i10) {
+        this.d = fg0Var;
+        this.f8990e = str;
+        this.f8988b = j3;
+        this.f8991f = str2;
         this.h = str3;
-        this.f8951b = j3;
+        this.f8989c = i10;
+    }
+
+    public c1(yh.c0 c0Var, zn znVar, int i10, Context context, e6 e6Var, long j3, Utilities.Callback callback) {
+        this.d = c0Var;
+        this.f8989c = i10;
+        this.f8990e = context;
+        this.f8991f = e6Var;
+        this.f8988b = j3;
+        this.h = callback;
     }
 }

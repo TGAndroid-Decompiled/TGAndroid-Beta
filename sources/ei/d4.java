@@ -1,36 +1,29 @@
 package ei;
 
 import android.content.Context;
-import android.view.View;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.e71;
-import org.telegram.ui.Components.g61;
-import org.telegram.ui.Components.h61;
-import org.telegram.ui.Components.w61;
-import org.telegram.ui.Components.zl0;
-public final class d4 extends g61 {
-    public static final int f9002a = 0;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Components.ea0;
+import w7.x5;
+public final class d4 extends org.telegram.ui.Cells.m4 {
+    public final ea0 f9016r;
 
-    static {
-        g61.setup(new g61());
-    }
-
-    @Override
-    public final void bindView(View view, h61 h61Var, boolean z10, w61 w61Var, e71 e71Var) {
-        e4 e4Var = (e4) view;
-        CharSequence charSequence = h61Var.f27093l;
-        CharSequence charSequence2 = h61Var.f27094m;
-        e4Var.setText(charSequence);
-        e4Var.f9017r.setText(charSequence2);
-    }
-
-    @Override
-    public final View createView(Context context, zl0 zl0Var, int i10, int i11, d6 d6Var) {
-        return new e4(context, d6Var);
-    }
-
-    @Override
-    public final boolean isClickable() {
-        return false;
+    public d4(Context context, e6 e6Var) {
+        super(context, e6Var);
+        int i10;
+        ea0 ea0Var = new ea0(context, e6Var);
+        this.f9016r = ea0Var;
+        ea0Var.setTextSize(1, 14.0f);
+        ea0Var.setTextColor(i6.w0(i6.f21199z6, e6Var));
+        ea0Var.setLinkTextColor(i6.w0(i6.L6, e6Var));
+        ea0Var.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
+        if (LocaleController.isRTL) {
+            i10 = 3;
+        } else {
+            i10 = 5;
+        }
+        addView(ea0Var, x5.a(-2.0f, 10.0f, 14.0f, 10.0f, 0.0f, -2, i10 | 48));
     }
 }

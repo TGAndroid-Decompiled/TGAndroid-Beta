@@ -3,25 +3,25 @@ package org.telegram.messenger;
 import android.view.PixelCopy;
 import java.util.concurrent.CountDownLatch;
 public final class h implements PixelCopy.OnPixelCopyFinishedListener {
-    public final int f18005a;
-    public final Object f18006b;
+    public final int f17995a;
+    public final Object f17996b;
 
     public h(Object obj, int i10) {
-        this.f18005a = i10;
-        this.f18006b = obj;
+        this.f17995a = i10;
+        this.f17996b = obj;
     }
 
     @Override
     public final void onPixelCopyFinished(int i10) {
-        switch (this.f18005a) {
+        switch (this.f17995a) {
             case 0:
-                AndroidUtilities.z((CountDownLatch) this.f18006b, i10);
+                ((CountDownLatch) this.f17996b).countDown();
                 return;
             case 1:
-                AndroidUtilities.w((CountDownLatch) this.f18006b, i10);
+                ((CountDownLatch) this.f17996b).countDown();
                 return;
             default:
-                AndroidUtilities.l(i10, (Runnable) this.f18006b);
+                ((Runnable) this.f17996b).run();
                 return;
         }
     }

@@ -1,51 +1,60 @@
 package gg;
 
-import ai.ya;
-import java.util.ArrayList;
 import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class f1 implements Runnable {
-    public final TLRPC.Chat f10579a;
-    public final String f10580b;
-    public final long f10581c;
-    public final ArrayList d;
-    public final a0.i f10582e;
-    public final MessagesController f10583f;
-    public final k1 h;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.ui.Components.a00;
+public final class f1 {
+    public final int f10592a;
+    public final long f10593b;
+    public final long f10594c;
+    public boolean f10595e;
+    public final int f10597g;
+    public final NotificationCenter.NotificationCenterDelegate h;
+    public boolean d = false;
+    public long f10596f = -1;
 
-    public f1(k1 k1Var, TLRPC.Chat chat, String str, long j3, ArrayList arrayList, a0.i iVar, MessagesController messagesController) {
-        this.h = k1Var;
-        this.f10579a = chat;
-        this.f10580b = str;
-        this.f10581c = j3;
-        this.d = arrayList;
-        this.f10582e = iVar;
-        this.f10583f = messagesController;
+    public f1(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10, long j3, long j10, int i11) {
+        this.f10597g = i11;
+        this.h = notificationCenterDelegate;
+        this.f10592a = i10;
+        this.f10593b = j3;
+        this.f10594c = j10;
     }
 
-    @Override
-    public final void run() {
-        k1 k1Var = this.h;
-        if (k1Var.E != this) {
-            return;
+    public final void a() {
+        boolean N;
+        switch (this.f10597g) {
+            case 0:
+                N = ((j1) this.h).N();
+                break;
+            default:
+                a00 a00Var = (a00) this.h;
+                if (a00Var.f24455t1 != null && a00Var.getVisibility() == 0 && a00Var.K0) {
+                    N = true;
+                    break;
+                } else {
+                    N = false;
+                    break;
+                }
         }
-        TLRPC.TL_channels_getParticipants tL_channels_getParticipants = new TLRPC.TL_channels_getParticipants();
-        tL_channels_getParticipants.channel = MessagesController.getInputChannel(this.f10579a);
-        tL_channels_getParticipants.limit = 20;
-        tL_channels_getParticipants.offset = 0;
-        TLRPC.TL_channelParticipantsMentions tL_channelParticipantsMentions = new TLRPC.TL_channelParticipantsMentions();
-        int i10 = tL_channelParticipantsMentions.flags;
-        tL_channelParticipantsMentions.flags = i10 | 1;
-        tL_channelParticipantsMentions.f20046q = this.f10580b;
-        long j3 = this.f10581c;
-        if (j3 != 0) {
-            tL_channelParticipantsMentions.flags = i10 | 3;
-            tL_channelParticipantsMentions.top_msg_id = (int) j3;
+        this.d = N;
+        if (!N) {
+            if (this.f10595e) {
+                MessagesController.getInstance(this.f10592a).sendTyping(this.f10593b, this.f10594c, 2, 0);
+            }
+            this.f10596f = -1L;
         }
-        tL_channels_getParticipants.filter = tL_channelParticipantsMentions;
-        int i11 = k1Var.f10679i0 + 1;
-        k1Var.f10679i0 = i11;
-        k1Var.f10680j0 = ConnectionsManager.getInstance(k1Var.f10675f).sendRequest(tL_channels_getParticipants, new ya(this, i11, this.d, this.f10582e, this.f10583f, 1));
+    }
+
+    public final void b() {
+        if (this.d) {
+            if (this.f10596f == -1) {
+                this.f10596f = System.currentTimeMillis();
+            } else if (System.currentTimeMillis() - this.f10596f > 2000) {
+                this.f10595e = true;
+                this.f10596f = System.currentTimeMillis();
+                MessagesController.getInstance(this.f10592a).sendTyping(this.f10593b, this.f10594c, 10, 0);
+            }
+        }
     }
 }

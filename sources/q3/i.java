@@ -13,14 +13,14 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
-import org.telegram.ui.web.w;
+import pg.e0;
 import v7.r6;
-public final class i extends w7.m {
-    public static final w f44795b = new w(11);
-    public final g f44796a;
+public final class i extends w7.l {
+    public static final e0 f45949b = new e0(3);
+    public final g f45950a;
 
     public i(g gVar) {
-        this.f44796a = gVar;
+        this.f45950a = gVar;
     }
 
     public static a d(v vVar, int i10, int i11) {
@@ -53,7 +53,7 @@ public final class i extends w7.m {
         String str2 = new String(bArr, i14, u10 - i14, s10);
         int r10 = r(x10) + u10;
         if (i12 <= r10) {
-            copyOfRange = d0.f8539b;
+            copyOfRange = d0.f8533b;
         } else {
             copyOfRange = Arrays.copyOfRange(bArr, r10, i12);
         }
@@ -62,9 +62,9 @@ public final class i extends w7.m {
 
     public static c e(v vVar, int i10, int i11, boolean z10, int i12, g gVar) {
         long j3;
-        int i13 = vVar.f8591b;
-        int v = v(i13, vVar.f8590a);
-        String str = new String(vVar.f8590a, i13, v - i13, StandardCharsets.ISO_8859_1);
+        int i13 = vVar.f8585b;
+        int v = v(i13, vVar.f8584a);
+        String str = new String(vVar.f8584a, i13, v - i13, StandardCharsets.ISO_8859_1);
         vVar.J(v + 1);
         int j10 = vVar.j();
         int j11 = vVar.j();
@@ -80,7 +80,7 @@ public final class i extends w7.m {
         }
         ArrayList arrayList = new ArrayList();
         int i14 = i13 + i10;
-        while (vVar.f8591b < i14) {
+        while (vVar.f8585b < i14) {
             j h = h(i11, vVar, z10, i12, gVar);
             if (h != null) {
                 arrayList.add(h);
@@ -92,9 +92,9 @@ public final class i extends w7.m {
     public static d f(v vVar, int i10, int i11, boolean z10, int i12, g gVar) {
         boolean z11;
         boolean z12;
-        int i13 = vVar.f8591b;
-        int v = v(i13, vVar.f8590a);
-        String str = new String(vVar.f8590a, i13, v - i13, StandardCharsets.ISO_8859_1);
+        int i13 = vVar.f8585b;
+        int v = v(i13, vVar.f8584a);
+        String str = new String(vVar.f8584a, i13, v - i13, StandardCharsets.ISO_8859_1);
         vVar.J(v + 1);
         int x10 = vVar.x();
         if ((x10 & 2) != 0) {
@@ -110,14 +110,14 @@ public final class i extends w7.m {
         int x11 = vVar.x();
         String[] strArr = new String[x11];
         for (int i14 = 0; i14 < x11; i14++) {
-            int i15 = vVar.f8591b;
-            int v9 = v(i15, vVar.f8590a);
-            strArr[i14] = new String(vVar.f8590a, i15, v9 - i15, StandardCharsets.ISO_8859_1);
+            int i15 = vVar.f8585b;
+            int v9 = v(i15, vVar.f8584a);
+            strArr[i14] = new String(vVar.f8584a, i15, v9 - i15, StandardCharsets.ISO_8859_1);
             vVar.J(v9 + 1);
         }
         ArrayList arrayList = new ArrayList();
         int i16 = i13 + i10;
-        while (vVar.f8591b < i16) {
+        while (vVar.f8585b < i16) {
             j h = h(i11, vVar, z10, i12, gVar);
             if (h != null) {
                 arrayList.add(h);
@@ -165,7 +165,7 @@ public final class i extends w7.m {
         String l10 = l(bArr, r10, u11, s10);
         int r11 = r(x10) + u11;
         if (i11 <= r11) {
-            copyOfRange = d0.f8539b;
+            copyOfRange = d0.f8533b;
         } else {
             copyOfRange = Arrays.copyOfRange(bArr, r11, i11);
         }
@@ -178,14 +178,14 @@ public final class i extends w7.m {
         int A2 = vVar.A();
         int x10 = vVar.x();
         int x11 = vVar.x();
-        a4.h hVar = new a4.h();
-        hVar.p(vVar);
+        a4.g gVar = new a4.g();
+        gVar.p(vVar);
         int i11 = ((i10 - 10) * 8) / (x10 + x11);
         int[] iArr = new int[i11];
         int[] iArr2 = new int[i11];
         for (int i12 = 0; i12 < i11; i12++) {
-            int i13 = hVar.i(x10);
-            int i14 = hVar.i(x11);
+            int i13 = gVar.i(x10);
+            int i14 = gVar.i(x11);
             iArr[i12] = i13;
             iArr2[i12] = i14;
         }
@@ -200,7 +200,7 @@ public final class i extends w7.m {
         String str = new String(bArr, 0, v, StandardCharsets.ISO_8859_1);
         int i11 = v + 1;
         if (i10 <= i11) {
-            copyOfRange = d0.f8539b;
+            copyOfRange = d0.f8533b;
         } else {
             copyOfRange = Arrays.copyOfRange(bArr, i11, i10);
         }
@@ -327,8 +327,8 @@ public final class i extends w7.m {
     }
 
     public static int w(int i10, v vVar) {
-        byte[] bArr = vVar.f8590a;
-        int i11 = vVar.f8591b;
+        byte[] bArr = vVar.f8584a;
+        int i11 = vVar.f8585b;
         int i12 = i11;
         while (true) {
             int i13 = i12 + 1;

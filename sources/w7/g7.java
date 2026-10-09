@@ -24,7 +24,7 @@ public abstract class g7 {
                 } catch (Exception e7) {
                     String str2 = obj.getClass().getName() + '@' + Integer.toHexString(System.identityHashCode(obj));
                     Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(str2), (Throwable) e7);
-                    StringBuilder w10 = a4.a.w("<", str2, " threw ");
+                    StringBuilder w10 = a1.g.w("<", str2, " threw ");
                     w10.append(e7.getClass().getName());
                     w10.append(">");
                     sb2 = w10.toString();

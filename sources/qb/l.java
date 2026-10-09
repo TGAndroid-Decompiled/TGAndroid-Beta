@@ -1,16 +1,16 @@
 package qb;
 
-import ai.z9;
+import ai.aa;
 import java.lang.ref.PhantomReference;
 import java.lang.ref.ReferenceQueue;
 import java.util.Set;
 public final class l extends PhantomReference {
-    public final Set f44932a;
-    public final z9 f44933b;
+    public final Set f46087a;
+    public final aa f46088b;
 
-    public l(a aVar, ReferenceQueue referenceQueue, Set set, z9 z9Var) {
+    public l(a aVar, ReferenceQueue referenceQueue, Set set, aa aaVar) {
         super(aVar, referenceQueue);
-        this.f44932a = set;
-        this.f44933b = z9Var;
+        this.f46087a = set;
+        this.f46088b = aaVar;
     }
 }

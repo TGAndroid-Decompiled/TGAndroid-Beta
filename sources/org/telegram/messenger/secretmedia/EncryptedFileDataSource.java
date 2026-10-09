@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
 import org.telegram.messenger.FileLoader;
-import sa.e;
+import sc.v;
 public final class EncryptedFileDataSource extends c {
     private int bytesRemaining;
     EncryptedFileInputStream fileInputStream;
@@ -54,12 +54,12 @@ public final class EncryptedFileDataSource extends c {
 
     @Override
     public long open(m mVar) {
-        Uri uri = mVar.f10194a;
-        long j3 = mVar.f10198f;
-        long j10 = mVar.f10197e;
+        Uri uri = mVar.f10267a;
+        long j3 = mVar.f10271f;
+        long j10 = mVar.f10270e;
         this.uri = uri;
-        File file = new File(mVar.f10194a.getPath());
-        EncryptedFileInputStream encryptedFileInputStream = new EncryptedFileInputStream(file, new File(FileLoader.getInternalCacheDir(), e.v(file.getName(), ".key")));
+        File file = new File(mVar.f10267a.getPath());
+        EncryptedFileInputStream encryptedFileInputStream = new EncryptedFileInputStream(file, new File(FileLoader.getInternalCacheDir(), v.v(file.getName(), ".key")));
         this.fileInputStream = encryptedFileInputStream;
         encryptedFileInputStream.skip(j10);
         transferInitializing(mVar);

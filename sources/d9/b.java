@@ -1,14 +1,14 @@
 package d9;
 public final class b extends a {
-    public final char f8160a;
+    public final char f8209a;
 
     public b(char c10) {
-        this.f8160a = c10;
+        this.f8209a = c10;
     }
 
     @Override
     public final boolean a(char c10) {
-        if (c10 == this.f8160a) {
+        if (c10 == this.f8209a) {
             return true;
         }
         return false;
@@ -23,7 +23,7 @@ public final class b extends a {
         cArr[3] = 0;
         cArr[4] = 0;
         cArr[5] = 0;
-        char c10 = this.f8160a;
+        char c10 = this.f8209a;
         for (int i10 = 0; i10 < 4; i10++) {
             cArr[5 - i10] = "0123456789ABCDEF".charAt(c10 & 15);
             c10 = (char) (c10 >> 4);

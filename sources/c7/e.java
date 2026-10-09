@@ -8,20 +8,20 @@ public enum e implements Parcelable {
     DIRECT("direct");
     
     public static final Parcelable.Creator<e> CREATOR = new r0(5);
-    public final String f4410a;
+    public final String f4460a;
 
     e(String str) {
-        this.f4410a = str;
+        this.f4460a = str;
     }
 
     public static e a(String str) {
         e[] values;
         for (e eVar : values()) {
-            if (str.equals(eVar.f4410a)) {
+            if (str.equals(eVar.f4460a)) {
                 return eVar;
             }
         }
-        throw new Exception(a4.a.q("Attestation conveyance preference ", str, " not supported"));
+        throw new Exception(a1.g.q("Attestation conveyance preference ", str, " not supported"));
     }
 
     @Override
@@ -31,11 +31,11 @@ public enum e implements Parcelable {
 
     @Override
     public final String toString() {
-        return this.f4410a;
+        return this.f4460a;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeString(this.f4410a);
+        parcel.writeString(this.f4460a);
     }
 }

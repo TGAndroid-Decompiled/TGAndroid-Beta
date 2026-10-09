@@ -1,41 +1,26 @@
 package yh;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.rc;
-import org.telegram.ui.Components.yc;
-import org.telegram.ui.yn;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
 public final class t1 implements Runnable {
-    public final int f52010a;
-    public final y3 f52011b;
-    public final yn f52012c;
-    public final long d;
+    public final int f53213a;
+    public final s3 f53214b;
+    public final TLRPC.TL_payments_paymentResult f53215c;
 
-    public t1(y3 y3Var, yn ynVar, long j3, int i10) {
-        this.f52010a = i10;
-        this.f52011b = y3Var;
-        this.f52012c = ynVar;
-        this.d = j3;
+    public t1(s3 s3Var, TLRPC.TL_payments_paymentResult tL_payments_paymentResult, int i10) {
+        this.f53213a = i10;
+        this.f53214b = s3Var;
+        this.f53215c = tL_payments_paymentResult;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f52010a;
-        long j3 = this.d;
-        yn ynVar = this.f52012c;
-        y3 y3Var = this.f52011b;
-        switch (i10) {
+        switch (this.f53213a) {
             case 0:
-                rc M = yc.a0(ynVar).M(LocaleController.getString(R.string.Gift2TransferredTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2TransferredText, y3Var.C1(), DialogObject.getShortName(j3))), R.raw.forward);
-                M.f30437t = true;
-                M.j();
+                MessagesController.getInstance(this.f53214b.currentAccount).lambda$processUpdates$377(this.f53215c.updates, false);
                 return;
             default:
-                rc M2 = yc.a0(ynVar).M(LocaleController.getString(R.string.Gift2TransferredTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2TransferredText, y3Var.C1(), DialogObject.getShortName(j3))), R.raw.forward);
-                M2.f30437t = true;
-                M2.j();
+                MessagesController.getInstance(this.f53214b.currentAccount).lambda$processUpdates$377(this.f53215c.updates, false);
                 return;
         }
     }

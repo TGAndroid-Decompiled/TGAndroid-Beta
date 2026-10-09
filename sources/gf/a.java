@@ -1,71 +1,30 @@
 package gf;
 
-import java.util.ArrayList;
-public final class a {
-    public String f10491a;
-    public ArrayList f10492b;
-    public ArrayList f10493c;
-    public ArrayList d;
+import com.google.android.gms.internal.cast.i4;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ThreadPoolExecutor;
+import org.telegram.messenger.FileLog;
+public final class a extends ThreadPoolExecutor implements AutoCloseable {
+    public final c f10515a;
 
-    public final String a(String str) {
-        String str2;
-        String str3;
-        String str4;
-        String str5 = null;
-        if (str.startsWith(this.f10491a)) {
-            str4 = this.f10491a;
-            str3 = str.substring(str4.length());
-        } else {
-            ArrayList arrayList = this.f10492b;
-            int size = arrayList.size();
-            int i10 = 0;
-            while (true) {
-                if (i10 < size) {
-                    Object obj = arrayList.get(i10);
-                    i10++;
-                    str2 = (String) obj;
-                    if (str.startsWith(str2)) {
-                        break;
-                    }
-                } else {
-                    str2 = null;
-                    break;
-                }
-            }
-            if (str2 != null) {
-                str3 = str.substring(str2.length());
-                str4 = null;
-                str5 = str2;
-            } else {
-                str3 = str;
-                str4 = null;
+    public a(gf.c r8, java.util.concurrent.PriorityBlockingQueue r9) {
+        throw new UnsupportedOperationException("Method not decompiled: gf.a.<init>(gf.c, java.util.concurrent.PriorityBlockingQueue):void");
+    }
+
+    @Override
+    public final void beforeExecute(Thread thread, Runnable runnable) {
+        CountDownLatch countDownLatch = this.f10515a.f10519b;
+        if (countDownLatch != null) {
+            try {
+                countDownLatch.await();
+            } catch (InterruptedException e7) {
+                FileLog.e(e7);
             }
         }
-        ArrayList arrayList2 = this.d;
-        int size2 = arrayList2.size();
-        int i11 = 0;
-        while (i11 < size2) {
-            Object obj2 = arrayList2.get(i11);
-            i11++;
-            String a2 = ((d) obj2).a(str3, str4, str5, true);
-            if (a2 != null) {
-                return a2;
-            }
-        }
-        ArrayList arrayList3 = this.d;
-        int size3 = arrayList3.size();
-        int i12 = 0;
-        while (i12 < size3) {
-            Object obj3 = arrayList3.get(i12);
-            i12++;
-            String a10 = ((d) obj3).a(str3, str4, str5, false);
-            if (a10 != null) {
-                return a10;
-            }
-        }
-        if (str4 != null && str3.length() != 0) {
-            return a4.a.D(str4, " ", str3);
-        }
-        return str;
+    }
+
+    @Override
+    public final void close() {
+        i4.e(this);
     }
 }

@@ -1,17 +1,9 @@
 package xh;
 
-import android.content.Context;
-import android.view.View;
-public final class a0 extends View {
-    public final float f49886a;
-
-    public a0(Context context, float f7) {
-        super(context);
-        this.f49886a = f7;
-    }
-
+import android.view.MotionEvent;
+public final class a0 extends j1 {
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) (View.MeasureSpec.getSize(i10) * this.f49886a), 1073741824), i11);
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        return false;
     }
 }

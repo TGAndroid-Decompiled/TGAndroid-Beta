@@ -1,16 +1,26 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class n51 extends c61 {
-    public final a71 f38808m3;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_account;
+public final class n51 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.sl0 {
+    public final k71 f40079a;
 
-    public n51(a71 a71Var, Context context) {
-        super(a71Var, context);
-        this.f38808m3 = a71Var;
+    public n51(k71 k71Var) {
+        this.f40079a = k71Var;
     }
 
     @Override
-    public final void l0(int i10) {
-        this.f38808m3.h();
+    public void a() {
+        this.f40079a.m();
+    }
+
+    @Override
+    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        k71 k71Var = this.f40079a;
+        int i11 = k71Var.V;
+        ConnectionsManager.getInstance(i11).sendRequest(new TL_account.clearRecentEmojiStatuses(), null);
+        MediaDataController.getInstance(i11).clearRecentEmojiStatuses();
+        k71Var.B(false, true, true);
     }
 }

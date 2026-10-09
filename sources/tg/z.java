@@ -2,7 +2,7 @@ package tg;
 
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-public final class z extends s4.s0 {
+public final class z extends s4.t0 {
     @Override
     public final void a(RecyclerView recyclerView, int i10) {
         if (i10 == 1) {

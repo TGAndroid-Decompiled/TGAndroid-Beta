@@ -1,64 +1,103 @@
 package org.telegram.ui.Components;
 
-import android.graphics.ColorFilter;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.animation.DecelerateInterpolator;
-import org.telegram.messenger.AndroidUtilities;
-public abstract class iq extends Drawable {
-    public final Paint f27558a;
-    public long f27559b;
-    public final RectF f27560c;
-    public float d;
-    public boolean f27561e;
-    public int f27562f;
-    public int f27563g;
+import android.graphics.Path;
+import java.util.Random;
+public final class iq {
+    public float f27461g;
+    public float f27464k;
+    public final Path f27456a = new Path();
+    public final float[] f27457b = new float[4];
+    public final float[] f27458c = new float[4];
+    public final Matrix d = new Matrix();
+    public final float h = 1.0f;
+    public final Random f27462i = new Random();
+    public final int f27460f = 6;
+    public final float f27459e = (float) (Math.tan(3.141592653589793d / 12) * 1.3333333333333333d);
+    public final float[] f27463j = new float[6];
 
     public iq() {
-        this(2.0f);
+        for (int i10 = 0; i10 < this.f27460f; i10++) {
+            this.f27463j[i10] = (this.f27462i.nextInt() % 100) / 100.0f;
+        }
     }
 
-    public abstract int a();
-
-    @Override
-    public final void draw(android.graphics.Canvas r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.iq.draw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(24.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(24.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    public iq(float f7) {
-        Paint paint = new Paint(1);
-        this.f27558a = paint;
-        new DecelerateInterpolator();
-        this.f27560c = new RectF();
-        this.f27563g = 255;
-        paint.setColor(-1);
-        paint.setStrokeWidth(AndroidUtilities.dp(f7));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStyle(Paint.Style.STROKE);
-        this.f27562f = AndroidUtilities.dp(8.0f);
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void a(float f7, float f10, Canvas canvas, Paint paint) {
+        float f11;
+        int i10;
+        float f12;
+        iq iqVar = this;
+        float f13 = iqVar.f27461g;
+        float f14 = (f13 - 0.0f) - 0.0f;
+        float f15 = f13 + 0.0f + 0.0f;
+        float max = Math.max(f14, f15);
+        float f16 = iqVar.f27459e;
+        float f17 = max * f16 * iqVar.h;
+        Path path = iqVar.f27456a;
+        path.reset();
+        int i11 = 0;
+        while (true) {
+            int i12 = iqVar.f27460f;
+            if (i11 < i12) {
+                Matrix matrix = iqVar.d;
+                matrix.reset();
+                float f18 = 360.0f / i12;
+                matrix.setRotate(i11 * f18, f7, f10);
+                if (i11 % 2 == 0) {
+                    f11 = f14;
+                } else {
+                    f11 = f15;
+                }
+                float f19 = iqVar.f27464k;
+                float[] fArr = iqVar.f27463j;
+                float f20 = (fArr[i11] * f19) + f11;
+                float[] fArr2 = iqVar.f27457b;
+                fArr2[0] = f7;
+                float f21 = f10 - f20;
+                fArr2[1] = f21;
+                float f22 = f15;
+                fArr2[2] = com.google.android.gms.internal.vision.e2.w(f19, fArr[i11], f16, f7 + f17);
+                fArr2[3] = f21;
+                matrix.mapPoints(fArr2);
+                int i13 = i11 + 1;
+                if (i13 >= i12) {
+                    i10 = 0;
+                } else {
+                    i10 = i13;
+                }
+                if (i10 % 2 == 0) {
+                    f12 = f14;
+                } else {
+                    f12 = f22;
+                }
+                float f23 = iqVar.f27464k;
+                float[] fArr3 = iqVar.f27458c;
+                fArr3[0] = f7;
+                float f24 = f10 - ((fArr[i10] * f23) + f12);
+                fArr3[1] = f24;
+                float f25 = f14;
+                fArr3[2] = com.google.android.gms.internal.vision.e2.w(f23, fArr[i10], f16, f7 - f17);
+                fArr3[3] = f24;
+                matrix.reset();
+                matrix.setRotate(f18 * i10, f7, f10);
+                matrix.mapPoints(fArr3);
+                if (i11 == 0) {
+                    path.moveTo(fArr2[0], fArr2[1]);
+                }
+                path.cubicTo(fArr2[2], fArr2[3], fArr3[2], fArr3[3], fArr3[0], fArr3[1]);
+                i11 = i13;
+                f15 = f22;
+                f14 = f25;
+                iqVar = this;
+            } else {
+                canvas.save();
+                canvas.rotate(0.0f, f7, f10);
+                canvas.drawPath(path, paint);
+                canvas.restore();
+                return;
+            }
+        }
     }
 }

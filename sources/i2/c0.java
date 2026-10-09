@@ -5,102 +5,101 @@ import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.TextureView;
 import b2.w1;
-import ci.qc;
-import gg.x1;
+import ci.rc;
 import java.util.ArrayList;
-import org.telegram.ui.Components.e81;
-public final class c0 implements a3.l0, k2.k, SurfaceHolder.Callback, TextureView.SurfaceTextureListener {
-    public final f0 f11570a;
+import org.telegram.ui.Components.k81;
+public final class c0 implements a3.l0, k2.j, SurfaceHolder.Callback, TextureView.SurfaceTextureListener {
+    public final f0 f11620a;
 
     public c0(f0 f0Var) {
-        this.f11570a = f0Var;
+        this.f11620a = f0Var;
     }
 
     @Override
     public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
-        f0 f0Var = this.f11570a;
+        f0 f0Var = this.f11620a;
         org.telegram.messenger.d1 d1Var = f0Var.m0;
         if (d1Var != null) {
             d1Var.execute(new a0(this, surfaceTexture, i10, i11, 0));
             return;
         }
         Surface surface = new Surface(surfaceTexture);
-        f0Var.t1(surface);
+        f0Var.v1(surface);
         f0Var.S = surface;
-        f0Var.m1(i10, i11);
+        f0Var.o1(i10, i11);
     }
 
     @Override
     public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        f0 f0Var = this.f11570a;
-        ArrayList arrayList = f0Var.f11628n0;
+        f0 f0Var = this.f11620a;
+        ArrayList arrayList = f0Var.f11678n0;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
-            if (((e81) ((w1) obj)).J.onSurfaceDestroyed(surfaceTexture)) {
+            if (((k81) ((w1) obj)).J.onSurfaceDestroyed(surfaceTexture)) {
                 return false;
             }
         }
         org.telegram.messenger.d1 d1Var = f0Var.m0;
         if (d1Var != null) {
-            d1Var.execute(new qc(this, surfaceTexture));
+            d1Var.execute(new rc(this, surfaceTexture));
             return true;
         }
-        f0Var.t1(null);
-        f0Var.m1(0, 0);
+        f0Var.v1(null);
+        f0Var.o1(0, 0);
         return true;
     }
 
     @Override
     public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
-        f0 f0Var = this.f11570a;
+        f0 f0Var = this.f11620a;
         org.telegram.messenger.d1 d1Var = f0Var.m0;
         if (d1Var != null) {
             d1Var.execute(new gg.n(this, surfaceTexture, i10, i11));
         } else {
-            f0Var.m1(i10, i11);
+            f0Var.o1(i10, i11);
         }
     }
 
     @Override
     public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        f0 f0Var = this.f11570a;
+        f0 f0Var = this.f11620a;
         org.telegram.messenger.d1 d1Var = f0Var.m0;
         if (d1Var != null) {
-            d1Var.execute(new x1(10, this, surfaceTexture));
+            d1Var.execute(new gg.w1(10, this, surfaceTexture));
             return;
         }
-        ArrayList arrayList = f0Var.f11628n0;
+        ArrayList arrayList = f0Var.f11678n0;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
-            ((e81) ((w1) obj)).J.onSurfaceTextureUpdated(surfaceTexture);
+            ((k81) ((w1) obj)).J.onSurfaceTextureUpdated(surfaceTexture);
         }
     }
 
     @Override
     public final void surfaceChanged(SurfaceHolder surfaceHolder, int i10, int i11, int i12) {
-        this.f11570a.m1(i11, i12);
+        this.f11620a.o1(i11, i12);
     }
 
     @Override
     public final void surfaceCreated(SurfaceHolder surfaceHolder) {
-        f0 f0Var = this.f11570a;
+        f0 f0Var = this.f11620a;
         if (f0Var.U) {
-            f0Var.t1(surfaceHolder.getSurface());
+            f0Var.v1(surfaceHolder.getSurface());
         }
     }
 
     @Override
     public final void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-        f0 f0Var = this.f11570a;
+        f0 f0Var = this.f11620a;
         if (f0Var.U) {
-            f0Var.t1(null);
+            f0Var.v1(null);
         }
-        f0Var.m1(0, 0);
+        f0Var.o1(0, 0);
     }
 }

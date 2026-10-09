@@ -1,63 +1,65 @@
 package bb;
 
+import ae.d0;
 import com.google.firebase.messaging.s;
 import java.util.ArrayList;
 import java.util.List;
 import k1.t;
-import rd.p;
-import za.y;
-import zd.c0;
-public final class i extends kd.j implements p {
-    public final int f3749a;
-    public int f3750b;
-    public Object f3751c;
+import sd.p;
+import za.a0;
+import za.m;
+public final class i extends ld.j implements p {
+    public final int f3828a;
+    public int f3829b;
+    public Object f3830c;
     public final Object d;
 
-    public i(Object obj, id.c cVar, int i10) {
+    public i(Object obj, Object obj2, jd.c cVar, int i10) {
         super(2, cVar);
-        this.f3749a = i10;
-        this.d = obj;
+        this.f3828a = i10;
+        this.f3830c = obj;
+        this.d = obj2;
     }
 
     @Override
-    public final id.c create(Object obj, id.c cVar) {
-        switch (this.f3749a) {
+    public final jd.c create(Object obj, jd.c cVar) {
+        switch (this.f3828a) {
             case 0:
                 return new i((l) this.d, cVar, 0);
             case 1:
                 i iVar = new i((List) this.d, cVar, 1);
-                iVar.f3751c = obj;
+                iVar.f3830c = obj;
                 return iVar;
             case 2:
                 return new i((s) this.d, cVar, 2);
             case 3:
-                return new i((p) this.f3751c, this.d, cVar, 3);
+                return new i((p) this.f3830c, this.d, cVar, 3);
             case 4:
-                return new i((za.l) this.f3751c, (id.h) this.d, cVar, 4);
+                return new i((m) this.f3830c, (jd.h) this.d, cVar, 4);
             case 5:
-                return new i((y) this.f3751c, (String) this.d, cVar, 5);
+                return new i((a0) this.f3830c, (String) this.d, cVar, 5);
             default:
-                return new i((qi.f) this.f3751c, (ArrayList) this.d, cVar, 6);
+                return new i((oi.f) this.f3830c, (ArrayList) this.d, cVar, 6);
         }
     }
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        switch (this.f3749a) {
+        switch (this.f3828a) {
             case 0:
-                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f10453a);
+                return ((i) create((d0) obj, (jd.c) obj2)).invokeSuspend(hd.i.f11092a);
             case 1:
-                return ((i) create((t) obj, (id.c) obj2)).invokeSuspend(gd.i.f10453a);
+                return ((i) create((t) obj, (jd.c) obj2)).invokeSuspend(hd.i.f11092a);
             case 2:
-                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f10453a);
+                return ((i) create((d0) obj, (jd.c) obj2)).invokeSuspend(hd.i.f11092a);
             case 3:
-                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f10453a);
+                return ((i) create((d0) obj, (jd.c) obj2)).invokeSuspend(hd.i.f11092a);
             case 4:
-                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f10453a);
+                return ((i) create((d0) obj, (jd.c) obj2)).invokeSuspend(hd.i.f11092a);
             case 5:
-                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f10453a);
+                return ((i) create((d0) obj, (jd.c) obj2)).invokeSuspend(hd.i.f11092a);
             default:
-                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f10453a);
+                return ((i) create((d0) obj, (jd.c) obj2)).invokeSuspend(hd.i.f11092a);
         }
     }
 
@@ -66,10 +68,9 @@ public final class i extends kd.j implements p {
         throw new UnsupportedOperationException("Method not decompiled: bb.i.invokeSuspend(java.lang.Object):java.lang.Object");
     }
 
-    public i(Object obj, Object obj2, id.c cVar, int i10) {
+    public i(Object obj, jd.c cVar, int i10) {
         super(2, cVar);
-        this.f3749a = i10;
-        this.f3751c = obj;
-        this.d = obj2;
+        this.f3828a = i10;
+        this.d = obj;
     }
 }

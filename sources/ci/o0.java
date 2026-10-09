@@ -1,45 +1,43 @@
 package ci;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
+import java.io.File;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MediaController;
 public final class o0 implements Runnable {
-    public final int f5639a;
-    public final u0 f5640b;
+    public final int f5658a;
+    public final t0 f5659b;
+    public final File f5660c;
 
-    public o0(u0 u0Var, int i10) {
-        this.f5639a = i10;
-        this.f5640b = u0Var;
+    public o0(t0 t0Var, File file, int i10) {
+        this.f5658a = i10;
+        this.f5659b = t0Var;
+        this.f5660c = file;
     }
 
     @Override
     public final void run() {
-        switch (this.f5639a) {
+        switch (this.f5658a) {
             case 0:
-                this.f5640b.b();
-                return;
-            case 1:
-                u0 u0Var = this.f5640b;
-                u0Var.f6046e = false;
-                r0 r0Var = u0Var.f6050s;
-                if (r0Var != null) {
-                    r0Var.a(true);
-                    u0Var.f6050s = null;
-                }
-                t0 t0Var = u0Var.f6048n;
-                if (t0Var != null) {
-                    t0Var.a();
-                }
-                u0Var.f6045c = false;
-                u0Var.d();
-                return;
-            default:
-                u0 u0Var2 = this.f5640b;
-                if (u0Var2.f6045c && u0Var2.f6049r != null) {
-                    u0Var2.f6048n.b(R.raw.error, 3500, LocaleController.getString("VideoConvertFail"));
-                    u0Var2.f6045c = false;
-                    u0Var2.d();
+                t0 t0Var = this.f5659b;
+                if (t0Var.f5980c && t0Var.f5984r != null) {
+                    MediaController.saveFile(this.f5660c.getAbsolutePath(), t0Var.getContext(), 1, null, null, new p0(t0Var, 1), false);
                     return;
                 }
+                return;
+            case 1:
+                t0 t0Var2 = this.f5659b;
+                l8 l8Var = t0Var2.f5984r;
+                File file = this.f5660c;
+                l8Var.c(file);
+                if (t0Var2.f5980c && t0Var2.f5984r != null) {
+                    AndroidUtilities.runOnUIThread(new o0(t0Var2, file, 2));
+                    return;
+                }
+                return;
+            default:
+                String absolutePath = this.f5660c.getAbsolutePath();
+                t0 t0Var3 = this.f5659b;
+                MediaController.saveFile(absolutePath, t0Var3.getContext(), 0, null, null, new p0(t0Var3, 2), false);
                 return;
         }
     }

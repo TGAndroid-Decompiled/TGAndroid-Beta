@@ -8,12 +8,12 @@ import android.view.ViewGroup;
 import h8.j;
 import i8.g;
 public final class c implements e {
-    public final Bundle f49412a;
-    public final j f49413b;
+    public final Bundle f50686a;
+    public final j f50687b;
 
     public c(j jVar, Bundle bundle) {
-        this.f49413b = jVar;
-        this.f49412a = bundle;
+        this.f50687b = jVar;
+        this.f50686a = bundle;
     }
 
     @Override
@@ -23,21 +23,21 @@ public final class c implements e {
 
     @Override
     public final void b() {
-        aa.a aVar = this.f49413b.f11038a;
-        Bundle bundle = this.f49412a;
-        ViewGroup viewGroup = (ViewGroup) aVar.f386b;
-        g gVar = (g) aVar.f387c;
+        aa.a aVar = this.f50687b.f11042a;
+        Bundle bundle = this.f50686a;
+        ViewGroup viewGroup = (ViewGroup) aVar.f384b;
+        g gVar = (g) aVar.f385c;
         try {
             Bundle bundle2 = new Bundle();
             i8.d.c(bundle, bundle2);
-            Parcel O0 = gVar.O0();
-            s7.b.b(O0, bundle2);
-            gVar.S0(O0, 2);
+            Parcel N0 = gVar.N0();
+            s7.b.b(N0, bundle2);
+            gVar.R0(N0, 2);
             i8.d.c(bundle2, bundle);
-            Parcel N0 = gVar.N0(gVar.O0(), 8);
-            a L0 = b.L0(N0.readStrongBinder());
-            N0.recycle();
-            aVar.d = (View) b.M0(L0);
+            Parcel M0 = gVar.M0(gVar.N0(), 8);
+            a K0 = b.K0(M0.readStrongBinder());
+            M0.recycle();
+            aVar.d = (View) b.L0(K0);
             viewGroup.removeAllViews();
             viewGroup.addView((View) aVar.d);
         } catch (RemoteException e7) {

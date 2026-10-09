@@ -1,15 +1,15 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class m71 extends s4.s0 {
-    public final n71 f38506a;
-
-    public m71(n71 n71Var) {
-        this.f38506a = n71Var;
-    }
-
+import android.view.MotionEvent;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class m71 extends EditTextBoldCursor {
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        this.f38506a.N();
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0 && !AndroidUtilities.showKeyboard(this)) {
+            clearFocus();
+            requestFocus();
+        }
+        return super.onTouchEvent(motionEvent);
     }
 }

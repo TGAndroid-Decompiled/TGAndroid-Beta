@@ -26,8 +26,8 @@ import org.telegram.messenger.PushListenerController;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.b80;
-import org.telegram.ui.Components.j10;
+import org.telegram.ui.Components.p80;
+import org.telegram.ui.Components.w10;
 import org.telegram.ui.IUpdateLayout;
 import org.telegram.ui.jb0;
 public class ApplicationLoader extends Application {
@@ -64,7 +64,7 @@ public class ApplicationLoader extends Application {
 
     private boolean checkPlayServices() {
         try {
-            AtomicBoolean atomicBoolean = k6.g.f14677a;
+            AtomicBoolean atomicBoolean = k6.g.f14709a;
             if (k6.g.b(this, 12451000) == 0) {
                 return true;
             }
@@ -528,7 +528,7 @@ public class ApplicationLoader extends Application {
             sb3.append(", model=");
             sb3.append(Build.MODEL);
             sb3.append(", product=");
-            com.google.android.gms.internal.vision.e2.t(Build.PRODUCT, sb3);
+            hg.c.t(Build.PRODUCT, sb3);
         }
         if (applicationContext == null) {
             applicationContext = getApplicationContext();
@@ -536,7 +536,7 @@ public class ApplicationLoader extends Application {
         NativeLoader.initNativeLibs(applicationContext);
         try {
             ConnectionsManager.native_setJava(false);
-            new j10(this) {
+            new w10(this) {
                 @Override
                 public void onActivityStarted(Activity activity) {
                     boolean isBackground = isBackground();
@@ -556,12 +556,12 @@ public class ApplicationLoader extends Application {
             int length = values.length;
             while (true) {
                 if (i10 < length) {
-                    if (w7.g6.a(values[i10])) {
+                    if (w7.e6.a(values[i10])) {
                         break;
                     }
                     i10++;
                 } else {
-                    w7.g6.b(jb0.h);
+                    w7.e6.b(jb0.h);
                     break;
                 }
             }
@@ -673,7 +673,7 @@ public class ApplicationLoader extends Application {
     public void onResume() {
     }
 
-    public void addItemOptions(b80 b80Var) {
+    public void addItemOptions(p80 p80Var) {
     }
 
     public void appCenterLogInternal(Throwable th2) {

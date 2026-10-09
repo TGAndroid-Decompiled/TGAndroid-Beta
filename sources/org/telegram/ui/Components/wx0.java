@@ -1,13 +1,42 @@
 package org.telegram.ui.Components;
 
+import org.telegram.messenger.CacheFetcher;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-public final class wx0 extends nc {
-    public wx0(LaunchActivity launchActivity, int i10, TLRPC.Document document) {
-        this(launchActivity, null, 1, i10, document, null);
+public final class wx0 extends CacheFetcher {
+    @Override
+    public final void getLocal(int i10, Object obj, Utilities.Callback2 callback2) {
+        MessagesStorage.getInstance(i10).getStorageQueue().postRunnable(new zk(i10, (Integer) obj, callback2, 20));
     }
 
-    public wx0(android.content.Context r14, org.telegram.tgnet.TLObject r15, int r16, int r17, org.telegram.tgnet.TLRPC.Document r18, org.telegram.ui.ActionBar.d6 r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.wx0.<init>(android.content.Context, org.telegram.tgnet.TLObject, int, int, org.telegram.tgnet.TLRPC$Document, org.telegram.ui.ActionBar.d6):void");
+    @Override
+    public final void getRemote(int i10, Object obj, long j3, Utilities.Callback4 callback4) {
+        TLRPC.TL_messages_getEmojiGroups tL_messages_getEmojiGroups;
+        Integer num = (Integer) obj;
+        if (num.intValue() == 1) {
+            TLRPC.TL_messages_getEmojiStatusGroups tL_messages_getEmojiStatusGroups = new TLRPC.TL_messages_getEmojiStatusGroups();
+            tL_messages_getEmojiStatusGroups.hash = (int) j3;
+            tL_messages_getEmojiGroups = tL_messages_getEmojiStatusGroups;
+        } else if (num.intValue() == 2) {
+            TLRPC.TL_messages_getEmojiProfilePhotoGroups tL_messages_getEmojiProfilePhotoGroups = new TLRPC.TL_messages_getEmojiProfilePhotoGroups();
+            tL_messages_getEmojiProfilePhotoGroups.hash = (int) j3;
+            tL_messages_getEmojiGroups = tL_messages_getEmojiProfilePhotoGroups;
+        } else if (num.intValue() == 3) {
+            TLRPC.TL_messages_getEmojiStickerGroups tL_messages_getEmojiStickerGroups = new TLRPC.TL_messages_getEmojiStickerGroups();
+            tL_messages_getEmojiStickerGroups.hash = (int) j3;
+            tL_messages_getEmojiGroups = tL_messages_getEmojiStickerGroups;
+        } else {
+            TLRPC.TL_messages_getEmojiGroups tL_messages_getEmojiGroups2 = new TLRPC.TL_messages_getEmojiGroups();
+            tL_messages_getEmojiGroups2.hash = (int) j3;
+            tL_messages_getEmojiGroups = tL_messages_getEmojiGroups2;
+        }
+        ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getEmojiGroups, new vx0(callback4, 0));
+    }
+
+    @Override
+    public final void setLocal(int i10, Object obj, Object obj2, long j3) {
+        MessagesStorage.getInstance(i10).getStorageQueue().postRunnable(new zk(i10, (TLRPC.TL_messages_emojiGroups) obj2, (Integer) obj, 19));
     }
 }

@@ -1,8 +1,8 @@
 package bi;
 
-import ai.d9;
+import ai.e9;
 import android.content.Context;
-import org.telegram.ui.Components.ux0;
+import org.telegram.ui.Components.ay0;
 public final class m extends t {
     public final u v;
 
@@ -16,18 +16,18 @@ public final class m extends t {
         boolean z10;
         super.l();
         u uVar = this.v;
-        if (uVar.f3880r.getVisibility() == 0) {
-            uVar.f3882w.l();
+        if (uVar.f3929r.getVisibility() == 0) {
+            uVar.f3931w.l();
         }
-        ux0 ux0Var = uVar.f3884y;
-        if (ux0Var != null) {
-            d9 d9Var = this.f3868e;
-            if (d9Var != null && d9Var.k()) {
+        ay0 ay0Var = uVar.f3933y;
+        if (ay0Var != null) {
+            e9 e9Var = this.f3917e;
+            if (e9Var != null && e9Var.k()) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            ux0Var.e(z10, true);
+            ay0Var.e(z10, true);
         }
     }
 }

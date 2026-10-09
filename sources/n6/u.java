@@ -1,32 +1,39 @@
 package n6;
 
-import android.accounts.Account;
-import android.os.Parcel;
-import android.os.Parcelable;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-public final class u extends o6.a {
-    public static final Parcelable.Creator<u> CREATOR = new m8.h(15);
-    public final int f16754a;
-    public final Account f16755b;
-    public final int f16756c;
-    public final GoogleSignInAccount d;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.common.api.internal.BasePendingResult;
+import com.google.android.gms.tasks.TaskCompletionSource;
+import java.util.concurrent.TimeUnit;
+import v7.f5;
+public final class u implements com.google.android.gms.common.api.o {
+    public final f5 f16719a;
+    public final TaskCompletionSource f16720b;
+    public final k f16721c;
 
-    public u(int i10, Account account, int i11, GoogleSignInAccount googleSignInAccount) {
-        this.f16754a = i10;
-        this.f16755b = account;
-        this.f16756c = i11;
-        this.d = googleSignInAccount;
+    public u(f5 f5Var, TaskCompletionSource taskCompletionSource, k kVar) {
+        this.f16719a = f5Var;
+        this.f16720b = taskCompletionSource;
+        this.f16721c = kVar;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = w7.g0.q(parcel, 20293);
-        w7.g0.s(parcel, 1, 4);
-        parcel.writeInt(this.f16754a);
-        w7.g0.k(parcel, 2, this.f16755b, i10);
-        w7.g0.s(parcel, 3, 4);
-        parcel.writeInt(this.f16756c);
-        w7.g0.k(parcel, 4, this.d, i10);
-        w7.g0.r(parcel, q6);
+    public final void a(Status status) {
+        if (status.b()) {
+            f5 f5Var = this.f16719a;
+            TimeUnit timeUnit = TimeUnit.MILLISECONDS;
+            BasePendingResult basePendingResult = (BasePendingResult) f5Var;
+            l.j("Result has already been consumed.", !basePendingResult.f6548j);
+            try {
+                if (!basePendingResult.d.await(0L, timeUnit)) {
+                    basePendingResult.e(Status.f6523n);
+                }
+            } catch (InterruptedException unused) {
+                basePendingResult.e(Status.f6522f);
+            }
+            l.j("Result is not ready.", basePendingResult.g());
+            this.f16720b.setResult(this.f16721c.b(basePendingResult.j()));
+            return;
+        }
+        this.f16720b.setException(l.m(status));
     }
 }

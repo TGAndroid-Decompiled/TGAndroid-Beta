@@ -1,40 +1,44 @@
 package r0;
 
+import android.view.DisplayCutout;
 import android.view.WindowInsets;
+import j$.util.Objects;
 public class d1 extends c1 {
-    public i0.b f45588n;
-
-    public d1(l1 l1Var, WindowInsets windowInsets) {
-        super(l1Var, windowInsets);
-        this.f45588n = null;
+    public d1(k1 k1Var, WindowInsets windowInsets) {
+        super(k1Var, windowInsets);
     }
 
     @Override
-    public l1 b() {
-        return l1.h(null, this.f45584c.consumeStableInsets());
+    public k1 a() {
+        return k1.h(null, this.f46736c.consumeDisplayCutout());
     }
 
     @Override
-    public l1 c() {
-        return l1.h(null, this.f45584c.consumeSystemWindowInsets());
-    }
-
-    @Override
-    public final i0.b i() {
-        if (this.f45588n == null) {
-            WindowInsets windowInsets = this.f45584c;
-            this.f45588n = i0.b.b(windowInsets.getStableInsetLeft(), windowInsets.getStableInsetTop(), windowInsets.getStableInsetRight(), windowInsets.getStableInsetBottom());
+    public i e() {
+        DisplayCutout displayCutout = this.f46736c.getDisplayCutout();
+        if (displayCutout == null) {
+            return null;
         }
-        return this.f45588n;
+        return new i(displayCutout);
     }
 
     @Override
-    public boolean n() {
-        return this.f45584c.isConsumed();
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof d1)) {
+            return false;
+        }
+        d1 d1Var = (d1) obj;
+        if (Objects.equals(this.f46736c, d1Var.f46736c) && Objects.equals(this.f46739g, d1Var.f46739g) && b1.B(this.h, d1Var.h)) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public void s(i0.b bVar) {
-        this.f45588n = bVar;
+    public int hashCode() {
+        return this.f46736c.hashCode();
     }
 }

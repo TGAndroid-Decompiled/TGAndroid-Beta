@@ -1,439 +1,196 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.app.ActivityManager;
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.ConfigurationInfo;
-import android.os.Build;
-import android.text.SpannableStringBuilder;
-import android.webkit.CookieManager;
-import android.webkit.WebStorage;
-import android.webkit.WebView;
-import android.widget.Toast;
-import java.util.Set;
+import android.view.MotionEvent;
+import android.view.VelocityTracker;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.AuthTokensHelper;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.ChatThemeController;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class ez0 implements org.telegram.ui.Components.ol0 {
-    public int f36144a = 0;
-    public final Context f36145b;
-    public final ProfileActivity f36146c;
+public final class ez0 extends org.telegram.ui.Components.qm0 implements ai.t9 {
+    public final ProfileActivity V2;
+    public VelocityTracker W2;
+    public final ProfileActivity X2;
 
-    public ez0(ProfileActivity profileActivity, Context context) {
-        this.f36146c = profileActivity;
-        this.f36145b = context;
+    public ez0(ProfileActivity profileActivity, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, e6Var);
+        this.X2 = profileActivity;
+        this.V2 = profileActivity;
     }
 
-    public static void a(ez0 ez0Var, Context context, int i10) {
-        int i11;
-        int i12;
-        int i13;
-        String str;
-        String str2;
-        String str3;
-        String str4;
-        String str5;
-        long j3;
-        Long l4;
-        int i14;
-        int i15;
-        int i16;
-        int i17;
-        int i18;
-        int i19;
-        int i20 = 0;
-        if (i10 == 0) {
-            ez0Var.f36146c.getUserConfig().syncContacts = true;
-            ez0Var.f36146c.getUserConfig().saveConfig(false);
-            ez0Var.f36146c.getContactsController().forceImportContacts();
-            return;
+    @Override
+    public final boolean F0(View view) {
+        if (view != this.X2.O) {
+            return true;
         }
-        long j10 = 0;
-        if (i10 == 1) {
-            ez0Var.f36146c.getContactsController().loadContacts(false, 0L);
-        } else if (i10 == 2) {
-            ez0Var.f36146c.getContactsController().resetImportedContacts();
-        } else if (i10 == 3) {
-            ez0Var.f36146c.getMessagesController().forceResetDialogs();
-        } else if (i10 == 4) {
-            BuildVars.LOGS_ENABLED = !BuildVars.LOGS_ENABLED;
-            ApplicationLoader.applicationContext.getSharedPreferences("systemConfig", 0).edit().putBoolean("logsEnabled", BuildVars.LOGS_ENABLED).commit();
-            ez0Var.f36146c.j5();
-            ez0Var.f36146c.d.l();
-            if (BuildVars.LOGS_ENABLED) {
-                org.telegram.messenger.q.r(new StringBuilder("app start time = "), ApplicationLoader.startTime);
-                try {
-                    FileLog.d("buildVersion = " + ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 0).versionCode);
-                } catch (Exception e7) {
-                    FileLog.e(e7);
-                }
-            }
-        } else if (i10 == 5) {
-            SharedConfig.toggleInappCamera();
-        } else if (i10 == 6) {
-            ez0Var.f36146c.getMessagesStorage().clearSentMedia();
-            SharedConfig.setNoSoundHintShowed(false);
-            org.telegram.messenger.q.d(org.telegram.messenger.q.d(org.telegram.messenger.q.d(org.telegram.messenger.q.d(org.telegram.messenger.q.d(org.telegram.messenger.q.d(org.telegram.messenger.q.d(org.telegram.messenger.q.d(org.telegram.messenger.q.d(MessagesController.getGlobalMainSettings().edit().remove("archivehint").remove("proximityhint").remove("archivehint_l"), "searchpostsnew", "speedhint", "gifhint", "reminderhint"), "soundHint", "themehint", "bganimationhint", "filterhint"), "n_0", "storyprvhint", "storyhint", "storyhint2"), "storydualhint", "storysvddualhint", "stories_camera", "dualcam"), "dualmatrix", "dual_available", "archivehint", "askNotificationsAfter"), "askNotificationsDuration", "viewoncehint", "voicepausehint", "taptostorysoundhint"), "nothanos", "voiceoncehint", "savedhint", "savedsearchhint"), "savedsearchtaghint", "newppsms", "monetizationadshint", "seekSpeedHintShowed"), "unsupport_video/av01", "statusgiftpage", "multistorieshint", "trimvoicehint").remove("taptostoryhighlighthint").apply();
-            w7.y5.a();
-            i15 = ((org.telegram.ui.ActionBar.n2) ez0Var.f36146c).currentAccount;
-            MessagesController.getEmojiSettings(i15).edit().remove("featured_hidden").remove("emoji_featured_hidden").commit();
-            SharedConfig.textSelectionHintShows = 0;
-            SharedConfig.lockRecordAudioVideoHint = 0;
-            SharedConfig.stickersReorderingHintUsed = false;
-            SharedConfig.forwardingOptionsHintShown = false;
-            SharedConfig.replyingOptionsHintShown = false;
-            SharedConfig.messageSeenHintCount = 3;
-            SharedConfig.emojiInteractionsHintCount = 3;
-            SharedConfig.dayNightThemeSwitchHintCount = 3;
-            SharedConfig.fastScrollHintCount = 3;
-            SharedConfig.stealthModeSendMessageConfirm = 2;
-            SharedConfig.updateStealthModeSendMessageConfirm(2);
-            SharedConfig.setStoriesReactionsLongPressHintUsed(false);
-            SharedConfig.setStoriesIntroShown(false);
-            SharedConfig.setMultipleReactionsPromoShowed(false);
-            i16 = ((org.telegram.ui.ActionBar.n2) ez0Var.f36146c).currentAccount;
-            ChatThemeController.getInstance(i16).clearCache();
-            ez0Var.f36146c.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.newSuggestionsAvailable, new Object[0]);
-            w31.U();
-            i17 = ((org.telegram.ui.ActionBar.n2) ez0Var.f36146c).currentAccount;
-            pg.u0.e(i17).a();
-            SharedPreferences mainSettings = ez0Var.f36146c.getMessagesController().getMainSettings();
-            SharedPreferences.Editor edit = mainSettings.edit();
-            org.telegram.messenger.q.d(edit, "peerColors", "profilePeerColors", "boostingappearance", "bizbothint").remove("movecaptionhint");
-            for (String str6 : mainSettings.getAll().keySet()) {
-                if (str6.contains("show_gift_for_") || str6.contains("bdayhint_") || str6.contains("bdayanim_") || str6.startsWith("ask_paid_message_") || str6.startsWith("topicssidetabs")) {
-                    edit.remove(str6);
-                }
-            }
-            edit.apply();
-            i18 = ((org.telegram.ui.ActionBar.n2) ez0Var.f36146c).currentAccount;
-            SharedPreferences.Editor edit2 = MessagesController.getNotificationsSettings(i18).edit();
-            i19 = ((org.telegram.ui.ActionBar.n2) ez0Var.f36146c).currentAccount;
-            for (String str7 : MessagesController.getNotificationsSettings(i19).getAll().keySet()) {
-                if (str7.startsWith("dialog_bar_botver")) {
-                    edit2.remove(str7);
-                }
-            }
-            edit2.apply();
-        } else if (i10 == 7) {
-            org.telegram.ui.Components.voip.g2.i(ez0Var.f36146c.getParentActivity());
-        } else if (i10 == 8) {
-            SharedConfig.toggleRoundCamera16to9();
-        } else if (i10 == 9) {
-            ((LaunchActivity) ez0Var.f36146c.getParentActivity()).z(true);
-        } else if (i10 == 10) {
-            ez0Var.f36146c.getMessagesStorage().readAllDialogs(-1);
-        } else if (i10 == 11) {
-            SharedConfig.toggleDisableVoiceAudioEffects();
-        } else if (i10 == 12) {
-            SharedConfig.pendingAppUpdate = null;
-            SharedConfig.saveConfig();
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.appUpdateAvailable, new Object[0]);
-        } else if (i10 == 13) {
-            Set<String> set = ez0Var.f36146c.getMessagesController().pendingSuggestions;
-            set.add("VALIDATE_PHONE_NUMBER");
-            set.add("VALIDATE_PASSWORD");
-            ez0Var.f36146c.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.newSuggestionsAvailable, new Object[0]);
-        } else {
-            try {
-                if (i10 == 14) {
-                    ApplicationLoader.applicationContext.deleteDatabase("webview.db");
-                    ApplicationLoader.applicationContext.deleteDatabase("webviewCache.db");
-                    WebStorage.getInstance().deleteAllData();
-                    WebView webView = new WebView(ApplicationLoader.applicationContext);
-                    webView.clearHistory();
-                    webView.destroy();
-                } else if (i10 == 15) {
-                    CookieManager cookieManager = CookieManager.getInstance();
-                    cookieManager.removeAllCookies(null);
-                    cookieManager.flush();
-                } else if (i10 == 16) {
-                    SharedConfig.toggleDebugWebView();
-                    Activity parentActivity = ez0Var.f36146c.getParentActivity();
-                    if (SharedConfig.debugWebView) {
-                        i14 = R.string.DebugMenuWebViewDebugEnabled;
-                    } else {
-                        i14 = R.string.DebugMenuWebViewDebugDisabled;
-                    }
-                    Toast.makeText(parentActivity, LocaleController.getString(i14), 0).show();
-                } else if (i10 == 17) {
-                    SharedConfig.toggleForceDisableTabletMode();
-                    Activity findActivity = AndroidUtilities.findActivity(context);
-                    Intent launchIntentForPackage = findActivity.getPackageManager().getLaunchIntentForPackage(findActivity.getPackageName());
-                    findActivity.finishAffinity();
-                    findActivity.startActivity(launchIntentForPackage);
-                    System.exit(0);
-                } else if (i10 == 18) {
-                    w7.y.a((LaunchActivity) ez0Var.f36146c.getParentActivity(), !SharedConfig.isFloatingDebugActive, true);
-                } else if (i10 == 19) {
-                    ez0Var.f36146c.getMessagesController().loadAppConfig();
-                    TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
-                    tL_help_dismissSuggestion.suggestion = "VALIDATE_PHONE_NUMBER";
-                    tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
-                    ez0Var.f36146c.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new bz0(ez0Var, 0));
-                } else if (i10 == 20) {
-                    int i21 = ConnectionsManager.CPU_COUNT;
-                    int memoryClass = ((ActivityManager) ApplicationLoader.applicationContext.getSystemService("activity")).getMemoryClass();
-                    StringBuilder sb2 = new StringBuilder();
-                    long j11 = 0;
-                    long j12 = 0;
-                    long j13 = 0;
-                    long j14 = 0;
-                    long j15 = 0;
-                    long j16 = 0;
-                    long j17 = 0;
-                    long j18 = 0;
-                    while (i20 < i21) {
-                        long j19 = j10;
-                        Long sysInfoLong = AndroidUtilities.getSysInfoLong("/sys/devices/system/cpu/cpu" + i20 + "/cpufreq/cpuinfo_min_freq");
-                        Long sysInfoLong2 = AndroidUtilities.getSysInfoLong("/sys/devices/system/cpu/cpu" + i20 + "/cpufreq/cpuinfo_cur_freq");
-                        Long sysInfoLong3 = AndroidUtilities.getSysInfoLong("/sys/devices/system/cpu/cpu" + i20 + "/cpufreq/cpuinfo_max_freq");
-                        Long sysInfoLong4 = AndroidUtilities.getSysInfoLong("/sys/devices/system/cpu/cpu" + i20 + "/cpu_capacity");
-                        sb2.append("#");
-                        sb2.append(i20);
-                        sb2.append(" ");
-                        int i22 = i20;
-                        if (sysInfoLong != null) {
-                            sb2.append("min=");
-                            l4 = sysInfoLong3;
-                            sb2.append(sysInfoLong.longValue() / 1000);
-                            sb2.append(" ");
-                            j11 += sysInfoLong.longValue() / 1000;
-                            j12++;
-                        } else {
-                            l4 = sysInfoLong3;
-                        }
-                        if (sysInfoLong2 != null) {
-                            sb2.append("cur=");
-                            sb2.append(sysInfoLong2.longValue() / 1000);
-                            sb2.append(" ");
-                            j13 += sysInfoLong2.longValue() / 1000;
-                            j14++;
-                        }
-                        if (l4 != null) {
-                            sb2.append("max=");
-                            sb2.append(l4.longValue() / 1000);
-                            sb2.append(" ");
-                            j15 = (l4.longValue() / 1000) + j15;
-                            j16++;
-                        }
-                        if (sysInfoLong4 != null) {
-                            sb2.append("cpc=");
-                            sb2.append(sysInfoLong4);
-                            sb2.append(" ");
-                            j17 = sysInfoLong4.longValue() + j17;
-                            j18++;
-                        }
-                        sb2.append("\n");
-                        i20 = i22 + 1;
-                        j10 = j19;
-                    }
-                    long j20 = j10;
-                    StringBuilder sb3 = new StringBuilder();
-                    sb3.append(Build.MANUFACTURER);
-                    sb3.append(", ");
-                    sb3.append(Build.MODEL);
-                    sb3.append(" (");
-                    sb3.append(Build.PRODUCT);
-                    sb3.append(", ");
-                    sb3.append(Build.DEVICE);
-                    sb3.append(")  (android ");
-                    int i23 = Build.VERSION.SDK_INT;
-                    sb3.append(i23);
-                    sb3.append(")\n");
-                    if (i23 >= 31) {
-                        sb3.append("SoC: ");
-                        sb3.append(Build.SOC_MANUFACTURER);
-                        sb3.append(", ");
-                        sb3.append(Build.SOC_MODEL);
-                        sb3.append("\n");
-                    }
-                    String sysInfoString = AndroidUtilities.getSysInfoString("/sys/kernel/gpu/gpu_model");
-                    if (sysInfoString != null) {
-                        sb3.append("GPU: ");
-                        sb3.append(sysInfoString);
-                        Long sysInfoLong5 = AndroidUtilities.getSysInfoLong("/sys/kernel/gpu/gpu_min_clock");
-                        Long sysInfoLong6 = AndroidUtilities.getSysInfoLong("/sys/kernel/gpu/gpu_mm_min_clock");
-                        Long sysInfoLong7 = AndroidUtilities.getSysInfoLong("/sys/kernel/gpu/gpu_max_clock");
-                        if (sysInfoLong5 != null) {
-                            sb3.append(", min=");
-                            j3 = j11;
-                            sb3.append(sysInfoLong5.longValue() / 1000);
-                        } else {
-                            j3 = j11;
-                        }
-                        if (sysInfoLong6 != null) {
-                            sb3.append(", mmin=");
-                            sb3.append(sysInfoLong6.longValue() / 1000);
-                        }
-                        if (sysInfoLong7 != null) {
-                            sb3.append(", max=");
-                            sb3.append(sysInfoLong7.longValue() / 1000);
-                        }
-                        sb3.append("\n");
-                    } else {
-                        j3 = j11;
-                    }
-                    ConfigurationInfo deviceConfigurationInfo = ((ActivityManager) ApplicationLoader.applicationContext.getSystemService("activity")).getDeviceConfigurationInfo();
-                    sb3.append("GLES Version: ");
-                    sb3.append(deviceConfigurationInfo.getGlEsVersion());
-                    sb3.append("\nMemory: class=");
-                    sb3.append(AndroidUtilities.formatFileSize(memoryClass * 1048576));
-                    ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
-                    ((ActivityManager) ApplicationLoader.applicationContext.getSystemService("activity")).getMemoryInfo(memoryInfo);
-                    sb3.append(", total=");
-                    sb3.append(AndroidUtilities.formatFileSize(memoryInfo.totalMem));
-                    sb3.append(", avail=");
-                    sb3.append(AndroidUtilities.formatFileSize(memoryInfo.availMem));
-                    sb3.append(", low?=");
-                    sb3.append(memoryInfo.lowMemory);
-                    sb3.append(" (threshold=");
-                    sb3.append(AndroidUtilities.formatFileSize(memoryInfo.threshold));
-                    sb3.append(")\nCurrent class: ");
-                    sb3.append(SharedConfig.performanceClassName(SharedConfig.getDevicePerformanceClass()));
-                    sb3.append(", measured: ");
-                    sb3.append(SharedConfig.performanceClassName(SharedConfig.measureDevicePerformanceClass()));
-                    if (i23 >= 31) {
-                        sb3.append(", suggest=");
-                        sb3.append(Build.VERSION.MEDIA_PERFORMANCE_CLASS);
-                    }
-                    sb3.append("\n");
-                    sb3.append(i21);
-                    sb3.append(" CPUs");
-                    if (j12 > j20) {
-                        sb3.append(", avgMinFreq=");
-                        sb3.append(j3 / j12);
-                    }
-                    if (j14 > j20) {
-                        sb3.append(", avgCurFreq=");
-                        sb3.append(j13 / j14);
-                    }
-                    if (j16 > j20) {
-                        sb3.append(", avgMaxFreq=");
-                        sb3.append(j15 / j16);
-                    }
-                    if (j18 > j20) {
-                        sb3.append(", avgCapacity=");
-                        sb3.append(j17 / j18);
-                    }
-                    sb3.append("\n");
-                    sb3.append((CharSequence) sb2);
-                    ProfileActivity.S0(ez0Var.f36146c, "video/avc", sb3);
-                    ProfileActivity.S0(ez0Var.f36146c, "video/hevc", sb3);
-                    ProfileActivity.S0(ez0Var.f36146c, "video/x-vnd.on2.vp8", sb3);
-                    ProfileActivity.S0(ez0Var.f36146c, "video/x-vnd.on2.vp9", sb3);
-                    ez0Var.f36146c.showDialog(new dz0(ez0Var, ez0Var.f36146c.getParentActivity(), sb3.toString()));
-                } else if (i10 == 21) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ez0Var.f36146c.getParentActivity(), 0, ez0Var.f36146c.f34396z0);
-                    alertDialog$Builder.f20377a.R = "Force performance class";
-                    int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
-                    int measureDevicePerformanceClass = SharedConfig.measureDevicePerformanceClass();
-                    if (devicePerformanceClass == 2) {
-                        str = "**HIGH**";
-                    } else {
-                        str = "HIGH";
-                    }
-                    String str8 = "";
-                    if (measureDevicePerformanceClass != 2) {
-                        str2 = "";
-                    } else {
-                        str2 = " (measured)";
-                    }
-                    SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(str.concat(str2));
-                    if (devicePerformanceClass == 1) {
-                        str3 = "**AVERAGE**";
-                    } else {
-                        str3 = "AVERAGE";
-                    }
-                    if (measureDevicePerformanceClass != 1) {
-                        str4 = "";
-                    } else {
-                        str4 = " (measured)";
-                    }
-                    SpannableStringBuilder replaceTags2 = AndroidUtilities.replaceTags(str3.concat(str4));
-                    if (devicePerformanceClass == 0) {
-                        str5 = "**LOW**";
-                    } else {
-                        str5 = "LOW";
-                    }
-                    if (measureDevicePerformanceClass == 0) {
-                        str8 = " (measured)";
-                    }
-                    alertDialog$Builder.f(new CharSequence[]{replaceTags, replaceTags2, AndroidUtilities.replaceTags(str5.concat(str8))}, new cz0(measureDevicePerformanceClass, 0));
-                    alertDialog$Builder.h(LocaleController.getString("Cancel", R.string.Cancel), null);
-                    alertDialog$Builder.o();
-                } else if (i10 == 22) {
-                    SharedConfig.toggleRoundCamera();
-                } else if (i10 == 23) {
-                    boolean q6 = ci.d1.q(ez0Var.f36146c.getParentActivity());
-                    MessagesController.getGlobalMainSettings().edit().putBoolean("dual_available", !q6).apply();
-                    Activity parentActivity2 = ez0Var.f36146c.getParentActivity();
-                    if (!q6) {
-                        i13 = R.string.DebugMenuDualOnToast;
-                    } else {
-                        i13 = R.string.DebugMenuDualOffToast;
-                    }
-                    Toast.makeText(parentActivity2, LocaleController.getString(i13), 0).show();
-                } else if (i10 == 24) {
-                    SharedConfig.toggleSurfaceInStories();
-                    while (i20 < ez0Var.f36146c.getParentLayout().getFragmentStack().size()) {
-                        ((org.telegram.ui.ActionBar.n2) ez0Var.f36146c.getParentLayout().getFragmentStack().get(i20)).clearSheets();
-                        i20++;
-                    }
-                } else if (i10 == 25) {
-                    SharedConfig.togglePhotoViewerBlur();
-                } else if (i10 == 26) {
-                    SharedConfig.togglePaymentByInvoice();
-                } else if (i10 == 27) {
-                    ez0Var.f36146c.getMediaDataController().loadAttachMenuBots(false, true);
-                } else if (i10 == 28) {
-                    i12 = ((org.telegram.ui.ActionBar.n2) ez0Var.f36146c).currentAccount;
-                    SharedConfig.toggleUseCamera2(i12);
-                } else if (i10 == 29) {
-                    ei.s.b();
-                    ei.x0.c();
-                    ei.m0.a();
-                    ei.d5.c();
-                } else if (i10 == 30) {
-                    AuthTokensHelper.clearLogInTokens();
-                } else if (i10 == 31) {
-                    SharedConfig.toggleUseNewBlur();
-                } else if (i10 == 32) {
-                    SharedConfig.toggleBrowserAdaptableColors();
-                } else if (i10 == 33) {
-                    SharedConfig.toggleDebugVideoQualities();
-                } else if (i10 == 34) {
-                    SharedConfig.toggleUseSystemBoldFont();
-                } else if (i10 == 35) {
-                    i11 = ((org.telegram.ui.ActionBar.n2) ez0Var.f36146c).currentAccount;
-                    MessagesController.getInstance(i11).loadAppConfig(true);
-                } else if (i10 == 36) {
-                    SharedConfig.toggleForceForumTabs();
-                } else if (i10 == 37) {
-                    FileLog.getInstance().dumpMemory(true);
-                } else if (i10 == 38) {
-                    SharedConfig.toggleFastWallpaperDisabled();
-                }
-            } catch (Exception unused) {
-            }
+        return false;
+    }
+
+    @Override
+    public final boolean H0(View view, float f7, float f10) {
+        return !(view instanceof org.telegram.ui.Cells.j);
+    }
+
+    @Override
+    public final void a(int[] iArr) {
+        org.telegram.ui.ActionBar.k kVar;
+        kVar = ((org.telegram.ui.ActionBar.n2) this.V2).actionBar;
+        iArr[0] = kVar.getMeasuredHeight();
+        iArr[1] = getMeasuredHeight() - getPaddingBottom();
+    }
+
+    @Override
+    public final void invalidate() {
+        super.invalidate();
+        View view = this.X2.fragmentView;
+        if (view != null) {
+            view.invalidate();
         }
     }
 
     @Override
-    public final boolean d(int r46, android.view.View r47) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ez0.d(int, android.view.View):boolean");
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        ProfileActivity profileActivity = this.X2;
+        k01 k01Var = profileActivity.O;
+        if (k01Var != null) {
+            if (k01Var.C()) {
+                k01 k01Var2 = profileActivity.O;
+                if (k01Var2.C1 && k01Var2.getClosestTab() == 13) {
+                    return false;
+                }
+            }
+            if (profileActivity.O.C()) {
+                k01 k01Var3 = profileActivity.O;
+                if (k01Var3.C1 && (k01Var3.getClosestTab() == 8 || org.telegram.ui.Components.bw0.w0(profileActivity.O.getClosestTab()))) {
+                    return false;
+                }
+            }
+            org.telegram.ui.Components.rs0 rs0Var = profileActivity.O.V;
+            if (rs0Var == null || !rs0Var.g()) {
+                org.telegram.ui.Components.ws0 ws0Var = profileActivity.O.W;
+                if (ws0Var != null && ws0Var.f35812w) {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+        return super.onInterceptTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        this.X2.U4();
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        VelocityTracker velocityTracker;
+        View m10;
+        org.telegram.ui.ActionBar.k kVar;
+        int i10;
+        org.telegram.ui.ActionBar.k kVar2;
+        int i11;
+        int O3;
+        int action = motionEvent.getAction();
+        boolean z10 = true;
+        ProfileActivity profileActivity = this.X2;
+        if (action == 0) {
+            VelocityTracker velocityTracker2 = this.W2;
+            if (velocityTracker2 == null) {
+                this.W2 = VelocityTracker.obtain();
+            } else {
+                velocityTracker2.clear();
+            }
+            this.W2.addMovement(motionEvent);
+        } else if (action == 2) {
+            VelocityTracker velocityTracker3 = this.W2;
+            if (velocityTracker3 != null) {
+                velocityTracker3.addMovement(motionEvent);
+                this.W2.computeCurrentVelocity(1000);
+                profileActivity.f34273i2 = this.W2.getYVelocity(motionEvent.getPointerId(motionEvent.getActionIndex()));
+            }
+        } else if ((action == 1 || action == 3) && (velocityTracker = this.W2) != null) {
+            if (action == 1) {
+                velocityTracker.addMovement(motionEvent);
+                this.W2.computeCurrentVelocity(1000);
+                profileActivity.f34273i2 = this.W2.getYVelocity(motionEvent.getPointerId(motionEvent.getActionIndex()));
+            }
+            this.W2.recycle();
+            this.W2 = null;
+        }
+        boolean onTouchEvent = super.onTouchEvent(motionEvent);
+        if (action == 2) {
+            int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
+            kVar2 = ((org.telegram.ui.ActionBar.n2) profileActivity).actionBar;
+            if (kVar2.getOccupyStatusBar()) {
+                i11 = AndroidUtilities.statusBarHeight;
+            } else {
+                i11 = 0;
+            }
+            int i12 = currentActionBarHeight + i11;
+            if (profileActivity.f34305n2 && !profileActivity.I0) {
+                O3 = profileActivity.T3();
+            } else {
+                i12 = profileActivity.f34211a.getMeasuredWidth();
+                O3 = profileActivity.O3();
+            }
+            if (profileActivity.Q1 >= (O3 + i12) - 1.0f) {
+                profileActivity.w4(true);
+                onTouchEvent = false;
+            }
+        }
+        if ((action == 1 || action == 3) && (m10 = profileActivity.f34226c.m(0)) != null) {
+            if (profileActivity.O1) {
+                profileActivity.O1 = false;
+                profileActivity.f34211a.O0 = true;
+            }
+            if (profileActivity.f34312o2) {
+                if (profileActivity.f34319p2) {
+                    int currentActionBarHeight2 = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
+                    kVar = ((org.telegram.ui.ActionBar.n2) profileActivity).actionBar;
+                    if (kVar.getOccupyStatusBar()) {
+                        i10 = AndroidUtilities.statusBarHeight;
+                    } else {
+                        i10 = 0;
+                    }
+                    profileActivity.f34211a.v0(0, ((m10.getTop() - profileActivity.f34211a.getMeasuredWidth()) - profileActivity.O3()) + currentActionBarHeight2 + i10, org.telegram.ui.Components.hs.h);
+                    return onTouchEvent;
+                }
+                profileActivity.f34211a.v0(0, m10.getTop() - profileActivity.T3(), org.telegram.ui.Components.hs.h);
+                return onTouchEvent;
+            }
+            if (profileActivity.O3() <= 0) {
+                z10 = false;
+            }
+            if (z10) {
+                float f7 = profileActivity.Q1;
+                if (f7 > 0.0f && ((f7 < profileActivity.T3() * 0.6f || profileActivity.f34273i2 < -1000.0f) && profileActivity.Q1 > profileActivity.O3() * 0.6f)) {
+                    profileActivity.f34211a.v0(0, (int) (profileActivity.Q1 - profileActivity.O3()), org.telegram.ui.Components.hs.h);
+                    return onTouchEvent;
+                }
+            }
+            if (z10) {
+                float f10 = profileActivity.Q1;
+                if (f10 > 0.0f && f10 < profileActivity.O3() * 0.6f) {
+                    profileActivity.f34211a.v0(0, (int) (profileActivity.O3() - profileActivity.Q1), org.telegram.ui.Components.hs.h);
+                    return onTouchEvent;
+                }
+            }
+            if (!z10) {
+                float f11 = profileActivity.Q1;
+                if (f11 > 0.0f && profileActivity.f34273i2 < -1000.0f) {
+                    profileActivity.f34211a.v0(0, (int) f11, org.telegram.ui.Components.hs.h);
+                    return onTouchEvent;
+                }
+            }
+            if (profileActivity.Q1 > 0.0f) {
+                profileActivity.f34211a.v0(0, m10.getTop() - profileActivity.T3(), org.telegram.ui.Components.hs.h);
+            }
+        }
+        return onTouchEvent;
+    }
+
+    @Override
+    public final void q0(View view, View view2) {
     }
 }

@@ -1,49 +1,25 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.widget.FrameLayout;
-import org.telegram.ui.Components.FragmentContextView;
-public final class a9 extends FragmentContextView {
-    public final int Q0 = 0;
-    public final org.telegram.ui.ActionBar.n2 R0;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import java.util.concurrent.atomic.AtomicBoolean;
+public final class a9 extends AnimatorListenerAdapter {
+    public final AtomicBoolean f35873a;
+    public final org.telegram.ui.Components.ea0 f35874b;
+    public final String f35875c;
 
-    public a9(m9 m9Var, Context context, m9 m9Var2, y8 y8Var, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, m9Var2, y8Var, false, d6Var);
-        this.R0 = m9Var;
+    public a9(AtomicBoolean atomicBoolean, org.telegram.ui.Components.ea0 ea0Var, String str) {
+        this.f35873a = atomicBoolean;
+        this.f35874b = ea0Var;
+        this.f35875c = str;
     }
 
     @Override
-    public final void setVisibility(int i10) {
-        boolean z10;
-        boolean z11;
-        switch (this.Q0) {
-            case 0:
-                m9 m9Var = (m9) this.R0;
-                org.telegram.ui.Components.ns nsVar = m9Var.L;
-                FrameLayout frameLayout = m9Var.M;
-                if (i10 == 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                nsVar.i(frameLayout, z10, true);
-                return;
-            default:
-                wf1 wf1Var = (wf1) this.R0;
-                org.telegram.ui.Components.ns nsVar2 = wf1Var.U0;
-                FrameLayout frameLayout2 = wf1Var.F0;
-                if (i10 == 0) {
-                    z11 = true;
-                } else {
-                    z11 = false;
-                }
-                nsVar2.i(frameLayout2, z11, true);
-                return;
+    public final void onAnimationEnd(Animator animator) {
+        AtomicBoolean atomicBoolean = this.f35873a;
+        if (!atomicBoolean.get()) {
+            atomicBoolean.set(true);
+            this.f35874b.setText(this.f35875c);
         }
-    }
-
-    public a9(wf1 wf1Var, Context context, wf1 wf1Var2) {
-        super(context, wf1Var2, null, false, null);
-        this.R0 = wf1Var;
     }
 }

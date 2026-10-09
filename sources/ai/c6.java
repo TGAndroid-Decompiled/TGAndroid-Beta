@@ -1,432 +1,97 @@
 package ai;
 
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
-import android.text.style.CharacterStyle;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Locale;
+import android.content.Context;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.u41;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.ck0;
 public final class c6 {
-    public TL_stories.StoryItem f696a = null;
-    public k9 f697b = null;
-    public TL_stories.StoryItem f698c;
-    public boolean d;
-    public boolean f699e;
-    public boolean f700f;
-    public boolean f701g;
-    public CharSequence h;
-    public sa f702i;
-    public sa f703j;
-    public final e6 f704k;
+    public final Paint f759a;
+    public final Paint f760b;
+    public final Paint f761c;
+    public final Drawable d;
+    public final Drawable f762e;
+    public final ColorDrawable f763f;
+    public final com.google.firebase.messaging.n f764g = new com.google.firebase.messaging.n(5);
+    public final RectF h = new RectF();
+    public final RectF f765i = new RectF();
+    public final RectF f766j = new RectF();
+    public final RectF f767k;
+    public final Paint f768l;
+    public final Drawable f769m;
+    public final Drawable f770n;
+    public final Drawable f771o;
+    public final Drawable f772p;
+    public final Drawable f773q;
+    public final Drawable f774r;
+    public final Drawable f775s;
+    public final ck0 f776t;
+    public final ck0 f777u;
 
-    public c6(e6 e6Var) {
-        this.f704k = e6Var;
+    public c6(Context context) {
+        new RectF();
+        this.f767k = new RectF();
+        this.f768l = new Paint();
+        this.f769m = context.getDrawable(R.drawable.media_share);
+        this.f771o = context.getDrawable(R.drawable.media_like);
+        this.f770n = context.getDrawable(R.drawable.media_repost);
+        Drawable drawable = context.getDrawable(R.drawable.media_like_active);
+        this.f772p = drawable;
+        drawable.setColorFilter(new PorterDuffColorFilter(-53704, PorterDuff.Mode.MULTIPLY));
+        this.f773q = context.getDrawable(R.drawable.media_more);
+        this.f774r = context.getDrawable(R.drawable.menu_stream_pip);
+        this.f775s = context.getDrawable(R.drawable.msg_delete);
+        this.f777u = new ck0(R.raw.media_mute_unmute, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
+        ck0 ck0Var = new ck0(R.raw.media_mute_unmute, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
+        this.f776t = ck0Var;
+        ck0Var.N(20, false, true);
+        ck0Var.stop();
+        Paint paint = new Paint(1);
+        this.f759a = paint;
+        paint.setColor(1442840575);
+        Paint paint2 = new Paint(1);
+        this.f760b = paint2;
+        paint2.setColor(-1);
+        int k10 = i0.a.k(-16777216, 102);
+        this.d = context.getDrawable(R.drawable.shadow_story_top);
+        this.f762e = context.getDrawable(R.drawable.shadow_story_bottom);
+        Paint paint3 = new Paint();
+        this.f761c = paint3;
+        paint3.setColor(k10);
+        this.f763f = new ColorDrawable(i0.a.d(0.1f, -16777216, -1));
     }
 
-    public static String c(c6 c6Var) {
-        TLRPC.MessageMedia messageMedia;
-        TL_stories.StoryItem storyItem = c6Var.f696a;
-        if (storyItem != null && (messageMedia = storyItem.media) != null) {
-            if (messageMedia.photo != null) {
-                StringBuilder sb2 = new StringBuilder("photo#");
-                sb2.append(c6Var.f696a.media.photo.f20071id);
-                sb2.append("at");
-                return a4.a.o(c6Var.f696a.media.photo.dc_id, "dc", sb2);
-            } else if (messageMedia.document != null) {
-                StringBuilder sb3 = new StringBuilder("doc#");
-                sb3.append(c6Var.f696a.media.document.f20053id);
-                sb3.append("at");
-                return a4.a.o(c6Var.f696a.media.document.dc_id, "dc", sb3);
+    public final void a(boolean z10, boolean z11) {
+        int i10;
+        int i11 = 20;
+        ck0 ck0Var = this.f777u;
+        if (!z11) {
+            if (z10) {
+                i10 = 20;
             } else {
-                return "unknown";
+                i10 = 0;
             }
-        } else if (c6Var.f697b != null) {
-            return "uploading from " + c6Var.f697b.f1233e;
+            ck0Var.N(i10, false, false);
+            if (!z10) {
+                i11 = 0;
+            }
+            ck0Var.P(i11);
+        } else if (z10) {
+            if (ck0Var.f25395a0 > 20) {
+                ck0Var.N(0, false, false);
+            }
+            ck0Var.P(20);
+            ck0Var.start();
         } else {
-            return "unknown";
-        }
-    }
-
-    public final boolean d() {
-        k9 k9Var = this.f697b;
-        if (k9Var != null) {
-            return k9Var.f1232c.H0;
-        }
-        TL_stories.StoryItem storyItem = this.f696a;
-        if (storyItem != null) {
-            if (storyItem.noforwards) {
-                return false;
-            }
-            if (storyItem.pinned) {
-                TLRPC.Chat chat = MessagesController.getInstance(this.f704k.C2).getChat(Long.valueOf(-storyItem.dialogId));
-                if (chat != null && chat.noforwards) {
-                    return false;
-                }
-                return true;
-            }
-            return true;
-        }
-        return true;
-    }
-
-    public final String e() {
-        e6 e6Var = this.f704k;
-        if (e6Var.O1.f696a == null) {
-            return null;
-        }
-        if (e6Var.B1 > 0) {
-            TLRPC.User user = MessagesController.getInstance(e6Var.C2).getUser(Long.valueOf(e6Var.B1));
-            if (UserObject.getPublicUsername(user) == null) {
-                return null;
-            }
-            if (e6Var.O1.f700f) {
-                return String.format(Locale.US, "https://t.me/%1$s/s/live", UserObject.getPublicUsername(user));
-            }
-            return String.format(Locale.US, "https://t.me/%1$s/s/%2$s", UserObject.getPublicUsername(user), Integer.valueOf(e6Var.O1.f696a.f20284id));
-        }
-        TLRPC.Chat chat = MessagesController.getInstance(e6Var.C2).getChat(Long.valueOf(-e6Var.B1));
-        if (ChatObject.getPublicUsername(chat) == null) {
-            return null;
-        }
-        if (e6Var.O1.f700f) {
-            return String.format(Locale.US, "https://t.me/%1$s/s/live", ChatObject.getPublicUsername(chat));
-        }
-        return String.format(Locale.US, "https://t.me/%1$s/s/%2$s", ChatObject.getPublicUsername(chat), Integer.valueOf(e6Var.O1.f696a.f20284id));
-    }
-
-    public final String f() {
-        TL_stories.StoryItem storyItem = this.f696a;
-        if (storyItem != null) {
-            return storyItem.attachPath;
-        }
-        return null;
-    }
-
-    public final sa g() {
-        TL_stories.StoryItem storyItem;
-        TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio;
-        if (this.f702i == null && (storyItem = this.f696a) != null) {
-            TLRPC.Document document = storyItem.music;
-            sa saVar = null;
-            if (document != null && (tL_documentAttributeAudio = (TLRPC.TL_documentAttributeAudio) AndroidUtilities.find(document.attributes, TLRPC.TL_documentAttributeAudio.class)) != null) {
-                String str = tL_documentAttributeAudio.title;
-                String str2 = tL_documentAttributeAudio.performer;
-                if (!TextUtils.isEmpty(str) || !TextUtils.isEmpty(str2)) {
-                    saVar = new sa();
-                    saVar.f1650f = true;
-                    saVar.f1651g = document;
-                    if (TextUtils.isEmpty(str)) {
-                        saVar.f1654k = new SpannableStringBuilder(sa.d()).append((CharSequence) " ").append((CharSequence) str2);
-                    } else if (TextUtils.isEmpty(str2)) {
-                        saVar.f1654k = new SpannableStringBuilder(sa.d()).append((CharSequence) " ").append((CharSequence) str);
-                    } else {
-                        SpannableStringBuilder append = new SpannableStringBuilder(sa.d()).append((CharSequence) " ").append((CharSequence) str2);
-                        saVar.f1654k = append;
-                        int length = append.length();
-                        saVar.f1654k.append((CharSequence) " ・ ");
-                        saVar.f1654k.setSpan(new CharacterStyle(), length, saVar.f1654k.length(), 33);
-                        saVar.f1654k.append((CharSequence) str);
-                    }
-                }
-            }
-            this.f702i = saVar;
-        }
-        return this.f702i;
-    }
-
-    public final File h() {
-        TLRPC.Photo photo;
-        if (f() != null) {
-            return new File(f());
-        }
-        TL_stories.StoryItem storyItem = this.f696a;
-        if (storyItem != null) {
-            TLRPC.MessageMedia messageMedia = storyItem.media;
-            e6 e6Var = this.f704k;
-            if (messageMedia != null && messageMedia.getDocument() != null) {
-                return FileLoader.getInstance(e6Var.C2).getPathToAttach(this.f696a.media.getDocument());
-            }
-            TLRPC.MessageMedia messageMedia2 = this.f696a.media;
-            if (messageMedia2 != null && (photo = messageMedia2.photo) != null) {
-                TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, Integer.MAX_VALUE);
-                File pathToAttach = FileLoader.getInstance(e6Var.C2).getPathToAttach(closestPhotoSizeWithSize, true);
-                if (!pathToAttach.exists()) {
-                    return FileLoader.getInstance(e6Var.C2).getPathToAttach(closestPhotoSizeWithSize, false);
-                }
-                return pathToAttach;
-            }
-            return null;
-        }
-        return null;
-    }
-
-    public final sa i() {
-        ArrayList arrayList;
-        TLRPC.Chat chat;
-        CharSequence groupSpan;
-        TLRPC.Chat chat2;
-        CharSequence groupSpan2;
-        CharSequence groupSpan3;
-        String str;
-        if (this.f703j == null) {
-            TL_stories.StoryItem storyItem = this.f696a;
-            int i10 = 0;
-            sa saVar = null;
-            if (storyItem != null) {
-                int i11 = this.f704k.C2;
-                if (storyItem.fwd_from != null) {
-                    saVar = new sa();
-                    saVar.f1646a = i11;
-                    TL_stories.StoryFwdHeader storyFwdHeader = storyItem.fwd_from;
-                    TLRPC.Peer peer = storyFwdHeader.from;
-                    if (peer != null) {
-                        long peerDialogId = DialogObject.getPeerDialogId(peer);
-                        saVar.f1647b = Long.valueOf(peerDialogId);
-                        if (peerDialogId >= 0) {
-                            saVar.f1654k = new SpannableStringBuilder(MessageObject.userSpan()).append((CharSequence) " ").append((CharSequence) UserObject.getUserName(MessagesController.getInstance(i11).getUser(Long.valueOf(peerDialogId))));
-                        } else {
-                            TLRPC.Chat chat3 = MessagesController.getInstance(i11).getChat(Long.valueOf(-peerDialogId));
-                            if (ChatObject.isChannelAndNotMegaGroup(chat3)) {
-                                groupSpan3 = MessageObject.channelSpan();
-                            } else {
-                                groupSpan3 = MessageObject.groupSpan();
-                            }
-                            SpannableStringBuilder append = new SpannableStringBuilder(groupSpan3).append((CharSequence) " ");
-                            if (chat3 != null) {
-                                str = chat3.title;
-                            } else {
-                                str = "";
-                            }
-                            saVar.f1654k = append.append((CharSequence) str);
-                        }
-                    } else if (storyFwdHeader.from_name != null) {
-                        saVar.f1654k = new SpannableStringBuilder(MessageObject.userSpan()).append((CharSequence) " ").append((CharSequence) storyItem.fwd_from.from_name);
-                    }
-                    saVar.f1650f = true;
-                    TL_stories.StoryFwdHeader storyFwdHeader2 = storyItem.fwd_from;
-                    if ((storyFwdHeader2.flags & 4) != 0) {
-                        saVar.f1648c = Integer.valueOf(storyFwdHeader2.story_id);
-                    }
-                    saVar.c();
-                } else if (storyItem.media_areas != null) {
-                    TL_stories.TL_mediaAreaChannelPost tL_mediaAreaChannelPost = null;
-                    while (i10 < storyItem.media_areas.size()) {
-                        if (storyItem.media_areas.get(i10) instanceof TL_stories.TL_mediaAreaChannelPost) {
-                            tL_mediaAreaChannelPost = (TL_stories.TL_mediaAreaChannelPost) storyItem.media_areas.get(i10);
-                        }
-                        i10++;
-                    }
-                    if (tL_mediaAreaChannelPost != null && (chat2 = MessagesController.getInstance(i11).getChat(Long.valueOf(tL_mediaAreaChannelPost.channel_id))) != null) {
-                        saVar = new sa();
-                        saVar.f1647b = Long.valueOf(-chat2.f20047id);
-                        saVar.f1649e = true;
-                        saVar.f1646a = i11;
-                        saVar.f1650f = true;
-                        saVar.d = Integer.valueOf(tL_mediaAreaChannelPost.msg_id);
-                        if (ChatObject.isChannelAndNotMegaGroup(chat2)) {
-                            groupSpan2 = MessageObject.channelSpan();
-                        } else {
-                            groupSpan2 = MessageObject.groupSpan();
-                        }
-                        saVar.f1654k = new SpannableStringBuilder(groupSpan2).append((CharSequence) " ").append((CharSequence) chat2.title);
-                    }
-                }
-                this.f703j = saVar;
-            } else {
-                k9 k9Var = this.f697b;
-                if (k9Var != null) {
-                    ci.k8 k8Var = k9Var.f1232c;
-                    if (k8Var != null) {
-                        if (k8Var.f5338n) {
-                            saVar = new sa();
-                            saVar.f1654k = k8Var.f5342p;
-                            String str2 = k8Var.f5348s;
-                            saVar.f1655l = str2;
-                            saVar.f1650f = TextUtils.isEmpty(str2);
-                        } else if (k8Var.f5352u && (arrayList = k8Var.v) != null && arrayList.size() > 0) {
-                            MessageObject messageObject = (MessageObject) k8Var.v.get(0);
-                            long p5 = ci.k8.p(messageObject);
-                            if (p5 < 0 && (chat = MessagesController.getInstance(messageObject.currentAccount).getChat(Long.valueOf(-p5))) != null) {
-                                saVar = new sa();
-                                saVar.f1647b = Long.valueOf(p5);
-                                saVar.f1649e = true;
-                                saVar.f1646a = messageObject.currentAccount;
-                                saVar.f1650f = true;
-                                Boolean D = ci.k8.D(messageObject);
-                                if (D != null) {
-                                    if (D.booleanValue()) {
-                                        i10 = messageObject.messageOwner.fwd_from.channel_post;
-                                    } else {
-                                        i10 = messageObject.getId();
-                                    }
-                                }
-                                saVar.d = Integer.valueOf(i10);
-                                if (ChatObject.isChannelAndNotMegaGroup(chat)) {
-                                    groupSpan = MessageObject.channelSpan();
-                                } else {
-                                    groupSpan = MessageObject.groupSpan();
-                                }
-                                saVar.f1654k = new SpannableStringBuilder(groupSpan).append((CharSequence) " ").append((CharSequence) chat.title);
-                            }
-                        }
-                    }
-                    this.f703j = saVar;
-                }
-            }
-        }
-        return this.f703j;
-    }
-
-    public final boolean j() {
-        TLRPC.MessageMedia messageMedia;
-        TLRPC.Document document;
-        if (!this.f699e) {
-            return false;
-        }
-        TL_stories.StoryItem storyItem = this.f696a;
-        if (storyItem != null && (messageMedia = storyItem.media) != null && (document = messageMedia.getDocument()) != null) {
-            for (int i10 = 0; i10 < document.attributes.size(); i10++) {
-                TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i10);
-                if ((documentAttribute instanceof TLRPC.TL_documentAttributeVideo) && documentAttribute.nosound) {
-                    return false;
-                }
-            }
-            return true;
-        }
-        k9 k9Var = this.f697b;
-        if (k9Var == null) {
-            return true;
-        }
-        return !k9Var.f1232c.Y;
-    }
-
-    public final boolean k(long j3) {
-        TL_stories.StoryItem storyItem = this.f696a;
-        if (storyItem != null) {
-            TLRPC.MessageMedia messageMedia = storyItem.media;
-            if ((messageMedia instanceof TLRPC.TL_messageMediaVideoStream) && j3 == ((TLRPC.TL_messageMediaVideoStream) messageMedia).call.f20064id) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public final boolean l() {
-        return this.f699e;
-    }
-
-    public final boolean m() {
-        String str;
-        TLRPC.MessageMedia messageMedia;
-        k9 k9Var = this.f697b;
-        if (k9Var != null) {
-            return k9Var.f1237s;
-        }
-        TL_stories.StoryItem storyItem = this.f696a;
-        if (storyItem != null && (messageMedia = storyItem.media) != null && messageMedia.getDocument() != null) {
-            TLRPC.Document document = this.f696a.media.getDocument();
-            if (!MessageObject.isVideoDocument(document) && !"video/mp4".equals(document.mime_type)) {
-                return false;
-            }
-            return true;
-        }
-        TL_stories.StoryItem storyItem2 = this.f696a;
-        if (storyItem2 == null || storyItem2.media != null || (str = storyItem2.attachPath) == null) {
-            return false;
-        }
-        return str.toLowerCase().endsWith(".mp4");
-    }
-
-    public final void n(TL_stories.StoryItem storyItem) {
-        boolean z10;
-        TLRPC.MessageMedia messageMedia;
-        this.f696a = storyItem;
-        this.f703j = null;
-        this.f702i = null;
-        this.f697b = null;
-        this.d = storyItem instanceof TL_stories.TL_storyItemSkipped;
-        this.f699e = m();
-        TL_stories.StoryItem storyItem2 = this.f696a;
-        if (storyItem2 != null && (messageMedia = storyItem2.media) != null && (messageMedia instanceof TLRPC.TL_messageMediaVideoStream)) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        this.f700f = z10;
-    }
-
-    public final void o() {
-        SpannableStringBuilder valueOf;
-        int i10 = 0;
-        this.f701g = false;
-        e6 e6Var = this.f704k;
-        g5 g5Var = e6Var.K0;
-        c6 c6Var = e6Var.O1;
-        k9 k9Var = c6Var.f697b;
-        if (k9Var != null) {
-            CharSequence charSequence = k9Var.f1232c.C0;
-            this.h = charSequence;
-            CharSequence replaceEmoji = Emoji.replaceEmoji(charSequence, g5Var.f1865b0.getPaint().getFontMetricsInt(), false);
-            this.h = replaceEmoji;
-            if (replaceEmoji == null) {
-                valueOf = new SpannableStringBuilder();
-            } else {
-                valueOf = SpannableStringBuilder.valueOf(replaceEmoji);
-            }
-            TLRPC.User user = MessagesController.getInstance(e6Var.C2).getUser(Long.valueOf(e6Var.B1));
-            if (e6Var.B1 < 0 || MessagesController.getInstance(e6Var.C2).storyEntitiesAllowed(user)) {
-                MessageObject.addLinks(true, valueOf);
-                return;
-            }
-            return;
-        }
-        TL_stories.StoryItem storyItem = c6Var.f696a;
-        if (storyItem != null) {
-            if (storyItem.translated && storyItem.translatedText != null && TextUtils.equals(storyItem.translatedLng, u41.A())) {
-                this.f701g = true;
-                TLRPC.TL_textWithEntities tL_textWithEntities = c6Var.f696a.translatedText;
-                String str = tL_textWithEntities.text;
-                this.h = str;
-                CharSequence replaceEmoji2 = Emoji.replaceEmoji(str, g5Var.f1865b0.getPaint().getFontMetricsInt(), false);
-                this.h = replaceEmoji2;
-                if (replaceEmoji2 != null && tL_textWithEntities.entities != null) {
-                    SpannableStringBuilder valueOf2 = SpannableStringBuilder.valueOf(MessageObject.replaceAnimatedEmoji(new SpannableStringBuilder(tL_textWithEntities.text), tL_textWithEntities.entities, g5Var.f1865b0.getPaint().getFontMetricsInt(), false));
-                    SpannableStringBuilder.valueOf(Emoji.replaceEmoji(valueOf2, g5Var.f1865b0.getPaint().getFontMetricsInt(), false));
-                    i10 = (e6Var.B1 < 0 || MessagesController.getInstance(e6Var.C2).storyEntitiesAllowed(MessagesController.getInstance(e6Var.C2).getUser(Long.valueOf(e6Var.B1)))) ? 1 : 1;
-                    if (i10 != 0) {
-                        MessageObject.addLinks(true, valueOf2);
-                    }
-                    MessageObject.addEntitiesToText(valueOf2, tL_textWithEntities.entities, false, true, true, false, i10 ^ 1);
-                    this.h = valueOf2;
-                    return;
-                }
-                return;
-            }
-            String str2 = c6Var.f696a.caption;
-            this.h = str2;
-            CharSequence replaceEmoji3 = Emoji.replaceEmoji(str2, g5Var.f1865b0.getPaint().getFontMetricsInt(), false);
-            this.h = replaceEmoji3;
-            if (replaceEmoji3 != null && c6Var.f696a.entities != null) {
-                SpannableStringBuilder valueOf3 = SpannableStringBuilder.valueOf(MessageObject.replaceAnimatedEmoji(new SpannableStringBuilder(c6Var.f696a.caption), c6Var.f696a.entities, g5Var.f1865b0.getPaint().getFontMetricsInt(), false));
-                SpannableStringBuilder.valueOf(Emoji.replaceEmoji(valueOf3, g5Var.f1865b0.getPaint().getFontMetricsInt(), false));
-                i10 = (e6Var.B1 < 0 || MessagesController.getInstance(e6Var.C2).storyEntitiesAllowed(MessagesController.getInstance(e6Var.C2).getUser(Long.valueOf(e6Var.B1)))) ? 1 : 1;
-                if (i10 != 0) {
-                    MessageObject.addLinks(true, valueOf3);
-                }
-                MessageObject.addEntitiesToText(valueOf3, c6Var.f696a.entities, false, true, true, false, i10 ^ 1);
-                this.h = valueOf3;
+            int i12 = ck0Var.f25395a0;
+            if (i12 != 0 && i12 < 43) {
+                ck0Var.P(43);
+                ck0Var.start();
             }
         }
     }

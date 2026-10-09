@@ -1,41 +1,32 @@
 package ai;
 
-import android.graphics.Paint;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ya0;
-public final class f4 implements ya0 {
-    public final e6 f942a;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+public final class f4 implements Utilities.Callback {
+    public final int f940a;
+    public final Object f941b;
+    public final Object f942c;
+    public final Object d;
+    public final Object f943e;
 
-    public f4(e6 e6Var) {
-        this.f942a = e6Var;
+    public f4(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
+        this.f940a = i10;
+        this.f941b = obj;
+        this.f942c = obj2;
+        this.d = obj3;
+        this.f943e = obj4;
     }
 
     @Override
-    public final void C(int i10, int i11, CharSequence charSequence, boolean z10) {
-        this.f942a.f841b2.O0(i10, i11, charSequence, z10);
+    public final void run(java.lang.Object r36) {
+        throw new UnsupportedOperationException("Method not decompiled: ai.f4.run(java.lang.Object):void");
     }
 
-    @Override
-    public final void G(String str) {
-        a4 a4Var = this.f942a.f841b2;
-        a4Var.S();
-        a4Var.U0.h(str);
-    }
-
-    @Override
-    public final void g(TLRPC.BotInlineResult botInlineResult, boolean z10, int i10) {
-        e6 e6Var = this.f942a;
-        org.telegram.ui.Components.e5.a0(e6Var.C2, 1, e6Var.B1, new d4(i10, 0, this, botInlineResult, z10));
-    }
-
-    @Override
-    public final Paint.FontMetricsInt r() {
-        return this.f942a.f841b2.getEditField().getPaint().getFontMetricsInt();
-    }
-
-    @Override
-    public final void y(TLRPC.TL_document tL_document, String str, Object obj) {
-        e6 e6Var = this.f942a;
-        org.telegram.ui.Components.e5.a0(e6Var.C2, 1, e6Var.B1, new e4(this, tL_document, str, obj, 0));
+    public f4(Object obj, String str, ArrayList arrayList, Object obj2, int i10) {
+        this.f940a = i10;
+        this.f941b = obj;
+        this.d = str;
+        this.f942c = arrayList;
+        this.f943e = obj2;
     }
 }

@@ -1,40 +1,15 @@
 package org.telegram.ui;
+public final class yo0 implements Runnable {
+    public final int f44380a;
+    public final aq0 f44381b;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-public final class yo0 extends cp0 {
-    public int G;
-    public final wp0 H;
-
-    public yo0(wp0 wp0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, d6Var);
-        this.H = wp0Var;
-        this.G = 0;
+    public yo0(aq0 aq0Var, int i10) {
+        this.f44380a = i10;
+        this.f44381b = aq0Var;
     }
 
     @Override
-    public final void a() {
-        wp0 wp0Var = this.H;
-        if (wp0Var.getParentActivity() != null) {
-            AndroidUtilities.setLightStatusBar(wp0Var.getParentActivity(), wp0Var.isLightStatusBar());
-        }
-        int actionBarButtonColor = getActionBarButtonColor();
-        if (this.G != actionBarButtonColor) {
-            ImageView imageView = wp0Var.J;
-            if (imageView != null) {
-                this.G = actionBarButtonColor;
-                imageView.setColorFilter(new PorterDuffColorFilter(actionBarButtonColor, PorterDuff.Mode.SRC_IN));
-            }
-            ImageView imageView2 = wp0Var.K;
-            if (imageView2 != null) {
-                this.G = actionBarButtonColor;
-                imageView2.setColorFilter(new PorterDuffColorFilter(actionBarButtonColor, PorterDuff.Mode.SRC_IN));
-            }
-        }
-        wp0Var.F0();
-        wp0Var.A0();
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.yo0.run():void");
     }
 }

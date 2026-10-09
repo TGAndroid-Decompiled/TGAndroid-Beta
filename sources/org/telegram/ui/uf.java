@@ -1,38 +1,28 @@
 package org.telegram.ui;
 
-import android.text.style.URLSpan;
 import android.view.View;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.Utilities;
-public final class uf implements Utilities.CallbackReturn {
-    public final int f41224a;
-    public final Object f41225b;
-    public final Object f41226c;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class uf implements View.OnClickListener {
+    public final int f42421a;
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f42422b;
 
-    public uf(int i10, Object obj, Object obj2) {
-        this.f41224a = i10;
-        this.f41225b = obj;
-        this.f41226c = obj2;
+    public uf(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, int i10) {
+        this.f42421a = i10;
+        this.f42422b = actionBarPopupWindow$ActionBarPopupWindowLayout;
     }
 
     @Override
-    public final Object run(Object obj) {
-        org.telegram.ui.Cells.u1 u1Var;
-        switch (this.f41224a) {
+    public final void onClick(View view) {
+        switch (this.f42421a) {
             case 0:
-                yn ynVar = (yn) this.f41225b;
-                View view = (View) this.f41226c;
-                URLSpan uRLSpan = (URLSpan) obj;
-                MessageObject messageObject = ynVar.f43281b5;
-                if (view instanceof org.telegram.ui.Cells.u1) {
-                    u1Var = (org.telegram.ui.Cells.u1) view;
-                } else {
-                    u1Var = null;
-                }
-                ynVar.U7(uRLSpan, false, messageObject, u1Var);
-                return Boolean.TRUE;
+                this.f42422b.getSwipeBack().b(true);
+                return;
+            case 1:
+                this.f42422b.getSwipeBack().b(true);
+                return;
             default:
-                return rh.c.d((View) obj, (String) this.f41225b, (String) this.f41226c, null, null);
+                this.f42422b.getSwipeBack().b(true);
+                return;
         }
     }
 }

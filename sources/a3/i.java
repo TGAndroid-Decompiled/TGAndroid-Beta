@@ -1,3 +1,3 @@
 package a3;
-public final class i extends r2.n {
+public final class i extends r2.o {
 }

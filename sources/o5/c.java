@@ -8,14 +8,14 @@ public enum c implements la.c {
     INVALID_PAYLOD(5),
     SERVER_ERROR(6);
     
-    public final int f17136a;
+    public final int f17080a;
 
     c(int i10) {
-        this.f17136a = i10;
+        this.f17080a = i10;
     }
 
     @Override
     public final int a() {
-        return this.f17136a;
+        return this.f17080a;
     }
 }

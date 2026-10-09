@@ -1,73 +1,54 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class c31 extends FrameLayout {
-    public final org.telegram.ui.Components.o5 f35299a;
-    public final d31 f35300b;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import java.util.ArrayList;
+public final class c31 implements org.telegram.ui.ActionBar.j6 {
+    public boolean f36505a = false;
+    public final d31 f36506b;
 
-    public c31(d31 d31Var, Context context) {
-        super(context);
-        this.f35300b = d31Var;
-        TextView f7 = org.telegram.messenger.q.f(context, 1, 16.0f);
-        f7.setTextColor(d31Var.getThemedColor(org.telegram.ui.ActionBar.i6.G6));
-        f7.setText(LocaleController.getString(R.string.DoubleTapSetting));
-        addView(f7, w7.z5.d(-1, -2.0f, 23, 20.0f, 0.0f, 48.0f, 0.0f));
-        this.f35299a = new org.telegram.ui.Components.o5(AndroidUtilities.dp(24.0f), this);
+    public c31(d31 d31Var) {
+        this.f36506b = d31Var;
     }
 
-    public final void a(boolean z10) {
-        d31 d31Var = this.f35300b;
-        String doubleTapReaction = MediaDataController.getInstance(d31.X(d31Var)).getDoubleTapReaction();
-        org.telegram.ui.Components.o5 o5Var = this.f35299a;
-        if (doubleTapReaction != null && doubleTapReaction.startsWith("animated_")) {
-            try {
-                o5Var.j(Long.parseLong(doubleTapReaction.substring(9)), z10);
-                return;
-            } catch (Exception unused) {
+    @Override
+    public final void a(float f7) {
+        ArrayList arrayList;
+        int i10 = (f7 > 0.0f ? 1 : (f7 == 0.0f ? 0 : -1));
+        d31 d31Var = this.f36506b;
+        if (i10 == 0 && !this.f36505a) {
+            org.telegram.ui.Components.aq aqVar = d31Var.f36821b;
+            if (aqVar != null && (arrayList = aqVar.d) != null) {
+                int size = arrayList.size();
+                int i11 = 0;
+                while (i11 < size) {
+                    Object obj = arrayList.get(i11);
+                    i11++;
+                    ((org.telegram.ui.Components.bq) obj).f25084c = d31Var.M ? 1 : 0;
+                }
+            }
+            if (!d31Var.Q) {
+                org.telegram.ui.Components.aq aqVar2 = d31Var.f36821b;
+                for (int i12 = 0; i12 < aqVar2.h(); i12++) {
+                    ((org.telegram.ui.Components.bq) aqVar2.d.get(i12)).getClass();
+                }
+            }
+            this.f36505a = true;
+        }
+        d31Var.E.setColorFilter(new PorterDuffColorFilter(d31Var.d.getThemedColor(org.telegram.ui.ActionBar.i6.Oh), PorterDuff.Mode.SRC_IN));
+        if (d31Var.Q) {
+            org.telegram.ui.Components.aq aqVar3 = d31Var.f36821b;
+            for (int i13 = 0; i13 < aqVar3.h(); i13++) {
+                ((org.telegram.ui.Components.bq) aqVar3.d.get(i13)).getClass();
             }
         }
-        TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(d31.Y(d31Var)).getReactionsMap().get(doubleTapReaction);
-        if (tL_availableReaction != null) {
-            o5Var.i(tL_availableReaction.static_icon, z10);
+        if (f7 == 1.0f && this.f36505a) {
+            d31Var.Q = false;
+            this.f36505a = false;
         }
     }
 
+    @Override
     public final void b() {
-        int width = getWidth();
-        org.telegram.ui.Components.o5 o5Var = this.f35299a;
-        o5Var.setBounds((width - o5Var.f29343s) - AndroidUtilities.dp(21.0f), (getHeight() - o5Var.f29343s) / 2, getWidth() - AndroidUtilities.dp(21.0f), (getHeight() + o5Var.f29343s) / 2);
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        b();
-        this.f35299a.draw(canvas);
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f35299a.a();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f35299a.b();
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
     }
 }

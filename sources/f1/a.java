@@ -8,15 +8,15 @@ import b1.d;
 import java.util.concurrent.Executor;
 import v0.i;
 public final class a extends d {
-    public final Context f9544e;
-    public i f9545f;
-    public Executor f9546g;
+    public final Context f9554e;
+    public i f9555f;
+    public Executor f9556g;
     public CancellationSignal h;
-    public final c1.d f9547i;
+    public final c1.d f9557i;
 
     public a(Context context) {
         kotlin.jvm.internal.i.e(context, "context");
-        this.f9544e = context;
-        this.f9547i = new c1.d(this, new Handler(Looper.getMainLooper()), 3);
+        this.f9554e = context;
+        this.f9557i = new c1.d(this, new Handler(Looper.getMainLooper()), 3);
     }
 }

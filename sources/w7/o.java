@@ -1,15 +1,22 @@
 package w7;
-
-import android.view.View;
-import android.view.ViewParent;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputConnection;
-import android.widget.TextView;
 public abstract class o {
-    public static void a(EditorInfo editorInfo, InputConnection inputConnection, TextView textView) {
-        if (inputConnection != null && editorInfo.hintText == null) {
-            for (ViewParent parent = textView.getParent(); parent instanceof View; parent = parent.getParent()) {
-            }
+    public static float a(float f7, float f10, float f11) {
+        if (f7 < f10) {
+            return f10;
         }
+        if (f7 > f11) {
+            return f11;
+        }
+        return f7;
+    }
+
+    public static int b(int i10, int i11, int i12) {
+        if (i10 < i11) {
+            return i11;
+        }
+        if (i10 > i12) {
+            return i12;
+        }
+        return i10;
     }
 }

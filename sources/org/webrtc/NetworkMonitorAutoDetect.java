@@ -300,10 +300,7 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
     }
 
     public static long networkToNetId(Network network) {
-        if (Build.VERSION.SDK_INT >= 23) {
-            return network.getNetworkHandle();
-        }
-        return Integer.parseInt(network.toString());
+        return network.getNetworkHandle();
     }
 
     private void registerReceiver() {
@@ -567,7 +564,7 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
                     }
                     return getNetworkState(networkInfo);
                 } else if (networkInfo.getType() == 17) {
-                    if (Build.VERSION.SDK_INT >= 23 && network.equals(this.connectivityManager.getActiveNetwork()) && (activeNetworkInfo = this.connectivityManager.getActiveNetworkInfo()) != null && activeNetworkInfo.getType() != 17) {
+                    if (network.equals(this.connectivityManager.getActiveNetwork()) && (activeNetworkInfo = this.connectivityManager.getActiveNetworkInfo()) != null && activeNetworkInfo.getType() != 17) {
                         return new NetworkState(networkInfo.isConnected(), 17, -1, activeNetworkInfo.getType(), activeNetworkInfo.getSubtype());
                     }
                     return new NetworkState(networkInfo.isConnected(), 17, -1, -1, -1);

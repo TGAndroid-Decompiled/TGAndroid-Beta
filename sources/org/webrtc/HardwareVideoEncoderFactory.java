@@ -85,11 +85,10 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
 
     private int getForcedKeyFrameIntervalMs(VideoCodecMimeType videoCodecMimeType, String str) {
         if (videoCodecMimeType == VideoCodecMimeType.VP8 && str.startsWith("OMX.qcom.")) {
-            int i10 = Build.VERSION.SDK_INT;
-            if (i10 < 23 || i10 != 23) {
-                return 15000;
+            if (Build.VERSION.SDK_INT == 23) {
+                return 20000;
             }
-            return 20000;
+            return 15000;
         }
         return 0;
     }
@@ -131,12 +130,9 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
 
     private boolean isHardwareSupportedInCurrentSdkVp8(MediaCodecInfo mediaCodecInfo) {
         String name = mediaCodecInfo.getName();
-        if (!name.startsWith("OMX.qcom.")) {
-            if (!name.startsWith("OMX.Exynos.") || Build.VERSION.SDK_INT < 23) {
-                if (!name.startsWith("OMX.Intel.") || !this.enableIntelVp8Encoder) {
-                    return false;
-                }
-                return true;
+        if (!name.startsWith("OMX.qcom.") && !name.startsWith("OMX.Exynos.")) {
+            if (!name.startsWith("OMX.Intel.") || !this.enableIntelVp8Encoder) {
+                return false;
             }
             return true;
         }

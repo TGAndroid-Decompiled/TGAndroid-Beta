@@ -1,197 +1,581 @@
 package org.telegram.ui;
 
-import android.util.SparseIntArray;
+import android.content.Context;
 import android.view.View;
-public final class ga1 extends s4.o {
-    public int f36562b;
-    public final y91 f36563c;
-    public final s4.c0 d;
-    public final SparseIntArray f36564e = new SparseIntArray();
-    public int f36565f = -1;
-    public int f36566g = -1;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+public final class ga1 extends org.telegram.ui.Components.pm0 {
+    public int f37955c0;
+    public int d;
+    public final bb1 f37956d0;
+    public int f37954c = -1;
+    public int f37957e = -1;
+    public int f37958f = -1;
     public int h = -1;
-    public int f36567i = -1;
-    public int f36568j = -1;
-    public int f36569k = -1;
-    public int f36570l = -1;
-    public int f36571m = -1;
-    public int f36572n = -1;
-    public int f36573o = -1;
-    public int f36574p = -1;
-    public int f36575q = -1;
-    public int f36576r = -1;
-    public int f36577s = -1;
-    public int f36578t = -1;
-    public int f36579u = -1;
+    public int f37959n = -1;
+    public int f37960r = -1;
+    public int f37961s = -1;
     public int v = -1;
-    public int f36580w = -1;
-    public int f36581x = -1;
-    public int f36582y = -1;
+    public int f37962w = -1;
+    public int f37963x = -1;
+    public int f37964y = -1;
+    public int E = -1;
+    public int F = -1;
+    public int G = -1;
+    public int H = -1;
+    public int I = -1;
+    public int J = -1;
+    public int K = -1;
+    public int L = -1;
+    public int M = -1;
+    public int N = -1;
+    public int O = -1;
+    public int P = -1;
+    public int Q = -1;
+    public int R = -1;
+    public int S = -1;
+    public int T = -1;
+    public int U = -1;
+    public int V = -1;
+    public int W = -1;
+    public int X = -1;
+    public int Y = -1;
+    public int Z = -1;
+    public final a0.g f37952a0 = new a0.g(0);
+    public final a0.g f37953b0 = new a0.g(0);
 
-    public ga1(y91 y91Var, s4.c0 c0Var) {
-        this.f36563c = y91Var;
-        this.d = c0Var;
+    public ga1(bb1 bb1Var) {
+        this.f37956d0 = bb1Var;
     }
 
     @Override
-    public final boolean a(int i10, int i11) {
-        if (this.f36564e.get(i10) == this.f36563c.j(i11)) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean b(int i10, int i11) {
-        SparseIntArray sparseIntArray = this.f36564e;
-        int i12 = sparseIntArray.get(i10);
-        y91 y91Var = this.f36563c;
-        if (i12 == 13 && y91Var.j(i11) == 13) {
-            return true;
-        }
-        if (sparseIntArray.get(i10) == 10 && y91Var.j(i11) == 10) {
-            return true;
-        }
-        int i13 = this.f36581x;
-        if (i10 >= i13 && i10 <= this.f36582y) {
-            if (i10 - i13 == i11 - y91Var.I) {
-                return true;
-            }
-            return false;
-        } else if (i10 == this.f36565f && i11 == y91Var.f43163e) {
-            return true;
-        } else {
-            if (i10 == this.f36566g && i11 == y91Var.h) {
-                return true;
-            }
-            if (i10 == this.h && i11 == y91Var.f43166r) {
-                return true;
-            }
-            if (i10 == this.f36567i && i11 == y91Var.f43167s) {
-                return true;
-            }
-            if (i10 == this.f36568j && i11 == y91Var.v) {
-                return true;
-            }
-            if (i10 == this.f36569k && i11 == y91Var.f43168w) {
-                return true;
-            }
-            if (i10 == this.f36570l && i11 == y91Var.f43169x) {
-                return true;
-            }
-            if (i10 == this.f36571m && i11 == y91Var.f43165n) {
-                return true;
-            }
-            if (i10 == this.f36572n && i11 == y91Var.f43170y) {
-                return true;
-            }
-            if (i10 == this.f36576r && i11 == y91Var.K) {
-                return true;
-            }
-            if (i10 == this.f36577s && i11 == y91Var.L) {
-                return true;
-            }
-            if (i10 == this.f36578t && i11 == y91Var.M) {
-                return true;
-            }
-            if (i10 == this.f36579u && i11 == y91Var.N) {
-                return true;
-            }
-            if (i10 == this.v && i11 == y91Var.O) {
-                return true;
-            }
-            if (i10 == this.f36580w && i11 == y91Var.P) {
-                return true;
-            }
-            if (i10 == this.f36573o && i11 == y91Var.E) {
-                return true;
-            }
-            if (i10 == this.f36574p && i11 == y91Var.F) {
-                return true;
-            }
-            if (i10 == this.f36575q && i11 == y91Var.G) {
-                return true;
-            }
+    public final boolean D(s4.d1 d1Var) {
+        int i10 = d1Var.f47660f;
+        if (i10 != 9 && i10 != 15) {
             return false;
         }
+        return true;
     }
 
-    @Override
-    public final int d() {
-        return this.f36563c.f43161c0;
-    }
-
-    @Override
-    public final int e() {
-        return this.f36562b;
-    }
-
-    public final void f() {
-        long j3;
-        int i10;
-        View m10;
-        SparseIntArray sparseIntArray = this.f36564e;
-        sparseIntArray.clear();
-        y91 y91Var = this.f36563c;
-        this.f36562b = y91Var.f43161c0;
-        int i11 = 0;
-        for (int i12 = 0; i12 < this.f36562b; i12++) {
-            sparseIntArray.put(i12, y91Var.j(i12));
-        }
-        this.f36565f = y91Var.f43163e;
-        this.f36566g = y91Var.h;
-        this.h = y91Var.f43166r;
-        this.f36567i = y91Var.f43167s;
-        this.f36568j = y91Var.v;
-        this.f36569k = y91Var.f43168w;
-        this.f36570l = y91Var.f43169x;
-        this.f36571m = y91Var.f43165n;
-        this.f36572n = y91Var.f43170y;
-        this.f36581x = y91Var.I;
-        this.f36582y = y91Var.J;
-        this.f36573o = y91Var.E;
-        this.f36574p = y91Var.F;
-        this.f36575q = y91Var.G;
-        this.f36576r = y91Var.K;
-        this.f36577s = y91Var.L;
-        this.f36578t = y91Var.M;
-        this.f36579u = y91Var.N;
-        this.v = y91Var.O;
-        this.f36580w = y91Var.P;
-        y91Var.E();
-        s4.c0 c0Var = this.d;
-        int L0 = c0Var.L0();
-        int N0 = c0Var.N0();
-        while (true) {
-            if (L0 <= N0) {
-                if (y91Var.i(L0) != -1 && (m10 = c0Var.m(L0)) != null) {
-                    j3 = y91Var.i(L0);
-                    i10 = m10.getTop();
-                    break;
+    public final void E() {
+        this.f37957e = -1;
+        this.h = -1;
+        this.f37960r = -1;
+        this.v = -1;
+        this.f37962w = -1;
+        this.f37963x = -1;
+        this.I = -1;
+        this.J = -1;
+        this.f37958f = -1;
+        this.H = -1;
+        this.f37961s = -1;
+        this.f37959n = -1;
+        this.f37964y = -1;
+        this.G = -1;
+        this.F = -1;
+        this.E = -1;
+        this.K = -1;
+        this.L = -1;
+        this.M = -1;
+        this.N = -1;
+        this.O = -1;
+        this.P = -1;
+        this.Q = -1;
+        this.R = -1;
+        this.S = -1;
+        this.T = -1;
+        this.U = -1;
+        this.V = -1;
+        this.W = -1;
+        this.X = -1;
+        this.Y = -1;
+        this.Z = -1;
+        this.f37955c0 = 0;
+        a0.g gVar = this.f37953b0;
+        gVar.clear();
+        a0.g gVar2 = this.f37952a0;
+        gVar2.clear();
+        bb1 bb1Var = this.f37956d0;
+        ArrayList arrayList = bb1Var.f36230v0;
+        ArrayList arrayList2 = bb1Var.P;
+        ArrayList arrayList3 = bb1Var.Q;
+        ArrayList arrayList4 = bb1Var.O;
+        if (bb1Var.f36207c0) {
+            if (bb1Var.G != null) {
+                int i10 = this.f37955c0;
+                this.f37954c = i10;
+                this.f37955c0 = i10 + 2;
+                this.d = i10 + 1;
+            }
+            na1 na1Var = bb1Var.d;
+            if (na1Var != null && !na1Var.f40155l) {
+                int i11 = this.f37955c0;
+                if (i11 > 0) {
+                    this.f37955c0 = i11 + 1;
+                    gVar2.add(Integer.valueOf(i11));
                 }
-                L0++;
-            } else {
-                j3 = -1;
-                i10 = 0;
-                break;
+                int i12 = this.f37955c0;
+                this.f37955c0 = i12 + 1;
+                this.f37957e = i12;
             }
-        }
-        s4.o.c(this, true).b(y91Var);
-        if (j3 != -1) {
-            while (true) {
-                if (i11 < y91Var.f43161c0) {
-                    if (y91Var.i(i11) == j3) {
-                        break;
-                    }
-                    i11++;
+            na1 na1Var2 = bb1Var.H;
+            if (na1Var2 != null && !na1Var2.f40155l) {
+                int i13 = this.f37955c0;
+                if (i13 > 0) {
+                    this.f37955c0 = i13 + 1;
+                    gVar2.add(Integer.valueOf(i13));
+                }
+                int i14 = this.f37955c0;
+                this.f37955c0 = i14 + 1;
+                this.K = i14;
+            }
+            na1 na1Var3 = bb1Var.I;
+            if (na1Var3 != null && !na1Var3.f40155l && !na1Var3.f40146a) {
+                int i15 = this.f37955c0;
+                if (i15 > 0) {
+                    this.f37955c0 = i15 + 1;
+                    gVar2.add(Integer.valueOf(i15));
+                }
+                int i16 = this.f37955c0;
+                this.f37955c0 = i16 + 1;
+                this.L = i16;
+            }
+            na1 na1Var4 = bb1Var.J;
+            if (na1Var4 != null && !na1Var4.f40155l && !na1Var4.f40146a) {
+                int i17 = this.f37955c0;
+                if (i17 > 0) {
+                    this.f37955c0 = i17 + 1;
+                    gVar2.add(Integer.valueOf(i17));
+                }
+                int i18 = this.f37955c0;
+                this.f37955c0 = i18 + 1;
+                this.M = i18;
+            }
+            na1 na1Var5 = bb1Var.K;
+            if (na1Var5 != null && !na1Var5.f40155l && !na1Var5.f40146a) {
+                int i19 = this.f37955c0;
+                if (i19 > 0) {
+                    this.f37955c0 = i19 + 1;
+                    gVar2.add(Integer.valueOf(i19));
+                }
+                int i20 = this.f37955c0;
+                this.f37955c0 = i20 + 1;
+                this.N = i20;
+            }
+            na1 na1Var6 = bb1Var.L;
+            if (na1Var6 != null && !na1Var6.f40155l && !na1Var6.f40146a) {
+                int i21 = this.f37955c0;
+                if (i21 > 0) {
+                    this.f37955c0 = i21 + 1;
+                    gVar2.add(Integer.valueOf(i21));
+                }
+                int i22 = this.f37955c0;
+                this.f37955c0 = i22 + 1;
+                this.O = i22;
+            }
+            na1 na1Var7 = bb1Var.f36209e;
+            if (na1Var7 != null && !na1Var7.f40155l && !na1Var7.f40146a) {
+                int i23 = this.f37955c0;
+                if (i23 > 0) {
+                    this.f37955c0 = i23 + 1;
+                    gVar2.add(Integer.valueOf(i23));
+                }
+                int i24 = this.f37955c0;
+                this.f37955c0 = i24 + 1;
+                this.f37959n = i24;
+            }
+            na1 na1Var8 = bb1Var.M;
+            if (na1Var8 != null && !na1Var8.f40155l && !na1Var8.f40146a) {
+                int i25 = this.f37955c0;
+                if (i25 > 0) {
+                    this.f37955c0 = i25 + 1;
+                    gVar2.add(Integer.valueOf(i25));
+                }
+                int i26 = this.f37955c0;
+                this.f37955c0 = i26 + 1;
+                this.P = i26;
+            }
+            if (arrayList4.size() > 0) {
+                int i27 = this.f37955c0;
+                if (i27 > 0) {
+                    this.f37955c0 = i27 + 1;
+                    gVar2.add(Integer.valueOf(i27));
+                }
+                int i28 = this.f37955c0;
+                int i29 = i28 + 1;
+                this.Q = i28;
+                this.f37955c0 = i28 + 2;
+                this.R = i29;
+                int size = arrayList4.size() + i29;
+                this.S = size - 1;
+                this.f37955c0 = size;
+                if (arrayList4.size() != bb1Var.N.size()) {
+                    int i30 = this.f37955c0;
+                    this.f37955c0 = i30 + 1;
+                    this.Z = i30;
                 } else {
-                    i11 = -1;
-                    break;
+                    int i31 = this.f37955c0;
+                    this.f37955c0 = i31 + 1;
+                    gVar.add(Integer.valueOf(i31));
                 }
             }
-            if (i11 > 0) {
-                c0Var.h1(i11, i10);
+            if (arrayList3.size() > 0) {
+                int i32 = this.f37955c0;
+                if (i32 > 0) {
+                    this.f37955c0 = i32 + 1;
+                    gVar2.add(Integer.valueOf(i32));
+                }
+                int i33 = this.f37955c0;
+                int i34 = i33 + 1;
+                this.T = i33;
+                this.f37955c0 = i33 + 2;
+                this.U = i34;
+                int size2 = arrayList3.size() + i34;
+                this.V = size2 - 1;
+                this.f37955c0 = size2 + 1;
+                gVar.add(Integer.valueOf(size2));
             }
+            if (arrayList2.size() > 0) {
+                int i35 = this.f37955c0;
+                if (i35 > 0) {
+                    this.f37955c0 = i35 + 1;
+                    gVar2.add(Integer.valueOf(i35));
+                }
+                int i36 = this.f37955c0;
+                int i37 = i36 + 1;
+                this.W = i36;
+                this.f37955c0 = i36 + 2;
+                this.X = i37;
+                int size3 = arrayList2.size() + i37;
+                this.Y = size3 - 1;
+                this.f37955c0 = size3;
+            }
+            int i38 = this.f37955c0;
+            if (i38 > 0) {
+                this.f37955c0 = i38 + 1;
+                gVar.add(Integer.valueOf(i38));
+                int i39 = this.f37955c0;
+                this.f37955c0 = i39 + 1;
+                gVar2.add(Integer.valueOf(i39));
+                return;
+            }
+            return;
         }
+        if (bb1Var.f36211f != null) {
+            int i40 = this.f37955c0;
+            this.f37954c = i40;
+            this.f37955c0 = i40 + 2;
+            this.d = i40 + 1;
+        }
+        na1 na1Var9 = bb1Var.d;
+        if (na1Var9 != null && !na1Var9.f40155l) {
+            int i41 = this.f37955c0;
+            if (i41 > 0) {
+                this.f37955c0 = i41 + 1;
+                gVar2.add(Integer.valueOf(i41));
+            }
+            int i42 = this.f37955c0;
+            this.f37955c0 = i42 + 1;
+            this.f37957e = i42;
+        }
+        na1 na1Var10 = bb1Var.h;
+        if (na1Var10 != null && !na1Var10.f40155l) {
+            int i43 = this.f37955c0;
+            if (i43 > 0) {
+                this.f37955c0 = i43 + 1;
+                gVar2.add(Integer.valueOf(i43));
+            }
+            int i44 = this.f37955c0;
+            this.f37955c0 = i44 + 1;
+            this.h = i44;
+        }
+        na1 na1Var11 = bb1Var.f36233x;
+        if (na1Var11 != null && !na1Var11.f40155l) {
+            int i45 = this.f37955c0;
+            if (i45 > 0) {
+                this.f37955c0 = i45 + 1;
+                gVar2.add(Integer.valueOf(i45));
+            }
+            int i46 = this.f37955c0;
+            this.f37955c0 = i46 + 1;
+            this.f37964y = i46;
+        }
+        na1 na1Var12 = bb1Var.f36209e;
+        if (na1Var12 != null && !na1Var12.f40155l) {
+            int i47 = this.f37955c0;
+            if (i47 > 0) {
+                this.f37955c0 = i47 + 1;
+                gVar2.add(Integer.valueOf(i47));
+            }
+            int i48 = this.f37955c0;
+            this.f37955c0 = i48 + 1;
+            this.f37959n = i48;
+        }
+        na1 na1Var13 = bb1Var.f36226s;
+        if (na1Var13 != null && !na1Var13.f40155l) {
+            int i49 = this.f37955c0;
+            if (i49 > 0) {
+                this.f37955c0 = i49 + 1;
+                gVar2.add(Integer.valueOf(i49));
+            }
+            int i50 = this.f37955c0;
+            this.f37955c0 = i50 + 1;
+            this.v = i50;
+        }
+        na1 na1Var14 = bb1Var.v;
+        if (na1Var14 != null && !na1Var14.f40155l) {
+            int i51 = this.f37955c0;
+            if (i51 > 0) {
+                this.f37955c0 = i51 + 1;
+                gVar2.add(Integer.valueOf(i51));
+            }
+            int i52 = this.f37955c0;
+            this.f37955c0 = i52 + 1;
+            this.f37962w = i52;
+        }
+        na1 na1Var15 = bb1Var.f36231w;
+        if (na1Var15 != null && !na1Var15.f40155l) {
+            int i53 = this.f37955c0;
+            if (i53 > 0) {
+                this.f37955c0 = i53 + 1;
+                gVar2.add(Integer.valueOf(i53));
+            }
+            int i54 = this.f37955c0;
+            this.f37955c0 = i54 + 1;
+            this.f37963x = i54;
+        }
+        na1 na1Var16 = bb1Var.f36219n;
+        if (na1Var16 != null && !na1Var16.f40155l) {
+            int i55 = this.f37955c0;
+            if (i55 > 0) {
+                this.f37955c0 = i55 + 1;
+                gVar2.add(Integer.valueOf(i55));
+            }
+            int i56 = this.f37955c0;
+            this.f37955c0 = i56 + 1;
+            this.f37960r = i56;
+        }
+        na1 na1Var17 = bb1Var.f36224r;
+        if (na1Var17 != null && !na1Var17.f40154k && !na1Var17.f40146a) {
+            int i57 = this.f37955c0;
+            if (i57 > 0) {
+                this.f37955c0 = i57 + 1;
+                gVar2.add(Integer.valueOf(i57));
+            }
+            int i58 = this.f37955c0;
+            this.f37955c0 = i58 + 1;
+            this.f37961s = i58;
+        }
+        na1 na1Var18 = bb1Var.f36235y;
+        if (na1Var18 != null && !na1Var18.f40155l && !na1Var18.f40146a) {
+            int i59 = this.f37955c0;
+            if (i59 > 0) {
+                this.f37955c0 = i59 + 1;
+                gVar2.add(Integer.valueOf(i59));
+            }
+            int i60 = this.f37955c0;
+            this.f37955c0 = i60 + 1;
+            this.E = i60;
+        }
+        na1 na1Var19 = bb1Var.E;
+        if (na1Var19 != null && !na1Var19.f40155l && !na1Var19.f40146a) {
+            int i61 = this.f37955c0;
+            if (i61 > 0) {
+                this.f37955c0 = i61 + 1;
+                gVar2.add(Integer.valueOf(i61));
+            }
+            int i62 = this.f37955c0;
+            this.f37955c0 = i62 + 1;
+            this.F = i62;
+        }
+        na1 na1Var20 = bb1Var.F;
+        if (na1Var20 != null && !na1Var20.f40155l && !na1Var20.f40146a) {
+            int i63 = this.f37955c0;
+            if (i63 > 0) {
+                this.f37955c0 = i63 + 1;
+                gVar2.add(Integer.valueOf(i63));
+            }
+            int i64 = this.f37955c0;
+            this.f37955c0 = i64 + 1;
+            this.G = i64;
+        }
+        int i65 = this.f37955c0;
+        this.f37955c0 = i65 + 1;
+        gVar2.add(Integer.valueOf(i65));
+        if (arrayList.size() > 0) {
+            int i66 = this.f37955c0;
+            int i67 = i66 + 1;
+            this.H = i66;
+            this.f37955c0 = i66 + 2;
+            this.I = i67;
+            int size4 = arrayList.size() + i67;
+            this.J = size4 - 1;
+            this.f37955c0 = size4;
+            if (bb1Var.f36227s0.size() != bb1Var.f36225r0.size()) {
+                int i68 = this.f37955c0;
+                this.f37955c0 = i68 + 1;
+                this.f37958f = i68;
+            } else {
+                int i69 = this.f37955c0;
+                this.f37955c0 = i69 + 1;
+                gVar.add(Integer.valueOf(i69));
+            }
+            int i70 = this.f37955c0;
+            this.f37955c0 = i70 + 1;
+            gVar2.add(Integer.valueOf(i70));
+        }
+    }
+
+    @Override
+    public final int h() {
+        return this.f37955c0;
+    }
+
+    @Override
+    public final long i(int i10) {
+        int i11 = this.I;
+        if (i10 >= i11 && i10 < this.J) {
+            return ((ya1) this.f37956d0.f36230v0.get(i10 - i11)).b();
+        }
+        if (i10 == this.f37957e) {
+            return 1L;
+        }
+        if (i10 == this.h) {
+            return 2L;
+        }
+        if (i10 == this.f37959n) {
+            return 3L;
+        }
+        if (i10 == this.f37960r) {
+            return 4L;
+        }
+        if (i10 == this.f37964y) {
+            return 5L;
+        }
+        if (i10 == this.f37961s) {
+            return 6L;
+        }
+        if (i10 == this.v) {
+            return 7L;
+        }
+        if (i10 == this.f37962w) {
+            return 8L;
+        }
+        if (i10 == this.f37963x) {
+            return 9L;
+        }
+        if (i10 == this.K) {
+            return 10L;
+        }
+        if (i10 == this.L) {
+            return 11L;
+        }
+        if (i10 == this.M) {
+            return 12L;
+        }
+        if (i10 == this.N) {
+            return 13L;
+        }
+        if (i10 == this.O) {
+            return 14L;
+        }
+        if (i10 == this.P) {
+            return 15L;
+        }
+        if (i10 == this.E) {
+            return 16L;
+        }
+        if (i10 == this.F) {
+            return 17L;
+        }
+        if (i10 == this.G) {
+            return 18L;
+        }
+        return -1L;
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (i10 != this.f37957e && i10 != this.h && i10 != this.f37959n && i10 != this.f37964y && i10 != this.O && i10 != this.K) {
+            if (i10 != this.f37960r && i10 != this.f37961s && i10 != this.F) {
+                if (i10 != this.v && i10 != this.f37962w && i10 != this.L && i10 != this.N && i10 != this.E && i10 != this.G) {
+                    if (i10 != this.f37963x && i10 != this.M && i10 != this.P) {
+                        if (i10 >= this.I && i10 <= this.J) {
+                            return 9;
+                        }
+                        if (i10 == this.f37958f) {
+                            return 11;
+                        }
+                        if (this.f37953b0.contains(Integer.valueOf(i10))) {
+                            return 12;
+                        }
+                        if (i10 != this.H && i10 != this.f37954c && i10 != this.T && i10 != this.Q && i10 != this.W) {
+                            if (i10 == this.d) {
+                                return 14;
+                            }
+                            if ((i10 >= this.U && i10 <= this.V) || ((i10 >= this.R && i10 <= this.S) || (i10 >= this.X && i10 <= this.Y))) {
+                                return 9;
+                            }
+                            if (i10 == this.Z) {
+                                return 15;
+                            }
+                            return 10;
+                        }
+                        return 13;
+                    }
+                    return 4;
+                }
+                return 2;
+            }
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.d1 r22, int r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ga1.v(s4.d1, int):void");
+    }
+
+    @Override
+    public final s4.d1 x(ViewGroup viewGroup, int i10) {
+        org.telegram.ui.Cells.y4 y4Var;
+        int i11;
+        int i12 = 4;
+        bb1 bb1Var = this.f37956d0;
+        if (i10 >= 0 && i10 <= 4) {
+            Context context = viewGroup.getContext();
+            i11 = ((org.telegram.ui.ActionBar.n2) bb1Var).currentAccount;
+            View ma1Var = new ma1(bb1Var, context, i11, i10, bb1Var.f36203a0);
+            ma1Var.setWillNotDraw(false);
+            y4Var = ma1Var;
+        } else if (i10 == 9) {
+            View c8Var = new org.telegram.ui.Cells.c8(viewGroup.getContext(), bb1Var.f36202a, bb1Var.getResourceProvider());
+            c8Var.setWillNotDraw(false);
+            y4Var = c8Var;
+        } else if (i10 == 11) {
+            y4Var = new org.telegram.ui.Cells.s4(viewGroup.getContext());
+        } else if (i10 == 12) {
+            y4Var = new org.telegram.ui.Cells.l3(viewGroup.getContext(), AndroidUtilities.dp(15.0f));
+        } else if (i10 == 13) {
+            View cVar = new kg.c(viewGroup.getContext(), null);
+            cVar.setWillNotDraw(false);
+            cVar.setPadding(cVar.getPaddingLeft(), AndroidUtilities.dp(16.0f), cVar.getRight(), AndroidUtilities.dp(16.0f));
+            y4Var = cVar;
+        } else if (i10 == 14) {
+            Context context2 = viewGroup.getContext();
+            if (bb1Var.f36207c0) {
+                i12 = 2;
+            }
+            y4Var = new va1(context2, i12);
+        } else if (i10 == 15) {
+            org.telegram.ui.Cells.y4 y4Var2 = new org.telegram.ui.Cells.y4(viewGroup.getContext());
+            y4Var2.a(org.telegram.ui.ActionBar.i6.f21128v6, org.telegram.ui.ActionBar.i6.f21110u6);
+            y4Var = y4Var2;
+        } else {
+            y4Var = new org.telegram.ui.Cells.b7(viewGroup.getContext(), 0, 0);
+        }
+        return com.google.android.gms.internal.vision.e2.k(y4Var, y4Var, -1, -2);
     }
 }

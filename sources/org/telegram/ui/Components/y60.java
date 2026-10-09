@@ -1,44 +1,67 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class y60 implements org.telegram.ui.ub0 {
-    public final z60 f33225a;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.view.TextureView;
+import android.view.View;
+import android.widget.FrameLayout;
+public abstract class y60 extends FrameLayout {
+    public static final int f33126e = 0;
+    public u60 f33127a;
+    public x60 f33128b;
+    public w60 f33129c;
+    public boolean d;
 
-    public y60(z60 z60Var) {
-        this.f33225a = z60Var;
+    public abstract void a(boolean z10);
+
+    public abstract void b(float f7, int i10);
+
+    public abstract void c(boolean z10);
+
+    public abstract boolean d();
+
+    public abstract void e(float f7);
+
+    public abstract void f(int i10, int i11, int i12, long j3, long j10, boolean z10);
+
+    public abstract void g(ah.c cVar, org.telegram.ui.kj kjVar);
+
+    public abstract View getButtonsLayout();
+
+    public abstract v60 getCameraContainer();
+
+    public abstract RectF getCameraRect();
+
+    public abstract View getMuteImageView();
+
+    public abstract Paint getPaint();
+
+    public abstract TextureView getTextureView();
+
+    public abstract void h(boolean z10);
+
+    public abstract void i();
+
+    public final void setAnimationCallback(u60 u60Var) {
+        this.f33127a = u60Var;
     }
 
-    @Override
-    public final void b(TLRPC.TL_chatInviteExported tL_chatInviteExported, TLObject tLObject) {
-        int i10;
-        org.telegram.ui.jb jbVar = this.f33225a.f33437a.f24510c.f26414j0;
-        if (jbVar != null) {
-            TLRPC.TL_channelAdminLogEvent tL_channelAdminLogEvent = new TLRPC.TL_channelAdminLogEvent();
-            TLRPC.TL_channelAdminLogEventActionExportedInviteEdit tL_channelAdminLogEventActionExportedInviteEdit = new TLRPC.TL_channelAdminLogEventActionExportedInviteEdit();
-            tL_channelAdminLogEventActionExportedInviteEdit.new_invite = tL_chatInviteExported;
-            tL_channelAdminLogEventActionExportedInviteEdit.prev_invite = tL_chatInviteExported;
-            tL_channelAdminLogEvent.action = tL_channelAdminLogEventActionExportedInviteEdit;
-            tL_channelAdminLogEvent.date = (int) (System.currentTimeMillis() / 1000);
-            org.telegram.ui.wb wbVar = jbVar.f37633a;
-            tL_channelAdminLogEvent.user_id = wbVar.getAccountInstance().getUserConfig().clientUserId;
-            i10 = ((org.telegram.ui.ActionBar.n2) wbVar).currentAccount;
-            if (new MessageObject(i10, tL_channelAdminLogEvent, (ArrayList<MessageObject>) wbVar.f42054n0, (HashMap<String, ArrayList<MessageObject>>) wbVar.m0, wbVar.f42045f, wbVar.T, true).contentType >= 0) {
-                wbVar.R0();
-                wbVar.E.l();
-                org.telegram.ui.wb.K0(wbVar);
+    public abstract void setInternalPadding(int i10);
+
+    public abstract void setIsMessageTransition(boolean z10);
+
+    public final void setRecordingUiFrameCallback(w60 w60Var) {
+        this.f33129c = w60Var;
+        if (w60Var != null) {
+            boolean z10 = this.d;
+            org.telegram.ui.ok okVar = ((org.telegram.ui.sj) w60Var).f41705a.Y;
+            if (okVar != null) {
+                okVar.setRoundVideoUiFrameClockActive(z10);
             }
         }
     }
 
-    @Override
-    public final void a(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
-    }
-
-    @Override
-    public final void c(TLObject tLObject) {
+    public final void setTrimCallback(x60 x60Var) {
+        this.f33128b = x60Var;
     }
 }

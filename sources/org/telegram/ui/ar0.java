@@ -1,10 +1,14 @@
 package org.telegram.ui;
-public final class ar0 {
-    public final int f34950a;
-    public final br0 f34951b;
 
-    public ar0(br0 br0Var, int i10) {
-        this.f34950a = i10;
-        this.f34951b = br0Var;
-    }
+import android.text.Editable;
+public interface ar0 {
+    void a();
+
+    void b(Editable editable);
+
+    boolean e();
+
+    void g();
+
+    void h(int i10, boolean z10, boolean z11);
 }

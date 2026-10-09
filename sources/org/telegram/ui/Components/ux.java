@@ -1,202 +1,66 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Point;
-import android.os.SystemClock;
 import android.view.MotionEvent;
-import android.view.VelocityTracker;
-import android.view.ViewConfiguration;
-import org.telegram.messenger.AndroidUtilities;
-public class ux extends an0 {
-    public boolean A0;
-    public boolean B0;
-    public VelocityTracker C0;
-    public final nz D0;
-    public final int f31542u0;
-    public boolean f31543v0;
-    public float f31544w0;
-    public boolean f31545x0;
-    public float f31546y0;
-    public float f31547z0;
+import org.telegram.tgnet.TLRPC;
+public final class ux extends i61 {
+    public final a00 f31633b;
 
-    public ux(nz nzVar, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, d6Var, nzVar.f29215i2);
-        this.D0 = nzVar;
-        this.f31545x0 = true;
-        this.f31542u0 = ViewConfiguration.get(context).getScaledTouchSlop();
+    public ux(a00 a00Var) {
+        this.f31633b = a00Var;
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.f24673s != null) {
-            return super.onInterceptTouchEvent(motionEvent);
-        }
-        if (getParent() != null) {
-            getParent().requestDisallowInterceptTouchEvent(true);
-        }
-        if (motionEvent.getAction() == 0) {
-            this.B0 = false;
-            this.A0 = false;
-            this.f31546y0 = motionEvent.getRawX();
-            this.f31547z0 = motionEvent.getRawY();
-        } else if (!this.A0 && !this.B0) {
-            nz nzVar = this.D0;
-            if (nzVar.O0 != null && Math.abs(motionEvent.getRawY() - this.f31547z0) >= this.f31542u0) {
-                this.A0 = true;
-                this.f31547z0 = motionEvent.getRawY();
-                ((c2.a) nzVar.O0).e();
-                if (this.f31543v0) {
-                    nzVar.h.i();
-                    this.f31543v0 = false;
-                }
-                return true;
-            }
-        }
-        return super.onInterceptTouchEvent(motionEvent);
+    public final boolean a() {
+        return this.f31633b.f24455t1.b();
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean z10;
-        int i10;
-        nz nzVar = this.D0;
-        org.telegram.ui.Cells.t6 t6Var = nzVar.f29206f2;
-        cx cxVar = nzVar.h;
-        if (this.f24673s != null) {
-            return super.onTouchEvent(motionEvent);
+    public final String[] b() {
+        return this.f31633b.W0;
+    }
+
+    @Override
+    public final boolean c() {
+        return this.f31633b.f24455t1.c();
+    }
+
+    @Override
+    public final boolean d(b61 b61Var, MotionEvent motionEvent) {
+        org.telegram.ui.rt q6 = org.telegram.ui.rt.q();
+        a00 a00Var = this.f31633b;
+        a00Var.getMeasuredHeight();
+        return q6.r(motionEvent, b61Var, a00Var.f24416g2, a00Var.Z1);
+    }
+
+    @Override
+    public final boolean e(b61 b61Var, j jVar, MotionEvent motionEvent) {
+        org.telegram.ui.rt q6 = org.telegram.ui.rt.q();
+        a00 a00Var = this.f31633b;
+        a00Var.getMeasuredHeight();
+        return q6.s(motionEvent, b61Var, jVar, a00Var.f24416g2, a00Var.Z1);
+    }
+
+    @Override
+    public final void f(TLRPC.Document document, Object obj, boolean z10, int i10) {
+        this.f31633b.f24455t1.m(null, document, null, obj, null, z10, i10);
+    }
+
+    @Override
+    public final void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10) {
+        a00 a00Var = this.f31633b;
+        a00Var.f24455t1.r(stickerSetCovered);
+        if (z10) {
+            a00Var.X(true);
         }
-        if (this.f31545x0) {
-            this.f31545x0 = false;
-            this.f31544w0 = motionEvent.getX();
-        }
-        if (motionEvent.getAction() == 0 || motionEvent.getAction() == 2) {
-            nzVar.W1 = motionEvent.getRawX();
-        }
-        if (motionEvent.getAction() == 0) {
-            this.B0 = false;
-            this.A0 = false;
-            this.f31546y0 = motionEvent.getRawX();
-            this.f31547z0 = motionEvent.getRawY();
-        } else if (!this.A0 && !this.B0 && nzVar.O0 != null) {
-            float abs = Math.abs(motionEvent.getRawX() - this.f31546y0);
-            float f7 = this.f31542u0;
-            if (abs >= f7 && canScrollHorizontally((int) (this.f31546y0 - motionEvent.getRawX()))) {
-                this.B0 = true;
-                AndroidUtilities.cancelRunOnUIThread(t6Var);
-                nzVar.X1 = true;
-                nzVar.X();
-            } else if (Math.abs(motionEvent.getRawY() - this.f31547z0) >= f7) {
-                this.A0 = true;
-                this.f31547z0 = motionEvent.getRawY();
-                ((c2.a) nzVar.O0).e();
-                if (this.f31543v0) {
-                    cxVar.i();
-                    this.f31543v0 = false;
-                }
-            }
-        }
-        if (nzVar.X1 && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3)) {
-            AndroidUtilities.runOnUIThread(t6Var, 1500L);
-        }
-        if (this.A0) {
-            if (this.C0 == null) {
-                this.C0 = VelocityTracker.obtain();
-            }
-            this.C0.addMovement(motionEvent);
-            if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
-                tx txVar = nzVar.O0;
-                int round = Math.round(motionEvent.getRawY() - this.f31547z0);
-                c2.a aVar = (c2.a) txVar;
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) aVar.f3946c;
-                if (aVar.d()) {
-                    Point point = AndroidUtilities.displaySize;
-                    if (point.x > point.y) {
-                        i10 = chatActivityEnterView.f23996y2;
-                    } else {
-                        i10 = chatActivityEnterView.f23990x2;
-                    }
-                    int max = Math.max(Math.min(round + aVar.f3945b, 0), -(chatActivityEnterView.D3 - i10));
-                    if (chatActivityEnterView.f23880d5 == null) {
-                        float f10 = max;
-                        chatActivityEnterView.U0.setTranslationY(f10);
-                        chatActivityEnterView.setTranslationY(f10);
-                    }
-                    chatActivityEnterView.C3 = max / (-(chatActivityEnterView.D3 - i10));
-                    chatActivityEnterView.f23928m1.invalidate();
-                }
-            } else {
-                this.C0.computeCurrentVelocity(1000);
-                float yVelocity = this.C0.getYVelocity();
-                this.C0.recycle();
-                this.C0 = null;
-                if (motionEvent.getAction() == 1) {
-                    c2.a aVar2 = (c2.a) nzVar.O0;
-                    ChatActivityEnterView chatActivityEnterView2 = (ChatActivityEnterView) aVar2.f3946c;
-                    if (aVar2.d()) {
-                        chatActivityEnterView2.E3 = false;
-                        if ((aVar2.f3944a && yVelocity >= AndroidUtilities.dp(200.0f)) || ((!aVar2.f3944a && yVelocity <= AndroidUtilities.dp(-200.0f)) || (((z10 = aVar2.f3944a) && chatActivityEnterView2.C3 <= 0.6f) || (!z10 && chatActivityEnterView2.C3 >= 0.4f)))) {
-                            chatActivityEnterView2.m1(!aVar2.f3944a, true, true, true);
-                        } else {
-                            chatActivityEnterView2.m1(z10, true, true, true);
-                        }
-                    }
-                } else {
-                    c2.a aVar3 = (c2.a) nzVar.O0;
-                    ChatActivityEnterView chatActivityEnterView3 = (ChatActivityEnterView) aVar3.f3946c;
-                    if (chatActivityEnterView3.f23991x3) {
-                        chatActivityEnterView3.E3 = false;
-                        chatActivityEnterView3.m1(aVar3.f3944a, true, false, true);
-                    }
-                }
-                this.f31545x0 = true;
-                this.B0 = false;
-                this.A0 = false;
-            }
-            cancelLongPress();
-            return true;
-        }
-        float translationX = getTranslationX();
-        if (getScrollX() == 0 && translationX == 0.0f) {
-            if (!this.f31543v0 && this.f31544w0 - motionEvent.getX() < 0.0f) {
-                if (!cxVar.M) {
-                    cxVar.f52437e0 = true;
-                    cxVar.setScrollState(1);
-                    cxVar.R = 0.0f;
-                    cxVar.T = 0.0f;
-                    VelocityTracker velocityTracker = cxVar.W;
-                    if (velocityTracker == null) {
-                        cxVar.W = VelocityTracker.obtain();
-                    } else {
-                        velocityTracker.clear();
-                    }
-                    long uptimeMillis = SystemClock.uptimeMillis();
-                    MotionEvent obtain = MotionEvent.obtain(uptimeMillis, uptimeMillis, 0, 0.0f, 0.0f, 0);
-                    cxVar.W.addMovement(obtain);
-                    obtain.recycle();
-                    this.f31543v0 = true;
-                    getTranslationX();
-                }
-            } else if (this.f31543v0 && this.f31544w0 - motionEvent.getX() > 0.0f && cxVar.f52437e0) {
-                cxVar.i();
-                this.f31543v0 = false;
-            }
-        }
-        if (this.f31543v0) {
-            motionEvent.getX();
-        }
-        this.f31544w0 = motionEvent.getX();
-        if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
-            this.f31545x0 = true;
-            this.B0 = false;
-            this.A0 = false;
-            if (this.f31543v0) {
-                cxVar.i();
-                this.f31543v0 = false;
-            }
-        }
-        if (!this.f31543v0 && !super.onTouchEvent(motionEvent)) {
-            return false;
-        }
-        return true;
+    }
+
+    @Override
+    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
+        this.f31633b.f24455t1.h(stickerSetCovered);
+    }
+
+    @Override
+    public final void i(String[] strArr) {
+        this.f31633b.W0 = strArr;
     }
 }

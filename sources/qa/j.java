@@ -3,23 +3,22 @@ package qa;
 import android.text.TextUtils;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
-import t7.u;
 public final class j {
-    public static final long f44908b = TimeUnit.HOURS.toSeconds(1);
-    public static final Pattern f44909c = Pattern.compile("\\AA[\\w-]{38}\\z");
+    public static final long f46062b = TimeUnit.HOURS.toSeconds(1);
+    public static final Pattern f46063c = Pattern.compile("\\AA[\\w-]{38}\\z");
     public static j d;
-    public final u f44910a;
+    public final ob.a f46064a;
 
-    public j(u uVar) {
-        this.f44910a = uVar;
+    public j(ob.a aVar) {
+        this.f46064a = aVar;
     }
 
     public final boolean a(ra.b bVar) {
-        if (!TextUtils.isEmpty(bVar.f45984c)) {
-            long j3 = bVar.f45986f + bVar.f45985e;
+        if (!TextUtils.isEmpty(bVar.f47134c)) {
+            long j3 = bVar.f47136f + bVar.f47135e;
             TimeUnit timeUnit = TimeUnit.MILLISECONDS;
-            this.f44910a.getClass();
-            if (j3 < timeUnit.toSeconds(System.currentTimeMillis()) + f44908b) {
+            this.f46064a.getClass();
+            if (j3 < timeUnit.toSeconds(System.currentTimeMillis()) + f46062b) {
                 return true;
             }
             return false;

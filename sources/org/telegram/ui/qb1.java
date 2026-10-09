@@ -1,39 +1,40 @@
 package org.telegram.ui;
 
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Bundle;
-import org.telegram.messenger.ApplicationLoader;
-public final class qb1 implements LocationListener {
-    public final ThemeActivity f39757a;
+import android.content.Intent;
+public final class qb1 implements org.telegram.ui.Components.bm0, org.telegram.ui.ActionBar.a2 {
+    public final int f41074a;
+    public final ThemeActivity f41075b;
 
-    public qb1(ThemeActivity themeActivity) {
-        this.f39757a = themeActivity;
+    public qb1(ThemeActivity themeActivity, int i10) {
+        this.f41074a = i10;
+        this.f41075b = themeActivity;
     }
 
     @Override
-    public final void onLocationChanged(Location location) {
-        ThemeActivity themeActivity = this.f39757a;
-        if (location == null) {
-            return;
+    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f41074a) {
+            case 1:
+                ThemeActivity themeActivity = this.f41075b;
+                themeActivity.getClass();
+                org.telegram.ui.Components.g5.V(themeActivity, 0, null, null);
+                return;
+            default:
+                ThemeActivity themeActivity2 = this.f41075b;
+                if (themeActivity2.getParentActivity() != null) {
+                    try {
+                        themeActivity2.getParentActivity().startActivity(new Intent("android.settings.LOCATION_SOURCE_SETTINGS"));
+                    } catch (Exception unused) {
+                        return;
+                    }
+                }
+                return;
         }
-        themeActivity.K0 = false;
-        LocationManager locationManager = (LocationManager) ApplicationLoader.applicationContext.getSystemService("location");
-        locationManager.removeUpdates(themeActivity.Q0);
-        locationManager.removeUpdates(themeActivity.R0);
-        themeActivity.B0(location, false);
     }
 
     @Override
-    public final void onProviderDisabled(String str) {
-    }
-
-    @Override
-    public final void onProviderEnabled(String str) {
-    }
-
-    @Override
-    public final void onStatusChanged(String str, int i10, Bundle bundle) {
+    public int run() {
+        int i10;
+        i10 = this.f41075b.sensitiveContentRow;
+        return i10;
     }
 }

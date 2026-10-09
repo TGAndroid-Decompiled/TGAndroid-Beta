@@ -1,59 +1,37 @@
 package zc;
 
-import bf.p;
-import q3.h;
-import t7.s;
-public final class b extends df.a {
-    public final a f53212a = new p();
-    public final StringBuilder f53213b = new StringBuilder();
-    public final int f53214c;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+public final class b {
+    public static final Pattern d = Pattern.compile("[ |\t]*([^/^ ^;^,]+/[^ ^;^,]+)", 2);
+    public static final Pattern f54320e = Pattern.compile("[ |\t]*(charset)[ |\t]*=[ |\t]*['|\"]?([^\"^'^;^,]*)['|\"]?", 2);
+    public static final Pattern f54321f = Pattern.compile("[ |\t]*(boundary)[ |\t]*=[ |\t]*['|\"]?([^\"^'^;^,]*)['|\"]?", 2);
+    public final String f54322a;
+    public final String f54323b;
+    public final String f54324c;
 
-    public b(int i10) {
-        this.f53214c = i10;
-    }
-
-    @Override
-    public final void a(CharSequence charSequence) {
-        StringBuilder sb2 = this.f53213b;
-        sb2.append(charSequence);
-        sb2.append('\n');
-    }
-
-    @Override
-    public final void d() {
-        this.f53212a.f53211g = this.f53213b.toString();
-    }
-
-    @Override
-    public final bf.a e() {
-        return this.f53212a;
-    }
-
-    @Override
-    public final h h(ye.d dVar) {
-        int i10;
-        int i11 = dVar.f50885e;
-        CharSequence charSequence = dVar.f50882a;
-        int length = charSequence.length();
-        if (dVar.f50887g < 4) {
-            int i12 = i11;
-            while (true) {
-                if (i12 < length) {
-                    if ('$' != charSequence.charAt(i12)) {
-                        i10 = i12 - i11;
-                        break;
-                    }
-                    i12++;
-                } else {
-                    i10 = length - i11;
-                    break;
-                }
+    public b(String str) {
+        String str2;
+        this.f54322a = str;
+        if (str != null) {
+            Matcher matcher = d.matcher(str);
+            this.f54323b = matcher.find() ? matcher.group(1) : "";
+            Matcher matcher2 = f54320e.matcher(str);
+            if (matcher2.find()) {
+                str2 = matcher2.group(2);
+            } else {
+                str2 = null;
             }
-            int i13 = this.f53214c;
-            if (i10 == i13 && s.b(' ', charSequence, i11 + i13, length) == length) {
-                return new h(-1, -1, true);
+            this.f54324c = str2;
+        } else {
+            this.f54323b = "";
+            this.f54324c = "UTF-8";
+        }
+        if ("multipart/form-data".equalsIgnoreCase(this.f54323b)) {
+            Matcher matcher3 = f54321f.matcher(str);
+            if (matcher3.find()) {
+                matcher3.group(2);
             }
         }
-        return h.a(dVar.f50883b);
     }
 }

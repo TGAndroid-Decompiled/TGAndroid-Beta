@@ -1,24 +1,39 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class wm implements el, org.telegram.ui.ActionBar.a2 {
-    public final Utilities.Callback f32669a;
+import android.graphics.Outline;
+import android.view.View;
+import android.view.ViewOutlineProvider;
+import org.telegram.messenger.AndroidUtilities;
+public final class wm extends ViewOutlineProvider {
+    public final ym f32637a;
 
-    public wm(Utilities.Callback callback) {
-        this.f32669a = callback;
+    public wm(ym ymVar) {
+        this.f32637a = ymVar;
     }
 
     @Override
-    public void b(TLRPC.MessageMedia messageMedia, int i10, boolean z10, int i11, long j3) {
-        this.f32669a.run(new rh.f(messageMedia));
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        Utilities.Callback callback = this.f32669a;
-        if (callback != null) {
-            callback.run(Boolean.FALSE);
+    public final void getOutline(View view, Outline outline) {
+        org.telegram.ui.Cells.t5 t5Var = (org.telegram.ui.Cells.t5) view;
+        if (t5Var.getTag() == null) {
+            return;
+        }
+        int intValue = ((Integer) t5Var.getTag()).intValue();
+        ym ymVar = this.f32637a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ymVar.v;
+        if (ymVar.d && chatAttachAlertPhotoLayout.T0 == chatAttachAlertPhotoLayout.U0 && !chatAttachAlertPhotoLayout.O0) {
+            intValue++;
+        }
+        if (chatAttachAlertPhotoLayout.f24039g1) {
+            intValue++;
+        }
+        if (intValue == 0) {
+            int dp = AndroidUtilities.dp(16.0f);
+            outline.setRoundRect(0, 0, view.getMeasuredWidth() + dp, view.getMeasuredHeight() + dp, dp);
+        } else if (intValue == chatAttachAlertPhotoLayout.M0 - 1) {
+            int dp2 = AndroidUtilities.dp(16.0f);
+            outline.setRoundRect(-dp2, 0, view.getMeasuredWidth(), view.getMeasuredHeight() + dp2, dp2);
+        } else {
+            outline.setRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
         }
     }
 }

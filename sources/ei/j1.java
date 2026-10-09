@@ -1,38 +1,77 @@
 package ei;
 
-import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
-public final class j1 implements NotificationCenter.NotificationCenterDelegate {
-    public final long f9116a;
-    public final NotificationCenter.NotificationCenterDelegate[] f9117b;
-    public final int f9118c;
-    public final g1 d;
-
-    public j1(long j3, NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr, int i10, g1 g1Var) {
-        this.f9116a = j3;
-        this.f9117b = notificationCenterDelegateArr;
-        this.f9118c = i10;
-        this.d = g1Var;
+public final class j1 implements org.telegram.ui.Cells.t0 {
+    @Override
+    public final org.telegram.ui.ActionBar.n2 T0() {
+        return null;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        a0.i iVar;
-        int i12 = NotificationCenter.didReceivedWebpagesInUpdates;
-        if (i10 == i12 && (iVar = (a0.i) objArr[0]) != null) {
-            long j3 = this.f9116a;
-            if (iVar.d(j3)) {
-                TLRPC.WebPage webPage = (TLRPC.WebPage) iVar.f(j3);
-                NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr = this.f9117b;
-                if (notificationCenterDelegateArr[0] != null) {
-                    NotificationCenter.getInstance(this.f9118c).addObserver(notificationCenterDelegateArr[0], i12);
-                    notificationCenterDelegateArr[0] = null;
-                }
-                if (!(webPage instanceof TLRPC.TL_webPage)) {
-                    webPage = null;
-                }
-                this.d.run(webPage);
-            }
-        }
+    public final long a() {
+        return 0L;
+    }
+
+    @Override
+    public final long d() {
+        return 0L;
+    }
+
+    @Override
+    public final boolean f() {
+        return true;
+    }
+
+    @Override
+    public final boolean x2(org.telegram.ui.Cells.w0 w0Var, float f7, float f10) {
+        return false;
+    }
+
+    @Override
+    public final void E1(long j3) {
+    }
+
+    @Override
+    public final void F1(org.telegram.ui.Cells.w0 w0Var) {
+    }
+
+    @Override
+    public final void W0(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
+    }
+
+    @Override
+    public final void d0(org.telegram.ui.Cells.w0 w0Var) {
+    }
+
+    @Override
+    public final void o0(org.telegram.ui.Cells.w0 w0Var) {
+    }
+
+    @Override
+    public final void w0(org.telegram.ui.Cells.w0 w0Var) {
+    }
+
+    @Override
+    public final void X(org.telegram.ui.Cells.w0 w0Var, int i10) {
+    }
+
+    @Override
+    public final void n2(org.telegram.ui.Cells.w0 w0Var, String str) {
+    }
+
+    @Override
+    public final void P1(org.telegram.ui.Cells.w0 w0Var, TLRPC.TL_premiumGiftOption tL_premiumGiftOption, String str) {
+    }
+
+    @Override
+    public final void k0(org.telegram.ui.Cells.w0 w0Var, int i10, int i11) {
+    }
+
+    @Override
+    public final void m1(org.telegram.ui.Cells.w0 w0Var, TLRPC.Document document, TLRPC.VideoSize videoSize) {
+    }
+
+    @Override
+    public final void z2(org.telegram.ui.Cells.w0 w0Var, TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10) {
     }
 }

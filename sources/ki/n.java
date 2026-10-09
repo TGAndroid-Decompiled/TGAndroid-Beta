@@ -1,26 +1,23 @@
 package ki;
-public final class n implements Runnable {
-    public final int f14992a;
-    public final q f14993b;
 
-    public n(q qVar, int i10) {
-        this.f14992a = i10;
-        this.f14993b = qVar;
+import android.os.SystemClock;
+import java.util.concurrent.atomic.AtomicLong;
+import org.telegram.messenger.FileLog;
+public final class n {
+    public static final AtomicLong f15055c = new AtomicLong(1);
+    public final long f15056a = f15055c.getAndIncrement();
+    public final long f15057b = SystemClock.elapsedRealtime();
+
+    public final void a(String str, Exception exc) {
+        FileLog.e(c() + str + ": " + exc);
+        FileLog.e(exc);
     }
 
-    @Override
-    public final void run() {
-        switch (this.f14992a) {
-            case 0:
-                this.f14993b.b();
-                return;
-            default:
-                q qVar = this.f14993b;
-                if (qVar.G != 0) {
-                    qVar.F = true;
-                    return;
-                }
-                return;
-        }
+    public final void b(String str) {
+        FileLog.d(c() + str);
+    }
+
+    public final String c() {
+        return "RoundVideo[" + this.f15056a + "] t+" + (SystemClock.elapsedRealtime() - this.f15057b) + "ms [" + Thread.currentThread().getName() + "] ";
     }
 }

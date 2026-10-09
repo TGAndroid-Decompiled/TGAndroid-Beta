@@ -5,33 +5,33 @@ import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.rc;
-import org.telegram.ui.Components.u00;
-import org.telegram.ui.Components.yc;
-import org.telegram.ui.yn;
-public final class d3 extends yn {
-    public boolean Kc;
-    public final TL_stars.TL_starGiftUnique Lc;
-    public final long Mc;
+import org.telegram.ui.Components.ad;
+import org.telegram.ui.Components.h10;
+import org.telegram.ui.Components.tc;
+import org.telegram.ui.zn;
+public final class d3 extends zn {
+    public boolean Qc;
+    public final TL_stars.TL_starGiftUnique Rc;
+    public final long Sc;
 
     public d3(Bundle bundle, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3) {
         super(bundle);
-        this.Lc = tL_starGiftUnique;
-        this.Mc = j3;
-        this.Kc = false;
+        this.Rc = tL_starGiftUnique;
+        this.Sc = j3;
+        this.Qc = false;
     }
 
     @Override
     public final void onBecomeFullyVisible() {
         super.onBecomeFullyVisible();
-        if (!this.Kc) {
-            this.Kc = true;
-            rc O = yc.a0(this).O(this.Lc.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, this.Mc)));
-            O.f30435r = false;
+        if (!this.Qc) {
+            this.Qc = true;
+            tc O = ad.a0(this).O(this.Rc.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, this.Sc)));
+            O.f31138r = false;
             O.j();
-            u00 u00Var = this.f43398k9;
-            if (u00Var != null) {
-                u00Var.c(true);
+            h10 h10Var = this.f44856m9;
+            if (h10Var != null) {
+                h10Var.c(true);
             }
         }
     }

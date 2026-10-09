@@ -1,52 +1,47 @@
 package org.telegram.messenger.voip;
 
-import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Cells.u1;
-import org.telegram.ui.Components.uw0;
-import org.telegram.ui.Components.w61;
-import org.telegram.ui.jl;
-public final class m0 implements Runnable {
-    public final int f19582a;
-    public final int f19583b;
-    public final boolean f19584c;
+import org.telegram.ui.Components.c71;
+import org.telegram.ui.Components.ht;
+import org.telegram.ui.Components.kt;
+public final class m0 implements RequestDelegate {
+    public final int f19587a;
+    public final int f19588b;
+    public final boolean f19589c;
     public final Object d;
-    public final Object f19585e;
+    public final Object f19590e;
 
-    public m0(int i10, int i11, Object obj, Object obj2, boolean z10) {
-        this.f19582a = i11;
-        this.d = obj;
-        this.f19585e = obj2;
-        this.f19583b = i10;
-        this.f19584c = z10;
+    public m0(int i10, String str, VoIPService voIPService, boolean z10) {
+        this.f19587a = 0;
+        this.d = voIPService;
+        this.f19588b = i10;
+        this.f19589c = z10;
+        this.f19590e = str;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.m0.run():void");
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f19587a) {
+            case 0:
+                ((VoIPService) this.d).lambda$startConferenceGroupCall$54(this.f19588b, this.f19589c, (String) this.f19590e, tLObject, tL_error);
+                return;
+            case 1:
+                AndroidUtilities.runOnUIThread(new m4.f0((ht) this.d, this.f19588b, (TLRPC.TL_messages_searchGlobal) this.f19590e, this.f19589c, tLObject, 2));
+                return;
+            default:
+                AndroidUtilities.runOnUIThread(new m4.f0((kt) this.d, this.f19588b, (TLRPC.TL_messages_searchGlobal) this.f19590e, this.f19589c, tLObject, 3));
+                return;
+        }
     }
 
-    public m0(jl jlVar, boolean z10, ArrayList arrayList, int i10) {
-        this.f19582a = 2;
-        this.d = jlVar;
-        this.f19584c = z10;
-        this.f19585e = arrayList;
-        this.f19583b = i10;
-    }
-
-    public m0(uw0 uw0Var, boolean z10, int i10, u1 u1Var) {
-        this.f19582a = 5;
-        this.d = uw0Var;
-        this.f19584c = z10;
-        this.f19583b = i10;
-        this.f19585e = u1Var;
-    }
-
-    public m0(w61 w61Var, int i10, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z10, int i11) {
-        this.f19582a = i11;
-        this.d = w61Var;
-        this.f19583b = i10;
-        this.f19585e = tL_messages_searchGlobal;
-        this.f19584c = z10;
+    public m0(c71 c71Var, int i10, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z10, int i11) {
+        this.f19587a = i11;
+        this.d = c71Var;
+        this.f19588b = i10;
+        this.f19590e = tL_messages_searchGlobal;
+        this.f19589c = z10;
     }
 }

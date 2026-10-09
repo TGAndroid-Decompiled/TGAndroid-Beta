@@ -1,42 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.text.TextUtils;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.ViewSwitcher;
-public class p11 extends ViewSwitcher {
-    public final void a(CharSequence charSequence, boolean z10, boolean z11) {
-        if (z11 || !TextUtils.equals(charSequence, getCurrentView().getText())) {
-            if (z10) {
-                getNextView().setText(charSequence);
-                showNext();
-                return;
-            }
-            getCurrentView().setText(charSequence);
+import android.text.TextPaint;
+import android.text.style.MetricAffectingSpan;
+public class p11 extends MetricAffectingSpan {
+    public final TextPaint f29688a;
+    public final String f29689b;
+
+    public p11(TextPaint textPaint, String str) {
+        this.f29688a = textPaint;
+        this.f29689b = str;
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        TextPaint textPaint2 = this.f29688a;
+        if (textPaint2 != null) {
+            textPaint.setColor(textPaint2.getColor());
+            textPaint.setTypeface(textPaint2.getTypeface());
+            textPaint.setFlags(textPaint2.getFlags());
+            textPaint.setTextSize(textPaint2.getTextSize());
+            textPaint.baselineShift = textPaint2.baselineShift;
+            textPaint.bgColor = textPaint2.bgColor;
         }
     }
 
     @Override
-    public final void addView(View view, int i10, ViewGroup.LayoutParams layoutParams) {
-        if (view instanceof TextView) {
-            super.addView(view, i10, layoutParams);
-            return;
+    public final void updateMeasureState(TextPaint textPaint) {
+        TextPaint textPaint2 = this.f29688a;
+        if (textPaint2 != null) {
+            textPaint.setColor(textPaint2.getColor());
+            textPaint.setTypeface(textPaint2.getTypeface());
+            textPaint.setFlags(textPaint2.getFlags());
+            textPaint.setTextSize(textPaint2.getTextSize());
+            textPaint.baselineShift = textPaint2.baselineShift;
+            textPaint.bgColor = textPaint2.bgColor;
         }
-        throw new IllegalArgumentException();
-    }
-
-    public void setText(CharSequence charSequence) {
-        a(charSequence, true, false);
-    }
-
-    @Override
-    public TextView getCurrentView() {
-        return (TextView) super.getCurrentView();
-    }
-
-    @Override
-    public TextView getNextView() {
-        return (TextView) super.getNextView();
     }
 }

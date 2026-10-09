@@ -189,7 +189,7 @@ public class NotificationBadge {
             if (!NotificationBadge.canResolveBroadcast(intent) && !NotificationBadge.canResolveBroadcast(intent2)) {
                 return;
             }
-            AndroidUtilities.runOnUIThread(new dc(29, intent, intent2));
+            AndroidUtilities.runOnUIThread(new vg(0, intent, intent2));
         }
 
         @Override
@@ -467,7 +467,7 @@ public class NotificationBadge {
 
         @Override
         public void executeBadge(int i10) {
-            AndroidUtilities.runOnUIThread(new vg(0, this, org.telegram.ui.Cells.c1.h(i10, "app_badge_count")));
+            AndroidUtilities.runOnUIThread(new vg(1, this, org.telegram.ui.Cells.c1.f(i10, "app_badge_count")));
         }
 
         @Override

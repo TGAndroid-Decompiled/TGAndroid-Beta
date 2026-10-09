@@ -1,63 +1,34 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.TranslateController;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class yk implements RequestDelegate {
-    public final int f19955a;
-    public final BaseController f19956b;
-    public final long f19957c;
-    public final Object d;
+import org.telegram.messenger.Utilities;
+public final class yk implements Utilities.Callback2 {
+    public final int f19934a;
+    public final TranslateController f19935b;
+    public final Utilities.Callback4 f19936c;
+    public final boolean d;
+    public final int f19937e;
+    public final String f19938f;
+    public final long f19939g;
 
-    public yk(BaseController baseController, long j3, Object obj, int i10) {
-        this.f19955a = i10;
-        this.f19956b = baseController;
-        this.f19957c = j3;
-        this.d = obj;
+    public yk(TranslateController translateController, Utilities.Callback4 callback4, boolean z10, int i10, String str, long j3, int i11) {
+        this.f19934a = i11;
+        this.f19935b = translateController;
+        this.f19936c = callback4;
+        this.d = z10;
+        this.f19937e = i10;
+        this.f19938f = str;
+        this.f19939g = j3;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f19955a) {
+    public final void run(Object obj, Object obj2) {
+        switch (this.f19934a) {
             case 0:
-                ((TranslateController) this.f19956b).lambda$pushPollToTranslate$26((TranslateController.PendingPollTranslation) this.d, this.f19957c, tLObject, tL_error);
-                return;
-            case 1:
-                ((TranslateController) this.f19956b).lambda$pushRichMessageToTranslate$29((TranslateController.PendingRichTranslation) this.d, this.f19957c, tLObject, tL_error);
-                return;
-            case 2:
-                ((MediaDataController) this.f19956b).lambda$loadPinnedMessageInternal$165(this.f19957c, (TLRPC.TL_messages_getMessages) this.d, tLObject, tL_error);
-                return;
-            case 3:
-                ((MessagesController) this.f19956b).lambda$updateTimerProc$155(this.f19957c, (TLRPC.TL_messages_getMessagesViews) this.d, tLObject, tL_error);
-                return;
-            case 4:
-                ((MessagesController) this.f19956b).lambda$reloadMentionsCountForChannel$221((TLRPC.InputPeer) this.d, this.f19957c, tLObject, tL_error);
-                return;
-            case 5:
-                ((MessagesController) this.f19956b).lambda$getGroupCall$63(this.f19957c, (Runnable) this.d, tLObject, tL_error);
-                return;
-            case 6:
-                ((MessagesController) this.f19956b).lambda$getSponsoredMessages$440(this.f19957c, (MessagesController.SponsoredMessagesInfo) this.d, tLObject, tL_error);
-                return;
-            case 7:
-                ((MessagesController) this.f19956b).lambda$loadUnknownChannel$330(this.f19957c, (TLRPC.TL_channel) this.d, tLObject, tL_error);
-                return;
-            case 8:
-                ((MessagesController) this.f19956b).lambda$setChatReactions$471(this.f19957c, (TLRPC.TL_messages_setChatAvailableReactions) this.d, tLObject, tL_error);
+                this.f19935b.lambda$pushToTranslate$21(this.f19936c, this.d, this.f19937e, this.f19938f, this.f19939g, (String) obj, (Boolean) obj2);
                 return;
             default:
-                ((MessagesController) this.f19956b).lambda$checkLastDialogMessage$227((TLRPC.Dialog) this.d, this.f19957c, tLObject, tL_error);
+                this.f19935b.lambda$pushToTranslate$20(this.f19936c, this.d, this.f19937e, this.f19938f, this.f19939g, (String) obj, (Boolean) obj2);
                 return;
         }
-    }
-
-    public yk(BaseController baseController, Object obj, long j3, int i10) {
-        this.f19955a = i10;
-        this.f19956b = baseController;
-        this.d = obj;
-        this.f19957c = j3;
     }
 }

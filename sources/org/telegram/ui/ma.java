@@ -1,79 +1,88 @@
 package org.telegram.ui;
 
-import android.app.Activity;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class ma extends FrameLayout {
-    public final EditTextBoldCursor f38551a;
-    public final TextView f38552b;
-    public final sa f38553c;
+import org.telegram.tgnet.TLRPC;
+public final class ma extends s4.w {
+    public final ra d;
 
-    public ma(sa saVar, Activity activity) {
-        super(activity);
-        int i10;
-        this.f38553c = saVar;
-        LinearLayout linearLayout = new LinearLayout(getContext());
-        linearLayout.setOrientation(0);
-        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getContext());
-        this.f38551a = editTextBoldCursor;
-        editTextBoldCursor.setTextSize(1, 17.0f);
-        editTextBoldCursor.setHintTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.H6, false));
-        int i11 = org.telegram.ui.ActionBar.i6.G6;
-        editTextBoldCursor.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i11, false));
-        editTextBoldCursor.setBackgroundDrawable(null);
-        editTextBoldCursor.setMaxLines(1);
-        editTextBoldCursor.setLines(1);
-        editTextBoldCursor.setPadding(0, 0, 0, 0);
-        editTextBoldCursor.setSingleLine(true);
-        if (LocaleController.isRTL) {
-            i10 = 5;
+    public ma(ra raVar) {
+        this.d = raVar;
+    }
+
+    @Override
+    public final void a(RecyclerView recyclerView, s4.d1 d1Var) {
+        super.a(recyclerView, d1Var);
+        View view = d1Var.f47656a;
+        view.setPressed(false);
+        view.setTag(R.id.dragging, null);
+    }
+
+    @Override
+    public final int e(RecyclerView recyclerView, s4.d1 d1Var) {
+        if (d1Var.f47660f == 4 && ((oa) d1Var.f47656a).G) {
+            return s4.w.l(3, 0);
+        }
+        return s4.w.l(0, 0);
+    }
+
+    @Override
+    public final boolean n(RecyclerView recyclerView, s4.d1 d1Var, s4.d1 d1Var2) {
+        if (d1Var.f47660f == d1Var2.f47660f) {
+            View view = d1Var2.f47656a;
+            if (!(view instanceof oa) || ((oa) view).G) {
+                ia iaVar = this.d.f41318c;
+                int b10 = d1Var.b();
+                int b11 = d1Var2.b();
+                int i10 = b10 - 4;
+                int i11 = b11 - 4;
+                ra raVar = iaVar.f38591c;
+                ArrayList arrayList = raVar.v;
+                if (i10 < arrayList.size() && i11 < arrayList.size()) {
+                    if (b10 != b11) {
+                        raVar.d = true;
+                    }
+                    arrayList.set(i10, (TLRPC.TL_username) arrayList.get(i11));
+                    arrayList.set(i11, (TLRPC.TL_username) arrayList.get(i10));
+                    iaVar.p(b10, b11);
+                    int size = arrayList.size() + 3;
+                    if (b10 == size || b11 == size) {
+                        iaVar.n(b10, 3);
+                        iaVar.n(b11, 3);
+                    }
+                }
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public final void p(s4.d1 d1Var, int i10) {
+        Boolean bool;
+        ra raVar = this.d;
+        if (i10 == 0) {
+            ra.Y(raVar);
         } else {
-            i10 = 3;
+            raVar.f41317b.I0(false);
+            d1Var.f47656a.setPressed(true);
         }
-        editTextBoldCursor.setGravity(i10 | 48);
-        editTextBoldCursor.setInputType(180224);
-        editTextBoldCursor.setImeOptions(6);
-        editTextBoldCursor.setHint(LocaleController.getString(R.string.UsernameLinkPlaceholder));
-        editTextBoldCursor.setCursorColor(org.telegram.ui.ActionBar.i6.w0(null, i11, false));
-        editTextBoldCursor.setCursorSize(AndroidUtilities.dp(19.0f));
-        editTextBoldCursor.setCursorWidth(1.5f);
-        editTextBoldCursor.setOnEditorActionListener(new ka(this, 0));
-        String str = saVar.f40417r;
-        long j3 = saVar.f40420x;
-        editTextBoldCursor.setText(str);
-        editTextBoldCursor.addTextChangedListener(new la(this));
-        int i12 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
-        if (i12 != 0) {
-            editTextBoldCursor.setEnabled(false);
-        }
-        TextView textView = new TextView(getContext());
-        this.f38552b = textView;
-        textView.setMaxLines(1);
-        textView.setLines(1);
-        textView.setPadding(0, 0, 0, 0);
-        textView.setSingleLine(true);
-        textView.setText(saVar.getMessagesController().linkPrefix + "/");
-        textView.setTextSize(1, 17.0f);
-        textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i11, false));
-        textView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-        textView.setTranslationY(-AndroidUtilities.dp(3.0f));
-        linearLayout.addView(textView, w7.z5.p(-2, -2, 0.0f, 16, 21, 15, 0, 15));
-        linearLayout.addView(editTextBoldCursor, w7.z5.p(-2, -2, 1.0f, 16, 0, 15, 21, 15));
-        addView(linearLayout, w7.z5.e(-1, -1, 48));
-        if (i12 != 0) {
-            editTextBoldCursor.setAlpha(0.6f);
-            textView.setAlpha(0.6f);
+        if (d1Var != null) {
+            View view = d1Var.f47656a;
+            int i11 = R.id.dragging;
+            if (i10 == 2) {
+                bool = Boolean.TRUE;
+            } else {
+                bool = null;
+            }
+            view.setTag(i11, bool);
         }
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
+    public final void q(s4.d1 d1Var) {
     }
 }

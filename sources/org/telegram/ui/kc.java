@@ -1,44 +1,15 @@
 package org.telegram.ui;
+public final class kc extends b71 {
+    public final bd f39208e;
 
-import android.app.Activity;
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class kc extends a71 {
-    public final fc f37954d2;
-    public final r61[] f37955e2;
-    public final cd f37956f2;
-
-    public kc(cd cdVar, cd cdVar2, Activity activity, Integer num, int i10, org.telegram.ui.ActionBar.d6 d6Var, int i11, int i12, fc fcVar, r61[] r61VarArr) {
-        super(cdVar2, activity, true, num, i10, true, d6Var, i11, i12);
-        this.f37956f2 = cdVar;
-        this.f37954d2 = fcVar;
-        this.f37955e2 = r61VarArr;
+    public kc(bd bdVar, jc jcVar) {
+        super(jcVar);
+        this.f39208e = bdVar;
     }
 
     @Override
-    public final long getDialogId() {
-        return this.f37956f2.f35398a;
-    }
-
-    @Override
-    public final float getScrimDrawableTranslationY() {
-        return 0.0f;
-    }
-
-    @Override
-    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
-        long longValue;
-        if (l4 == null) {
-            longValue = 0;
-        } else {
-            longValue = l4.longValue();
-        }
-        this.f37954d2.run(Long.valueOf(longValue), num, tL_starGiftUnique);
-        r61 r61Var = this.f37955e2[0];
-        if (r61Var != null) {
-            this.f37956f2.Q = null;
-            r61Var.dismiss();
-        }
+    public final void dismiss() {
+        super.dismiss();
+        this.f39208e.Q = null;
     }
 }

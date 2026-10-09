@@ -119,9 +119,9 @@ public final class n implements Cloneable {
         if (i17 - i11 != 0) {
             int[] iArr = this.f34a;
             int i18 = i11 + 1;
-            hd.f.b(i18, i11, i17, iArr, iArr);
+            id.f.b(i18, i11, i17, iArr, iArr);
             Object[] objArr2 = this.f35b;
-            hd.f.c(i18, i11, this.f36c, objArr2, objArr2);
+            id.f.c(i18, i11, this.f36c, objArr2, objArr2);
         }
         this.f34a[i11] = i10;
         this.f35b[i11] = obj;

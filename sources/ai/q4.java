@@ -1,273 +1,196 @@
 package ai;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.app.NotificationManager;
 import android.content.Context;
-import android.text.TextUtils;
-import android.util.Log;
-import android.util.Property;
+import android.graphics.Canvas;
+import android.text.Layout;
 import android.view.View;
-import android.view.ViewConfiguration;
-import android.view.animation.DecelerateInterpolator;
+import android.widget.Button;
 import android.widget.TextView;
-import androidx.appcompat.widget.ActionMenuView;
-import androidx.appcompat.widget.Toolbar;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import java.io.IOException;
-public final class q4 implements Runnable {
-    public final int f1542a;
-    public final Object f1543b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.bi;
+public final class q4 extends TextView {
+    public final int f1614a;
 
-    public q4(com.google.android.gms.common.api.internal.m1 m1Var, c5.b0 b0Var) {
-        this.f1542a = 17;
-        this.f1543b = b0Var;
+    public q4(Context context, int i10) {
+        super(context);
+        this.f1614a = i10;
     }
 
-    private final void a() {
-        g6.o oVar = (g6.o) this.f1543b;
-        synchronized (g6.o.f10276i) {
-            try {
-                if (!oVar.d()) {
-                    return;
+    @Override
+    public void dispatchDraw(Canvas canvas) {
+        switch (this.f1614a) {
+            case 1:
+                super.dispatchDraw(canvas);
+                canvas.drawCircle(AndroidUtilities.dp(3.5f), AndroidUtilities.dp(11.5f), AndroidUtilities.dp(2.5f), getPaint());
+                return;
+            case 2:
+            default:
+                super.dispatchDraw(canvas);
+                return;
+            case 3:
+                if (getPaddingLeft() > 0) {
+                    canvas.drawCircle((getPaddingLeft() - AndroidUtilities.dp(2.5f)) / 2.0f, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(2.5f), getPaint());
                 }
-                oVar.f(15);
-            } catch (Throwable th2) {
-                throw th2;
-            }
+                super.dispatchDraw(canvas);
+                return;
         }
     }
 
     @Override
-    public final void run() {
-        Object obj;
-        i2.f0 f0Var;
-        m.h hVar;
-        switch (this.f1542a) {
-            case 0:
-                e6 e6Var = (e6) this.f1543b;
-                if (e6Var.K1 && e6Var.f840b1) {
-                    jc jcVar = ((ac) e6Var.Q1).d;
-                    jcVar.l1 = false;
-                    jcVar.P();
-                    return;
-                }
-                return;
-            case 1:
-                ((zb) this.f1543b).L0 = false;
-                return;
-            case 2:
-                oa oaVar = (oa) this.f1543b;
-                oaVar.f1476b = false;
-                oaVar.invalidate();
-                return;
-            case 3:
-                try {
-                    androidx.activity.l.n((androidx.activity.l) this.f1543b);
-                    return;
-                } catch (IllegalStateException e7) {
-                    if (TextUtils.equals(e7.getMessage(), "Can not perform this action after onSaveInstanceState")) {
-                        return;
-                    }
-                    throw e7;
-                } catch (NullPointerException e10) {
-                    if (!TextUtils.equals(e10.getMessage(), "Attempt to invoke virtual method 'android.os.Handler android.app.FragmentHostCallback.getHandler()' on a null object reference")) {
-                        throw e10;
-                    }
-                    return;
-                }
-            case 4:
-                androidx.biometric.e0 e0Var = (androidx.biometric.e0) this.f1543b;
-                Context n10 = e0Var.n();
-                if (n10 == null) {
-                    Log.w("FingerprintFragment", "Not resetting the dialog. Context is null.");
-                    return;
-                }
-                e0Var.C0.f(1);
-                e0Var.C0.e(n10.getString(2131689607));
-                return;
-            case 5:
-                androidx.fragment.app.p pVar = (androidx.fragment.app.p) this.f1543b;
-                pVar.f2663n0.onDismiss(pVar.f2671v0);
-                return;
-            case 6:
-                androidx.fragment.app.s sVar = (androidx.fragment.app.s) this.f1543b;
-                if (sVar.Y != null) {
-                    sVar.j().getClass();
-                    return;
-                }
-                return;
-            case 7:
-                ((androidx.fragment.app.k0) this.f1543b).A(true);
-                return;
-            case 8:
-                synchronized (((androidx.lifecycle.z) this.f1543b).f2827a) {
-                    obj = ((androidx.lifecycle.z) this.f1543b).f2831f;
-                    ((androidx.lifecycle.z) this.f1543b).f2831f = androidx.lifecycle.z.f2826k;
-                }
-                ((androidx.lifecycle.z) this.f1543b).j(obj);
-                return;
-            case 9:
-                androidx.mediarouter.app.u uVar = (androidx.mediarouter.app.u) this.f1543b;
-                uVar.i(true);
-                uVar.U.requestLayout();
-                uVar.U.getViewTreeObserver().addOnGlobalLayoutListener(new androidx.mediarouter.app.j(uVar, 0));
-                return;
-            case 10:
-                androidx.mediarouter.app.u uVar2 = ((androidx.mediarouter.app.s) this.f1543b).f3020b;
-                if (uVar2.f3025c0 != null) {
-                    uVar2.f3025c0 = null;
-                    if (uVar2.f3043s0) {
-                        uVar2.q(uVar2.f3044t0);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 11:
-                c5.y yVar = (c5.y) this.f1543b;
-                c5.c cVar = yVar.d;
-                cVar.k(0);
-                c5.h hVar2 = c5.g0.f4196i;
-                cVar.j(24, hVar2);
-                yVar.c(hVar2);
-                return;
-            case 12:
-                qg.j jVar = ((ci.mb) this.f1543b).J0;
-                if (jVar instanceof qg.v2) {
-                    ((qg.v2) jVar).getEditText();
-                    return;
-                }
-                return;
-            case 13:
-                com.google.android.gms.common.api.internal.g0 g0Var = (com.google.android.gms.common.api.internal.g0) this.f1543b;
-                k6.e eVar = g0Var.d;
-                Context context = g0Var.f6536c;
-                eVar.getClass();
-                if (!k6.g.f14677a.getAndSet(true)) {
-                    try {
-                        NotificationManager notificationManager = (NotificationManager) context.getSystemService("notification");
-                        if (notificationManager != null) {
-                            notificationManager.cancel(10436);
-                            return;
-                        }
-                        return;
-                    } catch (SecurityException e11) {
-                        Log.d("GooglePlayServicesUtil", "Suppressing Security Exception %s in cancelAvailabilityErrorNotifications.", e11);
-                        return;
-                    }
-                }
-                return;
+    public CharSequence getAccessibilityClassName() {
+        switch (this.f1614a) {
             case 14:
-                ((com.google.android.gms.common.api.internal.p0) this.f1543b).f();
-                return;
+                return Button.class.getName();
             case 15:
-                com.google.android.gms.common.api.c cVar2 = ((com.google.android.gms.common.api.internal.p0) ((a6.m) this.f1543b).f330b).f6605b;
-                cVar2.d(cVar2.getClass().getName().concat(" disconnecting because it was signed out."));
-                return;
+                return Button.class.getName();
             case 16:
-                ((com.google.android.gms.common.api.internal.d1) this.f1543b).f6528j.b(new k6.a(4));
-                return;
+                return Button.class.getName();
             case 17:
-                return;
+                return Button.class.getName();
             case 18:
-                com.google.android.gms.common.api.internal.x xVar = (com.google.android.gms.common.api.internal.x) this.f1543b;
-                xVar.f6659o.lock();
-                try {
-                    com.google.android.gms.common.api.internal.x.l(xVar);
-                    return;
-                } finally {
-                    xVar.f6659o.unlock();
-                }
+                return Button.class.getName();
             case 19:
-                ((f6.i) this.f1543b).g(false);
-                return;
+                return Button.class.getName();
             case 20:
-                a();
-                return;
+                return Button.class.getName();
             case 21:
-                i.e eVar2 = (i.e) this.f1543b;
-                eVar2.a(true);
-                eVar2.invalidateSelf();
-                return;
-            case 22:
-                if (((TaskCompletionSource) this.f1543b).trySetException(new IOException("TIMEOUT"))) {
-                    Log.w("Rpc", "No response");
-                    return;
-                }
-                return;
-            case 23:
-                kg.e eVar3 = (kg.e) this.f1543b;
-                eVar3.f14787f.animate().setDuration(120L).alpha(0.0f);
-                eVar3.h.animate().setListener(null).start();
-                if (eVar3.h.getVisibility() != 0) {
-                    eVar3.h.setVisibility(0);
-                    eVar3.h.setAlpha(0.0f);
-                }
-                eVar3.h.animate().setDuration(120L).alpha(1.0f).start();
-                return;
-            case 24:
-                ki.s0 s0Var = (ki.s0) this.f1543b;
-                if (s0Var.W == 5 && (f0Var = s0Var.S) != null && s0Var.f15064x) {
-                    long J0 = f0Var.J0();
-                    long j3 = s0Var.G;
-                    if (J0 < j3 || J0 >= s0Var.H) {
-                        s0Var.S.W0(5, j3);
-                    }
-                    s0Var.d.getClass();
-                    s0Var.f15050i.postDelayed(this, 33L);
-                    return;
-                }
-                return;
-            case 25:
-                m.r1 r1Var = (m.r1) this.f1543b;
-                r1Var.f15880w = null;
-                r1Var.drawableStateChanged();
-                return;
-            case 26:
-                ActionMenuView actionMenuView = ((Toolbar) this.f1543b).f2194a;
-                if (actionMenuView != null && (hVar = actionMenuView.J) != null) {
-                    hVar.l();
-                    return;
-                }
-                return;
-            case 27:
-                Object obj2 = ((a4.m) this.f1543b).f297b;
-                return;
-            case 28:
-                org.telegram.ui.Cells.a0 a0Var = (org.telegram.ui.Cells.a0) this.f1543b;
-                if (a0Var.f21779b == null) {
-                    a0Var.f21779b = new androidx.emoji2.text.j(a0Var, 3);
-                }
-                androidx.emoji2.text.j jVar2 = a0Var.f21779b;
-                int i10 = a0Var.f21780c + 1;
-                a0Var.f21780c = i10;
-                jVar2.f2522b = i10;
-                a0Var.postDelayed(jVar2, ViewConfiguration.getLongPressTimeout() - ViewConfiguration.getTapTimeout());
+                return Button.class.getName();
+            default:
+                return super.getAccessibilityClassName();
+        }
+    }
+
+    @Override
+    public void onDraw(Canvas canvas) {
+        switch (this.f1614a) {
+            case 4:
+                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.i4.f38484r1);
+                super.onDraw(canvas);
                 return;
             default:
-                org.telegram.ui.Cells.v5 v5Var = (org.telegram.ui.Cells.v5) this.f1543b;
-                TextView textView = v5Var.f23561b;
-                textView.setTag(null);
-                AnimatorSet animatorSet = new AnimatorSet();
-                v5Var.d = animatorSet;
-                Property property = View.ALPHA;
-                animatorSet.playTogether(ObjectAnimator.ofFloat(textView, property, 0.0f), ObjectAnimator.ofFloat(v5Var.f23560a, property, 1.0f));
-                v5Var.d.setDuration(250L);
-                v5Var.d.setInterpolator(new DecelerateInterpolator());
-                v5Var.d.addListener(new org.telegram.ui.u4(this, 9));
-                v5Var.d.start();
+                super.onDraw(canvas);
                 return;
         }
     }
 
-    public q4(Object obj, int i10) {
-        this.f1542a = i10;
-        this.f1543b = obj;
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f1614a) {
+            case 9:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(220.0f)), View.MeasureSpec.getMode(i10)), i11);
+                return;
+            case 10:
+                if (View.MeasureSpec.getMode(i10) == Integer.MIN_VALUE && getLayout() != null) {
+                    Layout layout = getLayout();
+                    int i12 = 0;
+                    for (int i13 = 0; i13 < layout.getLineCount(); i13++) {
+                        i12 = Math.max(i12, (int) Math.ceil(layout.getLineWidth(i13)));
+                    }
+                    i10 = View.MeasureSpec.makeMeasureSpec(getPaddingRight() + getPaddingLeft() + i12, 1073741824);
+                }
+                super.onMeasure(i10, i11);
+                return;
+            case 11:
+                if (View.MeasureSpec.getMode(i10) == Integer.MIN_VALUE && getLayout() != null) {
+                    Layout layout2 = getLayout();
+                    int i14 = 0;
+                    for (int i15 = 0; i15 < layout2.getLineCount(); i15++) {
+                        i14 = Math.max(i14, (int) Math.ceil(layout2.getLineWidth(i15)));
+                    }
+                    i10 = View.MeasureSpec.makeMeasureSpec(getPaddingRight() + getPaddingLeft() + i14, 1073741824);
+                }
+                super.onMeasure(i10, i11);
+                return;
+            case 12:
+                if (View.MeasureSpec.getMode(i10) == Integer.MIN_VALUE && getLayout() != null) {
+                    Layout layout3 = getLayout();
+                    int i16 = 0;
+                    for (int i17 = 0; i17 < layout3.getLineCount(); i17++) {
+                        i16 = Math.max(i16, (int) Math.ceil(layout3.getLineWidth(i17)));
+                    }
+                    i10 = View.MeasureSpec.makeMeasureSpec(getPaddingRight() + getPaddingLeft() + i16, 1073741824);
+                }
+                super.onMeasure(i10, i11);
+                return;
+            case 13:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), (int) (AndroidUtilities.displaySize.x * 0.45f)), Integer.MIN_VALUE), i11);
+                return;
+            case 14:
+            case 15:
+            case 16:
+            case 17:
+            case 18:
+            case 19:
+            case 20:
+            case 21:
+            case 24:
+            default:
+                super.onMeasure(i10, i11);
+                return;
+            case 22:
+                super.onMeasure(i10, i11);
+                try {
+                    Layout layout4 = getLayout();
+                    if (layout4.getLineCount() > 1) {
+                        int i18 = 0;
+                        for (int lineCount = layout4.getLineCount() - 1; lineCount >= 0; lineCount--) {
+                            i18 = Math.max(i18, Math.round(layout4.getPaint().measureText(getText(), layout4.getLineStart(lineCount), layout4.getLineEnd(lineCount))));
+                        }
+                        super.onMeasure(Math.min(i18 + getPaddingLeft() + getPaddingRight(), getMeasuredWidth()) | 1073741824, 1073741824 | getMeasuredHeight());
+                        return;
+                    }
+                    return;
+                } catch (Exception unused) {
+                    return;
+                }
+            case 23:
+                super.onMeasure(i10, i11);
+                return;
+            case 25:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec((View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(8.0f)) / 2, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(42.0f), 1073741824));
+                return;
+            case 26:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec((View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(8.0f)) / 2, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(42.0f), 1073741824));
+                return;
+            case 27:
+                if (View.MeasureSpec.getMode(i10) == Integer.MIN_VALUE) {
+                    i10 = bi.c(52.0f, View.MeasureSpec.getSize(i10), Integer.MIN_VALUE);
+                }
+                super.onMeasure(i10, i11);
+                return;
+            case 28:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE));
+                return;
+            case 29:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(View.MeasureSpec.getSize(i11), AndroidUtilities.dp(100.0f)), Integer.MIN_VALUE));
+                return;
+        }
     }
 
-    public q4(a4.m mVar, int i10) {
-        this.f1542a = 27;
-        this.f1543b = mVar;
+    @Override
+    public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+        switch (this.f1614a) {
+            case 2:
+                super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
+                return;
+            case 3:
+            case 4:
+            default:
+                super.setText(charSequence, bufferType);
+                return;
+            case 5:
+                super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
+                return;
+            case 6:
+                super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
+                return;
+            case 7:
+                super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
+                return;
+            case 8:
+                super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
+                return;
+        }
     }
 }

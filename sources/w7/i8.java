@@ -1,9 +1,12 @@
 package w7;
-
-import android.content.Context;
 public abstract class i8 {
-    public static i7.b a(Context context) {
-        n6.l.h(context);
-        return new i7.b(context, new Object());
+    public static int a(Object obj) {
+        int hashCode;
+        if (obj == null) {
+            hashCode = 0;
+        } else {
+            hashCode = obj.hashCode();
+        }
+        return (int) (Integer.rotateLeft((int) (hashCode * (-862048943)), 15) * 461845907);
     }
 }

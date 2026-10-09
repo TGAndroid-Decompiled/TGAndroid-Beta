@@ -10,45 +10,45 @@ import org.telegram.messenger.NotificationsController;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class ma0 implements org.telegram.ui.Components.de0, org.telegram.ui.ActionBar.a2 {
-    public final LaunchActivity f38554a;
+public final class ma0 implements org.telegram.ui.Components.se0, org.telegram.ui.ActionBar.a2 {
+    public final LaunchActivity f39818a;
 
     public ma0(LaunchActivity launchActivity) {
-        this.f38554a = launchActivity;
+        this.f39818a = launchActivity;
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
         Pattern pattern = LaunchActivity.B1;
-        MessagesController.getInstance(this.f38554a.O).performLogout(2);
+        MessagesController.getInstance(this.f39818a.O).performLogout(2);
     }
 
     @Override
-    public void m(org.telegram.ui.Components.ee0 ee0Var) {
+    public void i(org.telegram.ui.Components.te0 te0Var) {
         Pattern pattern = LaunchActivity.B1;
         SharedConfig.isWaitingForPasscodeEnter = false;
-        LaunchActivity launchActivity = this.f38554a;
+        LaunchActivity launchActivity = this.f39818a;
         Intent intent = launchActivity.L0;
         if (intent != null) {
             launchActivity.X(intent, launchActivity.M0, launchActivity.N0, true, null, false, true);
             launchActivity.L0 = null;
         }
-        launchActivity.f33817q0.getView().setVisibility(0);
-        launchActivity.f33817q0.U(true, true);
-        ActionBarLayout actionBarLayout = launchActivity.f33817q0;
+        launchActivity.f33807q0.getView().setVisibility(0);
+        launchActivity.f33807q0.U(true, true);
+        ActionBarLayout actionBarLayout = launchActivity.f33807q0;
         org.telegram.ui.ActionBar.n2 lastFragment = actionBarLayout.getLastFragment();
         if (lastFragment != null) {
             lastFragment.setTitleOverlayText(actionBarLayout.G0, actionBarLayout.H0, actionBarLayout.I0);
         }
         if (AndroidUtilities.isTablet()) {
-            launchActivity.f33819r0.U(true, true);
-            launchActivity.f33821s0.U(true, true);
-            if (launchActivity.f33819r0.getView().getVisibility() == 4) {
-                launchActivity.f33819r0.getView().setVisibility(0);
+            launchActivity.f33809r0.U(true, true);
+            launchActivity.f33811s0.U(true, true);
+            if (launchActivity.f33809r0.getView().getVisibility() == 4) {
+                launchActivity.f33809r0.getView().setVisibility(0);
             }
-            launchActivity.f33821s0.getView().setVisibility(0);
+            launchActivity.f33811s0.getView().setVisibility(0);
         }
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.passcodeDismissed, ee0Var);
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.passcodeDismissed, te0Var);
         try {
             NotificationsController.getInstance(UserConfig.selectedAccount).showNotifications();
         } catch (Exception e7) {

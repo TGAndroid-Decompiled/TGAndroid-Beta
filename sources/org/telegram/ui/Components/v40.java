@@ -1,40 +1,111 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.text.TextUtils;
 import java.util.ArrayList;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.tgnet.TLRPC;
-public final class v40 extends org.telegram.ui.ou0 {
-    public final ArrayList f31656a;
-    public final y40 f31657b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.ConnectionsManager;
+public abstract class v40 extends c71 {
+    public final int N;
+    public final ArrayList O;
+    public boolean P;
+    public ai.w8 Q;
+    public boolean R;
+    public boolean S;
+    public int T;
+    public int U;
+    public boolean V;
+    public int W;
+    public String X;
+    public String Y;
+    public int Z;
+    public zk f31690a0;
+    public final boolean[] f31691b0;
 
-    public v40(y40 y40Var, ArrayList arrayList) {
-        this.f31657b = y40Var;
-        this.f31656a = arrayList;
+    public v40(qm0 qm0Var, Context context, int i10) {
+        super(qm0Var, context, i10, 0, false, null, null);
+        this.O = new ArrayList();
+        this.T = 0;
+        this.U = -1;
+        this.f31691b0 = new boolean[1];
+        this.f25281s = new d(this, 16);
+        this.N = i10;
     }
 
-    @Override
-    public final org.telegram.ui.yu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        x40 x40Var = this.f31657b.f33171b;
-        if (x40Var == null) {
+    public static String X(String str, boolean[] zArr) {
+        boolean z10;
+        if (zArr != null) {
+            zArr[0] = false;
+        }
+        if (str != null && !str.isEmpty()) {
+            String trim = str.trim();
+            if (trim.length() > 1) {
+                if ((trim.charAt(0) == '#' || trim.charAt(0) == '$') && trim.indexOf(64) < 0) {
+                    if (zArr != null) {
+                        if (trim.charAt(0) == '$') {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        zArr[0] = z10;
+                    }
+                    return trim.substring(1);
+                }
+                return null;
+            }
             return null;
         }
-        return x40Var.getCloseIntoObject();
+        return null;
     }
 
-    @Override
-    public final boolean S() {
-        return false;
+    public final void V() {
+        ai.w8 w8Var = this.Q;
+        if (w8Var != null && w8Var.I != 0) {
+            ConnectionsManager.getInstance(w8Var.f895c).cancelRequest(w8Var.I, true);
+            w8Var.I = 0;
+        }
+        this.P = false;
+        if (this.U >= 0) {
+            ConnectionsManager.getInstance(this.N).cancelRequest(this.U, true);
+            this.U = -1;
+        }
+        AndroidUtilities.cancelRunOnUIThread(this.f31690a0);
+        this.T++;
+        this.S = false;
     }
 
-    @Override
-    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        this.f31657b.t((MediaController.PhotoEntry) this.f31656a.get(0));
+    public final void W() {
+        qm0 qm0Var;
+        if (!TextUtils.isEmpty(this.X) && !this.V && !this.S && (qm0Var = this.d) != null) {
+            for (int i10 = 0; i10 < qm0Var.getChildCount(); i10++) {
+                if (qm0Var.getChildAt(i10) instanceof j10) {
+                    Y(this.X);
+                    return;
+                }
+            }
+        }
     }
 
-    @Override
-    public final boolean z() {
-        return false;
+    public final void Y(String str) {
+        this.X = str;
+        String X = X(str, this.f31691b0);
+        if (!TextUtils.equals(this.Y, X)) {
+            this.O.clear();
+            this.V = false;
+            this.W = 0;
+            V();
+        } else if (this.S) {
+            return;
+        }
+        int i10 = this.T + 1;
+        this.T = i10;
+        if (X == null) {
+            return;
+        }
+        this.S = true;
+        N(true);
+        zk zkVar = new zk(this, i10, X, 6);
+        this.f31690a0 = zkVar;
+        AndroidUtilities.runOnUIThread(zkVar, 300L);
     }
 }

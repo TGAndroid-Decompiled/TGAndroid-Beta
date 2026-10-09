@@ -1,88 +1,88 @@
 package ii;
 
 import java.util.ArrayList;
-import org.telegram.ui.Cells.q9;
-public final class k3 extends q9 {
-    public final v3 K0;
-    public final x3 L0;
+import org.telegram.ui.Cells.o9;
+public final class k3 extends o9 {
+    public final v3 F0;
+    public final x3 G0;
 
     public k3(x3 x3Var, v3 v3Var) {
-        this.L0 = x3Var;
-        this.K0 = v3Var;
+        this.G0 = x3Var;
+        this.F0 = v3Var;
     }
 
     @Override
-    public final boolean D() {
-        x3 x3Var = this.L0;
-        CharSequence s10 = x3Var.f12782u3.s();
-        if (s10 != null && s10.length() != 0) {
-            x3Var.c5(s10);
+    public final boolean C() {
+        x3 x3Var = this.G0;
+        CharSequence r10 = x3Var.f12820l3.r();
+        if (r10 != null && r10.length() != 0) {
+            x3Var.c5(r10);
             return true;
         }
         return true;
     }
 
     @Override
-    public final void E() {
-        x3 x3Var = this.L0;
-        CharSequence s10 = x3Var.f12782u3.s();
-        if (s10 != null && s10.length() > 0) {
-            x3Var.c5(s10);
+    public final void D() {
+        x3 x3Var = this.G0;
+        CharSequence r10 = x3Var.f12820l3.r();
+        if (r10 != null && r10.length() > 0) {
+            x3Var.c5(r10);
         }
         x3Var.F2();
     }
 
     @Override
-    public final void G() {
-        super.G();
-        this.K0.t();
+    public final void F() {
+        super.F();
+        this.F0.l();
     }
 
     @Override
-    public final void I() {
-        this.L0.d4();
+    public final void H() {
+        this.G0.d4();
     }
 
     @Override
-    public final boolean K() {
-        if (b0()) {
+    public final boolean J() {
+        if (a0()) {
             return true;
         }
-        return this.L0.T4();
+        return this.G0.T4();
     }
 
     @Override
-    public final void L(float f7, float f10) {
-        x3 x3Var = this.L0;
-        x3Var.f12791z3 = true;
-        x3Var.A3 = f7;
-        x3Var.B3 = f10;
+    public final void K(float f7, float f10) {
+        x3 x3Var = this.G0;
+        x3Var.f12829q3 = true;
+        x3Var.f12830r3 = f7;
+        x3Var.f12831s3 = f10;
     }
 
     @Override
-    public final boolean k() {
+    public final boolean j() {
         boolean z10;
         int size;
         String str;
         int length;
-        x3 x3Var = this.L0;
-        k3 k3Var = x3Var.f12782u3;
-        ArrayList arrayList = x3Var.f12778s3;
-        if (!arrayList.isEmpty() && k3Var.y() && k3Var.f22702u0 == 0 && k3Var.f22703v0 == 0 && k3Var.f22704w0 <= 0 && k3Var.f22705x0 == (size = arrayList.size() - 1)) {
+        x3 x3Var = this.G0;
+        k3 k3Var = x3Var.f12820l3;
+        ArrayList arrayList = x3Var.j3;
+        if (!arrayList.isEmpty() && k3Var.x() && k3Var.f22609p0 == 0 && k3Var.f22610q0 == 0 && k3Var.f22611r0 <= 0 && k3Var.f22612s0 == (size = arrayList.size() - 1)) {
             a aVar = (a) arrayList.get(size);
-            if (f6.p(aVar.f12187b)) {
-                str = h6.l(f6.k(aVar.f12187b));
+            if (f6.p(aVar.f12234b)) {
+                str = h6.l(f6.k(aVar.f12234b));
             } else {
                 str = "";
             }
             int i10 = !str.isEmpty();
-            if (k3Var.f22706y0 == i10) {
+            if (k3Var.f22613t0 == i10) {
                 if (i10 == 1) {
                     length = str.length();
                 } else {
-                    length = f6.z(aVar.f12187b).length();
+                    length = f6.z(aVar.f12234b).length();
                 }
-                if (k3Var.f22707z0 >= length) {
+                if (k3Var.f22614u0 >= length) {
                     z10 = true;
                     return !z10;
                 }
@@ -93,12 +93,12 @@ public final class k3 extends q9 {
     }
 
     @Override
-    public final int p() {
-        return this.L0.getPaddingBottom();
+    public final int o() {
+        return this.G0.getPaddingBottom();
     }
 
     @Override
-    public final int q() {
-        return this.L0.getPaddingTop();
+    public final int p() {
+        return this.G0.getPaddingTop();
     }
 }

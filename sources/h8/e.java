@@ -8,12 +8,12 @@ import android.os.RemoteException;
 import android.util.Log;
 import java.util.ArrayList;
 import n6.l;
-import v7.c9;
-import v7.j8;
-import v7.x7;
+import v7.h8;
+import v7.u7;
+import v7.u8;
 public abstract class e {
-    public static boolean f11032a = false;
-    public static int f11033b = 1;
+    public static boolean f11036a = false;
+    public static int f11037b = 1;
 
     public static final ArrayList a(ArrayList arrayList) {
         ArrayList arrayList2 = new ArrayList();
@@ -24,8 +24,8 @@ public abstract class e {
             i10++;
             w wVar = (w) obj;
             Bundle bundle = new Bundle();
-            bundle.putInt("event_type", wVar.f381a);
-            bundle.putLong("event_timestamp", wVar.f382b);
+            bundle.putInt("event_type", wVar.f379a);
+            bundle.putLong("event_timestamp", wVar.f380b);
             arrayList2.add(bundle);
         }
         return arrayList2;
@@ -37,37 +37,37 @@ public abstract class e {
             try {
                 l.i(context, "Context is null");
                 Log.d("e", "preferredRenderer: ".concat("null"));
-                if (f11032a) {
+                if (f11036a) {
                     return 0;
                 }
                 try {
-                    i8.e a2 = j8.a(context);
+                    i8.e a2 = h8.a(context);
                     try {
-                        i8.a W0 = a2.W0();
-                        l.h(W0);
-                        x7.f48155a = W0;
-                        s7.e Y0 = a2.Y0();
-                        if (c9.f47900b == null) {
-                            l.i(Y0, "delegate must not be null");
-                            c9.f47900b = Y0;
+                        i8.a V0 = a2.V0();
+                        l.h(V0);
+                        u7.f49323a = V0;
+                        s7.e X0 = a2.X0();
+                        if (u8.f49324a == null) {
+                            l.i(X0, "delegate must not be null");
+                            u8.f49324a = X0;
                         }
-                        f11032a = true;
+                        f11036a = true;
                         try {
-                            Parcel N0 = a2.N0(a2.O0(), 9);
-                            int readInt = N0.readInt();
-                            N0.recycle();
+                            Parcel M0 = a2.M0(a2.N0(), 9);
+                            int readInt = M0.readInt();
+                            M0.recycle();
                             if (readInt == 2) {
-                                f11033b = 2;
+                                f11037b = 2;
                             }
                             x6.b bVar = new x6.b(context);
-                            Parcel O0 = a2.O0();
-                            s7.b.c(O0, bVar);
-                            O0.writeInt(0);
-                            a2.S0(O0, 10);
+                            Parcel N0 = a2.N0();
+                            s7.b.c(N0, bVar);
+                            N0.writeInt(0);
+                            a2.R0(N0, 10);
                         } catch (RemoteException e7) {
                             Log.e("e", "Failed to retrieve renderer type or log initialization.", e7);
                         }
-                        int i10 = f11033b;
+                        int i10 = f11037b;
                         if (i10 != 1) {
                             if (i10 != 2) {
                                 str = "null";
@@ -83,7 +83,7 @@ public abstract class e {
                         throw new RuntimeException(e10);
                     }
                 } catch (k6.f e11) {
-                    return e11.f14676a;
+                    return e11.f14708a;
                 }
             } catch (Throwable th2) {
                 throw th2;

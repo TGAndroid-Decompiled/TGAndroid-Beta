@@ -486,9 +486,13 @@ public class FastDatePrinter implements DatePrinter, Serializable {
 
     public List<Rule> parsePattern() {
         int i10;
+        int i11;
         NumberRule selectNumberRule;
         TwoDigitYearField twoDigitYearField;
-        ?? timeZoneNameRule;
+        int i12;
+        NumberRule numberRule;
+        ?? textField;
+        NumberRule numberRule2;
         String[] strArr;
         DateFormatSymbols dateFormatSymbols = new DateFormatSymbols(this.mLocale);
         ArrayList arrayList = new ArrayList();
@@ -499,66 +503,111 @@ public class FastDatePrinter implements DatePrinter, Serializable {
         String[] shortWeekdays = dateFormatSymbols.getShortWeekdays();
         String[] amPmStrings = dateFormatSymbols.getAmPmStrings();
         int length = this.mPattern.length();
-        int i11 = 0;
-        int i12 = 0;
-        while (i12 < length) {
-            int[] iArr = {i12};
+        int i13 = 0;
+        int i14 = 0;
+        while (i14 < length) {
+            int[] iArr = {i14};
             String parseToken = parseToken(this.mPattern, iArr);
-            int i13 = iArr[i11];
+            int i15 = iArr[i13];
             int length2 = parseToken.length();
             if (length2 != 0) {
-                char charAt = parseToken.charAt(i11);
+                char charAt = parseToken.charAt(i13);
                 if (charAt != 'y') {
                     if (charAt != 'z') {
                         switch (charAt) {
                             case '\'':
                                 String substring = parseToken.substring(1);
                                 if (substring.length() == 1) {
-                                    selectNumberRule = new CharacterLiteral(substring.charAt(0));
-                                    break;
+                                    numberRule2 = new CharacterLiteral(substring.charAt(0));
                                 } else {
-                                    selectNumberRule = new StringLiteral(substring);
-                                    break;
+                                    numberRule2 = new StringLiteral(substring);
                                 }
+                                i11 = 1;
+                                selectNumberRule = numberRule2;
+                                i10 = 0;
+                                break;
                             case 'S':
-                                timeZoneNameRule = selectNumberRule(14, length2);
+                                i12 = 1;
+                                numberRule = selectNumberRule(14, length2);
+                                selectNumberRule = numberRule;
+                                i11 = i12;
+                                i10 = 0;
                                 break;
                             case 'W':
-                                timeZoneNameRule = selectNumberRule(4, length2);
+                                i12 = 1;
+                                numberRule = selectNumberRule(4, length2);
+                                selectNumberRule = numberRule;
+                                i11 = i12;
+                                i10 = 0;
                                 break;
                             case 'Z':
+                                i12 = 1;
                                 if (length2 == 1) {
-                                    timeZoneNameRule = TimeZoneNumberRule.INSTANCE_NO_COLON;
-                                    break;
+                                    numberRule = TimeZoneNumberRule.INSTANCE_NO_COLON;
                                 } else {
-                                    timeZoneNameRule = TimeZoneNumberRule.INSTANCE_COLON;
-                                    break;
+                                    numberRule = TimeZoneNumberRule.INSTANCE_COLON;
                                 }
+                                selectNumberRule = numberRule;
+                                i11 = i12;
+                                i10 = 0;
+                                break;
                             case 'a':
-                                timeZoneNameRule = new TextField(9, amPmStrings);
+                                textField = new TextField(9, amPmStrings);
+                                numberRule2 = textField;
+                                i11 = 1;
+                                selectNumberRule = numberRule2;
+                                i10 = 0;
                                 break;
                             case 'd':
-                                timeZoneNameRule = selectNumberRule(5, length2);
+                                textField = selectNumberRule(5, length2);
+                                numberRule2 = textField;
+                                i11 = 1;
+                                selectNumberRule = numberRule2;
+                                i10 = 0;
                                 break;
                             case 'h':
-                                timeZoneNameRule = new TwelveHourField(selectNumberRule(10, length2));
+                                textField = new TwelveHourField(selectNumberRule(10, length2));
+                                numberRule2 = textField;
+                                i11 = 1;
+                                selectNumberRule = numberRule2;
+                                i10 = 0;
                                 break;
                             case 'k':
-                                timeZoneNameRule = new TwentyFourHourField(selectNumberRule(11, length2));
+                                textField = new TwentyFourHourField(selectNumberRule(11, length2));
+                                numberRule2 = textField;
+                                i11 = 1;
+                                selectNumberRule = numberRule2;
+                                i10 = 0;
                                 break;
                             case 'm':
-                                timeZoneNameRule = selectNumberRule(12, length2);
+                                textField = selectNumberRule(12, length2);
+                                numberRule2 = textField;
+                                i11 = 1;
+                                selectNumberRule = numberRule2;
+                                i10 = 0;
                                 break;
                             case 's':
-                                timeZoneNameRule = selectNumberRule(13, length2);
+                                textField = selectNumberRule(13, length2);
+                                numberRule2 = textField;
+                                i11 = 1;
+                                selectNumberRule = numberRule2;
+                                i10 = 0;
                                 break;
                             case 'w':
-                                timeZoneNameRule = selectNumberRule(3, length2);
+                                textField = selectNumberRule(3, length2);
+                                numberRule2 = textField;
+                                i11 = 1;
+                                selectNumberRule = numberRule2;
+                                i10 = 0;
                                 break;
                             default:
                                 switch (charAt) {
                                     case 'D':
-                                        timeZoneNameRule = selectNumberRule(6, length2);
+                                        textField = selectNumberRule(6, length2);
+                                        numberRule2 = textField;
+                                        i11 = 1;
+                                        selectNumberRule = numberRule2;
+                                        i10 = 0;
                                         break;
                                     case 'E':
                                         if (length2 < 4) {
@@ -566,79 +615,104 @@ public class FastDatePrinter implements DatePrinter, Serializable {
                                         } else {
                                             strArr = weekdays;
                                         }
-                                        selectNumberRule = new TextField(7, strArr);
+                                        numberRule2 = new TextField(7, strArr);
+                                        i11 = 1;
+                                        selectNumberRule = numberRule2;
+                                        i10 = 0;
                                         break;
                                     case 'F':
-                                        timeZoneNameRule = selectNumberRule(8, length2);
+                                        textField = selectNumberRule(8, length2);
+                                        numberRule2 = textField;
+                                        i11 = 1;
+                                        selectNumberRule = numberRule2;
+                                        i10 = 0;
                                         break;
                                     case 'G':
-                                        timeZoneNameRule = new TextField(0, eras);
+                                        i10 = 0;
+                                        twoDigitYearField = new TextField(0, eras);
                                         break;
                                     case 'H':
-                                        timeZoneNameRule = selectNumberRule(11, length2);
+                                        textField = selectNumberRule(11, length2);
+                                        numberRule2 = textField;
+                                        i11 = 1;
+                                        selectNumberRule = numberRule2;
+                                        i10 = 0;
                                         break;
                                     default:
                                         switch (charAt) {
                                             case 'K':
-                                                timeZoneNameRule = selectNumberRule(10, length2);
+                                                textField = selectNumberRule(10, length2);
                                                 break;
                                             case 'L':
                                                 if (length2 >= 4) {
-                                                    timeZoneNameRule = new TextField(2, months);
+                                                    textField = new TextField(2, months);
                                                     break;
                                                 } else if (length2 == 3) {
-                                                    timeZoneNameRule = new TextField(2, shortMonths);
+                                                    textField = new TextField(2, shortMonths);
                                                     break;
                                                 } else if (length2 == 2) {
-                                                    timeZoneNameRule = TwoDigitMonthField.INSTANCE;
+                                                    textField = TwoDigitMonthField.INSTANCE;
                                                     break;
                                                 } else {
-                                                    timeZoneNameRule = UnpaddedMonthField.INSTANCE;
+                                                    textField = UnpaddedMonthField.INSTANCE;
                                                     break;
                                                 }
                                             case 'M':
                                                 if (length2 >= 4) {
-                                                    timeZoneNameRule = new TextField(2, months);
+                                                    textField = new TextField(2, months);
                                                     break;
                                                 } else if (length2 == 3) {
-                                                    timeZoneNameRule = new TextField(2, shortMonths);
+                                                    textField = new TextField(2, shortMonths);
                                                     break;
                                                 } else if (length2 == 2) {
-                                                    timeZoneNameRule = TwoDigitMonthField.INSTANCE;
+                                                    textField = TwoDigitMonthField.INSTANCE;
                                                     break;
                                                 } else {
-                                                    timeZoneNameRule = UnpaddedMonthField.INSTANCE;
+                                                    textField = UnpaddedMonthField.INSTANCE;
                                                     break;
                                                 }
                                             default:
                                                 throw new IllegalArgumentException("Illegal pattern component: ".concat(parseToken));
                                         }
+                                        numberRule2 = textField;
+                                        i11 = 1;
+                                        selectNumberRule = numberRule2;
+                                        i10 = 0;
+                                        break;
                                 }
+                                selectNumberRule = twoDigitYearField;
+                                i11 = 1;
+                                break;
                         }
-                        i10 = 1;
                     } else if (length2 >= 4) {
-                        timeZoneNameRule = new TimeZoneNameRule(this.mTimeZone, this.mLocale, 1);
+                        i12 = 1;
+                        numberRule = new TimeZoneNameRule(this.mTimeZone, this.mLocale, 1);
+                        selectNumberRule = numberRule;
+                        i11 = i12;
+                        i10 = 0;
                     } else {
+                        i10 = 0;
                         twoDigitYearField = new TimeZoneNameRule(this.mTimeZone, this.mLocale, 0);
                         selectNumberRule = twoDigitYearField;
-                        i10 = 1;
+                        i11 = 1;
                     }
-                    selectNumberRule = timeZoneNameRule;
-                    i10 = 1;
-                } else if (length2 == 2) {
-                    twoDigitYearField = TwoDigitYearField.INSTANCE;
-                    selectNumberRule = twoDigitYearField;
-                    i10 = 1;
                 } else {
-                    if (length2 < 4) {
-                        length2 = 4;
+                    i10 = 0;
+                    if (length2 == 2) {
+                        twoDigitYearField = TwoDigitYearField.INSTANCE;
+                        selectNumberRule = twoDigitYearField;
+                        i11 = 1;
+                    } else {
+                        if (length2 < 4) {
+                            length2 = 4;
+                        }
+                        i11 = 1;
+                        selectNumberRule = selectNumberRule(1, length2);
                     }
-                    i10 = 1;
-                    selectNumberRule = selectNumberRule(1, length2);
                 }
                 arrayList.add(selectNumberRule);
-                i12 = i13 + i10;
-                i11 = 0;
+                i14 = i15 + i11;
+                i13 = i10;
             } else {
                 return arrayList;
             }

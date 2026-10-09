@@ -1,12 +1,16 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.GoogleMapsProvider;
-public final class i4 implements h8.f {
-    public final GoogleMapsProvider.GoogleMapView f18122a;
-    public final q0.a f18123b;
+import java.util.List;
+import org.telegram.messenger.TelegramMediaSession;
+public final class i4 implements TelegramMediaSession.BrowseChildrenCallback {
+    public final Runnable f18119a;
 
-    public i4(GoogleMapsProvider.GoogleMapView googleMapView, q0.a aVar) {
-        this.f18122a = googleMapView;
-        this.f18123b = aVar;
+    public i4(Runnable runnable) {
+        this.f18119a = runnable;
+    }
+
+    @Override
+    public void onResult(List list) {
+        TelegramMediaSession.d(this.f18119a, list);
     }
 }

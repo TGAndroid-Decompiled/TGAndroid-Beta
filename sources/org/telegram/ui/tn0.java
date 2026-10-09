@@ -1,37 +1,66 @@
 package org.telegram.ui;
-public final class tn0 implements Runnable {
-    public final int f40942a;
-    public final long f40943b;
 
-    public tn0(long j3, int i10) {
-        this.f40942a = i10;
-        this.f40943b = j3;
+import android.widget.FrameLayout;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import org.telegram.messenger.FileLog;
+public final class tn0 implements OnCompleteListener, org.telegram.ui.ActionBar.a2, yt {
+    public final int f42032a;
+    public final vo0 f42033b;
+
+    public tn0(vo0 vo0Var, int i10) {
+        this.f42032a = i10;
+        this.f42033b = vo0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f40942a) {
-            case 0:
-                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
-                if (U != null) {
-                    U.presentFragment(yn.Q9(this.f40943b));
-                    return;
-                }
-                return;
-            case 1:
-                org.telegram.ui.ActionBar.n2 U2 = LaunchActivity.U();
-                if (U2 != null) {
-                    U2.presentFragment(yn.Q9(this.f40943b));
-                    return;
-                }
+    public void U0(ut utVar) {
+        switch (this.f42032a) {
+            case 2:
+                vo0 vo0Var = this.f42033b;
+                vo0Var.A0 = utVar;
+                vo0Var.f42925f[4].setText(utVar.f42547a);
                 return;
             default:
-                org.telegram.ui.ActionBar.n2 U3 = LaunchActivity.U();
-                if (U3 != null) {
-                    U3.presentFragment(yn.Q9(this.f40943b));
-                    return;
-                }
+                vo0 vo0Var2 = this.f42033b;
+                vo0Var2.A0 = utVar;
+                vo0Var2.f42925f[4].setText(utVar.f42547a);
+                vo0Var2.B0 = utVar.d;
                 return;
         }
+    }
+
+    @Override
+    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f42032a) {
+            case 1:
+                vo0 vo0Var = this.f42033b;
+                vo0Var.I0(vo0Var.R0[0]);
+                return;
+            case 2:
+            default:
+                vo0 vo0Var2 = this.f42033b;
+                vo0Var2.D0(true);
+                vo0Var2.z0();
+                return;
+            case 3:
+                this.f42033b.A0(true);
+                return;
+        }
+    }
+
+    @Override
+    public void onComplete(Task task) {
+        vo0 vo0Var = this.f42033b;
+        vo0Var.getClass();
+        if (task.isSuccessful()) {
+            FrameLayout frameLayout = vo0Var.O;
+            if (frameLayout != null) {
+                frameLayout.setVisibility(0);
+                return;
+            }
+            return;
+        }
+        FileLog.e("isReadyToPay failed", task.getException());
     }
 }

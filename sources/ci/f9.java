@@ -1,117 +1,131 @@
 package ci;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.widget.TextView;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.tr;
-public final class f9 extends FrameLayout {
-    public final int f5085a = 2;
-    public Object f5086b;
-    public float f5087c;
-    public Path d;
-    public Object f5088e;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.bi;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.em0;
+import org.telegram.ui.Components.qm0;
+public final class f9 extends org.telegram.ui.ActionBar.f3 implements NotificationCenter.NotificationCenterDelegate {
+    public final int f5087b;
+    public ArrayList f5088c;
+    public final TLRPC.InputPeer d;
+    public final Utilities.Callback f5089e;
+    public final qm0 f5090f;
+    public final e9 h;
+    public final TextView f5091n;
 
-    public f9(Context context) {
-        super(context);
-    }
-
-    public void a(float f7, float f10) {
-        float[] fArr = (float[]) this.f5088e;
-        fArr[7] = f7;
-        fArr[6] = f7;
-        fArr[1] = f7;
-        fArr[0] = f7;
-        fArr[5] = f10;
-        fArr[4] = f10;
-        fArr[3] = f10;
-        fArr[2] = f10;
-    }
-
-    @Override
-    public void dispatchDraw(android.graphics.Canvas r18) {
-        throw new UnsupportedOperationException("Method not decompiled: ci.f9.dispatchDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f5085a) {
-            case 0:
-                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.f5087c) {
-                    ((ea) this.f5088e).dismiss();
-                    return true;
+    public f9(Context context, final int i10, boolean z10, TLRPC.InputPeer inputPeer, final Utilities.Callback callback, final org.telegram.ui.ActionBar.e6 e6Var) {
+        super(1, context, e6Var, false);
+        int i11;
+        fixNavigationBar();
+        MessagesController.getInstance(i10).getStoriesController().R();
+        this.f5087b = i10;
+        this.f5088c = MessagesController.getInstance(i10).getStoriesController().T;
+        this.d = inputPeer;
+        this.f5089e = callback;
+        this.containerView = new c9(this, context, e6Var);
+        qm0 qm0Var = new qm0(context, e6Var);
+        this.f5090f = qm0Var;
+        int i12 = this.backgroundPaddingLeft;
+        qm0Var.setPadding(i12, 0, i12, 0);
+        e9 e9Var = new e9(this);
+        this.h = e9Var;
+        qm0Var.setAdapter(e9Var);
+        qm0Var.setLayoutManager(new s4.d0());
+        this.containerView.addView(qm0Var, w7.x5.e(-1, -1, 119));
+        qm0Var.setOnItemClickListener(new em0() {
+            @Override
+            public final void d(int i13, View view) {
+                if (i13 <= 1) {
+                    return;
                 }
-                return super.dispatchTouchEvent(motionEvent);
-            case 1:
-                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.f5087c) {
-                    ((fi.k0) this.f5088e).dismiss();
-                    return true;
+                f9 f9Var = f9.this;
+                TLRPC.InputPeer inputPeer2 = (TLRPC.InputPeer) f9Var.f5088c.get(i13 - 2);
+                int i14 = (inputPeer2.channel_id > 0L ? 1 : (inputPeer2.channel_id == 0L ? 0 : -1));
+                Utilities.Callback callback2 = callback;
+                if (i14 == 0 && inputPeer2.chat_id == 0) {
+                    callback2.run(inputPeer2);
+                    f9Var.dismiss();
+                    return;
                 }
-                return super.dispatchTouchEvent(motionEvent);
-            default:
-                return super.dispatchTouchEvent(motionEvent);
+                Context context2 = f9Var.getContext();
+                org.telegram.ui.ActionBar.e6 e6Var2 = e6Var;
+                org.telegram.ui.ActionBar.b2 b2Var = new org.telegram.ui.ActionBar.b2(context2, 3, e6Var2);
+                b2Var.q(200L);
+                MessagesController.getInstance(i10).getStoriesController().k(DialogObject.getPeerDialogId(inputPeer2), new ai.d5(b2Var, callback2, inputPeer2, 4), true, e6Var2);
+                f9Var.dismiss();
+            }
+        });
+        qm0Var.setOnScrollListener(new d9(this));
+        TextView textView = new TextView(getContext());
+        this.f5091n = textView;
+        bi.o(org.telegram.ui.ActionBar.i6.G6, e6Var, textView, 1, 20.0f);
+        textView.setPadding(AndroidUtilities.dp(22.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(22.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(14.0f));
+        textView.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20868h5, e6Var));
+        textView.setTypeface(AndroidUtilities.bold());
+        if (z10) {
+            i11 = R.string.StoryPrivacyPublishLiveAs;
+        } else {
+            i11 = R.string.StoryPrivacyPublishAs;
+        }
+        textView.setText(LocaleController.getString(i11));
+        this.containerView.addView(textView, w7.x5.d(-2.0f, -1));
+    }
+
+    @Override
+    public final boolean canDismissWithSwipe() {
+        if (u() > ((int) (AndroidUtilities.displaySize.y * 0.5f))) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.storiesSendAsUpdate) {
+            this.f5088c = MessagesController.getInstance(this.f5087b).getStoriesController().T;
+            this.h.l();
         }
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.f5085a) {
-            case 2:
-                super.onDraw(canvas);
-                float measuredWidth = getMeasuredWidth() / 2.0f;
-                Path path = this.d;
-                path.rewind();
-                RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(0.0f, 0.0f, measuredWidth - AndroidUtilities.lerp(0, AndroidUtilities.dp(4.0f), this.f5087c), getMeasuredHeight());
-                a(AndroidUtilities.dp(8.0f), AndroidUtilities.lerp(0, AndroidUtilities.dp(8.0f), this.f5087c));
-                float[] fArr = (float[]) this.f5088e;
-                Path.Direction direction = Path.Direction.CW;
-                path.addRoundRect(rectF, fArr, direction);
-                Paint paint = (Paint) this.f5086b;
-                canvas.drawPath(path, paint);
-                path.rewind();
-                rectF.set(measuredWidth + AndroidUtilities.lerp(0, AndroidUtilities.dp(4.0f), this.f5087c), 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                a(AndroidUtilities.lerp(0, AndroidUtilities.dp(8.0f), this.f5087c), AndroidUtilities.dp(8.0f));
-                path.addRoundRect(rectF, fArr, direction);
-                canvas.drawPath(path, paint);
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
-        }
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        NotificationCenter.getInstance(this.f5087b).addObserver(this, NotificationCenter.storiesSendAsUpdate);
     }
 
     @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f5085a) {
-            case 0:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
-                return;
-            case 1:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        NotificationCenter.getInstance(this.f5087b).removeObserver(this, NotificationCenter.storiesSendAsUpdate);
+    }
+
+    public final float u() {
+        int R;
+        float measuredHeight = this.containerView.getMeasuredHeight();
+        int i10 = 0;
+        while (true) {
+            qm0 qm0Var = this.f5090f;
+            if (i10 < qm0Var.getChildCount()) {
+                View childAt = qm0Var.getChildAt(i10);
+                if (childAt != null && (R = RecyclerView.R(childAt)) != -1 && R > 0) {
+                    measuredHeight = Math.min(AndroidUtilities.lerp(measuredHeight, childAt.getY(), childAt.getAlpha()), measuredHeight);
+                }
+                i10++;
+            } else {
+                return measuredHeight;
+            }
         }
-    }
-
-    public f9(fi.k0 k0Var, Context context) {
-        super(context);
-        this.f5088e = k0Var;
-        this.f5086b = new org.telegram.ui.Components.e6(this, 250L, tr.h);
-        this.d = new Path();
-    }
-
-    public f9(ea eaVar, Context context) {
-        super(context);
-        this.f5088e = eaVar;
-        this.f5086b = new org.telegram.ui.Components.e6(this, 250L, tr.h);
-        this.d = new Path();
     }
 }

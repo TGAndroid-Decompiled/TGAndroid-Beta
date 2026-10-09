@@ -1,67 +1,63 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.StatsController;
-public final class ru implements org.telegram.ui.Components.jl0, org.telegram.ui.ActionBar.a2 {
-    public final vu f40268a;
+import android.content.Context;
+public final class ru extends org.telegram.ui.Components.gd {
+    public final su f41513e0;
 
-    public ru(vu vuVar) {
-        this.f40268a = vuVar;
+    public ru(su suVar, Context context, int i10, int[] iArr, int[] iArr2) {
+        super(context, i10, iArr, 1, iArr2);
+        this.f41513e0 = suVar;
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+    public final int c() {
+        return 216;
+    }
+
+    @Override
+    public final void d(int i10, boolean z10) {
         int i11;
-        int i12;
-        int i13;
-        vu vuVar = this.f40268a;
-        zu zuVar = vuVar.f41838v3;
-        ArrayList arrayList = vuVar.f41829m3;
-        arrayList.clear();
-        int i14 = 0;
-        while (true) {
-            uu[] uuVarArr = vuVar.f41830n3;
-            if (i14 >= uuVarArr.length) {
-                i11 = ((org.telegram.ui.ActionBar.n2) zuVar).currentAccount;
-                StatsController.getInstance(i11).resetStats(0);
-                i12 = ((org.telegram.ui.ActionBar.n2) zuVar).currentAccount;
-                StatsController.getInstance(i12).resetStats(1);
-                i13 = ((org.telegram.ui.ActionBar.n2) zuVar).currentAccount;
-                StatsController.getInstance(i13).resetStats(2);
-                vuVar.f41822e3 = true;
-                vuVar.A1();
-                vuVar.B1(true);
-                return;
-            }
-            uu uuVar = uuVarArr[i14];
-            if (uuVar.f25759c > 0) {
-                arrayList.add(Integer.valueOf(uuVar.d));
-            }
-            i14++;
-        }
-    }
-
-    @Override
-    public int run() {
-        vu vuVar = this.f40268a;
-        ArrayList arrayList = vuVar.j3;
-        int i10 = 0;
-        while (true) {
-            if (i10 < arrayList.size()) {
-                if (((qu) arrayList.get(i10)).f17192a == 5) {
+        uu uuVar = (uu) this.f41513e0.f41769e;
+        if (!z10) {
+            uuVar.j1();
+        } else if (i10 >= 0 && i10 < uuVar.f42558e3.length) {
+            int i12 = 0;
+            while (true) {
+                tu[] tuVarArr = uuVar.f42558e3;
+                i11 = -1;
+                if (i12 < tuVarArr.length) {
+                    if (tuVarArr[i12].d == i10) {
+                        break;
+                    }
+                    i12++;
+                } else {
+                    i12 = -1;
                     break;
                 }
-                i10++;
+            }
+            int i13 = 0;
+            while (true) {
+                if (i13 < uuVar.f42554a3.size()) {
+                    pu puVar = (pu) uuVar.f42554a3.get(i13);
+                    if (puVar != null && puVar.f17125a == 2 && puVar.h == i12) {
+                        i11 = i13;
+                        break;
+                    }
+                    i13++;
+                } else {
+                    break;
+                }
+            }
+            if (i11 >= 0) {
+                uuVar.e1(new i2.w(i11, 7), 0, true);
             } else {
-                i10 = -1;
-                break;
+                uuVar.j1();
             }
         }
-        if (i10 < 0) {
-            return -1;
-        }
-        vuVar.f41824g3.h1(i10, AndroidUtilities.dp(60.0f));
-        return i10;
+    }
+
+    @Override
+    public final int e() {
+        return 10;
     }
 }

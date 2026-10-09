@@ -1,9 +1,9 @@
 package ai;
-public abstract class j0 extends na {
+public abstract class j0 extends oa {
     @Override
     public final void invalidate() {
-        if (i0.f1058c) {
-            i0.f1057b.add(this);
+        if (i0.f1120c) {
+            i0.f1119b.add(this);
         } else {
             super.invalidate();
         }
@@ -11,8 +11,8 @@ public abstract class j0 extends na {
 
     @Override
     public final void invalidate(int i10, int i11, int i12, int i13) {
-        if (i0.f1058c) {
-            i0.f1057b.add(this);
+        if (i0.f1120c) {
+            i0.f1119b.add(this);
         } else {
             super.invalidate(i10, i11, i12, i13);
         }

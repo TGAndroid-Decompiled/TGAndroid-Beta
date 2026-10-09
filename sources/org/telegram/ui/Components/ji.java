@@ -1,120 +1,89 @@
 package org.telegram.ui.Components;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
-public final class ji extends org.telegram.ui.ActionBar.p1 {
-    public final ki f27852x;
+public final class ji extends AnimatorListenerAdapter {
+    public final int f27715a;
+    public final int f27716b;
+    public final Object f27717c;
+    public final Object d;
 
-    public ji(ki kiVar, ki kiVar2) {
-        super(kiVar2);
-        this.f27852x = kiVar;
+    public ji(Object obj, int i10, Object obj2, int i11) {
+        this.f27715a = i11;
+        this.d = obj;
+        this.f27716b = i10;
+        this.f27717c = obj2;
     }
 
     @Override
-    public final boolean b() {
-        nz nzVar;
-        xi xiVar = this.f27852x.B0;
-        if (!xiVar.isDismissed() && xiVar.f32951s1) {
-            pi piVar = xiVar.f32971y0;
-            if (piVar == xiVar.m0 || piVar == xiVar.f32933n0 || xiVar.m1().m()) {
-                pi piVar2 = xiVar.f32971y0;
-                xn xnVar = xiVar.m0;
-                if (piVar2 != xnVar || ((nzVar = xnVar.E) != null && nzVar.getVisibility() == 0)) {
-                    pi piVar3 = xiVar.f32971y0;
-                    xn xnVar2 = xiVar.f32933n0;
-                    if (piVar3 == xnVar2) {
-                        nz nzVar2 = xnVar2.E;
-                        if (nzVar2 != null && nzVar2.getVisibility() == 0) {
-                            return false;
-                        }
-                        return true;
-                    }
-                } else {
-                    return true;
-                }
-            } else {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public final void e(float f7, float f10, boolean z10) {
-        ki kiVar = this.f27852x;
-        xi xiVar = kiVar.B0;
-        xiVar.f32929l2 = f7;
-        float f11 = xiVar.f32904d2;
-        if (f11 > 0.0f) {
-            xiVar.f32929l2 = com.google.android.gms.internal.vision.e2.z(1.0f, f10, f11 - xiVar.f32908e2, f7);
-        }
-        xiVar.X0.setTranslationY(xiVar.f32929l2);
-        xiVar.f32893a1.setTranslationY(xiVar.f32929l2);
-        org.telegram.ui.ActionBar.v0 v0Var = xiVar.f32907e1;
-        if (v0Var != null) {
-            v0Var.setTranslationY(xiVar.f32929l2);
-        }
-        org.telegram.ui.ActionBar.v0 v0Var2 = xiVar.f32900c1;
-        if (v0Var2 != null) {
-            v0Var2.setTranslationY(xiVar.f32893a1.getTranslationY());
-        }
-        ci.e4 e4Var = xiVar.f32903d1;
-        if (e4Var != null) {
-            e4Var.setTranslationY(xiVar.f32893a1.getTranslationY());
-        }
-        xiVar.f32911f1.setTranslationY(xiVar.f32929l2);
-        xiVar.Z1(0);
-        xiVar.setCurrentPanTranslationY(xiVar.f32929l2);
-        kiVar.invalidate();
-        xiVar.D0.invalidate();
-        xiVar.T1();
-        pi piVar = xiVar.f32971y0;
-        if (piVar != null) {
-            piVar.k(xiVar.f32929l2);
-        }
-    }
-
-    @Override
-    public final void f() {
-        boolean z10;
+    public final void onAnimationEnd(Animator animator) {
         int i10;
-        xi xiVar = this.f27852x.B0;
-        xiVar.W1(xiVar.f32971y0, 0);
-        xiVar.f32901c2 = xiVar.f32897b2[0];
-        xiVar.f32971y0.v();
-        if ((xiVar.f32971y0 instanceof ei.r4) && !xiVar.D1) {
-            z10 = ((org.telegram.ui.ActionBar.f3) xiVar).keyboardVisible;
-            if (z10) {
-                i10 = AndroidUtilities.dp(84.0f);
-            } else {
-                i10 = 0;
-            }
-            for (int i11 = 0; i11 < xiVar.f32967x0.size(); i11++) {
-                ((ei.r4) xiVar.f32967x0.valueAt(i11)).setMeasureOffsetY(i10);
-            }
-        }
-    }
-
-    @Override
-    public final void g(int i10, boolean z10) {
         int i11;
-        ki kiVar = this.f27852x;
-        xi xiVar = kiVar.B0;
-        int i12 = xiVar.f32901c2;
-        if (i12 > 0 && i12 != (i11 = xiVar.f32897b2[0]) && z10) {
-            xiVar.f32904d2 = i12;
-            xiVar.f32908e2 = i11;
-        } else {
-            xiVar.f32904d2 = -1.0f;
+        int i12;
+        switch (this.f27715a) {
+            case 0:
+                yi yiVar = (yi) this.d;
+                yiVar.B0.setAlpha(0.0f);
+                yiVar.B0.setTranslationY(AndroidUtilities.dp(78.0f) + this.f27716b);
+                mi miVar = yiVar.f33224e0;
+                qi qiVar = yiVar.B0;
+                Float valueOf = Float.valueOf(1.0f);
+                miVar.getClass();
+                miVar.a(qiVar, valueOf);
+                yiVar.f33211a1.setAlpha(0.0f);
+                o1.k kVar = new o1.k(yiVar.C0, o1.h.f16920n, 0.0f);
+                kVar.f16938u.a(0.75f);
+                kVar.f16938u.b(500.0f);
+                kVar.b(new m7(this, 3));
+                kVar.a(new ei.l4(3, this, (jh) this.f27717c));
+                yiVar.f33282w1 = kVar;
+                kVar.h();
+                return;
+            case 1:
+                a5.a aVar = (a5.a) this.d;
+                ((qm0) aVar.d).scrollBy(0, this.f27716b - ((int[]) this.f27717c)[0]);
+                aVar.f300c = null;
+                return;
+            default:
+                yh.s3 s3Var = (yh.s3) this.d;
+                s3Var.U1();
+                yh.e2 e2Var = s3Var.f53169g0;
+                int i13 = 8;
+                int i14 = this.f27716b;
+                if (i14 == 0) {
+                    i10 = 0;
+                } else {
+                    i10 = 8;
+                }
+                e2Var.setVisibility(i10);
+                yh.e2 e2Var2 = s3Var.f53190s0;
+                if (i14 == 1) {
+                    i11 = 0;
+                } else {
+                    i11 = 8;
+                }
+                e2Var2.setVisibility(i11);
+                yh.e2 e2Var3 = s3Var.f53197z0;
+                if (i14 == 2) {
+                    i12 = 0;
+                } else {
+                    i12 = 8;
+                }
+                e2Var3.setVisibility(i12);
+                yh.e2 e2Var4 = s3Var.B0;
+                if (i14 == 3) {
+                    i13 = 0;
+                }
+                e2Var4.setVisibility(i13);
+                s3Var.u2();
+                s3Var.f53158a1 = null;
+                Runnable runnable = (Runnable) this.f27717c;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
         }
-        kiVar.invalidate();
-        wh whVar = xiVar.f32968x1;
-        if ((xiVar.f32971y0 instanceof ei.r4) && !xiVar.D1) {
-            if (z10) {
-                whVar.setVisibility(8);
-            } else {
-                whVar.setVisibility(0);
-            }
-        }
-        xiVar.f32971y0.w(i10, z10);
     }
 }

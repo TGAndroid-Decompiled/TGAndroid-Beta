@@ -1,21 +1,12 @@
 package v7;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.ResolveInfo;
+import java.io.IOException;
 public abstract class f0 {
-    public static boolean a(Context context) {
-        ApplicationInfo applicationInfo;
-        Intent putExtra = new Intent().addFlags(268435456).setAction("com.android.settings.panel.action.MEDIA_OUTPUT").putExtra("com.android.settings.panel.extra.PACKAGE_NAME", context.getPackageName());
-        for (ResolveInfo resolveInfo : context.getPackageManager().queryIntentActivities(putExtra, 0)) {
-            ActivityInfo activityInfo = resolveInfo.activityInfo;
-            if (activityInfo != null && (applicationInfo = activityInfo.applicationInfo) != null && (applicationInfo.flags & 129) != 0) {
-                context.startActivity(putExtra);
-                return true;
-            }
+    public static void a(Appendable appendable, char c10) {
+        try {
+            appendable.append(c10);
+        } catch (IOException e7) {
+            throw new RuntimeException(e7);
         }
-        return false;
     }
 }

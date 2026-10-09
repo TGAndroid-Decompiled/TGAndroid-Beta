@@ -5,24 +5,24 @@ import android.os.Parcelable;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.common.api.q;
 import java.util.ArrayList;
-import w7.g0;
+import w7.d0;
 public final class i extends o6.a implements q {
     public static final Parcelable.Creator<i> CREATOR = new j(0);
-    public Status f44327a;
-    public ArrayList f44328b;
-    public String[] f44329c;
+    public Status f45491a;
+    public ArrayList f45492b;
+    public String[] f45493c;
 
     @Override
     public final Status i() {
-        return this.f44327a;
+        return this.f45491a;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = g0.q(parcel, 20293);
-        g0.k(parcel, 1, this.f44327a, i10);
-        g0.p(parcel, 2, this.f44328b);
-        g0.m(parcel, 3, this.f44329c);
-        g0.r(parcel, q6);
+        int q6 = d0.q(parcel, 20293);
+        d0.k(parcel, 1, this.f45491a, i10);
+        d0.p(parcel, 2, this.f45492b);
+        d0.m(parcel, 3, this.f45493c);
+        d0.r(parcel, q6);
     }
 }

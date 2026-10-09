@@ -1,122 +1,73 @@
 package org.telegram.ui.Components;
 
-import android.os.Build;
-import android.text.TextUtils;
-import j$.util.stream.IntStream;
-import java.util.Arrays;
-import java.util.stream.IntStream;
-public final class n6 implements CharSequence {
-    public final CharSequence[] f28979a;
-    public final int f28980b;
+import android.graphics.Canvas;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.view.View;
+public final class n6 {
+    public final x5 f29043a;
+    public final StaticLayout f29044b;
+    public final float f29045c;
+    public final int d;
+    public final float f29046e;
+    public final float f29047f;
+    public final float f29048g;
+    public final float h;
+    public final q6 f29049i;
 
-    public n6(CharSequence charSequence) {
+    public n6(q6 q6Var, StaticLayout staticLayout, float f7, int i10) {
+        float f10;
+        float f11;
+        float f12;
+        this.f29049i = q6Var;
+        this.f29044b = staticLayout;
+        this.d = i10;
+        this.f29045c = f7;
+        if (staticLayout != null && staticLayout.getLineCount() > 0) {
+            f10 = staticLayout.getLineLeft(0);
+        } else {
+            f10 = 0.0f;
+        }
+        this.f29046e = f10;
+        if (staticLayout != null && staticLayout.getLineCount() > 0) {
+            f11 = staticLayout.getLineWidth(0);
+        } else {
+            f11 = 0.0f;
+        }
+        this.f29047f = f11;
+        if (staticLayout != null && staticLayout.getLineCount() > 0) {
+            f12 = staticLayout.getLineBaseline(0);
+        } else {
+            f12 = 0.0f;
+        }
+        this.f29048g = f12;
+        this.h = staticLayout != null ? staticLayout.getHeight() - this.f29048g : 0.0f;
+        if (q6Var.getCallback() instanceof View) {
+            this.f29043a = b6.update(q6Var.f30078p, (View) q6Var.getCallback(), this.f29043a, staticLayout);
+        }
+    }
+
+    public final void a(Canvas canvas, float f7) {
         int i10;
-        if (charSequence == null) {
-            this.f28979a = new CharSequence[0];
-            this.f28980b = 0;
-            return;
-        }
-        this.f28980b = charSequence.length();
-        int i11 = 0;
-        for (int i12 = 0; i12 < this.f28980b; i12++) {
-            if (charSequence.charAt(i12) == ' ') {
-                i11++;
+        q6 q6Var = this.f29049i;
+        int i11 = q6Var.B;
+        TextPaint textPaint = q6Var.f30063a;
+        int max = Math.max(0, Math.min(255, (int) (i11 * f7)));
+        if (max != 0) {
+            textPaint.setAlpha(255);
+            if (q6Var.U) {
+                textPaint.setShadowLayer(q6Var.V, 0.0f, q6Var.W, q6Var.X);
             }
-        }
-        this.f28979a = new CharSequence[i11 + 1];
-        int i13 = 0;
-        int i14 = 0;
-        int i15 = 0;
-        while (true) {
-            int i16 = this.f28980b;
-            if (i13 <= i16) {
-                if (i13 == i16 || charSequence.charAt(i13) == ' ') {
-                    CharSequence[] charSequenceArr = this.f28979a;
-                    int i17 = i14 + 1;
-                    if (i13 < this.f28980b) {
-                        i10 = 1;
-                    } else {
-                        i10 = 0;
-                    }
-                    charSequenceArr[i14] = charSequence.subSequence(i15, i10 + i13);
-                    i15 = i13 + 1;
-                    i14 = i17;
-                }
-                i13++;
+            if (max < 255) {
+                i10 = canvas.saveLayerAlpha(null, max, 31);
             } else {
-                return;
+                i10 = -1;
+            }
+            this.f29044b.draw(canvas);
+            b6.drawAnimatedEmojis(canvas, this.f29044b, this.f29043a, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, q6Var.f30064a0);
+            if (i10 != -1) {
+                canvas.restoreToCount(i10);
             }
         }
-    }
-
-    @Override
-    public final char charAt(int i10) {
-        int i11 = 0;
-        while (true) {
-            CharSequence[] charSequenceArr = this.f28979a;
-            if (i11 >= charSequenceArr.length) {
-                return (char) 0;
-            }
-            if (i10 < charSequenceArr[i11].length()) {
-                return charSequenceArr[i11].charAt(i10);
-            }
-            i10 -= charSequenceArr[i11].length();
-            i11++;
-        }
-    }
-
-    @Override
-    public IntStream chars() {
-        return IntStream.Wrapper.convert(chars());
-    }
-
-    @Override
-    public java.util.stream.IntStream codePoints() {
-        return IntStream.Wrapper.convert(codePoints());
-    }
-
-    @Override
-    public final int length() {
-        return this.f28979a.length;
-    }
-
-    @Override
-    public final CharSequence subSequence(int i10, int i11) {
-        return TextUtils.concat((CharSequence[]) Arrays.copyOfRange(this.f28979a, i10, i11));
-    }
-
-    @Override
-    public final String toString() {
-        StringBuilder sb2 = new StringBuilder();
-        int i10 = 0;
-        while (true) {
-            CharSequence[] charSequenceArr = this.f28979a;
-            if (i10 < charSequenceArr.length) {
-                sb2.append(charSequenceArr[i10]);
-                i10++;
-            } else {
-                return sb2.toString();
-            }
-        }
-    }
-
-    @Override
-    public final j$.util.stream.IntStream chars() {
-        j$.util.stream.IntStream convert;
-        if (Build.VERSION.SDK_INT >= 24) {
-            convert = IntStream.VivifiedWrapper.convert(TextUtils.concat(this.f28979a).chars());
-            return convert;
-        }
-        return null;
-    }
-
-    @Override
-    public final j$.util.stream.IntStream codePoints() {
-        j$.util.stream.IntStream convert;
-        if (Build.VERSION.SDK_INT >= 24) {
-            convert = IntStream.VivifiedWrapper.convert(TextUtils.concat(this.f28979a).codePoints());
-            return convert;
-        }
-        return null;
     }
 }

@@ -1,80 +1,57 @@
 package org.telegram.ui.Components;
 
-import android.hardware.Sensor;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
-import android.media.AudioManager;
-import android.os.PowerManager;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-public final class mt implements SensorEventListener {
-    public int E;
-    public int F;
-    public long G;
-    public boolean I;
-    public boolean J;
-    public float L;
-    public final SensorManager f28779a;
-    public final AudioManager f28780b;
-    public final Sensor f28781c;
-    public final Sensor d;
-    public final Sensor f28782e;
-    public final Sensor f28783f;
-    public final PowerManager.WakeLock h;
-    public boolean f28784n;
-    public boolean f28785r;
-    public e81 f28786s;
-    public boolean v;
-    public long f28787w;
-    public int f28788x;
-    public int f28789y;
-    public long H = 0;
-    public float K = -100.0f;
-    public final float[] M = new float[3];
-    public final float[] N = new float[3];
-    public final float[] O = new float[3];
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class mt extends AnimatorListenerAdapter {
+    public final int f28932a;
+    public final s4.d1 f28933b;
+    public final org.telegram.ui.Cells.s2 f28934c;
+    public final rt d;
 
-    public mt() {
-        SensorManager sensorManager = (SensorManager) ApplicationLoader.applicationContext.getSystemService("sensor");
-        this.f28779a = sensorManager;
-        this.f28781c = sensorManager.getDefaultSensor(8);
-        Sensor defaultSensor = sensorManager.getDefaultSensor(10);
-        this.f28782e = defaultSensor;
-        Sensor defaultSensor2 = sensorManager.getDefaultSensor(9);
-        this.f28783f = defaultSensor2;
-        if (defaultSensor == null || defaultSensor2 == null) {
-            if (BuildVars.LOGS_ENABLED) {
-                FileLog.d("gravity or linear sensor not found");
-            }
-            this.d = sensorManager.getDefaultSensor(1);
-            this.f28782e = null;
-            this.f28783f = null;
-        }
-        this.h = ((PowerManager) ApplicationLoader.applicationContext.getSystemService("power")).newWakeLock(32, "telegram:proximity_lock2");
-        this.f28780b = (AudioManager) ApplicationLoader.applicationContext.getSystemService("audio");
-    }
-
-    public final void a() {
-        int i10;
-        e81 e81Var = this.f28786s;
-        if (e81Var == null) {
-            return;
-        }
-        if (this.f28785r) {
-            i10 = 0;
-        } else {
-            i10 = 3;
-        }
-        e81Var.S(i10);
+    public mt(rt rtVar, s4.d1 d1Var, org.telegram.ui.Cells.s2 s2Var, int i10) {
+        this.f28932a = i10;
+        this.d = rtVar;
+        this.f28933b = d1Var;
+        this.f28934c = s2Var;
     }
 
     @Override
-    public final void onSensorChanged(android.hardware.SensorEvent r25) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.mt.onSensorChanged(android.hardware.SensorEvent):void");
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f28932a) {
+            case 0:
+                animator.removeAllListeners();
+                org.telegram.ui.Cells.s2 s2Var = this.f28934c;
+                s2Var.setClipProgress(0.0f);
+                s2Var.setElevation(0.0f);
+                rt rtVar = this.d;
+                s4.d1 d1Var = this.f28933b;
+                rtVar.d(d1Var);
+                rtVar.f30508x.remove(d1Var);
+                rtVar.A();
+                return;
+            default:
+                animator.removeAllListeners();
+                org.telegram.ui.Cells.s2 s2Var2 = this.f28934c;
+                s2Var2.setClipProgress(0.0f);
+                s2Var2.setElevation(0.0f);
+                rt rtVar2 = this.d;
+                s4.d1 d1Var2 = this.f28933b;
+                rtVar2.d(d1Var2);
+                rtVar2.f30508x.remove(d1Var2);
+                rtVar2.A();
+                return;
+        }
     }
 
     @Override
-    public final void onAccuracyChanged(Sensor sensor, int i10) {
+    public final void onAnimationStart(Animator animator) {
+        switch (this.f28932a) {
+            case 0:
+                this.d.y();
+                return;
+            default:
+                this.d.y();
+                return;
+        }
     }
 }

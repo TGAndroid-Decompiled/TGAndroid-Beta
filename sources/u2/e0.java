@@ -4,7 +4,7 @@ public interface e0 {
 
     e0 b(boolean z10);
 
-    e0 c();
+    e0 c(ob.a aVar);
 
-    e0 d(qb.b bVar);
+    e0 d();
 }

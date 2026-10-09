@@ -1,56 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.view.MotionEvent;
+import android.graphics.Canvas;
 import android.view.View;
-public final class jq0 implements View.OnTouchListener {
-    public final int f27947a;
-    public final Rect f27948b;
-    public final br0 f27949c;
+public final class jq0 implements ah.m {
+    public final int f27761a;
+    public final qm0 f27762b;
 
-    public jq0(br0 br0Var, int i10) {
-        this.f27947a = i10;
-        switch (i10) {
-            case 1:
-                this.f27949c = br0Var;
-                this.f27948b = new Rect();
-                return;
-            default:
-                this.f27949c = br0Var;
-                this.f27948b = new Rect();
-                return;
-        }
+    public jq0(qm0 qm0Var, int i10) {
+        this.f27761a = i10;
+        this.f27762b = qm0Var;
     }
 
     @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        br0 br0Var;
-        org.telegram.ui.ActionBar.n1 n1Var;
-        br0 br0Var2;
-        org.telegram.ui.ActionBar.n1 n1Var2;
-        switch (this.f27947a) {
+    public final boolean a(Canvas canvas, View view, long j3) {
+        switch (this.f27761a) {
             case 0:
-                if (motionEvent.getActionMasked() == 0 && (n1Var = (br0Var = this.f27949c).J0) != null && n1Var.isShowing()) {
-                    Rect rect = this.f27948b;
-                    view.getHitRect(rect);
-                    if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        br0Var.J0.d(true);
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
+                return ((oq0) this.f27762b).drawChild(canvas, view, j3);
             default:
-                if (motionEvent.getActionMasked() == 0 && (n1Var2 = (br0Var2 = this.f27949c).J0) != null && n1Var2.isShowing()) {
-                    Rect rect2 = this.f27948b;
-                    view.getHitRect(rect2);
-                    if (!rect2.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        br0Var2.J0.d(true);
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
+                return ((tu0) this.f27762b).drawChild(canvas, view, j3);
         }
     }
 }

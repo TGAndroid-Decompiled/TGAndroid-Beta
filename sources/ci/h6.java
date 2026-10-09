@@ -4,17 +4,17 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.View;
 public final class h6 extends View {
-    public final mb f5135a;
+    public final nb f5170a;
 
-    public h6(mb mbVar, Context context) {
+    public h6(nb nbVar, Context context) {
         super(context);
-        this.f5135a = mbVar;
+        this.f5170a = nbVar;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        f6 f6Var = this.f5135a.O0;
+        f6 f6Var = this.f5170a.O0;
         if (f6Var != null) {
             f6Var.d(canvas);
         }

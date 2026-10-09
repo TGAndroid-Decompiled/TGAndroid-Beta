@@ -1,95 +1,33 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-public final class m10 extends s4.s0 {
-    public final x10 f38445a;
+public final class m10 extends AnimatorListenerAdapter {
+    public final int f39732a = 0;
+    public final zq f39733b;
 
-    public m10(x10 x10Var) {
-        this.f38445a = x10Var;
+    public m10(zq zqVar) {
+        this.f39733b = zqVar;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        if (i10 == 1) {
-            AndroidUtilities.hideKeyboard(this.f38445a.K.getCurrentFocus());
-        }
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        MessageObject messageObject;
-        x10 x10Var = this.f38445a;
-        ai.n4 n4Var = x10Var.m0;
-        s4.c0 c0Var = x10Var.f42769j0;
-        le.b bVar = x10Var.f42755a;
-        g10 g10Var = x10Var.f42773n0;
-        if (recyclerView.getAdapter() != null && x10Var.d != null) {
-            int L0 = c0Var.L0();
-            int N0 = c0Var.N0();
-            int abs = Math.abs(N0 - L0) + 1;
-            int h = recyclerView.getAdapter().h();
-            if (!x10Var.M && abs > 0 && N0 >= h - 10 && !x10Var.N) {
-                AndroidUtilities.runOnUIThread(new g10(this, 1));
-            }
-            if (x10Var.d == x10Var.U) {
-                if (i11 != 0 && !x10Var.f42764f.isEmpty() && TextUtils.isEmpty(x10Var.Q)) {
-                    AndroidUtilities.cancelRunOnUIThread(g10Var);
-                    AndroidUtilities.runOnUIThread(g10Var, 1650L);
-                    bVar.a(true, true);
-                }
-                s4.c1 K = recyclerView.K(L0);
-                if (K != null && K.f46542f == 0) {
-                    View view = K.f46538a;
-                    if (view instanceof org.telegram.ui.Cells.u7) {
-                        org.telegram.ui.Cells.u7 u7Var = (org.telegram.ui.Cells.u7) view;
-                        if (u7Var.f23533e <= 0) {
-                            messageObject = null;
-                        } else {
-                            messageObject = u7Var.f23531b[0];
-                        }
-                        if (messageObject != null) {
-                            int i12 = messageObject.messageOwner.date;
-                            n4Var.getClass();
-                            String formatDateChat = LocaleController.formatDateChat(i12);
-                            if (!TextUtils.equals((String) n4Var.d, formatDateChat)) {
-                                n4Var.d = formatDateChat;
-                                ((org.telegram.ui.Components.o6) n4Var.f1400b).q(formatDateChat, true, true);
-                                return;
-                            }
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f39732a) {
+            case 0:
+                ((w10) this.f39733b.d).f43056l0.unlock();
                 return;
-            }
-            View pinnedHeader = x10Var.f42757b.getPinnedHeader();
-            if (pinnedHeader instanceof org.telegram.ui.Cells.v3) {
-                org.telegram.ui.Cells.v3 v3Var = (org.telegram.ui.Cells.v3) pinnedHeader;
-                CharSequence text = v3Var.getText();
-                if (!TextUtils.isEmpty(text) && v3Var.getAlpha() > 0.0f) {
-                    String charSequence = text.toString();
-                    if (!TextUtils.equals((String) n4Var.d, charSequence)) {
-                        n4Var.d = charSequence;
-                        ((org.telegram.ui.Components.o6) n4Var.f1400b).q(charSequence, true, true);
-                    }
-                    if (i11 != 0) {
-                        AndroidUtilities.cancelRunOnUIThread(g10Var);
-                        AndroidUtilities.runOnUIThread(g10Var, 1650L);
-                        bVar.a(true, true);
-                        return;
-                    }
-                    return;
-                }
-            }
-            AndroidUtilities.cancelRunOnUIThread(g10Var);
-            bVar.a(false, true);
+            default:
+                zq zqVar = this.f39733b;
+                View view = zqVar.f45043b;
+                view.setAlpha(1.0f);
+                s4.p0.x0(view);
+                ((w10) zqVar.d).f43042b.removeView(view);
+                return;
         }
+    }
+
+    public m10(zq zqVar, s4.p0 p0Var) {
+        this.f39733b = zqVar;
     }
 }

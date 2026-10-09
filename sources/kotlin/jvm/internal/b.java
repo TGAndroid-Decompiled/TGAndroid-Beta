@@ -4,13 +4,13 @@ import java.io.Serializable;
 import java.lang.annotation.Annotation;
 import java.util.List;
 import java.util.Map;
-public abstract class b implements vd.b, Serializable {
-    public static final Object NO_RECEIVER = a.f15106a;
+public abstract class b implements wd.b, Serializable {
+    public static final Object NO_RECEIVER = a.f15170a;
     private final boolean isTopLevel;
     private final String name;
     private final Class owner;
     protected final Object receiver;
-    private transient vd.b reflected;
+    private transient wd.b reflected;
     private final String signature;
 
     public b(Object obj, Class cls, String str, String str2, boolean z10) {
@@ -31,17 +31,17 @@ public abstract class b implements vd.b, Serializable {
         return getReflected().callBy(map);
     }
 
-    public vd.b compute() {
-        vd.b bVar = this.reflected;
+    public wd.b compute() {
+        wd.b bVar = this.reflected;
         if (bVar == null) {
-            vd.b computeReflected = computeReflected();
+            wd.b computeReflected = computeReflected();
             this.reflected = computeReflected;
             return computeReflected;
         }
         return bVar;
     }
 
-    public abstract vd.b computeReflected();
+    public abstract wd.b computeReflected();
 
     @Override
     public List<Annotation> getAnnotations() {
@@ -56,13 +56,13 @@ public abstract class b implements vd.b, Serializable {
         return this.name;
     }
 
-    public vd.d getOwner() {
+    public wd.d getOwner() {
         Class cls = this.owner;
         if (cls == null) {
             return null;
         }
         if (this.isTopLevel) {
-            q.f15117a.getClass();
+            q.f15181a.getClass();
             return new k(cls);
         }
         return q.a(cls);
@@ -73,10 +73,10 @@ public abstract class b implements vd.b, Serializable {
         return getReflected().getParameters();
     }
 
-    public abstract vd.b getReflected();
+    public abstract wd.b getReflected();
 
     @Override
-    public vd.h getReturnType() {
+    public wd.h getReturnType() {
         getReflected().getReturnType();
         return null;
     }
@@ -91,7 +91,7 @@ public abstract class b implements vd.b, Serializable {
     }
 
     @Override
-    public vd.i getVisibility() {
+    public wd.i getVisibility() {
         return getReflected().getVisibility();
     }
 

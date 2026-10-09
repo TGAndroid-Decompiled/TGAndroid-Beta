@@ -1,75 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-import android.view.accessibility.AccessibilityNodeInfo;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.wf1;
-public final class co extends w9 {
-    public final org.telegram.ui.Cells.m6 G;
-    public final org.telegram.ui.ActionBar.n2 H;
-    public final boolean I;
-    public final org.telegram.ui.ActionBar.d6 J;
-    public final ho K;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.ImageView;
+public final class co implements View.OnKeyListener {
+    public final int f25446a;
+    public final Object f25447b;
 
-    public co(ho hoVar, Context context, org.telegram.ui.ActionBar.n2 n2Var, boolean z10, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context);
-        this.K = hoVar;
-        this.H = n2Var;
-        this.I = z10;
-        this.J = d6Var;
-        this.G = new org.telegram.ui.Cells.m6(this);
+    public co(Object obj, int i10) {
+        this.f25446a = i10;
+        this.f25447b = obj;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        long j3;
-        ho hoVar = this.K;
-        if (hoVar.f27273b && this.f32567e == null) {
-            org.telegram.ui.Cells.m6 m6Var = this.G;
-            m6Var.F.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            m6Var.f712a = true;
-            m6Var.v = true;
-            m6Var.J = this.J;
-            Integer num = hoVar.f27275c;
-            if (num != null) {
-                m6Var.f734z = num.intValue();
-            }
-            org.telegram.ui.yn ynVar = hoVar.G;
-            if (ynVar != null) {
-                j3 = ynVar.a();
-            } else {
-                org.telegram.ui.ActionBar.n2 n2Var = this.H;
-                if (n2Var instanceof wf1) {
-                    j3 = -((wf1) n2Var).f42467a;
-                } else {
-                    j3 = 0;
+    public final boolean onKey(View view, int i10, KeyEvent keyEvent) {
+        switch (this.f25446a) {
+            case 0:
+                io ioVar = (io) this.f25447b;
+                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) view;
+                if (i10 == 67 && keyEvent.getAction() == 0 && editTextBoldCursor.length() == 0) {
+                    ImageView imageView = ioVar.f21975f;
+                    if (imageView != null) {
+                        imageView.callOnClick();
+                    }
+                    return true;
                 }
-            }
-            ai.ia.h(j3, canvas, this.f32564a, m6Var);
-            return;
+                return false;
+            default:
+                nv nvVar = (nv) this.f25447b;
+                nvVar.getClass();
+                if (i10 == 82 && keyEvent.getRepeatCount() == 0 && keyEvent.getAction() == 1 && nvVar.isShowing()) {
+                    nvVar.dismiss();
+                    return true;
+                }
+                return false;
         }
-        super.onDraw(canvas);
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.I && getImageReceiver().hasNotThumb()) {
-            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrProfilePicture));
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString(R.string.Open)));
-            return;
-        }
-        accessibilityNodeInfo.setVisibleToUser(false);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.K.f27273b && this.G.a(motionEvent, this)) {
-            return true;
-        }
-        return super.onTouchEvent(motionEvent);
     }
 }

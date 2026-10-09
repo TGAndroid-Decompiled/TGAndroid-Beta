@@ -27,7 +27,7 @@ class ContactsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
 
     public ContactsRemoteViewsFactory(Context context, Intent intent) {
         this.mContext = context;
-        org.telegram.ui.ActionBar.i6.R(context);
+        org.telegram.ui.ActionBar.i6.S(context);
         boolean z10 = false;
         this.appWidgetId = intent.getIntExtra("appWidgetId", 0);
         SharedPreferences sharedPreferences = context.getSharedPreferences("shortcut_widget", 0);
@@ -74,7 +74,7 @@ class ContactsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
         int i16;
         int i17;
         int i18;
-        org.telegram.ui.Components.h9 h9Var;
+        org.telegram.ui.Components.j9 j9Var;
         TLRPC.UserProfilePhoto userProfilePhoto;
         int i19;
         if (this.deleted) {
@@ -95,7 +95,7 @@ class ContactsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
         } else {
             RemoteViews remoteViews3 = new RemoteViews(this.mContext.getPackageName(), R.layout.contacts_widget_item);
             for (int i20 = 0; i20 < 2; i20++) {
-                int i21 = (i10 * 2) + i20;
+                int i21 = (2 * i10) + i20;
                 if (i21 >= this.dids.size()) {
                     if (i20 == 0) {
                         i19 = R.id.contacts_widget_item1;
@@ -165,19 +165,19 @@ class ContactsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
                     Canvas canvas = new Canvas(createBitmap);
                     if (decodeFile == null) {
                         if (user != null) {
-                            h9Var = new org.telegram.ui.Components.h9(0, user);
+                            j9Var = new org.telegram.ui.Components.j9(0, user);
                             if (UserObject.isReplyUser(user)) {
-                                h9Var.g(12);
+                                j9Var.g(12);
                             } else if (UserObject.isUserSelf(user)) {
-                                h9Var.g(1);
+                                j9Var.g(1);
                             }
                         } else {
-                            org.telegram.ui.Components.h9 h9Var2 = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
-                            h9Var2.k(this.accountInstance.getCurrentAccount(), chat);
-                            h9Var = h9Var2;
+                            org.telegram.ui.Components.j9 j9Var2 = new org.telegram.ui.Components.j9((org.telegram.ui.ActionBar.e6) null);
+                            j9Var2.k(this.accountInstance.getCurrentAccount(), chat);
+                            j9Var = j9Var2;
                         }
-                        h9Var.setBounds(0, 0, dp, dp);
-                        h9Var.draw(canvas);
+                        j9Var.setBounds(0, 0, dp, dp);
+                        j9Var.draw(canvas);
                     } else {
                         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                         BitmapShader bitmapShader = new BitmapShader(decodeFile, tileMode, tileMode);

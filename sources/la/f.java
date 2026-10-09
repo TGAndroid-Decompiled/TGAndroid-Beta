@@ -9,27 +9,27 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 public final class f implements ia.e {
-    public static final Charset f15390f = Charset.forName("UTF-8");
-    public static final ia.c f15391g = new ia.c("key", hg.c.m(hg.c.l(e.class, new a(1))));
+    public static final Charset f15453f = Charset.forName("UTF-8");
+    public static final ia.c f15454g = new ia.c("key", hg.c.m(hg.c.l(e.class, new a(1))));
     public static final ia.c h = new ia.c("value", hg.c.m(hg.c.l(e.class, new a(2))));
-    public static final ka.a f15392i = new ka.a(1);
-    public OutputStream f15393a;
-    public final HashMap f15394b;
-    public final HashMap f15395c;
+    public static final ka.a f15455i = new ka.a(1);
+    public OutputStream f15456a;
+    public final HashMap f15457b;
+    public final HashMap f15458c;
     public final ia.d d;
-    public final i f15396e = new i(this, 0);
+    public final i f15459e = new i(this, 0);
 
     public f(ByteArrayOutputStream byteArrayOutputStream, HashMap hashMap, HashMap hashMap2, ia.d dVar) {
-        this.f15393a = byteArrayOutputStream;
-        this.f15394b = hashMap;
-        this.f15395c = hashMap2;
+        this.f15456a = byteArrayOutputStream;
+        this.f15457b = hashMap;
+        this.f15458c = hashMap2;
         this.d = dVar;
     }
 
     public static int j(ia.c cVar) {
         e eVar = (e) cVar.b(e.class);
         if (eVar != null) {
-            return ((a) eVar).f15385a;
+            return ((a) eVar).f15448a;
         }
         throw new RuntimeException("Field has no @Protobuf config");
     }
@@ -45,7 +45,7 @@ public final class f implements ia.e {
             return;
         }
         k((j(cVar) << 3) | 1);
-        this.f15393a.write(ByteBuffer.allocate(8).order(ByteOrder.LITTLE_ENDIAN).putDouble(d).array());
+        this.f15456a.write(ByteBuffer.allocate(8).order(ByteOrder.LITTLE_ENDIAN).putDouble(d).array());
     }
 
     @Override
@@ -60,7 +60,7 @@ public final class f implements ia.e {
         }
         e eVar = (e) cVar.b(e.class);
         if (eVar != null) {
-            k(((a) eVar).f15385a << 3);
+            k(((a) eVar).f15448a << 3);
             k(i10);
             return;
         }
@@ -80,7 +80,7 @@ public final class f implements ia.e {
         }
         e eVar = (e) cVar.b(e.class);
         if (eVar != null) {
-            k(((a) eVar).f15385a << 3);
+            k(((a) eVar).f15448a << 3);
             l(j3);
             return this;
         }
@@ -99,9 +99,9 @@ public final class f implements ia.e {
                 CharSequence charSequence = (CharSequence) obj;
                 if (!z10 || charSequence.length() != 0) {
                     k((j(cVar) << 3) | 2);
-                    byte[] bytes = charSequence.toString().getBytes(f15390f);
+                    byte[] bytes = charSequence.toString().getBytes(f15453f);
                     k(bytes.length);
-                    this.f15393a.write(bytes);
+                    this.f15456a.write(bytes);
                 }
             } else if (obj instanceof Collection) {
                 for (Object obj2 : (Collection) obj) {
@@ -109,7 +109,7 @@ public final class f implements ia.e {
                 }
             } else if (obj instanceof Map) {
                 for (Map.Entry entry : ((Map) obj).entrySet()) {
-                    i(f15392i, cVar, entry, false);
+                    i(f15455i, cVar, entry, false);
                 }
             } else if (obj instanceof Double) {
                 b(cVar, ((Double) obj).doubleValue(), z10);
@@ -117,14 +117,14 @@ public final class f implements ia.e {
                 float floatValue = ((Float) obj).floatValue();
                 if (!z10 || floatValue != 0.0f) {
                     k((j(cVar) << 3) | 5);
-                    this.f15393a.write(ByteBuffer.allocate(4).order(ByteOrder.LITTLE_ENDIAN).putFloat(floatValue).array());
+                    this.f15456a.write(ByteBuffer.allocate(4).order(ByteOrder.LITTLE_ENDIAN).putFloat(floatValue).array());
                 }
             } else if (obj instanceof Number) {
                 long longValue = ((Number) obj).longValue();
                 if (!z10 || longValue != 0) {
                     e eVar = (e) cVar.b(e.class);
                     if (eVar != null) {
-                        k(((a) eVar).f15385a << 3);
+                        k(((a) eVar).f15448a << 3);
                         l(longValue);
                         return;
                     }
@@ -139,19 +139,19 @@ public final class f implements ia.e {
                 }
                 k((j(cVar) << 3) | 2);
                 k(bArr.length);
-                this.f15393a.write(bArr);
+                this.f15456a.write(bArr);
             } else {
-                ia.d dVar = (ia.d) this.f15394b.get(obj.getClass());
+                ia.d dVar = (ia.d) this.f15457b.get(obj.getClass());
                 if (dVar != null) {
                     i(dVar, cVar, obj, z10);
                     return;
                 }
-                ia.f fVar = (ia.f) this.f15395c.get(obj.getClass());
+                ia.f fVar = (ia.f) this.f15458c.get(obj.getClass());
                 if (fVar != null) {
-                    i iVar = this.f15396e;
-                    iVar.f15402b = false;
+                    i iVar = this.f15459e;
+                    iVar.f15465b = false;
                     iVar.d = cVar;
-                    iVar.f15403c = z10;
+                    iVar.f15466c = z10;
                     fVar.a(obj, iVar);
                 } else if (obj instanceof c) {
                     d(cVar, ((c) obj).a(), true);
@@ -166,13 +166,13 @@ public final class f implements ia.e {
 
     public final void i(ia.d dVar, ia.c cVar, Object obj, boolean z10) {
         b bVar = new b(0);
-        bVar.f15387b = 0L;
+        bVar.f15450b = 0L;
         try {
-            OutputStream outputStream = this.f15393a;
-            this.f15393a = bVar;
+            OutputStream outputStream = this.f15456a;
+            this.f15456a = bVar;
             dVar.a(obj, this);
-            this.f15393a = outputStream;
-            long j3 = bVar.f15387b;
+            this.f15456a = outputStream;
+            long j3 = bVar.f15450b;
             bVar.close();
             if (z10 && j3 == 0) {
                 return;
@@ -192,17 +192,17 @@ public final class f implements ia.e {
 
     public final void k(int i10) {
         while ((i10 & (-128)) != 0) {
-            this.f15393a.write((i10 & 127) | 128);
+            this.f15456a.write((i10 & 127) | 128);
             i10 >>>= 7;
         }
-        this.f15393a.write(i10 & 127);
+        this.f15456a.write(i10 & 127);
     }
 
     public final void l(long j3) {
         while (((-128) & j3) != 0) {
-            this.f15393a.write((((int) j3) & 127) | 128);
+            this.f15456a.write((((int) j3) & 127) | 128);
             j3 >>>= 7;
         }
-        this.f15393a.write(((int) j3) & 127);
+        this.f15456a.write(((int) j3) & 127);
     }
 }

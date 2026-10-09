@@ -1,146 +1,371 @@
 package ai;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import ci.wc;
-import java.util.concurrent.atomic.AtomicBoolean;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.tr;
-public final class x4 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f1841a;
-    public final Object f1842b;
-    public final Object f1843c;
-    public final Object d;
+import org.telegram.ui.Components.um;
+import org.telegram.ui.Components.xy0;
+public final class x4 implements org.telegram.ui.Components.rb {
+    public final int f1905a;
+    public final Object f1906b;
 
-    public x4(Object obj, Object obj2, Object obj3, int i10) {
-        this.f1841a = i10;
-        this.f1842b = obj;
-        this.f1843c = obj2;
-        this.d = obj3;
+    public x4(Object obj, int i10) {
+        this.f1905a = i10;
+        this.f1906b = obj;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        float f7;
-        float f10;
-        switch (this.f1841a) {
+    public final boolean a() {
+        switch (this.f1905a) {
             case 0:
-                boolean[] zArr = (boolean[]) this.d;
-                e6 e6Var = ((z4) this.f1842b).f1933a;
-                e6Var.f903v3 = ((Float) ((ValueAnimator) this.f1843c).getAnimatedValue()).floatValue();
-                e6Var.invalidate();
-                if (e6Var.f903v3 > 0.8f && !zArr[0]) {
-                    zArr[0] = true;
-                    e6Var.f888q3 = true;
-                    try {
-                        e6Var.performHapticFeedback(3);
-                        return;
-                    } catch (Exception unused) {
-                        return;
-                    }
+                return true;
+            case 1:
+                return true;
+            case 2:
+                return true;
+            case 3:
+                return true;
+            case 4:
+                return true;
+            case 5:
+                return true;
+            case 6:
+                return true;
+            case 7:
+                return true;
+            case 8:
+                return true;
+            case 9:
+                return true;
+            case 10:
+                return true;
+            default:
+                return true;
+        }
+    }
+
+    @Override
+    public final void b(org.telegram.ui.Components.tc tcVar) {
+        y5 y5Var;
+        switch (this.f1905a) {
+            case 0:
+                if (tcVar.f31123a == 2 && (y5Var = ((b5) this.f1906b).f710x.Q1) != null) {
+                    kc kcVar = ((bc) y5Var).d;
+                    kcVar.Y0 = true;
+                    kcVar.P();
+                    return;
                 }
                 return;
             case 1:
-                ci.q6 q6Var = (ci.q6) this.f1842b;
-                View view = (View) this.f1843c;
-                View view2 = (View) this.d;
-                q6Var.f5746a1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                q6Var.W0.invalidate();
-                q6Var.T0.invalidate();
-                q6Var.U0.invalidate();
-                for (int i10 = 0; i10 < q6Var.W0.getChildCount(); i10++) {
-                    View childAt = q6Var.W0.getChildAt(i10);
-                    if (i10 == q6Var.Z0) {
-                        f7 = q6Var.f5746a1;
-                    } else if (i10 == q6Var.Y0) {
-                        f7 = 1.0f - q6Var.f5746a1;
-                    } else {
-                        f7 = 0.0f;
-                    }
-                    childAt.setAlpha((f7 * 0.4f) + 0.6f);
-                }
-                float interpolation = tr.f31215f.getInterpolation(q6Var.f5746a1);
-                if (view != null && view2 != null) {
-                    float f11 = 1.0f - interpolation;
-                    float f12 = (f11 * 0.4f) + 0.6f;
-                    view.setScaleX(f12);
-                    view.setScaleY(f12);
-                    view.setTranslationY((Math.min(interpolation, 0.25f) * AndroidUtilities.dp(16.0f)) / 0.25f);
-                    view.setAlpha(1.0f - (Math.min(interpolation, 0.25f) / 0.25f));
-                    float f13 = (interpolation * 0.4f) + 0.6f;
-                    view2.setScaleX(f13);
-                    view2.setScaleY(f13);
-                    view2.setTranslationY((Math.min(f11, 0.25f) * (-AndroidUtilities.dp(16.0f))) / 0.25f);
-                    view2.setAlpha(1.0f - (Math.min(f11, 0.25f) / 0.25f));
-                    return;
-                }
-                return;
             case 2:
-                wc wcVar = (wc) this.f1842b;
-                AtomicBoolean atomicBoolean = (AtomicBoolean) this.f1843c;
-                ci.u uVar = (ci.u) this.d;
-                wcVar.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                Math.abs(floatValue - 0.5f);
-                if (floatValue >= 0.5f && !atomicBoolean.get()) {
-                    atomicBoolean.set(true);
-                    wcVar.setDrawable(uVar);
-                    return;
-                }
-                return;
             case 3:
-                ji.m mVar = (ji.m) this.f1842b;
-                org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) this.f1843c;
-                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) this.d;
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                if (mVar.f14219l) {
-                    t1Var.f22966g0 = (-mVar.f14226s) * floatValue2;
-                    t1Var.f22970h0 = (-mVar.f14227t) * floatValue2;
-                    t1Var.f22980j0 = (-mVar.f14228u) * floatValue2;
-                    t1Var.f22975i0 = (-mVar.v) * floatValue2;
-                } else {
-                    t1Var.f22966g0 = ((-mVar.f14226s) * floatValue2) - u1Var.getAnimationOffsetX();
-                    t1Var.f22970h0 = ((-mVar.f14227t) * floatValue2) - u1Var.getAnimationOffsetX();
-                    t1Var.f22980j0 = ((-mVar.f14228u) * floatValue2) - u1Var.getTranslationY();
-                    t1Var.f22975i0 = ((-mVar.v) * floatValue2) - u1Var.getTranslationY();
-                }
-                u1Var.invalidate();
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+                return;
+            case 10:
+                org.telegram.ui.Components.xb xbVar = tcVar.f31126e;
+                xh.l0 l0Var = (xh.l0) this.f1906b;
+                ch.d c10 = l0Var.f51332e.c(xbVar, null, true);
+                dh.e eVar = new dh.e(xh.l0.o(l0Var));
+                eVar.f8366e = new d2.c(4);
+                float dpf2 = AndroidUtilities.dpf2(0.5f);
+                float dpf22 = AndroidUtilities.dpf2(0.5f);
+                eVar.f8367f = dpf2;
+                eVar.h = dpf22;
+                c10.o(eVar);
+                c10.q(AndroidUtilities.dp(16.0f));
+                xbVar.setCustomBackground(c10);
                 return;
             default:
-                qg.m0 m0Var = (qg.m0) this.f1842b;
-                View view3 = (View) this.f1843c;
-                View view4 = (View) this.d;
-                m0Var.f45185i1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                m0Var.f45179f1.invalidate();
-                m0Var.f45173c1.invalidate();
-                m0Var.f45175d1.invalidate();
-                for (int i11 = 0; i11 < m0Var.f45179f1.getChildCount(); i11++) {
-                    View childAt2 = m0Var.f45179f1.getChildAt(i11);
-                    if (i11 == m0Var.f45183h1) {
-                        f10 = m0Var.f45185i1;
-                    } else if (i11 == m0Var.f45181g1) {
-                        f10 = 1.0f - m0Var.f45185i1;
-                    } else {
-                        f10 = 0.0f;
-                    }
-                    childAt2.setAlpha((f10 * 0.4f) + 0.6f);
-                }
-                float interpolation2 = tr.f31215f.getInterpolation(m0Var.f45185i1);
-                if (view3 != null && view4 != null) {
-                    float f14 = 1.0f - interpolation2;
-                    float f15 = (f14 * 0.4f) + 0.6f;
-                    view3.setScaleX(f15);
-                    view3.setScaleY(f15);
-                    view3.setTranslationY((Math.min(interpolation2, 0.25f) * AndroidUtilities.dp(16.0f)) / 0.25f);
-                    view3.setAlpha(1.0f - (Math.min(interpolation2, 0.25f) / 0.25f));
-                    float f16 = (interpolation2 * 0.4f) + 0.6f;
-                    view4.setScaleX(f16);
-                    view4.setScaleY(f16);
-                    view4.setTranslationY((Math.min(f14, 0.25f) * (-AndroidUtilities.dp(16.0f))) / 0.25f);
-                    view4.setAlpha(1.0f - (Math.min(f14, 0.25f) / 0.25f));
+                return;
+        }
+    }
+
+    @Override
+    public final void c(float f7) {
+        int i10 = this.f1905a;
+    }
+
+    @Override
+    public final void d(org.telegram.ui.Components.tc tcVar) {
+        y5 y5Var;
+        switch (this.f1905a) {
+            case 0:
+                if (tcVar.f31123a == 2 && (y5Var = ((b5) this.f1906b).f710x.Q1) != null) {
+                    kc kcVar = ((bc) y5Var).d;
+                    kcVar.Y0 = false;
+                    kcVar.P();
                     return;
                 }
                 return;
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+            default:
+                return;
         }
+    }
+
+    @Override
+    public final boolean e() {
+        switch (this.f1905a) {
+            case 0:
+                return true;
+            case 1:
+                return true;
+            case 2:
+                return true;
+            case 3:
+                return true;
+            case 4:
+                return true;
+            case 5:
+                return true;
+            case 6:
+                return true;
+            case 7:
+                return true;
+            case 8:
+                return true;
+            case 9:
+                return true;
+            case 10:
+                return true;
+            default:
+                return true;
+        }
+    }
+
+    @Override
+    public final int f(int i10) {
+        int editTextHeight;
+        int dp;
+        switch (this.f1905a) {
+            case 0:
+                if (((b5) this.f1906b).f710x.f1021x2) {
+                    return 0;
+                }
+                return AndroidUtilities.dp(64.0f);
+            case 1:
+                return ((l7) this.f1906b).f1340r.getPaddingBottom();
+            case 2:
+                return 0;
+            case 3:
+                editTextHeight = ((ci.lc) this.f1906b).f5467c1.getEditTextHeight();
+                dp = AndroidUtilities.dp(12.0f);
+                break;
+            case 4:
+                return ((org.telegram.ui.Components.z7) this.f1906b).f33485e.E.getHeight();
+            case 5:
+                return ((org.telegram.ui.ActionBar.n2) this.f1906b).getBottomInset();
+            case 6:
+                org.telegram.ui.Components.rb rbVar = (org.telegram.ui.Components.rb) this.f1906b;
+                if (rbVar == null) {
+                    return 0;
+                }
+                return rbVar.f(i10);
+            case 7:
+                editTextHeight = AndroidUtilities.dp(126.0f);
+                dp = ((um) this.f1906b).f31539c.f30173b.getBottomInset();
+                break;
+            case 8:
+                FrameLayout frameLayout = ((xy0) this.f1906b).f33048w;
+                if (frameLayout != null) {
+                    return frameLayout.getHeight();
+                }
+                return 0;
+            case 9:
+                org.telegram.ui.web.b1 b1Var = (org.telegram.ui.web.b1) this.f1906b;
+                if (b1Var.getParent() instanceof ei.o4) {
+                    ei.o4 o4Var = (ei.o4) b1Var.getParent();
+                    return (int) ((o4Var.getSwipeOffsetY() + o4Var.getOffsetY()) - o4Var.getTopActionBarOffsetY());
+                }
+                return 0;
+            case 10:
+                return 0;
+            default:
+                return (int) ((zg.a0) ((xh.m) this.f1906b).f51345b).f54465u;
+        }
+        return dp + editTextHeight;
+    }
+
+    @Override
+    public final boolean g(int i10) {
+        switch (this.f1905a) {
+            case 0:
+                if (i10 == 1 || i10 == 2 || i10 == 3) {
+                    return true;
+                }
+                return false;
+            case 1:
+                return false;
+            case 2:
+                return false;
+            case 3:
+                return false;
+            case 4:
+                return false;
+            case 5:
+                return false;
+            case 6:
+                org.telegram.ui.Components.rb rbVar = (org.telegram.ui.Components.rb) this.f1906b;
+                if (rbVar != null && rbVar.g(i10)) {
+                    return true;
+                }
+                return false;
+            case 7:
+                return false;
+            case 8:
+                return false;
+            case 9:
+                return false;
+            case 10:
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public final int h(int i10) {
+        switch (this.f1905a) {
+            case 0:
+                return AndroidUtilities.dp(58.0f);
+            case 1:
+                return 0;
+            case 2:
+                return (int) (((w7) this.f1906b).f1863a + AndroidUtilities.dp(58.0f));
+            case 3:
+                return 0;
+            case 4:
+                return 0;
+            case 5:
+                return 0;
+            case 6:
+                org.telegram.ui.Components.rb rbVar = (org.telegram.ui.Components.rb) this.f1906b;
+                if (rbVar == null) {
+                    return AndroidUtilities.statusBarHeight;
+                }
+                return rbVar.h(i10);
+            case 7:
+                return 0;
+            case 8:
+                return 0;
+            case 9:
+                return 0;
+            case 10:
+                return AndroidUtilities.statusBarHeight;
+            default:
+                return 0;
+        }
+    }
+
+    private final void A(org.telegram.ui.Components.tc tcVar) {
+    }
+
+    private final void B(org.telegram.ui.Components.tc tcVar) {
+    }
+
+    private final void C(org.telegram.ui.Components.tc tcVar) {
+    }
+
+    private final void D(org.telegram.ui.Components.tc tcVar) {
+    }
+
+    private final void E(org.telegram.ui.Components.tc tcVar) {
+    }
+
+    private final void F(org.telegram.ui.Components.tc tcVar) {
+    }
+
+    private final void G(org.telegram.ui.Components.tc tcVar) {
+    }
+
+    private final void H(org.telegram.ui.Components.tc tcVar) {
+    }
+
+    private final void I(org.telegram.ui.Components.tc tcVar) {
+    }
+
+    private final void J(org.telegram.ui.Components.tc tcVar) {
+    }
+
+    private final void K(org.telegram.ui.Components.tc tcVar) {
+    }
+
+    private final void L(org.telegram.ui.Components.tc tcVar) {
+    }
+
+    private final void M(org.telegram.ui.Components.tc tcVar) {
+    }
+
+    private final void N(org.telegram.ui.Components.tc tcVar) {
+    }
+
+    private final void O(org.telegram.ui.Components.tc tcVar) {
+    }
+
+    private final void i(float f7) {
+    }
+
+    private final void j(float f7) {
+    }
+
+    private final void k(float f7) {
+    }
+
+    private final void l(float f7) {
+    }
+
+    private final void m(float f7) {
+    }
+
+    private final void n(float f7) {
+    }
+
+    private final void o(float f7) {
+    }
+
+    private final void p(float f7) {
+    }
+
+    private final void q(float f7) {
+    }
+
+    private final void r(float f7) {
+    }
+
+    private final void s(float f7) {
+    }
+
+    private final void t(float f7) {
+    }
+
+    private final void u(org.telegram.ui.Components.tc tcVar) {
+    }
+
+    private final void v(org.telegram.ui.Components.tc tcVar) {
+    }
+
+    private final void w(org.telegram.ui.Components.tc tcVar) {
+    }
+
+    private final void x(org.telegram.ui.Components.tc tcVar) {
+    }
+
+    private final void y(org.telegram.ui.Components.tc tcVar) {
+    }
+
+    private final void z(org.telegram.ui.Components.tc tcVar) {
     }
 }

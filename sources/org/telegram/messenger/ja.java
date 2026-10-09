@@ -1,75 +1,28 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class ja implements RequestDelegate {
-    public final int f18243a;
-    public final Object f18244b;
-    public final long f18245c;
-    public final Object d;
-    public final Object f18246e;
+public final class ja implements Runnable {
+    public final int f18241a;
+    public final MessagesController f18242b;
+    public final TLRPC.Updates f18243c;
+    public final boolean d;
 
-    public ja(Object obj, Object obj2, long j3, Object obj3, int i10) {
-        this.f18243a = i10;
-        this.f18244b = obj;
-        this.d = obj2;
-        this.f18245c = j3;
-        this.f18246e = obj3;
+    public ja(MessagesController messagesController, TLRPC.Updates updates, boolean z10, int i10) {
+        this.f18241a = i10;
+        this.f18242b = messagesController;
+        this.f18243c = updates;
+        this.d = z10;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f18243a) {
+    public final void run() {
+        switch (this.f18241a) {
             case 0:
-                ((MessagesController) this.f18244b).lambda$deleteSavedDialog$143(this.f18245c, (int[]) this.d, (TLRPC.InputPeer) this.f18246e, tLObject, tL_error);
-                return;
-            case 1:
-                ((MessagesController) this.f18244b).lambda$getSavedReactionTags$486(this.f18245c, (TLRPC.messages_SavedReactionTags) this.d, (TLRPC.TL_messages_getSavedReactionTags) this.f18246e, tLObject, tL_error);
-                return;
-            case 2:
-                ((MessagesController) this.f18244b).lambda$addUsersToChannel$274((org.telegram.ui.ActionBar.n2) this.d, (TLRPC.TL_channels_inviteToChannel) this.f18246e, this.f18245c, tLObject, tL_error);
-                return;
-            case 3:
-                ((TopicsController) this.f18244b).lambda$pinTopic$20((org.telegram.ui.ActionBar.n2) this.d, this.f18245c, (ArrayList) this.f18246e, tLObject, tL_error);
-                return;
-            case 4:
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.f((org.telegram.ui.ActionBar.b2) this.f18244b, tLObject, this.f18245c, (AccountInstance) this.d, (MessagesStorage.BooleanCallback) this.f18246e, 5));
-                return;
-            case 5:
-                AndroidUtilities.runOnUIThread(new ai.ga((org.telegram.ui.ActionBar.n2) this.f18244b, tLObject, (MessagesController.DialogFilter) this.d, tL_error, (Runnable) this.f18246e, this.f18245c, 3));
-                return;
-            case 6:
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.f((yh.p) this.f18244b, (org.telegram.ui.ActionBar.b2) this.d, tLObject, this.f18245c, (Utilities.Callback) this.f18246e));
-                return;
-            case 7:
-                AndroidUtilities.runOnUIThread(new ai.ga((yh.y3) this.f18244b, tLObject, (String) this.d, (TL_stars.InputSavedStarGift) this.f18246e, tL_error, this.f18245c, 4));
+                this.f18242b.lambda$processUpdates$378(this.f18243c, this.d);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.f((yh.u5) this.f18244b, tLObject, (MessageObject) this.d, this.f18245c, (Runnable) this.f18246e, 10));
+                this.f18242b.lambda$processUpdates$377(this.f18243c, this.d);
                 return;
         }
-    }
-
-    public ja(Object obj, Object obj2, Object obj3, long j3, int i10) {
-        this.f18243a = i10;
-        this.f18244b = obj;
-        this.d = obj2;
-        this.f18246e = obj3;
-        this.f18245c = j3;
-    }
-
-    public ja(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, long j3, Object obj, Object obj2, int i10) {
-        this.f18243a = i10;
-        this.f18244b = notificationCenterDelegate;
-        this.f18245c = j3;
-        this.d = obj;
-        this.f18246e = obj2;
     }
 }

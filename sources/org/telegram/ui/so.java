@@ -1,40 +1,31 @@
 package org.telegram.ui;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.view.View;
-public final class so extends ClickableSpan {
-    public final int f40555a;
-
-    public so(int i10) {
-        this.f40555a = i10;
+import android.content.Context;
+import android.graphics.Canvas;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+public final class so extends org.telegram.ui.Cells.r8 {
+    public so(Context context) {
+        super(context);
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f40555a) {
-            case 0:
-                nf.f.s(view.getContext(), "https://t.me/BotFather");
-                return;
-            default:
-                return;
+    public final void onDraw(Canvas canvas) {
+        float dp;
+        int i10;
+        if (LocaleController.isRTL) {
+            dp = 0.0f;
+        } else {
+            dp = AndroidUtilities.dp(20.0f);
         }
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        switch (this.f40555a) {
-            case 0:
-                super.updateDrawState(textPaint);
-                textPaint.setUnderlineText(false);
-                return;
-            default:
-                textPaint.setUnderlineText(false);
-                textPaint.setColor(-1);
-                return;
+        float f7 = dp;
+        float measuredHeight = getMeasuredHeight() - 1;
+        int measuredWidth = getMeasuredWidth();
+        if (LocaleController.isRTL) {
+            i10 = AndroidUtilities.dp(20.0f);
+        } else {
+            i10 = 0;
         }
-    }
-
-    private final void a(View view) {
+        canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.i6.f20919k0);
     }
 }

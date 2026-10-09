@@ -1,62 +1,58 @@
 package yh;
 
-import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.RadialGradient;
 import android.graphics.RectF;
-import android.widget.LinearLayout;
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-public final class t6 extends LinearLayout {
-    public final Path f52036a;
-    public final Matrix f52037b;
-    public final RadialGradient f52038c;
-    public final Paint d;
-    public final org.telegram.ui.Components.o5 f52039e;
-
-    public t6(Context context, Matrix matrix, RadialGradient radialGradient, Paint paint, org.telegram.ui.Components.o5 o5Var) {
-        super(context);
-        this.f52037b = matrix;
-        this.f52038c = radialGradient;
-        this.d = paint;
-        this.f52039e = o5Var;
-        this.f52036a = new Path();
-    }
+import org.telegram.ui.Components.y9;
+public final class t6 extends y9 {
+    public vh.f G;
+    public Path H;
+    public RectF I;
+    public Drawable J;
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        float dp = AndroidUtilities.dp(10.0f);
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(0.0f, AndroidUtilities.dp(2.0f) + 1, getWidth(), getHeight() + dp);
-        Path path = this.f52036a;
-        path.rewind();
-        path.addRoundRect(rectF, dp, dp, Path.Direction.CW);
-        canvas.save();
-        canvas.clipPath(path);
-        Matrix matrix = this.f52037b;
-        matrix.reset();
-        matrix.postTranslate(getWidth() / 2.0f, AndroidUtilities.dp(100.0f));
-        this.f52038c.setLocalMatrix(matrix);
-        canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.d);
-        canvas.save();
-        canvas.translate(getWidth() / 2.0f, AndroidUtilities.dp(100.0f));
-        k0.a(canvas, 0, this.f52039e, getWidth(), AndroidUtilities.dp(180.0f), 1.0f, 1.0f);
-        canvas.restore();
+        Canvas canvas2;
+        RectF rectF = this.I;
+        Path path = this.H;
+        Drawable drawable = this.J;
         super.dispatchDraw(canvas);
-        canvas.restore();
+        if (this.G == null) {
+            this.G = vh.f.e(this);
+        }
+        if (this.G != null) {
+            rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+            path.rewind();
+            path.addRoundRect(rectF, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), Path.Direction.CW);
+            canvas.save();
+            canvas.clipPath(path);
+            canvas2 = canvas;
+            this.G.c(canvas2, this, getWidth(), getHeight(), 1.0f, false);
+            canvas2.restore();
+        } else {
+            canvas2 = canvas;
+        }
+        drawable.setBounds((getWidth() - drawable.getIntrinsicWidth()) / 2, (getHeight() - drawable.getIntrinsicHeight()) / 2, (drawable.getIntrinsicWidth() + getWidth()) / 2, (drawable.getIntrinsicHeight() + getHeight()) / 2);
+        drawable.draw(canvas2);
     }
 
     @Override
     public final void onAttachedToWindow() {
+        vh.f fVar = this.G;
+        if (fVar != null) {
+            fVar.a(this);
+        }
         super.onAttachedToWindow();
-        this.f52039e.a();
     }
 
     @Override
     public final void onDetachedFromWindow() {
+        vh.f fVar = this.G;
+        if (fVar != null) {
+            fVar.b(this);
+        }
         super.onDetachedFromWindow();
-        this.f52039e.b();
     }
 }

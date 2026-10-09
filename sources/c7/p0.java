@@ -5,15 +5,15 @@ import android.os.Parcelable;
 import java.util.Arrays;
 public final class p0 extends o6.a {
     public static final Parcelable.Creator<p0> CREATOR = new w.a(22);
-    public final n7.s0 f4458a;
-    public final n7.s0 f4459b;
-    public final n7.s0 f4460c;
+    public final n7.s0 f4508a;
+    public final n7.s0 f4509b;
+    public final n7.s0 f4510c;
     public final int d;
 
     public p0(n7.s0 s0Var, n7.s0 s0Var2, n7.s0 s0Var3, int i10) {
-        this.f4458a = s0Var;
-        this.f4459b = s0Var2;
-        this.f4460c = s0Var3;
+        this.f4508a = s0Var;
+        this.f4509b = s0Var2;
+        this.f4510c = s0Var3;
         this.d = i10;
     }
 
@@ -22,72 +22,72 @@ public final class p0 extends o6.a {
             return false;
         }
         p0 p0Var = (p0) obj;
-        if (!n6.l.l(this.f4458a, p0Var.f4458a) || !n6.l.l(this.f4459b, p0Var.f4459b) || !n6.l.l(this.f4460c, p0Var.f4460c) || this.d != p0Var.d) {
+        if (!n6.l.l(this.f4508a, p0Var.f4508a) || !n6.l.l(this.f4509b, p0Var.f4509b) || !n6.l.l(this.f4510c, p0Var.f4510c) || this.d != p0Var.d) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f4458a, this.f4459b, this.f4460c, Integer.valueOf(this.d)});
+        return Arrays.hashCode(new Object[]{this.f4508a, this.f4509b, this.f4510c, Integer.valueOf(this.d)});
     }
 
     public final String toString() {
         byte[] u10;
         byte[] u11;
         byte[] bArr = null;
-        n7.s0 s0Var = this.f4458a;
+        n7.s0 s0Var = this.f4508a;
         if (s0Var == null) {
             u10 = null;
         } else {
             u10 = s0Var.u();
         }
         String c10 = u6.b.c(u10);
-        n7.s0 s0Var2 = this.f4459b;
+        n7.s0 s0Var2 = this.f4509b;
         if (s0Var2 == null) {
             u11 = null;
         } else {
             u11 = s0Var2.u();
         }
         String c11 = u6.b.c(u11);
-        n7.s0 s0Var3 = this.f4460c;
+        n7.s0 s0Var3 = this.f4510c;
         if (s0Var3 != null) {
             bArr = s0Var3.u();
         }
         String c12 = u6.b.c(bArr);
-        StringBuilder x10 = a4.a.x("HmacSecretExtension{coseKeyAgreement=", c10, ", saltEnc=", c11, ", saltAuth=");
+        StringBuilder x10 = a1.g.x("HmacSecretExtension{coseKeyAgreement=", c10, ", saltEnc=", c11, ", saltAuth=");
         x10.append(c12);
         x10.append(", getPinUvAuthProtocol=");
-        return a4.a.o(this.d, "}", x10);
+        return a1.g.o(this.d, "}", x10);
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         byte[] u10;
         byte[] u11;
-        int q6 = w7.g0.q(parcel, 20293);
+        int q6 = w7.d0.q(parcel, 20293);
         byte[] bArr = null;
-        n7.s0 s0Var = this.f4458a;
+        n7.s0 s0Var = this.f4508a;
         if (s0Var == null) {
             u10 = null;
         } else {
             u10 = s0Var.u();
         }
-        w7.g0.c(parcel, 1, u10);
-        n7.s0 s0Var2 = this.f4459b;
+        w7.d0.c(parcel, 1, u10);
+        n7.s0 s0Var2 = this.f4509b;
         if (s0Var2 == null) {
             u11 = null;
         } else {
             u11 = s0Var2.u();
         }
-        w7.g0.c(parcel, 2, u11);
-        n7.s0 s0Var3 = this.f4460c;
+        w7.d0.c(parcel, 2, u11);
+        n7.s0 s0Var3 = this.f4510c;
         if (s0Var3 != null) {
             bArr = s0Var3.u();
         }
-        w7.g0.c(parcel, 3, bArr);
-        w7.g0.s(parcel, 4, 4);
+        w7.d0.c(parcel, 3, bArr);
+        w7.d0.s(parcel, 4, 4);
         parcel.writeInt(this.d);
-        w7.g0.r(parcel, q6);
+        w7.d0.r(parcel, q6);
     }
 }

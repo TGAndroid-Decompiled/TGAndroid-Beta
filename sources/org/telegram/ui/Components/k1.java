@@ -1,36 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class k1 implements Runnable {
-    public final int f28023a;
-    public final org.telegram.ui.ActionBar.b2 f28024b;
-    public final Context f28025c;
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+public final class k1 implements org.telegram.ui.ActionBar.a2 {
+    public final int f27814a;
+    public final Activity f27815b;
 
-    public k1(int i10, Context context, org.telegram.ui.ActionBar.b2 b2Var) {
-        this.f28023a = i10;
-        this.f28024b = b2Var;
-        this.f28025c = context;
+    public k1(Activity activity, int i10) {
+        this.f27814a = i10;
+        this.f27815b = activity;
     }
 
     @Override
-    public final void run() {
-        switch (this.f28023a) {
+    public final void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f27814a) {
             case 0:
-                org.telegram.ui.ActionBar.b2 b2Var = this.f28024b;
-                if (b2Var != null) {
-                    b2Var.dismiss();
+                Activity activity = this.f27815b;
+                if (activity.checkSelfPermission("android.permission.ACCESS_BACKGROUND_LOCATION") != 0) {
+                    activity.requestPermissions(new String[]{"android.permission.ACCESS_BACKGROUND_LOCATION"}, 30);
+                    return;
                 }
-                nf.f.s(this.f28025c, LocaleController.getString(R.string.BotWebViewStartPermissionLink));
                 return;
+            case 1:
+                Activity activity2 = this.f27815b;
+                try {
+                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+                    activity2.startActivity(intent);
+                    return;
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                    return;
+                }
             default:
-                org.telegram.ui.ActionBar.b2 b2Var2 = this.f28024b;
-                if (b2Var2 != null) {
-                    b2Var2.dismiss();
+                Activity activity3 = this.f27815b;
+                try {
+                    Intent intent2 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    intent2.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+                    activity3.startActivity(intent2);
+                    return;
+                } catch (Exception e10) {
+                    FileLog.e(e10);
+                    return;
                 }
-                nf.f.s(this.f28025c, LocaleController.getString(R.string.BotWebViewStartPermissionLink));
-                return;
         }
     }
 }

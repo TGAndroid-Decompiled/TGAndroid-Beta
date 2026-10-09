@@ -1,35 +1,114 @@
 package s4;
-public final class z0 {
-    public int f46715a;
-    public int f46716b;
-    public int f46717c;
-    public int d;
-    public int f46718e;
-    public boolean f46719f;
-    public boolean f46720g;
-    public boolean h;
-    public boolean f46721i;
-    public boolean f46722j;
-    public boolean f46723k;
-    public int f46724l;
-    public long f46725m;
-    public int f46726n;
 
-    public final void a(int i10) {
-        if ((this.d & i10) != 0) {
+import android.graphics.PointF;
+import android.util.Log;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public abstract class z0 {
+    public int f47825a = -1;
+    public RecyclerView f47826b;
+    public p0 f47827c;
+    public boolean d;
+    public boolean f47828e;
+    public View f47829f;
+    public final y0 f47830g;
+    public boolean h;
+
+    public z0() {
+        ?? obj = new Object();
+        obj.d = -1;
+        obj.f47812f = false;
+        obj.f47813g = 0;
+        obj.f47808a = 0;
+        obj.f47809b = 0;
+        obj.f47810c = Integer.MIN_VALUE;
+        obj.f47811e = null;
+        this.f47830g = obj;
+    }
+
+    public static void b(PointF pointF) {
+        float f7 = pointF.x;
+        float f10 = pointF.y;
+        float sqrt = (float) Math.sqrt((f10 * f10) + (f7 * f7));
+        pointF.x /= sqrt;
+        pointF.y /= sqrt;
+    }
+
+    public PointF a(int i10) {
+        p0 p0Var = this.f47827c;
+        if (p0Var instanceof d0) {
+            return ((d0) p0Var).E0(i10);
+        }
+        Log.w("RecyclerView", "You should override computeScrollVectorForPosition when the LayoutManager does not implement " + d0.class.getCanonicalName());
+        return null;
+    }
+
+    public final void c(int i10, int i11) {
+        PointF a2;
+        RecyclerView recyclerView = this.f47826b;
+        if (this.f47825a == -1 || recyclerView == null) {
+            h();
+        }
+        if (this.d && this.f47829f == null && this.f47827c != null && (a2 = a(this.f47825a)) != null) {
+            float f7 = a2.x;
+            if (f7 != 0.0f || a2.y != 0.0f) {
+                recyclerView.t0((int) Math.signum(f7), (int) Math.signum(a2.y), null);
+            }
+        }
+        boolean z10 = false;
+        this.d = false;
+        View view = this.f47829f;
+        y0 y0Var = this.f47830g;
+        if (view != null) {
+            this.f47826b.getClass();
+            if (RecyclerView.S(view) == this.f47825a) {
+                View view2 = this.f47829f;
+                a1 a1Var = recyclerView.f3165u0;
+                g(view2, y0Var);
+                y0Var.a(recyclerView);
+                h();
+            } else {
+                Log.e("RecyclerView", "Passed over target position while smooth scrolling.");
+                this.f47829f = null;
+            }
+        }
+        if (this.f47828e) {
+            a1 a1Var2 = recyclerView.f3165u0;
+            d(i10, i11, y0Var);
+            if (y0Var.d >= 0) {
+                z10 = true;
+            }
+            y0Var.a(recyclerView);
+            if (z10 && this.f47828e) {
+                this.d = true;
+                recyclerView.f3161r0.a();
+            }
+        }
+    }
+
+    public abstract void d(int i10, int i11, y0 y0Var);
+
+    public abstract void e();
+
+    public abstract void f();
+
+    public abstract void g(View view, y0 y0Var);
+
+    public final void h() {
+        if (!this.f47828e) {
             return;
         }
-        throw new IllegalStateException("Layout state should be one of " + Integer.toBinaryString(i10) + " but it is " + Integer.toBinaryString(this.d));
-    }
-
-    public final int b() {
-        if (this.f46720g) {
-            return this.f46716b - this.f46717c;
+        this.f47828e = false;
+        f();
+        this.f47826b.f3165u0.f47606a = -1;
+        this.f47829f = null;
+        this.f47825a = -1;
+        this.d = false;
+        p0 p0Var = this.f47827c;
+        if (p0Var.f47764e == this) {
+            p0Var.f47764e = null;
         }
-        return this.f46718e;
-    }
-
-    public final String toString() {
-        return "State{mTargetPosition=" + this.f46715a + ", mData=null, mItemCount=" + this.f46718e + ", mIsMeasuring=" + this.f46721i + ", mPreviousLayoutItemCount=" + this.f46716b + ", mDeletedInvisibleItemCountSincePreviousLayout=" + this.f46717c + ", mStructureChanged=" + this.f46719f + ", mInPreLayout=" + this.f46720g + ", mRunSimpleAnimations=" + this.f46722j + ", mRunPredictiveAnimations=" + this.f46723k + '}';
+        this.f47827c = null;
+        this.f47826b = null;
     }
 }

@@ -1,17 +1,17 @@
 package i5;
 public final class d {
-    public static final d f11964a;
-    public static final d f11965b;
-    public static final d f11966c;
+    public static final d f12014a;
+    public static final d f12015b;
+    public static final d f12016c;
     public static final d[] d;
 
     static {
         ?? r02 = new Enum("DEFAULT", 0);
-        f11964a = r02;
+        f12014a = r02;
         ?? r12 = new Enum("VERY_LOW", 1);
-        f11965b = r12;
+        f12015b = r12;
         ?? r32 = new Enum("HIGHEST", 2);
-        f11966c = r32;
+        f12016c = r32;
         d = new d[]{r02, r12, r32};
     }
 

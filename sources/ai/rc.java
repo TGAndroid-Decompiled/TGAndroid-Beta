@@ -1,62 +1,29 @@
 package ai;
 
-import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.support.LongSparseLongArray;
-import org.telegram.tgnet.TLRPC;
-public final class rc {
-    public static final rc[] f1604f = new rc[4];
-    public final int f1605a;
-    public final LongSparseLongArray f1606b = new LongSparseLongArray();
-    public final ArrayList f1607c = new ArrayList();
-    public final ArrayList d = new ArrayList();
-    public final qc f1608e;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_stories;
+public final class rc implements Runnable {
+    public final sc f1681a;
 
-    public rc(int i10) {
-        new ArrayList();
-        this.f1608e = new qc(this);
-        this.f1605a = i10;
+    public rc(sc scVar) {
+        this.f1681a = scVar;
     }
 
-    public final void a(org.telegram.ui.Components.ja jaVar) {
-        long j3;
-        TLRPC.UserStatus userStatus;
-        long currentTimeMillis = System.currentTimeMillis();
-        ArrayList arrayList = this.f1607c;
-        arrayList.clear();
-        for (int i10 = 0; i10 < jaVar.getChildCount(); i10++) {
-            View childAt = jaVar.getChildAt(i10);
-            if (childAt instanceof org.telegram.ui.Cells.s2) {
-                j3 = ((org.telegram.ui.Cells.s2) childAt).getDialogId();
-            } else if (childAt instanceof org.telegram.ui.Cells.za) {
-                j3 = ((org.telegram.ui.Cells.za) childAt).getDialogId();
-            } else {
-                j3 = 0;
-            }
-            int i11 = this.f1605a;
-            LongSparseLongArray longSparseLongArray = this.f1606b;
-            if (j3 > 0) {
-                TLRPC.User user = MessagesController.getInstance(i11).getUser(Long.valueOf(j3));
-                if (user != null && !user.bot && !user.self && !user.contact && (userStatus = user.status) != null && !(userStatus instanceof TLRPC.TL_userStatusEmpty) && currentTimeMillis - longSparseLongArray.get(j3, 0L) > 3600000) {
-                    longSparseLongArray.put(j3, currentTimeMillis);
-                    arrayList.add(Long.valueOf(j3));
-                }
-            } else {
-                TLRPC.Chat chat = MessagesController.getInstance(i11).getChat(Long.valueOf(-j3));
-                if (ChatObject.isChannel(chat) && !ChatObject.isMonoForum(chat) && currentTimeMillis - longSparseLongArray.get(j3, 0L) > 3600000) {
-                    longSparseLongArray.put(j3, currentTimeMillis);
-                    arrayList.add(Long.valueOf(j3));
-                }
-            }
-        }
+    @Override
+    public final void run() {
+        sc scVar = this.f1681a;
+        int i10 = scVar.f1716a;
+        ArrayList arrayList = scVar.d;
         if (!arrayList.isEmpty()) {
-            this.d.addAll(arrayList);
-            qc qcVar = this.f1608e;
-            AndroidUtilities.cancelRunOnUIThread(qcVar);
-            AndroidUtilities.runOnUIThread(qcVar, 300L);
+            ArrayList arrayList2 = new ArrayList(arrayList);
+            arrayList.clear();
+            TL_stories.TL_stories_getPeerMaxIDs tL_stories_getPeerMaxIDs = new TL_stories.TL_stories_getPeerMaxIDs();
+            for (int i11 = 0; i11 < arrayList2.size(); i11++) {
+                tL_stories_getPeerMaxIDs.f20281id.add(MessagesController.getInstance(i10).getInputPeer(((Long) arrayList2.get(i11)).longValue()));
+            }
+            ConnectionsManager.getInstance(i10).sendRequestTyped(tL_stories_getPeerMaxIDs, new Object(), new m0(1, this, arrayList2));
         }
     }
 }

@@ -3,26 +3,26 @@ package bi;
 import android.view.KeyEvent;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.cm;
-import org.telegram.ui.Components.kj;
-import org.telegram.ui.Components.pi;
-import org.telegram.ui.Components.ry0;
-import s4.z0;
+import org.telegram.ui.Components.lj;
+import org.telegram.ui.Components.qi;
+import org.telegram.ui.Components.qm;
+import org.telegram.ui.Components.xy0;
+import s4.a1;
 public final class l extends s4.s {
     public final int Q;
     public final KeyEvent.Callback R;
 
-    public l(pi piVar, int i10, int i11) {
+    public l(qi qiVar, int i10, int i11) {
         super(i10);
         this.Q = i11;
-        this.R = piVar;
+        this.R = qiVar;
     }
 
     @Override
     public boolean Y0() {
         switch (this.Q) {
             case 3:
-                if (((ry0) this.R).W != null && LocaleController.isRTL) {
+                if (((xy0) this.R).W != null && LocaleController.isRTL) {
                     return true;
                 }
                 return false;
@@ -32,33 +32,33 @@ public final class l extends s4.s {
     }
 
     @Override
-    public int o0(int i10, of.e eVar, z0 z0Var) {
+    public int o0(int i10, pf.e eVar, a1 a1Var) {
         switch (this.Q) {
             case 0:
-                if (((u) this.R).f3875b) {
+                if (((u) this.R).f3924b) {
                     i10 = 0;
                 }
-                return super.o0(i10, eVar, z0Var);
+                return super.o0(i10, eVar, a1Var);
             default:
-                return super.o0(i10, eVar, z0Var);
+                return super.o0(i10, eVar, a1Var);
         }
     }
 
     @Override
-    public void v0(RecyclerView recyclerView, z0 z0Var, int i10) {
+    public void v0(RecyclerView recyclerView, a1 a1Var, int i10) {
         switch (this.Q) {
             case 1:
-                kj kjVar = new kj(this, recyclerView.getContext());
-                kjVar.f46706a = i10;
-                w0(kjVar);
+                lj ljVar = new lj(this, recyclerView.getContext());
+                ljVar.f47825a = i10;
+                w0(ljVar);
                 return;
             case 2:
-                cm cmVar = new cm(this, recyclerView.getContext());
-                cmVar.f46706a = i10;
-                w0(cmVar);
+                qm qmVar = new qm(this, recyclerView.getContext());
+                qmVar.f47825a = i10;
+                w0(qmVar);
                 return;
             default:
-                super.v0(recyclerView, z0Var, i10);
+                super.v0(recyclerView, a1Var, i10);
                 return;
         }
     }
@@ -77,10 +77,10 @@ public final class l extends s4.s {
         }
     }
 
-    public l(ry0 ry0Var) {
+    public l(xy0 xy0Var) {
         super(5);
         this.Q = 3;
-        this.R = ry0Var;
+        this.R = xy0Var;
     }
 
     public l(u uVar) {

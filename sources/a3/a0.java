@@ -18,7 +18,7 @@ public final class a0 {
     public long h = -9223372036854775807L;
     public long f69i = -9223372036854775807L;
     public float f71k = 1.0f;
-    public e2.x f72l = e2.x.f8596a;
+    public e2.x f72l = e2.x.f8590a;
 
     public a0(Context context, n nVar, long j3) {
         this.f63a = nVar;
@@ -26,7 +26,7 @@ public final class a0 {
         this.f64b = new e0(context);
     }
 
-    public final int a(long r28, long r30, long r32, long r34, boolean r36, boolean r37, a3.z r38) {
+    public final int a(long r27, long r29, long r31, long r33, boolean r35, boolean r36, a3.z r37) {
         throw new UnsupportedOperationException("Method not decompiled: a3.a0.a(long, long, long, long, boolean, boolean, a3.z):int");
     }
 
@@ -62,7 +62,7 @@ public final class a0 {
     public final void d() {
         this.d = true;
         this.f72l.getClass();
-        this.f68g = e2.d0.Q(SystemClock.elapsedRealtime());
+        this.f68g = e2.d0.P(SystemClock.elapsedRealtime());
         e0 e0Var = this.f64b;
         e0Var.d = true;
         e0Var.f99m = 0L;

@@ -18,57 +18,62 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 public final class a implements o {
-    public static final int[] f8058s = {13, 14, 16, 18, 20, 21, 27, 32, 6, 7, 6, 6, 1, 1, 1, 1};
-    public static final int[] f8059t = {18, 24, 33, 37, 41, 47, 51, 59, 61, 6, 1, 1, 1, 1, 1, 1};
-    public static final byte[] f8060u;
+    public static final int[] f8107s = {13, 14, 16, 18, 20, 21, 27, 32, 6, 7, 6, 6, 1, 1, 1, 1};
+    public static final int[] f8108t = {18, 24, 33, 37, 41, 47, 51, 59, 61, 6, 1, 1, 1, 1, 1, 1};
+    public static final byte[] f8109u;
     public static final byte[] v;
-    public final int f8062b;
-    public final n f8063c;
+    public final int f8111b;
+    public final n f8112c;
     public boolean d;
-    public long f8064e;
-    public int f8065f;
-    public int f8066g;
+    public long f8113e;
+    public int f8114f;
+    public int f8115g;
     public long h;
-    public int f8068j;
-    public long f8069k;
-    public q f8070l;
-    public h0 f8071m;
-    public h0 f8072n;
-    public b0 f8073o;
-    public boolean f8074p;
-    public long f8075q;
-    public boolean f8076r;
-    public final byte[] f8061a = new byte[1];
-    public int f8067i = -1;
+    public int f8117j;
+    public long f8118k;
+    public q f8119l;
+    public h0 f8120m;
+    public h0 f8121n;
+    public b0 f8122o;
+    public boolean f8123p;
+    public long f8124q;
+    public boolean f8125r;
+    public final byte[] f8110a = new byte[1];
+    public int f8116i = -1;
 
     static {
-        String str = d0.f8538a;
+        String str = d0.f8532a;
         Charset charset = StandardCharsets.UTF_8;
-        f8060u = "#!AMR\n".getBytes(charset);
+        f8109u = "#!AMR\n".getBytes(charset);
         v = "#!AMR-WB\n".getBytes(charset);
     }
 
     public a(int i10) {
-        this.f8062b = i10;
+        this.f8111b = i10;
         n nVar = new n();
-        this.f8063c = nVar;
-        this.f8072n = nVar;
+        this.f8112c = nVar;
+        this.f8121n = nVar;
     }
 
-    public final int a(p pVar) {
+    @Override
+    public final boolean a(p pVar) {
+        return d(pVar);
+    }
+
+    public final int b(p pVar) {
         String str;
         boolean z10;
-        pVar.m();
-        byte[] bArr = this.f8061a;
-        pVar.b(0, 1, bArr);
+        pVar.q();
+        byte[] bArr = this.f8110a;
+        pVar.a(0, 1, bArr);
         byte b10 = bArr[0];
         if ((b10 & 131) <= 0) {
             int i10 = (b10 >> 3) & 15;
             if (i10 >= 0 && i10 <= 15 && (((z10 = this.d) && (i10 < 10 || i10 > 13)) || (!z10 && (i10 < 12 || i10 > 14)))) {
                 if (z10) {
-                    return f8059t[i10];
+                    return f8108t[i10];
                 }
-                return f8058s[i10];
+                return f8107s[i10];
             }
             StringBuilder sb2 = new StringBuilder("Illegal AMR ");
             if (this.d) {
@@ -84,80 +89,75 @@ public final class a implements o {
         throw s0.a(null, "Invalid padding bits for frame header " + ((int) b10));
     }
 
-    @Override
-    public final boolean b(p pVar) {
-        return d(pVar);
-    }
-
     public final boolean d(p pVar) {
-        pVar.m();
-        byte[] bArr = f8060u;
+        pVar.q();
+        byte[] bArr = f8109u;
         byte[] bArr2 = new byte[bArr.length];
-        pVar.b(0, bArr.length, bArr2);
+        pVar.a(0, bArr.length, bArr2);
         if (Arrays.equals(bArr2, bArr)) {
             this.d = false;
-            pVar.o(bArr.length);
+            pVar.r(bArr.length);
             return true;
         }
-        pVar.m();
+        pVar.q();
         byte[] bArr3 = v;
         byte[] bArr4 = new byte[bArr3.length];
-        pVar.b(0, bArr3.length, bArr4);
+        pVar.a(0, bArr3.length, bArr4);
         if (!Arrays.equals(bArr4, bArr3)) {
             return false;
         }
         this.d = true;
-        pVar.o(bArr3.length);
+        pVar.r(bArr3.length);
         return true;
     }
 
     @Override
     public final void g(q qVar) {
-        this.f8070l = qVar;
-        h0 Z1 = qVar.Z1(0, 1);
-        this.f8071m = Z1;
-        this.f8072n = Z1;
-        qVar.e1();
+        this.f8119l = qVar;
+        h0 f22 = qVar.f2(0, 1);
+        this.f8120m = f22;
+        this.f8121n = f22;
+        qVar.k1();
     }
 
     @Override
     public final void h(long j3, long j10) {
-        long f7;
-        this.f8064e = 0L;
-        this.f8065f = 0;
-        this.f8066g = 0;
-        this.f8075q = j10;
-        b0 b0Var = this.f8073o;
+        long i10;
+        this.f8113e = 0L;
+        this.f8114f = 0;
+        this.f8115g = 0;
+        this.f8124q = j10;
+        b0 b0Var = this.f8122o;
         if (b0Var instanceof y) {
             y yVar = (y) b0Var;
-            c5.b0 b0Var2 = yVar.f4133b;
-            if (b0Var2.f4153b == 0) {
-                f7 = -9223372036854775807L;
+            c5.b0 b0Var2 = yVar.f4182b;
+            if (b0Var2.f4203b == 0) {
+                i10 = -9223372036854775807L;
             } else {
-                f7 = b0Var2.f(d0.b(yVar.f4132a, j3));
+                i10 = b0Var2.i(d0.b(yVar.f4181a, j3));
             }
-            this.f8069k = f7;
-            if (Math.abs(this.f8075q - f7) < 20000) {
+            this.f8118k = i10;
+            if (Math.abs(this.f8124q - i10) < 20000) {
                 return;
             }
-            this.f8074p = true;
-            this.f8072n = this.f8063c;
+            this.f8123p = true;
+            this.f8121n = this.f8112c;
         } else if (j3 != 0 && (b0Var instanceof k)) {
             k kVar = (k) b0Var;
-            this.f8069k = (Math.max(0L, j3 - kVar.f4084b) * 8000000) / kVar.f4086e;
+            this.f8118k = (Math.max(0L, j3 - kVar.f4133b) * 8000000) / kVar.f4135e;
         } else {
-            this.f8069k = 0L;
+            this.f8118k = 0L;
         }
     }
 
     @Override
     public final List i() {
-        g0 g0Var = i0.f8758b;
-        return a1.f8721e;
+        g0 g0Var = i0.f8752b;
+        return a1.f8715e;
     }
 
     @Override
-    public final int m(c3.p r19, c3.s r20) {
+    public final int m(c3.p r18, c3.s r19) {
         throw new UnsupportedOperationException("Method not decompiled: d3.a.m(c3.p, c3.s):int");
     }
 

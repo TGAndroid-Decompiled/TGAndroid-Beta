@@ -1,23 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class k50 extends s50 {
-    public final f60 d;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class k50 {
+    public final TLObject f27847a;
+    public TLRPC.User f27848b;
+    public final int f27849c;
+    public final boolean d;
+    public boolean f27850e;
 
-    public k50(f60 f60Var, Context context) {
-        super(f60Var, context);
-        this.d = f60Var;
-    }
-
-    @Override
-    public final void setAlpha(float f7) {
-        super.setAlpha(f7);
-        this.d.invalidate();
-    }
-
-    @Override
-    public final void setRotationY(float f7) {
-        super.setRotationY(f7);
-        this.d.invalidate();
+    public k50(int i10, TLObject tLObject) {
+        boolean z10;
+        this.f27847a = tLObject;
+        this.f27849c = i10;
+        if ((tLObject instanceof TLRPC.User) && ((TLRPC.User) tLObject).self) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.d = z10;
     }
 }

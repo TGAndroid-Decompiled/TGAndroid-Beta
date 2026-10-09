@@ -1,37 +1,25 @@
 package org.telegram.ui.Components;
+public final class y31 {
+    public static final y31 f33115a;
+    public static final y31 f33116b;
+    public static final y31 f33117c;
+    public static final y31[] d;
 
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.NotificationCenter;
-public final class y31 implements Runnable {
-    public final int f33166a;
-    public final MessageObject f33167b;
-    public final long f33168c;
-    public final String d;
-
-    public y31(String str, MessageObject messageObject, long j3, int i10) {
-        this.f33166a = i10;
-        this.f33167b = messageObject;
-        this.f33168c = j3;
-        this.d = str;
+    static {
+        ?? r02 = new Enum("TOP", 0);
+        f33115a = r02;
+        ?? r12 = new Enum("LEFT", 1);
+        f33116b = r12;
+        ?? r32 = new Enum("BOTTOM", 2);
+        f33117c = r32;
+        d = new y31[]{r02, r12, r32};
     }
 
-    @Override
-    public final void run() {
-        int i10 = this.f33166a;
-        String str = this.d;
-        long j3 = this.f33168c;
-        MessageObject messageObject = this.f33167b;
-        switch (i10) {
-            case 0:
-                NotificationCenter notificationCenter = NotificationCenter.getInstance(messageObject.currentAccount);
-                int i11 = NotificationCenter.voiceTranscriptionUpdate;
-                Long valueOf = Long.valueOf(j3);
-                Boolean bool = Boolean.TRUE;
-                notificationCenter.lambda$postNotificationNameOnUIThread$1(i11, messageObject, valueOf, str, bool, bool);
-                return;
-            default:
-                d41.g(messageObject, j3, str);
-                return;
-        }
+    public static y31 valueOf(String str) {
+        return (y31) Enum.valueOf(y31.class, str);
+    }
+
+    public static y31[] values() {
+        return (y31[]) d.clone();
     }
 }

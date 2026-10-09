@@ -4,63 +4,63 @@ import android.view.View;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.d5;
-import org.telegram.ui.Components.p6;
-import org.telegram.ui.Components.pw0;
-public final class u implements d5, pw0, vg.f, vg.k {
-    public final a0 f47115a;
+import org.telegram.ui.Components.f5;
+import org.telegram.ui.Components.r6;
+import org.telegram.ui.Components.vw0;
+public final class u implements f5, vw0, vg.f, vg.k {
+    public final a0 f48412a;
 
     public u(a0 a0Var) {
-        this.f47115a = a0Var;
+        this.f48412a = a0Var;
     }
 
     @Override
-    public void K(int i10, int i11, boolean z10) {
-        a0 a0Var = this.f47115a;
+    public void J(int i10, int i11, boolean z10) {
+        a0 a0Var = this.f48412a;
         a0Var.m0 = i10 * 1000;
-        a0Var.Z(false, true);
+        a0Var.b0(false, true);
     }
 
     @Override
-    public void j(int i10) {
+    public void g(int i10) {
         String str;
         int i11;
         String string;
         String str2;
         String formatPluralString;
-        a0 a0Var = this.f47115a;
-        int i12 = a0Var.f46972h0;
-        int i13 = vg.d.f48308s;
+        a0 a0Var = this.f48412a;
+        int i12 = a0Var.f48271h0;
+        int i13 = vg.d.v;
         if (i12 == 2) {
-            a0Var.f46977n0 = i10;
+            a0Var.f48276n0 = i10;
         } else {
-            a0Var.f46978o0 = i10;
+            a0Var.f48277o0 = i10;
         }
-        a0Var.f46980q0.f48280a.b(a0Var.T(), true);
-        if (a0Var.f46972h0 == 3) {
-            a0Var.Z(true, true);
+        a0Var.f48279q0.f49561a.b(a0Var.W(), true);
+        if (a0Var.f48271h0 == 3) {
+            a0Var.b0(true, true);
         } else {
-            a0Var.Z(false, false);
+            a0Var.b0(false, false);
         }
-        ug.b bVar = a0Var.f46971g0;
-        int T = a0Var.T();
-        for (int i14 = 0; i14 < bVar.f47654f.getChildCount(); i14++) {
-            View childAt = bVar.f47654f.getChildAt(i14);
+        ug.b bVar = a0Var.f48270g0;
+        int W = a0Var.W();
+        for (int i14 = 0; i14 < bVar.f48910f.getChildCount(); i14++) {
+            View childAt = bVar.f48910f.getChildAt(i14);
             if (childAt instanceof vg.x) {
-                p6 p6Var = ((vg.x) childAt).f48356r;
-                if (T <= 0) {
+                r6 r6Var = ((vg.x) childAt).f49636r;
+                if (W <= 0) {
                     formatPluralString = "";
                 } else {
-                    formatPluralString = LocaleController.formatPluralString("BoostingBoostsCountTitle", T, Integer.valueOf(T));
+                    formatPluralString = LocaleController.formatPluralString("BoostingBoostsCountTitle", W, Integer.valueOf(W));
                 }
-                p6Var.a();
-                p6Var.c(formatPluralString, true, true);
+                r6Var.a();
+                r6Var.c(formatPluralString, true, true);
             }
             if (childAt instanceof vg.g) {
                 vg.g gVar = (vg.g) childAt;
                 int F = bVar.F(gVar.getChat());
-                boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(gVar.v);
-                if (gVar.f48312w) {
+                boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(gVar.f49592w);
+                if (gVar.f49593x) {
                     if (F >= 1) {
                         if (isChannelAndNotMegaGroup) {
                             str2 = "Subscribers";
@@ -83,12 +83,12 @@ public final class u implements d5, pw0, vg.f, vg.k {
                     } else {
                         str = "BoostingGroupWillReceiveBoost";
                     }
-                    gVar.setSubtitle(LocaleController.formatPluralString(str, T, new Object[0]));
+                    gVar.setSubtitle(LocaleController.formatPluralString(str, W, new Object[0]));
                 }
             }
         }
         bVar.m(8);
-        bVar.q(bVar.f47653e.size() - 12, 12);
+        bVar.q(bVar.f48909e.size() - 12, 12);
     }
 
     @Override

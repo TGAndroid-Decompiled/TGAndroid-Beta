@@ -1,214 +1,121 @@
 package ci;
 
-import android.content.Context;
-import android.view.View;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.ConnectionsManager;
+import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import org.telegram.tgnet.TLRPC;
-public final class k9 implements View.OnClickListener {
-    public final int f5363a;
-    public final x9 f5364b;
+public final class k9 extends og.a {
+    public int f5325c;
+    public Drawable d;
+    public CharSequence f5326e;
+    public CharSequence f5327f;
+    public TLRPC.User f5328g;
+    public TLRPC.Chat h;
+    public int f5329i;
+    public int f5330j;
+    public boolean f5331k;
+    public boolean f5332l;
+    public boolean f5333m;
+    public boolean f5334n;
+    public int f5335o;
+    public int f5336p;
+    public int f5337q;
 
-    public k9(x9 x9Var, int i10) {
-        this.f5363a = i10;
-        this.f5364b = x9Var;
+    public k9(int i10, boolean z10) {
+        super(i10, z10);
+        this.f5336p = -1;
     }
 
-    @Override
-    public final void onClick(View view) {
-        int i10;
-        int i11;
-        int i12;
-        int i13;
-        ca caVar;
-        int i14;
-        int i15;
-        int i16;
-        int i17;
-        int i18;
-        org.telegram.ui.ActionBar.d6 d6Var;
-        switch (this.f5363a) {
-            case 0:
-                x9 x9Var = this.f5364b;
-                HashMap hashMap = x9Var.d;
-                ArrayList arrayList = x9Var.f6305c;
-                ea eaVar = x9Var.W;
-                d dVar = x9Var.v;
-                if (!dVar.N) {
-                    i10 = ((org.telegram.ui.ActionBar.f3) eaVar).currentAccount;
-                    HashMap hashMap2 = eaVar.f5052e;
-                    ArrayList arrayList2 = eaVar.d;
-                    HashMap hashMap3 = eaVar.f5055r;
-                    ArrayList arrayList3 = eaVar.f5054n;
-                    MessagesController messagesController = MessagesController.getInstance(i10);
-                    int i19 = x9Var.f6303a;
-                    if (i19 == 5) {
-                        m9 m9Var = eaVar.V;
-                        if (m9Var != null) {
-                            m9Var.run(arrayList);
-                        }
-                        eaVar.dismiss();
-                        return;
-                    } else if (i19 == 1) {
-                        TLRPC.TL_editCloseFriends tL_editCloseFriends = new TLRPC.TL_editCloseFriends();
-                        tL_editCloseFriends.f20097id.addAll(arrayList);
-                        dVar.setLoading(true);
-                        i18 = ((org.telegram.ui.ActionBar.f3) eaVar).currentAccount;
-                        ConnectionsManager.getInstance(i18).sendRequest(tL_editCloseFriends, new ai.v1(7, x9Var, messagesController));
-                        return;
-                    } else if (i19 == 0) {
-                        int i20 = eaVar.N;
-                        if (i20 == 3) {
-                            HashSet l1 = ea.l1(arrayList3, hashMap3);
-                            int i21 = eaVar.N;
-                            i17 = ((org.telegram.ui.ActionBar.f3) eaVar).currentAccount;
-                            caVar = new ca(i21, i17, new ArrayList(l1));
-                            ArrayList arrayList4 = caVar.f4839c;
-                            arrayList4.clear();
-                            arrayList4.addAll(arrayList3);
-                            HashMap hashMap4 = caVar.d;
-                            hashMap4.clear();
-                            hashMap4.putAll(hashMap3);
-                        } else if (i20 == 2) {
-                            i16 = ((org.telegram.ui.ActionBar.f3) eaVar).currentAccount;
-                            caVar = new ca(i20, i16, eaVar.h);
-                        } else if (i20 != 4) {
-                            i14 = ((org.telegram.ui.ActionBar.f3) eaVar).currentAccount;
-                            caVar = new ca(i20, i14, (ArrayList) null);
-                        } else {
-                            HashSet l12 = ea.l1(arrayList2, hashMap2);
-                            int i22 = eaVar.N;
-                            i15 = ((org.telegram.ui.ActionBar.f3) eaVar).currentAccount;
-                            caVar = new ca(i22, i15, new ArrayList(l12));
-                            ArrayList arrayList5 = caVar.f4839c;
-                            arrayList5.clear();
-                            arrayList5.addAll(arrayList2);
-                            HashMap hashMap5 = caVar.d;
-                            hashMap5.clear();
-                            hashMap5.putAll(hashMap2);
-                        }
-                        eaVar.g1(caVar, new ai.r5(eaVar, 1), false);
-                        return;
-                    } else if (i19 == 2) {
-                        if (eaVar.Z) {
-                            eaVar.f1();
-                            i13 = ((org.telegram.ui.ActionBar.f3) eaVar).currentAccount;
-                            eaVar.g1(new ca(2, i13, arrayList), new ai.r5(eaVar, 1), false);
-                            return;
-                        }
-                        eaVar.f1();
-                        eaVar.f5048b.E(0);
-                        return;
-                    } else if (i19 == 3) {
-                        if (eaVar.Z) {
-                            HashSet l13 = ea.l1(arrayList, hashMap);
-                            if (!l13.isEmpty()) {
-                                eaVar.f1();
-                                i12 = ((org.telegram.ui.ActionBar.f3) eaVar).currentAccount;
-                                ca caVar2 = new ca(3, i12, new ArrayList(l13));
-                                ArrayList arrayList6 = caVar2.f4839c;
-                                arrayList6.clear();
-                                arrayList6.addAll(arrayList);
-                                HashMap hashMap6 = caVar2.d;
-                                hashMap6.clear();
-                                hashMap6.putAll(hashMap);
-                                eaVar.g1(caVar2, new l9(x9Var, 0), false);
-                                return;
+    public static k9 b(String str, CharSequence charSequence, int i10) {
+        k9 k9Var = new k9(9, false);
+        k9Var.f5326e = str;
+        k9Var.f5327f = charSequence;
+        k9Var.f5337q = i10;
+        return k9Var;
+    }
+
+    public static k9 c() {
+        return new k9(0, false);
+    }
+
+    public static k9 d() {
+        k9 k9Var = new k9(-1, false);
+        k9Var.f5335o = -1;
+        return k9Var;
+    }
+
+    public static k9 e() {
+        return new k9(1, false);
+    }
+
+    public static k9 f() {
+        return new k9(2, false);
+    }
+
+    public static k9 g(CharSequence charSequence) {
+        k9 k9Var = new k9(6, false);
+        k9Var.f5326e = charSequence;
+        return k9Var;
+    }
+
+    public static k9 h(int i10, int i11, boolean z10) {
+        k9 k9Var = new k9(3, false);
+        k9Var.f5329i = i10;
+        k9Var.f5331k = z10;
+        k9Var.f5330j = i11;
+        return k9Var;
+    }
+
+    public static k9 i(TLRPC.User user, boolean z10, boolean z11) {
+        k9 k9Var = new k9(3, true);
+        k9Var.f5328g = user;
+        k9Var.f5331k = z10;
+        k9Var.f5332l = z11;
+        return k9Var;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj != null && k9.class == obj.getClass()) {
+                k9 k9Var = (k9) obj;
+                int i10 = this.f17125a;
+                if (i10 == k9Var.f17125a) {
+                    if (i10 != -1 || (this.f5335o == k9Var.f5335o && this.f5336p == k9Var.f5336p)) {
+                        if (i10 != 3 || (this.f5328g == k9Var.f5328g && this.h == k9Var.h && this.f5329i == k9Var.f5329i && this.f5330j == k9Var.f5330j && this.f5331k == k9Var.f5331k && this.f5333m == k9Var.f5333m && this.f5334n == k9Var.f5334n)) {
+                            if (i10 != 0 || this.f5325c == k9Var.f5325c) {
+                                if (i10 != 2 || TextUtils.equals(this.f5326e, k9Var.f5326e)) {
+                                    if (this.f17125a != 8 || TextUtils.equals(this.f5326e, k9Var.f5326e)) {
+                                        int i11 = this.f17125a;
+                                        if ((i11 != 4 && i11 != 11) || (TextUtils.equals(this.f5326e, k9Var.f5326e) && TextUtils.equals(this.f5327f, k9Var.f5327f))) {
+                                            if (this.f17125a != 6 || (TextUtils.equals(this.f5326e, k9Var.f5326e) && this.f5325c == k9Var.f5325c)) {
+                                                if (this.f17125a != 7 || (this.f5325c == k9Var.f5325c && TextUtils.equals(this.f5326e, k9Var.f5326e) && this.f5331k == k9Var.f5331k)) {
+                                                    if (this.f17125a != 9 || (this.f5337q == k9Var.f5337q && this.d == k9Var.d && TextUtils.equals(this.f5326e, k9Var.f5326e) && TextUtils.equals(this.f5327f, k9Var.f5327f))) {
+                                                        if (this.f17125a != 10 || this.f5337q == k9Var.f5337q) {
+                                                            return true;
+                                                        }
+                                                        return false;
+                                                    }
+                                                    return false;
+                                                }
+                                                return false;
+                                            }
+                                            return false;
+                                        }
+                                        return false;
+                                    }
+                                    return false;
+                                }
+                                return false;
                             }
-                            return;
-                        } else if (!ea.l1(arrayList, hashMap).isEmpty()) {
-                            eaVar.N = 3;
-                            eaVar.f1();
-                            eaVar.f5048b.E(0);
-                            return;
-                        } else {
-                            return;
+                            return false;
                         }
-                    } else if (i19 == 6) {
-                        HashSet l14 = ea.l1(arrayList, hashMap);
-                        dVar.setLoading(true);
-                        i11 = ((org.telegram.ui.ActionBar.f3) eaVar).currentAccount;
-                        ai.l9 storiesController = MessagesController.getInstance(i11).getStoriesController();
-                        l9 l9Var = new l9(x9Var, 1);
-                        int i23 = storiesController.f1290a;
-                        TLRPC.TL_contacts_setBlocked tL_contacts_setBlocked = new TLRPC.TL_contacts_setBlocked();
-                        tL_contacts_setBlocked.my_stories_from = true;
-                        HashSet hashSet = storiesController.L;
-                        tL_contacts_setBlocked.limit = hashSet.size();
-                        int size = storiesController.N - hashSet.size();
-                        storiesController.N = size;
-                        if (size < 0) {
-                            storiesController.N = 0;
-                        }
-                        hashSet.clear();
-                        Iterator it = l14.iterator();
-                        while (it.hasNext()) {
-                            Long l4 = (Long) it.next();
-                            TLRPC.InputPeer inputPeer = MessagesController.getInstance(i23).getInputPeer(l4.longValue());
-                            if (inputPeer != null && !(inputPeer instanceof TLRPC.TL_inputPeerEmpty)) {
-                                hashSet.add(l4);
-                                tL_contacts_setBlocked.f20094id.add(inputPeer);
-                            }
-                        }
-                        storiesController.N = hashSet.size() + storiesController.N;
-                        tL_contacts_setBlocked.limit = Math.max(tL_contacts_setBlocked.limit, hashSet.size());
-                        ConnectionsManager.getInstance(i23).sendRequest(tL_contacts_setBlocked, new ai.n8(l9Var, 0));
-                        return;
-                    } else {
-                        eaVar.N = i19;
-                        eaVar.f1();
-                        eaVar.f5048b.E(0);
-                        return;
+                        return false;
                     }
+                    return false;
                 }
-                return;
-            case 1:
-                x9 x9Var2 = this.f5364b;
-                ea eaVar2 = x9Var2.W;
-                if (eaVar2.O) {
-                    eaVar2.M = 5;
-                    eaVar2.f5048b.E(1);
-                    return;
-                }
-                Context context = x9Var2.getContext();
-                d6Var = ((org.telegram.ui.ActionBar.f3) eaVar2).resourcesProvider;
-                ea eaVar3 = new ea(context, d6Var);
-                eaVar3.V = new m9(x9Var2, 1);
-                eaVar3.Q = eaVar2.Q;
-                eaVar3.show();
-                return;
-            default:
-                x9 x9Var3 = this.f5364b;
-                HashMap hashMap7 = x9Var3.d;
-                a0.i iVar = x9Var3.f6304b;
-                ArrayList arrayList7 = x9Var3.f6305c;
-                int size2 = arrayList7.size();
-                int i24 = 0;
-                while (i24 < size2) {
-                    Object obj = arrayList7.get(i24);
-                    i24++;
-                    iVar.k(Boolean.FALSE, ((Long) obj).longValue());
-                }
-                for (ArrayList arrayList8 : hashMap7.values()) {
-                    int size3 = arrayList8.size();
-                    int i25 = 0;
-                    while (i25 < size3) {
-                        Object obj2 = arrayList8.get(i25);
-                        i25++;
-                        iVar.k(Boolean.FALSE, ((Long) obj2).longValue());
-                    }
-                }
-                arrayList7.clear();
-                hashMap7.clear();
-                x9Var3.W.J.clear();
-                x9Var3.f6312x.f4780c.a();
-                x9Var3.f(true);
-                x9Var3.e(true);
-                return;
+                return false;
+            }
+            return false;
         }
+        return true;
     }
 }

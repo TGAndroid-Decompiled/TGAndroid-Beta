@@ -1,6 +1,24 @@
 package w7;
+
+import com.google.android.gms.tasks.Task;
+import java.util.concurrent.CancellationException;
 public abstract class i {
-    public static final java.lang.Object a(java.util.List r6, k1.t r7, kd.c r8) {
-        throw new UnsupportedOperationException("Method not decompiled: w7.i.a(java.util.List, k1.t, kd.c):java.lang.Object");
+    public static final Object a(Task task, ld.c cVar) {
+        if (task.isComplete()) {
+            Exception exception = task.getException();
+            if (exception == null) {
+                if (!task.isCanceled()) {
+                    return task.getResult();
+                }
+                throw new CancellationException("Task " + task + " was cancelled normally.");
+            }
+            throw exception;
+        }
+        ae.m mVar = new ae.m(1, h.b(cVar));
+        mVar.s();
+        task.addOnCompleteListener(ke.a.f14792a, new pb.c(mVar, 28));
+        Object r10 = mVar.r();
+        kd.a aVar = kd.a.f14784a;
+        return r10;
     }
 }

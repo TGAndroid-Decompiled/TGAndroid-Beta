@@ -1,32 +1,25 @@
 package org.telegram.ui.Components;
 
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import org.telegram.messenger.ImageReceiver;
-public final class ok0 extends ImageReceiver {
-    public final int f29501a;
+import androidx.recyclerview.widget.RecyclerView;
+public final class ok0 extends s4.t0 {
+    public final s4.d0 f29506a;
+    public final uk0 f29507b;
 
-    public ok0(int i10, View view) {
-        super(view);
-        this.f29501a = i10;
+    public ok0(uk0 uk0Var, s4.d0 d0Var) {
+        this.f29507b = uk0Var;
+        this.f29506a = d0Var;
     }
 
     @Override
-    public final boolean setImageBitmapByKey(Drawable drawable, String str, int i10, boolean z10, int i11) {
-        switch (this.f29501a) {
-            case 0:
-                if (drawable instanceof kj0) {
-                    ((kj0) drawable).N(0, false, true);
-                }
-                return super.setImageBitmapByKey(drawable, str, i10, z10, i11);
-            default:
-                boolean imageBitmapByKey = super.setImageBitmapByKey(drawable, str, i10, z10, i11);
-                if (imageBitmapByKey && (drawable instanceof kj0)) {
-                    kj0 kj0Var = (kj0) drawable;
-                    kj0Var.N(0, false, true);
-                    kj0Var.stop();
-                }
-                return imageBitmapByKey;
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        int loadCount;
+        uk0 uk0Var = this.f29507b;
+        if (uk0Var.f31529w && uk0Var.f31530x && !uk0Var.v) {
+            int N0 = this.f29506a.N0();
+            loadCount = uk0Var.getLoadCount();
+            if (N0 >= (uk0Var.f31525f.h() - 1) - loadCount) {
+                uk0Var.c();
+            }
         }
     }
 }

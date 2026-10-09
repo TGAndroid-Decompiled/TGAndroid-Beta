@@ -1,232 +1,168 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.HorizontalScrollView;
-public final class hd0 extends AnimatorListenerAdapter {
-    public final int f27207a;
-    public final Object f27208b;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Color;
+import android.graphics.ComposeShader;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.RectF;
+import android.os.Build;
+import org.telegram.messenger.Utilities;
+public final class hd0 {
+    public static final float[] f27040k = new float[4];
+    public static final Matrix f27041l = new Matrix();
+    public final fd0 d;
+    public int f27045e;
+    public int f27046f;
+    public int f27047g;
+    public int h;
+    public final aa.a f27042a = new aa.a(new f2(23));
+    public final a5.a f27043b = new a5.a(14, (byte) 0);
+    public final y10 f27044c = new y10();
+    public final Matrix f27048i = new Matrix();
+    public final RectF f27049j = new RectF();
 
-    public hd0(Object obj, int i10) {
-        this.f27207a = i10;
-        this.f27208b = obj;
-    }
-
-    @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f27207a) {
-            case 4:
-                ((ch0) this.f27208b).h = null;
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
+    public hd0() {
+        if (Build.VERSION.SDK_INT >= 33) {
+            this.d = new fd0();
+        } else {
+            this.d = null;
         }
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f27207a) {
-            case 0:
-                NumberTextView numberTextView = (NumberTextView) this.f27208b;
-                numberTextView.d = null;
-                numberTextView.f24205b.clear();
-                return;
-            case 1:
-                ee0 ee0Var = (ee0) this.f27208b;
-                ee0Var.setVisibility(8);
-                ee0Var.h();
-                ee0Var.P = 0.0f;
-                ee0Var.f(0.0f);
-                ee0Var.setAlpha(0.0f);
-                return;
-            case 2:
-                AnimatorSet animatorSet = (AnimatorSet) this.f27208b;
-                if (animatorSet != null) {
-                    animatorSet.start();
-                    return;
-                }
-                return;
-            case 3:
-                kf kfVar = (kf) this.f27208b;
-                AnimatorSet animatorSet2 = (AnimatorSet) ((ci.i9) kfVar.f28175c).f5177e;
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    ((ci.i9) kfVar.f28175c).f5177e = null;
-                    return;
-                }
-                return;
-            case 4:
-                return;
-            case 5:
-                hh0 hh0Var = (hh0) this.f27208b;
-                hh0Var.f27233f = false;
-                hh0Var.F = null;
-                return;
-            case 6:
-                ((vi0) this.f27208b).b();
-                return;
-            case 7:
-                ((ck0) this.f27208b).h.setVisibility(8);
-                return;
-            case 8:
-                zl0 zl0Var = (zl0) this.f27208b;
-                View view = zl0Var.f33534c1;
-                if (view != null) {
-                    view.setVisibility(8);
-                }
-                if (zl0Var.b1()) {
-                    zl0Var.invalidate();
-                    return;
-                }
-                return;
-            case 9:
-                an0 an0Var = (an0) this.f27208b;
-                if (an0Var.f24673s != null) {
-                    an0Var.j();
-                    an0Var.f24673s.invalidate();
-                    an0Var.f24656e.invalidate();
-                    an0Var.invalidate();
-                    an0Var.f24673s = null;
-                    return;
-                }
-                return;
-            case 10:
-                ((en0) this.f27208b).d = false;
-                return;
-            case 11:
-                ((qo0) this.f27208b).O0.setVisibility(8);
-                return;
-            case 12:
-                qp0 qp0Var = (qp0) this.f27208b;
-                if (animator == qp0Var.h) {
-                    qp0Var.h = null;
-                    return;
-                }
-                return;
-            case 13:
-                ((ar0) this.f27208b).f24719e = null;
-                return;
-            case 14:
-                hr0 hr0Var = (hr0) this.f27208b;
-                if (hr0Var.getParent() != null) {
-                    ((ViewGroup) hr0Var.getParent()).removeView(hr0Var);
-                    return;
-                }
-                return;
-            case 15:
-                lt0 lt0Var = (lt0) this.f27208b;
-                View view2 = lt0Var.f28538c;
-                view2.setAlpha(1.0f);
-                s4.o0.x0(view2);
-                lt0Var.f28536a.removeView(view2);
-                return;
-            case 16:
-                cw0 cw0Var = (cw0) this.f27208b;
-                if (cw0Var.f25543f == animator) {
-                    cw0Var.f25543f = null;
-                    return;
-                }
-                return;
-            case 17:
-                sx0 sx0Var = (sx0) this.f27208b;
-                sx0.z1(sx0Var, ((Float) sx0Var.f30975w3.getAnimatedValue()).floatValue());
-                sx0Var.f30975w3 = null;
-                return;
-            case 18:
-                ry0 ry0Var = (ry0) this.f27208b;
-                ry0Var.f30634x.setVisibility(8);
-                ry0Var.F.setImageDrawable(null);
-                return;
-            case 19:
-                int i10 = 0;
-                while (true) {
-                    yy0[] yy0VarArr = (yy0[]) this.f27208b;
-                    if (i10 < yy0VarArr.length) {
-                        yy0 yy0Var = yy0VarArr[i10];
-                        if (yy0Var != null) {
-                            yy0Var.d = false;
-                        }
-                        i10++;
-                    } else {
-                        return;
-                    }
-                }
-            case 20:
-                super.onAnimationEnd(animator);
-                ((zy0) this.f27208b).H = null;
-                return;
-            case 21:
-                ((cz0) this.f27208b).f25554e = false;
-                return;
-            case 22:
-                ((m11) this.f27208b).setVisibility(4);
-                return;
-            case 23:
-                ((x21) this.f27208b).setVisibility(8);
-                return;
-            case 24:
-                ai.n4 n4Var = ((r31) this.f27208b).f30345f;
-                n4Var.setScaleX(1.0f);
-                n4Var.setScaleY(1.0f);
-                n4Var.invalidate();
-                return;
-            case 25:
-                v31 v31Var = (v31) this.f27208b;
-                v31Var.K = 1.0f;
-                v31Var.h.invalidate();
-                return;
-            case 26:
-                ((d61) this.f27208b).L = null;
-                return;
-            case 27:
-                UndoView undoView = (UndoView) this.f27208b;
-                undoView.setVisibility(4);
-                undoView.setScaleX(1.0f);
-                undoView.setScaleY(1.0f);
-                undoView.setAlpha(1.0f);
-                return;
-            case 28:
-                l71 l71Var = (l71) this.f27208b;
-                if (l71Var.f28391a.getTag() == null) {
-                    l71Var.f28391a.setVisibility(4);
-                    return;
-                }
-                return;
-            default:
-                super.onAnimationEnd(animator);
-                m71 m71Var = (m71) this.f27208b;
-                m71Var.f28622b = 0.0f;
-                m71Var.setTranslationY(0.0f);
-                m71Var.f28621a = null;
-                return;
+    public static void a(Matrix matrix, float[] fArr) {
+        Matrix matrix2 = f27041l;
+        matrix.invert(matrix2);
+        float[] fArr2 = f27040k;
+        fArr2[0] = 0.0f;
+        fArr2[1] = 0.0f;
+        fArr2[2] = 1.0f;
+        fArr2[3] = 1.0f;
+        matrix2.mapPoints(fArr2);
+        fArr[0] = fArr2[2] - fArr2[0];
+        fArr[1] = fArr2[3] - fArr2[1];
+        fArr[2] = fArr2[0];
+        fArr[3] = fArr2[1];
+    }
+
+    public static boolean b(float f7) {
+        if (Math.abs(f7 - 1.0f) <= 1.0E-4f) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void c(RectF rectF) {
+        RectF rectF2 = this.f27049j;
+        rectF2.set(0.0f, 0.0f, this.f27045e, this.f27046f);
+        Matrix.ScaleToFit scaleToFit = Matrix.ScaleToFit.FILL;
+        Matrix matrix = this.f27048i;
+        matrix.setRectToRect(rectF2, rectF, scaleToFit);
+        y10 y10Var = this.f27044c;
+        gd0 gd0Var = (gd0) y10Var.f33095c;
+        gd0Var.f26681b.set(matrix);
+        BitmapShader bitmapShader = gd0Var.d;
+        if (bitmapShader != null) {
+            bitmapShader.setLocalMatrix(matrix);
+        }
+        gd0 gd0Var2 = (gd0) y10Var.d;
+        gd0Var2.f26681b.set(matrix);
+        BitmapShader bitmapShader2 = gd0Var2.d;
+        if (bitmapShader2 != null) {
+            bitmapShader2.setLocalMatrix(matrix);
+        }
+        fd0 fd0Var = this.d;
+        if (fd0Var != null && Build.VERSION.SDK_INT >= 33) {
+            float[] fArr = fd0Var.f26353g;
+            a(matrix, fArr);
+            fd0Var.f26351e.a(fArr);
+            fd0Var.f26352f.a(fArr);
         }
     }
 
-    @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f27207a) {
-            case 10:
-                en0 en0Var = (en0) this.f27208b;
-                en0Var.d = true;
-                if (en0Var.getParent() instanceof HorizontalScrollView) {
-                    ((HorizontalScrollView) en0Var.getParent()).requestDisallowInterceptTouchEvent(false);
-                    return;
-                }
-                return;
-            default:
-                super.onAnimationStart(animator);
-                return;
+    public final void d(Matrix matrix) {
+        boolean z10;
+        y10 y10Var = this.f27044c;
+        float[] fArr = (float[]) y10Var.h;
+        a(matrix, fArr);
+        gd0 gd0Var = (gd0) y10Var.f33096e;
+        gd0Var.f26681b.set(matrix);
+        BitmapShader bitmapShader = gd0Var.d;
+        if (bitmapShader != null) {
+            bitmapShader.setLocalMatrix(matrix);
+        }
+        boolean z11 = false;
+        if (b(fArr[0]) && b(fArr[1])) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        gd0Var.a(z10);
+        fd0 fd0Var = this.d;
+        if (fd0Var != null && Build.VERSION.SDK_INT >= 33) {
+            float[] fArr2 = fd0Var.f26353g;
+            a(matrix, fArr2);
+            gd0 gd0Var2 = fd0Var.d;
+            if (b(fArr2[0]) && b(fArr2[1])) {
+                z11 = true;
+            }
+            gd0Var2.a(z11);
+            fd0Var.f26351e.b(fArr2);
+            fd0Var.f26352f.b(fArr2);
         }
     }
 
-    public hd0(lt0 lt0Var, s4.o0 o0Var) {
-        this.f27207a = 15;
-        this.f27208b = lt0Var;
-    }
-
-    private final void a(Animator animator) {
+    public final Paint e(Bitmap bitmap, Bitmap bitmap2, int i10, int i11, int i12, boolean z10) {
+        Bitmap bitmap3;
+        Bitmap bitmap4 = (Bitmap) this.f27042a.m(bitmap2);
+        if (i12 >= 0) {
+            int k10 = i0.a.k(i10, ((Color.alpha(i10) * i11) * i12) / 25500);
+            a5.a aVar = this.f27043b;
+            gh.a aVar2 = (gh.a) aVar.f300c;
+            if (aVar2.a(bitmap) || k10 != aVar.f299b || ((Bitmap) aVar.d) == null) {
+                Bitmap bitmap5 = (Bitmap) aVar.d;
+                if (bitmap5 == null || bitmap5.getWidth() != bitmap.getWidth() || ((Bitmap) aVar.d).getHeight() != bitmap.getHeight()) {
+                    aVar.d = Bitmap.createBitmap(bitmap);
+                }
+                Utilities.applySoftLight(bitmap, (Bitmap) aVar.d, k10);
+                aVar2.b(bitmap);
+                aVar.f299b = k10;
+            }
+            bitmap3 = (Bitmap) aVar.d;
+        } else {
+            bitmap3 = null;
+        }
+        Bitmap bitmap6 = bitmap3;
+        this.f27045e = bitmap.getWidth();
+        this.f27046f = bitmap.getHeight();
+        this.f27047g = bitmap4.getWidth();
+        this.h = bitmap4.getHeight();
+        fd0 fd0Var = this.d;
+        if (fd0Var != null && z10 && Build.VERSION.SDK_INT >= 33) {
+            return fd0Var.a(bitmap, bitmap4, bitmap6, i11, i12);
+        }
+        y10 y10Var = this.f27044c;
+        xt xtVar = (xt) y10Var.f33097f;
+        xt xtVar2 = (xt) y10Var.f33098g;
+        gd0 gd0Var = (gd0) y10Var.d;
+        Paint paint = (Paint) y10Var.f33094b;
+        gd0 gd0Var2 = (gd0) y10Var.f33095c;
+        boolean b10 = gd0Var2.b(bitmap);
+        gd0 gd0Var3 = (gd0) y10Var.f33096e;
+        boolean b11 = b10 | gd0Var3.b(bitmap4);
+        if (i12 >= 0) {
+            if ((gd0Var.b(bitmap6) | b11) || y10Var.f33093a != 1) {
+                y10Var.f33093a = 1;
+                paint.setShader(new ComposeShader(gd0Var2.d, new ComposeShader(gd0Var.d, gd0Var3.d, PorterDuff.Mode.DST_IN), PorterDuff.Mode.SRC_OVER));
+                return paint;
+            }
+        } else if ((xtVar2.a(i0.a.k(-1, ((-i12) * i11) / 100)) | b11 | xtVar.a(-16777216)) || y10Var.f33093a != 2) {
+            y10Var.f33093a = 2;
+            paint.setShader(new ComposeShader((yf.i) xtVar.f33005b, new ComposeShader(new ComposeShader(gd0Var2.d, gd0Var3.d, PorterDuff.Mode.DST_IN), (yf.i) xtVar2.f33005b, PorterDuff.Mode.MULTIPLY), PorterDuff.Mode.SRC_OVER));
+            return paint;
+        }
+        return paint;
     }
 }

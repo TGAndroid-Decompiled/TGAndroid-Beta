@@ -1,24 +1,23 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import org.telegram.messenger.ChatObject;
 import org.telegram.tgnet.TLRPC;
-public final class nf1 extends og.a {
-    public final TLRPC.TL_forumTopic f38956c;
+public final class nf1 extends org.telegram.ui.Components.d80 {
+    public final long A0;
+    public final pf1 B0;
 
-    public nf1(int i10, TLRPC.TL_forumTopic tL_forumTopic) {
-        super(i10, true);
-        this.f38956c = tL_forumTopic;
+    public nf1(pf1 pf1Var, Context context, int i10, a0.i iVar, long j3, org.telegram.ui.ActionBar.n2 n2Var, long j10) {
+        super(context, i10, iVar, j3, n2Var, null);
+        this.B0 = pf1Var;
+        this.A0 = j10;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
+    @Override
+    public final boolean Y() {
+        TLRPC.Chat chat = this.B0.f40791b.getMessagesController().getChat(Long.valueOf(this.A0));
+        if (chat != null && ChatObject.canUserDoAdminAction(chat, 3)) {
             return true;
-        }
-        if (obj != null && nf1.class == obj.getClass()) {
-            nf1 nf1Var = (nf1) obj;
-            int i10 = this.f17192a;
-            if (i10 == nf1Var.f17192a && i10 == 0 && this.f38956c.f20099id == nf1Var.f38956c.f20099id) {
-                return true;
-            }
         }
         return false;
     }

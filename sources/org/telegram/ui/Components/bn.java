@@ -1,30 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class bn extends AnimatorListenerAdapter {
-    public final int f25027a;
-    public final xn f25028b;
+import android.animation.ValueAnimator;
+public final class bn implements ValueAnimator.AnimatorUpdateListener {
+    public final int f25050a;
+    public final gn f25051b;
 
-    public bn(xn xnVar, int i10) {
-        this.f25027a = i10;
-        this.f25028b = xnVar;
+    public bn(gn gnVar, int i10) {
+        this.f25050a = i10;
+        this.f25051b = gnVar;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f25027a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f25050a) {
             case 0:
-                this.f25028b.E.setTranslationY(0.0f);
-                return;
-            case 1:
-                this.f25028b.E.setTranslationY(0.0f);
+                gn gnVar = this.f25051b;
+                gnVar.getClass();
+                gnVar.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                gnVar.invalidate();
                 return;
             default:
-                xn xnVar = this.f25028b;
-                xnVar.f33015f1 = false;
-                xnVar.E.setTranslationY(0.0f);
-                xnVar.Z();
+                gn gnVar2 = this.f25051b;
+                gnVar2.getClass();
+                gnVar2.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                gnVar2.invalidate();
                 return;
         }
     }

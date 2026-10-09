@@ -1,78 +1,30 @@
 package org.telegram.ui;
+public final class nf implements Runnable {
+    public final int f40193a;
+    public final zn f40194b;
+    public final boolean f40195c;
 
-import java.util.regex.Pattern;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-public final class nf implements org.telegram.ui.ActionBar.a2, MessagesController.ErrorDelegate, ro0 {
-    public final int f38951a;
-    public final Runnable f38952b;
-
-    public nf(int i10, Runnable runnable) {
-        this.f38951a = i10;
-        this.f38952b = runnable;
+    public nf(zn znVar, boolean z10, int i10) {
+        this.f40193a = i10;
+        this.f40194b = znVar;
+        this.f40195c = z10;
     }
 
     @Override
-    public void a(int i10) {
-        int i11 = this.f38951a;
-        Runnable runnable = this.f38952b;
-        switch (i11) {
-            case 9:
-                Pattern pattern = LaunchActivity.B1;
-                if (i10 == 1) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            default:
-                if (i10 == 1) {
-                    runnable.run();
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f38951a) {
+    public final void run() {
+        String str;
+        switch (this.f40193a) {
             case 0:
-                this.f38952b.run();
-                return;
-            case 1:
-                this.f38952b.run();
-                return;
-            default:
-                Runnable runnable = this.f38952b;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
+                if (this.f40195c) {
+                    str = "upload_speed";
+                } else {
+                    str = "download_speed";
                 }
+                this.f40194b.presentFragment(new PremiumPreviewFragment(0, str));
                 return;
-        }
-    }
-
-    @Override
-    public boolean run(TLRPC.TL_error tL_error) {
-        switch (this.f38951a) {
-            case 3:
-                this.f38952b.run();
-                return true;
-            case 4:
-                this.f38952b.run();
-                return true;
-            case 5:
-                this.f38952b.run();
-                return true;
-            case 6:
-                this.f38952b.run();
-                return true;
-            case 7:
-                this.f38952b.run();
-                return true;
             default:
-                this.f38952b.run();
-                return true;
+                this.f40194b.Cc(0, this.f40195c);
+                return;
         }
     }
 }

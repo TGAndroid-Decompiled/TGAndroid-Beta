@@ -1,243 +1,93 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
+import android.content.Context;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.LaunchActivity;
-public final class es implements MessagesStorage.LongCallback, nl0 {
-    public final int f26203a;
-    public final is f26204b;
+public final class es extends Drawable {
+    public final Drawable f26152a;
+    public final RectF f26153b = new RectF();
+    public final Paint f26154c;
+    public final Paint d;
+    public int f26155e;
+    public final int f26156f;
+    public float f26157g;
+    public boolean h;
+    public float f26158i;
+    public float f26159j;
+    public float f26160k;
 
-    public es(is isVar, int i10) {
-        this.f26203a = i10;
-        this.f26204b = isVar;
+    public es(Context context, int i10, int i11) {
+        Paint paint = new Paint(1);
+        this.f26154c = paint;
+        Paint paint2 = new Paint(1);
+        this.d = paint2;
+        this.f26152a = context.getDrawable(i10);
+        this.f26156f = i11;
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
+        paint.setStrokeWidth(AndroidUtilities.dpf2(1.7f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint2.setColor(-16777216);
+        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        paint2.setStyle(style);
+        paint2.setStrokeWidth(AndroidUtilities.dpf2(2.5f));
     }
 
-    @Override
-    public void c(float f7, float f10, int i10, View view) {
-        boolean z10;
-        boolean[] zArr;
-        is isVar = this.f26204b;
-        h61 G = isVar.X.G(i10 - 1);
-        if (G != null) {
-            hs hsVar = isVar.f27580k0;
-            hs hsVar2 = isVar.f27579j0;
-            hs hsVar3 = isVar.f27578i0;
-            hs hsVar4 = isVar.f27581l0;
-            TLRPC.TL_chatBannedRights tL_chatBannedRights = isVar.f27591w0;
-            int i11 = G.d;
-            if (i11 == 103) {
-                boolean z11 = !isVar.f27584p0;
-                isVar.f27584p0 = z11;
-                ((org.telegram.ui.Cells.v8) view).setChecked(z11);
-                return;
+    public final void a(boolean z10, boolean z11) {
+        if (this.h != z10) {
+            this.h = z10;
+            float f7 = 0.0f;
+            if (!z11) {
+                if (z10) {
+                    f7 = 1.0f;
+                }
+                this.f26157g = f7;
+            } else {
+                if (!z10) {
+                    f7 = 1.0f;
+                }
+                this.f26157g = f7;
             }
-            int i12 = G.f17192a;
-            if (i12 == 37) {
-                int i13 = i11 >>> 24;
-                int i14 = 16777215 & i11;
-                if (i13 == 0) {
-                    hsVar3.e(i14);
-                } else if (i13 == 1) {
-                    hsVar2.e(i14);
-                    isVar.S();
-                } else if (i11 == 3) {
-                    hsVar.e(i14);
-                    isVar.S();
-                } else if (i13 == 2) {
-                    hsVar4.e(i14);
-                }
-            } else if (i12 != 36 && i12 != 35) {
-                if (i12 == 39) {
-                    if (G.f27101t) {
-                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(isVar.getContext());
-                        alertDialog$Builder.f20377a.R = LocaleController.getString(R.string.UserRestrictionsCantModify);
-                        alertDialog$Builder.f20377a.T = LocaleController.getString(R.string.UserRestrictionsCantModifyDisabled);
-                        alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-                        alertDialog$Builder.f20377a.show();
-                        return;
-                    }
-                    if (i11 == 2) {
-                        tL_chatBannedRights.invite_users = !tL_chatBannedRights.invite_users;
-                        isVar.T();
-                    } else if (i11 == 3) {
-                        tL_chatBannedRights.pin_messages = !tL_chatBannedRights.pin_messages;
-                        isVar.T();
-                    } else if (i11 == 4) {
-                        tL_chatBannedRights.change_info = !tL_chatBannedRights.change_info;
-                        isVar.T();
-                    } else if (i11 == 5) {
-                        tL_chatBannedRights.manage_topics = !tL_chatBannedRights.manage_topics;
-                        isVar.T();
-                    } else if (i11 == 0) {
-                        tL_chatBannedRights.send_plain = !tL_chatBannedRights.send_plain;
-                        isVar.T();
-                    }
-                    isVar.X.N(true);
-                } else if (i12 == 40) {
-                    isVar.f27593y0 = !isVar.f27593y0;
-                    isVar.H();
-                    isVar.X.N(true);
-                    isVar.s();
-                } else if (i11 == 100) {
-                    isVar.B0 = false;
-                    boolean z12 = !isVar.C0;
-                    isVar.C0 = z12;
-                    isVar.D0 = z12;
-                    isVar.H();
-                    isVar.X.N(true);
-                    isVar.s();
-                    isVar.M();
-                } else if (i12 == 38) {
-                    boolean z13 = isVar.f27576g0;
-                    isVar.f27576g0 = !z13;
-                    if (!z13) {
-                        zArr = isVar.f27582n0;
-                    } else {
-                        zArr = isVar.m0;
-                    }
-                    if (hsVar4.f27319g != 0) {
-                        hsVar4.f27317e = zArr;
-                        hsVar4.f();
-                        hsVar4.g();
-                    }
-                    isVar.X.N(true);
-                    isVar.T();
-                }
-            } else if (i11 == 0) {
-                hsVar3.d();
-            } else if (i11 == 1) {
-                hsVar2.d();
-                isVar.S();
-            } else if (i11 == 3) {
-                hsVar.d();
-                isVar.S();
-            } else if (i11 == 2) {
-                hsVar4.d();
-            } else if (i12 == 35) {
-                if (G.f27101t) {
-                    AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(isVar.getContext());
-                    alertDialog$Builder2.f20377a.R = LocaleController.getString(R.string.UserRestrictionsCantModify);
-                    alertDialog$Builder2.f20377a.T = LocaleController.getString(R.string.UserRestrictionsCantModifyDisabled);
-                    alertDialog$Builder2.k(LocaleController.getString(R.string.OK), null);
-                    alertDialog$Builder2.f20377a.show();
-                    return;
-                }
-                if (i11 == 6) {
-                    z10 = true;
-                    tL_chatBannedRights.send_photos = !tL_chatBannedRights.send_photos;
-                    isVar.T();
-                } else {
-                    z10 = true;
-                    if (i11 == 7) {
-                        tL_chatBannedRights.send_videos = !tL_chatBannedRights.send_videos;
-                        isVar.T();
-                    } else if (i11 == 9) {
-                        tL_chatBannedRights.send_audios = !tL_chatBannedRights.send_audios;
-                        isVar.T();
-                    } else if (i11 == 8) {
-                        tL_chatBannedRights.send_docs = !tL_chatBannedRights.send_docs;
-                        isVar.T();
-                    } else if (i11 == 11) {
-                        tL_chatBannedRights.send_roundvideos = !tL_chatBannedRights.send_roundvideos;
-                        isVar.T();
-                    } else if (i11 == 10) {
-                        tL_chatBannedRights.send_voices = !tL_chatBannedRights.send_voices;
-                        isVar.T();
-                    } else if (i11 == 15) {
-                        tL_chatBannedRights.send_reactions = !tL_chatBannedRights.send_reactions;
-                        isVar.T();
-                    } else {
-                        if (i11 == 12) {
-                            boolean z14 = !tL_chatBannedRights.send_stickers;
-                            tL_chatBannedRights.send_inline = z14;
-                            tL_chatBannedRights.send_gifs = z14;
-                            tL_chatBannedRights.send_games = z14;
-                            tL_chatBannedRights.send_stickers = z14;
-                            isVar.T();
-                        } else if (i11 == 14) {
-                            if (!tL_chatBannedRights.send_plain && !isVar.f27590v0.send_plain) {
-                                tL_chatBannedRights.embed_links = !tL_chatBannedRights.embed_links;
-                                isVar.T();
-                            } else {
-                                int i15 = 0;
-                                while (true) {
-                                    if (i15 >= isVar.X.f32534x.size()) {
-                                        break;
-                                    }
-                                    h61 G2 = isVar.X.G(i15);
-                                    if (G2.f17192a == 39 && G2.d == 0) {
-                                        s4.c1 K = isVar.d.K(i15 + 1);
-                                        if (K != null) {
-                                            View view2 = K.f46538a;
-                                            float f11 = -isVar.F0;
-                                            isVar.F0 = f11;
-                                            AndroidUtilities.shakeViewSpring(view2, f11);
-                                        }
-                                    } else {
-                                        i15++;
-                                    }
-                                }
-                                BotWebViewVibrationEffect.APP_ERROR.vibrate();
-                                return;
-                            }
-                        } else if (i11 == 13) {
-                            z10 = true;
-                            tL_chatBannedRights.send_polls = !tL_chatBannedRights.send_polls;
-                            isVar.T();
-                        } else {
-                            z10 = true;
-                            if (i11 == 101) {
-                                isVar.C0 = !isVar.C0;
-                                isVar.M();
-                            } else if (i11 == 102) {
-                                isVar.D0 = !isVar.D0;
-                                isVar.M();
-                            }
-                        }
-                        z10 = true;
-                    }
-                }
-                isVar.X.N(z10);
-            }
+            invalidateSelf();
         }
     }
 
     @Override
-    public boolean f1(View view) {
-        return false;
+    public final void draw(android.graphics.Canvas r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.es.draw(android.graphics.Canvas):void");
     }
 
     @Override
-    public void run(long j3) {
-        switch (this.f26203a) {
-            case 0:
-                is isVar = this.f26204b;
-                isVar.getClass();
-                org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
-                if (R != null) {
-                    R.presentFragment(org.telegram.ui.yn.Q9(j3));
-                }
-                isVar.dismiss();
-                return;
-            default:
-                is isVar2 = this.f26204b;
-                isVar2.getClass();
-                org.telegram.ui.ActionBar.n2 R2 = LaunchActivity.R();
-                if (R2 != null) {
-                    R2.presentFragment(org.telegram.ui.yn.Q9(j3));
-                }
-                isVar2.dismiss();
-                return;
-        }
+    public final int getIntrinsicHeight() {
+        return this.f26152a.getIntrinsicHeight();
     }
 
     @Override
-    public void s0(View view, float f7, float f10) {
+    public final int getIntrinsicWidth() {
+        return this.f26152a.getIntrinsicWidth();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setBounds(int i10, int i11, int i12, int i13) {
+        super.setBounds(i10, i11, i12, i13);
+        this.f26152a.setBounds(i10, i11, i12, i13);
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

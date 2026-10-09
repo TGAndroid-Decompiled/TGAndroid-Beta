@@ -1,6 +1,8 @@
 package gg;
 
-import java.util.ArrayList;
-public interface g0 {
-    void a(a0.i iVar, ArrayList arrayList);
+import org.telegram.tgnet.TLObject;
+public final class g0 {
+    public TLObject f10609a;
+    public int f10610b;
+    public long f10611c;
 }

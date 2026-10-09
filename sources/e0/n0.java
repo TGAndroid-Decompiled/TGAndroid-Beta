@@ -1,80 +1,82 @@
 package e0;
 
-import android.app.AppOpsManager;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.content.Context;
-import android.content.pm.ApplicationInfo;
-import android.os.Build;
 import android.os.Bundle;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.HashSet;
+import androidx.core.graphics.drawable.IconCompat;
+import j$.util.Objects;
 public final class n0 {
-    public static String d;
-    public static m0 f8461g;
-    public final Context f8462a;
-    public final NotificationManager f8463b;
-    public static final Object f8458c = new Object();
-    public static HashSet f8459e = new HashSet();
-    public static final Object f8460f = new Object();
+    public CharSequence f8454a;
+    public IconCompat f8455b;
+    public String f8456c;
+    public String d;
+    public boolean f8457e;
+    public boolean f8458f;
 
-    public n0(Context context) {
-        this.f8462a = context;
-        this.f8463b = (NotificationManager) context.getSystemService("notification");
+    public static n0 a(Bundle bundle) {
+        IconCompat iconCompat;
+        Bundle bundle2 = bundle.getBundle("icon");
+        CharSequence charSequence = bundle.getCharSequence("name");
+        if (bundle2 != null) {
+            iconCompat = IconCompat.a(bundle2);
+        } else {
+            iconCompat = null;
+        }
+        String string = bundle.getString("uri");
+        String string2 = bundle.getString("key");
+        boolean z10 = bundle.getBoolean("isBot");
+        boolean z11 = bundle.getBoolean("isImportant");
+        ?? obj = new Object();
+        obj.f8454a = charSequence;
+        obj.f8455b = iconCompat;
+        obj.f8456c = string;
+        obj.d = string2;
+        obj.f8457e = z10;
+        obj.f8458f = z11;
+        return obj;
     }
 
-    public static n0 c(Context context) {
-        return new n0(context);
+    public final CharSequence b() {
+        return this.f8454a;
     }
 
-    public final boolean a() {
-        Method method;
-        Integer num;
-        if (Build.VERSION.SDK_INT >= 24) {
-            return androidx.emoji2.text.v.a(this.f8463b);
+    public final Bundle c() {
+        Bundle bundle;
+        Bundle bundle2 = new Bundle();
+        bundle2.putCharSequence("name", this.f8454a);
+        IconCompat iconCompat = this.f8455b;
+        if (iconCompat != null) {
+            bundle = iconCompat.l();
+        } else {
+            bundle = null;
         }
-        Context context = this.f8462a;
-        AppOpsManager appOpsManager = (AppOpsManager) context.getSystemService("appops");
-        ApplicationInfo applicationInfo = context.getApplicationInfo();
-        String packageName = context.getApplicationContext().getPackageName();
-        int i10 = applicationInfo.uid;
-        try {
-            Class<?> cls = Class.forName(AppOpsManager.class.getName());
-            Class<?> cls2 = Integer.TYPE;
-            method = cls.getMethod("checkOpNoThrow", cls2, cls2, String.class);
-            num = (Integer) cls.getDeclaredField("OP_POST_NOTIFICATION").get(Integer.class);
-            num.getClass();
-        } catch (ClassNotFoundException | IllegalAccessException | NoSuchFieldException | NoSuchMethodException | RuntimeException | InvocationTargetException unused) {
+        bundle2.putBundle("icon", bundle);
+        bundle2.putString("uri", this.f8456c);
+        bundle2.putString("key", this.d);
+        bundle2.putBoolean("isBot", this.f8457e);
+        bundle2.putBoolean("isImportant", this.f8458f);
+        return bundle2;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof n0)) {
+            return false;
         }
-        if (((Integer) method.invoke(appOpsManager, num, Integer.valueOf(i10), packageName)).intValue() == 0) {
+        n0 n0Var = (n0) obj;
+        String str = this.d;
+        String str2 = n0Var.d;
+        if (str == null && str2 == null) {
+            if (!Objects.equals(Objects.toString(this.f8454a), Objects.toString(n0Var.f8454a)) || !Objects.equals(this.f8456c, n0Var.f8456c) || !Boolean.valueOf(this.f8457e).equals(Boolean.valueOf(n0Var.f8457e)) || !Boolean.valueOf(this.f8458f).equals(Boolean.valueOf(n0Var.f8458f))) {
+                return false;
+            }
             return true;
         }
-        return false;
+        return Objects.equals(str, str2);
     }
 
-    public final void b(int i10) {
-        this.f8463b.cancel(null, i10);
-    }
-
-    public final void d(int i10, Notification notification) {
-        NotificationManager notificationManager = this.f8463b;
-        Bundle bundle = notification.extras;
-        if (bundle != null && bundle.getBoolean("android.support.useSideChannel")) {
-            j0 j0Var = new j0(this.f8462a.getPackageName(), i10, notification);
-            synchronized (f8460f) {
-                try {
-                    if (f8461g == null) {
-                        f8461g = new m0(this.f8462a.getApplicationContext());
-                    }
-                    f8461g.f8453b.obtainMessage(0, j0Var).sendToTarget();
-                } catch (Throwable th2) {
-                    throw th2;
-                }
-            }
-            notificationManager.cancel(null, i10);
-            return;
+    public final int hashCode() {
+        String str = this.d;
+        if (str != null) {
+            return str.hashCode();
         }
-        notificationManager.notify(null, i10, notification);
+        return Objects.hash(this.f8454a, this.f8456c, Boolean.valueOf(this.f8457e), Boolean.valueOf(this.f8458f));
     }
 }

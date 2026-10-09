@@ -8,7 +8,7 @@ import java.util.RandomAccess;
 import w7.c7;
 import w7.f7;
 public abstract class t extends q implements List, RandomAccess {
-    public static final r f45882b = new r(u.f45883e, 0);
+    public static final r f47032b = new r(u.f47033e, 0);
 
     @Override
     public final void add(int i10, Object obj) {
@@ -128,7 +128,7 @@ public abstract class t extends q implements List, RandomAccess {
             return this;
         }
         if (i12 == 0) {
-            return u.f45883e;
+            return u.f47033e;
         }
         return new s(this, i10, i12);
     }
@@ -143,7 +143,7 @@ public abstract class t extends q implements List, RandomAccess {
         int size = size();
         if (i10 >= 0 && i10 <= size) {
             if (isEmpty()) {
-                return f45882b;
+                return f47032b;
             }
             return new r(this, i10);
         }

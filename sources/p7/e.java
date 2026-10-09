@@ -4,25 +4,25 @@ import android.accounts.Account;
 import android.os.Parcel;
 import android.os.Parcelable;
 import java.util.Arrays;
-import w7.g0;
+import w7.d0;
 public final class e extends o6.a {
     public static final Parcelable.Creator<e> CREATOR = new m8.h(26);
-    public final g[] f44315a;
-    public final String f44316b;
-    public final boolean f44317c;
+    public final g[] f45479a;
+    public final String f45480b;
+    public final boolean f45481c;
     public final Account d;
 
     public e(g[] gVarArr, String str, boolean z10, Account account) {
-        this.f44315a = gVarArr;
-        this.f44316b = str;
-        this.f44317c = z10;
+        this.f45479a = gVarArr;
+        this.f45480b = str;
+        this.f45481c = z10;
         this.d = account;
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof e) {
             e eVar = (e) obj;
-            if (n6.l.l(this.f44316b, eVar.f44316b) && n6.l.l(Boolean.valueOf(this.f44317c), Boolean.valueOf(eVar.f44317c)) && n6.l.l(this.d, eVar.d) && Arrays.equals(this.f44315a, eVar.f44315a)) {
+            if (n6.l.l(this.f45480b, eVar.f45480b) && n6.l.l(Boolean.valueOf(this.f45481c), Boolean.valueOf(eVar.f45481c)) && n6.l.l(this.d, eVar.d) && Arrays.equals(this.f45479a, eVar.f45479a)) {
                 return true;
             }
         }
@@ -30,17 +30,17 @@ public final class e extends o6.a {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f44316b, Boolean.valueOf(this.f44317c), this.d, Integer.valueOf(Arrays.hashCode(this.f44315a))});
+        return Arrays.hashCode(new Object[]{this.f45480b, Boolean.valueOf(this.f45481c), this.d, Integer.valueOf(Arrays.hashCode(this.f45479a))});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = g0.q(parcel, 20293);
-        g0.o(parcel, 1, this.f44315a, i10);
-        g0.l(parcel, 2, this.f44316b);
-        g0.s(parcel, 3, 4);
-        parcel.writeInt(this.f44317c ? 1 : 0);
-        g0.k(parcel, 4, this.d, i10);
-        g0.r(parcel, q6);
+        int q6 = d0.q(parcel, 20293);
+        d0.o(parcel, 1, this.f45479a, i10);
+        d0.l(parcel, 2, this.f45480b);
+        d0.s(parcel, 3, 4);
+        parcel.writeInt(this.f45481c ? 1 : 0);
+        d0.k(parcel, 4, this.d, i10);
+        d0.r(parcel, q6);
     }
 }

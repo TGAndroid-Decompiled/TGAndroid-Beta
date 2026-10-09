@@ -5,48 +5,48 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class b implements RequestDelegate {
-    public final int f8918a;
-    public final m f8919b;
-    public final org.telegram.ui.ActionBar.b2 f8920c;
+    public final int f8953a;
+    public final l f8954b;
+    public final org.telegram.ui.ActionBar.b2 f8955c;
 
-    public b(m mVar, org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        this.f8918a = i10;
-        this.f8919b = mVar;
-        this.f8920c = b2Var;
+    public b(l lVar, org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        this.f8953a = i10;
+        this.f8954b = lVar;
+        this.f8955c = b2Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f8918a) {
+        switch (this.f8953a) {
             case 0:
-                final m mVar = this.f8919b;
-                final org.telegram.ui.ActionBar.b2 b2Var = this.f8920c;
+                final l lVar = this.f8954b;
+                final org.telegram.ui.ActionBar.b2 b2Var = this.f8955c;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
                         switch (r5) {
                             case 0:
-                                m.D0(mVar, b2Var, tLObject, tL_error);
+                                l.z0(lVar, b2Var, tLObject, tL_error);
                                 return;
                             default:
-                                m.E0(mVar, b2Var, tLObject, tL_error);
+                                l.A0(lVar, b2Var, tLObject, tL_error);
                                 return;
                         }
                     }
                 });
                 return;
             default:
-                final m mVar2 = this.f8919b;
-                final org.telegram.ui.ActionBar.b2 b2Var2 = this.f8920c;
+                final l lVar2 = this.f8954b;
+                final org.telegram.ui.ActionBar.b2 b2Var2 = this.f8955c;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
                         switch (r5) {
                             case 0:
-                                m.D0(mVar2, b2Var2, tLObject, tL_error);
+                                l.z0(lVar2, b2Var2, tLObject, tL_error);
                                 return;
                             default:
-                                m.E0(mVar2, b2Var2, tLObject, tL_error);
+                                l.A0(lVar2, b2Var2, tLObject, tL_error);
                                 return;
                         }
                     }

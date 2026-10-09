@@ -2,16 +2,16 @@ package v7;
 
 import java.io.Serializable;
 public abstract class v6 {
-    public static d9.i a(d9.i iVar) {
-        if (!(iVar instanceof d9.k)) {
-            if (iVar instanceof d9.j) {
-                return iVar;
+    public static d9.j a(d9.j jVar) {
+        if (!(jVar instanceof d9.l)) {
+            if (jVar instanceof d9.k) {
+                return jVar;
             }
-            if (iVar instanceof Serializable) {
-                return new d9.j(iVar);
+            if (jVar instanceof Serializable) {
+                return new d9.k(jVar);
             }
-            return new d9.k(iVar);
+            return new d9.l(jVar);
         }
-        return iVar;
+        return jVar;
     }
 }

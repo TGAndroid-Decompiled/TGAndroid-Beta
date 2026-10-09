@@ -13,10 +13,7 @@ public class b extends c {
     public final boolean a() {
         switch (this.d) {
             case 0:
-                if (Build.VERSION.SDK_INT >= 23) {
-                    return true;
-                }
-                return false;
+                return true;
             case 1:
                 if (Build.VERSION.SDK_INT >= 24) {
                     return true;

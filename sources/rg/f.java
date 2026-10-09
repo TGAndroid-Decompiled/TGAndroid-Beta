@@ -6,38 +6,38 @@ import android.widget.TextView;
 import com.google.android.gms.internal.vision.e2;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.bi;
-import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Components.Premium.LimitPreviewView;
-import w7.z5;
+import w7.x5;
 public final class f extends LinearLayout {
-    public final TextView f46114a;
-    public final TextView f46115b;
-    public final LimitPreviewView f46116c;
+    public final TextView f47241a;
+    public final TextView f47242b;
+    public final LimitPreviewView f47243c;
 
-    public f(Context context, d6 d6Var) {
+    public f(Context context, e6 e6Var) {
         super(context);
         setOrientation(1);
         setPadding(AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f), 0);
         TextView textView = new TextView(context);
-        this.f46114a = textView;
+        this.f47241a = textView;
         e2.l(15.0f, 1, textView);
-        textView.setTextColor(i6.v0(i6.G6, d6Var));
-        addView(textView, z5.p(-1, -2, 0.0f, 0, 16, 0, 16, 0));
+        textView.setTextColor(i6.w0(i6.G6, e6Var));
+        addView(textView, x5.p(-1, -2, 0.0f, 0, 16, 0, 16, 0));
         TextView textView2 = new TextView(context);
-        this.f46115b = textView2;
-        bi.m(i6.f21214y6, d6Var, textView2, 1, 14.0f);
-        addView(textView2, z5.p(-1, -2, 0.0f, 0, 16, 1, 16, 0));
-        LimitPreviewView limitPreviewView = new LimitPreviewView(context, 0, 10, d6Var, 20);
-        this.f46116c = limitPreviewView;
-        addView(limitPreviewView, z5.p(-1, -2, 0.0f, 0, 0, 8, 0, 21));
+        this.f47242b = textView2;
+        bi.o(i6.f21181y6, e6Var, textView2, 1, 14.0f);
+        addView(textView2, x5.p(-1, -2, 0.0f, 0, 16, 1, 16, 0));
+        LimitPreviewView limitPreviewView = new LimitPreviewView(context, 0, 10, e6Var, 20);
+        this.f47243c = limitPreviewView;
+        addView(limitPreviewView, x5.p(-1, -2, 0.0f, 0, 0, 8, 0, 21));
     }
 
     public final void a(e eVar) {
-        this.f46114a.setText(eVar.f46107a);
-        this.f46115b.setText(eVar.f46108b);
-        LimitPreviewView limitPreviewView = this.f46116c;
+        this.f47241a.setText(eVar.f47230a);
+        this.f47242b.setText(eVar.f47231b);
+        LimitPreviewView limitPreviewView = this.f47243c;
         limitPreviewView.v.setText(String.format("%d", Integer.valueOf(eVar.d)));
-        limitPreviewView.f24258w.setText(String.format("%d", Integer.valueOf(eVar.f46109c)));
+        limitPreviewView.f24254w.setText(String.format("%d", Integer.valueOf(eVar.f47232c)));
     }
 }

@@ -1,89 +1,281 @@
 package di;
 
-import ah.n;
-import ai.w5;
-import android.graphics.Canvas;
-import android.graphics.RectF;
+import android.app.Activity;
 import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.ui.Components.mh;
-import org.telegram.ui.Components.so0;
-import org.telegram.ui.Components.zl0;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.a7;
-import org.telegram.ui.d6;
-import org.telegram.ui.zu;
-import yh.z7;
-public final class f implements bh.a {
-    public final int f8369a;
-    public final Object f8370b;
-    public final Object f8371c;
+import android.view.ViewGroup;
+import b2.q0;
+import ci.rc;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.ui.ActionBar.k;
+import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.Components.qm0;
+import org.telegram.ui.o20;
+import org.telegram.ui.p20;
+import s4.d0;
+import s4.d1;
+import yh.f0;
+import yh.p7;
+public final class f extends o20 {
+    public final int K0 = 0;
+    public final q0 L0;
+    public final p20 M0;
 
-    public f(int i10, Object obj, Object obj2) {
-        this.f8369a = i10;
-        this.f8370b = obj;
-        this.f8371c = obj2;
+    public f(i iVar, Activity activity) {
+        super(iVar, activity);
+        this.M0 = iVar;
+        this.L0 = new Object();
     }
 
     @Override
-    public final void b(ah.a aVar, RectF rectF) {
-        switch (this.f8369a) {
+    public final void E(ViewGroup viewGroup, int i10, int i11, int[] iArr, int i12) {
+        k kVar;
+        int i13;
+        int max;
+        k kVar2;
+        int i14;
+        int max2;
+        switch (this.K0) {
             case 0:
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-            case 6:
-            default:
-                aVar.f450a = true;
-                return;
-        }
-    }
-
-    @Override
-    public final void f(Canvas canvas, RectF rectF) {
-        switch (this.f8369a) {
-            case 0:
-                ((k) this.f8370b).S.d(canvas, rectF, (e) this.f8371c);
-                return;
-            case 1:
-                zl0 zl0Var = (zl0) this.f8370b;
-                gh.d.a(zl0Var, canvas, rectF, zl0Var, (FrameLayout) this.f8371c);
-                return;
-            case 2:
-                so0 so0Var = (so0) this.f8370b;
-                gh.d.a(so0Var, canvas, rectF, so0Var, (FrameLayout) this.f8371c);
-                return;
-            case 3:
-                ((a7) this.f8370b).f34695b0.d(canvas, rectF, (d6) this.f8371c);
-                return;
-            case 4:
-                zu zuVar = (zu) this.f8370b;
-                w5 w5Var = (w5) this.f8371c;
-                int childCount = zuVar.f43911a.getChildCount();
-                for (int i10 = 0; i10 < childCount; i10++) {
-                    View childAt = zuVar.f43911a.getChildAt(i10);
-                    if (childAt instanceof zl0) {
-                        zl0 zl0Var2 = (zl0) childAt;
-                        gh.d.a(zl0Var2, canvas, rectF, zl0Var2, w5Var);
+                i iVar = (i) this.M0;
+                if (viewGroup == iVar.f40638c && iVar.R.isAttachedToWindow()) {
+                    kVar = ((n2) iVar).actionBar;
+                    boolean z10 = kVar.f21285n0;
+                    int top = (((View) iVar.R.getParent()).getTop() - AndroidUtilities.statusBarHeight) - k.getCurrentActionBarHeight();
+                    int bottom = ((View) iVar.R.getParent()).getBottom();
+                    boolean z11 = false;
+                    if (i11 < 0) {
+                        if (iVar.f40638c.getHeight() - bottom >= 0) {
+                            qm0 currentListView = iVar.R.getCurrentListView();
+                            int L0 = ((d0) currentListView.getLayoutManager()).L0();
+                            int i15 = -1;
+                            if (L0 != -1) {
+                                d1 K = currentListView.K(L0);
+                                if (K != null) {
+                                    i15 = K.f47656a.getTop();
+                                }
+                                int paddingTop = currentListView.getPaddingTop();
+                                if (i15 != paddingTop || L0 != 0) {
+                                    if (L0 != 0) {
+                                        max = i11;
+                                    } else {
+                                        max = Math.max(i11, i15 - paddingTop);
+                                    }
+                                    iArr[1] = max;
+                                    currentListView.scrollBy(0, i11);
+                                    z11 = true;
+                                }
+                            }
+                        }
+                        if (z10) {
+                            if (!z11 && top < 0) {
+                                iArr[1] = i11 - Math.max(top, i11);
+                                return;
+                            } else {
+                                iArr[1] = i11;
+                                return;
+                            }
+                        }
+                        return;
+                    } else if (z10) {
+                        qm0 currentListView2 = iVar.R.getCurrentListView();
+                        iArr[1] = i11;
+                        if (top > 0) {
+                            iArr[1] = 0;
+                        }
+                        if (currentListView2 != null && (i13 = iArr[1]) > 0) {
+                            currentListView2.scrollBy(0, i13);
+                            return;
+                        }
+                        return;
+                    } else if (i11 > 0) {
+                        qm0 currentListView3 = iVar.R.getCurrentListView();
+                        if (iVar.f40638c.getHeight() - bottom >= 0 && currentListView3 != null && !currentListView3.canScrollVertically(1)) {
+                            iArr[1] = i11;
+                            iVar.f40638c.B0();
+                            return;
+                        }
+                        return;
+                    } else {
+                        return;
                     }
                 }
                 return;
-            case 5:
-                ((n) this.f8371c).f(canvas, rectF);
-                mh mhVar = ((ProfileActivity) this.f8370b).O.f30222c2;
-                if (mhVar != null) {
-                    mhVar.f(canvas, rectF);
-                    return;
+            default:
+                p7 p7Var = (p7) this.M0;
+                if (viewGroup == p7Var.f40638c && p7Var.R.isAttachedToWindow()) {
+                    kVar2 = ((n2) p7Var).actionBar;
+                    boolean z12 = kVar2.f21285n0;
+                    int top2 = (((View) p7Var.R.getParent()).getTop() - AndroidUtilities.statusBarHeight) - k.getCurrentActionBarHeight();
+                    int bottom2 = ((View) p7Var.R.getParent()).getBottom();
+                    boolean z13 = false;
+                    if (i11 < 0) {
+                        if ((p7Var.f40638c.getHeight() - p7Var.f40638c.getPaddingBottom()) - bottom2 >= 0) {
+                            qm0 currentListView4 = p7Var.R.getCurrentListView();
+                            int L02 = ((d0) currentListView4.getLayoutManager()).L0();
+                            int i16 = -1;
+                            if (L02 != -1) {
+                                d1 K2 = currentListView4.K(L02);
+                                if (K2 != null) {
+                                    i16 = K2.f47656a.getTop();
+                                }
+                                int paddingTop2 = currentListView4.getPaddingTop();
+                                if (i16 != paddingTop2 || L02 != 0) {
+                                    if (L02 != 0) {
+                                        max2 = i11;
+                                    } else {
+                                        max2 = Math.max(i11, i16 - paddingTop2);
+                                    }
+                                    iArr[1] = max2;
+                                    currentListView4.scrollBy(0, i11);
+                                    z13 = true;
+                                }
+                            }
+                        }
+                        if (z12) {
+                            if (!z13 && top2 < 0) {
+                                iArr[1] = i11 - Math.max(top2, i11);
+                                return;
+                            } else {
+                                iArr[1] = i11;
+                                return;
+                            }
+                        }
+                        return;
+                    } else if (z12) {
+                        qm0 currentListView5 = p7Var.R.getCurrentListView();
+                        iArr[1] = i11;
+                        if (top2 > 0) {
+                            iArr[1] = 0;
+                        }
+                        if (currentListView5 != null && (i14 = iArr[1]) > 0) {
+                            currentListView5.scrollBy(0, i14);
+                            return;
+                        }
+                        return;
+                    } else if (i11 > 0) {
+                        qm0 currentListView6 = p7Var.R.getCurrentListView();
+                        if ((p7Var.f40638c.getHeight() - p7Var.f40638c.getPaddingBottom()) - bottom2 >= 0 && currentListView6 != null && !currentListView6.canScrollVertically(1)) {
+                            iArr[1] = i11;
+                            p7Var.f40638c.B0();
+                            return;
+                        }
+                        return;
+                    } else {
+                        return;
+                    }
                 }
                 return;
-            case 6:
-                ((yh.h) this.f8370b).f51375f.d(canvas, rectF, (e) this.f8371c);
+        }
+    }
+
+    @Override
+    public final void c(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14) {
+        int i15 = this.K0;
+    }
+
+    @Override
+    public final void j(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14, int[] iArr) {
+        switch (this.K0) {
+            case 0:
+                i iVar = (i) this.M0;
+                try {
+                    if (viewGroup == iVar.f40638c && iVar.R.isAttachedToWindow()) {
+                        qm0 currentListView = iVar.R.getCurrentListView();
+                        if (iVar.f40638c.getHeight() - ((View) iVar.R.getParent()).getBottom() >= 0) {
+                            iArr[1] = i13;
+                            currentListView.scrollBy(0, i13);
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                } catch (Throwable th2) {
+                    FileLog.e(th2);
+                    AndroidUtilities.runOnUIThread(new rc(this, 4));
+                    return;
+                }
+            default:
+                p7 p7Var = (p7) this.M0;
+                try {
+                    if (viewGroup == p7Var.f40638c && p7Var.R.isAttachedToWindow()) {
+                        qm0 currentListView2 = p7Var.R.getCurrentListView();
+                        if ((p7Var.f40638c.getHeight() - p7Var.f40638c.getPaddingBottom()) - ((View) p7Var.R.getParent()).getBottom() >= 0) {
+                            iArr[1] = i13;
+                            currentListView2.scrollBy(0, i13);
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                } catch (Throwable th3) {
+                    FileLog.e(th3);
+                    AndroidUtilities.runOnUIThread(new f0(this, 10));
+                    return;
+                }
+        }
+    }
+
+    @Override
+    public final void o(int i10, View view) {
+        switch (this.K0) {
+            case 0:
+                this.L0.f3533a = 0;
                 return;
             default:
-                ((z7) this.f8370b).S.d(canvas, rectF, (e) this.f8371c);
+                this.L0.f3533a = 0;
                 return;
         }
+    }
+
+    @Override
+    public final void onStopNestedScroll(View view) {
+        int i10 = this.K0;
+    }
+
+    @Override
+    public final boolean p(View view, View view2, int i10, int i11) {
+        switch (this.K0) {
+            case 0:
+                if (i10 == 2) {
+                    return true;
+                }
+                return false;
+            default:
+                if (i10 == 2) {
+                    return true;
+                }
+                return false;
+        }
+    }
+
+    @Override
+    public final void s(View view, View view2, int i10, int i11) {
+        switch (this.K0) {
+            case 0:
+                this.L0.f3533a = i10;
+                return;
+            default:
+                this.L0.f3533a = i10;
+                return;
+        }
+    }
+
+    public f(p7 p7Var, Activity activity) {
+        super(p7Var, activity);
+        this.M0 = p7Var;
+        this.L0 = new Object();
+    }
+
+    private final void e0(View view) {
+    }
+
+    private final void f0(View view) {
+    }
+
+    private final void c0(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14) {
+    }
+
+    private final void d0(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14) {
     }
 }

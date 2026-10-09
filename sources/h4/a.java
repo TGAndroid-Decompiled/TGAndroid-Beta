@@ -1,18 +1,18 @@
 package h4;
 
-import a4.h;
+import a4.g;
 import android.graphics.Rect;
 import java.util.Arrays;
 public final class a {
-    public boolean f11014b;
-    public boolean f11015c;
+    public boolean f11018b;
+    public boolean f11019c;
     public int[] d;
-    public int f11016e;
-    public int f11017f;
-    public Rect f11018g;
-    public final int[] f11013a = new int[4];
+    public int f11020e;
+    public int f11021f;
+    public Rect f11022g;
+    public final int[] f11017a = new int[4];
     public int h = -1;
-    public int f11019i = -1;
+    public int f11023i = -1;
 
     public static int a(int i10, int[] iArr) {
         if (i10 >= 0 && i10 < iArr.length) {
@@ -25,7 +25,7 @@ public final class a {
         return (i10 & 16777215) | ((i11 * 17) << 24);
     }
 
-    public final void b(h hVar, boolean z10, Rect rect, int[] iArr) {
+    public final void b(g gVar, boolean z10, Rect rect, int[] iArr) {
         int i10;
         int i11;
         int width = rect.width();
@@ -37,12 +37,12 @@ public final class a {
             do {
                 int i15 = 0;
                 for (int i16 = 1; i15 < i16 && i16 <= 64; i16 <<= 2) {
-                    if (hVar.b() < 4) {
-                        i11 = 0;
+                    if (gVar.b() < 4) {
                         i10 = -1;
+                        i11 = 0;
                         break;
                     }
-                    i15 = (i15 << 4) | hVar.i(4);
+                    i15 = (i15 << 4) | gVar.i(4);
                 }
                 i10 = i15 & 3;
                 if (i15 < 4) {
@@ -53,7 +53,7 @@ public final class a {
                 int min = Math.min(i11, width - i14);
                 if (min > 0) {
                     int i17 = i13 + min;
-                    Arrays.fill(iArr, i13, i17, this.f11013a[i10]);
+                    Arrays.fill(iArr, i13, i17, this.f11017a[i10]);
                     i14 += min;
                     i13 = i17;
                     continue;
@@ -64,7 +64,7 @@ public final class a {
                 return;
             }
             i13 = i12 * width;
-            hVar.c();
+            gVar.c();
         }
     }
 }

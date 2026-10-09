@@ -6,8 +6,8 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.SortedSet;
 public abstract class m0 extends d0 implements Set, j$.util.Set {
-    public static final int f8776c = 0;
-    public transient i0 f8777b;
+    public static final int f8770c = 0;
+    public transient i0 f8771b;
 
     public static int t(int i10) {
         int max = Math.max(i10, 2);
@@ -79,7 +79,7 @@ public abstract class m0 extends d0 implements Set, j$.util.Set {
             Objects.requireNonNull(obj4);
             return new m1(obj4);
         }
-        return g1.f8750s;
+        return g1.f8744s;
     }
 
     public static m0 v(Collection collection) {
@@ -111,18 +111,18 @@ public abstract class m0 extends d0 implements Set, j$.util.Set {
 
     @Override
     public i0 i() {
-        i0 i0Var = this.f8777b;
+        i0 i0Var = this.f8771b;
         if (i0Var == null) {
             i0 w10 = w();
-            this.f8777b = w10;
+            this.f8771b = w10;
             return w10;
         }
         return i0Var;
     }
 
     public i0 w() {
-        Object[] array = toArray(d0.f8734a);
-        g0 g0Var = i0.f8758b;
+        Object[] array = toArray(d0.f8728a);
+        g0 g0Var = i0.f8752b;
         return i0.t(array.length, array);
     }
 }

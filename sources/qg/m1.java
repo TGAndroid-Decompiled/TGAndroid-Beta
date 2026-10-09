@@ -1,12 +1,12 @@
 package qg;
 public interface m1 {
-    void E();
+    void D();
 
     void a();
 
-    void d();
+    void f();
 
-    void f(int i10);
+    void g(int i10);
 
-    void u();
+    void t();
 }

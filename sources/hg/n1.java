@@ -1,6 +1,6 @@
 package hg;
 
-import ai.e4;
+import ai.f4;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.widget.TextView;
@@ -18,92 +18,92 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.oy;
-import org.telegram.ui.uy;
-import org.telegram.ui.wf1;
-public final class n1 implements org.telegram.ui.ActionBar.a2, oy {
-    public final int f11277a;
-    public final KeyEvent.Callback f11278b;
-    public final Object f11279c;
+import org.telegram.ui.fg1;
+import org.telegram.ui.ny;
+import org.telegram.ui.ty;
+public final class n1 implements org.telegram.ui.ActionBar.a2, ny {
+    public final int f11329a;
+    public final KeyEvent.Callback f11330b;
+    public final Object f11331c;
     public final Object d;
-    public final Object f11280e;
-    public final Object f11281f;
+    public final Object f11332e;
+    public final Object f11333f;
 
-    public n1(r1 r1Var, e4 e4Var, int i10, a2 a2Var, TextView textView, Utilities.Callback callback) {
-        this.f11278b = r1Var;
-        this.f11279c = e4Var;
-        this.f11277a = i10;
-        this.d = a2Var;
-        this.f11280e = textView;
-        this.f11281f = callback;
+    public n1(s1 s1Var, f4 f4Var, int i10, b2 b2Var, TextView textView, Utilities.Callback callback) {
+        this.f11330b = s1Var;
+        this.f11331c = f4Var;
+        this.f11329a = i10;
+        this.d = b2Var;
+        this.f11332e = textView;
+        this.f11333f = callback;
     }
 
     @Override
-    public boolean A() {
+    public boolean C() {
         return false;
     }
 
     @Override
-    public boolean H(uy uyVar) {
+    public boolean K(ty tyVar) {
         return false;
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
         int i11;
-        r1 r1Var = (r1) this.f11278b;
-        e4 e4Var = (e4) this.f11279c;
-        a2 a2Var = (a2) this.d;
-        TextView textView = (TextView) this.f11280e;
-        Utilities.Callback callback = (Utilities.Callback) this.f11281f;
-        String obj = r1Var.getText().toString();
+        s1 s1Var = (s1) this.f11330b;
+        f4 f4Var = (f4) this.f11331c;
+        b2 b2Var2 = (b2) this.d;
+        TextView textView = (TextView) this.f11332e;
+        Utilities.Callback callback = (Utilities.Callback) this.f11333f;
+        String obj = s1Var.getText().toString();
         if (obj.length() > 0 && obj.length() <= 32) {
-            b2 f7 = b2.f(this.f11277a);
-            if (a2Var == null) {
+            c2 f7 = c2.f(this.f11329a);
+            if (b2Var2 == null) {
                 i11 = -1;
             } else {
-                i11 = a2Var.f11104a;
+                i11 = b2Var2.f11174a;
             }
-            a2 d = f7.d(obj);
-            if (d != null && d.f11104a != i11) {
-                AndroidUtilities.shakeView(r1Var);
+            b2 d = f7.d(obj);
+            if (d != null && d.f11174a != i11) {
+                AndroidUtilities.shakeView(s1Var);
                 textView.setText(LocaleController.getString(R.string.BusinessRepliesNameBusy));
-                e4Var.run(Boolean.TRUE);
+                f4Var.run(Boolean.TRUE);
                 return;
             }
             callback.run(obj);
             b2Var.dismiss();
             return;
         }
-        AndroidUtilities.shakeView(r1Var);
-        e4Var.run(Boolean.FALSE);
+        AndroidUtilities.shakeView(s1Var);
+        f4Var.run(Boolean.FALSE);
     }
 
     @Override
-    public boolean u(uy uyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, wf1 wf1Var) {
+    public boolean w(ty tyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, fg1 fg1Var) {
         String str;
         TLRPC.TL_chatAdminRights tL_chatAdminRights;
-        final LaunchActivity launchActivity = (LaunchActivity) this.f11278b;
-        final TLRPC.User user = (TLRPC.User) this.f11279c;
+        final LaunchActivity launchActivity = (LaunchActivity) this.f11330b;
+        final TLRPC.User user = (TLRPC.User) this.f11331c;
         final String str2 = (String) this.d;
-        final String str3 = (String) this.f11280e;
-        final uy uyVar2 = (uy) this.f11281f;
+        final String str3 = (String) this.f11332e;
+        final ty tyVar2 = (ty) this.f11333f;
         Pattern pattern = LaunchActivity.B1;
         final long j3 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
         final TLRPC.Chat chat = MessagesController.getInstance(launchActivity.O).getChat(Long.valueOf(-j3));
-        final int i12 = this.f11277a;
+        final int i12 = this.f11329a;
         if (chat != null && (chat.creator || ((tL_chatAdminRights = chat.admin_rights) != null && tL_chatAdminRights.add_admins))) {
             MessagesController.getInstance(i12).checkIsInChat(false, chat, user, new MessagesController.IsInChatCheckedCallback() {
                 @Override
                 public final void run(boolean z12, TLRPC.TL_chatAdminRights tL_chatAdminRights2, String str4) {
                     Pattern pattern2 = LaunchActivity.B1;
-                    AndroidUtilities.runOnUIThread(new org.telegram.messenger.i8(LaunchActivity.this, str2, tL_chatAdminRights2, z12, str3, i12, chat, uyVar2, user, j3, str4));
+                    AndroidUtilities.runOnUIThread(new org.telegram.messenger.i8(LaunchActivity.this, str2, tL_chatAdminRights2, z12, str3, i12, chat, tyVar2, user, j3, str4));
                 }
             });
         } else {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(launchActivity);
             String string = LocaleController.getString(R.string.AddBot);
-            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20377a;
+            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20374a;
             b2Var.R = string;
             if (chat == null) {
                 str = "";
@@ -114,16 +114,16 @@ public final class n1 implements org.telegram.ui.ActionBar.a2, oy {
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
             alertDialog$Builder.k(LocaleController.getString(R.string.AddBot), new org.telegram.ui.ActionBar.a2() {
                 @Override
-                public final void g(org.telegram.ui.ActionBar.b2 b2Var2, int i13) {
+                public final void f(org.telegram.ui.ActionBar.b2 b2Var2, int i13) {
                     Pattern pattern2 = LaunchActivity.B1;
-                    Bundle i14 = a4.a.i("scrollToTopOnResume", true);
+                    Bundle i14 = a1.g.i("scrollToTopOnResume", true);
                     long j10 = -j3;
                     i14.putLong("chat_id", j10);
-                    yn ynVar = new yn(i14);
+                    zn znVar = new zn(i14);
                     int i15 = i12;
                     NotificationCenter.getInstance(i15).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
-                    MessagesController.getInstance(i15).addUserToChat(j10, user, 0, str3, ynVar, null);
-                    ((ActionBarLayout) LaunchActivity.this.O()).S(ynVar, true, false);
+                    MessagesController.getInstance(i15).addUserToChat(j10, user, 0, str3, znVar, null);
+                    ((ActionBarLayout) LaunchActivity.this.O()).S(znVar, true, false);
                 }
             });
             alertDialog$Builder.o();
@@ -131,12 +131,12 @@ public final class n1 implements org.telegram.ui.ActionBar.a2, oy {
         return true;
     }
 
-    public n1(LaunchActivity launchActivity, int i10, TLRPC.User user, String str, String str2, uy uyVar) {
-        this.f11278b = launchActivity;
-        this.f11277a = i10;
-        this.f11279c = user;
+    public n1(LaunchActivity launchActivity, int i10, TLRPC.User user, String str, String str2, ty tyVar) {
+        this.f11330b = launchActivity;
+        this.f11329a = i10;
+        this.f11331c = user;
         this.d = str;
-        this.f11280e = str2;
-        this.f11281f = uyVar;
+        this.f11332e = str2;
+        this.f11333f = tyVar;
     }
 }

@@ -1,29 +1,19 @@
 package ci;
+public final class e3 extends s4.s {
+    public final v3 Q;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import org.telegram.ui.Components.zl0;
-public final class e3 extends zl0 {
-    public final w3 f4981e3;
-
-    public e3(w3 w3Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, d6Var);
-        this.f4981e3 = w3Var;
+    public e3(v3 v3Var) {
+        super(3);
+        this.Q = v3Var;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.f4981e3.K) {
-            return false;
+    public final void b0(pf.e eVar, s4.a1 a1Var) {
+        super.b0(eVar, a1Var);
+        v3 v3Var = this.Q;
+        if (v3Var.U) {
+            v3Var.U = false;
+            v3Var.a();
         }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.f4981e3.K) {
-            return false;
-        }
-        return super.onInterceptTouchEvent(motionEvent);
     }
 }

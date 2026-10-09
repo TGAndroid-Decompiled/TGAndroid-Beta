@@ -12,17 +12,17 @@ public final class as extends es {
         this.O = csVar;
         this.M = i10;
         this.N = i11;
-        this.f36102e = 1.0f;
-        this.f36103f = new o1.k(this, es.I);
+        this.f37319e = 1.0f;
+        this.f37320f = new o1.k(this, es.I);
         this.h = new o1.k(this, es.J);
-        this.f36104n = new o1.k(this, es.K);
-        this.f36105r = new o1.k(this, es.L);
-        this.f36106s = true;
+        this.f37321n = new o1.k(this, es.K);
+        this.f37322r = new o1.k(this, es.L);
+        this.f37323s = true;
         this.v = 1.0f;
-        this.f36107w = 1.0f;
+        this.f37324w = 1.0f;
         this.H = false;
         setBackground(null);
-        setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.G6, false));
+        setTextColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.G6, false));
         setMovementMethod(null);
         addTextChangedListener(new m0(this, 5));
     }
@@ -34,44 +34,44 @@ public final class as extends es {
         }
         int keyCode = keyEvent.getKeyCode();
         cs csVar = this.O;
-        int length = csVar.f35541f.length;
+        int length = csVar.f36732f.length;
         int i10 = this.M;
         if (i10 >= length) {
             return false;
         }
         if (keyEvent.getAction() == 1) {
-            if (keyCode == 67 && csVar.f35541f[i10].length() == 1) {
-                csVar.f35541f[i10].m();
-                csVar.f35541f[i10].setText("");
+            if (keyCode == 67 && csVar.f36732f[i10].length() == 1) {
+                csVar.f36732f[i10].m();
+                csVar.f36732f[i10].setText("");
                 return true;
-            } else if (keyCode == 67 && csVar.f35541f[i10].length() == 0 && i10 > 0) {
-                es[] esVarArr = csVar.f35541f;
+            } else if (keyCode == 67 && csVar.f36732f[i10].length() == 0 && i10 > 0) {
+                es[] esVarArr = csVar.f36732f;
                 esVarArr[i10 - 1].setSelection(esVarArr[i10 - 1].length());
                 for (int i11 = 0; i11 < i10; i11++) {
                     if (i11 == i10 - 1) {
-                        csVar.f35541f[i10 - 1].requestFocus();
+                        csVar.f36732f[i10 - 1].requestFocus();
                     } else {
-                        csVar.f35541f[i11].clearFocus();
+                        csVar.f36732f[i11].clearFocus();
                     }
                 }
-                csVar.f35541f[i10 - 1].m();
-                csVar.f35541f[i10 - 1].setText("");
+                csVar.f36732f[i10 - 1].m();
+                csVar.f36732f[i10 - 1].setText("");
                 return true;
             } else {
                 if (keyCode >= 7 && keyCode <= 16) {
                     String num = Integer.toString(keyCode - 7);
-                    if (csVar.f35541f[i10].getText() != null && num.equals(csVar.f35541f[i10].getText().toString())) {
+                    if (csVar.f36732f[i10].getText() != null && num.equals(csVar.f36732f[i10].getText().toString())) {
                         if (i10 >= this.N - 1) {
                             csVar.a();
                         } else {
-                            csVar.f35541f[i10 + 1].requestFocus();
+                            csVar.f36732f[i10 + 1].requestFocus();
                         }
                         return true;
                     }
-                    if (csVar.f35541f[i10].length() > 0) {
-                        csVar.f35541f[i10].m();
+                    if (csVar.f36732f[i10].length() > 0) {
+                        csVar.f36732f[i10].m();
                     }
-                    csVar.f35541f[i10].setText(num);
+                    csVar.f36732f[i10].setText(num);
                 }
                 return true;
             }

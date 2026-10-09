@@ -1,49 +1,55 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
+import android.content.Context;
+import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-public final class cf implements Runnable {
-    public final int f25410a;
-    public final ChatActivityEnterView f25411b;
+public final class cf extends ImageView {
+    public float f25359a;
+    public final ChatActivityEnterView f25360b;
 
-    public cf(ChatActivityEnterView chatActivityEnterView, int i10) {
-        this.f25410a = i10;
-        this.f25411b = chatActivityEnterView;
+    public cf(ChatActivityEnterView chatActivityEnterView, Context context) {
+        super(context);
+        this.f25360b = chatActivityEnterView;
     }
 
     @Override
-    public final void run() {
-        switch (this.f25410a) {
-            case 0:
-                ChatActivityEnterView chatActivityEnterView = this.f25411b;
-                cf cfVar = chatActivityEnterView.f23958r3;
-                if ((!chatActivityEnterView.j0() || !chatActivityEnterView.v()) && !org.telegram.ui.ActionBar.n2.hasSheets(chatActivityEnterView.P2) && !chatActivityEnterView.Y1 && chatActivityEnterView.E0 != null && chatActivityEnterView.f23921k3 && !chatActivityEnterView.f24000z2 && !AndroidUtilities.usingHardwareInput && !AndroidUtilities.isInMultiwindow) {
-                    pg pgVar = chatActivityEnterView.Z2;
-                    if (pgVar != null) {
-                        pgVar.r1();
-                    }
-                    chatActivityEnterView.E0.requestFocus();
-                    AndroidUtilities.showKeyboard(chatActivityEnterView.E0);
-                    AndroidUtilities.cancelRunOnUIThread(cfVar);
-                    AndroidUtilities.runOnUIThread(cfVar, 100L);
-                    return;
-                }
-                return;
-            case 1:
-                pg pgVar2 = this.f25411b.Z2;
-                if (pgVar2 != null) {
-                    pgVar2.k2(0, 0, 0, 0L, 0L, true);
-                    return;
-                }
-                return;
-            default:
-                ChatActivityEnterView chatActivityEnterView2 = this.f25411b;
-                AnimatorSet animatorSet = chatActivityEnterView2.V0;
-                if (animatorSet != null && !animatorSet.isRunning()) {
-                    chatActivityEnterView2.V0.start();
-                    return;
-                }
-                return;
+    public final float getTranslationX() {
+        return this.f25359a;
+    }
+
+    @Override
+    public final void setTranslationX(float f7) {
+        float f10;
+        float alpha;
+        this.f25359a = f7;
+        float f11 = -44.0f;
+        float dp = AndroidUtilities.dp(-44.0f) + this.f25359a;
+        ChatActivityEnterView chatActivityEnterView = this.f25360b;
+        float f12 = dp + chatActivityEnterView.f23989y + chatActivityEnterView.f23983x;
+        ef efVar = chatActivityEnterView.K1;
+        float f13 = 0.0f;
+        if (efVar != null && efVar.getVisibility() == 0) {
+            f10 = -44.0f;
+        } else {
+            f10 = 0.0f;
         }
+        float dp2 = AndroidUtilities.dp(f10);
+        ef efVar2 = chatActivityEnterView.K1;
+        if (efVar2 == null) {
+            alpha = 0.0f;
+        } else {
+            alpha = efVar2.getAlpha();
+        }
+        float f14 = (dp2 * alpha) + f12;
+        ef efVar3 = chatActivityEnterView.f23985x1;
+        if (efVar3 == null || efVar3.getVisibility() != 0) {
+            f11 = 0.0f;
+        }
+        float dp3 = AndroidUtilities.dp(f11);
+        ef efVar4 = chatActivityEnterView.f23985x1;
+        if (efVar4 != null) {
+            f13 = efVar4.getAlpha();
+        }
+        super.setTranslationX((dp3 * f13) + f14);
     }
 }

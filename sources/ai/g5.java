@@ -1,316 +1,96 @@
 package ai;
 
-import android.content.Context;
 import android.content.DialogInterface;
-import android.net.Uri;
-import android.os.Bundle;
-import android.text.style.CharacterStyle;
-import android.text.style.ClickableSpan;
-import android.text.style.URLSpan;
-import android.view.View;
-import java.net.URLDecoder;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.bi;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.b80;
-import org.telegram.ui.Components.f40;
-import org.telegram.ui.Components.k61;
-import org.telegram.ui.Components.l61;
-import org.telegram.ui.Components.n11;
-import org.telegram.ui.Components.n61;
-import org.telegram.ui.Components.o61;
-import org.telegram.ui.Components.pa0;
-import org.telegram.ui.Components.yc;
-import org.telegram.ui.yn;
-public final class g5 extends xa {
-    public final jc f968x0;
-    public final org.telegram.ui.ActionBar.d6 f969y0;
-    public final e6 f970z0;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.eg0;
+import org.telegram.ui.m31;
+public final class g5 implements DialogInterface.OnDismissListener {
+    public final int f1053a;
+    public final Object f1054b;
 
-    public g5(e6 e6Var, Context context, d dVar, jc jcVar, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, dVar);
-        this.f970z0 = e6Var;
-        this.f968x0 = jcVar;
-        this.f969y0 = d6Var;
+    public g5(Object obj, int i10) {
+        this.f1053a = i10;
+        this.f1054b = obj;
     }
 
     @Override
-    public final void F(org.telegram.ui.Components.z5 z5Var) {
-        if (z5Var != null) {
-            e6 e6Var = this.f970z0;
-            if (e6Var.Q1 != null) {
-                TLRPC.Document document = z5Var.document;
-                if (document == null) {
-                    document = org.telegram.ui.Components.q5.f(e6Var.C2, z5Var.documentId);
-                }
-                if (document != null) {
-                    a5 a5Var = e6Var.f844c1;
-                    org.telegram.ui.ActionBar.d6 d6Var = this.f969y0;
-                    org.telegram.ui.Components.rc h = new yc(a5Var, d6Var).h(document, 2, new c5(this, this.f968x0, d6Var, 0));
-                    if (h != null) {
-                        h.f30420a = 1;
-                        h.k(true);
-                    }
-                }
-            }
-        }
-    }
-
-    @Override
-    public final void G(CharacterStyle characterStyle, View view) {
-        boolean z10 = characterStyle instanceof o61;
-        jc jcVar = this.f968x0;
-        e6 e6Var = this.f970z0;
-        if (z10) {
-            TLRPC.User user = MessagesController.getInstance(e6Var.C2).getUser(Utilities.parseLong(((o61) characterStyle).getURL()));
-            if (user != null) {
-                MessagesController.getInstance(e6Var.C2).openChatOrProfileWith(user, null, jcVar.f1158f, 0, false);
-            }
-        } else if (characterStyle instanceof l61) {
-            String url = ((l61) characterStyle).getURL();
-            if (url != null && (url.startsWith("#") || url.startsWith("$"))) {
-                if (url.contains("@")) {
-                    jcVar.H(new f40(url, null));
+    public final void onDismiss(DialogInterface dialogInterface) {
+        org.telegram.ui.web.g0 g0Var;
+        switch (this.f1053a) {
+            case 0:
+                ((a3.d) this.f1054b).run();
+                return;
+            case 1:
+                kc kcVar = (kc) this.f1054b;
+                if (dialogInterface == kcVar.f1299u0) {
+                    kcVar.f1299u0 = null;
+                    kcVar.P();
                     return;
                 }
-                Bundle bundle = new Bundle();
-                bundle.putInt("type", 3);
-                bundle.putString("hashtag", url);
-                jcVar.H(new pa0(bundle, null));
                 return;
-            }
-            String b10 = nf.f.b(url);
-            if (b10 != null) {
-                String lowerCase = b10.toLowerCase();
-                if (url.startsWith("@")) {
-                    MessagesController.getInstance(e6Var.C2).openByUserName(lowerCase, jcVar.f1158f, 0, null);
+            case 2:
+                AndroidUtilities.hideKeyboard((hg.t) this.f1054b);
+                return;
+            case 3:
+                AndroidUtilities.hideKeyboard((hg.s1) this.f1054b);
+                return;
+            case 4:
+                ((ii.r) this.f1054b).O = null;
+                return;
+            case 5:
+                ((ii.e2) this.f1054b).O0 = null;
+                return;
+            case 6:
+                Runnable[] runnableArr = (Runnable[]) this.f1054b;
+                Runnable runnable = runnableArr[0];
+                if (runnable != null) {
+                    runnable.run();
+                    runnableArr[0] = null;
                     return;
-                } else {
-                    M(0, url, characterStyle, false);
+                }
+                return;
+            case 7:
+                org.telegram.ui.web.b1 b1Var = ((org.telegram.ui.web.m0) this.f1054b).f43393e.Q;
+                if (b1Var != null && (g0Var = b1Var.f43239c) != null) {
+                    g0Var.y();
                     return;
                 }
-            }
-            M(0, url, characterStyle, false);
-        } else if (characterStyle instanceof URLSpan) {
-            M(2, ((URLSpan) characterStyle).getURL(), characterStyle, characterStyle instanceof n61);
-        } else if (characterStyle instanceof k61) {
-            k61 k61Var = (k61) characterStyle;
-            AndroidUtilities.addToClipboard(k61Var.f28069a.subSequence(k61Var.f28070b, k61Var.f28071c).toString());
-            bi.n(R.string.TextCopied, new yc(e6Var.f844c1, this.f969y0));
-        } else if (characterStyle instanceof ClickableSpan) {
-            ((ClickableSpan) characterStyle).onClick(view);
-        }
-    }
-
-    @Override
-    public final void H(final URLSpan uRLSpan, final View view, a3.d dVar) {
-        String str;
-        final String url = uRLSpan.getURL();
-        String url2 = uRLSpan.getURL();
-        try {
-            try {
-                Uri parse = Uri.parse(url2);
-                url2 = nf.f.v(parse, null, null, nf.f.a(parse.getHost()), null);
-            } catch (Exception e7) {
-                FileLog.e((Throwable) e7, false);
-            }
-            str = URLDecoder.decode(url2.replaceAll("\\+", "%2b"), "UTF-8");
-        } catch (Exception e10) {
-            FileLog.e(e10);
-            str = url2;
-        }
-        try {
-            performHapticFeedback(0, 1);
-        } catch (Exception unused) {
-        }
-        Context context = getContext();
-        org.telegram.ui.ActionBar.d6 d6Var = this.f969y0;
-        org.telegram.ui.ActionBar.f3 f3Var = new org.telegram.ui.ActionBar.f3(1, context, d6Var, false);
-        f3Var.fixNavigationBar();
-        f3Var.title = str;
-        f3Var.bigTitle = false;
-        f3Var.multipleLinesTitle = true;
-        e6 e6Var = this.f970z0;
-        c6 c6Var = e6Var.O1;
-        CharSequence[] charSequenceArr = (c6Var == null || c6Var.d()) ? new CharSequence[]{LocaleController.getString(R.string.Open), LocaleController.getString(R.string.Copy)} : new CharSequence[]{LocaleController.getString(R.string.Open)};
-        final org.telegram.ui.ActionBar.d6 d6Var2 = this.f969y0;
-        DialogInterface.OnClickListener onClickListener = new DialogInterface.OnClickListener() {
-            @Override
-            public final void onClick(DialogInterface dialogInterface, int i10) {
-                g5 g5Var = g5.this;
-                if (i10 == 0) {
-                    g5Var.G(uRLSpan, view);
-                } else if (i10 == 1) {
-                    AndroidUtilities.addToClipboard(url);
-                    new yc(g5Var.f970z0.f844c1, d6Var2).k(false).j();
-                }
-            }
-        };
-        f3Var.items = charSequenceArr;
-        f3Var.onClickListener = onClickListener;
-        f3Var.setOnHideListener(new f5(dVar, 0));
-        f3Var.fixNavigationBar(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20899h5, d6Var));
-        ((ac) e6Var.Q1).h(f3Var);
-    }
-
-    @Override
-    public final void I(sa saVar) {
-        if (saVar == null) {
-            return;
-        }
-        final TLRPC.Document document = saVar.f1651g;
-        e6 e6Var = this.f970z0;
-        jc jcVar = this.f968x0;
-        final org.telegram.ui.ActionBar.d6 d6Var = this.f969y0;
-        if (document != null) {
-            b80 F = b80.F(jcVar.v, d6Var, e6Var.K0);
-            F.f24867i = 3;
-            F.a0(-AndroidUtilities.dp(8.0f), 0.0f);
-            F.l(R.drawable.msg_saved, LocaleController.getString(R.string.StoryAudioAddToSavedMessages), new Runnable(this) {
-                public final g5 f634b;
-
-                {
-                    this.f634b = this;
-                }
-
-                @Override
-                public final void run() {
-                    TL_stories.StoryItem storyItem;
-                    switch (r4) {
-                        case 0:
-                            e6 e6Var2 = this.f634b.f970z0;
-                            SendMessagesHelper sendMessagesHelper = SendMessagesHelper.getInstance(e6Var2.C2);
-                            TLRPC.TL_document tL_document = (TLRPC.TL_document) document;
-                            long clientUserId = UserConfig.getInstance(e6Var2.C2).getClientUserId();
-                            c6 c6Var = e6Var2.O1;
-                            if (c6Var != null) {
-                                storyItem = c6Var.f696a;
-                            } else {
-                                storyItem = null;
-                            }
-                            sendMessagesHelper.sendMessage(SendMessagesHelper.SendMessageParams.of(tL_document, null, null, clientUserId, null, null, null, null, null, null, false, 0, 0, 0, storyItem, null, false));
-                            new yc(e6Var2.f844c1, d6Var).Q(R.raw.saved_messages, 36, AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StoryAudioAddToSavedMessagesToast), -1, 2, new f(25))).k(true);
-                            return;
-                        default:
-                            e6 e6Var3 = this.f634b.f970z0;
-                            TLRPC.TL_account_saveMusic tL_account_saveMusic = new TLRPC.TL_account_saveMusic();
-                            TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                            tL_account_saveMusic.f20075id = tL_inputDocument;
-                            TLRPC.Document document2 = document;
-                            tL_inputDocument.f20059id = document2.f20053id;
-                            tL_inputDocument.access_hash = document2.access_hash;
-                            tL_inputDocument.file_reference = document2.file_reference;
-                            if (MediaController.getInstance().currentSavedMusicList != null && MediaController.getInstance().currentSavedMusicList.dialogId == UserConfig.getInstance(e6Var3.C2).getClientUserId()) {
-                                MediaController.getInstance().currentSavedMusicList.add(document2);
-                            }
-                            ConnectionsManager.getInstance(e6Var3.C2).sendRequest(tL_account_saveMusic, null);
-                            new yc(e6Var3.f844c1, d6Var).Q(R.raw.ic_save_to_music, 36, LocaleController.getString(R.string.StoryAudioAddToProfileToast)).k(true);
-                            return;
-                    }
-                }
-            }, document instanceof TLRPC.TL_document);
-            F.c(R.drawable.msg_tone_add, LocaleController.getString(R.string.StoryAudioAddToProfile), new Runnable(this) {
-                public final g5 f634b;
-
-                {
-                    this.f634b = this;
-                }
-
-                @Override
-                public final void run() {
-                    TL_stories.StoryItem storyItem;
-                    switch (r4) {
-                        case 0:
-                            e6 e6Var2 = this.f634b.f970z0;
-                            SendMessagesHelper sendMessagesHelper = SendMessagesHelper.getInstance(e6Var2.C2);
-                            TLRPC.TL_document tL_document = (TLRPC.TL_document) document;
-                            long clientUserId = UserConfig.getInstance(e6Var2.C2).getClientUserId();
-                            c6 c6Var = e6Var2.O1;
-                            if (c6Var != null) {
-                                storyItem = c6Var.f696a;
-                            } else {
-                                storyItem = null;
-                            }
-                            sendMessagesHelper.sendMessage(SendMessagesHelper.SendMessageParams.of(tL_document, null, null, clientUserId, null, null, null, null, null, null, false, 0, 0, 0, storyItem, null, false));
-                            new yc(e6Var2.f844c1, d6Var).Q(R.raw.saved_messages, 36, AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StoryAudioAddToSavedMessagesToast), -1, 2, new f(25))).k(true);
-                            return;
-                        default:
-                            e6 e6Var3 = this.f634b.f970z0;
-                            TLRPC.TL_account_saveMusic tL_account_saveMusic = new TLRPC.TL_account_saveMusic();
-                            TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                            tL_account_saveMusic.f20075id = tL_inputDocument;
-                            TLRPC.Document document2 = document;
-                            tL_inputDocument.f20059id = document2.f20053id;
-                            tL_inputDocument.access_hash = document2.access_hash;
-                            tL_inputDocument.file_reference = document2.file_reference;
-                            if (MediaController.getInstance().currentSavedMusicList != null && MediaController.getInstance().currentSavedMusicList.dialogId == UserConfig.getInstance(e6Var3.C2).getClientUserId()) {
-                                MediaController.getInstance().currentSavedMusicList.add(document2);
-                            }
-                            ConnectionsManager.getInstance(e6Var3.C2).sendRequest(tL_account_saveMusic, null);
-                            new yc(e6Var3.f844c1, d6Var).Q(R.raw.ic_save_to_music, 36, LocaleController.getString(R.string.StoryAudioAddToProfileToast)).k(true);
-                            return;
-                    }
-                }
-            }, false);
-            F.Z();
-        } else if (saVar.f1649e && saVar.f1647b != null && saVar.d != null) {
-            Bundle bundle = new Bundle();
-            if (saVar.f1647b.longValue() >= 0) {
-                bundle.putLong("user_id", saVar.f1647b.longValue());
-            } else {
-                bundle.putLong("chat_id", -saVar.f1647b.longValue());
-            }
-            bundle.putInt("message_id", saVar.d.intValue());
-            jcVar.H(new yn(bundle));
-        } else if (saVar.f1647b != null && saVar.f1648c != null) {
-            MessagesController.getInstance(e6Var.C2).getStoriesController().d0(saVar.f1647b.longValue(), saVar.f1648c.intValue(), new e4(this, saVar, jcVar, d6Var, 1));
-        } else {
-            org.telegram.ui.Components.rc Q = new yc(e6Var.f844c1, d6Var).Q(R.raw.error, 36, LocaleController.getString(R.string.StoryHidAccount));
-            Q.f30420a = 3;
-            Q.k(true);
-        }
-    }
-
-    public final void M(int i10, String str, CharacterStyle characterStyle, boolean z10) {
-        boolean z11;
-        n11 n11Var;
-        if (!z10 && !AndroidUtilities.shouldShowUrlInAlert(str)) {
-            if (i10 == 0) {
-                nf.f.q(getContext(), Uri.parse(str), true, true, null);
                 return;
-            } else if (i10 == 1) {
-                nf.f.q(getContext(), Uri.parse(str), false, false, null);
+            case 8:
+                org.telegram.ui.web.g0 g0Var2 = ((org.telegram.ui.web.u0) this.f1054b).f43473b.f43518e.Q.f43239c;
+                if (g0Var2 != null) {
+                    g0Var2.y();
+                    return;
+                }
                 return;
-            } else if (i10 == 2) {
-                nf.f.q(getContext(), Uri.parse(str), false, true, null);
+            case 9:
+                rg.j0 j0Var = (rg.j0) this.f1054b;
+                j0Var.f47277f0 = false;
+                j0Var.f47294x0.f24241d0 = true;
+                j0Var.E0.invalidate();
+                j0Var.f47294x0.invalidate();
                 return;
-            } else {
+            case 10:
+                rg.l1 l1Var = (rg.l1) this.f1054b;
+                eg0 eg0Var = l1Var.f47335r0;
+                if (eg0Var != null) {
+                    eg0Var.setDialogVisible(false);
+                }
+                l1Var.f47334q0.setPaused(false);
                 return;
-            }
+            case 11:
+                ((wh.l) this.f1054b).f50442s = null;
+                return;
+            case 12:
+                ((m31) this.f1054b).run();
+                return;
+            case 13:
+                AndroidUtilities.hideKeyboard((EditTextBoldCursor) this.f1054b);
+                return;
+            default:
+                ((u2.p0) this.f1054b).run();
+                return;
         }
-        jc jcVar = this.f968x0;
-        if (i10 != 0 && i10 != 2) {
-            if (i10 == 1) {
-                org.telegram.ui.Components.e5.r0(jcVar.f1158f, str, true, true, false, false, null, null, this.f969y0);
-                return;
-            }
-            return;
-        }
-        if ((characterStyle instanceof n61) && (n11Var = ((n61) characterStyle).f28987a) != null && (n11Var.f28925a & 1024) != 0) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        org.telegram.ui.Components.e5.r0(jcVar.f1158f, str, true, true, true, z11, null, null, this.f969y0);
     }
 }

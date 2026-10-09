@@ -8,11 +8,11 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.i6;
-import w7.z5;
+import w7.x5;
 public final class x extends LinearLayout {
-    public final TextView f3888a;
-    public final TextView f3889b;
-    public boolean f3890c;
+    public final TextView f3937a;
+    public final TextView f3938b;
+    public boolean f3939c;
 
     public x(Context context) {
         super(context);
@@ -20,29 +20,29 @@ public final class x extends LinearLayout {
         setPadding(AndroidUtilities.dp(22.0f), 0, AndroidUtilities.dp(22.0f), 0);
         setOrientation(1);
         TextView textView = new TextView(context);
-        this.f3888a = textView;
+        this.f3937a = textView;
         textView.setTextSize(1, 16.0f);
-        textView.setTextColor(i6.w0(null, i6.f20935j5, false));
+        textView.setTextColor(i6.x0(null, i6.f20905j5, false));
         if (LocaleController.isRTL) {
             i10 = 5;
         } else {
             i10 = 3;
         }
         textView.setGravity(i10);
-        addView(textView, z5.t(-1, -2, 51, 0, 7, 0, 0));
+        addView(textView, x5.t(-1, -2, 51, 0, 7, 0, 0));
         TextView textView2 = new TextView(context);
-        this.f3889b = textView2;
+        this.f3938b = textView2;
         textView2.setTextSize(1, 13.0f);
-        textView2.setTextColor(i6.w0(null, i6.f21067q5, false));
+        textView2.setTextColor(i6.x0(null, i6.f21036q5, false));
         textView2.setGravity(LocaleController.isRTL ? 5 : 3);
-        addView(textView2, z5.t(-1, -2, 51, 0, 4, 0, 0));
+        addView(textView2, x5.t(-1, -2, 51, 0, 4, 0, 0));
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (this.f3890c) {
-            canvas.drawRect(getPaddingLeft(), getHeight() - 1, getWidth(), getHeight(), i6.f20950k0);
+        if (this.f3939c) {
+            canvas.drawRect(getPaddingLeft(), getHeight() - 1, getWidth(), getHeight(), i6.f20919k0);
         }
     }
 

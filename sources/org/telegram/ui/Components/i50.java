@@ -1,42 +1,28 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class i50 extends AnimatorListenerAdapter {
-    public final int f27404a;
-    public final f60 f27405b;
+import android.content.Intent;
+import java.util.ArrayList;
+import org.telegram.messenger.FileLog;
+public final class i50 implements org.telegram.ui.jq0 {
+    public final m50 f27244a;
 
-    public i50(f60 f60Var, int i10) {
-        this.f27404a = i10;
-        this.f27405b = f60Var;
+    public i50(m50 m50Var) {
+        this.f27244a = m50Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f27404a) {
-            case 0:
-                f60 f60Var = this.f27405b;
-                if (animator.equals(f60Var.L)) {
-                    f60Var.L = null;
-                    return;
-                }
-                return;
-            case 1:
-                f60 f60Var2 = this.f27405b;
-                if (f60Var2.f26365g1 != null) {
-                    f60Var2.f26365g1 = null;
-                    return;
-                }
-                return;
-            default:
-                f60 f60Var3 = this.f27405b;
-                if (animator.equals(f60Var3.f26359e0)) {
-                    f60Var3.c(true);
-                    f60Var3.f26354b1 = false;
-                    f60Var3.setVisibility(4);
-                    return;
-                }
-                return;
+    public final void a(ArrayList arrayList) {
+        m50.a(this.f27244a, false, arrayList);
+    }
+
+    @Override
+    public final void b() {
+        try {
+            Intent intent = new Intent("android.intent.action.GET_CONTENT");
+            intent.setType("image/*");
+            this.f27244a.f28682a.startActivityForResult(intent, 14);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
     }
 }

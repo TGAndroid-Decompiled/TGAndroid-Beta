@@ -1,37 +1,36 @@
 package yh;
 
+import android.content.Context;
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
 import android.view.View;
-import org.telegram.ui.LaunchActivity;
-public final class k6 implements View.OnClickListener {
-    public final int f51551a;
-    public final m7 f51552b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class k6 extends ClickableSpan {
+    public final org.telegram.ui.ActionBar.f3[] f52786a;
+    public final Context f52787b;
+    public final boolean f52788c;
 
-    public k6(m7 m7Var, int i10) {
-        this.f51551a = i10;
-        this.f51552b = m7Var;
+    public k6(org.telegram.ui.ActionBar.f3[] f3VarArr, Context context, boolean z10) {
+        this.f52786a = f3VarArr;
+        this.f52787b = context;
+        this.f52788c = z10;
     }
 
     @Override
     public final void onClick(View view) {
-        org.telegram.ui.ActionBar.n2 R;
-        org.telegram.ui.ActionBar.n2 R2;
-        switch (this.f51551a) {
-            case 0:
-                if (this.f51552b.f51660f > 0 && (R = LaunchActivity.R()) != 0) {
-                    ?? obj = new Object();
-                    obj.f21358a = true;
-                    R.showAsSheet(new z7(), obj);
-                    return;
-                }
-                return;
-            default:
-                if (this.f51552b.f51660f > 0 && (R2 = LaunchActivity.R()) != 0) {
-                    ?? obj2 = new Object();
-                    obj2.f21358a = true;
-                    R2.showAsSheet(new z7(), obj2);
-                    return;
-                }
-                return;
+        int i10;
+        this.f52786a[0].dismiss();
+        if (this.f52788c) {
+            i10 = R.string.StarsTransactionTONFromFragmentLink;
+        } else {
+            i10 = R.string.StarsTransactionUnknownLink;
         }
+        of.f.s(this.f52787b, LocaleController.getString(i10));
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        textPaint.setUnderlineText(false);
     }
 }

@@ -1,23 +1,102 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MessagesStorage;
-public final class ww implements j70 {
-    public final uy f42716a;
+import android.animation.ValueAnimator;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.FileLog;
+public final class ww extends s4.d0 {
+    public boolean I;
+    public boolean J;
+    public ValueAnimator K;
+    public final sy L;
+    public final ty M;
 
-    public ww(uy uyVar) {
-        this.f42716a = uyVar;
+    public ww(ty tyVar, sy syVar) {
+        this.M = tyVar;
+        this.L = syVar;
     }
 
     @Override
-    public final void a(k70 k70Var, long j3) {
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(MessagesStorage.TopicKey.of(-j3, 0L));
-        uy uyVar = this.f42716a;
-        oy oyVar = uyVar.C2;
-        if (uyVar.B2) {
-            uyVar.removeSelfFromStack();
+    public final int R0() {
+        sy syVar = this.L;
+        if (syVar.f41795s == 0 && this.M.W3() && syVar.v == 2) {
+            return 1;
         }
-        oyVar.u(uyVar, arrayList, null, true, uyVar.J2, uyVar.K2, uyVar.L2, null);
+        return 0;
+    }
+
+    @Override
+    public final void b0(pf.e eVar, s4.a1 a1Var) {
+        if (BuildVars.DEBUG_PRIVATE_VERSION) {
+            try {
+                super.b0(eVar, a1Var);
+                return;
+            } catch (IndexOutOfBoundsException unused) {
+                StringBuilder sb2 = new StringBuilder("Inconsistency detected. dialogsListIsFrozen=");
+                ty tyVar = this.M;
+                sb2.append(tyVar.S1);
+                sb2.append(" lastUpdateAction=");
+                sb2.append(tyVar.y3);
+                throw new RuntimeException(sb2.toString());
+            }
+        }
+        try {
+            super.b0(eVar, a1Var);
+        } catch (IndexOutOfBoundsException e7) {
+            FileLog.e(e7);
+            AndroidUtilities.runOnUIThread(new vw(this.L, 0));
+        }
+    }
+
+    @Override
+    public final void b1(View view, View view2, int i10, int i11) {
+        this.I = true;
+        super.b1(view, view2, i10, i11);
+        this.I = false;
+    }
+
+    @Override
+    public final void f0() {
+        ValueAnimator valueAnimator = this.K;
+        if (valueAnimator != null) {
+            valueAnimator.removeAllListeners();
+            this.K.cancel();
+        }
+        sy syVar = this.L;
+        if (syVar.f41788a.getScrollState() != 1) {
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.M.T, 0.0f);
+            this.K = ofFloat;
+            ofFloat.addUpdateListener(new ai.x(21, this, syVar));
+            this.K.addListener(new org.telegram.ui.Components.i91(this, 17));
+            this.K.setDuration(200L);
+            this.K.setInterpolator(org.telegram.ui.Components.hs.f27118f);
+            this.K.start();
+        }
+    }
+
+    @Override
+    public final void h1(int i10, int i11) {
+        if (this.I) {
+            i11 -= this.L.f41788a.getPaddingTop();
+        }
+        super.h1(i10, i11);
+    }
+
+    @Override
+    public final int o0(int r23, pf.e r24, s4.a1 r25) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ww.o0(int, pf.e, s4.a1):int");
+    }
+
+    @Override
+    public final void v0(RecyclerView recyclerView, s4.a1 a1Var, int i10) {
+        if (this.M.W3() && i10 == 1) {
+            super.v0(recyclerView, a1Var, i10);
+            return;
+        }
+        ji.o oVar = new ji.o(recyclerView.getContext(), 0);
+        oVar.f47825a = i10;
+        w0(oVar);
     }
 }

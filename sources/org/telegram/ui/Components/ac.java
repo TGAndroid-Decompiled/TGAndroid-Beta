@@ -2,30 +2,33 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.view.MotionEvent;
-import android.view.WindowManager;
-import org.telegram.messenger.FileLog;
-public final class ac extends sk0 {
-    public final int l1 = 0;
-    public final Object f24584m1;
+import android.view.View;
+import android.widget.TextView;
+import org.telegram.messenger.Emoji;
+public final class ac extends ea0 {
+    public final int L;
 
-    public ac(org.telegram.ui.rt rtVar, Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(4, i10, context, null, d6Var);
-        this.f24584m1 = rtVar;
+    public ac(Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, e6Var);
+        this.L = i10;
+    }
+
+    @Override
+    public int a() {
+        switch (this.L) {
+            case 4:
+                return 3;
+            default:
+                return super.a();
+        }
     }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        rc rcVar;
-        switch (this.l1) {
-            case 0:
-                cc ccVar = (cc) this.f24584m1;
-                if (motionEvent.getAction() == 0) {
-                    rc rcVar2 = ccVar.f25368n;
-                    if (rcVar2 != null) {
-                        rcVar2.i(false);
-                    }
-                } else if (motionEvent.getAction() == 1 && (rcVar = ccVar.f25368n) != null) {
-                    rcVar.i(true);
+        switch (this.L) {
+            case 3:
+                if (getAlpha() < 0.9f) {
+                    return false;
                 }
                 return super.dispatchTouchEvent(motionEvent);
             default:
@@ -34,48 +37,32 @@ public final class ac extends sk0 {
     }
 
     @Override
-    public void j() {
-        switch (this.l1) {
+    public void onMeasure(int i10, int i11) {
+        switch (this.L) {
+            case 5:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
+        }
+    }
+
+    @Override
+    public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+        switch (this.L) {
+            case 0:
+                super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
+                return;
             case 1:
-                super.j();
-                org.telegram.ui.rt rtVar = (org.telegram.ui.rt) this.f24584m1;
-                if (getReactionsWindow() != null) {
-                    WindowManager.LayoutParams layoutParams = rtVar.f40263x;
-                    layoutParams.flags &= -131073;
-                    layoutParams.softInputMode = 16;
-                } else {
-                    rtVar.f40263x.flags |= 131072;
-                }
-                try {
-                    ((WindowManager) rtVar.f40262w.getSystemService("window")).updateViewLayout(rtVar.f40264y, rtVar.f40263x);
-                    return;
-                } catch (Exception e7) {
-                    FileLog.e(e7);
-                    return;
-                }
-            default:
-                super.j();
+                super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
                 return;
-        }
-    }
-
-    @Override
-    public void m() {
-        switch (this.l1) {
-            case 0:
-                rc rcVar = rc.f30419w;
-                if (rcVar != null) {
-                    rcVar.i(false);
-                }
-                ((cc) this.f24584m1).d.getReactionsWindow().f53552c.setOnClickListener(new f0(this, 5));
+            case 2:
+                super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
                 return;
             default:
+                super.setText(charSequence, bufferType);
                 return;
         }
-    }
-
-    public ac(cc ccVar, org.telegram.ui.ActionBar.n2 n2Var, Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(3, i10, context, n2Var, d6Var);
-        this.f24584m1 = ccVar;
     }
 }

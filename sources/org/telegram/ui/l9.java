@@ -1,50 +1,32 @@
 package org.telegram.ui;
+public final class l9 implements o1.g {
+    public final int f39474a;
+    public final v9 f39475b;
 
-import android.content.Context;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class l9 extends FrameLayout {
-    public final org.telegram.ui.Cells.i6 f38255a;
-    public final org.telegram.ui.Components.ki0 f38256b;
-    public TLRPC.Chat f38257c;
+    public l9(v9 v9Var, int i10) {
+        this.f39474a = i10;
+        this.f39475b = v9Var;
+    }
 
-    public l9(Context context) {
-        super(context);
-        int i10;
-        int dp;
-        String string = LocaleController.getString(R.string.VoipChatJoin);
-        org.telegram.ui.Components.ki0 ki0Var = new org.telegram.ui.Components.ki0(context);
-        this.f38256b = ki0Var;
-        int ceil = (int) Math.ceil(ki0Var.getPaint().measureText(string));
-        org.telegram.ui.Cells.i6 i6Var = new org.telegram.ui.Cells.i6(context, null);
-        this.f38255a = i6Var;
-        i6Var.M0 = true;
-        i6Var.E0 = true;
-        if (LocaleController.isRTL) {
-            i10 = AndroidUtilities.dp(44.0f) + ceil;
-        } else {
-            i10 = 0;
+    @Override
+    public final void a(o1.h hVar, float f7, float f10) {
+        float f11;
+        switch (this.f39474a) {
+            case 0:
+                v9 v9Var = this.f39475b;
+                v9Var.E = f7 / 500.0f;
+                v9Var.fragmentView.invalidate();
+                return;
+            default:
+                v9 v9Var2 = this.f39475b;
+                if (v9Var2.N) {
+                    f11 = f7 / 500.0f;
+                } else {
+                    f11 = 1.0f - (f7 / 500.0f);
+                }
+                v9Var2.f42714c0 = f11;
+                v9Var2.fragmentView.invalidate();
+                return;
         }
-        if (LocaleController.isRTL) {
-            dp = 0;
-        } else {
-            dp = AndroidUtilities.dp(44.0f) + ceil;
-        }
-        i6Var.setPadding(i10, 0, dp, 0);
-        i6Var.f22253b0 = 0;
-        i6Var.f22254c0 = -AndroidUtilities.dp(4.0f);
-        addView(i6Var, w7.z5.c(-1.0f, -1));
-        ki0Var.setText(string);
-        ki0Var.setTextSize(1, 14.0f);
-        ki0Var.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Sh, false));
-        ki0Var.setProgressColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Nh, false));
-        int w02 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.hl, false);
-        org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Qh, false);
-        ki0Var.setBackground(org.telegram.ui.ActionBar.x5.e(new float[]{16.0f}, w02));
-        ki0Var.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f), 0);
-        addView(ki0Var, w7.z5.i(-2.0f, 28.0f, 8388661, 0.0f, 16.0f, 14.0f, 0.0f));
     }
 }

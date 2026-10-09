@@ -1,80 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.view.TextureView;
-import java.util.ArrayList;
-public final class q61 implements Runnable {
-    public final int f29962a;
-    public final Object f29963b;
+import android.text.TextPaint;
+public final class q61 extends t61 {
+    public static boolean h = true;
+    public final int f30091e;
+    public final t11 f30092f;
 
-    public q61(Object obj, int i10) {
-        this.f29962a = i10;
-        this.f29963b = obj;
+    public q61(String str, int i10, t11 t11Var) {
+        super(str, (t11) null);
+        this.f30091e = i10;
+        this.f30092f = t11Var;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f29962a;
-        Object obj = this.f29963b;
-        switch (i10) {
-            case 0:
-                UndoView undoView = (UndoView) obj;
-                int i11 = UndoView.f24375e0;
-                undoView.getClass();
-                try {
-                    undoView.f24384f.performHapticFeedback(3, 2);
-                    return;
-                } catch (Exception unused) {
-                    return;
-                }
-            case 1:
-                ((h71) obj).invalidateSelf();
-                return;
-            case 2:
-                yz yzVar = ((u71) obj).f31370b;
-                if (yzVar != null) {
-                    yzVar.e(false, true, false);
-                    return;
-                }
-                return;
-            case 3:
-                e81 e81Var = (e81) obj;
-                i2.f0 f0Var = e81Var.d;
-                if (f0Var != null) {
-                    TextureView textureView = e81Var.f26062n;
-                    f0Var.B1();
-                    if (textureView != null && textureView == f0Var.V) {
-                        f0Var.B1();
-                        f0Var.o1();
-                        f0Var.t1(null);
-                        f0Var.m1(0, 0);
-                    }
-                    e81Var.d.v1(e81Var.f26062n);
-                    ArrayList arrayList = e81Var.N;
-                    if (arrayList != null) {
-                        e81Var.F(arrayList, e81Var.O);
-                    } else if (e81Var.U) {
-                        e81Var.G(e81Var.Q, e81Var.S, e81Var.R, e81Var.T);
-                    } else {
-                        e81Var.D(e81Var.Q, e81Var.S);
-                    }
-                    e81Var.C();
-                    return;
-                }
-                return;
-            case 4:
-                e81 e81Var2 = ((d81) obj).f25716f;
-                e81Var2.f26049a0.removeCallbacksAndMessages(null);
-                e81Var2.K.onVisualizerUpdate(false, true, null);
-                return;
-            case 5:
-                ((g81) obj).f26736g = false;
-                return;
-            case 6:
-                ((aa1) ((ki.d) ((org.telegram.ui.Cells.fa) obj).f22122b).f14863b).v.b();
-                return;
-            default:
-                ((w91) obj).d(false, true);
-                return;
+    public final void updateDrawState(TextPaint textPaint) {
+        int i10;
+        int i11;
+        super.updateDrawState(textPaint);
+        int i12 = this.f30091e;
+        if (i12 == 2) {
+            textPaint.setColor(-1);
+        } else if (i12 == 1) {
+            if (h) {
+                i11 = org.telegram.ui.ActionBar.i6.f20874hc;
+            } else {
+                i11 = org.telegram.ui.ActionBar.i6.f20839fc;
+            }
+            textPaint.setColor(org.telegram.ui.ActionBar.i6.x0(null, i11, false));
+        } else {
+            if (h) {
+                i10 = org.telegram.ui.ActionBar.i6.gc;
+            } else {
+                i10 = org.telegram.ui.ActionBar.i6.ec;
+            }
+            textPaint.setColor(org.telegram.ui.ActionBar.i6.x0(null, i10, false));
+        }
+        t11 t11Var = this.f30092f;
+        if (t11Var != null) {
+            t11Var.a(textPaint);
+        } else {
+            textPaint.setUnderlineText(false);
         }
     }
 }

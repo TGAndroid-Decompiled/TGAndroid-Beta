@@ -16,9 +16,9 @@ public final class g0 extends lg.p {
     public final int getCurrentHeight() {
         switch (this.P) {
             case 0:
-                return j0.b((j0) this.Q);
+                return i0.b((i0) this.Q);
             default:
-                return m0.b((m0) this.Q);
+                return l0.b((l0) this.Q);
         }
     }
 
@@ -26,9 +26,9 @@ public final class g0 extends lg.p {
     public final int getCurrentWidth() {
         switch (this.P) {
             case 0:
-                return j0.a((j0) this.Q);
+                return i0.a((i0) this.Q);
             default:
-                return m0.a((m0) this.Q);
+                return l0.a((l0) this.Q);
         }
     }
 }

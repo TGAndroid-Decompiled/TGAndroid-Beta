@@ -1,263 +1,453 @@
 package org.telegram.ui.Components;
 
-import android.graphics.BlendMode;
-import android.graphics.Canvas;
-import android.graphics.ColorMatrixColorFilter;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RecordingCanvas;
-import android.graphics.RectF;
-import android.graphics.RenderEffect;
-import android.graphics.RenderNode;
-import android.graphics.Shader;
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotchInfoUtils;
-public final class di0 implements ei0 {
-    public final float f25800f;
-    public final Paint f25802i;
-    public final RectF f25803j;
-    public final fi0 f25804k;
-    public final Paint f25796a = new Paint(1);
-    public final RenderNode f25797b = new RenderNode("render");
-    public final RenderNode f25798c = new RenderNode("effectNotch");
-    public final RenderNode d = new RenderNode("effect");
-    public final RenderNode f25799e = new RenderNode("blur");
-    public final RectF f25801g = new RectF();
-    public final RectF h = new RectF();
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.PremiumPreviewFragment;
+public final class di0 extends FrameLayout {
+    public final y9 E;
+    public final TextView F;
+    public final TextView G;
+    public final ci.d H;
+    public final TextView I;
+    public boolean J;
+    public int K;
+    public int L;
+    public boolean M;
+    public boolean N;
+    public int O;
+    public boolean P;
+    public boolean Q;
+    public er R;
+    public er S;
+    public bv T;
+    public final er[] U;
+    public final zh0 V;
+    public final org.telegram.ui.ty f25712a;
+    public final int f25713b;
+    public final k71 f25714c;
+    public TLRPC.SearchPostsFlood d;
+    public final ArrayList f25715e;
+    public int f25716f;
+    public boolean h;
+    public final ArrayList f25717n;
+    public int f25718r;
+    public boolean f25719s;
+    public boolean v;
+    public String f25720w;
+    public final FrameLayout f25721x;
+    public final org.telegram.ui.yd f25722y;
 
-    public di0(fi0 fi0Var, float f7) {
-        this.f25804k = fi0Var;
-        Paint paint = new Paint();
-        this.f25802i = paint;
-        this.f25803j = new RectF();
-        this.f25800f = f7;
-        paint.setColor(-16777216);
-        paint.setBlendMode(BlendMode.SRC_IN);
+    public di0(Context context, org.telegram.ui.ty tyVar) {
+        super(context);
+        this.f25715e = new ArrayList();
+        this.f25717n = new ArrayList();
+        this.K = -1;
+        this.L = 0;
+        this.O = -1;
+        this.U = new er[1];
+        this.V = new zh0(this, 1);
+        this.f25712a = tyVar;
+        int currentAccount = tyVar.getCurrentAccount();
+        this.f25713b = currentAccount;
+        k71 k71Var = new k71(context, currentAccount, 0, false, new d(this, 18), new bw(this, 12), null, null);
+        this.f25714c = k71Var;
+        k71Var.j(new ii.n3(3, this, tyVar));
+        addView(k71Var, w7.x5.e(-1, -1, 119));
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.f25721x = frameLayout;
+        org.telegram.ui.yd ydVar = new org.telegram.ui.yd(context, 3);
+        this.f25722y = ydVar;
+        ydVar.setOrientation(1);
+        frameLayout.addView(ydVar, w7.x5.a(-2.0f, 32.0f, 0.0f, 32.0f, 0.0f, -2, 17));
+        y9 y9Var = new y9(context);
+        this.E = y9Var;
+        y9Var.setVisibility(8);
+        ydVar.addView(y9Var, w7.x5.t(130, 130, 1, 0, 0, 0, 12));
+        TextView textView = new TextView(context);
+        this.F = textView;
+        textView.setTextSize(1, 16.0f);
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setGravity(17);
+        textView.setSingleLine(false);
+        textView.setMaxLines(4);
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView.setEllipsize(truncateAt);
+        ydVar.addView(textView, w7.x5.q(-2, -2, 1));
+        TextView textView2 = new TextView(context);
+        this.G = textView2;
+        textView2.setTextSize(1, 14.0f);
+        textView2.setGravity(17);
+        textView2.setSingleLine(false);
+        textView2.setMaxLines(4);
+        textView2.setEllipsize(truncateAt);
+        ydVar.addView(textView2, w7.x5.t(-2, -2, 1, 0, 9, 0, 0));
+        ci.d f7 = org.telegram.messenger.bi.f(24, context, null, true);
+        this.H = f7;
+        ydVar.addView(f7, w7.x5.t(-1, 44, 7, 0, 19, 0, 0));
+        TextView textView3 = new TextView(context);
+        this.I = textView3;
+        textView3.setTextSize(1, 12.0f);
+        textView3.setGravity(17);
+        ydVar.addView(textView3, w7.x5.k(0.0f, 11.0f, 0.0f, 0.0f, -1, -2));
+        addView(frameLayout, w7.x5.e(-1, -1, 119));
+        k71Var.setHideIfEmpty(false);
+        k71Var.setEmptyView(frameLayout);
+        k71Var.W1 = true;
+        k71Var.X1 = 0;
+        c();
+        d();
     }
 
-    @Override
-    public final void a(float f7) {
-        RenderNode renderNode = this.d;
-        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-        renderNode.setRenderEffect(RenderEffect.createBlurEffect(f7, f7, tileMode));
-        this.f25798c.setRenderEffect(RenderEffect.createBlurEffect(f7, f7, tileMode));
-        this.f25796a.setColorFilter(new ColorMatrixColorFilter(new float[]{1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 51.0f, -6375.0f}));
-    }
-
-    @Override
-    public final void b(float f7) {
-        Shader.TileMode tileMode;
-        if (f7 == 0.0f) {
-            this.f25799e.setRenderEffect(null);
-            return;
+    public final void a(boolean z10) {
+        long j3;
+        TLRPC.SearchPostsFlood searchPostsFlood;
+        if (!this.v) {
+            boolean isEmpty = TextUtils.isEmpty(this.f25720w);
+            if (!isEmpty || !this.h) {
+                if (isEmpty || !this.f25719s) {
+                    if (!isEmpty && this.d == null) {
+                        return;
+                    }
+                    this.v = true;
+                    int i10 = this.f25713b;
+                    MessagesController messagesController = MessagesController.getInstance(i10);
+                    ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i10);
+                    TLRPC.TL_channels_searchPosts tL_channels_searchPosts = new TLRPC.TL_channels_searchPosts();
+                    tL_channels_searchPosts.flags |= 2;
+                    tL_channels_searchPosts.query = this.f25720w;
+                    tL_channels_searchPosts.limit = 30;
+                    if (isEmpty) {
+                        ArrayList arrayList = this.f25715e;
+                        if (!arrayList.isEmpty()) {
+                            MessageObject messageObject = (MessageObject) hg.c.g(1, arrayList);
+                            tL_channels_searchPosts.offset_rate = this.f25716f;
+                            tL_channels_searchPosts.offset_id = messageObject.getRealId();
+                            tL_channels_searchPosts.offset_peer = messagesController.getInputPeer(messageObject.messageOwner.peer_id);
+                        } else {
+                            tL_channels_searchPosts.offset_peer = new TLRPC.TL_inputPeerEmpty();
+                        }
+                    } else {
+                        ArrayList arrayList2 = this.f25717n;
+                        if (!arrayList2.isEmpty()) {
+                            MessageObject messageObject2 = (MessageObject) hg.c.g(1, arrayList2);
+                            tL_channels_searchPosts.offset_rate = this.f25718r;
+                            tL_channels_searchPosts.offset_id = messageObject2.getRealId();
+                            tL_channels_searchPosts.offset_peer = messagesController.getInputPeer(messageObject2.messageOwner.peer_id);
+                        } else {
+                            tL_channels_searchPosts.offset_peer = new TLRPC.TL_inputPeerEmpty();
+                        }
+                    }
+                    if (z10 && (searchPostsFlood = this.d) != null) {
+                        tL_channels_searchPosts.flags |= 4;
+                        j3 = searchPostsFlood.stars_amount;
+                        tL_channels_searchPosts.allow_paid_stars = j3;
+                    } else {
+                        j3 = 0;
+                    }
+                    this.K = connectionsManager.sendRequest(tL_channels_searchPosts, new j7(this, messagesController, isEmpty, tL_channels_searchPosts, z10, j3, connectionsManager), 1024);
+                    d();
+                    this.f25714c.W2.N(true);
+                }
+            }
         }
-        RenderNode renderNode = this.f25799e;
-        float f10 = this.f25804k.d;
-        float f11 = this.f25800f;
-        tileMode = Shader.TileMode.DECAL;
-        renderNode.setRenderEffect(RenderEffect.createBlurEffect((f7 * f10) / f11, (f7 * f10) / f11, tileMode));
     }
 
-    @Override
-    public final void c(pv pvVar, Canvas canvas) {
+    public final void b(String str) {
+        boolean z10;
+        int i10 = this.O;
+        int i11 = this.f25713b;
+        if (i10 >= 0) {
+            ConnectionsManager.getInstance(i11).cancelRequest(this.O, true);
+            this.O = -1;
+        }
+        if (!this.M) {
+            if (this.Q && (!this.f25717n.isEmpty() || !this.f25719s)) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            this.N = z10;
+        }
+        this.M = true;
+        TLRPC.TL_channels_checkSearchPostsFlood tL_channels_checkSearchPostsFlood = new TLRPC.TL_channels_checkSearchPostsFlood();
+        if (!TextUtils.isEmpty(str)) {
+            tL_channels_checkSearchPostsFlood.flags = 1 | tL_channels_checkSearchPostsFlood.flags;
+            tL_channels_checkSearchPostsFlood.query = str;
+        }
+        this.O = ConnectionsManager.getInstance(i11).sendRequest(tL_channels_checkSearchPostsFlood, new y1(this, 9));
+    }
+
+    public final void c() {
+        this.f25721x.setBackgroundColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20797d6, false));
+        this.F.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.G6, false));
+        int i10 = org.telegram.ui.ActionBar.i6.f21181y6;
+        this.I.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, i10, false));
+        this.G.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, i10, false));
+        k71 k71Var = this.f25714c;
+        k71Var.setAdapter(null);
+        k71Var.setAdapter(k71Var.W2);
+        if (this.T != null) {
+            this.T = null;
+            d();
+        }
+    }
+
+    public final void d() {
         float f7;
-        float f10;
-        float f11;
-        float f12;
-        float f13;
-        Paint paint;
-        fi0 fi0Var = this.f25804k;
-        Paint paint2 = fi0Var.f26470a;
-        Path path = fi0Var.f26471b;
-        if (!canvas.isHardwareAccelerated()) {
+        TLRPC.SearchPostsFlood searchPostsFlood;
+        String str;
+        Object valueOf;
+        Object valueOf2;
+        zh0 zh0Var = this.V;
+        AndroidUtilities.cancelRunOnUIThread(zh0Var);
+        int i10 = this.f25713b;
+        int currentTime = ConnectionsManager.getInstance(i10).getCurrentTime();
+        boolean isPremium = UserConfig.getInstance(i10).isPremium();
+        TextView textView = this.G;
+        TextView textView2 = this.F;
+        y9 y9Var = this.E;
+        TextView textView3 = this.I;
+        ci.d dVar = this.H;
+        if (!isPremium) {
+            y9Var.setVisibility(8);
+            textView2.setText(LocaleController.getString(R.string.SearchPostsTitle));
+            textView.setText(LocaleController.getString(R.string.SearchPostsText));
+            dVar.setVisibility(0);
+            dVar.g(LocaleController.getString(R.string.SearchPostsButtonPremium), true, true);
+            dVar.f(null, true);
+            dVar.setOnClickListener(new View.OnClickListener(this) {
+                public final di0 f24693b;
+
+                {
+                    this.f24693b = this;
+                }
+
+                @Override
+                public final void onClick(View view) {
+                    switch (r2) {
+                        case 0:
+                            this.f24693b.f25712a.presentFragment(new PremiumPreviewFragment(0, "search"));
+                            return;
+                        case 1:
+                            di0 di0Var = this.f24693b;
+                            di0Var.H.setLoading(true);
+                            di0Var.a(true);
+                            return;
+                        default:
+                            di0 di0Var2 = this.f24693b;
+                            di0Var2.H.setLoading(true);
+                            di0Var2.a(false);
+                            return;
+                    }
+                }
+            });
+            textView3.setVisibility(0);
+            textView3.setText(LocaleController.getString(R.string.SearchPostsPremium));
             return;
         }
-        RectF rectF = this.f25801g;
-        rectF.set(0.0f, 0.0f, fi0Var.getWidth(), fi0Var.getHeight());
-        int childCount = fi0Var.getChildCount();
-        RectF rectF2 = this.f25803j;
-        if (childCount > 0) {
-            View childAt = fi0Var.getChildAt(0);
-            float scaleX = childAt.getScaleX() * childAt.getWidth();
-            float scaleY = childAt.getScaleY() * childAt.getHeight();
-            float x10 = childAt.getX();
-            float y3 = childAt.getY();
-            rectF2.set(x10, y3, scaleX + x10, scaleY + y3);
-            NotchInfoUtils.NotchInfo notchInfo = fi0Var.f26475n;
-            if (notchInfo != null) {
-                rectF2.union(notchInfo.bounds);
+        boolean isEmpty = TextUtils.isEmpty(this.f25720w);
+        ArrayList arrayList = this.f25717n;
+        if (!isEmpty && arrayList.isEmpty() && this.f25719s) {
+            if (y9Var.getImageReceiver().getImageDrawable() == null) {
+                y9Var.setImageDrawable(new ck0(R.raw.utyan_empty, AndroidUtilities.dp(130.0f), AndroidUtilities.dp(130.0f)));
             }
-            rectF2.inset(-AndroidUtilities.dp(20.0f), -AndroidUtilities.dp(20.0f));
-            rectF2.intersect(rectF);
-            rectF2.top = 0.0f;
+            y9Var.setVisibility(0);
+            textView2.setText(LocaleController.getString(R.string.SearchPostsNotFound));
+            textView.setText(LocaleController.formatString(R.string.SearchPostsNotFoundText, TextUtils.ellipsize(this.f25720w, textView.getPaint(), AndroidUtilities.dp(100.0f), TextUtils.TruncateAt.END)));
+            dVar.setVisibility(8);
+            textView3.setVisibility(8);
+            return;
+        }
+        if (!TextUtils.isEmpty(this.f25720w) && (searchPostsFlood = this.d) != null) {
+            f7 = 100.0f;
+            if ((searchPostsFlood.flags & 2) != 0 && currentTime < searchPostsFlood.wait_till) {
+                y9Var.setVisibility(8);
+                textView2.setText(LocaleController.getString(R.string.SearchPostsLimitReached));
+                textView.setText(LocaleController.formatPluralStringComma("SearchPostsLimitReachedText", this.d.total_daily));
+                int i11 = this.d.wait_till - currentTime;
+                int i12 = i11 / 3600;
+                int i13 = i11 - (i12 * 3600);
+                int i14 = i13 / 60;
+                int i15 = i13 - (i14 * 60);
+                dVar.setVisibility(0);
+                dVar.g(yh.p7.S0(LocaleController.formatPluralStringComma("SearchPostsButtonPay", (int) this.d.stars_amount), 1.13f, this.U), true, true);
+                int i16 = R.string.SearchPostsFreeSearchUnlocksIn;
+                StringBuilder sb2 = new StringBuilder();
+                if (i12 > 0) {
+                    str = a1.g.n(i12, ":");
+                } else {
+                    str = "";
+                }
+                sb2.append(str);
+                if (i14 < 10) {
+                    valueOf = hg.c.h(i14, "0");
+                } else {
+                    valueOf = Integer.valueOf(i14);
+                }
+                sb2.append(valueOf);
+                sb2.append(":");
+                if (i15 < 10) {
+                    valueOf2 = hg.c.h(i15, "0");
+                } else {
+                    valueOf2 = Integer.valueOf(i15);
+                }
+                sb2.append(valueOf2);
+                dVar.f(LocaleController.formatString(i16, sb2.toString()), true);
+                dVar.f4868e.r(false, true);
+                dVar.setOnClickListener(new View.OnClickListener(this) {
+                    public final di0 f24693b;
+
+                    {
+                        this.f24693b = this;
+                    }
+
+                    @Override
+                    public final void onClick(View view) {
+                        switch (r2) {
+                            case 0:
+                                this.f24693b.f25712a.presentFragment(new PremiumPreviewFragment(0, "search"));
+                                return;
+                            case 1:
+                                di0 di0Var = this.f24693b;
+                                di0Var.H.setLoading(true);
+                                di0Var.a(true);
+                                return;
+                            default:
+                                di0 di0Var2 = this.f24693b;
+                                di0Var2.H.setLoading(true);
+                                di0Var2.a(false);
+                                return;
+                        }
+                    }
+                });
+                AndroidUtilities.runOnUIThread(zh0Var, 1000L);
+                textView3.setVisibility(8);
+                return;
+            }
         } else {
-            rectF2.set(rectF);
+            f7 = 100.0f;
         }
-        rectF2.bottom += AndroidUtilities.dp(32.0f);
-        int ceil = (int) Math.ceil(rectF2.width());
-        int ceil2 = (int) Math.ceil(rectF2.height());
-        float f14 = rectF2.left;
-        float f15 = rectF2.top;
-        this.f25797b.setPosition(0, 0, ceil, ceil2);
-        this.f25799e.setPosition(0, 0, ceil, ceil2);
-        this.d.setPosition(0, 0, ceil, ceil2);
-        this.f25798c.setPosition(0, 0, ceil, ceil2);
-        float f16 = ceil;
-        float f17 = ceil2;
-        rectF2.set(0.0f, 0.0f, f16, f17);
-        RecordingCanvas beginRecording = this.f25797b.beginRecording();
-        float f18 = -f14;
-        float f19 = -f15;
-        beginRecording.translate(f18, f19);
-        int ilerp = (int) ((1.0f - AndroidUtilities.ilerp(fi0Var.f26473e, 0.5f, 1.0f)) * 255.0f);
-        int b10 = w7.q.b(ilerp, 0, 255);
-        fi0.a((fi0) pvVar.f29849b, beginRecording);
-        this.f25797b.endRecording();
-        float f20 = this.f25800f;
-        float z10 = com.google.android.gms.internal.vision.e2.z(f20, 1.0f, 2.0f, com.google.android.gms.internal.vision.e2.x(fi0Var.f26474f, 0.5f, f20, (f20 / 4.0f) + 1.0f));
-        RecordingCanvas beginRecording2 = this.f25799e.beginRecording();
-        float f21 = 1.0f / z10;
-        beginRecording2.scale(f21, f21, 0.0f, 0.0f);
-        beginRecording2.drawRenderNode(this.f25797b);
-        this.f25799e.endRecording();
-        float f22 = f20 + 2.0f;
-        RecordingCanvas beginRecording3 = this.d.beginRecording();
-        float f23 = 1.0f / f22;
-        beginRecording3.scale(f23, f23, 0.0f, 0.0f);
-        Paint paint3 = this.f25802i;
-        if (b10 < 255) {
-            beginRecording3.saveLayer(rectF2, null);
-            beginRecording3.drawRenderNode(this.f25797b);
-            beginRecording3.drawRect(rectF2, paint3);
-            beginRecording3.restore();
-        }
-        float lerp = AndroidUtilities.lerp(0.0f, AndroidUtilities.dp(7.0f) * f22, 0.0f, 0.5f, fi0Var.f26473e);
-        if (fi0Var.getChildCount() > 0) {
-            View childAt2 = fi0Var.getChildAt(0);
-            float scaleX2 = (((childAt2.getScaleX() * childAt2.getWidth()) / 2.0f) + childAt2.getX()) - f14;
-            float scaleY2 = ((((childAt2.getScaleY() * childAt2.getHeight()) / 2.0f) + childAt2.getY()) + AndroidUtilities.dp(32.0f)) - f15;
-            float scaleX3 = childAt2.getScaleX() * (childAt2.getWidth() / 2.0f);
-            path.rewind();
-            f7 = lerp;
-            f10 = f14;
-            path.moveTo(scaleX2 - scaleX3, scaleY2 - (((float) Math.cos(0.7853981633974483d)) * scaleX3));
-            path.lineTo(scaleX2, (scaleY2 - scaleX3) - (0.25f * f7));
-            path.lineTo(scaleX2 + scaleX3, scaleY2 - (((float) Math.cos(0.7853981633974483d)) * scaleX3));
-            path.close();
-            beginRecording3.drawPath(path, paint2);
-        } else {
-            f7 = lerp;
-            f10 = f14;
-        }
-        if (b10 > 0) {
-            if (b10 != 255) {
-                beginRecording3.saveLayerAlpha(rectF2, b10);
+        if (arrayList.isEmpty() && !this.v && !TextUtils.isEmpty(this.f25720w)) {
+            y9Var.setVisibility(8);
+            textView2.setText(LocaleController.getString(R.string.SearchPostsTitle));
+            textView.setText(LocaleController.getString(R.string.SearchPostsText));
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("s ");
+            if (this.R == null) {
+                er erVar = new er(R.drawable.smiles_tab_search, 0);
+                this.R = erVar;
+                erVar.setScale(0.79f, 0.79f);
             }
-            beginRecording3.drawRenderNode(this.f25797b);
-            if (b10 != 255) {
-                beginRecording3.restore();
+            if (this.T == null) {
+                this.T = new bv(org.telegram.ui.ActionBar.i6.v(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.Oh, false), org.telegram.ui.ActionBar.i6.m1(0.75f, org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.Sh, false))), 1);
             }
+            spannableStringBuilder.setSpan(this.R, 0, 1, 0);
+            spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.SearchPostsButton));
+            spannableStringBuilder.append((CharSequence) " ");
+            int length = spannableStringBuilder.length();
+            spannableStringBuilder.append(TextUtils.ellipsize(this.f25720w, dVar.getTextPaint(), AndroidUtilities.dp(f7), TextUtils.TruncateAt.END));
+            spannableStringBuilder.setSpan(this.T, length, spannableStringBuilder.length(), 33);
+            spannableStringBuilder.append((CharSequence) " >");
+            if (this.S == null) {
+                er erVar2 = new er(R.drawable.msg_mini_forumarrow, 0);
+                this.S = erVar2;
+                erVar2.setScale(1.05f, 1.05f);
+            }
+            spannableStringBuilder.setSpan(this.S, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
+            dVar.setVisibility(0);
+            dVar.g(spannableStringBuilder, true, true);
+            dVar.d.r(false, false);
+            dVar.f(null, true);
+            dVar.setOnClickListener(new View.OnClickListener(this) {
+                public final di0 f24693b;
+
+                {
+                    this.f24693b = this;
+                }
+
+                @Override
+                public final void onClick(View view) {
+                    switch (r2) {
+                        case 0:
+                            this.f24693b.f25712a.presentFragment(new PremiumPreviewFragment(0, "search"));
+                            return;
+                        case 1:
+                            di0 di0Var = this.f24693b;
+                            di0Var.H.setLoading(true);
+                            di0Var.a(true);
+                            return;
+                        default:
+                            di0 di0Var2 = this.f24693b;
+                            di0Var2.H.setLoading(true);
+                            di0Var2.a(false);
+                            return;
+                    }
+                }
+            });
+            if (this.d != null) {
+                textView3.setVisibility(0);
+                TLRPC.SearchPostsFlood searchPostsFlood2 = this.d;
+                int i17 = searchPostsFlood2.remains;
+                if (i17 < 1) {
+                    i17 = searchPostsFlood2.total_daily;
+                }
+                textView3.setText(LocaleController.formatPluralStringComma("SearchPostsFreeSearches", i17));
+                return;
+            }
+            textView3.setVisibility(8);
+            return;
         }
-        this.d.endRecording();
-        RecordingCanvas beginRecording4 = this.f25798c.beginRecording();
-        beginRecording4.scale(f23, f23, 0.0f, 0.0f);
-        if (fi0Var.f26475n != null) {
-            beginRecording4.translate(f18, f19);
-            beginRecording4.translate(0.0f, AndroidUtilities.dp(32.0f));
-            NotchInfoUtils.NotchInfo notchInfo2 = fi0Var.f26475n;
-            if (notchInfo2.isLikelyCircle) {
-                float min = Math.min(notchInfo2.bounds.width(), fi0Var.f26475n.bounds.height()) / 2.0f;
-                RectF rectF3 = fi0Var.f26475n.bounds;
-                float width = rectF3.bottom - (rectF3.width() / 2.0f);
-                beginRecording4.drawCircle(fi0Var.f26475n.bounds.centerX(), width, min, paint2);
-                path.rewind();
-                float f24 = f7 / 2.0f;
-                path.moveTo(fi0Var.f26475n.bounds.centerX() - f24, width);
-                path.lineTo(fi0Var.f26475n.bounds.centerX(), min + width + f7);
-                path.lineTo(fi0Var.f26475n.bounds.centerX() + f24, width);
-                path.close();
-                beginRecording4.drawPath(path, paint2);
-            } else if (notchInfo2.isAccurate) {
-                beginRecording4.drawPath(notchInfo2.path, paint2);
-            } else {
-                float max = Math.max(notchInfo2.bounds.width(), fi0Var.f26475n.bounds.height()) / 2.0f;
-                RectF rectF4 = fi0Var.f26475n.bounds;
-                RectF rectF5 = this.h;
-                rectF5.set(rectF4);
-                beginRecording4.drawRoundRect(rectF5, max, max, paint2);
-                path.rewind();
-                float f25 = f7 / 2.0f;
-                path.moveTo(rectF5.centerX() - f25, rectF5.bottom);
-                path.lineTo(rectF5.centerX(), rectF5.bottom + f7);
-                path.lineTo(rectF5.centerX() + f25, rectF5.bottom);
-                path.close();
-                beginRecording4.drawPath(path, paint2);
+        y9Var.setVisibility(8);
+        textView2.setText(LocaleController.getString(R.string.SearchPostsTitle));
+        textView.setText(LocaleController.getString(R.string.SearchPostsText));
+        dVar.setVisibility(8);
+        if (this.d != null) {
+            textView3.setVisibility(0);
+            TLRPC.SearchPostsFlood searchPostsFlood3 = this.d;
+            int i18 = searchPostsFlood3.remains;
+            if (i18 < 1) {
+                i18 = searchPostsFlood3.total_daily;
             }
-            f11 = f17;
-            f12 = f16;
-            f13 = z10;
-            paint = paint3;
-        } else {
-            f11 = f17;
-            f12 = f16;
-            f13 = z10;
-            paint = paint3;
-            beginRecording4.drawRect(0.0f, 0.0f, f12, AndroidUtilities.dp(32.0f), paint2);
-            path.rewind();
-            path.moveTo((f12 - f7) / 2.0f, AndroidUtilities.dp(32.0f));
-            path.lineTo(f12 / 2.0f, AndroidUtilities.dp(32.0f) + f7);
-            path.lineTo((f12 + f7) / 2.0f, AndroidUtilities.dp(32.0f));
-            path.close();
-            beginRecording4.drawPath(path, paint2);
+            textView3.setText(LocaleController.formatPluralStringComma("SearchPostsFreeSearches", i18));
+            return;
         }
-        this.f25798c.endRecording();
-        canvas.save();
-        canvas.translate(f10, f15 - AndroidUtilities.dp(32.0f));
-        NotchInfoUtils.NotchInfo notchInfo3 = fi0Var.f26475n;
-        if (notchInfo3 != null) {
-            canvas.clipRect(0.0f, notchInfo3.bounds.top, f12, f11);
-        }
-        Paint paint4 = this.f25796a;
-        canvas.saveLayer(rectF2, paint4);
-        canvas.scale(f22, f22);
-        canvas.drawRenderNode(this.f25798c);
-        canvas.drawRenderNode(this.d);
-        canvas.restore();
-        int b11 = w7.q.b((ilerp * 3) / 4, 0, 255);
-        if (b11 < 255) {
-            canvas.saveLayer(rectF2, null);
-            if (fi0Var.f26474f != 0.0f) {
-                canvas.saveLayer(rectF2, paint4);
-                canvas.scale(f13, f13);
-                canvas.drawRenderNode(this.f25799e);
-                canvas.restore();
-            } else {
-                canvas.drawRenderNode(this.f25797b);
-            }
-            canvas.drawRect(rectF2, paint);
-            canvas.restore();
-        }
-        if (b11 > 0) {
-            if (b11 != 255) {
-                canvas.saveLayerAlpha(rectF2, b11);
-            }
-            if (fi0Var.f26474f != 0.0f) {
-                canvas.saveLayer(rectF2, paint4);
-                canvas.scale(f13, f13);
-                canvas.drawRenderNode(this.f25799e);
-                canvas.restore();
-            } else {
-                canvas.drawRenderNode(this.f25797b);
-            }
-            if (b11 != 255) {
-                canvas.restore();
-            }
-        }
-        canvas.restore();
+        textView3.setVisibility(8);
     }
 
     @Override
-    public final void d(int i10, int i11) {
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (this.d == null) {
+            b(null);
+        }
+        if (!this.P) {
+            this.P = true;
+            MessagesController.getGlobalMainSettings().edit().putInt("searchpostsnew", MessagesController.getGlobalMainSettings().getInt("searchpostsnew", 0) + 1).apply();
+            yh.m5.y(this.f25713b, false).p();
+        }
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.J) {
+            return;
+        }
+        super.requestLayout();
+    }
+
+    public void setKeyboardHeight(int i10) {
+        this.f25722y.animate().translationY((-i10) / 2.0f).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.p1.f21455w).start();
     }
 }

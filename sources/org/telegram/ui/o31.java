@@ -1,164 +1,103 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
+import android.app.Activity;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class o31 extends FrameLayout {
-    public final org.telegram.ui.Components.e6 f39094a;
-    public float f39095b;
-    public final Path f39096c;
-    public Boolean d;
-    public final t31 f39097e;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+public final class o31 implements Runnable {
+    public final int f40406a;
+    public final zn f40407b;
+    public final Activity f40408c;
+    public final org.telegram.ui.ActionBar.e6 d;
+    public final MessageObject f40409e;
 
-    public o31(t31 t31Var, Context context) {
-        super(context);
-        this.f39097e = t31Var;
-        this.f39094a = new org.telegram.ui.Components.e6(this, 250L, org.telegram.ui.Components.tr.h);
-        this.f39096c = new Path();
+    public o31(zn znVar, Activity activity, org.telegram.ui.ActionBar.e6 e6Var, MessageObject messageObject, int i10) {
+        this.f40406a = i10;
+        this.f40407b = znVar;
+        this.f40408c = activity;
+        this.d = e6Var;
+        this.f40409e = messageObject;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f7;
-        int i10;
-        int i11;
-        boolean z10;
-        boolean z11;
-        boolean z12;
-        org.telegram.ui.Components.w61 w61Var;
-        View[] viewArr;
-        org.telegram.ui.Components.h61 G;
-        t31 t31Var = this.f39097e;
-        View[] viewPages = t31Var.f40700b.getViewPages();
-        float f10 = 0.0f;
-        this.f39095b = 0.0f;
-        int length = viewPages.length;
-        int i12 = 0;
-        while (i12 < length) {
-            View view = viewPages[i12];
-            if (view == null) {
-                viewArr = viewPages;
-            } else {
-                s31 s31Var = (s31) view;
-                FrameLayout frameLayout = s31Var.f40328e;
-                org.telegram.ui.Components.e71 e71Var = s31Var.f40329f;
-                float clamp = Utilities.clamp(1.0f - Math.abs(s31Var.getTranslationX() / s31Var.getMeasuredWidth()), 1.0f, f10);
-                float f11 = this.f39095b;
-                float paddingTop = frameLayout.getPaddingTop();
-                int i13 = 0;
-                while (true) {
-                    int childCount = e71Var.getChildCount();
-                    w61Var = e71Var.f26034f3;
-                    if (i13 >= childCount) {
-                        break;
-                    }
-                    View childAt = e71Var.getChildAt(i13);
-                    e71Var.f26033e3.getClass();
-                    int H = s4.o0.H(childAt);
-                    View[] viewArr2 = viewPages;
-                    if (H >= 0 && H < w61Var.f32534x.size() && (G = w61Var.G(H)) != null && G.f17192a == 28) {
-                        paddingTop = childAt.getY() + frameLayout.getPaddingTop();
-                    }
-                    i13++;
-                    viewPages = viewArr2;
-                }
-                viewArr = viewPages;
-                this.f39095b = (paddingTop * clamp) + f11;
-                if (s31Var.getVisibility() == 0) {
-                    u5 u5Var = s31Var.h;
-                    float f12 = -u5Var.getHeight();
-                    int i14 = 0;
-                    while (true) {
-                        if (i14 >= e71Var.getChildCount()) {
-                            break;
+    public final void run() {
+        switch (this.f40406a) {
+            case 0:
+                zn znVar = this.f40407b;
+                org.telegram.ui.Components.ad a02 = org.telegram.ui.Components.ad.a0(znVar);
+                String string = LocaleController.getString(R.string.AdReported);
+                final Activity activity = this.f40408c;
+                a02.c(AndroidUtilities.replaceSingleTag(string, -1, 2, new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r2) {
+                            case 0:
+                                of.f.s(activity, "https://promote.telegram.org/guidelines");
+                                return;
+                            case 1:
+                                of.f.s(activity, "https://promote.telegram.org/guidelines");
+                                return;
+                            default:
+                                of.f.s(activity, "https://promote.telegram.org/guidelines");
+                                return;
                         }
-                        View childAt2 = e71Var.getChildAt(i14);
-                        e71Var.f26033e3.getClass();
-                        if (w61Var.G(s4.o0.H(childAt2)).f17192a == 28) {
-                            f12 = childAt2.getY() + frameLayout.getPaddingTop();
-                            break;
-                        }
-                        i14++;
                     }
-                    u5Var.setTranslationY(Math.max(AndroidUtilities.statusBarHeight, f12));
-                }
-            }
-            i12++;
-            viewPages = viewArr;
-            f10 = 0.0f;
+                }, this.d)).j();
+                MessageObject messageObject = this.f40409e;
+                znVar.Ja(messageObject);
+                znVar.La(messageObject);
+                return;
+            case 1:
+                zn znVar2 = this.f40407b;
+                org.telegram.ui.Components.ad a03 = org.telegram.ui.Components.ad.a0(znVar2);
+                String string2 = LocaleController.getString(R.string.AdReported);
+                final Activity activity2 = this.f40408c;
+                a03.c(AndroidUtilities.replaceSingleTag(string2, -1, 2, new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r2) {
+                            case 0:
+                                of.f.s(activity2, "https://promote.telegram.org/guidelines");
+                                return;
+                            case 1:
+                                of.f.s(activity2, "https://promote.telegram.org/guidelines");
+                                return;
+                            default:
+                                of.f.s(activity2, "https://promote.telegram.org/guidelines");
+                                return;
+                        }
+                    }
+                }, this.d)).j();
+                MessageObject messageObject2 = this.f40409e;
+                znVar2.Ja(messageObject2);
+                znVar2.La(messageObject2);
+                return;
+            default:
+                zn znVar3 = this.f40407b;
+                org.telegram.ui.Components.ad a04 = org.telegram.ui.Components.ad.a0(znVar3);
+                String string3 = LocaleController.getString(R.string.AdReported);
+                final Activity activity3 = this.f40408c;
+                a04.c(AndroidUtilities.replaceSingleTag(string3, -1, 2, new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r2) {
+                            case 0:
+                                of.f.s(activity3, "https://promote.telegram.org/guidelines");
+                                return;
+                            case 1:
+                                of.f.s(activity3, "https://promote.telegram.org/guidelines");
+                                return;
+                            default:
+                                of.f.s(activity3, "https://promote.telegram.org/guidelines");
+                                return;
+                        }
+                    }
+                }, this.d)).j();
+                MessageObject messageObject3 = this.f40409e;
+                znVar3.Ja(messageObject3);
+                znVar3.La(messageObject3);
+                return;
         }
-        if (this.f39095b <= AndroidUtilities.statusBarHeight) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        float d = this.f39094a.d(f7, false);
-        float f13 = AndroidUtilities.statusBarHeight;
-        float f14 = f13 * d;
-        this.f39095b = Math.max(f13, this.f39095b) - (AndroidUtilities.statusBarHeight * d);
-        RectF rectF = AndroidUtilities.rectTmp;
-        i10 = ((org.telegram.ui.ActionBar.f3) t31Var).backgroundPaddingLeft;
-        float f15 = this.f39095b;
-        int width = getWidth();
-        i11 = ((org.telegram.ui.ActionBar.f3) t31Var).backgroundPaddingLeft;
-        rectF.set(i10, f15, width - i11, AndroidUtilities.dp(8.0f) + getHeight());
-        float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(14.0f), 0, d);
-        canvas.drawRoundRect(rectF, lerp, lerp, t31Var.f40701c);
-        canvas.save();
-        Path path = this.f39096c;
-        path.rewind();
-        path.addRoundRect(rectF, lerp, lerp, Path.Direction.CW);
-        canvas.clipPath(path);
-        super.dispatchDraw(canvas);
-        canvas.restore();
-        if (f14 > AndroidUtilities.statusBarHeight / 2.0f) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        Boolean bool = this.d;
-        if (bool != null && bool.booleanValue() == z10) {
-            return;
-        }
-        if (AndroidUtilities.computePerceivedBrightness(t31Var.getThemedColor(org.telegram.ui.ActionBar.i6.f20899h5)) > 0.721f) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.i6.v(t31Var.getThemedColor(org.telegram.ui.ActionBar.i6.f21109s8), 855638016)) > 0.721f) {
-            z12 = true;
-        } else {
-            z12 = false;
-        }
-        this.d = Boolean.valueOf(z10);
-        if (!z10) {
-            z11 = z12;
-        }
-        AndroidUtilities.setLightStatusBar(t31Var.getWindow(), z11);
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0 && motionEvent.getY() < this.f39095b) {
-            this.f39097e.dismiss();
-            return true;
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        return super.drawChild(canvas, view, j3);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
     }
 }

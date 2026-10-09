@@ -1,27 +1,31 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MediaDataController;
-import org.telegram.tgnet.TLRPC;
-public final class za1 extends org.telegram.ui.Components.a61 {
-    public final StickersActivity f43735b;
+import android.content.Context;
+public final class za1 extends la1 {
+    public final int v;
+    public final int f44525w;
+    public int f44526x;
+    public xh f44527y;
 
-    public za1(StickersActivity stickersActivity) {
-        this.f43735b = stickersActivity;
+    public za1(Context context, int i10, int i11, ig.f fVar, int i12) {
+        super(context, i11, fVar, null);
+        this.v = i10;
+        this.f44525w = i12;
     }
 
     @Override
-    public final void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10) {
+    public final void b(na1 na1Var) {
         int i10;
-        StickersActivity stickersActivity = this.f43735b;
-        i10 = ((org.telegram.ui.ActionBar.n2) stickersActivity).currentAccount;
-        MediaDataController.getInstance(i10).toggleStickerSet(stickersActivity.getParentActivity(), stickerSetCovered, 2, stickersActivity, false, false);
+        if (na1Var != null && (i10 = this.f44526x) >= 0) {
+            na1Var.a(this.v, this.f44525w, i10, this.f44527y);
+        }
     }
 
     @Override
-    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
-        int i10;
-        StickersActivity stickersActivity = this.f43735b;
-        i10 = ((org.telegram.ui.ActionBar.n2) stickersActivity).currentAccount;
-        MediaDataController.getInstance(i10).toggleStickerSet(stickersActivity.getParentActivity(), stickerSetCovered, 0, stickersActivity, false, false);
+    public final void c() {
+    }
+
+    @Override
+    public final void f() {
     }
 }

@@ -1,10 +1,6 @@
 package org.telegram.ui.Components;
-
-import android.widget.Button;
-import android.widget.TextView;
-public final class pi0 extends TextView {
-    @Override
-    public final CharSequence getAccessibilityClassName() {
-        return Button.class.getName();
-    }
+public final class pi0 {
+    public boolean f29867a;
+    public qi0 f29868b;
+    public ni0 f29869c;
 }

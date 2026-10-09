@@ -1,283 +1,117 @@
 package ei;
 
+import android.app.Activity;
 import android.content.Context;
-import android.hardware.Sensor;
-import android.hardware.SensorManager;
-import ci.qc;
+import java.util.HashSet;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
-public final class b1 {
-    public final SensorManager f8924a;
-    public Sensor f8925b;
-    public long f8926c;
-    public Sensor d;
-    public long f8927e;
-    public Sensor f8928f;
-    public Sensor f8929g;
-    public long h;
-    public Sensor f8930i;
-    public long f8931j;
-    public org.telegram.ui.web.z0 f8932k;
-    public boolean f8933l;
-    public qc f8934m;
-    public qc f8936o;
-    public qc f8938q;
-    public qc f8940s;
-    public final y0 f8935n = new y0(this, 0);
-    public final y0 f8937p = new y0(this, 1);
-    public final z0 f8939r = new z0(this);
-    public final a1 f8941t = new a1(this);
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.g60;
+import org.telegram.ui.o31;
+import org.telegram.ui.zh;
+import org.telegram.ui.zn;
+public final class b1 implements RequestDelegate {
+    public final int f8958a = 0;
+    public final long f8959b;
+    public final int f8960c;
+    public final Object d;
+    public final Object f8961e;
+    public final Object f8962f;
+    public final Object f8963g;
+    public final Object h;
 
-    public b1(Context context) {
-        this.f8924a = (SensorManager) context.getSystemService("sensor");
+    public b1(int i10, org.telegram.ui.ActionBar.b2 b2Var, Context context, long j3, e6 e6Var, org.telegram.ui.web.s sVar, org.telegram.tgnet.e eVar) {
+        this.f8960c = i10;
+        this.d = b2Var;
+        this.f8961e = context;
+        this.f8959b = j3;
+        this.f8962f = e6Var;
+        this.f8963g = sVar;
+        this.h = eVar;
     }
 
-    public static int a(long j3) {
-        if (j3 >= 160) {
-            return 3;
-        }
-        if (j3 >= 60) {
-            return 2;
-        }
-        return 1;
-    }
-
-    public final void b() {
-        if (!this.f8933l) {
-            this.f8933l = true;
-            SensorManager sensorManager = this.f8924a;
-            if (sensorManager != null) {
-                Sensor sensor = this.f8925b;
-                if (sensor != null) {
-                    sensorManager.unregisterListener(this.f8935n, sensor);
-                }
-                qc qcVar = this.f8934m;
-                if (qcVar != null) {
-                    AndroidUtilities.cancelRunOnUIThread(qcVar);
-                    this.f8934m = null;
-                }
-                Sensor sensor2 = this.d;
-                if (sensor2 != null) {
-                    sensorManager.unregisterListener(this.f8937p, sensor2);
-                }
-                qc qcVar2 = this.f8936o;
-                if (qcVar2 != null) {
-                    AndroidUtilities.cancelRunOnUIThread(qcVar2);
-                    this.f8936o = null;
-                }
-                Sensor sensor3 = this.f8929g;
-                z0 z0Var = this.f8939r;
-                if (sensor3 != null) {
-                    sensorManager.unregisterListener(z0Var, sensor3);
-                }
-                Sensor sensor4 = this.f8928f;
-                if (sensor4 != null) {
-                    sensorManager.unregisterListener(z0Var, sensor4);
-                }
-                qc qcVar3 = this.f8938q;
-                if (qcVar3 != null) {
-                    AndroidUtilities.cancelRunOnUIThread(qcVar3);
-                    this.f8938q = null;
-                }
-                Sensor sensor5 = this.f8930i;
-                if (sensor5 != null) {
-                    sensorManager.unregisterListener(this.f8941t, sensor5);
-                }
-                qc qcVar4 = this.f8940s;
-                if (qcVar4 != null) {
-                    AndroidUtilities.cancelRunOnUIThread(qcVar4);
-                    this.f8940s = null;
-                }
-            }
-        }
-    }
-
-    public final boolean c(long j3) {
-        SensorManager sensorManager = this.f8924a;
-        if (sensorManager != null) {
-            if (this.f8925b == null) {
-                Sensor defaultSensor = sensorManager.getDefaultSensor(1);
-                this.f8925b = defaultSensor;
-                if (defaultSensor == null) {
-                    return false;
-                }
-                this.f8926c = j3;
-                if (!this.f8933l) {
-                    sensorManager.registerListener(this.f8935n, defaultSensor, a(j3));
-                }
-            }
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean d(long j3) {
-        SensorManager sensorManager = this.f8924a;
-        if (sensorManager != null) {
-            if (this.d == null) {
-                Sensor defaultSensor = sensorManager.getDefaultSensor(4);
-                this.d = defaultSensor;
-                if (defaultSensor == null) {
-                    return false;
-                }
-                this.f8927e = j3;
-                if (!this.f8933l) {
-                    sensorManager.registerListener(this.f8937p, defaultSensor, a(j3));
-                }
-            }
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean e(long j3, boolean z10) {
-        Sensor sensor;
-        SensorManager sensorManager = this.f8924a;
-        if (sensorManager != null) {
-            a1 a1Var = this.f8941t;
-            z0 z0Var = this.f8939r;
-            if (z10) {
-                if (this.f8930i != null) {
-                    qc qcVar = this.f8940s;
-                    if (qcVar != null) {
-                        AndroidUtilities.cancelRunOnUIThread(qcVar);
-                        this.f8940s = null;
-                    }
-                    if (!this.f8933l && (sensor = this.f8930i) != null) {
-                        sensorManager.unregisterListener(a1Var, sensor);
-                    }
-                    this.f8930i = null;
-                }
-                if (this.f8928f == null || this.f8929g == null) {
-                    this.f8929g = sensorManager.getDefaultSensor(1);
-                    Sensor defaultSensor = sensorManager.getDefaultSensor(2);
-                    this.f8928f = defaultSensor;
-                    Sensor sensor2 = this.f8929g;
-                    if (sensor2 != null && defaultSensor != null) {
-                        this.h = j3;
-                        if (!this.f8933l) {
-                            sensorManager.registerListener(z0Var, sensor2, a(j3));
-                            sensorManager.registerListener(z0Var, this.f8928f, a(j3));
-                            return true;
-                        }
+    @Override
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        int i10 = this.f8958a;
+        Object obj = this.h;
+        Object obj2 = this.f8963g;
+        Object obj3 = this.f8961e;
+        Object obj4 = this.f8962f;
+        Object obj5 = this.d;
+        switch (i10) {
+            case 0:
+                org.telegram.tgnet.e eVar = (org.telegram.tgnet.e) obj;
+                AndroidUtilities.runOnUIThread(new e1(tLObject, this.f8960c, (org.telegram.ui.ActionBar.b2) obj5, (Context) obj3, this.f8959b, (e6) obj4, (org.telegram.ui.web.s) obj2, eVar));
+                return;
+            case 1:
+                g60.x((g60) obj5, this.f8959b, (HashSet) obj3, (AtomicInteger) obj4, this.f8960c, (ChatObject.Call) obj2, (String) obj, tLObject, tL_error);
+                return;
+            case 2:
+                Pattern pattern = LaunchActivity.B1;
+                AndroidUtilities.runOnUIThread(new e1((LaunchActivity) obj5, tLObject, this.f8960c, (String) obj3, (String) obj4, (TLRPC.User) obj2, (String) obj, this.f8959b));
+                return;
+            default:
+                Activity activity = (Activity) obj5;
+                e6 e6Var = (e6) obj4;
+                byte[] bArr = (byte[]) obj3;
+                zn znVar = (zn) obj2;
+                MessageObject messageObject = (MessageObject) obj;
+                if (tLObject != null) {
+                    if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) {
+                        AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.e(tLObject, activity, e6Var, this.f8959b, bArr, znVar, messageObject));
+                        return;
+                    } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultReported) {
+                        AndroidUtilities.runOnUIThread(new o31(znVar, activity, e6Var, messageObject, 0), 200L);
+                        return;
+                    } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultAdsHidden) {
+                        AndroidUtilities.runOnUIThread(new zh(znVar, this.f8960c, messageObject), 200L);
+                        return;
                     } else {
-                        return false;
+                        return;
                     }
+                } else if (tL_error != null && "AD_EXPIRED".equalsIgnoreCase(tL_error.text)) {
+                    AndroidUtilities.runOnUIThread(new o31(znVar, activity, e6Var, messageObject, 1), 200L);
+                    return;
+                } else {
+                    return;
                 }
-            } else {
-                if (this.f8928f != null || this.f8929g != null) {
-                    qc qcVar2 = this.f8938q;
-                    if (qcVar2 != null) {
-                        AndroidUtilities.cancelRunOnUIThread(qcVar2);
-                        this.f8938q = null;
-                    }
-                    if (!this.f8933l) {
-                        Sensor sensor3 = this.f8929g;
-                        if (sensor3 != null) {
-                            sensorManager.unregisterListener(z0Var, sensor3);
-                        }
-                        Sensor sensor4 = this.f8928f;
-                        if (sensor4 != null) {
-                            sensorManager.unregisterListener(z0Var, sensor4);
-                        }
-                    }
-                    this.f8929g = null;
-                    this.f8928f = null;
-                }
-                if (this.f8930i == null) {
-                    Sensor defaultSensor2 = sensorManager.getDefaultSensor(15);
-                    this.f8930i = defaultSensor2;
-                    if (defaultSensor2 == null) {
-                        return false;
-                    }
-                    this.f8931j = j3;
-                    if (!this.f8933l) {
-                        sensorManager.registerListener(a1Var, defaultSensor2, a(j3));
-                    }
-                }
-            }
-            return true;
         }
-        return false;
     }
 
-    public final boolean f() {
-        SensorManager sensorManager = this.f8924a;
-        if (sensorManager == null) {
-            return false;
-        }
-        Sensor sensor = this.f8925b;
-        if (sensor == null) {
-            return true;
-        }
-        if (!this.f8933l) {
-            sensorManager.unregisterListener(this.f8935n, sensor);
-        }
-        qc qcVar = this.f8934m;
-        if (qcVar != null) {
-            AndroidUtilities.cancelRunOnUIThread(qcVar);
-            this.f8934m = null;
-        }
-        this.f8925b = null;
-        return true;
+    public b1(Activity activity, e6 e6Var, long j3, byte[] bArr, zn znVar, MessageObject messageObject, int i10) {
+        this.d = activity;
+        this.f8962f = e6Var;
+        this.f8959b = j3;
+        this.f8961e = bArr;
+        this.f8963g = znVar;
+        this.h = messageObject;
+        this.f8960c = i10;
     }
 
-    public final boolean g() {
-        SensorManager sensorManager = this.f8924a;
-        if (sensorManager == null) {
-            return false;
-        }
-        Sensor sensor = this.d;
-        if (sensor == null) {
-            return true;
-        }
-        if (!this.f8933l) {
-            sensorManager.unregisterListener(this.f8937p, sensor);
-        }
-        qc qcVar = this.f8936o;
-        if (qcVar != null) {
-            AndroidUtilities.cancelRunOnUIThread(qcVar);
-            this.f8936o = null;
-        }
-        this.d = null;
-        return true;
+    public b1(g60 g60Var, long j3, HashSet hashSet, AtomicInteger atomicInteger, int i10, ChatObject.Call call, String str) {
+        this.d = g60Var;
+        this.f8959b = j3;
+        this.f8961e = hashSet;
+        this.f8962f = atomicInteger;
+        this.f8960c = i10;
+        this.f8963g = call;
+        this.h = str;
     }
 
-    public final boolean h() {
-        SensorManager sensorManager = this.f8924a;
-        if (sensorManager == null) {
-            return false;
-        }
-        Sensor sensor = this.f8929g;
-        if (sensor == null && this.f8928f == null && this.f8930i == null) {
-            return true;
-        }
-        if (!this.f8933l) {
-            z0 z0Var = this.f8939r;
-            if (sensor != null) {
-                sensorManager.unregisterListener(z0Var, sensor);
-            }
-            Sensor sensor2 = this.f8928f;
-            if (sensor2 != null) {
-                sensorManager.unregisterListener(z0Var, sensor2);
-            }
-            Sensor sensor3 = this.f8930i;
-            if (sensor3 != null) {
-                sensorManager.unregisterListener(this.f8941t, sensor3);
-            }
-        }
-        qc qcVar = this.f8938q;
-        if (qcVar != null) {
-            AndroidUtilities.cancelRunOnUIThread(qcVar);
-            this.f8938q = null;
-        }
-        qc qcVar2 = this.f8940s;
-        if (qcVar2 != null) {
-            AndroidUtilities.cancelRunOnUIThread(qcVar2);
-            this.f8940s = null;
-        }
-        this.f8929g = null;
-        this.f8928f = null;
-        this.f8930i = null;
-        return true;
+    public b1(LaunchActivity launchActivity, int i10, String str, String str2, TLRPC.User user, String str3, long j3) {
+        this.d = launchActivity;
+        this.f8960c = i10;
+        this.f8961e = str;
+        this.f8962f = str2;
+        this.f8963g = user;
+        this.h = str3;
+        this.f8959b = j3;
     }
 }

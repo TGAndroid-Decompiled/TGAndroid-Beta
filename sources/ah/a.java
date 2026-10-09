@@ -2,11 +2,11 @@ package ah;
 
 import org.telegram.messenger.MediaDataController;
 public final class a {
-    public boolean f450a;
-    public long f451b;
+    public boolean f536a;
+    public long f537b;
 
     public void a(long j3) {
-        this.f451b = MediaDataController.calcHash(this.f451b, j3);
+        this.f537b = MediaDataController.calcHash(this.f537b, j3);
     }
 
     public void b(boolean z10) {

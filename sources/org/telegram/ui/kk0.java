@@ -1,28 +1,54 @@
 package org.telegram.ui;
 
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
+import android.widget.EditText;
 import org.telegram.messenger.LocaleController;
-public final class kk0 extends org.telegram.ui.Cells.r8 {
-    public ImageView Q;
+import org.telegram.messenger.R;
+public final class kk0 extends org.telegram.ui.ActionBar.g5 {
+    public final NotificationsCustomSettingsActivity f39311f;
 
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int dp;
-        super.onLayout(z10, i10, i11, i12, i13);
-        int i14 = i12 - i10;
-        if (LocaleController.isRTL) {
-            dp = AndroidUtilities.dp(17.0f);
-        } else {
-            dp = i14 - AndroidUtilities.dp(41.0f);
-        }
-        int z11 = org.telegram.messenger.bi.z(24.0f, i13 - i11, 2);
-        this.Q.layout(dp, z11, AndroidUtilities.dp(24.0f) + dp, AndroidUtilities.dp(24.0f) + z11);
+    public kk0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity) {
+        this.f39311f = notificationsCustomSettingsActivity;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        this.Q.measure(i10, i11);
+    public final void m() {
+        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f39311f;
+        notificationsCustomSettingsActivity.d.F(null);
+        notificationsCustomSettingsActivity.f33831f = false;
+        notificationsCustomSettingsActivity.getClass();
+        notificationsCustomSettingsActivity.f33829c.setText(LocaleController.getString("NoExceptions", R.string.NoExceptions));
+        notificationsCustomSettingsActivity.f33827a.setAdapter(notificationsCustomSettingsActivity.f33828b);
+        notificationsCustomSettingsActivity.f33828b.l();
+        notificationsCustomSettingsActivity.f33827a.setFastScrollVisible(true);
+        notificationsCustomSettingsActivity.f33827a.setVerticalScrollBarEnabled(false);
+        notificationsCustomSettingsActivity.f33829c.setShowAtCenter(false);
+    }
+
+    @Override
+    public final void n() {
+        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f39311f;
+        notificationsCustomSettingsActivity.f33831f = true;
+        notificationsCustomSettingsActivity.f33829c.setShowAtCenter(true);
+    }
+
+    @Override
+    public final void q(EditText editText) {
+        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f39311f;
+        if (notificationsCustomSettingsActivity.d == null) {
+            return;
+        }
+        String obj = editText.getText().toString();
+        if (obj.length() != 0) {
+            notificationsCustomSettingsActivity.getClass();
+            if (notificationsCustomSettingsActivity.f33827a != null) {
+                notificationsCustomSettingsActivity.f33829c.setText(LocaleController.getString("NoResult", R.string.NoResult));
+                notificationsCustomSettingsActivity.f33829c.b();
+                notificationsCustomSettingsActivity.f33827a.setAdapter(notificationsCustomSettingsActivity.d);
+                notificationsCustomSettingsActivity.d.l();
+                notificationsCustomSettingsActivity.f33827a.setFastScrollVisible(false);
+                notificationsCustomSettingsActivity.f33827a.setVerticalScrollBarEnabled(true);
+            }
+        }
+        notificationsCustomSettingsActivity.d.F(obj);
     }
 }

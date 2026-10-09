@@ -1,78 +1,49 @@
 package org.telegram.ui;
 
+import android.graphics.Point;
+import android.graphics.Rect;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class bj0 implements RequestDelegate {
-    public final int f35157a;
-    public final hj0 f35158b;
-
-    public bj0(hj0 hj0Var, int i10) {
-        this.f35157a = i10;
-        this.f35158b = hj0Var;
-    }
-
+import org.telegram.messenger.MessageObject;
+public final class bj0 extends s4.o0 {
     @Override
-    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f35157a) {
-            case 0:
-                final hj0 hj0Var = this.f35158b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                hj0.S(hj0Var, tL_error, tLObject);
-                                return;
-                            case 1:
-                                hj0.U(hj0Var, tL_error, tLObject);
-                                return;
-                            default:
-                                hj0.T(hj0Var, tL_error, tLObject);
-                                return;
-                        }
+    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.a1 a1Var) {
+        org.telegram.ui.Cells.u1 u1Var;
+        MessageObject.GroupedMessages currentMessagesGroup;
+        MessageObject.GroupedMessagePosition currentPosition;
+        float[] fArr;
+        int i10 = 0;
+        rect.bottom = 0;
+        if ((view instanceof org.telegram.ui.Cells.u1) && (currentMessagesGroup = (u1Var = (org.telegram.ui.Cells.u1) view).getCurrentMessagesGroup()) != null && (currentPosition = u1Var.getCurrentPosition()) != null && currentPosition.siblingHeights != null) {
+            Point point = AndroidUtilities.displaySize;
+            float max = Math.max(point.x, point.y) * 0.5f;
+            int extraInsetHeight = u1Var.getExtraInsetHeight();
+            int i11 = 0;
+            while (true) {
+                if (i11 >= currentPosition.siblingHeights.length) {
+                    break;
+                }
+                extraInsetHeight += (int) Math.ceil(fArr[i11] * max);
+                i11++;
+            }
+            int round = (Math.round(AndroidUtilities.density * 7.0f) * (currentPosition.maxY - currentPosition.minY)) + extraInsetHeight;
+            int size = currentMessagesGroup.posArray.size();
+            while (true) {
+                if (i10 < size) {
+                    MessageObject.GroupedMessagePosition groupedMessagePosition = currentMessagesGroup.posArray.get(i10);
+                    byte b10 = groupedMessagePosition.minY;
+                    byte b11 = currentPosition.minY;
+                    if (b10 == b11 && ((groupedMessagePosition.minX != currentPosition.minX || groupedMessagePosition.maxX != currentPosition.maxX || b10 != b11 || groupedMessagePosition.maxY != currentPosition.maxY) && b10 == b11)) {
+                        round = org.telegram.messenger.q.A(4.0f, (int) Math.ceil(max * groupedMessagePosition.f17249ph), round);
+                        break;
                     }
-                });
-                return;
-            case 1:
-                final hj0 hj0Var2 = this.f35158b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                hj0.S(hj0Var2, tL_error, tLObject);
-                                return;
-                            case 1:
-                                hj0.U(hj0Var2, tL_error, tLObject);
-                                return;
-                            default:
-                                hj0.T(hj0Var2, tL_error, tLObject);
-                                return;
-                        }
-                    }
-                });
-                return;
-            default:
-                final hj0 hj0Var3 = this.f35158b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                hj0.S(hj0Var3, tL_error, tLObject);
-                                return;
-                            case 1:
-                                hj0.U(hj0Var3, tL_error, tLObject);
-                                return;
-                            default:
-                                hj0.T(hj0Var3, tL_error, tLObject);
-                                return;
-                        }
-                    }
-                });
-                return;
+                    i10++;
+                } else {
+                    break;
+                }
+            }
+            rect.bottom = -round;
         }
     }
 }

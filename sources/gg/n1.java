@@ -1,147 +1,202 @@
 package gg;
 
-import ai.v8;
-import android.animation.ValueAnimator;
+import ai.w8;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.text.TextUtils;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.view.ViewGroup;
+import ci.rc;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
+import java.util.HashSet;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.HashtagSearchController;
+import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.j9;
-import w7.z5;
-public final class n1 extends FrameLayout {
-    public final d6 f10723a;
-    public final j9 f10724b;
-    public final TextView[] f10725c;
-    public final TextView[] d;
-    public float f10726e;
-    public ValueAnimator f10727f;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.Cells.s2;
+import org.telegram.ui.Components.j10;
+import org.telegram.ui.Components.pm0;
+import org.telegram.ui.zn;
+public final class n1 extends pm0 implements NotificationCenter.NotificationCenterDelegate {
+    public final Context f10739c;
+    public final zn f10741f;
+    public int h;
+    public int f10742n;
+    public final e6 f10744s;
+    public final int v;
+    public final boolean f10745w;
+    public String f10746x;
+    public w8 f10747y;
+    public final HashSet d = new HashSet();
+    public final ArrayList f10740e = new ArrayList();
+    public final int f10743r = UserConfig.selectedAccount;
+    public final rc E = new rc(this, 16);
 
-    public n1(Context context, d6 d6Var) {
-        super(context);
-        int i10;
-        this.f10725c = new TextView[2];
-        this.d = new TextView[2];
-        this.f10723a = d6Var;
-        setWillNotDraw(false);
-        j9 j9Var = new j9(this, false);
-        this.f10724b = j9Var;
-        j9Var.f27748l = true;
-        j9Var.f27752p = AndroidUtilities.dp(75.0f);
-        j9Var.f27751o = AndroidUtilities.dp(48.0f);
-        j9Var.f27759x = true;
-        j9Var.f27755s = AndroidUtilities.dp(22.0f);
-        for (int i11 = 0; i11 < 2; i11++) {
-            this.f10725c[i11] = new TextView(context);
-            this.f10725c[i11].setTextColor(i6.v0(i6.G6, d6Var));
-            this.f10725c[i11].setTypeface(AndroidUtilities.bold());
-            this.f10725c[i11].setTextSize(1, 14.0f);
-            TextView textView = this.f10725c[i11];
-            int i12 = 8;
-            if (i11 == 0) {
-                i10 = 0;
-            } else {
-                i10 = 8;
-            }
-            textView.setVisibility(i10);
-            addView(this.f10725c[i11], z5.d(-1, -2.0f, 48, 76.0f, 7.0f, 40.0f, 0.0f));
-            this.d[i11] = new TextView(context);
-            this.d[i11].setTextColor(i6.v0(i6.f21233z6, d6Var));
-            this.d[i11].setTextSize(1, 12.0f);
-            TextView textView2 = this.d[i11];
-            if (i11 == 0) {
-                i12 = 0;
-            }
-            textView2.setVisibility(i12);
-            addView(this.d[i11], z5.d(-1, -2.0f, 48, 76.0f, 26.33f, 40.0f, 0.0f));
-        }
-        ImageView imageView = new ImageView(context);
-        imageView.setImageResource(R.drawable.msg_arrowright);
-        imageView.setColorFilter(new PorterDuffColorFilter(i6.v0(i6.P5, d6Var), PorterDuff.Mode.SRC_IN));
-        addView(imageView, z5.d(24, 24.0f, 21, 0.0f, 0.0f, 8.66f, 0.0f));
+    public n1(Context context, zn znVar, e6 e6Var, int i10, boolean z10) {
+        this.f10744s = e6Var;
+        this.f10739c = context;
+        this.f10741f = znVar;
+        this.v = i10;
+        this.f10745w = z10;
     }
 
-    public final boolean a(v8 v8Var) {
-        String str;
-        j9 j9Var;
-        int i10 = 0;
-        int i11 = 0;
-        while (true) {
-            ArrayList arrayList = v8Var.f789i;
-            str = v8Var.D;
-            int size = arrayList.size();
-            j9Var = this.f10724b;
-            if (i10 >= size || i11 >= 3) {
-                break;
-            }
-            MessageObject messageObject = (MessageObject) v8Var.f789i.get(i10);
-            long j3 = messageObject.storyItem.dialogId;
-            TextUtils.isEmpty(str);
-            j9Var.l(i11, messageObject.storyItem, v8Var.f785c);
-            i11++;
-            i10++;
-        }
-        j9Var.k(i11);
-        j9Var.b(false, true);
-        boolean isEmpty = TextUtils.isEmpty(str);
-        TextView[] textViewArr = this.f10725c;
-        if (!isEmpty) {
-            TextView textView = textViewArr[0];
-            int i12 = v8Var.J;
-            textView.setText(AndroidUtilities.replaceSingleLink(LocaleController.formatPluralStringSpaced("HashtagStoriesFoundChannel", i12, "@" + str), i6.v0(i6.Oh, this.f10723a), null));
-        } else {
-            textViewArr[0].setText(LocaleController.formatPluralStringSpaced("HashtagStoriesFound", v8Var.J));
-        }
-        this.d[0].setText(LocaleController.formatString(R.string.HashtagStoriesFoundSubtitle, v8Var.C));
-        if (i11 <= 0) {
+    @Override
+    public final boolean D(s4.d1 d1Var) {
+        int i10 = d1Var.f47660f;
+        if (i10 != 0 && i10 != 2) {
             return false;
         }
         return true;
     }
 
-    public final void b(int i10, String str, String str2) {
-        boolean isEmpty = TextUtils.isEmpty(str2);
-        TextView[] textViewArr = this.f10725c;
-        if (!isEmpty) {
-            textViewArr[1].setText(AndroidUtilities.replaceSingleLink(LocaleController.formatPluralStringSpaced("HashtagMessagesFoundChannel", i10, sa.e.i("@", str2)), i6.v0(i6.Oh, this.f10723a), null));
-        } else {
-            textViewArr[1].setText(LocaleController.formatPluralStringSpaced("HashtagMessagesFound", i10));
+    public final Object E(int i10) {
+        if (i10 >= 0) {
+            ArrayList arrayList = this.f10740e;
+            if (i10 < arrayList.size()) {
+                return arrayList.get(i10);
+            }
+            return null;
         }
-        this.d[1].setText(LocaleController.formatString(R.string.HashtagMessagesFoundSubtitle, str));
+        return null;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.f10726e > 0.0f) {
-            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) ((1.0f - this.f10726e) * 255.0f), 31);
-        } else {
-            canvas.save();
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.storiesListUpdated && objArr[0] == this.f10747y) {
+            l();
         }
-        canvas.translate(AndroidUtilities.lerp(0, -AndroidUtilities.dp(62.0f), this.f10726e), 0.0f);
-        this.f10724b.i(canvas);
-        canvas.restore();
-        super.onDraw(canvas);
-        Paint T0 = i6.T0("paintDivider", this.f10723a);
-        if (T0 == null) {
-            T0 = i6.f20950k0;
-        }
-        canvas.drawRect(0.0f, getHeight() - 1, getWidth(), getHeight(), T0);
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+    public final int h() {
+        return this.f10740e.size() + this.f10742n;
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (i10 < this.f10740e.size()) {
+            return 0;
+        }
+        return 1;
+    }
+
+    @Override
+    public final void l() {
+        ArrayList<MessageObject> messages;
+        int h = h();
+        ArrayList arrayList = this.f10740e;
+        arrayList.clear();
+        HashSet hashSet = this.d;
+        hashSet.clear();
+        int i10 = this.f10743r;
+        int i11 = this.v;
+        if (i11 == 0) {
+            messages = MediaDataController.getInstance(i10).getFoundMessageObjects();
+        } else {
+            messages = HashtagSearchController.getInstance(i10).getMessages(i11);
+        }
+        int i12 = 0;
+        for (int i13 = 0; i13 < messages.size(); i13++) {
+            MessageObject messageObject = messages.get(i13);
+            if ((!messageObject.hasValidGroupId() || messageObject.isPrimaryGroupMessage) && !hashSet.contains(Integer.valueOf(messageObject.getId()))) {
+                arrayList.add(messageObject);
+                hashSet.add(Integer.valueOf(messageObject.getId()));
+            }
+        }
+        int i14 = this.f10742n;
+        this.h = arrayList.size();
+        if (i11 != 0) {
+            if (!HashtagSearchController.getInstance(i10).isEndReached(i11) && this.h != 0) {
+                i12 = Utilities.clamp(HashtagSearchController.getInstance(i10).getCount(i11) - this.h, 3, 0);
+            }
+            this.f10742n = i12;
+        } else {
+            if (!MediaDataController.getInstance(i10).searchEndReached() && this.h != 0) {
+                i12 = Utilities.clamp(MediaDataController.getInstance(i10).getSearchCount() - this.h, 3, 0);
+            }
+            this.f10742n = i12;
+        }
+        int h10 = h();
+        if (h < h10) {
+            if (i14 > 0) {
+                q(h - i14, i14);
+            }
+            s(h, h10 - h);
+            return;
+        }
+        super.l();
+    }
+
+    @Override
+    public final void v(s4.d1 d1Var, int i10) {
+        boolean z10;
+        int i11;
+        int i12;
+        int i13 = d1Var.f47660f;
+        View view = d1Var.f47656a;
+        if (i13 == 0) {
+            s2 s2Var = (s2) view;
+            s2Var.f22857s2 = true;
+            MessageObject messageObject = (MessageObject) E(i10);
+            long dialogId = messageObject.getDialogId();
+            int i14 = messageObject.messageOwner.date;
+            if (this.f10745w) {
+                s2Var.f22849r0 = true;
+                long savedDialogId = messageObject.getSavedDialogId();
+                TLRPC.Message message = messageObject.messageOwner;
+                TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;
+                if (messageFwdHeader != null && ((i11 = messageFwdHeader.date) != 0 || messageFwdHeader.saved_date != 0)) {
+                    if (i11 == 0) {
+                        i12 = messageFwdHeader.saved_date;
+                    }
+                    z10 = false;
+                    dialogId = savedDialogId;
+                } else {
+                    i12 = message.date;
+                }
+                i11 = i12;
+                z10 = false;
+                dialogId = savedDialogId;
+            } else {
+                if (messageObject.isOutOwner() || ChatObject.isMonoForum(this.f10743r, dialogId)) {
+                    dialogId = messageObject.getFromChatId();
+                }
+                z10 = true;
+                i11 = i14;
+            }
+            s2Var.W(dialogId, messageObject, i11, z10, false);
+            s2Var.setDialogCellDelegate(new k1(this));
+        } else if (i13 == 2) {
+            ((m1) view).a(this.f10747y);
+        }
+    }
+
+    @Override
+    public final s4.d1 x(ViewGroup viewGroup, int i10) {
+        View s2Var;
+        j10 j10Var;
+        if (i10 != 0) {
+            e6 e6Var = this.f10744s;
+            Context context = this.f10739c;
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    s2Var = null;
+                } else {
+                    j10Var = new m1(context, e6Var);
+                }
+            } else {
+                j10 j10Var2 = new j10(context, e6Var);
+                j10Var2.setIsSingleCell(true);
+                j10Var2.setViewType(7);
+                j10Var = j10Var2;
+            }
+            s2Var = j10Var;
+        } else {
+            s2Var = new s2(null, this.f10739c, true, this.f10743r, this.f10744s);
+        }
+        return com.google.android.gms.internal.vision.e2.k(s2Var, s2Var, -1, -2);
     }
 }

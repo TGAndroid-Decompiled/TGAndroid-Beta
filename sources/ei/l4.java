@@ -1,72 +1,91 @@
 package ei;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.fw0;
-public class l4 extends View {
-    public final fw0 f9186a;
-    public final Paint f9187b;
-    public float f9188c;
-    public o1.k d;
+import android.view.ViewGroup;
+import java.util.LinkedList;
+import org.telegram.ui.Components.cd0;
+import org.telegram.ui.Components.jh;
+import org.telegram.ui.Components.ji;
+import org.telegram.ui.Components.rg;
+import org.telegram.ui.Components.te0;
+import org.telegram.ui.Components.xb;
+import org.telegram.ui.Components.yi;
+public final class l4 implements o1.f {
+    public final int f9209a;
+    public final Object f9210b;
+    public final Object f9211c;
 
-    public l4(Context context, d6 d6Var) {
-        super(context);
-        fw0 fw0Var = new fw0(new d2.c(19), new d2.c(20));
-        fw0Var.f26617c = 100.0f;
-        this.f9186a = fw0Var;
-        Paint paint = new Paint(1);
-        this.f9187b = paint;
-        paint.setColor(i6.v0(i6.Oh, d6Var));
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
+    public l4(int i10, Object obj, Object obj2) {
+        this.f9209a = i10;
+        this.f9210b = obj;
+        this.f9211c = obj2;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        super.draw(canvas);
-        if (this.f9188c > 0.0f) {
-            Paint paint = this.f9187b;
-            float height = getHeight() - (paint.getStrokeWidth() / 2.0f);
-            canvas.drawLine(0.0f, height, getWidth() * this.f9188c, height, paint);
+    public final void a(o1.h hVar, boolean z10, float f7, float f10) {
+        ViewGroup viewGroup;
+        switch (this.f9209a) {
+            case 0:
+                o4 o4Var = (o4) this.f9210b;
+                Runnable runnable = (Runnable) this.f9211c;
+                if (hVar == o4Var.G) {
+                    o4Var.G = null;
+                    if (runnable != null) {
+                        runnable.run();
+                    }
+                    Runnable runnable2 = o4Var.E;
+                    if (runnable2 != null) {
+                        runnable2.run();
+                    }
+                    float f11 = o4Var.h;
+                    if (f11 != -1.0f) {
+                        boolean z11 = o4Var.f9266s;
+                        o4Var.f9266s = true;
+                        o4Var.setOffsetY(f11);
+                        o4Var.h = -1.0f;
+                        o4Var.f9266s = z11;
+                    }
+                    o4Var.f9264n = -2.1474836E9f;
+                    return;
+                }
+                return;
+            case 1:
+                rg rgVar = (rg) this.f9211c;
+                ((xb) this.f9210b).setInOutOffset(0.0f);
+                if (!z10) {
+                    rgVar.run();
+                    return;
+                }
+                return;
+            case 2:
+                yi.t((yi) this.f9210b, (org.telegram.messenger.video.f) this.f9211c);
+                return;
+            case 3:
+                yi yiVar = (yi) ((ji) this.f9210b).d;
+                yiVar.C0.setTranslationY(0.0f);
+                yiVar.C0.l(yiVar.f33256o2);
+                viewGroup = ((org.telegram.ui.ActionBar.f3) yiVar).containerView;
+                viewGroup.invalidate();
+                ((jh) this.f9211c).run();
+                yiVar.e2(0);
+                return;
+            default:
+                te0 te0Var = (te0) this.f9210b;
+                cd0 cd0Var = (cd0) this.f9211c;
+                LinkedList linkedList = te0Var.Q;
+                te0Var.P = null;
+                cd0Var.D = null;
+                cd0Var.z();
+                if (!z10) {
+                    cd0Var.h = 1.0f;
+                    cd0Var.z();
+                    if (!linkedList.isEmpty()) {
+                        ((Runnable) linkedList.poll()).run();
+                        te0Var.R.poll();
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        o1.k kVar = new o1.k(this, this.f9186a);
-        o1.l lVar = new o1.l();
-        lVar.b(400.0f);
-        lVar.a(1.0f);
-        kVar.f16993u = lVar;
-        this.d = kVar;
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.d.c();
-        this.d = null;
-    }
-
-    public void setLoadProgress(float f7) {
-        this.f9188c = f7;
-        invalidate();
-    }
-
-    public void setLoadProgressAnimated(float f7) {
-        o1.k kVar = this.d;
-        if (kVar == null) {
-            setLoadProgress(f7);
-            return;
-        }
-        kVar.f16993u.f17000i = f7 * 100.0f;
-        kVar.f();
     }
 }

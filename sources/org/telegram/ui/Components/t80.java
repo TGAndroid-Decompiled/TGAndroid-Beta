@@ -1,64 +1,92 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.os.Bundle;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class t80 extends org.telegram.ui.yn {
-    public boolean Kc;
-    public final boolean Lc;
-    public final long Mc;
-    public final u80 Nc;
+public final class t80 extends FrameLayout {
+    public final y80 f31087a;
 
-    public t80(u80 u80Var, Bundle bundle, boolean z10, long j3) {
-        super(bundle);
-        this.Nc = u80Var;
-        this.Lc = z10;
-        this.Mc = j3;
-        this.Kc = false;
-    }
-
-    public static void Wc(t80 t80Var, long j3, TLRPC.Chat chat) {
-        boolean z10;
-        org.telegram.ui.ActionBar.d6 d6Var;
-        if (!AndroidUtilities.isContextSafe(t80Var.getParentActivity())) {
-            return;
-        }
-        Activity parentActivity = t80Var.getParentActivity();
-        int i10 = t80Var.currentAccount;
-        long j10 = -j3;
-        TLRPC.User currentUser = t80Var.getUserConfig().getCurrentUser();
-        if (chat.admin_rights != null) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        boolean z11 = chat.creator;
-        d6Var = ((org.telegram.ui.ActionBar.f3) t80Var.Nc).resourcesProvider;
-        x01.c(parentActivity, i10, j10, currentUser, null, z10, z11, d6Var);
+    public t80(y80 y80Var, Context context) {
+        super(context);
+        this.f31087a = y80Var;
     }
 
     @Override
-    public final void onBecomeFullyVisible() {
-        super.onBecomeFullyVisible();
-        if (!this.Kc && this.Lc) {
-            this.Kc = true;
-            MessagesController messagesController = getMessagesController();
-            long j3 = this.Mc;
-            TLRPC.Chat chat = messagesController.getChat(Long.valueOf(j3));
-            if (ChatObject.canManageMyTag(chat)) {
-                rc J = yc.a0(this).J(R.raw.contact_check, LocaleController.getString(R.string.JoinedGroup), LocaleController.getString(R.string.JoinedGroupAddTag), new a3.h0(this, j3, chat, 20));
-                J.f30435r = false;
-                J.k(true);
-                return;
+    public final void onDraw(Canvas canvas) {
+        int i10;
+        y80 y80Var = this.f31087a;
+        Drawable drawable = y80Var.f33140b;
+        int i11 = y80Var.f33145r;
+        i10 = ((org.telegram.ui.ActionBar.f3) y80Var).backgroundPaddingTop;
+        drawable.setBounds(0, i11 - i10, getMeasuredWidth(), getMeasuredHeight());
+        drawable.draw(canvas);
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            y80 y80Var = this.f31087a;
+            if (y80Var.f33145r != 0 && motionEvent.getY() < y80Var.f33145r) {
+                y80Var.dismiss();
+                return true;
             }
-            rc Q = yc.a0(this).Q(R.raw.contact_check, 36, LocaleController.getString(R.string.JoinedGroup));
-            Q.f30435r = false;
-            Q.k(true);
         }
+        return super.onInterceptTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        y80.q(this.f31087a);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int i12;
+        int i13;
+        int size = View.MeasureSpec.getSize(i11) - AndroidUtilities.statusBarHeight;
+        y80 y80Var = this.f31087a;
+        TextView textView = y80Var.f33143f;
+        measureChildWithMargins(textView, i10, 0, i11, 0);
+        int measuredHeight = textView.getMeasuredHeight();
+        u80 u80Var = y80Var.d;
+        ((FrameLayout.LayoutParams) u80Var.getLayoutParams()).topMargin = AndroidUtilities.dp(65.0f) + measuredHeight;
+        getMeasuredWidth();
+        int D = org.telegram.messenger.q.D(58.0f, y80Var.h.size(), AndroidUtilities.dp(80.0f));
+        i12 = ((org.telegram.ui.ActionBar.f3) y80Var).backgroundPaddingTop;
+        int C = org.telegram.messenger.q.C(55.0f, i12 + D, measuredHeight);
+        int i14 = size / 5;
+        if (C < i14 * 3) {
+            i13 = size - C;
+        } else {
+            i13 = i14 * 2;
+        }
+        if (u80Var.getPaddingTop() != i13) {
+            y80Var.f33144n = true;
+            u80Var.setPadding(0, i13, 0, 0);
+            y80Var.f33144n = false;
+        }
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!this.f31087a.isDismissed() && super.onTouchEvent(motionEvent)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.f31087a.f33144n) {
+            return;
+        }
+        super.requestLayout();
     }
 }

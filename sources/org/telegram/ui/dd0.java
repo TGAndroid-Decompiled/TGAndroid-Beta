@@ -1,33 +1,49 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Point;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.view.View;
+import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
-import java.util.HashMap;
-import java.util.Map;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.IMapsProvider;
-public final class dd0 extends FrameLayout {
-    public final HashMap f35787a;
-    public final gd0 f35788b;
+public final class dd0 implements ValueAnimator.AnimatorUpdateListener {
+    public boolean f36930a;
+    public final float[] f36931b = {0.0f, 1.0f};
+    public final FrameLayout f36932c;
+    public final ed0 d;
 
-    public dd0(gd0 gd0Var, Context context) {
-        super(context);
-        this.f35788b = gd0Var;
-        this.f35787a = new HashMap();
+    public dd0(ed0 ed0Var, FrameLayout frameLayout) {
+        this.d = ed0Var;
+        this.f36932c = frameLayout;
     }
 
-    public final void a() {
-        IMapsProvider.IMap iMap = this.f35788b.I;
-        if (iMap != null) {
-            IMapsProvider.IProjection projection = iMap.getProjection();
-            for (Map.Entry entry : this.f35787a.entrySet()) {
-                View view = (View) entry.getValue();
-                Point screenLocation = projection.toScreenLocation(((IMapsProvider.IMarker) entry.getKey()).getPosition());
-                view.setTranslationX(screenLocation.x - (view.getMeasuredWidth() / 2));
-                view.setTranslationY(AndroidUtilities.dp(22.0f) + (screenLocation.y - view.getMeasuredHeight()));
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        float interpolation;
+        float lerp = AndroidUtilities.lerp(this.f36931b, valueAnimator.getAnimatedFraction());
+        if (lerp >= 0.7f && !this.f36930a) {
+            ed0 ed0Var = this.d;
+            hd0 hd0Var = ed0Var.f37232b;
+            hd0 hd0Var2 = ed0Var.f37232b;
+            if (hd0Var.f38272o0 != null) {
+                AnimatorSet animatorSet = new AnimatorSet();
+                animatorSet.playTogether(ObjectAnimator.ofFloat(hd0Var2.f38272o0, View.SCALE_X, 0.0f, 1.0f), ObjectAnimator.ofFloat(hd0Var2.f38272o0, View.SCALE_Y, 0.0f, 1.0f), ObjectAnimator.ofFloat(hd0Var2.f38272o0, View.ALPHA, 0.0f, 1.0f));
+                animatorSet.setInterpolator(new OvershootInterpolator(1.02f));
+                animatorSet.setDuration(250L);
+                animatorSet.start();
+                this.f36930a = true;
             }
         }
+        if (lerp <= 0.5f) {
+            interpolation = org.telegram.ui.Components.hs.f27119g.getInterpolation(lerp / 0.5f) * 1.1f;
+        } else if (lerp <= 0.75f) {
+            interpolation = 1.1f - (org.telegram.ui.Components.hs.f27119g.getInterpolation((lerp - 0.5f) / 0.25f) * 0.2f);
+        } else {
+            interpolation = (org.telegram.ui.Components.hs.f27119g.getInterpolation((lerp - 0.75f) / 0.25f) * 0.1f) + 0.9f;
+        }
+        FrameLayout frameLayout = this.f36932c;
+        frameLayout.setScaleX(interpolation);
+        frameLayout.setScaleY(interpolation);
     }
 }

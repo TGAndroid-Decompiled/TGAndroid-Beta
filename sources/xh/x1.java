@@ -5,63 +5,63 @@ import android.text.SpannableStringBuilder;
 import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.g91;
-import org.telegram.ui.Components.gs0;
-import org.telegram.ui.Components.h91;
-import org.telegram.ui.Components.rq;
+import org.telegram.ui.Components.er;
+import org.telegram.ui.Components.n91;
+import org.telegram.ui.Components.o91;
+import org.telegram.ui.Components.rs0;
 import org.telegram.ui.ProfileActivity;
-public final class x1 extends h91 {
-    public final org.telegram.ui.ActionBar.n2 V;
-    public final gs0 W;
+public final class x1 extends o91 {
+    public final org.telegram.ui.ActionBar.n2 T;
+    public final rs0 U;
 
-    public x1(gs0 gs0Var, Context context, org.telegram.ui.ActionBar.n2 n2Var) {
+    public x1(rs0 rs0Var, Context context, org.telegram.ui.ActionBar.n2 n2Var) {
         super(context, null);
-        this.W = gs0Var;
-        this.V = n2Var;
-    }
-
-    @Override
-    public final void A(int i10) {
-        this.W.l();
-        org.telegram.ui.ActionBar.n2 n2Var = this.V;
-        if (n2Var instanceof ProfileActivity) {
-            ((ProfileActivity) n2Var).P();
-        }
+        this.U = rs0Var;
+        this.T = n2Var;
     }
 
     @Override
     public final void h() {
-        gs0 gs0Var = this.W;
-        g91 g91Var = gs0Var.f50237n;
-        if (gs0Var.b() && g91Var != null) {
-            if (gs0Var.J == null) {
+        rs0 rs0Var = this.U;
+        n91 n91Var = rs0Var.f51514n;
+        if (rs0Var.b() && n91Var != null) {
+            if (rs0Var.J == null) {
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(org.telegram.messenger.q.g(R.string.Gift2NewCollection, new StringBuilder("+ ")));
-                rq rqVar = new rq(R.drawable.poll_add_plus, 0);
-                rqVar.spaceScaleX = 0.8f;
-                spannableStringBuilder.setSpan(rqVar, 0, 1, 33);
-                gs0Var.J = spannableStringBuilder;
+                er erVar = new er(R.drawable.poll_add_plus, 0);
+                erVar.spaceScaleX = 0.8f;
+                spannableStringBuilder.setSpan(erVar, 0, 1, 33);
+                rs0Var.J = spannableStringBuilder;
             }
-            g91Var.a(-1, gs0Var.J);
+            n91Var.a(-1, rs0Var.J);
         }
     }
 
     @Override
     public final boolean i(MotionEvent motionEvent) {
-        return !this.W.g();
+        return !this.U.g();
     }
 
     @Override
     public final void w(boolean z10) {
-        gs0 gs0Var = this.W;
-        gs0Var.l();
-        org.telegram.ui.ActionBar.n2 n2Var = this.V;
+        rs0 rs0Var = this.U;
+        rs0Var.l();
+        org.telegram.ui.ActionBar.n2 n2Var = this.T;
         if (n2Var instanceof ProfileActivity) {
-            ((ProfileActivity) n2Var).P();
+            ((ProfileActivity) n2Var).R();
             View fragmentView = n2Var.getFragmentView();
             if (fragmentView != null) {
                 fragmentView.invalidate();
             }
         }
-        gs0Var.o();
+        rs0Var.o();
+    }
+
+    @Override
+    public final void z(int i10) {
+        this.U.l();
+        org.telegram.ui.ActionBar.n2 n2Var = this.T;
+        if (n2Var instanceof ProfileActivity) {
+            ((ProfileActivity) n2Var).R();
+        }
     }
 }

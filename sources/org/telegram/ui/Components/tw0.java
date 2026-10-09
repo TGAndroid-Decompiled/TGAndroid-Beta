@@ -1,43 +1,80 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.DownloadController;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-public final class tw0 implements Runnable {
-    public final int f31249a;
-    public final TLRPC.Document f31250b;
-    public final int f31251c;
-    public final MessageObject d;
-    public final org.telegram.ui.Cells.u1 f31252e;
-    public final TLRPC.TL_messages_stickerSet f31253f;
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Point;
+import android.graphics.Rect;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public abstract class tw0 extends sw0 {
+    public Activity f31294w0;
+    public final Rect f31295x0;
+    public int f31296y0;
+    public boolean f31297z0;
 
-    public tw0(TLRPC.Document document, int i10, MessageObject messageObject, org.telegram.ui.Cells.u1 u1Var, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, int i11) {
-        this.f31249a = i11;
-        this.f31250b = document;
-        this.f31251c = i10;
-        this.d = messageObject;
-        this.f31252e = u1Var;
-        this.f31253f = tL_messages_stickerSet;
+    public tw0(Context context, Activity activity) {
+        super(context, null);
+        this.f31295x0 = new Rect();
+        setActivity(activity);
     }
 
     @Override
-    public final void run() {
-        switch (this.f31249a) {
-            case 0:
-                TLRPC.Document document = this.f31250b;
-                String attachFileName = FileLoader.getAttachFileName(document);
-                int i10 = this.f31251c;
-                DownloadController.getInstance(i10).addLoadingFileObserver(attachFileName, this.d, this.f31252e);
-                FileLoader.getInstance(i10).loadFile(document, this.f31253f, 1, 1);
-                return;
-            default:
-                TLRPC.Document document2 = this.f31250b;
-                String attachFileName2 = FileLoader.getAttachFileName(document2);
-                int i11 = this.f31251c;
-                DownloadController.getInstance(i11).addLoadingFileObserver(attachFileName2, this.d, this.f31252e);
-                FileLoader.getInstance(i11).loadFile(document2, this.f31253f, 1, 1);
-                return;
+    public int R() {
+        View rootView = getRootView();
+        Rect rect = this.f31295x0;
+        getWindowVisibleDisplayFrame(rect);
+        int i10 = 0;
+        if (this.f31297z0) {
+            int height = rootView.getHeight();
+            if (rect.top != 0) {
+                i10 = AndroidUtilities.statusBarHeight;
+            }
+            return ((height - i10) - AndroidUtilities.getViewInset(rootView)) - (rect.bottom - rect.top);
         }
+        int height2 = (this.f31294w0.getWindow().getDecorView().getHeight() - AndroidUtilities.getViewInset(rootView)) - rootView.getBottom();
+        if (height2 <= Math.max(AndroidUtilities.dp(10.0f), AndroidUtilities.statusBarHeight)) {
+            return 0;
+        }
+        return height2;
+    }
+
+    @Override
+    public void S() {
+        boolean z10;
+        if (this.f30933n == null && this.f30938r.isEmpty()) {
+            return;
+        }
+        this.f31296y0 = R();
+        Point point = AndroidUtilities.displaySize;
+        if (point.x > point.y) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        post(new ds0(4, this, z10));
+    }
+
+    @Override
+    public int[] getColorKeys() {
+        return null;
+    }
+
+    @Override
+    public int getKeyboardHeight() {
+        return this.f31296y0;
+    }
+
+    @Override
+    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        S();
+    }
+
+    public void setActivity(Activity activity) {
+        this.f31294w0 = activity;
+    }
+
+    public void setWithoutWindow(boolean z10) {
+        this.f31297z0 = z10;
     }
 }

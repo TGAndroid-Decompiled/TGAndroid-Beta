@@ -1,41 +1,64 @@
 package gg;
 
-import android.view.View;
-import android.view.ViewPropertyAnimator;
-public final class l0 extends s4.j {
-    @Override
-    public final void D(s4.c1 c1Var) {
-        View view = c1Var.f46538a;
-        ViewPropertyAnimator animate = view.animate();
-        this.A.add(c1Var);
-        animate.setDuration(this.d).alpha(0.0f).scaleX(0.0f).scaleY(0.0f).setListener(new k0(this, c1Var, animate, view, 0)).start();
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class l0 extends s4.o {
+    public final r0 f10713b;
+
+    public l0(r0 r0Var) {
+        this.f10713b = r0Var;
     }
 
     @Override
-    public final long K(long j3, long j10, long j11) {
-        return 0L;
+    public final boolean a(int i10, int i11) {
+        return true;
     }
 
     @Override
-    public final long L() {
-        return 0L;
+    public final boolean b(int i10, int i11) {
+        r0 r0Var = this.f10713b;
+        p0 p0Var = (p0) r0Var.W2.get(i10);
+        p0 p0Var2 = (p0) r0Var.V2.get(i11);
+        if (p0Var.b(p0Var2)) {
+            int i12 = p0Var.d;
+            if (i12 == 4) {
+                TLObject tLObject = p0Var.f10764f;
+                if (tLObject instanceof TLRPC.User) {
+                    TLObject tLObject2 = p0Var2.f10764f;
+                    if (tLObject2 instanceof TLRPC.User) {
+                        if (((TLRPC.User) tLObject).f20185id == ((TLRPC.User) tLObject2).f20185id) {
+                            return true;
+                        }
+                        return false;
+                    }
+                }
+                if (tLObject instanceof TLRPC.Chat) {
+                    TLObject tLObject3 = p0Var2.f10764f;
+                    if ((tLObject3 instanceof TLRPC.Chat) && ((TLRPC.Chat) tLObject).f20038id == ((TLRPC.Chat) tLObject3).f20038id) {
+                        return true;
+                    }
+                    return false;
+                }
+                return false;
+            } else if (i12 == 6) {
+                return p0Var.f10762c.equals(p0Var2.f10762c);
+            } else {
+                if (i12 == 7) {
+                    return true;
+                }
+                return false;
+            }
+        }
+        return false;
     }
 
     @Override
-    public final long h() {
-        return 220L;
+    public final int d() {
+        return this.f10713b.V2.size();
     }
 
     @Override
-    public final long j() {
-        return 220L;
-    }
-
-    @Override
-    public final void p(s4.c1 c1Var) {
-        super.p(c1Var);
-        View view = c1Var.f46538a;
-        view.setScaleX(0.0f);
-        view.setScaleY(0.0f);
+    public final int e() {
+        return this.f10713b.W2.size();
     }
 }

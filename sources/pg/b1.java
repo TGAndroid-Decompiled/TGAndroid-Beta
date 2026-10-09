@@ -1,36 +1,37 @@
 package pg;
 
 import android.os.Looper;
+import org.telegram.ui.Wallet.m5;
 public final class b1 implements Runnable {
-    public final int f44444a;
-    public final d1 f44445b;
+    public final int f45589a;
+    public final c1 f45590b;
 
-    public b1(d1 d1Var, int i10) {
-        this.f44444a = i10;
-        this.f44445b = d1Var;
+    public b1(c1 c1Var, int i10) {
+        this.f45589a = i10;
+        this.f45590b = c1Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f44444a) {
+        switch (this.f45589a) {
             case 0:
-                d1 d1Var = this.f44445b;
-                c1 c1Var = d1Var.f44463w;
-                b1 b1Var = d1Var.f44462s;
+                c1 c1Var = this.f45590b;
+                m5 m5Var = c1Var.f45604w;
+                b1 b1Var = c1Var.f45603s;
                 if (b1Var != null) {
-                    d1Var.cancelRunnable(b1Var);
-                    d1Var.f44462s = null;
+                    c1Var.cancelRunnable(b1Var);
+                    c1Var.f45603s = null;
                 }
-                d1Var.cancelRunnable(c1Var);
-                d1Var.postRunnable(c1Var);
+                c1Var.cancelRunnable(m5Var);
+                c1Var.postRunnable(m5Var);
                 return;
             case 1:
-                d1 d1Var2 = this.f44445b;
-                d1Var2.f44462s = null;
-                d1Var2.f44463w.run();
+                c1 c1Var2 = this.f45590b;
+                c1Var2.f45603s = null;
+                c1Var2.f45604w.run();
                 return;
             default:
-                this.f44445b.finish();
+                this.f45590b.finish();
                 Looper myLooper = Looper.myLooper();
                 if (myLooper != null) {
                     myLooper.quit();

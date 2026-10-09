@@ -1,46 +1,46 @@
 package ii;
 
 import android.view.View;
-public final class m3 extends w7.j0 {
-    public final v3 f12523a;
-    public final x3 f12524b;
+public final class m3 extends w7.h0 {
+    public final v3 f12568a;
+    public final x3 f12569b;
 
     public m3(x3 x3Var, v3 v3Var) {
-        this.f12524b = x3Var;
-        this.f12523a = v3Var;
+        this.f12569b = x3Var;
+        this.f12568a = v3Var;
     }
 
     @Override
     public final void a(boolean z10) {
-        this.f12523a.t();
-        x3 x3Var = this.f12524b;
+        this.f12568a.l();
+        x3 x3Var = this.f12569b;
         if (z10) {
-            k3 k3Var = x3Var.f12782u3;
-            x3Var.f12786w3 = k3Var.G0;
-            x3Var.f12788x3 = k3Var.H0;
-            x3Var.y3 = k3Var.I0;
+            k3 k3Var = x3Var.f12820l3;
+            x3Var.f12823n3 = k3Var.B0;
+            x3Var.f12825o3 = k3Var.C0;
+            x3Var.f12827p3 = k3Var.D0;
             x3Var.setEditTextsLocked(true);
             x3Var.o3();
             x3Var.W2();
             return;
         }
-        final int i10 = x3Var.f12786w3;
-        final int i11 = x3Var.f12788x3;
-        final int i12 = x3Var.y3;
-        x3Var.f12786w3 = -1;
-        x3Var.f12788x3 = -1;
-        x3Var.y3 = 0;
-        boolean z11 = x3Var.f12791z3;
-        final float f7 = x3Var.A3;
-        final float f10 = x3Var.B3;
-        x3Var.f12791z3 = false;
+        final int i10 = x3Var.f12823n3;
+        final int i11 = x3Var.f12825o3;
+        final int i12 = x3Var.f12827p3;
+        x3Var.f12823n3 = -1;
+        x3Var.f12825o3 = -1;
+        x3Var.f12827p3 = 0;
+        boolean z11 = x3Var.f12829q3;
+        final float f7 = x3Var.f12830r3;
+        final float f10 = x3Var.f12831s3;
+        x3Var.f12829q3 = false;
         x3Var.setEditTextsLocked(false);
         x3Var.W2();
         if (z11) {
             x3Var.post(new Runnable() {
                 @Override
                 public final void run() {
-                    x3 x3Var2 = m3.this.f12524b;
+                    x3 x3Var2 = m3.this.f12569b;
                     for (int i13 = 0; i13 < x3Var2.getChildCount(); i13++) {
                         View childAt = x3Var2.getChildAt(i13);
                         boolean z12 = childAt instanceof f6;

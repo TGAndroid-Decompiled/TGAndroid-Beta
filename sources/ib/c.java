@@ -1,12 +1,13 @@
 package ib;
 
+import a1.g;
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import v7.m8;
+import v7.k8;
 public abstract class c {
-    public static final m8 f12042a;
+    public static final k8 f12092a;
 
     static {
         b bVar;
@@ -15,7 +16,7 @@ public abstract class c {
         } catch (ReflectiveOperationException unused) {
             bVar = new Object();
         }
-        f12042a = bVar;
+        f12092a = bVar;
     }
 
     public static void a(AccessibleObject accessibleObject, StringBuilder sb2) {
@@ -83,7 +84,7 @@ public abstract class c {
         try {
             accessibleObject.setAccessible(true);
         } catch (Exception e7) {
-            StringBuilder w10 = a4.a.w("Failed making ", d(accessibleObject, false), " accessible; either increase its visibility or write a custom TypeAdapter for its declaring type.");
+            StringBuilder w10 = g.w("Failed making ", d(accessibleObject, false), " accessible; either increase its visibility or write a custom TypeAdapter for its declaring type.");
             w10.append(e(e7));
             throw new RuntimeException(w10.toString(), e7);
         }

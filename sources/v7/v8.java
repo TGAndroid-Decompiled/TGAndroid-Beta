@@ -1,26 +1,26 @@
 package v7;
-public final class v8 {
-    public final String f48097a;
-
-    public v8(String str) {
-        this.f48097a = str;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
+public abstract class v8 {
+    public static jd.f a(jd.f fVar, jd.g key) {
+        kotlin.jvm.internal.i.e(key, "key");
+        if (kotlin.jvm.internal.i.a(fVar.getKey(), key)) {
+            return fVar;
         }
-        if ((obj instanceof v8) && this.f48097a.equals(((v8) obj).f48097a)) {
-            return true;
+        return null;
+    }
+
+    public static jd.h b(jd.f fVar, jd.g key) {
+        kotlin.jvm.internal.i.e(key, "key");
+        if (kotlin.jvm.internal.i.a(fVar.getKey(), key)) {
+            return jd.i.f14129a;
         }
-        return false;
+        return fVar;
     }
 
-    public final int hashCode() {
-        return ((((this.f48097a.hashCode() ^ 1000003) * 1000003) ^ 1231) * 1000003) ^ 1;
-    }
-
-    public final String toString() {
-        return a4.a.q("MLKitLoggingOptions{libraryName=", this.f48097a, ", enableFirelog=true, firelogEventType=1}");
+    public static jd.h c(jd.f fVar, jd.h context) {
+        kotlin.jvm.internal.i.e(context, "context");
+        if (context == jd.i.f14129a) {
+            return fVar;
+        }
+        return (jd.h) context.fold(fVar, new b1.e(5));
     }
 }

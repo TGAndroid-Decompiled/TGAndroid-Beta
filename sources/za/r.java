@@ -1,15 +1,97 @@
 package za;
 
-import android.util.Base64;
+import android.app.ActivityManager;
+import android.app.Application;
+import android.content.Context;
+import android.os.Build;
+import android.os.Process;
+import java.util.ArrayList;
+import java.util.List;
 public abstract class r {
-    public static final String f53172a;
-    public static final String f53173b;
+    public static ArrayList a(Context context) {
+        ActivityManager activityManager;
+        kotlin.jvm.internal.i.e(context, "context");
+        int i10 = context.getApplicationInfo().uid;
+        String str = context.getApplicationInfo().processName;
+        Object systemService = context.getSystemService("activity");
+        List<ActivityManager.RunningAppProcessInfo> list = null;
+        if (systemService instanceof ActivityManager) {
+            activityManager = (ActivityManager) systemService;
+        } else {
+            activityManager = null;
+        }
+        if (activityManager != null) {
+            list = activityManager.getRunningAppProcesses();
+        }
+        if (list == null) {
+            list = id.o.f12114a;
+        }
+        ArrayList f7 = id.g.f(list);
+        ArrayList arrayList = new ArrayList();
+        int size = f7.size();
+        int i11 = 0;
+        int i12 = 0;
+        while (i12 < size) {
+            Object obj = f7.get(i12);
+            i12++;
+            if (((ActivityManager.RunningAppProcessInfo) obj).uid == i10) {
+                arrayList.add(obj);
+            }
+        }
+        ArrayList arrayList2 = new ArrayList(id.i.d(arrayList));
+        int size2 = arrayList.size();
+        while (i11 < size2) {
+            Object obj2 = arrayList.get(i11);
+            i11++;
+            ActivityManager.RunningAppProcessInfo runningAppProcessInfo = (ActivityManager.RunningAppProcessInfo) obj2;
+            String str2 = runningAppProcessInfo.processName;
+            kotlin.jvm.internal.i.d(str2, "runningAppProcessInfo.processName");
+            arrayList2.add(new q(str2, runningAppProcessInfo.pid, runningAppProcessInfo.importance, kotlin.jvm.internal.i.a(runningAppProcessInfo.processName, str)));
+        }
+        return arrayList2;
+    }
 
-    static {
-        byte[] bytes = q.c().getBytes(xd.a.f49833a);
-        kotlin.jvm.internal.i.d(bytes, "getBytes(...)");
-        String encodeToString = Base64.encodeToString(bytes, 10);
-        f53172a = a4.a.q("firebase_session_", encodeToString, "_data");
-        f53173b = a4.a.q("firebase_session_", encodeToString, "_settings");
+    public static q b(Context context) {
+        Object obj;
+        kotlin.jvm.internal.i.e(context, "context");
+        int myPid = Process.myPid();
+        ArrayList a2 = a(context);
+        int size = a2.size();
+        int i10 = 0;
+        while (true) {
+            if (i10 < size) {
+                obj = a2.get(i10);
+                i10++;
+                if (((q) obj).f54278b == myPid) {
+                    break;
+                }
+            } else {
+                obj = null;
+                break;
+            }
+        }
+        q qVar = (q) obj;
+        if (qVar == null) {
+            return new q(c(), myPid, 0, false);
+        }
+        return qVar;
+    }
+
+    public static String c() {
+        String processName;
+        int i10 = Build.VERSION.SDK_INT;
+        if (i10 >= 33) {
+            String myProcessName = Process.myProcessName();
+            kotlin.jvm.internal.i.d(myProcessName, "myProcessName()");
+            return myProcessName;
+        } else if (i10 >= 28 && (processName = Application.getProcessName()) != null) {
+            return processName;
+        } else {
+            String a2 = u6.d.a();
+            if (a2 != null) {
+                return a2;
+            }
+            return "";
+        }
     }
 }

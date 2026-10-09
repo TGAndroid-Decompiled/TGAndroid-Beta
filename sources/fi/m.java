@@ -3,43 +3,43 @@ package fi;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.w9;
-import org.telegram.ui.ou0;
-import org.telegram.ui.yu0;
-public final class m extends ou0 {
-    public final p f9932a;
+import org.telegram.ui.Components.y9;
+import org.telegram.ui.ev0;
+import org.telegram.ui.uu0;
+public final class m extends uu0 {
+    public final p f10007a;
 
     public m(p pVar) {
-        this.f9932a = pVar;
+        this.f10007a = pVar;
     }
 
     @Override
-    public final yu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+    public final ev0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
         TLRPC.FileLocation fileLocation2;
         TLRPC.ChatPhoto chatPhoto;
         if (fileLocation != null) {
-            p pVar = this.f9932a;
-            TLRPC.Chat chat = pVar.getMessagesController().getChat(Long.valueOf(pVar.f9947b));
+            p pVar = this.f10007a;
+            TLRPC.Chat chat = pVar.getMessagesController().getChat(Long.valueOf(pVar.f10022b));
             if (chat == null || (chatPhoto = chat.photo) == null || (fileLocation2 = chatPhoto.photo_big) == null) {
                 fileLocation2 = null;
             }
             if (fileLocation2 != null && fileLocation2.local_id == fileLocation.local_id && fileLocation2.volume_id == fileLocation.volume_id && fileLocation2.dc_id == fileLocation.dc_id) {
                 int[] iArr = new int[2];
                 pVar.v.getLocationInWindow(iArr);
-                yu0 yu0Var = new yu0();
-                yu0Var.f43621b = iArr[0];
-                yu0Var.f43622c = iArr[1];
-                w9 w9Var = pVar.v;
-                yu0Var.d = w9Var;
-                ImageReceiver imageReceiver = w9Var.getImageReceiver();
-                yu0Var.f43620a = imageReceiver;
-                yu0Var.f43624f = -pVar.f9947b;
-                yu0Var.f43623e = imageReceiver.getBitmapSafe();
-                yu0Var.f43625g = -1L;
-                yu0Var.h = pVar.v.getImageReceiver().getRoundRadius(true);
-                yu0Var.f43628k = 1.0f;
-                yu0Var.f43633p = true;
-                return yu0Var;
+                ev0 ev0Var = new ev0();
+                ev0Var.f37355b = iArr[0];
+                ev0Var.f37356c = iArr[1];
+                y9 y9Var = pVar.v;
+                ev0Var.d = y9Var;
+                ImageReceiver imageReceiver = y9Var.getImageReceiver();
+                ev0Var.f37354a = imageReceiver;
+                ev0Var.f37358f = -pVar.f10022b;
+                ev0Var.f37357e = imageReceiver.getBitmapSafe();
+                ev0Var.f37359g = -1L;
+                ev0Var.h = pVar.v.getImageReceiver().getRoundRadius(true);
+                ev0Var.f37362k = 1.0f;
+                ev0Var.f37367p = true;
+                return ev0Var;
             }
         }
         return null;
@@ -47,7 +47,7 @@ public final class m extends ou0 {
 
     @Override
     public final void G() {
-        this.f9932a.v.getImageReceiver().setVisible(true, true);
+        this.f10007a.v.getImageReceiver().setVisible(true, true);
     }
 
     @Override
@@ -57,7 +57,7 @@ public final class m extends ou0 {
 
     @Override
     public final void f(String str, String str2, boolean z10) {
-        this.f9932a.E.q(str, str2, z10);
+        this.f10007a.E.p(str, str2, z10);
     }
 
     @Override

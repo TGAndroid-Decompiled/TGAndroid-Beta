@@ -6,44 +6,44 @@ import dh.e;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.i6;
-import w7.q;
+import w7.o;
 public abstract class b {
-    public static e a(d6 d6Var) {
-        e eVar = new e(d6Var);
-        eVar.f8354e = new c(12);
-        eVar.f(385875968, 402653183);
+    public static e a(e6 e6Var) {
+        e eVar = new e(e6Var);
+        eVar.f8366e = new c(11);
         eVar.e(385875968, 402653183);
-        eVar.d(285212672, 83886079);
+        eVar.c(385875968, 402653183);
+        eVar.b(285212672, 83886079);
         float dpf2 = AndroidUtilities.dpf2(2.0f);
         float dpf22 = AndroidUtilities.dpf2(0.33333334f);
-        eVar.f8356n = dpf2;
-        eVar.f8357r = dpf22;
+        eVar.f8368n = dpf2;
+        eVar.f8369r = dpf22;
         float dpf23 = AndroidUtilities.dpf2(0.4f);
         float dpf24 = AndroidUtilities.dpf2(0.4f);
-        eVar.f8355f = dpf23;
+        eVar.f8367f = dpf23;
         eVar.h = dpf24;
         return eVar;
     }
 
-    public static e b(d6 d6Var) {
-        e eVar = new e(d6Var);
-        eVar.f8354e = new a(0, d6Var);
-        eVar.f(-1, 687865855);
-        eVar.e(-1, 352321535);
-        eVar.d(536870912, 0);
+    public static e b(e6 e6Var) {
+        e eVar = new e(e6Var);
+        eVar.f8366e = new a(0, e6Var);
+        eVar.e(-1, 687865855);
+        eVar.c(-1, 352321535);
+        eVar.b(536870912, 0);
         float dpf2 = AndroidUtilities.dpf2(0.5f);
         float dpf22 = AndroidUtilities.dpf2(0.5f);
-        eVar.f8355f = dpf2;
+        eVar.f8367f = dpf2;
         eVar.h = dpf22;
         return eVar;
     }
 
-    public static boolean c(int i10, d6 d6Var) {
+    public static boolean c(int i10, e6 e6Var) {
         boolean q6;
-        if (d6Var != null) {
-            q6 = d6Var.a();
+        if (e6Var != null) {
+            q6 = e6Var.a();
         } else {
             q6 = i6.I.q();
         }
@@ -57,153 +57,136 @@ public abstract class b {
         return chatBlurEnabled;
     }
 
-    public static e d(d6 d6Var) {
-        e eVar = new e(d6Var);
-        eVar.f8354e = new c(16);
-        eVar.f(-1, 687865855);
-        eVar.e(-1, 352321535);
-        eVar.d(1073741824, 0);
+    public static e d(e6 e6Var) {
+        e eVar = new e(e6Var);
+        eVar.f8366e = new c(15);
+        eVar.e(-1, 687865855);
+        eVar.c(-1, 352321535);
+        eVar.b(1073741824, 0);
         float dpf2 = AndroidUtilities.dpf2(3.6666667f);
         float dpf22 = AndroidUtilities.dpf2(0.6666667f);
-        eVar.f8356n = dpf2;
-        eVar.f8357r = dpf22;
+        eVar.f8368n = dpf2;
+        eVar.f8369r = dpf22;
         float dpf23 = AndroidUtilities.dpf2(0.5f);
         float dpf24 = AndroidUtilities.dpf2(0.5f);
-        eVar.f8355f = dpf23;
+        eVar.f8367f = dpf23;
         eVar.h = dpf24;
         return eVar;
     }
 
-    public static e e(d6 d6Var) {
-        e eVar = new e(d6Var);
-        eVar.f8354e = new c(1);
-        eVar.f(687865855, 687865855);
-        eVar.e(352321535, 352321535);
-        eVar.d(536870912, 0);
+    public static e e(e6 e6Var) {
+        e eVar = new e(e6Var);
+        eVar.f8366e = new c(1);
+        eVar.e(687865855, 687865855);
+        eVar.c(352321535, 352321535);
+        eVar.b(536870912, 0);
         float dpf2 = AndroidUtilities.dpf2(3.3333333f);
         float dpf22 = AndroidUtilities.dpf2(0.6666667f);
-        eVar.f8356n = dpf2;
-        eVar.f8357r = dpf22;
+        eVar.f8368n = dpf2;
+        eVar.f8369r = dpf22;
         float dpf23 = AndroidUtilities.dpf2(1.0f);
         float dpf24 = AndroidUtilities.dpf2(0.6666667f);
-        eVar.f8355f = dpf23;
+        eVar.f8367f = dpf23;
         eVar.h = dpf24;
         return eVar;
     }
 
-    public static e f(d6 d6Var) {
-        e eVar = new e(d6Var);
-        eVar.f8354e = new c(11);
-        eVar.f(285212672, 117440511);
-        eVar.e(536870912, 301989887);
-        eVar.d(536870912, 83886079);
+    public static e f(e6 e6Var) {
+        e eVar = new e(e6Var);
+        eVar.f8366e = new c(10);
+        eVar.e(285212672, 117440511);
+        eVar.c(536870912, 301989887);
+        eVar.b(536870912, 83886079);
         float dpf2 = AndroidUtilities.dpf2(2.667f);
         float dpf22 = AndroidUtilities.dpf2(0.85f);
-        eVar.f8356n = dpf2;
-        eVar.f8357r = dpf22;
+        eVar.f8368n = dpf2;
+        eVar.f8369r = dpf22;
         float dpf23 = AndroidUtilities.dpf2(0.4f);
         float dpf24 = AndroidUtilities.dpf2(0.4f);
-        eVar.f8355f = dpf23;
+        eVar.f8367f = dpf23;
         eVar.h = dpf24;
         return eVar;
     }
 
-    public static e g(d6 d6Var) {
-        e eVar = new e(d6Var);
-        eVar.f8354e = new c(2);
-        eVar.f(1157627903, 0);
-        eVar.e(587202559, 0);
-        eVar.d(939524096, 0);
-        eVar.f8356n = AndroidUtilities.dpf2(3.5f);
-        eVar.f8357r = 0.0f;
+    public static e g(e6 e6Var) {
+        e eVar = new e(e6Var);
+        eVar.f8366e = new c(2);
+        eVar.e(1157627903, 0);
+        eVar.c(587202559, 0);
+        eVar.b(939524096, 0);
+        eVar.f8368n = AndroidUtilities.dpf2(3.5f);
+        eVar.f8369r = 0.0f;
         float dpf2 = AndroidUtilities.dpf2(0.6666667f);
         float dpf22 = AndroidUtilities.dpf2(0.6666667f);
-        eVar.f8355f = dpf2;
+        eVar.f8367f = dpf2;
         eVar.h = dpf22;
         return eVar;
     }
 
-    public static e h(d6 d6Var) {
-        return g(d6Var);
+    public static e h(e6 e6Var) {
+        return g(e6Var);
     }
 
-    public static e i(d6 d6Var) {
-        e eVar = new e(d6Var);
-        eVar.f8354e = new c(15);
-        eVar.f(687865855, 687865855);
-        eVar.e(352321535, 352321535);
+    public static e i(e6 e6Var) {
+        e eVar = new e(e6Var);
+        eVar.f8366e = new c(14);
+        eVar.e(687865855, 687865855);
+        eVar.c(352321535, 352321535);
         float dpf2 = AndroidUtilities.dpf2(0.6666667f);
         float dpf22 = AndroidUtilities.dpf2(0.6666667f);
-        eVar.f8355f = dpf2;
+        eVar.f8367f = dpf2;
         eVar.h = dpf22;
         return eVar;
     }
 
-    public static e j(d6 d6Var) {
-        e eVar = new e(d6Var);
-        eVar.f8354e = new c(13);
-        eVar.f(-1, 553648127);
-        eVar.e(0, 553648127);
-        eVar.d(1207959552, 83886079);
-        eVar.f8356n = AndroidUtilities.dpf2(0.6666667f);
-        eVar.f8357r = 0.0f;
+    public static e j(e6 e6Var) {
+        e eVar = new e(e6Var);
+        eVar.f8366e = new c(12);
+        eVar.e(-1, 553648127);
+        eVar.c(0, 553648127);
+        eVar.b(1207959552, 83886079);
+        eVar.f8368n = AndroidUtilities.dpf2(0.6666667f);
+        eVar.f8369r = 0.0f;
         float dpf2 = AndroidUtilities.dpf2(0.67f);
         float dpf22 = AndroidUtilities.dpf2(0.67f);
-        eVar.f8355f = dpf2;
+        eVar.f8367f = dpf2;
         eVar.h = dpf22;
         return eVar;
     }
 
-    public static e k(d6 d6Var) {
-        e eVar = new e(d6Var);
-        eVar.f8354e = new c(10);
-        eVar.f(1157627903, 0);
-        eVar.e(587202559, 0);
-        eVar.d(637534208, 0);
-        eVar.f8356n = AndroidUtilities.dpf2(4.0f);
-        eVar.f8357r = 0.0f;
+    public static e k(e6 e6Var) {
+        e eVar = new e(e6Var);
+        eVar.f8366e = new c(9);
+        eVar.e(1157627903, 0);
+        eVar.c(587202559, 0);
+        eVar.b(637534208, 0);
+        eVar.f8368n = AndroidUtilities.dpf2(4.0f);
+        eVar.f8369r = 0.0f;
         float dpf2 = AndroidUtilities.dpf2(0.6666667f);
         float dpf22 = AndroidUtilities.dpf2(0.6666667f);
-        eVar.f8355f = dpf2;
+        eVar.f8367f = dpf2;
         eVar.h = dpf22;
         return eVar;
     }
 
-    public static e l(d6 d6Var) {
-        e eVar = new e(d6Var);
-        eVar.f(0, 687865855);
-        eVar.e(0, 352321535);
-        eVar.d(805306368, 83886079);
+    public static e l(e6 e6Var) {
+        e eVar = new e(e6Var);
+        eVar.e(0, 687865855);
+        eVar.c(0, 352321535);
+        eVar.b(805306368, 83886079);
         float dpf2 = AndroidUtilities.dpf2(4.0f);
         float dpf22 = AndroidUtilities.dpf2(0.33333334f);
-        eVar.f8356n = dpf2;
-        eVar.f8357r = dpf22;
+        eVar.f8368n = dpf2;
+        eVar.f8369r = dpf22;
         float dpf23 = AndroidUtilities.dpf2(0.4f);
         float dpf24 = AndroidUtilities.dpf2(0.4f);
-        eVar.f8355f = dpf23;
+        eVar.f8367f = dpf23;
         eVar.h = dpf24;
         return eVar;
     }
 
-    public static e m(d6 d6Var) {
-        e eVar = new e(d6Var);
-        eVar.f8354e = new c(6);
-        eVar.f(-1, 553648127);
-        eVar.e(-1, 352321535);
-        eVar.d(372454195, 0);
-        float dpf2 = AndroidUtilities.dpf2(8.0f);
-        float dpf22 = AndroidUtilities.dpf2(2.3333333f);
-        eVar.f8356n = dpf2;
-        eVar.f8357r = dpf22;
-        float dpf23 = AndroidUtilities.dpf2(0.55f);
-        float dpf24 = AndroidUtilities.dpf2(0.55f);
-        eVar.f8355f = dpf23;
-        eVar.h = dpf24;
-        return eVar;
-    }
-
-    public static int n(float f7, int i10, int i11) {
-        float a2 = q.a(f7, 0.0f, 1.0f);
+    public static int m(float f7, int i10, int i11) {
+        float a2 = o.a(f7, 0.0f, 1.0f);
         if (a2 <= 0.0f) {
             return Color.argb(0, 0, 0, 0);
         }
@@ -217,61 +200,61 @@ public abstract class b {
         int green2 = Color.green(i11);
         int blue2 = Color.blue(i11);
         float f10 = 1.0f - a2;
-        return Color.argb(q.b(Math.round(a2 * 255.0f), 0, 255), q.b(Math.round((red2 - (red * f10)) / a2), 0, 255), q.b(Math.round((green2 - (green * f10)) / a2), 0, 255), q.b(Math.round((blue2 - (blue * f10)) / a2), 0, 255));
+        return Color.argb(o.b(Math.round(a2 * 255.0f), 0, 255), o.b(Math.round((red2 - (red * f10)) / a2), 0, 255), o.b(Math.round((green2 - (green * f10)) / a2), 0, 255), o.b(Math.round((blue2 - (blue * f10)) / a2), 0, 255));
     }
 
-    public static e o(d6 d6Var) {
-        e eVar = new e(d6Var);
-        eVar.f8354e = new c(3);
-        eVar.f(285212672, 117440511);
-        eVar.e(536870912, 301989887);
-        eVar.d(536870912, 83886079);
+    public static e n(e6 e6Var) {
+        e eVar = new e(e6Var);
+        eVar.f8366e = new c(3);
+        eVar.e(285212672, 117440511);
+        eVar.c(536870912, 301989887);
+        eVar.b(536870912, 83886079);
         float dpf2 = AndroidUtilities.dpf2(2.667f);
         float dpf22 = AndroidUtilities.dpf2(0.85f);
-        eVar.f8356n = dpf2;
-        eVar.f8357r = dpf22;
+        eVar.f8368n = dpf2;
+        eVar.f8369r = dpf22;
         float dpf23 = AndroidUtilities.dpf2(0.4f);
         float dpf24 = AndroidUtilities.dpf2(0.4f);
-        eVar.f8355f = dpf23;
+        eVar.f8367f = dpf23;
         eVar.h = dpf24;
         return eVar;
     }
 
-    public static e p(d6 d6Var) {
-        e eVar = new e(d6Var);
-        eVar.f8354e = new a(2, d6Var);
-        eVar.f(-1, 553648127);
-        eVar.e(-1, 352321535);
-        eVar.d(536870912, 0);
+    public static e o(e6 e6Var) {
+        e eVar = new e(e6Var);
+        eVar.f8366e = new a(2, e6Var);
+        eVar.e(-1, 553648127);
+        eVar.c(-1, 352321535);
+        eVar.b(536870912, 0);
         float dpf2 = AndroidUtilities.dpf2(0.55f);
         float dpf22 = AndroidUtilities.dpf2(0.55f);
-        eVar.f8355f = dpf2;
+        eVar.f8367f = dpf2;
         eVar.h = dpf22;
         return eVar;
     }
 
-    public static e q(d6 d6Var) {
-        e eVar = new e(d6Var);
-        eVar.f8354e = new c(14);
-        eVar.f(0, 0);
+    public static e p(e6 e6Var) {
+        e eVar = new e(e6Var);
+        eVar.f8366e = new c(13);
         eVar.e(0, 0);
-        eVar.d(0, 0);
-        eVar.f8356n = 0.0f;
-        eVar.f8357r = 0.0f;
-        eVar.f8355f = 0.0f;
+        eVar.c(0, 0);
+        eVar.b(0, 0);
+        eVar.f8368n = 0.0f;
+        eVar.f8369r = 0.0f;
+        eVar.f8367f = 0.0f;
         eVar.h = 0.0f;
         return eVar;
     }
 
-    public static e r(d6 d6Var) {
-        e eVar = new e(d6Var);
-        eVar.f8354e = new a(1, d6Var);
-        eVar.f(0, 0);
+    public static e q(e6 e6Var) {
+        e eVar = new e(e6Var);
+        eVar.f8366e = new a(1, e6Var);
         eVar.e(0, 0);
-        eVar.d(0, 0);
-        eVar.f8356n = 0.0f;
-        eVar.f8357r = 0.0f;
-        eVar.f8355f = 0.0f;
+        eVar.c(0, 0);
+        eVar.b(0, 0);
+        eVar.f8368n = 0.0f;
+        eVar.f8369r = 0.0f;
+        eVar.f8367f = 0.0f;
         eVar.h = 0.0f;
         return eVar;
     }

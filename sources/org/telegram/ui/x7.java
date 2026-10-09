@@ -1,79 +1,58 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Point;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-public final class x7 extends FrameLayout {
-    public final int f42820a;
-    public int f42821b;
-    public final NotificationCenter.NotificationCenterDelegate f42822c;
+import android.view.View;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class x7 implements View.OnClickListener {
+    public final int f43837a;
+    public final Object f43838b;
 
-    public x7(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, int i10) {
-        super(context);
-        this.f42820a = i10;
-        this.f42822c = notificationCenterDelegate;
-        this.f42821b = -1;
+    public x7(Object obj, int i10) {
+        this.f43837a = i10;
+        this.f43838b = obj;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f42820a) {
+    public final void onClick(View view) {
+        switch (this.f43837a) {
             case 0:
-                super.onLayout(z10, i10, i11, i12, i13);
-                int measuredWidth = (getMeasuredWidth() + getMeasuredHeight()) << 16;
-                if (this.f42821b != measuredWidth) {
-                    this.f42821b = measuredWidth;
-                    ((k8) this.f42822c).L.l();
+                d8 d8Var = (d8) this.f43838b;
+                g8 g8Var = d8Var.f36888x;
+                if (d8Var.f36884n != null && g8Var.G) {
+                    int i10 = -1;
+                    int i11 = -1;
+                    for (int i12 = 0; i12 < d8Var.d; i12++) {
+                        e8 e8Var = (e8) d8Var.f36884n.get(i12, null);
+                        if (e8Var != null) {
+                            if (i10 == -1) {
+                                i10 = e8Var.h;
+                            }
+                            i11 = e8Var.h;
+                        }
+                    }
+                    if (i10 >= 0 && i11 >= 0) {
+                        g8Var.P = i10;
+                        g8Var.Q = i11;
+                        g8Var.t0();
+                        g8Var.o0();
+                        return;
+                    }
                     return;
                 }
                 return;
             case 1:
-                super.onLayout(z10, i10, i11, i12, i13);
-                int i14 = i13 - i11;
-                int i15 = this.f42821b;
-                if (i15 != -1 && Math.abs(i15 - i14) > AndroidUtilities.dp(20.0f)) {
-                    mq mqVar = (mq) this.f42822c;
-                    mqVar.f38699b.y0(mqVar.V - 1);
-                }
-                this.f42821b = i14;
+                org.telegram.ui.Components.tc.e();
+                ((ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f43838b).getSwipeBack().b(true);
                 return;
-            default:
-                super.onLayout(z10, i10, i11, i12, i13);
-                Point point = AndroidUtilities.displaySize;
-                int i16 = point.x + point.y;
-                int i17 = this.f42821b;
-                if (i17 > 0 && i17 != i16) {
-                    setVisibility(8);
-                    org.telegram.ui.Components.d30 d30Var = (org.telegram.ui.Components.d30) this.f42822c;
-                    d30Var.f25612w = false;
-                    d30Var.a();
-                }
-                this.f42821b = i16;
-                return;
-        }
-    }
-
-    @Override
-    public void setVisibility(int i10) {
-        switch (this.f42820a) {
             case 2:
-                super.setVisibility(i10);
-                if (i10 == 8) {
-                    this.f42821b = -1;
+                if (((v81) this.f43838b).f42706a.getImageReceiver().getLottieAnimation() != null && !((v81) this.f43838b).f42706a.getImageReceiver().getLottieAnimation().f25409k0) {
+                    ((v81) this.f43838b).f42706a.getImageReceiver().getLottieAnimation().N(0, false, false);
+                    ((v81) this.f43838b).f42706a.getImageReceiver().getLottieAnimation().H(false);
                     return;
                 }
                 return;
             default:
-                super.setVisibility(i10);
+                ((fg1) this.f43838b).H0(true);
                 return;
         }
-    }
-
-    public x7(k8 k8Var, Context context) {
-        super(context);
-        this.f42820a = 0;
-        this.f42822c = k8Var;
     }
 }

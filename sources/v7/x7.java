@@ -1,4 +1,13 @@
 package v7;
 public abstract class x7 {
-    public static i8.a f48155a;
+    public static byte a(long j3) {
+        boolean z10;
+        if ((j3 >> 8) == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        t6.b(j3, "out of range: %s", z10);
+        return (byte) j3;
+    }
 }

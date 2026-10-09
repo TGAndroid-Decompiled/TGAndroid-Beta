@@ -1,134 +1,113 @@
 package ci;
 
-import android.graphics.Bitmap;
-import android.widget.TextView;
-import java.io.File;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.eu;
-import org.telegram.ui.Components.vy;
-import org.telegram.ui.so0;
-import org.telegram.ui.zg1;
-public final class u1 implements Runnable {
+import org.telegram.ui.Components.my0;
+import org.telegram.ui.TwoStepVerificationActivity;
+import org.telegram.ui.g60;
+import org.telegram.ui.hy;
+import org.telegram.ui.ke;
+import org.telegram.ui.mh0;
+import org.telegram.ui.vo0;
+import org.telegram.ui.zh0;
+public final class u1 implements RequestDelegate {
     public final int f6053a;
-    public final boolean f6054b;
-    public final Object f6055c;
+    public final Object f6054b;
+    public final boolean f6055c;
     public final Object d;
-    public final Object f6056e;
-    public final Object f6057f;
 
-    public u1(Object obj, Object obj2, Object obj3, Object obj4, boolean z10, int i10) {
+    public u1(Object obj, Object obj2, boolean z10, int i10) {
         this.f6053a = i10;
-        this.f6055c = obj;
-        this.d = obj2;
-        this.f6056e = obj3;
-        this.f6057f = obj4;
-        this.f6054b = z10;
+        this.d = obj;
+        this.f6054b = obj2;
+        this.f6055c = z10;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: ci.u1.run():void");
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        TLRPC.TL_chatInviteExported tL_chatInviteExported;
+        switch (this.f6053a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new ai.t4((v1) this.d, tLObject, (String) this.f6054b, this.f6055c, 1));
+                return;
+            case 1:
+                gg.b2 b2Var = (gg.b2) this.d;
+                String str = (String) this.f6054b;
+                a0.i iVar = b2Var.h;
+                ArrayList arrayList = b2Var.f10537g;
+                int i10 = b2Var.f10542m;
+                if (tL_error == null) {
+                    TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) tLObject;
+                    b2Var.f10543n = str.toLowerCase();
+                    MessagesController.getInstance(i10).putUsers(tL_channels_channelParticipants.users, false);
+                    MessagesController.getInstance(i10).putChats(tL_channels_channelParticipants.chats, false);
+                    arrayList.clear();
+                    iVar.b();
+                    arrayList.addAll(tL_channels_channelParticipants.participants);
+                    long clientUserId = UserConfig.getInstance(i10).getClientUserId();
+                    int size = tL_channels_channelParticipants.participants.size();
+                    for (int i11 = 0; i11 < size; i11++) {
+                        TLRPC.ChannelParticipant channelParticipant = tL_channels_channelParticipants.participants.get(i11);
+                        long peerId = MessageObject.getPeerId(channelParticipant.peer);
+                        if (!this.f6055c && peerId == clientUserId) {
+                            arrayList.remove(channelParticipant);
+                        } else {
+                            iVar.k(channelParticipant, peerId);
+                        }
+                    }
+                    return;
+                }
+                return;
+            case 2:
+                AndroidUtilities.runOnUIThread(new t1((Object) ((ke) this.d), (Object) tL_error, tLObject, (Object) ((TwoStepVerificationActivity) this.f6054b), this.f6055c, 14));
+                return;
+            case 3:
+                AndroidUtilities.runOnUIThread(new ai.t4((my0) this.d, tLObject, this.f6055c, (org.telegram.ui.ActionBar.b2) this.f6054b, 20));
+                return;
+            case 4:
+                AndroidUtilities.runOnUIThread(new t1((Object) ((hy) this.d), (Object) tL_error, tLObject, (Object) ((String) this.f6054b), this.f6055c, 20));
+                return;
+            case 5:
+                AndroidUtilities.runOnUIThread(new ai.t4((g60) this.d, tLObject, (TLRPC.ChatFull) this.f6054b, this.f6055c, 22));
+                return;
+            case 6:
+                zh0 zh0Var = (zh0) this.d;
+                TLRPC.TL_chatInviteExported tL_chatInviteExported2 = (TLRPC.TL_chatInviteExported) this.f6054b;
+                if (tL_error == null) {
+                    TLRPC.TL_messages_exportedChatInvites tL_messages_exportedChatInvites = (TLRPC.TL_messages_exportedChatInvites) tLObject;
+                    if (tL_messages_exportedChatInvites.invites.size() > 0 && tL_chatInviteExported2 != null) {
+                        for (int i12 = 0; i12 < tL_messages_exportedChatInvites.invites.size(); i12++) {
+                            if (((TLRPC.TL_chatInviteExported) tL_messages_exportedChatInvites.invites.get(i12)).link.equals(tL_chatInviteExported2.link)) {
+                                tL_chatInviteExported = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInvites.invites.remove(i12);
+                                AndroidUtilities.runOnUIThread(new mh0(zh0Var, tL_chatInviteExported, tL_error, tLObject, this.f6055c, 0));
+                                return;
+                            }
+                        }
+                    }
+                }
+                tL_chatInviteExported = null;
+                AndroidUtilities.runOnUIThread(new mh0(zh0Var, tL_chatInviteExported, tL_error, tLObject, this.f6055c, 0));
+                return;
+            case 7:
+                AndroidUtilities.runOnUIThread(new t1((NotificationCenter.NotificationCenterDelegate) ((vo0) this.d), (TLObject) tL_error, this.f6055c, tLObject, (Object) ((String) this.f6054b), 22));
+                return;
+            default:
+                AndroidUtilities.runOnUIThread(new pg.l0((yh.e5) this.d, (int[]) this.f6054b, tLObject, this.f6055c, 2));
+                return;
+        }
     }
 
-    public u1(Object obj, Object obj2, Object obj3, boolean z10, Object obj4, int i10) {
+    public u1(Object obj, boolean z10, Object obj2, int i10) {
         this.f6053a = i10;
-        this.f6055c = obj;
-        this.d = obj2;
-        this.f6056e = obj3;
-        this.f6054b = z10;
-        this.f6057f = obj4;
-    }
-
-    public u1(Object obj, Object obj2, TLObject tLObject, Object obj3, boolean z10, int i10) {
-        this.f6053a = i10;
-        this.f6055c = obj;
-        this.f6056e = obj2;
-        this.d = tLObject;
-        this.f6057f = obj3;
-        this.f6054b = z10;
-    }
-
-    public u1(Object obj, Object obj2, boolean z10, Object obj3, Object obj4, int i10) {
-        this.f6053a = i10;
-        this.f6055c = obj;
-        this.d = obj2;
-        this.f6054b = z10;
-        this.f6056e = obj3;
-        this.f6057f = obj4;
-    }
-
-    public u1(ki.s0 s0Var, boolean z10, ki.t tVar, ki.o0 o0Var, File file) {
-        this.f6053a = 4;
-        this.f6055c = s0Var;
-        this.f6054b = z10;
-        this.d = tVar;
-        this.f6056e = o0Var;
-        this.f6057f = file;
-    }
-
-    public u1(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, TLObject tLObject, boolean z10, TLObject tLObject2, Object obj, int i10) {
-        this.f6053a = i10;
-        this.f6055c = notificationCenterDelegate;
-        this.f6056e = tLObject;
-        this.f6054b = z10;
-        this.d = tLObject2;
-        this.f6057f = obj;
-    }
-
-    public u1(TLRPC.payments_GiveawayInfo payments_giveawayinfo, boolean z10, String str, long j3, TLRPC.TL_messageMediaGiveaway tL_messageMediaGiveaway, org.telegram.ui.ActionBar.n2 n2Var) {
-        this.f6053a = 24;
-        this.f6055c = payments_giveawayinfo;
-        this.f6054b = z10;
-        this.f6057f = str;
-        this.d = tL_messageMediaGiveaway;
-        this.f6056e = n2Var;
-    }
-
-    public u1(org.telegram.ui.Components.pa paVar, String str, Bitmap bitmap, boolean z10, Bitmap bitmap2) {
-        this.f6053a = 16;
-        this.f6055c = paVar;
-        this.f6057f = str;
-        this.d = bitmap;
-        this.f6054b = z10;
-        this.f6056e = bitmap2;
-    }
-
-    public u1(eu euVar, boolean z10, fi.o oVar, String str, TextView textView) {
-        this.f6053a = 17;
-        this.f6055c = euVar;
-        this.f6054b = z10;
-        this.d = oVar;
-        this.f6057f = str;
-        this.f6056e = textView;
-    }
-
-    public u1(vy vyVar, String str, boolean z10, String str2, TLObject tLObject) {
-        this.f6053a = 18;
-        this.f6055c = vyVar;
-        this.f6057f = str;
-        this.f6054b = z10;
-        this.f6056e = str2;
-        this.d = tLObject;
-    }
-
-    public u1(so0 so0Var, boolean z10, String str, String str2, TL_account.updatePasswordSettings updatepasswordsettings) {
-        this.f6053a = 21;
-        this.f6055c = so0Var;
-        this.f6054b = z10;
-        this.f6057f = str;
-        this.d = str2;
-        this.f6056e = updatepasswordsettings;
-    }
-
-    public u1(zg1 zg1Var, TLObject tLObject, boolean z10, String str, TL_account.passwordInputSettings passwordinputsettings) {
-        this.f6053a = 23;
-        this.f6055c = zg1Var;
-        this.d = tLObject;
-        this.f6054b = z10;
-        this.f6057f = str;
-        this.f6056e = passwordinputsettings;
+        this.d = obj;
+        this.f6055c = z10;
+        this.f6054b = obj2;
     }
 }

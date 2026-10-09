@@ -6,8 +6,9 @@ import com.google.android.gms.internal.cast.p;
 import com.google.mlkit.vision.common.internal.MobileVisionBase;
 import com.google.mlkit.vision.segmentation.subject.internal.zzd;
 import java.util.concurrent.Executor;
-import m.p3;
+import m.q3;
 import n6.l;
+import n6.t;
 import qb.m;
 import z7.ce;
 import z7.fb;
@@ -19,14 +20,14 @@ public abstract class d {
     public static zzd a(ac.e eVar) {
         bc.b bVar = (bc.b) qb.g.c().a(bc.b.class);
         wf b10 = yf.b();
-        ?? mobileVisionBase = new MobileVisionBase((bc.f) bVar.f3767a.O0(eVar), (Executor) bVar.f3768b.f44915a.get());
+        ?? mobileVisionBase = new MobileVisionBase((bc.f) bVar.f3846a.O0(eVar), (Executor) bVar.f3847b.f46070a.get());
         ?? obj = new Object();
-        obj.f15861c = fb.TYPE_THIN;
-        o0.a aVar = new o0.a(28, (byte) 0);
-        aVar.f16938c = eVar.a();
-        aVar.f16937b = gb.NO_ERROR;
-        obj.d = new ce(aVar);
-        m.f44934a.execute(new p(b10, new a5.a((p3) obj, 1), hb.ON_DEVICE_SUBJECT_SEGMENTATION_CREATE, b10.c(), 8));
+        obj.f15797c = fb.TYPE_THIN;
+        t tVar = new t(29);
+        tVar.f16718c = eVar.a();
+        tVar.f16717b = gb.NO_ERROR;
+        obj.d = new ce(tVar);
+        m.f46089a.execute(new p(b10, new a5.a((q3) obj, 1), hb.ON_DEVICE_SUBJECT_SEGMENTATION_CREATE, b10.c(), 8));
         return mobileVisionBase;
     }
 

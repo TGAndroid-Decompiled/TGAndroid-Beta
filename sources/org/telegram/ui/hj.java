@@ -1,39 +1,30 @@
 package org.telegram.ui;
-public final class hj extends dh.b {
-    public final int f37099n;
-    public final yn f37100r;
+public final class hj extends org.telegram.ui.ActionBar.n1 {
+    public final zn f38361o;
 
-    public hj(yn ynVar, org.telegram.ui.ActionBar.d6 d6Var, int i10, int i11) {
-        super(i10, d6Var);
-        this.f37099n = i11;
-        this.f37100r = ynVar;
+    public hj(zn znVar, fj fjVar) {
+        super(fjVar, -2, -2);
+        this.f38361o = znVar;
     }
 
     @Override
-    public final int H() {
-        int i10;
-        int i11;
-        switch (this.f37099n) {
-            case 0:
-                yn ynVar = this.f37100r;
-                i10 = ((org.telegram.ui.ActionBar.n2) ynVar).currentAccount;
-                if (!eh.b.c(i10, ynVar.f43300ca)) {
-                    return i0.a.k(ynVar.getThemedColor(org.telegram.ui.ActionBar.i6.Sd), 255);
-                }
-                if (ynVar.f43300ca != null && !org.telegram.ui.ActionBar.i6.I.q()) {
-                    return i0.a.k(this.d, 216);
-                }
-                return this.d;
-            default:
-                yn ynVar2 = this.f37100r;
-                i11 = ((org.telegram.ui.ActionBar.n2) ynVar2).currentAccount;
-                if (!eh.b.c(i11, ynVar2.f43300ca)) {
-                    return i0.a.k(ynVar2.getThemedColor(org.telegram.ui.ActionBar.i6.f20827d6), 255);
-                }
-                if (ynVar2.f43300ca != null && !org.telegram.ui.ActionBar.i6.I.q()) {
-                    return i0.a.k(this.d, 216);
-                }
-                return this.d;
+    public final void dismiss() {
+        d(true);
+        zn znVar = this.f38361o;
+        if (znVar.Q8 == this) {
+            znVar.Q8 = null;
+            znVar.T8 = null;
+            znVar.S8 = null;
+            znVar.f45012z0.R = true;
+            if (znVar.R8) {
+                znVar.j8(false, true, 0.0f);
+            } else {
+                znVar.R8 = true;
+            }
+            ok okVar = znVar.Y;
+            if (okVar != null && okVar.getEditField() != null) {
+                znVar.Y.getEditField().setAllowDrawCursor(true);
+            }
         }
     }
 }

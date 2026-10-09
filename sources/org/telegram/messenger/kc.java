@@ -1,21 +1,26 @@
 package org.telegram.messenger;
-public final class kc implements Runnable {
-    public final int f18364a;
-    public final boolean[] f18365b;
 
-    public kc(int i10, boolean[] zArr) {
-        this.f18364a = i10;
-        this.f18365b = zArr;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+public final class kc implements Runnable {
+    public final int f18349a;
+    public final MessagesController.ErrorDelegate f18350b;
+    public final TLRPC.TL_error f18351c;
+
+    public kc(MessagesController.ErrorDelegate errorDelegate, TLRPC.TL_error tL_error, int i10) {
+        this.f18349a = i10;
+        this.f18350b = errorDelegate;
+        this.f18351c = tL_error;
     }
 
     @Override
     public final void run() {
-        switch (this.f18364a) {
+        switch (this.f18349a) {
             case 0:
-                MessagesController.lambda$openByUserName$456(this.f18365b);
+                this.f18350b.run(this.f18351c);
                 return;
             default:
-                MessagesController.lambda$openApp$497(this.f18365b);
+                this.f18350b.run(this.f18351c);
                 return;
         }
     }

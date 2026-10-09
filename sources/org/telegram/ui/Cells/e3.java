@@ -3,31 +3,30 @@ package org.telegram.ui.Cells;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.text.SpannableStringBuilder;
 import android.view.Menu;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.e61;
-import org.telegram.ui.Components.mu;
-import org.telegram.ui.Components.mw0;
-import org.telegram.ui.Components.o11;
-public final class e3 extends mu {
-    public final org.telegram.ui.ActionBar.d6 V;
+import org.telegram.ui.Components.m61;
+import org.telegram.ui.Components.sw0;
+import org.telegram.ui.Components.u11;
+import org.telegram.ui.Components.zu;
+public final class e3 extends zu {
+    public final org.telegram.ui.ActionBar.e6 V;
     public final boolean W;
-    public final g3 f22023a0;
+    public final g3 f22021a0;
 
-    public e3(g3 g3Var, Context context, mw0 mw0Var, org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
-        super(context, mw0Var, null, 4, true, null);
-        this.f22023a0 = g3Var;
-        this.V = d6Var;
+    public e3(g3 g3Var, Context context, sw0 sw0Var, org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
+        super(context, sw0Var, null, 4, true, null);
+        this.f22021a0 = g3Var;
+        this.V = e6Var;
         this.W = z10;
     }
 
     @Override
     public final boolean a() {
-        if (this.f22023a0.f22140n && super.a()) {
+        if (this.f22021a0.f22118n && super.a()) {
             return true;
         }
         return false;
@@ -35,7 +34,7 @@ public final class e3 extends mu {
 
     @Override
     public final int h() {
-        return this.f22023a0.a();
+        return this.f22021a0.a();
     }
 
     @Override
@@ -43,20 +42,18 @@ public final class e3 extends mu {
         if (menu.findItem(R.id.menu_bold) != null) {
             return;
         }
-        if (Build.VERSION.SDK_INT >= 23) {
-            menu.removeItem(16908341);
-        }
+        menu.removeItem(16908341);
         menu.add(R.id.menu_groupbolditalic, R.id.menu_spoiler, 6, LocaleController.getString(R.string.Spoiler));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString(R.string.Bold));
-        spannableStringBuilder.setSpan(new e61(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.setSpan(new m61(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
         menu.add(R.id.menu_groupbolditalic, R.id.menu_bold, 7, spannableStringBuilder);
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(LocaleController.getString(R.string.Italic));
-        spannableStringBuilder2.setSpan(new e61(AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf")), 0, spannableStringBuilder2.length(), 33);
+        spannableStringBuilder2.setSpan(new m61(AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf")), 0, spannableStringBuilder2.length(), 33);
         menu.add(R.id.menu_groupbolditalic, R.id.menu_italic, 8, spannableStringBuilder2);
         SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(LocaleController.getString(R.string.Strike));
         ?? obj = new Object();
-        obj.f28925a |= 8;
-        spannableStringBuilder3.setSpan(new o11(obj, 0), 0, spannableStringBuilder3.length(), 33);
+        obj.f30974a |= 8;
+        spannableStringBuilder3.setSpan(new u11(obj, 0), 0, spannableStringBuilder3.length(), 33);
         menu.add(R.id.menu_groupbolditalic, R.id.menu_strike, 9, spannableStringBuilder3);
         menu.add(R.id.menu_groupbolditalic, R.id.menu_regular, 10, LocaleController.getString(R.string.Regular));
     }
@@ -70,16 +67,16 @@ public final class e3 extends mu {
         canvas.clipRect(getPaddingLeft() + getScrollX(), 0, (getWidth() + getScrollX()) - getPaddingRight(), getHeight());
         super.onDraw(canvas);
         canvas.restore();
-        g3 g3Var = this.f22023a0;
-        org.telegram.ui.Components.o6 o6Var = g3Var.v;
-        org.telegram.ui.Components.h5 h5Var = g3Var.f22141r;
-        if (h5Var != null) {
-            if (g3Var.f22142s <= 0) {
-                i10 = org.telegram.ui.ActionBar.i6.f21049p7;
+        g3 g3Var = this.f22021a0;
+        org.telegram.ui.Components.q6 q6Var = g3Var.v;
+        org.telegram.ui.Components.j5 j5Var = g3Var.f22119r;
+        if (j5Var != null) {
+            if (g3Var.f22120s <= 0) {
+                i10 = org.telegram.ui.ActionBar.i6.f21018p7;
             } else {
                 i10 = org.telegram.ui.ActionBar.i6.P5;
             }
-            o6Var.r(h5Var.a(org.telegram.ui.ActionBar.i6.v0(i10, this.V), false));
+            q6Var.u(j5Var.a(org.telegram.ui.ActionBar.i6.w0(i10, this.V), false));
         }
         int min = Math.min(AndroidUtilities.dp(48.0f), getHeight());
         boolean z10 = this.W;
@@ -94,13 +91,13 @@ public final class e3 extends mu {
         if (!z10) {
             i11 = 44;
         }
-        o6Var.l(scrollX, height, width - AndroidUtilities.dp(i11 + 12), f7 + getHeight());
-        o6Var.draw(canvas);
+        q6Var.o(scrollX, height, width - AndroidUtilities.dp(i11 + 12), f7 + getHeight());
+        q6Var.draw(canvas);
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f22023a0.v && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f22021a0.v && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

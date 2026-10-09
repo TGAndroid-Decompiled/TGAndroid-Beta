@@ -1,6 +1,7 @@
 package zg;
 
 import ai.e2;
+import ai.j6;
 import android.app.Activity;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -11,46 +12,46 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.i6;
-import w7.z5;
+import w7.x5;
 public final class f extends FrameLayout {
-    public static final int f53377e = 0;
-    public final e f53378a;
-    public boolean f53379b;
-    public boolean f53380c;
+    public static final int f54516e = 0;
+    public final e f54517a;
+    public boolean f54518b;
+    public boolean f54519c;
     public Utilities.Callback d;
 
-    public f(Activity activity, d6 d6Var) {
+    public f(Activity activity, e6 e6Var) {
         super(activity);
-        int w02;
-        int w03;
+        int x02;
+        int x03;
         e eVar = new e(this, activity);
-        this.f53378a = eVar;
+        this.f54517a = eVar;
         eVar.setHapticFeedbackEnabled(true);
         eVar.setImageResource(R.drawable.smiles_tab_clear);
         int i10 = i6.Re;
-        if (d6Var != null) {
-            w02 = d6Var.H0(i10);
+        if (e6Var != null) {
+            x02 = e6Var.x0(i10);
         } else {
-            w02 = i6.w0(null, i10, false);
+            x02 = i6.x0(null, i10, false);
         }
-        eVar.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.MULTIPLY));
+        eVar.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.MULTIPLY));
         eVar.setScaleType(ImageView.ScaleType.CENTER);
         eVar.setContentDescription(LocaleController.getString(R.string.AccDescrBackspace));
         eVar.setFocusable(true);
         eVar.setOnClickListener(new e2(28));
-        addView(eVar, z5.e(36, 36, 17));
-        int w04 = i6.w0(null, i6.f20918i6, false);
+        addView(eVar, x5.e(36, 36, 17));
+        int x04 = i6.x0(null, i6.f20888i6, false);
         int dp = AndroidUtilities.dp(36.0f);
-        int i11 = i6.f20827d6;
-        if (d6Var != null) {
-            w03 = d6Var.H0(i11);
+        int i11 = i6.f20797d6;
+        if (e6Var != null) {
+            x03 = e6Var.x0(i11);
         } else {
-            w03 = i6.w0(null, i11, false);
+            x03 = i6.x0(null, i11, false);
         }
-        eVar.setBackground(i6.h0(dp, w03, w04));
-        eVar.setOutlineProvider(new ai.i6(18));
+        eVar.setBackground(i6.i0(dp, x03, x04));
+        eVar.setOutlineProvider(new j6(18));
         eVar.setElevation(AndroidUtilities.dp(1.0f));
         eVar.setClipToOutline(true);
         setClickable(true);

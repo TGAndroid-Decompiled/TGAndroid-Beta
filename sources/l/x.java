@@ -4,9 +4,9 @@ import android.content.Context;
 public interface x {
     boolean b(m mVar);
 
-    void c(k kVar, boolean z10);
+    boolean c();
 
-    boolean d();
+    void d(k kVar, boolean z10);
 
     void e();
 

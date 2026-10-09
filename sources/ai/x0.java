@@ -2,41 +2,41 @@ package ai;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.Components.w61;
-public final class x0 extends w61 {
-    public final r3 N;
+import org.telegram.ui.Components.c71;
+public final class x0 extends c71 {
+    public final s3 N;
 
-    public x0(r3 r3Var, w0 w0Var, Context context, int i10, t0 t0Var, d dVar) {
+    public x0(s3 s3Var, w0 w0Var, Context context, int i10, t0 t0Var, d dVar) {
         super(w0Var, context, i10, 0, false, t0Var, dVar);
-        this.N = r3Var;
+        this.N = s3Var;
     }
 
     @Override
-    public final void v(s4.c1 c1Var, int i10) {
+    public final void v(s4.d1 d1Var, int i10) {
         h1 h1Var;
         m1 m1Var;
-        super.v(c1Var, i10);
-        r3 r3Var = this.N;
-        if (r3Var.f1452y) {
-            View view = c1Var.f46538a;
-            if ((view instanceof h1) && (m1Var = (h1Var = (h1) view).K) != null && m1Var.f1325a == r3Var.f1451x) {
+        super.v(d1Var, i10);
+        s3 s3Var = this.N;
+        if (s3Var.f1522y) {
+            View view = d1Var.f47656a;
+            if ((view instanceof h1) && (m1Var = (h1Var = (h1) view).K) != null && m1Var.f1380a == s3Var.f1521x) {
                 h1Var.c();
-                r3Var.f1452y = false;
+                s3Var.f1522y = false;
             }
         }
     }
 
     @Override
-    public final void y(s4.c1 c1Var) {
+    public final void y(s4.d1 d1Var) {
         h1 h1Var;
         m1 m1Var;
-        super.y(c1Var);
-        r3 r3Var = this.N;
-        if (r3Var.f1452y) {
-            View view = c1Var.f46538a;
-            if ((view instanceof h1) && (m1Var = (h1Var = (h1) view).K) != null && m1Var.f1325a == r3Var.f1451x) {
+        super.y(d1Var);
+        s3 s3Var = this.N;
+        if (s3Var.f1522y) {
+            View view = d1Var.f47656a;
+            if ((view instanceof h1) && (m1Var = (h1Var = (h1) view).K) != null && m1Var.f1380a == s3Var.f1521x) {
                 h1Var.c();
-                r3Var.f1452y = false;
+                s3Var.f1522y = false;
             }
         }
     }

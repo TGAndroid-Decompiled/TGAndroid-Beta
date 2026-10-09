@@ -2,9 +2,9 @@ package b5;
 
 import java.util.HashSet;
 public final class i {
-    public static final HashSet f3688a = new HashSet();
+    public static final HashSet f3767a = new HashSet();
 
     public i() {
-        f3688a.add(this);
+        f3767a.add(this);
     }
 }

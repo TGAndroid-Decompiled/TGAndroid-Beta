@@ -1,42 +1,23 @@
 package org.telegram.ui.Components;
-public final class d71 extends s4.j {
-    public final e71 F;
 
-    public d71(e71 e71Var) {
-        this.F = e71Var;
+import android.view.View;
+import org.telegram.messenger.Utilities;
+public final class d71 implements Utilities.Callback5, Utilities.Callback5Return {
+    public final f71 f25618a;
+
+    @Override
+    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        return Boolean.valueOf(this.f25618a.X((p61) obj, (View) obj2));
     }
 
     @Override
-    public final void M() {
-        e71 e71Var = this.F;
-        if (e71Var.b1()) {
-            e71Var.invalidate();
-        }
-        e71Var.D1();
-    }
-
-    @Override
-    public final void O() {
-        e71 e71Var = this.F;
-        if (e71Var.b1()) {
-            e71Var.invalidate();
-        }
-        e71Var.D1();
-    }
-
-    @Override
-    public final void P(s4.c1 c1Var) {
-        e71 e71Var = this.F;
-        e71Var.invalidate();
-        e71Var.D1();
-    }
-
-    @Override
-    public final void Q() {
-        e71 e71Var = this.F;
-        if (e71Var.b1()) {
-            e71Var.invalidate();
-        }
-        e71Var.D1();
+    public void mo16run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        this.f25618a.W((p61) obj, (View) obj2);
     }
 }

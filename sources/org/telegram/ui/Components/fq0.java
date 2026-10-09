@@ -1,87 +1,102 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.text.TextUtils;
-import android.widget.FrameLayout;
-public final class fq0 extends mu {
-    public boolean V;
-    public int W;
-    public int f26563a0;
-    public ValueAnimator f26564b0;
-    public final br0 f26565c0;
+import android.view.View;
+import android.widget.Toast;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.PhotoViewer;
+public final class fq0 implements View.OnClickListener {
+    public final int f26461a;
+    public final mr0 f26462b;
 
-    public fq0(br0 br0Var, Context context, mq0 mq0Var, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, mq0Var, null, 1, true, d6Var);
-        this.f26565c0 = br0Var;
+    public fq0(mr0 mr0Var, int i10) {
+        this.f26461a = i10;
+        this.f26462b = mr0Var;
     }
 
     @Override
-    public final void c(float f7) {
-        this.f26565c0.V0();
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        if (this.V) {
-            eu editText = this.f26565c0.d.getEditText();
-            editText.setOffsetY(editText.getOffsetY() - ((this.f26563a0 - editText.getScrollY()) + (this.W - editText.getMeasuredHeight())));
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(editText.getOffsetY(), 0.0f);
-            ofFloat.addUpdateListener(new v70(editText, 18));
-            ValueAnimator valueAnimator = this.f26564b0;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-            }
-            this.f26564b0 = ofFloat;
-            ofFloat.setDuration(200L);
-            ofFloat.setInterpolator(tr.f31215f);
-            ofFloat.start();
-            this.V = false;
+    public final void onClick(View view) {
+        switch (this.f26461a) {
+            case 0:
+                mr0 mr0Var = this.f26462b;
+                dq dqVar = mr0Var.f28900e0;
+                dqVar.a(!dqVar.f25790a.f24097q, true);
+                mr0Var.a1();
+                return;
+            case 1:
+                mr0 mr0Var2 = this.f26462b;
+                org.telegram.ui.ActionBar.n1 n1Var = mr0Var2.J0;
+                if (n1Var != null && n1Var.isShowing()) {
+                    mr0Var2.J0.d(true);
+                }
+                mr0Var2.W0(false);
+                return;
+            case 2:
+                mr0 mr0Var3 = this.f26462b;
+                org.telegram.ui.ActionBar.n1 n1Var2 = mr0Var3.J0;
+                if (n1Var2 != null && n1Var2.isShowing()) {
+                    mr0Var3.J0.d(true);
+                }
+                mr0Var3.W0(true);
+                return;
+            case 3:
+                mr0 mr0Var4 = this.f26462b;
+                String[] strArr = mr0Var4.f28911o0;
+                if (mr0Var4.U.m() == 0) {
+                    if (mr0Var4.f28910n0 || strArr[0] != null) {
+                        mr0Var4.dismiss();
+                        PhotoViewer.t1().G0(true, false);
+                        if (strArr[0] == null && mr0Var4.f28908l0) {
+                            mr0Var4.m0 = true;
+                            Toast.makeText(mr0Var4.getContext(), LocaleController.getString(R.string.Loading), 0).show();
+                            return;
+                        }
+                        mr0Var4.getContext();
+                        mr0Var4.N0();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 4:
+                mr0 mr0Var5 = this.f26462b;
+                String[] strArr2 = mr0Var5.f28911o0;
+                if (mr0Var5.U.m() == 0) {
+                    if (mr0Var5.f28910n0 || strArr2[0] != null) {
+                        mr0Var5.dismiss();
+                        if (strArr2[0] == null && mr0Var5.f28908l0) {
+                            mr0Var5.m0 = true;
+                            Toast.makeText(mr0Var5.getContext(), LocaleController.getString(R.string.Loading), 0).show();
+                            return;
+                        }
+                        mr0Var5.getContext();
+                        mr0Var5.N0();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 5:
+                mr0 mr0Var6 = this.f26462b;
+                String[] strArr3 = mr0Var6.f28911o0;
+                if (mr0Var6.U.m() == 0) {
+                    if (mr0Var6.f28910n0 || strArr3[0] != null) {
+                        mr0Var6.dismiss();
+                        if (strArr3[0] == null && mr0Var6.f28908l0) {
+                            mr0Var6.m0 = true;
+                            Toast.makeText(mr0Var6.getContext(), LocaleController.getString(R.string.Loading), 0).show();
+                            return;
+                        }
+                        mr0Var6.getContext();
+                        mr0Var6.N0();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                this.f26462b.W0(true);
+                return;
         }
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final void f() {
-        super.f();
-        nz emojiView = getEmojiView();
-        br0 br0Var = this.f26565c0;
-        if (emojiView != null) {
-            emojiView.f29257w0 = false;
-            emojiView.f29259w2 = false;
-            emojiView.setShouldDrawBackground(false);
-            emojiView.setBottomInset(br0Var.G0.d);
-        }
-        FrameLayout frameLayout = br0Var.f25055c0;
-        if (frameLayout != null) {
-            frameLayout.bringToFront();
-        }
-        eq0 eq0Var = br0Var.f25054c;
-        if (eq0Var != null) {
-            eq0Var.bringToFront();
-        }
-        eq0 eq0Var2 = br0Var.f25059f;
-        if (eq0Var2 != null) {
-            eq0Var2.bringToFront();
-        }
-    }
-
-    @Override
-    public final void q(int i10, int i11) {
-        br0 br0Var = this.f26565c0;
-        eq0 eq0Var = br0Var.f25054c;
-        if (!TextUtils.isEmpty(getEditText().getText())) {
-            this.V = true;
-            this.W = getEditText().getMeasuredHeight();
-            this.f26563a0 = getEditText().getScrollY();
-            invalidate();
-        } else {
-            getEditText().animate().cancel();
-            getEditText().setOffsetY(0.0f);
-            this.V = false;
-        }
-        br0Var.f25078v0 = eq0Var.getTop() + br0Var.f25077u0;
-        eq0Var.invalidate();
     }
 }

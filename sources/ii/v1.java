@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.d61;
-import org.telegram.ui.Components.oy;
+import org.telegram.ui.Components.az;
+import org.telegram.ui.Components.l61;
 import org.telegram.ui.StickersActivity;
-public final class v1 implements oy {
-    public final e2 f12696a;
+public final class v1 implements az {
+    public final e2 f12743a;
 
     public v1(e2 e2Var) {
-        this.f12696a = e2Var;
+        this.f12743a = e2Var;
     }
 
     @Override
@@ -51,7 +51,7 @@ public final class v1 implements oy {
     public final void i(int i10) {
         i1 focusedEditTextOrNull;
         boolean z10 = false;
-        e2 e2Var = this.f12696a;
+        e2 e2Var = this.f12743a;
         if (i10 != 0 && (focusedEditTextOrNull = e2Var.P.getFocusedEditTextOrNull()) != null) {
             e2Var.R0 = focusedEditTextOrNull;
             e2Var.S0 = Math.max(0, focusedEditTextOrNull.getSelectionEnd());
@@ -70,26 +70,26 @@ public final class v1 implements oy {
 
     @Override
     public final boolean k() {
-        i1 Z = e2.Z(this.f12696a);
-        if (Z == null || Z.length() == 0) {
+        i1 a02 = e2.a0(this.f12743a);
+        if (a02 == null || a02.length() == 0) {
             return false;
         }
-        Z.dispatchKeyEvent(new KeyEvent(0, 67));
+        a02.dispatchKeyEvent(new KeyEvent(0, 67));
         return true;
     }
 
     @Override
     public final void l(String str) {
-        e2 e2Var = this.f12696a;
-        i1 Z = e2.Z(e2Var);
-        if (Z != null) {
-            int b02 = e2.b0(e2Var, Z);
+        e2 e2Var = this.f12743a;
+        i1 a02 = e2.a0(e2Var);
+        if (a02 != null) {
+            int b02 = e2.b0(e2Var, a02);
             try {
-                CharSequence replaceEmoji = Emoji.replaceEmoji((CharSequence) str, Z.getPaint().getFontMetricsInt(), false, (int[]) null);
-                Z.setText(Z.getText().insert(b02, replaceEmoji));
+                CharSequence replaceEmoji = Emoji.replaceEmoji((CharSequence) str, a02.getPaint().getFontMetricsInt(), false, (int[]) null);
+                a02.setText(a02.getText().insert(b02, replaceEmoji));
                 int length = b02 + replaceEmoji.length();
-                Z.setSelection(length, length);
-                if (Z == e2Var.R0) {
+                a02.setSelection(length, length);
+                if (a02 == e2Var.R0) {
                     e2Var.S0 = length;
                 }
             } catch (Exception unused) {
@@ -104,37 +104,37 @@ public final class v1 implements oy {
 
     @Override
     public final void t(ArrayList arrayList) {
-        this.f12696a.presentFragment(new StickersActivity(5, arrayList));
+        this.f12743a.presentFragment(new StickersActivity(5, arrayList));
     }
 
     @Override
     public final void w() {
-        this.f12696a.presentFragment(new StickersActivity(0, null));
+        this.f12743a.presentFragment(new StickersActivity(0, null));
     }
 
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
-        org.telegram.ui.Components.z5 z5Var;
-        e2 e2Var = this.f12696a;
-        i1 Z = e2.Z(e2Var);
-        if (Z != null) {
-            int b02 = e2.b0(e2Var, Z);
+        org.telegram.ui.Components.b6 b6Var;
+        e2 e2Var = this.f12743a;
+        i1 a02 = e2.a0(e2Var);
+        if (a02 != null) {
+            int b02 = e2.b0(e2Var, a02);
             try {
                 if (str == null) {
                     str = "😀";
                 }
                 SpannableString spannableString = new SpannableString(str);
                 if (document != null) {
-                    z5Var = new org.telegram.ui.Components.z5(document, Z.getPaint().getFontMetricsInt());
+                    b6Var = new org.telegram.ui.Components.b6(document, a02.getPaint().getFontMetricsInt());
                 } else {
-                    z5Var = new org.telegram.ui.Components.z5(j3, Z.getPaint().getFontMetricsInt());
+                    b6Var = new org.telegram.ui.Components.b6(j3, a02.getPaint().getFontMetricsInt());
                 }
-                z5Var.cacheType = org.telegram.ui.Components.q5.g();
-                spannableString.setSpan(z5Var, 0, spannableString.length(), 33);
-                Z.setText(Z.getText().insert(b02, spannableString));
+                b6Var.cacheType = org.telegram.ui.Components.s5.g();
+                spannableString.setSpan(b6Var, 0, spannableString.length(), 33);
+                a02.setText(a02.getText().insert(b02, spannableString));
                 int length = b02 + spannableString.length();
-                Z.setSelection(length, length);
-                if (Z == e2Var.R0) {
+                a02.setSelection(length, length);
+                if (a02 == e2Var.R0) {
                     e2Var.S0 = length;
                 }
             } catch (Exception unused) {
@@ -144,7 +144,7 @@ public final class v1 implements oy {
 
     @Override
     public final boolean z() {
-        return this.f12696a.C0;
+        return this.f12743a.C0;
     }
 
     @Override
@@ -152,7 +152,7 @@ public final class v1 implements oy {
     }
 
     @Override
-    public final void o(d61 d61Var) {
+    public final void o(l61 l61Var) {
     }
 
     @Override

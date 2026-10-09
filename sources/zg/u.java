@@ -1,38 +1,41 @@
 package zg;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import java.util.ArrayList;
-import yh.s8;
-import yh.t8;
-public final class u implements ValueAnimator.AnimatorUpdateListener {
-    public final int f53530a;
-    public final Object f53531b;
-    public final Object f53532c;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.bd0;
+public final class u implements Runnable {
+    public final int f54671a;
+    public final a0 f54672b;
 
-    public u(int i10, Object obj, Object obj2) {
-        this.f53530a = i10;
-        this.f53531b = obj;
-        this.f53532c = obj2;
+    public u(a0 a0Var, int i10) {
+        this.f54671a = i10;
+        this.f54672b = a0Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f53530a) {
+    public final void run() {
+        switch (this.f54671a) {
             case 0:
-                z zVar = (z) this.f53531b;
-                ArrayList arrayList = (ArrayList) this.f53532c;
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                    z.g((View) arrayList.get(i10), floatValue);
-                }
-                zVar.f53560m.f34745k0.invalidate();
+                this.f54672b.f54447a.invalidate();
                 return;
             default:
-                t8 t8Var = (t8) this.f53531b;
-                t8Var.getClass();
-                ((s8) this.f53532c).d = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                t8Var.a1();
+                a0 a0Var = this.f54672b;
+                xh.m mVar = a0Var.f54449c;
+                if (mVar.getParent() != null) {
+                    if (a0Var.d) {
+                        AndroidUtilities.removeFromParent(mVar);
+                    } else {
+                        try {
+                            a0Var.f54448b.removeView(mVar);
+                        } catch (Exception unused) {
+                        }
+                    }
+                    bd0 bd0Var = a0Var.f54460p;
+                    if (bd0Var != null) {
+                        bd0Var.run();
+                        return;
+                    }
+                    return;
+                }
                 return;
         }
     }

@@ -1,12 +1,100 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Outline;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.RectF;
 import android.view.View;
-import android.view.ViewOutlineProvider;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class p01 extends ViewOutlineProvider {
+public final class p01 extends FrameLayout {
+    public final r01 f29676a;
+    public boolean f29677b;
+    public boolean f29678c;
+    public boolean d;
+
+    public p01(r01 r01Var, View view, boolean z10) {
+        super(r01Var.getContext());
+        this.f29676a = r01Var;
+        setWillNotDraw(false);
+        if (!z10) {
+            setPadding(AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f), AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f));
+        }
+        addView(view, w7.x5.d(-1.0f, -1));
+    }
+
     @Override
-    public final void getOutline(View view, Outline outline) {
-        outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), AndroidUtilities.dp(16.0f));
+    public final void onDraw(Canvas canvas) {
+        Canvas canvas2;
+        float f7;
+        float f10;
+        float f11;
+        float f12;
+        boolean z10 = this.f29678c;
+        r01 r01Var = this.f29676a;
+        if (z10 || this.d) {
+            canvas2 = canvas;
+            float dp = AndroidUtilities.dp(10.0f);
+            float[] fArr = r01Var.f30327c;
+            boolean z11 = this.f29678c;
+            if (z11) {
+                f7 = dp;
+            } else {
+                f7 = 0.0f;
+            }
+            fArr[1] = f7;
+            fArr[0] = f7;
+            if (z11) {
+                f10 = dp;
+            } else {
+                f10 = 0.0f;
+            }
+            fArr[3] = f10;
+            fArr[2] = f10;
+            boolean z12 = this.d;
+            if (z12) {
+                f11 = dp;
+            } else {
+                f11 = 0.0f;
+            }
+            fArr[5] = f11;
+            fArr[4] = f11;
+            if (!z12) {
+                dp = 0.0f;
+            }
+            fArr[7] = dp;
+            fArr[6] = dp;
+            r01Var.f30326b.rewind();
+            RectF rectF = AndroidUtilities.rectTmp;
+            float f13 = r01Var.h;
+            float width = getWidth() - r01Var.h;
+            float height = getHeight();
+            float f14 = r01Var.h;
+            if (this.d) {
+                f12 = -1.0f;
+            } else {
+                f12 = 1.0f;
+            }
+            rectF.set(f13, f13, width, (f14 * f12) + height);
+            r01Var.f30326b.addRoundRect(rectF, r01Var.f30327c, Path.Direction.CW);
+            if (this.f29677b) {
+                canvas2.drawPath(r01Var.f30326b, r01Var.d);
+            }
+            canvas2.drawPath(r01Var.f30326b, r01Var.f30328e);
+        } else {
+            if (this.f29677b) {
+                float f15 = r01Var.h;
+                canvas2 = canvas;
+                canvas2.drawRect(f15, f15, getWidth() + r01Var.h, getHeight() + r01Var.h, r01Var.d);
+            } else {
+                canvas2 = canvas;
+            }
+            float f16 = r01Var.h;
+            canvas2.drawRect(f16, f16, getWidth() - r01Var.h, getHeight() + r01Var.h, r01Var.f30328e);
+        }
+        super.onDraw(canvas2);
+    }
+
+    public void setFilled(boolean z10) {
+        this.f29677b = z10;
     }
 }

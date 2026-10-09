@@ -1,53 +1,46 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-public final class t41 extends AnimatorListenerAdapter {
-    public final int f40710a;
-    public final SecretMediaViewer f40711b;
+import android.app.Activity;
+import android.graphics.Canvas;
+public final class t41 extends org.telegram.ui.Components.r6 {
+    public boolean f41840s;
+    public final org.telegram.ui.Components.g6 v;
+    public final SaveToGallerySettingsActivity f41841w;
 
-    public t41(SecretMediaViewer secretMediaViewer, int i10) {
-        this.f40710a = i10;
-        this.f40711b = secretMediaViewer;
+    public t41(SaveToGallerySettingsActivity saveToGallerySettingsActivity, Activity activity) {
+        super(activity, true, true, false);
+        this.f41841w = saveToGallerySettingsActivity;
+        this.v = new org.telegram.ui.Components.g6(this);
+        getDrawable().J = true;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f40710a) {
-            case 0:
-                SecretMediaViewer secretMediaViewer = this.f40711b;
-                Runnable runnable = secretMediaViewer.f34454o0;
-                if (runnable != null) {
-                    runnable.run();
-                    secretMediaViewer.f34454o0 = null;
-                    return;
-                }
-                return;
-            case 1:
-                SecretMediaViewer secretMediaViewer2 = this.f40711b;
-                AnimatorSet animatorSet = secretMediaViewer2.G;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    secretMediaViewer2.F.setVisibility(8);
-                    secretMediaViewer2.G = null;
-                    secretMediaViewer2.f34423a0.scrollTo(0, 0);
-                    return;
-                }
-                return;
-            case 2:
-                SecretMediaViewer secretMediaViewer3 = this.f40711b;
-                Runnable runnable2 = secretMediaViewer3.f34454o0;
-                if (runnable2 != null) {
-                    runnable2.run();
-                    secretMediaViewer3.f34454o0 = null;
-                    return;
-                }
-                return;
-            default:
-                SecretMediaViewer secretMediaViewer4 = this.f40711b;
-                secretMediaViewer4.K0 = null;
-                secretMediaViewer4.f34433e.invalidate();
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        float f7;
+        if (this.f41840s) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
+        }
+        org.telegram.ui.Components.g6 g6Var = this.v;
+        g6Var.d(f7, false);
+        int i10 = org.telegram.ui.ActionBar.i6.f21181y6;
+        SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.f41841w;
+        setTextColor(i0.a.d(g6Var.f26599c, saveToGallerySettingsActivity.getThemedColor(i10), saveToGallerySettingsActivity.getThemedColor(org.telegram.ui.ActionBar.i6.f20982n6)));
+        super.dispatchDraw(canvas);
+    }
+
+    public final void e(boolean z10, boolean z11) {
+        float f7;
+        if (this.f41840s != z10) {
+            this.f41840s = z10;
+            if (z10) {
+                f7 = 1.0f;
+            } else {
+                f7 = 0.0f;
+            }
+            this.v.d(f7, z11);
+            invalidate();
         }
     }
 }

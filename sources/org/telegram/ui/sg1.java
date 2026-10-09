@@ -1,62 +1,12 @@
 package org.telegram.ui;
 
+import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class sg1 implements RequestDelegate {
-    public final int f40494a;
-    public final zg1 f40495b;
-
-    public sg1(zg1 zg1Var, int i10) {
-        this.f40494a = i10;
-        this.f40495b = zg1Var;
-    }
-
+import org.telegram.ui.Components.RadialProgressView;
+public final class sg1 extends RadialProgressView {
     @Override
-    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f40494a) {
-            case 0:
-                final zg1 zg1Var = this.f40495b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                zg1.b0(zg1Var, tL_error, tLObject);
-                                return;
-                            default:
-                                zg1.h0(zg1Var, tL_error, tLObject);
-                                return;
-                        }
-                    }
-                });
-                return;
-            case 1:
-                AndroidUtilities.runOnUIThread(new vg1(this.f40495b, tL_error, 0));
-                return;
-            case 2:
-                AndroidUtilities.runOnUIThread(new vg1(this.f40495b, tL_error, 1));
-                return;
-            case 3:
-                AndroidUtilities.runOnUIThread(new vg1(this.f40495b, tL_error, 2));
-                return;
-            default:
-                final zg1 zg1Var2 = this.f40495b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                zg1.b0(zg1Var2, tL_error, tLObject);
-                                return;
-                            default:
-                                zg1.h0(zg1Var2, tL_error, tLObject);
-                                return;
-                        }
-                    }
-                });
-                return;
-        }
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = AndroidUtilities.statusBarHeight / 2;
     }
 }

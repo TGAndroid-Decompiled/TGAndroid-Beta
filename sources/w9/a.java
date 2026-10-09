@@ -4,32 +4,31 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.os.Build;
 import java.util.ArrayList;
-import n7.z0;
 public final class a {
-    public final String f48930a;
-    public final String f48931b;
-    public final ArrayList f48932c;
+    public final String f50210a;
+    public final String f50211b;
+    public final ArrayList f50212c;
     public final String d;
-    public final String f48933e;
-    public final String f48934f;
-    public final String f48935g;
-    public final z0 h;
+    public final String f50213e;
+    public final String f50214f;
+    public final String f50215g;
+    public final n6.t h;
 
-    public a(String str, String str2, ArrayList arrayList, String str3, String str4, String str5, String str6, z0 z0Var) {
-        this.f48930a = str;
-        this.f48931b = str2;
-        this.f48932c = arrayList;
+    public a(String str, String str2, ArrayList arrayList, String str3, String str4, String str5, String str6, n6.t tVar) {
+        this.f50210a = str;
+        this.f50211b = str2;
+        this.f50212c = arrayList;
         this.d = str3;
-        this.f48933e = str4;
-        this.f48934f = str5;
-        this.f48935g = str6;
-        this.h = z0Var;
+        this.f50213e = str4;
+        this.f50214f = str5;
+        this.f50215g = str6;
+        this.h = tVar;
     }
 
-    public static a a(Context context, v vVar, String str, String str2, ArrayList arrayList, z0 z0Var) {
+    public static a a(Context context, u uVar, String str, String str2, ArrayList arrayList, n6.t tVar) {
         String num;
         String packageName = context.getPackageName();
-        String c10 = vVar.c();
+        String c10 = uVar.c();
         PackageInfo packageInfo = context.getPackageManager().getPackageInfo(packageName, 0);
         if (Build.VERSION.SDK_INT >= 28) {
             num = Long.toString(packageInfo.getLongVersionCode());
@@ -41,6 +40,6 @@ public final class a {
         if (str4 == null) {
             str4 = "0.0";
         }
-        return new a(str, str2, arrayList, c10, packageName, str3, str4, z0Var);
+        return new a(str, str2, arrayList, c10, packageName, str3, str4, tVar);
     }
 }

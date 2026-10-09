@@ -1,22 +1,13 @@
 package org.telegram.ui;
-public final class kl0 implements Runnable {
-    public final int f38071a;
-    public final es f38072b;
+public final class kl0 extends org.telegram.ui.ActionBar.g5 {
+    public final ci.d f39313f;
 
-    public kl0(es esVar, int i10) {
-        this.f38071a = i10;
-        this.f38072b = esVar;
+    public kl0(ci.d dVar) {
+        this.f39313f = dVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f38071a) {
-            case 0:
-                this.f38072b.l(1.0f);
-                return;
-            default:
-                this.f38072b.l(1.0f);
-                return;
-        }
+    public final boolean h() {
+        return !this.f39313f.N;
     }
 }

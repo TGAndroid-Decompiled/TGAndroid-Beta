@@ -1,307 +1,267 @@
 package org.telegram.ui.Components;
 
-import android.text.TextUtils;
-import j$.util.DesugarCollections;
-import java.io.File;
-import java.io.FileInputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.regex.Pattern;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.Layout;
+import android.text.SpannableString;
+import android.text.style.CharacterStyle;
+import android.text.style.ClickableSpan;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewConfiguration;
+import android.widget.TextView;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-public abstract class ea0 {
-    public static final Pattern f26100a = Pattern.compile("^\\[\\^([^\\]]+)\\]:[ \\t]*(.*)$");
-    public static final Pattern f26101b = Pattern.compile("\\[\\^([^\\]]+)\\]");
-    public static final Pattern f26102c = Pattern.compile("^(\\d+)[.)]\\s");
+public class ea0 extends TextView {
+    public static Field I;
+    public static Class J;
+    public static Method K;
+    public boolean E;
+    public boolean F;
+    public PorterDuffColorFilter G;
+    public int H;
+    public final boolean f26007a;
+    public final ba0 f26008b;
+    public final org.telegram.ui.ActionBar.e6 f26009c;
+    public x5 d;
+    public fa0 f26010e;
+    public da0 f26011f;
+    public da0 h;
+    public boolean f26012n;
+    public boolean f26013r;
+    public boolean f26014s;
+    public CharacterStyle v;
+    public int f26015w;
+    public boolean f26016x;
+    public Object f26017y;
 
-    public static TL_iv.RichText a(bf.p pVar, TL_iv.PageBlock pageBlock) {
-        ba0 ba0Var = new ba0(pageBlock);
-        pVar.a(ba0Var);
-        return g(h(ba0.x(ba0Var.f24919c)));
+    public ea0(Context context) {
+        this(context, null);
     }
 
-    public static List b(TL_iv.RichText richText) {
-        int i10;
-        if (richText == null) {
-            return Collections.singletonList(j(""));
-        }
-        if (k(richText) <= 8192) {
-            return Collections.singletonList(richText);
-        }
-        String l4 = l(richText);
-        ArrayList arrayList = new ArrayList();
-        int i11 = 0;
-        while (i11 < l4.length()) {
-            if (l4.length() - i11 <= 8192) {
-                arrayList.add(j(l4.substring(i11)));
-                return arrayList;
-            }
-            int i12 = i11 + 8192;
-            int i13 = i11 + 8191;
-            int lastIndexOf = l4.lastIndexOf(10, i13);
-            if (lastIndexOf <= i11) {
-                lastIndexOf = l4.lastIndexOf(32, i13);
-            }
-            if (lastIndexOf <= i11) {
-                i10 = 0;
-            } else {
-                i12 = lastIndexOf;
-                i10 = 1;
-            }
-            arrayList.add(j(l4.substring(i11, i12)));
-            i11 = i12 + i10;
-        }
-        return arrayList;
+    public int a() {
+        return 0;
     }
 
-    public static TL_iv.textMath c(String str) {
-        String trim;
-        TL_iv.textMath textmath = new TL_iv.textMath();
-        if (str == null) {
-            trim = "";
-        } else {
-            trim = str.trim();
-        }
-        textmath.source = trim;
-        textmath.tried = true;
-        ii.s a2 = ii.s.a(trim, AndroidUtilities.dp(20.0f), true);
-        if (a2 != null) {
-            textmath.f20272w = a2.f12619b;
-            textmath.h = a2.f12620c;
-            textmath.depth = a2.d;
-            textmath.bitmap = a2.f12618a;
-        }
-        return textmath;
-    }
-
-    public static TL_iv.RichText d(TL_iv.RichText richText) {
-        if (richText == null) {
+    public final ClickableSpan b(int i10, int i11) {
+        Layout layout = getLayout();
+        if (layout == null) {
             return null;
         }
-        if (k(richText) <= 8192) {
-            return richText;
-        }
-        String l4 = l(richText);
-        return j(l4.substring(0, Math.min(l4.length(), 8192)));
-    }
-
-    public static void e(ArrayList arrayList, List list) {
-        List unmodifiableList;
-        Iterator it = list.iterator();
-        while (it.hasNext()) {
-            ad.a aVar = (ad.a) it.next();
-            arrayList.add(aVar);
-            ArrayList arrayList2 = aVar.f418f;
-            if (arrayList2 == null) {
-                unmodifiableList = Collections.EMPTY_LIST;
-            } else {
-                unmodifiableList = DesugarCollections.unmodifiableList(arrayList2);
-            }
-            e(arrayList, unmodifiableList);
-        }
-    }
-
-    public static TLRPC.TL_webPage f(MessageObject messageObject) {
-        TLRPC.Document document;
-        File file;
-        String str;
-        String str2;
-        if (messageObject.messageOwner != null && (document = messageObject.getDocument()) != null) {
-            if (!TextUtils.isEmpty(messageObject.messageOwner.attachPath)) {
-                file = new File(messageObject.messageOwner.attachPath);
-            } else {
-                file = null;
-            }
-            if (file == null || !file.exists()) {
-                file = FileLoader.getInstance(messageObject.currentAccount).getPathToMessage(messageObject.messageOwner, true);
-            }
-            if (file == null || !file.exists()) {
-                file = FileLoader.getInstance(messageObject.currentAccount).getPathToMessage(messageObject.messageOwner, true, true);
-            }
-            if (file != null && file.exists() && file.length() <= 65536) {
-                TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = (TLRPC.TL_documentAttributeFilename) AndroidUtilities.find(document.attributes, TLRPC.TL_documentAttributeFilename.class);
-                if (tL_documentAttributeFilename != null) {
-                    str = tL_documentAttributeFilename.file_name;
-                } else {
-                    str = null;
-                }
-                TLRPC.TL_webPage tL_webPage = new TLRPC.TL_webPage();
-                String str3 = "";
-                if (str == null) {
-                    str2 = "";
-                } else {
-                    str2 = str;
-                }
-                tL_webPage.url = str2;
-                if (str != null) {
-                    str3 = str;
-                }
-                tL_webPage.display_url = str3;
-                if (!TextUtils.isEmpty(str)) {
-                    tL_webPage.flags |= 4;
-                    tL_webPage.title = str;
-                }
-                TL_iv.TL_page tL_page = new TL_iv.TL_page();
-                tL_page.local = file;
-                tL_page.url = tL_webPage.url;
-                try {
-                    FileInputStream fileInputStream = new FileInputStream(file);
-                    byte[] bArr = new byte[(int) file.length()];
-                    fileInputStream.read(bArr);
-                    String str4 = new String(bArr, StandardCharsets.UTF_8);
-                    fileInputStream.close();
-                    if (str4.length() <= 65536) {
-                        String i10 = i(str4, tL_page.blocks);
-                        if (!TextUtils.isEmpty(i10)) {
-                            tL_webPage.flags |= 4;
-                            tL_webPage.title = i10;
-                        }
-                        tL_webPage.flags |= 1024;
-                        tL_webPage.cached_page = tL_page;
-                        return tL_webPage;
-                    }
-                } catch (Exception e7) {
-                    FileLog.e(e7);
-                }
+        int paddingLeft = i10 - getPaddingLeft();
+        int textPaddingTop = i11 - getTextPaddingTop();
+        int lineForVertical = layout.getLineForVertical(textPaddingTop);
+        float f7 = paddingLeft;
+        int offsetForHorizontal = layout.getOffsetForHorizontal(lineForVertical, f7);
+        float lineLeft = layout.getLineLeft(lineForVertical);
+        if (lineLeft <= f7 && layout.getLineWidth(lineForVertical) + lineLeft >= f7 && textPaddingTop >= 0 && textPaddingTop <= layout.getHeight()) {
+            ClickableSpan[] clickableSpanArr = (ClickableSpan[]) new SpannableString(layout.getText()).getSpans(offsetForHorizontal, offsetForHorizontal, ClickableSpan.class);
+            if (clickableSpanArr.length != 0 && !AndroidUtilities.isAccessibilityScreenReaderEnabled()) {
+                return clickableSpanArr[0];
             }
         }
         return null;
     }
 
-    public static TL_iv.RichText g(TL_iv.RichText richText) {
-        if (richText == null) {
-            return null;
-        }
-        if (richText instanceof TL_iv.textConcat) {
-            TL_iv.textConcat textconcat = (TL_iv.textConcat) richText;
-            for (int i10 = 0; i10 < textconcat.texts.size(); i10++) {
-                ArrayList<TL_iv.RichText> arrayList = textconcat.texts;
-                arrayList.set(i10, g(arrayList.get(i10)));
-            }
-            return textconcat;
-        } else if (richText instanceof da0) {
-            da0 da0Var = (da0) richText;
-            TL_iv.textStrike g10 = g(da0Var.text);
-            int i11 = da0Var.f25737a;
-            if ((i11 & 4) != 0) {
-                TL_iv.textFixed textfixed = new TL_iv.textFixed();
-                textfixed.text = g10;
-                g10 = textfixed;
-            }
-            if ((i11 & 32) != 0) {
-                TL_iv.textStrike textstrike = new TL_iv.textStrike();
-                textstrike.text = g10;
-                g10 = textstrike;
-            }
-            if ((i11 & 16) != 0) {
-                TL_iv.textUnderline textunderline = new TL_iv.textUnderline();
-                textunderline.text = g10;
-                g10 = textunderline;
-            }
-            if ((i11 & 64) != 0) {
-                TL_iv.textMarked textmarked = new TL_iv.textMarked();
-                textmarked.text = g10;
-                g10 = textmarked;
-            }
-            if ((i11 & 128) != 0) {
-                TL_iv.textSubscript textsubscript = new TL_iv.textSubscript();
-                textsubscript.text = g10;
-                g10 = textsubscript;
-            }
-            if ((i11 & 256) != 0) {
-                TL_iv.textSuperscript textsuperscript = new TL_iv.textSuperscript();
-                textsuperscript.text = g10;
-                g10 = textsuperscript;
-            }
-            if ((i11 & 2) != 0) {
-                TL_iv.textItalic textitalic = new TL_iv.textItalic();
-                textitalic.text = g10;
-                g10 = textitalic;
-            }
-            if ((i11 & 1) != 0) {
-                TL_iv.textBold textbold = new TL_iv.textBold();
-                textbold.text = g10;
-                return textbold;
-            }
-            return g10;
-        } else {
-            TL_iv.RichText richText2 = richText.text;
-            if (richText2 != null) {
-                richText.text = g(richText2);
-            }
-            return richText;
-        }
+    public int c() {
+        return org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.Ld, this.f26009c);
     }
 
-    public static org.telegram.tgnet.tl.TL_iv.RichText h(org.telegram.tgnet.tl.TL_iv.RichText r17) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ea0.h(org.telegram.tgnet.tl.TL_iv$RichText):org.telegram.tgnet.tl.TL_iv$RichText");
-    }
-
-    public static java.lang.String i(java.lang.String r23, java.util.ArrayList r24) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ea0.i(java.lang.String, java.util.ArrayList):java.lang.String");
-    }
-
-    public static TL_iv.textPlain j(String str) {
-        TL_iv.textPlain textplain = new TL_iv.textPlain();
-        if (str == null) {
-            str = "";
+    public int getTextPaddingTop() {
+        int paddingTop = getPaddingTop();
+        if (getGravity() == 17 && getLayout() != null) {
+            return Math.max(0, (((getHeight() - getPaddingTop()) - getPaddingBottom()) - getLayout().getHeight()) / 2) + paddingTop;
         }
-        textplain.text = str;
-        return textplain;
+        return paddingTop;
     }
 
-    public static int k(TL_iv.RichText richText) {
-        int i10 = 0;
-        if (richText == null || (richText instanceof TL_iv.textEmpty)) {
-            return 0;
-        }
-        if (richText instanceof TL_iv.textPlain) {
-            String str = ((TL_iv.textPlain) richText).text;
-            if (str == null) {
-                return 0;
-            }
-            return str.length();
-        } else if (richText instanceof TL_iv.textConcat) {
-            ArrayList<TL_iv.RichText> arrayList = richText.texts;
-            int size = arrayList.size();
-            int i11 = 0;
-            while (i11 < size) {
-                TL_iv.RichText richText2 = arrayList.get(i11);
-                i11++;
-                i10 += k(richText2);
-            }
-            return i10;
-        } else {
-            return k(richText.text);
-        }
-    }
-
-    public static String l(TL_iv.RichText richText) {
-        if (richText != null && !(richText instanceof TL_iv.textEmpty)) {
-            if (richText instanceof TL_iv.textPlain) {
-                return ((TL_iv.textPlain) richText).text;
-            }
-            if (richText instanceof TL_iv.textConcat) {
-                StringBuilder sb2 = new StringBuilder();
-                ArrayList<TL_iv.RichText> arrayList = richText.texts;
-                int size = arrayList.size();
-                int i10 = 0;
-                while (i10 < size) {
-                    TL_iv.RichText richText2 = arrayList.get(i10);
-                    i10++;
-                    sb2.append(l(richText2));
+    @Override
+    public final void invalidate() {
+        if (!this.f26016x) {
+            this.f26016x = true;
+            try {
+                if (J == null) {
+                    Field declaredField = TextView.class.getDeclaredField("mEditor");
+                    I = declaredField;
+                    declaredField.setAccessible(true);
+                    Class<?> cls = Class.forName("android.widget.Editor");
+                    J = cls;
+                    try {
+                        Method declaredMethod = cls.getDeclaredMethod("invalidateTextDisplayList", null);
+                        K = declaredMethod;
+                        declaredMethod.setAccessible(true);
+                    } catch (Exception unused) {
+                    }
                 }
-                return sb2.toString();
+            } catch (Throwable th2) {
+                FileLog.e(th2);
             }
-            return l(richText.text);
         }
-        return "";
+        super.invalidate();
+        if (isHardwareAccelerated()) {
+            try {
+                if (K != null) {
+                    if (this.f26017y == null) {
+                        this.f26017y = I.get(this);
+                    }
+                    Object obj = this.f26017y;
+                    if (obj != null) {
+                        K.invoke(obj, null);
+                    }
+                }
+            } catch (Exception unused2) {
+            }
+        }
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.d = b6.update(a(), this, this.d, getLayout());
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        b6.release(this, this.d);
+    }
+
+    @Override
+    public void onDraw(android.graphics.Canvas r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ea0.onDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        int i12 = this.f26015w;
+        if (i12 > 0) {
+            i10 = View.MeasureSpec.makeMeasureSpec(Math.min(i12, View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10));
+        }
+        super.onMeasure(i10, i11);
+        this.d = b6.update(a(), this, this.d, getLayout());
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        CharacterStyle characterStyle;
+        ba0 ba0Var = this.f26008b;
+        if (ba0Var != null) {
+            Layout layout = getLayout();
+            ClickableSpan b10 = b((int) motionEvent.getX(), (int) motionEvent.getY());
+            if (b10 != null && motionEvent.getAction() == 0) {
+                fa0 fa0Var = new fa0(b10, this.f26009c, motionEvent.getX(), motionEvent.getY(), 0);
+                fa0Var.d(c());
+                this.f26010e = fa0Var;
+                ba0Var.a(fa0Var, null);
+                SpannableString spannableString = new SpannableString(layout.getText());
+                int spanStart = spannableString.getSpanStart(this.f26010e.f26330i);
+                int spanEnd = spannableString.getSpanEnd(this.f26010e.f26330i);
+                y90 b11 = this.f26010e.b();
+                b11.d(layout, spanStart, getPaddingTop());
+                layout.getSelectionPath(spanStart, spanEnd, b11);
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.video.f(this, fa0Var, b10, 27), ViewConfiguration.getLongPressTimeout());
+                return true;
+            }
+            if (motionEvent.getAction() == 1) {
+                ba0Var.d(true);
+                fa0 fa0Var2 = this.f26010e;
+                if (fa0Var2 != null && (characterStyle = fa0Var2.f26330i) == b10) {
+                    da0 da0Var = this.f26011f;
+                    if (da0Var != null) {
+                        da0Var.a((ClickableSpan) characterStyle);
+                    } else if (characterStyle != null) {
+                        ((ClickableSpan) characterStyle).onClick(this);
+                    }
+                    this.f26010e = null;
+                    return true;
+                }
+                this.f26010e = null;
+            }
+            if (motionEvent.getAction() == 3) {
+                ba0Var.d(true);
+                this.f26010e = null;
+            }
+        }
+        if (this.f26010e != null || super.onTouchEvent(motionEvent)) {
+            return true;
+        }
+        return false;
+    }
+
+    public void setDisablePaddingsOffset(boolean z10) {
+        this.f26012n = z10;
+    }
+
+    public void setDisablePaddingsOffsetX(boolean z10) {
+        this.f26013r = z10;
+    }
+
+    public void setDisablePaddingsOffsetY(boolean z10) {
+        this.f26014s = z10;
+    }
+
+    public void setEmojiColor(int i10) {
+        this.F = false;
+        this.G = new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN);
+        invalidate();
+    }
+
+    public void setLoading(CharacterStyle characterStyle) {
+        if (this.v != characterStyle) {
+            ba0 ba0Var = this.f26008b;
+            ba0Var.e();
+            this.v = characterStyle;
+            ia0 i10 = ba0.i(getLayout(), characterStyle, getPaddingTop());
+            if (i10 != null) {
+                int d = d(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.Ld, this.f26009c));
+                i10.g(org.telegram.ui.ActionBar.i6.m1(0.8f, d), org.telegram.ui.ActionBar.i6.m1(1.3f, d), org.telegram.ui.ActionBar.i6.m1(1.0f, d), org.telegram.ui.ActionBar.i6.m1(4.0f, d));
+                i10.f27340x.setStrokeWidth(AndroidUtilities.dpf2(1.25f));
+                ba0Var.b(i10, null);
+            }
+        }
+    }
+
+    @Override
+    public void setMaxWidth(int i10) {
+        this.f26015w = i10;
+    }
+
+    public void setOnLinkLongPressListener(da0 da0Var) {
+        this.h = da0Var;
+    }
+
+    public void setOnLinkPressListener(da0 da0Var) {
+        this.f26011f = da0Var;
+    }
+
+    @Override
+    public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+        super.setText(charSequence, bufferType);
+        this.d = b6.update(a(), this, this.d, getLayout());
+    }
+
+    public ea0(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context);
+        this.E = false;
+        this.F = true;
+        this.f26007a = false;
+        this.f26008b = new ba0(this);
+        this.f26009c = e6Var;
+    }
+
+    public ea0(Context context, ba0 ba0Var, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context);
+        this.E = false;
+        this.F = true;
+        this.f26007a = true;
+        this.f26008b = ba0Var;
+        this.f26009c = e6Var;
+    }
+
+    public int d(int i10) {
+        return i10;
     }
 }

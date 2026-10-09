@@ -1,103 +1,48 @@
 package ci;
 
-import android.graphics.Rect;
-import android.view.View;
+import android.content.Context;
+import android.graphics.drawable.GradientDrawable;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public class i4 {
-    public final View f5159a;
-    public View f5160b;
-    public final Utilities.Callback f5161c;
-    public boolean d;
-    public boolean f5162e;
-    public boolean f5163f;
-    public boolean f5164g;
-    public final Rect h = new Rect();
-    public final f4 f5165i;
-    public final g4 f5166j;
-    public int f5167k;
-    public int f5168l;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.bi;
+import org.telegram.ui.Components.ck0;
+public final class i4 extends FrameLayout {
+    public static final int d = 0;
+    public final org.telegram.ui.Components.y9 f5196a;
+    public final d f5197b;
+    public boolean f5198c;
 
-    public i4(View view, boolean z10, Utilities.Callback callback) {
-        f4 f4Var = new f4(this, 0);
-        this.f5165i = f4Var;
-        g4 g4Var = new g4(this, 0);
-        this.f5166j = g4Var;
-        this.f5159a = view;
-        this.f5161c = callback;
-        this.f5160b = view;
-        if (view.isAttachedToWindow()) {
-            view.getViewTreeObserver().addOnGlobalLayoutListener(g4Var);
-            view.addOnLayoutChangeListener(f4Var);
-        }
-        view.addOnAttachStateChangeListener(new h4(this, z10, view));
+    public i4(Context context) {
+        super(context);
+        LinearLayout e7 = bi.e(context, 1);
+        addView(e7, w7.x5.e(-2, -2, 17));
+        org.telegram.ui.Components.y9 y9Var = new org.telegram.ui.Components.y9(context);
+        this.f5196a = y9Var;
+        e7.addView(y9Var, w7.x5.q(130, 130, 1));
+        TextView textView = new TextView(context);
+        textView.setTextColor(-1);
+        textView.setText(LocaleController.getString(R.string.LiveStoryDisconnected));
+        textView.setTextSize(1, 20.0f);
+        textView.setTypeface(AndroidUtilities.bold());
+        e7.addView(textView, w7.x5.t(-2, -2, 1, 0, 8, 0, 0));
+        d dVar = new d(context, null, true);
+        this.f5197b = dVar;
+        dVar.g(LocaleController.getString(R.string.LiveStoryDisconnectedContinue), false, true);
+        e7.addView(dVar, w7.x5.t((int) ((dVar.d.e() + AndroidUtilities.dp(24.0f)) / AndroidUtilities.density), 38, 1, 0, 18, 0, 0));
+        dVar.setOnClickListener(new ai.e2(1));
+        setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{-16777216, -11184811}));
     }
 
-    public final void a() {
-        if (this.f5162e) {
-            if (this.f5168l >= AndroidUtilities.dp(20.0f) + AndroidUtilities.navigationBarHeight) {
-                this.f5162e = false;
-            } else {
-                return;
-            }
-        }
-        Utilities.Callback callback = this.f5161c;
-        if (callback != null) {
-            callback.run(Integer.valueOf(this.f5168l));
-        }
-    }
-
-    public void b(boolean z10) {
-        this.d = z10;
-        d();
-    }
-
-    public final boolean c() {
-        if (this.f5168l <= AndroidUtilities.dp(20.0f) + AndroidUtilities.navigationBarHeight && !this.f5162e) {
-            return false;
-        }
-        return true;
-    }
-
-    public final void d() {
-        int i10;
-        if (!this.d) {
-            boolean z10 = this.f5163f;
-            boolean z11 = false;
-            View view = this.f5159a;
-            if (z10) {
-                View view2 = this.f5160b;
-                if (view2 != null) {
-                    view = view2;
-                }
-                r0.l1 f7 = r0.i0.f(view);
-                if (f7 != null) {
-                    i10 = f7.f45624a.f(8).d;
-                } else {
-                    i10 = 0;
-                }
-                this.f5168l = i10;
-            } else {
-                Rect rect = this.h;
-                view.getWindowVisibleDisplayFrame(rect);
-                View view3 = this.f5160b;
-                if (view3 != null) {
-                    view = view3;
-                }
-                this.f5168l = view.getHeight() - rect.bottom;
-            }
-            if (this.f5164g) {
-                this.f5168l = Math.max(0, this.f5168l - AndroidUtilities.navigationBarHeight);
-            }
-            int i11 = this.f5167k;
-            int i12 = this.f5168l;
-            if (i11 != i12) {
-                z11 = true;
-            }
-            this.f5167k = i12;
-            if (z11) {
-                a();
-            }
+    @Override
+    public final void setVisibility(int i10) {
+        super.setVisibility(i10);
+        if (i10 == 0 && !this.f5198c) {
+            this.f5196a.setImageDrawable(new ck0(R.raw.utyan_empty2, AndroidUtilities.dp(130.0f), AndroidUtilities.dp(130.0f)));
+            this.f5198c = true;
         }
     }
 }

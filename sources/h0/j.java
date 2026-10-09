@@ -1,30 +1,27 @@
 package h0;
 
+import android.content.res.ColorStateList;
 import android.content.res.Resources;
-import j$.util.Objects;
-public final class j {
-    public final Resources f10946a;
-    public final Resources.Theme f10947b;
+import android.util.SparseArray;
+import java.util.WeakHashMap;
+public abstract class j {
+    public static final ThreadLocal f10953a = new ThreadLocal();
+    public static final WeakHashMap f10954b = new WeakHashMap(0);
+    public static final Object f10955c = new Object();
 
-    public j(Resources resources, Resources.Theme theme) {
-        this.f10946a = resources;
-        this.f10947b = theme;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && j.class == obj.getClass()) {
-            j jVar = (j) obj;
-            if (this.f10946a.equals(jVar.f10946a) && Objects.equals(this.f10947b, jVar.f10947b)) {
-                return true;
+    public static void a(i iVar, int i10, ColorStateList colorStateList, Resources.Theme theme) {
+        synchronized (f10955c) {
+            try {
+                WeakHashMap weakHashMap = f10954b;
+                SparseArray sparseArray = (SparseArray) weakHashMap.get(iVar);
+                if (sparseArray == null) {
+                    sparseArray = new SparseArray();
+                    weakHashMap.put(iVar, sparseArray);
+                }
+                sparseArray.append(i10, new h(colorStateList, iVar.f10951a.getConfiguration(), theme));
+            } catch (Throwable th2) {
+                throw th2;
             }
         }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Objects.hash(this.f10946a, this.f10947b);
     }
 }

@@ -155,7 +155,7 @@ public class UnconfirmedAuthController {
                 }
             };
         }
-        Utilities.raceCallbacks(new ci.u1(this, zArr, arrayList2, z10, callback, 12), callbackArr);
+        Utilities.raceCallbacks(new ci.t1(this, zArr, arrayList2, z10, callback, 12), callbackArr);
         if (z10) {
             HashSet hashSet = new HashSet();
             for (int i11 = 0; i11 < arrayList2.size(); i11++) {
@@ -315,7 +315,7 @@ public class UnconfirmedAuthController {
             boolean z10;
             boolean z11 = tLObject instanceof TLRPC.Updates;
             if (z11) {
-                MessagesController.getInstance(UnconfirmedAuthController.this.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
+                MessagesController.getInstance(UnconfirmedAuthController.this.currentAccount).lambda$processUpdates$377((TLRPC.Updates) tLObject, false);
             }
             hg.g.a(UnconfirmedAuthController.this.currentAccount).b();
             if (callback != null) {

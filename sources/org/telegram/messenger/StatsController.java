@@ -1,6 +1,5 @@
 package org.telegram.messenger;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import java.io.File;
 import java.io.RandomAccessFile;
@@ -89,7 +88,7 @@ public class StatsController extends BaseController {
                         StatsController.this.statsFile.seek(0L);
                         RandomAccessFile randomAccessFile = StatsController.this.statsFile;
                         yf.z zVar = StatsController.this.byteArrayOutputStream;
-                        randomAccessFile.write(zVar.f51049a, 0, zVar.f51050b);
+                        randomAccessFile.write(zVar.f52217a, 0, zVar.f52218b);
                         StatsController.this.statsFile.getFD().sync();
                     } catch (Exception unused) {
                     }
@@ -148,24 +147,21 @@ public class StatsController extends BaseController {
         if (i10 == 0) {
             sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("stats", 0);
         } else {
-            Context context = ApplicationLoader.applicationContext;
-            sharedPreferences = context.getSharedPreferences("stats" + i10, 0);
+            sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("stats" + i10, 0);
         }
         boolean z11 = false;
         for (int i14 = 0; i14 < 3; i14++) {
-            int[] iArr = this.callsTotalTime;
-            iArr[i14] = sharedPreferences.getInt("callsTotalTime" + i14, 0);
-            long[] jArr2 = this.resetStatsDate;
-            jArr2[i14] = sharedPreferences.getLong("resetStatsDate" + i14, 0L);
+            this.callsTotalTime[i14] = sharedPreferences.getInt("callsTotalTime" + i14, 0);
+            this.resetStatsDate[i14] = sharedPreferences.getLong("resetStatsDate" + i14, 0L);
             for (int i15 = 0; i15 < 8; i15++) {
-                this.sentBytes[i14][i15] = sharedPreferences.getLong(a4.a.m(i14, i15, "sentBytes", "_"), 0L);
-                this.receivedBytes[i14][i15] = sharedPreferences.getLong(a4.a.m(i14, i15, "receivedBytes", "_"), 0L);
-                this.sentItems[i14][i15] = sharedPreferences.getInt(a4.a.m(i14, i15, "sentItems", "_"), 0);
-                this.receivedItems[i14][i15] = sharedPreferences.getInt(a4.a.m(i14, i15, "receivedItems", "_"), 0);
+                this.sentBytes[i14][i15] = sharedPreferences.getLong(a1.g.m(i14, i15, "sentBytes", "_"), 0L);
+                this.receivedBytes[i14][i15] = sharedPreferences.getLong(a1.g.m(i14, i15, "receivedBytes", "_"), 0L);
+                this.sentItems[i14][i15] = sharedPreferences.getInt(a1.g.m(i14, i15, "sentItems", "_"), 0);
+                this.receivedItems[i14][i15] = sharedPreferences.getInt(a1.g.m(i14, i15, "receivedItems", "_"), 0);
             }
-            long[] jArr3 = this.resetStatsDate;
-            if (jArr3[i14] == 0) {
-                jArr3[i14] = System.currentTimeMillis();
+            long[] jArr2 = this.resetStatsDate;
+            if (jArr2[i14] == 0) {
+                jArr2[i14] = System.currentTimeMillis();
                 z11 = true;
             }
         }

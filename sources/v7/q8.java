@@ -1,9 +1,8 @@
 package v7;
+
+import android.graphics.drawable.Drawable;
 public abstract class q8 {
-    public static boolean a(char c10) {
-        if (c10 != ' ' && c10 != '\t' && c10 != '\n' && c10 != '\r' && c10 != '\f') {
-            return false;
-        }
-        return true;
+    public static void a(int i10, Drawable drawable) {
+        drawable.setTint(i10);
     }
 }

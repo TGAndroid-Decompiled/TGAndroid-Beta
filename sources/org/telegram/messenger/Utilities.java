@@ -68,7 +68,7 @@ public class Utilities {
     }
 
     public interface Callback5<T, T2, T3, T4, T5> {
-        void mo17run(T t10, T2 t22, T3 t32, T4 t42, T5 t52);
+        void mo16run(T t10, T2 t22, T3 t32, T4 t42, T5 t52);
     }
 
     public interface Callback5Return<T, T2, T3, T4, T5, ReturnType> {
@@ -98,13 +98,13 @@ public class Utilities {
         long nextLong = random.nextLong();
         ?? random2 = new Random(0L);
         long a2 = v7.q6.a(nextLong);
-        random2.f8102a = a2;
+        random2.f8151a = a2;
         long a10 = v7.q6.a(a2);
-        random2.f8103b = a10;
-        if (random2.f8102a == 0 && a10 == 0) {
+        random2.f8152b = a10;
+        if (random2.f8151a == 0 && a10 == 0) {
             long a11 = v7.q6.a(3735928559L);
-            random2.f8102a = a11;
-            random2.f8103b = v7.q6.a(a11);
+            random2.f8151a = a11;
+            random2.f8152b = v7.q6.a(a11);
         }
         fastRandom = random2;
         stageQueue = new DispatchQueue("stageQueue");
@@ -475,10 +475,10 @@ public class Utilities {
     private static native int pbkdf2(byte[] bArr, byte[] bArr2, byte[] bArr3, int i10);
 
     public static void raceCallbacks(Runnable runnable, Callback<Runnable>... callbackArr) {
-        if (callbackArr != null && callbackArr.length != 0) {
-            j8 j8Var = new j8(new int[]{0}, callbackArr, runnable, 29);
-            for (Callback<Runnable> callback : callbackArr) {
-                callback.run(j8Var);
+        if (callbackArr != 0 && callbackArr.length != 0) {
+            ul ulVar = new ul(new int[]{0}, callbackArr, runnable, 0);
+            for (ai.j3 j3Var : callbackArr) {
+                j3Var.run(ulVar);
             }
         } else if (runnable != null) {
             runnable.run();
@@ -551,7 +551,7 @@ public class Utilities {
         if (callbackArr == null || callbackArr.length <= i10) {
             return;
         }
-        callbackArr[i10].run(new o6(i10, callbackArr, 11));
+        callbackArr[i10].run(new p6(i10, callbackArr, 11));
     }
 
     public static String generateRandomString(int i10) {

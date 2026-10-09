@@ -1,39 +1,38 @@
 package org.telegram.ui.Components;
-public final class xp implements z4.e {
-    public int f33052a;
-    public final bi0 f33053b;
 
-    public xp(bi0 bi0Var) {
-        this.f33053b = bi0Var;
+import android.widget.Toast;
+import java.util.List;
+import org.telegram.messenger.ChatThemeController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.ResultCallback;
+import org.telegram.tgnet.TLRPC;
+public final class xp implements ResultCallback {
+    public final ChatThemeController f32987a;
+    public final cq f32988b;
+
+    public xp(cq cqVar, ChatThemeController chatThemeController) {
+        this.f32988b = cqVar;
+        this.f32987a = chatThemeController;
     }
 
     @Override
-    public final void b(float f7, int i10, int i11) {
-        if (i10 == this.f33053b.getCurrentItem() && f7 == 0.0f && this.f33052a == 1) {
-            d();
-        }
+    public final void onComplete(Object obj) {
+        int i10;
+        List list = (List) obj;
+        List<org.telegram.ui.ActionBar.c4> emojiThemes = this.f32987a.getEmojiThemes(7);
+        cq cqVar = this.f32988b;
+        i10 = ((org.telegram.ui.ActionBar.f3) cqVar).currentAccount;
+        NotificationCenter.getInstance(i10).doOnIdle(new ea(26, this, emojiThemes));
+        cqVar.f25463b0 = false;
     }
 
     @Override
-    public final void c(int i10) {
-        if (i10 == 0) {
-            d();
-        }
-        this.f33052a = i10;
-    }
-
-    public final void d() {
-        bi0 bi0Var = this.f33053b;
-        if (bi0Var.f33621w0 != null) {
-            int currentItem = bi0Var.getCurrentItem();
-            int k10 = bi0Var.f33621w0.k(currentItem) + bi0Var.f33621w0.j();
-            if (currentItem != k10) {
-                bi0Var.x(k10, false);
-            }
-        }
+    public final void onError(Throwable th2) {
+        org.telegram.tgnet.l.a(this, th2);
     }
 
     @Override
-    public final void a(int i10) {
+    public final void onError(TLRPC.TL_error tL_error) {
+        Toast.makeText(this.f32988b.getContext(), tL_error.text, 0).show();
     }
 }

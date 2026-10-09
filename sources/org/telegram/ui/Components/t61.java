@@ -1,47 +1,56 @@
 package org.telegram.ui.Components;
 
+import android.net.Uri;
+import android.text.TextPaint;
+import android.text.style.URLSpan;
 import android.view.View;
-import android.widget.FrameLayout;
-public final class t61 extends FrameLayout {
-    public int f31069a;
-    public boolean f31070b;
+import org.telegram.tgnet.TLObject;
+public class t61 extends URLSpan {
+    public final boolean f31045a;
+    public final t11 f31046b;
+    public TLObject f31047c;
+    public String d;
+
+    public t61(String str) {
+        this(str, (t11) null);
+    }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        View view;
-        int i12 = this.f31069a;
-        if (getParent() instanceof View) {
-            view = (View) getParent();
-        } else {
-            view = null;
+    public void onClick(View view) {
+        String url = getURL();
+        if (url.startsWith("@")) {
+            of.f.p(view.getContext(), Uri.parse("https://t.me/" + url.substring(1)), true, true);
+            return;
         }
-        if (this.f31070b && view != null) {
-            i12 = view.getPaddingBottom() + view.getPaddingTop() + i12;
-        }
-        if (view != null && view.getMeasuredHeight() > 0) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(view.getMeasuredHeight() - i12, 1073741824));
-        } else if (View.MeasureSpec.getMode(i11) != 0) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11) - i12, 1073741824));
-        } else {
-            int size = View.MeasureSpec.getSize(i11);
-            int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824);
-            measureChildren(makeMeasureSpec, i11);
-            int i13 = 0;
-            for (int i14 = 0; i14 < getChildCount(); i14++) {
-                i13 = Math.max(i13, getChildAt(i14).getMeasuredHeight());
-            }
-            if (size > 0) {
-                i13 = Math.min(i13, size - i12);
-            }
-            super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(i13, 1073741824));
-        }
+        of.f.s(view.getContext(), url);
     }
 
-    public void setMinusHeight(int i10) {
-        this.f31069a = i10;
+    @Override
+    public void updateDrawState(TextPaint textPaint) {
+        boolean z10;
+        int i10 = textPaint.linkColor;
+        int color = textPaint.getColor();
+        super.updateDrawState(textPaint);
+        t11 t11Var = this.f31046b;
+        if (t11Var != null) {
+            t11Var.a(textPaint);
+        }
+        if (i10 == color && !this.f31045a) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        textPaint.setUnderlineText(z10);
     }
 
-    public void setMinusPadding(boolean z10) {
-        this.f31070b = z10;
+    public t61(String str, int i10) {
+        this(str, (t11) null);
+        this.f31045a = true;
+    }
+
+    public t61(String str, t11 t11Var) {
+        super(str != null ? str.replace((char) 8238, ' ') : str);
+        this.f31045a = false;
+        this.f31046b = t11Var;
     }
 }

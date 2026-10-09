@@ -1,13 +1,14 @@
 package v7;
 public abstract class a8 {
-    public static byte a(long j3) {
-        boolean z10;
-        if ((j3 >> 8) == 0) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public static final hd.e a(Throwable exception) {
+        kotlin.jvm.internal.i.e(exception, "exception");
+        return new hd.e(exception);
+    }
+
+    public static final void b(Object obj) {
+        if (!(obj instanceof hd.e)) {
+            return;
         }
-        t6.b(j3, "out of range: %s", z10);
-        return (byte) j3;
+        throw ((hd.e) obj).f11086a;
     }
 }

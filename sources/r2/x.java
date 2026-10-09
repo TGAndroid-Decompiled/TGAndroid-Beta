@@ -1,6 +1,6 @@
 package r2;
 
-import ai.e8;
+import ai.f8;
 import android.media.MediaCodecInfo;
 import android.os.Build;
 import android.util.Pair;
@@ -15,24 +15,24 @@ import java.util.HashMap;
 import java.util.List;
 import v7.r6;
 public abstract class x {
-    public static final HashMap f45791a = new HashMap();
+    public static final HashMap f46939a = new HashMap();
 
     public static void a(String str, ArrayList arrayList) {
         if ("audio/raw".equals(str)) {
-            if (Build.VERSION.SDK_INT < 26 && Build.DEVICE.equals("R9") && arrayList.size() == 1 && ((o) arrayList.get(0)).f45744a.equals("OMX.MTK.AUDIO.DECODER.RAW")) {
-                arrayList.add(o.i("OMX.google.raw.decoder", "audio/raw", "audio/raw", null, false, true, false, false));
+            if (Build.VERSION.SDK_INT < 26 && Build.DEVICE.equals("R9") && arrayList.size() == 1 && ((p) arrayList.get(0)).f46894a.equals("OMX.MTK.AUDIO.DECODER.RAW")) {
+                arrayList.add(p.i("OMX.google.raw.decoder", "audio/raw", "audio/raw", null, false, true, false, false));
             }
-            Collections.sort(arrayList, new e8(new Object(), 3));
+            Collections.sort(arrayList, new f8(new Object(), 3));
         }
-        if (Build.VERSION.SDK_INT < 32 && arrayList.size() > 1 && "OMX.qti.audio.decoder.flac".equals(((o) arrayList.get(0)).f45744a)) {
-            arrayList.add((o) arrayList.remove(0));
+        if (Build.VERSION.SDK_INT < 32 && arrayList.size() > 1 && "OMX.qti.audio.decoder.flac".equals(((p) arrayList.get(0)).f46894a)) {
+            arrayList.add((p) arrayList.remove(0));
         }
     }
 
     public static String b(b2.s sVar) {
         Pair b10;
-        String str = sVar.f3564r;
-        String str2 = sVar.f3564r;
+        String str = sVar.f3643r;
+        String str2 = sVar.f3643r;
         if ("audio/eac3-joc".equals(str)) {
             return "audio/eac3";
         }
@@ -91,7 +91,7 @@ public abstract class x {
         synchronized (x.class) {
             try {
                 t tVar = new t(str, z10, z11);
-                HashMap hashMap = f45791a;
+                HashMap hashMap = f46939a;
                 List list = (List) hashMap.get(tVar);
                 if (list != null) {
                     return list;
@@ -100,7 +100,7 @@ public abstract class x {
                 if (z10 && e7.isEmpty() && Build.VERSION.SDK_INT <= 23) {
                     e7 = e(tVar, new qb.b(20));
                     if (!e7.isEmpty()) {
-                        e2.a.n("MediaCodecUtil", "MediaCodecList API didn't list secure decoder for: " + str + ". Assuming: " + ((o) e7.get(0)).f45744a);
+                        e2.a.n("MediaCodecUtil", "MediaCodecList API didn't list secure decoder for: " + str + ". Assuming: " + ((p) e7.get(0)).f46894a);
                     }
                 }
                 a(str, e7);
@@ -117,14 +117,14 @@ public abstract class x {
         throw new UnsupportedOperationException("Method not decompiled: r2.x.e(r2.t, r2.v):java.util.ArrayList");
     }
 
-    public static a1 f(i iVar, b2.s sVar, boolean z10, boolean z11) {
+    public static a1 f(j jVar, b2.s sVar, boolean z10, boolean z11) {
         List a2;
-        List a10 = iVar.a(sVar.f3564r, z10, z11);
+        List a10 = jVar.a(sVar.f3643r, z10, z11);
         String b10 = b(sVar);
         if (b10 == null) {
-            a2 = a1.f8721e;
+            a2 = a1.f8715e;
         } else {
-            a2 = iVar.a(b10, z10, z11);
+            a2 = jVar.a(b10, z10, z11);
         }
         f0 u10 = i0.u();
         u10.d(a10);

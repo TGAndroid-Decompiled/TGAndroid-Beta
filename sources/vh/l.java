@@ -2,13 +2,14 @@ package vh;
 
 import android.view.View;
 import java.util.List;
+import m.f3;
 public final class l {
-    public final k2.e f48442a;
-    public boolean f48443b;
-    public int f48444c;
+    public final f3 f49722a;
+    public boolean f49723b;
+    public int f49724c;
     public int d;
 
     public l(View view, List list, k kVar) {
-        this.f48442a = new k2.e(view.getContext(), new j(this, view, list, kVar));
+        this.f49722a = new f3(view.getContext(), new j(this, view, list, kVar));
     }
 }

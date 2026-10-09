@@ -1,29 +1,35 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class n81 implements RequestDelegate {
-    public final int f38832a;
-    public final y81 f38833b;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_account;
+public final class n81 implements Utilities.Callback {
+    public final int f40101a;
+    public final SessionsActivity f40102b;
 
-    public n81(y81 y81Var, int i10) {
-        this.f38832a = i10;
-        this.f38833b = y81Var;
+    public n81(SessionsActivity sessionsActivity, int i10) {
+        this.f40101a = i10;
+        this.f40102b = sessionsActivity;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f38832a) {
+    public final void run(Object obj) {
+        switch (this.f40101a) {
             case 0:
-                TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
-                tL_help_dismissSuggestion.suggestion = "VALIDATE_PASSWORD";
-                tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
-                y81 y81Var = this.f38833b;
-                y81Var.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new n81(y81Var, 1));
+                TL_account.connectedBots connectedbots = (TL_account.connectedBots) obj;
+                SessionsActivity sessionsActivity = this.f40102b;
+                sessionsActivity.getClass();
+                if (connectedbots != null) {
+                    sessionsActivity.h = connectedbots.connected_bots;
+                    if (sessionsActivity.f34473a != null) {
+                        sessionsActivity.m0();
+                        sessionsActivity.f34473a.l();
+                        return;
+                    }
+                    return;
+                }
                 return;
             default:
-                this.f38833b.getMessagesController().loadAppConfig();
+                SessionsActivity.V(this.f40102b, (Boolean) obj);
                 return;
         }
     }

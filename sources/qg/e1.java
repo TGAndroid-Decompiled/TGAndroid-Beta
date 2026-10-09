@@ -11,44 +11,44 @@ import android.view.View;
 import android.view.ViewGroup;
 import ci.a7;
 import ci.b6;
-import ci.k8;
+import ci.l8;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.e5;
+import org.telegram.ui.ActionBar.f5;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.ka;
-import org.telegram.ui.Components.uk0;
-import org.telegram.ui.u5;
-import w7.z5;
+import org.telegram.ui.Components.ma;
+import org.telegram.ui.Components.ml0;
+import org.telegram.ui.t5;
+import w7.x5;
 public abstract class e1 extends j {
     public boolean A0;
     public boolean B0;
     public final SparseIntArray C0;
     public final com.google.firebase.messaging.n D0;
-    public e5 E0;
-    public e5 F0;
-    public e5 G0;
-    public e5 H0;
-    public e5 I0;
-    public e5 J0;
-    public e5 K0;
-    public e5 L0;
-    public final u5 f45020q0;
-    public final x0 f45021r0;
-    public final ArrayList f45022s0;
-    public final MessageObject.GroupedMessages f45023t0;
-    public boolean f45024u0;
-    public boolean f45025v0;
-    public TextureView f45026w0;
-    public boolean f45027x0;
-    public int f45028y0;
-    public int f45029z0;
+    public f5 E0;
+    public f5 F0;
+    public f5 G0;
+    public f5 H0;
+    public f5 I0;
+    public f5 J0;
+    public f5 K0;
+    public f5 L0;
+    public final t5 f46227q0;
+    public final x0 f46228r0;
+    public final ArrayList f46229s0;
+    public final MessageObject.GroupedMessages f46230t0;
+    public boolean f46231u0;
+    public boolean f46232v0;
+    public TextureView f46233w0;
+    public boolean f46234x0;
+    public int f46235y0;
+    public int f46236z0;
 
-    public e1(Context context, PointF pointF, ArrayList arrayList, ka kaVar, boolean z10, a7 a7Var) {
+    public e1(Context context, PointF pointF, ArrayList arrayList, ma maVar, boolean z10, a7 a7Var) {
         super(context, pointF);
         hi.a aVar;
         TLRPC.Message message;
@@ -56,25 +56,25 @@ public abstract class e1 extends j {
         Boolean D;
         TLRPC.MessageFwdHeader messageFwdHeader;
         TLRPC.Peer peer;
-        this.f45022s0 = new ArrayList();
-        this.f45028y0 = 1;
-        this.f45029z0 = 1;
+        this.f46229s0 = new ArrayList();
+        this.f46235y0 = 1;
+        this.f46236z0 = 1;
         this.A0 = true;
         this.B0 = i6.I.q();
         this.C0 = new SparseIntArray();
         b6 b6Var = (b6) this;
         ?? obj = new Object();
-        obj.f7909f = b6Var;
+        obj.f7958f = b6Var;
         TextPaint textPaint = new TextPaint();
-        obj.f7905a = textPaint;
+        obj.f7954a = textPaint;
         TextPaint textPaint2 = new TextPaint();
-        obj.f7906b = textPaint2;
+        obj.f7955b = textPaint2;
         TextPaint textPaint3 = new TextPaint();
-        obj.f7907c = textPaint3;
+        obj.f7956c = textPaint3;
         new Paint(3);
         obj.d = new Paint(3);
         Paint paint = new Paint(3);
-        obj.f7908e = paint;
+        obj.f7957e = paint;
         textPaint.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
         textPaint2.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
         textPaint3.setTextSize(AndroidUtilities.dp(15.0f));
@@ -93,7 +93,7 @@ public abstract class e1 extends j {
                 tL_messageService = new TLRPC.TL_messageService();
             } else {
                 message = message2;
-                D = k8.D(messageObject);
+                D = l8.D(messageObject);
                 if (D != null && D.booleanValue() && (messageFwdHeader = message.fwd_from) != null && (peer = messageFwdHeader.from_id) != null) {
                     message.from_id = peer;
                     message.peer_id = peer;
@@ -104,9 +104,9 @@ public abstract class e1 extends j {
                 int i12 = messageObject.currentAccount;
                 MessageObject messageObject2 = new MessageObject(i12, message, messageObject.replyMessageObject, MessagesController.getInstance(i12).getUsers(), MessagesController.getInstance(messageObject.currentAccount).getChats(), null, null, true, true, 0L, true, z10, false);
                 messageObject2.setType();
-                this.f45022s0.add(messageObject2);
+                this.f46229s0.add(messageObject2);
             }
-            tL_messageService.f20068id = message2.f20068id;
+            tL_messageService.f20059id = message2.f20059id;
             tL_messageService.from_id = message2.from_id;
             tL_messageService.peer_id = message2.peer_id;
             tL_messageService.date = message2.date;
@@ -173,7 +173,7 @@ public abstract class e1 extends j {
             tL_messageService.translatedText = message2.translatedText;
             tL_messageService.replyStory = message2.replyStory;
             message = tL_messageService;
-            D = k8.D(messageObject);
+            D = l8.D(messageObject);
             if (D != null) {
                 message.from_id = peer;
                 message.peer_id = peer;
@@ -184,45 +184,45 @@ public abstract class e1 extends j {
             int i122 = messageObject.currentAccount;
             MessageObject messageObject22 = new MessageObject(i122, message, messageObject.replyMessageObject, MessagesController.getInstance(i122).getUsers(), MessagesController.getInstance(messageObject.currentAccount).getChats(), null, null, true, true, 0L, true, z10, false);
             messageObject22.setType();
-            this.f45022s0.add(messageObject22);
+            this.f46229s0.add(messageObject22);
         }
-        this.f45023t0 = null;
-        if (this.f45022s0.size() > 1) {
+        this.f46230t0 = null;
+        if (this.f46229s0.size() > 1) {
             MessageObject.GroupedMessages groupedMessages = new MessageObject.GroupedMessages();
-            this.f45023t0 = groupedMessages;
-            groupedMessages.messages.addAll(this.f45022s0);
-            groupedMessages.groupId = ((MessageObject) this.f45022s0.get(0)).getGroupId();
+            this.f46230t0 = groupedMessages;
+            groupedMessages.messages.addAll(this.f46229s0);
+            groupedMessages.groupId = ((MessageObject) this.f46229s0.get(0)).getGroupId();
             groupedMessages.calculate();
         }
-        u5 u5Var = new u5(b6Var, context);
-        this.f45020q0 = u5Var;
-        addView(u5Var, z5.c(-1.0f, -1));
+        t5 t5Var = new t5(b6Var, context);
+        this.f46227q0 = t5Var;
+        addView(t5Var, x5.d(-1.0f, -1));
         x0 x0Var = new x0(b6Var, context, this.D0);
-        this.f45021r0 = x0Var;
-        x0Var.setAdapter(new a1(b6Var, context, kaVar, a7Var, z10));
+        this.f46228r0 = x0Var;
+        x0Var.setAdapter(new a1(b6Var, context, maVar, a7Var, z10));
         b1 b1Var = new b1(b6Var);
         b1Var.O = new c1(b6Var);
         x0Var.setLayoutManager(b1Var);
         x0Var.i(new Object());
-        u5Var.addView(x0Var, z5.c(-1.0f, -1));
-        if (a7Var != null && a7Var.f4704g) {
+        t5Var.addView(x0Var, x5.d(-1.0f, -1));
+        if (a7Var != null && a7Var.f4727g) {
             ii.q1 q1Var = new ii.q1(b6Var, 8);
             hi.a aVar2 = new hi.a(b6Var, 7);
-            a7Var.f4700b = q1Var;
-            a7Var.f4701c = aVar2;
-            TextureView textureView = a7Var.f4699a;
+            a7Var.f4723b = q1Var;
+            a7Var.f4724c = aVar2;
+            TextureView textureView = a7Var.f4722a;
             if (textureView != null) {
                 q1Var.run(textureView);
             }
-            if (a7Var.d && (aVar = a7Var.f4701c) != null) {
-                aVar.run(Integer.valueOf(a7Var.f4702e), Integer.valueOf(a7Var.f4703f));
+            if (a7Var.d && (aVar = a7Var.f4724c) != null) {
+                aVar.run(Integer.valueOf(a7Var.f4725e), Integer.valueOf(a7Var.f4726f));
             }
         }
         k();
     }
 
     public org.telegram.ui.Cells.u1 getCell() {
-        x0 x0Var = this.f45021r0;
+        x0 x0Var = this.f46228r0;
         if (x0Var != null) {
             for (int i10 = 0; i10 < x0Var.getChildCount(); i10++) {
                 if (x0Var.getChildAt(i10) instanceof org.telegram.ui.Cells.u1) {
@@ -249,13 +249,13 @@ public abstract class e1 extends j {
     }
 
     @Override
-    public uk0 getSelectionBounds() {
+    public ml0 getSelectionBounds() {
         ViewGroup viewGroup = (ViewGroup) getParent();
         if (viewGroup == null) {
             return new Object();
         }
         float scaleX = viewGroup.getScaleX();
-        return new uk0(((getPositionX() * scaleX) - (((getScale() * getMeasuredWidth()) / 2.0f) * scaleX)) - AndroidUtilities.dp(35.5f), ((getPositionY() * scaleX) - (((getScale() * getMeasuredHeight()) / 2.0f) * scaleX)) - AndroidUtilities.dp(35.5f), (getScale() * getMeasuredWidth() * scaleX) + AndroidUtilities.dp(71.0f), (getScale() * getMeasuredHeight() * scaleX) + AndroidUtilities.dp(71.0f));
+        return new ml0(((getPositionX() * scaleX) - (((getScale() * getMeasuredWidth()) / 2.0f) * scaleX)) - AndroidUtilities.dp(35.5f), ((getPositionY() * scaleX) - (((getScale() * getMeasuredHeight()) / 2.0f) * scaleX)) - AndroidUtilities.dp(35.5f), (getScale() * getMeasuredWidth() * scaleX) + AndroidUtilities.dp(71.0f), (getScale() * getMeasuredHeight() * scaleX) + AndroidUtilities.dp(71.0f));
     }
 
     @Override
@@ -263,7 +263,7 @@ public abstract class e1 extends j {
         setX(getPositionX() - (getMeasuredWidth() / 2.0f));
         setY(getPositionY() - (getMeasuredHeight() / 2.0f));
         m();
-        if (this.f45025v0) {
+        if (this.f46232v0) {
             s();
         }
     }
@@ -279,70 +279,69 @@ public abstract class e1 extends j {
         float f10;
         float dp;
         float f11 = 2.1474836E9f;
-        float f12 = 2.1474836E9f;
-        float f13 = -2.1474836E9f;
-        float f14 = -2.1474836E9f;
+        float f12 = -2.1474836E9f;
         int i10 = 0;
+        float f13 = 2.1474836E9f;
+        float f14 = -2.1474836E9f;
         while (true) {
-            x0 x0Var = this.f45021r0;
+            x0 x0Var = this.f46228r0;
             if (i10 < x0Var.getChildCount()) {
                 View childAt = x0Var.getChildAt(i10);
                 boolean z10 = childAt instanceof org.telegram.ui.Cells.u1;
-                u5 u5Var = this.f45020q0;
+                t5 t5Var = this.f46227q0;
                 if (z10) {
                     org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) childAt;
                     if (u1Var.getMessageObject() != null && u1Var.getMessageObject().isRoundVideo() && u1Var.getPhotoImage() != null) {
-                        f7 = u1Var.getPhotoImage().getImageX() + u1Var.getX() + u5Var.getX();
-                        f10 = u1Var.getPhotoImage().getImageX2() + u1Var.getX() + u5Var.getX();
-                        dp = u1Var.getPhotoImage().getImageY() + u1Var.getY() + u5Var.getY();
-                        float y10 = u5Var.getY();
-                        y3 = u1Var.getPhotoImage().getImageY2() + u1Var.getY() + y10;
+                        f7 = u1Var.getPhotoImage().getImageX() + u1Var.getX() + t5Var.getX();
+                        f10 = u1Var.getPhotoImage().getImageX2() + u1Var.getX() + t5Var.getX();
+                        dp = u1Var.getPhotoImage().getImageY() + u1Var.getY() + t5Var.getY();
+                        y3 = u1Var.getPhotoImage().getImageY2() + u1Var.getY() + t5Var.getY();
                     } else {
-                        float x10 = childAt.getX() + u5Var.getX() + u1Var.getBackgroundDrawableLeft() + AndroidUtilities.dp(1.0f);
-                        if (this.f45023t0 == null) {
+                        float x10 = childAt.getX() + t5Var.getX() + u1Var.getBackgroundDrawableLeft() + AndroidUtilities.dp(1.0f);
+                        if (this.f46230t0 == null) {
                             x10 += AndroidUtilities.dp(8.0f);
                         }
-                        float x11 = ((childAt.getX() + u5Var.getX()) + u1Var.getBackgroundDrawableRight()) - AndroidUtilities.dp(1.66f);
-                        float y11 = childAt.getY() + u5Var.getY() + u1Var.getBackgroundDrawableTop();
-                        y3 = ((childAt.getY() + u5Var.getY()) + u1Var.getBackgroundDrawableBottom()) - AndroidUtilities.dp(1.0f);
+                        float x11 = ((childAt.getX() + t5Var.getX()) + u1Var.getBackgroundDrawableRight()) - AndroidUtilities.dp(1.66f);
+                        float y10 = childAt.getY() + t5Var.getY() + u1Var.getBackgroundDrawableTop();
+                        y3 = ((childAt.getY() + t5Var.getY()) + u1Var.getBackgroundDrawableBottom()) - AndroidUtilities.dp(1.0f);
                         f7 = x10;
                         f10 = x11;
-                        dp = AndroidUtilities.dp(2.0f) + y11;
+                        dp = AndroidUtilities.dp(2.0f) + y10;
                     }
                     f11 = Math.min(Math.min(f11, f7), f10);
-                    f13 = Math.max(Math.max(f13, f7), f10);
-                    f12 = Math.min(Math.min(f12, dp), y3);
-                    f14 = Math.max(Math.max(f14, dp), y3);
+                    f14 = Math.max(Math.max(f14, f7), f10);
+                    f13 = Math.min(Math.min(f13, dp), y3);
+                    f12 = Math.max(Math.max(f12, dp), y3);
                 } else if (childAt instanceof org.telegram.ui.Cells.w0) {
                     org.telegram.ui.Cells.w0 w0Var = (org.telegram.ui.Cells.w0) childAt;
-                    if (w0Var.F0.d()) {
-                        float x12 = w0Var.getX() + u5Var.getX() + w0Var.getBoundsLeft();
-                        float x13 = w0Var.getX() + u5Var.getX() + w0Var.getBoundsRight();
-                        float y12 = w0Var.getY() + u5Var.getY();
-                        float y13 = w0Var.getY() + u5Var.getY() + w0Var.getMeasuredHeight();
+                    if (w0Var.L()) {
+                        float x12 = w0Var.getX() + t5Var.getX() + w0Var.getBoundsLeft();
+                        float x13 = w0Var.getX() + t5Var.getX() + w0Var.getBoundsRight();
+                        float y11 = w0Var.getY() + t5Var.getY();
+                        float y12 = w0Var.getY() + t5Var.getY() + w0Var.getMeasuredHeight();
                         f11 = Math.min(Math.min(f11, x12), x13);
-                        f13 = Math.max(Math.max(f13, x12), x13);
-                        f12 = Math.min(Math.min(f12, y12), y13);
-                        f14 = Math.max(Math.max(f14, y12), y13);
+                        f14 = Math.max(Math.max(f14, x12), x13);
+                        f13 = Math.min(Math.min(f13, y11), y12);
+                        f12 = Math.max(Math.max(f12, y11), y12);
                     }
                 }
                 i10++;
             } else {
-                rectF.set(f11, f12, f13, f14);
+                rectF.set(f11, f13, f14, f12);
                 return AndroidUtilities.dp(SharedConfig.bubbleRadius);
             }
         }
     }
 
     public final void s() {
-        x0 x0Var = this.f45021r0;
+        x0 x0Var = this.f46228r0;
         x0Var.invalidate();
         for (int i10 = 0; i10 < x0Var.getChildCount(); i10++) {
             x0Var.getChildAt(i10).invalidate();
         }
     }
 
-    public void setupTheme(ci.k8 r8) {
-        throw new UnsupportedOperationException("Method not decompiled: qg.e1.setupTheme(ci.k8):void");
+    public void setupTheme(ci.l8 r8) {
+        throw new UnsupportedOperationException("Method not decompiled: qg.e1.setupTheme(ci.l8):void");
     }
 }

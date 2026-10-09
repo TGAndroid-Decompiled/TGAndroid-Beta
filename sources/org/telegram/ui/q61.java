@@ -1,21 +1,35 @@
 package org.telegram.ui;
-public final class q61 implements Runnable {
-    public final int f39723a;
-    public final r61 f39724b;
 
-    public q61(r61 r61Var, int i10) {
-        this.f39723a = i10;
-        this.f39724b = r61Var;
+import android.animation.ValueAnimator;
+public final class q61 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f41028a;
+    public final t61 f41029b;
+
+    public q61(t61 t61Var, int i10) {
+        this.f41028a = i10;
+        this.f41029b = t61Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f39723a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f41028a) {
             case 0:
-                r61.a(this.f39724b);
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                t61 t61Var = this.f41029b;
+                t61Var.N = floatValue;
+                t61Var.V.f39130h0.invalidate();
+                return;
+            case 1:
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                t61 t61Var2 = this.f41029b;
+                t61Var2.N = floatValue2;
+                t61Var2.V.f39130h0.invalidate();
                 return;
             default:
-                this.f39724b.dismiss();
+                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                t61 t61Var3 = this.f41029b;
+                t61Var3.N = floatValue3;
+                t61Var3.V.f39130h0.invalidate();
                 return;
         }
     }

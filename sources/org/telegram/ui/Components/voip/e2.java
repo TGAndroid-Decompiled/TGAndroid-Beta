@@ -4,33 +4,37 @@ import android.app.Activity;
 import android.content.Context;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.n80;
-public final class e2 extends n80 {
-    public final TLRPC.User f31914c;
+import org.telegram.ui.Components.a90;
+public final class e2 extends a90 {
+    public final TLRPC.User f31921c;
     public final TLRPC.Chat d;
-    public final String f31915e;
-    public final TLRPC.InputPeer f31916f;
+    public final String f31922e;
+    public final TLRPC.InputPeer f31923f;
     public final boolean h;
-    public final boolean f31917n;
-    public final Activity f31918r;
-    public final org.telegram.ui.ActionBar.n2 f31919s;
-    public final AccountInstance v;
+    public final boolean f31924n;
+    public final boolean f31925r;
+    public final Activity f31926s;
+    public final org.telegram.ui.ActionBar.n2 v;
+    public final AccountInstance f31927w;
+    public final boolean f31928x;
 
-    public e2(Context context, TLRPC.Chat chat, TLRPC.User user, TLRPC.Chat chat2, String str, TLRPC.InputPeer inputPeer, boolean z10, boolean z11, Activity activity, org.telegram.ui.ActionBar.n2 n2Var, AccountInstance accountInstance) {
+    public e2(Context context, TLRPC.Chat chat, TLRPC.User user, TLRPC.Chat chat2, String str, TLRPC.InputPeer inputPeer, boolean z10, boolean z11, boolean z12, Activity activity, org.telegram.ui.ActionBar.n2 n2Var, AccountInstance accountInstance, boolean z13) {
         super(context, chat);
-        this.f31914c = user;
+        this.f31921c = user;
         this.d = chat2;
-        this.f31915e = str;
-        this.f31916f = inputPeer;
+        this.f31922e = str;
+        this.f31923f = inputPeer;
         this.h = z10;
-        this.f31917n = z11;
-        this.f31918r = activity;
-        this.f31919s = n2Var;
-        this.v = accountInstance;
+        this.f31924n = z11;
+        this.f31925r = z12;
+        this.f31926s = activity;
+        this.v = n2Var;
+        this.f31927w = accountInstance;
+        this.f31928x = z13;
     }
 
     @Override
-    public final void m() {
-        g2.b(this.f31914c, this.d, this.f31915e, this.f31916f, true, this.h, this.f31917n, false, this.f31918r, this.f31919s, this.v, false, false, false);
+    public final void o() {
+        f2.b(this.f31921c, this.d, this.f31922e, this.f31923f, false, this.h, this.f31924n, this.f31925r, this.f31926s, this.v, this.f31927w, false, true, this.f31928x);
     }
 }

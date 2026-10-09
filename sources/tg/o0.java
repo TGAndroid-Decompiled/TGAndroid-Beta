@@ -8,42 +8,42 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.w9;
-import w7.z5;
+import org.telegram.ui.Components.j9;
+import org.telegram.ui.Components.y9;
+import w7.x5;
 public final class o0 extends FrameLayout {
-    public final w9 f47088a;
-    public final p0 f47089b;
-    public final Paint f47090c;
+    public final y9 f48385a;
+    public final p0 f48386b;
+    public final Paint f48387c;
     public TLRPC.Chat d;
-    public final h9 f47091e;
+    public final j9 f48388e;
 
     public o0(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f47090c = paint;
-        this.f47091e = new h9((d6) null);
-        w9 w9Var = new w9(getContext());
-        this.f47088a = w9Var;
-        w9Var.setRoundRadius(AndroidUtilities.dp(30.0f));
+        this.f48387c = paint;
+        this.f48388e = new j9((e6) null);
+        y9 y9Var = new y9(getContext());
+        this.f48385a = y9Var;
+        y9Var.setRoundRadius(AndroidUtilities.dp(30.0f));
         ?? view = new View(context);
         Paint paint2 = new Paint(1);
-        view.f47094a = paint2;
-        view.f47095b = view.getContext().getDrawable(R.drawable.mini_boost_remove);
-        int i10 = i6.f20899h5;
-        paint2.setColor(i6.w0(null, i10, false));
-        this.f47089b = view;
+        view.f48391a = paint2;
+        view.f48392b = view.getContext().getDrawable(R.drawable.mini_boost_remove);
+        int i10 = i6.f20868h5;
+        paint2.setColor(i6.x0(null, i10, false));
+        this.f48386b = view;
         view.setAlpha(0.0f);
-        addView(w9Var, z5.d(-1, -1.0f, 0, 5.0f, 5.0f, 5.0f, 5.0f));
-        addView((View) view, z5.d(28, 28.0f, 85, 0.0f, 0.0f, 0.0f, 3.0f));
-        paint.setColor(i6.w0(null, i10, false));
+        addView(y9Var, x5.a(-1.0f, 5.0f, 5.0f, 5.0f, 5.0f, -1, 0));
+        addView((View) view, x5.a(28.0f, 0.0f, 0.0f, 0.0f, 3.0f, 28, 85));
+        paint.setColor(i6.x0(null, i10, false));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, (getMeasuredHeight() / 2.0f) - AndroidUtilities.dp(2.0f), this.f47090c);
+        canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, (getMeasuredHeight() / 2.0f) - AndroidUtilities.dp(2.0f), this.f48387c);
         super.dispatchDraw(canvas);
     }
 }

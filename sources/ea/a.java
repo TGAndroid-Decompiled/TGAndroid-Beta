@@ -1,4 +1,4 @@
 package ea;
 public interface a {
-    StackTraceElement[] y(StackTraceElement[] stackTraceElementArr);
+    StackTraceElement[] l(StackTraceElement[] stackTraceElementArr);
 }

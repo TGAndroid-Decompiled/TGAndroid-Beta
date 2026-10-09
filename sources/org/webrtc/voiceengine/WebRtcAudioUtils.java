@@ -123,38 +123,36 @@ public final class WebRtcAudioUtils {
 
     private static void logAudioDeviceInfo(String str, AudioManager audioManager) {
         String str2;
-        if (Build.VERSION.SDK_INT >= 23) {
-            AudioDeviceInfo[] devices = audioManager.getDevices(3);
-            if (devices.length != 0) {
-                Logging.d(str, "Audio Devices: ");
-                for (AudioDeviceInfo audioDeviceInfo : devices) {
-                    StringBuilder sb2 = new StringBuilder("  ");
-                    sb2.append(deviceTypeToString(audioDeviceInfo.getType()));
-                    if (audioDeviceInfo.isSource()) {
-                        str2 = "(in): ";
-                    } else {
-                        str2 = "(out): ";
-                    }
-                    sb2.append(str2);
-                    if (audioDeviceInfo.getChannelCounts().length > 0) {
-                        sb2.append("channels=");
-                        sb2.append(Arrays.toString(audioDeviceInfo.getChannelCounts()));
-                        sb2.append(", ");
-                    }
-                    if (audioDeviceInfo.getEncodings().length > 0) {
-                        sb2.append("encodings=");
-                        sb2.append(Arrays.toString(audioDeviceInfo.getEncodings()));
-                        sb2.append(", ");
-                    }
-                    if (audioDeviceInfo.getSampleRates().length > 0) {
-                        sb2.append("sample rates=");
-                        sb2.append(Arrays.toString(audioDeviceInfo.getSampleRates()));
-                        sb2.append(", ");
-                    }
-                    sb2.append("id=");
-                    sb2.append(audioDeviceInfo.getId());
-                    Logging.d(str, sb2.toString());
+        AudioDeviceInfo[] devices = audioManager.getDevices(3);
+        if (devices.length != 0) {
+            Logging.d(str, "Audio Devices: ");
+            for (AudioDeviceInfo audioDeviceInfo : devices) {
+                StringBuilder sb2 = new StringBuilder("  ");
+                sb2.append(deviceTypeToString(audioDeviceInfo.getType()));
+                if (audioDeviceInfo.isSource()) {
+                    str2 = "(in): ";
+                } else {
+                    str2 = "(out): ";
                 }
+                sb2.append(str2);
+                if (audioDeviceInfo.getChannelCounts().length > 0) {
+                    sb2.append("channels=");
+                    sb2.append(Arrays.toString(audioDeviceInfo.getChannelCounts()));
+                    sb2.append(", ");
+                }
+                if (audioDeviceInfo.getEncodings().length > 0) {
+                    sb2.append("encodings=");
+                    sb2.append(Arrays.toString(audioDeviceInfo.getEncodings()));
+                    sb2.append(", ");
+                }
+                if (audioDeviceInfo.getSampleRates().length > 0) {
+                    sb2.append("sample rates=");
+                    sb2.append(Arrays.toString(audioDeviceInfo.getSampleRates()));
+                    sb2.append(", ");
+                }
+                sb2.append("id=");
+                sb2.append(audioDeviceInfo.getId());
+                Logging.d(str, sb2.toString());
             }
         }
     }
@@ -196,10 +194,8 @@ public final class WebRtcAudioUtils {
     }
 
     private static void logIsStreamMute(String str, AudioManager audioManager, int i10, StringBuilder sb2) {
-        if (Build.VERSION.SDK_INT >= 23) {
-            sb2.append(", muted=");
-            sb2.append(audioManager.isStreamMute(i10));
-        }
+        sb2.append(", muted=");
+        sb2.append(audioManager.isStreamMute(i10));
     }
 
     public static String modeToString(int i10) {

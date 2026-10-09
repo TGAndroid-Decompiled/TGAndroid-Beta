@@ -1,36 +1,22 @@
 package ai;
 
-import android.animation.ValueAnimator;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.view.View;
-public final class p2 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f1499a;
-    public final r2 f1500b;
-
-    public p2(r2 r2Var, int i10) {
-        this.f1499a = i10;
-        this.f1500b = r2Var;
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.OutputSerializedData;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+public final class p2 extends TLRPC.TL_messageMediaStory {
+    @Override
+    public final void readParams(InputSerializedData inputSerializedData, boolean z10) {
+        this.user_id = inputSerializedData.readInt64(z10);
+        this.f20060id = inputSerializedData.readInt32(z10);
+        this.storyItem = TL_stories.StoryItem.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f1499a) {
-            case 0:
-                this.f1500b.d.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            default:
-                r2 r2Var = this.f1500b;
-                r2Var.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                r2Var.f1585n = floatValue;
-                View view = r2Var.f1581b;
-                view.setAlpha(1.0f - floatValue);
-                view.setScaleX(1.0f - r2Var.f1585n);
-                view.setScaleY(1.0f - r2Var.f1585n);
-                r2Var.f1582c.setColorFilter(new PorterDuffColorFilter(i0.a.d(r2Var.f1585n, -1, -2960428), PorterDuff.Mode.SRC_IN));
-                r2Var.f1580a.invalidate();
-                return;
-        }
+    public final void serializeToStream(OutputSerializedData outputSerializedData) {
+        outputSerializedData.writeInt32(-946147809);
+        outputSerializedData.writeInt64(this.user_id);
+        outputSerializedData.writeInt32(this.f20060id);
+        this.storyItem.serializeToStream(outputSerializedData);
     }
 }

@@ -1,61 +1,27 @@
 package ei;
 
-import android.graphics.drawable.Drawable;
-import org.telegram.ui.Components.b80;
-import org.telegram.ui.PhotoViewer;
-public final class n2 implements Runnable {
-    public final int f9213a;
-    public final b80 f9214b;
-    public final b80 f9215c;
+import android.view.View;
+public final class n2 implements View.OnClickListener {
+    public final int f9238a;
+    public final k3 f9239b;
 
-    public n2(b80 b80Var, b80 b80Var2, int i10) {
-        this.f9213a = i10;
-        this.f9214b = b80Var;
-        this.f9215c = b80Var2;
+    public n2(k3 k3Var, int i10) {
+        this.f9238a = i10;
+        this.f9239b = k3Var;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f9213a;
-        b80 b80Var = this.f9215c;
-        b80 b80Var2 = this.f9214b;
-        switch (i10) {
+    public final void onClick(View view) {
+        switch (this.f9238a) {
             case 0:
-                b80Var2.K(b80Var);
-                return;
-            case 1:
-                b80Var2.K(b80Var);
-                return;
-            case 2:
-                b80Var2.K(b80Var);
-                return;
-            case 3:
-                b80Var2.K(b80Var);
-                return;
-            case 4:
-                b80Var2.K(b80Var);
-                return;
-            case 5:
-                b80Var2.K(b80Var);
-                return;
-            case 6:
-                b80Var2.K(b80Var);
-                return;
-            case 7:
-                b80Var2.K(b80Var);
-                return;
-            case 8:
-                b80Var2.K(b80Var);
-                return;
-            case 9:
-                b80Var2.K(b80Var);
-                return;
-            case 10:
-                Drawable[] drawableArr = PhotoViewer.U8;
-                b80Var2.K(b80Var);
+                org.telegram.ui.web.y0 webView = this.f9239b.f9183x.getWebView();
+                if (webView != null) {
+                    webView.reload();
+                    return;
+                }
                 return;
             default:
-                b80Var2.K(b80Var);
+                this.f9239b.s();
                 return;
         }
     }

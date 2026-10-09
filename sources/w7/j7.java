@@ -217,14 +217,14 @@ public enum j7 implements b {
     ON_DEVICE_IMAGE_CAPTIONING_INFERENCE(603),
     ON_DEVICE_IMAGE_CAPTIONING_CLOSE(604);
     
-    public final int f48742a;
+    public final int f50027a;
 
     j7(int i10) {
-        this.f48742a = i10;
+        this.f50027a = i10;
     }
 
     @Override
     public final int zza() {
-        return this.f48742a;
+        return this.f50027a;
     }
 }

@@ -1,98 +1,63 @@
 package org.telegram.ui;
 
-import android.view.KeyEvent;
-import android.widget.FrameLayout;
+import android.os.Build;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.tgnet.tl.TL_phone;
-public final class w8 implements RequestDelegate {
-    public final int f41971a;
-    public final int f41972b;
-    public final Object f41973c;
-    public final Object d;
-    public final Object f41974e;
-    public final Object f41975f;
-    public final Object f41976g;
-    public final Object h;
+public final class w8 extends s4.t0 {
+    public boolean f43108a;
+    public final j9 f43109b;
 
-    public w8(int i10, TLRPC.InputGroupCall inputGroupCall, String[] strArr, FrameLayout frameLayout, org.telegram.ui.Components.q90 q90Var, org.telegram.ui.ActionBar.f3 f3Var, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.f41971a = 0;
-        this.f41972b = i10;
-        this.f41973c = inputGroupCall;
-        this.d = strArr;
-        this.f41974e = frameLayout;
-        this.f41975f = q90Var;
-        this.f41976g = f3Var;
-        this.h = d6Var;
+    public w8(j9 j9Var) {
+        this.f43109b = j9Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f41971a;
-        Object obj = this.h;
-        Object obj2 = this.f41976g;
-        Object obj3 = this.f41975f;
-        Object obj4 = this.f41974e;
-        Object obj5 = this.d;
-        Object obj6 = this.f41973c;
-        switch (i10) {
-            case 0:
-                TLRPC.InputGroupCall inputGroupCall = (TLRPC.InputGroupCall) obj6;
-                String[] strArr = (String[]) obj5;
-                FrameLayout frameLayout = (FrameLayout) obj4;
-                org.telegram.ui.Components.q90 q90Var = (org.telegram.ui.Components.q90) obj3;
-                org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) obj2;
-                org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) obj;
-                boolean z10 = tLObject instanceof TLRPC.Updates;
-                int i11 = this.f41972b;
-                if (z10) {
-                    MessagesController.getInstance(i11).processUpdates((TLRPC.Updates) tLObject, false);
-                }
-                TL_phone.exportGroupCallInvite exportgroupcallinvite = new TL_phone.exportGroupCallInvite();
-                exportgroupcallinvite.call = inputGroupCall;
-                ConnectionsManager.getInstance(i11).sendRequest(exportgroupcallinvite, new ci.gd(strArr, frameLayout, q90Var, f3Var, d6Var, 1));
-                return;
-            case 1:
-                ExternalActionActivity externalActionActivity = (ExternalActionActivity) obj6;
-                int[] iArr = (int[]) obj5;
-                org.telegram.ui.ActionBar.b2 b2Var = (org.telegram.ui.ActionBar.b2) obj4;
-                TL_account.getAuthorizationForm getauthorizationform = (TL_account.getAuthorizationForm) obj3;
-                String str = (String) obj2;
-                String str2 = (String) obj;
-                ArrayList arrayList = ExternalActionActivity.f33759x;
-                TL_account.authorizationForm authorizationform = (TL_account.authorizationForm) tLObject;
-                if (authorizationform != null) {
-                    TL_account.getPassword getpassword = new TL_account.getPassword();
-                    int i12 = this.f41972b;
-                    iArr[0] = ConnectionsManager.getInstance(i12).sendRequest(getpassword, new w8(externalActionActivity, b2Var, i12, authorizationform, getauthorizationform, str, str2, 2));
-                    return;
-                }
-                AndroidUtilities.runOnUIThread(new uq(externalActionActivity, b2Var, tL_error, 5));
-                return;
-            case 2:
-                ArrayList arrayList2 = ExternalActionActivity.f33759x;
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.y5((ExternalActionActivity) obj6, (org.telegram.ui.ActionBar.b2) obj5, tLObject, this.f41972b, (TL_account.authorizationForm) obj4, (TL_account.getAuthorizationForm) obj3, (String) obj2, (String) obj));
-                return;
-            default:
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.jb((dg0) obj6, tLObject, tL_error, (c5.k) obj5, this.f41972b, (c5.o) obj4, (TLRPC.TL_inputStorePaymentAuthCode) obj3, (String) obj2, (TLRPC.TL_payments_canPurchaseStore) obj));
-                return;
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        int abs;
+        int i12;
+        ah.h hVar;
+        boolean z10;
+        j9 j9Var = this.f43109b;
+        ArrayList arrayList = j9Var.G;
+        int L0 = j9Var.f38868c.L0();
+        boolean z11 = false;
+        if (L0 == -1) {
+            abs = 0;
+        } else {
+            abs = Math.abs(j9Var.f38868c.N0() - L0) + 1;
         }
-    }
-
-    public w8(KeyEvent.Callback callback, Object obj, int i10, Object obj2, TLObject tLObject, String str, Object obj3, int i11) {
-        this.f41971a = i11;
-        this.f41973c = callback;
-        this.d = obj;
-        this.f41972b = i10;
-        this.f41974e = obj2;
-        this.f41975f = tLObject;
-        this.f41976g = str;
-        this.h = obj3;
+        if (abs > 0) {
+            int size = j9Var.d.W2.f25283x.size();
+            if (!j9Var.J && !j9Var.H && !arrayList.isEmpty() && abs + L0 >= size - 5) {
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.p(12, this, (f9) hg.c.g(1, arrayList)));
+            }
+        }
+        View childAt = recyclerView.getChildAt(0);
+        if (childAt != null) {
+            i12 = childAt.getTop();
+        } else {
+            i12 = 0;
+        }
+        if (i11 != 0 && this.f43108a) {
+            org.telegram.ui.Components.p20 p20Var = j9Var.f38873f;
+            if (i11 < 0) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            p20Var.e(z10, true);
+        }
+        this.f43108a = true;
+        ci.r6 r6Var = j9Var.f38876r;
+        if (L0 != 0 || i12 < j9Var.d.getPaddingTop()) {
+            z11 = true;
+        }
+        r6Var.b(z11, true);
+        if (Build.VERSION.SDK_INT >= 31 && (hVar = j9Var.Y) != null) {
+            hVar.f(i10, i11);
+            j9Var.f0();
+        }
     }
 }

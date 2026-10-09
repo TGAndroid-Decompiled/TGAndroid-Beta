@@ -1,52 +1,36 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.MediaController;
-public final class rq0 implements org.telegram.ui.Components.cm0 {
-    public final wq0 f40163a;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class rq0 implements org.telegram.ui.ActionBar.s0 {
+    public final br0 f41471a;
 
-    public rq0(wq0 wq0Var) {
-        this.f40163a = wq0Var;
+    public rq0(br0 br0Var) {
+        this.f41471a = br0Var;
     }
 
     @Override
-    public final void a(boolean z10) {
-        org.telegram.ui.ActionBar.c5 c5Var;
-        wq0 wq0Var = this.f40163a;
-        wq0Var.W = z10 ? 1 : 0;
-        if (z10) {
-            c5Var = ((org.telegram.ui.ActionBar.n2) wq0Var).parentLayout;
-            c5Var.getView().requestDisallowInterceptTouchEvent(true);
-        }
-        wq0Var.K.d1(true);
-    }
-
-    @Override
-    public final boolean b(int i10) {
-        if (this.f40163a.L.j(i10) == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void c(View view, boolean z10) {
-        if (z10 == this.f40163a.X && (view instanceof org.telegram.ui.Cells.t5)) {
-            org.telegram.ui.Cells.t5 t5Var = (org.telegram.ui.Cells.t5) view;
-            t5Var.f23070w.a(t5Var);
-        }
-    }
-
-    @Override
-    public final boolean d(int i10) {
-        Object obj;
-        wq0 wq0Var = this.f40163a;
-        MediaController.AlbumEntry albumEntry = wq0Var.J;
-        if (albumEntry != null) {
-            obj = Integer.valueOf(albumEntry.photos.get(i10).imageId);
+    public final void e() {
+        int i10;
+        int i11;
+        br0 br0Var = this.f41471a;
+        org.telegram.ui.ActionBar.f1 f1Var = br0Var.Q;
+        if (br0Var.Y) {
+            i10 = R.string.ShowAsGrid;
         } else {
-            obj = ((MediaController.SearchImage) wq0Var.f42676f.get(i10)).f17260id;
+            i10 = R.string.ShowAsList;
         }
-        return wq0Var.f42669b.containsKey(obj);
+        f1Var.setText(LocaleController.getString(i10));
+        org.telegram.ui.ActionBar.f1 f1Var2 = br0Var.Q;
+        if (br0Var.Y) {
+            i11 = R.drawable.msg_media;
+        } else {
+            i11 = R.drawable.msg_list;
+        }
+        f1Var2.setIcon(i11);
+    }
+
+    @Override
+    public final void c() {
     }
 }

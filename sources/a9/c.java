@@ -1,41 +1,41 @@
 package a9;
 public final class c extends k0 {
     public final int h;
-    public final Object f341n;
+    public final Object f339n;
 
     public c(Object obj, int i10) {
         this.h = i10;
-        this.f341n = obj;
+        this.f339n = obj;
     }
 
     @Override
     public final void b() {
         switch (this.h) {
             case 0:
-                e eVar = (e) ((d) this.f341n).f343b;
-                eVar.f347b.b("unlinkToDeath", new Object[0]);
-                eVar.f357n.asBinder().unlinkToDeath(eVar.f354k, 0);
-                eVar.f357n = null;
-                eVar.f351g = false;
+                e eVar = (e) ((d) this.f339n).f341b;
+                eVar.f345b.b("unlinkToDeath", new Object[0]);
+                eVar.f355n.asBinder().unlinkToDeath(eVar.f352k, 0);
+                eVar.f355n = null;
+                eVar.f349g = false;
                 return;
             default:
-                synchronized (((e) this.f341n).f350f) {
+                synchronized (((e) this.f339n).f348f) {
                     try {
-                        if (((e) this.f341n).f355l.get() > 0 && ((e) this.f341n).f355l.decrementAndGet() > 0) {
-                            ((e) this.f341n).f347b.b("Leaving the connection open for other ongoing calls.", new Object[0]);
+                        if (((e) this.f339n).f353l.get() > 0 && ((e) this.f339n).f353l.decrementAndGet() > 0) {
+                            ((e) this.f339n).f345b.b("Leaving the connection open for other ongoing calls.", new Object[0]);
                             return;
                         }
-                        e eVar2 = (e) this.f341n;
-                        if (eVar2.f357n != null) {
-                            eVar2.f347b.b("Unbind from service.", new Object[0]);
-                            e eVar3 = (e) this.f341n;
-                            eVar3.f346a.unbindService(eVar3.f356m);
-                            e eVar4 = (e) this.f341n;
-                            eVar4.f351g = false;
-                            eVar4.f357n = null;
-                            eVar4.f356m = null;
+                        e eVar2 = (e) this.f339n;
+                        if (eVar2.f355n != null) {
+                            eVar2.f345b.b("Unbind from service.", new Object[0]);
+                            e eVar3 = (e) this.f339n;
+                            eVar3.f344a.unbindService(eVar3.f354m);
+                            e eVar4 = (e) this.f339n;
+                            eVar4.f349g = false;
+                            eVar4.f355n = null;
+                            eVar4.f354m = null;
                         }
-                        ((e) this.f341n).e();
+                        ((e) this.f339n).e();
                         return;
                     } finally {
                     }

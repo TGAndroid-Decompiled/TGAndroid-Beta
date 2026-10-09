@@ -1,48 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.MenuItem;
-public final class bu implements ActionMode.Callback {
-    public final ActionMode.Callback f25095a;
-    public final eu f25096b;
+import java.util.ArrayList;
+public final class bu implements cu {
+    public final int f25102a;
+    public final Object f25103b;
 
-    public bu(eu euVar, ActionMode.Callback callback) {
-        this.f25096b = euVar;
-        this.f25095a = callback;
+    public bu(Object obj, int i10) {
+        this.f25102a = i10;
+        this.f25103b = obj;
     }
 
     @Override
-    public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-        if (this.f25096b.performMenuAction(menuItem.getItemId())) {
-            actionMode.finish();
-            return true;
+    public final void a(int i10, boolean z10) {
+        switch (this.f25102a) {
+            case 0:
+                ArrayList arrayList = ((eu) this.f25103b).f26169b;
+                int size = arrayList.size();
+                int i11 = 0;
+                while (i11 < size) {
+                    Object obj = arrayList.get(i11);
+                    i11++;
+                    ((cu) obj).a(i10, z10);
+                }
+                return;
+            default:
+                ((Runnable) this.f25103b).run();
+                return;
         }
-        try {
-            return this.f25095a.onActionItemClicked(actionMode, menuItem);
-        } catch (Exception unused) {
-            return true;
-        }
-    }
-
-    @Override
-    public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-        eu euVar = this.f25096b;
-        euVar.copyPasteShowed = true;
-        euVar.onContextMenuOpen();
-        return this.f25095a.onCreateActionMode(actionMode, menu);
-    }
-
-    @Override
-    public final void onDestroyActionMode(ActionMode actionMode) {
-        eu euVar = this.f25096b;
-        euVar.copyPasteShowed = false;
-        euVar.onContextMenuClose();
-        this.f25095a.onDestroyActionMode(actionMode);
-    }
-
-    @Override
-    public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-        return this.f25095a.onPrepareActionMode(actionMode, menu);
     }
 }

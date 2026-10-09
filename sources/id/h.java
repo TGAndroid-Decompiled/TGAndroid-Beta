@@ -1,12 +1,26 @@
 package id;
 
-import rd.p;
-public interface h {
-    Object fold(Object obj, p pVar);
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+public abstract class h {
+    public static int a(List list) {
+        kotlin.jvm.internal.i.e(list, "<this>");
+        return list.size() - 1;
+    }
 
-    f get(g gVar);
+    public static List b(Object obj) {
+        List singletonList = Collections.singletonList(obj);
+        kotlin.jvm.internal.i.d(singletonList, "singletonList(...)");
+        return singletonList;
+    }
 
-    h minusKey(g gVar);
-
-    h plus(h hVar);
+    public static List c(Object... objArr) {
+        if (objArr.length > 0) {
+            List asList = Arrays.asList(objArr);
+            kotlin.jvm.internal.i.d(asList, "asList(...)");
+            return asList;
+        }
+        return o.f12114a;
+    }
 }

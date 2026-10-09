@@ -5,27 +5,27 @@ import java.util.HashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 public abstract class l extends a {
     public final HashMap h = new HashMap();
-    public Handler f47323i;
-    public g2.c0 f47324j;
+    public Handler f48630i;
+    public g2.c0 f48631j;
 
     @Override
     public final void e() {
         for (k kVar : this.h.values()) {
-            kVar.f47317a.d(kVar.f47318b);
+            kVar.f48614a.d(kVar.f48615b);
         }
     }
 
     @Override
     public final void g() {
         for (k kVar : this.h.values()) {
-            kVar.f47317a.f(kVar.f47318b);
+            kVar.f48614a.f(kVar.f48615b);
         }
     }
 
     @Override
     public void k() {
         for (k kVar : this.h.values()) {
-            kVar.f47317a.k();
+            kVar.f48614a.k();
         }
     }
 
@@ -33,9 +33,9 @@ public abstract class l extends a {
     public void q() {
         HashMap hashMap = this.h;
         for (k kVar : hashMap.values()) {
-            a aVar = kVar.f47317a;
-            j jVar = kVar.f47319c;
-            aVar.p(kVar.f47318b);
+            a aVar = kVar.f48614a;
+            j jVar = kVar.f48616c;
+            aVar.p(kVar.f48615b);
             aVar.s(jVar);
             aVar.r(jVar);
         }
@@ -57,29 +57,29 @@ public abstract class l extends a {
         };
         j jVar = new j(this, num);
         hashMap.put(num, new k(aVar, r12, jVar));
-        Handler handler = this.f47323i;
+        Handler handler = this.f48630i;
         handler.getClass();
         aVar.getClass();
-        a5.a aVar2 = aVar.f47212c;
+        a5.a aVar2 = aVar.f48509c;
         aVar2.getClass();
         ?? obj = new Object();
-        obj.f47312a = handler;
-        obj.f47313b = jVar;
+        obj.f48603a = handler;
+        obj.f48604b = jVar;
         ((CopyOnWriteArrayList) aVar2.d).add(obj);
-        Handler handler2 = this.f47323i;
+        Handler handler2 = this.f48630i;
         handler2.getClass();
-        n2.k kVar = aVar.d;
-        kVar.getClass();
-        CopyOnWriteArrayList copyOnWriteArrayList = kVar.f16555c;
+        n2.j jVar2 = aVar.d;
+        jVar2.getClass();
+        CopyOnWriteArrayList copyOnWriteArrayList = jVar2.f16520c;
         ?? obj2 = new Object();
-        obj2.f16551a = handler2;
-        obj2.f16552b = jVar;
+        obj2.f16516a = handler2;
+        obj2.f16517b = jVar;
         copyOnWriteArrayList.add(obj2);
-        g2.c0 c0Var = this.f47324j;
-        j2.k kVar2 = this.f47215g;
-        e2.d.h(kVar2);
-        aVar.l(r12, c0Var, kVar2);
-        if (this.f47211b.isEmpty()) {
+        g2.c0 c0Var = this.f48631j;
+        j2.k kVar = this.f48512g;
+        e2.d.h(kVar);
+        aVar.l(r12, c0Var, kVar);
+        if (this.f48508b.isEmpty()) {
             aVar.d(r12);
         }
     }

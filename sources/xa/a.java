@@ -1,12 +1,14 @@
 package xa;
+
+import a1.g;
 public final class a {
-    public final String f49822a;
-    public final String f49823b;
+    public final String f51098a;
+    public final String f51099b;
 
     public a(String str, String str2) {
-        this.f49822a = str;
+        this.f51098a = str;
         if (str2 != null) {
-            this.f49823b = str2;
+            this.f51099b = str2;
             return;
         }
         throw new NullPointerException("Null version");
@@ -18,7 +20,7 @@ public final class a {
         }
         if (obj instanceof a) {
             a aVar = (a) obj;
-            if (this.f49822a.equals(aVar.f49822a) && this.f49823b.equals(aVar.f49823b)) {
+            if (this.f51098a.equals(aVar.f51098a) && this.f51099b.equals(aVar.f51099b)) {
                 return true;
             }
         }
@@ -26,13 +28,13 @@ public final class a {
     }
 
     public final int hashCode() {
-        return ((this.f49822a.hashCode() ^ 1000003) * 1000003) ^ this.f49823b.hashCode();
+        return ((this.f51098a.hashCode() ^ 1000003) * 1000003) ^ this.f51099b.hashCode();
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("LibraryVersion{libraryName=");
-        sb2.append(this.f49822a);
+        sb2.append(this.f51098a);
         sb2.append(", version=");
-        return a4.a.t(sb2, this.f49823b, "}");
+        return g.t(sb2, this.f51099b, "}");
     }
 }

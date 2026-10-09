@@ -1,10 +1,18 @@
 package org.telegram.ui;
 
-import android.view.accessibility.AccessibilityNodeInfo;
-public final class yl extends org.telegram.ui.Cells.w0 {
+import android.app.Activity;
+import org.telegram.messenger.AndroidUtilities;
+public final class yl extends ci.d4 {
+    public final zn L0;
+
+    public yl(zn znVar, Activity activity) {
+        super(activity, 3);
+        this.L0 = znVar;
+    }
+
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setVisibleToUser(true);
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        setTranslationY(((-getTop()) - AndroidUtilities.dp(120.0f)) + this.L0.C1);
     }
 }

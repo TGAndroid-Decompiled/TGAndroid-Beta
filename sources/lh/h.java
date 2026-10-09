@@ -13,41 +13,41 @@ import android.view.MotionEvent;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import b2.i0;
-import gg.b0;
+import gg.a0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.voip.GroupCallMessagesController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.tr;
+import org.telegram.ui.Components.hs;
 import org.telegram.ui.LaunchActivity;
 public final class h extends RecyclerView {
-    public final e U0;
-    public final Paint V0;
-    public RenderNode W0;
-    public float X0;
-    public View Y0;
-    public g Z0;
-    public a f15601a1;
-    public int f15602b1;
-    public int f15603c1;
-    public int f15604d1;
+    public final e S0;
+    public final Paint T0;
+    public RenderNode U0;
+    public float V0;
+    public View W0;
+    public g X0;
+    public a Y0;
+    public int Z0;
+    public int f15597a1;
+    public int f15598b1;
 
     public h(LaunchActivity launchActivity) {
         super(launchActivity);
         Paint paint = new Paint(1);
-        this.V0 = paint;
-        this.f15603c1 = Integer.MIN_VALUE;
-        this.f15604d1 = Integer.MIN_VALUE;
+        this.T0 = paint;
+        this.f15597a1 = Integer.MIN_VALUE;
+        this.f15598b1 = Integer.MIN_VALUE;
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
         paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(16.0f), 0, -16777216, Shader.TileMode.CLAMP));
-        setLayoutManager(new b0(1, true, 1));
+        setLayoutManager(new a0(1, true, 1));
         i(new t(2));
         e eVar = new e(this);
-        this.U0 = eVar;
+        this.S0 = eVar;
         setAdapter(eVar);
         f fVar = new f(this);
-        fVar.f46577m = false;
+        fVar.f47696m = false;
         fVar.C = false;
-        fVar.o(tr.h);
+        fVar.o(hs.h);
         fVar.n(320L);
         setItemAnimator(fVar);
     }
@@ -64,24 +64,24 @@ public final class h extends RecyclerView {
         return f7;
     }
 
-    public final void D0(int i10, TLRPC.InputGroupCall inputGroupCall) {
+    public final void C0(int i10, TLRPC.InputGroupCall inputGroupCall) {
         int i11;
-        e eVar = this.U0;
-        if (eVar.d && (i11 = eVar.f15599e) != -1 && eVar.f15600f != null) {
-            GroupCallMessagesController.getInstance(i11).unsubscribeFromCallMessages(eVar.f15600f.f20064id, eVar);
+        e eVar = this.S0;
+        if (eVar.d && (i11 = eVar.f15595e) != -1 && eVar.f15596f != null) {
+            GroupCallMessagesController.getInstance(i11).unsubscribeFromCallMessages(eVar.f15596f.f20055id, eVar);
         }
-        eVar.f15599e = i10;
-        eVar.f15600f = inputGroupCall;
+        eVar.f15595e = i10;
+        eVar.f15596f = inputGroupCall;
         if (eVar.d) {
-            eVar.f15598c = GroupCallMessagesController.getInstance(i10).getCallMessages(eVar.f15600f.f20064id);
+            eVar.f15594c = GroupCallMessagesController.getInstance(i10).getCallMessages(eVar.f15596f.f20055id);
             eVar.l();
-            GroupCallMessagesController.getInstance(i10).subscribeToCallMessages(eVar.f15600f.f20064id, eVar);
+            GroupCallMessagesController.getInstance(i10).subscribeToCallMessages(eVar.f15596f.f20055id, eVar);
         }
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        int measuredHeight = getMeasuredHeight() - this.f15602b1;
+        int measuredHeight = getMeasuredHeight() - this.Z0;
         int dp = AndroidUtilities.dp(16.0f);
         int i10 = measuredHeight + dp;
         int measuredHeight2 = getMeasuredHeight();
@@ -95,20 +95,20 @@ public final class h extends RecyclerView {
         float f11 = measuredWidth;
         int saveLayer = canvas.saveLayer(0.0f, f10, f11, f7, null);
         canvas.clipRect(0, measuredHeight, measuredWidth, i10);
-        this.f15603c1 = measuredHeight;
-        this.f15604d1 = i10;
+        this.f15597a1 = measuredHeight;
+        this.f15598b1 = i10;
         super.dispatchDraw(canvas);
         canvas.translate(0.0f, f10);
-        canvas.drawRect(0.0f, 0.0f, f11, dp, this.V0);
+        canvas.drawRect(0.0f, 0.0f, f11, dp, this.T0);
         canvas.restoreToCount(saveLayer);
         canvas.save();
         canvas.clipRect(0, i10, measuredWidth, measuredHeight2);
-        this.f15603c1 = i10;
-        this.f15604d1 = getMeasuredHeight();
+        this.f15597a1 = i10;
+        this.f15598b1 = getMeasuredHeight();
         super.dispatchDraw(canvas);
         canvas.restore();
-        this.f15603c1 = Integer.MIN_VALUE;
-        this.f15604d1 = Integer.MIN_VALUE;
+        this.f15597a1 = Integer.MIN_VALUE;
+        this.f15598b1 = Integer.MIN_VALUE;
     }
 
     @Override
@@ -118,7 +118,7 @@ public final class h extends RecyclerView {
         if (motionEvent.getAction() == 0) {
             int x10 = (int) motionEvent.getX();
             int y3 = (int) motionEvent.getY();
-            if (y3 < getMeasuredHeight() - this.f15602b1) {
+            if (y3 < getMeasuredHeight() - this.Z0) {
                 return false;
             }
             int childCount = getChildCount();
@@ -131,11 +131,11 @@ public final class h extends RecyclerView {
                         if (cVar.getVisibility() == 0) {
                             float x11 = x10 - childAt.getX();
                             float y10 = y3 - childAt.getY();
-                            i0 i0Var = cVar.f15595w;
+                            i0 i0Var = cVar.f15591w;
                             if (i0Var == null) {
                                 contains = false;
                             } else {
-                                contains = ((RectF) i0Var.f3260c).contains(x11, y10);
+                                contains = ((RectF) i0Var.f3339c).contains(x11, y10);
                             }
                             if (contains) {
                                 z10 = true;
@@ -160,10 +160,10 @@ public final class h extends RecyclerView {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (this.f15603c1 != Integer.MIN_VALUE && view.getY() + view.getHeight() < this.f15603c1) {
+        if (this.f15597a1 != Integer.MIN_VALUE && view.getY() + view.getHeight() < this.f15597a1) {
             return true;
         }
-        if (this.f15604d1 != Integer.MIN_VALUE && view.getY() > this.f15604d1) {
+        if (this.f15598b1 != Integer.MIN_VALUE && view.getY() > this.f15598b1) {
             return true;
         }
         return super.drawChild(canvas, view, j3);
@@ -172,37 +172,37 @@ public final class h extends RecyclerView {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        e eVar = this.U0;
+        e eVar = this.S0;
         eVar.d = true;
-        int i10 = eVar.f15599e;
-        if (i10 != -1 && eVar.f15600f != null) {
-            eVar.f15598c = GroupCallMessagesController.getInstance(i10).getCallMessages(eVar.f15600f.f20064id);
+        int i10 = eVar.f15595e;
+        if (i10 != -1 && eVar.f15596f != null) {
+            eVar.f15594c = GroupCallMessagesController.getInstance(i10).getCallMessages(eVar.f15596f.f20055id);
             eVar.l();
-            GroupCallMessagesController.getInstance(eVar.f15599e).subscribeToCallMessages(eVar.f15600f.f20064id, eVar);
+            GroupCallMessagesController.getInstance(eVar.f15595e).subscribeToCallMessages(eVar.f15596f.f20055id, eVar);
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        e eVar = this.U0;
+        e eVar = this.S0;
         eVar.d = false;
-        int i10 = eVar.f15599e;
-        if (i10 != -1 && eVar.f15600f != null) {
-            GroupCallMessagesController.getInstance(i10).unsubscribeFromCallMessages(eVar.f15600f.f20064id, eVar);
+        int i10 = eVar.f15595e;
+        if (i10 != -1 && eVar.f15596f != null) {
+            GroupCallMessagesController.getInstance(i10).unsubscribeFromCallMessages(eVar.f15596f.f20055id, eVar);
         }
     }
 
     public void setBlurRoot(View view) {
-        this.Y0 = view;
+        this.W0 = view;
     }
 
     public void setClickCellDelegate(a aVar) {
-        this.f15601a1 = aVar;
+        this.Y0 = aVar;
     }
 
     public void setDelegate(g gVar) {
-        this.Z0 = gVar;
+        this.X0 = gVar;
     }
 
     @Override
@@ -218,8 +218,8 @@ public final class h extends RecyclerView {
     }
 
     public void setVisibleHeight(int i10) {
-        if (this.f15602b1 != i10) {
-            this.f15602b1 = i10;
+        if (this.Z0 != i10) {
+            this.Z0 = i10;
             invalidate();
         }
     }

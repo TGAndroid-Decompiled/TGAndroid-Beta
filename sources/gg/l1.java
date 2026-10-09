@@ -1,46 +1,28 @@
 package gg;
 
-import ai.u9;
-import org.telegram.messenger.MessagesController;
-import org.telegram.ui.Cells.o2;
-import org.telegram.ui.Cells.s2;
-import org.telegram.ui.Components.zl0;
-import org.telegram.ui.yn;
-public final class l1 implements o2 {
-    public final o1 f10704a;
+import ai.w8;
+import android.content.Context;
+import android.view.View;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.Components.c71;
+import org.telegram.ui.Components.k71;
+import org.telegram.ui.Components.o61;
+import org.telegram.ui.Components.p61;
+import org.telegram.ui.Components.qm0;
+public final class l1 extends o61 {
+    public static final int f10714a = 0;
 
-    public l1(o1 o1Var) {
-        this.f10704a = o1Var;
+    static {
+        o61.setup(new o61());
     }
 
     @Override
-    public final boolean b() {
-        return false;
+    public final void bindView(View view, p61 p61Var, boolean z10, c71 c71Var, k71 k71Var) {
+        ((m1) view).a((w8) p61Var.G);
     }
 
     @Override
-    public final void e(s2 s2Var) {
-        o1 o1Var = this.f10704a;
-        yn ynVar = o1Var.f10735f;
-        if (MessagesController.getInstance(o1Var.f10737r).getStoriesController().I(s2Var.getDialogId())) {
-            ynVar.getOrCreateStoryViewer().getClass();
-            ynVar.getOrCreateStoryViewer().D(o1Var.f10733c, s2Var.getDialogId(), u9.a((zl0) s2Var.getParent()));
-        }
-    }
-
-    @Override
-    public final void a(s2 s2Var) {
-    }
-
-    @Override
-    public final void c() {
-    }
-
-    @Override
-    public final void d(s2 s2Var) {
-    }
-
-    @Override
-    public final void f(s2 s2Var) {
+    public final View createView(Context context, qm0 qm0Var, int i10, int i11, e6 e6Var) {
+        return new m1(context, e6Var);
     }
 }

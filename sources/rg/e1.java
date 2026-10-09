@@ -3,32 +3,32 @@ package rg;
 import android.content.Context;
 import org.telegram.messenger.MessagesController;
 public final class e1 implements Runnable {
-    public final int f46112a;
-    public final m1 f46113b;
+    public final int f47239a;
+    public final l1 f47240b;
 
-    public e1(m1 m1Var, int i10) {
-        this.f46112a = i10;
-        this.f46113b = m1Var;
+    public e1(l1 l1Var, int i10) {
+        this.f47239a = i10;
+        this.f47240b = l1Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f46112a) {
+        switch (this.f47239a) {
             case 0:
-                m1 m1Var = this.f46113b;
-                Context context = m1Var.getContext();
-                nf.f.s(context, "https://" + MessagesController.getInstance(m1Var.Y).linkPrefix + "/nft/" + m1Var.D0.slug);
+                l1 l1Var = this.f47240b;
+                Context context = l1Var.getContext();
+                of.f.s(context, "https://" + MessagesController.getInstance(l1Var.Y).linkPrefix + "/nft/" + l1Var.D0.slug);
                 return;
             case 1:
-                m1 m1Var2 = this.f46113b;
+                l1 l1Var2 = this.f47240b;
                 try {
-                    m1Var2.container.performHapticFeedback(3, 2);
+                    l1Var2.container.performHapticFeedback(3, 2);
                 } catch (Exception unused) {
                 }
-                m1Var2.f46213o0.c(m1Var2.K0);
+                l1Var2.f47332o0.c(l1Var2.K0);
                 return;
             default:
-                this.f46113b.O0[0].setVisibility(8);
+                this.f47240b.O0[0].setVisibility(8);
                 return;
         }
     }

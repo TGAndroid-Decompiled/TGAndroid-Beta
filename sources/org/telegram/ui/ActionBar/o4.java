@@ -16,19 +16,19 @@ public final class o4 extends ArrayAdapter {
     @Override
     public final View getView(int i10, View view, ViewGroup viewGroup) {
         u4 u4Var = this.f21447a;
-        com.google.firebase.messaging.p pVar = u4Var.f21560q;
+        com.google.firebase.messaging.p pVar = u4Var.f21564q;
         MenuItem menuItem = (MenuItem) getItem(i10);
         int width = u4Var.I.getWidth();
         boolean z10 = false;
         if (view != null) {
-            int i11 = pVar.f7913a;
-            if (((u4) pVar.f7916e).Q.f21679j != null) {
+            int i11 = pVar.f7962a;
+            if (((u4) pVar.f7965e).Q.f21678j != null) {
                 z10 = true;
             }
             w4.e(view, menuItem, z10);
         } else {
-            view = w4.b(((u4) pVar.f7916e).Q, (Context) pVar.f7915c, menuItem, true, false, false);
-            int i12 = pVar.f7914b;
+            view = w4.b(((u4) pVar.f7965e).Q, (Context) pVar.f7964c, menuItem, true, false, false);
+            int i12 = pVar.f7963b;
             view.setPadding(i12, 0, i12, 0);
         }
         view.setMinimumWidth(width);

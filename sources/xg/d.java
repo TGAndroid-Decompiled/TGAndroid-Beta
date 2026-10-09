@@ -7,29 +7,29 @@ import android.widget.TextView;
 import com.google.android.gms.internal.vision.e2;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.i6;
-import w7.z5;
+import w7.x5;
 public final class d extends FrameLayout {
-    public final d6 f49854a;
-    public final TextView f49855b;
+    public final e6 f51129a;
+    public final TextView f51130b;
 
-    public d(Context context, d6 d6Var) {
+    public d(Context context, e6 e6Var) {
         super(context);
         int i10;
-        this.f49854a = d6Var;
-        setBackgroundColor(i6.v0(i6.e7, d6Var));
+        this.f51129a = e6Var;
+        setBackgroundColor(i6.w0(i6.e7, e6Var));
         TextView textView = new TextView(getContext());
-        this.f49855b = textView;
+        this.f51130b = textView;
         e2.l(14.0f, 1, textView);
-        textView.setTextColor(i6.v0(i6.f7, d6Var));
+        textView.setTextColor(i6.w0(i6.f7, e6Var));
         if (LocaleController.isRTL) {
             i10 = 5;
         } else {
             i10 = 3;
         }
         textView.setGravity(i10 | 16);
-        addView(textView, z5.d(-1, -1.0f, (LocaleController.isRTL ? 5 : 3) | 48, 16.0f, 0.0f, 16.0f, 0.0f));
+        addView(textView, x5.a(-1.0f, 16.0f, 0.0f, 16.0f, 0.0f, -1, (LocaleController.isRTL ? 5 : 3) | 48));
     }
 
     @Override
@@ -38,10 +38,10 @@ public final class d extends FrameLayout {
     }
 
     public void setLetter(CharSequence charSequence) {
-        this.f49855b.setText(charSequence);
+        this.f51130b.setText(charSequence);
     }
 
     public void setTextColor(int i10) {
-        this.f49855b.setTextColor(i6.v0(i10, this.f49854a));
+        this.f51130b.setTextColor(i6.w0(i10, this.f51129a));
     }
 }

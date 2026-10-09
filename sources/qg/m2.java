@@ -1,10 +1,74 @@
 package qg;
 
-import android.graphics.Bitmap;
+import java.io.File;
+import java.util.ArrayList;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.tgnet.TLRPC;
 public final class m2 {
-    public Bitmap f45208a;
-    public int f45209b;
-    public int f45210c;
-    public int d;
-    public int f45211e;
+    public String f46396a;
+    public String f46397b;
+    public String f46398c;
+    public CharSequence d;
+    public TLRPC.TL_inputStickerSetItem f46399e;
+    public TLRPC.TL_messageMediaDocument f46400f;
+    public TLRPC.InputFile f46401g;
+    public boolean h;
+    public long f46402i;
+    public TLRPC.StickerSet f46403j;
+    public TLRPC.Document f46404k;
+    public String f46405l;
+    public Utilities.Callback2 f46406m;
+    public Utilities.Callback f46407n;
+    public boolean f46408o;
+    public ArrayList f46409p;
+    public ArrayList f46410q;
+    public MessageObject f46411r;
+    public VideoEditedInfo f46412s;
+    public float f46413t;
+    public float f46414u;
+
+    public final void a() {
+        ArrayList arrayList = this.f46410q;
+        ArrayList arrayList2 = this.f46409p;
+        int size = arrayList2.size();
+        int i10 = 0;
+        int i11 = 0;
+        while (i11 < size) {
+            Object obj = arrayList2.get(i11);
+            i11++;
+            try {
+                ((File) obj).delete();
+            } catch (Exception e7) {
+                FileLog.e(e7);
+            }
+        }
+        arrayList2.clear();
+        int size2 = arrayList.size();
+        while (i10 < size2) {
+            Object obj2 = arrayList.get(i10);
+            i10++;
+            try {
+                ((File) obj2).delete();
+            } catch (Exception e10) {
+                FileLog.e(e10);
+            }
+        }
+        arrayList.clear();
+    }
+
+    public final float b() {
+        float f7;
+        if (this.f46406m == null) {
+            f7 = 0.9f;
+        } else {
+            f7 = 1.0f;
+        }
+        if (this.f46412s == null) {
+            return f7 * this.f46414u;
+        }
+        return com.google.android.gms.internal.vision.e2.A(this.f46414u, 0.5f, this.f46413t * 0.5f, f7);
+    }
 }

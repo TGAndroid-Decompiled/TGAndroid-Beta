@@ -1,66 +1,78 @@
 package u2;
-public final class p1 {
-    public static final p1 d = new p1(new b2.l1[0]);
-    public static final String f47385e;
-    public final int f47386a;
-    public final e9.a1 f47387b;
-    public int f47388c;
+public abstract class p1 extends l {
+    public final a f48687k;
 
-    static {
-        String str = e2.d0.f8538a;
-        f47385e = Integer.toString(0, 36);
+    public p1(a aVar) {
+        this.f48687k = aVar;
     }
 
-    public p1(b2.l1... l1VarArr) {
-        e9.a1 w10 = e9.i0.w(l1VarArr);
-        this.f47387b = w10;
-        this.f47386a = l1VarArr.length;
-        int i10 = 0;
-        while (i10 < w10.d) {
-            int i11 = i10 + 1;
-            for (int i12 = i11; i12 < w10.d; i12++) {
-                if (((b2.l1) w10.get(i10)).equals(w10.get(i12))) {
-                    e2.a.f("TrackGroupArray", "", new IllegalArgumentException("Multiple identical TrackGroups added to one TrackGroupArray."));
-                }
-            }
-            i10 = i11;
-        }
+    public abstract void A(b2.k1 k1Var);
+
+    public final void B() {
+        y(null, this.f48687k);
     }
 
-    public final b2.l1 a(int i10) {
-        return (b2.l1) this.f47387b.get(i10);
+    public void C() {
+        B();
     }
 
-    public final int b(b2.l1 l1Var) {
-        int indexOf = this.f47387b.indexOf(l1Var);
-        if (indexOf >= 0) {
-            return indexOf;
-        }
-        return -1;
+    @Override
+    public boolean a(b2.k0 k0Var) {
+        return this.f48687k.a(k0Var);
     }
 
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && p1.class == obj.getClass()) {
-                p1 p1Var = (p1) obj;
-                if (this.f47386a == p1Var.f47386a && this.f47387b.equals(p1Var.f47387b)) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
+    @Override
+    public b2.k1 h() {
+        return this.f48687k.h();
     }
 
-    public final int hashCode() {
-        if (this.f47388c == 0) {
-            this.f47388c = this.f47387b.hashCode();
-        }
-        return this.f47388c;
+    @Override
+    public final b2.k0 i() {
+        return this.f48687k.i();
     }
 
-    public final String toString() {
-        return this.f47387b.toString();
+    @Override
+    public boolean j() {
+        return this.f48687k.j();
+    }
+
+    @Override
+    public final void m(g2.c0 c0Var) {
+        this.f48631j = c0Var;
+        this.f48630i = e2.d0.o(null);
+        C();
+    }
+
+    @Override
+    public void t(b2.k0 k0Var) {
+        this.f48687k.t(k0Var);
+    }
+
+    @Override
+    public final f0 u(Object obj, f0 f0Var) {
+        Void r12 = (Void) obj;
+        return z(f0Var);
+    }
+
+    @Override
+    public final long v(Object obj, long j3) {
+        Void r12 = (Void) obj;
+        return j3;
+    }
+
+    @Override
+    public final int w(int i10, Object obj) {
+        Void r22 = (Void) obj;
+        return i10;
+    }
+
+    @Override
+    public final void x(Object obj, a aVar, b2.k1 k1Var) {
+        Void r12 = (Void) obj;
+        A(k1Var);
+    }
+
+    public f0 z(f0 f0Var) {
+        return f0Var;
     }
 }

@@ -1,128 +1,152 @@
 package org.telegram.ui.Components;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.content.Context;
+import android.graphics.Rect;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ScrollView;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.tgnet.TLRPC;
-public final class w20 extends yl0 {
-    public ChatObject.Call f32479c;
-    public final int d;
-    public ArrayList h;
-    public org.telegram.ui.a40 f32482n;
-    public final org.telegram.ui.h60 f32483r;
-    public final ArrayList f32480e = new ArrayList();
-    public final ArrayList f32481f = new ArrayList();
-    public boolean f32484s = false;
+public class w20 extends ScrollView {
+    public final int f32523a;
+    public final a0.i f32524b;
+    public final ArrayList f32525c;
+    public final v20 d;
+    public int f32526e;
+    public t20 f32527f;
+    public boolean h;
+    public int f32528n;
 
-    public w20(ChatObject.Call call, int i10, org.telegram.ui.h60 h60Var) {
-        this.f32479c = call;
-        this.d = i10;
-        this.f32483r = h60Var;
+    public w20(Context context, int i10) {
+        super(context);
+        this.f32524b = new a0.i();
+        this.f32525c = new ArrayList();
+        this.f32523a = i10;
+        v20 v20Var = new v20(this, context);
+        this.d = v20Var;
+        setVerticalScrollBarEnabled(false);
+        addView(v20Var, w7.x5.d(-2.0f, -1));
     }
 
-    @Override
-    public final boolean D(s4.c1 c1Var) {
-        return false;
-    }
-
-    public final void E(ArrayList arrayList, org.telegram.ui.a40 a40Var) {
-        this.h = arrayList;
-        this.f32482n = a40Var;
-    }
-
-    public final void F(org.telegram.ui.w30 w30Var, boolean z10) {
-        this.f32484s = z10;
-        for (int i10 = 0; i10 < w30Var.getChildCount(); i10++) {
-            View childAt = w30Var.getChildAt(i10);
-            if (childAt instanceof v20) {
-                v20 v20Var = (v20) childAt;
-                if (v20Var.getVideoParticipant() != null) {
-                    v20Var.b(z10);
-                }
-            }
+    public void a(d40 d40Var) {
+        v20 v20Var = this.d;
+        ArrayList arrayList = v20Var.f31669c;
+        w20 w20Var = v20Var.f31673r;
+        w20Var.f32525c.add(d40Var);
+        if (!d40Var.d) {
+            w20Var.f32524b.k(d40Var, d40Var.getUid());
         }
-    }
-
-    public final void G(zl0 zl0Var, boolean z10) {
-        if (this.f32479c == null) {
-            return;
+        AnimatorSet animatorSet = v20Var.f31667a;
+        if (animatorSet != null && animatorSet.isRunning()) {
+            v20Var.f31667a.setupEndValues();
+            v20Var.f31667a.cancel();
         }
-        ArrayList arrayList = this.f32480e;
-        ArrayList arrayList2 = this.f32481f;
-        if (z10) {
-            ArrayList arrayList3 = new ArrayList(arrayList2);
-            ArrayList arrayList4 = new ArrayList(arrayList);
-            arrayList2.clear();
-            ChatObject.Call call = this.f32479c;
-            if (!call.call.rtmp_stream) {
-                arrayList2.addAll(call.visibleParticipants);
-            }
-            arrayList.clear();
-            ChatObject.Call call2 = this.f32479c;
-            if (!call2.call.rtmp_stream) {
-                arrayList.addAll(call2.visibleVideoParticipants);
-            }
-            s4.o.c(new t20(this, arrayList4, arrayList3), true).b(this);
-            AndroidUtilities.updateVisibleRows(zl0Var);
-            return;
-        }
-        arrayList2.clear();
-        ChatObject.Call call3 = this.f32479c;
-        if (!call3.call.rtmp_stream) {
-            arrayList2.addAll(call3.visibleParticipants);
-        }
+        v20Var.f31668b = false;
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        v20Var.f31667a = animatorSet2;
+        animatorSet2.addListener(new u20(v20Var, 1));
+        v20Var.f31667a.setDuration(150L);
+        v20Var.d = d40Var;
         arrayList.clear();
-        ChatObject.Call call4 = this.f32479c;
-        if (!call4.call.rtmp_stream) {
-            arrayList.addAll(call4.visibleVideoParticipants);
+        arrayList.add(ObjectAnimator.ofFloat(v20Var.d, View.SCALE_X, 0.01f, 1.0f));
+        arrayList.add(ObjectAnimator.ofFloat(v20Var.d, View.SCALE_Y, 0.01f, 1.0f));
+        arrayList.add(ObjectAnimator.ofFloat(v20Var.d, View.ALPHA, 0.0f, 1.0f));
+        v20Var.addView(d40Var);
+    }
+
+    public void b() {
+        v20 v20Var = this.d;
+        ArrayList arrayList = v20Var.f31669c;
+        w20 w20Var = v20Var.f31673r;
+        w20Var.h = true;
+        ArrayList arrayList2 = w20Var.f32525c;
+        ArrayList arrayList3 = new ArrayList(arrayList2);
+        arrayList2.clear();
+        ArrayList arrayList4 = v20Var.f31670e;
+        arrayList4.clear();
+        arrayList4.addAll(arrayList3);
+        for (int i10 = 0; i10 < arrayList3.size(); i10++) {
+            ((d40) arrayList3.get(i10)).setOnClickListener(null);
         }
-        l();
+        AnimatorSet animatorSet = v20Var.f31667a;
+        if (animatorSet != null && animatorSet.isRunning()) {
+            v20Var.f31667a.setupEndValues();
+            v20Var.f31667a.cancel();
+        }
+        v20Var.f31668b = false;
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        v20Var.f31667a = animatorSet2;
+        animatorSet2.addListener(new ai.z(26, v20Var, arrayList3));
+        arrayList.clear();
+        for (int i11 = 0; i11 < arrayList3.size(); i11++) {
+            d40 d40Var = (d40) arrayList3.get(i11);
+            arrayList.add(ObjectAnimator.ofFloat(d40Var, View.SCALE_X, 1.0f, 0.01f));
+            arrayList.add(ObjectAnimator.ofFloat(d40Var, View.SCALE_Y, 1.0f, 0.01f));
+            arrayList.add(ObjectAnimator.ofFloat(d40Var, View.ALPHA, 1.0f, 0.0f));
+        }
+        v20Var.requestLayout();
+    }
+
+    public void c(d40 d40Var) {
+        v20 v20Var = this.d;
+        ArrayList arrayList = v20Var.f31670e;
+        ArrayList arrayList2 = v20Var.f31669c;
+        w20 w20Var = v20Var.f31673r;
+        w20Var.h = true;
+        if (!d40Var.d) {
+            w20Var.f32524b.l(d40Var.getUid());
+        }
+        w20Var.f32525c.remove(d40Var);
+        d40Var.setOnClickListener(null);
+        AnimatorSet animatorSet = v20Var.f31667a;
+        if (animatorSet != null) {
+            animatorSet.setupEndValues();
+            v20Var.f31667a.cancel();
+        }
+        v20Var.f31668b = false;
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        v20Var.f31667a = animatorSet2;
+        animatorSet2.addListener(new ai.z(25, v20Var, d40Var));
+        v20Var.f31667a.setDuration(150L);
+        arrayList.clear();
+        arrayList.add(d40Var);
+        arrayList2.clear();
+        arrayList2.add(ObjectAnimator.ofFloat(d40Var, View.SCALE_X, 1.0f, 0.01f));
+        arrayList2.add(ObjectAnimator.ofFloat(d40Var, View.SCALE_Y, 1.0f, 0.01f));
+        arrayList2.add(ObjectAnimator.ofFloat(d40Var, View.ALPHA, 1.0f, 0.0f));
+        v20Var.requestLayout();
     }
 
     @Override
-    public final int h() {
-        return this.f32481f.size() + this.f32480e.size();
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        int action = motionEvent.getAction();
+        float f7 = this.f32526e;
+        float y3 = motionEvent.getY();
+        if (action == 0 && y3 > f7) {
+            return false;
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    public ViewGroup getSpansContainer() {
+        return this.d;
     }
 
     @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        TLRPC.GroupCallParticipant groupCallParticipant;
-        ChatObject.VideoParticipant videoParticipant;
-        v20 v20Var = (v20) c1Var.f46538a;
-        ChatObject.VideoParticipant videoParticipant2 = v20Var.f31615f;
-        ArrayList arrayList = this.f32480e;
-        if (i10 < arrayList.size()) {
-            videoParticipant = (ChatObject.VideoParticipant) arrayList.get(i10);
-            groupCallParticipant = ((ChatObject.VideoParticipant) arrayList.get(i10)).participant;
-        } else {
-            int size = i10 - arrayList.size();
-            ArrayList arrayList2 = this.f32481f;
-            if (size < arrayList2.size()) {
-                groupCallParticipant = (TLRPC.GroupCallParticipant) arrayList2.get(i10 - arrayList.size());
-                videoParticipant = null;
-            } else {
-                return;
-            }
+    public final boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
+        if (this.h) {
+            this.h = false;
+            return false;
         }
-        v20Var.e(videoParticipant, groupCallParticipant);
-        if (videoParticipant2 != null && !videoParticipant2.equals(videoParticipant) && v20Var.K && v20Var.getRenderer() != null) {
-            v20Var.b(false);
-            if (videoParticipant != null) {
-                v20Var.b(true);
-            }
-        } else if (v20Var.K) {
-            if (v20Var.getRenderer() == null && videoParticipant != null && this.f32484s) {
-                v20Var.b(true);
-            } else if (v20Var.getRenderer() != null && videoParticipant == null) {
-                v20Var.b(false);
-            }
-        }
+        rect.offset(view.getLeft() - view.getScrollX(), view.getTop() - view.getScrollY());
+        rect.top = org.telegram.messenger.q.C(20.0f, this.f32528n, rect.top);
+        rect.bottom = org.telegram.messenger.q.C(50.0f, this.f32528n, rect.bottom);
+        return super.requestChildRectangleOnScreen(view, rect, z10);
     }
 
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        return new s4.c1(new v20(this, viewGroup.getContext()));
+    public void setDelegate(t20 t20Var) {
+        this.f32527f = t20Var;
     }
 }

@@ -3,77 +3,74 @@ package xh;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.d6;
-public final class z extends i1 {
-    public final RectF m0;
-    public final RectF f50336n0;
-    public final Path f50337o0;
-    public final c0 f50338p0;
+import org.telegram.ui.ActionBar.e6;
+public final class z extends yh.p3 {
+    public final Path A0;
+    public final float[] B0;
+    public final int C0;
+    public final e0 D0;
 
-    public z(c0 c0Var, Context context, int i10, d6 d6Var) {
-        super(context, i10, d6Var);
-        this.f50338p0 = c0Var;
-        this.m0 = new RectF();
-        this.f50336n0 = new RectF();
-        this.f50337o0 = new Path();
+    public z(e0 e0Var, Context context, e6 e6Var, rg.x1 x1Var, ai.e2 e2Var, ai.e2 e2Var2, ai.e2 e2Var3, ai.e2 e2Var4, ai.e2 e2Var5, ai.e2 e2Var6, int i10) {
+        super(context, e6Var, x1Var, e2Var, null, e2Var2, e2Var3, e2Var4, e2Var5, e2Var6);
+        this.D0 = e0Var;
+        this.C0 = i10;
+        this.A0 = new Path();
+        this.B0 = new float[8];
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        return false;
+    public final void dispatchDraw(Canvas canvas) {
+        canvas.save();
+        canvas.clipPath(this.A0);
+        super.dispatchDraw(canvas);
+        canvas.restore();
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        c0 c0Var = this.f50338p0;
-        x xVar = c0Var.f49914a0;
-        boolean drawChild = super.drawChild(canvas, view, j3);
-        FrameLayout frameLayout = this.d;
-        if (view == frameLayout) {
-            FrameLayout frameLayout2 = xVar.f52129b;
-            w wVar = c0Var.Y;
-            RectF rectF = this.m0;
-            if (hh.k.c(frameLayout2, wVar, rectF)) {
-                RectF rectF2 = this.f50336n0;
-                if (!hh.k.c(frameLayout, this, rectF2)) {
-                    return true;
-                }
-                float centerX = rectF2.centerX() - AndroidUtilities.dp(40.0f);
-                float centerY = rectF2.centerY() - AndroidUtilities.dp(40.0f);
-                if (!rectF.isEmpty()) {
-                    canvas.save();
-                    canvas.clipPath(this.f50337o0);
-                    canvas.scale(0.6f, 0.6f, rectF2.centerX(), rectF2.centerY());
-                    canvas.translate(rectF2.centerX() - (xVar.getWidth() / 2.0f), rectF2.centerY() - (xVar.getHeight() / 2.0f));
-                    xVar.b(canvas, xVar.getWidth() / 2.0f, AndroidUtilities.dp(104.0f), xVar.getWidth(), xVar.getHeight());
-                    xVar.c(canvas, xVar.getWidth() / 2.0f, AndroidUtilities.dp(104.0f), xVar.getWidth(), xVar.getHeight());
-                    canvas.restore();
-                    canvas.save();
-                    canvas.translate(centerX, centerY);
-                    canvas.scale(AndroidUtilities.dp(80.0f) / rectF.width(), AndroidUtilities.dp(80.0f) / rectF.height());
-                    xVar.f52129b.draw(canvas);
-                    canvas.restore();
-                }
-            } else {
-                return true;
-            }
+        if (view == this.f53000b) {
+            return true;
         }
-        return drawChild;
+        return super.drawChild(canvas, view, j3);
+    }
+
+    @Override
+    public final int getFinalHeight() {
+        return AndroidUtilities.dp(this.C0);
+    }
+
+    @Override
+    public final float getRealHeight() {
+        return AndroidUtilities.dp(this.C0);
+    }
+
+    @Override
+    public final void invalidate() {
+        super.invalidate();
+        b0 b0Var = this.D0.f51211c0;
+        if (b0Var != null) {
+            b0Var.invalidate();
+        }
+    }
+
+    @Override
+    public final void j(int i10) {
+        this.D0.f51211c0.setRibbonColor(i10);
     }
 
     @Override
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
         super.onSizeChanged(i10, i11, i12, i13);
-        Path path = this.f50337o0;
+        float dp = AndroidUtilities.dp(12.0f);
+        float[] fArr = this.B0;
+        fArr[3] = dp;
+        fArr[2] = dp;
+        fArr[1] = dp;
+        fArr[0] = dp;
+        Path path = this.A0;
         path.rewind();
-        RectF rectF = this.m0;
-        rectF.set(0.0f, 0.0f, i10, i11);
-        rectF.inset(AndroidUtilities.dp(3.33f), AndroidUtilities.dp(4.0f));
-        path.addRoundRect(rectF, AndroidUtilities.dp(11.0f), AndroidUtilities.dp(11.0f), Path.Direction.CW);
+        path.addRoundRect(0.0f, 0.0f, i10, i11, this.B0, Path.Direction.CW);
     }
 }

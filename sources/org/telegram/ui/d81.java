@@ -1,36 +1,25 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_account;
-public final class d81 implements Utilities.Callback {
-    public final int f35714a;
-    public final SessionsActivity f35715b;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.Switch;
+public final class d81 implements View.OnClickListener {
+    public final g81 f36900a;
+    public final TLRPC.TL_authorization f36901b;
+    public final h81 f36902c;
 
-    public d81(SessionsActivity sessionsActivity, int i10) {
-        this.f35714a = i10;
-        this.f35715b = sessionsActivity;
+    public d81(h81 h81Var, g81 g81Var, TLRPC.TL_authorization tL_authorization) {
+        this.f36902c = h81Var;
+        this.f36900a = g81Var;
+        this.f36901b = tL_authorization;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f35714a) {
-            case 0:
-                TL_account.connectedBots connectedbots = (TL_account.connectedBots) obj;
-                SessionsActivity sessionsActivity = this.f35715b;
-                sessionsActivity.getClass();
-                if (connectedbots != null) {
-                    sessionsActivity.h = connectedbots.connected_bots;
-                    if (sessionsActivity.f34483a != null) {
-                        sessionsActivity.m0();
-                        sessionsActivity.f34483a.l();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                SessionsActivity.T(this.f35715b, (Boolean) obj);
-                return;
-        }
+    public final void onClick(View view) {
+        g81 g81Var = this.f36900a;
+        Switch r02 = g81Var.d;
+        r02.c(!r02.h, true);
+        this.f36901b.encrypted_requests_disabled = !g81Var.d.h;
+        h81.p(this.f36902c);
     }
 }

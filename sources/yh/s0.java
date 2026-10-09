@@ -1,78 +1,49 @@
 package yh;
 
-import android.content.Context;
-import android.graphics.Rect;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.tr;
-public final class s0 extends oh.c implements le.d {
-    public static final int f51951s = 0;
-    public final le.e f51952f;
-    public final ii.q1 h;
-    public final oh.b[] f51953n;
-    public int f51954r;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.TwoStepVerificationActivity;
+public final class s0 implements Runnable {
+    public final int f53142a = 0;
+    public final s3 f53143b;
+    public final TLRPC.TL_error f53144c;
+    public final TwoStepVerificationActivity d;
+    public final TLObject f53145e;
 
-    public s0(Context context, org.telegram.ui.ActionBar.d6 d6Var, ii.q1 q1Var) {
-        super(context);
-        this.f51952f = new le.e(0, this, tr.h, 1600L);
-        this.h = q1Var;
-        int i10 = org.telegram.ui.ActionBar.i6.Wk;
-        int l1 = org.telegram.ui.ActionBar.i6.l1(0.09411765f, org.telegram.ui.ActionBar.i6.v0(i10, d6Var));
-        org.telegram.ui.ActionBar.i6.l1(0.1254902f, org.telegram.ui.ActionBar.i6.v0(i10, d6Var));
-        this.f17221e.setColor(l1);
-        this.f51953n = new oh.b[]{oh.b.b(context, d6Var, oh.a.G, R.string.GiftPreviewModels), oh.b.b(context, d6Var, oh.a.v, R.string.GiftPreviewBackdrops), oh.b.b(context, d6Var, oh.a.J, R.string.GiftPreviewSymbols)};
-        int i11 = 0;
-        while (true) {
-            oh.b[] bVarArr = this.f51953n;
-            if (i11 < bVarArr.length) {
-                this.f17218a.addView(bVarArr[i11], w7.z5.l(1.0f, 0, -1));
-                this.f51953n[i11].setOnClickListener(new ci.n4(this, i11, 27));
-                i11++;
-            } else {
-                bVarArr[0].e(true, false);
+    public s0(s3 s3Var, TLRPC.TL_error tL_error, TLObject tLObject, TwoStepVerificationActivity twoStepVerificationActivity) {
+        this.f53143b = s3Var;
+        this.f53144c = tL_error;
+        this.f53145e = tLObject;
+        this.d = twoStepVerificationActivity;
+    }
+
+    @Override
+    public final void run() {
+        switch (this.f53142a) {
+            case 0:
+                s3 s3Var = this.f53143b;
+                s3Var.getClass();
+                if (this.f53144c == null) {
+                    TL_account.Password password = (TL_account.Password) this.f53145e;
+                    TwoStepVerificationActivity twoStepVerificationActivity = this.d;
+                    twoStepVerificationActivity.I = password;
+                    TwoStepVerificationActivity.m0(password);
+                    s3Var.N1(twoStepVerificationActivity.l0(), twoStepVerificationActivity);
+                    return;
+                }
                 return;
-            }
+            default:
+                TwoStepVerificationActivity twoStepVerificationActivity2 = this.d;
+                s3.X0(this.f53143b, this.f53144c, this.f53145e, twoStepVerificationActivity2);
+                return;
         }
     }
 
-    public final void a(int i10) {
-        int i11 = this.f51954r;
-        if (i11 != i10) {
-            oh.b[] bVarArr = this.f51953n;
-            bVarArr[i11].e(false, true);
-            bVarArr[i10].e(true, true);
-            this.f51954r = i10;
-            this.f51952f.a(i10);
-            this.h.run(Integer.valueOf(i10));
-        }
-    }
-
-    @Override
-    public final void a0(int i10, float f7, float f10, le.e eVar) {
-        b();
-        invalidate();
-    }
-
-    public final void b() {
-        float f7 = this.f51952f.f15444e;
-        int measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(8.0f);
-        Rect rect = this.f17220c;
-        rect.set(AndroidUtilities.lerp(AndroidUtilities.dp(8.0f), getMeasuredWidth() - AndroidUtilities.dp(8.0f), f7 / 3.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.lerp(AndroidUtilities.dp(8.0f), getMeasuredWidth() - AndroidUtilities.dp(8.0f), (f7 + 1.0f) / 3.0f), measuredHeight);
-        int dp = AndroidUtilities.dp(this.f17219b * 7.0f);
-        Rect rect2 = this.d;
-        rect2.set(rect);
-        int i10 = -dp;
-        rect2.inset(i10, i10);
-        Math.abs(f7 - 1.0f);
-    }
-
-    @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        super.onSizeChanged(i10, i11, i12, i13);
-        b();
-    }
-
-    @Override
-    public final void V(float f7, int i10) {
+    public s0(s3 s3Var, TLRPC.TL_error tL_error, TwoStepVerificationActivity twoStepVerificationActivity, TLObject tLObject) {
+        this.f53143b = s3Var;
+        this.f53144c = tL_error;
+        this.d = twoStepVerificationActivity;
+        this.f53145e = tLObject;
     }
 }

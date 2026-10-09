@@ -1,23 +1,26 @@
 package uf;
 
-import org.telegram.messenger.NotificationCenter;
-public final class a implements Runnable {
-    public final int f47629a;
-    public final c f47630b;
+import ai.o4;
+import android.view.View;
+import android.view.ViewTreeObserver;
+import yf.x;
+public final class a implements ViewTreeObserver.OnDrawListener {
+    public final int f48894a;
+    public final View f48895b;
 
-    public a(c cVar, int i10) {
-        this.f47629a = i10;
-        this.f47630b = cVar;
+    public a(int i10, View view) {
+        this.f48894a = i10;
+        this.f48895b = view;
     }
 
     @Override
-    public final void run() {
-        switch (this.f47629a) {
+    public final void onDraw() {
+        switch (this.f48894a) {
             case 0:
-                this.f47630b.g(false);
+                ((o4) this.f48895b).forceLayout();
                 return;
             default:
-                NotificationCenter.getInstance(this.f47630b.f47638c).lambda$postNotificationNameOnUIThread$1(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
+                ((x) this.f48895b).f52202e.incrementAndGet();
                 return;
         }
     }

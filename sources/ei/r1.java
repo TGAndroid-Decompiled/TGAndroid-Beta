@@ -1,72 +1,44 @@
 package ei;
 
-import j$.util.function.Predicate$CC;
-import java.util.HashSet;
-import java.util.function.Predicate;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class r1 implements Predicate {
-    public final int f9298a;
-    public final Object f9299b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import java.util.Date;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Components.RadioButton;
+import w7.b6;
+import w7.x5;
+public final class r1 extends FrameLayout {
+    public final String f9327a;
+    public final RadioButton f9328b;
+    public final boolean f9329c;
 
-    public r1(Object obj, int i10) {
-        this.f9298a = i10;
-        this.f9299b = obj;
-    }
-
-    public Predicate and(Predicate predicate) {
-        int i10 = this.f9298a;
-        return Predicate$CC.$default$and(this, predicate);
-    }
-
-    public Predicate negate() {
-        switch (this.f9298a) {
-            case 0:
-                return Predicate$CC.$default$negate(this);
-            case 1:
-                return Predicate$CC.$default$negate(this);
-            default:
-                return Predicate$CC.$default$negate(this);
-        }
-    }
-
-    public Predicate or(Predicate predicate) {
-        int i10 = this.f9298a;
-        return Predicate$CC.$default$or(this, predicate);
+    public r1(s1 s1Var, boolean z10, Context context) {
+        super(context);
+        this.f9327a = s1Var.f9344a;
+        RadioButton radioButton = new RadioButton(context);
+        this.f9328b = radioButton;
+        radioButton.setSize(AndroidUtilities.dp(20.0f));
+        radioButton.b(i6.x0(null, i6.D5, false), i6.x0(null, i6.E5, false));
+        addView(radioButton, x5.a(22.0f, 20.0f, 0.0f, 0.0f, 0.0f, 22, 19));
+        TextView b10 = b6.b(context, 16.0f, i6.G6, true, null);
+        b10.setText(s1Var.f9346c);
+        addView(b10, x5.t(-1, -2, 7, 62, 9, 8, 0));
+        TextView b11 = b6.b(context, 14.0f, i6.f21181y6, false, null);
+        b11.setText(LocaleController.formatString(R.string.BotRestoreStorageCreatedAt, LocaleController.formatString(R.string.formatDateAtTime, LocaleController.formatSmallDateChat(s1Var.d / 1000), LocaleController.getInstance().getFormatterDay().format(new Date(s1Var.d / 1000)))));
+        addView(b11, x5.t(-1, -2, 7, 62, 32, 8, 0));
+        this.f9329c = z10;
+        setWillNotDraw(!z10);
     }
 
     @Override
-    public final boolean test(Object obj) {
-        boolean contains;
-        boolean z10;
-        switch (this.f9298a) {
-            case 0:
-                contains = ((HashSet) this.f9299b).contains(Long.valueOf(((t1) obj).f9344b));
-                break;
-            case 1:
-                contains = ((HashSet) this.f9299b).contains(Long.valueOf(((t1) obj).f9344b));
-                break;
-            default:
-                xh.q1 q1Var = (xh.q1) this.f9299b;
-                TL_stars.StarGift starGift = (TL_stars.StarGift) obj;
-                if (starGift instanceof TL_stars.TL_starGiftUnique) {
-                    z10 = q1Var.f50196b0.disallow_unique_stargifts;
-                } else {
-                    q1Var.getClass();
-                    if (starGift.limited) {
-                        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings = q1Var.f50196b0;
-                        if (!disallowedGiftsSettings.disallow_limited_stargifts) {
-                            return true;
-                        }
-                        if (starGift.can_upgrade && !disallowedGiftsSettings.disallow_unique_stargifts) {
-                            return true;
-                        }
-                        return false;
-                    }
-                    z10 = q1Var.f50196b0.disallow_unlimited_stargifts;
-                }
-                return true ^ z10;
+    public final void onDraw(Canvas canvas) {
+        if (this.f9329c) {
+            canvas.drawLine(AndroidUtilities.dp(62.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, i6.f20919k0);
         }
-        return !contains;
     }
 }
